@@ -90,6 +90,15 @@ A non-destructive probe over the live registry (evidence-quality vs nearest-cent
   replicated x4), ester hydrolase, N-ribosyl hydrolase. "Unclassifiable by our code" almost
   always means **our vocabulary is incomplete**, not new-to-the-world.
 
+2026-06-15 follow-up: the compass has now been converted into preview-only source-wall
+infrastructure for the top two 150-row candidates, without registry mutation:
+`n_ribosyl_hydrolase` and `metal_independent_phosphodiesterase`. See
+`artifacts/v3_high_yield_family_lane_factory_current702_20260615_discovery_compass.json`,
+`artifacts/v3_n_ribosyl_hydrolase_lane_preregistration_current702_20260615_discovery_compass.json`,
+and
+`artifacts/v3_metal_independent_phosphodiesterase_lane_preregistration_current702_20260615_discovery_compass.json`.
+Both still require fingerprint/ontology/OOS/source-runner gates before any labels can be applied.
+
 ## 5. The honest floor
 
 To claim *new chemistry* you must rule out *all known* chemistry. The atlas's ~41 fingerprints

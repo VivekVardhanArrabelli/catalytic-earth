@@ -314,20 +314,23 @@ def fetch_uniprot_query(
     query: str,
     size: int = 100,
     max_pages: int = 1,
+    offset: int = 0,
 ) -> dict[str, Any]:
     if max_pages < 1:
         raise ValueError("max_pages must be positive")
+    if offset < 0:
+        raise ValueError("offset must be non-negative")
     records: list[dict[str, Any]] = []
     pages: list[dict[str, Any]] = []
     for page_index in range(max_pages):
-        offset = page_index * size
-        url = build_uniprot_query_url(query=query, size=size, offset=offset)
+        page_offset = offset + page_index * size
+        url = build_uniprot_query_url(query=query, size=size, offset=page_offset)
         page_records = normalize_uniprot_tsv(_fetch_text(url))
         records.extend(page_records)
         pages.append(
             {
                 "url": url,
-                "offset": offset,
+                "offset": page_offset,
                 "record_count": len(page_records),
             }
         )

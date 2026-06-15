@@ -673,6 +673,26 @@
         "Hold multi-fingerprint-signal rows rather than forcing a Ser/Thr protein phosphatase label.",
         "The catalytic metal pair, phosphoprotein substrate, attacking water/hydroxide, and product/protonation state are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
+    },
+    {
+      "id": "n_glycosidic_bond_hydrolysis",
+      "name": "N-glycosidic bond hydrolysis",
+      "parent_id": "hydrolysis",
+      "fingerprint_ids": [
+        "n_ribosyl_hydrolase"
+      ],
+      "scope_note": "Reviewed EC 3.2.2 nucleoside/N-ribosyl hydrolases that hydrolyze N-glycosidic C-N bonds to ribose/deoxyribose and purine or pyrimidine base products.",
+      "sibling_ids": [
+        "hydrolysis",
+        "glycosidic_bond_hydrolysis",
+        "ser_his_acid_ester_hydrolysis"
+      ],
+      "family_boundary_guardrails": [
+        "Membership is decided by nucleoside hydrolase, N-ribosylhydrolase, or N-ribosidase family/name context plus Rhea/reviewed N-glycosidic hydrolysis; EC 3.2.2 is scope only.",
+        "Do not admit O-glycosidases, glycoside hydrolases, nucleoside phosphorylases, phosphorolysis rows, kinases, nucleotidyltransferases, transferases, DNA glycosylase lyases without explicit hydrolytic N-ribosyl cleavage, side-EC rows, or EC-only rows into this family.",
+        "Hold multi-fingerprint-signal rows rather than forcing an N-ribosyl hydrolase label.",
+        "The nucleoside substrate, ordered water, base product, ribose/deoxyribose product, and protonation state are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
     }
   ],
   "propagation_guardrails": [

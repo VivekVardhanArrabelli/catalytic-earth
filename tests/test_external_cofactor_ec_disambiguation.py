@@ -364,6 +364,183 @@ class DisambiguateRowTests(unittest.TestCase):
         non_scope["residue_locators"] = transferase["residue_locators"]
         self.assertEqual(disambiguate_row(non_scope)["decision"], "hold")
 
+    def test_n_ribosyl_hydrolase_requires_non_ec_mechanism_handles(self) -> None:
+        row = _row(ec=["3.2.2.2"])
+        row["protein_name"] = "Nucleoside hydrolase"
+        row["keywords"] = ["Hydrolase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:NRH0001",
+                "reaction": "inosine + H2O = D-ribose + hypoxanthine",
+                "ec_number": "3.2.2.2",
+            }
+        ]
+        row["residue_locators"] = [
+            {
+                "position": 14,
+                "feature_code": "ACT_SITE",
+                "feature_type": "Active site",
+                "ligand_name": None,
+                "ligand_id": None,
+                "description": "Catalytic aspartate acid/base",
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        decision = disambiguate_row(row)
+        self.assertEqual(decision["fingerprint_id"], "n_ribosyl_hydrolase")
+        axes = decision["corroboration"]["distinct_corroborator_axes"]
+        self.assertIn("domain_or_family_profile", axes)
+        self.assertIn("rhea_reaction_or_participant_pattern", axes)
+        self.assertIn("active_site_motif_or_residue_role", axes)
+        self.assertNotIn("ec_scope_hint", axes)
+
+    def test_n_ribosyl_hydrolase_boundary_controls_hold(self) -> None:
+        ec_only = _row(ec=["3.2.2.2"])
+        ec_only["protein_name"] = "Nucleoside hydrolase"
+        self.assertEqual(disambiguate_row(ec_only)["decision"], "hold")
+
+        phosphorylase_side = _row(ec=["3.2.2.2", "2.4.2.1"])
+        phosphorylase_side["protein_name"] = "Nucleoside phosphorylase"
+        phosphorylase_side["keywords"] = ["Transferase"]
+        phosphorylase_side["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:NRH0002",
+                "reaction": "inosine + phosphate = alpha-D-ribose 1-phosphate + hypoxanthine",
+                "ec_number": "2.4.2.1",
+            }
+        ]
+        self.assertEqual(disambiguate_row(phosphorylase_side)["decision"], "hold")
+
+        phosphorylase_family_boundary = _row(ec=["3.2.2.2"])
+        phosphorylase_family_boundary["protein_name"] = (
+            "Nucleoside hydrolase phosphorylase boundary"
+        )
+        phosphorylase_family_boundary["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:NRH0005",
+                "reaction": "inosine + H2O = D-ribose + hypoxanthine",
+                "ec_number": "3.2.2.2",
+            }
+        ]
+        self.assertEqual(
+            disambiguate_row(phosphorylase_family_boundary)["decision"], "hold"
+        )
+
+        o_glycoside_boundary = _row(ec=["3.2.2.2"])
+        o_glycoside_boundary["protein_name"] = "Nucleoside hydrolase glycosidase boundary"
+        o_glycoside_boundary["keywords"] = ["Glycosidase"]
+        o_glycoside_boundary["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:NRH0003",
+                "reaction": "uridine + H2O = D-ribose + uracil",
+                "ec_number": "3.2.2.2",
+            }
+        ]
+        self.assertEqual(disambiguate_row(o_glycoside_boundary)["decision"], "hold")
+
+        kinase_boundary = _row(ec=["3.2.2.2", "2.7.1.1"])
+        kinase_boundary["protein_name"] = "Nucleoside hydrolase kinase boundary"
+        kinase_boundary["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:NRH0004",
+                "reaction": "adenosine + H2O = D-ribose + adenine",
+                "ec_number": "3.2.2.2",
+            }
+        ]
+        self.assertEqual(disambiguate_row(kinase_boundary)["decision"], "hold")
+
+    def test_metal_independent_phosphodiesterase_requires_non_ec_mechanism_handles(self) -> None:
+        row = _row(ec=["3.1.4.17"])
+        row["protein_name"] = "Cyclic nucleotide phosphodiesterase"
+        row["keywords"] = ["Hydrolase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:PDE0001",
+                "reaction": "3',5'-cyclic AMP + H2O = AMP + H(+)",
+                "ec_number": "3.1.4.17",
+            }
+        ]
+        row["residue_locators"] = [
+            {
+                "position": 77,
+                "feature_code": "ACT_SITE",
+                "feature_type": "Active site",
+                "ligand_name": None,
+                "ligand_id": None,
+                "description": "Catalytic histidine general acid/base",
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        decision = disambiguate_row(row)
+        self.assertEqual(
+            decision["fingerprint_id"],
+            "metal_independent_phosphodiesterase",
+        )
+        axes = decision["corroboration"]["distinct_corroborator_axes"]
+        self.assertIn("domain_or_family_profile", axes)
+        self.assertIn("rhea_reaction_or_participant_pattern", axes)
+        self.assertIn("active_site_motif_or_residue_role", axes)
+        self.assertNotIn("cofactor_or_cosubstrate", axes)
+        self.assertNotIn("ec_scope_hint", axes)
+
+    def test_metal_independent_phosphodiesterase_boundary_controls_hold(self) -> None:
+        ec_only = _row(ec=["3.1.4.17"])
+        ec_only["protein_name"] = "Cyclic nucleotide phosphodiesterase"
+        self.assertEqual(disambiguate_row(ec_only)["decision"], "hold")
+
+        metal_dependent = _row(cofactors=["Mg(2+)"], ec=["3.1.4.17"])
+        metal_dependent["protein_name"] = "Cyclic nucleotide phosphodiesterase"
+        metal_dependent["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:PDE0002",
+                "reaction": "3',5'-cyclic GMP + H2O = GMP + H(+)",
+                "ec_number": "3.1.4.17",
+            }
+        ]
+        metal_decision = disambiguate_row(metal_dependent)
+        self.assertNotEqual(
+            metal_decision.get("fingerprint_id"),
+            "metal_independent_phosphodiesterase",
+        )
+
+        phosphomonoesterase = _row(ec=["3.1.3.1"])
+        phosphomonoesterase["protein_name"] = "Cyclic nucleotide phosphatase"
+        phosphomonoesterase["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:PDE0003",
+                "reaction": "phosphomonoester + H2O = alcohol + phosphate",
+                "ec_number": "3.1.3.1",
+            }
+        ]
+        self.assertEqual(disambiguate_row(phosphomonoesterase)["decision"], "hold")
+
+        phosphatase_family_boundary = _row(ec=["3.1.4.17"])
+        phosphatase_family_boundary["protein_name"] = (
+            "Cyclic nucleotide phosphodiesterase phosphatase boundary"
+        )
+        phosphatase_family_boundary["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:PDE0005",
+                "reaction": "3',5'-cyclic AMP + H2O = AMP + H(+)",
+                "ec_number": "3.1.4.17",
+            }
+        ]
+        self.assertEqual(
+            disambiguate_row(phosphatase_family_boundary)["decision"], "hold"
+        )
+
+        lyase = _row(ec=["4.6.1.1"])
+        lyase["protein_name"] = "Adenylate cyclase"
+        lyase["keywords"] = ["Lyase"]
+        lyase["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:PDE0004",
+                "reaction": "ATP = 3',5'-cyclic AMP + diphosphate",
+                "ec_number": "4.6.1.1",
+            }
+        ]
+        self.assertEqual(disambiguate_row(lyase)["decision"], "hold")
+
     def test_glycosyltransferase_not_collapsed_to_glycoside_hydrolase(self) -> None:
         row = _row(ec=["2.4.1.1"])
         row["protein_name"] = "Glycosyltransferase"

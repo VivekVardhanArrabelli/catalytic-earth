@@ -1,16 +1,18 @@
 # Automation status
 
 - automation_id: ce-nad-glyco-floor-expansion
-- started_at_utc: 2026-06-14T23:04:02Z
-- started_local: Sun Jun 14 18:04:02 CDT 2026
+- started_at_utc: 2026-06-15T15:38:45Z
+- started_local: Mon Jun 15 10:38:45 CDT 2026
 - budget_minutes: 55
 - planned_closeout_minute: 50
-- closeout_snapshot_utc: 2026-06-14T23:55:10Z
-- elapsed_minutes: 51.1
-- remaining_minutes: 3.9
-- current_task: closeout after Ser/Thr Rhea token fix, 112-row guarded bronze apply, quality/planning refreshes, final validation, commit/push, and lock release
-- registry_safety: green; external registry remains sharded, manifest is ~1.2 KB, shards are ~17 MB / 17 MB / 17 MB / 4.9 MB, and no `data/registries/` file is near the 45 MB safety threshold
+- closeout_snapshot_utc: 2026-06-15T16:29:16Z
+- elapsed_minutes: 50.5
+- remaining_minutes: 4.5
+- current_task: closeout after N-ribosyl hydrolase 42fp infrastructure and below-gate source aggregate
+- origin_sync: direct push to `origin/main` completed after final fetch and ancestry check
+- registry_safety: green; external registry remains sharded, manifest is ~1.2 KB, shards are ~17 MB / 17 MB / 17 MB / 4.9 MB, and no `data/registries/` file is over 45 MB
 - frozen_current702_sha256: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
+- registry_mutation: none; no external bronze labels were applied and frozen current702 was not written
 - honest_counters:
   - external_rows: 7420
   - external_seed: 6196
@@ -23,54 +25,38 @@
   - oos_bronze: 1696
   - silver_confirmed: 47
   - projected: 0
+- scaling_summary:
+  - current_positive_universe: label_factory_v1_42fp
+  - mechanism_fingerprints: 42
+  - ontology_families: 39
+  - new_lane: n_ribosyl_hydrolase
+  - new_lane_status: infrastructure built; non-destructive aggregate blocked below 150-row batch gate
+  - n_ribosyl_unique_novelty_safe_labels: 61
+  - n_ribosyl_raw_window_sum_mechanism_corroborated: 166
+  - n_ribosyl_row_guardrail_problem_rows: 0
+  - apply_authorized: false
+  - source_diagnostic: UniProt offset-paged synonym windows overlapped earlier accessions; use reliable cursor pagination or another reviewed mechanism-bearing source path before apply
 - validation:
-  - cli_validate: passed; 12 source records, 41 fingerprints, 38 ontology families, 702 curated labels
-  - focused_affected: 324 passed, 14 subtests passed in 58.72s
-  - representation_pin_rerun: 1 passed in 2.99s
-  - full_suite_final: 2293 passed, 1 warning, 244 subtests passed in 164.73s
-  - progress_jsonl: tests/test_progress.py 3 passed
-  - json_parse: passed for new/updated JSON artifacts and progress_log
-  - diff_check: passed
-  - file_size_scan: passed; no `data/registries/` file over 45 MB
+  - cli_validate: passed; 12 source records, 42 fingerprints, 39 ontology families, 702 curated labels
+  - focused_affected_pre_full: 14 passed across N-ribosyl sourcing, source-wall boundary controls, 42fp/41fp OOS preregistration, factory import gate, and governor signatures
+  - stale_pin_rerun_after_full_failure: 4 passed after updating 42fp count/hole/status pins
+  - adapter_offset_and_stale_pin_rerun: 8 passed after adding offset regression coverage
+  - full_suite_final: 2308 passed, 1 warning, 244 subtests passed in 164.56s
+  - json_parse: passed for 25 new N-ribosyl/planning JSON artifacts and progress_log JSONL after closeout append
+  - diff_check: passed after closeout ledger update
+  - file_size_scan: passed; no `data/registries` file over 45 MB
+  - frozen_sha_check: passed; frozen current702 sha is 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
 - artifacts:
-  - `artifacts/v3_ser_thr_protein_phosphatase_sourcing_preview_aggregate_current702_20260614_post_rhea_token_fix.json`
-  - `artifacts/v3_ser_thr_protein_phosphatase_row_guardrail_audit_current702_20260614_post_rhea_token_fix.json`
-  - `artifacts/v3_coverage_redundancy_audit_current702_20260614_post_ser_thr_apply.json`
-  - `artifacts/v3_novelty_admission_gate_audit_current702_20260614_post_ser_thr_apply.json`
-  - `artifacts/v3_high_yield_family_lane_factory_current702_20260614_post_ser_thr_apply.json`
-  - `artifacts/v3_bronze_silver_promotion_preview_current702_20260614_post_ser_thr_apply.json`
-  - `artifacts/v3_chemistry_disagree_triage_current702_20260614_post_ser_thr_apply.json`
-  - `artifacts/v3_cohesion_threshold_calibration_current702_20260614_post_ser_thr_apply.json`
-  - `artifacts/v3_silver_geometry_confirmation_audit_current702_20260614_post_ser_thr_apply.json`
-  - `artifacts/v3_silver_geometry_confirmation_run_current702_20260614_post_ser_thr_apply_preview.json`
-  - `artifacts/v3_silver_pdb_residue_mapping_current702_20260614_post_ser_thr_apply_full_preview.json`
-  - `artifacts/v3_silver_holo_coordinate_materialization_current702_20260614_post_ser_thr_apply_reuse_preview.json`
-  - `artifacts/v3_label_pdb_id_backfill_preview_ser_thr_protein_phosphatase_current702_20260614_post_ser_thr_apply.json`
-  - `artifacts/v3_label_pdb_id_backfill_preview_current702_20260614_post_ser_thr_apply_limit150.json`
-  - `artifacts/v3_short_chain_dehydrogenase_reductase_lane_preregistration_current702_20260614_post_ser_thr_apply.json`
-  - `artifacts/v3_evidence_handle_expansion_current702_20260614_post_ser_thr_apply.json`
-  - `artifacts/v3_breadth_feasibility_scout_current702_20260614_post_ser_thr_apply.json`
-- ser_thr_apply_summary:
-  - fetched_candidate_rows: 743
-  - unique_mechanism_corroborated: 170
-  - novelty_admitted: 112
-  - novelty_throttled_or_rejected: 58
-  - off_target_metallophosphomonoesterase_held: 2
-  - row_guardrail_problems: 0
-- quality_refresh:
-  - silver_ready_pending_geometry: 202
-  - silver_geometry_ready: 108
-  - silver_geometry_pass: 0
-  - chemistry_disagrees: 1742
-  - low_chemistry_cohesion: 1779
-  - ser_thr_rows_with_pdb_ids: 13
-  - ser_thr_pdb_xref_backfilled: 0
-  - full_residue_mapping_rows_mapped: 0
-  - residue_mapping_blockers: missing_mmcif_alignment_tables 82; no_exact_residues 4; no_residue_positions_mapped 116
-- planning_refresh:
-  - high_yield_ready_existing_lanes_ge_150: 0
-  - top_projected_clean_admits: short_chain_dehydrogenase_reductase 84
-  - evidence_handle_reachable_positive_bronze_uplift: 741
-  - reviewed_swissprot_clean_positive_projection: 9067
-  - reviewed_swissprot_positive_gap_to_10k: 933
-- next_action: improve source handles or source tiers before another mass-growth registry mutation; use the SDR design-only preregistration as the current top candidate, and continue silver residue-mapping/geometry representation work for the 202 pending silver-ready rows
+  - `artifacts/v3_external_hard_negative_next_tranche_preregistration_42fp_1025.json`
+  - `artifacts/v3_n_ribosyl_hydrolase_source_handle_scout_current702_20260615.json`
+  - `artifacts/v3_n_ribosyl_hydrolase_sourcing_preview_aggregate_synonyms_current702_20260615.json`
+  - `artifacts/v3_n_ribosyl_hydrolase_row_guardrail_audit_current702_20260615_synonym_aggregate.json`
+  - `artifacts/v3_n_ribosyl_hydrolase_sourcing_preview_aggregate_current702_20260615_apply_candidate.json`
+  - `artifacts/v3_n_ribosyl_hydrolase_row_guardrail_audit_current702_20260615_apply_candidate.json`
+  - `work/n_ribosyl_hydrolase_synonym_aggregate_blocker_current702_20260615.md`
+  - `work/n_ribosyl_hydrolase_apply_candidate_current702_20260615.md`
+  - `work/n_ribosyl_hydrolase_next_source_strategy_current702_20260615.md`
+  - `artifacts/v3_high_yield_family_lane_factory_current702_20260615_post_n_ribosyl_infra.json`
+  - `artifacts/v3_coverage_redundancy_audit_current702_20260615_post_n_ribosyl_infra.json`
+  - `artifacts/v3_novelty_admission_gate_audit_current702_20260615_post_n_ribosyl_infra.json`
+- next_action: do not apply the 61-row N-ribosyl aggregate; implement reliable UniProt cursor pagination or another reviewed N-glycosidic hydrolysis source path, rebuild a non-destructive aggregate, and apply only if >=150 clean unique rows pass every gate; pivot to `metal_independent_phosphodiesterase` if N-ribosyl source supply is exhausted

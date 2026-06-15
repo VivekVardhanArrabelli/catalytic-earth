@@ -308,6 +308,118 @@ _GLYCOSIDE_HYDROLASE_BOUNDARY_TOKENS = (
     "peptidase",
     "nuclease",
 )
+# N-ribosyl / nucleoside hydrolase handles. EC 3.2.2 scopes N-glycosylase
+# candidates only; counted corroboration comes from nucleoside hydrolase family
+# text, N-glycosidic bond hydrolysis reaction text, and optional active-/binding-
+# site evidence. O-glycosidases, phosphorylases, kinases, transferases, lyases,
+# and EC-only rows stay held.
+_N_RIBOSYL_HYDROLASE_FAMILY_TOKENS = (
+    "nucleoside hydrolase",
+    "n-ribosylhydrolase",
+    "n-ribosidase",
+    "nucleosidase",
+    "uridine nucleosidase",
+    "purine nucleosidase",
+    "n-ribohydrolase",
+    "nucleoside n-ribohydrolase",
+    "ribosyl hydrolase",
+    "ribohydrolase",
+)
+_N_RIBOSYL_HYDROLYSIS_REACTION_TOKENS = (
+    "h2o",
+    "h(2)o",
+    "water",
+    "hydrolysis",
+    "d-ribose",
+    "ribose",
+    "deoxyribose",
+)
+_N_RIBOSYL_BASE_PRODUCT_TOKENS = (
+    "adenine",
+    "guanine",
+    "hypoxanthine",
+    "xanthine",
+    "uracil",
+    "thymine",
+    "cytosine",
+    "purine",
+    "pyrimidine",
+)
+_N_RIBOSYL_ACTIVE_SITE_TOKENS = (
+    "acid/base",
+    "general acid",
+    "general base",
+    "aspartate",
+    "aspartic",
+    "glutamate",
+    "glutamic",
+    "ribose binding",
+    "base binding",
+)
+_N_RIBOSYL_BOUNDARY_TOKENS = (
+    "glycosidase",
+    "glycoside hydrolase",
+    "glycosyl hydrolase",
+    "glycosyltransferase",
+    "transferase",
+    "phosphorylase",
+    "phosphorolysis",
+    "kinase",
+    "nucleotidyltransferase",
+    "dna glycosylase",
+    "lyase",
+)
+# Metal-independent phosphodiesterase handles. EC 3.1.4 / 4.6.1 scopes
+# phosphodiester/cyclic-nucleotide candidates only; counted corroboration comes
+# from phosphodiesterase family text, hydrolytic phosphodiester/cyclic-nucleotide
+# reaction text, and optional active-/binding-site evidence. Catalytic metal rows
+# are owned by the existing metallophosphoesterase/nuclease wall; phosphatases,
+# cyclases/lyases without hydrolysis, kinases, transferases, and EC-only rows stay
+# held.
+_METAL_INDEPENDENT_PDE_FAMILY_TOKENS = (
+    "phosphodiesterase",
+    "cyclic nucleotide phosphodiesterase",
+    "cyclic-nucleotide phosphodiesterase",
+)
+_METAL_INDEPENDENT_PDE_REACTION_TOKENS = (
+    "phosphodiester",
+    "cyclic nucleotide",
+    "cyclic-nucleotide",
+    "cyclic amp",
+    "cyclic gmp",
+    "camp",
+    "cgmp",
+)
+_METAL_INDEPENDENT_PDE_HYDROLYSIS_TOKENS = (
+    "h2o",
+    "h(2)o",
+    "water",
+    "hydrolysis",
+)
+_METAL_INDEPENDENT_PDE_ACTIVE_SITE_TOKENS = (
+    "acid/base",
+    "general acid",
+    "general base",
+    "histidine",
+    "lysine",
+    "tyrosine",
+    "arginine",
+    "substrate binding",
+)
+_METAL_INDEPENDENT_PDE_BOUNDARY_TOKENS = (
+    "phosphatase",
+    "phosphomonoesterase",
+    "protein phosphatase",
+    "nuclease",
+    "ribonuclease",
+    "deoxyribonuclease",
+    "phospholipase c",
+    "adenylate cyclase",
+    "guanylate cyclase",
+    "lyase",
+    "kinase",
+    "transferase",
+)
 # SAM/SAH methyl-donor/product tokens. These are Rhea reaction participants, so they are
 # mechanism evidence for admission only. They are never predictive features.
 _SAM_SAH_METHYL_DONOR_TOKENS = (
@@ -1373,6 +1485,54 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     non_glycoside_hydrolase_scope_side_ec = any(
         ec and not ec.startswith("3.2.1") for ec in _ec_numbers(row)
     )
+    n_ribosyl_hydrolase_family_text = in_any(
+        reactions + keywords + [protein_name] + feature_texts,
+        *_N_RIBOSYL_HYDROLASE_FAMILY_TOKENS,
+    )
+    n_ribosyl_hydrolysis_reaction = in_any(
+        reactions, *_N_RIBOSYL_HYDROLYSIS_REACTION_TOKENS
+    ) and in_any(reactions, *_N_RIBOSYL_BASE_PRODUCT_TOKENS)
+    n_ribosyl_active_site_context = in_any(
+        feature_texts, *_N_RIBOSYL_ACTIVE_SITE_TOKENS
+    )
+    n_ribosyl_hydrolase_boundary_signal = in_any(
+        reactions + keywords + [protein_name] + feature_texts,
+        *_N_RIBOSYL_BOUNDARY_TOKENS,
+    )
+    non_n_ribosyl_hydrolase_scope_side_ec = any(
+        ec and not ec.startswith("3.2.2") for ec in _ec_numbers(row)
+    )
+    metal_independent_pde_family_text = in_any(
+        reactions + keywords + [protein_name] + feature_texts,
+        *_METAL_INDEPENDENT_PDE_FAMILY_TOKENS,
+    )
+    metal_independent_pde_reaction = in_any(
+        reactions, *_METAL_INDEPENDENT_PDE_REACTION_TOKENS
+    ) and in_any(reactions, *_METAL_INDEPENDENT_PDE_HYDROLYSIS_TOKENS)
+    metal_independent_pde_active_site_context = in_any(
+        feature_texts, *_METAL_INDEPENDENT_PDE_ACTIVE_SITE_TOKENS
+    )
+    metal_independent_pde_metal_boundary = bool(evidence.get("metal")) or in_any(
+        cofactor_names + feature_texts,
+        "magnesium",
+        "mg(2",
+        "mg2",
+        "manganese",
+        "mn(2",
+        "mn2",
+        "zinc",
+        "zn(2",
+        "zn2",
+        "metal",
+    )
+    metal_independent_pde_boundary_signal = in_any(
+        reactions + keywords + [protein_name] + feature_texts,
+        *_METAL_INDEPENDENT_PDE_BOUNDARY_TOKENS,
+    )
+    non_metal_independent_pde_scope_side_ec = any(
+        ec and not (ec.startswith("3.1.4") or ec.startswith("4.6.1"))
+        for ec in _ec_numbers(row)
+    )
     keyword_isomerase = in_any(keywords, *_ISOMERASE_KEYWORD_TOKENS)
     isomerization_reaction = in_any(reactions, *_ISOMERIZATION_REACTION_TOKENS)
     racemase_epimerase_text = in_any(
@@ -1859,6 +2019,17 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "glycoside_hydrolase_active_site_context": glycoside_hydrolase_active_site_context,
             "glycoside_hydrolase_boundary_signal": glycoside_hydrolase_boundary_signal,
             "non_glycoside_hydrolase_scope_side_ec": non_glycoside_hydrolase_scope_side_ec,
+            "n_ribosyl_hydrolase_family_text": n_ribosyl_hydrolase_family_text,
+            "n_ribosyl_hydrolysis_reaction": n_ribosyl_hydrolysis_reaction,
+            "n_ribosyl_active_site_context": n_ribosyl_active_site_context,
+            "n_ribosyl_hydrolase_boundary_signal": n_ribosyl_hydrolase_boundary_signal,
+            "non_n_ribosyl_hydrolase_scope_side_ec": non_n_ribosyl_hydrolase_scope_side_ec,
+            "metal_independent_pde_family_text": metal_independent_pde_family_text,
+            "metal_independent_pde_reaction": metal_independent_pde_reaction,
+            "metal_independent_pde_active_site_context": metal_independent_pde_active_site_context,
+            "metal_independent_pde_metal_boundary": metal_independent_pde_metal_boundary,
+            "metal_independent_pde_boundary_signal": metal_independent_pde_boundary_signal,
+            "non_metal_independent_pde_scope_side_ec": non_metal_independent_pde_scope_side_ec,
             "keyword_isomerase": keyword_isomerase,
             "isomerization_reaction": isomerization_reaction,
             "racemase_epimerase_text": racemase_epimerase_text,
@@ -2089,6 +2260,8 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("succinate_co2_product")
         or evidence.get("coa_acyl_coa_reaction")
         or evidence.get("glycoside_hydrolysis_reaction")
+        or evidence.get("n_ribosyl_hydrolysis_reaction")
+        or evidence.get("metal_independent_pde_reaction")
         or evidence.get("isomerization_reaction")
         or evidence.get("molybdopterin_redox_reaction")
         or evidence.get("molybdopterin_oxo_transfer_reaction")
@@ -2121,6 +2294,8 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
     if (
         evidence.get("active_or_binding_site_present")
         or evidence.get("glycoside_hydrolase_active_site_context")
+        or evidence.get("n_ribosyl_active_site_context")
+        or evidence.get("metal_independent_pde_active_site_context")
         or evidence.get("cx3cx2c_motif")
         or evidence.get("heme_thiolate_binding")
         or evidence.get("molybdopterin_feature_or_ligand")
@@ -2177,6 +2352,8 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
     if (
         evidence.get("keyword_glycosyltransferase")
         or evidence.get("glycoside_hydrolase_family_text")
+        or evidence.get("n_ribosyl_hydrolase_family_text")
+        or evidence.get("metal_independent_pde_family_text")
         or evidence.get("keyword_nad_p")
         or evidence.get("keyword_methyltransferase")
         or evidence.get("keyword_p450")
@@ -2278,6 +2455,11 @@ _HAD_LIKE_PHOSPHATASE_EC = ("3.1.3",)  # HAD-like phosphatases; EC scope only
 _SER_THR_PROTEIN_PHOSPHATASE_EC = ("3.1.3.16", "3.1.3.48")  # protein phosphatases; EC scope only
 _ALDEHYDE_DEHYDROGENASE_EC = ("1.2.1",)  # ALDH; EC scope only
 _ALPHA_BETA_HYDROLASE_ESTERASE_LIPASE_EC = ("3.1.1",)  # esterase/lipase; EC scope only
+_METAL_INDEPENDENT_PHOSPHODIESTERASE_EC = (
+    "3.1.4",
+    "4.6.1",
+)  # metal-independent phosphodiester/cyclic-nucleotide hydrolysis; EC scope only
+_N_RIBOSYL_HYDROLASE_EC = ("3.2.2",)  # N-glycosylase/nucleoside hydrolase; EC scope only
 _NUCLEOSIDE_DIPHOSPHATE_KINASE_EC = ("2.7.4.6",)  # NDK; EC is scope only
 _ASKHA_SUGAR_ACETATE_KINASE_EC = ("2.7.1",)  # ASKHA sugar/acetate kinase; EC scope only
 _GHMP_SMALL_MOLECULE_KINASE_EC = ("2.7.1",)  # GHMP small-molecule kinase; EC scope only
@@ -2370,6 +2552,17 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         and _ec_has_prefix(row, _GLYCOSYLTRANSFERASE_EC),
     ),
     (
+        "metal_independent_phosphodiesterase",
+        lambda c, row: _ec_has_prefix(row, _METAL_INDEPENDENT_PHOSPHODIESTERASE_EC)
+        and c["metal_independent_pde_family_text"]
+        and c["metal_independent_pde_reaction"]
+        and not c["metal_independent_pde_metal_boundary"]
+        and not c["metal_independent_pde_boundary_signal"]
+        and not c["kinase_boundary"]
+        and not c["transferase_side_ec"]
+        and not c["non_metal_independent_pde_scope_side_ec"],
+    ),
+    (
         "glycoside_hydrolase",
         lambda c, row: _ec_has_prefix(row, _GLYCOSIDE_HYDROLASE_EC)
         and c["glycoside_hydrolase_family_text"]
@@ -2383,6 +2576,17 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         and not c["oxidoreductase_side_ec"]
         and not c["kinase_boundary"]
         and not c["non_glycoside_hydrolase_scope_side_ec"],
+    ),
+    (
+        "n_ribosyl_hydrolase",
+        lambda c, row: _ec_has_prefix(row, _N_RIBOSYL_HYDROLASE_EC)
+        and c["n_ribosyl_hydrolase_family_text"]
+        and c["n_ribosyl_hydrolysis_reaction"]
+        and not c["n_ribosyl_hydrolase_boundary_signal"]
+        and not c["glycoside_hydrolase_family_text"]
+        and not c["transferase_side_ec"]
+        and not c["kinase_boundary"]
+        and not c["non_n_ribosyl_hydrolase_scope_side_ec"],
     ),
     (
         "sam_methyltransferase",
@@ -2846,6 +3050,16 @@ def _synthesize_cofactor_provenance(
         or evidence.get("alpha_beta_hydrolase_ester_hydrolysis_reaction")
     ):
         records = [{"name": "Ser-His-Asp/Glu ester-hydrolysis context", "cross_reference": {"id": None}}]
+    elif fingerprint == "n_ribosyl_hydrolase" and (
+        evidence.get("n_ribosyl_hydrolysis_reaction")
+        or evidence.get("n_ribosyl_active_site_context")
+    ):
+        records = [{"name": "N-glycosidic bond hydrolysis context", "cross_reference": {"id": None}}]
+    elif fingerprint == "metal_independent_phosphodiesterase" and (
+        evidence.get("metal_independent_pde_reaction")
+        or evidence.get("metal_independent_pde_active_site_context")
+    ):
+        records = [{"name": "metal-independent phosphodiester hydrolysis context", "cross_reference": {"id": None}}]
     elif evidence.get("metal"):
         records = [{"name": "catalytic divalent metal", "cross_reference": {"id": None}}]
     for record in records:

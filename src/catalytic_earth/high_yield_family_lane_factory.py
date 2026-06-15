@@ -48,6 +48,7 @@ def _spec(
     current_runner: str | None = None,
     ambiguity_with_existing: tuple[str, ...] = (),
     oos_preregistration_required: bool = True,
+    source_wall_rule_status: str | None = None,
     known_blockers: tuple[str, ...] = (),
 ) -> dict[str, Any]:
     return {
@@ -65,6 +66,10 @@ def _spec(
         "current_runner": current_runner,
         "ambiguity_with_existing": list(ambiguity_with_existing),
         "oos_preregistration_required": oos_preregistration_required,
+        "source_wall_rule_status": (
+            source_wall_rule_status
+            or ("implemented_existing_fingerprint" if existing_fingerprint_id else "not_implemented")
+        ),
         "known_blockers": list(known_blockers),
     }
 
@@ -221,6 +226,101 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         rationale_template=(
             "Resistance-relevant covalent acyl-enzyme hydrolase split; keep separate "
             "from zinc metallo-beta-lactamases and generic amidohydrolases."
+        ),
+    ),
+    _spec(
+        family_id="metal_independent_phosphodiesterase",
+        display_name="Metal-independent phosphodiesterase",
+        scope_query=(
+            "(reviewed:true) AND ((ec:3.1.4.*) OR (ec:4.6.1.*))"
+        ),
+        corroborator_query=(
+            "(reviewed:true) AND ((ec:3.1.4.*) OR (ec:4.6.1.*)) AND "
+            "((protein_name:phosphodiesterase) OR (protein_name:phospholipase) "
+            "OR (keyword:Hydrolase) OR (ft_act_site:*) OR (ft_binding:*)) NOT "
+            "((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR "
+            "(cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))"
+        ),
+        required_non_ec_corroborators=(
+            "phosphodiesterase/nuclease/phospholipase family or protein-name handle",
+            "Rhea phosphodiester or cyclic-nucleotide P-O cleavage reaction where available",
+            "active-site acid/base or substrate-binding evidence independent of EC scope",
+        ),
+        disambiguation_holds=(
+            "metal-dependent phosphodiesterase/nuclease rows",
+            "phosphomonoesterase and protein phosphatase rows",
+            "phospholipase C lyase rows without hydrolytic phosphodiester cleavage",
+            "EC-only rows without family, active-site, binding-site, or Rhea corroboration",
+        ),
+        cap_ceiling=DEFAULT_CONFUSABLE_CAP,
+        chemistry_confusable=True,
+        novelty_keep_factor=0.45,
+        ambiguity_with_existing=(
+            "metallophosphoesterase_nuclease",
+            "metallophosphomonoesterase",
+            "had_like_phosphatase",
+        ),
+        known_blockers=(
+            "2026-06-15 discovery compass surfaced a replicated metal-independent "
+            "phosphodiesterase coverage gap, not world-new chemistry",
+            "2026-06-15 source-wall rule exists in preview-only form and treats metal "
+            "presence as a hold/filter, not metal absence as counted corroboration",
+            "requires fingerprint, ontology node, OOS preregistration, source runner, "
+            "bounded preview, row audit, and explicit apply gate before any labels",
+        ),
+        source_wall_rule_status="implemented_preview_only",
+        rationale_template=(
+            "Discovery-compass ontology gap: phosphodiester P-O cleavage without the "
+            "two-metal architecture covered by the existing metal phosphoesterase family."
+        ),
+    ),
+    _spec(
+        family_id="n_ribosyl_hydrolase",
+        display_name="N-ribosyl / nucleoside hydrolase",
+        existing_fingerprint_id="n_ribosyl_hydrolase",
+        current_runner="scripts/source_n_ribosyl_hydrolase_family.py",
+        scope_query=(
+            "(reviewed:true) AND ((ec:3.2.2.*) OR (protein_name:\"nucleoside hydrolase\") "
+            "OR (protein_name:\"N-ribosylhydrolase\") OR (protein_name:\"N-ribosidase\"))"
+        ),
+        corroborator_query=(
+            "(reviewed:true) AND ((ec:3.2.2.*) OR (protein_name:\"nucleoside hydrolase\") "
+            "OR (protein_name:\"N-ribosylhydrolase\") OR (protein_name:\"N-ribosidase\")) "
+            "AND ((protein_name:\"nucleoside hydrolase\") OR "
+            "(protein_name:\"N-ribosylhydrolase\") OR (protein_name:\"N-ribosidase\") "
+            "OR (keyword:Hydrolase) OR (ft_act_site:*) OR (ft_binding:*))"
+        ),
+        required_non_ec_corroborators=(
+            "nucleoside hydrolase, N-ribosylhydrolase, or N-ribosidase family/name handle",
+            "Rhea N-glycosidic bond hydrolysis reaction with ribose/deoxyribose product",
+            "active-site acid/base or ribose/base-binding residue evidence where available",
+        ),
+        disambiguation_holds=(
+            "O-glycosidase/glycoside hydrolase rows",
+            "nucleoside phosphorylase phosphorolysis rows",
+            "nucleoside kinase or nucleotidyltransferase side rows",
+            "EC-only rows without N-ribosyl hydrolysis corroboration",
+        ),
+        cap_ceiling=DEFAULT_CONFUSABLE_CAP,
+        chemistry_confusable=True,
+        novelty_keep_factor=0.45,
+        ambiguity_with_existing=(
+            "glycoside_hydrolase",
+            "deoxynucleoside_kinase",
+            "nucleoside_diphosphate_kinase",
+        ),
+        known_blockers=(
+            "2026-06-15 discovery compass found known N-ribosyl hydrolase chemistry "
+            "as an unmodeled reaction-center vocabulary gap",
+            "2026-06-15 source-wall rule exists in preview-only form for N-glycosidic "
+            "bond hydrolysis with phosphorylase/kinase/transferase/O-glycosidase holds",
+            "requires fingerprint, ontology node, OOS preregistration, source runner, "
+            "bounded preview, row audit, and explicit apply gate before any labels",
+        ),
+        source_wall_rule_status="implemented_preview_only",
+        rationale_template=(
+            "Discovery-compass ontology gap: N-glycosidic bond hydrolysis is distinct "
+            "from O-glycoside hydrolase, kinase, and phosphorylase chemistry."
         ),
     ),
     _spec(
@@ -508,10 +608,16 @@ def evaluate_family_lane_spec(
 
     fingerprint_status = "existing" if existing_fp else "new_fingerprint_required"
     runner_status = "existing_runner" if spec.get("current_runner") else "no_runner_yet"
+    source_wall_rule_status = str(spec.get("source_wall_rule_status") or "not_implemented")
+    source_wall_rule_ready = existing_fp is not None or source_wall_rule_status.startswith(
+        "implemented"
+    )
     if scope_error or corroborator_error:
         gate_status = "blocked_source_count_fetch_failed"
     elif existing_fp and cap_room < min_high_yield_admits:
         gate_status = "blocked_existing_cap_room_below_150"
+    elif not existing_fp and source_wall_rule_ready:
+        gate_status = "blocked_new_fingerprint_oos_prereg_and_runner_required"
     elif not existing_fp:
         gate_status = "blocked_new_fingerprint_oos_prereg_and_rule_required"
     elif not spec.get("current_runner"):
@@ -553,7 +659,8 @@ def evaluate_family_lane_spec(
         "required_non_ec_corroborators": list(spec["required_non_ec_corroborators"]),
         "disambiguation_holds": list(spec["disambiguation_holds"]),
         "oos_preregistration_required": bool(spec["oos_preregistration_required"]),
-        "mechanism_rule_required": not existing_fp,
+        "source_wall_rule_status": source_wall_rule_status,
+        "mechanism_rule_required": not source_wall_rule_ready,
         "runner_status": runner_status,
         "current_runner": spec.get("current_runner"),
         "batch_gate_status": gate_status,
@@ -640,10 +747,16 @@ def build_high_yield_family_lane_factory(
             "apply only after trust-tier, novelty, cap, dedup, and leakage gates pass."
         )
     elif high_yield_blocked:
-        top = high_yield_blocked[0]["family_id"]
+        top_row = high_yield_blocked[0]
+        top = top_row["family_id"]
+        mechanism_rule_step = (
+            "mechanism disambiguation rule, "
+            if top_row["mechanism_rule_required"]
+            else ""
+        )
         next_action = (
             f"No existing lane has >=150 cap room. Build the `{top}` fingerprint/source "
-            "runner first: ontology node, mechanism disambiguation rule, OOS preregistration, "
+            f"runner first: ontology node, {mechanism_rule_step}OOS preregistration, "
             "row guardrail audit, preview, tests, then apply only if gates pass."
         )
     else:
@@ -723,7 +836,7 @@ def _report(audit: dict[str, Any]) -> str:
         "",
         f"- Candidate families ranked: {c['candidate_families_ranked']}.",
         f"- Ready existing lanes with >=150 projected clean admits: {c['ready_existing_lanes_ge_150']}.",
-        f"- High-yield lanes blocked by new fingerprint/rule/preregistration: {c['high_yield_blocked_new_or_infra']}.",
+        f"- High-yield lanes blocked by new fingerprint/preregistration/runner/rule infrastructure: {c['high_yield_blocked_new_or_infra']}.",
         f"- Existing lanes blocked by <150 cap room: {c['existing_lanes_cap_room_below_150']}.",
         f"- Combined label surface: {b['combined_label_surface']}.",
         f"- Combined seed-fingerprint surface: {b['combined_seed_fingerprint_surface']}.",
@@ -751,6 +864,7 @@ def _report(audit: dict[str, Any]) -> str:
     for row in audit["ranking"][:5]:
         lines.append(f"### {row['family_id']}")
         lines.append(f"- Status: {row['batch_gate_status']}.")
+        lines.append(f"- Source-wall rule status: {row['source_wall_rule_status']}.")
         lines.append(
             "- Required non-EC corroborators: "
             + "; ".join(row["required_non_ec_corroborators"])

@@ -1,0 +1,27 @@
+{
+  "artifact_id": "v3_n_ribosyl_hydrolase_row_guardrail_audit_current702_20260615_synonym_aggregate",
+  "counts": {
+    "audited_labels": 61,
+    "batch_gate_min_preferred_clean_admits": 150,
+    "batch_gate_passed": false,
+    "problem_rows": 0,
+    "unique_novelty_admitted_labels": 61
+  },
+  "created_utc": "2026-06-15T16:07:43Z",
+  "guardrails": {
+    "curated_registry_written": false,
+    "ec_scope_only_never_counted": true,
+    "frozen_current702_benchmark_preserved": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "novelty_gated_against_both_registries": true,
+    "predictive_evidence_must_remain_empty": true,
+    "reason_apply_not_authorized": "unique admitted count 63 is below documented >=150 clean batch preference and the 150 cap target",
+    "registry_apply_authorized": false,
+    "synonym_handles_scope_admission_only_never_predictive": true
+  },
+  "next_action": "Do not apply this 63-row aggregate. Implement cursor/smaller-page UniProt pagination or another source path for the synonym lane before trying to reach the 150-row cap.",
+  "problem_rows": [],
+  "schema_version": "external_bronze_row_guardrail_audit.v1",
+  "source_preview": "artifacts/v3_n_ribosyl_hydrolase_sourcing_preview_aggregate_synonyms_current702_20260615.json",
+  "status": "row_guardrails_pass_but_batch_gate_blocks_apply"
+}
