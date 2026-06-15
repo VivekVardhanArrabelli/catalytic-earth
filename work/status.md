@@ -146,3 +146,9 @@
 - budget_minutes: 55
 - planned_closeout_minute: 50
 - current_task: acquire lock, verify hard blockers, then advance the next mechanism-first bronze lane from latest origin/main
+
+## Automation run blocked: 2026-06-15T17:39:52Z
+- elapsed_minutes: 1.1
+- remaining_minutes: 53.9
+- blocker: automation lock not acquired; `.git/catalytic-earth-automation.lock` reports active lock from PID 49227 started at 2026-06-15T16:39:18Z with age ~60.3 minutes, below the 75-minute stale threshold
+- action_taken: left the lock untouched and stopped before hard-blocker checks or scaling work to avoid concurrent mutation
