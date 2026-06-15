@@ -16,6 +16,44 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-15 automation update: APH 44fp infrastructure built; corrected source wall is
+subscale, no registry mutation.** Treat this as the newest operational state for bronze scaleout.
+Hard safety remains green, frozen current702 was not written, and no external bronze labels were
+applied. The current positive fingerprint universe is now `label_factory_v1_44fp` with **44**
+fingerprints and **41** ontology families. Counted label counters are unchanged from the
+N-ribosyl apply: external rows **7570**, combined label surface **8272**, combined seed surface
+**6576**, positive bronze **6529**, OOS bronze **1696**, silver_confirmed **47**, projected **0**.
+
+`aminoglycoside_phosphotransferase` now has guarded lane infrastructure:
+`src/catalytic_earth/aminoglycoside_phosphotransferase_sourcing.py`,
+`scripts/source_aminoglycoside_phosphotransferase_family.py`, fingerprint
+`aminoglycoside_phosphotransferase`, ontology family `aminoglycoside_phosphoryl_transfer`,
+deploy context, coverage/governor signature, factory wiring, focused tests, and 44fp
+hard-negative preregistration
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_44fp_1025.json`.
+
+Important correction: live UniProt inspection showed EC `2.7.1.130` and `2.7.1.192` are not APH
+rows; they are lipid-A and PTS MurNAc kinase surfaces. APH scope is restricted to `2.7.1.95`,
+`2.7.1.72`, `2.7.1.87`, `2.7.1.119`, and `2.7.1.163`, with APH family/name plus ATP/Mg,
+aminoglycoside phosphorylation, active-site, or binding-site mechanism evidence. EC remains
+scope-only and never a counted corroborator.
+
+Corrected live preview
+`artifacts/v3_aminoglycoside_phosphotransferase_sourcing_preview_corrected_active_binding_bounded50_current702_20260615.json`
+fetched **18** reviewed rows and admitted **17** novelty-safe APH rows, below the >=150 clean-admit
+batch gate. No apply was performed. Current planning artifacts:
+`artifacts/v3_high_yield_family_lane_factory_current702_20260615_post_aph_44fp_infra.json`,
+`artifacts/v3_coverage_redundancy_audit_current702_20260615_post_aph_44fp_infra.json`, and
+`artifacts/v3_novelty_admission_gate_audit_current702_20260615_post_aph_44fp_infra.json`.
+Coverage shows holes `aminoglycoside_phosphotransferase` and
+`metal_independent_phosphodiesterase`; the factory has **0** ready existing lanes >=150 and top
+projected clean admits `short_chain_dehydrogenase_reductase` at **84**.
+
+Next action: do not apply the 17-row APH preview. Move to a higher-yield mechanism-first source
+strategy, likely SDR/AKR or another source tier/family that can plausibly clear >=150 after
+source-wall, OOS preregistration if needed, non-destructive preview, row guardrail audit,
+novelty/governor/dedup/cap replay, leakage/source-contract validation, and explicit apply.
+
 **2026-06-15 automation update: metal-independent PDE 43fp infrastructure built; tested source
 handles are below the apply gate.** Treat this as the newest operational state for bronze
 scaleout. Hard safety remains green, frozen current702 was not written, and no external bronze

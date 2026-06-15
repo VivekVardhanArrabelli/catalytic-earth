@@ -3,6 +3,43 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-15: APH IS A GUARDED 44TH FINGERPRINT, BUT NOT APPLIED
+
+Decision: add `aminoglycoside_phosphotransferase` as the 44th positive fingerprint and keep the
+source wall mechanism-first. EC may scope/fetch candidate rows but is never a counted corroborator.
+Counted corroboration requires APH family/name context plus mechanism-bearing active/binding-site,
+ATP/Mg, or aminoglycoside phosphorylation evidence. Protein kinase, small-molecule kinase,
+aminoglycoside acetyltransferase/nucleotidyltransferase, side-EC, EC-only, and multi-fingerprint
+rows stay held.
+
+Important correction: the initial high-yield scout hypothesis that EC `2.7.1.130` and
+`2.7.1.192` were APH exact scopes was false. Live reviewed UniProt search inspection showed those
+surfaces are lipid-A kinase and PTS MurNAc phosphotransferase. The implemented APH scope is
+restricted to reviewed aminoglycoside phosphotransferase/kinase ECs `2.7.1.95`, `2.7.1.72`,
+`2.7.1.87`, `2.7.1.119`, and `2.7.1.163`.
+
+Implementation: added `src/catalytic_earth/aminoglycoside_phosphotransferase_sourcing.py`,
+`scripts/source_aminoglycoside_phosphotransferase_family.py`, the
+`aminoglycoside_phosphotransferase` fingerprint, ontology family
+`aminoglycoside_phosphoryl_transfer`, deploy context, coverage/governor signature, high-yield
+factory wiring, focused tests, and the 44fp OOS preregistration artifact
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_44fp_1025.json`. Updated the
+current positive-fingerprint universe to `label_factory_v1_44fp`; frozen current702 labels stay
+stamped with their historical decision version and were not written.
+
+Measured result: no bronze rows were applied. Corrected live preview
+`artifacts/v3_aminoglycoside_phosphotransferase_sourcing_preview_corrected_active_binding_bounded50_current702_20260615.json`
+fetched **18** reviewed rows, produced **17** target mechanism-corroborated labels, and admitted
+**17** novelty-safe labels with **0** off-target holds. This is clean but below the >=150
+clean-admit batch gate.
+
+Decision: do not apply the 17-row APH preview. Current planning artifacts after 44fp infrastructure
+show **0** ready existing lanes with >=150 projected clean admits, holes
+`aminoglycoside_phosphotransferase` and `metal_independent_phosphodiesterase`, and top projected
+clean supply `short_chain_dehydrogenase_reductase` at **84**. The next mass-growth action should
+pivot to higher-yield mechanism-first source strategy, likely SDR/AKR or another source tier/family
+whose source wall can plausibly clear the batch gate.
+
 ## 2026-06-15: METAL-INDEPENDENT PDE IS A GUARDED 43RD FINGERPRINT, BUT NOT APPLIED
 
 Decision: add `metal_independent_phosphodiesterase` as the 43rd positive fingerprint and keep the

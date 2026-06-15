@@ -26,6 +26,43 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **APH 44FP INFRASTRUCTURE BUILT; CORRECTED SOURCE WALL SUBSCALE, NO REGISTRY MUTATION
+  (2026-06-15 automation).**
+  Hard safety remains green. The current positive universe is now `label_factory_v1_44fp` with
+  **44** mechanism fingerprints and **41** ontology families, while frozen current702 remains
+  byte-unchanged and no external bronze rows were applied. Honest counters remain external rows
+  **7570**, combined label surface **8272**, combined seed surface **6576**, positive bronze
+  **6529**, OOS bronze **1696**, silver_confirmed **47**, projected **0**.
+
+  Built guarded infrastructure for `aminoglycoside_phosphotransferase`: fingerprint, ontology
+  family `aminoglycoside_phosphoryl_transfer`, deploy context, coverage/governor signature,
+  disambiguation rule, source runner
+  `src/catalytic_earth/aminoglycoside_phosphotransferase_sourcing.py`, script
+  `scripts/source_aminoglycoside_phosphotransferase_family.py`, high-yield-factory wiring, focused
+  tests, and 44fp hard-negative preregistration
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_44fp_1025.json`.
+
+  Source-wall correction: EC `2.7.1.130` and `2.7.1.192` are lipid-A and PTS MurNAc kinases, not
+  APH. The APH scope is restricted to reviewed APH ECs `2.7.1.95`, `2.7.1.72`, `2.7.1.87`,
+  `2.7.1.119`, and `2.7.1.163`; counted corroboration still requires APH family/name plus
+  active/binding-site, ATP/Mg, or aminoglycoside phosphorylation evidence. EC remains scope-only.
+
+  Corrected live preview
+  `artifacts/v3_aminoglycoside_phosphotransferase_sourcing_preview_corrected_active_binding_bounded50_current702_20260615.json`
+  fetched **18** reviewed rows and admitted **17** novelty-safe APH labels, below the >=150 clean
+  batch gate, so no apply was performed. Planning artifacts
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260615_post_aph_44fp_infra.json`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260615_post_aph_44fp_infra.json`, and
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260615_post_aph_44fp_infra.json` show
+  **0** ready existing lanes >=150, top projected clean supply `short_chain_dehydrogenase_reductase`
+  at **84**, holes `aminoglycoside_phosphotransferase` and `metal_independent_phosphodiesterase`,
+  and novelty replay unchanged.
+
+  Next action: do not apply the 17-row APH preview. Pivot to a higher-yield mechanism-first source
+  strategy, likely SDR/AKR or another family/source tier that can plausibly clear >=150 clean
+  admits after source-wall, OOS, preview, row-audit, novelty/governor/dedup/cap, leakage, and
+  source-contract gates.
+
 - **METAL-INDEPENDENT PDE 43FP INFRASTRUCTURE BUILT; SOURCE HANDLES SUBSCALE, NO REGISTRY MUTATION
   (2026-06-15 automation).**
   Hard safety remains green. The current positive universe is now `label_factory_v1_43fp` with

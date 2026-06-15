@@ -119,6 +119,10 @@ def _ec_has_prefix(row: dict[str, Any], prefixes: tuple[str, ...]) -> bool:
     return any(ec.startswith(p) for ec in _ec_numbers(row) for p in prefixes)
 
 
+def _ec_has_exact(row: dict[str, Any], exact: tuple[str, ...]) -> bool:
+    return any(ec in exact for ec in _ec_numbers(row))
+
+
 def _ligand_names(row: dict[str, Any]) -> list[str]:
     names: list[str] = []
     for locator in row.get("residue_locators") or []:
@@ -692,6 +696,71 @@ _PROTEIN_KINASE_BOUNDARY_TOKENS = (
     "atp-grasp",
     "atp grasp",
     "ligase",
+)
+# Aminoglycoside phosphotransferase handles. Exact APH EC scopes candidates
+# only; counted corroboration comes from APH family/name/domain text,
+# ATP/Mg or ADP/phosphate context, aminoglycoside phosphorylation reaction text,
+# and active-/binding-site evidence. Protein kinases, histidine kinases,
+# generic small-molecule kinases, acetyltransferases, nucleotidyltransferases,
+# and EC-only rows stay held.
+_AMINOGLYCOSIDE_PHOSPHOTRANSFERASE_FAMILY_TEXT_TOKENS = (
+    "aminoglycoside phosphotransferase",
+    "aminoglycoside-phosphotransferase",
+    "aminoglycoside kinase",
+    "aminoglycoside 3'-phosphotransferase",
+    "aminoglycoside 6-phosphotransferase",
+    "neomycin-kanamycin phosphotransferase",
+    "streptomycin kinase",
+    "aph(",
+    "aph ",
+)
+_AMINOGLYCOSIDE_PHOSPHOTRANSFERASE_ATP_MG_TOKENS = (
+    "atp",
+    "adenosine 5'-triphosphate",
+    "adenosine triphosphate",
+    "adp",
+    "adenosine 5'-diphosphate",
+    "magnesium",
+    "mg(2",
+    "mg2",
+)
+_AMINOGLYCOSIDE_SUBSTRATE_TOKENS = (
+    "aminoglycoside",
+    "kanamycin",
+    "neomycin",
+    "streptomycin",
+    "gentamicin",
+    "amikacin",
+    "tobramycin",
+    "hygromycin",
+    "paromomycin",
+    "spectinomycin",
+    "ribostamycin",
+    "butirosin",
+)
+_AMINOGLYCOSIDE_PHOSPHORYL_TOKENS = (
+    "phospho",
+    "phosphate",
+    "phosphoryl",
+    "o-phospho",
+    "-phosphate",
+)
+_AMINOGLYCOSIDE_PHOSPHOTRANSFERASE_BOUNDARY_TOKENS = (
+    "protein kinase",
+    "serine/threonine",
+    "tyrosine kinase",
+    "histidine kinase",
+    "two-component",
+    "aminoglycoside acetyltransferase",
+    "acetyltransferase",
+    "aminoglycoside nucleotidyltransferase",
+    "nucleotidyltransferase",
+    "adenylyltransferase",
+    "glycosyltransferase",
+    "ribokinase",
+    "phosphofructokinase",
+    "nucleoside kinase",
+    "deoxynucleoside kinase",
 )
 # HAD-like phosphatase handles. EC 3.1.3 scopes phosphomonoesterase candidates only;
 # counted corroboration comes from HAD/haloacid-dehalogenase family text, catalytic
@@ -1796,6 +1865,36 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
         ec and not (ec.startswith("2.7.10") or ec.startswith("2.7.11"))
         for ec in _ec_numbers(row)
     )
+    aminoglycoside_phosphotransferase_family_text = in_any(
+        reactions + keywords + [protein_name] + feature_texts,
+        *_AMINOGLYCOSIDE_PHOSPHOTRANSFERASE_FAMILY_TEXT_TOKENS,
+    ) or (
+        in_any(reactions + keywords + [protein_name] + feature_texts, "phosphotransferase")
+        and in_any(
+            reactions + keywords + [protein_name] + feature_texts,
+            *_AMINOGLYCOSIDE_SUBSTRATE_TOKENS,
+        )
+    )
+    aminoglycoside_phosphotransferase_atp_mg_context = in_any(
+        reactions + cofactor_names + feature_texts,
+        *_AMINOGLYCOSIDE_PHOSPHOTRANSFERASE_ATP_MG_TOKENS,
+    )
+    aminoglycoside_phosphotransferase_phosphoryl_reaction = (
+        in_any(reactions, *_AMINOGLYCOSIDE_SUBSTRATE_TOKENS)
+        and in_any(reactions, *_AMINOGLYCOSIDE_PHOSPHORYL_TOKENS)
+        and in_any(reactions, "atp", "adp")
+    )
+    aminoglycoside_phosphotransferase_boundary_signal = (
+        in_any(
+            keywords + [protein_name] + feature_texts + reactions,
+            *_AMINOGLYCOSIDE_PHOSPHOTRANSFERASE_BOUNDARY_TOKENS,
+        )
+        and not aminoglycoside_phosphotransferase_family_text
+    )
+    non_aminoglycoside_phosphotransferase_scope_side_ec = any(
+        ec and ec not in _AMINOGLYCOSIDE_PHOSPHOTRANSFERASE_EC
+        for ec in _ec_numbers(row)
+    )
     had_like_phosphatase_family_text = in_any(
         reactions + keywords + [protein_name] + feature_texts,
         *_HAD_LIKE_PHOSPHATASE_FAMILY_TEXT_TOKENS,
@@ -2157,6 +2256,11 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "protein_kinase_phosphoryl_reaction": protein_kinase_phosphoryl_reaction,
             "protein_kinase_boundary_signal": protein_kinase_boundary_signal,
             "non_protein_kinase_scope_side_ec": non_protein_kinase_scope_side_ec,
+            "aminoglycoside_phosphotransferase_family_text": aminoglycoside_phosphotransferase_family_text,
+            "aminoglycoside_phosphotransferase_atp_mg_context": aminoglycoside_phosphotransferase_atp_mg_context,
+            "aminoglycoside_phosphotransferase_phosphoryl_reaction": aminoglycoside_phosphotransferase_phosphoryl_reaction,
+            "aminoglycoside_phosphotransferase_boundary_signal": aminoglycoside_phosphotransferase_boundary_signal,
+            "non_aminoglycoside_phosphotransferase_scope_side_ec": non_aminoglycoside_phosphotransferase_scope_side_ec,
             "had_like_phosphatase_family_text": had_like_phosphatase_family_text,
             "had_like_phosphatase_asp_mg_context": had_like_phosphatase_asp_mg_context,
             "had_like_phosphatase_phosphomonoester_reaction": had_like_phosphatase_phosphomonoester_reaction,
@@ -2242,6 +2346,8 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("terpene_mg_mn_context")
         or evidence.get("terpene_diphosphate_context")
         or evidence.get("protein_kinase_atp_mg_context")
+        or evidence.get("aminoglycoside_phosphotransferase_atp_mg_context")
+        or evidence.get("aminoglycoside_phosphotransferase_phosphoryl_reaction")
         or evidence.get("had_like_phosphatase_asp_mg_context")
         or evidence.get("ser_thr_protein_phosphatase_metal_context")
         or evidence.get("aldehyde_dehydrogenase_nad_p_context")
@@ -2285,6 +2391,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("pfkb_phosphoryl_reaction")
         or evidence.get("terpene_cyclization_reaction")
         or evidence.get("protein_kinase_phosphoryl_reaction")
+        or evidence.get("aminoglycoside_phosphotransferase_phosphoryl_reaction")
         or evidence.get("had_like_phosphatase_phosphomonoester_reaction")
         or evidence.get("ser_thr_protein_phosphatase_dephosphorylation_reaction")
         or evidence.get("aldehyde_dehydrogenase_reaction")
@@ -2337,6 +2444,10 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         )
         or (
             evidence.get("active_or_binding_site_present")
+            and evidence.get("aminoglycoside_phosphotransferase_family_text")
+        )
+        or (
+            evidence.get("active_or_binding_site_present")
             and evidence.get("had_like_phosphatase_family_text")
         )
         or evidence.get("had_like_phosphatase_asp_mg_context")
@@ -2381,6 +2492,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("mn_fe_sod_family_text")
         or evidence.get("terpene_family_text")
         or evidence.get("protein_kinase_family_text")
+        or evidence.get("aminoglycoside_phosphotransferase_family_text")
         or evidence.get("had_like_phosphatase_family_text")
         or evidence.get("ser_thr_protein_phosphatase_family_text")
         or evidence.get("aldehyde_dehydrogenase_family_text")
@@ -2451,6 +2563,13 @@ _THIAMINE_DIPHOSPHATE_ENZYME_EC = (
 _ZINC_LYASE_HYDRATASE_EC = ("4.2.1",)  # zinc hydro-lyases; EC is scope only
 _TERPENE_CYCLASE_SYNTHASE_EC = ("4.2.3",)  # terpene cyclases/synthases; EC is scope only
 _PROTEIN_KINASE_SER_THR_TYR_EC = ("2.7.10", "2.7.11")  # protein kinases; EC scope only
+_AMINOGLYCOSIDE_PHOSPHOTRANSFERASE_EC = (
+    "2.7.1.95",
+    "2.7.1.72",
+    "2.7.1.87",
+    "2.7.1.119",
+    "2.7.1.163",
+)  # APH aminoglycoside kinases; EC scope only
 _HAD_LIKE_PHOSPHATASE_EC = ("3.1.3",)  # HAD-like phosphatases; EC scope only
 _SER_THR_PROTEIN_PHOSPHATASE_EC = ("3.1.3.16", "3.1.3.48")  # protein phosphatases; EC scope only
 _ALDEHYDE_DEHYDROGENASE_EC = ("1.2.1",)  # ALDH; EC scope only
@@ -2884,6 +3003,28 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         ),
     ),
     (
+        "aminoglycoside_phosphotransferase",
+        lambda c, row: _ec_has_exact(row, _AMINOGLYCOSIDE_PHOSPHOTRANSFERASE_EC)
+        and c["aminoglycoside_phosphotransferase_family_text"]
+        and (
+            c["aminoglycoside_phosphotransferase_atp_mg_context"]
+            or c["active_or_binding_site_present"]
+            or c["aminoglycoside_phosphotransferase_phosphoryl_reaction"]
+        )
+        and (
+            c["aminoglycoside_phosphotransferase_phosphoryl_reaction"]
+            or c["active_or_binding_site_present"]
+        )
+        and not c["aminoglycoside_phosphotransferase_boundary_signal"]
+        and not c["protein_kinase_family_text"]
+        and not c["askha_family_text"]
+        and not c["ghmp_family_text"]
+        and not c["dnk_family_text"]
+        and not c["pfka_family_text"]
+        and not c["pfkb_family_text"]
+        and not c["non_aminoglycoside_phosphotransferase_scope_side_ec"],
+    ),
+    (
         "had_like_phosphatase",
         lambda c, row: _ec_has_prefix(row, _HAD_LIKE_PHOSPHATASE_EC)
         and c["had_like_phosphatase_family_text"]
@@ -3028,6 +3169,16 @@ def _synthesize_cofactor_provenance(
         records = [{"name": "Mg2+/Mn2+ prenyl-diphosphate cyclization context", "cross_reference": {"id": None}}]
     elif fingerprint == "protein_kinase_ser_thr_tyr" and evidence.get("protein_kinase_atp_mg_context"):
         records = [{"name": "ATP/Mg2+ protein-substrate phosphoryl-transfer cosubstrate", "cross_reference": {"id": None}}]
+    elif fingerprint == "aminoglycoside_phosphotransferase" and (
+        evidence.get("aminoglycoside_phosphotransferase_atp_mg_context")
+        or evidence.get("aminoglycoside_phosphotransferase_phosphoryl_reaction")
+    ):
+        records = [
+            {
+                "name": "ATP/Mg2+ aminoglycoside phosphoryl-transfer context",
+                "cross_reference": {"id": None},
+            }
+        ]
     elif fingerprint == "had_like_phosphatase" and (
         evidence.get("had_like_phosphatase_asp_mg_context")
         or evidence.get("had_like_phosphatase_phosphomonoester_reaction")

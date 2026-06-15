@@ -518,12 +518,19 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
     _spec(
         family_id="aminoglycoside_phosphotransferase",
         display_name="Aminoglycoside phosphotransferase",
-        scope_query="(reviewed:true) AND (ec:2.7.1.*)",
+        existing_fingerprint_id="aminoglycoside_phosphotransferase",
+        current_runner="scripts/source_aminoglycoside_phosphotransferase_family.py",
+        oos_preregistration_required=False,
+        source_wall_rule_status="implemented_existing_fingerprint",
+        scope_query=(
+            "(reviewed:true) AND ((ec:2.7.1.95) OR (ec:2.7.1.72) OR "
+            "(ec:2.7.1.87) OR (ec:2.7.1.119) OR (ec:2.7.1.163))"
+        ),
         corroborator_query=(
-            "(reviewed:true) AND (ec:2.7.1.*) AND "
-            "((protein_name:aminoglycoside) OR (protein_name:phosphotransferase) "
-            "OR (protein_name:kinase)) AND ((keyword:Antibiotic) OR (cc_cofactor:ATP) "
-            "OR (cc_cofactor:magnesium))"
+            "(reviewed:true) AND ((ec:2.7.1.95) OR (ec:2.7.1.72) OR "
+            "(ec:2.7.1.87) OR (ec:2.7.1.119) OR (ec:2.7.1.163)) AND "
+            "((ft_binding:*) OR (ft_act_site:*) OR (cc_cofactor:ATP) OR "
+            "(cc_cofactor:magnesium) OR (keyword:Kinase) OR (keyword:Transferase))"
         ),
         required_non_ec_corroborators=(
             "aminoglycoside phosphotransferase family/name handle",
@@ -542,6 +549,13 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
             "pfka_phosphofructokinase",
             "pfkb_ribokinase_family",
             "nucleoside_diphosphate_kinase",
+            "protein_kinase_ser_thr_tyr",
+        ),
+        known_blockers=(
+            "2026-06-15 source inspection showed EC 2.7.1.130 and 2.7.1.192 are "
+            "lipid-A and PTS MurNAc kinases, not APH; keep APH scope restricted to "
+            "reviewed aminoglycoside phosphotransferase/kinase ECs and broaden only "
+            "with APH family/name/reaction handles.",
         ),
         rationale_template=(
             "Resistance-relevant ATP phosphoryl transfer; needs explicit separation "

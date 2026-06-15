@@ -108,6 +108,7 @@ DEPLOY_MISSING_CONTEXT_FOR_FINGERPRINT: dict[str, str] = {
     "alpha_beta_hydrolase_esterase_lipase": "ser_his_acid_ester_hydrolysis_context",
     "n_ribosyl_hydrolase": "n_glycosidic_bond_hydrolysis_context",
     "metal_independent_phosphodiesterase": "metal_independent_phosphodiester_hydrolysis_context",
+    "aminoglycoside_phosphotransferase": "atp_mg_aminoglycoside_phosphoryl_transfer_context",
 }
 OUT_OF_SCOPE_LANES: frozenset[str] = frozenset(
     {

@@ -1,5 +1,61 @@
 # Handoff
 
+## Session run - APH 44fp infrastructure built; corrected source wall subscale, no registry mutation (2026-06-15, Codex automation)
+
+- Hard blockers stayed clear. Started from current `origin/main` at
+  `eccb5125746353377b5d4d00a2a4aca38d7c6f08`, acquired the automation lock, and verified registry
+  file-size safety: external bronze remains a manifest plus shards about **17 MB / 17 MB / 17 MB /
+  5.9 MB**, below the GitHub-safe threshold. Frozen current702 stayed untouched; no external
+  bronze rows were applied.
+- Built `aminoglycoside_phosphotransferase` as the guarded 44th positive fingerprint lane
+  infrastructure: fingerprint, ontology family `aminoglycoside_phosphoryl_transfer`, deploy-missing
+  context, coverage/governor signature, disambiguation rule, source runner
+  `src/catalytic_earth/aminoglycoside_phosphotransferase_sourcing.py`, script
+  `scripts/source_aminoglycoside_phosphotransferase_family.py`, high-yield factory wiring, tests,
+  and 44fp hard-negative preregistration
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_44fp_1025.json`.
+- Corrected an important source-wall assumption before any apply: live UniProt inspection showed EC
+  `2.7.1.130` and `2.7.1.192` are lipid-A and PTS MurNAc kinases, not aminoglycoside
+  phosphotransferases. The APH rule/source scope is now restricted to reviewed APH ECs
+  `2.7.1.95`, `2.7.1.72`, `2.7.1.87`, `2.7.1.119`, and `2.7.1.163`, with APH family/name plus
+  active/binding-site, ATP/Mg, or aminoglycoside phosphorylation mechanism evidence. EC remains
+  scope-only and never a counted corroborator.
+- Live corrected preview was clean but subscale:
+  `artifacts/v3_aminoglycoside_phosphotransferase_sourcing_preview_corrected_active_binding_bounded50_current702_20260615.json`
+  / `work/aminoglycoside_phosphotransferase_sourcing_corrected_active_binding_bounded50_current702_20260615.md`
+  fetched **18** reviewed rows, produced **17** target mechanism-corroborated labels, and admitted
+  **17** novelty-safe rows with **0** off-target holds and **0** disambiguation holds. No apply was
+  performed because this is far below the >=150 clean-admit batch gate.
+- Planning refreshes after 44fp infrastructure:
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260615_post_aph_44fp_infra.json`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260615_post_aph_44fp_infra.json`, and
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260615_post_aph_44fp_infra.json`.
+  Coverage reports **8272** combined labels, fingerprint Gini **0.2156**, holes
+  `aminoglycoside_phosphotransferase` and `metal_independent_phosphodiesterase`, and only
+  `metal_dependent_hydrolase` over cap. Novelty replay remains **7109** admit / **414** throttle /
+  **47** reject across **7570** expansion rows. The factory now reports **0** ready existing lanes
+  >=150; top projected clean admits under current handles is `short_chain_dehydrogenase_reductase`
+  at **84**.
+- Honest counters are unchanged from the N-ribosyl apply: external rows **7570** = external seed
+  **6346** + external OOS **1224**, with external silver **30**. Combined label surface **8272**;
+  combined seed surface **6576**; positive bronze **6529**; OOS bronze **1696**;
+  silver_confirmed **47**; projected **0**.
+- Validation: `PYTHONPATH=src python -m catalytic_earth.cli validate` passed with **12** source
+  records, **44** fingerprints, **41** ontology families, and **702** curated labels. Final focused
+  critical suite passed **433 passed, 14 subtests passed in 2.94s**. APH/factory/leakage focused
+  rerun passed **302 passed, 14 subtests passed** after correcting the EC surface. Registry size
+  scan passed: manifest **4 KB**, shards **17M / 17M / 17M / 5.9M**, curated **500K**.
+- Closeout snapshot: **2026-06-15T20:55:19Z**, elapsed about **75.0** minutes, remaining **-20.0**
+  minutes. The overrun was caused by a full-window UniProt preview attempt that was interrupted
+  while waiting on slow entry fetches, followed by the necessary EC correction.
+- Next concrete action: do **not** apply the 17-row APH preview. Current reviewed Swiss-Prot APH
+  supply is too small for the >=150 gate after the corrected source wall. Pivot to higher-yield
+  mechanism-first source strategy: build a source wall for `short_chain_dehydrogenase_reductase` /
+  `aldo_keto_reductase` or another family/source tier that can plausibly clear >=150, refresh OOS
+  preregistration if the fingerprint universe changes, preview non-destructively, audit rows,
+  replay novelty/governor/dedup/cap gates, validate leakage/source contracts, then apply only if
+  the batch gate is met.
+
 ## Session run - Metal-independent PDE 43fp infrastructure built; source handles subscale, no registry mutation (2026-06-15, Codex automation)
 
 - Hard blockers stayed clear. Started from current `origin/main` at `45be297288793783d0b8083d19d4323d628d9a71`, acquired the automation lock, and verified registry file-size safety: the external registry remains a sharded manifest plus shards about **17 MB / 17 MB / 17 MB / 5.9 MB**, below the GitHub-safe threshold. Frozen current702 stayed byte-unchanged at sha `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.

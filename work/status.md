@@ -1,17 +1,17 @@
 automation: ce-bronze-scaleout-pipeline
 automation_id: ce-nad-glyco-floor-expansion
-started_at: 2026-06-15T18:39:03Z
-started_local: Mon Jun 15 13:39:03 CDT 2026
-closeout_at: 2026-06-15T19:29:22Z
-elapsed_minutes: 50.3
-remaining_minutes: 4.7
+started_at: 2026-06-15T19:40:17Z
+started_local: Mon Jun 15 14:40:17 CDT 2026
+closeout_at: 2026-06-15T20:55:19Z
+elapsed_minutes: 75.0
+remaining_minutes: -20.0
 budget_minutes: 55
 planned_closeout_minute: 50
 
-state: metal-independent phosphodiesterase 43fp infrastructure built; registry unchanged
+state: ready to commit, push, and release lock
 lock: held by this run until post-push release
 branch: main
-base_at_start: 45be297288793783d0b8083d19d4323d628d9a71
+base_at_start: eccb5125746353377b5d4d00a2a4aca38d7c6f08
 
 honest_counters:
   external_rows: 7570
@@ -26,26 +26,33 @@ honest_counters:
   silver_confirmed: 47
   projected: 0
 
-pde_43fp_summary:
-  current_positive_universe: label_factory_v1_43fp
-  mechanism_fingerprints: 43
-  ontology_families: 40
+aph_44fp_summary:
+  current_positive_universe: label_factory_v1_44fp
+  mechanism_fingerprints: 44
+  ontology_families: 41
   registry_mutation: none
-  reviewed_preview_fetched_rows: 265
-  reviewed_preview_target_labels: 18
-  reviewed_preview_novelty_admitted: 14
-  alternate_reviewed_preview_fetched_rows: 130
-  alternate_reviewed_preview_novelty_admitted: 0
-  tier2_preview_fetched_rows: 400
-  tier2_preview_target_labels: 0
-  tier2_preview_novelty_admitted: 0
-  tier2_trust_holds: 197
+  exact_ec_scope_corrected:
+    removed_false_scopes:
+      - 2.7.1.130
+      - 2.7.1.192
+    retained_aph_scopes:
+      - 2.7.1.95
+      - 2.7.1.72
+      - 2.7.1.87
+      - 2.7.1.119
+      - 2.7.1.163
+  corrected_preview_fetched_rows: 18
+  corrected_preview_target_labels: 17
+  corrected_preview_novelty_admitted: 17
+  corrected_preview_off_target_held: 0
   apply_authorized: false
+  no_apply_reason: below_150_clean_admit_batch_gate
 
 planning_refresh:
   coverage_combined: 8272
-  coverage_fingerprint_gini: 0.1974
+  coverage_fingerprint_gini: 0.2156
   coverage_holes:
+    - aminoglycoside_phosphotransferase
     - metal_independent_phosphodiesterase
   coverage_over_cap:
     - metal_dependent_hydrolase
@@ -59,15 +66,18 @@ planning_refresh:
     count: 84
 
 validation:
-  cli_validate: passed: 12 source records, 43 fingerprints, 40 ontology families, 702 curated labels
-  focused_affected: 350 passed in 3.15s
-  failed_pin_rerun_after_update: 2 passed in 0.38s
-  full_suite_final: 2326 passed, 1 warning in 165.71s
-  progress_and_doc_reference: 5 passed
-  diff_check: passed
-  json_parse: passed for progress log and 15 new/current JSON artifacts
-  file_size_scan: passed: manifest 1.2K; shards 17M, 17M, 17M, 5.9M
-  frozen_sha: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
-  preregistration_consistency: passed: 43 live fingerprints match 43fp artifact
+  cli_validate: passed: 12 source records, 44 fingerprints, 41 ontology families, 702 curated labels
+  focused_critical_final: 433 passed, 14 subtests passed in 2.94s
+  aph_factory_leakage_focus_after_ec_correction: 302 passed, 14 subtests passed
+  file_size_scan: passed: manifest 4K; shards 17M, 17M, 17M, 5.9M; curated 500K
+  registry_mutation: none
 
-next_action: Design sharper PDE source splits or pivot to a higher-yield source-tier/family strategy such as SDR/AKR; do not apply the 14-row PDE preview.
+artifacts:
+  preregistration_44fp: artifacts/v3_external_hard_negative_next_tranche_preregistration_44fp_1025.json
+  aph_preview: artifacts/v3_aminoglycoside_phosphotransferase_sourcing_preview_corrected_active_binding_bounded50_current702_20260615.json
+  aph_preview_report: work/aminoglycoside_phosphotransferase_sourcing_corrected_active_binding_bounded50_current702_20260615.md
+  factory: artifacts/v3_high_yield_family_lane_factory_current702_20260615_post_aph_44fp_infra.json
+  coverage: artifacts/v3_coverage_redundancy_audit_current702_20260615_post_aph_44fp_infra.json
+  novelty: artifacts/v3_novelty_admission_gate_audit_current702_20260615_post_aph_44fp_infra.json
+
+next_action: Do not apply the 17-row APH preview. Pivot to a higher-yield mechanism-first source strategy such as SDR/AKR or another source tier/family that can plausibly clear >=150 clean admits.

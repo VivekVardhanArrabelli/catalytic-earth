@@ -714,6 +714,30 @@
         "Hold multi-fingerprint-signal rows rather than forcing a metal-independent phosphodiesterase label.",
         "The phosphodiester or cyclic-nucleotide substrate, ordered water, leaving group, nucleotide product, and protonation state are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
+    },
+    {
+      "id": "aminoglycoside_phosphoryl_transfer",
+      "name": "Aminoglycoside phosphoryl transfer",
+      "parent_id": "atp_phosphoryl_transfer",
+      "fingerprint_ids": [
+        "aminoglycoside_phosphotransferase"
+      ],
+      "scope_note": "Reviewed aminoglycoside phosphotransferases in exact EC 2.7.1.95/72/87/119/163 that transfer the ATP gamma-phosphate to aminoglycoside hydroxyl acceptors.",
+      "sibling_ids": [
+        "epk",
+        "askha",
+        "ghmp",
+        "dnk",
+        "ndk",
+        "pfka",
+        "pfkb"
+      ],
+      "family_boundary_guardrails": [
+        "Membership is decided by aminoglycoside phosphotransferase / APH family context plus ATP/Mg, aminoglycoside phosphorylation reaction, or active-/binding-site evidence; exact EC is scope only.",
+        "Do not admit protein kinases, histidine kinases, generic small-molecule kinases, aminoglycoside acetyltransferases, aminoglycoside nucleotidyltransferases, side-EC rows, or EC-only rows into this family.",
+        "Hold multi-fingerprint-signal rows rather than forcing an aminoglycoside phosphotransferase label.",
+        "The ATP/Mg donor, aminoglycoside acceptor, transferred phosphate, acceptor hydroxyl, and product/protonation state are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
     }
   ],
   "propagation_guardrails": [

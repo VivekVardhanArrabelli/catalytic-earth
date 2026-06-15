@@ -3355,5 +3355,85 @@
       "reconstruction_path": "Path A sequence->phosphodiesterase family plus Rhea/active-site channel, or canonical cyclic nucleotide/water/product graft in a metal-independent PDE pocket (Path B)",
       "silver_reachability": "moderate; family and reaction annotations are available, but metal-independent substrate/water geometry requires explicit reconstruction"
     }
+  },
+  {
+    "id": "aminoglycoside_phosphotransferase",
+    "name": "Aminoglycoside phosphotransferase",
+    "enzyme_space": [
+      "aminoglycoside phosphotransferases",
+      "aminoglycoside kinases",
+      "APH antibiotic-resistance phosphoryltransferases"
+    ],
+    "active_site_signature": [
+      {
+        "role": "atp_mg_phosphoryl_donor_positioner",
+        "residue": "Lys/Asp/Asn/Gly-rich ATP-binding loop",
+        "constraints": [
+          "positions ATP and Mg2+ for in-line phosphoryl transfer to an aminoglycoside hydroxyl acceptor"
+        ]
+      },
+      {
+        "role": "aminoglycoside_acceptor_binder",
+        "residue": "acidic/polar antibiotic-binding residues",
+        "constraints": [
+          "binds kanamycin, neomycin, streptomycin, gentamicin, amikacin, tobramycin, hygromycin, or related aminoglycoside substrate"
+        ]
+      },
+      {
+        "role": "general_base_or_transition_state_stabilizer",
+        "residue": "Asp/Glu/Lys/His/polar catalytic network",
+        "constraints": [
+          "activates the aminoglycoside hydroxyl acceptor and stabilizes phosphoryl-transfer charge development"
+        ]
+      }
+    ],
+    "cofactors": [
+      "ATP/Mg2+"
+    ],
+    "reaction_center": {
+      "bond_changes": [
+        "ATP gamma-phosphate P-O bond cleavage",
+        "aminoglycoside hydroxyl O-phosphorylation",
+        "ADP product formation"
+      ],
+      "chemical_operation": "ATP-dependent aminoglycoside O-phosphorylation"
+    },
+    "substrate_constraints": [
+      "Exact reviewed EC scope is one of 2.7.1.95, 2.7.1.72, 2.7.1.87, 2.7.1.119, or 2.7.1.163; EC is never counted as corroboration",
+      "aminoglycoside phosphotransferase, aminoglycoside kinase, or APH family/name context present",
+      "ATP/Mg, ADP/phosphate, aminoglycoside phosphorylation reaction, or active-/binding-site context present as counted mechanism evidence",
+      "no protein kinase, histidine kinase, small-molecule kinase, aminoglycoside acetyltransferase, aminoglycoside nucleotidyltransferase, side-EC, EC-only, or multi-fingerprint boundary signal"
+    ],
+    "evidence_features": [
+      "aminoglycoside phosphotransferase / APH family, keyword, name, or domain text",
+      "Rhea or reviewed catalytic activity text showing aminoglycoside + ATP to aminoglycoside phosphate + ADP",
+      "annotated ATP/Mg, ADP, aminoglycoside-binding, active-site, or binding-site residue context",
+      "exact APH EC scope only, never counted as a corroborator"
+    ],
+    "counterevidence_features": [
+      "protein kinase or histidine kinase family context",
+      "small-molecule sugar/nucleoside/metabolite kinase context without aminoglycoside acceptor",
+      "aminoglycoside acetyltransferase, nucleotidyltransferase, adenylyltransferase, or glycosyltransferase context",
+      "EC-only evidence with no family, reaction, ATP/Mg, active-site, or binding-site corroborator",
+      "multi-fingerprint signal where an existing kinase, ligase, CoA transferase, or glycosyltransferase rule independently fires"
+    ],
+    "uncertainty_axes": [
+      "aminoglycoside substrate regioselectivity",
+      "ATP/Mg binding pose and phosphoryl-transfer transition state",
+      "substrate protonation state and catalytic base identity",
+      "antibiotic-resistance family boundaries versus adjacent modifying enzymes"
+    ],
+    "seed_examples": [
+      "aminoglycoside 3'-phosphotransferase",
+      "aminoglycoside 6-phosphotransferase",
+      "neomycin-kanamycin phosphotransferase",
+      "streptomycin 3''-kinase"
+    ],
+    "deploy_missing_active_site_context": {
+      "type": "atp_mg_aminoglycoside_phosphoryl_transfer_context",
+      "detail": "ATP/Mg, aminoglycoside substrate, transferred phosphate, and acceptor hydroxyl geometry are absent or incomplete in apo predicted structures",
+      "reconstruction_path": "Path A sequence->APH family plus Rhea/active-site channel, or canonical ATP/Mg/aminoglycoside graft in an APH active-site pocket (Path B)",
+      "silver_reachability": "moderate; exact reviewed APH EC and active/binding-site annotations are available, but substrate/ATP geometry needs explicit reconstruction"
+    }
   }
 ]

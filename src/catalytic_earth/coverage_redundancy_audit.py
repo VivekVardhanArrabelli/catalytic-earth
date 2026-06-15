@@ -325,6 +325,15 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
         ),
         "lanes": ["metal_independent_phosphodiesterase"],
     },
+    "aminoglycoside_phosphotransferase": {
+        "ec_prefixes": ["2.7.1.95", "2.7.1.72", "2.7.1.87", "2.7.1.119", "2.7.1.163"],
+        "cofactor": (
+            "ATP/Mg aminoglycoside phosphoryl-transfer context; protein kinases, "
+            "small-molecule kinases, acetyltransferases, and nucleotidyltransferases "
+            "are held"
+        ),
+        "lanes": ["aminoglycoside_phosphotransferase"],
+    },
 }
 
 ALL_FINGERPRINTS = tuple(FINGERPRINT_SOURCING_SIGNATURES.keys())

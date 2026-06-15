@@ -1,0 +1,2894 @@
+{
+  "applied_labels": [
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P08077",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 2,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 201
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:58007",
+              "ligand_name": "streptomycin",
+              "position": 133
+            }
+          ],
+          "binding_residue_count": 1,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "ATP/Mg2+ aminoglycoside phosphoryl-transfer context"
+            }
+          ],
+          "ec_numbers": [
+            "2.7.1.72"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.7.1.72",
+              "evidence_codes": [],
+              "reaction": "streptomycin + ATP = streptomycin 6-phosphate + ADP + H(+)",
+              "rhea_id": "RHEA:22268",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: aminoglycoside_phosphotransferase_exact_ec_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68"
+          },
+          "retrieved_utc": "2026-06-15T20:53:48Z",
+          "sequence": "MSSSDHIHVPDGLAESYSRSGGEEGRAWIAGLPALVARCVDRWELKRDGGVRSGEASLVVPVLRADGTRAALKLQMPREETTAALIGLRAWGGDGMVRLLDHDEESSTMLLERLDGSRTLASVEDDDEAMGVLAGLLNRLHSVPAPPGLRGLGEIAGAMVEEVPSAVDSLADPEDRSRLRGWASAVAELVGEPGDRVLHWDLHYENVLAAEREPWLAIDPEPLVGDPGFDLWPALDTGWERIEATGDARRVVRRRFDLLTESLELDRGRAAGWTLARLLQNTLWDIEDGLTAIAPSQIAVAEALAKP",
+          "sequence_length": 307,
+          "sequence_sha256": "22acfffc40458a5bd935a5a3811f8b38897741dbf943374e1988b822c5c40f20",
+          "source": "reviewed_uniprot",
+          "source_accession": "P08077"
+        },
+        "source_provenance": {
+          "accession": "P08077",
+          "disambiguation_pool": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "disambiguation_source_artifact": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_aminoglycoside_phosphotransferase_from_annotated_cofactor_and_ec_class_['2.7.1.72']",
+          "organism": "Streptomyces griseus",
+          "protein_name": "Streptomycin 6-kinase (EC 2.7.1.72) (APH(6)) (Streptidine kinase) (Streptomycin 6-phosphotransferase)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 307,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "56f10e5a183a52e18f8cee25ab1696ea454ba6a2f533e9df7cc9886271f8ec56",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68",
+            "uniprot_entry_record_sha256": "f7d19f09f54da9bbdf29eaba6c5e0f5827477dbecc5c0baf59f960cbb52ab5cc",
+            "uniprot_search_row_sha256": "a3457ba985e710a5c4d692d3485548477746d9eecd2b003be308d0956f66ced6"
+          },
+          "target_family_lane": "aminoglycoside_phosphotransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P08077"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P08077-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "aminoglycoside_phosphotransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P08077 imported as annotation-anchored bronze in-scope aminoglycoside_phosphotransferase: reviewed Swiss-Prot EC ['2.7.1.72'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "high",
+      "entry_id": "uniprot:P00552",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 3,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 190
+            },
+            {
+              "evidence_codes": [],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:18420",
+              "ligand_name": "Mg(2+)",
+              "position": 195
+            },
+            {
+              "evidence_codes": [],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:18420",
+              "ligand_name": "Mg(2+)",
+              "position": 208
+            }
+          ],
+          "binding_residue_count": 2,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "ATP/Mg2+ aminoglycoside phosphoryl-transfer context"
+            }
+          ],
+          "ec_numbers": [
+            "2.7.1.95"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.7.1.95",
+              "evidence_codes": [],
+              "reaction": "kanamycin A + ATP = kanamycin 3'-phosphate + ADP + H(+)",
+              "rhea_id": "RHEA:24256",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: aminoglycoside_phosphotransferase_exact_ec_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68"
+          },
+          "retrieved_utc": "2026-06-15T20:53:48Z",
+          "sequence": "MIEQDGLHAGSPAAWVERLFGYDWAQQTIGCSDAAVFRLSAQGRPVLFVKTDLSGALNELQDEAARLSWLATTGVPCAAVLDVVTEAGRDWLLLGEVPGQDLLSSHLAPAEKVSIMADAMRRLHTLDPATCPFDHQAKHRIERARTRMEAGLVDQDDLDEEHQGLAPAELFARLKARMPDGEDLVVTHGDACLPNIMVENGRFSGFIDCGRLGVADRYQDIALATRDIAEELGGEWADRFLVLYGIAAPDSQRIAFYRLLDEFF",
+          "sequence_length": 264,
+          "sequence_sha256": "acbf1fe51a97a2e90c2bcd13adabec985a63c501fae0f2a2cfcb46258abda56e",
+          "source": "reviewed_uniprot",
+          "source_accession": "P00552"
+        },
+        "source_provenance": {
+          "accession": "P00552",
+          "disambiguation_pool": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "disambiguation_source_artifact": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_aminoglycoside_phosphotransferase_from_annotated_cofactor_and_ec_class_['2.7.1.95']",
+          "organism": "Klebsiella pneumoniae",
+          "protein_name": "Aminoglycoside 3'-phosphotransferase (EC 2.7.1.95) (APH(3')-II) (APH(3')II) (Kanamycin kinase, type II) (Neomycin-kanamycin phosphotransferase type II)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 264,
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "0e38cca04d4c0649ebb0d647adb700154a890fd27491d47220746d9e8a820ba2",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68",
+            "uniprot_entry_record_sha256": "1037bae00960c2002e7f208b6ca88a5c46043633ec807cd21787a7f12819f521",
+            "uniprot_search_row_sha256": "d5dfc84d946f2c2cd064f28aad682460a02d37e1c2e2b01e0b631adf501689d6"
+          },
+          "target_family_lane": "aminoglycoside_phosphotransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P00552"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "experimental_pdb_coordinate_provenance_available",
+          "pdb_ids": [
+            "1ND4"
+          ],
+          "structure_handle": "1ND4"
+        }
+      },
+      "evidence_score": 0.85,
+      "fingerprint_id": "aminoglycoside_phosphotransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P00552 imported as annotation-anchored bronze in-scope aminoglycoside_phosphotransferase: reviewed Swiss-Prot EC ['2.7.1.95'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P00553",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 187
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "ATP/Mg2+ aminoglycoside phosphoryl-transfer context"
+            }
+          ],
+          "ec_numbers": [
+            "2.7.1.95"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.7.1.95",
+              "evidence_codes": [],
+              "reaction": "kanamycin A + ATP = kanamycin 3'-phosphate + ADP + H(+)",
+              "rhea_id": "RHEA:24256",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: aminoglycoside_phosphotransferase_exact_ec_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68"
+          },
+          "retrieved_utc": "2026-06-15T20:53:48Z",
+          "sequence": "MNESTRNWPEELLELLGQTELTVNKIGYSGDHVYHVKEYRGTPAFLKIAPSVWWRTLRPEIEALAWLDGKLPVPKILYTAEHGGMDYLLMEALGGKDGSHETIQAKRKLFVKLYAEGLRSVHGLDIRECPLSNGLEKKLRDAKRIVDESLVDPADIKEEYDCTPEELYGLLLESKPVTEDLVFAHGDYCAPNLIIDGEKLSGFIDLGRAGVADRYQDISLAIRSLRHDYGDDRYKALFLELYGLDGLDEDKVRYYIRLDEFF",
+          "sequence_length": 262,
+          "sequence_sha256": "af3acb5ab17b85ce1c5d06654c45fd99b99074d32f0a7d3e55773b69ee9a57d6",
+          "source": "reviewed_uniprot",
+          "source_accession": "P00553"
+        },
+        "source_provenance": {
+          "accession": "P00553",
+          "disambiguation_pool": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "disambiguation_source_artifact": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_aminoglycoside_phosphotransferase_from_annotated_cofactor_and_ec_class_['2.7.1.95']",
+          "organism": "Niallia circulans (Bacillus circulans)",
+          "protein_name": "Aminoglycoside 3'-phosphotransferase (EC 2.7.1.95) (APH(3')IV) (Butirosin resistance protein A) (Kanamycin kinase, type IV) (Neomycin-kanamycin phosphotransferase type IV)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 262,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "0e38cca04d4c0649ebb0d647adb700154a890fd27491d47220746d9e8a820ba2",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68",
+            "uniprot_entry_record_sha256": "2f1591244f2389ee186ccdcc4ca1b1abea1b760f8e67c7b73e0161fd1ddc1af1",
+            "uniprot_search_row_sha256": "7afd09aacff6e3273fbbead78d06664b159a76b3247b865dbe906946c6fd57ba"
+          },
+          "target_family_lane": "aminoglycoside_phosphotransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P00553"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P00553-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "aminoglycoside_phosphotransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P00553 imported as annotation-anchored bronze in-scope aminoglycoside_phosphotransferase: reviewed Swiss-Prot EC ['2.7.1.95'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P00551",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 198
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "ATP/Mg2+ aminoglycoside phosphoryl-transfer context"
+            }
+          ],
+          "ec_numbers": [
+            "2.7.1.95"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.7.1.95",
+              "evidence_codes": [],
+              "reaction": "kanamycin A + ATP = kanamycin 3'-phosphate + ADP + H(+)",
+              "rhea_id": "RHEA:24256",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: aminoglycoside_phosphotransferase_exact_ec_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68"
+          },
+          "retrieved_utc": "2026-06-15T20:53:48Z",
+          "sequence": "MSHIQRETSCSRPRLNSNLDADLYGYKWARDNVGQSGATIYRLYGKPDAPELFLKHGKGSVANDVTDEMVRLNWLTEFMPLPTIKHFIRTPDDAWLLTTAIPGKTAFQVLEEYPDSGENIVDALAVFLRRLHSIPVCNCPFNSDRVFRLAQAQSRMNNGLVDASDFDDERNGWPVEQVWKEMHKLLPFSPDSVVTHGDFSLDNLIFDEGKLIGCIDVGRVGIADRYQDLAILWNCLGEFSPSLQKRLFQKYGIDNPDMNKLQFHLMLDEFF",
+          "sequence_length": 271,
+          "sequence_sha256": "4c9d2f83a2f44bab5bb5f5f52ccf4ac8e149bd9347eae1e1a9413219f07e1067",
+          "source": "reviewed_uniprot",
+          "source_accession": "P00551"
+        },
+        "source_provenance": {
+          "accession": "P00551",
+          "disambiguation_pool": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "disambiguation_source_artifact": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_aminoglycoside_phosphotransferase_from_annotated_cofactor_and_ec_class_['2.7.1.95']",
+          "organism": "Escherichia coli",
+          "protein_name": "Aminoglycoside 3'-phosphotransferase (EC 2.7.1.95) (APH(3')-I) (APH(3')I) (Kanamycin kinase, type I) (Neomycin-kanamycin phosphotransferase type I)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 271,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "0e38cca04d4c0649ebb0d647adb700154a890fd27491d47220746d9e8a820ba2",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68",
+            "uniprot_entry_record_sha256": "e390b16fed2055ee2b0be6c67cb8e1b8fa1b1da9fe6454bceafdfc20bb8312d8",
+            "uniprot_search_row_sha256": "f608b5dcc38d5ef1e662ac2d7d4fc8b5cb57d49eaac9de9e90b8fc877bb9ae71"
+          },
+          "target_family_lane": "aminoglycoside_phosphotransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P00551"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P00551-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "aminoglycoside_phosphotransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P00551 imported as annotation-anchored bronze in-scope aminoglycoside_phosphotransferase: reviewed Swiss-Prot EC ['2.7.1.95'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "high",
+      "entry_id": "uniprot:P00557",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 198
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "ATP/Mg2+ aminoglycoside phosphoryl-transfer context"
+            }
+          ],
+          "ec_numbers": [
+            "2.7.1.163"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.7.1.163",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "hygromycin B + ATP = 4-O-phosphohygromycin B + ADP + H(+)",
+              "rhea_id": "RHEA:26064",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: aminoglycoside_phosphotransferase_exact_ec_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68"
+          },
+          "retrieved_utc": "2026-06-15T20:53:48Z",
+          "sequence": "MKKPELTATSVEKFLIEKFDSVSDLMQLSEGEESRAFSFDVGGRGYVLRVNSCADGFYKDRYVYRHFASAALPIPEVLDIGEFSESLTYCISRRAQGVTLQDLPETELPAVLQPVAEAMDAIAAADLSQTSGFGPFGPQGIGQYTTWRDFICAIADPHVYHWQTVMDDTVSASVAQALDELMLWAEDCPEVRHLVHADFGSNNVLTDNGRITAVIDWSEAMFGDSQYEVANIFFWRPWLACMEQQTRYFERRHPELAGSPRLRAYMLRIGLDQLYQSLVDGNFDDAAWAQGRCDAIVRSGAGTVGRTQIARRSAAVWTDGCVEVLADSGNRRPSTRPRAKE",
+          "sequence_length": 341,
+          "sequence_sha256": "eac8227e88a870211484bad2c215e0a6c2002ca65c8d72e79ddbe7e572585510",
+          "source": "reviewed_uniprot",
+          "source_accession": "P00557"
+        },
+        "source_provenance": {
+          "accession": "P00557",
+          "disambiguation_pool": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "disambiguation_source_artifact": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_aminoglycoside_phosphotransferase_from_annotated_cofactor_and_ec_class_['2.7.1.163']",
+          "organism": "Escherichia coli",
+          "protein_name": "Hygromycin-B 4-O-kinase (EC 2.7.1.163) (APH(4)) (Hygromycin B phosphotransferase) (Hygromycin-B kinase)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 341,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000269"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "43b936a84847a2714dce945750fdb9b9ccb68dda0d7d3ecc4e9f01febea1c733",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68",
+            "uniprot_entry_record_sha256": "35ca0bd9527bb4514b9f0ba58c5faf50b6fcb03181a153bcad4a58fba5f80188",
+            "uniprot_search_row_sha256": "cbb2604cd0b3e50a5312bf87d621e41fb79d15a8e2db304481834d00894ffafd"
+          },
+          "target_family_lane": "aminoglycoside_phosphotransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P00557"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "experimental_pdb_coordinate_provenance_available",
+          "pdb_ids": [
+            "3TYK",
+            "3W0M",
+            "3W0N",
+            "3W0O",
+            "3W0P",
+            "3W0Q",
+            "3W0R",
+            "3W0S"
+          ],
+          "structure_handle": "3TYK"
+        }
+      },
+      "evidence_score": 0.85,
+      "fingerprint_id": "aminoglycoside_phosphotransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P00557 imported as annotation-anchored bronze in-scope aminoglycoside_phosphotransferase: reviewed Swiss-Prot EC ['2.7.1.163'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P09979",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 223
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "ATP/Mg2+ aminoglycoside phosphoryl-transfer context"
+            }
+          ],
+          "ec_numbers": [
+            "2.7.1.119"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.7.1.119",
+              "evidence_codes": [],
+              "reaction": "hygromycin B + ATP = 7''-O-phosphohygromycin B + ADP + H(+)",
+              "rhea_id": "RHEA:23388",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: aminoglycoside_phosphotransferase_exact_ec_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68"
+          },
+          "retrieved_utc": "2026-06-15T20:53:48Z",
+          "sequence": "MTQESLLLLDRIDSDDSYASLRNDQEFWEPLARRALEELGLPVPPVLRVPGESTNPVLVGEPDPVIKLFGEHWCGPESLASESEAYAVLADAPVPVPRLLGRGELRPGTGAWPWPYLVMSRMTGTTWRSAMDGTTDRNALLALARELGRVLGRLHRVPLTGNTVLTPHSEVFPELLRERRAATVEDHRGWGYLSPRLLDRLEDWLPDVDTLLAGREPRFVHGDLHGTNIFVDLAATEVTGIVDFTDVYAGDSRYSLVQLHLNAFRGDREILAALLDGAQWKRTEDFARELLAFTFLHDFEVFEETPLDLSGFTDPEELAQFLWGPPDTAPGA",
+          "sequence_length": 332,
+          "sequence_sha256": "bb59f0214c86317d4b0bc9f7ae8abb6f69a3a9d3ac19205be3689fb04b71890d",
+          "source": "reviewed_uniprot",
+          "source_accession": "P09979"
+        },
+        "source_provenance": {
+          "accession": "P09979",
+          "disambiguation_pool": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "disambiguation_source_artifact": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_aminoglycoside_phosphotransferase_from_annotated_cofactor_and_ec_class_['2.7.1.119']",
+          "organism": "Streptomyces hygroscopicus",
+          "protein_name": "Hygromycin-B 7''-O-kinase (EC 2.7.1.119) (APH(7'')) (Hygromycin B phosphotransferase) (Hygromycin-B kinase)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 332,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "2a376ca5b9c3aff513e222a0f21c38ccbf47b893bf93cef2c65c222149d8338b",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68",
+            "uniprot_entry_record_sha256": "e60a1e722a3b5a066e553e6cc0c8e7cc281ed26c3038cc16912af5c2fbb64195",
+            "uniprot_search_row_sha256": "528cfbd0d271f898e5285aab0728ab1ba5d4cceb08def7f069c06a75ce937b53"
+          },
+          "target_family_lane": "aminoglycoside_phosphotransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P09979"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "experimental_pdb_coordinate_provenance_available",
+          "pdb_ids": [
+            "6IY9"
+          ],
+          "structure_handle": "6IY9"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "aminoglycoside_phosphotransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P09979 imported as annotation-anchored bronze in-scope aminoglycoside_phosphotransferase: reviewed Swiss-Prot EC ['2.7.1.119'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P13082",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 154
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "ATP/Mg2+ aminoglycoside phosphoryl-transfer context"
+            }
+          ],
+          "ec_numbers": [
+            "2.7.1.87"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.7.1.87",
+              "evidence_codes": [],
+              "reaction": "streptomycin + ATP = streptomycin 3''-phosphate + ADP + H(+)",
+              "rhea_id": "RHEA:18377",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: aminoglycoside_phosphotransferase_exact_ec_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68"
+          },
+          "retrieved_utc": "2026-06-15T20:53:48Z",
+          "sequence": "MERWRLLRDGELLTTHSSWILPVRQGDMPAMLKVARIPDEEAGYRLLTWWDGQGAARVFASAAGALLMERASGAGDLAQIAWSGQDDEACRILCDTAARLHAPRSGPPPDLHPLQEWFQPLFRLAAEHAALAPAASVARQLLAAPREVCPLHGDLHHENVLDFGDRGWLAIDPHGLLGERTFDYANIFTNPDLSDPGRPLAILPGRLEARLSIVVATTGFEPERLLRWIIAWTGLSAAWFIGDGDGEGEGAAIDLAVNAMARRLLD",
+          "sequence_length": 266,
+          "sequence_sha256": "a72d58c53ae7e77304b6a1e5904c55d6a1f6ee767b1fffcaf88d8caad33094c3",
+          "source": "reviewed_uniprot",
+          "source_accession": "P13082"
+        },
+        "source_provenance": {
+          "accession": "P13082",
+          "disambiguation_pool": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "disambiguation_source_artifact": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_aminoglycoside_phosphotransferase_from_annotated_cofactor_and_ec_class_['2.7.1.87']",
+          "organism": "Klebsiella pneumoniae",
+          "protein_name": "Streptomycin 3''-kinase (EC 2.7.1.87) (Streptomycin 3''-phosphotransferase) (SPH)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 266,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "661953da32905adf5362e067beee54f45908707c0118f03f479c1e1b58c5aace",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68",
+            "uniprot_entry_record_sha256": "eb6b5b9e82f6146a96e3053d898cb4c66d8e79b34d212fed8e963c237c5cca79",
+            "uniprot_search_row_sha256": "752b309c243e2f430a14487c951ce11ab6c3266d430b79d7ed9a9449d8b43d81"
+          },
+          "target_family_lane": "aminoglycoside_phosphotransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P13082"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P13082-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "aminoglycoside_phosphotransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P13082 imported as annotation-anchored bronze in-scope aminoglycoside_phosphotransferase: reviewed Swiss-Prot EC ['2.7.1.87'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P18150",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 190
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "ATP/Mg2+ aminoglycoside phosphoryl-transfer context"
+            }
+          ],
+          "ec_numbers": [
+            "2.7.1.87"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.7.1.87",
+              "evidence_codes": [],
+              "reaction": "streptomycin + ATP = streptomycin 3''-phosphate + ADP + H(+)",
+              "rhea_id": "RHEA:18377",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: aminoglycoside_phosphotransferase_exact_ec_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68"
+          },
+          "retrieved_utc": "2026-06-15T20:53:48Z",
+          "sequence": "MSDHPGPGAVTPELFGVGGDWLAVTAGESGASVFRAADATRYAKCVPAADAAGLEAERDRIAWLSGQGVPGPRVLDWYAGDAGACLVTRAVPGVPADRVGADDLRTAWGAVADAVRRLHEVPVASCPFRRGLDSVVDAARDVVARGAVHPEFLPVEQRLVPPAELLARLTGELARRRDQEAADTVVCHGDLCLPNIVLHPETLEVSGFIDLGRLGAADRHADLALLLANARETWVDEERARFADAAFAERYGIAPDPERLRFYLHLDPLTWG",
+          "sequence_length": 272,
+          "sequence_sha256": "028d7dc3ae3f898e4b9f56a82d9888ab75654f4ecc18131391661dfdce50e010",
+          "source": "reviewed_uniprot",
+          "source_accession": "P18150"
+        },
+        "source_provenance": {
+          "accession": "P18150",
+          "disambiguation_pool": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "disambiguation_source_artifact": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_aminoglycoside_phosphotransferase_from_annotated_cofactor_and_ec_class_['2.7.1.87']",
+          "organism": "Streptomyces griseus",
+          "protein_name": "Streptomycin 3''-kinase (EC 2.7.1.87) (Streptomycin 3''-phosphotransferase) (Streptomycin 6-kinase) (Streptomycin 6-phosphotransferase)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 272,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "661953da32905adf5362e067beee54f45908707c0118f03f479c1e1b58c5aace",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68",
+            "uniprot_entry_record_sha256": "37e3780472eee3696a8a0e3dd4bb94e413fc43778194de97c9ddf064f060eb2a",
+            "uniprot_search_row_sha256": "379df6bb5ec4ccededa9ac455b3faca82083dcdc0e65d1a20e71885c50728aac"
+          },
+          "target_family_lane": "aminoglycoside_phosphotransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P18150"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P18150-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "aminoglycoside_phosphotransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P18150 imported as annotation-anchored bronze in-scope aminoglycoside_phosphotransferase: reviewed Swiss-Prot EC ['2.7.1.87'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P18622",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 2,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 201
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:58007",
+              "ligand_name": "streptomycin",
+              "position": 133
+            }
+          ],
+          "binding_residue_count": 1,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "ATP/Mg2+ aminoglycoside phosphoryl-transfer context"
+            }
+          ],
+          "ec_numbers": [
+            "2.7.1.72"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.7.1.72",
+              "evidence_codes": [],
+              "reaction": "streptomycin + ATP = streptomycin 6-phosphate + ADP + H(+)",
+              "rhea_id": "RHEA:22268",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: aminoglycoside_phosphotransferase_exact_ec_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68"
+          },
+          "retrieved_utc": "2026-06-15T20:53:48Z",
+          "sequence": "MSTSKLVEIPEPLAASYARAFGEEGQAWIAALPALVEELLDRWELTADGASASGEASLVLPVLRTDGTRAVLKLQLPREETSAAITGLRTWNGHGVVRLLDHDPRSSTMLLERLDASRTLASVEDDDAAMGVLAGLLARLVSVPAPRGLRGLGDIAGAMLEEVPRAVAALADPADRRLLNDWASAVAELVGEPGDRMLHWDLHYGNVLAAEREPWLAIDPEPLAGDPGFDLWPALDSRWDDIVAQRDVVRVVRRRFDLLTEVLGLDRARAAGWTYGRLLQNALWDIEDGSAALDPAAVTLAQALRGH",
+          "sequence_length": 307,
+          "sequence_sha256": "cb4b4fa21b065c6c3d125816e51f54a206a0034d4a5b9fc6c8dbf04739d65b3d",
+          "source": "reviewed_uniprot",
+          "source_accession": "P18622"
+        },
+        "source_provenance": {
+          "accession": "P18622",
+          "disambiguation_pool": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "disambiguation_source_artifact": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_aminoglycoside_phosphotransferase_from_annotated_cofactor_and_ec_class_['2.7.1.72']",
+          "organism": "Streptomyces glaucescens",
+          "protein_name": "Streptomycin 6-kinase (EC 2.7.1.72) (APH(6)) (Streptidine kinase) (Streptomycin 6-phosphotransferase)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 307,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "56f10e5a183a52e18f8cee25ab1696ea454ba6a2f533e9df7cc9886271f8ec56",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68",
+            "uniprot_entry_record_sha256": "3b3d949778752aaa78ff2748d0ae059661a337358105ca695827ec4458752829",
+            "uniprot_search_row_sha256": "1bc2290bfd8c7d994f127467c56a2ad8e1487e68b81cafb0f38a2bf9766ae75f"
+          },
+          "target_family_lane": "aminoglycoside_phosphotransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P18622"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P18622-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "aminoglycoside_phosphotransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P18622 imported as annotation-anchored bronze in-scope aminoglycoside_phosphotransferase: reviewed Swiss-Prot EC ['2.7.1.72'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P14508",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 178
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "ATP/Mg2+ aminoglycoside phosphoryl-transfer context"
+            }
+          ],
+          "ec_numbers": [
+            "2.7.1.95"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.7.1.95",
+              "evidence_codes": [],
+              "reaction": "kanamycin A + ATP = kanamycin 3'-phosphate + ADP + H(+)",
+              "rhea_id": "RHEA:24256",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: aminoglycoside_phosphotransferase_exact_ec_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68"
+          },
+          "retrieved_utc": "2026-06-15T20:53:48Z",
+          "sequence": "MKYIDEIQILGKCSEGMSPAEVYKCQLKNTVCYLKKIDDIFSKTTYSVKREAEMMMWLSDKLKVPDVIEYGVREHSEYLIMSELRGKHIDCFIDHPIKYIECLVNALHQLQAIDIRNCPFSSKIDVRLKELKYLLDNRIADIDVSNWEDTTEFDDPMTLYQWLCENQPQEELCLSHGDMSANFFVSHDGIYFYDLARCGVADKWLDIAFCVREIREYYPDSDYEKFFFNMLGLEPDYKKINYYILLDEMF",
+          "sequence_length": 250,
+          "sequence_sha256": "476d710943491b822898f9daca2dbc66473c1282e4bffd94253fc90d168250e0",
+          "source": "reviewed_uniprot",
+          "source_accession": "P14508"
+        },
+        "source_provenance": {
+          "accession": "P14508",
+          "disambiguation_pool": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "disambiguation_source_artifact": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_aminoglycoside_phosphotransferase_from_annotated_cofactor_and_ec_class_['2.7.1.95']",
+          "organism": "Campylobacter jejuni",
+          "protein_name": "Aminoglycoside 3'-phosphotransferase (EC 2.7.1.95) (APH(3')VII) (Kanamycin kinase, type VII) (Neomycin-kanamycin phosphotransferase type VII)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 250,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "0e38cca04d4c0649ebb0d647adb700154a890fd27491d47220746d9e8a820ba2",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68",
+            "uniprot_entry_record_sha256": "2476a15aeac2515eafbfa5c01c1d7efed358284b4e9e4f2ce9a86dc82810ae15",
+            "uniprot_search_row_sha256": "eacf59d75503bb5115408f6199f91175d820b0c873d0ff60b5f646c2914b6625"
+          },
+          "target_family_lane": "aminoglycoside_phosphotransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P14508"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P14508-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "aminoglycoside_phosphotransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P14508 imported as annotation-anchored bronze in-scope aminoglycoside_phosphotransferase: reviewed Swiss-Prot EC ['2.7.1.95'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P14509",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 198
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "ATP/Mg2+ aminoglycoside phosphoryl-transfer context"
+            }
+          ],
+          "ec_numbers": [
+            "2.7.1.95"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.7.1.95",
+              "evidence_codes": [],
+              "reaction": "kanamycin A + ATP = kanamycin 3'-phosphate + ADP + H(+)",
+              "rhea_id": "RHEA:24256",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: aminoglycoside_phosphotransferase_exact_ec_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68"
+          },
+          "retrieved_utc": "2026-06-15T20:53:48Z",
+          "sequence": "MNDIDREEPCAAAAVPESMAAHVMGYKWARDKVGQSGCAVYRLHSKSGGSDLFLKHGKDAFADDVTDEMVRLRWLAGHISVPSVVSFVRTPNQAWLLTTAIHGKTAYQVLKSDFGARLVVVDALAAFMRRLHAIPVSECSVQQWTTHAGLPERGSIEAGVVDVDDFDKEREGWTAEQVWEAMHRLLPLAPDPVVTHGDFSLDNLLIVEGKVVGCIDVGRAGIADRYQDLAVLWNCLEEFEPSLQERLVAQYGIADPDRRKLQFHLLLDELF",
+          "sequence_length": 271,
+          "sequence_sha256": "6fccf0f82c80b48a87b87a63f5776a8416da71a77f578930bd00ef522ab60e51",
+          "source": "reviewed_uniprot",
+          "source_accession": "P14509"
+        },
+        "source_provenance": {
+          "accession": "P14509",
+          "disambiguation_pool": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "disambiguation_source_artifact": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_aminoglycoside_phosphotransferase_from_annotated_cofactor_and_ec_class_['2.7.1.95']",
+          "organism": "Escherichia coli",
+          "protein_name": "Aminoglycoside 3'-phosphotransferase (EC 2.7.1.95) (APH(3')VIII) (Kanamycin kinase, type VIII) (Neomycin-kanamycin phosphotransferase type VIII)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 271,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "0e38cca04d4c0649ebb0d647adb700154a890fd27491d47220746d9e8a820ba2",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68",
+            "uniprot_entry_record_sha256": "5f4b1057a85f5bc1866a6e9c8ebd6a87d04ca28a6c51d37f89cb6656cfb478ca",
+            "uniprot_search_row_sha256": "86b3f4db949bfcc936ea209b16425d8b1ef956287bcaab680f19dd7f9d91ecae"
+          },
+          "target_family_lane": "aminoglycoside_phosphotransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P14509"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P14509-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "aminoglycoside_phosphotransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P14509 imported as annotation-anchored bronze in-scope aminoglycoside_phosphotransferase: reviewed Swiss-Prot EC ['2.7.1.95'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P09885",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 187
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "ATP/Mg2+ aminoglycoside phosphoryl-transfer context"
+            }
+          ],
+          "ec_numbers": [
+            "2.7.1.95"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.7.1.95",
+              "evidence_codes": [],
+              "reaction": "kanamycin A + ATP = kanamycin 3'-phosphate + ADP + H(+)",
+              "rhea_id": "RHEA:24256",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: aminoglycoside_phosphotransferase_exact_ec_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68"
+          },
+          "retrieved_utc": "2026-06-15T20:53:48Z",
+          "sequence": "MELPNIIQQFIGNSVLEPNKIGQSPSDVYSFNRNNETFFLKRSSTLYTETTYSVSREAKMLSWLSEKLKVPELIMTFQDEQFEFMITKAINAKPISALFLTDQELLAIYKEALNLLNSIAIIDCPFISNIDHRLKESKFFIDNQLLDDIDQDDFDTELWGDHKTYLSLWNELTETRVEERLVFSHGDITDSNIFIDKFNEIYFLDLGRAGLADEFVDISFVERCLREDASEETAKIFLKHLKNDRPDKRNYFLKLDELN",
+          "sequence_length": 259,
+          "sequence_sha256": "4ed5a46af3290e2e9d827e5180efa354bc60c580498831ed304e2e297c0a4897",
+          "source": "reviewed_uniprot",
+          "source_accession": "P09885"
+        },
+        "source_provenance": {
+          "accession": "P09885",
+          "disambiguation_pool": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "disambiguation_source_artifact": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_aminoglycoside_phosphotransferase_from_annotated_cofactor_and_ec_class_['2.7.1.95']",
+          "organism": "Acinetobacter baumannii",
+          "protein_name": "Aminoglycoside 3'-phosphotransferase (EC 2.7.1.95) (APH(3')VI) (Kanamycin kinase, type VI) (Neomycin-kanamycin phosphotransferase type VI)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 259,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "0e38cca04d4c0649ebb0d647adb700154a890fd27491d47220746d9e8a820ba2",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68",
+            "uniprot_entry_record_sha256": "ca3b12480f3c30a90c61211556655bdbba15d96433f17e47ca8ff65efe61ab3d",
+            "uniprot_search_row_sha256": "23238417e7ca5cf682c06c66996ebfc5e07cd8702c43b9e9a6d530376b080b1b"
+          },
+          "target_family_lane": "aminoglycoside_phosphotransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P09885"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P09885-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "aminoglycoside_phosphotransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P09885 imported as annotation-anchored bronze in-scope aminoglycoside_phosphotransferase: reviewed Swiss-Prot EC ['2.7.1.95'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q03447",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 198
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "ATP/Mg2+ aminoglycoside phosphoryl-transfer context"
+            }
+          ],
+          "ec_numbers": [
+            "2.7.1.95"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.7.1.95",
+              "evidence_codes": [],
+              "reaction": "kanamycin A + ATP = kanamycin 3'-phosphate + ADP + H(+)",
+              "rhea_id": "RHEA:24256",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: aminoglycoside_phosphotransferase_exact_ec_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68"
+          },
+          "retrieved_utc": "2026-06-15T20:53:48Z",
+          "sequence": "MSHIQRETSCSRPRLNSNMDADLYGYKWARDNVGQSGATIDRLYGKPDAPELFLKHGKGSVANDVTDEMVRLNWMTEFMPLPTIKHFIRTPDDAWLLTTAIPGKTAFQVLEEYPDSGENIVDALAVFLRRLHSIPVCNCPFNSDRVFRLVQAQSRMNNGLVDASDFDDERNGWPVEQVWKEMHKLLPFSPDSVVTHGDFSLDNLIFDEGKLIGCIDVGRVGIADRYQDLAILWNCLGEFSPSLQKRLFQKYGIDNPDMNKLQFTLMLDEFF",
+          "sequence_length": 271,
+          "sequence_sha256": "9e80d10759170d96acba1d58857356896952b14964190c6588f42dd55d84d3ef",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q03447"
+        },
+        "source_provenance": {
+          "accession": "Q03447",
+          "disambiguation_pool": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "disambiguation_source_artifact": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_aminoglycoside_phosphotransferase_from_annotated_cofactor_and_ec_class_['2.7.1.95']",
+          "organism": "Salmonella typhimurium",
+          "protein_name": "Aminoglycoside 3'-phosphotransferase (EC 2.7.1.95) (APH(3')-I) (APH(3')I) (Kanamycin kinase, type I) (Neomycin-kanamycin phosphotransferase type I)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 271,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "0e38cca04d4c0649ebb0d647adb700154a890fd27491d47220746d9e8a820ba2",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68",
+            "uniprot_entry_record_sha256": "c3817b60f45365ee2d56e75ca6966039f2edc5ebfb98a8656214120047937f53",
+            "uniprot_search_row_sha256": "22c6ccdd96bd50f4a35983d444b03c9ead157b2c4bc49108fda469b3f21b677a"
+          },
+          "target_family_lane": "aminoglycoside_phosphotransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q03447"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q03447-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "aminoglycoside_phosphotransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q03447 imported as annotation-anchored bronze in-scope aminoglycoside_phosphotransferase: reviewed Swiss-Prot EC ['2.7.1.95'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P0A3Y6",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 189
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "ATP/Mg2+ aminoglycoside phosphoryl-transfer context"
+            }
+          ],
+          "ec_numbers": [
+            "2.7.1.95"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.7.1.95",
+              "evidence_codes": [],
+              "reaction": "kanamycin A + ATP = kanamycin 3'-phosphate + ADP + H(+)",
+              "rhea_id": "RHEA:24256",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: aminoglycoside_phosphotransferase_exact_ec_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68"
+          },
+          "retrieved_utc": "2026-06-15T20:53:48Z",
+          "sequence": "MAKMRISPELKKLIEKYRCVKDTEGMSPAKVYKLGENENLYLKMTDSRYKGTTYDVEREKDMMLWLEGKLPVPKVVHFERHDGWSNLLMSEADGVLCSEEYEDEQSPEKIIELYAECIRLFHSIDISDCPYTNSLDSRLAELDYLLNNDLADVDCENWEEDTPFKDPRELYDFLKTEKPEEELVFSHGDLGDSKIFVKDGKVSGFIDLGRSGRADKWYDIPFCVRSIREDIGEEQYVELFFDLLGIKPDWEKIKYYILLDELF",
+          "sequence_length": 263,
+          "sequence_sha256": "ad9042e37b5fcb008206a5f2fd0880affb5ba604896f658f044a7456e5227b87",
+          "source": "reviewed_uniprot",
+          "source_accession": "P0A3Y6"
+        },
+        "source_provenance": {
+          "accession": "P0A3Y6",
+          "disambiguation_pool": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "disambiguation_source_artifact": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_aminoglycoside_phosphotransferase_from_annotated_cofactor_and_ec_class_['2.7.1.95']",
+          "organism": "Staphylococcus aureus",
+          "protein_name": "Aminoglycoside 3'-phosphotransferase (EC 2.7.1.95) (APH(3')III) (Kanamycin kinase, type III) (Neomycin-kanamycin phosphotransferase type III)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 263,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "0e38cca04d4c0649ebb0d647adb700154a890fd27491d47220746d9e8a820ba2",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68",
+            "uniprot_entry_record_sha256": "565688a79e04ed1ac675cca8440137ae8f609fcacb1b1471e9345663f01e05c7",
+            "uniprot_search_row_sha256": "889eead5ef387618a8a3dfa68d0f8cc0a988f068c9ee00fa1a5c1b8f3382f0c8"
+          },
+          "target_family_lane": "aminoglycoside_phosphotransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P0A3Y6"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P0A3Y6-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "aminoglycoside_phosphotransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P0A3Y6 imported as annotation-anchored bronze in-scope aminoglycoside_phosphotransferase: reviewed Swiss-Prot EC ['2.7.1.95'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P13250",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 183
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "ATP/Mg2+ aminoglycoside phosphoryl-transfer context"
+            }
+          ],
+          "ec_numbers": [
+            "2.7.1.95"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.7.1.95",
+              "evidence_codes": [],
+              "reaction": "kanamycin A + ATP = kanamycin 3'-phosphate + ADP + H(+)",
+              "rhea_id": "RHEA:24256",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: aminoglycoside_phosphotransferase_exact_ec_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68"
+          },
+          "retrieved_utc": "2026-06-15T20:53:48Z",
+          "sequence": "MESTLRRTYPHHTWHLVNEGDSGAFVYRLTGHGPELYAKIAPRTPENSAFHLDGEADRLDWLARHGISVPRVVERGADDTTAWLVTEAVPGAAASEEWPEDERAAVVDAIAEMARTLHELPVSECPFDRRLDVTGEARHNVREGLVDLDDLQEEPAGWTGDQLLAELDLTRPEKEDLVVCHGDLCPNNVLLDPETHRITGLIDVGRLRLATCHADLALAARELAIDEDPWFGPAYAERFLERYGAHHVDQEKMAFYQLLDEFF",
+          "sequence_length": 263,
+          "sequence_sha256": "bb03f01151729941d60f2dd88d2fed22f1070ed2a23747594dfd7de40614b2f7",
+          "source": "reviewed_uniprot",
+          "source_accession": "P13250"
+        },
+        "source_provenance": {
+          "accession": "P13250",
+          "disambiguation_pool": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "disambiguation_source_artifact": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_aminoglycoside_phosphotransferase_from_annotated_cofactor_and_ec_class_['2.7.1.95']",
+          "organism": "Streptomyces ribosidificus",
+          "protein_name": "Aminoglycoside 3'-phosphotransferase (EC 2.7.1.95) (APH(3')) (Kanamycin kinase) (Ribostamycin phosphotransferase)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 263,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "0e38cca04d4c0649ebb0d647adb700154a890fd27491d47220746d9e8a820ba2",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68",
+            "uniprot_entry_record_sha256": "16a5ce126d1037efd6a532d63cba8c648c8b23718bbb59cdd0df7f97b130af57",
+            "uniprot_search_row_sha256": "3376814f71d98cef9af03b1a8734a9e019ead06081bd47ebd5909fc986592c16"
+          },
+          "target_family_lane": "aminoglycoside_phosphotransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P13250"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P13250-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "aminoglycoside_phosphotransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P13250 imported as annotation-anchored bronze in-scope aminoglycoside_phosphotransferase: reviewed Swiss-Prot EC ['2.7.1.95'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:P00555",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 188
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "ATP/Mg2+ aminoglycoside phosphoryl-transfer context"
+            }
+          ],
+          "ec_numbers": [
+            "2.7.1.95"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.7.1.95",
+              "evidence_codes": [],
+              "reaction": "kanamycin A + ATP = kanamycin 3'-phosphate + ADP + H(+)",
+              "rhea_id": "RHEA:24256",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: aminoglycoside_phosphotransferase_exact_ec_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68"
+          },
+          "retrieved_utc": "2026-06-15T20:53:48Z",
+          "sequence": "MDDSTLRRKYPHHEWHAVNEGDSGAFVYQLTGGPEPQPELYAKIAPRAPENSAFDLSGEADRLEWLHRHGIPVPRVVERGADDTAAWLVTEAVPGVAAAEEWPEHQRFAVVEAMAELARALHELPVEDCPSDRRLDAAVAEARRNVAEGLVDLDDLQEERAGWTGDQLLAELDRTRPEKEDLVVCHGDLCPNNVLLDPGTCRVTGVIDVGRLGVADRHADIALAARELEIDEDPWFGPAYAERFLERYGAHRVDKEKLAFYQLLDEFF",
+          "sequence_length": 268,
+          "sequence_sha256": "dabf5271f143b4a6d881e533435b531fbf2178331990fe1388aacf130c91f565",
+          "source": "reviewed_uniprot",
+          "source_accession": "P00555"
+        },
+        "source_provenance": {
+          "accession": "P00555",
+          "disambiguation_pool": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "disambiguation_source_artifact": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_aminoglycoside_phosphotransferase_from_annotated_cofactor_and_ec_class_['2.7.1.95']",
+          "organism": "Streptomyces fradiae (Streptomyces roseoflavus)",
+          "protein_name": "Aminoglycoside 3'-phosphotransferase (EC 2.7.1.95) (APH(3')V) (Kanamycin kinase, type V) (Neomycin-kanamycin phosphotransferase type V)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 268,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "0e38cca04d4c0649ebb0d647adb700154a890fd27491d47220746d9e8a820ba2",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68",
+            "uniprot_entry_record_sha256": "318077b6a5d112e43d7838a61dd6eed729f75e4377f3d73d04cafaa1250efb90",
+            "uniprot_search_row_sha256": "9d576aabc57ae37e2eec2592e06aebacbf7f2a094e7e13aa162bad10bc9bc7ce"
+          },
+          "target_family_lane": "aminoglycoside_phosphotransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P00555"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P00555-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "aminoglycoside_phosphotransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P00555 imported as annotation-anchored bronze in-scope aminoglycoside_phosphotransferase: reviewed Swiss-Prot EC ['2.7.1.95'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q02149",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 187
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "ATP/Mg2+ aminoglycoside phosphoryl-transfer context"
+            }
+          ],
+          "ec_numbers": [
+            "2.7.1.95"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.7.1.95",
+              "evidence_codes": [],
+              "reaction": "kanamycin A + ATP = kanamycin 3'-phosphate + ADP + H(+)",
+              "rhea_id": "RHEA:24256",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: aminoglycoside_phosphotransferase_exact_ec_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68"
+          },
+          "retrieved_utc": "2026-06-15T20:53:48Z",
+          "sequence": "MTNLKELRINIEKFPEALHNTLKDAKIYDSSSSPEAQVLFIDKKDGYYLKIASSKTLEREAEMTAYFQKKKLGLGYISYLSDQSQDFLLKKKIQGENYLAKQYLNNPKRLCDNLAENLRFLHEQNFEDCPILDHSERYLKKVEKNASINNSNLDFVNNYNIRTIEEAYDYIENKKLLLRNDTLLHGDYCLPNIILDNWKFKGFIDLDCAGVGDRHIDLFWGAWTLNFNIGTDQYRDRFFDAYGRDRIDVDRLKLVGCCEVFG",
+          "sequence_length": 262,
+          "sequence_sha256": "fe7d4a26cdbd12dc11dde4158dcd19ed3f7ce151130f3505a1f46b3691e61b88",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q02149"
+        },
+        "source_provenance": {
+          "accession": "Q02149",
+          "disambiguation_pool": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "disambiguation_source_artifact": "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_aminoglycoside_phosphotransferase_from_annotated_cofactor_and_ec_class_['2.7.1.95']",
+          "organism": "Lactococcus lactis subsp. lactis (strain IL1403) (Streptococcus lactis)",
+          "protein_name": "Probable aminoglycoside 3'-phosphotransferase (EC 2.7.1.95) (Kanamycin kinase)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 262,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "0e38cca04d4c0649ebb0d647adb700154a890fd27491d47220746d9e8a820ba2",
+            "source_query_sha256": "ab6ce19d74e8e2537d45d422075a8d9e1dc36ab1e8b49411d356ecbc2a323b68",
+            "uniprot_entry_record_sha256": "68d55d3ff445383934e63317d44ead972d4658149cdd8d257f19096ad894f302",
+            "uniprot_search_row_sha256": "7980df23f1df900b55121e0faa7d7df62011d7649317d651db9738bdd39e1eda"
+          },
+          "target_family_lane": "aminoglycoside_phosphotransferase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q02149"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q02149-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "aminoglycoside_phosphotransferase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q02149 imported as annotation-anchored bronze in-scope aminoglycoside_phosphotransferase: reviewed Swiss-Prot EC ['2.7.1.95'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    }
+  ],
+  "artifact_id": "v3_aminoglycoside_phosphotransferase_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {
+      "aminoglycoside_phosphotransferase": 17
+    },
+    "current_combined_labels": 8272,
+    "disambiguation_hold_count": 0,
+    "disambiguation_hold_reason_counts": {},
+    "disambiguation_skip_count": 1,
+    "fetched_candidate_rows": 18,
+    "gate_admitted_before_cap_guard": 17,
+    "held_at_cap_ceiling": 0,
+    "held_at_cap_ceiling_by_fingerprint": {},
+    "lane_ids": [
+      "aminoglycoside_phosphotransferase_exact_ec_active_binding"
+    ],
+    "lanes_queried": 1,
+    "max_records_per_lane": 50,
+    "mechanism_corroborated_bronze_labels": 17,
+    "novelty_admitted_labels": 17,
+    "novelty_throttled_or_rejected": 0,
+    "off_target_fingerprint_counts": {},
+    "off_target_fingerprint_matches_held": 0,
+    "projected_combined_labels_if_merged": 8289,
+    "record_limit_per_lane": 50,
+    "record_offset_per_lane": 0
+  },
+  "created_utc": "2026-06-15T20:53:48Z",
+  "deploy_missing_active_site_context_per_family": {
+    "aminoglycoside_phosphotransferase": "atp_mg_aminoglycoside_phosphoryl_transfer_context"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {
+      "high": 2,
+      "medium": 15
+    },
+    "current_registry_labels": 7570,
+    "decision_counts": {
+      "import": 17,
+      "skip": 1
+    },
+    "examined_rows": 18,
+    "fingerprint_counts": {
+      "aminoglycoside_phosphotransferase": 17
+    },
+    "hold_count": 0,
+    "hold_reason_counts": {},
+    "importable_new_labels": 17,
+    "per_pool_decision_counts": {
+      "aminoglycoside_phosphotransferase_exact_ec_fresh_fetch": {
+        "import": 17,
+        "skip_screen": 1
+      }
+    },
+    "projected_registry_labels_if_merged": 7587,
+    "skip_count": 1
+  },
+  "evidence_basis": "reviewed_swissprot_exact_ec_rhea_atp_aminoglycoside_phosphoryl_transfer_annotation",
+  "families_sourced": [
+    "aminoglycoside_phosphotransferase"
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "floor_projection": {
+    "aminoglycoside_phosphotransferase": {
+      "admitted_this_run": 17,
+      "cap_ceiling": 150,
+      "chemistry_confusable": true,
+      "combined_before": 0,
+      "deficit_to_floor_after": 83,
+      "deficit_to_floor_before": 100,
+      "deploy_missing_active_site_context": "atp_mg_aminoglycoside_phosphoryl_transfer_context",
+      "floor_reached": false,
+      "held_at_cap_this_run": 0,
+      "projected_combined": 17,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "aminoglycoside_phosphotransferase_handles_scope_admission_only": true,
+    "broadened_handles_never_predictive_features": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "heldout_benchmark_unchanged": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "novelty_gated_against_both_registries": true,
+    "off_target_fingerprint_matches_held": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "aminoglycoside_phosphotransferase": 150
+    },
+    "predictive_features_use_ec_name_keyword_reaction_or_prose": false,
+    "protein_kinase_acetyltransferase_nucleotidyltransferase_boundary_guard": true,
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "aminoglycoside_phosphotransferase_exact_ec_active_binding",
+      "query": "(reviewed:true) AND ((ec:2.7.1.95) OR (ec:2.7.1.72) OR (ec:2.7.1.87) OR (ec:2.7.1.119) OR (ec:2.7.1.163)) AND ((ft_binding:*) OR (ft_act_site:*))",
+      "record_count": 18,
+      "record_limit_per_lane": 50,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 18,
+      "records_returned_by_query": 18,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A2.7.1.95%29+OR+%28ec%3A2.7.1.72%29+OR+%28ec%3A2.7.1.87%29+OR+%28ec%3A2.7.1.119%29+OR+%28ec%3A2.7.1.163%29%29+AND+%28%28ft_binding%3A%2A%29+OR+%28ft_act_site%3A%2A%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=50",
+      "status": "query_fetched",
+      "target_family_lane": "aminoglycoside_phosphotransferase"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If dedup, trust-tier, cap, leakage, and row guardrail gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via the family script `--apply` with frozen current702 sha checks.",
+  "novelty_gate": {
+    "decision_counts": {
+      "admit": 17
+    },
+    "reason_counts": {
+      "closes_hole_fingerprint": 17
+    }
+  },
+  "off_target_fingerprint_matches_sample": [],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_aminoglycoside_phosphotransferase_broadened_handle",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": []
+}

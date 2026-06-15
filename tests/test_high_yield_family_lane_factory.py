@@ -150,6 +150,28 @@ class HighYieldFamilyLaneFactoryTests(unittest.TestCase):
         self.assertTrue(n_ribosyl_row["oos_preregistration_required"])
         self.assertTrue(n_ribosyl_row["passes_150_batch_gate_now"])
 
+        aph_row = evaluate_family_lane_spec(
+            specs["aminoglycoside_phosphotransferase"],
+            registry_counts={},
+            count_fetcher=lambda _query: {"total_results": 500},
+        )
+        self.assertEqual(aph_row["batch_gate_status"], "ready_for_preview_not_apply")
+        self.assertEqual(
+            aph_row["existing_fingerprint_id"],
+            "aminoglycoside_phosphotransferase",
+        )
+        self.assertEqual(
+            aph_row["current_runner"],
+            "scripts/source_aminoglycoside_phosphotransferase_family.py",
+        )
+        self.assertFalse(aph_row["mechanism_rule_required"])
+        self.assertEqual(
+            aph_row["source_wall_rule_status"],
+            "implemented_existing_fingerprint",
+        )
+        self.assertFalse(aph_row["oos_preregistration_required"])
+        self.assertTrue(aph_row["passes_150_batch_gate_now"])
+
     def test_build_rollup_keeps_honest_counters_separate(self) -> None:
         audit = build_high_yield_family_lane_factory(
             frozen_benchmark_payload=[
