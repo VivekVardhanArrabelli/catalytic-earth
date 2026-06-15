@@ -29,6 +29,18 @@ _ROWS = {
         "Binding site",
         "Cyclic nucleotide substrate binding site in the phosphodiesterase pocket",
     ),
+    "PLD001": (
+        ["3.1.4.4"],
+        "Phospholipase D",
+        ["Hydrolase"],
+        [],
+        (
+            "a 1,2-diacyl-sn-glycero-3-phosphocholine + H2O = "
+            "a 1,2-diacyl-sn-glycero-3-phosphate + choline + H(+)"
+        ),
+        "Active site",
+        "Catalytic histidine in the HKD phospholipase D active site",
+    ),
     # EC/name only: hold because EC/name cannot be counted corroborators alone.
     "EC0001": (
         ["3.1.4.17"],
@@ -70,7 +82,7 @@ _ROWS = {
     ),
 }
 
-_QUERY_ORDER = ("EC0001", "PDE001", "PDE002", "MET0001", "PHOS0001")
+_QUERY_ORDER = ("EC0001", "PDE001", "PDE002", "PLD001", "MET0001", "PHOS0001")
 
 
 def _sequence(accession: str) -> str:
@@ -195,14 +207,14 @@ class MetalIndependentPhosphodiesteraseSourcingTest(unittest.TestCase):
 
     def test_fetches_and_routes_target_family(self):
         audit = self._run()
-        self.assertEqual(audit["counts"]["fetched_candidate_rows"], 5)
-        self.assertEqual(audit["counts"]["mechanism_corroborated_bronze_labels"], 2)
-        self.assertEqual(audit["counts"]["novelty_admitted_labels"], 2)
+        self.assertEqual(audit["counts"]["fetched_candidate_rows"], 6)
+        self.assertEqual(audit["counts"]["mechanism_corroborated_bronze_labels"], 3)
+        self.assertEqual(audit["counts"]["novelty_admitted_labels"], 3)
         self.assertGreaterEqual(audit["counts"]["disambiguation_hold_count"], 1)
         self.assertGreaterEqual(audit["counts"]["off_target_fingerprint_matches_held"], 1)
         self.assertEqual(
             audit["counts"]["admitted_fingerprint_counts"],
-            {"metal_independent_phosphodiesterase": 2},
+            {"metal_independent_phosphodiesterase": 3},
         )
 
     def test_admitted_labels_are_bronze_and_leakage_safe(self):
@@ -233,7 +245,7 @@ class MetalIndependentPhosphodiesteraseSourcingTest(unittest.TestCase):
             "metal_independent_phosphodiester_hydrolysis_context",
         )
         self.assertEqual(proj["combined_before"], 0)
-        self.assertEqual(proj["admitted_this_run"], 2)
+        self.assertEqual(proj["admitted_this_run"], 3)
         self.assertTrue(proj["chemistry_confusable"])
         self.assertEqual(proj["cap_ceiling"], 150)
         for label in audit["applied_labels"]:
@@ -276,6 +288,15 @@ class MetalIndependentPhosphodiesteraseSourcingTest(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             self._run(lane_ids=("not_a_lane",))
+
+    def test_phospholipase_d_lane_is_available(self):
+        audit = self._run(lane_ids=("metal_independent_pde_phospholipase_d_non_metal",))
+        self.assertEqual(audit["counts"]["lanes_queried"], 1)
+        self.assertEqual(
+            audit["counts"]["lane_ids"],
+            ["metal_independent_pde_phospholipase_d_non_metal"],
+        )
+        self.assertIn("uniprot:PLD001", {row["entry_id"] for row in audit["applied_labels"]})
 
     def test_unreviewed_tier2_lane_requires_source_tier_2(self):
         with self.assertRaises(ValueError):

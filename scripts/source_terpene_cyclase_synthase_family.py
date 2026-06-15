@@ -5,8 +5,10 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import multiprocessing as mp
 import sys
 from pathlib import Path
+from queue import Empty
 from urllib.error import URLError
 from urllib.request import Request, urlopen
 
@@ -14,6 +16,11 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT / "src"))
 
 from catalytic_earth.adapters import UNIPROT_SEARCH_URL, USER_AGENT  # noqa: E402
+from catalytic_earth.adapters import (  # noqa: E402
+    fetch_rhea_by_ec,
+    fetch_uniprot_entry,
+    fetch_uniprot_query,
+)
 from catalytic_earth.external_annotation_anchored_import import (  # noqa: E402
     apply_external_annotation_anchored_import_to_registry,
 )
@@ -28,6 +35,40 @@ from catalytic_earth.terpene_cyclase_synthase_sourcing import (  # noqa: E402
 
 DEFAULT_OUT = "artifacts/v3_terpene_cyclase_synthase_sourcing_preview_current702.json"
 DEFAULT_REPORT = "work/terpene_cyclase_synthase_sourcing_current702.md"
+
+
+class _FetchTimeout(RuntimeError):
+    pass
+
+
+def _child_fetch(queue, func, args):
+    try:
+        queue.put(("ok", func(*args)))
+    except Exception as exc:  # pragma: no cover - live fetch failure path
+        queue.put(("err", type(exc).__name__, str(exc)))
+
+
+def _with_timeout(timeout_seconds: int, func, *args):
+    if timeout_seconds <= 0:
+        return func(*args)
+    ctx = mp.get_context("fork")
+    queue = ctx.Queue(maxsize=1)
+    proc = ctx.Process(target=_child_fetch, args=(queue, func, args))
+    proc.start()
+    try:
+        status, *payload = queue.get(timeout=timeout_seconds)
+    except Empty:
+        proc.terminate()
+        proc.join(2)
+        raise _FetchTimeout(f"fetch exceeded {timeout_seconds}s timeout")
+    proc.join(2)
+    if proc.is_alive():
+        proc.terminate()
+        proc.join(2)
+    if status == "ok":
+        return payload[0]
+    error_type, message = payload
+    raise RuntimeError(f"{error_type}: {message}")
 
 
 def _egress_ok() -> bool:
@@ -84,6 +125,15 @@ def main() -> int:
         action="store_true",
         help="do not preflight UniProt reachability",
     )
+    parser.add_argument(
+        "--fetch-timeout-seconds",
+        type=int,
+        default=0,
+        help=(
+            "optional per-query/per-entry/per-Rhea timeout; timed-out records are captured as "
+            "fetch failures in the preview instead of hanging the run"
+        ),
+    )
     args = parser.parse_args()
 
     if not args.skip_egress_check and not _egress_ok():
@@ -95,6 +145,30 @@ def main() -> int:
         )
         return 2
 
+    if args.fetch_timeout_seconds:
+        query_fetcher = lambda query, size: _with_timeout(
+            args.fetch_timeout_seconds,
+            fetch_uniprot_query,
+            query,
+            size,
+            1,
+        )
+        entry_fetcher = lambda accession: _with_timeout(
+            args.fetch_timeout_seconds,
+            fetch_uniprot_entry,
+            accession,
+        )
+        rhea_fetcher = lambda ec_number, limit: _with_timeout(
+            args.fetch_timeout_seconds,
+            fetch_rhea_by_ec,
+            ec_number,
+            limit,
+        )
+    else:
+        query_fetcher = fetch_uniprot_query
+        entry_fetcher = fetch_uniprot_entry
+        rhea_fetcher = fetch_rhea_by_ec
+
     audit = write_terpene_cyclase_synthase_sourcing(
         out_path=Path(args.out),
         report_path=Path(args.report),
@@ -103,6 +177,9 @@ def main() -> int:
         record_offset_per_lane=args.record_offset_per_lane,
         record_limit_per_lane=args.record_limit_per_lane,
         cap_ceiling=args.cap_ceiling,
+        query_fetcher=query_fetcher,
+        entry_fetcher=entry_fetcher,
+        rhea_fetcher=rhea_fetcher,
     )
 
     c = audit["counts"]

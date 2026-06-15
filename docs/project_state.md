@@ -26,6 +26,66 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **PDE PLD SOURCE-WALL SCOUT IS VALID BUT SUBFLOOR; NO REGISTRY MUTATION
+  (2026-06-15 automation).**
+  Hard safety remains green. Frozen current702 stayed byte-unchanged at sha
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no external registry rows
+  were applied. Counts remain from the SDR run: external rows **7820**, combined label surface
+  **8522**, combined seed surface **6826**, positive bronze **6779**, OOS bronze **1696**,
+  silver_confirmed **47**, projected **0**.
+
+  Added a narrow `metal_independent_phosphodiesterase` source-wall extension for
+  phospholipase-D phosphodiester hydrolysis. The rule now recognizes `phospholipase D` family text
+  plus explicit hydrolytic PLD reaction participants such as phosphocholine,
+  phosphoethanolamide/glycosylinositol, and glycero-3-phosphate. EC 3.1.4 remains scope-only,
+  protein names/reaction text remain excluded admission context, phospholipase C remains held, and
+  `predictive_evidence` stays empty. Focused PDE/disambiguation tests cover the PLD admit case and
+  the phospholipase-C boundary hold.
+
+  Non-destructive PLD preview
+  `artifacts/v3_metal_independent_phosphodiesterase_phospholipase_d_preview_current702_20260615_run2314.json`
+  fetched **22** reviewed rows, found **7** target mechanism-corroborated labels, held **4**
+  off-target metallophosphoesterase/nuclease rows, and admitted **7** novelty-safe labels.
+  Row audit
+  `artifacts/v3_metal_independent_phosphodiesterase_phospholipase_d_row_guardrail_audit_current702_20260615_run2314.json`
+  checked all **7** rows with **0** problems, but the batch is far below the 100 PDE floor and was
+  not applied. Source strategy
+  `artifacts/v3_metal_independent_phosphodiesterase_source_strategy_current702_20260615_run2314.json`
+  records this as a no-apply source-wall result.
+
+  Also added per-fetch timeout support to `scripts/source_terpene_cyclase_synthase_family.py` and
+  pass-through fetcher injection in `src/catalytic_earth/terpene_cyclase_synthase_sourcing.py`.
+  The bounded terpene cap-close preview
+  `artifacts/v3_terpene_cyclase_synthase_capclose_window170_preview_current702_20260615_run2314.json`
+  fetched **138** rows but admitted **0** novelty-safe rows; do not retry that window for apply.
+  Fresh pre-lane planning artifacts
+  `artifacts/v3_coverage_redundancy_audit_current702_20260615_run2314_pre_lane.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260615_run2314_pre_lane.json`, and
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260615_run2314_pre_lane.json` confirm
+  the same planning state: PDE is the lone hole, no existing lane projects >=150 clean rows, and
+  top current-handle clean supply is **77**. Evidence-handle scout
+  `artifacts/v3_evidence_handle_expansion_current702_20260615_run2314.json` still shows reviewed
+  source-wall headroom, but the implicated families are balanced/capped and must not be padded
+  without a family-specific gate.
+
+  Bounded next-lane scout
+  `artifacts/v3_serine_beta_lactamase_source_tier_scout_current702_20260615_run2314.json`
+  found reviewed serine beta-lactamase supply remains subscale (**147** exact/name rows, **132**
+  active/binding-site rows), while strict unreviewed tier-2 active-site/reaction supply is large
+  (**1854** rows). This is not registry authority; it is a future-lane source-tier signal only.
+  Design artifact
+  `artifacts/v3_serine_beta_lactamase_build_plan_current702_20260615_run2314.json` records the
+  required mechanism contract and no-apply build sequence.
+  Any serine beta-lactamase work must add fingerprint/ontology/OOS preregistration/source runner,
+  hold metallo/zinc/PBP/DD-peptidase/generic amidohydrolase/resistance-only rows, keep
+  EC/name/site handles excluded from predictive evidence, and preview/audit before apply.
+
+  Next action: do not apply the 7-row PLD preview, do not retry the terpene window170 preview, and
+  do not reuse broad PDE EC/name windows. The next safe bronze-scaleout work is either a sharper
+  mechanism-bearing PDE split that can plausibly close the 100 floor, or a new high-yield
+  family/source-tier strategy through OOS/preregistration if needed, non-destructive preview, row
+  audit, novelty/governor/dedup/cap replay, and leakage/source-contract tests before any apply.
+
 - **SDR 45FP FLOOR BATCH APPLIED; PDE REMAINS THE LONE HOLE
   (2026-06-15 automation).**
   Hard safety remains green. Frozen current702 stayed byte-unchanged at sha

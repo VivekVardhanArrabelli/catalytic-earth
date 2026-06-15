@@ -381,6 +381,9 @@ def write_terpene_cyclase_synthase_sourcing(
     cap_ceiling: int = 250,
     record_offset_per_lane: int = 0,
     record_limit_per_lane: int | None = None,
+    query_fetcher: Callable[[str, int], dict[str, Any]] = fetch_uniprot_query,
+    entry_fetcher: Callable[[str], dict[str, Any]] = fetch_uniprot_entry,
+    rhea_fetcher: Callable[[str, int], dict[str, Any]] = fetch_rhea_by_ec,
 ) -> dict[str, Any]:
     expansion_path = Path(expansion_registry_path)
     audit = build_terpene_cyclase_synthase_sourcing(
@@ -394,6 +397,9 @@ def write_terpene_cyclase_synthase_sourcing(
         cap_ceiling=cap_ceiling,
         record_offset_per_lane=record_offset_per_lane,
         record_limit_per_lane=record_limit_per_lane,
+        query_fetcher=query_fetcher,
+        entry_fetcher=entry_fetcher,
+        rhea_fetcher=rhea_fetcher,
     )
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)

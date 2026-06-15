@@ -384,6 +384,7 @@ _METAL_INDEPENDENT_PDE_FAMILY_TOKENS = (
     "phosphodiesterase",
     "cyclic nucleotide phosphodiesterase",
     "cyclic-nucleotide phosphodiesterase",
+    "phospholipase d",
 )
 _METAL_INDEPENDENT_PDE_REACTION_TOKENS = (
     "phosphodiester",
@@ -393,6 +394,12 @@ _METAL_INDEPENDENT_PDE_REACTION_TOKENS = (
     "cyclic gmp",
     "camp",
     "cgmp",
+    "phosphatidylcholine",
+    "phosphatidate",
+    "phosphocholine",
+    "phosphoethanolamide",
+    "glycosylinositol",
+    "glycero-3-phosphate",
 )
 _METAL_INDEPENDENT_PDE_HYDROLYSIS_TOKENS = (
     "h2o",

@@ -1,0 +1,30 @@
+{
+  "artifact_id": "v3_metal_independent_phosphodiesterase_source_strategy_run2314",
+  "created_utc": "2026-06-15T23:29:32Z",
+  "evidence_handle_refresh": {
+    "families_probed": 6,
+    "handle_blocked_families_unlocked": 4,
+    "note": "source-wall headroom only; balanced/capped families must not be padded without a family-specific gate",
+    "path": "artifacts/v3_evidence_handle_expansion_current702_20260615_run2314.json",
+    "reachable_positive_bronze_uplift": 741
+  },
+  "next_action": "PDE remains the only hole; PLD is valid but only 7 admits. Do not retry broad PDE EC/name windows or terpene window170 for apply. Next safe work is a new mechanism-bearing PDE source split or a new high-yield family/source-tier design with OOS/preregistration and preview gates.",
+  "pde_pld_preview": {
+    "fetched_candidate_rows": 22,
+    "floor_reached": false,
+    "novelty_admitted": 7,
+    "off_target_held": 4,
+    "path": "artifacts/v3_metal_independent_phosphodiesterase_phospholipase_d_preview_current702_20260615_run2314.json",
+    "target_mechanism_corroborated": 7
+  },
+  "registry_written": false,
+  "terpene_capclose_window": {
+    "combined_before": 173,
+    "fetched_candidate_rows": 138,
+    "novelty_admitted": 0,
+    "off_target_held": 30,
+    "path": "artifacts/v3_terpene_cyclase_synthase_capclose_window170_preview_current702_20260615_run2314.json",
+    "projected_combined": 173,
+    "target_mechanism_corroborated": 7
+  }
+}

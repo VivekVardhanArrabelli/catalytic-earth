@@ -97,6 +97,18 @@ FAMILY_LANE_QUERIES: dict[str, tuple[dict[str, str], ...]] = {
                 f"{NON_METAL_FILTER}"
             ),
         },
+        {
+            "lane_id": "metal_independent_pde_phospholipase_d_non_metal",
+            "target_family_lane": FAMILY,
+            "query": (
+                "(reviewed:true) AND (ec:3.1.4.*) AND ("
+                '(protein_name:"phospholipase D") OR '
+                '(protein_name:"phospholipase D-like") OR '
+                '(cc_catalytic_activity:"phosphatidylcholine") OR '
+                "(cc_catalytic_activity:phosphatidate)) "
+                f"{NON_METAL_FILTER}"
+            ),
+        },
     )
 }
 UNREVIEWED_TIER2_LANE_QUERIES: dict[str, tuple[dict[str, str], ...]] = {

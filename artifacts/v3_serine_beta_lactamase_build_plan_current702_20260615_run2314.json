@@ -1,0 +1,63 @@
+{
+  "apply_authorized_by_this_plan": false,
+  "artifact_id": "v3_serine_beta_lactamase_build_plan_current702",
+  "basis": "artifacts/v3_serine_beta_lactamase_source_tier_scout_current702_20260615_run2314.json",
+  "created_utc": "2026-06-15T23:36:51Z",
+  "family": "serine_beta_lactamase",
+  "fingerprint_written": false,
+  "mechanism_contract": {
+    "counted_non_ec_axes": [
+      "serine beta-lactamase family/name/domain profile",
+      "Rhea beta-lactam hydrolysis reaction/participant evidence",
+      "active-site Ser/Lys/Glu or class-D carbamylated Lys residue-role evidence where available"
+    ],
+    "excluded_context_only": [
+      "EC",
+      "protein name",
+      "keyword",
+      "UniProt prose",
+      "query lane/source handle",
+      "catalytic-activity text"
+    ],
+    "holds": [
+      "metallo-beta-lactamase zinc or metal-binding rows",
+      "PBP/DD-peptidase/transpeptidase rows without catalytic beta-lactamase hydrolysis evidence",
+      "generic amidohydrolase/lactamase rows without serine beta-lactamase active-site/reaction evidence",
+      "beta-lactam synthase or biosynthetic rows",
+      "resistance proteins without catalytic evidence",
+      "EC-only rows",
+      "multi-fingerprint rows"
+    ],
+    "predictive_evidence": [],
+    "scope_ec": [
+      "3.5.2.6"
+    ],
+    "scope_handles": [
+      "serine beta-lactamase/class A/class C/class D beta-lactamase protein name",
+      "beta-lactamase keyword/name for source fetching"
+    ]
+  },
+  "minimum_validation": [
+    "PYTHONPATH=src python -m catalytic_earth.cli validate",
+    "focused disambiguation/source-trust tests for serine vs metallo beta-lactamase and PBP/DD-peptidase holds",
+    "source runner tests proving source_tier_2 requires at least three non-EC axes and predictive_evidence is empty",
+    "novelty/import/apply path tests",
+    "full PYTHONPATH=src pytest -q before any apply commit"
+  ],
+  "next_action": "Use this only if PDE remains blocked after one more sharper source split; implement the guarded serine_beta_lactamase lane through tests and non-destructive preview before any registry mutation.",
+  "registry_written": false,
+  "required_build_steps": [
+    "Add fingerprint serine_beta_lactamase and ontology node for serine acyl-enzyme beta-lactam hydrolysis.",
+    "Bump the positive fingerprint universe and refresh OOS hard-negative preregistration before candidate selection.",
+    "Add source-trust/disambiguation rule requiring family text plus Rhea beta-lactam hydrolysis plus active-site/residue-role context for tier-2 rows.",
+    "Add source runner and script with reviewed source_tier_0 lanes and strict unreviewed source_tier_2 active-site/reaction lanes.",
+    "Preview non-destructively, row-audit all admitted labels, replay novelty/governor/dedup/cap gates, then apply only if a clean batch closes at least the 100 floor or reaches an approved cap gate."
+  ],
+  "source_supply_counts_from_scout": {
+    "reviewed_active_site": 132,
+    "reviewed_exact_ec_serine": 147,
+    "unreviewed_reaction_name": 19115,
+    "unreviewed_tier2_active_site": 1854
+  },
+  "status": "design_only_no_registry_no_fingerprint_written"
+}

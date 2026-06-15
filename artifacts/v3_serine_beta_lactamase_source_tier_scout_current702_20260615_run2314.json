@@ -1,0 +1,34 @@
+{
+  "artifact_id": "v3_serine_beta_lactamase_source_tier_scout_current702",
+  "counts": {
+    "reviewed_active_site": 132,
+    "reviewed_exact_ec_serine": 147,
+    "unreviewed_reaction_name": 19115,
+    "unreviewed_tier2_active_site": 1854
+  },
+  "created_utc": "2026-06-15T23:35:16Z",
+  "family": "serine_beta_lactamase",
+  "interpretation": {
+    "recommended_next_lane": "build serine_beta_lactamase fingerprint/ontology/source runner only if PDE remains blocked; use source_tier_2 active-site/reaction lane with metallo/zinc/PBP/amidohydrolase holds and OOS preregistration before preview",
+    "reviewed_active_site_supply_is_subscale": true,
+    "reviewed_supply_is_subscale": true,
+    "tier2_active_site_supply_is_large_enough_for_future_guarded_preview": true
+  },
+  "labels_created": false,
+  "next_action": "If PDE remains blocked, implement serine_beta_lactamase as a new guarded fingerprint with OOS preregistration and a tier-2 active-site/reaction source runner; preview and row-audit before any apply.",
+  "queries": {
+    "reviewed_active_site": "(reviewed:true) AND ((ec:3.5.2.6) OR (protein_name:\"beta-lactamase\")) AND ((ft_act_site:*) OR (ft_binding:*)) NOT ((protein_name:metallo) OR (keyword:\"Metal-binding\") OR (cc_cofactor:zinc) OR (ec:3.5.2.7))",
+    "reviewed_exact_ec_serine": "(reviewed:true) AND ((ec:3.5.2.6) OR (protein_name:\"serine beta-lactamase\") OR (protein_name:\"class A beta-lactamase\") OR (protein_name:\"class C beta-lactamase\") OR (protein_name:\"class D beta-lactamase\")) NOT ((protein_name:metallo) OR (keyword:\"Metal-binding\") OR (cc_cofactor:zinc) OR (ec:3.5.2.7))",
+    "unreviewed_reaction_name": "(reviewed:false) AND ((ec:3.5.2.6) OR (protein_name:\"serine beta-lactamase\") OR (protein_name:\"class A beta-lactamase\") OR (protein_name:\"class C beta-lactamase\") OR (protein_name:\"class D beta-lactamase\")) AND (cc_catalytic_activity:*) NOT ((protein_name:metallo) OR (keyword:\"Metal-binding\") OR (cc_cofactor:zinc) OR (ec:3.5.2.7))",
+    "unreviewed_tier2_active_site": "(reviewed:false) AND ((ec:3.5.2.6) OR (protein_name:\"beta-lactamase\")) AND ((ft_act_site:*) OR (ft_binding:*)) AND (cc_catalytic_activity:*) NOT ((protein_name:metallo) OR (keyword:\"Metal-binding\") OR (cc_cofactor:zinc) OR (ec:3.5.2.7))"
+  },
+  "registry_written": false,
+  "source_policy": {
+    "ec_scope_only": true,
+    "metallo_beta_lactamase_zinc_rows_held": true,
+    "predictive_evidence_allowed": false,
+    "protein_name_keyword_active_site_admission_only_excluded_context": true,
+    "tier2_requires_three_non_ec_mechanism_axes": true
+  },
+  "status": "non_destructive_source_tier_scout_no_labels_or_registry_written"
+}

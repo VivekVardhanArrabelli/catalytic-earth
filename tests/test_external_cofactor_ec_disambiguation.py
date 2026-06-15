@@ -545,6 +545,30 @@ class DisambiguateRowTests(unittest.TestCase):
         self.assertNotIn("cofactor_or_cosubstrate", axes)
         self.assertNotIn("ec_scope_hint", axes)
 
+    def test_metal_independent_phosphodiesterase_accepts_phospholipase_d_split(self) -> None:
+        row = _row(ec=["3.1.4.4"])
+        row["protein_name"] = "Phospholipase D"
+        row["keywords"] = ["Hydrolase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:PDEPLD1",
+                "reaction": (
+                    "a 1,2-diacyl-sn-glycero-3-phosphocholine + H2O = "
+                    "a 1,2-diacyl-sn-glycero-3-phosphate + choline + H(+)"
+                ),
+                "ec_number": "3.1.4.4",
+            }
+        ]
+        decision = disambiguate_row(row)
+        self.assertEqual(
+            decision["fingerprint_id"],
+            "metal_independent_phosphodiesterase",
+        )
+        axes = decision["corroboration"]["distinct_corroborator_axes"]
+        self.assertIn("domain_or_family_profile", axes)
+        self.assertIn("rhea_reaction_or_participant_pattern", axes)
+        self.assertNotIn("ec_scope_hint", axes)
+
     def test_metal_independent_phosphodiesterase_boundary_controls_hold(self) -> None:
         ec_only = _row(ec=["3.1.4.17"])
         ec_only["protein_name"] = "Cyclic nucleotide phosphodiesterase"
@@ -602,6 +626,19 @@ class DisambiguateRowTests(unittest.TestCase):
             }
         ]
         self.assertEqual(disambiguate_row(lyase)["decision"], "hold")
+
+        phospholipase_c_boundary = _row(ec=["3.1.4.11"])
+        phospholipase_c_boundary["protein_name"] = "Phospholipase C"
+        phospholipase_c_boundary["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:PDEPLC1",
+                "reaction": "phosphatidylcholine + H2O = choline + phosphatidate + H(+)",
+                "ec_number": "3.1.4.11",
+            }
+        ]
+        self.assertEqual(
+            disambiguate_row(phospholipase_c_boundary)["decision"], "hold"
+        )
 
     def test_glycosyltransferase_not_collapsed_to_glycoside_hydrolase(self) -> None:
         row = _row(ec=["2.4.1.1"])

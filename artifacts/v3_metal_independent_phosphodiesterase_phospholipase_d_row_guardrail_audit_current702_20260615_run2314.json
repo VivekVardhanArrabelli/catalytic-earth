@@ -1,0 +1,45 @@
+{
+  "artifact_id": "v3_metal_independent_phosphodiesterase_phospholipase_d_row_guardrail_audit_current702",
+  "counts": {
+    "audited_labels": 7,
+    "batch_floor_reached": false,
+    "disambiguation_holds": 11,
+    "mechanism_axis_counts": {
+      "active_site_motif_or_residue_role": 3,
+      "cofactor_or_cosubstrate": 7,
+      "domain_or_family_profile": 7,
+      "rhea_reaction_or_participant_pattern": 7
+    },
+    "mechanism_axis_set_counts": {
+      "('active_site_motif_or_residue_role', 'cofactor_or_cosubstrate', 'domain_or_family_profile', 'rhea_reaction_or_participant_pattern')": 3,
+      "('cofactor_or_cosubstrate', 'domain_or_family_profile', 'rhea_reaction_or_participant_pattern')": 4
+    },
+    "mechanism_corroborated_bronze_labels": 7,
+    "novelty_admitted_labels": 7,
+    "off_target_held": 4,
+    "problem_rows": 0,
+    "review_status_counts": {
+      "automation_curated": 7
+    },
+    "source_tier_counts": {
+      "source_tier_0": 7
+    },
+    "tier_counts": {
+      "bronze": 7
+    }
+  },
+  "created_utc": "2026-06-15T23:29:32Z",
+  "guardrails": {
+    "curated_current702_written": false,
+    "ec_name_keyword_handles_excluded_context_only": true,
+    "minimum_batch_floor_for_apply_reached": false,
+    "predictive_evidence_empty": true,
+    "registry_written": false,
+    "source_tier_0_reviewed_swissprot": true
+  },
+  "next_action": "Do not apply the 7-row PLD preview; PDE remains under floor and needs a sharper source wall or a different high-yield lane through full gates.",
+  "problem_rows": [],
+  "schema_version": "row_guardrail_audit.v1",
+  "source_preview": "artifacts/v3_metal_independent_phosphodiesterase_phospholipase_d_preview_current702_20260615_run2314.json",
+  "status": "passed_no_apply_subfloor_source_wall"
+}

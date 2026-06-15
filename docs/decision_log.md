@@ -3,6 +3,37 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-15: PDE PHOSPHOLIPASE-D SPLIT IS ALLOWED BUT SUBFLOOR
+
+Decision: the `metal_independent_phosphodiesterase` source wall may count phospholipase-D family
+context as admission evidence only when paired with explicit hydrolytic phosphodiester reaction
+participants. EC 3.1.4 scopes/fetches rows only and is never counted. Protein names, UniProt prose,
+and reaction text stay in excluded context, not predictive evidence. Phospholipase C remains a
+boundary hold, metal-dependent phosphodiesterase/nuclease rows remain off-target/held, and
+`predictive_evidence` remains empty.
+
+Implementation: extended the PDE disambiguation tokens for `phospholipase D` and PLD reaction
+participants (`phosphocholine`, phosphoethanolamide/glycosylinositol, and
+glycero-3-phosphate), added the `metal_independent_pde_phospholipase_d_non_metal` source lane in
+`src/catalytic_earth/metal_independent_phosphodiesterase_sourcing.py`, and added focused tests for
+PLD admission plus phospholipase-C boundary hold. Also added per-fetch timeout support to
+`scripts/source_terpene_cyclase_synthase_family.py` and fetcher pass-through in the terpene
+sourcing writer so bounded cap-close previews can fail safely instead of hanging.
+
+Measured result: PLD preview
+`artifacts/v3_metal_independent_phosphodiesterase_phospholipase_d_preview_current702_20260615_run2314.json`
+fetched **22** reviewed rows, produced **7** target mechanism-corroborated labels, admitted **7**
+novelty-safe rows, and held **4** off-target metallophosphoesterase/nuclease rows. Row audit
+`artifacts/v3_metal_independent_phosphodiesterase_phospholipase_d_row_guardrail_audit_current702_20260615_run2314.json`
+found **0** problems. This is subfloor and must not be applied. Terpene cap-close window
+`artifacts/v3_terpene_cyclase_synthase_capclose_window170_preview_current702_20260615_run2314.json`
+fetched **138** rows but admitted **0** novelty-safe rows, so no cap-close apply was available.
+
+Decision: no registry mutation is authorized from this run's PLD or terpene previews. PDE remains
+the only hole. Do not retry the same broad PDE EC/name handles, the 7-row PLD preview, or terpene
+window170 for apply. The next mutation needs a sharper mechanism-bearing PDE source split or a new
+high-yield family/source-tier strategy through the full gated path.
+
 ## 2026-06-15: SDR IS A GUARDED 45TH FINGERPRINT AND COUNTED BRONZE
 
 Decision: add `short_chain_dehydrogenase_reductase` as the 45th positive fingerprint and keep the

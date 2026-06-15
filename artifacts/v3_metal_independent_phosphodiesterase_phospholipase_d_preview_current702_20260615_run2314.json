@@ -1,0 +1,1486 @@
+{
+  "applied_labels": [
+    {
+      "confidence": "high",
+      "entry_id": "uniprot:P80108",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 0,
+          "active_site_residues": [],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 0,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "metal-independent phosphodiester hydrolysis context"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.4.50"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.4.50",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "[protein]-C-terminal carboxyl phosphoethanolamide-(1-radyl-2-octadecanoyl)-GPI(deacylinositol-H7) + H2O = [protein]-C-terminal carboxyl phosphoethanolamide-glycosylinositol (deacylinositol-H7) + 1-radyl-2-octadecanoyl-sn-glycero-3-phosphate + H(+)",
+              "rhea_id": "RHEA:86263",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.4.50",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "[protein]-C-terminal carboxyl phosphoethanolamide-(1-radyl-2-octadecanoyl)-GPI(deacylinositol-H7) + H2O = [protein]-C-terminal carboxyl phosphoethanolamide-glycosylinositol (deacylinositol-H7) + 1-radyl-2-octadecanoyl-sn-glycero-3-phosphate + H(+)",
+              "rhea_id": "RHEA-COMP:20747",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.4.50",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "[protein]-C-terminal carboxyl phosphoethanolamide-(1-radyl-2-octadecanoyl)-GPI(deacylinositol-H7) + H2O = [protein]-C-terminal carboxyl phosphoethanolamide-glycosylinositol (deacylinositol-H7) + 1-radyl-2-octadecanoyl-sn-glycero-3-phosphate + H(+)",
+              "rhea_id": "RHEA-COMP:20748",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: metal_independent_phosphodiesterase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "f917e21b48af5c2a920b47eeae257ef3f4bb614be1a9d7084140fa8e384794ea"
+          },
+          "retrieved_utc": "2026-06-15T23:20:58Z",
+          "sequence": "MSAFRLWPGLLIMLGSLCHRGSPCGLSTHVEIGHRALEFLQLHNGRVNYRELLLEHQDAYQAGIVFPDCFYPSICKGGKFHDVSESTHWTPFLNASVHYIRENYPLPWEKDTEKLVAFLFGITSHMAADVSWHSLGLEQGFLRTMGAIDFHGSYSEAHSAGDFGGDVLSQFEFNFNYLARRWYVPVKDLLGIYEKLYGRKVITENVIVDCSHIQFLEMYGEMLAVSKLYPTYSTKSPFLVEQFQEYFLGGLDDMAFWSTNIYHLTSFMLENGTSDCNLPENPLFIACGGQQNHTQGSKMQKNDFHRNLTTSLTESVDRNINYTERGVFFSVNSWTPDSMSFIYKALERNIRTMFIGGSQLSQKHVSSPLASYFLSFPYARLGWAMTSADLNQDGHGDLVVGAPGYSRPGHIHIGRVYLIYGNDLGLPPVDLDLDKEAHRILEGFQPSGRFGSALAVLDFNVDGVPDLAVGAPSVGSEQLTYKGAVYVYFGSKQGGMSSSPNITISCQDIYCNLGWTLLAADVNGDSEPDLVIGSPFAPGGGKQKGIVAAFYSGPSLSDKEKLNVEAANWTVRGEEDFSWFGYSLHGVTVDNRTLLLVGSPTWKNASRLGHLLHIRDEKKSLGRVYGYFPPNGQSWFTISGDKAMGKLGTSLSSGHVLMNGTLKQVLLVGAPTYDDVSKVAFLTVTLHQGGATRMYALTSDAQPLLLSTFSGDRRFSRFGGVLHLSDLDDDGLDEIIMAAPLRIADVTSGLIGGEDGRVYVYNGKETTLGDMTGKCKSWITPCPEEKAQYVLISPEASSRFGSSLITVRSKAKNQVVIAAGRSSLGARLSGALHVYSLGSD",
+          "sequence_length": 840,
+          "sequence_sha256": "dec71ab33eb3c59f9d91cb8e3d930c163d6aa89d5b2d723c92e4be38c07338e5",
+          "source": "reviewed_uniprot",
+          "source_accession": "P80108"
+        },
+        "source_provenance": {
+          "accession": "P80108",
+          "disambiguation_pool": "metal_independent_phosphodiesterase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "metal_independent_phosphodiesterase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_metal_independent_phosphodiesterase_from_annotated_cofactor_and_ec_class_['3.1.4.50']",
+          "organism": "Homo sapiens (Human)",
+          "protein_name": "Phosphatidylinositol-glycan-specific phospholipase D (PI-G PLD) (EC 3.1.4.50) (Glycoprotein phospholipase D) (Glycosyl-phosphatidylinositol-specific phospholipase D) (GPI-PLD) (GPI-specific phospholipase D)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 840,
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "6eaf53114b9105925e2a02a1263aeb474fb33a86beb51bf43600e11d2c3cab10",
+            "source_query_sha256": "f917e21b48af5c2a920b47eeae257ef3f4bb614be1a9d7084140fa8e384794ea",
+            "uniprot_entry_record_sha256": "9290d6a57d6e1d34e20b46f80d1af43cdcbc52fb449b80fbf21b89567e5e757c",
+            "uniprot_search_row_sha256": "5638a92565ccee5a8d00aa300b8b598671082350fdc007f1b629a15e2dce1a9e"
+          },
+          "target_family_lane": "metal_independent_phosphodiesterase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P80108"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P80108-F1"
+        }
+      },
+      "evidence_score": 0.85,
+      "fingerprint_id": "metal_independent_phosphodiesterase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P80108 imported as annotation-anchored bronze in-scope metal_independent_phosphodiesterase: reviewed Swiss-Prot EC ['3.1.4.50'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "high",
+      "entry_id": "uniprot:O70362",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 0,
+          "active_site_residues": [],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 0,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "metal-independent phosphodiester hydrolysis context"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.4.50"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.4.50",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "[protein]-C-terminal carboxyl phosphoethanolamide-(1-radyl-2-octadecanoyl)-GPI(deacylinositol-H7) + H2O = [protein]-C-terminal carboxyl phosphoethanolamide-glycosylinositol (deacylinositol-H7) + 1-radyl-2-octadecanoyl-sn-glycero-3-phosphate + H(+)",
+              "rhea_id": "RHEA:86263",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.4.50",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "[protein]-C-terminal carboxyl phosphoethanolamide-(1-radyl-2-octadecanoyl)-GPI(deacylinositol-H7) + H2O = [protein]-C-terminal carboxyl phosphoethanolamide-glycosylinositol (deacylinositol-H7) + 1-radyl-2-octadecanoyl-sn-glycero-3-phosphate + H(+)",
+              "rhea_id": "RHEA-COMP:20747",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.4.50",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "[protein]-C-terminal carboxyl phosphoethanolamide-(1-radyl-2-octadecanoyl)-GPI(deacylinositol-H7) + H2O = [protein]-C-terminal carboxyl phosphoethanolamide-glycosylinositol (deacylinositol-H7) + 1-radyl-2-octadecanoyl-sn-glycero-3-phosphate + H(+)",
+              "rhea_id": "RHEA-COMP:20748",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: metal_independent_phosphodiesterase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "f917e21b48af5c2a920b47eeae257ef3f4bb614be1a9d7084140fa8e384794ea"
+          },
+          "retrieved_utc": "2026-06-15T23:20:58Z",
+          "sequence": "MSAGRLWSSLLLLLPLFCSKSSSCGLSTHVEIGHRALEFLRLQDGRINYKELILEHQDAYQAGTVFPDAFYPSICKRGKYHDVSERTHWTPFLNASIHYIRENYPLPWEKDTEKLVAFLFGITSHMVADLSWHNLGFLRTMGAIDFYNSYSDAHSAGDFGGDVLSQFEFNFNYLSRRWYVPVRDLLRIYDNLYGRKVITKDVLVDCTYLQFLEMHGEMFAVSKLYSTYSTKSPFLVEQFQDYFLGGLDDMAFWSTNIYRLTSFMLENGTSDCNLPENPLFISCDGRNHTLSGSKVQKNDFHRNLTMFISRDIRKNLNYTERGVFYSTGSWARPESVTFMYQTLERNLRLMLAGSSQKNLNHVSSPSASYTLSVPYARLGWVMTSADLNQDGHGDLVVGAPGYSHPGRFQIGRVYIIYGNDLGLPPIDLDLNKEGILEGFQPSGRFGSALAVLDFNQDGLPDLAVGAPSVGSGQLTYNGSVYVYYGSQQGRLSSSPNVTISCKDTYCNLGWTLLATDADGDGRHDLVISSPFAPGGRKQKGIVATFYSHPRRNDKELLTLEEADWKVNGEEDFSWFGYSLHGVTVANRSLLLIGSPTWKNVSRMARSSHKKNQEEKSLGKVYGYFLPNRQSTITISGDKAMGKLGTSLSSGYVRVNGTLTQVLLVGAPTHDDVSKMAFLTMTLHQGGATRMYELAPEKTQPALLSTFSGDRRFSRFGSVLHLTDLDDDGLDEIIMAAPLRITDVTSGLLGGEDGRVYIYNGMYTTLGDMTGKCKSWMTPCPEEKAQYVLTSPEASSRFGSSLVSVRSKGRNQVVVAAGRSSWGARLSGALHVYSFSSD",
+          "sequence_length": 837,
+          "sequence_sha256": "92dae53d70f48a3a071b6420337fa426db598713f9e28c8527b0780d0dd92c75",
+          "source": "reviewed_uniprot",
+          "source_accession": "O70362"
+        },
+        "source_provenance": {
+          "accession": "O70362",
+          "disambiguation_pool": "metal_independent_phosphodiesterase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "metal_independent_phosphodiesterase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_metal_independent_phosphodiesterase_from_annotated_cofactor_and_ec_class_['3.1.4.50']",
+          "organism": "Mus musculus (Mouse)",
+          "protein_name": "Phosphatidylinositol-glycan-specific phospholipase D (PI-G PLD) (EC 3.1.4.50) (Glycoprotein phospholipase D) (Glycosyl-phosphatidylinositol-specific phospholipase D) (GPI-PLD) (GPI-specific phospholipase D)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 837,
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "6eaf53114b9105925e2a02a1263aeb474fb33a86beb51bf43600e11d2c3cab10",
+            "source_query_sha256": "f917e21b48af5c2a920b47eeae257ef3f4bb614be1a9d7084140fa8e384794ea",
+            "uniprot_entry_record_sha256": "4c65f19da96c56dff14cd8b7f6099560555a83ae4210ccc441d4163ee7b2134f",
+            "uniprot_search_row_sha256": "38def3d505d78e4426e4305959f28e80ebf9f1877860f198cff7887038cdaf7d"
+          },
+          "target_family_lane": "metal_independent_phosphodiesterase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "O70362"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-O70362-F1"
+        }
+      },
+      "evidence_score": 0.85,
+      "fingerprint_id": "metal_independent_phosphodiesterase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "O70362 imported as annotation-anchored bronze in-scope metal_independent_phosphodiesterase: reviewed Swiss-Prot EC ['3.1.4.50'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "high",
+      "entry_id": "uniprot:P80109",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 0,
+          "active_site_residues": [],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 0,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "metal-independent phosphodiester hydrolysis context"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.4.50"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.4.50",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "[protein]-C-terminal carboxyl phosphoethanolamide-(1-radyl-2-octadecanoyl)-GPI(deacylinositol-H7) + H2O = [protein]-C-terminal carboxyl phosphoethanolamide-glycosylinositol (deacylinositol-H7) + 1-radyl-2-octadecanoyl-sn-glycero-3-phosphate + H(+)",
+              "rhea_id": "RHEA:86263",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.4.50",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "[protein]-C-terminal carboxyl phosphoethanolamide-(1-radyl-2-octadecanoyl)-GPI(deacylinositol-H7) + H2O = [protein]-C-terminal carboxyl phosphoethanolamide-glycosylinositol (deacylinositol-H7) + 1-radyl-2-octadecanoyl-sn-glycero-3-phosphate + H(+)",
+              "rhea_id": "RHEA-COMP:20747",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.4.50",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "[protein]-C-terminal carboxyl phosphoethanolamide-(1-radyl-2-octadecanoyl)-GPI(deacylinositol-H7) + H2O = [protein]-C-terminal carboxyl phosphoethanolamide-glycosylinositol (deacylinositol-H7) + 1-radyl-2-octadecanoyl-sn-glycero-3-phosphate + H(+)",
+              "rhea_id": "RHEA-COMP:20748",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: metal_independent_phosphodiesterase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "f917e21b48af5c2a920b47eeae257ef3f4bb614be1a9d7084140fa8e384794ea"
+          },
+          "retrieved_utc": "2026-06-15T23:20:58Z",
+          "sequence": "MSAFRFWSGLLMLLGFLCPRSSPCGISTHIEIGHRALEFLHLQDGSINYKELLLRHQDAYQAGSVFPDSFYPSICERGQFHDVSESTHWTPFLNASVHYIRKNYPLPWDEDTEKLVAFLFGITSHMVADVNWHSLGIEQGFLRTMAAIDFHNSYPEAHPAGDFGGDVLSQFEFKFNYLSRHWYVPAEDLLGIYRELYGRIVITKKAIVDCSYLQFLEMYAEMLAISKLYPTYSVKSPFLVEQFQEYFLGGLEDMAFWSTNIYHLTSYMLKNGTSNCNLPENPLFITCGGQQNNTHGSKVQKNGFHKNVTAALTKNIGKHINYTKRGVFFSVDSWTMDSLSFMYKSLERSIREMFIGSSQPLTHVSSPAASYYLSFPYTRLGWAMTSADLNQDGYGDLVVGAPGYSHPGRIHVGRVYLIYGNDLGLPRIDLDLDKEAHGILEGFQPSGRFGSAVAVLDFNVDGVPDLAVGAPSVGSEKLTYTGAVYVYFGSKQGQLSSSPNVTISCQDTYCNLGWTLLAADVNGDSEPDLVIGSPFAPGGGKQKGIVAAFYSGSSYSSREKLNVEAANWMVKGEEDFAWLGYSLHGVNVNNRTLLLAGSPTWKDTSSQGHLFRTRDEKQSPGRVYGYFPPICQSWFTISGDKAMGKLGTSLSSGHVMVNGTRTQVLLVGAPTQDVVSKVSFLTMTLHQGGSTRMYELTPDSQPSLLSTFSGNRRFSRFGGVLHLSDLDNDGLDEIIVAAPLRITDATAGLMGEEDGRVYVFNGKQITVGDVTGKCKSWVTPCPEEKAQYVLISPEAGSRFGSSVITVRSKEKNQVIIAAGRSSLGARLSGVLHIYRLGQD",
+          "sequence_length": 839,
+          "sequence_sha256": "6199c40fa0ec6750aa2147bdcdfa1d3ee3266a96956eed6d976d34f2fbf4ff05",
+          "source": "reviewed_uniprot",
+          "source_accession": "P80109"
+        },
+        "source_provenance": {
+          "accession": "P80109",
+          "disambiguation_pool": "metal_independent_phosphodiesterase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "metal_independent_phosphodiesterase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_metal_independent_phosphodiesterase_from_annotated_cofactor_and_ec_class_['3.1.4.50']",
+          "organism": "Bos taurus (Bovine)",
+          "protein_name": "Phosphatidylinositol-glycan-specific phospholipase D (PI-G PLD) (EC 3.1.4.50) (Glycoprotein phospholipase D) (Glycosyl-phosphatidylinositol-specific phospholipase D) (GPI-PLD) (GPI-specific phospholipase D)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 839,
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "6eaf53114b9105925e2a02a1263aeb474fb33a86beb51bf43600e11d2c3cab10",
+            "source_query_sha256": "f917e21b48af5c2a920b47eeae257ef3f4bb614be1a9d7084140fa8e384794ea",
+            "uniprot_entry_record_sha256": "d9edcbe4bf0e8d1ecb35ed9ea3bfd1d3ede7fbd631b952a6850b3dc628471564",
+            "uniprot_search_row_sha256": "a3c39dc9fa9fb1fa6433fe808463809b0db6ba3d28f9b52cb941982cd0e84742"
+          },
+          "target_family_lane": "metal_independent_phosphodiesterase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "P80109"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-P80109-F1"
+        }
+      },
+      "evidence_score": 0.85,
+      "fingerprint_id": "metal_independent_phosphodiesterase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "P80109 imported as annotation-anchored bronze in-scope metal_independent_phosphodiesterase: reviewed Swiss-Prot EC ['3.1.4.50'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q8R2H5",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 0,
+          "active_site_residues": [],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 0,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "metal-independent phosphodiester hydrolysis context"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.4.50"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.4.50",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "[protein]-C-terminal carboxyl phosphoethanolamide-(1-radyl-2-octadecanoyl)-GPI(deacylinositol-H7) + H2O = [protein]-C-terminal carboxyl phosphoethanolamide-glycosylinositol (deacylinositol-H7) + 1-radyl-2-octadecanoyl-sn-glycero-3-phosphate + H(+)",
+              "rhea_id": "RHEA:86263",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.4.50",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "[protein]-C-terminal carboxyl phosphoethanolamide-(1-radyl-2-octadecanoyl)-GPI(deacylinositol-H7) + H2O = [protein]-C-terminal carboxyl phosphoethanolamide-glycosylinositol (deacylinositol-H7) + 1-radyl-2-octadecanoyl-sn-glycero-3-phosphate + H(+)",
+              "rhea_id": "RHEA-COMP:20747",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "3.1.4.50",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "[protein]-C-terminal carboxyl phosphoethanolamide-(1-radyl-2-octadecanoyl)-GPI(deacylinositol-H7) + H2O = [protein]-C-terminal carboxyl phosphoethanolamide-glycosylinositol (deacylinositol-H7) + 1-radyl-2-octadecanoyl-sn-glycero-3-phosphate + H(+)",
+              "rhea_id": "RHEA-COMP:20748",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: metal_independent_phosphodiesterase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "f917e21b48af5c2a920b47eeae257ef3f4bb614be1a9d7084140fa8e384794ea"
+          },
+          "retrieved_utc": "2026-06-15T23:20:58Z",
+          "sequence": "MSVGRLWSGLLLLLLFFCSRSSSCGLSTHVEIGHRALQFLQLQDGRINYKELLLEHQDAYQAGTVFPDAFYPSICKQGKFHEVSESTHWTPFLNASIHYIRENYPLPWEKDTEKLVAFLFGVTSHMVADVSWHSLGIEQGFLRTMGAIDFYDSYSEAHSAGDFGGDVLSQFEFNFNYLSRRWYVPIQDLLRIYDNLYGRKVITKNVIVDCTYLQFLEMHGEMLAVSKLYSTYSTKSPFLVEQFQDYFLGGLDDMAFWSTNIYRLTSFMLENGTSDCNLPENPLFISCDGRKNHTLSSSKVQKNDFHRNLTMFISKDIRKNLNYTERGVFYSTGSWAPESVTFMYQTLERNLRMMFTGNSQTALKHVSSPSASYTLSVPYARLGWVMASADLNQDGHGDLVVGAPGYSHPGRFQIGRVYIIYGNDLGLPPIDLDLDKEAHGVLEGFQPSGRFGSALAVLDFNKDGLPDLAVGAPSVGSGQLTYNGSVYVYYGSQQGRLSSSPNITISCKDTYCNLGWALLAADADGDGQHDLVISSPFAPGGGKQRGIVAAFYSHPRRNDKESLTLDEADWKVNGEEDFSWFGYSLHGVTVANRSLLLIGSPTWKNISRMARSSHQKNQEKKSLGRVYGYFPPNRQREITISGDKAMGKLGTSLSSGYVRVNGTLTQVLLVGAPTHDDVSKMAFLTMTLHHGGATRMYELAPEKTQPALFSTFSGDRRFSRFGSVLHLTDLDDDGLDEIIMAAPLRITDVTSGLLGEEDGRVYIYNGMHTTLGDVTGKCKSWMTPCPEEKAQYVLISPEASSRFGSSLVSVRSKERNQVVVAAGRSSWGARLSGALHVYSFSSD",
+          "sequence_length": 843,
+          "sequence_sha256": "1c9508c7e4a8be2d6271df6247ccc34e14220807d48ac941ab6d6c644bf7a667",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q8R2H5"
+        },
+        "source_provenance": {
+          "accession": "Q8R2H5",
+          "disambiguation_pool": "metal_independent_phosphodiesterase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "metal_independent_phosphodiesterase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_metal_independent_phosphodiesterase_from_annotated_cofactor_and_ec_class_['3.1.4.50']",
+          "organism": "Rattus norvegicus (Rat)",
+          "protein_name": "Phosphatidylinositol-glycan-specific phospholipase D (PI-G PLD) (EC 3.1.4.50) (Glycoprotein phospholipase D) (Glycosyl-phosphatidylinositol-specific phospholipase D) (GPI-PLD) (GPI-specific phospholipase D)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 843,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "43f2d1e5e6f8e6e7f3852c40432f82afd7ac3d6b229df80c2a3839bda740759e",
+            "source_query_sha256": "f917e21b48af5c2a920b47eeae257ef3f4bb614be1a9d7084140fa8e384794ea",
+            "uniprot_entry_record_sha256": "d3c13828f361c2fd0ac2ff8ccca4011dde6c3a1244236c4e3dadf71961681c5b",
+            "uniprot_search_row_sha256": "a5517f0dc7f1214fa5d59b3856f04b835893cccd1a86cfc31818d4058b2c64b9"
+          },
+          "target_family_lane": "metal_independent_phosphodiesterase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q8R2H5"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q8R2H5-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "metal_independent_phosphodiesterase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q8R2H5 imported as annotation-anchored bronze in-scope metal_independent_phosphodiesterase: reviewed Swiss-Prot EC ['3.1.4.50'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "high",
+      "entry_id": "uniprot:Q9M9W8",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 6,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 477
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 479
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 484
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 852
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 854
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 859
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 6,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "metal-independent phosphodiester hydrolysis context"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.4.4"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.4.4",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "a 1,2-diacyl-sn-glycero-3-phosphocholine + H2O = a 1,2-diacyl-sn-glycero-3-phosphate + choline + H(+)",
+              "rhea_id": "RHEA:14445",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: metal_independent_phosphodiesterase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "f917e21b48af5c2a920b47eeae257ef3f4bb614be1a9d7084140fa8e384794ea"
+          },
+          "retrieved_utc": "2026-06-15T23:20:58Z",
+          "sequence": "MSTDKLLLPNGVKSDGVIRMTRADAAAAAASSSLGGGSQIFDELPKAAIVSVSRPDTTDFSPLLLSYTLELQYKQFKWTLQKKASQVLYLHFALKKRLIIEELHDKQEQVREWLHSLGIFDMQGSVVQDDEEPDDGALPLHYTEDSIKNRNVPSRAALPIIRPTIGRSETVVDRGRTAMQGYLSLFLGNLDIVNSKEVCKFLEVSRLSFAREYGSKMKEGYVTVKHLRDVPGSDGVRCCLPTHCLGFFGTSWTKVWAVLKPGFLALLEDPFSGKLLDIMVFDTLGLQGTKESSEQPRLAEQVKEHNPLRFGFKVTSGDRTVRLRTTSSRKVKEWVKAVDEAGCYSPHRFGSFAPPRGLTSDGSQAQWFVDGHTAFEAIAFAIQNATSEIFMTGWWLCPELYLKRPFEDHPSLRLDALLETKAKQGVKIYILLYKEVQIALKINSLYSKKRLQNIHKNVKVLRYPDHLSSGIYLWSHHEKIVIVDYQVCFIGGLDLCFGRYDTAEHKIGDCPPYIWPGKDYYNPRESEPNSWEETMKDELDRRKYPRMPWHDVHCALWGPPCRDVARHFVQRWNHSKRNKAPNEQTIPLLMPHHHMVLPHYLGTREIDIIAAAKPEEDPDKPVVLARHDSFSSASPPQEIPLLLPQETDADFAGRGDLKLDSGARQDPGETSEESDLDEAVNDWWWQIGKQSDCRCQIIRSVSQWSAGTSQPEDSIHRAYCSLIQNAEHFIYIENQFFISGLEKEDTILNRVLEALYRRILKAHEENKCFRVVIVIPLLPGFQGGIDDFGAATVRALMHWQYRTISREGTSILDNLNALLGPKTQDYISFYGLRSYGRLFEDGPIATSQIYVHSKLMIVDDRIAVIGSSNINDRSLLGSRDSEIGVVIEDKEFVESSMNGMKWMAGKFSYSLRCSLWSEHLGLHAGEIQKIEDPIKDATYKDLWMATAKKNTDIYNQVFSCIPNEHIRSRAALRHNMALCKDKLGHTTIDLGIAPERLESCGSDSWEILKETRGNLVCFPLQFMCDQEDLRPGFNESEFYTAPQVFH",
+          "sequence_length": 1046,
+          "sequence_sha256": "7e8fec4b46da8c1940f99cbf811d1fe78f1423abf7bc772958d3a13770eaed88",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q9M9W8"
+        },
+        "source_provenance": {
+          "accession": "Q9M9W8",
+          "disambiguation_pool": "metal_independent_phosphodiesterase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "metal_independent_phosphodiesterase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_metal_independent_phosphodiesterase_from_annotated_cofactor_and_ec_class_['3.1.4.4']",
+          "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+          "protein_name": "Phospholipase D zeta 2 (PLDzeta2) (EC 3.1.4.4) (Phospholipase D p2) (AtPLDp2) (Phospholipase D2 PHOX and PX-containing domain protein)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 1046,
+          "source_evidence_codes": [
+            "ECO:0000255",
+            "ECO:0000269"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "a1837b386566135b21ab409e604f42f2c6dc210a724375c827b886b05a7eee7d",
+            "source_query_sha256": "f917e21b48af5c2a920b47eeae257ef3f4bb614be1a9d7084140fa8e384794ea",
+            "uniprot_entry_record_sha256": "d3e58b2f0a48325112b97753cbe1b663d30495f48e2c835c16a936e7fb919e4c",
+            "uniprot_search_row_sha256": "c78c44cc9914fbbe900ca2d0aa6bc17663ed8a5e053913aa1fdcad895bae7590"
+          },
+          "target_family_lane": "metal_independent_phosphodiesterase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q9M9W8"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q9M9W8-F1"
+        }
+      },
+      "evidence_score": 0.85,
+      "fingerprint_id": "metal_independent_phosphodiesterase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q9M9W8 imported as annotation-anchored bronze in-scope metal_independent_phosphodiesterase: reviewed Swiss-Prot EC ['3.1.4.4'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "high",
+      "entry_id": "uniprot:Q9LRZ5",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 7,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 482
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 484
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 489
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 897
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 899
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 904
+            },
+            {
+              "evidence_codes": [
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 2
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 6,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "metal-independent phosphodiester hydrolysis context"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.4.4"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.4.4",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "a 1,2-diacyl-sn-glycero-3-phosphocholine + H2O = a 1,2-diacyl-sn-glycero-3-phosphate + choline + H(+)",
+              "rhea_id": "RHEA:14445",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: metal_independent_phosphodiesterase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "f917e21b48af5c2a920b47eeae257ef3f4bb614be1a9d7084140fa8e384794ea"
+          },
+          "retrieved_utc": "2026-06-15T23:20:58Z",
+          "sequence": "MASEQLMSPASGGGRYFQMQPEQFPSMVSSLFSFAPAPTQETNRIFEELPKAVIVSVSRPDAGDISPVLLSYTIECQYKQFKWQLVKKASQVFYLHFALKKRAFIEEIHEKQEQVKEWLQNLGIGDHPPVVQDEDADEVPLHQDESAKNRDVPSSAALPVIRPLGRQQSISVRGKHAMQEYLNHFLGNLDIVNSREVCRFLEVSMLSFSPEYGPKLKEDYIMVKHLPKFSKSDDDSNRCCGCCWFCCCNDNWQKVWGVLKPGFLALLEDPFDAKLLDIIVFDVLPVSNGNDGVDISLAVELKDHNPLRHAFKVTSGNRSIRIRAKNSAKVKDWVASINDAALRPPEGWCHPHRFGSYAPPRGLTDDGSQAQWFVDGGAAFAAIAAAIENAKSEIFICGWWVCPELYLRRPFDPHTSSRLDNLLENKAKQGVQIYILIYKEVALALKINSVYSKRRLLGIHENVRVLRYPDHFSSGVYLWSHHEKLVIVDNQVCFIGGLDLCFGRYDTFEHKVGDNPSVTWPGKDYYNPRESEPNTWEDALKDELERKKHPRMPWHDVHCALWGPPCRDVARHFVQRWNYAKRNKAPYEDSIPLLMPQHHMVIPHYMGRQEESDIESKKEEDSIRGIRRDDSFSSRSSLQDIPLLLPHEPVDQDGSSGGHKENGTNNRNGPFSFRKSKIEPVDGDTPMRGFVDDRNGLDLPVAKRGSNAIDSEWWETQDHDYQVGSPDETGQVGPRTSCRCQIIRSVSQWSAGTSQVEESIHSAYRSLIDKAEHFIYIENQFFISGLSGDDTVKNRVLEALYKRILRAHNEKKIFRVVVVIPLLPGFQGGIDDSGAASVRAIMHWQYRTIYRGHNSILTNLYNTIGVKAHDYISFYGLRAYGKLSEDGPVATSQVYVHSKIMIVDDRAALIGSANINDRSLLGSRDSEIGVLIEDTELVDSRMAGKPWKAGKFSSSLRLSLWSEHLGLRTGEIDQIIDPVSDSTYKEIWMATAKTNTMIYQDVFSCVPNDLIHSRMAFRQSLSYWKEKLGHTTIDLGIAPEKLESYHNGDIKRSDPMDRLKAIKGHLVSFPLDFMCKEDLRPVFNESEYYASPQVFH",
+          "sequence_length": 1096,
+          "sequence_sha256": "e25ee7cefa96966e379b0e132fac2fea01b0ee3b8f4a63d5b0959dd83c134913",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q9LRZ5"
+        },
+        "source_provenance": {
+          "accession": "Q9LRZ5",
+          "disambiguation_pool": "metal_independent_phosphodiesterase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "metal_independent_phosphodiesterase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_metal_independent_phosphodiesterase_from_annotated_cofactor_and_ec_class_['3.1.4.4']",
+          "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+          "protein_name": "Phospholipase D zeta 1 (PLDzeta1) (EC 3.1.4.4) (Phospholipase D p1) (AtPLDp1) (Phospholipase D1 PHOX and PX-containing domain protein)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 1096,
+          "source_evidence_codes": [
+            "ECO:0000255",
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "a1837b386566135b21ab409e604f42f2c6dc210a724375c827b886b05a7eee7d",
+            "source_query_sha256": "f917e21b48af5c2a920b47eeae257ef3f4bb614be1a9d7084140fa8e384794ea",
+            "uniprot_entry_record_sha256": "0b6985917fa819b79de5a09e1fd8a6192c3e14be3fcbca6cec645a5ea06f953e",
+            "uniprot_search_row_sha256": "7dcad2ff1aaf9f44a7f7aeded21920b66cc209eeaa2ed01f831a58799c1b3d41"
+          },
+          "target_family_lane": "metal_independent_phosphodiesterase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q9LRZ5"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q9LRZ5-F1"
+        }
+      },
+      "evidence_score": 0.85,
+      "fingerprint_id": "metal_independent_phosphodiesterase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q9LRZ5 imported as annotation-anchored bronze in-scope metal_independent_phosphodiesterase: reviewed Swiss-Prot EC ['3.1.4.4'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q5BMR2",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 6,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 858
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 860
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 865
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 1254
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 1256
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 1261
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 6,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "metal-independent phosphodiester hydrolysis context"
+            }
+          ],
+          "ec_numbers": [
+            "3.1.4.4"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.1.4.4",
+              "evidence_codes": [
+                "ECO:0000305"
+              ],
+              "reaction": "a 1,2-diacyl-sn-glycero-3-phosphocholine + H2O = a 1,2-diacyl-sn-glycero-3-phosphate + choline + H(+)",
+              "rhea_id": "RHEA:14445",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: metal_independent_phosphodiesterase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "f917e21b48af5c2a920b47eeae257ef3f4bb614be1a9d7084140fa8e384794ea"
+          },
+          "retrieved_utc": "2026-06-15T23:20:58Z",
+          "sequence": "MPGPDDDVREPTAAARTNNSGYGLRAAPSSITSGLDSVVSVNSYRSSELNAEEVNVDDQECADSDILESPNDGMTIMNDDDADLSEEEEEVMENSIDFSVNRATVTKAGVIPCCVFVGRVRWGTTDWEIYFGQKQLLRLHFNLHLYSLFNRHKLLRGVHLPCTIWREKRAEKRVMDVYVVQDYIRQLLKDRDLRNSEPLLSFLEVSPSRAMLRLGPSLKEGYVHMRINGPFQLPLYTCFNRTIEALYRHLYRAWMRIAFVSAIVGFIFPICLVIVTSLPTFFSPQKELVNSDSGTKEVSTKLNTAGVFLGLAVLGGILFFAVFVYKFFQHRLGVIRRWVVLKPSCFAAYRNRNDREPSEVFLFDKNFTARKGSYRQGVSWMPSGLVVGSKAGDIEIDTGHYYTRLTAFVALMGVCYGIMRLSNSIYDFEYLSLDKSMGVPITNASGYENWTESRDAEYCGYYFIVPKGTTVYVESKDDSAVISQLQMPSSNSMTANLGFFWQSDSMGYSLNVITNAVGAGTMVSVVKPIDAKNDRFFESGTNYSMPTVGNLTLEGVKTDIDVQSFSNVESFCAITVRIAPLTWRSYVYYILFLFAGGIIAPVVGFLANYFVTYLGIWHPHVRRDHWFRCVRRLQKLKRQETSTRFNSFAPQHISTIDDDESATITAKAKAAKLAIGNTPTSNINQVVDSVVKQEAETASRMGTGNLAPASSRVDSSTQSEDSFEAPKPPPSSVSWHVDAEDTYAAMYKAISNAKYEILIAGWWVCPDLFLLRPGRKLPPREADEDPDGQQVNKTMLRQVLMKKAEAGVKIYVLIYREVKLALTLNSAYTKRSLMVHPNIRVLRDPIFQIQSLGFWSHHEKIVCIDQSLAFVGGLDLCFGRYDHHGHPISDPSDDPVWTGKDYSNPIIKDFVRVNKPFEDLIDRASQPRMPWHDVHCSISGPPVQDVAYHLIQRWNFVCSKNDYQLRTGWCICFRSRRFKFLPKCLVPMDFNGWTLQYPSSDPEPMRDGSTRTTIPLVREDSLSMVEPFQVVQSVNPMYPCTATGPQWPPTSSLHPINPMRPPLTSASTTTGPLDDGEVLRAQRGESILQVFHPSANICNIQVCRSVSMWSAGVPTEASIQAAYMDVIANSKHFLYIENQFFVSGMDGNGIVRNRILQALVDRIERAVQRDEKFRVYVVMPLLPAFEGNIRSHELTNLHAVMHWQFATICRGRYSLFEALKGVTNHPENYVAFFGLRKYGIMPNGCAATEQIYIHSKLMIADDRCAILGSANINDRSMNGDRDSEIALVIEDMQYEDGVMNEKPYRRGVAASKLRLQLFREHLGLADDDLSVADPTSDHTWQAIKSTASSNTKIFEAVFDCAPSNRMRAFVNFQSIEVTQIFENQRMNVLKVPGRSHVWDAQNLKDGDYAPWTDVNGVPIAADRVDLRDFEVDNYRDKKKKLFSMDHDGWCYARNFSIFQEVRTMKTDYKKREKLQHLVADRLMAQVRRRRWVKKGLLPPRDPRESSFSLASDDEEHGRFYSLWRRLQQGDFSRSNSVSTPTNFSQLDTDGGISGSVSVGGTNHGRRLYNSNSMPSNASILGDNPTTRPPVLGDAPSYPNSPSVASFQHTPQSPAIATGARSVRSARTSSLLCTGAGVRTRGNTRSARGSFYGMFSVTGNRNLDTDDESSDAGSEYGGGHGIRASLKRWYSTMDVLDFGRRSKFNAEYFDTDEDHLHSDDPLLEDGRGSYHAATREGLLTEEAVEGSDDEDAECQIGHVQTAATVRKEDETRARAQLSEIRGHLVEFPLDFLVEEILKPSVLPADIHI",
+          "sequence_length": 1807,
+          "sequence_sha256": "f2cdf3b20ff1e88ce1d489bec57c11c551cb66976d62c7b5deec2873461ddd18",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q5BMR2"
+        },
+        "source_provenance": {
+          "accession": "Q5BMR2",
+          "disambiguation_pool": "metal_independent_phosphodiesterase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "metal_independent_phosphodiesterase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_metal_independent_phosphodiesterase_from_annotated_cofactor_and_ec_class_['3.1.4.4']",
+          "organism": "Phytophthora infestans (Potato late blight agent) (Botrytis infestans)",
+          "protein_name": "Phospholipase D (EC 3.1.4.4) (PiPLD1)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 1807,
+          "source_evidence_codes": [
+            "ECO:0000255",
+            "ECO:0000305"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "0014d206cea0cbecf8d6d647dfeec1827975be7d2cda3528df7deabc85b4bfc1",
+            "source_query_sha256": "f917e21b48af5c2a920b47eeae257ef3f4bb614be1a9d7084140fa8e384794ea",
+            "uniprot_entry_record_sha256": "07928f1a2b5e958d9a5792b8319f50fbbee74a04c93ba6ffc78b20e98b68b965",
+            "uniprot_search_row_sha256": "0031c015c207d341aaefc95c04417015ef971b54db4f47ff3a044215dc07dec9"
+          },
+          "target_family_lane": "metal_independent_phosphodiesterase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q5BMR2"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q5BMR2-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "metal_independent_phosphodiesterase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q5BMR2 imported as annotation-anchored bronze in-scope metal_independent_phosphodiesterase: reviewed Swiss-Prot EC ['3.1.4.4'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    }
+  ],
+  "artifact_id": "v3_metal_independent_phosphodiesterase_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {
+      "metal_independent_phosphodiesterase": 7
+    },
+    "current_combined_labels": 8522,
+    "disambiguation_hold_count": 11,
+    "disambiguation_hold_reason_counts": {
+      "no_mechanism_corroboration": 11
+    },
+    "disambiguation_skip_count": 0,
+    "fetched_candidate_rows": 22,
+    "gate_admitted_before_cap_guard": 7,
+    "held_at_cap_ceiling": 0,
+    "held_at_cap_ceiling_by_fingerprint": {},
+    "lane_ids": [
+      "metal_independent_pde_phospholipase_d_non_metal"
+    ],
+    "lanes_queried": 1,
+    "max_records_per_lane": 80,
+    "mechanism_corroborated_bronze_labels": 7,
+    "novelty_admitted_labels": 7,
+    "novelty_throttled_or_rejected": 0,
+    "off_target_fingerprint_counts": {
+      "metallophosphoesterase_nuclease": 4
+    },
+    "off_target_fingerprint_matches_held": 4,
+    "only_unreviewed_tier2_lanes_enabled": false,
+    "projected_combined_labels_if_merged": 8529,
+    "record_limit_per_lane": null,
+    "record_offset_per_lane": 0,
+    "source_trust_tier": "source_tier_0",
+    "unreviewed_tier2_lanes_enabled": false
+  },
+  "created_utc": "2026-06-15T23:20:58Z",
+  "deploy_missing_active_site_context_per_family": {
+    "metal_independent_phosphodiesterase": "metal_independent_phosphodiester_hydrolysis_context"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {
+      "high": 6,
+      "medium": 5
+    },
+    "current_registry_labels": 7820,
+    "decision_counts": {
+      "hold": 11,
+      "import": 11
+    },
+    "examined_rows": 22,
+    "fingerprint_counts": {
+      "metal_independent_phosphodiesterase": 7,
+      "metallophosphoesterase_nuclease": 4
+    },
+    "hold_count": 11,
+    "hold_reason_counts": {
+      "no_mechanism_corroboration": 11
+    },
+    "importable_new_labels": 11,
+    "per_pool_decision_counts": {
+      "metal_independent_phosphodiesterase_broadened_handle_fresh_fetch": {
+        "hold": 11,
+        "import": 11
+      }
+    },
+    "projected_registry_labels_if_merged": 7831,
+    "skip_count": 0
+  },
+  "evidence_basis": "reviewed_swissprot_ec_rhea_metal_independent_phosphodiester_hydrolysis_annotation",
+  "families_sourced": [
+    "metal_independent_phosphodiesterase"
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "floor_projection": {
+    "metal_independent_phosphodiesterase": {
+      "admitted_this_run": 7,
+      "cap_ceiling": 150,
+      "chemistry_confusable": true,
+      "combined_before": 0,
+      "deficit_to_floor_after": 93,
+      "deficit_to_floor_before": 100,
+      "deploy_missing_active_site_context": "metal_independent_phosphodiester_hydrolysis_context",
+      "floor_reached": false,
+      "held_at_cap_this_run": 0,
+      "projected_combined": 7,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "broadened_handles_never_predictive_features": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "heldout_benchmark_unchanged": true,
+    "metal_absence_is_boundary_filter_not_counted_evidence": true,
+    "metal_independent_pde_handles_scope_admission_only": true,
+    "metal_phosphoesterase_phosphatase_cyclase_boundary_guard": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "novelty_gated_against_both_registries": true,
+    "off_target_fingerprint_matches_held": true,
+    "only_unreviewed_tier2_source_lanes_enabled": false,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "metal_independent_phosphodiesterase": 150
+    },
+    "predictive_features_use_ec_name_keyword_reaction_or_prose": false,
+    "source_tier_2_requires_three_independent_mechanism_axes": true,
+    "source_trust_tier": "source_tier_0",
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true,
+    "unreviewed_tier2_source_lanes_enabled": false
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "metal_independent_pde_phospholipase_d_non_metal",
+      "query": "(reviewed:true) AND (ec:3.1.4.*) AND ((protein_name:\"phospholipase D\") OR (protein_name:\"phospholipase D-like\") OR (cc_catalytic_activity:\"phosphatidylcholine\") OR (cc_catalytic_activity:phosphatidate)) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+      "record_count": 22,
+      "record_limit_per_lane": null,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 22,
+      "records_returned_by_query": 22,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.4.%2A%29+AND+%28%28protein_name%3A%22phospholipase+D%22%29+OR+%28protein_name%3A%22phospholipase+D-like%22%29+OR+%28cc_catalytic_activity%3A%22phosphatidylcholine%22%29+OR+%28cc_catalytic_activity%3Aphosphatidate%29%29+NOT+%28%28cc_cofactor%3Amagnesium%29+OR+%28cc_cofactor%3Amanganese%29+OR+%28cc_cofactor%3Azinc%29+OR+%28cc_cofactor%3Ametal%29+OR+%28keyword%3A%22Metal-binding%22%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=80",
+      "status": "query_fetched",
+      "target_family_lane": "metal_independent_phosphodiesterase"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If dedup, trust-tier, cap, leakage, and row guardrail gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via the family script `--apply` with frozen current702 sha checks.",
+  "novelty_gate": {
+    "decision_counts": {
+      "admit": 7
+    },
+    "reason_counts": {
+      "closes_hole_fingerprint": 7
+    }
+  },
+  "off_target_fingerprint_matches_sample": [
+    {
+      "entry_id": "uniprot:P20626",
+      "fingerprint_id": "metallophosphoesterase_nuclease"
+    },
+    {
+      "entry_id": "uniprot:Q86AV9",
+      "fingerprint_id": "metallophosphoesterase_nuclease"
+    },
+    {
+      "entry_id": "uniprot:Q59332",
+      "fingerprint_id": "metallophosphoesterase_nuclease"
+    },
+    {
+      "entry_id": "uniprot:Q59121",
+      "fingerprint_id": "metallophosphoesterase_nuclease"
+    }
+  ],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_metal_independent_phosphodiesterase_broadened_handle",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": []
+}

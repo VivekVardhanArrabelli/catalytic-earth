@@ -16,6 +16,56 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-15 automation update: PDE PLD source-wall scout is valid but subfloor; no registry
+mutation.** Treat this as the newest operational state for bronze scaleout. Hard safety remains
+green, frozen current702 stayed byte-unchanged at sha `5eec9bef...`, and no registry rows were
+applied. Counted label counters remain: external rows **7820**, external seed **6596**, external
+OOS **1224**, external silver **30**, combined label surface **8522**, combined seed surface
+**6826**, positive bronze **6779**, OOS bronze **1696**, silver_confirmed **47**, projected **0**.
+
+The remaining hole is still `metal_independent_phosphodiesterase`. The run added a narrow
+phospholipase-D split to the PDE source wall: `phospholipase D` family text plus explicit
+hydrolytic phosphodiester reaction participants such as phosphocholine,
+phosphoethanolamide/glycosylinositol, and glycero-3-phosphate. EC 3.1.4 and protein/reaction text
+stay scope/admission excluded context, phospholipase C remains a boundary hold, metal rows remain
+held, and `predictive_evidence` remains empty.
+
+Non-destructive PLD preview
+`artifacts/v3_metal_independent_phosphodiesterase_phospholipase_d_preview_current702_20260615_run2314.json`
+fetched **22** reviewed rows, produced **7** target mechanism-corroborated labels, held **4**
+off-target metallophosphoesterase/nuclease rows, and admitted **7** novelty-safe rows. Row audit
+`artifacts/v3_metal_independent_phosphodiesterase_phospholipase_d_row_guardrail_audit_current702_20260615_run2314.json`
+found **0** problem rows, but this is far below the 100-floor closure gate and was not applied.
+
+The run also added timeout-safe live fetching to
+`scripts/source_terpene_cyclase_synthase_family.py` and the terpene sourcing writer. Bounded
+terpene cap-close preview
+`artifacts/v3_terpene_cyclase_synthase_capclose_window170_preview_current702_20260615_run2314.json`
+fetched **138** rows but admitted **0** novelty-safe rows, so no cap-close apply was available.
+Fresh coverage/novelty/factory artifacts with `run2314_pre_lane` still show PDE as the lone hole,
+novelty replay **7359** admit / **414** throttle / **47** reject, **0** ready existing lanes
+>=150, and top current-handle clean supply **77**. Evidence-handle refresh
+`artifacts/v3_evidence_handle_expansion_current702_20260615_run2314.json` reports reviewed
+source-wall headroom but only for balanced/capped families that must not be padded without a
+family-specific gate.
+
+Next-lane source-tier scout
+`artifacts/v3_serine_beta_lactamase_source_tier_scout_current702_20260615_run2314.json` found
+reviewed serine beta-lactamase supply below the usual batch gate (**147** exact/name rows, **132**
+active/binding-site rows), but strict unreviewed tier-2 active-site/reaction supply is large
+(**1854** rows). This is only future-lane evidence: it requires a new guarded
+serine-beta-lactamase fingerprint/ontology/source runner, OOS preregistration, metallo/zinc and
+PBP/DD-peptidase/amidohydrolase holds, row audit, and source-contract/leakage tests before any
+apply.
+Design artifact
+`artifacts/v3_serine_beta_lactamase_build_plan_current702_20260615_run2314.json` records the
+no-apply build sequence and mechanism contract if this lane is used after another PDE attempt.
+
+Next action: do not apply the 7-row PLD preview, do not retry terpene window170, and do not reuse
+the broad PDE EC/name handles. Build a sharper mechanism-bearing PDE split capable of closing the
+100 floor, or design a new high-yield family/source-tier lane through the full OOS/preregistration,
+non-destructive preview, row audit, novelty/governor/dedup/cap, leakage, and source-contract gates.
+
 **2026-06-15 automation update: SDR 45fp floor batch applied; PDE remains the lone hole.** Treat
 this as the newest operational state for bronze scaleout. Hard safety remains green, frozen
 current702 stayed byte-unchanged at sha `5eec9bef...`, and growth happened only through the
