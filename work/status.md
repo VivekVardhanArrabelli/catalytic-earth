@@ -9,7 +9,7 @@
 - elapsed_minutes: 50.5
 - remaining_minutes: 4.5
 - current_task: closeout after N-ribosyl hydrolase 42fp infrastructure and below-gate source aggregate
-- origin_sync: pending final fetch/rebase check and push
+- origin_sync: direct push to `origin/main` completed after final fetch and ancestry check
 - registry_safety: green; external registry remains sharded, manifest is ~1.2 KB, shards are ~17 MB / 17 MB / 17 MB / 4.9 MB, and no `data/registries/` file is over 45 MB
 - frozen_current702_sha256: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
 - registry_mutation: none; no external bronze labels were applied and frozen current702 was not written
