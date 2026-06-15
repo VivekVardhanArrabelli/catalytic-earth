@@ -13,8 +13,38 @@ decision-log citation.
 
 ## 2026-06-12 update — measured re-scope of the path (read this first)
 
+Chronology note: the first dated update below is the current operational state. Older dated
+updates retain their original wording for historical context and should not override newer entries.
+
+**2026-06-15 automation update: discovery-compass source walls added; registry unchanged.**
+Treat this as the newest operational state for bronze scaleout. Hard safety remains green, the
+current positive universe remains `label_factory_v1_41fp`, frozen current702 was not written, and
+no labels/fingerprints/ontology nodes were applied.
+
+The high-yield factory now includes the 2026-06-15 discovery/de novo compass lanes and reports
+**0** ready existing lanes >=150. The top two high-yield candidates are no longer blocked on source
+wall design: both have tested preview-only rules in
+`src/catalytic_earth/external_cofactor_ec_disambiguation.py`, while fingerprint, ontology, OOS
+preregistration, source runner, preview, row audit, and explicit apply are still required.
+
+- `n_ribosyl_hydrolase`: reviewed non-EC-corroborated supply **1991**, projected clean admits
+  **150**, design-only preregistration
+  `artifacts/v3_n_ribosyl_hydrolase_lane_preregistration_current702_20260615_discovery_compass.json`.
+- `metal_independent_phosphodiesterase`: reviewed non-EC-corroborated supply **1129**, projected
+  clean admits **150**, design-only preregistration
+  `artifacts/v3_metal_independent_phosphodiesterase_lane_preregistration_current702_20260615_discovery_compass.json`.
+
+EC 3.2.2 / 3.1.4 / 4.6.1 remain scope-only and never counted. Metal-independent
+phosphodiesterase treats metal presence as a hold/filter; metal absence is not evidence. Next
+registry mutation should build `n_ribosyl_hydrolase` through the 42fp gated path, not pad SDR at
+84 admits and not apply from the preview-only source wall alone. Rebased context:
+`work/next_instance_representation_separability_fix_spec.md` is now an active prerequisite before
+more ester-hydrolase, phosphatase, or NAD-redox-subtype sourcing, which further argues against SDR
+padding before the representation fix.
+
 **2026-06-14 automation update: Ser/Thr protein phosphatase bronze batch applied after Rhea
-reaction-token fix.** Treat this as the newest operational state. Registry-size safety remains
+reaction-token fix.** Treat this as the latest counted-registry state, superseded for lane
+selection by the 2026-06-15 discovery-compass source-wall update above. Registry-size safety remains
 green: the external registry is still a small sharded manifest plus shard files below the per-file
 safety threshold. Frozen current702 stayed byte-unchanged at sha `5eec9bef...`.
 

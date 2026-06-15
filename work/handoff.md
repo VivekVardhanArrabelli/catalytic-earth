@@ -1,5 +1,67 @@
 # Handoff
 
+## Session run - Discovery-compass source walls ready; registry unchanged (2026-06-15, Codex automation)
+
+- Hard blockers stayed clear. Fetched/rebased onto current `origin/main` at start, acquired the
+  automation lock, and verified registry file-size safety: external bronze remains a sharded
+  manifest plus shards about **17 MB / 17 MB / 17 MB / 4.9 MB**, below the GitHub-safe threshold.
+  `PYTHONPATH=src python -m catalytic_earth.cli validate` passed at preflight with **12** source
+  records, **41** fingerprints, **38** ontology families, and **702** curated labels. No labels,
+  fingerprints, ontology nodes, or registries were written; frozen current702 remains sha
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+- Implemented preview-only source-wall rules for the two top discovery-compass high-yield lanes:
+  `n_ribosyl_hydrolase` and `metal_independent_phosphodiesterase` in
+  `src/catalytic_earth/external_cofactor_ec_disambiguation.py`. EC 3.2.2 / 3.1.4 / 4.6.1 remain
+  scope/fetch context only and never count as corroborators. N-ribosyl rows require non-EC family
+  text plus N-glycosidic hydrolysis reaction evidence and hold O-glycosidase, phosphorylase,
+  kinase, transferase, EC-only, and multi-signal rows. Metal-independent phosphodiesterase rows
+  require non-EC phosphodiesterase family text plus hydrolytic phosphodiester/cyclic-nucleotide
+  reaction evidence; metal presence is a hold/filter, not metal absence counted as evidence.
+- Refreshed the high-yield lane factory:
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260615_discovery_compass.json` and
+  `work/high_yield_family_lane_factory_current702_20260615_discovery_compass.md`. It ranks **14**
+  candidates, has **0** ready existing lanes >=150, and now marks the top two lanes as
+  `blocked_new_fingerprint_oos_prereg_and_runner_required` with
+  `source_wall_rule_status=implemented_preview_only`: `n_ribosyl_hydrolase` (**1991** reviewed
+  non-EC-corroborated supply, projected **150**) and `metal_independent_phosphodiesterase`
+  (**1129** supply, projected **150**).
+- Added/updated design-only preregistrations:
+  `artifacts/v3_n_ribosyl_hydrolase_lane_preregistration_current702_20260615_discovery_compass.json`
+  and
+  `artifacts/v3_metal_independent_phosphodiesterase_lane_preregistration_current702_20260615_discovery_compass.json`.
+  Both explicitly prohibit registry mutation from the artifact and require fingerprint + ontology,
+  OOS preregistration for the then-current fingerprint universe, source runner, bounded preview,
+  row guardrail audit, novelty/governor/dedup/cap replay, tests, and explicit apply before labels
+  can be admitted. `n_ribosyl_hydrolase` is the active first 42fp path; the phosphodiesterase
+  lane must use the next-fingerprint universe if it follows N-ribosyl.
+- Added next-lane build plan
+  `work/n_ribosyl_hydrolase_42fp_build_plan_current702_20260615.md` with the exact source-wall
+  contract, initial reviewed-UniProt lane queries, required 42fp OOS gate, and no-apply conditions.
+  Added follow-on build plan
+  `work/metal_independent_phosphodiesterase_nextfp_build_plan_current702_20260615.md` with the
+  metal-boundary rule and no-apply conditions for the second 150-row candidate.
+- Updated durable docs: `docs/project_state.md`, `docs/scaling_plan_to_10k.md`,
+  `docs/decision_log.md`, `docs/discovery_and_de_novo_strategy.md`, and `docs/artifact_index.md`.
+  The active next scaleout action is now `n_ribosyl_hydrolase` through the full gated 42fp path,
+  not a low-yield SDR topup and not a direct apply from the source wall.
+- Rebased over upstream commit `37b47be6`, which added
+  `work/next_instance_representation_separability_fix_spec.md`. Treat that spec as an active
+  constraint before more ester-hydrolase, phosphatase, or NAD-redox-subtype sourcing. It does not
+  by itself block the planned N-ribosyl hydrolase lane, but it should stop follow-on
+  phosphatase/ester/NAD scaleout until the representation fix is landed.
+- Closeout validation: post-rebase focused source-wall/factory/leakage/trust-tier suite
+  **298 passed, 14 subtests passed in 0.35s**; full suite before the docs/spec-only rebase
+  **2298 passed, 1 warning, 244 subtests passed in 165.46s**; CLI validate passed with **12**
+  source records, **41** fingerprints, **38** ontology families, and **702** curated labels; JSON
+  artifact/progress-log parse, registry file-size scan, and `git diff --check` passed. Closeout
+  snapshot: **2026-06-15T15:28:21Z**, elapsed **50.0** minutes, remaining **5.0** minutes.
+  Commit/push target is direct `origin/main`; after clean synced push, release the active lock with
+  `PYTHONPATH=src python -m catalytic_earth.cli automation-lock --lock-dir .git/catalytic-earth-automation.lock --repo-root "$PWD" release --require-clean --require-no-merge --require-synced`.
+- Next concrete action: build `n_ribosyl_hydrolase` as the first 42fp lane: add fingerprint and
+  ontology node, refresh hard-negative OOS preregistration, implement the reviewed-UniProt source
+  runner, run non-destructive preview + row guardrail audit, then apply only if novelty, governor,
+  dedup, cap, source-contract, and leakage gates pass.
+
 ## Session run - Ser/Thr protein phosphatase bronze batch applied (2026-06-14, Codex automation)
 
 - Hard blockers stayed clear. Local `main` matched fetched `origin/main` at start; registry safety

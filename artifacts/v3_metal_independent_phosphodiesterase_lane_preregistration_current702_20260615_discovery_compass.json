@@ -1,0 +1,68 @@
+{
+  "artifact_id": "v3_metal_independent_phosphodiesterase_lane_preregistration_current702_20260615_discovery_compass",
+  "created_utc": "2026-06-15T14:58:56Z",
+  "current_status_from_factory": {
+    "batch_gate_status": "blocked_new_fingerprint_oos_prereg_and_runner_required",
+    "cap_ceiling": 150,
+    "cap_room": 150,
+    "chemistry_confusable": true,
+    "projected_clean_admits_from_factory": 150,
+    "reviewed_non_ec_corroborated_supply": 1129,
+    "reviewed_scope_supply": 2726,
+    "source_wall_rule_status": "implemented_preview_only"
+  },
+  "decision": "Design-only preregistration. Do not mutate the registry from this artifact. The source-wall rule is implemented preview-only; build the fingerprint, ontology node, OOS preregistration, source runner, bounded preview, row guardrail audit, novelty/cap replay, tests, and explicit apply gate before any labels are admitted.",
+  "display_name": "Metal-independent phosphodiesterase",
+  "family_id": "metal_independent_phosphodiesterase",
+  "guardrails": {
+    "dedup_against_current702_and_external_required": true,
+    "ec_scope_only_never_counted": true,
+    "frozen_current702_preserved": true,
+    "labels_created": false,
+    "metal_absence_is_not_counted_as_evidence": true,
+    "novelty_gate_and_per_fingerprint_cap_required": true,
+    "predictive_evidence_must_remain_empty": true,
+    "registry_written": false,
+    "row_guardrail_audit_required_before_apply": true
+  },
+  "implementation_next_steps": [
+    "Add a new metal_independent_phosphodiesterase fingerprint and ontology node that separates hydrolytic phosphodiester/cyclic-nucleotide cleavage from metal phosphoesterase, phosphomonoesterase, and lyase chemistry.",
+    "Keep the preview-only external_cofactor_ec_disambiguation rule green: it admits only rows with non-EC phosphodiesterase family text plus hydrolytic phosphodiester/cyclic-nucleotide reaction evidence; EC remains scope/fetch context only.",
+    "Refresh the hard-negative OOS preregistration for the then-current next-positive-fingerprint universe before any apply.",
+    "Implement a reviewed UniProt source runner with bounded windows and entry-fetch timeouts if needed.",
+    "Run non-destructive preview, row guardrail audit, novelty/governor/dedup/cap admission, and apply only if all mechanism-first gates pass."
+  ],
+  "mechanism_contract": {
+    "counted_non_ec_corroborators": [
+      "phosphodiesterase or cyclic-nucleotide phosphodiesterase family/name handle",
+      "Rhea hydrolytic phosphodiester or cyclic-nucleotide P-O cleavage reaction",
+      "active-site acid/base or substrate-binding residue evidence where available"
+    ],
+    "hard_holds": [
+      "metal-dependent phosphodiesterase/nuclease rows",
+      "phosphomonoesterase and protein phosphatase rows",
+      "phospholipase C or cyclase/lyase rows without hydrolytic phosphodiester cleavage",
+      "kinase or transferase side rows",
+      "EC-only rows",
+      "multi-fingerprint signal conflicts"
+    ],
+    "new_fingerprint_required": true,
+    "oos_preregistration_required": "then-current label_factory_v1_<N>fp hard-negative preregistration before any apply",
+    "scope_ec_or_query_handles": [
+      "reviewed Swiss-Prot EC 3.1.4.* and 4.6.1.* may be used for fetch/stratification only",
+      "reviewed UniProt protein_name phosphodiesterase/cyclic-nucleotide phosphodiesterase may be used for candidate fetch and excluded admission context"
+    ]
+  },
+  "schema_version": "high_yield_family_lane_preregistration.v1",
+  "source_factory": "artifacts/v3_high_yield_family_lane_factory_current702_20260615_discovery_compass.json",
+  "source_wall_rule": {
+    "implemented_utc": "2026-06-15T14:58:56Z",
+    "module": "src/catalytic_earth/external_cofactor_ec_disambiguation.py",
+    "status": "implemented_preview_only_no_fingerprint_or_registry_mutation",
+    "tests": [
+      "tests/test_external_cofactor_ec_disambiguation.py::test_metal_independent_phosphodiesterase_requires_non_ec_mechanism_handles",
+      "tests/test_external_cofactor_ec_disambiguation.py::test_metal_independent_phosphodiesterase_boundary_controls_hold"
+    ]
+  },
+  "status": "design_only_no_labels_or_registry_written"
+}

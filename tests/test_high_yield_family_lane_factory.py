@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 
 from catalytic_earth.high_yield_family_lane_factory import (
+    HIGH_YIELD_FAMILY_SPECS,
     build_high_yield_family_lane_factory,
     evaluate_family_lane_spec,
     write_high_yield_family_lane_factory,
@@ -92,6 +93,29 @@ class HighYieldFamilyLaneFactoryTests(unittest.TestCase):
             row["batch_gate_status"],
             "blocked_existing_cap_room_below_150",
         )
+
+    def test_discovery_compass_lanes_are_first_class_new_fingerprint_specs(self) -> None:
+        specs = {spec["family_id"]: spec for spec in HIGH_YIELD_FAMILY_SPECS}
+
+        self.assertIn("metal_independent_phosphodiesterase", specs)
+        self.assertIn("n_ribosyl_hydrolase", specs)
+        for family_id in (
+            "metal_independent_phosphodiesterase",
+            "n_ribosyl_hydrolase",
+        ):
+            row = evaluate_family_lane_spec(
+                specs[family_id],
+                registry_counts={},
+                count_fetcher=lambda _query: {"total_results": 500},
+            )
+            self.assertEqual(
+                row["batch_gate_status"],
+                "blocked_new_fingerprint_oos_prereg_and_runner_required",
+            )
+            self.assertFalse(row["mechanism_rule_required"])
+            self.assertEqual(row["source_wall_rule_status"], "implemented_preview_only")
+            self.assertTrue(row["oos_preregistration_required"])
+            self.assertFalse(row["passes_150_batch_gate_now"])
 
     def test_build_rollup_keeps_honest_counters_separate(self) -> None:
         audit = build_high_yield_family_lane_factory(

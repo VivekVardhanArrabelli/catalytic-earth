@@ -1,6 +1,6 @@
 # Project State
 
-Last refreshed: 2026-06-14
+Last refreshed: 2026-06-15
 
 This file is the durable state summary for agents who do not have chat context.
 Treat it as an orientation layer, not as a replacement for the referenced
@@ -26,8 +26,48 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **DISCOVERY-COMPASS SOURCE WALLS ADDED; NO REGISTRY MUTATION (2026-06-15 automation).**
+  Hard safety remains green, the current positive universe stays `label_factory_v1_41fp`, and no
+  labels, fingerprints, ontology nodes, or registries were written. Frozen current702 remains
+  byte-unchanged at sha `5eec9bef...`; the external registry remains sharded and below per-file
+  safety limits.
+
+  The 2026-06-15 discovery/de novo compass was converted into reusable, mechanism-first scaleout
+  infrastructure for the two top 150-row candidates. Added preview-only source-wall rules in
+  `src/catalytic_earth/external_cofactor_ec_disambiguation.py` for
+  `n_ribosyl_hydrolase` and `metal_independent_phosphodiesterase`. EC 3.2.2 / 3.1.4 / 4.6.1 are
+  scope/fetch context only and are never counted. N-ribosyl rows require non-EC family/name text
+  plus N-glycosidic hydrolysis reaction evidence and hold O-glycosidase, phosphorylase, kinase,
+  transferase, EC-only, and multi-signal rows. Metal-independent phosphodiesterase rows require
+  non-EC phosphodiesterase family text plus hydrolytic phosphodiester/cyclic-nucleotide reaction
+  evidence; metal presence is a hold/filter, not metal absence counted as evidence.
+
+  Refreshed factory artifact:
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260615_discovery_compass.json`.
+  It ranks **14** candidates, finds **0** ready existing lanes >=150, and reports two
+  high-yield blocked lanes with source walls already implemented preview-only:
+  `n_ribosyl_hydrolase` (**1991** reviewed non-EC-corroborated supply, projected **150**) and
+  `metal_independent_phosphodiesterase` (**1129** reviewed non-EC-corroborated supply, projected
+  **150**). Design-only preregistrations are
+  `artifacts/v3_n_ribosyl_hydrolase_lane_preregistration_current702_20260615_discovery_compass.json`
+  and
+  `artifacts/v3_metal_independent_phosphodiesterase_lane_preregistration_current702_20260615_discovery_compass.json`.
+  Next-lane build plans:
+  `work/n_ribosyl_hydrolase_42fp_build_plan_current702_20260615.md` and
+  `work/metal_independent_phosphodiesterase_nextfp_build_plan_current702_20260615.md`; both
+  identify the exact fingerprint/ontology registries, OOS preregistration constants, leakage
+  tests, and minimum validation commands for the next implementation pass.
+
+  Next action: build `n_ribosyl_hydrolase` as the first 42fp lane through fingerprint + ontology
+  node, OOS preregistration refresh, reviewed-UniProt source runner, non-destructive preview, row
+  guardrail audit, novelty/governor/dedup/cap replay, and explicit apply. Do not treat the
+  preview-only source-wall rule as sufficient for registry mutation.
+  Rebased context: `work/next_instance_representation_separability_fix_spec.md` is an active
+  upstream constraint before more ester-hydrolase, phosphatase, or NAD-redox-subtype sourcing; it
+  does not by itself block the N-ribosyl hydrolase next-lane path.
+
 - **SER/THR PROTEIN PHOSPHATASE BRONZE BATCH APPLIED (2026-06-14 automation).**
-  Newest operational state: hard safety remains green and the current positive universe stays
+  Previous counted-registry state: hard safety remains green and the current positive universe stays
   `label_factory_v1_41fp`. Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; growth
   happened only in the sharded external registry.
 

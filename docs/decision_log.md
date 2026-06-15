@@ -24,6 +24,36 @@ more ester-hydrolase / phosphatase / NAD-redox-subtype families, or that growth 
 (piles up as review_chemistry_disagrees / low-cohesion bronze). One owner for the representation
 module at a time (the spec is the hand-off so two automations don't both edit it).
 
+## 2026-06-15: DISCOVERY-COMPASS LANES HAVE PREVIEW-ONLY SOURCE WALLS; REGISTRY STILL BLOCKED
+
+Decision: use the 2026-06-15 discovery/de novo compass as a scaleout guide, but do not treat its
+candidate lanes as registry-ready. Implemented preview-only source-wall rules for
+`n_ribosyl_hydrolase` and `metal_independent_phosphodiesterase` in
+`src/catalytic_earth/external_cofactor_ec_disambiguation.py`; no fingerprints, ontology nodes,
+labels, or registries were written.
+
+Mechanism discipline: EC 3.2.2 / 3.1.4 / 4.6.1 are scope/fetch context only and are never counted.
+N-ribosyl admission requires non-EC family/name text plus N-glycosidic hydrolysis reaction evidence,
+with phosphorylase, kinase, transferase, O-glycosidase, EC-only, and multi-signal rows held.
+Metal-independent phosphodiesterase admission requires non-EC phosphodiesterase family text plus
+hydrolytic phosphodiester/cyclic-nucleotide reaction evidence; metal presence is a hold/filter and
+metal absence is not counted as evidence.
+
+Measured planning result: refreshed factory artifact
+`artifacts/v3_high_yield_family_lane_factory_current702_20260615_discovery_compass.json` ranks
+`n_ribosyl_hydrolase` first (**1991** reviewed non-EC-corroborated supply, projected **150**) and
+`metal_independent_phosphodiesterase` second (**1129** supply, projected **150**). Both are
+`blocked_new_fingerprint_oos_prereg_and_runner_required` with
+`source_wall_rule_status=implemented_preview_only`. Design-only preregistrations live at
+`artifacts/v3_n_ribosyl_hydrolase_lane_preregistration_current702_20260615_discovery_compass.json`
+and
+`artifacts/v3_metal_independent_phosphodiesterase_lane_preregistration_current702_20260615_discovery_compass.json`.
+
+Decision: next registry mutation should build `n_ribosyl_hydrolase` through the full 42fp path:
+fingerprint + ontology node, OOS preregistration refresh, reviewed-UniProt source runner,
+non-destructive preview, row guardrail audit, novelty/governor/dedup/cap replay, and explicit
+apply. Do not apply labels from the preview-only source wall alone.
+
 ## 2026-06-15: DISCOVERY & DE NOVO STRATEGY (see docs/discovery_and_de_novo_strategy.md)
 
 Decision (direction, conversation-derived; no code change): keep scaling the atlas via

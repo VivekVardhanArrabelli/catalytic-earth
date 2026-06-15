@@ -1,16 +1,18 @@
 # Automation status
 
 - automation_id: ce-nad-glyco-floor-expansion
-- started_at_utc: 2026-06-14T23:04:02Z
-- started_local: Sun Jun 14 18:04:02 CDT 2026
+- started_at_utc: 2026-06-15T14:38:18Z
+- started_local: Mon Jun 15 09:38:18 CDT 2026
 - budget_minutes: 55
 - planned_closeout_minute: 50
-- closeout_snapshot_utc: 2026-06-14T23:55:10Z
-- elapsed_minutes: 51.1
-- remaining_minutes: 3.9
-- current_task: closeout after Ser/Thr Rhea token fix, 112-row guarded bronze apply, quality/planning refreshes, final validation, commit/push, and lock release
-- registry_safety: green; external registry remains sharded, manifest is ~1.2 KB, shards are ~17 MB / 17 MB / 17 MB / 4.9 MB, and no `data/registries/` file is near the 45 MB safety threshold
+- closeout_snapshot_utc: 2026-06-15T15:28:21Z
+- elapsed_minutes: 50.0
+- remaining_minutes: 5.0
+- current_task: discovery-compass source-wall scaleout infrastructure; no registry mutation
+- origin_sync: fetched origin during closeout; rebased over 37b47be6 (representation-separability fix spec, hand-off only)
+- registry_safety: green; external registry remains sharded, manifest is ~4 KB, shards are ~17 MB / 17 MB / 17 MB / 4.9 MB, and no `data/registries/` file is over 45 MB
 - frozen_current702_sha256: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
+- registry_mutation: none; no labels, fingerprints, ontology nodes, or registries were written
 - honest_counters:
   - external_rows: 7420
   - external_seed: 6196
@@ -23,54 +25,25 @@
   - oos_bronze: 1696
   - silver_confirmed: 47
   - projected: 0
+- scaling_summary:
+  - high_yield_ready_existing_lanes_ge_150: 0
+  - top_projected_clean_admits: n_ribosyl_hydrolase 150
+  - second_projected_clean_admits: metal_independent_phosphodiesterase 150
+  - source_wall_rule_status: both implemented_preview_only
+  - gating_status: both blocked_new_fingerprint_oos_prereg_and_runner_required
+  - upstream_constraint: representation separability fix should land before more ester-hydrolase, phosphatase, or NAD-redox-subtype sourcing
 - validation:
   - cli_validate: passed; 12 source records, 41 fingerprints, 38 ontology families, 702 curated labels
-  - focused_affected: 324 passed, 14 subtests passed in 58.72s
-  - representation_pin_rerun: 1 passed in 2.99s
-  - full_suite_final: 2293 passed, 1 warning, 244 subtests passed in 164.73s
-  - progress_jsonl: tests/test_progress.py 3 passed
-  - json_parse: passed for new/updated JSON artifacts and progress_log
+  - focused_affected_post_rebase: 298 passed, 14 subtests passed in 0.35s
+  - full_suite_pre_rebase: 2298 passed, 1 warning, 244 subtests passed in 165.46s
+  - json_parse: passed for new JSON artifacts and progress_log JSONL
   - diff_check: passed
   - file_size_scan: passed; no `data/registries/` file over 45 MB
 - artifacts:
-  - `artifacts/v3_ser_thr_protein_phosphatase_sourcing_preview_aggregate_current702_20260614_post_rhea_token_fix.json`
-  - `artifacts/v3_ser_thr_protein_phosphatase_row_guardrail_audit_current702_20260614_post_rhea_token_fix.json`
-  - `artifacts/v3_coverage_redundancy_audit_current702_20260614_post_ser_thr_apply.json`
-  - `artifacts/v3_novelty_admission_gate_audit_current702_20260614_post_ser_thr_apply.json`
-  - `artifacts/v3_high_yield_family_lane_factory_current702_20260614_post_ser_thr_apply.json`
-  - `artifacts/v3_bronze_silver_promotion_preview_current702_20260614_post_ser_thr_apply.json`
-  - `artifacts/v3_chemistry_disagree_triage_current702_20260614_post_ser_thr_apply.json`
-  - `artifacts/v3_cohesion_threshold_calibration_current702_20260614_post_ser_thr_apply.json`
-  - `artifacts/v3_silver_geometry_confirmation_audit_current702_20260614_post_ser_thr_apply.json`
-  - `artifacts/v3_silver_geometry_confirmation_run_current702_20260614_post_ser_thr_apply_preview.json`
-  - `artifacts/v3_silver_pdb_residue_mapping_current702_20260614_post_ser_thr_apply_full_preview.json`
-  - `artifacts/v3_silver_holo_coordinate_materialization_current702_20260614_post_ser_thr_apply_reuse_preview.json`
-  - `artifacts/v3_label_pdb_id_backfill_preview_ser_thr_protein_phosphatase_current702_20260614_post_ser_thr_apply.json`
-  - `artifacts/v3_label_pdb_id_backfill_preview_current702_20260614_post_ser_thr_apply_limit150.json`
-  - `artifacts/v3_short_chain_dehydrogenase_reductase_lane_preregistration_current702_20260614_post_ser_thr_apply.json`
-  - `artifacts/v3_evidence_handle_expansion_current702_20260614_post_ser_thr_apply.json`
-  - `artifacts/v3_breadth_feasibility_scout_current702_20260614_post_ser_thr_apply.json`
-- ser_thr_apply_summary:
-  - fetched_candidate_rows: 743
-  - unique_mechanism_corroborated: 170
-  - novelty_admitted: 112
-  - novelty_throttled_or_rejected: 58
-  - off_target_metallophosphomonoesterase_held: 2
-  - row_guardrail_problems: 0
-- quality_refresh:
-  - silver_ready_pending_geometry: 202
-  - silver_geometry_ready: 108
-  - silver_geometry_pass: 0
-  - chemistry_disagrees: 1742
-  - low_chemistry_cohesion: 1779
-  - ser_thr_rows_with_pdb_ids: 13
-  - ser_thr_pdb_xref_backfilled: 0
-  - full_residue_mapping_rows_mapped: 0
-  - residue_mapping_blockers: missing_mmcif_alignment_tables 82; no_exact_residues 4; no_residue_positions_mapped 116
-- planning_refresh:
-  - high_yield_ready_existing_lanes_ge_150: 0
-  - top_projected_clean_admits: short_chain_dehydrogenase_reductase 84
-  - evidence_handle_reachable_positive_bronze_uplift: 741
-  - reviewed_swissprot_clean_positive_projection: 9067
-  - reviewed_swissprot_positive_gap_to_10k: 933
-- next_action: improve source handles or source tiers before another mass-growth registry mutation; use the SDR design-only preregistration as the current top candidate, and continue silver residue-mapping/geometry representation work for the 202 pending silver-ready rows
+  - `artifacts/v3_high_yield_family_lane_factory_current702_20260615_discovery_compass.json`
+  - `work/high_yield_family_lane_factory_current702_20260615_discovery_compass.md`
+  - `artifacts/v3_n_ribosyl_hydrolase_lane_preregistration_current702_20260615_discovery_compass.json`
+  - `artifacts/v3_metal_independent_phosphodiesterase_lane_preregistration_current702_20260615_discovery_compass.json`
+  - `work/n_ribosyl_hydrolase_42fp_build_plan_current702_20260615.md`
+  - `work/metal_independent_phosphodiesterase_nextfp_build_plan_current702_20260615.md`
+- next_action: build `n_ribosyl_hydrolase` as the first 42fp lane through fingerprint, ontology, OOS preregistration refresh, reviewed-UniProt source runner, non-destructive preview, row guardrail audit, novelty/governor/dedup/cap replay, source-contract/leakage validation, and explicit apply only if all gates pass
