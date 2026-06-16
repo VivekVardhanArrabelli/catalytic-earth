@@ -1,0 +1,469 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "artifact_lineage": {
+      "artifact_paths": {
+        "candidate_manifest": "artifacts/v3_external_source_candidate_manifest_current702_20260616_run1604.json",
+        "current_boundary_control": "artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_t12_allvsall_uniref_current702_20260616_run2004.json",
+        "reaction_evidence_sample": "artifacts/v3_external_source_reaction_evidence_sample_current702_20260616_run1604.json",
+        "transfer_blocker_matrix": "artifacts/v3_external_source_transfer_blocker_matrix_full47_current702_20260616_run1604.json"
+      },
+      "blocker_removed": "p33025_glycoside_boundary_replacement_candidates_ranked",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "candidate_manifest": 20260616,
+        "current_boundary_control": 20260616,
+        "reaction_evidence_sample": 20260616,
+        "transfer_blocker_matrix": 20260616
+      },
+      "payload_methods": {
+        "candidate_manifest": "external_source_candidate_manifest",
+        "current_boundary_control": "external_source_pilot_glycoside_hydrolase_boundary_control",
+        "reaction_evidence_sample": "external_source_reaction_evidence_sample",
+        "transfer_blocker_matrix": "external_source_transfer_blocker_matrix"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {
+        "current_boundary_control": {
+          "metadata.artifact_lineage.slice_id": 20260616,
+          "metadata.slice_id": 20260616
+        },
+        "transfer_blocker_matrix": {
+          "metadata.artifact_lineage.slice_id": 20260616
+        }
+      },
+      "slice_id": 20260616,
+      "slice_members": {
+        "20260616": [
+          "candidate_manifest",
+          "current_boundary_control",
+          "reaction_evidence_sample",
+          "transfer_blocker_matrix"
+        ]
+      }
+    },
+    "blocker_not_removed": [
+      "candidate_not_import_ready",
+      "explicit_review_decision_not_recorded",
+      "full_label_factory_gate_not_run"
+    ],
+    "blocker_removed": "p33025_glycoside_boundary_replacement_candidates_ranked",
+    "candidate_count": 6,
+    "countable_label_candidate_count": 0,
+    "current_boundary_control_failure": "The glycoside-hydrolase boundary evidence is incomplete.",
+    "current_boundary_control_status": "review_only_glycoside_hydrolase_boundary_incomplete",
+    "fetch_failure_count": 0,
+    "import_ready_candidate_count": 0,
+    "method": "external_source_pilot_glycoside_hydrolase_replacement_scout",
+    "ready_for_label_import": false,
+    "replacement_status_counts": {
+      "replacement_review_packet_ready": 1,
+      "replacement_scope_mismatch_or_low_priority": 5
+    },
+    "review_only": true,
+    "selected_replacement_accession": "Q6NSJ0",
+    "slice_id": 20260616,
+    "source_candidate_manifest_method": "external_source_candidate_manifest",
+    "source_current_boundary_control_method": "external_source_pilot_glycoside_hydrolase_boundary_control",
+    "source_reaction_evidence_method": "external_source_reaction_evidence_sample",
+    "source_transfer_blocker_matrix_method": "external_source_transfer_blocker_matrix",
+    "target_failed_accession": "P33025"
+  },
+  "rows": [
+    {
+      "accession": "Q6NSJ0",
+      "blocker_summary": {
+        "active_site_ready": true,
+        "glycoside_hydrolase_reaction": true,
+        "glycosyltransferase_reaction": false,
+        "remaining_review_blockers": [
+          "external_decision_artifact_not_built",
+          "external_embeddings_not_computed",
+          "external_mechanism_evidence_not_attached",
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run",
+          "heuristic_control_scores_not_computed",
+          "heuristic_scope_top1_mismatch",
+          "learned_or_structure_language_embedding_not_run",
+          "representation_backend_not_selected",
+          "representation_control_proxy_flags_scope_top1_mismatch"
+        ],
+        "sequence_holdout_or_near_duplicate_blocked": false
+      },
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q6NSJ0",
+      "lane_id": "external_source:glycan_chemistry",
+      "protein_name": "Alpha-galactosidase MYORG (EC 3.2.1.22) (Myogenesis regulating glycosidase) (Nuclear envelope transmembrane protein 37)",
+      "reaction_context": {
+        "has_specific_reaction_context": true,
+        "reaction_record_count": 1,
+        "rhea_ids": [
+          "RHEA:21112"
+        ],
+        "specific_ec_numbers": [
+          "3.2.1.22"
+        ]
+      },
+      "ready_for_label_import": false,
+      "recommended_next_action": "promote candidate into a replacement pilot packet, then rerun representation, duplicate, explicit-review, factory, novelty, governor, and row-guardrail gates before any import",
+      "replacement_for_accession": "P33025",
+      "replacement_score": 14,
+      "replacement_status": "replacement_review_packet_ready",
+      "review_status": "external_pilot_glycoside_hydrolase_replacement_scout_review_only",
+      "scope_signal": "glycan_chemistry",
+      "uniprot_feature_context": {
+        "active_site_evidence_reference_count": 1,
+        "active_site_feature_count": 2,
+        "active_site_features": [
+          {
+            "begin": 463,
+            "description": "Nucleophile",
+            "end": 463,
+            "evidence": [
+              {
+                "evidence_code": "ECO:0000305",
+                "id": "36129849",
+                "source": "PubMed"
+              }
+            ]
+          },
+          {
+            "begin": 520,
+            "description": "Proton donor/acceptor",
+            "end": 520,
+            "evidence": [
+              {
+                "evidence_code": "ECO:0000305",
+                "id": "36129849",
+                "source": "PubMed"
+              }
+            ]
+          }
+        ],
+        "annotation_score": 5.0,
+        "binding_site_feature_count": 8,
+        "catalytic_activity_count": 1,
+        "catalytic_activity_ec_numbers": [
+          "3.2.1.22"
+        ],
+        "catalytic_activity_rhea_ids": [],
+        "cofactor_comment_count": 0,
+        "entry_type": "UniProtKB reviewed (Swiss-Prot)",
+        "fetch_status": "fetched",
+        "source_url": "https://rest.uniprot.org/uniprotkb/Q6NSJ0.json"
+      }
+    },
+    {
+      "accession": "P30176",
+      "blocker_summary": {
+        "active_site_ready": false,
+        "glycoside_hydrolase_reaction": false,
+        "glycosyltransferase_reaction": false,
+        "remaining_review_blockers": [
+          "external_active_site_evidence_not_sampled",
+          "external_decision_artifact_not_built",
+          "external_mechanism_evidence_not_attached",
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run",
+          "heuristic_control_not_scored",
+          "heuristic_control_scores_not_computed",
+          "representation_backend_plan_missing_or_not_eligible",
+          "representation_control_not_compared"
+        ],
+        "sequence_holdout_or_near_duplicate_blocked": false
+      },
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P30176",
+      "lane_id": "external_source:glycan_chemistry",
+      "protein_name": "N-glycosidase YbiA (EC 3.2.2.-) (Riboflavin biosynthesis intermediates N-glycosidase)",
+      "reaction_context": {
+        "has_specific_reaction_context": false,
+        "reaction_record_count": 2,
+        "rhea_ids": [
+          "RHEA:10880",
+          "RHEA:12324"
+        ],
+        "specific_ec_numbers": []
+      },
+      "ready_for_label_import": false,
+      "recommended_next_action": "do not use as the glycoside-hydrolase boundary replacement without new source evidence",
+      "replacement_for_accession": "P33025",
+      "replacement_score": 4,
+      "replacement_status": "replacement_scope_mismatch_or_low_priority",
+      "review_status": "external_pilot_glycoside_hydrolase_replacement_scout_review_only",
+      "scope_signal": "glycan_chemistry",
+      "uniprot_feature_context": {
+        "active_site_evidence_reference_count": 0,
+        "active_site_feature_count": 0,
+        "active_site_features": [],
+        "annotation_score": 5.0,
+        "binding_site_feature_count": 0,
+        "catalytic_activity_count": 2,
+        "catalytic_activity_ec_numbers": [],
+        "catalytic_activity_rhea_ids": [
+          "RHEA:23436",
+          "RHEA:55020"
+        ],
+        "cofactor_comment_count": 0,
+        "entry_type": "UniProtKB reviewed (Swiss-Prot)",
+        "fetch_status": "fetched",
+        "source_url": "https://rest.uniprot.org/uniprotkb/P30176.json"
+      }
+    },
+    {
+      "accession": "P29372",
+      "blocker_summary": {
+        "active_site_ready": false,
+        "glycoside_hydrolase_reaction": false,
+        "glycosyltransferase_reaction": false,
+        "remaining_review_blockers": [
+          "active_site_gap_source_request:reaction_text_only_needs_curated_residue_source",
+          "explicit_active_site_residue_sources_absent",
+          "explicit_active_site_residue_sources_not_collected",
+          "external_active_site_feature_gap",
+          "external_decision_artifact_not_built",
+          "external_mechanism_evidence_not_attached",
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run",
+          "heuristic_control_not_scored",
+          "heuristic_control_scores_not_computed",
+          "primary_active_site_source_required",
+          "representation_backend_plan_missing_or_not_eligible",
+          "representation_control_not_compared"
+        ],
+        "sequence_holdout_or_near_duplicate_blocked": false
+      },
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P29372",
+      "lane_id": "external_source:glycan_chemistry",
+      "protein_name": "DNA-3-methyladenine glycosylase (EC 3.2.2.21) (3-alkyladenine DNA glycosylase) (3-methyladenine DNA glycosidase) (ADPG) (N-methylpurine-DNA glycosylase)",
+      "reaction_context": {
+        "has_specific_reaction_context": false,
+        "reaction_record_count": 0,
+        "rhea_ids": [],
+        "specific_ec_numbers": []
+      },
+      "ready_for_label_import": false,
+      "recommended_next_action": "do not use as the glycoside-hydrolase boundary replacement without new source evidence",
+      "replacement_for_accession": "P33025",
+      "replacement_score": 1,
+      "replacement_status": "replacement_scope_mismatch_or_low_priority",
+      "review_status": "external_pilot_glycoside_hydrolase_replacement_scout_review_only",
+      "scope_signal": "glycan_chemistry",
+      "uniprot_feature_context": {
+        "active_site_evidence_reference_count": 0,
+        "active_site_feature_count": 0,
+        "active_site_features": [],
+        "annotation_score": 5.0,
+        "binding_site_feature_count": 0,
+        "catalytic_activity_count": 1,
+        "catalytic_activity_ec_numbers": [
+          "3.2.2.21"
+        ],
+        "catalytic_activity_rhea_ids": [],
+        "cofactor_comment_count": 0,
+        "entry_type": "UniProtKB reviewed (Swiss-Prot)",
+        "fetch_status": "fetched",
+        "source_url": "https://rest.uniprot.org/uniprotkb/P29372.json"
+      }
+    },
+    {
+      "accession": "Q3SY77",
+      "blocker_summary": {
+        "active_site_ready": false,
+        "glycoside_hydrolase_reaction": false,
+        "glycosyltransferase_reaction": true,
+        "remaining_review_blockers": [
+          "active_site_gap_source_request:reaction_text_only_needs_curated_residue_source",
+          "explicit_active_site_residue_sources_absent",
+          "explicit_active_site_residue_sources_not_collected",
+          "external_active_site_feature_gap",
+          "external_decision_artifact_not_built",
+          "external_mechanism_evidence_not_attached",
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run",
+          "heuristic_control_not_scored",
+          "heuristic_control_scores_not_computed",
+          "primary_active_site_source_required",
+          "representation_backend_plan_missing_or_not_eligible",
+          "representation_control_not_compared"
+        ],
+        "sequence_holdout_or_near_duplicate_blocked": false
+      },
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q3SY77",
+      "lane_id": "external_source:glycan_chemistry",
+      "protein_name": "UDP-glycosyltransferase 3A2 (UDPGT 3A2) (EC 2.4.1.170) (EC 2.4.1.185)",
+      "reaction_context": {
+        "has_specific_reaction_context": true,
+        "reaction_record_count": 4,
+        "rhea_ids": [
+          "RHEA:17497",
+          "RHEA:55416",
+          "RHEA:65152",
+          "RHEA:65244"
+        ],
+        "specific_ec_numbers": [
+          "2.4.1.170",
+          "2.4.1.185"
+        ]
+      },
+      "ready_for_label_import": false,
+      "recommended_next_action": "do not use as the glycoside-hydrolase boundary replacement without new source evidence",
+      "replacement_for_accession": "P33025",
+      "replacement_score": 1,
+      "replacement_status": "replacement_scope_mismatch_or_low_priority",
+      "review_status": "external_pilot_glycoside_hydrolase_replacement_scout_review_only",
+      "scope_signal": "glycan_chemistry",
+      "uniprot_feature_context": {
+        "active_site_evidence_reference_count": 0,
+        "active_site_feature_count": 0,
+        "active_site_features": [],
+        "annotation_score": 5.0,
+        "binding_site_feature_count": 0,
+        "catalytic_activity_count": 6,
+        "catalytic_activity_ec_numbers": [
+          "2.4.1.170",
+          "2.4.1.185"
+        ],
+        "catalytic_activity_rhea_ids": [
+          "RHEA:17497",
+          "RHEA:55416",
+          "RHEA:56048",
+          "RHEA:56056",
+          "RHEA:56344",
+          "RHEA:65152"
+        ],
+        "cofactor_comment_count": 0,
+        "entry_type": "UniProtKB reviewed (Swiss-Prot)",
+        "fetch_status": "fetched",
+        "source_url": "https://rest.uniprot.org/uniprotkb/Q3SY77.json"
+      }
+    },
+    {
+      "accession": "Q6NUS8",
+      "blocker_summary": {
+        "active_site_ready": false,
+        "glycoside_hydrolase_reaction": false,
+        "glycosyltransferase_reaction": true,
+        "remaining_review_blockers": [
+          "active_site_gap_source_request:reaction_text_only_needs_curated_residue_source",
+          "explicit_active_site_residue_sources_absent",
+          "explicit_active_site_residue_sources_not_collected",
+          "external_active_site_feature_gap",
+          "external_decision_artifact_not_built",
+          "external_mechanism_evidence_not_attached",
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run",
+          "heuristic_control_not_scored",
+          "heuristic_control_scores_not_computed",
+          "primary_active_site_source_required",
+          "representation_backend_plan_missing_or_not_eligible",
+          "representation_control_not_compared"
+        ],
+        "sequence_holdout_or_near_duplicate_blocked": false
+      },
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q6NUS8",
+      "lane_id": "external_source:glycan_chemistry",
+      "protein_name": "UDP-glycosyltransferase 3A1 (UDPGT 3A1) (EC 2.4.1.170) (UDP-N-acetylglucosaminyltransferase 3A1)",
+      "reaction_context": {
+        "has_specific_reaction_context": true,
+        "reaction_record_count": 2,
+        "rhea_ids": [
+          "RHEA:17497",
+          "RHEA:55416"
+        ],
+        "specific_ec_numbers": [
+          "2.4.1.170"
+        ]
+      },
+      "ready_for_label_import": false,
+      "recommended_next_action": "do not use as the glycoside-hydrolase boundary replacement without new source evidence",
+      "replacement_for_accession": "P33025",
+      "replacement_score": 1,
+      "replacement_status": "replacement_scope_mismatch_or_low_priority",
+      "review_status": "external_pilot_glycoside_hydrolase_replacement_scout_review_only",
+      "scope_signal": "glycan_chemistry",
+      "uniprot_feature_context": {
+        "active_site_evidence_reference_count": 0,
+        "active_site_feature_count": 0,
+        "active_site_features": [],
+        "annotation_score": 5.0,
+        "binding_site_feature_count": 0,
+        "catalytic_activity_count": 1,
+        "catalytic_activity_ec_numbers": [
+          "2.4.1.170"
+        ],
+        "catalytic_activity_rhea_ids": [
+          "RHEA:56056"
+        ],
+        "cofactor_comment_count": 0,
+        "entry_type": "UniProtKB reviewed (Swiss-Prot)",
+        "fetch_status": "fetched",
+        "source_url": "https://rest.uniprot.org/uniprotkb/Q6NUS8.json"
+      }
+    },
+    {
+      "accession": "Q68CQ7",
+      "blocker_summary": {
+        "active_site_ready": false,
+        "glycoside_hydrolase_reaction": false,
+        "glycosyltransferase_reaction": true,
+        "remaining_review_blockers": [
+          "external_active_site_evidence_not_sampled",
+          "external_decision_artifact_not_built",
+          "external_mechanism_evidence_not_attached",
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run",
+          "heuristic_control_not_scored",
+          "heuristic_control_scores_not_computed",
+          "representation_backend_plan_missing_or_not_eligible",
+          "representation_control_not_compared"
+        ],
+        "sequence_holdout_or_near_duplicate_blocked": false
+      },
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q68CQ7",
+      "lane_id": "external_source:glycan_chemistry",
+      "protein_name": "Glycosyltransferase 8 domain-containing protein 1 (EC 2.4.1.-)",
+      "reaction_context": {
+        "has_specific_reaction_context": false,
+        "reaction_record_count": 2,
+        "rhea_ids": [
+          "RHEA:10068",
+          "RHEA:10088"
+        ],
+        "specific_ec_numbers": []
+      },
+      "ready_for_label_import": false,
+      "recommended_next_action": "do not use as the glycoside-hydrolase boundary replacement without new source evidence",
+      "replacement_for_accession": "P33025",
+      "replacement_score": -2,
+      "replacement_status": "replacement_scope_mismatch_or_low_priority",
+      "review_status": "external_pilot_glycoside_hydrolase_replacement_scout_review_only",
+      "scope_signal": "glycan_chemistry",
+      "uniprot_feature_context": {
+        "active_site_evidence_reference_count": 0,
+        "active_site_feature_count": 0,
+        "active_site_features": [],
+        "annotation_score": 5.0,
+        "binding_site_feature_count": 0,
+        "catalytic_activity_count": 0,
+        "catalytic_activity_ec_numbers": [],
+        "catalytic_activity_rhea_ids": [],
+        "cofactor_comment_count": 0,
+        "entry_type": "UniProtKB reviewed (Swiss-Prot)",
+        "fetch_status": "fetched",
+        "source_url": "https://rest.uniprot.org/uniprotkb/Q68CQ7.json"
+      }
+    }
+  ],
+  "warnings": [
+    "Replacement scout rows are source-transfer review context only; they cannot authorize labels or registry import."
+  ]
+}

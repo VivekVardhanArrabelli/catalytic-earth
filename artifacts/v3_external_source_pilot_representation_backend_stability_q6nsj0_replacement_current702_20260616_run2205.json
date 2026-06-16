@@ -1,0 +1,153 @@
+{
+  "blockers": [],
+  "metadata": {
+    "baseline_candidate_count": 15,
+    "baseline_embedding_backend": "deterministic_sequence_kmer_control",
+    "baseline_embedding_backend_available": true,
+    "baseline_embedding_vector_dimension": null,
+    "baseline_model_name": null,
+    "blocker_removed": "compares baseline and upgraded learned representation controls without changing countable labels",
+    "comparison_backend_feasibility_status": "computed",
+    "comparison_blocker_not_removed": null,
+    "comparison_candidate_count": 13,
+    "comparison_embedding_backend": "deterministic_sequence_kmer_control",
+    "comparison_embedding_backend_available": true,
+    "comparison_embedding_backend_unavailable_row_count": 0,
+    "comparison_embedding_elapsed_seconds": 0.0198,
+    "comparison_embedding_failure_count": 0,
+    "comparison_embedding_vector_dimension": null,
+    "comparison_expected_embedding_vector_dimension": null,
+    "comparison_fallback_not_computed_reason": null,
+    "comparison_fallback_reason": null,
+    "comparison_fallback_selected_backend": null,
+    "comparison_fallback_used": false,
+    "comparison_largest_feasible_embedding_backend": null,
+    "comparison_largest_supported_embedding_backend": null,
+    "comparison_model_name": null,
+    "comparison_requested_backend_feasibility_status": "computed",
+    "comparison_requested_backend_local_cache_status": "not_applicable",
+    "comparison_requested_backend_smoke_status": "not_applicable",
+    "comparison_requested_embedding_backend": "deterministic_sequence_kmer_control",
+    "comparison_requested_embedding_failure_count": 0,
+    "comparison_requested_expected_embedding_vector_dimension": null,
+    "comparison_requested_model_name": "facebook/esm2_t6_8M_UR50D",
+    "countable_label_candidate_count": 0,
+    "guardrail_clean": true,
+    "heuristic_disagreement_status_changed_count": 0,
+    "heuristic_disagreement_status_stable_count": 3,
+    "heuristic_fingerprint_context_changed_count": 3,
+    "heuristic_fingerprint_context_stable_count": 0,
+    "method": "external_source_representation_backend_stability_audit",
+    "nearest_reference_changed_count": 0,
+    "nearest_reference_entry_ids_changed_count": 0,
+    "nearest_reference_entry_ids_stable_count": 3,
+    "nearest_reference_stable_count": 3,
+    "ready_for_label_import": false,
+    "shared_candidate_count": 3,
+    "stability_status": "changed"
+  },
+  "rows": [
+    {
+      "accession": "O14756",
+      "baseline_backend_status": "sequence_kmer_embedding_control_complete",
+      "baseline_embedding_backend": "deterministic_sequence_kmer_control",
+      "baseline_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "baseline_nearest_reference_accession": "P05057",
+      "baseline_nearest_reference_entry_ids": [
+        "m_csa:647"
+      ],
+      "baseline_top_embedding_cosine": 0.8935,
+      "comparison_backend_status": "sequence_kmer_embedding_control_complete",
+      "comparison_embedding_backend": "deterministic_sequence_kmer_control",
+      "comparison_fallback_reason": null,
+      "comparison_fallback_used": false,
+      "comparison_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "comparison_nearest_reference_accession": "P05057",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:647"
+      ],
+      "comparison_requested_embedding_backend": "deterministic_sequence_kmer_control",
+      "comparison_top_embedding_cosine": 0.8935,
+      "countable_label_candidate": false,
+      "heuristic_disagreement_status_stable": true,
+      "heuristic_fingerprint_context_stable": false,
+      "heuristic_top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "nearest_reference_entry_ids_stable": true,
+      "nearest_reference_stable": true,
+      "ready_for_label_import": false,
+      "review_status": "representation_backend_stability_audit_review_only",
+      "stability_flags": [
+        "heuristic_fingerprint_context_changed"
+      ]
+    },
+    {
+      "accession": "P33025",
+      "baseline_backend_status": "sequence_kmer_embedding_control_complete",
+      "baseline_embedding_backend": "deterministic_sequence_kmer_control",
+      "baseline_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "baseline_nearest_reference_accession": "P0A786",
+      "baseline_nearest_reference_entry_ids": [
+        "m_csa:405"
+      ],
+      "baseline_top_embedding_cosine": 0.9,
+      "comparison_backend_status": "sequence_kmer_embedding_control_complete",
+      "comparison_embedding_backend": "deterministic_sequence_kmer_control",
+      "comparison_fallback_reason": null,
+      "comparison_fallback_used": false,
+      "comparison_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "comparison_nearest_reference_accession": "P0A786",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:405"
+      ],
+      "comparison_requested_embedding_backend": "deterministic_sequence_kmer_control",
+      "comparison_top_embedding_cosine": 0.9,
+      "countable_label_candidate": false,
+      "heuristic_disagreement_status_stable": true,
+      "heuristic_fingerprint_context_stable": false,
+      "heuristic_top1_fingerprint_id": "coa_acyltransferase",
+      "nearest_reference_entry_ids_stable": true,
+      "nearest_reference_stable": true,
+      "ready_for_label_import": false,
+      "review_status": "representation_backend_stability_audit_review_only",
+      "stability_flags": [
+        "heuristic_fingerprint_context_changed"
+      ]
+    },
+    {
+      "accession": "Q6NSJ0",
+      "baseline_backend_status": "sequence_kmer_embedding_control_complete",
+      "baseline_embedding_backend": "deterministic_sequence_kmer_control",
+      "baseline_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "baseline_nearest_reference_accession": "P07342",
+      "baseline_nearest_reference_entry_ids": [
+        "m_csa:289"
+      ],
+      "baseline_top_embedding_cosine": 0.9144,
+      "comparison_backend_status": "sequence_kmer_embedding_control_complete",
+      "comparison_embedding_backend": "deterministic_sequence_kmer_control",
+      "comparison_fallback_reason": null,
+      "comparison_fallback_used": false,
+      "comparison_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "comparison_nearest_reference_accession": "P07342",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:289"
+      ],
+      "comparison_requested_embedding_backend": "deterministic_sequence_kmer_control",
+      "comparison_top_embedding_cosine": 0.9144,
+      "countable_label_candidate": false,
+      "heuristic_disagreement_status_stable": true,
+      "heuristic_fingerprint_context_stable": false,
+      "heuristic_top1_fingerprint_id": "metallophosphomonoesterase",
+      "nearest_reference_entry_ids_stable": true,
+      "nearest_reference_stable": true,
+      "ready_for_label_import": false,
+      "review_status": "representation_backend_stability_audit_review_only",
+      "stability_flags": [
+        "heuristic_fingerprint_context_changed"
+      ]
+    }
+  ],
+  "warnings": [
+    "representation backend stability audits compare sequence-derived controls only; they cannot authorize external label import"
+  ]
+}

@@ -472,6 +472,49 @@ class CliTests(unittest.TestCase):
         self.assertEqual(args.resolved_pilot_decisions, "/tmp/terminal.json")
         self.assertEqual(args.pilot_success_criteria, "/tmp/success.json")
 
+    def test_external_source_pilot_glycoside_replacement_scout_parser(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-external-source-pilot-glycoside-hydrolase-replacement-scout",
+                "--candidate-manifest",
+                "/tmp/candidates.json",
+                "--transfer-blocker-matrix",
+                "/tmp/matrix.json",
+                "--reaction-evidence-sample",
+                "/tmp/reactions.json",
+                "--current-boundary-control",
+                "/tmp/control.json",
+                "--target-accession",
+                "P33025",
+                "--skip-live-uniprot-fetch",
+            ]
+        )
+
+        self.assertEqual(args.candidate_manifest, "/tmp/candidates.json")
+        self.assertEqual(args.transfer_blocker_matrix, "/tmp/matrix.json")
+        self.assertEqual(args.reaction_evidence_sample, "/tmp/reactions.json")
+        self.assertEqual(args.current_boundary_control, "/tmp/control.json")
+        self.assertEqual(args.target_accession, "P33025")
+        self.assertTrue(args.skip_live_uniprot_fetch)
+
+    def test_external_source_pilot_candidate_priority_pinned_parser(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-external-source-pilot-candidate-priority",
+                "--transfer-blocker-matrix",
+                "/tmp/matrix.json",
+                "--pinned-accessions",
+                "Q6NSJ0,P33025",
+            ]
+        )
+
+        self.assertEqual(args.transfer_blocker_matrix, "/tmp/matrix.json")
+        self.assertEqual(args.pinned_accessions, ["Q6NSJ0,P33025"])
+
     def test_external_source_pilot_mechanism_repair_source_context_optional(
         self,
     ) -> None:

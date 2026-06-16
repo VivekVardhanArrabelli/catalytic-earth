@@ -16,6 +16,37 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-16 automation update: Q6NSJ0 replacement source-transfer packet built; no registry
+apply.** Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; no label registry rows were
+written. Run2205 coverage/novelty replays confirm the state is unchanged at **8728** combined
+labels = **702** frozen + **8026** expansion, with no holes, floor deficit **0**, novelty replay
+**7565** admit / **414** throttle / **47** reject, and only `metal_dependent_hydrolase` over cap.
+The run2205 factory refresh still has **0** ready existing lanes >=150 and top projected clean
+admits **77**, so no padding lane was applied.
+
+Run2205 selected Q6NSJ0 as the review-only glycoside replacement for the failed P33025 boundary row:
+`artifacts/v3_external_source_pilot_glycoside_hydrolase_replacement_scout_current702_20260616_run2205.json`.
+Pinned source-pilot priority support places Q6NSJ0 into the selected 13-row review worklist in
+`artifacts/v3_external_source_pilot_candidate_priority_q6nsj0_replacement_current702_20260616_run2205.json`.
+The Q6NSJ0 packet carries explicit UniProt active-site features at **463** and **520**, Rhea
+**RHEA:21112**, bounded sequence search with no current-reference hit, and UniRef90/50 no-overlap
+evidence in
+`artifacts/v3_external_source_pilot_uniref_current_reference_screen_q6nsj0_replacement_current702_20260616_run2205.json`.
+
+No import was authorized. `artifacts/v3_external_source_pilot_success_criteria_q6nsj0_replacement_current702_20260616_run2205.json`
+still reports `needs_more_work`; terminal decisions are **7** `deferred_requires_human_expert` and
+**6** active-site-evidence rejections, with **0** import-ready and **0** countable rows. The expert
+queue
+`artifacts/v3_external_source_pilot_human_expert_review_queue_q6nsj0_replacement_current702_20260616_run2205.json`
+has **7** queued rows and, after duplicate-screen replay, only `full_label_factory_gate_not_run` as
+the non-human queue blocker. The gap audit
+`artifacts/v3_external_source_pilot_review_resolution_gap_audit_q6nsj0_replacement_current702_20260616_run2205.json`
+still holds all **7** rows for missing family import-safety adjudication / review / factory gates.
+Next action: create a current-slice `needs_review_resolution` and repair-lane mapping for Q6NSJ0,
+run glycoside import-safety adjudication on that replacement packet, then rerun success,
+terminal/confidence normalization, label-factory, novelty, governor, and row-guardrail gates before
+any import.
+
 **2026-06-16 automation update: source-transfer review resolution gap mapped; no registry apply.**
 Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; no label registry rows were written.
 Run2105 coverage/novelty replays confirm the state is unchanged at **8728** combined labels =

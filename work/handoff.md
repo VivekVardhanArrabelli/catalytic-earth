@@ -1,5 +1,66 @@
 # Handoff
 
+## Session run - Q6NSJ0 replacement packet routed; no registry apply (2026-06-16, Codex automation)
+
+- Started from current `origin/main` at `e399887446677b2c47c0b72564d634842d357b4d`,
+  acquired `.git/catalytic-earth-automation.lock`, and confirmed frozen current702 sha before and
+  after work stayed `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. No label
+  registry apply was attempted.
+- Baseline/final safety stayed green: `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed; focused registry/source/leakage/novelty/import/transfer/CLI tests passed **607 passed,
+  174 subtests**; final full `PYTHONPATH=src pytest -q` passed **2389 passed, 1 warning, 244
+  subtests**. `compileall`, JSON parsing, hard-limit scan, and `git diff --check` passed.
+- Fresh planning/post-noapply state:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run2205_pre_lane.json`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run2205_post_noapply.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run2205_pre_lane.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run2205_post_noapply.json`,
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260616_run2205_pre_lane.json`,
+  `artifacts/v3_evidence_handle_expansion_current702_20260616_run2205_pre_lane.json`,
+  `artifacts/v3_breadth_feasibility_scout_current702_20260616_run2205_pre_lane.json`, and
+  `artifacts/v3_source_scale_limit_audit_current702_20260616_run2205.json`. Coverage remains
+  **8728** combined = **702** frozen + **8026** expansion, no holes, floor deficit **0**, novelty
+  replay **7565** admit / **414** throttle / **47** reject, top ready lane **77**, reviewed
+  Swiss-Prot projection **9673**, gap **327** to 10k.
+- Added review-only Q6NSJ0 replacement scouting and pinned pilot selection support. Key artifacts:
+  `artifacts/v3_external_source_pilot_glycoside_hydrolase_replacement_scout_current702_20260616_run2205.json`
+  selected Q6NSJ0 as the P33025 replacement candidate, and
+  `artifacts/v3_external_source_pilot_candidate_priority_q6nsj0_replacement_current702_20260616_run2205.json`
+  selected **13** pilot rows with Q6NSJ0 pinned. Pinned rows now flow into review export/evidence
+  packets without becoming import-ready or countable.
+- Advanced Q6NSJ0 through the review-only source-transfer packet:
+  `artifacts/v3_external_source_active_site_evidence_sample_q6nsj0_window_current702_20260616_run2205.json`,
+  `artifacts/v3_external_source_pilot_evidence_dossiers_q6nsj0_replacement_current702_20260616_run2205.json`,
+  `artifacts/v3_external_source_pilot_active_site_evidence_decisions_q6nsj0_replacement_current702_20260616_run2205.json`,
+  and `artifacts/v3_external_source_pilot_uniref_current_reference_screen_q6nsj0_replacement_current702_20260616_run2205.json`.
+  Q6NSJ0 has explicit active-site positions **463** and **520**, Rhea **RHEA:21112**, bounded
+  sequence no-signal, and no UniRef90/50 current-reference overlap.
+- Built exact current-slice representation/decision routing artifacts:
+  `artifacts/v3_external_source_pilot_representation_backend_plan_q6nsj0_replacement_current702_20260616_run2205.json`,
+  `artifacts/v3_external_source_pilot_representation_backend_sample_q6nsj0_replacement_current702_20260616_run2205.json`,
+  `artifacts/v3_external_source_pilot_representation_backend_stability_q6nsj0_replacement_current702_20260616_run2205.json`,
+  `artifacts/v3_external_source_pilot_representation_adjudication_q6nsj0_replacement_current702_20260616_run2205.json`,
+  `artifacts/v3_external_source_pilot_success_criteria_q6nsj0_replacement_current702_20260616_run2205.json`,
+  `artifacts/v3_external_source_pilot_terminal_decisions_q6nsj0_replacement_current702_20260616_run2205.json`,
+  `artifacts/v3_external_source_pilot_decision_confidence_audit_q6nsj0_replacement_current702_20260616_run2205.json`,
+  and normalized review artifacts. Terminal status remains **7** `deferred_requires_human_expert`,
+  **6** `rejected_active_site_evidence_missing`, **0** import-ready, **0** countable.
+- The expert queue
+  `artifacts/v3_external_source_pilot_human_expert_review_queue_q6nsj0_replacement_current702_20260616_run2205.json`
+  has **7** queued rows. After duplicate-screen replay, its only non-human blocker is
+  `full_label_factory_gate_not_run`. The gap audit
+  `artifacts/v3_external_source_pilot_review_resolution_gap_audit_q6nsj0_replacement_current702_20260616_run2205.json`
+  still holds **7** rows for missing family import-safety adjudication / review / factory gates.
+- Storage/doc hygiene: docs reference check
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260616_run2205.json` has **0**
+  missing references. Storage inventory/policy/manifest/readiness artifacts record **14963** files,
+  **43** large-unclassified policy blockers, **0** deletion authorized, and **0** migration-ready
+  rows; no `data/registries` or `artifacts` file exceeds **90 MB**.
+- Next exact action: build a current-slice `needs_review_resolution` and repair-lane mapping for
+  Q6NSJ0, then run `build-external-source-pilot-glycoside-hydrolase-import-safety-adjudication`
+  against the replacement packet. Only after that, rerun success criteria, terminal/confidence
+  normalization, label-factory, novelty, governor, and row-guardrail gates before any import.
+
 ## Session run - source-transfer review gap mapped; acyl-CoA control adjudicated; no registry apply (2026-06-16, Codex automation)
 
 - Recovered the stale run2004 worktree first, validated it, and committed it as

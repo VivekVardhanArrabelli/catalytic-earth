@@ -58,10 +58,35 @@ EXTERNAL_PILOT_IMPORT_REVIEW_REQUIREMENTS = (
     "review_decision",
     "full_label_factory_gate",
 )
+EXTERNAL_PILOT_SELECTED_STATUSES = frozenset(
+    {
+        "selected_for_review_pilot",
+        "pinned_selected_for_review_pilot",
+    }
+)
+EXTERNAL_PILOT_DUPLICATE_SCREEN_CLEAR_STATUSES = frozenset(
+    {
+        "current_reference_external_all_vs_all_uniref_no_signal",
+        "uniref_current_reference_screen_no_current_reference_overlap",
+    }
+)
 EXTERNAL_HARD_NEGATIVE_ABSTAIN_THRESHOLD = 0.4115
 EXTERNAL_HARD_NEGATIVE_THRESHOLD_POLICY_VERSION = (
     "external_hard_negative_threshold_policy_v1_2026_05_17"
 )
+
+
+def _external_pilot_row_selected(row: dict[str, Any]) -> bool:
+    return (
+        str(row.get("pilot_selection_status") or "")
+        in EXTERNAL_PILOT_SELECTED_STATUSES
+    )
+
+
+def _external_pilot_duplicate_screen_cleared(status: Any) -> bool:
+    return str(status or "") in EXTERNAL_PILOT_DUPLICATE_SCREEN_CLEAR_STATUSES
+
+
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_VERSION = (
     "external_hard_negative_tranche_v2_2026_05_17"
 )
@@ -3492,10 +3517,7 @@ def build_external_source_pilot_representation_backend_plan(
     for priority_row in pilot_candidate_priority.get("rows", []) or []:
         if not isinstance(priority_row, dict):
             continue
-        if (
-            priority_row.get("pilot_selection_status")
-            != "selected_for_review_pilot"
-        ):
+        if not _external_pilot_row_selected(priority_row):
             continue
         accession = _normalize_accession(priority_row.get("accession"))
         if not accession:
@@ -4645,7 +4667,7 @@ def audit_external_source_pilot_representation_adjudication(
         row
         for row in pilot_candidate_priority.get("rows", []) or []
         if isinstance(row, dict)
-        and str(row.get("pilot_selection_status") or "") == "selected_for_review_pilot"
+        and _external_pilot_row_selected(row)
     ][:max_rows]
     baseline_by_accession = _representation_sample_rows_by_accession(
         pilot_representation_backend_sample
@@ -4739,9 +4761,9 @@ def audit_external_source_pilot_representation_adjudication(
                 "prior_representation_control_status": prior_status,
                 "representation_control_adjudication_status": status,
                 "representation_control_process_status": (
-                    "adjudicated_from_8m_vs_largest_feasible_esm2"
-                    if stability_row
-                    else "missing_stability_audit_row"
+                    _external_pilot_representation_adjudication_process_status(
+                        stability_row
+                    )
                 ),
                 "representation_import_blocker": import_blocker,
                 "import_readiness_blockers": blockers,
@@ -4786,7 +4808,7 @@ def audit_external_source_pilot_representation_adjudication(
         "metadata": {
             "method": "external_source_pilot_representation_adjudication",
             "blocker_removed": (
-                "selected_pilot_representation_controls_adjudicated_from_8m_vs_largest_feasible_esm2_stability"
+                "selected_pilot_representation_controls_adjudicated_from_backend_stability"
             ),
             "blocker_not_removed": stability_meta.get("comparison_blocker_not_removed"),
             "review_only": True,
@@ -4881,6 +4903,28 @@ def _external_pilot_representation_adjudication_status(
     if stable:
         return "representation_control_adjudicated_review_only"
     return "representation_stability_changed_requires_review"
+
+
+def _external_pilot_representation_adjudication_process_status(
+    stability_row: dict[str, Any],
+) -> str:
+    if not stability_row:
+        return "missing_stability_audit_row"
+    baseline_backend = str(stability_row.get("baseline_embedding_backend") or "")
+    comparison_backend = str(stability_row.get("comparison_embedding_backend") or "")
+    requested_backend = str(
+        stability_row.get("comparison_requested_embedding_backend")
+        or comparison_backend
+    )
+    if (
+        baseline_backend == "deterministic_sequence_kmer_control"
+        and comparison_backend == "deterministic_sequence_kmer_control"
+        and requested_backend == "deterministic_sequence_kmer_control"
+    ):
+        return "adjudicated_from_deterministic_representation_stability"
+    if requested_backend.startswith("esm2") or comparison_backend.startswith("esm2"):
+        return "adjudicated_from_esm2_representation_stability"
+    return "adjudicated_from_backend_representation_stability"
 
 
 def _external_pilot_representation_adjudication_blocker(status: str) -> str | None:
@@ -8530,6 +8574,7 @@ def build_external_source_pilot_candidate_priority(
     *,
     max_candidates: int = 10,
     max_per_lane: int = 2,
+    pinned_accessions: list[str] | None = None,
 ) -> dict[str, Any]:
     """Rank external candidates for the first focused review pilot.
 
@@ -8541,6 +8586,11 @@ def build_external_source_pilot_candidate_priority(
         raise ValueError("max_candidates must be positive")
     if max_per_lane < 1:
         raise ValueError("max_per_lane must be positive")
+    pinned_accession_set = {
+        _normalize_accession(accession)
+        for accession in (pinned_accessions or [])
+        if _normalize_accession(accession)
+    }
 
     ranked_rows: list[dict[str, Any]] = []
     for row in transfer_blocker_matrix.get("rows", []) or []:
@@ -8603,7 +8653,56 @@ def build_external_source_pilot_candidate_priority(
     lane_counts: Counter[str] = Counter()
     selected_rows: list[dict[str, Any]] = []
     deferred_rows: list[dict[str, Any]] = []
+    selected_accession_set: set[str] = set()
+    ranked_by_accession = {
+        str(row.get("accession")): row
+        for row in ranked_rows
+        if row.get("accession")
+    }
+    for accession in sorted(pinned_accession_set):
+        row = ranked_by_accession.get(accession)
+        if row is None:
+            deferred_rows.append(
+                {
+                    "accession": accession,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "pilot_selection_status": "pinned_accession_not_in_matrix",
+                    "review_status": "external_pilot_candidate_priority_review_only",
+                }
+            )
+            continue
+        if not row.get("eligible_for_review_pilot"):
+            deferred_rows.append(
+                {
+                    **row,
+                    "pilot_selection_status": (
+                        "pinned_deferred_by_holdout_or_near_duplicate"
+                    ),
+                }
+            )
+            continue
+        if len(selected_rows) >= max_candidates:
+            deferred_rows.append(
+                {
+                    **row,
+                    "pilot_selection_status": "pinned_deferred_by_max_candidates",
+                }
+            )
+            continue
+        lane_id = str(row.get("lane_id") or "unknown")
+        selected_row = {
+            **row,
+            "pilot_selection_status": "pinned_selected_for_review_pilot",
+        }
+        selected_rows.append(selected_row)
+        selected_accession_set.add(accession)
+        lane_counts[lane_id] += 1
+
     for row in ranked_rows:
+        accession = str(row.get("accession") or "")
+        if accession in selected_accession_set:
+            continue
         lane_id = str(row.get("lane_id") or "unknown")
         if not row.get("eligible_for_review_pilot"):
             deferred_rows.append(
@@ -8642,6 +8741,13 @@ def build_external_source_pilot_candidate_priority(
             ),
             "max_candidates": max_candidates,
             "max_per_lane": max_per_lane,
+            "pinned_accessions": sorted(pinned_accession_set),
+            "pinned_selected_accessions": [
+                row["accession"]
+                for row in selected_rows
+                if row.get("pilot_selection_status")
+                == "pinned_selected_for_review_pilot"
+            ],
             "selected_candidate_count": len(selected_rows),
             "selected_accessions": selected_accessions,
             "selected_lane_counts": dict(sorted(lane_counts.items())),
@@ -8739,7 +8845,7 @@ def build_external_source_pilot_review_decision_export(
         row
         for row in pilot_candidate_priority.get("rows", []) or []
         if isinstance(row, dict)
-        and row.get("pilot_selection_status") == "selected_for_review_pilot"
+        and _external_pilot_row_selected(row)
     ][:max_rows]
 
     review_items: list[dict[str, Any]] = []
@@ -8822,7 +8928,7 @@ def build_external_source_pilot_evidence_packet(
         row
         for row in pilot_candidate_priority.get("rows", []) or []
         if isinstance(row, dict)
-        and row.get("pilot_selection_status") == "selected_for_review_pilot"
+        and _external_pilot_row_selected(row)
     ][:max_rows]
     active_by_accession = {
         _normalize_accession(row.get("accession")): row
@@ -9546,7 +9652,7 @@ def build_external_structural_tm_holdout_path(
     selected_accessions = [
         _normalize_accession(row.get("accession"))
         for row in priority_rows
-        if row.get("pilot_selection_status") == "selected_for_review_pilot"
+        if _external_pilot_row_selected(row)
     ]
     selected_accession_set = set(selected_accessions)
 
@@ -14994,6 +15100,10 @@ def build_external_source_pilot_terminal_decisions(
             dossier_row=dossier_row,
         )
         heuristic_control = dossier_row.get("heuristic_control", {})
+        broader_duplicate_screening_status = (
+            success_row.get("broader_duplicate_screening_status")
+            or active_row.get("broader_duplicate_screening_status")
+        )
         unresolved_evidence = _external_pilot_terminal_unresolved_evidence(
             terminal_status=terminal_status,
             active_row=active_row,
@@ -15065,8 +15175,8 @@ def build_external_source_pilot_terminal_decisions(
                         "backend_sequence_search_status"
                     )
                     or sequence_evidence.get("backend_search_status"),
-                    "broader_duplicate_screening_status": active_row.get(
-                        "broader_duplicate_screening_status"
+                    "broader_duplicate_screening_status": (
+                        broader_duplicate_screening_status
                     ),
                     "top_alignment_hits": sequence_evidence.get(
                         "top_alignment_hits", []
@@ -18985,6 +19095,324 @@ def build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication(
     }
 
 
+def build_external_source_pilot_glycoside_hydrolase_replacement_scout(
+    *,
+    candidate_manifest: dict[str, Any],
+    transfer_blocker_matrix: dict[str, Any],
+    reaction_evidence_sample: dict[str, Any],
+    current_boundary_control: dict[str, Any] | None = None,
+    target_accession: str = "P33025",
+    max_rows: int = 10,
+    uniprot_entry_fetcher: Callable[[str], dict[str, Any]] | None = fetch_uniprot_entry,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Rank review-only replacements for a failed glycoside-boundary row."""
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    target_accession = _normalize_accession(target_accession)
+    matrix_by_accession = _external_first_row_by_accession(transfer_blocker_matrix)
+    reaction_context_by_entry = _external_reaction_context_by_entry(
+        reaction_evidence_sample
+    )
+    boundary_control_by_accession = _external_first_row_by_accession(
+        current_boundary_control or {}
+    )
+    current_control_row = boundary_control_by_accession.get(target_accession, {})
+
+    glycan_rows = [
+        row
+        for row in candidate_manifest.get("rows", []) or []
+        if isinstance(row, dict)
+        and _normalize_accession(row.get("accession"))
+        and row.get("lane_id") == "external_source:glycan_chemistry"
+    ]
+
+    rows: list[dict[str, Any]] = []
+    fetch_failures: list[dict[str, Any]] = []
+    for manifest_row in glycan_rows:
+        accession = _normalize_accession(manifest_row.get("accession"))
+        if not accession or accession == target_accession:
+            continue
+        entry_id = manifest_row.get("entry_id") or f"uniprot:{accession}"
+        matrix_row = matrix_by_accession.get(accession, {})
+        blockers = {
+            str(blocker)
+            for blocker in (
+                (manifest_row.get("blockers", []) or [])
+                + (matrix_row.get("blockers", []) or [])
+                + (matrix_row.get("import_readiness_blockers", []) or [])
+            )
+            if blocker
+        }
+        reaction_context = reaction_context_by_entry.get(
+            entry_id, _empty_external_reaction_context(entry_id)
+        )
+
+        uniprot_context: dict[str, Any] = {
+            "fetch_status": "skipped",
+            "active_site_feature_count": 0,
+            "binding_site_feature_count": 0,
+            "catalytic_activity_count": 0,
+            "cofactor_comment_count": 0,
+            "active_site_features": [],
+            "catalytic_activity_ec_numbers": [],
+            "catalytic_activity_rhea_ids": [],
+            "entry_type": None,
+        }
+        if uniprot_entry_fetcher is not None:
+            try:
+                payload = uniprot_entry_fetcher(accession)
+                record = payload.get("record", {}) if isinstance(payload, dict) else {}
+                active_features = [
+                    feature
+                    for feature in record.get("active_site_features", []) or []
+                    if isinstance(feature, dict)
+                ]
+                catalytic_comments = [
+                    comment
+                    for comment in record.get("catalytic_activity_comments", [])
+                    or []
+                    if isinstance(comment, dict)
+                ]
+                catalytic_rhea_ids = sorted(
+                    {
+                        str(reference.get("id"))
+                        for comment in catalytic_comments
+                        for reference in comment.get("cross_references", []) or []
+                        if isinstance(reference, dict)
+                        and reference.get("database") == "Rhea"
+                        and reference.get("id")
+                    }
+                )
+                uniprot_context = {
+                    "fetch_status": "fetched",
+                    "source_url": (payload.get("metadata", {}) or {}).get("url"),
+                    "entry_type": record.get("entry_type"),
+                    "annotation_score": record.get("annotation_score"),
+                    "active_site_feature_count": len(active_features),
+                    "binding_site_feature_count": len(
+                        record.get("binding_site_features", []) or []
+                    ),
+                    "catalytic_activity_count": len(catalytic_comments),
+                    "cofactor_comment_count": len(
+                        record.get("cofactor_comments", []) or []
+                    ),
+                    "active_site_features": [
+                        {
+                            "begin": feature.get("begin"),
+                            "end": feature.get("end"),
+                            "description": feature.get("description"),
+                            "evidence": feature.get("evidence", []),
+                        }
+                        for feature in active_features[:5]
+                    ],
+                    "active_site_evidence_reference_count": (
+                        _external_feature_evidence_reference_count(active_features)
+                    ),
+                    "catalytic_activity_ec_numbers": sorted(
+                        {
+                            str(comment.get("ec_number"))
+                            for comment in catalytic_comments
+                            if comment.get("ec_number")
+                        }
+                    ),
+                    "catalytic_activity_rhea_ids": catalytic_rhea_ids,
+                }
+            except Exception as exc:  # pragma: no cover - exercised by live runs
+                fetch_failures.append(
+                    {
+                        "accession": accession,
+                        "error": type(exc).__name__,
+                        "message": str(exc),
+                    }
+                )
+                uniprot_context["fetch_status"] = "fetch_failed"
+                uniprot_context["fetch_error"] = type(exc).__name__
+
+        reaction_ecs = set(reaction_context.get("specific_ec_numbers", []) or [])
+        reaction_ecs.update(reaction_context.get("broad_or_incomplete_ec_numbers", []) or [])
+        reaction_ecs.update(uniprot_context.get("catalytic_activity_ec_numbers", []) or [])
+        reaction_text = " ".join(
+            str(row.get("equation") or row.get("reaction") or "")
+            for row in reaction_evidence_sample.get("rows", []) or []
+            if isinstance(row, dict)
+            and _normalize_accession(row.get("accession")) == accession
+        ).lower()
+        glycoside_hydrolase_reaction = any(
+            str(ec).startswith("3.2.1") for ec in reaction_ecs
+        ) or any(
+            token in reaction_text
+            for token in (
+                "galactoside",
+                "glycoside",
+                "glycan",
+                "terminal, non-reducing alpha-d-galactose",
+            )
+        )
+        glycosyltransferase_reaction = any(
+            str(ec).startswith("2.4.") for ec in reaction_ecs
+        )
+        active_site_ready = (
+            int(uniprot_context.get("active_site_feature_count", 0) or 0) >= 2
+        )
+        sequence_holdout_blocked = any(
+            blocker
+            for blocker in blockers
+            if "sequence_holdout" in blocker
+            or "near_duplicate" in blocker
+            or "exact_sequence" in blocker
+        )
+        score = 0
+        if glycoside_hydrolase_reaction:
+            score += 5
+        if active_site_ready:
+            score += 4
+        if uniprot_context.get("catalytic_activity_count"):
+            score += 2
+        if reaction_context.get("has_specific_reaction_context"):
+            score += 2
+        if uniprot_context.get("catalytic_activity_rhea_ids"):
+            score += 1
+        if not sequence_holdout_blocked:
+            score += 1
+        if glycosyltransferase_reaction and not glycoside_hydrolase_reaction:
+            score -= 3
+        if "primary_active_site_source_required" in blockers:
+            score -= 2
+
+        if glycoside_hydrolase_reaction and active_site_ready and not sequence_holdout_blocked:
+            replacement_status = "replacement_review_packet_ready"
+            recommended_next_action = (
+                "promote candidate into a replacement pilot packet, then rerun "
+                "representation, duplicate, explicit-review, factory, novelty, "
+                "governor, and row-guardrail gates before any import"
+            )
+        elif glycoside_hydrolase_reaction:
+            replacement_status = "replacement_needs_active_site_or_duplicate_repair"
+            recommended_next_action = (
+                "collect explicit active-site and duplicate-screen evidence before "
+                "using this row as the P33025 replacement"
+            )
+        else:
+            replacement_status = "replacement_scope_mismatch_or_low_priority"
+            recommended_next_action = (
+                "do not use as the glycoside-hydrolase boundary replacement without "
+                "new source evidence"
+            )
+
+        rows.append(
+            {
+                "accession": accession,
+                "entry_id": entry_id,
+                "lane_id": manifest_row.get("lane_id"),
+                "protein_name": manifest_row.get("protein_name"),
+                "scope_signal": manifest_row.get("scope_signal"),
+                "replacement_for_accession": target_accession,
+                "replacement_status": replacement_status,
+                "replacement_score": score,
+                "reaction_context": {
+                    "has_specific_reaction_context": reaction_context.get(
+                        "has_specific_reaction_context"
+                    ),
+                    "specific_ec_numbers": reaction_context.get(
+                        "specific_ec_numbers", []
+                    ),
+                    "rhea_ids": reaction_context.get("rhea_ids", []),
+                    "reaction_record_count": reaction_context.get(
+                        "reaction_record_count", 0
+                    ),
+                },
+                "uniprot_feature_context": uniprot_context,
+                "blocker_summary": {
+                    "remaining_review_blockers": sorted(blockers),
+                    "sequence_holdout_or_near_duplicate_blocked": (
+                        sequence_holdout_blocked
+                    ),
+                    "glycoside_hydrolase_reaction": glycoside_hydrolase_reaction,
+                    "glycosyltransferase_reaction": glycosyltransferase_reaction,
+                    "active_site_ready": active_site_ready,
+                },
+                "recommended_next_action": recommended_next_action,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "review_status": (
+                    "external_pilot_glycoside_hydrolase_replacement_scout_review_only"
+                ),
+            }
+        )
+
+    rows.sort(
+        key=lambda row: (
+            -int(row.get("replacement_score", 0) or 0),
+            str(row.get("accession") or ""),
+        )
+    )
+    rows = rows[:max_rows]
+    status_counts = Counter(row["replacement_status"] for row in rows)
+    selected_accession = next(
+        (
+            row["accession"]
+            for row in rows
+            if row["replacement_status"] == "replacement_review_packet_ready"
+        ),
+        None,
+    )
+    return {
+        "metadata": {
+            "method": (
+                "external_source_pilot_glycoside_hydrolase_replacement_scout"
+            ),
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": (
+                "p33025_glycoside_boundary_replacement_candidates_ranked"
+            ),
+            "blocker_not_removed": [
+                "candidate_not_import_ready",
+                "explicit_review_decision_not_recorded",
+                "full_label_factory_gate_not_run",
+            ],
+            "review_only": True,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_candidate_count": 0,
+            "target_failed_accession": target_accession,
+            "candidate_count": len(rows),
+            "selected_replacement_accession": selected_accession,
+            "replacement_status_counts": dict(sorted(status_counts.items())),
+            "fetch_failure_count": len(fetch_failures),
+            "current_boundary_control_status": current_control_row.get(
+                "control_status"
+            ),
+            "current_boundary_control_failure": current_control_row.get(
+                "control_interpretation"
+            ),
+            "source_candidate_manifest_method": candidate_manifest.get(
+                "metadata", {}
+            ).get("method"),
+            "source_transfer_blocker_matrix_method": transfer_blocker_matrix.get(
+                "metadata", {}
+            ).get("method"),
+            "source_reaction_evidence_method": reaction_evidence_sample.get(
+                "metadata", {}
+            ).get("method"),
+            "source_current_boundary_control_method": (
+                (current_boundary_control or {}).get("metadata", {}).get("method")
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "fetch_failures": fetch_failures,
+        "warnings": [
+            (
+                "Replacement scout rows are source-transfer review context only; "
+                "they cannot authorize labels or registry import."
+            )
+        ],
+    }
+
+
 def build_external_source_pilot_sugar_phosphate_isomerase_control(
     *,
     repair_lanes: dict[str, Any],
@@ -21748,17 +22176,36 @@ def _external_pilot_terminal_unresolved_evidence(
     if terminal_status != "deferred_requires_human_expert":
         return []
     unresolved = [
-        "complete broader duplicate screening beyond the bounded current-reference search",
         "record human/expert review decision against the assembled evidence packet",
         "run the full label-factory gate only after review decision and duplicate controls",
     ]
+    broader_duplicate_status = (
+        success_row.get("broader_duplicate_screening_status")
+        or active_row.get("broader_duplicate_screening_status")
+    )
+    if not _external_pilot_duplicate_screen_cleared(broader_duplicate_status):
+        unresolved.append(
+            "complete broader duplicate screening beyond the bounded current-reference search"
+        )
     if (
         representation_result.get("status")
         == "representation_stability_changed_requires_review"
     ):
-        unresolved.append(
-            "adjudicate changed nearest-reference representation evidence"
-        )
+        stability_flags = {
+            str(flag) for flag in representation_result.get("stability_flags", []) or []
+        }
+        if any("nearest_reference" in flag for flag in stability_flags):
+            unresolved.append(
+                "adjudicate changed nearest-reference representation evidence"
+            )
+        elif any(
+            "heuristic_fingerprint_context" in flag for flag in stability_flags
+        ):
+            unresolved.append(
+                "adjudicate heuristic fingerprint context in representation evidence"
+            )
+        else:
+            unresolved.append("adjudicate changed representation stability evidence")
     if heuristic_control.get("scope_top1_mismatch") or any(
         blocker.startswith("heuristic_")
         for blocker in active_row.get("import_readiness_blockers", []) or []
@@ -21786,6 +22233,24 @@ def _external_pilot_human_expert_questions(
             "Does the changed ESM-2 nearest-reference evidence preserve the "
             "proposed mechanism family, or should this row be rejected as a "
             "representation conflict?"
+        )
+    if (
+        "adjudicate heuristic fingerprint context in representation evidence"
+        in unresolved_evidence
+    ):
+        questions.append(
+            "Does the representation-control context change reflect benign "
+            "family diversity, or should this row remain blocked as a "
+            "representation conflict?"
+        )
+    if (
+        "adjudicate changed representation stability evidence"
+        in unresolved_evidence
+    ):
+        questions.append(
+            "Does the changed representation-control evidence preserve the "
+            "proposed mechanism family, or should this row remain blocked as "
+            "a representation conflict?"
         )
     if (
         "adjudicate heuristic scope or top1 mismatch" in unresolved_evidence
@@ -21819,6 +22284,24 @@ def _external_pilot_human_expert_limitation(
             "Automation observed a nearest-reference change between the baseline "
             "and largest feasible ESM-2 backends but cannot decide whether that "
             "change is benign family diversity or a representation conflict."
+        )
+    if (
+        "adjudicate heuristic fingerprint context in representation evidence"
+        in unresolved_evidence
+    ):
+        return (
+            "Automation observed a representation-control context change tied "
+            "to the heuristic fingerprint review context and cannot decide "
+            "whether it is benign family diversity or a representation conflict."
+        )
+    if (
+        "adjudicate changed representation stability evidence"
+        in unresolved_evidence
+    ):
+        return (
+            "Automation observed changed representation-control evidence but "
+            "cannot decide whether it is benign family diversity or a "
+            "representation conflict."
         )
     if (
         "adjudicate heuristic scope or top1 mismatch" in unresolved_evidence
@@ -22612,7 +23095,7 @@ def _external_pilot_review_only_gate_checks(
         selected_rows = [
             row
             for row in priority_rows
-            if row.get("pilot_selection_status") == "selected_for_review_pilot"
+            if _external_pilot_row_selected(row)
         ]
         selected_pilot_accessions = {
             accession

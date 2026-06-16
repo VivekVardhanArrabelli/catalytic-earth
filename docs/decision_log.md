@@ -3,6 +3,57 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-16: PINNED SOURCE-TRANSFER PILOT ROWS ARE REVIEW WORKLIST ROWS ONLY
+
+Decision: source-transfer pilot priority may pin a replacement accession into the selected review
+worklist when a prior selected row fails a family-boundary control, but the pinned row remains
+review-only. Pinned selection must flow through review-decision export, evidence packets,
+representation planning/adjudication, terminal decisions, confidence normalization, and gap audits;
+it cannot create countable labels, import-ready rows, or registry-apply authority.
+
+Implementation: added Q6NSJ0 glycoside-replacement scouting and pinned-accession support to
+`build_external_source_pilot_candidate_priority`, plus a shared selected-pilot predicate for
+ordinary and pinned selected statuses. Regression coverage in `tests/test_transfer_scope.py` and
+`tests/test_cli.py` verifies pinned rows are included downstream while preserving
+`ready_for_label_import: false` and `countable_label_candidate: false`.
+
+Measured result: run2205 artifact
+`artifacts/v3_external_source_pilot_glycoside_hydrolase_replacement_scout_current702_20260616_run2205.json`
+selected Q6NSJ0 as the P33025 replacement candidate. The pinned priority artifact
+`artifacts/v3_external_source_pilot_candidate_priority_q6nsj0_replacement_current702_20260616_run2205.json`
+selected **13** pilot rows with Q6NSJ0 pinned, **0** import-ready rows, and **0** countable label
+candidates. The downstream packet records active-site residues **463** and **520**, Rhea
+**RHEA:21112**, and current-reference/UniRef no-overlap evidence, but terminal decisions still
+route Q6NSJ0 to human/expert review.
+
+Follow-up: build a current-slice `needs_review_resolution` / repair-lane mapping for Q6NSJ0 and
+run the matching glycoside import-safety adjudication. Do not import Q6NSJ0 unless explicit review
+decision, duplicate, representation, label-factory, novelty, governor, and row-guardrail gates pass.
+
+## 2026-06-16: DUPLICATE-SCREEN CLEARANCE MUST PROPAGATE TO TERMINAL QUEUES
+
+Decision: once a selected source-transfer row has same-slice success-criteria evidence of
+`current_reference_external_all_vs_all_uniref_no_signal`, terminal decisions and expert-review
+queues must not keep a stale `broader_duplicate_screening_required` blocker from older active-site
+decision rows. The duplicate screen remains process/review evidence only and does not create
+import-ready status.
+
+Implementation: terminal replay now prefers the success-criteria duplicate status when constructing
+`sequence_duplicate_screen_result` and unresolved-evidence lists. Human/expert queue text was also
+tightened so representation `heuristic_fingerprint_context_changed` is not described as a
+nearest-reference change. Regression coverage asserts duplicate-clear rows drop the stale broader
+duplicate prompt and that heuristic-context representation changes are described precisely.
+
+Measured result: run2205
+`artifacts/v3_external_source_pilot_uniref_current_reference_screen_q6nsj0_replacement_current702_20260616_run2205.json`
+cleared **7** queued rows for current-reference/UniRef overlap. The replayed queue
+`artifacts/v3_external_source_pilot_human_expert_review_queue_q6nsj0_replacement_current702_20260616_run2205.json`
+has **7** queued rows with `full_label_factory_gate_not_run` as the only non-human blocker and
+still **0** import-ready / **0** countable rows.
+
+Follow-up: treat duplicate-screen clearance as removing only the duplicate process blocker.
+Explicit expert review and full label-factory gates remain required before any import.
+
 ## 2026-06-16: SOURCE-TRANSFER REVIEW GAP AUDITS ARE NON-AUTHORIZING
 
 Decision: `build-external-source-pilot-review-resolution-gap-audit` may be used to consolidate

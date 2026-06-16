@@ -68,6 +68,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_pilot_evidence_packet,
     build_external_source_pilot_evidence_dossiers,
     build_external_source_pilot_glycoside_hydrolase_boundary_control,
+    build_external_source_pilot_glycoside_hydrolase_replacement_scout,
     build_external_source_pilot_human_expert_review_queue,
     build_external_source_pilot_mechanism_repair_lanes,
     build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication,
@@ -3748,6 +3749,64 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             all(not row["countable_label_candidate"] for row in audit["rows"])
         )
 
+    def test_pilot_representation_adjudication_names_deterministic_process(
+        self,
+    ) -> None:
+        audit = audit_external_source_pilot_representation_adjudication(
+            pilot_candidate_priority={
+                "rows": [
+                    {
+                        "accession": "PDET",
+                        "pilot_selection_status": "selected_for_review_pilot",
+                    }
+                ]
+            },
+            pilot_representation_backend_sample={
+                "rows": [
+                    {
+                        "accession": "PDET",
+                        "backend_status": "sequence_kmer_embedding_control_complete",
+                    }
+                ]
+            },
+            pilot_representation_stability_audit={
+                "metadata": {
+                    "method": "external_source_representation_backend_stability_audit"
+                },
+                "rows": [
+                    {
+                        "accession": "PDET",
+                        "baseline_embedding_backend": (
+                            "deterministic_sequence_kmer_control"
+                        ),
+                        "comparison_embedding_backend": (
+                            "deterministic_sequence_kmer_control"
+                        ),
+                        "comparison_requested_embedding_backend": (
+                            "deterministic_sequence_kmer_control"
+                        ),
+                        "comparison_backend_status": (
+                            "sequence_kmer_embedding_control_complete"
+                        ),
+                        "nearest_reference_stable": True,
+                        "nearest_reference_entry_ids_stable": True,
+                        "heuristic_disagreement_status_stable": True,
+                        "heuristic_fingerprint_context_stable": True,
+                    }
+                ],
+            },
+            max_rows=1,
+        )
+
+        self.assertEqual(
+            audit["rows"][0]["representation_control_process_status"],
+            "adjudicated_from_deterministic_representation_stability",
+        )
+        self.assertEqual(
+            audit["metadata"]["representation_control_process_status_counts"],
+            {"adjudicated_from_deterministic_representation_stability": 1},
+        )
+
     def test_pilot_success_criteria_can_use_representation_adjudication(
         self,
     ) -> None:
@@ -4989,6 +5048,42 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             },
         )
 
+    def test_external_source_pilot_candidate_priority_selects_pinned_accession(
+        self,
+    ) -> None:
+        priority = build_external_source_pilot_candidate_priority(
+            {
+                "metadata": {"method": "external_source_transfer_blocker_matrix"},
+                "rows": [
+                    {
+                        "accession": "PA",
+                        "entry_id": "uniprot:PA",
+                        "lane_id": "lane:a",
+                        "blockers": ["external_review_decision_artifact_not_built"],
+                    },
+                    {
+                        "accession": "PB",
+                        "entry_id": "uniprot:PB",
+                        "lane_id": "lane:a",
+                        "blockers": ["external_review_decision_artifact_not_built"],
+                    },
+                ],
+            },
+            max_candidates=1,
+            max_per_lane=1,
+            pinned_accessions=["PB"],
+        )
+
+        self.assertEqual(priority["metadata"]["selected_accessions"], ["PB"])
+        self.assertEqual(priority["metadata"]["pinned_accessions"], ["PB"])
+        self.assertEqual(priority["metadata"]["pinned_selected_accessions"], ["PB"])
+        self.assertEqual(
+            priority["rows"][0]["pilot_selection_status"],
+            "pinned_selected_for_review_pilot",
+        )
+        self.assertFalse(priority["rows"][0]["countable_label_candidate"])
+        self.assertFalse(priority["rows"][0]["ready_for_label_import"])
+
     def test_external_source_pilot_review_decision_export_is_no_decision(self) -> None:
         priority = {
             "metadata": {"method": "external_source_pilot_candidate_priority"},
@@ -5048,6 +5143,45 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             "complete_near_duplicate_sequence_search",
             item["review_requirements"],
         )
+
+    def test_external_source_pilot_review_decision_export_includes_pinned_selection(
+        self,
+    ) -> None:
+        priority = {
+            "metadata": {"method": "external_source_pilot_candidate_priority"},
+            "rows": [
+                {
+                    "accession": "PPIN",
+                    "active_site_sourcing": {"queue_status": "ready"},
+                    "blockers": ["external_review_decision_artifact_not_built"],
+                    "countable_label_candidate": False,
+                    "entry_id": "uniprot:PPIN",
+                    "lane_id": "external_source:glycan_chemistry",
+                    "pilot_priority_score": 91.0,
+                    "pilot_selection_status": "pinned_selected_for_review_pilot",
+                    "ready_for_label_import": False,
+                    "representation_backend": {},
+                    "sequence_search": {},
+                },
+                {
+                    "accession": "PDEFER",
+                    "pilot_selection_status": "deferred_by_rank_or_lane_balance",
+                },
+            ],
+        }
+
+        export = build_external_source_pilot_review_decision_export(
+            pilot_candidate_priority=priority
+        )
+
+        self.assertEqual(export["metadata"]["candidate_count"], 1)
+        self.assertEqual(export["review_items"][0]["accession"], "PPIN")
+        self.assertEqual(
+            export["review_items"][0]["pilot_selection_status"],
+            "pinned_selected_for_review_pilot",
+        )
+        self.assertFalse(export["review_items"][0]["countable_label_candidate"])
+        self.assertFalse(export["review_items"][0]["ready_for_label_import"])
 
     def test_external_source_pilot_evidence_packet_consolidates_source_targets(
         self,
@@ -5150,6 +5284,77 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         )
         self.assertFalse(row["countable_label_candidate"])
         self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_source_pilot_evidence_packet_includes_pinned_selection(
+        self,
+    ) -> None:
+        priority = {
+            "metadata": {"method": "external_source_pilot_candidate_priority"},
+            "rows": [
+                {
+                    "accession": "PPIN",
+                    "active_site_sourcing": {
+                        "source_task": "curate_active_site_positions_from_uniprot_feature"
+                    },
+                    "blockers": ["external_review_decision_artifact_not_built"],
+                    "entry_id": "uniprot:PPIN",
+                    "lane_id": "external_source:glycan_chemistry",
+                    "pilot_selection_status": "pinned_selected_for_review_pilot",
+                    "representation_backend": {},
+                },
+                {
+                    "accession": "PDEFER",
+                    "pilot_selection_status": "deferred_by_rank_or_lane_balance",
+                },
+            ],
+        }
+        active_site_export = {
+            "metadata": {"method": "external_source_active_site_sourcing_export"},
+            "rows": [
+                {
+                    "accession": "PPIN",
+                    "source_task": "curate_active_site_positions_from_uniprot_feature",
+                    "source_targets": [
+                        {
+                            "source_type": "UniProt",
+                            "source_id": "PPIN",
+                            "url": "https://rest.uniprot.org/uniprotkb/PPIN",
+                        }
+                    ],
+                }
+            ],
+        }
+        sequence_export = {
+            "metadata": {"method": "external_source_sequence_search_export"},
+            "rows": [
+                {
+                    "accession": "PPIN",
+                    "source_targets": [
+                        {
+                            "source_type": "UniRef",
+                            "source_id": "PPIN",
+                            "url": "https://www.uniprot.org/uniref?query=PPIN",
+                        }
+                    ],
+                }
+            ],
+        }
+
+        packet = build_external_source_pilot_evidence_packet(
+            pilot_candidate_priority=priority,
+            active_site_sourcing_export=active_site_export,
+            sequence_search_export=sequence_export,
+        )
+
+        self.assertEqual(packet["metadata"]["candidate_count"], 1)
+        self.assertTrue(packet["metadata"]["guardrail_clean"])
+        self.assertEqual(packet["rows"][0]["accession"], "PPIN")
+        self.assertEqual(
+            packet["rows"][0]["pilot_selection_status"],
+            "pinned_selected_for_review_pilot",
+        )
+        self.assertFalse(packet["rows"][0]["countable_label_candidate"])
+        self.assertFalse(packet["rows"][0]["ready_for_label_import"])
 
     def test_external_transfer_blocker_matrix_audit_rejects_missing_integrated_rows(
         self,
@@ -7229,6 +7434,9 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                     {
                         "accession": "P12345",
                         "full_label_factory_gate_status": "not_run",
+                        "broader_duplicate_screening_status": (
+                            "current_reference_external_all_vs_all_uniref_no_signal"
+                        ),
                         "criterion_blockers": ["review_decision_not_terminal"],
                     },
                     {
@@ -7341,6 +7549,19 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         )
         self.assertTrue(
             decisions["rows"][0]["unresolved_evidence_for_deferred"]
+        )
+        self.assertEqual(
+            decisions["rows"][0]["sequence_duplicate_screen_result"][
+                "broader_duplicate_screening_status"
+            ],
+            "current_reference_external_all_vs_all_uniref_no_signal",
+        )
+        self.assertNotIn(
+            (
+                "complete broader duplicate screening beyond the bounded "
+                "current-reference search"
+            ),
+            decisions["rows"][0]["unresolved_evidence_for_deferred"],
         )
         self.assertEqual(
             decisions["rows"][1]["terminal_status"],
@@ -7469,6 +7690,52 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         )
         self.assertFalse(row["countable_label_candidate"])
         self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_pilot_human_expert_review_queue_describes_context_change(
+        self,
+    ) -> None:
+        queue = build_external_source_pilot_human_expert_review_queue(
+            pilot_terminal_decisions={
+                "metadata": {
+                    "method": "external_source_pilot_terminal_decisions",
+                    "terminal_decision_count": 1,
+                },
+                "rows": [
+                    {
+                        "accession": "PCTX",
+                        "entry_id": "uniprot:PCTX",
+                        "terminal_status": "deferred_requires_human_expert",
+                        "representation_control_result": {
+                            "status": (
+                                "representation_stability_changed_requires_review"
+                            ),
+                            "stability_flags": [
+                                "heuristic_fingerprint_context_changed"
+                            ],
+                        },
+                        "unresolved_evidence_for_deferred": [
+                            (
+                                "adjudicate heuristic fingerprint context in "
+                                "representation evidence"
+                            )
+                        ],
+                    }
+                ],
+            }
+        )
+
+        row = queue["rows"][0]
+        self.assertIn(
+            "representation-control context change",
+            row["automation_cannot_resolve_reason"],
+        )
+        self.assertIn(
+            "representation-control context change",
+            row["human_expert_review_questions"][0],
+        )
+        self.assertNotIn(
+            "nearest-reference", row["automation_cannot_resolve_reason"]
+        )
 
     def test_external_pilot_mechanism_repair_lanes_stay_review_only(
         self,
@@ -9633,6 +9900,169 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         )
         self.assertFalse(row["countable_label_candidate"])
         self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_pilot_glycoside_replacement_scout_selects_review_only_candidate(
+        self,
+    ) -> None:
+        def fake_fetch(accession: str) -> dict[str, object]:
+            records = {
+                "Q6NSJ0": {
+                    "entry_type": "UniProtKB reviewed (Swiss-Prot)",
+                    "annotation_score": 5,
+                    "active_site_features": [
+                        {
+                            "begin": 463,
+                            "end": 463,
+                            "description": "Nucleophile",
+                            "evidence": [{"source": "PubMed", "id": "36129849"}],
+                        },
+                        {
+                            "begin": 520,
+                            "end": 520,
+                            "description": "Proton donor/acceptor",
+                            "evidence": [{"source": "PubMed", "id": "36129849"}],
+                        },
+                    ],
+                    "binding_site_features": [],
+                    "catalytic_activity_comments": [
+                        {
+                            "ec_number": "3.2.1.22",
+                            "reaction": "Hydrolysis of alpha-D-galactosides.",
+                            "cross_references": [
+                                {"database": "Rhea", "id": "RHEA:21112"}
+                            ],
+                        }
+                    ],
+                    "cofactor_comments": [],
+                },
+                "Q3SY77": {
+                    "entry_type": "UniProtKB reviewed (Swiss-Prot)",
+                    "annotation_score": 5,
+                    "active_site_features": [],
+                    "binding_site_features": [],
+                    "catalytic_activity_comments": [
+                        {
+                            "ec_number": "2.4.1.170",
+                            "reaction": "UDP-glucose transfer.",
+                            "cross_references": [
+                                {"database": "Rhea", "id": "RHEA:17497"}
+                            ],
+                        }
+                    ],
+                    "cofactor_comments": [],
+                },
+            }
+            return {
+                "metadata": {
+                    "url": f"https://rest.uniprot.org/uniprotkb/{accession}.json"
+                },
+                "record": records[accession],
+            }
+
+        scout = build_external_source_pilot_glycoside_hydrolase_replacement_scout(
+            candidate_manifest={
+                "metadata": {"method": "external_source_candidate_manifest"},
+                "rows": [
+                    {
+                        "accession": "P33025",
+                        "entry_id": "uniprot:P33025",
+                        "lane_id": "external_source:glycan_chemistry",
+                    },
+                    {
+                        "accession": "Q6NSJ0",
+                        "entry_id": "uniprot:Q6NSJ0",
+                        "lane_id": "external_source:glycan_chemistry",
+                        "protein_name": "Alpha-galactosidase MYORG",
+                        "scope_signal": "glycan_chemistry",
+                    },
+                    {
+                        "accession": "Q3SY77",
+                        "entry_id": "uniprot:Q3SY77",
+                        "lane_id": "external_source:glycan_chemistry",
+                        "protein_name": "UDP-glycosyltransferase 3A2",
+                        "scope_signal": "glycan_chemistry",
+                    },
+                ],
+            },
+            transfer_blocker_matrix={
+                "metadata": {"method": "external_source_transfer_blocker_matrix"},
+                "rows": [
+                    {
+                        "accession": "Q6NSJ0",
+                        "blockers": [
+                            "external_review_decision_artifact_not_built",
+                            "full_label_factory_gate_not_run",
+                        ],
+                    },
+                    {
+                        "accession": "Q3SY77",
+                        "blockers": ["primary_active_site_source_required"],
+                    },
+                ],
+            },
+            reaction_evidence_sample={
+                "metadata": {"method": "external_source_reaction_evidence_sample"},
+                "rows": [
+                    {
+                        "accession": "Q6NSJ0",
+                        "entry_id": "uniprot:Q6NSJ0",
+                        "ec_number": "3.2.1.22",
+                        "ec_specificity": "specific",
+                        "rhea_id": "RHEA:21112",
+                        "equation": "alpha-D-galactoside + H2O = D-galactose",
+                    },
+                    {
+                        "accession": "Q3SY77",
+                        "entry_id": "uniprot:Q3SY77",
+                        "ec_number": "2.4.1.170",
+                        "ec_specificity": "specific",
+                        "rhea_id": "RHEA:17497",
+                        "equation": "UDP-alpha-D-glucose transfer",
+                    },
+                ],
+            },
+            current_boundary_control={
+                "metadata": {
+                    "method": (
+                        "external_source_pilot_glycoside_hydrolase_boundary_control"
+                    )
+                },
+                "rows": [
+                    {
+                        "accession": "P33025",
+                        "control_status": (
+                            "review_only_glycoside_hydrolase_boundary_incomplete"
+                        ),
+                        "control_interpretation": (
+                            "The glycoside-hydrolase boundary evidence is incomplete."
+                        ),
+                    }
+                ],
+            },
+            uniprot_entry_fetcher=fake_fetch,
+            artifact_lineage={"slice_id": 1025, "guardrail_clean": True},
+        )
+
+        metadata = scout["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "external_source_pilot_glycoside_hydrolase_replacement_scout",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["selected_replacement_accession"], "Q6NSJ0")
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(scout["rows"][0]["accession"], "Q6NSJ0")
+        self.assertEqual(
+            scout["rows"][0]["replacement_status"],
+            "replacement_review_packet_ready",
+        )
+        self.assertFalse(scout["rows"][0]["countable_label_candidate"])
+        self.assertFalse(scout["rows"][0]["ready_for_label_import"])
+        self.assertIn(
+            "full_label_factory_gate_not_run",
+            scout["rows"][0]["blocker_summary"]["remaining_review_blockers"],
+        )
 
     def test_external_pilot_sugar_phosphate_isomerase_control_uses_non_text_features(
         self,

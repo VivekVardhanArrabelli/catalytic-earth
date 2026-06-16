@@ -714,6 +714,7 @@ from .transfer_scope import (
     build_external_source_pilot_human_expert_review_queue_normalized,
     build_external_source_pilot_glycoside_hydrolase_boundary_control,
     build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication,
+    build_external_source_pilot_glycoside_hydrolase_replacement_scout,
     build_external_source_pilot_mechanism_repair_lanes,
     build_external_source_pilot_review_resolution_gap_audit,
     build_external_source_pilot_schiff_base_lyase_control,
@@ -4042,10 +4043,17 @@ def cmd_audit_external_source_transfer_blocker_matrix(
 def cmd_build_external_source_pilot_candidate_priority(args: argparse.Namespace) -> int:
     with Path(args.transfer_blocker_matrix).open("r", encoding="utf-8") as handle:
         transfer_blocker_matrix = json.load(handle)
+    pinned_accessions = [
+        accession.strip()
+        for item in args.pinned_accessions
+        for accession in item.split(",")
+        if accession.strip()
+    ]
     priority = build_external_source_pilot_candidate_priority(
         transfer_blocker_matrix,
         max_candidates=args.max_candidates,
         max_per_lane=args.max_per_lane,
+        pinned_accessions=pinned_accessions,
     )
     write_json(Path(args.out), priority)
     print(
@@ -5014,6 +5022,43 @@ def cmd_build_external_source_pilot_glycoside_hydrolase_import_safety_adjudicati
         "Wrote external source pilot glycoside-hydrolase import-safety "
         f"adjudication to {args.out} "
         f"({adjudication['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_glycoside_hydrolase_replacement_scout(
+    args: argparse.Namespace,
+) -> int:
+    optional_artifact_names = ("current_boundary_control",)
+    explicit_optional_artifacts = tuple(
+        name for name in optional_artifact_names if getattr(args, name, None)
+    )
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "candidate_manifest",
+            "transfer_blocker_matrix",
+            "reaction_evidence_sample",
+        )
+        + explicit_optional_artifacts,
+        blocker_removed="p33025_glycoside_boundary_replacement_candidates_ranked",
+    )
+    scout = build_external_source_pilot_glycoside_hydrolase_replacement_scout(
+        candidate_manifest=artifact_payloads["candidate_manifest"],
+        transfer_blocker_matrix=artifact_payloads["transfer_blocker_matrix"],
+        reaction_evidence_sample=artifact_payloads["reaction_evidence_sample"],
+        current_boundary_control=artifact_payloads.get("current_boundary_control"),
+        target_accession=args.target_accession,
+        max_rows=args.max_rows,
+        uniprot_entry_fetcher=(
+            None if args.skip_live_uniprot_fetch else fetch_uniprot_entry
+        ),
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), scout)
+    print(
+        "Wrote external source pilot glycoside-hydrolase replacement scout to "
+        f"{args.out} (selected={scout['metadata']['selected_replacement_accession']})"
     )
     return 0
 
@@ -25012,6 +25057,15 @@ def build_parser() -> argparse.ArgumentParser:
     external_pilot_priority.add_argument("--max-candidates", type=int, default=10)
     external_pilot_priority.add_argument("--max-per-lane", type=int, default=2)
     external_pilot_priority.add_argument(
+        "--pinned-accessions",
+        action="append",
+        default=[],
+        help=(
+            "comma-separated accession(s) that enter the review pilot when "
+            "eligible and within max-candidates"
+        ),
+    )
+    external_pilot_priority.add_argument(
         "--out",
         default="artifacts/v3_external_source_pilot_candidate_priority.json",
     )
@@ -26189,6 +26243,52 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_pilot_glycoside_import_safety.set_defaults(
         func=cmd_build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication
+    )
+
+    external_pilot_glycoside_replacement = subparsers.add_parser(
+        "build-external-source-pilot-glycoside-hydrolase-replacement-scout",
+        help=(
+            "rank review-only source-transfer replacements for a failed "
+            "glycoside-hydrolase boundary-control row"
+        ),
+    )
+    external_pilot_glycoside_replacement.add_argument(
+        "--candidate-manifest",
+        default="artifacts/v3_external_source_candidate_manifest_1025.json",
+    )
+    external_pilot_glycoside_replacement.add_argument(
+        "--transfer-blocker-matrix",
+        default="artifacts/v3_external_source_transfer_blocker_matrix_1025.json",
+    )
+    external_pilot_glycoside_replacement.add_argument(
+        "--reaction-evidence-sample",
+        default="artifacts/v3_external_source_reaction_evidence_sample_1025.json",
+    )
+    external_pilot_glycoside_replacement.add_argument(
+        "--current-boundary-control",
+        default=None,
+    )
+    external_pilot_glycoside_replacement.add_argument(
+        "--target-accession",
+        default="P33025",
+    )
+    external_pilot_glycoside_replacement.add_argument(
+        "--skip-live-uniprot-fetch",
+        action="store_true",
+        help="rank only from existing artifacts; do not fetch UniProt feature context",
+    )
+    external_pilot_glycoside_replacement.add_argument(
+        "--max-rows", type=int, default=10
+    )
+    external_pilot_glycoside_replacement.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_glycoside_hydrolase_replacement_scout_1025.json"
+        ),
+    )
+    external_pilot_glycoside_replacement.set_defaults(
+        func=cmd_build_external_source_pilot_glycoside_hydrolase_replacement_scout
     )
 
     external_pilot_sugar_isomerase = subparsers.add_parser(
