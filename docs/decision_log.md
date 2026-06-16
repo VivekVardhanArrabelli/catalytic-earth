@@ -3,6 +3,41 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-16: PDE TIER-2 LOCAL-SLICE BATCH IS COUNTED BRONZE
+
+Decision: `metal_independent_phosphodiesterase` is now a counted bronze fingerprint at the
+100-row floor. The admitted rows use strict source-tier-2 GDPD/cyclic UniProt lanes as source and
+admission evidence only. EC, names, source annotations, reaction text, and query handles remain
+excluded context, never predictive features and never counted EC corroborators. Counted mechanism
+axes are non-EC mechanism evidence such as cofactor/cosubstrate context, family/domain profile, and
+Rhea reaction/participant pattern.
+
+Implementation: stable local-slice previews at offsets **30/60/90** were combined with the prior
+offset-0 GDPD/cyclic scout in
+`artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_combined_local_slice_preview_current702_20260616_run1302.json`.
+The combined replay had **118** unique labels, admitted **116**, and throttled **2**. Preview
+governor audit
+`artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_combined_local_slice_preview_governor_current702_20260616_run1302.json`
+showed 116 rows would exceed the reaction-aware cap for a one-reaction tranche, so
+`artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_reaction_cap_trimmed_preview_current702_20260616_run1302.json`
+held **16** surplus rows and kept exactly **100**. Row audit
+`artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_reaction_cap_trimmed_row_guardrail_audit_current702_20260616_run1302.json`
+found **0** problems.
+
+Apply result: explicit reuse-preview apply appended the reaction-cap-trimmed PDE batch to the
+external registry only. A registry audit then found the 16 reaction-cap-held accessions present;
+correction artifact
+`artifacts/v3_metal_independent_phosphodiesterase_reaction_cap_surplus_registry_correction_current702_20260616_run1302.json`
+removed only those surplus rows. Final external rows are **8026**, final PDE rows are **100**, and
+frozen current702 remains byte-unchanged at sha
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+
+Post-apply decision: no positive holes remain. Post-apply coverage
+`artifacts/v3_coverage_redundancy_audit_current702_20260616_run1302_post_pde_apply.json` reports
+combined labels **8728**, floor deficit **0**, Gini **0.1779**, and only
+`metal_dependent_hydrolase` over cap. Do not pad PDE or reaction-saturated/balanced lanes; the next
+mutation needs a new high-yield source-handle/source-tier strategy through the same gates.
+
 ## 2026-06-16: PDE HYDROLASE LANE IS ALLOWED BUT SUBFLOOR
 
 Decision: `metal_independent_phosphodiesterase` may use the reviewed EC 3.1.4 + Hydrolase lane as

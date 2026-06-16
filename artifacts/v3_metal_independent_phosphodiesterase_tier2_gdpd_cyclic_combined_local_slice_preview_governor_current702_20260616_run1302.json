@@ -1,0 +1,78 @@
+{
+  "artifact_id": "v3_metal_independent_phosphodiesterase_combined_local_slice_preview_governor_current702_20260616_run1302",
+  "coverage_summary": {
+    "holes": [],
+    "over_cap": [
+      "metal_dependent_hydrolase"
+    ],
+    "pde_acquisition_target": {
+      "combined": 116,
+      "deficit_to_floor": 0,
+      "distinct_reactions": 1,
+      "expansion": 116,
+      "fingerprint": "metal_independent_phosphodiesterase",
+      "frozen": 0,
+      "labels_per_distinct_reaction": 116.0,
+      "priority_rank": 23,
+      "reaction_aware_cap": 100,
+      "reaction_aware_surplus": 16,
+      "reaction_saturated": true,
+      "recommended_action": "TRIM -- 16 over the reaction-aware cap 100 (1 distinct reactions x rate 8); demote redundant orthologs toward reaction diversity, do not source more",
+      "sourcing_hints": {
+        "cofactor_signature": "metal-independent phosphodiester hydrolysis context with phosphodiesterase family text, hydrolytic cyclic-nucleotide/phosphodiester Rhea evidence, and metal phosphoesterase/nuclease boundaries held",
+        "ec_prefixes": [
+          "3.1.4",
+          "4.6.1"
+        ],
+        "lanes": [
+          "metal_independent_phosphodiesterase"
+        ]
+      },
+      "status": "BALANCED",
+      "surplus_over_cap": 0
+    },
+    "pde_distribution": {
+      "combined": 116,
+      "expansion": 116,
+      "frozen": 0
+    },
+    "pde_diversity": {
+      "distinct_full_ec": 1,
+      "distinct_organisms": 108,
+      "distinct_reactions": 1,
+      "expansion_seed_labels": 116,
+      "labels_per_distinct_ec": 116.0,
+      "labels_per_distinct_reaction": 116.0
+    },
+    "reaction_saturated": [
+      "aminoglycoside_phosphotransferase",
+      "had_like_phosphatase",
+      "metal_independent_phosphodiesterase",
+      "n_ribosyl_hydrolase",
+      "ser_thr_protein_phosphatase",
+      "serine_beta_lactamase"
+    ],
+    "totals": {
+      "combined": 8744,
+      "expansion_bronze": 8042,
+      "frozen_current702": 702,
+      "label_type_by_registry": {
+        "expansion_bronze": {
+          "out_of_scope": 1224,
+          "seed_fingerprint": 6818
+        },
+        "frozen_current702": {
+          "out_of_scope": 472,
+          "seed_fingerprint": 230
+        }
+      }
+    }
+  },
+  "guardrails": {
+    "expansion_registry_written": false,
+    "frozen_current702_written": false,
+    "labels_emitted": 0
+  },
+  "preview": "artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_combined_local_slice_preview_current702_20260616_run1302.json",
+  "status": "preview_only_no_registry_written"
+}

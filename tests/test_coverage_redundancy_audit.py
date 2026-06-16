@@ -218,10 +218,11 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             # 8122 prior combined labels + 150 N-ribosyl hydrolase bronze
             # rows + 150 APH tier-2 bronze rows + 100 SDR bronze rows
             # applied on 2026-06-15, plus 106 serine beta-lactamase bronze
-            # rows applied on 2026-06-16 through mechanism-first lanes.
-            self.assertEqual(written["totals"]["combined"], 8628)
+            # rows and a reaction-cap-trimmed 100-row metal-independent PDE
+            # tier-2 batch applied on 2026-06-16 through mechanism-first lanes.
+            self.assertEqual(written["totals"]["combined"], 8728)
             self.assertEqual(written["totals"]["frozen_current702"], 702)
-            self.assertEqual(written["totals"]["expansion_bronze"], 7926)
+            self.assertEqual(written["totals"]["expansion_bronze"], 8026)
             # the real registries must be byte-identical after the audit
             self.assertEqual(FROZEN_PATH.read_bytes(), frozen_before)
             self.assertEqual(EXPANSION_PATH.read_bytes(), expansion_before)
@@ -257,17 +258,17 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             # the 43rd fingerprint before any label apply. Later APH tier-2
             # source-wall expansion closed the APH floor. The later 2026-06-16
             # serine beta-lactamase infrastructure plus tier-2 source-wall apply
-            # closed the new 46th-fingerprint floor, so PDE is again the lone
-            # expected hole until a clean PDE batch is admitted.
+            # closed the new 46th-fingerprint floor. The later reaction-cap-trimmed
+            # PDE tier-2 batch closes the last positive-fingerprint hole.
             self.assertEqual(
                 audit["class_imbalance"]["expansion_holes"],
-                ["metal_independent_phosphodiesterase"],
+                [],
             )
             self.assertEqual(
                 audit["class_imbalance"]["fingerprints_below_floor"],
-                ["metal_independent_phosphodiesterase"],
+                [],
             )
-            self.assertEqual(audit["acquisition_targets"]["next_batch_floor_deficit_total"], 100)
+            self.assertEqual(audit["acquisition_targets"]["next_batch_floor_deficit_total"], 0)
             self.assertIn(
                 "metal_dependent_hydrolase",
                 audit["acquisition_targets"]["over_cap"],

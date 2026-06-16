@@ -1,5 +1,69 @@
 # Handoff
 
+## Session run - PDE tier-2 floor batch applied; no positive holes remain (2026-06-16, Codex automation)
+
+- Started from current `origin/main` at `ebc1aad2ff356deaf1c3ab9a5d542a2d77d35245`, acquired the
+  automation lock, and confirmed `git pull --ff-only origin main` was already up to date. Frozen
+  current702 sha before and after apply was
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+- Baseline validation was green before work: registry validator passed and the focused source,
+  leakage, novelty, registry, and scaleout/import suite passed **351 passed, 14 subtests**.
+- Current governor refresh before lane work showed `metal_independent_phosphodiesterase` as the
+  lone hole at **0/100**, floor deficit **100**, `metal_dependent_hydrolase` over cap, and novelty
+  replay **7465** admit / **414** throttle / **47** reject.
+- Stable GDPD/cyclic source-tier-2 local slicing produced floor-closing supply. Component previews:
+  prior offset-0 scout
+  `artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_preview_size30_current702_20260616_run1235.json`
+  admitted **28**, and local-slice offsets **30/60/90**
+  (`artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_local_slice_offset30_size30_current702_20260616_run1302.json`,
+  `artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_local_slice_offset60_size30_current702_20260616_run1302.json`,
+  `artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_local_slice_offset90_size30_current702_20260616_run1302.json`)
+  admitted **30** rows each.
+- Combined preview
+  `artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_combined_local_slice_preview_current702_20260616_run1302.json`
+  deduped to **118** candidate labels, admitted **116**, and throttled **2**. Preview governor
+  `artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_combined_local_slice_preview_governor_current702_20260616_run1302.json`
+  found 116 rows exceeded the reaction-aware cap for one concrete reaction.
+- Reaction-cap-trimmed preview
+  `artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_reaction_cap_trimmed_preview_current702_20260616_run1302.json`
+  held **16** surplus rows and kept exactly **100**. Row audit
+  `artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_reaction_cap_trimmed_row_guardrail_audit_current702_20260616_run1302.json`
+  audited all **100** rows with **0** problems.
+- Explicit apply appended the PDE batch to the external registry only. A registry audit found the
+  16 reaction-cap-held accessions present after the first write; correction artifact
+  `artifacts/v3_metal_independent_phosphodiesterase_reaction_cap_surplus_registry_correction_current702_20260616_run1302.json`
+  removed exactly those surplus rows. Final external rows: **8026**. Final PDE rows: **100**.
+- Post-apply audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run1302_post_pde_apply.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run1302_post_pde_apply.json`,
+  and `artifacts/v3_high_yield_family_lane_factory_current702_20260616_run1302_post_pde_apply.json`.
+  Coverage reports **8728** combined labels, **no holes**, floor deficit **0**, Gini **0.1779**,
+  and only `metal_dependent_hydrolase` over cap. Novelty replay reports **7565** admit /
+  **414** throttle / **47** reject across **8026** expansion rows. Factory still has **0** ready
+  existing lanes >=150 and top projected clean admits **77**.
+- Post-PDE breadth scout
+  `artifacts/v3_breadth_feasibility_scout_current702_20260616_run1302_post_pde_apply.json`
+  probed **18** reviewed Swiss-Prot families, found **14** clean families, estimated **2641** new
+  clean positive bronze, projected positive bronze **9673**, and left a **327** gap to 10k; verdict
+  remains reviewed Swiss-Prot alone is not enough. A bounded size-5 external bulk ingestion scout
+  `artifacts/v3_external_bulk_ingestion_scout_current702_20260616_run1302_post_pde_apply_size5.json`
+  found **35** candidates and **10** provisional import-preview rows, with import preview
+  `artifacts/v3_external_bulk_ingestion_import_preview_current702_20260616_run1302_post_pde_apply_size5.json`;
+  this is strategy input only and must pass `ce-external-admission-16-validation` before any
+  countable import.
+  Strategy artifact `artifacts/v3_post_pde_source_tier_strategy_current702_20260616_run1302.json`
+  records the next exact action: build a beyond-reviewed source-tier or source-handle expansion
+  pilot for clean non-hydrolase families, then pass the same preview/audit/novelty/cap/test gates
+  before any external-registry-only apply.
+- Final validation passed: registry validator passed, focused safety suite passed
+  **383 passed, 14 subtests**, full pytest passed **2363 passed, 1 warning, 244 subtests**,
+  JSON/JSONL parse passed, registry file-size scan found no file over **45 MB**, and
+  `git diff --check` passed. Frozen current702 stayed unchanged.
+- Next concrete action: do **not** pad PDE, SBL, APH, N-ribosyl, or any balanced/reaction-saturated
+  lane. Use the post-PDE factory/governor state to design the next high-yield source-tier or
+  source-handle expansion, then run non-destructive preview, row guardrail audit, novelty/governor
+  replay, leakage/source-contract tests, and explicit apply only if a meaningful clean batch passes.
+
 ## Session run - PDE Hydrolase and tier-2 scouts blocked below gate (2026-06-16, Codex automation)
 
 - Started from current `origin/main` at `cd04a5fcaac9c97aa3050736878f78128e172bf5`, recovered a
@@ -56,6 +120,23 @@
 - A larger GDPD/cyclic size-120 preview was attempted after the clean 28-row scout, but the process
   terminated with SIGTERM before writing an artifact. Treat that as no evidence and rerun it only
   with a stable paginated/cursor setup before any floor-closing apply decision.
+- A post-push lockless 13:02 orphan worker was stopped before it could keep writing uncontrolled
+  outputs. It left a completed non-destructive GDPD/cyclic offset preview:
+  `artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_preview_offset30_size60_current702_20260616_run1302.json`
+  with report
+  `work/metal_independent_phosphodiesterase_tier2_gdpd_cyclic_preview_offset30_size60_current702_20260616_run1302.md`.
+  The preview fetched **120** source-tier-2 rows, admitted **58** target PDE labels, held **62**
+  rows for missing mechanism corroboration, and had **0** off-target rows. Row audit
+  `artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_offset30_row_guardrail_audit_current702_20260616_run1302.json`
+  checked all **58** rows with **0** problems. This is still **no-apply** because PDE would remain
+  **58/100**, below the floor. The same lockless sequence also left
+  `artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_preview_offset90_size30_current702_20260616_run1302.json`,
+  which admitted **28** rows with **0** row-guardrail problems but reported non-independent offset
+  metadata; treat it as duplicate/subfloor evidence, not apply authority. A later local-slice
+  sequence completed three separate previews at offsets **30/60/90**, each admitting **30** rows
+  with **0** row-guardrail problems. These are still **no-apply** diagnostics because they came
+  from the lockless orphan sequence and no deduped aggregate floor-closing artifact was produced;
+  even the naive slice sum is only **90/100**.
 - Latest non-destructive post-tier2 audits:
   `artifacts/v3_coverage_redundancy_audit_current702_20260616_run1209_post_tier2_scout.json`,
   `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run1209_post_tier2_scout.json`,

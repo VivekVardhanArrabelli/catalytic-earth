@@ -1,0 +1,55 @@
+{
+  "artifact_id": "v3_post_pde_source_tier_strategy_current702_20260616_run1302",
+  "basis": {
+    "breadth_artifact": "artifacts/v3_breadth_feasibility_scout_current702_20260616_run1302_post_pde_apply.json",
+    "coverage_artifact": "artifacts/v3_coverage_redundancy_audit_current702_20260616_run1302_post_pde_apply.json",
+    "factory_artifact": "artifacts/v3_high_yield_family_lane_factory_current702_20260616_run1302_post_pde_apply.json"
+  },
+  "created_utc": "2026-06-16T13:40:22Z",
+  "current_state": {
+    "combined_labels": 8728,
+    "external_rows": 8026,
+    "fingerprint_gini": 0.1779,
+    "floor_deficit_total": 0,
+    "frozen_current702_sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+    "holes": [],
+    "over_cap": [
+      "metal_dependent_hydrolase"
+    ],
+    "reaction_saturated": [
+      "aminoglycoside_phosphotransferase",
+      "had_like_phosphatase",
+      "n_ribosyl_hydrolase",
+      "ser_thr_protein_phosphatase",
+      "serine_beta_lactamase"
+    ]
+  },
+  "decision": {
+    "apply_authorized": false,
+    "do_not_do": [
+      "Do not pad PDE beyond 100 without a new reaction-diversity split.",
+      "Do not source reaction-saturated lanes only for count.",
+      "Do not use EC/name/source handles as predictive features.",
+      "Do not apply from breadth/factory scouts without a source-specific preview and row audit."
+    ],
+    "next_exact_action": "Build a beyond-reviewed source-tier or source-handle expansion pilot for clean non-hydrolase families highlighted by breadth feasibility (for example non_heme_iron_2og_dioxygenase, cytochrome_p450_monooxygenase, copper_oxidoreductase, or molybdopterin_oxidoreductase), with count scout, source trust, OOS preregistration if the fingerprint universe changes, non-destructive preview, row guardrail audit, novelty/governor/cap replay, leakage/source-contract tests, and explicit external-registry-only apply only if the clean batch is meaningful.",
+    "reason": "No holes remain, no existing lane projects >=150 clean admits, and reviewed Swiss-Prot alone still leaves a positive-bronze gap to 10k. This is planning evidence only."
+  },
+  "guardrails": {
+    "ec_source_handles_scope_only": true,
+    "frozen_current702_written": false,
+    "labels_created": false,
+    "predictive_evidence_created": false,
+    "registry_written": false
+  },
+  "status": "non_destructive_strategy_no_registry_or_labels_written",
+  "supply_readout": {
+    "breadth_verdict": "ten_k_diverse_positive_bronze_NOT_reachable_from_reviewed_swissprot_alone",
+    "estimated_new_clean_diverse_positive_bronze": 2641,
+    "gap_to_10k_positive_bronze": 327,
+    "projected_positive_bronze_clean_only": 9673,
+    "ready_existing_lanes_ge_150": 0,
+    "reviewed_swissprot_clean_families": 14,
+    "top_projected_clean_admits": 77
+  }
+}

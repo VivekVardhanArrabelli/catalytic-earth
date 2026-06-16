@@ -1,0 +1,40 @@
+{
+  "artifact_id": "v3_metal_independent_phosphodiesterase_reaction_cap_surplus_registry_correction_current702_20260616_run1302",
+  "external_rows_after": 8026,
+  "external_rows_before": 8042,
+  "frozen_current702_sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+  "frozen_current702_written": false,
+  "reason": "The reaction-cap-trimmed preview kept 100 labels and held 16. A registry audit found the 16 held accessions present after apply; this correction removes only those accessions from the external expansion registry.",
+  "registry_path": "data/registries/external_bronze_labels.json",
+  "remaining_intended_pde_rows": 100,
+  "removed_entry_ids": [
+    "uniprot:A0A8C8ZJP1",
+    "uniprot:A0A8D0EEA0",
+    "uniprot:A0A8J4MR48",
+    "uniprot:A0A8T3DMH1",
+    "uniprot:A0A8U0SFL5",
+    "uniprot:A0A8V0Z0R2",
+    "uniprot:A0A8W4FL36",
+    "uniprot:A0A9B0TZ37",
+    "uniprot:A0A9D3X4H6",
+    "uniprot:A0A9F5IH11",
+    "uniprot:A0A9W2UJ49",
+    "uniprot:A0A9X9M9D7",
+    "uniprot:A0AA97J631",
+    "uniprot:A0AAE0QA11",
+    "uniprot:A0AAU9Z6K2",
+    "uniprot:A0AAV6RTM0"
+  ],
+  "removed_rows": 16,
+  "status": "surplus_reaction_cap_rows_removed_from_expansion_registry",
+  "write_result": {
+    "bytes": 1208,
+    "format": "sharded_registry_manifest",
+    "full_registry_canonical_bytes": 62954777,
+    "full_registry_canonical_sha256": "5ea6f047be34a9ed4a4ebb8c8eb0e2073ff613abc99914b2f04832ccb9068261",
+    "max_shard_bytes": 17999252,
+    "path": "data/registries/external_bronze_labels.json",
+    "row_count": 8026,
+    "shard_count": 4
+  }
+}

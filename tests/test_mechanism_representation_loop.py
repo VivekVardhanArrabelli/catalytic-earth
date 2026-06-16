@@ -448,11 +448,11 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
         audit = build_mechanism_representation_loop(expansion)
         # 6196 prior seed labels + 150 N-ribosyl hydrolase bronze rows
         # + 150 APH tier-2 bronze rows + 100 SDR bronze rows applied on
-        # 2026-06-15, plus 106 SBL bronze rows applied on 2026-06-16
-        # through cursor-paginated / mechanism-first lanes;
+        # 2026-06-15, plus 106 SBL bronze rows and 100 reaction-cap-trimmed
+        # PDE bronze rows applied on 2026-06-16 through mechanism-first lanes;
         # the representation loop remains leakage-safe and still excludes
         # EC/name/prose/lane from features.
-        self.assertEqual(audit["seed_labels"], 6702)
+        self.assertEqual(audit["seed_labels"], 6802)
         g = audit["leakage_guardrails"]
         self.assertFalse(g["frozen_benchmark_read"])
         self.assertFalse(g["ec_name_prose_lane_used"])
