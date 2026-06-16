@@ -1,5 +1,79 @@
 # Handoff
 
+## Session run - Q6NSJ0/P55263 source-transfer replay held; no registry apply (2026-06-16, Codex automation)
+
+- Started from current `origin/main` at `490eb6856a77478b730a7642589f867c18b6ff84`, acquired
+  `.git/catalytic-earth-automation.lock`, and confirmed frozen current702 sha before/after stayed
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. No registry apply or label
+  write was attempted.
+- Baseline/final safety stayed green: `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed; focused transfer/CLI suite passed **367 passed, 160 subtests**; final full
+  `PYTHONPATH=src pytest -q` passed **2392 passed, 1 warning, 244 subtests**. Final compileall,
+  docs-reference check, JSON/JSONL parse, hard-limit scan, and `git diff --check` are rerun below
+  before commit.
+- Coverage remains unchanged at **8728** combined labels = **702** frozen + **8026** expansion, with
+  no holes, floor deficit **0**, novelty replay **7565** admit / **414** throttle / **47** reject,
+  **0** ready existing lanes >=150, and top projected clean admits **77**. This run continued
+  source-transfer repair rather than reviewed-Swiss-Prot padding.
+- Completed the run2205 next action for Q6NSJ0. Current-slice artifacts
+  `artifacts/v3_external_source_pilot_needs_review_resolution_q6nsj0_replacement_current702_20260616_run2306.json`,
+  `artifacts/v3_external_source_pilot_decisions_review_resolved_q6nsj0_replacement_current702_20260616_run2306.json`,
+  and
+  `artifacts/v3_external_source_pilot_mechanism_repair_lanes_q6nsj0_replacement_current702_20260616_run2306.json`
+  route Q6NSJ0 to `split_glycoside_hydrolase_from_metal_hydrolase_control`.
+- Q6NSJ0 still cannot import. Its boundary control
+  `artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_q6nsj0_replacement_current702_20260616_run2306.json`
+  has active-site dyad **463/520** and no metal-ligand context, but remains incomplete because the
+  current full40 heuristic top1 role fraction is **0.3333** with only one role hint. The merged
+  glycoside adjudication
+  `artifacts/v3_external_source_pilot_glycoside_hydrolase_import_safety_adjudication_merged_q6nsj0_p33025_current702_20260616_run2306.json`
+  keeps Q6NSJ0 and P33025 at `glycoside_boundary_representation_conflict_not_repaired`.
+- Fixed glycoside import-safety duplicate-status handling so later UniRef/current-reference
+  no-overlap status overrides stale active-site `broader_duplicate_screening_required` blockers.
+  Added regression coverage in `tests/test_transfer_scope.py`.
+- Routed P55263 into an explicit manual source-mechanism review packet instead of a generic missing
+  lane:
+  `artifacts/v3_external_source_pilot_manual_source_mechanism_review_packet_p55263_with_stability_current702_20260616_run2306.json`.
+  P55263 has active-site residue **317**, Rhea **RHEA:20824**, and UniRef/current-reference
+  no-overlap, but lacks current heuristic scoring. Matched stability audit
+  `artifacts/v3_external_source_pilot_representation_backend_stability_p55263_matched_current702_20260616_run2306.json`
+  adds a P55263 row and shows nearest-reference instability (Q9TVW2 -> P03958), so the packet adds
+  `representation_control_instability_review_required`. The new CLI
+  `build-external-source-pilot-manual-source-mechanism-review-packet` is non-authorizing and
+  preserves `ready_for_label_import: false`.
+- Final merged gap audit
+  `artifacts/v3_external_source_pilot_review_resolution_gap_audit_q6nsj0_p55263_with_merged_glyco_import_safety_current702_20260616_run2306.json`
+  holds **7** rows with **0** import-ready and **0** countable candidates: **4**
+  `review_decision_and_factory_gate_blocked_after_control_repair`, **2**
+  `family_control_unresolved_after_adjudication`, and **1**
+  `manual_source_mechanism_review_required`. Consolidated review-only import safety
+  `artifacts/v3_external_source_pilot_review_resolution_gap_import_safety_q6nsj0_p55263_with_stability_packet_current702_20260616_run2306.json`
+  passed **safe=True**, **0** unsafe artifacts, **0** new countable labels.
+- Follow-up glycoside replacement scouts after treating Q6NSJ0 as failed,
+  `artifacts/v3_external_source_pilot_glycoside_hydrolase_replacement_scout_after_q6nsj0_current702_20260616_run2306.json`
+  and
+  `artifacts/v3_external_source_pilot_glycoside_hydrolase_replacement_scout_after_q6nsj0_live_current702_20260616_run2306.json`,
+  selected **no** replacement candidate: all six remaining glycan rows are
+  `replacement_scope_mismatch_or_low_priority`, with **0** import-ready and **0** countable rows.
+  Do not keep cycling this handle without new source evidence or a new source-free control design.
+- Storage hygiene: docs-reference check
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260616_run2306.json` has **0**
+  missing references across **2110** checked references. Hard-limit scan found no
+  `data/registries` or `artifacts` file over **90 MB**. Storage inventory/policy artifacts
+  `artifacts/v3_artifact_storage_inventory_current702_20260616_run2306.json` and
+  `artifacts/v3_artifact_storage_policy_check_current702_20260616_run2306.json` remain blocked by
+  **44** large-unclassified artifacts, with **0** deletions authorized. The producer/consumer
+  manifest and readiness plan
+  `artifacts/v3_artifact_producer_consumer_manifest_current702_20260616_run2306.json` and
+  `artifacts/v3_artifact_migration_readiness_plan_current702_20260616_run2306.json` have **116**
+  rows, **0** migration-ready files, and **0** deletion-authorized files. The dry-run execution
+  manifest `artifacts/v3_artifact_migration_execution_manifest_current702_20260616_run2306.json`
+  validated with **116** rows and `removal_allowed=0`; this is not a registry-size hard blocker.
+- Next exact action: repair or replace the glycoside boundary control with source-free
+  representation/heuristic evidence for Q6NSJ0/P33025, or manually resolve P55263's
+  mechanism-control family. Do not apply/import until explicit review decisions, duplicate checks,
+  family controls, full label-factory gates, novelty, governor, and row guardrails all pass.
+
 ## Session run - Q6NSJ0 replacement packet routed; no registry apply (2026-06-16, Codex automation)
 
 - Started from current `origin/main` at `e399887446677b2c47c0b72564d634842d357b4d`,

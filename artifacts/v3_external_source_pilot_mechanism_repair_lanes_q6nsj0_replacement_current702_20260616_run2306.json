@@ -1,0 +1,141 @@
+{
+  "metadata": {
+    "artifact_lineage": {
+      "artifact_paths": {
+        "needs_review_resolution": "artifacts/v3_external_source_pilot_needs_review_resolution_q6nsj0_replacement_current702_20260616_run2306.json",
+        "resolved_pilot_decisions": "artifacts/v3_external_source_pilot_decisions_review_resolved_q6nsj0_replacement_current702_20260616_run2306.json",
+        "source_context_decisions": "artifacts/v3_external_source_pilot_terminal_decisions_q6nsj0_replacement_current702_20260616_run2205.json"
+      },
+      "blocker_removed": "external_pilot_mechanism_repair_lanes_assigned",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "needs_review_resolution": 20260616,
+        "resolved_pilot_decisions": 20260616,
+        "source_context_decisions": 20260616
+      },
+      "payload_methods": {
+        "needs_review_resolution": "external_source_pilot_needs_review_resolution",
+        "resolved_pilot_decisions": "external_source_pilot_decisions_review_resolved",
+        "source_context_decisions": "external_source_pilot_terminal_decisions"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {
+        "needs_review_resolution": {
+          "metadata.artifact_lineage.slice_id": 20260616,
+          "metadata.slice_id": 20260616
+        },
+        "resolved_pilot_decisions": {
+          "metadata.artifact_lineage.slice_id": 20260616,
+          "metadata.slice_id": 20260616
+        },
+        "source_context_decisions": {
+          "metadata.artifact_lineage.slice_id": 20260616
+        }
+      },
+      "slice_id": 20260616,
+      "slice_members": {
+        "20260616": [
+          "needs_review_resolution",
+          "resolved_pilot_decisions",
+          "source_context_decisions"
+        ]
+      }
+    },
+    "blocker_not_removed": [
+      "repair_lanes_not_implemented_as_predictive_features",
+      "full_label_factory_gate_not_run_for_external_import",
+      "no_import_ready_external_rows"
+    ],
+    "blocker_removed": "external_pilot_representation_conflict_rows_have_named_mechanism_repair_lanes",
+    "candidate_count": 1,
+    "countable_label_candidate_count": 0,
+    "heuristic_top1_counts": {
+      "metallophosphomonoesterase": 1
+    },
+    "import_ready_candidate_count": 0,
+    "max_rows": 1,
+    "method": "external_source_pilot_mechanism_repair_lanes",
+    "non_countable_rule": "repair lanes identify representation/heuristic control work only; they cannot create import-ready rows or countable labels",
+    "ready_for_label_import": false,
+    "repair_lane_counts": {
+      "split_glycoside_hydrolase_from_metal_hydrolase_control": 1
+    },
+    "review_only": true,
+    "selected_accessions": [
+      "Q6NSJ0"
+    ],
+    "slice_id": 20260616,
+    "source_context_decisions_method": "external_source_pilot_terminal_decisions",
+    "source_context_status_counts": {
+      "source_supports_glycoside_hydrolase_alpha_galactosidase_context": 1
+    },
+    "source_needs_review_resolution_method": "external_source_pilot_needs_review_resolution",
+    "source_resolved_decision_status_counts": {
+      "rejected_representation_conflict": 1
+    },
+    "source_resolved_pilot_decisions_method": "external_source_pilot_decisions_review_resolved"
+  },
+  "rows": [
+    {
+      "accession": "Q6NSJ0",
+      "countable_label_candidate": false,
+      "duplicate_screen_summary": {
+        "bounded_current_reference_backend": "no_near_duplicate_signal",
+        "external_all_vs_all_backend": "not_required_after_uniref_current_reference_no_overlap",
+        "shared_uniref90_or_uniref50_with_nearest_references": false,
+        "structural_neighbor_above_tm_0_7": null,
+        "structural_neighbor_tm_score": null,
+        "top_current_reference_alignment_identity": null
+      },
+      "entry_id": "uniprot:Q6NSJ0",
+      "heuristic_context": {
+        "counterevidence": [],
+        "interpretation": "Source-supported alpha-galactosidase glycoside-hydrolase chemistry conflicts with the current heuristic top1; this remains review-only boundary-control evidence.",
+        "scope_top1_mismatch": true,
+        "scored": true,
+        "top1_fingerprint_id": "metallophosphomonoesterase",
+        "top1_score": 0.4924
+      },
+      "protein_name": "Alpha-galactosidase MYORG (EC 3.2.1.22) (Myogenesis regulating glycosidase) (Nuclear envelope transmembrane protein 37)",
+      "ready_for_label_import": false,
+      "repair_goal": "separate glycoside hydrolase chemistry from the current broad metal-dependent hydrolase seed",
+      "repair_lane": "split_glycoside_hydrolase_from_metal_hydrolase_control",
+      "repair_requires": [
+        "glycan_boundary_axis_stays_review_only",
+        "non_text_structure_or_sequence_features_only",
+        "no_external_import_without_full_gate"
+      ],
+      "representation_context": {
+        "baseline_backend": "deterministic_sequence_kmer_control",
+        "baseline_nearest_reference_accession": "P07342",
+        "baseline_top_embedding_cosine": 0.9144,
+        "comparison_backend": "deterministic_sequence_kmer_control",
+        "comparison_nearest_reference_accession": "P07342",
+        "comparison_top_embedding_cosine": 0.9144,
+        "interpretation": "Nearest reference stayed stable in deterministic representation, but the heuristic fingerprint context changed and top1 conflicts with glycoside-hydrolase source context.",
+        "nearest_reference_family_preserved": false,
+        "status": "representation_stability_changed_requires_review"
+      },
+      "review_status": "external_pilot_mechanism_repair_lane_review_only",
+      "smallest_next_action": "add a glycoside-hydrolase boundary control and rerun the glycan chemistry representation/heuristic comparison",
+      "source_confidence": "medium",
+      "source_context_evidence": {
+        "active_site_evidence_status": "explicit_active_site_source_present",
+        "active_site_position_count": 2,
+        "interpro_or_prosite_context": [],
+        "representative_rhea_reactions": [
+          "RHEA:21112 a globoside Gb3Cer (d18:1(4E)) + H2O = a beta-D-Gal-(1->4)-beta-D-Glc-(1<->1)-Cer(d18:1(4E)) + D-galactose"
+        ]
+      },
+      "source_resolved_status": "rejected_representation_conflict",
+      "source_supported_context_status": "source_supports_glycoside_hydrolase_alpha_galactosidase_context"
+    }
+  ],
+  "warnings": [
+    "mechanism repair lanes are review-only planning evidence and do not validate enzyme function or authorize external label import"
+  ]
+}

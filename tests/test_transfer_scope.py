@@ -70,6 +70,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_pilot_glycoside_hydrolase_boundary_control,
     build_external_source_pilot_glycoside_hydrolase_replacement_scout,
     build_external_source_pilot_human_expert_review_queue,
+    build_external_source_pilot_manual_source_mechanism_review_packet,
     build_external_source_pilot_mechanism_repair_lanes,
     build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication,
     build_external_source_pilot_review_resolution_gap_audit,
@@ -7961,6 +7962,157 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             )
         )
 
+    def test_external_pilot_manual_source_mechanism_review_packet_holds_row(
+        self,
+    ) -> None:
+        packet = build_external_source_pilot_manual_source_mechanism_review_packet(
+            review_resolution_gap_audit={
+                "metadata": {
+                    "method": "external_source_pilot_review_resolution_gap_audit"
+                },
+                "rows": [
+                    {
+                        "rank": 1,
+                        "accession": "P55263",
+                        "entry_id": "uniprot:P55263",
+                        "protein_name": "Adenosine kinase",
+                        "lane_id": "external_source:transferase_phosphoryl",
+                        "repair_lane": "manual_source_mechanism_review_required",
+                        "resolution_gap_status": (
+                            "manual_source_mechanism_review_required"
+                        ),
+                        "remaining_import_blockers": [
+                            "full_label_factory_gate_not_run"
+                        ],
+                    },
+                    {
+                        "rank": 2,
+                        "accession": "C9JRZ8",
+                        "entry_id": "uniprot:C9JRZ8",
+                        "repair_lane": "add_akr_nadp_redox_representation_axis",
+                        "resolution_gap_status": (
+                            "review_decision_and_factory_gate_blocked_after_"
+                            "control_repair"
+                        ),
+                    },
+                ],
+            },
+            mechanism_repair_lanes={
+                "metadata": {"method": "external_source_pilot_mechanism_repair_lanes"},
+                "rows": [
+                    {
+                        "accession": "P55263",
+                        "repair_lane": "manual_source_mechanism_review_required",
+                        "source_supported_context_status": (
+                            "source_supports_adenosine_kinase_phosphoryl_transfer_"
+                            "context"
+                        ),
+                        "source_context_evidence": {
+                            "active_site_evidence_status": (
+                                "explicit_active_site_source_present"
+                            ),
+                            "active_site_position_count": 1,
+                            "representative_rhea_reactions": [
+                                "RHEA:20824 adenosine + ATP = AMP + ADP + H(+)"
+                            ],
+                        },
+                    }
+                ],
+            },
+            needs_review_resolution={
+                "metadata": {"method": "external_source_pilot_needs_review_resolution"},
+                "rows": [
+                    {
+                        "accession": "P55263",
+                        "reaction_mechanism_context_result": {
+                            "status": (
+                                "source_supports_adenosine_kinase_phosphoryl_"
+                                "transfer_context"
+                            ),
+                            "ec_numbers": ["2.7.1.20"],
+                            "representative_rhea_reactions": [
+                                "RHEA:20824 adenosine + ATP = AMP + ADP + H(+)"
+                            ],
+                            "specific_reaction_record_count": 1,
+                        },
+                        "active_site_evidence_result": {
+                            "status": "explicit_active_site_source_present",
+                            "positions": [{"position": 317}],
+                        },
+                        "duplicate_screen_result": {
+                            "uniref_current_reference_screen_status": (
+                                "uniref_current_reference_screen_no_current_"
+                                "reference_overlap"
+                            )
+                        },
+                    }
+                ],
+            },
+            representation_stability_audit={
+                "metadata": {
+                    "method": "external_source_representation_backend_stability_audit"
+                },
+                "rows": [
+                    {
+                        "accession": "P55263",
+                        "baseline_nearest_reference_accession": "Q9TVW2",
+                        "comparison_nearest_reference_accession": "P03958",
+                        "baseline_top_embedding_cosine": 0.89,
+                        "comparison_top_embedding_cosine": 0.9164,
+                        "nearest_reference_stable": False,
+                        "nearest_reference_entry_ids_stable": False,
+                        "heuristic_disagreement_status_stable": True,
+                        "heuristic_fingerprint_context_stable": True,
+                        "stability_flags": [
+                            "nearest_reference_changed",
+                            "nearest_reference_entry_ids_changed",
+                        ],
+                    }
+                ],
+            },
+            artifact_lineage={
+                "method": "external_transfer_artifact_path_lineage_validation",
+                "slice_id": 20260616,
+                "guardrail_clean": True,
+            },
+        )
+
+        metadata = packet["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "external_source_pilot_manual_source_mechanism_review_packet",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["manual_source_mechanism_review_row_count"], 1)
+        self.assertEqual(metadata["selected_accessions"], ["P55263"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        row = packet["rows"][0]
+        self.assertEqual(
+            row["mechanism_review_packet_status"],
+            "manual_source_mechanism_review_required",
+        )
+        self.assertEqual(row["active_site_evidence"]["position_count"], 1)
+        self.assertEqual(
+            row["matched_representation_stability"]["status"],
+            "matched_stability_row_present",
+        )
+        self.assertFalse(
+            row["matched_representation_stability"]["nearest_reference_stable"]
+        )
+        self.assertIn(
+            "manual_source_mechanism_review_required",
+            row["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "representation_control_instability_review_required",
+            row["remaining_import_blockers"],
+        )
+        self.assertEqual(row["autonomous_decision"], "hold_review_only")
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
     def test_external_pilot_mechanism_repair_lanes_route_flat_terminal_rows(
         self,
     ) -> None:
@@ -9899,6 +10051,129 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             row["remaining_import_blockers"],
         )
         self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_pilot_glycoside_import_safety_prefers_later_uniref_clear(
+        self,
+    ) -> None:
+        adjudication = (
+            build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication(
+                glycoside_hydrolase_boundary_control={
+                    "metadata": {
+                        "method": (
+                            "external_source_pilot_glycoside_hydrolase_"
+                            "boundary_control"
+                        )
+                    },
+                    "rows": [
+                        {
+                            "accession": "Q6NSJ0",
+                            "entry_id": "uniprot:Q6NSJ0",
+                            "control_status": (
+                                "review_only_glycoside_hydrolase_boundary_ready"
+                            ),
+                            "candidate_active_site_features": {
+                                "has_acidic_active_site_pair": True,
+                                "acidic_source_active_site_positions": [463, 520],
+                                "acidic_source_active_site_residue_count": 2,
+                            },
+                            "metal_hydrolase_contrast_features": {
+                                "metal_ligand_context_absent": True,
+                                "metal_role_hint_match_count": 0,
+                                "top1_role_match_fraction": 0.0,
+                            },
+                        }
+                    ],
+                },
+                resolved_pilot_decisions={
+                    "metadata": {
+                        "method": "external_source_pilot_decisions_review_resolved"
+                    },
+                    "rows": [
+                        {
+                            "accession": "Q6NSJ0",
+                            "normalized_decision_status": (
+                                "rejected_representation_conflict"
+                            ),
+                        }
+                    ],
+                },
+                pilot_active_site_evidence_decisions={
+                    "metadata": {
+                        "method": (
+                            "external_source_pilot_active_site_evidence_decisions"
+                        )
+                    },
+                    "rows": [
+                        {
+                            "accession": "Q6NSJ0",
+                            "active_site_evidence_source_category": (
+                                "explicit_active_site_source_present"
+                            ),
+                            "backend_sequence_search_status": "no_near_duplicate_signal",
+                            "broader_duplicate_screening_status": (
+                                "broader_duplicate_screening_required"
+                            ),
+                            "factory_gate_status": "not_run",
+                            "import_readiness_blockers": [
+                                "broader_duplicate_screening_required",
+                                "external_review_decision_artifact_not_built",
+                                "full_label_factory_gate_not_run",
+                            ],
+                        }
+                    ],
+                },
+                external_import_readiness_audit={
+                    "metadata": {"method": "external_source_import_readiness_audit"},
+                    "rows": [
+                        {
+                            "accession": "Q6NSJ0",
+                            "backend_sequence_search_status": "no_near_duplicate_signal",
+                            "blockers": [
+                                "external_review_decision_artifact_not_built",
+                                "full_label_factory_gate_not_run",
+                            ],
+                        }
+                    ],
+                },
+                pilot_success_criteria={
+                    "metadata": {"method": "external_source_pilot_success_criteria"},
+                    "rows": [
+                        {
+                            "accession": "Q6NSJ0",
+                            "broader_duplicate_screening_status": (
+                                "current_reference_external_all_vs_all_uniref_no_signal"
+                            ),
+                            "full_label_factory_gate_status": "not_run",
+                            "criterion_blockers": [
+                                "broader_duplicate_screening_unresolved",
+                                "full_label_factory_gate_not_passed",
+                                "review_decision_not_terminal",
+                            ],
+                        }
+                    ],
+                },
+                artifact_lineage={"slice_id": 1025, "guardrail_clean": True},
+            )
+        )
+
+        row = adjudication["rows"][0]
+        self.assertEqual(
+            row["broader_duplicate_screening_status"],
+            "current_reference_external_all_vs_all_uniref_no_signal",
+        )
+        self.assertNotIn(
+            "broader_duplicate_screening_required",
+            row["remaining_import_blockers"],
+        )
+        self.assertNotIn(
+            "broader_duplicate_screening_unresolved",
+            row["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "full_label_factory_gate_not_run",
+            row["remaining_import_blockers"],
+        )
         self.assertFalse(row["ready_for_label_import"])
 
     def test_external_pilot_glycoside_replacement_scout_selects_review_only_candidate(

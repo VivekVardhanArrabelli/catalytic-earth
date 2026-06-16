@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "artifact_lineage": {
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "slice_id": 20260616
+    },
+    "blocker_not_removed": [
+      "external_review_decision_artifact_not_built",
+      "full_label_factory_gate_not_run_for_external_import",
+      "no_import_ready_external_rows"
+    ],
+    "blocker_removed": "q6nsj0_needs_review_row_resolved_to_review_only_repair_path",
+    "candidate_count": 1,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-06-16T23:06:35Z",
+    "import_ready_candidate_count": 0,
+    "method": "external_source_pilot_decisions_review_resolved",
+    "needs_review_count": 0,
+    "normalized_decision_status_counts": {
+      "rejected_representation_conflict": 1
+    },
+    "ready_for_label_import": false,
+    "review_only": true,
+    "run_id": "run2306",
+    "slice_id": 20260616,
+    "source_needs_review_resolution": "artifacts/v3_external_source_pilot_needs_review_resolution_q6nsj0_replacement_current702_20260616_run2306.json",
+    "source_normalized_decisions": "artifacts/v3_external_source_pilot_decisions_review_normalized_q6nsj0_replacement_current702_20260616_run2205.json"
+  },
+  "rows": [
+    {
+      "accession": "Q6NSJ0",
+      "countable_label_candidate": false,
+      "decision_basis": "source-supported alpha-galactosidase/glycoside-hydrolase context conflicts with current heuristic/representation context; route to glycoside boundary import-safety adjudication before any import",
+      "entry_id": "uniprot:Q6NSJ0",
+      "normalized_decision_status": "rejected_representation_conflict",
+      "ready_for_label_import": false,
+      "review_status": "external_pilot_decisions_review_resolved_review_only",
+      "source_needs_review_resolution_status": "rejected_representation_conflict"
+    }
+  ],
+  "warnings": [
+    "Resolved decisions artifact is review-only and cannot create countable labels or import-ready rows."
+  ]
+}

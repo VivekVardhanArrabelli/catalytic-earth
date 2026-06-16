@@ -26,17 +26,82 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
-- **Q6NSJ0 SOURCE-TRANSFER REPLACEMENT PACKET BUILT; NO REGISTRY APPLY (2026-06-16 automation).**
+- **Q6NSJ0/P55263 SOURCE-TRANSFER REPAIR REPLAY HELD; NO REGISTRY APPLY (2026-06-16 automation).**
   Frozen current702 stayed byte-unchanged at sha
   `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no label registry rows were
-  written. Run2205 post-noapply coverage/novelty audits
+  written. Run2205 post-noapply coverage/novelty audits still describe the current no-apply state:
   `artifacts/v3_coverage_redundancy_audit_current702_20260616_run2205_post_noapply.json` and
   `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run2205_post_noapply.json`
   confirm the surface stayed at **8728** combined labels = **702** frozen + **8026** expansion, with
   no holes, floor deficit **0**, novelty replay **7565** admit / **414** throttle / **47** reject,
   and only `metal_dependent_hydrolase` over cap.
 
-  Run2205 replaces the failed P33025 glycoside-boundary candidate at the review-worklist layer.
+  Run2306 completed the run2205 next action. The current-slice Q6NSJ0 review resolution and
+  repair-lane artifacts
+  `artifacts/v3_external_source_pilot_needs_review_resolution_q6nsj0_replacement_current702_20260616_run2306.json`,
+  `artifacts/v3_external_source_pilot_decisions_review_resolved_q6nsj0_replacement_current702_20260616_run2306.json`,
+  and
+  `artifacts/v3_external_source_pilot_mechanism_repair_lanes_q6nsj0_replacement_current702_20260616_run2306.json`
+  route Q6NSJ0 to `split_glycoside_hydrolase_from_metal_hydrolase_control`. The boundary control
+  `artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_q6nsj0_replacement_current702_20260616_run2306.json`
+  records Q6NSJ0's active-site dyad (**463**, **520**) and no metal-ligand context, but remains
+  `review_only_glycoside_hydrolase_boundary_incomplete` because the current full40 heuristic top1
+  role fraction is **0.3333** with only one role hint. The merged glycoside import-safety replay
+  `artifacts/v3_external_source_pilot_glycoside_hydrolase_import_safety_adjudication_merged_q6nsj0_p33025_current702_20260616_run2306.json`
+  keeps both Q6NSJ0 and P33025 at `glycoside_boundary_representation_conflict_not_repaired`.
+
+  Run2306 also routed P55263 explicitly to manual source-mechanism review instead of leaving it as
+  an opaque missing lane:
+  `artifacts/v3_external_source_pilot_needs_review_resolution_p55263_manual_review_current702_20260616_run2306.json`,
+  `artifacts/v3_external_source_pilot_decisions_review_resolved_p55263_manual_review_current702_20260616_run2306.json`,
+  and
+  `artifacts/v3_external_source_pilot_manual_source_mechanism_review_packet_p55263_with_stability_current702_20260616_run2306.json`.
+  P55263 has source-supported adenosine kinase / phosphoryl-transfer context, active-site residue
+  **317**, Rhea **RHEA:20824**, and UniRef/current-reference no-overlap, but it lacks current
+  heuristic scoring. The matched stability audit
+  `artifacts/v3_external_source_pilot_representation_backend_stability_p55263_matched_current702_20260616_run2306.json`
+  adds a P55263 row but shows nearest-reference instability (Q9TVW2 -> P03958), so the packet keeps
+  `representation_control_instability_review_required`; it is non-authorizing and non-countable.
+
+  The final merged repair lanes
+  `artifacts/v3_external_source_pilot_mechanism_repair_lanes_q6nsj0_p55263_merged_current702_20260616_run2306.json`
+  and final gap audit
+  `artifacts/v3_external_source_pilot_review_resolution_gap_audit_q6nsj0_p55263_with_merged_glyco_import_safety_current702_20260616_run2306.json`
+  keep **7** rows held with **0** import-ready and **0** countable rows: **4**
+  `review_decision_and_factory_gate_blocked_after_control_repair` rows (C9JRZ8, O14756, P06746,
+  Q8N0X4), **2** `family_control_unresolved_after_adjudication` glycoside rows (Q6NSJ0, P33025),
+  and **1** `manual_source_mechanism_review_required` row (P55263). Consolidated review-only import
+  safety
+  `artifacts/v3_external_source_pilot_review_resolution_gap_import_safety_q6nsj0_p55263_with_stability_packet_current702_20260616_run2306.json`
+  passed with **safe=True**, **0** unsafe artifacts, and **0** new countable labels. Next action:
+  do not apply from this packet; either design/score a source-free glycoside control that repairs
+  Q6NSJ0/P33025, or manually resolve P55263's mechanism-control family, while the four
+  control-repaired rows still require explicit review decisions plus full label-factory gates.
+
+  A bounded follow-up scout treated Q6NSJ0 as the failed glycoside replacement candidate. Both the
+  no-fetch and live-UniProt variants
+  `artifacts/v3_external_source_pilot_glycoside_hydrolase_replacement_scout_after_q6nsj0_current702_20260616_run2306.json`
+  and
+  `artifacts/v3_external_source_pilot_glycoside_hydrolase_replacement_scout_after_q6nsj0_live_current702_20260616_run2306.json`
+  selected **no** replacement candidate from the remaining six glycan rows. The live scout has **6**
+  `replacement_scope_mismatch_or_low_priority` rows, **0** fetch failures, **0** import-ready rows,
+  and **0** countable rows, so the current glycan replacement handle is exhausted without new source
+  evidence.
+
+  Storage hygiene remains non-blocking for registry safety: no `data/registries` or `artifacts`
+  file exceeds **90 MB**. Current run2306 storage artifacts
+  `artifacts/v3_artifact_storage_inventory_current702_20260616_run2306.json`,
+  `artifacts/v3_artifact_storage_policy_check_current702_20260616_run2306.json`,
+  `artifacts/v3_artifact_producer_consumer_manifest_current702_20260616_run2306.json`, and
+  `artifacts/v3_artifact_migration_readiness_plan_current702_20260616_run2306.json` record **44**
+  large-unclassified policy blockers, **116** manifest rows, **0** migration-ready files, and **0**
+  deletion-authorized files. The dry-run execution manifest
+  `artifacts/v3_artifact_migration_execution_manifest_current702_20260616_run2306.json` validates
+  with **116** rows, `migration_ready_count=0`, and `removal_allowed_count=0`; it authorizes no
+  upload, removal, Git LFS migration, or history rewrite.
+
+  Historical context: run2205 replaced the failed P33025 glycoside-boundary candidate at the
+  review-worklist layer.
   `artifacts/v3_external_source_pilot_glycoside_hydrolase_replacement_scout_current702_20260616_run2205.json`
   selected Q6NSJ0 as the replacement review packet candidate. Pinned priority support then put
   Q6NSJ0 into the selected source-transfer pilot list:
@@ -55,14 +120,10 @@ artifact-backed mechanism diagnostics.
   has **7** queued rows; after UniRef replay the only non-human blocker recorded there is
   `full_label_factory_gate_not_run`.
 
-  The current gap audit
+  The run2205 gap audit
   `artifacts/v3_external_source_pilot_review_resolution_gap_audit_q6nsj0_replacement_current702_20260616_run2205.json`
-  keeps all **7** queued rows held with **0** import-ready and **0** countable rows. Q6NSJ0 remains
-  blocked by missing family import-safety / repair-lane adjudication, explicit expert review, and
-  the full label-factory gate. Next action: build a current-slice `needs_review_resolution` /
-  repair-lane entry for Q6NSJ0, run the matching glycoside import-safety adjudication, then rerun
-  success criteria, terminal/confidence normalization, label-factory, novelty, governor, and
-  row-guardrail gates before any import.
+  kept all **7** queued rows held with **0** import-ready and **0** countable rows before run2306's
+  Q6NSJ0/P55263 repair replay.
 
 - **SOURCE-TRANSFER REVIEW RESOLUTION GAP MAPPED; NO REGISTRY APPLY (2026-06-16 automation).**
   Frozen current702 stayed byte-unchanged at sha

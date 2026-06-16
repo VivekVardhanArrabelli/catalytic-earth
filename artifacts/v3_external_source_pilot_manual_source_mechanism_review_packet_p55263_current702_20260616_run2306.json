@@ -1,0 +1,167 @@
+{
+  "metadata": {
+    "artifact_lineage": {
+      "artifact_paths": {
+        "mechanism_repair_lanes": "artifacts/v3_external_source_pilot_mechanism_repair_lanes_q6nsj0_p55263_merged_current702_20260616_run2306.json",
+        "needs_review_resolution": "artifacts/v3_external_source_pilot_needs_review_resolution_p55263_manual_review_current702_20260616_run2306.json",
+        "review_resolution_gap_audit": "artifacts/v3_external_source_pilot_review_resolution_gap_audit_q6nsj0_p55263_with_merged_glyco_import_safety_current702_20260616_run2306.json"
+      },
+      "blocker_removed": "manual_source_mechanism_review_rows_packetized",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "mechanism_repair_lanes": 20260616,
+        "needs_review_resolution": 20260616,
+        "review_resolution_gap_audit": 20260616
+      },
+      "payload_methods": {
+        "mechanism_repair_lanes": "external_source_pilot_mechanism_repair_lanes",
+        "needs_review_resolution": "external_source_pilot_needs_review_resolution",
+        "review_resolution_gap_audit": "external_source_pilot_review_resolution_gap_audit"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {
+        "mechanism_repair_lanes": {
+          "metadata.artifact_lineage.slice_id": 20260616,
+          "metadata.slice_id": 20260616
+        },
+        "needs_review_resolution": {
+          "metadata.artifact_lineage.slice_id": 20260616,
+          "metadata.slice_id": 20260616
+        },
+        "review_resolution_gap_audit": {
+          "metadata.artifact_lineage.slice_id": 20260616,
+          "metadata.slice_id": 20260616
+        }
+      },
+      "slice_id": 20260616,
+      "slice_members": {
+        "20260616": [
+          "mechanism_repair_lanes",
+          "needs_review_resolution",
+          "review_resolution_gap_audit"
+        ]
+      }
+    },
+    "blocker_not_removed": [
+      "manual_source_mechanism_review_required",
+      "external_review_decision_artifact_not_built",
+      "full_label_factory_gate_not_run",
+      "no_import_ready_external_rows"
+    ],
+    "blocker_removed": "manual_source_mechanism_review_rows_packetized",
+    "countable_label_candidate_count": 0,
+    "import_ready_candidate_count": 0,
+    "manual_source_mechanism_review_row_count": 1,
+    "max_rows": 10,
+    "method": "external_source_pilot_manual_source_mechanism_review_packet",
+    "non_countable_rule": "manual source-mechanism packets organize review questions only and cannot create terminal acceptances, import-ready rows, or labels",
+    "ready_for_label_import": false,
+    "review_only": true,
+    "selected_accessions": [
+      "P55263"
+    ],
+    "slice_id": 20260616,
+    "source_mechanism_repair_lanes_method": "external_source_pilot_mechanism_repair_lanes",
+    "source_needs_review_resolution_method": "external_source_pilot_needs_review_resolution",
+    "source_review_resolution_gap_audit_method": "external_source_pilot_review_resolution_gap_audit"
+  },
+  "rows": [
+    {
+      "accession": "P55263",
+      "active_site_evidence": {
+        "position_count": 1,
+        "positions": [
+          317
+        ],
+        "status": "explicit_active_site_source_present"
+      },
+      "allowed_review_outcomes": [
+        "select_existing_repair_lane_and_rerun_import_safety_adjudication",
+        "define_new_review_only_family_control",
+        "reject_mechanism_mismatch",
+        "defer_requires_additional_source_or_representation_evidence"
+      ],
+      "autonomous_decision": "hold_review_only",
+      "countable_label_candidate": false,
+      "duplicate_screen_summary": {
+        "bounded_current_reference_backend": "no_near_duplicate_signal",
+        "external_all_vs_all_backend": "not_required_after_uniref_current_reference_no_overlap",
+        "shared_uniref90_or_uniref50_with_nearest_references": false,
+        "structural_neighbor_above_tm_0_7": null,
+        "structural_neighbor_tm_score": null,
+        "top_current_reference_alignment_identity": null
+      },
+      "entry_id": "uniprot:P55263",
+      "heuristic_context": {
+        "counterevidence": [
+          "heuristic_control_not_scored"
+        ],
+        "interpretation": "P55263 has source-supported phosphoryl-transfer context but lacks current heuristic scoring and learned representation stability evidence.",
+        "scope_top1_mismatch": null,
+        "scored": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "lane_id": "external_source:transferase_phosphoryl",
+      "manual_review_questions": [
+        "which source-supported mechanism repair family or new review-only control should own this row",
+        "whether active-site and reaction evidence resolve the heuristic or representation mismatch",
+        "whether the row should be rejected, deferred, or routed through a family import-safety adjudication"
+      ],
+      "mechanism_review_packet_status": "manual_source_mechanism_review_required",
+      "next_action": "resolve the source-mechanism family/control manually before any terminal review decision or factory-gate replay",
+      "protein_name": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)",
+      "rank": 4,
+      "reaction_context": {
+        "ec_numbers": [
+          "2.7.1.-",
+          "2.7.1.20"
+        ],
+        "representative_rhea_reactions": [
+          "RHEA:10224 pyridoxal + ATP = pyridoxal 5'-phosphate + ADP + H(+)",
+          "RHEA:10272 a 1,2-diacyl-sn-glycerol + ATP = a 1,2-diacyl-sn-glycero-3-phosphate + ADP + H(+)",
+          "RHEA:20824 adenosine + ATP = AMP + ADP + H(+)"
+        ],
+        "specific_reaction_record_count": 1,
+        "status": "source_supports_adenosine_kinase_phosphoryl_transfer_context"
+      },
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "external_review_decision_artifact_not_built",
+        "family_import_safety_adjudication_missing",
+        "full_label_factory_gate_not_run",
+        "manual_source_mechanism_review_required",
+        "terminal_review_decision_not_accepted"
+      ],
+      "representation_context": {
+        "baseline_backend": "deterministic_sequence_kmer_control",
+        "baseline_nearest_reference_accession": "Q9TVW2",
+        "baseline_top_embedding_cosine": 0.89,
+        "comparison_backend": "esm2_t6_8m_ur50d",
+        "comparison_nearest_reference_accession": "",
+        "comparison_top_embedding_cosine": 0.0,
+        "interpretation": "Current q6nsj0 replacement packet lacks a local stability row for P55263; older run1604 evidence shows the ESM2 comparison backend unavailable, so a family import-safety control cannot be selected autonomously.",
+        "nearest_reference_family_preserved": false,
+        "status": "representation_control_missing_stability_evidence"
+      },
+      "source_context_evidence": {
+        "active_site_evidence_status": "explicit_active_site_source_present",
+        "active_site_position_count": 1,
+        "interpro_or_prosite_context": [],
+        "representative_rhea_reactions": [
+          "RHEA:10224 pyridoxal + ATP = pyridoxal 5'-phosphate + ADP + H(+)",
+          "RHEA:10272 a 1,2-diacyl-sn-glycerol + ATP = a 1,2-diacyl-sn-glycero-3-phosphate + ADP + H(+)",
+          "RHEA:20824 adenosine + ATP = AMP + ADP + H(+)"
+        ]
+      },
+      "source_context_status": "source_supports_adenosine_kinase_phosphoryl_transfer_context"
+    }
+  ],
+  "warnings": [
+    "manual source-mechanism review packet is non-authorizing; external rows remain held until explicit decisions and full factory gates exist"
+  ]
+}

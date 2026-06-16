@@ -715,6 +715,7 @@ from .transfer_scope import (
     build_external_source_pilot_glycoside_hydrolase_boundary_control,
     build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication,
     build_external_source_pilot_glycoside_hydrolase_replacement_scout,
+    build_external_source_pilot_manual_source_mechanism_review_packet,
     build_external_source_pilot_mechanism_repair_lanes,
     build_external_source_pilot_review_resolution_gap_audit,
     build_external_source_pilot_schiff_base_lyase_control,
@@ -4543,6 +4544,46 @@ def cmd_build_external_source_pilot_review_resolution_gap_audit(
     print(
         "Wrote external source pilot review resolution gap audit to "
         f"{args.out} ({audit['metadata']['candidate_count']} held rows)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_manual_source_mechanism_review_packet(
+    args: argparse.Namespace,
+) -> int:
+    optional_artifact_names = (
+        "needs_review_resolution",
+        "representation_stability_audit",
+    )
+    explicit_optional_artifacts = tuple(
+        name for name in optional_artifact_names if getattr(args, name, None)
+    )
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "review_resolution_gap_audit",
+            "mechanism_repair_lanes",
+        )
+        + explicit_optional_artifacts,
+        blocker_removed="manual_source_mechanism_review_rows_packetized",
+    )
+    packet = build_external_source_pilot_manual_source_mechanism_review_packet(
+        review_resolution_gap_audit=artifact_payloads[
+            "review_resolution_gap_audit"
+        ],
+        mechanism_repair_lanes=artifact_payloads["mechanism_repair_lanes"],
+        needs_review_resolution=artifact_payloads.get("needs_review_resolution"),
+        representation_stability_audit=artifact_payloads.get(
+            "representation_stability_audit"
+        ),
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), packet)
+    print(
+        "Wrote external source pilot manual source-mechanism review packet to "
+        f"{args.out} "
+        f"({packet['metadata']['manual_source_mechanism_review_row_count']} rows)"
     )
     return 0
 
@@ -25560,6 +25601,60 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_pilot_review_gap.set_defaults(
         func=cmd_build_external_source_pilot_review_resolution_gap_audit
+    )
+
+    external_pilot_manual_source_packet = subparsers.add_parser(
+        "build-external-source-pilot-manual-source-mechanism-review-packet",
+        help=(
+            "package manual source-mechanism review rows from the external "
+            "pilot gap audit without authorizing import"
+        ),
+    )
+    external_pilot_manual_source_packet.add_argument(
+        "--review-resolution-gap-audit",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_review_resolution_gap_audit_1025.json"
+        ),
+    )
+    external_pilot_manual_source_packet.add_argument(
+        "--mechanism-repair-lanes",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_mechanism_repair_lanes_1025.json"
+        ),
+    )
+    external_pilot_manual_source_packet.add_argument(
+        "--needs-review-resolution",
+        default=None,
+        help=(
+            "optional needs-review resolution artifact used to enrich manual "
+            "source-mechanism packets with active-site and reaction context"
+        ),
+    )
+    external_pilot_manual_source_packet.add_argument(
+        "--representation-stability-audit",
+        default=None,
+        help=(
+            "optional matched representation stability audit used to distinguish "
+            "missing stability evidence from unstable representation evidence"
+        ),
+    )
+    external_pilot_manual_source_packet.add_argument(
+        "--max-rows", type=int, default=10
+    )
+    external_pilot_manual_source_packet.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_manual_source_mechanism_review_packet_"
+            "1025.json"
+        ),
+    )
+    external_pilot_manual_source_packet.set_defaults(
+        func=(
+            cmd_build_external_source_pilot_manual_source_mechanism_review_packet
+        )
     )
 
     external_pilot_acyl_coa_control = subparsers.add_parser(

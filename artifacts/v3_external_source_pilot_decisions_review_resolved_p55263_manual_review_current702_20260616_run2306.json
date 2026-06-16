@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "artifact_lineage": {
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "slice_id": 20260616
+    },
+    "blocker_not_removed": [
+      "manual_source_mechanism_review_required",
+      "external_review_decision_artifact_not_built",
+      "full_label_factory_gate_not_run_for_external_import",
+      "no_import_ready_external_rows"
+    ],
+    "blocker_removed": "p55263_review_row_routed_to_manual_source_mechanism_review_required",
+    "candidate_count": 1,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-06-16T23:06:35Z",
+    "import_ready_candidate_count": 0,
+    "method": "external_source_pilot_decisions_review_resolved",
+    "needs_review_count": 1,
+    "normalized_decision_status_counts": {
+      "needs_review": 1
+    },
+    "ready_for_label_import": false,
+    "review_only": true,
+    "run_id": "run2306",
+    "slice_id": 20260616,
+    "source_needs_review_resolution": "artifacts/v3_external_source_pilot_needs_review_resolution_p55263_manual_review_current702_20260616_run2306.json",
+    "source_normalized_decisions": "artifacts/v3_external_source_pilot_decisions_review_normalized_q6nsj0_replacement_current702_20260616_run2205.json"
+  },
+  "rows": [
+    {
+      "accession": "P55263",
+      "countable_label_candidate": false,
+      "decision_basis": "source-supported adenosine kinase row lacks heuristic scoring and representation stability evidence; route to manual mechanism-review/control design rather than a family import-safety adjudication",
+      "entry_id": "uniprot:P55263",
+      "normalized_decision_status": "needs_review",
+      "ready_for_label_import": false,
+      "review_status": "external_pilot_decisions_review_resolved_review_only"
+    }
+  ],
+  "warnings": [
+    "P55263 remains needs_review and cannot create labels or import-ready rows."
+  ]
+}

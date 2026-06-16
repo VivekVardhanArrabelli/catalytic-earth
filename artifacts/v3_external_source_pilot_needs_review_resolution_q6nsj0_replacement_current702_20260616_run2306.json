@@ -1,0 +1,192 @@
+{
+  "metadata": {
+    "allowed_normalized_decision_statuses": [
+      "import_ready_candidate",
+      "rejected_active_site_evidence_missing",
+      "rejected_duplicate_or_near_duplicate",
+      "rejected_mechanism_mismatch",
+      "rejected_representation_conflict",
+      "rejected_factory_gate_failure",
+      "needs_review"
+    ],
+    "artifact_lineage": {
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "slice_id": 20260616
+    },
+    "blocker_removed": "q6nsj0_needs_review_routed_to_glycoside_boundary_repair_lane",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-06-16T23:06:35Z",
+    "import_ready_candidate_count": 0,
+    "method": "external_source_pilot_needs_review_resolution",
+    "needs_review_after_count": 0,
+    "needs_review_before_count": 1,
+    "primary_external_sources_checked": [
+      "UniProtKB reviewed Q6NSJ0 feature, active-site, Rhea, PDB, AlphaFoldDB cross-references from local fetched artifacts",
+      "UniRef90/UniRef50 current-reference overlap screen from run2205",
+      "MMseqs2 bounded current-reference sequence screen from run2205/run1604 artifacts"
+    ],
+    "ready_for_label_import": false,
+    "remaining_global_import_blockers": [
+      "external_review_decision_artifact_not_built",
+      "full_label_factory_gate_not_run_for_external_import",
+      "out_of_scope_inverse_gate_must_pass_before_import",
+      "resolved row is review-only and not import-ready"
+    ],
+    "review_only": true,
+    "revised_status_counts": {
+      "rejected_representation_conflict": 1
+    },
+    "run_id": "run2306",
+    "slice_id": 20260616,
+    "source_confidence_audit": "artifacts/v3_external_source_pilot_decision_confidence_audit_q6nsj0_replacement_current702_20260616_run2205.json",
+    "source_evidence_dossiers": "artifacts/v3_external_source_pilot_evidence_dossiers_q6nsj0_replacement_current702_20260616_run2205.json",
+    "source_heuristic_scores": "artifacts/v3_external_source_heuristic_control_scores_full40_current702_20260616_run1604.json",
+    "source_import_readiness_audit": "artifacts/v3_external_source_import_readiness_audit_current702_20260616_run1604.json",
+    "source_normalized_decisions": "artifacts/v3_external_source_pilot_decisions_review_normalized_q6nsj0_replacement_current702_20260616_run2205.json",
+    "source_normalized_queue": "artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_q6nsj0_replacement_current702_20260616_run2205.json",
+    "source_reaction_evidence": "artifacts/v3_external_source_reaction_evidence_sample_current702_20260616_run1604.json"
+  },
+  "rows": [
+    {
+      "accession": "Q6NSJ0",
+      "active_site_evidence_result": {
+        "pdb_or_alphafold_context": {
+          "alphafold_ids": [
+            "Q6NSJ0"
+          ],
+          "pdb_ids": [
+            "7QQF",
+            "7QQG",
+            "7QQH"
+          ],
+          "structure_mapping_status": "pdb_or_alphafold_reference_present"
+        },
+        "positions": [
+          {
+            "begin": 463,
+            "description": "Nucleophile",
+            "end": 463,
+            "evidence": [
+              {
+                "evidence_code": "ECO:0000305",
+                "id": "36129849",
+                "source": "PubMed"
+              }
+            ],
+            "position": 463
+          },
+          {
+            "begin": 520,
+            "description": "Proton donor/acceptor",
+            "end": 520,
+            "evidence": [
+              {
+                "evidence_code": "ECO:0000305",
+                "id": "36129849",
+                "source": "PubMed"
+              }
+            ],
+            "position": 520
+          }
+        ],
+        "source_references": {
+          "doi_ids": [],
+          "interpro_ids": [],
+          "pmids": [
+            "36129849"
+          ],
+          "uniprot_feature_evidence": [
+            {
+              "evidence_code": "ECO:0000305",
+              "id": "36129849",
+              "source": "PubMed"
+            },
+            {
+              "evidence_code": "ECO:0000305",
+              "id": "36129849",
+              "source": "PubMed"
+            }
+          ]
+        },
+        "status": "explicit_active_site_source_present"
+      },
+      "confidence": "medium",
+      "countable_label_candidate": false,
+      "current_unresolved_question": "Does the representation-control context change reflect benign family diversity, or should this row remain blocked as a representation conflict? Does the structure-local active-site and reaction evidence support the proposed mechanism despite the heuristic top1/scope mismatch?",
+      "decision_scope_note": "Review-only import-safety resolution for Q6NSJ0; this is not a biochemical invalidation and does not create an import-ready or countable label row.",
+      "duplicate_screen_result": {
+        "backend_import_readiness_status": "no_near_duplicate_signal",
+        "bounded_current_reference_backend": "no_near_duplicate_signal",
+        "current_reference_overlap_count": 0,
+        "external_all_vs_all_backend": "not_required_after_uniref_current_reference_no_overlap",
+        "shared_uniref90_or_uniref50_with_nearest_references": false,
+        "targeted_uniref50_cluster": "UniRef50_Q6NSJ0",
+        "targeted_uniref90_cluster": "UniRef90_Q6NSJ0",
+        "top_current_reference_alignment_identity": null,
+        "uniref_current_reference_overlap_count": null,
+        "uniref_current_reference_screen_status": "uniref_current_reference_screen_no_current_reference_overlap"
+      },
+      "entry_id": "uniprot:Q6NSJ0",
+      "lane_id": "external_source:glycan_chemistry",
+      "protein_name": "Alpha-galactosidase MYORG (EC 3.2.1.22) (Myogenesis regulating glycosidase) (Nuclear envelope transmembrane protein 37)",
+      "rank": 1,
+      "reaction_mechanism_context_result": {
+        "ec_numbers": [],
+        "equation": "a globoside Gb3Cer (d18:1(4E)) + H2O = a beta-D-Gal-(1->4)-beta-D-Glc-(1<->1)-Cer(d18:1(4E)) + D-galactose",
+        "heuristic_context": {
+          "counterevidence": [],
+          "interpretation": "Source-supported alpha-galactosidase glycoside-hydrolase chemistry conflicts with the current heuristic top1; this remains review-only boundary-control evidence.",
+          "scope_top1_mismatch": true,
+          "scored": true,
+          "top1_fingerprint_id": "metallophosphomonoesterase",
+          "top1_score": 0.4924
+        },
+        "interpro_or_prosite_context": [],
+        "reaction_record_count": null,
+        "representative_rhea_reactions": [
+          "RHEA:21112 a globoside Gb3Cer (d18:1(4E)) + H2O = a beta-D-Gal-(1->4)-beta-D-Glc-(1<->1)-Cer(d18:1(4E)) + D-galactose"
+        ],
+        "specific_reaction_record_count": 1,
+        "status": "source_supports_glycoside_hydrolase_alpha_galactosidase_context"
+      },
+      "ready_for_label_import": false,
+      "remaining_expert_question": "Does the representation-control context change reflect benign family diversity, or should this row remain blocked as a representation conflict? Does the structure-local active-site and reaction evidence support the proposed mechanism despite the heuristic top1/scope mismatch?",
+      "representation_control_result": {
+        "baseline_backend": "deterministic_sequence_kmer_control",
+        "baseline_nearest_reference_accession": "P07342",
+        "baseline_top_embedding_cosine": 0.9144,
+        "comparison_backend": "deterministic_sequence_kmer_control",
+        "comparison_nearest_reference_accession": "P07342",
+        "comparison_top_embedding_cosine": 0.9144,
+        "interpretation": "Nearest reference stayed stable in deterministic representation, but the heuristic fingerprint context changed and top1 conflicts with glycoside-hydrolase source context.",
+        "nearest_reference_family_preserved": false,
+        "stability_flags": [
+          "heuristic_fingerprint_context_changed"
+        ],
+        "status": "representation_stability_changed_requires_review"
+      },
+      "review_status": "external_pilot_needs_review_resolution_review_only",
+      "revised_status": "rejected_representation_conflict",
+      "sources_checked_this_run": [
+        "artifacts/v3_external_source_pilot_decisions_review_normalized_q6nsj0_replacement_current702_20260616_run2205.json",
+        "artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_q6nsj0_replacement_current702_20260616_run2205.json",
+        "artifacts/v3_external_source_pilot_decision_confidence_audit_q6nsj0_replacement_current702_20260616_run2205.json",
+        "artifacts/v3_external_source_pilot_evidence_dossiers_q6nsj0_replacement_current702_20260616_run2205.json",
+        "artifacts/v3_external_source_pilot_active_site_evidence_decisions_q6nsj0_replacement_current702_20260616_run2205.json",
+        "artifacts/v3_external_source_pilot_success_criteria_q6nsj0_replacement_current702_20260616_run2205.json",
+        "artifacts/v3_external_source_pilot_terminal_decisions_q6nsj0_replacement_current702_20260616_run2205.json",
+        "artifacts/v3_external_source_pilot_representation_adjudication_q6nsj0_replacement_current702_20260616_run2205.json",
+        "artifacts/v3_external_source_pilot_uniref_current_reference_screen_q6nsj0_replacement_current702_20260616_run2205.json",
+        "artifacts/v3_external_source_pilot_glycoside_hydrolase_replacement_scout_current702_20260616_run2205.json",
+        "artifacts/v3_external_source_reaction_evidence_sample_current702_20260616_run1604.json",
+        "artifacts/v3_external_source_candidate_manifest_current702_20260616_run1604.json",
+        "artifacts/v3_external_source_import_readiness_audit_current702_20260616_run1604.json",
+        "artifacts/v3_external_source_heuristic_control_scores_full40_current702_20260616_run1604.json"
+      ]
+    }
+  ],
+  "warnings": [
+    "Q6NSJ0 resolution is review-only desk-review routing evidence; it does not authorize external label import."
+  ]
+}

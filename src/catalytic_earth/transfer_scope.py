@@ -16023,6 +16023,257 @@ def build_external_source_pilot_review_resolution_gap_audit(
     }
 
 
+def build_external_source_pilot_manual_source_mechanism_review_packet(
+    *,
+    review_resolution_gap_audit: dict[str, Any],
+    mechanism_repair_lanes: dict[str, Any],
+    needs_review_resolution: dict[str, Any] | None = None,
+    representation_stability_audit: dict[str, Any] | None = None,
+    max_rows: int = 10,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Package manual source-mechanism rows without making review decisions."""
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    repair_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in mechanism_repair_lanes.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    resolution_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in (needs_review_resolution or {}).get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    stability_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in (representation_stability_audit or {}).get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+
+    rows: list[dict[str, Any]] = []
+    for gap_row in review_resolution_gap_audit.get("rows", []) or []:
+        if not isinstance(gap_row, dict):
+            continue
+        accession = _normalize_accession(gap_row.get("accession"))
+        if not accession:
+            continue
+        repair_row = repair_by_accession.get(accession, {})
+        repair_lane = str(
+            gap_row.get("repair_lane")
+            or repair_row.get("repair_lane")
+            or ""
+        )
+        gap_status = str(gap_row.get("resolution_gap_status") or "")
+        if (
+            repair_lane != "manual_source_mechanism_review_required"
+            and gap_status != "manual_source_mechanism_review_required"
+        ):
+            continue
+        resolution_row = resolution_by_accession.get(accession, {})
+        active_site_result = _external_source_active_site_result(resolution_row)
+        reaction_context = (
+            resolution_row.get("reaction_mechanism_context_result")
+            if isinstance(
+                resolution_row.get("reaction_mechanism_context_result"), dict
+            )
+            else {}
+        )
+        stability_row = stability_by_accession.get(accession, {})
+        remaining_blockers = sorted(
+            {
+                str(blocker)
+                for blocker in (
+                    list(gap_row.get("remaining_import_blockers", []) or [])
+                    + [
+                        "manual_source_mechanism_review_required",
+                        "family_import_safety_adjudication_missing",
+                        "terminal_review_decision_not_accepted",
+                        "full_label_factory_gate_not_run",
+                    ]
+                )
+                if blocker
+            }
+        )
+        if stability_row and not (
+            stability_row.get("nearest_reference_stable")
+            and stability_row.get("nearest_reference_entry_ids_stable")
+            and stability_row.get("heuristic_disagreement_status_stable")
+        ):
+            remaining_blockers = sorted(
+                set(remaining_blockers)
+                | {"representation_control_instability_review_required"}
+            )
+        elif not stability_row:
+            remaining_blockers = sorted(
+                set(remaining_blockers)
+                | {"representation_control_stability_row_missing"}
+            )
+        rows.append(
+            {
+                "rank": gap_row.get("rank"),
+                "accession": accession,
+                "entry_id": gap_row.get("entry_id") or f"uniprot:{accession}",
+                "protein_name": gap_row.get("protein_name"),
+                "lane_id": gap_row.get("lane_id"),
+                "mechanism_review_packet_status": (
+                    "manual_source_mechanism_review_required"
+                ),
+                "source_context_status": (
+                    repair_row.get("source_supported_context_status")
+                    or reaction_context.get("status")
+                    or "source_context_status_missing"
+                ),
+                "source_context_evidence": repair_row.get(
+                    "source_context_evidence", {}
+                ),
+                "reaction_context": {
+                    "status": reaction_context.get("status"),
+                    "ec_numbers": reaction_context.get("ec_numbers", []),
+                    "representative_rhea_reactions": reaction_context.get(
+                        "representative_rhea_reactions", []
+                    ),
+                    "specific_reaction_record_count": reaction_context.get(
+                        "specific_reaction_record_count"
+                    ),
+                },
+                "active_site_evidence": {
+                    "status": active_site_result.get("status"),
+                    "position_count": len(
+                        _external_active_site_positions(active_site_result)
+                    ),
+                    "positions": _external_active_site_positions(
+                        active_site_result
+                    ),
+                },
+                "duplicate_screen_summary": repair_row.get(
+                    "duplicate_screen_summary", {}
+                )
+                or resolution_row.get("duplicate_screen_result", {}),
+                "representation_context": repair_row.get(
+                    "representation_context", {}
+                )
+                or resolution_row.get("representation_control_result", {}),
+                "matched_representation_stability": (
+                    {
+                        "status": "matched_stability_row_present",
+                        "baseline_nearest_reference_accession": stability_row.get(
+                            "baseline_nearest_reference_accession"
+                        ),
+                        "comparison_nearest_reference_accession": stability_row.get(
+                            "comparison_nearest_reference_accession"
+                        ),
+                        "baseline_top_embedding_cosine": stability_row.get(
+                            "baseline_top_embedding_cosine"
+                        ),
+                        "comparison_top_embedding_cosine": stability_row.get(
+                            "comparison_top_embedding_cosine"
+                        ),
+                        "nearest_reference_stable": stability_row.get(
+                            "nearest_reference_stable"
+                        ),
+                        "nearest_reference_entry_ids_stable": stability_row.get(
+                            "nearest_reference_entry_ids_stable"
+                        ),
+                        "heuristic_disagreement_status_stable": stability_row.get(
+                            "heuristic_disagreement_status_stable"
+                        ),
+                        "heuristic_fingerprint_context_stable": stability_row.get(
+                            "heuristic_fingerprint_context_stable"
+                        ),
+                        "stability_flags": stability_row.get("stability_flags", []),
+                    }
+                    if stability_row
+                    else {"status": "matched_stability_row_missing"}
+                ),
+                "heuristic_context": repair_row.get("heuristic_context", {})
+                or reaction_context.get("heuristic_context", {}),
+                "manual_review_questions": [
+                    (
+                        "which source-supported mechanism repair family or "
+                        "new review-only control should own this row"
+                    ),
+                    (
+                        "whether active-site and reaction evidence resolve the "
+                        "heuristic or representation mismatch"
+                    ),
+                    (
+                        "whether the row should be rejected, deferred, or routed "
+                        "through a family import-safety adjudication"
+                    ),
+                ],
+                "allowed_review_outcomes": [
+                    "select_existing_repair_lane_and_rerun_import_safety_adjudication",
+                    "define_new_review_only_family_control",
+                    "reject_mechanism_mismatch",
+                    "defer_requires_additional_source_or_representation_evidence",
+                ],
+                "remaining_import_blockers": remaining_blockers,
+                "next_action": (
+                    "resolve the source-mechanism family/control manually before "
+                    "any terminal review decision or factory-gate replay"
+                ),
+                "autonomous_decision": "hold_review_only",
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+            }
+        )
+        if len(rows) >= max_rows:
+            break
+
+    return {
+        "metadata": {
+            "method": (
+                "external_source_pilot_manual_source_mechanism_review_packet"
+            ),
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": "manual_source_mechanism_review_rows_packetized",
+            "blocker_not_removed": [
+                "manual_source_mechanism_review_required",
+                "external_review_decision_artifact_not_built",
+                "full_label_factory_gate_not_run",
+                "no_import_ready_external_rows",
+            ],
+            "review_only": True,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_candidate_count": 0,
+            "manual_source_mechanism_review_row_count": len(rows),
+            "max_rows": max_rows,
+            "selected_accessions": [row["accession"] for row in rows],
+            "source_review_resolution_gap_audit_method": (
+                review_resolution_gap_audit.get("metadata", {}).get("method")
+            ),
+            "source_mechanism_repair_lanes_method": (
+                mechanism_repair_lanes.get("metadata", {}).get("method")
+            ),
+            "source_needs_review_resolution_method": (
+                (needs_review_resolution or {}).get("metadata", {}).get("method")
+            ),
+            "source_representation_stability_audit_method": (
+                (representation_stability_audit or {}).get("metadata", {}).get(
+                    "method"
+                )
+            ),
+            "non_countable_rule": (
+                "manual source-mechanism packets organize review questions only "
+                "and cannot create terminal acceptances, import-ready rows, or labels"
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "manual source-mechanism review packet is non-authorizing; "
+                "external rows remain held until explicit decisions and full "
+                "factory gates exist"
+            )
+        ],
+    }
+
+
 def build_external_source_pilot_acyl_coa_lyase_thioesterase_control(
     *,
     repair_lanes: dict[str, Any],
@@ -18900,8 +19151,20 @@ def build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication(
                 if blocker not in boundary_blockers
                 and not blocker.startswith("representation_control_")
             }
-        if active_row.get("broader_duplicate_screening_status"):
-            blockers.add(str(active_row["broader_duplicate_screening_status"]))
+        broader_duplicate_screening_status = (
+            _external_resolved_broader_duplicate_screening_status(
+                success_row,
+                active_row,
+                import_row,
+            )
+        )
+        if _external_broader_duplicate_screening_status_blocks_import(
+            broader_duplicate_screening_status
+        ):
+            blockers.add(str(broader_duplicate_screening_status))
+        else:
+            blockers.discard("broader_duplicate_screening_required")
+            blockers.discard("broader_duplicate_screening_unresolved")
         if (
             active_row.get("factory_gate_status") == "not_run"
             or success_row.get("full_label_factory_gate_status") == "not_run"
@@ -18985,8 +19248,8 @@ def build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication(
                     if bounded_sequence_no_signal
                     else "bounded_sequence_signal_missing"
                 ),
-                "broader_duplicate_screening_status": active_row.get(
-                    "broader_duplicate_screening_status"
+                "broader_duplicate_screening_status": (
+                    broader_duplicate_screening_status
                 ),
                 "out_of_scope_inverse_gate": inverse_gate,
                 "remaining_import_blockers": sorted(blockers),
@@ -20874,6 +21137,45 @@ def _external_artifact_lineage_slice_id(
         return None
     parsed = _parse_external_transfer_lineage_int(artifact_lineage.get("slice_id"))
     return parsed
+
+
+_EXTERNAL_BROADER_DUPLICATE_SCREENING_CLEAR_STATUSES = {
+    "current_reference_external_all_vs_all_no_signal",
+    "current_reference_external_all_vs_all_uniref_no_signal",
+    "external_all_vs_all_no_near_duplicate_signal",
+    "no_near_duplicate_signal",
+    "uniref_current_reference_screen_no_current_reference_overlap",
+}
+
+
+def _external_resolved_broader_duplicate_screening_status(
+    *rows: dict[str, Any],
+) -> str | None:
+    """Prefer later duplicate-screen clear statuses over stale required flags."""
+
+    statuses: list[str] = []
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        for key in (
+            "broader_duplicate_screening_status",
+            "uniref_current_reference_screen_status",
+        ):
+            status = row.get(key)
+            if status:
+                statuses.append(str(status))
+    for status in statuses:
+        if status in _EXTERNAL_BROADER_DUPLICATE_SCREENING_CLEAR_STATUSES:
+            return status
+    return statuses[0] if statuses else None
+
+
+def _external_broader_duplicate_screening_status_blocks_import(
+    status: str | None,
+) -> bool:
+    if not status:
+        return False
+    return status not in _EXTERNAL_BROADER_DUPLICATE_SCREENING_CLEAR_STATUSES
 
 
 def _external_pilot_mechanism_repair_lane(row: dict[str, Any]) -> str:

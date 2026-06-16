@@ -16,7 +16,7 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
-**2026-06-16 automation update: Q6NSJ0 replacement source-transfer packet built; no registry
+**2026-06-16 automation update: Q6NSJ0/P55263 source-transfer repair replay held; no registry
 apply.** Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; no label registry rows were
 written. Run2205 coverage/novelty replays confirm the state is unchanged at **8728** combined
 labels = **702** frozen + **8026** expansion, with no holes, floor deficit **0**, novelty replay
@@ -24,7 +24,56 @@ labels = **702** frozen + **8026** expansion, with no holes, floor deficit **0**
 The run2205 factory refresh still has **0** ready existing lanes >=150 and top projected clean
 admits **77**, so no padding lane was applied.
 
-Run2205 selected Q6NSJ0 as the review-only glycoside replacement for the failed P33025 boundary row:
+Run2306 completed the current-slice Q6NSJ0 repair replay, but did not create an importable row.
+`artifacts/v3_external_source_pilot_needs_review_resolution_q6nsj0_replacement_current702_20260616_run2306.json`
+and
+`artifacts/v3_external_source_pilot_mechanism_repair_lanes_q6nsj0_replacement_current702_20260616_run2306.json`
+route Q6NSJ0 to the `split_glycoside_hydrolase_from_metal_hydrolase_control` lane. The boundary
+control
+`artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_q6nsj0_replacement_current702_20260616_run2306.json`
+records the source-traced active-site dyad (**463**, **520**) and no metal-ligand context, but
+still reports `review_only_glycoside_hydrolase_boundary_incomplete` because the current full40
+heuristic context is weak (top1 role fraction **0.3333**, role-hint count **1**). The merged
+glycoside adjudication
+`artifacts/v3_external_source_pilot_glycoside_hydrolase_import_safety_adjudication_merged_q6nsj0_p33025_current702_20260616_run2306.json`
+keeps both Q6NSJ0 and P33025 at `glycoside_boundary_representation_conflict_not_repaired`.
+
+Run2306 also made the P55263 manual row concrete:
+`artifacts/v3_external_source_pilot_needs_review_resolution_p55263_manual_review_current702_20260616_run2306.json`,
+`artifacts/v3_external_source_pilot_decisions_review_resolved_p55263_manual_review_current702_20260616_run2306.json`,
+and
+`artifacts/v3_external_source_pilot_manual_source_mechanism_review_packet_p55263_with_stability_current702_20260616_run2306.json`.
+P55263 has source-supported adenosine kinase/phosphoryl-transfer context, active-site residue
+**317**, Rhea **RHEA:20824**, and UniRef/current-reference no-overlap, but lacks current heuristic
+scoring. The matched stability audit
+`artifacts/v3_external_source_pilot_representation_backend_stability_p55263_matched_current702_20260616_run2306.json`
+adds a P55263 row but shows nearest-reference instability (Q9TVW2 -> P03958), so it remains
+manual-review-only.
+
+The final run2306 merged gap audit
+`artifacts/v3_external_source_pilot_review_resolution_gap_audit_q6nsj0_p55263_with_merged_glyco_import_safety_current702_20260616_run2306.json`
+holds all **7** queued rows with **0** import-ready and **0** countable candidates: **4** rows are
+`review_decision_and_factory_gate_blocked_after_control_repair`, **2** glycoside rows are
+`family_control_unresolved_after_adjudication`, and **1** P55263 row is
+`manual_source_mechanism_review_required`. Review-only import safety with the manual packet
+`artifacts/v3_external_source_pilot_review_resolution_gap_import_safety_q6nsj0_p55263_with_stability_packet_current702_20260616_run2306.json`
+passed with **safe=True**, **0** unsafe artifacts, and **0** new countable labels. Next action:
+repair or replace the glycoside boundary control with source-free representation/heuristic
+evidence, or manually resolve P55263's mechanism-control family. Do not import/apply until explicit
+review decisions, duplicate checks, family controls, full label-factory gates, novelty, governor,
+and row guardrails all pass.
+
+Run2306 also reran the glycoside replacement scout after treating Q6NSJ0 as the failed candidate.
+The no-fetch and live-UniProt follow-ups
+`artifacts/v3_external_source_pilot_glycoside_hydrolase_replacement_scout_after_q6nsj0_current702_20260616_run2306.json`
+and
+`artifacts/v3_external_source_pilot_glycoside_hydrolase_replacement_scout_after_q6nsj0_live_current702_20260616_run2306.json`
+selected **no** replacement candidate from the remaining six glycan rows: all are
+`replacement_scope_mismatch_or_low_priority`, with **0** import-ready and **0** countable rows. Do
+not keep cycling this same glycan replacement handle without new source evidence or a new
+source-free control design.
+
+Historical context: run2205 selected Q6NSJ0 as the review-only glycoside replacement for the failed P33025 boundary row:
 `artifacts/v3_external_source_pilot_glycoside_hydrolase_replacement_scout_current702_20260616_run2205.json`.
 Pinned source-pilot priority support places Q6NSJ0 into the selected 13-row review worklist in
 `artifacts/v3_external_source_pilot_candidate_priority_q6nsj0_replacement_current702_20260616_run2205.json`.
@@ -41,11 +90,8 @@ queue
 has **7** queued rows and, after duplicate-screen replay, only `full_label_factory_gate_not_run` as
 the non-human queue blocker. The gap audit
 `artifacts/v3_external_source_pilot_review_resolution_gap_audit_q6nsj0_replacement_current702_20260616_run2205.json`
-still holds all **7** rows for missing family import-safety adjudication / review / factory gates.
-Next action: create a current-slice `needs_review_resolution` and repair-lane mapping for Q6NSJ0,
-run glycoside import-safety adjudication on that replacement packet, then rerun success,
-terminal/confidence normalization, label-factory, novelty, governor, and row-guardrail gates before
-any import.
+held all **7** rows for missing family import-safety adjudication / review / factory gates before
+the run2306 Q6NSJ0/P55263 replay.
 
 **2026-06-16 automation update: source-transfer review resolution gap mapped; no registry apply.**
 Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; no label registry rows were written.

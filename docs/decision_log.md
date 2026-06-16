@@ -3,6 +3,57 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-16: SOURCE-TRANSFER IMPORT-SAFETY REPLAYS USE LATEST DUPLICATE STATE
+
+Decision: family import-safety adjudications must prefer later same-slice duplicate-screen clearance
+over stale `broader_duplicate_screening_required` blockers from older active-site decision rows.
+The clearance only removes the duplicate-process blocker; it does not create terminal acceptance,
+import-ready rows, countable labels, or registry-apply authority.
+
+Implementation: `build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication` now
+resolves the broader duplicate-screening status from the newest available row context, including
+UniRef/current-reference no-overlap status, before deciding whether duplicate screening blocks
+import. Regression coverage in `tests/test_transfer_scope.py` verifies a later
+`uniref_current_reference_screen_no_current_reference_overlap` status is not overridden by stale
+`broader_duplicate_screening_required` active-site context.
+
+Measured result: run2306 Q6NSJ0 glycoside replay
+`artifacts/v3_external_source_pilot_glycoside_hydrolase_import_safety_adjudication_q6nsj0_replacement_current702_20260616_run2306.json`
+does not carry the stale broader-duplicate blocker after UniRef/current-reference clearance, but it
+still holds Q6NSJ0 as `glycoside_boundary_representation_conflict_not_repaired`. The merged replay
+`artifacts/v3_external_source_pilot_glycoside_hydrolase_import_safety_adjudication_merged_q6nsj0_p33025_current702_20260616_run2306.json`
+keeps both Q6NSJ0 and P33025 non-importable.
+
+Follow-up: treat later duplicate clearance as process hygiene only. Q6NSJ0/P33025 still need a
+source-free glycoside boundary repair or replacement before any review decision or factory-gate
+replay.
+
+## 2026-06-16: MANUAL SOURCE-MECHANISM PACKETS ARE NON-AUTHORIZING
+
+Decision: a source-transfer row with explicit source evidence but no safe family/control assignment
+may be packetized for manual source-mechanism review, but the packet is review-only. It cannot
+select a mechanism family, create predictive evidence, satisfy import-safety adjudication, or turn a
+row into a countable label.
+
+Implementation: added `build_external_source_pilot_manual_source_mechanism_review_packet` and CLI
+`build-external-source-pilot-manual-source-mechanism-review-packet`. The packet consolidates the
+gap-audit row, mechanism-repair lane, active-site evidence, reaction context, duplicate-screen
+summary, representation context, optional matched representation-stability evidence, and allowed
+manual outcomes while preserving blockers and `ready_for_label_import: false`.
+
+Measured result: run2306 packet
+`artifacts/v3_external_source_pilot_manual_source_mechanism_review_packet_p55263_with_stability_current702_20260616_run2306.json`
+contains P55263 only. It records source-supported adenosine kinase/phosphoryl-transfer context,
+active-site residue **317**, Rhea **RHEA:20824**, and UniRef/current-reference no-overlap, but keeps
+the row held for manual source-mechanism review, representation instability (Q9TVW2 -> P03958),
+missing family import-safety adjudication, terminal review decision, and full label-factory gate.
+The consolidated safety audit
+`artifacts/v3_external_source_pilot_review_resolution_gap_import_safety_q6nsj0_p55263_with_stability_packet_current702_20260616_run2306.json`
+passed with **safe=True**, **0** unsafe artifacts, and **0** new countable labels.
+
+Follow-up: manually assign or design the P55263 mechanism-control family before any terminal
+acceptance or factory-gate replay. Do not import from manual packets.
+
 ## 2026-06-16: PINNED SOURCE-TRANSFER PILOT ROWS ARE REVIEW WORKLIST ROWS ONLY
 
 Decision: source-transfer pilot priority may pin a replacement accession into the selected review
