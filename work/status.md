@@ -2,9 +2,9 @@ automation: ce-bronze-scaleout-pipeline
 automation_id: ce-nad-glyco-floor-expansion
 started_at: 2026-06-16T13:02:12Z
 started_local: Tue Jun 16 08:02:12 CDT 2026
-closeout_at: 2026-06-16T13:41:26Z
-elapsed_minutes: 39.2
-remaining_minutes: 15.8
+closeout_at: 2026-06-16T13:52:37Z
+elapsed_minutes: 50.4
+remaining_minutes: 4.6
 budget_minutes: 55
 planned_closeout_minute: 50
 
@@ -82,8 +82,10 @@ validation:
   post_apply_validate: passed: 12 source records, 46 fingerprints, 43 ontology families, 702 curated labels
   post_apply_focused: 383 passed, 14 subtests
   full_suite: 2363 passed, 1 warning, 244 subtests passed in 171.07s
+  final_touched_invariant_rerun: 71 passed in 74.17s
+  final_doc_progress_reference: 3 passed in 0.02s
   json_parse: passed: 9481 JSON files
-  jsonl_parse: passed: 27 JSONL files, 8240 lines
+  jsonl_parse: passed: 27 JSONL files, 8241 lines including authoritative final closeout
   file_size_scan: passed: no data/registries file over 45 MB
   diff_check: passed
 
