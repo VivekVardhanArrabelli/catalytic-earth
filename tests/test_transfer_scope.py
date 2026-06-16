@@ -7365,6 +7365,98 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertFalse(row["countable_label_candidate"])
         self.assertFalse(row["ready_for_label_import"])
 
+    def test_external_pilot_mechanism_repair_lanes_route_flat_terminal_rows(
+        self,
+    ) -> None:
+        lanes = build_external_source_pilot_mechanism_repair_lanes(
+            needs_review_resolution={
+                "metadata": {
+                    "method": (
+                        "external_source_pilot_human_expert_review_queue_normalized"
+                    )
+                },
+                "rows": [
+                    {
+                        "accession": "P06746",
+                        "entry_id": "uniprot:P06746",
+                        "protein_name": (
+                            "DNA polymerase beta (5'-deoxyribose-phosphate "
+                            "lyase) (5'-dRP lyase)"
+                        ),
+                        "normalized_decision_status": "needs_review",
+                    }
+                ],
+            },
+            resolved_pilot_decisions={
+                "metadata": {
+                    "method": "external_source_pilot_decisions_review_resolved"
+                },
+                "rows": [
+                    {
+                        "accession": "P06746",
+                        "normalized_decision_status": "needs_review",
+                    }
+                ],
+            },
+            source_context_decisions={
+                "metadata": {"method": "external_source_pilot_terminal_decisions"},
+                "rows": [
+                    {
+                        "accession": "P06746",
+                        "entry_id": "uniprot:P06746",
+                        "protein_name": (
+                            "DNA polymerase beta (5'-deoxyribose-phosphate "
+                            "lyase) (5'-dRP lyase)"
+                        ),
+                        "active_site_residue_evidence_status": (
+                            "explicit_active_site_source_present"
+                        ),
+                        "active_site_residue_positions": [
+                            {
+                                "begin": 72,
+                                "end": 72,
+                                "description": (
+                                    "Nucleophile; Schiff-base intermediate"
+                                ),
+                            }
+                        ],
+                        "reaction_mechanism_evidence_status": (
+                            "specific_reaction_context_present"
+                        ),
+                        "reaction_references": {
+                            "rhea_ids": ["RHEA:22508"],
+                            "reaction_record_count": 2,
+                            "specific_reaction_record_count": 1,
+                        },
+                    }
+                ],
+            },
+            artifact_lineage={
+                "method": "external_transfer_artifact_path_lineage_validation",
+                "slice_id": 20260616,
+                "guardrail_clean": True,
+            },
+        )
+
+        metadata = lanes["metadata"]
+        self.assertEqual(
+            metadata["repair_lane_counts"],
+            {"add_dna_pol_x_lyase_representation_axis": 1},
+        )
+        row = lanes["rows"][0]
+        self.assertEqual(
+            row["repair_lane"], "add_dna_pol_x_lyase_representation_axis"
+        )
+        self.assertEqual(
+            row["source_context_evidence"]["active_site_position_count"], 1
+        )
+        self.assertEqual(
+            row["source_context_evidence"]["representative_rhea_reactions"],
+            ["RHEA:22508"],
+        )
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
     def test_external_pilot_sdr_redox_repair_control_stages_sequence_axis(
         self,
     ) -> None:
@@ -8248,9 +8340,9 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                             "accession": "P06746",
                             "revised_status": "rejected_representation_conflict",
                             "confidence": "medium",
-                            "active_site_evidence_result": {
-                                "positions": [{"position": 72}],
-                            },
+                            "active_site_residue_positions": [
+                                {"begin": 72, "end": 72}
+                            ],
                             "reaction_mechanism_context_result": {
                                 "status": (
                                     "source_supports_dna_polymerase_and_"

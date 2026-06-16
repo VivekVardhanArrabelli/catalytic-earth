@@ -15471,6 +15471,7 @@ def build_external_source_pilot_mechanism_repair_lanes(
     *,
     needs_review_resolution: dict[str, Any],
     resolved_pilot_decisions: dict[str, Any],
+    source_context_decisions: dict[str, Any] | None = None,
     max_rows: int = 10,
     artifact_lineage: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
@@ -15489,6 +15490,11 @@ def build_external_source_pilot_mechanism_repair_lanes(
         for row in resolved_pilot_decisions.get("rows", []) or []
         if isinstance(row, dict)
     )
+    source_context_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in (source_context_decisions or {}).get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
 
     rows: list[dict[str, Any]] = []
     for row in sorted(
@@ -15501,9 +15507,11 @@ def build_external_source_pilot_mechanism_repair_lanes(
         accession = _normalize_accession(row.get("accession"))
         if not accession:
             continue
-        reaction_context = row.get("reaction_mechanism_context_result", {})
-        if not isinstance(reaction_context, dict):
-            reaction_context = {}
+        source_row = {
+            **source_context_by_accession.get(accession, {}),
+            **row,
+        }
+        reaction_context = _external_source_reaction_context_result(source_row)
         heuristic_context = reaction_context.get("heuristic_context", {})
         if not isinstance(heuristic_context, dict):
             heuristic_context = {}
@@ -15513,11 +15521,9 @@ def build_external_source_pilot_mechanism_repair_lanes(
         duplicate_context = row.get("duplicate_screen_result", {})
         if not isinstance(duplicate_context, dict):
             duplicate_context = {}
-        active_site_context = row.get("active_site_evidence_result", {})
-        if not isinstance(active_site_context, dict):
-            active_site_context = {}
+        active_site_context = _external_source_active_site_result(source_row)
 
-        repair_lane = _external_pilot_mechanism_repair_lane(row)
+        repair_lane = _external_pilot_mechanism_repair_lane(source_row)
         repair_plan = _external_pilot_mechanism_repair_plan(repair_lane)
         active_site_positions = active_site_context.get("positions", [])
         if not isinstance(active_site_positions, list):
@@ -15527,9 +15533,19 @@ def build_external_source_pilot_mechanism_repair_lanes(
             {
                 "accession": accession,
                 "entry_id": row.get("entry_id") or f"uniprot:{accession}",
-                "protein_name": row.get("protein_name"),
-                "source_resolved_status": row.get("revised_status"),
-                "source_confidence": row.get("confidence"),
+                "protein_name": row.get("protein_name")
+                or source_row.get("protein_name"),
+                "source_resolved_status": (
+                    row.get("revised_status")
+                    or row.get("normalized_decision_status")
+                    or (
+                        source_row.get("review_decision", {}).get("decision_status")
+                        if isinstance(source_row.get("review_decision"), dict)
+                        else None
+                    )
+                ),
+                "source_confidence": row.get("confidence")
+                or row.get("confidence_status"),
                 "source_supported_context_status": reaction_context.get("status"),
                 "source_context_evidence": {
                     "representative_rhea_reactions": reaction_context.get(
@@ -15647,6 +15663,9 @@ def build_external_source_pilot_mechanism_repair_lanes(
             "source_resolved_pilot_decisions_method": resolved_pilot_decisions.get(
                 "metadata", {}
             ).get("method"),
+            "source_context_decisions_method": (source_context_decisions or {}).get(
+                "metadata", {}
+            ).get("method"),
             "source_resolved_decision_status_counts": dict(
                 sorted(resolved_status_counts.items())
             ),
@@ -15742,9 +15761,7 @@ def build_external_source_pilot_sdr_redox_repair_control(
         if not accession:
             continue
         resolution_row = resolution_by_accession.get(accession, {})
-        active_site_result = resolution_row.get("active_site_evidence_result", {})
-        if not isinstance(active_site_result, dict):
-            active_site_result = {}
+        active_site_result = _external_source_active_site_result(resolution_row)
         active_site_positions = _external_active_site_positions(active_site_result)
         candidate_record = external_sequences.get(accession, {})
         candidate_sequence = _clean_sequence(candidate_record.get("sequence"))
@@ -15785,9 +15802,7 @@ def build_external_source_pilot_sdr_redox_repair_control(
             else "review_only_sdr_axis_contrast_incomplete"
         )
         heuristic_row = heuristic_by_accession.get(accession, {})
-        reaction_context = resolution_row.get("reaction_mechanism_context_result", {})
-        if not isinstance(reaction_context, dict):
-            reaction_context = {}
+        reaction_context = _external_source_reaction_context_result(resolution_row)
         rows.append(
             {
                 "accession": accession,
@@ -16325,9 +16340,7 @@ def build_external_source_pilot_akr_nadp_repair_control(
         if not accession:
             continue
         resolution_row = resolution_by_accession.get(accession, {})
-        active_site_result = resolution_row.get("active_site_evidence_result", {})
-        if not isinstance(active_site_result, dict):
-            active_site_result = {}
+        active_site_result = _external_source_active_site_result(resolution_row)
         active_site_positions = _external_active_site_positions(active_site_result)
         candidate_record = external_sequences.get(accession, {})
         candidate_sequence = _clean_sequence(candidate_record.get("sequence"))
@@ -16369,9 +16382,7 @@ def build_external_source_pilot_akr_nadp_repair_control(
             else "review_only_akr_nadp_axis_contrast_incomplete"
         )
         heuristic_row = heuristic_by_accession.get(accession, {})
-        reaction_context = resolution_row.get("reaction_mechanism_context_result", {})
-        if not isinstance(reaction_context, dict):
-            reaction_context = {}
+        reaction_context = _external_source_reaction_context_result(resolution_row)
         rows.append(
             {
                 "accession": accession,
@@ -16908,9 +16919,7 @@ def build_external_source_pilot_dna_pol_x_lyase_repair_control(
         if not accession:
             continue
         resolution_row = resolution_by_accession.get(accession, {})
-        active_site_result = resolution_row.get("active_site_evidence_result", {})
-        if not isinstance(active_site_result, dict):
-            active_site_result = {}
+        active_site_result = _external_source_active_site_result(resolution_row)
         active_site_positions = _external_active_site_positions(active_site_result)
         candidate_record = external_sequences.get(accession, {})
         candidate_sequence = _clean_sequence(candidate_record.get("sequence"))
@@ -16952,9 +16961,7 @@ def build_external_source_pilot_dna_pol_x_lyase_repair_control(
             else "review_only_dna_pol_x_lyase_axis_contrast_incomplete"
         )
         heuristic_row = heuristic_by_accession.get(accession, {})
-        reaction_context = resolution_row.get("reaction_mechanism_context_result", {})
-        if not isinstance(reaction_context, dict):
-            reaction_context = {}
+        reaction_context = _external_source_reaction_context_result(resolution_row)
         rows.append(
             {
                 "accession": accession,
@@ -17481,9 +17488,7 @@ def build_external_source_pilot_glycoside_hydrolase_boundary_control(
         if not accession:
             continue
         resolution_row = resolution_by_accession.get(accession, {})
-        active_site_result = resolution_row.get("active_site_evidence_result", {})
-        if not isinstance(active_site_result, dict):
-            active_site_result = {}
+        active_site_result = _external_source_active_site_result(resolution_row)
         active_site_positions = _external_active_site_positions(active_site_result)
         sequence = _clean_sequence(
             (external_sequences.get(accession) or {}).get("sequence")
@@ -18085,9 +18090,7 @@ def build_external_source_pilot_sugar_phosphate_isomerase_control(
         if not accession:
             continue
         resolution_row = resolution_by_accession.get(accession, {})
-        active_site_result = resolution_row.get("active_site_evidence_result", {})
-        if not isinstance(active_site_result, dict):
-            active_site_result = {}
+        active_site_result = _external_source_active_site_result(resolution_row)
         active_site_positions = _external_active_site_positions(active_site_result)
         sequence = _clean_sequence(
             (external_sequences.get(accession) or {}).get("sequence")
@@ -18721,9 +18724,7 @@ def build_external_source_pilot_schiff_base_lyase_control(
         if not accession:
             continue
         resolution_row = resolution_by_accession.get(accession, {})
-        active_site_result = resolution_row.get("active_site_evidence_result", {})
-        if not isinstance(active_site_result, dict):
-            active_site_result = {}
+        active_site_result = _external_source_active_site_result(resolution_row)
         active_site_positions = _external_active_site_positions(active_site_result)
         sequence = _clean_sequence(
             (external_sequences.get(accession) or {}).get("sequence")
@@ -19456,21 +19457,38 @@ def _external_artifact_lineage_slice_id(
 
 
 def _external_pilot_mechanism_repair_lane(row: dict[str, Any]) -> str:
-    reaction_context = row.get("reaction_mechanism_context_result", {})
-    if not isinstance(reaction_context, dict):
-        return "manual_source_mechanism_review_required"
-    status = str(reaction_context.get("status") or "")
+    reaction_context = _external_source_reaction_context_result(row)
+    status = " ".join(
+        str(value or "")
+        for value in (
+            reaction_context.get("status"),
+            row.get("protein_name"),
+            row.get("lane_id"),
+            row.get("proposed_mechanism_fingerprint"),
+            row.get("scope_signal"),
+        )
+    ).lower()
     if "short_chain_dehydrogenase_reductase" in status:
+        return "add_sdr_nad_p_redox_representation_axis"
+    if "short chain dehydrogenase" in status:
+        return "add_sdr_nad_p_redox_representation_axis"
+    if "17-beta-hydroxysteroid dehydrogenase" in status:
         return "add_sdr_nad_p_redox_representation_axis"
     if "aldo_keto_reductase" in status:
         return "add_akr_nadp_redox_representation_axis"
+    if "aldo-keto reductase" in status:
+        return "add_akr_nadp_redox_representation_axis"
     if "dna_polymerase" in status or "5_drp_lyase" in status:
+        return "add_dna_pol_x_lyase_representation_axis"
+    if "dna polymerase" in status or "5'-drp lyase" in status:
         return "add_dna_pol_x_lyase_representation_axis"
     if "mannose_6_phosphate_isomerase" in status:
         return "add_sugar_phosphate_isomerase_scope_control"
     if "n_acetylneuraminate_lyase" in status:
         return "add_schiff_base_aldolase_lyase_scope_control"
     if "alpha_galactosidase" in status or "glycoside_hydrolase" in status:
+        return "split_glycoside_hydrolase_from_metal_hydrolase_control"
+    if "glycosidase" in status or "glycan_chemistry" in status:
         return "split_glycoside_hydrolase_from_metal_hydrolase_control"
     return "manual_source_mechanism_review_required"
 
@@ -19583,13 +19601,84 @@ def _external_pilot_mechanism_repair_plan(repair_lane: str) -> dict[str, Any]:
     return plans.get(repair_lane, plans["manual_source_mechanism_review_required"])
 
 
+def _external_source_active_site_result(row: dict[str, Any]) -> dict[str, Any]:
+    active_site_result = row.get("active_site_evidence_result", {})
+    if isinstance(active_site_result, dict) and active_site_result:
+        return active_site_result
+    positions = row.get("active_site_feature_positions")
+    if not isinstance(positions, list):
+        positions = row.get("active_site_residue_positions")
+    if not isinstance(positions, list):
+        positions = []
+    normalized_positions: list[dict[str, Any]] = []
+    for item in positions:
+        if not isinstance(item, dict):
+            continue
+        position = item.get("position")
+        if position is None:
+            position = item.get("begin")
+        normalized: dict[str, Any] = {
+            "position": position,
+            "begin": item.get("begin", position),
+            "end": item.get("end", position),
+        }
+        for key in ("description", "evidence"):
+            if key in item:
+                normalized[key] = item[key]
+        normalized_positions.append(normalized)
+    return {
+        "status": (
+            row.get("active_site_evidence_status")
+            or row.get("active_site_residue_evidence_status")
+            or row.get("active_site_evidence_decision_status")
+            or row.get("active_site_evidence_source_category")
+        ),
+        "positions": normalized_positions,
+    }
+
+
+def _external_source_reaction_context_result(row: dict[str, Any]) -> dict[str, Any]:
+    reaction_context = row.get("reaction_mechanism_context_result", {})
+    if isinstance(reaction_context, dict) and reaction_context:
+        return reaction_context
+    reaction_references = row.get("reaction_references", {})
+    if not isinstance(reaction_references, dict):
+        reaction_references = {}
+    rhea_ids = reaction_references.get("rhea_ids")
+    if not isinstance(rhea_ids, list):
+        rhea_ids = row.get("rhea_ids")
+    if not isinstance(rhea_ids, list):
+        rhea_ids = []
+    return {
+        "status": (
+            row.get("reaction_mechanism_evidence_status")
+            or (
+                "specific_reaction_context_present"
+                if rhea_ids
+                else "reaction_or_mechanism_evidence_missing"
+            )
+        ),
+        "representative_rhea_reactions": [
+            str(rhea_id) for rhea_id in rhea_ids if str(rhea_id)
+        ],
+        "interpro_or_prosite_context": row.get("interpro_or_prosite_context", []),
+        "reaction_record_count": reaction_references.get("reaction_record_count"),
+        "specific_reaction_record_count": reaction_references.get(
+            "specific_reaction_record_count"
+        ),
+    }
+
+
 def _external_active_site_positions(active_site_result: dict[str, Any]) -> list[int]:
     positions: list[int] = []
     for item in active_site_result.get("positions", []) or []:
         if not isinstance(item, dict):
             continue
         try:
-            positions.append(int(item.get("position")))
+            position = item.get("position")
+            if position is None:
+                position = item.get("begin")
+            positions.append(int(position))
         except (TypeError, ValueError):
             continue
     return sorted(set(positions))

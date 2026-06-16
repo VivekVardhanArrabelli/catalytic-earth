@@ -26,6 +26,43 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **SOURCE-TRANSFER REPAIR LANES ENRICHED; NO REGISTRY APPLY (2026-06-16 automation).**
+  Frozen current702 stayed byte-unchanged at sha
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no label registry rows were
+  written. Fresh run1804 coverage/novelty audits
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run1804_pre_lane.json`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run1804_post_noapply.json`, and
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run1804_post_noapply.json`
+  confirm the surface stayed at **8728** combined labels = **702** frozen + **8026** expansion, with
+  no holes, floor deficit **0**, novelty replay **7565** admit / **414** throttle / **47** reject,
+  and only `metal_dependent_hydrolase` over cap.
+
+  The source-transfer pilot now has current-run all-vs-all sequence and repair-lineage artifacts.
+  `artifacts/v3_external_source_all_vs_all_sequence_search_current702_20260616_run1804.json` used
+  real MMseqs2 across **47/47** external candidates, found **0** exact/near duplicate pairs, and
+  remains review-only with `uniref_wide_duplicate_screen_not_run` still unresolved. The refreshed
+  pilot packet
+  `artifacts/v3_external_source_pilot_success_criteria_t12_allvsall_current702_20260616_run1804.json`,
+  `artifacts/v3_external_source_pilot_terminal_decisions_t12_allvsall_current702_20260616_run1804.json`,
+  and
+  `artifacts/v3_external_source_pilot_decision_confidence_audit_t12_allvsall_current702_20260616_run1804.json`
+  keeps the pilot at `needs_more_work`: terminal statuses are **6** active-site-evidence rejections,
+  **2** duplicate/near-duplicate rejections, and **4** human/expert deferrals; normalized confidence
+  routing has **5** review rows.
+
+  Source-context enrichment for mechanism repair lanes is now supported in
+  `build-external-source-pilot-mechanism-repair-lanes` and used in
+  `artifacts/v3_external_source_pilot_mechanism_repair_lanes_t12_allvsall_current702_20260616_run1804_enriched.json`.
+  It routes C9JRZ8, O14756, and P06746 into AKR/NADP, SDR/NAD(P), and DNA Pol X/5'-dRP lyase
+  contrast controls, leaves Q8N0X4 in manual mechanism review, and keeps P33025 on the glycoside
+  hydrolase/metal hydrolase boundary. Import-safety adjudications repair **3** representation
+  conflicts but preserve **0** countable/import-ready rows; P33025 remains
+  `glycoside_boundary_representation_conflict_not_repaired`. Closure notes are in
+  `work/external_source_transfer_pilot_repair_closure_current702_20260616_run1804.md`.
+  Next exact action: run the approved broader UniRef/current-reference duplicate screen for the
+  **5** normalized `needs_review` rows, then rerun confidence, normalization, repair controls, and
+  import-safety adjudication. Do not import/apply from run1804 artifacts.
+
 - **LEARNED SOURCE-TRANSFER REPRESENTATION GATE CLEARED; NO REGISTRY APPLY (2026-06-16 automation).**
   Frozen current702 stayed byte-unchanged at sha
   `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no label registry rows were

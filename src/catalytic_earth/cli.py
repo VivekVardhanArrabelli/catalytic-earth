@@ -4439,12 +4439,17 @@ def cmd_build_external_source_pilot_mechanism_repair_lanes(
 ) -> int:
     artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
         args,
-        ("needs_review_resolution", "resolved_pilot_decisions"),
+        (
+            "needs_review_resolution",
+            "resolved_pilot_decisions",
+            "source_context_decisions",
+        ),
         blocker_removed="external_pilot_mechanism_repair_lanes_assigned",
     )
     lanes = build_external_source_pilot_mechanism_repair_lanes(
         needs_review_resolution=artifact_payloads["needs_review_resolution"],
         resolved_pilot_decisions=artifact_payloads["resolved_pilot_decisions"],
+        source_context_decisions=artifact_payloads["source_context_decisions"],
         max_rows=args.max_rows,
         artifact_lineage=artifact_lineage,
     )
@@ -25236,6 +25241,14 @@ def build_parser() -> argparse.ArgumentParser:
         default=(
             "artifacts/"
             "v3_external_source_pilot_decisions_review_resolved_1025.json"
+        ),
+    )
+    external_pilot_mechanism_repair.add_argument(
+        "--source-context-decisions",
+        default=None,
+        help=(
+            "optional terminal/active-site decision artifact used only to enrich "
+            "review-only repair lanes with source context by accession"
         ),
     )
     external_pilot_mechanism_repair.add_argument(

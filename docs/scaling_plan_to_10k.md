@@ -16,6 +16,38 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-16 automation update: source-transfer repair lanes enriched; no registry apply.**
+Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; no label registry rows were written.
+Run1804 coverage/novelty replays confirm the state is unchanged at **8728** combined labels =
+**702** frozen + **8026** expansion, with no holes, floor deficit **0**, novelty replay **7565**
+admit / **414** throttle / **47** reject, and only `metal_dependent_hydrolase` over cap. The
+run1804 high-yield/factory refresh still has **0** ready existing lanes >=150 and top projected
+clean admits **77**, so no padding lane was applied.
+
+The source-transfer pilot was advanced non-destructively. Real MMseqs2 all-vs-all sequence search
+`artifacts/v3_external_source_all_vs_all_sequence_search_current702_20260616_run1804.json` covered
+**47/47** external candidates and found **0** exact/near duplicate pairs, but it remains
+review-only and does not remove the `uniref_wide_duplicate_screen_not_run` blocker. The refreshed
+pilot packet
+`artifacts/v3_external_source_pilot_success_criteria_t12_allvsall_current702_20260616_run1804.json`
+and
+`artifacts/v3_external_source_pilot_terminal_decisions_t12_allvsall_current702_20260616_run1804.json`
+still reports `needs_more_work`: **6** active-site-evidence rejections, **2** duplicate/near-duplicate
+rejections, **4** human/expert deferrals, and **0** import-ready rows. Confidence normalization
+routes **5** rows to review.
+
+The mechanism-repair lane builder now accepts optional source-context decisions, used only as
+review context. The enriched repair artifact
+`artifacts/v3_external_source_pilot_mechanism_repair_lanes_t12_allvsall_current702_20260616_run1804_enriched.json`
+routes C9JRZ8 to AKR/NADP, O14756 to SDR/NAD(P), P06746 to DNA Pol X/5'-dRP lyase, Q8N0X4 to manual
+mechanism review, and P33025 to the glycoside hydrolase boundary. Import-safety adjudications repair
+the AKR, SDR, and DNA representation conflicts, but all remain review-only with **0** countable or
+import-ready rows; glycoside boundary is still unrepaired. The closure note is
+`work/external_source_transfer_pilot_repair_closure_current702_20260616_run1804.md`. Next action:
+run an approved broader UniRef/current-reference duplicate screen for the **5** normalized
+`needs_review` rows, then rerun confidence, normalization, repair controls, and import-safety
+adjudication. Do not import from run1804 artifacts.
+
 **2026-06-16 automation update: learned source-transfer representation gate cleared; no registry
 apply.** Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; no label registry rows were
 written. Fresh run1704 planning refreshes confirm combined labels **8728**, no holes, floor deficit

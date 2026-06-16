@@ -346,6 +346,27 @@ class CliTests(unittest.TestCase):
             "/tmp/all_vs_all.json",
         )
 
+    def test_external_source_pilot_mechanism_repair_source_context_optional(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-external-source-pilot-mechanism-repair-lanes"]
+        )
+
+        self.assertIsNone(args.source_context_decisions)
+
+        overridden = build_parser().parse_args(
+            [
+                "build-external-source-pilot-mechanism-repair-lanes",
+                "--source-context-decisions",
+                "/tmp/source_context.json",
+            ]
+        )
+        self.assertEqual(
+            overridden.source_context_decisions,
+            "/tmp/source_context.json",
+        )
+
     def test_external_bulk_ingestion_scout_parser_defaults(self) -> None:
         args = build_parser().parse_args(["build-external-bulk-ingestion-scout"])
 

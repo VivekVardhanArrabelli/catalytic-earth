@@ -1,0 +1,189 @@
+{
+  "blockers": [
+    "glycoside_hydrolase_boundary_control_incomplete"
+  ],
+  "metadata": {
+    "artifact_lineage": {
+      "artifact_paths": {
+        "heuristic_control_scores": "artifacts/v3_external_source_heuristic_control_scores_current702_20260616_run1604.json",
+        "needs_review_resolution": "artifacts/v3_external_source_pilot_terminal_decisions_t12_allvsall_current702_20260616_run1804.json",
+        "pilot_larger_representation_sample": "artifacts/v3_external_source_pilot_representation_backend_sample_esm2_t30_150m_current702_20260616_run1704.json",
+        "pilot_representation_sample": "artifacts/v3_external_source_pilot_representation_backend_sample_esm2_t12_35m_current702_20260616_run1704.json",
+        "pilot_representation_stability_audit": "artifacts/v3_external_source_pilot_representation_backend_esm2_t12_vs_t30_stability_audit_current702_20260616_run1704.json",
+        "repair_lanes": "artifacts/v3_external_source_pilot_mechanism_repair_lanes_t12_allvsall_current702_20260616_run1804_enriched.json"
+      },
+      "blocker_removed": "glycoside_hydrolase_boundary_has_non_text_contrast_control",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "heuristic_control_scores": 20260616,
+        "needs_review_resolution": 20260616,
+        "pilot_larger_representation_sample": 20260616,
+        "pilot_representation_sample": 20260616,
+        "pilot_representation_stability_audit": 20260616,
+        "repair_lanes": 20260616
+      },
+      "payload_methods": {
+        "heuristic_control_scores": "external_source_heuristic_control_scores",
+        "needs_review_resolution": "external_source_pilot_terminal_decisions",
+        "pilot_larger_representation_sample": "external_source_representation_backend_sample",
+        "pilot_representation_sample": "external_source_representation_backend_sample",
+        "pilot_representation_stability_audit": "external_source_representation_backend_stability_audit",
+        "repair_lanes": "external_source_pilot_mechanism_repair_lanes"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {
+        "needs_review_resolution": {
+          "metadata.artifact_lineage.slice_id": 20260616
+        },
+        "repair_lanes": {
+          "metadata.artifact_lineage.slice_id": 20260616,
+          "metadata.slice_id": 20260616
+        }
+      },
+      "slice_id": 20260616,
+      "slice_members": {
+        "20260616": [
+          "heuristic_control_scores",
+          "needs_review_resolution",
+          "pilot_larger_representation_sample",
+          "pilot_representation_sample",
+          "pilot_representation_stability_audit",
+          "repair_lanes"
+        ]
+      }
+    },
+    "blocker_not_removed": [
+      "control_not_integrated_into_import_safety_adjudication",
+      "full_label_factory_gate_not_run_for_external_import",
+      "no_import_ready_external_rows"
+    ],
+    "blocker_removed": "glycoside_hydrolase_boundary_has_non_text_contrast_control",
+    "candidate_count": 1,
+    "candidate_with_acidic_dyad_count": 0,
+    "control_status_counts": {
+      "review_only_glycoside_hydrolase_boundary_incomplete": 1
+    },
+    "countable_label_candidate_count": 0,
+    "implemented_control": "glycoside_hydrolase_active_site_vs_metal_hydrolase_boundary",
+    "import_ready_candidate_count": 0,
+    "max_rows": 12,
+    "metal_ligand_context_absent_count": 1,
+    "method": "external_source_pilot_glycoside_hydrolase_boundary_control",
+    "predictive_feature_sources": [
+      "source_traced_active_site_residue_codes",
+      "active_site_sequence_position_spacing",
+      "local_structure_ligand_context_absence",
+      "local_structure_pocket_residue_composition",
+      "heuristic_role_hint_match_absence"
+    ],
+    "ready_for_label_import": false,
+    "review_context_fields": [
+      "Rhea reaction identifiers and equations",
+      "InterPro/PROSITE source context",
+      "current-reference M-CSA labels",
+      "heuristic fingerprint identifiers"
+    ],
+    "review_only": true,
+    "slice_id": 20260616,
+    "source_heuristic_control_scores_method": "external_source_heuristic_control_scores",
+    "source_needs_review_resolution_method": "external_source_pilot_terminal_decisions",
+    "source_repair_lanes_method": "external_source_pilot_mechanism_repair_lanes",
+    "target_repair_lane": "split_glycoside_hydrolase_from_metal_hydrolase_control"
+  },
+  "rows": [
+    {
+      "accession": "P33025",
+      "candidate_active_site_features": {
+        "acidic_active_site_spacing_values": [],
+        "acidic_source_active_site_positions": [
+          31
+        ],
+        "acidic_source_active_site_residue_count": 1,
+        "active_site_residue_windows": [
+          {
+            "position": 31,
+            "residue": "E",
+            "sequence_window": "DALKNKKPVVALESTIISHGMPFPQ",
+            "window_end": 43,
+            "window_start": 19
+          },
+          {
+            "position": 166,
+            "residue": "K",
+            "sequence_window": "ANTNVTVVCAGAKSILDLGLTTEYL",
+            "window_end": 178,
+            "window_start": 154
+          }
+        ],
+        "has_acidic_active_site_pair": false,
+        "sequence_length": 312,
+        "source_active_site_positions": [
+          31,
+          166
+        ]
+      },
+      "control_interpretation": "The glycoside-hydrolase boundary evidence is incomplete.",
+      "control_status": "review_only_glycoside_hydrolase_boundary_incomplete",
+      "countable_label_candidate": false,
+      "decision_effect": "keeps row rejected_representation_conflict; this control stages non-text boundary evidence for later import-safety adjudication",
+      "entry_id": "uniprot:P33025",
+      "implemented_control": "glycoside_hydrolase_active_site_vs_metal_hydrolase_boundary",
+      "metal_hydrolase_contrast_features": {
+        "matched_signature_roles": [
+          {
+            "matched_codes": [
+              "GLU"
+            ],
+            "required_residue": "His/Cys/Asp/Glu/Ser depending on family",
+            "required_role": "catalytic_base_or_nucleophile",
+            "role_hint_match": false
+          },
+          {
+            "matched_codes": [
+              "LYS"
+            ],
+            "required_residue": "backbone NH / Asn / His / Lys",
+            "required_role": "oxyanion_or_thioester_stabilizer",
+            "role_hint_match": false
+          }
+        ],
+        "metal_ligand_context_absent": true,
+        "metal_role_hint_match_count": 0,
+        "top1_residue_match_fraction": 0.6667,
+        "top1_role_match_fraction": 0.0
+      },
+      "pocket_boundary_features": {
+        "aromatic_fraction": 0.075,
+        "nearby_acidic_residue_count": 1,
+        "nearby_aromatic_residue_count": 3,
+        "nearby_residue_count": 40,
+        "negative_fraction": 0.025
+      },
+      "ready_for_label_import": false,
+      "repair_lane": "split_glycoside_hydrolase_from_metal_hydrolase_control",
+      "representation_conflict_summary": {
+        "baseline_backend": "esm2_t12_35m_ur50d",
+        "baseline_nearest_reference_accession": "P05631",
+        "baseline_top_embedding_cosine": 0.9651,
+        "comparison_backend": "esm2_t30_150m_ur50d",
+        "comparison_nearest_reference_accession": "P0A786",
+        "comparison_top_embedding_cosine": 0.977,
+        "nearest_reference_stable": false,
+        "stability_flags": [
+          "nearest_reference_changed",
+          "nearest_reference_entry_ids_changed"
+        ]
+      },
+      "review_status": "external_pilot_glycoside_hydrolase_boundary_control_review_only",
+      "source_confidence": null,
+      "source_resolved_status": null
+    }
+  ],
+  "warnings": [
+    "glycoside-hydrolase boundary controls are review-only contrast evidence; they do not validate enzyme function or authorize import"
+  ]
+}

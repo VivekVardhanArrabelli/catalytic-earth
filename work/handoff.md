@@ -1,5 +1,85 @@
 # Handoff
 
+## Session run - source-transfer repair lanes enriched; no registry apply (2026-06-16, Codex automation)
+
+- Started from current `origin/main` at `32deaca7e00715c5ed9bcb9141783b5efd163bc0`,
+  acquired `.git/catalytic-earth-automation.lock`, and confirmed `git pull --ff-only origin main`
+  was already up to date. Frozen current702 sha before and after work was
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no registry apply was
+  performed.
+- Baseline and final safety were green: `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed; focused CLI/source-transfer regression suite passed **16 passed, 111 deselected**;
+  critical registry/leakage/novelty/import suite passed **258 passed, 14 subtests**; full
+  `PYTHONPATH=src pytest -q` passed **2369 passed, 1 warning, 244 subtests**. `git diff --check`,
+  generated JSON parsing, and progress JSONL parsing passed.
+- Fresh planning/post-state artifacts:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run1804_pre_lane.json`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run1804_post_noapply.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run1804_pre_lane.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run1804_post_noapply.json`,
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260616_run1804_pre_lane.json`,
+  `artifacts/v3_evidence_handle_expansion_current702_20260616_run1804_pre_lane.json`, and
+  `artifacts/v3_breadth_feasibility_scout_current702_20260616_run1804_pre_lane.json`. Coverage
+  remains **8728** combined = **702** frozen + **8026** expansion, with **0** holes, floor deficit
+  **0**, Gini **0.1779**, novelty replay **7565** admit / **414** throttle / **47** reject, **0**
+  ready existing lanes >=150, and top projected clean admits **77**.
+- Added source-context enrichment for
+  `build-external-source-pilot-mechanism-repair-lanes`: the command now accepts optional
+  `--source-context-decisions`, merges by accession as review-only context, and supports flattened
+  terminal/active-site rows. Regression coverage is in `tests/test_transfer_scope.py` and
+  `tests/test_cli.py`.
+- Ran real MMseqs2 all-vs-all sequence screening across the current 47 external candidates:
+  `artifacts/v3_external_source_all_vs_all_sequence_search_current702_20260616_run1804.json`,
+  TSV
+  `artifacts/v3_external_source_all_vs_all_sequence_search_current702_20260616_run1804.tsv`, and
+  audit
+  `artifacts/v3_external_source_all_vs_all_sequence_search_audit_current702_20260616_run1804.json`.
+  The screen covered **47/47**, found **0** exact/near duplicate pairs, and remains review-only;
+  it does not remove `uniref_wide_duplicate_screen_not_run`.
+- Refreshed the selected t12 pilot packet using all-vs-all context:
+  `artifacts/v3_external_source_pilot_success_criteria_t12_allvsall_current702_20260616_run1804.json`,
+  `artifacts/v3_external_source_pilot_terminal_decisions_t12_allvsall_current702_20260616_run1804.json`,
+  `artifacts/v3_external_source_pilot_human_expert_review_queue_t12_allvsall_current702_20260616_run1804.json`,
+  `artifacts/v3_external_source_pilot_decision_confidence_audit_t12_allvsall_current702_20260616_run1804.json`,
+  `artifacts/v3_external_source_pilot_decisions_review_normalized_t12_allvsall_current702_20260616_run1804.json`,
+  and
+  `artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_t12_allvsall_current702_20260616_run1804.json`.
+  Status is still `needs_more_work`: **6** active-site-evidence rejections, **2**
+  duplicate/near-duplicate rejections, **4** direct human/expert deferrals, and **5** normalized
+  review rows after confidence replay.
+- Enriched mechanism repair lanes at
+  `artifacts/v3_external_source_pilot_mechanism_repair_lanes_t12_allvsall_current702_20260616_run1804_enriched.json`.
+  Lane routing: C9JRZ8 -> AKR/NADP contrast, O14756 -> SDR/NAD(P) contrast, P06746 -> DNA Pol
+  X/5'-dRP lyase contrast, Q8N0X4 -> manual mechanism review, P33025 -> glycoside hydrolase /
+  metal hydrolase boundary.
+- Built repair controls and import-safety adjudications:
+  `artifacts/v3_external_source_pilot_akr_nadp_repair_control_t12_allvsall_current702_20260616_run1804.json`,
+  `artifacts/v3_external_source_pilot_sdr_redox_repair_control_t12_allvsall_current702_20260616_run1804.json`,
+  `artifacts/v3_external_source_pilot_dna_pol_x_lyase_repair_control_t12_allvsall_current702_20260616_run1804.json`,
+  `artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_t12_allvsall_current702_20260616_run1804.json`,
+  plus the four matching `*_import_safety_adjudication_t12_allvsall_current702_20260616_run1804.json`
+  artifacts. AKR, SDR, and DNA representation conflicts are repaired review-only; glycoside boundary
+  remains unrepaired. All adjudications report **0** import-ready and **0** countable rows.
+- Closure note:
+  `work/external_source_transfer_pilot_repair_closure_current702_20260616_run1804.md`.
+  Next concrete action: run the approved broader UniRef/current-reference duplicate screen for the
+  **5** normalized `needs_review` rows, then rerun confidence, normalization, repair controls, and
+  import-safety adjudication. Do not import/apply from run1804 artifacts.
+- Durable-doc and storage hygiene:
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260616_run1804.json` passed with
+  **0** missing references across **2021** checked references. Registry file-size scan found no
+  `data/registries` files over **45 MB**; run1804 artifacts are small. The artifact storage
+  inventory/policy/plan
+  `artifacts/v3_artifact_storage_inventory_current702_20260616_run1804.json`,
+  `artifacts/v3_artifact_storage_policy_check_current702_20260616_run1804.json`,
+  `artifacts/v3_artifact_producer_consumer_manifest_current702_20260616_run1804.json`, and
+  `artifacts/v3_artifact_migration_readiness_plan_current702_20260616_run1804.json` record the
+  same **4** pre-existing large unclassified artifacts, **0** deletions authorized, and **0**
+  migrations ready now.
+- Source scale limit audit
+  `artifacts/v3_source_scale_limits_current702_20260616_run1804.json` still recommends
+  `stop_m_csa_only_tranche_growth_and_scope_external_source_transfer`.
+
 ## Session run - learned source-transfer representation gate cleared; no registry apply (2026-06-16, Codex automation)
 
 - Started from current `origin/main` at `46e8112cf5cfa43c58419318180e3dd5316b3bc2`,
