@@ -2,16 +2,21 @@ automation: ce-bronze-scaleout-pipeline
 automation_id: ce-nad-glyco-floor-expansion
 started_at: 2026-06-16T12:07:30Z
 started_local: Tue Jun 16 07:07:30 CDT 2026
-closeout_at: 2026-06-16T12:58:18Z
-elapsed_minutes: 50.8
-remaining_minutes: 4.2
+closeout_at: 2026-06-16T13:04:14Z
+elapsed_minutes: 56.7
+remaining_minutes: 0.0
 budget_minutes: 55
 planned_closeout_minute: 50
 
-state: final_validation_passed_ready_to_commit_push_release
-lock: held by this run until post-push release
+state: pushed_and_lock_released_overlap_stub_reconciled
+lock: released; lock dir absent after post-push release attempt
 branch: main
 base_at_start: cd04a5fcaac9c97aa3050736878f78128e172bf5
+post_push_overlap_stub: >
+  A 2026-06-16T13:02:12Z start stub appeared after the main push, emitted non-destructive
+  pre-lane coverage/novelty/factory artifacts, then left no active worker and no lock dir.
+  The stub artifacts were preserved for auditability; this status file reflects the completed
+  2026-06-16T12:07:30Z run.
 registry_mutation: none
 frozen_sha_before_apply: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
 frozen_sha_after_apply: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
