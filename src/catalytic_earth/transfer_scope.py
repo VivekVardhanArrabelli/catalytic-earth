@@ -15708,6 +15708,718 @@ def build_external_source_pilot_human_expert_review_queue_normalized(
     }
 
 
+def build_external_source_pilot_review_resolution_gap_audit(
+    *,
+    normalized_human_expert_review_queue: dict[str, Any],
+    mechanism_repair_lanes: dict[str, Any],
+    akr_nadp_import_safety_adjudication: dict[str, Any] | None = None,
+    sdr_redox_import_safety_adjudication: dict[str, Any] | None = None,
+    dna_pol_x_lyase_import_safety_adjudication: dict[str, Any] | None = None,
+    glycoside_hydrolase_import_safety_adjudication: dict[str, Any] | None = None,
+    acyl_coa_lyase_thioesterase_import_safety_adjudication: dict[str, Any]
+    | None = None,
+    max_rows: int = 10,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Map why normalized source-pilot review rows still cannot be decided.
+
+    This audit is deliberately non-authorizing: it consolidates review-only
+    repair/adjudication state and never converts a row into an import-ready or
+    countable label.
+    """
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    queue_rows = [
+        row
+        for row in normalized_human_expert_review_queue.get("rows", []) or []
+        if isinstance(row, dict)
+    ][:max_rows]
+    repair_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in mechanism_repair_lanes.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    adjudication_sources = {
+        "akr_nadp": akr_nadp_import_safety_adjudication,
+        "sdr_redox": sdr_redox_import_safety_adjudication,
+        "dna_pol_x_lyase": dna_pol_x_lyase_import_safety_adjudication,
+        "glycoside_hydrolase": glycoside_hydrolase_import_safety_adjudication,
+        "acyl_coa_lyase_thioesterase": (
+            acyl_coa_lyase_thioesterase_import_safety_adjudication
+        ),
+    }
+    adjudication_by_accession: dict[str, dict[str, Any]] = {}
+    for family, artifact in adjudication_sources.items():
+        if not isinstance(artifact, dict):
+            continue
+        method = artifact.get("metadata", {}).get("method")
+        for row in artifact.get("rows", []) or []:
+            if not isinstance(row, dict):
+                continue
+            accession = _normalize_accession(row.get("accession"))
+            if not accession:
+                continue
+            adjudication_by_accession[accession] = {
+                **row,
+                "source_family": family,
+                "source_method": method,
+            }
+
+    rows: list[dict[str, Any]] = []
+    for row in queue_rows:
+        accession = _normalize_accession(row.get("accession"))
+        if not accession:
+            continue
+        repair_row = repair_by_accession.get(accession, {})
+        adjudication_row = adjudication_by_accession.get(accession, {})
+        repair_lane = str(
+            repair_row.get("repair_lane")
+            or "repair_lane_missing_for_review_row"
+        )
+        adjudication_status = str(
+            adjudication_row.get("import_safety_adjudication_status")
+            or "family_import_safety_adjudication_missing"
+        )
+        remaining_blockers = sorted(
+            {
+                str(blocker)
+                for blocker in (
+                    list(row.get("non_human_blockers_remaining", []) or [])
+                    + list(adjudication_row.get("remaining_import_blockers", []) or [])
+                )
+                if blocker
+            }
+        )
+        if "full_label_factory_gate_not_run" not in remaining_blockers:
+            remaining_blockers.append("full_label_factory_gate_not_run")
+            remaining_blockers = sorted(remaining_blockers)
+
+        if repair_lane == "manual_source_mechanism_review_required":
+            resolution_gap_status = "manual_source_mechanism_review_required"
+            next_action = (
+                "define a source-supported mechanism repair family before any "
+                "terminal review decision"
+            )
+        elif adjudication_status == "family_import_safety_adjudication_missing":
+            resolution_gap_status = "family_import_safety_adjudication_missing"
+            next_action = str(
+                repair_row.get("smallest_next_action")
+                or "run the matching family import-safety adjudication"
+            )
+        elif adjudication_status.endswith(
+            "_representation_conflict_repaired"
+        ) or adjudication_status.endswith("_scope_control_repaired"):
+            resolution_gap_status = (
+                "review_decision_and_factory_gate_blocked_after_control_repair"
+            )
+            next_action = (
+                "record an explicit review decision and rerun duplicate/factory "
+                "gates before any import"
+            )
+        elif "not_repaired" in adjudication_status:
+            resolution_gap_status = "family_control_unresolved_after_adjudication"
+            next_action = (
+                "repair or replace the family-specific control before any review "
+                "decision"
+            )
+        else:
+            resolution_gap_status = "review_only_resolution_gap_open"
+            next_action = "inspect the family adjudication status before decision"
+
+        rows.append(
+            {
+                "rank": row.get("rank"),
+                "accession": accession,
+                "entry_id": row.get("entry_id") or f"uniprot:{accession}",
+                "protein_name": row.get("protein_name"),
+                "lane_id": row.get("lane_id"),
+                "target_label_type": row.get("target_label_type") or "out_of_scope",
+                "normalized_decision_status": row.get(
+                    "normalized_decision_status"
+                ),
+                "confidence_status": row.get("confidence_status"),
+                "active_site_evidence_status": row.get(
+                    "active_site_evidence_status"
+                ),
+                "repair_lane": repair_lane,
+                "repair_goal": repair_row.get("repair_goal"),
+                "family_import_safety_source": adjudication_row.get(
+                    "source_method"
+                ),
+                "family_import_safety_status": adjudication_status,
+                "resolution_gap_status": resolution_gap_status,
+                "remaining_import_blockers": remaining_blockers,
+                "next_action": next_action,
+                "autonomous_decision": "hold_review_only",
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+            }
+        )
+
+    status_counts = Counter(row["resolution_gap_status"] for row in rows)
+    repair_lane_counts = Counter(row["repair_lane"] for row in rows)
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row["remaining_import_blockers"]
+    )
+    return {
+        "metadata": {
+            "method": "external_source_pilot_review_resolution_gap_audit",
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": "source_transfer_review_resolution_gap_mapped",
+            "blocker_not_removed": [
+                "external_review_decision_artifact_not_built",
+                "full_label_factory_gate_not_run",
+                "no_import_ready_external_rows",
+            ],
+            "review_only": True,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_candidate_count": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "selected_accessions": [row["accession"] for row in rows],
+            "resolution_gap_status_counts": dict(sorted(status_counts.items())),
+            "repair_lane_counts": dict(sorted(repair_lane_counts.items())),
+            "remaining_import_blocker_counts": dict(sorted(blocker_counts.items())),
+            "source_normalized_human_expert_review_queue_method": (
+                normalized_human_expert_review_queue.get("metadata", {}).get(
+                    "method"
+                )
+            ),
+            "source_mechanism_repair_lanes_method": mechanism_repair_lanes.get(
+                "metadata", {}
+            ).get("method"),
+            "source_import_safety_methods": {
+                family: artifact.get("metadata", {}).get("method")
+                for family, artifact in adjudication_sources.items()
+                if isinstance(artifact, dict)
+            },
+            "non_countable_rule": (
+                "this audit only maps unresolved review/factory blockers and "
+                "cannot create terminal acceptances, import-ready rows, or labels"
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "review resolution gap audit is review-only planning evidence; "
+                "external rows remain held until explicit decisions and full "
+                "factory gates exist"
+            )
+        ],
+    }
+
+
+def build_external_source_pilot_acyl_coa_lyase_thioesterase_control(
+    *,
+    repair_lanes: dict[str, Any],
+    needs_review_resolution: dict[str, Any],
+    pilot_representation_sample: dict[str, Any],
+    pilot_larger_representation_sample: dict[str, Any],
+    pilot_representation_stability_audit: dict[str, Any],
+    external_sequence_fasta: Path,
+    max_rows: int = 1,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Stage a review-only acyl-CoA lyase/thioesterase scope control."""
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    target_lane = "add_acyl_coa_lyase_thioesterase_scope_control"
+    resolution_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in needs_review_resolution.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    baseline_representation_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in pilot_representation_sample.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    larger_representation_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in pilot_larger_representation_sample.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    stability_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in pilot_representation_stability_audit.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    external_sequences = {
+        _external_candidate_fasta_accession(record): record
+        for record in _parse_sequence_fasta(external_sequence_fasta)
+        if _external_candidate_fasta_accession(record)
+    }
+
+    rows: list[dict[str, Any]] = []
+    for lane_row in repair_lanes.get("rows", []) or []:
+        if not isinstance(lane_row, dict) or lane_row.get("repair_lane") != target_lane:
+            continue
+        accession = _normalize_accession(lane_row.get("accession"))
+        if not accession:
+            continue
+        resolution_row = resolution_by_accession.get(accession, {})
+        active_site_result = _external_source_active_site_result(resolution_row)
+        active_site_positions = _external_active_site_positions(active_site_result)
+        sequence = _clean_sequence(
+            (external_sequences.get(accession) or {}).get("sequence")
+        )
+        active_site_features = (
+            _external_acyl_coa_lyase_thioesterase_active_site_features(
+                sequence,
+                active_site_positions=active_site_positions,
+            )
+        )
+        reaction_context = _external_source_reaction_context_result(
+            {
+                **lane_row,
+                **resolution_row,
+            }
+        )
+        rhea_reactions = reaction_context.get("representative_rhea_reactions", [])
+        if not isinstance(rhea_reactions, list):
+            rhea_reactions = []
+        baseline_row = baseline_representation_by_accession.get(accession, {})
+        larger_row = larger_representation_by_accession.get(accession, {})
+        stability_row = stability_by_accession.get(accession, {})
+        has_source_active_site_residue = (
+            active_site_features["source_active_site_catalytic_residue_count"] >= 1
+        )
+        has_specific_reaction_context = bool(rhea_reactions)
+        control_ready = has_source_active_site_residue and has_specific_reaction_context
+        rows.append(
+            {
+                "accession": accession,
+                "entry_id": lane_row.get("entry_id") or f"uniprot:{accession}",
+                "repair_lane": target_lane,
+                "implemented_control": (
+                    "acyl_coa_lyase_thioesterase_active_site_scope_control"
+                ),
+                "control_status": (
+                    "review_only_acyl_coa_lyase_thioesterase_scope_ready"
+                    if control_ready
+                    else "review_only_acyl_coa_lyase_thioesterase_scope_incomplete"
+                ),
+                "source_resolved_status": (
+                    resolution_row.get("revised_status")
+                    or resolution_row.get("normalized_decision_status")
+                ),
+                "source_confidence": (
+                    resolution_row.get("confidence")
+                    or resolution_row.get("confidence_status")
+                ),
+                "candidate_active_site_features": active_site_features,
+                "reaction_context_evidence": {
+                    "reaction_context_status": reaction_context.get("status"),
+                    "representative_rhea_reactions": rhea_reactions,
+                    "active_site_positions": active_site_positions,
+                },
+                "representation_conflict_summary": {
+                    "baseline_backend": baseline_row.get("embedding_backend"),
+                    "baseline_nearest_reference_accession": (
+                        stability_row.get("baseline_nearest_reference_accession")
+                        or (baseline_row.get("nearest_reference") or {}).get(
+                            "reference_accession"
+                        )
+                    ),
+                    "baseline_top_embedding_cosine": (
+                        stability_row.get("baseline_top_embedding_cosine")
+                        or baseline_row.get("top_embedding_cosine")
+                    ),
+                    "comparison_backend": larger_row.get("embedding_backend"),
+                    "comparison_nearest_reference_accession": (
+                        stability_row.get("comparison_nearest_reference_accession")
+                        or (larger_row.get("nearest_reference") or {}).get(
+                            "reference_accession"
+                        )
+                    ),
+                    "comparison_top_embedding_cosine": (
+                        stability_row.get("comparison_top_embedding_cosine")
+                        or larger_row.get("top_embedding_cosine")
+                    ),
+                    "nearest_reference_stable": stability_row.get(
+                        "nearest_reference_stable"
+                    ),
+                    "stability_flags": stability_row.get("stability_flags", []),
+                },
+                "control_interpretation": (
+                    "Source-traced active-site residue context and Rhea reaction "
+                    "context are available for a review-only acyl-CoA "
+                    "lyase/thioesterase scope control. This does not resolve "
+                    "review, duplicate, or factory gates."
+                    if control_ready
+                    else "Acyl-CoA lyase/thioesterase scope-control evidence is incomplete."
+                ),
+                "decision_effect": (
+                    "stages non-text active-site sequence control evidence for a "
+                    "future import-safety adjudication; no terminal decision or "
+                    "label import is created"
+                ),
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "review_status": (
+                    "external_pilot_acyl_coa_lyase_thioesterase_control_review_only"
+                ),
+            }
+        )
+        if len(rows) >= max_rows:
+            break
+
+    control_status_counts = Counter(row["control_status"] for row in rows)
+    blockers: list[str] = []
+    if not rows:
+        blockers.append("target_acyl_coa_lyase_thioesterase_repair_lane_row_missing")
+    if any(row["control_status"].endswith("_incomplete") for row in rows):
+        blockers.append("acyl_coa_lyase_thioesterase_scope_control_incomplete")
+    return {
+        "metadata": {
+            "method": (
+                "external_source_pilot_acyl_coa_lyase_thioesterase_control"
+            ),
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": (
+                "acyl_coa_lyase_thioesterase_has_non_text_scope_control"
+            ),
+            "blocker_not_removed": [
+                "control_not_integrated_into_import_safety_adjudication",
+                "full_label_factory_gate_not_run_for_external_import",
+                "no_import_ready_external_rows",
+            ],
+            "review_only": True,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_candidate_count": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "target_repair_lane": target_lane,
+            "implemented_control": (
+                "acyl_coa_lyase_thioesterase_active_site_scope_control"
+            ),
+            "control_status_counts": dict(sorted(control_status_counts.items())),
+            "candidate_with_source_active_site_residue_count": sum(
+                1
+                for row in rows
+                if row["candidate_active_site_features"][
+                    "source_active_site_catalytic_residue_count"
+                ]
+                >= 1
+            ),
+            "candidate_with_rhea_context_count": sum(
+                1
+                for row in rows
+                if row["reaction_context_evidence"][
+                    "representative_rhea_reactions"
+                ]
+            ),
+            "predictive_feature_sources": [
+                "source_traced_active_site_residue_codes",
+                "active_site_sequence_position_spacing",
+            ],
+            "review_context_fields": [
+                "Rhea reaction identifiers and equations",
+                "protein name and EC text",
+                "representation nearest-reference summaries",
+            ],
+            "source_repair_lanes_method": repair_lanes.get("metadata", {}).get(
+                "method"
+            ),
+            "source_needs_review_resolution_method": needs_review_resolution.get(
+                "metadata", {}
+            ).get("method"),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "blockers": blockers,
+        "warnings": [
+            (
+                "Acyl-CoA lyase/thioesterase controls are review-only scope "
+                "evidence; they do not validate enzyme function or authorize import"
+            )
+        ],
+    }
+
+
+def build_external_source_pilot_acyl_coa_lyase_thioesterase_import_safety_adjudication(
+    *,
+    acyl_coa_lyase_thioesterase_control: dict[str, Any],
+    resolved_pilot_decisions: dict[str, Any],
+    pilot_active_site_evidence_decisions: dict[str, Any] | None = None,
+    pilot_success_criteria: dict[str, Any] | None = None,
+    max_rows: int = 1,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Adjudicate the acyl-CoA lyase/thioesterase scope control for import safety."""
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    resolved_by_accession = _external_first_row_by_accession(
+        resolved_pilot_decisions
+    )
+    active_by_accession = _external_first_row_by_accession(
+        pilot_active_site_evidence_decisions or {}
+    )
+    success_by_accession = _external_first_row_by_accession(
+        pilot_success_criteria or {}
+    )
+    repair_blockers = {
+        "representation_control_issue",
+        "representation_control_not_compared",
+        "representation_control_unresolved",
+        "representation_stability_changed_requires_review",
+        "resolve selected-pilot representation-control blocker",
+    }
+
+    rows: list[dict[str, Any]] = []
+    for control_row in [
+        row
+        for row in acyl_coa_lyase_thioesterase_control.get("rows", []) or []
+        if isinstance(row, dict)
+    ][:max_rows]:
+        accession = _normalize_accession(control_row.get("accession"))
+        if not accession:
+            continue
+        resolved_row = resolved_by_accession.get(accession, {})
+        active_row = active_by_accession.get(accession, {})
+        success_row = success_by_accession.get(accession, {})
+        active_site_features = control_row.get("candidate_active_site_features", {})
+        if not isinstance(active_site_features, dict):
+            active_site_features = {}
+        reaction_context = control_row.get("reaction_context_evidence", {})
+        if not isinstance(reaction_context, dict):
+            reaction_context = {}
+        rhea_reactions = reaction_context.get("representative_rhea_reactions", [])
+        if not isinstance(rhea_reactions, list):
+            rhea_reactions = []
+
+        has_source_active_site = (
+            _external_parse_int(
+                active_site_features.get(
+                    "source_active_site_catalytic_residue_count"
+                )
+            )
+            >= 1
+        )
+        has_rhea_context = bool(rhea_reactions)
+        active_site_resolved = (
+            active_row.get("active_site_evidence_source_category")
+            == "explicit_active_site_source_present"
+            or active_row.get("active_site_evidence_decision_status")
+            == "explicit_active_site_source_present"
+            or resolved_row.get("active_site_residue_evidence_status")
+            == "explicit_active_site_source_present"
+        )
+        scope_control_repaired = (
+            control_row.get("control_status")
+            == "review_only_acyl_coa_lyase_thioesterase_scope_ready"
+            and has_source_active_site
+            and has_rhea_context
+            and active_site_resolved
+        )
+
+        blockers = {
+            str(blocker)
+            for source_row in (resolved_row, active_row, success_row)
+            for blocker in (
+                (source_row.get("blockers", []) or [])
+                + (source_row.get("import_readiness_blockers", []) or [])
+                + (source_row.get("criterion_blockers", []) or [])
+                + (source_row.get("unresolved_process_blockers", []) or [])
+                + (source_row.get("unresolved_evidence_for_deferred", []) or [])
+            )
+            if blocker
+        }
+        if scope_control_repaired:
+            blockers = {
+                blocker
+                for blocker in blockers
+                if blocker not in repair_blockers
+                and not blocker.startswith("representation_control_")
+            }
+        if (
+            success_row.get("broader_duplicate_screening_status")
+            == "current_reference_external_all_vs_all_uniref_no_signal"
+        ):
+            blockers = {
+                blocker
+                for blocker in blockers
+                if blocker
+                not in {
+                    "broader_duplicate_screening_required",
+                    "complete broader duplicate screening beyond the bounded current-reference search",
+                    "selected_pilot_sequence_packet_missing",
+                }
+            }
+        if not active_site_resolved:
+            blockers.add("explicit_active_site_evidence_missing")
+        if not has_rhea_context:
+            blockers.add("specific_rhea_reaction_context_missing")
+        if not has_source_active_site:
+            blockers.add("source_traced_active_site_residue_missing")
+        if (
+            success_row.get("full_label_factory_gate_status") == "not_run"
+            or resolved_row.get("factory_gate_status") == "not_run"
+        ):
+            blockers.add("full_label_factory_gate_not_run")
+        if (
+            success_row.get("review_decision_status") == "no_decision"
+            or resolved_row.get("review_decision", {}).get("human_expert_required")
+            is True
+        ):
+            blockers.add("external_review_decision_artifact_not_built")
+
+        adjudicated_status = (
+            "acyl_coa_lyase_thioesterase_scope_control_repaired"
+            if scope_control_repaired
+            else "acyl_coa_lyase_thioesterase_scope_control_not_repaired"
+        )
+        rows.append(
+            {
+                "accession": accession,
+                "entry_id": control_row.get("entry_id") or f"uniprot:{accession}",
+                "target_label_type": "out_of_scope",
+                "target_fingerprint_id": None,
+                "ontology_version_at_decision": (
+                    DEFAULT_ONTOLOGY_VERSION_AT_DECISION
+                ),
+                "previous_normalized_decision_status": resolved_row.get(
+                    "normalized_decision_status"
+                ),
+                "normalized_decision_status_after_repair": (
+                    "needs_review"
+                    if scope_control_repaired
+                    else resolved_row.get("normalized_decision_status")
+                    or "needs_review"
+                ),
+                "import_safety_adjudication_status": adjudicated_status,
+                "decision_effect": (
+                    "scope_control_repaired_but_import_blocked_by_review_and_"
+                    "factory_gates"
+                    if scope_control_repaired
+                    else "keeps_previous_scope_control_hold"
+                ),
+                "acyl_coa_lyase_thioesterase_evidence": {
+                    "source_active_site_catalytic_residue_positions": (
+                        active_site_features.get(
+                            "source_active_site_catalytic_residue_positions", []
+                        )
+                    ),
+                    "source_active_site_catalytic_residue_count": (
+                        active_site_features.get(
+                            "source_active_site_catalytic_residue_count"
+                        )
+                    ),
+                    "representative_rhea_reactions": rhea_reactions,
+                    "active_site_positions": reaction_context.get(
+                        "active_site_positions", []
+                    ),
+                },
+                "active_site_import_safety_status": (
+                    "explicit_active_site_source_resolved"
+                    if active_site_resolved
+                    else "explicit_active_site_source_missing"
+                ),
+                "reaction_import_safety_status": (
+                    "specific_rhea_reaction_context_resolved"
+                    if has_rhea_context
+                    else "specific_rhea_reaction_context_missing"
+                ),
+                "remaining_import_blockers": sorted(blockers),
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "review_status": (
+                    "external_pilot_acyl_coa_lyase_thioesterase_import_safety_"
+                    "adjudication_review_only"
+                ),
+            }
+        )
+
+    status_counts = Counter(
+        row["import_safety_adjudication_status"] for row in rows
+    )
+    decision_counts = Counter(
+        row["normalized_decision_status_after_repair"] for row in rows
+    )
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row["remaining_import_blockers"]
+    )
+    blockers: list[str] = []
+    if not rows:
+        blockers.append(
+            "target_acyl_coa_lyase_thioesterase_control_row_missing"
+        )
+    return {
+        "metadata": {
+            "method": (
+                "external_source_pilot_acyl_coa_lyase_thioesterase_"
+                "import_safety_adjudication"
+            ),
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": (
+                "acyl_coa_lyase_thioesterase_control_integrated_into_"
+                "import_safety_adjudication"
+            ),
+            "blocker_not_removed": sorted(blocker_counts),
+            "review_only": True,
+            "target_label_type": "out_of_scope",
+            "target_fingerprint_id": None,
+            "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_candidate_count": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "scope_control_repaired_count": status_counts.get(
+                "acyl_coa_lyase_thioesterase_scope_control_repaired", 0
+            ),
+            "import_safety_adjudication_status_counts": dict(
+                sorted(status_counts.items())
+            ),
+            "normalized_decision_status_after_repair_counts": dict(
+                sorted(decision_counts.items())
+            ),
+            "remaining_import_blocker_counts": dict(sorted(blocker_counts.items())),
+            "review_only_evidence_sources": [
+                "source_traced_active_site_residue_codes",
+                "active_site_sequence_position_spacing",
+                "Rhea reaction identifiers",
+            ],
+            "source_acyl_coa_lyase_thioesterase_control_method": (
+                acyl_coa_lyase_thioesterase_control.get("metadata", {}).get(
+                    "method"
+                )
+            ),
+            "source_resolved_pilot_decisions_method": (
+                resolved_pilot_decisions.get("metadata", {}).get("method")
+            ),
+            "source_pilot_active_site_evidence_decisions_method": (
+                (pilot_active_site_evidence_decisions or {})
+                .get("metadata", {})
+                .get("method")
+            ),
+            "source_pilot_success_criteria_method": (
+                (pilot_success_criteria or {}).get("metadata", {}).get("method")
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "blockers": blockers,
+        "warnings": [
+            (
+                "Acyl-CoA lyase/thioesterase import-safety adjudication is "
+                "review-only; it can clear the family-adjudication gap but "
+                "cannot bypass review decisions, duplicate checks, or factory "
+                "gates"
+            )
+        ],
+    }
+
+
 def build_external_source_pilot_mechanism_repair_lanes(
     *,
     needs_review_resolution: dict[str, Any],
@@ -19688,6 +20400,45 @@ def _external_schiff_base_lyase_active_site_features(
     }
 
 
+def _external_acyl_coa_lyase_thioesterase_active_site_features(
+    sequence: str,
+    *,
+    active_site_positions: list[int],
+) -> dict[str, Any]:
+    sequence = _clean_sequence(sequence)
+    catalytic_residue_positions: list[int] = []
+    residue_windows: list[dict[str, Any]] = []
+    catalytic_residues = {"D", "E", "H", "K", "R", "C", "S", "T", "Y"}
+    for position in sorted(set(active_site_positions)):
+        if position < 1 or position > len(sequence):
+            continue
+        residue = sequence[position - 1]
+        if residue in catalytic_residues:
+            catalytic_residue_positions.append(position)
+        window_start = max(1, position - 12)
+        window_end = min(len(sequence), position + 12)
+        residue_windows.append(
+            {
+                "position": position,
+                "residue": residue,
+                "window_start": window_start,
+                "window_end": window_end,
+                "sequence_window": sequence[window_start - 1 : window_end],
+            }
+        )
+    return {
+        "sequence_length": len(sequence),
+        "source_active_site_positions": sorted(set(active_site_positions)),
+        "active_site_residue_windows": residue_windows,
+        "source_active_site_catalytic_residue_positions": (
+            catalytic_residue_positions
+        ),
+        "source_active_site_catalytic_residue_count": len(
+            catalytic_residue_positions
+        ),
+    }
+
+
 def _external_artifact_lineage_slice_id(
     artifact_lineage: dict[str, Any] | None,
 ) -> int | None:
@@ -19727,6 +20478,12 @@ def _external_pilot_mechanism_repair_lane(row: dict[str, Any]) -> str:
         return "add_sugar_phosphate_isomerase_scope_control"
     if "n_acetylneuraminate_lyase" in status:
         return "add_schiff_base_aldolase_lyase_scope_control"
+    if "citramalyl-coa lyase" in status or "citramalyl_coa_lyase" in status:
+        return "add_acyl_coa_lyase_thioesterase_scope_control"
+    if "malyl-coa thioesterase" in status or "malyl_coa_thioesterase" in status:
+        return "add_acyl_coa_lyase_thioesterase_scope_control"
+    if "citrate lyase" in status or "malate synthase" in status:
+        return "add_acyl_coa_lyase_thioesterase_scope_control"
     if "alpha_galactosidase" in status or "glycoside_hydrolase" in status:
         return "split_glycoside_hydrolase_from_metal_hydrolase_control"
     if "glycosidase" in status or "glycan_chemistry" in status:
@@ -19810,6 +20567,22 @@ def _external_pilot_mechanism_repair_plan(repair_lane: str) -> dict[str, Any]:
                 "active_site_residue_evidence_remains_source_traced",
                 "heuristic_counterevidence_stays_non_predictive_context",
                 "duplicate_and_factory_gates_still_block_import",
+            ],
+        },
+        "add_acyl_coa_lyase_thioesterase_scope_control": {
+            "repair_goal": (
+                "separate acyl-CoA lyase/thioesterase chemistry from unstable "
+                "nearest-reference representation neighbors"
+            ),
+            "smallest_next_action": (
+                "stage a review-only acyl-CoA lyase/thioesterase scope control "
+                "from source-traced active-site and Rhea context before any terminal "
+                "review decision"
+            ),
+            "repair_requires": [
+                "source_traced_active_site_residue_evidence",
+                "reaction_context_must_remain_review_only",
+                "no_external_import_without_duplicate_and_factory_gates",
             ],
         },
         "split_glycoside_hydrolase_from_metal_hydrolase_control": {

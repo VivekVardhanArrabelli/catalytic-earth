@@ -16,6 +16,43 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-16 automation update: source-transfer review resolution gap mapped; no registry apply.**
+Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; no label registry rows were written.
+Run2105 coverage/novelty replays confirm the state is unchanged at **8728** combined labels =
+**702** frozen + **8026** expansion, with no holes, floor deficit **0**, novelty replay **7565**
+admit / **414** throttle / **47** reject, and only `metal_dependent_hydrolase` over cap. The
+run2105 factory refresh still has **0** ready existing lanes >=150 and top projected clean admits
+**77**, so no padding lane was applied.
+
+Run2105 added `build-external-source-pilot-review-resolution-gap-audit`, a review-only command that
+joins the normalized source-transfer review queue, mechanism repair lanes, and family import-safety
+adjudications without creating import-ready rows or countable labels. It also routes Q8N0X4 into a
+named `add_acyl_coa_lyase_thioesterase_scope_control` lane instead of leaving it as generic manual
+review. Current artifacts are
+`artifacts/v3_external_source_pilot_mechanism_repair_lanes_t12_allvsall_uniref_current702_20260616_run2105_enriched.json`,
+`artifacts/v3_external_source_pilot_acyl_coa_lyase_thioesterase_control_t12_allvsall_uniref_current702_20260616_run2105.json`,
+`artifacts/v3_external_source_pilot_review_resolution_gap_audit_t12_allvsall_uniref_current702_20260616_run2105.json`,
+and
+`artifacts/v3_external_source_pilot_review_resolution_gap_import_safety_current702_20260616_run2105.json`.
+Run2105 then integrated the Q8N0X4 acyl-CoA control into review-only import-safety adjudication:
+`artifacts/v3_external_source_pilot_acyl_coa_lyase_thioesterase_import_safety_adjudication_t12_allvsall_uniref_current702_20260616_run2105.json`.
+The with-acyl replay
+`artifacts/v3_external_source_pilot_review_resolution_gap_audit_t12_allvsall_uniref_with_acyl_import_safety_current702_20260616_run2105.json`
+keeps all five queued rows held: **4** are blocked after family control repair by explicit review
+decision plus factory gates, and P33025 remains an unresolved glycoside-boundary control.
+Import-ready rows and countable candidates remain **0**; review-only import safety
+`artifacts/v3_external_source_pilot_review_resolution_gap_import_safety_with_acyl_current702_20260616_run2105.json`
+passed with **safe=True**.
+
+Source scouts still justify source-transfer rather than reviewed-Swiss-Prot padding:
+`artifacts/v3_evidence_handle_expansion_current702_20260616_run2105_pre_lane.json` shows reachable
+positive-bronze uplift **741** and
+`artifacts/v3_breadth_feasibility_scout_current702_20260616_run2105_pre_lane.json` still projects
+**9673** reviewed-Swiss-Prot clean positives, gap **327** to 10k. Next action: record explicit
+review decisions for the four control-repaired rows and rerun duplicate/factory gates only after
+those decisions exist; separately repair or replace the P33025 glycoside-boundary control. Do not
+import from run2105 artifacts.
+
 **2026-06-16 automation update: source-transfer review/factory replay refreshed; no registry
 apply.** Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; no label registry rows were
 written. Run2004 coverage/novelty replays confirm the state is unchanged at **8728** combined

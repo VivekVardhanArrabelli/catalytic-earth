@@ -1,5 +1,79 @@
 # Handoff
 
+## Session run - source-transfer review gap mapped; acyl-CoA control adjudicated; no registry apply (2026-06-16, Codex automation)
+
+- Recovered the stale run2004 worktree first, validated it, and committed it as
+  `2654643e9ef3024d08835a9de2994cdf4fd337a3`. Then acquired a fresh
+  `.git/catalytic-earth-automation.lock`, confirmed `git pull --ff-only origin main` was current
+  from `origin/main` `c99f07bd44a63daac5c20cc4d75349d05147cc3c`, and recorded frozen current702
+  SHA `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505` before work.
+- Baseline safety was green: `PYTHONPATH=src python -m catalytic_earth.cli validate` passed and
+  the focused registry/source/leakage/novelty/import/CLI suite passed **581 passed, 174 subtests**.
+  After the first code changes, the focused transfer/CLI module suite passed **355 passed, 160
+  subtests**, the final critical suite passed **715 passed, 174 subtests**, and a pre-acyl full
+  pytest rerun passed **2380 passed, 1 warning, 244 subtests**. Post-acyl focused tests passed
+  **3 passed**; final closeout validation is rerun below before commit.
+- Fresh planning artifacts:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run2105_pre_lane.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run2105_pre_lane.json`,
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260616_run2105_pre_lane.json`,
+  `artifacts/v3_evidence_handle_expansion_current702_20260616_run2105_pre_lane.json`,
+  `artifacts/v3_breadth_feasibility_scout_current702_20260616_run2105_pre_lane.json`, and
+  `artifacts/v3_source_scale_limit_audit_current702_20260616_run2105.json`. Coverage remains
+  **8728** combined = **702** frozen + **8026** expansion, with **0** holes, floor deficit **0**,
+  Gini **0.1779**, novelty replay **7565** admit / **414** throttle / **47** reject, **0** ready
+  existing lanes >=150, top projected clean admits **77**, evidence-handle reachable uplift **741**,
+  reviewed-Swiss-Prot clean-positive projection **9673**, and gap **327** to 10k.
+- Added `build-external-source-pilot-review-resolution-gap-audit` and CLI coverage. The initial
+  run2105 gap audit
+  `artifacts/v3_external_source_pilot_review_resolution_gap_audit_t12_allvsall_uniref_current702_20260616_run2105.json`
+  maps the five held source-transfer review rows with **0** import-ready and **0** countable label
+  candidates: three rows remain blocked by review-decision plus factory gates after control repair,
+  Q8N0X4 is missing family import-safety adjudication, and P33025 still has an unresolved glycoside
+  boundary control.
+- Re-routed Q8N0X4 from manual review to
+  `add_acyl_coa_lyase_thioesterase_scope_control` and added
+  `build-external-source-pilot-acyl-coa-lyase-thioesterase-control`. The staged control artifact
+  `artifacts/v3_external_source_pilot_acyl_coa_lyase_thioesterase_control_t12_allvsall_uniref_current702_20260616_run2105.json`
+  records source-traced active-site residue **D320** with sequence window
+  `GKGAFTFQGSMIDMPLLKQAQNTVT` plus Rhea context. It is review-only, non-countable, and not
+  import-authorizing.
+- Added
+  `build-external-source-pilot-acyl-coa-lyase-thioesterase-import-safety-adjudication`. The real
+  Q8N0X4 adjudication
+  `artifacts/v3_external_source_pilot_acyl_coa_lyase_thioesterase_import_safety_adjudication_t12_allvsall_uniref_current702_20260616_run2105.json`
+  marks `acyl_coa_lyase_thioesterase_scope_control_repaired` while preserving explicit review,
+  representation/heuristic, and full label-factory blockers. The with-acyl gap replay
+  `artifacts/v3_external_source_pilot_review_resolution_gap_audit_t12_allvsall_uniref_with_acyl_import_safety_current702_20260616_run2105.json`
+  still has **5** held rows, **0** import-ready, and **0** countable candidates: **4**
+  `review_decision_and_factory_gate_blocked_after_control_repair` and **1**
+  `family_control_unresolved_after_adjudication`.
+- Refreshed mechanism repair lanes:
+  `artifacts/v3_external_source_pilot_mechanism_repair_lanes_t12_allvsall_uniref_current702_20260616_run2105_enriched.json`.
+  Lane counts are one each for AKR/NADP, SDR/NAD(P), DNA Pol X lyase, acyl-CoA
+  lyase/thioesterase scope control, and glycoside hydrolase / metal hydrolase boundary.
+- Review-only import-safety audit
+  `artifacts/v3_external_source_pilot_review_resolution_gap_import_safety_with_acyl_current702_20260616_run2105.json`
+  is safe with **0** unsafe artifacts and **0** new countable labels across the repaired replay. No
+  registry apply was attempted; post-noapply coverage and novelty artifacts
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run2105_post_noapply.json` and
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run2105_post_noapply.json`
+  confirm unchanged coverage/novelty state.
+- Durable-doc and storage hygiene:
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260616_run2105.json` passed with
+  **0** missing references across **2080** checked references, with **14** ignored references.
+  `find data/registries artifacts -type f -size +90M -print` found no files.
+  `artifacts/v3_artifact_storage_policy_check_current702_20260616_run2105.json` is blocked by
+  **43** large-unclassified artifacts, with **0** deletions authorized and **14932** source files
+  inventoried. This is a storage-classification blocker, not a registry/shard hard-limit breach.
+- Closure note:
+  `work/external_source_transfer_pilot_review_resolution_gap_current702_20260616_run2105.md`.
+  Next concrete action: record explicit review decisions for the four control-repaired rows and
+  rerun duplicate/factory gates only after those decisions exist; separately repair or replace the
+  P33025 glycoside-boundary control. Keep all five source-transfer rows out of import/apply unless
+  review decision, duplicate, label-factory, novelty, governor, and row-guardrail gates pass
+  explicitly.
+
 ## Session run - source-transfer review/factory replay refreshed; no registry apply (2026-06-16, Codex automation)
 
 - Started from current `origin/main` at `c99f07bd44a63daac5c20cc4d75349d05147cc3c`,

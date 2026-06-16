@@ -1,0 +1,147 @@
+{
+  "blockers": [],
+  "metadata": {
+    "artifact_lineage": {
+      "artifact_paths": {
+        "needs_review_resolution": "artifacts/v3_external_source_pilot_terminal_decisions_t12_allvsall_uniref_current702_20260616_run2004.json",
+        "pilot_larger_representation_sample": "artifacts/v3_external_source_pilot_representation_backend_sample_esm2_t30_150m_current702_20260616_run1704.json",
+        "pilot_representation_sample": "artifacts/v3_external_source_pilot_representation_backend_sample_esm2_t12_35m_current702_20260616_run1704.json",
+        "pilot_representation_stability_audit": "artifacts/v3_external_source_pilot_representation_backend_esm2_t12_vs_t30_stability_audit_current702_20260616_run1704.json",
+        "repair_lanes": "artifacts/v3_external_source_pilot_mechanism_repair_lanes_t12_allvsall_uniref_current702_20260616_run2105_enriched.json"
+      },
+      "blocker_removed": "acyl_coa_lyase_thioesterase_has_non_text_scope_control",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "needs_review_resolution": 20260616,
+        "pilot_larger_representation_sample": 20260616,
+        "pilot_representation_sample": 20260616,
+        "pilot_representation_stability_audit": 20260616,
+        "repair_lanes": 20260616
+      },
+      "payload_methods": {
+        "needs_review_resolution": "external_source_pilot_terminal_decisions",
+        "pilot_larger_representation_sample": "external_source_representation_backend_sample",
+        "pilot_representation_sample": "external_source_representation_backend_sample",
+        "pilot_representation_stability_audit": "external_source_representation_backend_stability_audit",
+        "repair_lanes": "external_source_pilot_mechanism_repair_lanes"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {
+        "needs_review_resolution": {
+          "metadata.artifact_lineage.slice_id": 20260616
+        },
+        "repair_lanes": {
+          "metadata.artifact_lineage.slice_id": 20260616,
+          "metadata.slice_id": 20260616
+        }
+      },
+      "slice_id": 20260616,
+      "slice_members": {
+        "20260616": [
+          "needs_review_resolution",
+          "pilot_larger_representation_sample",
+          "pilot_representation_sample",
+          "pilot_representation_stability_audit",
+          "repair_lanes"
+        ]
+      }
+    },
+    "blocker_not_removed": [
+      "control_not_integrated_into_import_safety_adjudication",
+      "full_label_factory_gate_not_run_for_external_import",
+      "no_import_ready_external_rows"
+    ],
+    "blocker_removed": "acyl_coa_lyase_thioesterase_has_non_text_scope_control",
+    "candidate_count": 1,
+    "candidate_with_rhea_context_count": 1,
+    "candidate_with_source_active_site_residue_count": 1,
+    "control_status_counts": {
+      "review_only_acyl_coa_lyase_thioesterase_scope_ready": 1
+    },
+    "countable_label_candidate_count": 0,
+    "implemented_control": "acyl_coa_lyase_thioesterase_active_site_scope_control",
+    "import_ready_candidate_count": 0,
+    "max_rows": 1,
+    "method": "external_source_pilot_acyl_coa_lyase_thioesterase_control",
+    "predictive_feature_sources": [
+      "source_traced_active_site_residue_codes",
+      "active_site_sequence_position_spacing"
+    ],
+    "ready_for_label_import": false,
+    "review_context_fields": [
+      "Rhea reaction identifiers and equations",
+      "protein name and EC text",
+      "representation nearest-reference summaries"
+    ],
+    "review_only": true,
+    "slice_id": 20260616,
+    "source_needs_review_resolution_method": "external_source_pilot_terminal_decisions",
+    "source_repair_lanes_method": "external_source_pilot_mechanism_repair_lanes",
+    "target_repair_lane": "add_acyl_coa_lyase_thioesterase_scope_control"
+  },
+  "rows": [
+    {
+      "accession": "Q8N0X4",
+      "candidate_active_site_features": {
+        "active_site_residue_windows": [
+          {
+            "position": 320,
+            "residue": "D",
+            "sequence_window": "GKGAFTFQGSMIDMPLLKQAQNTVT",
+            "window_end": 332,
+            "window_start": 308
+          }
+        ],
+        "sequence_length": 340,
+        "source_active_site_catalytic_residue_count": 1,
+        "source_active_site_catalytic_residue_positions": [
+          320
+        ],
+        "source_active_site_positions": [
+          320
+        ]
+      },
+      "control_interpretation": "Source-traced active-site residue context and Rhea reaction context are available for a review-only acyl-CoA lyase/thioesterase scope control. This does not resolve review, duplicate, or factory gates.",
+      "control_status": "review_only_acyl_coa_lyase_thioesterase_scope_ready",
+      "countable_label_candidate": false,
+      "decision_effect": "stages non-text active-site sequence control evidence for a future import-safety adjudication; no terminal decision or label import is created",
+      "entry_id": "uniprot:Q8N0X4",
+      "implemented_control": "acyl_coa_lyase_thioesterase_active_site_scope_control",
+      "reaction_context_evidence": {
+        "active_site_positions": [
+          320
+        ],
+        "reaction_context_status": "specific_reaction_context_present",
+        "representative_rhea_reactions": [
+          "RHEA:10188",
+          "RHEA:10364",
+          "RHEA:18181",
+          "RHEA:22612",
+          "RHEA:38291"
+        ]
+      },
+      "ready_for_label_import": false,
+      "repair_lane": "add_acyl_coa_lyase_thioesterase_scope_control",
+      "representation_conflict_summary": {
+        "baseline_backend": "esm2_t12_35m_ur50d",
+        "baseline_nearest_reference_accession": "P06983",
+        "baseline_top_embedding_cosine": 0.8657,
+        "comparison_backend": "esm2_t30_150m_ur50d",
+        "comparison_nearest_reference_accession": "P06983",
+        "comparison_top_embedding_cosine": 0.9297,
+        "nearest_reference_stable": true,
+        "stability_flags": []
+      },
+      "review_status": "external_pilot_acyl_coa_lyase_thioesterase_control_review_only",
+      "source_confidence": null,
+      "source_resolved_status": null
+    }
+  ],
+  "warnings": [
+    "Acyl-CoA lyase/thioesterase controls are review-only scope evidence; they do not validate enzyme function or authorize import"
+  ]
+}

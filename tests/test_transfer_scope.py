@@ -46,6 +46,8 @@ from catalytic_earth.transfer_scope import (
     build_external_source_active_site_sourcing_export,
     build_external_source_active_site_sourcing_queue,
     build_external_source_active_site_sourcing_resolution,
+    build_external_source_pilot_acyl_coa_lyase_thioesterase_control,
+    build_external_source_pilot_acyl_coa_lyase_thioesterase_import_safety_adjudication,
     build_external_source_binding_context_mapping_sample,
     build_external_source_binding_context_repair_plan,
     build_external_source_active_site_evidence_queue,
@@ -69,6 +71,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_pilot_human_expert_review_queue,
     build_external_source_pilot_mechanism_repair_lanes,
     build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication,
+    build_external_source_pilot_review_resolution_gap_audit,
     build_external_source_pilot_schiff_base_lyase_control,
     build_external_source_pilot_schiff_base_lyase_import_safety_adjudication,
     build_external_source_pilot_sdr_redox_import_safety_adjudication,
@@ -7572,6 +7575,125 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertFalse(row["countable_label_candidate"])
         self.assertFalse(row["ready_for_label_import"])
 
+    def test_external_pilot_review_resolution_gap_audit_holds_rows(
+        self,
+    ) -> None:
+        audit = build_external_source_pilot_review_resolution_gap_audit(
+            normalized_human_expert_review_queue={
+                "metadata": {
+                    "method": (
+                        "external_source_pilot_human_expert_review_queue_normalized"
+                    )
+                },
+                "rows": [
+                    {
+                        "rank": 1,
+                        "accession": "C9JRZ8",
+                        "entry_id": "uniprot:C9JRZ8",
+                        "protein_name": "Aldo-keto reductase",
+                        "lane_id": "external_source:oxidoreductase_long_tail",
+                        "normalized_decision_status": "needs_review",
+                        "confidence_status": "needs_review",
+                        "active_site_evidence_status": (
+                            "explicit_active_site_source_present"
+                        ),
+                        "non_human_blockers_remaining": [
+                            "external_review_decision_artifact_not_built",
+                            "full_label_factory_gate_not_run",
+                        ],
+                    },
+                    {
+                        "rank": 2,
+                        "accession": "Q8N0X4",
+                        "entry_id": "uniprot:Q8N0X4",
+                        "protein_name": "Citramalyl-CoA lyase",
+                        "lane_id": "external_source:lyase",
+                        "normalized_decision_status": "needs_review",
+                        "confidence_status": "needs_review",
+                        "active_site_evidence_status": (
+                            "explicit_active_site_source_present"
+                        ),
+                        "non_human_blockers_remaining": [
+                            "external_review_decision_artifact_not_built"
+                        ],
+                    },
+                ],
+            },
+            mechanism_repair_lanes={
+                "metadata": {"method": "external_source_pilot_mechanism_repair_lanes"},
+                "rows": [
+                    {
+                        "accession": "C9JRZ8",
+                        "repair_lane": "add_akr_nadp_redox_representation_axis",
+                        "repair_goal": "separate AKR/NADP chemistry",
+                    },
+                    {
+                        "accession": "Q8N0X4",
+                        "repair_lane": "manual_source_mechanism_review_required",
+                        "repair_goal": "identify the missing mechanism repair family",
+                    },
+                ],
+            },
+            akr_nadp_import_safety_adjudication={
+                "metadata": {
+                    "method": (
+                        "external_source_pilot_akr_nadp_import_safety_adjudication"
+                    )
+                },
+                "rows": [
+                    {
+                        "accession": "C9JRZ8",
+                        "import_safety_adjudication_status": (
+                            "akr_nadp_axis_representation_conflict_repaired"
+                        ),
+                        "remaining_import_blockers": [
+                            "external_review_decision_artifact_not_built",
+                            "full_label_factory_gate_not_run",
+                        ],
+                    }
+                ],
+            },
+            artifact_lineage={
+                "method": "external_transfer_artifact_path_lineage_validation",
+                "slice_id": 20260616,
+                "guardrail_clean": True,
+            },
+        )
+
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "external_source_pilot_review_resolution_gap_audit",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertEqual(
+            metadata["resolution_gap_status_counts"],
+            {
+                "manual_source_mechanism_review_required": 1,
+                "review_decision_and_factory_gate_blocked_after_control_repair": 1,
+            },
+        )
+        rows = {row["accession"]: row for row in audit["rows"]}
+        self.assertEqual(
+            rows["C9JRZ8"]["resolution_gap_status"],
+            "review_decision_and_factory_gate_blocked_after_control_repair",
+        )
+        self.assertEqual(
+            rows["Q8N0X4"]["resolution_gap_status"],
+            "manual_source_mechanism_review_required",
+        )
+        self.assertTrue(
+            all(
+                row["autonomous_decision"] == "hold_review_only"
+                and not row["countable_label_candidate"]
+                and not row["ready_for_label_import"]
+                for row in audit["rows"]
+            )
+        )
+
     def test_external_pilot_mechanism_repair_lanes_route_flat_terminal_rows(
         self,
     ) -> None:
@@ -7663,6 +7785,351 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         )
         self.assertFalse(row["countable_label_candidate"])
         self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_pilot_mechanism_repair_lanes_route_acyl_coa_lyase(
+        self,
+    ) -> None:
+        lanes = build_external_source_pilot_mechanism_repair_lanes(
+            needs_review_resolution={
+                "metadata": {
+                    "method": (
+                        "external_source_pilot_human_expert_review_queue_normalized"
+                    )
+                },
+                "rows": [
+                    {
+                        "accession": "Q8N0X4",
+                        "entry_id": "uniprot:Q8N0X4",
+                        "protein_name": (
+                            "Citramalyl-CoA lyase, mitochondrial "
+                            "((3S)-malyl-CoA thioesterase)"
+                        ),
+                        "normalized_decision_status": "needs_review",
+                    }
+                ],
+            },
+            resolved_pilot_decisions={
+                "metadata": {
+                    "method": "external_source_pilot_decisions_review_normalized"
+                },
+                "rows": [
+                    {
+                        "accession": "Q8N0X4",
+                        "normalized_decision_status": "needs_review",
+                    }
+                ],
+            },
+            source_context_decisions={
+                "metadata": {"method": "external_source_pilot_terminal_decisions"},
+                "rows": [
+                    {
+                        "accession": "Q8N0X4",
+                        "entry_id": "uniprot:Q8N0X4",
+                        "protein_name": (
+                            "Citramalyl-CoA lyase, mitochondrial "
+                            "((3S)-malyl-CoA thioesterase)"
+                        ),
+                        "active_site_residue_evidence_status": (
+                            "explicit_active_site_source_present"
+                        ),
+                        "active_site_residue_positions": [
+                            {"begin": 320, "end": 320}
+                        ],
+                        "reaction_mechanism_evidence_status": (
+                            "specific_reaction_context_present"
+                        ),
+                        "reaction_references": {
+                            "rhea_ids": ["RHEA:10188", "RHEA:22612"],
+                            "reaction_record_count": 2,
+                            "specific_reaction_record_count": 2,
+                        },
+                    }
+                ],
+            },
+            artifact_lineage={
+                "method": "external_transfer_artifact_path_lineage_validation",
+                "slice_id": 20260616,
+                "guardrail_clean": True,
+            },
+        )
+
+        row = lanes["rows"][0]
+        self.assertEqual(
+            row["repair_lane"],
+            "add_acyl_coa_lyase_thioesterase_scope_control",
+        )
+        self.assertEqual(
+            lanes["metadata"]["repair_lane_counts"],
+            {"add_acyl_coa_lyase_thioesterase_scope_control": 1},
+        )
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
+    def test_acyl_coa_lyase_thioesterase_control_stages_review_only_scope(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            external_fasta = Path(tmp_dir) / "external.fasta"
+            external_fasta.write_text(
+                ">ext__Q8N0X4\n"
+                + "A" * 319
+                + "D"
+                + "A" * 20
+                + "\n",
+                encoding="utf-8",
+            )
+
+            control = build_external_source_pilot_acyl_coa_lyase_thioesterase_control(
+                repair_lanes={
+                    "metadata": {
+                        "method": "external_source_pilot_mechanism_repair_lanes"
+                    },
+                    "rows": [
+                        {
+                            "accession": "Q8N0X4",
+                            "entry_id": "uniprot:Q8N0X4",
+                            "repair_lane": (
+                                "add_acyl_coa_lyase_thioesterase_scope_control"
+                            ),
+                        }
+                    ],
+                },
+                needs_review_resolution={
+                    "metadata": {"method": "external_source_pilot_terminal_decisions"},
+                    "rows": [
+                        {
+                            "accession": "Q8N0X4",
+                            "entry_id": "uniprot:Q8N0X4",
+                            "active_site_residue_evidence_status": (
+                                "explicit_active_site_source_present"
+                            ),
+                            "active_site_residue_positions": [
+                                {"begin": 320, "end": 320}
+                            ],
+                            "reaction_mechanism_evidence_status": (
+                                "specific_reaction_context_present"
+                            ),
+                            "reaction_references": {
+                                "rhea_ids": ["RHEA:10188", "RHEA:22612"]
+                            },
+                        }
+                    ],
+                },
+                pilot_representation_sample={"metadata": {"method": "sample"}, "rows": []},
+                pilot_larger_representation_sample={
+                    "metadata": {"method": "sample"},
+                    "rows": [],
+                },
+                pilot_representation_stability_audit={
+                    "metadata": {"method": "stability"},
+                    "rows": [],
+                },
+                external_sequence_fasta=external_fasta,
+                artifact_lineage={
+                    "method": "external_transfer_artifact_path_lineage_validation",
+                    "slice_id": 20260616,
+                    "guardrail_clean": True,
+                },
+            )
+
+        metadata = control["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "external_source_pilot_acyl_coa_lyase_thioesterase_control",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        row = control["rows"][0]
+        self.assertEqual(
+            row["control_status"],
+            "review_only_acyl_coa_lyase_thioesterase_scope_ready",
+        )
+        self.assertEqual(
+            row["candidate_active_site_features"][
+                "source_active_site_catalytic_residue_positions"
+            ],
+            [320],
+        )
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
+    def test_acyl_coa_lyase_thioesterase_import_safety_adjudicates_review_only(
+        self,
+    ) -> None:
+        adjudication = (
+            build_external_source_pilot_acyl_coa_lyase_thioesterase_import_safety_adjudication(
+                acyl_coa_lyase_thioesterase_control={
+                    "metadata": {
+                        "method": (
+                            "external_source_pilot_acyl_coa_lyase_thioesterase_control"
+                        )
+                    },
+                    "rows": [
+                        {
+                            "accession": "Q8N0X4",
+                            "entry_id": "uniprot:Q8N0X4",
+                            "control_status": (
+                                "review_only_acyl_coa_lyase_thioesterase_scope_ready"
+                            ),
+                            "candidate_active_site_features": {
+                                "source_active_site_catalytic_residue_count": 1,
+                                "source_active_site_catalytic_residue_positions": [
+                                    320
+                                ],
+                            },
+                            "reaction_context_evidence": {
+                                "representative_rhea_reactions": ["RHEA:10188"],
+                                "active_site_positions": [320],
+                            },
+                        }
+                    ],
+                },
+                resolved_pilot_decisions={
+                    "metadata": {"method": "external_source_pilot_terminal_decisions"},
+                    "rows": [
+                        {
+                            "accession": "Q8N0X4",
+                            "normalized_decision_status": "needs_review",
+                            "active_site_residue_evidence_status": (
+                                "explicit_active_site_source_present"
+                            ),
+                            "factory_gate_status": "not_run",
+                            "review_decision": {
+                                "human_expert_required": True,
+                            },
+                            "unresolved_evidence_for_deferred": [
+                                "resolve selected-pilot representation-control blocker",
+                                "run the full label-factory gate only after review",
+                            ],
+                        }
+                    ],
+                },
+                pilot_active_site_evidence_decisions={
+                    "metadata": {
+                        "method": (
+                            "external_source_pilot_active_site_evidence_decisions"
+                        )
+                    },
+                    "rows": [
+                        {
+                            "accession": "Q8N0X4",
+                            "active_site_evidence_source_category": (
+                                "explicit_active_site_source_present"
+                            ),
+                            "import_readiness_blockers": [
+                                "representation_control_issue",
+                                "external_review_decision_artifact_not_built",
+                            ],
+                        }
+                    ],
+                },
+                pilot_success_criteria={
+                    "metadata": {
+                        "method": "external_source_pilot_success_criteria"
+                    },
+                    "rows": [
+                        {
+                            "accession": "Q8N0X4",
+                            "broader_duplicate_screening_status": (
+                                "current_reference_external_all_vs_all_uniref_no_signal"
+                            ),
+                            "full_label_factory_gate_status": "not_run",
+                            "review_decision_status": "no_decision",
+                            "import_readiness_blockers": [
+                                "broader_duplicate_screening_required",
+                                "full_label_factory_gate_not_run"
+                            ],
+                        }
+                    ],
+                },
+                artifact_lineage={
+                    "method": "external_transfer_artifact_path_lineage_validation",
+                    "slice_id": 20260616,
+                    "guardrail_clean": True,
+                },
+            )
+        )
+
+        metadata = adjudication["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            (
+                "external_source_pilot_acyl_coa_lyase_thioesterase_"
+                "import_safety_adjudication"
+            ),
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertEqual(metadata["scope_control_repaired_count"], 1)
+        row = adjudication["rows"][0]
+        self.assertEqual(
+            row["import_safety_adjudication_status"],
+            "acyl_coa_lyase_thioesterase_scope_control_repaired",
+        )
+        self.assertIn(
+            "external_review_decision_artifact_not_built",
+            row["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "full_label_factory_gate_not_run",
+            row["remaining_import_blockers"],
+        )
+        self.assertNotIn(
+            "representation_control_issue",
+            row["remaining_import_blockers"],
+        )
+        self.assertNotIn(
+            "broader_duplicate_screening_required",
+            row["remaining_import_blockers"],
+        )
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
+        gap = build_external_source_pilot_review_resolution_gap_audit(
+            normalized_human_expert_review_queue={
+                "metadata": {
+                    "method": (
+                        "external_source_pilot_human_expert_review_queue_normalized"
+                    )
+                },
+                "rows": [
+                    {
+                        "rank": 1,
+                        "accession": "Q8N0X4",
+                        "entry_id": "uniprot:Q8N0X4",
+                        "normalized_decision_status": "needs_review",
+                        "non_human_blockers_remaining": [
+                            "external_review_decision_artifact_not_built"
+                        ],
+                    }
+                ],
+            },
+            mechanism_repair_lanes={
+                "metadata": {"method": "external_source_pilot_mechanism_repair_lanes"},
+                "rows": [
+                    {
+                        "accession": "Q8N0X4",
+                        "repair_lane": (
+                            "add_acyl_coa_lyase_thioesterase_scope_control"
+                        ),
+                    }
+                ],
+            },
+            acyl_coa_lyase_thioesterase_import_safety_adjudication=adjudication,
+        )
+
+        self.assertEqual(
+            gap["metadata"]["resolution_gap_status_counts"],
+            {"review_decision_and_factory_gate_blocked_after_control_repair": 1},
+        )
+        self.assertEqual(
+            gap["rows"][0]["family_import_safety_status"],
+            "acyl_coa_lyase_thioesterase_scope_control_repaired",
+        )
 
     def test_external_pilot_sdr_redox_repair_control_stages_sequence_axis(
         self,

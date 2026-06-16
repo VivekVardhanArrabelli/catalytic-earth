@@ -402,6 +402,76 @@ class CliTests(unittest.TestCase):
             "/tmp/structural.json",
         )
 
+    def test_external_source_pilot_review_resolution_gap_parser(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-external-source-pilot-review-resolution-gap-audit",
+                "--normalized-human-expert-review-queue",
+                "/tmp/queue.json",
+                "--mechanism-repair-lanes",
+                "/tmp/lanes.json",
+                "--akr-nadp-import-safety-adjudication",
+                "/tmp/akr.json",
+            ]
+        )
+
+        self.assertEqual(
+            args.normalized_human_expert_review_queue,
+            "/tmp/queue.json",
+        )
+        self.assertEqual(args.mechanism_repair_lanes, "/tmp/lanes.json")
+        self.assertEqual(args.akr_nadp_import_safety_adjudication, "/tmp/akr.json")
+        self.assertIsNone(args.sdr_redox_import_safety_adjudication)
+        self.assertIsNone(
+            args.acyl_coa_lyase_thioesterase_import_safety_adjudication
+        )
+
+    def test_external_source_pilot_acyl_coa_control_parser(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-external-source-pilot-acyl-coa-lyase-thioesterase-control",
+                "--repair-lanes",
+                "/tmp/lanes.json",
+                "--needs-review-resolution",
+                "/tmp/terminal.json",
+                "--external-sequence-fasta",
+                "/tmp/external.fasta",
+            ]
+        )
+
+        self.assertEqual(args.repair_lanes, "/tmp/lanes.json")
+        self.assertEqual(args.needs_review_resolution, "/tmp/terminal.json")
+        self.assertEqual(args.external_sequence_fasta, "/tmp/external.fasta")
+
+    def test_external_source_pilot_acyl_coa_import_safety_parser(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-external-source-pilot-acyl-coa-lyase-thioesterase-"
+                    "import-safety-adjudication"
+                ),
+                "--acyl-coa-lyase-thioesterase-control",
+                "/tmp/control.json",
+                "--resolved-pilot-decisions",
+                "/tmp/terminal.json",
+                "--pilot-success-criteria",
+                "/tmp/success.json",
+            ]
+        )
+
+        self.assertEqual(
+            args.acyl_coa_lyase_thioesterase_control,
+            "/tmp/control.json",
+        )
+        self.assertEqual(args.resolved_pilot_decisions, "/tmp/terminal.json")
+        self.assertEqual(args.pilot_success_criteria, "/tmp/success.json")
+
     def test_external_source_pilot_mechanism_repair_source_context_optional(
         self,
     ) -> None:

@@ -3,6 +3,43 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-16: SOURCE-TRANSFER REVIEW GAP AUDITS ARE NON-AUTHORIZING
+
+Decision: `build-external-source-pilot-review-resolution-gap-audit` may be used to consolidate
+normalized source-transfer review queues, mechanism repair lanes, and import-safety adjudications,
+but it is review-only planning evidence. It cannot create terminal acceptances, import-ready rows,
+countable labels, or registry-apply authority.
+
+Implementation: added `build_external_source_pilot_review_resolution_gap_audit` and
+`build_external_source_pilot_acyl_coa_lyase_thioesterase_import_safety_adjudication` in
+`src/catalytic_earth/transfer_scope.py`, wired the CLI commands in `src/catalytic_earth/cli.py`,
+and added regression coverage in `tests/test_transfer_scope.py` and `tests/test_cli.py`. The same
+run also names Q8N0X4's source-supported repair lane as
+`add_acyl_coa_lyase_thioesterase_scope_control`; this is a review-only repair/adjudication path,
+not an implemented predictive feature or an import decision.
+
+Measured result: run2105 artifacts
+`artifacts/v3_external_source_pilot_review_resolution_gap_audit_t12_allvsall_uniref_current702_20260616_run2105.json`
+and
+`artifacts/v3_external_source_pilot_acyl_coa_lyase_thioesterase_control_t12_allvsall_uniref_current702_20260616_run2105.json`
+first kept all **5** source-transfer review rows held and showed Q8N0X4 needed a family
+import-safety adjudication. The follow-on artifact
+`artifacts/v3_external_source_pilot_acyl_coa_lyase_thioesterase_import_safety_adjudication_t12_allvsall_uniref_current702_20260616_run2105.json`
+adjudicates Q8N0X4 as `acyl_coa_lyase_thioesterase_scope_control_repaired`, still review-only.
+The with-acyl replay
+`artifacts/v3_external_source_pilot_review_resolution_gap_audit_t12_allvsall_uniref_with_acyl_import_safety_current702_20260616_run2105.json`
+keeps all **5** rows held: **4** blocked after family control repair by explicit review decision
+plus factory gates and **1** P33025 row blocked by unresolved glycoside-boundary control.
+Review-only import safety
+`artifacts/v3_external_source_pilot_review_resolution_gap_import_safety_with_acyl_current702_20260616_run2105.json`
+passed with **safe=True**, **0** unsafe artifacts, **0** import-ready rows, and **0** countable
+label candidates. Frozen current702 remained sha `5eec9bef...`.
+
+Follow-up: record explicit review decisions for the four control-repaired rows and rerun
+duplicate/factory gates only after those decisions exist; separately repair or replace the P33025
+glycoside-boundary control. Do not treat the gap audit, repair-lane name, staged control, or acyl
+import-safety adjudication as import authority.
+
 ## 2026-06-16: SOURCE-TRANSFER TERMINAL STRUCTURAL CONTEXT IS OPTIONAL
 
 Decision: `build-external-source-pilot-terminal-decisions` must not implicitly mix a stale

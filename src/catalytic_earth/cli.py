@@ -684,6 +684,7 @@ from .transfer_scope import (
     audit_external_source_import_readiness,
     audit_external_source_transfer_blocker_matrix,
     build_external_ood_calibration_plan,
+    build_external_source_pilot_acyl_coa_lyase_thioesterase_control,
     build_external_source_active_site_gap_source_requests,
     build_external_source_active_site_sourcing_export,
     build_external_source_active_site_sourcing_queue,
@@ -703,6 +704,7 @@ from .transfer_scope import (
     build_external_source_pilot_candidate_priority,
     build_external_source_pilot_evidence_packet,
     build_external_source_pilot_evidence_dossiers,
+    build_external_source_pilot_acyl_coa_lyase_thioesterase_import_safety_adjudication,
     build_external_source_pilot_akr_nadp_import_safety_adjudication,
     build_external_source_pilot_akr_nadp_repair_control,
     build_external_source_pilot_decisions_review_normalized,
@@ -713,6 +715,7 @@ from .transfer_scope import (
     build_external_source_pilot_glycoside_hydrolase_boundary_control,
     build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication,
     build_external_source_pilot_mechanism_repair_lanes,
+    build_external_source_pilot_review_resolution_gap_audit,
     build_external_source_pilot_schiff_base_lyase_control,
     build_external_source_pilot_schiff_base_lyase_import_safety_adjudication,
     build_external_source_pilot_sdr_redox_import_safety_adjudication,
@@ -4477,6 +4480,141 @@ def cmd_build_external_source_pilot_uniref_current_reference_screen(
         "Wrote external source pilot UniRef current-reference screen to "
         f"{args.out} ({screen['metadata']['uniref_current_reference_clear_count']} "
         "clear rows)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_review_resolution_gap_audit(
+    args: argparse.Namespace,
+) -> int:
+    optional_artifact_names = (
+        "akr_nadp_import_safety_adjudication",
+        "sdr_redox_import_safety_adjudication",
+        "dna_pol_x_lyase_import_safety_adjudication",
+        "glycoside_hydrolase_import_safety_adjudication",
+        "acyl_coa_lyase_thioesterase_import_safety_adjudication",
+    )
+    explicit_optional_artifacts = tuple(
+        name for name in optional_artifact_names if getattr(args, name, None)
+    )
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "normalized_human_expert_review_queue",
+            "mechanism_repair_lanes",
+        )
+        + explicit_optional_artifacts,
+        blocker_removed="source_transfer_review_resolution_gap_mapped",
+    )
+    audit = build_external_source_pilot_review_resolution_gap_audit(
+        normalized_human_expert_review_queue=artifact_payloads[
+            "normalized_human_expert_review_queue"
+        ],
+        mechanism_repair_lanes=artifact_payloads["mechanism_repair_lanes"],
+        akr_nadp_import_safety_adjudication=artifact_payloads.get(
+            "akr_nadp_import_safety_adjudication"
+        ),
+        sdr_redox_import_safety_adjudication=artifact_payloads.get(
+            "sdr_redox_import_safety_adjudication"
+        ),
+        dna_pol_x_lyase_import_safety_adjudication=artifact_payloads.get(
+            "dna_pol_x_lyase_import_safety_adjudication"
+        ),
+        glycoside_hydrolase_import_safety_adjudication=artifact_payloads.get(
+            "glycoside_hydrolase_import_safety_adjudication"
+        ),
+        acyl_coa_lyase_thioesterase_import_safety_adjudication=(
+            artifact_payloads.get(
+                "acyl_coa_lyase_thioesterase_import_safety_adjudication"
+            )
+        ),
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source pilot review resolution gap audit to "
+        f"{args.out} ({audit['metadata']['candidate_count']} held rows)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_acyl_coa_lyase_thioesterase_control(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "repair_lanes",
+            "needs_review_resolution",
+            "pilot_representation_sample",
+            "pilot_larger_representation_sample",
+            "pilot_representation_stability_audit",
+        ),
+        blocker_removed=(
+            "acyl_coa_lyase_thioesterase_has_non_text_scope_control"
+        ),
+    )
+    control = build_external_source_pilot_acyl_coa_lyase_thioesterase_control(
+        repair_lanes=artifact_payloads["repair_lanes"],
+        needs_review_resolution=artifact_payloads["needs_review_resolution"],
+        pilot_representation_sample=artifact_payloads["pilot_representation_sample"],
+        pilot_larger_representation_sample=artifact_payloads[
+            "pilot_larger_representation_sample"
+        ],
+        pilot_representation_stability_audit=artifact_payloads[
+            "pilot_representation_stability_audit"
+        ],
+        external_sequence_fasta=Path(args.external_sequence_fasta),
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), control)
+    print(
+        "Wrote external source pilot acyl-CoA lyase/thioesterase control to "
+        f"{args.out} ({control['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_acyl_coa_lyase_thioesterase_import_safety_adjudication(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "acyl_coa_lyase_thioesterase_control",
+            "resolved_pilot_decisions",
+            "pilot_active_site_evidence_decisions",
+            "pilot_success_criteria",
+        ),
+        blocker_removed=(
+            "acyl_coa_lyase_thioesterase_control_integrated_into_"
+            "import_safety_adjudication"
+        ),
+    )
+    adjudication = (
+        build_external_source_pilot_acyl_coa_lyase_thioesterase_import_safety_adjudication(
+            acyl_coa_lyase_thioesterase_control=artifact_payloads[
+                "acyl_coa_lyase_thioesterase_control"
+            ]
+            or {},
+            resolved_pilot_decisions=artifact_payloads["resolved_pilot_decisions"]
+            or {},
+            pilot_active_site_evidence_decisions=artifact_payloads[
+                "pilot_active_site_evidence_decisions"
+            ]
+            or {},
+            pilot_success_criteria=artifact_payloads["pilot_success_criteria"] or {},
+            max_rows=args.max_rows,
+            artifact_lineage=artifact_lineage,
+        )
+    )
+    write_json(Path(args.out), adjudication)
+    print(
+        "Wrote external source pilot acyl-CoA lyase/thioesterase "
+        "import-safety adjudication to "
+        f"{args.out} ({adjudication['metadata']['candidate_count']} rows)"
     )
     return 0
 
@@ -25315,6 +25453,176 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_pilot_uniref_current_reference.set_defaults(
         func=cmd_build_external_source_pilot_uniref_current_reference_screen
+    )
+
+    external_pilot_review_gap = subparsers.add_parser(
+        "build-external-source-pilot-review-resolution-gap-audit",
+        help=(
+            "map unresolved review/factory blockers for normalized external "
+            "source pilot review rows without authorizing import"
+        ),
+    )
+    external_pilot_review_gap.add_argument(
+        "--normalized-human-expert-review-queue",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_human_expert_review_queue_normalized_1025.json"
+        ),
+    )
+    external_pilot_review_gap.add_argument(
+        "--mechanism-repair-lanes",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_mechanism_repair_lanes_1025.json"
+        ),
+    )
+    external_pilot_review_gap.add_argument(
+        "--akr-nadp-import-safety-adjudication",
+        default=None,
+    )
+    external_pilot_review_gap.add_argument(
+        "--sdr-redox-import-safety-adjudication",
+        default=None,
+    )
+    external_pilot_review_gap.add_argument(
+        "--dna-pol-x-lyase-import-safety-adjudication",
+        default=None,
+    )
+    external_pilot_review_gap.add_argument(
+        "--glycoside-hydrolase-import-safety-adjudication",
+        default=None,
+    )
+    external_pilot_review_gap.add_argument(
+        "--acyl-coa-lyase-thioesterase-import-safety-adjudication",
+        default=None,
+    )
+    external_pilot_review_gap.add_argument("--max-rows", type=int, default=10)
+    external_pilot_review_gap.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_review_resolution_gap_audit_1025.json"
+        ),
+    )
+    external_pilot_review_gap.set_defaults(
+        func=cmd_build_external_source_pilot_review_resolution_gap_audit
+    )
+
+    external_pilot_acyl_coa_control = subparsers.add_parser(
+        "build-external-source-pilot-acyl-coa-lyase-thioesterase-control",
+        help=(
+            "stage a review-only acyl-CoA lyase/thioesterase scope control "
+            "for selected external pilot repair lanes"
+        ),
+    )
+    external_pilot_acyl_coa_control.add_argument(
+        "--repair-lanes",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_mechanism_repair_lanes_1025.json"
+        ),
+    )
+    external_pilot_acyl_coa_control.add_argument(
+        "--needs-review-resolution",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_needs_review_resolution_1025.json"
+        ),
+    )
+    external_pilot_acyl_coa_control.add_argument(
+        "--pilot-representation-sample",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_representation_backend_sample_1025.json"
+        ),
+    )
+    external_pilot_acyl_coa_control.add_argument(
+        "--pilot-larger-representation-sample",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_representation_backend_esm2_t33_650m_"
+            "ur50d_sample_1025.json"
+        ),
+    )
+    external_pilot_acyl_coa_control.add_argument(
+        "--pilot-representation-stability-audit",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_representation_backend_esm2_t6_8m_vs_t33_"
+            "650m_stability_audit_1025.json"
+        ),
+    )
+    external_pilot_acyl_coa_control.add_argument(
+        "--external-sequence-fasta",
+        default=(
+            "artifacts/"
+            "v3_external_source_backend_sequence_search_external_1025.fasta"
+        ),
+    )
+    external_pilot_acyl_coa_control.add_argument(
+        "--max-rows", type=int, default=1
+    )
+    external_pilot_acyl_coa_control.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_acyl_coa_lyase_thioesterase_control_1025.json"
+        ),
+    )
+    external_pilot_acyl_coa_control.set_defaults(
+        func=cmd_build_external_source_pilot_acyl_coa_lyase_thioesterase_control
+    )
+
+    external_pilot_acyl_coa_import_safety = subparsers.add_parser(
+        "build-external-source-pilot-acyl-coa-lyase-thioesterase-import-safety-adjudication",
+        help=(
+            "adjudicate the review-only acyl-CoA lyase/thioesterase scope "
+            "control inside the external pilot import-safety workflow"
+        ),
+    )
+    external_pilot_acyl_coa_import_safety.add_argument(
+        "--acyl-coa-lyase-thioesterase-control",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_acyl_coa_lyase_thioesterase_control_1025.json"
+        ),
+    )
+    external_pilot_acyl_coa_import_safety.add_argument(
+        "--resolved-pilot-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_terminal_decisions_1025.json"
+        ),
+    )
+    external_pilot_acyl_coa_import_safety.add_argument(
+        "--pilot-active-site-evidence-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_active_site_evidence_decisions_1025.json"
+        ),
+    )
+    external_pilot_acyl_coa_import_safety.add_argument(
+        "--pilot-success-criteria",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_success_criteria_1025.json"
+        ),
+    )
+    external_pilot_acyl_coa_import_safety.add_argument(
+        "--max-rows", type=int, default=1
+    )
+    external_pilot_acyl_coa_import_safety.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_acyl_coa_lyase_thioesterase_import_safety_"
+            "adjudication_1025.json"
+        ),
+    )
+    external_pilot_acyl_coa_import_safety.set_defaults(
+        func=(
+            cmd_build_external_source_pilot_acyl_coa_lyase_thioesterase_import_safety_adjudication
+        )
     )
 
     external_pilot_mechanism_repair = subparsers.add_parser(

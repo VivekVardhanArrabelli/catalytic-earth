@@ -1,0 +1,186 @@
+{
+  "blockers": [
+    {
+      "path": "artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_artifact_storage_inventory_current702_20260616_run1503.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_artifact_storage_inventory_current702_20260616_run1804.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_artifact_storage_inventory_current702_20260616_run1904.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_artifact_storage_inventory_current702_20260616_run2004.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_artifact_storage_inventory_current702_20260616_run2105.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_admission_merged_surface_current702_20260608.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_admission_merged_surface_current702_20260609.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_batch_import_approval_packet_current702_20260610.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_bulk_ingestion_scaleout_current702_20260609.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_bulk_ingestion_scaleout_wave2_current702_20260609.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_bulk_ingestion_scaleout_wave2_provisional_import_preview_current702_20260609.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_bulk_ingestion_scout_current702_20260608.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_bulk_ingestion_scout_current702_20260616_run1403_size120.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_import_review_preflight_current702_20260609.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_import_review_preflight_current702_20260610.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_import_review_repair_queue_current702_20260609.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_import_review_repair_queue_current702_20260610.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_materialization_admission_batch_current702_20260608.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_materialization_wave2_current702_20260609.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_materialization_wave2_import_ready_preview_current702_20260609.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_materialization_wave2_repair_queue_current702_20260609.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_scaleout_bronze_import_preview_current702_20260609.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_scaleout_shard_metal_phosphoryl_glycoside_current702_20260609.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_scaleout_shard_metal_phosphoryl_glycoside_import_ready_preview_current702_20260609.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_scaleout_shard_near_orphan_diversity_current702_20260609.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_scaleout_shard_plp_radical_cobalamin_current702_20260609.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_scaleout_shard_redox_cofactor_confounded_current702_20260609.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_scaleout_shard_redox_cofactor_confounded_import_ready_preview_current702_20260609.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_features_1025.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_retrieval_1025.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_geometry_features_1025.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_geometry_retrieval_1025.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_current702_20260601.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_scaleout_glycoside_nucleoside_shard_current702_20260608.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_scaleout_merged_acceptance_surface_current702_20260608.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_scaleout_phosphoryl_transfer_shard_current702_20260608.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_scaleout_radical_sam_cobalamin_shard_current702_20260608.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_sequence_embedding_sidecar_current702_esm2_t12_35m_20260529.jsonl",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_sequence_embedding_sidecar_current702_kmer_20260529.jsonl",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_stage2_hydrolase_subfamily_sourcing_preview_current702.json",
+      "reason": "large artifact requires manual category before migration"
+    }
+  ],
+  "metadata": {
+    "blocker_count": 43,
+    "deletion_authorized_count": 0,
+    "method": "artifact_storage_policy_check",
+    "policy_version": "artifact_storage_policy_v1_2026_05_17",
+    "source_file_count": 14932,
+    "source_inventory_method": "artifact_storage_inventory",
+    "source_total_bytes": 5033887747,
+    "status": "blocked"
+  }
+}
