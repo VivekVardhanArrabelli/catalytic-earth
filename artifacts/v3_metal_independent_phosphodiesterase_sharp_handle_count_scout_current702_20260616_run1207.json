@@ -1,0 +1,86 @@
+{
+  "artifact_id": "v3_metal_independent_phosphodiesterase_sharp_handle_count_scout_current702",
+  "counts": {
+    "best_raw_handle_id": "broad_ec314_hydrolase_non_metal",
+    "best_raw_reviewed_uniprot_count": 490,
+    "best_sharp_handle_id": "actsite_catalytic_non_metal",
+    "best_sharp_reviewed_uniprot_count": 119,
+    "handles_probed": 9,
+    "handles_with_count_ge_100": 2,
+    "handles_with_count_ge_150": 1
+  },
+  "created_utc": "2026-06-16T12:23:30Z",
+  "decision": {
+    "apply_authorized": false,
+    "next_exact_action": "Do not rerun these reviewed handles for apply. Design a truly new PDE source wall or move to a beyond-reviewed source-tier expansion through full gates.",
+    "reason": "This is a count scout only. The broad hydrolase baseline has 490 raw rows but already previewed to 17 admitted rows. The best sharper non-baseline reviewed handle has 119 raw rows before disambiguation/novelty, below the 150 preferred batch gate and unlikely to close the 100 PDE floor after holds."
+  },
+  "frozen_current702_sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+  "guardrails": {
+    "ec_keyword_name_active_site_handles_scope_only": true,
+    "ec_never_counted_as_mechanism_corroborator": true,
+    "frozen_current702_benchmark_preserved": true,
+    "labels_created": false,
+    "predictive_evidence_created": false,
+    "registry_written": false
+  },
+  "handle_counts": [
+    {
+      "handle_id": "broad_ec314_hydrolase_non_metal",
+      "query": "(reviewed:true) AND (ec:3.1.4.*) AND (keyword:Hydrolase) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+      "reviewed_uniprot_count": 490,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.4.%2A%29+AND+%28keyword%3AHydrolase%29+NOT+%28%28cc_cofactor%3Amagnesium%29+OR+%28cc_cofactor%3Amanganese%29+OR+%28cc_cofactor%3Azinc%29+OR+%28cc_cofactor%3Ametal%29+OR+%28keyword%3A%22Metal-binding%22%29%29&fields=accession&format=tsv&size=1"
+    },
+    {
+      "handle_id": "actsite_catalytic_non_metal",
+      "query": "(reviewed:true) AND (ec:3.1.4.*) AND (ft_act_site:*) AND (cc_catalytic_activity:*) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+      "reviewed_uniprot_count": 119,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.4.%2A%29+AND+%28ft_act_site%3A%2A%29+AND+%28cc_catalytic_activity%3A%2A%29+NOT+%28%28cc_cofactor%3Amagnesium%29+OR+%28cc_cofactor%3Amanganese%29+OR+%28cc_cofactor%3Azinc%29+OR+%28cc_cofactor%3Ametal%29+OR+%28keyword%3A%22Metal-binding%22%29%29&fields=accession&format=tsv&size=1"
+    },
+    {
+      "handle_id": "cyclic_nucleotide_exact_ecs_non_metal",
+      "query": "(reviewed:true) AND ((ec:3.1.4.17) OR (ec:3.1.4.35) OR (ec:3.1.4.52) OR (ec:3.1.4.53) OR (ec:3.1.4.37) OR (ec:3.1.4.58)) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+      "reviewed_uniprot_count": 58,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A3.1.4.17%29+OR+%28ec%3A3.1.4.35%29+OR+%28ec%3A3.1.4.52%29+OR+%28ec%3A3.1.4.53%29+OR+%28ec%3A3.1.4.37%29+OR+%28ec%3A3.1.4.58%29%29+NOT+%28%28cc_cofactor%3Amagnesium%29+OR+%28cc_cofactor%3Amanganese%29+OR+%28cc_cofactor%3Azinc%29+OR+%28cc_cofactor%3Ametal%29+OR+%28keyword%3A%22Metal-binding%22%29%29&fields=accession&format=tsv&size=1"
+    },
+    {
+      "handle_id": "binding_catalytic_non_metal",
+      "query": "(reviewed:true) AND (ec:3.1.4.*) AND (ft_binding:*) AND (cc_catalytic_activity:*) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+      "reviewed_uniprot_count": 40,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.4.%2A%29+AND+%28ft_binding%3A%2A%29+AND+%28cc_catalytic_activity%3A%2A%29+NOT+%28%28cc_cofactor%3Amagnesium%29+OR+%28cc_cofactor%3Amanganese%29+OR+%28cc_cofactor%3Azinc%29+OR+%28cc_cofactor%3Ametal%29+OR+%28keyword%3A%22Metal-binding%22%29%29&fields=accession&format=tsv&size=1"
+    },
+    {
+      "handle_id": "gdpd_domain_name_non_metal",
+      "query": "(reviewed:true) AND (ec:3.1.4.*) AND ((protein_name:GDPD) OR (protein_name:\"glycerophosphodiester phosphodiesterase\")) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+      "reviewed_uniprot_count": 22,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.4.%2A%29+AND+%28%28protein_name%3AGDPD%29+OR+%28protein_name%3A%22glycerophosphodiester+phosphodiesterase%22%29%29+NOT+%28%28cc_cofactor%3Amagnesium%29+OR+%28cc_cofactor%3Amanganese%29+OR+%28cc_cofactor%3Azinc%29+OR+%28cc_cofactor%3Ametal%29+OR+%28keyword%3A%22Metal-binding%22%29%29&fields=accession&format=tsv&size=1"
+    },
+    {
+      "handle_id": "glycerophosphodiester_name_non_metal",
+      "query": "(reviewed:true) AND (ec:3.1.4.*) AND ((protein_name:glycerophosphodiester) OR (protein_name:glycerophosphocholine) OR (protein_name:glycerophosphoinositol)) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+      "reviewed_uniprot_count": 22,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.4.%2A%29+AND+%28%28protein_name%3Aglycerophosphodiester%29+OR+%28protein_name%3Aglycerophosphocholine%29+OR+%28protein_name%3Aglycerophosphoinositol%29%29+NOT+%28%28cc_cofactor%3Amagnesium%29+OR+%28cc_cofactor%3Amanganese%29+OR+%28cc_cofactor%3Azinc%29+OR+%28cc_cofactor%3Ametal%29+OR+%28keyword%3A%22Metal-binding%22%29%29&fields=accession&format=tsv&size=1"
+    },
+    {
+      "handle_id": "phospholipase_d_non_metal",
+      "query": "(reviewed:true) AND (ec:3.1.4.*) AND ((protein_name:\"phospholipase D\") OR (protein_name:\"phospholipase D-like\") OR (cc_catalytic_activity:\"phosphatidylcholine\") OR (cc_catalytic_activity:phosphatidate)) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+      "reviewed_uniprot_count": 22,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.4.%2A%29+AND+%28%28protein_name%3A%22phospholipase+D%22%29+OR+%28protein_name%3A%22phospholipase+D-like%22%29+OR+%28cc_catalytic_activity%3A%22phosphatidylcholine%22%29+OR+%28cc_catalytic_activity%3Aphosphatidate%29%29+NOT+%28%28cc_cofactor%3Amagnesium%29+OR+%28cc_cofactor%3Amanganese%29+OR+%28cc_cofactor%3Azinc%29+OR+%28cc_cofactor%3Ametal%29+OR+%28keyword%3A%22Metal-binding%22%29%29&fields=accession&format=tsv&size=1"
+    },
+    {
+      "handle_id": "ribonuclease_t2_non_metal_boundary",
+      "query": "(reviewed:true) AND ((protein_name:\"ribonuclease T2\") OR (protein_name:\"RNase T2\") OR (ec:3.1.27.1)) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+      "reviewed_uniprot_count": 17,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28protein_name%3A%22ribonuclease+T2%22%29+OR+%28protein_name%3A%22RNase+T2%22%29+OR+%28ec%3A3.1.27.1%29%29+NOT+%28%28cc_cofactor%3Amagnesium%29+OR+%28cc_cofactor%3Amanganese%29+OR+%28cc_cofactor%3Azinc%29+OR+%28cc_cofactor%3Ametal%29+OR+%28keyword%3A%22Metal-binding%22%29%29&fields=accession&format=tsv&size=1"
+    },
+    {
+      "handle_id": "nucleotide_pyrophosphatase_non_metal_boundary",
+      "query": "(reviewed:true) AND (ec:3.1.4.*) AND ((protein_name:\"nucleotide pyrophosphatase\") OR (protein_name:\"phosphodiesterase I\")) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+      "reviewed_uniprot_count": 2,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.4.%2A%29+AND+%28%28protein_name%3A%22nucleotide+pyrophosphatase%22%29+OR+%28protein_name%3A%22phosphodiesterase+I%22%29%29+NOT+%28%28cc_cofactor%3Amagnesium%29+OR+%28cc_cofactor%3Amanganese%29+OR+%28cc_cofactor%3Azinc%29+OR+%28cc_cofactor%3Ametal%29+OR+%28keyword%3A%22Metal-binding%22%29%29&fields=accession&format=tsv&size=1"
+    }
+  ],
+  "purpose": "Measure sharper reviewed UniProt PDE source handles after broad EC/name/PLD/hydrolase previews stayed below apply gate.",
+  "schema_version": "pde_sharp_handle_count_scout.v1",
+  "status": "non_destructive_source_count_scout_no_registry_or_labels_written"
+}

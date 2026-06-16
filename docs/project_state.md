@@ -26,6 +26,58 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **PDE HYDROLASE AND TIER-2 SCOUTS BLOCKED BELOW APPLY GATE (2026-06-16 automation).**
+  No authorized registry mutation was performed. A stale worker from a dead prior automation
+  briefly appended the **17-row** Hydrolase preview to the external registry; this was detected and
+  reverted before commit, restoring the SBL baseline of **7926** external rows. Frozen current702
+  remains byte-unchanged at sha `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`;
+  counts remain from the SBL apply: combined label surface **8628**, combined seed surface
+  **6932**, positive_bronze **6885**, OOS bronze **1696**, silver_confirmed **47**, projected
+  **0**.
+
+  The reviewed `metal_independent_phosphodiesterase` EC 3.1.4 Hydrolase and ACT_SITE+catalytic
+  lanes, plus stricter tier-2 GDPD/cyclic source splits, are now reproducible in the source runner
+  with offline tests proving they remain source-only and guarded. EC, Hydrolase keyword, names,
+  and active-site handles are scope/fetch only, never predictive features or counted corroborators.
+  The reusable bronze preview row-guardrail audit now lives in
+  `src/catalytic_earth/bronze_preview_row_guardrails.py` with script
+  `scripts/audit_bronze_preview_row_guardrails.py`.
+
+  Hydrolase preview
+  `artifacts/v3_metal_independent_phosphodiesterase_ec314_hydrolase_preview_window0_120_current702_20260616_run0114.json`
+  found **17** novelty-admitted target rows from **120** reviewed candidates; row audit
+  `artifacts/v3_metal_independent_phosphodiesterase_ec314_hydrolase_row_guardrail_audit_current702_20260616_run0114.json`
+  found **0** problems. This remains **below gate** and must not be applied because PDE would only
+  move **0 -> 17** against a 100-row floor. Small strict tier-2 sample
+  `artifacts/v3_metal_independent_phosphodiesterase_tier2_preview_size20_current702_20260616_run1209.json`
+  fetched **40** unreviewed rows and admitted **0** target PDE labels, with **6**
+  `sam_methyltransferase` off-target rows held and **34** trust/mechanism holds.
+
+  Follow-up strict tier-2 GDPD/cyclic preview
+  `artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_preview_size30_current702_20260616_run1235.json`
+  fetched **60** unreviewed rows and admitted **28** target PDE labels. Row audit
+  `artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_row_guardrail_audit_current702_20260616_run1235.json`
+  found **0** problems across all **28** source-tier-2 rows, but this also remains **below gate**:
+  PDE would only move **0 -> 28**, leaving a **72-row** deficit to the 100 floor.
+
+  Sharp reviewed-handle count scout
+  `artifacts/v3_metal_independent_phosphodiesterase_sharp_handle_count_scout_current702_20260616_run1207.json`
+  confirms there is no obvious reviewed-source rescue: broad Hydrolase has **490** raw rows but
+  already previewed to **17** admits, and the best sharper non-baseline handle
+  `actsite_catalytic_non_metal` has only **119** raw rows before disambiguation/novelty.
+  The bounded ACT_SITE+catalytic preview
+  `artifacts/v3_metal_independent_phosphodiesterase_actsite_catalytic_preview_size40_current702_20260616_run1218.json`
+  admitted only **2** target rows from **40** reviewed candidates, held **4** off-target rows, and
+  had **0** row-guardrail problems.
+
+  Latest post-tier2 planning artifacts with suffix `20260616_run1209_post_tier2_scout` keep
+  `metal_independent_phosphodiesterase` as the lone hole at **0/100**, report novelty replay
+  **7465** admit / **414** throttle / **47** reject, and report **0** existing lanes with >=150
+  projected clean admits. Next action: do not apply the 17-row Hydrolase, 2-row ACT_SITE, or
+  28-row GDPD/cyclic previews and do not retry the same broad reviewed PDE windows; build a sharper
+  PDE source wall or a preregistered
+  beyond-reviewed source-tier expansion through the full gated path.
+
 - **SERINE BETA-LACTAMASE 46FP TIER-2 FLOOR BATCH APPLIED; PDE REMAINS THE LONE
   HOLE (2026-06-16 automation).**
   Hard safety remains green. Frozen current702 stayed byte-unchanged at sha

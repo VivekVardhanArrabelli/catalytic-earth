@@ -1,0 +1,68 @@
+{
+  "artifact_id": "v3_metal_independent_phosphodiesterase_ec314_hydrolase_source_strategy_current702_20260616_run0114",
+  "artifacts": [
+    "artifacts/v3_metal_independent_phosphodiesterase_ec314_hydrolase_preview_window0_120_current702_20260616_run0114.json",
+    "artifacts/v3_metal_independent_phosphodiesterase_ec314_hydrolase_preview_window120_120_current702_20260616_run0114.json",
+    "artifacts/v3_metal_independent_phosphodiesterase_ec314_hydrolase_row_guardrail_audit_current702_20260616_run0114.json",
+    "artifacts/v3_coverage_redundancy_audit_current702_20260616_run0114_pre_lane.json",
+    "artifacts/v3_novelty_admission_gate_audit_current702_20260616_run0114_pre_lane.json",
+    "artifacts/v3_high_yield_family_lane_factory_current702_20260616_run0114_pre_lane.json"
+  ],
+  "baseline_state": {
+    "combined_labels": 8628,
+    "floor_deficit_total": 100,
+    "holes": [
+      "metal_independent_phosphodiesterase"
+    ],
+    "novelty_replay_decisions": {
+      "admit": 7465,
+      "reject": 47,
+      "throttle": 414
+    },
+    "over_cap": [
+      "metal_dependent_hydrolase"
+    ],
+    "ready_existing_lanes_ge_150": 0,
+    "top_projected_clean_admits": 77
+  },
+  "created_utc": "2026-06-16T12:07:09Z",
+  "decision": {
+    "apply_authorized": false,
+    "next_exact_action": "Do not apply the 17-row PDE hydrolase preview. Build a stronger PDE source wall outside the already-tested reviewed EC/name/PLD/hydrolase windows, or move to a preregistered source-tier/family expansion only through full gates.",
+    "reason": "Clean row audit passed, but the preview admits only 17 PDE rows and would leave the documented 100-row floor open; autonomous policy avoids tiny topups unless they close a documented floor/cap/blocker."
+  },
+  "frozen_current702_sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+  "guardrails": {
+    "apply_authorized": false,
+    "ec_scope_only_never_counted": true,
+    "frozen_current702_benchmark_written": false,
+    "metal_absence_not_counted_as_evidence": true,
+    "predictive_evidence_created": false,
+    "registry_written": false
+  },
+  "new_source_wall": {
+    "disambiguation_holds": 69,
+    "fetched_candidate_rows": 120,
+    "floor_reached_if_allowed": false,
+    "lane_id": "metal_independent_pde_ec_3_1_4_hydrolase_non_metal",
+    "novelty_admitted": 17,
+    "off_target_held": 22,
+    "preview_artifact": "artifacts/v3_metal_independent_phosphodiesterase_ec314_hydrolase_preview_window0_120_current702_20260616_run0114.json",
+    "preview_report": "work/metal_independent_phosphodiesterase_ec314_hydrolase_preview_window0_120_current702_20260616_run0114.md",
+    "projected_floor_after_apply_if_allowed": 17,
+    "query": "(reviewed:true) AND (ec:3.1.4.*) AND (keyword:Hydrolase) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+    "row_guardrail_audit_artifact": "artifacts/v3_metal_independent_phosphodiesterase_ec314_hydrolase_row_guardrail_audit_current702_20260616_run0114.json",
+    "row_guardrail_audit_report": "work/metal_independent_phosphodiesterase_ec314_hydrolase_row_guardrail_audit_current702_20260616_run0114.md",
+    "row_guardrail_problem_rows": 0,
+    "target_mechanism_corroborated": 17
+  },
+  "offset_window_diagnostic": {
+    "artifact": "artifacts/v3_metal_independent_phosphodiesterase_ec314_hydrolase_preview_window120_120_current702_20260616_run0114.json",
+    "interpretation": "UniProt offset URL was emitted, but the applied-label sample duplicated window0; do not use this as independent apply authority.",
+    "returned_same_first_17_applied_ids_as_window0": true,
+    "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.4.%2A%29+AND+%28keyword%3AHydrolase%29+NOT+%28%28cc_cofactor%3Amagnesium%29+OR+%28cc_cofactor%3Amanganese%29+OR+%28cc_cofactor%3Azinc%29+OR+%28cc_cofactor%3Ametal%29+OR+%28keyword%3A%22Metal-binding%22%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=120&offset=120",
+    "window120_novelty_admitted": 17
+  },
+  "schema_version": "source_strategy.v1",
+  "status": "non_destructive_source_strategy_no_registry_mutation"
+}

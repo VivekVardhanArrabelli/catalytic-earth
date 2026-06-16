@@ -1,0 +1,56 @@
+{
+  "artifact_id": "v3_metal_independent_phosphodiesterase_actsite_catalytic_source_strategy_current702_20260616_run1218",
+  "schema_version": "source_strategy.v1",
+  "created_utc": "2026-06-16T12:39:00Z",
+  "status": "non_destructive_source_strategy_no_registry_mutation",
+  "frozen_current702_sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+  "baseline_state": {
+    "combined_labels": 8628,
+    "combined_seed_surface": 6932,
+    "holes": [
+      "metal_independent_phosphodiesterase"
+    ],
+    "floor_deficit_total": 100,
+    "ready_existing_lanes_ge_150": 0,
+    "top_projected_clean_admits": 77
+  },
+  "new_source_wall": {
+    "lane_id": "metal_independent_pde_ec_3_1_4_actsite_catalytic_non_metal",
+    "query": "(reviewed:true) AND (ec:3.1.4.*) AND (ft_act_site:*) AND (cc_catalytic_activity:*) NOT ((cc_cofactor:magnesium) OR (cc_cofactor:manganese) OR (cc_cofactor:zinc) OR (cc_cofactor:metal) OR (keyword:\"Metal-binding\"))",
+    "preview_artifact": "artifacts/v3_metal_independent_phosphodiesterase_actsite_catalytic_preview_size40_current702_20260616_run1218.json",
+    "preview_report": "work/metal_independent_phosphodiesterase_actsite_catalytic_preview_size40_current702_20260616_run1218.md",
+    "fetched_candidate_rows": 40,
+    "target_mechanism_corroborated": 2,
+    "novelty_admitted": 2,
+    "off_target_held": 4,
+    "disambiguation_holds": 23,
+    "disambiguation_skips": 11,
+    "projected_floor_after_apply_if_allowed": 2,
+    "floor_reached_if_allowed": false,
+    "row_guardrail_audit_artifact": "artifacts/v3_metal_independent_phosphodiesterase_actsite_catalytic_row_guardrail_audit_current702_20260616_run1218.json",
+    "row_guardrail_audit_report": "work/metal_independent_phosphodiesterase_actsite_catalytic_row_guardrail_audit_current702_20260616_run1218.md",
+    "row_guardrail_problem_rows": 0
+  },
+  "guardrails": {
+    "registry_written": false,
+    "frozen_current702_benchmark_written": false,
+    "apply_authorized": false,
+    "ec_scope_only_never_counted": true,
+    "active_site_presence_scope_admission_only": true,
+    "predictive_evidence_created": false,
+    "metal_absence_not_counted_as_evidence": true
+  },
+  "decision": {
+    "apply_authorized": false,
+    "reason": "The ACT_SITE + catalytic-activity reviewed source handle is row-clean but admits only 2 PDE rows from 40 candidates, leaving the 100-row floor open. It is a source-wall diagnostic, not mutation authority.",
+    "next_exact_action": "Do not apply or rerun the same reviewed EC/name/PLD/Hydrolase/ACT_SITE PDE handles. Build a sharper PDE source wall outside these tested windows, or use a preregistered beyond-reviewed source-tier expansion through full gates before any apply."
+  },
+  "related_artifacts": [
+    "artifacts/v3_metal_independent_phosphodiesterase_ec314_hydrolase_source_strategy_current702_20260616_run0114.json",
+    "artifacts/v3_metal_independent_phosphodiesterase_tier2_preview_size20_current702_20260616_run1209.json",
+    "artifacts/v3_metal_independent_phosphodiesterase_sharp_handle_count_scout_current702_20260616_run1207.json",
+    "artifacts/v3_coverage_redundancy_audit_current702_20260616_run1209_post_tier2_scout.json",
+    "artifacts/v3_novelty_admission_gate_audit_current702_20260616_run1209_post_tier2_scout.json",
+    "artifacts/v3_high_yield_family_lane_factory_current702_20260616_run1209_post_tier2_scout.json"
+  ]
+}

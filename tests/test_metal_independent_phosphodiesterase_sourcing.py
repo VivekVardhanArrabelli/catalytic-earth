@@ -298,6 +298,33 @@ class MetalIndependentPhosphodiesteraseSourcingTest(unittest.TestCase):
         )
         self.assertIn("uniprot:PLD001", {row["entry_id"] for row in audit["applied_labels"]})
 
+    def test_broad_ec_hydrolase_lane_is_source_only_and_guarded(self):
+        audit = self._run(lane_ids=("metal_independent_pde_ec_3_1_4_hydrolase_non_metal",))
+        self.assertEqual(audit["counts"]["lanes_queried"], 1)
+        self.assertEqual(
+            audit["counts"]["lane_ids"],
+            ["metal_independent_pde_ec_3_1_4_hydrolase_non_metal"],
+        )
+        self.assertEqual(audit["counts"]["mechanism_corroborated_bronze_labels"], 3)
+        self.assertGreaterEqual(audit["counts"]["disambiguation_hold_count"], 1)
+        self.assertGreaterEqual(audit["counts"]["off_target_fingerprint_matches_held"], 1)
+
+    def test_actsite_catalytic_lane_is_source_only_and_guarded(self):
+        audit = self._run(
+            lane_ids=("metal_independent_pde_ec_3_1_4_actsite_catalytic_non_metal",)
+        )
+        self.assertEqual(audit["counts"]["lanes_queried"], 1)
+        self.assertEqual(
+            audit["counts"]["lane_ids"],
+            ["metal_independent_pde_ec_3_1_4_actsite_catalytic_non_metal"],
+        )
+        self.assertEqual(audit["counts"]["mechanism_corroborated_bronze_labels"], 3)
+        self.assertGreaterEqual(audit["counts"]["disambiguation_hold_count"], 1)
+        self.assertGreaterEqual(audit["counts"]["off_target_fingerprint_matches_held"], 1)
+        for label in audit["applied_labels"]:
+            self.assertEqual(label["evidence"]["predictive_evidence"], [])
+            self.assertIn("ec_label", label["evidence"]["excluded_context"])
+
     def test_unreviewed_tier2_lane_requires_source_tier_2(self):
         with self.assertRaises(ValueError):
             self._run(only_unreviewed_tier2_lanes=True)
@@ -307,7 +334,7 @@ class MetalIndependentPhosphodiesteraseSourcingTest(unittest.TestCase):
             only_unreviewed_tier2_lanes=True,
             source_tier="source_tier_2",
         )
-        self.assertEqual(audit["counts"]["lanes_queried"], 2)
+        self.assertEqual(audit["counts"]["lanes_queried"], 4)
         self.assertEqual(audit["counts"]["source_trust_tier"], "source_tier_2")
         self.assertTrue(audit["counts"]["only_unreviewed_tier2_lanes_enabled"])
         self.assertTrue(audit["guardrails"]["only_unreviewed_tier2_source_lanes_enabled"])
@@ -325,6 +352,28 @@ class MetalIndependentPhosphodiesteraseSourcingTest(unittest.TestCase):
         self.assertEqual(tier["source_tier"], "source_tier_2")
         self.assertGreaterEqual(len(tier["mechanism_corroborator_axes_present"]), 3)
         self.assertNotIn("ec_scope_hint", tier["mechanism_corroborator_axes_present"])
+
+    def test_tier2_gdpd_and_cyclic_name_lanes_are_guarded(self):
+        audit = self._run(
+            only_unreviewed_tier2_lanes=True,
+            source_tier="source_tier_2",
+            lane_ids=(
+                "metal_independent_pde_unreviewed_tier2_gdpd_catalytic_non_metal",
+                "metal_independent_pde_unreviewed_tier2_cyclic_name_catalytic_non_metal",
+            ),
+        )
+        self.assertEqual(audit["counts"]["lanes_queried"], 2)
+        self.assertEqual(
+            audit["counts"]["lane_ids"],
+            [
+                "metal_independent_pde_unreviewed_tier2_gdpd_catalytic_non_metal",
+                "metal_independent_pde_unreviewed_tier2_cyclic_name_catalytic_non_metal",
+            ],
+        )
+        self.assertEqual(audit["counts"]["source_trust_tier"], "source_tier_2")
+        for label in audit["applied_labels"]:
+            self.assertEqual(label["evidence"]["predictive_evidence"], [])
+            self.assertIn("source_annotation", label["evidence"]["excluded_context"])
 
     def test_unknown_family_rejected(self):
         with self.assertRaises(ValueError):

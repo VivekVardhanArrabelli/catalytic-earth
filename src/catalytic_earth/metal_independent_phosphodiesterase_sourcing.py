@@ -64,6 +64,15 @@ FAMILY_LANE_QUERIES: dict[str, tuple[dict[str, str], ...]] = {
             ),
         },
         {
+            "lane_id": "metal_independent_pde_ec_3_1_4_actsite_catalytic_non_metal",
+            "target_family_lane": FAMILY,
+            "query": (
+                "(reviewed:true) AND (ec:3.1.4.*) AND "
+                "(ft_act_site:*) AND (cc_catalytic_activity:*) "
+                f"{NON_METAL_FILTER}"
+            ),
+        },
+        {
             "lane_id": "metal_independent_pde_cyclic_nucleotide_name",
             "target_family_lane": FAMILY,
             "query": (
@@ -94,6 +103,14 @@ FAMILY_LANE_QUERIES: dict[str, tuple[dict[str, str], ...]] = {
                 "(cc_catalytic_activity:phosphodiester) OR "
                 '(cc_catalytic_activity:"phosphodiesterase") OR '
                 '(cc_catalytic_activity:"cyclic nucleotide")) '
+                f"{NON_METAL_FILTER}"
+            ),
+        },
+        {
+            "lane_id": "metal_independent_pde_ec_3_1_4_hydrolase_non_metal",
+            "target_family_lane": FAMILY,
+            "query": (
+                "(reviewed:true) AND (ec:3.1.4.*) AND (keyword:Hydrolase) "
                 f"{NON_METAL_FILTER}"
             ),
         },
@@ -133,6 +150,28 @@ UNREVIEWED_TIER2_LANE_QUERIES: dict[str, tuple[dict[str, str], ...]] = {
                 "(cc_catalytic_activity:\"cyclic GMP\") OR "
                 "(cc_catalytic_activity:cAMP) OR "
                 "(cc_catalytic_activity:cGMP)) "
+                f"{NON_METAL_FILTER}"
+            ),
+        },
+        {
+            "lane_id": "metal_independent_pde_unreviewed_tier2_gdpd_catalytic_non_metal",
+            "target_family_lane": FAMILY,
+            "query": (
+                "(reviewed:false) AND (ec:3.1.4.*) AND "
+                "((protein_name:GDPD) OR (protein_name:glycerophosphodiester) OR "
+                "(protein_name:glycerophosphocholine)) AND "
+                "(cc_catalytic_activity:*) "
+                f"{NON_METAL_FILTER}"
+            ),
+        },
+        {
+            "lane_id": "metal_independent_pde_unreviewed_tier2_cyclic_name_catalytic_non_metal",
+            "target_family_lane": FAMILY,
+            "query": (
+                "(reviewed:false) AND (ec:3.1.4.*) AND "
+                '((protein_name:"cyclic nucleotide") OR (protein_name:cAMP) OR '
+                "(protein_name:cGMP)) AND "
+                "(cc_catalytic_activity:*) "
                 f"{NON_METAL_FILTER}"
             ),
         },

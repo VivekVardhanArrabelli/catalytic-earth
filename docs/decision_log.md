@@ -3,6 +3,60 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-16: PDE HYDROLASE LANE IS ALLOWED BUT SUBFLOOR
+
+Decision: `metal_independent_phosphodiesterase` may use the reviewed EC 3.1.4 + Hydrolase lane as
+a source/fetch split only. EC and keyword evidence remain excluded context, never predictive
+features and never counted mechanism corroborators. The lane is not apply authority unless the
+usual dedup, source-trust, novelty, cap/floor, row-guardrail, and leakage/source-contract gates
+also pass.
+
+Implementation: added `metal_independent_pde_ec_3_1_4_hydrolase_non_metal`,
+`metal_independent_pde_ec_3_1_4_actsite_catalytic_non_metal`, and stricter tier-2 GDPD/cyclic
+source splits to `src/catalytic_earth/metal_independent_phosphodiesterase_sourcing.py`, offline
+guarded-lane tests in `tests/test_metal_independent_phosphodiesterase_sourcing.py`, and reusable
+preview row guardrails in `src/catalytic_earth/bronze_preview_row_guardrails.py` with
+`scripts/audit_bronze_preview_row_guardrails.py`.
+
+Measured result: the reviewed Hydrolase preview
+`artifacts/v3_metal_independent_phosphodiesterase_ec314_hydrolase_preview_window0_120_current702_20260616_run0114.json`
+fetched **120** rows, admitted **17** target PDE labels, held **22** off-target rows, and held
+**69** rows for missing mechanism corroboration. Row audit
+`artifacts/v3_metal_independent_phosphodiesterase_ec314_hydrolase_row_guardrail_audit_current702_20260616_run0114.json`
+found **0** problems. Strict tier-2 sample
+`artifacts/v3_metal_independent_phosphodiesterase_tier2_preview_size20_current702_20260616_run1209.json`
+fetched **40** rows and admitted **0** target PDE labels.
+
+Follow-up strict tier-2 GDPD/cyclic preview
+`artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_preview_size30_current702_20260616_run1235.json`
+fetched **60** rows, admitted **28** target PDE labels, held **32** rows for missing mechanism
+corroboration, and held **0** off-target rows. Row audit
+`artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_row_guardrail_audit_current702_20260616_run1235.json`
+found **0** problems.
+
+Reviewed ACT_SITE+catalytic preview
+`artifacts/v3_metal_independent_phosphodiesterase_actsite_catalytic_preview_size40_current702_20260616_run1218.json`
+fetched **40** rows, admitted **2** target PDE labels, held **4** off-target rows, and held
+**23** rows for missing mechanism corroboration. Row audit
+`artifacts/v3_metal_independent_phosphodiesterase_actsite_catalytic_row_guardrail_audit_current702_20260616_run1218.json`
+found **0** problems.
+
+Decision: no registry mutation is authorized from these previews. Applying 17, 2, or 28 rows would
+leave PDE below the 100-row floor, so each is a tiny topup rather than a floor-closing batch. The
+next mutation needs a sharper PDE source wall or a beyond-reviewed source-tier expansion through
+the full gated path.
+
+Safety recovery: a stale worker from the dead prior automation briefly appended the **17** Hydrolase
+rows to the external registry. That append was reverted before commit; the external registry is
+back to **7926** rows and frozen current702 stayed unchanged.
+
+Follow-up count scout
+`artifacts/v3_metal_independent_phosphodiesterase_sharp_handle_count_scout_current702_20260616_run1207.json`
+shows no obvious reviewed-source rescue: broad Hydrolase has **490** raw rows but already previewed
+to **17** admits, while the best sharper non-baseline handle `actsite_catalytic_non_metal` has
+only **119** raw rows before disambiguation/novelty. Do not rerun these reviewed PDE windows for
+apply without a genuinely new mechanism-bearing source wall.
+
 ## 2026-06-16: SBL IS A GUARDED 46TH FINGERPRINT AND COUNTED BRONZE
 
 Decision: add `serine_beta_lactamase` as the 46th positive fingerprint and keep the source wall

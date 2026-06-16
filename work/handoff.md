@@ -1,5 +1,95 @@
 # Handoff
 
+## Session run - PDE Hydrolase and tier-2 scouts blocked below gate (2026-06-16, Codex automation)
+
+- Started from current `origin/main` at `cd04a5fcaac9c97aa3050736878f78128e172bf5`, recovered a
+  dead automation lock PID, reacquired `.git/catalytic-earth-automation.lock`, and confirmed
+  `git pull --ff-only origin main` was already up to date. Frozen current702 sha before work was
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no registry apply was
+  performed and frozen current702 remained unchanged.
+- Preserved the inherited mechanism-first PDE hydrolase work and made it reproducible by adding
+  `metal_independent_pde_ec_3_1_4_hydrolase_non_metal`,
+  `metal_independent_pde_ec_3_1_4_actsite_catalytic_non_metal`, and stricter tier-2 GDPD/cyclic
+  source splits to
+  `src/catalytic_earth/metal_independent_phosphodiesterase_sourcing.py` plus the offline guarded
+  lane test in `tests/test_metal_independent_phosphodiesterase_sourcing.py`. EC 3.1.4 and
+  all name/keyword/active-site handles are scope/fetch only; counted corroboration remains non-EC
+  mechanism evidence and `predictive_evidence` stays `[]`.
+- Added reusable preview row guardrails in
+  `src/catalytic_earth/bronze_preview_row_guardrails.py`,
+  `scripts/audit_bronze_preview_row_guardrails.py`, and
+  `tests/test_bronze_preview_row_guardrails.py`. The audit checks UniProt namespace, bronze tier,
+  `automation_curated`, expected fingerprint/source tier, empty predictive evidence, required
+  excluded context, non-EC source-trust axes, and current702 duplicate-screen evidence before any
+  apply.
+- The inherited hydrolase preview
+  `artifacts/v3_metal_independent_phosphodiesterase_ec314_hydrolase_preview_window0_120_current702_20260616_run0114.json`
+  fetched **120** reviewed rows, found **17** target PDE labels, admitted **17**, held **22**
+  off-target rows, and held **69** rows for missing mechanism corroboration. Row audit
+  `artifacts/v3_metal_independent_phosphodiesterase_ec314_hydrolase_row_guardrail_audit_current702_20260616_run0114.json`
+  found **0** problem rows. Apply remains **unauthorized** because this would move PDE only
+  **0 -> 17**, leaving the 100-row floor open.
+- Small tier-2 sample
+  `artifacts/v3_metal_independent_phosphodiesterase_tier2_preview_size20_current702_20260616_run1209.json`
+  fetched **40** unreviewed rows across the two strict PDE tier-2 lanes, produced **0** target
+  admissions, held **6** off-target `sam_methyltransferase` rows, and held **34** rows for missing
+  or insufficient mechanism/trust-tier corroboration. This confirms the tier-2 path needs a sharper
+  source wall before any larger fetch/apply attempt.
+- Added and tested a second reviewed source split,
+  `metal_independent_pde_ec_3_1_4_actsite_catalytic_non_metal`, after a count scout found 119
+  reviewed non-metal EC 3.1.4 rows with ACT_SITE and catalytic-activity annotations. The bounded
+  preview
+  `artifacts/v3_metal_independent_phosphodiesterase_actsite_catalytic_preview_size40_current702_20260616_run1218.json`
+  fetched **40** rows, admitted only **2** target PDE labels, held **4** off-target rows, and held
+  **23** rows for missing mechanism corroboration. Row audit
+  `artifacts/v3_metal_independent_phosphodiesterase_actsite_catalytic_row_guardrail_audit_current702_20260616_run1218.json`
+  found **0** problems. Source strategy:
+  `artifacts/v3_metal_independent_phosphodiesterase_actsite_catalytic_source_strategy_current702_20260616_run1218.json`.
+  Apply remains unauthorized.
+- A sharper strict tier-2 GDPD/cyclic split was then previewed without registry writes:
+  `artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_preview_size30_current702_20260616_run1235.json`
+  fetched **60** unreviewed rows, admitted **28** target PDE labels, held **32** rows for missing
+  mechanism corroboration, and held **0** off-target rows. Row audit
+  `artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_row_guardrail_audit_current702_20260616_run1235.json`
+  checked all **28** source-tier-2 rows with **0** problems. This is still **no-apply**: current
+  external PDE remains **0**, and the preview would only move PDE to **28/100**.
+- A larger GDPD/cyclic size-120 preview was attempted after the clean 28-row scout, but the process
+  terminated with SIGTERM before writing an artifact. Treat that as no evidence and rerun it only
+  with a stable paginated/cursor setup before any floor-closing apply decision.
+- Latest non-destructive post-tier2 audits:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run1209_post_tier2_scout.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run1209_post_tier2_scout.json`,
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260616_run1209_post_tier2_scout.json`,
+  `artifacts/v3_breadth_feasibility_scout_current702_20260616_run1209_post_tier2_scout.json`.
+  They keep the current state at **8628** combined labels, **6932** combined seed surface, Gini
+  **0.1948**, `metal_independent_phosphodiesterase` as the lone hole at **0/100**, novelty replay
+  **7465** admit / **414** throttle / **47** reject, and **0** ready existing lanes >=150.
+- Added sharp reviewed-handle count scout
+  `artifacts/v3_metal_independent_phosphodiesterase_sharp_handle_count_scout_current702_20260616_run1207.json`.
+  It confirms the broad EC 3.1.4 + Hydrolase baseline has **490** raw reviewed rows but has already
+  previewed to only **17** admitted labels; the best sharper non-baseline handle
+  `actsite_catalytic_non_metal` has only **119** raw reviewed rows before disambiguation/novelty.
+  Do not spend another run retrying these reviewed windows for apply.
+- Live cursor/offset PDE fetch attempts from interrupted automation runs were found still running
+  and targeting overlapping artifacts; they were terminated to prevent duplicate or
+  non-reproducible source writes. One stale worker appended the unauthorized **17-row** hydrolase
+  preview to the external registry; that append was detected, restored back to the SBL baseline
+  (**7926** external rows), and stale `post_pde_apply` artifacts were pruned. Frozen current702
+  remained unchanged throughout.
+- Final validation for this no-apply run: `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed with **12** source records, **46** fingerprints, **43** ontology families, and **702**
+  curated labels; focused critical tests passed **267 passed, 14 subtests**; final full suite passed
+  **2363 passed, 1 warning, 244 subtests**; `compileall`, JSON/JSONL parse, registry file-size
+  scan, frozen SHA check, and `git diff --check` passed. Frozen current702 SHA after closeout was
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; external rows remained
+  **7926** with **0** external PDE rows.
+- Next concrete action: do **not** apply the 17-row hydrolase, 2-row ACT_SITE, or 28-row
+  GDPD/cyclic previews, and do not retry the same broad reviewed EC/name/PLD/hydrolase/ACT_SITE
+  windows. The most plausible next PDE move is a stable paginated GDPD/cyclic tier-2 window or a
+  genuinely sharper source wall that can actually close the 100 floor, followed by row guardrail
+  audit, novelty/governor/dedup/cap replay, leakage/source-contract tests, and explicit apply only
+  if the batch gate is met.
+
 ## Session run - SBL 46fp tier-2 floor batch applied; PDE remains lone hole (2026-06-16, Codex automation)
 
 - Hard blockers stayed clear. Started from current `origin/main` at

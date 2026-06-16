@@ -16,6 +16,56 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-16 automation update: PDE Hydrolase and strict tier-2 scouts are below apply gate.**
+No authorized registry mutation was performed. A stale worker briefly appended the **17-row**
+Hydrolase preview to the external registry; this was detected and reverted before commit, restoring
+the SBL baseline of **7926** external rows. Frozen current702 remains unchanged at sha
+`5eec9bef...`. Counts remain from the SBL apply: combined label surface **8628**, combined seed
+surface **6932**, positive_bronze **6885**, OOS bronze **1696**, silver_confirmed **47**,
+projected **0**.
+
+The reviewed PDE EC 3.1.4 Hydrolase and ACT_SITE+catalytic lanes, plus stricter tier-2 GDPD/cyclic
+source splits, are now wired in the source runner and covered by offline source-only guard tests.
+EC, Hydrolase keyword, names, and active-site handles remain scope/fetch handles only. The reusable
+row-guardrail audit checks preview rows before apply for UniProt namespace, bronze tier,
+`automation_curated`, expected fingerprint/source tier, empty predictive evidence, required
+excluded context, non-EC mechanism axes, and current702 duplicate-screen evidence.
+
+Preview
+`artifacts/v3_metal_independent_phosphodiesterase_ec314_hydrolase_preview_window0_120_current702_20260616_run0114.json`
+admits **17** target rows from **120** reviewed candidates, with row guardrail audit
+`artifacts/v3_metal_independent_phosphodiesterase_ec314_hydrolase_row_guardrail_audit_current702_20260616_run0114.json`
+showing **0** problems. This is not apply authority: PDE would remain **17/100**. Strict tier-2
+sample
+`artifacts/v3_metal_independent_phosphodiesterase_tier2_preview_size20_current702_20260616_run1209.json`
+admits **0** target rows from **40** unreviewed candidates and holds **6** off-target
+`sam_methyltransferase` rows. Post-tier2 audits with suffix `20260616_run1209_post_tier2_scout`
+still show PDE as the lone hole, novelty replay **7465** admit / **414** throttle / **47** reject,
+and **0** existing lanes >=150 projected clean admits.
+
+Follow-up strict tier-2 GDPD/cyclic preview
+`artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_preview_size30_current702_20260616_run1235.json`
+admits **28** target rows from **60** unreviewed candidates; row guardrail audit
+`artifacts/v3_metal_independent_phosphodiesterase_tier2_gdpd_cyclic_row_guardrail_audit_current702_20260616_run1235.json`
+shows **0** problem rows. This is still not apply authority because PDE would remain **28/100**.
+
+Sharp reviewed-handle count scout
+`artifacts/v3_metal_independent_phosphodiesterase_sharp_handle_count_scout_current702_20260616_run1207.json`
+shows no obvious reviewed-source rescue. Broad Hydrolase has **490** raw reviewed rows but already
+previewed to **17** admits; the best sharper non-baseline handle
+`actsite_catalytic_non_metal` has only **119** raw rows before disambiguation/novelty.
+Bounded ACT_SITE+catalytic preview
+`artifacts/v3_metal_independent_phosphodiesterase_actsite_catalytic_preview_size40_current702_20260616_run1218.json`
+admitted only **2** target rows from **40** reviewed candidates and had **0** row-guardrail
+problems.
+
+Next action: do not apply the 17-row Hydrolase, 2-row ACT_SITE, or 28-row GDPD/cyclic previews,
+and do not rerun the same broad reviewed PDE windows. Either design a genuinely sharper
+mechanism-bearing PDE source wall that can close the 100 floor, or move beyond reviewed Swiss-Prot
+only through count scout, preregistration if needed, non-destructive preview, row audit,
+novelty/governor/dedup/cap replay, leakage/source-contract tests, and explicit apply after the
+batch gate passes.
+
 **2026-06-16 automation update: SBL 46fp tier-2 floor batch applied; PDE remains the lone
 hole.** Treat this as the newest operational state for bronze scaleout. Hard safety remains green,
 frozen current702 stayed byte-unchanged at sha `5eec9bef...`, and growth happened only through the

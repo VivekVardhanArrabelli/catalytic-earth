@@ -238,21 +238,20 @@ def main() -> int:
             else None
         )
         if args.use_query_cursor_pagination:
-            query_fetcher = (
-                lambda query, size: _with_timeout(
+            if args.fetch_timeout_seconds:
+                query_fetcher = lambda query, size: _with_timeout(
                     args.fetch_timeout_seconds,
                     fetch_uniprot_query_cursor,
                     query,
                     query_size,
                     args.query_pages_per_lane,
                 )
-                if args.fetch_timeout_seconds
-                else fetch_uniprot_query_cursor(
+            else:
+                query_fetcher = lambda query, size: fetch_uniprot_query_cursor(
                     query,
                     size=query_size,
                     max_pages=args.query_pages_per_lane,
                 )
-            )
         elif args.fetch_timeout_seconds:
             query_fetcher = lambda query, size: _with_timeout(
                 args.fetch_timeout_seconds,
@@ -323,12 +322,15 @@ def main() -> int:
         summary = apply_external_annotation_anchored_import_to_registry(
             preview_path=Path(args.out),
             expansion_registry_path=DEFAULT_EXPANSION_REGISTRY_PATH,
+            frozen_benchmark_registry_path=DEFAULT_FROZEN_BENCHMARK_PATH,
         )
         sha_after = _frozen_sha()
         print(
-            f"Applied {summary['appended_count']} labels to {DEFAULT_EXPANSION_REGISTRY_PATH}; "
-            f"duplicates skipped {summary['duplicate_skipped_count']}; "
-            f"registry {summary['before_count']} -> {summary['after_count']}."
+            f"APPLIED: appended {summary['appended']} bronze "
+            f"(skipped {summary['duplicate_skipped']} dup); expansion "
+            f"{summary['expansion_registry_before']} -> {summary['expansion_registry_after']}; "
+            f"combined total {summary['combined_total_labels']}; "
+            f"frozen benchmark written: {summary['frozen_benchmark_registry_written']}."
         )
         print(f"  frozen current702 sha256 AFTER apply:  {sha_after}")
         if sha_before != sha_after:
