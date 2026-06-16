@@ -3,6 +3,28 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-16: SOURCE-TRANSFER TERMINAL STRUCTURAL CONTEXT IS OPTIONAL
+
+Decision: `build-external-source-pilot-terminal-decisions` must not implicitly mix a stale
+structural TM holdout artifact into current source-transfer replays. Structural TM context is useful
+review evidence when it is explicitly provided with matching lineage, but absence of that optional
+context must not cause the CLI to load `artifacts/v3_external_structural_tm_holdout_path_1025.json`.
+
+Implementation: changed the parser default for `--external-structural-tm-holdout-path` to `None`
+and added `CliTests.test_external_source_pilot_terminal_structural_context_default_is_optional`.
+Run2004 verified the fixed command can replay terminal decisions with current source-transfer
+artifacts and no structural holdout path, writing the verification output only to `/tmp`.
+
+Measured result: run2004 first hit lineage validation when the old default mixed slice `1025`
+structural context with slice `20260616` source-transfer artifacts. After the fix, the same
+run2004 terminal-decision inputs succeeded without an explicit structural holdout. Explicit
+same-slice structural input remains supported and was used for the tracked run2004 terminal artifact.
+
+Follow-up: for future source-transfer terminal replays, pass
+`--external-structural-tm-holdout-path` only when the structural artifact is deliberately selected
+and has same-slice lineage. Do not treat missing structural TM context as import authority; it is
+review context only.
+
 ## 2026-06-16: SOURCE-TRANSFER UNIREF DUPLICATE SCREEN IS PROCESS EVIDENCE ONLY
 
 Decision: source-transfer pilot rows may use a bounded UniRef90/50 current-reference overlap screen

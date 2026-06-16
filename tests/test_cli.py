@@ -381,6 +381,27 @@ class CliTests(unittest.TestCase):
             "/tmp/uniref.json",
         )
 
+    def test_external_source_pilot_terminal_structural_context_default_is_optional(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-external-source-pilot-terminal-decisions"]
+        )
+
+        self.assertIsNone(args.external_structural_tm_holdout_path)
+
+        overridden = build_parser().parse_args(
+            [
+                "build-external-source-pilot-terminal-decisions",
+                "--external-structural-tm-holdout-path",
+                "/tmp/structural.json",
+            ]
+        )
+        self.assertEqual(
+            overridden.external_structural_tm_holdout_path,
+            "/tmp/structural.json",
+        )
+
     def test_external_source_pilot_mechanism_repair_source_context_optional(
         self,
     ) -> None:

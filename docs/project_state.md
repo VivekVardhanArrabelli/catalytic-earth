@@ -26,6 +26,58 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **SOURCE-TRANSFER REVIEW/FACTORY REPLAY REFRESHED; NO REGISTRY APPLY (2026-06-16 automation).**
+  Frozen current702 stayed byte-unchanged at sha
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no label registry rows were
+  written. Fresh run2004 coverage/novelty audits
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run2004_pre_lane.json` and
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run2004_pre_lane.json` confirm the
+  surface stayed at **8728** combined labels = **702** frozen + **8026** expansion, with no holes,
+  floor deficit **0**, novelty replay **7565** admit / **414** throttle / **47** reject, and only
+  `metal_dependent_hydrolase` over cap.
+
+  Run2004 advanced the run1904 next action by rebuilding the source-transfer pilot review/factory
+  packet with same-slice artifacts:
+  `artifacts/v3_external_source_pilot_review_decision_export_current702_20260616_run2004.json`,
+  `artifacts/v3_external_source_pilot_evidence_packet_current702_20260616_run2004.json`,
+  `artifacts/v3_external_source_pilot_evidence_dossiers_current702_20260616_run2004.json`,
+  `artifacts/v3_external_source_pilot_active_site_evidence_decisions_current702_20260616_run2004.json`,
+  `artifacts/v3_external_source_pilot_success_criteria_t12_allvsall_uniref_current702_20260616_run2004.json`,
+  `artifacts/v3_external_source_pilot_terminal_decisions_t12_allvsall_uniref_current702_20260616_run2004.json`,
+  and
+  `artifacts/v3_external_source_pilot_decision_confidence_audit_t12_allvsall_uniref_current702_20260616_run2004.json`.
+  The replay remains `needs_more_work`: **12** rows still have no terminal review decision and no
+  full label-factory gate, **7** still have duplicate-screening unresolved, **6** have active-site
+  source unresolved, **2** have representation-control unresolved, and **0** rows are import-ready
+  or countable.
+
+  Normalized review routing remains five rows in
+  `artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_t12_allvsall_uniref_current702_20260616_run2004.json`:
+  C9JRZ8, O14756, P06746, Q8N0X4, and P33025. Review-only import safety passed in
+  `artifacts/v3_external_source_pilot_review_only_import_safety_t12_allvsall_uniref_current702_20260616_run2004.json`.
+  Mechanism repair controls and import-safety adjudications were refreshed with run2004 suffixes;
+  AKR, SDR, and DNA Pol X representation conflicts remain repaired review-only, the glycoside
+  boundary remains unrepaired, and all adjudications report **0** import-ready and **0** countable
+  rows.
+
+  Non-destructive source scouts still show no autonomous apply lane:
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260616_run2004_pre_lane.json` has **0**
+  ready existing lanes >=150 and top projected clean admits **77**; evidence-handle expansion
+  `artifacts/v3_evidence_handle_expansion_current702_20260616_run2004_pre_lane.json` still shows
+  reachable positive-bronze uplift **741**; breadth feasibility
+  `artifacts/v3_breadth_feasibility_scout_current702_20260616_run2004_pre_lane.json` still projects
+  **9673** reviewed-Swiss-Prot clean positives, gap **327** to 10k. Source scale audit
+  `artifacts/v3_source_scale_limit_audit_current702_20260616_run2004.json` still recommends
+  `stop_m_csa_only_tranche_growth_and_scope_external_source_transfer`.
+
+  Code hardening: `build-external-source-pilot-terminal-decisions` no longer defaults optional
+  structural TM holdout context to stale `1025`; it now defaults to `None`, with regression coverage
+  in `tests/test_cli.py`. Closure note:
+  `work/external_source_transfer_pilot_review_factory_closure_current702_20260616_run2004.md`.
+  Next exact action: obtain/build a source-supported expert review decision artifact for the five
+  queued `needs_review` rows, then rerun success criteria and full label-factory gates with
+  same-slice baseline inputs. Do not import/apply from run2004 artifacts.
+
 - **SOURCE-TRANSFER UNIREF DUPLICATE SCREEN CLEARED; NO REGISTRY APPLY (2026-06-16 automation).**
   Frozen current702 stayed byte-unchanged at sha
   `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no label registry rows were

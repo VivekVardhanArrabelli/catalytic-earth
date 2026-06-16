@@ -1,5 +1,67 @@
 # Handoff
 
+## Session run - source-transfer review/factory replay refreshed; no registry apply (2026-06-16, Codex automation)
+
+- Started from current `origin/main` at `c99f07bd44a63daac5c20cc4d75349d05147cc3c`,
+  acquired `.git/catalytic-earth-automation.lock`, and confirmed `git pull --ff-only origin main`
+  was already up to date. Frozen current702 sha before work was
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no registry apply was
+  performed.
+- Baseline safety was green: `PYTHONPATH=src python -m catalytic_earth.cli validate` passed; the
+  focused registry/source/leakage/novelty/import/CLI/transfer suite passed **697 passed, 174
+  subtests**. After the CLI fix, focused parser/transfer tests passed **3 passed** and **12 passed,
+  117 deselected**, and the broader focused suite passed **600 passed, 174 subtests**. `compileall`
+  passed.
+- Fresh planning artifacts:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run2004_pre_lane.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run2004_pre_lane.json`,
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260616_run2004_pre_lane.json`,
+  `artifacts/v3_evidence_handle_expansion_current702_20260616_run2004_pre_lane.json`,
+  `artifacts/v3_breadth_feasibility_scout_current702_20260616_run2004_pre_lane.json`, and
+  `artifacts/v3_source_scale_limit_audit_current702_20260616_run2004.json`. Coverage remains
+  **8728** combined = **702** frozen + **8026** expansion, with **0** holes, floor deficit **0**,
+  Gini **0.1779**, novelty replay **7565** admit / **414** throttle / **47** reject, **0** ready
+  existing lanes >=150, top projected clean admits **77**, evidence-handle reachable uplift **741**,
+  reviewed-Swiss-Prot clean-positive projection **9673**, and gap **327** to 10k.
+- Advanced the run1904 next action through the review/factory replay path:
+  `artifacts/v3_external_source_pilot_review_decision_export_current702_20260616_run2004.json`,
+  `artifacts/v3_external_source_pilot_evidence_packet_current702_20260616_run2004.json`,
+  `artifacts/v3_external_source_pilot_evidence_dossiers_current702_20260616_run2004.json`,
+  `artifacts/v3_external_source_pilot_active_site_evidence_decisions_current702_20260616_run2004.json`,
+  `artifacts/v3_external_source_pilot_success_criteria_t12_allvsall_uniref_current702_20260616_run2004.json`,
+  `artifacts/v3_external_source_pilot_terminal_decisions_t12_allvsall_uniref_current702_20260616_run2004.json`,
+  `artifacts/v3_external_source_pilot_human_expert_review_queue_t12_allvsall_uniref_current702_20260616_run2004.json`,
+  `artifacts/v3_external_source_pilot_decision_confidence_audit_t12_allvsall_uniref_current702_20260616_run2004.json`,
+  `artifacts/v3_external_source_pilot_decisions_review_normalized_t12_allvsall_uniref_current702_20260616_run2004.json`, and
+  `artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_t12_allvsall_uniref_current702_20260616_run2004.json`.
+- Success criteria remains `needs_more_work`: **12** rows still have no terminal review decision and
+  no full label-factory gate, **7** have duplicate-screening unresolved, **6** have active-site
+  source unresolved, **2** have representation-control unresolved, and **0** rows are import-ready
+  or countable. Normalized review routing still queues **5** rows: C9JRZ8, O14756, P06746, Q8N0X4,
+  and P33025. Their shared non-human blockers are `external_review_decision_artifact_not_built` and
+  `full_label_factory_gate_not_run`.
+- Review-only guardrails stayed safe:
+  `artifacts/v3_external_source_pilot_review_only_import_safety_t12_allvsall_uniref_current702_20260616_run2004.json`
+  passed. Mechanism repair controls and import-safety adjudications were refreshed:
+  AKR, SDR, and DNA Pol X representation conflicts remain repaired review-only; the glycoside
+  boundary remains unrepaired; all four adjudications report **0** import-ready and **0** countable
+  rows. Closure note:
+  `work/external_source_transfer_pilot_review_factory_closure_current702_20260616_run2004.md`.
+- A direct `check-label-factory-gates` attempt was intentionally not bypassed after lineage
+  validation rejected mixing slice `20260616` review-only source-transfer audit input with required
+  slice `500` label-factory baseline inputs. No label-factory pass was claimed.
+- Code hardening: `build-external-source-pilot-terminal-decisions` no longer defaults optional
+  structural TM context to stale `artifacts/v3_external_structural_tm_holdout_path_1025.json`; the
+  default is now `None`, with parser regression coverage in `tests/test_cli.py`. A `/tmp`
+  no-struct replay verified the fixed default.
+- Storage/source posture: hard-limit scan found no `data/registries` or `artifacts` files over
+  **90 MB**. `artifacts/v3_artifact_storage_policy_check_current702_20260616_run2004.json` remains
+  blocked with **41** policy blockers, **0** deletion-authorized rows, and **0** migration-ready
+  rows in `artifacts/v3_artifact_migration_readiness_plan_current702_20260616_run2004.json`.
+- Next exact action: build or obtain a source-supported expert review decision artifact for the
+  five queued `needs_review` rows, then rerun success criteria and full label-factory gates with
+  same-slice baseline inputs. Do not import/apply from run2004 artifacts.
+
 ## Session run - source-transfer UniRef duplicate screen cleared; no registry apply (2026-06-16, Codex automation)
 
 - Started from current `origin/main` at `dcebefa0a15a1e589834a391b1279c3b0b741340`,

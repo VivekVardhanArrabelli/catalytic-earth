@@ -1,17 +1,17 @@
 automation: ce-bronze-scaleout-pipeline
 automation_id: ce-nad-glyco-floor-expansion
-started_at: 2026-06-16T19:04:40Z
-started_local: Tue Jun 16 14:04:40 CDT 2026
-closeout_at: 2026-06-16T19:54:16Z
-elapsed_minutes: 49.6
-remaining_minutes: 5.4
+started_at: 2026-06-16T20:04:37Z
+started_local: Tue Jun 16 15:04:37 CDT 2026
+closeout_at: 2026-06-16T21:07:09Z
+elapsed_minutes: 62.5
+remaining_minutes: 0
 budget_minutes: 55
 planned_closeout_minute: 50
 
-state: source_transfer_uniref_duplicate_screen_no_registry_apply
-lock: acquired by this run at 2026-06-16T19:04:53Z
+state: recovered_stale_run2004_source_transfer_review_factory_no_registry_apply
+lock: stale run2004 lock recovered at 2026-06-16T21:07:09Z
 branch: main
-base_at_start: dcebefa0a15a1e589834a391b1279c3b0b741340
+base_at_start: c99f07bd44a63daac5c20cc4d75349d05147cc3c
 registry_mutation: none
 frozen_sha_before_apply: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
 frozen_sha_after_apply: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505

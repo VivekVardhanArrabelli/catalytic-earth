@@ -16,6 +16,45 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-16 automation update: source-transfer review/factory replay refreshed; no registry
+apply.** Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; no label registry rows were
+written. Run2004 coverage/novelty replays confirm the state is unchanged at **8728** combined
+labels = **702** frozen + **8026** expansion, with no holes, floor deficit **0**, novelty replay
+**7565** admit / **414** throttle / **47** reject, and only `metal_dependent_hydrolase` over cap.
+The run2004 factory refresh still has **0** ready existing lanes >=150 and top projected clean
+admits **77**, so no padding lane was applied.
+
+The run1904 `needs_review` source-transfer path was advanced by rebuilding the review/factory
+packet with current lineage. Artifacts include
+`artifacts/v3_external_source_pilot_review_decision_export_current702_20260616_run2004.json`,
+`artifacts/v3_external_source_pilot_success_criteria_t12_allvsall_uniref_current702_20260616_run2004.json`,
+`artifacts/v3_external_source_pilot_terminal_decisions_t12_allvsall_uniref_current702_20260616_run2004.json`,
+`artifacts/v3_external_source_pilot_decision_confidence_audit_t12_allvsall_uniref_current702_20260616_run2004.json`,
+and
+`artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_t12_allvsall_uniref_current702_20260616_run2004.json`.
+The replay still reports `needs_more_work`: **12** rows have no terminal review decision and no
+full label-factory gate, **7** have duplicate-screening unresolved, **6** have active-site source
+unresolved, **2** have representation-control unresolved, and **0** rows are import-ready or
+countable. The normalized queue remains **5** rows: C9JRZ8, O14756, P06746, Q8N0X4, and P33025.
+
+Review-only import safety passed for the normalized source-transfer queue in
+`artifacts/v3_external_source_pilot_review_only_import_safety_t12_allvsall_uniref_current702_20260616_run2004.json`.
+Mechanism repair controls and import-safety adjudications were refreshed with run2004 suffixes:
+AKR, SDR, and DNA Pol X representation conflicts remain repaired review-only, the glycoside
+boundary remains unrepaired, and all four adjudications report **0** import-ready and **0**
+countable rows. A direct label-factory gate check was not bypassed after lineage validation rejected
+mixing slice `20260616` source-transfer review-only audit data with required slice `500` factory
+baseline artifacts.
+
+Source scouts still justify source-transfer rather than reviewed-Swiss-Prot padding:
+`artifacts/v3_evidence_handle_expansion_current702_20260616_run2004_pre_lane.json` shows reachable
+positive-bronze uplift **741** and
+`artifacts/v3_breadth_feasibility_scout_current702_20260616_run2004_pre_lane.json` still projects
+**9673** reviewed-Swiss-Prot clean positives, gap **327** to 10k. Next action: build or obtain a
+source-supported expert review decision artifact for the five queued rows, then rerun success
+criteria and full label-factory gates with same-slice baseline inputs. Do not import from run2004
+artifacts.
+
 **2026-06-16 automation update: source-transfer UniRef duplicate screen cleared; no registry apply.**
 Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; no label registry rows were written.
 Run1904 coverage/novelty replays confirm the state is unchanged at **8728** combined labels =

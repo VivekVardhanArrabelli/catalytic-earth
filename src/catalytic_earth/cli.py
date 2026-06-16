@@ -25116,7 +25116,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_pilot_terminal.add_argument(
         "--external-structural-tm-holdout-path",
-        default="artifacts/v3_external_structural_tm_holdout_path_1025.json",
+        default=None,
     )
     external_pilot_terminal.add_argument("--max-rows", type=int, default=10)
     external_pilot_terminal.add_argument(
