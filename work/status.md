@@ -1,31 +1,32 @@
 automation: ce-bronze-scaleout-pipeline
 automation_id: ce-nad-glyco-floor-expansion
-started_at: 2026-06-16T16:04:36Z
-started_local: Tue Jun 16 11:04:36 CDT 2026
-closeout_at: 2026-06-16T16:59:00Z
-elapsed_minutes: 54.4
-remaining_minutes: 0.6
+started_at: 2026-06-16T17:04:58Z
+started_local: Tue Jun 16 12:04:58 CDT 2026
+closeout_at: 2026-06-16T17:24:31Z
+elapsed_minutes: 19.6
+remaining_minutes: 35.4
 budget_minutes: 55
 planned_closeout_minute: 50
 
-state: source_transfer_pilot_review_queue_built_no_registry_apply
-lock: acquired by this run at 2026-06-16T16:04:51Z
+state: learned_source_transfer_representation_gate_cleared_no_registry_apply
+lock: acquired by this run at 2026-06-16T17:04:45Z
 branch: main
-base_at_start: 41a7102177fc9c4500454b8cf84e4bd41c167865
+base_at_start: 46e8112cf5cfa43c58419318180e3dd5316b3bc2
 registry_mutation: none
 frozen_sha_before_apply: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
 frozen_sha_after_apply: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
 
 validation:
   registry_validate: passed
-  baseline_critical_suite: 273 passed, 14 subtests
-  sequence_and_structural_regressions: 3 passed
-  final_focused_suite: 366 passed, 14 subtests
-  full_pytest: 2366 passed, 1 warning
+  baseline_critical_suite: 251 passed
+  focused_cli_transfer_regression: 15 passed, 110 deselected
+  full_pytest: 2367 passed, 1 warning, 244 subtests
   current_docs_artifact_reference_check: 0 missing
-  json_jsonl_parse: passed
+  run1704_json_parse: 24 JSON files parsed
+  progress_jsonl_parse: 649 lines parsed
   git_diff_check: passed
-  registry_and_run1604_file_size_scan_over_45mb: none
+  registry_file_size_scan_over_45mb: none
+  pre_existing_artifact_file_size_scan_over_45mb: 4 known 20260609/20260610 artifacts
 
 current_counts:
   frozen_current702_rows: 702
@@ -37,32 +38,38 @@ current_counts:
   factory_ready_existing_lanes_ge150: 0
   top_projected_clean_admits: 77
 
-run1604_source_transfer:
-  candidate_manifest_rows: 47
-  full47_blocker_matrix_rows: 47
-  full47_blocker_matrix_import_ready_rows: 0
-  active_site_source_gaps: 21
-  heuristic_scope_mismatches: 14
-  representation_backend_not_selected: 12
-  exact_sequence_holdouts: 2
-  representation_near_duplicate_holdouts: 1
-  pilot_rows: 12
-  pilot_explicit_active_site_source_present: 6
-  pilot_binding_context_only: 6
-  transfer_gate: 65 passed / 66 total
-  transfer_gate_blocker: external_pilot_representation_sample_review_only
+run1704_source_transfer:
+  selected_pilot_rows: 12
+  esm2_t6_8m_sample: 10 complete / 2 near_duplicate_holdout
+  esm2_t12_35m_sample: 10 complete / 2 near_duplicate_holdout
+  esm2_t30_150m_sample: 7 complete / 5 near_duplicate_holdout
+  selected_representation_state: esm2_t12_35m
+  selected_representation_adjudication: 8 adjudicated_review_only / 2 stability_review / 2 near_duplicate_holdout
+  transfer_gate: 66 passed / 66 total
   terminal_decisions: 12
   terminal_rejected_active_site_evidence_missing: 6
-  terminal_deferred_requires_human_expert: 6
-  normalized_human_expert_queue_rows: 6
+  terminal_rejected_duplicate_or_near_duplicate: 2
+  terminal_deferred_requires_human_expert: 4
+  normalized_human_expert_queue_rows: 5
+  mechanism_repair_lane_rows: 5
+  mechanism_repair_lane_type: manual_source_mechanism_review_required
   import_ready_rows: 0
   countable_label_candidate_rows: 0
 
 code_changes:
-  - build-external-source-sequence-neighborhood-plan gained opt-in --include-manifest-rows for complete review-only manifest coverage.
-  - build-external-structural-tm-holdout-path now prefers artifact-lineage slice/path metadata over stale manifest/default 1025 values.
+  - audit-external-source-pilot-decision-confidence no longer loads stale 1025 optional structural/all-vs-all defaults when those optional paths are omitted.
+  - Added parser regression coverage for omitted and explicit optional confidence-audit context paths.
+
+early_closeout_reason: >
+  No holes or floor deficits exist; no current high-yield lane projects >=150 clean admits;
+  coordinate materialization remains blocked by disk below the 10 GiB download floor; the 197
+  controlled-ready external import rows still require explicit batch/label-factory/registry
+  authorization; and the source-transfer pilot now requires manual source/mechanism review plus
+  duplicate/factory gates before any import. No other safe autonomous bronze-scaleout item could be
+  advanced without violating these gates.
 
 next_action: >
-  Build or provide a current learned pilot-representation backend sample for the 12 selected
-  source-transfer pilot rows, rerun stability/adjudication plus the transfer gate/confidence audit,
-  then complete review/factory/duplicate gates before considering any external-registry-only import.
+  Inspect the 5 rows in
+  artifacts/v3_external_source_pilot_mechanism_repair_lanes_t12_current702_20260616_run1704.json,
+  resolve source-supported mechanism context manually, then rerun duplicate/factory/review gates.
+  Do not import/apply from the run1704 source-transfer artifacts.

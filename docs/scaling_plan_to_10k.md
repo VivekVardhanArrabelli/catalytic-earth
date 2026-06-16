@@ -16,6 +16,29 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-16 automation update: learned source-transfer representation gate cleared; no registry
+apply.** Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; no label registry rows were
+written. Fresh run1704 planning refreshes confirm combined labels **8728**, no holes, floor deficit
+**0**, novelty replay **7565** admit / **414** throttle / **47** reject, **0** ready existing lanes
+>=150, and top projected clean admits **77**.
+
+The current source-transfer pilot has learned ESM2 representation evidence. The selected t12/35M
+adjudication
+`artifacts/v3_external_source_pilot_representation_adjudication_t12_current702_20260616_run1704.json`
+reduces representation unresolved rows to **2** with **8** review-only adjudicated rows and **2**
+near-duplicate holds. A t30/150M follow-up did not improve unresolved rows and increased
+near-duplicate holds, so the t12 route is the selected state. Gate check
+`artifacts/v3_external_source_transfer_gate_check_pilot_esm2_t12_current702_20260616_run1704.json`
+passes **66/66** gates, still with **0** import-ready/countable rows.
+
+Review-only terminal routing remains conservative:
+`artifacts/v3_external_source_pilot_terminal_decisions_t12_current702_20260616_run1704.json`
+has **6** active-site-evidence rejections, **2** duplicate/near-duplicate rejections, and **4**
+human/expert deferrals; normalized expert queue has **5** rows and repair lanes are all
+`manual_source_mechanism_review_required`. Next action: manually resolve those **5** source-supported
+mechanism contexts, then rerun duplicate/factory/review gates. Do not import from the run1704
+packet.
+
 **2026-06-16 automation update: external source-transfer pilot queue advanced; no registry apply.**
 Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; no label registry rows were written.
 The source-transfer lane now has a current-slice full-width review graph for **47** candidates

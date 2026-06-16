@@ -311,6 +311,41 @@ class CliTests(unittest.TestCase):
         self.assertIsNone(args.tree_ref)
         self.assertIsNone(args.created_utc)
 
+    def test_external_source_pilot_decision_confidence_optional_context_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["audit-external-source-pilot-decision-confidence"]
+        )
+
+        self.assertIsNone(args.external_structural_cluster_index)
+        self.assertIsNone(args.external_structural_tm_diverse_split_plan)
+        self.assertIsNone(args.external_all_vs_all_sequence_search)
+
+        overridden = build_parser().parse_args(
+            [
+                "audit-external-source-pilot-decision-confidence",
+                "--external-structural-cluster-index",
+                "/tmp/cluster.json",
+                "--external-structural-tm-diverse-split-plan",
+                "/tmp/split.json",
+                "--external-all-vs-all-sequence-search",
+                "/tmp/all_vs_all.json",
+            ]
+        )
+        self.assertEqual(
+            overridden.external_structural_cluster_index,
+            "/tmp/cluster.json",
+        )
+        self.assertEqual(
+            overridden.external_structural_tm_diverse_split_plan,
+            "/tmp/split.json",
+        )
+        self.assertEqual(
+            overridden.external_all_vs_all_sequence_search,
+            "/tmp/all_vs_all.json",
+        )
+
     def test_external_bulk_ingestion_scout_parser_defaults(self) -> None:
         args = build_parser().parse_args(["build-external-bulk-ingestion-scout"])
 

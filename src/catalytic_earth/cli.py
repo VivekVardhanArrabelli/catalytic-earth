@@ -4332,6 +4332,14 @@ def cmd_build_external_source_pilot_human_expert_review_queue(
 def cmd_audit_external_source_pilot_decision_confidence(
     args: argparse.Namespace,
 ) -> int:
+    optional_artifact_names = (
+        "external_structural_cluster_index",
+        "external_structural_tm_diverse_split_plan",
+        "external_all_vs_all_sequence_search",
+    )
+    explicit_optional_artifacts = tuple(
+        name for name in optional_artifact_names if getattr(args, name, None)
+    )
     artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
         args,
         (
@@ -4341,11 +4349,9 @@ def cmd_audit_external_source_pilot_decision_confidence(
             "pilot_representation_adjudication",
             "pilot_review_decision_export",
             "pilot_human_expert_review_queue",
-            "external_structural_cluster_index",
-            "external_structural_tm_diverse_split_plan",
-            "external_all_vs_all_sequence_search",
             "external_transfer_gate",
-        ),
+        )
+        + explicit_optional_artifacts,
         blocker_removed="external_pilot_terminal_decision_confidence_audited",
     )
     audit = audit_external_source_pilot_decision_confidence(
@@ -4363,12 +4369,12 @@ def cmd_audit_external_source_pilot_decision_confidence(
         pilot_human_expert_review_queue=artifact_payloads[
             "pilot_human_expert_review_queue"
         ],
-        external_structural_cluster_index=artifact_payloads[
+        external_structural_cluster_index=artifact_payloads.get(
             "external_structural_cluster_index"
-        ],
-        external_structural_tm_diverse_split_plan=artifact_payloads[
+        ),
+        external_structural_tm_diverse_split_plan=artifact_payloads.get(
             "external_structural_tm_diverse_split_plan"
-        ],
+        ),
         external_all_vs_all_sequence_search=artifact_payloads.get(
             "external_all_vs_all_sequence_search"
         ),
@@ -25137,21 +25143,15 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_pilot_decision_confidence.add_argument(
         "--external-structural-cluster-index",
-        default="artifacts/v3_external_structural_cluster_index_1025_all30.json",
+        default=None,
     )
     external_pilot_decision_confidence.add_argument(
         "--external-structural-tm-diverse-split-plan",
-        default=(
-            "artifacts/"
-            "v3_external_structural_tm_diverse_split_plan_1025_all30.json"
-        ),
+        default=None,
     )
     external_pilot_decision_confidence.add_argument(
         "--external-all-vs-all-sequence-search",
-        default=(
-            "artifacts/"
-            "v3_external_source_all_vs_all_sequence_search_1025.json"
-        ),
+        default=None,
     )
     external_pilot_decision_confidence.add_argument(
         "--external-transfer-gate",

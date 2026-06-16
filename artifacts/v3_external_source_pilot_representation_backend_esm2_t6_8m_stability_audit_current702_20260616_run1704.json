@@ -1,0 +1,445 @@
+{
+  "blockers": [],
+  "metadata": {
+    "baseline_candidate_count": 12,
+    "baseline_embedding_backend": "deterministic_sequence_kmer_control",
+    "baseline_embedding_backend_available": true,
+    "baseline_embedding_vector_dimension": null,
+    "baseline_model_name": null,
+    "blocker_removed": "compares baseline and upgraded learned representation controls without changing countable labels",
+    "comparison_backend_feasibility_status": "computed",
+    "comparison_blocker_not_removed": null,
+    "comparison_candidate_count": 12,
+    "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+    "comparison_embedding_backend_available": true,
+    "comparison_embedding_backend_unavailable_row_count": 0,
+    "comparison_embedding_elapsed_seconds": 10.2485,
+    "comparison_embedding_failure_count": 0,
+    "comparison_embedding_vector_dimension": 320,
+    "comparison_expected_embedding_vector_dimension": 320,
+    "comparison_fallback_not_computed_reason": null,
+    "comparison_fallback_reason": null,
+    "comparison_fallback_selected_backend": null,
+    "comparison_fallback_used": false,
+    "comparison_largest_feasible_embedding_backend": "esm2_t6_8m_ur50d",
+    "comparison_largest_supported_embedding_backend": "esm2_t33_650m_ur50d",
+    "comparison_model_name": "facebook/esm2_t6_8M_UR50D",
+    "comparison_requested_backend_feasibility_status": "computed",
+    "comparison_requested_backend_local_cache_status": "not_checked",
+    "comparison_requested_backend_smoke_status": "not_applicable",
+    "comparison_requested_embedding_backend": "esm2_t6_8m_ur50d",
+    "comparison_requested_embedding_failure_count": 0,
+    "comparison_requested_expected_embedding_vector_dimension": 320,
+    "comparison_requested_model_name": "facebook/esm2_t6_8M_UR50D",
+    "countable_label_candidate_count": 0,
+    "guardrail_clean": true,
+    "heuristic_disagreement_status_changed_count": 2,
+    "heuristic_disagreement_status_stable_count": 10,
+    "heuristic_fingerprint_context_changed_count": 0,
+    "heuristic_fingerprint_context_stable_count": 12,
+    "method": "external_source_representation_backend_stability_audit",
+    "nearest_reference_changed_count": 5,
+    "nearest_reference_entry_ids_changed_count": 5,
+    "nearest_reference_entry_ids_stable_count": 7,
+    "nearest_reference_stable_count": 7,
+    "ready_for_label_import": false,
+    "shared_candidate_count": 12,
+    "stability_status": "changed"
+  },
+  "rows": [
+    {
+      "accession": "A2RUC4",
+      "baseline_backend_status": "sequence_kmer_embedding_control_complete",
+      "baseline_embedding_backend": "deterministic_sequence_kmer_control",
+      "baseline_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "baseline_nearest_reference_accession": "O68557",
+      "baseline_nearest_reference_entry_ids": [
+        "m_csa:495"
+      ],
+      "baseline_top_embedding_cosine": 0.8951,
+      "comparison_backend_status": "learned_representation_sample_complete",
+      "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_fallback_reason": null,
+      "comparison_fallback_used": false,
+      "comparison_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "comparison_nearest_reference_accession": "O68557",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:495"
+      ],
+      "comparison_requested_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_top_embedding_cosine": 0.9095,
+      "countable_label_candidate": false,
+      "heuristic_disagreement_status_stable": true,
+      "heuristic_fingerprint_context_stable": true,
+      "heuristic_top1_fingerprint_id": null,
+      "nearest_reference_entry_ids_stable": true,
+      "nearest_reference_stable": true,
+      "ready_for_label_import": false,
+      "review_status": "representation_backend_stability_audit_review_only",
+      "stability_flags": []
+    },
+    {
+      "accession": "C9JRZ8",
+      "baseline_backend_status": "sequence_kmer_embedding_control_complete",
+      "baseline_embedding_backend": "deterministic_sequence_kmer_control",
+      "baseline_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "baseline_nearest_reference_accession": "P19938",
+      "baseline_nearest_reference_entry_ids": [
+        "m_csa:66"
+      ],
+      "baseline_top_embedding_cosine": 0.911,
+      "comparison_backend_status": "learned_representation_sample_complete",
+      "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_fallback_reason": null,
+      "comparison_fallback_used": false,
+      "comparison_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "comparison_nearest_reference_accession": "P0A786",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:405"
+      ],
+      "comparison_requested_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_top_embedding_cosine": 0.7995,
+      "countable_label_candidate": false,
+      "heuristic_disagreement_status_stable": true,
+      "heuristic_fingerprint_context_stable": true,
+      "heuristic_top1_fingerprint_id": null,
+      "nearest_reference_entry_ids_stable": false,
+      "nearest_reference_stable": false,
+      "ready_for_label_import": false,
+      "review_status": "representation_backend_stability_audit_review_only",
+      "stability_flags": [
+        "nearest_reference_changed",
+        "nearest_reference_entry_ids_changed"
+      ]
+    },
+    {
+      "accession": "O14756",
+      "baseline_backend_status": "sequence_kmer_embedding_control_complete",
+      "baseline_embedding_backend": "deterministic_sequence_kmer_control",
+      "baseline_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "baseline_nearest_reference_accession": "P14604",
+      "baseline_nearest_reference_entry_ids": [
+        "m_csa:315"
+      ],
+      "baseline_top_embedding_cosine": 0.8803,
+      "comparison_backend_status": "learned_representation_sample_complete",
+      "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_fallback_reason": null,
+      "comparison_fallback_used": false,
+      "comparison_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "comparison_nearest_reference_accession": "P0A6C1",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:11"
+      ],
+      "comparison_requested_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_top_embedding_cosine": 0.7852,
+      "countable_label_candidate": false,
+      "heuristic_disagreement_status_stable": true,
+      "heuristic_fingerprint_context_stable": true,
+      "heuristic_top1_fingerprint_id": null,
+      "nearest_reference_entry_ids_stable": false,
+      "nearest_reference_stable": false,
+      "ready_for_label_import": false,
+      "review_status": "representation_backend_stability_audit_review_only",
+      "stability_flags": [
+        "nearest_reference_changed",
+        "nearest_reference_entry_ids_changed"
+      ]
+    },
+    {
+      "accession": "O95050",
+      "baseline_backend_status": "sequence_kmer_embedding_control_complete",
+      "baseline_embedding_backend": "deterministic_sequence_kmer_control",
+      "baseline_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "baseline_nearest_reference_accession": "P71119",
+      "baseline_nearest_reference_entry_ids": [
+        "m_csa:795"
+      ],
+      "baseline_top_embedding_cosine": 0.8975,
+      "comparison_backend_status": "learned_representation_sample_complete",
+      "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_fallback_reason": null,
+      "comparison_fallback_used": false,
+      "comparison_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "comparison_nearest_reference_accession": "P71119",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:795"
+      ],
+      "comparison_requested_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_top_embedding_cosine": 0.9103,
+      "countable_label_candidate": false,
+      "heuristic_disagreement_status_stable": true,
+      "heuristic_fingerprint_context_stable": true,
+      "heuristic_top1_fingerprint_id": null,
+      "nearest_reference_entry_ids_stable": true,
+      "nearest_reference_stable": true,
+      "ready_for_label_import": false,
+      "review_status": "representation_backend_stability_audit_review_only",
+      "stability_flags": []
+    },
+    {
+      "accession": "P00568",
+      "baseline_backend_status": "sequence_kmer_embedding_control_complete",
+      "baseline_embedding_backend": "deterministic_sequence_kmer_control",
+      "baseline_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "baseline_nearest_reference_accession": "P01116",
+      "baseline_nearest_reference_entry_ids": [
+        "m_csa:484"
+      ],
+      "baseline_top_embedding_cosine": 0.8903,
+      "comparison_backend_status": "learned_representation_sample_complete",
+      "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_fallback_reason": null,
+      "comparison_fallback_used": false,
+      "comparison_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "comparison_nearest_reference_accession": "P01116",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:484"
+      ],
+      "comparison_requested_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_top_embedding_cosine": 0.802,
+      "countable_label_candidate": false,
+      "heuristic_disagreement_status_stable": true,
+      "heuristic_fingerprint_context_stable": true,
+      "heuristic_top1_fingerprint_id": null,
+      "nearest_reference_entry_ids_stable": true,
+      "nearest_reference_stable": true,
+      "ready_for_label_import": false,
+      "review_status": "representation_backend_stability_audit_review_only",
+      "stability_flags": []
+    },
+    {
+      "accession": "P06746",
+      "baseline_backend_status": "sequence_kmer_embedding_control_complete",
+      "baseline_embedding_backend": "deterministic_sequence_kmer_control",
+      "baseline_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "baseline_nearest_reference_accession": "P0A1E3",
+      "baseline_nearest_reference_entry_ids": [
+        "m_csa:865"
+      ],
+      "baseline_top_embedding_cosine": 0.9042,
+      "comparison_backend_status": "learned_representation_sample_complete",
+      "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_fallback_reason": null,
+      "comparison_fallback_used": false,
+      "comparison_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "comparison_nearest_reference_accession": "P31116",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:521"
+      ],
+      "comparison_requested_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_top_embedding_cosine": 0.9275,
+      "countable_label_candidate": false,
+      "heuristic_disagreement_status_stable": true,
+      "heuristic_fingerprint_context_stable": true,
+      "heuristic_top1_fingerprint_id": null,
+      "nearest_reference_entry_ids_stable": false,
+      "nearest_reference_stable": false,
+      "ready_for_label_import": false,
+      "review_status": "representation_backend_stability_audit_review_only",
+      "stability_flags": [
+        "nearest_reference_changed",
+        "nearest_reference_entry_ids_changed"
+      ]
+    },
+    {
+      "accession": "P27144",
+      "baseline_backend_status": "sequence_kmer_embedding_control_complete",
+      "baseline_embedding_backend": "deterministic_sequence_kmer_control",
+      "baseline_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "baseline_nearest_reference_accession": "P25971",
+      "baseline_nearest_reference_entry_ids": [
+        "m_csa:50"
+      ],
+      "baseline_top_embedding_cosine": 0.8935,
+      "comparison_backend_status": "learned_representation_sample_complete",
+      "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_fallback_reason": null,
+      "comparison_fallback_used": false,
+      "comparison_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "comparison_nearest_reference_accession": "P25971",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:50"
+      ],
+      "comparison_requested_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_top_embedding_cosine": 0.8428,
+      "countable_label_candidate": false,
+      "heuristic_disagreement_status_stable": true,
+      "heuristic_fingerprint_context_stable": true,
+      "heuristic_top1_fingerprint_id": null,
+      "nearest_reference_entry_ids_stable": true,
+      "nearest_reference_stable": true,
+      "ready_for_label_import": false,
+      "review_status": "representation_backend_stability_audit_review_only",
+      "stability_flags": []
+    },
+    {
+      "accession": "P33025",
+      "baseline_backend_status": "sequence_kmer_embedding_control_complete",
+      "baseline_embedding_backend": "deterministic_sequence_kmer_control",
+      "baseline_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "baseline_nearest_reference_accession": "P0A786",
+      "baseline_nearest_reference_entry_ids": [
+        "m_csa:405"
+      ],
+      "baseline_top_embedding_cosine": 0.9,
+      "comparison_backend_status": "representation_near_duplicate_holdout",
+      "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_fallback_reason": null,
+      "comparison_fallback_used": false,
+      "comparison_heuristic_disagreement_status": "representation_near_duplicate_overrides_heuristic_review",
+      "comparison_nearest_reference_accession": "P0A786",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:405"
+      ],
+      "comparison_requested_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_top_embedding_cosine": 0.9727,
+      "countable_label_candidate": false,
+      "heuristic_disagreement_status_stable": false,
+      "heuristic_fingerprint_context_stable": true,
+      "heuristic_top1_fingerprint_id": null,
+      "nearest_reference_entry_ids_stable": true,
+      "nearest_reference_stable": true,
+      "ready_for_label_import": false,
+      "review_status": "representation_backend_stability_audit_review_only",
+      "stability_flags": [
+        "heuristic_disagreement_status_changed"
+      ]
+    },
+    {
+      "accession": "P51580",
+      "baseline_backend_status": "sequence_kmer_embedding_control_complete",
+      "baseline_embedding_backend": "deterministic_sequence_kmer_control",
+      "baseline_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "baseline_nearest_reference_accession": "O58403",
+      "baseline_nearest_reference_entry_ids": [
+        "m_csa:335"
+      ],
+      "baseline_top_embedding_cosine": 0.8593,
+      "comparison_backend_status": "learned_representation_sample_complete",
+      "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_fallback_reason": null,
+      "comparison_fallback_used": false,
+      "comparison_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "comparison_nearest_reference_accession": "P09147",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:188"
+      ],
+      "comparison_requested_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_top_embedding_cosine": 0.8325,
+      "countable_label_candidate": false,
+      "heuristic_disagreement_status_stable": true,
+      "heuristic_fingerprint_context_stable": true,
+      "heuristic_top1_fingerprint_id": null,
+      "nearest_reference_entry_ids_stable": false,
+      "nearest_reference_stable": false,
+      "ready_for_label_import": false,
+      "review_status": "representation_backend_stability_audit_review_only",
+      "stability_flags": [
+        "nearest_reference_changed",
+        "nearest_reference_entry_ids_changed"
+      ]
+    },
+    {
+      "accession": "P55263",
+      "baseline_backend_status": "sequence_kmer_embedding_control_complete",
+      "baseline_embedding_backend": "deterministic_sequence_kmer_control",
+      "baseline_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "baseline_nearest_reference_accession": "Q9TVW2",
+      "baseline_nearest_reference_entry_ids": [
+        "m_csa:209"
+      ],
+      "baseline_top_embedding_cosine": 0.89,
+      "comparison_backend_status": "representation_near_duplicate_holdout",
+      "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_fallback_reason": null,
+      "comparison_fallback_used": false,
+      "comparison_heuristic_disagreement_status": "representation_near_duplicate_overrides_heuristic_review",
+      "comparison_nearest_reference_accession": "Q9TVW2",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:209"
+      ],
+      "comparison_requested_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_top_embedding_cosine": 0.9731,
+      "countable_label_candidate": false,
+      "heuristic_disagreement_status_stable": false,
+      "heuristic_fingerprint_context_stable": true,
+      "heuristic_top1_fingerprint_id": null,
+      "nearest_reference_entry_ids_stable": true,
+      "nearest_reference_stable": true,
+      "ready_for_label_import": false,
+      "review_status": "representation_backend_stability_audit_review_only",
+      "stability_flags": [
+        "heuristic_disagreement_status_changed"
+      ]
+    },
+    {
+      "accession": "Q32P41",
+      "baseline_backend_status": "sequence_kmer_embedding_control_complete",
+      "baseline_embedding_backend": "deterministic_sequence_kmer_control",
+      "baseline_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "baseline_nearest_reference_accession": "P80147",
+      "baseline_nearest_reference_entry_ids": [
+        "m_csa:854"
+      ],
+      "baseline_top_embedding_cosine": 0.9432,
+      "comparison_backend_status": "learned_representation_sample_complete",
+      "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_fallback_reason": null,
+      "comparison_fallback_used": false,
+      "comparison_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "comparison_nearest_reference_accession": "P80147",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:854"
+      ],
+      "comparison_requested_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_top_embedding_cosine": 0.933,
+      "countable_label_candidate": false,
+      "heuristic_disagreement_status_stable": true,
+      "heuristic_fingerprint_context_stable": true,
+      "heuristic_top1_fingerprint_id": null,
+      "nearest_reference_entry_ids_stable": true,
+      "nearest_reference_stable": true,
+      "ready_for_label_import": false,
+      "review_status": "representation_backend_stability_audit_review_only",
+      "stability_flags": []
+    },
+    {
+      "accession": "Q8N0X4",
+      "baseline_backend_status": "sequence_kmer_embedding_control_complete",
+      "baseline_embedding_backend": "deterministic_sequence_kmer_control",
+      "baseline_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "baseline_nearest_reference_accession": "P06983",
+      "baseline_nearest_reference_entry_ids": [
+        "m_csa:260"
+      ],
+      "baseline_top_embedding_cosine": 0.912,
+      "comparison_backend_status": "learned_representation_sample_complete",
+      "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_fallback_reason": null,
+      "comparison_fallback_used": false,
+      "comparison_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "comparison_nearest_reference_accession": "P0DTH5",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:588"
+      ],
+      "comparison_requested_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_top_embedding_cosine": 0.9348,
+      "countable_label_candidate": false,
+      "heuristic_disagreement_status_stable": true,
+      "heuristic_fingerprint_context_stable": true,
+      "heuristic_top1_fingerprint_id": null,
+      "nearest_reference_entry_ids_stable": false,
+      "nearest_reference_stable": false,
+      "ready_for_label_import": false,
+      "review_status": "representation_backend_stability_audit_review_only",
+      "stability_flags": [
+        "nearest_reference_changed",
+        "nearest_reference_entry_ids_changed"
+      ]
+    }
+  ],
+  "warnings": [
+    "representation backend stability audits compare sequence-derived controls only; they cannot authorize external label import"
+  ]
+}

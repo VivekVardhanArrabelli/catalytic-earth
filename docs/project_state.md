@@ -26,6 +26,39 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **LEARNED SOURCE-TRANSFER REPRESENTATION GATE CLEARED; NO REGISTRY APPLY (2026-06-16 automation).**
+  Frozen current702 stayed byte-unchanged at sha
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no label registry rows were
+  written. Fresh run1704 coverage/novelty/factory artifacts
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run1704_pre_lane.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run1704_pre_lane.json`, and
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260616_run1704_pre_lane.json` confirm
+  combined labels **8728**, expansion rows **8026**, no holes, floor deficit **0**, novelty replay
+  **7565** admit / **414** throttle / **47** reject, **0** ready existing lanes >=150, and top
+  projected clean admits **77**.
+
+  The run1604 source-transfer pilot now has current learned representation evidence. ESM2 t6/8M
+  and t12/35M pilot samples were computed and audited clean under run1704; the selected t12
+  adjudication
+  `artifacts/v3_external_source_pilot_representation_adjudication_t12_current702_20260616_run1704.json`
+  reports **8** review-only adjudicated rows, **2** representation-stability review rows, and
+  **2** near-duplicate holds. A stronger t30/150M follow-up
+  `artifacts/v3_external_source_pilot_representation_adjudication_t30_current702_20260616_run1704.json`
+  did not improve unresolved representation count and increased near-duplicate holds, so t12 is the
+  selected routing state. Consolidated gate
+  `artifacts/v3_external_source_transfer_gate_check_pilot_esm2_t12_current702_20260616_run1704.json`
+  now passes **66/66** gates with **0** blockers, while preserving **0** countable/import-ready rows.
+
+  Downstream review-only routing artifacts with suffix `current702_20260616_run1704` keep the pilot
+  non-countable: success criteria is still `needs_more_work`; terminal decisions are **6**
+  `rejected_active_site_evidence_missing`, **2** `rejected_duplicate_or_near_duplicate`, and **4**
+  `deferred_requires_human_expert`; normalized human/expert queue has **5** rows; mechanism repair
+  lanes are all `manual_source_mechanism_review_required`.
+  The next exact action is to manually resolve source-supported mechanism context for the **5** rows
+  in
+  `artifacts/v3_external_source_pilot_mechanism_repair_lanes_t12_current702_20260616_run1704.json`,
+  then rerun duplicate/factory/review gates. Do not import/apply from run1704 artifacts.
+
 - **EXTERNAL SOURCE-TRANSFER PILOT QUEUE ADVANCED; NO REGISTRY APPLY (2026-06-16 automation).**
   Frozen current702 stayed byte-unchanged at sha
   `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no registry apply was

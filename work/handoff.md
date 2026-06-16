@@ -1,5 +1,71 @@
 # Handoff
 
+## Session run - learned source-transfer representation gate cleared; no registry apply (2026-06-16, Codex automation)
+
+- Started from current `origin/main` at `46e8112cf5cfa43c58419318180e3dd5316b3bc2`,
+  acquired `.git/catalytic-earth-automation.lock`, and confirmed `git pull --ff-only origin main`
+  was already up to date. Frozen current702 sha before work was
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no registry apply was
+  performed.
+- Baseline safety was green: `PYTHONPATH=src python -m catalytic_earth.cli validate` passed and
+  the focused registry/source/leakage/novelty/import suite passed **251 passed**.
+- Fresh run1704 planning artifacts:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run1704_pre_lane.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run1704_pre_lane.json`, and
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260616_run1704_pre_lane.json`.
+  Coverage remains **8728** combined labels = **702** frozen + **8026** expansion, with **no
+  holes**, floor deficit **0**, Gini **0.1779**, novelty replay **7565** admit / **414** throttle /
+  **47** reject, **0** ready existing lanes >=150, and top projected clean admits **77**.
+- Implemented a narrow CLI fix in `src/catalytic_earth/cli.py`: optional structural/all-vs-all
+  context for `audit-external-source-pilot-decision-confidence` now defaults to `None` and is loaded
+  only when explicitly provided. This prevents stale 1025 structural artifacts from being silently
+  mixed into current-slice confidence audits. Regression coverage:
+  `tests/test_cli.py::CliTests::test_external_source_pilot_decision_confidence_optional_context_defaults`.
+- Built learned representation samples for the 12-row run1604 pilot with current run1704 outputs.
+  The ESM2 t6/8M and t12/35M samples both audited clean:
+  `artifacts/v3_external_source_pilot_representation_backend_sample_esm2_t6_8m_current702_20260616_run1704.json`,
+  `artifacts/v3_external_source_pilot_representation_backend_sample_esm2_t12_35m_current702_20260616_run1704.json`,
+  and their audit artifacts. The selected t12 adjudication
+  `artifacts/v3_external_source_pilot_representation_adjudication_t12_current702_20260616_run1704.json`
+  reduced representation unresolved rows from **12** to **2**, with **8** review-only adjudicated
+  rows and **2** near-duplicate holds.
+- Tested a stronger ESM2 t30/150M follow-up:
+  `artifacts/v3_external_source_pilot_representation_backend_sample_esm2_t30_150m_current702_20260616_run1704.json`,
+  audit
+  `artifacts/v3_external_source_pilot_representation_backend_sample_esm2_t30_150m_audit_current702_20260616_run1704.json`,
+  stability audit
+  `artifacts/v3_external_source_pilot_representation_backend_esm2_t12_vs_t30_stability_audit_current702_20260616_run1704.json`,
+  and adjudication
+  `artifacts/v3_external_source_pilot_representation_adjudication_t30_current702_20260616_run1704.json`.
+  It did not improve unresolved representation count (**2**) and increased near-duplicate holds
+  (**5**), so t12 remains the selected routing state.
+- Consolidated gate check with the selected t12 pilot sample
+  `artifacts/v3_external_source_transfer_gate_check_pilot_esm2_t12_current702_20260616_run1704.json`
+  passes **66/66** gates with **0** blockers. It still reports **0** countable/import-ready rows and
+  `ready_for_label_import: false`.
+- Refreshed downstream review-only routing:
+  `artifacts/v3_external_source_pilot_success_criteria_t12_current702_20260616_run1704.json`,
+  `artifacts/v3_external_source_pilot_terminal_decisions_t12_current702_20260616_run1704.json`,
+  `artifacts/v3_external_source_pilot_human_expert_review_queue_t12_current702_20260616_run1704.json`,
+  `artifacts/v3_external_source_pilot_decision_confidence_audit_t12_current702_20260616_run1704.json`,
+  `artifacts/v3_external_source_pilot_decisions_review_normalized_t12_current702_20260616_run1704.json`,
+  `artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_t12_current702_20260616_run1704.json`,
+  and `artifacts/v3_external_source_pilot_mechanism_repair_lanes_t12_current702_20260616_run1704.json`.
+  Terminal state remains non-countable: **6** rejected for missing active-site evidence, **2**
+  rejected duplicate/near-duplicate, and **4** deferred to human/expert review. Normalized queue has
+  **5** review rows; repair lanes are all `manual_source_mechanism_review_required`.
+- Validation so far: registry validate passed; focused CLI/transfer-scope regression set passed
+  **15 passed**; full `PYTHONPATH=src pytest -q` passed **2367 passed, 1 warning, 244 subtests**.
+- Early closeout reason: no holes/floor deficits exist, no current high-yield lane projects >=150,
+  coordinate materialization remains blocked by disk below the **10 GiB** coordinate-download floor,
+  the **197** controlled-ready import-review rows still require explicit batch/label-factory/
+  registry authorization, and the source-transfer pilot now needs manual source/mechanism review
+  plus duplicate/factory gates before any import.
+- Next concrete action: inspect the **5** rows in
+  `artifacts/v3_external_source_pilot_mechanism_repair_lanes_t12_current702_20260616_run1704.json`
+  and resolve source-supported mechanism context manually; do not import/apply from the run1704
+  source-transfer artifacts.
+
 ## Session run - external source-transfer pilot queue advanced; no registry apply (2026-06-16, Codex automation)
 
 - Started from current `origin/main` at `41a7102177fc9c4500454b8cf84e4bd41c167865`,
