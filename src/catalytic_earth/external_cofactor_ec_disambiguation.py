@@ -1119,6 +1119,88 @@ _ALPHA_BETA_HYDROLASE_BOUNDARY_TOKENS = (
     "metal-dependent hydrolase",
     "zinc hydrolase",
 )
+# Serine beta-lactamase handles. EC 3.5.2.6 scopes the candidate supply only;
+# counted corroboration comes from serine/class A/C/D beta-lactamase family text,
+# beta-lactam hydrolysis reaction text, and active-site Ser/Lys/Glu residue-role
+# context. Metallo/zinc beta-lactamases, PBPs/DD-peptidases/transpeptidases,
+# beta-lactam synthases, generic amidohydrolases, side-EC rows, EC-only rows, and
+# multi-fingerprint rows stay held.
+_SERINE_BETA_LACTAMASE_FAMILY_TEXT_TOKENS = (
+    "serine beta-lactamase",
+    "serine-type beta-lactamase",
+    "class a beta-lactamase",
+    "class c beta-lactamase",
+    "class d beta-lactamase",
+    "beta-lactamase class a",
+    "beta-lactamase class c",
+    "beta-lactamase class d",
+    "beta-lactamase",
+    "penicillinase",
+    "cephalosporinase",
+    "oxacillinase",
+)
+_SERINE_BETA_LACTAMASE_REACTION_TOKENS = (
+    "beta-lactam",
+    "beta lactam",
+    "penicillin",
+    "cephalosporin",
+    "cephalothin",
+    "carbapenem",
+    "nitrocefin",
+    "imipenem",
+    "ampicillin",
+    "benzylpenicillin",
+)
+_SERINE_BETA_LACTAMASE_HYDROLYSIS_TOKENS = (
+    "h2o",
+    "h(2)o",
+    "water",
+    "hydrolysis",
+    "hydrolyzes",
+    "penicilloate",
+    "cephalosporoate",
+)
+_SERINE_BETA_LACTAMASE_ACTIVE_SITE_TOKENS = (
+    "active site",
+    "serine",
+    "catalytic ser",
+    "ser-lys",
+    "ser lys",
+    "lysine",
+    "glutamate",
+    "glu",
+    "carbamylated lys",
+    "acyl-enzyme",
+    "acyl enzyme",
+    "nucleophile",
+)
+_SERINE_BETA_LACTAMASE_BOUNDARY_TOKENS = (
+    "metallo-beta-lactamase",
+    "metallo beta-lactamase",
+    "metallo-lactamase",
+    "zinc beta-lactamase",
+    "zinc-dependent beta-lactamase",
+    "metal-binding",
+    "zinc",
+    "zn(2",
+    "zn2",
+    "penicillin-binding protein",
+    "pbp",
+    "d-alanyl-d-alanine carboxypeptidase",
+    "d-alanyl-d-alanine peptidase",
+    "d-alanyl-d-alanine-endopeptidase",
+    "dd-peptidase",
+    "d,d-peptidase",
+    "transpeptidase",
+    "carboxypeptidase",
+    "endopeptidase",
+    "beta-lactam synthase",
+    "clavaminate synthase",
+    "amidohydrolase",
+    "amidase",
+    "lactamase-like",
+    "resistance protein",
+)
 # Biotin-dependent carboxylase handles. EC 6.4.1 / 6.3.4 scopes the reviewed
 # candidate supply only; counted corroboration comes from biotin/biotinyl-Lys
 # cofactor or modified-residue evidence plus ATP/hydrogencarbonate/carboxybiotin
@@ -2102,6 +2184,31 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     non_alpha_beta_hydrolase_scope_side_ec = any(
         ec and not ec.startswith("3.1.1") for ec in _ec_numbers(row)
     )
+    serine_beta_lactamase_family_text = in_any(
+        reactions + keywords + [protein_name] + feature_texts,
+        *_SERINE_BETA_LACTAMASE_FAMILY_TEXT_TOKENS,
+    )
+    serine_beta_lactamase_hydrolysis_reaction = in_any(
+        reactions, *_SERINE_BETA_LACTAMASE_REACTION_TOKENS
+    ) and in_any(reactions, *_SERINE_BETA_LACTAMASE_HYDROLYSIS_TOKENS)
+    serine_beta_lactamase_active_site_context = in_any(
+        feature_texts, *_SERINE_BETA_LACTAMASE_ACTIVE_SITE_TOKENS
+    ) or (
+        active_or_binding_site_present
+        and serine_beta_lactamase_family_text
+    )
+    serine_beta_lactamase_boundary_signal = (
+        evidence.get("zinc", False)
+        or evidence.get("metal", False)
+        or _ec_has_prefix(row, ("3.5.2.7",))
+        or in_any(
+            keywords + [protein_name] + feature_texts + reactions + cofactor_names,
+            *_SERINE_BETA_LACTAMASE_BOUNDARY_TOKENS,
+        )
+    )
+    non_serine_beta_lactamase_scope_side_ec = any(
+        ec and ec != "3.5.2.6" for ec in _ec_numbers(row)
+    )
     non_6_3_side_ec = any(ec and not ec.startswith("6.3") for ec in _ec_numbers(row))
     non_biotin_carboxylase_scope_side_ec = any(
         ec and not (ec.startswith("6.4.1") or ec.startswith("6.3.4"))
@@ -2387,6 +2494,11 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "alpha_beta_hydrolase_ester_hydrolysis_reaction": alpha_beta_hydrolase_ester_hydrolysis_reaction,
             "alpha_beta_hydrolase_boundary_signal": alpha_beta_hydrolase_boundary_signal,
             "non_alpha_beta_hydrolase_scope_side_ec": non_alpha_beta_hydrolase_scope_side_ec,
+            "serine_beta_lactamase_family_text": serine_beta_lactamase_family_text,
+            "serine_beta_lactamase_hydrolysis_reaction": serine_beta_lactamase_hydrolysis_reaction,
+            "serine_beta_lactamase_active_site_context": serine_beta_lactamase_active_site_context,
+            "serine_beta_lactamase_boundary_signal": serine_beta_lactamase_boundary_signal,
+            "non_serine_beta_lactamase_scope_side_ec": non_serine_beta_lactamase_scope_side_ec,
             "non_thdp_scope_side_ec": non_thdp_scope_side_ec,
             "schiff_class_i_boundary_signal": schiff_class_i_boundary_signal,
             "non_4_1_2_or_4_1_3_side_ec": non_4_1_2_or_4_1_3_side_ec,
@@ -2501,6 +2613,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("aldehyde_dehydrogenase_reaction")
         or evidence.get("short_chain_dehydrogenase_reductase_reaction")
         or evidence.get("alpha_beta_hydrolase_ester_hydrolysis_reaction")
+        or evidence.get("serine_beta_lactamase_hydrolysis_reaction")
     ):
         axes.add("rhea_reaction_or_participant_pattern")
     if (
@@ -2564,6 +2677,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("aldehyde_dehydrogenase_active_site_context")
         or evidence.get("short_chain_dehydrogenase_reductase_active_site_context")
         or evidence.get("alpha_beta_hydrolase_ser_his_acid_context")
+        or evidence.get("serine_beta_lactamase_active_site_context")
     ):
         axes.add("active_site_motif_or_residue_role")
     if (
@@ -2604,6 +2718,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("aldehyde_dehydrogenase_family_text")
         or evidence.get("short_chain_dehydrogenase_reductase_family_text")
         or evidence.get("alpha_beta_hydrolase_family_text")
+        or evidence.get("serine_beta_lactamase_family_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -2682,6 +2797,7 @@ _HAD_LIKE_PHOSPHATASE_EC = ("3.1.3",)  # HAD-like phosphatases; EC scope only
 _SER_THR_PROTEIN_PHOSPHATASE_EC = ("3.1.3.16", "3.1.3.48")  # protein phosphatases; EC scope only
 _ALDEHYDE_DEHYDROGENASE_EC = ("1.2.1",)  # ALDH; EC scope only
 _ALPHA_BETA_HYDROLASE_ESTERASE_LIPASE_EC = ("3.1.1",)  # esterase/lipase; EC scope only
+_SERINE_BETA_LACTAMASE_EC = ("3.5.2.6",)  # serine beta-lactamase; EC scope only
 _METAL_INDEPENDENT_PHOSPHODIESTERASE_EC = (
     "3.1.4",
     "4.6.1",
@@ -3193,6 +3309,16 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         and not c["glycoside_hydrolase_family_text"]
         and not c["non_alpha_beta_hydrolase_scope_side_ec"],
     ),
+    (
+        "serine_beta_lactamase",
+        lambda c, row: _ec_has_exact(row, _SERINE_BETA_LACTAMASE_EC)
+        and c["serine_beta_lactamase_family_text"]
+        and c["serine_beta_lactamase_hydrolysis_reaction"]
+        and c["serine_beta_lactamase_active_site_context"]
+        and not c["serine_beta_lactamase_boundary_signal"]
+        and not c["alpha_beta_hydrolase_family_text"]
+        and not c["non_serine_beta_lactamase_scope_side_ec"],
+    ),
 )
 
 
@@ -3330,6 +3456,16 @@ def _synthesize_cofactor_provenance(
         or evidence.get("alpha_beta_hydrolase_ester_hydrolysis_reaction")
     ):
         records = [{"name": "Ser-His-Asp/Glu ester-hydrolysis context", "cross_reference": {"id": None}}]
+    elif fingerprint == "serine_beta_lactamase" and (
+        evidence.get("serine_beta_lactamase_hydrolysis_reaction")
+        or evidence.get("serine_beta_lactamase_active_site_context")
+    ):
+        records = [
+            {
+                "name": "Ser/Lys/Glu beta-lactam acyl-enzyme hydrolysis context",
+                "cross_reference": {"id": None},
+            }
+        ]
     elif fingerprint == "n_ribosyl_hydrolase" and (
         evidence.get("n_ribosyl_hydrolysis_reaction")
         or evidence.get("n_ribosyl_active_site_context")

@@ -237,10 +237,15 @@ EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_43FP_ARTIFACT = (
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_44FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_44fp_1025.json"
 )
-# The re-frozen tranche pre-registration for the current 45-fingerprint universe lives here; it is
-# the one a NEW OOS hard-negative import must reference.
+# The re-frozen tranche pre-registration for the 45-fingerprint universe is historical after the
+# serine beta-lactamase universe bump.
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_45FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_45fp_1025.json"
+)
+# The re-frozen tranche pre-registration for the current 46-fingerprint universe lives here; it is
+# the one a NEW OOS hard-negative import must reference.
+EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_46FP_ARTIFACT = (
+    "artifacts/v3_external_hard_negative_next_tranche_preregistration_46fp_1025.json"
 )
 REPRESENTATION_LEAKAGE_PRONE_PREDICTIVE_TERMS = (
     "accession",

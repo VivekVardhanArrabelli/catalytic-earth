@@ -7717,6 +7717,7 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 "protein_kinase_ser_thr_tyr",
                 "sam_methyltransferase",
                 "ser_thr_protein_phosphatase",
+                "serine_beta_lactamase",
                 "short_chain_dehydrogenase_reductase",
                 "terpene_cyclase_synthase",
                 "thiamine_diphosphate_enzyme",

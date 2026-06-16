@@ -217,10 +217,11 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             written = json.loads(out.read_text())
             # 8122 prior combined labels + 150 N-ribosyl hydrolase bronze
             # rows + 150 APH tier-2 bronze rows + 100 SDR bronze rows
-            # applied on 2026-06-15 through mechanism-first lanes.
-            self.assertEqual(written["totals"]["combined"], 8522)
+            # applied on 2026-06-15, plus 106 serine beta-lactamase bronze
+            # rows applied on 2026-06-16 through mechanism-first lanes.
+            self.assertEqual(written["totals"]["combined"], 8628)
             self.assertEqual(written["totals"]["frozen_current702"], 702)
-            self.assertEqual(written["totals"]["expansion_bronze"], 7820)
+            self.assertEqual(written["totals"]["expansion_bronze"], 7926)
             # the real registries must be byte-identical after the audit
             self.assertEqual(FROZEN_PATH.read_bytes(), frozen_before)
             self.assertEqual(EXPANSION_PATH.read_bytes(), expansion_before)
@@ -254,8 +255,10 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             # guarded bronze rows, closing the new 42nd-fingerprint floor. The
             # 2026-06-15 metal-independent phosphodiesterase infrastructure adds
             # the 43rd fingerprint before any label apply. Later APH tier-2
-            # source-wall expansion closed the APH floor, so PDE is the lone
-            # expected hole/under-floor family until a clean PDE batch is admitted.
+            # source-wall expansion closed the APH floor. The later 2026-06-16
+            # serine beta-lactamase infrastructure plus tier-2 source-wall apply
+            # closed the new 46th-fingerprint floor, so PDE is again the lone
+            # expected hole until a clean PDE batch is admitted.
             self.assertEqual(
                 audit["class_imbalance"]["expansion_holes"],
                 ["metal_independent_phosphodiesterase"],

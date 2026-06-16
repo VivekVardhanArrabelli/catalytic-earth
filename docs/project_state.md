@@ -1,6 +1,6 @@
 # Project State
 
-Last refreshed: 2026-06-15
+Last refreshed: 2026-06-16
 
 This file is the durable state summary for agents who do not have chat context.
 Treat it as an orientation layer, not as a replacement for the referenced
@@ -25,6 +25,73 @@ biological design system. Current benchmark claims must be framed as local,
 artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
+
+- **SERINE BETA-LACTAMASE 46FP TIER-2 FLOOR BATCH APPLIED; PDE REMAINS THE LONE
+  HOLE (2026-06-16 automation).**
+  Hard safety remains green. Frozen current702 stayed byte-unchanged at sha
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; growth happened only in
+  the sharded external bronze registry. The current positive universe is now
+  `label_factory_v1_46fp` with **46** mechanism fingerprints and **43** ontology families.
+  External rows are now **7926** = external seed **6702** + external OOS **1224**, with external
+  silver **30**. Combined label surface is **8628**; combined seed surface **6932**;
+  positive_bronze **6885**; OOS bronze **1696**; silver_confirmed **47**; projected **0**.
+
+  Added guarded `serine_beta_lactamase` infrastructure: fingerprint, ontology family
+  `serine_acyl_enzyme_beta_lactam_hydrolysis`, deploy context
+  `ser_lys_glu_beta_lactam_acyl_enzyme_hydrolysis_context`, disambiguation/source-trust rule,
+  high-yield factory wiring, source runner
+  `src/catalytic_earth/serine_beta_lactamase_sourcing.py`, script
+  `scripts/source_serine_beta_lactamase_family.py`, focused tests, and 46fp hard-negative
+  preregistration `artifacts/v3_external_hard_negative_next_tranche_preregistration_46fp_1025.json`.
+  EC 3.5.2.6, names, active-site handles, reaction text, and query handles remain
+  scope/admission excluded context. Counted corroboration is non-EC mechanism evidence:
+  serine-beta-lactamase family/domain context, beta-lactam hydrolysis reaction/participant
+  evidence, and Ser/Lys/Glu active-site context. Metallo/zinc beta-lactamases, PBPs/DD-peptidases,
+  beta-lactam synthases, generic amidohydrolases, side-EC, EC-only, and multi-fingerprint rows are
+  held. `predictive_evidence` stays `[]`.
+
+  Non-destructive SBL preview
+  `artifacts/v3_serine_beta_lactamase_tier2_sourcing_preview_cursor_pages3_size80_current702_20260616_run0014.json`
+  fetched **240** unreviewed tier-2 UniProt rows, found **115** target
+  mechanism-corroborated labels, admitted **106** novelty-safe labels, held **0** off-target
+  fingerprint matches, and held **9** by novelty/cap replay. Row audit
+  `artifacts/v3_serine_beta_lactamase_tier2_row_guardrail_audit_current702_20260616_run0014.json`
+  checked all **106** rows with **0** problems: UniProt namespace, bronze,
+  `automation_curated`, source tier 2, empty predictive evidence, EC excluded context, and all
+  required non-EC mechanism axes present. Explicit reuse-preview apply appended **106** rows
+  (**7820 -> 7926**) and changed the combined label surface **8522 -> 8628**.
+
+  Post-apply planning artifacts:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run0014_post_sbl_apply.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run0014_post_sbl_apply.json`,
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260616_run0014_post_sbl_apply.json`,
+  `artifacts/v3_mechanism_representation_loop_current702_20260616_run0014_post_sbl_apply.json`,
+  `artifacts/v3_evidence_handle_expansion_current702_20260616_run0014_post_sbl_apply.json`,
+  `artifacts/v3_breadth_feasibility_scout_current702_20260616_run0014_post_sbl_apply.json`, and
+  `artifacts/v3_post_sbl_source_strategy_current702_20260616_run0014.json`. Coverage reports
+  **8628** combined labels, fingerprint Gini **0.1948**,
+  `metal_independent_phosphodiesterase` as the lone hole/under-floor fingerprint, only
+  `metal_dependent_hydrolase` over cap, and floor deficit **100**. Novelty replay across **7926**
+  expansion rows reports **7465** admit / **414** throttle / **47** reject. The high-yield factory
+  reports **0** ready existing lanes >=150 and top projected clean supply **77** under current
+  handles. Evidence-handle refresh still shows **741** capped reachable positive-bronze uplift in
+  handle-blocked families, not mutation authority. Breadth feasibility reports reviewed Swiss-Prot
+  alone is short of 10k diverse positive bronze, projecting **9573** clean-only positives and a
+  **427** positive gap before additional diversity discounts.
+
+  The representation loop now includes `bc_beta_lactam_hydrolysis` so SBL rows do not collapse into
+  generic ester/Ser-His hydrolase chemistry. Post-apply representation audit remains leakage-safe:
+  **6702** seed labels, LOO self-consistency **0.7635**, SBL self-consistency **1.0**, **3211**
+  promotion candidates, and **1585** review outliers. This remains review-only and writes no
+  registry rows.
+
+  Next action: do not source more SBL without a new reaction-diversity split, and do not retry broad
+  PDE EC/name handles, the 7-row PLD preview, or terpene window170. The next safe bronze-scaleout
+  work is a sharper mechanism-bearing `metal_independent_phosphodiesterase` source wall that can
+  plausibly close the 100 floor, or a source-tier expansion strategy beyond reviewed Swiss-Prot
+  through count scout, preregistration if the fingerprint universe changes, non-destructive preview,
+  row audit, novelty/governor/dedup/cap replay, leakage/source-contract validation, and explicit
+  apply only if gates pass.
 
 - **PDE PLD SOURCE-WALL SCOUT IS VALID BUT SUBFLOOR; NO REGISTRY MUTATION
   (2026-06-15 automation).**

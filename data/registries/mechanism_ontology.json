@@ -759,6 +759,27 @@
         "Hold multi-fingerprint-signal rows rather than forcing an aminoglycoside phosphotransferase label.",
         "The ATP/Mg donor, aminoglycoside acceptor, transferred phosphate, acceptor hydroxyl, and product/protonation state are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
+    },
+    {
+      "id": "serine_acyl_enzyme_beta_lactam_hydrolysis",
+      "name": "Serine acyl-enzyme beta-lactam hydrolysis",
+      "parent_id": "hydrolysis",
+      "fingerprint_ids": [
+        "serine_beta_lactamase"
+      ],
+      "scope_note": "EC 3.5.2.6 serine beta-lactamases that hydrolyze beta-lactam amide bonds through a covalent Ser acyl-enzyme intermediate.",
+      "sibling_ids": [
+        "hydrolysis",
+        "ser_his_acid_ester_hydrolysis",
+        "had_aspartyl_phosphoenzyme_hydrolysis",
+        "glycosidic_bond_hydrolysis"
+      ],
+      "family_boundary_guardrails": [
+        "Membership is decided by serine/class A/class C/class D beta-lactamase family context plus beta-lactam hydrolysis reaction evidence and active-site Ser/Lys/Glu residue-role context; EC 3.5.2.6 is scope only.",
+        "Do not admit metallo/zinc beta-lactamases, PBPs/DD-peptidases/transpeptidases, generic amidohydrolases, beta-lactam synthases, side-EC rows, resistance-only rows, or EC-only rows into this family.",
+        "Hold multi-fingerprint-signal rows rather than forcing a serine beta-lactamase label.",
+        "The beta-lactam substrate, covalent acyl-enzyme intermediate, hydrolytic water, oxyanion-hole geometry, and class-specific protonation state are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
     }
   ],
   "propagation_guardrails": [

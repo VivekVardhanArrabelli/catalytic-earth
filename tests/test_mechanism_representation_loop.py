@@ -106,6 +106,13 @@ class BondChangeFeatureTests(unittest.TestCase):
             ),
         )
 
+    def test_beta_lactam_hydrolysis_is_not_ester_hydrolysis(self) -> None:
+        classes = classify_reaction_bond_change(
+            "benzylpenicillin + H2O = penicilloate + H(+)"
+        )
+        self.assertIn("bc_beta_lactam_hydrolysis", classes)
+        self.assertNotIn("bc_ester_hydrolysis", classes)
+
     def test_glycoside_hydrolysis_class(self) -> None:
         # Carbohydrate O-glycoside hydrolysis -> free monosaccharide + aglycone.
         self.assertIn(
@@ -441,10 +448,11 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
         audit = build_mechanism_representation_loop(expansion)
         # 6196 prior seed labels + 150 N-ribosyl hydrolase bronze rows
         # + 150 APH tier-2 bronze rows + 100 SDR bronze rows applied on
-        # 2026-06-15 through cursor-paginated / mechanism-first lanes;
+        # 2026-06-15, plus 106 SBL bronze rows applied on 2026-06-16
+        # through cursor-paginated / mechanism-first lanes;
         # the representation loop remains leakage-safe and still excludes
         # EC/name/prose/lane from features.
-        self.assertEqual(audit["seed_labels"], 6596)
+        self.assertEqual(audit["seed_labels"], 6702)
         g = audit["leakage_guardrails"]
         self.assertFalse(g["frozen_benchmark_read"])
         self.assertFalse(g["ec_name_prose_lane_used"])

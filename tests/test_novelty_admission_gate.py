@@ -196,9 +196,10 @@ class SelfAuditRealRegistryTests(unittest.TestCase):
         expansion = load_json(EXPANSION_PATH)
         audit = self_audit(frozen, expansion)
         # 7420 prior rows + 150 N-ribosyl hydrolase bronze rows + 150 APH
-        # tier-2 bronze rows + 100 SDR bronze rows applied on 2026-06-15
-        # through mechanism-first lanes.
-        self.assertEqual(audit["expansion_rows"], 7820)
+        # tier-2 bronze rows + 100 SDR bronze rows applied on 2026-06-15,
+        # plus 106 SBL tier-2 bronze rows applied on 2026-06-16 through
+        # mechanism-first lanes.
+        self.assertEqual(audit["expansion_rows"], 7926)
         # some redundancy exists and is bounded
         self.assertGreater(audit["would_not_readmit"], 0)
         self.assertLess(audit["would_not_readmit_fraction"], 1.0)

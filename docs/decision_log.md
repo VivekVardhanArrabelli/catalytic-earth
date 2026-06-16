@@ -3,6 +3,47 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-16: SBL IS A GUARDED 46TH FINGERPRINT AND COUNTED BRONZE
+
+Decision: add `serine_beta_lactamase` as the 46th positive fingerprint and keep the source wall
+mechanism-first. EC 3.5.2.6 may scope/fetch candidate rows but is never a counted corroborator.
+Serine-beta-lactamase names, active-site handles, UniProt prose, reaction text, and query handles
+remain excluded context. Counted corroboration comes from non-EC mechanism axes:
+serine-beta-lactamase family/domain context, beta-lactam hydrolysis reaction/participant evidence,
+and Ser/Lys/Glu active-site context. Metallo/zinc beta-lactamases, PBPs/DD-peptidases,
+beta-lactam synthases, generic amidohydrolases, side-EC, EC-only, and multi-fingerprint rows stay
+held, and `predictive_evidence` remains empty.
+
+Implementation: added `src/catalytic_earth/serine_beta_lactamase_sourcing.py`,
+`scripts/source_serine_beta_lactamase_family.py`, the `serine_beta_lactamase` fingerprint,
+ontology family `serine_acyl_enzyme_beta_lactam_hydrolysis`, deploy context
+`ser_lys_glu_beta_lactam_acyl_enzyme_hydrolysis_context`, disambiguation/source-trust rules,
+high-yield factory wiring, focused tests, and the 46fp OOS preregistration artifact
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_46fp_1025.json`. Updated the
+current positive-fingerprint universe to `label_factory_v1_46fp`; frozen current702 labels stay
+stamped with their historical decision version and were not written. Added a source-free
+`bc_beta_lactam_hydrolysis` bond-change class so representation-loop audits separate SBL from
+generic ester/Ser-His hydrolase chemistry without reading EC/name/prose/lane context.
+
+Measured result: non-destructive preview
+`artifacts/v3_serine_beta_lactamase_tier2_sourcing_preview_cursor_pages3_size80_current702_20260616_run0014.json`
+fetched **240** unreviewed tier-2 rows, produced **115** target mechanism-corroborated labels,
+admitted **106** novelty-safe labels, held **0** off-target fingerprint matches, and reached the
+**100** floor. Row audit
+`artifacts/v3_serine_beta_lactamase_tier2_row_guardrail_audit_current702_20260616_run0014.json`
+checked all **106** admitted rows with **0** problems. Explicit reuse-preview apply appended
+**106** bronze SBL rows to the external registry, skipped **0** duplicates, changed external rows
+**7820 -> 7926**, and changed combined label surface **8522 -> 8628**. Frozen current702 sha stayed
+`5eec9bef...` before and after apply.
+
+Decision: SBL reaches the floor at **106** rows and must not be padded without a new
+reaction-diversity split. Post-apply coverage still shows `metal_independent_phosphodiesterase` as
+the lone remaining hole/under-floor fingerprint. The high-yield factory has **0** ready existing
+lanes >=150; top projected clean supply is **77** under current handles. Evidence-handle and
+breadth-feasibility scouts are strategy inputs only, not apply authority. The next mutation should
+build a sharper PDE source wall beyond EC/name counts or pursue a source-tier expansion beyond
+reviewed Swiss-Prot through the full gated path.
+
 ## 2026-06-15: PDE PHOSPHOLIPASE-D SPLIT IS ALLOWED BUT SUBFLOOR
 
 Decision: the `metal_independent_phosphodiesterase` source wall may count phospholipase-D family

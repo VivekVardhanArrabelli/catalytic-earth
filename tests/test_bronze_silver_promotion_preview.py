@@ -213,9 +213,10 @@ class RealRegistryTests(unittest.TestCase):
             )
             # 6196 prior seed labels + 150 N-ribosyl hydrolase bronze rows
             # + 150 APH tier-2 bronze rows + 100 SDR bronze rows applied on
-            # 2026-06-15 through cursor-paginated / mechanism-first lanes;
+            # 2026-06-15, plus 106 SBL bronze rows applied on 2026-06-16
+            # through cursor-paginated / mechanism-first lanes;
             # the 30 promoted rows remain seed labels while moving from bronze to silver.
-            self.assertEqual(audit["seed_labels"], 6596)
+            self.assertEqual(audit["seed_labels"], 6702)
             # HONEST about structure (2026-06-14, after holo_structure_promotion):
             # silver_ready is now > 0 because experimental-PDB holo_pdb_confirmation rows
             # exist (the annotated cofactor was found as a HETATM in a sha-pinned PDB) --

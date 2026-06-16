@@ -222,6 +222,10 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         cap_ceiling=DEFAULT_CONFUSABLE_CAP,
         chemistry_confusable=True,
         novelty_keep_factor=0.45,
+        existing_fingerprint_id="serine_beta_lactamase",
+        current_runner="scripts/source_serine_beta_lactamase_family.py",
+        oos_preregistration_required=False,
+        source_wall_rule_status="implemented_existing_fingerprint",
         ambiguity_with_existing=("metallo_amidohydrolase_deaminase", "ser_his_acid_hydrolase"),
         rationale_template=(
             "Resistance-relevant covalent acyl-enzyme hydrolase split; keep separate "

@@ -3437,6 +3437,87 @@
     }
   },
   {
+    "id": "serine_beta_lactamase",
+    "name": "Serine beta-lactamase",
+    "enzyme_space": [
+      "class A beta-lactamases",
+      "class C beta-lactamases",
+      "class D beta-lactamases",
+      "serine beta-lactam hydrolases"
+    ],
+    "active_site_signature": [
+      {
+        "role": "serine_nucleophile",
+        "residue": "Ser active-site nucleophile",
+        "constraints": [
+          "forms a covalent acyl-enzyme intermediate with the beta-lactam carbonyl"
+        ]
+      },
+      {
+        "role": "lys_glu_general_base_network",
+        "residue": "Lys/Glu or Lys/Ser proton relay",
+        "constraints": [
+          "activates the serine nucleophile and hydrolytic water during acylation and deacylation"
+        ]
+      },
+      {
+        "role": "beta_lactam_carbonyl_positioner",
+        "residue": "oxyanion-hole and polar substrate-binding residues",
+        "constraints": [
+          "positions penicillin, cephalosporin, carbapenem, or related beta-lactam substrate for ring-opening hydrolysis"
+        ]
+      }
+    ],
+    "cofactors": [],
+    "reaction_center": {
+      "bond_changes": [
+        "beta-lactam amide C-N bond hydrolysis",
+        "covalent serine acyl-enzyme formation and deacylation",
+        "opened beta-lactam carboxylate product formation"
+      ],
+      "chemical_operation": "serine acyl-enzyme beta-lactam hydrolysis"
+    },
+    "substrate_constraints": [
+      "Exact EC 3.5.2.6 scope present but never counted as a corroborator",
+      "serine/class A/class C/class D beta-lactamase family or name context present",
+      "Rhea or reviewed catalytic activity text for beta-lactam hydrolysis present",
+      "active-site Ser/Lys/Glu or class-D carbamylated Lys residue-role context present where available",
+      "no metallo/zinc beta-lactamase, PBP/DD-peptidase/transpeptidase, generic amidohydrolase, beta-lactam synthase, side-EC, EC-only, or multi-fingerprint boundary signal"
+    ],
+    "evidence_features": [
+      "serine beta-lactamase, class A, class C, class D, penicillinase, cephalosporinase, or oxacillinase family/name text",
+      "Rhea or reviewed catalytic activity text showing beta-lactam plus water hydrolysis to opened beta-lactam product",
+      "annotated active-site Ser/Lys/Glu, carbamylated Lys, acyl-enzyme, or substrate-binding residue context",
+      "EC 3.5.2.6 scope only, never counted as a corroborator"
+    ],
+    "counterevidence_features": [
+      "metallo-beta-lactamase, zinc, or metal-binding context",
+      "penicillin-binding protein, DD-peptidase, transpeptidase, carboxypeptidase, or peptidoglycan-crosslinking context",
+      "generic amidohydrolase or amidase context without serine beta-lactamase active-site evidence",
+      "beta-lactam synthase or biosynthetic context",
+      "EC-only evidence with no family, reaction, or active-site corroborator",
+      "multi-fingerprint signal where an existing metallo-amidohydrolase, serine hydrolase, peptidase, or synthase rule independently fires"
+    ],
+    "uncertainty_axes": [
+      "Ambler class A versus C versus D active-site chemistry",
+      "class-D carbamylated lysine protonation state",
+      "beta-lactam substrate specificity",
+      "open versus closed active-site loop conformation"
+    ],
+    "seed_examples": [
+      "TEM beta-lactamase",
+      "AmpC beta-lactamase",
+      "OXA beta-lactamase",
+      "penicillinase"
+    ],
+    "deploy_missing_active_site_context": {
+      "type": "ser_lys_glu_beta_lactam_acyl_enzyme_hydrolysis_context",
+      "detail": "beta-lactam substrate, acyl-enzyme intermediate, hydrolytic water, oxyanion-hole state, and class-specific protonation state are absent or incomplete in apo predicted structures",
+      "reconstruction_path": "Path A sequence->serine beta-lactamase family plus Rhea/active-site channel, or canonical beta-lactam/acyl-enzyme/water graft in a beta-lactamase pocket (Path B)",
+      "silver_reachability": "moderate; EC, family, reaction, and active-site annotations are common, but acyl-enzyme and water geometry require explicit reconstruction"
+    }
+  },
+  {
     "id": "short_chain_dehydrogenase_reductase",
     "name": "Short-chain dehydrogenase/reductase",
     "enzyme_space": [

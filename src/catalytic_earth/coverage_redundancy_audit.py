@@ -334,6 +334,15 @@ FINGERPRINT_SOURCING_SIGNATURES: dict[str, dict[str, Any]] = {
         ),
         "lanes": ["aminoglycoside_phosphotransferase"],
     },
+    "serine_beta_lactamase": {
+        "ec_prefixes": ["3.5.2.6"],
+        "cofactor": (
+            "Ser/Lys/Glu beta-lactam acyl-enzyme hydrolysis context; metallo/zinc "
+            "beta-lactamases, PBPs/DD-peptidases, synthases, generic amidohydrolases, "
+            "and EC-only rows are held"
+        ),
+        "lanes": ["serine_beta_lactamase"],
+    },
 }
 
 ALL_FINGERPRINTS = tuple(FINGERPRINT_SOURCING_SIGNATURES.keys())

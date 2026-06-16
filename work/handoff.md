@@ -1,5 +1,78 @@
 # Handoff
 
+## Session run - SBL 46fp tier-2 floor batch applied; PDE remains lone hole (2026-06-16, Codex automation)
+
+- Hard blockers stayed clear. Started from current `origin/main` at
+  `a4c86f131f0bbbfae38b3c7e309942009aa49311`, acquired the automation lock, and pulled
+  fast-forward before work. Frozen current702 sha before apply was
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; after apply it was the
+  same. No frozen current702 rows were written.
+- Built `serine_beta_lactamase` as the guarded 46th positive fingerprint lane: fingerprint,
+  ontology family `serine_acyl_enzyme_beta_lactam_hydrolysis`, deploy-missing context,
+  disambiguation/source-trust rule, source runner
+  `src/catalytic_earth/serine_beta_lactamase_sourcing.py`, script
+  `scripts/source_serine_beta_lactamase_family.py`, high-yield factory wiring, focused tests, and
+  46fp hard-negative preregistration
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_46fp_1025.json`.
+- Mechanism discipline stayed intact. EC 3.5.2.6, SBL names, UniProt prose, reaction text, active
+  site handles, and query handles are scope/admission excluded context only. Counted axes are
+  non-EC family/domain, beta-lactam hydrolysis reaction/participant, and Ser/Lys/Glu active-site
+  context. Metallo/zinc beta-lactamases, PBPs/DD-peptidases, beta-lactam synthases, generic
+  amidohydrolases, side-EC, EC-only, and multi-fingerprint rows are held; `predictive_evidence`
+  remains `[]`.
+- Live SBL tier-2 preview
+  `artifacts/v3_serine_beta_lactamase_tier2_sourcing_preview_cursor_pages3_size80_current702_20260616_run0014.json`
+  fetched **240** rows, produced **115** target mechanism-corroborated labels, admitted **106**
+  novelty-safe labels, held **0** off-target fingerprint matches, and held **9** by novelty/cap
+  replay. Row audit
+  `artifacts/v3_serine_beta_lactamase_tier2_row_guardrail_audit_current702_20260616_run0014.json`
+  audited all **106** rows with **0** problems.
+- Explicit reuse-preview apply appended **106** SBL bronze rows to the sharded external registry,
+  skipped **0** duplicates, changed external rows **7820 -> 7926**, and changed combined label
+  surface **8522 -> 8628**. The registry manifest remains GitHub-safe with shards about
+  **18 MB / 18 MB / 18 MB / 8.4 MB**.
+- Honest counters after apply: external rows **7926** = external seed **6702** + external OOS
+  **1224**, with external silver **30**. Combined label surface **8628**; combined seed surface
+  **6932**; positive_bronze **6885**; OOS bronze **1696**; silver_confirmed **47**; projected
+  **0**.
+- Post-apply refreshes:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run0014_post_sbl_apply.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run0014_post_sbl_apply.json`,
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260616_run0014_post_sbl_apply.json`,
+  `artifacts/v3_mechanism_representation_loop_current702_20260616_run0014_post_sbl_apply.json`,
+  `artifacts/v3_evidence_handle_expansion_current702_20260616_run0014_post_sbl_apply.json`,
+  `artifacts/v3_breadth_feasibility_scout_current702_20260616_run0014_post_sbl_apply.json`, and
+  `artifacts/v3_post_sbl_source_strategy_current702_20260616_run0014.json`. Coverage reports
+  **8628** combined labels, Gini **0.1948**, lone hole `metal_independent_phosphodiesterase`, and
+  over-cap `metal_dependent_hydrolase`. Novelty replay reports **7465** admit / **414** throttle /
+  **47** reject across **7926** expansion rows. Factory reports **0** ready existing lanes >=150;
+  top projected clean admits are **77**. Breadth feasibility reports reviewed Swiss-Prot clean-only
+  positives project to **9573**, leaving a **427** gap to 10k before further diversity discounts.
+- Added source-free `bc_beta_lactam_hydrolysis` to the representation loop so SBL rows do not
+  collapse into generic ester/Ser-His hydrolase chemistry. Post-apply representation loop reports
+  **6702** seed labels, LOO self-consistency **0.7635**, SBL self-consistency **1.0**, **3211**
+  promotion candidates, and **1585** review outliers; no registry rows were written by the audit.
+- Validation: `PYTHONPATH=src python -m catalytic_earth.cli validate` passed with **12** source
+  records, **46** fingerprints, **43** ontology families, and **702** curated labels. Focused
+  baseline safety suite passed **363 passed**. Focused SBL/leakage/import suite passed
+  **156 passed** after apply. Stale-invariant targeted rerun passed **5 passed**. Final full suite
+  passed **2357 passed, 1 warning, 244 subtests passed in 169.66s**. `compileall`, JSON/JSONL
+  parsing, registry file-size scan, frozen-SHA check, and `git diff --check` passed before doc
+  closeout.
+- Closeout snapshot: **2026-06-16T00:53:00Z**, elapsed **39.2** minutes, remaining **15.8**
+  minutes. Closed before minute 50 because a second safe same-run scaling item was concretely
+  blocked: SBL is floor-closed and reaction-saturated, PDE remains the only true hole but all
+  existing PDE reviewed/PLD/tier-2 handles are documented below gate or boundary-heavy, the
+  high-yield factory reports **0** ready existing lanes >=150, and evidence-handle/breadth scouts
+  are strategy inputs rather than apply authority.
+- Next concrete action: do **not** source more SBL without a new reaction-diversity split, and do
+  not retry broad PDE EC/name handles, the 7-row PLD preview, or terpene window170. The remaining
+  safe bronze-scaleout path is a sharper `metal_independent_phosphodiesterase` source wall that
+  can plausibly close the 100 floor; if PDE remains blocked, move to a source-tier expansion beyond
+  reviewed Swiss-Prot through count scout, preregistration if needed, non-destructive preview, row
+  audit, novelty/governor/dedup/cap replay, leakage/source-contract validation, and explicit apply
+  only if gates pass.
+
 ## Session run - PDE PLD scout valid but subfloor; serine beta-lactamase plan staged (2026-06-15, Codex automation)
 
 - Started from current `origin/main` at `a4c86f131f0bbbfae38b3c7e309942009aa49311`, acquired the automation lock, and pulled fast-forward before work. Frozen current702 sha before/after the no-apply run stayed `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no frozen current702 rows and no external registry rows were written.

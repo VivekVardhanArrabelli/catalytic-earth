@@ -109,11 +109,12 @@ COSUBSTRATE_CLASSES = tuple(COSUBSTRATE_CLASS_PATTERNS.keys())
 # (lyase/transferase) chemistries -- e.g. cobalamin ammonia-lyases -- out of the bond
 # space and preserves the non-metal families' cofactor-based separability.
 #
-# ``bc_ester_hydrolysis``, ``bc_glycoside_hydrolysis``, and
-# ``bc_n_glycosidic_hydrolysis`` (added 2026-06-15) extend the same hydrolysis basis to the
-# new ester-/lipase-, carbohydrate glycoside-, and N-ribosyl-hydrolase family lanes, which
-# otherwise carried NO reaction-center class and collapsed. All read only the Rhea
-# substrate->product equation.
+# ``bc_ester_hydrolysis``, ``bc_glycoside_hydrolysis``,
+# ``bc_n_glycosidic_hydrolysis`` (added 2026-06-15), and
+# ``bc_beta_lactam_hydrolysis`` (added 2026-06-16) extend the same hydrolysis basis to
+# the new ester-/lipase-, carbohydrate glycoside-, N-ribosyl-hydrolase, and serine
+# beta-lactamase family lanes, which otherwise carried NO reaction-center class and
+# collapsed. All read only the Rhea substrate->product equation.
 BOND_CHANGE_CLASSES = (
     "bc_phosphomonoester",  # phosphomonoester P-O hydrolysis (free phosphate released)
     "bc_phosphodiester",    # phosphodiester P-O hydrolysis (nuclease / cyclic-nucleotide)
@@ -122,6 +123,7 @@ BOND_CHANGE_CLASSES = (
     "bc_ester_hydrolysis",  # ester/lipase C-O hydrolysis (acylglycerol/sterol-ester -> fatty acid + alcohol)
     "bc_glycoside_hydrolysis",  # carbohydrate O-glycoside hydrolysis (glycoside + H2O -> free sugar + aglycone)
     "bc_n_glycosidic_hydrolysis",  # nucleoside/nucleotide N-glycosidic hydrolysis (ribose + nucleobase)
+    "bc_beta_lactam_hydrolysis",  # beta-lactam amide ring hydrolysis (penicillin/cephalosporin/carbapenem -> opened product)
 )
 
 # Non-hydrolytic reaction-center bond-change classes (added 2026-06-14). The four
@@ -354,6 +356,28 @@ def classify_reaction_bond_change(reaction: str) -> set[str]:
     if (deamination or amide_ring) and not free_phosphate:
         classes.add("bc_amide_cn")
 
+    # beta-lactam hydrolysis: water opens a beta-lactam amide ring to penicilloate /
+    # cephalosporoate / related carboxylate products. This is distinct from generic
+    # ester/lipase hydrolysis even though several products end in "-oate".
+    beta_lactam_hydrolysis = (
+        "beta-lactam" in low
+        or "beta lactam" in low
+        or "penicillin" in low
+        or "cephalosporin" in low
+        or "cephalothin" in low
+        or "carbapenem" in low
+        or "nitrocefin" in low
+        or "imipenem" in low
+        or "ampicillin" in low
+        or "benzylpenicillin" in low
+        or any(
+            "penicilloate" in term or "cephalosporoate" in term
+            for term in rhs_terms
+        )
+    )
+    if beta_lactam_hydrolysis:
+        classes.add("bc_beta_lactam_hydrolysis")
+
     # ester / lipase hydrolysis: an acylglycerol / sterol-ester / phospholipid hydrolysed
     # to an alcohol + carboxylate/fatty acid. Excludes the NAD(P)-dependent aldehyde
     # dehydrogenase (which also makes a carboxylate), protein substrates, and any reaction
@@ -366,6 +390,7 @@ def classify_reaction_bond_change(reaction: str) -> set[str]:
         and "nadp" not in low
         and "[protein]" not in low
         and not free_phosphate
+        and not beta_lactam_hydrolysis
         and ester_product
     ):
         classes.add("bc_ester_hydrolysis")

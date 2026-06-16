@@ -1,0 +1,89 @@
+{
+  "artifact_id": "v3_post_sbl_source_strategy_current702_20260616_run0014",
+  "created_utc": "2026-06-16T00:49:02Z",
+  "schema_version": "post_apply_source_strategy.v1",
+  "status": "non_destructive_strategy_no_registry_or_labels_written",
+  "registry_written": false,
+  "frozen_current702_sha": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+  "post_apply_state": {
+    "fingerprint_universe": "label_factory_v1_46fp",
+    "mechanism_fingerprints": 46,
+    "ontology_families": 43,
+    "external_rows": 7926,
+    "external_seed": 6702,
+    "external_oos_bronze": 1224,
+    "external_silver": 30,
+    "combined_label_surface": 8628,
+    "combined_seed_surface": 6932,
+    "positive_bronze": 6885,
+    "oos_bronze": 1696,
+    "silver_confirmed": 47,
+    "projected": 0
+  },
+  "sbl_apply_summary": {
+    "fingerprint_id": "serine_beta_lactamase",
+    "source_tier": "source_tier_2",
+    "fetched_candidate_rows": 240,
+    "mechanism_corroborated_bronze_labels": 115,
+    "novelty_admitted_labels": 106,
+    "off_target_fingerprint_matches_held": 0,
+    "held_at_cap_ceiling": 0,
+    "row_guardrail_problem_rows": 0,
+    "floor_reached": true,
+    "reaction_saturated_after_apply": true,
+    "apply_artifact": "artifacts/v3_serine_beta_lactamase_tier2_sourcing_preview_cursor_pages3_size80_current702_20260616_run0014.json",
+    "row_guardrail_artifact": "artifacts/v3_serine_beta_lactamase_tier2_row_guardrail_audit_current702_20260616_run0014.json"
+  },
+  "post_apply_governor": {
+    "coverage_artifact": "artifacts/v3_coverage_redundancy_audit_current702_20260616_run0014_post_sbl_apply.json",
+    "combined_labels": 8628,
+    "expansion_rows": 7926,
+    "fingerprint_gini": 0.1948,
+    "holes": [
+      "metal_independent_phosphodiesterase"
+    ],
+    "floor_deficit_total": 100,
+    "over_cap": [
+      "metal_dependent_hydrolase"
+    ],
+    "reaction_saturated": [
+      "aminoglycoside_phosphotransferase",
+      "had_like_phosphatase",
+      "n_ribosyl_hydrolase",
+      "ser_thr_protein_phosphatase",
+      "serine_beta_lactamase"
+    ]
+  },
+  "novelty_replay": {
+    "artifact": "artifacts/v3_novelty_admission_gate_audit_current702_20260616_run0014_post_sbl_apply.json",
+    "expansion_rows": 7926,
+    "decision_counts": {
+      "admit": 7465,
+      "reject": 47,
+      "throttle": 414
+    },
+    "would_not_readmit": 461
+  },
+  "next_lane_evidence": {
+    "factory_artifact": "artifacts/v3_high_yield_family_lane_factory_current702_20260616_run0014_post_sbl_apply.json",
+    "ready_existing_lanes_ge_150": 0,
+    "top_projected_clean_admits": 77,
+    "evidence_handle_expansion_artifact": "artifacts/v3_evidence_handle_expansion_current702_20260616_run0014_post_sbl_apply.json",
+    "evidence_handle_reachable_positive_bronze_uplift": 741,
+    "breadth_feasibility_artifact": "artifacts/v3_breadth_feasibility_scout_current702_20260616_run0014_post_sbl_apply.json",
+    "breadth_feasibility_verdict": "ten_k_diverse_positive_bronze_NOT_reachable_from_reviewed_swissprot_alone",
+    "reviewed_swissprot_projected_positive_bronze_clean_only": 9573,
+    "reviewed_swissprot_gap_to_10k_positive_bronze": 427
+  },
+  "strategy": {
+    "do_not_source_more": [
+      "serine_beta_lactamase without a new reaction-diversity split",
+      "short_chain_dehydrogenase_reductase without a fresh source split",
+      "aminoglycoside_phosphotransferase at cap",
+      "terpene_cyclase_synthase window170",
+      "broad metal_independent_phosphodiesterase EC/name handles"
+    ],
+    "next_exact_action": "Attack the remaining metal_independent_phosphodiesterase hole only with a sharper mechanism-bearing source wall that can plausibly close the 100 floor; otherwise implement a source-tier expansion strategy beyond reviewed Swiss-Prot through count scout, preregistration if the fingerprint universe changes, non-destructive preview, row guardrail audit, novelty/governor/dedup/cap replay, and leakage/source-contract tests before any apply.",
+    "reason_no_second_apply_this_run": "Post-SBL factory reports zero ready existing lanes with >=150 projected clean admits; evidence-handle uplift is in balanced or capped families; reviewed Swiss-Prot breadth still leaves a 427-positive gap to 10k and is not mutation authority."
+  }
+}
