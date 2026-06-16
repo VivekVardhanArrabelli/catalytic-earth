@@ -1,5 +1,96 @@
 # Handoff
 
+## Session run - source-transfer UniRef duplicate screen cleared; no registry apply (2026-06-16, Codex automation)
+
+- Started from current `origin/main` at `dcebefa0a15a1e589834a391b1279c3b0b741340`,
+  acquired `.git/catalytic-earth-automation.lock`, and confirmed `git pull --ff-only origin main`
+  was already up to date. Frozen current702 sha before and after work was
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no registry apply was
+  performed.
+- Baseline and final safety were green: `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed; baseline critical registry/leakage/novelty/import suite passed **587 passed, 174
+  subtests**; focused new UniRef/current-reference regression suite passed **6 passed, 126
+  deselected**; full CLI/transfer-scope module suite passed **349 passed, 160 subtests**; final
+  critical suite passed **592 passed, 174 subtests**; full `PYTHONPATH=src pytest -q` passed
+  **2374 passed, 1 warning, 244 subtests**. `compileall`, generated run1904 JSON parsing, progress
+  JSONL parsing, and `git diff --check` passed.
+- Fresh planning/post-state artifacts:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run1904_pre_lane.json`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run1904_post_noapply.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run1904_pre_lane.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run1904_post_noapply.json`, and
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260616_run1904_pre_lane.json`.
+  Coverage remains **8728** combined = **702** frozen + **8026** expansion, with **0** holes, floor
+  deficit **0**, Gini **0.1779**, novelty replay **7565** admit / **414** throttle / **47** reject,
+  **0** ready existing lanes >=150, and top projected clean admits **77**.
+- Refreshed non-destructive source scouts:
+  `artifacts/v3_evidence_handle_expansion_current702_20260616_run1904_pre_lane.json` and
+  `work/evidence_handle_expansion_current702_20260616_run1904_pre_lane.md` still show **6**
+  families probed, **4** unlocked by better handles, source-supply uplift **63967**, and reachable
+  positive-bronze uplift **741**. `artifacts/v3_breadth_feasibility_scout_current702_20260616_run1904_pre_lane.json`
+  and `work/breadth_feasibility_scout_current702_20260616_run1904_pre_lane.md` still show **18**
+  families probed, **14** clean, estimated new clean bronze **2641**, projected positive bronze
+  **9673**, and gap to 10k positive bronze **327**; verdict remains
+  `ten_k_diverse_positive_bronze_NOT_reachable_from_reviewed_swissprot_alone`.
+- Added a review-only source-transfer UniRef/current-reference duplicate screen:
+  `build-external-source-pilot-uniref-current-reference-screen`. It reuses the existing
+  UniRef/current-reference intersection machinery for source pilot rows, records UniRef90/50
+  cluster context against current countable reference accessions, and cannot make rows countable or
+  import-ready. Confidence and success-criteria replay now accept optional
+  `--external-uniref-current-reference-screen` context.
+- Live screen artifact
+  `artifacts/v3_external_source_pilot_uniref_current_reference_screen_t12_allvsall_current702_20260616_run1904.json`
+  processed the **5** normalized run1804 review rows, fetched **13** UniRef clusters, found **5**
+  no-current-reference-overlap rows, and had **0** fetch failures or overlap holdouts.
+- Refreshed the t12 all-vs-all source-transfer packet with UniRef/current-reference context:
+  `artifacts/v3_external_source_pilot_success_criteria_t12_allvsall_uniref_current702_20260616_run1904.json`,
+  `artifacts/v3_external_source_pilot_terminal_decisions_t12_allvsall_uniref_current702_20260616_run1904.json`,
+  `artifacts/v3_external_source_pilot_human_expert_review_queue_t12_allvsall_uniref_current702_20260616_run1904.json`,
+  `artifacts/v3_external_source_pilot_decision_confidence_audit_t12_allvsall_uniref_current702_20260616_run1904.json`,
+  `artifacts/v3_external_source_pilot_decisions_review_normalized_t12_allvsall_uniref_current702_20260616_run1904.json`,
+  and
+  `artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_t12_allvsall_uniref_current702_20260616_run1904.json`.
+  Success criteria still reports `needs_more_work`: **5** rows now have
+  `current_reference_external_all_vs_all_uniref_no_signal`, **7** rows still require broader
+  duplicate screening, full label-factory gate is not run for **12**, terminal review decision is
+  not accepted for **12**, active-site source remains unresolved for **6**, and representation
+  control remains unresolved for **2**.
+- Terminal/confidence routing remains non-countable: terminal statuses are **6**
+  `rejected_active_site_evidence_missing`, **2** `rejected_duplicate_or_near_duplicate`, and **4**
+  `deferred_requires_human_expert`. Confidence replay recommends **5** `needs_review`, **6**
+  active-site rejections, and **1** duplicate/near-duplicate rejection. Normalized review queue has
+  **5** rows and only non-human blockers `external_review_decision_artifact_not_built` and
+  `full_label_factory_gate_not_run`.
+- Refreshed repair controls and import-safety adjudications with suffix
+  `t12_allvsall_uniref_current702_20260616_run1904`. AKR, SDR, and DNA Pol X conflicts remain
+  repaired review-only; the glycoside boundary remains unrepaired. All adjudications report **0**
+  import-ready and **0** countable rows.
+- Closure note:
+  `work/external_source_transfer_pilot_uniref_current_reference_closure_current702_20260616_run1904.md`.
+  Review-queue routing note:
+  `work/external_source_transfer_pilot_uniref_review_queue_current702_20260616_run1904.md`.
+  Next concrete action: run the external source pilot review/factory path for the **5** queued
+  `needs_review` rows in
+  `artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_t12_allvsall_uniref_current702_20260616_run1904.json`,
+  then rerun repair controls, import-safety adjudication, success criteria, and label-factory/
+  novelty/governor gates. Do not import/apply from run1904 artifacts.
+- Durable-doc and storage hygiene:
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260616_run1904.json` passed with
+  **0** missing references across **2036** checked references. `find data/registries artifacts -type
+  f -size +90M -print` found no files. Storage artifacts
+  `artifacts/v3_artifact_storage_inventory_current702_20260616_run1904.json`,
+  `artifacts/v3_artifact_storage_policy_check_current702_20260616_run1904.json`,
+  `artifacts/v3_artifact_producer_consumer_manifest_current702_20260616_run1904.json`, and
+  `artifacts/v3_artifact_migration_readiness_plan_current702_20260616_run1904.json` record
+  **40** large-unclassified policy blockers, **0** deletions authorized, and **0** migrations ready
+  now. Source scale audit
+  `artifacts/v3_source_scale_limit_audit_current702_20260616_run1904.json` still recommends
+  `stop_m_csa_only_tranche_growth_and_scope_external_source_transfer`.
+- Remaining duplicate-screen residue was inspected before closeout: the **7** rows still marked
+  `broader_duplicate_screening_required` are not the highest-yield next action because **6** also
+  lack explicit active-site source resolution and **1** is already a representation near-duplicate
+  holdout. Prioritize the five queued review rows instead of padding those lower-yield blockers.
+
 ## Session run - source-transfer repair lanes enriched; no registry apply (2026-06-16, Codex automation)
 
 - Started from current `origin/main` at `32deaca7e00715c5ed9bcb9141783b5efd163bc0`,

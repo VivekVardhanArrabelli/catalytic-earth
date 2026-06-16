@@ -722,6 +722,7 @@ from .transfer_scope import (
     build_external_source_pilot_sugar_phosphate_isomerase_import_safety_adjudication,
     build_external_source_pilot_success_criteria,
     build_external_source_pilot_terminal_decisions,
+    build_external_source_pilot_uniref_current_reference_screen,
     build_external_structural_cluster_index,
     build_external_structural_tm_diverse_split_plan,
     build_external_structural_tm_holdout_path,
@@ -4232,6 +4233,10 @@ def cmd_build_external_source_pilot_active_site_evidence_decisions(
 def cmd_build_external_source_pilot_success_criteria(
     args: argparse.Namespace,
 ) -> int:
+    optional_artifact_names = ("external_uniref_current_reference_screen",)
+    explicit_optional_artifacts = tuple(
+        name for name in optional_artifact_names if getattr(args, name, None)
+    )
     artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
         args,
         (
@@ -4241,7 +4246,8 @@ def cmd_build_external_source_pilot_success_criteria(
             "external_import_readiness_audit",
             "external_transfer_gate",
             "pilot_representation_adjudication",
-        ),
+        )
+        + explicit_optional_artifacts,
         blocker_removed="external_pilot_success_criteria_defined",
     )
     criteria = build_external_source_pilot_success_criteria(
@@ -4258,6 +4264,9 @@ def cmd_build_external_source_pilot_success_criteria(
         external_transfer_gate=artifact_payloads["external_transfer_gate"],
         pilot_representation_adjudication=artifact_payloads.get(
             "pilot_representation_adjudication"
+        ),
+        external_uniref_current_reference_screen=artifact_payloads.get(
+            "external_uniref_current_reference_screen"
         ),
         min_import_ready_rows=args.min_import_ready_rows,
         max_rows=args.max_rows,
@@ -4336,6 +4345,7 @@ def cmd_audit_external_source_pilot_decision_confidence(
         "external_structural_cluster_index",
         "external_structural_tm_diverse_split_plan",
         "external_all_vs_all_sequence_search",
+        "external_uniref_current_reference_screen",
     )
     explicit_optional_artifacts = tuple(
         name for name in optional_artifact_names if getattr(args, name, None)
@@ -4377,6 +4387,9 @@ def cmd_audit_external_source_pilot_decision_confidence(
         ),
         external_all_vs_all_sequence_search=artifact_payloads.get(
             "external_all_vs_all_sequence_search"
+        ),
+        external_uniref_current_reference_screen=artifact_payloads.get(
+            "external_uniref_current_reference_screen"
         ),
         external_transfer_gate=artifact_payloads["external_transfer_gate"],
         max_rows=args.max_rows,
@@ -4430,6 +4443,40 @@ def cmd_build_external_source_pilot_human_expert_review_queue_normalized(
     print(
         "Wrote normalized external source pilot human/expert review queue to "
         f"{args.out} ({queue['metadata']['queued_candidate_count']} queued)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_uniref_current_reference_screen(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        ("normalized_human_expert_review_queue",),
+        blocker_removed=(
+            "external_source_pilot_uniref_current_reference_screen_recorded"
+        ),
+    )
+    sequence_clusters = read_json_object(Path(args.sequence_clusters))
+    labels = load_labels(Path(args.labels))
+    artifact_lineage.setdefault("artifact_paths", {})[
+        "sequence_clusters"
+    ] = args.sequence_clusters
+    artifact_lineage["artifact_paths"]["labels"] = args.labels
+    screen = build_external_source_pilot_uniref_current_reference_screen(
+        normalized_human_expert_review_queue=artifact_payloads[
+            "normalized_human_expert_review_queue"
+        ],
+        sequence_clusters=sequence_clusters,
+        labels=labels,
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), screen)
+    print(
+        "Wrote external source pilot UniRef current-reference screen to "
+        f"{args.out} ({screen['metadata']['uniref_current_reference_clear_count']} "
+        "clear rows)"
     )
     return 0
 
@@ -25021,6 +25068,14 @@ def build_parser() -> argparse.ArgumentParser:
             "built from backend stability evidence"
         ),
     )
+    external_pilot_success.add_argument(
+        "--external-uniref-current-reference-screen",
+        default=None,
+        help=(
+            "optional source-pilot UniRef/current-reference screen used only "
+            "to resolve duplicate-screen process blockers for matched rows"
+        ),
+    )
     external_pilot_success.add_argument("--max-rows", type=int, default=10)
     external_pilot_success.add_argument(
         "--min-import-ready-rows", type=int, default=1
@@ -25159,6 +25214,10 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
     )
     external_pilot_decision_confidence.add_argument(
+        "--external-uniref-current-reference-screen",
+        default=None,
+    )
+    external_pilot_decision_confidence.add_argument(
         "--external-transfer-gate",
         default="artifacts/v3_external_source_transfer_gate_check_1025.json",
     )
@@ -25220,6 +25279,42 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_pilot_normalized_queue.set_defaults(
         func=cmd_build_external_source_pilot_human_expert_review_queue_normalized
+    )
+
+    external_pilot_uniref_current_reference = subparsers.add_parser(
+        "build-external-source-pilot-uniref-current-reference-screen",
+        help=(
+            "screen normalized external source pilot review rows against "
+            "current-reference UniRef90/50 clusters without making rows countable"
+        ),
+    )
+    external_pilot_uniref_current_reference.add_argument(
+        "--normalized-human-expert-review-queue",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_human_expert_review_queue_normalized_1025.json"
+        ),
+    )
+    external_pilot_uniref_current_reference.add_argument(
+        "--sequence-clusters",
+        default="artifacts/v3_sequence_cluster_proxy_1025.json",
+    )
+    external_pilot_uniref_current_reference.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    external_pilot_uniref_current_reference.add_argument(
+        "--max-rows", type=int, default=10
+    )
+    external_pilot_uniref_current_reference.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_uniref_current_reference_screen_1025.json"
+        ),
+    )
+    external_pilot_uniref_current_reference.set_defaults(
+        func=cmd_build_external_source_pilot_uniref_current_reference_screen
     )
 
     external_pilot_mechanism_repair = subparsers.add_parser(

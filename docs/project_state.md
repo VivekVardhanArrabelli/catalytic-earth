@@ -26,6 +26,53 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **SOURCE-TRANSFER UNIREF DUPLICATE SCREEN CLEARED; NO REGISTRY APPLY (2026-06-16 automation).**
+  Frozen current702 stayed byte-unchanged at sha
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no label registry rows were
+  written. Fresh run1904 coverage/novelty audits
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run1904_pre_lane.json`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run1904_post_noapply.json`, and
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run1904_post_noapply.json`
+  confirm the surface stayed at **8728** combined labels = **702** frozen + **8026** expansion, with
+  no holes, floor deficit **0**, novelty replay **7565** admit / **414** throttle / **47** reject,
+  and only `metal_dependent_hydrolase` over cap.
+
+  The source-transfer pilot now has a review-only UniRef/current-reference duplicate screen for the
+  five normalized run1804 review rows. The new command
+  `build-external-source-pilot-uniref-current-reference-screen` produced
+  `artifacts/v3_external_source_pilot_uniref_current_reference_screen_t12_allvsall_current702_20260616_run1904.json`,
+  fetched **13** UniRef clusters, and found **5/5** rows with no current countable-reference
+  UniRef90/50 overlap. Confidence and success-criteria replay can consume this optional context,
+  but it is process evidence only and cannot create predictive features, countable rows, or import
+  readiness.
+
+  Non-destructive source scouts were refreshed with run1904 suffixes. Evidence-handle expansion
+  `artifacts/v3_evidence_handle_expansion_current702_20260616_run1904_pre_lane.json` still shows
+  **6** families probed, **4** unlocked by better handles, and reachable positive-bronze uplift
+  **741**. Breadth feasibility
+  `artifacts/v3_breadth_feasibility_scout_current702_20260616_run1904_pre_lane.json` still reports
+  **18** families probed, **14** clean, estimated new clean bronze **2641**, projected positive
+  bronze **9673**, and gap to 10k positive bronze **327**; reviewed Swiss-Prot alone remains short
+  of 10k diverse positives.
+
+  The refreshed packet
+  `artifacts/v3_external_source_pilot_success_criteria_t12_allvsall_uniref_current702_20260616_run1904.json`,
+  `artifacts/v3_external_source_pilot_terminal_decisions_t12_allvsall_uniref_current702_20260616_run1904.json`,
+  and
+  `artifacts/v3_external_source_pilot_decision_confidence_audit_t12_allvsall_uniref_current702_20260616_run1904.json`
+  remains `needs_more_work`: **5** rows now have
+  `current_reference_external_all_vs_all_uniref_no_signal`, **7** rows still require broader
+  duplicate screening, full label-factory gate is not run for **12**, terminal review decision is
+  not accepted for **12**, active-site source remains unresolved for **6**, and representation
+  control remains unresolved for **2**. Normalized review routing keeps **5** `needs_review` rows in
+  `artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_t12_allvsall_uniref_current702_20260616_run1904.json`.
+  Repair controls remain review-only with **0** import-ready and **0** countable rows; the glycoside
+  boundary remains unrepaired. Closure notes are in
+  `work/external_source_transfer_pilot_uniref_current_reference_closure_current702_20260616_run1904.md`.
+  Next exact action: run the external source pilot review/factory path for the five queued
+  `needs_review` rows, then rerun repair controls, import-safety adjudication, success criteria, and
+  label-factory/novelty/governor gates. Do not import/apply from run1904 artifacts.
+
 - **SOURCE-TRANSFER REPAIR LANES ENRICHED; NO REGISTRY APPLY (2026-06-16 automation).**
   Frozen current702 stayed byte-unchanged at sha
   `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no label registry rows were

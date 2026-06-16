@@ -29,6 +29,7 @@ from catalytic_earth.transfer_scope import (
     audit_external_source_representation_backend_plan,
     audit_external_source_representation_backend_sample,
     audit_external_source_representation_backend_stability,
+    audit_external_source_pilot_decision_confidence,
     audit_external_source_pilot_representation_adjudication,
     audit_external_source_sequence_alignment_verification,
     audit_external_source_all_vs_all_sequence_search,
@@ -77,6 +78,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_pilot_sugar_phosphate_isomerase_import_safety_adjudication,
     build_external_source_pilot_success_criteria,
     build_external_source_pilot_terminal_decisions,
+    build_external_source_pilot_uniref_current_reference_screen,
     build_external_structural_cluster_index,
     build_external_structural_tm_diverse_split_plan,
     build_external_structural_tm_holdout_path,
@@ -6895,6 +6897,211 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             )
         )
 
+    def test_external_pilot_confidence_consumes_uniref_duplicate_screen(
+        self,
+    ) -> None:
+        audit = audit_external_source_pilot_decision_confidence(
+            pilot_terminal_decisions={
+                "metadata": {"method": "external_source_pilot_terminal_decisions"},
+                "rows": [
+                    {
+                        "rank": 1,
+                        "accession": "PGOOD",
+                        "entry_id": "uniprot:PGOOD",
+                        "terminal_status": "deferred_requires_human_expert",
+                        "sequence_duplicate_screen_result": {
+                            "bounded_current_reference_status": (
+                                "current_reference_backend_no_signal"
+                            ),
+                            "backend_search_status": "no_near_duplicate_signal",
+                            "broader_duplicate_screening_status": (
+                                "broader_duplicate_screening_required"
+                            ),
+                        },
+                        "factory_gate_status": "not_run",
+                    }
+                ],
+            },
+            pilot_active_site_evidence_decisions={
+                "metadata": {
+                    "method": "external_source_pilot_active_site_evidence_decisions"
+                },
+                "rows": [
+                    {
+                        "accession": "PGOOD",
+                        "active_site_evidence_source_category": (
+                            "explicit_active_site_source_present"
+                        ),
+                        "import_readiness_blockers": [
+                            "broader_duplicate_screening_required",
+                            "full_label_factory_gate_not_run",
+                        ],
+                    }
+                ],
+            },
+            pilot_evidence_dossiers={
+                "metadata": {"method": "external_source_pilot_evidence_dossiers"},
+                "rows": [{"accession": "PGOOD"}],
+            },
+            pilot_representation_adjudication={
+                "metadata": {
+                    "method": "external_source_pilot_representation_adjudication"
+                },
+                "rows": [{"accession": "PGOOD"}],
+            },
+            pilot_human_expert_review_queue={
+                "metadata": {
+                    "method": "external_source_pilot_human_expert_review_queue"
+                },
+                "rows": [{"accession": "PGOOD"}],
+            },
+            external_all_vs_all_sequence_search={
+                "metadata": {"method": "external_source_all_vs_all_sequence_search"},
+                "rows": [
+                    {
+                        "accession": "PGOOD",
+                        "search_status": (
+                            "external_all_vs_all_no_near_duplicate_signal"
+                        ),
+                    }
+                ],
+            },
+            external_uniref_current_reference_screen={
+                "metadata": {
+                    "method": (
+                        "external_source_pilot_uniref_current_reference_screen"
+                    )
+                },
+                "rows": [
+                    {
+                        "accession": "PGOOD",
+                        "uniref_current_reference_screen_status": (
+                            "uniref_current_reference_screen_no_current_reference_overlap"
+                        ),
+                        "uniref_current_reference_blockers": [],
+                        "overlapping_current_reference_accessions": [],
+                    }
+                ],
+            },
+            external_transfer_gate={
+                "metadata": {"method": "external_source_transfer_gate_check"}
+            },
+            max_rows=1,
+        )
+
+        row = audit["rows"][0]
+        self.assertEqual(
+            row["duplicate_near_duplicate_evidence"][
+                "broader_duplicate_screening_status"
+            ],
+            "current_reference_external_all_vs_all_uniref_no_signal",
+        )
+        self.assertNotIn(
+            "broader_duplicate_screening_required",
+            row["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "full_label_factory_gate_not_run",
+            row["remaining_import_blockers"],
+        )
+        self.assertEqual(
+            audit["metadata"][
+                "source_external_uniref_current_reference_screen_method"
+            ],
+            "external_source_pilot_uniref_current_reference_screen",
+        )
+
+    def test_external_pilot_success_criteria_consumes_uniref_screen(
+        self,
+    ) -> None:
+        criteria = build_external_source_pilot_success_criteria(
+            pilot_candidate_priority={
+                "metadata": {"method": "external_source_pilot_candidate_priority"},
+                "rows": [
+                    {
+                        "accession": "PGOOD",
+                        "lane_id": "external_source:lyase",
+                    }
+                ],
+            },
+            pilot_review_decision_export={
+                "metadata": {"method": "external_source_pilot_review_decision_export"},
+                "review_items": [
+                    {
+                        "accession": "PGOOD",
+                        "decision": {"decision_status": "no_decision"},
+                    }
+                ],
+            },
+            pilot_active_site_evidence_decisions={
+                "metadata": {
+                    "method": "external_source_pilot_active_site_evidence_decisions"
+                },
+                "rows": [
+                    {
+                        "accession": "PGOOD",
+                        "active_site_evidence_source_category": (
+                            "explicit_active_site_source_present"
+                        ),
+                        "broader_duplicate_screening_status": (
+                            "broader_duplicate_screening_required"
+                        ),
+                        "representation_control_status": (
+                            "pilot_representation_control_review_only"
+                        ),
+                        "import_readiness_blockers": [
+                            "broader_duplicate_screening_required",
+                            "full_label_factory_gate_not_run",
+                        ],
+                    }
+                ],
+            },
+            external_import_readiness_audit={
+                "metadata": {"method": "external_source_import_readiness_audit"},
+                "rows": [],
+            },
+            external_transfer_gate={
+                "metadata": {"method": "external_source_transfer_gate_check"}
+            },
+            external_uniref_current_reference_screen={
+                "metadata": {
+                    "method": (
+                        "external_source_pilot_uniref_current_reference_screen"
+                    )
+                },
+                "rows": [
+                    {
+                        "accession": "PGOOD",
+                        "uniref_current_reference_screen_status": (
+                            "uniref_current_reference_screen_no_current_reference_overlap"
+                        ),
+                        "uniref_current_reference_blockers": [],
+                    }
+                ],
+            },
+            max_rows=1,
+        )
+
+        row = criteria["rows"][0]
+        self.assertEqual(
+            row["broader_duplicate_screening_status"],
+            "current_reference_external_all_vs_all_uniref_no_signal",
+        )
+        self.assertNotIn(
+            "broader_duplicate_screening_unresolved",
+            row["criterion_blockers"],
+        )
+        self.assertNotIn(
+            "broader_duplicate_screening_required",
+            row["unresolved_process_blockers"],
+        )
+        self.assertEqual(
+            criteria["metadata"][
+                "source_external_uniref_current_reference_screen_method"
+            ],
+            "external_source_pilot_uniref_current_reference_screen",
+        )
+
     def test_external_pilot_terminal_decisions_assign_one_status_per_row(
         self,
     ) -> None:
@@ -13554,6 +13761,150 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         )
         self.assertEqual(
             row["overlapping_current_reference_accessions"][0]["reference_accession"],
+            "PREF",
+        )
+
+    def test_external_source_pilot_uniref_current_reference_screen_clears(
+        self,
+    ) -> None:
+        screen = build_external_source_pilot_uniref_current_reference_screen(
+            normalized_human_expert_review_queue={
+                "metadata": {
+                    "method": (
+                        "external_source_pilot_human_expert_review_queue_normalized"
+                    )
+                },
+                "rows": [
+                    {
+                        "accession": "PGOOD",
+                        "entry_id": "uniprot:PGOOD",
+                        "lane_id": "external_source:lyase",
+                        "normalized_decision_status": "needs_review",
+                        "review_packet_status": "needs_review_decision",
+                    }
+                ],
+            },
+            sequence_clusters={
+                "metadata": {"method": "sequence_cluster_proxy_from_reference_uniprot"},
+                "rows": [
+                    {
+                        "entry_id": "m_csa:1",
+                        "reference_uniprot_ids": ["PREF"],
+                    }
+                ],
+            },
+            labels=[
+                {
+                    "entry_id": "m_csa:1",
+                    "label_type": "seed_fingerprint",
+                    "review_status": "automation_curated",
+                }
+            ],
+            summary_fetcher=lambda accession: {
+                "accession": accession,
+                "fetch_status": "ok",
+                "uniref100_ids": [f"UniRef100_{accession}"],
+                "uniref90_ids": [f"UniRef90_{accession}"],
+                "uniref50_ids": [f"UniRef50_{accession}"],
+            },
+            member_fetcher=lambda cluster_id: {
+                "cluster_id": cluster_id,
+                "fetch_status": "ok",
+                "member_count": 2,
+                "returned_member_count": 2,
+                "accession_count": 2,
+                "accessions": ["PGOOD", "POTHER"],
+            },
+            artifact_lineage={"slice_id": 20260616},
+        )
+
+        self.assertEqual(
+            screen["metadata"]["method"],
+            "external_source_pilot_uniref_current_reference_screen",
+        )
+        self.assertEqual(
+            screen["metadata"]["uniref_current_reference_clear_count"], 1
+        )
+        self.assertEqual(
+            screen["metadata"][
+                "source_normalized_human_expert_review_queue_method"
+            ],
+            "external_source_pilot_human_expert_review_queue_normalized",
+        )
+        row = screen["rows"][0]
+        self.assertEqual(
+            row["review_status"],
+            "external_source_pilot_uniref_current_reference_screen_review_only",
+        )
+        self.assertEqual(
+            row["uniref_current_reference_screen_status"],
+            "uniref_current_reference_screen_no_current_reference_overlap",
+        )
+        self.assertNotIn(
+            "uniref_wide_duplicate_screening_required",
+            row["remaining_import_blockers"],
+        )
+        self.assertEqual(row["source_normalized_decision_status"], "needs_review")
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_source_pilot_uniref_current_reference_screen_holds_overlap(
+        self,
+    ) -> None:
+        screen = build_external_source_pilot_uniref_current_reference_screen(
+            normalized_human_expert_review_queue={
+                "metadata": {
+                    "method": (
+                        "external_source_pilot_human_expert_review_queue_normalized"
+                    )
+                },
+                "rows": [{"accession": "PBLOCK", "entry_id": "uniprot:PBLOCK"}],
+            },
+            sequence_clusters={
+                "rows": [
+                    {
+                        "entry_id": "m_csa:1",
+                        "reference_uniprot_ids": ["PREF"],
+                    }
+                ],
+            },
+            labels=[
+                {
+                    "entry_id": "m_csa:1",
+                    "label_type": "out_of_scope",
+                    "review_status": "automation_curated",
+                }
+            ],
+            summary_fetcher=lambda accession: {
+                "accession": accession,
+                "fetch_status": "ok",
+                "uniref100_ids": [],
+                "uniref90_ids": [f"UniRef90_{accession}"],
+                "uniref50_ids": [],
+            },
+            member_fetcher=lambda cluster_id: {
+                "cluster_id": cluster_id,
+                "fetch_status": "ok",
+                "member_count": 2,
+                "returned_member_count": 2,
+                "accession_count": 2,
+                "accessions": ["PBLOCK", "PREF"],
+            },
+        )
+
+        row = screen["rows"][0]
+        self.assertEqual(
+            row["uniref_current_reference_screen_status"],
+            "uniref_current_reference_cluster_overlap_holdout",
+        )
+        self.assertIn(
+            "uniref_wide_duplicate_screening_required",
+            row["remaining_import_blockers"],
+        )
+        self.assertEqual(
+            row["overlapping_current_reference_accessions"][0][
+                "reference_accession"
+            ],
             "PREF",
         )
 

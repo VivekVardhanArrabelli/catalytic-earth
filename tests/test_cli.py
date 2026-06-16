@@ -13,6 +13,34 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class CliTests(unittest.TestCase):
+    def test_external_source_pilot_uniref_current_reference_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-external-source-pilot-uniref-current-reference-screen"]
+        )
+
+        self.assertEqual(
+            args.normalized_human_expert_review_queue,
+            (
+                "artifacts/"
+                "v3_external_source_pilot_human_expert_review_queue_normalized_1025.json"
+            ),
+        )
+        self.assertEqual(
+            args.sequence_clusters,
+            "artifacts/v3_sequence_cluster_proxy_1025.json",
+        )
+        self.assertEqual(args.labels, "data/registries/curated_mechanism_labels.json")
+        self.assertEqual(args.max_rows, 10)
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/"
+                "v3_external_source_pilot_uniref_current_reference_screen_1025.json"
+            ),
+        )
+
     def test_targeted_expansion_factory_parser_defaults(self) -> None:
         args = build_parser().parse_args(["build-targeted-expansion-factory-batch"])
 
@@ -321,6 +349,7 @@ class CliTests(unittest.TestCase):
         self.assertIsNone(args.external_structural_cluster_index)
         self.assertIsNone(args.external_structural_tm_diverse_split_plan)
         self.assertIsNone(args.external_all_vs_all_sequence_search)
+        self.assertIsNone(args.external_uniref_current_reference_screen)
 
         overridden = build_parser().parse_args(
             [
@@ -331,6 +360,8 @@ class CliTests(unittest.TestCase):
                 "/tmp/split.json",
                 "--external-all-vs-all-sequence-search",
                 "/tmp/all_vs_all.json",
+                "--external-uniref-current-reference-screen",
+                "/tmp/uniref.json",
             ]
         )
         self.assertEqual(
@@ -344,6 +375,10 @@ class CliTests(unittest.TestCase):
         self.assertEqual(
             overridden.external_all_vs_all_sequence_search,
             "/tmp/all_vs_all.json",
+        )
+        self.assertEqual(
+            overridden.external_uniref_current_reference_screen,
+            "/tmp/uniref.json",
         )
 
     def test_external_source_pilot_mechanism_repair_source_context_optional(
@@ -4809,6 +4844,7 @@ class CliTests(unittest.TestCase):
             decisions = root / "decisions.json"
             readiness = root / "readiness.json"
             gate = root / "gate.json"
+            uniref = root / "uniref.json"
             out = root / "success.json"
             priority.write_text(
                 json.dumps(
@@ -4906,6 +4942,28 @@ class CliTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            uniref.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "external_source_pilot_uniref_current_reference_screen"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "accession": "P12345",
+                                "uniref_current_reference_screen_status": (
+                                    "uniref_current_reference_screen_no_current_"
+                                    "reference_overlap"
+                                ),
+                                "uniref_current_reference_blockers": [],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
 
             subprocess.run(
                 [
@@ -4923,6 +4981,8 @@ class CliTests(unittest.TestCase):
                     str(readiness),
                     "--external-transfer-gate",
                     str(gate),
+                    "--external-uniref-current-reference-screen",
+                    str(uniref),
                     "--max-rows",
                     "1",
                     "--out",
@@ -4943,6 +5003,10 @@ class CliTests(unittest.TestCase):
             self.assertEqual(payload["metadata"]["pilot_status"], "needs_more_work")
             self.assertEqual(payload["metadata"]["terminal_decision_count"], 0)
             self.assertEqual(payload["metadata"]["import_ready_row_count"], 0)
+            self.assertEqual(
+                payload["rows"][0]["broader_duplicate_screening_status"],
+                "current_reference_external_all_vs_all_uniref_no_signal",
+            )
 
     def test_build_geometry_features_reuse_existing_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

@@ -1,36 +1,40 @@
 automation: ce-bronze-scaleout-pipeline
 automation_id: ce-nad-glyco-floor-expansion
-started_at: 2026-06-16T18:04:36Z
-started_local: Tue Jun 16 13:04:36 CDT 2026
-closeout_at: 2026-06-16T18:55:02Z
-elapsed_minutes: 50.4
-remaining_minutes: 4.6
+started_at: 2026-06-16T19:04:40Z
+started_local: Tue Jun 16 14:04:40 CDT 2026
+closeout_at: 2026-06-16T19:54:16Z
+elapsed_minutes: 49.6
+remaining_minutes: 5.4
 budget_minutes: 55
 planned_closeout_minute: 50
 
-state: source_transfer_repair_lanes_enriched_no_registry_apply
-lock: acquired by this run at 2026-06-16T18:04:36Z
+state: source_transfer_uniref_duplicate_screen_no_registry_apply
+lock: acquired by this run at 2026-06-16T19:04:53Z
 branch: main
-base_at_start: 32deaca7e00715c5ed9bcb9141783b5efd163bc0
+base_at_start: dcebefa0a15a1e589834a391b1279c3b0b741340
 registry_mutation: none
 frozen_sha_before_apply: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
 frozen_sha_after_apply: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
 
 validation:
   registry_validate: passed
-  baseline_critical_suite: 258 passed, 14 subtests
-  focused_cli_transfer_regression: 16 passed, 111 deselected
-  focused_cli_module: 219 passed, 160 subtests
-  focused_transfer_scope_module: 125 passed
-  hygiene_tests: 23 passed
+  baseline_critical_suite: 587 passed, 174 subtests
+  focused_uniref_regression: 6 passed, 126 deselected
+  cli_transfer_scope_modules: 349 passed, 160 subtests
+  final_critical_suite: 592 passed, 174 subtests
+  final_full_pytest: 2374 passed, 1 warning, 244 subtests
+  source_scout_focused_tests: 14 passed
+  final_pinpoint_transfer_scope: 1 passed, 129 deselected
+  final_pinpoint_cli_parser: 1 passed
   compileall: passed
-  full_pytest: 2369 passed, 1 warning, 244 subtests
-  current_docs_artifact_reference_check: 0 missing / 2021 checked
-  run1804_json_parse: passed
+  current_docs_artifact_reference_check: 0 missing / 2036 checked
+  run1904_json_parse: passed
   progress_jsonl_parse: passed
   git_diff_check: passed
-  registry_file_size_scan_over_45mb: none
-  artifact_storage_policy_blocker: 4 pre-existing large unclassified 20260609/20260610 artifacts; deletion_authorized_count 0
+  staged_git_diff_check: passed
+  frozen_registry_diff: none
+  registry_artifact_hard_limit_scan_over_90mb: none
+  run1904_artifact_footprint: 9.7M
 
 current_counts:
   frozen_current702_rows: 702
@@ -41,40 +45,53 @@ current_counts:
   novelty_replay: 7565 admit / 414 throttle / 47 reject
   factory_ready_existing_lanes_ge150: 0
   top_projected_clean_admits: 77
+  source_scale_recommendation: stop_m_csa_only_tranche_growth_and_scope_external_source_transfer
 
-run1804_source_transfer:
-  all_vs_all_sequence_search: 47 candidates / 0 exact duplicate pairs / 0 near duplicate pairs / 47 no-signal rows
-  all_vs_all_backend: mmseqs2_easy_search
-  remaining_duplicate_screen_blocker: uniref_wide_duplicate_screen_not_run
+run1904_source_transfer:
+  uniref_current_reference_screen: 5 candidates / 13 UniRef clusters fetched / 5 no-overlap rows / 0 fetch failures / 0 overlap holdouts
   success_criteria_status: needs_more_work
-  success_criteria_blockers: active_site_source_unresolved 6 / broader_duplicate_screening_unresolved 12 / full_label_factory_gate_not_passed 12 / representation_control_unresolved 2 / review_decision_not_terminal 12
+  broader_duplicate_screening_status_counts: current_reference_external_all_vs_all_uniref_no_signal 5 / broader_duplicate_screening_required 7
+  success_criteria_blockers: active_site_source_unresolved 6 / broader_duplicate_screening_unresolved 7 / full_label_factory_gate_not_passed 12 / representation_control_unresolved 2 / review_decision_not_terminal 12
   terminal_decisions: 12
   terminal_rejected_active_site_evidence_missing: 6
   terminal_rejected_duplicate_or_near_duplicate: 2
   terminal_deferred_requires_human_expert: 4
   normalized_human_expert_queue_rows: 5
+  queued_needs_review_accessions: C9JRZ8 / O14756 / P06746 / Q8N0X4 / P33025
   mechanism_repair_lane_rows: 5
   mechanism_repair_lane_counts: AKR/NADP 1 / SDR/NAD(P) 1 / DNA Pol X 1 / glycoside boundary 1 / manual 1
-  source_context_status_counts: specific_reaction_context_present 5
   representation_conflicts_repaired_review_only: 3
   glycoside_boundary_repaired: false
   import_ready_rows: 0
   countable_label_candidate_rows: 0
+  lower_priority_duplicate_residue: 7 rows still require broader duplicate screening, but 6 also lack explicit active-site source and 1 is a representation near-duplicate holdout
+
+source_scouts:
+  evidence_handle_expansion: 6 families probed / 4 unlocked by better handles / source-supply uplift 63967 / reachable positive-bronze uplift 741
+  breadth_feasibility: 18 families probed / 14 clean / estimated new clean bronze 2641 / projected positive bronze 9673 / gap to 10k positive bronze 327
+  breadth_verdict: ten_k_diverse_positive_bronze_NOT_reachable_from_reviewed_swissprot_alone
+
+storage_and_docs:
+  current_docs_artifact_reference_check: artifacts/v3_current_docs_artifact_reference_check_current702_20260616_run1904.json
+  artifact_storage_policy_status: blocked by 40 large-unclassified policy blockers; deletion_authorized_count 0; migration_ready_now_count 0
+  source_scale_limit_audit: artifacts/v3_source_scale_limit_audit_current702_20260616_run1904.json
 
 code_changes:
-  - build-external-source-pilot-mechanism-repair-lanes accepts optional source-context decisions for review-only enrichment.
-  - Repair lane routing now normalizes flattened terminal active-site and Rhea reaction context rows.
-  - SDR, AKR, DNA Pol X, glycoside, sugar-phosphate, and Schiff-base repair controls use normalized source-context helpers.
-  - Added CLI parser coverage for optional source-context decisions and transfer-scope regression coverage for flattened terminal rows.
+  - Added build-external-source-pilot-uniref-current-reference-screen for review-only source-transfer pilot duplicate screening against current countable UniRef90/50 references.
+  - Wired optional external_uniref_current_reference_screen context into source-transfer confidence and success-criteria replay.
+  - Preserved non-countable semantics: no predictive evidence, no import-ready rows, no label rows, and no registry mutation.
+  - Added CLI/parser and transfer-scope regression coverage for clear and overlap-hold UniRef/current-reference behavior.
 
 no_apply_reason: >
-  No holes or under-floor fingerprints are open; no current existing lane projects >=150 clean admits;
-  source-transfer repair rows remain review-only and still need a broader approved duplicate screen
-  plus rerun confidence, normalization, repair-control, factory, and import-safety gates. The run
-  therefore made no registry mutation and preserved frozen current702 exactly.
+  No holes or under-floor fingerprints are open; no current existing lane projects >=150 clean admits.
+  The source-transfer pilot cleared the broader duplicate-screen process blocker for 5 queued review
+  rows, but every row remains review-only and blocked by terminal review, label-factory, active-site,
+  representation, or lower-priority duplicate-screen process gates. No registry mutation was made.
 
 next_action: >
-  Run the approved broader UniRef/current-reference duplicate screen for the 5 normalized needs_review
-  rows in artifacts/v3_external_source_pilot_mechanism_repair_lanes_t12_allvsall_current702_20260616_run1804_enriched.json,
-  then rerun confidence, normalization, repair controls, and import-safety adjudication. Do not
-  import/apply from the run1804 source-transfer artifacts.
+  Run the external source pilot review/factory path for the 5 queued needs_review rows in
+  artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_t12_allvsall_uniref_current702_20260616_run1904.json,
+  using work/external_source_transfer_pilot_uniref_review_queue_current702_20260616_run1904.md
+  as the routing note. Then rerun repair controls, import-safety adjudication, success criteria,
+  label-factory/novelty/governor/row-guardrail gates, and keep all run1904 rows out of import
+  unless those gates pass explicitly.

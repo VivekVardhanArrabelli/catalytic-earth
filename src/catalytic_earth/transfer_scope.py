@@ -11653,21 +11653,33 @@ def build_external_hard_negative_next_candidate_uniref_current_reference_screen(
         source_targeted_method
         == "external_hard_negative_broader_structural_targeted_uniref_check"
     )
-    method = (
-        "external_hard_negative_broader_structural_uniref_current_reference_screen"
-        if is_broader_structural_surface
-        else "external_hard_negative_next_candidate_uniref_current_reference_screen"
+    is_source_pilot_surface = (
+        source_targeted_method == "external_source_pilot_targeted_uniref_check"
     )
-    blocker_removed = (
-        "broader_structural_uniref90_50_current_reference_cluster_screen_recorded"
-        if is_broader_structural_surface
-        else "next_candidate_uniref90_50_current_reference_cluster_screen_recorded"
-    )
-    review_status = (
-        "external_hard_negative_broader_structural_uniref_current_reference_screen_review_only"
-        if is_broader_structural_surface
-        else "external_hard_negative_next_candidate_uniref_current_reference_screen_review_only"
-    )
+    if is_source_pilot_surface:
+        method = "external_source_pilot_uniref_current_reference_screen"
+        blocker_removed = (
+            "external_source_pilot_uniref90_50_current_reference_cluster_screen_recorded"
+        )
+        review_status = (
+            "external_source_pilot_uniref_current_reference_screen_review_only"
+        )
+    elif is_broader_structural_surface:
+        method = (
+            "external_hard_negative_broader_structural_uniref_current_reference_screen"
+        )
+        blocker_removed = (
+            "broader_structural_uniref90_50_current_reference_cluster_screen_recorded"
+        )
+        review_status = (
+            "external_hard_negative_broader_structural_uniref_current_reference_screen_review_only"
+        )
+    else:
+        method = "external_hard_negative_next_candidate_uniref_current_reference_screen"
+        blocker_removed = "next_candidate_uniref90_50_current_reference_cluster_screen_recorded"
+        review_status = (
+            "external_hard_negative_next_candidate_uniref_current_reference_screen_review_only"
+        )
     countable_entry_ids = _countable_label_entry_ids(labels)
     current_reference_entry_ids_by_accession: dict[str, set[str]] = defaultdict(set)
     for row in sequence_clusters.get("rows", []) or []:
@@ -13772,6 +13784,191 @@ def build_external_hard_negative_next_candidate_targeted_uniref_check(
     }
 
 
+def build_external_source_pilot_uniref_current_reference_screen(
+    *,
+    normalized_human_expert_review_queue: dict[str, Any],
+    sequence_clusters: dict[str, Any],
+    labels: list[Any],
+    max_rows: int = 12,
+    summary_fetcher: Callable[[str], dict[str, Any]] = fetch_uniref_cluster_summary,
+    member_fetcher: Callable[[str], dict[str, Any]] = fetch_uniref_cluster_members,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Screen source-transfer pilot UniRef90/50 clusters against current references."""
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    fetch_cache: dict[str, dict[str, Any]] = {}
+    fetch_failures: list[dict[str, str]] = []
+
+    def cached_summary(accession: str) -> dict[str, Any]:
+        normalized = _normalize_accession(accession)
+        if not normalized:
+            raise ValueError("accession is required")
+        if normalized not in fetch_cache:
+            try:
+                fetch_cache[normalized] = summary_fetcher(normalized)
+            except Exception as exc:  # pragma: no cover - live fetch safety
+                fetch_cache[normalized] = {
+                    "accession": normalized,
+                    "fetch_status": "failed",
+                    "error_type": type(exc).__name__,
+                    "error": str(exc),
+                    "uniref100_ids": [],
+                    "uniref90_ids": [],
+                    "uniref50_ids": [],
+                }
+                fetch_failures.append(
+                    {
+                        "accession": normalized,
+                        "error_type": type(exc).__name__,
+                        "error": str(exc),
+                    }
+                )
+        return fetch_cache[normalized]
+
+    targeted_rows: list[dict[str, Any]] = []
+    for queue_row in [
+        row
+        for row in normalized_human_expert_review_queue.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    ][:max_rows]:
+        accession = _normalize_accession(queue_row.get("accession"))
+        summary = cached_summary(accession)
+        uniref90_ids = [
+            str(cluster_id)
+            for cluster_id in summary.get("uniref90_ids", []) or []
+            if str(cluster_id).startswith("UniRef90_")
+        ]
+        uniref50_ids = [
+            str(cluster_id)
+            for cluster_id in summary.get("uniref50_ids", []) or []
+            if str(cluster_id).startswith("UniRef50_")
+        ]
+        if summary.get("fetch_status") != "ok":
+            status = "source_pilot_uniref_cluster_fetch_incomplete"
+        elif not (uniref90_ids or uniref50_ids):
+            status = "source_pilot_uniref_cluster_ids_missing"
+        else:
+            status = "source_pilot_uniref_cluster_ids_recorded"
+        targeted_rows.append(
+            {
+                "accession": accession,
+                "entry_id": queue_row.get("entry_id") or f"uniprot:{accession}",
+                "lane_id": queue_row.get("lane_id"),
+                "target_label_type": queue_row.get("target_label_type")
+                or "out_of_scope",
+                "target_fingerprint_id": queue_row.get("target_fingerprint_id"),
+                "ontology_version_at_decision": queue_row.get(
+                    "ontology_version_at_decision"
+                )
+                or DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+                "targeted_uniref_check_status": status,
+                "candidate_fetch_status": summary.get("fetch_status"),
+                "candidate_uniref100_ids": summary.get("uniref100_ids", []),
+                "candidate_uniref90_ids": uniref90_ids,
+                "candidate_uniref50_ids": uniref50_ids,
+                "source_review_packet_status": queue_row.get(
+                    "review_packet_status"
+                ),
+                "source_normalized_decision_status": queue_row.get(
+                    "normalized_decision_status"
+                ),
+                "remaining_import_blockers": [
+                    "uniref_wide_duplicate_screening_required",
+                    "terminal_review_decision_not_accepted",
+                    "full_label_factory_gate_not_run",
+                ],
+                "review_status": (
+                    "external_source_pilot_targeted_uniref_check_review_only"
+                ),
+                "import_ready_candidate": False,
+                "ready_for_label_import": False,
+                "countable_label_candidate": False,
+            }
+        )
+
+    targeted_status_counts = Counter(
+        row["targeted_uniref_check_status"] for row in targeted_rows
+    )
+    targeted_uniref_check = {
+        "metadata": {
+            "method": "external_source_pilot_targeted_uniref_check",
+            "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": "external_source_pilot_targeted_uniref_cluster_ids_recorded",
+            "review_only": True,
+            "candidate_count": len(targeted_rows),
+            "fetch_failure_count": len(fetch_failures),
+            "targeted_uniref_check_status_counts": dict(
+                sorted(targeted_status_counts.items())
+            ),
+            "import_ready_candidate_count": 0,
+            "countable_label_candidate_count": 0,
+            "ready_for_label_import": False,
+            "source_normalized_human_expert_review_queue_method": (
+                normalized_human_expert_review_queue.get("metadata", {}).get(
+                    "method"
+                )
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": targeted_rows,
+        "fetch_failures": fetch_failures,
+        "warnings": [
+            (
+                "source-pilot targeted UniRef handles are review-only duplicate "
+                "screen inputs; they do not authorize import"
+            )
+        ],
+    }
+    screen = build_external_hard_negative_next_candidate_uniref_current_reference_screen(
+        targeted_uniref_check=targeted_uniref_check,
+        sequence_clusters=sequence_clusters,
+        labels=labels,
+        max_rows=max_rows,
+        fetcher=member_fetcher,
+        artifact_lineage=artifact_lineage,
+    )
+    targeted_by_accession = {
+        row["accession"]: row for row in targeted_rows if row.get("accession")
+    }
+    for row in screen.get("rows", []) or []:
+        source_row = targeted_by_accession.get(row.get("accession"), {})
+        row["source_review_packet_status"] = source_row.get(
+            "source_review_packet_status"
+        )
+        row["source_normalized_decision_status"] = source_row.get(
+            "source_normalized_decision_status"
+        )
+        row["candidate_fetch_status"] = source_row.get("candidate_fetch_status")
+        row["candidate_uniref100_ids"] = source_row.get(
+            "candidate_uniref100_ids", []
+        )
+    screen["metadata"][
+        "source_normalized_human_expert_review_queue_method"
+    ] = normalized_human_expert_review_queue.get("metadata", {}).get("method")
+    screen["metadata"]["source_targeted_uniref_fetch_failure_count"] = len(
+        fetch_failures
+    )
+    screen["metadata"]["source_targeted_uniref_check_status_counts"] = dict(
+        sorted(targeted_status_counts.items())
+    )
+    screen["metadata"]["source_targeted_uniref_check"] = targeted_uniref_check[
+        "metadata"
+    ]
+    screen["fetch_failures"] = fetch_failures + screen.get("fetch_failures", [])
+    screen["warnings"] = [
+        (
+            "source-pilot UniRef current-reference screening is review-only; "
+            "terminal review decisions, full label-factory gates, and registry "
+            "authorization still block count growth"
+        )
+    ]
+    return screen
+
+
 def build_external_hard_negative_new_candidate_sourcing(
     *,
     query_manifest: dict[str, Any],
@@ -14387,6 +14584,7 @@ def build_external_source_pilot_success_criteria(
     external_import_readiness_audit: dict[str, Any],
     external_transfer_gate: dict[str, Any],
     pilot_representation_adjudication: dict[str, Any] | None = None,
+    external_uniref_current_reference_screen: dict[str, Any] | None = None,
     min_import_ready_rows: int = 1,
     max_rows: int = 10,
     artifact_lineage: dict[str, Any] | None = None,
@@ -14411,6 +14609,9 @@ def build_external_source_pilot_success_criteria(
     representation_adjudication_by_accession = _external_first_row_by_accession(
         pilot_representation_adjudication or {}
     )
+    uniref_by_accession = _external_first_row_by_accession(
+        external_uniref_current_reference_screen or {}
+    )
     decision_rows = [
         row
         for row in pilot_active_site_evidence_decisions.get("rows", []) or []
@@ -14425,6 +14626,12 @@ def build_external_source_pilot_success_criteria(
         import_row = import_by_accession.get(accession, {})
         representation_adjudication_row = representation_adjudication_by_accession.get(
             accession, {}
+        )
+        uniref_row = uniref_by_accession.get(accession, {})
+        uniref_clear = (
+            uniref_row.get("uniref_current_reference_screen_status")
+            == "uniref_current_reference_screen_no_current_reference_overlap"
+            and not uniref_row.get("uniref_current_reference_blockers")
         )
         review_decision = review_row.get("decision", {})
         if not isinstance(review_decision, dict):
@@ -14446,6 +14653,9 @@ def build_external_source_pilot_success_criteria(
                     + (source_row.get("import_readiness_blockers", []) or [])
                 )
                 if blocker
+                and not (
+                    uniref_clear and blocker == "broader_duplicate_screening_required"
+                )
             }
         )
         if representation_adjudication_row:
@@ -14470,6 +14680,12 @@ def build_external_source_pilot_success_criteria(
                 if blocker
             )
             blockers = sorted(set(blockers))
+        if uniref_clear:
+            blockers = [
+                blocker
+                for blocker in blockers
+                if blocker != "broader_duplicate_screening_required"
+            ]
 
         active_site_category = str(
             row.get("active_site_evidence_source_category")
@@ -14478,14 +14694,19 @@ def build_external_source_pilot_success_criteria(
         active_site_resolved = (
             active_site_category == "explicit_active_site_source_present"
         )
-        broader_duplicate_status = str(
-            row.get("broader_duplicate_screening_status")
-            or (
-                "broader_duplicate_screening_required"
-                if "broader_duplicate_screening_required" in blockers
-                else "not_recorded"
+        if uniref_clear:
+            broader_duplicate_status = (
+                "current_reference_external_all_vs_all_uniref_no_signal"
             )
-        )
+        else:
+            broader_duplicate_status = str(
+                row.get("broader_duplicate_screening_status")
+                or (
+                    "broader_duplicate_screening_required"
+                    if "broader_duplicate_screening_required" in blockers
+                    else "not_recorded"
+                )
+            )
         broader_duplicate_resolved = (
             broader_duplicate_status != "broader_duplicate_screening_required"
             and "broader_duplicate_screening_required" not in blockers
@@ -14565,6 +14786,9 @@ def build_external_source_pilot_success_criteria(
                     else f"unresolved_{active_site_category}"
                 ),
                 "broader_duplicate_screening_status": broader_duplicate_status,
+                "uniref_current_reference_screen_status": uniref_row.get(
+                    "uniref_current_reference_screen_status"
+                ),
                 "countable_label_candidate": countable_candidate,
                 "criterion_blockers": sorted(set(criterion_blockers)),
                 "entry_id": row.get("entry_id") or f"uniprot:{accession}",
@@ -14703,6 +14927,11 @@ def build_external_source_pilot_success_criteria(
                 "passed_gate_count": gate_meta.get("passed_gate_count"),
                 "ready_for_label_import": gate_meta.get("ready_for_label_import"),
             },
+            "source_external_uniref_current_reference_screen_method": (
+                (external_uniref_current_reference_screen or {})
+                .get("metadata", {})
+                .get("method")
+            ),
             "artifact_lineage": artifact_lineage or {},
         },
         "rows": sorted(
@@ -15065,6 +15294,7 @@ def audit_external_source_pilot_decision_confidence(
     external_structural_cluster_index: dict[str, Any] | None = None,
     external_structural_tm_diverse_split_plan: dict[str, Any] | None = None,
     external_all_vs_all_sequence_search: dict[str, Any] | None = None,
+    external_uniref_current_reference_screen: dict[str, Any] | None = None,
     external_transfer_gate: dict[str, Any] | None = None,
     max_rows: int = 10,
     artifact_lineage: dict[str, Any] | None = None,
@@ -15093,6 +15323,9 @@ def audit_external_source_pilot_decision_confidence(
     all_vs_all_by_accession = _external_first_row_by_accession(
         external_all_vs_all_sequence_search or {}
     )
+    uniref_by_accession = _external_first_row_by_accession(
+        external_uniref_current_reference_screen or {}
+    )
     source_artifacts = _external_pilot_confidence_source_artifacts(artifact_lineage)
 
     terminal_rows = [
@@ -15113,6 +15346,7 @@ def audit_external_source_pilot_decision_confidence(
         structure_row = structure_by_accession.get(accession, {})
         split_row = split_by_accession.get(accession, {})
         all_vs_all_row = all_vs_all_by_accession.get(accession, {})
+        uniref_row = uniref_by_accession.get(accession, {})
         assessment = _external_pilot_confidence_assessment(
             terminal_row=terminal_row,
             active_row=active_row,
@@ -15172,6 +15406,7 @@ def audit_external_source_pilot_decision_confidence(
                         structure_row=structure_row,
                         split_row=split_row,
                         all_vs_all_row=all_vs_all_row,
+                        uniref_current_reference_row=uniref_row,
                     )
                 ),
                 "representation_control_evidence": (
@@ -15193,6 +15428,7 @@ def audit_external_source_pilot_decision_confidence(
                     active_row=active_row,
                     dossier_row=dossier_row,
                     representation_row=representation_row,
+                    uniref_current_reference_row=uniref_row,
                 ),
                 "sources_checked": source_artifacts,
                 "countable_label_candidate": False,
@@ -15247,6 +15483,11 @@ def audit_external_source_pilot_decision_confidence(
             ),
             "source_external_all_vs_all_sequence_search_method": (
                 (external_all_vs_all_sequence_search or {})
+                .get("metadata", {})
+                .get("method")
+            ),
+            "source_external_uniref_current_reference_screen_method": (
+                (external_uniref_current_reference_screen or {})
                 .get("metadata", {})
                 .get("method")
             ),
@@ -20381,17 +20622,33 @@ def _external_pilot_duplicate_evidence(
     structure_row: dict[str, Any],
     split_row: dict[str, Any],
     all_vs_all_row: dict[str, Any] | None = None,
+    uniref_current_reference_row: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     sequence_result = terminal_row.get("sequence_duplicate_screen_result", {})
     if not isinstance(sequence_result, dict):
         sequence_result = {}
     all_vs_all_row = all_vs_all_row or {}
+    uniref_current_reference_row = uniref_current_reference_row or {}
     nearest_neighbor = structure_row.get("nearest_neighbor", {})
     if not isinstance(nearest_neighbor, dict):
         nearest_neighbor = {}
     broader_status = sequence_result.get("broader_duplicate_screening_status")
     all_vs_all_status = all_vs_all_row.get("search_status")
-    if all_vs_all_status == "external_all_vs_all_no_near_duplicate_signal":
+    uniref_status = uniref_current_reference_row.get(
+        "uniref_current_reference_screen_status"
+    )
+    uniref_clear = (
+        uniref_status == "uniref_current_reference_screen_no_current_reference_overlap"
+        and not uniref_current_reference_row.get("uniref_current_reference_blockers")
+    )
+    if (
+        all_vs_all_status == "external_all_vs_all_no_near_duplicate_signal"
+        and uniref_clear
+    ):
+        broader_status = (
+            "current_reference_external_all_vs_all_uniref_no_signal"
+        )
+    elif all_vs_all_status == "external_all_vs_all_no_near_duplicate_signal":
         broader_status = (
             "current_reference_and_external_all_vs_all_no_signal_uniref_pending"
         )
@@ -20416,6 +20673,16 @@ def _external_pilot_duplicate_evidence(
             "max_external_vs_external_identity"
         ),
         "external_all_vs_all_top_hits": all_vs_all_row.get("top_external_hits", []),
+        "uniref_current_reference_screen_status": uniref_status,
+        "uniref_current_reference_blockers": uniref_current_reference_row.get(
+            "uniref_current_reference_blockers", []
+        ),
+        "uniref_current_reference_overlap_count": len(
+            uniref_current_reference_row.get(
+                "overlapping_current_reference_accessions", []
+            )
+            or []
+        ),
         "top_alignment_hits": sequence_result.get("top_alignment_hits", []),
         "representation_adjudication_status": representation_row.get(
             "representation_control_adjudication_status"
@@ -20510,7 +20777,14 @@ def _external_pilot_remaining_blockers(
     active_row: dict[str, Any],
     dossier_row: dict[str, Any],
     representation_row: dict[str, Any],
+    uniref_current_reference_row: dict[str, Any] | None = None,
 ) -> list[str]:
+    uniref_current_reference_row = uniref_current_reference_row or {}
+    uniref_clear = (
+        uniref_current_reference_row.get("uniref_current_reference_screen_status")
+        == "uniref_current_reference_screen_no_current_reference_overlap"
+        and not uniref_current_reference_row.get("uniref_current_reference_blockers")
+    )
     blockers = {
         str(blocker)
         for source in (
@@ -20521,13 +20795,14 @@ def _external_pilot_remaining_blockers(
         )
         for blocker in (source or [])
         if blocker
+        and not (uniref_clear and blocker == "broader_duplicate_screening_required")
     }
     if terminal_row.get("factory_gate_status") == "not_run":
         blockers.add("full_label_factory_gate_not_run")
     sequence_result = terminal_row.get("sequence_duplicate_screen_result", {})
     if isinstance(sequence_result, dict) and sequence_result.get(
         "broader_duplicate_screening_status"
-    ):
+    ) and not uniref_clear:
         blockers.add(str(sequence_result["broader_duplicate_screening_status"]))
     return sorted(blockers)
 

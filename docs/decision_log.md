@@ -3,6 +3,36 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-16: SOURCE-TRANSFER UNIREF DUPLICATE SCREEN IS PROCESS EVIDENCE ONLY
+
+Decision: source-transfer pilot rows may use a bounded UniRef90/50 current-reference overlap screen
+to resolve the `broader_duplicate_screening_required` process blocker when paired with the existing
+all-vs-all screen. This evidence is review/admission context only. It never creates predictive
+features, countable rows, import-ready rows, or registry-apply authority.
+
+Implementation: added `build-external-source-pilot-uniref-current-reference-screen` and wired the
+optional `--external-uniref-current-reference-screen` artifact into source-transfer confidence and
+success-criteria replay. The command reuses the existing current-reference UniRef intersection
+machinery, sets review-only metadata, and preserves `countable_label_candidate_count: 0` and
+`ready_for_label_import: false`. Regression coverage lives in `tests/test_transfer_scope.py` and
+`tests/test_cli.py`.
+
+Measured result: run1904 artifact
+`artifacts/v3_external_source_pilot_uniref_current_reference_screen_t12_allvsall_current702_20260616_run1904.json`
+screened the **5** normalized run1804 review rows, fetched **13** UniRef clusters, and found **5**
+rows with no current countable-reference UniRef90/50 overlap. Replay artifact
+`artifacts/v3_external_source_pilot_success_criteria_t12_allvsall_uniref_current702_20260616_run1904.json`
+now marks those five rows
+`current_reference_external_all_vs_all_uniref_no_signal`, while keeping the pilot
+`needs_more_work`: **7** rows still require broader duplicate screening, **12** still need
+label-factory gates and terminal accepted review decisions, **6** still have active-site source
+blockers, and **2** still have representation-control blockers. Import-ready/countable rows remain
+**0**.
+
+Follow-up: do not import from run1904 artifacts. Run the external source pilot review/factory path
+for the **5** queued `needs_review` rows, then rerun mechanism repair controls, import-safety
+adjudication, success criteria, and label-factory/novelty/governor gates.
+
 ## 2026-06-16: CONTROLLED EXTERNAL IMPORT QUEUE STILL REQUIRES EXPLICIT BATCH AUTHORIZATION
 
 Decision: the size-120 external source-handle queue now has a current closure packet, but it is
