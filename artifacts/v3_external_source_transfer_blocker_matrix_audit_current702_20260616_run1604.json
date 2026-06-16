@@ -1,0 +1,37 @@
+{
+  "blockers": [
+    "external_transfer_blocker_matrix_rows_missing_sequence_task",
+    "external_transfer_blocker_matrix_sequence_decisions_present"
+  ],
+  "metadata": {
+    "active_site_resolution_row_count": 21,
+    "candidate_count": 47,
+    "completed_active_site_decision_count": 0,
+    "completed_sequence_decision_count": 17,
+    "countable_label_candidate_count": 0,
+    "dominant_lane_fraction": 0.1702,
+    "dominant_prioritized_action_fraction": 0.2979,
+    "expected_active_site_resolution_row_count": 21,
+    "expected_candidate_count": 47,
+    "expected_candidate_manifest_method": "external_source_candidate_manifest",
+    "expected_representation_sample_row_count": 15,
+    "extra_matrix_accessions": [],
+    "guardrail_clean": false,
+    "import_ready_row_count": 0,
+    "manifest_accession_count": 47,
+    "matrix_accession_count": 47,
+    "method": "external_source_transfer_blocker_matrix_audit",
+    "missing_blocker_row_count": 0,
+    "missing_manifest_accessions": [],
+    "missing_prioritized_action_row_count": 0,
+    "missing_review_only_status_row_count": 0,
+    "missing_sequence_task_row_count": 17,
+    "ready_for_label_import": false,
+    "representation_near_duplicate_alert_count": 1,
+    "representation_sample_row_count": 15,
+    "source_candidate_manifest_method": "external_source_candidate_manifest"
+  },
+  "warnings": [
+    "external transfer blocker matrices are review-only worklists and cannot authorize external label import"
+  ]
+}

@@ -1,0 +1,1549 @@
+{
+  "blockers": [
+    "reaction_context_not_mapped_to_candidate_active_site",
+    "heuristic_control_scores_not_computed",
+    "external_decision_artifact_not_built",
+    "not_label_factory_gated"
+  ],
+  "candidate_summaries": [
+    {
+      "accession": "A2RUC4",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "1.14.11.42"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "A5PLL7",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "1.14.19.77"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "C9JRZ8",
+      "broad_or_incomplete_ec_numbers": [
+        "1.1.1.-"
+      ],
+      "ec_numbers": [
+        "1.1.1.-",
+        "1.1.1.216",
+        "1.1.1.300",
+        "1.1.1.54",
+        "1.1.1.64"
+      ],
+      "reaction_record_count": 6
+    },
+    {
+      "accession": "O14756",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "1.1.1.105",
+        "1.1.1.209",
+        "1.1.1.239",
+        "1.1.1.53",
+        "1.1.1.62"
+      ],
+      "reaction_record_count": 9
+    },
+    {
+      "accession": "O15247",
+      "broad_or_incomplete_ec_numbers": [
+        "1.11.1.-",
+        "1.8.-.-"
+      ],
+      "ec_numbers": [
+        "1.11.1.-",
+        "1.8.-.-"
+      ],
+      "reaction_record_count": 4
+    },
+    {
+      "accession": "O43593",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "1.14.11.65"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "O60568",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "1.14.11.4",
+        "2.4.1.50",
+        "2.4.1.66"
+      ],
+      "reaction_record_count": 3
+    },
+    {
+      "accession": "O75151",
+      "broad_or_incomplete_ec_numbers": [
+        "1.14.11.-"
+      ],
+      "ec_numbers": [
+        "1.14.11.-"
+      ],
+      "reaction_record_count": 2
+    },
+    {
+      "accession": "Q969G6",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "2.7.1.26"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "P32189",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "2.7.1.30"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "P55263",
+      "broad_or_incomplete_ec_numbers": [
+        "2.7.1.-"
+      ],
+      "ec_numbers": [
+        "2.7.1.-",
+        "2.7.1.20"
+      ],
+      "reaction_record_count": 3
+    },
+    {
+      "accession": "P27144",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "2.7.4.4",
+        "2.7.4.6"
+      ],
+      "reaction_record_count": 3
+    },
+    {
+      "accession": "A2RU49",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "2.7.1.81"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "Q9UIJ7",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "2.7.4.10"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "Q14410",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "2.7.1.30"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "P00568",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "2.7.4.3",
+        "2.7.4.4",
+        "2.7.4.6"
+      ],
+      "reaction_record_count": 4
+    },
+    {
+      "accession": "P06746",
+      "broad_or_incomplete_ec_numbers": [
+        "4.2.99.-"
+      ],
+      "ec_numbers": [
+        "2.7.7.7",
+        "4.2.99.-",
+        "4.2.99.18"
+      ],
+      "reaction_record_count": 4
+    },
+    {
+      "accession": "Q9BXD5",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "4.1.3.3"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "P35914",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "4.1.3.4"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "Q96I15",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "4.4.1.16"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "O15527",
+      "broad_or_incomplete_ec_numbers": [
+        "3.2.2.-"
+      ],
+      "ec_numbers": [
+        "3.2.2.-",
+        "4.2.99.18"
+      ],
+      "reaction_record_count": 3
+    },
+    {
+      "accession": "P04424",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "4.3.2.1"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "P42357",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "4.3.1.3"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "Q8N0X4",
+      "broad_or_incomplete_ec_numbers": [
+        "2.3.3.-"
+      ],
+      "ec_numbers": [
+        "2.3.3.-",
+        "2.3.3.9",
+        "3.1.2.30",
+        "4.1.3.25"
+      ],
+      "reaction_record_count": 5
+    },
+    {
+      "accession": "Q13907",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "5.3.3.2"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "Q9BXS1",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "5.3.3.2"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "P34949",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "5.3.1.8"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "P60174",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "4.2.3.3",
+        "5.3.1.1"
+      ],
+      "reaction_record_count": 2
+    },
+    {
+      "accession": "P42126",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "5.3.3.8"
+      ],
+      "reaction_record_count": 2
+    },
+    {
+      "accession": "Q14554",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "5.3.4.1"
+      ],
+      "reaction_record_count": 0
+    },
+    {
+      "accession": "Q13087",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "5.3.4.1"
+      ],
+      "reaction_record_count": 0
+    },
+    {
+      "accession": "P49247",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "5.3.1.6"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "Q6NSJ0",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "3.2.1.22"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "P30176",
+      "broad_or_incomplete_ec_numbers": [
+        "3.2.2.-"
+      ],
+      "ec_numbers": [
+        "3.2.2.-"
+      ],
+      "reaction_record_count": 2
+    },
+    {
+      "accession": "Q3SY77",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "2.4.1.170",
+        "2.4.1.185"
+      ],
+      "reaction_record_count": 4
+    },
+    {
+      "accession": "Q68CQ7",
+      "broad_or_incomplete_ec_numbers": [
+        "2.4.1.-"
+      ],
+      "ec_numbers": [
+        "2.4.1.-"
+      ],
+      "reaction_record_count": 2
+    },
+    {
+      "accession": "P29372",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "3.2.2.21"
+      ],
+      "reaction_record_count": 0
+    },
+    {
+      "accession": "P33025",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "4.2.1.70"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "Q6NUS8",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "2.4.1.170"
+      ],
+      "reaction_record_count": 2
+    },
+    {
+      "accession": "O95050",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "2.1.1.49",
+        "2.1.1.96"
+      ],
+      "reaction_record_count": 3
+    }
+  ],
+  "fetch_failures": [],
+  "metadata": {
+    "broad_or_incomplete_ec_count": 9,
+    "broad_or_incomplete_ec_numbers": [
+      "1.1.1.-",
+      "1.11.1.-",
+      "1.14.11.-",
+      "1.8.-.-",
+      "2.3.3.-",
+      "2.4.1.-",
+      "2.7.1.-",
+      "3.2.2.-",
+      "4.2.99.-"
+    ],
+    "candidate_count": 40,
+    "candidate_with_reaction_context_count": 37,
+    "countable_label_candidate_count": 0,
+    "fetch_failure_count": 0,
+    "max_candidates": 40,
+    "max_reactions_per_ec": 2,
+    "method": "external_source_reaction_evidence_sample",
+    "queried_ec_count": 56,
+    "reaction_record_count": 82,
+    "ready_for_label_import": false,
+    "review_only_rule": "Rhea reaction context is evidence to review; it is not active-site mapping and cannot create countable labels"
+  },
+  "rows": [
+    {
+      "accession": "A2RUC4",
+      "countable_label_candidate": false,
+      "ec_number": "1.14.11.42",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:A2RUC4",
+      "equation": "7-[(3S)-3-amino-3-carboxypropyl]wyosine(37) in tRNA(Phe) + 2-oxoglutarate + O2 = 7-(2-hydroxy-3-amino-3-carboxypropyl)wyosine(37) in tRNA(Phe) + succinate + CO2",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:37899",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "A5PLL7",
+      "countable_label_candidate": false,
+      "ec_number": "1.14.19.77",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:A5PLL7",
+      "equation": "a 1-(1,2-saturated alkyl)-2-acyl-sn-glycero-3-phosphoethanolamine + 2 Fe(II)-[cytochrome b5] + O2 + 2 H(+) = a 1-O-(1Z-alkenyl)-2-acyl-sn-glycero-3-phosphoethanolamine + 2 Fe(III)-[cytochrome b5] + 2 H2O",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:22956",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "C9JRZ8",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:C9JRZ8",
+      "equation": "cyclohexanol + NAD(+) = cyclohexanone + NADH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10044",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "C9JRZ8",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:C9JRZ8",
+      "equation": "(2R)-hydroxy-4-methylpentanoate + NAD(+) = 4-methyl-2-oxopentanoate + NADH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10052",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "C9JRZ8",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.216",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:C9JRZ8",
+      "equation": "(2E,6E)-farnesol + NADP(+) = (2E,6E)-farnesal + NADPH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:14697",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "C9JRZ8",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.300",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:C9JRZ8",
+      "equation": "all-trans-retinol + NADP(+) = all-trans-retinal + NADPH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:25033",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "C9JRZ8",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.54",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:C9JRZ8",
+      "equation": "allyl alcohol + NADP(+) = acrolein + NADPH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:12168",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "C9JRZ8",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.64",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:C9JRZ8",
+      "equation": "testosterone + NADP(+) = androst-4-ene-3,17-dione + NADPH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:14981",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.105",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O14756",
+      "equation": "all-trans-retinol + NAD(+) = all-trans-retinal + NADH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:21284",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.105",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O14756",
+      "equation": "all-trans-retinol--[retinol-binding protein] + NAD(+) = all-trans-retinal--[retinol-binding protein] + NADH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:48488",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.209",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O14756",
+      "equation": "androsterone + NADP(+) = 5alpha-androstan-3,17-dione + NADPH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:20377",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.209",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O14756",
+      "equation": "androsterone + NAD(+) = 5alpha-androstan-3,17-dione + NADH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:20381",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.239",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O14756",
+      "equation": "testosterone + NAD(+) = androst-4-ene-3,17-dione + NADH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:14929",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.53",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O14756",
+      "equation": "androstan-3alpha,17beta-diol + NAD(+) = 17beta-hydroxyandrostanone + NADH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:22400",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.53",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O14756",
+      "equation": "5alpha-androstane-3alpha,17beta-diol + NAD(+) = 17beta-hydroxy-5alpha-androstan-3-one + NADH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:42004",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.62",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O14756",
+      "equation": "17beta-estradiol + NAD(+) = estrone + NADH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:24612",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.62",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O14756",
+      "equation": "17beta-estradiol + NADP(+) = estrone + NADPH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:24616",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O15247",
+      "countable_label_candidate": false,
+      "ec_number": "1.11.1.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:O15247",
+      "equation": "(S)-2-hydroxypropylphosphonate + H2O2 = (1R,2S)-epoxypropylphosphonate + 2 H2O",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10808",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O15247",
+      "countable_label_candidate": false,
+      "ec_number": "1.11.1.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:O15247",
+      "equation": "H2O2 + NADPH + H(+) = NADP(+) + 2 H2O",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:15173",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O15247",
+      "countable_label_candidate": false,
+      "ec_number": "1.8.-.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:O15247",
+      "equation": "6-decylubiquinone + 2 thiosulfate = 6-decylubiquinol + tetrathionate",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10936",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O15247",
+      "countable_label_candidate": false,
+      "ec_number": "1.8.-.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:O15247",
+      "equation": "L,L-homocystine + 2 glutathione = 2 L-homocysteine + glutathione disulfide",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:11464",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O43593",
+      "countable_label_candidate": false,
+      "ec_number": "1.14.11.65",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O43593",
+      "equation": "N(6),N(6)-dimethyl-L-lysyl(9)-[histone H3] + 2 2-oxoglutarate + 2 O2 = L-lysyl(9)-[histone H3] + 2 formaldehyde + 2 succinate + 2 CO2",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:60188",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O60568",
+      "countable_label_candidate": false,
+      "ec_number": "1.14.11.4",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O60568",
+      "equation": "L-lysyl-[collagen] + 2-oxoglutarate + O2 = (5R)-5-hydroxy-L-lysyl-[collagen] + succinate + CO2",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:16569",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O60568",
+      "countable_label_candidate": false,
+      "ec_number": "2.4.1.50",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O60568",
+      "equation": "(5R)-5-hydroxy-L-lysyl-[collagen] + UDP-alpha-D-galactose = (5R)-5-O-(beta-D-galactosyl)-5-hydroxy-L-lysyl-[collagen] + UDP + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:12637",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O60568",
+      "countable_label_candidate": false,
+      "ec_number": "2.4.1.66",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O60568",
+      "equation": "(5R)-5-O-(beta-D-galactosyl)-5-hydroxy-L-lysyl-[collagen] + UDP-alpha-D-glucose = (5R)-5-O-[alpha-D-glucosyl-(1->2)-beta-D-galactosyl]-5-hydroxy-L-lysyl-[collagen] + UDP + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:12576",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O75151",
+      "countable_label_candidate": false,
+      "ec_number": "1.14.11.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:O75151",
+      "equation": "gibberellin A20 + 2-oxoglutarate + O2 = gibberellin A1 + succinate + CO2",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10104",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O75151",
+      "countable_label_candidate": false,
+      "ec_number": "1.14.11.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:O75151",
+      "equation": "thymine + 2-oxoglutarate + O2 = 5-hydroxymethyluracil + succinate + CO2",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10316",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "Q969G6",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.1.26",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q969G6",
+      "equation": "riboflavin + ATP = FMN + ADP + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:14357",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "P32189",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.1.30",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P32189",
+      "equation": "glycerol + ATP = sn-glycerol 3-phosphate + ADP + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:21644",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "P55263",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.1.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:P55263",
+      "equation": "pyridoxal + ATP = pyridoxal 5'-phosphate + ADP + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10224",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "P55263",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.1.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:P55263",
+      "equation": "a 1,2-diacyl-sn-glycerol + ATP = a 1,2-diacyl-sn-glycero-3-phosphate + ADP + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10272",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "P55263",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.1.20",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P55263",
+      "equation": "adenosine + ATP = AMP + ADP + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:20824",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "P27144",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.4.4",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P27144",
+      "equation": "a ribonucleoside 5'-phosphate + ATP = a ribonucleoside 5'-diphosphate + ADP",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:24036",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "P27144",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.4.6",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P27144",
+      "equation": "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:18113",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "P27144",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.4.6",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P27144",
+      "equation": "UDP + ATP = UTP + ADP",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:25098",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "A2RU49",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.1.81",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:A2RU49",
+      "equation": "(5R)-5-hydroxy-L-lysine + GTP = (5R)-5-phosphooxy-L-lysine + GDP + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:19049",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "Q9UIJ7",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.4.10",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q9UIJ7",
+      "equation": "a ribonucleoside 5'-triphosphate + AMP = a ribonucleoside 5'-diphosphate + ADP",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:13749",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "Q14410",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.1.30",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q14410",
+      "equation": "glycerol + ATP = sn-glycerol 3-phosphate + ADP + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:21644",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "P00568",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.4.3",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P00568",
+      "equation": "AMP + ATP = 2 ADP",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:12973",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "P00568",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.4.4",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P00568",
+      "equation": "a ribonucleoside 5'-phosphate + ATP = a ribonucleoside 5'-diphosphate + ADP",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:24036",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "P00568",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.4.6",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P00568",
+      "equation": "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:18113",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "P00568",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.4.6",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P00568",
+      "equation": "UDP + ATP = UTP + ADP",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:25098",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "P06746",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.7.7",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P06746",
+      "equation": "DNA(n) + a 2'-deoxyribonucleoside 5'-triphosphate = DNA(n+1) + diphosphate",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:22508",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "P06746",
+      "countable_label_candidate": false,
+      "ec_number": "4.2.99.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:P06746",
+      "equation": "carboxymethoxysuccinate = glycolate + fumarate",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:12336",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "P06746",
+      "countable_label_candidate": false,
+      "ec_number": "4.2.99.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:P06746",
+      "equation": "5-enolpyruvoyl-6-hydroxy-2-succinyl-cyclohex-3-ene-1-carboxylate = (1R,6R)-6-hydroxy-2-succinyl-cyclohexa-2,4-diene-1-carboxylate + pyruvate",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:25597",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "P06746",
+      "countable_label_candidate": false,
+      "ec_number": "4.2.99.18",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P06746",
+      "equation": "2'-deoxyribonucleotide-(2'-deoxyribose 5'-phosphate)-2'-deoxyribonucleotide-DNA = a 3'-end 2'-deoxyribonucleotide-(2,3-dehydro-2,3-deoxyribose 5'-phosphate)-DNA + a 5'-end 5'-phospho-2'-deoxyribonucleoside-DNA + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:66592",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "Q9BXD5",
+      "countable_label_candidate": false,
+      "ec_number": "4.1.3.3",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q9BXD5",
+      "equation": "aceneuramate = aldehydo-N-acetyl-D-mannosamine + pyruvate",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:23296",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "P35914",
+      "countable_label_candidate": false,
+      "ec_number": "4.1.3.4",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P35914",
+      "equation": "(3S)-3-hydroxy-3-methylglutaryl-CoA = acetoacetate + acetyl-CoA",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:24404",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "Q96I15",
+      "countable_label_candidate": false,
+      "ec_number": "4.4.1.16",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q96I15",
+      "equation": "L-selenocysteine + AH2 = hydrogenselenide + L-alanine + A + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:11632",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "O15527",
+      "countable_label_candidate": false,
+      "ec_number": "3.2.2.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:O15527",
+      "equation": "7-methylxanthosine + H2O = 7-methylxanthine + D-ribose + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10880",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "O15527",
+      "countable_label_candidate": false,
+      "ec_number": "3.2.2.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:O15527",
+      "equation": "N(4)-(beta-N-acetyl-D-glucosaminyl)-L-asparagine + H2O = N-acetyl-D-glucosamine + L-asparagine",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:12324",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "O15527",
+      "countable_label_candidate": false,
+      "ec_number": "4.2.99.18",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O15527",
+      "equation": "2'-deoxyribonucleotide-(2'-deoxyribose 5'-phosphate)-2'-deoxyribonucleotide-DNA = a 3'-end 2'-deoxyribonucleotide-(2,3-dehydro-2,3-deoxyribose 5'-phosphate)-DNA + a 5'-end 5'-phospho-2'-deoxyribonucleoside-DNA + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:66592",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "P04424",
+      "countable_label_candidate": false,
+      "ec_number": "4.3.2.1",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P04424",
+      "equation": "2-(N(omega)-L-arginino)succinate = fumarate + L-arginine",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:24020",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "P42357",
+      "countable_label_candidate": false,
+      "ec_number": "4.3.1.3",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P42357",
+      "equation": "L-histidine = trans-urocanate + NH4(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:21232",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "Q8N0X4",
+      "countable_label_candidate": false,
+      "ec_number": "2.3.3.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:Q8N0X4",
+      "equation": "acetoacetyl-CoA + acetyl-CoA + H2O = (3S)-3-hydroxy-3-methylglutaryl-CoA + CoA + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10188",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "Q8N0X4",
+      "countable_label_candidate": false,
+      "ec_number": "2.3.3.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:Q8N0X4",
+      "equation": "dodecanoyl-CoA + 2-oxoglutarate + H2O = (3S,4S)-3-hydroxytetradecane-1,3,4-tricarboxylate + CoA + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10364",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "Q8N0X4",
+      "countable_label_candidate": false,
+      "ec_number": "2.3.3.9",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q8N0X4",
+      "equation": "glyoxylate + acetyl-CoA + H2O = (S)-malate + CoA + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:18181",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "Q8N0X4",
+      "countable_label_candidate": false,
+      "ec_number": "3.1.2.30",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q8N0X4",
+      "equation": "(S)-malyl-CoA + H2O = (S)-malate + CoA + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:38291",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "Q8N0X4",
+      "countable_label_candidate": false,
+      "ec_number": "4.1.3.25",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q8N0X4",
+      "equation": "(3S)-citramalyl-CoA = pyruvate + acetyl-CoA",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:22612",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "Q13907",
+      "countable_label_candidate": false,
+      "ec_number": "5.3.3.2",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q13907",
+      "equation": "isopentenyl diphosphate = dimethylallyl diphosphate",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:isomerase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:23284",
+      "scope_signal": "isomerase"
+    },
+    {
+      "accession": "Q9BXS1",
+      "countable_label_candidate": false,
+      "ec_number": "5.3.3.2",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q9BXS1",
+      "equation": "isopentenyl diphosphate = dimethylallyl diphosphate",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:isomerase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:23284",
+      "scope_signal": "isomerase"
+    },
+    {
+      "accession": "P34949",
+      "countable_label_candidate": false,
+      "ec_number": "5.3.1.8",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P34949",
+      "equation": "D-mannose 6-phosphate = D-fructose 6-phosphate",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:isomerase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:12356",
+      "scope_signal": "isomerase"
+    },
+    {
+      "accession": "P60174",
+      "countable_label_candidate": false,
+      "ec_number": "4.2.3.3",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P60174",
+      "equation": "dihydroxyacetone phosphate = methylglyoxal + phosphate",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:isomerase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:17937",
+      "scope_signal": "isomerase"
+    },
+    {
+      "accession": "P60174",
+      "countable_label_candidate": false,
+      "ec_number": "5.3.1.1",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P60174",
+      "equation": "D-glyceraldehyde 3-phosphate = dihydroxyacetone phosphate",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:isomerase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:18585",
+      "scope_signal": "isomerase"
+    },
+    {
+      "accession": "P42126",
+      "countable_label_candidate": false,
+      "ec_number": "5.3.3.8",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P42126",
+      "equation": "(3Z)-dodecenoyl-CoA = (2E)-dodecenoyl-CoA",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:isomerase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:23716",
+      "scope_signal": "isomerase"
+    },
+    {
+      "accession": "P42126",
+      "countable_label_candidate": false,
+      "ec_number": "5.3.3.8",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P42126",
+      "equation": "a (3E)-enoyl-CoA = a 4-saturated (2E)-enoyl-CoA",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:isomerase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:45228",
+      "scope_signal": "isomerase"
+    },
+    {
+      "accession": "P49247",
+      "countable_label_candidate": false,
+      "ec_number": "5.3.1.6",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P49247",
+      "equation": "aldehydo-D-ribose 5-phosphate = D-ribulose 5-phosphate",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:isomerase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:14657",
+      "scope_signal": "isomerase"
+    },
+    {
+      "accession": "Q6NSJ0",
+      "countable_label_candidate": false,
+      "ec_number": "3.2.1.22",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q6NSJ0",
+      "equation": "a globoside Gb3Cer (d18:1(4E)) + H2O = a beta-D-Gal-(1->4)-beta-D-Glc-(1<->1)-Cer(d18:1(4E)) + D-galactose",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:glycan_chemistry",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:21112",
+      "scope_signal": "glycan_chemistry"
+    },
+    {
+      "accession": "P30176",
+      "countable_label_candidate": false,
+      "ec_number": "3.2.2.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:P30176",
+      "equation": "7-methylxanthosine + H2O = 7-methylxanthine + D-ribose + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:glycan_chemistry",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10880",
+      "scope_signal": "glycan_chemistry"
+    },
+    {
+      "accession": "P30176",
+      "countable_label_candidate": false,
+      "ec_number": "3.2.2.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:P30176",
+      "equation": "N(4)-(beta-N-acetyl-D-glucosaminyl)-L-asparagine + H2O = N-acetyl-D-glucosamine + L-asparagine",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:glycan_chemistry",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:12324",
+      "scope_signal": "glycan_chemistry"
+    },
+    {
+      "accession": "Q3SY77",
+      "countable_label_candidate": false,
+      "ec_number": "2.4.1.170",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q3SY77",
+      "equation": "formononetin + UDP-alpha-D-glucose = ononin + UDP",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:glycan_chemistry",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:17497",
+      "scope_signal": "glycan_chemistry"
+    },
+    {
+      "accession": "Q3SY77",
+      "countable_label_candidate": false,
+      "ec_number": "2.4.1.170",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q3SY77",
+      "equation": "biochanin A + UDP-alpha-D-glucose = biochanin A 7-O-beta-D-glucoside + UDP + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:glycan_chemistry",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:55416",
+      "scope_signal": "glycan_chemistry"
+    },
+    {
+      "accession": "Q3SY77",
+      "countable_label_candidate": false,
+      "ec_number": "2.4.1.185",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q3SY77",
+      "equation": "(2S)-naringenin + UDP-alpha-D-glucose = (2S)-naringenin 7-O-beta-D-glucoside + UDP + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:glycan_chemistry",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:65152",
+      "scope_signal": "glycan_chemistry"
+    },
+    {
+      "accession": "Q3SY77",
+      "countable_label_candidate": false,
+      "ec_number": "2.4.1.185",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q3SY77",
+      "equation": "(2S)-hesperetin + UDP-alpha-D-glucose = (2S)-hesperetin 7-O-beta-D-glucoside + UDP + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:glycan_chemistry",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:65244",
+      "scope_signal": "glycan_chemistry"
+    },
+    {
+      "accession": "Q68CQ7",
+      "countable_label_candidate": false,
+      "ec_number": "2.4.1.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:Q68CQ7",
+      "equation": "4-O-[(D-ribitylphospho)(n)-D-ribitylphospho-(2R)-glycerylphospho]-N-acetyl-beta-D-mannosaminyl-(1->4)-N-acetyl-alpha-D-glucosaminyl di-trans,octa-cis-undecaprenyl diphosphate + n UDP-alpha-D-glucose = 4-O-[(2-beta-D-glucosyl-D-ribitylphospho)(n)-D-ribitylphospho-(2R)-glycerylphospho]-N-acetyl-beta-D-mannosaminyl-(1->4)-N-acetyl-alpha-D-glucosaminyl di-trans,octa-cis-undecaprenyl diphosphate + n UDP + n H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:glycan_chemistry",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10068",
+      "scope_signal": "glycan_chemistry"
+    },
+    {
+      "accession": "Q68CQ7",
+      "countable_label_candidate": false,
+      "ec_number": "2.4.1.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:Q68CQ7",
+      "equation": "sucrose + UDP-alpha-D-galactose = 6(F)-alpha-D-galactosylsucrose + UDP + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:glycan_chemistry",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10088",
+      "scope_signal": "glycan_chemistry"
+    },
+    {
+      "accession": "P33025",
+      "countable_label_candidate": false,
+      "ec_number": "4.2.1.70",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P33025",
+      "equation": "D-ribose 5-phosphate + uracil = psi-UMP + H2O",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:glycan_chemistry",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:18337",
+      "scope_signal": "glycan_chemistry"
+    },
+    {
+      "accession": "Q6NUS8",
+      "countable_label_candidate": false,
+      "ec_number": "2.4.1.170",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q6NUS8",
+      "equation": "formononetin + UDP-alpha-D-glucose = ononin + UDP",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:glycan_chemistry",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:17497",
+      "scope_signal": "glycan_chemistry"
+    },
+    {
+      "accession": "Q6NUS8",
+      "countable_label_candidate": false,
+      "ec_number": "2.4.1.170",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q6NUS8",
+      "equation": "biochanin A + UDP-alpha-D-glucose = biochanin A 7-O-beta-D-glucoside + UDP + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:glycan_chemistry",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:55416",
+      "scope_signal": "glycan_chemistry"
+    },
+    {
+      "accession": "O95050",
+      "countable_label_candidate": false,
+      "ec_number": "2.1.1.49",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O95050",
+      "equation": "a primary amine + S-adenosyl-L-methionine = a methylated primary amine + S-adenosyl-L-homocysteine + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_methyl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:23136",
+      "scope_signal": "transferase_methyl"
+    },
+    {
+      "accession": "O95050",
+      "countable_label_candidate": false,
+      "ec_number": "2.1.1.49",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O95050",
+      "equation": "a secondary amine + S-adenosyl-L-methionine = a methylated secondary amine + S-adenosyl-L-homocysteine + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_methyl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:53924",
+      "scope_signal": "transferase_methyl"
+    },
+    {
+      "accession": "O95050",
+      "countable_label_candidate": false,
+      "ec_number": "2.1.1.96",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O95050",
+      "equation": "dimethyl sulfide + S-adenosyl-L-methionine = trimethylsulfonium + S-adenosyl-L-homocysteine",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_methyl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:19613",
+      "scope_signal": "transferase_methyl"
+    }
+  ]
+}

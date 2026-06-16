@@ -16,6 +16,64 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-16 automation update: external source-transfer pilot queue advanced; no registry apply.**
+Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; no label registry rows were written.
+The source-transfer lane now has a current-slice full-width review graph for **47** candidates
+across six external source lanes. A small implementation fix added an opt-in
+`--include-manifest-rows` mode to `build-external-source-sequence-neighborhood-plan`, preserving the
+default holdout-driven behavior while allowing blocker matrices to require one review-only sequence
+task for every candidate-manifest row. This removed the prior mixed-width matrix blocker without
+making any row countable.
+
+Key current artifacts are
+`artifacts/v3_external_source_sequence_holdout_audit_current702_20260616_run1604.json`,
+`artifacts/v3_external_source_sequence_neighborhood_plan_full47_current702_20260616_run1604.json`,
+`artifacts/v3_external_source_sequence_search_export_full47_current702_20260616_run1604.json`,
+`artifacts/v3_external_source_transfer_blocker_matrix_full47_current702_20260616_run1604.json`, and
+`artifacts/v3_external_source_transfer_blocker_matrix_full47_audit_current702_20260616_run1604.json`.
+The matrix audit is clean for **47/47** rows, but all rows remain review-only with **0**
+import-ready candidates. Current blocker counts are **21** active-site source gaps, **14** heuristic
+scope mismatches, **12** representation backend-not-selected rows, **2** exact sequence holdouts,
+and **1** representation near-duplicate holdout.
+
+The lane-balanced pilot queue
+`artifacts/v3_external_source_pilot_candidate_priority_current702_20260616_run1604.json` selected
+**12** review candidates and produced evidence packet/dossier/review-decision artifacts:
+`artifacts/v3_external_source_pilot_evidence_packet_current702_20260616_run1604.json`,
+`artifacts/v3_external_source_pilot_evidence_dossiers_current702_20260616_run1604.json`, and
+`artifacts/v3_external_source_pilot_review_decision_export_current702_20260616_run1604.json`.
+Active-site evidence decisions found **6** explicit active-site-source-present rows and **6**
+binding-context-only rows, with **0** accepted/import-ready rows. Consolidated gate check
+`artifacts/v3_external_source_transfer_gate_check_current702_20260616_run1604.json` passes
+**65/66** gates; the remaining blocker is `external_pilot_representation_sample_review_only`
+because the current sample is the local deterministic k-mer control, not a learned representation
+sample with stability/adjudication evidence. A bounded local-only ESM2 t6/8M attempt
+`artifacts/v3_external_source_pilot_representation_backend_sample_esm2_t6_8m_current702_20260616_run1604.json`
+confirmed `embedding_backend_available: false` because the model weights are not cached locally and
+downloads were disabled. Stability/adjudication artifacts
+`artifacts/v3_external_source_pilot_representation_backend_esm2_t6_8m_stability_audit_current702_20260616_run1604.json`
+and
+`artifacts/v3_external_source_pilot_representation_adjudication_current702_20260616_run1604.json`
+record `comparison_backend_unavailable` and **12** unresolved representation rows. Success criteria
+`artifacts/v3_external_source_pilot_success_criteria_current702_20260616_run1604.json` is
+`needs_more_work` with **0** import-ready rows. A follow-up structural lineage metadata fix keeps
+`artifacts/v3_external_structural_tm_holdout_path_current702_20260616_run1604.json` on slice
+`20260616`, which allowed terminal/review routing to run without mixed-slice blockers. Terminal
+decisions
+`artifacts/v3_external_source_pilot_terminal_decisions_current702_20260616_run1604.json` now record
+**12** non-countable outcomes: **6** `rejected_active_site_evidence_missing` and **6**
+`deferred_requires_human_expert`, with **0** import-ready rows. Confidence and normalized review
+artifacts
+`artifacts/v3_external_source_pilot_decision_confidence_audit_current702_20260616_run1604.json`,
+`artifacts/v3_external_source_pilot_decisions_review_normalized_current702_20260616_run1604.json`,
+and
+`artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_current702_20260616_run1604.json`
+route **6** rows to human/expert review and keep every row review-only.
+
+Next action: build a current learned pilot-representation backend sample plus stability/adjudication
+artifact, rerun the gate/confidence audit, and complete review/factory/duplicate gates before any
+import. Do not import from the run1604 packet.
+
 **2026-06-16 automation update: external import closure packet refreshed; no registry apply.**
 Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; no label registry rows were written.
 Fresh run1503 coverage/novelty/factory refreshes confirm combined labels **8728**, no holes, floor

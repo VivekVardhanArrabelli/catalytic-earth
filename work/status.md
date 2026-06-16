@@ -1,30 +1,31 @@
 automation: ce-bronze-scaleout-pipeline
 automation_id: ce-nad-glyco-floor-expansion
-started_at: 2026-06-16T15:03:49Z
-started_local: Tue Jun 16 10:03:52 CDT 2026
-closeout_at: 2026-06-16T15:27:05Z
-elapsed_minutes: 23.3
-remaining_minutes: 31.7
+started_at: 2026-06-16T16:04:36Z
+started_local: Tue Jun 16 11:04:36 CDT 2026
+closeout_at: 2026-06-16T16:59:00Z
+elapsed_minutes: 54.4
+remaining_minutes: 0.6
 budget_minutes: 55
 planned_closeout_minute: 50
 
-state: blocked_closeout_after_verified_non_destructive_closure
-lock: acquired by this run at 2026-06-16T15:03:49Z
+state: source_transfer_pilot_review_queue_built_no_registry_apply
+lock: acquired by this run at 2026-06-16T16:04:51Z
 branch: main
-base_at_start: a611246f724128feee11857b62058a6bb64a9e5e
+base_at_start: 41a7102177fc9c4500454b8cf84e4bd41c167865
 registry_mutation: none
 frozen_sha_before_apply: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
 frozen_sha_after_apply: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
 
 validation:
   registry_validate: passed
-  baseline_focused_suite: 293 passed, 14 subtests
-  closure_regression_suite: 4 passed
-  full_pytest: 2364 passed, 1 warning, 244 subtests
+  baseline_critical_suite: 273 passed, 14 subtests
+  sequence_and_structural_regressions: 3 passed
+  final_focused_suite: 366 passed, 14 subtests
+  full_pytest: 2366 passed, 1 warning
+  current_docs_artifact_reference_check: 0 missing
   json_jsonl_parse: passed
   git_diff_check: passed
-  registry_file_size_scan_over_45mb: none
-  run1503_artifact_file_size_scan_over_45mb: none
+  registry_and_run1604_file_size_scan_over_45mb: none
 
 current_counts:
   frozen_current702_rows: 702
@@ -36,29 +37,32 @@ current_counts:
   factory_ready_existing_lanes_ge150: 0
   top_projected_clean_admits: 77
 
-closure_packet:
-  review_surface_rows: 833
-  controlled_import_review_ready_rows: 197
-  blocked_rows: 636
-  coordinate_blockers: 473
-  locator_blockers: 121
-  current702_duplicate_rows: 13
-  external_duplicate_rows: 27
-  hard_blockers: 2
-  production_import_authorized: false
-  ready_for_production_label_import: false
+run1604_source_transfer:
+  candidate_manifest_rows: 47
+  full47_blocker_matrix_rows: 47
+  full47_blocker_matrix_import_ready_rows: 0
+  active_site_source_gaps: 21
+  heuristic_scope_mismatches: 14
+  representation_backend_not_selected: 12
+  exact_sequence_holdouts: 2
+  representation_near_duplicate_holdouts: 1
+  pilot_rows: 12
+  pilot_explicit_active_site_source_present: 6
+  pilot_binding_context_only: 6
+  transfer_gate: 65 passed / 66 total
+  transfer_gate_blocker: external_pilot_representation_sample_review_only
+  terminal_decisions: 12
+  terminal_rejected_active_site_evidence_missing: 6
+  terminal_deferred_requires_human_expert: 6
+  normalized_human_expert_queue_rows: 6
+  import_ready_rows: 0
+  countable_label_candidate_rows: 0
 
-early_closeout_reason: >
-  No safe scaling item remains actionable in this run: the 197 ready rows require explicit
-  controlled batch approval plus label-factory and registry-change authorization before any apply;
-  the 636-row repair queue is dominated by coordinate materialization, but local disk free space
-  is below the 10 GiB coordinate-download floor; and artifact storage policy is blocked by four
-  pre-existing large unclassified artifacts while the migration readiness plan authorizes zero
-  migrations or deletions. Continuing without those prerequisites would either mutate registry
-  state without authorization, start coordinate download work below the documented safety floor,
-  or perform ad hoc artifact cleanup outside the committed manifest.
+code_changes:
+  - build-external-source-sequence-neighborhood-plan gained opt-in --include-manifest-rows for complete review-only manifest coverage.
+  - build-external-structural-tm-holdout-path now prefers artifact-lineage slice/path metadata over stale manifest/default 1025 values.
 
 next_action: >
-  Obtain explicit controlled batch approval plus label-factory/registry-change authorization for
-  the 197 machine-clean rows, or restore disk free space above 10 GiB and rerun scoped
-  materialization/repair for the 636 blocked rows.
+  Build or provide a current learned pilot-representation backend sample for the 12 selected
+  source-transfer pilot rows, rerun stability/adjudication plus the transfer gate/confidence audit,
+  then complete review/factory/duplicate gates before considering any external-registry-only import.

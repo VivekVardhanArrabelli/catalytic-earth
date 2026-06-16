@@ -5145,6 +5145,7 @@ def build_external_source_sequence_neighborhood_plan(
     candidate_manifest: dict[str, Any],
     sequence_holdout_audit: dict[str, Any],
     max_rows: int = 100,
+    include_manifest_rows: bool = False,
 ) -> dict[str, Any]:
     """Prepare non-countable near-duplicate sequence controls for external rows."""
     manifest_by_accession = {
@@ -5153,10 +5154,12 @@ def build_external_source_sequence_neighborhood_plan(
         if isinstance(row, dict) and row.get("accession")
     }
     rows: list[dict[str, Any]] = []
+    planned_accessions: set[str] = set()
     for holdout_row in sequence_holdout_audit.get("rows", []) or []:
         if not isinstance(holdout_row, dict) or not holdout_row.get("accession"):
             continue
         accession = str(holdout_row.get("accession"))
+        planned_accessions.add(accession)
         manifest_row = manifest_by_accession.get(accession, {})
         holdout_status = str(holdout_row.get("holdout_status") or "")
         if holdout_status == "exact_reference_overlap_holdout":
@@ -5196,6 +5199,36 @@ def build_external_source_sequence_neighborhood_plan(
             }
         )
 
+    if include_manifest_rows:
+        for accession in sorted(manifest_by_accession):
+            if accession in planned_accessions:
+                continue
+            manifest_row = manifest_by_accession[accession]
+            rows.append(
+                {
+                    "accession": accession,
+                    "countable_label_candidate": False,
+                    "entry_id": manifest_row.get("entry_id") or f"uniprot:{accession}",
+                    "holdout_status": "candidate_manifest_sequence_control_required",
+                    "lane_id": manifest_row.get("lane_id"),
+                    "matched_failure_cluster_ids": [],
+                    "matched_m_csa_entry_ids": [],
+                    "near_duplicate_search_status": "not_run_request_only",
+                    "plan_status": "near_duplicate_search_required_before_import",
+                    "protein_name": manifest_row.get("protein_name"),
+                    "ready_for_label_import": False,
+                    "requested_controls": [
+                        "sequence identity search against countable M-CSA labels",
+                        "near-duplicate family-holdout assignment",
+                        "source-text leakage check before decision import",
+                        "external factory gate after sequence controls are complete",
+                    ],
+                    "review_status": "sequence_neighborhood_review_only",
+                    "scope_signal": manifest_row.get("scope_signal"),
+                    "sequence_cluster_ids": [],
+                }
+            )
+
     rows = rows[:max_rows]
     status_counts = Counter(str(row["plan_status"]) for row in rows)
     return {
@@ -5211,6 +5244,13 @@ def build_external_source_sequence_neighborhood_plan(
             "countable_label_candidate_count": 0,
             "candidate_count": len(rows),
             "max_rows": max_rows,
+            "include_manifest_rows": include_manifest_rows,
+            "manifest_only_sequence_control_count": sum(
+                1
+                for row in rows
+                if row["holdout_status"]
+                == "candidate_manifest_sequence_control_required"
+            ),
             "exact_reference_overlap_holdout_count": sum(
                 1
                 for row in rows
@@ -9583,15 +9623,35 @@ def build_external_structural_tm_holdout_path(
     ]
     if selected_pilot_only:
         blocker_not_removed.append("broader_external_fold_diverse_candidate_surface_not_expanded")
+    artifact_paths = (
+        artifact_lineage.get("artifact_paths", {})
+        if isinstance(artifact_lineage, dict)
+        else {}
+    )
+    source_candidate_manifest = (
+        artifact_paths.get("candidate_manifest")
+        if isinstance(artifact_paths, dict)
+        else None
+    ) or "artifacts/v3_external_source_candidate_manifest_1025.json"
+    source_pilot_candidate_priority = None
+    if pilot_candidate_priority:
+        source_pilot_candidate_priority = (
+            artifact_paths.get("pilot_candidate_priority")
+            if isinstance(artifact_paths, dict)
+            else None
+        ) or "artifacts/v3_external_source_pilot_candidate_priority_1025.json"
+    lineage_slice_id = (
+        artifact_lineage.get("slice_id") if isinstance(artifact_lineage, dict) else None
+    )
+    manifest_slice_id = candidate_manifest.get("metadata", {}).get("slice_id", "1025")
+    slice_id = lineage_slice_id if lineage_slice_id not in (None, "") else manifest_slice_id
     return {
         "metadata": {
             "method": "external_structural_tm_holdout_path",
             "blocker_removed": blocker_removed,
             "blocker_not_removed": blocker_not_removed,
             "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-            "slice_id": str(
-                candidate_manifest.get("metadata", {}).get("slice_id", "1025")
-            ),
+            "slice_id": str(slice_id),
             "surface_scope": scope,
             "source_candidate_manifest_method": candidate_manifest.get(
                 "metadata", {}
@@ -9599,14 +9659,8 @@ def build_external_structural_tm_holdout_path(
             "source_pilot_candidate_priority_method": (
                 (pilot_candidate_priority or {}).get("metadata", {}).get("method")
             ),
-            "source_candidate_manifest": (
-                "artifacts/v3_external_source_candidate_manifest_1025.json"
-            ),
-            "source_pilot_candidate_priority": (
-                "artifacts/v3_external_source_pilot_candidate_priority_1025.json"
-                if pilot_candidate_priority
-                else None
-            ),
+            "source_candidate_manifest": source_candidate_manifest,
+            "source_pilot_candidate_priority": source_pilot_candidate_priority,
             "candidate_count": len(rows),
             "max_rows": max_rows,
             "selected_pilot_candidate_count": selected_row_count,

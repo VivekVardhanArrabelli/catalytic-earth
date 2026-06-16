@@ -1,0 +1,103 @@
+{
+  "metadata": {
+    "artifact_count": 5,
+    "countable_import_safe": true,
+    "method": "review_only_import_safety_audit",
+    "review_only_artifact_count": 0,
+    "total_new_countable_label_count": 0,
+    "unsafe_artifact_count": 0,
+    "unsafe_artifacts": []
+  },
+  "rows": [
+    {
+      "artifact": "v3_external_source_pilot_candidate_priority_current702_20260616_run1604.json",
+      "baseline_label_count": 702,
+      "countable_import_label_count": 702,
+      "countable_import_safe": true,
+      "decision_counts": {},
+      "method": "external_source_pilot_candidate_priority",
+      "new_countable_entry_ids": [],
+      "new_countable_label_count": 0,
+      "review_only_flags": {
+        "expert_label_decision_review_only": false,
+        "external_source_review_only": false,
+        "local_evidence_gap_review_only": false,
+        "reaction_substrate_mismatch_review_only": false
+      },
+      "review_only_rule": null,
+      "source_method": "external_source_transfer_blocker_matrix"
+    },
+    {
+      "artifact": "v3_external_source_pilot_review_decision_export_current702_20260616_run1604.json",
+      "baseline_label_count": 702,
+      "countable_import_label_count": 702,
+      "countable_import_safe": true,
+      "decision_counts": {},
+      "method": "external_source_pilot_review_decision_export",
+      "new_countable_entry_ids": [],
+      "new_countable_label_count": 0,
+      "review_only_flags": {
+        "expert_label_decision_review_only": false,
+        "external_source_review_only": false,
+        "local_evidence_gap_review_only": false,
+        "reaction_substrate_mismatch_review_only": false
+      },
+      "review_only_rule": null,
+      "source_method": "external_source_pilot_candidate_priority"
+    },
+    {
+      "artifact": "v3_external_source_pilot_evidence_packet_current702_20260616_run1604.json",
+      "baseline_label_count": 702,
+      "countable_import_label_count": 702,
+      "countable_import_safe": true,
+      "decision_counts": {},
+      "method": "external_source_pilot_evidence_packet",
+      "new_countable_entry_ids": [],
+      "new_countable_label_count": 0,
+      "review_only_flags": {
+        "expert_label_decision_review_only": false,
+        "external_source_review_only": false,
+        "local_evidence_gap_review_only": false,
+        "reaction_substrate_mismatch_review_only": false
+      },
+      "review_only_rule": null,
+      "source_method": null
+    },
+    {
+      "artifact": "v3_external_source_pilot_evidence_dossiers_current702_20260616_run1604.json",
+      "baseline_label_count": 702,
+      "countable_import_label_count": 702,
+      "countable_import_safe": true,
+      "decision_counts": {},
+      "method": "external_source_pilot_evidence_dossier",
+      "new_countable_entry_ids": [],
+      "new_countable_label_count": 0,
+      "review_only_flags": {
+        "expert_label_decision_review_only": false,
+        "external_source_review_only": false,
+        "local_evidence_gap_review_only": false,
+        "reaction_substrate_mismatch_review_only": false
+      },
+      "review_only_rule": null,
+      "source_method": null
+    },
+    {
+      "artifact": "v3_external_source_pilot_active_site_evidence_decisions_current702_20260616_run1604.json",
+      "baseline_label_count": 702,
+      "countable_import_label_count": 702,
+      "countable_import_safe": true,
+      "decision_counts": {},
+      "method": "external_source_pilot_active_site_evidence_decisions",
+      "new_countable_entry_ids": [],
+      "new_countable_label_count": 0,
+      "review_only_flags": {
+        "expert_label_decision_review_only": false,
+        "external_source_review_only": false,
+        "local_evidence_gap_review_only": false,
+        "reaction_substrate_mismatch_review_only": false
+      },
+      "review_only_rule": null,
+      "source_method": null
+    }
+  ]
+}

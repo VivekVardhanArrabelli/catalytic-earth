@@ -4364,6 +4364,61 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         )
         self.assertFalse(plan["rows"][0]["countable_label_candidate"])
 
+    def test_external_sequence_neighborhood_plan_can_cover_manifest_rows(
+        self,
+    ) -> None:
+        plan = build_external_source_sequence_neighborhood_plan(
+            candidate_manifest={
+                "metadata": {
+                    "candidate_count": 2,
+                    "method": "external_source_candidate_manifest",
+                },
+                "rows": [
+                    {
+                        "accession": "P11111",
+                        "lane_id": "external_source:lyase",
+                        "protein_name": "Lyase candidate",
+                        "scope_signal": "lyase",
+                    },
+                    {
+                        "accession": "P22222",
+                        "lane_id": "external_source:isomerase",
+                        "protein_name": "Isomerase candidate",
+                        "scope_signal": "isomerase",
+                    },
+                ],
+            },
+            sequence_holdout_audit={
+                "metadata": {"method": "external_source_sequence_holdout_audit"},
+                "rows": [
+                    {
+                        "accession": "P11111",
+                        "holdout_status": "exact_reference_overlap_holdout",
+                        "matched_m_csa_entry_ids": ["m_csa:1"],
+                    }
+                ],
+            },
+            include_manifest_rows=True,
+        )
+
+        self.assertEqual(plan["metadata"]["candidate_count"], 2)
+        self.assertTrue(plan["metadata"]["include_manifest_rows"])
+        self.assertEqual(
+            plan["metadata"]["manifest_only_sequence_control_count"], 1
+        )
+        manifest_row = plan["rows"][1]
+        self.assertEqual(manifest_row["accession"], "P22222")
+        self.assertEqual(
+            manifest_row["holdout_status"],
+            "candidate_manifest_sequence_control_required",
+        )
+        self.assertEqual(
+            manifest_row["plan_status"],
+            "near_duplicate_search_required_before_import",
+        )
+        self.assertFalse(manifest_row["ready_for_label_import"])
+        self.assertFalse(manifest_row["countable_label_candidate"])
+
     def test_external_sequence_search_export_stays_no_decision(self) -> None:
         export = build_external_source_sequence_search_export(
             sequence_neighborhood_plan={
@@ -9566,6 +9621,72 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             "broader_external_candidate_surface",
         )
         self.assertTrue(all(not row["ready_for_label_import"] for row in path["rows"]))
+
+    def test_external_structural_tm_holdout_path_prefers_lineage_slice_id(
+        self,
+    ) -> None:
+        path = build_external_structural_tm_holdout_path(
+            candidate_manifest={
+                "metadata": {
+                    "method": "external_source_candidate_manifest",
+                    "slice_id": "1025",
+                },
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "lane_id": "external_source:lyase",
+                        "alphafold_ids": ["AF-P12345-F1"],
+                    }
+                ],
+            },
+            pilot_candidate_priority={
+                "metadata": {"method": "external_source_pilot_candidate_priority"},
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "pilot_selection_status": "selected_for_review_pilot",
+                    }
+                ],
+            },
+            max_rows=1,
+            selected_pilot_only=True,
+            artifact_lineage={
+                "method": "external_transfer_artifact_path_lineage_validation",
+                "slice_id": 20260616,
+                "artifact_paths": {
+                    "candidate_manifest": (
+                        "artifacts/"
+                        "v3_external_source_candidate_manifest_current702_"
+                        "20260616_run1604.json"
+                    ),
+                    "pilot_candidate_priority": (
+                        "artifacts/"
+                        "v3_external_source_pilot_candidate_priority_current702_"
+                        "20260616_run1604.json"
+                    ),
+                },
+                "guardrail_clean": True,
+            },
+        )
+
+        metadata = path["metadata"]
+        self.assertEqual(metadata["slice_id"], "20260616")
+        self.assertEqual(
+            metadata["source_candidate_manifest"],
+            (
+                "artifacts/"
+                "v3_external_source_candidate_manifest_current702_"
+                "20260616_run1604.json"
+            ),
+        )
+        self.assertEqual(
+            metadata["source_pilot_candidate_priority"],
+            (
+                "artifacts/"
+                "v3_external_source_pilot_candidate_priority_current702_"
+                "20260616_run1604.json"
+            ),
+        )
 
     def test_external_structural_cluster_index_materializes_and_clusters(
         self,

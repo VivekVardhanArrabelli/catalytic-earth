@@ -3564,6 +3564,7 @@ def cmd_build_external_source_sequence_neighborhood_plan(
         candidate_manifest=candidate_manifest,
         sequence_holdout_audit=sequence_holdout_audit,
         max_rows=args.max_rows,
+        include_manifest_rows=args.include_manifest_rows,
     )
     write_json(Path(args.out), plan)
     print(
@@ -24209,6 +24210,14 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v3_external_source_sequence_holdout_audit.json",
     )
     external_sequence_neighborhood.add_argument("--max-rows", type=int, default=100)
+    external_sequence_neighborhood.add_argument(
+        "--include-manifest-rows",
+        action="store_true",
+        help=(
+            "emit review-only sequence-control rows for candidate-manifest accessions "
+            "not present in the sequence-holdout audit"
+        ),
+    )
     external_sequence_neighborhood.add_argument(
         "--out",
         default="artifacts/v3_external_source_sequence_neighborhood_plan.json",

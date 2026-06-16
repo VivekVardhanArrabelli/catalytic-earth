@@ -1,5 +1,100 @@
 # Handoff
 
+## Session run - external source-transfer pilot queue advanced; no registry apply (2026-06-16, Codex automation)
+
+- Started from current `origin/main` at `41a7102177fc9c4500454b8cf84e4bd41c167865`,
+  acquired `.git/catalytic-earth-automation.lock`, and confirmed `git pull --ff-only origin main`
+  was already up to date. Frozen current702 sha before and after work was
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no registry apply was
+  performed.
+- Baseline safety was green: `PYTHONPATH=src python -m catalytic_earth.cli validate` passed and
+  the focused registry/source/leakage/novelty/import suite passed **273 passed, 14 subtests**.
+- Lane choice: there were no holes/floor deficits and no ready existing lanes >=150, so the run
+  continued the approved high-yield source-transfer route using the current 47-row external
+  source-transfer candidate manifest.
+- Added an opt-in full-manifest sequence-control mode:
+  `build-external-source-sequence-neighborhood-plan --include-manifest-rows`. The default
+  holdout-audit-driven behavior remains unchanged; the new mode emits non-countable review-only
+  sequence-control rows for manifest accessions missing from the holdout audit so blocker matrices
+  can demand complete candidate coverage. Code/tests touched:
+  `src/catalytic_earth/transfer_scope.py`, `src/catalytic_earth/cli.py`, and
+  `tests/test_transfer_scope.py`.
+- Fixed a current-slice structural lineage bug: `build-external-structural-tm-holdout-path` now
+  prefers the validated artifact-lineage `slice_id` and source artifact paths over stale manifest
+  metadata/default 1025 paths. This kept
+  `artifacts/v3_external_structural_tm_holdout_path_current702_20260616_run1604.json` internally
+  consistent on slice `20260616` and unblocked terminal-decision lineage validation.
+- Built current-slice source-transfer artifacts with suffix `current702_20260616_run1604`, including
+  candidate manifest, evidence plan/export, full40 active-site evidence, heuristic/structure
+  controls, reaction evidence, representation controls, active-site sourcing, current sequence
+  holdout audit, and full47 sequence-control artifacts. There are **105** run1604 artifacts; none are
+  over **45 MB** and JSON/JSONL parsing is clean.
+- Repaired the blocker-matrix input width with current full47 sequence artifacts:
+  `artifacts/v3_external_source_sequence_holdout_audit_current702_20260616_run1604.json`,
+  `artifacts/v3_external_source_sequence_neighborhood_plan_full47_current702_20260616_run1604.json`,
+  `artifacts/v3_external_source_sequence_neighborhood_sample_full47_current702_20260616_run1604.json`,
+  `artifacts/v3_external_source_sequence_alignment_verification_full47_current702_20260616_run1604.json`,
+  `artifacts/v3_external_source_sequence_search_export_full47_current702_20260616_run1604.json`,
+  and audits. The full47 matrix
+  `artifacts/v3_external_source_transfer_blocker_matrix_full47_current702_20260616_run1604.json`
+  audits clean at
+  `artifacts/v3_external_source_transfer_blocker_matrix_full47_audit_current702_20260616_run1604.json`.
+- Matrix result: **47** rows, **0** countable/import-ready rows, review-only. Main blockers are
+  **21** explicit active-site source gaps, **14** heuristic scope mismatches, **12** representation
+  backend-not-selected rows, **2** exact sequence holdouts, and **1** representation near-duplicate
+  holdout.
+- Built a 12-row lane-balanced pilot queue:
+  `artifacts/v3_external_source_pilot_candidate_priority_current702_20260616_run1604.json`.
+  Selected accessions: `C9JRZ8`, `O14756`, `P55263`, `P06746`, `Q8N0X4`, `A2RUC4`, `P00568`,
+  `P27144`, `O95050`, `P51580`, `Q32P41`, and `P33025`.
+- Built pilot review artifacts:
+  `artifacts/v3_external_source_pilot_evidence_packet_current702_20260616_run1604.json`,
+  `artifacts/v3_external_source_pilot_review_decision_export_current702_20260616_run1604.json`,
+  `artifacts/v3_external_source_pilot_evidence_dossiers_current702_20260616_run1604.json`,
+  `artifacts/v3_external_source_pilot_active_site_evidence_decisions_current702_20260616_run1604.json`,
+  `artifacts/v3_external_source_pilot_representation_backend_plan_current702_20260616_run1604.json`,
+  `artifacts/v3_external_source_pilot_representation_backend_sample_current702_20260616_run1604.json`,
+  `artifacts/v3_external_source_review_only_import_safety_audit_current702_20260616_run1604.json`,
+  `artifacts/v3_external_structural_tm_holdout_path_current702_20260616_run1604.json`, and
+  `artifacts/v3_external_source_pilot_success_criteria_current702_20260616_run1604.json`.
+- Pilot state: active-site evidence decisions show **6** explicit active-site-source-present rows,
+  **6** binding-context-only rows, **0** accepted decisions, and **0** import-ready rows. Success
+  criteria is `needs_more_work`: **12** duplicate-screening/factory/review-decision blockers,
+  **11** representation-control blockers, and **6** active-site-source unresolved blockers.
+- Consolidated gate check
+  `artifacts/v3_external_source_transfer_gate_check_current702_20260616_run1604.json` passes
+  **65/66** gates. The sole remaining gate blocker is
+  `external_pilot_representation_sample_review_only`; the current pilot sample is the local
+  deterministic sequence-kmer control and does not satisfy the learned-representation sample plus
+  stability/adjudication requirement. A bounded local-only ESM2 t6/8M attempt
+  `artifacts/v3_external_source_pilot_representation_backend_sample_esm2_t6_8m_current702_20260616_run1604.json`
+  was audited clean but has `embedding_backend_available: false` and **12** pilot rows with
+  `embedding_backend_unavailable`; the model weights are not cached locally and no download was
+  allowed. Follow-up artifacts
+  `artifacts/v3_external_source_pilot_representation_backend_esm2_t6_8m_stability_audit_current702_20260616_run1604.json`
+  and `artifacts/v3_external_source_pilot_representation_adjudication_current702_20260616_run1604.json`
+  record `comparison_backend_unavailable` and **12** unresolved representation rows.
+- Built terminal and review-routing artifacts after the structural lineage fix:
+  `artifacts/v3_external_source_pilot_terminal_decisions_current702_20260616_run1604.json`,
+  `artifacts/v3_external_source_pilot_human_expert_review_queue_current702_20260616_run1604.json`,
+  `artifacts/v3_external_source_pilot_decision_confidence_audit_current702_20260616_run1604.json`,
+  `artifacts/v3_external_source_pilot_decisions_review_normalized_current702_20260616_run1604.json`,
+  and
+  `artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_current702_20260616_run1604.json`.
+  Terminal state is **12** non-countable outcomes: **6** `rejected_active_site_evidence_missing`
+  and **6** `deferred_requires_human_expert`. The normalized human/expert queue contains **6**
+  rows and all artifacts report **0** import-ready/countable rows.
+- Validation: final `PYTHONPATH=src python -m catalytic_earth.cli validate` passed; focused suite
+  `PYTHONPATH=src pytest tests/test_transfer_scope.py tests/test_registry_io.py tests/test_source_trust_tiers.py tests/test_leakage_closure.py tests/test_novelty_admission_gate.py tests/test_external_source_admission_validation.py tests/test_external_import_review_preflight.py tests/test_bronze_preview_row_guardrails.py -q`
+  passed **366 passed, 14 subtests**; full `PYTHONPATH=src pytest -q` passed **2365 passed,
+  1 warning, 244 subtests**. Current-docs artifact reference check
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260616_run1604.json` passed with
+  **0** missing references.
+- Next concrete action: build a current learned pilot-representation backend sample and a matching
+  stability/adjudication artifact for the 12 selected pilot rows, rerun the transfer gate/confidence
+  audit, and complete review/factory/duplicate gates before considering any external-registry-only
+  import. Do not import/apply any labels from run1604 artifacts.
+
 ## Session run - external import closure packet refreshed; no registry apply (2026-06-16, Codex automation)
 
 - Started from current `origin/main` at `a611246f724128feee11857b62058a6bb64a9e5e`, acquired
