@@ -1,0 +1,17 @@
+{
+  "metadata": {
+    "category_counts": {},
+    "deletion_authorized_count": 0,
+    "generated_at": "2026-06-16T15:16:02Z",
+    "included_file_count": 0,
+    "included_total_bytes": 0,
+    "large_file_threshold_bytes": 47185920,
+    "method": "artifact_producer_consumer_manifest",
+    "migration_blocker_count": 0,
+    "policy_version": "artifact_storage_policy_v1_2026_05_17",
+    "producer_command_status_counts": {},
+    "scope": "All current large raw_cache and regenerable_intermediate rows from the storage inventory. Unknown or partially inferred provenance is kept explicit and blocks migration.",
+    "source_inventory": "artifacts/v3_artifact_storage_inventory_current702_20260616_run1503.json"
+  },
+  "rows": []
+}

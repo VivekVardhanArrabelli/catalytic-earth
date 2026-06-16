@@ -11,6 +11,7 @@ from catalytic_earth.external_import_review_preflight import (
     build_external_import_review_ready_preview,
     build_external_import_review_repair_queue,
     build_targeted_expansion_defense_ledger,
+    render_targeted_expansion_defense_ledger_report,
 )
 
 
@@ -269,7 +270,11 @@ class ExternalImportReviewPreflightTests(unittest.TestCase):
                 artifact,
                 packet,
                 previous_ledger={
-                    "expansion_thesis": ["Prior non-random family rationale."],
+                    "expansion_thesis": [
+                        "Prior non-random family rationale.",
+                        "The import-review preflight classifies 275 rows as controlled import-review ready.",
+                        "The selected families remain targeted because they map to prior failure modes.",
+                    ],
                     "count_table": {
                         "current_label_surface": {"countable_labels": 702}
                     },
@@ -301,6 +306,27 @@ class ExternalImportReviewPreflightTests(unittest.TestCase):
                 ],
                 703,
             )
+            dynamic_ledger_text = "\n".join(
+                ledger["expansion_thesis"]
+                + ledger["review_narrative"]["honest_claims_for_review"]
+            )
+            self.assertIn(
+                "contains 5 unique candidate rows: 5 preview rows and 0 repair-surface rows",
+                dynamic_ledger_text,
+            )
+            self.assertIn(
+                "surface of 5 unique external candidates",
+                dynamic_ledger_text,
+            )
+            self.assertNotIn("12,495", dynamic_ledger_text)
+            self.assertNotIn("11,895", dynamic_ledger_text)
+            self.assertNotIn("275 rows", dynamic_ledger_text)
+            report = render_targeted_expansion_defense_ledger_report(ledger)
+            self.assertIn(
+                "| Wave 2 review surface | 5 | 5 preview rows plus 0 repair-surface rows. |",
+                report,
+            )
+            self.assertNotIn("11,895", report)
             self.assertTrue(ledger["validation_checks"]["passed"])
 
     def test_classifies_wave2_repair_surface_rows(self) -> None:

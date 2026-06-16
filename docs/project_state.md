@@ -26,6 +26,42 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **EXTERNAL IMPORT CLOSURE PACKET REFRESHED; APPLY BLOCKED BY EXPLICIT AUTHORIZATION (2026-06-16 automation).**
+  Frozen current702 stayed byte-unchanged at sha
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no registry apply was
+  performed. Fresh run1503 planning refreshes
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run1503_pre_gate.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run1503_pre_gate.json`, and
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260616_run1503_pre_gate.json`
+  confirm the same post-PDE state: combined labels **8728**, expansion rows **8026**, no holes,
+  floor deficit **0**, fingerprint Gini **0.1779**, `metal_dependent_hydrolase` as the only
+  over-cap lane, novelty replay **7565** admit / **414** throttle / **47** reject, **0** ready
+  existing lanes >=150, and top projected clean admits **77**.
+
+  Current closure artifacts for the size-120 source-handle queue are
+  `artifacts/v3_external_import_review_preflight_size120_current702_20260616_run1503.json`,
+  `artifacts/v3_external_import_review_ready_preview_size120_current702_20260616_run1503.json`,
+  `artifacts/v3_external_import_review_repair_queue_size120_current702_20260616_run1503.json`,
+  `artifacts/v3_external_batch_import_approval_packet_size120_current702_20260616_run1503.json`,
+  and
+  `artifacts/v3_targeted_expansion_defense_ledger_size120_current702_20260616_run1503.json`.
+  The packet validates **833** review-surface rows: **197** `controlled_import_review_ready`
+  rows and **636** blocked rows (**473** coordinate blockers, **121** locator blockers,
+  **13** current702 duplicates, **27** external duplicates, **2** hard blockers). It is a
+  decision/review packet only: `ready_for_production_label_import` remains false, production
+  import is not authorized, and label-factory gate plus explicit controlled batch approval plus
+  registry-change authorization are still required before any external-registry-only apply.
+  The defense ledger builder was fixed so scoped queue reports derive the Wave 2 review-surface
+  counts from the current preflight instead of carrying stale 12,495-row wording from older ledgers.
+  Artifact storage policy check
+  `artifacts/v3_artifact_storage_policy_check_current702_20260616_run1503.json` is blocked by
+  **4** pre-existing large unclassified 2026-06-09/10 artifacts, while
+  `artifacts/v3_artifact_migration_readiness_plan_current702_20260616_run1503.json` authorizes
+  **0** migrations/deletions. Do not delete or move those artifacts without a committed manifest.
+  Next exact action: obtain explicit controlled batch approval/label-factory authorization for
+  the **197** machine-clean rows or continue non-import repair by restoring disk free above
+  **10 GiB** and materializing coordinates/locators for the **636** blocked rows.
+
 - **EXTERNAL SOURCE-HANDLE SCALEOUT QUEUE VALIDATED; NO REGISTRY APPLY (2026-06-16 automation).**
   Frozen current702 stayed byte-unchanged at sha
   `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no label registry was
@@ -1333,7 +1369,8 @@ artifact-backed mechanism diagnostics.
   `src/catalytic_earth/reaction_saturation_trim.py` + runner
   `scripts/trim_reaction_saturation.py` + CLI `build-reaction-saturation-trim` +
   `tests/test_reaction_saturation_trim.py`. The trim
-  (`artifacts/v3_reaction_saturation_trim_preview_current702_20260614.json`, `work/...md`)
+  (`artifacts/v3_reaction_saturation_trim_preview_current702_20260614.json`,
+  `work/reaction_saturation_trim_preview_current702_20260614.md`)
   cut the **9** reaction-saturated families (labels/rxn > 10 AND over the reaction-aware
   cap) down to the reaction-aware cap by keeping a reaction- and sequence-diverse subset:
   >=1 row per distinct reaction first (reaction diversity fully preserved in all 9), then

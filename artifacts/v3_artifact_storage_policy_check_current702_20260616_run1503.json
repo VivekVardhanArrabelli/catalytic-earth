@@ -1,0 +1,30 @@
+{
+  "blockers": [
+    {
+      "path": "artifacts/v3_external_bulk_ingestion_scaleout_wave2_current702_20260609.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_import_review_preflight_current702_20260609.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_import_review_preflight_current702_20260610.json",
+      "reason": "large artifact requires manual category before migration"
+    },
+    {
+      "path": "artifacts/v3_external_scaleout_shard_metal_phosphoryl_glycoside_current702_20260609.json",
+      "reason": "large artifact requires manual category before migration"
+    }
+  ],
+  "metadata": {
+    "blocker_count": 4,
+    "deletion_authorized_count": 0,
+    "method": "artifact_storage_policy_check",
+    "policy_version": "artifact_storage_policy_v1_2026_05_17",
+    "source_file_count": 14684,
+    "source_inventory_method": "artifact_storage_inventory",
+    "source_total_bytes": 4979964984,
+    "status": "blocked"
+  }
+}

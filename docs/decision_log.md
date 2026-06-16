@@ -3,6 +3,39 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-16: CONTROLLED EXTERNAL IMPORT QUEUE STILL REQUIRES EXPLICIT BATCH AUTHORIZATION
+
+Decision: the size-120 external source-handle queue now has a current closure packet, but it is
+not autonomous apply authority. The **197** `controlled_import_review_ready` rows are machine-clean
+for one controlled batch approval only after a separate approval records the label-factory gate,
+explicit controlled import-review lane approval, and production registry-change authorization.
+Until those approvals exist, rows remain preview/review-only and must not be appended to the
+external registry.
+
+Implementation: regenerated the closure packet from the scoped size-120 materialization outputs:
+`artifacts/v3_external_import_review_preflight_size120_current702_20260616_run1503.json`,
+`artifacts/v3_external_import_review_ready_preview_size120_current702_20260616_run1503.json`,
+`artifacts/v3_external_import_review_repair_queue_size120_current702_20260616_run1503.json`,
+`artifacts/v3_external_batch_import_approval_packet_size120_current702_20260616_run1503.json`,
+and
+`artifacts/v3_targeted_expansion_defense_ledger_size120_current702_20260616_run1503.json`.
+The queue validates **833** review-surface rows: **197** controlled-ready and **636** blocked
+(**473** coordinate blockers, **121** locator blockers, **13** current702 duplicates, **27**
+external duplicates, **2** hard blockers). Guardrails remain non-production:
+`production_import_authorized_by_this_artifact: false`, `production_registry_edited: false`, and
+`label_import_performed: false`.
+
+Code decision: `build_targeted_expansion_defense_ledger` must regenerate Wave 2 queue counts from
+the current preflight. It now filters out stale dynamic count sentences from previous ledgers and
+renders the review-surface note from current `preview_rows`, `repair_surface_rows`, and
+`review_surface_rows`; regression coverage in `tests/test_external_import_review_preflight.py`
+prevents the old 12,495-row wording from leaking into scoped ledgers.
+
+Follow-up: do not import from these artifacts. Either obtain explicit controlled batch approval
+plus label-factory/registry-change authorization for the **197** ready rows, or continue repair on
+the **636** blocked rows after restoring disk free space above **10 GiB** for coordinate
+materialization.
+
 ## 2026-06-16: PROVISIONAL BULK PREVIEW ROWS ARE VALID ADMISSION INPUTS, NOT IMPORTS
 
 Decision: `ce-external-admission-16-validation` accepts both
@@ -1116,7 +1149,8 @@ REWRITE that drops only the demoted entry_ids and re-validates every kept label 
 runner printed the frozen current702 sha identical before and after the rewrite).
 
 Result (`artifacts/v3_reaction_saturation_trim_preview_current702_20260614.json`,
-`work/...md`; measured after rebasing onto the protein-kinase 37fp lane on main): 9
+`work/reaction_saturation_trim_preview_current702_20260614.md`; measured after rebasing onto the
+protein-kinase 37fp lane on main): 9
 families trimmed, 429 rows demoted, expansion 7363 -> 6934, combined 8065 -> 7636,
 positive_bronze 6352 -> 5923 (oos_bronze unchanged 1696; counters stay separate). Per
 family (all clamp to the floor because none earns >100 at rate 8): SOD 166->100 (1 rxn),

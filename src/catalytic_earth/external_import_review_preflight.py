@@ -1748,16 +1748,27 @@ def build_targeted_expansion_defense_ledger(
         and "333" not in item
         and "845" not in item
         and "Wave 2 materialization" not in item
+        and "import-review preflight classifies" not in item
+        and "selected families remain targeted because" not in item
     ]
+    ready_count = approval_packet["batch_approval"][
+        "rows_that_can_become_countable_after_one_batch_approval"
+    ]
+    blocked_count = approval_packet["batch_approval"]["blocked_rows_remaining"]
+    preview_rows = preflight["counts"]["preview_rows"]
+    repair_surface_rows = preflight["counts"]["repair_surface_rows"]
+    review_surface_rows = preflight["counts"]["review_surface_rows"]
     expansion_thesis = previous_thesis + [
         (
-            "The latest Wave 2 materialization/preflight surface contains 12,495 "
-            "unique candidate rows: 600 preview rows and 11,895 repair-surface rows."
+            "The latest Wave 2 materialization/preflight surface contains "
+            f"{review_surface_rows} unique candidate rows: {preview_rows} "
+            f"preview rows and {repair_surface_rows} repair-surface rows."
         ),
         (
-            "The import-review preflight classifies 275 rows as controlled "
-            "import-review ready, with all remaining rows routed to explicit "
-            "duplicate, locator, coordinate, OOS, structural-screen, or hard-blocker gates."
+            f"The import-review preflight classifies {ready_count} rows as "
+            "controlled import-review ready, with all remaining rows routed "
+            "to explicit duplicate, locator, coordinate, OOS, structural-screen, "
+            "or hard-blocker gates."
         ),
         (
             "The selected families remain targeted because they map to prior "
@@ -1770,9 +1781,6 @@ def build_targeted_expansion_defense_ledger(
         .get("current_label_surface", {})
         .get("countable_labels", 702)
     )
-    ready_count = approval_packet["batch_approval"][
-        "rows_that_can_become_countable_after_one_batch_approval"
-    ]
     projected_after_batch = baseline_labels + ready_count
     ledger = {
         "artifact_id": _defense_ledger_artifact_id(artifact_date),
@@ -1840,7 +1848,7 @@ def build_targeted_expansion_defense_ledger(
             "honest_claims_for_review": [
                 (
                     "Current main has a full Wave 2 materialization/preflight "
-                    "surface of 12,495 unique external candidates."
+                    f"surface of {review_surface_rows} unique external candidates."
                 ),
                 (
                     f"{ready_count} rows are machine-clean for one controlled "
@@ -1857,7 +1865,7 @@ def build_targeted_expansion_defense_ledger(
                     "batch approval, label-factory gate, and registry-change authorization."
                 ),
                 (
-                    f"{approval_packet['batch_approval']['blocked_rows_remaining']} rows remain blocked "
+                    f"{blocked_count} rows remain blocked "
                     "behind concrete mechanical or policy gates."
                 ),
                 (
@@ -1891,6 +1899,7 @@ def build_targeted_expansion_defense_ledger(
 
 def render_targeted_expansion_defense_ledger_report(ledger: dict[str, Any]) -> str:
     count_table = ledger["count_table"]
+    wave2_counts = count_table["wave2_import_review_preflight"]
     lines = [
         "# Targeted Expansion Defense Ledger - current702",
         "",
@@ -1907,8 +1916,12 @@ def render_targeted_expansion_defense_ledger_report(ledger: dict[str, Any]) -> s
             "unchanged by this packet. |"
         ).format(count_table["current_label_surface"]["countable_labels"]),
         (
-            "| Wave 2 review surface | {} | 600 preview rows plus 11,895 repair-surface rows. |"
-        ).format(count_table["wave2_import_review_preflight"]["review_surface_rows"]),
+            "| Wave 2 review surface | {} | {} preview rows plus {} repair-surface rows. |"
+        ).format(
+            wave2_counts["review_surface_rows"],
+            wave2_counts["preview_rows"],
+            wave2_counts["repair_surface_rows"],
+        ),
         (
             "| Controlled import-review ready | {} | Can move together after one final controlled batch approval. |"
         ).format(

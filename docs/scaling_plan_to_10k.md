@@ -16,6 +16,34 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-16 automation update: external import closure packet refreshed; no registry apply.**
+Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; no label registry rows were written.
+Fresh run1503 coverage/novelty/factory refreshes confirm combined labels **8728**, no holes, floor
+deficit **0**, Gini **0.1779**, novelty replay **7565** admit / **414** throttle / **47** reject,
+**0** ready existing lanes >=150, and top projected clean admits **77**.
+
+The current closure artifacts for the size-120 source-handle queue are
+`artifacts/v3_external_import_review_preflight_size120_current702_20260616_run1503.json`,
+`artifacts/v3_external_import_review_ready_preview_size120_current702_20260616_run1503.json`,
+`artifacts/v3_external_import_review_repair_queue_size120_current702_20260616_run1503.json`,
+`artifacts/v3_external_batch_import_approval_packet_size120_current702_20260616_run1503.json`,
+and
+`artifacts/v3_targeted_expansion_defense_ledger_size120_current702_20260616_run1503.json`.
+They validate **833** review-surface rows: **197** controlled-import-review-ready rows and
+**636** blocked rows (**473** coordinate, **121** locator, **13** current702 duplicate, **27**
+external duplicate, **2** hard blockers). This is still not an import: `ready_for_production_label_import`
+is false, production import is not authorized, and the packet requires explicit controlled batch
+approval, label-factory gate/decision, and registry-change authorization before any external
+registry apply. The defense ledger builder now derives scoped queue counts from the current
+preflight instead of carrying stale 12,495-row wording from older ledgers. Next action: either
+obtain that explicit batch/label-factory authorization for the **197** machine-clean rows, or
+continue non-import repair after restoring disk free above **10 GiB** for the **636** blocked rows.
+Storage-policy check
+`artifacts/v3_artifact_storage_policy_check_current702_20260616_run1503.json` is blocked by
+**4** pre-existing large unclassified 2026-06-09/10 artifacts, and
+`artifacts/v3_artifact_migration_readiness_plan_current702_20260616_run1503.json` authorizes
+**0** migrations/deletions; do not perform ad hoc artifact cleanup.
+
 **2026-06-16 automation update: source-handle scaleout queue validated; no registry apply.**
 Frozen current702 stayed byte-unchanged at sha `5eec9bef...`, and no label registry rows were
 written. Current post-PDE planning refreshes with suffix `20260616_run1403_pre_lane` confirm

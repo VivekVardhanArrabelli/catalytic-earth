@@ -1,5 +1,66 @@
 # Handoff
 
+## Session run - external import closure packet refreshed; no registry apply (2026-06-16, Codex automation)
+
+- Started from current `origin/main` at `a611246f724128feee11857b62058a6bb64a9e5e`, acquired
+  `.git/catalytic-earth-automation.lock`, and confirmed `git pull --ff-only origin main` was
+  already up to date. Frozen current702 sha before and after work was
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no registry apply was
+  performed.
+- Baseline safety was green: `PYTHONPATH=src python -m catalytic_earth.cli validate` passed and
+  the focused source/leakage/novelty/import path suite passed **293 passed, 14 subtests**.
+- Fresh planning refreshes:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run1503_pre_gate.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run1503_pre_gate.json`, and
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260616_run1503_pre_gate.json`.
+  Coverage remains **8728** combined labels = **702** frozen + **8026** expansion, with **no
+  holes**, floor deficit **0**, Gini **0.1779**, and only `metal_dependent_hydrolase` over cap.
+  Novelty replay remains **7565** admit / **414** throttle / **47** reject. Factory has **0**
+  ready existing lanes >=150 and top projected clean admits **77**.
+- Advanced the 197-row controlled-review-ready queue through the current closure packet:
+  `artifacts/v3_external_import_review_preflight_size120_current702_20260616_run1503.json`,
+  `artifacts/v3_external_import_review_ready_preview_size120_current702_20260616_run1503.json`,
+  `artifacts/v3_external_import_review_repair_queue_size120_current702_20260616_run1503.json`,
+  `artifacts/v3_external_batch_import_approval_packet_size120_current702_20260616_run1503.json`,
+  and `artifacts/v3_targeted_expansion_defense_ledger_size120_current702_20260616_run1503.json`.
+  The packet validates **833** review-surface rows: **197** `controlled_import_review_ready`
+  and **636** blocked rows (**473** coordinate blockers, **121** locator blockers, **13**
+  current702 duplicates, **27** external duplicates, **2** hard blockers). It is still
+  review-only: `ready_for_production_label_import` is false and production import is not
+  authorized.
+- Fixed stale defense-ledger wording in
+  `src/catalytic_earth/external_import_review_preflight.py`: scoped queue ledgers now derive the
+  Wave 2 surface sentence from current `preview_rows`, `repair_surface_rows`, and
+  `review_surface_rows`, and filter stale dynamic count claims from previous ledgers. Regression
+  coverage is in `tests/test_external_import_review_preflight.py`.
+- Focused closure tests passed:
+  `PYTHONPATH=src pytest tests/test_external_import_review_preflight.py tests/test_cli.py::CliTests::test_external_import_review_preflight_parser_defaults tests/test_cli.py::CliTests::test_external_import_closure_packet_parser_defaults -q`
+  -> **4 passed**.
+- Final validation passed: full pytest completed with **2364 passed, 1 warning, 244 subtests**,
+  JSON/JSONL parse passed, registry and run1503 artifact file-size scans found no files over
+  **45 MB**, and `git diff --check` passed.
+- Safety notes: data/registry shard sizes are under **45 MB**; current run artifacts are under
+  **45 MB**. Disk free remains about **8 GiB**, below the **10 GiB** coordinate-download floor.
+- Artifact storage policy check
+  `artifacts/v3_artifact_storage_policy_check_current702_20260616_run1503.json` is blocked by
+  **4** pre-existing large unclassified 2026-06-09/10 artifacts. Follow-up readiness plan
+  `artifacts/v3_artifact_migration_readiness_plan_current702_20260616_run1503.json` authorizes
+  **0** migrations/deletions, so do not clean these up ad hoc.
+- Bounded non-import follow-up:
+  `work/external_import_repair_queue_priorities_size120_current702_20260616_run1503.md` ranks the
+  **636** blocked rows. Highest-yield repairs are PLP children coordinate blockers (**106**),
+  phosphoryl transfer coordinate blockers (**105**), redox oxygen/sulfur coordinate blockers
+  (**76**), radical-SAM/cobalamin coordinate blockers (**73**), and near-orphan locator blockers
+  (**70**).
+- Durable-doc reference check
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260616_run1503.json` passes with
+  **0** missing references after replacing two inherited `work/...md` placeholders with the
+  concrete reaction-saturation trim report path.
+- Next concrete action: do **not** import from the run1503 closure artifacts. Obtain explicit
+  controlled batch approval plus label-factory and registry-change authorization for the **197**
+  ready rows, or continue non-import repair by restoring disk free above **10 GiB** and rerunning
+  materialization for the **636** blocked rows.
+
 ## Session run - external source-handle queue validated; no registry apply (2026-06-16, Codex automation)
 
 - Started from current `origin/main` at `0efc3a328cfb6f011c6e4bdbd628ee4f187809ae`, acquired
