@@ -53,6 +53,13 @@ ADMISSION_READY_STATES = {
 }
 
 PREVIEW_SOURCE_TERMINAL_STATE = "external_countable_preflight_candidate"
+PROVISIONAL_PREVIEW_SOURCE_TERMINAL_STATE = (
+    "provisional_external_countable_preflight_candidate"
+)
+PREVIEW_SOURCE_TERMINAL_STATES = {
+    PREVIEW_SOURCE_TERMINAL_STATE,
+    PROVISIONAL_PREVIEW_SOURCE_TERMINAL_STATE,
+}
 COORDINATE_READY_STATUSES = {
     "experimental_pdb_coordinate_provenance_available",
     "afdb_predicted_coordinate_provenance_available",
@@ -512,7 +519,7 @@ def _classify_admission_row(
 ) -> tuple[str, list[str], str, str]:
     provenance_issues = _source_provenance_issues(full_row)
     preview_source_hashes = preview_row.get("source_hashes", {}) or {}
-    if preview_row.get("terminal_state") != PREVIEW_SOURCE_TERMINAL_STATE:
+    if preview_row.get("terminal_state") not in PREVIEW_SOURCE_TERMINAL_STATES:
         provenance_issues.append("preview_row_not_external_preflight_candidate")
     if preview_row.get("import_preview_candidate") is not True:
         provenance_issues.append("preview_row_missing_import_preview_candidate_flag")
@@ -902,7 +909,7 @@ def build_external_source_admission_validation(
         if full_row is None:
             missing_from_pilot.append(str(candidate_id))
             continue
-        if full_row.get("terminal_state") != PREVIEW_SOURCE_TERMINAL_STATE:
+        if full_row.get("terminal_state") not in PREVIEW_SOURCE_TERMINAL_STATES:
             non_preflight_matches.append(str(candidate_id))
         rows.append(
             _row_payload(
@@ -942,8 +949,9 @@ def build_external_source_admission_validation(
         "schema_version": SCHEMA_VERSION,
         "created_utc": created,
         "scope": (
-            "Admission validation for the first 16 external import-preview "
-            "candidates from the current702 reviewed UniProt external ingestion lane."
+            f"Admission validation for {expected_preview_count} external "
+            "import-preview candidates from the current702 reviewed UniProt "
+            "external ingestion lane."
         ),
         "source_artifacts": {
             "external_ingestion_pilot": _source_record(pilot_path),
@@ -953,6 +961,9 @@ def build_external_source_admission_validation(
         },
         "classification_policy": {
             "terminal_states": list(TERMINAL_STATES),
+            "accepted_preview_source_terminal_states": sorted(
+                PREVIEW_SOURCE_TERMINAL_STATES
+            ),
             "direct_ready_requires": [
                 "reviewed Swiss-Prot/UniProt status",
                 "source hashes and source URLs present",
@@ -1085,10 +1096,16 @@ def build_external_source_admission_ready_preview(
 def render_external_source_admission_validation_report(
     artifact: dict[str, Any],
 ) -> str:
+    expected_count = artifact["input_reconciliation"]["expected_preview_count"]
+    validated_count = artifact["counts"]["validated_rows"]
+    accepted_states = artifact["classification_policy"].get(
+        "accepted_preview_source_terminal_states", [PREVIEW_SOURCE_TERMINAL_STATE]
+    )
+    accepted_state_text = ", ".join(f"`{state}`" for state in accepted_states)
     lines = [
-        "# External Source Admission Validation - 16 current702 candidates",
+        f"# External Source Admission Validation - {expected_count} current702 candidates",
         "",
-        "Read-only admission validation for the first 16 reviewed UniProt external "
+        f"Read-only admission validation for {expected_count} reviewed UniProt external "
         "import-preview rows. No labels, registries, imports, ontologies, models, "
         "thresholds, splits, coordinates, or locator sidecars were edited.",
         "",
@@ -1152,8 +1169,8 @@ def render_external_source_admission_validation_report(
             "",
             "## Mechanical Findings",
             "",
-            "- All 16 preview rows reconcile exactly to pilot rows in `external_countable_preflight_candidate` state.",
-            "- All 16 rows have reviewed Swiss-Prot status, source hashes/provenance, exact residue locators, PDB/AFDB handles, Rhea/specific EC provenance, and no recomputed exact current702 accession or sequence conflict.",
+            f"- {validated_count} preview rows were reconciled to pilot rows; accepted source preflight states are {accepted_state_text}.",
+            f"- {validated_count} rows were checked for reviewed Swiss-Prot status, source hashes/provenance, exact residue locators, PDB/AFDB handles, Rhea/specific EC provenance, and recomputed exact current702 accession or sequence conflicts.",
             f"- {artifact['counts']['pending_locator_materialization_rows']} rows have a matching local coordinate file in existing artifacts and remain pending source-free locator materialization.",
             f"- {artifact['counts']['pending_coordinate_materialization_rows']} rows have coordinate provenance but no matching local CIF in the current artifact cache, so they are pending coordinate materialization before locator sidecar materialization.",
             "- No direct production/import-ready label candidate is emitted; the ready preview is an admission/materialization queue only.",

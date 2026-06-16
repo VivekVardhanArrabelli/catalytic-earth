@@ -1,0 +1,162 @@
+{
+  "artifact_id": "v3_external_materialization_wave2_source_free_locator_uniprot_Q7Z5W3_current702_20260609",
+  "candidate_id": "uniprot:Q7Z5W3",
+  "coordinate_provenance": {
+    "afdb_or_pdb_identifier": "6L8U",
+    "alphafold_ids": [
+      "Q7Z5W3"
+    ],
+    "coordinate_download_performed": false,
+    "coordinate_download_policy": "bounded_wave2_materialization_above_10_gib_floor",
+    "coordinate_local_residue_identity_validated": true,
+    "coordinate_mapping_basis": "UniProt residue positions map directly to AlphaFoldDB/UniProt sequence coordinates or to UniProt-referenced PDB coordinate provenance",
+    "coordinate_path": "artifacts/external_materialization_wave2_coordinates_current702_20260609/pdb_6L8U.cif",
+    "coordinate_sha256": "cd4c9bf247f148262a94b754b7c11347e387eb5fc2b6dae68c307d9d5650221b",
+    "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+    "pdb_ids": [
+      "6L8U"
+    ]
+  },
+  "created_utc": "2026-06-16T14:03:01Z",
+  "forbidden_feature_audit": {
+    "benchmark_role": false,
+    "ec_identifiers": false,
+    "entry_name": false,
+    "fingerprint_id": false,
+    "label_type": false,
+    "mechanism_text": false,
+    "panel_id_as_feature": false,
+    "rhea_identifiers": false,
+    "source_prose": false,
+    "source_review_rationale": false
+  },
+  "guardrails": {
+    "label_import_performed": false,
+    "production_registry_edited": false,
+    "review_only": true,
+    "source_text_or_label_fields_used_as_predictive_features": false
+  },
+  "locator_policy": "review_only_exact_position_coordinate_local_residue_identity",
+  "ready_for_controlled_import_review": true,
+  "ready_for_predicted_geometry_scoring": false,
+  "residue_locators": [
+    {
+      "coordinate_independent_provenance": {
+        "coordinate_local_residue_identity_validated": true,
+        "heldout_rows_used": false,
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
+        "reviewed_feature_code": "BINDING",
+        "reviewed_feature_type": "Binding site",
+        "sequence_position_uniprot_declared": true,
+        "source_text_used": false
+      },
+      "end": 46,
+      "evidence_codes": [
+        "ECO:0000269",
+        "ECO:0000312"
+      ],
+      "ligand_id": "ChEBI:CHEBI:59789",
+      "ligand_name": "S-adenosyl-L-methionine",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "ARG",
+      "reviewed_feature_code": "BINDING",
+      "reviewed_feature_type": "Binding site",
+      "role_hint": "reviewed_sam_binding_feature",
+      "sequence_position": 46
+    },
+    {
+      "coordinate_independent_provenance": {
+        "coordinate_local_residue_identity_validated": true,
+        "heldout_rows_used": false,
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
+        "reviewed_feature_code": "BINDING",
+        "reviewed_feature_type": "Binding site",
+        "sequence_position_uniprot_declared": true,
+        "source_text_used": false
+      },
+      "end": 76,
+      "evidence_codes": [
+        "ECO:0000269",
+        "ECO:0000312"
+      ],
+      "ligand_id": "ChEBI:CHEBI:59789",
+      "ligand_name": "S-adenosyl-L-methionine",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "ASN",
+      "reviewed_feature_code": "BINDING",
+      "reviewed_feature_type": "Binding site",
+      "role_hint": "reviewed_sam_binding_feature",
+      "sequence_position": 76
+    },
+    {
+      "coordinate_independent_provenance": {
+        "coordinate_local_residue_identity_validated": true,
+        "heldout_rows_used": false,
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
+        "reviewed_feature_code": "BINDING",
+        "reviewed_feature_type": "Binding site",
+        "sequence_position_uniprot_declared": true,
+        "source_text_used": false
+      },
+      "end": 110,
+      "evidence_codes": [
+        "ECO:0000269",
+        "ECO:0000312"
+      ],
+      "ligand_id": "ChEBI:CHEBI:59789",
+      "ligand_name": "S-adenosyl-L-methionine",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "ASP",
+      "reviewed_feature_code": "BINDING",
+      "reviewed_feature_type": "Binding site",
+      "role_hint": "reviewed_sam_binding_feature",
+      "sequence_position": 110
+    },
+    {
+      "coordinate_independent_provenance": {
+        "coordinate_local_residue_identity_validated": true,
+        "heldout_rows_used": false,
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
+        "reviewed_feature_code": "BINDING",
+        "reviewed_feature_type": "Binding site",
+        "sequence_position_uniprot_declared": true,
+        "source_text_used": false
+      },
+      "end": 164,
+      "evidence_codes": [
+        "ECO:0000269",
+        "ECO:0000312"
+      ],
+      "ligand_id": "ChEBI:CHEBI:59789",
+      "ligand_name": "S-adenosyl-L-methionine",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "MET",
+      "reviewed_feature_code": "BINDING",
+      "reviewed_feature_type": "Binding site",
+      "role_hint": "reviewed_sam_binding_feature",
+      "sequence_position": 164
+    }
+  ],
+  "schema_version": "v3.external_materialization_wave2_source_free_locator_sidecar",
+  "sidecar_path": "artifacts/external_materialization_wave2_size120_source_free_locators_current702_20260616_run1403/uniprot_Q7Z5W3.json",
+  "source_accession": "Q7Z5W3",
+  "source_family_lane": "radical-SAM/cobalamin",
+  "source_free_active_site_locator_status": "ready_coordinate_local_residue_identity",
+  "source_hashes": {
+    "rhea_records_sha256": "dc3161514ec954f41c9f613037b83fbeaa06e36ed25077eca3fdc4610080f223",
+    "source_query_sha256": "8b766711a1b4e60caf9048ce0a54243085a87dfc69df860630b8636ace551fe5",
+    "uniprot_entry_record_sha256": "fb3a876ab68a7817360252fd19c8e3f7bd489673269a0ae9081a400eca30a4d8",
+    "uniprot_search_row_sha256": "d001b920b0e3ace87712c477d1aa29937a46c9777aa609d447d9484bc20c0891"
+  },
+  "source_terminal_state": "locator_ready_candidate",
+  "split_protection": {
+    "allowed_for_threshold_selection": false,
+    "allowed_for_training": false,
+    "ready_for_label_import": false,
+    "review_only": true
+  }
+}

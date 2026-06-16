@@ -8,6 +8,7 @@ from pathlib import Path
 from catalytic_earth.external_source_admission_validation import (
     build_external_source_admission_validation,
     build_external_source_admission_ready_preview,
+    render_external_source_admission_validation_report,
 )
 
 
@@ -19,7 +20,13 @@ def _source_hashes(seed: str) -> dict[str, str]:
     }
 
 
-def _pilot_row(accession: str, *, pdb_id: str, seed: str) -> dict[str, object]:
+def _pilot_row(
+    accession: str,
+    *,
+    pdb_id: str,
+    seed: str,
+    terminal_state: str = "external_countable_preflight_candidate",
+) -> dict[str, object]:
     source_hashes = _source_hashes(seed)
     return {
         "stable_candidate_key": f"external_source_ingestion:uniprot:{accession}",
@@ -28,7 +35,7 @@ def _pilot_row(accession: str, *, pdb_id: str, seed: str) -> dict[str, object]:
         "target_family_lane": "redox oxygen/sulfur",
         "lane_id": "redox_oxygen_sulfur",
         "source_query": "reviewed test query",
-        "terminal_state": "external_countable_preflight_candidate",
+        "terminal_state": terminal_state,
         "reviewed_status": "reviewed",
         "residue_locators": [
             {
@@ -158,6 +165,81 @@ class ExternalSourceAdmissionValidationTests(unittest.TestCase):
             )
             self.assertEqual(ready_preview["candidate_count"], 2)
             self.assertFalse(ready_preview["rows"][0]["ready_for_production_label_import"])
+
+    def test_accepts_provisional_bulk_preview_rows_for_materialization_queue(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            artifacts_dir = root / "artifacts"
+            artifacts_dir.mkdir()
+            manifest_path = root / "manifest.json"
+            label_registry_path = root / "labels.json"
+            manifest_path.write_text(json.dumps({"rows": []}), encoding="utf-8")
+            label_registry_path.write_text("[]", encoding="utf-8")
+
+            row = _pilot_row(
+                "PBULK",
+                pdb_id="1XYZ",
+                seed="a",
+                terminal_state="provisional_external_countable_preflight_candidate",
+            )
+            pilot = {
+                "artifact_id": "bulk",
+                "candidate_count": 1,
+                "lane_summaries": [
+                    {"target_family_lane": "redox oxygen/sulfur"}
+                ],
+                "source_artifacts": {
+                    "current_manifest": {"path": str(manifest_path)},
+                    "label_registry": {"path": str(label_registry_path)},
+                },
+                "rows": [row],
+            }
+            preview = {
+                "artifact_id": "bulk_preview",
+                "candidate_count": 1,
+                "source_artifacts": {
+                    "external_ingestion_pilot": {"sha256": ""}
+                },
+                "rows": [
+                    {
+                        "candidate_id": row["candidate_id"],
+                        "terminal_state": (
+                            "provisional_external_countable_preflight_candidate"
+                        ),
+                        "import_preview_candidate": True,
+                        "source_hashes": row["source_hashes"],
+                    }
+                ],
+            }
+            pilot_path = root / "pilot.json"
+            preview_path = root / "preview.json"
+            pilot_path.write_text(json.dumps(pilot), encoding="utf-8")
+            preview_path.write_text(json.dumps(preview), encoding="utf-8")
+
+            artifact = build_external_source_admission_validation(
+                pilot_path=pilot_path,
+                import_preview_path=preview_path,
+                expected_preview_count=1,
+                artifacts_dir=artifacts_dir,
+                locator_sidecar_dirs=(root / "missing_locators",),
+                created_utc="2026-06-08T00:00:00Z",
+            )
+
+            self.assertTrue(artifact["validation_checks"]["passed"])
+            self.assertTrue(
+                artifact["validation_checks"]["preview_rows_match_pilot_preflight_state"]
+            )
+            self.assertEqual(artifact["counts"]["admission_ready_rows"], 1)
+            self.assertEqual(
+                artifact["rows"][0]["terminal_state"],
+                "admission_ready_pending_coordinate_materialization",
+            )
+            report = render_external_source_admission_validation_report(artifact)
+            self.assertIn("Validation - 1 current702 candidates", report)
+            self.assertIn(
+                "provisional_external_countable_preflight_candidate", report
+            )
+            self.assertNotIn("All 16", report)
 
 
 if __name__ == "__main__":

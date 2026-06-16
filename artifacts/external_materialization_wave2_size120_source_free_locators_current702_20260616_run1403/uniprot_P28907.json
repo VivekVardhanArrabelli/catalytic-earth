@@ -1,0 +1,161 @@
+{
+  "artifact_id": "v3_external_materialization_wave2_source_free_locator_uniprot_P28907_current702_20260609",
+  "candidate_id": "uniprot:P28907",
+  "coordinate_provenance": {
+    "afdb_or_pdb_identifier": "1YH3",
+    "alphafold_ids": [
+      "P28907"
+    ],
+    "coordinate_download_performed": false,
+    "coordinate_download_policy": "coordinate_downloads_disabled_because_run_started_below_10_gib_floor",
+    "coordinate_local_residue_identity_validated": false,
+    "coordinate_mapping_basis": "UniProt residue positions map directly to AlphaFoldDB/UniProt sequence coordinates or to UniProt-referenced PDB coordinate provenance",
+    "coordinate_path": null,
+    "coordinate_sha256": null,
+    "coordinate_source_status": "experimental_pdb_coordinate_provenance_available",
+    "pdb_ids": [
+      "1YH3",
+      "1ZVM",
+      "2EF1",
+      "2HCT",
+      "2I65",
+      "2I66",
+      "2I67",
+      "2O3Q",
+      "2O3R",
+      "2O3S",
+      "2O3T",
+      "2O3U",
+      "2PGJ",
+      "2PGL",
+      "3DZF",
+      "3DZG",
+      "3DZH",
+      "3DZI",
+      "3DZJ",
+      "3DZK",
+      "3F6Y",
+      "3I9M",
+      "3I9N",
+      "3OFS",
+      "3RAJ",
+      "3ROK",
+      "3ROM",
+      "3ROP",
+      "3ROQ",
+      "3U4H",
+      "3U4I",
+      "4CMH",
+      "4F45",
+      "4F46",
+      "4OGW",
+      "4TMF",
+      "4XJS",
+      "4XJT",
+      "5F1K",
+      "5F1O",
+      "5F21",
+      "6EDR",
+      "6VUA",
+      "7DHA",
+      "7DUO",
+      "7VKE",
+      "8BYU",
+      "8D0M",
+      "8IL3",
+      "8P8C",
+      "8VAU",
+      "8ZYE",
+      "9GOX",
+      "9GOY"
+    ]
+  },
+  "created_utc": "2026-06-16T14:03:01Z",
+  "forbidden_feature_audit": {
+    "benchmark_role": false,
+    "ec_identifiers": false,
+    "entry_name": false,
+    "fingerprint_id": false,
+    "label_type": false,
+    "mechanism_text": false,
+    "panel_id_as_feature": false,
+    "rhea_identifiers": false,
+    "source_prose": false,
+    "source_review_rationale": false
+  },
+  "guardrails": {
+    "label_import_performed": false,
+    "production_registry_edited": false,
+    "review_only": true,
+    "source_text_or_label_fields_used_as_predictive_features": false
+  },
+  "locator_policy": "review_only_exact_position_locator_pending_coordinate_identity",
+  "ready_for_controlled_import_review": false,
+  "ready_for_predicted_geometry_scoring": false,
+  "residue_locators": [
+    {
+      "coordinate_independent_provenance": {
+        "coordinate_local_residue_identity_validated": false,
+        "heldout_rows_used": false,
+        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "reviewed_feature_code": "ACT_SITE",
+        "reviewed_feature_type": "Active site",
+        "sequence_position_uniprot_declared": true,
+        "source_text_used": false
+      },
+      "end": 119,
+      "evidence_codes": [
+        "ECO:0000305"
+      ],
+      "ligand_id": null,
+      "ligand_name": null,
+      "locator_confidence": 0.5,
+      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "reviewed_feature_code": "ACT_SITE",
+      "reviewed_feature_type": "Active site",
+      "role_hint": "reviewed_active_site_feature",
+      "sequence_position": 119
+    },
+    {
+      "coordinate_independent_provenance": {
+        "coordinate_local_residue_identity_validated": false,
+        "heldout_rows_used": false,
+        "method": "reviewed_exact_position_source_free_locator_sidecar_without_coordinate_download",
+        "reviewed_feature_code": "ACT_SITE",
+        "reviewed_feature_type": "Active site",
+        "sequence_position_uniprot_declared": true,
+        "source_text_used": false
+      },
+      "end": 201,
+      "evidence_codes": [
+        "ECO:0000305"
+      ],
+      "ligand_id": null,
+      "ligand_name": null,
+      "locator_confidence": 0.5,
+      "locator_evidence_class": "reviewed_exact_position_without_source_text_pending_coordinate_local_residue_identity",
+      "reviewed_feature_code": "ACT_SITE",
+      "reviewed_feature_type": "Active site",
+      "role_hint": "reviewed_active_site_feature",
+      "sequence_position": 201
+    }
+  ],
+  "schema_version": "v3.external_materialization_wave2_source_free_locator_sidecar",
+  "sidecar_path": "artifacts/external_materialization_wave2_size120_source_free_locators_current702_20260616_run1403/uniprot_P28907.json",
+  "source_accession": "P28907",
+  "source_family_lane": "glycoside/nucleoside",
+  "source_free_active_site_locator_status": "materialized_pending_coordinate_local_residue_identity",
+  "source_hashes": {
+    "rhea_records_sha256": "04943bba050bb613d76c54913caf0394d802e17865005008deb27a5500307b5e",
+    "source_query_sha256": "758acba03e3c364a99967ed28eb961913821d629fa81776b59c83bcdecb461dc",
+    "uniprot_entry_record_sha256": "061792d92cca993f1fa2033f5a2c51cf17aff026e1b12e4037d0afceeb386d7a",
+    "uniprot_search_row_sha256": "e34af32dbc5ff48a672811f25d33a525a826aa82793a71f4bd49be9544b46066"
+  },
+  "source_terminal_state": "provisional_external_countable_preflight_candidate",
+  "split_protection": {
+    "allowed_for_threshold_selection": false,
+    "allowed_for_training": false,
+    "ready_for_label_import": false,
+    "review_only": true
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "artifact_id": "v3_external_materialization_wave2_source_free_locator_uniprot_P0ACC3_current702_20260609",
+  "candidate_id": "uniprot:P0ACC3",
+  "coordinate_provenance": {
+    "afdb_or_pdb_identifier": "AF-P0ACC3-F1",
+    "alphafold_ids": [
+      "P0ACC3"
+    ],
+    "coordinate_download_performed": false,
+    "coordinate_download_policy": "bounded_wave2_materialization_above_10_gib_floor",
+    "coordinate_local_residue_identity_validated": true,
+    "coordinate_mapping_basis": "UniProt residue positions map directly to AlphaFoldDB/UniProt sequence coordinates or to UniProt-referenced PDB coordinate provenance",
+    "coordinate_path": "artifacts/external_materialization_wave2_coordinates_current702_20260609/AF-P0ACC3-F1-model_v6.cif",
+    "coordinate_sha256": "0c160a3926706373e4585265d8ec35d383c69831bc0a44b99d407eb8a53e492e",
+    "coordinate_source_status": "afdb_predicted_coordinate_provenance_available",
+    "pdb_ids": []
+  },
+  "created_utc": "2026-06-16T14:03:01Z",
+  "forbidden_feature_audit": {
+    "benchmark_role": false,
+    "ec_identifiers": false,
+    "entry_name": false,
+    "fingerprint_id": false,
+    "label_type": false,
+    "mechanism_text": false,
+    "panel_id_as_feature": false,
+    "rhea_identifiers": false,
+    "source_prose": false,
+    "source_review_rationale": false
+  },
+  "guardrails": {
+    "label_import_performed": false,
+    "production_registry_edited": false,
+    "review_only": true,
+    "source_text_or_label_fields_used_as_predictive_features": false
+  },
+  "locator_policy": "review_only_exact_position_coordinate_local_residue_identity",
+  "ready_for_controlled_import_review": true,
+  "ready_for_predicted_geometry_scoring": false,
+  "residue_locators": [
+    {
+      "coordinate_independent_provenance": {
+        "coordinate_local_residue_identity_validated": true,
+        "heldout_rows_used": false,
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
+        "reviewed_feature_code": "BINDING",
+        "reviewed_feature_type": "Binding site",
+        "sequence_position_uniprot_declared": true,
+        "source_text_used": false
+      },
+      "end": 42,
+      "evidence_codes": [
+        "ECO:0000305"
+      ],
+      "ligand_id": "ChEBI:CHEBI:30408",
+      "ligand_name": "iron-sulfur cluster",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "CYS",
+      "reviewed_feature_code": "BINDING",
+      "reviewed_feature_type": "Binding site",
+      "role_hint": "reviewed_iron_sulfur_binding_feature",
+      "sequence_position": 42
+    },
+    {
+      "coordinate_independent_provenance": {
+        "coordinate_local_residue_identity_validated": true,
+        "heldout_rows_used": false,
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
+        "reviewed_feature_code": "BINDING",
+        "reviewed_feature_type": "Binding site",
+        "sequence_position_uniprot_declared": true,
+        "source_text_used": false
+      },
+      "end": 106,
+      "evidence_codes": [
+        "ECO:0000305"
+      ],
+      "ligand_id": "ChEBI:CHEBI:30408",
+      "ligand_name": "iron-sulfur cluster",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "CYS",
+      "reviewed_feature_code": "BINDING",
+      "reviewed_feature_type": "Binding site",
+      "role_hint": "reviewed_iron_sulfur_binding_feature",
+      "sequence_position": 106
+    },
+    {
+      "coordinate_independent_provenance": {
+        "coordinate_local_residue_identity_validated": true,
+        "heldout_rows_used": false,
+        "method": "reviewed_exact_position_plus_coordinate_local_residue_identity",
+        "reviewed_feature_code": "BINDING",
+        "reviewed_feature_type": "Binding site",
+        "sequence_position_uniprot_declared": true,
+        "source_text_used": false
+      },
+      "end": 108,
+      "evidence_codes": [
+        "ECO:0000305"
+      ],
+      "ligand_id": "ChEBI:CHEBI:30408",
+      "ligand_name": "iron-sulfur cluster",
+      "locator_confidence": 1.0,
+      "locator_evidence_class": "reviewed_exact_position_coordinate_local_residue_identity_without_source_text",
+      "residue_code": "CYS",
+      "reviewed_feature_code": "BINDING",
+      "reviewed_feature_type": "Binding site",
+      "role_hint": "reviewed_iron_sulfur_binding_feature",
+      "sequence_position": 108
+    }
+  ],
+  "schema_version": "v3.external_materialization_wave2_source_free_locator_sidecar",
+  "sidecar_path": "artifacts/external_materialization_wave2_size120_source_free_locators_current702_20260616_run1403/uniprot_P0ACC3.json",
+  "source_accession": "P0ACC3",
+  "source_family_lane": "redox oxygen/sulfur",
+  "source_free_active_site_locator_status": "ready_coordinate_local_residue_identity",
+  "source_hashes": {
+    "rhea_records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "source_query_sha256": "5781627189b9065d52c5a58b9d4a637b73ddd0cdee7fd5a6790260ed03aade07",
+    "uniprot_entry_record_sha256": "17bd9f05546b47924970dcf549a773ef554e8d15997df0f707f92676bd3cbc08",
+    "uniprot_search_row_sha256": "b03f11df5e52a6f711e262b335e2680df1d98e19b2110fd71230bd374fe2cc48"
+  },
+  "source_terminal_state": "locator_ready_candidate",
+  "split_protection": {
+    "allowed_for_threshold_selection": false,
+    "allowed_for_training": false,
+    "ready_for_label_import": false,
+    "review_only": true
+  }
+}

@@ -1,5 +1,86 @@
 # Handoff
 
+## Session run - external source-handle queue validated; no registry apply (2026-06-16, Codex automation)
+
+- Started from current `origin/main` at `0efc3a328cfb6f011c6e4bdbd628ee4f187809ae`, acquired
+  `.git/catalytic-earth-automation.lock`, and confirmed `git pull --ff-only origin main` was
+  already up to date. Frozen current702 sha before work was
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no registry apply was
+  performed and frozen current702 remained unchanged.
+- Baseline safety was green before work: `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed, and the focused source/leakage/novelty/import path suite passed **308 passed,
+  14 subtests**.
+- Current planning refreshes:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run1403_pre_lane.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run1403_pre_lane.json`, and
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260616_run1403_pre_lane.json`.
+  Coverage remains **8728** combined labels = **702** frozen + **8026** expansion, with **no
+  holes**, floor deficit **0**, Gini **0.1779**, and only `metal_dependent_hydrolase` over cap.
+  Novelty replay remains **7565** admit / **414** throttle / **47** reject. Factory has **0**
+  ready existing lanes >=150 and top projected clean admits **77**.
+- Fixed a real admission-path mismatch: the external bulk scout emits
+  `provisional_external_countable_preflight_candidate`, while
+  `ce-external-admission-16-validation` previously accepted only
+  `external_countable_preflight_candidate`. Updated
+  `src/catalytic_earth/external_source_admission_validation.py` to accept both source preflight
+  states, kept the production/import wall intact, and added regression coverage in
+  `tests/test_external_source_admission_validation.py`. The report text now uses the expected
+  preview count rather than hard-coded "16" wording.
+- Revalidated the prior post-PDE size-5 external bulk scout:
+  `artifacts/v3_external_source_admission_validation_10_current702_20260616_run1403_post_pde_bulk_size5.json`
+  and ready preview
+  `artifacts/v3_external_source_admission_ready_preview_10_current702_20260616_run1403_post_pde_bulk_size5.json`.
+  Result: **10/10** admission-ready materialization queue rows, **7** pending coordinate
+  materialization, **3** pending locator materialization, **0** direct external label candidates.
+- Built the bounded high-yield source-handle expansion:
+  `artifacts/v3_external_bulk_ingestion_scout_current702_20260616_run1403_size120.json` with report
+  `work/external_bulk_ingestion_scout_current702_20260616_run1403_size120.md`. It fetched **833**
+  reviewed UniProt candidate rows and produced **431** provisional import-preview rows with **0**
+  fetch failures and **0** production edits. Terminal state summary: **431**
+  `provisional_external_countable_preflight_candidate`, **236** `locator_ready_candidate`,
+  **117** `coordinate_ready_pending_locator`, **40** duplicate/current conflicts, **3**
+  coordinate-repair, **4** locator-repair, and **2** hard blockers.
+- Validated the size-120 preview through the repaired admission gate:
+  `artifacts/v3_external_source_admission_validation_431_current702_20260616_run1403_bulk_size120.json`
+  and ready preview
+  `artifacts/v3_external_source_admission_ready_preview_431_current702_20260616_run1403_bulk_size120.json`.
+  Result: **431/431** validation passed, **402** `admission_ready_pending_coordinate_materialization`,
+  **29** `admission_ready_pending_locator_materialization`, **0** direct external label candidates,
+  and **0** production import authorization. Largest lanes in the admission queue are PLP children
+  **108**, phosphoryl transfer **108**, redox oxygen/sulfur **72**, radical-SAM/cobalamin **67**,
+  glycoside/nucleoside **56**, metal hydrolase **19**, and near-orphan/no-reliable-structure **1**.
+- A probe of `build-external-source-structure-mapping-plan` was blocked because its default
+  `artifacts/v3_external_source_active_site_evidence_sample.json` input is absent; no artifact was
+  written.
+- Scoped Wave 2 materialization was run directly against the size-120 scout and its 431-row ready
+  preview, with coordinate downloads disabled and no default older sources merged:
+  `artifacts/v3_external_materialization_wave2_size120_current702_20260616_run1403.json`,
+  `artifacts/v3_external_materialization_wave2_size120_import_ready_preview_current702_20260616_run1403.json`,
+  `artifacts/v3_external_materialization_wave2_size120_repair_queue_current702_20260616_run1403.json`,
+  and locator sidecar directory
+  `artifacts/external_materialization_wave2_size120_source_free_locators_current702_20260616_run1403/`.
+  It consumed **833** source rows plus **431** admission-ready preview rows, wrote **667**
+  source-free locator sidecars, reused local coordinates for **204** rows, promoted **197** rows
+  to preview-only `import_ready_preview_materialized_coordinate_locator`, and left **636** rows in
+  repair/continuation. Coordinate downloads performed: **0**. Validation passed, and production
+  guardrails report no registry/import/model/threshold/ontology edits. Disk free at the end was
+  **8.573 GiB**, below the 10 GiB coordinate-download floor.
+- Controlled import-review preflight was run against the scoped Wave 2 outputs:
+  `artifacts/v3_external_import_review_preflight_size120_current702_20260616_run1403.json`,
+  `artifacts/v3_external_import_review_ready_preview_size120_current702_20260616_run1403.json`,
+  and `artifacts/v3_external_import_review_repair_queue_size120_current702_20260616_run1403.json`.
+  It passed validation with **197** `controlled_import_review_ready` rows and **636**
+  repair/not-ready rows. Repair split: **473** coordinate blockers, **121** locator blockers,
+  **13** current702 duplicates, **27** external duplicates, and **2** hard blockers. The ready
+  preview is still preview-only; `ready_for_production_label_import` is false and production
+  guardrails report no registry/import edits.
+- Retained only the final size-120 scout/validation artifacts plus the size-5 revalidation to keep
+  the commit lean; intermediate size-10/30/60 exploratory artifacts were deleted before commit.
+- Next concrete action: run label-factory/novelty/governor/row-guardrail/leakage gates on the
+  **197** controlled-review-ready rows and require explicit production authorization before any
+  external-registry-only apply. Separately, restore disk free space above **10 GiB** and continue
+  coordinate materialization for the **636** repair rows.
+
 ## Session run - PDE tier-2 floor batch applied; no positive holes remain (2026-06-16, Codex automation)
 
 - Started from current `origin/main` at `ebc1aad2ff356deaf1c3ab9a5d542a2d77d35245`, acquired the

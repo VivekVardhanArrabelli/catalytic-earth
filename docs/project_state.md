@@ -26,6 +26,67 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **EXTERNAL SOURCE-HANDLE SCALEOUT QUEUE VALIDATED; NO REGISTRY APPLY (2026-06-16 automation).**
+  Frozen current702 stayed byte-unchanged at sha
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no label registry was
+  written. Baseline coverage/novelty/factory refreshes
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run1403_pre_lane.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run1403_pre_lane.json`, and
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260616_run1403_pre_lane.json`
+  confirm the post-PDE state: combined labels **8728**, expansion rows **8026**, no holes,
+  floor deficit **0**, fingerprint Gini **0.1779**, `metal_dependent_hydrolase` as the only
+  over-cap lane, novelty replay **7565** admit / **414** throttle / **47** reject, **0** ready
+  existing lanes >=150, and top projected clean admits **77**.
+
+  The external admission validator was repaired so bulk-scout rows in
+  `provisional_external_countable_preflight_candidate` state are accepted as source preflight
+  candidates, while still blocking production import. Regression coverage is in
+  `tests/test_external_source_admission_validation.py`; source/provenance rows remain
+  preview-only and no coordinates, locator sidecars, imports, registries, models, thresholds,
+  ontologies, or splits are written by admission validation.
+
+  The prior size-5 scout now validates cleanly:
+  `artifacts/v3_external_source_admission_validation_10_current702_20260616_run1403_post_pde_bulk_size5.json`
+  validates **10/10** rows with **7** pending coordinate materialization and **3** pending
+  locator materialization; ready preview
+  `artifacts/v3_external_source_admission_ready_preview_10_current702_20260616_run1403_post_pde_bulk_size5.json`
+  remains preview-only with **0** direct production label candidates.
+
+  The current high-yield source-handle artifact is
+  `artifacts/v3_external_bulk_ingestion_scout_current702_20260616_run1403_size120.json`: **833**
+  reviewed UniProt candidates, **431** provisional import-preview rows, **40** duplicate/current
+  conflicts, **117** coordinate-ready-pending-locator rows, **236** locator-ready rows,
+  **3** coordinate-repair rows, **4** locator-repair rows, and **2** hard blockers, with **0**
+  fetch failures and no production edits. Admission validation
+  `artifacts/v3_external_source_admission_validation_431_current702_20260616_run1403_bulk_size120.json`
+  passes all **431** provisional rows into the admission/materialization queue:
+  **402** `admission_ready_pending_coordinate_materialization`, **29**
+  `admission_ready_pending_locator_materialization`, **0** direct external label candidates.
+  The preview
+  `artifacts/v3_external_source_admission_ready_preview_431_current702_20260616_run1403_bulk_size120.json`
+  was then consumed by scoped Wave 2 materialization with coordinate downloads disabled:
+  `artifacts/v3_external_materialization_wave2_size120_current702_20260616_run1403.json`.
+  Wave 2 wrote **667** source-free locator sidecars under
+  `artifacts/external_materialization_wave2_size120_source_free_locators_current702_20260616_run1403/`,
+  reused existing local coordinates for **204** rows, promoted **197** rows into preview-only
+  import-ready state
+  `artifacts/v3_external_materialization_wave2_size120_import_ready_preview_current702_20260616_run1403.json`,
+  and left **636** rows in repair/continuation queue
+  `artifacts/v3_external_materialization_wave2_size120_repair_queue_current702_20260616_run1403.json`.
+  No coordinates were downloaded because disk free space ended at **8.573 GiB**, below the 10 GiB
+  floor; no registries/import files were edited. Controlled import-review preflight
+  `artifacts/v3_external_import_review_preflight_size120_current702_20260616_run1403.json`
+  then passed with **197** `controlled_import_review_ready` rows and **636** repair/not-ready rows
+  (**473** coordinate blockers, **121** locator blockers, **13** current702 duplicates,
+  **27** external duplicates, **2** hard blockers). Ready preview
+  `artifacts/v3_external_import_review_ready_preview_size120_current702_20260616_run1403.json`
+  remains preview-only and explicitly says `ready_for_production_label_import: false`; repair queue
+  is `artifacts/v3_external_import_review_repair_queue_size120_current702_20260616_run1403.json`.
+  Exact next action: run label-factory/novelty/governor/row-guardrail/leakage gates on the
+  197 controlled-review-ready rows and obtain explicit production authorization before any
+  external-registry-only apply; separately restore disk free space above 10 GiB and continue
+  coordinate materialization for the 636 repair rows.
+
 - **PDE TIER-2 LOCAL-SLICE FLOOR BATCH APPLIED; NO POSITIVE HOLES REMAIN (2026-06-16 automation).**
   Hard safety is green. Frozen current702 stayed byte-unchanged at sha
   `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; growth happened only in

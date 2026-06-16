@@ -3,6 +3,55 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-16: PROVISIONAL BULK PREVIEW ROWS ARE VALID ADMISSION INPUTS, NOT IMPORTS
+
+Decision: `ce-external-admission-16-validation` accepts both
+`external_countable_preflight_candidate` and
+`provisional_external_countable_preflight_candidate` as source preflight states. This repairs the
+bulk source-handle handoff while preserving the import wall: accepted rows become
+admission/materialization queue rows only, not labels or production imports.
+
+Implementation: updated `src/catalytic_earth/external_source_admission_validation.py` and added
+regression coverage in `tests/test_external_source_admission_validation.py`. The report now uses
+the expected preview count instead of hard-coded "16" wording and records the accepted preflight
+states. Admission validation still writes no registries, coordinates, locator sidecars, models,
+thresholds, ontologies, heldout splits, or production imports.
+
+Measured result: the prior post-PDE size-5 external bulk scout now validates **10/10** rows into
+materialization queues:
+`artifacts/v3_external_source_admission_validation_10_current702_20260616_run1403_post_pde_bulk_size5.json`
+and
+`artifacts/v3_external_source_admission_ready_preview_10_current702_20260616_run1403_post_pde_bulk_size5.json`.
+The size-120 source-handle sweep
+`artifacts/v3_external_bulk_ingestion_scout_current702_20260616_run1403_size120.json` produced
+**833** reviewed UniProt candidates and **431** provisional preview rows with **0** fetch failures.
+Admission validation
+`artifacts/v3_external_source_admission_validation_431_current702_20260616_run1403_bulk_size120.json`
+passes all **431** rows: **402** pending coordinate materialization and **29** pending source-free
+locator materialization. Direct external label candidates remain **0**.
+
+Scoped Wave 2 materialization
+`artifacts/v3_external_materialization_wave2_size120_current702_20260616_run1403.json` then wrote
+**667** source-free locator sidecars, reused local coordinates for **204** rows, and promoted
+**197** rows into preview-only import-ready state
+`artifacts/v3_external_materialization_wave2_size120_import_ready_preview_current702_20260616_run1403.json`.
+This is still not production import authorization; coordinate downloads stayed disabled because
+disk free space was below the 10 GiB floor, and production guardrails report no registry/import
+edits.
+
+Controlled import-review preflight
+`artifacts/v3_external_import_review_preflight_size120_current702_20260616_run1403.json` passed
+with **197** `controlled_import_review_ready` rows and **636** repair/not-ready rows. The ready
+preview `artifacts/v3_external_import_review_ready_preview_size120_current702_20260616_run1403.json`
+is still preview-only and explicitly blocks production label import.
+
+Follow-up: do not import from these artifacts. Run label-factory/novelty/governor/row-guardrail/
+leakage gates on the **197** controlled-review-ready rows and require explicit production
+authorization before any external-registry-only apply. Use
+`artifacts/v3_external_import_review_repair_queue_size120_current702_20260616_run1403.json` as the
+continuation queue for the **636** repair rows; restore disk free space above 10 GiB before
+coordinate materialization.
+
 ## 2026-06-16: PDE TIER-2 LOCAL-SLICE BATCH IS COUNTED BRONZE
 
 Decision: `metal_independent_phosphodiesterase` is now a counted bronze fingerprint at the

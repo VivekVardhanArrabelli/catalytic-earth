@@ -16,6 +16,54 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-16 automation update: source-handle scaleout queue validated; no registry apply.**
+Frozen current702 stayed byte-unchanged at sha `5eec9bef...`, and no label registry rows were
+written. Current post-PDE planning refreshes with suffix `20260616_run1403_pre_lane` confirm
+combined labels **8728**, no holes, floor deficit **0**, novelty replay **7565** admit /
+**414** throttle / **47** reject, **0** ready existing lanes >=150, and top projected clean admits
+**77**.
+
+The `ce-external-admission-16-validation` path now accepts both
+`external_countable_preflight_candidate` and
+`provisional_external_countable_preflight_candidate` as source preflight states. This repaired the
+external bulk scout handoff without weakening import rules: admission validation writes no labels,
+registries, coordinates, locator sidecars, models, thresholds, ontologies, or splits, and it emits
+preview/materialization queues only. The prior size-5 scout now validates **10/10** rows into
+admission/materialization queues:
+`artifacts/v3_external_source_admission_validation_10_current702_20260616_run1403_post_pde_bulk_size5.json`
+and
+`artifacts/v3_external_source_admission_ready_preview_10_current702_20260616_run1403_post_pde_bulk_size5.json`.
+
+The current scaling artifact is the bounded size-120 external source-handle scout
+`artifacts/v3_external_bulk_ingestion_scout_current702_20260616_run1403_size120.json`: **833**
+reviewed UniProt candidates, **431** provisional preview rows, **0** fetch failures, and no
+production edits. Admission validation
+`artifacts/v3_external_source_admission_validation_431_current702_20260616_run1403_bulk_size120.json`
+passes all **431** rows: **402** need coordinate materialization and **29** need source-free
+locator materialization; ready preview
+`artifacts/v3_external_source_admission_ready_preview_431_current702_20260616_run1403_bulk_size120.json`
+has **0** direct production label candidates. Scoped Wave 2 materialization then consumed that
+queue with coordinate downloads disabled:
+`artifacts/v3_external_materialization_wave2_size120_current702_20260616_run1403.json`. It wrote
+**667** source-free locator sidecars, reused existing local coordinates for **204** rows, promoted
+**197** rows into preview-only import-ready state
+`artifacts/v3_external_materialization_wave2_size120_import_ready_preview_current702_20260616_run1403.json`,
+and left **636** rows in
+`artifacts/v3_external_materialization_wave2_size120_repair_queue_current702_20260616_run1403.json`.
+Disk free space ended at **8.573 GiB**, below the 10 GiB coordinate-download floor, so no coordinates
+were downloaded and no registries/import files were edited. Controlled import-review preflight
+`artifacts/v3_external_import_review_preflight_size120_current702_20260616_run1403.json` passed
+with **197** `controlled_import_review_ready` rows and **636** repair/not-ready rows
+(**473** coordinate blockers, **121** locator blockers, **13** current702 duplicates,
+**27** external duplicates, **2** hard blockers). Ready preview
+`artifacts/v3_external_import_review_ready_preview_size120_current702_20260616_run1403.json`
+remains preview-only with `ready_for_production_label_import: false`; repair queue is
+`artifacts/v3_external_import_review_repair_queue_size120_current702_20260616_run1403.json`.
+Next action: run label-factory/novelty/governor/row-guardrail/leakage gates on the **197**
+controlled-review-ready rows and obtain explicit production authorization before any
+external-registry-only apply. Separately restore disk free above 10 GiB and continue coordinate
+materialization for the **636** repair rows.
+
 **2026-06-16 automation update: PDE tier-2 local-slice floor batch applied; no positive holes
 remain.** Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; growth happened only in the
 sharded external bronze registry. Stable GDPD/cyclic tier-2 local slices produced a combined
