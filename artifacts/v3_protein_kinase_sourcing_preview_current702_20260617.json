@@ -1,0 +1,591 @@
+{
+  "applied_labels": [
+    {
+      "confidence": "high",
+      "entry_id": "uniprot:Q9UBE8",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 5,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 264
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:30616",
+              "ligand_name": "ATP",
+              "position": 144
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000305"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:30616",
+              "ligand_name": "ATP",
+              "position": 167
+            },
+            {
+              "evidence_codes": [
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 298
+            },
+            {
+              "evidence_codes": [
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "MOD_RES",
+              "feature_type": "Modified residue",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 522
+            }
+          ],
+          "binding_residue_count": 2,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:18420",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "Mg(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "2.7.11.24"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.7.11.24",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "L-seryl-[protein] + ATP = O-phospho-L-seryl-[protein] + ADP + H(+)",
+              "rhea_id": "RHEA:17989",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "2.7.11.24",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "L-seryl-[protein] + ATP = O-phospho-L-seryl-[protein] + ADP + H(+)",
+              "rhea_id": "RHEA-COMP:9863",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "2.7.11.24",
+              "evidence_codes": [
+                "ECO:0000269"
+              ],
+              "reaction": "L-seryl-[protein] + ATP = O-phospho-L-seryl-[protein] + ADP + H(+)",
+              "rhea_id": "RHEA-COMP:11604",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "2.7.11.24",
+              "evidence_codes": [],
+              "reaction": "L-threonyl-[protein] + ATP = O-phospho-L-threonyl-[protein] + ADP + H(+)",
+              "rhea_id": "RHEA:46608",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "2.7.11.24",
+              "evidence_codes": [],
+              "reaction": "L-threonyl-[protein] + ATP = O-phospho-L-threonyl-[protein] + ADP + H(+)",
+              "rhea_id": "RHEA-COMP:11060",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "2.7.11.24",
+              "evidence_codes": [],
+              "reaction": "L-threonyl-[protein] + ATP = O-phospho-L-threonyl-[protein] + ADP + H(+)",
+              "rhea_id": "RHEA-COMP:11605",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: protein_kinase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "6187e9a5a6aa3f2e8b7997e7ee3dc8782056c2d1816db70c6452133f01e1bcad"
+          },
+          "retrieved_utc": "2026-06-17T20:09:21Z",
+          "sequence": "MSLCGARANAKMMAAYNGGTSAAAAGHHHHHHHHLPHLPPPHLHHHHHPQHHLHPGSAAAVHPVQQHTSSAAAAAAAAAAAAAMLNPGQQQPYFPSPAPGQAPGPAAAAPAQVQAAAAATVKAHHHQHSHHPQQQLDIEPDRPIGYGAFGVVWSVTDPRDGKRVALKKMPNVFQNLVSCKRVFRELKMLCFFKHDNVLSALDILQPPHIDYFEEIYVVTELMQSDLHKIIVSPQPLSSDHVKVFLYQILRGLKYLHSAGILHRDIKPGNLLVNSNCVLKICDFGLARVEELDESRHMTQEVVTQYYRAPEILMGSRHYSNAIDIWSVGCIFAELLGRRILFQAQSPIQQLDLITDLLGTPSLEAMRTACEGAKAHILRGPHKQPSLPVLYTLSSQATHEAVHLLCRMLVFDPSKRISAKDALAHPYLDEGRLRYHTCMCKCCFSTSTGRVYTSDFEPVTNPKFDDTFEKNLSSVRQVKEIIHQFILEQQKGNRVPLCINPQSAAFKSFISSTVAQPSEMPPSPLVWE",
+          "sequence_length": 527,
+          "sequence_sha256": "df971a35c6955ddd1ec51c9ad909413ed41d63bbb1587be474a292517bfb15ed",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q9UBE8"
+        },
+        "source_provenance": {
+          "accession": "Q9UBE8",
+          "disambiguation_pool": "protein_kinase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "protein_kinase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_protein_kinase_ser_thr_tyr_from_annotated_cofactor_and_ec_class_['2.7.11.24']",
+          "organism": "Homo sapiens (Human)",
+          "protein_name": "Serine/threonine-protein kinase NLK (EC 2.7.11.24) (Nemo-like kinase) (Protein LAK1)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 527,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000255",
+            "ECO:0000269",
+            "ECO:0000305",
+            "ECO:0007744"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "360324b82419168b909fdf2a0c772926af8537caa8b3d8a6f7c0c9305ca74520",
+            "source_query_sha256": "6187e9a5a6aa3f2e8b7997e7ee3dc8782056c2d1816db70c6452133f01e1bcad",
+            "uniprot_entry_record_sha256": "f19685d052e11cc8dd7cd8982abf1f0a7259b6ab6cc4c73aea74d4596cd53f39",
+            "uniprot_search_row_sha256": "0b6e5d4de7a50a52a8fb1b9150edc77b6ef9fc19f141efc087f00b6246370073"
+          },
+          "target_family_lane": "protein_kinase_ser_thr_tyr"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q9UBE8"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q9UBE8-F1"
+        }
+      },
+      "evidence_score": 0.85,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q9UBE8 imported as annotation-anchored bronze in-scope protein_kinase_ser_thr_tyr: reviewed Swiss-Prot EC ['2.7.11.24'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    }
+  ],
+  "artifact_id": "v3_protein_kinase_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {
+      "protein_kinase_ser_thr_tyr": 1
+    },
+    "current_combined_labels": 8816,
+    "disambiguation_hold_count": 5,
+    "disambiguation_hold_reason_counts": {
+      "no_mechanism_corroboration": 5
+    },
+    "disambiguation_skip_count": 189,
+    "fetched_candidate_rows": 250,
+    "gate_admitted_before_cap_guard": 1,
+    "held_at_cap_ceiling": 0,
+    "held_at_cap_ceiling_by_fingerprint": {},
+    "lanes_queried": 1,
+    "max_records_per_lane": 250,
+    "mechanism_corroborated_bronze_labels": 56,
+    "novelty_admitted_labels": 1,
+    "novelty_throttled_or_rejected": 55,
+    "off_target_fingerprint_counts": {},
+    "off_target_fingerprint_matches_held": 0,
+    "projected_combined_labels_if_merged": 8817,
+    "record_limit_per_lane": null,
+    "record_offset_per_lane": 0
+  },
+  "created_utc": "2026-06-17T20:09:21Z",
+  "deploy_missing_active_site_context_per_family": {
+    "protein_kinase_ser_thr_tyr": "atp_mg_protein_substrate_phosphoryl_transfer_context"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {
+      "high": 45,
+      "medium": 11
+    },
+    "current_registry_labels": 8114,
+    "decision_counts": {
+      "hold": 5,
+      "import": 56,
+      "skip": 189
+    },
+    "examined_rows": 250,
+    "fingerprint_counts": {
+      "protein_kinase_ser_thr_tyr": 56
+    },
+    "hold_count": 5,
+    "hold_reason_counts": {
+      "no_mechanism_corroboration": 5
+    },
+    "importable_new_labels": 56,
+    "per_pool_decision_counts": {
+      "protein_kinase_broadened_handle_fresh_fetch": {
+        "hold": 5,
+        "import": 56,
+        "skip_screen": 189
+      }
+    },
+    "projected_registry_labels_if_merged": 8170,
+    "skip_count": 189
+  },
+  "evidence_basis": "reviewed_swissprot_ec_rhea_protein_kinase_annotation",
+  "families_sourced": [
+    "protein_kinase_ser_thr_tyr"
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "floor_projection": {
+    "protein_kinase_ser_thr_tyr": {
+      "admitted_this_run": 1,
+      "cap_ceiling": 150,
+      "chemistry_confusable": true,
+      "combined_before": 100,
+      "deficit_to_floor_after": 0,
+      "deficit_to_floor_before": 0,
+      "deploy_missing_active_site_context": "atp_mg_protein_substrate_phosphoryl_transfer_context",
+      "floor_reached": true,
+      "held_at_cap_this_run": 0,
+      "projected_combined": 101,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "broadened_handles_never_predictive_features": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "heldout_benchmark_unchanged": true,
+    "histidine_small_molecule_kinase_ligase_side_ec_boundary_guard": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "novelty_gated_against_both_registries": true,
+    "off_target_fingerprint_matches_held": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "protein_kinase_ser_thr_tyr": 150
+    },
+    "predictive_features_use_ec_name_keyword_reaction_or_prose": false,
+    "protein_kinase_handles_scope_admission_only": true,
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "protein_kinase_ec_2_7_10_11_named",
+      "query": "(reviewed:true) AND ((ec:2.7.10.*) OR (ec:2.7.11.*)) AND ((protein_name:\"protein kinase\") OR (keyword:\"Protein kinase\"))",
+      "record_count": 250,
+      "record_limit_per_lane": null,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 250,
+      "records_returned_by_query": 250,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A2.7.10.%2A%29+OR+%28ec%3A2.7.11.%2A%29%29+AND+%28%28protein_name%3A%22protein+kinase%22%29+OR+%28keyword%3A%22Protein+kinase%22%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=250",
+      "status": "query_fetched",
+      "target_family_lane": "protein_kinase_ser_thr_tyr"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If dedup, trust-tier, cap, leakage, and row guardrail gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via the family script `--apply` with frozen current702 sha checks.",
+  "novelty_gate": {
+    "decision_counts": {
+      "admit": 1,
+      "throttle": 55
+    },
+    "reason_counts": {
+      "adds_diversity": 1,
+      "redundant_no_novelty_signal": 55
+    }
+  },
+  "off_target_fingerprint_matches_sample": [],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_protein_kinase_broadened_handle",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": [
+    {
+      "entry_id": "uniprot:P19525",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q07002",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q9UEE5",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q86SG6",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q92772",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q9Y2H1",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q00534",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q15131",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:P11309",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q86V86",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:P29597",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q9NSY1",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q9UKE5",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q9Y2K2",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q9NRP7",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q8TDC3",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q96GX5",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q04759",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q05513",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q9Y572",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q15759",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q9BVS4",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:O94804",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:P53779",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:O60566",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q96SB4",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:P49137",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q13464",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q9NRH2",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q8IV63",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q96Q04",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:O14965",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q13470",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q8IVW4",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q6PHR2",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q8IYT8",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:P07947",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:O95747",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:P22694",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q8WU08",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:O00141",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:O14730",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:P22612",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q01974",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:O00311",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q96GD4",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q9UKI8",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:Q9BXM7",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:P29320",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "entry_id": "uniprot:P52333",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    }
+  ]
+}

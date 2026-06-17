@@ -3,6 +3,36 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-17: USER-DIRECTED CLEAN REVIEWED-SWISS-PROT GROWTH PASS — COMBINED 8728 -> 8842 (+114); REVIEWED SUPPLY NOW EXHAUSTED
+
+Decision: under explicit user authorization to grow the label count via clean reviewed-Swiss-Prot
+lanes, run the broadened-handle mechanism-first family lanes and apply every novelty-admitted,
+cap-safe, duplicate-clean bronze row. The frozen current702 benchmark is not touched.
+
+Measured result: combined labels grew **8728 -> 8842 (+114)**, expansion **8026 -> 8140**, across
+five productive lanes — biotin-dependent carboxylase +41, serine beta-lactamase +44 (106 -> 150 cap
+hit), metal-independent phosphodiesterase +25 (100 -> 125), short-chain dehydrogenase/reductase +3,
+protein-kinase +1 — while terpene (287 fetched), ser/thr protein phosphatase (456 fetched), and
+HAD-like phosphatase (381 fetched) yielded 0 novel rows. Frozen current702 stayed byte-unchanged at
+sha `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`
+(`frozen_benchmark_registry_written: false`). Post-batch audits are clean:
+`artifacts/v3_coverage_redundancy_audit_current702_20260617_clean_lane_growth.json` (8842 = 702 +
+8140, holes none, floor deficit 0, fingerprint Gini 0.168, over-cap only `metal_dependent_hydrolase`)
+and `artifacts/v3_novelty_admission_gate_audit_current702_20260617_clean_lane_growth.json` (admit
+7565 -> 7679, reject 47 / throttle 414 unchanged). Summary:
+`artifacts/v3_clean_reviewed_swissprot_lane_growth_summary_current702_20260617.json`. Real-registry
+baseline tests were updated to 8842 combined / 8140 expansion / 6916 seed labels.
+
+Saturation finding (important for future agents): reviewed-Swiss-Prot supply is now **essentially
+exhausted for the current 46 fingerprints**. `nad_p_dehydrogenase` (150/150), `glycosyltransferase`
+(250/250), and `sam_methyltransferase` (250/250) are already at cap; the run0310 evidence-handle
+recon's "+146 / +250" projections were stale (those families were filled on 06-12/13). Lanes with
+cap room are now supply-limited, not handle-limited. Further clean growth toward 10k therefore needs
+EITHER new mechanism-fingerprint families (an ontology/research decision — the lane factory ranks
+`aldo_keto_reductase`, `aminoglycoside_acetyltransferase`, and `metallo_beta_lactamase` as candidate
+families that have no fingerprint yet) OR the human-review-gated external source-transfer path. Do
+not raise existing family caps to chase the count; the caps exist for diversity.
+
 ## 2026-06-17: BIOTIN BROADENED-HANDLE TRANCHE APPLIED — COMBINED LABELS 8728 -> 8769
 
 Decision: under explicit user authorization to make progress in the label count, apply the

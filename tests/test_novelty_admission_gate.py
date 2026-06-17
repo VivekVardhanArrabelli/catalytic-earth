@@ -199,10 +199,10 @@ class SelfAuditRealRegistryTests(unittest.TestCase):
         # tier-2 bronze rows + 100 SDR bronze rows applied on 2026-06-15,
         # plus 106 SBL tier-2 bronze rows and a reaction-cap-trimmed 100-row
         # metal-independent PDE tier-2 batch applied on 2026-06-16 through
-        # mechanism-first lanes, plus a 41-row reviewed-Swiss-Prot
-        # biotin-dependent carboxylase broadened-handle tranche applied on
-        # 2026-06-17.
-        self.assertEqual(audit["expansion_rows"], 8067)
+        # mechanism-first lanes, plus a 2026-06-17 user-directed reviewed-Swiss-Prot
+        # growth pass: 41 biotin + 3 SDR + 44 serine beta-lactamase + 1
+        # protein-kinase + 25 metal-independent PDE = 114 broadened-handle bronze rows.
+        self.assertEqual(audit["expansion_rows"], 8140)
         # some redundancy exists and is bounded
         self.assertGreater(audit["would_not_readmit"], 0)
         self.assertLess(audit["would_not_readmit_fraction"], 1.0)

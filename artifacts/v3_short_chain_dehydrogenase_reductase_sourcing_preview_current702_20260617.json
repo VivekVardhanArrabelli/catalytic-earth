@@ -1,0 +1,766 @@
+{
+  "applied_labels": [
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:G5EGA6",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 4,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 161
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:58349",
+              "ligand_name": "NADP(+)",
+              "position": 14
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 148
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:58349",
+              "ligand_name": "NADP(+)",
+              "position": 165
+            }
+          ],
+          "binding_residue_count": 3,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "NAD(P)+ short-chain dehydrogenase/reductase context"
+            }
+          ],
+          "ec_numbers": [
+            "1.1.1.184"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "1.1.1.184",
+              "evidence_codes": [
+                "ECO:0000305"
+              ],
+              "reaction": "a secondary alcohol + NADP(+) = a ketone + NADPH + H(+)",
+              "rhea_id": "RHEA:19257",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: short_chain_dehydrogenase_reductase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "6725536a12b43895100abccafaeb5a5589e4a5022f6b0fdef0a6f3092f3b884b"
+          },
+          "retrieved_utc": "2026-06-17T20:05:58Z",
+          "sequence": "MPSNCRRFEGKVAIVTAATKGIGLAIAERLLDEGASVVIGSRNQKNVDEAIEYLKNKGLTKVAGIAGHIASTDDQKKLVDFTLQKFGKINILVNNHGINPAFGHILEVSDQVWDKLFEVNVKAGFQMTKLVHPHIAKEGGGAIIFNASYSAYKSPPGIAAYGVTKTTLVGLTRALAMGLAKDNIRVNGIAPGVIKTKMSQVLWDGGEDAEKELTDIQEIALGRLGVPDDCAGTVAYLASDDSSYITGEMIIIAGGVQARL",
+          "sequence_length": 260,
+          "sequence_sha256": "7be24e33d6a88d538f086ea0d0750bd6bd884b881cf3557af9668366eea54903",
+          "source": "reviewed_uniprot",
+          "source_accession": "G5EGA6"
+        },
+        "source_provenance": {
+          "accession": "G5EGA6",
+          "disambiguation_pool": "short_chain_dehydrogenase_reductase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "short_chain_dehydrogenase_reductase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_short_chain_dehydrogenase_reductase_from_annotated_cofactor_and_ec_class_['1.1.1.184']",
+          "organism": "Caenorhabditis elegans",
+          "protein_name": "Dehydrogenase/reductase SDR family member 4 (EC 1.1.1.184)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 260,
+          "source_evidence_codes": [
+            "ECO:0000250",
+            "ECO:0000305"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "cd93267ad732c0315cc2ec53712e3bdaffbe635611f711dec307bea289016e75",
+            "source_query_sha256": "6725536a12b43895100abccafaeb5a5589e4a5022f6b0fdef0a6f3092f3b884b",
+            "uniprot_entry_record_sha256": "594936503671fa6d15eb5a5d7678098744db09077738dbcdc46c5344b554021a",
+            "uniprot_search_row_sha256": "ebe6d58a527ba57a81328e892a270f3450f01421c4dcb0dcb8369e85e9ac9ee2"
+          },
+          "target_family_lane": "short_chain_dehydrogenase_reductase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "G5EGA6"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "experimental_pdb_coordinate_provenance_available",
+          "pdb_ids": [
+            "5OJG",
+            "5OJI"
+          ],
+          "structure_handle": "5OJG"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "short_chain_dehydrogenase_reductase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "G5EGA6 imported as annotation-anchored bronze in-scope short_chain_dehydrogenase_reductase: reviewed Swiss-Prot EC ['1.1.1.184']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q5NVG2",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 3,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 185
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:58349",
+              "ligand_name": "NADP(+)",
+              "position": 40
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 172
+            }
+          ],
+          "binding_residue_count": 2,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "NAD(P)+ short-chain dehydrogenase/reductase context"
+            }
+          ],
+          "ec_numbers": [
+            "1.1.1.62"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "1.1.1.62",
+              "evidence_codes": [],
+              "reaction": "17beta-estradiol + NAD(+) = estrone + NADH + H(+)",
+              "rhea_id": "RHEA:24612",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "1.1.1.62",
+              "evidence_codes": [],
+              "reaction": "17beta-estradiol + NADP(+) = estrone + NADPH + H(+)",
+              "rhea_id": "RHEA:24616",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: short_chain_dehydrogenase_reductase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "6725536a12b43895100abccafaeb5a5589e4a5022f6b0fdef0a6f3092f3b884b"
+          },
+          "retrieved_utc": "2026-06-17T20:05:58Z",
+          "sequence": "MKFLLDVLLLLPLLIVCSLESFVKLFIPKRRKSVTGEIVLITGAGHGIGRLTAYEFAKLKSKLVLWDINKHGLEETAAKCKGLGAKVHTFVVDCSNREDIYSAAKKVKAEIGDVSILVNNAGVVYTSDLFATQDPQIEKTFEVNVLAHFWTTKAFLPAMMKNNHGHIVTVASAAGHVSVPFLLAYCSSKFAAVGFHKTLTDELAALQITGVKTTCLCPNFVNTGFIKNPSTSLGPTLEPEEVVNRLMHGILTEQKMIFIPSSIAFLTTLERILPERFLAVLKRKISVKFDAVIGYRMKAQ",
+          "sequence_length": 300,
+          "sequence_sha256": "ac5c31dd2ca8ec5fe23505857d2a22867a56c7280c8e73db8eafb9ac69cf8e73",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q5NVG2"
+        },
+        "source_provenance": {
+          "accession": "Q5NVG2",
+          "disambiguation_pool": "short_chain_dehydrogenase_reductase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "short_chain_dehydrogenase_reductase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_short_chain_dehydrogenase_reductase_from_annotated_cofactor_and_ec_class_['1.1.1.62']",
+          "organism": "Pongo abelii (Sumatran orangutan) (Pongo pygmaeus abelii)",
+          "protein_name": "Estradiol 17-beta-dehydrogenase 11 (EC 1.1.1.62) (17-beta-hydroxysteroid dehydrogenase 11) (17-beta-HSD 11) (17bHSD11) (17betaHSD11) (Dehydrogenase/reductase SDR family member 8)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 300,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "968e63dc65e21e56f9704ddc5b814cc8e975dc166597968b16ba58c37c275de1",
+            "source_query_sha256": "6725536a12b43895100abccafaeb5a5589e4a5022f6b0fdef0a6f3092f3b884b",
+            "uniprot_entry_record_sha256": "1ddb7bbd41606bf4c211608c3744279f9e07f5f11430a77c2d9ff4296442f7a8",
+            "uniprot_search_row_sha256": "98dc8e4eba22f6474e8ad963a81d46414fb96f9863fde83370315915edab5f57"
+          },
+          "target_family_lane": "short_chain_dehydrogenase_reductase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q5NVG2"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q5NVG2-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "short_chain_dehydrogenase_reductase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q5NVG2 imported as annotation-anchored bronze in-scope short_chain_dehydrogenase_reductase: reviewed Swiss-Prot EC ['1.1.1.62']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q4JK73",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 4,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 185
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:58349",
+              "ligand_name": "NADP(+)",
+              "position": 40
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 172
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:58349",
+              "ligand_name": "NADP(+)",
+              "position": 189
+            }
+          ],
+          "binding_residue_count": 3,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "NAD(P)+ short-chain dehydrogenase/reductase context"
+            }
+          ],
+          "ec_numbers": [
+            "1.1.1.62"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "1.1.1.62",
+              "evidence_codes": [],
+              "reaction": "17beta-estradiol + NAD(+) = estrone + NADH + H(+)",
+              "rhea_id": "RHEA:24612",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            },
+            {
+              "ec_number": "1.1.1.62",
+              "evidence_codes": [],
+              "reaction": "17beta-estradiol + NADP(+) = estrone + NADPH + H(+)",
+              "rhea_id": "RHEA:24616",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: short_chain_dehydrogenase_reductase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "6725536a12b43895100abccafaeb5a5589e4a5022f6b0fdef0a6f3092f3b884b"
+          },
+          "retrieved_utc": "2026-06-17T20:05:58Z",
+          "sequence": "MKILLDLLLLLPLLIVCCLESFVKLFIPKRRKSVAGEIVLITGAGHGIGRLTAYEFAKLKSKLVLWDINKHGLEETAAKCKGLGAKVYTFVVDCSNREDIYSSAKKVKAEIGDVSILVNNAGVVYTSDLFATQDAQIEKTFEVNILAHFWTTKAFLPAMMKNNHGHVVTVASAAGHISVPFLLAYCSSKFSAVGFHKALTDELAALQITGVKTTCLCPNFVNTGFIKNPSTSLGPALEPEEVVNRLMNGILTEQKMIFSPSSIAFLTILERILPERFLAVLKRKINIKFDAVIGYKMKAQ",
+          "sequence_length": 300,
+          "sequence_sha256": "0acccdcd96785cd908e9381f2d1a0e014a50af077b1f3835dbab6766368aea25",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q4JK73"
+        },
+        "source_provenance": {
+          "accession": "Q4JK73",
+          "disambiguation_pool": "short_chain_dehydrogenase_reductase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "short_chain_dehydrogenase_reductase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_short_chain_dehydrogenase_reductase_from_annotated_cofactor_and_ec_class_['1.1.1.62']",
+          "organism": "Macaca fascicularis (Crab-eating macaque) (Cynomolgus monkey)",
+          "protein_name": "Estradiol 17-beta-dehydrogenase 11 (EC 1.1.1.62) (17-beta-hydroxysteroid dehydrogenase 11) (17-beta-HSD 11) (17bHSD11) (17betaHSD11) (17-beta-hydroxysteroid dehydrogenase XI) (17-beta-HSD XI) (17betaHSDXI) (Dehydrogenase/reductase SDR family member 8)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 300,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "968e63dc65e21e56f9704ddc5b814cc8e975dc166597968b16ba58c37c275de1",
+            "source_query_sha256": "6725536a12b43895100abccafaeb5a5589e4a5022f6b0fdef0a6f3092f3b884b",
+            "uniprot_entry_record_sha256": "f25511907949be4e39a5ef6942821d7e3c66da919fd23a67bb7572988c6b855b",
+            "uniprot_search_row_sha256": "747da1e209846ce285ba88816e1cc7635b62c7fd8323d6c0023a142002a1978c"
+          },
+          "target_family_lane": "short_chain_dehydrogenase_reductase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q4JK73"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q4JK73-F1"
+        }
+      },
+      "evidence_score": 0.6,
+      "fingerprint_id": "short_chain_dehydrogenase_reductase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q4JK73 imported as annotation-anchored bronze in-scope short_chain_dehydrogenase_reductase: reviewed Swiss-Prot EC ['1.1.1.62']; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    }
+  ],
+  "artifact_id": "v3_short_chain_dehydrogenase_reductase_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {
+      "short_chain_dehydrogenase_reductase": 3
+    },
+    "current_combined_labels": 8769,
+    "disambiguation_hold_count": 143,
+    "disambiguation_hold_reason_counts": {
+      "no_mechanism_corroboration": 143
+    },
+    "disambiguation_skip_count": 101,
+    "fetched_candidate_rows": 250,
+    "gate_admitted_before_cap_guard": 3,
+    "held_at_cap_ceiling": 0,
+    "held_at_cap_ceiling_by_fingerprint": {},
+    "lane_ids": [
+      "short_chain_dehydrogenase_reductase_named_nad",
+      "short_chain_dehydrogenase_reductase_active_binding",
+      "short_chain_dehydrogenase_reductase_reaction_nad"
+    ],
+    "lanes_queried": 3,
+    "max_records_per_lane": 300,
+    "mechanism_corroborated_bronze_labels": 6,
+    "novelty_admitted_labels": 3,
+    "novelty_throttled_or_rejected": 3,
+    "off_target_fingerprint_counts": {},
+    "off_target_fingerprint_matches_held": 0,
+    "projected_combined_labels_if_merged": 8772,
+    "record_limit_per_lane": null,
+    "record_offset_per_lane": 0
+  },
+  "created_utc": "2026-06-17T20:05:58Z",
+  "deploy_missing_active_site_context_per_family": {
+    "short_chain_dehydrogenase_reductase": "nad_p_sdr_ser_tyr_lys_hydride_transfer_context"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {
+      "medium": 6
+    },
+    "current_registry_labels": 8067,
+    "decision_counts": {
+      "hold": 143,
+      "import": 6,
+      "skip": 101
+    },
+    "examined_rows": 250,
+    "fingerprint_counts": {
+      "short_chain_dehydrogenase_reductase": 6
+    },
+    "hold_count": 143,
+    "hold_reason_counts": {
+      "no_mechanism_corroboration": 143
+    },
+    "importable_new_labels": 6,
+    "per_pool_decision_counts": {
+      "short_chain_dehydrogenase_reductase_broadened_handle_fresh_fetch": {
+        "hold": 143,
+        "import": 6,
+        "skip_screen": 101
+      }
+    },
+    "projected_registry_labels_if_merged": 8073,
+    "skip_count": 101
+  },
+  "evidence_basis": "reviewed_swissprot_ec_rhea_sdr_nad_p_hydride_transfer_annotation",
+  "families_sourced": [
+    "short_chain_dehydrogenase_reductase"
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "floor_projection": {
+    "short_chain_dehydrogenase_reductase": {
+      "admitted_this_run": 3,
+      "cap_ceiling": 150,
+      "chemistry_confusable": true,
+      "combined_before": 100,
+      "deficit_to_floor_after": 0,
+      "deficit_to_floor_before": 0,
+      "deploy_missing_active_site_context": "nad_p_sdr_ser_tyr_lys_hydride_transfer_context",
+      "floor_reached": true,
+      "held_at_cap_this_run": 0,
+      "projected_combined": 103,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "akr_mdr_aldh_flavin_metal_redox_boundary_guard": true,
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "broadened_handles_never_predictive_features": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "heldout_benchmark_unchanged": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "novelty_gated_against_both_registries": true,
+    "off_target_fingerprint_matches_held": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "short_chain_dehydrogenase_reductase": 150
+    },
+    "predictive_features_use_ec_name_keyword_reaction_or_prose": false,
+    "short_chain_dehydrogenase_reductase_handles_scope_admission_only": true,
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "short_chain_dehydrogenase_reductase_named_nad",
+      "query": "(reviewed:true) AND (ec:1.1.1.*) AND ((protein_name:\"short-chain dehydrogenase\") OR (protein_name:\"short chain dehydrogenase\") OR (protein_name:\"short-chain dehydrogenase/reductase\") OR (protein_name:SDR)) AND ((keyword:NAD) OR (keyword:NADP))",
+      "record_count": 241,
+      "record_limit_per_lane": null,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 241,
+      "records_returned_by_query": 241,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A1.1.1.%2A%29+AND+%28%28protein_name%3A%22short-chain+dehydrogenase%22%29+OR+%28protein_name%3A%22short+chain+dehydrogenase%22%29+OR+%28protein_name%3A%22short-chain+dehydrogenase%2Freductase%22%29+OR+%28protein_name%3ASDR%29%29+AND+%28%28keyword%3ANAD%29+OR+%28keyword%3ANADP%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=300",
+      "status": "query_fetched",
+      "target_family_lane": "short_chain_dehydrogenase_reductase"
+    },
+    {
+      "lane_id": "short_chain_dehydrogenase_reductase_active_binding",
+      "query": "(reviewed:true) AND (ec:1.1.1.*) AND ((protein_name:\"short-chain dehydrogenase\") OR (protein_name:\"short chain dehydrogenase\") OR (protein_name:\"short-chain dehydrogenase/reductase\") OR (protein_name:SDR)) AND ((ft_act_site:*) OR (ft_binding:*))",
+      "record_count": 9,
+      "record_limit_per_lane": null,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 248,
+      "records_returned_by_query": 248,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A1.1.1.%2A%29+AND+%28%28protein_name%3A%22short-chain+dehydrogenase%22%29+OR+%28protein_name%3A%22short+chain+dehydrogenase%22%29+OR+%28protein_name%3A%22short-chain+dehydrogenase%2Freductase%22%29+OR+%28protein_name%3ASDR%29%29+AND+%28%28ft_act_site%3A%2A%29+OR+%28ft_binding%3A%2A%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=300",
+      "status": "query_fetched",
+      "target_family_lane": "short_chain_dehydrogenase_reductase"
+    },
+    {
+      "lane_id": "short_chain_dehydrogenase_reductase_reaction_nad",
+      "query": "(reviewed:true) AND (ec:1.1.1.*) AND ((protein_name:\"short-chain dehydrogenase\") OR (protein_name:\"short chain dehydrogenase\") OR (protein_name:\"short-chain dehydrogenase/reductase\") OR (protein_name:SDR)) AND ((cc_catalytic_activity:NAD) OR (cc_catalytic_activity:NADP) OR (cc_catalytic_activity:NADH) OR (cc_catalytic_activity:NADPH))",
+      "record_count": 0,
+      "record_limit_per_lane": null,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 112,
+      "records_returned_by_query": 112,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A1.1.1.%2A%29+AND+%28%28protein_name%3A%22short-chain+dehydrogenase%22%29+OR+%28protein_name%3A%22short+chain+dehydrogenase%22%29+OR+%28protein_name%3A%22short-chain+dehydrogenase%2Freductase%22%29+OR+%28protein_name%3ASDR%29%29+AND+%28%28cc_catalytic_activity%3ANAD%29+OR+%28cc_catalytic_activity%3ANADP%29+OR+%28cc_catalytic_activity%3ANADH%29+OR+%28cc_catalytic_activity%3ANADPH%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=300",
+      "status": "query_fetched",
+      "target_family_lane": "short_chain_dehydrogenase_reductase"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If dedup, trust-tier, cap, leakage, and row guardrail gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via the family script `--apply` with frozen current702 sha checks.",
+  "novelty_gate": {
+    "decision_counts": {
+      "admit": 3,
+      "throttle": 3
+    },
+    "reason_counts": {
+      "adds_diversity": 3,
+      "redundant_no_novelty_signal": 3
+    }
+  },
+  "off_target_fingerprint_matches_sample": [],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_short_chain_dehydrogenase_reductase_broadened_handle",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": [
+    {
+      "entry_id": "uniprot:Q8IZV5",
+      "fingerprint_id": "short_chain_dehydrogenase_reductase"
+    },
+    {
+      "entry_id": "uniprot:Q9HBH5",
+      "fingerprint_id": "short_chain_dehydrogenase_reductase"
+    },
+    {
+      "entry_id": "uniprot:Q9NYR8",
+      "fingerprint_id": "short_chain_dehydrogenase_reductase"
+    }
+  ]
+}

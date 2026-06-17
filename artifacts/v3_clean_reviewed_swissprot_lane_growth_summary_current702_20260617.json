@@ -1,0 +1,88 @@
+{
+  "artifact_id": "v3_clean_reviewed_swissprot_lane_growth_summary_current702_20260617",
+  "authorization": "explicit_user_instruction_grow_count_via_clean_lanes",
+  "counts": {
+    "combined_after": 8842,
+    "combined_before": 8728,
+    "expansion_after": 8140,
+    "expansion_before": 8026,
+    "frozen_current702_rows": 702,
+    "net_applied": 114
+  },
+  "created_utc": "2026-06-17T20:17:01Z",
+  "expansion_registry_manifest_sha256": "9b5009c316f5664d0e3c81e877d438423bb267b8ab5c1fbe2dbfd73d96519409",
+  "frozen_benchmark": {
+    "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+    "unchanged": true,
+    "written": false
+  },
+  "gap_to_10k": 1158,
+  "lane_results": [
+    {
+      "applied": 41,
+      "family_after": "141/250",
+      "lane": "biotin_dependent_carboxylase",
+      "note": "broadened ft_binding handle; offset-250 exhausted"
+    },
+    {
+      "applied": 3,
+      "family_after": "103/150",
+      "lane": "short_chain_dehydrogenase_reductase"
+    },
+    {
+      "applied": 44,
+      "corroborated": "121/128",
+      "family_after": "150/150 (cap hit)",
+      "lane": "serine_beta_lactamase"
+    },
+    {
+      "applied": 1,
+      "family_after": "101/150",
+      "lane": "protein_kinase_ser_thr_tyr"
+    },
+    {
+      "applied": 25,
+      "corroborated": "35; off-target 132 held",
+      "family_after": "125/150",
+      "lane": "metal_independent_phosphodiesterase"
+    },
+    {
+      "applied": 0,
+      "family_after": "173/250",
+      "lane": "terpene_cyclase_synthase",
+      "note": "supply-saturated (7 corroborated, 0 novel of 287 fetched)"
+    },
+    {
+      "applied": 0,
+      "family_after": "112/150",
+      "lane": "ser_thr_protein_phosphatase",
+      "note": "supply-saturated"
+    },
+    {
+      "applied": 0,
+      "family_after": "146/150",
+      "lane": "had_like_phosphatase",
+      "note": "supply-saturated"
+    }
+  ],
+  "leakage_note": "Every appended bronze label is reviewed-Swiss-Prot EC/Rhea/cofactor-annotation anchored; protein name, EC label, UniProt prose, source annotation, curated mechanism text, and the target family lane are excluded_context and never predictive features.",
+  "post_batch_audits": {
+    "coverage_redundancy": "artifacts/v3_coverage_redundancy_audit_current702_20260617_clean_lane_growth.json",
+    "fingerprint_gini": 0.1683,
+    "floor_deficit": 0,
+    "holes": [],
+    "novelty_admission_gate": "artifacts/v3_novelty_admission_gate_audit_current702_20260617_clean_lane_growth.json",
+    "novelty_replay": {
+      "admit": 7679,
+      "reject": 47,
+      "throttle": 414
+    },
+    "over_cap": [
+      "metal_dependent_hydrolase"
+    ]
+  },
+  "purpose": "Record the user-directed 2026-06-17 reviewed-Swiss-Prot lane growth pass that grew combined labels 8728 -> 8842 (+114) across broadened-handle mechanism-first family lanes, leaving the frozen current702 benchmark byte-unchanged.",
+  "saturation_finding": "Reviewed-Swiss-Prot supply is now essentially exhausted for the current 46 fingerprints: nad_p_dehydrogenase (150/150), glycosyltransferase (250/250), and sam_methyltransferase (250/250) are at cap; terpene/STPP/HAD lanes fetched hundreds of rows but yielded 0 novel. Further clean growth toward 10k needs NEW mechanism-fingerprint families (an ontology/research decision; lane-factory ranks aldo_keto_reductase, aminoglycoside_acetyltransferase, metallo_beta_lactamase as candidates without fingerprints) or the human-gated external source-transfer path.",
+  "schema_version": "catalytic_earth.apply_summary.v1",
+  "status": "user_directed_clean_reviewed_swissprot_lane_growth_applied"
+}

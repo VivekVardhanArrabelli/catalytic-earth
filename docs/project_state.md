@@ -26,6 +26,33 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **CLEAN REVIEWED-SWISS-PROT GROWTH PASS; COMBINED LABELS 8728 -> 8842 (+114) (2026-06-17, user-directed).**
+  Under explicit user authorization to grow the count via clean lanes, the broadened-handle
+  mechanism-first family lanes were run and every novelty-admitted, cap-safe, duplicate-clean bronze
+  row applied to the expansion registry. Productive lanes: biotin-dependent carboxylase **+41**,
+  serine beta-lactamase **+44** (106 -> 150 cap hit), metal-independent phosphodiesterase **+25**
+  (100 -> 125), SDR **+3**, protein-kinase **+1**. Saturated (0 novel): terpene (287 fetched),
+  ser/thr protein phosphatase (456), HAD-like phosphatase (381). Expansion **8026 -> 8140**, combined
+  **8842**; frozen current702 byte-unchanged at sha
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`
+  (`frozen_benchmark_registry_written: false`). Post-batch audits clean:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260617_clean_lane_growth.json` (8842 = 702 +
+  8140, holes none, floor deficit 0, Gini 0.168, over-cap only `metal_dependent_hydrolase`) and
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260617_clean_lane_growth.json` (admit
+  7565 -> 7679). Summary:
+  `artifacts/v3_clean_reviewed_swissprot_lane_growth_summary_current702_20260617.json`. Real-registry
+  baseline tests updated to 8842 / 8140 / 6916.
+
+  **Saturation ceiling (read before chasing more clean growth):** reviewed-Swiss-Prot supply is now
+  essentially exhausted for the current 46 fingerprints — `nad_p_dehydrogenase` (150/150),
+  `glycosyltransferase` (250/250), and `sam_methyltransferase` (250/250) are at cap; the run0310
+  evidence-handle "+146 / +250" projections were stale. Gap to 10k is **1158** and now requires
+  EITHER new mechanism-fingerprint families (ontology/research decision; lane-factory candidates
+  without fingerprints: `aldo_keto_reductase`, `aminoglycoside_acetyltransferase`,
+  `metallo_beta_lactamase`) OR the human-review-gated external source-transfer path. Note: the ML
+  control tooling (numpy/torch/esm2/mmseqs) is not installed in the web session, so external-transfer
+  representation/heuristic/duplicate gates cannot be run here.
+
 - **BIOTIN BROADENED-HANDLE TRANCHE APPLIED; COMBINED LABELS 8728 -> 8769 (2026-06-17, user-directed).**
   Under explicit user authorization to make progress in the label count, the row-guardrail-clean
   run0310 biotin-dependent carboxylase reviewed-Swiss-Prot broadened-handle preview was applied to

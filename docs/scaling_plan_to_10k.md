@@ -16,6 +16,18 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-17 user-directed clean growth pass: combined 8728 -> 8842 (+114); reviewed-Swiss-Prot now
+exhausted.** Ran the broadened-handle mechanism-first family lanes and applied every novelty-admitted,
+cap-safe, duplicate-clean bronze row: biotin +41, serine beta-lactamase +44 (cap hit), metal-independent
+PDE +25, SDR +3, protein-kinase +1; terpene/STPP/HAD yielded 0 novel. Frozen current702 byte-unchanged.
+**Key re-scope:** the breadth-feasibility 9673 projection and the evidence-handle "+146/+250" uplifts
+are supply upper-bounds, not realizable clean rows — `nad_p_dehydrogenase`, `glycosyltransferase`, and
+`sam_methyltransferase` are already at cap, and supply-rich-on-paper lanes (terpene, STPP, HAD) return
+0 novel after dedup/corroboration. The realistic clean reviewed-Swiss-Prot ceiling at the current 46
+fingerprints is ~here (8842). The remaining gap to 10k (1158) needs new mechanism-fingerprint families
+(ontology/research decision) or the human-gated external source-transfer path. See
+`artifacts/v3_clean_reviewed_swissprot_lane_growth_summary_current702_20260617.json`.
+
 **2026-06-17 user-directed apply: biotin broadened-handle tranche applied, combined 8728 -> 8769.**
 Under explicit user authorization to make progress in the label count, the row-guardrail-clean
 run0310 biotin-dependent carboxylase reviewed-Swiss-Prot broadened-handle preview was applied:
