@@ -16213,6 +16213,211 @@ def build_external_source_pilot_terminal_review_factory_replay_queue(
     }
 
 
+def build_external_source_pilot_terminal_review_factory_replay_audit(
+    *,
+    terminal_review_factory_replay_queue: dict[str, Any],
+    pilot_terminal_decisions: dict[str, Any],
+    label_factory_gate_check: dict[str, Any] | None = None,
+    max_rows: int = 10,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Consume terminal decisions for queued source-transfer rows.
+
+    This is a replay/audit only. It can prove that terminal decisions have been
+    recorded for queued rows, but it never creates import-ready rows or labels.
+    """
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    decision_by_accession = _external_first_row_by_accession(pilot_terminal_decisions)
+    factory_meta = label_factory_gate_check.get("metadata", {}) if label_factory_gate_check else {}
+    factory_gate_status = (
+        "passed"
+        if label_factory_gate_check
+        and not label_factory_gate_check.get("blockers")
+        and factory_meta.get("passed_gate_count") == factory_meta.get("gate_count")
+        and factory_meta.get("gate_count") is not None
+        else "not_run"
+    )
+
+    rows: list[dict[str, Any]] = []
+    for queue_row in [
+        row
+        for row in terminal_review_factory_replay_queue.get("rows", []) or []
+        if isinstance(row, dict)
+    ][:max_rows]:
+        accession = _normalize_accession(queue_row.get("accession"))
+        if not accession:
+            continue
+        terminal_row = decision_by_accession.get(accession, {})
+        terminal_status = str(terminal_row.get("terminal_status") or "not_recorded")
+        terminal_recorded = bool(terminal_row)
+        terminal_accepted = terminal_status == "import_ready_candidate"
+        row_factory_status = (
+            terminal_row.get("factory_gate_status")
+            or queue_row.get("full_label_factory_gate_status")
+            or factory_gate_status
+        )
+        if row_factory_status in {None, ""}:
+            row_factory_status = "not_run"
+        row_factory_passed = str(row_factory_status) in {
+            "passed",
+            "passed_full_label_factory_gate",
+        }
+
+        blockers = {
+            str(blocker)
+            for blocker in (
+                list(queue_row.get("remaining_import_blockers", []) or [])
+                + list(terminal_row.get("unresolved_evidence_for_deferred", []) or [])
+            )
+            if blocker
+        }
+        blockers.discard("terminal_review_decision_not_recorded")
+        if not terminal_recorded:
+            replay_outcome = "terminal_decision_missing_factory_not_run"
+            blockers.add("terminal_review_decision_not_recorded")
+            blockers.add("full_label_factory_gate_not_run")
+        elif terminal_accepted and row_factory_passed:
+            replay_outcome = "terminal_review_passed_factory_present_review_only"
+        elif terminal_accepted:
+            replay_outcome = "terminal_review_candidate_factory_gate_missing"
+            blockers.add("full_label_factory_gate_not_run")
+        elif terminal_status.startswith("rejected_"):
+            replay_outcome = "terminal_review_rejected_no_factory_replay"
+            blockers.add("terminal_review_decision_not_accepted")
+        else:
+            replay_outcome = "terminal_review_deferred_factory_replay_blocked"
+            blockers.add("terminal_review_decision_not_accepted")
+            blockers.add("human_expert_review_required")
+            blockers.add("full_label_factory_gate_not_run")
+
+        if not row_factory_passed:
+            blockers.add("full_label_factory_gate_not_run")
+
+        rows.append(
+            {
+                "rank": queue_row.get("rank"),
+                "accession": accession,
+                "entry_id": queue_row.get("entry_id") or f"uniprot:{accession}",
+                "protein_name": queue_row.get("protein_name"),
+                "lane_id": queue_row.get("lane_id"),
+                "repair_lane": queue_row.get("repair_lane"),
+                "family_import_safety_status": queue_row.get(
+                    "family_import_safety_status"
+                ),
+                "terminal_review_decision_status": terminal_status,
+                "terminal_review_decision_recorded": terminal_recorded,
+                "terminal_review_decision_accepted": terminal_accepted,
+                "terminal_rationale": terminal_row.get("terminal_rationale"),
+                "review_decision": terminal_row.get("review_decision", {}),
+                "full_label_factory_gate_status": row_factory_status,
+                "factory_replay_status": (
+                    "factory_gate_present_but_not_import_authorizing"
+                    if row_factory_passed
+                    else "factory_gate_not_run_or_not_passed"
+                ),
+                "replay_outcome": replay_outcome,
+                "remaining_import_blockers": sorted(blockers),
+                "required_before_any_import": [
+                    "explicit accepted terminal review decision",
+                    "broader duplicate screen remains clear",
+                    "full label-factory gate passes",
+                    "novelty/governor replay passes",
+                    "row guardrail audit passes",
+                ],
+                "autonomous_decision": "hold_review_only",
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+            }
+        )
+
+    terminal_status_counts = Counter(
+        row["terminal_review_decision_status"] for row in rows
+    )
+    replay_outcome_counts = Counter(row["replay_outcome"] for row in rows)
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row["remaining_import_blockers"]
+    )
+    recorded_count = sum(1 for row in rows if row["terminal_review_decision_recorded"])
+    accepted_count = sum(1 for row in rows if row["terminal_review_decision_accepted"])
+    factory_pass_count = sum(
+        1
+        for row in rows
+        if row["full_label_factory_gate_status"]
+        in {"passed", "passed_full_label_factory_gate"}
+    )
+    return {
+        "metadata": {
+            "method": (
+                "external_source_pilot_terminal_review_factory_replay_audit"
+            ),
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": (
+                "terminal_review_decisions_consumed_for_replay_queue"
+            ),
+            "blocker_not_removed": sorted(
+                {
+                    blocker
+                    for blocker in blocker_counts
+                    if blocker
+                    in {
+                        "terminal_review_decision_not_recorded",
+                        "terminal_review_decision_not_accepted",
+                        "human_expert_review_required",
+                        "full_label_factory_gate_not_run",
+                        "no_import_ready_external_rows",
+                    }
+                }
+                | {"no_import_ready_external_rows"}
+            ),
+            "review_only": True,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_candidate_count": 0,
+            "curated_label_registry_edited": False,
+            "fingerprint_registry_edited": False,
+            "artifact_upload_or_removal_performed": False,
+            "artifact_migration_files_edited": False,
+            "removal_allowed_set_true": False,
+            "new_external_rows_frozen": 0,
+            "candidate_count": len(rows),
+            "terminal_review_decision_recorded_count": recorded_count,
+            "terminal_review_decision_accepted_count": accepted_count,
+            "factory_gate_pass_count": factory_pass_count,
+            "max_rows": max_rows,
+            "selected_accessions": [row["accession"] for row in rows],
+            "terminal_status_counts": dict(sorted(terminal_status_counts.items())),
+            "replay_outcome_counts": dict(sorted(replay_outcome_counts.items())),
+            "remaining_import_blocker_counts": dict(sorted(blocker_counts.items())),
+            "source_terminal_review_factory_replay_queue_method": (
+                terminal_review_factory_replay_queue.get("metadata", {}).get(
+                    "method"
+                )
+            ),
+            "source_pilot_terminal_decisions_method": (
+                pilot_terminal_decisions.get("metadata", {}).get("method")
+            ),
+            "source_label_factory_gate_method": factory_meta.get("method"),
+            "non_countable_rule": (
+                "terminal/factory replay audits consume review decisions only; "
+                "they cannot create terminal acceptances, import-ready rows, or "
+                "labels"
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "Terminal/factory replay audit is non-authorizing; external "
+                "rows remain held until accepted terminal review, full factory, "
+                "novelty/governor, and row-guardrail gates all pass"
+            )
+        ],
+    }
+
+
 def build_external_source_pilot_manual_source_mechanism_review_packet(
     *,
     review_resolution_gap_audit: dict[str, Any],

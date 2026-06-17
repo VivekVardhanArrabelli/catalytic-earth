@@ -1,0 +1,133 @@
+{
+  "applied_labels": [],
+  "artifact_id": "v3_protein_kinase_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {},
+    "current_combined_labels": 8728,
+    "disambiguation_hold_count": 0,
+    "disambiguation_hold_reason_counts": {},
+    "disambiguation_skip_count": 9,
+    "fetched_candidate_rows": 10,
+    "gate_admitted_before_cap_guard": 0,
+    "held_at_cap_ceiling": 0,
+    "held_at_cap_ceiling_by_fingerprint": {},
+    "lanes_queried": 1,
+    "max_records_per_lane": 10,
+    "mechanism_corroborated_bronze_labels": 1,
+    "novelty_admitted_labels": 0,
+    "novelty_throttled_or_rejected": 1,
+    "off_target_fingerprint_counts": {},
+    "off_target_fingerprint_matches_held": 0,
+    "projected_combined_labels_if_merged": 8728,
+    "record_limit_per_lane": null,
+    "record_offset_per_lane": 0
+  },
+  "created_utc": "2026-06-17T02:32:36Z",
+  "deploy_missing_active_site_context_per_family": {
+    "protein_kinase_ser_thr_tyr": "atp_mg_protein_substrate_phosphoryl_transfer_context"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {
+      "high": 1
+    },
+    "current_registry_labels": 8026,
+    "decision_counts": {
+      "import": 1,
+      "skip": 9
+    },
+    "examined_rows": 10,
+    "fingerprint_counts": {
+      "protein_kinase_ser_thr_tyr": 1
+    },
+    "hold_count": 0,
+    "hold_reason_counts": {},
+    "importable_new_labels": 1,
+    "per_pool_decision_counts": {
+      "protein_kinase_broadened_handle_fresh_fetch": {
+        "import": 1,
+        "skip_screen": 9
+      }
+    },
+    "projected_registry_labels_if_merged": 8027,
+    "skip_count": 9
+  },
+  "evidence_basis": "reviewed_swissprot_ec_rhea_protein_kinase_annotation",
+  "families_sourced": [
+    "protein_kinase_ser_thr_tyr"
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "floor_projection": {
+    "protein_kinase_ser_thr_tyr": {
+      "admitted_this_run": 0,
+      "cap_ceiling": 150,
+      "chemistry_confusable": true,
+      "combined_before": 100,
+      "deficit_to_floor_after": 0,
+      "deficit_to_floor_before": 0,
+      "deploy_missing_active_site_context": "atp_mg_protein_substrate_phosphoryl_transfer_context",
+      "floor_reached": true,
+      "held_at_cap_this_run": 0,
+      "projected_combined": 100,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "broadened_handles_never_predictive_features": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "heldout_benchmark_unchanged": true,
+    "histidine_small_molecule_kinase_ligase_side_ec_boundary_guard": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "novelty_gated_against_both_registries": true,
+    "off_target_fingerprint_matches_held": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "protein_kinase_ser_thr_tyr": 150
+    },
+    "predictive_features_use_ec_name_keyword_reaction_or_prose": false,
+    "protein_kinase_handles_scope_admission_only": true,
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "protein_kinase_ec_2_7_10_11_named",
+      "query": "(reviewed:true) AND ((ec:2.7.10.*) OR (ec:2.7.11.*)) AND ((protein_name:\"protein kinase\") OR (keyword:\"Protein kinase\"))",
+      "record_count": 10,
+      "record_limit_per_lane": null,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 10,
+      "records_returned_by_query": 10,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A2.7.10.%2A%29+OR+%28ec%3A2.7.11.%2A%29%29+AND+%28%28protein_name%3A%22protein+kinase%22%29+OR+%28keyword%3A%22Protein+kinase%22%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=10",
+      "status": "query_fetched",
+      "target_family_lane": "protein_kinase_ser_thr_tyr"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If dedup, trust-tier, cap, leakage, and row guardrail gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via the family script `--apply` with frozen current702 sha checks.",
+  "novelty_gate": {
+    "decision_counts": {
+      "throttle": 1
+    },
+    "reason_counts": {
+      "redundant_no_novelty_signal": 1
+    }
+  },
+  "off_target_fingerprint_matches_sample": [],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_protein_kinase_broadened_handle",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": [
+    {
+      "entry_id": "uniprot:P19525",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr"
+    }
+  ]
+}

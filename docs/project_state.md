@@ -26,6 +26,54 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **TERMINAL REPLAY DEFERRED; SOURCE-HANDLE SCALE WALL REFRESHED; NO REGISTRY APPLY (2026-06-17 automation run0210).**
+  Frozen current702 stayed byte-unchanged at sha
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no label registry rows
+  were written. Run0210 final no-apply audits
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run0210_final_noapply.json` and
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run0210_final_noapply.json`
+  confirm the surface stayed at **8728** combined labels = **702** frozen + **8026** expansion,
+  with no holes, floor deficit **0**, novelty replay **7565** admit / **414** throttle / **47**
+  reject, and only `metal_dependent_hydrolase` over cap.
+
+  Run0210 added and tested a non-authorizing terminal-review/factory replay audit. The artifact
+  `artifacts/v3_external_source_pilot_terminal_review_factory_replay_audit_current702_20260616_run0210.json`
+  consumes recorded decisions for the **5** run0009 replay-queue rows (Q6NSJ0, C9JRZ8, O14756,
+  P06746, Q8N0X4). All **5** decisions remain `deferred_requires_human_expert`, leaving terminal
+  accepted **0**, factory pass **0**, import-ready **0**, and countable label candidates **0**.
+  Zero-import validation
+  `artifacts/v3_external_source_pilot_terminal_review_factory_replay_audit_zero_import_current702_20260616_run0210.json`
+  passed **1/1 valid**.
+
+  Run0210 also made the NAD(P)/glycosyltransferase source runner bounded with
+  `--fetch-timeout-seconds` and refreshed current-state source-wall evidence. The high-yield
+  factory
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260616_run0210_post_terminal_replay.json`
+  still has **0** ready existing lanes >=150 and top projected clean admits **77**. Evidence-handle
+  expansion
+  `artifacts/v3_evidence_handle_expansion_current702_20260616_run0210_post_terminal_replay.json`
+  still shows four handle-blocked families and **741** bounded reachable-bronze headroom if handles
+  are repaired. Breadth feasibility
+  `artifacts/v3_breadth_feasibility_scout_current702_20260616_run0210_post_terminal_replay.json`
+  still projects **9673** reviewed-Swiss-Prot clean positives, gap **327** to 10k, and source-scale
+  audit `artifacts/v3_source_scale_limit_audit_current702_20260616_run0210.json` still recommends
+  external source-transfer/source-handle strategy.
+
+  Current-state no-apply probes found no autonomous apply candidate:
+  `artifacts/v3_glycosyltransferase_handle_cap_probe_current702_20260616_run0210.json` admitted
+  **0** labels; `artifacts/v3_nad_p_dehydrogenase_handle_cap_probe_current702_20260616_run0210.json`
+  found **21** mechanism-corroborated labels but held **17** at the family cap; and
+  `artifacts/v3_biotin_dependent_carboxylase_floor_handle_probe_current702_20260616_run0210.json`
+  found **8** novelty-admitted labels, but the family was already at floor and the fragment was
+  below autonomous scale criteria. Additional terpene, protein-kinase, and SDR cap probes admitted
+  **0** labels. All companion row-guardrail audits passed.
+
+  Next exact action: do not import the five terminal-deferred rows or any run0210 cap-probe rows.
+  Resolve the human/expert terminal-review blocker for the five queued rows, or formalize a
+  higher-yield external source-transfer/source-handle lane beyond reviewed Swiss-Prot with
+  duplicate screening, active-site/source resolution, full label-factory, novelty, governor, and
+  row-guardrail gates.
+
 - **P55263 PFKB IMPORT-SAFETY EXPLICITLY KEEP-HELD; NO REGISTRY APPLY (2026-06-17 automation run0009).**
   Frozen current702 stayed byte-unchanged at sha
   `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no label registry rows were

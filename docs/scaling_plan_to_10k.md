@@ -16,6 +16,50 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-17 automation update: terminal replay deferred, source-handle scale wall refreshed, no
+registry apply.** Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; no label registry
+rows were written. Run0210 final no-apply audits confirm the surface is unchanged at **8728**
+combined labels = **702** frozen + **8026** expansion, with no holes, floor deficit **0**, novelty
+replay **7565** admit / **414** throttle / **47** reject, and only `metal_dependent_hydrolase`
+over cap:
+`artifacts/v3_coverage_redundancy_audit_current702_20260616_run0210_final_noapply.json` and
+`artifacts/v3_novelty_admission_gate_audit_current702_20260616_run0210_final_noapply.json`.
+
+Run0210 added a non-authorizing terminal-review/factory replay audit:
+`artifacts/v3_external_source_pilot_terminal_review_factory_replay_audit_current702_20260616_run0210.json`.
+It consumed recorded terminal decisions for Q6NSJ0, C9JRZ8, O14756, P06746, and Q8N0X4, but all
+**5** remain `deferred_requires_human_expert`; terminal accepted **0**, factory pass **0**,
+import-ready **0**, and countable label candidates **0**. Its zero-import validation
+`artifacts/v3_external_source_pilot_terminal_review_factory_replay_audit_zero_import_current702_20260616_run0210.json`
+passed **1/1 valid**. These rows are not import candidates until accepted terminal review, full
+label-factory, duplicate, novelty, governor, and row-guardrail gates all pass.
+
+The run also refreshed current-state scale-wall evidence. The high-yield factory
+`artifacts/v3_high_yield_family_lane_factory_current702_20260616_run0210_post_terminal_replay.json`
+still has **0** ready existing lanes >=150 and top projected clean admits **77**. Evidence-handle
+expansion
+`artifacts/v3_evidence_handle_expansion_current702_20260616_run0210_post_terminal_replay.json`
+still shows four handle-blocked families and **741** bounded reachable-bronze headroom if handles
+are repaired. Breadth feasibility
+`artifacts/v3_breadth_feasibility_scout_current702_20260616_run0210_post_terminal_replay.json`
+still projects **9673** reviewed-Swiss-Prot clean positives with gap **327** to 10k, and source
+scale audit `artifacts/v3_source_scale_limit_audit_current702_20260616_run0210.json` still
+recommends external source-transfer/source-handle strategy over M-CSA-only tranche growth.
+
+Bounded no-apply probes made the scale wall more concrete:
+`artifacts/v3_glycosyltransferase_handle_cap_probe_current702_20260616_run0210.json` admitted
+**0**; `artifacts/v3_nad_p_dehydrogenase_handle_cap_probe_current702_20260616_run0210.json` found
+**21** mechanism-corroborated labels but held **17** at the family cap; and
+`artifacts/v3_biotin_dependent_carboxylase_floor_handle_probe_current702_20260616_run0210.json`
+found **8** novelty-admitted labels, but the family was already at floor and the fragment was below
+autonomous scale criteria. Terpene, protein-kinase, and SDR cap probes admitted **0**. Companion
+row-guardrail audits passed, but no probe justified a registry mutation.
+
+Next action: do not apply subfloor fragments or cap-probe rows. Resolve the human/expert terminal
+review blocker for the five queued rows, or open a higher-yield external source-transfer/source-
+handle lane beyond reviewed Swiss-Prot that can pass duplicate, active-site/source resolution,
+full label-factory, novelty, governor, and row-guardrail gates.
+
 **2026-06-17 automation update: P55263 PfkB import-safety keep-held; no registry apply.** Frozen
 current702 stayed byte-unchanged at sha `5eec9bef...`; no label registry rows were written.
 Run0009 coverage/novelty replays confirm the state is unchanged at **8728** combined labels =

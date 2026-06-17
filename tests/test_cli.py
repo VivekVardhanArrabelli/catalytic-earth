@@ -620,6 +620,31 @@ class CliTests(unittest.TestCase):
         self.assertEqual(args.review_resolution_gap_audit, "/tmp/gap.json")
         self.assertEqual(args.max_rows, 5)
 
+    def test_external_source_pilot_terminal_review_factory_replay_audit_parser(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-external-source-pilot-terminal-review-factory-"
+                    "replay-audit"
+                ),
+                "--terminal-review-factory-replay-queue",
+                "/tmp/queue.json",
+                "--pilot-terminal-decisions",
+                "/tmp/terminal.json",
+                "--label-factory-gate-check",
+                "/tmp/factory.json",
+                "--max-rows",
+                "5",
+            ]
+        )
+
+        self.assertEqual(args.terminal_review_factory_replay_queue, "/tmp/queue.json")
+        self.assertEqual(args.pilot_terminal_decisions, "/tmp/terminal.json")
+        self.assertEqual(args.label_factory_gate_check, "/tmp/factory.json")
+        self.assertEqual(args.max_rows, 5)
+
     def test_external_source_pilot_candidate_priority_pinned_parser(
         self,
     ) -> None:

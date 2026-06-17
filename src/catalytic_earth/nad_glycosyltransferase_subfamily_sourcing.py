@@ -476,6 +476,9 @@ def write_nad_glycosyltransferase_subfamily_sourcing(
     per_reaction_cap: int | None = None,
     reaction_aware_caps: bool = False,
     reaction_cap_rate: int = DEFAULT_REACTION_CAP_RATE,
+    query_fetcher: Callable[[str, int], dict[str, Any]] = fetch_uniprot_query,
+    entry_fetcher: Callable[[str], dict[str, Any]] = fetch_uniprot_entry,
+    rhea_fetcher: Callable[[str, int], dict[str, Any]] = fetch_rhea_by_ec,
 ) -> dict[str, Any]:
     """Build the preview and write it (non-destructive: no registry is touched)."""
     expansion_path = Path(expansion_registry_path)
@@ -491,6 +494,9 @@ def write_nad_glycosyltransferase_subfamily_sourcing(
         per_reaction_cap=per_reaction_cap,
         reaction_aware_caps=reaction_aware_caps,
         reaction_cap_rate=reaction_cap_rate,
+        query_fetcher=query_fetcher,
+        entry_fetcher=entry_fetcher,
+        rhea_fetcher=rhea_fetcher,
     )
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)

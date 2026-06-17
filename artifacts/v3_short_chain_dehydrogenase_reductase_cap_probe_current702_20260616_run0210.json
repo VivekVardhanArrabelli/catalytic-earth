@@ -1,0 +1,176 @@
+{
+  "applied_labels": [],
+  "artifact_id": "v3_short_chain_dehydrogenase_reductase_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {},
+    "current_combined_labels": 8728,
+    "disambiguation_hold_count": 3,
+    "disambiguation_hold_reason_counts": {
+      "no_mechanism_corroboration": 3
+    },
+    "disambiguation_skip_count": 20,
+    "fetched_candidate_rows": 26,
+    "gate_admitted_before_cap_guard": 0,
+    "held_at_cap_ceiling": 0,
+    "held_at_cap_ceiling_by_fingerprint": {},
+    "lane_ids": [
+      "short_chain_dehydrogenase_reductase_named_nad",
+      "short_chain_dehydrogenase_reductase_active_binding",
+      "short_chain_dehydrogenase_reductase_reaction_nad"
+    ],
+    "lanes_queried": 3,
+    "max_records_per_lane": 20,
+    "mechanism_corroborated_bronze_labels": 3,
+    "novelty_admitted_labels": 0,
+    "novelty_throttled_or_rejected": 3,
+    "off_target_fingerprint_counts": {},
+    "off_target_fingerprint_matches_held": 0,
+    "projected_combined_labels_if_merged": 8728,
+    "record_limit_per_lane": null,
+    "record_offset_per_lane": 0
+  },
+  "created_utc": "2026-06-17T02:33:19Z",
+  "deploy_missing_active_site_context_per_family": {
+    "short_chain_dehydrogenase_reductase": "nad_p_sdr_ser_tyr_lys_hydride_transfer_context"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {
+      "medium": 3
+    },
+    "current_registry_labels": 8026,
+    "decision_counts": {
+      "hold": 3,
+      "import": 3,
+      "skip": 20
+    },
+    "examined_rows": 26,
+    "fingerprint_counts": {
+      "short_chain_dehydrogenase_reductase": 3
+    },
+    "hold_count": 3,
+    "hold_reason_counts": {
+      "no_mechanism_corroboration": 3
+    },
+    "importable_new_labels": 3,
+    "per_pool_decision_counts": {
+      "short_chain_dehydrogenase_reductase_broadened_handle_fresh_fetch": {
+        "hold": 3,
+        "import": 3,
+        "skip_screen": 20
+      }
+    },
+    "projected_registry_labels_if_merged": 8029,
+    "skip_count": 20
+  },
+  "evidence_basis": "reviewed_swissprot_ec_rhea_sdr_nad_p_hydride_transfer_annotation",
+  "families_sourced": [
+    "short_chain_dehydrogenase_reductase"
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "floor_projection": {
+    "short_chain_dehydrogenase_reductase": {
+      "admitted_this_run": 0,
+      "cap_ceiling": 150,
+      "chemistry_confusable": true,
+      "combined_before": 100,
+      "deficit_to_floor_after": 0,
+      "deficit_to_floor_before": 0,
+      "deploy_missing_active_site_context": "nad_p_sdr_ser_tyr_lys_hydride_transfer_context",
+      "floor_reached": true,
+      "held_at_cap_this_run": 0,
+      "projected_combined": 100,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "akr_mdr_aldh_flavin_metal_redox_boundary_guard": true,
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "broadened_handles_never_predictive_features": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "heldout_benchmark_unchanged": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "novelty_gated_against_both_registries": true,
+    "off_target_fingerprint_matches_held": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "short_chain_dehydrogenase_reductase": 150
+    },
+    "predictive_features_use_ec_name_keyword_reaction_or_prose": false,
+    "short_chain_dehydrogenase_reductase_handles_scope_admission_only": true,
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "short_chain_dehydrogenase_reductase_named_nad",
+      "query": "(reviewed:true) AND (ec:1.1.1.*) AND ((protein_name:\"short-chain dehydrogenase\") OR (protein_name:\"short chain dehydrogenase\") OR (protein_name:\"short-chain dehydrogenase/reductase\") OR (protein_name:SDR)) AND ((keyword:NAD) OR (keyword:NADP))",
+      "record_count": 20,
+      "record_limit_per_lane": null,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 20,
+      "records_returned_by_query": 20,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A1.1.1.%2A%29+AND+%28%28protein_name%3A%22short-chain+dehydrogenase%22%29+OR+%28protein_name%3A%22short+chain+dehydrogenase%22%29+OR+%28protein_name%3A%22short-chain+dehydrogenase%2Freductase%22%29+OR+%28protein_name%3ASDR%29%29+AND+%28%28keyword%3ANAD%29+OR+%28keyword%3ANADP%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=20",
+      "status": "query_fetched",
+      "target_family_lane": "short_chain_dehydrogenase_reductase"
+    },
+    {
+      "lane_id": "short_chain_dehydrogenase_reductase_active_binding",
+      "query": "(reviewed:true) AND (ec:1.1.1.*) AND ((protein_name:\"short-chain dehydrogenase\") OR (protein_name:\"short chain dehydrogenase\") OR (protein_name:\"short-chain dehydrogenase/reductase\") OR (protein_name:SDR)) AND ((ft_act_site:*) OR (ft_binding:*))",
+      "record_count": 4,
+      "record_limit_per_lane": null,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 20,
+      "records_returned_by_query": 20,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A1.1.1.%2A%29+AND+%28%28protein_name%3A%22short-chain+dehydrogenase%22%29+OR+%28protein_name%3A%22short+chain+dehydrogenase%22%29+OR+%28protein_name%3A%22short-chain+dehydrogenase%2Freductase%22%29+OR+%28protein_name%3ASDR%29%29+AND+%28%28ft_act_site%3A%2A%29+OR+%28ft_binding%3A%2A%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=20",
+      "status": "query_fetched",
+      "target_family_lane": "short_chain_dehydrogenase_reductase"
+    },
+    {
+      "lane_id": "short_chain_dehydrogenase_reductase_reaction_nad",
+      "query": "(reviewed:true) AND (ec:1.1.1.*) AND ((protein_name:\"short-chain dehydrogenase\") OR (protein_name:\"short chain dehydrogenase\") OR (protein_name:\"short-chain dehydrogenase/reductase\") OR (protein_name:SDR)) AND ((cc_catalytic_activity:NAD) OR (cc_catalytic_activity:NADP) OR (cc_catalytic_activity:NADH) OR (cc_catalytic_activity:NADPH))",
+      "record_count": 2,
+      "record_limit_per_lane": null,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 20,
+      "records_returned_by_query": 20,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A1.1.1.%2A%29+AND+%28%28protein_name%3A%22short-chain+dehydrogenase%22%29+OR+%28protein_name%3A%22short+chain+dehydrogenase%22%29+OR+%28protein_name%3A%22short-chain+dehydrogenase%2Freductase%22%29+OR+%28protein_name%3ASDR%29%29+AND+%28%28cc_catalytic_activity%3ANAD%29+OR+%28cc_catalytic_activity%3ANADP%29+OR+%28cc_catalytic_activity%3ANADH%29+OR+%28cc_catalytic_activity%3ANADPH%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=20",
+      "status": "query_fetched",
+      "target_family_lane": "short_chain_dehydrogenase_reductase"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If dedup, trust-tier, cap, leakage, and row guardrail gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via the family script `--apply` with frozen current702 sha checks.",
+  "novelty_gate": {
+    "decision_counts": {
+      "throttle": 3
+    },
+    "reason_counts": {
+      "redundant_no_novelty_signal": 3
+    }
+  },
+  "off_target_fingerprint_matches_sample": [],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_short_chain_dehydrogenase_reductase_broadened_handle",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": [
+    {
+      "entry_id": "uniprot:Q8IZV5",
+      "fingerprint_id": "short_chain_dehydrogenase_reductase"
+    },
+    {
+      "entry_id": "uniprot:Q9HBH5",
+      "fingerprint_id": "short_chain_dehydrogenase_reductase"
+    },
+    {
+      "entry_id": "uniprot:Q9NYR8",
+      "fingerprint_id": "short_chain_dehydrogenase_reductase"
+    }
+  ]
+}

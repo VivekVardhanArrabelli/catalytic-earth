@@ -1,0 +1,345 @@
+{
+  "metadata": {
+    "artifact_lineage": {
+      "artifact_paths": {
+        "pilot_terminal_decisions": "artifacts/v3_external_source_pilot_terminal_decisions_q6nsj0_replacement_current702_20260616_run2205.json",
+        "terminal_review_factory_replay_queue": "artifacts/v3_external_source_pilot_terminal_review_factory_replay_queue_current702_20260616_run0009.json"
+      },
+      "blocker_removed": "terminal_review_decisions_consumed_for_replay_queue",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "pilot_terminal_decisions": 20260616,
+        "terminal_review_factory_replay_queue": 20260616
+      },
+      "payload_methods": {
+        "pilot_terminal_decisions": "external_source_pilot_terminal_decisions",
+        "terminal_review_factory_replay_queue": "external_source_pilot_terminal_review_factory_replay_queue"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {
+        "pilot_terminal_decisions": {
+          "metadata.artifact_lineage.slice_id": 20260616
+        },
+        "terminal_review_factory_replay_queue": {
+          "metadata.artifact_lineage.slice_id": 20260616,
+          "metadata.slice_id": 20260616
+        }
+      },
+      "slice_id": 20260616,
+      "slice_members": {
+        "20260616": [
+          "pilot_terminal_decisions",
+          "terminal_review_factory_replay_queue"
+        ]
+      }
+    },
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "blocker_not_removed": [
+      "full_label_factory_gate_not_run",
+      "human_expert_review_required",
+      "no_import_ready_external_rows",
+      "terminal_review_decision_not_accepted"
+    ],
+    "blocker_removed": "terminal_review_decisions_consumed_for_replay_queue",
+    "candidate_count": 5,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "factory_gate_pass_count": 0,
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "max_rows": 5,
+    "method": "external_source_pilot_terminal_review_factory_replay_audit",
+    "new_external_rows_frozen": 0,
+    "non_countable_rule": "terminal/factory replay audits consume review decisions only; they cannot create terminal acceptances, import-ready rows, or labels",
+    "ready_for_label_import": false,
+    "remaining_import_blocker_counts": {
+      "adjudicate changed nearest-reference representation evidence": 1,
+      "adjudicate heuristic fingerprint context in representation evidence": 2,
+      "adjudicate heuristic scope or top1 mismatch": 4,
+      "broader_duplicate_screening_required": 3,
+      "external_review_decision_artifact_not_built": 5,
+      "full_label_factory_gate_not_passed": 5,
+      "full_label_factory_gate_not_run": 5,
+      "heuristic_control_not_scored": 3,
+      "heuristic_scope_top1_mismatch": 1,
+      "human_expert_review_required": 5,
+      "learned_or_structure_language_embedding_not_run": 5,
+      "out_of_scope_false_non_abstention": 1,
+      "out_of_scope_inverse_gate_incomplete_current_fingerprint_coverage": 1,
+      "out_of_scope_inverse_gate_scores_missing": 1,
+      "record human/expert review decision against the assembled evidence packet": 5,
+      "resolve selected-pilot representation-control blocker": 5,
+      "review_decision_not_terminal": 5,
+      "run the full label-factory gate only after review decision and duplicate controls": 5,
+      "terminal_review_decision_not_accepted": 5
+    },
+    "removal_allowed_set_true": false,
+    "replay_outcome_counts": {
+      "terminal_review_deferred_factory_replay_blocked": 5
+    },
+    "review_only": true,
+    "selected_accessions": [
+      "Q6NSJ0",
+      "C9JRZ8",
+      "O14756",
+      "P06746",
+      "Q8N0X4"
+    ],
+    "slice_id": 20260616,
+    "source_label_factory_gate_method": null,
+    "source_pilot_terminal_decisions_method": "external_source_pilot_terminal_decisions",
+    "source_terminal_review_factory_replay_queue_method": "external_source_pilot_terminal_review_factory_replay_queue",
+    "terminal_review_decision_accepted_count": 0,
+    "terminal_review_decision_recorded_count": 5,
+    "terminal_status_counts": {
+      "deferred_requires_human_expert": 5
+    }
+  },
+  "rows": [
+    {
+      "accession": "Q6NSJ0",
+      "autonomous_decision": "hold_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q6NSJ0",
+      "factory_replay_status": "factory_gate_not_run_or_not_passed",
+      "family_import_safety_status": "glycoside_boundary_representation_conflict_repaired",
+      "full_label_factory_gate_status": "not_run",
+      "lane_id": "external_source:glycan_chemistry",
+      "protein_name": "Alpha-galactosidase MYORG (EC 3.2.1.22) (Myogenesis regulating glycosidase) (Nuclear envelope transmembrane protein 37)",
+      "rank": 1,
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "adjudicate heuristic fingerprint context in representation evidence",
+        "adjudicate heuristic scope or top1 mismatch",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_passed",
+        "full_label_factory_gate_not_run",
+        "heuristic_scope_top1_mismatch",
+        "human_expert_review_required",
+        "learned_or_structure_language_embedding_not_run",
+        "out_of_scope_false_non_abstention",
+        "out_of_scope_inverse_gate_incomplete_current_fingerprint_coverage",
+        "record human/expert review decision against the assembled evidence packet",
+        "resolve selected-pilot representation-control blocker",
+        "review_decision_not_terminal",
+        "run the full label-factory gate only after review decision and duplicate controls",
+        "terminal_review_decision_not_accepted"
+      ],
+      "repair_lane": "split_glycoside_hydrolase_from_metal_hydrolase_control",
+      "replay_outcome": "terminal_review_deferred_factory_replay_blocked",
+      "required_before_any_import": [
+        "explicit accepted terminal review decision",
+        "broader duplicate screen remains clear",
+        "full label-factory gate passes",
+        "novelty/governor replay passes",
+        "row guardrail audit passes"
+      ],
+      "review_decision": {
+        "decision_source": "automation_terminal_decision_from_existing_pilot_artifacts",
+        "decision_status": "deferred_requires_human_expert",
+        "human_expert_required": true,
+        "terminal": true
+      },
+      "terminal_rationale": "Q6NSJ0 has explicit active-site evidence, but heuristic scope mismatch requires expert adjudication before import.",
+      "terminal_review_decision_accepted": false,
+      "terminal_review_decision_recorded": true,
+      "terminal_review_decision_status": "deferred_requires_human_expert"
+    },
+    {
+      "accession": "C9JRZ8",
+      "autonomous_decision": "hold_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:C9JRZ8",
+      "factory_replay_status": "factory_gate_not_run_or_not_passed",
+      "family_import_safety_status": "akr_nadp_axis_representation_conflict_repaired",
+      "full_label_factory_gate_status": "not_run",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "protein_name": "Aldo-keto reductase family 1 member B15 (EC 1.1.1.-) (EC 1.1.1.300) (EC 1.1.1.54) (Estradiol 17-beta-dehydrogenase AKR1B15) (Farnesol dehydrogenase) (EC 1.1.1.216) (Testosterone 17beta-dehydrogenase) (EC 1.1.1.64)",
+      "rank": 2,
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "adjudicate heuristic scope or top1 mismatch",
+        "broader_duplicate_screening_required",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_passed",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "human_expert_review_required",
+        "learned_or_structure_language_embedding_not_run",
+        "record human/expert review decision against the assembled evidence packet",
+        "resolve selected-pilot representation-control blocker",
+        "review_decision_not_terminal",
+        "run the full label-factory gate only after review decision and duplicate controls",
+        "terminal_review_decision_not_accepted"
+      ],
+      "repair_lane": "add_akr_nadp_redox_representation_axis",
+      "replay_outcome": "terminal_review_deferred_factory_replay_blocked",
+      "required_before_any_import": [
+        "explicit accepted terminal review decision",
+        "broader duplicate screen remains clear",
+        "full label-factory gate passes",
+        "novelty/governor replay passes",
+        "row guardrail audit passes"
+      ],
+      "review_decision": {
+        "decision_source": "automation_terminal_decision_from_existing_pilot_artifacts",
+        "decision_status": "deferred_requires_human_expert",
+        "human_expert_required": true,
+        "terminal": true
+      },
+      "terminal_rationale": "C9JRZ8 has explicit active-site evidence, but broader duplicate screening, review import, and factory-gate evidence are not terminally satisfied in the current local artifacts.",
+      "terminal_review_decision_accepted": false,
+      "terminal_review_decision_recorded": true,
+      "terminal_review_decision_status": "deferred_requires_human_expert"
+    },
+    {
+      "accession": "O14756",
+      "autonomous_decision": "hold_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O14756",
+      "factory_replay_status": "factory_gate_not_run_or_not_passed",
+      "family_import_safety_status": "sdr_axis_representation_conflict_repaired",
+      "full_label_factory_gate_status": "not_run",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "protein_name": "17-beta-hydroxysteroid dehydrogenase type 6 (17-beta-HSD 6) (17-beta-HSD6) (EC 1.1.1.105) (EC 1.1.1.209) (EC 1.1.1.239) (EC 1.1.1.53) (EC 1.1.1.62) (3-alpha->beta-hydroxysteroid epimerase) (3-alpha->beta-HSE) (Oxidative 3-alpha hydroxysteroid dehydrogenase) (Short chain dehydrogenase/reductase family 9C member 6)",
+      "rank": 3,
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "adjudicate heuristic fingerprint context in representation evidence",
+        "broader_duplicate_screening_required",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_passed",
+        "full_label_factory_gate_not_run",
+        "human_expert_review_required",
+        "learned_or_structure_language_embedding_not_run",
+        "out_of_scope_inverse_gate_scores_missing",
+        "record human/expert review decision against the assembled evidence packet",
+        "resolve selected-pilot representation-control blocker",
+        "review_decision_not_terminal",
+        "run the full label-factory gate only after review decision and duplicate controls",
+        "terminal_review_decision_not_accepted"
+      ],
+      "repair_lane": "add_sdr_nad_p_redox_representation_axis",
+      "replay_outcome": "terminal_review_deferred_factory_replay_blocked",
+      "required_before_any_import": [
+        "explicit accepted terminal review decision",
+        "broader duplicate screen remains clear",
+        "full label-factory gate passes",
+        "novelty/governor replay passes",
+        "row guardrail audit passes"
+      ],
+      "review_decision": {
+        "decision_source": "automation_terminal_decision_from_existing_pilot_artifacts",
+        "decision_status": "deferred_requires_human_expert",
+        "human_expert_required": true,
+        "terminal": true
+      },
+      "terminal_rationale": "O14756 has explicit active-site evidence, but nearest-reference representation evidence changed under the largest feasible backend.",
+      "terminal_review_decision_accepted": false,
+      "terminal_review_decision_recorded": true,
+      "terminal_review_decision_status": "deferred_requires_human_expert"
+    },
+    {
+      "accession": "P06746",
+      "autonomous_decision": "hold_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P06746",
+      "factory_replay_status": "factory_gate_not_run_or_not_passed",
+      "family_import_safety_status": "dna_pol_x_lyase_axis_representation_conflict_repaired",
+      "full_label_factory_gate_status": "not_run",
+      "lane_id": "external_source:lyase",
+      "protein_name": "DNA polymerase beta (EC 2.7.7.7) (5'-deoxyribose-phosphate lyase) (5'-dRP lyase) (EC 4.2.99.-) (AP lyase) (EC 4.2.99.18)",
+      "rank": 5,
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "adjudicate heuristic scope or top1 mismatch",
+        "broader_duplicate_screening_required",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_passed",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "human_expert_review_required",
+        "learned_or_structure_language_embedding_not_run",
+        "record human/expert review decision against the assembled evidence packet",
+        "resolve selected-pilot representation-control blocker",
+        "review_decision_not_terminal",
+        "run the full label-factory gate only after review decision and duplicate controls",
+        "terminal_review_decision_not_accepted"
+      ],
+      "repair_lane": "add_dna_pol_x_lyase_representation_axis",
+      "replay_outcome": "terminal_review_deferred_factory_replay_blocked",
+      "required_before_any_import": [
+        "explicit accepted terminal review decision",
+        "broader duplicate screen remains clear",
+        "full label-factory gate passes",
+        "novelty/governor replay passes",
+        "row guardrail audit passes"
+      ],
+      "review_decision": {
+        "decision_source": "automation_terminal_decision_from_existing_pilot_artifacts",
+        "decision_status": "deferred_requires_human_expert",
+        "human_expert_required": true,
+        "terminal": true
+      },
+      "terminal_rationale": "P06746 has explicit active-site evidence, but broader duplicate screening, review import, and factory-gate evidence are not terminally satisfied in the current local artifacts.",
+      "terminal_review_decision_accepted": false,
+      "terminal_review_decision_recorded": true,
+      "terminal_review_decision_status": "deferred_requires_human_expert"
+    },
+    {
+      "accession": "Q8N0X4",
+      "autonomous_decision": "hold_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8N0X4",
+      "factory_replay_status": "factory_gate_not_run_or_not_passed",
+      "family_import_safety_status": "acyl_coa_lyase_thioesterase_scope_control_repaired",
+      "full_label_factory_gate_status": "not_run",
+      "lane_id": "external_source:lyase",
+      "protein_name": "Citramalyl-CoA lyase, mitochondrial (EC 4.1.3.25) ((3S)-malyl-CoA thioesterase) (EC 3.1.2.30) (Beta-methylmalate synthase) (EC 2.3.3.-) (Citrate lyase subunit beta-like protein) (Citrate lyase beta-like) (Malate synthase) (EC 2.3.3.9)",
+      "rank": 6,
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "adjudicate changed nearest-reference representation evidence",
+        "adjudicate heuristic scope or top1 mismatch",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_passed",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "human_expert_review_required",
+        "learned_or_structure_language_embedding_not_run",
+        "record human/expert review decision against the assembled evidence packet",
+        "resolve selected-pilot representation-control blocker",
+        "review_decision_not_terminal",
+        "run the full label-factory gate only after review decision and duplicate controls",
+        "terminal_review_decision_not_accepted"
+      ],
+      "repair_lane": "add_acyl_coa_lyase_thioesterase_scope_control",
+      "replay_outcome": "terminal_review_deferred_factory_replay_blocked",
+      "required_before_any_import": [
+        "explicit accepted terminal review decision",
+        "broader duplicate screen remains clear",
+        "full label-factory gate passes",
+        "novelty/governor replay passes",
+        "row guardrail audit passes"
+      ],
+      "review_decision": {
+        "decision_source": "automation_terminal_decision_from_existing_pilot_artifacts",
+        "decision_status": "deferred_requires_human_expert",
+        "human_expert_required": true,
+        "terminal": true
+      },
+      "terminal_rationale": "Q8N0X4 has explicit active-site evidence, but broader duplicate screening, review import, and factory-gate evidence are not terminally satisfied in the current local artifacts.",
+      "terminal_review_decision_accepted": false,
+      "terminal_review_decision_recorded": true,
+      "terminal_review_decision_status": "deferred_requires_human_expert"
+    }
+  ],
+  "warnings": [
+    "Terminal/factory replay audit is non-authorizing; external rows remain held until accepted terminal review, full factory, novelty/governor, and row-guardrail gates all pass"
+  ]
+}

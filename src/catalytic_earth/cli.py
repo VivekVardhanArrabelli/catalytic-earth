@@ -722,6 +722,7 @@ from .transfer_scope import (
     build_external_source_pilot_pfkb_import_safety_adjudication,
     build_external_source_pilot_pfkb_source_free_control_decision,
     build_external_source_pilot_review_resolution_gap_audit,
+    build_external_source_pilot_terminal_review_factory_replay_audit,
     build_external_source_pilot_terminal_review_factory_replay_queue,
     build_external_source_pilot_schiff_base_lyase_control,
     build_external_source_pilot_schiff_base_lyase_import_safety_adjudication,
@@ -4582,6 +4583,43 @@ def cmd_build_external_source_pilot_terminal_review_factory_replay_queue(
     print(
         "Wrote external source pilot terminal-review/factory replay queue to "
         f"{args.out} ({queue['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_terminal_review_factory_replay_audit(
+    args: argparse.Namespace,
+) -> int:
+    optional_artifact_names = (
+        "label_factory_gate_check",
+    )
+    explicit_optional_artifacts = tuple(
+        name for name in optional_artifact_names if getattr(args, name, None)
+    )
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "terminal_review_factory_replay_queue",
+            "pilot_terminal_decisions",
+        )
+        + explicit_optional_artifacts,
+        blocker_removed="terminal_review_decisions_consumed_for_replay_queue",
+    )
+    audit = build_external_source_pilot_terminal_review_factory_replay_audit(
+        terminal_review_factory_replay_queue=artifact_payloads[
+            "terminal_review_factory_replay_queue"
+        ],
+        pilot_terminal_decisions=artifact_payloads["pilot_terminal_decisions"],
+        label_factory_gate_check=artifact_payloads.get("label_factory_gate_check"),
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source pilot terminal-review/factory replay audit to "
+        f"{args.out} ({audit['metadata']['candidate_count']} rows, "
+        f"{audit['metadata']['terminal_review_decision_recorded_count']} "
+        "decisions recorded)"
     )
     return 0
 
@@ -25813,6 +25851,47 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_pilot_terminal_replay_queue.set_defaults(
         func=cmd_build_external_source_pilot_terminal_review_factory_replay_queue
+    )
+
+    external_pilot_terminal_replay_audit = subparsers.add_parser(
+        "build-external-source-pilot-terminal-review-factory-replay-audit",
+        help=(
+            "consume terminal decisions for queued external pilot rows while "
+            "keeping the replay non-authorizing"
+        ),
+    )
+    external_pilot_terminal_replay_audit.add_argument(
+        "--terminal-review-factory-replay-queue",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_terminal_review_factory_replay_queue_"
+            "1025.json"
+        ),
+    )
+    external_pilot_terminal_replay_audit.add_argument(
+        "--pilot-terminal-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_terminal_decisions_1025.json"
+        ),
+    )
+    external_pilot_terminal_replay_audit.add_argument(
+        "--label-factory-gate-check",
+        default=None,
+    )
+    external_pilot_terminal_replay_audit.add_argument(
+        "--max-rows", type=int, default=10
+    )
+    external_pilot_terminal_replay_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_terminal_review_factory_replay_audit_"
+            "1025.json"
+        ),
+    )
+    external_pilot_terminal_replay_audit.set_defaults(
+        func=cmd_build_external_source_pilot_terminal_review_factory_replay_audit
     )
 
     external_pilot_manual_source_packet = subparsers.add_parser(

@@ -1,5 +1,76 @@
 # Handoff
 
+## Session run - terminal replay deferred; source-handle scale wall refreshed; no registry apply (2026-06-17, Codex automation run0210)
+
+- Started at `2026-06-17T02:08:10Z` from current `origin/main`
+  `a11ee18680aaa74c1959798434dcb5b4a29dcb30`, acquired
+  `.git/catalytic-earth-automation.lock`, and confirmed frozen current702 sha before/after stayed
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. No registry apply or
+  label write was attempted.
+- Baseline safety was green before work: `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed, and the baseline focused critical pytest suite passed **448 passed, 160 subtests**.
+  Final affected/source-transfer pytest passed **428 passed, 160 subtests**; final full
+  `PYTHONPATH=src pytest -q` passed **2404 passed, 1 warning, 244 subtests**. Final compileall,
+  docs-reference check (**missing: 0**), hard-limit scan, JSON/JSONL parse, frozen SHA check, and
+  `git diff --check` passed or are rerun after this closeout edit.
+- Final coverage remained unchanged at **8728** combined labels = **702** frozen + **8026**
+  expansion. Final no-apply audits
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run0210_final_noapply.json` and
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run0210_final_noapply.json`
+  show holes **0**, floor deficit **0**, over-cap only `metal_dependent_hydrolase`, and novelty
+  replay **7565** admit / **414** throttle / **47** reject.
+- Added `build-external-source-pilot-terminal-review-factory-replay-audit`, wired its CLI command,
+  and covered it in transfer/CLI tests. The audit consumes recorded terminal decisions for the
+  run0009 five-row replay queue but is deliberately non-authorizing: it never creates terminal
+  acceptances, import-ready rows, countable rows, or labels.
+- Terminal replay artifact
+  `artifacts/v3_external_source_pilot_terminal_review_factory_replay_audit_current702_20260616_run0210.json`
+  consumed **5/5** recorded terminal decisions for Q6NSJ0, C9JRZ8, O14756, P06746, and Q8N0X4.
+  All **5** are `deferred_requires_human_expert`, so terminal accepted **0**, factory pass **0**,
+  import-ready **0**, and countable label candidates **0**. Zero-import validation
+  `artifacts/v3_external_source_pilot_terminal_review_factory_replay_audit_zero_import_current702_20260616_run0210.json`
+  passed **1/1 valid**.
+- Added bounded fetch support to `scripts/source_nad_glycosyltransferase_families.py` and its
+  sourcing writer so future UniProt/Rhea calls can time out into preview `fetch_failures` instead
+  of hanging an automation run. Regression coverage in
+  `tests/test_nad_glycosyltransferase_subfamily_sourcing.py` remains green.
+- Refreshed source-wall planning:
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260616_run0210_post_terminal_replay.json`
+  still has **0** ready existing lanes >=150 and top projected clean admits **77**;
+  `artifacts/v3_evidence_handle_expansion_current702_20260616_run0210_post_terminal_replay.json`
+  shows four handle-blocked families and **741** bounded reachable-bronze headroom if handles are
+  repaired; `artifacts/v3_breadth_feasibility_scout_current702_20260616_run0210_post_terminal_replay.json`
+  still projects **9673** reviewed-Swiss-Prot clean positives, gap **327** to 10k; and
+  `artifacts/v3_source_scale_limit_audit_current702_20260616_run0210.json` still recommends
+  external source-transfer/source-handle strategy over M-CSA-only tranche growth.
+- Current-state no-apply probes:
+  `artifacts/v3_glycosyltransferase_handle_cap_probe_current702_20260616_run0210.json` fetched
+  **15** rows, found **0** mechanism-corroborated/admitted labels, and passed row guardrails with
+  **0** rows; `artifacts/v3_nad_p_dehydrogenase_handle_cap_probe_current702_20260616_run0210.json`
+  fetched **40** rows, found **21** mechanism-corroborated labels, but all **17**
+  novelty-admitted-before-cap rows were held at the **150** family cap; row guardrails passed with
+  **0** rows; `artifacts/v3_biotin_dependent_carboxylase_floor_handle_probe_current702_20260616_run0210.json`
+  fetched **14** rows and found **8** novelty-admitted labels, but the family was already at floor
+  and this subthreshold fragment was not an autonomous apply candidate; row guardrails passed with
+  **8** rows and **0** problems.
+- Additional capped-lane probes:
+  `artifacts/v3_terpene_cyclase_synthase_cap_probe_current702_20260616_run0210.json` fetched
+  **49** rows and admitted **0**; `artifacts/v3_protein_kinase_cap_probe_current702_20260616_run0210.json`
+  fetched **10** rows and admitted **0**; and
+  `artifacts/v3_short_chain_dehydrogenase_reductase_cap_probe_current702_20260616_run0210.json`
+  fetched **26** rows and admitted **0**. All companion row-guardrail audits passed with **0**
+  problem rows.
+- Early closeout reason: after the terminal replay and five current-state source probes, the
+  remaining safe scaling choices were concretely blocked by no holes/floor deficits, no ready
+  lane projected at >=150 clean admits, terminal decisions deferred to human/expert review, and
+  current probes that were capped, already-at-floor, or zero-yield. Applying tiny fragments would
+  violate the current scale-wall policy.
+- Next exact action: do not import the five terminal-deferred rows, the biotin fragment, or any
+  cap-probe rows. The next productive run should either resolve the human/expert terminal review
+  blocker for Q6NSJ0/C9JRZ8/O14756/P06746/Q8N0X4, or formalize a higher-yield external
+  source-transfer/source-handle lane beyond reviewed Swiss-Prot with duplicate screening,
+  active-site/source resolution, full label-factory, novelty, governor, and row-guardrail gates.
+
 ## Session run - P55263 PfkB import-safety keep-held; no registry apply (2026-06-17, Codex automation run0009)
 
 - Started at `2026-06-17T01:07:32Z` from current `origin/main`

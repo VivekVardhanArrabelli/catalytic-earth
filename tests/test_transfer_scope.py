@@ -87,6 +87,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_pilot_sugar_phosphate_isomerase_import_safety_adjudication,
     build_external_source_pilot_success_criteria,
     build_external_source_pilot_terminal_decisions,
+    build_external_source_pilot_terminal_review_factory_replay_audit,
     build_external_source_pilot_terminal_review_factory_replay_queue,
     build_external_source_pilot_uniref_current_reference_screen,
     build_external_structural_cluster_index,
@@ -8607,6 +8608,98 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             "terminal_review_decision_not_recorded",
             row["remaining_import_blockers"],
         )
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_pilot_terminal_review_factory_replay_audit_consumes_deferred_decisions(
+        self,
+    ) -> None:
+        audit = build_external_source_pilot_terminal_review_factory_replay_audit(
+            terminal_review_factory_replay_queue={
+                "metadata": {
+                    "method": (
+                        "external_source_pilot_terminal_review_factory_replay_"
+                        "queue"
+                    )
+                },
+                "rows": [
+                    {
+                        "rank": 1,
+                        "accession": "C9JRZ8",
+                        "entry_id": "uniprot:C9JRZ8",
+                        "protein_name": "Aldo-keto reductase",
+                        "lane_id": "external_source:oxidoreductase_long_tail",
+                        "repair_lane": "add_akr_nadp_redox_representation_axis",
+                        "family_import_safety_status": (
+                            "akr_nadp_axis_representation_conflict_repaired"
+                        ),
+                        "remaining_import_blockers": [
+                            "terminal_review_decision_not_recorded",
+                            "full_label_factory_gate_not_run",
+                        ],
+                    }
+                ],
+            },
+            pilot_terminal_decisions={
+                "metadata": {
+                    "method": "external_source_pilot_terminal_decisions"
+                },
+                "rows": [
+                    {
+                        "accession": "C9JRZ8",
+                        "terminal_status": "deferred_requires_human_expert",
+                        "terminal_rationale": (
+                            "Explicit active-site evidence exists but review "
+                            "and factory gates are unresolved."
+                        ),
+                        "unresolved_evidence_for_deferred": [
+                            "record human/expert review decision against the "
+                            "assembled evidence packet"
+                        ],
+                        "review_decision": {
+                            "decision_status": "deferred_requires_human_expert",
+                            "terminal": True,
+                            "human_expert_required": True,
+                        },
+                    }
+                ],
+            },
+            artifact_lineage={
+                "method": "external_transfer_artifact_path_lineage_validation",
+                "slice_id": 20260616,
+                "guardrail_clean": True,
+            },
+        )
+
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "external_source_pilot_terminal_review_factory_replay_audit",
+        )
+        self.assertEqual(metadata["terminal_review_decision_recorded_count"], 1)
+        self.assertEqual(metadata["terminal_review_decision_accepted_count"], 0)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            metadata["replay_outcome_counts"],
+            {"terminal_review_deferred_factory_replay_blocked": 1},
+        )
+        row = audit["rows"][0]
+        self.assertEqual(
+            row["terminal_review_decision_status"],
+            "deferred_requires_human_expert",
+        )
+        self.assertFalse(row["terminal_review_decision_accepted"])
+        self.assertNotIn(
+            "terminal_review_decision_not_recorded",
+            row["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "terminal_review_decision_not_accepted",
+            row["remaining_import_blockers"],
+        )
+        self.assertIn("human_expert_review_required", row["remaining_import_blockers"])
+        self.assertIn("full_label_factory_gate_not_run", row["remaining_import_blockers"])
         self.assertFalse(row["countable_label_candidate"])
         self.assertFalse(row["ready_for_label_import"])
 
