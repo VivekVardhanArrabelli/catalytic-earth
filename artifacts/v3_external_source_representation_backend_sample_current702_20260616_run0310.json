@@ -1,0 +1,1698 @@
+{
+  "blockers": [
+    "external_review_decision_artifact_not_built",
+    "full_label_factory_gate_not_run"
+  ],
+  "embedding_failures": [],
+  "fetch_failures": [],
+  "learned_vs_heuristic_disagreements": [
+    {
+      "accession": "Q13087",
+      "entry_id": "uniprot:Q13087",
+      "heuristic_top1_fingerprint_id": "metallophosphomonoesterase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:479"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.9374
+    },
+    {
+      "accession": "P04424",
+      "entry_id": "uniprot:P04424",
+      "heuristic_top1_fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:183"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.9337
+    },
+    {
+      "accession": "P33025",
+      "entry_id": "uniprot:P33025",
+      "heuristic_top1_fingerprint_id": "coa_acyltransferase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:222"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.9335
+    },
+    {
+      "accession": "P60174",
+      "entry_id": "uniprot:P60174",
+      "heuristic_top1_fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:335"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.8825
+    },
+    {
+      "accession": "Q13907",
+      "entry_id": "uniprot:Q13907",
+      "heuristic_top1_fingerprint_id": "glycoside_hydrolase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:335"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.8539
+    },
+    {
+      "accession": "Q6NSJ0",
+      "entry_id": "uniprot:Q6NSJ0",
+      "heuristic_top1_fingerprint_id": "metallophosphomonoesterase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:6"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.9089
+    },
+    {
+      "accession": "Q9BXD5",
+      "entry_id": "uniprot:Q9BXD5",
+      "heuristic_top1_fingerprint_id": "cofactor_independent_isomerase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:301"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.903
+    },
+    {
+      "accession": "Q9BXS1",
+      "entry_id": "uniprot:Q9BXS1",
+      "heuristic_top1_fingerprint_id": "alpha_beta_hydrolase_esterase_lipase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:216"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.8461
+    },
+    {
+      "accession": "A2RU49",
+      "entry_id": "uniprot:A2RU49",
+      "heuristic_top1_fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:506"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.913
+    },
+    {
+      "accession": "O14756",
+      "entry_id": "uniprot:O14756",
+      "heuristic_top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:12"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.925
+    },
+    {
+      "accession": "P34949",
+      "entry_id": "uniprot:P34949",
+      "heuristic_top1_fingerprint_id": "metal_independent_phosphodiesterase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:171"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.9218
+    },
+    {
+      "accession": "P35914",
+      "entry_id": "uniprot:P35914",
+      "heuristic_top1_fingerprint_id": "coa_acyltransferase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:608"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.8492
+    },
+    {
+      "accession": "P46597",
+      "entry_id": "uniprot:P46597",
+      "heuristic_top1_fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:67"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.9045
+    },
+    {
+      "accession": "Q969G6",
+      "entry_id": "uniprot:Q969G6",
+      "heuristic_top1_fingerprint_id": "glycoside_hydrolase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:586"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.8469
+    },
+    {
+      "accession": "Q96I15",
+      "entry_id": "uniprot:Q96I15",
+      "heuristic_top1_fingerprint_id": "coa_acyltransferase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:6"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.9509
+    }
+  ],
+  "metadata": {
+    "attempted_embedding_backend": null,
+    "backend_feasibility_status": "computed",
+    "backend_status_counts": {
+      "sequence_kmer_embedding_control_complete": 15
+    },
+    "blocker_not_removed": null,
+    "blocker_removed": "computes a bounded learned or proxy representation sample for external pilot readiness while preserving heuristic geometry retrieval as the baseline",
+    "candidate_count": 15,
+    "computed_embedding_backend": "deterministic_sequence_kmer_control",
+    "countable_label_candidate_count": 0,
+    "elapsed_seconds": 2.1234,
+    "embedding_backend": "deterministic_sequence_kmer_control",
+    "embedding_backend_available": true,
+    "embedding_backend_model_family": "deterministic_sequence_kmer",
+    "embedding_backend_parameter_count": null,
+    "embedding_elapsed_seconds": 0.021,
+    "embedding_failure_count": 0,
+    "embedding_status": "computed_review_only",
+    "embedding_vector_dimension": null,
+    "expected_embedding_vector_dimension": null,
+    "fallback_attempts": [],
+    "fallback_not_computed_reason": null,
+    "fallback_reason": null,
+    "fallback_selected_backend": null,
+    "fallback_used": false,
+    "fetch_failure_count": 0,
+    "fetched_accession_count": 50,
+    "heuristic_contrast_required_count": 14,
+    "largest_feasible_embedding_backend": null,
+    "largest_supported_embedding_backend": null,
+    "learned_representation_complete_count": 0,
+    "learned_vs_heuristic_disagreement_count": 15,
+    "local_files_only": false,
+    "max_rows": 15,
+    "method": "external_source_representation_backend_sample",
+    "model_load_elapsed_seconds": 0.0,
+    "model_load_failure": null,
+    "model_load_failure_type": null,
+    "model_load_status": "not_applicable",
+    "model_name": null,
+    "predictive_feature_policy": "representation status is computed from sequence embeddings and sequence length coverage only; identifiers, EC/Rhea, mechanism text, labels, and heuristic fingerprint ids are review context or holdout context only",
+    "predictive_feature_sources": [
+      "sequence_embedding_cosine",
+      "sequence_length_coverage"
+    ],
+    "ready_for_label_import": false,
+    "reference_pair_count": 45,
+    "representation_near_duplicate_alert_count": 0,
+    "requested_accession_count": 50,
+    "requested_backend_cache_snapshot_count": null,
+    "requested_backend_feasibility_status": "computed",
+    "requested_backend_local_cache_status": "not_applicable",
+    "requested_backend_smoke_status": "not_applicable",
+    "requested_backend_weights_cached": null,
+    "requested_embedding_backend": "deterministic_sequence_kmer_control",
+    "requested_embedding_backend_available": null,
+    "requested_embedding_failure_count": 0,
+    "requested_expected_embedding_vector_dimension": null,
+    "requested_model_load_failure": null,
+    "requested_model_load_failure_type": null,
+    "requested_model_load_status": null,
+    "requested_model_name": "facebook/esm2_t6_8M_UR50D",
+    "review_context_fields": [
+      "heuristic_baseline_control",
+      "nearest_reference",
+      "scope_signal",
+      "sequence_search_task"
+    ],
+    "review_only_rule": "computed representation samples are controls only; they do not replace sequence-search, review-decision, or factory gates",
+    "similarity_alert_threshold": 0.95,
+    "source_fetch_method": "uniprot_sequence_batch_search",
+    "source_representation_backend_plan_method": "external_source_representation_backend_plan",
+    "source_sequence_neighborhood_sample_method": "external_source_sequence_neighborhood_sample",
+    "top_k": 3
+  },
+  "requested_embedding_failures": [],
+  "rows": [
+    {
+      "accession": "Q13087",
+      "backend_status": "sequence_kmer_embedding_control_complete",
+      "blockers": [
+        "learned_or_structure_language_embedding_not_run",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "candidate_sequence_length": 525,
+      "comparison_status": "needs_reaction_context_before_representation_comparison",
+      "computed_embedding_backend": "deterministic_sequence_kmer_control",
+      "countable_label_candidate": false,
+      "embedding_backend": "deterministic_sequence_kmer_control",
+      "embedding_status": "computed_review_only",
+      "embedding_vector_dimension": null,
+      "embedding_warning": null,
+      "entry_id": "uniprot:Q13087",
+      "fallback_reason": null,
+      "fallback_used": false,
+      "heuristic_baseline_control": {
+        "repair_lane": "add_lane_specific_scope_contrastive_controls",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metallophosphomonoesterase",
+        "top1_score": 0.3077
+      },
+      "lane_id": "external_source:isomerase",
+      "larger_model_readiness_status": "computed",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "nearest_reference": {
+        "embedding_backend": "deterministic_sequence_kmer_control",
+        "embedding_cosine": 0.9374,
+        "length_coverage": 0.9524,
+        "matched_m_csa_entry_ids": [
+          "m_csa:479"
+        ],
+        "reference_accession": "O87172",
+        "screen_near_duplicate_score": 0.0762
+      },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
+      "ready_for_label_import": false,
+      "reference_scores": [
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.9374,
+          "length_coverage": 0.9524,
+          "matched_m_csa_entry_ids": [
+            "m_csa:479"
+          ],
+          "reference_accession": "O87172",
+          "screen_near_duplicate_score": 0.0762
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.9181,
+          "length_coverage": 0.9358,
+          "matched_m_csa_entry_ids": [
+            "m_csa:277"
+          ],
+          "reference_accession": "P00392",
+          "screen_near_duplicate_score": 0.0766
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.9124,
+          "length_coverage": 0.7943,
+          "matched_m_csa_entry_ids": [
+            "m_csa:973"
+          ],
+          "reference_accession": "A0A0C6DRW4",
+          "screen_near_duplicate_score": 0.0705
+        }
+      ],
+      "requested_embedding_backend": "deterministic_sequence_kmer_control",
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
+      "review_status": "representation_backend_sample_review_only",
+      "scope_signal": "isomerase",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+      "top_embedding_cosine": 0.9374
+    },
+    {
+      "accession": "P04424",
+      "backend_status": "sequence_kmer_embedding_control_complete",
+      "blockers": [
+        "learned_or_structure_language_embedding_not_run",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "candidate_sequence_length": 464,
+      "comparison_status": "proxy_flags_scope_top1_mismatch",
+      "computed_embedding_backend": "deterministic_sequence_kmer_control",
+      "countable_label_candidate": false,
+      "embedding_backend": "deterministic_sequence_kmer_control",
+      "embedding_status": "computed_review_only",
+      "embedding_vector_dimension": null,
+      "embedding_warning": null,
+      "entry_id": "uniprot:P04424",
+      "fallback_reason": null,
+      "fallback_used": false,
+      "heuristic_baseline_control": {
+        "repair_lane": "add_lane_specific_scope_contrastive_controls",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metallo_amidohydrolase_deaminase",
+        "top1_score": 0.461
+      },
+      "lane_id": "external_source:lyase",
+      "larger_model_readiness_status": "computed",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "nearest_reference": {
+        "embedding_backend": "deterministic_sequence_kmer_control",
+        "embedding_cosine": 0.9337,
+        "length_coverage": 0.9831,
+        "matched_m_csa_entry_ids": [
+          "m_csa:183"
+        ],
+        "reference_accession": "P00914",
+        "screen_near_duplicate_score": 0.0847
+      },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
+      "ready_for_label_import": false,
+      "reference_scores": [
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.9337,
+          "length_coverage": 0.9831,
+          "matched_m_csa_entry_ids": [
+            "m_csa:183"
+          ],
+          "reference_accession": "P00914",
+          "screen_near_duplicate_score": 0.0847
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8878,
+          "length_coverage": 0.928,
+          "matched_m_csa_entry_ids": [
+            "m_csa:479"
+          ],
+          "reference_accession": "O87172",
+          "screen_near_duplicate_score": 0.078
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8855,
+          "length_coverage": 0.8467,
+          "matched_m_csa_entry_ids": [
+            "m_csa:176"
+          ],
+          "reference_accession": "P00800",
+          "screen_near_duplicate_score": 0.0748
+        }
+      ],
+      "requested_embedding_backend": "deterministic_sequence_kmer_control",
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
+      "review_status": "representation_backend_sample_review_only",
+      "scope_signal": "lyase",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+      "top_embedding_cosine": 0.9337
+    },
+    {
+      "accession": "P33025",
+      "backend_status": "sequence_kmer_embedding_control_complete",
+      "blockers": [
+        "learned_or_structure_language_embedding_not_run",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "candidate_sequence_length": 312,
+      "comparison_status": "proxy_flags_scope_top1_mismatch",
+      "computed_embedding_backend": "deterministic_sequence_kmer_control",
+      "countable_label_candidate": false,
+      "embedding_backend": "deterministic_sequence_kmer_control",
+      "embedding_status": "computed_review_only",
+      "embedding_vector_dimension": null,
+      "embedding_warning": null,
+      "entry_id": "uniprot:P33025",
+      "fallback_reason": null,
+      "fallback_used": false,
+      "heuristic_baseline_control": {
+        "repair_lane": "add_lane_specific_scope_contrastive_controls",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "coa_acyltransferase",
+        "top1_score": 0.4425
+      },
+      "lane_id": "external_source:glycan_chemistry",
+      "larger_model_readiness_status": "computed",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "nearest_reference": {
+        "embedding_backend": "deterministic_sequence_kmer_control",
+        "embedding_cosine": 0.9335,
+        "length_coverage": 0.8571,
+        "matched_m_csa_entry_ids": [
+          "m_csa:222"
+        ],
+        "reference_accession": "P00883",
+        "screen_near_duplicate_score": 0.0824
+      },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
+      "ready_for_label_import": false,
+      "reference_scores": [
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.9335,
+          "length_coverage": 0.8571,
+          "matched_m_csa_entry_ids": [
+            "m_csa:222"
+          ],
+          "reference_accession": "P00883",
+          "screen_near_duplicate_score": 0.0824
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.9009,
+          "length_coverage": 0.8205,
+          "matched_m_csa_entry_ids": [
+            "m_csa:255"
+          ],
+          "reference_accession": "P00334",
+          "screen_near_duplicate_score": 0.0833
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.888,
+          "length_coverage": 0.9968,
+          "matched_m_csa_entry_ids": [
+            "m_csa:49"
+          ],
+          "reference_accession": "P00862",
+          "screen_near_duplicate_score": 0.0929
+        }
+      ],
+      "requested_embedding_backend": "deterministic_sequence_kmer_control",
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
+      "review_status": "representation_backend_sample_review_only",
+      "scope_signal": "glycan_chemistry",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+      "top_embedding_cosine": 0.9335
+    },
+    {
+      "accession": "P60174",
+      "backend_status": "sequence_kmer_embedding_control_complete",
+      "blockers": [
+        "learned_or_structure_language_embedding_not_run",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "candidate_sequence_length": 249,
+      "comparison_status": "proxy_flags_scope_top1_mismatch",
+      "computed_embedding_backend": "deterministic_sequence_kmer_control",
+      "countable_label_candidate": false,
+      "embedding_backend": "deterministic_sequence_kmer_control",
+      "embedding_status": "computed_review_only",
+      "embedding_vector_dimension": null,
+      "embedding_warning": null,
+      "entry_id": "uniprot:P60174",
+      "fallback_reason": null,
+      "fallback_used": false,
+      "heuristic_baseline_control": {
+        "repair_lane": "add_lane_specific_scope_contrastive_controls",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metallo_amidohydrolase_deaminase",
+        "top1_score": 0.54
+      },
+      "lane_id": "external_source:isomerase",
+      "larger_model_readiness_status": "computed",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "nearest_reference": {
+        "embedding_backend": "deterministic_sequence_kmer_control",
+        "embedding_cosine": 0.8825,
+        "length_coverage": 0.9157,
+        "matched_m_csa_entry_ids": [
+          "m_csa:335"
+        ],
+        "reference_accession": "O58403",
+        "screen_near_duplicate_score": 0.0763
+      },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
+      "ready_for_label_import": false,
+      "reference_scores": [
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8825,
+          "length_coverage": 0.9157,
+          "matched_m_csa_entry_ids": [
+            "m_csa:335"
+          ],
+          "reference_accession": "O58403",
+          "screen_near_duplicate_score": 0.0763
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8624,
+          "length_coverage": 0.751,
+          "matched_m_csa_entry_ids": [
+            "m_csa:283"
+          ],
+          "reference_accession": "P00903",
+          "screen_near_duplicate_score": 0.0763
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8302,
+          "length_coverage": 0.9398,
+          "matched_m_csa_entry_ids": [
+            "m_csa:431"
+          ],
+          "reference_accession": "O59893",
+          "screen_near_duplicate_score": 0.0803
+        }
+      ],
+      "requested_embedding_backend": "deterministic_sequence_kmer_control",
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
+      "review_status": "representation_backend_sample_review_only",
+      "scope_signal": "isomerase",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+      "top_embedding_cosine": 0.8825
+    },
+    {
+      "accession": "Q13907",
+      "backend_status": "sequence_kmer_embedding_control_complete",
+      "blockers": [
+        "learned_or_structure_language_embedding_not_run",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "candidate_sequence_length": 227,
+      "comparison_status": "proxy_flags_scope_top1_mismatch",
+      "computed_embedding_backend": "deterministic_sequence_kmer_control",
+      "countable_label_candidate": false,
+      "embedding_backend": "deterministic_sequence_kmer_control",
+      "embedding_status": "computed_review_only",
+      "embedding_vector_dimension": null,
+      "embedding_warning": null,
+      "entry_id": "uniprot:Q13907",
+      "fallback_reason": null,
+      "fallback_used": false,
+      "heuristic_baseline_control": {
+        "repair_lane": "add_lane_specific_scope_contrastive_controls",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "glycoside_hydrolase",
+        "top1_score": 0.4622
+      },
+      "lane_id": "external_source:isomerase",
+      "larger_model_readiness_status": "computed",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "nearest_reference": {
+        "embedding_backend": "deterministic_sequence_kmer_control",
+        "embedding_cosine": 0.8539,
+        "length_coverage": 0.9956,
+        "matched_m_csa_entry_ids": [
+          "m_csa:335"
+        ],
+        "reference_accession": "O58403",
+        "screen_near_duplicate_score": 0.0921
+      },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
+      "ready_for_label_import": false,
+      "reference_scores": [
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8539,
+          "length_coverage": 0.9956,
+          "matched_m_csa_entry_ids": [
+            "m_csa:335"
+          ],
+          "reference_accession": "O58403",
+          "screen_near_duplicate_score": 0.0921
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8374,
+          "length_coverage": 0.9827,
+          "matched_m_csa_entry_ids": [
+            "m_csa:165"
+          ],
+          "reference_accession": "P00644",
+          "screen_near_duplicate_score": 0.0779
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.7696,
+          "length_coverage": 0.987,
+          "matched_m_csa_entry_ids": [
+            "m_csa:631"
+          ],
+          "reference_accession": "P00590",
+          "screen_near_duplicate_score": 0.0826
+        }
+      ],
+      "requested_embedding_backend": "deterministic_sequence_kmer_control",
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
+      "review_status": "representation_backend_sample_review_only",
+      "scope_signal": "isomerase",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+      "top_embedding_cosine": 0.8539
+    },
+    {
+      "accession": "Q6NSJ0",
+      "backend_status": "sequence_kmer_embedding_control_complete",
+      "blockers": [
+        "learned_or_structure_language_embedding_not_run",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "candidate_sequence_length": 714,
+      "comparison_status": "proxy_flags_scope_top1_mismatch",
+      "computed_embedding_backend": "deterministic_sequence_kmer_control",
+      "countable_label_candidate": false,
+      "embedding_backend": "deterministic_sequence_kmer_control",
+      "embedding_status": "computed_review_only",
+      "embedding_vector_dimension": null,
+      "embedding_warning": null,
+      "entry_id": "uniprot:Q6NSJ0",
+      "fallback_reason": null,
+      "fallback_used": false,
+      "heuristic_baseline_control": {
+        "repair_lane": "add_lane_specific_scope_contrastive_controls",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metallophosphomonoesterase",
+        "top1_score": 0.4924
+      },
+      "lane_id": "external_source:glycan_chemistry",
+      "larger_model_readiness_status": "computed",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "nearest_reference": {
+        "embedding_backend": "deterministic_sequence_kmer_control",
+        "embedding_cosine": 0.9089,
+        "length_coverage": 0.7311,
+        "matched_m_csa_entry_ids": [
+          "m_csa:6"
+        ],
+        "reference_accession": "P00390",
+        "screen_near_duplicate_score": 0.0644
+      },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
+      "ready_for_label_import": false,
+      "reference_scores": [
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.9089,
+          "length_coverage": 0.7311,
+          "matched_m_csa_entry_ids": [
+            "m_csa:6"
+          ],
+          "reference_accession": "P00390",
+          "screen_near_duplicate_score": 0.0644
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.9035,
+          "length_coverage": 0.9754,
+          "matched_m_csa_entry_ids": [
+            "m_csa:149"
+          ],
+          "reference_accession": "P00488",
+          "screen_near_duplicate_score": 0.0615
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8704,
+          "length_coverage": 0.6597,
+          "matched_m_csa_entry_ids": [
+            "m_csa:44"
+          ],
+          "reference_accession": "P00634",
+          "screen_near_duplicate_score": 0.0574
+        }
+      ],
+      "requested_embedding_backend": "deterministic_sequence_kmer_control",
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
+      "review_status": "representation_backend_sample_review_only",
+      "scope_signal": "glycan_chemistry",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+      "top_embedding_cosine": 0.9089
+    },
+    {
+      "accession": "Q9BXD5",
+      "backend_status": "sequence_kmer_embedding_control_complete",
+      "blockers": [
+        "learned_or_structure_language_embedding_not_run",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "candidate_sequence_length": 320,
+      "comparison_status": "proxy_flags_scope_top1_mismatch",
+      "computed_embedding_backend": "deterministic_sequence_kmer_control",
+      "countable_label_candidate": false,
+      "embedding_backend": "deterministic_sequence_kmer_control",
+      "embedding_status": "computed_review_only",
+      "embedding_vector_dimension": null,
+      "embedding_warning": null,
+      "entry_id": "uniprot:Q9BXD5",
+      "fallback_reason": null,
+      "fallback_used": false,
+      "heuristic_baseline_control": {
+        "repair_lane": "add_lane_specific_scope_contrastive_controls",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "cofactor_independent_isomerase",
+        "top1_score": 0.4783
+      },
+      "lane_id": "external_source:lyase",
+      "larger_model_readiness_status": "computed",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "nearest_reference": {
+        "embedding_backend": "deterministic_sequence_kmer_control",
+        "embedding_cosine": 0.903,
+        "length_coverage": 0.9786,
+        "matched_m_csa_entry_ids": [
+          "m_csa:301"
+        ],
+        "reference_accession": "O31465",
+        "screen_near_duplicate_score": 0.0826
+      },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
+      "ready_for_label_import": false,
+      "reference_scores": [
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.903,
+          "length_coverage": 0.9786,
+          "matched_m_csa_entry_ids": [
+            "m_csa:301"
+          ],
+          "reference_accession": "O31465",
+          "screen_near_duplicate_score": 0.0826
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.901,
+          "length_coverage": 0.8269,
+          "matched_m_csa_entry_ids": [
+            "m_csa:35"
+          ],
+          "reference_accession": "P00518",
+          "screen_near_duplicate_score": 0.0853
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8977,
+          "length_coverage": 0.8672,
+          "matched_m_csa_entry_ids": [
+            "m_csa:506"
+          ],
+          "reference_accession": "P00455",
+          "screen_near_duplicate_score": 0.0813
+        }
+      ],
+      "requested_embedding_backend": "deterministic_sequence_kmer_control",
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
+      "review_status": "representation_backend_sample_review_only",
+      "scope_signal": "lyase",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+      "top_embedding_cosine": 0.903
+    },
+    {
+      "accession": "Q9BXS1",
+      "backend_status": "sequence_kmer_embedding_control_complete",
+      "blockers": [
+        "learned_or_structure_language_embedding_not_run",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "candidate_sequence_length": 227,
+      "comparison_status": "proxy_flags_scope_top1_mismatch",
+      "computed_embedding_backend": "deterministic_sequence_kmer_control",
+      "countable_label_candidate": false,
+      "embedding_backend": "deterministic_sequence_kmer_control",
+      "embedding_status": "computed_review_only",
+      "embedding_vector_dimension": null,
+      "embedding_warning": null,
+      "entry_id": "uniprot:Q9BXS1",
+      "fallback_reason": null,
+      "fallback_used": false,
+      "heuristic_baseline_control": {
+        "repair_lane": "add_lane_specific_scope_contrastive_controls",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "alpha_beta_hydrolase_esterase_lipase",
+        "top1_score": 0.4623
+      },
+      "lane_id": "external_source:isomerase",
+      "larger_model_readiness_status": "computed",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "nearest_reference": {
+        "embedding_backend": "deterministic_sequence_kmer_control",
+        "embedding_cosine": 0.8461,
+        "length_coverage": 0.8731,
+        "matched_m_csa_entry_ids": [
+          "m_csa:216"
+        ],
+        "reference_accession": "P00918",
+        "screen_near_duplicate_score": 0.0769
+      },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
+      "ready_for_label_import": false,
+      "reference_scores": [
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8461,
+          "length_coverage": 0.8731,
+          "matched_m_csa_entry_ids": [
+            "m_csa:216"
+          ],
+          "reference_accession": "P00918",
+          "screen_near_duplicate_score": 0.0769
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8435,
+          "length_coverage": 0.9956,
+          "matched_m_csa_entry_ids": [
+            "m_csa:335"
+          ],
+          "reference_accession": "O58403",
+          "screen_near_duplicate_score": 0.0965
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8245,
+          "length_coverage": 0.8867,
+          "matched_m_csa_entry_ids": [
+            "m_csa:255"
+          ],
+          "reference_accession": "P00334",
+          "screen_near_duplicate_score": 0.082
+        }
+      ],
+      "requested_embedding_backend": "deterministic_sequence_kmer_control",
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
+      "review_status": "representation_backend_sample_review_only",
+      "scope_signal": "isomerase",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+      "top_embedding_cosine": 0.8461
+    },
+    {
+      "accession": "A2RU49",
+      "backend_status": "sequence_kmer_embedding_control_complete",
+      "blockers": [
+        "learned_or_structure_language_embedding_not_run",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "candidate_sequence_length": 373,
+      "comparison_status": "proxy_flags_scope_top1_mismatch",
+      "computed_embedding_backend": "deterministic_sequence_kmer_control",
+      "countable_label_candidate": false,
+      "embedding_backend": "deterministic_sequence_kmer_control",
+      "embedding_status": "computed_review_only",
+      "embedding_vector_dimension": null,
+      "embedding_warning": null,
+      "entry_id": "uniprot:A2RU49",
+      "fallback_reason": null,
+      "fallback_used": false,
+      "heuristic_baseline_control": {
+        "repair_lane": "add_lane_specific_scope_contrastive_controls",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metal_racemase_epimerase_non_plp",
+        "top1_score": 0.3983
+      },
+      "lane_id": "external_source:transferase_phosphoryl",
+      "larger_model_readiness_status": "computed",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "nearest_reference": {
+        "embedding_backend": "deterministic_sequence_kmer_control",
+        "embedding_cosine": 0.913,
+        "length_coverage": 0.9893,
+        "matched_m_csa_entry_ids": [
+          "m_csa:506"
+        ],
+        "reference_accession": "P00455",
+        "screen_near_duplicate_score": 0.0831
+      },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
+      "ready_for_label_import": false,
+      "reference_scores": [
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.913,
+          "length_coverage": 0.9893,
+          "matched_m_csa_entry_ids": [
+            "m_csa:506"
+          ],
+          "reference_accession": "P00455",
+          "screen_near_duplicate_score": 0.0831
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8351,
+          "length_coverage": 0.933,
+          "matched_m_csa_entry_ids": [
+            "m_csa:455"
+          ],
+          "reference_accession": "P00805",
+          "screen_near_duplicate_score": 0.0831
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8245,
+          "length_coverage": 0.9395,
+          "matched_m_csa_entry_ids": [
+            "m_csa:609"
+          ],
+          "reference_accession": "P00778",
+          "screen_near_duplicate_score": 0.0831
+        }
+      ],
+      "requested_embedding_backend": "deterministic_sequence_kmer_control",
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
+      "review_status": "representation_backend_sample_review_only",
+      "scope_signal": "transferase_phosphoryl",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+      "top_embedding_cosine": 0.913
+    },
+    {
+      "accession": "O14756",
+      "backend_status": "sequence_kmer_embedding_control_complete",
+      "blockers": [
+        "learned_or_structure_language_embedding_not_run",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "candidate_sequence_length": 317,
+      "comparison_status": "proxy_consistent_with_heuristic_scope",
+      "computed_embedding_backend": "deterministic_sequence_kmer_control",
+      "countable_label_candidate": false,
+      "embedding_backend": "deterministic_sequence_kmer_control",
+      "embedding_status": "computed_review_only",
+      "embedding_vector_dimension": null,
+      "embedding_warning": null,
+      "entry_id": "uniprot:O14756",
+      "fallback_reason": null,
+      "fallback_used": false,
+      "heuristic_baseline_control": {
+        "repair_lane": "compare_heuristic_control_against_learned_representation",
+        "scope_top1_mismatch": false,
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_score": 0.3039
+      },
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "larger_model_readiness_status": "computed",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "nearest_reference": {
+        "embedding_backend": "deterministic_sequence_kmer_control",
+        "embedding_cosine": 0.925,
+        "length_coverage": 0.8955,
+        "matched_m_csa_entry_ids": [
+          "m_csa:12"
+        ],
+        "reference_accession": "P00480",
+        "screen_near_duplicate_score": 0.0734
+      },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
+      "ready_for_label_import": false,
+      "reference_scores": [
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.925,
+          "length_coverage": 0.8955,
+          "matched_m_csa_entry_ids": [
+            "m_csa:12"
+          ],
+          "reference_accession": "P00480",
+          "screen_near_duplicate_score": 0.0734
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8908,
+          "length_coverage": 0.7602,
+          "matched_m_csa_entry_ids": [
+            "m_csa:973"
+          ],
+          "reference_accession": "A0A0C6DRW4",
+          "screen_near_duplicate_score": 0.0767
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8717,
+          "length_coverage": 0.9811,
+          "matched_m_csa_entry_ids": [
+            "m_csa:49"
+          ],
+          "reference_accession": "P00862",
+          "screen_near_duplicate_score": 0.0789
+        }
+      ],
+      "requested_embedding_backend": "deterministic_sequence_kmer_control",
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
+      "review_status": "representation_backend_sample_review_only",
+      "scope_signal": "oxidoreductase_long_tail",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+      "top_embedding_cosine": 0.925
+    },
+    {
+      "accession": "P34949",
+      "backend_status": "sequence_kmer_embedding_control_complete",
+      "blockers": [
+        "learned_or_structure_language_embedding_not_run",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "candidate_sequence_length": 423,
+      "comparison_status": "proxy_flags_scope_top1_mismatch",
+      "computed_embedding_backend": "deterministic_sequence_kmer_control",
+      "countable_label_candidate": false,
+      "embedding_backend": "deterministic_sequence_kmer_control",
+      "embedding_status": "computed_review_only",
+      "embedding_vector_dimension": null,
+      "embedding_warning": null,
+      "entry_id": "uniprot:P34949",
+      "fallback_reason": null,
+      "fallback_used": false,
+      "heuristic_baseline_control": {
+        "repair_lane": "add_lane_specific_scope_contrastive_controls",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metal_independent_phosphodiesterase",
+        "top1_score": 0.3983
+      },
+      "lane_id": "external_source:isomerase",
+      "larger_model_readiness_status": "computed",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "nearest_reference": {
+        "embedding_backend": "deterministic_sequence_kmer_control",
+        "embedding_cosine": 0.9218,
+        "length_coverage": 0.9905,
+        "matched_m_csa_entry_ids": [
+          "m_csa:171"
+        ],
+        "reference_accession": "P00730",
+        "screen_near_duplicate_score": 0.0804
+      },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
+      "ready_for_label_import": false,
+      "reference_scores": [
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.9218,
+          "length_coverage": 0.9905,
+          "matched_m_csa_entry_ids": [
+            "m_csa:171"
+          ],
+          "reference_accession": "P00730",
+          "screen_near_duplicate_score": 0.0804
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8993,
+          "length_coverage": 0.968,
+          "matched_m_csa_entry_ids": [
+            "m_csa:311"
+          ],
+          "reference_accession": "P00924",
+          "screen_near_duplicate_score": 0.0778
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8385,
+          "length_coverage": 0.9031,
+          "matched_m_csa_entry_ids": [
+            "m_csa:723"
+          ],
+          "reference_accession": "P00782",
+          "screen_near_duplicate_score": 0.0757
+        }
+      ],
+      "requested_embedding_backend": "deterministic_sequence_kmer_control",
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
+      "review_status": "representation_backend_sample_review_only",
+      "scope_signal": "isomerase",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+      "top_embedding_cosine": 0.9218
+    },
+    {
+      "accession": "P35914",
+      "backend_status": "sequence_kmer_embedding_control_complete",
+      "blockers": [
+        "learned_or_structure_language_embedding_not_run",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "candidate_sequence_length": 325,
+      "comparison_status": "proxy_flags_scope_top1_mismatch",
+      "computed_embedding_backend": "deterministic_sequence_kmer_control",
+      "countable_label_candidate": false,
+      "embedding_backend": "deterministic_sequence_kmer_control",
+      "embedding_status": "computed_review_only",
+      "embedding_vector_dimension": null,
+      "embedding_warning": null,
+      "entry_id": "uniprot:P35914",
+      "fallback_reason": null,
+      "fallback_used": false,
+      "heuristic_baseline_control": {
+        "repair_lane": "add_lane_specific_scope_contrastive_controls",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "coa_acyltransferase",
+        "top1_score": 0.2817
+      },
+      "lane_id": "external_source:lyase",
+      "larger_model_readiness_status": "computed",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "nearest_reference": {
+        "embedding_backend": "deterministic_sequence_kmer_control",
+        "embedding_cosine": 0.8492,
+        "length_coverage": 0.92,
+        "matched_m_csa_entry_ids": [
+          "m_csa:608"
+        ],
+        "reference_accession": "P00777",
+        "screen_near_duplicate_score": 0.0831
+      },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
+      "ready_for_label_import": false,
+      "reference_scores": [
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8492,
+          "length_coverage": 0.92,
+          "matched_m_csa_entry_ids": [
+            "m_csa:608"
+          ],
+          "reference_accession": "P00777",
+          "screen_near_duplicate_score": 0.0831
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8465,
+          "length_coverage": 0.9108,
+          "matched_m_csa_entry_ids": [
+            "m_csa:467"
+          ],
+          "reference_accession": "D4Z2G1",
+          "screen_near_duplicate_score": 0.0862
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8362,
+          "length_coverage": 0.9723,
+          "matched_m_csa_entry_ids": [
+            "m_csa:31"
+          ],
+          "reference_accession": "P00469",
+          "screen_near_duplicate_score": 0.0831
+        }
+      ],
+      "requested_embedding_backend": "deterministic_sequence_kmer_control",
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
+      "review_status": "representation_backend_sample_review_only",
+      "scope_signal": "lyase",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+      "top_embedding_cosine": 0.8492
+    },
+    {
+      "accession": "P46597",
+      "backend_status": "sequence_kmer_embedding_control_complete",
+      "blockers": [
+        "learned_or_structure_language_embedding_not_run",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "candidate_sequence_length": 345,
+      "comparison_status": "proxy_flags_scope_top1_mismatch",
+      "computed_embedding_backend": "deterministic_sequence_kmer_control",
+      "countable_label_candidate": false,
+      "embedding_backend": "deterministic_sequence_kmer_control",
+      "embedding_status": "computed_review_only",
+      "embedding_vector_dimension": null,
+      "embedding_warning": null,
+      "entry_id": "uniprot:P46597",
+      "fallback_reason": null,
+      "fallback_used": false,
+      "heuristic_baseline_control": {
+        "repair_lane": "add_lane_specific_scope_contrastive_controls",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metallo_amidohydrolase_deaminase",
+        "top1_score": 0.461
+      },
+      "lane_id": "external_source:transferase_methyl",
+      "larger_model_readiness_status": "computed",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "nearest_reference": {
+        "embedding_backend": "deterministic_sequence_kmer_control",
+        "embedding_cosine": 0.9045,
+        "length_coverage": 0.9557,
+        "matched_m_csa_entry_ids": [
+          "m_csa:67"
+        ],
+        "reference_accession": "O52942",
+        "screen_near_duplicate_score": 0.0803
+      },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
+      "ready_for_label_import": false,
+      "reference_scores": [
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.9045,
+          "length_coverage": 0.9557,
+          "matched_m_csa_entry_ids": [
+            "m_csa:67"
+          ],
+          "reference_accession": "O52942",
+          "screen_near_duplicate_score": 0.0803
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8938,
+          "length_coverage": 0.9797,
+          "matched_m_csa_entry_ids": [
+            "m_csa:546"
+          ],
+          "reference_accession": "P00636",
+          "screen_near_duplicate_score": 0.0812
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8163,
+          "length_coverage": 0.9031,
+          "matched_m_csa_entry_ids": [
+            "m_csa:723"
+          ],
+          "reference_accession": "P00782",
+          "screen_near_duplicate_score": 0.0812
+        }
+      ],
+      "requested_embedding_backend": "deterministic_sequence_kmer_control",
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
+      "review_status": "representation_backend_sample_review_only",
+      "scope_signal": "transferase_methyl",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+      "top_embedding_cosine": 0.9045
+    },
+    {
+      "accession": "Q969G6",
+      "backend_status": "sequence_kmer_embedding_control_complete",
+      "blockers": [
+        "learned_or_structure_language_embedding_not_run",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "candidate_sequence_length": 155,
+      "comparison_status": "proxy_flags_scope_top1_mismatch",
+      "computed_embedding_backend": "deterministic_sequence_kmer_control",
+      "countable_label_candidate": false,
+      "embedding_backend": "deterministic_sequence_kmer_control",
+      "embedding_status": "computed_review_only",
+      "embedding_vector_dimension": null,
+      "embedding_warning": null,
+      "entry_id": "uniprot:Q969G6",
+      "fallback_reason": null,
+      "fallback_used": false,
+      "heuristic_baseline_control": {
+        "repair_lane": "add_lane_specific_scope_contrastive_controls",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "glycoside_hydrolase",
+        "top1_score": 0.3983
+      },
+      "lane_id": "external_source:transferase_phosphoryl",
+      "larger_model_readiness_status": "computed",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "nearest_reference": {
+        "embedding_backend": "deterministic_sequence_kmer_control",
+        "embedding_cosine": 0.8469,
+        "length_coverage": 0.9742,
+        "matched_m_csa_entry_ids": [
+          "m_csa:586"
+        ],
+        "reference_accession": "P00806",
+        "screen_near_duplicate_score": 0.0839
+      },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
+      "ready_for_label_import": false,
+      "reference_scores": [
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8469,
+          "length_coverage": 0.9742,
+          "matched_m_csa_entry_ids": [
+            "m_csa:586"
+          ],
+          "reference_accession": "P00806",
+          "screen_near_duplicate_score": 0.0839
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.821,
+          "length_coverage": 0.9677,
+          "matched_m_csa_entry_ids": [
+            "m_csa:123"
+          ],
+          "reference_accession": "O28604",
+          "screen_near_duplicate_score": 0.1097
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.7784,
+          "length_coverage": 0.9509,
+          "matched_m_csa_entry_ids": [
+            "m_csa:112"
+          ],
+          "reference_accession": "P00381",
+          "screen_near_duplicate_score": 0.0798
+        }
+      ],
+      "requested_embedding_backend": "deterministic_sequence_kmer_control",
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
+      "review_status": "representation_backend_sample_review_only",
+      "scope_signal": "transferase_phosphoryl",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+      "top_embedding_cosine": 0.8469
+    },
+    {
+      "accession": "Q96I15",
+      "backend_status": "sequence_kmer_embedding_control_complete",
+      "blockers": [
+        "learned_or_structure_language_embedding_not_run",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "candidate_sequence_length": 445,
+      "comparison_status": "proxy_flags_scope_top1_mismatch",
+      "computed_embedding_backend": "deterministic_sequence_kmer_control",
+      "countable_label_candidate": false,
+      "embedding_backend": "deterministic_sequence_kmer_control",
+      "embedding_status": "computed_review_only",
+      "embedding_vector_dimension": null,
+      "embedding_warning": null,
+      "entry_id": "uniprot:Q96I15",
+      "fallback_reason": null,
+      "fallback_used": false,
+      "heuristic_baseline_control": {
+        "repair_lane": null,
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "coa_acyltransferase",
+        "top1_score": 0.2817
+      },
+      "lane_id": "external_source:lyase",
+      "larger_model_readiness_status": "computed",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "nearest_reference": {
+        "embedding_backend": "deterministic_sequence_kmer_control",
+        "embedding_cosine": 0.9509,
+        "length_coverage": 0.8525,
+        "matched_m_csa_entry_ids": [
+          "m_csa:6"
+        ],
+        "reference_accession": "P00390",
+        "screen_near_duplicate_score": 0.067
+      },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
+      "ready_for_label_import": false,
+      "reference_scores": [
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.9509,
+          "length_coverage": 0.8525,
+          "matched_m_csa_entry_ids": [
+            "m_csa:6"
+          ],
+          "reference_accession": "P00390",
+          "screen_near_duplicate_score": 0.067
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8865,
+          "length_coverage": 0.782,
+          "matched_m_csa_entry_ids": [
+            "m_csa:455"
+          ],
+          "reference_accession": "P00805",
+          "screen_near_duplicate_score": 0.0742
+        },
+        {
+          "embedding_backend": "deterministic_sequence_kmer_control",
+          "embedding_cosine": 0.8556,
+          "length_coverage": 0.8658,
+          "matched_m_csa_entry_ids": [
+            "m_csa:124"
+          ],
+          "reference_accession": "P00396",
+          "screen_near_duplicate_score": 0.07
+        }
+      ],
+      "requested_embedding_backend": "deterministic_sequence_kmer_control",
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
+      "review_status": "representation_backend_sample_review_only",
+      "scope_signal": "lyase",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+      "top_embedding_cosine": 0.9509
+    }
+  ],
+  "warnings": [
+    "the deterministic k-mer backend is a computed baseline control, not a learned representation model",
+    "computed representation controls are not expert evidence"
+  ]
+}

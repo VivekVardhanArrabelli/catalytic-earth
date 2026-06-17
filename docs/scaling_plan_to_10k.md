@@ -16,6 +16,55 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-17 automation update: source-transfer chain refreshed, all-vs-all duplicate screen
+clean, no registry apply.** Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; no label
+registry rows were written. Run0310 pre-lane audits confirm the surface is unchanged at **8728**
+combined labels = **702** frozen + **8026** expansion, with no holes, floor deficit **0**, novelty
+replay **7565** admit / **414** throttle / **47** reject, and only `metal_dependent_hydrolase`
+over cap:
+`artifacts/v3_coverage_redundancy_audit_current702_20260616_run0310_pre_lane.json` and
+`artifacts/v3_novelty_admission_gate_audit_current702_20260616_run0310_pre_lane.json`.
+
+Planning still shows a scale wall for ordinary reviewed-Swiss-Prot growth:
+`artifacts/v3_high_yield_family_lane_factory_current702_20260616_run0310_pre_lane.json` has **0**
+ready existing lanes >=150 and top projected clean admits **77**;
+`artifacts/v3_evidence_handle_expansion_current702_20260616_run0310_pre_lane.json` shows **741**
+reachable positive-bronze uplift only if handles are repaired; and
+`artifacts/v3_breadth_feasibility_scout_current702_20260616_run0310_pre_lane.json` still projects
+**9673** reviewed-Swiss-Prot clean positives, gap **327** to 10k. The reviewed biotin broad-handle
+preview
+`artifacts/v3_biotin_dependent_carboxylase_reviewed_broad_handle_preview_current702_20260616_run0310.json`
+found **41** novelty-admitted preview rows with clean row guardrails, but the family floor was
+already reached and the preview was below autonomous high-yield criteria; the offset-250 follow-up
+fetched **0** rows.
+
+The external source-transfer chain was refreshed end-to-end but remains review-only. Import
+readiness `artifacts/v3_external_source_import_readiness_audit_current702_20260616_run0310.json`
+holds all **47** rows with **0** import-ready/countable candidates: **21** active-site sourcing
+blockers, **14** heuristic-control blockers, **9** representation-control blockers, **2** sequence
+holdouts, and **1** review/factory blocker. Pilot success criteria
+`artifacts/v3_external_source_pilot_success_criteria_current702_20260616_run0310.json` still has
+**12** candidates, **0** import-ready/countable rows, and blockers for active-site source,
+broader duplicate screening, full label-factory, representation control, and terminal review.
+Terminal decisions
+`artifacts/v3_external_source_pilot_terminal_decisions_current702_20260616_run0310.json` are **6**
+`deferred_requires_human_expert` and **6** `rejected_active_site_evidence_missing`.
+
+The bounded current-reference sequence audit remains fail-closed, but run0310 advanced the external
+duplicate gate with `artifacts/v3_external_source_all_vs_all_sequence_search_current702_20260616_run0310.json`.
+The real `mmseqs2_easy_search` all-vs-all screen covered **47/47** candidates, found **0**
+exact/near duplicate rows, **47** no-signal rows, max external-vs-external identity **0.874**, and
+**0** import-ready/countable rows; audit
+`artifacts/v3_external_source_all_vs_all_sequence_search_audit_current702_20260616_run0310.json`
+passed clean. This removes only the external-candidate all-vs-all blocker; UniRef-wide duplicate
+screening still remains.
+
+Next action: do not import the biotin preview or run0310 transfer rows. Add/expose a current
+`needs_review_resolution` producer so mechanism-repair lanes and review-resolution gap replay can
+run on run0310, or directly resolve the active-site sourcing, real representation backend/control,
+UniRef-wide duplicate, terminal review, full label-factory, novelty, governor, and row-guardrail
+gates before any import.
+
 **2026-06-17 automation update: terminal replay deferred, source-handle scale wall refreshed, no
 registry apply.** Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; no label registry
 rows were written. Run0210 final no-apply audits confirm the surface is unchanged at **8728**

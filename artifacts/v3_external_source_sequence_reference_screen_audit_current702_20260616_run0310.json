@@ -1,0 +1,680 @@
+{
+  "blockers": [
+    "current_reference_sequence_screen_incomplete",
+    "current_reference_top_hit_alignment_incomplete"
+  ],
+  "metadata": {
+    "alignment_verified_pair_count": 47,
+    "blocker_removed": null,
+    "blocker_target": "external_pilot_current_reference_near_duplicate_screen",
+    "candidate_count": 47,
+    "complete_near_duplicate_search_required": true,
+    "countable_label_candidate_count": 0,
+    "current_reference_near_duplicate_alert_candidate_count": 2,
+    "current_reference_screen_complete": false,
+    "expected_candidate_count": 47,
+    "expected_reference_accession_count": 757,
+    "guardrail_clean": false,
+    "inactive_reference_accession_resolutions": {},
+    "incomplete_candidate_count": 30,
+    "method": "external_source_sequence_reference_screen_audit",
+    "missing_reference_sequence_accessions": [],
+    "missing_reference_sequence_count": 0,
+    "ready_for_label_import": false,
+    "review_only_rule": "this audit only verifies the bounded current countable-reference screen; UniRef or all-vs-all near-duplicate search remains required before external import",
+    "screen_status_counts": {
+      "current_reference_top_hit_alignment_incomplete": 30,
+      "current_reference_top_hits_aligned_no_alert": 15,
+      "preexisting_sequence_holdout_retained": 2
+    },
+    "screened_reference_sequence_count": 100
+  },
+  "rows": [
+    {
+      "accession": "A2RU49",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hits_aligned_no_alert",
+      "entry_id": "uniprot:A2RU49",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 3,
+      "top_hit_alignment_missing_reference_accessions": []
+    },
+    {
+      "accession": "A2RUC4",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hits_aligned_no_alert",
+      "entry_id": "uniprot:A2RUC4",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 3,
+      "top_hit_alignment_missing_reference_accessions": []
+    },
+    {
+      "accession": "A5PLL7",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hits_aligned_no_alert",
+      "entry_id": "uniprot:A5PLL7",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 3,
+      "top_hit_alignment_missing_reference_accessions": []
+    },
+    {
+      "accession": "C9JRZ8",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hits_aligned_no_alert",
+      "entry_id": "uniprot:C9JRZ8",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 3,
+      "top_hit_alignment_missing_reference_accessions": []
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hits_aligned_no_alert",
+      "entry_id": "uniprot:O14756",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 3,
+      "top_hit_alignment_missing_reference_accessions": []
+    },
+    {
+      "accession": "O15247",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hits_aligned_no_alert",
+      "entry_id": "uniprot:O15247",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 3,
+      "top_hit_alignment_missing_reference_accessions": []
+    },
+    {
+      "accession": "O15527",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "preexisting_sequence_holdout_retained",
+      "entry_id": "uniprot:O15527",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "O15527",
+        "D4Z2G1",
+        "P00586"
+      ]
+    },
+    {
+      "accession": "O43593",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hits_aligned_no_alert",
+      "entry_id": "uniprot:O43593",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 3,
+      "top_hit_alignment_missing_reference_accessions": []
+    },
+    {
+      "accession": "O60568",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hits_aligned_no_alert",
+      "entry_id": "uniprot:O60568",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 3,
+      "top_hit_alignment_missing_reference_accessions": []
+    },
+    {
+      "accession": "O75151",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hits_aligned_no_alert",
+      "entry_id": "uniprot:O75151",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 3,
+      "top_hit_alignment_missing_reference_accessions": []
+    },
+    {
+      "accession": "O95050",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:O95050",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "P00918",
+        "D4Z2G1",
+        "O69762"
+      ]
+    },
+    {
+      "accession": "P00568",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:P00568",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 2,
+      "top_hit_alignment_missing_reference_accessions": [
+        "P00644"
+      ]
+    },
+    {
+      "accession": "P04424",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:P04424",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "P00914",
+        "O87172",
+        "P00800"
+      ]
+    },
+    {
+      "accession": "P06746",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:P06746",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "P00918",
+        "O69762",
+        "P00929"
+      ]
+    },
+    {
+      "accession": "P27144",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hits_aligned_no_alert",
+      "entry_id": "uniprot:P27144",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 3,
+      "top_hit_alignment_missing_reference_accessions": []
+    },
+    {
+      "accession": "P29372",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:P29372",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "P00491",
+        "O69762",
+        "O82827"
+      ]
+    },
+    {
+      "accession": "P30176",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:P30176",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "P00381",
+        "O58727",
+        "O66186"
+      ]
+    },
+    {
+      "accession": "P32189",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hits_aligned_no_alert",
+      "entry_id": "uniprot:P32189",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 3,
+      "top_hit_alignment_missing_reference_accessions": []
+    },
+    {
+      "accession": "P33025",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:P33025",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "P00862",
+        "P00334",
+        "P00883"
+      ]
+    },
+    {
+      "accession": "P34949",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:P34949",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "P00730",
+        "P00924",
+        "P00782"
+      ]
+    },
+    {
+      "accession": "P35914",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:P35914",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "D4Z2G1",
+        "P00469",
+        "P00777"
+      ]
+    },
+    {
+      "accession": "P42126",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "preexisting_sequence_holdout_retained",
+      "entry_id": "uniprot:P42126",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "P00459",
+        "P00803",
+        "O31156"
+      ]
+    },
+    {
+      "accession": "P42357",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:P42357",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "O28603",
+        "P00390",
+        "P00396"
+      ]
+    },
+    {
+      "accession": "P46597",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:P46597",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "P00636",
+        "P00782",
+        "O52942"
+      ]
+    },
+    {
+      "accession": "P49247",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:P49247",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "A2RJT9",
+        "O59893",
+        "O52942"
+      ]
+    },
+    {
+      "accession": "P51580",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:P51580",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "O58403",
+        "O58727",
+        "O31156"
+      ]
+    },
+    {
+      "accession": "P55263",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hits_aligned_no_alert",
+      "entry_id": "uniprot:P55263",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 3,
+      "top_hit_alignment_missing_reference_accessions": []
+    },
+    {
+      "accession": "P60174",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:P60174",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "O59893",
+        "O58403",
+        "P00903"
+      ]
+    },
+    {
+      "accession": "Q13087",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:Q13087",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "P00392",
+        "O87172",
+        "A0A0C6DRW4"
+      ]
+    },
+    {
+      "accession": "Q13907",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:Q13907",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "O58403",
+        "P00590",
+        "P00644"
+      ]
+    },
+    {
+      "accession": "Q14410",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hits_aligned_no_alert",
+      "entry_id": "uniprot:Q14410",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 3,
+      "top_hit_alignment_missing_reference_accessions": []
+    },
+    {
+      "accession": "Q14554",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:Q14554",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "P00727",
+        "O48917",
+        "P00396"
+      ]
+    },
+    {
+      "accession": "Q32P41",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:Q32P41",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "P00327",
+        "O81192",
+        "O28603"
+      ]
+    },
+    {
+      "accession": "Q3SY77",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:Q3SY77",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "P00392",
+        "P00175",
+        "P00860"
+      ]
+    },
+    {
+      "accession": "Q68CQ7",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:Q68CQ7",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "A9CEQ8",
+        "A2RJT9",
+        "O15527"
+      ]
+    },
+    {
+      "accession": "Q6NSJ0",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:Q6NSJ0",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "P00390",
+        "P00488",
+        "P00634"
+      ]
+    },
+    {
+      "accession": "Q6NUS8",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:Q6NUS8",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "P00392",
+        "P00175",
+        "P00800"
+      ]
+    },
+    {
+      "accession": "Q6UX53",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:Q6UX53",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "P00590",
+        "P00639",
+        "P00586"
+      ]
+    },
+    {
+      "accession": "Q8N0X4",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:Q8N0X4",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "P00341",
+        "O93734",
+        "O15527"
+      ]
+    },
+    {
+      "accession": "Q969G6",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hits_aligned_no_alert",
+      "entry_id": "uniprot:Q969G6",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 3,
+      "top_hit_alignment_missing_reference_accessions": []
+    },
+    {
+      "accession": "Q96I15",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:Q96I15",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "P00805",
+        "P00396",
+        "P00390"
+      ]
+    },
+    {
+      "accession": "Q9BXD5",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:Q9BXD5",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "P00518",
+        "O31465",
+        "P00455"
+      ]
+    },
+    {
+      "accession": "Q9BXS1",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:Q9BXS1",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "O58403",
+        "P00334",
+        "P00918"
+      ]
+    },
+    {
+      "accession": "Q9HBK9",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:Q9HBK9",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "P00778",
+        "P00636",
+        "O34714"
+      ]
+    },
+    {
+      "accession": "Q9NZJ6",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:Q9NZJ6",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "O52942",
+        "P00455",
+        "O31465"
+      ]
+    },
+    {
+      "accession": "Q9UIJ7",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hits_aligned_no_alert",
+      "entry_id": "uniprot:Q9UIJ7",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 3,
+      "top_hit_alignment_missing_reference_accessions": []
+    },
+    {
+      "accession": "Q9Y5N5",
+      "countable_label_candidate": false,
+      "current_reference_screen_status": "current_reference_top_hit_alignment_incomplete",
+      "entry_id": "uniprot:Q9Y5N5",
+      "ready_for_label_import": false,
+      "reference_top_hit_count": 3,
+      "review_status": "sequence_reference_screen_audit_review_only",
+      "top_hit_alignment_checked_count": 0,
+      "top_hit_alignment_missing_reference_accessions": [
+        "O33199",
+        "P00644",
+        "P00445"
+      ]
+    }
+  ],
+  "warnings": [
+    "current-reference sequence screening is a review-only control and cannot authorize external label import"
+  ]
+}

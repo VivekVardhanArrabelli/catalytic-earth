@@ -26,6 +26,70 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **SOURCE-TRANSFER CHAIN REFRESHED; ALL-VS-ALL DUPLICATE SCREEN CLEAN; NO REGISTRY APPLY
+  (2026-06-17 automation run0310).** Frozen current702 stayed byte-unchanged at sha
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no label registry rows
+  were written. Run0310 pre-lane audits
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run0310_pre_lane.json` and
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run0310_pre_lane.json` confirm
+  the surface stayed at **8728** combined labels = **702** frozen + **8026** expansion, with no
+  holes, floor deficit **0**, novelty replay **7565** admit / **414** throttle / **47** reject,
+  and only `metal_dependent_hydrolase` over cap.
+
+  Current planning artifacts still show no ordinary reviewed-Swiss-Prot import lane:
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260616_run0310_pre_lane.json` has
+  **0** ready existing lanes >=150 and top projected clean admits **77**;
+  `artifacts/v3_evidence_handle_expansion_current702_20260616_run0310_pre_lane.json` shows
+  **741** reachable positive-bronze uplift if blocked handles are repaired; breadth feasibility
+  `artifacts/v3_breadth_feasibility_scout_current702_20260616_run0310_pre_lane.json` still
+  projects **9673** reviewed-Swiss-Prot clean positives, gap **327** to 10k; and
+  `artifacts/v3_source_scale_limit_audit_current702_20260616_run0310.json` still recommends
+  external source-transfer/source-handle strategy.
+
+  The reviewed biotin broad-handle preview
+  `artifacts/v3_biotin_dependent_carboxylase_reviewed_broad_handle_preview_current702_20260616_run0310.json`
+  found **41** novelty-admitted preview rows from **139** fetched, with row guardrails clean in
+  `artifacts/v3_biotin_dependent_carboxylase_reviewed_broad_handle_preview_row_guardrail_audit_current702_20260616_run0310.json`.
+  It was not applied because the family floor was already reached and the fragment was below
+  autonomous high-yield criteria; the offset-250 preview
+  `artifacts/v3_biotin_dependent_carboxylase_reviewed_broad_handle_preview_offset250_current702_20260616_run0310.json`
+  fetched **0** rows.
+
+  Run0310 rebuilt the current external source-transfer chain through import readiness and pilot
+  terminal routing. Import readiness
+  `artifacts/v3_external_source_import_readiness_audit_current702_20260616_run0310.json` holds all
+  **47** rows review-only with **0** import-ready/countable rows: **21** blocked by active-site
+  sourcing, **14** by heuristic control, **9** by representation control, **2** by sequence
+  holdout, and **1** by review/factory gate. Transfer blocker matrix
+  `artifacts/v3_external_source_transfer_blocker_matrix_current702_20260616_run0310.json` names
+  the next actions as real representation backend/control (**15**), primary active-site
+  literature/PDB sources (**21** total across two active-site sourcing buckets), and sequence
+  holdout exclusion (**2**). Pilot success criteria
+  `artifacts/v3_external_source_pilot_success_criteria_current702_20260616_run0310.json` still has
+  **12** candidates, **0** import-ready/countable rows, and blockers for active-site source,
+  broader duplicate screening, full label-factory, representation control, and terminal review.
+  Terminal decisions
+  `artifacts/v3_external_source_pilot_terminal_decisions_current702_20260616_run0310.json` are
+  **6** `deferred_requires_human_expert` and **6** `rejected_active_site_evidence_missing`.
+
+  The bounded current-reference sequence audit
+  `artifacts/v3_external_source_sequence_reference_screen_audit_current702_20260616_run0310.json`
+  remains fail-closed because **30** current-reference top-hit alignments are incomplete. Run0310
+  advanced the broader duplicate gate with a real `mmseqs2_easy_search` all-vs-all external
+  sequence screen:
+  `artifacts/v3_external_source_all_vs_all_sequence_search_current702_20260616_run0310.json`.
+  It screened **47/47** candidates, found **0** exact/near duplicate rows, **47** no-signal rows,
+  max external-vs-external identity **0.874**, and **0** import-ready/countable rows. Audit
+  `artifacts/v3_external_source_all_vs_all_sequence_search_audit_current702_20260616_run0310.json`
+  passed clean. This removes only the external-candidate all-vs-all blocker; UniRef-wide
+  duplicate screening remains not run.
+
+  Next exact action: do not import run0310 transfer rows or the biotin preview. Add/expose a
+  current `needs_review_resolution` producer so run0310 mechanism-repair lanes and
+  review-resolution gap replay can run, or directly resolve the active-site, real representation
+  backend/control, UniRef-wide duplicate, terminal review, full label-factory, novelty, governor,
+  and row-guardrail gates.
+
 - **TERMINAL REPLAY DEFERRED; SOURCE-HANDLE SCALE WALL REFRESHED; NO REGISTRY APPLY (2026-06-17 automation run0210).**
   Frozen current702 stayed byte-unchanged at sha
   `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no label registry rows

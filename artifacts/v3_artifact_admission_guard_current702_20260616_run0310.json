@@ -1,0 +1,40 @@
+{
+  "blockers": [
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_bulk_ingestion_scaleout_wave2_current702_20260609.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 67077595
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_import_review_preflight_current702_20260609.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 52557539
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_import_review_preflight_current702_20260610.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 52557539
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_scaleout_shard_metal_phosphoryl_glycoside_current702_20260609.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 57349142
+    }
+  ],
+  "metadata": {
+    "blocker_count": 4,
+    "covered_large_file_count": 0,
+    "deletion_authorized_count": 0,
+    "large_file_count": 4,
+    "large_file_threshold_bytes": 52428800,
+    "method": "artifact_admission_guard",
+    "policy_version": "artifact_storage_policy_v1_2026_05_17",
+    "source_file_count": 15160,
+    "source_inventory_method": "artifact_storage_inventory",
+    "status": "blocked"
+  }
+}

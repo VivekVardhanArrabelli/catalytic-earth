@@ -1,0 +1,932 @@
+{
+  "blockers": [
+    "complete_near_duplicate_reference_search_not_completed",
+    "external_decision_artifact_not_built",
+    "full_label_factory_gate_not_run"
+  ],
+  "fetch_failures": [],
+  "metadata": {
+    "alignment_alert_candidate_count": 0,
+    "alignment_alert_pair_count": 0,
+    "alignment_deferred_pair_count": 0,
+    "candidate_count": 16,
+    "complete_near_duplicate_search_required": true,
+    "countable_label_candidate_count": 0,
+    "coverage_alert_threshold": 0.9,
+    "fetch_failure_count": 0,
+    "fetched_accession_count": 56,
+    "identity_alert_threshold": 0.9,
+    "max_alignment_cells": 1500000,
+    "max_pairs": 47,
+    "method": "external_source_sequence_alignment_verification",
+    "missing_sequence_pair_count": 0,
+    "ready_for_label_import": false,
+    "requested_accession_count": 56,
+    "source_fetch_method": "uniprot_sequence_batch_search",
+    "source_sequence_neighborhood_sample_method": "external_source_sequence_neighborhood_sample",
+    "top_k": 3,
+    "verification_rule": "bounded top-hit global edit-identity verification for sequence-neighborhood controls; it is not a complete UniRef or all-vs-all search and cannot create labels",
+    "verification_status_counts": {
+      "alignment_no_near_duplicate_signal": 47
+    },
+    "verified_pair_count": 47
+  },
+  "rows": [
+    {
+      "accession": "A2RUC4",
+      "alignment_cell_count": 94185,
+      "alignment_identity": 0.1841,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:A2RUC4",
+      "external_length": 315,
+      "length_coverage": 0.9492,
+      "matched_m_csa_entry_ids": [
+        "m_csa:495"
+      ],
+      "near_duplicate_score": 0.0889,
+      "ready_for_label_import": false,
+      "reference_accession": "O68557",
+      "reference_length": 299,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "A2RUC4",
+      "alignment_cell_count": 103950,
+      "alignment_identity": 0.1667,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:A2RUC4",
+      "external_length": 315,
+      "length_coverage": 0.9545,
+      "matched_m_csa_entry_ids": [
+        "m_csa:532"
+      ],
+      "near_duplicate_score": 0.0818,
+      "ready_for_label_import": false,
+      "reference_accession": "O93734",
+      "reference_length": 330,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "A2RUC4",
+      "alignment_cell_count": 93555,
+      "alignment_identity": 0.1905,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:A2RUC4",
+      "external_length": 315,
+      "length_coverage": 0.9429,
+      "matched_m_csa_entry_ids": [
+        "m_csa:153"
+      ],
+      "near_duplicate_score": 0.0794,
+      "ready_for_label_import": false,
+      "reference_accession": "P00586",
+      "reference_length": 297,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "A5PLL7",
+      "alignment_cell_count": 85320,
+      "alignment_identity": 0.1994,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:A5PLL7",
+      "external_length": 270,
+      "length_coverage": 0.8544,
+      "matched_m_csa_entry_ids": [
+        "m_csa:31"
+      ],
+      "near_duplicate_score": 0.0728,
+      "ready_for_label_import": false,
+      "reference_accession": "P00469",
+      "reference_length": 316,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "A5PLL7",
+      "alignment_cell_count": 58860,
+      "alignment_identity": 0.2222,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:A5PLL7",
+      "external_length": 270,
+      "length_coverage": 0.8074,
+      "matched_m_csa_entry_ids": [
+        "m_csa:48"
+      ],
+      "near_duplicate_score": 0.0704,
+      "ready_for_label_import": false,
+      "reference_accession": "P00492",
+      "reference_length": 218,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "A5PLL7",
+      "alignment_cell_count": 70200,
+      "alignment_identity": 0.1815,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:A5PLL7",
+      "external_length": 270,
+      "length_coverage": 0.963,
+      "matched_m_csa_entry_ids": [
+        "m_csa:216"
+      ],
+      "near_duplicate_score": 0.0704,
+      "ready_for_label_import": false,
+      "reference_accession": "P00918",
+      "reference_length": 260,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "C9JRZ8",
+      "alignment_cell_count": 91640,
+      "alignment_identity": 0.2089,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:C9JRZ8",
+      "external_length": 316,
+      "length_coverage": 0.9177,
+      "matched_m_csa_entry_ids": [
+        "m_csa:212"
+      ],
+      "near_duplicate_score": 0.0886,
+      "ready_for_label_import": false,
+      "reference_accession": "P00459",
+      "reference_length": 290,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "C9JRZ8",
+      "alignment_cell_count": 117552,
+      "alignment_identity": 0.2016,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:C9JRZ8",
+      "external_length": 316,
+      "length_coverage": 0.8495,
+      "matched_m_csa_entry_ids": [
+        "m_csa:453"
+      ],
+      "near_duplicate_score": 0.078,
+      "ready_for_label_import": false,
+      "reference_accession": "O68884",
+      "reference_length": 372,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "C9JRZ8",
+      "alignment_cell_count": 72048,
+      "alignment_identity": 0.2278,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:C9JRZ8",
+      "external_length": 316,
+      "length_coverage": 0.7215,
+      "matched_m_csa_entry_ids": [
+        "m_csa:335"
+      ],
+      "near_duplicate_score": 0.0759,
+      "ready_for_label_import": false,
+      "reference_accession": "O58403",
+      "reference_length": 228,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "O14756",
+      "alignment_cell_count": 98587,
+      "alignment_identity": 0.1798,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O14756",
+      "external_length": 317,
+      "length_coverage": 0.9811,
+      "matched_m_csa_entry_ids": [
+        "m_csa:49"
+      ],
+      "near_duplicate_score": 0.0789,
+      "ready_for_label_import": false,
+      "reference_accession": "P00862",
+      "reference_length": 311,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "O14756",
+      "alignment_cell_count": 132189,
+      "alignment_identity": 0.2206,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O14756",
+      "external_length": 317,
+      "length_coverage": 0.7602,
+      "matched_m_csa_entry_ids": [
+        "m_csa:973"
+      ],
+      "near_duplicate_score": 0.0767,
+      "ready_for_label_import": false,
+      "reference_accession": "A0A0C6DRW4",
+      "reference_length": 417,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "O14756",
+      "alignment_cell_count": 112218,
+      "alignment_identity": 0.2006,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O14756",
+      "external_length": 317,
+      "length_coverage": 0.8955,
+      "matched_m_csa_entry_ids": [
+        "m_csa:12"
+      ],
+      "near_duplicate_score": 0.0734,
+      "ready_for_label_import": false,
+      "reference_accession": "P00480",
+      "reference_length": 354,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "O15247",
+      "alignment_cell_count": 80769,
+      "alignment_identity": 0.2446,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O15247",
+      "external_length": 247,
+      "length_coverage": 0.7554,
+      "matched_m_csa_entry_ids": [
+        "m_csa:301"
+      ],
+      "near_duplicate_score": 0.0795,
+      "ready_for_label_import": false,
+      "reference_accession": "O31465",
+      "reference_length": 327,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "O15247",
+      "alignment_cell_count": 82251,
+      "alignment_identity": 0.2102,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O15247",
+      "external_length": 247,
+      "length_coverage": 0.7417,
+      "matched_m_csa_entry_ids": [
+        "m_csa:584"
+      ],
+      "near_duplicate_score": 0.0721,
+      "ready_for_label_import": false,
+      "reference_accession": "P00341",
+      "reference_length": 333,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "O15247",
+      "alignment_cell_count": 73112,
+      "alignment_identity": 0.2128,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O15247",
+      "external_length": 247,
+      "length_coverage": 0.8345,
+      "matched_m_csa_entry_ids": [
+        "m_csa:467"
+      ],
+      "near_duplicate_score": 0.0676,
+      "ready_for_label_import": false,
+      "reference_accession": "D4Z2G1",
+      "reference_length": 296,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "O43593",
+      "alignment_cell_count": 1265096,
+      "alignment_identity": 0.1985,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O43593",
+      "external_length": 1189,
+      "length_coverage": 0.8949,
+      "matched_m_csa_entry_ids": [
+        "m_csa:370"
+      ],
+      "near_duplicate_score": 0.0606,
+      "ready_for_label_import": false,
+      "reference_accession": "O75164",
+      "reference_length": 1064,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "O43593",
+      "alignment_cell_count": 1267474,
+      "alignment_identity": 0.196,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O43593",
+      "external_length": 1189,
+      "length_coverage": 0.8966,
+      "matched_m_csa_entry_ids": [
+        "m_csa:758"
+      ],
+      "near_duplicate_score": 0.053,
+      "ready_for_label_import": false,
+      "reference_accession": "O16025",
+      "reference_length": 1066,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "O43593",
+      "alignment_cell_count": 1217536,
+      "alignment_identity": 0.2086,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O43593",
+      "external_length": 1189,
+      "length_coverage": 0.8612,
+      "matched_m_csa_entry_ids": [
+        "m_csa:422"
+      ],
+      "near_duplicate_score": 0.0521,
+      "ready_for_label_import": false,
+      "reference_accession": "P00722",
+      "reference_length": 1024,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "O60568",
+      "alignment_cell_count": 540216,
+      "alignment_identity": 0.1667,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O60568",
+      "external_length": 738,
+      "length_coverage": 0.9919,
+      "matched_m_csa_entry_ids": [
+        "m_csa:149"
+      ],
+      "near_duplicate_score": 0.0718,
+      "ready_for_label_import": false,
+      "reference_accession": "P00488",
+      "reference_length": 732,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "O60568",
+      "alignment_cell_count": 525456,
+      "alignment_identity": 0.187,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O60568",
+      "external_length": 738,
+      "length_coverage": 0.9648,
+      "matched_m_csa_entry_ids": [
+        "m_csa:944"
+      ],
+      "near_duplicate_score": 0.0637,
+      "ready_for_label_import": false,
+      "reference_accession": "A5JUY8",
+      "reference_length": 712,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "O60568",
+      "alignment_cell_count": 383022,
+      "alignment_identity": 0.229,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O60568",
+      "external_length": 738,
+      "length_coverage": 0.7033,
+      "matched_m_csa_entry_ids": [
+        "m_csa:587"
+      ],
+      "near_duplicate_score": 0.0583,
+      "ready_for_label_import": false,
+      "reference_accession": "P00727",
+      "reference_length": 519,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "O75151",
+      "alignment_cell_count": 1122304,
+      "alignment_identity": 0.1752,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O75151",
+      "external_length": 1096,
+      "length_coverage": 0.9343,
+      "matched_m_csa_entry_ids": [
+        "m_csa:422"
+      ],
+      "near_duplicate_score": 0.0611,
+      "ready_for_label_import": false,
+      "reference_accession": "P00722",
+      "reference_length": 1024,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "O75151",
+      "alignment_cell_count": 1168336,
+      "alignment_identity": 0.1679,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O75151",
+      "external_length": 1096,
+      "length_coverage": 0.9726,
+      "matched_m_csa_entry_ids": [
+        "m_csa:758"
+      ],
+      "near_duplicate_score": 0.0602,
+      "ready_for_label_import": false,
+      "reference_accession": "O16025",
+      "reference_length": 1066,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "O75151",
+      "alignment_cell_count": 1184776,
+      "alignment_identity": 0.1633,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O75151",
+      "external_length": 1096,
+      "length_coverage": 0.9863,
+      "matched_m_csa_entry_ids": [
+        "m_csa:998"
+      ],
+      "near_duplicate_score": 0.0557,
+      "ready_for_label_import": false,
+      "reference_accession": "F8W4B7",
+      "reference_length": 1081,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "Q969G6",
+      "alignment_cell_count": 23250,
+      "alignment_identity": 0.1742,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q969G6",
+      "external_length": 155,
+      "length_coverage": 0.9677,
+      "matched_m_csa_entry_ids": [
+        "m_csa:123"
+      ],
+      "near_duplicate_score": 0.1097,
+      "ready_for_label_import": false,
+      "reference_accession": "O28604",
+      "reference_length": 150,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "Q969G6",
+      "alignment_cell_count": 23405,
+      "alignment_identity": 0.1613,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q969G6",
+      "external_length": 155,
+      "length_coverage": 0.9742,
+      "matched_m_csa_entry_ids": [
+        "m_csa:586"
+      ],
+      "near_duplicate_score": 0.0839,
+      "ready_for_label_import": false,
+      "reference_accession": "P00806",
+      "reference_length": 151,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "Q969G6",
+      "alignment_cell_count": 25265,
+      "alignment_identity": 0.1472,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q969G6",
+      "external_length": 155,
+      "length_coverage": 0.9509,
+      "matched_m_csa_entry_ids": [
+        "m_csa:112"
+      ],
+      "near_duplicate_score": 0.0798,
+      "ready_for_label_import": false,
+      "reference_accession": "P00381",
+      "reference_length": 163,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "P32189",
+      "alignment_cell_count": 313599,
+      "alignment_identity": 0.148,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P32189",
+      "external_length": 559,
+      "length_coverage": 0.9964,
+      "matched_m_csa_entry_ids": [
+        "m_csa:277"
+      ],
+      "near_duplicate_score": 0.0695,
+      "ready_for_label_import": false,
+      "reference_accession": "P00392",
+      "reference_length": 561,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "P32189",
+      "alignment_cell_count": 379002,
+      "alignment_identity": 0.205,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P32189",
+      "external_length": 559,
+      "length_coverage": 0.8245,
+      "matched_m_csa_entry_ids": [
+        "m_csa:117"
+      ],
+      "near_duplicate_score": 0.0649,
+      "ready_for_label_import": false,
+      "reference_accession": "P00388",
+      "reference_length": 678,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "P32189",
+      "alignment_cell_count": 330369,
+      "alignment_identity": 0.1827,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P32189",
+      "external_length": 559,
+      "length_coverage": 0.9459,
+      "matched_m_csa_entry_ids": [
+        "m_csa:102"
+      ],
+      "near_duplicate_score": 0.0626,
+      "ready_for_label_import": false,
+      "reference_accession": "P00175",
+      "reference_length": 591,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "P55263",
+      "alignment_cell_count": 125976,
+      "alignment_identity": 0.1602,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P55263",
+      "external_length": 362,
+      "length_coverage": 0.9613,
+      "matched_m_csa_entry_ids": [
+        "m_csa:455"
+      ],
+      "near_duplicate_score": 0.0773,
+      "ready_for_label_import": false,
+      "reference_accession": "P00805",
+      "reference_length": 348,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "P55263",
+      "alignment_cell_count": 118374,
+      "alignment_identity": 0.1878,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P55263",
+      "external_length": 362,
+      "length_coverage": 0.9033,
+      "matched_m_csa_entry_ids": [
+        "m_csa:301"
+      ],
+      "near_duplicate_score": 0.0746,
+      "ready_for_label_import": false,
+      "reference_accession": "O31465",
+      "reference_length": 327,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "P55263",
+      "alignment_cell_count": 114392,
+      "alignment_identity": 0.1934,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P55263",
+      "external_length": 362,
+      "length_coverage": 0.8729,
+      "matched_m_csa_entry_ids": [
+        "m_csa:31"
+      ],
+      "near_duplicate_score": 0.0746,
+      "ready_for_label_import": false,
+      "reference_accession": "P00469",
+      "reference_length": 316,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "P27144",
+      "alignment_cell_count": 57088,
+      "alignment_identity": 0.1953,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P27144",
+      "external_length": 223,
+      "length_coverage": 0.8711,
+      "matched_m_csa_entry_ids": [
+        "m_csa:255"
+      ],
+      "near_duplicate_score": 0.0938,
+      "ready_for_label_import": false,
+      "reference_accession": "P00334",
+      "reference_length": 256,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "P27144",
+      "alignment_cell_count": 59764,
+      "alignment_identity": 0.2239,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P27144",
+      "external_length": 223,
+      "length_coverage": 0.8321,
+      "matched_m_csa_entry_ids": [
+        "m_csa:383"
+      ],
+      "near_duplicate_score": 0.0858,
+      "ready_for_label_import": false,
+      "reference_accession": "P00929",
+      "reference_length": 268,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "P27144",
+      "alignment_cell_count": 59764,
+      "alignment_identity": 0.2127,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P27144",
+      "external_length": 223,
+      "length_coverage": 0.8321,
+      "matched_m_csa_entry_ids": [
+        "m_csa:237"
+      ],
+      "near_duplicate_score": 0.0821,
+      "ready_for_label_import": false,
+      "reference_accession": "O76290",
+      "reference_length": 268,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "A2RU49",
+      "alignment_cell_count": 137637,
+      "alignment_identity": 0.1769,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:A2RU49",
+      "external_length": 373,
+      "length_coverage": 0.9893,
+      "matched_m_csa_entry_ids": [
+        "m_csa:506"
+      ],
+      "near_duplicate_score": 0.0831,
+      "ready_for_label_import": false,
+      "reference_accession": "P00455",
+      "reference_length": 369,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "A2RU49",
+      "alignment_cell_count": 148081,
+      "alignment_identity": 0.1713,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:A2RU49",
+      "external_length": 373,
+      "length_coverage": 0.9395,
+      "matched_m_csa_entry_ids": [
+        "m_csa:609"
+      ],
+      "near_duplicate_score": 0.0831,
+      "ready_for_label_import": false,
+      "reference_accession": "P00778",
+      "reference_length": 397,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "A2RU49",
+      "alignment_cell_count": 129804,
+      "alignment_identity": 0.1823,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:A2RU49",
+      "external_length": 373,
+      "length_coverage": 0.933,
+      "matched_m_csa_entry_ids": [
+        "m_csa:455"
+      ],
+      "near_duplicate_score": 0.0831,
+      "ready_for_label_import": false,
+      "reference_accession": "P00805",
+      "reference_length": 348,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "Q9UIJ7",
+      "alignment_cell_count": 52437,
+      "alignment_identity": 0.1775,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q9UIJ7",
+      "external_length": 227,
+      "length_coverage": 0.9827,
+      "matched_m_csa_entry_ids": [
+        "m_csa:165"
+      ],
+      "near_duplicate_score": 0.0823,
+      "ready_for_label_import": false,
+      "reference_accession": "P00644",
+      "reference_length": 231,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "Q9UIJ7",
+      "alignment_cell_count": 78315,
+      "alignment_identity": 0.2377,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q9UIJ7",
+      "external_length": 227,
+      "length_coverage": 0.658,
+      "matched_m_csa_entry_ids": [
+        "m_csa:185"
+      ],
+      "near_duplicate_score": 0.0783,
+      "ready_for_label_import": false,
+      "reference_accession": "O15527",
+      "reference_length": 345,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "Q9UIJ7",
+      "alignment_cell_count": 59928,
+      "alignment_identity": 0.1856,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q9UIJ7",
+      "external_length": 227,
+      "length_coverage": 0.8598,
+      "matched_m_csa_entry_ids": [
+        "m_csa:181"
+      ],
+      "near_duplicate_score": 0.072,
+      "ready_for_label_import": false,
+      "reference_accession": "O31156",
+      "reference_length": 264,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "Q14410",
+      "alignment_cell_count": 291984,
+      "alignment_identity": 0.1826,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q14410",
+      "external_length": 553,
+      "length_coverage": 0.9548,
+      "matched_m_csa_entry_ids": [
+        "m_csa:178"
+      ],
+      "near_duplicate_score": 0.0741,
+      "ready_for_label_import": false,
+      "reference_accession": "P00829",
+      "reference_length": 528,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "Q14410",
+      "alignment_cell_count": 260463,
+      "alignment_identity": 0.2134,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q14410",
+      "external_length": 553,
+      "length_coverage": 0.8517,
+      "matched_m_csa_entry_ids": [
+        "m_csa:44"
+      ],
+      "near_duplicate_score": 0.0705,
+      "ready_for_label_import": false,
+      "reference_accession": "P00634",
+      "reference_length": 471,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "Q14410",
+      "alignment_cell_count": 303044,
+      "alignment_identity": 0.1826,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q14410",
+      "external_length": 553,
+      "length_coverage": 0.991,
+      "matched_m_csa_entry_ids": [
+        "m_csa:176"
+      ],
+      "near_duplicate_score": 0.0705,
+      "ready_for_label_import": false,
+      "reference_accession": "P00800",
+      "reference_length": 548,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "P00568",
+      "alignment_cell_count": 49664,
+      "alignment_identity": 0.2305,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P00568",
+      "external_length": 194,
+      "length_coverage": 0.7578,
+      "matched_m_csa_entry_ids": [
+        "m_csa:255"
+      ],
+      "near_duplicate_score": 0.0898,
+      "ready_for_label_import": false,
+      "reference_accession": "P00334",
+      "reference_length": 256,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    },
+    {
+      "accession": "P00568",
+      "alignment_cell_count": 42292,
+      "alignment_identity": 0.1835,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P00568",
+      "external_length": 194,
+      "length_coverage": 0.8899,
+      "matched_m_csa_entry_ids": [
+        "m_csa:48"
+      ],
+      "near_duplicate_score": 0.0826,
+      "ready_for_label_import": false,
+      "reference_accession": "P00492",
+      "reference_length": 218,
+      "review_status": "sequence_alignment_verification_review_only",
+      "screen_near_duplicate_alert": false,
+      "verification_status": "alignment_no_near_duplicate_signal"
+    }
+  ],
+  "warnings": [
+    "alignment verification is a bounded review-only control; external candidates still require full sequence controls before any import decision"
+  ]
+}

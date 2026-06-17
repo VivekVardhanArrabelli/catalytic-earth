@@ -1,0 +1,176 @@
+{
+  "blockers": [
+    "queries_not_fetched",
+    "external_ood_calibration_not_built",
+    "external_sequence_similarity_failure_sets_not_built",
+    "external_candidates_not_factory_gated"
+  ],
+  "metadata": {
+    "countable_label_candidate_count": 0,
+    "lane_count": 6,
+    "max_lanes": 8,
+    "method": "external_source_query_manifest",
+    "query_status": "draft_queries_only_not_executed",
+    "ready_for_bounded_fetch": true,
+    "ready_for_label_import": false,
+    "source_limit_reached": true,
+    "source_transfer_manifest_recommendation": "prototype_external_source_transfer_before_next_count_growth"
+  },
+  "rows": [
+    {
+      "candidate_source": "UniProtKB/Swiss-Prot reviewed enzyme records",
+      "countable_label_candidate": false,
+      "exemplar_entry_ids": [
+        "m_csa:603",
+        "m_csa:13",
+        "m_csa:4",
+        "m_csa:140",
+        "m_csa:135",
+        "m_csa:121",
+        "m_csa:144",
+        "m_csa:918",
+        "m_csa:278",
+        "m_csa:130"
+      ],
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "rank": 1,
+      "required_controls": [
+        "external_ood_calibration",
+        "sequence_similarity_failure_set",
+        "mechanism_ontology_boundary_review",
+        "label_factory_gate"
+      ],
+      "scope_signal": "oxidoreductase_long_tail",
+      "source_query_draft": "(reviewed:true) AND (ec:1.*) NOT (protein_name:flavin OR protein_name:heme)",
+      "trigger_row_count": 52
+    },
+    {
+      "candidate_source": "UniProtKB/Swiss-Prot reviewed enzyme records",
+      "countable_label_candidate": false,
+      "exemplar_entry_ids": [
+        "m_csa:603",
+        "m_csa:35",
+        "m_csa:246",
+        "m_csa:498",
+        "m_csa:365",
+        "m_csa:640",
+        "m_csa:588",
+        "m_csa:637",
+        "m_csa:670",
+        "m_csa:643"
+      ],
+      "lane_id": "external_source:transferase_phosphoryl",
+      "rank": 2,
+      "required_controls": [
+        "external_ood_calibration",
+        "sequence_similarity_failure_set",
+        "mechanism_ontology_boundary_review",
+        "label_factory_gate"
+      ],
+      "scope_signal": "transferase_phosphoryl",
+      "source_query_draft": "(reviewed:true) AND (ec:2.7.* OR protein_name:kinase OR protein_name:phosphotransferase)",
+      "trigger_row_count": 36
+    },
+    {
+      "candidate_source": "UniProtKB/Swiss-Prot reviewed enzyme records",
+      "countable_label_candidate": false,
+      "exemplar_entry_ids": [
+        "m_csa:222",
+        "m_csa:54",
+        "m_csa:553",
+        "m_csa:361",
+        "m_csa:220",
+        "m_csa:182",
+        "m_csa:231",
+        "m_csa:217",
+        "m_csa:947",
+        "m_csa:359"
+      ],
+      "lane_id": "external_source:lyase",
+      "rank": 3,
+      "required_controls": [
+        "external_ood_calibration",
+        "sequence_similarity_failure_set",
+        "mechanism_ontology_boundary_review",
+        "label_factory_gate"
+      ],
+      "scope_signal": "lyase",
+      "source_query_draft": "(reviewed:true) AND (ec:4.* OR protein_name:lyase)",
+      "trigger_row_count": 22
+    },
+    {
+      "candidate_source": "UniProtKB/Swiss-Prot reviewed enzyme records",
+      "countable_label_candidate": false,
+      "exemplar_entry_ids": [
+        "m_csa:352",
+        "m_csa:324",
+        "m_csa:138",
+        "m_csa:33",
+        "m_csa:206",
+        "m_csa:64",
+        "m_csa:842",
+        "m_csa:736",
+        "m_csa:187",
+        "m_csa:95"
+      ],
+      "lane_id": "external_source:isomerase",
+      "rank": 4,
+      "required_controls": [
+        "external_ood_calibration",
+        "sequence_similarity_failure_set",
+        "mechanism_ontology_boundary_review",
+        "label_factory_gate"
+      ],
+      "scope_signal": "isomerase",
+      "source_query_draft": "(reviewed:true) AND (ec:5.* OR protein_name:isomerase)",
+      "trigger_row_count": 17
+    },
+    {
+      "candidate_source": "UniProtKB/Swiss-Prot reviewed enzyme records",
+      "countable_label_candidate": false,
+      "exemplar_entry_ids": [
+        "m_csa:185",
+        "m_csa:162",
+        "m_csa:834",
+        "m_csa:659",
+        "m_csa:807",
+        "m_csa:510",
+        "m_csa:888",
+        "m_csa:690",
+        "m_csa:924"
+      ],
+      "lane_id": "external_source:glycan_chemistry",
+      "rank": 5,
+      "required_controls": [
+        "external_ood_calibration",
+        "sequence_similarity_failure_set",
+        "mechanism_ontology_boundary_review",
+        "label_factory_gate"
+      ],
+      "scope_signal": "glycan_chemistry",
+      "source_query_draft": "(reviewed:true) AND (ec:2.4.* OR ec:3.2.* OR protein_name:glycosyltransferase OR protein_name:glycosidase)",
+      "trigger_row_count": 9
+    },
+    {
+      "candidate_source": "UniProtKB/Swiss-Prot reviewed enzyme records",
+      "countable_label_candidate": false,
+      "exemplar_entry_ids": [
+        "m_csa:938",
+        "m_csa:691",
+        "m_csa:692",
+        "m_csa:1005"
+      ],
+      "lane_id": "external_source:transferase_methyl",
+      "rank": 6,
+      "required_controls": [
+        "external_ood_calibration",
+        "sequence_similarity_failure_set",
+        "mechanism_ontology_boundary_review",
+        "label_factory_gate"
+      ],
+      "scope_signal": "transferase_methyl",
+      "source_query_draft": "(reviewed:true) AND (ec:2.1.1.* OR protein_name:methyltransferase)",
+      "trigger_row_count": 4
+    }
+  ]
+}

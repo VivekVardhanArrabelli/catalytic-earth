@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "baseline": "current_main_three_external_hard_negatives",
+    "canonical_countable_label_count": 682,
+    "current_main_commit": "8359eb6e5ef26a454494e6edb12195084b22ef56",
+    "external_hard_negative_fingerprint_id": null,
+    "external_hard_negative_label_type": "out_of_scope",
+    "external_imported_out_of_scope_labels": [
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "external_imported_seed_fingerprint_label_count": 0,
+    "generated_at": "2026-06-17T03:51:29Z",
+    "information_loss_guard": "Phase 1 instrumentation only. This manifest records exact Git targets for current artifacts but authorizes no upload, migration, artifact removal, Git LFS migration, or history rewrite.",
+    "manifest_schema_version": "artifact_migration_execution.v1",
+    "method": "artifact_migration_execution_manifest",
+    "migration_ready_count": 0,
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "policy_version": "artifact_storage_policy_v1_2026_05_17",
+    "positive_fingerprint_universe": [
+      "ser_his_acid_hydrolase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "radical_sam_enzyme",
+      "cobalamin_radical_rearrangement",
+      "flavin_monooxygenase",
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase"
+    ],
+    "producer_status_counts": {},
+    "remote_sha256_verified_count": 0,
+    "removal_allowed_count": 0,
+    "row_count": 0,
+    "slice_id": 1025,
+    "source_producer_consumer_manifest": "artifacts/v3_artifact_producer_consumer_manifest_current702_20260616_run0310.json",
+    "source_readiness_plan": "artifacts/v3_artifact_migration_readiness_plan_current702_20260616_run0310.json",
+    "unknown_blocking_count": 0,
+    "unknown_blocking_summary": {
+      "by_artifact_category": {},
+      "by_planned_storage_class": {},
+      "by_source_producer_command_status": {},
+      "row_count": 0,
+      "source_paths": []
+    }
+  },
+  "rows": []
+}

@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "deletion_authorized_count": 0,
+    "generated_at": "2026-06-17T03:51:29Z",
+    "method": "artifact_migration_readiness_plan",
+    "migration_ready_now_count": 0,
+    "planned_file_count": 0,
+    "planned_total_bytes": 0,
+    "policy": "No migration, deletion, or Git history rewrite is authorized by this plan.",
+    "policy_version": "artifact_storage_policy_v1_2026_05_17",
+    "producer_consumer_manifest": "artifacts/v3_artifact_producer_consumer_manifest_current702_20260616_run0310.json",
+    "source_inventory": "artifacts/v3_artifact_storage_inventory_current702_20260616_run0310.json",
+    "storage_class_counts": {}
+  },
+  "rows": []
+}
