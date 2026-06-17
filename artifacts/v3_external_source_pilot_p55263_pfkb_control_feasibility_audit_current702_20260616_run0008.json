@@ -1,0 +1,133 @@
+{
+  "metadata": {
+    "artifact_lineage": {
+      "artifact_paths": {
+        "manual_source_mechanism_control_design": "artifacts/v3_external_source_pilot_p55263_mechanism_control_design_current702_20260616_run0008.json",
+        "review_resolution_gap_audit": "artifacts/v3_external_source_pilot_review_resolution_gap_audit_q6nsj0_p55263_with_glyco_repair_replay_current702_20260616_run0008.json"
+      },
+      "blocker_removed": "pfkb_control_feasibility_audit_built",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "manual_source_mechanism_control_design": 20260616,
+        "review_resolution_gap_audit": 20260616
+      },
+      "payload_methods": {
+        "manual_source_mechanism_control_design": "external_source_pilot_manual_source_mechanism_control_design",
+        "review_resolution_gap_audit": "external_source_pilot_review_resolution_gap_audit"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {
+        "manual_source_mechanism_control_design": {
+          "metadata.artifact_lineage.slice_id": 20260616,
+          "metadata.slice_id": 20260616
+        },
+        "review_resolution_gap_audit": {
+          "metadata.artifact_lineage.slice_id": 20260616,
+          "metadata.slice_id": 20260616
+        }
+      },
+      "slice_id": 20260616,
+      "slice_members": {
+        "20260616": [
+          "manual_source_mechanism_control_design",
+          "review_resolution_gap_audit"
+        ]
+      }
+    },
+    "candidate_control_family": "pfkb_ribokinase_family",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-06-17T00:52:58Z",
+    "feasibility_status_counts": {
+      "source_free_pfkb_control_not_implemented": 1
+    },
+    "import_ready_candidate_count": 0,
+    "method": "external_source_pilot_p55263_pfkb_control_feasibility_audit",
+    "non_countable_rule": "feasibility audit documents missing source-free control only; it cannot create predictive evidence, terminal review acceptance, import-ready rows, or labels",
+    "ready_for_label_import": false,
+    "review_only": true,
+    "slice_id": 20260616,
+    "source_manual_source_mechanism_control_design_method": "external_source_pilot_manual_source_mechanism_control_design",
+    "source_review_resolution_gap_audit_method": "external_source_pilot_review_resolution_gap_audit",
+    "target_accession": "P55263"
+  },
+  "rows": [
+    {
+      "accession": "P55263",
+      "candidate_control_family": "pfkb_ribokinase_family",
+      "countable_label_candidate": false,
+      "deploy_missing_active_site_context": {
+        "detail": "ATP, Mg2+, the PfkB-family acceptor, and phosphorylated product state are dissociable or transient contexts absent from apo predicted structures",
+        "reconstruction_path": "Path A sequence->PfkB/Rhea/ATP-Mg/substrate channel, or canonical ATP/Mg/PfkB-family acceptor graft in the ribokinase-like active conformation (Path B)",
+        "silver_reachability": "moderate; Rhea and ATP/binding-site evidence are present for many rows, but acceptor pose and open/closed state require reconstruction",
+        "type": "atp_mg_pfkb_acceptor_and_phosphorylated_product"
+      },
+      "entry_id": "uniprot:P55263",
+      "feasibility_status": "source_free_pfkb_control_not_implemented",
+      "fingerprint_counterevidence_features": [
+        "PfkA/6-phosphofructokinase or phosphohexokinase wording with fructose-6-phosphate chemistry",
+        "ASKHA acetate/glucose/hexose/glycerol kinase wording",
+        "GHMP homoserine/mevalonate/phosphomevalonate/galactokinase wording",
+        "dNK, NDK, protein kinase, or histidine kinase wording/side EC",
+        "hydrolase EC 3 side rows or non-2.7.1 side EC",
+        "EC-only evidence with no Rhea, family, active-site, binding-site, or structure corroborator",
+        "multi-fingerprint signal where an established fingerprint independently fires"
+      ],
+      "fingerprint_evidence_features": [
+        "Rhea or reviewed catalytic activity text for ATP/ADP phosphoryl transfer to ribose/adenosine/inosine/fructose-1-phosphate/PfkB-family acceptors under EC 2.7.1 scope",
+        "ribokinase, adenosine kinase, inosine kinase, 1-phosphofructokinase, fructokinase, PfkB, or hydroxymethylpyrimidine kinase family/name/domain text",
+        "ATP/ADP/Mg2+ active-site or binding-site annotations",
+        "structure or reviewed binding-site evidence for ATP and the PfkB-family small-molecule acceptor"
+      ],
+      "gap_status": "manual_source_mechanism_control_design_review_only",
+      "next_action": "implement a tested source-free PfkB/ribokinase-family control or keep P55263 manual-review-only; do not import from source-context design evidence",
+      "ontology_family_boundary_guardrails": [
+        "Membership is decided by reviewed ATP/ADP substrate-specific phosphoryl-transfer context plus PfkB/ribokinase-family text and active-/binding-site evidence; EC 2.7.1 is scope only.",
+        "Do not collapse PfkB/ribokinase lanes into PfkA, ASKHA, GHMP, dNK, NDK, protein kinase, histidine kinase, hydrolase, side-EC, or EC-only rows solely by ATP wording.",
+        "Keep PfkB family evidence review-only when local active-site support is incomplete.",
+        "ATP/Mg2+, ribokinase-family acceptor, phosphorylated product, and ribokinase-like conformational state are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ],
+      "predictive_evidence": [],
+      "protein_name": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "external_review_decision_artifact_not_built",
+        "family_import_safety_adjudication_missing",
+        "full_label_factory_gate_not_run",
+        "manual_source_mechanism_review_required",
+        "representation_control_instability_review_required",
+        "terminal_review_decision_not_accepted"
+      ],
+      "required_before_import_safety_adjudication": [
+        "source-free PfkB/ribokinase-family ATP/Mg and acceptor-pocket control or explicit keep-held decision",
+        "representation-control instability repair or explicit hold",
+        "family import-safety adjudication built from implemented control, not design text",
+        "terminal review decision, full label-factory gate, novelty/governor replay, and row guardrails"
+      ],
+      "review_context_axes_present": {
+        "active_site_positions": [
+          317
+        ],
+        "ec_numbers": [
+          "2.7.1.-",
+          "2.7.1.20"
+        ],
+        "representative_rhea_reactions": [
+          "RHEA:10224 pyridoxal + ATP = pyridoxal 5'-phosphate + ADP + H(+)",
+          "RHEA:10272 a 1,2-diacyl-sn-glycerol + ATP = a 1,2-diacyl-sn-glycero-3-phosphate + ADP + H(+)",
+          "RHEA:20824 adenosine + ATP = AMP + ADP + H(+)"
+        ],
+        "source_context_status": "source_supports_adenosine_kinase_phosphoryl_transfer_context"
+      },
+      "source_context_not_predictive": true,
+      "source_context_sufficient_for_review_design": true
+    }
+  ],
+  "warnings": [
+    "EC/name/Rhea/prose/source handles are excluded context; this audit is not predictive evidence",
+    "P55263 remains held until source-free control and full external import gates exist"
+  ]
+}

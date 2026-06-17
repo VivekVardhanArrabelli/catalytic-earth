@@ -70,8 +70,10 @@ from catalytic_earth.transfer_scope import (
     build_external_source_pilot_glycoside_hydrolase_boundary_control,
     build_external_source_pilot_glycoside_hydrolase_replacement_scout,
     build_external_source_pilot_human_expert_review_queue,
+    build_external_source_pilot_manual_source_mechanism_control_design,
     build_external_source_pilot_manual_source_mechanism_review_packet,
     build_external_source_pilot_mechanism_repair_lanes,
+    build_external_source_pilot_pfkb_control_feasibility_audit,
     build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication,
     build_external_source_pilot_review_resolution_gap_audit,
     build_external_source_pilot_schiff_base_lyase_control,
@@ -7921,6 +7923,28 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                     }
                 ],
             },
+            manual_source_mechanism_control_design={
+                "metadata": {
+                    "method": (
+                        "external_source_pilot_manual_source_mechanism_control_design"
+                    )
+                },
+                "rows": [
+                    {
+                        "accession": "Q8N0X4",
+                        "designed_candidate_control_family": (
+                            "acyl_coa_lyase_thioesterase"
+                        ),
+                        "designed_candidate_control_status": (
+                            "review_only_design_requires_implementation_and_evidence"
+                        ),
+                        "remaining_import_blockers": [
+                            "manual_source_mechanism_review_required",
+                            "family_import_safety_adjudication_missing",
+                        ],
+                    }
+                ],
+            },
             artifact_lineage={
                 "method": "external_transfer_artifact_path_lineage_validation",
                 "slice_id": 20260616,
@@ -7940,9 +7964,13 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertEqual(
             metadata["resolution_gap_status_counts"],
             {
-                "manual_source_mechanism_review_required": 1,
+                "manual_source_mechanism_control_design_review_only": 1,
                 "review_decision_and_factory_gate_blocked_after_control_repair": 1,
             },
+        )
+        self.assertEqual(
+            metadata["source_manual_source_mechanism_control_design_method"],
+            "external_source_pilot_manual_source_mechanism_control_design",
         )
         rows = {row["accession"]: row for row in audit["rows"]}
         self.assertEqual(
@@ -7951,7 +7979,15 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         )
         self.assertEqual(
             rows["Q8N0X4"]["resolution_gap_status"],
-            "manual_source_mechanism_review_required",
+            "manual_source_mechanism_control_design_review_only",
+        )
+        self.assertEqual(
+            rows["Q8N0X4"]["designed_candidate_control_family"],
+            "acyl_coa_lyase_thioesterase",
+        )
+        self.assertIn(
+            "family_import_safety_adjudication_missing",
+            rows["Q8N0X4"]["remaining_import_blockers"],
         )
         self.assertTrue(
             all(
@@ -8110,6 +8146,195 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             row["remaining_import_blockers"],
         )
         self.assertEqual(row["autonomous_decision"], "hold_review_only")
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_pilot_manual_source_mechanism_control_design_routes_p55263(
+        self,
+    ) -> None:
+        design = build_external_source_pilot_manual_source_mechanism_control_design(
+            manual_source_mechanism_review_packet={
+                "metadata": {
+                    "method": (
+                        "external_source_pilot_manual_source_mechanism_review_packet"
+                    )
+                },
+                "rows": [
+                    {
+                        "accession": "P55263",
+                        "entry_id": "uniprot:P55263",
+                        "protein_name": "Adenosine kinase",
+                        "mechanism_review_packet_status": (
+                            "manual_source_mechanism_review_required"
+                        ),
+                        "reaction_context": {
+                            "status": (
+                                "source_supports_adenosine_kinase_phosphoryl_"
+                                "transfer_context"
+                            ),
+                            "ec_numbers": ["2.7.1.20"],
+                            "representative_rhea_reactions": [
+                                "RHEA:20824 adenosine + ATP = AMP + ADP + H(+)"
+                            ],
+                        },
+                        "active_site_evidence": {
+                            "status": "explicit_active_site_source_present",
+                            "positions": [317],
+                        },
+                        "remaining_import_blockers": [
+                            "manual_source_mechanism_review_required",
+                            "representation_control_instability_review_required",
+                        ],
+                    }
+                ],
+            },
+            review_resolution_gap_audit={
+                "metadata": {
+                    "method": "external_source_pilot_review_resolution_gap_audit"
+                },
+                "rows": [
+                    {
+                        "accession": "P55263",
+                        "remaining_import_blockers": [
+                            "full_label_factory_gate_not_run"
+                        ],
+                    }
+                ],
+            },
+            artifact_lineage={
+                "method": "external_transfer_artifact_path_lineage_validation",
+                "slice_id": 20260616,
+                "guardrail_clean": True,
+            },
+        )
+
+        metadata = design["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "external_source_pilot_manual_source_mechanism_control_design",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(
+            metadata["candidate_control_family_counts"],
+            {"pfkb_ribokinase_family": 1},
+        )
+        row = design["rows"][0]
+        self.assertEqual(
+            row["designed_candidate_control_family"], "pfkb_ribokinase_family"
+        )
+        self.assertEqual(row["predictive_evidence"], [])
+        self.assertIn(
+            "Rhea equation text used as source/admission context",
+            row["must_remain_excluded_context"],
+        )
+        self.assertIn(
+            "representation_control_instability_review_required",
+            row["remaining_import_blockers"],
+        )
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_pilot_pfkb_control_feasibility_audit_holds_p55263(
+        self,
+    ) -> None:
+        audit = build_external_source_pilot_pfkb_control_feasibility_audit(
+            manual_source_mechanism_control_design={
+                "metadata": {
+                    "method": (
+                        "external_source_pilot_manual_source_mechanism_control_design"
+                    )
+                },
+                "rows": [
+                    {
+                        "accession": "P55263",
+                        "entry_id": "uniprot:P55263",
+                        "protein_name": "Adenosine kinase",
+                        "designed_candidate_control_family": (
+                            "pfkb_ribokinase_family"
+                        ),
+                        "design_basis": {
+                            "source_context_status": (
+                                "source_supports_adenosine_kinase_"
+                                "phosphoryl_transfer_context"
+                            ),
+                            "ec_numbers": ["2.7.1.20"],
+                            "representative_rhea_reactions": [
+                                "RHEA:20824 adenosine + ATP = AMP + ADP + H(+)"
+                            ],
+                            "active_site_positions": [317],
+                        },
+                    }
+                ],
+            },
+            review_resolution_gap_audit={
+                "metadata": {
+                    "method": "external_source_pilot_review_resolution_gap_audit"
+                },
+                "rows": [
+                    {
+                        "accession": "P55263",
+                        "resolution_gap_status": (
+                            "manual_source_mechanism_control_design_review_only"
+                        ),
+                        "remaining_import_blockers": [
+                            "family_import_safety_adjudication_missing",
+                            "full_label_factory_gate_not_run",
+                        ],
+                    }
+                ],
+            },
+            mechanism_fingerprints=[
+                {
+                    "id": "pfkb_ribokinase_family",
+                    "evidence_features": [
+                        "Rhea ATP/ADP phosphoryl-transfer context"
+                    ],
+                    "counterevidence_features": ["PfkA boundary"],
+                    "deploy_missing_active_site_context": {
+                        "type": "atp_mg_pfkb_acceptor"
+                    },
+                }
+            ],
+            mechanism_ontology={
+                "families": [
+                    {
+                        "id": "pfkb",
+                        "family_boundary_guardrails": [
+                            "Keep PfkB family evidence review-only when local "
+                            "active-site support is incomplete."
+                        ],
+                    }
+                ]
+            },
+            target_accession="P55263",
+            artifact_lineage={
+                "method": "external_transfer_artifact_path_lineage_validation",
+                "slice_id": 20260616,
+                "guardrail_clean": True,
+            },
+        )
+
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "external_source_pilot_p55263_pfkb_control_feasibility_audit",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            metadata["feasibility_status_counts"],
+            {"source_free_pfkb_control_not_implemented": 1},
+        )
+        row = audit["rows"][0]
+        self.assertEqual(row["candidate_control_family"], "pfkb_ribokinase_family")
+        self.assertEqual(row["predictive_evidence"], [])
+        self.assertTrue(row["source_context_not_predictive"])
+        self.assertIn(
+            "family_import_safety_adjudication_missing",
+            row["remaining_import_blockers"],
+        )
         self.assertFalse(row["countable_label_candidate"])
         self.assertFalse(row["ready_for_label_import"])
 
@@ -9849,7 +10074,14 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                                         "residue_match_fraction": 0.6667,
                                         "matched_signature_roles": [
                                             {"role_hint_match": False},
-                                            {"role_hint_match": False},
+                                            {
+                                                "required_role": "nucleophile",
+                                                "required_residue": (
+                                                    "bridging_hydroxide_or_Ser/Thr"
+                                                ),
+                                                "matched_codes": [],
+                                                "role_hint_match": True,
+                                            },
                                         ],
                                     }
                                 ],
@@ -9887,6 +10119,18 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 "metal_role_hint_match_count"
             ],
             0,
+        )
+        self.assertEqual(
+            row["metal_hydrolase_contrast_features"][
+                "raw_role_hint_match_count"
+            ],
+            1,
+        )
+        self.assertEqual(
+            row["metal_hydrolase_contrast_features"][
+                "evidence_bearing_metal_role_match_fraction"
+            ],
+            0.0,
         )
         self.assertFalse(row["countable_label_candidate"])
         self.assertFalse(row["ready_for_label_import"])

@@ -11,7 +11,7 @@ import time
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any, Callable, Iterable
 from urllib.parse import quote
 from urllib.request import Request, urlopen
 
@@ -15828,6 +15828,7 @@ def build_external_source_pilot_review_resolution_gap_audit(
     glycoside_hydrolase_import_safety_adjudication: dict[str, Any] | None = None,
     acyl_coa_lyase_thioesterase_import_safety_adjudication: dict[str, Any]
     | None = None,
+    manual_source_mechanism_control_design: dict[str, Any] | None = None,
     max_rows: int = 10,
     artifact_lineage: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
@@ -15877,6 +15878,18 @@ def build_external_source_pilot_review_resolution_gap_audit(
                 "source_method": method,
             }
 
+    design_by_accession: dict[str, dict[str, Any]] = {}
+    design_method = (manual_source_mechanism_control_design or {}).get(
+        "metadata", {}
+    ).get("method")
+    for row in (manual_source_mechanism_control_design or {}).get("rows", []) or []:
+        if not isinstance(row, dict):
+            continue
+        accession = _normalize_accession(row.get("accession"))
+        if not accession:
+            continue
+        design_by_accession[accession] = {**row, "source_method": design_method}
+
     rows: list[dict[str, Any]] = []
     for row in queue_rows:
         accession = _normalize_accession(row.get("accession"))
@@ -15884,6 +15897,7 @@ def build_external_source_pilot_review_resolution_gap_audit(
             continue
         repair_row = repair_by_accession.get(accession, {})
         adjudication_row = adjudication_by_accession.get(accession, {})
+        design_row = design_by_accession.get(accession, {})
         repair_lane = str(
             repair_row.get("repair_lane")
             or "repair_lane_missing_for_review_row"
@@ -15898,6 +15912,7 @@ def build_external_source_pilot_review_resolution_gap_audit(
                 for blocker in (
                     list(row.get("non_human_blockers_remaining", []) or [])
                     + list(adjudication_row.get("remaining_import_blockers", []) or [])
+                    + list(design_row.get("remaining_import_blockers", []) or [])
                 )
                 if blocker
             }
@@ -15907,11 +15922,20 @@ def build_external_source_pilot_review_resolution_gap_audit(
             remaining_blockers = sorted(remaining_blockers)
 
         if repair_lane == "manual_source_mechanism_review_required":
-            resolution_gap_status = "manual_source_mechanism_review_required"
-            next_action = (
-                "define a source-supported mechanism repair family before any "
-                "terminal review decision"
-            )
+            if design_row.get("designed_candidate_control_family"):
+                resolution_gap_status = (
+                    "manual_source_mechanism_control_design_review_only"
+                )
+                next_action = (
+                    "implement the designed source-free family control and rerun "
+                    "family import-safety adjudication before terminal review"
+                )
+            else:
+                resolution_gap_status = "manual_source_mechanism_review_required"
+                next_action = (
+                    "define a source-supported mechanism repair family before any "
+                    "terminal review decision"
+                )
         elif adjudication_status == "family_import_safety_adjudication_missing":
             resolution_gap_status = "family_import_safety_adjudication_missing"
             next_action = str(
@@ -15959,6 +15983,15 @@ def build_external_source_pilot_review_resolution_gap_audit(
                     "source_method"
                 ),
                 "family_import_safety_status": adjudication_status,
+                "manual_source_mechanism_control_design_source": (
+                    design_row.get("source_method")
+                ),
+                "designed_candidate_control_family": design_row.get(
+                    "designed_candidate_control_family"
+                ),
+                "designed_candidate_control_status": design_row.get(
+                    "designed_candidate_control_status"
+                ),
                 "resolution_gap_status": resolution_gap_status,
                 "remaining_import_blockers": remaining_blockers,
                 "next_action": next_action,
@@ -16006,6 +16039,7 @@ def build_external_source_pilot_review_resolution_gap_audit(
                 for family, artifact in adjudication_sources.items()
                 if isinstance(artifact, dict)
             },
+            "source_manual_source_mechanism_control_design_method": design_method,
             "non_countable_rule": (
                 "this audit only maps unresolved review/factory blockers and "
                 "cannot create terminal acceptances, import-ready rows, or labels"
@@ -16270,6 +16304,390 @@ def build_external_source_pilot_manual_source_mechanism_review_packet(
                 "external rows remain held until explicit decisions and full "
                 "factory gates exist"
             )
+        ],
+    }
+
+
+def _external_manual_source_control_design(row: dict[str, Any]) -> dict[str, Any]:
+    reaction_context = row.get("reaction_context", {})
+    if not isinstance(reaction_context, dict):
+        reaction_context = {}
+    reactions = [
+        str(reaction)
+        for reaction in reaction_context.get("representative_rhea_reactions", [])
+        or []
+    ]
+    text = " ".join(
+        [
+            str(row.get("protein_name") or ""),
+            str(row.get("source_context_status") or ""),
+            " ".join(str(ec) for ec in reaction_context.get("ec_numbers", []) or []),
+            " ".join(reactions),
+        ]
+    ).lower()
+    if (
+        "adenosine kinase" in text
+        or "rhea:20824" in text
+        or "source_supports_adenosine_kinase" in text
+    ):
+        return {
+            "designed_candidate_control_family": "pfkb_ribokinase_family",
+            "designed_candidate_control_status": (
+                "review_only_design_requires_implementation_and_evidence"
+            ),
+            "required_control_axes_before_any_adjudication": [
+                (
+                    "source-free PfkB/ribokinase-family acceptor-pocket or "
+                    "sequence/structure control for adenosine kinase context"
+                ),
+                (
+                    "ATP/Mg phosphoryl-transfer cosubstrate context separated "
+                    "from generic kinase/protein-kinase/NDP-kinase handles"
+                ),
+                (
+                    "boundary exclusions for deoxynucleoside kinase, nucleoside "
+                    "diphosphate kinase, GHMP/PfkA, hexokinase/glucokinase/"
+                    "galactokinase, and non-kinase phosphoryl-transfer rows"
+                ),
+                (
+                    "representation-stability repair or explicit hold for "
+                    "nearest-reference changes"
+                ),
+                (
+                    "family import-safety adjudication, terminal review decision, "
+                    "full label-factory gate, novelty/governor replay, and row "
+                    "guardrails"
+                ),
+            ],
+            "next_action": (
+                "implement a tested review-only PfkB/ribokinase-family control "
+                "or keep the row manual-review-only; do not import from this "
+                "design packet"
+            ),
+        }
+    return {
+        "designed_candidate_control_family": None,
+        "designed_candidate_control_status": "manual_review_required_no_design",
+        "required_control_axes_before_any_adjudication": [
+            "define a source-supported review-only mechanism control family",
+            "rerun import-safety adjudication only after that control exists",
+        ],
+        "next_action": (
+            "keep the row manual-review-only until a source-supported control "
+            "family is designed"
+        ),
+    }
+
+
+def build_external_source_pilot_manual_source_mechanism_control_design(
+    *,
+    manual_source_mechanism_review_packet: dict[str, Any],
+    review_resolution_gap_audit: dict[str, Any] | None = None,
+    max_rows: int = 10,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Design non-authorizing controls for manual source-mechanism rows."""
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    gap_by_accession = _external_first_row_by_accession(
+        review_resolution_gap_audit or {}
+    )
+    rows: list[dict[str, Any]] = []
+    for packet_row in [
+        row
+        for row in manual_source_mechanism_review_packet.get("rows", []) or []
+        if isinstance(row, dict)
+    ][:max_rows]:
+        accession = _normalize_accession(packet_row.get("accession"))
+        if not accession:
+            continue
+        gap_row = gap_by_accession.get(accession, {})
+        design = _external_manual_source_control_design(packet_row)
+        remaining_blockers = sorted(
+            {
+                str(blocker)
+                for blocker in (
+                    list(packet_row.get("remaining_import_blockers", []) or [])
+                    + list(gap_row.get("remaining_import_blockers", []) or [])
+                    + [
+                        "manual_source_mechanism_review_required",
+                        "family_import_safety_adjudication_missing",
+                        "terminal_review_decision_not_accepted",
+                        "full_label_factory_gate_not_run",
+                    ]
+                )
+                if blocker
+            }
+        )
+        rows.append(
+            {
+                "accession": accession,
+                "entry_id": packet_row.get("entry_id") or f"uniprot:{accession}",
+                "protein_name": packet_row.get("protein_name"),
+                "current_repair_lane": packet_row.get(
+                    "mechanism_review_packet_status"
+                )
+                or gap_row.get("repair_lane"),
+                **design,
+                "design_basis": {
+                    "source_context_status": packet_row.get(
+                        "source_context_status"
+                    ),
+                    "ec_numbers": (
+                        packet_row.get("reaction_context", {}).get("ec_numbers", [])
+                        if isinstance(packet_row.get("reaction_context"), dict)
+                        else []
+                    ),
+                    "representative_rhea_reactions": (
+                        packet_row.get("reaction_context", {}).get(
+                            "representative_rhea_reactions", []
+                        )
+                        if isinstance(packet_row.get("reaction_context"), dict)
+                        else []
+                    ),
+                    "active_site_positions": (
+                        packet_row.get("active_site_evidence", {}).get(
+                            "positions", []
+                        )
+                        if isinstance(
+                            packet_row.get("active_site_evidence"), dict
+                        )
+                        else []
+                    ),
+                    "repo_family_source_handle": (
+                        "pfkb_ribokinase_family reviewed/tier2 lanes include "
+                        "protein_name:\"adenosine kinase\" while excluding "
+                        "NDP/deoxynucleoside/protein/hexo/gluco/galacto kinase "
+                        "boundaries"
+                    )
+                    if design["designed_candidate_control_family"]
+                    == "pfkb_ribokinase_family"
+                    else None,
+                },
+                "must_remain_excluded_context": [
+                    "EC numbers",
+                    "protein names",
+                    "UniProt prose",
+                    "query/source handles",
+                    "Rhea equation text used as source/admission context",
+                ],
+                "predictive_evidence": [],
+                "remaining_import_blockers": remaining_blockers,
+                "autonomous_decision": "hold_review_only",
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+            }
+        )
+
+    candidate_counts = Counter(
+        row["designed_candidate_control_family"] or "unassigned" for row in rows
+    )
+    return {
+        "metadata": {
+            "method": "external_source_pilot_manual_source_mechanism_control_design",
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": (
+                "manual_source_mechanism_rows_have_non_authorizing_control_designs"
+            ),
+            "blocker_not_removed": [
+                "manual_source_mechanism_review_required",
+                "family_import_safety_adjudication_missing",
+                "terminal_review_decision_not_accepted",
+                "full_label_factory_gate_not_run",
+                "no_import_ready_external_rows",
+            ],
+            "review_only": True,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_candidate_count": 0,
+            "manual_source_mechanism_control_design_row_count": len(rows),
+            "candidate_control_family_counts": dict(sorted(candidate_counts.items())),
+            "max_rows": max_rows,
+            "non_countable_rule": (
+                "control designs name candidate review-only family paths only; "
+                "they cannot assign mechanisms, run import-safety adjudication, "
+                "or create countable labels"
+            ),
+            "source_manual_source_mechanism_review_packet_method": (
+                manual_source_mechanism_review_packet.get("metadata", {}).get(
+                    "method"
+                )
+            ),
+            "source_review_resolution_gap_audit_method": (
+                (review_resolution_gap_audit or {}).get("metadata", {}).get(
+                    "method"
+                )
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "manual source-mechanism control designs are non-authorizing; "
+                "external rows remain held until explicit controls, decisions, "
+                "and full factory gates exist"
+            )
+        ],
+    }
+
+
+def _external_first_registry_row_by_id(
+    rows: Any,
+    row_id: str,
+) -> dict[str, Any]:
+    if not isinstance(rows, list):
+        return {}
+    for row in rows:
+        if isinstance(row, dict) and row.get("id") == row_id:
+            return row
+    return {}
+
+
+def build_external_source_pilot_pfkb_control_feasibility_audit(
+    *,
+    manual_source_mechanism_control_design: dict[str, Any],
+    review_resolution_gap_audit: dict[str, Any],
+    mechanism_fingerprints: list[dict[str, Any]],
+    mechanism_ontology: dict[str, Any],
+    target_accession: str = "P55263",
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Record why a PfkB manual design is not yet an importable control."""
+
+    accession = _normalize_accession(target_accession)
+    if not accession:
+        raise ValueError("target_accession must be non-empty")
+    design_by_accession = _external_first_row_by_accession(
+        manual_source_mechanism_control_design
+    )
+    gap_by_accession = _external_first_row_by_accession(review_resolution_gap_audit)
+    design_row = design_by_accession.get(accession)
+    if not design_row:
+        raise ValueError(f"no manual source-mechanism control design row for {accession}")
+    gap_row = gap_by_accession.get(accession, {})
+    candidate_family = str(
+        design_row.get("designed_candidate_control_family") or ""
+    )
+    if candidate_family != "pfkb_ribokinase_family":
+        raise ValueError(
+            "PfkB feasibility audit requires designed_candidate_control_family "
+            "pfkb_ribokinase_family"
+        )
+    fingerprint = _external_first_registry_row_by_id(
+        mechanism_fingerprints,
+        "pfkb_ribokinase_family",
+    )
+    ontology_family = _external_first_registry_row_by_id(
+        mechanism_ontology.get("families", []),
+        "pfkb",
+    )
+    return {
+        "metadata": {
+            "method": "external_source_pilot_p55263_pfkb_control_feasibility_audit",
+            "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "review_only": True,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_candidate_count": 0,
+            "source_manual_source_mechanism_control_design_method": (
+                manual_source_mechanism_control_design.get("metadata", {}).get(
+                    "method"
+                )
+            ),
+            "source_review_resolution_gap_audit_method": (
+                review_resolution_gap_audit.get("metadata", {}).get("method")
+            ),
+            "target_accession": accession,
+            "candidate_control_family": candidate_family,
+            "feasibility_status_counts": {
+                "source_free_pfkb_control_not_implemented": 1
+            },
+            "non_countable_rule": (
+                "feasibility audit documents missing source-free control only; "
+                "it cannot create predictive evidence, terminal review "
+                "acceptance, import-ready rows, or labels"
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": [
+            {
+                "accession": accession,
+                "entry_id": design_row.get("entry_id") or f"uniprot:{accession}",
+                "protein_name": design_row.get("protein_name"),
+                "candidate_control_family": candidate_family,
+                "gap_status": gap_row.get("resolution_gap_status"),
+                "feasibility_status": "source_free_pfkb_control_not_implemented",
+                "source_context_sufficient_for_review_design": True,
+                "source_context_not_predictive": True,
+                "predictive_evidence": [],
+                "review_context_axes_present": {
+                    "source_context_status": design_row.get(
+                        "design_basis", {}
+                    ).get("source_context_status"),
+                    "ec_numbers": design_row.get("design_basis", {}).get(
+                        "ec_numbers", []
+                    ),
+                    "representative_rhea_reactions": design_row.get(
+                        "design_basis", {}
+                    ).get("representative_rhea_reactions", []),
+                    "active_site_positions": design_row.get(
+                        "design_basis", {}
+                    ).get("active_site_positions", []),
+                },
+                "fingerprint_evidence_features": fingerprint.get(
+                    "evidence_features", []
+                ),
+                "fingerprint_counterevidence_features": fingerprint.get(
+                    "counterevidence_features", []
+                ),
+                "deploy_missing_active_site_context": fingerprint.get(
+                    "deploy_missing_active_site_context", {}
+                ),
+                "ontology_family_boundary_guardrails": ontology_family.get(
+                    "family_boundary_guardrails", []
+                ),
+                "required_before_import_safety_adjudication": [
+                    (
+                        "source-free PfkB/ribokinase-family ATP/Mg and "
+                        "acceptor-pocket control or explicit keep-held decision"
+                    ),
+                    (
+                        "representation-control instability repair or explicit "
+                        "hold"
+                    ),
+                    (
+                        "family import-safety adjudication built from implemented "
+                        "control, not design text"
+                    ),
+                    (
+                        "terminal review decision, full label-factory gate, "
+                        "novelty/governor replay, and row guardrails"
+                    ),
+                ],
+                "remaining_import_blockers": gap_row.get(
+                    "remaining_import_blockers", []
+                ),
+                "next_action": (
+                    "implement a tested source-free PfkB/ribokinase-family "
+                    "control or keep P55263 manual-review-only; do not import "
+                    "from source-context design evidence"
+                ),
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+            }
+        ],
+        "warnings": [
+            (
+                "EC/name/Rhea/prose/source handles are excluded context; this "
+                "audit is not predictive evidence"
+            ),
+            (
+                "P55263 remains held until source-free control and full external "
+                "import gates exist"
+            ),
         ],
     }
 
@@ -18842,15 +19260,15 @@ def build_external_source_pilot_glycoside_hydrolase_boundary_control(
                 "structure_ligands",
             )
         )
-        metal_role_hint_match_count = sum(
-            1
-            for match in top1.get("matched_signature_roles", []) or []
-            if isinstance(match, dict) and match.get("role_hint_match") is True
+        role_hint_summary = _external_glycoside_boundary_role_hint_summary(
+            top1.get("matched_signature_roles", []) or []
         )
+        metal_role_hint_match_count = role_hint_summary[
+            "evidence_bearing_metal_role_hint_match_count"
+        ]
         glycan_boundary_ready = (
             active_site_features["acidic_source_active_site_residue_count"] >= 2
             and metal_ligand_context_absent
-            and _external_parse_float(top1.get("role_match_fraction")) == 0.0
             and metal_role_hint_match_count == 0
         )
         baseline_row = baseline_representation_by_accession.get(accession, {})
@@ -18874,11 +19292,23 @@ def build_external_source_pilot_glycoside_hydrolase_boundary_control(
                 "candidate_active_site_features": active_site_features,
                 "metal_hydrolase_contrast_features": {
                     "metal_ligand_context_absent": metal_ligand_context_absent,
+                    "raw_top1_role_match_fraction": top1.get("role_match_fraction"),
+                    "evidence_bearing_metal_role_match_fraction": (
+                        role_hint_summary[
+                            "evidence_bearing_metal_role_match_fraction"
+                        ]
+                    ),
+                    "raw_role_hint_match_count": role_hint_summary[
+                        "raw_role_hint_match_count"
+                    ],
                     "top1_role_match_fraction": top1.get("role_match_fraction"),
                     "top1_residue_match_fraction": top1.get(
                         "residue_match_fraction"
                     ),
                     "metal_role_hint_match_count": metal_role_hint_match_count,
+                    "evidence_bearing_metal_role_matches": (
+                        role_hint_summary["evidence_bearing_metal_role_matches"]
+                    ),
                     "matched_signature_roles": top1.get(
                         "matched_signature_roles", []
                     ),
@@ -18933,8 +19363,9 @@ def build_external_source_pilot_glycoside_hydrolase_boundary_control(
                 "control_interpretation": (
                     "Candidate has source-traced acidic active-site residues and "
                     "no local metal/cofactor context, while the metal-hydrolase "
-                    "heuristic match has zero role-hint support. This is a "
-                    "review-only boundary control, not import."
+                    "heuristic match has zero evidence-bearing metal/ligand "
+                    "role-hint support. This is a review-only boundary control, "
+                    "not import."
                     if glycan_boundary_ready
                     else "The glycoside-hydrolase boundary evidence is incomplete."
                 ),
@@ -19029,6 +19460,48 @@ def build_external_source_pilot_glycoside_hydrolase_boundary_control(
                 "evidence; they do not validate enzyme function or authorize import"
             )
         ],
+    }
+
+
+def _external_glycoside_boundary_role_hint_summary(
+    matches: Iterable[dict[str, Any]],
+) -> dict[str, Any]:
+    raw_role_hint_match_count = 0
+    evidence_bearing_metal_role_hint_match_count = 0
+    evidence_bearing_matches: list[dict[str, Any]] = []
+    match_count = 0
+    for match in matches:
+        if not isinstance(match, dict):
+            continue
+        match_count += 1
+        if match.get("role_hint_match") is not True:
+            continue
+        raw_role_hint_match_count += 1
+        required_role = str(match.get("required_role") or "").lower()
+        required_residue = str(match.get("required_residue") or "").lower()
+        metal_boundary_role = any(
+            token in f"{required_role} {required_residue}"
+            for token in ("metal", "ligand", "hydroxide")
+        )
+        matched_codes = [
+            str(code).strip()
+            for code in match.get("matched_codes", []) or []
+            if str(code).strip()
+        ]
+        if metal_boundary_role and matched_codes:
+            evidence_bearing_metal_role_hint_match_count += 1
+            evidence_bearing_matches.append(match)
+    return {
+        "raw_role_hint_match_count": raw_role_hint_match_count,
+        "evidence_bearing_metal_role_hint_match_count": (
+            evidence_bearing_metal_role_hint_match_count
+        ),
+        "evidence_bearing_metal_role_match_fraction": (
+            round(evidence_bearing_metal_role_hint_match_count / match_count, 4)
+            if match_count
+            else 0.0
+        ),
+        "evidence_bearing_metal_role_matches": evidence_bearing_matches,
     }
 
 

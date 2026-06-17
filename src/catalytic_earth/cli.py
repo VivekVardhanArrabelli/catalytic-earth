@@ -715,8 +715,10 @@ from .transfer_scope import (
     build_external_source_pilot_glycoside_hydrolase_boundary_control,
     build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication,
     build_external_source_pilot_glycoside_hydrolase_replacement_scout,
+    build_external_source_pilot_manual_source_mechanism_control_design,
     build_external_source_pilot_manual_source_mechanism_review_packet,
     build_external_source_pilot_mechanism_repair_lanes,
+    build_external_source_pilot_pfkb_control_feasibility_audit,
     build_external_source_pilot_review_resolution_gap_audit,
     build_external_source_pilot_schiff_base_lyase_control,
     build_external_source_pilot_schiff_base_lyase_import_safety_adjudication,
@@ -4502,6 +4504,7 @@ def cmd_build_external_source_pilot_review_resolution_gap_audit(
         "dna_pol_x_lyase_import_safety_adjudication",
         "glycoside_hydrolase_import_safety_adjudication",
         "acyl_coa_lyase_thioesterase_import_safety_adjudication",
+        "manual_source_mechanism_control_design",
     )
     explicit_optional_artifacts = tuple(
         name for name in optional_artifact_names if getattr(args, name, None)
@@ -4536,6 +4539,9 @@ def cmd_build_external_source_pilot_review_resolution_gap_audit(
             artifact_payloads.get(
                 "acyl_coa_lyase_thioesterase_import_safety_adjudication"
             )
+        ),
+        manual_source_mechanism_control_design=artifact_payloads.get(
+            "manual_source_mechanism_control_design"
         ),
         max_rows=args.max_rows,
         artifact_lineage=artifact_lineage,
@@ -4584,6 +4590,76 @@ def cmd_build_external_source_pilot_manual_source_mechanism_review_packet(
         "Wrote external source pilot manual source-mechanism review packet to "
         f"{args.out} "
         f"({packet['metadata']['manual_source_mechanism_review_row_count']} rows)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_manual_source_mechanism_control_design(
+    args: argparse.Namespace,
+) -> int:
+    optional_artifact_names = ("review_resolution_gap_audit",)
+    explicit_optional_artifacts = tuple(
+        name for name in optional_artifact_names if getattr(args, name, None)
+    )
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        ("manual_source_mechanism_review_packet",) + explicit_optional_artifacts,
+        blocker_removed=(
+            "manual_source_mechanism_rows_have_non_authorizing_control_designs"
+        ),
+    )
+    design = build_external_source_pilot_manual_source_mechanism_control_design(
+        manual_source_mechanism_review_packet=artifact_payloads[
+            "manual_source_mechanism_review_packet"
+        ],
+        review_resolution_gap_audit=artifact_payloads.get(
+            "review_resolution_gap_audit"
+        ),
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), design)
+    print(
+        "Wrote external source pilot manual source-mechanism control design to "
+        f"{args.out} "
+        f"({design['metadata']['manual_source_mechanism_control_design_row_count']} "
+        "rows)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_pfkb_control_feasibility_audit(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "manual_source_mechanism_control_design",
+            "review_resolution_gap_audit",
+        ),
+        blocker_removed="pfkb_control_feasibility_audit_built",
+    )
+    with Path(args.mechanism_fingerprints).open("r", encoding="utf-8") as handle:
+        mechanism_fingerprints = json.load(handle)
+    with Path(args.mechanism_ontology).open("r", encoding="utf-8") as handle:
+        mechanism_ontology = json.load(handle)
+    audit = build_external_source_pilot_pfkb_control_feasibility_audit(
+        manual_source_mechanism_control_design=artifact_payloads[
+            "manual_source_mechanism_control_design"
+        ],
+        review_resolution_gap_audit=artifact_payloads[
+            "review_resolution_gap_audit"
+        ],
+        mechanism_fingerprints=mechanism_fingerprints,
+        mechanism_ontology=mechanism_ontology,
+        target_accession=args.target_accession,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source pilot PfkB control feasibility audit to "
+        f"{args.out} "
+        f"({audit['metadata']['feasibility_status_counts']})"
     )
     return 0
 
@@ -25591,6 +25667,14 @@ def build_parser() -> argparse.ArgumentParser:
         "--acyl-coa-lyase-thioesterase-import-safety-adjudication",
         default=None,
     )
+    external_pilot_review_gap.add_argument(
+        "--manual-source-mechanism-control-design",
+        default=None,
+        help=(
+            "optional non-authorizing control-design packet used to preserve "
+            "manual source-mechanism blocker context"
+        ),
+    )
     external_pilot_review_gap.add_argument("--max-rows", type=int, default=10)
     external_pilot_review_gap.add_argument(
         "--out",
@@ -25655,6 +25739,91 @@ def build_parser() -> argparse.ArgumentParser:
         func=(
             cmd_build_external_source_pilot_manual_source_mechanism_review_packet
         )
+    )
+
+    external_pilot_manual_source_control_design = subparsers.add_parser(
+        "build-external-source-pilot-manual-source-mechanism-control-design",
+        help=(
+            "design non-authorizing family controls for manual "
+            "source-mechanism review rows"
+        ),
+    )
+    external_pilot_manual_source_control_design.add_argument(
+        "--manual-source-mechanism-review-packet",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_manual_source_mechanism_review_packet_"
+            "1025.json"
+        ),
+    )
+    external_pilot_manual_source_control_design.add_argument(
+        "--review-resolution-gap-audit",
+        default=None,
+        help=(
+            "optional gap audit used to preserve current blocker context in "
+            "the non-authorizing control design"
+        ),
+    )
+    external_pilot_manual_source_control_design.add_argument(
+        "--max-rows", type=int, default=10
+    )
+    external_pilot_manual_source_control_design.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_manual_source_mechanism_control_design_"
+            "1025.json"
+        ),
+    )
+    external_pilot_manual_source_control_design.set_defaults(
+        func=(
+            cmd_build_external_source_pilot_manual_source_mechanism_control_design
+        )
+    )
+
+    external_pilot_pfkb_feasibility = subparsers.add_parser(
+        "build-external-source-pilot-pfkb-control-feasibility-audit",
+        help=(
+            "record why a PfkB manual design is not yet an importable "
+            "source-free control"
+        ),
+    )
+    external_pilot_pfkb_feasibility.add_argument(
+        "--manual-source-mechanism-control-design",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_manual_source_mechanism_control_design_"
+            "1025.json"
+        ),
+    )
+    external_pilot_pfkb_feasibility.add_argument(
+        "--review-resolution-gap-audit",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_review_resolution_gap_audit_1025.json"
+        ),
+    )
+    external_pilot_pfkb_feasibility.add_argument(
+        "--mechanism-fingerprints",
+        default="data/registries/mechanism_fingerprints.json",
+    )
+    external_pilot_pfkb_feasibility.add_argument(
+        "--mechanism-ontology",
+        default="data/registries/mechanism_ontology.json",
+    )
+    external_pilot_pfkb_feasibility.add_argument(
+        "--target-accession",
+        default="P55263",
+    )
+    external_pilot_pfkb_feasibility.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_pfkb_control_feasibility_audit_1025.json"
+        ),
+    )
+    external_pilot_pfkb_feasibility.set_defaults(
+        func=cmd_build_external_source_pilot_pfkb_control_feasibility_audit
     )
 
     external_pilot_acyl_coa_control = subparsers.add_parser(

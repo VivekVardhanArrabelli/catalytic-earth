@@ -16,6 +16,55 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-17 automation update: Q6NSJ0 glycoside control repaired, P55263 control design
+packeted, no registry apply.** Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; no
+label registry rows were written. Run0008 coverage/novelty replays confirm the state is unchanged
+at **8728** combined labels = **702** frozen + **8026** expansion, with no holes, floor deficit
+**0**, novelty replay **7565** admit / **414** throttle / **47** reject, and only
+`metal_dependent_hydrolase` over cap. The run0008 factory refresh still has **0** ready existing
+lanes >=150 and top projected clean admits **77**; breadth scouting still projects **9673**
+reviewed-Swiss-Prot clean positives with gap **327** to 10k, so reviewed-Swiss-Prot padding remains
+insufficient.
+
+Run0008 changed the Q6NSJ0 glycoside boundary control from "incomplete" to a repaired review-only
+control by separating raw role-hint matches from evidence-bearing metal/ligand role support. The
+refreshed control
+`artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_q6nsj0_replacement_current702_20260616_run0008.json`
+has **1** `review_only_glycoside_hydrolase_boundary_ready` row: Q6NSJ0 has the source-traced
+acidic dyad (**463**, **520**), no metal-ligand context, raw role-hint count **1**, and
+evidence-bearing metal role-hint count **0**. Its import-safety replay
+`artifacts/v3_external_source_pilot_glycoside_hydrolase_import_safety_adjudication_q6nsj0_replacement_current702_20260616_run0008.json`
+marks the representation conflict repaired, but it still requires terminal review, full
+label-factory, inverse/out-of-scope, novelty, governor, and row-guardrail gates before any import.
+The merged Q6NSJ0/P33025 adjudication
+`artifacts/v3_external_source_pilot_glycoside_hydrolase_import_safety_adjudication_merged_q6nsj0_p33025_current702_20260616_run0008.json`
+has **1** repaired and **1** unrepaired glycoside row; P33025 remains unrepaired.
+
+The run0008 gap replay
+`artifacts/v3_external_source_pilot_review_resolution_gap_audit_q6nsj0_p55263_with_glyco_repair_replay_current702_20260616_run0008.json`
+still holds **7** rows with **0** import-ready and **0** countable candidates: **5**
+`review_decision_and_factory_gate_blocked_after_control_repair`, **1**
+`family_control_unresolved_after_adjudication`, and **1**
+`manual_source_mechanism_control_design_review_only`.
+Review-only import safety
+`artifacts/v3_external_source_pilot_review_resolution_gap_import_safety_q6nsj0_p55263_with_glyco_repair_replay_current702_20260616_run0008.json`
+passed with **safe=True**, **0** unsafe artifacts, and **0** new countable labels. P55263 now has a
+non-authorizing control-design packet,
+`artifacts/v3_external_source_pilot_p55263_mechanism_control_design_current702_20260616_run0008.json`,
+that routes the adenosine kinase / RHEA:20824 context to a candidate `pfkb_ribokinase_family`
+control design while keeping predictive evidence `[]` and import-ready/countable counts at **0**.
+The companion feasibility audit
+`artifacts/v3_external_source_pilot_p55263_pfkb_control_feasibility_audit_current702_20260616_run0008.json`
+records that source-free PfkB ATP/Mg and acceptor-pocket control is still not implemented.
+The regenerated gap replay carries this as `manual_source_mechanism_control_design_review_only`
+blocker context, not import authority.
+
+Next action: do not apply from run0008 artifacts. Use them to either produce explicit terminal
+review and full label-factory replay for the five control-repaired rows, implement a tested
+source-free PfkB/ribokinase-family control plus P55263 import-safety adjudication, or open a new
+source-handle/source-transfer lane that can pass duplicate, active-site, factory, novelty,
+governor, and row-guardrail gates.
+
 **2026-06-16 automation update: Q6NSJ0/P55263 source-transfer repair replay held; no registry
 apply.** Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; no label registry rows were
 written. Run2205 coverage/novelty replays confirm the state is unchanged at **8728** combined

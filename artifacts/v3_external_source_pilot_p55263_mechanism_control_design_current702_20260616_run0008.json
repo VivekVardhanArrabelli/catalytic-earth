@@ -1,0 +1,120 @@
+{
+  "metadata": {
+    "artifact_lineage": {
+      "artifact_paths": {
+        "manual_source_mechanism_review_packet": "artifacts/v3_external_source_pilot_manual_source_mechanism_review_packet_p55263_with_stability_current702_20260616_run2306.json",
+        "review_resolution_gap_audit": "artifacts/v3_external_source_pilot_review_resolution_gap_audit_q6nsj0_p55263_with_glyco_repair_replay_current702_20260616_run0008.json"
+      },
+      "blocker_removed": "manual_source_mechanism_rows_have_non_authorizing_control_designs",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "manual_source_mechanism_review_packet": 20260616,
+        "review_resolution_gap_audit": 20260616
+      },
+      "payload_methods": {
+        "manual_source_mechanism_review_packet": "external_source_pilot_manual_source_mechanism_review_packet",
+        "review_resolution_gap_audit": "external_source_pilot_review_resolution_gap_audit"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {
+        "manual_source_mechanism_review_packet": {
+          "metadata.artifact_lineage.slice_id": 20260616,
+          "metadata.slice_id": 20260616
+        },
+        "review_resolution_gap_audit": {
+          "metadata.artifact_lineage.slice_id": 20260616,
+          "metadata.slice_id": 20260616
+        }
+      },
+      "slice_id": 20260616,
+      "slice_members": {
+        "20260616": [
+          "manual_source_mechanism_review_packet",
+          "review_resolution_gap_audit"
+        ]
+      }
+    },
+    "blocker_not_removed": [
+      "manual_source_mechanism_review_required",
+      "family_import_safety_adjudication_missing",
+      "terminal_review_decision_not_accepted",
+      "full_label_factory_gate_not_run",
+      "no_import_ready_external_rows"
+    ],
+    "blocker_removed": "manual_source_mechanism_rows_have_non_authorizing_control_designs",
+    "candidate_control_family_counts": {
+      "pfkb_ribokinase_family": 1
+    },
+    "countable_label_candidate_count": 0,
+    "import_ready_candidate_count": 0,
+    "manual_source_mechanism_control_design_row_count": 1,
+    "max_rows": 10,
+    "method": "external_source_pilot_manual_source_mechanism_control_design",
+    "non_countable_rule": "control designs name candidate review-only family paths only; they cannot assign mechanisms, run import-safety adjudication, or create countable labels",
+    "ready_for_label_import": false,
+    "review_only": true,
+    "slice_id": 20260616,
+    "source_manual_source_mechanism_review_packet_method": "external_source_pilot_manual_source_mechanism_review_packet",
+    "source_review_resolution_gap_audit_method": "external_source_pilot_review_resolution_gap_audit"
+  },
+  "rows": [
+    {
+      "accession": "P55263",
+      "autonomous_decision": "hold_review_only",
+      "countable_label_candidate": false,
+      "current_repair_lane": "manual_source_mechanism_review_required",
+      "design_basis": {
+        "active_site_positions": [
+          317
+        ],
+        "ec_numbers": [
+          "2.7.1.-",
+          "2.7.1.20"
+        ],
+        "repo_family_source_handle": "pfkb_ribokinase_family reviewed/tier2 lanes include protein_name:\"adenosine kinase\" while excluding NDP/deoxynucleoside/protein/hexo/gluco/galacto kinase boundaries",
+        "representative_rhea_reactions": [
+          "RHEA:10224 pyridoxal + ATP = pyridoxal 5'-phosphate + ADP + H(+)",
+          "RHEA:10272 a 1,2-diacyl-sn-glycerol + ATP = a 1,2-diacyl-sn-glycero-3-phosphate + ADP + H(+)",
+          "RHEA:20824 adenosine + ATP = AMP + ADP + H(+)"
+        ],
+        "source_context_status": "source_supports_adenosine_kinase_phosphoryl_transfer_context"
+      },
+      "designed_candidate_control_family": "pfkb_ribokinase_family",
+      "designed_candidate_control_status": "review_only_design_requires_implementation_and_evidence",
+      "entry_id": "uniprot:P55263",
+      "must_remain_excluded_context": [
+        "EC numbers",
+        "protein names",
+        "UniProt prose",
+        "query/source handles",
+        "Rhea equation text used as source/admission context"
+      ],
+      "next_action": "implement a tested review-only PfkB/ribokinase-family control or keep the row manual-review-only; do not import from this design packet",
+      "predictive_evidence": [],
+      "protein_name": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "external_review_decision_artifact_not_built",
+        "family_import_safety_adjudication_missing",
+        "full_label_factory_gate_not_run",
+        "manual_source_mechanism_review_required",
+        "representation_control_instability_review_required",
+        "terminal_review_decision_not_accepted"
+      ],
+      "required_control_axes_before_any_adjudication": [
+        "source-free PfkB/ribokinase-family acceptor-pocket or sequence/structure control for adenosine kinase context",
+        "ATP/Mg phosphoryl-transfer cosubstrate context separated from generic kinase/protein-kinase/NDP-kinase handles",
+        "boundary exclusions for deoxynucleoside kinase, nucleoside diphosphate kinase, GHMP/PfkA, hexokinase/glucokinase/galactokinase, and non-kinase phosphoryl-transfer rows",
+        "representation-stability repair or explicit hold for nearest-reference changes",
+        "family import-safety adjudication, terminal review decision, full label-factory gate, novelty/governor replay, and row guardrails"
+      ]
+    }
+  ],
+  "warnings": [
+    "manual source-mechanism control designs are non-authorizing; external rows remain held until explicit controls, decisions, and full factory gates exist"
+  ]
+}

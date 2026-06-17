@@ -3,6 +3,59 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-17: GLYCOSIDE BOUNDARY CONTROL COUNTS ONLY EVIDENCE-BEARING METAL ROLE MATCHES
+
+Decision: a raw metal-hydrolase role-hint match is not enough to block a glycoside-hydrolase
+boundary control when the matched role has no source residue codes. Raw role-hint matches must be
+retained for audit, but only evidence-bearing metal/ligand/hydroxide role matches with non-empty
+matched codes count as metal-hydrolase support. A row with a source-traced acidic dyad, absent
+local metal-ligand context, and zero evidence-bearing metal role support may be marked
+review-only boundary-ready; this remains non-authorizing and does not create import-ready rows.
+
+Implementation: `build_external_source_pilot_glycoside_hydrolase_boundary_control` now records raw
+role-hint counts separately from evidence-bearing metal role matches. Regression coverage in
+`tests/test_transfer_scope.py` verifies a raw role-hint match with empty `matched_codes` is kept in
+audit fields but does not block Q6NSJ0-style glycoside boundary readiness.
+
+Measured result: run0008 Q6NSJ0 control
+`artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_q6nsj0_replacement_current702_20260616_run0008.json`
+reports **1** `review_only_glycoside_hydrolase_boundary_ready` row, raw role-hint count **1**, and
+evidence-bearing metal role-hint count **0**. The import-safety replay
+`artifacts/v3_external_source_pilot_glycoside_hydrolase_import_safety_adjudication_q6nsj0_replacement_current702_20260616_run0008.json`
+marks Q6NSJ0's representation conflict repaired, but the merged Q6NSJ0/P33025 adjudication
+`artifacts/v3_external_source_pilot_glycoside_hydrolase_import_safety_adjudication_merged_q6nsj0_p33025_current702_20260616_run0008.json`
+still has **0** import-ready and **0** countable rows, with P33025 unrepaired.
+
+Follow-up: use this repair only as review-control evidence. Q6NSJ0 still needs explicit terminal
+review, full label-factory, inverse/out-of-scope, novelty, governor, and row-guardrail gates before
+any import.
+
+## 2026-06-17: MANUAL SOURCE-MECHANISM CONTROL DESIGNS ARE NON-AUTHORIZING
+
+Decision: a manual source-mechanism row may receive a candidate control-design packet to make the
+next review-control implementation concrete, but that packet cannot assign a mechanism family,
+create predictive evidence, satisfy import-safety adjudication, or authorize import. EC numbers,
+protein names, UniProt prose, query/source handles, and Rhea equation text remain source/admission
+or review context and must stay out of `predictive_evidence`.
+
+Implementation: added `build_external_source_pilot_manual_source_mechanism_control_design` and CLI
+`build-external-source-pilot-manual-source-mechanism-control-design`, with parser and transfer
+regression coverage. The builder currently maps source-supported adenosine kinase / RHEA:20824
+rows to a non-authorizing `pfkb_ribokinase_family` control-design route while preserving blockers
+and `predictive_evidence: []`.
+
+Measured result: run0008 P55263 design artifact
+`artifacts/v3_external_source_pilot_p55263_mechanism_control_design_current702_20260616_run0008.json`
+contains **1** `pfkb_ribokinase_family` candidate design and **0** import-ready/countable rows. Its
+safety audit
+`artifacts/v3_external_source_pilot_p55263_mechanism_control_design_import_safety_current702_20260616_run0008.json`
+passed with **safe=True** and **0** new countable labels. P55263 remains held for manual
+source-mechanism review, representation-control instability, family import-safety adjudication,
+terminal review decision, and full label-factory gate.
+
+Follow-up: implement a tested source-free PfkB/ribokinase-family control before any P55263
+import-safety adjudication. Do not treat the design packet as an import decision.
+
 ## 2026-06-16: SOURCE-TRANSFER IMPORT-SAFETY REPLAYS USE LATEST DUPLICATE STATE
 
 Decision: family import-safety adjudications must prefer later same-slice duplicate-screen clearance

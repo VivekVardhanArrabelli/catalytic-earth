@@ -1,5 +1,90 @@
 # Handoff
 
+## Session run - Q6NSJ0 boundary repaired; P55263 design packeted; no registry apply (2026-06-17, Codex automation)
+
+- Started at `2026-06-17T00:08:09Z` from current `origin/main`
+  `69f1785647469dd6eac671bbb72aef2b0a3dd59d`, acquired
+  `.git/catalytic-earth-automation.lock`, and confirmed frozen current702 sha before/after stayed
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. No registry apply or
+  label write was attempted.
+- Baseline safety was green before work: `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed, and the baseline focused critical suite passed **786 passed, 174 subtests**. Final
+  focused critical suite passed **788 passed, 174 subtests**; final transfer/CLI module suite
+  passed **371 passed, 160 subtests**; final full `PYTHONPATH=src pytest -q` passed
+  **2396 passed, 1 warning, 244 subtests**. Final compileall, docs-reference check
+  (**0 missing / 2147 checked / 14 ignored**), JSON/JSONL parse (**22** run0008 JSON artifacts and
+  **688** progress records), hard-limit scan, frozen SHA check, and `git diff --check` passed.
+- Coverage remains unchanged at **8728** combined labels = **702** frozen + **8026** expansion, with
+  no holes, floor deficit **0**, novelty replay **7565** admit / **414** throttle / **47** reject,
+  **0** ready existing lanes >=150, top projected clean admits **77**, and reviewed-Swiss-Prot
+  clean-positive projection **9673** with gap **327** to 10k. This run continued source-transfer
+  gate repair instead of padding low-yield reviewed-Swiss-Prot lanes.
+- Repaired the Q6NSJ0 glycoside boundary-control interpretation in code. Raw role-hint matches are
+  now retained separately from evidence-bearing metal/ligand/hydroxide role matches with non-empty
+  matched residue codes. Regression coverage in `tests/test_transfer_scope.py` verifies a raw
+  role-hint match with empty `matched_codes` does not block Q6NSJ0-style glycoside readiness.
+- Regenerated Q6NSJ0 boundary control:
+  `artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_q6nsj0_replacement_current702_20260616_run0008.json`.
+  It now has **1** `review_only_glycoside_hydrolase_boundary_ready` row, source-traced acidic dyad
+  **463/520**, absent metal-ligand context, raw role-hint count **1**, and evidence-bearing metal
+  role-hint count **0**. It remains review-only, non-countable, and non-import-authorizing.
+- Regenerated Q6NSJ0 glycoside import-safety:
+  `artifacts/v3_external_source_pilot_glycoside_hydrolase_import_safety_adjudication_q6nsj0_replacement_current702_20260616_run0008.json`.
+  Q6NSJ0 is now `glycoside_boundary_representation_conflict_repaired`, but still blocked by
+  explicit review decision, full label-factory gate, inverse/out-of-scope checks, and source-free
+  predictive gate work.
+- Merged Q6NSJ0 with historical P33025 glycoside adjudication:
+  `artifacts/v3_external_source_pilot_glycoside_hydrolase_import_safety_adjudication_merged_q6nsj0_p33025_current702_20260616_run0008.json`.
+  The merged replay has **1** repaired and **1** unrepaired glycoside row; P33025 remains
+  `glycoside_boundary_representation_conflict_not_repaired`. Import-ready/countable rows remain
+  **0**.
+- Replayed the source-transfer review gap:
+  `artifacts/v3_external_source_pilot_review_resolution_gap_audit_q6nsj0_p55263_with_glyco_repair_replay_current702_20260616_run0008.json`.
+  It holds **7** rows with **0** import-ready and **0** countable candidates: **5**
+  `review_decision_and_factory_gate_blocked_after_control_repair`, **1**
+  `family_control_unresolved_after_adjudication`, and **1**
+  `manual_source_mechanism_control_design_review_only`.
+  The review-only safety audit
+  `artifacts/v3_external_source_pilot_review_resolution_gap_import_safety_q6nsj0_p55263_with_glyco_repair_replay_current702_20260616_run0008.json`
+  passed **safe=True**, **0** unsafe artifacts, and **0** new countable labels.
+- Added `build-external-source-pilot-manual-source-mechanism-control-design` and transfer/CLI tests.
+  The command is deliberately non-authorizing: it can name a candidate control route for manual
+  source-mechanism rows, but keeps EC, names, UniProt prose, source handles, and Rhea text in
+  excluded/review context and leaves `predictive_evidence: []`.
+- Extended `build-external-source-pilot-review-resolution-gap-audit` with an optional
+  `--manual-source-mechanism-control-design` input so non-authorizing manual designs are preserved
+  in the gap replay as blocker context. This changes P55263's gap status to
+  `manual_source_mechanism_control_design_review_only`; it does not make the row countable or
+  import-ready.
+- Built the P55263 design packet:
+  `artifacts/v3_external_source_pilot_p55263_mechanism_control_design_current702_20260616_run0008.json`,
+  plus safety audit
+  `artifacts/v3_external_source_pilot_p55263_mechanism_control_design_import_safety_current702_20260616_run0008.json`.
+  The packet maps the adenosine kinase / RHEA:20824 context to candidate
+  `pfkb_ribokinase_family`, but keeps **0** import-ready/countable rows and blockers for manual
+  source-mechanism review, representation instability, family import-safety adjudication, terminal
+  review decision, and full label-factory gate.
+- Added a durable P55263 PfkB feasibility audit:
+  `artifacts/v3_external_source_pilot_p55263_pfkb_control_feasibility_audit_current702_20260616_run0008.json`.
+  It records that existing PfkB support is source/review context and the source-free ATP/Mg and
+  acceptor-pocket control is still not implemented, so P55263 remains held.
+- Storage hygiene remains non-blocking for registry safety: no `data/registries` or `artifacts`
+  file exceeds **90 MB**. Run0008 storage artifacts
+  `artifacts/v3_artifact_storage_inventory_current702_20260616_run0008.json`,
+  `artifacts/v3_artifact_storage_policy_check_current702_20260616_run0008.json`,
+  `artifacts/v3_artifact_producer_consumer_manifest_current702_20260616_run0008.json`,
+  `artifacts/v3_artifact_migration_readiness_plan_current702_20260616_run0008.json`, and
+  `artifacts/v3_artifact_migration_execution_manifest_current702_20260616_run0008.json` record
+  **45** large-unclassified policy blockers, **116** manifest rows, **0** migration-ready files,
+  and **0** deletion/removal-authorized files. Migration dry run validated with **116** rows and
+  `removal_allowed=0`.
+- Next exact action: use Q6NSJ0's repaired boundary and P55263's control-design packet only as
+  review planning evidence. Do not apply/import from run0008 artifacts. The next scaling unlock is
+  explicit terminal review/factory replay for the five control-repaired rows, an implemented
+  source-free PfkB/ribokinase-family control plus P55263 import-safety adjudication, or a new
+  source-handle/source-transfer lane that passes duplicate, active-site, factory, novelty,
+  governor, and row-guardrail gates.
+
 ## Session run - Q6NSJ0/P55263 source-transfer replay held; no registry apply (2026-06-16, Codex automation)
 
 - Started from current `origin/main` at `490eb6856a77478b730a7642589f867c18b6ff84`, acquired

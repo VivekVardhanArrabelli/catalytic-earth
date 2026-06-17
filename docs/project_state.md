@@ -1,6 +1,6 @@
 # Project State
 
-Last refreshed: 2026-06-16
+Last refreshed: 2026-06-17
 
 This file is the durable state summary for agents who do not have chat context.
 Treat it as an orientation layer, not as a replacement for the referenced
@@ -25,6 +25,84 @@ biological design system. Current benchmark claims must be framed as local,
 artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
+
+- **Q6NSJ0 GLYCOSIDE CONTROL REPAIRED; P55263 CONTROL DESIGN PACKETED; NO REGISTRY APPLY (2026-06-17 automation).**
+  Frozen current702 stayed byte-unchanged at sha
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no label registry rows were
+  written. Run0008 pre/post-noapply coverage and novelty artifacts
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run0008_pre_lane.json`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run0008_post_noapply.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run0008_pre_lane.json`, and
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run0008_post_noapply.json`
+  confirm the surface stayed at **8728** combined labels = **702** frozen + **8026** expansion, with
+  no holes, floor deficit **0**, novelty replay **7565** admit / **414** throttle / **47** reject,
+  and only `metal_dependent_hydrolase` over cap.
+
+  Planning artifacts still show no ordinary import lane: the run0008 high-yield factory
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260616_run0008_pre_lane.json` has
+  **0** ready existing lanes >=150 and top projected clean admits **77**; the evidence-handle scout
+  `artifacts/v3_evidence_handle_expansion_current702_20260616_run0008_pre_lane.json` shows reachable
+  positive-bronze uplift **741**; the breadth scout
+  `artifacts/v3_breadth_feasibility_scout_current702_20260616_run0008_pre_lane.json` still projects
+  **9673** reviewed-Swiss-Prot clean positives with gap **327** to 10k; and
+  `artifacts/v3_source_scale_limit_audit_current702_20260616_run0008.json` continues to recommend
+  source-transfer/source-handle expansion rather than reviewed-Swiss-Prot padding.
+
+  Run0008 repaired the Q6NSJ0 glycoside boundary-control interpretation so raw role-hint matches
+  without matched source residue codes are retained as audit context but do not count as
+  evidence-bearing metal/ligand support. The refreshed control
+  `artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_q6nsj0_replacement_current702_20260616_run0008.json`
+  now has **1** `review_only_glycoside_hydrolase_boundary_ready` row: Q6NSJ0 still has the
+  source-traced acidic dyad (**463**, **520**) and no metal-ligand context, with raw role-hint count
+  **1** but evidence-bearing metal role-hint count **0**. This remains review-only and non-countable.
+  The import-safety replay
+  `artifacts/v3_external_source_pilot_glycoside_hydrolase_import_safety_adjudication_q6nsj0_replacement_current702_20260616_run0008.json`
+  marks Q6NSJ0's representation conflict repaired, but keeps it held for explicit review decision,
+  full label-factory gate, inverse/out-of-scope checks, and source-free predictive gate work.
+  The merged Q6NSJ0/P33025 glycoside adjudication
+  `artifacts/v3_external_source_pilot_glycoside_hydrolase_import_safety_adjudication_merged_q6nsj0_p33025_current702_20260616_run0008.json`
+  has **1** repaired and **1** unrepaired glycoside row; P33025 remains the unrepaired boundary row.
+
+  The run0008 review-resolution replay
+  `artifacts/v3_external_source_pilot_review_resolution_gap_audit_q6nsj0_p55263_with_glyco_repair_replay_current702_20260616_run0008.json`
+  still holds **7** source-transfer rows with **0** import-ready and **0** countable candidates:
+  **5** `review_decision_and_factory_gate_blocked_after_control_repair`, **1**
+  `family_control_unresolved_after_adjudication`, and **1**
+  `manual_source_mechanism_control_design_review_only`.
+  Consolidated review-only import safety
+  `artifacts/v3_external_source_pilot_review_resolution_gap_import_safety_q6nsj0_p55263_with_glyco_repair_replay_current702_20260616_run0008.json`
+  passed with **safe=True**, **0** unsafe artifacts, and **0** new countable labels.
+
+  P55263 now has a non-authorizing manual source-mechanism control design packet:
+  `artifacts/v3_external_source_pilot_p55263_mechanism_control_design_current702_20260616_run0008.json`,
+  with safety check
+  `artifacts/v3_external_source_pilot_p55263_mechanism_control_design_import_safety_current702_20260616_run0008.json`.
+  The companion feasibility audit
+  `artifacts/v3_external_source_pilot_p55263_pfkb_control_feasibility_audit_current702_20260616_run0008.json`
+  records that source-free PfkB ATP/Mg and acceptor-pocket control is still not implemented.
+  The packet names `pfkb_ribokinase_family` as the candidate review-control family for the
+  source-supported adenosine kinase / RHEA:20824 context, but it is explicitly review-only:
+  predictive evidence is `[]`, countable/import-ready rows are **0**, and blockers still include
+  manual source-mechanism review, family import-safety adjudication, terminal review decision, and
+  full label-factory gate. The regenerated gap replay carries this design as
+  `manual_source_mechanism_control_design_review_only` blocker context, not as import authority.
+
+  Storage remains a policy/classification blocker, not a GitHub hard-limit breach: no
+  `data/registries` or `artifacts` file exceeds **90 MB**. Run0008 storage artifacts
+  `artifacts/v3_artifact_storage_inventory_current702_20260616_run0008.json`,
+  `artifacts/v3_artifact_storage_policy_check_current702_20260616_run0008.json`,
+  `artifacts/v3_artifact_producer_consumer_manifest_current702_20260616_run0008.json`,
+  `artifacts/v3_artifact_migration_readiness_plan_current702_20260616_run0008.json`, and
+  `artifacts/v3_artifact_migration_execution_manifest_current702_20260616_run0008.json` record
+  **45** large-unclassified policy blockers, **116** manifest rows, **0** migration-ready files,
+  and **0** deletion-authorized/removal-allowed files.
+
+  Next exact action: use the Q6NSJ0 repaired boundary plus the P55263 control-design packet only as
+  review planning evidence. Do not apply/import from these artifacts. The next scaling unlock is an
+  explicit terminal review/factory replay for the five control-repaired rows, an implemented
+  source-free PfkB/ribokinase-family control plus P55263 import-safety adjudication, or a new
+  source-handle/source-transfer lane that can pass duplicate, active-site, factory, novelty,
+  governor, and row-guardrail gates.
 
 - **Q6NSJ0/P55263 SOURCE-TRANSFER REPAIR REPLAY HELD; NO REGISTRY APPLY (2026-06-16 automation).**
   Frozen current702 stayed byte-unchanged at sha

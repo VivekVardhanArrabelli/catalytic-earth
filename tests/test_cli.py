@@ -414,6 +414,8 @@ class CliTests(unittest.TestCase):
                 "/tmp/lanes.json",
                 "--akr-nadp-import-safety-adjudication",
                 "/tmp/akr.json",
+                "--manual-source-mechanism-control-design",
+                "/tmp/manual-design.json",
             ]
         )
 
@@ -423,6 +425,10 @@ class CliTests(unittest.TestCase):
         )
         self.assertEqual(args.mechanism_repair_lanes, "/tmp/lanes.json")
         self.assertEqual(args.akr_nadp_import_safety_adjudication, "/tmp/akr.json")
+        self.assertEqual(
+            args.manual_source_mechanism_control_design,
+            "/tmp/manual-design.json",
+        )
         self.assertIsNone(args.sdr_redox_import_safety_adjudication)
         self.assertIsNone(
             args.acyl_coa_lyase_thioesterase_import_safety_adjudication
@@ -498,6 +504,55 @@ class CliTests(unittest.TestCase):
         self.assertEqual(args.current_boundary_control, "/tmp/control.json")
         self.assertEqual(args.target_accession, "P33025")
         self.assertTrue(args.skip_live_uniprot_fetch)
+
+    def test_external_source_pilot_manual_source_control_design_parser(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-external-source-pilot-manual-source-mechanism-"
+                    "control-design"
+                ),
+                "--manual-source-mechanism-review-packet",
+                "/tmp/manual.json",
+                "--review-resolution-gap-audit",
+                "/tmp/gap.json",
+                "--max-rows",
+                "2",
+            ]
+        )
+
+        self.assertEqual(
+            args.manual_source_mechanism_review_packet, "/tmp/manual.json"
+        )
+        self.assertEqual(args.review_resolution_gap_audit, "/tmp/gap.json")
+        self.assertEqual(args.max_rows, 2)
+
+    def test_external_source_pilot_pfkb_control_feasibility_parser(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-external-source-pilot-pfkb-control-feasibility-"
+                    "audit"
+                ),
+                "--manual-source-mechanism-control-design",
+                "/tmp/design.json",
+                "--review-resolution-gap-audit",
+                "/tmp/gap.json",
+                "--target-accession",
+                "P55263",
+            ]
+        )
+
+        self.assertEqual(
+            args.manual_source_mechanism_control_design,
+            "/tmp/design.json",
+        )
+        self.assertEqual(args.review_resolution_gap_audit, "/tmp/gap.json")
+        self.assertEqual(args.target_accession, "P55263")
 
     def test_external_source_pilot_candidate_priority_pinned_parser(
         self,
