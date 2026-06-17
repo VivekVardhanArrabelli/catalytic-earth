@@ -3,6 +3,43 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-17: BIOTIN BROADENED-HANDLE TRANCHE APPLIED — COMBINED LABELS 8728 -> 8769
+
+Decision: under explicit user authorization to make progress in the label count, apply the
+row-guardrail-clean run0310 biotin-dependent carboxylase reviewed-Swiss-Prot broadened-handle
+preview (41 novelty-admitted bronze rows) into the expansion bronze registry. This converts the
+preview that run0310 held back only for *autonomous* sub-150-fragment reasons into a human-directed
+apply. The frozen current702 benchmark is not touched.
+
+Rationale: the 41 rows are reviewed Swiss-Prot, EC/Rhea/cofactor-annotation anchored,
+duplicate-screen clear, novelty-admitted, cap-safe (family cap 250; combined 100 -> 141), and
+row-guardrail clean (0 problem rows; every row carries cofactor, domain, Rhea, and active-site
+mechanism axes). The run0310 hold was a strategy choice ("do not autonomously apply sub-150
+fragments"), not a quality judgment, so explicit human direction is the missing authorization.
+Protein name, EC label, UniProt prose, source annotation, curated mechanism text, and the target
+family lane remain `excluded_context` and are never predictive features.
+
+Measured result: `apply_external_annotation_anchored_import_to_registry` appended **41** bronze
+(0 duplicate-skipped), expansion registry **8026 -> 8067**, combined **8728 -> 8769**, all rows
+`biotin_dependent_carboxylase` `bronze`. The frozen current702 registry is byte-unchanged at sha
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`
+(`frozen_benchmark_registry_written: false`). Post-apply audits are clean: coverage/redundancy
+`artifacts/v3_coverage_redundancy_audit_current702_20260617_biotin_apply.json` reports 8769
+combined = 702 frozen + 8067 expansion, holes none, floor deficit 0, over-cap only the pre-existing
+`metal_dependent_hydrolase`; novelty admission
+`artifacts/v3_novelty_admission_gate_audit_current702_20260617_biotin_apply.json` replays 8067
+rows with admit 7565 -> 7606 (+41), reject 47 and throttle 414 unchanged. The apply summary is
+`artifacts/v3_biotin_dependent_carboxylase_apply_summary_current702_20260617.json` with report
+`work/biotin_dependent_carboxylase_apply_current702_20260617.md`. Real-registry baseline tests were
+updated to 8769 combined / 8067 expansion / 6843 seed labels.
+
+Follow-up: the biotin broadened handle is now exhausted at +41 (the offset-250 follow-up fetched 0
+rows). The next count growth still needs a >=150 reviewed-Swiss-Prot lane (improve a handle-blocked
+family such as `nad_p_dehydrogenase_ec_1_1_1` (+146), `biotin`/binding-site, or
+`glycosyltransferase_ec_2_4` (+250) per
+`artifacts/v3_evidence_handle_expansion_current702_20260616_run0310_pre_lane.json`), or resolution
+of the human-expert terminal-review queue, before further apply.
+
 ## 2026-06-17: P55263 PFKB IMPORT-SAFETY CAN CLEAR MISSING-ADJUDICATION ONLY AS KEEP-HELD
 
 Decision: P55263's manual source-mechanism design may be converted into an explicit PfkB

@@ -26,6 +26,30 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **BIOTIN BROADENED-HANDLE TRANCHE APPLIED; COMBINED LABELS 8728 -> 8769 (2026-06-17, user-directed).**
+  Under explicit user authorization to make progress in the label count, the row-guardrail-clean
+  run0310 biotin-dependent carboxylase reviewed-Swiss-Prot broadened-handle preview was applied to
+  the expansion bronze registry: **41** novelty-admitted bronze rows appended (0 duplicate-skipped),
+  expansion **8026 -> 8067**, combined **8728 -> 8769**, all `biotin_dependent_carboxylase` `bronze`.
+  The frozen current702 benchmark is byte-unchanged at sha
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`
+  (`frozen_benchmark_registry_written: false`). The run0310 hold on this preview was an *autonomous*
+  sub-150-fragment strategy choice, not a quality judgment; the rows are reviewed Swiss-Prot,
+  EC/Rhea/cofactor-annotation anchored, duplicate-screen clear, cap-safe (family cap 250, 100 -> 141),
+  and leakage-clean (protein name / EC / prose / source annotation / mechanism text / target lane all
+  `excluded_context`). Post-apply audits are clean:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260617_biotin_apply.json` (8769 = 702 + 8067,
+  holes none, floor deficit 0, over-cap only `metal_dependent_hydrolase`) and
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260617_biotin_apply.json` (admit
+  7565 -> 7606, reject 47 / throttle 414 unchanged). Apply summary:
+  `artifacts/v3_biotin_dependent_carboxylase_apply_summary_current702_20260617.json`; report:
+  `work/biotin_dependent_carboxylase_apply_current702_20260617.md`. Real-registry baseline tests were
+  updated to 8769 combined / 8067 expansion / 6843 seed labels. The biotin broadened handle is now
+  exhausted at +41 (offset-250 fetched 0 rows); the next count growth needs a >=150
+  reviewed-Swiss-Prot handle-repair lane (e.g. `nad_p_dehydrogenase_ec_1_1_1` +146 or
+  `glycosyltransferase_ec_2_4` +250 per the evidence-handle-expansion recon) or human-expert
+  terminal-review resolution.
+
 - **SOURCE-TRANSFER CHAIN REFRESHED; ALL-VS-ALL DUPLICATE SCREEN CLEAN; NO REGISTRY APPLY
   (2026-06-17 automation run0310).** Frozen current702 stayed byte-unchanged at sha
   `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no label registry rows

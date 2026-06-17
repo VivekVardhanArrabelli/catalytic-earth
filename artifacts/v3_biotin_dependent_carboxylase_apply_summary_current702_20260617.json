@@ -1,0 +1,61 @@
+{
+  "apply_authorization": "explicit_user_instruction_make_progress_in_label_count_overrides_autonomous_sub_150_fragment_hold",
+  "artifact_id": "v3_biotin_dependent_carboxylase_apply_summary_current702_20260617",
+  "counts": {
+    "all_appended_bronze": true,
+    "appended": 41,
+    "appended_fingerprint": "biotin_dependent_carboxylase",
+    "combined_after": 8769,
+    "combined_before": 8728,
+    "duplicate_skipped": 0,
+    "expansion_registry_after": 8067,
+    "expansion_registry_before": 8026,
+    "frozen_current702_rows": 702
+  },
+  "created_utc": "2026-06-17T19:24:54Z",
+  "expansion_registry_manifest_sha256": "bac49234051d36530cb14a7a0d4321f0538a078e7296152fbba05ed5418cb028",
+  "family_floor_projection": {
+    "biotin_dependent_carboxylase": {
+      "cap_ceiling": 250,
+      "combined_after": 141,
+      "combined_before": 100,
+      "floor_reached": true,
+      "projected_over_cap": false
+    }
+  },
+  "frozen_benchmark": {
+    "sha256_after": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+    "sha256_before": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+    "unchanged": true,
+    "written": false
+  },
+  "guardrails": [
+    "frozen_current702_byte_unchanged",
+    "expansion_only_append",
+    "duplicate_screen_clear",
+    "row_guardrail_audit_passed_0_problems",
+    "cap_not_exceeded",
+    "novelty_admitted",
+    "schema_validated_via_MechanismLabel"
+  ],
+  "leakage_note": "Each appended bronze label is reviewed-Swiss-Prot EC/Rhea/cofactor-annotation anchored. Protein name, EC label, UniProt prose, source annotation, curated mechanism text, and the target family lane are recorded as excluded_context and are not predictive features.",
+  "post_apply_audits": {
+    "coverage_redundancy": "artifacts/v3_coverage_redundancy_audit_current702_20260617_biotin_apply.json",
+    "floor_deficit": 0,
+    "holes": [],
+    "novelty_admission_gate": "artifacts/v3_novelty_admission_gate_audit_current702_20260617_biotin_apply.json",
+    "novelty_replay": {
+      "admit": 7606,
+      "reject": 47,
+      "throttle": 414
+    },
+    "over_cap": [
+      "metal_dependent_hydrolase"
+    ]
+  },
+  "purpose": "Record the explicit user-authorized apply of the row-guardrail-clean run0310 biotin-dependent carboxylase broadened-handle preview into the expansion bronze registry, growing the combined label count while leaving the frozen current702 benchmark byte-unchanged.",
+  "schema_version": "catalytic_earth.apply_summary.v1",
+  "source_preview": "artifacts/v3_biotin_dependent_carboxylase_reviewed_broad_handle_preview_current702_20260616_run0310.json",
+  "source_row_guardrail_audit": "artifacts/v3_biotin_dependent_carboxylase_reviewed_broad_handle_preview_row_guardrail_audit_current702_20260616_run0310.json",
+  "status": "reviewed_swissprot_biotin_broadened_handle_tranche_applied_to_expansion_registry"
+}

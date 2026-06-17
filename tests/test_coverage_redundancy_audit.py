@@ -219,10 +219,12 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             # rows + 150 APH tier-2 bronze rows + 100 SDR bronze rows
             # applied on 2026-06-15, plus 106 serine beta-lactamase bronze
             # rows and a reaction-cap-trimmed 100-row metal-independent PDE
-            # tier-2 batch applied on 2026-06-16 through mechanism-first lanes.
-            self.assertEqual(written["totals"]["combined"], 8728)
+            # tier-2 batch applied on 2026-06-16 through mechanism-first lanes,
+            # plus a 41-row reviewed-Swiss-Prot biotin-dependent carboxylase
+            # broadened-handle tranche applied on 2026-06-17 (cap 250, 100->141).
+            self.assertEqual(written["totals"]["combined"], 8769)
             self.assertEqual(written["totals"]["frozen_current702"], 702)
-            self.assertEqual(written["totals"]["expansion_bronze"], 8026)
+            self.assertEqual(written["totals"]["expansion_bronze"], 8067)
             # the real registries must be byte-identical after the audit
             self.assertEqual(FROZEN_PATH.read_bytes(), frozen_before)
             self.assertEqual(EXPANSION_PATH.read_bytes(), expansion_before)

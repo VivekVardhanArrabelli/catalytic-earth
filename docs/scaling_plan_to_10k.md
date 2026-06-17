@@ -16,6 +16,20 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-17 user-directed apply: biotin broadened-handle tranche applied, combined 8728 -> 8769.**
+Under explicit user authorization to make progress in the label count, the row-guardrail-clean
+run0310 biotin-dependent carboxylase reviewed-Swiss-Prot broadened-handle preview was applied:
+**41** novelty-admitted bronze rows appended (0 duplicate-skipped), expansion **8026 -> 8067**,
+combined **8728 -> 8769**, all `biotin_dependent_carboxylase` `bronze`. Frozen current702 stayed
+byte-unchanged at sha `5eec9bef...` (`frozen_benchmark_registry_written: false`). Post-apply
+coverage (8769 = 702 + 8067, holes none, floor deficit 0, over-cap only `metal_dependent_hydrolase`)
+and novelty admission (admit 7565 -> 7606) are clean. This realizes part of the handle-repair
+headroom the evidence-handle-expansion recon identified; the biotin broadened handle is now
+exhausted at +41 (offset-250 fetched 0 rows). The remaining gap to 10k still needs >=150
+reviewed-Swiss-Prot handle-repair lanes (`nad_p_dehydrogenase_ec_1_1_1` +146,
+`glycosyltransferase_ec_2_4` +250) or human-expert terminal-review resolution. See
+`artifacts/v3_biotin_dependent_carboxylase_apply_summary_current702_20260617.json`.
+
 **2026-06-17 automation update: source-transfer chain refreshed, all-vs-all duplicate screen
 clean, no registry apply.** Frozen current702 stayed byte-unchanged at sha `5eec9bef...`; no label
 registry rows were written. Run0310 pre-lane audits confirm the surface is unchanged at **8728**
