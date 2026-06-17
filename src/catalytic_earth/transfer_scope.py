@@ -15223,6 +15223,12 @@ def build_external_source_pilot_terminal_decisions(
             "ready_for_label_import": False,
             "countable_label_candidate_count": 0,
             "import_ready_candidate_count": 0,
+            "curated_label_registry_edited": False,
+            "fingerprint_registry_edited": False,
+            "artifact_upload_or_removal_performed": False,
+            "artifact_migration_files_edited": False,
+            "removal_allowed_set_true": False,
+            "new_external_rows_frozen": 0,
             "candidate_count": len(rows),
             "max_rows": max_rows,
             "selected_accessions": [row["accession"] for row in rows],
@@ -15562,6 +15568,12 @@ def audit_external_source_pilot_decision_confidence(
             "ready_for_label_import": False,
             "countable_label_candidate_count": 0,
             "import_ready_candidate_count": 0,
+            "curated_label_registry_edited": False,
+            "fingerprint_registry_edited": False,
+            "artifact_upload_or_removal_performed": False,
+            "artifact_migration_files_edited": False,
+            "removal_allowed_set_true": False,
+            "new_external_rows_frozen": 0,
             "candidate_count": len(rows),
             "max_rows": max_rows,
             "selected_accessions": [row["accession"] for row in rows],
@@ -15828,6 +15840,7 @@ def build_external_source_pilot_review_resolution_gap_audit(
     glycoside_hydrolase_import_safety_adjudication: dict[str, Any] | None = None,
     acyl_coa_lyase_thioesterase_import_safety_adjudication: dict[str, Any]
     | None = None,
+    pfkb_import_safety_adjudication: dict[str, Any] | None = None,
     manual_source_mechanism_control_design: dict[str, Any] | None = None,
     max_rows: int = 10,
     artifact_lineage: dict[str, Any] | None = None,
@@ -15860,6 +15873,7 @@ def build_external_source_pilot_review_resolution_gap_audit(
         "acyl_coa_lyase_thioesterase": (
             acyl_coa_lyase_thioesterase_import_safety_adjudication
         ),
+        "pfkb_ribokinase_family": pfkb_import_safety_adjudication,
     }
     adjudication_by_accession: dict[str, dict[str, Any]] = {}
     for family, artifact in adjudication_sources.items():
@@ -15917,12 +15931,30 @@ def build_external_source_pilot_review_resolution_gap_audit(
                 if blocker
             }
         )
+        if (
+            adjudication_row
+            and adjudication_status != "family_import_safety_adjudication_missing"
+        ):
+            remaining_blockers = [
+                blocker
+                for blocker in remaining_blockers
+                if blocker != "family_import_safety_adjudication_missing"
+            ]
         if "full_label_factory_gate_not_run" not in remaining_blockers:
             remaining_blockers.append("full_label_factory_gate_not_run")
             remaining_blockers = sorted(remaining_blockers)
 
         if repair_lane == "manual_source_mechanism_review_required":
-            if design_row.get("designed_candidate_control_family"):
+            if adjudication_row.get("source_family") == "pfkb_ribokinase_family":
+                resolution_gap_status = (
+                    "manual_source_mechanism_keep_held_after_import_safety"
+                )
+                next_action = (
+                    "implement a source-free PfkB/ribokinase control or keep the "
+                    "row manual-review-only; terminal review/factory gates remain "
+                    "blocked"
+                )
+            elif design_row.get("designed_candidate_control_family"):
                 resolution_gap_status = (
                     "manual_source_mechanism_control_design_review_only"
                 )
@@ -16020,6 +16052,12 @@ def build_external_source_pilot_review_resolution_gap_audit(
             "ready_for_label_import": False,
             "countable_label_candidate_count": 0,
             "import_ready_candidate_count": 0,
+            "curated_label_registry_edited": False,
+            "fingerprint_registry_edited": False,
+            "artifact_upload_or_removal_performed": False,
+            "artifact_migration_files_edited": False,
+            "removal_allowed_set_true": False,
+            "new_external_rows_frozen": 0,
             "candidate_count": len(rows),
             "max_rows": max_rows,
             "selected_accessions": [row["accession"] for row in rows],
@@ -16052,6 +16090,124 @@ def build_external_source_pilot_review_resolution_gap_audit(
                 "review resolution gap audit is review-only planning evidence; "
                 "external rows remain held until explicit decisions and full "
                 "factory gates exist"
+            )
+        ],
+    }
+
+
+def build_external_source_pilot_terminal_review_factory_replay_queue(
+    *,
+    review_resolution_gap_audit: dict[str, Any],
+    max_rows: int = 10,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Route control-repaired rows to terminal-review/factory replay."""
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    rows: list[dict[str, Any]] = []
+    for gap_row in [
+        row
+        for row in review_resolution_gap_audit.get("rows", []) or []
+        if isinstance(row, dict)
+        and row.get("resolution_gap_status")
+        == "review_decision_and_factory_gate_blocked_after_control_repair"
+    ][:max_rows]:
+        accession = _normalize_accession(gap_row.get("accession"))
+        if not accession:
+            continue
+        blockers = sorted(
+            {
+                str(blocker)
+                for blocker in (
+                    list(gap_row.get("remaining_import_blockers", []) or [])
+                    + [
+                        "terminal_review_decision_not_recorded",
+                        "full_label_factory_gate_not_run",
+                    ]
+                )
+                if blocker
+            }
+        )
+        rows.append(
+            {
+                "rank": gap_row.get("rank"),
+                "accession": accession,
+                "entry_id": gap_row.get("entry_id") or f"uniprot:{accession}",
+                "protein_name": gap_row.get("protein_name"),
+                "lane_id": gap_row.get("lane_id"),
+                "repair_lane": gap_row.get("repair_lane"),
+                "family_import_safety_source": gap_row.get(
+                    "family_import_safety_source"
+                ),
+                "family_import_safety_status": gap_row.get(
+                    "family_import_safety_status"
+                ),
+                "terminal_review_replay_status": (
+                    "terminal_review_and_factory_replay_required"
+                ),
+                "terminal_review_decision_status": "not_recorded",
+                "full_label_factory_gate_status": "not_run",
+                "required_before_any_import": [
+                    "explicit accepted terminal review decision",
+                    "broader duplicate screen remains clear",
+                    "full label-factory gate passes",
+                    "novelty/governor replay passes",
+                    "row guardrail audit passes",
+                ],
+                "remaining_import_blockers": blockers,
+                "autonomous_decision": "hold_review_only",
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+            }
+        )
+
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row["remaining_import_blockers"]
+    )
+    return {
+        "metadata": {
+            "method": (
+                "external_source_pilot_terminal_review_factory_replay_queue"
+            ),
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": (
+                "control_repaired_rows_routed_to_terminal_review_factory_replay"
+            ),
+            "blocker_not_removed": [
+                "terminal_review_decision_not_recorded",
+                "full_label_factory_gate_not_run",
+                "no_import_ready_external_rows",
+            ],
+            "review_only": True,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_candidate_count": 0,
+            "curated_label_registry_edited": False,
+            "fingerprint_registry_edited": False,
+            "artifact_upload_or_removal_performed": False,
+            "artifact_migration_files_edited": False,
+            "removal_allowed_set_true": False,
+            "new_external_rows_frozen": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "selected_accessions": [row["accession"] for row in rows],
+            "remaining_import_blocker_counts": dict(sorted(blocker_counts.items())),
+            "source_review_resolution_gap_audit_method": (
+                review_resolution_gap_audit.get("metadata", {}).get("method")
+            ),
+            "non_countable_rule": (
+                "terminal-review/factory replay queues route rows only; they "
+                "cannot create terminal acceptance, import-ready rows, or labels"
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "Rows in this queue remain held until explicit terminal review, "
+                "factory, novelty/governor, and row-guardrail gates all pass"
             )
         ],
     }
@@ -16688,6 +16844,283 @@ def build_external_source_pilot_pfkb_control_feasibility_audit(
                 "P55263 remains held until source-free control and full external "
                 "import gates exist"
             ),
+        ],
+    }
+
+
+def build_external_source_pilot_pfkb_source_free_control_decision(
+    *,
+    pfkb_control_feasibility_audit: dict[str, Any],
+    review_resolution_gap_audit: dict[str, Any],
+    target_accession: str = "P55263",
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Record an explicit keep-held decision for the missing PfkB control."""
+
+    accession = _normalize_accession(target_accession)
+    if not accession:
+        raise ValueError("target_accession must be non-empty")
+    feasibility_by_accession = _external_first_row_by_accession(
+        pfkb_control_feasibility_audit
+    )
+    gap_by_accession = _external_first_row_by_accession(review_resolution_gap_audit)
+    feasibility_row = feasibility_by_accession.get(accession)
+    if not feasibility_row:
+        raise ValueError(f"no PfkB feasibility row for {accession}")
+    if feasibility_row.get("candidate_control_family") != "pfkb_ribokinase_family":
+        raise ValueError("PfkB source-free control decision requires PfkB family")
+
+    gap_row = gap_by_accession.get(accession, {})
+    blockers = {
+        str(blocker)
+        for blocker in (
+            list(feasibility_row.get("remaining_import_blockers", []) or [])
+            + list(gap_row.get("remaining_import_blockers", []) or [])
+            + [
+                "source_free_pfkb_control_missing",
+                "manual_source_mechanism_review_required",
+                "terminal_review_decision_not_accepted",
+                "full_label_factory_gate_not_run",
+            ]
+        )
+        if blocker
+    }
+    rows = [
+        {
+            "accession": accession,
+            "entry_id": feasibility_row.get("entry_id") or f"uniprot:{accession}",
+            "protein_name": feasibility_row.get("protein_name"),
+            "candidate_control_family": "pfkb_ribokinase_family",
+            "source_free_control_decision": (
+                "explicit_keep_held_source_free_pfkb_control_missing"
+            ),
+            "source_free_control_status": (
+                "source_free_pfkb_control_not_implemented_keep_held"
+            ),
+            "feasibility_status": feasibility_row.get("feasibility_status"),
+            "review_context_axes_present": feasibility_row.get(
+                "review_context_axes_present", {}
+            ),
+            "required_source_free_axes": feasibility_row.get(
+                "required_before_import_safety_adjudication", []
+            ),
+            "must_remain_excluded_context": [
+                "EC numbers",
+                "protein names",
+                "UniProt prose",
+                "query/source handles",
+                "Rhea equation text used as source/admission context",
+            ],
+            "source_context_not_predictive": True,
+            "predictive_evidence": [],
+            "decision_effect": (
+                "turns the missing PfkB source-free control into an explicit "
+                "keep-held import-safety input; no terminal acceptance or label "
+                "import is created"
+            ),
+            "remaining_import_blockers": sorted(blockers),
+            "autonomous_decision": "hold_review_only",
+            "countable_label_candidate": False,
+            "ready_for_label_import": False,
+        }
+    ]
+    status_counts = Counter(row["source_free_control_status"] for row in rows)
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row["remaining_import_blockers"]
+    )
+    return {
+        "metadata": {
+            "method": (
+                "external_source_pilot_p55263_pfkb_source_free_control_decision"
+            ),
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": (
+                "pfkb_manual_control_has_explicit_keep_held_source_free_decision"
+            ),
+            "blocker_not_removed": sorted(blocker_counts),
+            "review_only": True,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_candidate_count": 0,
+            "curated_label_registry_edited": False,
+            "fingerprint_registry_edited": False,
+            "artifact_upload_or_removal_performed": False,
+            "artifact_migration_files_edited": False,
+            "removal_allowed_set_true": False,
+            "new_external_rows_frozen": 0,
+            "candidate_count": len(rows),
+            "target_accession": accession,
+            "candidate_control_family": "pfkb_ribokinase_family",
+            "source_free_control_status_counts": dict(sorted(status_counts.items())),
+            "remaining_import_blocker_counts": dict(sorted(blocker_counts.items())),
+            "non_countable_rule": (
+                "explicit keep-held PfkB control decisions cannot create "
+                "predictive evidence, terminal review acceptance, import-ready "
+                "rows, or labels"
+            ),
+            "source_pfkb_control_feasibility_method": (
+                pfkb_control_feasibility_audit.get("metadata", {}).get("method")
+            ),
+            "source_review_resolution_gap_audit_method": (
+                review_resolution_gap_audit.get("metadata", {}).get("method")
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "PfkB source-free control remains missing; EC/name/Rhea/source "
+                "handles stay excluded context and predictive_evidence is empty"
+            )
+        ],
+    }
+
+
+def build_external_source_pilot_pfkb_import_safety_adjudication(
+    *,
+    pfkb_source_free_control_decision: dict[str, Any],
+    review_resolution_gap_audit: dict[str, Any],
+    max_rows: int = 1,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Adjudicate the P55263 PfkB keep-held control for import safety."""
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    gap_by_accession = _external_first_row_by_accession(review_resolution_gap_audit)
+    rows: list[dict[str, Any]] = []
+    for control_row in [
+        row
+        for row in pfkb_source_free_control_decision.get("rows", []) or []
+        if isinstance(row, dict)
+    ][:max_rows]:
+        accession = _normalize_accession(control_row.get("accession"))
+        if not accession:
+            continue
+        gap_row = gap_by_accession.get(accession, {})
+        blockers = {
+            str(blocker)
+            for blocker in (
+                list(control_row.get("remaining_import_blockers", []) or [])
+                + list(gap_row.get("remaining_import_blockers", []) or [])
+            )
+            if blocker
+        }
+        blockers.discard("family_import_safety_adjudication_missing")
+        blockers.add("source_free_pfkb_control_missing")
+        if (
+            control_row.get("source_free_control_status")
+            != "source_free_pfkb_control_not_implemented_keep_held"
+        ):
+            blockers.add("source_free_pfkb_control_decision_missing")
+        blockers.add("full_label_factory_gate_not_run")
+        blockers.add("terminal_review_decision_not_accepted")
+
+        rows.append(
+            {
+                "accession": accession,
+                "entry_id": control_row.get("entry_id") or f"uniprot:{accession}",
+                "target_label_type": "out_of_scope",
+                "target_fingerprint_id": None,
+                "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+                "previous_resolution_gap_status": gap_row.get(
+                    "resolution_gap_status"
+                ),
+                "normalized_decision_status_after_repair": "needs_review",
+                "import_safety_adjudication_status": (
+                    "pfkb_source_free_control_explicit_keep_held"
+                ),
+                "decision_effect": (
+                    "family_import_safety_adjudicated_but_p55263_kept_held_"
+                    "because_source_free_pfkb_control_is_missing"
+                ),
+                "pfkb_control_evidence": {
+                    "source_free_control_status": control_row.get(
+                        "source_free_control_status"
+                    ),
+                    "source_context_not_predictive": control_row.get(
+                        "source_context_not_predictive"
+                    ),
+                    "predictive_evidence": control_row.get("predictive_evidence", []),
+                    "review_context_axes_present": control_row.get(
+                        "review_context_axes_present", {}
+                    ),
+                },
+                "remaining_import_blockers": sorted(blockers),
+                "autonomous_decision": "hold_review_only",
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "review_status": (
+                    "external_pilot_pfkb_import_safety_adjudication_review_only"
+                ),
+            }
+        )
+
+    status_counts = Counter(
+        row["import_safety_adjudication_status"] for row in rows
+    )
+    decision_counts = Counter(
+        row["normalized_decision_status_after_repair"] for row in rows
+    )
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row["remaining_import_blockers"]
+    )
+    blockers: list[str] = []
+    if not rows:
+        blockers.append("target_pfkb_source_free_control_row_missing")
+    return {
+        "metadata": {
+            "method": "external_source_pilot_pfkb_import_safety_adjudication",
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": (
+                "pfkb_keep_held_control_integrated_into_import_safety_adjudication"
+            ),
+            "blocker_not_removed": sorted(blocker_counts),
+            "review_only": True,
+            "target_label_type": "out_of_scope",
+            "target_fingerprint_id": None,
+            "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_candidate_count": 0,
+            "curated_label_registry_edited": False,
+            "fingerprint_registry_edited": False,
+            "artifact_upload_or_removal_performed": False,
+            "artifact_migration_files_edited": False,
+            "removal_allowed_set_true": False,
+            "new_external_rows_frozen": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "import_safety_adjudication_status_counts": dict(
+                sorted(status_counts.items())
+            ),
+            "normalized_decision_status_after_repair_counts": dict(
+                sorted(decision_counts.items())
+            ),
+            "remaining_import_blocker_counts": dict(sorted(blocker_counts.items())),
+            "source_pfkb_source_free_control_decision_method": (
+                pfkb_source_free_control_decision.get("metadata", {}).get(
+                    "method"
+                )
+            ),
+            "source_review_resolution_gap_audit_method": (
+                review_resolution_gap_audit.get("metadata", {}).get("method")
+            ),
+            "non_countable_rule": (
+                "PfkB import-safety adjudication only records the explicit "
+                "keep-held decision; it cannot create terminal acceptance, "
+                "import-ready rows, or labels"
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "blockers": blockers,
+        "warnings": [
+            (
+                "P55263 remains held: source-free PfkB control is missing and "
+                "terminal review/factory gates are not satisfied"
+            )
         ],
     }
 

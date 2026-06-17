@@ -1,0 +1,292 @@
+{
+  "blockers": [
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 5585226
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_artifact_storage_inventory_current702_20260616_run0008.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 8846275
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_artifact_storage_inventory_current702_20260616_run1503.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 8625957
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_artifact_storage_inventory_current702_20260616_run1804.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 8738680
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_artifact_storage_inventory_current702_20260616_run1904.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 8765287
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_artifact_storage_inventory_current702_20260616_run2004.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 8785063
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_artifact_storage_inventory_current702_20260616_run2105.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 8799829
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_artifact_storage_inventory_current702_20260616_run2205.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 8817695
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_artifact_storage_inventory_current702_20260616_run2306.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 8831567
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_admission_merged_surface_current702_20260608.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 10460084
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_admission_merged_surface_current702_20260609.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 19183922
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_batch_import_approval_packet_current702_20260610.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 8720512
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_bulk_ingestion_scaleout_current702_20260609.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 12490314
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_bulk_ingestion_scaleout_wave2_current702_20260609.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 67077595
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_bulk_ingestion_scaleout_wave2_provisional_import_preview_current702_20260609.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 10931526
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_bulk_ingestion_scout_current702_20260608.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 10253705
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_bulk_ingestion_scout_current702_20260616_run1403_size120.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 13393192
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_import_review_preflight_current702_20260609.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 52557539
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_import_review_preflight_current702_20260610.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 52557539
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_import_review_repair_queue_current702_20260609.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 13862390
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_import_review_repair_queue_current702_20260610.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 13862390
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_materialization_admission_batch_current702_20260608.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 6914926
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_materialization_wave2_current702_20260609.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 38596930
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_materialization_wave2_import_ready_preview_current702_20260609.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 5689245
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_materialization_wave2_repair_queue_current702_20260609.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 35950347
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_scaleout_bronze_import_preview_current702_20260609.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 12496100
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_scaleout_shard_metal_phosphoryl_glycoside_current702_20260609.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 57349142
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_scaleout_shard_metal_phosphoryl_glycoside_import_ready_preview_current702_20260609.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 9683301
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_scaleout_shard_near_orphan_diversity_current702_20260609.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 27137773
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_scaleout_shard_plp_radical_cobalamin_current702_20260609.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 24837308
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_scaleout_shard_redox_cofactor_confounded_current702_20260609.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 30994352
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_external_scaleout_shard_redox_cofactor_confounded_import_ready_preview_current702_20260609.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 7014038
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_features_1025.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 17889468
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_retrieval_1025.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 32392663
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_geometry_features_1025.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 17888322
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_geometry_retrieval_1025.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 32394354
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_current702_20260601.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 5553022
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 16276355
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 7566944
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_scaleout_glycoside_nucleoside_shard_current702_20260608.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 7530060
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_scaleout_merged_acceptance_surface_current702_20260608.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 10823818
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_scaleout_phosphoryl_transfer_shard_current702_20260608.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 23043135
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_scaleout_radical_sam_cobalamin_shard_current702_20260608.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 8611072
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_sequence_embedding_sidecar_current702_esm2_t12_35m_20260529.jsonl",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 7270800
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_sequence_embedding_sidecar_current702_kmer_20260529.jsonl",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 9626874
+    },
+    {
+      "category": "large_unclassified",
+      "path": "artifacts/v3_stage2_hydrolase_subfamily_sourcing_preview_current702.json",
+      "reason": "large noncanonical artifact needs a producer/consumer manifest row before it can be accepted; do not delete it",
+      "size_bytes": 5395497
+    }
+  ],
+  "metadata": {
+    "blocker_count": 46,
+    "covered_large_file_count": 116,
+    "deletion_authorized_count": 0,
+    "large_file_count": 162,
+    "large_file_threshold_bytes": 5242880,
+    "method": "artifact_admission_guard",
+    "policy_version": "artifact_storage_policy_v1_2026_05_17",
+    "source_file_count": 15034,
+    "source_inventory_method": "artifact_storage_inventory",
+    "status": "blocked"
+  }
+}

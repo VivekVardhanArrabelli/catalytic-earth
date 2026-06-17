@@ -1,0 +1,134 @@
+{
+  "blockers": [],
+  "metadata": {
+    "artifact_lineage": {
+      "artifact_paths": {
+        "pfkb_source_free_control_decision": "artifacts/v3_external_source_pilot_p55263_pfkb_source_free_control_decision_current702_20260616_run0009.json",
+        "review_resolution_gap_audit": "artifacts/v3_external_source_pilot_review_resolution_gap_audit_q6nsj0_p55263_with_glyco_repair_replay_current702_20260616_run0008.json"
+      },
+      "blocker_removed": "pfkb_keep_held_control_integrated_into_import_safety_adjudication",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "pfkb_source_free_control_decision": 20260616,
+        "review_resolution_gap_audit": 20260616
+      },
+      "payload_methods": {
+        "pfkb_source_free_control_decision": "external_source_pilot_p55263_pfkb_source_free_control_decision",
+        "review_resolution_gap_audit": "external_source_pilot_review_resolution_gap_audit"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {
+        "pfkb_source_free_control_decision": {
+          "metadata.artifact_lineage.slice_id": 20260616,
+          "metadata.slice_id": 20260616
+        },
+        "review_resolution_gap_audit": {
+          "metadata.artifact_lineage.slice_id": 20260616,
+          "metadata.slice_id": 20260616
+        }
+      },
+      "slice_id": 20260616,
+      "slice_members": {
+        "20260616": [
+          "pfkb_source_free_control_decision",
+          "review_resolution_gap_audit"
+        ]
+      }
+    },
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "blocker_not_removed": [
+      "external_review_decision_artifact_not_built",
+      "full_label_factory_gate_not_run",
+      "manual_source_mechanism_review_required",
+      "representation_control_instability_review_required",
+      "source_free_pfkb_control_missing",
+      "terminal_review_decision_not_accepted"
+    ],
+    "blocker_removed": "pfkb_keep_held_control_integrated_into_import_safety_adjudication",
+    "candidate_count": 1,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "import_safety_adjudication_status_counts": {
+      "pfkb_source_free_control_explicit_keep_held": 1
+    },
+    "max_rows": 1,
+    "method": "external_source_pilot_pfkb_import_safety_adjudication",
+    "new_external_rows_frozen": 0,
+    "non_countable_rule": "PfkB import-safety adjudication only records the explicit keep-held decision; it cannot create terminal acceptance, import-ready rows, or labels",
+    "normalized_decision_status_after_repair_counts": {
+      "needs_review": 1
+    },
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "ready_for_label_import": false,
+    "remaining_import_blocker_counts": {
+      "external_review_decision_artifact_not_built": 1,
+      "full_label_factory_gate_not_run": 1,
+      "manual_source_mechanism_review_required": 1,
+      "representation_control_instability_review_required": 1,
+      "source_free_pfkb_control_missing": 1,
+      "terminal_review_decision_not_accepted": 1
+    },
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "slice_id": 20260616,
+    "source_pfkb_source_free_control_decision_method": "external_source_pilot_p55263_pfkb_source_free_control_decision",
+    "source_review_resolution_gap_audit_method": "external_source_pilot_review_resolution_gap_audit",
+    "target_fingerprint_id": null,
+    "target_label_type": "out_of_scope"
+  },
+  "rows": [
+    {
+      "accession": "P55263",
+      "autonomous_decision": "hold_review_only",
+      "countable_label_candidate": false,
+      "decision_effect": "family_import_safety_adjudicated_but_p55263_kept_held_because_source_free_pfkb_control_is_missing",
+      "entry_id": "uniprot:P55263",
+      "import_safety_adjudication_status": "pfkb_source_free_control_explicit_keep_held",
+      "normalized_decision_status_after_repair": "needs_review",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "pfkb_control_evidence": {
+        "predictive_evidence": [],
+        "review_context_axes_present": {
+          "active_site_positions": [
+            317
+          ],
+          "ec_numbers": [
+            "2.7.1.-",
+            "2.7.1.20"
+          ],
+          "representative_rhea_reactions": [
+            "RHEA:10224 pyridoxal + ATP = pyridoxal 5'-phosphate + ADP + H(+)",
+            "RHEA:10272 a 1,2-diacyl-sn-glycerol + ATP = a 1,2-diacyl-sn-glycero-3-phosphate + ADP + H(+)",
+            "RHEA:20824 adenosine + ATP = AMP + ADP + H(+)"
+          ],
+          "source_context_status": "source_supports_adenosine_kinase_phosphoryl_transfer_context"
+        },
+        "source_context_not_predictive": true,
+        "source_free_control_status": "source_free_pfkb_control_not_implemented_keep_held"
+      },
+      "previous_resolution_gap_status": "manual_source_mechanism_control_design_review_only",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "manual_source_mechanism_review_required",
+        "representation_control_instability_review_required",
+        "source_free_pfkb_control_missing",
+        "terminal_review_decision_not_accepted"
+      ],
+      "review_status": "external_pilot_pfkb_import_safety_adjudication_review_only",
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope"
+    }
+  ],
+  "warnings": [
+    "P55263 remains held: source-free PfkB control is missing and terminal review/factory gates are not satisfied"
+  ]
+}

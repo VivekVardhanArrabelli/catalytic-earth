@@ -1,0 +1,648 @@
+{
+  "applied_labels": [
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q6IQD5",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 16,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 258
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 14
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 42
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 143
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:30616",
+              "ligand_name": "ATP",
+              "position": 188
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:30616",
+              "ligand_name": "ATP",
+              "position": 224
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:30616",
+              "ligand_name": "ATP",
+              "position": 245
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 252
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 254
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": false,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:30616",
+              "ligand_name": "ATP",
+              "position": 257
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 258
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:30616",
+              "ligand_name": "ATP",
+              "position": 284
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 290
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 293
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 295
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29103",
+              "ligand_name": "K(+)",
+              "position": 299
+            }
+          ],
+          "binding_residue_count": 15,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:18420",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "name": "Mg(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "2.7.1.15"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.7.1.15",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "D-ribose + ATP = D-ribose 5-phosphate + ADP + H(+)",
+              "rhea_id": "RHEA:13697",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: pfkb_ribokinase_family_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "cf3ff2d85bd5052779c126c911e916a10ab917a887c7bdb2373d9d2c4e36670b"
+          },
+          "retrieved_utc": "2026-06-17T01:20:18Z",
+          "sequence": "MAEDFSVVVVGSCMTDLVSQAPRFPKAGETIHGHRFFIGFGGKGANQCVQAARMGAKTAMVCKVGRDVFGNDYIQNFKNNGISTAYVEQTEKAATGAASIIVNDTGENAIVIVAGANLLLGQEELQRAQSAIINAKVLVCQLEISPDASLQALKMARENHVKTIFNPAPAIAYLDSDFYKASDVFCCNESEAEMLTGLSVTSVEDACQVGLELLNKGCASVIVTLGSQGCVVCQSTNKTPKHIPTIEVTAADTTGAGDSFIGALAFYMAHYPAMPMEEMARRANLVAAVSVQTVGTQTSFPFRKDLPTELF",
+          "sequence_length": 311,
+          "sequence_sha256": "d6cb5701c304a2344c0c17d4e41aa889b5250c4fe828369d7dd5df04c4511b3d",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q6IQD5"
+        },
+        "source_provenance": {
+          "accession": "Q6IQD5",
+          "disambiguation_pool": "pfkb_ribokinase_family_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "pfkb_ribokinase_family_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_pfkb_ribokinase_family_from_annotated_cofactor_and_ec_class_['2.7.1.15']",
+          "organism": "Danio rerio (Zebrafish) (Brachydanio rerio)",
+          "protein_name": "Ribokinase (RK) (EC 2.7.1.15)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 311,
+          "source_evidence_codes": [
+            "ECO:0000256"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "c120c0d54d7cd61804a80484d3a501a1751b3f3648cb3eda366763ed7339101d",
+            "source_query_sha256": "cf3ff2d85bd5052779c126c911e916a10ab917a887c7bdb2373d9d2c4e36670b",
+            "uniprot_entry_record_sha256": "1988da16eef97c6ab48660594342be80aa9e4f284baff26912cac7904d13b466",
+            "uniprot_search_row_sha256": "78518c49ae2af0cca66b0a17d7f296f81577da0ea4c2b8b419719b92c0b3b5bd"
+          },
+          "target_family_lane": "pfkb_ribokinase_family"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_2"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [],
+          "coordinate_path": null,
+          "coordinate_status": "coordinate_provenance_missing",
+          "pdb_ids": [],
+          "structure_handle": null
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "pfkb_ribokinase_family",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q6IQD5 imported as annotation-anchored bronze in-scope pfkb_ribokinase_family: reviewed Swiss-Prot EC ['2.7.1.15'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q9VU39",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 1,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 299
+            }
+          ],
+          "binding_residue_count": 0,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:18420",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "name": "Mg(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "2.7.1.20"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "2.7.1.20",
+              "evidence_codes": [
+                "ECO:0000256"
+              ],
+              "reaction": "adenosine + ATP = AMP + ADP + H(+)",
+              "rhea_id": "RHEA:20824",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: pfkb_ribokinase_family_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "cf3ff2d85bd5052779c126c911e916a10ab917a887c7bdb2373d9d2c4e36670b"
+          },
+          "retrieved_utc": "2026-06-17T01:20:18Z",
+          "sequence": "MTSTLQEGILVGCGNPLLDISAVVPLNFLQKYSMNEDDAILAEDRHMPIYGELVEGYQAEFLAGGSVQNSLRIAQWILRQPRVAVFFGCVGEDRYANILKEKAQAAGLDVHYQVKKDVPTGTCAVLITGTHRSLCANLAAANNFTIDHLEEPSNKALVDNAQYYYISGFFLTVNPPSIMQVAATAHAKQRPFLMNLSAPFISQFYMAPLLAALPYVDIIFGNEAEAQAFAEAQQWPSGDLREIGKRLVAMEKKNPTRPRIAILTQGCDPVLLIQQDSVQEFPVTKLAVHEIVDTNGAGDAFVGGFLSQFVQGKSLDVCIRCGNYAAGHIIKNPGCTYSGEPEFVE",
+          "sequence_length": 345,
+          "sequence_sha256": "0ceb6f94bd747ce5b6bf7b083aa2eea1da0488dd9eed737ab440b938013c4f72",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q9VU39"
+        },
+        "source_provenance": {
+          "accession": "Q9VU39",
+          "disambiguation_pool": "pfkb_ribokinase_family_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "pfkb_ribokinase_family_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_pfkb_ribokinase_family_from_annotated_cofactor_and_ec_class_['2.7.1.20']",
+          "organism": "Drosophila melanogaster (Fruit fly)",
+          "protein_name": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 345,
+          "source_evidence_codes": [
+            "ECO:0000256"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "3ea0e5043834b684d735fc46f71a55ab1162797270e74a48c19d964ff39d4028",
+            "source_query_sha256": "cf3ff2d85bd5052779c126c911e916a10ab917a887c7bdb2373d9d2c4e36670b",
+            "uniprot_entry_record_sha256": "5e9e392f4f2b3817451dfda3aced3721156413572853728fba8ebeffa6cc63c0",
+            "uniprot_search_row_sha256": "bb0c15d13d2b3d4cccea38af0786653a13c4b2c1d86bdfcc57594332795cf488"
+          },
+          "target_family_lane": "pfkb_ribokinase_family"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_2"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [],
+          "coordinate_path": null,
+          "coordinate_status": "coordinate_provenance_missing",
+          "pdb_ids": [],
+          "structure_handle": null
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "pfkb_ribokinase_family",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q9VU39 imported as annotation-anchored bronze in-scope pfkb_ribokinase_family: reviewed Swiss-Prot EC ['2.7.1.20'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    }
+  ],
+  "artifact_id": "v3_pfkb_ribokinase_family_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {
+      "pfkb_ribokinase_family": 2
+    },
+    "current_combined_labels": 8728,
+    "disambiguation_hold_count": 0,
+    "disambiguation_hold_reason_counts": {},
+    "disambiguation_skip_count": 73,
+    "fetched_candidate_rows": 80,
+    "gate_admitted_before_cap_guard": 2,
+    "held_at_cap_ceiling": 0,
+    "held_at_cap_ceiling_by_fingerprint": {},
+    "lanes_queried": 1,
+    "max_records_per_lane": 160,
+    "mechanism_corroborated_bronze_labels": 7,
+    "novelty_admitted_labels": 2,
+    "novelty_throttled_or_rejected": 5,
+    "off_target_fingerprint_counts": {},
+    "off_target_fingerprint_matches_held": 0,
+    "only_unreviewed_tier2_lanes_enabled": true,
+    "projected_combined_labels_if_merged": 8730,
+    "record_limit_per_lane": 80,
+    "record_offset_per_lane": 0,
+    "source_trust_tier": "source_tier_2",
+    "unreviewed_tier2_lanes_enabled": false
+  },
+  "created_utc": "2026-06-17T01:20:18Z",
+  "deploy_missing_active_site_context_per_family": {
+    "pfkb_ribokinase_family": "atp_mg_pfkb_ribokinase_family_phosphoryl_transfer_context"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {
+      "medium": 7
+    },
+    "current_registry_labels": 8026,
+    "decision_counts": {
+      "import": 7,
+      "skip": 73
+    },
+    "examined_rows": 80,
+    "fingerprint_counts": {
+      "pfkb_ribokinase_family": 7
+    },
+    "hold_count": 0,
+    "hold_reason_counts": {},
+    "importable_new_labels": 7,
+    "per_pool_decision_counts": {
+      "pfkb_ribokinase_family_broadened_handle_fresh_fetch": {
+        "import": 7,
+        "skip_screen": 73
+      }
+    },
+    "projected_registry_labels_if_merged": 8033,
+    "skip_count": 73
+  },
+  "evidence_basis": "unreviewed_uniprot_tier2_ec_rhea_pfkb_ribokinase_annotation",
+  "families_sourced": [
+    "pfkb_ribokinase_family"
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "floor_projection": {
+    "pfkb_ribokinase_family": {
+      "admitted_this_run": 2,
+      "cap_ceiling": 150,
+      "chemistry_confusable": true,
+      "combined_before": 128,
+      "deficit_to_floor_after": 0,
+      "deficit_to_floor_before": 0,
+      "deploy_missing_active_site_context": "atp_mg_pfkb_ribokinase_family_phosphoryl_transfer_context",
+      "floor_reached": true,
+      "held_at_cap_this_run": 0,
+      "projected_combined": 130,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "broadened_handles_never_predictive_features": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "heldout_benchmark_unchanged": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "neighboring_kinase_subclass_boundary_guard": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "novelty_gated_against_both_registries": true,
+    "off_target_fingerprint_matches_held": true,
+    "only_unreviewed_tier2_source_lanes_enabled": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "pfkb_ribokinase_family": 150
+    },
+    "pfkb_handles_scope_admission_only": true,
+    "predictive_features_use_ec_name_keyword_reaction_or_prose": false,
+    "source_tier_2_requires_three_independent_mechanism_axes": true,
+    "source_trust_tier": "source_tier_2",
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true,
+    "unreviewed_tier2_source_lanes_enabled": false
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "pfkb_ribokinase_family_unreviewed_tier2_site_annotated",
+      "query": "(reviewed:false) AND (ec:2.7.1.*) AND ((protein_name:\"ribokinase\") OR (protein_name:\"adenosine kinase\") OR (protein_name:\"inosine kinase\") OR (protein_name:\"fructokinase\") OR (protein_name:\"1-phosphofructokinase\") OR (protein_name:\"hydroxymethylpyrimidine kinase\")) AND ((ft_act_site:*) OR (ft_binding:*)) NOT ((ec:2.7.11.*) OR (ec:2.7.13.*) OR (ec:3.*) OR (ec:2.7.4.*) OR (protein_name:\"protein kinase\") OR (protein_name:\"histidine kinase\") OR (protein_name:\"nucleoside diphosphate kinase\") OR (protein_name:\"nucleoside-diphosphate kinase\") OR (protein_name:\"deoxynucleoside kinase\") OR (protein_name:\"thymidine kinase\") OR (protein_name:\"deoxyguanosine kinase\") OR (protein_name:\"deoxycytidine kinase\") OR (protein_name:\"hexokinase\") OR (protein_name:\"glucokinase\") OR (protein_name:\"glycerol kinase\") OR (protein_name:\"acetate kinase\") OR (protein_name:\"homoserine kinase\") OR (protein_name:\"mevalonate kinase\") OR (protein_name:\"phosphomevalonate kinase\") OR (protein_name:\"galactokinase\") OR (protein_name:\"6-phosphofructokinase\") OR (protein_name:\"ATP-dependent 6-phosphofructokinase\"))",
+      "record_count": 80,
+      "record_limit_per_lane": 80,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 80,
+      "records_returned_by_query": 160,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Afalse%29+AND+%28ec%3A2.7.1.%2A%29+AND+%28%28protein_name%3A%22ribokinase%22%29+OR+%28protein_name%3A%22adenosine+kinase%22%29+OR+%28protein_name%3A%22inosine+kinase%22%29+OR+%28protein_name%3A%22fructokinase%22%29+OR+%28protein_name%3A%221-phosphofructokinase%22%29+OR+%28protein_name%3A%22hydroxymethylpyrimidine+kinase%22%29%29+AND+%28%28ft_act_site%3A%2A%29+OR+%28ft_binding%3A%2A%29%29+NOT+%28%28ec%3A2.7.11.%2A%29+OR+%28ec%3A2.7.13.%2A%29+OR+%28ec%3A3.%2A%29+OR+%28ec%3A2.7.4.%2A%29+OR+%28protein_name%3A%22protein+kinase%22%29+OR+%28protein_name%3A%22histidine+kinase%22%29+OR+%28protein_name%3A%22nucleoside+diphosphate+kinase%22%29+OR+%28protein_name%3A%22nucleoside-diphosphate+kinase%22%29+OR+%28protein_name%3A%22deoxynucleoside+kinase%22%29+OR+%28protein_name%3A%22thymidine+kinase%22%29+OR+%28protein_name%3A%22deoxyguanosine+kinase%22%29+OR+%28protein_name%3A%22deoxycytidine+kinase%22%29+OR+%28protein_name%3A%22hexokinase%22%29+OR+%28protein_name%3A%22glucokinase%22%29+OR+%28protein_name%3A%22glycerol+kinase%22%29+OR+%28protein_name%3A%22acetate+kinase%22%29+OR+%28protein_name%3A%22homoserine+kinase%22%29+OR+%28protein_name%3A%22mevalonate+kinase%22%29+OR+%28protein_name%3A%22phosphomevalonate+kinase%22%29+OR+%28protein_name%3A%22galactokinase%22%29+OR+%28protein_name%3A%226-phosphofructokinase%22%29+OR+%28protein_name%3A%22ATP-dependent+6-phosphofructokinase%22%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=160",
+      "status": "query_fetched",
+      "target_family_lane": "pfkb_ribokinase_family"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If novelty, dedup, trust-tier, and cap gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via the family script `--apply` with frozen current702 sha checks. If floor remains short, record the supply limit.",
+  "novelty_gate": {
+    "decision_counts": {
+      "admit": 2,
+      "throttle": 5
+    },
+    "reason_counts": {
+      "adds_diversity": 2,
+      "redundant_no_novelty_signal": 5
+    }
+  },
+  "off_target_fingerprint_matches_sample": [],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_pfkb_ribokinase_family_broadened_handle",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": [
+    {
+      "entry_id": "uniprot:A0A5K1VW94",
+      "fingerprint_id": "pfkb_ribokinase_family"
+    },
+    {
+      "entry_id": "uniprot:Q9VU38",
+      "fingerprint_id": "pfkb_ribokinase_family"
+    },
+    {
+      "entry_id": "uniprot:A0A177ZTL8",
+      "fingerprint_id": "pfkb_ribokinase_family"
+    },
+    {
+      "entry_id": "uniprot:A0A669E082",
+      "fingerprint_id": "pfkb_ribokinase_family"
+    },
+    {
+      "entry_id": "uniprot:A0A7I4DQ97",
+      "fingerprint_id": "pfkb_ribokinase_family"
+    }
+  ]
+}

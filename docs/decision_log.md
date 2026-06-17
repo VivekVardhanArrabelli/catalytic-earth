@@ -3,6 +3,54 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-17: P55263 PFKB IMPORT-SAFETY CAN CLEAR MISSING-ADJUDICATION ONLY AS KEEP-HELD
+
+Decision: P55263's manual source-mechanism design may be converted into an explicit PfkB
+import-safety adjudication only by recording that the source-free PfkB/ribokinase-family control is
+still missing. This clears the stale `family_import_safety_adjudication_missing` blocker for P55263
+but must add `source_free_pfkb_control_missing` and keep the row review-only, non-countable, and
+not import-ready. EC numbers, protein names, UniProt prose, source handles, and Rhea equation text
+remain excluded context; `predictive_evidence` stays `[]`.
+
+Implementation: added review-only builders and CLIs
+`build-external-source-pilot-pfkb-source-free-control-decision` and
+`build-external-source-pilot-pfkb-import-safety-adjudication`, plus gap-audit consumption of
+`--pfkb-import-safety-adjudication`. Regression coverage verifies that the keep-held replay removes
+only the missing-adjudication blocker and does not create terminal acceptance, countable labels, or
+import-ready rows.
+
+Measured result: run0009 artifacts
+`artifacts/v3_external_source_pilot_p55263_pfkb_source_free_control_decision_current702_20260616_run0009.json`,
+`artifacts/v3_external_source_pilot_p55263_pfkb_import_safety_adjudication_current702_20260616_run0009.json`,
+and
+`artifacts/v3_external_source_pilot_review_resolution_gap_audit_p55263_pfkb_keepheld_replay_current702_20260616_run0009.json`
+keep P55263 at `manual_source_mechanism_keep_held_after_import_safety`, with **0** import-ready and
+**0** countable rows. `validate-review-only-zero-import-artifacts` passed **3/3 valid** for the new
+PfkB keep-held artifacts. The terminal-review/factory replay queue
+`artifacts/v3_external_source_pilot_terminal_review_factory_replay_queue_current702_20260616_run0009.json`
+routes the **5** control-repaired rows without terminal decisions or imports, and its zero-import
+audit passed **1/1 valid**. A bounded unreviewed tier-2 PfkB source-handle scout
+`artifacts/v3_pfkb_ribokinase_family_tier2_source_handle_scout_current702_20260616_run0009.json`
+found only **2** novelty-admitted rows from **80** fetched, and its row guardrail audit
+`artifacts/v3_pfkb_ribokinase_family_tier2_source_handle_scout_row_guardrail_audit_current702_20260616_run0009.json`
+passed with **0** problems, so no apply is authorized. A bounded tier-2 biotin-carboxylase scout
+`artifacts/v3_biotin_dependent_carboxylase_tier2_source_handle_scout_current702_20260616_run0009.json`
+found **9** novelty-admitted rows from **80** fetched and its row guardrail audit
+`artifacts/v3_biotin_dependent_carboxylase_tier2_source_handle_scout_row_guardrail_audit_current702_20260616_run0009.json`
+passed with **0** problems, but the family floor was already reached, so no apply is authorized. A
+bounded metal-independent phosphodiesterase tier-2 scout
+`artifacts/v3_metal_independent_phosphodiesterase_tier2_source_handle_scout_current702_20260616_run0009.json`
+found **0** target mechanism-corroborated rows from **315** fetched and held **66** off-target rows;
+its row guardrail audit
+`artifacts/v3_metal_independent_phosphodiesterase_tier2_source_handle_scout_row_guardrail_audit_current702_20260616_run0009.json`
+passed with **0** problems, reinforcing that these tier-2 windows are strategy evidence only.
+
+Follow-up: do not import P55263. The next source-transfer unlock is consuming the five-row terminal
+review/factory replay queue with explicit accepted review decisions plus factory/novelty/governor/
+row-guardrail gates, a real tested source-free PfkB control, or a higher-yield source-transfer/
+source-handle lane that passes all duplicate, active-site, factory, novelty, governor,
+row-guardrail, and lane-authorization gates.
+
 ## 2026-06-17: GLYCOSIDE BOUNDARY CONTROL COUNTS ONLY EVIDENCE-BEARING METAL ROLE MATCHES
 
 Decision: a raw metal-hydrolase role-hint match is not enough to block a glycoside-hydrolase

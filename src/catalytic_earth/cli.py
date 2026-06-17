@@ -719,7 +719,10 @@ from .transfer_scope import (
     build_external_source_pilot_manual_source_mechanism_review_packet,
     build_external_source_pilot_mechanism_repair_lanes,
     build_external_source_pilot_pfkb_control_feasibility_audit,
+    build_external_source_pilot_pfkb_import_safety_adjudication,
+    build_external_source_pilot_pfkb_source_free_control_decision,
     build_external_source_pilot_review_resolution_gap_audit,
+    build_external_source_pilot_terminal_review_factory_replay_queue,
     build_external_source_pilot_schiff_base_lyase_control,
     build_external_source_pilot_schiff_base_lyase_import_safety_adjudication,
     build_external_source_pilot_sdr_redox_import_safety_adjudication,
@@ -4504,6 +4507,7 @@ def cmd_build_external_source_pilot_review_resolution_gap_audit(
         "dna_pol_x_lyase_import_safety_adjudication",
         "glycoside_hydrolase_import_safety_adjudication",
         "acyl_coa_lyase_thioesterase_import_safety_adjudication",
+        "pfkb_import_safety_adjudication",
         "manual_source_mechanism_control_design",
     )
     explicit_optional_artifacts = tuple(
@@ -4540,6 +4544,9 @@ def cmd_build_external_source_pilot_review_resolution_gap_audit(
                 "acyl_coa_lyase_thioesterase_import_safety_adjudication"
             )
         ),
+        pfkb_import_safety_adjudication=artifact_payloads.get(
+            "pfkb_import_safety_adjudication"
+        ),
         manual_source_mechanism_control_design=artifact_payloads.get(
             "manual_source_mechanism_control_design"
         ),
@@ -4550,6 +4557,31 @@ def cmd_build_external_source_pilot_review_resolution_gap_audit(
     print(
         "Wrote external source pilot review resolution gap audit to "
         f"{args.out} ({audit['metadata']['candidate_count']} held rows)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_terminal_review_factory_replay_queue(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        ("review_resolution_gap_audit",),
+        blocker_removed=(
+            "control_repaired_rows_routed_to_terminal_review_factory_replay"
+        ),
+    )
+    queue = build_external_source_pilot_terminal_review_factory_replay_queue(
+        review_resolution_gap_audit=artifact_payloads[
+            "review_resolution_gap_audit"
+        ],
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), queue)
+    print(
+        "Wrote external source pilot terminal-review/factory replay queue to "
+        f"{args.out} ({queue['metadata']['candidate_count']} rows)"
     )
     return 0
 
@@ -4660,6 +4692,69 @@ def cmd_build_external_source_pilot_pfkb_control_feasibility_audit(
         "Wrote external source pilot PfkB control feasibility audit to "
         f"{args.out} "
         f"({audit['metadata']['feasibility_status_counts']})"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_pfkb_source_free_control_decision(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "pfkb_control_feasibility_audit",
+            "review_resolution_gap_audit",
+        ),
+        blocker_removed=(
+            "pfkb_manual_control_has_explicit_keep_held_source_free_decision"
+        ),
+    )
+    decision = build_external_source_pilot_pfkb_source_free_control_decision(
+        pfkb_control_feasibility_audit=artifact_payloads[
+            "pfkb_control_feasibility_audit"
+        ],
+        review_resolution_gap_audit=artifact_payloads[
+            "review_resolution_gap_audit"
+        ],
+        target_accession=args.target_accession,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), decision)
+    print(
+        "Wrote external source pilot PfkB source-free control decision to "
+        f"{args.out} "
+        f"({decision['metadata']['source_free_control_status_counts']})"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_pfkb_import_safety_adjudication(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "pfkb_source_free_control_decision",
+            "review_resolution_gap_audit",
+        ),
+        blocker_removed=(
+            "pfkb_keep_held_control_integrated_into_import_safety_adjudication"
+        ),
+    )
+    adjudication = build_external_source_pilot_pfkb_import_safety_adjudication(
+        pfkb_source_free_control_decision=artifact_payloads[
+            "pfkb_source_free_control_decision"
+        ],
+        review_resolution_gap_audit=artifact_payloads[
+            "review_resolution_gap_audit"
+        ],
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), adjudication)
+    print(
+        "Wrote external source pilot PfkB import-safety adjudication to "
+        f"{args.out} ({adjudication['metadata']['candidate_count']} rows)"
     )
     return 0
 
@@ -25668,6 +25763,10 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
     )
     external_pilot_review_gap.add_argument(
+        "--pfkb-import-safety-adjudication",
+        default=None,
+    )
+    external_pilot_review_gap.add_argument(
         "--manual-source-mechanism-control-design",
         default=None,
         help=(
@@ -25685,6 +25784,35 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_pilot_review_gap.set_defaults(
         func=cmd_build_external_source_pilot_review_resolution_gap_audit
+    )
+
+    external_pilot_terminal_replay_queue = subparsers.add_parser(
+        "build-external-source-pilot-terminal-review-factory-replay-queue",
+        help=(
+            "route control-repaired external pilot rows to terminal review and "
+            "factory replay without authorizing import"
+        ),
+    )
+    external_pilot_terminal_replay_queue.add_argument(
+        "--review-resolution-gap-audit",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_review_resolution_gap_audit_1025.json"
+        ),
+    )
+    external_pilot_terminal_replay_queue.add_argument(
+        "--max-rows", type=int, default=10
+    )
+    external_pilot_terminal_replay_queue.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_terminal_review_factory_replay_queue_"
+            "1025.json"
+        ),
+    )
+    external_pilot_terminal_replay_queue.set_defaults(
+        func=cmd_build_external_source_pilot_terminal_review_factory_replay_queue
     )
 
     external_pilot_manual_source_packet = subparsers.add_parser(
@@ -25824,6 +25952,77 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_pilot_pfkb_feasibility.set_defaults(
         func=cmd_build_external_source_pilot_pfkb_control_feasibility_audit
+    )
+
+    external_pilot_pfkb_control_decision = subparsers.add_parser(
+        "build-external-source-pilot-pfkb-source-free-control-decision",
+        help=(
+            "record a review-only keep-held decision when the PfkB source-free "
+            "control is still missing"
+        ),
+    )
+    external_pilot_pfkb_control_decision.add_argument(
+        "--pfkb-control-feasibility-audit",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_pfkb_control_feasibility_audit_1025.json"
+        ),
+    )
+    external_pilot_pfkb_control_decision.add_argument(
+        "--review-resolution-gap-audit",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_review_resolution_gap_audit_1025.json"
+        ),
+    )
+    external_pilot_pfkb_control_decision.add_argument(
+        "--target-accession",
+        default="P55263",
+    )
+    external_pilot_pfkb_control_decision.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_pfkb_source_free_control_decision_1025.json"
+        ),
+    )
+    external_pilot_pfkb_control_decision.set_defaults(
+        func=cmd_build_external_source_pilot_pfkb_source_free_control_decision
+    )
+
+    external_pilot_pfkb_import_safety = subparsers.add_parser(
+        "build-external-source-pilot-pfkb-import-safety-adjudication",
+        help=(
+            "adjudicate the review-only PfkB keep-held control without "
+            "authorizing import"
+        ),
+    )
+    external_pilot_pfkb_import_safety.add_argument(
+        "--pfkb-source-free-control-decision",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_pfkb_source_free_control_decision_1025.json"
+        ),
+    )
+    external_pilot_pfkb_import_safety.add_argument(
+        "--review-resolution-gap-audit",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_review_resolution_gap_audit_1025.json"
+        ),
+    )
+    external_pilot_pfkb_import_safety.add_argument(
+        "--max-rows", type=int, default=1
+    )
+    external_pilot_pfkb_import_safety.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_pfkb_import_safety_adjudication_1025.json"
+        ),
+    )
+    external_pilot_pfkb_import_safety.set_defaults(
+        func=cmd_build_external_source_pilot_pfkb_import_safety_adjudication
     )
 
     external_pilot_acyl_coa_control = subparsers.add_parser(

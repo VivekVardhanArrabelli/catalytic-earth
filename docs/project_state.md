@@ -26,6 +26,85 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **P55263 PFKB IMPORT-SAFETY EXPLICITLY KEEP-HELD; NO REGISTRY APPLY (2026-06-17 automation run0009).**
+  Frozen current702 stayed byte-unchanged at sha
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no label registry rows were
+  written. Run0009 coverage/novelty replays
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run0009_pre_lane.json`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run0009_post_noapply.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run0009_pre_lane.json`, and
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run0009_post_noapply.json`
+  confirm the surface stayed at **8728** combined labels = **702** frozen + **8026** expansion, with
+  no holes, floor deficit **0**, novelty replay **7565** admit / **414** throttle / **47** reject,
+  and only `metal_dependent_hydrolase` over cap. The run0009 factory refresh still has **0** ready
+  existing lanes >=150 and top projected clean admits **77**; breadth still projects **9673**
+  reviewed-Swiss-Prot clean positives, gap **327** to 10k.
+
+  Run0009 added a conservative P55263 PfkB keep-held path. The source-free control decision
+  `artifacts/v3_external_source_pilot_p55263_pfkb_source_free_control_decision_current702_20260616_run0009.json`
+  records `source_free_pfkb_control_not_implemented_keep_held` with `predictive_evidence: []`. The
+  import-safety adjudication
+  `artifacts/v3_external_source_pilot_p55263_pfkb_import_safety_adjudication_current702_20260616_run0009.json`
+  clears only the stale `family_import_safety_adjudication_missing` blocker and keeps P55263 held
+  on `source_free_pfkb_control_missing`, manual source-mechanism review, representation instability,
+  terminal review decision, and full label-factory gate. The replayed gap audit
+  `artifacts/v3_external_source_pilot_review_resolution_gap_audit_p55263_pfkb_keepheld_replay_current702_20260616_run0009.json`
+  now reports **5** `review_decision_and_factory_gate_blocked_after_control_repair`, **1**
+  `family_control_unresolved_after_adjudication`, and **1**
+  `manual_source_mechanism_keep_held_after_import_safety`; **0** rows are import-ready/countable.
+  Zero-import validation
+  `artifacts/v3_external_source_pilot_pfkb_keepheld_review_only_zero_import_audit_current702_20260616_run0009.json`
+  passed **3/3 valid**. The terminal-review/factory replay queue
+  `artifacts/v3_external_source_pilot_terminal_review_factory_replay_queue_current702_20260616_run0009.json`
+  routes the **5** control-repaired rows (Q6NSJ0, C9JRZ8, O14756, P06746, Q8N0X4) to explicit
+  terminal review/factory replay with **0** import-ready/countable rows; its zero-import audit
+  `artifacts/v3_external_source_pilot_terminal_review_factory_replay_queue_zero_import_audit_current702_20260616_run0009.json`
+  passed **1/1 valid**.
+
+  A bounded unreviewed tier-2 PfkB source-handle scout
+  `artifacts/v3_pfkb_ribokinase_family_tier2_source_handle_scout_current702_20260616_run0009.json`
+  fetched **80** rows and found **7** mechanism-corroborated bronze labels but only **2**
+  novelty-admitted rows, projecting **8728 -> 8730** if merged. This is below autonomous apply
+  criteria and the PfkB family was already above floor (**128 -> 130** projected), so no apply was
+  attempted. Its row guardrail audit
+  `artifacts/v3_pfkb_ribokinase_family_tier2_source_handle_scout_row_guardrail_audit_current702_20260616_run0009.json`
+  passed with **2** preview rows and **0** problems.
+
+  A second bounded tier-2 source-handle scout for biotin-dependent carboxylase
+  `artifacts/v3_biotin_dependent_carboxylase_tier2_source_handle_scout_current702_20260616_run0009.json`
+  fetched **80** unreviewed site-annotated rows and found **16** mechanism-corroborated bronze
+  labels, **9** novelty-admitted rows, and a projected **8728 -> 8737** if merged. The family floor
+  was already reached (**100 -> 109** projected), so this is strategy evidence only and was not
+  applied. Its row guardrail audit
+  `artifacts/v3_biotin_dependent_carboxylase_tier2_source_handle_scout_row_guardrail_audit_current702_20260616_run0009.json`
+  passed with **9** preview rows and **0** problems.
+
+  A third bounded tier-2 scout for metal-independent phosphodiesterase
+  `artifacts/v3_metal_independent_phosphodiesterase_tier2_source_handle_scout_current702_20260616_run0009.json`
+  fetched **315** unreviewed rows, found **0** mechanism-corroborated target bronze labels, held
+  **66** off-target rows, and projected **8728 -> 8728** if merged. Its row guardrail audit
+  `artifacts/v3_metal_independent_phosphodiesterase_tier2_source_handle_scout_row_guardrail_audit_current702_20260616_run0009.json`
+  passed with **0** preview rows and **0** problems. Together, the tier-2 scouts support the
+  current strategy finding that ad hoc unreviewed source windows are not enough to close the 10k
+  gap without a higher-yield source-transfer/source-handle unlock.
+
+  Storage safety remains fail-closed: run0009 storage artifacts
+  `artifacts/v3_artifact_storage_inventory_current702_20260616_run0009.json`,
+  `artifacts/v3_artifact_storage_policy_check_current702_20260616_run0009.json`,
+  `artifacts/v3_artifact_producer_consumer_manifest_current702_20260616_run0009.json`,
+  `artifacts/v3_artifact_migration_readiness_plan_current702_20260616_run0009.json`,
+  `artifacts/v3_artifact_migration_execution_current702_20260616_run0009.json`, and
+  `artifacts/v3_artifact_admission_guard_current702_20260616_run0009.json` record **46**
+  large-unclassified/admission blockers, **116** manifest/execution rows, **0** migration-ready
+  files, **0** deletion-authorized files, and **0** removal-allowed files. Migration dry-run
+  validation passed with **116** rows and **0** blockers.
+
+  Next exact action: consume the five-row terminal-review/factory replay queue with explicit review
+  decisions and full factory/novelty/governor/row-guardrail gates, or implement a real tested
+  source-free PfkB/ribokinase control, or identify a higher-yield external source-transfer/source-
+  handle lane. Do not import P55263 or tier-2 scout rows unless all duplicate, active-site,
+  factory, novelty, governor, row-guardrail, and lane-authorization gates pass.
+
 - **Q6NSJ0 GLYCOSIDE CONTROL REPAIRED; P55263 CONTROL DESIGN PACKETED; NO REGISTRY APPLY (2026-06-17 automation).**
   Frozen current702 stayed byte-unchanged at sha
   `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`; no label registry rows were

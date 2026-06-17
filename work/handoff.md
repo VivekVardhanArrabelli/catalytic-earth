@@ -1,5 +1,92 @@
 # Handoff
 
+## Session run - P55263 PfkB import-safety keep-held; no registry apply (2026-06-17, Codex automation run0009)
+
+- Started at `2026-06-17T01:07:32Z` from current `origin/main`
+  `e9e80382644583cfb885806af4e0479509cd8955`, acquired
+  `.git/catalytic-earth-automation.lock`, and confirmed frozen current702 sha before/after stayed
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. No registry apply or label
+  write was attempted.
+- Baseline safety was green: `PYTHONPATH=src python -m catalytic_earth.cli validate` passed, and
+  baseline focused critical pytest passed **728 passed, 174 subtests**. Focused transfer/CLI/
+  review-only/leakage/registry/novelty/coverage pytest passed **616 passed, 174 subtests**.
+  Focused transfer/CLI/review-only pytest passed **380 passed, 160 subtests**. Final full
+  `PYTHONPATH=src pytest -q` passed **2402 passed, 1 warning, 244 subtests**. Final compileall,
+  docs-reference check (**missing: 0**), hard-limit scan, frozen SHA check, and `git diff --check`
+  passed; final JSON/JSONL parse is rerun after this handoff edit.
+- Coverage remained unchanged at **8728** combined labels = **702** frozen + **8026** expansion,
+  with no holes, floor deficit **0**, novelty replay **7565** admit / **414** throttle / **47**
+  reject, **0** ready existing lanes >=150, top projected clean admits **77**, and reviewed
+  Swiss-Prot clean-positive projection **9673** with gap **327** to 10k.
+- Added a review-only P55263 PfkB keep-held path:
+  `build-external-source-pilot-pfkb-source-free-control-decision`,
+  `build-external-source-pilot-pfkb-import-safety-adjudication`, and gap-audit consumption of
+  `--pfkb-import-safety-adjudication`. Regression coverage verifies the replay removes only the
+  stale `family_import_safety_adjudication_missing` blocker and does not create terminal acceptance,
+  countable labels, or import-ready rows.
+- New PfkB artifacts:
+  `artifacts/v3_external_source_pilot_p55263_pfkb_source_free_control_decision_current702_20260616_run0009.json`
+  records `source_free_pfkb_control_not_implemented_keep_held` with `predictive_evidence: []`;
+  `artifacts/v3_external_source_pilot_p55263_pfkb_import_safety_adjudication_current702_20260616_run0009.json`
+  records `pfkb_source_free_control_explicit_keep_held`; and
+  `artifacts/v3_external_source_pilot_review_resolution_gap_audit_p55263_pfkb_keepheld_replay_current702_20260616_run0009.json`
+  now has **5** `review_decision_and_factory_gate_blocked_after_control_repair`, **1**
+  `family_control_unresolved_after_adjudication`, and **1**
+  `manual_source_mechanism_keep_held_after_import_safety`. Import-ready/countable rows remain **0**.
+- Zero-import validation
+  `artifacts/v3_external_source_pilot_pfkb_keepheld_review_only_zero_import_audit_current702_20260616_run0009.json`
+  passed **3/3 valid**. This required adding explicit zero-import metadata flags to the new
+  review-only artifacts and gap-audit metadata.
+- Added the terminal-review/factory replay queue
+  `artifacts/v3_external_source_pilot_terminal_review_factory_replay_queue_current702_20260616_run0009.json`
+  for the **5** control-repaired rows (Q6NSJ0, C9JRZ8, O14756, P06746, Q8N0X4). It records no
+  terminal decisions, keeps full factory status `not_run`, and has **0** import-ready/countable
+  rows. Its zero-import audit
+  `artifacts/v3_external_source_pilot_terminal_review_factory_replay_queue_zero_import_audit_current702_20260616_run0009.json`
+  passed **1/1 valid**.
+- Bounded source-tier-2 PfkB source-handle scout
+  `artifacts/v3_pfkb_ribokinase_family_tier2_source_handle_scout_current702_20260616_run0009.json`
+  fetched **80** unreviewed site-annotated rows and found **7** mechanism-corroborated bronze labels
+  but only **2** novelty-admitted rows, projecting **8728 -> 8730** if merged. The PfkB family was
+  already above floor (**128 -> 130** projected), so this is strategy evidence only and not an
+  autonomous apply candidate. Row guardrail audit
+  `artifacts/v3_pfkb_ribokinase_family_tier2_source_handle_scout_row_guardrail_audit_current702_20260616_run0009.json`
+  passed with **2** rows and **0** problems.
+- Bounded source-tier-2 biotin-dependent carboxylase scout
+  `artifacts/v3_biotin_dependent_carboxylase_tier2_source_handle_scout_current702_20260616_run0009.json`
+  fetched **80** unreviewed site-annotated rows and found **16** mechanism-corroborated bronze
+  labels and **9** novelty-admitted rows, projecting **8728 -> 8737** if merged. The family floor
+  was already reached (**100 -> 109** projected), so this is also strategy evidence only and not an
+  autonomous apply candidate. Row guardrail audit
+  `artifacts/v3_biotin_dependent_carboxylase_tier2_source_handle_scout_row_guardrail_audit_current702_20260616_run0009.json`
+  passed with **9** rows and **0** problems.
+- Bounded source-tier-2 metal-independent phosphodiesterase scout
+  `artifacts/v3_metal_independent_phosphodiesterase_tier2_source_handle_scout_current702_20260616_run0009.json`
+  fetched **315** unreviewed rows, found **0** mechanism-corroborated target bronze labels, held
+  **66** off-target rows, and projected **8728 -> 8728** if merged. Row guardrail audit
+  `artifacts/v3_metal_independent_phosphodiesterase_tier2_source_handle_scout_row_guardrail_audit_current702_20260616_run0009.json`
+  passed with **0** rows and **0** problems. This supports the current scale-wall finding that
+  low-yield tier-2 windows are not enough without a higher-yield source-transfer/source-handle
+  unlock.
+- Storage hygiene remains fail-closed: run0009 storage artifacts record **46** large-unclassified/
+  admission blockers, **116** producer-consumer/readiness/execution rows, **0** migration-ready
+  files, **0** deletion-authorized files, and **0** removal-allowed files. Migration dry-run
+  validation passed with **116** rows and **0** blockers.
+- New planning artifacts:
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run0009_pre_lane.json`,
+  `artifacts/v3_coverage_redundancy_audit_current702_20260616_run0009_post_noapply.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run0009_pre_lane.json`,
+  `artifacts/v3_novelty_admission_gate_audit_current702_20260616_run0009_post_noapply.json`,
+  `artifacts/v3_high_yield_family_lane_factory_current702_20260616_run0009_pre_lane.json`,
+  `artifacts/v3_evidence_handle_expansion_current702_20260616_run0009_pre_lane.json`,
+  `artifacts/v3_breadth_feasibility_scout_current702_20260616_run0009_pre_lane.json`, and
+  `artifacts/v3_source_scale_limit_audit_current702_20260616_run0009.json`.
+- Next exact action: do not import P55263 or tier-2 PfkB scout rows. Consume the five-row
+  terminal-review/factory replay queue with explicit review decisions and full factory/novelty/
+  governor/row-guardrail gates, implement a real tested source-free PfkB/ribokinase control, or
+  open a higher-yield source-transfer/source-handle lane that passes duplicate, active-site,
+  factory, novelty, governor, row-guardrail, and lane-authorization gates.
+
 ## Session run - Q6NSJ0 boundary repaired; P55263 design packeted; no registry apply (2026-06-17, Codex automation)
 
 - Started at `2026-06-17T00:08:09Z` from current `origin/main`

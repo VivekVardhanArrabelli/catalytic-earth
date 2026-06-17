@@ -74,6 +74,8 @@ from catalytic_earth.transfer_scope import (
     build_external_source_pilot_manual_source_mechanism_review_packet,
     build_external_source_pilot_mechanism_repair_lanes,
     build_external_source_pilot_pfkb_control_feasibility_audit,
+    build_external_source_pilot_pfkb_import_safety_adjudication,
+    build_external_source_pilot_pfkb_source_free_control_decision,
     build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication,
     build_external_source_pilot_review_resolution_gap_audit,
     build_external_source_pilot_schiff_base_lyase_control,
@@ -85,6 +87,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_pilot_sugar_phosphate_isomerase_import_safety_adjudication,
     build_external_source_pilot_success_criteria,
     build_external_source_pilot_terminal_decisions,
+    build_external_source_pilot_terminal_review_factory_replay_queue,
     build_external_source_pilot_uniref_current_reference_screen,
     build_external_structural_cluster_index,
     build_external_structural_tm_diverse_split_plan,
@@ -8333,6 +8336,275 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertTrue(row["source_context_not_predictive"])
         self.assertIn(
             "family_import_safety_adjudication_missing",
+            row["remaining_import_blockers"],
+        )
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_pilot_pfkb_keep_held_decision_and_import_safety(
+        self,
+    ) -> None:
+        feasibility = {
+            "metadata": {
+                "method": "external_source_pilot_p55263_pfkb_control_feasibility_audit"
+            },
+            "rows": [
+                {
+                    "accession": "P55263",
+                    "entry_id": "uniprot:P55263",
+                    "protein_name": "Adenosine kinase",
+                    "candidate_control_family": "pfkb_ribokinase_family",
+                    "feasibility_status": "source_free_pfkb_control_not_implemented",
+                    "source_context_not_predictive": True,
+                    "predictive_evidence": [],
+                    "review_context_axes_present": {
+                        "active_site_positions": [317]
+                    },
+                    "required_before_import_safety_adjudication": [
+                        "source-free PfkB/ribokinase-family ATP/Mg and acceptor-pocket control or explicit keep-held decision"
+                    ],
+                    "remaining_import_blockers": [
+                        "family_import_safety_adjudication_missing",
+                        "manual_source_mechanism_review_required",
+                        "full_label_factory_gate_not_run",
+                    ],
+                }
+            ],
+        }
+        gap = {
+            "metadata": {
+                "method": "external_source_pilot_review_resolution_gap_audit"
+            },
+            "rows": [
+                {
+                    "accession": "P55263",
+                    "resolution_gap_status": (
+                        "manual_source_mechanism_control_design_review_only"
+                    ),
+                    "remaining_import_blockers": [
+                        "family_import_safety_adjudication_missing",
+                        "terminal_review_decision_not_accepted",
+                    ],
+                }
+            ],
+        }
+
+        decision = build_external_source_pilot_pfkb_source_free_control_decision(
+            pfkb_control_feasibility_audit=feasibility,
+            review_resolution_gap_audit=gap,
+            artifact_lineage={
+                "method": "external_transfer_artifact_path_lineage_validation",
+                "slice_id": 20260616,
+                "guardrail_clean": True,
+            },
+        )
+
+        self.assertEqual(
+            decision["metadata"]["method"],
+            "external_source_pilot_p55263_pfkb_source_free_control_decision",
+        )
+        row = decision["rows"][0]
+        self.assertEqual(
+            row["source_free_control_status"],
+            "source_free_pfkb_control_not_implemented_keep_held",
+        )
+        self.assertEqual(row["predictive_evidence"], [])
+        self.assertIn(
+            "source_free_pfkb_control_missing",
+            row["remaining_import_blockers"],
+        )
+        self.assertFalse(row["ready_for_label_import"])
+
+        adjudication = build_external_source_pilot_pfkb_import_safety_adjudication(
+            pfkb_source_free_control_decision=decision,
+            review_resolution_gap_audit=gap,
+            artifact_lineage={
+                "method": "external_transfer_artifact_path_lineage_validation",
+                "slice_id": 20260616,
+                "guardrail_clean": True,
+            },
+        )
+
+        metadata = adjudication["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "external_source_pilot_pfkb_import_safety_adjudication",
+        )
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        adjudicated_row = adjudication["rows"][0]
+        self.assertEqual(
+            adjudicated_row["import_safety_adjudication_status"],
+            "pfkb_source_free_control_explicit_keep_held",
+        )
+        self.assertNotIn(
+            "family_import_safety_adjudication_missing",
+            adjudicated_row["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "source_free_pfkb_control_missing",
+            adjudicated_row["remaining_import_blockers"],
+        )
+        self.assertEqual(
+            adjudicated_row["pfkb_control_evidence"]["predictive_evidence"], []
+        )
+        self.assertFalse(adjudicated_row["countable_label_candidate"])
+        self.assertFalse(adjudicated_row["ready_for_label_import"])
+
+    def test_external_pilot_gap_audit_routes_pfkb_keep_held_adjudication(
+        self,
+    ) -> None:
+        audit = build_external_source_pilot_review_resolution_gap_audit(
+            normalized_human_expert_review_queue={
+                "metadata": {
+                    "method": (
+                        "external_source_pilot_human_expert_review_queue_normalized"
+                    )
+                },
+                "rows": [
+                    {
+                        "rank": 1,
+                        "accession": "P55263",
+                        "entry_id": "uniprot:P55263",
+                        "normalized_decision_status": "needs_review",
+                        "non_human_blockers_remaining": [
+                            "external_review_decision_artifact_not_built",
+                            "full_label_factory_gate_not_run",
+                        ],
+                    }
+                ],
+            },
+            mechanism_repair_lanes={
+                "metadata": {"method": "external_source_pilot_mechanism_repair_lanes"},
+                "rows": [
+                    {
+                        "accession": "P55263",
+                        "repair_lane": "manual_source_mechanism_review_required",
+                    }
+                ],
+            },
+            manual_source_mechanism_control_design={
+                "metadata": {
+                    "method": (
+                        "external_source_pilot_manual_source_mechanism_control_design"
+                    )
+                },
+                "rows": [
+                    {
+                        "accession": "P55263",
+                        "designed_candidate_control_family": (
+                            "pfkb_ribokinase_family"
+                        ),
+                    }
+                ],
+            },
+            pfkb_import_safety_adjudication={
+                "metadata": {
+                    "method": "external_source_pilot_pfkb_import_safety_adjudication"
+                },
+                "rows": [
+                    {
+                        "accession": "P55263",
+                        "import_safety_adjudication_status": (
+                            "pfkb_source_free_control_explicit_keep_held"
+                        ),
+                        "remaining_import_blockers": [
+                            "source_free_pfkb_control_missing",
+                            "terminal_review_decision_not_accepted",
+                        ],
+                    }
+                ],
+            },
+            artifact_lineage={
+                "method": "external_transfer_artifact_path_lineage_validation",
+                "slice_id": 20260616,
+                "guardrail_clean": True,
+            },
+        )
+
+        self.assertEqual(
+            audit["metadata"]["resolution_gap_status_counts"],
+            {"manual_source_mechanism_keep_held_after_import_safety": 1},
+        )
+        row = audit["rows"][0]
+        self.assertEqual(
+            row["family_import_safety_status"],
+            "pfkb_source_free_control_explicit_keep_held",
+        )
+        self.assertEqual(
+            row["resolution_gap_status"],
+            "manual_source_mechanism_keep_held_after_import_safety",
+        )
+        self.assertIn(
+            "source_free_pfkb_control_missing",
+            row["remaining_import_blockers"],
+        )
+        self.assertNotIn(
+            "family_import_safety_adjudication_missing",
+            row["remaining_import_blockers"],
+        )
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_pilot_terminal_review_factory_replay_queue_routes_repaired_rows(
+        self,
+    ) -> None:
+        queue = build_external_source_pilot_terminal_review_factory_replay_queue(
+            review_resolution_gap_audit={
+                "metadata": {
+                    "method": "external_source_pilot_review_resolution_gap_audit"
+                },
+                "rows": [
+                    {
+                        "rank": 1,
+                        "accession": "C9JRZ8",
+                        "entry_id": "uniprot:C9JRZ8",
+                        "protein_name": "Aldo-keto reductase",
+                        "repair_lane": "add_akr_nadp_redox_representation_axis",
+                        "resolution_gap_status": (
+                            "review_decision_and_factory_gate_blocked_after_"
+                            "control_repair"
+                        ),
+                        "family_import_safety_status": (
+                            "akr_nadp_axis_representation_conflict_repaired"
+                        ),
+                        "remaining_import_blockers": [
+                            "external_review_decision_artifact_not_built",
+                            "full_label_factory_gate_not_run",
+                        ],
+                    },
+                    {
+                        "rank": 2,
+                        "accession": "P55263",
+                        "resolution_gap_status": (
+                            "manual_source_mechanism_keep_held_after_import_safety"
+                        ),
+                    },
+                ],
+            },
+            artifact_lineage={
+                "method": "external_transfer_artifact_path_lineage_validation",
+                "slice_id": 20260616,
+                "guardrail_clean": True,
+            },
+        )
+
+        metadata = queue["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "external_source_pilot_terminal_review_factory_replay_queue",
+        )
+        self.assertEqual(metadata["candidate_count"], 1)
+        self.assertEqual(metadata["selected_accessions"], ["C9JRZ8"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        row = queue["rows"][0]
+        self.assertEqual(
+            row["terminal_review_replay_status"],
+            "terminal_review_and_factory_replay_required",
+        )
+        self.assertEqual(row["terminal_review_decision_status"], "not_recorded")
+        self.assertEqual(row["full_label_factory_gate_status"], "not_run")
+        self.assertIn(
+            "terminal_review_decision_not_recorded",
             row["remaining_import_blockers"],
         )
         self.assertFalse(row["countable_label_candidate"])

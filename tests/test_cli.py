@@ -416,6 +416,8 @@ class CliTests(unittest.TestCase):
                 "/tmp/akr.json",
                 "--manual-source-mechanism-control-design",
                 "/tmp/manual-design.json",
+                "--pfkb-import-safety-adjudication",
+                "/tmp/pfkb-import.json",
             ]
         )
 
@@ -428,6 +430,10 @@ class CliTests(unittest.TestCase):
         self.assertEqual(
             args.manual_source_mechanism_control_design,
             "/tmp/manual-design.json",
+        )
+        self.assertEqual(
+            args.pfkb_import_safety_adjudication,
+            "/tmp/pfkb-import.json",
         )
         self.assertIsNone(args.sdr_redox_import_safety_adjudication)
         self.assertIsNone(
@@ -553,6 +559,66 @@ class CliTests(unittest.TestCase):
         )
         self.assertEqual(args.review_resolution_gap_audit, "/tmp/gap.json")
         self.assertEqual(args.target_accession, "P55263")
+
+    def test_external_source_pilot_pfkb_keep_held_control_parser(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-external-source-pilot-pfkb-source-free-control-"
+                    "decision"
+                ),
+                "--pfkb-control-feasibility-audit",
+                "/tmp/feasibility.json",
+                "--review-resolution-gap-audit",
+                "/tmp/gap.json",
+                "--target-accession",
+                "P55263",
+            ]
+        )
+
+        self.assertEqual(args.pfkb_control_feasibility_audit, "/tmp/feasibility.json")
+        self.assertEqual(args.review_resolution_gap_audit, "/tmp/gap.json")
+        self.assertEqual(args.target_accession, "P55263")
+
+    def test_external_source_pilot_pfkb_import_safety_parser(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-external-source-pilot-pfkb-import-safety-adjudication",
+                "--pfkb-source-free-control-decision",
+                "/tmp/control.json",
+                "--review-resolution-gap-audit",
+                "/tmp/gap.json",
+                "--max-rows",
+                "1",
+            ]
+        )
+
+        self.assertEqual(args.pfkb_source_free_control_decision, "/tmp/control.json")
+        self.assertEqual(args.review_resolution_gap_audit, "/tmp/gap.json")
+        self.assertEqual(args.max_rows, 1)
+
+    def test_external_source_pilot_terminal_review_factory_replay_queue_parser(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-external-source-pilot-terminal-review-factory-"
+                    "replay-queue"
+                ),
+                "--review-resolution-gap-audit",
+                "/tmp/gap.json",
+                "--max-rows",
+                "5",
+            ]
+        )
+
+        self.assertEqual(args.review_resolution_gap_audit, "/tmp/gap.json")
+        self.assertEqual(args.max_rows, 5)
 
     def test_external_source_pilot_candidate_priority_pinned_parser(
         self,

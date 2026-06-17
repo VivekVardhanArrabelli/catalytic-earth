@@ -1,0 +1,72 @@
+{
+  "metadata": {
+    "artifact_count": 3,
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "blocker_count": 0,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "method": "review_only_zero_import_artifact_gate",
+    "new_external_rows_frozen": 0,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "valid": true,
+    "valid_artifact_count": 3
+  },
+  "rows": [
+    {
+      "artifact_id": null,
+      "artifact_migration_files_edited": false,
+      "artifact_upload_or_removal_performed": false,
+      "blockers": [],
+      "countable_label_candidate_count": 0,
+      "curated_label_registry_edited": false,
+      "fingerprint_registry_edited": false,
+      "import_ready_candidate_count": 0,
+      "method": "external_source_pilot_p55263_pfkb_source_free_control_decision",
+      "new_external_rows_frozen": 0,
+      "path": "artifacts/v3_external_source_pilot_p55263_pfkb_source_free_control_decision_current702_20260616_run0009.json",
+      "ready_for_label_import": false,
+      "removal_allowed_set_true": false,
+      "review_only": true,
+      "valid": true
+    },
+    {
+      "artifact_id": null,
+      "artifact_migration_files_edited": false,
+      "artifact_upload_or_removal_performed": false,
+      "blockers": [],
+      "countable_label_candidate_count": 0,
+      "curated_label_registry_edited": false,
+      "fingerprint_registry_edited": false,
+      "import_ready_candidate_count": 0,
+      "method": "external_source_pilot_pfkb_import_safety_adjudication",
+      "new_external_rows_frozen": 0,
+      "path": "artifacts/v3_external_source_pilot_p55263_pfkb_import_safety_adjudication_current702_20260616_run0009.json",
+      "ready_for_label_import": false,
+      "removal_allowed_set_true": false,
+      "review_only": true,
+      "valid": true
+    },
+    {
+      "artifact_id": null,
+      "artifact_migration_files_edited": false,
+      "artifact_upload_or_removal_performed": false,
+      "blockers": [],
+      "countable_label_candidate_count": 0,
+      "curated_label_registry_edited": false,
+      "fingerprint_registry_edited": false,
+      "import_ready_candidate_count": 0,
+      "method": "external_source_pilot_review_resolution_gap_audit",
+      "new_external_rows_frozen": 0,
+      "path": "artifacts/v3_external_source_pilot_review_resolution_gap_audit_p55263_pfkb_keepheld_replay_current702_20260616_run0009.json",
+      "ready_for_label_import": false,
+      "removal_allowed_set_true": false,
+      "review_only": true,
+      "valid": true
+    }
+  ]
+}

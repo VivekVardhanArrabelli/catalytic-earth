@@ -1,0 +1,139 @@
+{
+  "metadata": {
+    "artifact_lineage": {
+      "artifact_paths": {
+        "pfkb_control_feasibility_audit": "artifacts/v3_external_source_pilot_p55263_pfkb_control_feasibility_audit_current702_20260616_run0008.json",
+        "review_resolution_gap_audit": "artifacts/v3_external_source_pilot_review_resolution_gap_audit_q6nsj0_p55263_with_glyco_repair_replay_current702_20260616_run0008.json"
+      },
+      "blocker_removed": "pfkb_manual_control_has_explicit_keep_held_source_free_decision",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "pfkb_control_feasibility_audit": 20260616,
+        "review_resolution_gap_audit": 20260616
+      },
+      "payload_methods": {
+        "pfkb_control_feasibility_audit": "external_source_pilot_p55263_pfkb_control_feasibility_audit",
+        "review_resolution_gap_audit": "external_source_pilot_review_resolution_gap_audit"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {
+        "pfkb_control_feasibility_audit": {
+          "metadata.artifact_lineage.slice_id": 20260616,
+          "metadata.slice_id": 20260616
+        },
+        "review_resolution_gap_audit": {
+          "metadata.artifact_lineage.slice_id": 20260616,
+          "metadata.slice_id": 20260616
+        }
+      },
+      "slice_id": 20260616,
+      "slice_members": {
+        "20260616": [
+          "pfkb_control_feasibility_audit",
+          "review_resolution_gap_audit"
+        ]
+      }
+    },
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "blocker_not_removed": [
+      "external_review_decision_artifact_not_built",
+      "family_import_safety_adjudication_missing",
+      "full_label_factory_gate_not_run",
+      "manual_source_mechanism_review_required",
+      "representation_control_instability_review_required",
+      "source_free_pfkb_control_missing",
+      "terminal_review_decision_not_accepted"
+    ],
+    "blocker_removed": "pfkb_manual_control_has_explicit_keep_held_source_free_decision",
+    "candidate_control_family": "pfkb_ribokinase_family",
+    "candidate_count": 1,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "method": "external_source_pilot_p55263_pfkb_source_free_control_decision",
+    "new_external_rows_frozen": 0,
+    "non_countable_rule": "explicit keep-held PfkB control decisions cannot create predictive evidence, terminal review acceptance, import-ready rows, or labels",
+    "ready_for_label_import": false,
+    "remaining_import_blocker_counts": {
+      "external_review_decision_artifact_not_built": 1,
+      "family_import_safety_adjudication_missing": 1,
+      "full_label_factory_gate_not_run": 1,
+      "manual_source_mechanism_review_required": 1,
+      "representation_control_instability_review_required": 1,
+      "source_free_pfkb_control_missing": 1,
+      "terminal_review_decision_not_accepted": 1
+    },
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "slice_id": 20260616,
+    "source_free_control_status_counts": {
+      "source_free_pfkb_control_not_implemented_keep_held": 1
+    },
+    "source_pfkb_control_feasibility_method": "external_source_pilot_p55263_pfkb_control_feasibility_audit",
+    "source_review_resolution_gap_audit_method": "external_source_pilot_review_resolution_gap_audit",
+    "target_accession": "P55263"
+  },
+  "rows": [
+    {
+      "accession": "P55263",
+      "autonomous_decision": "hold_review_only",
+      "candidate_control_family": "pfkb_ribokinase_family",
+      "countable_label_candidate": false,
+      "decision_effect": "turns the missing PfkB source-free control into an explicit keep-held import-safety input; no terminal acceptance or label import is created",
+      "entry_id": "uniprot:P55263",
+      "feasibility_status": "source_free_pfkb_control_not_implemented",
+      "must_remain_excluded_context": [
+        "EC numbers",
+        "protein names",
+        "UniProt prose",
+        "query/source handles",
+        "Rhea equation text used as source/admission context"
+      ],
+      "predictive_evidence": [],
+      "protein_name": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "external_review_decision_artifact_not_built",
+        "family_import_safety_adjudication_missing",
+        "full_label_factory_gate_not_run",
+        "manual_source_mechanism_review_required",
+        "representation_control_instability_review_required",
+        "source_free_pfkb_control_missing",
+        "terminal_review_decision_not_accepted"
+      ],
+      "required_source_free_axes": [
+        "source-free PfkB/ribokinase-family ATP/Mg and acceptor-pocket control or explicit keep-held decision",
+        "representation-control instability repair or explicit hold",
+        "family import-safety adjudication built from implemented control, not design text",
+        "terminal review decision, full label-factory gate, novelty/governor replay, and row guardrails"
+      ],
+      "review_context_axes_present": {
+        "active_site_positions": [
+          317
+        ],
+        "ec_numbers": [
+          "2.7.1.-",
+          "2.7.1.20"
+        ],
+        "representative_rhea_reactions": [
+          "RHEA:10224 pyridoxal + ATP = pyridoxal 5'-phosphate + ADP + H(+)",
+          "RHEA:10272 a 1,2-diacyl-sn-glycerol + ATP = a 1,2-diacyl-sn-glycero-3-phosphate + ADP + H(+)",
+          "RHEA:20824 adenosine + ATP = AMP + ADP + H(+)"
+        ],
+        "source_context_status": "source_supports_adenosine_kinase_phosphoryl_transfer_context"
+      },
+      "source_context_not_predictive": true,
+      "source_free_control_decision": "explicit_keep_held_source_free_pfkb_control_missing",
+      "source_free_control_status": "source_free_pfkb_control_not_implemented_keep_held"
+    }
+  ],
+  "warnings": [
+    "PfkB source-free control remains missing; EC/name/Rhea/source handles stay excluded context and predictive_evidence is empty"
+  ]
+}

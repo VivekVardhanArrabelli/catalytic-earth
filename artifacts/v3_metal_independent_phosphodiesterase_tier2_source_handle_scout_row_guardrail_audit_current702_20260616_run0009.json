@@ -1,0 +1,23 @@
+{
+  "artifact_id": "v3_bronze_preview_row_guardrails",
+  "counts": {
+    "fingerprint_counts": {},
+    "mechanism_axis_counts": {},
+    "preview_applied_label_rows": 0,
+    "problem_rows": 0,
+    "source_tier_counts": {}
+  },
+  "created_utc": "2026-06-17T01:54:26Z",
+  "guardrails": {
+    "ec_name_query_handles_scope_admission_only": true,
+    "frozen_current702_benchmark_written": false,
+    "predictive_evidence_required_empty": true,
+    "preview_only_no_labels_created": true,
+    "registry_written": false
+  },
+  "next_action": "Apply is allowed only if this audit has 0 problem rows and the preview also passes dedup, novelty, cap, source-trust, leakage, and batch-size gates.",
+  "preview_path": "artifacts/v3_metal_independent_phosphodiesterase_tier2_source_handle_scout_current702_20260616_run0009.json",
+  "problem_rows": [],
+  "schema_version": "bronze_preview_row_guardrails.v1",
+  "status": "row_guardrail_audit_passed"
+}
