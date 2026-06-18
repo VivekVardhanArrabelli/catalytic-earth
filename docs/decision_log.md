@@ -3,6 +3,57 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-18: NEW `peroxiredoxin_thiol_peroxidase` FINGERPRINT FAMILY ADDED (49 -> 50 FP) — COMBINED 8906 -> 9056
+
+Decision: fourth new family in the user-authorized growth pass, and the FIRST broad-oxidoreductase
+EC-subclass split the recon called for: add `peroxiredoxin_thiol_peroxidase` as the 50th fingerprint
+and source its first reviewed-Swiss-Prot bronze tranche. Frozen current702 untouched.
+
+Chemistry / disambiguation: the family is the thiol/selenol-dependent (NON-heme) peroxidase mechanism
+— peroxiredoxins (2-Cys / atypical-2-Cys / 1-Cys; AhpC, Tpx, PrxQ/BCP), glutathione peroxidases (Cys
+or selenocysteine), and thiol/thioredoxin-dependent peroxidases. A low-pKa peroxidatic Cys/Sec attacks
+the peroxide O-O bond, forms a sulfenic/selenenic acid, and is recycled by a resolving Cys /
+thioredoxin / glutathione. It SHARES the EC 1.11.1 scope with `heme_peroxidase_oxidase` but is
+separated by the protein-derived peroxidatic thiol/selenol and the ABSENCE of heme — `heme_peroxidase_oxidase`
+requires a heme cofactor, so the entire thiol/selenol subclass matched NO existing rule and was
+genuinely uncovered. The engine routes EC 1.11.1 + (Prx/GPx/thiol-peroxidase family name OR peroxidatic
+Cys/Sec thiol context) + peroxide (H2O2 / hydroperoxide) reduction reaction + NOT heme + NOT flavin to
+the new fingerprint; `heme_peroxidase_oxidase` now excludes the peroxiredoxin family text;
+catalase / vanadium-or-non-heme haloperoxidase / FAD NADH-peroxidase / superoxide-dismutase rows are
+boundary-guarded; multi-EC moonlighters (e.g. GPx-active ceruloplasmin carrying a copper-oxidase EC)
+are held by the side-EC guard; cap 150. New ontology family
+`thiol_peroxidatic_cysteine_peroxide_reduction` (parent `mechanism`).
+
+Leakage closure: universe 49 -> 50, `CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION`
+`label_factory_v1_49fp -> _50fp`, new frozen `50fp` OOS hard-negative pre-registration supersedes the
+49fp; `EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_50FP_ARTIFACT` added.
+
+Measured result: the lane fetched 331 reviewed rows, corroborated 304, applied **150**
+novelty-admitted bronze (0 -> 150, cap HIT exactly, 0 duplicates); expansion **8204 -> 8354**,
+combined **8906 -> 9056** (+150). This is the high-supply payoff of splitting a broad EC 1.x pool by
+mechanism: a single lane filled its cap, vs 4 novel rows for the narrow `metallo_beta_lactamase`.
+Frozen current702 byte-unchanged at sha
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Audits clean (holes none, floor
+deficit 0, novelty admit 7743 -> 7893, over-cap only `metal_dependent_hydrolase`).
+
+Representation loop (HONEST cost, documented — no fold/name leakage added): in the leakage-safe feature
+space (cofactor classes + reaction bond-change, EC/name/prose/lane EXCLUDED) a cofactor-free
+peroxidatic-Cys/Sec peroxide reduction that yields an alcohol + H2O reads like a cofactor-free Ser/Cys
+hydrolysis, so the dense 150-row peroxiredoxin centroid absorbs the (already fold-blurred)
+`ser_his_acid_hydrolase` rows: `ser_his_acid_hydrolase` self-consistency collapses **0.6 -> 0.0** (58
+of its rows resolve to peroxiredoxin, 23 to alpha/beta-hydrolase). The new family itself is coherent
+(**0.833**) and does NOT collapse its EC sibling `heme_peroxidase_oxidase` (heme vs no-cofactor
+separates them: **0.889**). Overall LOO **0.716 -> 0.709** (still above the 0.70 floor; floor NOT
+lowered), nonmetal fraction 0.758. The disambiguation engine separates the families correctly at
+ADMISSION (family-text + peroxide reaction + EC-1.11.1 scope); the source-free representation must not
+synthesize the fold/name evidence that alone would split them. The `ser_his_acid_hydrolase` per-family
+assertion was changed from `> 0.6` to `< 0.2` + a confusion-into-peroxiredoxin check, with the cost
+documented inline. Lane-factory `_spec` wired. Summary:
+`artifacts/v3_peroxiredoxin_thiol_peroxidase_new_fingerprint_apply_summary_current702_20260618.json`.
+Gap to 10k: **944**. Lesson confirmed: broad oxidoreductase EC-subclass splits are the supply —
+narrow families (MBL +4) are exhausted; coherent broad-pool mechanism splits (peroxiredoxin +150) fill
+the cap.
+
 ## 2026-06-17: NEW `metallo_beta_lactamase` FINGERPRINT FAMILY ADDED (48 -> 49 FP) — COMBINED 8902 -> 8906
 
 Decision: third new family in the user-authorized growth pass: add `metallo_beta_lactamase` (MBL)

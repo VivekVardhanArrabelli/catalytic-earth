@@ -16,6 +16,23 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-18 user-directed new fingerprint family: `peroxiredoxin_thiol_peroxidase` added
+(49 -> 50 FP), combined 8906 -> 9056.** Fourth application of the add-a-family pattern, and the FIRST
+broad-oxidoreductase EC-subclass split: the thiol/selenol (NON-heme) peroxidase family —
+peroxiredoxins, glutathione peroxidases, thiol/thioredoxin-dependent peroxidases (peroxidatic Cys/Sec
+→ sulfenic/selenenic acid). It shares the EC 1.11.1 scope with `heme_peroxidase_oxidase` but that rule
+requires a heme cofactor, so the entire thiol/selenol subclass was UNCOVERED. Full disambiguation
+(routes Prx/GPx/thiol-peroxidase + peroxide-reduction + NOT-heme/NOT-flavin; heme_peroxidase excludes
+the peroxiredoxin family text; catalase/haloperoxidase/NADH-peroxidase/SOD guarded; multi-EC
+moonlighters held), ontology family `thiol_peroxidatic_cysteine_peroxide_reduction`, sourcing lane,
+leakage re-registration (`_49fp -> _50fp`), lane-factory wiring. First lane applied **150** rows (cap
+HIT exactly; 331 fetched, 304 corroborated, 0 dup). **This is the supply lesson realized:** splitting a
+broad EC 1.x pool by mechanism filled the whole cap in one lane, vs MBL's 4. Honest representation cost:
+`ser_his_acid_hydrolase` collapses 0.6 → 0.0 (cofactor-free Cys peroxide reduction reads like Ser/Cys
+hydrolysis in the leakage-safe feature space; documented, no fold/name leakage added); overall LOO
+0.716 → 0.709 (> 0.70 floor). Gap to 10k: **944**. See
+`artifacts/v3_peroxiredoxin_thiol_peroxidase_new_fingerprint_apply_summary_current702_20260618.json`.
+
 **2026-06-17 user-directed new fingerprint family: `metallo_beta_lactamase` added (48 -> 49 FP),
 combined 8902 -> 8906.** Third application of the add-a-family pattern: MBL (zinc class-B beta-lactam
 ring hydrolase, EC 3.5.2.6 shared with serine beta-lactamase) with full disambiguation (metallo/zinc

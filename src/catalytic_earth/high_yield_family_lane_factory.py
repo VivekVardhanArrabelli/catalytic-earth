@@ -365,6 +365,42 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         ),
     ),
     _spec(
+        family_id="peroxiredoxin_thiol_peroxidase",
+        display_name="Peroxiredoxin / thiol-peroxidase",
+        scope_query="(reviewed:true) AND (ec:1.11.1.*)",
+        corroborator_query=(
+            "(reviewed:true) AND (ec:1.11.1.*) AND "
+            "((protein_name:peroxiredoxin) OR (protein_name:\"glutathione peroxidase\") "
+            "OR (protein_name:\"thiol peroxidase\") OR (protein_name:\"alkyl hydroperoxide\"))"
+        ),
+        required_non_ec_corroborators=(
+            "peroxiredoxin / glutathione-peroxidase / thiol-peroxidase family/name handle",
+            "peroxidatic cysteine/selenocysteine thiol-redox context",
+            "Rhea peroxide (H2O2 / hydroperoxide) reduction equation where available",
+        ),
+        disambiguation_holds=(
+            "heme peroxidase / catalase rows",
+            "FAD-dependent NADH peroxidase rows",
+            "vanadium/non-heme haloperoxidase / superoxide dismutase rows",
+            "EC-only rows without thiol-peroxidase evidence",
+        ),
+        cap_ceiling=DEFAULT_CONFUSABLE_CAP,
+        chemistry_confusable=True,
+        novelty_keep_factor=0.45,
+        ambiguity_with_existing=("heme_peroxidase_oxidase",),
+        existing_fingerprint_id="peroxiredoxin_thiol_peroxidase",
+        current_runner="scripts/source_peroxiredoxin_thiol_peroxidase_family.py",
+        oos_preregistration_required=False,
+        source_wall_rule_status="implemented_new_fingerprint_runner",
+        rationale_template=(
+            "Large uncovered EC 1.11.1 thiol/selenol peroxidase subclass (peroxiredoxins, "
+            "glutathione peroxidases, thiol peroxidases); the dedicated "
+            "peroxiredoxin_thiol_peroxidase fingerprint (peroxidatic Cys/Sec, no heme, EC "
+            "1.11.1 shared with heme_peroxidase_oxidase) and its disambiguation rule are "
+            "implemented (2026-06-18)."
+        ),
+    ),
+    _spec(
         family_id="aldo_keto_reductase",
         display_name="Aldo-keto reductase",
         scope_query="(reviewed:true) AND (ec:1.1.1.*)",

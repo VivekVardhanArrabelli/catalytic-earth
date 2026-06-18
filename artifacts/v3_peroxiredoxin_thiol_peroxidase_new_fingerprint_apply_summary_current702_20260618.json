@@ -1,0 +1,56 @@
+{
+  "artifact_id": "v3_peroxiredoxin_thiol_peroxidase_new_fingerprint_apply_summary_current702_20260618",
+  "authorization": "explicit_user_instruction_continue_adding_new_fingerprint_families",
+  "counts": {
+    "combined_after": 9056,
+    "combined_before": 8906,
+    "expansion_after": 8354,
+    "expansion_before": 8204,
+    "fetched_candidate_rows": 331,
+    "frozen_current702_rows": 702,
+    "mechanism_corroborated": 304,
+    "novelty_admitted": 150,
+    "off_target_held": 0,
+    "peroxiredoxin_thiol_peroxidase_family_after": "150/150"
+  },
+  "created_utc": "2026-06-18T15:45:00Z",
+  "expansion_registry_manifest_sha256": "9280089ba144de2141ea33473dee1384b8c6d9dd2e497b94e9df4a3a033f1605",
+  "fingerprint": {
+    "chemistry": "thiol/selenol-dependent peroxide reduction: a low-pKa peroxidatic cysteine (Cys-SH) or selenocysteine (Sec-SeH) attacks the peroxide O-O bond, is oxidized to a sulfenic/selenenic acid, and is recycled by a resolving Cys / thioredoxin / glutathione (NO heme or transition-metal cofactor)",
+    "disambiguation": "EC 1.11.1 (SHARED with heme_peroxidase_oxidase) + (peroxiredoxin/GPx/thiol-peroxidase family name OR peroxidatic-cysteine/selenocysteine thiol context) + peroxide (H2O2/hydroperoxide) reduction reaction + NOT heme + NOT flavin; heme_peroxidase_oxidase now excludes the peroxiredoxin family text; catalase/haloperoxidase/NADH-peroxidase/SOD boundary-guarded; multi-EC moonlighters (e.g. GPx-active ceruloplasmin) held by the side-EC guard; cap 150",
+    "id": "peroxiredoxin_thiol_peroxidase",
+    "name": "Peroxiredoxin / thiol-based peroxidase",
+    "ontology_family": "thiol_peroxidatic_cysteine_peroxide_reduction (parent mechanism)"
+  },
+  "frozen_benchmark": {
+    "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+    "unchanged": true,
+    "written": false
+  },
+  "gap_to_10k": 944,
+  "lane_factory_spec_wired": "peroxiredoxin_thiol_peroxidase",
+  "leakage_closure": {
+    "new_preregistration": "artifacts/v3_external_hard_negative_next_tranche_preregistration_50fp_1025.json",
+    "positive_universe_version": "label_factory_v1_49fp -> label_factory_v1_50fp",
+    "supersedes": "artifacts/v3_external_hard_negative_next_tranche_preregistration_49fp_1025.json"
+  },
+  "post_apply_audits": {
+    "coverage_redundancy": "artifacts/v3_coverage_redundancy_audit_current702_20260618_peroxiredoxin_fingerprint.json",
+    "floor_deficit": 0,
+    "holes": [],
+    "novelty_admission_gate": "artifacts/v3_novelty_admission_gate_audit_current702_20260618_peroxiredoxin_fingerprint.json",
+    "novelty_replay": {
+      "admit": 7893,
+      "reject": 47,
+      "throttle": 414
+    },
+    "over_cap": [
+      "metal_dependent_hydrolase"
+    ]
+  },
+  "purpose": "Record adding the peroxiredoxin_thiol_peroxidase mechanism-fingerprint family (50th fingerprint) and sourcing its first reviewed-Swiss-Prot bronze tranche, growing combined labels 8906 -> 9056 (+150) while leaving the frozen current702 benchmark byte-unchanged. Splitting the broad oxidoreductase EC 1.11.1 pool by mechanism (thiol/selenol vs heme) was the high-supply strategy the recon called for: this single lane filled its cap, vs 4 novel rows for the narrow metallo_beta_lactamase family.",
+  "representation_loop_note": "In the leakage-safe feature space (cofactor classes + reaction bond-change, EC/name/prose/lane EXCLUDED) the cofactor-free Cys/Sec peroxidatic-thiol peroxide reduction reads like a cofactor-free Ser/Cys hydrolysis (alcohol + H2O product), so the dense 150-row peroxiredoxin centroid absorbs the already fold-blurred ser_his_acid_hydrolase rows: ser_his_acid_hydrolase self-consistency collapses 0.6 -> 0.0 (58 of its rows resolve to peroxiredoxin, 23 to alpha/beta-hydrolase). peroxiredoxin itself is coherent (0.833) and does NOT collapse its EC sibling heme_peroxidase_oxidase (heme vs no-cofactor separates them: 0.889). Overall LOO 0.716 -> 0.709 (above the 0.70 floor; floor NOT lowered); nonmetal fraction 0.758. This is the honest cost of a large confusable cofactor-free family; the disambiguation engine separates them at ADMISSION via family-text + peroxide reaction + EC-1.11.1 scope, but the source-free representation must not synthesize fold/name evidence.",
+  "reviewed_supply_note": "457 reviewed-Swiss-Prot thiol/selenol peroxidases (peroxiredoxins / glutathione peroxidases / thiol peroxidases) are reachable via the family-name handle, none previously imported (heme_peroxidase_oxidase requires a heme cofactor and these are non-heme). The first lane fetched 331, corroborated 304, and filled the 150 cap exactly.",
+  "schema_version": "catalytic_earth.apply_summary.v1",
+  "status": "user_directed_new_peroxiredoxin_thiol_peroxidase_fingerprint_family_added_and_sourced"
+}

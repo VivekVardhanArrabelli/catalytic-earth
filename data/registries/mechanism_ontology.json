@@ -825,6 +825,21 @@
         "Hold multi-fingerprint-signal rows rather than forcing a metallo-beta-lactamase label.",
         "The one/two catalytic Zn2+ ions, zinc-bridging hydroxide, His/Asp/Cys zinc ligands, and beta-lactam pose are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
+    },
+    {
+      "id": "thiol_peroxidatic_cysteine_peroxide_reduction",
+      "name": "Thiol/selenol peroxidatic-cysteine peroxide reduction",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "peroxiredoxin_thiol_peroxidase"
+      ],
+      "v2_split_note": null,
+      "family_boundary_guardrails": [
+        "Membership is decided by a peroxiredoxin / glutathione peroxidase / thiol-peroxidase family/name OR a peroxidatic-cysteine/selenocysteine thiol-redox context plus a Rhea/reviewed peroxide (H2O2 / hydroperoxide) reduction reaction; EC 1.11.1 is scope only and is SHARED with heme peroxidases/catalases.",
+        "Do not admit heme peroxidases / catalases / catalase-peroxidases, vanadium or non-heme haloperoxidases, FAD-dependent NADH peroxidases, manganese catalases, or superoxide dismutases into this family; the discriminator is a protein-derived peroxidatic thiol/selenol with NO heme/flavin.",
+        "Hold multi-fingerprint-signal rows (including moonlighting multi-EC entries such as glutathione-peroxidase-active ceruloplasmin) rather than forcing a peroxiredoxin label.",
+        "The low-pKa peroxidatic Cys/Sec, its sulfenic/selenenic-acid intermediate, the resolving Cys/thioredoxin/glutathione recycler, and the peroxide pose are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
     }
   ],
   "propagation_guardrails": [

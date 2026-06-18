@@ -202,9 +202,10 @@ class SelfAuditRealRegistryTests(unittest.TestCase):
         # mechanism-first lanes, plus a 2026-06-17 user-directed reviewed-Swiss-Prot
         # growth pass: 41 biotin + 3 SDR + 44 serine beta-lactamase + 1
         # protein-kinase + 25 metal-independent PDE + 28 aldo-keto reductase
-        # + 32 aminoglycoside acetyltransferase + 4 metallo-beta-lactamase (three new
-        # fingerprint families) = 178 broadened-handle bronze rows.
-        self.assertEqual(audit["expansion_rows"], 8204)
+        # + 32 aminoglycoside acetyltransferase + 4 metallo-beta-lactamase
+        # + 150 peroxiredoxin/thiol-peroxidase (four new fingerprint families) =
+        # 328 broadened-handle bronze rows.
+        self.assertEqual(audit["expansion_rows"], 8354)
         # some redundancy exists and is bounded
         self.assertGreater(audit["would_not_readmit"], 0)
         self.assertLess(audit["would_not_readmit_fraction"], 1.0)

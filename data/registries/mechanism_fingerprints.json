@@ -3840,5 +3840,87 @@
       "reconstruction_path": "Path A sequence->MBL family plus zinc reaction/active-site channel, or canonical di-zinc/hydroxide graft in a metallo-beta-lactamase fold (Path B)",
       "silver_reachability": "moderate; reviewed MBL family and zinc/beta-lactam annotations are common, but the catalytic di-zinc hydrolysis geometry needs explicit reconstruction"
     }
+  },
+  {
+    "id": "peroxiredoxin_thiol_peroxidase",
+    "name": "Peroxiredoxin / thiol-based peroxidase",
+    "enzyme_space": [
+      "peroxiredoxins (Prx; 2-Cys, atypical 2-Cys, 1-Cys; AhpC, Tpx, BCP/PrxQ, Prx1-6)",
+      "glutathione peroxidases (GPx; cysteine or selenocysteine peroxidatic residue)",
+      "thiol/thioredoxin-dependent peroxidases and alkyl hydroperoxide reductase C subunits"
+    ],
+    "active_site_signature": [
+      {
+        "role": "peroxidatic_thiol_nucleophile",
+        "residue": "peroxidatic cysteine (Cys-SH) or selenocysteine (Sec-SeH) in a thioredoxin-fold active site",
+        "constraints": [
+          "a low-pKa peroxidatic Cys/Sec thiolate/selenolate directly attacks the peroxide O-O bond; NO heme or transition-metal cofactor participates",
+          "presence of a protein-derived peroxidatic thiol/selenol (not heme) defines the family and separates it from heme peroxidases/catalases"
+        ]
+      },
+      {
+        "role": "sulfenic_acid_intermediate",
+        "residue": "peroxidatic Cys-SOH / Sec-SeOH formed on the catalytic residue",
+        "constraints": [
+          "the peroxide is reduced to water/alcohol while the peroxidatic residue is oxidized to a sulfenic/selenenic acid"
+        ]
+      },
+      {
+        "role": "resolving_reductant_recycler",
+        "residue": "resolving cysteine, thioredoxin, glutathione, or other thiol reductant",
+        "constraints": [
+          "the sulfenic/selenenic acid is resolved by a resolving Cys / thioredoxin / glutathione, regenerating the reduced peroxidatic residue"
+        ]
+      }
+    ],
+    "cofactors": [
+      "none (protein-derived peroxidatic cysteine or selenocysteine redox center; recycled by thioredoxin/glutathione)"
+    ],
+    "reaction_center": {
+      "bond_changes": [
+        "peroxide O-O bond reduction by a peroxidatic thiol/selenol (no heme); ROOH + 2 e- + 2 H+ -> ROH + H2O",
+        "peroxidatic Cys-SH/Sec-SeH -> Cys-SOH/Sec-SeOH sulfenic/selenenic acid, then resolved by a thiol reductant"
+      ],
+      "chemical_operation": "thiol/selenol-dependent peroxide reduction (peroxidatic-cysteine mechanism)"
+    },
+    "substrate_constraints": [
+      "EC 1.11.1 scope present but never counted as a corroborator (shared with heme peroxidases/catalases)",
+      "peroxiredoxin / glutathione peroxidase / thiol-peroxidase family or name context, OR a peroxidatic-cysteine/selenocysteine thiol-redox context, present",
+      "Rhea or reviewed catalytic activity text for peroxide (H2O2 / organic hydroperoxide) reduction present",
+      "no heme cofactor, no flavin (NADH peroxidase), no catalase / heme-peroxidase / haloperoxidase / superoxide-dismutase boundary signal, no EC-only or multi-fingerprint signal"
+    ],
+    "evidence_features": [
+      "peroxiredoxin / glutathione peroxidase / thiol-peroxidase / alkyl-hydroperoxide-reductase family, name, or keyword text",
+      "peroxidatic-cysteine, selenocysteine, redox-active, or sulfenic-acid active-site/keyword context",
+      "reviewed catalytic activity text showing peroxide / hydroperoxide reduction (thioredoxin- or glutathione-dependent)",
+      "annotated peroxidatic/resolving cysteine active-site context where available",
+      "EC 1.11.1 scope only, never counted as a corroborator"
+    ],
+    "counterevidence_features": [
+      "heme peroxidase / catalase / catalase-peroxidase (KatG) / ascorbate / cytochrome-c / lignin / manganese / myeloperoxidase heme context",
+      "vanadium or non-heme haloperoxidase / chloroperoxidase / bromoperoxidase context",
+      "FAD-dependent NADH peroxidase / NADH oxidase context",
+      "manganese catalase or superoxide dismutase context",
+      "EC-only evidence with no thiol-peroxidase family and peroxide-reduction corroboration",
+      "multi-fingerprint signal where a heme-redox or other rule independently fires"
+    ],
+    "uncertainty_axes": [
+      "cysteine versus selenocysteine peroxidatic residue",
+      "1-Cys versus 2-Cys (typical / atypical) resolving mechanism",
+      "thioredoxin- versus glutathione- versus other-reductant recycling",
+      "reduced versus sulfenic-acid versus over-oxidized (sulfinic) catalytic state"
+    ],
+    "seed_examples": [
+      "Peroxiredoxin-2 (human PRDX2; 2-Cys)",
+      "Alkyl hydroperoxide reductase C (bacterial AhpC)",
+      "Glutathione peroxidase 1 (human GPX1; selenocysteine)",
+      "Thiol peroxidase Tpx / bacterioferritin comigratory protein PrxQ"
+    ],
+    "deploy_missing_active_site_context": {
+      "type": "peroxidatic_cysteine_selenocysteine_thiol_peroxide_reduction_context",
+      "detail": "the low-pKa peroxidatic Cys/Sec, its sulfenic/selenenic-acid intermediate, the resolving Cys/thioredoxin/glutathione recycler, and the peroxide pose are absent or incomplete in apo predicted structures",
+      "reconstruction_path": "Path A sequence->Prx/GPx family plus peroxide reaction/active-site channel, or canonical peroxidatic-thiol/selenol graft in a thioredoxin fold (Path B)",
+      "silver_reachability": "moderate; reviewed Prx/GPx family and peroxide-reduction annotations are common, but the peroxidatic-thiol sulfenic-acid catalytic geometry needs explicit reconstruction"
+    }
   }
 ]

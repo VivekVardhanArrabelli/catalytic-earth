@@ -1347,6 +1347,65 @@ _METALLO_BETA_LACTAMASE_BOUNDARY_TOKENS = (
     "beta-lactam synthase",
     "clavaminate synthase",
 )
+# Peroxiredoxin / thiol(selenol)-based peroxidase handles. EC 1.11.1 scopes the candidate
+# supply only (shared with heme peroxidases/catalases); counted corroboration comes from a
+# peroxiredoxin / glutathione-peroxidase / thiol-peroxidase family/name OR a peroxidatic
+# cysteine/selenocysteine thiol-redox context, plus a Rhea/reviewed peroxide (H2O2 /
+# hydroperoxide) reduction reaction. The mechanism is a peroxidatic-thiol/selenol O-O
+# reduction (NO heme), so heme peroxidases/catalases, vanadium/non-heme haloperoxidases,
+# FAD-dependent NADH peroxidases, manganese catalases, and superoxide dismutases are
+# boundary-guarded.
+_PEROXIREDOXIN_FAMILY_TEXT_TOKENS = (
+    "peroxiredoxin",
+    "glutathione peroxidase",
+    "thiol peroxidase",
+    "thiol-specific antioxidant",
+    "thioredoxin peroxidase",
+    "thioredoxin-dependent peroxide reductase",
+    "thioredoxin-dependent peroxiredoxin",
+    "alkyl hydroperoxide reductase",
+    "peroxidase ahpc",
+    "ahpc",
+    "bacterioferritin comigratory protein",
+    "prxq",
+    "tryparedoxin peroxidase",
+)
+_PEROXIREDOXIN_THIOL_TOKENS = (
+    "peroxidatic cysteine",
+    "peroxidatic cys",
+    "resolving cysteine",
+    "redox-active",
+    "redox active",
+    "selenocysteine",
+    "selenenic",
+    "sulfenic",
+    "cysteine sulfenic",
+)
+_PEROXIREDOXIN_REACTION_TOKENS = (
+    "peroxide",
+    "hydroperoxide",
+    "h2o2",
+    "hydrogen peroxide",
+)
+_PEROXIREDOXIN_BOUNDARY_TOKENS = (
+    "catalase",
+    "heme peroxidase",
+    "haem peroxidase",
+    "catalase-peroxidase",
+    "ascorbate peroxidase",
+    "cytochrome c peroxidase",
+    "lignin peroxidase",
+    "manganese peroxidase",
+    "myeloperoxidase",
+    "lactoperoxidase",
+    "haloperoxidase",
+    "chloroperoxidase",
+    "bromoperoxidase",
+    "vanadium",
+    "nadh peroxidase",
+    "nadh oxidase",
+    "superoxide dismutase",
+)
 # Biotin-dependent carboxylase handles. EC 6.4.1 / 6.3.4 scopes the reviewed
 # candidate supply only; counted corroboration comes from biotin/biotinyl-Lys
 # cofactor or modified-residue evidence plus ATP/hydrogencarbonate/carboxybiotin
@@ -2423,6 +2482,24 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     non_metallo_beta_lactamase_scope_side_ec = any(
         ec and ec != "3.5.2.6" for ec in _ec_numbers(row)
     )
+    peroxiredoxin_thiol_peroxidase_family_text = in_any(
+        reactions + keywords + [protein_name] + feature_texts,
+        *_PEROXIREDOXIN_FAMILY_TEXT_TOKENS,
+    )
+    peroxiredoxin_thiol_peroxidase_thiol_context = in_any(
+        keywords + [protein_name] + feature_texts + reactions + cofactor_names,
+        *_PEROXIREDOXIN_THIOL_TOKENS,
+    )
+    peroxiredoxin_thiol_peroxidase_reaction = in_any(
+        reactions, *_PEROXIREDOXIN_REACTION_TOKENS
+    )
+    peroxiredoxin_thiol_peroxidase_boundary_signal = in_any(
+        keywords + [protein_name] + feature_texts + reactions,
+        *_PEROXIREDOXIN_BOUNDARY_TOKENS,
+    )
+    non_peroxiredoxin_thiol_peroxidase_scope_side_ec = any(
+        ec and not ec.startswith("1.11.1") for ec in _ec_numbers(row)
+    )
     non_6_3_side_ec = any(ec and not ec.startswith("6.3") for ec in _ec_numbers(row))
     non_biotin_carboxylase_scope_side_ec = any(
         ec and not (ec.startswith("6.4.1") or ec.startswith("6.3.4"))
@@ -2727,6 +2804,11 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "metallo_beta_lactamase_betalactam_reaction": metallo_beta_lactamase_betalactam_reaction,
             "metallo_beta_lactamase_boundary_signal": metallo_beta_lactamase_boundary_signal,
             "non_metallo_beta_lactamase_scope_side_ec": non_metallo_beta_lactamase_scope_side_ec,
+            "peroxiredoxin_thiol_peroxidase_family_text": peroxiredoxin_thiol_peroxidase_family_text,
+            "peroxiredoxin_thiol_peroxidase_thiol_context": peroxiredoxin_thiol_peroxidase_thiol_context,
+            "peroxiredoxin_thiol_peroxidase_reaction": peroxiredoxin_thiol_peroxidase_reaction,
+            "peroxiredoxin_thiol_peroxidase_boundary_signal": peroxiredoxin_thiol_peroxidase_boundary_signal,
+            "non_peroxiredoxin_thiol_peroxidase_scope_side_ec": non_peroxiredoxin_thiol_peroxidase_scope_side_ec,
             "non_serine_beta_lactamase_scope_side_ec": non_serine_beta_lactamase_scope_side_ec,
             "non_thdp_scope_side_ec": non_thdp_scope_side_ec,
             "schiff_class_i_boundary_signal": schiff_class_i_boundary_signal,
@@ -2951,6 +3033,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("alpha_beta_hydrolase_family_text")
         or evidence.get("serine_beta_lactamase_family_text")
         or evidence.get("metallo_beta_lactamase_family_text")
+        or evidence.get("peroxiredoxin_thiol_peroxidase_family_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -3033,6 +3116,7 @@ _ALDEHYDE_DEHYDROGENASE_EC = ("1.2.1",)  # ALDH; EC scope only
 _ALPHA_BETA_HYDROLASE_ESTERASE_LIPASE_EC = ("3.1.1",)  # esterase/lipase; EC scope only
 _SERINE_BETA_LACTAMASE_EC = ("3.5.2.6",)  # serine beta-lactamase; EC scope only
 _METALLO_BETA_LACTAMASE_EC = ("3.5.2.6",)  # metallo beta-lactamase; EC scope only (shared)
+_PEROXIREDOXIN_THIOL_PEROXIDASE_EC = ("1.11.1",)  # peroxiredoxin/thiol peroxidase; EC scope only (shared with heme peroxidases)
 _METAL_INDEPENDENT_PHOSPHODIESTERASE_EC = (
     "3.1.4",
     "4.6.1",
@@ -3050,7 +3134,22 @@ _PFKB_RIBOKINASE_FAMILY_EC = ("2.7.1",)  # PfkB/ribokinase family; EC scope only
 DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]], bool]], ...] = (
     (
         "heme_peroxidase_oxidase",
-        lambda c, row: c["heme"] and _ec_has_prefix(row, ("1.11.1",)),
+        lambda c, row: c["heme"]
+        and _ec_has_prefix(row, ("1.11.1",))
+        and not c["peroxiredoxin_thiol_peroxidase_family_text"],
+    ),
+    (
+        "peroxiredoxin_thiol_peroxidase",
+        lambda c, row: _ec_has_prefix(row, _PEROXIREDOXIN_THIOL_PEROXIDASE_EC)
+        and (
+            c["peroxiredoxin_thiol_peroxidase_family_text"]
+            or c["peroxiredoxin_thiol_peroxidase_thiol_context"]
+        )
+        and c["peroxiredoxin_thiol_peroxidase_reaction"]
+        and not c["heme"]
+        and not c["flavin"]
+        and not c["peroxiredoxin_thiol_peroxidase_boundary_signal"]
+        and not c["non_peroxiredoxin_thiol_peroxidase_scope_side_ec"],
     ),
     (
         "metallopeptidase",
@@ -3765,6 +3864,16 @@ def _synthesize_cofactor_provenance(
         records = [
             {
                 "name": "Zn2+ metallo-beta-lactamase ring-hydrolysis context",
+                "cross_reference": {"id": None},
+            }
+        ]
+    elif fingerprint == "peroxiredoxin_thiol_peroxidase" and (
+        evidence.get("peroxiredoxin_thiol_peroxidase_thiol_context")
+        or evidence.get("peroxiredoxin_thiol_peroxidase_reaction")
+    ):
+        records = [
+            {
+                "name": "peroxidatic cysteine/selenocysteine thiol-redox peroxide-reduction context",
                 "cross_reference": {"id": None},
             }
         ]

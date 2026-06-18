@@ -9545,6 +9545,7 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 "nad_p_dehydrogenase",
                 "non_heme_iron_2og_dioxygenase",
                 "nucleoside_diphosphate_kinase",
+                "peroxiredoxin_thiol_peroxidase",
                 "pfka_phosphofructokinase",
                 "pfkb_ribokinase_family",
                 "protein_kinase_ser_thr_tyr",

@@ -432,6 +432,89 @@ class DisambiguateRowTests(unittest.TestCase):
         d = disambiguate_row(row)
         self.assertEqual(d.get("fingerprint_id"), "metallo_amidohydrolase_deaminase")
 
+    def test_peroxiredoxin_gets_its_own_fingerprint_not_heme_peroxidase(self) -> None:
+        row = _row(ec=["1.11.1.24"])
+        row["protein_name"] = "Peroxiredoxin-2"
+        row["keywords"] = ["Antioxidant", "Redox-active center"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:PRX001",
+                "reaction": (
+                    "[thioredoxin]-dithiol + a hydroperoxide = "
+                    "[thioredoxin]-disulfide + an alcohol + H2O"
+                ),
+                "ec_number": "1.11.1.24",
+            }
+        ]
+        d = disambiguate_row(row)
+        # A peroxidatic-thiol family name + peroxide-reduction reaction at EC 1.11.1
+        # (no heme) routes to the dedicated peroxiredoxin_thiol_peroxidase fingerprint,
+        # not heme_peroxidase_oxidase (which requires heme).
+        self.assertEqual(d.get("fingerprint_id"), "peroxiredoxin_thiol_peroxidase")
+
+    def test_selenocysteine_glutathione_peroxidase_routes_to_peroxiredoxin(self) -> None:
+        row = _row(ec=["1.11.1.9"])
+        row["protein_name"] = "Glutathione peroxidase 1"
+        row["keywords"] = ["Selenocysteine", "Antioxidant"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:GPX001",
+                "reaction": "2 glutathione + H2O2 = glutathione disulfide + 2 H2O",
+                "ec_number": "1.11.1.9",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d.get("fingerprint_id"), "peroxiredoxin_thiol_peroxidase")
+
+    def test_heme_peroxidase_not_pulled_into_peroxiredoxin(self) -> None:
+        # A heme peroxidase / catalase must stay heme_peroxidase_oxidase -- it has heme
+        # and no peroxidatic-thiol family text, so the peroxiredoxin rule cannot fire.
+        row = _row(ec=["1.11.1.6"], cofactors=["heme b"])
+        row["protein_name"] = "Catalase"
+        row["keywords"] = ["Heme", "Hydrogen peroxide"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:CAT001",
+                "reaction": "2 H2O2 = O2 + 2 H2O",
+                "ec_number": "1.11.1.6",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d.get("fingerprint_id"), "heme_peroxidase_oxidase")
+        self.assertNotEqual(d.get("fingerprint_id"), "peroxiredoxin_thiol_peroxidase")
+
+    def test_flavin_nadh_peroxidase_not_pulled_into_peroxiredoxin(self) -> None:
+        # FAD-dependent NADH peroxidase (EC 1.11.1.1) is a flavoprotein, not a
+        # peroxidatic-thiol peroxidase: flavin-excluded, so it is held.
+        row = _row(ec=["1.11.1.1"], cofactors=["FAD"])
+        row["protein_name"] = "NADH peroxidase"
+        row["keywords"] = ["FAD", "Flavoprotein"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:NPX001",
+                "reaction": "NADH + H+ + H2O2 = NAD+ + 2 H2O",
+                "ec_number": "1.11.1.1",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertNotEqual(d.get("fingerprint_id"), "peroxiredoxin_thiol_peroxidase")
+
+    def test_multi_ec_glutathione_peroxidase_moonlighter_is_held(self) -> None:
+        # A moonlighting multi-EC entry (e.g. glutathione-peroxidase-active ceruloplasmin
+        # carrying a copper-oxidase EC) trips the side-EC guard and is held, not labelled.
+        row = _row(ec=["1.11.1.9", "1.16.3.1"], cofactors=["copper"])
+        row["protein_name"] = "Glutathione peroxidase ceruloplasmin"
+        row["keywords"] = ["Copper", "Antioxidant"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:CERU001",
+                "reaction": "2 glutathione + H2O2 = glutathione disulfide + 2 H2O",
+                "ec_number": "1.11.1.9",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertNotEqual(d.get("fingerprint_id"), "peroxiredoxin_thiol_peroxidase")
+
     def test_glycoside_hydrolase_requires_hydrolysis_and_active_site_handle(self) -> None:
         row = _row(ec=["3.2.1.4"])
         row["protein_name"] = "Endoglucanase"
