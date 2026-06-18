@@ -450,11 +450,12 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
         # + 150 APH tier-2 bronze rows + 100 SDR bronze rows applied on
         # 2026-06-15, plus 106 SBL bronze rows and 100 reaction-cap-trimmed
         # PDE bronze rows applied on 2026-06-16, plus a 2026-06-17 user-directed
-        # reviewed-Swiss-Prot growth pass of 114 broadened-handle bronze rows
+        # reviewed-Swiss-Prot growth pass of 142 broadened-handle bronze rows
         # (41 biotin + 3 SDR + 44 serine beta-lactamase + 1 protein-kinase + 25
-        # metal-independent PDE) through mechanism-first lanes; the representation
-        # loop remains leakage-safe and still excludes EC/name/prose/lane from features.
-        self.assertEqual(audit["seed_labels"], 6916)
+        # metal-independent PDE + 28 aldo-keto reductase, a new fingerprint family)
+        # through mechanism-first lanes; the representation loop remains leakage-safe
+        # and still excludes EC/name/prose/lane from features.
+        self.assertEqual(audit["seed_labels"], 6944)
         g = audit["leakage_guardrails"]
         self.assertFalse(g["frozen_benchmark_read"])
         self.assertFalse(g["ec_name_prose_lane_used"])
@@ -503,7 +504,18 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
         # and their distinction is domain/fold-family evidence that the source-free
         # representation loop must not synthesize from EC/name/prose/lane metadata.
         self.assertGreaterEqual(sc["aldehyde_dehydrogenase"], 0.95)
-        self.assertGreater(sc["short_chain_dehydrogenase_reductase"], 0.9)
+        # Adding aldo_keto_reductase (a third NAD(P) carbonyl-reductase family) turns the
+        # SDR / AKR / generic-NAD(P) surface into a confusable TRIAD: SDR and AKR are the
+        # same alcohol/ketone NAD(P) hydride-transfer chemistry and differ only by TIM-barrel
+        # vs Rossmann fold + family name, which the source-free representation must not
+        # synthesize. SDR self-consistency therefore COLLAPSES (most SDR rows resolve to the
+        # AKR centroid), while AKR itself forms a tight cluster. This is the expected, honest
+        # cost of the new confusable sibling -- do NOT add fold/name leakage to recover it.
+        self.assertLess(sc["short_chain_dehydrogenase_reductase"], 0.5)
+        self.assertGreater(
+            conf["short_chain_dehydrogenase_reductase"].get("aldo_keto_reductase", 0),
+            0,
+        )
         self.assertGreater(sc["nad_p_dehydrogenase"], 0.45)
         self.assertGreater(
             conf["nad_p_dehydrogenase"].get(

@@ -201,8 +201,9 @@ class SelfAuditRealRegistryTests(unittest.TestCase):
         # metal-independent PDE tier-2 batch applied on 2026-06-16 through
         # mechanism-first lanes, plus a 2026-06-17 user-directed reviewed-Swiss-Prot
         # growth pass: 41 biotin + 3 SDR + 44 serine beta-lactamase + 1
-        # protein-kinase + 25 metal-independent PDE = 114 broadened-handle bronze rows.
-        self.assertEqual(audit["expansion_rows"], 8140)
+        # protein-kinase + 25 metal-independent PDE + 28 aldo-keto reductase
+        # (a new fingerprint family) = 142 broadened-handle bronze rows.
+        self.assertEqual(audit["expansion_rows"], 8168)
         # some redundancy exists and is bounded
         self.assertGreater(audit["would_not_readmit"], 0)
         self.assertLess(audit["would_not_readmit_fraction"], 1.0)

@@ -7291,7 +7291,7 @@ class CliTests(unittest.TestCase):
             # the readiness packet
             # counts the live positive fingerprint universe, not the historical
             # 15-fingerprint tranche.
-            self.assertEqual(packet["metadata"]["current_positive_fingerprint_count"], 46)
+            self.assertEqual(packet["metadata"]["current_positive_fingerprint_count"], 47)
             self.assertEqual(packet["metadata"]["epk_boundary_row_count"], 3)
             self.assertEqual(packet["metadata"]["countable_label_candidate_count"], 0)
             self.assertIn(

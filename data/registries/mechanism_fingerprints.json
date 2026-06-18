@@ -3596,5 +3596,87 @@
       "reconstruction_path": "Path A sequence->SDR family plus NAD(P) reaction/active-site channel, or canonical NAD(P)/substrate graft in an SDR Rossmann pocket (Path B)",
       "silver_reachability": "moderate; reviewed family and NAD(P) reaction annotations are common, but stereochemical hydride-transfer geometry needs explicit reconstruction"
     }
+  },
+  {
+    "id": "aldo_keto_reductase",
+    "name": "Aldo-keto reductase",
+    "enzyme_space": [
+      "aldo-keto reductase (AKR) superfamily",
+      "NADPH-dependent carbonyl/aldo-keto reductases",
+      "aldose / aldehyde / ketosteroid / xenobiotic-carbonyl reductases"
+    ],
+    "active_site_signature": [
+      {
+        "role": "tim_barrel_nadph_binder",
+        "residue": "extended NADP(H) cleft at the C-terminal face of a (beta/alpha)8 TIM barrel",
+        "constraints": [
+          "binds NADP(H) in an EXTENDED (non-Rossmann) conformation so the nicotinamide C4 pro-R hydride faces the substrate carbonyl",
+          "no Rossmann GxGxxG dinucleotide-binding fold (this separates AKR from SDR/MDR)"
+        ]
+      },
+      {
+        "role": "tyr_lys_his_asp_catalytic_tetrad",
+        "residue": "Tyr-Lys-His-Asp catalytic tetrad",
+        "constraints": [
+          "Tyr is the general acid/base that protonates the carbonyl oxygen; Lys lowers the Tyr pKa and is salt-bridged to Asp; His orients the substrate carbonyl",
+          "His + Asp presence (not a Ser) distinguishes the AKR tetrad from the SDR Ser-Tyr-Lys/Asn triad"
+        ]
+      },
+      {
+        "role": "substrate_carbonyl_positioner",
+        "residue": "family-specific apolar/oxyanion pocket loops",
+        "constraints": [
+          "positions an aldehyde, ketone, ketosteroid, sugar-aldose, or xenobiotic carbonyl opposite the nicotinamide ring for hydride transfer"
+        ]
+      }
+    ],
+    "cofactors": [],
+    "reaction_center": {
+      "bond_changes": [
+        "substrate carbonyl C=O reduced to C-OH by hydride transfer from NADPH nicotinamide C4",
+        "aldehyde/ketone -> primary/secondary alcohol (occasionally C=C reduction for AKR oxidoreductases)"
+      ],
+      "chemical_operation": "NADPH-dependent AKR carbonyl-to-alcohol hydride transfer"
+    },
+    "substrate_constraints": [
+      "EC 1.1.1 scope present but never counted as a corroborator",
+      "aldo-keto reductase / aldose reductase / AKR family or name context present",
+      "NADP(H) participant, keyword, or binding context present",
+      "Rhea or reviewed catalytic activity text for NADP-coupled carbonyl/alcohol redox present",
+      "no SDR/Rossmann, MDR/zinc alcohol dehydrogenase, ALDH, flavin, molybdopterin, PQQ, oxygenase, oxidase, side-EC, EC-only, generic NAD(P), or multi-fingerprint boundary signal"
+    ],
+    "evidence_features": [
+      "aldo-keto reductase / aldose reductase / AKR family, name, keyword, or domain text",
+      "NADP(H) Rhea participant, keyword, cofactor, or binding-site context",
+      "reviewed catalytic activity text showing carbonyl/alcohol NADP-coupled reduction",
+      "annotated Tyr-Lys-His-Asp catalytic-tetrad or NADP-binding-site context where available",
+      "EC 1.1.1 scope only, never counted as a corroborator"
+    ],
+    "counterevidence_features": [
+      "short-chain dehydrogenase/reductase / SDR family or Rossmann Ser-Tyr-Lys context",
+      "medium-chain zinc alcohol dehydrogenase / MDR family or catalytic zinc context",
+      "aldehyde dehydrogenase / ALDH Cys-Glu aldehyde oxidation context",
+      "flavin, molybdopterin, PQQ, copper, heme, oxygenase, or oxidase redox context",
+      "EC-only evidence with no AKR family and NADP redox corroboration",
+      "multi-fingerprint signal where a generic NAD(P), SDR, ALDH, flavin, metal, oxygenase, or hydrolase rule independently fires"
+    ],
+    "uncertainty_axes": [
+      "NADP versus rare NAD preference",
+      "substrate class (aldose, ketosteroid, prostaglandin, xenobiotic carbonyl) and stereospecificity",
+      "reduction versus rare oxidation direction",
+      "apo versus holo nicotinamide/substrate geometry"
+    ],
+    "seed_examples": [
+      "aldose reductase (AKR1B)",
+      "aldo-keto reductase family 1 member C (AKR1C hydroxysteroid dehydrogenase)",
+      "aflatoxin aldehyde reductase (AKR7)",
+      "2,5-diketo-D-gluconic acid reductase (AKR)"
+    ],
+    "deploy_missing_active_site_context": {
+      "type": "nadp_akr_tyr_lys_his_asp_tim_barrel_hydride_transfer_context",
+      "detail": "NADP cosubstrate, substrate carbonyl, extended nicotinamide hydride-transfer pose, and Tyr-Lys-His-Asp proton relay state are absent or incomplete in apo predicted structures",
+      "reconstruction_path": "Path A sequence->AKR family plus NADP reaction/active-site channel, or canonical NADP/substrate graft in an AKR TIM-barrel pocket (Path B)",
+      "silver_reachability": "moderate; reviewed AKR family and NADP reaction annotations are common, but extended-conformation hydride-transfer geometry needs explicit reconstruction"
+    }
   }
 ]

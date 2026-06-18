@@ -13,3 +13,4 @@ data/cache/
 
 # Python editable-install metadata
 *.egg-info/
+tests_full2.log

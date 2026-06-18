@@ -277,7 +277,7 @@ class DisambiguateRowTests(unittest.TestCase):
         d = disambiguate_row(row)
         self.assertEqual(d["decision"], "hold")
 
-    def test_short_chain_dehydrogenase_reductase_akr_boundary_not_forced(self) -> None:
+    def test_aldo_keto_reductase_gets_its_own_fingerprint_not_sdr_or_generic_nad_p(self) -> None:
         row = _row(ec=["1.1.1.21"])
         row["protein_name"] = "Aldo-keto reductase"
         row["keywords"] = ["NADP"]
@@ -290,8 +290,34 @@ class DisambiguateRowTests(unittest.TestCase):
         ]
 
         d = disambiguate_row(row)
+        # AKR family text + NADP cosubstrate + carbonyl-reduction reaction now
+        # route to the dedicated aldo_keto_reductase fingerprint, not the SDR
+        # family or the generic NAD(P) dehydrogenase bucket.
+        self.assertEqual(d.get("fingerprint_id"), "aldo_keto_reductase")
         self.assertNotEqual(d.get("fingerprint_id"), "short_chain_dehydrogenase_reductase")
-        self.assertEqual(d.get("fingerprint_id"), "nad_p_dehydrogenase")
+        self.assertNotEqual(d.get("fingerprint_id"), "nad_p_dehydrogenase")
+
+    def test_aldo_keto_reductase_ec_name_only_control_held(self) -> None:
+        # Name only, no NADP cosubstrate / reaction corroboration -> held.
+        row = _row(ec=["1.1.1.21"])
+        row["protein_name"] = "Aldo-keto reductase-like protein"
+        d = disambiguate_row(row)
+        self.assertEqual(d["decision"], "hold")
+
+    def test_aldo_keto_reductase_sdr_boundary_not_forced(self) -> None:
+        # An SDR-named row must not be pulled into the AKR fingerprint.
+        row = _row(ec=["1.1.1.100"])
+        row["protein_name"] = "Short-chain dehydrogenase/reductase SDR"
+        row["keywords"] = ["NADP"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:SDR009",
+                "reaction": "secondary alcohol + NADP(+) = ketone + NADPH + H(+)",
+                "ec_number": "1.1.1.100",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertNotEqual(d.get("fingerprint_id"), "aldo_keto_reductase")
 
     def test_glycoside_hydrolase_requires_hydrolysis_and_active_site_handle(self) -> None:
         row = _row(ec=["3.2.1.4"])

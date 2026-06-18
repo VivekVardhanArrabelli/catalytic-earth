@@ -26,6 +26,23 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **NEW `aldo_keto_reductase` FINGERPRINT FAMILY ADDED (46 -> 47 FP); COMBINED 8842 -> 8870 (2026-06-17, user-directed).**
+  To continue count growth past the reviewed-Swiss-Prot wall, a new mechanism fingerprint
+  `aldo_keto_reductase` was added (NADPH-dependent (beta/alpha)8 TIM-barrel carbonyl reductase,
+  Tyr-Lys-His-Asp tetrad; ontology family `akr_nicotinamide_hydride_transfer`, sibling of SDR under
+  `nicotinamide_redox`). The disambiguation engine routes AKR family/name + NADP + carbonyl-reduction
+  rows to the new fingerprint and excludes them from the capped generic NAD(P) bucket; AKR is
+  boundary-guarded vs SDR/MDR/ALDH/flavin/metal (cap 150). Its first lane fetched 141 reviewed rows
+  and applied **28** novelty-admitted bronze (0 -> 28). Expansion **8140 -> 8168**, combined **8870**;
+  frozen current702 byte-unchanged (`frozen_benchmark_registry_written: false`). Leakage closure:
+  positive universe version bumped `label_factory_v1_46fp -> label_factory_v1_47fp` with a new frozen
+  `47fp` OOS hard-negative pre-registration superseding the 46fp. Post-apply audits clean (holes none,
+  floor deficit 0, novelty admit 7707). Summary:
+  `artifacts/v3_aldo_keto_reductase_new_fingerprint_apply_summary_current702_20260617.json`. This
+  establishes the reusable add-a-family pattern (fingerprint + ontology + disambiguation rule +
+  sourcing lane + leakage re-registration); next candidates are `aminoglycoside_acetyltransferase`
+  and `metallo_beta_lactamase`. Gap to 10k: **1130**.
+
 - **CLEAN REVIEWED-SWISS-PROT GROWTH PASS; COMBINED LABELS 8728 -> 8842 (+114) (2026-06-17, user-directed).**
   Under explicit user authorization to grow the count via clean lanes, the broadened-handle
   mechanism-first family lanes were run and every novelty-admitted, cap-safe, duplicate-clean bronze

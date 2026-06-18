@@ -448,6 +448,21 @@
       ]
     },
     {
+      "id": "akr_nicotinamide_hydride_transfer",
+      "name": "Aldo-keto reductase NADPH hydride transfer",
+      "parent_id": "nicotinamide_redox",
+      "fingerprint_ids": [
+        "aldo_keto_reductase"
+      ],
+      "v2_split_note": null,
+      "family_boundary_guardrails": [
+        "Membership is decided by aldo-keto reductase / aldose reductase / AKR family or name context plus NADP(H) cosubstrate or binding context and Rhea/reviewed NADP-coupled carbonyl/alcohol reduction; EC 1.1.1 is scope only.",
+        "Do not admit short-chain dehydrogenase/reductase (SDR/Rossmann Ser-Tyr-Lys), medium-chain zinc alcohol dehydrogenase, aldehyde dehydrogenase, flavin, molybdopterin, PQQ, oxygenase, oxidase, side-EC, EC-only, or generic NAD(P) rows into this family.",
+        "Hold multi-fingerprint-signal rows rather than forcing an AKR label.",
+        "The NADP cosubstrate, substrate carbonyl, Tyr-Lys-His-Asp proton relay, and extended-conformation hydride-transfer stereochemistry are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
+    },
+    {
       "id": "glycosidic_bond_hydrolysis",
       "name": "Glycosidic bond hydrolysis chemistry",
       "parent_id": "mechanism",

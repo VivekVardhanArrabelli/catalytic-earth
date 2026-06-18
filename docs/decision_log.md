@@ -3,6 +3,39 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-17: NEW `aldo_keto_reductase` FINGERPRINT FAMILY ADDED (46 -> 47 FP) — COMBINED 8842 -> 8870
+
+Decision: under explicit user authorization to define a new fingerprint family for continued count
+growth, add `aldo_keto_reductase` as the 47th mechanism fingerprint and source its first
+reviewed-Swiss-Prot bronze tranche. The frozen current702 benchmark is not touched.
+
+Chemistry / disambiguation: AKR is the NADPH-dependent (beta/alpha)8 TIM-barrel carbonyl-reductase
+superfamily with a **Tyr-Lys-His-Asp catalytic tetrad** — distinct from the SDR Rossmann + Ser-Tyr-Lys
+triad and from the generic NAD(P) dehydrogenase bucket. It is mapped under a new ontology family
+`akr_nicotinamide_hydride_transfer` (parent `nicotinamide_redox`, sibling of SDR). The
+`external_cofactor_ec_disambiguation` engine gained AKR family/name + NADP-cosubstrate +
+carbonyl-reduction signals and an AKR rule; the `nad_p_dehydrogenase` rule now excludes AKR family
+text so AKR rows route to the dedicated fingerprint instead of the capped generic NAD(P) bucket. AKR
+is `chemistry_confusable` (cap 150), boundary-guarded against SDR/Rossmann, MDR/zinc ADH, ALDH, and
+flavin/metal/oxygenase rows.
+
+Leakage closure: adding a positive fingerprint expands the universe 46 -> 47, so
+`CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION` is bumped `label_factory_v1_46fp -> label_factory_v1_47fp`
+and a new frozen OOS hard-negative pre-registration
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_47fp_1025.json` supersedes the 46fp
+one. A NEW external hard-negative tranche must reference the 47fp universe.
+
+Measured result: the AKR lane fetched 141 reviewed rows, corroborated 28, and applied **28**
+novelty-admitted bronze (`aldo_keto_reductase` 0 -> 28 of cap 150); expansion **8140 -> 8168**,
+combined **8842 -> 8870**. Frozen current702 byte-unchanged at sha
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Post-apply audits clean
+(holes none, floor deficit 0, novelty admit 7679 -> 7707). New tests: AKR disambiguation cases, the
+AKR sourcing module test, and the 47fp leakage-closure tests. Summary:
+`artifacts/v3_aldo_keto_reductase_new_fingerprint_apply_summary_current702_20260617.json`. The
+reusable pattern (fingerprint record + ontology family + disambiguation rule + sourcing lane +
+leakage re-registration) is now established for adding further families
+(`aminoglycoside_acetyltransferase`, `metallo_beta_lactamase`, ...).
+
 ## 2026-06-17: USER-DIRECTED CLEAN REVIEWED-SWISS-PROT GROWTH PASS — COMBINED 8728 -> 8842 (+114); REVIEWED SUPPLY NOW EXHAUSTED
 
 Decision: under explicit user authorization to grow the label count via clean reviewed-Swiss-Prot

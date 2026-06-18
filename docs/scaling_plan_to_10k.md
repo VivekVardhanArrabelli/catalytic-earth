@@ -16,6 +16,20 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-17 user-directed new fingerprint family: `aldo_keto_reductase` added (46 -> 47 FP),
+combined 8842 -> 8870.** Past the reviewed-Swiss-Prot wall, the path to 10k is adding new
+mechanism-fingerprint families. `aldo_keto_reductase` (NADPH TIM-barrel carbonyl reductase,
+Tyr-Lys-His-Asp tetrad) was added with a full disambiguation rule (boundary-guarded vs SDR/MDR/ALDH),
+ontology family, sourcing lane, and a leakage re-registration (universe version
+`label_factory_v1_46fp -> _47fp`, new `47fp` OOS hard-negative pre-registration). Its first lane
+applied **28** novelty-admitted bronze (cap 150). This establishes the reusable add-a-family pattern;
+each new coherent family adds roughly its cap (up to 150) in clean rows. Reaching 10k from here
+(~1130 gap) means adding on the order of a dozen more such families (lane-factory candidates without
+fingerprints: `aldo_keto_reductase` [done], `aminoglycoside_acetyltransferase`,
+`metallo_beta_lactamase`, broad oxidoreductase EC-subclass splits) or the human-gated external
+source-transfer path. See
+`artifacts/v3_aldo_keto_reductase_new_fingerprint_apply_summary_current702_20260617.json`.
+
 **2026-06-17 user-directed clean growth pass: combined 8728 -> 8842 (+114); reviewed-Swiss-Prot now
 exhausted.** Ran the broadened-handle mechanism-first family lanes and applied every novelty-admitted,
 cap-safe, duplicate-clean bronze row: biotin +41, serine beta-lactamase +44 (cap hit), metal-independent
