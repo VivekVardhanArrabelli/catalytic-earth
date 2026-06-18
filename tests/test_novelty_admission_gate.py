@@ -203,9 +203,9 @@ class SelfAuditRealRegistryTests(unittest.TestCase):
         # growth pass: 41 biotin + 3 SDR + 44 serine beta-lactamase + 1
         # protein-kinase + 25 metal-independent PDE + 28 aldo-keto reductase
         # + 32 aminoglycoside acetyltransferase + 4 metallo-beta-lactamase
-        # + 150 peroxiredoxin/thiol-peroxidase (four new fingerprint families) =
-        # 328 broadened-handle bronze rows.
-        self.assertEqual(audit["expansion_rows"], 8354)
+        # + 150 peroxiredoxin/thiol-peroxidase + 130 PAPS-sulfotransferase (five new
+        # fingerprint families) = 458 broadened-handle bronze rows.
+        self.assertEqual(audit["expansion_rows"], 8484)
         # some redundancy exists and is bounded
         self.assertGreater(audit["would_not_readmit"], 0)
         self.assertLess(audit["would_not_readmit_fraction"], 1.0)

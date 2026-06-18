@@ -515,6 +515,46 @@ class DisambiguateRowTests(unittest.TestCase):
         d = disambiguate_row(row)
         self.assertNotEqual(d.get("fingerprint_id"), "peroxiredoxin_thiol_peroxidase")
 
+    def test_paps_sulfotransferase_routes_on_family_and_paps_reaction(self) -> None:
+        row = _row(ec=["2.8.2.1"])
+        row["protein_name"] = "Sulfotransferase 1A1"
+        row["keywords"] = ["Transferase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:SUL001",
+                "reaction": (
+                    "a phenol + 3'-phosphoadenylyl sulfate = an aryl sulfate + "
+                    "adenosine 3',5'-bisphosphate + H(+)"
+                ),
+                "ec_number": "2.8.2.1",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d.get("fingerprint_id"), "paps_sulfotransferase")
+
+    def test_sulfurtransferase_rhodanese_not_pulled_into_sulfotransferase(self) -> None:
+        # A sulfur-relay sulfurtransferase (EC 2.8.1, rhodanese) is boundary-guarded and
+        # off-scope (not 2.8.2); it must not route to paps_sulfotransferase.
+        row = _row(ec=["2.8.1.1"])
+        row["protein_name"] = "Thiosulfate sulfurtransferase"
+        row["keywords"] = ["Transferase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:RHD001",
+                "reaction": "thiosulfate + hydrogen cyanide = sulfite + thiocyanate + 2 H(+)",
+                "ec_number": "2.8.1.1",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertNotEqual(d.get("fingerprint_id"), "paps_sulfotransferase")
+
+    def test_sulfotransferase_name_without_paps_reaction_is_held(self) -> None:
+        row = _row(ec=["2.8.2.1"])
+        row["protein_name"] = "Sulfotransferase-like protein"
+        row["keywords"] = ["Transferase"]
+        d = disambiguate_row(row)
+        self.assertEqual(d.get("decision"), "hold")
+
     def test_glycoside_hydrolase_requires_hydrolysis_and_active_site_handle(self) -> None:
         row = _row(ec=["3.2.1.4"])
         row["protein_name"] = "Endoglucanase"

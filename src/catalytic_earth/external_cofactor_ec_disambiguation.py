@@ -1406,6 +1406,38 @@ _PEROXIREDOXIN_BOUNDARY_TOKENS = (
     "nadh oxidase",
     "superoxide dismutase",
 )
+# PAPS-dependent sulfotransferase handles. EC 2.8.2 scopes the candidate supply only
+# (and is NOT shared with any existing fingerprint); counted corroboration comes from a
+# sulfotransferase family/name plus a Rhea/reviewed sulfuryl-transfer reaction that names
+# the PAPS donor / PAP product (3'-phosphoadenylyl sulfate -> adenosine 3',5'-bisphosphate).
+# Sulfur-relay sulfurtransferases (rhodanese, cysteine desulfurase, EC 2.8.1), ATP
+# sulfurylase / adenylyl-sulfate enzymes, and PAPS reductase are boundary-guarded.
+_PAPS_SULFOTRANSFERASE_FAMILY_TEXT_TOKENS = (
+    "sulfotransferase",
+    "sulphotransferase",
+    "sulfokinase",
+)
+_PAPS_SULFOTRANSFERASE_REACTION_TOKENS = (
+    "phosphoadenylyl sulfate",
+    "phosphoadenosine 5'-phosphosulfate",
+    "3'-phosphoadenosine-5'-phosphosulfate",
+    "adenosine 3',5'-bisphosphate",
+    "3',5'-bisphosphate",
+)
+_PAPS_SULFOTRANSFERASE_BOUNDARY_TOKENS = (
+    "rhodanese",
+    "thiosulfate sulfurtransferase",
+    "3-mercaptopyruvate sulfurtransferase",
+    "cysteine desulfurase",
+    "sulfurtransferase",
+    "sulfur carrier",
+    "atp sulfurylase",
+    "sulfate adenylyltransferase",
+    "adenylyl-sulfate",
+    "adenylylsulfate",
+    "phosphoadenosine phosphosulfate reductase",
+    "paps reductase",
+)
 # Biotin-dependent carboxylase handles. EC 6.4.1 / 6.3.4 scopes the reviewed
 # candidate supply only; counted corroboration comes from biotin/biotinyl-Lys
 # cofactor or modified-residue evidence plus ATP/hydrogencarbonate/carboxybiotin
@@ -2500,6 +2532,20 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     non_peroxiredoxin_thiol_peroxidase_scope_side_ec = any(
         ec and not ec.startswith("1.11.1") for ec in _ec_numbers(row)
     )
+    paps_sulfotransferase_family_text = in_any(
+        keywords + [protein_name] + feature_texts,
+        *_PAPS_SULFOTRANSFERASE_FAMILY_TEXT_TOKENS,
+    )
+    paps_sulfotransferase_reaction = in_any(
+        reactions, *_PAPS_SULFOTRANSFERASE_REACTION_TOKENS
+    )
+    paps_sulfotransferase_boundary_signal = in_any(
+        keywords + [protein_name] + feature_texts + reactions,
+        *_PAPS_SULFOTRANSFERASE_BOUNDARY_TOKENS,
+    )
+    non_paps_sulfotransferase_scope_side_ec = any(
+        ec and not ec.startswith("2.8.2") for ec in _ec_numbers(row)
+    )
     non_6_3_side_ec = any(ec and not ec.startswith("6.3") for ec in _ec_numbers(row))
     non_biotin_carboxylase_scope_side_ec = any(
         ec and not (ec.startswith("6.4.1") or ec.startswith("6.3.4"))
@@ -2809,6 +2855,10 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "peroxiredoxin_thiol_peroxidase_reaction": peroxiredoxin_thiol_peroxidase_reaction,
             "peroxiredoxin_thiol_peroxidase_boundary_signal": peroxiredoxin_thiol_peroxidase_boundary_signal,
             "non_peroxiredoxin_thiol_peroxidase_scope_side_ec": non_peroxiredoxin_thiol_peroxidase_scope_side_ec,
+            "paps_sulfotransferase_family_text": paps_sulfotransferase_family_text,
+            "paps_sulfotransferase_reaction": paps_sulfotransferase_reaction,
+            "paps_sulfotransferase_boundary_signal": paps_sulfotransferase_boundary_signal,
+            "non_paps_sulfotransferase_scope_side_ec": non_paps_sulfotransferase_scope_side_ec,
             "non_serine_beta_lactamase_scope_side_ec": non_serine_beta_lactamase_scope_side_ec,
             "non_thdp_scope_side_ec": non_thdp_scope_side_ec,
             "schiff_class_i_boundary_signal": schiff_class_i_boundary_signal,
@@ -3034,6 +3084,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("serine_beta_lactamase_family_text")
         or evidence.get("metallo_beta_lactamase_family_text")
         or evidence.get("peroxiredoxin_thiol_peroxidase_family_text")
+        or evidence.get("paps_sulfotransferase_family_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -3117,6 +3168,7 @@ _ALPHA_BETA_HYDROLASE_ESTERASE_LIPASE_EC = ("3.1.1",)  # esterase/lipase; EC sco
 _SERINE_BETA_LACTAMASE_EC = ("3.5.2.6",)  # serine beta-lactamase; EC scope only
 _METALLO_BETA_LACTAMASE_EC = ("3.5.2.6",)  # metallo beta-lactamase; EC scope only (shared)
 _PEROXIREDOXIN_THIOL_PEROXIDASE_EC = ("1.11.1",)  # peroxiredoxin/thiol peroxidase; EC scope only (shared with heme peroxidases)
+_PAPS_SULFOTRANSFERASE_EC = ("2.8.2",)  # PAPS-dependent sulfotransferase; EC scope only (not shared)
 _METAL_INDEPENDENT_PHOSPHODIESTERASE_EC = (
     "3.1.4",
     "4.6.1",
@@ -3150,6 +3202,14 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         and not c["flavin"]
         and not c["peroxiredoxin_thiol_peroxidase_boundary_signal"]
         and not c["non_peroxiredoxin_thiol_peroxidase_scope_side_ec"],
+    ),
+    (
+        "paps_sulfotransferase",
+        lambda c, row: _ec_has_prefix(row, _PAPS_SULFOTRANSFERASE_EC)
+        and c["paps_sulfotransferase_family_text"]
+        and c["paps_sulfotransferase_reaction"]
+        and not c["paps_sulfotransferase_boundary_signal"]
+        and not c["non_paps_sulfotransferase_scope_side_ec"],
     ),
     (
         "metallopeptidase",
@@ -3874,6 +3934,15 @@ def _synthesize_cofactor_provenance(
         records = [
             {
                 "name": "peroxidatic cysteine/selenocysteine thiol-redox peroxide-reduction context",
+                "cross_reference": {"id": None},
+            }
+        ]
+    elif fingerprint == "paps_sulfotransferase" and evidence.get(
+        "paps_sulfotransferase_reaction"
+    ):
+        records = [
+            {
+                "name": "3'-phosphoadenylyl sulfate (PAPS) sulfuryl-transfer cosubstrate context",
                 "cross_reference": {"id": None},
             }
         ]

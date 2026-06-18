@@ -840,6 +840,21 @@
         "Hold multi-fingerprint-signal rows (including moonlighting multi-EC entries such as glutathione-peroxidase-active ceruloplasmin) rather than forcing a peroxiredoxin label.",
         "The low-pKa peroxidatic Cys/Sec, its sulfenic/selenenic-acid intermediate, the resolving Cys/thioredoxin/glutathione recycler, and the peroxide pose are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
+    },
+    {
+      "id": "paps_sulfuryl_transfer",
+      "name": "PAPS-dependent sulfuryl transfer",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "paps_sulfotransferase"
+      ],
+      "v2_split_note": null,
+      "family_boundary_guardrails": [
+        "Membership is decided by a sulfotransferase family/name plus a Rhea/reviewed sulfuryl-transfer reaction naming the PAPS donor (3'-phosphoadenylyl sulfate) or the PAP product (adenosine 3',5'-bisphosphate); EC 2.8.2 is scope only.",
+        "Do not admit sulfur-relay sulfurtransferases (rhodanese, thiosulfate/3-mercaptopyruvate sulfurtransferase, cysteine desulfurase; EC 2.8.1), ATP sulfurylase / adenylyl-sulfate enzymes, or PAPS reductase into this family.",
+        "Hold multi-fingerprint-signal rows rather than forcing a sulfotransferase label.",
+        "The bound PAPS donor, the 5'-phosphosulfate-binding loop, the catalytic His, and the acceptor pose are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
     }
   ],
   "propagation_guardrails": [

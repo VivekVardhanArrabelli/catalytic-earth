@@ -224,11 +224,11 @@ class WriteAuditRealRegistryTests(unittest.TestCase):
             # 41 biotin-dependent carboxylase + 3 SDR + 44 serine beta-lactamase
             # + 1 protein-kinase + 25 metal-independent PDE + 28 aldo-keto
             # reductase + 32 aminoglycoside acetyltransferase + 4 metallo-beta-lactamase
-            # + 150 peroxiredoxin/thiol-peroxidase (four new fingerprint families) =
-            # 328 broadened-handle bronze rows.
-            self.assertEqual(written["totals"]["combined"], 9056)
+            # + 150 peroxiredoxin/thiol-peroxidase + 130 PAPS-sulfotransferase (five new
+            # fingerprint families) = 458 broadened-handle bronze rows.
+            self.assertEqual(written["totals"]["combined"], 9186)
             self.assertEqual(written["totals"]["frozen_current702"], 702)
-            self.assertEqual(written["totals"]["expansion_bronze"], 8354)
+            self.assertEqual(written["totals"]["expansion_bronze"], 8484)
             # the real registries must be byte-identical after the audit
             self.assertEqual(FROZEN_PATH.read_bytes(), frozen_before)
             self.assertEqual(EXPANSION_PATH.read_bytes(), expansion_before)

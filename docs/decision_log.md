@@ -3,6 +3,32 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-18: NEW `paps_sulfotransferase` FINGERPRINT FAMILY ADDED (50 -> 51 FP) — COMBINED 9186 (user-directed "continue to 10k")
+
+Decision: fifth new family, continuing the user directive to grow combined labels to 10k. Add
+`paps_sulfotransferase` (PAPS-dependent sulfuryl transfer, EC 2.8.2) as the 51st fingerprint and
+source its first reviewed-Swiss-Prot bronze tranche. Frozen current702 untouched.
+
+Chemistry / disambiguation: sulfuryl-group (SO3) transfer from 3'-phosphoadenylyl sulfate (PAPS) to a
+hydroxyl/amine acceptor, producing the sulfate/sulfamate ester + adenosine 3',5'-bisphosphate (PAP);
+catalytic His and a 5'-phosphosulfate-binding loop. EC 2.8.2 is NOT shared with any existing
+fingerprint (clean, uncovered). The engine routes EC 2.8.2 + sulfotransferase family/name + a Rhea
+reaction naming the PAPS donor or PAP product; sulfur-relay sulfurtransferases (rhodanese / cysteine
+desulfurase, EC 2.8.1), ATP sulfurylase / adenylyl-sulfate enzymes, and PAPS reductase are
+boundary-guarded; side-EC moonlighters held; cap 250 (clean). New ontology family
+`paps_sulfuryl_transfer` (parent `mechanism`).
+
+Leakage closure: universe 50 -> 51, `label_factory_v1_50fp -> _51fp`, new frozen `51fp`
+pre-registration supersedes the 50fp; `..._PREREGISTRATION_51FP_ARTIFACT` added.
+
+Measured result: lane fetched 237, corroborated 140, applied **130** novelty-admitted bronze (0 dup);
+expansion 8354 -> 8484, combined **9056 -> 9186** (+130). Frozen current702 byte-unchanged. Audits
+clean (holes none, floor deficit 0, novelty admit 8023, over-cap only `metal_dependent_hydrolase`).
+Representation loop: paps_sulfotransferase is well-separated (sc **0.931**, distinct PAPS reaction
+center); global re-clustering nudged peroxiredoxin 0.833 -> 0.713 and overall LOO **0.709 -> 0.701**
+(still above the 0.70 floor; floor not lowered, no fold/name leakage). Gap to 10k: **814**.
+Summary: `artifacts/v3_paps_sulfotransferase_new_fingerprint_apply_summary_current702_20260618.json`.
+
 ## 2026-06-18: NEW `peroxiredoxin_thiol_peroxidase` FINGERPRINT FAMILY ADDED (49 -> 50 FP) — COMBINED 8906 -> 9056
 
 Decision: fourth new family in the user-authorized growth pass, and the FIRST broad-oxidoreductase

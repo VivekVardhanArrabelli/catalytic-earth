@@ -3922,5 +3922,85 @@
       "reconstruction_path": "Path A sequence->Prx/GPx family plus peroxide reaction/active-site channel, or canonical peroxidatic-thiol/selenol graft in a thioredoxin fold (Path B)",
       "silver_reachability": "moderate; reviewed Prx/GPx family and peroxide-reduction annotations are common, but the peroxidatic-thiol sulfenic-acid catalytic geometry needs explicit reconstruction"
     }
+  },
+  {
+    "id": "paps_sulfotransferase",
+    "name": "PAPS-dependent sulfotransferase",
+    "enzyme_space": [
+      "cytosolic sulfotransferases (SULT; aryl/phenol, estrogen, hydroxysteroid)",
+      "membrane/Golgi carbohydrate, heparan-sulfate, chondroitin, and tyrosylprotein sulfotransferases",
+      "amine N-sulfotransferases and other EC 2.8.2 PAPS-dependent sulfuryl-transfer enzymes"
+    ],
+    "active_site_signature": [
+      {
+        "role": "paps_5_phosphosulfate_binding_loop",
+        "residue": "5'-phosphosulfate-binding (PSB) loop coordinating the PAPS sulfuryl donor",
+        "constraints": [
+          "binds the 3'-phosphoadenylyl sulfate (PAPS) donor and positions the transferable sulfuryl group",
+          "presence of the PAPS donor / PAP product reaction defines the family"
+        ]
+      },
+      {
+        "role": "catalytic_base_histidine",
+        "residue": "conserved active-site His (and Lys) that deprotonates the acceptor hydroxyl/amine",
+        "constraints": [
+          "a catalytic His activates the acceptor nucleophile for in-line attack on the PAPS sulfur"
+        ]
+      },
+      {
+        "role": "acceptor_pocket",
+        "residue": "variable acceptor-substrate pocket over the PAPS site",
+        "constraints": [
+          "binds the hydroxyl/amine acceptor (phenol, alcohol, amine, carbohydrate, tyrosine) receiving the sulfuryl group"
+        ]
+      }
+    ],
+    "cofactors": [
+      "none (3'-phosphoadenylyl sulfate / PAPS is the dissociable sulfuryl-donor cosubstrate, not a bound cofactor)"
+    ],
+    "reaction_center": {
+      "bond_changes": [
+        "sulfuryl-group (SO3) transfer from PAPS to an acceptor hydroxyl/amine, forming a sulfate (or sulfamate) ester",
+        "3'-phosphoadenylyl sulfate + R-OH -> adenosine 3',5'-bisphosphate + R-O-SO3- + H+"
+      ],
+      "chemical_operation": "PAPS-dependent sulfuryl transfer (sulfation)"
+    },
+    "substrate_constraints": [
+      "EC 2.8.2 scope present but never counted as a corroborator",
+      "sulfotransferase family or name context present",
+      "Rhea or reviewed catalytic activity text naming the PAPS donor (3'-phosphoadenylyl sulfate) or the PAP product (adenosine 3',5'-bisphosphate) present",
+      "no sulfur-relay sulfurtransferase (rhodanese / cysteine desulfurase / EC 2.8.1), no ATP sulfurylase / adenylyl-sulfate enzyme, no PAPS reductase, no EC-only or multi-fingerprint signal"
+    ],
+    "evidence_features": [
+      "sulfotransferase family, name, or keyword text",
+      "reviewed catalytic activity text naming the PAPS sulfuryl donor or the adenosine 3',5'-bisphosphate product",
+      "annotated 5'-phosphosulfate-binding loop / catalytic His active-site context where available",
+      "EC 2.8.2 scope only, never counted as a corroborator"
+    ],
+    "counterevidence_features": [
+      "sulfur-relay sulfurtransferase (rhodanese, thiosulfate/3-mercaptopyruvate sulfurtransferase, cysteine desulfurase; EC 2.8.1) context",
+      "ATP sulfurylase / sulfate adenylyltransferase / adenylyl-sulfate kinase context",
+      "phosphoadenosine-phosphosulfate (PAPS) reductase context",
+      "EC-only evidence with no sulfotransferase family and PAPS reaction corroboration",
+      "multi-fingerprint signal where another rule independently fires"
+    ],
+    "uncertainty_axes": [
+      "cytosolic SULT versus membrane/Golgi carbohydrate sulfotransferase fold",
+      "O- versus N- versus tyrosyl-protein sulfation acceptor",
+      "PAPS-bound versus apo versus PAP-product state",
+      "acceptor-substrate specificity within a SULT family"
+    ],
+    "seed_examples": [
+      "Sulfotransferase 1A1 (human SULT1A1; aryl/phenol)",
+      "Estrogen sulfotransferase (SULT1E1)",
+      "Heparan sulfate 2-O-sulfotransferase",
+      "Tyrosylprotein sulfotransferase 1 (TPST1)"
+    ],
+    "deploy_missing_active_site_context": {
+      "type": "paps_5_phosphosulfate_loop_his_sulfuryl_transfer_context",
+      "detail": "the bound PAPS donor, the 5'-phosphosulfate-binding loop, the catalytic His, and the acceptor pose are absent or incomplete in apo predicted structures",
+      "reconstruction_path": "Path A sequence->sulfotransferase family plus PAPS reaction/active-site channel, or canonical PAPS/PAP graft in a sulfotransferase fold (Path B)",
+      "silver_reachability": "moderate; reviewed sulfotransferase family and PAPS reaction annotations are common, but the bound-PAPS sulfuryl-transfer geometry needs explicit reconstruction"
+    }
   }
 ]

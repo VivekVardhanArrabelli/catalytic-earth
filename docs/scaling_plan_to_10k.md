@@ -16,6 +16,16 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-18 user-directed "continue to 10k" — new fingerprint family: `paps_sulfotransferase`
+added (50 -> 51 FP), combined 9056 -> 9186.** PAPS-dependent sulfuryl transfer (EC 2.8.2; cytosolic
+SULTs, carbohydrate / heparan-sulfate / tyrosylprotein sulfotransferases). EC 2.8.2 is uncovered (not
+shared); distinct PAPS cosubstrate. Full disambiguation (sulfotransferase family + PAPS-donor/PAP
+reaction; rhodanese/desulfurase/ATP-sulfurylase/PAPS-reductase guarded), ontology
+`paps_sulfuryl_transfer`, sourcing lane, leakage re-registration (`_50fp -> _51fp`), lane-factory
+wiring. First lane applied **130** (237 fetched, 140 corroborated, cap 250). Well-separated (sc 0.931);
+overall LOO 0.709 -> 0.701 (> 0.70 floor). Gap to 10k: **814**. See
+`artifacts/v3_paps_sulfotransferase_new_fingerprint_apply_summary_current702_20260618.json`.
+
 **2026-06-18 user-directed new fingerprint family: `peroxiredoxin_thiol_peroxidase` added
 (49 -> 50 FP), combined 8906 -> 9056.** Fourth application of the add-a-family pattern, and the FIRST
 broad-oxidoreductase EC-subclass split: the thiol/selenol (NON-heme) peroxidase family —

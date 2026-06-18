@@ -26,6 +26,22 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **NEW `paps_sulfotransferase` FINGERPRINT FAMILY ADDED (50 -> 51 FP); COMBINED 9056 -> 9186 (2026-06-18, user-directed "continue to 10k").**
+  Fifth new family: `paps_sulfotransferase` -- PAPS-dependent sulfuryl transfer (EC 2.8.2; cytosolic
+  SULTs, carbohydrate / heparan-sulfate / tyrosylprotein sulfotransferases). Sulfuryl (SO3) transfer
+  from 3'-phosphoadenylyl sulfate (PAPS) to a hydroxyl/amine acceptor -> sulfate ester + adenosine
+  3',5'-bisphosphate (PAP); catalytic His + 5'-phosphosulfate-binding loop. EC 2.8.2 is uncovered (not
+  shared with any existing fingerprint); distinct PAPS cosubstrate. Routes EC 2.8.2 + sulfotransferase
+  family + PAPS-donor/PAP reaction; rhodanese/cysteine-desulfurase (EC 2.8.1), ATP sulfurylase /
+  adenylyl-sulfate, and PAPS reductase boundary-guarded; cap 250 (clean). Ontology family
+  `paps_sulfuryl_transfer` (parent `mechanism`). First lane applied **130** novelty-admitted bronze
+  (237 fetched, 140 corroborated). Expansion 8354 -> 8484, combined **9186**; frozen current702
+  byte-unchanged. Leakage closure: universe `_50fp -> _51fp`, new frozen `51fp` pre-registration.
+  Representation loop: paps_sulfotransferase well-separated (sc 0.931); peroxiredoxin 0.833 -> 0.713;
+  overall LOO 0.709 -> 0.701 (> 0.70 floor, not lowered). Audits clean. Summary:
+  `artifacts/v3_paps_sulfotransferase_new_fingerprint_apply_summary_current702_20260618.json`. Gap to
+  10k: **814**.
+
 - **NEW `peroxiredoxin_thiol_peroxidase` FINGERPRINT FAMILY ADDED (49 -> 50 FP); COMBINED 8906 -> 9056 (2026-06-18, user-directed).**
   Fourth new family, and the FIRST broad-oxidoreductase EC-subclass split the recon called for:
   `peroxiredoxin_thiol_peroxidase` -- the thiol/selenol (NON-heme) peroxidase mechanism (peroxiredoxins,

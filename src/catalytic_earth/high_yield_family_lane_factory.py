@@ -401,6 +401,39 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         ),
     ),
     _spec(
+        family_id="paps_sulfotransferase",
+        display_name="PAPS-dependent sulfotransferase",
+        scope_query="(reviewed:true) AND (ec:2.8.2.*)",
+        corroborator_query=(
+            "(reviewed:true) AND (ec:2.8.2.*) AND "
+            "((protein_name:sulfotransferase) OR (protein_name:sulphotransferase))"
+        ),
+        required_non_ec_corroborators=(
+            "sulfotransferase family/name handle",
+            "Rhea sulfuryl-transfer reaction naming the PAPS donor or PAP product",
+            "5'-phosphosulfate-binding loop / catalytic His active-site context where available",
+        ),
+        disambiguation_holds=(
+            "sulfur-relay sulfurtransferase (rhodanese / cysteine desulfurase, EC 2.8.1) rows",
+            "ATP sulfurylase / adenylyl-sulfate enzyme rows",
+            "PAPS reductase rows",
+            "EC-only rows without a PAPS reaction",
+        ),
+        cap_ceiling=DEFAULT_CLEAN_CAP,
+        chemistry_confusable=False,
+        novelty_keep_factor=0.6,
+        existing_fingerprint_id="paps_sulfotransferase",
+        current_runner="scripts/source_paps_sulfotransferase_family.py",
+        oos_preregistration_required=False,
+        source_wall_rule_status="implemented_new_fingerprint_runner",
+        rationale_template=(
+            "Coherent uncovered EC 2.8.2 PAPS-dependent sulfuryl-transfer family (cytosolic "
+            "SULTs, carbohydrate / heparan-sulfate / tyrosylprotein sulfotransferases); the "
+            "dedicated paps_sulfotransferase fingerprint and its disambiguation rule are "
+            "implemented (2026-06-18). Distinct PAPS cosubstrate; clean (cap 250)."
+        ),
+    ),
+    _spec(
         family_id="aldo_keto_reductase",
         display_name="Aldo-keto reductase",
         scope_query="(reviewed:true) AND (ec:1.1.1.*)",
