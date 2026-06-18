@@ -601,6 +601,56 @@ class DisambiguateRowTests(unittest.TestCase):
         d = disambiguate_row(row)
         self.assertNotEqual(d.get("fingerprint_id"), "glutathione_s_transferase")
 
+    def test_aminoacyl_trna_synthetase_routes_on_family_and_aminoacylation(self) -> None:
+        row = _row(ec=["6.1.1.3"])
+        row["protein_name"] = "Threonine--tRNA ligase"
+        row["keywords"] = ["Ligase", "Aminoacyl-tRNA synthetase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:AARS001",
+                "reaction": (
+                    "tRNA(Thr) + L-threonine + ATP = L-threonyl-tRNA(Thr) + AMP + "
+                    "diphosphate + H(+)"
+                ),
+                "ec_number": "6.1.1.3",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d.get("fingerprint_id"), "aminoacyl_trna_synthetase")
+
+    def test_atp_amide_ligase_not_pulled_into_aars(self) -> None:
+        # Glutamine synthetase (EC 6.3.1.2) shares the ATP-adenylation step but is off-scope
+        # for the aaRS EC 6.1.1; it must route to the generic atp_amide_ligase, not aaRS.
+        row = _row(ec=["6.3.1.2"])
+        row["protein_name"] = "Glutamine synthetase"
+        row["keywords"] = ["Ligase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:GLN001",
+                "reaction": "L-glutamate + NH4(+) + ATP = L-glutamine + ADP + phosphate + H(+)",
+                "ec_number": "6.3.1.2",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertNotEqual(d.get("fingerprint_id"), "aminoacyl_trna_synthetase")
+
+    def test_trna_methyltransferase_not_pulled_into_aars(self) -> None:
+        row = _row(ec=["2.1.1.31"])
+        row["protein_name"] = "tRNA (guanine-N(7))-methyltransferase"
+        row["keywords"] = ["Methyltransferase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:TRM001",
+                "reaction": (
+                    "guanosine in tRNA + S-adenosyl-L-methionine = N(7)-methylguanosine in "
+                    "tRNA + S-adenosyl-L-homocysteine"
+                ),
+                "ec_number": "2.1.1.31",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertNotEqual(d.get("fingerprint_id"), "aminoacyl_trna_synthetase")
+
     def test_glycoside_hydrolase_requires_hydrolysis_and_active_site_handle(self) -> None:
         row = _row(ec=["3.2.1.4"])
         row["protein_name"] = "Endoglucanase"

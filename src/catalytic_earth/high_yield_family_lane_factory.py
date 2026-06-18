@@ -468,6 +468,40 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         ),
     ),
     _spec(
+        family_id="aminoacyl_trna_synthetase",
+        display_name="Aminoacyl-tRNA synthetase",
+        scope_query="(reviewed:true) AND (ec:6.1.1.*)",
+        corroborator_query=(
+            "(reviewed:true) AND (ec:6.1.1.*) AND "
+            "((protein_name:\"tRNA ligase\") OR (protein_name:\"tRNA synthetase\"))"
+        ),
+        required_non_ec_corroborators=(
+            "X--tRNA-ligase / aminoacyl-tRNA-synthetase family/name handle",
+            "Rhea aminoacylation reaction (ATP + amino acid + tRNA -> aminoacyl-tRNA + AMP + diphosphate)",
+            "class I HIGH/KMSKS or class II motif active-site context where available",
+        ),
+        disambiguation_holds=(
+            "tRNA-modifying methyltransferase / pseudouridine synthase rows",
+            "CCA-adding nucleotidyltransferase rows",
+            "tRNA-dependent amidotransferase rows",
+            "EC-only rows without a tRNA aminoacylation reaction",
+        ),
+        cap_ceiling=DEFAULT_CONFUSABLE_CAP,
+        chemistry_confusable=True,
+        novelty_keep_factor=0.45,
+        ambiguity_with_existing=("atp_amide_ligase",),
+        existing_fingerprint_id="aminoacyl_trna_synthetase",
+        current_runner="scripts/source_aminoacyl_trna_synthetase_family.py",
+        oos_preregistration_required=False,
+        source_wall_rule_status="implemented_new_fingerprint_runner",
+        rationale_template=(
+            "Large uncovered EC 6.1.1 ATP-dependent tRNA-aminoacylation family (class I/II aaRS); "
+            "the dedicated aminoacyl_trna_synthetase fingerprint and its disambiguation rule are "
+            "implemented (2026-06-18). Representation-confusable with the EC 6.3 atp_amide_ligase "
+            "via the shared ATP-adenylation step (cap 150)."
+        ),
+    ),
+    _spec(
         family_id="aldo_keto_reductase",
         display_name="Aldo-keto reductase",
         scope_query="(reviewed:true) AND (ec:1.1.1.*)",

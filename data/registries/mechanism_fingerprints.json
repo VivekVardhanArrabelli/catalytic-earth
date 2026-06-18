@@ -4076,5 +4076,85 @@
       "reconstruction_path": "Path A sequence->GST family plus glutathione-conjugation reaction/active-site channel, or canonical GSH/G-site graft in a thioredoxin-fold GST (Path B)",
       "silver_reachability": "moderate; reviewed GST family and glutathione-conjugation annotations are common, but the G-site thiolate-activation geometry needs explicit reconstruction"
     }
+  },
+  {
+    "id": "aminoacyl_trna_synthetase",
+    "name": "Aminoacyl-tRNA synthetase",
+    "enzyme_space": [
+      "class I aminoacyl-tRNA synthetases (Rossmann fold; HIGH and KMSKS motifs)",
+      "class II aminoacyl-tRNA synthetases (antiparallel beta-sheet fold; motifs 1-3)",
+      "canonical and non-canonical X--tRNA ligases (EC 6.1.1)"
+    ],
+    "active_site_signature": [
+      {
+        "role": "atp_amino_acid_activation_site",
+        "residue": "ATP- and amino-acid-binding catalytic site (class I Rossmann HIGH/KMSKS, or class II motif-2/3)",
+        "constraints": [
+          "binds ATP and the cognate amino acid and forms the aminoacyl-adenylate (aminoacyl-AMP) intermediate, releasing diphosphate",
+          "presence of an X--tRNA-ligase family/name and an ATP+tRNA aminoacylation reaction defines the family"
+        ]
+      },
+      {
+        "role": "trna_acceptor_binding",
+        "residue": "tRNA acceptor-stem / 3'-CCA binding surface",
+        "constraints": [
+          "positions the cognate tRNA 3'-A76 ribose hydroxyl for transfer of the aminoacyl group from the adenylate"
+        ]
+      },
+      {
+        "role": "editing_or_anticodon_recognition",
+        "residue": "editing domain and/or anticodon-binding domain (family-dependent)",
+        "constraints": [
+          "discriminates the cognate amino acid / tRNA; not required for the core aminoacylation chemistry"
+        ]
+      }
+    ],
+    "cofactors": [
+      "ATP and Mg2+ (dissociable cosubstrates of the aminoacyl-adenylate step, not a bound prosthetic cofactor)"
+    ],
+    "reaction_center": {
+      "bond_changes": [
+        "ATP-dependent amino-acid activation to an aminoacyl-adenylate (amino acid + ATP -> aminoacyl-AMP + diphosphate)",
+        "transfer of the aminoacyl group to the cognate tRNA 3'-end ester (aminoacyl-AMP + tRNA -> aminoacyl-tRNA + AMP)"
+      ],
+      "chemical_operation": "ATP-dependent tRNA aminoacylation (aminoacyl-adenylate ester transfer)"
+    },
+    "substrate_constraints": [
+      "EC 6.1.1 scope present but never counted as a corroborator",
+      "X--tRNA-ligase / aminoacyl-tRNA-synthetase family or name context present",
+      "Rhea or reviewed catalytic activity text for tRNA aminoacylation (ATP + amino acid + tRNA -> aminoacyl-tRNA + AMP + diphosphate) present",
+      "no tRNA-modifying (methyltransferase / pseudouridine synthase / CCA-adding nucleotidyltransferase / amidotransferase) context, no EC-only or multi-fingerprint signal"
+    ],
+    "evidence_features": [
+      "X--tRNA-ligase / aminoacyl-tRNA-synthetase family, name, or keyword text",
+      "reviewed catalytic activity text for ATP-dependent tRNA aminoacylation (AMP + diphosphate release)",
+      "annotated class I HIGH/KMSKS or class II motif active-site context where available",
+      "EC 6.1.1 scope only, never counted as a corroborator"
+    ],
+    "counterevidence_features": [
+      "tRNA-modifying methyltransferase / pseudouridine synthase / dihydrouridine synthase context",
+      "tRNA CCA-adding / nucleotidyltransferase context",
+      "tRNA-dependent amidotransferase / transamidase context",
+      "EC-only evidence with no tRNA-ligase family and aminoacylation corroboration",
+      "multi-fingerprint signal where another rule (e.g. the EC 6.3 atp_amide_ligase) independently fires"
+    ],
+    "uncertainty_axes": [
+      "class I (Rossmann) versus class II (antiparallel beta-sheet) fold",
+      "presence/absence of an editing domain",
+      "monomeric versus oligomeric assembly",
+      "ATP/amino-acid-bound versus tRNA-bound versus apo state"
+    ],
+    "seed_examples": [
+      "Threonine--tRNA ligase (ThrRS; class II)",
+      "Isoleucine--tRNA ligase (IleRS; class I, editing)",
+      "Tyrosine--tRNA ligase (TyrRS; class I)",
+      "Alanine--tRNA ligase (AlaRS; class II)"
+    ],
+    "deploy_missing_active_site_context": {
+      "type": "atp_aminoacyl_adenylate_trna_acceptor_aminoacylation_context",
+      "detail": "the bound ATP/Mg2+, the cognate amino acid, the aminoacyl-adenylate intermediate, and the tRNA 3'-CCA acceptor pose are absent or incomplete in apo predicted structures",
+      "reconstruction_path": "Path A sequence->aaRS class/family plus ATP+tRNA aminoacylation reaction/active-site channel, or canonical ATP/aminoacyl-adenylate graft in a class I/II aaRS fold (Path B)",
+      "silver_reachability": "moderate; reviewed aaRS family and aminoacylation annotations are abundant, but the bound aminoacyl-adenylate / tRNA-acceptor geometry needs explicit reconstruction"
+    }
   }
 ]

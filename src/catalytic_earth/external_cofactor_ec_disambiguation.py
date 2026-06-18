@@ -1465,6 +1465,35 @@ _GLUTATHIONE_S_TRANSFERASE_BOUNDARY_TOKENS = (
     "thioredoxin",
     "disulfide reductase",
 )
+# Aminoacyl-tRNA synthetase (aaRS) handles. EC 6.1.1 scopes the candidate supply only (NOT shared
+# with any existing fingerprint); counted corroboration comes from an "X--tRNA ligase" / aminoacyl-
+# tRNA-synthetase family name plus a Rhea/reviewed aminoacylation reaction that consumes ATP and a
+# tRNA and releases AMP + diphosphate. tRNA-modifying enzymes (methyltransferases, pseudouridine
+# synthases, CCA-adding / nucleotidyltransferases, amidotransferases) are boundary-guarded; they are
+# also off-scope (not EC 6.1.1). NOTE: the ATP-adenylation mechanism is shared with the EC 6.3
+# atp_amide_ligase, so aaRS is representation-confusable with it (capped at 150).
+_AMINOACYL_TRNA_SYNTHETASE_FAMILY_TEXT_TOKENS = (
+    "--trna ligase",
+    "trna ligase",
+    "trna synthetase",
+    "aminoacyl-trna synthetase",
+    "aminoacyl trna synthetase",
+)
+_AMINOACYL_TRNA_SYNTHETASE_REACTION_TOKENS = (
+    "trna",
+)
+_AMINOACYL_TRNA_SYNTHETASE_BOUNDARY_TOKENS = (
+    "methyltransferase",
+    "pseudouridine",
+    "dihydrouridine",
+    "amidotransferase",
+    "transamidase",
+    "deaminase",
+    "nucleotidyltransferase",
+    "cca-adding",
+    "cca trna",
+    "trna-modifying",
+)
 # Biotin-dependent carboxylase handles. EC 6.4.1 / 6.3.4 scopes the reviewed
 # candidate supply only; counted corroboration comes from biotin/biotinyl-Lys
 # cofactor or modified-residue evidence plus ATP/hydrogencarbonate/carboxybiotin
@@ -2587,6 +2616,20 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     non_glutathione_s_transferase_scope_side_ec = any(
         ec and not ec.startswith("2.5.1.18") for ec in _ec_numbers(row)
     )
+    aminoacyl_trna_synthetase_family_text = in_any(
+        keywords + [protein_name] + feature_texts,
+        *_AMINOACYL_TRNA_SYNTHETASE_FAMILY_TEXT_TOKENS,
+    )
+    aminoacyl_trna_synthetase_reaction = in_any(
+        reactions, *_AMINOACYL_TRNA_SYNTHETASE_REACTION_TOKENS
+    )
+    aminoacyl_trna_synthetase_boundary_signal = in_any(
+        keywords + [protein_name] + feature_texts,
+        *_AMINOACYL_TRNA_SYNTHETASE_BOUNDARY_TOKENS,
+    )
+    non_aminoacyl_trna_synthetase_scope_side_ec = any(
+        ec and not ec.startswith("6.1.1") for ec in _ec_numbers(row)
+    )
     non_6_3_side_ec = any(ec and not ec.startswith("6.3") for ec in _ec_numbers(row))
     non_biotin_carboxylase_scope_side_ec = any(
         ec and not (ec.startswith("6.4.1") or ec.startswith("6.3.4"))
@@ -2904,6 +2947,10 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "glutathione_s_transferase_reaction": glutathione_s_transferase_reaction,
             "glutathione_s_transferase_boundary_signal": glutathione_s_transferase_boundary_signal,
             "non_glutathione_s_transferase_scope_side_ec": non_glutathione_s_transferase_scope_side_ec,
+            "aminoacyl_trna_synthetase_family_text": aminoacyl_trna_synthetase_family_text,
+            "aminoacyl_trna_synthetase_reaction": aminoacyl_trna_synthetase_reaction,
+            "aminoacyl_trna_synthetase_boundary_signal": aminoacyl_trna_synthetase_boundary_signal,
+            "non_aminoacyl_trna_synthetase_scope_side_ec": non_aminoacyl_trna_synthetase_scope_side_ec,
             "non_serine_beta_lactamase_scope_side_ec": non_serine_beta_lactamase_scope_side_ec,
             "non_thdp_scope_side_ec": non_thdp_scope_side_ec,
             "schiff_class_i_boundary_signal": schiff_class_i_boundary_signal,
@@ -3131,6 +3178,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("peroxiredoxin_thiol_peroxidase_family_text")
         or evidence.get("paps_sulfotransferase_family_text")
         or evidence.get("glutathione_s_transferase_family_text")
+        or evidence.get("aminoacyl_trna_synthetase_family_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -3216,6 +3264,7 @@ _METALLO_BETA_LACTAMASE_EC = ("3.5.2.6",)  # metallo beta-lactamase; EC scope on
 _PEROXIREDOXIN_THIOL_PEROXIDASE_EC = ("1.11.1",)  # peroxiredoxin/thiol peroxidase; EC scope only (shared with heme peroxidases)
 _PAPS_SULFOTRANSFERASE_EC = ("2.8.2",)  # PAPS-dependent sulfotransferase; EC scope only (not shared)
 _GLUTATHIONE_S_TRANSFERASE_EC = ("2.5.1.18",)  # glutathione S-transferase; EC scope only (not shared)
+_AMINOACYL_TRNA_SYNTHETASE_EC = ("6.1.1",)  # aminoacyl-tRNA synthetase; EC scope only (not shared)
 _METAL_INDEPENDENT_PHOSPHODIESTERASE_EC = (
     "3.1.4",
     "4.6.1",
@@ -3265,6 +3314,14 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         and c["glutathione_s_transferase_reaction"]
         and not c["glutathione_s_transferase_boundary_signal"]
         and not c["non_glutathione_s_transferase_scope_side_ec"],
+    ),
+    (
+        "aminoacyl_trna_synthetase",
+        lambda c, row: _ec_has_prefix(row, _AMINOACYL_TRNA_SYNTHETASE_EC)
+        and c["aminoacyl_trna_synthetase_family_text"]
+        and c["aminoacyl_trna_synthetase_reaction"]
+        and not c["aminoacyl_trna_synthetase_boundary_signal"]
+        and not c["non_aminoacyl_trna_synthetase_scope_side_ec"],
     ),
     (
         "metallopeptidase",
@@ -4007,6 +4064,15 @@ def _synthesize_cofactor_provenance(
         records = [
             {
                 "name": "glutathione conjugation (GSH thiolate -> S-substituted glutathione) cosubstrate context",
+                "cross_reference": {"id": None},
+            }
+        ]
+    elif fingerprint == "aminoacyl_trna_synthetase" and evidence.get(
+        "aminoacyl_trna_synthetase_reaction"
+    ):
+        records = [
+            {
+                "name": "ATP-dependent aminoacyl-tRNA synthetase (aminoacyl-adenylate -> aminoacyl-tRNA) cosubstrate context",
                 "cross_reference": {"id": None},
             }
         ]

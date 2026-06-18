@@ -870,6 +870,21 @@
         "Hold multi-fingerprint-signal rows (including bifunctional GST-peroxidase / GST-isomerase entries carrying a second EC) rather than forcing a glutathione-transferase label.",
         "The bound glutathione, the catalytic Tyr/Ser/Cys G-site residue, the H-site electrophile pose, and the thiolate-activation geometry are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
+    },
+    {
+      "id": "atp_trna_aminoacylation",
+      "name": "ATP-dependent tRNA aminoacylation",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "aminoacyl_trna_synthetase"
+      ],
+      "v2_split_note": null,
+      "family_boundary_guardrails": [
+        "Membership is decided by an X--tRNA-ligase / aminoacyl-tRNA-synthetase family/name plus a Rhea/reviewed aminoacylation reaction (ATP + amino acid + tRNA -> aminoacyl-tRNA + AMP + diphosphate); EC 6.1.1 is scope only.",
+        "Do not admit tRNA-modifying enzymes (methyltransferases, pseudouridine/dihydrouridine synthases, CCA-adding nucleotidyltransferases, tRNA-dependent amidotransferases) into this family.",
+        "The ATP-adenylation step is mechanistically shared with EC 6.3 ATP-dependent amide ligases (atp_amide_ligase), so multi-fingerprint-signal rows are held; the source-free representation cannot separate the two by reaction chemistry alone (documented cost).",
+        "The bound ATP/Mg2+, the aminoacyl-adenylate intermediate, and the tRNA 3'-CCA acceptor pose are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
     }
   ],
   "propagation_guardrails": [

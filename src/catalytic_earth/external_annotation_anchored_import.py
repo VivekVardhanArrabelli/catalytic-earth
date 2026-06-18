@@ -112,6 +112,7 @@ DEPLOY_MISSING_CONTEXT_FOR_FINGERPRINT: dict[str, str] = {
     "peroxiredoxin_thiol_peroxidase": "peroxidatic_cysteine_selenocysteine_thiol_peroxide_reduction_context",
     "paps_sulfotransferase": "paps_5_phosphosulfate_loop_his_sulfuryl_transfer_context",
     "glutathione_s_transferase": "g_site_glutathione_thiolate_h_site_conjugation_context",
+    "aminoacyl_trna_synthetase": "atp_aminoacyl_adenylate_trna_acceptor_aminoacylation_context",
     "alpha_beta_hydrolase_esterase_lipase": "ser_his_acid_ester_hydrolysis_context",
     "n_ribosyl_hydrolase": "n_glycosidic_bond_hydrolysis_context",
     "metal_independent_phosphodiesterase": "metal_independent_phosphodiester_hydrolysis_context",

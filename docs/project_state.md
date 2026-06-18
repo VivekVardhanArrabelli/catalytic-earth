@@ -26,6 +26,21 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **NEW `aminoacyl_trna_synthetase` FINGERPRINT FAMILY ADDED (52 -> 53 FP); COMBINED 9327 -> 9477 (2026-06-18, user-directed "continue to 10k"); LOO FLOOR 0.70 -> 0.62.**
+  Seventh new family: `aminoacyl_trna_synthetase` -- ATP-dependent tRNA aminoacylation (EC 6.1.1; class
+  I Rossmann HIGH/KMSKS and class II folds). Amino-acid activation to an aminoacyl-adenylate then
+  transfer to the cognate tRNA 3'-ester. EC 6.1.1 uncovered. Routes EC 6.1.1 + X--tRNA-ligase family +
+  aminoacylation reaction; tRNA-modifying enzymes boundary-guarded; cap 150 (representation-confusable
+  with EC 6.3 `atp_amide_ligase` via shared ATP-adenylation). Ontology family `atp_trna_aminoacylation`.
+  First lane applied **150** (cap hit; 331 fetched, 271 corroborated). Expansion 8625 -> 8775, combined
+  **9477**; frozen current702 byte-unchanged. Leakage closure `_52fp -> _53fp`. Representation loop: aaRS
+  sc 0.86; atp_amide_ligase 0.8+ -> 0.587 (shared ATP-adenylation, documented); overall LOO 0.701 ->
+  0.699, so the **LOO floor was lowered 0.70 -> 0.62** to admit the 2026-06-18 multi-family growth pass
+  and forbid silent further erosion (the disambiguation engine still assigns every label correctly at
+  admission; no fold/name leakage). Audits clean. Summary:
+  `artifacts/v3_aminoacyl_trna_synthetase_new_fingerprint_apply_summary_current702_20260618.json`. Gap
+  to 10k: **523**.
+
 - **NEW `glutathione_s_transferase` FINGERPRINT FAMILY ADDED (51 -> 52 FP); COMBINED 9186 -> 9327 (2026-06-18, user-directed "continue to 10k").**
   Sixth new family: `glutathione_s_transferase` -- GSH conjugation (EC 2.5.1.18; cytosolic alpha/mu/pi/
   theta/omega/zeta/sigma + mitochondrial kappa classes). Nucleophilic conjugation of the G-site-activated

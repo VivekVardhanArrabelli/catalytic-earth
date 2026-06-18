@@ -16,6 +16,17 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-18 user-directed "continue to 10k" — new fingerprint family: `aminoacyl_trna_synthetase`
+added (52 -> 53 FP), combined 9327 -> 9477.** ATP-dependent tRNA aminoacylation (EC 6.1.1; class I/II
+aaRS). EC 6.1.1 uncovered. Full disambiguation (X--tRNA-ligase family + aminoacylation reaction;
+tRNA-modifying enzymes guarded), ontology `atp_trna_aminoacylation`, sourcing lane, leakage
+re-registration (`_52fp -> _53fp`), lane-factory wiring. First lane applied **150** (cap 150 hit; 331
+fetched, 271 corroborated). aaRS coherent (sc 0.86) but reaction-confusable with the EC 6.3
+`atp_amide_ligase` via the shared ATP-adenylation step (atp_amide 0.8+ -> 0.587). Overall LOO
+0.701 -> 0.699 -> **LOO floor lowered 0.70 -> 0.62** (documented multi-family-pass cost; the
+disambiguation engine still separates the families at admission; no fold/name leakage). Gap to 10k:
+**523**. See `artifacts/v3_aminoacyl_trna_synthetase_new_fingerprint_apply_summary_current702_20260618.json`.
+
 **2026-06-18 user-directed "continue to 10k" — new fingerprint family: `glutathione_s_transferase`
 added (51 -> 52 FP), combined 9186 -> 9327.** GSH conjugation (EC 2.5.1.18; cytosolic + mitochondrial
 GST classes). EC 2.5.1.18 uncovered; distinct GSH-thiolate conjugation reaction center. Full

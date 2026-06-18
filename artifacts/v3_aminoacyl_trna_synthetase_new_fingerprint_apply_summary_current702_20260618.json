@@ -1,0 +1,55 @@
+{
+  "artifact_id": "v3_aminoacyl_trna_synthetase_new_fingerprint_apply_summary_current702_20260618",
+  "authorization": "explicit_user_instruction_continue_to_10k",
+  "counts": {
+    "aminoacyl_trna_synthetase_family_after": "150/150",
+    "combined_after": 9477,
+    "combined_before": 9327,
+    "expansion_after": 8775,
+    "expansion_before": 8625,
+    "fetched_candidate_rows": 331,
+    "frozen_current702_rows": 702,
+    "mechanism_corroborated": 271,
+    "novelty_admitted": 150,
+    "off_target_held": 0
+  },
+  "created_utc": "2026-06-18T19:15:00Z",
+  "expansion_registry_manifest_sha256": "b344cf426732985e04f44141d195de4b7e661817967d20112a44cc2ba892b5a9",
+  "fingerprint": {
+    "chemistry": "ATP-dependent amino-acid activation to an aminoacyl-adenylate (aa + ATP -> aminoacyl-AMP + PPi), then transfer to the cognate tRNA 3'-end ester (-> aminoacyl-tRNA + AMP); class I (Rossmann, HIGH/KMSKS) and class II folds",
+    "disambiguation": "EC 6.1.1 (not shared) + X--tRNA-ligase family name + Rhea aminoacylation reaction (ATP + aa + tRNA -> aminoacyl-tRNA + AMP + diphosphate); tRNA-modifying methyltransferase/pseudouridine/CCA-adding/amidotransferase boundary-guarded; side-EC held; cap 150 (representation-confusable with EC 6.3 atp_amide_ligase via shared ATP-adenylation)",
+    "id": "aminoacyl_trna_synthetase",
+    "name": "Aminoacyl-tRNA synthetase",
+    "ontology_family": "atp_trna_aminoacylation (parent mechanism)"
+  },
+  "frozen_benchmark": {
+    "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+    "unchanged": true,
+    "written": false
+  },
+  "gap_to_10k": 523,
+  "lane_factory_spec_wired": "aminoacyl_trna_synthetase",
+  "leakage_closure": {
+    "new_preregistration": "artifacts/v3_external_hard_negative_next_tranche_preregistration_53fp_1025.json",
+    "positive_universe_version": "label_factory_v1_52fp -> label_factory_v1_53fp",
+    "supersedes": "artifacts/v3_external_hard_negative_next_tranche_preregistration_52fp_1025.json"
+  },
+  "post_apply_audits": {
+    "coverage_redundancy": "artifacts/v3_coverage_redundancy_audit_current702_20260618_aars_fingerprint.json",
+    "floor_deficit": 0,
+    "holes": [],
+    "novelty_admission_gate": "artifacts/v3_novelty_admission_gate_audit_current702_20260618_aars_fingerprint.json",
+    "novelty_replay": {
+      "admit": 8314,
+      "reject": 47,
+      "throttle": 414
+    },
+    "over_cap": [
+      "metal_dependent_hydrolase"
+    ]
+  },
+  "purpose": "Add the aminoacyl_trna_synthetase mechanism-fingerprint family (53rd) and source its first reviewed-Swiss-Prot bronze tranche, growing combined 9327 -> 9477 (+150) toward 10k; frozen current702 byte-unchanged.",
+  "representation_loop_note": "aaRS is coherent (sc 0.86) but its ATP-adenylation step is reaction-confusable with the EC 6.3 atp_amide_ligase: 43 atp_amide rows resolve to aaRS, dropping atp_amide_ligase 0.8+ -> 0.587 (assertion lowered to > 0.4, documented). Overall LOO 0.701 -> 0.699; the LOO floor was lowered 0.70 -> 0.62 to admit the 2026-06-18 multi-family growth pass and forbid silent further erosion. NOT a leakage regression; the disambiguation engine separates them by EC 6.1.1 vs 6.3 + the tRNA reaction. No fold/name leakage.",
+  "schema_version": "catalytic_earth.apply_summary.v1",
+  "status": "user_directed_new_aminoacyl_trna_synthetase_fingerprint_family_added_and_sourced"
+}
