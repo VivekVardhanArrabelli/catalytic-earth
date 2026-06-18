@@ -4156,5 +4156,85 @@
       "reconstruction_path": "Path A sequence->aaRS class/family plus ATP+tRNA aminoacylation reaction/active-site channel, or canonical ATP/aminoacyl-adenylate graft in a class I/II aaRS fold (Path B)",
       "silver_reachability": "moderate; reviewed aaRS family and aminoacylation annotations are abundant, but the bound aminoacyl-adenylate / tRNA-acceptor geometry needs explicit reconstruction"
     }
+  },
+  {
+    "id": "acid_coa_ligase",
+    "name": "Acid--CoA ligase (acyl-CoA synthetase)",
+    "enzyme_space": [
+      "short-/medium-/long-chain acyl-CoA synthetases (ANL superfamily)",
+      "aryl- and aralkyl-acid--CoA ligases, fatty-acid--CoA ligases",
+      "other EC 6.2.1 ATP-dependent acid--thiol (CoA) ligases"
+    ],
+    "active_site_signature": [
+      {
+        "role": "atp_acid_adenylation_site",
+        "residue": "ANL-superfamily adenylation site (AMP-binding signature motif) binding ATP and the carboxylate substrate",
+        "constraints": [
+          "binds ATP and the carboxylic-acid substrate and forms the acyl-adenylate (acyl-AMP) intermediate, releasing diphosphate",
+          "presence of a CoA-ligase / acyl-CoA-synthetase family and an ATP + CoA thioester-forming reaction defines the family"
+        ]
+      },
+      {
+        "role": "coa_thioester_site",
+        "residue": "CoA-binding site positioning the CoA thiol for thioester formation",
+        "constraints": [
+          "the CoA thiol attacks the acyl-adenylate to form the acyl-CoA thioester, releasing AMP"
+        ]
+      },
+      {
+        "role": "domain_alternation_hinge",
+        "residue": "C-terminal domain that rotates between the adenylation and thioester-forming conformations",
+        "constraints": [
+          "the two half-reactions use distinct active-site conformations of the ANL fold"
+        ]
+      }
+    ],
+    "cofactors": [
+      "ATP, Mg2+ and coenzyme A (dissociable cosubstrates of the adenylation and thioester steps, not bound prosthetic cofactors)"
+    ],
+    "reaction_center": {
+      "bond_changes": [
+        "ATP-dependent activation of a carboxylate to an acyl-adenylate (acid + ATP -> acyl-AMP + diphosphate)",
+        "thioester formation with coenzyme A (acyl-AMP + CoA -> acyl-CoA + AMP)"
+      ],
+      "chemical_operation": "ATP-dependent acid--CoA (thioester) ligation via an acyl-adenylate"
+    },
+    "substrate_constraints": [
+      "EC 6.2.1 scope present but never counted as a corroborator",
+      "CoA-ligase / acyl-CoA-synthetase family or name context present",
+      "Rhea or reviewed catalytic activity text forming an acyl-CoA thioester with ATP (-> acyl-CoA + AMP + diphosphate) present",
+      "no CoA transferase (EC 2.3 / 2.8.3), biotin carboxylase (EC 6.3.4 / 6.4.1), thiolase, or CoA-acyl dehydrogenase context, no EC-only or multi-fingerprint signal"
+    ],
+    "evidence_features": [
+      "CoA-ligase / acyl-CoA-synthetase family, name, or keyword text",
+      "reviewed catalytic activity text forming an acyl-CoA thioester with ATP (AMP + diphosphate release)",
+      "annotated ANL-superfamily AMP-binding / adenylation active-site context where available",
+      "EC 6.2.1 scope only, never counted as a corroborator"
+    ],
+    "counterevidence_features": [
+      "CoA transferase (EC 2.3 / 2.8.3) context",
+      "biotin-dependent carboxylase (EC 6.3.4 / 6.4.1) context",
+      "thiolase / acyl-CoA dehydrogenase / fatty-acid synthase context",
+      "EC-only evidence with no CoA-ligase family and ATP+CoA thioester corroboration",
+      "multi-fingerprint signal where another rule (e.g. atp_amide_ligase or coa_acyltransferase) independently fires"
+    ],
+    "uncertainty_axes": [
+      "short- versus medium- versus long-chain acyl substrate",
+      "fatty-acid versus aryl-acid versus aralkyl-acid specificity",
+      "adenylation versus thioester-forming domain conformation",
+      "ATP/acyl-adenylate-bound versus CoA-bound versus apo state"
+    ],
+    "seed_examples": [
+      "Long-chain-fatty-acid--CoA ligase 1 (ACSL1)",
+      "Acetyl-coenzyme A synthetase (ACS)",
+      "Medium-chain acyl-CoA synthetase (ACSM)",
+      "4-coumarate--CoA ligase (plant 4CL)"
+    ],
+    "deploy_missing_active_site_context": {
+      "type": "anl_atp_acyl_adenylate_coa_thioester_ligation_context",
+      "detail": "the bound ATP/Mg2+, the carboxylate substrate, the acyl-adenylate intermediate, and the CoA thioester pose are absent or incomplete in apo predicted structures, and the two-conformation ANL domain alternation is not captured",
+      "reconstruction_path": "Path A sequence->ANL/acyl-CoA-synthetase family plus ATP+CoA thioester reaction/active-site channel, or canonical ATP/acyl-adenylate/CoA graft in an ANL fold (Path B)",
+      "silver_reachability": "moderate; reviewed acyl-CoA-synthetase family and ATP+CoA reaction annotations are abundant, but the bound acyl-adenylate / CoA-thioester geometry needs explicit reconstruction"
+    }
   }
 ]

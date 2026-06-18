@@ -1494,6 +1494,42 @@ _AMINOACYL_TRNA_SYNTHETASE_BOUNDARY_TOKENS = (
     "cca trna",
     "trna-modifying",
 )
+# Acid--CoA ligase (acyl-CoA synthetase, ANL superfamily) handles. EC 6.2.1 scopes the candidate
+# supply only (NOT shared with any existing fingerprint); counted corroboration comes from a
+# CoA-ligase / acyl-CoA-synthetase family name plus a Rhea/reviewed reaction that activates a
+# carboxylate with ATP to a CoA thioester (acid + ATP + CoA -> acyl-CoA + AMP + diphosphate).
+# CoA transferases (EC 2.3/2.8.3), biotin carboxylases (EC 6.3.4/6.4.1), thiolases, and CoA-acyl
+# dehydrogenases are boundary-guarded. NOTE: the ATP-adenylation step is shared with the EC 6.3
+# atp_amide_ligase and the CoA thioester with coa_acyltransferase, so this family is
+# representation-confusable with both (capped at 150).
+_ACID_COA_LIGASE_FAMILY_TEXT_TOKENS = (
+    "--coa ligase",
+    "coa ligase",
+    "coa synthetase",
+    "acyl-coa synthetase",
+    "acid--coa ligase",
+    "acetyl-coenzyme a synthetase",
+)
+_ACID_COA_LIGASE_REACTION_TOKENS = (
+    "coa",
+    "coenzyme a",
+)
+_ACID_COA_LIGASE_REACTION_ADENYLATE_TOKENS = (
+    "amp",
+    "adenylate",
+    "adenosine 5'-monophosphate",
+)
+_ACID_COA_LIGASE_BOUNDARY_TOKENS = (
+    "carboxylase",
+    "transferase",
+    "thiolase",
+    "dehydrogenase",
+    "reductase",
+    "decarboxylase",
+    "racemase",
+    "mutase",
+    "carrier protein",
+)
 # Biotin-dependent carboxylase handles. EC 6.4.1 / 6.3.4 scopes the reviewed
 # candidate supply only; counted corroboration comes from biotin/biotinyl-Lys
 # cofactor or modified-residue evidence plus ATP/hydrogencarbonate/carboxybiotin
@@ -2630,6 +2666,20 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     non_aminoacyl_trna_synthetase_scope_side_ec = any(
         ec and not ec.startswith("6.1.1") for ec in _ec_numbers(row)
     )
+    acid_coa_ligase_family_text = in_any(
+        keywords + [protein_name] + feature_texts,
+        *_ACID_COA_LIGASE_FAMILY_TEXT_TOKENS,
+    )
+    acid_coa_ligase_reaction = in_any(
+        reactions, *_ACID_COA_LIGASE_REACTION_TOKENS
+    ) and in_any(reactions, *_ACID_COA_LIGASE_REACTION_ADENYLATE_TOKENS)
+    acid_coa_ligase_boundary_signal = in_any(
+        keywords + [protein_name] + feature_texts,
+        *_ACID_COA_LIGASE_BOUNDARY_TOKENS,
+    )
+    non_acid_coa_ligase_scope_side_ec = any(
+        ec and not ec.startswith("6.2.1") for ec in _ec_numbers(row)
+    )
     non_6_3_side_ec = any(ec and not ec.startswith("6.3") for ec in _ec_numbers(row))
     non_biotin_carboxylase_scope_side_ec = any(
         ec and not (ec.startswith("6.4.1") or ec.startswith("6.3.4"))
@@ -2951,6 +3001,10 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "aminoacyl_trna_synthetase_reaction": aminoacyl_trna_synthetase_reaction,
             "aminoacyl_trna_synthetase_boundary_signal": aminoacyl_trna_synthetase_boundary_signal,
             "non_aminoacyl_trna_synthetase_scope_side_ec": non_aminoacyl_trna_synthetase_scope_side_ec,
+            "acid_coa_ligase_family_text": acid_coa_ligase_family_text,
+            "acid_coa_ligase_reaction": acid_coa_ligase_reaction,
+            "acid_coa_ligase_boundary_signal": acid_coa_ligase_boundary_signal,
+            "non_acid_coa_ligase_scope_side_ec": non_acid_coa_ligase_scope_side_ec,
             "non_serine_beta_lactamase_scope_side_ec": non_serine_beta_lactamase_scope_side_ec,
             "non_thdp_scope_side_ec": non_thdp_scope_side_ec,
             "schiff_class_i_boundary_signal": schiff_class_i_boundary_signal,
@@ -3179,6 +3233,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("paps_sulfotransferase_family_text")
         or evidence.get("glutathione_s_transferase_family_text")
         or evidence.get("aminoacyl_trna_synthetase_family_text")
+        or evidence.get("acid_coa_ligase_family_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -3265,6 +3320,7 @@ _PEROXIREDOXIN_THIOL_PEROXIDASE_EC = ("1.11.1",)  # peroxiredoxin/thiol peroxida
 _PAPS_SULFOTRANSFERASE_EC = ("2.8.2",)  # PAPS-dependent sulfotransferase; EC scope only (not shared)
 _GLUTATHIONE_S_TRANSFERASE_EC = ("2.5.1.18",)  # glutathione S-transferase; EC scope only (not shared)
 _AMINOACYL_TRNA_SYNTHETASE_EC = ("6.1.1",)  # aminoacyl-tRNA synthetase; EC scope only (not shared)
+_ACID_COA_LIGASE_EC = ("6.2.1",)  # acid--CoA ligase / acyl-CoA synthetase; EC scope only (not shared)
 _METAL_INDEPENDENT_PHOSPHODIESTERASE_EC = (
     "3.1.4",
     "4.6.1",
@@ -3322,6 +3378,14 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         and c["aminoacyl_trna_synthetase_reaction"]
         and not c["aminoacyl_trna_synthetase_boundary_signal"]
         and not c["non_aminoacyl_trna_synthetase_scope_side_ec"],
+    ),
+    (
+        "acid_coa_ligase",
+        lambda c, row: _ec_has_prefix(row, _ACID_COA_LIGASE_EC)
+        and c["acid_coa_ligase_family_text"]
+        and c["acid_coa_ligase_reaction"]
+        and not c["acid_coa_ligase_boundary_signal"]
+        and not c["non_acid_coa_ligase_scope_side_ec"],
     ),
     (
         "metallopeptidase",
@@ -4073,6 +4137,13 @@ def _synthesize_cofactor_provenance(
         records = [
             {
                 "name": "ATP-dependent aminoacyl-tRNA synthetase (aminoacyl-adenylate -> aminoacyl-tRNA) cosubstrate context",
+                "cross_reference": {"id": None},
+            }
+        ]
+    elif fingerprint == "acid_coa_ligase" and evidence.get("acid_coa_ligase_reaction"):
+        records = [
+            {
+                "name": "ATP-dependent acid--CoA ligase (acyl-adenylate -> acyl-CoA thioester) cosubstrate context",
                 "cross_reference": {"id": None},
             }
         ]
