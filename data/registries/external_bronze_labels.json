@@ -1,9 +1,9 @@
 {
   "canonical_order": "preserved input order across shards",
-  "full_registry_canonical_bytes": 64203560,
-  "full_registry_canonical_sha256": "d6e1f0ca4e71634e54f83c9c6805ee216441bed3e21ac3c28cb04e1265f62b79",
-  "generated_utc": "2026-06-18T01:44:56Z",
-  "row_count": 8200,
+  "full_registry_canonical_bytes": 64231525,
+  "full_registry_canonical_sha256": "957902ed2cb8c582d178f74334f9afe502c29223ccf351474792f8d19a89e71e",
+  "generated_utc": "2026-06-18T12:36:46Z",
+  "row_count": 8204,
   "schema_version": "catalytic_earth.sharded_registry.v1",
   "shard_count": 4,
   "shards": [
@@ -26,10 +26,10 @@
       "sha256": "84057524019ec88483f4262f883b3f053e0361fa3be0a026680581ca15879718"
     },
     {
-      "bytes": 10210428,
+      "bytes": 10238393,
       "path": "external_bronze_labels.shards/part-00003.json",
-      "row_count": 1443,
-      "sha256": "5a0baffb0a1ff1279fc1ad9dd3714375f278221cb18e3044858ba46f7458e7d7"
+      "row_count": 1447,
+      "sha256": "6e600fd4bbc498584f4fd34dbb5d61d2d9d36cf77ec839d63a9d1b8c2a1596ac"
     }
   ]
 }

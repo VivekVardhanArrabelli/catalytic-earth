@@ -108,6 +108,7 @@ DEPLOY_MISSING_CONTEXT_FOR_FINGERPRINT: dict[str, str] = {
     "short_chain_dehydrogenase_reductase": "nad_p_sdr_ser_tyr_lys_hydride_transfer_context",
     "aldo_keto_reductase": "nadp_akr_tyr_lys_his_asp_tim_barrel_hydride_transfer_context",
     "aminoglycoside_acetyltransferase": "acetyl_coa_aminoglycoside_gnat_n_acetyl_transfer_context",
+    "metallo_beta_lactamase": "dizinc_metallo_beta_lactamase_ring_hydrolysis_context",
     "alpha_beta_hydrolase_esterase_lipase": "ser_his_acid_ester_hydrolysis_context",
     "n_ribosyl_hydrolase": "n_glycosidic_bond_hydrolysis_context",
     "metal_independent_phosphodiesterase": "metal_independent_phosphodiester_hydrolysis_context",

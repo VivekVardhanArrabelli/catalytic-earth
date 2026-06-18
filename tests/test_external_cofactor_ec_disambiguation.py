@@ -372,6 +372,66 @@ class DisambiguateRowTests(unittest.TestCase):
         d = disambiguate_row(row)
         self.assertEqual(d["decision"], "hold")
 
+    def test_metallo_beta_lactamase_gets_its_own_fingerprint_not_serine_or_amidohydrolase(self) -> None:
+        row = _row(ec=["3.5.2.6"], cofactors=["Zn(2+)"])
+        row["protein_name"] = "Beta-lactamase NDM-1"
+        row["keywords"] = ["Antibiotic resistance", "Zinc"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:MBL001",
+                "reaction": "a beta-lactam + H2O = a substituted beta-amino acid",
+                "ec_number": "3.5.2.6",
+            }
+        ]
+        d = disambiguate_row(row)
+        # Zn context + beta-lactam hydrolysis at EC 3.5.2.6 routes to the dedicated
+        # metallo_beta_lactamase fingerprint, not serine_beta_lactamase (zinc-excluded)
+        # and not the generic metallo_amidohydrolase_deaminase (beta-lactam excluded).
+        self.assertEqual(d.get("fingerprint_id"), "metallo_beta_lactamase")
+        self.assertNotEqual(d.get("fingerprint_id"), "serine_beta_lactamase")
+        self.assertNotEqual(d.get("fingerprint_id"), "metallo_amidohydrolase_deaminase")
+
+    def test_serine_beta_lactamase_not_pulled_into_mbl(self) -> None:
+        row = _row(ec=["3.5.2.6"])
+        row["protein_name"] = "Beta-lactamase TEM-1"
+        row["keywords"] = ["Antibiotic resistance"]
+        row["residue_locators"] = [
+            {
+                "position": 70,
+                "feature_code": "ACT_SITE",
+                "feature_type": "Active site",
+                "description": "Acyl-ester intermediate; nucleophile serine",
+                "ligand_name": None,
+                "ligand_id": None,
+                "evidence_codes": ["ECO:0000269"],
+            }
+        ]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:SBL001",
+                "reaction": "a beta-lactam + H2O = a substituted beta-amino acid",
+                "ec_number": "3.5.2.6",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertNotEqual(d.get("fingerprint_id"), "metallo_beta_lactamase")
+
+    def test_metallo_amidohydrolase_non_betalactam_still_routes_to_amidohydrolase(self) -> None:
+        # A zinc deaminase (EC 3.5.4) must stay metallo_amidohydrolase_deaminase --
+        # the MBL exclusion only diverts beta-lactam-hydrolyzing rows.
+        row = _row(ec=["3.5.4.4"], cofactors=["Zn(2+)"])
+        row["protein_name"] = "Adenosine deaminase"
+        row["keywords"] = ["Hydrolase", "Zinc"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:ADA001",
+                "reaction": "adenosine + H2O = inosine + NH3",
+                "ec_number": "3.5.4.4",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d.get("fingerprint_id"), "metallo_amidohydrolase_deaminase")
+
     def test_glycoside_hydrolase_requires_hydrolysis_and_active_site_handle(self) -> None:
         row = _row(ec=["3.2.1.4"])
         row["protein_name"] = "Endoglucanase"

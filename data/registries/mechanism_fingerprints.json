@@ -3759,5 +3759,86 @@
       "reconstruction_path": "Path A sequence->AAC family plus acetyl-CoA reaction/active-site channel, or canonical acetyl-CoA/aminoglycoside graft in a GNAT pocket (Path B)",
       "silver_reachability": "moderate; reviewed AAC family and acetyl-CoA reaction annotations are common, but ternary-complex transfer geometry needs explicit reconstruction"
     }
+  },
+  {
+    "id": "metallo_beta_lactamase",
+    "name": "Metallo-beta-lactamase",
+    "enzyme_space": [
+      "zinc-dependent metallo-beta-lactamases (MBL; Ambler class B)",
+      "carbapenem/penicillin/cephalosporin-hydrolyzing zinc beta-lactamases",
+      "subclass B1 / B2 / B3 (NDM, VIM, IMP, SPM, L1, CcrA, ...)"
+    ],
+    "active_site_signature": [
+      {
+        "role": "catalytic_zinc_site",
+        "residue": "mononuclear or dinuclear Zn2+ site in the alpha-beta/beta-alpha metallo-hydrolase fold",
+        "constraints": [
+          "His/Asp/Cys zinc ligands (HxHxD...H/C motifs) coordinate one or two Zn2+ ions",
+          "presence of catalytic zinc (not a Ser nucleophile) defines the family and separates it from serine beta-lactamases"
+        ]
+      },
+      {
+        "role": "zinc_activated_hydroxide_nucleophile",
+        "residue": "Zn-bridging / Zn-bound hydroxide and an oxyanion-stabilizing Zn",
+        "constraints": [
+          "a zinc-activated hydroxide attacks the beta-lactam carbonyl directly; NO covalent acyl-enzyme intermediate forms"
+        ]
+      },
+      {
+        "role": "beta_lactam_positioner",
+        "residue": "substrate-binding loops (L3/L10) over the zinc site",
+        "constraints": [
+          "binds penicillin / cephalosporin / carbapenem beta-lactam substrates across the dizinc/zinc center"
+        ]
+      }
+    ],
+    "cofactors": [
+      "Zn2+ (one or two catalytic zinc ions)"
+    ],
+    "reaction_center": {
+      "bond_changes": [
+        "beta-lactam amide C-N ring hydrolysis by a zinc-activated hydroxide (no acyl-enzyme)",
+        "beta-lactam + H2O -> ring-opened substituted beta-amino acid"
+      ],
+      "chemical_operation": "Zn2+-dependent beta-lactam ring hydrolysis"
+    },
+    "substrate_constraints": [
+      "EC 3.5.2.6 scope present but never counted as a corroborator (shared with serine beta-lactamase)",
+      "metallo/zinc beta-lactamase family or name context, OR a catalytic-zinc cofactor/binding context, present",
+      "Rhea or reviewed catalytic activity text for beta-lactam hydrolysis present",
+      "no serine acyl-enzyme (Ser nucleophile / carbamylated-Lys) context, no penicillin-binding protein / DD-peptidase, no non-beta-lactam metallo-amidohydrolase, no EC-only or multi-fingerprint boundary signal"
+    ],
+    "evidence_features": [
+      "metallo/zinc beta-lactamase family, name, or keyword text (class B / subclass B1-B3)",
+      "catalytic Zn2+ cofactor, metal-binding, or zinc binding-site context",
+      "reviewed catalytic activity text showing beta-lactam (penicillin/cephalosporin/carbapenem) hydrolysis",
+      "annotated His/Asp/Cys zinc-ligand active-site context where available",
+      "EC 3.5.2.6 scope only, never counted as a corroborator"
+    ],
+    "counterevidence_features": [
+      "serine beta-lactamase Ser-nucleophile / acyl-enzyme / carbamylated-Lys context (Ambler class A/C/D)",
+      "penicillin-binding protein / DD-transpeptidase / DD-carboxypeptidase context",
+      "non-beta-lactam zinc amidohydrolase / deaminase context (other EC 3.5.x)",
+      "EC-only evidence with no metallo/zinc family and beta-lactam hydrolysis corroboration",
+      "multi-fingerprint signal where a serine-hydrolase or generic metal-hydrolase rule independently fires"
+    ],
+    "uncertainty_axes": [
+      "mononuclear (B2) versus dinuclear (B1/B3) zinc stoichiometry",
+      "beta-lactam substrate spectrum (carbapenemase versus narrower)",
+      "subclass B1/B2/B3 fold variation",
+      "apo versus zinc-loaded / substrate-bound geometry"
+    ],
+    "seed_examples": [
+      "New Delhi metallo-beta-lactamase NDM-1",
+      "Verona integron-encoded metallo-beta-lactamase VIM-2",
+      "imipenemase IMP-1",
+      "Stenotrophomonas L1 metallo-beta-lactamase"
+    ],
+    "deploy_missing_active_site_context": {
+      "type": "dizinc_metallo_beta_lactamase_ring_hydrolysis_context",
+      "detail": "the one/two catalytic Zn2+ ions, zinc-bridging hydroxide, His/Asp/Cys zinc ligands, and beta-lactam substrate pose are absent or incomplete in apo predicted structures",
+      "reconstruction_path": "Path A sequence->MBL family plus zinc reaction/active-site channel, or canonical di-zinc/hydroxide graft in a metallo-beta-lactamase fold (Path B)",
+      "silver_reachability": "moderate; reviewed MBL family and zinc/beta-lactam annotations are common, but the catalytic di-zinc hydrolysis geometry needs explicit reconstruction"
+    }
   }
 ]

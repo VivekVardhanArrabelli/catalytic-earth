@@ -16,6 +16,17 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-17 user-directed new fingerprint family: `metallo_beta_lactamase` added (48 -> 49 FP),
+combined 8902 -> 8906.** Third application of the add-a-family pattern: MBL (zinc class-B beta-lactam
+ring hydrolase, EC 3.5.2.6 shared with serine beta-lactamase) with full disambiguation (metallo/zinc
++ beta-lactam routing; serine zinc-excluded; beta-lactam excluded from metallo_amidohydrolase;
+PBP/DD-peptidase guarded), ontology family, sourcing lane, leakage re-registration (`_48fp -> _49fp`),
+and lane-factory wiring. First lane applied only **4** rows -- reviewed MBL supply is small (37
+fetched, 4 novel). Lesson: narrow antibiotic-resistance families add few clean rows; the bulk of the
+remaining ~1094 gap to 10k needs BROADER families (oxidoreductase EC-subclass splits) or the
+human-gated external source-transfer path. See
+`artifacts/v3_metallo_beta_lactamase_new_fingerprint_apply_summary_current702_20260617.json`.
+
 **2026-06-17 user-directed new fingerprint family: `aminoglycoside_acetyltransferase` added
 (47 -> 48 FP), combined 8870 -> 8902.** Second application of the add-a-family pattern: AAC
 (GNAT acetyl-CoA aminoglycoside N-acetyltransferase, EC 2.3.1) with full disambiguation (excluded

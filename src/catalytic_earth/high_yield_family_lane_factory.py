@@ -353,9 +353,15 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         chemistry_confusable=True,
         novelty_keep_factor=0.45,
         ambiguity_with_existing=("metallo_amidohydrolase_deaminase",),
+        existing_fingerprint_id="metallo_beta_lactamase",
+        current_runner="scripts/source_metallo_beta_lactamase_family.py",
+        oos_preregistration_required=False,
+        source_wall_rule_status="implemented_new_fingerprint_runner",
         rationale_template=(
-            "Mechanistically distinct zinc hydrolysis family, but current metal "
-            "amidohydrolase coverage makes OOS preregistration mandatory."
+            "Mechanistically distinct zinc beta-lactam hydrolysis family; the dedicated "
+            "metallo_beta_lactamase fingerprint (di-zinc, EC 3.5.2.6 shared with serine "
+            "beta-lactamase) and MBL-vs-serine/amidohydrolase disambiguation rule are "
+            "implemented (2026-06-17)."
         ),
     ),
     _spec(

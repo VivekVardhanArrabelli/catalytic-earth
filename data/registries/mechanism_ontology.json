@@ -810,6 +810,21 @@
         "Hold multi-fingerprint-signal rows rather than forcing a serine beta-lactamase label.",
         "The beta-lactam substrate, covalent acyl-enzyme intermediate, hydrolytic water, oxyanion-hole geometry, and class-specific protonation state are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
+    },
+    {
+      "id": "metallo_zinc_beta_lactam_hydrolysis",
+      "name": "Zinc metallo-beta-lactam ring hydrolysis",
+      "parent_id": "hydrolysis",
+      "fingerprint_ids": [
+        "metallo_beta_lactamase"
+      ],
+      "v2_split_note": null,
+      "family_boundary_guardrails": [
+        "Membership is decided by a metallo/zinc beta-lactamase family/name OR a catalytic-zinc context plus a Rhea/reviewed beta-lactam hydrolysis reaction; EC 3.5.2.6 is scope only and is SHARED with serine beta-lactamase.",
+        "Do not admit serine beta-lactamases (Ser acyl-enzyme, already zinc-excluded), penicillin-binding proteins / DD-peptidases, or non-beta-lactam zinc amidohydrolases/deaminases into this family.",
+        "Hold multi-fingerprint-signal rows rather than forcing a metallo-beta-lactamase label.",
+        "The one/two catalytic Zn2+ ions, zinc-bridging hydroxide, His/Asp/Cys zinc ligands, and beta-lactam pose are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
     }
   ],
   "propagation_guardrails": [

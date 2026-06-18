@@ -3,6 +3,36 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-17: NEW `metallo_beta_lactamase` FINGERPRINT FAMILY ADDED (48 -> 49 FP) — COMBINED 8902 -> 8906
+
+Decision: third new family in the user-authorized growth pass: add `metallo_beta_lactamase` (MBL)
+as the 49th fingerprint and source its first reviewed-Swiss-Prot bronze tranche. Frozen current702
+untouched.
+
+Chemistry / disambiguation: MBL is the zinc-dependent (di-zinc) Ambler class-B beta-lactam ring
+hydrolase. It SHARES EC 3.5.2.6 with `serine_beta_lactamase` and the `bc_beta_lactam_hydrolysis`
+reaction center, so it is distinguished only by catalytic zinc / the metallo fold. The engine routes
+EC 3.5.2.6 + (metallo/zinc family name OR catalytic-zinc context) + beta-lactam hydrolysis to MBL;
+`serine_beta_lactamase` already excludes zinc/metal, and the `metallo_amidohydrolase_deaminase` rule
+now excludes beta-lactam-hydrolyzing rows (its EC prefix `3.5.2` otherwise captures 3.5.2.6).
+PBP/DD-peptidase rows are boundary-guarded; cap 150. New ontology family
+`metallo_zinc_beta_lactam_hydrolysis` (sibling of the serine one under `hydrolysis`).
+
+Leakage closure: universe 48 -> 49, `CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION`
+`label_factory_v1_48fp -> _49fp`, new frozen `49fp` OOS hard-negative pre-registration supersedes the
+48fp.
+
+Measured result: the MBL lane fetched 37 reviewed rows, corroborated 4, applied **4**
+novelty-admitted bronze (0 -> 4 of cap 150); expansion **8200 -> 8204**, combined **8902 -> 8906**.
+Reviewed MBL supply is small (only 4 novel). Frozen current702 byte-unchanged at sha
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Audits clean (holes none, floor
+deficit 0, novelty admit 7739 -> 7743). Representation loop: serine_beta_lactamase stays 1.0 (its 150
+rows dominate the 4 MBL rows), MBL is 0.75, overall LOO 0.718 -> 0.716 (above the 0.70 floor) -- no
+per-family assertion change needed. Lane-factory `_spec` wired. Summary:
+`artifacts/v3_metallo_beta_lactamase_new_fingerprint_apply_summary_current702_20260617.json`. Three
+families added this session (AKR +28, AAC +32, MBL +4 = +64 from new fingerprints); the add-a-family
+pattern is exercised three times.
+
 ## 2026-06-17: NEW `aminoglycoside_acetyltransferase` FINGERPRINT FAMILY ADDED (47 -> 48 FP) — COMBINED 8870 -> 8902
 
 Decision: continuing the user-authorized new-family growth, add `aminoglycoside_acetyltransferase`

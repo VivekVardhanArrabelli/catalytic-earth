@@ -26,6 +26,21 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **NEW `metallo_beta_lactamase` FINGERPRINT FAMILY ADDED (48 -> 49 FP); COMBINED 8902 -> 8906 (2026-06-17, user-directed).**
+  Third new family: `metallo_beta_lactamase` (MBL) -- zinc-dependent class-B beta-lactam ring
+  hydrolase. It SHARES EC 3.5.2.6 and the `bc_beta_lactam_hydrolysis` reaction center with
+  `serine_beta_lactamase`, distinguished only by catalytic zinc / metallo fold. The engine routes
+  metallo/zinc + beta-lactam rows to MBL, keeps serine beta-lactamase zinc-excluded, and excludes
+  beta-lactam rows from `metallo_amidohydrolase_deaminase` (whose EC 3.5.2 prefix otherwise captures
+  3.5.2.6); PBP/DD-peptidase boundary-guarded (cap 150). First lane applied **4** novelty-admitted
+  bronze (reviewed MBL supply is small -- 37 fetched, 4 novel). Expansion **8200 -> 8204**, combined
+  **8906**; frozen current702 byte-unchanged. Leakage closure: universe `_48fp -> _49fp`, new frozen
+  `49fp` pre-registration. Representation loop: serine_beta_lactamase stays 1.0, MBL 0.75, overall LOO
+  0.716 (above 0.70 floor). Lane-factory `_spec` wired. Audits clean. Summary:
+  `artifacts/v3_metallo_beta_lactamase_new_fingerprint_apply_summary_current702_20260617.json`. Gap to
+  10k: **1094**; reviewed-Swiss-Prot supply for narrow resistance families is small, so the next
+  candidates are broader (oxidoreductase EC-subclass splits) or the human-gated external transfer path.
+
 - **NEW `aminoglycoside_acetyltransferase` FINGERPRINT FAMILY ADDED (47 -> 48 FP); COMBINED 8870 -> 8902 (2026-06-17, user-directed).**
   Second new family in the add-a-family growth pass: `aminoglycoside_acetyltransferase` (AAC) — the
   GNAT-fold acetyl-CoA-dependent aminoglycoside N-acetyltransferase antibiotic-resistance family

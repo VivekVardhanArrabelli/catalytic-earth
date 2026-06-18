@@ -1317,6 +1317,36 @@ _SERINE_BETA_LACTAMASE_BOUNDARY_TOKENS = (
     "lactamase-like",
     "resistance protein",
 )
+# Metallo-beta-lactamase (MBL) handles. EC 3.5.2.6 scopes the candidate supply only
+# (shared with serine beta-lactamase); counted corroboration comes from a metallo/zinc
+# beta-lactamase family/name OR a catalytic-zinc context, plus a Rhea/reviewed beta-lactam
+# hydrolysis reaction. The mechanism is a Zn2+-activated-hydroxide ring hydrolysis (NO Ser
+# acyl-enzyme), so serine beta-lactamases (already zinc-excluded) and penicillin-binding
+# proteins / DD-peptidases are boundary-guarded.
+_METALLO_BETA_LACTAMASE_FAMILY_TEXT_TOKENS = (
+    "metallo-beta-lactamase",
+    "metallo beta-lactamase",
+    "metallo-lactamase",
+    "zinc beta-lactamase",
+    "zinc-dependent beta-lactamase",
+    "zinc metallo-beta-lactamase",
+    "class b beta-lactamase",
+    "subclass b1",
+    "subclass b2",
+    "subclass b3",
+)
+_METALLO_BETA_LACTAMASE_BOUNDARY_TOKENS = (
+    "penicillin-binding protein",
+    "pbp",
+    "d-alanyl-d-alanine carboxypeptidase",
+    "d-alanyl-d-alanine peptidase",
+    "dd-peptidase",
+    "transpeptidase",
+    "carboxypeptidase",
+    "endopeptidase",
+    "beta-lactam synthase",
+    "clavaminate synthase",
+)
 # Biotin-dependent carboxylase handles. EC 6.4.1 / 6.3.4 scopes the reviewed
 # candidate supply only; counted corroboration comes from biotin/biotinyl-Lys
 # cofactor or modified-residue evidence plus ATP/hydrogencarbonate/carboxybiotin
@@ -2376,6 +2406,23 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     non_serine_beta_lactamase_scope_side_ec = any(
         ec and ec != "3.5.2.6" for ec in _ec_numbers(row)
     )
+    metallo_beta_lactamase_family_text = in_any(
+        reactions + keywords + [protein_name] + feature_texts,
+        *_METALLO_BETA_LACTAMASE_FAMILY_TEXT_TOKENS,
+    )
+    metallo_beta_lactamase_zinc_context = bool(evidence.get("zinc")) or in_any(
+        keywords + [protein_name] + feature_texts + cofactor_names, "metallo", "zinc"
+    )
+    metallo_beta_lactamase_betalactam_reaction = in_any(
+        reactions, *_SERINE_BETA_LACTAMASE_REACTION_TOKENS
+    ) and in_any(reactions, *_SERINE_BETA_LACTAMASE_HYDROLYSIS_TOKENS)
+    metallo_beta_lactamase_boundary_signal = in_any(
+        keywords + [protein_name] + feature_texts + reactions,
+        *_METALLO_BETA_LACTAMASE_BOUNDARY_TOKENS,
+    )
+    non_metallo_beta_lactamase_scope_side_ec = any(
+        ec and ec != "3.5.2.6" for ec in _ec_numbers(row)
+    )
     non_6_3_side_ec = any(ec and not ec.startswith("6.3") for ec in _ec_numbers(row))
     non_biotin_carboxylase_scope_side_ec = any(
         ec and not (ec.startswith("6.4.1") or ec.startswith("6.3.4"))
@@ -2675,6 +2722,11 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "serine_beta_lactamase_hydrolysis_reaction": serine_beta_lactamase_hydrolysis_reaction,
             "serine_beta_lactamase_active_site_context": serine_beta_lactamase_active_site_context,
             "serine_beta_lactamase_boundary_signal": serine_beta_lactamase_boundary_signal,
+            "metallo_beta_lactamase_family_text": metallo_beta_lactamase_family_text,
+            "metallo_beta_lactamase_zinc_context": metallo_beta_lactamase_zinc_context,
+            "metallo_beta_lactamase_betalactam_reaction": metallo_beta_lactamase_betalactam_reaction,
+            "metallo_beta_lactamase_boundary_signal": metallo_beta_lactamase_boundary_signal,
+            "non_metallo_beta_lactamase_scope_side_ec": non_metallo_beta_lactamase_scope_side_ec,
             "non_serine_beta_lactamase_scope_side_ec": non_serine_beta_lactamase_scope_side_ec,
             "non_thdp_scope_side_ec": non_thdp_scope_side_ec,
             "schiff_class_i_boundary_signal": schiff_class_i_boundary_signal,
@@ -2898,6 +2950,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("aminoglycoside_acetyltransferase_family_text")
         or evidence.get("alpha_beta_hydrolase_family_text")
         or evidence.get("serine_beta_lactamase_family_text")
+        or evidence.get("metallo_beta_lactamase_family_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -2979,6 +3032,7 @@ _SER_THR_PROTEIN_PHOSPHATASE_EC = ("3.1.3.16", "3.1.3.48")  # protein phosphatas
 _ALDEHYDE_DEHYDROGENASE_EC = ("1.2.1",)  # ALDH; EC scope only
 _ALPHA_BETA_HYDROLASE_ESTERASE_LIPASE_EC = ("3.1.1",)  # esterase/lipase; EC scope only
 _SERINE_BETA_LACTAMASE_EC = ("3.5.2.6",)  # serine beta-lactamase; EC scope only
+_METALLO_BETA_LACTAMASE_EC = ("3.5.2.6",)  # metallo beta-lactamase; EC scope only (shared)
 _METAL_INDEPENDENT_PHOSPHODIESTERASE_EC = (
     "3.1.4",
     "4.6.1",
@@ -3015,9 +3069,21 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         and not c["ser_thr_protein_phosphatase_family_text"],
     ),
     (
+        "metallo_beta_lactamase",
+        lambda c, row: _ec_has_prefix(row, _METALLO_BETA_LACTAMASE_EC)
+        and (
+            c["metallo_beta_lactamase_family_text"]
+            or c["metallo_beta_lactamase_zinc_context"]
+        )
+        and c["metallo_beta_lactamase_betalactam_reaction"]
+        and not c["metallo_beta_lactamase_boundary_signal"]
+        and not c["non_metallo_beta_lactamase_scope_side_ec"],
+    ),
+    (
         "metallo_amidohydrolase_deaminase",
         lambda c, row: c["metal"]
-        and _ec_has_prefix(row, _METALLO_AMIDOHYDROLASE_DEAMINASE_EC),
+        and _ec_has_prefix(row, _METALLO_AMIDOHYDROLASE_DEAMINASE_EC)
+        and not c["metallo_beta_lactamase_betalactam_reaction"],
     ),
     (
         "flavin_monooxygenase",
@@ -3689,6 +3755,16 @@ def _synthesize_cofactor_provenance(
         records = [
             {
                 "name": "Ser/Lys/Glu beta-lactam acyl-enzyme hydrolysis context",
+                "cross_reference": {"id": None},
+            }
+        ]
+    elif fingerprint == "metallo_beta_lactamase" and (
+        evidence.get("metallo_beta_lactamase_zinc_context")
+        or evidence.get("metallo_beta_lactamase_betalactam_reaction")
+    ):
+        records = [
+            {
+                "name": "Zn2+ metallo-beta-lactamase ring-hydrolysis context",
                 "cross_reference": {"id": None},
             }
         ]

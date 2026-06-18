@@ -7283,12 +7283,12 @@ class CliTests(unittest.TestCase):
             self.assertFalse(
                 packet["metadata"]["ready_to_expand_positive_fingerprint_universe"]
             )
-            # 48 after the 2026-06-12 through 2026-06-17 broadened-handle batches
-            # and the two 2026-06-17 new fingerprint families (aldo_keto_reductase
-            # and aminoglycoside_acetyltransferase): the readiness packet counts the
-            # live positive fingerprint universe, not the historical 15-fingerprint
-            # tranche.
-            self.assertEqual(packet["metadata"]["current_positive_fingerprint_count"], 48)
+            # 49 after the 2026-06-12 through 2026-06-17 broadened-handle batches and
+            # the three 2026-06-17 new fingerprint families (aldo_keto_reductase,
+            # aminoglycoside_acetyltransferase, metallo_beta_lactamase): the readiness
+            # packet counts the live positive fingerprint universe, not the historical
+            # 15-fingerprint tranche.
+            self.assertEqual(packet["metadata"]["current_positive_fingerprint_count"], 49)
             self.assertEqual(packet["metadata"]["epk_boundary_row_count"], 3)
             self.assertEqual(packet["metadata"]["countable_label_candidate_count"], 0)
             self.assertIn(

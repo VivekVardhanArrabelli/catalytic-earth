@@ -1,0 +1,1201 @@
+{
+  "applied_labels": [
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q9KJA7",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 7,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29105",
+              "ligand_name": "Zn(2+)",
+              "position": 97
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29105",
+              "ligand_name": "Zn(2+)",
+              "position": 99
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29105",
+              "ligand_name": "Zn(2+)",
+              "position": 101
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29105",
+              "ligand_name": "Zn(2+)",
+              "position": 160
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29105",
+              "ligand_name": "Zn(2+)",
+              "position": 179
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 182
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29105",
+              "ligand_name": "Zn(2+)",
+              "position": 221
+            }
+          ],
+          "binding_residue_count": 7,
+          "catalytic_residue_count": 0,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29105",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "Zn(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "3.5.2.6"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.5.2.6",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a beta-lactam + H2O = a substituted beta-amino acid",
+              "rhea_id": "RHEA:20401",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: metallo_beta_lactamase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "0a89b72d12624179ae7f1204781048d9335136276e7876f517fdad22c9a7d3a2"
+          },
+          "retrieved_utc": "2026-06-18T12:36:31Z",
+          "sequence": "MKGLKGLLVLALGFTGLQVFGQQNPDIKIEKLKDNLYVYTTYNTFKGTKYAANAVYMVTDKGVVVIDSPWGEDKFKSFTDEIYKKHGKKVIMNIATHSHDDRAGGLEYFGKLGAKTYSTKMTDSILAKENKPRAKYTFDNNKSFKVGKTEFQVYYPGKGHTADNVVVWFPKDKVLVGGCIVKSGDSKDLGFIGEAYVNDWTQSIHNIQQKFPDVQYVVAGHDDWKDQTSIQHTLDLISEYQQKQKASN",
+          "sequence_length": 248,
+          "sequence_sha256": "ee0fcb5c60243bb54bbe653a957a1180974c3767a9e5cac6891e271b5a650bd8",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q9KJA7"
+        },
+        "source_provenance": {
+          "accession": "Q9KJA7",
+          "disambiguation_pool": "metallo_beta_lactamase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "metallo_beta_lactamase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_metallo_beta_lactamase_from_annotated_cofactor_and_ec_class_['3.5.2.6']",
+          "organism": "Elizabethkingia meningoseptica (Chryseobacterium meningosepticum)",
+          "protein_name": "Metallo-beta-lactamase type 2 (EC 3.5.2.6) (B2 metallo-beta-lactamase) (Beta-lactamase type II) (Carbapenem-hydrolyzing beta-lactamase BlaB-8) (CHbetaL-8) (Class B carbapenemase BlaB-8) (Metallo-beta-lactamase type II)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 248,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "de4f7a14d04e8ac630da850318740c64b1b388b05431eb14afc4a063505dae4e",
+            "source_query_sha256": "0a89b72d12624179ae7f1204781048d9335136276e7876f517fdad22c9a7d3a2",
+            "uniprot_entry_record_sha256": "e4bae4ad948c92945fe61d73de599fa7345d8b14ce7650f5f295f55fa80b9469",
+            "uniprot_search_row_sha256": "61a0ee7f9211c715972f2c178ddc0a4c8d1b651b07ce43150aba7c24049f89f1"
+          },
+          "target_family_lane": "metallo_beta_lactamase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q9KJA7"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q9KJA7-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "metallo_beta_lactamase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q9KJA7 imported as annotation-anchored bronze in-scope metallo_beta_lactamase: reviewed Swiss-Prot EC ['3.5.2.6'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q9RB01",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 7,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29105",
+              "ligand_name": "Zn(2+)",
+              "position": 98
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29105",
+              "ligand_name": "Zn(2+)",
+              "position": 100
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29105",
+              "ligand_name": "Zn(2+)",
+              "position": 102
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29105",
+              "ligand_name": "Zn(2+)",
+              "position": 161
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29105",
+              "ligand_name": "Zn(2+)",
+              "position": 180
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 183
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29105",
+              "ligand_name": "Zn(2+)",
+              "position": 222
+            }
+          ],
+          "binding_residue_count": 7,
+          "catalytic_residue_count": 0,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29105",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "Zn(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "3.5.2.6"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.5.2.6",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a beta-lactam + H2O = a substituted beta-amino acid",
+              "rhea_id": "RHEA:20401",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: metallo_beta_lactamase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "0a89b72d12624179ae7f1204781048d9335136276e7876f517fdad22c9a7d3a2"
+          },
+          "retrieved_utc": "2026-06-18T12:36:31Z",
+          "sequence": "MLKKIKISLILALGLTSLQAFGQENPDVKIDKLKDNLYVYTTYNTFNGTKYAANAVYLVTDKGVVVIDCPWGEDKFKSFTDEIYKKHGKKVIMNIATHSHDDRAGGLEYFGKIGAKTYSTKMTDSILAKENKPRAQYTFDNNKSFKVGKSEFQVYYPGKGHTADNVVVWFPKEKVLVGGCIIKSADSKDLGYIGEAYVNDWTQSVHNIQQKFSGAQYVVAGHDDWKDQRSIQRTLDLINEYQQKQKASN",
+          "sequence_length": 249,
+          "sequence_sha256": "075e27ff474b9230b87400e386356dca7651813118d26519965bbf28dc88c9d4",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q9RB01"
+        },
+        "source_provenance": {
+          "accession": "Q9RB01",
+          "disambiguation_pool": "metallo_beta_lactamase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "metallo_beta_lactamase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_metallo_beta_lactamase_from_annotated_cofactor_and_ec_class_['3.5.2.6']",
+          "organism": "Elizabethkingia meningoseptica (Chryseobacterium meningosepticum)",
+          "protein_name": "Metallo-beta-lactamase type 2 (EC 3.5.2.6) (B2 metallo-beta-lactamase) (Beta-lactamase type II) (Carbapenem-hydrolyzing beta-lactamase BlaB-2) (CHbetaL-2) (Class B carbapenemase BlaB-2) (Metallo-beta-lactamase type II)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 249,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "de4f7a14d04e8ac630da850318740c64b1b388b05431eb14afc4a063505dae4e",
+            "source_query_sha256": "0a89b72d12624179ae7f1204781048d9335136276e7876f517fdad22c9a7d3a2",
+            "uniprot_entry_record_sha256": "11982eaa65b3d270ded5d70182cd9478fafda73fe47a64c12d5259239d241075",
+            "uniprot_search_row_sha256": "70e0f280b4537c7cc224b08d826ea3c1be887d62323425ee48fbc4b2db34b268"
+          },
+          "target_family_lane": "metallo_beta_lactamase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q9RB01"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q9RB01-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "metallo_beta_lactamase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q9RB01 imported as annotation-anchored bronze in-scope metallo_beta_lactamase: reviewed Swiss-Prot EC ['3.5.2.6'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "uniprot:Q9XBN7",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:cofactor_or_cosubstrate",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 7,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29105",
+              "ligand_name": "Zn(2+)",
+              "position": 98
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29105",
+              "ligand_name": "Zn(2+)",
+              "position": 100
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29105",
+              "ligand_name": "Zn(2+)",
+              "position": 102
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29105",
+              "ligand_name": "Zn(2+)",
+              "position": 161
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29105",
+              "ligand_name": "Zn(2+)",
+              "position": 180
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": null,
+              "ligand_name": "substrate",
+              "position": 183
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:29105",
+              "ligand_name": "Zn(2+)",
+              "position": 222
+            }
+          ],
+          "binding_residue_count": 7,
+          "catalytic_residue_count": 0,
+          "cofactors": [
+            {
+              "chebi_id": "CHEBI:29105",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "name": "Zn(2+)"
+            }
+          ],
+          "ec_numbers": [
+            "3.5.2.6"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.5.2.6",
+              "evidence_codes": [
+                "ECO:0000250"
+              ],
+              "reaction": "a beta-lactam + H2O = a substituted beta-amino acid",
+              "rhea_id": "RHEA:20401",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: metallo_beta_lactamase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, cofactor_or_cosubstrate, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "0a89b72d12624179ae7f1204781048d9335136276e7876f517fdad22c9a7d3a2"
+          },
+          "retrieved_utc": "2026-06-18T12:36:31Z",
+          "sequence": "MMKKMKWALVLALGLTGLNAFGQETPEVKIEKLKDNLYVYTTYNTFNGTKYAANAVYLVTSKGVVVIDSPWGEEKFKNFTDEIYKRHGKKVIMNIATHSHDDRAGGLEYFKSLGAKTYSTKMTDSILAKDNKPRAQYTFDNNKSFKVGKDEFQVYYPGKGHTADHVVVWFPKDKVLVGGCIIKSGDSKDLGFLGEAYVNDWTQSVHNIQKKFPNVQYVVAGHDDWKDQTAIQHTLDLISEYQQKQKASN",
+          "sequence_length": 249,
+          "sequence_sha256": "8b51f2407eb0cd4246b8ce8b03e11198b868edbb790153bf721a17b2bd28567c",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q9XBN7"
+        },
+        "source_provenance": {
+          "accession": "Q9XBN7",
+          "disambiguation_pool": "metallo_beta_lactamase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "metallo_beta_lactamase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_metallo_beta_lactamase_from_annotated_cofactor_and_ec_class_['3.5.2.6']",
+          "organism": "Elizabethkingia meningoseptica (Chryseobacterium meningosepticum)",
+          "protein_name": "Metallo-beta-lactamase type 2 (EC 3.5.2.6) (B2 metallo-beta-lactamase) (Beta-lactamase type II) (Carbapenem-hydrolyzing beta-lactamase BlaB-4) (CHbetaL-4) (Class B carbapenemase BlaB-4) (Metallo lactamase BlaB-3) (Metallo-beta-lactamase type II)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 249,
+          "source_evidence_codes": [
+            "ECO:0000250"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "de4f7a14d04e8ac630da850318740c64b1b388b05431eb14afc4a063505dae4e",
+            "source_query_sha256": "0a89b72d12624179ae7f1204781048d9335136276e7876f517fdad22c9a7d3a2",
+            "uniprot_entry_record_sha256": "2523179c59090d0e33374bd0ef8f511a1502fc63416f3e742a1ae33663656473",
+            "uniprot_search_row_sha256": "ed257e6c6944446bccfd50a118111aaebedc3208c41b6a74b3376bcdb0ca3a38"
+          },
+          "target_family_lane": "metallo_beta_lactamase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "cofactor_or_cosubstrate",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q9XBN7"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "afdb_predicted_coordinate_provenance_available",
+          "pdb_ids": [],
+          "structure_handle": "AF-Q9XBN7-F1"
+        }
+      },
+      "evidence_score": 0.7,
+      "fingerprint_id": "metallo_beta_lactamase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q9XBN7 imported as annotation-anchored bronze in-scope metallo_beta_lactamase: reviewed Swiss-Prot EC ['3.5.2.6'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "high",
+      "entry_id": "uniprot:Q99QC1",
+      "evidence": {
+        "cofactor_evidence_level": "annotated",
+        "conflicts": [],
+        "evidence_basis": "reviewed_swissprot_ec_rhea_cofactor_annotation",
+        "excluded_context": [
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "curated_mechanism_text",
+          "target_family_lane"
+        ],
+        "import_gate_evidence": [
+          "reviewed_swissprot_entry",
+          "current702_accession_sequence_duplicate_screen_clear",
+          "annotation_anchored_scope_assignment",
+          "bronze_tier_annotation_basis",
+          "mechanism_corroborator_ec_disambiguation_unique_fingerprint_match",
+          "mechanism_axis:active_site_motif_or_residue_role",
+          "mechanism_axis:domain_or_family_profile",
+          "mechanism_axis:rhea_reaction_or_participant_pattern"
+        ],
+        "mechanism_evidence": {
+          "active_site_residue_count": 16,
+          "active_site_residues": [
+            {
+              "evidence_codes": [
+                "ECO:0000255"
+              ],
+              "exact": true,
+              "feature_code": "ACT_SITE",
+              "feature_type": "Active site",
+              "ligand_id": null,
+              "ligand_name": null,
+              "position": 88
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:456215",
+              "ligand_name": "AMP",
+              "position": 88
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:58115",
+              "ligand_name": "GMP",
+              "position": 88
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:58053",
+              "ligand_name": "IMP",
+              "position": 88
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:58115",
+              "ligand_name": "GMP",
+              "position": 144
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:58053",
+              "ligand_name": "IMP",
+              "position": 144
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:456215",
+              "ligand_name": "AMP",
+              "position": 174
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:58115",
+              "ligand_name": "GMP",
+              "position": 174
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:58053",
+              "ligand_name": "IMP",
+              "position": 174
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:58115",
+              "ligand_name": "GMP",
+              "position": 336
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:58053",
+              "ligand_name": "IMP",
+              "position": 336
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:456215",
+              "ligand_name": "AMP",
+              "position": 338
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:58115",
+              "ligand_name": "GMP",
+              "position": 338
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:58053",
+              "ligand_name": "IMP",
+              "position": 338
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:58115",
+              "ligand_name": "GMP",
+              "position": 363
+            },
+            {
+              "evidence_codes": [
+                "ECO:0000269",
+                "ECO:0007744"
+              ],
+              "exact": true,
+              "feature_code": "BINDING",
+              "feature_type": "Binding site",
+              "ligand_id": "ChEBI:CHEBI:58053",
+              "ligand_name": "IMP",
+              "position": 363
+            }
+          ],
+          "binding_residue_count": 15,
+          "catalytic_residue_count": 1,
+          "cofactors": [
+            {
+              "chebi_id": null,
+              "evidence_codes": [],
+              "name": "Zn2+ metallo-beta-lactamase ring-hydrolysis context"
+            }
+          ],
+          "ec_numbers": [
+            "3.5.2.6"
+          ],
+          "reaction_equations": [
+            {
+              "ec_number": "3.5.2.6",
+              "evidence_codes": [
+                "ECO:0000255",
+                "ECO:0000269"
+              ],
+              "reaction": "a beta-lactam + H2O = a substituted beta-amino acid",
+              "rhea_id": "RHEA:20401",
+              "source": "uniprot_catalytic_activity_cross_reference"
+            }
+          ]
+        },
+        "migration": "label_factory_v1_default",
+        "notes": [
+          "annotation-anchored bronze: scope decided from reviewed Swiss-Prot/EC/Rhea/cofactor annotation, not local geometry",
+          "structure/cofactor-fused geometry confirmation is a deferred bronze->silver promotion signal, not an entry gate",
+          "mechanism-corroborator/EC disambiguation of a previously-held or freshly sourced row: metallo_beta_lactamase_broadened_handle_fresh_fetch; membership confirmed by mechanism evidence (active_site_motif_or_residue_role, domain_or_family_profile, rhea_reaction_or_participant_pattern); EC class used for scope assignment only (review-only; never a predictive feature)"
+        ],
+        "pending_promotion_audits": [
+          "geometry_inverse_gate_confirmation_on_holo_or_cofactor_fused_structure",
+          "foldseek_structural_near_duplicate_screen"
+        ],
+        "predictive_evidence": [],
+        "retrieval_score": null,
+        "review_only_context": [
+          "accession_identity",
+          "protein_name",
+          "ec_label",
+          "uniprot_prose",
+          "source_annotation",
+          "target_family_lane"
+        ],
+        "sequence_provenance": {
+          "retrieval": {
+            "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+            "fields": "accession,sequence,length,reviewed",
+            "format": "tsv",
+            "reviewed_status": "reviewed",
+            "source_query_sha256": "0a89b72d12624179ae7f1204781048d9335136276e7876f517fdad22c9a7d3a2"
+          },
+          "retrieved_utc": "2026-06-18T12:36:31Z",
+          "sequence": "MQQRQSILWGAVATLMWAGLAHAGEASPVDPLRPVVDASIQPLLKEHRIPGMAVAVLKDGKAHYFNYGVANRESGAGVSEQTLFEIGSVSKTLTATLGAYAVVKGAMQLDDKASRHAPWLKGSAFDSITMGELATYSAGGLPLQFPEEVDSSEKMRAYYRQWAPVYSPGSHRQYSNPSIGLFGHLAASSLKQPFAPLMEQTLLPGLGMHHTYVNVPKQAMASYAYGYSKEDKPIRVNPGMLADEAYGIKTSSADLLRFVKANIGGVDDKALQQAISLTHQGHYSVGGMTQGLGWESYAYPVTEQTLLAGNSAKVILEANPTAAPRESGSQVLFNKTGSTNGFGAYVAFVPARGIGIVMLANRNYPIEARIKAAHAILAQLAG",
+          "sequence_length": 382,
+          "sequence_sha256": "962a9c0f03afb6d0c67e256925c53b6f866e7bc33f819c99ca24af08eb6e6822",
+          "source": "reviewed_uniprot",
+          "source_accession": "Q99QC1"
+        },
+        "source_provenance": {
+          "accession": "Q99QC1",
+          "disambiguation_pool": "metallo_beta_lactamase_broadened_handle_fresh_fetch",
+          "disambiguation_source_artifact": "metallo_beta_lactamase_broadened_handle_fresh_fetch",
+          "import_decision_reason": "cofactor_ec_disambiguation_to_metallo_beta_lactamase_from_annotated_cofactor_and_ec_class_['3.5.2.6']",
+          "organism": "Klebsiella aerogenes (Enterobacter aerogenes)",
+          "protein_name": "Beta-lactamase CMY-10 (EC 3.5.2.6)",
+          "reviewed_status": "reviewed",
+          "sequence_length": 382,
+          "source_evidence_codes": [
+            "ECO:0000255",
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "source_hashes": {
+            "rhea_records_sha256": "536d96fe417a5ee9403db8e5aee3e7c03f419d770978c231872319ac166122c1",
+            "source_query_sha256": "0a89b72d12624179ae7f1204781048d9335136276e7876f517fdad22c9a7d3a2",
+            "uniprot_entry_record_sha256": "740de6d9de028ad2e3df307b8b2c07402086197961feec82ff85711dcae29627",
+            "uniprot_search_row_sha256": "21148e074590e7ecc8a04ebeef2b27aee486103b782df1521614f72aca1b27ff"
+          },
+          "target_family_lane": "metallo_beta_lactamase"
+        },
+        "source_trust_tier": {
+          "ec_scope_hint_axes_not_counted": [
+            "ec_scope_hint"
+          ],
+          "mechanism_corroborator_axes_present": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "meets_n_of_m": true,
+          "present_axes": [
+            "active_site_motif_or_residue_role",
+            "domain_or_family_profile",
+            "ec_scope_hint",
+            "rhea_reaction_or_participant_pattern"
+          ],
+          "source_tier": "source_tier_0"
+        },
+        "sources": [
+          "external_cofactor_ec_disambiguation"
+        ],
+        "structure_provenance": {
+          "alphafold_ids": [
+            "Q99QC1"
+          ],
+          "coordinate_path": null,
+          "coordinate_status": "experimental_pdb_coordinate_provenance_available",
+          "pdb_ids": [
+            "1ZKJ",
+            "5F1F",
+            "5GSC",
+            "5K1D",
+            "5K1F"
+          ],
+          "structure_handle": "1ZKJ"
+        }
+      },
+      "evidence_score": 0.85,
+      "fingerprint_id": "metallo_beta_lactamase",
+      "label_type": "seed_fingerprint",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "rationale": "Q99QC1 imported as annotation-anchored bronze in-scope metallo_beta_lactamase: reviewed Swiss-Prot EC ['3.5.2.6'] with metal cofactor corroboration; current702 accession/sequence duplicate screen clear; structure/geometry confirmation deferred as a bronze->silver promotion signal. EC, protein name, and prose are excluded from predictive features.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    }
+  ],
+  "artifact_id": "v3_metallo_beta_lactamase_sourcing_preview_current702",
+  "counts": {
+    "admitted_fingerprint_counts": {
+      "metallo_beta_lactamase": 4
+    },
+    "current_combined_labels": 8902,
+    "disambiguation_hold_count": 12,
+    "disambiguation_hold_reason_counts": {
+      "no_mechanism_corroboration": 12
+    },
+    "disambiguation_skip_count": 21,
+    "fetched_candidate_rows": 37,
+    "gate_admitted_before_cap_guard": 4,
+    "held_at_cap_ceiling": 0,
+    "held_at_cap_ceiling_by_fingerprint": {},
+    "lane_ids": [
+      "metallo_beta_lactamase_named_zinc",
+      "metallo_beta_lactamase_active_binding",
+      "metallo_beta_lactamase_reaction_betalactam"
+    ],
+    "lanes_queried": 3,
+    "max_records_per_lane": 300,
+    "mechanism_corroborated_bronze_labels": 4,
+    "novelty_admitted_labels": 4,
+    "novelty_throttled_or_rejected": 0,
+    "off_target_fingerprint_counts": {},
+    "off_target_fingerprint_matches_held": 0,
+    "projected_combined_labels_if_merged": 8906,
+    "record_limit_per_lane": null,
+    "record_offset_per_lane": 0
+  },
+  "created_utc": "2026-06-18T12:36:31Z",
+  "deploy_missing_active_site_context_per_family": {
+    "metallo_beta_lactamase": "dizinc_metallo_beta_lactamase_ring_hydrolysis_context"
+  },
+  "disambiguation_counts": {
+    "confidence_counts": {
+      "high": 1,
+      "medium": 3
+    },
+    "current_registry_labels": 8200,
+    "decision_counts": {
+      "hold": 12,
+      "import": 4,
+      "skip": 21
+    },
+    "examined_rows": 37,
+    "fingerprint_counts": {
+      "metallo_beta_lactamase": 4
+    },
+    "hold_count": 12,
+    "hold_reason_counts": {
+      "no_mechanism_corroboration": 12
+    },
+    "importable_new_labels": 4,
+    "per_pool_decision_counts": {
+      "metallo_beta_lactamase_broadened_handle_fresh_fetch": {
+        "hold": 12,
+        "import": 4,
+        "skip_screen": 21
+      }
+    },
+    "projected_registry_labels_if_merged": 8204,
+    "skip_count": 21
+  },
+  "evidence_basis": "reviewed_swissprot_ec_rhea_mbl_zinc_beta_lactam_hydrolysis_annotation",
+  "families_sourced": [
+    "metallo_beta_lactamase"
+  ],
+  "fetch_failure_count": 0,
+  "fetch_failures": [],
+  "floor_projection": {
+    "metallo_beta_lactamase": {
+      "admitted_this_run": 4,
+      "cap_ceiling": 150,
+      "chemistry_confusable": true,
+      "combined_before": 0,
+      "deficit_to_floor_after": 96,
+      "deficit_to_floor_before": 100,
+      "deploy_missing_active_site_context": "dizinc_metallo_beta_lactamase_ring_hydrolysis_context",
+      "floor_reached": false,
+      "held_at_cap_this_run": 0,
+      "projected_combined": 4,
+      "projected_over_cap": false
+    }
+  },
+  "guardrails": {
+    "all_new_labels_review_status": "automation_curated",
+    "all_new_labels_tier": "bronze",
+    "broadened_handles_never_predictive_features": true,
+    "curated_registry_written": false,
+    "current702_accession_sequence_duplicate_screen_required": true,
+    "ec_never_a_counted_corroborator": true,
+    "ec_used_for_scope_assignment_only_never_predictive": true,
+    "expansion_labels_written_to_separate_registry_not_benchmark": true,
+    "external_entry_id_namespace": "uniprot",
+    "frozen_current702_benchmark_preserved": true,
+    "heldout_benchmark_unchanged": true,
+    "metallo_beta_lactamase_handles_scope_admission_only": true,
+    "multi_fingerprint_signal_rows_held": true,
+    "no_fingerprint_pushed_over_cap": true,
+    "novelty_gated_against_both_registries": true,
+    "off_target_fingerprint_matches_held": true,
+    "per_fingerprint_cap_ceiling_enforced_per_family": {
+      "metallo_beta_lactamase": 150
+    },
+    "predictive_features_use_ec_name_keyword_reaction_or_prose": false,
+    "serine_beta_lactamase_pbp_nonbetalactam_amidohydrolase_boundary_guard": true,
+    "structure_geometry_confirmation_is_deferred_promotion_signal": true,
+    "trust_tier_n_of_m_requires_at_least_one_mechanism_axis": true
+  },
+  "lane_summaries": [
+    {
+      "lane_id": "metallo_beta_lactamase_named_zinc",
+      "query": "(reviewed:true) AND (ec:3.5.2.6) AND ((protein_name:metallo) OR (cc_cofactor:zinc) OR (keyword:Zinc) OR (protein_name:\"metallo-beta-lactamase\")) AND ((keyword:Zinc) OR (keyword:Metal-binding) OR (cc_cofactor:zinc))",
+      "record_count": 37,
+      "record_limit_per_lane": null,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 37,
+      "records_returned_by_query": 37,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.5.2.6%29+AND+%28%28protein_name%3Ametallo%29+OR+%28cc_cofactor%3Azinc%29+OR+%28keyword%3AZinc%29+OR+%28protein_name%3A%22metallo-beta-lactamase%22%29%29+AND+%28%28keyword%3AZinc%29+OR+%28keyword%3AMetal-binding%29+OR+%28cc_cofactor%3Azinc%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=300",
+      "status": "query_fetched",
+      "target_family_lane": "metallo_beta_lactamase"
+    },
+    {
+      "lane_id": "metallo_beta_lactamase_active_binding",
+      "query": "(reviewed:true) AND (ec:3.5.2.6) AND ((protein_name:metallo) OR (cc_cofactor:zinc) OR (keyword:Zinc) OR (protein_name:\"metallo-beta-lactamase\")) AND ((ft_act_site:*) OR (ft_binding:*))",
+      "record_count": 0,
+      "record_limit_per_lane": null,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 37,
+      "records_returned_by_query": 37,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.5.2.6%29+AND+%28%28protein_name%3Ametallo%29+OR+%28cc_cofactor%3Azinc%29+OR+%28keyword%3AZinc%29+OR+%28protein_name%3A%22metallo-beta-lactamase%22%29%29+AND+%28%28ft_act_site%3A%2A%29+OR+%28ft_binding%3A%2A%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=300",
+      "status": "query_fetched",
+      "target_family_lane": "metallo_beta_lactamase"
+    },
+    {
+      "lane_id": "metallo_beta_lactamase_reaction_betalactam",
+      "query": "(reviewed:true) AND (ec:3.5.2.6) AND ((protein_name:metallo) OR (cc_cofactor:zinc) OR (keyword:Zinc) OR (protein_name:\"metallo-beta-lactamase\")) AND ((cc_catalytic_activity:beta-lactam) OR (cc_catalytic_activity:lactam) OR (cc_catalytic_activity:carbapenem))",
+      "record_count": 0,
+      "record_limit_per_lane": null,
+      "record_offset_per_lane": 0,
+      "records_in_window_before_dedup": 37,
+      "records_returned_by_query": 37,
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.5.2.6%29+AND+%28%28protein_name%3Ametallo%29+OR+%28cc_cofactor%3Azinc%29+OR+%28keyword%3AZinc%29+OR+%28protein_name%3A%22metallo-beta-lactamase%22%29%29+AND+%28%28cc_catalytic_activity%3Abeta-lactam%29+OR+%28cc_catalytic_activity%3Alactam%29+OR+%28cc_catalytic_activity%3Acarbapenem%29%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=300",
+      "status": "query_fetched",
+      "target_family_lane": "metallo_beta_lactamase"
+    }
+  ],
+  "next_action": "Review floor_projection + novelty_gate. If dedup, trust-tier, cap, leakage, and row guardrail gates pass, append `applied_labels` to data/registries/external_bronze_labels.json via the family script `--apply` with frozen current702 sha checks.",
+  "novelty_gate": {
+    "decision_counts": {
+      "admit": 4
+    },
+    "reason_counts": {
+      "closes_hole_fingerprint": 4
+    }
+  },
+  "off_target_fingerprint_matches_sample": [],
+  "schema_version": "external_annotation_anchored_import.v1",
+  "stage": "scaling_plan_to_10k:wire_metallo_beta_lactamase_new_fingerprint_lane",
+  "status": "non_destructive_preview_pending_explicit_registry_merge_authorization",
+  "throttled_or_rejected_sample": []
+}
