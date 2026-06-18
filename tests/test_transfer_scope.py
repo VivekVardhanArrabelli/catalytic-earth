@@ -9533,6 +9533,7 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 "cytochrome_p450_monooxygenase",
                 "deoxynucleoside_kinase",
                 "ghmp_small_molecule_kinase",
+                "glutathione_s_transferase",
                 "glycoside_hydrolase",
                 "glycosyltransferase",
                 "had_like_phosphatase",

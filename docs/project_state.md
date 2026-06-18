@@ -26,6 +26,20 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **NEW `glutathione_s_transferase` FINGERPRINT FAMILY ADDED (51 -> 52 FP); COMBINED 9186 -> 9327 (2026-06-18, user-directed "continue to 10k").**
+  Sixth new family: `glutathione_s_transferase` -- GSH conjugation (EC 2.5.1.18; cytosolic alpha/mu/pi/
+  theta/omega/zeta/sigma + mitochondrial kappa classes). Nucleophilic conjugation of the G-site-activated
+  glutathione thiolate to an electrophile (H-site) -> S-substituted glutathione. EC 2.5.1.18 uncovered
+  (not shared); distinct GSH-conjugation reaction center. Routes EC 2.5.1.18 + GST family + glutathione-
+  conjugation reaction; GPx (1.11.1), glutathione reductase (1.8.1.7), synthetase (6.3.2.3), glutaredoxin,
+  gamma-glutamyltransferase boundary-guarded; cap 250 (clean). Ontology family `glutathione_conjugation`.
+  First lane applied **141** (323 fetched, 267 corroborated). Expansion 8484 -> 8625, combined **9327**;
+  frozen current702 byte-unchanged. Leakage closure `_51fp -> _52fp`. Representation loop: GST sc 0.950;
+  peroxiredoxin 0.713 -> 0.507 (GSH-cluster pull, documented); overall LOO 0.701 (> 0.70 floor). Audits
+  clean. Summary:
+  `artifacts/v3_glutathione_s_transferase_new_fingerprint_apply_summary_current702_20260618.json`. Gap
+  to 10k: **673**.
+
 - **NEW `paps_sulfotransferase` FINGERPRINT FAMILY ADDED (50 -> 51 FP); COMBINED 9056 -> 9186 (2026-06-18, user-directed "continue to 10k").**
   Fifth new family: `paps_sulfotransferase` -- PAPS-dependent sulfuryl transfer (EC 2.8.2; cytosolic
   SULTs, carbohydrate / heparan-sulfate / tyrosylprotein sulfotransferases). Sulfuryl (SO3) transfer

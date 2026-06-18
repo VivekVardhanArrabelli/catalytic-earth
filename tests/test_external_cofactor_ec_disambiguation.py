@@ -555,6 +555,52 @@ class DisambiguateRowTests(unittest.TestCase):
         d = disambiguate_row(row)
         self.assertEqual(d.get("decision"), "hold")
 
+    def test_glutathione_s_transferase_routes_on_family_and_conjugation(self) -> None:
+        row = _row(ec=["2.5.1.18"])
+        row["protein_name"] = "Glutathione S-transferase P"
+        row["keywords"] = ["Transferase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:GST001",
+                "reaction": "RX + glutathione = an S-substituted glutathione + a halide anion + H(+)",
+                "ec_number": "2.5.1.18",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d.get("fingerprint_id"), "glutathione_s_transferase")
+
+    def test_glutathione_reductase_not_pulled_into_gst(self) -> None:
+        # Glutathione reductase (EC 1.8.1.7) is a flavin disulfide reductase, off-scope for
+        # the GST EC 2.5.1.18 and boundary-guarded; it must not route to glutathione_s_transferase.
+        row = _row(ec=["1.8.1.7"])
+        row["protein_name"] = "Glutathione reductase"
+        row["keywords"] = ["Oxidoreductase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:GR001",
+                "reaction": "2 glutathione + NADP(+) = glutathione disulfide + NADPH + H(+)",
+                "ec_number": "1.8.1.7",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertNotEqual(d.get("fingerprint_id"), "glutathione_s_transferase")
+
+    def test_glutathione_peroxidase_routes_to_peroxiredoxin_not_gst(self) -> None:
+        # A glutathione peroxidase (EC 1.11.1) is a thiol/selenol peroxidase, not a GST; its EC
+        # scope keeps it out of the GST rule and routes it to peroxiredoxin_thiol_peroxidase.
+        row = _row(ec=["1.11.1.9"])
+        row["protein_name"] = "Glutathione peroxidase 1"
+        row["keywords"] = ["Selenocysteine"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:GPX001",
+                "reaction": "2 glutathione + H2O2 = glutathione disulfide + 2 H2O",
+                "ec_number": "1.11.1.9",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertNotEqual(d.get("fingerprint_id"), "glutathione_s_transferase")
+
     def test_glycoside_hydrolase_requires_hydrolysis_and_active_site_handle(self) -> None:
         row = _row(ec=["3.2.1.4"])
         row["protein_name"] = "Endoglucanase"

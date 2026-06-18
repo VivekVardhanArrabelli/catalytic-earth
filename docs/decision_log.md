@@ -3,6 +3,22 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-18: NEW `glutathione_s_transferase` FINGERPRINT FAMILY ADDED (51 -> 52 FP) — COMBINED 9327 (user-directed "continue to 10k")
+
+Sixth new family. `glutathione_s_transferase` (GSH conjugation, EC 2.5.1.18): nucleophilic conjugation
+of the G-site-activated glutathione thiolate to an electrophile (H-site) -> S-substituted glutathione.
+EC 2.5.1.18 is uncovered (not shared). Routes EC 2.5.1.18 + glutathione-transferase family/name + a
+Rhea glutathione-conjugation reaction; glutathione peroxidase (EC 1.11.1), reductase (EC 1.8.1.7),
+synthetase (EC 6.3.2.3), glutaredoxin, gamma-glutamyltransferase boundary-guarded; side-EC held; cap
+250 (clean). Ontology family `glutathione_conjugation` (parent `mechanism`). Leakage closure
+`_51fp -> _52fp`. Lane fetched 323, corroborated 267, applied **141** (0 dup); expansion 8484 -> 8625,
+combined **9186 -> 9327**. Frozen current702 byte-unchanged. Audits clean (holes none, floor deficit 0,
+novelty admit 8164). Representation loop: GST well-separated (sc **0.950**); its GSH-related cluster
+pulls the GSH-using GPx subset of peroxiredoxin (peroxiredoxin 0.713 -> 0.507; assertion lowered to
+> 0.4, documented); overall LOO ~flat **0.701** (> 0.70 floor; not lowered, no fold/name leakage). Gap
+to 10k: **673**. Summary:
+`artifacts/v3_glutathione_s_transferase_new_fingerprint_apply_summary_current702_20260618.json`.
+
 ## 2026-06-18: NEW `paps_sulfotransferase` FINGERPRINT FAMILY ADDED (50 -> 51 FP) — COMBINED 9186 (user-directed "continue to 10k")
 
 Decision: fifth new family, continuing the user directive to grow combined labels to 10k. Add

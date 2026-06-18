@@ -4002,5 +4002,79 @@
       "reconstruction_path": "Path A sequence->sulfotransferase family plus PAPS reaction/active-site channel, or canonical PAPS/PAP graft in a sulfotransferase fold (Path B)",
       "silver_reachability": "moderate; reviewed sulfotransferase family and PAPS reaction annotations are common, but the bound-PAPS sulfuryl-transfer geometry needs explicit reconstruction"
     }
+  },
+  {
+    "id": "glutathione_s_transferase",
+    "name": "Glutathione S-transferase",
+    "enzyme_space": [
+      "cytosolic glutathione transferases (alpha, mu, pi, theta, omega, zeta, sigma classes)",
+      "mitochondrial (kappa) glutathione transferases",
+      "bacterial/plant/insect soluble glutathione transferases (EC 2.5.1.18)"
+    ],
+    "active_site_signature": [
+      {
+        "role": "g_site_glutathione_binding",
+        "residue": "N-terminal thioredoxin-fold G-site binding glutathione, with a catalytic Tyr/Ser/Cys that stabilizes the GSH thiolate",
+        "constraints": [
+          "binds glutathione and lowers the GSH thiol pKa to form a reactive thiolate (GS-)",
+          "presence of a glutathione-transferase family/name and a GSH-conjugation reaction defines the family"
+        ]
+      },
+      {
+        "role": "h_site_electrophile_pocket",
+        "residue": "C-terminal hydrophobic H-site binding the electrophilic second substrate",
+        "constraints": [
+          "positions the electrophile for nucleophilic attack by the activated GSH thiolate"
+        ]
+      }
+    ],
+    "cofactors": [
+      "none (glutathione is the dissociable thiol cosubstrate, not a bound cofactor)"
+    ],
+    "reaction_center": {
+      "bond_changes": [
+        "nucleophilic conjugation of the glutathione thiolate to an electrophilic carbon/oxygen/nitrogen, forming a thioether (S-substituted glutathione)",
+        "RX + glutathione -> an S-substituted glutathione + X- (+ H+)"
+      ],
+      "chemical_operation": "glutathione conjugation (GSH-thiolate transfer to an electrophile)"
+    },
+    "substrate_constraints": [
+      "EC 2.5.1.18 scope present but never counted as a corroborator",
+      "glutathione-transferase family or name context present",
+      "Rhea or reviewed catalytic activity text conjugating glutathione (-> S-substituted glutathione) present",
+      "no glutathione peroxidase (EC 1.11.1) / glutathione reductase (EC 1.8.1.7) / glutathione synthetase (EC 6.3.2.3) / glutaredoxin / gamma-glutamyltransferase context, no EC-only or multi-fingerprint signal"
+    ],
+    "evidence_features": [
+      "glutathione S-transferase / glutathione transferase family, name, or keyword text",
+      "reviewed catalytic activity text conjugating glutathione to an electrophile (S-substituted glutathione product)",
+      "annotated G-site / catalytic Tyr/Ser/Cys active-site context where available",
+      "EC 2.5.1.18 scope only, never counted as a corroborator"
+    ],
+    "counterevidence_features": [
+      "glutathione peroxidase (thiol/selenol peroxide reduction; EC 1.11.1) context",
+      "glutathione reductase (FAD-dependent disulfide reduction; EC 1.8.1.7) context",
+      "glutathione synthetase / gamma-glutamylcysteine ligase / gamma-glutamyltransferase context",
+      "glutaredoxin / thioredoxin disulfide-exchange context",
+      "EC-only evidence with no glutathione-transferase family and conjugation corroboration",
+      "multi-fingerprint signal where another rule independently fires"
+    ],
+    "uncertainty_axes": [
+      "cytosolic versus mitochondrial (kappa) fold class",
+      "catalytic Tyr versus Ser versus Cys G-site residue",
+      "electrophile-substrate specificity (H-site) within a class",
+      "GSH-bound versus apo versus product state"
+    ],
+    "seed_examples": [
+      "Glutathione S-transferase P (human GSTP1; pi class)",
+      "Glutathione S-transferase A1 (human GSTA1; alpha class)",
+      "Glutathione S-transferase Mu 1 (human GSTM1)",
+      "Glutathione S-transferase theta-1 (human GSTT1)"
+    ],
+    "deploy_missing_active_site_context": {
+      "type": "g_site_glutathione_thiolate_h_site_conjugation_context",
+      "detail": "the bound glutathione, the catalytic Tyr/Ser/Cys G-site residue, the H-site electrophile pose, and the thiolate-activation geometry are absent or incomplete in apo predicted structures",
+      "reconstruction_path": "Path A sequence->GST family plus glutathione-conjugation reaction/active-site channel, or canonical GSH/G-site graft in a thioredoxin-fold GST (Path B)",
+      "silver_reachability": "moderate; reviewed GST family and glutathione-conjugation annotations are common, but the G-site thiolate-activation geometry needs explicit reconstruction"
+    }
   }
 ]

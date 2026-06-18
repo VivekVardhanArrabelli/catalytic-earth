@@ -434,6 +434,40 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         ),
     ),
     _spec(
+        family_id="glutathione_s_transferase",
+        display_name="Glutathione S-transferase",
+        scope_query="(reviewed:true) AND (ec:2.5.1.18)",
+        corroborator_query=(
+            "(reviewed:true) AND (ec:2.5.1.18) AND "
+            "((protein_name:\"glutathione transferase\") OR "
+            "(protein_name:\"glutathione s-transferase\"))"
+        ),
+        required_non_ec_corroborators=(
+            "glutathione-transferase family/name handle",
+            "Rhea reaction conjugating glutathione to an electrophile (S-substituted glutathione)",
+            "G-site / catalytic Tyr/Ser/Cys active-site context where available",
+        ),
+        disambiguation_holds=(
+            "glutathione peroxidase (EC 1.11.1) rows",
+            "glutathione reductase (EC 1.8.1.7) rows",
+            "glutathione synthetase (EC 6.3.2.3) / gamma-glutamyltransferase rows",
+            "EC-only rows without a glutathione-conjugation reaction",
+        ),
+        cap_ceiling=DEFAULT_CLEAN_CAP,
+        chemistry_confusable=False,
+        novelty_keep_factor=0.6,
+        existing_fingerprint_id="glutathione_s_transferase",
+        current_runner="scripts/source_glutathione_s_transferase_family.py",
+        oos_preregistration_required=False,
+        source_wall_rule_status="implemented_new_fingerprint_runner",
+        rationale_template=(
+            "Coherent uncovered EC 2.5.1.18 glutathione-conjugation family (cytosolic GST "
+            "classes alpha/mu/pi/theta/omega/zeta/sigma, mitochondrial kappa); the dedicated "
+            "glutathione_s_transferase fingerprint and its disambiguation rule are implemented "
+            "(2026-06-18). Distinct GSH-thiolate conjugation reaction center; clean (cap 250)."
+        ),
+    ),
+    _spec(
         family_id="aldo_keto_reductase",
         display_name="Aldo-keto reductase",
         scope_query="(reviewed:true) AND (ec:1.1.1.*)",

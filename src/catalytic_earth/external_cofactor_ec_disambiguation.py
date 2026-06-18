@@ -1438,6 +1438,33 @@ _PAPS_SULFOTRANSFERASE_BOUNDARY_TOKENS = (
     "phosphoadenosine phosphosulfate reductase",
     "paps reductase",
 )
+# Glutathione S-transferase (GST) handles. EC 2.5.1.18 scopes the candidate supply only
+# (and is NOT shared with any existing fingerprint); counted corroboration comes from a
+# glutathione-transferase family/name plus a Rhea/reviewed reaction that conjugates glutathione
+# to an electrophile (-> an S-substituted glutathione). Glutathione peroxidase (EC 1.11.1),
+# glutathione reductase (EC 1.8.1.7), glutathione synthetase (EC 6.3.2.3), glutaredoxin, and
+# gamma-glutamyltransferase are boundary-guarded.
+_GLUTATHIONE_S_TRANSFERASE_FAMILY_TEXT_TOKENS = (
+    "glutathione s-transferase",
+    "glutathione s transferase",
+    "glutathione transferase",
+    "s-glutathione transferase",
+)
+_GLUTATHIONE_S_TRANSFERASE_REACTION_TOKENS = (
+    "glutathione",
+    "s-substituted glutathione",
+    "glutathionyl",
+)
+_GLUTATHIONE_S_TRANSFERASE_BOUNDARY_TOKENS = (
+    "glutathione peroxidase",
+    "glutathione reductase",
+    "glutathione synthase",
+    "glutathione synthetase",
+    "glutaredoxin",
+    "gamma-glutamyl",
+    "thioredoxin",
+    "disulfide reductase",
+)
 # Biotin-dependent carboxylase handles. EC 6.4.1 / 6.3.4 scopes the reviewed
 # candidate supply only; counted corroboration comes from biotin/biotinyl-Lys
 # cofactor or modified-residue evidence plus ATP/hydrogencarbonate/carboxybiotin
@@ -2546,6 +2573,20 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     non_paps_sulfotransferase_scope_side_ec = any(
         ec and not ec.startswith("2.8.2") for ec in _ec_numbers(row)
     )
+    glutathione_s_transferase_family_text = in_any(
+        keywords + [protein_name] + feature_texts,
+        *_GLUTATHIONE_S_TRANSFERASE_FAMILY_TEXT_TOKENS,
+    )
+    glutathione_s_transferase_reaction = in_any(
+        reactions, *_GLUTATHIONE_S_TRANSFERASE_REACTION_TOKENS
+    )
+    glutathione_s_transferase_boundary_signal = in_any(
+        keywords + [protein_name] + feature_texts + reactions,
+        *_GLUTATHIONE_S_TRANSFERASE_BOUNDARY_TOKENS,
+    )
+    non_glutathione_s_transferase_scope_side_ec = any(
+        ec and not ec.startswith("2.5.1.18") for ec in _ec_numbers(row)
+    )
     non_6_3_side_ec = any(ec and not ec.startswith("6.3") for ec in _ec_numbers(row))
     non_biotin_carboxylase_scope_side_ec = any(
         ec and not (ec.startswith("6.4.1") or ec.startswith("6.3.4"))
@@ -2859,6 +2900,10 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "paps_sulfotransferase_reaction": paps_sulfotransferase_reaction,
             "paps_sulfotransferase_boundary_signal": paps_sulfotransferase_boundary_signal,
             "non_paps_sulfotransferase_scope_side_ec": non_paps_sulfotransferase_scope_side_ec,
+            "glutathione_s_transferase_family_text": glutathione_s_transferase_family_text,
+            "glutathione_s_transferase_reaction": glutathione_s_transferase_reaction,
+            "glutathione_s_transferase_boundary_signal": glutathione_s_transferase_boundary_signal,
+            "non_glutathione_s_transferase_scope_side_ec": non_glutathione_s_transferase_scope_side_ec,
             "non_serine_beta_lactamase_scope_side_ec": non_serine_beta_lactamase_scope_side_ec,
             "non_thdp_scope_side_ec": non_thdp_scope_side_ec,
             "schiff_class_i_boundary_signal": schiff_class_i_boundary_signal,
@@ -3085,6 +3130,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("metallo_beta_lactamase_family_text")
         or evidence.get("peroxiredoxin_thiol_peroxidase_family_text")
         or evidence.get("paps_sulfotransferase_family_text")
+        or evidence.get("glutathione_s_transferase_family_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -3169,6 +3215,7 @@ _SERINE_BETA_LACTAMASE_EC = ("3.5.2.6",)  # serine beta-lactamase; EC scope only
 _METALLO_BETA_LACTAMASE_EC = ("3.5.2.6",)  # metallo beta-lactamase; EC scope only (shared)
 _PEROXIREDOXIN_THIOL_PEROXIDASE_EC = ("1.11.1",)  # peroxiredoxin/thiol peroxidase; EC scope only (shared with heme peroxidases)
 _PAPS_SULFOTRANSFERASE_EC = ("2.8.2",)  # PAPS-dependent sulfotransferase; EC scope only (not shared)
+_GLUTATHIONE_S_TRANSFERASE_EC = ("2.5.1.18",)  # glutathione S-transferase; EC scope only (not shared)
 _METAL_INDEPENDENT_PHOSPHODIESTERASE_EC = (
     "3.1.4",
     "4.6.1",
@@ -3210,6 +3257,14 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         and c["paps_sulfotransferase_reaction"]
         and not c["paps_sulfotransferase_boundary_signal"]
         and not c["non_paps_sulfotransferase_scope_side_ec"],
+    ),
+    (
+        "glutathione_s_transferase",
+        lambda c, row: _ec_has_prefix(row, _GLUTATHIONE_S_TRANSFERASE_EC)
+        and c["glutathione_s_transferase_family_text"]
+        and c["glutathione_s_transferase_reaction"]
+        and not c["glutathione_s_transferase_boundary_signal"]
+        and not c["non_glutathione_s_transferase_scope_side_ec"],
     ),
     (
         "metallopeptidase",
@@ -3943,6 +3998,15 @@ def _synthesize_cofactor_provenance(
         records = [
             {
                 "name": "3'-phosphoadenylyl sulfate (PAPS) sulfuryl-transfer cosubstrate context",
+                "cross_reference": {"id": None},
+            }
+        ]
+    elif fingerprint == "glutathione_s_transferase" and evidence.get(
+        "glutathione_s_transferase_reaction"
+    ):
+        records = [
+            {
+                "name": "glutathione conjugation (GSH thiolate -> S-substituted glutathione) cosubstrate context",
                 "cross_reference": {"id": None},
             }
         ]

@@ -16,6 +16,16 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-18 user-directed "continue to 10k" — new fingerprint family: `glutathione_s_transferase`
+added (51 -> 52 FP), combined 9186 -> 9327.** GSH conjugation (EC 2.5.1.18; cytosolic + mitochondrial
+GST classes). EC 2.5.1.18 uncovered; distinct GSH-thiolate conjugation reaction center. Full
+disambiguation (GST family + glutathione-conjugation reaction; GPx/reductase/synthetase/glutaredoxin
+guarded), ontology `glutathione_conjugation`, sourcing lane, leakage re-registration (`_51fp -> _52fp`),
+lane-factory wiring. First lane applied **141** (323 fetched, 267 corroborated, cap 250). Well-separated
+(sc 0.950); peroxiredoxin slipped 0.71 -> 0.51 (GSH cluster pull, documented); overall LOO 0.701
+(> 0.70 floor). Gap to 10k: **673**. See
+`artifacts/v3_glutathione_s_transferase_new_fingerprint_apply_summary_current702_20260618.json`.
+
 **2026-06-18 user-directed "continue to 10k" — new fingerprint family: `paps_sulfotransferase`
 added (50 -> 51 FP), combined 9056 -> 9186.** PAPS-dependent sulfuryl transfer (EC 2.8.2; cytosolic
 SULTs, carbohydrate / heparan-sulfate / tyrosylprotein sulfotransferases). EC 2.8.2 is uncovered (not

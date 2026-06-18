@@ -855,6 +855,21 @@
         "Hold multi-fingerprint-signal rows rather than forcing a sulfotransferase label.",
         "The bound PAPS donor, the 5'-phosphosulfate-binding loop, the catalytic His, and the acceptor pose are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
+    },
+    {
+      "id": "glutathione_conjugation",
+      "name": "Glutathione conjugation (GSH-thiolate transfer)",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "glutathione_s_transferase"
+      ],
+      "v2_split_note": null,
+      "family_boundary_guardrails": [
+        "Membership is decided by a glutathione-transferase family/name plus a Rhea/reviewed reaction conjugating glutathione to an electrophile (-> an S-substituted glutathione); EC 2.5.1.18 is scope only.",
+        "Do not admit glutathione peroxidases (EC 1.11.1), glutathione reductases (EC 1.8.1.7), glutathione synthetases (EC 6.3.2.3), glutaredoxins, or gamma-glutamyltransferases into this family.",
+        "Hold multi-fingerprint-signal rows (including bifunctional GST-peroxidase / GST-isomerase entries carrying a second EC) rather than forcing a glutathione-transferase label.",
+        "The bound glutathione, the catalytic Tyr/Ser/Cys G-site residue, the H-site electrophile pose, and the thiolate-activation geometry are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
     }
   ],
   "propagation_guardrails": [
