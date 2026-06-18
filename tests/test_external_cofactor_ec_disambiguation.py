@@ -319,6 +319,59 @@ class DisambiguateRowTests(unittest.TestCase):
         d = disambiguate_row(row)
         self.assertNotEqual(d.get("fingerprint_id"), "aldo_keto_reductase")
 
+    def test_aminoglycoside_acetyltransferase_gets_its_own_fingerprint_not_coa(self) -> None:
+        row = _row(ec=["2.3.1.82"])
+        row["protein_name"] = "Aminoglycoside N(6')-acetyltransferase"
+        row["keywords"] = ["Antibiotic resistance", "Acetyltransferase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:AAC001",
+                "reaction": "acetyl-CoA + kanamycin = CoA + N(6')-acetylkanamycin",
+                "ec_number": "2.3.1.82",
+            }
+        ]
+        d = disambiguate_row(row)
+        # AAC family text + acetyl-CoA + acetyl-transfer reaction route to the dedicated
+        # aminoglycoside_acetyltransferase fingerprint, not the generic CoA acyltransferase.
+        self.assertEqual(d.get("fingerprint_id"), "aminoglycoside_acetyltransferase")
+        self.assertNotEqual(d.get("fingerprint_id"), "coa_acyltransferase")
+
+    def test_generic_coa_acyltransferase_not_pulled_into_aac(self) -> None:
+        row = _row(ec=["2.3.1.16"])
+        row["protein_name"] = "Acetyl-CoA C-acyltransferase"
+        row["keywords"] = ["Acyltransferase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:COA001",
+                "reaction": "acetyl-CoA + an acyl-CoA = CoA + a 3-oxoacyl-CoA",
+                "ec_number": "2.3.1.16",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertNotEqual(d.get("fingerprint_id"), "aminoglycoside_acetyltransferase")
+
+    def test_aminoglycoside_acetyltransferase_name_only_control_held(self) -> None:
+        row = _row(ec=["2.3.1.81"])
+        row["protein_name"] = "Aminoglycoside acetyltransferase"
+        d = disambiguate_row(row)
+        self.assertEqual(d["decision"], "hold")
+
+    def test_bifunctional_aac_aph_is_held(self) -> None:
+        # A bifunctional acetyltransferase-phosphotransferase trips both family
+        # boundaries and is held rather than forced into either fingerprint.
+        row = _row(ec=["2.3.1.81"])
+        row["protein_name"] = "Bifunctional aminoglycoside acetyltransferase-phosphotransferase"
+        row["keywords"] = ["Antibiotic resistance"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:BIF001",
+                "reaction": "acetyl-CoA + gentamicin = CoA + N-acetylgentamicin",
+                "ec_number": "2.3.1.81",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d["decision"], "hold")
+
     def test_glycoside_hydrolase_requires_hydrolysis_and_active_site_handle(self) -> None:
         row = _row(ec=["3.2.1.4"])
         row["protein_name"] = "Endoglucanase"

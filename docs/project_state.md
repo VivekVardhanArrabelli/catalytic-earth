@@ -26,6 +26,21 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **NEW `aminoglycoside_acetyltransferase` FINGERPRINT FAMILY ADDED (47 -> 48 FP); COMBINED 8870 -> 8902 (2026-06-17, user-directed).**
+  Second new family in the add-a-family growth pass: `aminoglycoside_acetyltransferase` (AAC) — the
+  GNAT-fold acetyl-CoA-dependent aminoglycoside N-acetyltransferase antibiotic-resistance family
+  (EC 2.3.1; ontology family `aminoglycoside_acetyl_transfer`). The disambiguation engine routes
+  aminoglycoside-class + acetyltransferase + acetyl-CoA rows to AAC, excludes them from the generic
+  `coa_acyltransferase` bucket, boundary-guards APH/ANT resistance enzymes, and holds bifunctional
+  acetyltransferase-phosphotransferase rows (cap 150). Its first lane applied **32** novelty-admitted
+  bronze (0 -> 32). Expansion **8168 -> 8200**, combined **8902**; frozen current702 byte-unchanged.
+  Leakage closure: universe `label_factory_v1_47fp -> _48fp`, new frozen `48fp` OOS hard-negative
+  pre-registration superseding the 47fp. Lane-factory `_spec`s for both new families are wired to
+  their fingerprints/runners. Audits clean (holes none, floor deficit 0, novelty admit 7739).
+  Summary: `artifacts/v3_aminoglycoside_acetyltransferase_new_fingerprint_apply_summary_current702_20260617.json`.
+  Gap to 10k: **1098**; next candidates `metallo_beta_lactamase` and broad-oxidoreductase EC-subclass
+  splits, or the human-gated external source-transfer path.
+
 - **NEW `aldo_keto_reductase` FINGERPRINT FAMILY ADDED (46 -> 47 FP); COMBINED 8842 -> 8870 (2026-06-17, user-directed).**
   To continue count growth past the reviewed-Swiss-Prot wall, a new mechanism fingerprint
   `aldo_keto_reductase` was added (NADPH-dependent (beta/alpha)8 TIM-barrel carbonyl reductase,

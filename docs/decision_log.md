@@ -3,6 +3,32 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-17: NEW `aminoglycoside_acetyltransferase` FINGERPRINT FAMILY ADDED (47 -> 48 FP) — COMBINED 8870 -> 8902
+
+Decision: continuing the user-authorized new-family growth, add `aminoglycoside_acetyltransferase`
+(AAC) as the 48th fingerprint and source its first reviewed-Swiss-Prot bronze tranche. Frozen
+current702 untouched.
+
+Chemistry / disambiguation: AAC is the GNAT-fold acetyl-CoA-dependent aminoglycoside
+N-acetyltransferase antibiotic-resistance family (EC 2.3.1). The disambiguation engine routes a row
+to AAC when an aminoglycoside-class drug name (aminoglycoside/gentamicin/kanamycin/...) co-occurs
+with "acetyltransferase" plus acetyl-CoA/CoA context and an N-acetyl-transfer reaction; the generic
+`coa_acyltransferase` rule now **excludes** AAC family text, APH/ANT resistance enzymes are
+boundary-guarded, and bifunctional acetyltransferase-phosphotransferase rows are **held** (both
+family boundaries trip). New ontology family `aminoglycoside_acetyl_transfer`; cap 150.
+
+Leakage closure: universe 47 -> 48, `CURRENT_POSITIVE_FINGERPRINT_UNIVERSE_VERSION`
+`label_factory_v1_47fp -> _48fp`, new frozen `48fp` OOS hard-negative pre-registration
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_48fp_1025.json` supersedes the 47fp.
+
+Measured result: the AAC lane fetched 46 reviewed rows, corroborated 32, applied **32**
+novelty-admitted bronze (0 -> 32 of cap 150); expansion **8168 -> 8200**, combined **8870 -> 8902**.
+Frozen current702 byte-unchanged at sha
+`5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. Audits clean (holes none, floor
+deficit 0, novelty admit 7707 -> 7739). The lane-factory `_spec`s for both `aldo_keto_reductase` and
+`aminoglycoside_acetyltransferase` are now wired to their fingerprints/runners. Summary:
+`artifacts/v3_aminoglycoside_acetyltransferase_new_fingerprint_apply_summary_current702_20260617.json`.
+
 ## 2026-06-17: NEW `aldo_keto_reductase` FINGERPRINT FAMILY ADDED (46 -> 47 FP) — COMBINED 8842 -> 8870
 
 Decision: under explicit user authorization to define a new fingerprint family for continued count

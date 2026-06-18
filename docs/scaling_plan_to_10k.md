@@ -16,6 +16,17 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-17 user-directed new fingerprint family: `aminoglycoside_acetyltransferase` added
+(47 -> 48 FP), combined 8870 -> 8902.** Second application of the add-a-family pattern: AAC
+(GNAT acetyl-CoA aminoglycoside N-acetyltransferase, EC 2.3.1) with full disambiguation (excluded
+from generic `coa_acyltransferase`; APH/ANT boundary-guarded; bifunctional rows held), ontology
+family, sourcing lane, leakage re-registration (universe `_47fp -> _48fp`), and lane-factory `_spec`
+wiring for both new families. First lane applied **32** novelty-admitted bronze (cap 150). The pattern
+is now exercised twice (+60 combined across AKR+AAC); reaching the ~1098 remaining gap to 10k means
+repeating it for `metallo_beta_lactamase`, broad-oxidoreductase EC-subclass splits, and similar
+coherent families, or the human-gated external source-transfer path. See
+`artifacts/v3_aminoglycoside_acetyltransferase_new_fingerprint_apply_summary_current702_20260617.json`.
+
 **2026-06-17 user-directed new fingerprint family: `aldo_keto_reductase` added (46 -> 47 FP),
 combined 8842 -> 8870.** Past the reviewed-Swiss-Prot wall, the path to 10k is adding new
 mechanism-fingerprint families. `aldo_keto_reductase` (NADPH TIM-barrel carbonyl reductase,

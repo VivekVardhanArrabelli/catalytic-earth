@@ -1,0 +1,58 @@
+{
+  "artifact_id": "v3_aminoglycoside_acetyltransferase_new_fingerprint_apply_summary_current702_20260617",
+  "authorization": "explicit_user_instruction_continue_adding_new_fingerprint_families",
+  "counts": {
+    "aminoglycoside_acetyltransferase_family_after": "32/150",
+    "combined_after": 8902,
+    "combined_before": 8870,
+    "expansion_after": 8200,
+    "expansion_before": 8168,
+    "fetched_candidate_rows": 46,
+    "frozen_current702_rows": 702,
+    "mechanism_corroborated": 32,
+    "novelty_admitted": 32,
+    "off_target_held": 5
+  },
+  "created_utc": "2026-06-18T01:48:42Z",
+  "expansion_registry_manifest_sha256": "d6e1f0ca4e71634e54f83c9c6805ee216441bed3e21ac3c28cb04e1265f62b79",
+  "fingerprint": {
+    "chemistry": "GNAT-fold acetyl-CoA-dependent aminoglycoside N-acetyltransferase (AAC antibiotic-resistance enzyme)",
+    "disambiguation": "aminoglycoside-class drug name + acetyltransferase + acetyl-CoA context; boundary-guarded vs generic coa_acyltransferase (now excludes AAC), aminoglycoside phosphotransferase (APH) and nucleotidyltransferase (ANT), metal/flavin; bifunctional acetyl-phospho rows held; cap 150",
+    "id": "aminoglycoside_acetyltransferase",
+    "name": "Aminoglycoside acetyltransferase",
+    "ontology_family": "aminoglycoside_acetyl_transfer"
+  },
+  "frozen_benchmark": {
+    "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+    "unchanged": true,
+    "written": false
+  },
+  "gap_to_10k": 1098,
+  "lane_factory_specs_wired": [
+    "aldo_keto_reductase",
+    "aminoglycoside_acetyltransferase"
+  ],
+  "leakage_closure": {
+    "new_preregistration": "artifacts/v3_external_hard_negative_next_tranche_preregistration_48fp_1025.json",
+    "positive_universe_version": "label_factory_v1_47fp -> label_factory_v1_48fp",
+    "supersedes": "artifacts/v3_external_hard_negative_next_tranche_preregistration_47fp_1025.json"
+  },
+  "leakage_note": "Every appended bronze label is reviewed-Swiss-Prot EC/Rhea/cofactor-annotation anchored; protein name, EC label, UniProt prose, source annotation, curated mechanism text, and target family lane are excluded_context and never predictive features.",
+  "post_apply_audits": {
+    "coverage_redundancy": "artifacts/v3_coverage_redundancy_audit_current702_20260617_aac_fingerprint.json",
+    "floor_deficit": 0,
+    "holes": [],
+    "novelty_admission_gate": "artifacts/v3_novelty_admission_gate_audit_current702_20260617_aac_fingerprint.json",
+    "novelty_replay": {
+      "admit": 7739,
+      "reject": 47,
+      "throttle": 414
+    },
+    "over_cap": [
+      "metal_dependent_hydrolase"
+    ]
+  },
+  "purpose": "Record adding the aminoglycoside_acetyltransferase mechanism-fingerprint family (48th fingerprint) and sourcing its first reviewed-Swiss-Prot bronze tranche, growing combined labels 8870 -> 8902 (+32) while leaving the frozen current702 benchmark byte-unchanged.",
+  "schema_version": "catalytic_earth.apply_summary.v1",
+  "status": "user_directed_new_aminoglycoside_acetyltransferase_fingerprint_family_added_and_sourced"
+}

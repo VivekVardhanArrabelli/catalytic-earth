@@ -1,0 +1,3372 @@
+{
+  "acquisition_targets": {
+    "holes": [],
+    "next_batch_floor_deficit_total": 0,
+    "over_cap": [
+      "metal_dependent_hydrolase"
+    ],
+    "policy_summary": "Close HOLES first (esp. fingerprints absent from the expansion), then raise UNDER-floor fingerprints, while CAPPING over-supplied ones and deduplicating them toward distinct reactions. Pause broad out_of_scope draining (kinase/phosphatase/glycoside lanes are already saturated) until the positive holes are closed -- the binding constraint is diverse positive supply, not raw count.",
+    "reaction_aware_surplus_total": 251,
+    "reaction_cap_rate": 8,
+    "reaction_saturated": [
+      "aminoglycoside_phosphotransferase",
+      "biotin_dependent_carboxylase",
+      "had_like_phosphatase",
+      "metal_independent_phosphodiesterase",
+      "n_ribosyl_hydrolase",
+      "protein_kinase_ser_thr_tyr",
+      "ser_thr_protein_phosphatase",
+      "serine_beta_lactamase"
+    ],
+    "targets": [
+      {
+        "combined": 308,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 76,
+        "expansion": 225,
+        "fingerprint": "metal_dependent_hydrolase",
+        "frozen": 83,
+        "labels_per_distinct_reaction": 2.96,
+        "priority_rank": 1,
+        "reaction_aware_cap": 250,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "CAP / PAUSE -- 58 over the 250 ceiling; dedup toward distinct reactions before adding any",
+        "sourcing_hints": {
+          "cofactor_signature": "catalytic divalent metal (Zn2+/Mn2+/Mg2+/Ni2+)",
+          "ec_prefixes": [
+            "3.4.24",
+            "3.5.2",
+            "3.1.3",
+            "3.1.4"
+          ],
+          "lanes": [
+            "metal hydrolase"
+          ]
+        },
+        "status": "OVER_CAP",
+        "surplus_over_cap": 58
+      },
+      {
+        "combined": 150,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 95,
+        "expansion": 150,
+        "fingerprint": "aldehyde_dehydrogenase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 1.58,
+        "priority_rank": 2,
+        "reaction_aware_cap": 250,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "NAD(P) Cys/Glu thiohemiacetal aldehyde oxidation context; Mo/flavin aldehyde oxidoreductase and SDR/AKR/MDR boundaries are held",
+          "ec_prefixes": [
+            "1.2.1"
+          ],
+          "lanes": [
+            "aldehyde_dehydrogenase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 150,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 140,
+        "expansion": 150,
+        "fingerprint": "alpha_beta_hydrolase_esterase_lipase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 1.07,
+        "priority_rank": 3,
+        "reaction_aware_cap": 250,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "Ser-His-Asp/Glu ester-hydrolysis context; protease/amidase, glycoside, metal-hydrolase, and EC-only boundaries are held",
+          "ec_prefixes": [
+            "3.1.1"
+          ],
+          "lanes": [
+            "alpha_beta_hydrolase_esterase_lipase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 150,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 1,
+        "expansion": 150,
+        "fingerprint": "aminoglycoside_phosphotransferase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 150.0,
+        "priority_rank": 4,
+        "reaction_aware_cap": 100,
+        "reaction_aware_surplus": 50,
+        "reaction_saturated": true,
+        "recommended_action": "TRIM -- 50 over the reaction-aware cap 100 (1 distinct reactions x rate 8); demote redundant orthologs toward reaction diversity, do not source more",
+        "sourcing_hints": {
+          "cofactor_signature": "ATP/Mg aminoglycoside phosphoryl-transfer context; protein kinases, small-molecule kinases, acetyltransferases, and nucleotidyltransferases are held",
+          "ec_prefixes": [
+            "2.7.1.95",
+            "2.7.1.72",
+            "2.7.1.87",
+            "2.7.1.119",
+            "2.7.1.163"
+          ],
+          "lanes": [
+            "aminoglycoside_phosphotransferase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 100,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 9,
+        "expansion": 100,
+        "fingerprint": "askha_sugar_acetate_kinase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 11.11,
+        "priority_rank": 5,
+        "reaction_aware_cap": 100,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "ATP/Mg phosphoryl-transfer cosubstrate context with sugar, glycerol, or acetate acceptor",
+          "ec_prefixes": [
+            "2.7.1"
+          ],
+          "lanes": [
+            "askha_sugar_acetate_kinase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 150,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 89,
+        "expansion": 150,
+        "fingerprint": "atp_amide_ligase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 1.69,
+        "priority_rank": 6,
+        "reaction_aware_cap": 250,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "ATP/Mg cosubstrate context; acyl-phosphate-like intermediate and C-N amide ligation",
+          "ec_prefixes": [
+            "6.3"
+          ],
+          "lanes": [
+            "atp_amide_ligase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 141,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 8,
+        "expansion": 141,
+        "fingerprint": "biotin_dependent_carboxylase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 17.62,
+        "priority_rank": 7,
+        "reaction_aware_cap": 100,
+        "reaction_aware_surplus": 41,
+        "reaction_saturated": true,
+        "recommended_action": "TRIM -- 41 over the reaction-aware cap 100 (8 distinct reactions x rate 8); demote redundant orthologs toward reaction diversity, do not source more",
+        "sourcing_hints": {
+          "cofactor_signature": "protein-bound biotin / biotinyl-Lys plus ATP/Mg and hydrogencarbonate/CO2 carboxylation chemistry",
+          "ec_prefixes": [
+            "6.4.1",
+            "6.3.4"
+          ],
+          "lanes": [
+            "biotin_dependent_carboxylase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 150,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 46,
+        "expansion": 150,
+        "fingerprint": "class_ii_metal_aldolase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 3.26,
+        "priority_rank": 8,
+        "reaction_aware_cap": 250,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "Zn/Co/divalent metal; enolate-stabilized aldol C-C lyase chemistry",
+          "ec_prefixes": [
+            "4.1.2",
+            "4.1.3"
+          ],
+          "lanes": [
+            "class_ii_metal_aldolase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 250,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 452,
+        "expansion": 250,
+        "fingerprint": "coa_acyltransferase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 0.55,
+        "priority_rank": 9,
+        "reaction_aware_cap": 250,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "CoA/acyl-CoA donor (dissociable thioester cosubstrate); acyl group transfer",
+          "ec_prefixes": [
+            "2.3.1"
+          ],
+          "lanes": [
+            "coa_acyltransferase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 123,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 15,
+        "expansion": 120,
+        "fingerprint": "cobalamin_radical_rearrangement",
+        "frozen": 3,
+        "labels_per_distinct_reaction": 8.0,
+        "priority_rank": 10,
+        "reaction_aware_cap": 120,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "adenosylcobalamin / vitamin B12 (radical rearrangement)",
+          "ec_prefixes": [
+            "5.4.99",
+            "5.4.3",
+            "4.2.1.28",
+            "4.2.1.30",
+            "4.3.1.7"
+          ],
+          "lanes": [
+            "cobalamin radical",
+            "plp_radical_cobalamin"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 150,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 59,
+        "expansion": 150,
+        "fingerprint": "cofactor_independent_isomerase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 2.54,
+        "priority_rank": 11,
+        "reaction_aware_cap": 250,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "no cofactor; Rhea isomerization equation plus active-site/base context",
+          "ec_prefixes": [
+            "5.3"
+          ],
+          "lanes": [
+            "cofactor_independent_isomerase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 140,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 25,
+        "expansion": 140,
+        "fingerprint": "copper_oxidoreductase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 5.6,
+        "priority_rank": 12,
+        "reaction_aware_cap": 200,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "copper redox center; multicopper oxidase or copper amine oxidase oxygen/electron-transfer chemistry",
+          "ec_prefixes": [
+            "1.10.3",
+            "1.4.3"
+          ],
+          "lanes": [
+            "copper_oxidoreductase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 250,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 498,
+        "expansion": 250,
+        "fingerprint": "cytochrome_p450_monooxygenase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 0.5,
+        "priority_rank": 13,
+        "reaction_aware_cap": 250,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "heme-thiolate plus O2/reductant cosubstrate; non-peroxidase P450 monooxygenation",
+          "ec_prefixes": [
+            "1.14"
+          ],
+          "lanes": [
+            "cytochrome_p450_monooxygenase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 100,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 7,
+        "expansion": 100,
+        "fingerprint": "deoxynucleoside_kinase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 14.29,
+        "priority_rank": 14,
+        "reaction_aware_cap": 100,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "ATP/Mg phosphoryl-transfer cosubstrate context with deoxynucleoside acceptor specificity",
+          "ec_prefixes": [
+            "2.7.1"
+          ],
+          "lanes": [
+            "deoxynucleoside_kinase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 250,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 206,
+        "expansion": 202,
+        "fingerprint": "flavin_dehydrogenase_reductase",
+        "frozen": 48,
+        "labels_per_distinct_reaction": 0.98,
+        "priority_rank": 15,
+        "reaction_aware_cap": 250,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "flavin (FAD/FMN), no heme; hydride/electron transfer",
+          "ec_prefixes": [
+            "1.3",
+            "1.6",
+            "1.8.1"
+          ],
+          "lanes": [
+            "flavin redox boundary",
+            "flavin dehydrogenase/reductase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 116,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 65,
+        "expansion": 114,
+        "fingerprint": "flavin_monooxygenase",
+        "frozen": 2,
+        "labels_per_distinct_reaction": 1.75,
+        "priority_rank": 16,
+        "reaction_aware_cap": 250,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "flavin (FAD/FMN), no heme; inserts one O",
+          "ec_prefixes": [
+            "1.14.13",
+            "1.14.14"
+          ],
+          "lanes": [
+            "flavin monooxygenase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 100,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 4,
+        "expansion": 100,
+        "fingerprint": "ghmp_small_molecule_kinase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 25.0,
+        "priority_rank": 17,
+        "reaction_aware_cap": 100,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "ATP/Mg phosphoryl-transfer cosubstrate context with GHMP-family small-molecule acceptor",
+          "ec_prefixes": [
+            "2.7.1"
+          ],
+          "lanes": [
+            "ghmp_small_molecule_kinase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 150,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 93,
+        "expansion": 150,
+        "fingerprint": "glycoside_hydrolase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 1.61,
+        "priority_rank": 18,
+        "reaction_aware_cap": 250,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "glycosidic substrate plus catalytic water/protonation context; glycosyltransferase, transglycosylase, phosphorylase, and lyase boundaries are held",
+          "ec_prefixes": [
+            "3.2.1"
+          ],
+          "lanes": [
+            "glycoside_hydrolase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 250,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 394,
+        "expansion": 250,
+        "fingerprint": "glycosyltransferase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 0.63,
+        "priority_rank": 19,
+        "reaction_aware_cap": 250,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "nucleotide-sugar donor (UDP/GDP/dTDP/CMP-sugar; GT-A DxD metal or GT-B cleft)",
+          "ec_prefixes": [
+            "2.4"
+          ],
+          "lanes": [
+            "glycosyltransferase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 146,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 14,
+        "expansion": 146,
+        "fingerprint": "had_like_phosphatase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 10.43,
+        "priority_rank": 20,
+        "reaction_aware_cap": 112,
+        "reaction_aware_surplus": 34,
+        "reaction_saturated": true,
+        "recommended_action": "TRIM -- 34 over the reaction-aware cap 112 (14 distinct reactions x rate 8); demote redundant orthologs toward reaction diversity, do not source more",
+        "sourcing_hints": {
+          "cofactor_signature": "Mg/Asp aspartyl-phosphoenzyme phosphomonoesterase context; metal phosphomonoesterase and phosphodiesterase/nuclease boundaries are held",
+          "ec_prefixes": [
+            "3.1.3"
+          ],
+          "lanes": [
+            "had_like_phosphatase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 119,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 26,
+        "expansion": 99,
+        "fingerprint": "heme_peroxidase_oxidase",
+        "frozen": 20,
+        "labels_per_distinct_reaction": 3.81,
+        "priority_rank": 21,
+        "reaction_aware_cap": 208,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "heme b / heme c (peroxidase)",
+          "ec_prefixes": [
+            "1.11.1"
+          ],
+          "lanes": [
+            "heme peroxidase/oxidase-like"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 100,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 1,
+        "expansion": 100,
+        "fingerprint": "manganese_iron_superoxide_dismutase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 100.0,
+        "priority_rank": 22,
+        "reaction_aware_cap": 100,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "Mn or Fe redox metal center for superoxide dismutation; Cu/Zn SOD, heme/peroxidase, and superoxide-reductase boundaries are held",
+          "ec_prefixes": [
+            "1.15.1.1"
+          ],
+          "lanes": [
+            "manganese_iron_superoxide_dismutase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 125,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 8,
+        "expansion": 125,
+        "fingerprint": "metal_independent_phosphodiesterase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 15.62,
+        "priority_rank": 23,
+        "reaction_aware_cap": 100,
+        "reaction_aware_surplus": 25,
+        "reaction_saturated": true,
+        "recommended_action": "TRIM -- 25 over the reaction-aware cap 100 (8 distinct reactions x rate 8); demote redundant orthologs toward reaction diversity, do not source more",
+        "sourcing_hints": {
+          "cofactor_signature": "metal-independent phosphodiester hydrolysis context with phosphodiesterase family text, hydrolytic cyclic-nucleotide/phosphodiester Rhea evidence, and metal phosphoesterase/nuclease boundaries held",
+          "ec_prefixes": [
+            "3.1.4",
+            "4.6.1"
+          ],
+          "lanes": [
+            "metal_independent_phosphodiesterase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 150,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 86,
+        "expansion": 150,
+        "fingerprint": "metal_racemase_epimerase_non_plp",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 1.74,
+        "priority_rank": 24,
+        "reaction_aware_cap": 250,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "non-PLP racemase/epimerase proton-transfer chemistry; metal or cofactorless active-site context",
+          "ec_prefixes": [
+            "5.1"
+          ],
+          "lanes": [
+            "metal_racemase_epimerase_non_plp"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 150,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 57,
+        "expansion": 150,
+        "fingerprint": "metallo_amidohydrolase_deaminase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 2.63,
+        "priority_rank": 25,
+        "reaction_aware_cap": 250,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "catalytic Zn2+ (mono/di-nuclear); non-peptide amide/amidine C-N hydrolysis",
+          "ec_prefixes": [
+            "3.5.2",
+            "3.5.4",
+            "3.5.1"
+          ],
+          "lanes": [
+            "metallo amidohydrolase/deaminase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 150,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 27,
+        "expansion": 150,
+        "fingerprint": "metallopeptidase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 5.56,
+        "priority_rank": 26,
+        "reaction_aware_cap": 216,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "catalytic Zn2+ (HExxH / co-catalytic dizinc); peptide C-N hydrolysis",
+          "ec_prefixes": [
+            "3.4.24",
+            "3.4.17",
+            "3.4.11"
+          ],
+          "lanes": [
+            "metallopeptidase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 150,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 52,
+        "expansion": 150,
+        "fingerprint": "metallophosphoesterase_nuclease",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 2.88,
+        "priority_rank": 27,
+        "reaction_aware_cap": 250,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "two-metal Mg2+/Mn2+ (sometimes Zn2+); phosphodiester P-O hydrolysis",
+          "ec_prefixes": [
+            "3.1.4",
+            "3.1.11",
+            "3.1.21",
+            "3.1.26",
+            "3.1.27",
+            "3.1.31"
+          ],
+          "lanes": [
+            "metallophosphoesterase/nuclease"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 150,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 120,
+        "expansion": 150,
+        "fingerprint": "metallophosphomonoesterase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 1.25,
+        "priority_rank": 28,
+        "reaction_aware_cap": 250,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "dinuclear Zn/Mg/Mn/Fe; phosphomonoester P-O hydrolysis (not Cys-PTP)",
+          "ec_prefixes": [
+            "3.1.3"
+          ],
+          "lanes": [
+            "metallophosphomonoesterase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 250,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 38,
+        "expansion": 250,
+        "fingerprint": "molybdopterin_oxidoreductase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 6.58,
+        "priority_rank": 29,
+        "reaction_aware_cap": 250,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "molybdopterin / molybdenum cofactor redox center; Mo/W oxo-transfer or electron-transfer chemistry",
+          "ec_prefixes": [
+            "1"
+          ],
+          "lanes": [
+            "molybdopterin_oxidoreductase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 150,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 14,
+        "expansion": 150,
+        "fingerprint": "n_ribosyl_hydrolase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 10.71,
+        "priority_rank": 30,
+        "reaction_aware_cap": 112,
+        "reaction_aware_surplus": 38,
+        "reaction_saturated": true,
+        "recommended_action": "TRIM -- 38 over the reaction-aware cap 112 (14 distinct reactions x rate 8); demote redundant orthologs toward reaction diversity, do not source more",
+        "sourcing_hints": {
+          "cofactor_signature": "N-glycosidic bond hydrolysis context with nucleoside hydrolase family text, ribose/deoxyribose and base products, and phosphorylase/kinase/transferase boundaries held",
+          "ec_prefixes": [
+            "3.2.2"
+          ],
+          "lanes": [
+            "n_ribosyl_hydrolase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 150,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 88,
+        "expansion": 150,
+        "fingerprint": "nad_p_dehydrogenase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 1.7,
+        "priority_rank": 31,
+        "reaction_aware_cap": 250,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "NAD(P) cosubstrate (dissociable nicotinamide dinucleotide; Rossmann GxGxxG)",
+          "ec_prefixes": [
+            "1.1.1"
+          ],
+          "lanes": [
+            "nad_p_dehydrogenase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 250,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 100,
+        "expansion": 250,
+        "fingerprint": "non_heme_iron_2og_dioxygenase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 2.5,
+        "priority_rank": 32,
+        "reaction_aware_cap": 250,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "Fe(II), 2-oxoglutarate, and O2 cosubstrates; non-heme 2OG oxygenation",
+          "ec_prefixes": [
+            "1.14.11"
+          ],
+          "lanes": [
+            "non_heme_iron_2og_dioxygenase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 100,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 10,
+        "expansion": 100,
+        "fingerprint": "nucleoside_diphosphate_kinase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 10.0,
+        "priority_rank": 33,
+        "reaction_aware_cap": 100,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "NTP/NDP phosphoryl-transfer cosubstrates with active-site phosphohistidine relay",
+          "ec_prefixes": [
+            "2.7.4.6"
+          ],
+          "lanes": [
+            "nucleoside_diphosphate_kinase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 100,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 2,
+        "expansion": 100,
+        "fingerprint": "pfka_phosphofructokinase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 50.0,
+        "priority_rank": 34,
+        "reaction_aware_cap": 100,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "ATP/Mg phosphoryl-transfer cosubstrate context with fructose-6-phosphate acceptor",
+          "ec_prefixes": [
+            "2.7.1"
+          ],
+          "lanes": [
+            "pfka_phosphofructokinase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 128,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 16,
+        "expansion": 128,
+        "fingerprint": "pfkb_ribokinase_family",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 8.0,
+        "priority_rank": 35,
+        "reaction_aware_cap": 128,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "ATP/Mg phosphoryl-transfer cosubstrate context with PfkB/ribokinase-family small-molecule acceptors such as ribose, adenosine, inosine, 1-phosphofructose, or hydroxymethylpyrimidine",
+          "ec_prefixes": [
+            "2.7.1"
+          ],
+          "lanes": [
+            "pfkb_ribokinase_family"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 147,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 146,
+        "expansion": 116,
+        "fingerprint": "plp_dependent_enzyme",
+        "frozen": 31,
+        "labels_per_distinct_reaction": 0.79,
+        "priority_rank": 36,
+        "reaction_aware_cap": 250,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "pyridoxal-5'-phosphate (PLP) Schiff base",
+          "ec_prefixes": [
+            "2.6.1",
+            "4.1.1",
+            "4.3.1",
+            "5.1.1",
+            "4.4.1"
+          ],
+          "lanes": [
+            "PLP lyase/eliminase",
+            "PLP decarboxylase",
+            "PLP aminotransferase",
+            "PLP racemase/epimerase",
+            "PLP sulfur lyase boundary"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 101,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 10,
+        "expansion": 101,
+        "fingerprint": "protein_kinase_ser_thr_tyr",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 10.1,
+        "priority_rank": 37,
+        "reaction_aware_cap": 100,
+        "reaction_aware_surplus": 1,
+        "reaction_saturated": true,
+        "recommended_action": "TRIM -- 1 over the reaction-aware cap 100 (10 distinct reactions x rate 8); demote redundant orthologs toward reaction diversity, do not source more",
+        "sourcing_hints": {
+          "cofactor_signature": "ATP/Mg phosphoryl-transfer cosubstrate context with a protein substrate; small-molecule kinase and histidine-kinase/two-component boundaries are held",
+          "ec_prefixes": [
+            "2.7.10",
+            "2.7.11"
+          ],
+          "lanes": [
+            "protein_kinase_ser_thr_tyr"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 185,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 23,
+        "expansion": 184,
+        "fingerprint": "radical_sam_enzyme",
+        "frozen": 1,
+        "labels_per_distinct_reaction": 8.0,
+        "priority_rank": 38,
+        "reaction_aware_cap": 184,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "[4Fe-4S] + S-adenosylmethionine (CX3CX2C motif)",
+          "ec_prefixes": [
+            "1.97.1",
+            "2.8.4",
+            "4.1.99",
+            "2.5.1"
+          ],
+          "lanes": [
+            "radical SAM",
+            "plp_radical_cobalamin"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 250,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 129,
+        "expansion": 250,
+        "fingerprint": "sam_methyltransferase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 1.94,
+        "priority_rank": 39,
+        "reaction_aware_cap": 250,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "SAM methyl donor / SAH product (dissociable methyl-transfer cosubstrate); no Fe-S radical-SAM context",
+          "ec_prefixes": [
+            "2.1.1"
+          ],
+          "lanes": [
+            "sam_methyltransferase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 129,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 205,
+        "expansion": 87,
+        "fingerprint": "ser_his_acid_hydrolase",
+        "frozen": 42,
+        "labels_per_distinct_reaction": 0.42,
+        "priority_rank": 40,
+        "reaction_aware_cap": 250,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "no cofactor; Ser/Cys-His-Asp/Glu catalytic triad",
+          "ec_prefixes": [
+            "3.4.21",
+            "3.1.1",
+            "3.5.1"
+          ],
+          "lanes": [
+            "serine/cysteine hydrolase",
+            "esterase/lipase triad"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 112,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 3,
+        "expansion": 112,
+        "fingerprint": "ser_thr_protein_phosphatase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 37.33,
+        "priority_rank": 41,
+        "reaction_aware_cap": 100,
+        "reaction_aware_surplus": 12,
+        "reaction_saturated": true,
+        "recommended_action": "TRIM -- 12 over the reaction-aware cap 100 (3 distinct reactions x rate 8); demote redundant orthologs toward reaction diversity, do not source more",
+        "sourcing_hints": {
+          "cofactor_signature": "dinuclear Mn/Fe/Mg protein-substrate phosphatase context; HAD-like, Cys-PTP/DSP/PTEN, small-molecule phosphatase, kinase, and transferase boundaries are held",
+          "ec_prefixes": [
+            "3.1.3.16",
+            "3.1.3.48"
+          ],
+          "lanes": [
+            "ser_thr_protein_phosphatase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 150,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 1,
+        "expansion": 150,
+        "fingerprint": "serine_beta_lactamase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 150.0,
+        "priority_rank": 42,
+        "reaction_aware_cap": 100,
+        "reaction_aware_surplus": 50,
+        "reaction_saturated": true,
+        "recommended_action": "TRIM -- 50 over the reaction-aware cap 100 (1 distinct reactions x rate 8); demote redundant orthologs toward reaction diversity, do not source more",
+        "sourcing_hints": {
+          "cofactor_signature": "Ser/Lys/Glu beta-lactam acyl-enzyme hydrolysis context; metallo/zinc beta-lactamases, PBPs/DD-peptidases, synthases, generic amidohydrolases, and EC-only rows are held",
+          "ec_prefixes": [
+            "3.5.2.6"
+          ],
+          "lanes": [
+            "serine_beta_lactamase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 173,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 162,
+        "expansion": 173,
+        "fingerprint": "terpene_cyclase_synthase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 1.07,
+        "priority_rank": 43,
+        "reaction_aware_cap": 250,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "Mg/Mn prenyl-diphosphate binding plus carbocation cyclization context; prenyltransferase chain-extension and non-terpene lyase boundaries are held",
+          "ec_prefixes": [
+            "4.2.3"
+          ],
+          "lanes": [
+            "terpene_cyclase_synthase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 150,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 24,
+        "expansion": 150,
+        "fingerprint": "thiamine_diphosphate_enzyme",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 6.25,
+        "priority_rank": 44,
+        "reaction_aware_cap": 192,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "ThDP/Mg ylide cofactor context; decarboxylation, carbonyl transfer, or 2-oxoacid dehydrogenase E1 chemistry",
+          "ec_prefixes": [
+            "2.2.1",
+            "4.1.1",
+            "1.2.4"
+          ],
+          "lanes": [
+            "thiamine_diphosphate_enzyme"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      },
+      {
+        "combined": 100,
+        "deficit_to_floor": 0,
+        "distinct_reactions": 6,
+        "expansion": 100,
+        "fingerprint": "zinc_lyase_hydratase",
+        "frozen": 0,
+        "labels_per_distinct_reaction": 16.67,
+        "priority_rank": 45,
+        "reaction_aware_cap": 100,
+        "reaction_aware_surplus": 0,
+        "reaction_saturated": false,
+        "recommended_action": "HOLD -- at balance; only add if a new reaction/organism is gained",
+        "sourcing_hints": {
+          "cofactor_signature": "catalytic Zn2+; reversible water elimination/addition, carbonic anhydrase, or hydro-lyase chemistry",
+          "ec_prefixes": [
+            "4.2.1"
+          ],
+          "lanes": [
+            "zinc_lyase_hydratase"
+          ]
+        },
+        "status": "BALANCED",
+        "surplus_over_cap": 0
+      }
+    ],
+    "under_floor": []
+  },
+  "audit": "coverage_redundancy_audit",
+  "class_imbalance": {
+    "expansion_holes": [],
+    "fingerprint_gini": 0.1683,
+    "fingerprint_normalized_entropy": 0.9868,
+    "fingerprints_above_cap": [
+      "metal_dependent_hydrolase"
+    ],
+    "fingerprints_below_floor": [],
+    "max_fingerprint": 308,
+    "max_min_ratio": 3.08,
+    "min_nonzero_fingerprint": 100,
+    "out_of_scope_total_combined": 1696,
+    "positive_to_oos_ratio": 4.1527,
+    "seed_total_combined": 7043
+  },
+  "created_utc": "2026-06-18T01:46:09Z",
+  "distributions": {
+    "by_ec_class_combined": {
+      "1": 1937,
+      "2": 2315,
+      "3": 2283,
+      "4": 836,
+      "5": 383,
+      "6": 293,
+      "unspecified": 855
+    },
+    "by_lane_expansion": {
+      "B12/cobalamin broad enzymes": 2,
+      "Fe-S/flavin combined systems": 6,
+      "PLP aminotransferase": 13,
+      "PLP children": 6,
+      "PLP decarboxylase": 21,
+      "PLP lyase/eliminase": 42,
+      "PLP racemase/epimerase": 16,
+      "PLP sulfur lyase boundary": 18,
+      "SAM-dependent radical-like boundary": 1,
+      "adjacent high-yield lyase/isomerase": 10,
+      "aldehyde_dehydrogenase": 150,
+      "aldo_keto_reductase": 28,
+      "alpha_beta_hydrolase_esterase_lipase": 150,
+      "aminoglycoside_acetyltransferase": 32,
+      "aminoglycoside_phosphotransferase": 150,
+      "askha_sugar_acetate_kinase": 100,
+      "atp_amide_ligase": 150,
+      "biotin_dependent_carboxylase": 141,
+      "carbon-carbon lyase/decarboxylase": 12,
+      "class_ii_metal_aldolase": 150,
+      "coa_acyltransferase": 250,
+      "cobalamin radical rearrangement": 4,
+      "cofactor_independent_isomerase": 150,
+      "copper_oxidoreductase": 140,
+      "coupled PLP adenosylcobalamin aminomutase": 1,
+      "cytochrome_p450_monooxygenase": 250,
+      "dehydratase/hydratase lyase": 37,
+      "deoxynucleoside_kinase": 100,
+      "esterase/lipase triad": 25,
+      "flavin monooxygenase": 28,
+      "flavin redox boundary": 27,
+      "flavin-dehydrogenase/reductase": 163,
+      "flavin-monooxygenase": 73,
+      "ghmp_small_molecule_kinase": 100,
+      "glycoside hydrolase": 1,
+      "glycoside/nucleoside": 335,
+      "glycoside_hydrolase": 150,
+      "glycosyltransferase": 250,
+      "had_like_phosphatase": 146,
+      "heme peroxidase/oxidase-like": 53,
+      "heme-peroxidase/oxidase": 50,
+      "isomerase/racemase/epimerase": 30,
+      "kinase/phosphotransferase": 225,
+      "manganese_iron_superoxide_dismutase": 100,
+      "metal hydrolase": 223,
+      "metal hydrolase Mg/Mn controls": 2,
+      "metal_independent_phosphodiesterase": 125,
+      "metal_racemase_epimerase_non_plp": 150,
+      "metallo amidohydrolase/deaminase": 150,
+      "metallopeptidase": 150,
+      "metallophosphoesterase/nuclease": 150,
+      "metallophosphomonoesterase": 150,
+      "molybdopterin_oxidoreductase": 250,
+      "n_ribosyl_hydrolase": 150,
+      "nad_p_dehydrogenase": 150,
+      "near-orphan/no-reliable-structure": 28,
+      "non_heme_iron_2og_dioxygenase": 250,
+      "nucleoside_diphosphate_kinase": 100,
+      "nucleotide phosphoryl-transfer boundary": 1,
+      "pfka_phosphofructokinase": 100,
+      "pfkb_ribokinase_family": 128,
+      "phosphoryl transfer": 90,
+      "phosphoryl transfer/phosphatase": 397,
+      "protein_kinase_ser_thr_tyr": 101,
+      "radical SAM iron-sulfur": 3,
+      "radical SAM named families": 2,
+      "radical-SAM/cobalamin": 291,
+      "redox oxygen/sulfur": 12,
+      "sam_methyltransferase": 250,
+      "ser_thr_protein_phosphatase": 112,
+      "serine/cysteine hydrolase": 62,
+      "serine_beta_lactamase": 150,
+      "short_chain_dehydrogenase_reductase": 103,
+      "sulfur oxidoreductase": 3,
+      "terpene synthase/lyase": 49,
+      "terpene_cyclase_synthase": 173,
+      "thiamine_diphosphate_enzyme": 150,
+      "transferase tail outside current fingerprints": 9,
+      "zinc_lyase_hydratase": 100
+    },
+    "by_organism_expansion_top25": {
+      "Arabidopsis thaliana (Mouse-ear cress)": 428,
+      "Bacillus subtilis (strain 168)": 102,
+      "Bos taurus (Bovine)": 190,
+      "Caenorhabditis elegans": 99,
+      "Canis lupus familiaris (Dog) (Canis familiaris)": 22,
+      "Danio rerio (Zebrafish) (Brachydanio rerio)": 81,
+      "Dictyostelium discoideum (Social amoeba)": 69,
+      "Drosophila melanogaster (Fruit fly)": 127,
+      "Escherichia coli (strain K12)": 245,
+      "Gallus gallus (Chicken)": 44,
+      "Homo sapiens (Human)": 1541,
+      "Mus musculus (Mouse)": 579,
+      "Mycobacterium tuberculosis (strain ATCC 25618 / H37Rv)": 60,
+      "Oryctolagus cuniculus (Rabbit)": 28,
+      "Oryza sativa subsp. japonica (Rice)": 96,
+      "Pongo abelii (Sumatran orangutan) (Pongo pygmaeus abelii)": 34,
+      "Pseudomonas aeruginosa (strain ATCC 15692 / DSM 22644 / CIP 104116 / JCM 14847 / LMG 12228 / 1C / PRS 101 / PAO1)": 29,
+      "Rattus norvegicus (Rat)": 358,
+      "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)": 190,
+      "Salmonella typhimurium (strain LT2 / SGSC1412 / ATCC 700720)": 29,
+      "Schizosaccharomyces pombe (strain 972 / ATCC 24843) (Fission yeast)": 54,
+      "Sus scrofa (Pig)": 44,
+      "Xenopus laevis (African clawed frog)": 28,
+      "Zea mays (Maize)": 24,
+      "unspecified": 126
+    },
+    "by_sequence_length_bin_expansion": {
+      "0000-0099": 46,
+      "0100-0199": 376,
+      "0200-0299": 1407,
+      "0300-0399": 1839,
+      "0400-0499": 1159,
+      "0500-0599": 1085,
+      "0600-0699": 624,
+      "0700-0799": 409,
+      "0800-0899": 298,
+      "0900-0999": 175,
+      "1000-1099": 136,
+      "1100-1199": 148,
+      "1200-1299": 76,
+      "1300-1399": 53,
+      "1400-1499": 37,
+      "1500-1599": 45,
+      "1600-1699": 23,
+      "1700-1799": 14,
+      "1800-1899": 17,
+      "1900-1999": 24,
+      "2000-2099": 8,
+      "2100-2199": 6,
+      "2200-2299": 21,
+      "2300-2399": 14,
+      "2400-2499": 7,
+      "2500-2599": 6,
+      "2600-2699": 2,
+      "2700-2799": 2,
+      "2800-2899": 1,
+      "2900-2999": 1,
+      "3000-3099": 1,
+      "3200-3299": 1,
+      "3400-3499": 1,
+      "3500-3599": 1,
+      "3600-3699": 1,
+      "3700-3799": 2,
+      "3900-3999": 1,
+      "4100-4199": 1,
+      "4700-4799": 1,
+      "4800-4899": 1,
+      "4900-4999": 1,
+      "5200-5299": 2,
+      "6300-6399": 1,
+      "unknown": 126
+    },
+    "distinct_organisms_expansion": 1809,
+    "fingerprint_by_ec_class_expansion_seed": {
+      "aldehyde_dehydrogenase": {
+        "1": 150
+      },
+      "aldo_keto_reductase": {
+        "1": 28
+      },
+      "alpha_beta_hydrolase_esterase_lipase": {
+        "3": 150
+      },
+      "aminoglycoside_acetyltransferase": {
+        "2": 32
+      },
+      "aminoglycoside_phosphotransferase": {
+        "2": 150
+      },
+      "askha_sugar_acetate_kinase": {
+        "2": 100
+      },
+      "atp_amide_ligase": {
+        "6": 150
+      },
+      "biotin_dependent_carboxylase": {
+        "6": 141
+      },
+      "class_ii_metal_aldolase": {
+        "4": 150
+      },
+      "coa_acyltransferase": {
+        "2": 250
+      },
+      "cobalamin_radical_rearrangement": {
+        "3": 4,
+        "4": 81,
+        "5": 35
+      },
+      "cofactor_independent_isomerase": {
+        "5": 150
+      },
+      "copper_oxidoreductase": {
+        "1": 140
+      },
+      "cytochrome_p450_monooxygenase": {
+        "1": 250
+      },
+      "deoxynucleoside_kinase": {
+        "2": 100
+      },
+      "flavin_dehydrogenase_reductase": {
+        "1": 202
+      },
+      "flavin_monooxygenase": {
+        "1": 114
+      },
+      "ghmp_small_molecule_kinase": {
+        "2": 100
+      },
+      "glycoside_hydrolase": {
+        "3": 150
+      },
+      "glycosyltransferase": {
+        "2": 250
+      },
+      "had_like_phosphatase": {
+        "3": 146
+      },
+      "heme_peroxidase_oxidase": {
+        "1": 99
+      },
+      "manganese_iron_superoxide_dismutase": {
+        "1": 100
+      },
+      "metal_dependent_hydrolase": {
+        "1": 1,
+        "2": 3,
+        "3": 180,
+        "4": 41
+      },
+      "metal_independent_phosphodiesterase": {
+        "3": 125
+      },
+      "metal_racemase_epimerase_non_plp": {
+        "5": 150
+      },
+      "metallo_amidohydrolase_deaminase": {
+        "1": 5,
+        "2": 5,
+        "3": 140
+      },
+      "metallopeptidase": {
+        "2": 1,
+        "3": 149
+      },
+      "metallophosphoesterase_nuclease": {
+        "2": 14,
+        "3": 136
+      },
+      "metallophosphomonoesterase": {
+        "1": 2,
+        "2": 7,
+        "3": 141
+      },
+      "molybdopterin_oxidoreductase": {
+        "1": 250
+      },
+      "n_ribosyl_hydrolase": {
+        "3": 150
+      },
+      "nad_p_dehydrogenase": {
+        "1": 150
+      },
+      "non_heme_iron_2og_dioxygenase": {
+        "1": 250
+      },
+      "nucleoside_diphosphate_kinase": {
+        "2": 100
+      },
+      "pfka_phosphofructokinase": {
+        "2": 100
+      },
+      "pfkb_ribokinase_family": {
+        "2": 128
+      },
+      "plp_dependent_enzyme": {
+        "1": 2,
+        "2": 36,
+        "3": 2,
+        "4": 60,
+        "5": 16
+      },
+      "protein_kinase_ser_thr_tyr": {
+        "2": 101
+      },
+      "radical_sam_enzyme": {
+        "1": 9,
+        "2": 45,
+        "4": 128,
+        "5": 1,
+        "unspecified": 1
+      },
+      "sam_methyltransferase": {
+        "2": 250
+      },
+      "ser_his_acid_hydrolase": {
+        "2": 2,
+        "3": 85
+      },
+      "ser_thr_protein_phosphatase": {
+        "3": 112
+      },
+      "serine_beta_lactamase": {
+        "3": 150
+      },
+      "short_chain_dehydrogenase_reductase": {
+        "1": 103
+      },
+      "terpene_cyclase_synthase": {
+        "4": 173
+      },
+      "thiamine_diphosphate_enzyme": {
+        "1": 61,
+        "2": 73,
+        "4": 16
+      },
+      "zinc_lyase_hydratase": {
+        "4": 100
+      }
+    },
+    "fingerprint_by_lane_expansion_seed": {
+      "aldehyde_dehydrogenase": {
+        "aldehyde_dehydrogenase": 150
+      },
+      "aldo_keto_reductase": {
+        "aldo_keto_reductase": 28
+      },
+      "alpha_beta_hydrolase_esterase_lipase": {
+        "alpha_beta_hydrolase_esterase_lipase": 150
+      },
+      "aminoglycoside_acetyltransferase": {
+        "aminoglycoside_acetyltransferase": 32
+      },
+      "aminoglycoside_phosphotransferase": {
+        "aminoglycoside_phosphotransferase": 150
+      },
+      "askha_sugar_acetate_kinase": {
+        "askha_sugar_acetate_kinase": 100
+      },
+      "atp_amide_ligase": {
+        "atp_amide_ligase": 150
+      },
+      "biotin_dependent_carboxylase": {
+        "biotin_dependent_carboxylase": 141
+      },
+      "class_ii_metal_aldolase": {
+        "class_ii_metal_aldolase": 150
+      },
+      "coa_acyltransferase": {
+        "coa_acyltransferase": 250
+      },
+      "cobalamin_radical_rearrangement": {
+        "B12/cobalamin broad enzymes": 2,
+        "cobalamin radical rearrangement": 4,
+        "coupled PLP adenosylcobalamin aminomutase": 1,
+        "radical-SAM/cobalamin": 113
+      },
+      "cofactor_independent_isomerase": {
+        "cofactor_independent_isomerase": 150
+      },
+      "copper_oxidoreductase": {
+        "copper_oxidoreductase": 140
+      },
+      "cytochrome_p450_monooxygenase": {
+        "cytochrome_p450_monooxygenase": 250
+      },
+      "deoxynucleoside_kinase": {
+        "deoxynucleoside_kinase": 100
+      },
+      "flavin_dehydrogenase_reductase": {
+        "Fe-S/flavin combined systems": 5,
+        "flavin redox boundary": 25,
+        "flavin-dehydrogenase/reductase": 163,
+        "heme peroxidase/oxidase-like": 6,
+        "sulfur oxidoreductase": 3
+      },
+      "flavin_monooxygenase": {
+        "Fe-S/flavin combined systems": 1,
+        "flavin monooxygenase": 28,
+        "flavin redox boundary": 2,
+        "flavin-monooxygenase": 73,
+        "redox oxygen/sulfur": 10
+      },
+      "ghmp_small_molecule_kinase": {
+        "ghmp_small_molecule_kinase": 100
+      },
+      "glycoside_hydrolase": {
+        "glycoside_hydrolase": 150
+      },
+      "glycosyltransferase": {
+        "glycosyltransferase": 250
+      },
+      "had_like_phosphatase": {
+        "had_like_phosphatase": 146
+      },
+      "heme_peroxidase_oxidase": {
+        "heme peroxidase/oxidase-like": 47,
+        "heme-peroxidase/oxidase": 50,
+        "redox oxygen/sulfur": 2
+      },
+      "manganese_iron_superoxide_dismutase": {
+        "manganese_iron_superoxide_dismutase": 100
+      },
+      "metal_dependent_hydrolase": {
+        "metal hydrolase": 223,
+        "metal hydrolase Mg/Mn controls": 2
+      },
+      "metal_independent_phosphodiesterase": {
+        "metal_independent_phosphodiesterase": 125
+      },
+      "metal_racemase_epimerase_non_plp": {
+        "metal_racemase_epimerase_non_plp": 150
+      },
+      "metallo_amidohydrolase_deaminase": {
+        "metallo amidohydrolase/deaminase": 150
+      },
+      "metallopeptidase": {
+        "metallopeptidase": 150
+      },
+      "metallophosphoesterase_nuclease": {
+        "metallophosphoesterase/nuclease": 150
+      },
+      "metallophosphomonoesterase": {
+        "metallophosphomonoesterase": 150
+      },
+      "molybdopterin_oxidoreductase": {
+        "molybdopterin_oxidoreductase": 250
+      },
+      "n_ribosyl_hydrolase": {
+        "n_ribosyl_hydrolase": 150
+      },
+      "nad_p_dehydrogenase": {
+        "nad_p_dehydrogenase": 150
+      },
+      "non_heme_iron_2og_dioxygenase": {
+        "non_heme_iron_2og_dioxygenase": 250
+      },
+      "nucleoside_diphosphate_kinase": {
+        "nucleoside_diphosphate_kinase": 100
+      },
+      "pfka_phosphofructokinase": {
+        "pfka_phosphofructokinase": 100
+      },
+      "pfkb_ribokinase_family": {
+        "pfkb_ribokinase_family": 128
+      },
+      "plp_dependent_enzyme": {
+        "PLP aminotransferase": 13,
+        "PLP children": 6,
+        "PLP decarboxylase": 21,
+        "PLP lyase/eliminase": 42,
+        "PLP racemase/epimerase": 16,
+        "PLP sulfur lyase boundary": 18
+      },
+      "protein_kinase_ser_thr_tyr": {
+        "protein_kinase_ser_thr_tyr": 101
+      },
+      "radical_sam_enzyme": {
+        "SAM-dependent radical-like boundary": 1,
+        "radical SAM iron-sulfur": 3,
+        "radical SAM named families": 2,
+        "radical-SAM/cobalamin": 178
+      },
+      "sam_methyltransferase": {
+        "sam_methyltransferase": 250
+      },
+      "ser_his_acid_hydrolase": {
+        "esterase/lipase triad": 25,
+        "serine/cysteine hydrolase": 62
+      },
+      "ser_thr_protein_phosphatase": {
+        "ser_thr_protein_phosphatase": 112
+      },
+      "serine_beta_lactamase": {
+        "serine_beta_lactamase": 150
+      },
+      "short_chain_dehydrogenase_reductase": {
+        "short_chain_dehydrogenase_reductase": 103
+      },
+      "terpene_cyclase_synthase": {
+        "terpene_cyclase_synthase": 173
+      },
+      "thiamine_diphosphate_enzyme": {
+        "thiamine_diphosphate_enzyme": 150
+      },
+      "zinc_lyase_hydratase": {
+        "zinc_lyase_hydratase": 100
+      }
+    },
+    "fingerprint_by_organism_expansion_seed_top10": {
+      "aldehyde_dehydrogenase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 10,
+        "Bos taurus (Bovine)": 6,
+        "Equus caballus (Horse)": 2,
+        "Escherichia coli (strain K12)": 4,
+        "Homo sapiens (Human)": 14,
+        "Mus musculus (Mouse)": 16,
+        "Oryza sativa subsp. japonica (Rice)": 3,
+        "Pongo abelii (Sumatran orangutan) (Pongo pygmaeus abelii)": 3,
+        "Rattus norvegicus (Rat)": 13,
+        "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)": 6
+      },
+      "aldo_keto_reductase": {
+        "Bacteroides fragilis (strain ATCC 25285 / DSM 2151 / CCUG 4856 / JCM 11019 / LMG 10263 / NCTC 9343 / Onslow / VPI 2553 / EN-2)": 1,
+        "Bos taurus (Bovine)": 2,
+        "Dictyostelium discoideum (Social amoeba)": 1,
+        "Escherichia coli O157:H7": 1,
+        "Fragaria ananassa (Strawberry) (Fragaria chiloensis x Fragaria virginiana)": 1,
+        "Homo sapiens (Human)": 6,
+        "Hordeum vulgare (Barley)": 1,
+        "Macaca fascicularis (Crab-eating macaque) (Cynomolgus monkey)": 2,
+        "Mus musculus (Mouse)": 4,
+        "Rattus norvegicus (Rat)": 4
+      },
+      "alpha_beta_hydrolase_esterase_lipase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 7,
+        "Bos taurus (Bovine)": 8,
+        "Caenorhabditis elegans": 3,
+        "Homo sapiens (Human)": 7,
+        "Macaca fascicularis (Crab-eating macaque) (Cynomolgus monkey)": 3,
+        "Mus musculus (Mouse)": 24,
+        "Oryctolagus cuniculus (Rabbit)": 3,
+        "Rattus norvegicus (Rat)": 18,
+        "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)": 6,
+        "Sus scrofa (Pig)": 3
+      },
+      "aminoglycoside_acetyltransferase": {
+        "Acinetobacter baumannii": 2,
+        "Acinetobacter genomosp. 13": 1,
+        "Acinetobacter haemolyticus": 1,
+        "Bacillus subtilis (strain 168)": 1,
+        "Citrobacter koseri (Citrobacter diversus)": 1,
+        "Mycobacterium tuberculosis (strain ATCC 25618 / H37Rv)": 2,
+        "Mycobacterium tuberculosis (strain CDC 1551 / Oshkosh)": 2,
+        "Pseudomonas aeruginosa": 2,
+        "Salmonella sp": 3,
+        "Serratia marcescens": 3
+      },
+      "aminoglycoside_phosphotransferase": {
+        "Achromobacter anxifer": 1,
+        "Achromobacter pulmonis": 1,
+        "Acidovorax cavernicola": 1,
+        "Acinetobacter baumannii": 1,
+        "Acinetobacter bereziniae (Acinetobacter genomosp. 10)": 1,
+        "Acinetobacter calcoaceticus": 1,
+        "Acinetobacter portensis": 2,
+        "Escherichia coli": 3,
+        "Phyllobacterium salinisoli": 2,
+        "Rhizobium multihospitium": 2
+      },
+      "askha_sugar_acetate_kinase": {
+        "Acidiphilium cryptum (strain JF-5)": 1,
+        "Agathobacter rectalis (strain ATCC 33656 / DSM 3377 / JCM 17463 / KCTC 5835 / VPI 0990) (Eubacterium rectale)": 1,
+        "Alkalilimnicola ehrlichii (strain ATCC BAA-1101 / DSM 17681 / MLHE-1)": 1,
+        "Alteromonas mediterranea (strain DSM 17117 / CIP 110805 / LMG 28347 / Deep ecotype)": 1,
+        "Aquifex aeolicus (strain VF5)": 1,
+        "Arabidopsis thaliana (Mouse-ear cress)": 1,
+        "Aspergillus fumigatus (strain ATCC MYA-4609 / CBS 101355 / FGSC A1100 / Af293) (Neosartorya fumigata)": 1,
+        "Azorhizobium caulinodans (strain ATCC 43989 / DSM 5975 / JCM 20966 / LMG 6465 / NBRC 14845 / NCIMB 13405 / ORS 571)": 1,
+        "Bacillus cereus (strain G9842)": 1,
+        "Bacillus cereus (strain Q1)": 1
+      },
+      "atp_amide_ligase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 17,
+        "Bacillus subtilis (strain 168)": 4,
+        "Drosophila melanogaster (Fruit fly)": 6,
+        "Escherichia coli (strain K12)": 14,
+        "Homo sapiens (Human)": 21,
+        "Mus musculus (Mouse)": 18,
+        "Mycobacterium tuberculosis (strain ATCC 25618 / H37Rv)": 5,
+        "Rattus norvegicus (Rat)": 5,
+        "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)": 7,
+        "Salmonella typhimurium (strain LT2 / SGSC1412 / ATCC 700720)": 3
+      },
+      "biotin_dependent_carboxylase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 4,
+        "Bacillus subtilis (strain 168)": 2,
+        "Bos taurus (Bovine)": 3,
+        "Caenorhabditis elegans": 3,
+        "Dictyostelium discoideum (Social amoeba)": 3,
+        "Homo sapiens (Human)": 6,
+        "Hydrogenobacter thermophilus (strain DSM 6534 / IAM 12695 / TK-6)": 2,
+        "Mus musculus (Mouse)": 6,
+        "Oryza sativa subsp. japonica (Rice)": 3,
+        "Rattus norvegicus (Rat)": 5
+      },
+      "class_ii_metal_aldolase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 4,
+        "Bacillus subtilis (strain 168)": 6,
+        "Escherichia coli": 3,
+        "Escherichia coli (strain K12)": 8,
+        "Escherichia coli O157:H7": 3,
+        "Escherichia coli O45:K1 (strain S88 / ExPEC)": 3,
+        "Homo sapiens (Human)": 3,
+        "Mus musculus (Mouse)": 3,
+        "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)": 4,
+        "Salmonella typhimurium (strain LT2 / SGSC1412 / ATCC 700720)": 4
+      },
+      "coa_acyltransferase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 18,
+        "Bos taurus (Bovine)": 9,
+        "Danio rerio (Zebrafish) (Brachydanio rerio)": 7,
+        "Drosophila melanogaster (Fruit fly)": 5,
+        "Escherichia coli (strain K12)": 4,
+        "Homo sapiens (Human)": 103,
+        "Mus musculus (Mouse)": 33,
+        "Rattus norvegicus (Rat)": 18,
+        "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)": 7,
+        "Xenopus laevis (African clawed frog)": 4
+      },
+      "cobalamin_radical_rearrangement": {
+        "Acetoanaerobium sticklandii (strain ATCC 12662 / DSM 519 / JCM 1433 / CCUG 9281 / NCIMB 10654 / HF) (Clostridium sticklandii)": 3,
+        "Aquincola tertiaricarbonis": 1,
+        "Azotobacter vinelandii (strain DJ / ATCC BAA-1303)": 1,
+        "Bos taurus (Bovine)": 1,
+        "Citrobacter freundii": 4,
+        "Escherichia coli (strain K12)": 3,
+        "Escherichia coli O157:H7": 2,
+        "Mycobacterium bovis (strain ATCC BAA-935 / AF2122/97)": 2,
+        "Salmonella typhimurium (strain LT2 / SGSC1412 / ATCC 700720)": 5,
+        "Yersinia enterocolitica serotype O:8 / biotype 1B (strain NCTC 13174 / 8081)": 2
+      },
+      "cofactor_independent_isomerase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 9,
+        "Bacillus subtilis (strain 168)": 5,
+        "Bos taurus (Bovine)": 6,
+        "Drosophila melanogaster (Fruit fly)": 3,
+        "Escherichia coli (strain K12)": 12,
+        "Homo sapiens (Human)": 15,
+        "Mus musculus (Mouse)": 6,
+        "Pseudomonas putida (Arthrobacter siderocapsulatus)": 3,
+        "Rattus norvegicus (Rat)": 6,
+        "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)": 5
+      },
+      "copper_oxidoreductase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 9,
+        "Bos taurus (Bovine)": 5,
+        "Cerrena unicolor (Canker rot fungus) (Daedalea unicolor)": 3,
+        "Danio rerio (Zebrafish) (Brachydanio rerio)": 4,
+        "Homo sapiens (Human)": 8,
+        "Mus musculus (Mouse)": 8,
+        "Rattus norvegicus (Rat)": 4,
+        "Solanum lycopersicum (Tomato) (Lycopersicon esculentum)": 5,
+        "Thanatephorus cucumeris (Black scurf of potato) (Rhizoctonia solani)": 3,
+        "Trametes villosa (White-rot fungus)": 3
+      },
+      "cytochrome_p450_monooxygenase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 30,
+        "Bos taurus (Bovine)": 8,
+        "Catharanthus roseus (Madagascar periwinkle) (Vinca rosea)": 5,
+        "Danio rerio (Zebrafish) (Brachydanio rerio)": 5,
+        "Drosophila melanogaster (Fruit fly)": 5,
+        "Homo sapiens (Human)": 49,
+        "Mus musculus (Mouse)": 31,
+        "Oryctolagus cuniculus (Rabbit)": 5,
+        "Oryza sativa subsp. japonica (Rice)": 11,
+        "Rattus norvegicus (Rat)": 28
+      },
+      "deoxynucleoside_kinase": {
+        "Albidiferax ferrireducens (strain ATCC BAA-621 / DSM 15236 / T118) (Rhodoferax ferrireducens)": 1,
+        "Alcelaphine herpesvirus 1 (strain C500) (AlHV-1) (Malignant catarrhal fever virus)": 1,
+        "Alcelaphine herpesvirus 1 (strain WC11) (AlHV-1) (Malignant catarrhal fever virus)": 1,
+        "Anoxybacillus flavithermus (strain DSM 21510 / WK1)": 1,
+        "Arabidopsis thaliana (Mouse-ear cress)": 1,
+        "Aster yellows witches'-broom phytoplasma (strain AYWB)": 1,
+        "Bacillus anthracis (strain A0248)": 1,
+        "Bacillus anthracis (strain CDC 684 / NRRL 3495)": 1,
+        "Bacillus cereus (strain 03BB102)": 1,
+        "Bacillus cereus (strain AH187)": 1
+      },
+      "flavin_dehydrogenase_reductase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 21,
+        "Bacillus subtilis (strain 168)": 4,
+        "Bos taurus (Bovine)": 10,
+        "Caenorhabditis elegans": 5,
+        "Drosophila melanogaster (Fruit fly)": 7,
+        "Escherichia coli (strain K12)": 17,
+        "Homo sapiens (Human)": 32,
+        "Mus musculus (Mouse)": 25,
+        "Rattus norvegicus (Rat)": 21,
+        "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)": 16
+      },
+      "flavin_monooxygenase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 9,
+        "Aspergillus fumigatus (strain ATCC MYA-4609 / CBS 101355 / FGSC A1100 / Af293) (Neosartorya fumigata)": 2,
+        "Bos taurus (Bovine)": 3,
+        "Danio rerio (Zebrafish) (Brachydanio rerio)": 3,
+        "Homo sapiens (Human)": 9,
+        "Mus musculus (Mouse)": 8,
+        "Oryctolagus cuniculus (Rabbit)": 3,
+        "Pseudomonas fluorescens": 4,
+        "Rattus norvegicus (Rat)": 6,
+        "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)": 3
+      },
+      "ghmp_small_molecule_kinase": {
+        "Actinobacillus pleuropneumoniae (Haemophilus pleuropneumoniae)": 1,
+        "Actinobacillus pleuropneumoniae serotype 3 (strain JL03)": 1,
+        "Actinobacillus pleuropneumoniae serotype 5b (strain L20)": 1,
+        "Actinobacillus pleuropneumoniae serotype 7 (strain AP76)": 1,
+        "Actinobacillus succinogenes (strain ATCC 55618 / DSM 22257 / CCUG 43843 / 130Z)": 1,
+        "Aeromonas hydrophila subsp. hydrophila (strain ATCC 7966 / DSM 30187 / BCRC 13018 / CCUG 14551 / JCM 1027 / KCTC 2358 / NCIMB 9240 / NCTC 8049)": 1,
+        "Arabidopsis thaliana (Mouse-ear cress)": 1,
+        "Archaeoglobus fulgidus (strain ATCC 49558 / DSM 4304 / JCM 9628 / NBRC 100126 / VC-16)": 1,
+        "Aspergillus fumigatus (strain ATCC MYA-4609 / CBS 101355 / FGSC A1100 / Af293) (Neosartorya fumigata)": 1,
+        "Bacillus subtilis (strain 168)": 1
+      },
+      "glycoside_hydrolase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 5,
+        "Bos taurus (Bovine)": 4,
+        "Danio rerio (Zebrafish) (Brachydanio rerio)": 2,
+        "Drosophila melanogaster (Fruit fly)": 3,
+        "Escherichia coli (strain K12)": 5,
+        "Gallus gallus (Chicken)": 2,
+        "Homo sapiens (Human)": 17,
+        "Mus musculus (Mouse)": 18,
+        "Rattus norvegicus (Rat)": 14,
+        "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)": 10
+      },
+      "glycosyltransferase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 8,
+        "Bacillus subtilis (strain 168)": 6,
+        "Bos taurus (Bovine)": 4,
+        "Drosophila melanogaster (Fruit fly)": 5,
+        "Escherichia coli (strain K12)": 14,
+        "Homo sapiens (Human)": 131,
+        "Mus musculus (Mouse)": 32,
+        "Pan troglodytes (Chimpanzee)": 4,
+        "Rattus norvegicus (Rat)": 13,
+        "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)": 4
+      },
+      "had_like_phosphatase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 11,
+        "Archaeoglobus fulgidus (strain ATCC 49558 / DSM 4304 / JCM 9628 / NBRC 100126 / VC-16)": 2,
+        "Bacillus subtilis (strain 168)": 2,
+        "Bos taurus (Bovine)": 2,
+        "Cupriavidus necator (strain ATCC 17699 / DSM 428 / KCTC 22496 / NCIMB 10442 / H16 / Stanier 337) (Ralstonia eutropha)": 2,
+        "Escherichia coli O157:H7": 2,
+        "Haemophilus influenzae (strain ATCC 51907 / DSM 11121 / KW20 / Rd)": 2,
+        "Halobacterium salinarum (strain ATCC 29341 / DSM 671 / R1)": 2,
+        "Hydrogenobacter thermophilus (strain DSM 6534 / IAM 12695 / TK-6)": 2,
+        "Mus musculus (Mouse)": 4
+      },
+      "heme_peroxidase_oxidase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 21,
+        "Bos taurus (Bovine)": 3,
+        "Caenorhabditis elegans": 4,
+        "Drosophila melanogaster (Fruit fly)": 3,
+        "Escherichia coli (strain K12)": 3,
+        "Homo sapiens (Human)": 7,
+        "Mus musculus (Mouse)": 6,
+        "Oryza sativa subsp. japonica (Rice)": 6,
+        "Phanerodontia chrysosporium (White-rot fungus) (Sporotrichum pruinosum)": 3,
+        "Rattus norvegicus (Rat)": 5
+      },
+      "manganese_iron_superoxide_dismutase": {
+        "Alternaria alternata (Alternaria rot fungus) (Torula alternata)": 1,
+        "Apostichopus californicus (California sea cucumber) (Parastichopus californicus)": 1,
+        "Arabidopsis thaliana (Mouse-ear cress)": 1,
+        "Bacillus caldotenax": 1,
+        "Bacillus subtilis (strain 168)": 1,
+        "Bordetella pertussis (strain Tohama I / ATCC BAA-589 / NCTC 13251)": 1,
+        "Bos taurus (Bovine)": 1,
+        "Branchiostoma floridae (Florida lancelet) (Amphioxus)": 1,
+        "Buchnera aphidicola subsp. Acyrthosiphon pisum (strain APS) (Acyrthosiphon pisum symbiotic bacterium)": 1,
+        "Caenorhabditis elegans": 1
+      },
+      "metal_dependent_hydrolase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 10,
+        "Bos taurus (Bovine)": 6,
+        "Caenorhabditis elegans": 5,
+        "Dictyostelium discoideum (Social amoeba)": 3,
+        "Drosophila melanogaster (Fruit fly)": 3,
+        "Elizabethkingia meningoseptica (Chryseobacterium meningosepticum)": 5,
+        "Homo sapiens (Human)": 76,
+        "Mus musculus (Mouse)": 11,
+        "Oryctolagus cuniculus (Rabbit)": 5,
+        "Rattus norvegicus (Rat)": 9
+      },
+      "metal_independent_phosphodiesterase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 3,
+        "Bos taurus (Bovine)": 4,
+        "Castor canadensis (American beaver)": 2,
+        "Homo sapiens (Human)": 3,
+        "Leptospira interrogans serogroup Icterohaemorrhagiae serovar Lai (strain 56601)": 2,
+        "Mus musculus (Mouse)": 3,
+        "Oncorhynchus kisutch (Coho salmon) (Salmo kisutch)": 2,
+        "Oncorhynchus mykiss (Rainbow trout) (Salmo gairdneri)": 2,
+        "Patagioenas fasciata monilis": 2,
+        "Rattus norvegicus (Rat)": 5
+      },
+      "metal_racemase_epimerase_non_plp": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 10,
+        "Azotobacter vinelandii": 4,
+        "Bacillus licheniformis": 3,
+        "Bacillus subtilis (strain 168)": 4,
+        "Bos taurus (Bovine)": 3,
+        "Escherichia coli (strain K12)": 13,
+        "Homo sapiens (Human)": 8,
+        "Mus musculus (Mouse)": 6,
+        "Oryza sativa subsp. japonica (Rice)": 6,
+        "Pseudomonas aeruginosa (strain ATCC 15692 / DSM 22644 / CIP 104116 / JCM 14847 / LMG 12228 / 1C / PRS 101 / PAO1)": 4
+      },
+      "metallo_amidohydrolase_deaminase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 10,
+        "Bacillus subtilis (strain 168)": 4,
+        "Bos taurus (Bovine)": 4,
+        "Dictyostelium discoideum (Social amoeba)": 4,
+        "Drosophila melanogaster (Fruit fly)": 4,
+        "Escherichia coli (strain K12)": 7,
+        "Homo sapiens (Human)": 29,
+        "Mus musculus (Mouse)": 17,
+        "Rattus norvegicus (Rat)": 9,
+        "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)": 8
+      },
+      "metallopeptidase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 6,
+        "Bos taurus (Bovine)": 6,
+        "Caenorhabditis elegans": 6,
+        "Danio rerio (Zebrafish) (Brachydanio rerio)": 5,
+        "Drosophila melanogaster (Fruit fly)": 6,
+        "Escherichia coli (strain K12)": 2,
+        "Homo sapiens (Human)": 50,
+        "Mus musculus (Mouse)": 25,
+        "Rattus norvegicus (Rat)": 16,
+        "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)": 6
+      },
+      "metallophosphoesterase_nuclease": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 5,
+        "Caenorhabditis elegans": 7,
+        "Danio rerio (Zebrafish) (Brachydanio rerio)": 6,
+        "Drosophila melanogaster (Fruit fly)": 4,
+        "Escherichia coli (strain K12)": 5,
+        "Homo sapiens (Human)": 30,
+        "Mus musculus (Mouse)": 13,
+        "Rattus norvegicus (Rat)": 8,
+        "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)": 5,
+        "Schizosaccharomyces pombe (strain 972 / ATCC 24843) (Fission yeast)": 4
+      },
+      "metallophosphomonoesterase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 19,
+        "Bos taurus (Bovine)": 10,
+        "Caenorhabditis elegans": 5,
+        "Drosophila melanogaster (Fruit fly)": 8,
+        "Escherichia coli (strain K12)": 15,
+        "Homo sapiens (Human)": 37,
+        "Mus musculus (Mouse)": 10,
+        "Oryza sativa subsp. japonica (Rice)": 4,
+        "Rattus norvegicus (Rat)": 14,
+        "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)": 8
+      },
+      "molybdopterin_oxidoreductase": {
+        "Actinobacillus pleuropneumoniae serotype 7 (strain AP76)": 2,
+        "Actinobacillus succinogenes (strain ATCC 55618 / DSM 22257 / CCUG 43843 / 130Z)": 2,
+        "Agrobacterium fabrum (strain C58 / ATCC 33970) (Agrobacterium tumefaciens (strain C58))": 2,
+        "Arabidopsis thaliana (Mouse-ear cress)": 3,
+        "Bacillus subtilis (strain 168)": 3,
+        "Escherichia coli (strain ATCC 8739 / DSM 1576 / NBRC 3972 / NCIMB 8545 / WDCM 00012 / Crooks)": 2,
+        "Escherichia coli (strain K12 / MC4100 / BW2952)": 2,
+        "Escherichia coli (strain K12)": 15,
+        "Escherichia coli (strain SE11)": 2,
+        "Salmonella typhimurium (strain LT2 / SGSC1412 / ATCC 700720)": 4
+      },
+      "n_ribosyl_hydrolase": {
+        "Actinobacillus pleuropneumoniae serotype 3 (strain JL03)": 1,
+        "Actinobacillus pleuropneumoniae serotype 5b (strain L20)": 1,
+        "Actinobacillus pleuropneumoniae serotype 7 (strain AP76)": 1,
+        "Aeromonas hydrophila subsp. hydrophila (strain ATCC 7966 / DSM 30187 / BCRC 13018 / CCUG 14551 / JCM 1027 / KCTC 2358 / NCIMB 9240 / NCTC 8049)": 1,
+        "Aeromonas salmonicida (strain A449)": 1,
+        "Aliivibrio fischeri (Vibrio fischeri)": 1,
+        "Escherichia coli (strain K12)": 2,
+        "Escherichia coli O157:H7": 2,
+        "Escherichia coli O6:H1 (strain CFT073 / ATCC 700928 / UPEC)": 2,
+        "Shigella flexneri": 2
+      },
+      "nad_p_dehydrogenase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 4,
+        "Bos taurus (Bovine)": 4,
+        "Caenorhabditis elegans": 4,
+        "Dictyostelium discoideum (Social amoeba)": 5,
+        "Drosophila melanogaster (Fruit fly)": 4,
+        "Escherichia coli (strain K12)": 14,
+        "Homo sapiens (Human)": 9,
+        "Mus musculus (Mouse)": 9,
+        "Rattus norvegicus (Rat)": 10,
+        "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)": 11
+      },
+      "non_heme_iron_2og_dioxygenase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 26,
+        "Bos taurus (Bovine)": 8,
+        "Caenorhabditis elegans": 11,
+        "Danio rerio (Zebrafish) (Brachydanio rerio)": 9,
+        "Drosophila melanogaster (Fruit fly)": 10,
+        "Gallus gallus (Chicken)": 5,
+        "Homo sapiens (Human)": 52,
+        "Mus musculus (Mouse)": 43,
+        "Oryza sativa subsp. japonica (Rice)": 7,
+        "Rattus norvegicus (Rat)": 17
+      },
+      "nucleoside_diphosphate_kinase": {
+        "Acidithiobacillus ferrooxidans (strain ATCC 53993 / BNL-5-31) (Leptospirillum ferrooxidans (ATCC 53993))": 1,
+        "Acinetobacter baumannii (strain AB0057)": 1,
+        "Acinetobacter baumannii (strain AB307-0294)": 1,
+        "Acinetobacter baumannii (strain ACICU)": 1,
+        "Acinetobacter baumannii (strain ATCC 17978 / DSM 105126 / CIP 53.77 / LMG 1025 / NCDC KC755 / 5377)": 1,
+        "Acinetobacter baumannii (strain AYE)": 1,
+        "Acinetobacter baumannii (strain SDF)": 1,
+        "Actinobacillus pleuropneumoniae serotype 5b (strain L20)": 1,
+        "Actinobacillus succinogenes (strain ATCC 55618 / DSM 22257 / CCUG 43843 / 130Z)": 1,
+        "Aeromonas salmonicida (strain A449)": 1
+      },
+      "pfka_phosphofructokinase": {
+        "Actinobacillus succinogenes (strain ATCC 55618 / DSM 22257 / CCUG 43843 / 130Z)": 1,
+        "Aliivibrio salmonicida (strain LFI1238) (Vibrio salmonicida (strain LFI1238))": 1,
+        "Alkaliphilus metalliredigens (strain QYMF)": 1,
+        "Alkaliphilus oremlandii (strain OhILAs) (Clostridium oremlandii (strain OhILAs))": 1,
+        "Anoxybacillus flavithermus (strain DSM 21510 / WK1)": 1,
+        "Arabidopsis thaliana (Mouse-ear cress)": 1,
+        "Aspergillus niger": 1,
+        "Bacillus cereus (strain AH187)": 1,
+        "Bacillus cereus (strain B4264)": 1,
+        "Bacillus cereus (strain G9842)": 1
+      },
+      "pfkb_ribokinase_family": {
+        "Accipiter nisus (Eurasian sparrowhawk)": 1,
+        "Actinidia chinensis var. chinensis (Chinese soft-hair kiwi)": 1,
+        "Aerococcus tenax": 1,
+        "Aerococcus urinae": 1,
+        "Allocoprococcus comes": 1,
+        "Anaerosalibacter massiliensis": 1,
+        "Apteryx owenii (Little spotted kiwi)": 2,
+        "Bos taurus (Bovine)": 2,
+        "Mikania micrantha (bitter vine)": 2,
+        "Physcomitrium patens (Spreading-leaved earth moss) (Physcomitrella patens)": 2
+      },
+      "plp_dependent_enzyme": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 13,
+        "Bacillus subtilis (strain 168)": 6,
+        "Escherichia coli (strain K12)": 14,
+        "Gallus gallus (Chicken)": 2,
+        "Homo sapiens (Human)": 7,
+        "Mycobacterium tuberculosis (strain ATCC 25618 / H37Rv)": 8,
+        "Pseudomonas aeruginosa (strain ATCC 15692 / DSM 22644 / CIP 104116 / JCM 14847 / LMG 12228 / 1C / PRS 101 / PAO1)": 3,
+        "Rattus norvegicus (Rat)": 4,
+        "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)": 6,
+        "Salmonella typhimurium (strain LT2 / SGSC1412 / ATCC 700720)": 3
+      },
+      "protein_kinase_ser_thr_tyr": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 7,
+        "Bacillus subtilis (strain 168)": 1,
+        "Bos taurus (Bovine)": 2,
+        "Caenorhabditis elegans": 2,
+        "Danio rerio (Zebrafish) (Brachydanio rerio)": 2,
+        "Drosophila melanogaster (Fruit fly)": 4,
+        "Homo sapiens (Human)": 59,
+        "Mus musculus (Mouse)": 14,
+        "Oryza sativa subsp. japonica (Rice)": 2,
+        "Rattus norvegicus (Rat)": 6
+      },
+      "radical_sam_enzyme": {
+        "Acidothermus cellulolyticus (strain ATCC 43068 / DSM 8971 / 11B)": 1,
+        "Acinetobacter baumannii (strain ATCC 17978 / DSM 105126 / CIP 53.77 / LMG 1025 / NCDC KC755 / 5377)": 1,
+        "Actinobacillus pleuropneumoniae serotype 5b (strain L20)": 1,
+        "Actinobacillus pleuropneumoniae serotype 7 (strain AP76)": 1,
+        "Actinobacillus succinogenes (strain ATCC 55618 / DSM 22257 / CCUG 43843 / 130Z)": 1,
+        "Aliarcobacter butzleri (strain RM4018) (Arcobacter butzleri)": 1,
+        "Arabidopsis thaliana (Mouse-ear cress)": 1,
+        "Archaeoglobus fulgidus (strain ATCC 49558 / DSM 4304 / JCM 9628 / NBRC 100126 / VC-16)": 1,
+        "Azorhizobium caulinodans (strain ATCC 43989 / DSM 5975 / JCM 20966 / LMG 6465 / NBRC 14845 / NCIMB 13405 / ORS 571)": 1,
+        "Azotobacter vinelandii": 1
+      },
+      "sam_methyltransferase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 11,
+        "Bacillus amyloliquefaciens (Bacillus velezensis)": 2,
+        "Bacillus subtilis (strain 168)": 5,
+        "Bos taurus (Bovine)": 2,
+        "Escherichia coli (strain K12)": 5,
+        "Homo sapiens (Human)": 86,
+        "Mus musculus (Mouse)": 6,
+        "Oryza sativa subsp. japonica (Rice)": 8,
+        "Rattus norvegicus (Rat)": 3,
+        "Zea mays (Maize)": 3
+      },
+      "ser_his_acid_hydrolase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 1,
+        "Arthroderma benhamiae (strain ATCC MYA-4681 / CBS 112371) (Trichophyton mentagrophytes)": 1,
+        "Homo sapiens (Human)": 71,
+        "Hordeum vulgare (Barley)": 3,
+        "Medicago truncatula (Barrel medic) (Medicago tribuloides)": 1,
+        "Mus musculus (Mouse)": 3,
+        "Rattus norvegicus (Rat)": 1,
+        "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)": 3,
+        "Schizosaccharomyces pombe (strain 972 / ATCC 24843) (Fission yeast)": 2,
+        "Trichophyton verrucosum (strain HKI 0517)": 1
+      },
+      "ser_thr_protein_phosphatase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 16,
+        "Bos taurus (Bovine)": 4,
+        "Caenorhabditis elegans": 5,
+        "Dictyostelium discoideum (Social amoeba)": 6,
+        "Drosophila melanogaster (Fruit fly)": 6,
+        "Mus musculus (Mouse)": 10,
+        "Oryza sativa subsp. japonica (Rice)": 7,
+        "Rattus norvegicus (Rat)": 7,
+        "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)": 9,
+        "Schizosaccharomyces pombe (strain 972 / ATCC 24843) (Fission yeast)": 5
+      },
+      "serine_beta_lactamase": {
+        "Achromobacter ruhlandii": 2,
+        "Bacillus subtilis (strain 168)": 2,
+        "Blautia wexlerae": 2,
+        "Citrobacter freundii": 2,
+        "Escherichia coli": 4,
+        "Klebsiella pneumoniae": 4,
+        "Klebsiella pneumoniae subsp. pneumoniae": 2,
+        "Proteus vulgaris": 2,
+        "Pseudomonas aeruginosa": 4,
+        "Shewanella hafniensis": 3
+      },
+      "short_chain_dehydrogenase_reductase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 2,
+        "Bos taurus (Bovine)": 11,
+        "Caenorhabditis elegans": 3,
+        "Danio rerio (Zebrafish) (Brachydanio rerio)": 4,
+        "Emericella nidulans (strain FGSC A4 / ATCC 38163 / CBS 112.46 / NRRL 194 / M139) (Aspergillus nidulans)": 2,
+        "Homo sapiens (Human)": 36,
+        "Mus musculus (Mouse)": 16,
+        "Pongo abelii (Sumatran orangutan) (Pongo pygmaeus abelii)": 3,
+        "Rattus norvegicus (Rat)": 8,
+        "Xenopus laevis (African clawed frog)": 2
+      },
+      "terpene_cyclase_synthase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 8,
+        "Cannabis sativa (Hemp) (Marijuana)": 7,
+        "Cyclocybe aegerita (Black poplar mushroom) (Agrocybe aegerita)": 6,
+        "Dictyostelium discoideum (Social amoeba)": 7,
+        "Picea glauca (White spruce) (Pinus glauca)": 5,
+        "Picea sitchensis (Sitka spruce) (Pinus sitchensis)": 7,
+        "Pinus banksiana (Jack pine) (Pinus divaricata)": 5,
+        "Postia placenta (strain ATCC 44394 / Madison 698-R) (Brown rot fungus) (Poria monticola)": 5,
+        "Solanum habrochaites (Wild tomato) (Lycopersicon hirsutum)": 5,
+        "Zea mays (Maize)": 9
+      },
+      "thiamine_diphosphate_enzyme": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 12,
+        "Bacillus subtilis (strain 168)": 5,
+        "Bos taurus (Bovine)": 5,
+        "Escherichia coli (strain K12)": 7,
+        "Homo sapiens (Human)": 7,
+        "Mus musculus (Mouse)": 8,
+        "Mycobacterium tuberculosis (strain ATCC 25618 / H37Rv)": 5,
+        "Oryza sativa subsp. japonica (Rice)": 5,
+        "Rattus norvegicus (Rat)": 7,
+        "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)": 8
+      },
+      "zinc_lyase_hydratase": {
+        "Arabidopsis thaliana (Mouse-ear cress)": 3,
+        "Bacillus subtilis (strain 168)": 2,
+        "Bos taurus (Bovine)": 4,
+        "Caenorhabditis elegans": 2,
+        "Equus caballus (Horse)": 2,
+        "Homo sapiens (Human)": 4,
+        "Mus musculus (Mouse)": 4,
+        "Ovis aries (Sheep)": 2,
+        "Rattus norvegicus (Rat)": 4,
+        "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)": 3
+      }
+    }
+  },
+  "fingerprint_distribution": {
+    "aldehyde_dehydrogenase": {
+      "combined": 150,
+      "expansion": 150,
+      "frozen": 0
+    },
+    "alpha_beta_hydrolase_esterase_lipase": {
+      "combined": 150,
+      "expansion": 150,
+      "frozen": 0
+    },
+    "aminoglycoside_phosphotransferase": {
+      "combined": 150,
+      "expansion": 150,
+      "frozen": 0
+    },
+    "askha_sugar_acetate_kinase": {
+      "combined": 100,
+      "expansion": 100,
+      "frozen": 0
+    },
+    "atp_amide_ligase": {
+      "combined": 150,
+      "expansion": 150,
+      "frozen": 0
+    },
+    "biotin_dependent_carboxylase": {
+      "combined": 141,
+      "expansion": 141,
+      "frozen": 0
+    },
+    "class_ii_metal_aldolase": {
+      "combined": 150,
+      "expansion": 150,
+      "frozen": 0
+    },
+    "coa_acyltransferase": {
+      "combined": 250,
+      "expansion": 250,
+      "frozen": 0
+    },
+    "cobalamin_radical_rearrangement": {
+      "combined": 123,
+      "expansion": 120,
+      "frozen": 3
+    },
+    "cofactor_independent_isomerase": {
+      "combined": 150,
+      "expansion": 150,
+      "frozen": 0
+    },
+    "copper_oxidoreductase": {
+      "combined": 140,
+      "expansion": 140,
+      "frozen": 0
+    },
+    "cytochrome_p450_monooxygenase": {
+      "combined": 250,
+      "expansion": 250,
+      "frozen": 0
+    },
+    "deoxynucleoside_kinase": {
+      "combined": 100,
+      "expansion": 100,
+      "frozen": 0
+    },
+    "flavin_dehydrogenase_reductase": {
+      "combined": 250,
+      "expansion": 202,
+      "frozen": 48
+    },
+    "flavin_monooxygenase": {
+      "combined": 116,
+      "expansion": 114,
+      "frozen": 2
+    },
+    "ghmp_small_molecule_kinase": {
+      "combined": 100,
+      "expansion": 100,
+      "frozen": 0
+    },
+    "glycoside_hydrolase": {
+      "combined": 150,
+      "expansion": 150,
+      "frozen": 0
+    },
+    "glycosyltransferase": {
+      "combined": 250,
+      "expansion": 250,
+      "frozen": 0
+    },
+    "had_like_phosphatase": {
+      "combined": 146,
+      "expansion": 146,
+      "frozen": 0
+    },
+    "heme_peroxidase_oxidase": {
+      "combined": 119,
+      "expansion": 99,
+      "frozen": 20
+    },
+    "manganese_iron_superoxide_dismutase": {
+      "combined": 100,
+      "expansion": 100,
+      "frozen": 0
+    },
+    "metal_dependent_hydrolase": {
+      "combined": 308,
+      "expansion": 225,
+      "frozen": 83
+    },
+    "metal_independent_phosphodiesterase": {
+      "combined": 125,
+      "expansion": 125,
+      "frozen": 0
+    },
+    "metal_racemase_epimerase_non_plp": {
+      "combined": 150,
+      "expansion": 150,
+      "frozen": 0
+    },
+    "metallo_amidohydrolase_deaminase": {
+      "combined": 150,
+      "expansion": 150,
+      "frozen": 0
+    },
+    "metallopeptidase": {
+      "combined": 150,
+      "expansion": 150,
+      "frozen": 0
+    },
+    "metallophosphoesterase_nuclease": {
+      "combined": 150,
+      "expansion": 150,
+      "frozen": 0
+    },
+    "metallophosphomonoesterase": {
+      "combined": 150,
+      "expansion": 150,
+      "frozen": 0
+    },
+    "molybdopterin_oxidoreductase": {
+      "combined": 250,
+      "expansion": 250,
+      "frozen": 0
+    },
+    "n_ribosyl_hydrolase": {
+      "combined": 150,
+      "expansion": 150,
+      "frozen": 0
+    },
+    "nad_p_dehydrogenase": {
+      "combined": 150,
+      "expansion": 150,
+      "frozen": 0
+    },
+    "non_heme_iron_2og_dioxygenase": {
+      "combined": 250,
+      "expansion": 250,
+      "frozen": 0
+    },
+    "nucleoside_diphosphate_kinase": {
+      "combined": 100,
+      "expansion": 100,
+      "frozen": 0
+    },
+    "pfka_phosphofructokinase": {
+      "combined": 100,
+      "expansion": 100,
+      "frozen": 0
+    },
+    "pfkb_ribokinase_family": {
+      "combined": 128,
+      "expansion": 128,
+      "frozen": 0
+    },
+    "plp_dependent_enzyme": {
+      "combined": 147,
+      "expansion": 116,
+      "frozen": 31
+    },
+    "protein_kinase_ser_thr_tyr": {
+      "combined": 101,
+      "expansion": 101,
+      "frozen": 0
+    },
+    "radical_sam_enzyme": {
+      "combined": 185,
+      "expansion": 184,
+      "frozen": 1
+    },
+    "sam_methyltransferase": {
+      "combined": 250,
+      "expansion": 250,
+      "frozen": 0
+    },
+    "ser_his_acid_hydrolase": {
+      "combined": 129,
+      "expansion": 87,
+      "frozen": 42
+    },
+    "ser_thr_protein_phosphatase": {
+      "combined": 112,
+      "expansion": 112,
+      "frozen": 0
+    },
+    "serine_beta_lactamase": {
+      "combined": 150,
+      "expansion": 150,
+      "frozen": 0
+    },
+    "terpene_cyclase_synthase": {
+      "combined": 173,
+      "expansion": 173,
+      "frozen": 0
+    },
+    "thiamine_diphosphate_enzyme": {
+      "combined": 150,
+      "expansion": 150,
+      "frozen": 0
+    },
+    "zinc_lyase_hydratase": {
+      "combined": 100,
+      "expansion": 100,
+      "frozen": 0
+    }
+  },
+  "guardrails": {
+    "ec_lane_organism_used_for_coverage_accounting_only_never_predictive": true,
+    "expansion_registry_written": false,
+    "frozen_benchmark_written": false,
+    "labels_emitted": 0,
+    "metadata_only_no_network_no_mmseqs_no_embeddings": true
+  },
+  "metadata_completeness": {
+    "expansion_rows": 8200,
+    "frozen_rows": 702,
+    "frozen_with_ec_numbers": 0,
+    "frozen_with_organism": 0,
+    "note": "the frozen current702 benchmark carries only fingerprint_id / label_type (M-CSA rows), so lane/organism/EC/sequence-length coverage is measured on the expansion registry; frozen rows still count toward the combined fingerprint distribution",
+    "with_concrete_rhea": 7563,
+    "with_ec_numbers": 8047,
+    "with_organism": 8074,
+    "with_sequence_length": 8074
+  },
+  "non_destructive": true,
+  "policy": {
+    "cap_ceiling_per_fingerprint": 250,
+    "cluster_min_size": 3,
+    "hole_threshold": 25,
+    "reaction_cap_rate": 8,
+    "target_floor_per_fingerprint": 100
+  },
+  "redundancy": {
+    "near_duplicate_clusters": {
+      "cluster_count": 154,
+      "cluster_key": "(fingerprint_or_scope, full_ec, organism, sequence_length_bin)",
+      "cluster_min_size": 3,
+      "clusters_top25": [
+        {
+          "entry_ids_sample": [
+            "uniprot:P11801",
+            "uniprot:P31749",
+            "uniprot:P31751",
+            "uniprot:P51955",
+            "uniprot:Q13043",
+            "uniprot:Q13188"
+          ],
+          "fingerprint_or_scope": "out_of_scope",
+          "full_ec": [
+            "2.7.11.1"
+          ],
+          "organism": "Homo sapiens (Human)",
+          "sequence_length_bin": "0400-0499",
+          "size": 17
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:O23044",
+            "uniprot:O80912",
+            "uniprot:Q43729",
+            "uniprot:Q43731",
+            "uniprot:Q43735",
+            "uniprot:Q43872"
+          ],
+          "fingerprint_or_scope": "heme_peroxidase_oxidase",
+          "full_ec": [
+            "1.11.1.7"
+          ],
+          "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+          "sequence_length_bin": "0300-0399",
+          "size": 13
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:O15075",
+            "uniprot:O75676",
+            "uniprot:P15056",
+            "uniprot:P27448",
+            "uniprot:P51617",
+            "uniprot:P51812"
+          ],
+          "fingerprint_or_scope": "out_of_scope",
+          "full_ec": [
+            "2.7.11.1"
+          ],
+          "organism": "Homo sapiens (Human)",
+          "sequence_length_bin": "0700-0799",
+          "size": 13
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:P06133",
+            "uniprot:P0DTE4",
+            "uniprot:P0DTE5",
+            "uniprot:P19224",
+            "uniprot:P22309",
+            "uniprot:P22310"
+          ],
+          "fingerprint_or_scope": "glycosyltransferase",
+          "full_ec": [
+            "2.4.1.17"
+          ],
+          "organism": "Homo sapiens (Human)",
+          "sequence_length_bin": "0500-0599",
+          "size": 11
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:P48729",
+            "uniprot:Q16644",
+            "uniprot:Q6SA08",
+            "uniprot:Q8N165",
+            "uniprot:Q96PF2",
+            "uniprot:Q96QS6"
+          ],
+          "fingerprint_or_scope": "out_of_scope",
+          "full_ec": [
+            "2.7.11.1"
+          ],
+          "organism": "Homo sapiens (Human)",
+          "sequence_length_bin": "0300-0399",
+          "size": 10
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:O00743",
+            "uniprot:P36873",
+            "uniprot:P60510",
+            "uniprot:P62136",
+            "uniprot:P62714",
+            "uniprot:Q5SGD2"
+          ],
+          "fingerprint_or_scope": "out_of_scope",
+          "full_ec": [
+            "3.1.3.16"
+          ],
+          "organism": "Homo sapiens (Human)",
+          "sequence_length_bin": "0300-0399",
+          "size": 9
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:O15530",
+            "uniprot:O75914",
+            "uniprot:O96013",
+            "uniprot:P23443",
+            "uniprot:P51956",
+            "uniprot:Q86Y07"
+          ],
+          "fingerprint_or_scope": "out_of_scope",
+          "full_ec": [
+            "2.7.11.1"
+          ],
+          "organism": "Homo sapiens (Human)",
+          "sequence_length_bin": "0500-0599",
+          "size": 9
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:A0A1B0GTW7",
+            "uniprot:O43506",
+            "uniprot:O95672",
+            "uniprot:P23276",
+            "uniprot:P78562",
+            "uniprot:Q9UKF2"
+          ],
+          "fingerprint_or_scope": "metal_dependent_hydrolase",
+          "full_ec": [
+            "3.4.24.-"
+          ],
+          "organism": "Homo sapiens (Human)",
+          "sequence_length_bin": "0700-0799",
+          "size": 8
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:P10721",
+            "uniprot:P21709",
+            "uniprot:P54753",
+            "uniprot:P54760",
+            "uniprot:P54762",
+            "uniprot:P54764"
+          ],
+          "fingerprint_or_scope": "out_of_scope",
+          "full_ec": [
+            "2.7.10.1"
+          ],
+          "organism": "Homo sapiens (Human)",
+          "sequence_length_bin": "0900-0999",
+          "size": 8
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:P22087",
+            "uniprot:Q5T280",
+            "uniprot:Q63ZY6",
+            "uniprot:Q6IN84",
+            "uniprot:Q6P1Q9",
+            "uniprot:Q8WVM0"
+          ],
+          "fingerprint_or_scope": "sam_methyltransferase",
+          "full_ec": [
+            "2.1.1.-"
+          ],
+          "organism": "Homo sapiens (Human)",
+          "sequence_length_bin": "0300-0399",
+          "size": 8
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:O60285",
+            "uniprot:P10398",
+            "uniprot:P78362",
+            "uniprot:Q8NE63",
+            "uniprot:Q8NG66",
+            "uniprot:Q9NQU5"
+          ],
+          "fingerprint_or_scope": "out_of_scope",
+          "full_ec": [
+            "2.7.11.1"
+          ],
+          "organism": "Homo sapiens (Human)",
+          "sequence_length_bin": "0600-0699",
+          "size": 7
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:P11274",
+            "uniprot:Q6IQ55",
+            "uniprot:Q86Z02",
+            "uniprot:Q96J92",
+            "uniprot:Q96PY6",
+            "uniprot:Q9H2G2"
+          ],
+          "fingerprint_or_scope": "out_of_scope",
+          "full_ec": [
+            "2.7.11.1"
+          ],
+          "organism": "Homo sapiens (Human)",
+          "sequence_length_bin": "1200-1299",
+          "size": 7
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:P23953",
+            "uniprot:Q63880",
+            "uniprot:Q64176",
+            "uniprot:Q6AW46",
+            "uniprot:Q8VCU1",
+            "uniprot:Q91WU0"
+          ],
+          "fingerprint_or_scope": "alpha_beta_hydrolase_esterase_lipase",
+          "full_ec": [
+            "3.1.1.1"
+          ],
+          "organism": "Mus musculus (Mouse)",
+          "sequence_length_bin": "0500-0599",
+          "size": 6
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:A6NJ78",
+            "uniprot:Q1RMZ1",
+            "uniprot:Q8TBK2",
+            "uniprot:Q96P11",
+            "uniprot:Q9H5I1",
+            "uniprot:Q9HC36"
+          ],
+          "fingerprint_or_scope": "sam_methyltransferase",
+          "full_ec": [
+            "2.1.1.-"
+          ],
+          "organism": "Homo sapiens (Human)",
+          "sequence_length_bin": "0400-0499",
+          "size": 6
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:P10959",
+            "uniprot:Q5GRG2",
+            "uniprot:Q63010",
+            "uniprot:Q63108",
+            "uniprot:Q64573"
+          ],
+          "fingerprint_or_scope": "alpha_beta_hydrolase_esterase_lipase",
+          "full_ec": [
+            "3.1.1.1"
+          ],
+          "organism": "Rattus norvegicus (Rat)",
+          "sequence_length_bin": "0500-0599",
+          "size": 5
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:P13584",
+            "uniprot:P20815",
+            "uniprot:P24462",
+            "uniprot:P98187",
+            "uniprot:Q6V0L0"
+          ],
+          "fingerprint_or_scope": "cytochrome_p450_monooxygenase",
+          "full_ec": [
+            "1.14.14.1"
+          ],
+          "organism": "Homo sapiens (Human)",
+          "sequence_length_bin": "0500-0599",
+          "size": 5
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:P08683",
+            "uniprot:P15129",
+            "uniprot:P24464",
+            "uniprot:Q64680",
+            "uniprot:Q9QXF7"
+          ],
+          "fingerprint_or_scope": "cytochrome_p450_monooxygenase",
+          "full_ec": [
+            "1.14.14.1"
+          ],
+          "organism": "Rattus norvegicus (Rat)",
+          "sequence_length_bin": "0500-0599",
+          "size": 5
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:O08498",
+            "uniprot:Q9K303",
+            "uniprot:Q9KJA8",
+            "uniprot:Q9KJA9",
+            "uniprot:Q9KJB0"
+          ],
+          "fingerprint_or_scope": "metal_dependent_hydrolase",
+          "full_ec": [
+            "3.5.2.6"
+          ],
+          "organism": "Elizabethkingia meningoseptica (Chryseobacterium meningosepticum)",
+          "sequence_length_bin": "0200-0299",
+          "size": 5
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:P28562",
+            "uniprot:Q05923",
+            "uniprot:Q13115",
+            "uniprot:Q16690",
+            "uniprot:Q16828"
+          ],
+          "fingerprint_or_scope": "out_of_scope",
+          "full_ec": [
+            "3.1.3.16",
+            "3.1.3.48"
+          ],
+          "organism": "Homo sapiens (Human)",
+          "sequence_length_bin": "0300-0399",
+          "size": 5
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:Q5BPS0",
+            "uniprot:Q84MC2",
+            "uniprot:Q8GW29",
+            "uniprot:Q8L8B8",
+            "uniprot:Q8LBB7"
+          ],
+          "fingerprint_or_scope": "out_of_scope",
+          "full_ec": [
+            "3.2.2.n1"
+          ],
+          "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+          "sequence_length_bin": "0200-0299",
+          "size": 5
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:P13504",
+            "uniprot:P14719",
+            "uniprot:Q61098",
+            "uniprot:Q61730",
+            "uniprot:Q9ERS7"
+          ],
+          "fingerprint_or_scope": "out_of_scope",
+          "full_ec": [
+            "3.2.2.6"
+          ],
+          "organism": "Mus musculus (Mouse)",
+          "sequence_length_bin": "0500-0599",
+          "size": 5
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:A8MUP2",
+            "uniprot:Q7Z5W3",
+            "uniprot:Q92979",
+            "uniprot:Q96AZ1",
+            "uniprot:Q9UI43"
+          ],
+          "fingerprint_or_scope": "sam_methyltransferase",
+          "full_ec": [
+            "2.1.1.-"
+          ],
+          "organism": "Homo sapiens (Human)",
+          "sequence_length_bin": "0200-0299",
+          "size": 5
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:Q8WTS1",
+            "uniprot:Q9NRZ5",
+            "uniprot:Q9NRZ7",
+            "uniprot:Q9NUQ2"
+          ],
+          "fingerprint_or_scope": "coa_acyltransferase",
+          "full_ec": [
+            "2.3.1.51"
+          ],
+          "organism": "Homo sapiens (Human)",
+          "sequence_length_bin": "0300-0399",
+          "size": 4
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:A2A974",
+            "uniprot:P12791",
+            "uniprot:Q64462",
+            "uniprot:Q91WL5"
+          ],
+          "fingerprint_or_scope": "cytochrome_p450_monooxygenase",
+          "full_ec": [
+            "1.14.14.1"
+          ],
+          "organism": "Mus musculus (Mouse)",
+          "sequence_length_bin": "0500-0599",
+          "size": 4
+        },
+        {
+          "entry_ids_sample": [
+            "uniprot:P12790",
+            "uniprot:P15392",
+            "uniprot:P20852",
+            "uniprot:P56654"
+          ],
+          "fingerprint_or_scope": "cytochrome_p450_monooxygenase",
+          "full_ec": [
+            "1.14.14.1"
+          ],
+          "organism": "Mus musculus (Mouse)",
+          "sequence_length_bin": "0400-0499",
+          "size": 4
+        }
+      ],
+      "measurable_rows": 8047,
+      "redundancy_fraction_of_measurable": 0.0732,
+      "rows_in_clusters": 589
+    },
+    "per_fingerprint_diversity": {
+      "aldehyde_dehydrogenase": {
+        "distinct_full_ec": 28,
+        "distinct_organisms": 78,
+        "distinct_reactions": 95,
+        "expansion_seed_labels": 150,
+        "labels_per_distinct_ec": 5.36,
+        "labels_per_distinct_reaction": 1.58
+      },
+      "alpha_beta_hydrolase_esterase_lipase": {
+        "distinct_full_ec": 19,
+        "distinct_organisms": 66,
+        "distinct_reactions": 140,
+        "expansion_seed_labels": 150,
+        "labels_per_distinct_ec": 7.89,
+        "labels_per_distinct_reaction": 1.07
+      },
+      "aminoglycoside_phosphotransferase": {
+        "distinct_full_ec": 1,
+        "distinct_organisms": 145,
+        "distinct_reactions": 1,
+        "expansion_seed_labels": 150,
+        "labels_per_distinct_ec": 150.0,
+        "labels_per_distinct_reaction": 150.0
+      },
+      "askha_sugar_acetate_kinase": {
+        "distinct_full_ec": 6,
+        "distinct_organisms": 100,
+        "distinct_reactions": 9,
+        "expansion_seed_labels": 100,
+        "labels_per_distinct_ec": 16.67,
+        "labels_per_distinct_reaction": 11.11
+      },
+      "atp_amide_ligase": {
+        "distinct_full_ec": 50,
+        "distinct_organisms": 50,
+        "distinct_reactions": 89,
+        "expansion_seed_labels": 150,
+        "labels_per_distinct_ec": 3.0,
+        "labels_per_distinct_reaction": 1.69
+      },
+      "biotin_dependent_carboxylase": {
+        "distinct_full_ec": 7,
+        "distinct_organisms": 111,
+        "distinct_reactions": 8,
+        "expansion_seed_labels": 141,
+        "labels_per_distinct_ec": 20.14,
+        "labels_per_distinct_reaction": 17.62
+      },
+      "class_ii_metal_aldolase": {
+        "distinct_full_ec": 29,
+        "distinct_organisms": 102,
+        "distinct_reactions": 46,
+        "expansion_seed_labels": 150,
+        "labels_per_distinct_ec": 5.17,
+        "labels_per_distinct_reaction": 3.26
+      },
+      "coa_acyltransferase": {
+        "distinct_full_ec": 52,
+        "distinct_organisms": 45,
+        "distinct_reactions": 452,
+        "expansion_seed_labels": 250,
+        "labels_per_distinct_ec": 4.81,
+        "labels_per_distinct_reaction": 0.55
+      },
+      "cobalamin_radical_rearrangement": {
+        "distinct_full_ec": 14,
+        "distinct_organisms": 106,
+        "distinct_reactions": 15,
+        "expansion_seed_labels": 120,
+        "labels_per_distinct_ec": 8.57,
+        "labels_per_distinct_reaction": 8.0
+      },
+      "cofactor_independent_isomerase": {
+        "distinct_full_ec": 33,
+        "distinct_organisms": 83,
+        "distinct_reactions": 59,
+        "expansion_seed_labels": 150,
+        "labels_per_distinct_ec": 4.55,
+        "labels_per_distinct_reaction": 2.54
+      },
+      "copper_oxidoreductase": {
+        "distinct_full_ec": 13,
+        "distinct_organisms": 87,
+        "distinct_reactions": 25,
+        "expansion_seed_labels": 140,
+        "labels_per_distinct_ec": 10.77,
+        "labels_per_distinct_reaction": 5.6
+      },
+      "cytochrome_p450_monooxygenase": {
+        "distinct_full_ec": 96,
+        "distinct_organisms": 70,
+        "distinct_reactions": 498,
+        "expansion_seed_labels": 250,
+        "labels_per_distinct_ec": 2.6,
+        "labels_per_distinct_reaction": 0.5
+      },
+      "deoxynucleoside_kinase": {
+        "distinct_full_ec": 6,
+        "distinct_organisms": 100,
+        "distinct_reactions": 7,
+        "expansion_seed_labels": 100,
+        "labels_per_distinct_ec": 16.67,
+        "labels_per_distinct_reaction": 14.29
+      },
+      "flavin_dehydrogenase_reductase": {
+        "distinct_full_ec": 63,
+        "distinct_organisms": 39,
+        "distinct_reactions": 206,
+        "expansion_seed_labels": 202,
+        "labels_per_distinct_ec": 3.21,
+        "labels_per_distinct_reaction": 0.98
+      },
+      "flavin_monooxygenase": {
+        "distinct_full_ec": 42,
+        "distinct_organisms": 65,
+        "distinct_reactions": 65,
+        "expansion_seed_labels": 114,
+        "labels_per_distinct_ec": 2.71,
+        "labels_per_distinct_reaction": 1.75
+      },
+      "ghmp_small_molecule_kinase": {
+        "distinct_full_ec": 4,
+        "distinct_organisms": 100,
+        "distinct_reactions": 4,
+        "expansion_seed_labels": 100,
+        "labels_per_distinct_ec": 25.0,
+        "labels_per_distinct_reaction": 25.0
+      },
+      "glycoside_hydrolase": {
+        "distinct_full_ec": 31,
+        "distinct_organisms": 76,
+        "distinct_reactions": 93,
+        "expansion_seed_labels": 150,
+        "labels_per_distinct_ec": 4.84,
+        "labels_per_distinct_reaction": 1.61
+      },
+      "glycosyltransferase": {
+        "distinct_full_ec": 104,
+        "distinct_organisms": 34,
+        "distinct_reactions": 394,
+        "expansion_seed_labels": 250,
+        "labels_per_distinct_ec": 2.4,
+        "labels_per_distinct_reaction": 0.63
+      },
+      "had_like_phosphatase": {
+        "distinct_full_ec": 10,
+        "distinct_organisms": 117,
+        "distinct_reactions": 14,
+        "expansion_seed_labels": 146,
+        "labels_per_distinct_ec": 14.6,
+        "labels_per_distinct_reaction": 10.43
+      },
+      "heme_peroxidase_oxidase": {
+        "distinct_full_ec": 16,
+        "distinct_organisms": 41,
+        "distinct_reactions": 26,
+        "expansion_seed_labels": 99,
+        "labels_per_distinct_ec": 6.19,
+        "labels_per_distinct_reaction": 3.81
+      },
+      "manganese_iron_superoxide_dismutase": {
+        "distinct_full_ec": 1,
+        "distinct_organisms": 100,
+        "distinct_reactions": 1,
+        "expansion_seed_labels": 100,
+        "labels_per_distinct_ec": 100.0,
+        "labels_per_distinct_reaction": 100.0
+      },
+      "metal_dependent_hydrolase": {
+        "distinct_full_ec": 72,
+        "distinct_organisms": 95,
+        "distinct_reactions": 76,
+        "expansion_seed_labels": 225,
+        "labels_per_distinct_ec": 3.12,
+        "labels_per_distinct_reaction": 2.96
+      },
+      "metal_independent_phosphodiesterase": {
+        "distinct_full_ec": 8,
+        "distinct_organisms": 106,
+        "distinct_reactions": 8,
+        "expansion_seed_labels": 125,
+        "labels_per_distinct_ec": 15.62,
+        "labels_per_distinct_reaction": 15.62
+      },
+      "metal_racemase_epimerase_non_plp": {
+        "distinct_full_ec": 51,
+        "distinct_organisms": 82,
+        "distinct_reactions": 86,
+        "expansion_seed_labels": 150,
+        "labels_per_distinct_ec": 2.94,
+        "labels_per_distinct_reaction": 1.74
+      },
+      "metallo_amidohydrolase_deaminase": {
+        "distinct_full_ec": 44,
+        "distinct_organisms": 60,
+        "distinct_reactions": 57,
+        "expansion_seed_labels": 150,
+        "labels_per_distinct_ec": 3.41,
+        "labels_per_distinct_reaction": 2.63
+      },
+      "metallopeptidase": {
+        "distinct_full_ec": 44,
+        "distinct_organisms": 32,
+        "distinct_reactions": 27,
+        "expansion_seed_labels": 150,
+        "labels_per_distinct_ec": 3.41,
+        "labels_per_distinct_reaction": 5.56
+      },
+      "metallophosphoesterase_nuclease": {
+        "distinct_full_ec": 32,
+        "distinct_organisms": 66,
+        "distinct_reactions": 52,
+        "expansion_seed_labels": 150,
+        "labels_per_distinct_ec": 4.69,
+        "labels_per_distinct_reaction": 2.88
+      },
+      "metallophosphomonoesterase": {
+        "distinct_full_ec": 45,
+        "distinct_organisms": 27,
+        "distinct_reactions": 120,
+        "expansion_seed_labels": 150,
+        "labels_per_distinct_ec": 3.33,
+        "labels_per_distinct_reaction": 1.25
+      },
+      "molybdopterin_oxidoreductase": {
+        "distinct_full_ec": 34,
+        "distinct_organisms": 188,
+        "distinct_reactions": 38,
+        "expansion_seed_labels": 250,
+        "labels_per_distinct_ec": 7.35,
+        "labels_per_distinct_reaction": 6.58
+      },
+      "n_ribosyl_hydrolase": {
+        "distinct_full_ec": 8,
+        "distinct_organisms": 146,
+        "distinct_reactions": 14,
+        "expansion_seed_labels": 150,
+        "labels_per_distinct_ec": 18.75,
+        "labels_per_distinct_reaction": 10.71
+      },
+      "nad_p_dehydrogenase": {
+        "distinct_full_ec": 31,
+        "distinct_organisms": 66,
+        "distinct_reactions": 88,
+        "expansion_seed_labels": 150,
+        "labels_per_distinct_ec": 4.84,
+        "labels_per_distinct_reaction": 1.7
+      },
+      "non_heme_iron_2og_dioxygenase": {
+        "distinct_full_ec": 37,
+        "distinct_organisms": 55,
+        "distinct_reactions": 100,
+        "expansion_seed_labels": 250,
+        "labels_per_distinct_ec": 6.76,
+        "labels_per_distinct_reaction": 2.5
+      },
+      "nucleoside_diphosphate_kinase": {
+        "distinct_full_ec": 1,
+        "distinct_organisms": 100,
+        "distinct_reactions": 10,
+        "expansion_seed_labels": 100,
+        "labels_per_distinct_ec": 100.0,
+        "labels_per_distinct_reaction": 10.0
+      },
+      "pfka_phosphofructokinase": {
+        "distinct_full_ec": 2,
+        "distinct_organisms": 100,
+        "distinct_reactions": 2,
+        "expansion_seed_labels": 100,
+        "labels_per_distinct_ec": 50.0,
+        "labels_per_distinct_reaction": 50.0
+      },
+      "pfkb_ribokinase_family": {
+        "distinct_full_ec": 6,
+        "distinct_organisms": 124,
+        "distinct_reactions": 16,
+        "expansion_seed_labels": 128,
+        "labels_per_distinct_ec": 21.33,
+        "labels_per_distinct_reaction": 8.0
+      },
+      "plp_dependent_enzyme": {
+        "distinct_full_ec": 83,
+        "distinct_organisms": 54,
+        "distinct_reactions": 146,
+        "expansion_seed_labels": 116,
+        "labels_per_distinct_ec": 1.4,
+        "labels_per_distinct_reaction": 0.79
+      },
+      "protein_kinase_ser_thr_tyr": {
+        "distinct_full_ec": 16,
+        "distinct_organisms": 12,
+        "distinct_reactions": 10,
+        "expansion_seed_labels": 101,
+        "labels_per_distinct_ec": 6.31,
+        "labels_per_distinct_reaction": 10.1
+      },
+      "radical_sam_enzyme": {
+        "distinct_full_ec": 22,
+        "distinct_organisms": 184,
+        "distinct_reactions": 23,
+        "expansion_seed_labels": 184,
+        "labels_per_distinct_ec": 8.36,
+        "labels_per_distinct_reaction": 8.0
+      },
+      "sam_methyltransferase": {
+        "distinct_full_ec": 60,
+        "distinct_organisms": 119,
+        "distinct_reactions": 129,
+        "expansion_seed_labels": 250,
+        "labels_per_distinct_ec": 4.17,
+        "labels_per_distinct_reaction": 1.94
+      },
+      "ser_his_acid_hydrolase": {
+        "distinct_full_ec": 50,
+        "distinct_organisms": 10,
+        "distinct_reactions": 205,
+        "expansion_seed_labels": 87,
+        "labels_per_distinct_ec": 1.74,
+        "labels_per_distinct_reaction": 0.42
+      },
+      "ser_thr_protein_phosphatase": {
+        "distinct_full_ec": 2,
+        "distinct_organisms": 36,
+        "distinct_reactions": 3,
+        "expansion_seed_labels": 112,
+        "labels_per_distinct_ec": 56.0,
+        "labels_per_distinct_reaction": 37.33
+      },
+      "serine_beta_lactamase": {
+        "distinct_full_ec": 1,
+        "distinct_organisms": 132,
+        "distinct_reactions": 1,
+        "expansion_seed_labels": 150,
+        "labels_per_distinct_ec": 150.0,
+        "labels_per_distinct_reaction": 150.0
+      },
+      "terpene_cyclase_synthase": {
+        "distinct_full_ec": 104,
+        "distinct_organisms": 81,
+        "distinct_reactions": 162,
+        "expansion_seed_labels": 173,
+        "labels_per_distinct_ec": 1.66,
+        "labels_per_distinct_reaction": 1.07
+      },
+      "thiamine_diphosphate_enzyme": {
+        "distinct_full_ec": 15,
+        "distinct_organisms": 79,
+        "distinct_reactions": 24,
+        "expansion_seed_labels": 150,
+        "labels_per_distinct_ec": 10.0,
+        "labels_per_distinct_reaction": 6.25
+      },
+      "zinc_lyase_hydratase": {
+        "distinct_full_ec": 6,
+        "distinct_organisms": 78,
+        "distinct_reactions": 6,
+        "expansion_seed_labels": 100,
+        "labels_per_distinct_ec": 16.67,
+        "labels_per_distinct_reaction": 16.67
+      }
+    },
+    "reaction_saturation": {
+      "distinct_concrete_reactions": 4146,
+      "most_repeated_reactions_top15": {
+        "RHEA:13617": 146,
+        "RHEA:14369": 105,
+        "RHEA:16061": 106,
+        "RHEA:17805": 146,
+        "RHEA:17989": 239,
+        "RHEA:18113": 105,
+        "RHEA:20401": 179,
+        "RHEA:20629": 229,
+        "RHEA:20696": 104,
+        "RHEA:24256": 150,
+        "RHEA:29859": 146,
+        "RHEA:44640": 104,
+        "RHEA:46608": 235,
+        "RHEA:47004": 228,
+        "RHEA:49576": 111
+      },
+      "rows_with_concrete_reaction": 7563
+    }
+  },
+  "status": "ok",
+  "totals": {
+    "combined": 8902,
+    "expansion_bronze": 8200,
+    "frozen_current702": 702,
+    "label_type_by_registry": {
+      "expansion_bronze": {
+        "out_of_scope": 1224,
+        "seed_fingerprint": 6976
+      },
+      "frozen_current702": {
+        "out_of_scope": 472,
+        "seed_fingerprint": 230
+      }
+    }
+  }
+}

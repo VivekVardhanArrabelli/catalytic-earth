@@ -769,6 +769,60 @@ _AMINOGLYCOSIDE_PHOSPHOTRANSFERASE_BOUNDARY_TOKENS = (
     "nucleoside kinase",
     "deoxynucleoside kinase",
 )
+# Aminoglycoside acetyltransferase (AAC) handles. EC 2.3.1 scopes the acetyltransferase
+# candidate supply only; counted corroboration comes from aminoglycoside-acetyltransferase
+# family/name text, acetyl-CoA/CoA cosubstrate context, and Rhea/reviewed acetyl-transfer text.
+# Generic CoA acyltransferases (no aminoglycoside name) route to coa_acyltransferase; the
+# phospho/nucleotidyl aminoglycoside-resistance enzymes are boundary-guarded, and bifunctional
+# acetyltransferase-phosphotransferase rows are held by both family boundaries.
+_AMINOGLYCOSIDE_ACETYLTRANSFERASE_FAMILY_TEXT_TOKENS = (
+    "aminoglycoside acetyltransferase",
+    "aminoglycoside n-acetyltransferase",
+    "aminoglycoside 3-n-acetyltransferase",
+    "aminoglycoside 3-acetyltransferase",
+    "aminoglycoside 6'-n-acetyltransferase",
+    "aminoglycoside 2'-n-acetyltransferase",
+    "gentamicin acetyltransferase",
+    "kanamycin acetyltransferase",
+    "aac(",
+    "aac6",
+    "aac3",
+)
+_AMINOGLYCOSIDE_DRUG_CLASS_TOKENS = (
+    "aminoglycoside",
+    "gentamicin",
+    "kanamycin",
+    "tobramycin",
+    "amikacin",
+    "neomycin",
+    "streptomycin",
+    "apramycin",
+    "netilmicin",
+    "sisomicin",
+    "ribostamycin",
+    "paromomycin",
+    "spectinomycin",
+)
+_AMINOGLYCOSIDE_ACETYLTRANSFERASE_COA_TOKENS = (
+    "coenzyme a",
+    "acetyl-coa",
+    "acetyl coenzyme a",
+    "acetyl-coenzyme a",
+    "coa(",
+    " coa ",
+    "coa)",
+)
+_AMINOGLYCOSIDE_ACETYLTRANSFERASE_BOUNDARY_TOKENS = (
+    "aminoglycoside phosphotransferase",
+    "aminoglycoside kinase",
+    "aminoglycoside 3'-phosphotransferase",
+    "aminoglycoside 6-phosphotransferase",
+    "aminoglycoside nucleotidyltransferase",
+    "aminoglycoside adenylyltransferase",
+    "phosphotransferase",
+    "nucleotidyltransferase",
+    "adenylyltransferase",
+)
 # HAD-like phosphatase handles. EC 3.1.3 scopes phosphomonoesterase candidates only;
 # counted corroboration comes from HAD/haloacid-dehalogenase family text, catalytic
 # Asp or Mg binding-site context, and Rhea/reviewed phosphomonoester hydrolysis text.
@@ -2109,6 +2163,30 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
         ec and ec not in _AMINOGLYCOSIDE_PHOSPHOTRANSFERASE_EC
         for ec in _ec_numbers(row)
     )
+    _aac_name_fields = reactions + keywords + [protein_name] + feature_texts
+    aminoglycoside_acetyltransferase_family_text = (
+        # aminoglycoside-resistance acetyltransferase names vary widely
+        # (N(6')-, 6'-N-, 3-N-, gentamicin/kanamycin ...), so the robust handle is an
+        # aminoglycoside-class drug term co-occurring with "acetyltransferase", plus
+        # explicit AAC tokens.
+        in_any(_aac_name_fields, *_AMINOGLYCOSIDE_DRUG_CLASS_TOKENS)
+        and in_any(_aac_name_fields, "acetyltransferase")
+    ) or in_any(_aac_name_fields, *_AMINOGLYCOSIDE_ACETYLTRANSFERASE_FAMILY_TEXT_TOKENS)
+    aminoglycoside_acetyltransferase_acetyl_coa_context = in_any(
+        reactions + feature_texts + cofactor_names,
+        *_AMINOGLYCOSIDE_ACETYLTRANSFERASE_COA_TOKENS,
+    )
+    aminoglycoside_acetyltransferase_boundary_signal = (
+        evidence.get("metal", False)
+        or evidence.get("flavin", False)
+        or in_any(
+            keywords + [protein_name] + feature_texts + cofactor_names,
+            *_AMINOGLYCOSIDE_ACETYLTRANSFERASE_BOUNDARY_TOKENS,
+        )
+    )
+    non_aminoglycoside_acetyltransferase_scope_side_ec = any(
+        ec and not ec.startswith("2.3.1") for ec in _ec_numbers(row)
+    )
     had_like_phosphatase_family_text = in_any(
         reactions + keywords + [protein_name] + feature_texts,
         *_HAD_LIKE_PHOSPHATASE_FAMILY_TEXT_TOKENS,
@@ -2554,6 +2632,10 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "aminoglycoside_phosphotransferase_phosphoryl_reaction": aminoglycoside_phosphotransferase_phosphoryl_reaction,
             "aminoglycoside_phosphotransferase_boundary_signal": aminoglycoside_phosphotransferase_boundary_signal,
             "non_aminoglycoside_phosphotransferase_scope_side_ec": non_aminoglycoside_phosphotransferase_scope_side_ec,
+            "aminoglycoside_acetyltransferase_family_text": aminoglycoside_acetyltransferase_family_text,
+            "aminoglycoside_acetyltransferase_acetyl_coa_context": aminoglycoside_acetyltransferase_acetyl_coa_context,
+            "aminoglycoside_acetyltransferase_boundary_signal": aminoglycoside_acetyltransferase_boundary_signal,
+            "non_aminoglycoside_acetyltransferase_scope_side_ec": non_aminoglycoside_acetyltransferase_scope_side_ec,
             "had_like_phosphatase_family_text": had_like_phosphatase_family_text,
             "had_like_phosphatase_asp_mg_context": had_like_phosphatase_asp_mg_context,
             "had_like_phosphatase_phosphomonoester_reaction": had_like_phosphatase_phosphomonoester_reaction,
@@ -2812,6 +2894,8 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("ser_thr_protein_phosphatase_family_text")
         or evidence.get("aldehyde_dehydrogenase_family_text")
         or evidence.get("short_chain_dehydrogenase_reductase_family_text")
+        or evidence.get("aldo_keto_reductase_family_text")
+        or evidence.get("aminoglycoside_acetyltransferase_family_text")
         or evidence.get("alpha_beta_hydrolase_family_text")
         or evidence.get("serine_beta_lactamase_family_text")
     ):
@@ -2860,6 +2944,7 @@ _SAM_METHYLTRANSFERASE_EC = ("2.1.1",)  # methyl group transfer, mostly SAM/SAH 
 _P450_MONOOXYGENASE_EC = ("1.14.",)  # paired-donor oxidoreductases incorporating one O atom
 _NON_HEME_IRON_2OG_EC = ("1.14.11",)  # 2-oxoglutarate-dependent dioxygenases
 _COA_ACYLTRANSFERASE_EC = ("2.3.1",)  # acyltransferases using CoA/acyl-CoA donors
+_AMINOGLYCOSIDE_ACETYLTRANSFERASE_EC = ("2.3.1",)  # AAC acetyltransferases; EC scope only
 _COFACTOR_INDEPENDENT_ISOMERASE_EC = ("5.3.",)  # intramolecular isomerases
 _MOLYBDOPTERIN_OXIDOREDUCTASE_EC = ("1.",)  # oxidoreductases; Mo-cofactor handles confirm
 _COPPER_OXIDOREDUCTASE_EC = (
@@ -3056,10 +3141,24 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         and _ec_has_prefix(row, _SAM_METHYLTRANSFERASE_EC),
     ),
     (
+        "aminoglycoside_acetyltransferase",
+        lambda c, row: _ec_has_prefix(row, _AMINOGLYCOSIDE_ACETYLTRANSFERASE_EC)
+        and c["aminoglycoside_acetyltransferase_family_text"]
+        and not c["hydrolase_side_ec"]
+        and (
+            c["coa_acyl_coa_reaction"]
+            or c["coa_acyl_coa_feature"]
+            or c["aminoglycoside_acetyltransferase_acetyl_coa_context"]
+        )
+        and not c["aminoglycoside_acetyltransferase_boundary_signal"]
+        and not c["non_aminoglycoside_acetyltransferase_scope_side_ec"],
+    ),
+    (
         "coa_acyltransferase",
         lambda c, row: _ec_has_prefix(row, _COA_ACYLTRANSFERASE_EC)
         and not c["hydrolase_side_ec"]
         and c["keyword_acyltransferase"]
+        and not c["aminoglycoside_acetyltransferase_family_text"]
         and (
             c["coa_acyl_coa_reaction"]
             or c["coa_acyl_coa_feature"]
@@ -3520,6 +3619,17 @@ def _synthesize_cofactor_provenance(
         records = [{"name": "Mg2+/Mn2+ prenyl-diphosphate cyclization context", "cross_reference": {"id": None}}]
     elif fingerprint == "protein_kinase_ser_thr_tyr" and evidence.get("protein_kinase_atp_mg_context"):
         records = [{"name": "ATP/Mg2+ protein-substrate phosphoryl-transfer cosubstrate", "cross_reference": {"id": None}}]
+    elif fingerprint == "aminoglycoside_acetyltransferase" and (
+        evidence.get("coa_acyl_coa_reaction")
+        or evidence.get("coa_acyl_coa_feature")
+        or evidence.get("aminoglycoside_acetyltransferase_acetyl_coa_context")
+    ):
+        records = [
+            {
+                "name": "acetyl-CoA aminoglycoside N-acetyltransferase context",
+                "cross_reference": {"id": None},
+            }
+        ]
     elif fingerprint == "aminoglycoside_phosphotransferase" and (
         evidence.get("aminoglycoside_phosphotransferase_atp_mg_context")
         or evidence.get("aminoglycoside_phosphotransferase_phosphoryl_reaction")

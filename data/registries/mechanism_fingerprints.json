@@ -3678,5 +3678,86 @@
       "reconstruction_path": "Path A sequence->AKR family plus NADP reaction/active-site channel, or canonical NADP/substrate graft in an AKR TIM-barrel pocket (Path B)",
       "silver_reachability": "moderate; reviewed AKR family and NADP reaction annotations are common, but extended-conformation hydride-transfer geometry needs explicit reconstruction"
     }
+  },
+  {
+    "id": "aminoglycoside_acetyltransferase",
+    "name": "Aminoglycoside acetyltransferase",
+    "enzyme_space": [
+      "aminoglycoside N-acetyltransferase (AAC) antibiotic-resistance enzymes",
+      "GNAT-fold acetyl-CoA-dependent aminoglycoside acetyltransferases",
+      "AAC(1) / AAC(3) / AAC(2') / AAC(6') regiospecific subfamilies"
+    ],
+    "active_site_signature": [
+      {
+        "role": "gnat_acetyl_coa_binder",
+        "residue": "GNAT (GCN5-related N-acetyltransferase) fold acetyl-CoA cleft (beta-bulge / P-loop pyrophosphate-binding motif)",
+        "constraints": [
+          "binds acetyl-CoA so the thioester carbonyl is positioned for nucleophilic attack by the aminoglycoside amine",
+          "GNAT fold and acetyl-CoA donor (not a Rossmann/NAD(P) fold) define the family"
+        ]
+      },
+      {
+        "role": "general_base_amine_activator",
+        "residue": "general base (Tyr/Glu/Asp) plus aminoglycoside-amine acceptor pocket",
+        "constraints": [
+          "deprotonates/positions the target aminoglycoside amino group for direct acetyl transfer from acetyl-CoA"
+        ]
+      },
+      {
+        "role": "aminoglycoside_acceptor_positioner",
+        "residue": "acidic/aromatic aminoglycoside-binding subsite residues",
+        "constraints": [
+          "binds the polycationic aminoglycoside (kanamycin/gentamicin/tobramycin-class) at a specific N-position regiospecificity"
+        ]
+      }
+    ],
+    "cofactors": [],
+    "reaction_center": {
+      "bond_changes": [
+        "acetyl transfer from acetyl-CoA thioester to an aminoglycoside amino group, forming an amide and releasing CoA",
+        "aminoglycoside-NH2 + acetyl-CoA -> aminoglycoside-NH-C(O)CH3 + CoA"
+      ],
+      "chemical_operation": "acetyl-CoA-dependent aminoglycoside N-acetyl transfer"
+    },
+    "substrate_constraints": [
+      "EC 2.3.1 scope present but never counted as a corroborator",
+      "aminoglycoside-class drug name (or AAC) co-occurring with acetyltransferase family/name context present",
+      "acetyl-CoA / CoA participant, keyword, or binding context present",
+      "Rhea or reviewed catalytic activity text for aminoglycoside N-acetyl transfer present",
+      "no generic CoA acyltransferase (non-aminoglycoside), aminoglycoside phosphotransferase/nucleotidyltransferase, metal, flavin, side-EC, EC-only, or multi-fingerprint boundary signal"
+    ],
+    "evidence_features": [
+      "aminoglycoside-class + acetyltransferase family/name/keyword text (AAC subfamily)",
+      "acetyl-CoA/CoA Rhea participant, keyword, cofactor, or binding-site context",
+      "reviewed catalytic activity text showing aminoglycoside N-acetyl transfer",
+      "annotated GNAT acetyl-CoA-binding or general-base context where available",
+      "EC 2.3.1 scope only, never counted as a corroborator"
+    ],
+    "counterevidence_features": [
+      "generic CoA acyltransferase / acetyl-CoA C-acyltransferase context without an aminoglycoside acceptor",
+      "aminoglycoside phosphotransferase (APH, ATP kinase) context",
+      "aminoglycoside nucleotidyltransferase / adenylyltransferase (ANT) context",
+      "catalytic metal, flavin, or other cofactor redox context",
+      "EC-only evidence with no aminoglycoside-acetyltransferase family and acetyl-CoA corroboration",
+      "multi-fingerprint signal (e.g. bifunctional acetyltransferase-phosphotransferase) where another rule independently fires"
+    ],
+    "uncertainty_axes": [
+      "N-position regiospecificity (1 / 3 / 2' / 6')",
+      "aminoglycoside substrate scope and spectrum",
+      "monofunctional versus bifunctional resistance architecture",
+      "apo versus acetyl-CoA/aminoglycoside ternary-complex geometry"
+    ],
+    "seed_examples": [
+      "aminoglycoside N(6')-acetyltransferase AAC(6')",
+      "gentamicin 3-N-acetyltransferase AAC(3)",
+      "aminoglycoside 2'-N-acetyltransferase AAC(2')",
+      "aminoglycoside N(3)-acetyltransferase"
+    ],
+    "deploy_missing_active_site_context": {
+      "type": "acetyl_coa_aminoglycoside_gnat_n_acetyl_transfer_context",
+      "detail": "acetyl-CoA donor, aminoglycoside acceptor, GNAT thioester-to-amine geometry, and general-base state are absent or incomplete in apo predicted structures",
+      "reconstruction_path": "Path A sequence->AAC family plus acetyl-CoA reaction/active-site channel, or canonical acetyl-CoA/aminoglycoside graft in a GNAT pocket (Path B)",
+      "silver_reachability": "moderate; reviewed AAC family and acetyl-CoA reaction annotations are common, but ternary-complex transfer geometry needs explicit reconstruction"
+    }
   }
 ]

@@ -505,6 +505,21 @@
       ]
     },
     {
+      "id": "aminoglycoside_acetyl_transfer",
+      "name": "Aminoglycoside acetyl-CoA N-acetyl transfer",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "aminoglycoside_acetyltransferase"
+      ],
+      "v2_split_note": null,
+      "family_boundary_guardrails": [
+        "Membership is decided by an aminoglycoside-class drug name (or AAC) co-occurring with acetyltransferase family/name context plus acetyl-CoA/CoA cosubstrate or binding context and Rhea/reviewed aminoglycoside N-acetyl transfer; EC 2.3.1 is scope only.",
+        "Do not admit generic CoA acyltransferases without an aminoglycoside acceptor, aminoglycoside phosphotransferase (APH/kinase) or nucleotidyltransferase (ANT) rows, or metal/flavin rows into this family.",
+        "Hold bifunctional acetyltransferase-phosphotransferase and other multi-fingerprint-signal rows rather than forcing an AAC label.",
+        "The acetyl-CoA donor, aminoglycoside acceptor, GNAT thioester-to-amine geometry, and general-base state are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
+    },
+    {
       "id": "isomerization",
       "name": "Cofactor-independent isomerization chemistry",
       "parent_id": "mechanism",

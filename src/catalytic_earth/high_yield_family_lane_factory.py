@@ -381,13 +381,14 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         chemistry_confusable=True,
         novelty_keep_factor=0.35,
         ambiguity_with_existing=("nad_p_dehydrogenase",),
-        known_blockers=(
-            "2026-05 SDR/AKR/NAD(P) control tranche is review-only with 0 import-ready rows",
-            "AKR source-free NADP/Tyr-Lys-His axis remains unresolved",
-        ),
+        existing_fingerprint_id="aldo_keto_reductase",
+        current_runner="scripts/source_aldo_keto_reductase_family.py",
+        oos_preregistration_required=False,
+        source_wall_rule_status="implemented_new_fingerprint_runner",
         rationale_template=(
-            "Large NAD(P) hydride-transfer subclass; needs AKR-vs-SDR/MDR rules "
-            "because the existing NAD(P) fingerprint is capped."
+            "Large NAD(P) hydride-transfer subclass; the dedicated aldo_keto_reductase "
+            "fingerprint (Tyr-Lys-His-Asp TIM-barrel) and AKR-vs-SDR/MDR disambiguation "
+            "rule are implemented (2026-06-17, +28 first lane)."
         ),
     ),
     _spec(
@@ -518,9 +519,15 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         chemistry_confusable=True,
         novelty_keep_factor=0.4,
         ambiguity_with_existing=("coa_acyltransferase",),
+        existing_fingerprint_id="aminoglycoside_acetyltransferase",
+        current_runner="scripts/source_aminoglycoside_acetyltransferase_family.py",
+        oos_preregistration_required=False,
+        source_wall_rule_status="implemented_new_fingerprint_runner",
         rationale_template=(
-            "Resistance-relevant CoA acyl-transfer split; existing CoA family is capped, "
-            "so a subclass fingerprint is required before importing."
+            "Resistance-relevant CoA acyl-transfer split; the dedicated "
+            "aminoglycoside_acetyltransferase fingerprint (GNAT acetyl-CoA) and "
+            "AAC-vs-coa_acyltransferase/APH/ANT disambiguation rule are implemented "
+            "(2026-06-17, +32 first lane)."
         ),
     ),
     _spec(

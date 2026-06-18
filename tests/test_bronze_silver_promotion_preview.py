@@ -217,10 +217,11 @@ class RealRegistryTests(unittest.TestCase):
             # PDE bronze rows applied on 2026-06-16, plus a 2026-06-17 user-directed
             # reviewed-Swiss-Prot growth pass of 142 broadened-handle bronze rows
             # (41 biotin + 3 SDR + 44 serine beta-lactamase + 1 protein-kinase + 25
-            # metal-independent PDE + 28 aldo-keto reductase, a new fingerprint family)
+            # metal-independent PDE + 28 aldo-keto reductase + 32 aminoglycoside
+            # acetyltransferase, two new fingerprint families)
             # through mechanism-first lanes; the 30 promoted rows remain seed labels
             # while moving from bronze to silver.
-            self.assertEqual(audit["seed_labels"], 6944)
+            self.assertEqual(audit["seed_labels"], 6976)
             # HONEST about structure (2026-06-14, after holo_structure_promotion):
             # silver_ready is now > 0 because experimental-PDB holo_pdb_confirmation rows
             # exist (the annotated cofactor was found as a HETATM in a sha-pinned PDB) --

@@ -452,10 +452,11 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
         # PDE bronze rows applied on 2026-06-16, plus a 2026-06-17 user-directed
         # reviewed-Swiss-Prot growth pass of 142 broadened-handle bronze rows
         # (41 biotin + 3 SDR + 44 serine beta-lactamase + 1 protein-kinase + 25
-        # metal-independent PDE + 28 aldo-keto reductase, a new fingerprint family)
+        # metal-independent PDE + 28 aldo-keto reductase + 32 aminoglycoside
+        # acetyltransferase, two new fingerprint families)
         # through mechanism-first lanes; the representation loop remains leakage-safe
         # and still excludes EC/name/prose/lane from features.
-        self.assertEqual(audit["seed_labels"], 6944)
+        self.assertEqual(audit["seed_labels"], 6976)
         g = audit["leakage_guardrails"]
         self.assertFalse(g["frozen_benchmark_read"])
         self.assertFalse(g["ec_name_prose_lane_used"])
