@@ -64,6 +64,26 @@ NON_COUNTED_SCOPE_AXES: tuple[str, ...] = (
     "ec_scope_hint",                        # EC class: fetch / scope / stratification only, never counted
 )
 
+# Within the COUNTED axes, HARD mechanism axes are the actual catalytic chemistry / structure: the
+# reaction transformation (Rhea participants), the cofactor/cosubstrate, the catalytic residue/motif,
+# or the coordinate/pocket geometry. The remaining counted axes are SOFT -- a Pfam/InterPro/family or
+# functional-keyword profile (the protein NAME proxy) and sequence-cluster proximity; they corroborate
+# but lean on annotation/name and sit right next to EC in excluded_context. THE RULE (2026-06-18): a
+# bronze-eligible label must carry at least ONE hard mechanism axis. EC is weight 0 (never counted) AND
+# a family/name profile can NEVER alone carry a mechanism label -- the transformation, cofactor,
+# catalytic residue, or structure must be present. This is what makes admission mechanism-dependent
+# rather than EC-or-name-dependent: name + EC scope is necessary-context, never sufficient.
+HARD_MECHANISM_AXES: tuple[str, ...] = (
+    "rhea_reaction_or_participant_pattern",
+    "cofactor_or_cosubstrate",
+    "active_site_motif_or_residue_role",
+    "structure_or_pocket_support",
+)
+SOFT_SCOPE_LEANING_AXES: tuple[str, ...] = (
+    "domain_or_family_profile",
+    "sequence_cluster_proximity_to_anchor",
+)
+
 # Trust tiers. `bronze_eligible` gates whether a tier may ever produce a COUNTABLE bronze label.
 # `min_independent_corroborators` is the N in the N-of-M rule (M = len(CORROBORATOR_AXES)). Tiers
 # 3-4 are hypotheses: bronze_eligible False, and they may only become bronze by being UPGRADED into
@@ -165,13 +185,20 @@ def evaluate_corroboration(
     )
     required = int(tier["min_independent_corroborators"])
     meets_n_of_m = len(distinct_axes) >= required
+    # HARD-mechanism requirement: at least one counted axis must be actual chemistry/structure
+    # (reaction / cofactor / active-site / structure), not a name/family or cluster proxy. EC is
+    # already weight 0; this also forbids a name+EC-only label.
+    hard_axes = sorted(set(distinct_axes) & set(HARD_MECHANISM_AXES))
+    has_hard_mechanism_axis = bool(hard_axes)
 
     if not tier["bronze_eligible"]:
         decision = "hold_hypothesis_not_countable_bronze"
-    elif meets_n_of_m:
-        decision = "admit_bronze_candidate_pending_governor_and_novelty_gate"
-    else:
+    elif not meets_n_of_m:
         decision = "hold_insufficient_independent_corroboration"
+    elif not has_hard_mechanism_axis:
+        decision = "hold_no_hard_mechanism_axis_name_or_family_alone_insufficient"
+    else:
+        decision = "admit_bronze_candidate_pending_governor_and_novelty_gate"
 
     return {
         "source_tier": source_tier,
@@ -179,6 +206,9 @@ def evaluate_corroboration(
         "required_independent_corroborators": required,
         "distinct_corroborator_axes": distinct_axes,
         "distinct_corroborator_count": len(distinct_axes),
+        "hard_mechanism_axes_present": hard_axes,
+        "has_hard_mechanism_axis": has_hard_mechanism_axis,
+        "requires_hard_mechanism_axis": bool(tier["bronze_eligible"]),
         "scope_hint_axes_present_not_counted": scope_hint_axes,
         "unknown_axes_ignored": unknown_axes,
         "meets_n_of_m": meets_n_of_m,

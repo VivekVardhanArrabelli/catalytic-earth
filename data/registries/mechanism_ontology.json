@@ -885,21 +885,6 @@
         "The ATP-adenylation step is mechanistically shared with EC 6.3 ATP-dependent amide ligases (atp_amide_ligase), so multi-fingerprint-signal rows are held; the source-free representation cannot separate the two by reaction chemistry alone (documented cost).",
         "The bound ATP/Mg2+, the aminoacyl-adenylate intermediate, and the tRNA 3'-CCA acceptor pose are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
-    },
-    {
-      "id": "atp_acid_coa_thioester_ligation",
-      "name": "ATP-dependent acid--CoA thioester ligation",
-      "parent_id": "mechanism",
-      "fingerprint_ids": [
-        "acid_coa_ligase"
-      ],
-      "v2_split_note": null,
-      "family_boundary_guardrails": [
-        "Membership is decided by a CoA-ligase / acyl-CoA-synthetase family/name plus a Rhea/reviewed reaction forming an acyl-CoA thioester with ATP (acid + ATP + CoA -> acyl-CoA + AMP + diphosphate); EC 6.2.1 is scope only.",
-        "Do not admit CoA transferases (EC 2.3 / 2.8.3), biotin-dependent carboxylases (EC 6.3.4 / 6.4.1), thiolases, or acyl-CoA dehydrogenases into this family.",
-        "The ATP-adenylation step is mechanistically shared with EC 6.3 ATP-dependent amide ligases (atp_amide_ligase) and the CoA thioester with coa_acyltransferase, so multi-fingerprint-signal rows are held; the source-free representation cannot separate them by reaction chemistry alone (documented cost).",
-        "The bound ATP/Mg2+, the acyl-adenylate intermediate, and the CoA-thioester pose are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
-      ]
     }
   ],
   "propagation_guardrails": [

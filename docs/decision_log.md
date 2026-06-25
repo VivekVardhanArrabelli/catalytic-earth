@@ -3,6 +3,41 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-18: MECHANISM-NOT-EC HARDENING — bronze admission now requires a HARD mechanism axis
+
+Decision (user-directed: "we want this mechanism dependent not ec dependent"): strengthen the central
+corroboration rule in `source_trust_tiers.evaluate_corroboration` so EC's importance stays zero AND a
+protein name/family profile can no longer carry a label on its own. The counted `CORROBORATOR_AXES`
+are now partitioned into:
+- `HARD_MECHANISM_AXES` = actual catalytic chemistry/structure: `rhea_reaction_or_participant_pattern`,
+  `cofactor_or_cosubstrate`, `active_site_motif_or_residue_role`, `structure_or_pocket_support`.
+- `SOFT_SCOPE_LEANING_AXES` = `domain_or_family_profile` (the protein-NAME proxy) and
+  `sequence_cluster_proximity_to_anchor`.
+A bronze-eligible admission must now carry **>= 1 hard mechanism axis** in addition to meeting N-of-M.
+EC (`ec_scope_hint`) remains weight 0 (scope/fetch/stratification only, in `excluded_context`); the
+name + EC scope is necessary CONTEXT, never sufficient. New hold reason:
+`hold_no_hard_mechanism_axis_name_or_family_alone_insufficient`. `bronze_preview_row_guardrails` flags
+any preview row lacking a hard axis.
+
+Why: a prior gap let a tier-0 row admit on `domain_or_family_profile` (name) alone — EC was scoped to
+zero but the adjacent name proxy was not. Diagnosis over the live registry: of 5877 corroborated rows
+only **30** (28 glycosyltransferase + 2 sam_methyltransferase, keyword-route) had no hard axis; the
+other 99.5% already carry the reaction/cofactor/active-site. The 30 are grandfathered (already
+applied); the rule is forward-looking. Counts (9477), frozen current702, and the representation loop
+are UNCHANGED — this is admission rigor, not a registry mutation.
+
+Routing hardening (the four recent families: peroxiredoxin / paps_sulfotransferase /
+glutathione_s_transferase / aminoacyl_trna_synthetase): the rules now take the family REACTION as the
+required hard anchor and accept the family name OR an active/binding-site residue as the second
+corroborator — the protein name is no longer a NECESSARY routing condition. EC stays the cheap scope
+gate (it bounds the fetch lane and prevents cross-family collisions, per the rule's own "EC = scope
+only" charter), but it can never decide a label: a row with the right chemistry but an odd/missing name
+still routes, and an EC-scoped row WITHOUT the reaction is now held.
+
+Also: backed the incomplete `acid_coa_ligase` WIP scaffold (EC 6.2.1) out of the working tree so this
+lands clean on the tested 53-fingerprint base; the scaffold remains in git history (commit
+`fbc8c9e9`) for a future session to complete via the full add-a-family recipe.
+
 ## 2026-06-18: NEW `aminoacyl_trna_synthetase` FINGERPRINT FAMILY ADDED (52 -> 53 FP) — COMBINED 9477; LOO FLOOR 0.70 -> 0.62
 
 Seventh new family. `aminoacyl_trna_synthetase` (ATP-dependent tRNA aminoacylation, EC 6.1.1):

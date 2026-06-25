@@ -9,8 +9,10 @@ from pathlib import Path
 
 from catalytic_earth.source_trust_tiers import (
     CORROBORATOR_AXES,
+    HARD_MECHANISM_AXES,
     HONEST_COUNTER_AXES,
     NON_COUNTED_SCOPE_AXES,
+    SOFT_SCOPE_LEANING_AXES,
     SOURCE_TRUST_TIERS,
     build_source_trust_tier_policy,
     evaluate_corroboration,
@@ -31,6 +33,49 @@ class SourceTrustTierTests(unittest.TestCase):
         # Trust-tier admission still defers to the mandatory downstream gates.
         self.assertIn("coverage_redundancy_governor", verdict["still_requires"])
         self.assertIn("novelty_admission_gate", verdict["still_requires"])
+
+    def test_name_or_family_alone_cannot_carry_a_bronze_label(self) -> None:
+        # THE mechanism-not-EC rule: a family/name profile (domain_or_family_profile) is a SOFT
+        # axis. Even though it satisfies the tier_0 count of 1, it carries NO hard mechanism
+        # evidence, so it is held -- name + EC scope is necessary-context, never sufficient.
+        verdict = evaluate_corroboration(
+            source_tier="source_tier_0",
+            present_axes=["ec_scope_hint", "domain_or_family_profile"],
+        )
+        self.assertTrue(verdict["meets_n_of_m"])  # count rule alone is satisfied...
+        self.assertFalse(verdict["has_hard_mechanism_axis"])  # ...but no real chemistry
+        self.assertEqual(verdict["hard_mechanism_axes_present"], [])
+        self.assertEqual(
+            verdict["decision"],
+            "hold_no_hard_mechanism_axis_name_or_family_alone_insufficient",
+        )
+
+    def test_name_plus_one_hard_axis_admits(self) -> None:
+        # The same name/family profile DOES corroborate once a hard mechanism axis (the actual
+        # reaction transformation) is also present.
+        verdict = evaluate_corroboration(
+            source_tier="source_tier_0",
+            present_axes=[
+                "ec_scope_hint",
+                "domain_or_family_profile",
+                "rhea_reaction_or_participant_pattern",
+            ],
+        )
+        self.assertTrue(verdict["has_hard_mechanism_axis"])
+        self.assertEqual(
+            verdict["hard_mechanism_axes_present"],
+            ["rhea_reaction_or_participant_pattern"],
+        )
+        self.assertEqual(
+            verdict["decision"], "admit_bronze_candidate_pending_governor_and_novelty_gate"
+        )
+
+    def test_hard_and_soft_axis_partition_is_clean(self) -> None:
+        # HARD + SOFT exactly partition the counted axes; EC is in neither (it is scope-only).
+        self.assertEqual(set(HARD_MECHANISM_AXES) | set(SOFT_SCOPE_LEANING_AXES), set(CORROBORATOR_AXES))
+        self.assertEqual(set(HARD_MECHANISM_AXES) & set(SOFT_SCOPE_LEANING_AXES), set())
+        self.assertNotIn("ec_scope_hint", HARD_MECHANISM_AXES)
+        self.assertNotIn("ec_scope_hint", SOFT_SCOPE_LEANING_AXES)
 
     def test_tier_2_requires_three_independent_axes(self) -> None:
         two = evaluate_corroboration(

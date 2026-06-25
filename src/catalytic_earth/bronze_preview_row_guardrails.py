@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from .external_source_ingestion import _utc_now_iso
+from .source_trust_tiers import HARD_MECHANISM_AXES
 
 SCHEMA_VERSION = "bronze_preview_row_guardrails.v1"
 
@@ -106,6 +107,15 @@ def audit_bronze_preview_rows(
         if not mechanism_axes:
             problem_rows.append(
                 _problem(entry_id, "source_trust_tier", "no counted mechanism axes present")
+            )
+        if not (set(mechanism_axes) & set(HARD_MECHANISM_AXES)):
+            problem_rows.append(
+                _problem(
+                    entry_id,
+                    "source_trust_tier",
+                    "no hard mechanism axis (reaction/cofactor/active-site/structure); "
+                    "name/family + EC scope alone cannot carry a label",
+                )
             )
         if tier.get("meets_n_of_m") is not True:
             problem_rows.append(
