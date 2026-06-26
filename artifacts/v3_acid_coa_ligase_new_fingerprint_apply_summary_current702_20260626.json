@@ -1,0 +1,61 @@
+{
+  "artifact_id": "v3_acid_coa_ligase_new_fingerprint_apply_summary_current702_20260626",
+  "authorization": "explicit_user_instruction_continue_to_10k_take_it_forward",
+  "counts": {
+    "acid_coa_ligase_family_after": "150/150",
+    "combined_after": 9627,
+    "combined_before": 9477,
+    "disambiguation_hold_count": 90,
+    "expansion_after": 8925,
+    "expansion_before": 8775,
+    "fetch_failures": 1,
+    "fetched_candidate_rows": 261,
+    "frozen_current702_rows": 702,
+    "mechanism_corroborated": 169,
+    "novelty_admitted": 150,
+    "novelty_throttled_or_rejected": 19,
+    "off_target_fingerprint_counts": {
+      "coa_acyltransferase": 1
+    },
+    "off_target_held": 1
+  },
+  "created_utc": "2026-06-26T00:00:00Z",
+  "expansion_registry_manifest_sha256": "43539660efeabcf69e876ca89245b2f8b0be6e42aa0bd9a07495f26af9e2331a",
+  "fingerprint": {
+    "chemistry": "ATP-dependent activation of a carboxylate to an acyl-adenylate (acid + ATP -> acyl-AMP + diphosphate), then thioester formation with coenzyme A (acyl-AMP + CoA -> acyl-CoA + AMP); the ANL superfamily (acyl-/aryl-CoA synthetases, fatty-acid--CoA ligases, 4-coumarate--CoA ligase) with its two-conformation adenylation/thioester domain alternation",
+    "disambiguation": "EC 6.2.1 (not shared) + a Rhea acid--CoA reaction carrying BOTH a CoA token AND an AMP/adenylate-release token (the required hard anchor) + a CoA-ligase/acyl-CoA-synthetase family name OR an active/binding-site residue (second corroborator); CoA transferase (EC 2.3/2.8.3), biotin carboxylase (EC 6.3.4/6.4.1), thiolase, acyl-CoA dehydrogenase boundary-guarded; the ADP/GDP-forming succinate--CoA ligases (no AMP release) are correctly held; side-EC held; cap 150 (representation-confusable with EC 6.3 atp_amide_ligase via the shared ATP-adenylation and with coa_acyltransferase via the CoA thioester)",
+    "id": "acid_coa_ligase",
+    "name": "Acid--CoA ligase (acyl-CoA synthetase)",
+    "ontology_family": "atp_acid_coa_thioester_ligation (parent mechanism)"
+  },
+  "frozen_benchmark": {
+    "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+    "unchanged": true,
+    "written": false
+  },
+  "gap_to_10k": 373,
+  "lane_factory_spec_wired": "acid_coa_ligase",
+  "leakage_closure": {
+    "new_preregistration": "artifacts/v3_external_hard_negative_next_tranche_preregistration_54fp_1025.json",
+    "positive_universe_version": "label_factory_v1_53fp -> label_factory_v1_54fp",
+    "supersedes": "artifacts/v3_external_hard_negative_next_tranche_preregistration_53fp_1025.json"
+  },
+  "post_apply_audits": {
+    "coverage_redundancy": "artifacts/v3_coverage_redundancy_audit_current702_20260626_acid_coa_ligase_fingerprint.json",
+    "floor_deficit": 0,
+    "holes": [],
+    "novelty_admission_gate": "artifacts/v3_novelty_admission_gate_audit_current702_20260626_acid_coa_ligase_fingerprint.json",
+    "novelty_replay": {
+      "admit": 8464,
+      "reject": 47,
+      "throttle": 414
+    },
+    "over_cap": [
+      "metal_dependent_hydrolase"
+    ]
+  },
+  "purpose": "Add the acid_coa_ligase mechanism-fingerprint family (54th) and source its first reviewed-Swiss-Prot bronze tranche, growing combined 9477 -> 9627 (+150) toward 10k; frozen current702 byte-unchanged. Completes the acid_coa_ligase scaffold the prior session backed out (WIP commit fbc8c9e9), rebuilt on the hardened mechanism-not-EC base.",
+  "representation_loop_note": "acid_coa_ligase is PERFECTLY self-consistent (sc 1.000) in the leakage-safe feature space: all 150 rows resolve to themselves with zero bleed into the EC 6.3 atp_amide_ligase (0.587, unchanged) or coa_acyltransferase (0.288, unchanged). The CoA-thioester + AMP/adenylate bond-change signature (derived only from the Rhea equation, never EC/name/prose/fingerprint) separates the three ATP/CoA-overlapping families. Overall LOO self-consistency ticks 0.699 -> 0.704, comfortably above the 0.62 floor (NOT lowered). Unlike the prior confusable families this addition has zero representation cost. No fold/name leakage; the disambiguation engine separates the families at admission by EC scope + the AMP-release reaction.",
+  "schema_version": "catalytic_earth.apply_summary.v1",
+  "status": "user_directed_new_acid_coa_ligase_fingerprint_family_added_and_sourced"
+}

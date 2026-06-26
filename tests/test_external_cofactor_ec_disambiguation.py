@@ -651,6 +651,56 @@ class DisambiguateRowTests(unittest.TestCase):
         d = disambiguate_row(row)
         self.assertNotEqual(d.get("fingerprint_id"), "aminoacyl_trna_synthetase")
 
+    def test_acid_coa_ligase_routes_on_family_and_acyl_adenylate(self) -> None:
+        row = _row(ec=["6.2.1.3"])
+        row["protein_name"] = "Long-chain-fatty-acid--CoA ligase 1"
+        row["keywords"] = ["Ligase", "Fatty acid metabolism"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:ACS001",
+                "reaction": (
+                    "a long-chain fatty acid + ATP + CoA = a long-chain acyl-CoA + AMP + "
+                    "diphosphate"
+                ),
+                "ec_number": "6.2.1.3",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d.get("fingerprint_id"), "acid_coa_ligase")
+
+    def test_adp_forming_succinyl_coa_ligase_not_pulled_into_acid_coa_ligase(self) -> None:
+        # An ADP-forming succinate--CoA ligase (EC 6.2.1.5) has a CoA-ligase name and EC scope,
+        # but its reaction releases ADP + phosphate (substrate-level phosphorylation), NOT AMP, so
+        # the acyl-adenylate reaction anchor is absent: it must NOT route to acid_coa_ligase.
+        row = _row(ec=["6.2.1.5"])
+        row["protein_name"] = "Succinate--CoA ligase [ADP-forming] subunit beta"
+        row["keywords"] = ["Ligase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:SUCC001",
+                "reaction": "ATP + succinate + CoA = ADP + phosphate + succinyl-CoA",
+                "ec_number": "6.2.1.5",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertNotEqual(d.get("fingerprint_id"), "acid_coa_ligase")
+
+    def test_coa_transferase_not_pulled_into_acid_coa_ligase(self) -> None:
+        # A CoA acyltransferase (EC 2.3.1) forms a CoA thioester but releases no AMP and is
+        # off-scope for EC 6.2.1; it must route to coa_acyltransferase, not acid_coa_ligase.
+        row = _row(ec=["2.3.1.7"])
+        row["protein_name"] = "Carnitine O-acetyltransferase"
+        row["keywords"] = ["Transferase", "Acyltransferase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:COAT001",
+                "reaction": "acetyl-CoA + carnitine = CoA + O-acetylcarnitine",
+                "ec_number": "2.3.1.7",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertNotEqual(d.get("fingerprint_id"), "acid_coa_ligase")
+
     def test_glycoside_hydrolase_requires_hydrolysis_and_active_site_handle(self) -> None:
         row = _row(ec=["3.2.1.4"])
         row["protein_name"] = "Endoglucanase"

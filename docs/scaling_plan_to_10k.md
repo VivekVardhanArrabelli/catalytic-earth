@@ -16,6 +16,20 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-26 user-directed "take it forward / continue to 10k" — new fingerprint family:
+`acid_coa_ligase` added (53 -> 54 FP), combined 9477 -> 9627.** ATP-dependent acid--CoA thioester
+ligation via an acyl-adenylate (EC 6.2.1; the ANL superfamily acyl-/aryl-/fatty-acid--CoA synthetases).
+Completes the scaffold the prior session backed out as an incomplete WIP (commit `fbc8c9e9`), rebuilt on
+the hardened mechanism-not-EC base. EC 6.2.1 uncovered. Full disambiguation (reaction hard-anchor: a
+CoA token AND an AMP/adenylate-release token, so the ADP-forming succinate--CoA ligases are correctly
+held; CoA-ligase family name OR active/binding site as second corroborator; CoA transferase / biotin
+carboxylase / thiolase / acyl-CoA dehydrogenase guarded), ontology `atp_acid_coa_thioester_ligation`,
+sourcing lane, leakage re-registration (`_53fp -> _54fp`), lane-factory wiring. First lane fetched 261,
+corroborated 169, applied **150** (cap 150 hit; 90 held, 1 off-target, 0 dup). **Perfectly separable
+(sc 1.000); zero bleed into atp_amide_ligase (0.587) or coa_acyltransferase (0.288); overall LOO
+0.699 -> 0.704 (> 0.62 floor, NOT lowered) -- a clean win, not a documented cost.** Gap to 10k: **373**.
+See `artifacts/v3_acid_coa_ligase_new_fingerprint_apply_summary_current702_20260626.json`.
+
 **2026-06-18 user-directed "continue to 10k" — new fingerprint family: `aminoacyl_trna_synthetase`
 added (52 -> 53 FP), combined 9327 -> 9477.** ATP-dependent tRNA aminoacylation (EC 6.1.1; class I/II
 aaRS). EC 6.1.1 uncovered. Full disambiguation (X--tRNA-ligase family + aminoacylation reaction;

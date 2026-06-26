@@ -9518,6 +9518,7 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertEqual(
             sorted(inverse_gate["missing_current_fingerprint_ids"]),
             [
+                "acid_coa_ligase",
                 "aldehyde_dehydrogenase",
                 "aldo_keto_reductase",
                 "alpha_beta_hydrolase_esterase_lipase",

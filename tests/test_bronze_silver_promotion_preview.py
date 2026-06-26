@@ -220,9 +220,11 @@ class RealRegistryTests(unittest.TestCase):
             # metal-independent PDE + 28 aldo-keto reductase + 32 aminoglycoside
             # acetyltransferase + 4 metallo-beta-lactamase + 150 peroxiredoxin/
             # thiol-peroxidase, four new fingerprint families)
-            # through mechanism-first lanes; the 30 promoted rows remain seed labels
-            # while moving from bronze to silver.
-            self.assertEqual(audit["seed_labels"], 7551)
+            # through mechanism-first lanes; later passes added PAPS-sulfotransferase,
+            # glutathione-S-transferase, aminoacyl-tRNA-synthetase and acid--CoA-ligase
+            # (+150 each); the 30 promoted rows remain seed labels while moving from
+            # bronze to silver.
+            self.assertEqual(audit["seed_labels"], 7701)
             # HONEST about structure (2026-06-14, after holo_structure_promotion):
             # silver_ready is now > 0 because experimental-PDB holo_pdb_confirmation rows
             # exist (the annotated cofactor was found as a HETATM in a sha-pinned PDB) --

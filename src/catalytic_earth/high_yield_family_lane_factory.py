@@ -502,6 +502,43 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         ),
     ),
     _spec(
+        family_id="acid_coa_ligase",
+        display_name="Acid--CoA ligase (acyl-CoA synthetase)",
+        scope_query="(reviewed:true) AND (ec:6.2.1.*)",
+        corroborator_query=(
+            "(reviewed:true) AND (ec:6.2.1.*) AND "
+            "((protein_name:\"CoA ligase\") OR (protein_name:\"CoA synthetase\") "
+            "OR (protein_name:\"acyl-CoA synthetase\") OR (protein_name:\"coenzyme A synthetase\"))"
+        ),
+        required_non_ec_corroborators=(
+            "CoA-ligase / acyl-CoA-synthetase family/name handle",
+            "Rhea acid--CoA thioester reaction (acid + ATP + CoA -> acyl-CoA + AMP + diphosphate)",
+            "ANL-superfamily AMP-binding / adenylation active-site context where available",
+        ),
+        disambiguation_holds=(
+            "CoA transferase (EC 2.3 / 2.8.3) rows",
+            "biotin-dependent carboxylase (EC 6.3.4 / 6.4.1) rows",
+            "thiolase / acyl-CoA dehydrogenase rows",
+            "ADP/GDP-forming succinate--CoA ligase rows (no AMP release)",
+            "EC-only rows without an ATP + CoA acyl-adenylate reaction",
+        ),
+        cap_ceiling=DEFAULT_CONFUSABLE_CAP,
+        chemistry_confusable=True,
+        novelty_keep_factor=0.45,
+        ambiguity_with_existing=("atp_amide_ligase", "coa_acyltransferase"),
+        existing_fingerprint_id="acid_coa_ligase",
+        current_runner="scripts/source_acid_coa_ligase_family.py",
+        oos_preregistration_required=False,
+        source_wall_rule_status="implemented_new_fingerprint_runner",
+        rationale_template=(
+            "Large uncovered EC 6.2.1 ATP-dependent acid--CoA thioester-ligation family (the ANL "
+            "superfamily acyl-CoA synthetases); the dedicated acid_coa_ligase fingerprint and its "
+            "disambiguation rule are implemented (2026-06-26). Representation-confusable with the EC "
+            "6.3 atp_amide_ligase via the shared ATP-adenylation step and with coa_acyltransferase "
+            "via the CoA thioester (cap 150)."
+        ),
+    ),
+    _spec(
         family_id="aldo_keto_reductase",
         display_name="Aldo-keto reductase",
         scope_query="(reviewed:true) AND (ec:1.1.1.*)",

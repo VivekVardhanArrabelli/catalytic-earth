@@ -454,10 +454,14 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
         # (41 biotin + 3 SDR + 44 serine beta-lactamase + 1 protein-kinase + 25
         # metal-independent PDE + 28 aldo-keto reductase + 32 aminoglycoside
         # acetyltransferase + 4 metallo-beta-lactamase + 150 peroxiredoxin/thiol-peroxidase,
-        # four new fingerprint families)
+        # four new fingerprint families), then PAPS-sulfotransferase, glutathione-S-transferase,
+        # aminoacyl-tRNA-synthetase and acid--CoA-ligase (+150 each)
         # through mechanism-first lanes; the representation loop remains leakage-safe
-        # and still excludes EC/name/prose/lane from features.
-        self.assertEqual(audit["seed_labels"], 7551)
+        # and still excludes EC/name/prose/lane from features. acid_coa_ligase is perfectly
+        # self-consistent (sc 1.000) in the leakage-safe space -- the CoA-thioester + AMP
+        # bond-change signature separates it from atp_amide_ligase and coa_acyltransferase --
+        # so overall LOO ticks 0.699 -> 0.704 (still > 0.62 floor).
+        self.assertEqual(audit["seed_labels"], 7701)
         g = audit["leakage_guardrails"]
         self.assertFalse(g["frozen_benchmark_read"])
         self.assertFalse(g["ec_name_prose_lane_used"])

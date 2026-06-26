@@ -1,6 +1,6 @@
 # Project State
 
-Last refreshed: 2026-06-18
+Last refreshed: 2026-06-26
 
 This file is the durable state summary for agents who do not have chat context.
 Treat it as an orientation layer, not as a replacement for the referenced
@@ -25,6 +25,26 @@ biological design system. Current benchmark claims must be framed as local,
 artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
+
+- **NEW `acid_coa_ligase` FINGERPRINT FAMILY ADDED (53 -> 54 FP); COMBINED 9477 -> 9627 (2026-06-26, user-directed "take it forward / continue to 10k"); LOO 0.699 -> 0.704 (FLOOR 0.62 HELD, NOT lowered).**
+  Eighth new family, completing the `acid_coa_ligase` scaffold the prior session backed out as an
+  incomplete WIP (commit `fbc8c9e9`), rebuilt on the hardened mechanism-not-EC base. `acid_coa_ligase`
+  -- ATP-dependent acid--CoA thioester ligation via an acyl-adenylate (EC 6.2.1; the ANL superfamily
+  acyl-/aryl-/fatty-acid--CoA synthetases): acid + ATP -> acyl-AMP + diphosphate, then acyl-AMP + CoA ->
+  acyl-CoA + AMP. EC 6.2.1 uncovered (not shared). The hardened rule routes on the REACTION as the hard
+  anchor (a Rhea acid--CoA reaction with BOTH a CoA token AND an AMP/adenylate-release token) + a
+  CoA-ligase/acyl-CoA-synthetase family name OR an active/binding-site residue; the AMP-release
+  requirement correctly **holds the ADP/GDP-forming succinate--CoA ligases** (phosphohistidine
+  mechanism, not an acyl-adenylate). CoA transferase (EC 2.3/2.8.3), biotin carboxylase (EC 6.3.4/
+  6.4.1), thiolase, acyl-CoA dehydrogenase boundary-guarded; cap 150. Ontology family
+  `atp_acid_coa_thioester_ligation`. First lane fetched 261, corroborated 169, applied **150** (cap hit;
+  90 held, 1 off-target to coa_acyltransferase, 0 dup). Expansion 8775 -> 8925, combined **9627**; frozen
+  current702 byte-unchanged (sha `5eec9bef…c272505`). Leakage closure `_53fp -> _54fp`. **Representation:
+  a clean win -- acid_coa_ligase is PERFECTLY self-consistent (sc 1.000), zero bleed into atp_amide_ligase
+  (0.587) or coa_acyltransferase (0.288); overall LOO 0.699 -> 0.704 (> 0.62 floor, not lowered).** No
+  fold/name leakage. Audits clean (holes none, floor deficit 0, novelty admit 8464). Summary:
+  `artifacts/v3_acid_coa_ligase_new_fingerprint_apply_summary_current702_20260626.json`. Gap to 10k:
+  **373**.
 
 - **NEW `aminoacyl_trna_synthetase` FINGERPRINT FAMILY ADDED (52 -> 53 FP); COMBINED 9327 -> 9477 (2026-06-18, user-directed "continue to 10k"); LOO FLOOR 0.70 -> 0.62.**
   Seventh new family: `aminoacyl_trna_synthetase` -- ATP-dependent tRNA aminoacylation (EC 6.1.1; class

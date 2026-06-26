@@ -3,6 +3,41 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-26: NEW `acid_coa_ligase` FINGERPRINT FAMILY ADDED (53 -> 54 FP) — COMBINED 9627; ZERO REPRESENTATION COST
+
+Decision (user-directed: "do the most important thing ... take it forward, keep working" — the
+standing "continue to 10k" growth pass): completed the `acid_coa_ligase` family the prior session
+deliberately backed out as an incomplete WIP scaffold (commit `fbc8c9e9`), rebuilt from scratch on the
+current **mechanism-not-EC hardened** base. Eighth new family.
+
+`acid_coa_ligase` (ATP-dependent acid--CoA thioester ligation via an acyl-adenylate, EC 6.2.1): the ANL
+superfamily acyl-/aryl-/fatty-acid--CoA synthetases. Two half-reactions: acid + ATP -> acyl-AMP +
+diphosphate, then acyl-AMP + CoA -> acyl-CoA + AMP. EC 6.2.1 is uncovered (not shared). The hardened
+disambiguation rule takes the **reaction as the required hard anchor** — a Rhea acid--CoA reaction
+carrying BOTH a CoA token AND an AMP/adenylate-release token — and a CoA-ligase/acyl-CoA-synthetase
+family name **OR** an active/binding-site residue as the second corroborator (the protein name is NOT
+necessary). CoA transferases (EC 2.3/2.8.3), biotin carboxylases (EC 6.3.4/6.4.1), thiolases, and
+acyl-CoA dehydrogenases are boundary-guarded; side-EC held; cap **150**. Crucially, the AMP-release
+requirement correctly **holds the ADP/GDP-forming succinate--CoA ligases** (EC 6.2.1.4/.5), which use a
+phosphohistidine mechanism, not an acyl-adenylate — mechanism-not-name discipline in action. Ontology
+family `atp_acid_coa_thioester_ligation` (parent `mechanism`). Leakage closure `_53fp -> _54fp`.
+
+First lane: fetched 261, mechanism-corroborated 169, novelty-admitted **150** (cap hit exactly; 90
+held — ADP-forming/EC-only/boundary; 19 throttled; 1 off-target to `coa_acyltransferase`; 0 dup).
+Expansion 8775 -> 8925, combined **9477 -> 9627**. Frozen current702 byte-unchanged at sha
+`5eec9bef…c272505`. Audits clean (holes none, floor deficit 0, novelty admit 8464, over-cap only
+`metal_dependent_hydrolase`).
+
+**Representation loop — a clean win, not a documented cost.** Unlike the prior ATP-adenylation family
+(aaRS, which dropped atp_amide_ligase to 0.587), `acid_coa_ligase` is **perfectly self-consistent
+(sc 1.000)** in the leakage-safe feature space: all 150 rows resolve to themselves with **zero bleed**
+into atp_amide_ligase (0.587, unchanged) or coa_acyltransferase (0.288, unchanged). The CoA-thioester +
+AMP/adenylate bond-change signature (derived only from the Rhea equation, never EC/name/prose/
+fingerprint) separates the three ATP/CoA-overlapping families. Overall LOO ticks **0.699 -> 0.704**,
+comfortably above the **0.62 floor (NOT lowered)**. No fold/name leakage; the disambiguation engine
+separates the families at admission by EC scope + the AMP-release reaction. Gap to 10k: **373**.
+Summary: `artifacts/v3_acid_coa_ligase_new_fingerprint_apply_summary_current702_20260626.json`.
+
 ## 2026-06-18: MECHANISM-NOT-EC HARDENING — bronze admission now requires a HARD mechanism axis
 
 Decision (user-directed: "we want this mechanism dependent not ec dependent"): strengthen the central
