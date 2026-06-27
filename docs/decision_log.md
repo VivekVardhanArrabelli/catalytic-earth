@@ -3,6 +3,41 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-27: CATALYTIC-RESIDUE-IDENTITY SIDECAR (read-only) recovers ser_his (0.0 -> 0.67); registry byte-unchanged; LOO 0.733 -> 0.743
+
+Decision (user-directed: "go for sidecar", after "backfilling is a bit scary"). The reaction
+representation recovered every cofactor-free family that carries a Rhea reaction, but two genuinely
+featureless families remained collapsed -- `cysteine_protease` and `ser_his_acid_hydrolase` -- because
+they carry NO Rhea reaction at all (peptide-bond hydrolysis is unannotated in Rhea) and are identical
+empty vectors in the cofactor + bond-change space. The discriminator is the CATALYTIC-RESIDUE
+IDENTITY (catalytic Cys protease vs catalytic Ser hydrolase).
+
+Implementation -- NO registry mutation. The identity lives in a read-only, additive sidecar
+(`artifacts/v3_catalytic_residue_identity_sidecar_current702.json`), an accession -> [amino acids at
+the annotated ACT_SITE positions] map built by a read-only batched UniProt fetch
+(`scripts/build_catalytic_residue_identity_sidecar.py`; 4931 accessions, 0 missing, 0 out-of-range).
+The bronze registry sha is byte-identical before/after the whole operation. The representation
+attaches identities to IN-MEMORY rows and adds leakage-safe `cat_res_{cys,ser,thr,tyr,his,lys,arg,
+asp_glu}` features; absent sidecar -> features are 0 (graceful, reversible). The residue identity is
+curated active-site structural evidence (same category as cofactor identity), keyed by accession, so
+EC/name/prose/fingerprint cannot change it -- unit tested; `ec_name_prose_lane_used` stays False.
+
+Design decision -- WEIGHT, not just presence. At full weight the feature is a net win (LOO 0.766) but
+regresses families that share a catalytic residue (peroxiredoxin Cys vs protease Cys 0.95 -> 0.81;
+paps His 0.93 -> 0.48). The residue identity is a SECONDARY structural feature -- decisive where it
+is the only signal, but it must not override cofactor/reaction separation. A live-registry weight
+sweep gives the Pareto-safe point `CATALYTIC_RESIDUE_WEIGHT = 0.15`: ser_his 0.0 -> 0.67,
+cysteine_protease sharpened, overall LOO 0.733 -> 0.743, ZERO family regressions, seed-stable
+(PYTHONHASHSEED 0/7/42 identical).
+
+HONEST LIMIT: higher weights additionally recover `metallopeptidase` (0.21 -> 0.93) but that gain is
+coupled to a `zinc_lyase_hydratase` regression -- both are metal+His families a GENERIC
+catalytic-residue feature cannot separate; that needs a metal-ligand-specific or residue-spacing
+feature. The no-regression point is chosen; the metallopeptidase headroom is recorded future work.
+Report: `work/catalytic_residue_identity_sidecar_20260627.md`. Cumulative session representation
+work: LOO 0.699 -> 0.718 -> 0.733 -> 0.743, recovering peroxiredoxin, metal-independent PDE, and
+ser_his with zero net regressions, all leakage-safe and registry-clean.
+
 ## 2026-06-27: REACTION-REPRESENTATION WORK (cont.) — glycerophosphodiester `bc_phosphodiester` extension recovers metal_independent_phosphodiesterase (0.072 -> 0.968); overall LOO 0.718 -> 0.733
 
 Decision (user-directed: "extend reaction representation" — continue the previous lever on the next

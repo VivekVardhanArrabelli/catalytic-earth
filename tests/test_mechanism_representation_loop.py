@@ -6,6 +6,8 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from catalytic_earth.mechanism_representation_loop import (
+    CATALYTIC_RESIDUE_CLASSES,
+    attach_residue_identity,
     build_mechanism_representation_loop,
     classify_reaction_bond_change,
     classify_reaction_nonhydrolytic,
@@ -449,6 +451,39 @@ class FeaturizeLeakageTests(unittest.TestCase):
         self.assertEqual(f1, f2)
 
 
+class CatalyticResidueIdentityTests(unittest.TestCase):
+    def test_attached_residue_identity_adds_features(self) -> None:
+        row = _row(entry_id="uniprot:P00001", fp="cysteine_protease")
+        # absent sidecar -> graceful, all catalytic-residue-identity features are 0
+        f0 = featurize(row)
+        for cls in CATALYTIC_RESIDUE_CLASSES:
+            self.assertEqual(f0[cls], 0.0)
+        # attach the catalytic Cys-His-Asn of a cysteine protease (read-only, in-memory)
+        attach_residue_identity([row], {"P00001": ["C", "H", "N"]})
+        f1 = featurize(row)
+        self.assertEqual(f1["cat_res_cys"], 1.0)   # catalytic Cys nucleophile
+        self.assertEqual(f1["cat_res_his"], 1.0)   # general-base His
+        self.assertEqual(f1["cat_res_ser"], 0.0)   # NOT Ser -> separates from ser_his hydrolase
+        self.assertEqual(f1["cat_res_asp_glu"], 0.0)  # Asn (N) maps to no class
+
+    def test_residue_identity_keyed_by_accession_not_ec(self) -> None:
+        # the sidecar lookup is by accession; the leakage-excluded EC/fingerprint must not affect it
+        base = _row(entry_id="uniprot:P00001", fp="cysteine_protease")
+        attach_residue_identity([base], {"P00001": ["C", "H"]})
+        f1 = featurize(base)
+        mutated = json.loads(json.dumps(base))
+        mutated["evidence"]["mechanism_evidence"]["ec_numbers"] = ["3.4.21.4"]
+        mutated["fingerprint_id"] = "ser_his_acid_hydrolase"
+        self.assertEqual(featurize(mutated), f1)
+
+    def test_attach_is_noop_without_sidecar(self) -> None:
+        row = _row(entry_id="uniprot:Q00002", fp="ser_his_acid_hydrolase")
+        attach_residue_identity([row], {})  # empty sidecar
+        f = featurize(row)
+        for cls in CATALYTIC_RESIDUE_CLASSES:
+            self.assertEqual(f[cls], 0.0)
+
+
 class CentroidAndTriageTests(unittest.TestCase):
     def _seed(self):
         rows = []
@@ -640,35 +675,19 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
         # (alpha/beta-hydrolase fold vs others), which a reaction-equation representation
         # cannot and should not force. Narrowing the ester rule to lipase-only does not help
         # (22/87 ser_his rows are genuine lipase/phospholipase reactions).
-        # 2026-06-18 COLLAPSE (peroxiredoxin_thiol_peroxidase, 150 rows): adding the cofactor-free
-        # Cys/Sec peroxidatic-thiol peroxidase family pushes ser_his_acid_hydrolase from ~0.6 to
-        # 0.0. In the leakage-safe feature space (cofactor classes + reaction bond-change, with
-        # EC/name/prose/lane EXCLUDED) a peroxidatic-cysteine peroxide reduction that yields an
-        # alcohol + H2O reads like a cofactor-free Ser/Cys hydrolysis, so the dense peroxiredoxin
-        # centroid absorbs the (already fold-blurred) ser_his rows -- 58 ser_his rows resolve to
-        # peroxiredoxin, 23 to alpha/beta-hydrolase. This is the honest, expected cost of a large
-        # confusable cofactor-free family; separating them would require FOLD/name leakage, which
-        # the disambiguation engine (family-text + peroxide reaction + EC-1.11.1 scope) supplies
-        # at ADMISSION time but the source-free representation must not. (2026-06-27: with
-        # cysteine_protease added, ser_his now collapses predominantly into cysteine_protease rather
-        # than peroxiredoxin -- the whole cofactor-free-Cys/Ser cluster is mutually confusable.)
-        self.assertLess(sc["ser_his_acid_hydrolase"], 0.2)                  # was 0.908 -> 0.0
-        # ser_his collapses into the cofactor-free-Cys/Ser cluster; WHICH member absorbs the most
-        # rows is PYTHONHASHSEED-dependent (cysteine_protease / peroxiredoxin / alpha_beta /
-        # glutathione_s_transferase centroids are near-equidistant), so assert it resolves into the
-        # cluster as a whole rather than a specific (seed-unstable) target.
-        self.assertGreater(
-            sum(
-                conf["ser_his_acid_hydrolase"].get(fp, 0)
-                for fp in (
-                    "cysteine_protease",
-                    "peroxiredoxin_thiol_peroxidase",
-                    "alpha_beta_hydrolase_esterase_lipase",
-                    "glutathione_s_transferase",
-                )
-            ),
-            0,
-        )
+        # 2026-06-27 RESIDUE-IDENTITY RECOVERY (catalytic-residue-identity sidecar). ser_his had
+        # collapsed to 0.0: it carries NO Rhea reaction, so in the cofactor + bond-change space it
+        # was an empty vector identical to the equally cofactor-free, equally no-reaction
+        # cysteine_protease, and the dense protease centroid absorbed it. The reaction representation
+        # provably could not separate that pair. The discriminator is the CATALYTIC RESIDUE IDENTITY
+        # -- ser_his is a catalytic SERINE hydrolase, cysteine_protease a catalytic CYSTEINE protease
+        # -- read leakage-safely from a read-only sidecar (accession -> amino acid at the annotated
+        # ACT_SITE positions; the bronze REGISTRY IS NEVER TOUCHED). It is curated active-site
+        # structural evidence, the same category as cofactor identity, never EC/name/prose/fingerprint.
+        # Down-weighted to a secondary structural feature (CATALYTIC_RESIDUE_WEIGHT=0.15), it recovers
+        # ser_his 0.0 -> ~0.67 and sharpens cysteine_protease, with ZERO family regressions
+        # (seed-stable). The two are now separated WITHOUT any fold/name leakage.
+        self.assertGreater(sc["ser_his_acid_hydrolase"], 0.5)               # 0.0 -> ~0.67 (recovered)
         # peroxiredoxin_thiol_peroxidase RECOVERED by the bc_peroxide_reduction reaction class
         # (2026-06-27). It had eroded 0.833 -> 0.71 (sulfotransferase) -> ~0.51 (GST) -> 0.0
         # (cysteine_protease) as confusable cofactor-free families accumulated and the source-free

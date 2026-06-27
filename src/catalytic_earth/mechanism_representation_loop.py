@@ -196,6 +196,33 @@ RESIDUE_FEATURES = (
     "binding_fraction",
     "active_site_size",
 )
+# Catalytic-residue IDENTITY classes (2026-06-27). The active-site nucleophile/base amino acid IS
+# the mechanism for the cofactor-free families that carry no Rhea reaction -- a cysteine protease
+# (catalytic Cys) and a Ser-His-Asp hydrolase (catalytic Ser) are an empty, identical vector in the
+# cofactor + bond-change space, and the reaction representation cannot separate them. The catalytic
+# residue identity is curated structural evidence (the active-site residue), the same leakage-safe
+# category as cofactor identity -- NOT EC/name/prose/fingerprint. It is sourced from a read-only
+# sidecar (accession -> residues at the annotated ACT_SITE positions); the bronze registry is never
+# touched. When the sidecar is absent these features are simply 0 (graceful, backward-compatible).
+CATALYTIC_RESIDUE_CLASSES = (
+    "cat_res_cys",      # C -- thiol nucleophile (cysteine protease / thiol enzyme)
+    "cat_res_ser",      # S -- hydroxyl nucleophile (serine hydrolase/protease)
+    "cat_res_thr",      # T -- hydroxyl nucleophile (Ntn / threonine peptidase)
+    "cat_res_tyr",      # Y -- phenol nucleophile/base (tyrosine recombinase, phosphatase)
+    "cat_res_his",      # H -- imidazole general base/acid
+    "cat_res_lys",      # K -- amine nucleophile / Schiff-base lysine
+    "cat_res_arg",      # R -- guanidinium (oxyanion/charge stabiliser)
+    "cat_res_asp_glu",  # D/E -- carboxylate acid/base (aspartic protease, many)
+)
+_AA_TO_CATALYTIC_RESIDUE_CLASS = {
+    "C": "cat_res_cys", "S": "cat_res_ser", "T": "cat_res_thr", "Y": "cat_res_tyr",
+    "H": "cat_res_his", "K": "cat_res_lys", "R": "cat_res_arg",
+    "D": "cat_res_asp_glu", "E": "cat_res_asp_glu",
+}
+DEFAULT_RESIDUE_IDENTITY_SIDECAR_PATH = (
+    "artifacts/v3_catalytic_residue_identity_sidecar_current702.json"
+)
+_ATTACHED_RESIDUE_AAS_KEY = "_catalytic_residue_aas"
 # COFACTOR_CLASSES MUST remain the prefix (the centroid-cofactor helpers index it
 # positionally). Cosubstrate + non-hydrolytic bond classes are appended after it and
 # before the down-weighted residue features.
@@ -206,6 +233,7 @@ FEATURE_NAMES = (
     + NONHYDROLYTIC_BOND_CLASSES
     + PHOSPHOACCEPTOR_CLASSES
     + RESIDUE_FEATURES
+    + CATALYTIC_RESIDUE_CLASSES
 )
 
 # Fields that must never enter the representation -- asserted by featurize.
@@ -626,6 +654,61 @@ def cosubstrate_classes(row: dict[str, Any]) -> set[str]:
     }
 
 
+def _row_accession(row: dict[str, Any]) -> str | None:
+    eid = row.get("entry_id") or ""
+    if eid.startswith("uniprot:"):
+        return eid.split(":", 1)[1]
+    prov = row.get("evidence", {}).get("sequence_provenance", {}) or {}
+    return prov.get("source_accession")
+
+
+def load_residue_identity_sidecar(
+    path: str | Path = DEFAULT_RESIDUE_IDENTITY_SIDECAR_PATH,
+) -> dict[str, list[str]]:
+    """Read the leakage-safe catalytic-residue-identity sidecar (accession -> residue letters).
+
+    Returns {} if the sidecar is absent (the residue-identity features then stay 0 -- graceful and
+    backward-compatible). The sidecar is read-only structural evidence; the bronze registry is never
+    consulted or modified by this path.
+    """
+    p = Path(path)
+    if not p.exists():
+        return {}
+    payload = json.loads(p.read_text(encoding="utf-8"))
+    out: dict[str, list[str]] = {}
+    for acc, rec in (payload.get("residue_identity_by_accession") or {}).items():
+        residues = rec.get("act_site_residues") if isinstance(rec, dict) else None
+        if residues:
+            out[acc] = list(residues)
+    return out
+
+
+def attach_residue_identity(
+    rows: list[dict[str, Any]], sidecar: dict[str, list[str]] | None
+) -> None:
+    """Attach catalytic-residue identities onto IN-MEMORY rows (the registry is NOT touched).
+
+    Sets ``row[_ATTACHED_RESIDUE_AAS_KEY]`` from the sidecar keyed by accession. Leakage-safe: the
+    residue identity is curated active-site structural evidence, not EC/name/prose/fingerprint.
+    """
+    if not sidecar:
+        return
+    for row in rows:
+        acc = _row_accession(row)
+        if acc and acc in sidecar:
+            row[_ATTACHED_RESIDUE_AAS_KEY] = sidecar[acc]
+
+
+def _catalytic_residue_classes(row: dict[str, Any]) -> set[str]:
+    """Catalytic-residue-identity classes for a row (empty unless residue identity was attached)."""
+    classes: set[str] = set()
+    for aa in row.get(_ATTACHED_RESIDUE_AAS_KEY) or []:
+        cls = _AA_TO_CATALYTIC_RESIDUE_CLASS.get(str(aa).upper())
+        if cls:
+            classes.add(cls)
+    return classes
+
+
 def featurize(row: dict[str, Any]) -> dict[str, float]:
     """Deterministic leakage-safe chemical/structural feature vector for a label.
 
@@ -659,6 +742,13 @@ def featurize(row: dict[str, Any]) -> dict[str, float]:
         features["binding_fraction"] = round(binding / active, 4)
     # bounded structural-size context (log-scaled, capped)
     features["active_site_size"] = round(min(math.log1p(active) / math.log1p(30), 1.0), 4)
+
+    # catalytic-residue IDENTITY (the active-site nucleophile/base amino acid), attached in-memory
+    # from the read-only sidecar -- leakage-safe structural evidence, registry untouched. Absent ->
+    # these stay 0. This is what separates the cofactor-free no-Rhea-reaction families (catalytic
+    # Cys protease vs catalytic Ser hydrolase) that the reaction representation cannot reach.
+    for cls in _catalytic_residue_classes(row):
+        features[cls] = 1.0
     return features
 
 
@@ -679,12 +769,27 @@ def _significant_centroid_cofactors(
     }
 
 
+# Catalytic-residue-IDENTITY weight. The residue identity is a SECONDARY structural feature: for the
+# featureless cofactor-free no-reaction families (catalytic Cys protease vs catalytic Ser hydrolase)
+# it is the only available signal, but for families that already separate on cofactor or reaction
+# bond-change (peroxiredoxin's peroxide, paps's PAPS cosubstrate, heme), a full-weight shared
+# catalytic residue (e.g. His) would wrongly blur them. Down-weighting keeps it a tie-breaker that
+# rescues the featureless families without overriding the primary mechanistic axes. 0.15 is the
+# Pareto-safe operating point measured on the live registry: ser_his_acid_hydrolase recovers
+# 0.0 -> ~0.67 and cysteine_protease sharpens, with ZERO family regressions. Higher weights (>=0.18)
+# additionally recover metallopeptidase but break zinc_lyase_hydratase (both are metal+His families
+# that a generic catalytic-residue feature cannot tell apart), so the no-regression point is chosen.
+CATALYTIC_RESIDUE_WEIGHT = 0.15
+
+
 def _vector(features: dict[str, float], *, residue_weight: float = 0.15) -> list[float]:
     out = []
     for name in FEATURE_NAMES:
         value = features.get(name, 0.0)
         if name in RESIDUE_FEATURES:
             value *= residue_weight
+        elif name in CATALYTIC_RESIDUE_CLASSES:
+            value *= CATALYTIC_RESIDUE_WEIGHT
         out.append(value)
     return out
 
@@ -898,6 +1003,9 @@ def build_mechanism_representation_loop(
     ),
     proposal_top_k: int = 25,
 ) -> dict[str, Any]:
+    # Attach catalytic-residue identities (read-only sidecar; registry untouched). No-op if the
+    # sidecar is absent, so this is fully backward-compatible.
+    attach_residue_identity(expansion, load_residue_identity_sidecar())
     seed = [r for r in expansion if r.get("label_type") == "seed_fingerprint"]
     oos = [r for r in expansion if r.get("label_type") == "out_of_scope"]
     centroids = fingerprint_centroids(seed)

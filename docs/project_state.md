@@ -26,6 +26,19 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **CATALYTIC-RESIDUE-IDENTITY SIDECAR (read-only) recovers ser_his 0.0 -> 0.67; registry byte-unchanged; LOO 0.733 -> 0.743 (2026-06-27, user-directed "go for sidecar").**
+  The two genuinely featureless families (`cysteine_protease`, `ser_his_acid_hydrolase`) carry NO Rhea
+  reaction, so the reaction representation could not separate them -- identical empty vectors. The
+  discriminator is the CATALYTIC-RESIDUE IDENTITY (catalytic Cys protease vs catalytic Ser hydrolase),
+  recovered WITHOUT touching the registry: a read-only additive sidecar
+  (`artifacts/v3_catalytic_residue_identity_sidecar_current702.json`, accession -> amino acids at the
+  annotated ACT_SITE positions; bronze sha byte-identical before/after) feeds leakage-safe
+  `cat_res_*` features attached to in-memory rows. Down-weighted to the Pareto-safe
+  `CATALYTIC_RESIDUE_WEIGHT = 0.15`: ser_his 0.0 -> 0.67, cysteine_protease sharpened, overall LOO
+  0.733 -> 0.743, ZERO regressions, seed-stable. Honest limit: higher weights recover metallopeptidase
+  (0.21 -> 0.93) but break zinc_lyase (coupled metal+His) -- recorded future work. Report:
+  `work/catalytic_residue_identity_sidecar_20260627.md`.
+
 - **REACTION-REPRESENTATION WORK (cumulative): two leakage-safe reaction-center classes lift overall LOO 0.699 -> 0.733 and recover the two prominent cofactor-free collapses (2026-06-27, user-directed "reaction representation work" + "extend").**
   The MAP's "big bet" lever, demonstrated twice. (1) `bc_peroxide_reduction` (O-O reductive cleavage
   of a hydroperoxide/H2O2 on the substrate side; excludes superoxide) recovered
