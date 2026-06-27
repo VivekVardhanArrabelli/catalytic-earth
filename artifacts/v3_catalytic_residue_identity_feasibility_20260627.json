@@ -1,0 +1,25 @@
+{
+  "artifact_id": "v3_catalytic_residue_identity_feasibility_20260627",
+  "schema_version": "catalytic_earth.residue_identity_feasibility.v1",
+  "created_utc": "2026-06-27T00:00:00Z",
+  "authorization": "explicit_user_instruction_reaction_representation_work (read-only feasibility probe)",
+  "purpose": "Determine whether catalytic-residue IDENTITY (the active-site nucleophile/base amino acid) can separate the two no-reaction families the reaction representation cannot -- cysteine_protease and ser_his_acid_hydrolase -- which both collapse because they carry NO Rhea reaction.",
+  "method": "Read-only: for a 22-row sample of each family, fetch the UniProt FASTA by accession and read the amino acid at each annotated ACT_SITE position (1-indexed). No registry mutation; no feature added. Leakage-safe basis (curated active-site residue + sequence = structural/mechanistic evidence, same category as cofactor identity).",
+  "result": {
+    "cysteine_protease": {
+      "n_entries": 22, "fetch_failures": 0,
+      "active_site_residue_counts": {"C": 22, "H": 22, "N": 14, "D": 4},
+      "universal_nucleophile": "Cys (22/22); Ser absent",
+      "per_entry_residue_set": {"CHN": 14, "CH": 4, "CDH": 4}
+    },
+    "ser_his_acid_hydrolase": {
+      "n_entries": 22, "fetch_failures": 0,
+      "active_site_residue_counts": {"D": 24, "H": 23, "S": 23, "V": 1, "G": 1},
+      "universal_nucleophile": "Ser (~all); Cys absent",
+      "per_entry_residue_set": {"DHS": 21, "DGHSV": 1}
+    }
+  },
+  "verdict": "FEASIBLE AND DECISIVE. The catalytic nucleophile identity (Cys vs Ser) is universal within each family and disjoint between them, so a leakage-safe catalytic-residue-identity feature would cleanly separate the families that carry no Rhea reaction. The data is recoverable at zero fetch cost.",
+  "implementation_cost": "Registry-TOUCHING: requires backfilling the catalytic-residue identity into each bronze row's active_site_residues (FASTA fetch at the annotated positions), then adding catalytic-residue-identity features (cat_res_cys / cat_res_ser / cat_res_his / cat_res_asp_glu / ...) to the leakage-safe representation. The backfill is ADDITIVE (no label/fingerprint/count/benchmark change) but modifies the bronze registry, so it needs explicit authorization per the agent runbook.",
+  "leakage_note": "Catalytic-residue identity is curated structural/mechanistic evidence (the active-site annotation), NOT EC/name/prose/fingerprint -- the same leakage-safe category as cofactor identity and the existing residue-role ratios."
+}
