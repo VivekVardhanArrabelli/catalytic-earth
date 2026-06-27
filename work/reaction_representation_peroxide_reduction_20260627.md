@@ -71,3 +71,40 @@ candidate where modeling the chemistry directly could recover separability the s
   PYTHONHASHSEED 0/7/42.
 - Leakage guardrails unchanged (`ec_name_prose_lane_used: False`); no labels, registries,
   ontology, thresholds, or imports were touched — this is a pure representation change.
+
+---
+
+## Extension: glycerophosphodiester hydrolysis (same session)
+
+User-directed follow-up ("extend reaction representation"). The diagnostic's next prominent
+**cofactor-free** collapse was `metal_independent_phosphodiesterase` (sc **0.072**): its dominant
+reaction `sn-glycerol 3-phosphocholine + H2O = sn-glycerol 3-phosphate + choline` is a genuine
+phosphodiester hydrolysis, but `bc_phosphodiester` only recognised nucleic-acid / cyclic
+phosphodiesters, so the glycerophospho head-group enzymes (GDPD, sphingomyelinase, phospholipase D)
+earned no reaction-center class and collapsed into the cofactor-free cluster.
+
+**Fix:** extend `bc_phosphodiester` to fire when a phospholipid head group is **released** —
+free choline/ethanolamine, or standalone phosphocholine/phosphoethanolamine — matched as an
+**exact product term**. The exact-term match is the key precision guard: phospholipase A *retains*
+the phosphocholine on its lyso-product (`a 1-acyl-sn-glycero-3-phosphocholine`), and ATG4 proteases
+act on `[protein]`-phosphatidylethanolamine conjugates — neither releases a free head group, so
+neither false-fires. (A first, looser substring version regressed cysteine_protease 0.94→0.82 and
+alpha_beta 0.68→0.59; the exact-term version eliminates both regressions.)
+
+**Result (PYTHONHASHSEED=0):**
+
+| fingerprint | before | after |
+| --- | --- | --- |
+| **metal_independent_phosphodiesterase** | 0.072 | **0.968** ← recovered |
+| cysteine_protease | 0.94 | 0.94 (no regression) |
+| alpha_beta_hydrolase_esterase_lipase | 0.68 | 0.68 (no regression) |
+| **overall leave-one-out** | 0.718 | **0.733** |
+
+## Cumulative outcome
+
+Two leakage-safe reaction-center classes lifted overall LOO **0.699 → 0.718 → 0.733** and recovered
+the two prominent cofactor-free collapses (peroxiredoxin 0.0→0.947, metal_independent PDE
+0.072→0.968) with zero regressions. The roadmap's remaining-cofactor-free list is now **empty** —
+every cofactor-free family with ≥10 rows now earns a reaction-center class. The only families the
+reaction representation still cannot separate are `cysteine_protease` / `ser_his_acid_hydrolase`,
+which carry no Rhea reaction at all (the catalytic-residue-identity axis, not a reaction axis).

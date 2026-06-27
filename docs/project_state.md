@@ -26,7 +26,23 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
-- **REACTION-REPRESENTATION WORK: `bc_peroxide_reduction` class recovers peroxiredoxin (0.0 -> 0.947); overall LOO 0.699 -> 0.718 (2026-06-27, user-directed "reaction representation work").**
+- **REACTION-REPRESENTATION WORK (cumulative): two leakage-safe reaction-center classes lift overall LOO 0.699 -> 0.733 and recover the two prominent cofactor-free collapses (2026-06-27, user-directed "reaction representation work" + "extend").**
+  The MAP's "big bet" lever, demonstrated twice. (1) `bc_peroxide_reduction` (O-O reductive cleavage
+  of a hydroperoxide/H2O2 on the substrate side; excludes superoxide) recovered
+  `peroxiredoxin_thiol_peroxidase` 0.0 -> 0.947 and sharpened heme_peroxidase 0.889 -> 0.97 (LOO
+  0.699 -> 0.718). (2) The glycerophosphodiester extension to `bc_phosphodiester` (a RELEASED
+  choline/ethanolamine/phosphocholine head group as an EXACT product term -- phospholipase A and
+  ATG4 [protein]-PE proteases correctly excluded) recovered the cofactor-free
+  `metal_independent_phosphodiesterase` 0.072 -> 0.968 (LOO 0.718 -> 0.733). ZERO regressions in
+  either step; the roadmap's remaining-cofactor-free-with-unclassified-reaction list is now EMPTY.
+  Both read ONLY the Rhea equation (no EC/name/prose/lane/fingerprint); pure representation change,
+  no labels/registries/thresholds/imports touched. Residual limit: `cysteine_protease` (0.94) and
+  `ser_his_acid_hydrolase` (0.0) carry NO Rhea reaction at all, so a reaction representation cannot
+  separate them (catalytic-residue-identity axis, future work). Artifact:
+  `artifacts/v3_reaction_representation_peroxide_reduction_separability_20260627.json`; report:
+  `work/reaction_representation_peroxide_reduction_20260627.md`.
+
+- **(superseded by the cumulative bullet above) `bc_peroxide_reduction` first step: peroxiredoxin 0.0 -> 0.947; overall LOO 0.699 -> 0.718 (2026-06-27).**
   The MAP's "big bet" lever, demonstrated. Diagnosis: many families carry a Rhea reaction that
   earns NO bond-change class; specifically the source-free space had no class for peroxide reduction
   (water as a PRODUCT, not a reactant), so the cofactor-free peroxidatic thiol peroxidases

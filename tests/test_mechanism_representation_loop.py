@@ -76,6 +76,30 @@ class BondChangeFeatureTests(unittest.TestCase):
             {"bc_amide_cn"},
         )
 
+    def test_glycerophosphodiester_hydrolysis_class(self) -> None:
+        # GDPD: a phosphodiester to a choline head group is cleaved, RELEASING free choline.
+        self.assertIn(
+            "bc_phosphodiester",
+            classify_reaction_bond_change(
+                "sn-glycerol 3-phosphocholine + H2O = sn-glycerol 3-phosphate + choline + H(+)"
+            ),
+        )
+        # sphingomyelinase: releases standalone phosphocholine.
+        self.assertIn(
+            "bc_phosphodiester",
+            classify_reaction_bond_change(
+                "a sphingomyelin + H2O = phosphocholine + an N-acylsphing-4-enine + H(+)"
+            ),
+        )
+        # phospholipase A (acyl-ester hydrolysis): RETAINS the phosphocholine head group on the
+        # lyso-product and releases a fatty acid -- it is NOT phosphodiester cleavage and must not
+        # false-fire (it gets bc_ester_hydrolysis instead).
+        pla = classify_reaction_bond_change(
+            "a 1,2-diacyl-sn-glycero-3-phosphocholine + H2O = "
+            "a 1-acyl-sn-glycero-3-phosphocholine + a fatty acid + H(+)"
+        )
+        self.assertNotIn("bc_phosphodiester", pla)
+
     def test_lyase_without_water_yields_no_bond_change(self) -> None:
         # Cobalamin ammonia-lyase: releases ammonia but no water -> not a hydrolysis bond
         # change, so it stays out of the bond space (keeps non-metal families separable).
@@ -725,6 +749,16 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
             conf["metallophosphomonoesterase"].get("metallophosphomonoesterase", 0),
         )
         self.assertGreaterEqual(sc["metallo_amidohydrolase_deaminase"], 0.7)
+        # GLYCEROPHOSPHODIESTER extension (2026-06-27, reaction-representation work): the
+        # cofactor-free metal_independent_phosphodiesterase family (GDPD / sphingomyelinase /
+        # phospholipase D) collapsed to ~0.07 because its dominant reaction --
+        # `sn-glycerol 3-phosphocholine + H2O = sn-glycerol 3-phosphate + choline` -- is a
+        # phosphodiester hydrolysis that carried NONE of the nucleic-acid keywords the
+        # bc_phosphodiester detector knew, so it earned no reaction-center class. Recognising a
+        # RELEASED choline/ethanolamine/phosphocholine/phosphoethanolamine head group (exact product
+        # term, so acyl-ester phospholipase A and [protein]-PE proteases do NOT false-fire) recovers
+        # it to ~0.97 with zero regressions to alpha_beta_hydrolase / cysteine_protease.
+        self.assertGreater(sc["metal_independent_phosphodiesterase"], 0.85)  # was ~0.07
         # C-C LYASE / ALDOL extension (2026-06-14): the class II metal aldolases carry
         # only the shared divalent-metal cofactor and no hydrolysis bond change, so they
         # collapsed (~0.0) into the generic metal cluster. The bc_carbon_carbon_lyase

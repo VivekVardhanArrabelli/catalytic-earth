@@ -1,155 +1,54 @@
 {
   "artifact_id": "v3_reaction_representation_peroxide_reduction_separability_20260627",
-  "authorization": "explicit_user_instruction_reaction_representation_work",
-  "change": "Added leakage-safe bc_peroxide_reduction reaction-center bond-change class to classify_reaction_nonhydrolytic (reads only the Rhea substrate->product equation; fires on a hydroperoxide/H2O2 consumed on the substrate side; excludes superoxide).",
-  "created_utc": "2026-06-27T00:00:00Z",
-  "headline": "peroxiredoxin_thiol_peroxidase recovered 0.0 -> 0.947; heme_peroxidase_oxidase sharpened 0.889 -> 0.97; overall LOO 0.699 -> 0.718; zero family regressions.",
-  "honest_residual_limit": "cysteine_protease (0.94) and ser_his_acid_hydrolase (0.0) are UNCHANGED -- both carry NO Rhea reaction at all, so a reaction representation cannot separate that genuinely featureless pair. Separating them would require a catalytic-residue-IDENTITY feature, which the current bronze rows do not carry (active-site descriptions are null).",
-  "leakage_basis": "reads only the Rhea reaction equation string; never EC/name/prose/lane/fingerprint",
-  "leakage_safe": true,
-  "measurement_seed": "PYTHONHASHSEED=0 (LOO confusion target is seed-dependent; sc magnitudes are stable)",
-  "overall_loo_after": 0.7181,
-  "overall_loo_before": 0.699,
-  "reaction_classification_gap_roadmap": [
+  "authorization": "explicit_user_instruction_reaction_representation_work_then_extend",
+  "changes": [
     {
-      "cofactor": 150,
-      "cofactor_free": false,
-      "fingerprint": "molybdopterin_oxidoreductase",
-      "has_bc": 46,
-      "has_rxn": 246,
-      "n": 250,
-      "rxn_unclassified": 200
+      "class": "bc_peroxide_reduction",
+      "fires_on": "a hydroperoxide / H2O2 consumed on the substrate side (O-O reductive cleavage); excludes 'superoxide'",
+      "loo": "0.699 -> 0.718",
+      "recovers": "peroxiredoxin_thiol_peroxidase 0.0 -> 0.947; heme_peroxidase_oxidase 0.889 -> 0.97"
     },
     {
-      "cofactor": 4,
-      "cofactor_free": false,
-      "fingerprint": "paps_sulfotransferase",
-      "has_bc": 0,
-      "has_rxn": 130,
-      "n": 130,
-      "rxn_unclassified": 130
-    },
-    {
-      "cofactor": 184,
-      "cofactor_free": false,
-      "fingerprint": "radical_sam_enzyme",
-      "has_bc": 43,
-      "has_rxn": 169,
-      "n": 184,
-      "rxn_unclassified": 126
-    },
-    {
-      "cofactor": 0,
-      "cofactor_free": true,
-      "fingerprint": "metal_independent_phosphodiesterase",
-      "has_bc": 9,
-      "has_rxn": 125,
-      "n": 125,
-      "rxn_unclassified": 116
-    },
-    {
-      "cofactor": 100,
-      "cofactor_free": false,
-      "fingerprint": "manganese_iron_superoxide_dismutase",
-      "has_bc": 0,
-      "has_rxn": 100,
-      "n": 100,
-      "rxn_unclassified": 100
-    },
-    {
-      "cofactor": 100,
-      "cofactor_free": false,
-      "fingerprint": "zinc_lyase_hydratase",
-      "has_bc": 0,
-      "has_rxn": 99,
-      "n": 100,
-      "rxn_unclassified": 99
-    },
-    {
-      "cofactor": 250,
-      "cofactor_free": false,
-      "fingerprint": "non_heme_iron_2og_dioxygenase",
-      "has_bc": 143,
-      "has_rxn": 238,
-      "n": 250,
-      "rxn_unclassified": 95
-    },
-    {
-      "cofactor": 13,
-      "cofactor_free": false,
-      "fingerprint": "cobalamin_radical_rearrangement",
-      "has_bc": 39,
-      "has_rxn": 120,
-      "n": 120,
-      "rxn_unclassified": 81
-    },
-    {
-      "cofactor": 74,
-      "cofactor_free": false,
-      "fingerprint": "glycosyltransferase",
-      "has_bc": 166,
-      "has_rxn": 242,
-      "n": 250,
-      "rxn_unclassified": 76
-    },
-    {
-      "cofactor": 225,
-      "cofactor_free": false,
-      "fingerprint": "metal_dependent_hydrolase",
-      "has_bc": 81,
-      "has_rxn": 146,
-      "n": 225,
-      "rxn_unclassified": 65
-    },
-    {
-      "cofactor": 202,
-      "cofactor_free": false,
-      "fingerprint": "flavin_dehydrogenase_reductase",
-      "has_bc": 155,
-      "has_rxn": 198,
-      "n": 202,
-      "rxn_unclassified": 43
-    },
-    {
-      "cofactor": 13,
-      "cofactor_free": false,
-      "fingerprint": "alpha_beta_hydrolase_esterase_lipase",
-      "has_bc": 109,
-      "has_rxn": 150,
-      "n": 150,
-      "rxn_unclassified": 41
+      "class": "bc_phosphodiester (glycerophosphodiester extension)",
+      "fires_on": "a RELEASED choline/ethanolamine/phosphocholine/phosphoethanolamine head group as an EXACT product term (GDPD/sphingomyelinase/PLD); phospholipase A and [protein]-PE proteases excluded",
+      "loo": "0.718 -> 0.733",
+      "recovers": "metal_independent_phosphodiesterase 0.072 -> 0.968; zero regressions to alpha_beta_hydrolase / cysteine_protease"
     }
   ],
-  "roadmap_note": "Families with many rxn_unclassified rows AND cofactor_free=true are the next candidates a reaction representation could rescue (same pattern as peroxiredoxin). metal_independent_phosphodiesterase is the most prominent remaining cofactor-free one.",
-  "schema_version": "catalytic_earth.reaction_representation_eval.v1",
-  "self_consistency_before_after": {
-    "alpha_beta_hydrolase_esterase_lipase": {
-      "after": 0.68,
-      "before": 0.68
-    },
-    "cysteine_protease": {
-      "after": 0.94,
-      "before": 0.94
-    },
-    "glutathione_s_transferase": {
-      "after": 0.95,
-      "before": 0.95
-    },
+  "created_utc": "2026-06-27T00:00:00Z",
+  "honest_residual_limit": "cysteine_protease (0.94) and ser_his_acid_hydrolase (0.0) remain unchanged -- they carry NO Rhea reaction at all, so a reaction representation cannot separate that featureless pair (needs catalytic-residue identity, absent from current rows).",
+  "leakage_basis": "reads only the Rhea reaction equation string; never EC/name/prose/lane/fingerprint",
+  "leakage_safe": true,
+  "measurement_seed": "PYTHONHASHSEED=0 (sc magnitudes stable; LOO confusion target is seed-dependent)",
+  "no_regression_check": {
+    "alpha_beta_hydrolase_esterase_lipase": 0.68,
+    "class_ii_metal_aldolase": 0.813,
+    "cysteine_protease": 0.94,
+    "glutathione_s_transferase": 0.95,
+    "had_like_phosphatase": 0.945,
+    "ser_his_acid_hydrolase": 0.0
+  },
+  "overall_loo_progression": {
+    "after_glycerophosphodiester": 0.7326,
+    "after_peroxide": 0.718,
+    "pre": 0.699
+  },
+  "recovered_families": {
     "heme_peroxidase_oxidase": {
       "after": 0.97,
       "before": 0.889
     },
+    "metal_independent_phosphodiesterase": {
+      "after": 0.968,
+      "before": 0.072
+    },
     "peroxiredoxin_thiol_peroxidase": {
       "after": 0.947,
       "before": 0.0
-    },
-    "ser_his_acid_hydrolase": {
-      "after": 0.0,
-      "before": 0.0
-    },
-    "short_chain_dehydrogenase_reductase": {
-      "after": 0.068,
-      "before": 0.068
     }
-  }
+  },
+  "remaining_cofactor_free_roadmap": [],
+  "roadmap_note": "Cofactor-free families with >=10 rows still carrying an unclassified reaction are the next candidates the same lever could rescue. An empty list means the prominent cofactor-free collapses are resolved.",
+  "schema_version": "catalytic_earth.reaction_representation_eval.v2",
+  "summary": "Two leakage-safe reaction-center bond-change classes added to recover cofactor-free families that the source-free representation had collapsed. Each reads ONLY the Rhea substrate->product equation (never EC/name/prose/lane/fingerprint)."
 }

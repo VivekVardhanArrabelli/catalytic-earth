@@ -325,7 +325,21 @@ def classify_reaction_bond_change(reaction: str) -> set[str]:
     diester = "phosphodiester" in low or bool(
         re.search(r"\b(dna|rna|oligonucleotide|nucleic|cyclic)\b", low)
     )
-    if diester and "phosphate monoester" not in lhs:
+    # glycerophosphodiester / sphingomyelin phospholipid-headgroup phosphodiester hydrolysis
+    # (metal-independent GDPD, sphingomyelinase, phospholipase D): the phosphodiester to a choline /
+    # ethanolamine head group is cleaved, RELEASING that head group as a free small molecule (free
+    # choline / ethanolamine) or a standalone phospho-headgroup (phosphocholine / phosphoethanolamine).
+    # These carry none of the nucleic-acid keywords above but ARE phosphodiester hydrolysis, and are
+    # the reaction-center class the cofactor-free metal_independent_phosphodiesterase family was
+    # missing (it otherwise collapsed to ~0.07). Match the released head group as an EXACT product
+    # term (rhs_terms is ' + '-split and coefficient-stripped) so that acyl-ester hydrolases which
+    # merely RETAIN a phosphocholine group -- phospholipase A -> a 1-acyl-...-phosphocholine -- and
+    # [protein]-PE deconjugating proteases (ATG4) do NOT false-fire. Reads only the Rhea equation.
+    released_headgroup = any(
+        term in ("choline", "ethanolamine", "phosphocholine", "phosphoethanolamine")
+        for term in rhs_terms
+    )
+    if (diester or (released_headgroup and not free_phosphate)) and "phosphate monoester" not in lhs:
         classes.add("bc_phosphodiester")
     if "phosphate monoester" in lhs or ("an alcohol" in rhs and free_phosphate):
         classes.add("bc_phosphomonoester")

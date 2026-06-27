@@ -3,6 +3,36 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-27: REACTION-REPRESENTATION WORK (cont.) — glycerophosphodiester `bc_phosphodiester` extension recovers metal_independent_phosphodiesterase (0.072 -> 0.968); overall LOO 0.718 -> 0.733
+
+Decision (user-directed: "extend reaction representation" — continue the previous lever on the next
+prominent cofactor-free collapse). The diagnostic's next cofactor-free family with an unclassified
+reaction was `metal_independent_phosphodiesterase` (sc **0.072**): its dominant reaction
+`sn-glycerol 3-phosphocholine + H2O = sn-glycerol 3-phosphate + choline` is a genuine phosphodiester
+hydrolysis, but `bc_phosphodiester` only recognised nucleic-acid / cyclic phosphodiesters, so the
+glycerophospho head-group enzymes (GDPD, sphingomyelinase, phospholipase D) earned no reaction-center
+class and collapsed into the cofactor-free cluster.
+
+Fix: extend `bc_phosphodiester` to fire when a phospholipid head group is RELEASED -- free
+choline/ethanolamine or standalone phosphocholine/phosphoethanolamine -- matched as an EXACT product
+term (reads only the Rhea equation). The exact-term match is the precision guard: phospholipase A
+RETAINS the phosphocholine on its lyso-product, and ATG4 proteases act on [protein]-PE conjugates --
+neither releases a free head group, so neither false-fires. (A first, looser substring version
+regressed cysteine_protease 0.94 -> 0.82 and alpha_beta 0.68 -> 0.59; the exact-term version
+eliminates both regressions -- documented so the precision guard is not lost in a future edit.)
+
+Result (PYTHONHASHSEED=0): metal_independent_phosphodiesterase **0.072 -> 0.968** (recovered),
+overall leave-one-out **0.718 -> 0.733**, ZERO regressions (cysteine_protease 0.94, alpha_beta 0.68,
+glutathione 0.95 all unchanged). Cumulatively the two reaction-center classes (bc_peroxide_reduction,
+glycerophosphodiester bc_phosphodiester) lifted LOO 0.699 -> 0.733 and recovered the two prominent
+cofactor-free collapses, and the roadmap's remaining-cofactor-free list (>=10 rows, reaction
+unclassified) is now EMPTY. The only families the reaction representation still cannot separate are
+`cysteine_protease` / `ser_his_acid_hydrolase` -- no Rhea reaction at all (catalytic-residue-identity
+axis, future work). Pure representation change; no labels/registries/thresholds/imports touched;
+leakage guardrails unchanged. Artifact + report updated in place
+(`artifacts/v3_reaction_representation_peroxide_reduction_separability_20260627.json`,
+`work/reaction_representation_peroxide_reduction_20260627.md`).
+
 ## 2026-06-27: REACTION-REPRESENTATION WORK — `bc_peroxide_reduction` class recovers peroxiredoxin (0.0 -> 0.947); overall LOO 0.699 -> 0.718
 
 Decision (user-directed: "reaction representation work please" — invest in the MAP's "big bet"
