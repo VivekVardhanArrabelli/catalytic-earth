@@ -148,6 +148,7 @@ NONHYDROLYTIC_BOND_CLASSES = (
     "bc_isomerization",      # single substrate = single product, no cosubstrate (isomerase/racemase)
     "bc_carbon_carbon_lyase",  # one organic substrate cleaved into two organic fragments (aldol/C-C lyase)
     "bc_aldehyde_oxidation",  # aldehyde + NAD(+) + H2O -> carboxylate + NADH (water-consuming NAD redox)
+    "bc_peroxide_reduction",  # hydroperoxide/H2O2 on substrate side -> alcohol/water (O-O reductive cleavage; peroxidatic thiol/heme/NAD(P)H peroxidase)
 )
 
 # Small inorganic / proton species that are NOT a carbon-skeleton fragment. Used only by
@@ -530,6 +531,22 @@ def classify_reaction_nonhydrolytic(reaction: str) -> set[str]:
     # oxygenation: molecular O2 consumed
     if "o2" in lhs_tokens:
         classes.add("bc_oxygenation")
+
+    # peroxide reduction: a hydroperoxide / H2O2 on the SUBSTRATE side is reductively cleaved
+    # (O-O bond) to an alcohol / water. This is the reaction-center signature of the cofactor-free
+    # peroxidatic thiol/selenol peroxidases (peroxiredoxin / glutathione peroxidase), which carry NO
+    # cofactor class and -- before this class -- NO bond-change class at all, so they collapsed into
+    # the cofactor-free hydrolase cluster (proteases/esterases). The heme and NAD(P)H peroxidases
+    # also fire it, but they separate on their heme / NAD(P) cofactor; the discriminating value here
+    # is for the cofactor-free thiol peroxidases. Reads only the Rhea substrate->product equation.
+    # NOTE: "superoxide" contains the substring "peroxide" -- exclude it so superoxide dismutases
+    # (2 O2(.-) + 2 H(+) = O2 + H2O2; peroxide is a PRODUCT) do not false-fire this class. Match
+    # both the spelled-out "(hydro)peroxide" and the "h2o2" formula notation.
+    if any(
+        ("peroxide" in tok and "superoxide" not in tok) or "h2o2" in tok
+        for tok in lhs_tokens
+    ):
+        classes.add("bc_peroxide_reduction")
 
     # carboxylation (CO2/bicarbonate fixed with ATP) vs decarboxylation (CO2 released)
     co2_lhs = any(tok in ("co2", "hydrogencarbonate") for tok in lhs_tokens)

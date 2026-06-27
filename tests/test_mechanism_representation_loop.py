@@ -233,6 +233,36 @@ class NonHydrolyticBondChangeTests(unittest.TestCase):
         )
         self.assertIn("bc_acyl_transfer", out)
 
+    def test_peroxide_reduction(self) -> None:
+        # peroxiredoxin / thiol peroxidase: a hydroperoxide on the SUBSTRATE side is reduced.
+        self.assertIn(
+            "bc_peroxide_reduction",
+            classify_reaction_nonhydrolytic(
+                "a hydroperoxide + [thioredoxin]-dithiol = an alcohol + "
+                "[thioredoxin]-disulfide + H2O"
+            ),
+        )
+        # glutathione peroxidase written with the H2O2 formula notation.
+        self.assertIn(
+            "bc_peroxide_reduction",
+            classify_reaction_nonhydrolytic(
+                "2 glutathione + H2O2 = glutathione disulfide + 2 H2O"
+            ),
+        )
+        # superoxide dismutase must NOT false-fire ("superoxide" contains "peroxide"; here the
+        # peroxide is a PRODUCT, not a reduced substrate).
+        self.assertNotIn(
+            "bc_peroxide_reduction",
+            classify_reaction_nonhydrolytic("2 superoxide + 2 H(+) = O2 + H2O2"),
+        )
+        # a plain hydrolase must not fire it.
+        self.assertNotIn(
+            "bc_peroxide_reduction",
+            classify_reaction_nonhydrolytic(
+                "a carboxylic ester + H2O = an alcohol + a carboxylate + H(+)"
+            ),
+        )
+
     def test_methyl_transfer(self) -> None:
         out = classify_reaction_nonhydrolytic(
             "a substrate + S-adenosyl-L-methionine = a methyl-substrate "
@@ -462,14 +492,19 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
         # bond-change signature separates it from atp_amide_ligase and coa_acyltransferase --
         # so overall LOO ticks 0.699 -> 0.704 (still > 0.62 floor).
         # 2026-06-27 (cysteine_protease, +150): the EC 3.4.22 Cys-His thiol peptidases are
-        # coherent on their own (sc 0.94) but the leakage-safe feature space cannot tell
-        # cofactor-free Cys PEPTIDE hydrolysis (protease) from cofactor-free Cys PEROXIDE
-        # reduction (peroxiredoxin) -- both are "cofactor-free, no recognized Rhea bond-change"
-        # -- so the 150-row cysteine_protease centroid dominates that cofactor-free-Cys cluster
-        # and collapses peroxiredoxin_thiol_peroxidase 0.833 -> 0.0 (and keeps ser_his at 0.0,
-        # alpha_beta at 0.68). Overall LOO 0.704 -> 0.699 (still > 0.62 floor). Honest documented
-        # cost; admission separates them (EC 3.4.22 + catalytic Cys vs EC 1.11.1 + peroxide). No
-        # fold/name leakage.
+        # coherent on their own (sc 0.94) but the leakage-safe feature space initially could not
+        # tell cofactor-free Cys PEPTIDE hydrolysis (protease) from cofactor-free Cys PEROXIDE
+        # reduction (peroxiredoxin), so the 150-row cysteine_protease centroid collapsed
+        # peroxiredoxin_thiol_peroxidase 0.833 -> 0.0.
+        # 2026-06-27 REACTION-REPRESENTATION FIX (bc_peroxide_reduction): peroxiredoxin's Rhea
+        # equation DOES carry a peroxide (hydroperoxide / H2O2) on the substrate side -- it was
+        # simply not being classified (the hydrolysis classifier needs water as a REACTANT, and the
+        # non-hydrolytic classifier had no peroxide class). Adding a leakage-safe peroxide-reduction
+        # bond-change class (read only from the equation) recovers peroxiredoxin 0.0 -> ~0.947 and
+        # sharpens heme_peroxidase_oxidase 0.889 -> ~0.97; overall LOO 0.699 -> ~0.718 (> 0.62
+        # floor). cysteine_protease (0.94) and ser_his (0.0) are UNCHANGED -- they have no Rhea
+        # reaction at all, so a reaction representation cannot separate that genuinely featureless
+        # pair (the honest residual limit). No fold/name leakage.
         self.assertEqual(audit["seed_labels"], 7851)
         g = audit["leakage_guardrails"]
         self.assertFalse(g["frozen_benchmark_read"])
@@ -610,25 +645,22 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
             ),
             0,
         )
-        # peroxiredoxin_thiol_peroxidase erodes as the growth pass adds more cofactor-free
-        # families: 0.833 (alone) -> 0.71 (after sulfotransferase) -> ~0.51 (after the
-        # glutathione_s_transferase pass) -> 0.0 (2026-06-27, after cysteine_protease, +150).
-        # The peroxidatic-Cys peroxide reduction and the catalytic-Cys peptide hydrolysis are BOTH
-        # cofactor-free cysteine chemistries that the leakage-safe feature space (cofactor classes +
-        # Rhea bond-change, EC/name/prose/lane EXCLUDED) cannot tell apart -- many cysteine-protease
-        # rows carry no Rhea bond-change at all -- so the dense 150-row cysteine_protease centroid
-        # absorbs the peroxiredoxin rows (92 resolve to cysteine_protease). Honest cost of a large
-        # confusable cofactor-free family; the disambiguation engine separates them at admission
-        # (EC 3.4.22 + catalytic Cys vs EC 1.11.1 + peroxide reaction). No fold/name leakage.
-        self.assertLess(sc["peroxiredoxin_thiol_peroxidase"], 0.2)           # was 0.833 -> 0.0
-        # peroxiredoxin collapses into the cofactor-free-Cys/Ser cluster (cysteine_protease /
-        # glutathione_s_transferase / ser_his / alpha_beta). WHICH neighbour absorbs the most rows is
-        # PYTHONHASHSEED-dependent (the collapsed rows are near-equidistant among the cluster
-        # centroids), so the assertLess above asserts the stable fact -- ~all rows leave
-        # peroxiredoxin -- rather than a specific confusion target.
+        # peroxiredoxin_thiol_peroxidase RECOVERED by the bc_peroxide_reduction reaction class
+        # (2026-06-27). It had eroded 0.833 -> 0.71 (sulfotransferase) -> ~0.51 (GST) -> 0.0
+        # (cysteine_protease) as confusable cofactor-free families accumulated and the source-free
+        # space had NO class for its peroxide chemistry. The fix models the chemistry directly: the
+        # peroxiredoxin/GPx Rhea equation carries a hydroperoxide/H2O2 on the substrate side, so a
+        # leakage-safe peroxide-reduction bond-change class (read only from the equation) gives the
+        # whole family a distinctive reaction-center feature the cofactor-free hydrolases lack. It
+        # recovers to ~0.947 and lifts overall LOO 0.699 -> ~0.718 -- the reaction-representation
+        # lever the MAP flagged, demonstrated. No fold/name leakage.
+        self.assertGreater(sc["peroxiredoxin_thiol_peroxidase"], 0.85)       # 0.0 -> ~0.947 (recovered)
         # cysteine_protease (EC 3.4.22 Cys-His thiol peptidases) is itself highly self-consistent:
-        # the catalytic-Cys + cofactor-free-peptidase signature forms a dense, dominant cluster.
+        # the catalytic-Cys + cofactor-free-peptidase signature forms a dense, dominant cluster. It
+        # is UNCHANGED by the peroxide class (it has no Rhea reaction at all); ser_his stays at 0.0
+        # for the same reason -- a reaction representation cannot separate two no-reaction families.
         self.assertGreater(sc["cysteine_protease"], 0.85)
+        self.assertGreater(sc["heme_peroxidase_oxidase"], 0.85)             # sharpened 0.889 -> ~0.97
         # paps_sulfotransferase (PAPS sulfuryl transfer, EC 2.8.2) and glutathione_s_transferase
         # (GSH conjugation, EC 2.5.1.18) each have a DISTINCT cosubstrate reaction center and
         # form clean, well-separated clusters.

@@ -26,6 +26,22 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **REACTION-REPRESENTATION WORK: `bc_peroxide_reduction` class recovers peroxiredoxin (0.0 -> 0.947); overall LOO 0.699 -> 0.718 (2026-06-27, user-directed "reaction representation work").**
+  The MAP's "big bet" lever, demonstrated. Diagnosis: many families carry a Rhea reaction that
+  earns NO bond-change class; specifically the source-free space had no class for peroxide reduction
+  (water as a PRODUCT, not a reactant), so the cofactor-free peroxidatic thiol peroxidases
+  (peroxiredoxin/GPx) were an empty vector indistinguishable from the cofactor-free hydrolases --
+  which is why `cysteine_protease` had collapsed peroxiredoxin 0.833 -> 0.0. Fix: a leakage-safe
+  `bc_peroxide_reduction` reaction-center class (reads ONLY the Rhea equation; fires on a
+  hydroperoxide/H2O2 consumed on the substrate side; `superoxide` excluded). Recovers
+  peroxiredoxin **0.0 -> 0.947**, sharpens heme_peroxidase_oxidase 0.889 -> 0.97, overall LOO
+  **0.699 -> 0.718**, ZERO regressions. HONEST LIMIT: `cysteine_protease` (0.94) and
+  `ser_his_acid_hydrolase` (0.0) are unchanged -- they carry NO Rhea reaction, so a reaction
+  representation cannot separate that featureless pair (needs catalytic-residue identity, absent
+  from current rows). Pure representation change (no labels/registries/thresholds touched). Artifact:
+  `artifacts/v3_reaction_representation_peroxide_reduction_separability_20260627.json`; report:
+  `work/reaction_representation_peroxide_reduction_20260627.md`.
+
 - **NEW `cysteine_protease` FINGERPRINT FAMILY ADDED (54 -> 55 FP); COMBINED 9627 -> 9777 (2026-06-27, user-directed "merge and scale further"); LOO 0.704 -> 0.699 (FLOOR 0.62 HELD, NOT lowered).**
   Ninth new family: `cysteine_protease` -- the Cys-His thiol-peptidase mechanism (EC 3.4.22; papain/
   clan CA, caspase/legumain/clan CD, calpains, ubiquitin/SUMO-specific deubiquitinases). A catalytic

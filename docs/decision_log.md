@@ -3,6 +3,45 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-27: REACTION-REPRESENTATION WORK — `bc_peroxide_reduction` class recovers peroxiredoxin (0.0 -> 0.947); overall LOO 0.699 -> 0.718
+
+Decision (user-directed: "reaction representation work please" — invest in the MAP's "big bet"
+lever, modeling the chemistry directly so the source-free representation stops collapsing
+confusable families, instead of trading representation quality for breadth).
+
+Diagnosis: a registry-wide check showed the reaction representation systematically under-resolves
+— many families carry a Rhea reaction that earns NO bond-change class. The two classifiers
+(`classify_reaction_bond_change`, hydrolysis = water as REACTANT; `classify_reaction_nonhydrolytic`,
+transfer/redox/lyase) had no class for **peroxide reduction**, where water is a PRODUCT. So the
+cofactor-free peroxidatic thiol peroxidases (peroxiredoxin/GPx; equation `a hydroperoxide +
+[thioredoxin]-dithiol = an alcohol + [thioredoxin]-disulfide + H2O`) got no cofactor class AND no
+bond-change class — an empty vector indistinguishable from the cofactor-free hydrolases. That is
+why the 150-row `cysteine_protease` family collapsed peroxiredoxin 0.833 -> 0.0.
+
+Fix: added a leakage-safe `bc_peroxide_reduction` reaction-center class to
+`classify_reaction_nonhydrolytic` — fires on a hydroperoxide / H2O2 consumed on the SUBSTRATE side
+(O-O reductive cleavage), reading ONLY the Rhea equation (never EC/name/prose/lane/fingerprint).
+Guards: `"superoxide"` (which contains the substring `"peroxide"`) is excluded so superoxide
+dismutase does not false-fire; both `(hydro)peroxide` and the `h2o2` formula notation match.
+
+Result (PYTHONHASHSEED=0; sc magnitudes seed-stable, confusion target seed-dependent):
+peroxiredoxin_thiol_peroxidase **0.0 -> 0.947** (recovered), heme_peroxidase_oxidase 0.889 -> 0.97
+(sharpened bonus), overall leave-one-out **0.699 -> 0.718**, ZERO family regressions. The class
+fires on peroxiredoxin 150/150 plus the heme peroxidases (which separate on heme anyway).
+
+HONEST RESIDUAL LIMIT: `cysteine_protease` (0.94) and `ser_his_acid_hydrolase` (0.0) are UNCHANGED
+— and a reaction representation CANNOT separate them, because they carry NO Rhea reaction at all
+(peptide-bond hydrolysis is unannotated in Rhea). That pair needs a catalytic-residue-IDENTITY
+feature (catalytic Cys vs Ser), which the current bronze rows do not carry (active-site
+descriptions are null). That is a different axis and a future-work item, recorded in the roadmap.
+
+Pure representation change: no labels, registries, ontology, thresholds, imports, or production
+scoring touched; leakage guardrails unchanged (`ec_name_prose_lane_used: False`). Artifact:
+`artifacts/v3_reaction_representation_peroxide_reduction_separability_20260627.json`; report:
+`work/reaction_representation_peroxide_reduction_20260627.md`. The roadmap (per-family
+`rxn_unclassified` gap) flags `metal_independent_phosphodiesterase` as the next cofactor-free
+family a reaction class could rescue.
+
 ## 2026-06-27: NEW `cysteine_protease` FINGERPRINT FAMILY ADDED (54 -> 55 FP) — COMBINED 9777; LOO 0.704 -> 0.699 (FLOOR 0.62 HELD); PEROXIREDOXIN COLLAPSE DOCUMENTED
 
 Decision (user-directed: "merge and scale further"; merged the acid_coa_ligase work to main first, then
