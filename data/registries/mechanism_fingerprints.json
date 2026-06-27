@@ -4399,5 +4399,85 @@
       "reconstruction_path": "Path A sequence->disulfide-reductase family plus FAD + NAD(P)H:disulfide reaction/active-site channel, or canonical FAD + redox-active-disulfide graft in the pyridine-nucleotide-disulfide-oxidoreductase fold (Path B)",
       "silver_reachability": "moderate; reviewed disulfide-reductase family and FAD + NAD(P)H:disulfide reaction annotations are abundant, but the bound FAD / redox-active-cysteine-pair / substrate-disulfide geometry needs explicit reconstruction"
     }
+  },
+  {
+    "id": "dihydrofolate_reductase",
+    "name": "Dihydrofolate reductase (NADPH-dependent folate reduction)",
+    "enzyme_space": [
+      "dihydrofolate reductase (DHFR, EC 1.5.1.3) -- chromosomal and plasmid/trimethoprim-resistant forms",
+      "bifunctional dihydrofolate reductase-thymidylate synthase (protozoan/plant) DHFR domain",
+      "other NADPH-dependent 7,8-dihydrofolate -> 5,6,7,8-tetrahydrofolate reductases"
+    ],
+    "active_site_signature": [
+      {
+        "role": "nadph_hydride_donor_site",
+        "residue": "NADPH-binding cleft positioning the nicotinamide C4 hydride opposite the pterin C6",
+        "constraints": [
+          "transfers the pro-R hydride from NADPH to C6 of the dihydropterin ring",
+          "presence of NADPH plus a 7,8-dihydrofolate -> tetrahydrofolate reduction reaction defines the family"
+        ]
+      },
+      {
+        "role": "pterin_protonation_acid",
+        "residue": "conserved active-site carboxylate (Asp/Glu) that protonates N5 of the dihydropterin",
+        "constraints": [
+          "general-acid protonation of N5 accompanies hydride transfer to C6"
+        ]
+      },
+      {
+        "role": "folate_binding_pocket",
+        "residue": "p-aminobenzoyl-glutamate / pterin-binding pocket",
+        "constraints": [
+          "binds the 7,8-dihydrofolate (or folate) substrate and the tetrahydrofolate product"
+        ]
+      }
+    ],
+    "cofactors": [
+      "NADPH (dissociable reducing cosubstrate of the hydride-transfer half-reaction, not a bound prosthetic cofactor)"
+    ],
+    "reaction_center": {
+      "bond_changes": [
+        "hydride transfer from NADPH to C6 of the dihydropterin ring with N5 protonation",
+        "reduction of 7,8-dihydrofolate to 5,6,7,8-tetrahydrofolate (NADP+ released)"
+      ],
+      "chemical_operation": "NADPH-dependent reduction of 7,8-dihydrofolate to 5,6,7,8-tetrahydrofolate"
+    },
+    "substrate_constraints": [
+      "EC 1.5.1.3 scope present but never counted as a corroborator",
+      "Rhea or reviewed catalytic activity text reducing 7,8-dihydrofolate (or folate) to tetrahydrofolate with NADP(H) present",
+      "dihydrofolate-reductase family or name context OR an annotated active/binding site present",
+      "no dihydrofolate synthase / folylpolyglutamate synthetase, methylenetetrahydrofolate reductase/dehydrogenase, or non-1.5.1.3 side-EC context, no EC-only or multi-fingerprint signal"
+    ],
+    "evidence_features": [
+      "reviewed catalytic activity text reducing 7,8-dihydrofolate to tetrahydrofolate with NADP(H)",
+      "dihydrofolate-reductase family, name, or keyword text",
+      "annotated NADPH / folate-binding active-site context where available",
+      "EC 1.5.1.3 scope only, never counted as a corroborator"
+    ],
+    "counterevidence_features": [
+      "dihydrofolate synthase / folylpolyglutamate synthetase (EC 6.3.2) context (folate ligation, not reduction)",
+      "methylenetetrahydrofolate reductase (EC 1.5.1.20) / dehydrogenase-cyclohydrolase (EC 1.5.1.5) context",
+      "thymidylate synthase (EC 2.1.1.45) half of a bifunctional row with a non-1.5.1.3 side EC",
+      "EC-only evidence with no folate-reduction reaction and no DHFR family",
+      "multi-fingerprint signal where another rule independently fires"
+    ],
+    "uncertainty_axes": [
+      "chromosomal versus plasmid/trimethoprim-resistant DHFR",
+      "monofunctional versus bifunctional DHFR-thymidylate-synthase DHFR domain",
+      "folate versus dihydrofolate substrate affinity",
+      "NADPH-bound versus apo conformation (Met20 loop closed/open/occluded)"
+    ],
+    "seed_examples": [
+      "Dihydrofolate reductase (DHFR / folA)",
+      "Dihydrofolate reductase (human DHFR)",
+      "Trimethoprim-resistant dihydrofolate reductase (dfrA)",
+      "Bifunctional dihydrofolate reductase-thymidylate synthase (DHFR domain)"
+    ],
+    "deploy_missing_active_site_context": {
+      "type": "nadph_dihydrofolate_reduction_pterin_protonation_context",
+      "detail": "the bound NADPH nicotinamide / dihydropterin stacking pose, the N5-protonating carboxylate, and the closed Met20 loop are absent or incomplete in apo predicted structures",
+      "reconstruction_path": "Path A sequence->dihydrofolate-reductase family plus NADPH + folate-reduction reaction/active-site channel, or canonical NADPH + dihydrofolate graft in the DHFR fold (Path B)",
+      "silver_reachability": "moderate; reviewed DHFR family and NADPH + dihydrofolate-reduction reaction annotations are abundant, but the bound NADPH / dihydropterin / N5-protonation geometry needs explicit reconstruction"
+    }
   }
 ]

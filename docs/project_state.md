@@ -26,6 +26,23 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **NEW `dihydrofolate_reductase` FINGERPRINT FAMILY ADDED (56 -> 57 FP); COMBINED 9927 -> 10001 -- 10,000-LABEL MILESTONE REACHED (2026-06-27, user-directed "go ahead"); LOO 0.733 -> 0.734 (CLEAN WIN).**
+  Eleventh new family: `dihydrofolate_reductase` -- the NADPH-dependent dihydrofolate reductases (EC
+  1.5.1.3; DHFR): NADPH transfers a hydride to C6 of the dihydropterin of 7,8-dihydrofolate with
+  N5 protonation, giving 5,6,7,8-tetrahydrofolate. **Combined mechanism labels crossed 10,000
+  (10001 = 702 frozen + 9299 expansion).** EC 1.5.1.3 is uncovered (carbonic anhydrase / enoyl-CoA
+  hydratase were supply-thin; thymidylate synthase / carbamoyl-phosphate synthase / GTP cyclohydrolase /
+  adenylosuccinate synthase had supply but EC-scope collisions). Folate-reduction reaction is the hard
+  anchor + DHFR family/name or active/binding site; dihydrofolate synthase (EC 6.3.2), MTHFR (1.5.1.20),
+  and bifunctional thymidylate-synthase side-EC rows guarded; cap 150. First lane: 118 fetched, 79
+  corroborated, **74** novelty-admitted, 19 off-target held (-> sam_methyltransferase). Expansion
+  9225 -> 9299, combined **10001**; frozen current702 byte-unchanged. Leakage closure `_56fp -> _57fp`.
+  Representation loop -- a CLEAN WIN: the folate reaction center separates DHFR from the NAD(P)
+  hydride-transfer surface despite shared NADPH, so the 74-row centroid is perfectly self-consistent (sc
+  **1.000**) with zero bleed; nad_p/SDR/AKR unchanged; overall LOO 0.733 -> **0.734** (seed-stable). No
+  fold/name leakage. Audits clean (holes [], floor deficit 0, novelty admit 8838). Summary:
+  `artifacts/v3_dihydrofolate_reductase_new_fingerprint_apply_summary_current702_20260627.json`.
+
 - **NEW `flavin_disulfide_reductase` FINGERPRINT FAMILY ADDED (55 -> 56 FP); COMBINED 9777 -> 9927 (2026-06-27, user-directed "carry on towards 10k"); LOO 0.733 -> 0.731 (FLOOR 0.62 HELD, NOT lowered).**
   Tenth new family and the second broad-oxidoreductase EC-subclass split: `flavin_disulfide_reductase`
   -- the FAD-dependent NAD(P)H:disulfide oxidoreductases (EC 1.8.1; the class-I pyridine

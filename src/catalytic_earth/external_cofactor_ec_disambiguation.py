@@ -1632,6 +1632,35 @@ _FLAVIN_DISULFIDE_REDUCTASE_BOUNDARY_TOKENS = (
     "peroxiredoxin",
     "ferredoxin",
 )
+# Dihydrofolate reductase (DHFR) handles. EC 1.5.1.3 scopes the candidate supply only (NOT shared with
+# any existing fingerprint); the required hard mechanism anchor is a Rhea/reviewed reaction reducing
+# 7,8-dihydrofolate (or folate) to 5,6,7,8-tetrahydrofolate with NADP(H) -- a dihydrofolate/folate
+# substrate token AND a NAD(P) cosubstrate token. The second corroborator is a dihydrofolate-reductase
+# family/name OR an annotated active/binding site. Dihydrofolate synthase / folylpolyglutamate
+# synthetase (EC 6.3.2), methylenetetrahydrofolate reductase (EC 1.5.1.20) / dehydrogenase (EC 1.5.1.5),
+# and the thymidylate synthase half of a bifunctional row (non-1.5.1.3 side EC) are boundary-guarded.
+# NOTE: the NADPH hydride-transfer half-reaction is shared with the EC 1.1.1 NAD(P) dehydrogenases, so
+# this family is representation-confusable with the NAD(P) hydride-transfer surface in the source-free
+# feature space; the folate-reduction reaction center separates it at admission.
+_DIHYDROFOLATE_REDUCTASE_FAMILY_TEXT_TOKENS = (
+    "dihydrofolate reductase",
+    "dihydrofolate-reductase",
+    "tetrahydrofolate dehydrogenase",
+)
+_DIHYDROFOLATE_REDUCTASE_REACTION_SUBSTRATE_TOKENS = (
+    "dihydrofolate",
+    "tetrahydrofolate",
+    "7,8-dihydrofolate",
+)
+_DIHYDROFOLATE_REDUCTASE_BOUNDARY_TOKENS = (
+    "synthase",
+    "synthetase",
+    "ligase",
+    "methylenetetrahydrofolate",
+    "folylpolyglutamate",
+    "dihydropteroate",
+    "dihydrofolate synthase",
+)
 # Biotin-dependent carboxylase handles. EC 6.4.1 / 6.3.4 scopes the reviewed
 # candidate supply only; counted corroboration comes from biotin/biotinyl-Lys
 # cofactor or modified-residue evidence plus ATP/hydrogencarbonate/carboxybiotin
@@ -2822,6 +2851,21 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
         and not flavin_disulfide_boundary_signal
         and not non_flavin_disulfide_reductase_scope_side_ec
     )
+    dihydrofolate_reductase_family_text = in_any(
+        keywords + [protein_name] + feature_texts,
+        *_DIHYDROFOLATE_REDUCTASE_FAMILY_TEXT_TOKENS,
+    )
+    dihydrofolate_reductase_reaction = (
+        in_any(reactions, *_DIHYDROFOLATE_REDUCTASE_REACTION_SUBSTRATE_TOKENS)
+        and cosubstrate_nad_p
+    )
+    dihydrofolate_reductase_boundary_signal = in_any(
+        keywords + [protein_name] + feature_texts,
+        *_DIHYDROFOLATE_REDUCTASE_BOUNDARY_TOKENS,
+    )
+    non_dihydrofolate_reductase_scope_side_ec = any(
+        ec and not ec.startswith("1.5.1.3") for ec in _ec_numbers(row)
+    )
     non_6_3_side_ec = any(ec and not ec.startswith("6.3") for ec in _ec_numbers(row))
     non_biotin_carboxylase_scope_side_ec = any(
         ec and not (ec.startswith("6.4.1") or ec.startswith("6.3.4"))
@@ -3156,6 +3200,10 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "flavin_disulfide_boundary_signal": flavin_disulfide_boundary_signal,
             "non_flavin_disulfide_reductase_scope_side_ec": non_flavin_disulfide_reductase_scope_side_ec,
             "flavin_disulfide_reductase_signal": flavin_disulfide_reductase_signal,
+            "dihydrofolate_reductase_family_text": dihydrofolate_reductase_family_text,
+            "dihydrofolate_reductase_reaction": dihydrofolate_reductase_reaction,
+            "dihydrofolate_reductase_boundary_signal": dihydrofolate_reductase_boundary_signal,
+            "non_dihydrofolate_reductase_scope_side_ec": non_dihydrofolate_reductase_scope_side_ec,
             "non_serine_beta_lactamase_scope_side_ec": non_serine_beta_lactamase_scope_side_ec,
             "non_thdp_scope_side_ec": non_thdp_scope_side_ec,
             "schiff_class_i_boundary_signal": schiff_class_i_boundary_signal,
@@ -3387,6 +3435,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("acid_coa_ligase_family_text")
         or evidence.get("cysteine_protease_family_text")
         or evidence.get("flavin_disulfide_reductase_family_text")
+        or evidence.get("dihydrofolate_reductase_family_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -3476,6 +3525,7 @@ _AMINOACYL_TRNA_SYNTHETASE_EC = ("6.1.1",)  # aminoacyl-tRNA synthetase; EC scop
 _ACID_COA_LIGASE_EC = ("6.2.1",)  # acid--CoA ligase / acyl-CoA synthetase; EC scope only (not shared)
 _CYSTEINE_PROTEASE_EC = ("3.4.22",)  # cysteine (thiol) protease; EC scope only (not shared)
 _FLAVIN_DISULFIDE_REDUCTASE_EC = ("1.8.1",)  # FAD NAD(P)H:disulfide oxidoreductase; EC scope only (subset of flavin_dehydrogenase_reductase 1.8.1)
+_DIHYDROFOLATE_REDUCTASE_EC = ("1.5.1.3",)  # NADPH-dependent dihydrofolate reductase; EC scope only (not shared)
 _METAL_INDEPENDENT_PHOSPHODIESTERASE_EC = (
     "3.1.4",
     "4.6.1",
@@ -3658,6 +3708,25 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         )
         and not c["flavin_disulfide_boundary_signal"]
         and not c["non_flavin_disulfide_reductase_scope_side_ec"],
+    ),
+    (
+        # EC 1.5.1.3 is SCOPE only (not shared with any existing fingerprint); the NADPH-dependent
+        # 7,8-dihydrofolate -> tetrahydrofolate reduction reaction (a dihydrofolate/folate substrate
+        # token AND a NAD(P) cosubstrate token) is the required hard mechanism anchor and a
+        # dihydrofolate-reductase family name OR an active/binding-site residue is the second
+        # corroborator. Dihydrofolate synthase / folylpolyglutamate synthetase, methylenetetrahydro-
+        # folate reductase/dehydrogenase, and bifunctional thymidylate-synthase side-EC rows are
+        # boundary-guarded; the folate-reduction reaction separates DHFR from the EC 1.1.1 NAD(P)
+        # hydride-transfer surface at admission.
+        "dihydrofolate_reductase",
+        lambda c, row: _ec_has_prefix(row, _DIHYDROFOLATE_REDUCTASE_EC)
+        and c["dihydrofolate_reductase_reaction"]
+        and (
+            c["dihydrofolate_reductase_family_text"]
+            or c["active_or_binding_site_present"]
+        )
+        and not c["dihydrofolate_reductase_boundary_signal"]
+        and not c["non_dihydrofolate_reductase_scope_side_ec"],
     ),
     (
         "cytochrome_p450_monooxygenase",
@@ -4390,6 +4459,15 @@ def _synthesize_cofactor_provenance(
         records = [
             {
                 "name": "FAD + redox-active cysteine pair NAD(P)H:disulfide reduction cosubstrate context",
+                "cross_reference": {"id": None},
+            }
+        ]
+    elif fingerprint == "dihydrofolate_reductase" and evidence.get(
+        "dihydrofolate_reductase_reaction"
+    ):
+        records = [
+            {
+                "name": "NADPH-dependent 7,8-dihydrofolate -> tetrahydrofolate reduction cosubstrate context",
                 "cross_reference": {"id": None},
             }
         ]

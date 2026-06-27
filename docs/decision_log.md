@@ -3,6 +3,39 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-27: NEW `dihydrofolate_reductase` FINGERPRINT FAMILY (56 -> 57 FP); COMBINED 9927 -> 10001 -- 10,000-LABEL MILESTONE REACHED (user-directed "go ahead")
+
+Decision (user-directed: continue toward 10k after the flavin_disulfide_reductase pass). Eleventh new
+fingerprint family: `dihydrofolate_reductase` -- the NADPH-dependent dihydrofolate reductases (EC
+1.5.1.3; DHFR). NADPH transfers a hydride to C6 of the dihydropterin ring of 7,8-dihydrofolate with
+active-site-carboxylate protonation of N5, giving 5,6,7,8-tetrahydrofolate. **Combined mechanism labels
+crossed 10,000 (10001 = 702 frozen + 9299 expansion).**
+
+Family choice (supply-measured): of several candidates, carbonic anhydrase (59 novel) and enoyl-CoA
+hydratase (~48 monofunctional) were too thin; thymidylate synthase (446), carbamoyl-phosphate synthase
+(454), GTP cyclohydrolase (494) and adenylosuccinate synthase (500) had high supply but their EC
+prefixes collide with existing scopes (sam_methyltransferase 2.1.1, atp_amide_ligase 6.3,
+metallo_amidohydrolase_deaminase 3.5.4). EC 1.5.1.3 is genuinely uncovered, coherent (one mechanism),
+and had 118 novel reviewed entries -- enough to close the 73-row gap with margin.
+
+Disambiguation (mechanism-not-EC): EC 1.5.1.3 is uncovered (not shared). The folate-reduction reaction
+(a dihydrofolate/folate substrate token AND a NAD(P) cosubstrate token) is the required hard anchor;
+the second corroborator is a DHFR family/name OR an active/binding site. Dihydrofolate synthase /
+folylpolyglutamate synthetase (EC 6.3.2), methylenetetrahydrofolate reductase (EC 1.5.1.20) /
+dehydrogenase (EC 1.5.1.5), and the bifunctional thymidylate-synthase half (non-1.5.1.3 side EC) are
+boundary-guarded; cap 150. First lane: 118 fetched, 79 corroborated, **74 novelty-admitted**, 19
+off-target held (bifunctional/methyltransferase-context folate rows -> sam_methyltransferase). Expansion
+9225 -> 9299, combined **10001**; frozen current702 byte-unchanged. Leakage re-registration
+`_56fp -> _57fp`.
+
+Representation loop -- a CLEAN WIN (contrast flavin_disulfide_reductase's documented cost). Although
+DHFR shares the NADPH cosubstrate with the EC 1.1.1 NAD(P) hydride-transfer surface, the FOLATE reaction
+center gives it a distinctive leakage-safe feature, so the 74-row centroid is PERFECTLY self-consistent
+(sc **1.000**) with ZERO bleed; nad_p_dehydrogenase / SDR / AKR are unchanged. Overall LOO **0.733 ->
+0.734** (ticked up; seed-stable across PYTHONHASHSEED 0/7/42). No fold/name leakage. Audits clean (holes
+[], floor deficit 0, novelty admit 8838). Summary:
+`artifacts/v3_dihydrofolate_reductase_new_fingerprint_apply_summary_current702_20260627.json`.
+
 ## 2026-06-27: NEW `flavin_disulfide_reductase` FINGERPRINT FAMILY (55 -> 56 FP); COMBINED 9777 -> 9927 (user-directed "carry on towards 10k")
 
 Decision (user-directed: "carry on towards 10k"). Tenth new fingerprint family, the second

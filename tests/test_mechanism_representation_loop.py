@@ -576,7 +576,14 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
         # lowered). Honest documented cost of a confusable FAD sibling; the disambiguation engine
         # separates them at admission (FAD + NAD(P)H:disulfide reaction vs the rest of EC 1.3/1.6/1.8.1).
         # No fold/name leakage.
-        self.assertEqual(audit["seed_labels"], 8001)
+        # 2026-06-27 (dihydrofolate_reductase, +74): a CLEAN WIN (contrast flavin_disulfide_reductase's
+        # cost). The EC 1.5.1.3 DHFRs reduce 7,8-dihydrofolate to tetrahydrofolate with NADPH; although
+        # they share the NADPH cosubstrate with the EC 1.1.1 NAD(P) hydride-transfer surface, the
+        # FOLATE reaction center gives them a distinctive leakage-safe feature, so the 74-row centroid
+        # is perfectly self-consistent (sc 1.000) with zero bleed and the NAD(P)/SDR/AKR families are
+        # unchanged. Overall LOO 0.731 -> 0.734 (ticked up; seed-stable 0/7/42). The 10,000-label
+        # milestone (combined 10001).
+        self.assertEqual(audit["seed_labels"], 8075)
         g = audit["leakage_guardrails"]
         self.assertFalse(g["frozen_benchmark_read"])
         self.assertFalse(g["ec_name_prose_lane_used"])
@@ -748,6 +755,11 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
             conf["flavin_dehydrogenase_reductase"].get("flavin_disulfide_reductase", 0),
             0,
         )
+        # dihydrofolate_reductase (EC 1.5.1.3 NADPH-dependent folate reduction) is a CLEAN WIN: the
+        # folate-reduction reaction center separates it from the EC 1.1.1 NAD(P) hydride-transfer
+        # surface despite the shared NADPH cosubstrate, so its centroid is perfectly self-consistent
+        # with zero bleed -- no documented cost, no fold/name leakage.
+        self.assertGreaterEqual(sc["dihydrofolate_reductase"], 0.95)
         self.assertGreater(sc["protein_kinase_ser_thr_tyr"], 0.85)
         self.assertGreater(sc["terpene_cyclase_synthase"], 0.85)
         self.assertGreater(sc["biotin_dependent_carboxylase"], 0.85)

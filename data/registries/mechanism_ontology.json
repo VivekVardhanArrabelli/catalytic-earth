@@ -931,6 +931,21 @@
         "EC 1.8.1 is a subset of the flavin_dehydrogenase_reductase EC scope (1.3 / 1.6 / 1.8.1); the disulfide-substrate reduction reaction center carves the disulfide reductases out at admission, and multi-fingerprint-signal rows are held. The shared FAD + NAD(P)H signature makes the family representation-confusable with flavin_dehydrogenase_reductase in the source-free feature space (documented cost).",
         "The bound FAD, the redox-active cysteine pair (CXXXXC), and the substrate-disulfide / charge-transfer geometry are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
+    },
+    {
+      "id": "nadph_dihydrofolate_reduction",
+      "name": "NADPH-dependent dihydrofolate reduction",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "dihydrofolate_reductase"
+      ],
+      "v2_split_note": null,
+      "family_boundary_guardrails": [
+        "Membership is decided by a Rhea/reviewed reaction reducing 7,8-dihydrofolate (or folate) to 5,6,7,8-tetrahydrofolate with NADP(H), plus a dihydrofolate-reductase family/name OR an active/binding site; EC 1.5.1.3 is scope only.",
+        "Do not admit dihydrofolate synthase / folylpolyglutamate synthetase (EC 6.3.2, folate ligation), methylenetetrahydrofolate reductase (EC 1.5.1.20) or dehydrogenase-cyclohydrolase (EC 1.5.1.5), or the thymidylate synthase half of a bifunctional row carrying a non-1.5.1.3 side EC.",
+        "EC 1.5.1.3 is uncovered (not shared with any existing fingerprint). The NADPH hydride-transfer half-reaction is shared mechanistically with the EC 1.1.1 NAD(P) dehydrogenases/reductases; the folate-reduction reaction center separates it at admission, but the source-free representation may still confuse the bare NAD(P) hydride-transfer signal (documented cost).",
+        "The bound NADPH / dihydropterin stacking pose, the N5-protonating carboxylate, and the closed Met20 loop are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
     }
   ],
   "propagation_guardrails": [

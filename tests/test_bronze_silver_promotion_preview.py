@@ -222,9 +222,9 @@ class RealRegistryTests(unittest.TestCase):
             # thiol-peroxidase, four new fingerprint families)
             # through mechanism-first lanes; later passes added PAPS-sulfotransferase,
             # glutathione-S-transferase, aminoacyl-tRNA-synthetase, acid--CoA-ligase,
-            # cysteine-protease and flavin-disulfide-reductase (+150 each, except GST/PAPS);
-            # the 30 promoted rows remain seed labels while moving from bronze to silver.
-            self.assertEqual(audit["seed_labels"], 8001)
+            # cysteine-protease, flavin-disulfide-reductase and dihydrofolate-reductase (+150
+            # each, except GST/PAPS/DHFR); the 30 promoted rows remain seed labels.
+            self.assertEqual(audit["seed_labels"], 8075)
             # HONEST about structure (2026-06-14, after holo_structure_promotion):
             # silver_ready is now > 0 because experimental-PDB holo_pdb_confirmation rows
             # exist (the annotated cofactor was found as a HETATM in a sha-pinned PDB) --
