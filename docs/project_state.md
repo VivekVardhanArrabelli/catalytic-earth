@@ -26,6 +26,31 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **NEW `flavin_disulfide_reductase` FINGERPRINT FAMILY ADDED (55 -> 56 FP); COMBINED 9777 -> 9927 (2026-06-27, user-directed "carry on towards 10k"); LOO 0.733 -> 0.731 (FLOOR 0.62 HELD, NOT lowered).**
+  Tenth new family and the second broad-oxidoreductase EC-subclass split: `flavin_disulfide_reductase`
+  -- the FAD-dependent NAD(P)H:disulfide oxidoreductases (EC 1.8.1; the class-I pyridine
+  nucleotide-disulfide oxidoreductase superfamily: glutathione / thioredoxin / trypanothione reductase,
+  dihydrolipoyl [E3] dehydrogenase, CoA-disulfide / mercuric reductase). FAD relays a hydride from
+  NAD(P)H through a redox-active cysteine pair (CXXXXC) to reductively cleave a substrate disulfide.
+  Supply lesson confirmed (narrow families exhausted: carbonic anhydrase only 59 novel; enoyl-CoA
+  hydratase ~48 monofunctional); EC 1.8.1 has **577 monofunctional reviewed** -- clean high supply.
+  EC 1.8.1 is a SUBSET of the `flavin_dehydrogenase_reductase` scope (1.3/1.6/1.8.1), so the rule is a
+  CARVE-OUT: FAD cofactor + a Rhea NAD(P)H:disulfide reduction reaction is the HARD anchor, a
+  disulfide-reductase family/name OR active/binding site the second corroborator; a single combined
+  `flavin_disulfide_reductase_signal` is the positive of the new rule AND a negative guard on the
+  flavin rule so exactly one fires. Sulfite reductase (EC 1.8.1.2), glutaredoxin/peroxidase, and
+  non-1.8.1 side-EC rows guarded; cap 150. First lane: 389 fetched, 168 corroborated, **150**
+  novelty-admitted (cap hit), **87 off-target held** (sulfite/quinone reductases correctly routed to
+  flavin_dehydrogenase_reductase, confirming the carve-out). Expansion 9075 -> 9225, combined **9927**;
+  frozen current702 byte-unchanged. Leakage closure `_55fp -> _56fp`. Representation loop (HONEST
+  documented cost): flavin_disulfide_reductase is coherent (sc **0.88**) but the obligate FAD + NAD(P)H
+  signature is shared with flavin_dehydrogenase_reductase in the leakage-safe space, so the dense
+  150-row centroid collapses `flavin_dehydrogenase_reductase` to **~0.33** (~111 rows resolve to the
+  disulfide-reductase centroid); overall LOO 0.733 -> **0.731** (> 0.62 floor, NOT lowered;
+  seed-stable 0/7/42). NOT a leakage regression -- admission separates them (FAD + NAD(P)H:disulfide
+  reaction). Audits clean (holes [], floor deficit 0, novelty admit 8764). Gap to 10k: **73**. Summary:
+  `artifacts/v3_flavin_disulfide_reductase_new_fingerprint_apply_summary_current702_20260627.json`.
+
 - **CATALYTIC-RESIDUE-IDENTITY SIDECAR (read-only) recovers ser_his 0.0 -> 0.67; registry byte-unchanged; LOO 0.733 -> 0.743 (2026-06-27, user-directed "go for sidecar").**
   The two genuinely featureless families (`cysteine_protease`, `ser_his_acid_hydrolase`) carry NO Rhea
   reaction, so the reaction representation could not separate them -- identical empty vectors. The

@@ -45,7 +45,10 @@ _ROWS = {
         "Binding site",
         "molybdopterin guanine dinucleotide binding",
     ),
-    # Off-target row should be held by the molybdopterin wrapper, not imported through this lane.
+    # Off-target row (a glutathione reductase: FAD + glutathione-disulfide reduction) should be held
+    # by the molybdopterin wrapper, not imported through this lane. Since 2026-06-27 it routes to the
+    # dedicated flavin_disulfide_reductase fingerprint (FAD + NAD(P)H:disulfide reduction) rather than
+    # the generic flavin_dehydrogenase_reductase -- a more specific off-target classification.
     "FD0001": (
         ["1.8.1.7"],
         ["Flavoprotein"],
@@ -173,7 +176,7 @@ class MolybdopterinOxidoreductaseSourcingTest(unittest.TestCase):
         self.assertEqual(audit["counts"]["off_target_fingerprint_matches_held"], 1)
         self.assertEqual(
             audit["counts"]["off_target_fingerprint_counts"],
-            {"flavin_dehydrogenase_reductase": 1},
+            {"flavin_disulfide_reductase": 1},
         )
 
     def test_admitted_labels_are_bronze_and_leakage_safe(self):
@@ -239,7 +242,7 @@ class MolybdopterinOxidoreductaseSourcingTest(unittest.TestCase):
         self.assertEqual(audit["counts"]["disambiguation_hold_count"], 1)
         self.assertEqual(
             audit["counts"]["off_target_fingerprint_counts"],
-            {"flavin_dehydrogenase_reductase": 1},
+            {"flavin_disulfide_reductase": 1},
         )
         lane = audit["lane_summaries"][0]
         self.assertEqual(lane["record_offset_per_lane"], 0)

@@ -916,6 +916,21 @@
         "Peptide-bond hydrolysis with a cofactor-free nucleophile is reaction-confusable in the source-free representation with the Ser/Cys hydrolase triad (ser_his_acid_hydrolase); multi-fingerprint-signal rows are held and the catalytic-Cys vs catalytic-Ser annotation plus EC 3.4.22 vs 3.4.21 separate them at admission (documented cost).",
         "The catalytic Cys-His dyad geometry, the oxyanion hole, and the S1 specificity pocket are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
+    },
+    {
+      "id": "flavin_dependent_disulfide_reduction",
+      "name": "FAD-dependent NAD(P)H disulfide reduction",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "flavin_disulfide_reductase"
+      ],
+      "v2_split_note": null,
+      "family_boundary_guardrails": [
+        "Membership is decided by an annotated FAD cofactor plus a Rhea/reviewed reaction reducing a disulfide/dithiol substrate (glutathione disulfide, thioredoxin, lipoamide, trypanothione, CoA-disulfide) with NAD(P)H, plus a disulfide-reductase / pyridine-nucleotide-disulfide-oxidoreductase family/name OR an active/binding site; EC 1.8.1 is scope only.",
+        "Do not admit sulfite reductase (EC 1.8.1.2, siroheme, no disulfide substrate), non-flavin thiol-redox enzymes (glutaredoxin, glutathione peroxidase, thioredoxin itself), or non-1.8.1 side-EC bifunctional rows.",
+        "EC 1.8.1 is a subset of the flavin_dehydrogenase_reductase EC scope (1.3 / 1.6 / 1.8.1); the disulfide-substrate reduction reaction center carves the disulfide reductases out at admission, and multi-fingerprint-signal rows are held. The shared FAD + NAD(P)H signature makes the family representation-confusable with flavin_dehydrogenase_reductase in the source-free feature space (documented cost).",
+        "The bound FAD, the redox-active cysteine pair (CXXXXC), and the substrate-disulfide / charge-transfer geometry are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
     }
   ],
   "propagation_guardrails": [

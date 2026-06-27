@@ -1583,6 +1583,55 @@ _CYSTEINE_PROTEASE_BOUNDARY_TOKENS = (
     "kinase",
     "carboxylase",
 )
+# Flavin-dependent disulfide reductase (class-I pyridine nucleotide-disulfide oxidoreductase) handles.
+# EC 1.8.1 is a SUBSET of the existing flavin_dehydrogenase_reductase EC scope (1.3 / 1.6 / 1.8.1); the
+# required hard mechanism anchor is an annotated FAD cofactor PLUS a Rhea/reviewed reaction that reduces
+# a disulfide/dithiol substrate (glutathione disulfide, thioredoxin-S2, lipoamide, trypanothione,
+# CoA-disulfide) with NAD(P)H -- a disulfide-substrate token AND a NAD(P) cosubstrate token. The second
+# corroborator is a disulfide-reductase / pyridine-nucleotide-disulfide family/name OR an annotated
+# active/binding site. Sulfite reductase (EC 1.8.1.2, siroheme, no disulfide substrate), non-flavin
+# thiol-redox enzymes (glutaredoxin / glutathione peroxidase / thioredoxin), and non-1.8.1 side-EC
+# bifunctional rows are boundary-guarded. NOTE: the FAD + NAD(P)H signature is shared with
+# flavin_dehydrogenase_reductase, so the disulfide-substrate reaction center carves the disulfide
+# reductases out at admission (the `flavin_disulfide_reductase_signal` excludes them from the flavin
+# rule) and the family stays representation-confusable with it in the source-free feature space.
+_FLAVIN_DISULFIDE_REDUCTASE_FAMILY_TEXT_TOKENS = (
+    "disulfide reductase",
+    "disulphide reductase",
+    "disulfide oxidoreductase",
+    "disulphide oxidoreductase",
+    "glutathione reductase",
+    "glutathione-disulfide reductase",
+    "thioredoxin reductase",
+    "thioredoxin-disulfide reductase",
+    "trypanothione reductase",
+    "trypanothione-disulfide reductase",
+    "dihydrolipoyl dehydrogenase",
+    "dihydrolipoamide dehydrogenase",
+    "lipoamide dehydrogenase",
+    "pyridine nucleotide-disulfide",
+    "pyridine nucleotide-disulphide",
+    "mycothione reductase",
+    "mercuric reductase",
+)
+_FLAVIN_DISULFIDE_REDUCTASE_REACTION_SUBSTRATE_TOKENS = (
+    "disulfide",
+    "disulphide",
+    "dithiol",
+    "lipoamide",
+    "lipoyl",
+    "dihydrolipo",
+    "trypanothione",
+)
+_FLAVIN_DISULFIDE_REDUCTASE_BOUNDARY_TOKENS = (
+    "sulfite reductase",
+    "sulphite reductase",
+    "nitrite reductase",
+    "glutaredoxin",
+    "glutathione peroxidase",
+    "peroxiredoxin",
+    "ferredoxin",
+)
 # Biotin-dependent carboxylase handles. EC 6.4.1 / 6.3.4 scopes the reviewed
 # candidate supply only; counted corroboration comes from biotin/biotinyl-Lys
 # cofactor or modified-residue evidence plus ATP/hydrogencarbonate/carboxybiotin
@@ -2747,6 +2796,32 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     non_cysteine_protease_scope_side_ec = any(
         ec and not ec.startswith("3.4.22") for ec in _ec_numbers(row)
     )
+    flavin_disulfide_reductase_family_text = in_any(
+        keywords + [protein_name] + feature_texts,
+        *_FLAVIN_DISULFIDE_REDUCTASE_FAMILY_TEXT_TOKENS,
+    )
+    flavin_disulfide_reaction = (
+        in_any(reactions, *_FLAVIN_DISULFIDE_REDUCTASE_REACTION_SUBSTRATE_TOKENS)
+        and cosubstrate_nad_p
+    )
+    flavin_disulfide_boundary_signal = in_any(
+        keywords + [protein_name] + feature_texts + reactions,
+        *_FLAVIN_DISULFIDE_REDUCTASE_BOUNDARY_TOKENS,
+    )
+    non_flavin_disulfide_reductase_scope_side_ec = any(
+        ec and not ec.startswith("1.8.1") for ec in _ec_numbers(row)
+    )
+    # The combined positive condition that routes a row to flavin_disulfide_reductase. Reused as a
+    # NEGATIVE guard on the flavin_dehydrogenase_reductase rule (whose 1.8.1 scope overlaps) so that a
+    # genuine FAD + NAD(P)H disulfide reductase fires EXACTLY ONE rule (carve-out at admission).
+    flavin_disulfide_reductase_signal = (
+        bool(evidence.get("flavin"))
+        and not bool(evidence.get("heme"))
+        and flavin_disulfide_reaction
+        and (flavin_disulfide_reductase_family_text or active_or_binding_site_present)
+        and not flavin_disulfide_boundary_signal
+        and not non_flavin_disulfide_reductase_scope_side_ec
+    )
     non_6_3_side_ec = any(ec and not ec.startswith("6.3") for ec in _ec_numbers(row))
     non_biotin_carboxylase_scope_side_ec = any(
         ec and not (ec.startswith("6.4.1") or ec.startswith("6.3.4"))
@@ -3076,6 +3151,11 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "cysteine_protease_catalytic_cys_context": cysteine_protease_catalytic_cys_context,
             "cysteine_protease_boundary_signal": cysteine_protease_boundary_signal,
             "non_cysteine_protease_scope_side_ec": non_cysteine_protease_scope_side_ec,
+            "flavin_disulfide_reductase_family_text": flavin_disulfide_reductase_family_text,
+            "flavin_disulfide_reaction": flavin_disulfide_reaction,
+            "flavin_disulfide_boundary_signal": flavin_disulfide_boundary_signal,
+            "non_flavin_disulfide_reductase_scope_side_ec": non_flavin_disulfide_reductase_scope_side_ec,
+            "flavin_disulfide_reductase_signal": flavin_disulfide_reductase_signal,
             "non_serine_beta_lactamase_scope_side_ec": non_serine_beta_lactamase_scope_side_ec,
             "non_thdp_scope_side_ec": non_thdp_scope_side_ec,
             "schiff_class_i_boundary_signal": schiff_class_i_boundary_signal,
@@ -3306,6 +3386,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("aminoacyl_trna_synthetase_family_text")
         or evidence.get("acid_coa_ligase_family_text")
         or evidence.get("cysteine_protease_family_text")
+        or evidence.get("flavin_disulfide_reductase_family_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -3394,6 +3475,7 @@ _GLUTATHIONE_S_TRANSFERASE_EC = ("2.5.1.18",)  # glutathione S-transferase; EC s
 _AMINOACYL_TRNA_SYNTHETASE_EC = ("6.1.1",)  # aminoacyl-tRNA synthetase; EC scope only (not shared)
 _ACID_COA_LIGASE_EC = ("6.2.1",)  # acid--CoA ligase / acyl-CoA synthetase; EC scope only (not shared)
 _CYSTEINE_PROTEASE_EC = ("3.4.22",)  # cysteine (thiol) protease; EC scope only (not shared)
+_FLAVIN_DISULFIDE_REDUCTASE_EC = ("1.8.1",)  # FAD NAD(P)H:disulfide oxidoreductase; EC scope only (subset of flavin_dehydrogenase_reductase 1.8.1)
 _METAL_INDEPENDENT_PHOSPHODIESTERASE_EC = (
     "3.1.4",
     "4.6.1",
@@ -3548,10 +3630,34 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         and _ec_has_prefix(row, ("1.14.13", "1.14.14")),
     ),
     (
+        # FAD + NAD(P)H on EC 1.3 / 1.6 / 1.8.1, EXCEPT the EC 1.8.1 disulfide reductases, which the
+        # `flavin_disulfide_reductase_signal` carves out so that exactly one rule fires on them.
         "flavin_dehydrogenase_reductase",
         lambda c, row: c["flavin"]
         and not c["heme"]
-        and _ec_has_prefix(row, ("1.3.", "1.6.", "1.8.1")),
+        and _ec_has_prefix(row, ("1.3.", "1.6.", "1.8.1"))
+        and not c["flavin_disulfide_reductase_signal"],
+    ),
+    (
+        # EC 1.8.1 is a SUBSET of the flavin_dehydrogenase_reductase scope; the FAD cofactor plus an
+        # NAD(P)H:disulfide reduction reaction (a disulfide/dithiol substrate token AND an NAD(P)
+        # cosubstrate token) is the required hard mechanism anchor, and a disulfide-reductase /
+        # pyridine-nucleotide-disulfide family/name OR an active/binding-site residue is the second
+        # corroborator. Sulfite reductase (siroheme, no disulfide), non-flavin thiol-redox enzymes, and
+        # non-1.8.1 side-EC bifunctional rows are guarded. The disulfide-substrate reaction center is
+        # the carve-out vs flavin_dehydrogenase_reductase; the shared FAD + NAD(P)H makes the two
+        # representation-confusable in the source-free feature space (documented cost).
+        "flavin_disulfide_reductase",
+        lambda c, row: _ec_has_prefix(row, _FLAVIN_DISULFIDE_REDUCTASE_EC)
+        and c["flavin"]
+        and not c["heme"]
+        and c["flavin_disulfide_reaction"]
+        and (
+            c["flavin_disulfide_reductase_family_text"]
+            or c["active_or_binding_site_present"]
+        )
+        and not c["flavin_disulfide_boundary_signal"]
+        and not c["non_flavin_disulfide_reductase_scope_side_ec"],
     ),
     (
         "cytochrome_p450_monooxygenase",
@@ -4275,6 +4381,15 @@ def _synthesize_cofactor_provenance(
         records = [
             {
                 "name": "Cys-His thiol-protease catalytic dyad (catalytic cysteine nucleophile) context",
+                "cross_reference": {"id": None},
+            }
+        ]
+    elif fingerprint == "flavin_disulfide_reductase" and evidence.get(
+        "flavin_disulfide_reaction"
+    ):
+        records = [
+            {
+                "name": "FAD + redox-active cysteine pair NAD(P)H:disulfide reduction cosubstrate context",
                 "cross_reference": {"id": None},
             }
         ]

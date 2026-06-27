@@ -564,7 +564,19 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
         # floor). cysteine_protease (0.94) and ser_his (0.0) are UNCHANGED -- they have no Rhea
         # reaction at all, so a reaction representation cannot separate that genuinely featureless
         # pair (the honest residual limit). No fold/name leakage.
-        self.assertEqual(audit["seed_labels"], 7851)
+        # 2026-06-27 (flavin_disulfide_reductase, +150): the EC 1.8.1 class-I pyridine
+        # nucleotide-disulfide oxidoreductases (glutathione / thioredoxin / lipoamide / trypanothione
+        # reductases) are obligate FAD + NAD(P)H flavoproteins, so in the leakage-safe feature space
+        # (cofactor classes + Rhea bond-change, EC/name/prose/lane EXCLUDED) they share their cofactor
+        # signature with flavin_dehydrogenase_reductase -- the disulfide SUBSTRATE that separates them
+        # at admission is fold/substrate evidence the representation must not synthesize. The dense
+        # 150-row flavin_disulfide_reductase centroid is itself coherent (sc ~0.88) and absorbs the
+        # flavin_dehydrogenase_reductase rows, collapsing its self-consistency (~111/177 resolve to the
+        # disulfide-reductase centroid). Overall LOO ticks 0.733 -> ~0.731 (still > 0.62 floor; NOT
+        # lowered). Honest documented cost of a confusable FAD sibling; the disambiguation engine
+        # separates them at admission (FAD + NAD(P)H:disulfide reaction vs the rest of EC 1.3/1.6/1.8.1).
+        # No fold/name leakage.
+        self.assertEqual(audit["seed_labels"], 8001)
         g = audit["leakage_guardrails"]
         self.assertFalse(g["frozen_benchmark_read"])
         self.assertFalse(g["ec_name_prose_lane_used"])
@@ -722,6 +734,20 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
             0,
         )
         self.assertGreaterEqual(sc["aminoglycoside_acetyltransferase"], 0.95)
+        # Adding flavin_disulfide_reductase (EC 1.8.1 FAD NAD(P)H:disulfide oxidoreductases) gives
+        # flavin_dehydrogenase_reductase a confusable sibling: BOTH are FAD + NAD(P)H flavoproteins
+        # and differ only by the disulfide SUBSTRATE / fold, which the source-free representation must
+        # not synthesize from EC/name/prose/lane metadata. The dense 150-row disulfide-reductase
+        # centroid is itself coherent, and most flavin_dehydrogenase_reductase rows resolve to it, so
+        # flavin_dehydrogenase_reductase self-consistency COLLAPSES while the new family forms a tight
+        # cluster. Honest cost of a confusable FAD sibling -- do NOT add fold/name leakage; the
+        # disambiguation engine separates them at admission (FAD + NAD(P)H:disulfide reaction).
+        self.assertGreater(sc["flavin_disulfide_reductase"], 0.8)
+        self.assertLess(sc["flavin_dehydrogenase_reductase"], 0.5)
+        self.assertGreater(
+            conf["flavin_dehydrogenase_reductase"].get("flavin_disulfide_reductase", 0),
+            0,
+        )
         self.assertGreater(sc["protein_kinase_ser_thr_tyr"], 0.85)
         self.assertGreater(sc["terpene_cyclase_synthase"], 0.85)
         self.assertGreater(sc["biotin_dependent_carboxylase"], 0.85)

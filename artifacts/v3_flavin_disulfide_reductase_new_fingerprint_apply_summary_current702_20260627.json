@@ -1,0 +1,50 @@
+{
+  "artifact_id": "v3_flavin_disulfide_reductase_new_fingerprint_apply_summary_current702_20260627",
+  "authorization": "explicit_user_instruction_carry_on_towards_10k",
+  "counts": {
+    "combined_after": 9927,
+    "combined_before": 9777,
+    "flavin_disulfide_reductase_family_after": "150/150",
+    "expansion_after": 9225,
+    "expansion_before": 9075,
+    "fetched_candidate_rows": 389,
+    "frozen_current702_rows": 702,
+    "mechanism_corroborated": 168,
+    "novelty_admitted": 150,
+    "novelty_throttled_or_rejected": 18,
+    "off_target_held": 87,
+    "off_target_note": "EC 1.8.1 FAD flavoproteins that are NOT disulfide reductases (sulfite reductase EC 1.8.1.2; NAD(P)H:quinone reductases) correctly route off-target to flavin_dehydrogenase_reductase via the carve-out signal"
+  },
+  "created_utc": "2026-06-27T12:00:00Z",
+  "fingerprint": {
+    "chemistry": "FAD-mediated NAD(P)H-dependent reductive cleavage of a substrate disulfide to thiols; class-I pyridine nucleotide-disulfide oxidoreductase fold with a redox-active cysteine pair (CXXXXC); glutathione / thioredoxin / trypanothione / lipoamide (E3) / CoA-disulfide / mercuric reductases",
+    "disambiguation": "EC 1.8.1 (a SUBSET of the flavin_dehydrogenase_reductase scope 1.3/1.6/1.8.1) + annotated FAD cofactor + a Rhea NAD(P)H:disulfide reduction reaction (disulfide/dithiol substrate token AND a NAD(P) cosubstrate token) as the REQUIRED hard mechanism anchor + a disulfide-reductase / pyridine-nucleotide-disulfide family/name OR an active/binding site as the second corroborator; the disulfide-substrate reaction center carves the disulfide reductases out of the flavin rule (flavin_disulfide_reductase_signal) so exactly one rule fires; sulfite reductase (EC 1.8.1.2, siroheme), non-flavin thiol-redox enzymes (glutaredoxin/glutathione peroxidase), and non-1.8.1 side-EC bifunctional rows boundary-guarded; cap 150 (representation-confusable with flavin_dehydrogenase_reductase via the shared FAD + NAD(P)H signature)",
+    "id": "flavin_disulfide_reductase",
+    "name": "Flavin-dependent disulfide reductase (NAD(P)H:disulfide oxidoreductase)",
+    "ontology_family": "flavin_dependent_disulfide_reduction (parent mechanism)"
+  },
+  "frozen_benchmark": {
+    "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+    "unchanged": true,
+    "written": false
+  },
+  "gap_to_10k": 73,
+  "lane_factory_spec_wired": "flavin_disulfide_reductase",
+  "leakage_closure": {
+    "new_preregistration": "artifacts/v3_external_hard_negative_next_tranche_preregistration_56fp_1025.json",
+    "positive_universe_version": "label_factory_v1_55fp -> label_factory_v1_56fp",
+    "supersedes": "artifacts/v3_external_hard_negative_next_tranche_preregistration_55fp_1025.json"
+  },
+  "post_apply_audits": {
+    "coverage_redundancy": "artifacts/v3_coverage_redundancy_audit_current702_20260627_flavin_disulfide_reductase.json",
+    "floor_deficit": 0,
+    "holes": [],
+    "novelty_admission_gate": "artifacts/v3_novelty_admission_gate_audit_current702_20260627_flavin_disulfide_reductase.json",
+    "novelty_replay": {"admit": 8764, "reject": 47, "throttle": 414},
+    "over_cap": ["metal_dependent_hydrolase"]
+  },
+  "purpose": "Add the flavin_disulfide_reductase mechanism-fingerprint family (56th) and source its first reviewed-Swiss-Prot bronze tranche, growing combined 9777 -> 9927 (+150) toward 10k; frozen current702 byte-unchanged.",
+  "representation_loop_note": "flavin_disulfide_reductase is itself coherent (sc ~0.88): the dense 150-row FAD + NAD(P)H:disulfide-reduction centroid forms a tight cluster. HONEST COST: the class-I pyridine nucleotide-disulfide oxidoreductases are obligate FAD + NAD(P)H flavoproteins, so in the leakage-safe feature space (cofactor classes + Rhea bond-change, EC/name/prose/lane EXCLUDED) they share their cofactor signature with flavin_dehydrogenase_reductase -- the disulfide SUBSTRATE that separates them is fold/substrate evidence the representation must not synthesize. The dense disulfide-reductase centroid absorbs the flavin_dehydrogenase_reductase rows (~111 resolve to it), collapsing flavin_dehydrogenase_reductase self-consistency to ~0.33. Overall LOO 0.733 -> 0.731 (still > 0.62 floor, NOT lowered; seed-stable across PYTHONHASHSEED 0/7/42). NOT a leakage regression: the disambiguation engine separates them at admission (FAD + NAD(P)H:disulfide reaction vs the rest of EC 1.3/1.6/1.8.1). No fold/name leakage.",
+  "schema_version": "catalytic_earth.apply_summary.v1",
+  "status": "user_directed_new_flavin_disulfide_reductase_fingerprint_family_added_and_sourced"
+}

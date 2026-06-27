@@ -205,9 +205,9 @@ class SelfAuditRealRegistryTests(unittest.TestCase):
         # + 32 aminoglycoside acetyltransferase + 4 metallo-beta-lactamase
         # + 150 peroxiredoxin/thiol-peroxidase + 130 PAPS-sulfotransferase + 141
         # glutathione-S-transferase + 150 aminoacyl-tRNA-synthetase + 150 acid--CoA-ligase
-        # + 150 cysteine-protease (nine new fingerprint families) = 1049 broadened-handle
-        # bronze rows.
-        self.assertEqual(audit["expansion_rows"], 9075)
+        # + 150 cysteine-protease + 150 flavin-disulfide-reductase (ten new fingerprint
+        # families) = 1199 broadened-handle bronze rows.
+        self.assertEqual(audit["expansion_rows"], 9225)
         # some redundancy exists and is bounded
         self.assertGreater(audit["would_not_readmit"], 0)
         self.assertLess(audit["would_not_readmit_fraction"], 1.0)

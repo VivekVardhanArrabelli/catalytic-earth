@@ -701,6 +701,47 @@ class DisambiguateRowTests(unittest.TestCase):
         d = disambiguate_row(row)
         self.assertNotEqual(d.get("fingerprint_id"), "acid_coa_ligase")
 
+    def test_flavin_disulfide_reductase_routes_on_fad_and_disulfide_reaction(self) -> None:
+        # FAD cofactor + a Rhea NAD(P)H:disulfide reduction reaction + a disulfide-reductase name
+        # routes the EC 1.8.1 glutathione/thioredoxin/lipoamide reductases to the new family rather
+        # than flavin_dehydrogenase_reductase (whose 1.8.1 scope it shares).
+        row = _row(cofactors=["FAD"], ec=["1.8.1.7"])
+        row["protein_name"] = "Glutathione reductase"
+        row["keywords"] = ["Oxidoreductase", "FAD", "NADP"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:GR0001",
+                "reaction": "2 glutathione + NADP(+) = glutathione disulfide + NADPH + H(+)",
+                "ec_number": "1.8.1.7",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d.get("fingerprint_id"), "flavin_disulfide_reductase")
+
+    def test_sulfite_reductase_not_pulled_into_flavin_disulfide_reductase(self) -> None:
+        # An EC 1.8.1.2 FAD flavoprotein sulfite reductase reduces sulfite (no disulfide substrate)
+        # and is name-boundary-guarded: it must NOT route to flavin_disulfide_reductase. It stays a
+        # flavoprotein in scope 1.8.1, so it routes to flavin_dehydrogenase_reductase.
+        row = _row(cofactors=["FAD"], ec=["1.8.1.2"])
+        row["protein_name"] = "Sulfite reductase [NADPH] flavoprotein alpha-component"
+        row["keywords"] = ["Oxidoreductase", "FAD"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:SIR001",
+                "reaction": "hydrogen sulfide + 3 NADP(+) + 3 H2O = sulfite + 3 NADPH + 3 H(+)",
+                "ec_number": "1.8.1.2",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertNotEqual(d.get("fingerprint_id"), "flavin_disulfide_reductase")
+
+    def test_flavin_18_1_without_disulfide_reaction_stays_flavin_dehydrogenase(self) -> None:
+        # An EC 1.8.1 FAD flavoprotein with no disulfide-reduction reaction (the carve-out signal is
+        # False) keeps routing to flavin_dehydrogenase_reductase -- exactly one rule fires.
+        row = _row(cofactors=["FAD"], ec=["1.8.1.7"])
+        d = disambiguate_row(row)
+        self.assertEqual(d.get("fingerprint_id"), "flavin_dehydrogenase_reductase")
+
     def test_cysteine_protease_routes_on_active_site_and_family(self) -> None:
         row = _row(ec=["3.4.22.15"])
         row["protein_name"] = "Cathepsin L1"

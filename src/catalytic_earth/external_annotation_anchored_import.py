@@ -115,6 +115,7 @@ DEPLOY_MISSING_CONTEXT_FOR_FINGERPRINT: dict[str, str] = {
     "aminoacyl_trna_synthetase": "atp_aminoacyl_adenylate_trna_acceptor_aminoacylation_context",
     "acid_coa_ligase": "anl_atp_acyl_adenylate_coa_thioester_ligation_context",
     "cysteine_protease": "cys_his_thiol_protease_peptide_bond_hydrolysis_context",
+    "flavin_disulfide_reductase": "fad_redox_active_disulfide_nadph_disulfide_reduction_context",
     "alpha_beta_hydrolase_esterase_lipase": "ser_his_acid_ester_hydrolysis_context",
     "n_ribosyl_hydrolase": "n_glycosidic_bond_hydrolysis_context",
     "metal_independent_phosphodiesterase": "metal_independent_phosphodiester_hydrolysis_context",

@@ -4316,5 +4316,88 @@
       "reconstruction_path": "Path A sequence->cysteine-peptidase family plus catalytic-Cys active-site channel, or canonical Cys-His dyad + oxyanion-hole graft in the peptidase fold (Path B)",
       "silver_reachability": "moderate; reviewed cysteine-peptidase family and catalytic-Cys active-site annotations are abundant, but the dyad and substrate-cleft geometry need explicit reconstruction"
     }
+  },
+  {
+    "id": "flavin_disulfide_reductase",
+    "name": "Flavin-dependent disulfide reductase (NAD(P)H:disulfide oxidoreductase)",
+    "enzyme_space": [
+      "glutathione-disulfide reductase, thioredoxin-disulfide reductase, trypanothione-disulfide reductase",
+      "dihydrolipoyl (lipoamide) dehydrogenase, CoA-disulfide reductase, mercuric reductase",
+      "other EC 1.8.1 class-I pyridine nucleotide-disulfide oxidoreductases"
+    ],
+    "active_site_signature": [
+      {
+        "role": "fad_redox_prosthetic_group",
+        "residue": "non-covalently bound FAD at the Rossmann NAD(P)-binding fold relaying electrons from NAD(P)H to the redox-active disulfide",
+        "constraints": [
+          "obligate FAD flavoprotein; the isoalloxazine accepts a hydride from NAD(P)H and reduces the active-site disulfide",
+          "presence of FAD plus an NAD(P)H:disulfide reduction reaction defines the family"
+        ]
+      },
+      {
+        "role": "redox_active_cys_pair",
+        "residue": "active-site redox-active cysteine pair (CXXXXC dithiol/disulfide) that shuttles electrons from reduced FAD to the substrate disulfide",
+        "constraints": [
+          "the enzyme dithiol forms a transient charge-transfer complex with FAD and reduces the substrate disulfide to two thiols"
+        ]
+      },
+      {
+        "role": "substrate_disulfide_site",
+        "residue": "substrate-binding site positioning the disulfide (glutathione disulfide, thioredoxin-S2, lipoamide, trypanothione disulfide, CoA-disulfide)",
+        "constraints": [
+          "the bound substrate disulfide is reductively cleaved to two thiols (or a dithiol)"
+        ]
+      }
+    ],
+    "cofactors": [
+      "FAD (bound prosthetic flavin)",
+      "NAD(P)H (dissociable reducing cosubstrate of the pyridine-nucleotide half-reaction, not a bound prosthetic cofactor)"
+    ],
+    "reaction_center": {
+      "bond_changes": [
+        "hydride transfer from NAD(P)H to FAD (pyridine-nucleotide half-reaction)",
+        "reductive cleavage of a substrate disulfide to two thiols via the FAD / redox-active cysteine pair (disulfide half-reaction)"
+      ],
+      "chemical_operation": "FAD-mediated NAD(P)H-dependent reduction of a substrate disulfide to thiols"
+    },
+    "substrate_constraints": [
+      "EC 1.8.1 scope present but never counted as a corroborator",
+      "FAD cofactor annotated",
+      "Rhea or reviewed catalytic activity text reducing a disulfide/dithiol substrate (glutathione disulfide, thioredoxin, lipoamide, trypanothione, CoA-disulfide) with NAD(P)H present",
+      "disulfide-reductase / pyridine-nucleotide-disulfide-oxidoreductase family or name context OR an annotated active/binding site present",
+      "no sulfite-reductase, glutathione-peroxidase/glutaredoxin, or non-1.8.1 side-EC context, no EC-only or multi-fingerprint signal"
+    ],
+    "evidence_features": [
+      "FAD cofactor annotation",
+      "reviewed catalytic activity text reducing a disulfide/dithiol substrate with NAD(P)H",
+      "disulfide-reductase / pyridine-nucleotide-disulfide-oxidoreductase family, name, or keyword text",
+      "annotated redox-active cysteine-pair / NAD(P)-binding active-site context where available",
+      "EC 1.8.1 scope only, never counted as a corroborator"
+    ],
+    "counterevidence_features": [
+      "sulfite reductase (EC 1.8.1.2, siroheme, no disulfide substrate) context",
+      "glutathione peroxidase / glutaredoxin / thioredoxin (non-flavin thiol redox) context",
+      "EC-only evidence with no FAD and no disulfide-reduction reaction corroboration",
+      "non-1.8.1 side-EC (bifunctional) context",
+      "multi-fingerprint signal where another rule (e.g. flavin_dehydrogenase_reductase) independently fires"
+    ],
+    "uncertainty_axes": [
+      "glutathione versus thioredoxin versus lipoamide versus trypanothione versus CoA-disulfide substrate",
+      "NADPH- versus NADH-specific pyridine-nucleotide half-reaction",
+      "oxidized FAD/disulfide versus reduced FADH-/dithiol charge-transfer state",
+      "homodimeric two-domain (FAD + NAD(P) + interface) architecture"
+    ],
+    "seed_examples": [
+      "Glutathione reductase (GSR / Gor)",
+      "Thioredoxin reductase (TrxB / TXNRD)",
+      "Dihydrolipoyl dehydrogenase (E3 / LPD)",
+      "Trypanothione reductase (TryR)"
+    ],
+    "deploy_missing_active_site_context": {
+      "type": "fad_redox_active_disulfide_nadph_disulfide_reduction_context",
+      "detail": "the bound FAD, the redox-active cysteine pair (CXXXXC), the NAD(P)H stacking pose, and the bound substrate disulfide / charge-transfer geometry are absent or incomplete in apo predicted structures",
+      "reconstruction_path": "Path A sequence->disulfide-reductase family plus FAD + NAD(P)H:disulfide reaction/active-site channel, or canonical FAD + redox-active-disulfide graft in the pyridine-nucleotide-disulfide-oxidoreductase fold (Path B)",
+      "silver_reachability": "moderate; reviewed disulfide-reductase family and FAD + NAD(P)H:disulfide reaction annotations are abundant, but the bound FAD / redox-active-cysteine-pair / substrate-disulfide geometry needs explicit reconstruction"
+    }
   }
 ]
