@@ -701,6 +701,40 @@ class DisambiguateRowTests(unittest.TestCase):
         d = disambiguate_row(row)
         self.assertNotEqual(d.get("fingerprint_id"), "acid_coa_ligase")
 
+    def test_cysteine_protease_routes_on_active_site_and_family(self) -> None:
+        row = _row(ec=["3.4.22.15"])
+        row["protein_name"] = "Cathepsin L1"
+        row["keywords"] = ["Hydrolase", "Protease", "Thiol protease"]
+        row["residue_locators"] = [
+            {"feature_code": "ACT_SITE", "description": "Nucleophile", "ligand_name": None}
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d.get("fingerprint_id"), "cysteine_protease")
+
+    def test_serine_protease_not_pulled_into_cysteine_protease(self) -> None:
+        # A serine protease (EC 3.4.21) uses a Ser-His-Asp triad and is off-scope for the cysteine
+        # protease EC 3.4.22; it must not route to cysteine_protease.
+        row = _row(ec=["3.4.21.4"])
+        row["protein_name"] = "Trypsin-1"
+        row["keywords"] = ["Hydrolase", "Serine protease"]
+        row["residue_locators"] = [
+            {"feature_code": "ACT_SITE", "description": "Charge relay system", "ligand_name": None}
+        ]
+        d = disambiguate_row(row)
+        self.assertNotEqual(d.get("fingerprint_id"), "cysteine_protease")
+
+    def test_cysteine_protease_inhibitor_is_held(self) -> None:
+        # A cystatin-type protease inhibitor carrying the EC scope and an active-site annotation is
+        # boundary-guarded (it is not a catalytic cysteine protease).
+        row = _row(ec=["3.4.22.15"])
+        row["protein_name"] = "Cysteine protease inhibitor cystatin-B"
+        row["keywords"] = ["Protease inhibitor"]
+        row["residue_locators"] = [
+            {"feature_code": "ACT_SITE", "description": "Nucleophile", "ligand_name": None}
+        ]
+        d = disambiguate_row(row)
+        self.assertNotEqual(d.get("fingerprint_id"), "cysteine_protease")
+
     def test_glycoside_hydrolase_requires_hydrolysis_and_active_site_handle(self) -> None:
         row = _row(ec=["3.2.1.4"])
         row["protein_name"] = "Endoglucanase"

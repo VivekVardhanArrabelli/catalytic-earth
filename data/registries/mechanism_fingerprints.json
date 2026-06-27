@@ -4236,5 +4236,85 @@
       "reconstruction_path": "Path A sequence->ANL/acyl-CoA-synthetase family plus ATP+CoA thioester reaction/active-site channel, or canonical ATP/acyl-adenylate/CoA graft in an ANL fold (Path B)",
       "silver_reachability": "moderate; reviewed acyl-CoA-synthetase family and ATP+CoA reaction annotations are abundant, but the bound acyl-adenylate / CoA-thioester geometry needs explicit reconstruction"
     }
+  },
+  {
+    "id": "cysteine_protease",
+    "name": "Cysteine protease (Cys-His thiol peptidase)",
+    "enzyme_space": [
+      "papain-family / clan CA cysteine endopeptidases (cathepsins B/L/K/S, papain, bromelain)",
+      "caspases and legumain / clan CD cysteine peptidases",
+      "calpains, ubiquitin/SUMO-specific cysteine proteases (deubiquitinases), and other EC 3.4.22 thiol peptidases"
+    ],
+    "active_site_signature": [
+      {
+        "role": "catalytic_cysteine_nucleophile",
+        "residue": "catalytic Cys thiol/thiolate that attacks the scissile peptide carbonyl",
+        "constraints": [
+          "the deprotonated Cys thiolate performs nucleophilic attack to form a covalent thioacyl-enzyme intermediate, which is then hydrolysed",
+          "presence of a cysteine/thiol-peptidase family and an annotated catalytic Cys active site defines the family"
+        ]
+      },
+      {
+        "role": "general_base_histidine",
+        "residue": "His general base forming a Cys-His (thiolate-imidazolium) catalytic dyad/ion pair",
+        "constraints": [
+          "the His abstracts the Cys thiol proton to generate the reactive thiolate and protonates the leaving amine"
+        ]
+      },
+      {
+        "role": "oxyanion_hole_and_orienting_residue",
+        "residue": "oxyanion hole plus an Asn/Asp (or Gln) that orients the catalytic His",
+        "constraints": [
+          "stabilises the tetrahedral oxyanion intermediate and positions the His imidazole"
+        ]
+      }
+    ],
+    "cofactors": [
+      "none (cofactor-independent thiol catalysis; some subfamilies e.g. calpains require Ca2+ for activation, not for the bond-breaking step)"
+    ],
+    "reaction_center": {
+      "bond_changes": [
+        "nucleophilic acyl substitution at the peptide carbonyl by the Cys thiolate to form a thioacyl-enzyme intermediate",
+        "hydrolysis of the thioacyl-enzyme to cleave the peptide (amide) bond and regenerate the free thiol"
+      ],
+      "chemical_operation": "cysteine (thiol) nucleophile-catalysed peptide-bond hydrolysis via a thioacyl-enzyme intermediate"
+    },
+    "substrate_constraints": [
+      "EC 3.4.22 scope present but never counted as a corroborator",
+      "cysteine/thiol-peptidase or protease family or name context present",
+      "annotated catalytic Cys (active-site nucleophile) or catalytic-residue context present",
+      "no serine-protease (EC 3.4.21), aspartic-protease (EC 3.4.23), metallopeptidase (catalytic metal), or protease-inhibitor context, no EC-only or multi-fingerprint signal"
+    ],
+    "evidence_features": [
+      "cysteine/thiol-peptidase or protease family, name, or keyword text",
+      "annotated catalytic cysteine active-site / nucleophile residue (and His general base where available)",
+      "EC 3.4.22 scope only, never counted as a corroborator"
+    ],
+    "counterevidence_features": [
+      "serine-protease (EC 3.4.21) Ser-His-Asp triad context",
+      "aspartic-protease (EC 3.4.23) two-Asp context",
+      "metallopeptidase catalytic-metal context (EC 3.4.24 / 3.4.17 / 3.4.11)",
+      "protease-inhibitor (e.g. cystatin) context with no catalytic activity",
+      "EC-only evidence with no cysteine-peptidase family and no catalytic-Cys active site",
+      "multi-fingerprint signal where another rule independently fires"
+    ],
+    "uncertainty_axes": [
+      "clan CA (papain-like) versus clan CD (caspase/legumain) versus other thiol-peptidase architectures",
+      "endopeptidase versus exopeptidase versus deubiquitinase/isopeptidase specificity",
+      "zymogen/pro-domain versus mature active form",
+      "apo versus inhibitor-bound (e.g. E-64) versus substrate-bound state"
+    ],
+    "seed_examples": [
+      "Cathepsin B / Cathepsin L (papain family)",
+      "Caspase-3",
+      "Calpain-1 catalytic subunit",
+      "Ubiquitin carboxyl-terminal hydrolase / deubiquitinase"
+    ],
+    "deploy_missing_active_site_context": {
+      "type": "cys_his_thiol_protease_peptide_bond_hydrolysis_context",
+      "detail": "the catalytic Cys-His dyad geometry (thiolate-imidazolium ion pair), the oxyanion hole, and the substrate-binding cleft / S1 specificity pocket are absent or incomplete in apo predicted structures, and the covalent thioacyl-enzyme intermediate is not captured",
+      "reconstruction_path": "Path A sequence->cysteine-peptidase family plus catalytic-Cys active-site channel, or canonical Cys-His dyad + oxyanion-hole graft in the peptidase fold (Path B)",
+      "silver_reachability": "moderate; reviewed cysteine-peptidase family and catalytic-Cys active-site annotations are abundant, but the dyad and substrate-cleft geometry need explicit reconstruction"
+    }
   }
 ]

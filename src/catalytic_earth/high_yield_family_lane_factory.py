@@ -539,6 +539,43 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         ),
     ),
     _spec(
+        family_id="cysteine_protease",
+        display_name="Cysteine protease (Cys-His thiol peptidase)",
+        scope_query="(reviewed:true) AND (ec:3.4.22.*)",
+        corroborator_query=(
+            "(reviewed:true) AND (ec:3.4.22.*) AND "
+            "((ft_act_site:*) OR (keyword:\"Thiol protease\"))"
+        ),
+        required_non_ec_corroborators=(
+            "annotated catalytic active site (catalytic Cys nucleophile / Cys-His dyad)",
+            "cysteine/thiol-peptidase or protease family/name handle",
+            "catalytic-Cys / nucleophile active-site context where available",
+        ),
+        disambiguation_holds=(
+            "serine protease (EC 3.4.21 Ser-His-Asp triad) rows",
+            "aspartic protease (EC 3.4.23 two-Asp) rows",
+            "metallopeptidase (catalytic metal, EC 3.4.24/17/11) rows",
+            "protease-inhibitor (cystatin) rows with no catalytic activity",
+            "EC-only rows without a catalytic-Cys active site",
+        ),
+        cap_ceiling=DEFAULT_CONFUSABLE_CAP,
+        chemistry_confusable=True,
+        novelty_keep_factor=0.45,
+        ambiguity_with_existing=("ser_his_acid_hydrolase",),
+        existing_fingerprint_id="cysteine_protease",
+        current_runner="scripts/source_cysteine_protease_family.py",
+        oos_preregistration_required=False,
+        source_wall_rule_status="implemented_new_fingerprint_runner",
+        rationale_template=(
+            "Large uncovered EC 3.4.22 cysteine (thiol) protease class (papain / caspase / legumain / "
+            "calpain / deubiquitinase clans); the dedicated cysteine_protease fingerprint and its "
+            "active-site-anchored disambiguation rule are implemented (2026-06-27). "
+            "Reaction-confusable with ser_his_acid_hydrolase via cofactor-free peptide-bond "
+            "hydrolysis, separated at admission by EC 3.4.22 vs 3.4.21 + the catalytic Cys vs Ser "
+            "active site (cap 150)."
+        ),
+    ),
+    _spec(
         family_id="aldo_keto_reductase",
         display_name="Aldo-keto reductase",
         scope_query="(reviewed:true) AND (ec:1.1.1.*)",

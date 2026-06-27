@@ -16,6 +16,20 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-27 user-directed "merge and scale further" — new fingerprint family: `cysteine_protease`
+added (54 -> 55 FP), combined 9627 -> 9777.** Cys-His thiol-peptidase peptide-bond hydrolysis (EC
+3.4.22; papain/caspase/legumain/calpain/deubiquitinase clans). EC 3.4.22 uncovered (metallopeptidase
+covers 3.4.24/17/11; ser_his_acid_hydrolase the serine 3.4.21 class). Active-site-anchored
+disambiguation (peptide hydrolysis has no Rhea, so the catalytic-Cys active site is the hard anchor +
+cysteine/protease family or catalytic-Cys context; serine/aspartic/metallo proteases + cystatin
+inhibitors guarded), ontology `cysteine_thiol_peptide_bond_hydrolysis`, sourcing lane, leakage
+re-registration (`_54fp -> _55fp`), lane-factory wiring. First lane applied **150** (cap 150 hit; 280
+fetched, 219 corroborated, 4 off-target). cysteine_protease is coherent (sc 0.94) but its cofactor-free
+Cys chemistry is indistinguishable from peroxiredoxin's peroxidatic Cys in the leakage-safe space, so it
+collapses `peroxiredoxin_thiol_peroxidase` 0.833 -> 0.0; overall LOO 0.704 -> **0.699** (> 0.62 floor,
+NOT lowered; documented confusable-family cost, no fold/name leakage). Gap to 10k: **223**. See
+`artifacts/v3_cysteine_protease_new_fingerprint_apply_summary_current702_20260627.json`.
+
 **2026-06-26 user-directed "take it forward / continue to 10k" — new fingerprint family:
 `acid_coa_ligase` added (53 -> 54 FP), combined 9477 -> 9627.** ATP-dependent acid--CoA thioester
 ligation via an acyl-adenylate (EC 6.2.1; the ANL superfamily acyl-/aryl-/fatty-acid--CoA synthetases).

@@ -307,10 +307,15 @@ EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_52FP_ARTIFACT = (
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_53FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_53fp_1025.json"
 )
-# The re-frozen tranche pre-registration for the current 54-fingerprint universe lives here; it is
-# the one a NEW OOS hard-negative import must reference.
+# The 54fp re-freeze is now historical after the cysteine_protease positive fingerprint was added
+# (54 -> 55).
 EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_54FP_ARTIFACT = (
     "artifacts/v3_external_hard_negative_next_tranche_preregistration_54fp_1025.json"
+)
+# The re-frozen tranche pre-registration for the current 55-fingerprint universe lives here; it is
+# the one a NEW OOS hard-negative import must reference.
+EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_55FP_ARTIFACT = (
+    "artifacts/v3_external_hard_negative_next_tranche_preregistration_55fp_1025.json"
 )
 REPRESENTATION_LEAKAGE_PRONE_PREDICTIVE_TERMS = (
     "accession",

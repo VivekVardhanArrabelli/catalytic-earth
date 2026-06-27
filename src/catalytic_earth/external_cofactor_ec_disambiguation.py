@@ -1533,6 +1533,56 @@ _ACID_COA_LIGASE_BOUNDARY_TOKENS = (
     "mutase",
     "carrier protein",
 )
+# Cysteine (thiol) protease handles. EC 3.4.22 scopes the candidate supply only (NOT shared with any
+# existing fingerprint; the metallopeptidase rule covers 3.4.24/17/11 and ser_his_acid_hydrolase the
+# serine 3.4.21 esterases/proteases). Peptide-bond hydrolysis carries no specific Rhea, so the
+# required hard mechanism anchor is the annotated catalytic active site (the catalytic Cys
+# nucleophile / Cys-His dyad), and a cysteine/thiol-peptidase or protease family/name is the second
+# corroborator. Serine proteases (Ser-His-Asp, EC 3.4.21), aspartic proteases (EC 3.4.23),
+# metallopeptidases (catalytic metal), and protease inhibitors (cystatins) are boundary-guarded.
+# Reaction-confusable in the source-free space with ser_his_acid_hydrolase (cofactor-free peptide
+# hydrolysis), so capped at 150; EC 3.4.22 vs 3.4.21 + the Cys vs Ser active site separate them.
+_CYSTEINE_PROTEASE_FAMILY_TEXT_TOKENS = (
+    "cysteine protease",
+    "cysteine-type",
+    "thiol protease",
+    "thiol-protease",
+    "peptidase c",
+    "papain",
+    "caspase",
+    "cathepsin",
+    "calpain",
+    "legumain",
+    "bleomycin hydrolase",
+    "gingipain",
+    "separase",
+    "ubiquitin",
+    "deubiquitin",
+    "sentrin",
+    "sumo",
+    "autophagin",
+    "sortase",
+    "adenain",
+)
+_CYSTEINE_PROTEASE_CATALYTIC_CYS_TOKENS = (
+    "nucleophile",
+    "cysteine",
+    "thiol",
+    "charge relay",
+    "acyl-thioester",
+)
+_CYSTEINE_PROTEASE_BOUNDARY_TOKENS = (
+    "metallo",
+    "aspartic",
+    "serine protease",
+    "serine-type",
+    "inhibitor",
+    "cystatin",
+    "synthase",
+    "transferase",
+    "kinase",
+    "carboxylase",
+)
 # Biotin-dependent carboxylase handles. EC 6.4.1 / 6.3.4 scopes the reviewed
 # candidate supply only; counted corroboration comes from biotin/biotinyl-Lys
 # cofactor or modified-residue evidence plus ATP/hydrogencarbonate/carboxybiotin
@@ -2683,6 +2733,20 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
     non_acid_coa_ligase_scope_side_ec = any(
         ec and not ec.startswith("6.2.1") for ec in _ec_numbers(row)
     )
+    cysteine_protease_family_text = in_any(
+        keywords + [protein_name] + feature_texts,
+        *_CYSTEINE_PROTEASE_FAMILY_TEXT_TOKENS,
+    )
+    cysteine_protease_catalytic_cys_context = in_any(
+        feature_texts, *_CYSTEINE_PROTEASE_CATALYTIC_CYS_TOKENS
+    )
+    cysteine_protease_boundary_signal = in_any(
+        keywords + [protein_name] + feature_texts,
+        *_CYSTEINE_PROTEASE_BOUNDARY_TOKENS,
+    )
+    non_cysteine_protease_scope_side_ec = any(
+        ec and not ec.startswith("3.4.22") for ec in _ec_numbers(row)
+    )
     non_6_3_side_ec = any(ec and not ec.startswith("6.3") for ec in _ec_numbers(row))
     non_biotin_carboxylase_scope_side_ec = any(
         ec and not (ec.startswith("6.4.1") or ec.startswith("6.3.4"))
@@ -3008,6 +3072,10 @@ def mechanism_corroborator_axes(row: dict[str, Any]) -> dict[str, bool]:
             "acid_coa_ligase_reaction": acid_coa_ligase_reaction,
             "acid_coa_ligase_boundary_signal": acid_coa_ligase_boundary_signal,
             "non_acid_coa_ligase_scope_side_ec": non_acid_coa_ligase_scope_side_ec,
+            "cysteine_protease_family_text": cysteine_protease_family_text,
+            "cysteine_protease_catalytic_cys_context": cysteine_protease_catalytic_cys_context,
+            "cysteine_protease_boundary_signal": cysteine_protease_boundary_signal,
+            "non_cysteine_protease_scope_side_ec": non_cysteine_protease_scope_side_ec,
             "non_serine_beta_lactamase_scope_side_ec": non_serine_beta_lactamase_scope_side_ec,
             "non_thdp_scope_side_ec": non_thdp_scope_side_ec,
             "schiff_class_i_boundary_signal": schiff_class_i_boundary_signal,
@@ -3237,6 +3305,7 @@ def corroborator_axes_present(evidence: dict[str, bool], row: dict[str, Any]) ->
         or evidence.get("glutathione_s_transferase_family_text")
         or evidence.get("aminoacyl_trna_synthetase_family_text")
         or evidence.get("acid_coa_ligase_family_text")
+        or evidence.get("cysteine_protease_family_text")
     ):
         axes.add("domain_or_family_profile")
     if _ec_numbers(row):
@@ -3324,6 +3393,7 @@ _PAPS_SULFOTRANSFERASE_EC = ("2.8.2",)  # PAPS-dependent sulfotransferase; EC sc
 _GLUTATHIONE_S_TRANSFERASE_EC = ("2.5.1.18",)  # glutathione S-transferase; EC scope only (not shared)
 _AMINOACYL_TRNA_SYNTHETASE_EC = ("6.1.1",)  # aminoacyl-tRNA synthetase; EC scope only (not shared)
 _ACID_COA_LIGASE_EC = ("6.2.1",)  # acid--CoA ligase / acyl-CoA synthetase; EC scope only (not shared)
+_CYSTEINE_PROTEASE_EC = ("3.4.22",)  # cysteine (thiol) protease; EC scope only (not shared)
 _METAL_INDEPENDENT_PHOSPHODIESTERASE_EC = (
     "3.1.4",
     "4.6.1",
@@ -3420,6 +3490,23 @@ DISAMBIGUATION_RULES: tuple[tuple[str, Callable[[dict[str, bool], dict[str, Any]
         )
         and not c["acid_coa_ligase_boundary_signal"]
         and not c["non_acid_coa_ligase_scope_side_ec"],
+    ),
+    (
+        # EC 3.4.22 is SCOPE only (not shared). Peptide-bond hydrolysis carries no specific Rhea, so
+        # the annotated catalytic active site (the catalytic Cys nucleophile / Cys-His dyad) is the
+        # required HARD mechanism anchor and a cysteine/thiol-peptidase family name OR a catalytic-Cys
+        # active-site context is the second corroborator -- the name alone never suffices. EC 3.4.22
+        # (vs serine 3.4.21 / aspartic 3.4.23 / metallo 3.4.24-17-11) separates the protease classes
+        # at admission; it never decides a label. Inhibitors (cystatins) carry no EC and are guarded.
+        "cysteine_protease",
+        lambda c, row: _ec_has_prefix(row, _CYSTEINE_PROTEASE_EC)
+        and c["active_or_binding_site_present"]
+        and (
+            c["cysteine_protease_family_text"]
+            or c["cysteine_protease_catalytic_cys_context"]
+        )
+        and not c["cysteine_protease_boundary_signal"]
+        and not c["non_cysteine_protease_scope_side_ec"],
     ),
     (
         "metallopeptidase",
@@ -4178,6 +4265,16 @@ def _synthesize_cofactor_provenance(
         records = [
             {
                 "name": "ATP-dependent acid--CoA ligase (acyl-adenylate -> acyl-CoA thioester) cosubstrate context",
+                "cross_reference": {"id": None},
+            }
+        ]
+    elif fingerprint == "cysteine_protease" and (
+        evidence.get("active_or_binding_site_present")
+        or evidence.get("cysteine_protease_catalytic_cys_context")
+    ):
+        records = [
+            {
+                "name": "Cys-His thiol-protease catalytic dyad (catalytic cysteine nucleophile) context",
                 "cross_reference": {"id": None},
             }
         ]

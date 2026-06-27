@@ -26,6 +26,28 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **NEW `cysteine_protease` FINGERPRINT FAMILY ADDED (54 -> 55 FP); COMBINED 9627 -> 9777 (2026-06-27, user-directed "merge and scale further"); LOO 0.704 -> 0.699 (FLOOR 0.62 HELD, NOT lowered).**
+  Ninth new family: `cysteine_protease` -- the Cys-His thiol-peptidase mechanism (EC 3.4.22; papain/
+  clan CA, caspase/legumain/clan CD, calpains, ubiquitin/SUMO-specific deubiquitinases). A catalytic
+  Cys thiolate attacks the scissile peptide carbonyl to form a thioacyl-enzyme intermediate that is
+  then hydrolysed; cofactor-free. EC 3.4.22 is uncovered (metallopeptidase covers EC 3.4.24/17/11 and
+  ser_his_acid_hydrolase the serine 3.4.21 class). Peptide-bond hydrolysis carries no specific Rhea,
+  so routing anchors on the annotated catalytic **active site** (the catalytic Cys nucleophile) as the
+  required HARD mechanism axis, with a cysteine/thiol-peptidase or protease family name OR catalytic-Cys
+  context as the second corroborator; serine/aspartic/metallo proteases and protease inhibitors
+  (cystatins) boundary-guarded; cap 150. Ontology family `cysteine_thiol_peptide_bond_hydrolysis`.
+  First lane applied **150** (cap hit; 280 fetched, 219 corroborated, 4 off-target to glycosyl/sam-MT
+  bifunctional rows, 0 dup). Expansion 8925 -> 9075, combined **9777**; frozen current702 byte-unchanged.
+  Leakage closure `_54fp -> _55fp`. Representation loop (HONEST documented cost): cysteine_protease is
+  highly coherent (sc **0.94**) but the leakage-safe feature space cannot distinguish cofactor-free Cys
+  PEPTIDE hydrolysis from cofactor-free Cys PEROXIDE reduction, so the 150-row centroid collapses
+  `peroxiredoxin_thiol_peroxidase` 0.833 -> 0.0 (92 rows resolve to cysteine_protease) and keeps
+  `ser_his_acid_hydrolase` at 0.0 (alpha_beta 0.68); overall LOO 0.704 -> 0.699 (> 0.62 floor, NOT
+  lowered). NOT a leakage regression -- admission separates them (EC 3.4.22 + catalytic Cys vs EC 1.11.1
+  + peroxide reaction); no fold/name leakage. Audits clean (holes none, floor deficit 0). Summary:
+  `artifacts/v3_cysteine_protease_new_fingerprint_apply_summary_current702_20260627.json`. Gap to 10k:
+  **223**.
+
 - **NEW `acid_coa_ligase` FINGERPRINT FAMILY ADDED (53 -> 54 FP); COMBINED 9477 -> 9627 (2026-06-26, user-directed "take it forward / continue to 10k"); LOO 0.699 -> 0.704 (FLOOR 0.62 HELD, NOT lowered).**
   Eighth new family, completing the `acid_coa_ligase` scaffold the prior session backed out as an
   incomplete WIP (commit `fbc8c9e9`), rebuilt on the hardened mechanism-not-EC base. `acid_coa_ligase`

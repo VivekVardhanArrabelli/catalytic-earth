@@ -1,0 +1,50 @@
+{
+  "artifact_id": "v3_cysteine_protease_new_fingerprint_apply_summary_current702_20260627",
+  "authorization": "explicit_user_instruction_scale_further_continue_to_10k",
+  "counts": {
+    "combined_after": 9777,
+    "combined_before": 9627,
+    "cysteine_protease_family_after": "150/150",
+    "expansion_after": 9075,
+    "expansion_before": 8925,
+    "fetched_candidate_rows": 280,
+    "frozen_current702_rows": 702,
+    "mechanism_corroborated": 219,
+    "novelty_admitted": 150,
+    "novelty_throttled_or_rejected": 69,
+    "off_target_held": 4,
+    "off_target_fingerprint_counts": {"glycosyltransferase": 1, "sam_methyltransferase": 3}
+  },
+  "created_utc": "2026-06-27T00:00:00Z",
+  "fingerprint": {
+    "chemistry": "cysteine (thiol) nucleophile-catalysed peptide-bond hydrolysis via a thioacyl-enzyme intermediate; catalytic Cys-His dyad / ion pair; papain (clan CA), caspase/legumain (clan CD), calpain, and ubiquitin/SUMO-specific (deubiquitinase) thiol peptidases",
+    "disambiguation": "EC 3.4.22 (not shared; metallopeptidase covers 3.4.24/17/11 and ser_his_acid_hydrolase the serine 3.4.21 class) + annotated catalytic active site (catalytic Cys nucleophile) as the REQUIRED hard mechanism anchor + cysteine/thiol-peptidase or protease family name OR catalytic-Cys context as the second corroborator; serine/aspartic/metallo proteases and protease inhibitors (cystatins) boundary-guarded; side-EC held; cap 150 (reaction-confusable with ser_his_acid_hydrolase via cofactor-free peptide hydrolysis)",
+    "id": "cysteine_protease",
+    "name": "Cysteine protease (Cys-His thiol peptidase)",
+    "ontology_family": "cysteine_thiol_peptide_bond_hydrolysis (parent mechanism)"
+  },
+  "frozen_benchmark": {
+    "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+    "unchanged": true,
+    "written": false
+  },
+  "gap_to_10k": 223,
+  "lane_factory_spec_wired": "cysteine_protease",
+  "leakage_closure": {
+    "new_preregistration": "artifacts/v3_external_hard_negative_next_tranche_preregistration_55fp_1025.json",
+    "positive_universe_version": "label_factory_v1_54fp -> label_factory_v1_55fp",
+    "supersedes": "artifacts/v3_external_hard_negative_next_tranche_preregistration_54fp_1025.json"
+  },
+  "post_apply_audits": {
+    "coverage_redundancy": "artifacts/v3_coverage_redundancy_audit_current702_20260627_cysteine_protease_fingerprint.json",
+    "floor_deficit": 0,
+    "holes": [],
+    "novelty_admission_gate": "artifacts/v3_novelty_admission_gate_audit_current702_20260627_cysteine_protease_fingerprint.json",
+    "novelty_replay": {"admit": 8614, "reject": 47, "throttle": 414},
+    "over_cap": ["metal_dependent_hydrolase"]
+  },
+  "purpose": "Add the cysteine_protease mechanism-fingerprint family (55th) and source its first reviewed-Swiss-Prot bronze tranche, growing combined 9627 -> 9777 (+150) toward 10k; frozen current702 byte-unchanged.",
+  "representation_loop_note": "cysteine_protease is highly self-consistent (sc 0.94): the catalytic-Cys + cofactor-free-peptidase signature forms a dense, dominant cluster. HONEST COST: the leakage-safe feature space (cofactor classes + Rhea bond-change, EC/name/prose/lane EXCLUDED) cannot distinguish cofactor-free Cys PEPTIDE hydrolysis (protease) from cofactor-free Cys PEROXIDE reduction (peroxiredoxin) -- many cysteine-protease rows carry no Rhea bond-change -- so the 150-row cysteine_protease centroid collapses peroxiredoxin_thiol_peroxidase 0.833 -> 0.0 (92 rows resolve to cysteine_protease) and keeps ser_his_acid_hydrolase at 0.0 (alpha_beta_hydrolase 0.68). Overall LOO 0.704 -> 0.699 (still > 0.62 floor, NOT lowered). NOT a leakage regression: the disambiguation engine separates them at admission (EC 3.4.22 + catalytic Cys vs EC 1.11.1 + peroxide reaction). No fold/name leakage.",
+  "schema_version": "catalytic_earth.apply_summary.v1",
+  "status": "user_directed_new_cysteine_protease_fingerprint_family_added_and_sourced"
+}

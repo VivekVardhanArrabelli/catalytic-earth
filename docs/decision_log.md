@@ -3,6 +3,46 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-27: NEW `cysteine_protease` FINGERPRINT FAMILY ADDED (54 -> 55 FP) — COMBINED 9777; LOO 0.704 -> 0.699 (FLOOR 0.62 HELD); PEROXIREDOXIN COLLAPSE DOCUMENTED
+
+Decision (user-directed: "merge and scale further"; merged the acid_coa_ligase work to main first, then
+added the ninth new family). `cysteine_protease` (Cys-His thiol-peptidase peptide-bond hydrolysis, EC
+3.4.22): a catalytic Cys thiolate attacks the scissile peptide carbonyl to form a thioacyl-enzyme
+intermediate that is then hydrolysed (papain/clan CA, caspase/legumain/clan CD, calpains, ubiquitin/
+SUMO-specific deubiquitinases). EC 3.4.22 is uncovered (metallopeptidase covers 3.4.24/17/11; the serine
+3.4.21 class is ser_his_acid_hydrolase).
+
+Routing (active-site-anchored, mechanism-not-EC): peptide-bond hydrolysis carries no specific Rhea, so
+the required HARD mechanism anchor is the annotated catalytic **active site** (the catalytic Cys
+nucleophile / Cys-His dyad), and a cysteine/thiol-peptidase or protease family name OR a catalytic-Cys
+active-site context is the second corroborator -- the protein name is never sufficient. EC 3.4.22 (vs
+serine 3.4.21 / aspartic 3.4.23 / metallo 3.4.24-17-11) bounds the lane and prevents cross-class
+collisions but never decides a label. Serine/aspartic/metallo proteases and protease inhibitors
+(cystatins, which carry no EC) are boundary-guarded; side-EC held; cap 150. Ontology family
+`cysteine_thiol_peptide_bond_hydrolysis` (parent `mechanism`). Leakage closure `_54fp -> _55fp`.
+
+First lane fetched 280, corroborated 219, applied **150** (cap hit, 0 dup; 4 off-target to
+glycosyltransferase/sam_methyltransferase bifunctional rows held by the side-EC guard). Expansion
+8925 -> 9075, combined **9627 -> 9777**. Frozen current702 byte-unchanged. Audits clean (holes none,
+floor deficit 0, novelty admit 8614). Gap to 10k: **223**.
+
+**Representation loop -- HONEST DOCUMENTED COST (contrast acid_coa_ligase's zero cost).** cysteine_protease
+is itself highly self-consistent (sc **0.94**), but the leakage-safe feature space (cofactor classes +
+Rhea bond-change, EC/name/prose/lane EXCLUDED) cannot distinguish cofactor-free Cys PEPTIDE hydrolysis
+(protease) from cofactor-free Cys PEROXIDE reduction (peroxiredoxin) -- many cysteine-protease rows
+carry no Rhea bond-change at all -- so the dense 150-row cysteine_protease centroid collapses
+`peroxiredoxin_thiol_peroxidase` 0.833 -> 0.0 (92 of its rows resolve to cysteine_protease) and keeps
+`ser_his_acid_hydrolase` at 0.0 (alpha_beta_hydrolase 0.68). Overall LOO 0.704 -> 0.699, still above the
+0.62 floor (NOT lowered). This is the same documented confusable-cofactor-free-family cost the project
+already accepts (peroxiredoxin->ser_his, AAC->coa_acyltransferase, aaRS->atp_amide): a leakage-safe
+DIAGNOSTIC degradation, NOT a leakage or admission regression -- the disambiguation engine still
+separates every family at admission (EC 3.4.22 + catalytic Cys vs EC 1.11.1 + peroxide reaction), and no
+fold/name leakage was added. The growing cofactor-free-Cys/Ser confusable cluster (cysteine_protease,
+peroxiredoxin, ser_his, alpha_beta) is honest evidence of the feature-overlap wall the program has
+flagged: the source-free reaction-center representation is too coarse to separate cofactor-free thiol/
+Ser chemistries by reaction class alone. Summary:
+`artifacts/v3_cysteine_protease_new_fingerprint_apply_summary_current702_20260627.json`.
+
 ## 2026-06-26: NEW `acid_coa_ligase` FINGERPRINT FAMILY ADDED (53 -> 54 FP) — COMBINED 9627; ZERO REPRESENTATION COST
 
 Decision (user-directed: "do the most important thing ... take it forward, keep working" — the

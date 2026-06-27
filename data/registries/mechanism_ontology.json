@@ -900,6 +900,22 @@
         "The ATP-adenylation step is mechanistically shared with EC 6.3 ATP-dependent amide ligases (atp_amide_ligase) and the CoA thioester with coa_acyltransferase, so multi-fingerprint-signal rows are held; the source-free representation cannot separate them by reaction chemistry alone (documented cost).",
         "The bound ATP/Mg2+, the acyl-adenylate intermediate, and the CoA-thioester pose are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
       ]
+    },
+    {
+      "id": "cysteine_thiol_peptide_bond_hydrolysis",
+      "name": "Cysteine (thiol) nucleophile peptide-bond hydrolysis",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "cysteine_protease"
+      ],
+      "v2_split_note": null,
+      "family_boundary_guardrails": [
+        "Membership is decided by a cysteine/thiol-peptidase or protease family/name plus an annotated catalytic Cys (active-site nucleophile) or catalytic-residue context; EC 3.4.22 is scope only.",
+        "Do not admit serine proteases (EC 3.4.21 Ser-His-Asp triad), aspartic proteases (EC 3.4.23 two-Asp), or metallopeptidases (catalytic metal, EC 3.4.24 / 3.4.17 / 3.4.11) into this family.",
+        "Do not admit protease inhibitors (e.g. cystatins) or non-catalytic pro-domains: they carry no EC and no catalytic-Cys active site.",
+        "Peptide-bond hydrolysis with a cofactor-free nucleophile is reaction-confusable in the source-free representation with the Ser/Cys hydrolase triad (ser_his_acid_hydrolase); multi-fingerprint-signal rows are held and the catalytic-Cys vs catalytic-Ser annotation plus EC 3.4.22 vs 3.4.21 separate them at admission (documented cost).",
+        "The catalytic Cys-His dyad geometry, the oxyanion hole, and the S1 specificity pocket are deploy-missing and must remain review-only admission evidence until source-free geometry or grafted context supports silver promotion."
+      ]
     }
   ],
   "propagation_guardrails": [
