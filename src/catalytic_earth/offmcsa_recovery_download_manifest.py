@@ -49,7 +49,7 @@ SELECTION = {
     "exclude_mcsa_accessions": True,
     "exclude_already_structured_locally": True,
 }
-AFDB_URL_TEMPLATE = "https://alphafold.ebi.ac.uk/files/AF-{accession}-F1-model_v4.cif"
+AFDB_URL_TEMPLATE = "https://alphafold.ebi.ac.uk/files/AF-{accession}-F1-model_v6.cif"
 # Rough AFDB CIF size for a size estimate (actual confirmed at fetch time).
 ESTIMATED_MB_PER_CIF = 0.6
 DISK_FLOOR_GIB = 10

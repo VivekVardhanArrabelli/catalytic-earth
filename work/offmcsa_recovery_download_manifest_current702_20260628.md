@@ -1,6 +1,6 @@
 # Off-M-CSA Recovery Download Manifest (sign-off)
 
-Run: 2026-06-28T17:53:25Z
+Run: 2026-06-28T18:55:56Z
 Status: `download_manifest_ready_awaiting_authorization`
 
 ## Plan

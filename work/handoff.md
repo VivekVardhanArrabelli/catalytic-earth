@@ -1,5 +1,37 @@
 # Handoff
 
+## Session run - off-M-CSA in-scope RECOVERY confirmed: fold-NN recovers 132/156 (84.6%) of non-M-CSA bronze positives across all 4 families; no registry apply (2026-06-28)
+
+- Continued on branch `claude/continue-last-commit-ytktge` from commit `6666474f`. User authorized the
+  bounded download. No registry/label/threshold/model mutation; no heldout read.
+- Executed the signed-off plan: downloaded **156/162** AlphaFold CIFs (6 are AFDB 404). Correction:
+  AFDB URL is **v6** not v4 (v4 -> 404); fixed `AFDB_URL_TEMPLATE` + the unit test to v6 and regenerated
+  the manifest (accession-list sha unchanged `1887478a...`). Staged CIFs (~70 MB) git-ignored; result
+  TSV (872K, 12874 rows) committed.
+- foldseek easy-search the 156 positives vs the M-CSA train atlas (same flags as the calibration
+  recompute), built the positive map
+  (`artifacts/v3_offmcsa_recovery_bronze_positive_map_current702_20260628.json`), and ran the recovery
+  harness -> `artifacts/v3_fold_nn_mechanism_recovery_offmcsa_bronze_current702_20260628.json` /
+  `work/fold_nn_mechanism_recovery_offmcsa_bronze_current702_20260628.md`.
+- Result: recovery **132/156 (0.846)**, full coverage; per family flavin 83/96 (0.86),
+  metal_dependent_hydrolase 26/34 (0.76), heme_peroxidase_oxidase 17/20 (0.85), plp 6/6 (1.00) — robust,
+  not a flavin composition artifact. On par with the 28/35 (0.80) M-CSA baseline. Curve: fold-NN >= 0.74
+  -> 93/95 (0.98) precision at 0.60 recovery.
+- Significance: with the earlier abstention result, the fold channel now generalizes off M-CSA on BOTH
+  halves (recovers off-distribution positives AND rejects off-distribution negatives). Strongest
+  evidence the structural-retrieval lever is real, not an M-CSA artifact.
+- Caveats: bronze labels are automation-curated (non-circular for fold since admission used
+  sequence/cofactor, not structure, but not gold truth); scoped to the 4 cofactor atlas families; 6 AFDB
+  404s.
+- Tooling fix applied: download manifest module + test now use AFDB v6.
+- Validation: focused unittest (manifest + recovery + full test_cli) 251 OK; compileall OK; registry
+  `validate` OK (57 FP intact); docs reference check missing 0; `git diff --check` clean; disk 25 GiB
+  free.
+- Next exact action: optionally broaden the M-CSA atlas beyond the 5 cofactor families for a wider
+  off-M-CSA recovery sweep; or write the consolidated deployment-readiness summary (fold channel: both
+  halves generalize off M-CSA) and decide whether the held-out one-shot is still worth spending (still
+  M-CSA-only). Do not grow fingerprint families.
+
 ## Session run - off-M-CSA recovery download manifest built (162 trusted bronze positives, ~97 MB); sign-off plan, NO fetch; no registry apply (2026-06-28)
 
 - Continued on branch `claude/continue-last-commit-ytktge` from commit `862a13e9`. User chose the

@@ -1,0 +1,1664 @@
+{
+  "artifact_id": "v3_fold_nn_mechanism_recovery_readout_current702_20260628",
+  "coverage": {
+    "coverage_fraction": 1.0,
+    "positives_total": 156,
+    "positives_with_fold_hit": 156
+  },
+  "created_utc": "2026-06-28T19:28:12Z",
+  "guardrails": {
+    "fingerprint_family_growth": false,
+    "heldout_rows_scored": false,
+    "labels_used_as_evaluation_targets_only": true,
+    "production_threshold_changed": false,
+    "registry_or_ontology_changed": false,
+    "supervised_model_trained": false,
+    "threshold_selected_on_heldout": false
+  },
+  "interpretation": {
+    "headline": "On surface 'offmcsa_bronze_high_confidence', fold-NN nearest-neighbour retrieval against the M-CSA train atlas recovers the true mechanism fingerprint for 132/156 scored positives (no abstention).",
+    "note": "Raising the fold gate trades recovered coverage for precision on the retained set; compare against the off-M-CSA abstention frontier when a non-M-CSA positive surface becomes available."
+  },
+  "recovery": {
+    "fold_nn_recovered": 132,
+    "fold_nn_score_median": 0.8052,
+    "fold_nn_scored": 156,
+    "recovery_rate_no_abstention": 0.8462
+  },
+  "recovery_abstention_curve": [
+    {
+      "abstained": 0,
+      "fold_threshold": 0.0,
+      "precision_on_retained": 0.8462,
+      "recovery_of_all_positives": 0.8462,
+      "retained": 156,
+      "retained_recovered": 132
+    },
+    {
+      "abstained": 18,
+      "fold_threshold": 0.5,
+      "precision_on_retained": 0.8841,
+      "recovery_of_all_positives": 0.7821,
+      "retained": 138,
+      "retained_recovered": 122
+    },
+    {
+      "abstained": 23,
+      "fold_threshold": 0.566,
+      "precision_on_retained": 0.9023,
+      "recovery_of_all_positives": 0.7692,
+      "retained": 133,
+      "retained_recovered": 120
+    },
+    {
+      "abstained": 30,
+      "fold_threshold": 0.6,
+      "precision_on_retained": 0.8968,
+      "recovery_of_all_positives": 0.7244,
+      "retained": 126,
+      "retained_recovered": 113
+    },
+    {
+      "abstained": 32,
+      "fold_threshold": 0.65,
+      "precision_on_retained": 0.8952,
+      "recovery_of_all_positives": 0.7115,
+      "retained": 124,
+      "retained_recovered": 111
+    },
+    {
+      "abstained": 44,
+      "fold_threshold": 0.7,
+      "precision_on_retained": 0.9018,
+      "recovery_of_all_positives": 0.6474,
+      "retained": 112,
+      "retained_recovered": 101
+    },
+    {
+      "abstained": 61,
+      "fold_threshold": 0.74,
+      "precision_on_retained": 0.9789,
+      "recovery_of_all_positives": 0.5962,
+      "retained": 95,
+      "retained_recovered": 93
+    }
+  ],
+  "result_class": "heldout_excluded_fold_nn_retrieval_recovery_readout_no_training_no_threshold_change",
+  "rows": [
+    {
+      "accession": "A0A0F7KYQ8",
+      "entry_id": "uniprot:A0A0F7KYQ8",
+      "fold_nn_alntmscore": 0.9204,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P04190",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "A0A2U1LIM9",
+      "entry_id": "uniprot:A0A2U1LIM9",
+      "fold_nn_alntmscore": 0.8889,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P00388",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "A1B8Z1",
+      "entry_id": "uniprot:A1B8Z1",
+      "fold_nn_alntmscore": 0.7053,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P00860",
+      "fold_nn_target_fingerprint_id": "plp_dependent_enzyme",
+      "recovered": true,
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "A2AQ92",
+      "entry_id": "uniprot:A2AQ92",
+      "fold_nn_alntmscore": 0.8315,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "Q05769",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": true,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "B8N8Q9",
+      "entry_id": "uniprot:B8N8Q9",
+      "fold_nn_alntmscore": 0.8278,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P42593",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "C1I202",
+      "entry_id": "uniprot:C1I202",
+      "fold_nn_alntmscore": 0.7143,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P14779",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": false,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "D0VWY5",
+      "entry_id": "uniprot:D0VWY5",
+      "fold_nn_alntmscore": 0.9236,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P00392",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "E1CG36",
+      "entry_id": "uniprot:E1CG36",
+      "fold_nn_alntmscore": 0.6557,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P0AB77",
+      "fold_nn_target_fingerprint_id": "plp_dependent_enzyme",
+      "recovered": true,
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "E9RAH5",
+      "entry_id": "uniprot:E9RAH5",
+      "fold_nn_alntmscore": 0.6642,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P0A9P4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O08498",
+      "entry_id": "uniprot:O08498",
+      "fold_nn_alntmscore": 0.9458,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P25910",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "O14672",
+      "entry_id": "uniprot:O14672",
+      "fold_nn_alntmscore": 0.4502,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P37957",
+      "fold_nn_target_fingerprint_id": "ser_his_acid_hydrolase",
+      "recovered": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "O15254",
+      "entry_id": "uniprot:O15254",
+      "fold_nn_alntmscore": 0.8237,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O15770",
+      "entry_id": "uniprot:O15770",
+      "fold_nn_alntmscore": 0.8426,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "Q56839",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O22229",
+      "entry_id": "uniprot:O22229",
+      "fold_nn_alntmscore": 0.7295,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P0A9P4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O32224",
+      "entry_id": "uniprot:O32224",
+      "fold_nn_alntmscore": 0.7143,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P14779",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": false,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O52582",
+      "entry_id": "uniprot:O52582",
+      "fold_nn_alntmscore": 0.9257,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P37062",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O62137",
+      "entry_id": "uniprot:O62137",
+      "fold_nn_alntmscore": 0.7859,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O62140",
+      "entry_id": "uniprot:O62140",
+      "fold_nn_alntmscore": 0.7848,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O65201",
+      "entry_id": "uniprot:O65201",
+      "fold_nn_alntmscore": 0.8243,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O75844",
+      "entry_id": "uniprot:O75844",
+      "fold_nn_alntmscore": 0.4214,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P08473",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "O75976",
+      "entry_id": "uniprot:O75976",
+      "fold_nn_alntmscore": 0.5182,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "Q29460",
+      "fold_nn_target_fingerprint_id": "ser_his_acid_hydrolase",
+      "recovered": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "O95470",
+      "entry_id": "uniprot:O95470",
+      "fold_nn_alntmscore": 0.7921,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P77444",
+      "fold_nn_target_fingerprint_id": "plp_dependent_enzyme",
+      "recovered": true,
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "O95831",
+      "entry_id": "uniprot:O95831",
+      "fold_nn_alntmscore": 0.8214,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P37062",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P00393",
+      "entry_id": "uniprot:P00393",
+      "fold_nn_alntmscore": 0.7999,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P37062",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P00432",
+      "entry_id": "uniprot:P00432",
+      "fold_nn_alntmscore": 0.9533,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P21179",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": true,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P02144",
+      "entry_id": "uniprot:P02144",
+      "fold_nn_alntmscore": 0.4895,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P16444",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": false,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P05982",
+      "entry_id": "uniprot:P05982",
+      "fold_nn_alntmscore": 0.6999,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P14779",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": false,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P06715",
+      "entry_id": "uniprot:P06715",
+      "fold_nn_alntmscore": 0.9323,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P00392",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P07514",
+      "entry_id": "uniprot:P07514",
+      "fold_nn_alntmscore": 1.001,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P83686",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P07872",
+      "entry_id": "uniprot:P07872",
+      "fold_nn_alntmscore": 0.7835,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P08503",
+      "entry_id": "uniprot:P08503",
+      "fold_nn_alntmscore": 0.8282,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P09624",
+      "entry_id": "uniprot:P09624",
+      "fold_nn_alntmscore": 0.9208,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P00392",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P0A7E1",
+      "entry_id": "uniprot:P0A7E1",
+      "fold_nn_alntmscore": 0.766,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "Q28943",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P0A8G6",
+      "entry_id": "uniprot:P0A8G6",
+      "fold_nn_alntmscore": 0.7189,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P14779",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": false,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P0A9P0",
+      "entry_id": "uniprot:P0A9P0",
+      "fold_nn_alntmscore": 0.9329,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P00392",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P0ACB4",
+      "entry_id": "uniprot:P0ACB4",
+      "fold_nn_alntmscore": 0.6785,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P04042",
+      "fold_nn_target_fingerprint_id": "ser_his_acid_hydrolase",
+      "recovered": false,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P0AEY5",
+      "entry_id": "uniprot:P0AEY5",
+      "fold_nn_alntmscore": 0.709,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P14779",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": false,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P12007",
+      "entry_id": "uniprot:P12007",
+      "fold_nn_alntmscore": 0.8758,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P13497",
+      "entry_id": "uniprot:P13497",
+      "fold_nn_alntmscore": 0.3745,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P83772",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P14218",
+      "entry_id": "uniprot:P14218",
+      "fold_nn_alntmscore": 0.9243,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P00392",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P14384",
+      "entry_id": "uniprot:P14384",
+      "fold_nn_alntmscore": 0.5461,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "Q01693",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P14735",
+      "entry_id": "uniprot:P14735",
+      "fold_nn_alntmscore": 0.4327,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "Q6UV28",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P15085",
+      "entry_id": "uniprot:P15085",
+      "fold_nn_alntmscore": 0.5815,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P06621",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P15086",
+      "entry_id": "uniprot:P15086",
+      "fold_nn_alntmscore": 0.5741,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P06621",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P15202",
+      "entry_id": "uniprot:P15202",
+      "fold_nn_alntmscore": 0.9456,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P21179",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": true,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P15650",
+      "entry_id": "uniprot:P15650",
+      "fold_nn_alntmscore": 0.8577,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P15651",
+      "entry_id": "uniprot:P15651",
+      "fold_nn_alntmscore": 0.8783,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P16219",
+      "entry_id": "uniprot:P16219",
+      "fold_nn_alntmscore": 0.878,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P16435",
+      "entry_id": "uniprot:P16435",
+      "fold_nn_alntmscore": 0.9915,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P00388",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P18925",
+      "entry_id": "uniprot:P18925",
+      "fold_nn_alntmscore": 0.9275,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P00392",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P20070",
+      "entry_id": "uniprot:P20070",
+      "fold_nn_alntmscore": 0.9979,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P83686",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P22079",
+      "entry_id": "uniprot:P22079",
+      "fold_nn_alntmscore": 0.84,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "Q05769",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": true,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P24270",
+      "entry_id": "uniprot:P24270",
+      "fold_nn_alntmscore": 0.9531,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P21179",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": true,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P26901",
+      "entry_id": "uniprot:P26901",
+      "fold_nn_alntmscore": 0.9779,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P21179",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": true,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P26918",
+      "entry_id": "uniprot:P26918",
+      "fold_nn_alntmscore": 0.893,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P04190",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P27306",
+      "entry_id": "uniprot:P27306",
+      "fold_nn_alntmscore": 0.9009,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P00392",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P32614",
+      "entry_id": "uniprot:P32614",
+      "fold_nn_alntmscore": 0.874,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P10902",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P33224",
+      "entry_id": "uniprot:P33224",
+      "fold_nn_alntmscore": 0.7846,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P33371",
+      "entry_id": "uniprot:P33371",
+      "fold_nn_alntmscore": 0.8205,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "Q28943",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P34896",
+      "entry_id": "uniprot:P34896",
+      "fold_nn_alntmscore": 0.7869,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P0AB77",
+      "fold_nn_target_fingerprint_id": "plp_dependent_enzyme",
+      "recovered": true,
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "P35340",
+      "entry_id": "uniprot:P35340",
+      "fold_nn_alntmscore": 0.6987,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P0A9P4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P37197",
+      "entry_id": "uniprot:P37197",
+      "fold_nn_alntmscore": 0.403,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P09184",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": false,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P38626",
+      "entry_id": "uniprot:P38626",
+      "fold_nn_alntmscore": 0.9007,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P83686",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P41816",
+      "entry_id": "uniprot:P41816",
+      "fold_nn_alntmscore": 1.002,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "Q02899",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P41921",
+      "entry_id": "uniprot:P41921",
+      "fold_nn_alntmscore": 0.9307,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P00392",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P45952",
+      "entry_id": "uniprot:P45952",
+      "fold_nn_alntmscore": 0.8224,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P45953",
+      "entry_id": "uniprot:P45953",
+      "fold_nn_alntmscore": 0.8283,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P46736",
+      "entry_id": "uniprot:P46736",
+      "fold_nn_alntmscore": 0.4368,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "Q6UV28",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P48052",
+      "entry_id": "uniprot:P48052",
+      "fold_nn_alntmscore": 0.5866,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P06621",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P50336",
+      "entry_id": "uniprot:P50336",
+      "fold_nn_alntmscore": 0.6921,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P40859",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P50544",
+      "entry_id": "uniprot:P50544",
+      "fold_nn_alntmscore": 0.8271,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P51174",
+      "entry_id": "uniprot:P51174",
+      "fold_nn_alntmscore": 0.8164,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P53720",
+      "entry_id": "uniprot:P53720",
+      "fold_nn_alntmscore": 0.6583,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P42593",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P53759",
+      "entry_id": "uniprot:P53759",
+      "fold_nn_alntmscore": 0.6422,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P42593",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P55826",
+      "entry_id": "uniprot:P55826",
+      "fold_nn_alntmscore": 0.6902,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P40859",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P61076",
+      "entry_id": "uniprot:P61076",
+      "fold_nn_alntmscore": 0.8303,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P00392",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P70584",
+      "entry_id": "uniprot:P70584",
+      "fold_nn_alntmscore": 0.892,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P74312",
+      "entry_id": "uniprot:P74312",
+      "fold_nn_alntmscore": 0.7241,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P14779",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": false,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P78536",
+      "entry_id": "uniprot:P78536",
+      "fold_nn_alntmscore": 0.4299,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P37957",
+      "fold_nn_target_fingerprint_id": "ser_his_acid_hydrolase",
+      "recovered": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P78965",
+      "entry_id": "uniprot:P78965",
+      "fold_nn_alntmscore": 0.9322,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P00392",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P80025",
+      "entry_id": "uniprot:P80025",
+      "fold_nn_alntmscore": 0.8407,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "Q05769",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": true,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P82600",
+      "entry_id": "uniprot:P82600",
+      "fold_nn_alntmscore": 0.7213,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "Q05769",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": true,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P91938",
+      "entry_id": "uniprot:P91938",
+      "fold_nn_alntmscore": 0.8433,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "Q56839",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P92947",
+      "entry_id": "uniprot:P92947",
+      "fold_nn_alntmscore": 0.8564,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P37062",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P9WHH1",
+      "entry_id": "uniprot:P9WHH1",
+      "fold_nn_alntmscore": 0.7296,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P0A9P4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P9WHH3",
+      "entry_id": "uniprot:P9WHH3",
+      "fold_nn_alntmscore": 0.928,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P00392",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P9WHH9",
+      "entry_id": "uniprot:P9WHH9",
+      "fold_nn_alntmscore": 0.9192,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P00392",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q00141",
+      "entry_id": "uniprot:Q00141",
+      "fold_nn_alntmscore": 0.9398,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P00388",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q06063",
+      "entry_id": "uniprot:Q06063",
+      "fold_nn_alntmscore": 0.7941,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "Q28943",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q07356",
+      "entry_id": "uniprot:Q07356",
+      "fold_nn_alntmscore": 0.6953,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P40859",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q0D9C4",
+      "entry_id": "uniprot:Q0D9C4",
+      "fold_nn_alntmscore": 0.9632,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P21179",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": true,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q0E4K1",
+      "entry_id": "uniprot:Q0E4K1",
+      "fold_nn_alntmscore": 0.966,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P21179",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": true,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q10N21",
+      "entry_id": "uniprot:Q10N21",
+      "fold_nn_alntmscore": 1.002,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P48534",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": true,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q10S82",
+      "entry_id": "uniprot:Q10S82",
+      "fold_nn_alntmscore": 0.9636,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P21179",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": true,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q15392",
+      "entry_id": "uniprot:Q15392",
+      "fold_nn_alntmscore": 0.6676,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "Q7SID9",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q23490",
+      "entry_id": "uniprot:Q23490",
+      "fold_nn_alntmscore": 0.8311,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "Q05769",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": true,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q27487",
+      "entry_id": "uniprot:Q27487",
+      "fold_nn_alntmscore": 0.9617,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P21179",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": true,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q3ZBF6",
+      "entry_id": "uniprot:Q3ZBF6",
+      "fold_nn_alntmscore": 0.878,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q55DH8",
+      "entry_id": "uniprot:Q55DH8",
+      "fold_nn_alntmscore": 0.9796,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P21179",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": true,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q5D1E8",
+      "entry_id": "uniprot:Q5D1E8",
+      "fold_nn_alntmscore": 0.5418,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P83686",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q5F676",
+      "entry_id": "uniprot:Q5F676",
+      "fold_nn_alntmscore": 0.3828,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P27487",
+      "fold_nn_target_fingerprint_id": "ser_his_acid_hydrolase",
+      "recovered": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q5JRX3",
+      "entry_id": "uniprot:Q5JRX3",
+      "fold_nn_alntmscore": 0.4062,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P25910",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q5U7L7",
+      "entry_id": "uniprot:Q5U7L7",
+      "fold_nn_alntmscore": 0.9198,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P04190",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q5VYX0",
+      "entry_id": "uniprot:Q5VYX0",
+      "fold_nn_alntmscore": 0.6548,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P40859",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q63707",
+      "entry_id": "uniprot:Q63707",
+      "fold_nn_alntmscore": 0.7659,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "Q28943",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q64669",
+      "entry_id": "uniprot:Q64669",
+      "fold_nn_alntmscore": 0.7002,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P14779",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": false,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q68EN5",
+      "entry_id": "uniprot:Q68EN5",
+      "fold_nn_alntmscore": 0.5671,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P12821",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q6P179",
+      "entry_id": "uniprot:Q6P179",
+      "fold_nn_alntmscore": 0.4903,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P00800",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q6P1R4",
+      "entry_id": "uniprot:Q6P1R4",
+      "fold_nn_alntmscore": 0.8204,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "Q28943",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q70G58",
+      "entry_id": "uniprot:Q70G58",
+      "fold_nn_alntmscore": 0.734,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P0A9P4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q73WB6",
+      "entry_id": "uniprot:Q73WB6",
+      "fold_nn_alntmscore": 0.8681,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P21179",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": true,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q7KML2",
+      "entry_id": "uniprot:Q7KML2",
+      "fold_nn_alntmscore": 0.7947,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q7WYA8",
+      "entry_id": "uniprot:Q7WYA8",
+      "fold_nn_alntmscore": 0.9343,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P25910",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q831B2",
+      "entry_id": "uniprot:Q831B2",
+      "fold_nn_alntmscore": 0.7065,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P00388",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q840P9",
+      "entry_id": "uniprot:Q840P9",
+      "fold_nn_alntmscore": 0.9246,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P04190",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q88FF8",
+      "entry_id": "uniprot:Q88FF8",
+      "fold_nn_alntmscore": 0.7014,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P14779",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": false,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q8BUE4",
+      "entry_id": "uniprot:Q8BUE4",
+      "fold_nn_alntmscore": 0.8227,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P37062",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q8GXR9",
+      "entry_id": "uniprot:Q8GXR9",
+      "fold_nn_alntmscore": 0.83,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P0A9P4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q8GYB8",
+      "entry_id": "uniprot:Q8GYB8",
+      "fold_nn_alntmscore": 0.959,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "Q9FEW9",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q8IV48",
+      "entry_id": "uniprot:Q8IV48",
+      "fold_nn_alntmscore": 0.8071,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P03007",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q8K2B3",
+      "entry_id": "uniprot:Q8K2B3",
+      "fold_nn_alntmscore": 0.914,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P10902",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q8U1M0",
+      "entry_id": "uniprot:Q8U1M0",
+      "fold_nn_alntmscore": 0.9433,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P37062",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q8WU10",
+      "entry_id": "uniprot:Q8WU10",
+      "fold_nn_alntmscore": 0.7855,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P37062",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q921A4",
+      "entry_id": "uniprot:Q921A4",
+      "fold_nn_alntmscore": 0.5034,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P83772",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": false,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q92947",
+      "entry_id": "uniprot:Q92947",
+      "fold_nn_alntmscore": 0.8652,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q93379",
+      "entry_id": "uniprot:Q93379",
+      "fold_nn_alntmscore": 0.9295,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P00392",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q94655",
+      "entry_id": "uniprot:Q94655",
+      "fold_nn_alntmscore": 0.9244,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P00392",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q96G46",
+      "entry_id": "uniprot:Q96G46",
+      "fold_nn_alntmscore": 0.7012,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "Q9FEW9",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q96IY4",
+      "entry_id": "uniprot:Q96IY4",
+      "fold_nn_alntmscore": 0.5741,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P06621",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q96PH1",
+      "entry_id": "uniprot:Q96PH1",
+      "fold_nn_alntmscore": 0.7283,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P83686",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q97GC0",
+      "entry_id": "uniprot:Q97GC0",
+      "fold_nn_alntmscore": 0.8006,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P04190",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": false,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q97K92",
+      "entry_id": "uniprot:Q97K92",
+      "fold_nn_alntmscore": 0.8073,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P04190",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": false,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q99424",
+      "entry_id": "uniprot:Q99424",
+      "fold_nn_alntmscore": 0.7843,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9BZ11",
+      "entry_id": "uniprot:Q9BZ11",
+      "fold_nn_alntmscore": 0.4101,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P37957",
+      "fold_nn_target_fingerprint_id": "ser_his_acid_hydrolase",
+      "recovered": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9CX80",
+      "entry_id": "uniprot:Q9CX80",
+      "fold_nn_alntmscore": 0.4824,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P23295",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": true,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q9H040",
+      "entry_id": "uniprot:Q9H040",
+      "fold_nn_alntmscore": 0.3454,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P71119",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9H777",
+      "entry_id": "uniprot:Q9H777",
+      "fold_nn_alntmscore": 0.6266,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P25910",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9H845",
+      "entry_id": "uniprot:Q9H845",
+      "fold_nn_alntmscore": 0.8164,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9I4V0",
+      "entry_id": "uniprot:Q9I4V0",
+      "fold_nn_alntmscore": 0.6589,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P16099",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9I509",
+      "entry_id": "uniprot:Q9I509",
+      "fold_nn_alntmscore": 0.7025,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P14779",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": false,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9I5F3",
+      "entry_id": "uniprot:Q9I5F3",
+      "fold_nn_alntmscore": 0.735,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P14779",
+      "fold_nn_target_fingerprint_id": "heme_peroxidase_oxidase",
+      "recovered": false,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9MA74",
+      "entry_id": "uniprot:Q9MA74",
+      "fold_nn_alntmscore": 0.8032,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P77444",
+      "fold_nn_target_fingerprint_id": "plp_dependent_enzyme",
+      "recovered": true,
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "Q9NY33",
+      "entry_id": "uniprot:Q9NY33",
+      "fold_nn_alntmscore": 0.4263,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "Q58989",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9QXD1",
+      "entry_id": "uniprot:Q9QXD1",
+      "fold_nn_alntmscore": 0.7844,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9SU56",
+      "entry_id": "uniprot:Q9SU56",
+      "fold_nn_alntmscore": 0.8129,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "Q7SID9",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9SWG0",
+      "entry_id": "uniprot:Q9SWG0",
+      "fold_nn_alntmscore": 0.842,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9UHI8",
+      "entry_id": "uniprot:Q9UHI8",
+      "fold_nn_alntmscore": 0.3903,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P37957",
+      "fold_nn_target_fingerprint_id": "ser_his_acid_hydrolase",
+      "recovered": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9UI42",
+      "entry_id": "uniprot:Q9UI42",
+      "fold_nn_alntmscore": 0.5865,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P06621",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9UIQ6",
+      "entry_id": "uniprot:Q9UIQ6",
+      "fold_nn_alntmscore": 0.4504,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P00800",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9UNA0",
+      "entry_id": "uniprot:Q9UNA0",
+      "fold_nn_alntmscore": 0.4512,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P08148",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9UQ90",
+      "entry_id": "uniprot:Q9UQ90",
+      "fold_nn_alntmscore": 0.5843,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P53608",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9VSA3",
+      "entry_id": "uniprot:Q9VSA3",
+      "fold_nn_alntmscore": 0.8383,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "A0A0C6DRW4",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9Y4W6",
+      "entry_id": "uniprot:Q9Y4W6",
+      "fold_nn_alntmscore": 0.5476,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P53608",
+      "fold_nn_target_fingerprint_id": "metal_dependent_hydrolase",
+      "recovered": true,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9Z0X1",
+      "entry_id": "uniprot:Q9Z0X1",
+      "fold_nn_alntmscore": 0.8217,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P37062",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9ZNT1",
+      "entry_id": "uniprot:Q9ZNT1",
+      "fold_nn_alntmscore": 0.9715,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P83686",
+      "fold_nn_target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "recovered": true,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9ZQI7",
+      "entry_id": "uniprot:Q9ZQI7",
+      "fold_nn_alntmscore": 0.7421,
+      "fold_nn_scored": true,
+      "fold_nn_target_accession": "P28796",
+      "fold_nn_target_fingerprint_id": "plp_dependent_enzyme",
+      "recovered": true,
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    }
+  ],
+  "schema_version": "fold_nn_mechanism_recovery_readout.v1",
+  "source_artifacts": {
+    "atlas_manifest": {
+      "artifact_id": "v3_current57_fold_tm_recompute_input_manifest_current702_20260628",
+      "path": "artifacts/v3_current57_fold_tm_recompute_input_manifest_current702_20260628.json",
+      "sha256": "79fd2a3bf84e13e7834ae17392130acfbe4d5e200258ccceeacd9df5690ab339"
+    },
+    "foldseek_tsv": {
+      "path": "artifacts/v3_offmcsa_recovery_current702_20260628_results/offmcsa_bronze_vs_mcsa_train_atlas.tsv",
+      "sha256": "9d1a09c8eee975e1efec1a7ab1bb75dd77afce3520e5c6e51d6884615f339ca8"
+    },
+    "positives_path": "artifacts/v3_offmcsa_recovery_bronze_positive_map_current702_20260628.json"
+  },
+  "status": "fold_nn_mechanism_recovery_readout_complete",
+  "surface_label": "offmcsa_bronze_high_confidence"
+}

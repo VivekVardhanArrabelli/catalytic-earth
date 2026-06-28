@@ -42,7 +42,7 @@ class OffMcsaRecoveryDownloadManifestTests(unittest.TestCase):
         accs = [r["accession"] for r in selected]
         self.assertEqual(accs, ["Q1", "Q5"])
         self.assertTrue(
-            selected[0]["alphafold_cif_url"].endswith("AF-Q1-F1-model_v4.cif")
+            selected[0]["alphafold_cif_url"].endswith("AF-Q1-F1-model_v6.cif")
         )
 
     def test_manifest_summary_and_guardrails(self) -> None:

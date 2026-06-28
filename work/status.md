@@ -427,3 +427,31 @@ next_action: >
   On sign-off, fetch the 162 manifest CIFs (skip-if-exists, stop below 10 GiB), foldseek vs the M-CSA
   train atlas, and run build-fold-nn-mechanism-recovery-readout --positives <map> to compare off-M-CSA
   recovery against the 28/35 baseline. Do not grow families.
+
+## Automation run 2026-06-28 (continuation: off-M-CSA recovery executed)
+- started_from: prior commit 6666474f (branch claude/continue-last-commit-ytktge)
+- registry_mutation: none; user-authorized bounded download performed (156/162 AFDB v6 CIFs)
+- state: offmcsa_recovery_confirmed_fold_nn_132_of_156
+- work_completed:
+  - fixed AFDB URL v4->v6 (v4 was 404) in module + test; regenerated manifest (sha unchanged)
+  - downloaded 156/162 CIFs (6 AFDB 404s); staged dir git-ignored; result TSV (872K) committed
+  - foldseek positives vs M-CSA atlas (same flags); built positive map; ran recovery harness
+  - off-M-CSA recovery 132/156 (0.846), full coverage; per family flavin 0.86 / metal 0.76 / heme 0.85 / plp 1.00
+  - fold channel now generalizes off M-CSA on BOTH recovery and rejection
+  - updated project_state, decision_log, handoff; regenerated docs reference check (missing 0)
+- current_gate_state:
+  - offmcsa_recovery_half: done (132/156, 0.846)
+  - offmcsa_abstention_half: done (generalizes)
+  - fold_channel_generalizes_off_mcsa: true (both halves)
+  - heldout_oneshot: locked, unspent
+  - registry_mutated: false; heldout_rows_scored: false
+- validation:
+  - focused_manifest_recovery_cli_unittest: 251 passed
+  - compileall: passed
+  - registry_validate: passed (57 fingerprints)
+  - current_docs_reference_check: missing 0
+  - git_diff_check: passed
+- next_action: >
+  Optionally broaden the M-CSA atlas beyond the 5 cofactor families for a wider off-M-CSA recovery
+  sweep, or write the consolidated deployment-readiness summary. The held-out one-shot remains locked
+  (still M-CSA-only). Do not grow fingerprint families.

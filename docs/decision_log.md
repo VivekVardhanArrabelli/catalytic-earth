@@ -3,6 +3,39 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-28: Off-M-CSA in-scope RECOVERY confirmed — fold-NN recovers 132/156 (84.6%) of non-M-CSA bronze positives, across all 4 families; the fold channel now generalizes off M-CSA on BOTH recovery and rejection
+
+Decision (automation continuation, user-authorized bounded download, no registry mutation). Executed
+the signed-off download plan: fetched **156 of 162** AlphaFold CIFs (6 are 404 in AFDB v6) for the
+trusted high-confidence non-M-CSA bronze positives, foldseek easy-search vs the M-CSA train in-scope
+atlas (same flags as the calibration recompute), and ran the recovery harness. Correction made during
+execution: the AFDB URL is **v6**, not v4 (v4 returned 404; the manifest/module were fixed to v6 and
+the manifest regenerated — accession-list sha unchanged, `1887478a...`). Staged CIFs are git-ignored
+(reconstructible from the manifest); the result TSV and readout are committed.
+
+Result (`artifacts/v3_fold_nn_mechanism_recovery_offmcsa_bronze_current702_20260628.json` /
+`work/fold_nn_mechanism_recovery_offmcsa_bronze_current702_20260628.md`, surface
+`offmcsa_bronze_high_confidence`): fold-NN nearest-neighbour retrieval against the M-CSA atlas recovers
+the true fingerprint for **132/156 (0.846)** off-M-CSA positives with full fold coverage — on par with
+(slightly above) the **28/35 (0.80)** M-CSA in-distribution baseline. Crucially this is **not** a
+composition artifact: recovery holds across all 4 families — flavin_dehydrogenase_reductase 83/96
+(0.86), metal_dependent_hydrolase 26/34 (0.76), heme_peroxidase_oxidase 17/20 (0.85),
+plp_dependent_enzyme 6/6 (1.00). The recovery/abstention curve is healthy off-M-CSA too: at fold-NN >=
+0.74, precision-on-retained is 93/95 (0.98) at 0.60 recovery-of-all.
+
+Combined with the earlier abstention result (external non-M-CSA negatives track the M-CSA OOS fold
+distribution), **the fold channel now generalizes off the M-CSA development distribution on both
+halves: it recovers off-distribution positives AND rejects off-distribution negatives** — the
+deployment-relevant property the cofactor channel lacked. This is the strongest evidence in the project
+that the structural-retrieval lever is real rather than an M-CSA artifact.
+
+Honest caveats: bronze labels are automation-curated (admission used sequence/cofactor, never
+structure, so fold-NN is a non-circular independent channel, but the target is a bronze label, not gold
+truth — "recovery" means fold-NN agrees with the sequence/cofactor admission); the test is scoped to
+the 4 cofactor families the 5-family M-CSA atlas can recover; and 6 positives were AFDB 404s. No
+heldout read, no model trained, no threshold selected, no registry/ontology/label change. The held-out
+one-shot pre-registration remains locked and unspent.
+
 ## 2026-06-28: Off-M-CSA recovery download manifest built (162 trusted bronze positives, ~97 MB) — sign-off plan, no fetch
 
 Decision (automation continuation, no download, no registry mutation). To unblock the off-M-CSA

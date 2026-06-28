@@ -26,6 +26,21 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **OFF-M-CSA IN-SCOPE RECOVERY CONFIRMED — fold-NN recovers 132/156 (84.6%) of non-M-CSA bronze positives across all 4 families; fold channel now generalizes off M-CSA on BOTH recovery and rejection (2026-06-28).**
+  Executed the authorized download (156/162 AFDB v6 CIFs; 6 are 404) + foldseek vs the M-CSA atlas +
+  recovery harness:
+  `artifacts/v3_fold_nn_mechanism_recovery_offmcsa_bronze_current702_20260628.json` /
+  `work/fold_nn_mechanism_recovery_offmcsa_bronze_current702_20260628.md`. Fold-NN recovers the true
+  fingerprint **132/156 (0.846)** with full coverage — on par with the **28/35 (0.80)** M-CSA baseline
+  — and across all 4 families (flavin 83/96, metal_hydrolase 26/34, heme_peroxidase 17/20, plp 6/6), so
+  it is not a composition artifact. The high-precision regime holds (fold-NN >= 0.74: 93/95 = 0.98
+  precision at 0.60 recovery). Together with the off-M-CSA abstention result, **the fold channel
+  generalizes off the M-CSA development distribution on both halves** (recovers off-distribution
+  positives AND rejects off-distribution negatives) — the deployment lever the cofactor channel lacked.
+  Caveats: bronze labels are automation-curated (non-circular for fold, since admission used
+  sequence/cofactor not structure, but not gold truth); scoped to the 4 cofactor atlas families; 6 AFDB
+  404s. No heldout read; held-out one-shot remains locked.
+
 - **OFF-M-CSA RECOVERY DOWNLOAD MANIFEST READY (162 trusted bronze positives, ~97 MB) — awaiting fetch authorization (2026-06-28).**
   Bounded sign-off plan to unblock the off-M-CSA in-scope recovery test:
   `artifacts/v3_offmcsa_recovery_download_manifest_current702_20260628.json` /

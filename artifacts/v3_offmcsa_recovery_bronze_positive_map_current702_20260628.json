@@ -1,0 +1,785 @@
+{
+  "artifact_id": "v3_offmcsa_recovery_bronze_positive_map_current702_20260628",
+  "rows": [
+    {
+      "accession": "A0A0F7KYQ8",
+      "entry_id": "uniprot:A0A0F7KYQ8",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "A0A2U1LIM9",
+      "entry_id": "uniprot:A0A2U1LIM9",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "A1B8Z1",
+      "entry_id": "uniprot:A1B8Z1",
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "A2AQ92",
+      "entry_id": "uniprot:A2AQ92",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "B8N8Q9",
+      "entry_id": "uniprot:B8N8Q9",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "C1I202",
+      "entry_id": "uniprot:C1I202",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "D0VWY5",
+      "entry_id": "uniprot:D0VWY5",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "E1CG36",
+      "entry_id": "uniprot:E1CG36",
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "E9RAH5",
+      "entry_id": "uniprot:E9RAH5",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O08498",
+      "entry_id": "uniprot:O08498",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "O14672",
+      "entry_id": "uniprot:O14672",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "O15254",
+      "entry_id": "uniprot:O15254",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O15770",
+      "entry_id": "uniprot:O15770",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O22229",
+      "entry_id": "uniprot:O22229",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O32224",
+      "entry_id": "uniprot:O32224",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O52582",
+      "entry_id": "uniprot:O52582",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O62137",
+      "entry_id": "uniprot:O62137",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O62140",
+      "entry_id": "uniprot:O62140",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O65201",
+      "entry_id": "uniprot:O65201",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O75844",
+      "entry_id": "uniprot:O75844",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "O75976",
+      "entry_id": "uniprot:O75976",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "O95470",
+      "entry_id": "uniprot:O95470",
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "O95831",
+      "entry_id": "uniprot:O95831",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P00393",
+      "entry_id": "uniprot:P00393",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P00432",
+      "entry_id": "uniprot:P00432",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P02144",
+      "entry_id": "uniprot:P02144",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P05982",
+      "entry_id": "uniprot:P05982",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P06715",
+      "entry_id": "uniprot:P06715",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P07514",
+      "entry_id": "uniprot:P07514",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P07872",
+      "entry_id": "uniprot:P07872",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P08503",
+      "entry_id": "uniprot:P08503",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P09624",
+      "entry_id": "uniprot:P09624",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P0A7E1",
+      "entry_id": "uniprot:P0A7E1",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P0A8G6",
+      "entry_id": "uniprot:P0A8G6",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P0A9P0",
+      "entry_id": "uniprot:P0A9P0",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P0ACB4",
+      "entry_id": "uniprot:P0ACB4",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P0AEY5",
+      "entry_id": "uniprot:P0AEY5",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P12007",
+      "entry_id": "uniprot:P12007",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P13497",
+      "entry_id": "uniprot:P13497",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P14218",
+      "entry_id": "uniprot:P14218",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P14384",
+      "entry_id": "uniprot:P14384",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P14735",
+      "entry_id": "uniprot:P14735",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P15085",
+      "entry_id": "uniprot:P15085",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P15086",
+      "entry_id": "uniprot:P15086",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P15202",
+      "entry_id": "uniprot:P15202",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P15650",
+      "entry_id": "uniprot:P15650",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P15651",
+      "entry_id": "uniprot:P15651",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P16219",
+      "entry_id": "uniprot:P16219",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P16435",
+      "entry_id": "uniprot:P16435",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P18925",
+      "entry_id": "uniprot:P18925",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P20070",
+      "entry_id": "uniprot:P20070",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P22079",
+      "entry_id": "uniprot:P22079",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P24270",
+      "entry_id": "uniprot:P24270",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P26901",
+      "entry_id": "uniprot:P26901",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P26918",
+      "entry_id": "uniprot:P26918",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P27306",
+      "entry_id": "uniprot:P27306",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P32614",
+      "entry_id": "uniprot:P32614",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P33224",
+      "entry_id": "uniprot:P33224",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P33371",
+      "entry_id": "uniprot:P33371",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P34896",
+      "entry_id": "uniprot:P34896",
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "P35340",
+      "entry_id": "uniprot:P35340",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P37197",
+      "entry_id": "uniprot:P37197",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P38626",
+      "entry_id": "uniprot:P38626",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P41816",
+      "entry_id": "uniprot:P41816",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P41921",
+      "entry_id": "uniprot:P41921",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P45952",
+      "entry_id": "uniprot:P45952",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P45953",
+      "entry_id": "uniprot:P45953",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P46736",
+      "entry_id": "uniprot:P46736",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P48052",
+      "entry_id": "uniprot:P48052",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P50336",
+      "entry_id": "uniprot:P50336",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P50544",
+      "entry_id": "uniprot:P50544",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P51174",
+      "entry_id": "uniprot:P51174",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P53720",
+      "entry_id": "uniprot:P53720",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P53759",
+      "entry_id": "uniprot:P53759",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P55826",
+      "entry_id": "uniprot:P55826",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P61076",
+      "entry_id": "uniprot:P61076",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P70584",
+      "entry_id": "uniprot:P70584",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P74312",
+      "entry_id": "uniprot:P74312",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P78536",
+      "entry_id": "uniprot:P78536",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P78965",
+      "entry_id": "uniprot:P78965",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P80025",
+      "entry_id": "uniprot:P80025",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P82600",
+      "entry_id": "uniprot:P82600",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P91938",
+      "entry_id": "uniprot:P91938",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P92947",
+      "entry_id": "uniprot:P92947",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P9WHH1",
+      "entry_id": "uniprot:P9WHH1",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P9WHH3",
+      "entry_id": "uniprot:P9WHH3",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P9WHH9",
+      "entry_id": "uniprot:P9WHH9",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q00141",
+      "entry_id": "uniprot:Q00141",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q06063",
+      "entry_id": "uniprot:Q06063",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q07356",
+      "entry_id": "uniprot:Q07356",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q0D9C4",
+      "entry_id": "uniprot:Q0D9C4",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q0E4K1",
+      "entry_id": "uniprot:Q0E4K1",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q10N21",
+      "entry_id": "uniprot:Q10N21",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q10S82",
+      "entry_id": "uniprot:Q10S82",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q15392",
+      "entry_id": "uniprot:Q15392",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q23490",
+      "entry_id": "uniprot:Q23490",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q27487",
+      "entry_id": "uniprot:Q27487",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q3ZBF6",
+      "entry_id": "uniprot:Q3ZBF6",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q55DH8",
+      "entry_id": "uniprot:Q55DH8",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q5D1E8",
+      "entry_id": "uniprot:Q5D1E8",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q5F676",
+      "entry_id": "uniprot:Q5F676",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q5JRX3",
+      "entry_id": "uniprot:Q5JRX3",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q5U7L7",
+      "entry_id": "uniprot:Q5U7L7",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q5VYX0",
+      "entry_id": "uniprot:Q5VYX0",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q63707",
+      "entry_id": "uniprot:Q63707",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q64669",
+      "entry_id": "uniprot:Q64669",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q68EN5",
+      "entry_id": "uniprot:Q68EN5",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q6P179",
+      "entry_id": "uniprot:Q6P179",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q6P1R4",
+      "entry_id": "uniprot:Q6P1R4",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q70G58",
+      "entry_id": "uniprot:Q70G58",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q73WB6",
+      "entry_id": "uniprot:Q73WB6",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q7KML2",
+      "entry_id": "uniprot:Q7KML2",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q7WYA8",
+      "entry_id": "uniprot:Q7WYA8",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q831B2",
+      "entry_id": "uniprot:Q831B2",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q840P9",
+      "entry_id": "uniprot:Q840P9",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q88FF8",
+      "entry_id": "uniprot:Q88FF8",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q8BUE4",
+      "entry_id": "uniprot:Q8BUE4",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q8GXR9",
+      "entry_id": "uniprot:Q8GXR9",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q8GYB8",
+      "entry_id": "uniprot:Q8GYB8",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q8IV48",
+      "entry_id": "uniprot:Q8IV48",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q8K2B3",
+      "entry_id": "uniprot:Q8K2B3",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q8U1M0",
+      "entry_id": "uniprot:Q8U1M0",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q8WU10",
+      "entry_id": "uniprot:Q8WU10",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q921A4",
+      "entry_id": "uniprot:Q921A4",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q92947",
+      "entry_id": "uniprot:Q92947",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q93379",
+      "entry_id": "uniprot:Q93379",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q94655",
+      "entry_id": "uniprot:Q94655",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q96G46",
+      "entry_id": "uniprot:Q96G46",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q96IY4",
+      "entry_id": "uniprot:Q96IY4",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q96PH1",
+      "entry_id": "uniprot:Q96PH1",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q97GC0",
+      "entry_id": "uniprot:Q97GC0",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q97K92",
+      "entry_id": "uniprot:Q97K92",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q99424",
+      "entry_id": "uniprot:Q99424",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9BZ11",
+      "entry_id": "uniprot:Q9BZ11",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9CX80",
+      "entry_id": "uniprot:Q9CX80",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q9H040",
+      "entry_id": "uniprot:Q9H040",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9H777",
+      "entry_id": "uniprot:Q9H777",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9H845",
+      "entry_id": "uniprot:Q9H845",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9I4V0",
+      "entry_id": "uniprot:Q9I4V0",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9I509",
+      "entry_id": "uniprot:Q9I509",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9I5F3",
+      "entry_id": "uniprot:Q9I5F3",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9MA74",
+      "entry_id": "uniprot:Q9MA74",
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "Q9NY33",
+      "entry_id": "uniprot:Q9NY33",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9QXD1",
+      "entry_id": "uniprot:Q9QXD1",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9SU56",
+      "entry_id": "uniprot:Q9SU56",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9SWG0",
+      "entry_id": "uniprot:Q9SWG0",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9UHI8",
+      "entry_id": "uniprot:Q9UHI8",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9UI42",
+      "entry_id": "uniprot:Q9UI42",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9UIQ6",
+      "entry_id": "uniprot:Q9UIQ6",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9UNA0",
+      "entry_id": "uniprot:Q9UNA0",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9UQ90",
+      "entry_id": "uniprot:Q9UQ90",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9VSA3",
+      "entry_id": "uniprot:Q9VSA3",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9Y4W6",
+      "entry_id": "uniprot:Q9Y4W6",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9Z0X1",
+      "entry_id": "uniprot:Q9Z0X1",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9ZNT1",
+      "entry_id": "uniprot:Q9ZNT1",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9ZQI7",
+      "entry_id": "uniprot:Q9ZQI7",
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    }
+  ]
+}
