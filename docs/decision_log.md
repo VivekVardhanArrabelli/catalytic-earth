@@ -3,7 +3,7 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
-## 2026-06-28: Predicted-geometry atlas-engine preregistration is blocked by current-57 router drift; freeze or repreregister before fusion
+## 2026-06-28: Predicted-geometry atlas-engine preregistration is blocked by current-57 precision and row alignment; recompute Fold/TM or replay the old surface
 
 Decision (automation run `ce-nad-glyco-floor-expansion`, no registry mutation). The next recovery-line
 step was to pre-register a deployable predicted-apo atlas engine: cofactor reconstruction/channel,
@@ -14,7 +14,9 @@ fold/TM fusion, localization/precision, no heldout tuning. The full-env check is
 Capability: existing sequence/cofactor sidecars and scored fold/TM artifacts are reusable; numpy,
 torch, sklearn, pandas, mmseqs, and diamond are available locally. New end-to-end Foldseek/TM scoring
 is **blocked** because `foldseek` is not installed, and new ESM embedding generation is blocked because
-`esm` is missing.
+`esm` is missing. Important nuance: the cached fold/TM artifacts exist, but their row-level calibration
+scores are not aligned to the current-57 cofactor precision surface, so they cannot be fused as a
+current-57 train/cal readout.
 
 Critical finding: the trusted June 9 cofactor-fusion precision contract is not directly reproducible
 under the current expanded 57-fingerprint router. A no-heldout, train/cal-only current-router rerun
@@ -35,13 +37,28 @@ label collapse is introduced. This recovers a large taxonomy-version component (
 only **20/35** in-scope recovery and **8/26** OOS FP. Status:
 `blocked_current57_cofactor_precision_contract_not_deployable`.
 
+Follow-up alignment audit (same UTC date, heldout-excluded):
+`artifacts/v3_current57_cofactor_fold_alignment_audit_current702_20260628.json` and
+`work/current57_cofactor_fold_alignment_audit_current702_20260628.md` checks whether the current-57
+cofactor train/cal rows can be joined to the cached fold/TM contracts. They cannot: calibration
+in-scope overlap is **4/35** and calibration OOS overlap is **0/26** against the required 0.9 overlap
+fractions. The overlap-only fixed fold gate is explicitly non-interpretable because there are no
+current-57 OOS rows with cached fold scores.
+
+Concrete unblock manifest (same UTC date, heldout-excluded, no scoring):
+`artifacts/v3_current57_fold_tm_recompute_input_manifest_current702_20260628.json` and
+`work/current57_fold_tm_recompute_input_manifest_current702_20260628.md` map the exact current-57
+calibration cofactor rows and train in-scope fold targets to staged train/cal-safe AlphaFold CIFs.
+Coverage is complete for the primary recompute input: **61/61** calibration queries and **133/133**
+train in-scope targets. The manifest records the future `foldseek easy-search` command; it does not
+materialize a staged query directory and does not compute new Fold/TM scores.
+
 Durable rule: do **not** run an atlas-engine fusion or spend heldout from the old 0.44 cofactor
-threshold until the cofactor precision surface is made explicit. Either freeze/replay the intended
-June 9 router/fingerprint surface for cofactor precision, or build a new preregistered current-57
-precision channel/fusion rule. Existing scored fold/TM surfaces remain reusable for cached-surface
-work, but the preregistration artifact now records
-`preregistered_cached_surface_blocked_current57_precision_contract_new_foldseek_backend_blocked`;
-install/expose `foldseek` before any new Foldseek/TM scoring.
+threshold until both the cofactor precision surface and row-level fold/TM surface are explicit.
+Install/expose `foldseek` and recompute Fold/TM on the current-57 train/cal cofactor rows, or
+freeze/replay the intended June 9 router/fingerprint surface whose fold rows are already cached. The
+preregistration artifact now records
+`preregistered_cached_surface_blocked_current57_precision_contract_fold_alignment_new_foldseek_backend_blocked`.
 
 ## 2026-06-27: NON-CIRCULAR GOLD EVAL — chemistry-only recovers 76% of expert mechanism classes, but there is STILL no abstention signal at 10k (the binding constraint, reconfirmed)
 

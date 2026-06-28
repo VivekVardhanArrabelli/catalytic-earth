@@ -1,7 +1,7 @@
 # Predicted-Geometry Atlas Engine Preregistration
 
-Run: 2026-06-28T02:45:46Z
-Status: `preregistered_cached_surface_blocked_current57_precision_contract_new_foldseek_backend_blocked`
+Run: 2026-06-28T03:41:26Z
+Status: `preregistered_cached_surface_blocked_current57_precision_contract_fold_alignment_new_foldseek_backend_blocked`
 
 ## Capability
 
@@ -17,6 +17,7 @@ Status: `preregistered_cached_surface_blocked_current57_precision_contract_new_f
 - Fold/TM fixed threshold: 0.44155; calibration OOS abstain 30/75.
 - Current-router drift detected: True.
 - Current-57 precision contract blocks atlas fusion: True.
+- Current-57 cofactor/fold alignment blocks cached fusion: True.
 
 ## Preregistered Next Readout
 
@@ -28,4 +29,4 @@ Status: `preregistered_cached_surface_blocked_current57_precision_contract_new_f
 
 - No heldout rows are scored or read by this artifact.
 - No production threshold, model weight, registry, ontology, or fingerprint-family change is made.
-- Next action: Current-57 cofactor precision contract is fail-closed; either freeze/replay the intended June 9 router/fingerprint surface, or build a new preregistered current-57 precision channel/fusion rule before any atlas-engine readout.
+- Next action: Cached Fold/TM rows are not row-aligned with the current-57 cofactor train/cal surface. Install/expose foldseek and recompute Fold/TM for the current rows, or pin/replay the older router/fingerprint surface before cached atlas-engine fusion.

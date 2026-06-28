@@ -154,3 +154,49 @@ next_action: >
   the intended June 9 router/fingerprint surface, or build a new preregistered current-57
   precision channel/fusion rule that clears a train/cal recovery/OOS done bar. Install/expose
   foldseek before any new Foldseek/TM scoring.
+
+## Automation run 2026-06-28T03:32:44Z
+- started_at_utc: 2026-06-28T03:32:44Z
+- started_local: Sat Jun 27 22:32:44 CDT 2026
+- budget_minutes: 55
+- planned_closeout_minute: 50
+- frozen_current702_sha_before: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
+- status: in_progress
+
+## Automation run ce-nad-glyco-floor-expansion closeout
+- closeout_at_utc: 2026-06-28T03:55:47Z
+- elapsed_minutes: 23.1
+- remaining_minutes: 31.9
+- state: current57_cofactor_fold_alignment_blocked_recompute_manifest_ready
+- branch: main
+- origin_main_at_start: b94d0e25e01cb4cc1680a15f2b9fc6992ff77a6b
+- registry_mutation: none
+- frozen_current702_sha_after: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
+- work_completed:
+  - added current-57 cofactor/fold row-alignment audit and CLI
+  - generated fail-closed alignment artifact/report: 4/35 calibration in-scope overlap, 0/26 calibration OOS overlap
+  - integrated alignment blocker into predicted-geometry atlas-engine preregistration
+  - added no-score current-57 Fold/TM recompute input manifest and CLI
+  - generated recompute manifest with 61/61 calibration query CIFs and 133/133 train target CIFs staged train/cal-safe
+  - updated project state, decision log, handoff, and docs artifact-reference check
+- current_gate_state:
+  - cached_atlas_engine_fusion_runnable: false
+  - current57_precision_contract_blocks: true
+  - current57_fold_alignment_blocks: true
+  - foldseek_available_for_new_scoring: false
+  - recompute_manifest_status: current57_fold_tm_recompute_input_manifest_ready_foldseek_missing
+  - heldout_rows_scored: false
+- validation:
+  - focused_alignment_recompute_prereg_cli_tests: 13 passed, 232 deselected
+  - focused_recovery_precision_suite: 94 passed, 232 deselected, 2 subtests
+  - compileall: passed
+  - full_pytest_final: 2536 passed, 1 warning, 244 subtests
+  - registry_validate: passed
+  - current_docs_reference_check: missing 0
+  - json_jsonl_parse: 10725 JSON files and 8338 JSONL records across 27 JSONL files
+  - git_diff_check: passed
+- next_action: >
+  Install/expose foldseek, materialize the current-57 Fold/TM recompute manifest staging plan,
+  run its recorded calibration-vs-train easy-search command, then build a current-57 fold/TM
+  score readout before any cached atlas-engine fusion or heldout read. Alternative: pin/replay
+  the intended June 9 router/fold row surface.

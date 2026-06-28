@@ -56,6 +56,10 @@ DEFAULT_CURRENT_ROUTER_COFACTOR_RERUN_PATH = (
 DEFAULT_CURRENT57_COFACTOR_PRECISION_CONTRACT_PATH = (
     "artifacts/v3_current57_cofactor_precision_contract_current702_20260628.json"
 )
+DEFAULT_CURRENT57_COFACTOR_FOLD_ALIGNMENT_AUDIT_PATH = (
+    "artifacts/"
+    "v3_current57_cofactor_fold_alignment_audit_current702_20260628.json"
+)
 DEFAULT_COORDINATE_ROOT = (
     "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates"
 )
@@ -82,6 +86,7 @@ def write_predicted_geometry_atlas_engine_preregistration(
     report_path: Path | None = None,
     current_router_cofactor_rerun_path: Path | None = None,
     current57_cofactor_precision_contract_path: Path | None = None,
+    current57_cofactor_fold_alignment_audit_path: Path | None = None,
 ) -> dict[str, Any]:
     audit = build_predicted_geometry_atlas_engine_preregistration(
         current702_path=current702_path,
@@ -98,6 +103,9 @@ def write_predicted_geometry_atlas_engine_preregistration(
         coordinate_root=coordinate_root,
         current_router_cofactor_rerun_path=current_router_cofactor_rerun_path,
         current57_cofactor_precision_contract_path=current57_cofactor_precision_contract_path,
+        current57_cofactor_fold_alignment_audit_path=(
+            current57_cofactor_fold_alignment_audit_path
+        ),
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -123,6 +131,7 @@ def build_predicted_geometry_atlas_engine_preregistration(
     coordinate_root: Path,
     current_router_cofactor_rerun_path: Path | None = None,
     current57_cofactor_precision_contract_path: Path | None = None,
+    current57_cofactor_fold_alignment_audit_path: Path | None = None,
     module_status: dict[str, bool] | None = None,
     executable_status: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
@@ -146,6 +155,10 @@ def build_predicted_geometry_atlas_engine_preregistration(
     if current57_cofactor_precision_contract_path is not None:
         sources["current57_cofactor_precision_contract"] = _artifact_summary(
             current57_cofactor_precision_contract_path
+        )
+    if current57_cofactor_fold_alignment_audit_path is not None:
+        sources["current57_cofactor_fold_alignment_audit"] = _artifact_summary(
+            current57_cofactor_fold_alignment_audit_path
         )
     loaded = {
         name: _load_json_if_exists(Path(summary["path"]))
@@ -210,11 +223,17 @@ def build_predicted_geometry_atlas_engine_preregistration(
     current57_precision_contract = _current57_precision_contract_context(
         loaded.get("current57_cofactor_precision_contract", {})
     )
+    current57_fold_alignment = _current57_fold_alignment_context(
+        loaded.get("current57_cofactor_fold_alignment_audit", {})
+    )
     current_router_drift_detected = bool(
         current_router_rerun.get("current_router_drift_detected")
     )
     current57_precision_contract_blocks = bool(
         current57_precision_contract.get("blocks_atlas_engine_fusion")
+    )
+    current57_fold_alignment_blocks = bool(
+        current57_fold_alignment.get("blocks_cached_atlas_engine_fusion")
     )
     if current_router_drift_detected and status.startswith("preregistered"):
         status = "preregistered_cached_surface_blocked_current57_router_drift"
@@ -222,6 +241,16 @@ def build_predicted_geometry_atlas_engine_preregistration(
             status += "_new_foldseek_backend_blocked"
     if current57_precision_contract_blocks and status.startswith("preregistered"):
         status = "preregistered_cached_surface_blocked_current57_precision_contract"
+        if not full_new_fold_tm_runnable:
+            status += "_new_foldseek_backend_blocked"
+    if current57_fold_alignment_blocks and status.startswith("preregistered"):
+        status = (
+            "preregistered_cached_surface_blocked_current57_precision_contract"
+            if current57_precision_contract_blocks
+            else "preregistered_cached_surface_blocked_current57_fold_alignment"
+        )
+        if current57_precision_contract_blocks:
+            status += "_fold_alignment"
         if not full_new_fold_tm_runnable:
             status += "_new_foldseek_backend_blocked"
     fold_context = _fold_context(
@@ -270,6 +299,7 @@ def build_predicted_geometry_atlas_engine_preregistration(
             "cofactor_precision": cofactor_precision,
             "current_router_cofactor_rerun": current_router_rerun,
             "current57_cofactor_precision_contract": current57_precision_contract,
+            "current57_cofactor_fold_alignment": current57_fold_alignment,
             "fold_tm_oos_safety": fold_context,
         },
         "preregistered_experiment": _preregistered_experiment(
@@ -281,6 +311,7 @@ def build_predicted_geometry_atlas_engine_preregistration(
             full_new_fold_tm_runnable=full_new_fold_tm_runnable,
             current_router_drift_detected=current_router_drift_detected,
             current57_precision_contract_blocks=current57_precision_contract_blocks,
+            current57_fold_alignment_blocks=current57_fold_alignment_blocks,
         ),
         "decision": {
             "can_run_cached_surface_atlas_engine_readout_now": bool(
@@ -288,11 +319,19 @@ def build_predicted_geometry_atlas_engine_preregistration(
                 and sequence_sidecars_reusable
                 and not current_router_drift_detected
                 and not current57_precision_contract_blocks
+                and not current57_fold_alignment_blocks
             ),
             "can_compute_new_fold_tm_scores_now": full_new_fold_tm_runnable,
             "current_router_drift_detected": current_router_drift_detected,
             "current57_precision_contract_blocks": current57_precision_contract_blocks,
+            "current57_fold_alignment_blocks": current57_fold_alignment_blocks,
             "next_action": (
+                "Cached Fold/TM rows are not row-aligned with the current-57 "
+                "cofactor train/cal surface. Install/expose foldseek and recompute "
+                "Fold/TM for the current rows, or pin/replay the older router/"
+                "fingerprint surface before cached atlas-engine fusion."
+                if current57_fold_alignment_blocks
+                else
                 "Current-57 cofactor precision contract is fail-closed; either "
                 "freeze/replay the intended June 9 router/fingerprint surface, "
                 "or build a new preregistered current-57 precision channel/fusion "
@@ -528,6 +567,27 @@ def _current57_precision_contract_context(contract: dict[str, Any]) -> dict[str,
     }
 
 
+def _current57_fold_alignment_context(audit: dict[str, Any]) -> dict[str, Any]:
+    if not audit:
+        return {
+            "present": False,
+            "blocks_cached_atlas_engine_fusion": False,
+        }
+    status = str(audit.get("status") or "")
+    calibration = audit.get("calibration_overlap", {})
+    return {
+        "present": True,
+        "artifact_id": audit.get("artifact_id"),
+        "status": status,
+        "blocks_cached_atlas_engine_fusion": status.startswith("blocked_"),
+        "alignment_gate_passed": audit.get("alignment_gate", {}).get("passed"),
+        "alignment_decision": audit.get("alignment_gate", {}).get("decision"),
+        "calibration_inscope_overlap": calibration.get("inscope"),
+        "calibration_oos_overlap": calibration.get("oos"),
+        "overlap_only_fixed_gate_probe": audit.get("overlap_only_fixed_gate_probe"),
+    }
+
+
 def _fold_context(
     *,
     threshold_contract: dict[str, Any],
@@ -579,6 +639,7 @@ def _preregistered_experiment(
     full_new_fold_tm_runnable: bool,
     current_router_drift_detected: bool,
     current57_precision_contract_blocks: bool,
+    current57_fold_alignment_blocks: bool,
 ) -> dict[str, Any]:
     return {
         "name": "predicted_apo_atlas_engine_v1_train_cal_contract",
@@ -654,10 +715,15 @@ def _preregistered_experiment(
                 "read requires this train/cal gate plus explicit user approval."
             ),
             "full_env_note": (
-                "Cached scored fold/TM surfaces are enough for the next train/cal "
-                "readout."
+                "Cached scored fold/TM surfaces are row-aligned enough for the "
+                "next train/cal readout."
                 if existing_scored_fold_reusable
+                and not current57_fold_alignment_blocks
                 else "Existing scored fold/TM surfaces are not reusable yet."
+                if not existing_scored_fold_reusable
+                else "Cached scored fold/TM surfaces exist, but their row-level "
+                "calibration scores are not aligned to the current-57 cofactor "
+                "surface."
             ),
             "new_fold_tm_note": (
                 "New Foldseek/TM scoring can run in this environment."
@@ -665,6 +731,12 @@ def _preregistered_experiment(
                 else "New Foldseek/TM scoring is blocked until foldseek is installed."
             ),
             "current_router_note": (
+                "Current-57 cofactor/fold row alignment is fail-closed; cached "
+                "atlas-engine fusion remains blocked until Fold/TM scores are "
+                "recomputed on the current rows or the older router surface is "
+                "pinned/replayed."
+                if current57_fold_alignment_blocks
+                else
                 "Current-57 cofactor precision contract is fail-closed; atlas "
                 "engine fusion remains blocked until the June 9 router surface is "
                 "replayed or a new precision channel/fusion rule is preregistered."
@@ -690,6 +762,9 @@ def _report(audit: dict[str, Any]) -> str:
     )
     current57_contract = audit["preexisting_train_cal_context"].get(
         "current57_cofactor_precision_contract", {}
+    )
+    current57_alignment = audit["preexisting_train_cal_context"].get(
+        "current57_cofactor_fold_alignment", {}
     )
     exp = audit["preregistered_experiment"]
     lines = [
@@ -724,6 +799,8 @@ def _report(audit: dict[str, Any]) -> str:
         f"{drift.get('current_router_drift_detected', False)}.",
         f"- Current-57 precision contract blocks atlas fusion: "
         f"{current57_contract.get('blocks_atlas_engine_fusion', False)}.",
+        f"- Current-57 cofactor/fold alignment blocks cached fusion: "
+        f"{current57_alignment.get('blocks_cached_atlas_engine_fusion', False)}.",
         "",
         "## Preregistered Next Readout",
         "",

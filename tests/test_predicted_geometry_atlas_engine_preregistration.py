@@ -238,10 +238,41 @@ class AtlasEnginePreregistrationTests(unittest.TestCase):
                     },
                 },
             )
+            alignment_path = _write_json(
+                root / "alignment.json",
+                {
+                    "artifact_id": "alignment",
+                    "status": (
+                        "blocked_cached_fold_surface_not_row_aligned_with_"
+                        "current57_cofactor_surface"
+                    ),
+                    "alignment_gate": {
+                        "passed": False,
+                        "decision": (
+                            "fail_closed_cached_fold_rows_do_not_cover_current57_"
+                            "cofactor_surface"
+                        ),
+                    },
+                    "calibration_overlap": {
+                        "inscope": {
+                            "current57_rows": 35,
+                            "overlap_rows": 4,
+                            "overlap_fraction": 0.1143,
+                        },
+                        "oos": {
+                            "current57_rows": 26,
+                            "overlap_rows": 0,
+                            "overlap_fraction": 0.0,
+                        },
+                    },
+                    "overlap_only_fixed_gate_probe": {"interpretable": False},
+                },
+            )
             audit = build_predicted_geometry_atlas_engine_preregistration(
                 **paths,
                 current_router_cofactor_rerun_path=drift_path,
                 current57_cofactor_precision_contract_path=contract_path,
+                current57_cofactor_fold_alignment_audit_path=alignment_path,
                 module_status={
                     "numpy": True,
                     "torch": True,
@@ -261,14 +292,19 @@ class AtlasEnginePreregistrationTests(unittest.TestCase):
         contract = audit["preexisting_train_cal_context"][
             "current57_cofactor_precision_contract"
         ]
+        alignment = audit["preexisting_train_cal_context"][
+            "current57_cofactor_fold_alignment"
+        ]
         self.assertTrue(drift["current_router_drift_detected"])
         self.assertTrue(contract["blocks_atlas_engine_fusion"])
+        self.assertTrue(alignment["blocks_cached_atlas_engine_fusion"])
         self.assertIn("precision_contract", audit["status"])
+        self.assertIn("fold_alignment", audit["status"])
         self.assertFalse(
             audit["decision"]["can_run_cached_surface_atlas_engine_readout_now"]
         )
         self.assertIn(
-            "Current-57 cofactor precision contract",
+            "not row-aligned",
             audit["decision"]["next_action"],
         )
 

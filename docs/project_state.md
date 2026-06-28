@@ -26,7 +26,7 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
-- **PREDICTED-GEOMETRY ATLAS-ENGINE PREREGISTRATION BLOCKED BY CURRENT-57 ROUTER DRIFT (2026-06-28).**
+- **PREDICTED-GEOMETRY ATLAS-ENGINE PREREGISTRATION BLOCKED BY CURRENT-57 PRECISION AND ROW ALIGNMENT (2026-06-28).**
   A full-env capability/preregistration artifact now exists for the deployment recovery line:
   `artifacts/v3_predicted_geometry_atlas_engine_preregistration_current702_20260628.json`
   / `work/predicted_geometry_atlas_engine_preregistration_current702_20260628.md`.
@@ -44,10 +44,19 @@ artifact-backed mechanism diagnostics.
   **26/35** at the frozen threshold, proving much of the exact-match loss is taxonomy-version drift,
   but the OOS wall remains **26/26**; the best point under the trusted June 9 OOS FP ceiling is only
   **20/35** at threshold 0.733 with **8/26** OOS FP. Status:
-  `blocked_current57_cofactor_precision_contract_not_deployable`; the preregistration artifact now
-  records `preregistered_cached_surface_blocked_current57_precision_contract_new_foldseek_backend_blocked`.
-  Next gate: either freeze/replay the intended June 9 router/fingerprint surface for cofactor precision,
-  or build a new preregistered current-57 precision channel/fusion rule before any atlas-engine
+  `blocked_current57_cofactor_precision_contract_not_deployable`. A follow-on cached fusion alignment
+  audit, `artifacts/v3_current57_cofactor_fold_alignment_audit_current702_20260628.json` /
+  `work/current57_cofactor_fold_alignment_audit_current702_20260628.md`, shows the cached Fold/TM
+  row scores are not row-aligned with this current-57 cofactor surface: calibration in-scope overlap is
+  only **4/35**, and calibration OOS overlap is **0/26**. The preregistration artifact now records
+  `preregistered_cached_surface_blocked_current57_precision_contract_fold_alignment_new_foldseek_backend_blocked`.
+  A no-score recompute input manifest,
+  `artifacts/v3_current57_fold_tm_recompute_input_manifest_current702_20260628.json` /
+  `work/current57_fold_tm_recompute_input_manifest_current702_20260628.md`, confirms the exact current-57
+  calibration queries (**61/61**) and train in-scope fold targets (**133/133**) already have
+  train/cal-safe staged CIFs; the remaining executable blocker is `foldseek`. Next gate:
+  install/expose `foldseek`, materialize the manifest staging plan, and run its recorded command, or
+  freeze/replay the intended June 9 router/fingerprint surface before any cached atlas-engine
   fusion/heldout read.
 
 - **NON-CIRCULAR GOLD EVAL (2026-06-27, user-directed): chemistry-only recovers 76% of expert mechanism classes, but STILL no abstention signal at 10k.**

@@ -42,6 +42,77 @@ class CliTests(unittest.TestCase):
             ),
         )
 
+    def test_current57_cofactor_fold_alignment_audit_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            ["build-current57-cofactor-fold-alignment-audit"]
+        )
+
+        self.assertEqual(
+            args.current_operating_point,
+            (
+                "artifacts/"
+                "v3_cofactor_fusion_operating_point_train_cal_oos_current702_"
+                "20260628_current57_rerun.json"
+            ),
+        )
+        self.assertEqual(
+            args.fold_inscope_contract,
+            (
+                "artifacts/"
+                "v3_fold_augmented_abstention_threshold_contract_current702_"
+                "20260601.json"
+            ),
+        )
+        self.assertEqual(
+            args.fold_oos_contract,
+            (
+                "artifacts/"
+                "v3_fold_augmented_abstention_threshold_contract_expanded_oos_"
+                "calibrated_current702_20260603.json"
+            ),
+        )
+        self.assertEqual(args.min_calibration_inscope_overlap_fraction, 0.9)
+        self.assertEqual(args.min_calibration_oos_overlap_fraction, 0.9)
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/"
+                "v3_current57_cofactor_fold_alignment_audit_current702_20260628.json"
+            ),
+        )
+
+    def test_current57_fold_tm_recompute_manifest_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            ["build-current57-fold-tm-recompute-manifest"]
+        )
+
+        self.assertEqual(
+            args.current_operating_point,
+            (
+                "artifacts/"
+                "v3_cofactor_fusion_operating_point_train_cal_oos_current702_"
+                "20260628_current57_rerun.json"
+            ),
+        )
+        self.assertEqual(
+            args.label_manifest,
+            "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+        )
+        self.assertEqual(
+            args.coordinate_root,
+            (
+                "artifacts/"
+                "v3_predicted_structure_fold_channel_current702_20260601_coordinates"
+            ),
+        )
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/"
+                "v3_current57_fold_tm_recompute_input_manifest_current702_20260628.json"
+            ),
+        )
+
     def test_external_source_pilot_uniref_current_reference_parser_defaults(
         self,
     ) -> None:

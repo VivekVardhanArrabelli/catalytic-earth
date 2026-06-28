@@ -95,6 +95,22 @@ from .cofactor_precision_contract import (
     DEFAULT_TRUSTED_PRECISION_PATH as DEFAULT_TRUSTED_COFACTOR_PRECISION_PATH,
     write_current57_cofactor_precision_contract,
 )
+from .current57_cofactor_fold_alignment_audit import (
+    DEFAULT_CURRENT57_OPERATING_POINT_PATH as DEFAULT_CURRENT57_ALIGNMENT_OPERATING_POINT_PATH,
+    DEFAULT_FOLD_INSCOPE_CONTRACT_PATH as DEFAULT_CURRENT57_ALIGNMENT_FOLD_INSCOPE_PATH,
+    DEFAULT_FOLD_OOS_CONTRACT_PATH as DEFAULT_CURRENT57_ALIGNMENT_FOLD_OOS_PATH,
+    DEFAULT_OUT_PATH as DEFAULT_CURRENT57_COFACTOR_FOLD_ALIGNMENT_OUT_PATH,
+    DEFAULT_REPORT_PATH as DEFAULT_CURRENT57_COFACTOR_FOLD_ALIGNMENT_REPORT_PATH,
+    write_current57_cofactor_fold_alignment_audit,
+)
+from .current57_fold_tm_recompute_manifest import (
+    DEFAULT_COORDINATE_ROOT as DEFAULT_CURRENT57_FOLD_TM_RECOMPUTE_COORDINATE_ROOT,
+    DEFAULT_CURRENT57_OPERATING_POINT_PATH as DEFAULT_CURRENT57_FOLD_TM_RECOMPUTE_OPERATING_POINT_PATH,
+    DEFAULT_LABEL_MANIFEST_PATH as DEFAULT_CURRENT57_FOLD_TM_RECOMPUTE_LABEL_MANIFEST_PATH,
+    DEFAULT_OUT_PATH as DEFAULT_CURRENT57_FOLD_TM_RECOMPUTE_OUT_PATH,
+    DEFAULT_REPORT_PATH as DEFAULT_CURRENT57_FOLD_TM_RECOMPUTE_REPORT_PATH,
+    write_current57_fold_tm_recompute_manifest,
+)
 from .predicted_geometry_atlas_engine_preregistration import (
     DEFAULT_COFACTOR_CHANNEL_PATH,
     DEFAULT_COFACTOR_PRECISION_PATH,
@@ -108,6 +124,7 @@ from .predicted_geometry_atlas_engine_preregistration import (
     DEFAULT_FOLD_THRESHOLD_CONTRACT_PATH,
     DEFAULT_CURRENT_ROUTER_COFACTOR_RERUN_PATH,
     DEFAULT_CURRENT57_COFACTOR_PRECISION_CONTRACT_PATH,
+    DEFAULT_CURRENT57_COFACTOR_FOLD_ALIGNMENT_AUDIT_PATH,
     DEFAULT_RECOVERY_PATH,
     DEFAULT_SPLIT_MANIFEST_PATH,
     write_predicted_geometry_atlas_engine_preregistration,
@@ -2843,6 +2860,52 @@ def cmd_build_current57_cofactor_precision_contract(args: argparse.Namespace) ->
     return 0
 
 
+def cmd_build_current57_cofactor_fold_alignment_audit(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_current57_cofactor_fold_alignment_audit(
+        current57_operating_point_path=Path(args.current_operating_point),
+        fold_inscope_contract_path=Path(args.fold_inscope_contract),
+        fold_oos_contract_path=Path(args.fold_oos_contract),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        min_calibration_inscope_overlap_fraction=args.min_calibration_inscope_overlap_fraction,
+        min_calibration_oos_overlap_fraction=args.min_calibration_oos_overlap_fraction,
+    )
+    cal = audit.get("calibration_overlap", {})
+    inscope = cal.get("inscope", {})
+    oos = cal.get("oos", {})
+    print(
+        "Wrote current-57 cofactor/fold alignment audit to "
+        f"{args.out} ({audit.get('status')}; calibration overlap: "
+        f"inscope {inscope.get('overlap_rows')}/{inscope.get('current57_rows')} "
+        f"OOS {oos.get('overlap_rows')}/{oos.get('current57_rows')})"
+    )
+    return 0
+
+
+def cmd_build_current57_fold_tm_recompute_manifest(args: argparse.Namespace) -> int:
+    manifest = write_current57_fold_tm_recompute_manifest(
+        current57_operating_point_path=Path(args.current_operating_point),
+        label_manifest_path=Path(args.label_manifest),
+        coordinate_root=Path(args.coordinate_root),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    coverage = manifest.get("coverage", {})
+    calibration = coverage.get("calibration_queries", {})
+    targets = coverage.get("train_in_scope_targets", {})
+    print(
+        "Wrote current-57 Fold/TM recompute input manifest to "
+        f"{args.out} ({manifest.get('status')}; calibration CIFs "
+        f"{calibration.get('staged_train_cal_safe_cif_found')}/"
+        f"{calibration.get('rows')}; train target CIFs "
+        f"{targets.get('staged_train_cal_safe_cif_found')}/"
+        f"{targets.get('rows')})"
+    )
+    return 0
+
+
 def cmd_build_predicted_geometry_atlas_engine_preregistration(
     args: argparse.Namespace,
 ) -> int:
@@ -2867,6 +2930,11 @@ def cmd_build_predicted_geometry_atlas_engine_preregistration(
         current57_cofactor_precision_contract_path=(
             Path(args.current57_cofactor_precision_contract)
             if args.current57_cofactor_precision_contract
+            else None
+        ),
+        current57_cofactor_fold_alignment_audit_path=(
+            Path(args.current57_cofactor_fold_alignment_audit)
+            if args.current57_cofactor_fold_alignment_audit
             else None
         ),
         out_path=Path(args.out),
@@ -23250,6 +23318,85 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_current57_cofactor_precision_contract
     )
 
+    current57_cofactor_fold_alignment_audit = subparsers.add_parser(
+        "build-current57-cofactor-fold-alignment-audit",
+        help=(
+            "heldout-excluded row-alignment audit for joining the current-57 "
+            "cofactor precision surface to cached fold/TM train/cal contracts; "
+            "fail-closes when cached fold rows do not cover the current surface"
+        ),
+    )
+    current57_cofactor_fold_alignment_audit.add_argument(
+        "--current-operating-point",
+        default=DEFAULT_CURRENT57_ALIGNMENT_OPERATING_POINT_PATH,
+        help="current-57 cofactor operating-point diagnostic artifact",
+    )
+    current57_cofactor_fold_alignment_audit.add_argument(
+        "--fold-inscope-contract",
+        default=DEFAULT_CURRENT57_ALIGNMENT_FOLD_INSCOPE_PATH,
+        help="cached fold/TM calibration in-scope threshold contract",
+    )
+    current57_cofactor_fold_alignment_audit.add_argument(
+        "--fold-oos-contract",
+        default=DEFAULT_CURRENT57_ALIGNMENT_FOLD_OOS_PATH,
+        help="cached fold/TM expanded calibration OOS-negative threshold contract",
+    )
+    current57_cofactor_fold_alignment_audit.add_argument(
+        "--min-calibration-inscope-overlap-fraction",
+        type=float,
+        default=0.9,
+    )
+    current57_cofactor_fold_alignment_audit.add_argument(
+        "--min-calibration-oos-overlap-fraction",
+        type=float,
+        default=0.9,
+    )
+    current57_cofactor_fold_alignment_audit.add_argument(
+        "--out",
+        default=DEFAULT_CURRENT57_COFACTOR_FOLD_ALIGNMENT_OUT_PATH,
+    )
+    current57_cofactor_fold_alignment_audit.add_argument(
+        "--report",
+        default=DEFAULT_CURRENT57_COFACTOR_FOLD_ALIGNMENT_REPORT_PATH,
+    )
+    current57_cofactor_fold_alignment_audit.set_defaults(
+        func=cmd_build_current57_cofactor_fold_alignment_audit
+    )
+
+    current57_fold_tm_recompute_manifest = subparsers.add_parser(
+        "build-current57-fold-tm-recompute-manifest",
+        help=(
+            "heldout-excluded input manifest for recomputing Fold/TM on the exact "
+            "current-57 cofactor train/cal rows once foldseek is installed"
+        ),
+    )
+    current57_fold_tm_recompute_manifest.add_argument(
+        "--current-operating-point",
+        default=DEFAULT_CURRENT57_FOLD_TM_RECOMPUTE_OPERATING_POINT_PATH,
+        help="current-57 cofactor operating-point diagnostic artifact",
+    )
+    current57_fold_tm_recompute_manifest.add_argument(
+        "--label-manifest",
+        default=DEFAULT_CURRENT57_FOLD_TM_RECOMPUTE_LABEL_MANIFEST_PATH,
+        help="current702 label manifest used only to map entry IDs to accessions",
+    )
+    current57_fold_tm_recompute_manifest.add_argument(
+        "--coordinate-root",
+        default=DEFAULT_CURRENT57_FOLD_TM_RECOMPUTE_COORDINATE_ROOT,
+        help="root containing train/cal-safe staged AlphaFold CIF directories",
+    )
+    current57_fold_tm_recompute_manifest.add_argument(
+        "--out",
+        default=DEFAULT_CURRENT57_FOLD_TM_RECOMPUTE_OUT_PATH,
+    )
+    current57_fold_tm_recompute_manifest.add_argument(
+        "--report",
+        default=DEFAULT_CURRENT57_FOLD_TM_RECOMPUTE_REPORT_PATH,
+    )
+    current57_fold_tm_recompute_manifest.set_defaults(
+        func=cmd_build_current57_fold_tm_recompute_manifest
+    )
+
     predicted_geometry_atlas_engine_preregistration = subparsers.add_parser(
         "build-predicted-geometry-atlas-engine-preregistration",
         help=(
@@ -23306,6 +23453,15 @@ def build_parser() -> argparse.ArgumentParser:
             "optional current-57 cofactor precision contract; a fail-closed "
             "contract blocks cached atlas-engine fusion even when scored fold/TM "
             "surfaces are present"
+        ),
+    )
+    predicted_geometry_atlas_engine_preregistration.add_argument(
+        "--current57-cofactor-fold-alignment-audit",
+        default=DEFAULT_CURRENT57_COFACTOR_FOLD_ALIGNMENT_AUDIT_PATH,
+        help=(
+            "optional current-57 cofactor/fold row-alignment audit; a fail-closed "
+            "audit blocks cached atlas-engine fusion when cached Fold/TM rows do "
+            "not cover the current train/cal cofactor surface"
         ),
     )
     predicted_geometry_atlas_engine_preregistration.add_argument(

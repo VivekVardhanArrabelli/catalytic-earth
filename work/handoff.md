@@ -1,5 +1,64 @@
 # Handoff
 
+## Session run - current-57 cofactor/fold alignment blocked; recompute manifest ready; no registry apply (2026-06-28, Codex automation)
+
+- Started at `2026-06-28T03:32:44Z` from current `origin/main`
+  `b94d0e25e01cb4cc1680a15f2b9fc6992ff77a6b`, acquired
+  `.git/catalytic-earth-automation.lock`, and confirmed frozen current702 sha before/after stayed
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. No registry, ontology,
+  label, split, threshold, heldout, model-weight, or fingerprint-family mutation was made. Elapsed
+  runtime at closeout was **23.1 min** (31.9 min remaining of the 55 min budget).
+- Added the heldout-excluded current-57 cofactor/fold row-alignment audit:
+  `src/catalytic_earth/current57_cofactor_fold_alignment_audit.py` and
+  `build-current57-cofactor-fold-alignment-audit`. It checks whether the current-57 cofactor
+  train/cal precision rows can be joined to the cached fold/TM row-level contracts before any cached
+  atlas-engine fusion claim.
+- New alignment artifact/report:
+  `artifacts/v3_current57_cofactor_fold_alignment_audit_current702_20260628.json` and
+  `work/current57_cofactor_fold_alignment_audit_current702_20260628.md`. Result:
+  `blocked_cached_fold_surface_not_row_aligned_with_current57_cofactor_surface`. Calibration in-scope
+  overlap is only **4/35** and calibration OOS overlap is **0/26** against the required 0.9 overlap
+  fractions; the overlap-only fixed fold gate is non-interpretable because no current-57 OOS row has a
+  cached fold score.
+- Integrated the alignment blocker into
+  `src/catalytic_earth/predicted_geometry_atlas_engine_preregistration.py` and regenerated
+  `artifacts/v3_predicted_geometry_atlas_engine_preregistration_current702_20260628.json` /
+  `work/predicted_geometry_atlas_engine_preregistration_current702_20260628.md`. Status is now
+  `preregistered_cached_surface_blocked_current57_precision_contract_fold_alignment_new_foldseek_backend_blocked`;
+  cached atlas-engine fusion is explicitly not runnable.
+- Added a no-score current-57 Fold/TM recompute input manifest and CLI:
+  `src/catalytic_earth/current57_fold_tm_recompute_manifest.py` and
+  `build-current57-fold-tm-recompute-manifest`. New artifact/report:
+  `artifacts/v3_current57_fold_tm_recompute_input_manifest_current702_20260628.json` and
+  `work/current57_fold_tm_recompute_input_manifest_current702_20260628.md`. It maps the exact current-57
+  calibration queries (**61/61**) and train in-scope fold targets (**133/133**) to train/cal-safe
+  staged AlphaFold CIFs and records the future `foldseek easy-search` command. It did not materialize
+  staging directories and did not compute new Fold/TM scores.
+- Durable docs updated: `docs/project_state.md` and `docs/decision_log.md` now record the row-alignment
+  blocker and the concrete recompute manifest. `docs/MAP.md` was not changed because the compass is
+  unchanged: breadth remains stopped and the predicted-geometry recovery line is the priority.
+- Validation passed:
+  - `PYTHONPATH=src pytest -q tests/test_current57_fold_tm_recompute_manifest.py tests/test_current57_cofactor_fold_alignment_audit.py tests/test_predicted_geometry_atlas_engine_preregistration.py tests/test_cli.py -k 'current57_fold_tm_recompute or current57_cofactor_fold_alignment or predicted_geometry_atlas_engine_preregistration or current57_cofactor_precision_contract'`
+    -> 13 passed, 232 deselected.
+  - Earlier focused recovery/preregistration suite after the alignment audit:
+    `PYTHONPATH=src pytest -q tests/test_current57_cofactor_fold_alignment_audit.py tests/test_cofactor_precision_contract.py tests/test_predicted_geometry_atlas_engine_preregistration.py tests/test_cofactor_fusion_operating_point.py tests/test_predicted_geometry_recovery.py tests/test_cofactor_presence_calibration.py tests/test_cofactor_channel_probe.py tests/test_geometry_retrieval.py tests/test_cli.py -k 'current57_cofactor_fold_alignment or cofactor_precision_contract or predicted_geometry_atlas_engine_preregistration or cofactor_fusion_operating_point or predicted_geometry_recovery or cofactor_presence_calibration or cofactor_channel_probe or geometry_retrieval'`
+    -> 94 passed, 232 deselected, 2 subtests.
+  - `PYTHONPATH=src python -m compileall -q src tests` passed.
+  - Final full `PYTHONPATH=src pytest -q` -> 2536 passed, 1 warning, 244 subtests in 182.63s.
+  - `PYTHONPATH=src python -m catalytic_earth.cli validate` -> validated 12 sources, 57 fingerprints,
+    54 ontology families, 702 curated labels.
+  - `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check --out artifacts/v3_current_docs_artifact_reference_check_current702_20260628.json --report work/current_docs_artifact_reference_check_current702_20260628.md`
+    -> missing 0.
+  - JSON/JSONL parse passed: 10725 JSON files and 8338 JSONL records across 27 JSONL files.
+  - `git diff --check` passed.
+  - Frozen current702 SHA after work:
+    `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+- Next exact action: install/expose `foldseek`, materialize the
+  `v3_current57_fold_tm_recompute_input_manifest_current702_20260628` staging plan, run its recorded
+  calibration-vs-train easy-search command, then build a current-57 fold/TM score readout before any
+  cached atlas-engine fusion or heldout read. Alternative: pin/replay the intended June 9 router and
+  fold row surface.
+
 ## Session run - current-57 cofactor precision contract fail-closed; atlas prereg updated; no registry apply (2026-06-28, Codex automation)
 
 - Started at `2026-06-28T02:31:07Z` from current `origin/main`
