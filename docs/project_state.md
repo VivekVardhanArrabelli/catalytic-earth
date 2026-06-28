@@ -26,6 +26,20 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **DEPLOYMENT-READINESS SYNTHESIS: the fold (structural) channel generalizes off M-CSA on BOTH halves; a formal deployment claim is still gated (2026-06-28).**
+  Verifiable aggregate of the session's committed readouts (reads source values + sha256, computes
+  nothing new): `artifacts/v3_fold_channel_deployment_readiness_summary_current702_20260628.json` /
+  `work/fold_channel_deployment_readiness_summary_current702_20260628.md`
+  (`src/catalytic_earth/fold_channel_deployment_readiness.py`,
+  `build-fold-channel-deployment-readiness`), status
+  `fold_channel_generalizes_off_mcsa_both_halves_deployment_claim_still_gated`. Validated: off-M-CSA
+  recovery 132/156 (0.846, all 4 cofactor families), off-M-CSA rejection (external median 0.574 tracks
+  M-CSA OOS 0.566 « in-scope 0.743), reproducible June 9 dial 30/35 @ 8 FP. Not yet validated: no
+  gold-truth off-M-CSA (bronze labels are automation-curated — fold/sequence concordance, not gold
+  accuracy); the held-out one-shot is locked but unspent (M-CSA-only); coverage scoped to the cofactor
+  atlas families; calibration points are development figures. Remaining gates for a deployment claim:
+  gold off-M-CSA eval, execute the locked held-out one-shot, broaden the atlas beyond cofactor families.
+
 - **OFF-M-CSA IN-SCOPE RECOVERY CONFIRMED — fold-NN recovers 132/156 (84.6%) of non-M-CSA bronze positives across all 4 families; fold channel now generalizes off M-CSA on BOTH recovery and rejection (2026-06-28).**
   Executed the authorized download (156/162 AFDB v6 CIFs; 6 are 404) + foldseek vs the M-CSA atlas +
   recovery harness:

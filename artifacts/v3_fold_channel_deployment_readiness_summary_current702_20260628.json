@@ -1,0 +1,125 @@
+{
+  "artifact_id": "v3_fold_channel_deployment_readiness_summary_current702_20260628",
+  "channels_contrast": {
+    "cofactor_sequence_channel": {
+      "compatible_recovery_ceiling": 26,
+      "current57_precision_contract_status": "blocked_current57_cofactor_precision_contract_not_deployable",
+      "note": "Cofactor channel drifted on the current-57 router and showed no off-M-CSA abstention signal.",
+      "off_mcsa_abstention_signal": "absent (prior gold eval)"
+    },
+    "fold_structural_channel": {
+      "mcsa_inscope_vs_oos_separation": {
+        "inscope_median": 0.743,
+        "oos_median": 0.5661
+      },
+      "note": "Fold channel separates in-scope from OOS and generalises off M-CSA."
+    }
+  },
+  "created_utc": "2026-06-28T19:39:53Z",
+  "deployable_operating_point": {
+    "calibration_point": {
+      "cofactor_threshold": 0.44,
+      "fold_threshold": 0.0,
+      "inscope_correct": 30,
+      "inscope_total": 35,
+      "oos_false_positives": 8,
+      "oos_total": 26
+    },
+    "fold_gate_role": "tunable precision/recall + OOS-rejection dial; on the healthy June 9 router it does not Pareto-improve the dial point (residual OOS FPs are high-fold-similar), but it is the off-M-CSA abstention lever",
+    "router": "June 9 router (registry pin d567ee0d) at the 0.44 cofactor dial"
+  },
+  "guardrails": {
+    "heldout_rows_scored": false,
+    "new_scores_computed": false,
+    "registry_or_ontology_changed": false,
+    "synthesis_only": true
+  },
+  "interpretation": {
+    "headline": "The fold (structural nearest-neighbour) channel generalises off the M-CSA development distribution on both halves -- recovery and abstention -- making it the strongest deployment lever in the project. A formal deployment claim still requires gold off-M-CSA validation and the locked held-out one-shot; nothing here is a deployment claim yet."
+  },
+  "not_yet_validated": [
+    "No gold-truth off-M-CSA evaluation: bronze labels are automation-curated, so off-M-CSA recovery measures fold/sequence concordance, not gold accuracy.",
+    "The held-out one-shot is preregistered but unspent: `preregistered_not_yet_run` (and it certifies M-CSA only).",
+    "Coverage is scoped to the cofactor atlas families; broader-family recovery is not yet measured.",
+    "All calibration operating points are development figures (calibration reused across readouts), not unbiased estimates."
+  ],
+  "off_mcsa_generalization": {
+    "both_halves_generalize_off_mcsa": true,
+    "recovery_half": {
+      "generalizes": true,
+      "mcsa_baseline_reference": "28/35 (0.8)",
+      "per_family": {
+        "flavin_dehydrogenase_reductase": "83/96 (0.86)",
+        "heme_peroxidase_oxidase": "17/20 (0.85)",
+        "metal_dependent_hydrolase": "26/34 (0.76)",
+        "plp_dependent_enzyme": "6/6 (1.0)"
+      },
+      "recovery": "132/156 (0.8462)",
+      "surface": "offmcsa_bronze_high_confidence"
+    },
+    "rejection_half": {
+      "external_negative_median": 0.5737,
+      "generalizes": true,
+      "mcsa_inscope_median": 0.743,
+      "mcsa_oos_median": 0.5661
+    }
+  },
+  "question": "Is the fold (structural nearest-neighbour) channel a deployment-grade mechanism signal -- does it both recover correct mechanisms and abstain on out-of-scope inputs -- beyond the M-CSA development distribution?",
+  "remaining_gates_for_a_deployment_claim": [
+    "A gold-labelled off-M-CSA evaluation (or a curated subset) for recovery.",
+    "Execute the locked held-out one-shot under its frozen rule and sha256.",
+    "Broaden the M-CSA atlas beyond the cofactor families and re-run recovery."
+  ],
+  "result_class": "read_only_synthesis_no_new_scoring_no_heldout_read",
+  "schema_version": "fold_channel_deployment_readiness_summary.v1",
+  "source_artifacts": {
+    "cofactor_precision_contract": {
+      "artifact_id": "v3_current57_cofactor_precision_contract_current702_20260628",
+      "path": "artifacts/v3_current57_cofactor_precision_contract_current702_20260628.json",
+      "sha256": "3d9197affe25fe6a3bec43658895f0043cf48e829600c52182698c20cbd13b08",
+      "status": "blocked_current57_cofactor_precision_contract_not_deployable"
+    },
+    "heldout_preregistration": {
+      "artifact_id": "v3_heldout_oneshot_preregistration_current702_20260628",
+      "path": "artifacts/v3_heldout_oneshot_preregistration_current702_20260628.json",
+      "sha256": "34e8499ef01882c89a1968585374a558d03e2c80651e797fe63c2898969ecd07",
+      "status": "preregistered_not_yet_run"
+    },
+    "june9_fold_fusion": {
+      "artifact_id": "v3_june9_router_fold_fusion_readout_current702_20260628",
+      "path": "artifacts/v3_june9_router_fold_fusion_readout_current702_20260628.json",
+      "sha256": "ace2ae4c9c66ed2fd5a28335429a6859ec705b0bbcc0bbe936dc962c30197859",
+      "status": "june9_router_fold_gate_no_pareto_improvement_precision_recall_tradeoff_only"
+    },
+    "mcsa_fold_separation": {
+      "artifact_id": "v3_current57_fold_tm_recompute_readout_current702_20260628",
+      "path": "artifacts/v3_current57_fold_tm_recompute_readout_current702_20260628.json",
+      "sha256": "32562cf8ff57f95af83c8667a2441c3c0cf13c22414a69a6760b096ebde7120e",
+      "status": "current57_fold_tm_recompute_readout_row_aligned"
+    },
+    "mcsa_recovery_baseline": {
+      "artifact_id": "v3_fold_nn_mechanism_recovery_readout_current702_20260628",
+      "path": "artifacts/v3_fold_nn_mechanism_recovery_mcsa_baseline_current702_20260628.json",
+      "sha256": "43c8fa6a8c7245467ef41ff74b5b5065b7f9e9b17f395d57f9283105daac54aa",
+      "status": "fold_nn_mechanism_recovery_readout_complete"
+    },
+    "offmcsa_abstention": {
+      "artifact_id": "v3_external_offmcsa_fold_abstention_readout_current702_20260628",
+      "path": "artifacts/v3_external_offmcsa_fold_abstention_readout_current702_20260628.json",
+      "sha256": "5ea9f44b378fda69e4c2917b64fee682fe77b68a921b4ee76ab87cf356092439",
+      "status": "fold_nn_abstention_signal_generalizes_off_mcsa"
+    },
+    "offmcsa_recovery": {
+      "artifact_id": "v3_fold_nn_mechanism_recovery_readout_current702_20260628",
+      "path": "artifacts/v3_fold_nn_mechanism_recovery_offmcsa_bronze_current702_20260628.json",
+      "sha256": "caa18013cc06d81b218d606af9b752e867fbfac28ca02bb1544928305fe21d24",
+      "status": "fold_nn_mechanism_recovery_readout_complete"
+    }
+  },
+  "status": "fold_channel_generalizes_off_mcsa_both_halves_deployment_claim_still_gated",
+  "validated_claims": [
+    "Fold-NN recovers off-M-CSA bronze positives at 0.8462 across all 4 cofactor families (non-circular: bronze admission used sequence/cofactor, not structure).",
+    "Fold-NN rejects off-M-CSA negatives: external-negative fold-NN median 0.5737 tracks the M-CSA OOS median 0.5661, far below the in-scope median 0.743.",
+    "The June 9 router operating point is reproducible and clears the calibration recovery bar (30/35 @ 8 FP)."
+  ]
+}

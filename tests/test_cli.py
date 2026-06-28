@@ -325,6 +325,18 @@ class CliTests(unittest.TestCase):
             ),
         )
 
+    def test_fold_channel_deployment_readiness_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            ["build-fold-channel-deployment-readiness"]
+        )
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/"
+                "v3_fold_channel_deployment_readiness_summary_current702_20260628.json"
+            ),
+        )
+
     def test_external_source_pilot_uniref_current_reference_parser_defaults(
         self,
     ) -> None:

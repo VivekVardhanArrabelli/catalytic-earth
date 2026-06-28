@@ -171,6 +171,11 @@ from .offmcsa_recovery_download_manifest import (
     DEFAULT_REPORT_PATH as DEFAULT_OFFMCSA_DL_REPORT_PATH,
     write_offmcsa_recovery_download_manifest,
 )
+from .fold_channel_deployment_readiness import (
+    DEFAULT_OUT_PATH as DEFAULT_FOLD_READINESS_OUT_PATH,
+    DEFAULT_REPORT_PATH as DEFAULT_FOLD_READINESS_REPORT_PATH,
+    write_fold_channel_deployment_readiness,
+)
 from .predicted_geometry_atlas_engine_preregistration import (
     DEFAULT_COFACTOR_CHANNEL_PATH,
     DEFAULT_COFACTOR_PRECISION_PATH,
@@ -3136,6 +3141,21 @@ def cmd_build_offmcsa_recovery_download_manifest(args: argparse.Namespace) -> in
         f"{s.get('selected_structures_to_download')} CIFs across "
         f"{s.get('families_covered')} families; ~{s.get('estimated_total_mb')} MB; "
         f"sha256 {s.get('accession_list_sha256','')[:16]}...)"
+    )
+    return 0
+
+
+def cmd_build_fold_channel_deployment_readiness(args: argparse.Namespace) -> int:
+    summary = write_fold_channel_deployment_readiness(
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    off = summary.get("off_mcsa_generalization", {})
+    print(
+        "Wrote fold-channel deployment-readiness summary to "
+        f"{args.out} ({summary.get('status')}; off-M-CSA recovery "
+        f"{off.get('recovery_half', {}).get('recovery')}; both halves generalize "
+        f"{off.get('both_halves_generalize_off_mcsa')})"
     )
     return 0
 
@@ -23903,6 +23923,25 @@ def build_parser() -> argparse.ArgumentParser:
     )
     offmcsa_recovery_download_manifest.set_defaults(
         func=cmd_build_offmcsa_recovery_download_manifest
+    )
+
+    fold_channel_deployment_readiness = subparsers.add_parser(
+        "build-fold-channel-deployment-readiness",
+        help=(
+            "synthesise the committed fold-channel readouts into one verifiable "
+            "deployment-readiness assessment (read-only, no new scoring)"
+        ),
+    )
+    fold_channel_deployment_readiness.add_argument(
+        "--out",
+        default=DEFAULT_FOLD_READINESS_OUT_PATH,
+    )
+    fold_channel_deployment_readiness.add_argument(
+        "--report",
+        default=DEFAULT_FOLD_READINESS_REPORT_PATH,
+    )
+    fold_channel_deployment_readiness.set_defaults(
+        func=cmd_build_fold_channel_deployment_readiness
     )
 
     predicted_geometry_atlas_engine_preregistration = subparsers.add_parser(
