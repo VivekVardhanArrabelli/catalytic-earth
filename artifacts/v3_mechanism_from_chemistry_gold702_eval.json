@@ -1,0 +1,407 @@
+{
+  "abstention_precision_side": {
+    "in_distribution_nearest_similarity": {
+      "mean": 0.7431,
+      "median": 0.7973,
+      "n": 210,
+      "p10": 0.4911,
+      "p90": 0.9876
+    },
+    "interpretation": "if OOS nearest-similarity sits below in-distribution, a similarity threshold separates known-mechanism from novel-mechanism (the abstention signal).",
+    "oos_featurizable": 448,
+    "oos_total": 470,
+    "out_of_scope_nearest_similarity": {
+      "mean": 0.7165,
+      "median": 0.8256,
+      "n": 448,
+      "p10": 0.0,
+      "p90": 0.9895
+    }
+  },
+  "artifact_id": "v3_mechanism_from_chemistry_gold702_eval",
+  "headline": {
+    "coarse_cofactor_bucket_accuracy": 0.7619,
+    "coarse_correct": 160,
+    "coarse_note": "the gold seed taxonomy is ~8 coarse cofactor-class families; the centroids are today's 57 fine families. Exact-fingerprint scoring penalises the representation for resolving a FINER, mechanistically-correct subfamily than the 2026-05-25 gold label (e.g. metal_dependent_hydrolase -> zinc_lyase_hydratase). Coarse cofactor-bucket accuracy scores at the granularity the gold labels were actually defined.",
+    "coarse_scored": 210,
+    "correct": 65,
+    "exact_fingerprint_accuracy_over_centroid_covered": 0.3095,
+    "exact_fingerprint_accuracy_over_featurizable": 0.3095,
+    "primary_centroid_covered": 210,
+    "primary_featurizable": 210,
+    "primary_total": 232
+  },
+  "leakage_guardrails": {
+    "centroids_from_expansion_bronze_only": true,
+    "features_exclude_ec_name_prose_fingerprint": true,
+    "gold_labels_never_seen_by_admission_engine": true,
+    "registry_or_benchmark_mutated": false
+  },
+  "miss_count": 145,
+  "miss_sample": [
+    {
+      "accession": "P08819",
+      "chemistry_nearest": "acid_coa_ligase",
+      "entry_id": "m_csa:5",
+      "gold_fingerprint": "ser_his_acid_hydrolase",
+      "nearest_similarity": 0.0,
+      "own_cohesion": 0.0
+    },
+    {
+      "accession": "P00390",
+      "chemistry_nearest": "flavin_disulfide_reductase",
+      "entry_id": "m_csa:6",
+      "gold_fingerprint": "flavin_dehydrogenase_reductase",
+      "nearest_similarity": 0.9948,
+      "own_cohesion": 0.8956
+    },
+    {
+      "accession": "P0A6C1",
+      "chemistry_nearest": "metallophosphoesterase_nuclease",
+      "entry_id": "m_csa:11",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.7973,
+      "own_cohesion": 0.7592
+    },
+    {
+      "accession": "P25910",
+      "chemistry_nearest": "metallo_beta_lactamase",
+      "entry_id": "m_csa:15",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.9801,
+      "own_cohesion": 0.7312
+    },
+    {
+      "accession": "P04190",
+      "chemistry_nearest": "metallo_beta_lactamase",
+      "entry_id": "m_csa:16",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.9801,
+      "own_cohesion": 0.7312
+    },
+    {
+      "accession": "P09598",
+      "chemistry_nearest": "metal_independent_phosphodiesterase",
+      "entry_id": "m_csa:27",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.7071,
+      "own_cohesion": 0.6783
+    },
+    {
+      "accession": "P10688",
+      "chemistry_nearest": "cysteine_protease",
+      "entry_id": "m_csa:28",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.7256,
+      "own_cohesion": 0.0088
+    },
+    {
+      "accession": "Q05769",
+      "chemistry_nearest": "cytochrome_p450_monooxygenase",
+      "entry_id": "m_csa:37",
+      "gold_fingerprint": "heme_peroxidase_oxidase",
+      "nearest_similarity": 0.8386,
+      "own_cohesion": 0.4866
+    },
+    {
+      "accession": "P0A6T5",
+      "chemistry_nearest": "acid_coa_ligase",
+      "entry_id": "m_csa:38",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.0,
+      "own_cohesion": 0.0
+    },
+    {
+      "accession": "P00639",
+      "chemistry_nearest": "metallophosphoesterase_nuclease",
+      "entry_id": "m_csa:41",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.7504,
+      "own_cohesion": 0.0902
+    },
+    {
+      "accession": "P13717",
+      "chemistry_nearest": "manganese_iron_superoxide_dismutase",
+      "entry_id": "m_csa:42",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.9876,
+      "own_cohesion": 0.1188
+    },
+    {
+      "accession": "P80366",
+      "chemistry_nearest": "metallophosphomonoesterase",
+      "entry_id": "m_csa:43",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.8722,
+      "own_cohesion": 0.6199
+    },
+    {
+      "accession": "P00634",
+      "chemistry_nearest": "metallophosphomonoesterase",
+      "entry_id": "m_csa:44",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.8722,
+      "own_cohesion": 0.6199
+    },
+    {
+      "accession": "P80077",
+      "chemistry_nearest": "cofactor_independent_isomerase",
+      "entry_id": "m_csa:63",
+      "gold_fingerprint": "cobalamin_radical_rearrangement",
+      "nearest_similarity": 0.9221,
+      "own_cohesion": 0.7877
+    },
+    {
+      "accession": "P00592",
+      "chemistry_nearest": "alpha_beta_hydrolase_esterase_lipase",
+      "entry_id": "m_csa:83",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.8737,
+      "own_cohesion": 0.0436
+    },
+    {
+      "accession": "P18314",
+      "chemistry_nearest": "thiamine_diphosphate_enzyme",
+      "entry_id": "m_csa:87",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.563,
+      "own_cohesion": 0.0
+    },
+    {
+      "accession": "Q29460",
+      "chemistry_nearest": "alpha_beta_hydrolase_esterase_lipase",
+      "entry_id": "m_csa:94",
+      "gold_fingerprint": "ser_his_acid_hydrolase",
+      "nearest_similarity": 0.9289,
+      "own_cohesion": 0.8681
+    },
+    {
+      "accession": "P0ABF6",
+      "chemistry_nearest": "metallo_amidohydrolase_deaminase",
+      "entry_id": "m_csa:97",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.9219,
+      "own_cohesion": 0.8183
+    },
+    {
+      "accession": "P0A6K3",
+      "chemistry_nearest": "metallophosphoesterase_nuclease",
+      "entry_id": "m_csa:98",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.651,
+      "own_cohesion": 0.6326
+    },
+    {
+      "accession": "P56216",
+      "chemistry_nearest": "flavin_monooxygenase",
+      "entry_id": "m_csa:103",
+      "gold_fingerprint": "flavin_dehydrogenase_reductase",
+      "nearest_similarity": 0.6005,
+      "own_cohesion": 0.5121
+    },
+    {
+      "accession": "P80324",
+      "chemistry_nearest": "copper_oxidoreductase",
+      "entry_id": "m_csa:110",
+      "gold_fingerprint": "flavin_dehydrogenase_reductase",
+      "nearest_similarity": 0.4936,
+      "own_cohesion": 0.3621
+    },
+    {
+      "accession": "P55038",
+      "chemistry_nearest": "molybdopterin_oxidoreductase",
+      "entry_id": "m_csa:111",
+      "gold_fingerprint": "flavin_dehydrogenase_reductase",
+      "nearest_similarity": 0.561,
+      "own_cohesion": 0.4188
+    },
+    {
+      "accession": "P40859",
+      "chemistry_nearest": "flavin_monooxygenase",
+      "entry_id": "m_csa:113",
+      "gold_fingerprint": "flavin_dehydrogenase_reductase",
+      "nearest_similarity": 0.7354,
+      "own_cohesion": 0.5397
+    },
+    {
+      "accession": "P16099",
+      "chemistry_nearest": "molybdopterin_oxidoreductase",
+      "entry_id": "m_csa:114",
+      "gold_fingerprint": "flavin_dehydrogenase_reductase",
+      "nearest_similarity": 0.6871,
+      "own_cohesion": 0.5129
+    },
+    {
+      "accession": "P00396",
+      "chemistry_nearest": "cytochrome_p450_monooxygenase",
+      "entry_id": "m_csa:124",
+      "gold_fingerprint": "heme_peroxidase_oxidase",
+      "nearest_similarity": 0.8386,
+      "own_cohesion": 0.4866
+    },
+    {
+      "accession": "P00183",
+      "chemistry_nearest": "cytochrome_p450_monooxygenase",
+      "entry_id": "m_csa:133",
+      "gold_fingerprint": "heme_peroxidase_oxidase",
+      "nearest_similarity": 0.8386,
+      "own_cohesion": 0.4866
+    },
+    {
+      "accession": "Q16775",
+      "chemistry_nearest": "zinc_lyase_hydratase",
+      "entry_id": "m_csa:157",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.9828,
+      "own_cohesion": 0.9548
+    },
+    {
+      "accession": "P15289",
+      "chemistry_nearest": "cysteine_protease",
+      "entry_id": "m_csa:158",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.7256,
+      "own_cohesion": 0.0088
+    },
+    {
+      "accession": "P0A434",
+      "chemistry_nearest": "zinc_lyase_hydratase",
+      "entry_id": "m_csa:159",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.9828,
+      "own_cohesion": 0.9548
+    },
+    {
+      "accession": "P09030",
+      "chemistry_nearest": "manganese_iron_superoxide_dismutase",
+      "entry_id": "m_csa:160",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.9876,
+      "own_cohesion": 0.1188
+    },
+    {
+      "accession": "P13340",
+      "chemistry_nearest": "metallopeptidase",
+      "entry_id": "m_csa:161",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.8045,
+      "own_cohesion": 0.6814
+    },
+    {
+      "accession": "P0A7Y4",
+      "chemistry_nearest": "manganese_iron_superoxide_dismutase",
+      "entry_id": "m_csa:163",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.9876,
+      "own_cohesion": 0.1188
+    },
+    {
+      "accession": "P00644",
+      "chemistry_nearest": "cysteine_protease",
+      "entry_id": "m_csa:165",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.7256,
+      "own_cohesion": 0.0088
+    },
+    {
+      "accession": "P09960",
+      "chemistry_nearest": "zinc_lyase_hydratase",
+      "entry_id": "m_csa:166",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.9828,
+      "own_cohesion": 0.9548
+    },
+    {
+      "accession": "Q01693",
+      "chemistry_nearest": "zinc_lyase_hydratase",
+      "entry_id": "m_csa:167",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.9828,
+      "own_cohesion": 0.9548
+    },
+    {
+      "accession": "P16444",
+      "chemistry_nearest": "metallo_beta_lactamase",
+      "entry_id": "m_csa:168",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.8002,
+      "own_cohesion": 0.6072
+    },
+    {
+      "accession": "P27487",
+      "chemistry_nearest": "acid_coa_ligase",
+      "entry_id": "m_csa:169",
+      "gold_fingerprint": "ser_his_acid_hydrolase",
+      "nearest_similarity": 0.0,
+      "own_cohesion": 0.0
+    },
+    {
+      "accession": "P12821",
+      "chemistry_nearest": "metallopeptidase",
+      "entry_id": "m_csa:170",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.5852,
+      "own_cohesion": 0.569
+    },
+    {
+      "accession": "P00730",
+      "chemistry_nearest": "zinc_lyase_hydratase",
+      "entry_id": "m_csa:171",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.9828,
+      "own_cohesion": 0.9548
+    },
+    {
+      "accession": "P39377",
+      "chemistry_nearest": "metallophosphoesterase_nuclease",
+      "entry_id": "m_csa:172",
+      "gold_fingerprint": "metal_dependent_hydrolase",
+      "nearest_similarity": 0.7973,
+      "own_cohesion": 0.7592
+    }
+  ],
+  "per_family": {
+    "cobalamin_radical_rearrangement": {
+      "correct": 1,
+      "featurizable": 3,
+      "total": 3
+    },
+    "flavin_dehydrogenase_reductase": {
+      "correct": 26,
+      "featurizable": 47,
+      "total": 50
+    },
+    "flavin_monooxygenase": {
+      "correct": 2,
+      "featurizable": 2,
+      "total": 2
+    },
+    "heme_peroxidase_oxidase": {
+      "correct": 9,
+      "featurizable": 20,
+      "total": 20
+    },
+    "metal_dependent_hydrolase": {
+      "correct": 1,
+      "featurizable": 77,
+      "total": 83
+    },
+    "plp_dependent_enzyme": {
+      "correct": 26,
+      "featurizable": 31,
+      "total": 31
+    },
+    "radical_sam_enzyme": {
+      "correct": 0,
+      "featurizable": 0,
+      "total": 1
+    },
+    "ser_his_acid_hydrolase": {
+      "correct": 0,
+      "featurizable": 30,
+      "total": 42
+    }
+  },
+  "schema_version": "catalytic_earth.gold_chemistry_eval.v1",
+  "what_this_is": "NON-circular test: centroids trained on the disjoint expansion-bronze atlas; evaluated on the expert-curated gold current702 primaries with leakage-safe chemistry-only features (cofactor + Rhea bond-change; EC/name/prose/fingerprint excluded)."
+}

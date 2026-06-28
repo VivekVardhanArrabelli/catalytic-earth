@@ -26,6 +26,21 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **NON-CIRCULAR GOLD EVAL (2026-06-27, user-directed): chemistry-only recovers 76% of expert mechanism classes, but STILL no abstention signal at 10k.**
+  The 0.744 LOO is a coherence measure on admission-grouped bronze, so we tested non-circularly:
+  centroids from the bronze atlas only, evaluated on the expert-curated gold current702 primaries
+  (never grouped by admission), chemistry-only features via a read-only reaction/cofactor sidecar.
+  (1) Chemistry-only recovers the gold mechanism class **76% (160/210)** at coarse cofactor-class
+  granularity → generalises beyond the bootstrap. (2) Exact-fingerprint 31% is a taxonomy-version
+  artifact (gold = 8 coarse seeds 2026-05-25; centroids = 57 fine families; misses are finer-but-correct
+  subfamilies, e.g. P00390 glutathione reductase → flavin_disulfide_reductase). (3) **No abstention
+  signal**: OOS nearest-sim median 0.83 is NOT below in-distribution 0.80 — growing breadth to 10k did
+  not create a novelty signal; the wall is still feature overlap (the Northstar Pivot). Steer: more
+  families won't move the deployment wall; the product lives on the predicted-geometry recovery line
+  (needs the full ML env). Artifacts: `artifacts/v3_mechanism_from_chemistry_gold702_eval.json`,
+  `artifacts/v3_current702_reaction_cofactor_sidecar.json`; report:
+  `work/mechanism_from_chemistry_gold702_eval.md`.
+
 - **REACTION-REPRESENTATION FIX `bc_disulfide_reduction` converts the flavin_disulfide_reductase documented cost into a CLEAN WIN; LOO 0.734 -> 0.744 (2026-06-27, user-directed).**
   flavin_disulfide_reductase and flavin_dehydrogenase_reductase are both FAD + NAD(P)H flavoproteins, so
   with only `bc_redox_hydride` the dense disulfide centroid had collapsed flavin_dehydrogenase_reductase

@@ -3,6 +3,38 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-27: NON-CIRCULAR GOLD EVAL — chemistry-only recovers 76% of expert mechanism classes, but there is STILL no abstention signal at 10k (the binding constraint, reconfirmed)
+
+Decision (user-directed: "what most helps realize the North Star"). The representation loop's LOO
+(0.744) is a coherence measure on bronze the disambiguation engine itself grouped, so it can flatter
+the mechanism-from-chemistry thesis. We ran a **non-circular** test
+(`scripts/eval_mechanism_from_chemistry_gold702.py`,
+`artifacts/v3_mechanism_from_chemistry_gold702_eval.json`): centroids trained ONLY on the
+expansion-bronze atlas, evaluated on the **expert-curated gold current702 primaries** (labels the
+admission engine never grouped, screened OUT of the bronze), featurized with chemistry-only
+leakage-safe features via a read-only reaction/cofactor sidecar
+(`artifacts/v3_current702_reaction_cofactor_sidecar.json`,
+`scripts/build_current702_reaction_cofactor_sidecar.py`; registry untouched).
+
+Findings: (1) **POSITIVE — chemistry-only recovers the gold mechanism class 76% (160/210)** at the
+gold's coarse cofactor-class granularity → the thesis generalises beyond its own bootstrap. (2) The
+exact-fingerprint number (31%, 65/210) is a **taxonomy-version artifact**: the gold 702 uses ~8 coarse
+seed families (2026-05-25) while the centroids are today's 57, so the misses are dominated by the
+representation resolving a FINER, mechanistically-correct subfamily that post-dates the gold label
+(metal_dependent_hydrolase → the metal-hydrolase subfamilies; heme_peroxidase → P450;
+flavin_dehydrogenase → flavin_disulfide, e.g. P00390 glutathione reductase). It is being penalised for
+being more granular and correct. (3) **NEGATIVE and decisive — no abstention signal:** out-of-scope
+enzymes score nearest-centroid similarity median 0.83, NOT below the in-distribution 0.80, so a
+similarity threshold cannot separate novel mechanism from known. **Growing breadth to 10k did NOT
+create a novelty/abstention signal** — the wall remains feature overlap (the 2026-05-31 Northstar
+Pivot), now reconfirmed at 10k on gold data.
+
+Durable steer: breadth has delivered a coherent, generalising mechanism atlas; the North Star product
+still lives on the predicted-geometry recovery line (cofactor channel + fold/TM fusion), which needs
+the full ML env (numpy/torch/esm/mmseqs/foldseek) and cannot run in the web container. Adding more
+fingerprint families will not move the deployment wall. Read-only analysis: no registry/benchmark
+mutated.
+
 ## 2026-06-27: REACTION-REPRESENTATION FIX (`bc_disulfide_reduction`) converts the flavin_disulfide_reductase documented cost into a clean win; LOO 0.734 -> 0.744
 
 Decision (user-directed). `flavin_disulfide_reductase` was admitted with a documented representation
