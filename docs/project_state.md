@@ -13,6 +13,10 @@ Read order for a fresh run:
 3. `docs/artifact_index.md`
 4. `docs/agent_runbook.md`
 
+> Deployment-line summary (2026-06-28): `docs/session_decision_record_20260628.md`
+> consolidates the validated M-CSA deployment claim, the off-M-CSA fold-channel
+> findings, Gate 1 (adopt the June 9 coarse router), and the Option B held-out.
+
 ## North Star
 
 Catalytic Earth is a mechanism-first enzyme atlas scaffold. The objective is a
