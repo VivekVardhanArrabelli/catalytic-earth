@@ -576,6 +576,79 @@ HIGH_YIELD_FAMILY_SPECS: tuple[dict[str, Any], ...] = (
         ),
     ),
     _spec(
+        family_id="flavin_disulfide_reductase",
+        display_name="Flavin-dependent disulfide reductase (NAD(P)H:disulfide oxidoreductase)",
+        scope_query="(reviewed:true) AND (ec:1.8.1.*)",
+        corroborator_query=(
+            "(reviewed:true) AND (ec:1.8.1.*) AND (cc_cofactor:\"FAD\") AND "
+            "((ft_act_site:*) OR (ft_binding:*))"
+        ),
+        required_non_ec_corroborators=(
+            "annotated FAD cofactor",
+            "Rhea/reviewed NAD(P)H:disulfide reduction reaction (disulfide/dithiol substrate)",
+            "disulfide-reductase / pyridine-nucleotide-disulfide family/name OR active/binding site",
+        ),
+        disambiguation_holds=(
+            "sulfite reductase (EC 1.8.1.2, siroheme, no disulfide substrate) rows",
+            "non-flavin thiol-redox enzymes (glutaredoxin / glutathione peroxidase) rows",
+            "non-1.8.1 side-EC bifunctional rows",
+            "EC-only rows without FAD and a disulfide-reduction reaction",
+        ),
+        cap_ceiling=DEFAULT_CONFUSABLE_CAP,
+        chemistry_confusable=True,
+        novelty_keep_factor=0.45,
+        ambiguity_with_existing=("flavin_dehydrogenase_reductase",),
+        existing_fingerprint_id="flavin_disulfide_reductase",
+        current_runner="scripts/source_flavin_disulfide_reductase_family.py",
+        oos_preregistration_required=False,
+        source_wall_rule_status="implemented_new_fingerprint_runner",
+        rationale_template=(
+            "Large EC 1.8.1 class-I pyridine nucleotide-disulfide oxidoreductase class (glutathione / "
+            "thioredoxin / trypanothione / lipoamide / CoA-disulfide reductases); the dedicated "
+            "flavin_disulfide_reductase fingerprint and its FAD + disulfide-reduction-reaction "
+            "disambiguation rule are implemented (2026-06-27). EC 1.8.1 is a subset of the "
+            "flavin_dehydrogenase_reductase scope; the disulfide-substrate reaction center carves the "
+            "disulfide reductases out at admission, and the shared FAD + NAD(P)H makes the two "
+            "representation-confusable (cap 150)."
+        ),
+    ),
+    _spec(
+        family_id="dihydrofolate_reductase",
+        display_name="Dihydrofolate reductase (NADPH-dependent folate reduction)",
+        scope_query="(reviewed:true) AND (ec:1.5.1.3)",
+        corroborator_query=(
+            "(reviewed:true) AND (ec:1.5.1.3) AND "
+            "((ft_act_site:*) OR (ft_binding:*) OR (protein_name:\"dihydrofolate reductase\"))"
+        ),
+        required_non_ec_corroborators=(
+            "Rhea/reviewed NADPH-dependent 7,8-dihydrofolate -> tetrahydrofolate reduction reaction",
+            "dihydrofolate-reductase family/name handle",
+            "NADPH / folate-binding active-site context where available",
+        ),
+        disambiguation_holds=(
+            "dihydrofolate synthase / folylpolyglutamate synthetase (EC 6.3.2) rows",
+            "methylenetetrahydrofolate reductase (EC 1.5.1.20) / dehydrogenase (EC 1.5.1.5) rows",
+            "bifunctional thymidylate-synthase rows with a non-1.5.1.3 side EC",
+            "EC-only rows without a folate-reduction reaction",
+        ),
+        cap_ceiling=DEFAULT_CONFUSABLE_CAP,
+        chemistry_confusable=True,
+        novelty_keep_factor=0.45,
+        ambiguity_with_existing=("nad_p_dehydrogenase",),
+        existing_fingerprint_id="dihydrofolate_reductase",
+        current_runner="scripts/source_dihydrofolate_reductase_family.py",
+        oos_preregistration_required=False,
+        source_wall_rule_status="implemented_new_fingerprint_runner",
+        rationale_template=(
+            "Uncovered EC 1.5.1.3 dihydrofolate reductase class (DHFR; NADPH-dependent "
+            "7,8-dihydrofolate -> tetrahydrofolate reduction); the dedicated dihydrofolate_reductase "
+            "fingerprint and its folate-reduction-reaction disambiguation rule are implemented "
+            "(2026-06-27). The NADPH hydride-transfer half-reaction is shared with the EC 1.1.1 "
+            "NAD(P) dehydrogenases, so the family is representation-confusable with the NAD(P) "
+            "hydride-transfer surface; the folate-reduction reaction separates it at admission (cap 150)."
+        ),
+    ),
+    _spec(
         family_id="aldo_keto_reductase",
         display_name="Aldo-keto reductase",
         scope_query="(reviewed:true) AND (ec:1.1.1.*)",

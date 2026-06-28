@@ -16,6 +16,40 @@ decision-log citation.
 Chronology note: the first dated update below is the current operational state. Older dated
 updates retain their original wording for historical context and should not override newer entries.
 
+**2026-06-27 user-directed "go ahead" — new fingerprint family: `dihydrofolate_reductase` added
+(56 -> 57 FP), combined 9927 -> 10001 — the 10,000-LABEL MILESTONE.** NADPH-dependent dihydrofolate
+reductases (EC 1.5.1.3; DHFR): 7,8-dihydrofolate + NADPH -> 5,6,7,8-tetrahydrofolate. EC 1.5.1.3 is
+uncovered. Supply-measured choice: carbonic anhydrase (59 novel) and enoyl-CoA hydratase (~48
+monofunctional) were thin; thymidylate synthase / carbamoyl-phosphate synthase / GTP cyclohydrolase /
+adenylosuccinate synthase had supply but EC-scope collisions; DHFR had 118 novel. Folate-reduction
+reaction is the hard anchor + DHFR family/name or active/binding site; dihydrofolate synthase (EC 6.3.2),
+MTHFR (1.5.1.20), and bifunctional thymidylate-synthase side-EC rows guarded. Ontology
+`nadph_dihydrofolate_reduction`, sourcing lane, leakage re-registration (`_56fp -> _57fp`), lane-factory
+wiring. First lane: 118 fetched, 79 corroborated, applied **74** (19 off-target to sam_methyltransferase;
+0 dup). CLEAN WIN: the folate reaction center separates DHFR from the NAD(P) hydride-transfer surface
+despite shared NADPH, so the centroid is perfectly self-consistent (sc 1.000) with zero bleed; overall
+LOO 0.733 -> **0.734** (seed-stable). Gap to 10k: **0 (reached)**. See
+`artifacts/v3_dihydrofolate_reductase_new_fingerprint_apply_summary_current702_20260627.json`.
+
+**2026-06-27 user-directed "carry on towards 10k" — new fingerprint family: `flavin_disulfide_reductase`
+added (55 -> 56 FP), combined 9777 -> 9927.** FAD-dependent NAD(P)H:disulfide oxidoreductases (EC 1.8.1;
+the class-I pyridine nucleotide-disulfide oxidoreductase superfamily -- glutathione / thioredoxin /
+trypanothione reductase, dihydrolipoyl [E3] dehydrogenase, CoA-disulfide / mercuric reductase). The
+second broad-oxidoreductase EC-subclass split (after peroxiredoxin). Supply lesson confirmed: narrow
+families are exhausted (carbonic anhydrase 59 novel, enoyl-CoA hydratase ~48 monofunctional), but EC
+1.8.1 has 577 monofunctional reviewed entries. EC 1.8.1 is a SUBSET of the flavin_dehydrogenase_reductase
+scope (1.3/1.6/1.8.1), so the rule is a CARVE-OUT: FAD cofactor + a Rhea NAD(P)H:disulfide reduction
+reaction is the hard anchor + a disulfide-reductase family/name or active/binding site; a single
+`flavin_disulfide_reductase_signal` is the new rule's positive AND a negative guard on the flavin rule so
+exactly one fires. Sulfite reductase (EC 1.8.1.2), glutaredoxin/peroxidase, and non-1.8.1 side-EC rows
+guarded. Ontology `flavin_dependent_disulfide_reduction`, sourcing lane, leakage re-registration
+(`_55fp -> _56fp`), lane-factory wiring. First lane: 389 fetched, 168 corroborated, applied **150** (cap
+150 hit; 87 off-target to flavin_dehydrogenase_reductase -- the EC 1.8.1 FAD non-disulfide-reductases,
+confirming the carve-out; 0 dup). flavin_disulfide_reductase coherent (sc 0.88) but the shared FAD +
+NAD(P)H signature makes it representation-confusable with flavin_dehydrogenase_reductase (collapses it to
+~0.33); overall LOO 0.733 -> **0.731** (> 0.62 floor, NOT lowered; seed-stable). Gap to 10k: **73**. See
+`artifacts/v3_flavin_disulfide_reductase_new_fingerprint_apply_summary_current702_20260627.json`.
+
 **2026-06-27 user-directed "merge and scale further" — new fingerprint family: `cysteine_protease`
 added (54 -> 55 FP), combined 9627 -> 9777.** Cys-His thiol-peptidase peptide-bond hydrolysis (EC
 3.4.22; papain/caspase/legumain/calpain/deubiquitinase clans). EC 3.4.22 uncovered (metallopeptidase

@@ -1,0 +1,52 @@
+{
+  "artifact_id": "v3_dihydrofolate_reductase_new_fingerprint_apply_summary_current702_20260627",
+  "authorization": "explicit_user_instruction_carry_on_towards_10k",
+  "counts": {
+    "combined_after": 10001,
+    "combined_before": 9927,
+    "dihydrofolate_reductase_family_after": "74/150",
+    "expansion_after": 9299,
+    "expansion_before": 9225,
+    "fetched_candidate_rows": 118,
+    "frozen_current702_rows": 702,
+    "mechanism_corroborated": 79,
+    "novelty_admitted": 74,
+    "novelty_throttled_or_rejected": 5,
+    "off_target_held": 19,
+    "off_target_fingerprint_counts": {"sam_methyltransferase": 19},
+    "off_target_note": "bifunctional / methyltransferase-context folate rows route off-target to sam_methyltransferase and are held"
+  },
+  "created_utc": "2026-06-27T19:00:00Z",
+  "milestone": "TEN_THOUSAND_COMBINED_MECHANISM_LABELS_REACHED (combined 10001)",
+  "fingerprint": {
+    "chemistry": "NADPH-dependent reduction of 7,8-dihydrofolate to 5,6,7,8-tetrahydrofolate; hydride transfer from NADPH C4 to the dihydropterin C6 with active-site-carboxylate protonation of N5; the DHFR fold (Met20 loop)",
+    "disambiguation": "EC 1.5.1.3 (uncovered, not shared) + a Rhea NADPH-dependent dihydrofolate->tetrahydrofolate reduction reaction (a dihydrofolate/folate substrate token AND a NAD(P) cosubstrate token) as the REQUIRED hard mechanism anchor + a dihydrofolate-reductase family/name OR an active/binding site as the second corroborator; dihydrofolate synthase / folylpolyglutamate synthetase (EC 6.3.2), methylenetetrahydrofolate reductase (EC 1.5.1.20)/dehydrogenase (EC 1.5.1.5), and bifunctional thymidylate-synthase side-EC rows boundary-guarded; cap 150",
+    "id": "dihydrofolate_reductase",
+    "name": "Dihydrofolate reductase (NADPH-dependent folate reduction)",
+    "ontology_family": "nadph_dihydrofolate_reduction (parent mechanism)"
+  },
+  "frozen_benchmark": {
+    "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+    "unchanged": true,
+    "written": false
+  },
+  "gap_to_10k": 0,
+  "lane_factory_spec_wired": "dihydrofolate_reductase",
+  "leakage_closure": {
+    "new_preregistration": "artifacts/v3_external_hard_negative_next_tranche_preregistration_57fp_1025.json",
+    "positive_universe_version": "label_factory_v1_56fp -> label_factory_v1_57fp",
+    "supersedes": "artifacts/v3_external_hard_negative_next_tranche_preregistration_56fp_1025.json"
+  },
+  "post_apply_audits": {
+    "coverage_redundancy": "artifacts/v3_coverage_redundancy_audit_current702_20260627_dihydrofolate_reductase.json",
+    "floor_deficit": 0,
+    "holes": [],
+    "novelty_admission_gate": "artifacts/v3_novelty_admission_gate_audit_current702_20260627_dihydrofolate_reductase.json",
+    "novelty_replay": {"admit": 8838, "reject": 47, "throttle": 414},
+    "over_cap": ["metal_dependent_hydrolase"]
+  },
+  "purpose": "Add the dihydrofolate_reductase mechanism-fingerprint family (57th) and source its first reviewed-Swiss-Prot bronze tranche, growing combined 9927 -> 10001 (+74) -- crossing 10,000 combined mechanism labels; frozen current702 byte-unchanged.",
+  "representation_loop_note": "CLEAN WIN (contrast flavin_disulfide_reductase's documented cost). The EC 1.5.1.3 DHFRs reduce 7,8-dihydrofolate to tetrahydrofolate with NADPH; although they share the NADPH cosubstrate with the EC 1.1.1 NAD(P) hydride-transfer surface, the FOLATE reaction center gives them a distinctive leakage-safe feature, so the 74-row centroid is PERFECTLY self-consistent (sc 1.000) with ZERO bleed and the nad_p_dehydrogenase / SDR / AKR families are unchanged. Overall LOO 0.733 -> 0.734 (ticked up; seed-stable across PYTHONHASHSEED 0/7/42). No fold/name leakage; admission separates DHFR by EC 1.5.1.3 + the folate-reduction reaction.",
+  "schema_version": "catalytic_earth.apply_summary.v1",
+  "status": "user_directed_new_dihydrofolate_reductase_fingerprint_family_added_and_sourced_10k_reached"
+}

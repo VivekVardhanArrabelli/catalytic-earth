@@ -9535,6 +9535,8 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 "cysteine_protease",
                 "cytochrome_p450_monooxygenase",
                 "deoxynucleoside_kinase",
+                "dihydrofolate_reductase",
+                "flavin_disulfide_reductase",
                 "ghmp_small_molecule_kinase",
                 "glutathione_s_transferase",
                 "glycoside_hydrolase",

@@ -3,6 +3,81 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-27: NEW `dihydrofolate_reductase` FINGERPRINT FAMILY (56 -> 57 FP); COMBINED 9927 -> 10001 -- 10,000-LABEL MILESTONE REACHED (user-directed "go ahead")
+
+Decision (user-directed: continue toward 10k after the flavin_disulfide_reductase pass). Eleventh new
+fingerprint family: `dihydrofolate_reductase` -- the NADPH-dependent dihydrofolate reductases (EC
+1.5.1.3; DHFR). NADPH transfers a hydride to C6 of the dihydropterin ring of 7,8-dihydrofolate with
+active-site-carboxylate protonation of N5, giving 5,6,7,8-tetrahydrofolate. **Combined mechanism labels
+crossed 10,000 (10001 = 702 frozen + 9299 expansion).**
+
+Family choice (supply-measured): of several candidates, carbonic anhydrase (59 novel) and enoyl-CoA
+hydratase (~48 monofunctional) were too thin; thymidylate synthase (446), carbamoyl-phosphate synthase
+(454), GTP cyclohydrolase (494) and adenylosuccinate synthase (500) had high supply but their EC
+prefixes collide with existing scopes (sam_methyltransferase 2.1.1, atp_amide_ligase 6.3,
+metallo_amidohydrolase_deaminase 3.5.4). EC 1.5.1.3 is genuinely uncovered, coherent (one mechanism),
+and had 118 novel reviewed entries -- enough to close the 73-row gap with margin.
+
+Disambiguation (mechanism-not-EC): EC 1.5.1.3 is uncovered (not shared). The folate-reduction reaction
+(a dihydrofolate/folate substrate token AND a NAD(P) cosubstrate token) is the required hard anchor;
+the second corroborator is a DHFR family/name OR an active/binding site. Dihydrofolate synthase /
+folylpolyglutamate synthetase (EC 6.3.2), methylenetetrahydrofolate reductase (EC 1.5.1.20) /
+dehydrogenase (EC 1.5.1.5), and the bifunctional thymidylate-synthase half (non-1.5.1.3 side EC) are
+boundary-guarded; cap 150. First lane: 118 fetched, 79 corroborated, **74 novelty-admitted**, 19
+off-target held (bifunctional/methyltransferase-context folate rows -> sam_methyltransferase). Expansion
+9225 -> 9299, combined **10001**; frozen current702 byte-unchanged. Leakage re-registration
+`_56fp -> _57fp`.
+
+Representation loop -- a CLEAN WIN (contrast flavin_disulfide_reductase's documented cost). Although
+DHFR shares the NADPH cosubstrate with the EC 1.1.1 NAD(P) hydride-transfer surface, the FOLATE reaction
+center gives it a distinctive leakage-safe feature, so the 74-row centroid is PERFECTLY self-consistent
+(sc **1.000**) with ZERO bleed; nad_p_dehydrogenase / SDR / AKR are unchanged. Overall LOO **0.733 ->
+0.734** (ticked up; seed-stable across PYTHONHASHSEED 0/7/42). No fold/name leakage. Audits clean (holes
+[], floor deficit 0, novelty admit 8838). Summary:
+`artifacts/v3_dihydrofolate_reductase_new_fingerprint_apply_summary_current702_20260627.json`.
+
+## 2026-06-27: NEW `flavin_disulfide_reductase` FINGERPRINT FAMILY (55 -> 56 FP); COMBINED 9777 -> 9927 (user-directed "carry on towards 10k")
+
+Decision (user-directed: "carry on towards 10k"). Tenth new fingerprint family, the second
+broad-oxidoreductase EC-subclass split (after `peroxiredoxin_thiol_peroxidase`): `flavin_disulfide_reductase`
+-- the FAD-dependent NAD(P)H:disulfide oxidoreductases (EC 1.8.1; the class-I pyridine
+nucleotide-disulfide oxidoreductase superfamily: glutathione / thioredoxin / trypanothione reductase,
+dihydrolipoyl [E3] dehydrogenase, CoA-disulfide and mercuric reductase). FAD relays a hydride from
+NAD(P)H through a redox-active cysteine pair (CXXXXC) to reductively cleave a substrate disulfide to
+thiols.
+
+Supply lesson confirmed: narrow families are exhausted (carbonic anhydrase had only 59 novel reviewed
+rows; enoyl-CoA hydratase EC 4.2.1.17 had 256 fetched but only ~48 monofunctional, the rest bifunctional
+fatty-acid-oxidation enzymes held by the side-EC guard). EC 1.8.1 has **577 monofunctional reviewed**
+entries -- clean high supply that fills the 150 cap.
+
+Disambiguation (mechanism-not-EC). EC 1.8.1 is a SUBSET of the existing `flavin_dehydrogenase_reductase`
+EC scope (1.3 / 1.6 / 1.8.1), so this is a CARVE-OUT, not an uncovered class. The required hard
+mechanism anchor is the annotated FAD cofactor PLUS a Rhea NAD(P)H:disulfide reduction reaction (a
+disulfide/dithiol/lipoamide/trypanothione substrate token AND a NAD(P) cosubstrate token); the second
+corroborator is a disulfide-reductase / pyridine-nucleotide-disulfide family/name OR an active/binding
+site. A single combined evidence key (`flavin_disulfide_reductase_signal`) is the positive condition of
+the new rule AND a NEGATIVE guard on the `flavin_dehydrogenase_reductase` rule, so a genuine disulfide
+reductase fires EXACTLY ONE rule. Sulfite reductase (EC 1.8.1.2, siroheme, no disulfide substrate),
+non-flavin thiol-redox enzymes (glutaredoxin / glutathione peroxidase), and non-1.8.1 side-EC
+bifunctional rows are boundary-guarded; cap 150. First lane: 389 fetched, 168 corroborated, **150
+novelty-admitted** (cap hit), **87 off-target held** -- the EC 1.8.1 FAD flavoproteins that are NOT
+disulfide reductases (sulfite reductase, quinone reductases) correctly routed to
+`flavin_dehydrogenase_reductase`, confirming the carve-out. Expansion 9075 -> 9225, combined **9927**;
+frozen current702 byte-unchanged (sha `5eec9bef…c272505`). Leakage re-registration `_55fp -> _56fp`.
+
+Representation loop -- HONEST DOCUMENTED COST. `flavin_disulfide_reductase` is itself coherent (sc
+**0.88**), but the class-I pyridine nucleotide-disulfide oxidoreductases are obligate FAD + NAD(P)H
+flavoproteins, so in the leakage-safe space (cofactor classes + Rhea bond-change, EC/name/prose/lane
+EXCLUDED) they share their cofactor signature with `flavin_dehydrogenase_reductase` -- the disulfide
+SUBSTRATE that separates them is fold/substrate evidence the representation must not synthesize. The
+dense 150-row disulfide-reductase centroid absorbs the flavin_dehydrogenase_reductase rows (~111
+resolve to it), collapsing its self-consistency to **~0.33**. Overall LOO **0.733 -> 0.731** (> 0.62
+floor, NOT lowered; seed-stable across PYTHONHASHSEED 0/7/42). NOT a leakage regression -- the
+disambiguation engine separates them at admission (FAD + NAD(P)H:disulfide reaction). No fold/name
+leakage. Audits clean (holes [], floor deficit 0, novelty admit 8764). Gap to 10k: **73**. Summary:
+`artifacts/v3_flavin_disulfide_reductase_new_fingerprint_apply_summary_current702_20260627.json`.
+
 ## 2026-06-27: CATALYTIC-RESIDUE-IDENTITY SIDECAR (read-only) recovers ser_his (0.0 -> 0.67); registry byte-unchanged; LOO 0.733 -> 0.743
 
 Decision (user-directed: "go for sidecar", after "backfilling is a bit scary"). The reaction

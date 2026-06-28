@@ -701,6 +701,95 @@ class DisambiguateRowTests(unittest.TestCase):
         d = disambiguate_row(row)
         self.assertNotEqual(d.get("fingerprint_id"), "acid_coa_ligase")
 
+    def test_flavin_disulfide_reductase_routes_on_fad_and_disulfide_reaction(self) -> None:
+        # FAD cofactor + a Rhea NAD(P)H:disulfide reduction reaction + a disulfide-reductase name
+        # routes the EC 1.8.1 glutathione/thioredoxin/lipoamide reductases to the new family rather
+        # than flavin_dehydrogenase_reductase (whose 1.8.1 scope it shares).
+        row = _row(cofactors=["FAD"], ec=["1.8.1.7"])
+        row["protein_name"] = "Glutathione reductase"
+        row["keywords"] = ["Oxidoreductase", "FAD", "NADP"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:GR0001",
+                "reaction": "2 glutathione + NADP(+) = glutathione disulfide + NADPH + H(+)",
+                "ec_number": "1.8.1.7",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d.get("fingerprint_id"), "flavin_disulfide_reductase")
+
+    def test_sulfite_reductase_not_pulled_into_flavin_disulfide_reductase(self) -> None:
+        # An EC 1.8.1.2 FAD flavoprotein sulfite reductase reduces sulfite (no disulfide substrate)
+        # and is name-boundary-guarded: it must NOT route to flavin_disulfide_reductase. It stays a
+        # flavoprotein in scope 1.8.1, so it routes to flavin_dehydrogenase_reductase.
+        row = _row(cofactors=["FAD"], ec=["1.8.1.2"])
+        row["protein_name"] = "Sulfite reductase [NADPH] flavoprotein alpha-component"
+        row["keywords"] = ["Oxidoreductase", "FAD"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:SIR001",
+                "reaction": "hydrogen sulfide + 3 NADP(+) + 3 H2O = sulfite + 3 NADPH + 3 H(+)",
+                "ec_number": "1.8.1.2",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertNotEqual(d.get("fingerprint_id"), "flavin_disulfide_reductase")
+
+    def test_flavin_18_1_without_disulfide_reaction_stays_flavin_dehydrogenase(self) -> None:
+        # An EC 1.8.1 FAD flavoprotein with no disulfide-reduction reaction (the carve-out signal is
+        # False) keeps routing to flavin_dehydrogenase_reductase -- exactly one rule fires.
+        row = _row(cofactors=["FAD"], ec=["1.8.1.7"])
+        d = disambiguate_row(row)
+        self.assertEqual(d.get("fingerprint_id"), "flavin_dehydrogenase_reductase")
+
+    def test_dihydrofolate_reductase_routes_on_folate_reduction(self) -> None:
+        # A folate-reduction reaction (dihydrofolate -> tetrahydrofolate with NADP) + a DHFR family
+        # name routes EC 1.5.1.3 to the new family.
+        row = _row(ec=["1.5.1.3"])
+        row["protein_name"] = "Dihydrofolate reductase"
+        row["keywords"] = ["Oxidoreductase", "One-carbon metabolism"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:DHFR01",
+                "reaction": "(6S)-5,6,7,8-tetrahydrofolate + NADP(+) = 7,8-dihydrofolate + NADPH + H(+)",
+                "ec_number": "1.5.1.3",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertEqual(d.get("fingerprint_id"), "dihydrofolate_reductase")
+
+    def test_bifunctional_dhfr_thymidylate_synthase_is_held(self) -> None:
+        # A bifunctional DHFR-thymidylate synthase carries a non-1.5.1.3 side EC (2.1.1.45), so the
+        # side-EC guard holds it rather than admitting a multi-mechanism row to dihydrofolate_reductase.
+        row = _row(ec=["1.5.1.3", "2.1.1.45"])
+        row["protein_name"] = "Bifunctional dihydrofolate reductase-thymidylate synthase"
+        row["keywords"] = ["Oxidoreductase", "Methyltransferase"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:DHFR02",
+                "reaction": "(6S)-5,6,7,8-tetrahydrofolate + NADP(+) = 7,8-dihydrofolate + NADPH + H(+)",
+                "ec_number": "1.5.1.3",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertNotEqual(d.get("fingerprint_id"), "dihydrofolate_reductase")
+
+    def test_methylenetetrahydrofolate_reductase_not_pulled_into_dhfr(self) -> None:
+        # MTHFR (EC 1.5.1.20) reduces methylenetetrahydrofolate, not dihydrofolate, and is off-scope
+        # for EC 1.5.1.3: it must NOT route to dihydrofolate_reductase.
+        row = _row(cofactors=["FAD"], ec=["1.5.1.20"])
+        row["protein_name"] = "Methylenetetrahydrofolate reductase"
+        row["keywords"] = ["Oxidoreductase", "FAD"]
+        row["rhea_ec_provenance"]["rhea_records"] = [
+            {
+                "rhea_id": "RHEA:MTHFR01",
+                "reaction": "5-methyltetrahydrofolate + NADP(+) = 5,10-methylenetetrahydrofolate + NADPH + H(+)",
+                "ec_number": "1.5.1.20",
+            }
+        ]
+        d = disambiguate_row(row)
+        self.assertNotEqual(d.get("fingerprint_id"), "dihydrofolate_reductase")
+
     def test_cysteine_protease_routes_on_active_site_and_family(self) -> None:
         row = _row(ec=["3.4.22.15"])
         row["protein_name"] = "Cathepsin L1"
