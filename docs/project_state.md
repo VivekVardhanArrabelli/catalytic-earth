@@ -37,10 +37,18 @@ artifact-backed mechanism diagnostics.
   surface against the expanded 57-fingerprint router drifted badly:
   `artifacts/v3_cofactor_fusion_operating_point_train_cal_oos_current702_20260628_current57_rerun.json`
   reports calibration fused recall/FP **13/35 and 26/26**, versus the trusted June 9 contract's
-  **30/35 and 9/26**. This is a router/fingerprint-surface mismatch, not a heldout result and not a
-  production threshold candidate. Next gate: either freeze/replay the intended June 9 router/fingerprint
-  surface for cofactor precision, or preregister a new current-57 train/cal precision rule before any
-  atlas-engine fusion/heldout read.
+  **30/35 and 9/26**. The current-57 cofactor precision contract now makes the gate explicit:
+  `artifacts/v3_current57_cofactor_precision_contract_current702_20260628.json` /
+  `work/current57_cofactor_precision_contract_current702_20260628.md` applies only the documented
+  legacy-v1 metal-umbrella compatibility projection. That raises calibration fused recovery to
+  **26/35** at the frozen threshold, proving much of the exact-match loss is taxonomy-version drift,
+  but the OOS wall remains **26/26**; the best point under the trusted June 9 OOS FP ceiling is only
+  **20/35** at threshold 0.733 with **8/26** OOS FP. Status:
+  `blocked_current57_cofactor_precision_contract_not_deployable`; the preregistration artifact now
+  records `preregistered_cached_surface_blocked_current57_precision_contract_new_foldseek_backend_blocked`.
+  Next gate: either freeze/replay the intended June 9 router/fingerprint surface for cofactor precision,
+  or build a new preregistered current-57 precision channel/fusion rule before any atlas-engine
+  fusion/heldout read.
 
 - **NON-CIRCULAR GOLD EVAL (2026-06-27, user-directed): chemistry-only recovers 76% of expert mechanism classes, but STILL no abstention signal at 10k.**
   The 0.744 LOO is a coherence measure on admission-grouped bronze, so we tested non-circularly:

@@ -211,9 +211,37 @@ class AtlasEnginePreregistrationTests(unittest.TestCase):
                     },
                 },
             )
+            contract_path = _write_json(
+                root / "current57_contract.json",
+                {
+                    "artifact_id": "contract",
+                    "status": "blocked_current57_cofactor_precision_contract_not_deployable",
+                    "selection_rule": {
+                        "decision": "fail_closed_keep_atlas_engine_blocked_on_current57_cofactor_surface"
+                    },
+                    "calibration_summary": {
+                        "exact_fused_current57_at_frozen_threshold": {
+                            "inscope_correct": 13,
+                            "oos_false_positives": 26,
+                        },
+                        "legacy_v1_compatible_fused_current57_at_frozen_threshold": {
+                            "inscope_correct": 26,
+                            "oos_false_positives": 26,
+                        },
+                        "best_point_under_trusted_oos_fp": {
+                            "threshold": 0.733,
+                            "inscope_correct": 20,
+                            "oos_false_positives": 8,
+                        },
+                        "taxonomy_version_recovered_count": 13,
+                        "remaining_recovery_gap_vs_trusted": 4,
+                    },
+                },
+            )
             audit = build_predicted_geometry_atlas_engine_preregistration(
                 **paths,
                 current_router_cofactor_rerun_path=drift_path,
+                current57_cofactor_precision_contract_path=contract_path,
                 module_status={
                     "numpy": True,
                     "torch": True,
@@ -230,11 +258,19 @@ class AtlasEnginePreregistrationTests(unittest.TestCase):
                 },
             )
         drift = audit["preexisting_train_cal_context"]["current_router_cofactor_rerun"]
+        contract = audit["preexisting_train_cal_context"][
+            "current57_cofactor_precision_contract"
+        ]
         self.assertTrue(drift["current_router_drift_detected"])
+        self.assertTrue(contract["blocks_atlas_engine_fusion"])
+        self.assertIn("precision_contract", audit["status"])
         self.assertFalse(
             audit["decision"]["can_run_cached_surface_atlas_engine_readout_now"]
         )
-        self.assertIn("freeze", audit["decision"]["next_action"])
+        self.assertIn(
+            "Current-57 cofactor precision contract",
+            audit["decision"]["next_action"],
+        )
 
     def test_missing_source_artifact_blocks_contract(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

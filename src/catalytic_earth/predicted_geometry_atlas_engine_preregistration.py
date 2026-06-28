@@ -53,6 +53,9 @@ DEFAULT_CURRENT_ROUTER_COFACTOR_RERUN_PATH = (
     "artifacts/"
     "v3_cofactor_fusion_operating_point_train_cal_oos_current702_20260628_current57_rerun.json"
 )
+DEFAULT_CURRENT57_COFACTOR_PRECISION_CONTRACT_PATH = (
+    "artifacts/v3_current57_cofactor_precision_contract_current702_20260628.json"
+)
 DEFAULT_COORDINATE_ROOT = (
     "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates"
 )
@@ -78,6 +81,7 @@ def write_predicted_geometry_atlas_engine_preregistration(
     out_path: Path,
     report_path: Path | None = None,
     current_router_cofactor_rerun_path: Path | None = None,
+    current57_cofactor_precision_contract_path: Path | None = None,
 ) -> dict[str, Any]:
     audit = build_predicted_geometry_atlas_engine_preregistration(
         current702_path=current702_path,
@@ -93,6 +97,7 @@ def write_predicted_geometry_atlas_engine_preregistration(
         split_manifest_path=split_manifest_path,
         coordinate_root=coordinate_root,
         current_router_cofactor_rerun_path=current_router_cofactor_rerun_path,
+        current57_cofactor_precision_contract_path=current57_cofactor_precision_contract_path,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -117,6 +122,7 @@ def build_predicted_geometry_atlas_engine_preregistration(
     split_manifest_path: Path,
     coordinate_root: Path,
     current_router_cofactor_rerun_path: Path | None = None,
+    current57_cofactor_precision_contract_path: Path | None = None,
     module_status: dict[str, bool] | None = None,
     executable_status: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
@@ -136,6 +142,10 @@ def build_predicted_geometry_atlas_engine_preregistration(
     if current_router_cofactor_rerun_path is not None:
         sources["current_router_cofactor_rerun"] = _artifact_summary(
             current_router_cofactor_rerun_path
+        )
+    if current57_cofactor_precision_contract_path is not None:
+        sources["current57_cofactor_precision_contract"] = _artifact_summary(
+            current57_cofactor_precision_contract_path
         )
     loaded = {
         name: _load_json_if_exists(Path(summary["path"]))
@@ -197,11 +207,21 @@ def build_predicted_geometry_atlas_engine_preregistration(
     current_router_rerun = _current_router_rerun_context(
         loaded.get("current_router_cofactor_rerun", {})
     )
+    current57_precision_contract = _current57_precision_contract_context(
+        loaded.get("current57_cofactor_precision_contract", {})
+    )
     current_router_drift_detected = bool(
         current_router_rerun.get("current_router_drift_detected")
     )
+    current57_precision_contract_blocks = bool(
+        current57_precision_contract.get("blocks_atlas_engine_fusion")
+    )
     if current_router_drift_detected and status.startswith("preregistered"):
         status = "preregistered_cached_surface_blocked_current57_router_drift"
+        if not full_new_fold_tm_runnable:
+            status += "_new_foldseek_backend_blocked"
+    if current57_precision_contract_blocks and status.startswith("preregistered"):
+        status = "preregistered_cached_surface_blocked_current57_precision_contract"
         if not full_new_fold_tm_runnable:
             status += "_new_foldseek_backend_blocked"
     fold_context = _fold_context(
@@ -249,6 +269,7 @@ def build_predicted_geometry_atlas_engine_preregistration(
             "cofactor_recovery": recovery,
             "cofactor_precision": cofactor_precision,
             "current_router_cofactor_rerun": current_router_rerun,
+            "current57_cofactor_precision_contract": current57_precision_contract,
             "fold_tm_oos_safety": fold_context,
         },
         "preregistered_experiment": _preregistered_experiment(
@@ -259,16 +280,25 @@ def build_predicted_geometry_atlas_engine_preregistration(
             existing_scored_fold_reusable=existing_scored_fold_reusable,
             full_new_fold_tm_runnable=full_new_fold_tm_runnable,
             current_router_drift_detected=current_router_drift_detected,
+            current57_precision_contract_blocks=current57_precision_contract_blocks,
         ),
         "decision": {
             "can_run_cached_surface_atlas_engine_readout_now": bool(
                 existing_scored_fold_reusable
                 and sequence_sidecars_reusable
                 and not current_router_drift_detected
+                and not current57_precision_contract_blocks
             ),
             "can_compute_new_fold_tm_scores_now": full_new_fold_tm_runnable,
             "current_router_drift_detected": current_router_drift_detected,
+            "current57_precision_contract_blocks": current57_precision_contract_blocks,
             "next_action": (
+                "Current-57 cofactor precision contract is fail-closed; either "
+                "freeze/replay the intended June 9 router/fingerprint surface, "
+                "or build a new preregistered current-57 precision channel/fusion "
+                "rule before any atlas-engine readout."
+                if current57_precision_contract_blocks
+                else
                 "Resolve the current-router/fingerprint-surface drift before an "
                 "atlas-engine readout: either freeze the intended June 9 router/"
                 "fingerprint surface for cofactor precision, or preregister a new "
@@ -466,6 +496,38 @@ def _current_router_rerun_context(rerun: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _current57_precision_contract_context(contract: dict[str, Any]) -> dict[str, Any]:
+    if not contract:
+        return {
+            "present": False,
+            "blocks_atlas_engine_fusion": False,
+        }
+    status = str(contract.get("status") or "")
+    summary = contract.get("calibration_summary", {})
+    return {
+        "present": True,
+        "artifact_id": contract.get("artifact_id"),
+        "status": status,
+        "blocks_atlas_engine_fusion": status.startswith("blocked_"),
+        "selection_decision": contract.get("selection_rule", {}).get("decision"),
+        "exact_current57_at_frozen_threshold": summary.get(
+            "exact_fused_current57_at_frozen_threshold"
+        ),
+        "legacy_v1_compatible_at_frozen_threshold": summary.get(
+            "legacy_v1_compatible_fused_current57_at_frozen_threshold"
+        ),
+        "best_point_under_trusted_oos_fp": summary.get(
+            "best_point_under_trusted_oos_fp"
+        ),
+        "taxonomy_version_recovered_count": summary.get(
+            "taxonomy_version_recovered_count"
+        ),
+        "remaining_recovery_gap_vs_trusted": summary.get(
+            "remaining_recovery_gap_vs_trusted"
+        ),
+    }
+
+
 def _fold_context(
     *,
     threshold_contract: dict[str, Any],
@@ -516,6 +578,7 @@ def _preregistered_experiment(
     existing_scored_fold_reusable: bool,
     full_new_fold_tm_runnable: bool,
     current_router_drift_detected: bool,
+    current57_precision_contract_blocks: bool,
 ) -> dict[str, Any]:
     return {
         "name": "predicted_apo_atlas_engine_v1_train_cal_contract",
@@ -602,6 +665,11 @@ def _preregistered_experiment(
                 else "New Foldseek/TM scoring is blocked until foldseek is installed."
             ),
             "current_router_note": (
+                "Current-57 cofactor precision contract is fail-closed; atlas "
+                "engine fusion remains blocked until the June 9 router surface is "
+                "replayed or a new precision channel/fusion rule is preregistered."
+                if current57_precision_contract_blocks
+                else
                 "Current-57-family router drift is detected; freeze the intended "
                 "router/fingerprint surface or preregister a current-57 precision "
                 "rule before atlas-engine fusion."
@@ -619,6 +687,9 @@ def _report(audit: dict[str, Any]) -> str:
     fold = audit["preexisting_train_cal_context"]["fold_tm_oos_safety"]
     drift = audit["preexisting_train_cal_context"].get(
         "current_router_cofactor_rerun", {}
+    )
+    current57_contract = audit["preexisting_train_cal_context"].get(
+        "current57_cofactor_precision_contract", {}
     )
     exp = audit["preregistered_experiment"]
     lines = [
@@ -651,6 +722,8 @@ def _report(audit: dict[str, Any]) -> str:
         f"{fold.get('calibration_oos_total')}.",
         f"- Current-router drift detected: "
         f"{drift.get('current_router_drift_detected', False)}.",
+        f"- Current-57 precision contract blocks atlas fusion: "
+        f"{current57_contract.get('blocks_atlas_engine_fusion', False)}.",
         "",
         "## Preregistered Next Readout",
         "",

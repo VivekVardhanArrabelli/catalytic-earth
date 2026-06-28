@@ -111,3 +111,46 @@ next_action: >
   Resolve the current-router/fingerprint-surface drift before atlas-engine fusion: either freeze/replay
   the intended June 9 cofactor precision router surface, or preregister a new current-57 train/cal
   precision rule. Install/expose foldseek before new Foldseek/TM scoring.
+
+## Automation run 2026-06-28T02:31:07Z
+- started_at_utc: 2026-06-28T02:31:07Z
+- started_local: Sat Jun 27 21:31:07 CDT 2026
+- budget_minutes: 55
+- planned_closeout_minute: 50
+- frozen_current702_sha_before: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
+- status: in_progress
+
+## Automation run ce-nad-glyco-floor-expansion closeout
+- closeout_at_utc: 2026-06-28T02:51:33Z
+- elapsed_minutes: 20.4
+- remaining_minutes: 34.6
+- state: current57_cofactor_precision_contract_fail_closed_atlas_prereg_updated
+- branch: main
+- origin_main_at_start: 60b17cdf2635843f3fc62beb71ad5e7ed26915e9
+- registry_mutation: none
+- frozen_current702_sha_after: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
+- work_completed:
+  - added current-57 cofactor precision contract builder and CLI
+  - generated fail-closed current-57 precision contract artifact/report
+  - integrated contract blocker into predicted-geometry atlas-engine preregistration
+  - regenerated docs artifact-reference check and updated project state/decision log/handoff
+- current_gate_state:
+  - current57_precision_contract_status: blocked_current57_cofactor_precision_contract_not_deployable
+  - current57_exact_fused_calibration: 13/35 recovery, 26/26 OOS FP
+  - current57_v1_metal_compatible_calibration: 26/35 recovery, 26/26 OOS FP
+  - best_under_trusted_oos_fp_ceiling: threshold 0.733, 20/35 recovery, 8/26 OOS FP
+  - atlas_prereg_status: preregistered_cached_surface_blocked_current57_precision_contract_new_foldseek_backend_blocked
+- validation:
+  - focused_contract_prereg_tests: 8 passed, 242 deselected
+  - focused_recovery_precision_suite: 89 passed, 2 subtests
+  - registry_validate: passed
+  - full_pytest_final: 2528 passed, 1 warning, 244 subtests
+  - compileall: passed
+  - current_docs_reference_check: missing 0
+  - json_jsonl_parse: 10723 JSON files and 8336 JSONL records across 27 JSONL files
+  - git_diff_check: passed
+- next_action: >
+  Do not run atlas-engine fusion or heldout on the current-57 cofactor surface. Pin/replay
+  the intended June 9 router/fingerprint surface, or build a new preregistered current-57
+  precision channel/fusion rule that clears a train/cal recovery/OOS done bar. Install/expose
+  foldseek before any new Foldseek/TM scoring.

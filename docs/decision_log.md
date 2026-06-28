@@ -24,10 +24,23 @@ keeps the same coverage but changes calibration fused precision from the trusted
 9/26 OOS FP** to **13/35 in-scope, 26/26 OOS FP**. This is a router/fingerprint-surface drift
 diagnostic, not a production threshold candidate and not a heldout read.
 
+Follow-up contract (same UTC date, heldout-excluded):
+`artifacts/v3_current57_cofactor_precision_contract_current702_20260628.json` and
+`work/current57_cofactor_precision_contract_current702_20260628.md` convert the diagnostic into an
+explicit fail-closed rule. It applies only the documented legacy-v1 metal-hydrolase compatibility
+projection (`metal_dependent_hydrolase` umbrella -> the current v2 metal subclasses); no production
+label collapse is introduced. This recovers a large taxonomy-version component (**13/35 exact ->
+26/35 compatible** at the frozen threshold), but does **not** clear the precision gate: OOS FP remains
+**26/26**, and the best compatible threshold under the trusted June 9 OOS FP ceiling is **0.733** with
+only **20/35** in-scope recovery and **8/26** OOS FP. Status:
+`blocked_current57_cofactor_precision_contract_not_deployable`.
+
 Durable rule: do **not** run an atlas-engine fusion or spend heldout from the old 0.44 cofactor
 threshold until the cofactor precision surface is made explicit. Either freeze/replay the intended
-June 9 router/fingerprint surface for cofactor precision, or preregister a new current-57-family
-train/cal precision rule. Existing scored fold/TM surfaces remain reusable for cached-surface work;
+June 9 router/fingerprint surface for cofactor precision, or build a new preregistered current-57
+precision channel/fusion rule. Existing scored fold/TM surfaces remain reusable for cached-surface
+work, but the preregistration artifact now records
+`preregistered_cached_surface_blocked_current57_precision_contract_new_foldseek_backend_blocked`;
 install/expose `foldseek` before any new Foldseek/TM scoring.
 
 ## 2026-06-27: NON-CIRCULAR GOLD EVAL — chemistry-only recovers 76% of expert mechanism classes, but there is STILL no abstention signal at 10k (the binding constraint, reconfirmed)

@@ -87,6 +87,14 @@ from .cofactor_presence_calibration import write_cofactor_presence_calibration
 from .cofactor_fusion_operating_point import (
     write_cofactor_fusion_operating_point,
 )
+from .cofactor_precision_contract import (
+    DEFAULT_CURRENT57_OPERATING_POINT_PATH as DEFAULT_CURRENT57_COFACTOR_OPERATING_POINT_PATH,
+    DEFAULT_ONTOLOGY_PATH as DEFAULT_COFACTOR_PRECISION_CONTRACT_ONTOLOGY_PATH,
+    DEFAULT_OUT_PATH as DEFAULT_CURRENT57_COFACTOR_PRECISION_CONTRACT_OUT_PATH,
+    DEFAULT_REPORT_PATH as DEFAULT_CURRENT57_COFACTOR_PRECISION_CONTRACT_REPORT_PATH,
+    DEFAULT_TRUSTED_PRECISION_PATH as DEFAULT_TRUSTED_COFACTOR_PRECISION_PATH,
+    write_current57_cofactor_precision_contract,
+)
 from .predicted_geometry_atlas_engine_preregistration import (
     DEFAULT_COFACTOR_CHANNEL_PATH,
     DEFAULT_COFACTOR_PRECISION_PATH,
@@ -99,6 +107,7 @@ from .predicted_geometry_atlas_engine_preregistration import (
     DEFAULT_FOLD_POST_RERUN_CLOSURE_PATH,
     DEFAULT_FOLD_THRESHOLD_CONTRACT_PATH,
     DEFAULT_CURRENT_ROUTER_COFACTOR_RERUN_PATH,
+    DEFAULT_CURRENT57_COFACTOR_PRECISION_CONTRACT_PATH,
     DEFAULT_RECOVERY_PATH,
     DEFAULT_SPLIT_MANIFEST_PATH,
     write_predicted_geometry_atlas_engine_preregistration,
@@ -2813,6 +2822,27 @@ def cmd_build_cofactor_fusion_operating_point(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_build_current57_cofactor_precision_contract(args: argparse.Namespace) -> int:
+    contract = write_current57_cofactor_precision_contract(
+        current_operating_point_path=Path(args.current_operating_point),
+        trusted_precision_path=Path(args.trusted_precision),
+        ontology_path=Path(args.ontology),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    best = contract.get("calibration_summary", {}).get(
+        "best_point_under_trusted_oos_fp", {}
+    ) or {}
+    print(
+        "Wrote current-57 cofactor precision contract to "
+        f"{args.out} ({contract.get('status')}; best compatible calibration point "
+        f"under trusted OOS FP ceiling: threshold {best.get('threshold')} "
+        f"recall {best.get('inscope_correct')}/{best.get('inscope_total')} "
+        f"OOS FP {best.get('oos_false_positives')}/{best.get('oos_total')})"
+    )
+    return 0
+
+
 def cmd_build_predicted_geometry_atlas_engine_preregistration(
     args: argparse.Namespace,
 ) -> int:
@@ -2832,6 +2862,11 @@ def cmd_build_predicted_geometry_atlas_engine_preregistration(
         current_router_cofactor_rerun_path=(
             Path(args.current_router_cofactor_rerun)
             if args.current_router_cofactor_rerun
+            else None
+        ),
+        current57_cofactor_precision_contract_path=(
+            Path(args.current57_cofactor_precision_contract)
+            if args.current57_cofactor_precision_contract
             else None
         ),
         out_path=Path(args.out),
@@ -23179,6 +23214,42 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_cofactor_fusion_operating_point
     )
 
+    current57_cofactor_precision_contract = subparsers.add_parser(
+        "build-current57-cofactor-precision-contract",
+        help=(
+            "heldout-excluded train/cal contract for the current-57 cofactor "
+            "precision surface; applies only the documented legacy-v1 metal "
+            "umbrella compatibility projection and fail-closes if no threshold "
+            "matches the trusted June 9 precision bar"
+        ),
+    )
+    current57_cofactor_precision_contract.add_argument(
+        "--current-operating-point",
+        default=DEFAULT_CURRENT57_COFACTOR_OPERATING_POINT_PATH,
+        help="current-57 cofactor operating-point diagnostic artifact",
+    )
+    current57_cofactor_precision_contract.add_argument(
+        "--trusted-precision",
+        default=DEFAULT_TRUSTED_COFACTOR_PRECISION_PATH,
+        help="trusted June 9 cofactor precision artifact used only as the done bar",
+    )
+    current57_cofactor_precision_contract.add_argument(
+        "--ontology",
+        default=DEFAULT_COFACTOR_PRECISION_CONTRACT_ONTOLOGY_PATH,
+        help="mechanism ontology registry used to document compatibility provenance",
+    )
+    current57_cofactor_precision_contract.add_argument(
+        "--out",
+        default=DEFAULT_CURRENT57_COFACTOR_PRECISION_CONTRACT_OUT_PATH,
+    )
+    current57_cofactor_precision_contract.add_argument(
+        "--report",
+        default=DEFAULT_CURRENT57_COFACTOR_PRECISION_CONTRACT_REPORT_PATH,
+    )
+    current57_cofactor_precision_contract.set_defaults(
+        func=cmd_build_current57_cofactor_precision_contract
+    )
+
     predicted_geometry_atlas_engine_preregistration = subparsers.add_parser(
         "build-predicted-geometry-atlas-engine-preregistration",
         help=(
@@ -23226,6 +23297,15 @@ def build_parser() -> argparse.ArgumentParser:
             "differs from the trusted precision contract, the preregistration "
             "blocks atlas-engine fusion until the router/fingerprint surface is "
             "explicitly frozen or re-preregistered"
+        ),
+    )
+    predicted_geometry_atlas_engine_preregistration.add_argument(
+        "--current57-cofactor-precision-contract",
+        default=DEFAULT_CURRENT57_COFACTOR_PRECISION_CONTRACT_PATH,
+        help=(
+            "optional current-57 cofactor precision contract; a fail-closed "
+            "contract blocks cached atlas-engine fusion even when scored fold/TM "
+            "surfaces are present"
         ),
     )
     predicted_geometry_atlas_engine_preregistration.add_argument(

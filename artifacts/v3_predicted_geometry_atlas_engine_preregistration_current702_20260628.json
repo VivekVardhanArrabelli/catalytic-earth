@@ -26,12 +26,13 @@
       "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_cofactor_confounded_oos"
     }
   },
-  "created_utc": "2026-06-28T01:42:47Z",
+  "created_utc": "2026-06-28T02:45:46Z",
   "decision": {
     "can_compute_new_fold_tm_scores_now": false,
     "can_run_cached_surface_atlas_engine_readout_now": false,
+    "current57_precision_contract_blocks": true,
     "current_router_drift_detected": true,
-    "next_action": "Resolve the current-router/fingerprint-surface drift before an atlas-engine readout: either freeze the intended June 9 router/fingerprint surface for cofactor precision, or preregister a new current-57-family cofactor precision rule on train/cal. Install or expose foldseek before any new Foldseek/TM scoring."
+    "next_action": "Current-57 cofactor precision contract is fail-closed; either freeze/replay the intended June 9 router/fingerprint surface, or build a new preregistered current-57 precision channel/fusion rule before any atlas-engine readout."
   },
   "guardrails": {
     "current702_registry_edited": false,
@@ -86,6 +87,173 @@
       "recovery_fraction_of_apo_loss": 0.7059,
       "surface": "calibration_out_of_sample_for_cofactor_channel"
     },
+    "current57_cofactor_precision_contract": {
+      "artifact_id": "v3_current57_cofactor_precision_contract_current702_20260628",
+      "best_point_under_trusted_oos_fp": {
+        "correct_entry_ids": [
+          "m_csa:166",
+          "m_csa:181",
+          "m_csa:28",
+          "m_csa:281",
+          "m_csa:294",
+          "m_csa:379",
+          "m_csa:395",
+          "m_csa:412",
+          "m_csa:425",
+          "m_csa:446",
+          "m_csa:472",
+          "m_csa:495",
+          "m_csa:626",
+          "m_csa:630",
+          "m_csa:631",
+          "m_csa:798",
+          "m_csa:808",
+          "m_csa:837",
+          "m_csa:901",
+          "m_csa:942"
+        ],
+        "inscope_correct": 20,
+        "inscope_recall": 0.5714,
+        "inscope_total": 35,
+        "oos_false_positive_entry_ids": [
+          "m_csa:194",
+          "m_csa:256",
+          "m_csa:312",
+          "m_csa:398",
+          "m_csa:451",
+          "m_csa:488",
+          "m_csa:500",
+          "m_csa:59"
+        ],
+        "oos_false_positive_rate": 0.3077,
+        "oos_false_positives": 8,
+        "oos_total": 26,
+        "threshold": 0.733
+      },
+      "blocks_atlas_engine_fusion": true,
+      "exact_current57_at_frozen_threshold": {
+        "correct_entry_ids": [
+          "m_csa:186",
+          "m_csa:281",
+          "m_csa:294",
+          "m_csa:412",
+          "m_csa:425",
+          "m_csa:430",
+          "m_csa:6",
+          "m_csa:631",
+          "m_csa:798",
+          "m_csa:808",
+          "m_csa:901",
+          "m_csa:942",
+          "m_csa:978"
+        ],
+        "inscope_correct": 13,
+        "inscope_recall": 0.3714,
+        "inscope_total": 35,
+        "oos_false_positive_entry_ids": [
+          "m_csa:194",
+          "m_csa:221",
+          "m_csa:224",
+          "m_csa:23",
+          "m_csa:253",
+          "m_csa:256",
+          "m_csa:263",
+          "m_csa:273",
+          "m_csa:287",
+          "m_csa:312",
+          "m_csa:331",
+          "m_csa:364",
+          "m_csa:391",
+          "m_csa:398",
+          "m_csa:427",
+          "m_csa:441",
+          "m_csa:451",
+          "m_csa:488",
+          "m_csa:500",
+          "m_csa:552",
+          "m_csa:583",
+          "m_csa:585",
+          "m_csa:587",
+          "m_csa:59",
+          "m_csa:607",
+          "m_csa:70"
+        ],
+        "oos_false_positive_rate": 1.0,
+        "oos_false_positives": 26,
+        "oos_total": 26,
+        "threshold": 0.4115
+      },
+      "legacy_v1_compatible_at_frozen_threshold": {
+        "correct_entry_ids": [
+          "m_csa:166",
+          "m_csa:181",
+          "m_csa:186",
+          "m_csa:28",
+          "m_csa:281",
+          "m_csa:294",
+          "m_csa:379",
+          "m_csa:395",
+          "m_csa:412",
+          "m_csa:425",
+          "m_csa:430",
+          "m_csa:446",
+          "m_csa:472",
+          "m_csa:495",
+          "m_csa:546",
+          "m_csa:6",
+          "m_csa:626",
+          "m_csa:630",
+          "m_csa:631",
+          "m_csa:798",
+          "m_csa:808",
+          "m_csa:837",
+          "m_csa:901",
+          "m_csa:942",
+          "m_csa:978",
+          "m_csa:988"
+        ],
+        "inscope_correct": 26,
+        "inscope_recall": 0.7429,
+        "inscope_total": 35,
+        "oos_false_positive_entry_ids": [
+          "m_csa:194",
+          "m_csa:221",
+          "m_csa:224",
+          "m_csa:23",
+          "m_csa:253",
+          "m_csa:256",
+          "m_csa:263",
+          "m_csa:273",
+          "m_csa:287",
+          "m_csa:312",
+          "m_csa:331",
+          "m_csa:364",
+          "m_csa:391",
+          "m_csa:398",
+          "m_csa:427",
+          "m_csa:441",
+          "m_csa:451",
+          "m_csa:488",
+          "m_csa:500",
+          "m_csa:552",
+          "m_csa:583",
+          "m_csa:585",
+          "m_csa:587",
+          "m_csa:59",
+          "m_csa:607",
+          "m_csa:70"
+        ],
+        "oos_false_positive_rate": 1.0,
+        "oos_false_positives": 26,
+        "oos_total": 26,
+        "threshold": 0.4115
+      },
+      "present": true,
+      "remaining_recovery_gap_vs_trusted": 4,
+      "selection_decision": "fail_closed_keep_atlas_engine_blocked_on_current57_cofactor_surface",
+      "status": "blocked_current57_cofactor_precision_contract_not_deployable",
+      "taxonomy_version_recovered_count": 13
+    },
     "current_router_cofactor_rerun": {
       "artifact_id": "v3_cofactor_fusion_operating_point_train_cal_oos_current702_20260628_current57_rerun",
       "current57_calibration_fused_frozen": {
@@ -130,7 +298,7 @@
   },
   "preregistered_experiment": {
     "done_bar": {
-      "current_router_note": "Current-57-family router drift is detected; freeze the intended router/fingerprint surface or preregister a current-57 precision rule before atlas-engine fusion.",
+      "current_router_note": "Current-57 cofactor precision contract is fail-closed; atlas engine fusion remains blocked until the June 9 router surface is replayed or a new precision channel/fusion rule is preregistered.",
       "full_env_note": "Cached scored fold/TM surfaces are enough for the next train/cal readout.",
       "heldout_gate": "No heldout read is authorized by this artifact. A later heldout read requires this train/cal gate plus explicit user approval.",
       "minimum_train_cal_gate": "candidate keeps >=30/35 calibration in-scope cofactor-fused primaries while not increasing OOS FPs over the 0.44 cofactor threshold readout, and every missing fold/TM score is fail-closed",
@@ -232,6 +400,14 @@
       "sha256": "638e8591e2a52f1908a75f4bde63fa9336402fc5ab4df5036c541c321aedb8ea",
       "status": "complete"
     },
+    "current57_cofactor_precision_contract": {
+      "artifact_id": "v3_current57_cofactor_precision_contract_current702_20260628",
+      "exists": true,
+      "path": "artifacts/v3_current57_cofactor_precision_contract_current702_20260628.json",
+      "schema_version": "current57_cofactor_precision_contract.v1",
+      "sha256": "3d9197affe25fe6a3bec43658895f0043cf48e829600c52182698c20cbd13b08",
+      "status": "blocked_current57_cofactor_precision_contract_not_deployable"
+    },
     "current702_registry": {
       "exists": true,
       "path": "data/registries/curated_mechanism_labels.json",
@@ -310,5 +486,5 @@
       "status": "mechanism_feature_embedding_train_cal_split_ready_no_model_fit"
     }
   },
-  "status": "preregistered_cached_surface_blocked_current57_router_drift_new_foldseek_backend_blocked"
+  "status": "preregistered_cached_surface_blocked_current57_precision_contract_new_foldseek_backend_blocked"
 }
