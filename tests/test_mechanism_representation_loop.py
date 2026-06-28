@@ -289,6 +289,44 @@ class NonHydrolyticBondChangeTests(unittest.TestCase):
             ),
         )
 
+    def test_disulfide_reduction(self) -> None:
+        # glutathione reductase: a substrate disulfide is interconverted with the nicotinamide pair.
+        self.assertIn(
+            "bc_disulfide_reduction",
+            classify_reaction_nonhydrolytic(
+                "2 glutathione + NADP(+) = glutathione disulfide + NADPH + H(+)"
+            ),
+        )
+        # thioredoxin reductase (dithiol<->disulfide) and dihydrolipoyl dehydrogenase
+        # (dihydrolipoamide<->lipoamide) also fire.
+        self.assertIn(
+            "bc_disulfide_reduction",
+            classify_reaction_nonhydrolytic(
+                "[thioredoxin]-dithiol + NADP(+) = [thioredoxin]-disulfide + NADPH + H(+)"
+            ),
+        )
+        self.assertIn(
+            "bc_disulfide_reduction",
+            classify_reaction_nonhydrolytic(
+                "(R)-dihydrolipoamide + NAD(+) = (R)-lipoamide + NADH + H(+)"
+            ),
+        )
+        # a generic NAD redox with NO disulfide/dithiol substrate must NOT fire it (it stays plain
+        # bc_redox_hydride), and a non-nicotinamide disulfide reaction must NOT fire it either.
+        self.assertNotIn(
+            "bc_disulfide_reduction",
+            classify_reaction_nonhydrolytic(
+                "an alcohol + NAD(+) = an aldehyde + NADH + H(+)"
+            ),
+        )
+        self.assertNotIn(
+            "bc_disulfide_reduction",
+            classify_reaction_nonhydrolytic(
+                "a hydroperoxide + [thioredoxin]-dithiol = an alcohol + "
+                "[thioredoxin]-disulfide + H2O"
+            ),
+        )
+
     def test_methyl_transfer(self) -> None:
         out = classify_reaction_nonhydrolytic(
             "a substrate + S-adenosyl-L-methionine = a methyl-substrate "
@@ -566,23 +604,23 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
         # pair (the honest residual limit). No fold/name leakage.
         # 2026-06-27 (flavin_disulfide_reductase, +150): the EC 1.8.1 class-I pyridine
         # nucleotide-disulfide oxidoreductases (glutathione / thioredoxin / lipoamide / trypanothione
-        # reductases) are obligate FAD + NAD(P)H flavoproteins, so in the leakage-safe feature space
-        # (cofactor classes + Rhea bond-change, EC/name/prose/lane EXCLUDED) they share their cofactor
-        # signature with flavin_dehydrogenase_reductase -- the disulfide SUBSTRATE that separates them
-        # at admission is fold/substrate evidence the representation must not synthesize. The dense
-        # 150-row flavin_disulfide_reductase centroid is itself coherent (sc ~0.88) and absorbs the
-        # flavin_dehydrogenase_reductase rows, collapsing its self-consistency (~111/177 resolve to the
-        # disulfide-reductase centroid). Overall LOO ticks 0.733 -> ~0.731 (still > 0.62 floor; NOT
-        # lowered). Honest documented cost of a confusable FAD sibling; the disambiguation engine
-        # separates them at admission (FAD + NAD(P)H:disulfide reaction vs the rest of EC 1.3/1.6/1.8.1).
-        # No fold/name leakage.
+        # reductases) are obligate FAD + NAD(P)H flavoproteins. When added they FIRST collapsed
+        # flavin_dehydrogenase_reductase (both fire only bc_redox_hydride in the leakage-safe space).
+        # 2026-06-27 REACTION-REPRESENTATION FIX (bc_disulfide_reduction): the disulfide/dithiol
+        # SUBSTRATE is the reaction-center discriminator -- a thiol<->disulfide (or dithiol<->disulfide,
+        # dihydrolipoamide<->lipoamide, trypanothione) interconversion coupled to the nicotinamide redox
+        # pair, read ONLY from the Rhea equation. Adding that leakage-safe class lifts
+        # flavin_dehydrogenase_reductase 0.327 -> ~0.648 (recovered) and keeps flavin_disulfide_reductase
+        # at 1.000; overall LOO 0.734 -> ~0.744 with ZERO regressions (peroxiredoxin 0.947, nad_p 0.507
+        # unchanged; seed-stable 0/7/42). Turned the documented cost into a clean win -- no fold/name
+        # leakage (admission still also separates them by FAD + NAD(P)H:disulfide reaction).
         # 2026-06-27 (dihydrofolate_reductase, +74): a CLEAN WIN (contrast flavin_disulfide_reductase's
-        # cost). The EC 1.5.1.3 DHFRs reduce 7,8-dihydrofolate to tetrahydrofolate with NADPH; although
+        # original cost). The EC 1.5.1.3 DHFRs reduce 7,8-dihydrofolate to tetrahydrofolate with NADPH; although
         # they share the NADPH cosubstrate with the EC 1.1.1 NAD(P) hydride-transfer surface, the
         # FOLATE reaction center gives them a distinctive leakage-safe feature, so the 74-row centroid
         # is perfectly self-consistent (sc 1.000) with zero bleed and the NAD(P)/SDR/AKR families are
-        # unchanged. Overall LOO 0.731 -> 0.734 (ticked up; seed-stable 0/7/42). The 10,000-label
-        # milestone (combined 10001).
+        # unchanged. The 10,000-label milestone (combined 10001). With the bc_disulfide_reduction
+        # reaction-center class now in place, overall LOO is ~0.744 (seed-stable 0/7/42).
         self.assertEqual(audit["seed_labels"], 8075)
         g = audit["leakage_guardrails"]
         self.assertFalse(g["frozen_benchmark_read"])
@@ -741,20 +779,17 @@ class BuildWriteRealRegistryTests(unittest.TestCase):
             0,
         )
         self.assertGreaterEqual(sc["aminoglycoside_acetyltransferase"], 0.95)
-        # Adding flavin_disulfide_reductase (EC 1.8.1 FAD NAD(P)H:disulfide oxidoreductases) gives
-        # flavin_dehydrogenase_reductase a confusable sibling: BOTH are FAD + NAD(P)H flavoproteins
-        # and differ only by the disulfide SUBSTRATE / fold, which the source-free representation must
-        # not synthesize from EC/name/prose/lane metadata. The dense 150-row disulfide-reductase
-        # centroid is itself coherent, and most flavin_dehydrogenase_reductase rows resolve to it, so
-        # flavin_dehydrogenase_reductase self-consistency COLLAPSES while the new family forms a tight
-        # cluster. Honest cost of a confusable FAD sibling -- do NOT add fold/name leakage; the
-        # disambiguation engine separates them at admission (FAD + NAD(P)H:disulfide reaction).
+        # flavin_disulfide_reductase (EC 1.8.1 FAD NAD(P)H:disulfide oxidoreductases) and
+        # flavin_dehydrogenase_reductase are both FAD + NAD(P)H flavoproteins; with only bc_redox_hydride
+        # they were indistinguishable and the new family collapsed flavin_dehydrogenase_reductase. The
+        # bc_disulfide_reduction reaction-center class (the disulfide/dithiol SUBSTRATE interconverted in
+        # the nicotinamide-coupled reaction, read ONLY from the Rhea equation) is the leakage-safe
+        # discriminator: flavin_disulfide_reductase stays perfectly coherent (sc 1.000) AND
+        # flavin_dehydrogenase_reductase is RECOVERED (0.327 -> ~0.648). A residual minority of
+        # flavin_dehydrogenase_reductase rows (those with no Rhea equation) still resolve to the dense
+        # disulfide centroid, but the majority are self-consistent again. No fold/name leakage.
         self.assertGreater(sc["flavin_disulfide_reductase"], 0.8)
-        self.assertLess(sc["flavin_dehydrogenase_reductase"], 0.5)
-        self.assertGreater(
-            conf["flavin_dehydrogenase_reductase"].get("flavin_disulfide_reductase", 0),
-            0,
-        )
+        self.assertGreater(sc["flavin_dehydrogenase_reductase"], 0.55)
         # dihydrofolate_reductase (EC 1.5.1.3 NADPH-dependent folate reduction) is a CLEAN WIN: the
         # folate-reduction reaction center separates it from the EC 1.1.1 NAD(P) hydride-transfer
         # surface despite the shared NADPH cosubstrate, so its centroid is perfectly self-consistent

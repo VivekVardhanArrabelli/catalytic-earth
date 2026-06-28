@@ -3,6 +3,30 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-27: REACTION-REPRESENTATION FIX (`bc_disulfide_reduction`) converts the flavin_disulfide_reductase documented cost into a clean win; LOO 0.734 -> 0.744
+
+Decision (user-directed). `flavin_disulfide_reductase` was admitted with a documented representation
+cost: it and `flavin_dehydrogenase_reductase` are both obligate FAD + NAD(P)H flavoproteins, so with
+only `bc_redox_hydride` they were indistinguishable in the leakage-safe space and the dense disulfide
+centroid collapsed flavin_dehydrogenase_reductase (0.327). The MAP's "big bet" lever (a reaction-center
+bond-change class read ONLY from the Rhea equation) supplies the missing discriminator.
+
+Fix: a leakage-safe `bc_disulfide_reduction` non-hydrolytic bond-change class that fires when a substrate
+disulfide/dithiol is interconverted in a nicotinamide-coupled reaction -- a thiol<->disulfide,
+dithiol<->disulfide, dihydrolipoamide<->lipoamide, or trypanothione token together with the
+NAD(+)/NADH (or NADP(+)/NADPH) redox pair. Reads only the substrate->product equation; never
+EC/name/prose/fingerprint. The disulfide SUBSTRATE is the reaction-center discriminator the generic
+hydride class was missing.
+
+Result (PYTHONHASHSEED 0/7/42, identical): flavin_dehydrogenase_reductase **0.327 -> 0.648** (recovered),
+flavin_disulfide_reductase stays **1.000**, overall leave-one-out **0.734 -> 0.744**, ZERO regressions
+(peroxiredoxin 0.947, nad_p 0.507 unchanged). A residual minority of flavin_dehydrogenase_reductase rows
+(those carrying no Rhea equation) still resolve to the dense disulfide centroid -- an irreducible
+empty-vector effect, not a leakage gap. Pure representation change: no labels/registries/thresholds/
+imports touched; the disambiguation engine independently separates the two at admission. The
+flavin_disulfide_reductase "documented cost" recorded in the 2026-06-27 family entry below is now a clean
+win.
+
 ## 2026-06-27: NEW `dihydrofolate_reductase` FINGERPRINT FAMILY (56 -> 57 FP); COMBINED 9927 -> 10001 -- 10,000-LABEL MILESTONE REACHED (user-directed "go ahead")
 
 Decision (user-directed: continue toward 10k after the flavin_disulfide_reductase pass). Eleventh new

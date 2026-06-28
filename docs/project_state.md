@@ -26,6 +26,18 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **REACTION-REPRESENTATION FIX `bc_disulfide_reduction` converts the flavin_disulfide_reductase documented cost into a CLEAN WIN; LOO 0.734 -> 0.744 (2026-06-27, user-directed).**
+  flavin_disulfide_reductase and flavin_dehydrogenase_reductase are both FAD + NAD(P)H flavoproteins, so
+  with only `bc_redox_hydride` the dense disulfide centroid had collapsed flavin_dehydrogenase_reductase
+  (0.327). A leakage-safe `bc_disulfide_reduction` non-hydrolytic bond-change class -- a substrate
+  disulfide/dithiol (thiol<->disulfide, dihydrolipoamide<->lipoamide, trypanothione) interconverted in a
+  nicotinamide-coupled reaction, read ONLY from the Rhea equation -- supplies the discriminator:
+  flavin_dehydrogenase_reductase **0.327 -> 0.648** (recovered), flavin_disulfide_reductase stays
+  **1.000**, overall LOO **0.734 -> 0.744**, ZERO regressions (peroxiredoxin 0.947, nad_p 0.507
+  unchanged; seed-stable 0/7/42). Pure representation change (no labels/registries/thresholds touched).
+  Residual: a minority of flavin_dehydrogenase_reductase rows carry no Rhea equation, so they stay an
+  empty vector that resolves to the dense disulfide centroid (irreducible, not a leakage gap).
+
 - **NEW `dihydrofolate_reductase` FINGERPRINT FAMILY ADDED (56 -> 57 FP); COMBINED 9927 -> 10001 -- 10,000-LABEL MILESTONE REACHED (2026-06-27, user-directed "go ahead"); LOO 0.733 -> 0.734 (CLEAN WIN).**
   Eleventh new family: `dihydrofolate_reductase` -- the NADPH-dependent dihydrofolate reductases (EC
   1.5.1.3; DHFR): NADPH transfers a hydride to C6 of the dihydropterin of 7,8-dihydrofolate with

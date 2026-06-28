@@ -149,6 +149,7 @@ NONHYDROLYTIC_BOND_CLASSES = (
     "bc_carbon_carbon_lyase",  # one organic substrate cleaved into two organic fragments (aldol/C-C lyase)
     "bc_aldehyde_oxidation",  # aldehyde + NAD(+) + H2O -> carboxylate + NADH (water-consuming NAD redox)
     "bc_peroxide_reduction",  # hydroperoxide/H2O2 on substrate side -> alcohol/water (O-O reductive cleavage; peroxidatic thiol/heme/NAD(P)H peroxidase)
+    "bc_disulfide_reduction",  # substrate disulfide/dithiol interconverted in a NAD(P)-coupled reaction (FAD class-I pyridine nucleotide-disulfide oxidoreductase: glutathione/thioredoxin/lipoamide/trypanothione reductase)
 )
 
 # Small inorganic / proton species that are NOT a carbon-skeleton fragment. Used only by
@@ -589,6 +590,20 @@ def classify_reaction_nonhydrolytic(reaction: str) -> set[str]:
         for tok in lhs_tokens
     ):
         classes.add("bc_peroxide_reduction")
+
+    # disulfide reduction: a substrate disulfide/dithiol is reductively interconverted in a
+    # nicotinamide-coupled reaction -- the reaction-center signature of the FAD-dependent class-I
+    # pyridine nucleotide-disulfide oxidoreductases (glutathione / thioredoxin / trypanothione
+    # reductase, dihydrolipoyl [E3] dehydrogenase). These are obligate FAD + NAD(P)H flavoproteins, so
+    # bc_redox_hydride alone leaves them indistinguishable from the generic flavin/NAD(P) dehydrogenases
+    # (flavin_disulfide_reductase collapses flavin_dehydrogenase_reductase). The disulfide/dithiol
+    # SUBSTRATE is the discriminator -- a thiol<->disulfide (or dithiol<->disulfide, dihydrolipoamide<->
+    # lipoamide) interconversion coupled to the nicotinamide redox pair. Reads ONLY the Rhea
+    # substrate->product equation (never EC / name / prose / fingerprint).
+    if (nad_ox and nad_red) and _has(
+        both, "disulfide", "dithiol", "lipoamide", "dihydrolipo", "trypanothione"
+    ):
+        classes.add("bc_disulfide_reduction")
 
     # carboxylation (CO2/bicarbonate fixed with ATP) vs decarboxylation (CO2 released)
     co2_lhs = any(tok in ("co2", "hydrogencarbonate") for tok in lhs_tokens)
