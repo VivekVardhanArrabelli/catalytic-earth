@@ -176,6 +176,14 @@ from .fold_channel_deployment_readiness import (
     DEFAULT_REPORT_PATH as DEFAULT_FOLD_READINESS_REPORT_PATH,
     write_fold_channel_deployment_readiness,
 )
+from .atlas_broadening_feasibility import (
+    DEFAULT_ATLAS_MANIFEST_PATH as DEFAULT_ATLAS_BROADEN_ATLAS_MANIFEST_PATH,
+    DEFAULT_CURATED_LABELS_PATH as DEFAULT_ATLAS_BROADEN_CURATED_LABELS_PATH,
+    DEFAULT_LABEL_MANIFEST_PATH as DEFAULT_ATLAS_BROADEN_LABEL_MANIFEST_PATH,
+    DEFAULT_OUT_PATH as DEFAULT_ATLAS_BROADEN_OUT_PATH,
+    DEFAULT_REPORT_PATH as DEFAULT_ATLAS_BROADEN_REPORT_PATH,
+    write_atlas_broadening_feasibility,
+)
 from .predicted_geometry_atlas_engine_preregistration import (
     DEFAULT_COFACTOR_CHANNEL_PATH,
     DEFAULT_COFACTOR_PRECISION_PATH,
@@ -3156,6 +3164,25 @@ def cmd_build_fold_channel_deployment_readiness(args: argparse.Namespace) -> int
         f"{args.out} ({summary.get('status')}; off-M-CSA recovery "
         f"{off.get('recovery_half', {}).get('recovery')}; both halves generalize "
         f"{off.get('both_halves_generalize_off_mcsa')})"
+    )
+    return 0
+
+
+def cmd_build_atlas_broadening_feasibility(args: argparse.Namespace) -> int:
+    audit = write_atlas_broadening_feasibility(
+        atlas_manifest_path=Path(args.atlas_manifest),
+        label_manifest_path=Path(args.label_manifest),
+        curated_labels_path=Path(args.curated_labels),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    ca = audit.get("current_atlas", {})
+    b = audit.get("blocker", {})
+    print(
+        "Wrote atlas-broadening feasibility to "
+        f"{args.out} ({audit.get('status')}; current atlas {ca.get('family_count')} "
+        f"families; unreachable for now {b.get('families_unreachable_for_now')}/"
+        f"{b.get('full_registry_family_count')})"
     )
     return 0
 
@@ -23942,6 +23969,37 @@ def build_parser() -> argparse.ArgumentParser:
     )
     fold_channel_deployment_readiness.set_defaults(
         func=cmd_build_fold_channel_deployment_readiness
+    )
+
+    atlas_broadening_feasibility = subparsers.add_parser(
+        "build-atlas-broadening-feasibility",
+        help=(
+            "inventory whether a fine multi-family structure-backed M-CSA atlas source "
+            "exists to broaden off-M-CSA recovery beyond the cofactor families"
+        ),
+    )
+    atlas_broadening_feasibility.add_argument(
+        "--atlas-manifest",
+        default=DEFAULT_ATLAS_BROADEN_ATLAS_MANIFEST_PATH,
+    )
+    atlas_broadening_feasibility.add_argument(
+        "--label-manifest",
+        default=DEFAULT_ATLAS_BROADEN_LABEL_MANIFEST_PATH,
+    )
+    atlas_broadening_feasibility.add_argument(
+        "--curated-labels",
+        default=DEFAULT_ATLAS_BROADEN_CURATED_LABELS_PATH,
+    )
+    atlas_broadening_feasibility.add_argument(
+        "--out",
+        default=DEFAULT_ATLAS_BROADEN_OUT_PATH,
+    )
+    atlas_broadening_feasibility.add_argument(
+        "--report",
+        default=DEFAULT_ATLAS_BROADEN_REPORT_PATH,
+    )
+    atlas_broadening_feasibility.set_defaults(
+        func=cmd_build_atlas_broadening_feasibility
     )
 
     predicted_geometry_atlas_engine_preregistration = subparsers.add_parser(

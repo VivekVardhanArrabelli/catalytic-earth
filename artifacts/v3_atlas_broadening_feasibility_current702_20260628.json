@@ -1,0 +1,61 @@
+{
+  "artifact_id": "v3_atlas_broadening_feasibility_current702_20260628",
+  "blocker": {
+    "families_unreachable_for_now": 52,
+    "full_registry_family_count": 57,
+    "summary": "Fine (57-family) M-CSA truth labels exist only on the current-57 cofactor operating-point surface (5 families). The label manifest carries 0 fine-fingerprint rows, the curated registry is coarse (8 families), and bronze labels are non-M-CSA. So no local source provides a fine multi-family structure-backed M-CSA atlas beyond the cofactor families."
+  },
+  "created_utc": "2026-06-28T19:47:08Z",
+  "current_atlas": {
+    "families": [
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "ser_his_acid_hydrolase"
+    ],
+    "family_count": 5,
+    "structures": 133
+  },
+  "fine_label_sources_checked": {
+    "curated_mechanism_labels_family_count": 8,
+    "curated_taxonomy": "coarse (8-family) frozen taxonomy, incompatible with the fine 57-family atlas/bronze labels",
+    "current57_cofactor_operating_point": "fine labels present but scoped to 5 cofactor families only",
+    "external_bronze_labels": "non-M-CSA (cannot serve as the M-CSA atlas)",
+    "sequence_nn_label_manifest_true_fingerprint_rows": 0
+  },
+  "guardrails": {
+    "downloads_performed": false,
+    "heldout_rows_scored": false,
+    "labels_changed": false,
+    "registry_or_ontology_changed": false
+  },
+  "interpretation": {
+    "decision_needed": "Whether to invest in deriving fine multi-family M-CSA truth labels (router/operating-point on the full in-distribution set) to broaden the atlas, accepting that those labels are router-derived, not gold.",
+    "headline": "Broadening the fold atlas beyond the cofactor families is not runnable on current local data: no fine multi-family structure-backed M-CSA label source exists. Off-M-CSA recovery remains validated for the cofactor families; broadening is a separate fine-labelling effort."
+  },
+  "question": "Can the M-CSA fold atlas be broadened beyond the cofactor families using a locally available fine (57-family) labelled, structure-backed M-CSA source?",
+  "result_class": "read_only_feasibility_inventory_no_download_no_registry_change",
+  "schema_version": "atlas_broadening_feasibility.v1",
+  "source_artifacts": {
+    "atlas_manifest": {
+      "path": "artifacts/v3_current57_fold_tm_recompute_input_manifest_current702_20260628.json",
+      "sha256": "79fd2a3bf84e13e7834ae17392130acfbe4d5e200258ccceeacd9df5690ab339"
+    },
+    "curated_labels": {
+      "path": "data/registries/curated_mechanism_labels.json",
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    },
+    "label_manifest": {
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    }
+  },
+  "status": "blocked_atlas_broadening_no_fine_multifamily_mcsa_label_source",
+  "unblock_plan": {
+    "caveat": "Router-derived fine M-CSA labels are not gold truth; broadening trades coverage for label confidence and should be reported as such.",
+    "step_1": "Derive fine (57-family) truth fingerprints for M-CSA train in-scope rows across all families (run the router/operating-point machinery on the full M-CSA in-distribution set, not just the cofactor surface), with explicit leakage controls.",
+    "step_2": "Stage AlphaFold/PDB structures for those M-CSA rows (most are likely already local; backfill the rest via an authorized bounded download).",
+    "step_3": "Rebuild the atlas accession->fine-fingerprint map across families and re-run the off-M-CSA recovery harness against the broadened atlas."
+  }
+}

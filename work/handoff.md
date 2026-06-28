@@ -1,5 +1,37 @@
 # Handoff
 
+## Session run - (b) deployment-readiness synthesis + (a) atlas-broadening feasibility (blocked); no registry apply (2026-06-28)
+
+- Continued on branch `claude/continue-last-commit-ytktge` from commit `88d61126`. User asked for "b
+  then a". No registry/label/threshold/model mutation; no download; no heldout read.
+- (b) Consolidated deployment-readiness summary (verifiable aggregate; reads source values + sha256,
+  computes nothing new): `src/catalytic_earth/fold_channel_deployment_readiness.py`,
+  `build-fold-channel-deployment-readiness` ->
+  `artifacts/v3_fold_channel_deployment_readiness_summary_current702_20260628.json` /
+  `work/fold_channel_deployment_readiness_summary_current702_20260628.md`. Status
+  `fold_channel_generalizes_off_mcsa_both_halves_deployment_claim_still_gated`. Validated: off-M-CSA
+  recovery 132/156 (0.846, all 4 cofactor families); off-M-CSA rejection (external 0.574 ~ M-CSA OOS
+  0.566 << in-scope 0.743); June 9 dial 30/35 @ 8 FP. Not validated: no gold off-M-CSA; held-out
+  one-shot locked/unspent (M-CSA-only); cofactor-family scope; calibration figures are development.
+  (committed `2a639bc4`)
+- (a) Attempted to broaden the atlas beyond the 5 cofactor families. Audit:
+  `src/catalytic_earth/atlas_broadening_feasibility.py`, `build-atlas-broadening-feasibility` ->
+  `artifacts/v3_atlas_broadening_feasibility_current702_20260628.json` /
+  `work/atlas_broadening_feasibility_current702_20260628.md`. Status
+  `blocked_atlas_broadening_no_fine_multifamily_mcsa_label_source`: fine (57-family) M-CSA truth labels
+  exist only on the cofactor operating-point surface (5 families, 133 structures); label manifest has 0
+  fine-fingerprint rows; curated registry is coarse-8 (incompatible); bronze is non-M-CSA. **52/57
+  families unreachable for now.** Unblock = derive fine multi-family M-CSA truth labels
+  (router/operating-point over the full in-distribution set) + structures (router-derived, not gold).
+- Tests: `tests/test_fold_channel_deployment_readiness.py` (5), `tests/test_atlas_broadening_feasibility.py`
+  (4), + CLI parser cases. Docs artifact-reference check -> missing 0.
+- Validation: focused unittest OK; compileall OK; registry `validate` OK (57 FP intact); reference check
+  missing 0; `git diff --check` clean; `data/` untouched.
+- Next exact action: broadening (a) needs a fine multi-family M-CSA labelling effort (router-derived, not
+  gold) — a real pipeline, the user's call. Otherwise the fold-channel result stands: generalizes off
+  M-CSA on both halves for the cofactor families; remaining deployment gates are gold off-M-CSA eval and
+  the locked held-out one-shot. Do not grow fingerprint families.
+
 ## Session run - off-M-CSA in-scope RECOVERY confirmed: fold-NN recovers 132/156 (84.6%) of non-M-CSA bronze positives across all 4 families; no registry apply (2026-06-28)
 
 - Continued on branch `claude/continue-last-commit-ytktge` from commit `6666474f`. User authorized the

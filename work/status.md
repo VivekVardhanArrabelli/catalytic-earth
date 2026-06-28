@@ -455,3 +455,27 @@ next_action: >
   Optionally broaden the M-CSA atlas beyond the 5 cofactor families for a wider off-M-CSA recovery
   sweep, or write the consolidated deployment-readiness summary. The held-out one-shot remains locked
   (still M-CSA-only). Do not grow fingerprint families.
+
+## Automation run 2026-06-28 (continuation: (b) readiness summary + (a) atlas-broadening feasibility)
+- started_from: prior commit 88d61126 (branch claude/continue-last-commit-ytktge)
+- registry_mutation: none; no download; no heldout read
+- state: deployment_readiness_synthesized_atlas_broadening_blocked
+- work_completed:
+  - (b) fold_channel_deployment_readiness aggregator (module/CLI/tests) -> both halves generalize, claim still gated (committed 2a639bc4)
+  - (a) atlas_broadening_feasibility (module/CLI/tests) -> blocked: fine multi-family M-CSA labels absent (52/57 families unreachable)
+  - updated project_state, handoff; regenerated docs reference check (missing 0)
+- current_gate_state:
+  - fold_channel_generalizes_off_mcsa_both_halves: true (cofactor families)
+  - deployment_claim: still gated (gold off-M-CSA eval + locked heldout one-shot)
+  - atlas_broadening: blocked (needs fine multi-family M-CSA labelling, router-derived not gold)
+  - heldout_oneshot: locked, unspent; registry_mutated: false
+- validation:
+  - focused_readiness_broadening_cli_unittest: passed
+  - compileall: passed
+  - registry_validate: passed (57 fingerprints)
+  - current_docs_reference_check: missing 0
+  - git_diff_check: passed
+- next_action: >
+  Broadening needs a fine multi-family M-CSA labelling effort (router-derived, not gold) — the user's
+  call. Otherwise the fold-channel deployment story stands for the cofactor families; remaining gates are
+  a gold off-M-CSA eval and the locked held-out one-shot. Do not grow fingerprint families.

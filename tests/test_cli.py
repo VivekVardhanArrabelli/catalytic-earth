@@ -337,6 +337,16 @@ class CliTests(unittest.TestCase):
             ),
         )
 
+    def test_atlas_broadening_feasibility_parser_defaults(self) -> None:
+        args = build_parser().parse_args(["build-atlas-broadening-feasibility"])
+        self.assertEqual(
+            args.curated_labels, "data/registries/curated_mechanism_labels.json"
+        )
+        self.assertEqual(
+            args.out,
+            "artifacts/v3_atlas_broadening_feasibility_current702_20260628.json",
+        )
+
     def test_external_source_pilot_uniref_current_reference_parser_defaults(
         self,
     ) -> None:

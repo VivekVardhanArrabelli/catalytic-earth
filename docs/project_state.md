@@ -26,6 +26,19 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **ATLAS BROADENING (beyond the 5 cofactor families) IS DATA-BLOCKED — no fine multi-family M-CSA label source (2026-06-28).**
+  Attempted to broaden the off-M-CSA recovery sweep beyond the cofactor families. Audit
+  (`src/catalytic_earth/atlas_broadening_feasibility.py`, `build-atlas-broadening-feasibility`):
+  `artifacts/v3_atlas_broadening_feasibility_current702_20260628.json` /
+  `work/atlas_broadening_feasibility_current702_20260628.md`, status
+  `blocked_atlas_broadening_no_fine_multifamily_mcsa_label_source`. Fine (57-family) M-CSA truth labels
+  exist only on the current-57 cofactor operating-point surface (**5 families, 133 structures**); the
+  label manifest carries **0** fine-fingerprint rows, the curated registry is coarse (**8** families,
+  incompatible taxonomy), and bronze labels are non-M-CSA. So **52 of 57** families are unreachable for
+  now. Unblock requires deriving fine multi-family M-CSA truth labels (router/operating-point over the
+  full M-CSA in-distribution set) + structures — a separate fine-labelling effort whose labels are
+  router-derived, not gold. Off-M-CSA recovery remains validated for the cofactor families.
+
 - **DEPLOYMENT-READINESS SYNTHESIS: the fold (structural) channel generalizes off M-CSA on BOTH halves; a formal deployment claim is still gated (2026-06-28).**
   Verifiable aggregate of the session's committed readouts (reads source values + sha256, computes
   nothing new): `artifacts/v3_fold_channel_deployment_readiness_summary_current702_20260628.json` /
