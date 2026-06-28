@@ -184,6 +184,7 @@ from .atlas_broadening_feasibility import (
     DEFAULT_REPORT_PATH as DEFAULT_ATLAS_BROADEN_REPORT_PATH,
     write_atlas_broadening_feasibility,
 )
+from .heldout_oneshot_eval import write_heldout_oneshot_eval
 from .predicted_geometry_atlas_engine_preregistration import (
     DEFAULT_COFACTOR_CHANNEL_PATH,
     DEFAULT_COFACTOR_PRECISION_PATH,
@@ -3183,6 +3184,28 @@ def cmd_build_atlas_broadening_feasibility(args: argparse.Namespace) -> int:
         f"{args.out} ({audit.get('status')}; current atlas {ca.get('family_count')} "
         f"families; unreachable for now {b.get('families_unreachable_for_now')}/"
         f"{b.get('full_registry_family_count')})"
+    )
+    return 0
+
+
+def cmd_run_heldout_oneshot_eval(args: argparse.Namespace) -> int:
+    result = write_heldout_oneshot_eval(
+        preregistration_path=Path(args.preregistration),
+        split_manifest_path=Path(args.split_manifest),
+        label_manifest_path=Path(args.label_manifest),
+        graph_path=Path(args.graph),
+        experimental_geometry_path=Path(args.experimental_geometry),
+        channel_path=Path(args.channel),
+        heldout_coordinate_dirs=list(args.heldout_coordinate_dir),
+        threshold=args.threshold,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    hr = result["heldout_result"]
+    print(
+        f"Held-out one-shot {result['verdict']}: recovery "
+        f"{hr['inscope_recovery']} ({hr['inscope_recovery_rate']}); OOS FP "
+        f"{hr['oos_false_positives']} ({hr['oos_false_positive_rate']}) -> {args.out}"
     )
     return 0
 
@@ -24001,6 +24024,55 @@ def build_parser() -> argparse.ArgumentParser:
     atlas_broadening_feasibility.set_defaults(
         func=cmd_build_atlas_broadening_feasibility
     )
+
+    heldout_oneshot_eval = subparsers.add_parser(
+        "run-heldout-oneshot-eval",
+        help=(
+            "execute the locked held-out one-shot (verifies frozen sha, scores via the "
+            "pinned June 9 router at the 0.44 dial, emits PASS/FAIL). Run once."
+        ),
+    )
+    heldout_oneshot_eval.add_argument(
+        "--preregistration",
+        default="artifacts/v3_heldout_oneshot_preregistration_current702_20260628.json",
+    )
+    heldout_oneshot_eval.add_argument(
+        "--split-manifest",
+        default=DEFAULT_HELDOUT_PREREG_SPLIT_MANIFEST_PATH,
+    )
+    heldout_oneshot_eval.add_argument(
+        "--label-manifest",
+        default=DEFAULT_HELDOUT_PREREG_LABEL_MANIFEST_PATH,
+    )
+    heldout_oneshot_eval.add_argument(
+        "--graph", default="artifacts/v1_graph_1025.json"
+    )
+    heldout_oneshot_eval.add_argument(
+        "--experimental-geometry",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    heldout_oneshot_eval.add_argument(
+        "--channel",
+        default="artifacts/v3_cofactor_presence_calibration_current702_20260604.json",
+    )
+    heldout_oneshot_eval.add_argument(
+        "--heldout-coordinate-dir",
+        action="append",
+        default=[
+            "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout",
+            "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_cofactor_confounded_oos",
+        ],
+    )
+    heldout_oneshot_eval.add_argument("--threshold", type=float, default=0.44)
+    heldout_oneshot_eval.add_argument(
+        "--out",
+        default="artifacts/v3_heldout_oneshot_eval_result_current702_20260628.json",
+    )
+    heldout_oneshot_eval.add_argument(
+        "--report",
+        default="work/heldout_oneshot_eval_result_current702_20260628.md",
+    )
+    heldout_oneshot_eval.set_defaults(func=cmd_run_heldout_oneshot_eval)
 
     predicted_geometry_atlas_engine_preregistration = subparsers.add_parser(
         "build-predicted-geometry-atlas-engine-preregistration",

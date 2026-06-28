@@ -208,6 +208,7 @@ def build_cofactor_fusion_operating_point(
     threshold: float = HAND_ROUTER_THRESHOLD,
     threshold_grid: tuple[float, ...] = DEFAULT_THRESHOLD_GRID,
     alphafold_version: str = "6",
+    split_assignment: str = "in_distribution",
 ) -> dict[str, Any]:
     split_by = {
         str(r.get("entry_id")): str(r.get("assigned_embedding_split"))
@@ -220,7 +221,7 @@ def build_cofactor_fusion_operating_point(
         label_manifest=label_manifest,
         graph=graph,
         experimental_geometry_features=experimental_geometry_features,
-        split_assignment="in_distribution",
+        split_assignment=split_assignment,
         max_rows=0,
     )
     # Leakage guard: only score rows that the split manifest assigns to train/cal.
