@@ -1,6 +1,13 @@
 # Handoff
 
-## Session run - Gate 1 router reconciliation (fine-57 drift = genuine misrouting, adopt June 9 coarse router); merge-to-main blocked by unrelated histories (2026-06-28)
+## Session run - Gate 1 router reconciliation (fine-57 drift = genuine misrouting, adopt June 9 coarse router); branch merged to main via clean fast-forward (2026-06-28)
+
+- MERGE CORRECTION: an earlier claim in this run that branch and `main` were "unrelated histories with
+  divergent registries" was WRONG — a **shallow-clone artifact**. After `git fetch --unshallow`, the
+  real common ancestor is `79dc2d3a` (session base; shared root `93806418`), local `main` (`bed58963`)
+  is an ancestor of the branch, and the branch is a strict superset (main 0 commits ahead, branch 148
+  ahead). Merged via clean fast-forward: `main == d7a985ed` (origin/main + local main + branch all
+  equal). No conflicts, nothing lost.
 
 - Continued on branch `claude/continue-last-commit-ytktge` from commit `937b24a6`. User: "merge all
   progress and start work on Gate 1."

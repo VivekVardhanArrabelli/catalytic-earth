@@ -509,7 +509,7 @@ next_action: >
 ## Automation run 2026-06-28 (continuation: Gate 1 router reconciliation)
 - started_from: prior commit 937b24a6 (branch claude/continue-last-commit-ytktge)
 - registry_mutation: none; calibration-only; spent held-out untouched
-- merge_status: BLOCKED -- main and branch are unrelated histories with divergent fingerprint registries; not forced
+- merge_status: DONE -- clean fast-forward to main (main == d7a985ed). Earlier "unrelated histories" was a shallow-clone artifact, corrected via git fetch --unshallow
 - state: gate1_router_reconciliation_diagnosed_adopt_june9_coarse
 - work_completed:
   - added router_reconciliation_diagnostic (module/CLI/tests)
@@ -519,7 +519,7 @@ next_action: >
   - updated project_state, decision_log, handoff; regenerated docs reference check (missing 0)
 - current_gate_state:
   - gate1_diagnosed: true; recommended Option A (June 9 coarse router)
-  - merge_to_main: needs user decision (unrelated histories + registry divergence)
+  - merge_to_main: DONE (clean fast-forward; main == d7a985ed)
   - fork_decision: needs user (adopt June 9 vs repair fine-57)
   - heldout_oneshot: spent; registry_mutated: false
 - validation:

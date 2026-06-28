@@ -7,13 +7,15 @@ interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
 Decision (user-directed: "merge progress and start Gate 1"). Two findings.
 
-(1) Merge: this automation branch (`claude/continue-last-commit-ytktge`) and `main` have **no common
-ancestor** (different root commits) and **divergent `mechanism_fingerprints.json`** registries — `main`
-grew its registry on an independent Stage-1 hole-sourcing line. A merge is therefore an
-`--allow-unrelated-histories` whole-tree reconciliation that would conflict on the registry (research
-data), not a fast-forward. I did **not** force it; all session progress is committed and pushed to the
-branch (the line of record). Reconciling the two registries into `main` is a deliberate decision left
-to the user.
+(1) Merge: **CORRECTED.** I first claimed branch and `main` had no common ancestor / divergent
+registries and that a merge was unsafe. That was **wrong — a shallow-clone artifact.** The repo was a
+shallow clone (`.git/shallow` held `468591fd` and `f60617d6` as truncation boundaries, not true roots);
+`git rev-parse --is-shallow-repository` returned true. After `git fetch --unshallow`, the real common
+ancestor is `79dc2d3a` (the session base) and the shared root is `93806418 Initialize Catalytic Earth
+scaffold` (May 9). Local `main` (`bed58963`, the ser_his Stage-1 work) is an **ancestor** of the branch;
+the branch is a strict superset (main 0 ahead, branch 148 ahead, 0 commits lost). The branch was merged
+into `main` as a **clean fast-forward** — `main == d7a985ed`. Lesson: check for a shallow clone before
+ever concluding "unrelated histories".
 
 (2) Gate 1 router reconciliation (`src/catalytic_earth/router_reconciliation_diagnostic.py`,
 `build-router-reconciliation-diagnostic`):

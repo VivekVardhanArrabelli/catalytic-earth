@@ -41,10 +41,11 @@ artifact-backed mechanism diagnostics.
   **Option B (repair fine-57)** is a real router fix (constrain the metal subclasses, then a NEW
   pre-registration against a NEW held-out — the M-CSA held-out is spent), worth it only if production
   needs fine metal-subclass calls. Recommendation: **Option A now, Option B as a scoped follow-up.**
-  Calibration-only; the spent held-out was not touched. NOTE: this branch
-  (`claude/continue-last-commit-ytktge`) and `main` are **unrelated histories with divergent
-  fingerprint registries** — merging is a deliberate reconciliation, not a fast-forward; all progress
-  is preserved on the pushed branch.
+  Calibration-only; the spent held-out was not touched. (Branch/main note: the working branch was
+  merged into `main` as a clean fast-forward — `main == d7a985ed`. An earlier in-session claim of
+  "unrelated histories with divergent registries" was a **shallow-clone artifact**, corrected after
+  `git fetch --unshallow`; the branch was always a strict superset of `main`, sharing root
+  `93806418 Initialize Catalytic Earth scaffold`.)
 
 - **DEPLOYMENT CLAIM (M-CSA) MADE — the pre-registered held-out one-shot PASSED (2026-06-28).**
   The single locked, choices-frozen held-out test was executed once and passed. On the never-touched
