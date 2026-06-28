@@ -236,6 +236,19 @@ class CliTests(unittest.TestCase):
             ),
         )
 
+    def test_offmcsa_recovery_feasibility_parser_defaults(self) -> None:
+        args = build_parser().parse_args(["build-offmcsa-recovery-feasibility"])
+
+        self.assertEqual(
+            args.label_manifest,
+            "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+        )
+        self.assertEqual(args.coordinate_glob, "artifacts/*coordinates*")
+        self.assertEqual(
+            args.out,
+            "artifacts/v3_offmcsa_recovery_feasibility_current702_20260628.json",
+        )
+
     def test_external_source_pilot_uniref_current_reference_parser_defaults(
         self,
     ) -> None:

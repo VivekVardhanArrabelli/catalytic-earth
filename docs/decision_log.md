@@ -3,6 +3,35 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-28: Off-M-CSA in-scope RECOVERY is data-blocked — non-M-CSA structures exist locally but none carry trusted mechanism labels
+
+Decision (automation continuation, read-only feasibility, no registry mutation). Having shown the
+fold-NN *abstention* signal generalizes off M-CSA, we scoped the other half — off-M-CSA in-scope
+*recovery* (does fold-NN retrieval against the M-CSA atlas recover the correct mechanism for non-M-CSA
+*positives*). Audit (`src/catalytic_earth/offmcsa_recovery_feasibility.py`,
+`build-offmcsa-recovery-feasibility`):
+`artifacts/v3_offmcsa_recovery_feasibility_current702_20260628.json` /
+`work/offmcsa_recovery_feasibility_current702_20260628.md`. Status
+`blocked_offmcsa_recovery_no_local_labeled_nonmcsa_positive_structures`:
+
+- Across **42** structured coordinate surfaces, there are **248** distinct non-M-CSA structured
+  accessions locally (mostly the `external_materialization_wave2` import candidates), but **0** carry a
+  trusted (production-import-ready) mechanism label — wave2 has 0 import-ready and 600 still in review,
+  and the remaining non-M-CSA structures are external negatives/controls.
+- The trusted non-M-CSA positives (the bronze/SwissProt expansion) carry mechanism labels but have **no
+  local structures**.
+- So the recovery test needs either (a) materializing AlphaFold CIFs for a sample of trusted
+  bronze-admitted positives (a download requiring authorization and the >=10 GiB-free floor — note
+  wave2 itself recorded `coordinate_downloads_disabled_because_run_started_below_10_gib_floor`), or
+  (b) promoting a sample of the already-structured wave2 candidates through the import/label-factory
+  gates so they become trusted positives with no new download.
+
+Note: an earlier intermediate count (11 non-M-CSA structures) was wrong — a too-strict accession regex
+`[A-NR-Z0-9]` dropped any accession containing O/P/Q; the corrected filter gives 248. Durable steer
+unchanged: the deployment lever is the fold channel, and the open question is off-M-CSA recovery, which
+is gated on trusted-labelled non-M-CSA structures, not on more fingerprint families. No download, no
+heldout read, no registry/label/threshold/model change.
+
 ## 2026-06-28: The fold-NN abstention signal GENERALIZES off M-CSA — external non-M-CSA negatives track the M-CSA OOS fold distribution, not the in-scope one
 
 Decision (automation continuation, no registry mutation). The whole current702 benchmark

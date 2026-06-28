@@ -140,6 +140,14 @@ from .external_offmcsa_fold_abstention_readout import (
     DEFAULT_REPORT_PATH as DEFAULT_OFFMCSA_REPORT_PATH,
     write_external_offmcsa_fold_abstention_readout,
 )
+from .offmcsa_recovery_feasibility import (
+    DEFAULT_COORDINATE_GLOB as DEFAULT_OFFMCSA_RECOVERY_COORDINATE_GLOB,
+    DEFAULT_EXTERNAL_ABSTENTION_READOUT_PATH as DEFAULT_OFFMCSA_RECOVERY_ABSTENTION_PATH,
+    DEFAULT_LABEL_MANIFEST_PATH as DEFAULT_OFFMCSA_RECOVERY_LABEL_MANIFEST_PATH,
+    DEFAULT_OUT_PATH as DEFAULT_OFFMCSA_RECOVERY_OUT_PATH,
+    DEFAULT_REPORT_PATH as DEFAULT_OFFMCSA_RECOVERY_REPORT_PATH,
+    write_offmcsa_recovery_feasibility,
+)
 from .predicted_geometry_atlas_engine_preregistration import (
     DEFAULT_COFACTOR_CHANNEL_PATH,
     DEFAULT_COFACTOR_PRECISION_PATH,
@@ -3021,6 +3029,29 @@ def cmd_build_external_offmcsa_fold_abstention_readout(
         f"{test.get('external_median')} vs M-CSA OOS {test.get('mcsa_oos_median')} / "
         f"in-scope {test.get('mcsa_inscope_median')}; generalizes "
         f"{test.get('abstention_signal_generalizes_off_mcsa')})"
+    )
+    return 0
+
+
+def cmd_build_offmcsa_recovery_feasibility(args: argparse.Namespace) -> int:
+    audit = write_offmcsa_recovery_feasibility(
+        label_manifest_path=Path(args.label_manifest),
+        coordinate_glob=args.coordinate_glob,
+        external_abstention_readout_path=(
+            Path(args.external_abstention_readout)
+            if args.external_abstention_readout
+            else None
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    inv = audit.get("inventory", {})
+    print(
+        "Wrote off-M-CSA recovery feasibility to "
+        f"{args.out} ({audit.get('status')}; structured surfaces "
+        f"{inv.get('structured_surfaces_scanned')}; distinct non-M-CSA structured "
+        f"accessions {inv.get('distinct_non_mcsa_structured_accessions')}; usable "
+        f"labeled positives {inv.get('usable_labeled_nonmcsa_positives_with_structure')})"
     )
     return 0
 
@@ -23640,6 +23671,40 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_offmcsa_fold_abstention_readout.set_defaults(
         func=cmd_build_external_offmcsa_fold_abstention_readout
+    )
+
+    offmcsa_recovery_feasibility = subparsers.add_parser(
+        "build-offmcsa-recovery-feasibility",
+        help=(
+            "inventory whether a non-M-CSA, trusted-labelled, structure-backed positive "
+            "surface exists locally to measure off-M-CSA in-scope fold-NN recovery"
+        ),
+    )
+    offmcsa_recovery_feasibility.add_argument(
+        "--label-manifest",
+        default=DEFAULT_OFFMCSA_RECOVERY_LABEL_MANIFEST_PATH,
+        help="current702 label manifest used to derive M-CSA accessions",
+    )
+    offmcsa_recovery_feasibility.add_argument(
+        "--coordinate-glob",
+        default=DEFAULT_OFFMCSA_RECOVERY_COORDINATE_GLOB,
+        help="glob of structured coordinate directories to inventory",
+    )
+    offmcsa_recovery_feasibility.add_argument(
+        "--external-abstention-readout",
+        default=DEFAULT_OFFMCSA_RECOVERY_ABSTENTION_PATH,
+        help="off-M-CSA abstention readout to cite the completed half",
+    )
+    offmcsa_recovery_feasibility.add_argument(
+        "--out",
+        default=DEFAULT_OFFMCSA_RECOVERY_OUT_PATH,
+    )
+    offmcsa_recovery_feasibility.add_argument(
+        "--report",
+        default=DEFAULT_OFFMCSA_RECOVERY_REPORT_PATH,
+    )
+    offmcsa_recovery_feasibility.set_defaults(
+        func=cmd_build_offmcsa_recovery_feasibility
     )
 
     predicted_geometry_atlas_engine_preregistration = subparsers.add_parser(

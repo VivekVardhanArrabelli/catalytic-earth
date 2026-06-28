@@ -1,5 +1,33 @@
 # Handoff
 
+## Session run - off-M-CSA in-scope RECOVERY scoped and data-blocked (non-M-CSA structures exist but none carry trusted labels); read-only, no download, no registry apply (2026-06-28)
+
+- Continued on branch `claude/continue-last-commit-ytktge` from commit `8b6566dc` (off-M-CSA
+  abstention). Read-only feasibility; no download, no registry/label/threshold/model change, no heldout.
+- Scoped the recovery half of the off-M-CSA fold test. Audit builder + CLI:
+  `src/catalytic_earth/offmcsa_recovery_feasibility.py`, `build-offmcsa-recovery-feasibility`.
+  Artifact/report: `artifacts/v3_offmcsa_recovery_feasibility_current702_20260628.json` /
+  `work/offmcsa_recovery_feasibility_current702_20260628.md`. Status
+  `blocked_offmcsa_recovery_no_local_labeled_nonmcsa_positive_structures`:
+  - 42 structured surfaces; **248** distinct non-M-CSA structured accessions locally (mostly wave2
+    import candidates), but **0** production-label-ready (wave2: 0 ready, 600 in review; rest are
+    external negatives/controls). Trusted bronze positives have labels but no local structures.
+  - Unblock: (a) materialize AlphaFold CIFs for trusted bronze positives (download; needs auth + >=10
+    GiB floor — wave2 itself recorded downloads disabled below the floor), or (b) promote structured
+    wave2 candidates through import/label-factory gates (no new download).
+- Bug fixed in passing: a too-strict accession regex `[A-NR-Z0-9]` dropped accessions containing
+  O/P/Q (undercounted non-M-CSA structures as 11); corrected to `[A-Z][A-Z0-9]{5,9}` -> 248. Tests
+  cover the classifier.
+- Tests: `tests/test_offmcsa_recovery_feasibility.py` (4) + a CLI parser-defaults case. Regenerated
+  docs artifact-reference check -> missing 0.
+- Validation: focused unittest (feasibility + full test_cli) OK; compileall OK; registry `validate` OK
+  (57 FP intact); docs reference check missing 0; `git diff --check` clean.
+- Decision needed from the user: the off-M-CSA recovery half cannot be measured without trusted-labelled
+  non-M-CSA structures. Either authorize a bounded AlphaFold download for a sample of trusted bronze
+  positives, or authorize promoting a sample of structured wave2 candidates through the import gates.
+  Until then, the off-M-CSA *abstention* result stands as the deployment-relevant finding; the *recovery*
+  half is open and data-gated. Do not grow fingerprint families.
+
 ## Session run - fold-NN abstention signal GENERALIZES off M-CSA (external non-M-CSA negatives track M-CSA OOS, not in-scope); no registry apply (2026-06-28)
 
 - Continued on branch `claude/continue-last-commit-ytktge` from commit `ffb970df` (June 9 replay).

@@ -321,3 +321,29 @@ next_action: >
   measure off-M-CSA in-scope recovery via the same fold-NN-to-M-CSA-atlas retrieval, so both halves of
   the deployment question (recovery and abstention) are characterized off-distribution. The fold
   channel, not more fingerprint families, is the lever.
+
+## Automation run 2026-06-28 (continuation: off-M-CSA recovery feasibility)
+- started_from: prior commit 8b6566dc (branch claude/continue-last-commit-ytktge)
+- registry_mutation: none; read-only feasibility, no download
+- state: offmcsa_recovery_data_blocked_no_trusted_labeled_nonmcsa_structures
+- work_completed:
+  - added offmcsa_recovery_feasibility builder/CLI/tests; inventoried 42 structured surfaces
+  - 248 non-M-CSA structured accessions locally, 0 production-label-ready (wave2: 0 ready, 600 in review)
+  - trusted bronze positives have labels but no local structures -> recovery test blocked
+  - fixed accession regex bug ([A-NR-Z0-9] dropped O/P/Q; -> 248 not 11)
+  - updated project_state, decision_log, handoff; regenerated docs reference check (missing 0)
+- current_gate_state:
+  - offmcsa_abstention_half: done (generalizes)
+  - offmcsa_recovery_half: data-blocked (needs trusted-labeled non-M-CSA structures)
+  - download_decision_pending: true (bounded AlphaFold fetch OR promote wave2 candidates via import gates)
+  - registry_mutated: false; heldout_rows_scored: false
+- validation:
+  - focused_feasibility_cli_unittest: passed
+  - compileall: passed
+  - registry_validate: passed (57 fingerprints)
+  - current_docs_reference_check: missing 0
+  - git_diff_check: passed
+- next_action: >
+  Get user decision: authorize a bounded AlphaFold download for a sample of trusted bronze positives,
+  or authorize promoting structured wave2 candidates through the import/label-factory gates. Then run
+  the off-M-CSA in-scope recovery readout (fold-NN vs the M-CSA train atlas). Do not grow families.

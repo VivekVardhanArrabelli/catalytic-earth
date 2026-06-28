@@ -26,6 +26,21 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **OFF-M-CSA IN-SCOPE RECOVERY IS DATA-BLOCKED — NON-M-CSA STRUCTURES EXIST BUT CARRY NO TRUSTED LABELS (2026-06-28).**
+  Scoping the recovery half of the off-M-CSA fold test (does fold-NN retrieval against the M-CSA atlas
+  recover the right mechanism for non-M-CSA *positives*). Audit
+  (`src/catalytic_earth/offmcsa_recovery_feasibility.py`, `build-offmcsa-recovery-feasibility`):
+  `artifacts/v3_offmcsa_recovery_feasibility_current702_20260628.json` /
+  `work/offmcsa_recovery_feasibility_current702_20260628.md`, status
+  `blocked_offmcsa_recovery_no_local_labeled_nonmcsa_positive_structures`. Across 42 structured
+  surfaces there are **248** non-M-CSA structured accessions locally (mostly `external_materialization_wave2`
+  import candidates) but **0** are production-label-ready (wave2: 0 ready, 600 in review; the rest are
+  external negatives/controls). The trusted bronze/SwissProt positives carry labels but have no local
+  structures. Unblock: either materialize AlphaFold CIFs for trusted bronze positives (a download
+  needing authorization + the >=10 GiB floor), or promote a sample of the already-structured wave2
+  candidates through the import/label-factory gates (no new download). The deployment lever remains the
+  fold channel; this half is gated on trusted-labelled non-M-CSA structures, not more families.
+
 - **FOLD-NN ABSTENTION SIGNAL GENERALIZES OFF M-CSA (2026-06-28).**
   The whole current702 benchmark (train/cal/heldout) is M-CSA (699/702), so an M-CSA heldout read only
   certifies sequence-distant M-CSA generalization — not the deployment distribution where the cofactor
