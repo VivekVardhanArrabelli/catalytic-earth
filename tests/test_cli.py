@@ -249,6 +249,36 @@ class CliTests(unittest.TestCase):
             "artifacts/v3_offmcsa_recovery_feasibility_current702_20260628.json",
         )
 
+    def test_fold_nn_mechanism_recovery_readout_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            ["build-fold-nn-mechanism-recovery-readout"]
+        )
+
+        self.assertEqual(
+            args.atlas_manifest,
+            (
+                "artifacts/"
+                "v3_current57_fold_tm_recompute_input_manifest_current702_20260628.json"
+            ),
+        )
+        self.assertEqual(
+            args.foldseek_tsv,
+            (
+                "artifacts/"
+                "v3_current57_fold_tm_recompute_current702_20260628_results/"
+                "calibration_vs_current57_train_atlas.tsv"
+            ),
+        )
+        self.assertIsNone(args.positives)
+        self.assertEqual(args.surface_label, "mcsa_calibration_inscope_baseline")
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/"
+                "v3_fold_nn_mechanism_recovery_mcsa_baseline_current702_20260628.json"
+            ),
+        )
+
     def test_external_source_pilot_uniref_current_reference_parser_defaults(
         self,
     ) -> None:

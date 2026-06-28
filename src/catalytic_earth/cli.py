@@ -148,6 +148,13 @@ from .offmcsa_recovery_feasibility import (
     DEFAULT_REPORT_PATH as DEFAULT_OFFMCSA_RECOVERY_REPORT_PATH,
     write_offmcsa_recovery_feasibility,
 )
+from .fold_nn_mechanism_recovery_readout import (
+    DEFAULT_ATLAS_MANIFEST_PATH as DEFAULT_FOLD_RECOVERY_ATLAS_MANIFEST_PATH,
+    DEFAULT_FOLDSEEK_TSV_PATH as DEFAULT_FOLD_RECOVERY_TSV_PATH,
+    DEFAULT_OUT_PATH as DEFAULT_FOLD_RECOVERY_OUT_PATH,
+    DEFAULT_REPORT_PATH as DEFAULT_FOLD_RECOVERY_REPORT_PATH,
+    write_fold_nn_mechanism_recovery_readout,
+)
 from .predicted_geometry_atlas_engine_preregistration import (
     DEFAULT_COFACTOR_CHANNEL_PATH,
     DEFAULT_COFACTOR_PRECISION_PATH,
@@ -3052,6 +3059,29 @@ def cmd_build_offmcsa_recovery_feasibility(args: argparse.Namespace) -> int:
         f"{inv.get('structured_surfaces_scanned')}; distinct non-M-CSA structured "
         f"accessions {inv.get('distinct_non_mcsa_structured_accessions')}; usable "
         f"labeled positives {inv.get('usable_labeled_nonmcsa_positives_with_structure')})"
+    )
+    return 0
+
+
+def cmd_build_fold_nn_mechanism_recovery_readout(args: argparse.Namespace) -> int:
+    readout = write_fold_nn_mechanism_recovery_readout(
+        atlas_manifest_path=Path(args.atlas_manifest),
+        foldseek_tsv_path=Path(args.foldseek_tsv),
+        positives_path=Path(args.positives) if args.positives else None,
+        positives_group=args.positives_group,
+        positives_row_class=args.positives_row_class,
+        surface_label=args.surface_label,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    rec = readout.get("recovery", {})
+    cov = readout.get("coverage", {})
+    print(
+        "Wrote fold-NN mechanism recovery readout to "
+        f"{args.out} (surface {readout.get('surface_label')}; recovery "
+        f"{rec.get('fold_nn_recovered')}/{rec.get('fold_nn_scored')} "
+        f"({rec.get('recovery_rate_no_abstention')}); coverage "
+        f"{cov.get('positives_with_fold_hit')}/{cov.get('positives_total')})"
     )
     return 0
 
@@ -23705,6 +23735,53 @@ def build_parser() -> argparse.ArgumentParser:
     )
     offmcsa_recovery_feasibility.set_defaults(
         func=cmd_build_offmcsa_recovery_feasibility
+    )
+
+    fold_nn_mechanism_recovery_readout = subparsers.add_parser(
+        "build-fold-nn-mechanism-recovery-readout",
+        help=(
+            "fold-NN nearest-neighbour mechanism recovery against the M-CSA train atlas "
+            "(M-CSA in-distribution baseline now; off-M-CSA when a positive set exists)"
+        ),
+    )
+    fold_nn_mechanism_recovery_readout.add_argument(
+        "--atlas-manifest",
+        default=DEFAULT_FOLD_RECOVERY_ATLAS_MANIFEST_PATH,
+        help="recompute manifest providing the M-CSA train atlas accession->fingerprint map",
+    )
+    fold_nn_mechanism_recovery_readout.add_argument(
+        "--foldseek-tsv",
+        default=DEFAULT_FOLD_RECOVERY_TSV_PATH,
+        help="foldseek result TSV: positive queries vs the M-CSA train atlas",
+    )
+    fold_nn_mechanism_recovery_readout.add_argument(
+        "--positives",
+        default=None,
+        help="optional {rows:[{entry_id,accession,true_fingerprint_id}]} positive set; "
+        "if omitted, calibration in-scope rows from the manifest are used as the baseline",
+    )
+    fold_nn_mechanism_recovery_readout.add_argument(
+        "--positives-group",
+        default="calibration_queries",
+    )
+    fold_nn_mechanism_recovery_readout.add_argument(
+        "--positives-row-class",
+        default="inscope",
+    )
+    fold_nn_mechanism_recovery_readout.add_argument(
+        "--surface-label",
+        default="mcsa_calibration_inscope_baseline",
+    )
+    fold_nn_mechanism_recovery_readout.add_argument(
+        "--out",
+        default=DEFAULT_FOLD_RECOVERY_OUT_PATH,
+    )
+    fold_nn_mechanism_recovery_readout.add_argument(
+        "--report",
+        default=DEFAULT_FOLD_RECOVERY_REPORT_PATH,
+    )
+    fold_nn_mechanism_recovery_readout.set_defaults(
+        func=cmd_build_fold_nn_mechanism_recovery_readout
     )
 
     predicted_geometry_atlas_engine_preregistration = subparsers.add_parser(

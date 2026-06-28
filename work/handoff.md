@@ -1,5 +1,35 @@
 # Handoff
 
+## Session run - fold-NN mechanism recovery harness built + M-CSA baseline (28/35; 96% precision at fold>=0.65); ready to run off-M-CSA once a labelled positive set exists; no registry apply (2026-06-28)
+
+- Continued on branch `claude/continue-last-commit-ytktge` from commit `3f94b35b` (recovery
+  feasibility). The off-M-CSA recovery run is gated on a user decision (download trusted-positive
+  structures, or promote structured wave2 candidates through the import gates) that was NOT taken here
+  (both are governance-gated). Built the harness so the eventual run is a one-liner — mirroring how the
+  recompute manifest/command preceded foldseek availability.
+- Module + CLI: `src/catalytic_earth/fold_nn_mechanism_recovery_readout.py`,
+  `build-fold-nn-mechanism-recovery-readout`. Surface-agnostic: takes positives (accession + true
+  fingerprint), their foldseek scores vs the M-CSA train atlas, and the atlas accession->fingerprint
+  map (from the recompute manifest); reports fold-NN nearest-neighbour mechanism recovery + a
+  recovery/abstention threshold curve.
+- M-CSA in-distribution baseline (real run, existing recompute TSV):
+  `artifacts/v3_fold_nn_mechanism_recovery_mcsa_baseline_current702_20260628.json` /
+  `work/fold_nn_mechanism_recovery_mcsa_baseline_current702_20260628.md`. Recovery **28/35 (0.80)** no
+  abstention (reproduces the recompute readout's match); confidence-gated precision-on-retained
+  fold>=0.65 **24/25 (0.96)** @ 0.69 recovery, fold>=0.74 **17/18 (0.94)** @ 0.49 recovery. This is the
+  reference the off-M-CSA recovery will be compared against.
+- To run off-M-CSA later:
+  `build-fold-nn-mechanism-recovery-readout --positives <nonmcsa_positive_map.json>
+  --foldseek-tsv <nonmcsa_vs_mcsa_train_atlas.tsv> --surface-label offmcsa_<source>`.
+- Tests: `tests/test_fold_nn_mechanism_recovery_readout.py` (4) + a CLI parser-defaults case.
+  Regenerated docs artifact-reference check -> missing 0.
+- Validation: focused unittest (recovery harness + full test_cli) OK; compileall OK; registry
+  `validate` OK (57 FP intact); docs reference check missing 0; `git diff --check` clean.
+- Decision still pending from the user (unchanged): authorize a bounded AlphaFold download for trusted
+  bronze positives, OR authorize promoting structured wave2 candidates through the import/label-factory
+  gates. Either unblocks the off-M-CSA recovery run; the harness and baseline are ready. Do not grow
+  fingerprint families.
+
 ## Session run - off-M-CSA in-scope RECOVERY scoped and data-blocked (non-M-CSA structures exist but none carry trusted labels); read-only, no download, no registry apply (2026-06-28)
 
 - Continued on branch `claude/continue-last-commit-ytktge` from commit `8b6566dc` (off-M-CSA

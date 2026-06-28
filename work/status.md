@@ -347,3 +347,29 @@ next_action: >
   Get user decision: authorize a bounded AlphaFold download for a sample of trusted bronze positives,
   or authorize promoting structured wave2 candidates through the import/label-factory gates. Then run
   the off-M-CSA in-scope recovery readout (fold-NN vs the M-CSA train atlas). Do not grow families.
+
+## Automation run 2026-06-28 (continuation: fold-NN recovery harness + M-CSA baseline)
+- started_from: prior commit 3f94b35b (branch claude/continue-last-commit-ytktge)
+- registry_mutation: none; no download; off-M-CSA run remains gated on a user decision
+- state: fold_nn_recovery_harness_ready_mcsa_baseline_28_of_35
+- work_completed:
+  - added fold_nn_mechanism_recovery_readout harness (module/CLI/tests), surface-agnostic
+  - M-CSA in-distribution baseline: recovery 28/35 (0.80) no abstention (reproduces recompute match)
+  - confidence-gated precision-on-retained: fold>=0.65 24/25 (0.96), fold>=0.74 17/18 (0.94)
+  - harness ready to run off-M-CSA via --positives + off-M-CSA TSV once a labelled positive set exists
+  - updated project_state, decision_log, handoff; regenerated docs reference check (missing 0)
+- current_gate_state:
+  - fold_nn_recovery_harness_ready: true
+  - mcsa_baseline_recovery: 28/35 (0.80); precision-gated 0.96 at fold>=0.65
+  - offmcsa_recovery_run: still gated on trusted-labeled non-M-CSA structures (user decision)
+  - registry_mutated: false; downloads_performed: false; heldout_rows_scored: false
+- validation:
+  - focused_recovery_harness_cli_unittest: passed
+  - compileall: passed
+  - registry_validate: passed (57 fingerprints)
+  - current_docs_reference_check: missing 0
+  - git_diff_check: passed
+- next_action: >
+  On the user's decision, materialize/promote a trusted-labeled non-M-CSA positive set with structures,
+  foldseek it vs the M-CSA train atlas, and run build-fold-nn-mechanism-recovery-readout --positives ...
+  to compare off-M-CSA recovery against the 28/35 M-CSA baseline. Do not grow families.

@@ -3,6 +3,30 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-28: Fold-NN mechanism recovery harness built and baselined on M-CSA (28/35 recovery; 96% precision at fold>=0.65) — ready to run off-M-CSA once a labelled positive set exists
+
+Decision (automation continuation, no registry mutation). Because the off-M-CSA recovery test is
+data-gated on a decision the user has yet to make (download trusted-positive structures, or promote
+structured wave2 candidates through the import gates — both governance-gated and not done here), the
+safe forward step was to build the recovery harness and produce its in-distribution baseline, mirroring
+how the fold recompute manifest/command were prepared before foldseek was available. Module + CLI:
+`src/catalytic_earth/fold_nn_mechanism_recovery_readout.py`,
+`build-fold-nn-mechanism-recovery-readout`. The harness is surface-agnostic: it takes a positive set
+(accession + true fingerprint), their foldseek scores vs the M-CSA train atlas, and the atlas
+accession->fingerprint map, and reports fold-NN nearest-neighbour mechanism recovery plus a
+recovery/abstention threshold curve.
+
+M-CSA in-distribution baseline:
+`artifacts/v3_fold_nn_mechanism_recovery_mcsa_baseline_current702_20260628.json` /
+`work/fold_nn_mechanism_recovery_mcsa_baseline_current702_20260628.md` (calibration in-scope positives,
+the existing recompute TSV). Fold-NN recovers the true fingerprint **28/35 (0.80)** with no abstention
+(reproducing the recompute readout's match count), and used as a confidence gate it is high-precision:
+at fold>=0.65 precision-on-retained is **24/25 (0.96)** at 0.69 recovery-of-all; at fold>=0.74,
+**17/18 (0.94)** at 0.49 recovery-of-all. This is the in-distribution reference the off-M-CSA recovery
+will be compared against; the same CLI with `--positives` + an off-M-CSA TSV produces the off-M-CSA
+readout. No heldout read, no model training, no threshold selection, no registry/label change; labels
+are evaluation targets only.
+
 ## 2026-06-28: Off-M-CSA in-scope RECOVERY is data-blocked — non-M-CSA structures exist locally but none carry trusted mechanism labels
 
 Decision (automation continuation, read-only feasibility, no registry mutation). Having shown the

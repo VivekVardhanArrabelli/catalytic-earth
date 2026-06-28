@@ -26,6 +26,19 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **FOLD-NN MECHANISM RECOVERY HARNESS + M-CSA BASELINE (28/35; 96% PRECISION AT FOLD>=0.65) — READY FOR THE OFF-M-CSA RUN (2026-06-28).**
+  Built the reusable recovery harness so the (data-gated) off-M-CSA recovery run is a one-liner. Module
+  + CLI: `src/catalytic_earth/fold_nn_mechanism_recovery_readout.py`,
+  `build-fold-nn-mechanism-recovery-readout`. M-CSA in-distribution baseline:
+  `artifacts/v3_fold_nn_mechanism_recovery_mcsa_baseline_current702_20260628.json` /
+  `work/fold_nn_mechanism_recovery_mcsa_baseline_current702_20260628.md`. Fold-NN nearest-neighbour
+  retrieval against the M-CSA train atlas recovers the true fingerprint **28/35 (0.80)** with no
+  abstention; as a confidence gate it is high-precision (fold>=0.65: **24/25 = 0.96** precision at 0.69
+  recovery; fold>=0.74: **17/18 = 0.94** at 0.49 recovery). This is the in-distribution reference for
+  the off-M-CSA recovery; the same CLI with `--positives` + an off-M-CSA TSV produces that readout once
+  a trusted-labelled non-M-CSA structured positive set exists (see the recovery feasibility blocker
+  below).
+
 - **OFF-M-CSA IN-SCOPE RECOVERY IS DATA-BLOCKED — NON-M-CSA STRUCTURES EXIST BUT CARRY NO TRUSTED LABELS (2026-06-28).**
   Scoping the recovery half of the off-M-CSA fold test (does fold-NN retrieval against the M-CSA atlas
   recover the right mechanism for non-M-CSA *positives*). Audit
