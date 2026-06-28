@@ -1,0 +1,1194 @@
+{
+  "artifact_id": "v3_offmcsa_recovery_download_manifest_current702_20260628",
+  "atlas_families": [
+    "flavin_dehydrogenase_reductase",
+    "heme_peroxidase_oxidase",
+    "metal_dependent_hydrolase",
+    "plp_dependent_enzyme",
+    "ser_his_acid_hydrolase"
+  ],
+  "created_utc": "2026-06-28T17:53:25Z",
+  "downloads": [
+    {
+      "accession": "A0A0F7KYQ8",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-A0A0F7KYQ8-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:A0A0F7KYQ8",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "A0A2U1LIM9",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-A0A2U1LIM9-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:A0A2U1LIM9",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "A1B8Z1",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-A1B8Z1-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:A1B8Z1",
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "A2AQ92",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-A2AQ92-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:A2AQ92",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "B8N8Q9",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-B8N8Q9-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:B8N8Q9",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "C1I202",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-C1I202-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:C1I202",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "D0VWY5",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-D0VWY5-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:D0VWY5",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "E1CG36",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-E1CG36-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:E1CG36",
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "E9RAH5",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-E9RAH5-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:E9RAH5",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O08498",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-O08498-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:O08498",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "O14672",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-O14672-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:O14672",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "O15254",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-O15254-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:O15254",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O15770",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-O15770-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:O15770",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O22229",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-O22229-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:O22229",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O32224",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-O32224-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:O32224",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O52582",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-O52582-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:O52582",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O62137",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-O62137-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:O62137",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O62140",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-O62140-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:O62140",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O65201",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-O65201-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:O65201",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "O75844",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-O75844-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:O75844",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "O75976",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-O75976-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:O75976",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "O95470",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-O95470-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:O95470",
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "O95831",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-O95831-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:O95831",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P00393",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P00393-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P00393",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P00432",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P00432-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P00432",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P02144",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P02144-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P02144",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P05982",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P05982-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P05982",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P06715",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P06715-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P06715",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P07514",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P07514-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P07514",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P07872",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P07872-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P07872",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P08503",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P08503-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P08503",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P09624",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P09624-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P09624",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P0A7E1",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P0A7E1-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P0A7E1",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P0A8G6",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P0A8G6-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P0A8G6",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P0A9P0",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P0A9P0-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P0A9P0",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P0ACB4",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P0ACB4-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P0ACB4",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P0AEY5",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P0AEY5-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P0AEY5",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P12007",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P12007-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P12007",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P13497",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P13497-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P13497",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P14218",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P14218-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P14218",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P14384",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P14384-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P14384",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P14735",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P14735-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P14735",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P15085",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P15085-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P15085",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P15086",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P15086-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P15086",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P15202",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P15202-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P15202",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P15650",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P15650-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P15650",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P15651",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P15651-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P15651",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P16219",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P16219-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P16219",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P16435",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P16435-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P16435",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P18925",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P18925-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P18925",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P20070",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P20070-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P20070",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P22079",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P22079-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P22079",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P24270",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P24270-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P24270",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P26901",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P26901-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P26901",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P26918",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P26918-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P26918",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P27306",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P27306-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P27306",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P32614",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P32614-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P32614",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P33224",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P33224-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P33224",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P33371",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P33371-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P33371",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P34896",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P34896-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P34896",
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "P35340",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P35340-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P35340",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P37197",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P37197-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P37197",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P38626",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P38626-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P38626",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P41816",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P41816-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P41816",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P41921",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P41921-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P41921",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P45952",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P45952-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P45952",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P45953",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P45953-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P45953",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P46736",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P46736-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P46736",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P48052",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P48052-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P48052",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P50336",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P50336-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P50336",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P50544",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P50544-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P50544",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P51174",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P51174-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P51174",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P53720",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P53720-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P53720",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P53759",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P53759-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P53759",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P55826",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P55826-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P55826",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P61076",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P61076-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P61076",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P70584",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P70584-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P70584",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P74312",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P74312-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P74312",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P78536",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P78536-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P78536",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P78965",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P78965-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P78965",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P80025",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P80025-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P80025",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P82600",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P82600-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P82600",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P91938",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P91938-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P91938",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P92947",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P92947-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P92947",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P9WHH1",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P9WHH1-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P9WHH1",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P9WHH3",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P9WHH3-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P9WHH3",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P9WHH9",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P9WHH9-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:P9WHH9",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q00141",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q00141-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q00141",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q06063",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q06063-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q06063",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q07356",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q07356-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q07356",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q0D9C4",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q0D9C4-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q0D9C4",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q0E4K1",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q0E4K1-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q0E4K1",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q10N21",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q10N21-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q10N21",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q10S82",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q10S82-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q10S82",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q15392",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q15392-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q15392",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q16881",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q16881-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q16881",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q17745",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q17745-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q17745",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q23490",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q23490-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q23490",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q27487",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q27487-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q27487",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q3ZBF6",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q3ZBF6-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q3ZBF6",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q55DH8",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q55DH8-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q55DH8",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q5D1E8",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q5D1E8-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q5D1E8",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q5F676",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q5F676-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q5F676",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q5JRX3",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q5JRX3-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q5JRX3",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q5U7L7",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q5U7L7-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q5U7L7",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q5VYX0",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q5VYX0-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q5VYX0",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q63707",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q63707-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q63707",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q64669",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q64669-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q64669",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q68EN5",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q68EN5-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q68EN5",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q6P179",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q6P179-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q6P179",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q6P1R4",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q6P1R4-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q6P1R4",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q70G58",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q70G58-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q70G58",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q73WB6",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q73WB6-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q73WB6",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q7KML2",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q7KML2-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q7KML2",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q7WYA8",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q7WYA8-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q7WYA8",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q811C4",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q811C4-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q811C4",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q831B2",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q831B2-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q831B2",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q840P9",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q840P9-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q840P9",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q88FF8",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q88FF8-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q88FF8",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q8BUE4",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q8BUE4-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q8BUE4",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q8GXR9",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q8GXR9-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q8GXR9",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q8GYB8",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q8GYB8-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q8GYB8",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q8IV48",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q8IV48-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q8IV48",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q8K2B3",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q8K2B3-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q8K2B3",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q8U1M0",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q8U1M0-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q8U1M0",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q8WU10",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q8WU10-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q8WU10",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q921A4",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q921A4-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q921A4",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q92947",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q92947-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q92947",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q93379",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q93379-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q93379",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q94655",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q94655-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q94655",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q96G46",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q96G46-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q96G46",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q96IY4",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q96IY4-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q96IY4",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q96PH1",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q96PH1-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q96PH1",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q97GC0",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q97GC0-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q97GC0",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q97K92",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q97K92-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q97K92",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q99424",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q99424-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q99424",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q99MD6",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q99MD6-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q99MD6",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9BZ11",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9BZ11-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9BZ11",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9CX80",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9CX80-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9CX80",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "Q9H040",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9H040-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9H040",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9H777",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9H777-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9H777",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9H845",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9H845-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9H845",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9I4V0",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9I4V0-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9I4V0",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9I509",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9I509-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9I509",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9I5F3",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9I5F3-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9I5F3",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9MA74",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9MA74-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9MA74",
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "Q9N2I8",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9N2I8-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9N2I8",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9NY33",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9NY33-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9NY33",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9QXD1",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9QXD1-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9QXD1",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9SU56",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9SU56-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9SU56",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9SWG0",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9SWG0-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9SWG0",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9UHI8",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9UHI8-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9UHI8",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9UI42",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9UI42-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9UI42",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9UIQ6",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9UIQ6-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9UIQ6",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9UNA0",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9UNA0-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9UNA0",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9UQ90",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9UQ90-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9UQ90",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9VSA3",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9VSA3-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9VSA3",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9Y4W6",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9Y4W6-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9Y4W6",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q9Z0J5",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9Z0J5-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9Z0J5",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9Z0X1",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9Z0X1-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9Z0X1",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9ZNT1",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9ZNT1-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9ZNT1",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9ZQI7",
+      "alphafold_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9ZQI7-F1-model_v4.cif",
+      "confidence": "high",
+      "entry_id": "uniprot:Q9ZQI7",
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    }
+  ],
+  "fetch_procedure": [
+    "Confirm >= 10 GiB free (df -h .).",
+    "For each downloads[].alphafold_cif_url, fetch to a staging dir as afdb_{accession}_v4.cif (skip-if-exists; stop if disk would fall below the floor).",
+    "foldseek easy-search the staged positives vs the M-CSA train in-scope atlas (artifacts/v3_current57_fold_tm_recompute_current702_20260628_coordinates/train_in_scope_atlas) with the same flags as the calibration recompute.",
+    "Build the off-M-CSA positive map {rows:[{entry_id,accession,true_fingerprint_id}]} from downloads, then run build-fold-nn-mechanism-recovery-readout --positives <map> --foldseek-tsv <tsv> --surface-label offmcsa_bronze_high_confidence, and compare to the 28/35 (0.80) M-CSA baseline."
+  ],
+  "guardrails": {
+    "bronze_labels_are_evaluation_targets_only": true,
+    "downloads_performed": false,
+    "fetch_requires_explicit_authorization": true,
+    "fold_recovery_is_non_circular_admission_used_sequence_cofactor_not_structure": true,
+    "labels_changed": false,
+    "min_free_disk_gib_required": 10,
+    "registry_or_ontology_changed": false
+  },
+  "interpretation": {
+    "decision_needed": "Authorize the bounded AlphaFold download (no other gate); fetching is not performed by this manifest.",
+    "headline": "Bounded plan: download 162 AlphaFold CIFs for trusted high-confidence non-M-CSA bronze positives across 4 atlas families (~97.2 MB), to measure off-M-CSA in-scope fold-NN recovery against the M-CSA baseline."
+  },
+  "result_class": "bounded_download_plan_no_fetch_no_registry_change",
+  "schema_version": "offmcsa_recovery_download_manifest.v1",
+  "selection_criteria": {
+    "confidence": "high",
+    "exclude_already_structured_locally": true,
+    "exclude_label_type": "out_of_scope",
+    "exclude_mcsa_accessions": true,
+    "require_fingerprint_in_atlas_families": true
+  },
+  "source_artifacts": {
+    "atlas_manifest_id": "v3_current57_fold_tm_recompute_input_manifest_current702_20260628",
+    "bronze_rows_scanned": 9299,
+    "bronze_shard_glob": "data/registries/external_bronze_labels.shards/*.json",
+    "label_manifest_id": null
+  },
+  "status": "download_manifest_ready_awaiting_authorization",
+  "summary": {
+    "accession_list_sha256": "1887478a1d37362e918f2841188347d4688273d0bc3c8b23931784a456ed36ea",
+    "estimated_total_mb": 97.2,
+    "families_covered": 4,
+    "family_coverage": {
+      "flavin_dehydrogenase_reductase": 102,
+      "heme_peroxidase_oxidase": 20,
+      "metal_dependent_hydrolase": 34,
+      "plp_dependent_enzyme": 6
+    },
+    "selected_structures_to_download": 162
+  }
+}

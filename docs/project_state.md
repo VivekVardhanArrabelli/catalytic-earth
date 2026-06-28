@@ -26,6 +26,20 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **OFF-M-CSA RECOVERY DOWNLOAD MANIFEST READY (162 trusted bronze positives, ~97 MB) — awaiting fetch authorization (2026-06-28).**
+  Bounded sign-off plan to unblock the off-M-CSA in-scope recovery test:
+  `artifacts/v3_offmcsa_recovery_download_manifest_current702_20260628.json` /
+  `work/offmcsa_recovery_download_manifest_current702_20260628.md`
+  (`src/catalytic_earth/offmcsa_recovery_download_manifest.py`,
+  `build-offmcsa-recovery-download-manifest`), status `download_manifest_ready_awaiting_authorization`.
+  From the 9299-row external bronze shards, the high-confidence, in-scope, atlas-family,
+  non-M-CSA, not-already-structured positives = **162** AlphaFold CIFs (~97 MB) across 4 families
+  (flavin_dehydrogenase_reductase 102, metal_dependent_hydrolase 34, heme_peroxidase_oxidase 20,
+  plp_dependent_enzyme 6; accession-list sha256 `1887478a...`). No download performed; fetching is
+  authorized separately (>=10 GiB floor). Non-circular (admission used sequence/cofactor, not
+  structure). Then foldseek vs the M-CSA atlas and `build-fold-nn-mechanism-recovery-readout
+  --positives <map>` to compare against the 28/35 baseline.
+
 - **HELD-OUT ONE-SHOT TEST PRE-REGISTERED — locks the single unbiased test (2026-06-28).**
   All session operating points are calibration *development* figures (the same calibration rows were
   inspected repeatedly), so they are optimistic and unvalidated; the only unbiased estimate is one

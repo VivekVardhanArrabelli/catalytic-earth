@@ -400,3 +400,30 @@ next_action: >
   Decide whether to authorize the frozen held-out one-shot (certifies M-CSA generalization only) and/or
   the still-pending off-M-CSA recovery data decision. The pre-registration is locked; execution is a
   separate authorized step that must match sha256 45632519... Do not grow families.
+
+## Automation run 2026-06-28 (continuation: off-M-CSA recovery download manifest)
+- started_from: prior commit 862a13e9 (branch claude/continue-last-commit-ytktge)
+- registry_mutation: none; no download performed
+- state: offmcsa_recovery_download_manifest_ready_awaiting_authorization
+- work_completed:
+  - located expansion positives (external_bronze_labels shards, 9299 rows)
+  - added offmcsa_recovery_download_manifest builder/CLI/tests
+  - selected 162 trusted high-confidence non-M-CSA atlas-family positives (~97 MB, 4 families)
+  - accession-list sha256 1887478a...; AFDB v4 URL pattern recorded; fetch procedure documented
+  - updated project_state, decision_log, handoff; regenerated docs reference check (missing 0)
+- current_gate_state:
+  - download_manifest_ready: true (162 CIFs, ~97 MB)
+  - download_performed: false (awaiting sign-off)
+  - disk_free_gib: 25 (above 10 GiB floor)
+  - heldout_oneshot: locked, unspent
+  - registry_mutated: false
+- validation:
+  - focused_download_manifest_cli_unittest: passed
+  - compileall: passed
+  - registry_validate: passed (57 fingerprints)
+  - current_docs_reference_check: missing 0
+  - git_diff_check: passed
+- next_action: >
+  On sign-off, fetch the 162 manifest CIFs (skip-if-exists, stop below 10 GiB), foldseek vs the M-CSA
+  train atlas, and run build-fold-nn-mechanism-recovery-readout --positives <map> to compare off-M-CSA
+  recovery against the 28/35 baseline. Do not grow families.

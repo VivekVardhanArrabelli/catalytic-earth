@@ -162,6 +162,15 @@ from .heldout_oneshot_preregistration import (
     DEFAULT_SPLIT_MANIFEST_PATH as DEFAULT_HELDOUT_PREREG_SPLIT_MANIFEST_PATH,
     write_heldout_oneshot_preregistration,
 )
+from .offmcsa_recovery_download_manifest import (
+    DEFAULT_ATLAS_MANIFEST_PATH as DEFAULT_OFFMCSA_DL_ATLAS_MANIFEST_PATH,
+    DEFAULT_BRONZE_SHARD_GLOB as DEFAULT_OFFMCSA_DL_BRONZE_SHARD_GLOB,
+    DEFAULT_COORDINATE_GLOB as DEFAULT_OFFMCSA_DL_COORDINATE_GLOB,
+    DEFAULT_LABEL_MANIFEST_PATH as DEFAULT_OFFMCSA_DL_LABEL_MANIFEST_PATH,
+    DEFAULT_OUT_PATH as DEFAULT_OFFMCSA_DL_OUT_PATH,
+    DEFAULT_REPORT_PATH as DEFAULT_OFFMCSA_DL_REPORT_PATH,
+    write_offmcsa_recovery_download_manifest,
+)
 from .predicted_geometry_atlas_engine_preregistration import (
     DEFAULT_COFACTOR_CHANNEL_PATH,
     DEFAULT_COFACTOR_PRECISION_PATH,
@@ -3107,6 +3116,26 @@ def cmd_build_heldout_oneshot_preregistration(args: argparse.Namespace) -> int:
         f"{args.out} ({prereg.get('status')}; frozen heldout set "
         f"{counts.get('total')} rows ({counts.get('inscope')} in-scope, "
         f"{counts.get('oos')} OOS); sha256 {fs.get('sha256', '')[:16]}...)"
+    )
+    return 0
+
+
+def cmd_build_offmcsa_recovery_download_manifest(args: argparse.Namespace) -> int:
+    manifest = write_offmcsa_recovery_download_manifest(
+        bronze_shard_glob=args.bronze_shard_glob,
+        atlas_manifest_path=Path(args.atlas_manifest),
+        label_manifest_path=Path(args.label_manifest),
+        coordinate_glob=args.coordinate_glob,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    s = manifest.get("summary", {})
+    print(
+        "Wrote off-M-CSA recovery download manifest to "
+        f"{args.out} ({manifest.get('status')}; "
+        f"{s.get('selected_structures_to_download')} CIFs across "
+        f"{s.get('families_covered')} families; ~{s.get('estimated_total_mb')} MB; "
+        f"sha256 {s.get('accession_list_sha256','')[:16]}...)"
     )
     return 0
 
@@ -23836,6 +23865,44 @@ def build_parser() -> argparse.ArgumentParser:
     )
     heldout_oneshot_preregistration.set_defaults(
         func=cmd_build_heldout_oneshot_preregistration
+    )
+
+    offmcsa_recovery_download_manifest = subparsers.add_parser(
+        "build-offmcsa-recovery-download-manifest",
+        help=(
+            "bounded download plan (sign-off, no fetch) of trusted non-M-CSA bronze "
+            "positives with AlphaFold URLs for the off-M-CSA recovery test"
+        ),
+    )
+    offmcsa_recovery_download_manifest.add_argument(
+        "--bronze-shard-glob",
+        default=DEFAULT_OFFMCSA_DL_BRONZE_SHARD_GLOB,
+    )
+    offmcsa_recovery_download_manifest.add_argument(
+        "--atlas-manifest",
+        default=DEFAULT_OFFMCSA_DL_ATLAS_MANIFEST_PATH,
+        help="recompute manifest providing the M-CSA atlas families",
+    )
+    offmcsa_recovery_download_manifest.add_argument(
+        "--label-manifest",
+        default=DEFAULT_OFFMCSA_DL_LABEL_MANIFEST_PATH,
+        help="current702 label manifest (to exclude M-CSA accessions)",
+    )
+    offmcsa_recovery_download_manifest.add_argument(
+        "--coordinate-glob",
+        default=DEFAULT_OFFMCSA_DL_COORDINATE_GLOB,
+        help="glob of coordinate dirs to skip already-structured accessions",
+    )
+    offmcsa_recovery_download_manifest.add_argument(
+        "--out",
+        default=DEFAULT_OFFMCSA_DL_OUT_PATH,
+    )
+    offmcsa_recovery_download_manifest.add_argument(
+        "--report",
+        default=DEFAULT_OFFMCSA_DL_REPORT_PATH,
+    )
+    offmcsa_recovery_download_manifest.set_defaults(
+        func=cmd_build_offmcsa_recovery_download_manifest
     )
 
     predicted_geometry_atlas_engine_preregistration = subparsers.add_parser(

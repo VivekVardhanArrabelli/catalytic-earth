@@ -3,6 +3,31 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-28: Off-M-CSA recovery download manifest built (162 trusted bronze positives, ~97 MB) — sign-off plan, no fetch
+
+Decision (automation continuation, no download, no registry mutation). To unblock the off-M-CSA
+in-scope recovery test (the data-gated half), built a bounded, reviewable download plan rather than
+fetching unilaterally. Module + CLI: `src/catalytic_earth/offmcsa_recovery_download_manifest.py`,
+`build-offmcsa-recovery-download-manifest`. Artifact/report:
+`artifacts/v3_offmcsa_recovery_download_manifest_current702_20260628.json` /
+`work/offmcsa_recovery_download_manifest_current702_20260628.md`. Status
+`download_manifest_ready_awaiting_authorization`.
+
+Selection (frozen, documented): from the 9299-row `data/registries/external_bronze_labels.json` shard
+set, keep **high-confidence**, in-scope (not out_of_scope) rows whose `fingerprint_id` is a family present
+in the M-CSA train atlas, with a **non-M-CSA** accession not already structured locally. That yields
+**162** AlphaFold CIFs to download (~**97 MB** est.) across **4** atlas families:
+flavin_dehydrogenase_reductase 102, metal_dependent_hydrolase 34, heme_peroxidase_oxidase 20,
+plp_dependent_enzyme 6. Accession-list sha256 `1887478a...`. AFDB URL pattern
+`https://alphafold.ebi.ac.uk/files/AF-{acc}-F1-model_v4.cif`.
+
+Non-circularity: bronze admission used sequence/cofactor evidence, not structure, so fold-NN retrieval
+against the M-CSA atlas is an independent channel; bronze labels are evaluation targets only. The
+manifest performs no download — fetching is a separately authorized step gated on the >=10 GiB free
+floor. Once fetched: foldseek the staged positives vs the M-CSA train atlas and run
+`build-fold-nn-mechanism-recovery-readout --positives <map>` to compare off-M-CSA recovery against the
+28/35 (0.80) M-CSA baseline. The held-out one-shot pre-registration remains locked and unspent.
+
 ## 2026-06-28: Held-out one-shot test PRE-REGISTERED (frozen rule + content-hashed row set + pre-committed bar) — locks the single unbiased test so it cannot be cherry-picked
 
 Decision (automation continuation, no held-out scoring, no registry mutation). Every operating point

@@ -301,6 +301,30 @@ class CliTests(unittest.TestCase):
             "artifacts/v3_heldout_oneshot_preregistration_current702_20260628.json",
         )
 
+    def test_offmcsa_recovery_download_manifest_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            ["build-offmcsa-recovery-download-manifest"]
+        )
+
+        self.assertEqual(
+            args.bronze_shard_glob,
+            "data/registries/external_bronze_labels.shards/*.json",
+        )
+        self.assertEqual(
+            args.atlas_manifest,
+            (
+                "artifacts/"
+                "v3_current57_fold_tm_recompute_input_manifest_current702_20260628.json"
+            ),
+        )
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/"
+                "v3_offmcsa_recovery_download_manifest_current702_20260628.json"
+            ),
+        )
+
     def test_external_source_pilot_uniref_current_reference_parser_defaults(
         self,
     ) -> None:

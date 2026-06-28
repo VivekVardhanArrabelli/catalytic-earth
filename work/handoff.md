@@ -1,5 +1,38 @@
 # Handoff
 
+## Session run - off-M-CSA recovery download manifest built (162 trusted bronze positives, ~97 MB); sign-off plan, NO fetch; no registry apply (2026-06-28)
+
+- Continued on branch `claude/continue-last-commit-ytktge` from commit `862a13e9`. User chose the
+  off-M-CSA recovery line via the bounded-download path (preferred over spending the M-CSA-only
+  held-out one-shot, which stays locked). Per plan, built the download manifest for sign-off BEFORE
+  fetching anything. No download, no `data/` mutation.
+- Located the expansion positives: `data/registries/external_bronze_labels.json` is a shard index ->
+  `external_bronze_labels.shards/part-0000{0..4}.json` (9299 rows; schema entry_id `uniprot:ACC`,
+  fingerprint_id, confidence, label_type, review_status). Present locally (~69 MB).
+- Module + CLI: `src/catalytic_earth/offmcsa_recovery_download_manifest.py`,
+  `build-offmcsa-recovery-download-manifest`. Artifact/report:
+  `artifacts/v3_offmcsa_recovery_download_manifest_current702_20260628.json` /
+  `work/offmcsa_recovery_download_manifest_current702_20260628.md`. Status
+  `download_manifest_ready_awaiting_authorization`.
+- Selection (frozen): high-confidence, in-scope (not out_of_scope), fingerprint in an M-CSA atlas
+  family, non-M-CSA accession, not already structured -> **162** AlphaFold CIFs (~97 MB) across 4
+  families (flavin_dehydrogenase_reductase 102, metal_dependent_hydrolase 34, heme_peroxidase_oxidase
+  20, plp_dependent_enzyme 6). Accession-list sha256 `1887478a...`. URL pattern
+  `https://alphafold.ebi.ac.uk/files/AF-{acc}-F1-model_v4.cif`. Note: the M-CSA train atlas covers only
+  5 cofactor families, so recovery is scoped to those (matches the 28/35 baseline's atlas).
+- Non-circular: bronze admission used sequence/cofactor, not structure; bronze labels are evaluation
+  targets only.
+- Tests: `tests/test_offmcsa_recovery_download_manifest.py` (4) + a CLI parser-defaults case.
+  Regenerated docs artifact-reference check -> missing 0.
+- Validation: focused unittest (download manifest + full test_cli) OK; compileall OK; registry
+  `validate` OK (57 FP intact); docs reference check missing 0; `git diff --check` clean; disk 25 GiB
+  free (above the 10 GiB floor).
+- Next exact action: on the user's sign-off of this manifest, fetch the 162 CIFs (skip-if-exists, stop
+  below 10 GiB), foldseek vs the M-CSA train atlas, build the off-M-CSA positive map, and run
+  build-fold-nn-mechanism-recovery-readout --positives <map> --foldseek-tsv <tsv> --surface-label
+  offmcsa_bronze_high_confidence; compare to the 28/35 (0.80) M-CSA baseline and the abstention
+  frontier. Held-out one-shot remains locked. Do not grow fingerprint families.
+
 ## Session run - held-out one-shot test PRE-REGISTERED (frozen rule + content-hashed 126-row set + pre-committed bar); scores no held-out data; no registry apply (2026-06-28)
 
 - Continued on branch `claude/continue-last-commit-ytktge` from commit `eea36c59`. Prompted by the
