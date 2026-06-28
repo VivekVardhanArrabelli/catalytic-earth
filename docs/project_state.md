@@ -1,6 +1,6 @@
 # Project State
 
-Last refreshed: 2026-06-26
+Last refreshed: 2026-06-28
 
 This file is the durable state summary for agents who do not have chat context.
 Treat it as an orientation layer, not as a replacement for the referenced
@@ -25,6 +25,22 @@ biological design system. Current benchmark claims must be framed as local,
 artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
+
+- **PREDICTED-GEOMETRY ATLAS-ENGINE PREREGISTRATION BLOCKED BY CURRENT-57 ROUTER DRIFT (2026-06-28).**
+  A full-env capability/preregistration artifact now exists for the deployment recovery line:
+  `artifacts/v3_predicted_geometry_atlas_engine_preregistration_current702_20260628.json`
+  / `work/predicted_geometry_atlas_engine_preregistration_current702_20260628.md`.
+  Local backend state: numpy/torch/sklearn/pandas/mmseqs/diamond are available; `foldseek` and `esm`
+  are missing, so existing scored fold/TM surfaces are reusable but new Foldseek/TM scoring is
+  blocked. The preregistered train/cal atlas-engine rule is leakage-safe and heldout-excluded, but it
+  is **not runnable as the next gate yet** because a current-repo rerun of the cofactor-fusion precision
+  surface against the expanded 57-fingerprint router drifted badly:
+  `artifacts/v3_cofactor_fusion_operating_point_train_cal_oos_current702_20260628_current57_rerun.json`
+  reports calibration fused recall/FP **13/35 and 26/26**, versus the trusted June 9 contract's
+  **30/35 and 9/26**. This is a router/fingerprint-surface mismatch, not a heldout result and not a
+  production threshold candidate. Next gate: either freeze/replay the intended June 9 router/fingerprint
+  surface for cofactor precision, or preregister a new current-57 train/cal precision rule before any
+  atlas-engine fusion/heldout read.
 
 - **NON-CIRCULAR GOLD EVAL (2026-06-27, user-directed): chemistry-only recovers 76% of expert mechanism classes, but STILL no abstention signal at 10k.**
   The 0.744 LOO is a coherence measure on admission-grouped bronze, so we tested non-circularly:

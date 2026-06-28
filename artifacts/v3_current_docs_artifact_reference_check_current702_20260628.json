@@ -1,0 +1,343 @@
+{
+  "artifact_id": "v3_current_docs_artifact_reference_check_current702_20260601",
+  "counts": {
+    "ignored_references": 14,
+    "missing_references": 0,
+    "references_checked": 2269
+  },
+  "created_utc": "2026-06-28T01:49:28Z",
+  "docs_checked": [
+    "docs/artifact_index.md",
+    "docs/project_state.md",
+    "docs/decision_log.md",
+    "docs/agent_runbook.md"
+  ],
+  "guardrails": {
+    "artifacts_modified_by_check": false,
+    "docs_only_reference_check": true,
+    "labels_registries_ontologies_changed": false,
+    "production_thresholds_changed": false
+  },
+  "ignored_references": [
+    {
+      "doc": "docs/artifact_index.md",
+      "reason": "glob_pattern",
+      "reference": "artifacts/research_lanes/epk_*"
+    },
+    {
+      "doc": "docs/project_state.md",
+      "reason": "glob_pattern",
+      "reference": "artifacts/research_lanes/epk_*"
+    },
+    {
+      "doc": "docs/project_state.md",
+      "reason": "glob_pattern",
+      "reference": "docs/session_decision_record_*"
+    },
+    {
+      "doc": "docs/decision_log.md",
+      "reason": "glob_pattern",
+      "reference": "docs/session_decision_record_*"
+    },
+    {
+      "doc": "docs/decision_log.md",
+      "reason": "glob_pattern",
+      "reference": "artifacts/research_lanes/epk_*"
+    },
+    {
+      "doc": "docs/agent_runbook.md",
+      "reason": "glob_pattern",
+      "reference": "docs/*.md"
+    },
+    {
+      "doc": "docs/agent_runbook.md",
+      "reason": "glob_pattern",
+      "reference": "work/*.md"
+    },
+    {
+      "doc": "docs/agent_runbook.md",
+      "reason": "glob_pattern",
+      "reference": "artifacts/v3_*.json"
+    },
+    {
+      "doc": "docs/agent_runbook.md",
+      "reason": "glob_pattern",
+      "reference": "artifacts/v3_*.jsonl"
+    },
+    {
+      "doc": "docs/agent_runbook.md",
+      "reason": "glob_pattern",
+      "reference": "artifacts/v3_*.tsv"
+    },
+    {
+      "doc": "docs/agent_runbook.md",
+      "reason": "glob_pattern",
+      "reference": "work/*.md"
+    },
+    {
+      "doc": "docs/agent_runbook.md",
+      "reason": "template_placeholder",
+      "reference": "artifacts/v3_<topic>_<scope>_<date>.json"
+    },
+    {
+      "doc": "docs/agent_runbook.md",
+      "reason": "template_placeholder",
+      "reference": "work/<topic>_<date>.md"
+    },
+    {
+      "doc": "docs/agent_runbook.md",
+      "reason": "template_placeholder",
+      "reference": "tests/test_<topic>.py"
+    }
+  ],
+  "interpretation": {
+    "headline": "0 missing concrete references across current docs after excluding templates/globs.",
+    "next_action": "Keep this check focused on durable current docs; work/handoff.md intentionally contains historical paths and globs."
+  },
+  "missing_references": [],
+  "sample_checked_references": [
+    {
+      "checked_path": "artifacts/v3_heldout_oneshot_cofactor_fusion_blind_pass_current702_20260604.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_heldout_oneshot_cofactor_fusion_blind_pass_current702_20260604.json"
+    },
+    {
+      "checked_path": "artifacts/v3_in_distribution_predicted_geometry_recovery_current702_20260604.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_in_distribution_predicted_geometry_recovery_current702_20260604.json"
+    },
+    {
+      "checked_path": "artifacts/v3_cofactor_presence_calibration_current702_20260604.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_cofactor_presence_calibration_current702_20260604.json"
+    },
+    {
+      "checked_path": "artifacts/v3_predicted_geometry_failure_decomposition_current702_20260603.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_predicted_geometry_failure_decomposition_current702_20260603.json"
+    },
+    {
+      "checked_path": "artifacts/v3_cofactor_restoration_recovery_probe_current702_20260604.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_cofactor_restoration_recovery_probe_current702_20260604.json"
+    },
+    {
+      "checked_path": "artifacts/v3_cofactor_graft_fidelity_probe_current702_20260604.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_cofactor_graft_fidelity_probe_current702_20260604.json"
+    },
+    {
+      "checked_path": "artifacts/v3_esmfold2_predicted_geometry_robustness_experiment_contract_current702_20260603.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_esmfold2_predicted_geometry_robustness_experiment_contract_current702_20260603.json"
+    },
+    {
+      "checked_path": "artifacts/v3_lever2_source_free_electron_flow_current_split_operating_point_readout_current702_20260606.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_lever2_source_free_electron_flow_current_split_operating_point_readout_current702_20260606.json"
+    },
+    {
+      "checked_path": "docs/predicted_geometry_robustness_pipeline_runbook.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "docs/predicted_geometry_robustness_pipeline_runbook.md"
+    },
+    {
+      "checked_path": "docs/MAP.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "docs/MAP.md"
+    },
+    {
+      "checked_path": "docs/session_decision_record_20260606.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "docs/session_decision_record_20260606.md"
+    },
+    {
+      "checked_path": "docs/epk_heuristic_geometry_no_go_20260521.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "docs/epk_heuristic_geometry_no_go_20260521.md"
+    },
+    {
+      "checked_path": "docs/project_state.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "docs/project_state.md"
+    },
+    {
+      "checked_path": "docs/decision_log.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "docs/decision_log.md"
+    },
+    {
+      "checked_path": "docs/agent_runbook.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "docs/agent_runbook.md"
+    },
+    {
+      "checked_path": "artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json"
+    },
+    {
+      "checked_path": "artifacts/v3_external_hard_negative_next_tranche_preregistration_43fp_1025.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_external_hard_negative_next_tranche_preregistration_43fp_1025.json"
+    },
+    {
+      "checked_path": "artifacts/v3_metal_independent_phosphodiesterase_sourcing_preview_cursor_pages4_size80_current702_20260615.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_metal_independent_phosphodiesterase_sourcing_preview_cursor_pages4_size80_current702_20260615.json"
+    },
+    {
+      "checked_path": "work/metal_independent_phosphodiesterase_sourcing_preview_cursor_pages4_size80_current702_20260615.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "work/metal_independent_phosphodiesterase_sourcing_preview_cursor_pages4_size80_current702_20260615.md"
+    },
+    {
+      "checked_path": "artifacts/v3_metal_independent_phosphodiesterase_additional_source_handle_count_scout_current702_20260615.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_metal_independent_phosphodiesterase_additional_source_handle_count_scout_current702_20260615.json"
+    },
+    {
+      "checked_path": "artifacts/v3_metal_independent_phosphodiesterase_alternate_handle_preview_current702_20260615.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_metal_independent_phosphodiesterase_alternate_handle_preview_current702_20260615.json"
+    },
+    {
+      "checked_path": "artifacts/v3_metal_independent_phosphodiesterase_tier2_source_count_scout_current702_20260615.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_metal_independent_phosphodiesterase_tier2_source_count_scout_current702_20260615.json"
+    },
+    {
+      "checked_path": "artifacts/v3_metal_independent_phosphodiesterase_tier2_sourcing_preview_cursor_pages2_size100_current702_20260615.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_metal_independent_phosphodiesterase_tier2_sourcing_preview_cursor_pages2_size100_current702_20260615.json"
+    },
+    {
+      "checked_path": "artifacts/v3_high_yield_family_tier2_source_count_scout_current702_20260615_post_pde_infra.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_high_yield_family_tier2_source_count_scout_current702_20260615_post_pde_infra.json"
+    },
+    {
+      "checked_path": "artifacts/v3_coverage_redundancy_audit_current702_20260615_post_pde_43fp_infra.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_coverage_redundancy_audit_current702_20260615_post_pde_43fp_infra.json"
+    },
+    {
+      "checked_path": "artifacts/v3_novelty_admission_gate_audit_current702_20260615_post_pde_43fp_infra.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_novelty_admission_gate_audit_current702_20260615_post_pde_43fp_infra.json"
+    },
+    {
+      "checked_path": "artifacts/v3_high_yield_family_lane_factory_current702_20260615_post_pde_43fp_infra.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_high_yield_family_lane_factory_current702_20260615_post_pde_43fp_infra.json"
+    },
+    {
+      "checked_path": "work/metal_independent_phosphodiesterase_43fp_source_strategy_current702_20260615.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "work/metal_independent_phosphodiesterase_43fp_source_strategy_current702_20260615.md"
+    },
+    {
+      "checked_path": "artifacts/v3_high_yield_family_lane_factory_current702_20260615_discovery_compass.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_high_yield_family_lane_factory_current702_20260615_discovery_compass.json"
+    },
+    {
+      "checked_path": "work/high_yield_family_lane_factory_current702_20260615_discovery_compass.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "work/high_yield_family_lane_factory_current702_20260615_discovery_compass.md"
+    },
+    {
+      "checked_path": "artifacts/v3_n_ribosyl_hydrolase_lane_preregistration_current702_20260615_discovery_compass.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_n_ribosyl_hydrolase_lane_preregistration_current702_20260615_discovery_compass.json"
+    },
+    {
+      "checked_path": "artifacts/v3_metal_independent_phosphodiesterase_lane_preregistration_current702_20260615_discovery_compass.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_metal_independent_phosphodiesterase_lane_preregistration_current702_20260615_discovery_compass.json"
+    },
+    {
+      "checked_path": "work/n_ribosyl_hydrolase_42fp_build_plan_current702_20260615.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "work/n_ribosyl_hydrolase_42fp_build_plan_current702_20260615.md"
+    },
+    {
+      "checked_path": "work/metal_independent_phosphodiesterase_nextfp_build_plan_current702_20260615.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "work/metal_independent_phosphodiesterase_nextfp_build_plan_current702_20260615.md"
+    },
+    {
+      "checked_path": "artifacts/v3_external_source_ingestion_pilot_current702_20260608.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_external_source_ingestion_pilot_current702_20260608.json"
+    },
+    {
+      "checked_path": "artifacts/v3_external_source_ingestion_import_preview_current702_20260608.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_external_source_ingestion_import_preview_current702_20260608.json"
+    },
+    {
+      "checked_path": "artifacts/v3_external_source_admission_validation_16_current702_20260608.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_external_source_admission_validation_16_current702_20260608.json"
+    },
+    {
+      "checked_path": "artifacts/v3_external_source_admission_ready_preview_current702_20260608.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_external_source_admission_ready_preview_current702_20260608.json"
+    },
+    {
+      "checked_path": "artifacts/v3_external_bulk_ingestion_scout_current702_20260608.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_external_bulk_ingestion_scout_current702_20260608.json"
+    },
+    {
+      "checked_path": "artifacts/v3_external_bulk_ingestion_provisional_import_preview_current702_20260608.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_external_bulk_ingestion_provisional_import_preview_current702_20260608.json"
+    }
+  ],
+  "schema_version": "current_docs_artifact_reference_check.v1",
+  "scope": "Checks current durable docs for backtick-referenced repo paths, excluding intentional globs and template placeholders.",
+  "status": "current_docs_artifact_references_passed"
+}

@@ -1,0 +1,314 @@
+{
+  "artifact_id": "v3_predicted_geometry_atlas_engine_preregistration_current702_20260628",
+  "coordinate_bundles": {
+    "atlas_in_distribution": {
+      "cif_count": 167,
+      "deployment_use_in_this_contract": true,
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution"
+    },
+    "confounded_proxy_train_cal_tranche_queries": {
+      "cif_count": 139,
+      "deployment_use_in_this_contract": true,
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries"
+    },
+    "queries_all_heldout": {
+      "cif_count": 126,
+      "deployment_use_in_this_contract": false,
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout"
+    },
+    "queries_cofactor_confounded_oos": {
+      "cif_count": 6,
+      "deployment_use_in_this_contract": false,
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_cofactor_confounded_oos"
+    }
+  },
+  "created_utc": "2026-06-28T01:42:47Z",
+  "decision": {
+    "can_compute_new_fold_tm_scores_now": false,
+    "can_run_cached_surface_atlas_engine_readout_now": false,
+    "current_router_drift_detected": true,
+    "next_action": "Resolve the current-router/fingerprint-surface drift before an atlas-engine readout: either freeze the intended June 9 router/fingerprint surface for cofactor precision, or preregister a new current-57-family cofactor precision rule on train/cal. Install or expose foldseek before any new Foldseek/TM scoring."
+  },
+  "guardrails": {
+    "current702_registry_edited": false,
+    "ec_name_prose_or_fingerprint_used_as_predictive_features": false,
+    "experimental_pdb_metadata_allowed_as_deployment_input": false,
+    "heldout_labels_read_now": false,
+    "heldout_rows_scored_now": false,
+    "heldout_threshold_tuning_authorized": false,
+    "model_weights_fit_or_refit": false,
+    "new_fingerprint_family_growth": false,
+    "production_thresholds_changed": false,
+    "registries_or_ontologies_changed": false
+  },
+  "preexisting_train_cal_context": {
+    "cofactor_precision": {
+      "calibration_threshold_dial_matching_suppression_precision": 0.44,
+      "fused_frozen": {
+        "inscope_correct": 30,
+        "inscope_recall": 0.8571,
+        "inscope_total": 35,
+        "oos_false_positive_rate": 0.3462,
+        "oos_false_positives": 9,
+        "oos_total": 26
+      },
+      "suppression_dial": {
+        "inscope_correct": 23,
+        "inscope_recall": 0.6571,
+        "inscope_total": 35,
+        "oos_false_positive_rate": 0.3077,
+        "oos_false_positives": 8,
+        "oos_total": 26
+      },
+      "surface": "calibration_out_of_sample",
+      "threshold_dial_dominates_suppression_dial": true,
+      "threshold_match_readout": {
+        "inscope_correct": 30,
+        "inscope_recall": 0.8571,
+        "inscope_total": 35,
+        "oos_false_positive_rate": 0.3077,
+        "oos_false_positives": 8,
+        "oos_total": 26,
+        "threshold": 0.44
+      }
+    },
+    "cofactor_recovery": {
+      "apo_correct": 17,
+      "apo_lost_primary_rows": 17,
+      "experimental_correct": 34,
+      "fused_correct": 30,
+      "fused_recovered_rows": 12,
+      "fused_regressed_rows": 0,
+      "recovery_fraction_of_apo_loss": 0.7059,
+      "surface": "calibration_out_of_sample_for_cofactor_channel"
+    },
+    "current_router_cofactor_rerun": {
+      "artifact_id": "v3_cofactor_fusion_operating_point_train_cal_oos_current702_20260628_current57_rerun",
+      "current57_calibration_fused_frozen": {
+        "inscope_correct": 13,
+        "inscope_recall": 0.3714,
+        "inscope_total": 35,
+        "oos_false_positive_rate": 1.0,
+        "oos_false_positives": 26,
+        "oos_total": 26
+      },
+      "current_router_drift_detected": true,
+      "interpretation": "The default current router now scores against the expanded fingerprint registry; the old cofactor precision operating point is not directly reproducible unless the original router/fingerprint surface is frozen. Treat this rerun as a preregistration blocker/diagnostic for atlas-engine fusion, not as a production threshold candidate.",
+      "present": true,
+      "previous_calibration_fused_frozen": {
+        "inscope_correct": 30,
+        "inscope_recall": 0.8571,
+        "inscope_total": 35,
+        "oos_false_positive_rate": 0.3462,
+        "oos_false_positives": 9,
+        "oos_total": 26
+      },
+      "status": "current57_registry_rerun_complete_precision_regression_diagnostic"
+    },
+    "fold_tm_oos_safety": {
+      "calibration_oos_abstain_recall": 0.4,
+      "calibration_oos_abstained": 30,
+      "calibration_oos_total": 75,
+      "channel": "combined_mean_geometry_fold",
+      "deployment_closed_now": false,
+      "fixed_threshold": 0.44155,
+      "heldout_confounded_oos_abstain_recall_prior_spent_readout": 0.8333,
+      "heldout_confounded_oos_abstained_prior_spent_readout": 5,
+      "heldout_confounded_oos_total_prior_spent_readout": 6,
+      "remaining_production_blockers": [
+        {
+          "blocker": "fold_only_policy_caveat_not_combined_scored",
+          "entry_id": "m_csa:204",
+          "next_action": "Decide whether the P10746 fold-only caveat is acceptable for deployment closure, or provide an approved non-residue sidecar."
+        }
+      ]
+    }
+  },
+  "preregistered_experiment": {
+    "done_bar": {
+      "current_router_note": "Current-57-family router drift is detected; freeze the intended router/fingerprint surface or preregister a current-57 precision rule before atlas-engine fusion.",
+      "full_env_note": "Cached scored fold/TM surfaces are enough for the next train/cal readout.",
+      "heldout_gate": "No heldout read is authorized by this artifact. A later heldout read requires this train/cal gate plus explicit user approval.",
+      "minimum_train_cal_gate": "candidate keeps >=30/35 calibration in-scope cofactor-fused primaries while not increasing OOS FPs over the 0.44 cofactor threshold readout, and every missing fold/TM score is fail-closed",
+      "new_fold_tm_note": "New Foldseek/TM scoring is blocked until foldseek is installed."
+    },
+    "features_channels": [
+      {
+        "forbidden_inputs": "experimental bound ligands, PDB metadata, EC/name/prose",
+        "inputs": "AlphaFoldDB-v6 predicted apo coordinates from staged local CIFs",
+        "name": "predicted_apo_geometry_router"
+      },
+      {
+        "action": "inject predicted cofactor families into ligand_context",
+        "inputs": "frozen sequence-embedding cofactor-presence artifact; structural ligand-context supervision only",
+        "name": "cofactor_reconstruction_channel"
+      },
+      {
+        "action": "fail closed on missing fold/TM score",
+        "inputs": "existing predicted-structure-vs-atlas Foldseek/TM scores when available; new Foldseek scoring only if foldseek is installed",
+        "name": "fold_tm_channel"
+      }
+    ],
+    "metrics": [
+      "calibration recovery fraction over apo-lost in-scope primaries",
+      "calibration net in-scope recall retained after fusion plus fold/TM gate",
+      "calibration OOS false-positive count and rate",
+      "calibration OOS abstain recall",
+      "coverage gaps and fail-closed missing-coordinate counts",
+      "cofactor-confounded-neighborhood retained false positives",
+      "remaining policy caveats such as P10746/fold-only rows"
+    ],
+    "name": "predicted_apo_atlas_engine_v1_train_cal_contract",
+    "purpose": "Advance predicted-apo deployment precision by composing the frozen cofactor reconstruction channel with the predicted-structure fold/TM channel on train/cal surfaces only.",
+    "surfaces": {
+      "calibration": "primary readout: in-scope recovery plus OOS false-positive/abstention diagnostics; no heldout rows",
+      "heldout": "excluded; prior spent heldout numbers may be cited as context only",
+      "train": "in-sample reference only for the cofactor channel"
+    },
+    "thresholds_and_selection_rule": {
+      "cofactor_fused_router_threshold": 0.44,
+      "fold_tm_combined_mean_geometry_fold_threshold": 0.44155,
+      "primary_selection_rule": "On calibration rows, retain a primary call only when the cofactor-fused router score is at least the preregistered cofactor threshold and the fold/TM combined_mean_geometry_fold gate retains at its fixed threshold; otherwise abstain.",
+      "production_change": "none",
+      "threshold_source": "cofactor threshold is copied from the calibration threshold dial matching suppression precision; fold/TM threshold is copied from the existing expanded OOS-calibrated contract"
+    }
+  },
+  "result_class": "preregistration_and_full_env_capability_check_no_new_scores_no_heldout_read",
+  "runtime_capability": {
+    "blockers": [
+      "esm_missing_for_new_esm_embedding_generation",
+      "foldseek_missing_for_new_fold_tm_scoring"
+    ],
+    "executables": {
+      "diamond": {
+        "available": true,
+        "path": "/opt/homebrew/bin/diamond",
+        "version": "diamond version 2.2.0"
+      },
+      "foldseek": {
+        "available": false,
+        "path": null,
+        "version": null
+      },
+      "mmseqs": {
+        "available": true,
+        "path": "/opt/homebrew/bin/mmseqs",
+        "version": "18-8cc5c"
+      }
+    },
+    "existing_scored_fold_tm_surfaces_reusable": true,
+    "full_env_runnable_for_new_end_to_end_scores": false,
+    "full_new_fold_tm_scoring_runnable": false,
+    "python_modules": {
+      "Bio": false,
+      "biotite": false,
+      "esm": false,
+      "numpy": true,
+      "pandas": true,
+      "sklearn": true,
+      "torch": true
+    },
+    "sequence_sidecars_reusable": true
+  },
+  "schema_version": "predicted_geometry_atlas_engine_preregistration.v1",
+  "source_artifacts": {
+    "cofactor_channel": {
+      "artifact_id": "v3_cofactor_presence_calibration_current702_20260604",
+      "exists": true,
+      "path": "artifacts/v3_cofactor_presence_calibration_current702_20260604.json",
+      "schema_version": "cofactor_presence_calibration.v1",
+      "sha256": "380a02429cc573c583c59c4468f634e880b14538f9ae7f30af1b7747fd34e284",
+      "status": "complete"
+    },
+    "cofactor_precision": {
+      "artifact_id": "v3_cofactor_fusion_operating_point_train_cal_oos_current702_20260609",
+      "exists": true,
+      "path": "artifacts/v3_cofactor_fusion_operating_point_train_cal_oos_current702_20260609.json",
+      "schema_version": "cofactor_fusion_operating_point.v1",
+      "sha256": "638e8591e2a52f1908a75f4bde63fa9336402fc5ab4df5036c541c321aedb8ea",
+      "status": "complete"
+    },
+    "current702_registry": {
+      "exists": true,
+      "path": "data/registries/curated_mechanism_labels.json",
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    },
+    "current_router_cofactor_rerun": {
+      "artifact_id": "v3_cofactor_fusion_operating_point_train_cal_oos_current702_20260628_current57_rerun",
+      "exists": true,
+      "path": "artifacts/v3_cofactor_fusion_operating_point_train_cal_oos_current702_20260628_current57_rerun.json",
+      "schema_version": "cofactor_fusion_operating_point.v1",
+      "sha256": "b890a29f207ab85afa6f25381052c0127776f4d050f69dd47431180acb490831",
+      "status": "current57_registry_rerun_complete_precision_regression_diagnostic"
+    },
+    "fold_channel_contract_audit": {
+      "artifact_id": "v3_predicted_structure_fold_channel_contract_audit_current702_20260601",
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json",
+      "schema_version": "northstar_next_levers.v0",
+      "sha256": "a4bf14d6f3934aaa2d1e3abb08b45f236e692d88984e2f2d8e96ed0732979364",
+      "status": "fold_channel_contract_passed_current702"
+    },
+    "fold_confounded_closure": {
+      "artifact_id": "v3_fold_augmented_post_rerun_confounded_deployment_closure_audit_current702_20260603",
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_post_rerun_confounded_deployment_closure_audit_current702_20260603.json",
+      "schema_version": "northstar_next_levers.v0.fold_augmented_post_rerun_confounded_deployment_closure_audit",
+      "sha256": "d023961d85db0e0b58ba21f68eff8e3af37e864175e8d35ddefe28d4371aff40",
+      "status": "post_rerun_confounded_fold_channel_research_ready_p10746_caveat"
+    },
+    "fold_coordinate_provenance": {
+      "artifact_id": "v3_predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601",
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601.json",
+      "schema_version": "northstar_next_levers.v0",
+      "sha256": "a9c6f05a806fa6c446e2169331246542796c891c17eff655fb0ddd59628ff3d2",
+      "status": "coordinate_provenance_complete"
+    },
+    "fold_post_rerun_closure": {
+      "artifact_id": "v3_fold_augmented_post_rerun_deployment_closure_status_current702_20260603",
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_post_rerun_deployment_closure_status_current702_20260603.json",
+      "schema_version": "northstar_next_levers.v0.fold_augmented_post_rerun_deployment_closure_status",
+      "sha256": "c020eb97cd703a82f702142e2a1def2c91cc594e57751a94f5e34462b39552dc",
+      "status": "fold_augmented_post_rerun_deployment_closure_status_blocked_p10746_caveat"
+    },
+    "fold_threshold_contract": {
+      "artifact_id": "v3_fold_augmented_abstention_threshold_contract_expanded_oos_calibrated_current702_20260603",
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_expanded_oos_calibrated_current702_20260603.json",
+      "schema_version": "northstar_next_levers.v0",
+      "sha256": "e8edda79502c36a44f643f7bd425075c23868ab6a19d7a82e4a02c64ac4ee2de",
+      "status": "computed_oos_calibrated_threshold_contract"
+    },
+    "in_distribution_recovery": {
+      "artifact_id": "v3_in_distribution_predicted_geometry_recovery_current702_20260604",
+      "exists": true,
+      "path": "artifacts/v3_in_distribution_predicted_geometry_recovery_current702_20260604.json",
+      "schema_version": "in_distribution_predicted_geometry_recovery.v1",
+      "sha256": "5ebb493ac1eec5c3df7d9a8ca1c6bd0e412ef8a09ffcf7f80f356c6cb729a912",
+      "status": "complete"
+    },
+    "predicted_structure_fold_channel": {
+      "artifact_id": "v3_predicted_structure_fold_channel_current702_20260601",
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+      "schema_version": "northstar_next_levers.v0",
+      "sha256": "27e21068789004ca280e8583dee9ebdbae8056f7ff3e63677adaa5688765c954",
+      "status": "computed_all_heldout_foldseek_scores"
+    },
+    "split_manifest": {
+      "artifact_id": "v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601",
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json",
+      "schema_version": "northstar_next_levers.v0.mechanism_feature_embedding_train_cal_split_manifest",
+      "sha256": "d06038f1faa9c42d98c409d949450c6cc953d6da325d98c0636ed4d9daf52d83",
+      "status": "mechanism_feature_embedding_train_cal_split_ready_no_model_fit"
+    }
+  },
+  "status": "preregistered_cached_surface_blocked_current57_router_drift_new_foldseek_backend_blocked"
+}

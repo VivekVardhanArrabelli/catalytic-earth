@@ -3,6 +3,33 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-28: Predicted-geometry atlas-engine preregistration is blocked by current-57 router drift; freeze or repreregister before fusion
+
+Decision (automation run `ce-nad-glyco-floor-expansion`, no registry mutation). The next recovery-line
+step was to pre-register a deployable predicted-apo atlas engine: cofactor reconstruction/channel,
+fold/TM fusion, localization/precision, no heldout tuning. The full-env check is now recorded in
+`artifacts/v3_predicted_geometry_atlas_engine_preregistration_current702_20260628.json` and
+`work/predicted_geometry_atlas_engine_preregistration_current702_20260628.md`.
+
+Capability: existing sequence/cofactor sidecars and scored fold/TM artifacts are reusable; numpy,
+torch, sklearn, pandas, mmseqs, and diamond are available locally. New end-to-end Foldseek/TM scoring
+is **blocked** because `foldseek` is not installed, and new ESM embedding generation is blocked because
+`esm` is missing.
+
+Critical finding: the trusted June 9 cofactor-fusion precision contract is not directly reproducible
+under the current expanded 57-fingerprint router. A no-heldout, train/cal-only current-router rerun
+(`artifacts/v3_cofactor_fusion_operating_point_train_cal_oos_current702_20260628_current57_rerun.json`,
+report `work/cofactor_fusion_operating_point_train_cal_oos_current702_20260628_current57_rerun.md`)
+keeps the same coverage but changes calibration fused precision from the trusted **30/35 in-scope,
+9/26 OOS FP** to **13/35 in-scope, 26/26 OOS FP**. This is a router/fingerprint-surface drift
+diagnostic, not a production threshold candidate and not a heldout read.
+
+Durable rule: do **not** run an atlas-engine fusion or spend heldout from the old 0.44 cofactor
+threshold until the cofactor precision surface is made explicit. Either freeze/replay the intended
+June 9 router/fingerprint surface for cofactor precision, or preregister a new current-57-family
+train/cal precision rule. Existing scored fold/TM surfaces remain reusable for cached-surface work;
+install/expose `foldseek` before any new Foldseek/TM scoring.
+
 ## 2026-06-27: NON-CIRCULAR GOLD EVAL — chemistry-only recovers 76% of expert mechanism classes, but there is STILL no abstention signal at 10k (the binding constraint, reconfirmed)
 
 Decision (user-directed: "what most helps realize the North Star"). The representation loop's LOO

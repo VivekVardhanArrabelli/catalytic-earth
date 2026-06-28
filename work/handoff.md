@@ -1,5 +1,62 @@
 # Handoff
 
+## Session run - predicted-geometry atlas prereg blocked by current-57 router drift; no registry apply (2026-06-28, Codex automation)
+
+- Started at `2026-06-28T01:30:17Z` from current `origin/main`
+  `ae6b313fed4d0c2f7e8952520c5251676a626b21`, acquired
+  `.git/catalytic-earth-automation.lock`, and confirmed frozen current702 sha before/after stayed
+  `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`. No registry, ontology,
+  label, threshold, or model-weight mutation was made. Elapsed runtime at closeout was **18.7 min**
+  (36.3 min remaining of the 55 min budget).
+- Added a full-env/preregistration builder and CLI:
+  `src/catalytic_earth/predicted_geometry_atlas_engine_preregistration.py` and
+  `build-predicted-geometry-atlas-engine-preregistration`. It hashes the cofactor/fold source
+  artifacts, records local backend status, and fixes the heldout-excluded train/cal atlas-engine
+  contract before any fusion/heldout read.
+- Environment result: numpy, torch, sklearn, pandas, mmseqs, and diamond are present; `esm`, BioPython,
+  biotite, jackhmmer/hmmscan, and `foldseek` are missing. Existing scored fold/TM surfaces are
+  reusable; new Foldseek/TM scoring is blocked until `foldseek` is installed/exposed.
+- Preregistration artifact:
+  `artifacts/v3_predicted_geometry_atlas_engine_preregistration_current702_20260628.json`; report:
+  `work/predicted_geometry_atlas_engine_preregistration_current702_20260628.md`. Status:
+  `preregistered_cached_surface_blocked_current57_router_drift_new_foldseek_backend_blocked`.
+  Guardrails: no heldout rows scored/read, no production threshold change, no model refit, no
+  registry/ontology/fingerprint-family growth, no EC/name/prose/fingerprint predictive features.
+- Added row-level train/cal diagnostics to `cofactor_fusion_operating_point.py` so future precision
+  artifacts can expose per-row in-scope/OOS flags alongside aggregate operating points. Regression
+  coverage added in `tests/test_cofactor_fusion_operating_point.py`.
+- Ran the cofactor-fusion operating-point command against the current repo after the 57-family scaling
+  era and preserved the result under a new diagnostic path:
+  `artifacts/v3_cofactor_fusion_operating_point_train_cal_oos_current702_20260628_current57_rerun.json`;
+  report:
+  `work/cofactor_fusion_operating_point_train_cal_oos_current702_20260628_current57_rerun.md`. The
+  trusted June 9 artifact path was restored unchanged. Current-57 calibration fused readout is
+  **13/35 in-scope, 26/26 OOS FP**, versus the trusted June 9 contract's **30/35, 9/26**. Treat this
+  as a router/fingerprint-surface drift diagnostic, not a replacement threshold candidate.
+- Durable docs updated: `docs/project_state.md` and `docs/decision_log.md` now record the blocker.
+  Next gate: before atlas-engine fusion or any heldout read, either freeze/replay the intended June 9
+  router/fingerprint surface for cofactor precision, or preregister a new current-57 train/cal
+  cofactor precision rule. Install/expose `foldseek` before any new Foldseek/TM scoring.
+- Validation passed:
+  - `PYTHONPATH=src python -m catalytic_earth.cli validate` -> validated 12 sources, 57 fingerprints,
+    54 ontology families, 702 curated labels.
+  - Focused recovery/precision tests:
+    `PYTHONPATH=src pytest -q tests/test_cofactor_fusion_operating_point.py tests/test_predicted_geometry_atlas_engine_preregistration.py tests/test_predicted_geometry_recovery.py tests/test_cofactor_presence_calibration.py tests/test_cofactor_channel_probe.py tests/test_geometry_retrieval.py`
+    -> 86 passed, 2 subtests.
+  - Full `PYTHONPATH=src pytest -q` -> 2524 passed, 1 warning, 244 subtests in 183.44s.
+  - `PYTHONPATH=src python -m compileall -q src tests` passed.
+  - `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check --out artifacts/v3_current_docs_artifact_reference_check_current702_20260628.json --report work/current_docs_artifact_reference_check_current702_20260628.md`
+    -> missing 0.
+  - JSON/JSONL parse passed: 4581 JSON files and 715 progress JSONL records.
+  - `git diff --check` passed.
+  - Frozen current702 SHA after work:
+    `5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505`.
+- Next exact action: resolve the current-router precision surface before fusion. Prefer a small
+  train/cal-only experiment that either pins the June 9 eight-family/v1 router surface as the intended
+  cofactor precision contract or preregisters a new current-57 cofactor threshold/selection rule.
+  Do not spend heldout or claim deployment closure from the old 0.44 cofactor threshold while this
+  drift diagnostic is unresolved.
+
 ## Session run - source-transfer chain refreshed; all-vs-all duplicate screen clean; no registry apply (2026-06-17, Codex automation run0310)
 
 - Started at `2026-06-17T03:09:49Z` from current `origin/main`

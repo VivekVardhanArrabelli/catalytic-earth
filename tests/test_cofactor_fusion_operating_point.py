@@ -12,6 +12,7 @@ from catalytic_earth.cofactor_fusion_operating_point import (
     _operating_points_by_split,
     _oos_false_positive,
     _point,
+    _row_details_by_split,
     _suppressed_inscope_correct,
     _suppressed_oos_fp,
     _threshold_sweep_by_split,
@@ -139,6 +140,54 @@ class ThresholdSweepAndDialTests(unittest.TestCase):
         self.assertEqual(
             dc["threshold_dial_matching_suppression_precision"]["threshold"], 0.45
         )
+
+    def test_row_details_expose_train_cal_flags(self) -> None:
+        split_by = {"in1": "calibration", "oo1": "calibration"}
+        inscope = {
+            "apo": [
+                _inscope("in1", score=0.3, top1="heme", true="plp", split="calibration")
+            ],
+            "fused": [
+                _inscope("in1", score=0.8, top1="plp", true="plp", split="calibration")
+            ],
+            "fused_suppressed": [
+                dict(
+                    _inscope("in1", score=0.8, top1="plp", true="plp", split="calibration"),
+                    abstained=False,
+                )
+            ],
+        }
+        oos = {
+            "apo": [
+                _oos("oo1", score=0.2, top1="metal_dependent_hydrolase", split="calibration")
+            ],
+            "fused": [
+                _oos("oo1", score=0.5, top1="metal_dependent_hydrolase", split="calibration")
+            ],
+            "fused_suppressed": [
+                dict(
+                    _oos(
+                        "oo1",
+                        score=0.5,
+                        top1="metal_dependent_hydrolase",
+                        split="calibration",
+                    ),
+                    abstained=True,
+                )
+            ],
+        }
+        details = _row_details_by_split(
+            inscope=inscope,
+            oos=oos,
+            split_by=split_by,
+            splits=("calibration",),
+            threshold=0.4115,
+        )["calibration"]
+        self.assertTrue(details["is_out_of_sample_for_channel"])
+        self.assertTrue(details["inscope_rows"][0]["fused_correct_at_threshold"])
+        self.assertFalse(details["inscope_rows"][0]["apo_correct_at_threshold"])
+        self.assertTrue(details["oos_rows"][0]["fused_false_positive_at_threshold"])
+        self.assertFalse(details["oos_rows"][0]["suppressed_false_positive"])
 
 
 class FpDistributionAndLever2Tests(unittest.TestCase):

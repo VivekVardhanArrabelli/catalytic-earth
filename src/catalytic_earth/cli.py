@@ -87,6 +87,22 @@ from .cofactor_presence_calibration import write_cofactor_presence_calibration
 from .cofactor_fusion_operating_point import (
     write_cofactor_fusion_operating_point,
 )
+from .predicted_geometry_atlas_engine_preregistration import (
+    DEFAULT_COFACTOR_CHANNEL_PATH,
+    DEFAULT_COFACTOR_PRECISION_PATH,
+    DEFAULT_COORDINATE_ROOT,
+    DEFAULT_CURRENT702_PATH,
+    DEFAULT_FOLD_CHANNEL_PATH,
+    DEFAULT_FOLD_CONFOUNDED_CLOSURE_PATH,
+    DEFAULT_FOLD_CONTRACT_AUDIT_PATH,
+    DEFAULT_FOLD_COORDINATE_PROVENANCE_PATH,
+    DEFAULT_FOLD_POST_RERUN_CLOSURE_PATH,
+    DEFAULT_FOLD_THRESHOLD_CONTRACT_PATH,
+    DEFAULT_CURRENT_ROUTER_COFACTOR_RERUN_PATH,
+    DEFAULT_RECOVERY_PATH,
+    DEFAULT_SPLIT_MANIFEST_PATH,
+    write_predicted_geometry_atlas_engine_preregistration,
+)
 from .external_annotation_anchored_import import (
     apply_external_annotation_anchored_import_to_registry,
     write_external_annotation_anchored_import,
@@ -2793,6 +2809,42 @@ def cmd_build_cofactor_fusion_operating_point(args: argparse.Namespace) -> int:
         f"OOS FP {supp.get('oos_false_positives')}/{supp.get('oos_total')}; "
         f"threshold-dial dominates suppression: "
         f"{audit.get('dial_comparison', {}).get('threshold_dial_dominates_suppression_dial')})"
+    )
+    return 0
+
+
+def cmd_build_predicted_geometry_atlas_engine_preregistration(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_predicted_geometry_atlas_engine_preregistration(
+        current702_path=Path(args.current702),
+        cofactor_channel_path=Path(args.cofactor_channel),
+        recovery_path=Path(args.recovery),
+        cofactor_precision_path=Path(args.cofactor_precision),
+        fold_channel_path=Path(args.fold_channel),
+        fold_contract_audit_path=Path(args.fold_contract_audit),
+        fold_coordinate_provenance_path=Path(args.fold_coordinate_provenance),
+        fold_threshold_contract_path=Path(args.fold_threshold_contract),
+        fold_post_rerun_closure_path=Path(args.fold_post_rerun_closure),
+        fold_confounded_closure_path=Path(args.fold_confounded_closure),
+        split_manifest_path=Path(args.split_manifest),
+        coordinate_root=Path(args.coordinate_root),
+        current_router_cofactor_rerun_path=(
+            Path(args.current_router_cofactor_rerun)
+            if args.current_router_cofactor_rerun
+            else None
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    cap = audit.get("runtime_capability", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote predicted-geometry atlas-engine preregistration to "
+        f"{args.out} ({audit.get('status')}; cached-surface runnable: "
+        f"{decision.get('can_run_cached_surface_atlas_engine_readout_now')}; "
+        f"new fold/TM scoring runnable: "
+        f"{cap.get('full_new_fold_tm_scoring_runnable')})"
     )
     return 0
 
@@ -23125,6 +23177,79 @@ def build_parser() -> argparse.ArgumentParser:
     )
     cofactor_fusion_operating_point.set_defaults(
         func=cmd_build_cofactor_fusion_operating_point
+    )
+
+    predicted_geometry_atlas_engine_preregistration = subparsers.add_parser(
+        "build-predicted-geometry-atlas-engine-preregistration",
+        help=(
+            "full-env capability check plus leakage-safe preregistration for the "
+            "predicted-apo atlas engine; hashes cofactor/fold source artifacts and "
+            "fixes the next train/cal readout before any heldout use"
+        ),
+    )
+    predicted_geometry_atlas_engine_preregistration.add_argument(
+        "--current702", default=DEFAULT_CURRENT702_PATH
+    )
+    predicted_geometry_atlas_engine_preregistration.add_argument(
+        "--cofactor-channel", default=DEFAULT_COFACTOR_CHANNEL_PATH
+    )
+    predicted_geometry_atlas_engine_preregistration.add_argument(
+        "--recovery", default=DEFAULT_RECOVERY_PATH
+    )
+    predicted_geometry_atlas_engine_preregistration.add_argument(
+        "--cofactor-precision", default=DEFAULT_COFACTOR_PRECISION_PATH
+    )
+    predicted_geometry_atlas_engine_preregistration.add_argument(
+        "--fold-channel", default=DEFAULT_FOLD_CHANNEL_PATH
+    )
+    predicted_geometry_atlas_engine_preregistration.add_argument(
+        "--fold-contract-audit", default=DEFAULT_FOLD_CONTRACT_AUDIT_PATH
+    )
+    predicted_geometry_atlas_engine_preregistration.add_argument(
+        "--fold-coordinate-provenance",
+        default=DEFAULT_FOLD_COORDINATE_PROVENANCE_PATH,
+    )
+    predicted_geometry_atlas_engine_preregistration.add_argument(
+        "--fold-threshold-contract", default=DEFAULT_FOLD_THRESHOLD_CONTRACT_PATH
+    )
+    predicted_geometry_atlas_engine_preregistration.add_argument(
+        "--fold-post-rerun-closure", default=DEFAULT_FOLD_POST_RERUN_CLOSURE_PATH
+    )
+    predicted_geometry_atlas_engine_preregistration.add_argument(
+        "--fold-confounded-closure", default=DEFAULT_FOLD_CONFOUNDED_CLOSURE_PATH
+    )
+    predicted_geometry_atlas_engine_preregistration.add_argument(
+        "--current-router-cofactor-rerun",
+        default=DEFAULT_CURRENT_ROUTER_COFACTOR_RERUN_PATH,
+        help=(
+            "optional current-router cofactor precision rerun diagnostic; when it "
+            "differs from the trusted precision contract, the preregistration "
+            "blocks atlas-engine fusion until the router/fingerprint surface is "
+            "explicitly frozen or re-preregistered"
+        ),
+    )
+    predicted_geometry_atlas_engine_preregistration.add_argument(
+        "--split-manifest", default=DEFAULT_SPLIT_MANIFEST_PATH
+    )
+    predicted_geometry_atlas_engine_preregistration.add_argument(
+        "--coordinate-root", default=DEFAULT_COORDINATE_ROOT
+    )
+    predicted_geometry_atlas_engine_preregistration.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_predicted_geometry_atlas_engine_preregistration_current702_20260628.json"
+        ),
+    )
+    predicted_geometry_atlas_engine_preregistration.add_argument(
+        "--report",
+        default=(
+            "work/"
+            "predicted_geometry_atlas_engine_preregistration_current702_20260628.md"
+        ),
+    )
+    predicted_geometry_atlas_engine_preregistration.set_defaults(
+        func=cmd_build_predicted_geometry_atlas_engine_preregistration
     )
 
     annotation_anchored_import = subparsers.add_parser(

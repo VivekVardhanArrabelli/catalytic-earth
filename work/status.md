@@ -72,3 +72,42 @@ next_action: >
   gap replay can run, or directly resolve the remaining active-site sourcing, real representation
   backend/control, UniRef-wide duplicate, terminal review, full label-factory, novelty, governor,
   and row-guardrail gates before any import/apply.
+
+## Automation run ce-nad-glyco-floor-expansion start
+- started_at_utc: 2026-06-28T01:30:17Z
+- started_local: Sat Jun 27 20:30:17 CDT 2026
+- budget_minutes: 55
+- planned_closeout_minute: 50
+- frozen_current702_sha_before: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
+
+## Automation run ce-nad-glyco-floor-expansion closeout
+- closeout_at_utc: 2026-06-28T01:49:00Z
+- elapsed_minutes: 18.7
+- remaining_minutes: 36.3
+- state: predicted_geometry_atlas_prereg_blocked_current57_router_drift
+- branch: main
+- origin_main_at_start: ae6b313fed4d0c2f7e8952520c5251676a626b21
+- registry_mutation: none
+- frozen_current702_sha_after: 5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505
+- work_completed:
+  - added and ran predicted-geometry atlas-engine full-env/preregistration artifact
+  - added row-level train/cal diagnostics to cofactor-fusion operating-point builder
+  - preserved current-57 cofactor precision rerun as a diagnostic artifact, not a replacement contract
+  - updated project state, decision log, handoff, and docs artifact-reference check
+- current_gate_state:
+  - existing scored fold/TM surfaces reusable: true
+  - new Foldseek/TM scoring runnable: false (foldseek missing)
+  - current-router cofactor precision drift detected: true
+  - cached atlas-engine readout allowed now: false
+- validation:
+  - registry_validate: passed
+  - focused_recovery_precision_tests: 86 passed, 2 subtests
+  - full_pytest: 2524 passed, 1 warning, 244 subtests
+  - compileall: passed
+  - current_docs_reference_check: missing 0
+  - json_jsonl_parse: 4581 JSON files and 715 progress JSONL records parsed
+  - git_diff_check: passed
+- next_action: >
+  Resolve the current-router/fingerprint-surface drift before atlas-engine fusion: either freeze/replay
+  the intended June 9 cofactor precision router surface, or preregister a new current-57 train/cal
+  precision rule. Install/expose foldseek before new Foldseek/TM scoring.

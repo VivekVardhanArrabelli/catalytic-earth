@@ -285,6 +285,13 @@ def build_cofactor_fusion_operating_point(
         splits=splits,
         threshold_grid=threshold_grid,
     )
+    row_details = _row_details_by_split(
+        inscope=inscope,
+        oos=oos,
+        split_by=split_by,
+        splits=splits,
+        threshold=threshold,
+    )
     dial_comparison = _dial_comparison(operating_points, threshold_sweep)
     fp_called_distribution = _fp_called_distribution(_scored(oos["fused"]), threshold)
 
@@ -346,6 +353,7 @@ def build_cofactor_fusion_operating_point(
         },
         "operating_points_by_split": operating_points,
         "threshold_sweep_by_split": threshold_sweep,
+        "row_details_by_split": row_details,
         "dial_comparison": dial_comparison,
         "oos_false_positive_called_distribution_fused_frozen": fp_called_distribution,
         "lever2_electron_flow_complementary_lever": lever2_summary,
@@ -363,6 +371,111 @@ def build_cofactor_fusion_operating_point(
 
 def _split_n(rows: list[dict[str, Any]], split_by: dict[str, str], split: str) -> int:
     return sum(1 for r in rows if split_by.get(str(r.get("entry_id"))) == split)
+
+
+def _row_details_by_split(
+    *,
+    inscope: dict[str, list[dict[str, Any]]],
+    oos: dict[str, list[dict[str, Any]]],
+    split_by: dict[str, str],
+    splits: tuple[str, ...],
+    threshold: float,
+) -> dict[str, Any]:
+    details: dict[str, Any] = {}
+    for split in splits:
+        inscope_entries = _row_details(
+            rows_by_surface=inscope,
+            split_by=split_by,
+            split=split,
+            threshold=threshold,
+            row_class="in_scope",
+        )
+        oos_entries = _row_details(
+            rows_by_surface=oos,
+            split_by=split_by,
+            split=split,
+            threshold=threshold,
+            row_class="oos",
+        )
+        details[split] = {
+            "is_out_of_sample_for_channel": split == "calibration",
+            "inscope_rows": inscope_entries,
+            "oos_rows": oos_entries,
+        }
+    return details
+
+
+def _row_details(
+    *,
+    rows_by_surface: dict[str, list[dict[str, Any]]],
+    split_by: dict[str, str],
+    split: str,
+    threshold: float,
+    row_class: str,
+) -> list[dict[str, Any]]:
+    by_surface = {
+        name: {
+            str(row.get("entry_id")): row
+            for row in _scored(rows)
+            if split_by.get(str(row.get("entry_id"))) == split
+        }
+        for name, rows in rows_by_surface.items()
+        if name in {"apo", "fused", "fused_suppressed"}
+    }
+    entry_ids = sorted({entry_id for rows in by_surface.values() for entry_id in rows})
+    out: list[dict[str, Any]] = []
+    for entry_id in entry_ids:
+        apo = by_surface.get("apo", {}).get(entry_id, {})
+        fused = by_surface.get("fused", {}).get(entry_id, {})
+        suppressed = by_surface.get("fused_suppressed", {}).get(entry_id, {})
+        true_fingerprint = fused.get("true_fingerprint_id") or apo.get("true_fingerprint_id")
+        row: dict[str, Any] = {
+            "entry_id": entry_id,
+            "row_class": row_class,
+            "embedding_split": split,
+            "true_fingerprint_id": true_fingerprint,
+            "apo": _surface_cell(apo, threshold=threshold, row_class=row_class),
+            "fused": _surface_cell(fused, threshold=threshold, row_class=row_class),
+            "fused_suppressed": _surface_cell(
+                suppressed, threshold=threshold, row_class=row_class
+            ),
+        }
+        if row_class == "in_scope":
+            row["apo_correct_at_threshold"] = _inscope_correct(apo, threshold)
+            row["fused_correct_at_threshold"] = _inscope_correct(fused, threshold)
+            row["suppressed_correct"] = bool(suppressed) and _suppressed_inscope_correct(
+                suppressed
+            )
+        else:
+            row["apo_false_positive_at_threshold"] = _oos_false_positive(apo, threshold)
+            row["fused_false_positive_at_threshold"] = _oos_false_positive(
+                fused, threshold
+            )
+            row["suppressed_false_positive"] = bool(suppressed) and _suppressed_oos_fp(
+                suppressed
+            )
+        out.append(row)
+    return out
+
+
+def _surface_cell(
+    row: dict[str, Any], *, threshold: float, row_class: str
+) -> dict[str, Any]:
+    score = row.get("top1_score")
+    retained = float(score or 0.0) >= threshold
+    cell = {
+        "predicted_geometry_joined": bool(row.get("predicted_geometry_joined")),
+        "top1_fingerprint_id": row.get("top1_fingerprint_id"),
+        "called_fingerprint_id": row.get("called_fingerprint_id"),
+        "top1_score": score,
+        "abstained": row.get("abstained"),
+        "retained_at_threshold": retained,
+    }
+    if row_class == "in_scope":
+        cell["correct_at_threshold"] = _inscope_correct(row, threshold)
+    else:
+        cell["false_positive_at_threshold"] = _oos_false_positive(row, threshold)
+    return cell
 
 
 def _operating_points_by_split(
