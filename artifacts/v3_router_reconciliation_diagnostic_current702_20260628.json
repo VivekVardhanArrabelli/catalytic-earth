@@ -1,0 +1,128 @@
+{
+  "artifact_id": "v3_router_reconciliation_diagnostic_current702_20260628",
+  "calibration_classification": {
+    "below_threshold_abstain": 1,
+    "documented_compatible_correct": 13,
+    "exact_correct": 13,
+    "incompatible_misroute": 8,
+    "total_inscope": 35
+  },
+  "created_utc": "2026-06-28T22:17:34Z",
+  "documented_compatibility_map": {
+    "metal_dependent_hydrolase": [
+      "metal_dependent_hydrolase",
+      "metallo_amidohydrolase_deaminase",
+      "metallopeptidase",
+      "metallophosphoesterase_nuclease",
+      "metallophosphomonoesterase",
+      "ser_his_acid_hydrolase"
+    ]
+  },
+  "drift_mechanism": {
+    "headline": "The fine-57 metal v2-subclass fingerprints over-claim non-metal (flavin / heme / PLP) enzymes in the fused geometry router; the coarse June 9 router has no metal subclasses and so does not misroute them.",
+    "misroute_counts": {
+      "flavin_dehydrogenase_reductase -> alpha_beta_hydrolase_esterase_lipase": 1,
+      "flavin_dehydrogenase_reductase -> metallophosphoesterase_nuclease": 1,
+      "heme_peroxidase_oxidase -> metallo_amidohydrolase_deaminase": 1,
+      "heme_peroxidase_oxidase -> metallopeptidase": 1,
+      "heme_peroxidase_oxidase -> metallophosphoesterase_nuclease": 1,
+      "plp_dependent_enzyme -> metallophosphoesterase_nuclease": 1,
+      "plp_dependent_enzyme -> metallophosphomonoesterase": 2
+    },
+    "misroute_rows": [
+      {
+        "called_fingerprint_id": "alpha_beta_hydrolase_esterase_lipase",
+        "score": 0.5539,
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "called_fingerprint_id": "metallophosphoesterase_nuclease",
+        "score": 0.7455,
+        "true_fingerprint_id": "heme_peroxidase_oxidase"
+      },
+      {
+        "called_fingerprint_id": "metallophosphomonoesterase",
+        "score": 0.5665,
+        "true_fingerprint_id": "plp_dependent_enzyme"
+      },
+      {
+        "called_fingerprint_id": "metallophosphoesterase_nuclease",
+        "score": 0.4916,
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "called_fingerprint_id": "metallophosphoesterase_nuclease",
+        "score": 0.5282,
+        "true_fingerprint_id": "plp_dependent_enzyme"
+      },
+      {
+        "called_fingerprint_id": "metallophosphomonoesterase",
+        "score": 0.5811,
+        "true_fingerprint_id": "plp_dependent_enzyme"
+      },
+      {
+        "called_fingerprint_id": "metallopeptidase",
+        "score": 0.6894,
+        "true_fingerprint_id": "heme_peroxidase_oxidase"
+      },
+      {
+        "called_fingerprint_id": "metallo_amidohydrolase_deaminase",
+        "score": 0.7487,
+        "true_fingerprint_id": "heme_peroxidase_oxidase"
+      }
+    ],
+    "nonmetal_enzymes_misrouted_into_metal_subclasses": 7
+  },
+  "fork": {
+    "option_a_june9_coarse_router": {
+      "effort": "none (deployable now)",
+      "evidence": "held-out one-shot PASS: 35/47 recovery, 15/79 OOS FP",
+      "granularity": "coarse (~8 families); no metal subclass distinctions",
+      "recommended_if": "you want a deployable, validated mechanism caller now",
+      "status": "validated_baseline_heldout_passed"
+    },
+    "option_b_repair_fine57_router": {
+      "effort": "real research investment; not free relabeling",
+      "granularity": "fine (57 families; metal subclass distinctions)",
+      "recommended_if": "production needs fine-grained metal subclass calls",
+      "required_work": "constrain/recalibrate the metal subclass fingerprints so they stop claiming flavin/heme/PLP enzymes, re-verify recovery on calibration, then a NEW pre-registration against a NEW held-out (the M-CSA held-out is spent)",
+      "root_cause": "metal v2-subclass fingerprints over-claim non-metal enzymes in the fused geometry router",
+      "status": "requires_real_router_fix_then_new_preregistration"
+    }
+  },
+  "guardrails": {
+    "heldout_rows_scored": false,
+    "model_weights_changed": false,
+    "production_threshold_changed": false,
+    "registry_or_ontology_changed": false,
+    "spent_heldout_not_touched": true,
+    "surface": "calibration_development_only"
+  },
+  "question": "Is the current-57 fine router's drift from the validated June 9 router pure taxonomy-version relabeling (cheap to reconcile), or does it include genuine misrouting (a real fix)?",
+  "recommendation": "Adopt Option A (June 9 coarse router) as the deployable validated baseline now: documented relabeling only reaches 26/35 (< June 9 30/35), because 8 calibration rows are genuine misroutes, not taxonomy splits. Pursue Option B as a scoped follow-up with the identified root cause (metal-subclass over-claiming) only if fine-grained metal subclass calls are required in production.",
+  "recovery_comparison": {
+    "current57_documented_compatible": "26/35",
+    "current57_exact": "13/35",
+    "june9_reference": "30/35",
+    "reconcilable_by_documented_relabeling": false,
+    "recovery_gap_beyond_relabeling": 4
+  },
+  "result_class": "calibration_only_router_version_reconciliation_no_heldout_no_registry_change",
+  "schema_version": "router_reconciliation_diagnostic.v1",
+  "source_artifacts": {
+    "current57_operating_point": {
+      "path": "artifacts/v3_cofactor_fusion_operating_point_train_cal_oos_current702_20260628_current57_rerun.json",
+      "sha256": "b890a29f207ab85afa6f25381052c0127776f4d050f69dd47431180acb490831"
+    },
+    "june9_trusted": {
+      "path": "artifacts/v3_cofactor_fusion_operating_point_train_cal_oos_current702_20260609.json",
+      "sha256": "638e8591e2a52f1908a75f4bde63fa9336402fc5ab4df5036c541c321aedb8ea"
+    },
+    "ontology": {
+      "path": "data/registries/mechanism_ontology.json",
+      "sha256": "bbacf9ef24fb2e5eb229cdba754ec0a3ba90a1d0de08c8afc0016924c5deff03"
+    }
+  },
+  "status": "fine_router_drift_includes_genuine_misrouting_not_just_relabeling",
+  "threshold": 0.4115
+}

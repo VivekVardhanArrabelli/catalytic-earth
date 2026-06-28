@@ -26,6 +26,26 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **GATE 1 (router reconciliation) DIAGNOSED — fine-57 drift is genuine misrouting, not relabeling; June 9 coarse router is the deployable validated baseline (2026-06-28).**
+  `artifacts/v3_router_reconciliation_diagnostic_current702_20260628.json` /
+  `work/router_reconciliation_diagnostic_current702_20260628.md`
+  (`src/catalytic_earth/router_reconciliation_diagnostic.py`,
+  `build-router-reconciliation-diagnostic`), status
+  `fine_router_drift_includes_genuine_misrouting_not_just_relabeling`. On calibration in-scope (35),
+  the current-57 fine router is exact 13/35; documented v2-split relabeling lifts it only to **26/35**,
+  still **4 short** of the June 9 reference **30/35**, because **8 rows are genuine misroutes** — the
+  fine-57 **metal v2-subclass fingerprints over-claim 7 non-metal (flavin/heme/PLP) enzymes** in the
+  fused geometry router (the coarse June 9 router has no metal subclasses, so it does not misroute
+  them). So the fork is resolved on evidence: **Option A (adopt the June 9 coarse router)** is the
+  deployable validated baseline now (held-out PASS 35/47, 15/79 OOS FP), at coarse granularity;
+  **Option B (repair fine-57)** is a real router fix (constrain the metal subclasses, then a NEW
+  pre-registration against a NEW held-out — the M-CSA held-out is spent), worth it only if production
+  needs fine metal-subclass calls. Recommendation: **Option A now, Option B as a scoped follow-up.**
+  Calibration-only; the spent held-out was not touched. NOTE: this branch
+  (`claude/continue-last-commit-ytktge`) and `main` are **unrelated histories with divergent
+  fingerprint registries** — merging is a deliberate reconciliation, not a fast-forward; all progress
+  is preserved on the pushed branch.
+
 - **DEPLOYMENT CLAIM (M-CSA) MADE — the pre-registered held-out one-shot PASSED (2026-06-28).**
   The single locked, choices-frozen held-out test was executed once and passed. On the never-touched
   held-out M-CSA split (frozen, content-hashed `45632519...`: 47 in-scope + 79 OOS, full coverage), the

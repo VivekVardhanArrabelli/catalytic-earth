@@ -1,5 +1,36 @@
 # Handoff
 
+## Session run - Gate 1 router reconciliation (fine-57 drift = genuine misrouting, adopt June 9 coarse router); merge-to-main blocked by unrelated histories (2026-06-28)
+
+- Continued on branch `claude/continue-last-commit-ytktge` from commit `937b24a6`. User: "merge all
+  progress and start work on Gate 1."
+- MERGE: `main` and this branch have **no common ancestor** (roots: main 468591fd, branch f60617d6) and
+  **divergent `mechanism_fingerprints.json`** (main 2670b1ad vs branch 19d837f1; curated702 identical).
+  A merge would be `--allow-unrelated-histories` with whole-tree + registry conflicts. NOT forced — that
+  reconciliation is the user's call. All progress is already pushed to the branch (line of record).
+- GATE 1: added `src/catalytic_earth/router_reconciliation_diagnostic.py` +
+  `build-router-reconciliation-diagnostic`. Artifact/report:
+  `artifacts/v3_router_reconciliation_diagnostic_current702_20260628.json` /
+  `work/router_reconciliation_diagnostic_current702_20260628.md`. Status
+  `fine_router_drift_includes_genuine_misrouting_not_just_relabeling`:
+  - Calibration in-scope (35) @ 0.4115: exact 13; documented v2-split relabeling -> **26/35**; June 9
+    ref **30/35**. NOT reconcilable by relabeling (gap 4).
+  - **8 genuine misroutes; 7 are non-metal (flavin/heme/PLP) enzymes over-claimed by fine-57 metal
+    v2-subclass fingerprints** in the fused geometry router. Coarse June 9 has no metal subclasses ->
+    no misroute -> 30/35.
+  - Fork resolved on evidence: **Option A (June 9 coarse router)** = deployable validated baseline now
+    (held-out PASS 35/47, 15/79 OOS FP), coarse granularity. **Option B (repair fine-57)** = real router
+    fix (constrain metal subclasses) + NEW pre-registration + NEW held-out; only if fine metal-subclass
+    calls are needed. Recommendation: A now, B as scoped follow-up.
+- Calibration-only; spent held-out untouched; no registry/ontology/label/threshold/model change.
+- Tests: `tests/test_router_reconciliation_diagnostic.py` (5) + CLI parser case.
+- Validation: focused unittest OK; compileall OK; registry `validate` OK (57 FP); reference check regen
+  below; `git diff --check` clean.
+- Next exact action (Gate 1 close-out, needs user): (i) decide the merge/registry reconciliation for
+  `main`; (ii) pick the fork — adopt June 9 coarse router (then Gate 2 gold off-M-CSA + Gate 3
+  productionize), or invest in Option B fine-router repair (constrain metal subclasses; new held-out).
+  Do not re-run the spent held-out one-shot; do not grow fingerprint families.
+
 ## Session run - DEPLOYMENT CLAIM (M-CSA): locked held-out one-shot executed once and PASSED (35/47 recovery, 15/79 OOS FP); no main-repo registry apply (2026-06-28)
 
 - Continued on branch `claude/continue-last-commit-ytktge` from commit `00031510`. User: "continue

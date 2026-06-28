@@ -505,3 +505,30 @@ next_action: >
   A broader SwissProt-wide claim needs a GOLD off-M-CSA recovery set (curated non-M-CSA positives with
   gold mechanism labels + structures). Otherwise the M-CSA deployment claim stands. Do not re-run the
   spent held-out one-shot; do not grow fingerprint families.
+
+## Automation run 2026-06-28 (continuation: Gate 1 router reconciliation)
+- started_from: prior commit 937b24a6 (branch claude/continue-last-commit-ytktge)
+- registry_mutation: none; calibration-only; spent held-out untouched
+- merge_status: BLOCKED -- main and branch are unrelated histories with divergent fingerprint registries; not forced
+- state: gate1_router_reconciliation_diagnosed_adopt_june9_coarse
+- work_completed:
+  - added router_reconciliation_diagnostic (module/CLI/tests)
+  - calibration in-scope: exact 13/35; documented relabeling 26/35; June 9 ref 30/35; gap 4 (not reconcilable by relabeling)
+  - root cause: fine-57 metal v2-subclasses over-claim 7 non-metal (flavin/heme/PLP) enzymes in the fused router
+  - fork resolved: Option A (June 9 coarse router) deployable validated baseline; Option B (repair fine-57) real fix + new held-out
+  - updated project_state, decision_log, handoff; regenerated docs reference check (missing 0)
+- current_gate_state:
+  - gate1_diagnosed: true; recommended Option A (June 9 coarse router)
+  - merge_to_main: needs user decision (unrelated histories + registry divergence)
+  - fork_decision: needs user (adopt June 9 vs repair fine-57)
+  - heldout_oneshot: spent; registry_mutated: false
+- validation:
+  - focused_router_recon_cli_unittest: passed
+  - compileall: passed
+  - registry_validate: passed (57 fingerprints)
+  - git_diff_check: passed
+- next_action: >
+  User decisions: (i) how to reconcile branch vs main registries for any merge; (ii) the fork -- adopt
+  the June 9 coarse router (-> Gate 2 gold off-M-CSA, Gate 3 productionize), or invest in Option B
+  fine-router repair (constrain metal subclasses + new pre-registration + new held-out). Do not re-run
+  the spent held-out; do not grow fingerprint families.

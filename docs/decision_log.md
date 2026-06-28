@@ -3,6 +3,38 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-28: Gate 1 (router reconciliation) — fine-57 drift is genuine misrouting, not relabeling; adopt the June 9 coarse router as the deployable baseline
+
+Decision (user-directed: "merge progress and start Gate 1"). Two findings.
+
+(1) Merge: this automation branch (`claude/continue-last-commit-ytktge`) and `main` have **no common
+ancestor** (different root commits) and **divergent `mechanism_fingerprints.json`** registries — `main`
+grew its registry on an independent Stage-1 hole-sourcing line. A merge is therefore an
+`--allow-unrelated-histories` whole-tree reconciliation that would conflict on the registry (research
+data), not a fast-forward. I did **not** force it; all session progress is committed and pushed to the
+branch (the line of record). Reconciling the two registries into `main` is a deliberate decision left
+to the user.
+
+(2) Gate 1 router reconciliation (`src/catalytic_earth/router_reconciliation_diagnostic.py`,
+`build-router-reconciliation-diagnostic`):
+`artifacts/v3_router_reconciliation_diagnostic_current702_20260628.json` /
+`work/router_reconciliation_diagnostic_current702_20260628.md`, status
+`fine_router_drift_includes_genuine_misrouting_not_just_relabeling`. On the 35 calibration in-scope
+rows at the frozen 0.4115 threshold: exact 13/35; documented v2-split relabeling reaches **26/35**;
+June 9 reference **30/35**. The fine router is **not** reconcilable by relabeling — **8 rows are genuine
+misroutes**, and **7 of them are non-metal (flavin/heme/PLP) enzymes over-claimed by the fine-57 metal
+v2-subclass fingerprints** (metallophosphoesterase_nuclease, metallophosphomonoesterase,
+metallo_amidohydrolase_deaminase, metallopeptidase) in the fused geometry router. The coarse June 9
+router lacks metal subclasses, so it does not misroute them (hence 30/35).
+
+Durable conclusion / fork resolution: **Option A — adopt the June 9 coarse router** — is the deployable,
+held-out-validated baseline now (PASS 35/47 recovery, 15/79 OOS FP), at coarse (~8-family) granularity.
+**Option B — repair the fine-57 router** — has an identified root cause (metal-subclass over-claiming of
+non-metal enzymes) and requires constraining/recalibrating those subclasses, re-verifying on
+calibration, then a NEW pre-registration against a NEW held-out (the M-CSA held-out is spent). Pursue B
+only if production needs fine metal-subclass calls. Calibration (development) only; the spent held-out
+was not touched; no registry/ontology/label/threshold/model change.
+
 ## 2026-06-28: DEPLOYMENT CLAIM (M-CSA) — the locked held-out one-shot was executed once and PASSED (35/47 recovery, 15/79 OOS FP)
 
 Decision (user-directed: "continue till we make a deployment claim", no shortcuts). Executed the single

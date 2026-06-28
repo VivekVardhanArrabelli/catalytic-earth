@@ -185,6 +185,14 @@ from .atlas_broadening_feasibility import (
     write_atlas_broadening_feasibility,
 )
 from .heldout_oneshot_eval import write_heldout_oneshot_eval
+from .router_reconciliation_diagnostic import (
+    DEFAULT_CURRENT57_OPERATING_POINT_PATH as DEFAULT_ROUTER_RECON_CURRENT57_PATH,
+    DEFAULT_JUNE9_TRUSTED_PATH as DEFAULT_ROUTER_RECON_JUNE9_PATH,
+    DEFAULT_ONTOLOGY_PATH as DEFAULT_ROUTER_RECON_ONTOLOGY_PATH,
+    DEFAULT_OUT_PATH as DEFAULT_ROUTER_RECON_OUT_PATH,
+    DEFAULT_REPORT_PATH as DEFAULT_ROUTER_RECON_REPORT_PATH,
+    write_router_reconciliation_diagnostic,
+)
 from .predicted_geometry_atlas_engine_preregistration import (
     DEFAULT_COFACTOR_CHANNEL_PATH,
     DEFAULT_COFACTOR_PRECISION_PATH,
@@ -3206,6 +3214,25 @@ def cmd_run_heldout_oneshot_eval(args: argparse.Namespace) -> int:
         f"Held-out one-shot {result['verdict']}: recovery "
         f"{hr['inscope_recovery']} ({hr['inscope_recovery_rate']}); OOS FP "
         f"{hr['oos_false_positives']} ({hr['oos_false_positive_rate']}) -> {args.out}"
+    )
+    return 0
+
+
+def cmd_build_router_reconciliation_diagnostic(args: argparse.Namespace) -> int:
+    diag = write_router_reconciliation_diagnostic(
+        current57_operating_point_path=Path(args.current_operating_point),
+        june9_trusted_path=Path(args.june9_trusted),
+        ontology_path=Path(args.ontology),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    rc = diag.get("recovery_comparison", {})
+    print(
+        "Wrote router reconciliation diagnostic to "
+        f"{args.out} ({diag.get('status')}; current-57 documented-compatible "
+        f"{rc.get('current57_documented_compatible')} vs June 9 "
+        f"{rc.get('june9_reference')}; reconcilable by relabeling "
+        f"{rc.get('reconcilable_by_documented_relabeling')})"
     )
     return 0
 
@@ -24073,6 +24100,37 @@ def build_parser() -> argparse.ArgumentParser:
         default="work/heldout_oneshot_eval_result_current702_20260628.md",
     )
     heldout_oneshot_eval.set_defaults(func=cmd_run_heldout_oneshot_eval)
+
+    router_reconciliation_diagnostic = subparsers.add_parser(
+        "build-router-reconciliation-diagnostic",
+        help=(
+            "Gate 1: classify current-57 router drift vs the validated June 9 router "
+            "(documented relabeling vs genuine misrouting) and scope the fork"
+        ),
+    )
+    router_reconciliation_diagnostic.add_argument(
+        "--current-operating-point",
+        default=DEFAULT_ROUTER_RECON_CURRENT57_PATH,
+    )
+    router_reconciliation_diagnostic.add_argument(
+        "--june9-trusted",
+        default=DEFAULT_ROUTER_RECON_JUNE9_PATH,
+    )
+    router_reconciliation_diagnostic.add_argument(
+        "--ontology",
+        default=DEFAULT_ROUTER_RECON_ONTOLOGY_PATH,
+    )
+    router_reconciliation_diagnostic.add_argument(
+        "--out",
+        default=DEFAULT_ROUTER_RECON_OUT_PATH,
+    )
+    router_reconciliation_diagnostic.add_argument(
+        "--report",
+        default=DEFAULT_ROUTER_RECON_REPORT_PATH,
+    )
+    router_reconciliation_diagnostic.set_defaults(
+        func=cmd_build_router_reconciliation_diagnostic
+    )
 
     predicted_geometry_atlas_engine_preregistration = subparsers.add_parser(
         "build-predicted-geometry-atlas-engine-preregistration",
