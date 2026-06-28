@@ -1,5 +1,38 @@
 # Handoff
 
+## Session run - DEPLOYMENT CLAIM (M-CSA): locked held-out one-shot executed once and PASSED (35/47 recovery, 15/79 OOS FP); no main-repo registry apply (2026-06-28)
+
+- Continued on branch `claude/continue-last-commit-ytktge` from commit `00031510`. User: "continue
+  till we make a deployment claim", no shortcuts. The honest endpoint = execute the locked held-out
+  one-shot. Done. No main-repo registry/label/threshold/model mutation (registry validated intact at
+  57 FP after).
+- Added executor `src/catalytic_earth/heldout_oneshot_eval.py` + `run-heldout-oneshot-eval`, and a
+  minimal additive `split_assignment` param on `build_cofactor_fusion_operating_point` (default
+  unchanged) so held-out rows are scored via the exact calibration-replay router. Committed infra
+  first (no results).
+- Executed in an isolated worktree, registry pinned to `d567ee0d`:
+  - VALIDATION first: calibration at threshold 0.44 reproduced the known dial exactly (30/35 @ 8 FP).
+  - ONE-SHOT: executor verified the frozen set sha256 (`45632519...`, 47 in-scope + 79 OOS, full
+    coverage) and scored via the pinned June 9 router at 0.44.
+  - Result PASS: recovery **35/47 (0.745)** >= 0.70; OOS-FP **15/79 (0.190)** <= 0.40. Artifacts
+    `artifacts/v3_heldout_oneshot_eval_result_current702_20260628.json` /
+    `work/heldout_oneshot_eval_result_current702_20260628.md`.
+  - Worktree removed; main registry confirmed clean.
+- Folded the PASS into the consolidated readiness summary (now reads
+  `deployment_claim_made_mcsa_heldout_passed_offmcsa_generalizes`).
+- THE HELD-OUT ONE-SHOT IS NOW SPENT. Do not re-run it. Any future router/threshold change needs a NEW
+  pre-registration and (ideally) a different held-out set.
+- Scope honesty: the validated claim is M-CSA. Off-M-CSA the fold channel generalizes on both halves
+  (recovery 132/156 bronze, rejection). Still open: a SwissProt-wide GOLD off-M-CSA claim (bronze labels
+  are automation-curated, not gold) and broadening beyond cofactor families (data-blocked).
+- Tests: `tests/test_heldout_oneshot_eval.py` (4, sha-guard + verdict), readiness PASS-path test added.
+- Validation: focused unittest OK; compileall OK; registry `validate` OK (57 FP); reference check
+  pending regen below; `git diff --check` clean; main `data/` untouched.
+- Next exact action: if a broader claim is wanted, build a GOLD off-M-CSA recovery set (curated
+  non-M-CSA positives with gold mechanism labels + structures) — a real curation effort. Otherwise the
+  M-CSA deployment claim stands and the fold channel is the documented off-M-CSA lever. Do not grow
+  fingerprint families; do not re-run the spent held-out one-shot.
+
 ## Session run - (b) deployment-readiness synthesis + (a) atlas-broadening feasibility (blocked); no registry apply (2026-06-28)
 
 - Continued on branch `claude/continue-last-commit-ytktge` from commit `88d61126`. User asked for "b

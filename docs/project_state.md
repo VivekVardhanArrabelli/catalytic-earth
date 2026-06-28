@@ -26,6 +26,26 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **DEPLOYMENT CLAIM (M-CSA) MADE — the pre-registered held-out one-shot PASSED (2026-06-28).**
+  The single locked, choices-frozen held-out test was executed once and passed. On the never-touched
+  held-out M-CSA split (frozen, content-hashed `45632519...`: 47 in-scope + 79 OOS, full coverage), the
+  June 9 cofactor-fusion router at the 0.44 dial recovers **35/47 (0.745)** in-scope mechanisms at
+  **15/79 (0.190)** OOS false positives — clearing the pre-committed bar (recovery ≥ 0.70, OOS-FP rate
+  ≤ 0.40). Recovery is below calibration (0.857, expected generalization drop) but above bar; OOS-FP is
+  *better* than calibration (0.308). Executed via an isolated registry pin (commit `d567ee0d`); the
+  main-repo 57-fingerprint registry was never mutated, and the executor path was validated to reproduce
+  the calibration dial (30/35 @ 8) before the one-shot. Artifacts:
+  `artifacts/v3_heldout_oneshot_eval_result_current702_20260628.json` /
+  `work/heldout_oneshot_eval_result_current702_20260628.md`
+  (`src/catalytic_earth/heldout_oneshot_eval.py`, `run-heldout-oneshot-eval`). This is the project's
+  first leakage-safe, pre-registered, validated mechanism-recovery claim — **scoped to M-CSA**.
+  Consolidated:
+  `artifacts/v3_fold_channel_deployment_readiness_summary_current702_20260628.json` now reads status
+  `deployment_claim_made_mcsa_heldout_passed_offmcsa_generalizes`. Off the M-CSA distribution, the fold
+  (structural) channel generalizes on both halves (recovery 132/156; rejection). Still open (honest):
+  a SwissProt-wide **gold** off-M-CSA claim (bronze labels are automation-curated) and broadening beyond
+  the cofactor families. The held-out one-shot is now spent and must not be re-run.
+
 - **ATLAS BROADENING (beyond the 5 cofactor families) IS DATA-BLOCKED — no fine multi-family M-CSA label source (2026-06-28).**
   Attempted to broaden the off-M-CSA recovery sweep beyond the cofactor families. Audit
   (`src/catalytic_earth/atlas_broadening_feasibility.py`, `build-atlas-broadening-feasibility`):

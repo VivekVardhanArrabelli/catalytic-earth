@@ -479,3 +479,29 @@ next_action: >
   Broadening needs a fine multi-family M-CSA labelling effort (router-derived, not gold) — the user's
   call. Otherwise the fold-channel deployment story stands for the cofactor families; remaining gates are
   a gold off-M-CSA eval and the locked held-out one-shot. Do not grow fingerprint families.
+
+## Automation run 2026-06-28 (continuation: held-out one-shot executed -> DEPLOYMENT CLAIM)
+- started_from: prior commit 00031510 (branch claude/continue-last-commit-ytktge)
+- registry_mutation: none in main repo; held-out scored via isolated worktree registry pin (d567ee0d)
+- state: deployment_claim_made_mcsa_heldout_passed
+- work_completed:
+  - added heldout_oneshot_eval executor + split_assignment param (default unchanged) + tests
+  - validated path on calibration (reproduced 30/35 @ 8 at threshold 0.44) before the one-shot
+  - executed the locked held-out one-shot ONCE: PASS, recovery 35/47 (0.745), OOS FP 15/79 (0.190)
+  - frozen set sha verified 45632519...; full coverage 47/79; main registry intact (57 FP)
+  - folded PASS into the consolidated readiness summary (deployment_claim_made_mcsa_heldout_passed_offmcsa_generalizes)
+- current_gate_state:
+  - heldout_oneshot: SPENT (PASS) -- do not re-run
+  - deployment_claim_mcsa: made (leakage-safe, pre-registered)
+  - offmcsa_fold_generalization: both halves (recovery + rejection)
+  - gold_offmcsa_claim: still open (bronze labels not gold)
+  - atlas_broadening: blocked; main_repo_registry_mutated: false
+- validation:
+  - focused_heldout_eval_readiness_cli_unittest: passed
+  - calibration_path_validation: 30/35 @ 8 reproduced
+  - registry_validate: passed (57 fingerprints)
+  - git_diff_check: passed
+- next_action: >
+  A broader SwissProt-wide claim needs a GOLD off-M-CSA recovery set (curated non-M-CSA positives with
+  gold mechanism labels + structures). Otherwise the M-CSA deployment claim stands. Do not re-run the
+  spent held-out one-shot; do not grow fingerprint families.

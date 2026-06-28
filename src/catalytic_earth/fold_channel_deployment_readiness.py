@@ -45,6 +45,9 @@ DEFAULT_SOURCES: dict[str, str] = {
     "heldout_preregistration": (
         "artifacts/v3_heldout_oneshot_preregistration_current702_20260628.json"
     ),
+    "heldout_oneshot_eval": (
+        "artifacts/v3_heldout_oneshot_eval_result_current702_20260628.json"
+    ),
 }
 DEFAULT_OUT_PATH = (
     "artifacts/v3_fold_channel_deployment_readiness_summary_current702_20260628.json"
@@ -96,6 +99,7 @@ def build_fold_channel_deployment_readiness(
     june9 = sources["june9_fold_fusion"]
     contract = sources["cofactor_precision_contract"]
     prereg = sources["heldout_preregistration"]
+    heldout_eval = sources.get("heldout_oneshot_eval") or {}
 
     base_rec = base.get("recovery", {})
     off_rec = off.get("recovery", {})
@@ -107,6 +111,8 @@ def build_fold_channel_deployment_readiness(
         abst_test.get("abstention_signal_generalizes_off_mcsa")
     )
     both_halves = recovers_offmcsa and rejects_offmcsa
+    heldout_passed = heldout_eval.get("verdict") == "PASS"
+    heldout_result = heldout_eval.get("heldout_result", {})
 
     return {
         "artifact_id": (
@@ -115,7 +121,9 @@ def build_fold_channel_deployment_readiness(
         "schema_version": "fold_channel_deployment_readiness_summary.v1",
         "created_utc": _utc_now_iso(),
         "status": (
-            "fold_channel_generalizes_off_mcsa_both_halves_deployment_claim_still_gated"
+            "deployment_claim_made_mcsa_heldout_passed_offmcsa_generalizes"
+            if both_halves and heldout_passed
+            else "fold_channel_generalizes_off_mcsa_both_halves_deployment_claim_still_gated"
             if both_halves
             else "fold_channel_off_mcsa_generalization_incomplete"
         ),
@@ -189,41 +197,93 @@ def build_fold_channel_deployment_readiness(
                 "high-fold-similar), but it is the off-M-CSA abstention lever"
             ),
         },
+        "deployment_claim": {
+            "made": bool(heldout_passed),
+            "scope": "M-CSA mechanism recovery (the held-out split is M-CSA)",
+            "statement": (
+                "On the never-touched held-out M-CSA split (frozen, content-hashed, "
+                "pre-registered), the June 9 cofactor-fusion router at the 0.44 dial "
+                f"recovers {heldout_result.get('inscope_recovery')} "
+                f"({heldout_result.get('inscope_recovery_rate')}) in-scope mechanisms at "
+                f"{heldout_result.get('oos_false_positives')} "
+                f"({heldout_result.get('oos_false_positive_rate')}) OOS false positives, "
+                "PASSING the pre-committed bar (recovery >= 0.70, OOS-FP rate <= 0.40). "
+                "Off the M-CSA distribution, the fold (structural) channel generalizes on "
+                "both recovery and rejection."
+                if heldout_passed
+                else "Not yet made; the held-out one-shot has not passed."
+            ),
+            "evidence": heldout_eval.get("artifact_id"),
+        },
         "validated_claims": [
-            "Fold-NN recovers off-M-CSA bronze positives at "
-            f"{off_rec.get('recovery_rate_no_abstention')} across all "
-            f"{len(_per_family_recovery(off))} cofactor families (non-circular: bronze "
-            "admission used sequence/cofactor, not structure).",
-            "Fold-NN rejects off-M-CSA negatives: external-negative fold-NN median "
-            f"{abst_test.get('external_median')} tracks the M-CSA OOS median "
-            f"{abst_test.get('mcsa_oos_median')}, far below the in-scope median "
-            f"{abst_test.get('mcsa_inscope_median')}.",
-            "The June 9 router operating point is reproducible and clears the "
-            "calibration recovery bar (30/35 @ 8 FP).",
+            c
+            for c in [
+                (
+                    "HELD-OUT (M-CSA) PASS: June 9 router @ 0.44 dial recovers "
+                    f"{heldout_result.get('inscope_recovery')} "
+                    f"({heldout_result.get('inscope_recovery_rate')}) at "
+                    f"{heldout_result.get('oos_false_positives')} OOS FP "
+                    f"({heldout_result.get('oos_false_positive_rate')}) on the frozen "
+                    "pre-registered held-out split."
+                )
+                if heldout_passed
+                else None,
+                "Fold-NN recovers off-M-CSA bronze positives at "
+                f"{off_rec.get('recovery_rate_no_abstention')} across all "
+                f"{len(_per_family_recovery(off))} cofactor families (non-circular: bronze "
+                "admission used sequence/cofactor, not structure).",
+                "Fold-NN rejects off-M-CSA negatives: external-negative fold-NN median "
+                f"{abst_test.get('external_median')} tracks the M-CSA OOS median "
+                f"{abst_test.get('mcsa_oos_median')}, far below the in-scope median "
+                f"{abst_test.get('mcsa_inscope_median')}.",
+                "The June 9 router operating point is reproducible and clears the "
+                "calibration recovery bar (30/35 @ 8 FP).",
+            ]
+            if c
         ],
         "not_yet_validated": [
-            "No gold-truth off-M-CSA evaluation: bronze labels are automation-curated, "
-            "so off-M-CSA recovery measures fold/sequence concordance, not gold accuracy.",
-            "The held-out one-shot is preregistered but unspent: "
-            f"`{prereg.get('status')}` (and it certifies M-CSA only).",
-            "Coverage is scoped to the cofactor atlas families; broader-family recovery "
-            "is not yet measured.",
-            "All calibration operating points are development figures (calibration reused "
-            "across readouts), not unbiased estimates.",
+            c
+            for c in [
+                "No gold-truth off-M-CSA evaluation: bronze labels are automation-curated, "
+                "so off-M-CSA recovery measures fold/sequence concordance, not gold accuracy.",
+                None
+                if heldout_passed
+                else (
+                    "The held-out one-shot is preregistered but unspent: "
+                    f"`{prereg.get('status')}` (and it certifies M-CSA only)."
+                ),
+                "The validated held-out claim certifies M-CSA only; a SwissProt-wide "
+                "gold deployment claim is not yet established.",
+                "Coverage is scoped to the cofactor atlas families; broader-family recovery "
+                "is not yet measured.",
+                "All calibration operating points are development figures (calibration "
+                "reused across readouts), not unbiased estimates.",
+            ]
+            if c
         ],
         "remaining_gates_for_a_deployment_claim": [
-            "A gold-labelled off-M-CSA evaluation (or a curated subset) for recovery.",
-            "Execute the locked held-out one-shot under its frozen rule and sha256.",
-            "Broaden the M-CSA atlas beyond the cofactor families and re-run recovery.",
+            c
+            for c in [
+                "A gold-labelled off-M-CSA evaluation (or a curated subset) for recovery.",
+                None
+                if heldout_passed
+                else "Execute the locked held-out one-shot under its frozen rule and sha256.",
+                "Broaden the M-CSA atlas beyond the cofactor families and re-run recovery.",
+            ]
+            if c
         ],
         "source_artifacts": {},
         "interpretation": {
             "headline": (
-                "The fold (structural nearest-neighbour) channel generalises off the "
-                "M-CSA development distribution on both halves -- recovery and "
-                "abstention -- making it the strongest deployment lever in the project. "
-                "A formal deployment claim still requires gold off-M-CSA validation and "
-                "the locked held-out one-shot; nothing here is a deployment claim yet."
+                "DEPLOYMENT CLAIM (M-CSA): the pre-registered held-out one-shot PASSED -- "
+                f"June 9 router @ 0.44 dial recovers {heldout_result.get('inscope_recovery')} "
+                f"at {heldout_result.get('oos_false_positives')} OOS FP on the frozen "
+                "held-out split. Off M-CSA, the fold (structural) channel generalises on "
+                "both recovery and rejection. The validated claim is scoped to M-CSA; a "
+                "SwissProt-wide gold claim still needs a gold off-M-CSA eval."
+                if both_halves and heldout_passed
+                else "The fold channel generalises off M-CSA on both halves, but the "
+                "deployment claim is still gated on the held-out one-shot."
                 if both_halves
                 else "Off-M-CSA generalisation of the fold channel is incomplete; see "
                 "the per-half detail."
@@ -241,6 +301,12 @@ def _report(summary: dict[str, Any]) -> str:
         "",
         f"Run: {summary['created_utc']}",
         f"Status: `{summary['status']}`",
+        "",
+        "## Deployment Claim",
+        "",
+        f"- Made: **{summary['deployment_claim']['made']}** "
+        f"(scope: {summary['deployment_claim']['scope']}).",
+        f"- {summary['deployment_claim']['statement']}",
         "",
         "## Question",
         "",

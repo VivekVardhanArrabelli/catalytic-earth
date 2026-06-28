@@ -1,0 +1,51 @@
+{
+  "artifact_id": "v3_heldout_oneshot_eval_result_current702_20260628",
+  "calibration_reference": {
+    "inscope_recovery": "30/35 (0.857)",
+    "oos_false_positive_rate": "8/26 (0.308)"
+  },
+  "coverage": {
+    "frozen_inscope": 47,
+    "frozen_oos": 79,
+    "frozen_total": 126,
+    "inscope_scored": 47,
+    "oos_coverage_gap_rows": 0,
+    "oos_scored": 79
+  },
+  "created_utc": "2026-06-28T21:52:37Z",
+  "frozen_rule_applied": {
+    "cofactor_threshold": 0.44,
+    "router": "june9 registry pin d567ee0d via isolated worktree",
+    "split_assignment": "heldout"
+  },
+  "guardrails": {
+    "main_repo_registry_mutated": false,
+    "no_post_hoc_threshold_change": true,
+    "ran_once": true,
+    "rule_fixed_before_run": true
+  },
+  "heldout_result": {
+    "inscope_recovery": "35/47",
+    "inscope_recovery_rate": 0.7447,
+    "oos_false_positive_rate": 0.1899,
+    "oos_false_positives": "15/79"
+  },
+  "operating_point_raw": {
+    "inscope_correct": 35,
+    "inscope_recall": 0.7447,
+    "inscope_total": 47,
+    "oos_false_positive_rate": 0.1899,
+    "oos_false_positives": 15,
+    "oos_total": 79
+  },
+  "preregistration": {
+    "artifact_id": "v3_heldout_oneshot_preregistration_current702_20260628",
+    "frozen_heldout_set_sha256": "45632519a2b2f9645c2bb82a9fbff681dde34cfda21dde720550402c0bb907b6",
+    "primary_pass_criteria": "heldout in-scope recovery rate >= 0.70 AND heldout OOS false-positive rate <= 0.40",
+    "sha256_verified": true
+  },
+  "result_class": "spent_one_shot_heldout_evaluation_pinned_june9_router",
+  "schema_version": "heldout_oneshot_eval_result.v1",
+  "status": "heldout_oneshot_eval_PASS",
+  "verdict": "PASS"
+}

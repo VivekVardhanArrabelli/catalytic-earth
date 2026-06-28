@@ -3,6 +3,38 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-28: DEPLOYMENT CLAIM (M-CSA) — the locked held-out one-shot was executed once and PASSED (35/47 recovery, 15/79 OOS FP)
+
+Decision (user-directed: "continue till we make a deployment claim", no shortcuts). Executed the single
+locked, pre-registered held-out test exactly once. Procedure followed verbatim:
+1. Added the executor `src/catalytic_earth/heldout_oneshot_eval.py` (`run-heldout-oneshot-eval`) and a
+   minimal additive `split_assignment` parameter on `build_cofactor_fusion_operating_point` (default
+   "in_distribution", existing behaviour and tests unchanged) so the held-out rows are scored through
+   the exact same router used for the calibration replay.
+2. In an isolated git worktree, pinned the registry to commit `d567ee0d` (June 9, 8 families); the
+   main-repo 57-fingerprint registry was never mutated (validated intact after).
+3. Validated the path first: ran the router on the calibration split at threshold 0.44 and reproduced
+   the known dial exactly (**30/35 recovery, 8/26 OOS FP**) — confirming correctness before spending the
+   one-shot.
+4. Ran the held-out one-shot once. The executor re-derived the frozen held-out set and verified its
+   sha256 matched the pre-registration (`45632519...`, 47 in-scope + 79 OOS, full coverage), then scored
+   it through the pinned June 9 router at the 0.44 dial.
+
+Result (`artifacts/v3_heldout_oneshot_eval_result_current702_20260628.json` /
+`work/heldout_oneshot_eval_result_current702_20260628.md`): **PASS**. Held-out in-scope recovery
+**35/47 (0.745)** and OOS false-positive rate **15/79 (0.190)**, clearing the pre-committed bar
+(recovery >= 0.70 AND OOS-FP rate <= 0.40). Recovery is below calibration (0.857; an expected
+generalization drop) but above bar; OOS-FP is better than calibration (0.308). The held-out one-shot is
+now spent and must not be re-run.
+
+This is the project's first leakage-safe, pre-registered, validated mechanism-recovery claim. **Scope is
+M-CSA** (the held-out split is M-CSA, 699/702). Off the M-CSA distribution the fold (structural) channel
+generalizes on both halves (recovery 132/156 bronze; rejection of external negatives). The consolidated
+summary now reads `deployment_claim_made_mcsa_heldout_passed_offmcsa_generalizes`. Still honestly open: a
+SwissProt-wide **gold** off-M-CSA claim (bronze labels are automation-curated, not gold) and broadening
+beyond the cofactor families. No registry/ontology/label/threshold/model change; the spent one-shot used
+an isolated registry pin only.
+
 ## 2026-06-28: Off-M-CSA in-scope RECOVERY confirmed — fold-NN recovers 132/156 (84.6%) of non-M-CSA bronze positives, across all 4 families; the fold channel now generalizes off M-CSA on BOTH recovery and rejection
 
 Decision (automation continuation, user-authorized bounded download, no registry mutation). Executed

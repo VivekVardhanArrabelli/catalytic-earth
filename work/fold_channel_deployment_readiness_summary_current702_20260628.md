@@ -1,7 +1,12 @@
 # Fold Channel Deployment-Readiness Summary
 
-Run: 2026-06-28T19:39:53Z
-Status: `fold_channel_generalizes_off_mcsa_both_halves_deployment_claim_still_gated`
+Run: 2026-06-28T21:54:53Z
+Status: `deployment_claim_made_mcsa_heldout_passed_offmcsa_generalizes`
+
+## Deployment Claim
+
+- Made: **True** (scope: M-CSA mechanism recovery (the held-out split is M-CSA)).
+- On the never-touched held-out M-CSA split (frozen, content-hashed, pre-registered), the June 9 cofactor-fusion router at the 0.44 dial recovers 35/47 (0.7447) in-scope mechanisms at 15/79 (0.1899) OOS false positives, PASSING the pre-committed bar (recovery >= 0.70, OOS-FP rate <= 0.40). Off the M-CSA distribution, the fold (structural) channel generalizes on both recovery and rejection.
 
 ## Question
 
@@ -25,6 +30,7 @@ Status: `fold_channel_generalizes_off_mcsa_both_halves_deployment_claim_still_ga
 
 ## Validated Claims
 
+- HELD-OUT (M-CSA) PASS: June 9 router @ 0.44 dial recovers 35/47 (0.7447) at 15/79 OOS FP (0.1899) on the frozen pre-registered held-out split.
 - Fold-NN recovers off-M-CSA bronze positives at 0.8462 across all 4 cofactor families (non-circular: bronze admission used sequence/cofactor, not structure).
 - Fold-NN rejects off-M-CSA negatives: external-negative fold-NN median 0.5737 tracks the M-CSA OOS median 0.5661, far below the in-scope median 0.743.
 - The June 9 router operating point is reproducible and clears the calibration recovery bar (30/35 @ 8 FP).
@@ -32,19 +38,18 @@ Status: `fold_channel_generalizes_off_mcsa_both_halves_deployment_claim_still_ga
 ## Not Yet Validated
 
 - No gold-truth off-M-CSA evaluation: bronze labels are automation-curated, so off-M-CSA recovery measures fold/sequence concordance, not gold accuracy.
-- The held-out one-shot is preregistered but unspent: `preregistered_not_yet_run` (and it certifies M-CSA only).
+- The validated held-out claim certifies M-CSA only; a SwissProt-wide gold deployment claim is not yet established.
 - Coverage is scoped to the cofactor atlas families; broader-family recovery is not yet measured.
 - All calibration operating points are development figures (calibration reused across readouts), not unbiased estimates.
 
 ## Remaining Gates For A Deployment Claim
 
 - A gold-labelled off-M-CSA evaluation (or a curated subset) for recovery.
-- Execute the locked held-out one-shot under its frozen rule and sha256.
 - Broaden the M-CSA atlas beyond the cofactor families and re-run recovery.
 
 ## Bottom Line
 
-- The fold (structural nearest-neighbour) channel generalises off the M-CSA development distribution on both halves -- recovery and abstention -- making it the strongest deployment lever in the project. A formal deployment claim still requires gold off-M-CSA validation and the locked held-out one-shot; nothing here is a deployment claim yet.
+- DEPLOYMENT CLAIM (M-CSA): the pre-registered held-out one-shot PASSED -- June 9 router @ 0.44 dial recovers 35/47 at 15/79 OOS FP on the frozen held-out split. Off M-CSA, the fold (structural) channel generalises on both recovery and rejection. The validated claim is scoped to M-CSA; a SwissProt-wide gold claim still needs a gold off-M-CSA eval.
 
 ## Guardrails
 

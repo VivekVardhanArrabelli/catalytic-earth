@@ -105,6 +105,28 @@ class FoldChannelDeploymentReadinessTests(unittest.TestCase):
             summary["status"], "fold_channel_off_mcsa_generalization_incomplete"
         )
 
+    def test_deployment_claim_made_when_heldout_passes(self) -> None:
+        srcs = _sources()
+        srcs["heldout_oneshot_eval"] = {
+            "artifact_id": "heldout_eval",
+            "verdict": "PASS",
+            "heldout_result": {
+                "inscope_recovery": "35/47",
+                "inscope_recovery_rate": 0.7447,
+                "oos_false_positives": "15/79",
+                "oos_false_positive_rate": 0.1899,
+            },
+        }
+        summary = build_fold_channel_deployment_readiness(sources=srcs)
+        self.assertEqual(
+            summary["status"],
+            "deployment_claim_made_mcsa_heldout_passed_offmcsa_generalizes",
+        )
+        self.assertTrue(summary["deployment_claim"]["made"])
+        # held-out PASS removed from "not yet validated"
+        joined = " ".join(summary["not_yet_validated"]).lower()
+        self.assertNotIn("unspent", joined)
+
     def test_carries_not_yet_validated_caveats(self) -> None:
         summary = build_fold_channel_deployment_readiness(sources=_sources())
         joined = " ".join(summary["not_yet_validated"]).lower()
