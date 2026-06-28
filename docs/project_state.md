@@ -26,6 +26,24 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **FOLD-NN ABSTENTION SIGNAL GENERALIZES OFF M-CSA (2026-06-28).**
+  The whole current702 benchmark (train/cal/heldout) is M-CSA (699/702), so an M-CSA heldout read only
+  certifies sequence-distant M-CSA generalization — not the deployment distribution where the cofactor
+  channel showed no abstention signal. Test: **52 external non-M-CSA hard negatives** fold-scored
+  (`foldseek easy-search`) against the same M-CSA train in-scope atlas (132 targets). Readout
+  (`src/catalytic_earth/external_offmcsa_fold_abstention_readout.py`,
+  `build-external-offmcsa-fold-abstention-readout`):
+  `artifacts/v3_external_offmcsa_fold_abstention_readout_current702_20260628.json` /
+  `work/external_offmcsa_fold_abstention_readout_current702_20260628.md`, status
+  `fold_nn_abstention_signal_generalizes_off_mcsa`. External-negative fold-NN median **0.574** ≈ M-CSA
+  OOS **0.566**, far below M-CSA in-scope **0.743** (only 2/52 reach the in-scope median); a strict
+  fold gate (>=0.70) leaves just **3/52** external negatives un-abstained. So the fold-NN channel is a
+  **real off-M-CSA OOS-rejection signal** — the property the cofactor channel lacked — making the fold
+  channel (not more fingerprint families) the lever for deployment-grade abstention. Caveats: this is
+  off-M-CSA OOS *rejection* only, not off-M-CSA in-scope *recovery* (needs non-M-CSA positives with
+  known mechanism + structure); the external set is a curated negative panel; a strict gate also lowers
+  in-scope recovery (fold>=0.70 holds only 20/35 M-CSA in-scope).
+
 - **JUNE 9 ROUTER REPLAY REPRODUCES THE BAR (30/35 @ 8 FP); THE FOLD-NN GATE DOES NOT PARETO-IMPROVE IT (2026-06-28).**
   The trusted June 9 router surface was reproduced with per-row detail by pinning the fingerprint
   registry to commit `d567ee0d` (8-family June 9 state) in an **isolated git worktree** and running the

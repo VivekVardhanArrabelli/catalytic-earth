@@ -133,6 +133,13 @@ from .june9_router_fold_fusion_readout import (
     DEFAULT_REPORT_PATH as DEFAULT_JUNE9_FUSION_REPORT_PATH,
     write_june9_router_fold_fusion_readout,
 )
+from .external_offmcsa_fold_abstention_readout import (
+    DEFAULT_EXTERNAL_TSV_PATH as DEFAULT_OFFMCSA_EXTERNAL_TSV_PATH,
+    DEFAULT_MCSA_FOLD_READOUT_PATH as DEFAULT_OFFMCSA_MCSA_FOLD_READOUT_PATH,
+    DEFAULT_OUT_PATH as DEFAULT_OFFMCSA_OUT_PATH,
+    DEFAULT_REPORT_PATH as DEFAULT_OFFMCSA_REPORT_PATH,
+    write_external_offmcsa_fold_abstention_readout,
+)
 from .predicted_geometry_atlas_engine_preregistration import (
     DEFAULT_COFACTOR_CHANNEL_PATH,
     DEFAULT_COFACTOR_PRECISION_PATH,
@@ -2994,6 +3001,26 @@ def cmd_build_june9_router_fold_fusion_readout(args: argparse.Namespace) -> int:
         f"{baseline.get('inscope_correct')}/{baseline.get('inscope_total')} @ FP "
         f"{baseline.get('oos_false_positives')}; fold gate Pareto-improves "
         f"{assessment.get('fold_gate_helps')})"
+    )
+    return 0
+
+
+def cmd_build_external_offmcsa_fold_abstention_readout(
+    args: argparse.Namespace,
+) -> int:
+    readout = write_external_offmcsa_fold_abstention_readout(
+        external_tsv_path=Path(args.external_tsv),
+        mcsa_fold_readout_path=Path(args.mcsa_fold_readout),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    test = readout.get("generalization_test", {})
+    print(
+        "Wrote off-M-CSA fold abstention readout to "
+        f"{args.out} ({readout.get('status')}; external median "
+        f"{test.get('external_median')} vs M-CSA OOS {test.get('mcsa_oos_median')} / "
+        f"in-scope {test.get('mcsa_inscope_median')}; generalizes "
+        f"{test.get('abstention_signal_generalizes_off_mcsa')})"
     )
     return 0
 
@@ -23584,6 +23611,35 @@ def build_parser() -> argparse.ArgumentParser:
     )
     june9_router_fold_fusion_readout.set_defaults(
         func=cmd_build_june9_router_fold_fusion_readout
+    )
+
+    external_offmcsa_fold_abstention_readout = subparsers.add_parser(
+        "build-external-offmcsa-fold-abstention-readout",
+        help=(
+            "test whether the fold-NN abstention separation generalizes off M-CSA by "
+            "comparing external non-M-CSA negatives to the M-CSA in-scope/OOS fold-NN"
+        ),
+    )
+    external_offmcsa_fold_abstention_readout.add_argument(
+        "--external-tsv",
+        default=DEFAULT_OFFMCSA_EXTERNAL_TSV_PATH,
+        help="foldseek result TSV: external non-M-CSA negatives vs the M-CSA train atlas",
+    )
+    external_offmcsa_fold_abstention_readout.add_argument(
+        "--mcsa-fold-readout",
+        default=DEFAULT_OFFMCSA_MCSA_FOLD_READOUT_PATH,
+        help="row-aligned current-57 Fold/TM readout (M-CSA in-scope/OOS reference)",
+    )
+    external_offmcsa_fold_abstention_readout.add_argument(
+        "--out",
+        default=DEFAULT_OFFMCSA_OUT_PATH,
+    )
+    external_offmcsa_fold_abstention_readout.add_argument(
+        "--report",
+        default=DEFAULT_OFFMCSA_REPORT_PATH,
+    )
+    external_offmcsa_fold_abstention_readout.set_defaults(
+        func=cmd_build_external_offmcsa_fold_abstention_readout
     )
 
     predicted_geometry_atlas_engine_preregistration = subparsers.add_parser(

@@ -3,6 +3,38 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-28: The fold-NN abstention signal GENERALIZES off M-CSA — external non-M-CSA negatives track the M-CSA OOS fold distribution, not the in-scope one
+
+Decision (automation continuation, no registry mutation). The whole current702 benchmark
+(train/calibration/heldout) is M-CSA (699/702; split manifest 524 M-CSA train+cal), so an M-CSA
+heldout read only certifies sequence-distant *M-CSA* generalization, not deployment-distribution
+behavior — and the cofactor channel already showed no abstention signal off M-CSA. We therefore tested
+whether the now row-aligned fold-NN abstention separation survives off M-CSA: **52 external (non-M-CSA)
+hard negatives** (the 6 that overlap current702 accessions were excluded) were fold-scored with
+`foldseek easy-search` against the **same M-CSA train in-scope atlas** (132 targets) used for the
+calibration recompute. Result TSV:
+`artifacts/v3_external_offmcsa_fold_abstention_current702_20260628_results/external_negatives_vs_mcsa_train_atlas.tsv`
+(4117 rows). Readout (`src/catalytic_earth/external_offmcsa_fold_abstention_readout.py`,
+`build-external-offmcsa-fold-abstention-readout`):
+`artifacts/v3_external_offmcsa_fold_abstention_readout_current702_20260628.json` /
+`work/external_offmcsa_fold_abstention_readout_current702_20260628.md`. Status
+`fold_nn_abstention_signal_generalizes_off_mcsa`:
+
+- External off-M-CSA negative fold-NN median **0.574** ≈ M-CSA OOS median **0.566**, and far below the
+  M-CSA in-scope median **0.743**. Only **2/52** external negatives reach the in-scope median.
+- Abstention/recovery frontier: a strict fold gate (fold-NN >= 0.70) leaves only **3/52 (5.8%)**
+  external negatives un-abstained while M-CSA OOS false-accepts fall in step (4/26) — i.e. external
+  negatives and M-CSA OOS reject together, in contrast to the in-scope rows.
+
+Durable conclusion: the fold-NN channel provides a **real, off-M-CSA-generalizing OOS-rejection
+signal** — the property the cofactor channel lacked. This materially strengthens the case that the
+fold channel (not more fingerprint families) is the lever for deployment-grade abstention. Caveats kept
+explicit: this probes off-M-CSA OOS *rejection* only, not off-M-CSA in-scope *recovery* (which needs
+non-M-CSA positives with known mechanism and structure); the external set is a curated negative panel,
+not a random deployment sample; and a strict abstention threshold also lowers in-scope recovery (the
+frontier shows fold>=0.70 holds only 20/35 M-CSA in-scope). No heldout row was read, no model trained,
+no threshold selected, no registry/ontology/label/fingerprint change.
+
 ## 2026-06-28: June 9 router replay reproduces the bar (30/35 @ 8 FP); the fold-NN gate does NOT Pareto-improve it — fold rescues a drifted router, it is not a precision booster on the good one
 
 Decision (automation continuation, no registry mutation). To test the documented "replay June 9 +

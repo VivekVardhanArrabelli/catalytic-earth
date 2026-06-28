@@ -292,3 +292,32 @@ next_action: >
   near-zero-OOS-FP fold-dial regime) and spend the single heldout-final read to confirm it. Do not grow
   fingerprint families to chase recovery (the drift is a taxonomy-version artifact). Consider pinning
   the production cofactor-precision router to the June 9 fingerprint resolution.
+
+## Automation run 2026-06-28 (continuation: off-M-CSA fold abstention generalization)
+- started_from: prior commit ffb970df (branch claude/continue-last-commit-ytktge)
+- registry_mutation: none; main-repo registry validated intact at 57 fingerprints
+- trigger: heldout is M-CSA-only (699/702), so it cannot probe the deployment distribution
+- state: fold_nn_abstention_signal_generalizes_off_mcsa
+- work_completed:
+  - fold-scored 52 external non-M-CSA hard negatives vs the M-CSA train in-scope atlas (foldseek, 4117 rows)
+  - added external_offmcsa_fold_abstention_readout builder/CLI/tests
+  - external negative fold-NN median 0.574 ~= M-CSA OOS 0.566, << in-scope 0.743 (only 2/52 reach in-scope median)
+  - frontier: fold>=0.70 leaves 3/52 external negatives un-abstained (M-CSA OOS 4/26 in step), in-scope 20/35
+  - verdict: fold-NN OOS-rejection generalizes off M-CSA (the cofactor channel's missing property)
+  - updated project_state, decision_log, handoff; regenerated docs reference check (missing 0)
+- current_gate_state:
+  - fold_offmcsa_oos_rejection_signal: confirmed
+  - fold_offmcsa_inscope_recovery: not yet tested (needs non-M-CSA positives)
+  - main_repo_registry_mutated: false
+  - heldout_rows_scored: false
+- validation:
+  - focused_offmcsa_readout_cli_unittest: passed
+  - compileall: passed
+  - registry_validate: passed (57 fingerprints)
+  - current_docs_reference_check: missing 0
+  - git_diff_check: passed
+- next_action: >
+  Assemble a non-M-CSA positive surface (known mechanism class + AlphaFold structure, off M-CSA) and
+  measure off-M-CSA in-scope recovery via the same fold-NN-to-M-CSA-atlas retrieval, so both halves of
+  the deployment question (recovery and abstention) are characterized off-distribution. The fold
+  channel, not more fingerprint families, is the lever.

@@ -15,6 +15,8 @@ data/cache/
 # CIFs and foldseek temp dirs). The committed manifest + result TSV are the record.
 artifacts/v3_current57_fold_tm_recompute_current702_20260628_coordinates/
 artifacts/**/tmp_calibration_vs_current57_train_atlas/
+artifacts/v3_external_offmcsa_fold_abstention_current702_20260628_coordinates/
+artifacts/**/tmp/
 
 # Python editable-install metadata
 *.egg-info/

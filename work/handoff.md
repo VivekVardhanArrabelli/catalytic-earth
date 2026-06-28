@@ -1,5 +1,40 @@
 # Handoff
 
+## Session run - fold-NN abstention signal GENERALIZES off M-CSA (external non-M-CSA negatives track M-CSA OOS, not in-scope); no registry apply (2026-06-28)
+
+- Continued on branch `claude/continue-last-commit-ytktge` from commit `ffb970df` (June 9 replay).
+  Trigger: heldout is M-CSA-only (699/702), so an M-CSA heldout read can't probe the deployment
+  distribution. No registry/ontology/label/threshold/heldout/model/fingerprint mutation.
+- Tested whether the fold-NN abstention separation survives off M-CSA: **52 external non-M-CSA hard
+  negatives** (6 overlapping current702 accessions excluded) fold-scored with `foldseek easy-search`
+  against the **same M-CSA train in-scope atlas** (132 targets). Staging symlinks git-ignored; result
+  TSV committed:
+  `artifacts/v3_external_offmcsa_fold_abstention_current702_20260628_results/external_negatives_vs_mcsa_train_atlas.tsv`
+  (4117 rows).
+- Added readout builder + CLI:
+  `src/catalytic_earth/external_offmcsa_fold_abstention_readout.py`,
+  `build-external-offmcsa-fold-abstention-readout`. Artifact/report:
+  `artifacts/v3_external_offmcsa_fold_abstention_readout_current702_20260628.json` /
+  `work/external_offmcsa_fold_abstention_readout_current702_20260628.md`. Status
+  `fold_nn_abstention_signal_generalizes_off_mcsa`:
+  - External off-M-CSA negative fold-NN median **0.574** ≈ M-CSA OOS **0.566**, far below M-CSA
+    in-scope **0.743**; only 2/52 reach the in-scope median.
+  - Frontier: fold-NN >= 0.70 leaves just **3/52 (5.8%)** external negatives un-abstained (M-CSA OOS
+    4/26 in step), while in-scope retention is 20/35 — external negatives reject together with M-CSA OOS.
+  - This is the off-M-CSA OOS-rejection property the cofactor channel lacked; the fold channel (not more
+    fingerprint families) is the deployment-abstention lever.
+- Caveats recorded in docs: off-M-CSA OOS *rejection* only, not off-M-CSA in-scope *recovery* (needs
+  non-M-CSA positives with known mechanism + structure); curated negative panel, not a random sample;
+  strict gate lowers in-scope recovery.
+- Tests: `tests/test_external_offmcsa_fold_abstention_readout.py` (5) + a CLI parser-defaults case.
+  Regenerated docs artifact-reference check -> missing 0.
+- Validation: focused unittest (off-M-CSA readout + full test_cli + prior readouts) OK; compileall OK;
+  registry `validate` OK (57 FP intact); docs reference check missing 0; `git diff --check` clean.
+- Next exact action: close the other half of the deployment question — assemble a **non-M-CSA positive**
+  surface (proteins with known mechanism class AND AlphaFold structure, off M-CSA) and measure off-M-CSA
+  in-scope *recovery* via the same fold-NN-to-M-CSA-atlas retrieval, so recovery and abstention are both
+  characterized off-distribution. Do not grow fingerprint families; the lever is the fold channel.
+
 ## Session run - June 9 router replay reproduces the bar (30/35 @ 8 FP); fold-NN gate gives NO Pareto improvement (precision/recall dial only); isolated registry pin, no main-repo registry mutation (2026-06-28)
 
 - Continued on branch `claude/continue-last-commit-ytktge` from commit `0079855d` (current-57
