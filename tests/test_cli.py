@@ -180,6 +180,34 @@ class CliTests(unittest.TestCase):
             ),
         )
 
+    def test_june9_router_fold_fusion_readout_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            ["build-june9-router-fold-fusion-readout"]
+        )
+
+        self.assertEqual(
+            args.pinned_june9,
+            (
+                "artifacts/"
+                "v3_june9_router_pinned_rowdetail_operating_point_current702_"
+                "20260628.json"
+            ),
+        )
+        self.assertEqual(
+            args.fold_readout,
+            (
+                "artifacts/"
+                "v3_current57_fold_tm_recompute_readout_current702_20260628.json"
+            ),
+        )
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/"
+                "v3_june9_router_fold_fusion_readout_current702_20260628.json"
+            ),
+        )
+
     def test_external_source_pilot_uniref_current_reference_parser_defaults(
         self,
     ) -> None:

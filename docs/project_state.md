@@ -26,6 +26,28 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **JUNE 9 ROUTER REPLAY REPRODUCES THE BAR (30/35 @ 8 FP); THE FOLD-NN GATE DOES NOT PARETO-IMPROVE IT (2026-06-28).**
+  The trusted June 9 router surface was reproduced with per-row detail by pinning the fingerprint
+  registry to commit `d567ee0d` (8-family June 9 state) in an **isolated git worktree** and running the
+  current builder — the main-repo 57-fingerprint registry was never mutated (validated intact). It
+  reproduces June 9 exactly (calibration fused 30/35 @ 9/26 frozen, 30/35 @ 8/26 at the 0.44 dial),
+  confirming the drift is the registry growth (54→57) alone. Committed surface:
+  `artifacts/v3_june9_router_pinned_rowdetail_operating_point_current702_20260628.json`. Readout
+  (`src/catalytic_earth/june9_router_fold_fusion_readout.py`,
+  `build-june9-router-fold-fusion-readout`):
+  `artifacts/v3_june9_router_fold_fusion_readout_current702_20260628.json` /
+  `work/june9_router_fold_fusion_readout_current702_20260628.md`, status
+  `june9_router_fold_gate_no_pareto_improvement_precision_recall_tradeoff_only`. The June 9 exact
+  recovery ceiling is **30/35**, and the fold-NN OOS-rejection gate gives **no Pareto improvement** at
+  top recovery (cannot beat 8/26 OOS FP while holding 30/35): the residual OOS false positives are
+  structurally high-fold-similar (fold-NN 0.43–0.73; 7 of 8 are `metal_dependent_hydrolase`, the
+  taxonomy-drift family). The fold gate is only a precision/recall dial here (28/35 @ 6/26, 23/35 @
+  1/26, 18/35 @ 0/26). **Correction to the prior read:** the fold channel's +3 recovery was specific to
+  rescuing the *drifted* current-57 router; on the *healthy* June 9 router the cofactor channel already
+  captures the separable OOS rows. Deployment path: the June 9 dial point (30/35 @ 8/26) is the
+  operating point; the fold-NN channel is a tunable precision/recall dial (e.g. a narrower
+  near-zero-OOS-FP product). Any chosen point still needs one heldout-final read.
+
 - **CURRENT-57 COFACTOR + FOLD-NN FUSION PREREGISTERED AND FAIL-CLOSED — FOLD GATE ADDS +3 RECOVERY AT THE OOS-FP CEILING, BUT THE 26/35 ROUTER CEILING BLOCKS THE 30/35 BAR (2026-06-28).**
   Using the row-aligned fold-NN surface, a two-gate fusion rule was preregistered (cofactor-score gate
   AND fold-NN TM OOS-rejection gate; correctness under the legacy-v1 metal-umbrella projection; both

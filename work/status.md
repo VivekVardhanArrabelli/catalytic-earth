@@ -261,3 +261,34 @@ next_action: >
   bar, then re-apply this fold-NN OOS-rejection gate and promote one calibration operating point to a
   single heldout-final read. Router recovery (26/35 ceiling), not OOS FP, is the blocker; more
   fingerprint families will not move it.
+
+## Automation run 2026-06-28 (continuation: June 9 router replay + fold fusion)
+- started_from: prior commit 0079855d (branch claude/continue-last-commit-ytktge)
+- registry_mutation: none (main repo); June 9 surface reproduced via isolated worktree registry pin
+- frozen_current702_sha: unchanged; main-repo registry validated intact at 57 fingerprints
+- state: june9_router_replay_reproduces_bar_fold_gate_no_pareto_improvement
+- work_completed:
+  - reproduced June 9 router per-row surface (isolated worktree, registry pinned to d567ee0d, 8 families)
+  - exact reproduction of trusted June 9: fused 30/35 @ 9/26 frozen, 30/35 @ 8/26 at 0.44 dial
+  - committed pinned per-row surface + added june9_router_fold_fusion_readout builder/CLI/tests
+  - fold-NN gate on June 9: no Pareto improvement at 30/35 (stays 8/26); frontier 28/35@6, 23/35@1, 18/35@0
+  - residual OOS FPs high-fold-similar (0.43-0.73); 7/8 are metal_dependent_hydrolase
+  - corrected prior read: fold +3 recovery was specific to the drifted current-57 router
+  - updated project_state, decision_log, handoff; regenerated docs reference check (missing 0)
+- current_gate_state:
+  - june9_router_reproducible: true (current code + pinned June 9 registry)
+  - june9_dial_operating_point: 30/35 recovery, 8/26 OOS FP
+  - fold_gate_pareto_improves_june9: false (precision/recall dial only)
+  - main_repo_registry_mutated: false
+  - heldout_rows_scored: false
+- validation:
+  - focused_june9_readout_fusion_cli_unittest: passed
+  - compileall: passed
+  - registry_validate: passed (57 fingerprints)
+  - current_docs_reference_check: missing 0
+  - git_diff_check: passed
+- next_action: >
+  Pick the deployment operating point on the June 9 router (default dial 30/35 @ 8/26, or a narrower
+  near-zero-OOS-FP fold-dial regime) and spend the single heldout-final read to confirm it. Do not grow
+  fingerprint families to chase recovery (the drift is a taxonomy-version artifact). Consider pinning
+  the production cofactor-precision router to the June 9 fingerprint resolution.

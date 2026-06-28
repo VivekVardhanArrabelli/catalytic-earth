@@ -1,0 +1,391 @@
+{
+  "artifact_id": "v3_june9_router_fold_fusion_readout_current702_20260628",
+  "created_utc": "2026-06-28T12:24:19Z",
+  "fold_coverage": {
+    "coverage_complete": true,
+    "rows_total": 61,
+    "rows_with_fold_score": 61
+  },
+  "fold_gate_assessment": {
+    "fold_gate_helps": false,
+    "pareto_improvement_over_dial_baseline": null,
+    "precision_recall_frontier": [
+      {
+        "cofactor_threshold": 0.44,
+        "fold_threshold": 0.0,
+        "inscope_correct": 30,
+        "inscope_total": 35,
+        "oos_false_positives": 8,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.44,
+        "fold_threshold": 0.4376,
+        "inscope_correct": 29,
+        "inscope_total": 35,
+        "oos_false_positives": 7,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.44,
+        "fold_threshold": 0.4673,
+        "inscope_correct": 28,
+        "inscope_total": 35,
+        "oos_false_positives": 6,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.569,
+        "fold_threshold": 0.4376,
+        "inscope_correct": 27,
+        "inscope_total": 35,
+        "oos_false_positives": 5,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.5662,
+        "fold_threshold": 0.4673,
+        "inscope_correct": 26,
+        "inscope_total": 35,
+        "oos_false_positives": 5,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.5662,
+        "fold_threshold": 0.4701,
+        "inscope_correct": 25,
+        "inscope_total": 35,
+        "oos_false_positives": 5,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.55,
+        "inscope_correct": 24,
+        "inscope_total": 35,
+        "oos_false_positives": 5,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.65,
+        "inscope_correct": 23,
+        "inscope_total": 35,
+        "oos_false_positives": 1,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.663,
+        "inscope_correct": 22,
+        "inscope_total": 35,
+        "oos_false_positives": 1,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.6647,
+        "inscope_correct": 21,
+        "inscope_total": 35,
+        "oos_false_positives": 1,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.6782,
+        "inscope_correct": 20,
+        "inscope_total": 35,
+        "oos_false_positives": 1,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.6935,
+        "inscope_correct": 19,
+        "inscope_total": 35,
+        "oos_false_positives": 1,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.7399,
+        "inscope_correct": 18,
+        "inscope_total": 35,
+        "oos_false_positives": 0,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.74,
+        "inscope_correct": 17,
+        "inscope_total": 35,
+        "oos_false_positives": 0,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.7454,
+        "inscope_correct": 16,
+        "inscope_total": 35,
+        "oos_false_positives": 0,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.7789,
+        "inscope_correct": 15,
+        "inscope_total": 35,
+        "oos_false_positives": 0,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.7939,
+        "inscope_correct": 14,
+        "inscope_total": 35,
+        "oos_false_positives": 0,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.7959,
+        "inscope_correct": 13,
+        "inscope_total": 35,
+        "oos_false_positives": 0,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.8121,
+        "inscope_correct": 12,
+        "inscope_total": 35,
+        "oos_false_positives": 0,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.8402,
+        "inscope_correct": 11,
+        "inscope_total": 35,
+        "oos_false_positives": 0,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.8571,
+        "inscope_correct": 10,
+        "inscope_total": 35,
+        "oos_false_positives": 0,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.872,
+        "inscope_correct": 9,
+        "inscope_total": 35,
+        "oos_false_positives": 0,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.8819,
+        "inscope_correct": 8,
+        "inscope_total": 35,
+        "oos_false_positives": 0,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.9089,
+        "inscope_correct": 7,
+        "inscope_total": 35,
+        "oos_false_positives": 0,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.914,
+        "inscope_correct": 6,
+        "inscope_total": 35,
+        "oos_false_positives": 0,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.9167,
+        "inscope_correct": 5,
+        "inscope_total": 35,
+        "oos_false_positives": 0,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.9184,
+        "inscope_correct": 4,
+        "inscope_total": 35,
+        "oos_false_positives": 0,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.9261,
+        "inscope_correct": 3,
+        "inscope_total": 35,
+        "oos_false_positives": 0,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.9623,
+        "inscope_correct": 2,
+        "inscope_total": 35,
+        "oos_false_positives": 0,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.4115,
+        "fold_threshold": 0.9792,
+        "inscope_correct": 1,
+        "inscope_total": 35,
+        "oos_false_positives": 0,
+        "oos_total": 26
+      },
+      {
+        "cofactor_threshold": 0.574,
+        "fold_threshold": 0.9792,
+        "inscope_correct": 0,
+        "inscope_total": 35,
+        "oos_false_positives": 0,
+        "oos_total": 26
+      }
+    ],
+    "residual_oos_false_positives_at_dial": [
+      {
+        "called_fingerprint_id": "metal_dependent_hydrolase",
+        "cofactor_score": 0.5982,
+        "entry_id": "m_csa:488",
+        "fold_nn_alntmscore": 0.7306
+      },
+      {
+        "called_fingerprint_id": "metal_dependent_hydrolase",
+        "cofactor_score": 0.5658,
+        "entry_id": "m_csa:59",
+        "fold_nn_alntmscore": 0.6497
+      },
+      {
+        "called_fingerprint_id": "metal_dependent_hydrolase",
+        "cofactor_score": 0.5974,
+        "entry_id": "m_csa:256",
+        "fold_nn_alntmscore": 0.6411
+      },
+      {
+        "called_fingerprint_id": "metal_dependent_hydrolase",
+        "cofactor_score": 0.5978,
+        "entry_id": "m_csa:500",
+        "fold_nn_alntmscore": 0.6409
+      },
+      {
+        "called_fingerprint_id": "metal_dependent_hydrolase",
+        "cofactor_score": 0.589,
+        "entry_id": "m_csa:451",
+        "fold_nn_alntmscore": 0.6341
+      },
+      {
+        "called_fingerprint_id": "metal_dependent_hydrolase",
+        "cofactor_score": 0.5977,
+        "entry_id": "m_csa:312",
+        "fold_nn_alntmscore": 0.5451
+      },
+      {
+        "called_fingerprint_id": "metal_dependent_hydrolase",
+        "cofactor_score": 0.5662,
+        "entry_id": "m_csa:253",
+        "fold_nn_alntmscore": 0.4654
+      },
+      {
+        "called_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "cofactor_score": 0.7359,
+        "entry_id": "m_csa:398",
+        "fold_nn_alntmscore": 0.4343
+      }
+    ],
+    "rule": "retained := fused.top1_score >= cofactor_threshold AND fold_nn_alntmscore >= fold_threshold (June 9 exact correctness)."
+  },
+  "guardrails": {
+    "fingerprint_family_growth": false,
+    "fold_scores_are_calibration_vs_train_only": true,
+    "heldout_labels_read": false,
+    "heldout_rows_scored": false,
+    "june9_surface_is_isolated_pin_reconstruction": true,
+    "live_registry_mutated": false,
+    "model_weights_changed": false,
+    "production_threshold_changed": false,
+    "registry_or_ontology_changed": false,
+    "selection_surface": "calibration_out_of_sample_for_cofactor_channel",
+    "supervised_model_trained": false,
+    "threshold_selected_on_heldout": false
+  },
+  "inputs": {
+    "fold_readout_artifact_id": "v3_current57_fold_tm_recompute_readout_current702_20260628",
+    "june9_pin_provenance": {
+      "builder": "build-cofactor-fusion-operating-point (current code, default graph/labels/channel)",
+      "method": "isolated_git_worktree_registry_pin_no_main_repo_mutation",
+      "note": "Row-detail reconstruction of the trusted June 9 surface (v3_cofactor_fusion_operating_point_train_cal_oos_current702_20260609), regenerated only to expose per-row fused scores for fold-gate layering. The main-repo 57-fingerprint registry was never mutated.",
+      "pinned_fingerprint_family_count": 8,
+      "registry_files_pinned": [
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ],
+      "registry_pinned_to_commit": "d567ee0d",
+      "reproduces_trusted_june9": {
+        "calibration_dial_0p44_oos_fp": "8/26",
+        "calibration_dial_0p44_recall": "30/35",
+        "calibration_fused_frozen_oos_fp": "9/26",
+        "calibration_fused_frozen_recall": "30/35"
+      }
+    },
+    "pinned_june9_artifact_id": "v3_june9_router_pinned_rowdetail_operating_point_current702_20260628"
+  },
+  "interpretation": {
+    "deployment_decision": "The deployable path remains the June 9 router at its dial operating point (30/35 recovery, 8/26 OOS FP). The fold-NN channel is a tunable precision/recall dial on this router (e.g., trading recovery for a near-zero-OOS-FP regime), not a free precision booster: its large marginal value was specific to rescuing the drifted current-57 router. Any chosen operating point still requires a single heldout-final read before deployment; no production threshold is changed here.",
+    "headline": "On the reproduced June 9 router (which clears the 30/35 recovery bar), the row-aligned fold-NN gate does not Pareto-improve the operating point: residual OOS false positives are structurally high-fold-similar, so the fold gate only trades recovery for precision."
+  },
+  "june9_baseline_fold_gate_off": {
+    "dial_0p44_threshold": {
+      "cofactor_threshold": 0.44,
+      "fold_threshold": 0.0,
+      "inscope_correct": 30,
+      "inscope_total": 35,
+      "oos_false_positives": 8,
+      "oos_total": 26
+    },
+    "exact_recovery_ceiling": 30,
+    "frozen_threshold": {
+      "cofactor_threshold": 0.4115,
+      "fold_threshold": 0.0,
+      "inscope_correct": 30,
+      "inscope_total": 35,
+      "oos_false_positives": 9,
+      "oos_total": 26
+    }
+  },
+  "result_class": "heldout_excluded_calibration_only_router_replay_fold_fusion_readout",
+  "schema_version": "june9_router_fold_fusion_readout.v1",
+  "source_artifacts": {
+    "fold_recompute_readout": {
+      "artifact_id": "v3_current57_fold_tm_recompute_readout_current702_20260628",
+      "path": "artifacts/v3_current57_fold_tm_recompute_readout_current702_20260628.json",
+      "schema_version": "current57_fold_tm_recompute_readout.v1",
+      "sha256": "32562cf8ff57f95af83c8667a2441c3c0cf13c22414a69a6760b096ebde7120e",
+      "status": "current57_fold_tm_recompute_readout_row_aligned"
+    },
+    "pinned_june9_operating_point": {
+      "artifact_id": "v3_june9_router_pinned_rowdetail_operating_point_current702_20260628",
+      "path": "artifacts/v3_june9_router_pinned_rowdetail_operating_point_current702_20260628.json",
+      "schema_version": "cofactor_fusion_operating_point.v1",
+      "sha256": "f825378de422c7e2198cd638befd7006e2a933a0fb6ad9b395d0b2c8c71b3406",
+      "status": "complete"
+    }
+  },
+  "status": "june9_router_fold_gate_no_pareto_improvement_precision_recall_tradeoff_only"
+}

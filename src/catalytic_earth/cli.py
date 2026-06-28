@@ -126,6 +126,13 @@ from .current57_cofactor_fold_fusion_preregistration import (
     DEFAULT_TRUSTED_PRECISION_PATH as DEFAULT_CURRENT57_FUSION_TRUSTED_PRECISION_PATH,
     write_current57_cofactor_fold_fusion_preregistration,
 )
+from .june9_router_fold_fusion_readout import (
+    DEFAULT_FOLD_READOUT_PATH as DEFAULT_JUNE9_FUSION_FOLD_READOUT_PATH,
+    DEFAULT_OUT_PATH as DEFAULT_JUNE9_FUSION_OUT_PATH,
+    DEFAULT_PINNED_JUNE9_PATH as DEFAULT_JUNE9_FUSION_PINNED_PATH,
+    DEFAULT_REPORT_PATH as DEFAULT_JUNE9_FUSION_REPORT_PATH,
+    write_june9_router_fold_fusion_readout,
+)
 from .predicted_geometry_atlas_engine_preregistration import (
     DEFAULT_COFACTOR_CHANNEL_PATH,
     DEFAULT_COFACTOR_PRECISION_PATH,
@@ -2966,6 +2973,27 @@ def cmd_build_current57_cofactor_fold_fusion_preregistration(
         f"@ FP {fusion_best.get('oos_false_positives')}; fold recovery gain "
         f"{marginal.get('fold_recovery_gain_at_oos_fp_ceiling')}; compatible ceiling "
         f"{ceiling.get('compatible_recovery_ceiling')}/{ceiling.get('inscope_total')})"
+    )
+    return 0
+
+
+def cmd_build_june9_router_fold_fusion_readout(args: argparse.Namespace) -> int:
+    readout = write_june9_router_fold_fusion_readout(
+        pinned_june9_path=Path(args.pinned_june9),
+        fold_readout_path=Path(args.fold_readout),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    baseline = readout.get("june9_baseline_fold_gate_off", {}).get(
+        "dial_0p44_threshold", {}
+    )
+    assessment = readout.get("fold_gate_assessment", {})
+    print(
+        "Wrote June 9 router + fold fusion readout to "
+        f"{args.out} ({readout.get('status')}; June 9 dial baseline "
+        f"{baseline.get('inscope_correct')}/{baseline.get('inscope_total')} @ FP "
+        f"{baseline.get('oos_false_positives')}; fold gate Pareto-improves "
+        f"{assessment.get('fold_gate_helps')})"
     )
     return 0
 
@@ -23527,6 +23555,35 @@ def build_parser() -> argparse.ArgumentParser:
     )
     current57_cofactor_fold_fusion_preregistration.set_defaults(
         func=cmd_build_current57_cofactor_fold_fusion_preregistration
+    )
+
+    june9_router_fold_fusion_readout = subparsers.add_parser(
+        "build-june9-router-fold-fusion-readout",
+        help=(
+            "layer the row-aligned fold-NN OOS-rejection gate on the reproduced "
+            "June 9 router surface and report the precision/recall frontier (train/cal)"
+        ),
+    )
+    june9_router_fold_fusion_readout.add_argument(
+        "--pinned-june9",
+        default=DEFAULT_JUNE9_FUSION_PINNED_PATH,
+        help="June 9 router per-row operating point (isolated registry-pin reconstruction)",
+    )
+    june9_router_fold_fusion_readout.add_argument(
+        "--fold-readout",
+        default=DEFAULT_JUNE9_FUSION_FOLD_READOUT_PATH,
+        help="row-aligned current-57 Fold/TM recompute readout artifact",
+    )
+    june9_router_fold_fusion_readout.add_argument(
+        "--out",
+        default=DEFAULT_JUNE9_FUSION_OUT_PATH,
+    )
+    june9_router_fold_fusion_readout.add_argument(
+        "--report",
+        default=DEFAULT_JUNE9_FUSION_REPORT_PATH,
+    )
+    june9_router_fold_fusion_readout.set_defaults(
+        func=cmd_build_june9_router_fold_fusion_readout
     )
 
     predicted_geometry_atlas_engine_preregistration = subparsers.add_parser(

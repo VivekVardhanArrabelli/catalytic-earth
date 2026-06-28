@@ -3,6 +3,42 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-28: June 9 router replay reproduces the bar (30/35 @ 8 FP); the fold-NN gate does NOT Pareto-improve it — fold rescues a drifted router, it is not a precision booster on the good one
+
+Decision (automation continuation, no registry mutation). To test the documented "replay June 9 +
+fold gate" path, the trusted June 9 router surface was reproduced **with per-row detail** by pinning
+the fingerprint registry to commit `d567ee0d` (the June 9, 8-family state) inside an **isolated git
+worktree** and running the current `build-cofactor-fusion-operating-point` builder. The main-repo
+57-fingerprint registry was never mutated (validated: 57 fingerprints intact, `data/registries` clean).
+The reconstruction reproduces the trusted June 9 numbers exactly — calibration fused **30/35 @ 9/26
+OOS FP** frozen, **30/35 @ 8/26** at the 0.44 dial — confirming the drift is entirely the registry
+growth (54→57, the v2 metal split) consulted by `predicted_geometry_robustness`, not the
+graph/labels/geometry/channel artifacts (all byte-identical to June 9). The per-row surface is committed
+as `artifacts/v3_june9_router_pinned_rowdetail_operating_point_current702_20260628.json`.
+
+Readout (`src/catalytic_earth/june9_router_fold_fusion_readout.py`,
+`build-june9-router-fold-fusion-readout`):
+`artifacts/v3_june9_router_fold_fusion_readout_current702_20260628.json` /
+`work/june9_router_fold_fusion_readout_current702_20260628.md`. Status
+`june9_router_fold_gate_no_pareto_improvement_precision_recall_tradeoff_only`:
+
+- The June 9 exact recovery ceiling is **30/35**, so the dial point **30/35 @ 8/26 OOS FP** is the top
+  operating point.
+- Layering the fold-NN OOS-rejection gate gives **no Pareto improvement** at top recovery: it cannot
+  beat 8/26 OOS FP while holding 30/35. The residual OOS false positives are structurally
+  high-fold-similar (fold-NN 0.43–0.73, overlapping the in-scope-correct fold distribution; **7 of 8
+  are `metal_dependent_hydrolase` calls** — the taxonomy-drift family).
+- The fold gate is only a precision/recall **dial** on the good router: e.g. 28/35 @ 6/26, 23/35 @
+  1/26, 18/35 @ 0/26.
+
+Durable correction to the prior session's read: the fold channel's large marginal value (+3 recovery)
+was **specific to rescuing the drifted current-57 router**, where the cofactor channel was broken. On
+the healthy June 9 router the cofactor channel already captures the separable OOS rows, so the fold
+channel adds no free precision. Deployment path: the June 9 router dial point (30/35 @ 8/26) is the
+operating point; treat the fold-NN channel as a tunable precision/recall dial (e.g. a narrower
+near-zero-OOS-FP product). Any chosen point still needs a single heldout-final read; no production
+threshold, model weight, registry, ontology, label, or fingerprint-family change was made.
+
 ## 2026-06-28: Current-57 cofactor + fold-NN fusion preregistered and fail-closed — fold gate adds +3 recovery at the OOS-FP ceiling, but the 26/35 router recovery ceiling blocks the 30/35 bar
 
 Decision (automation continuation, no registry mutation). With the row-aligned fold-NN surface from

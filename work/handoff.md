@@ -1,5 +1,45 @@
 # Handoff
 
+## Session run - June 9 router replay reproduces the bar (30/35 @ 8 FP); fold-NN gate gives NO Pareto improvement (precision/recall dial only); isolated registry pin, no main-repo registry mutation (2026-06-28)
+
+- Continued on branch `claude/continue-last-commit-ytktge` from commit `0079855d` (current-57
+  cofactor+fold fusion preregistration). No main-repo registry/ontology/label/threshold/heldout/
+  model-weight/fingerprint mutation. Main-repo registry validated intact at 57 fingerprints.
+- Reproduced the trusted June 9 router surface **with per-row detail**: pinned the fingerprint registry
+  to commit `d567ee0d` (June 9, 8-family state) inside an **isolated git worktree** and ran the current
+  `build-cofactor-fusion-operating-point`. This exactly reproduces June 9 (calibration fused 30/35 @
+  9/26 frozen, 30/35 @ 8/26 at the 0.44 dial), proving the 30/35→13/35 drift is the registry growth
+  (54→57, v2 metal split) consulted by `predicted_geometry_robustness` — the graph/labels/geometry/
+  channel artifacts are byte-identical to June 9. The worktree was removed afterward; the main repo's
+  registry was never changed.
+- Committed the per-row June 9 surface as
+  `artifacts/v3_june9_router_pinned_rowdetail_operating_point_current702_20260628.json` (distinct
+  artifact_id + `pin_provenance` recording the pin commit and isolation method).
+- Added the readout builder + CLI:
+  `src/catalytic_earth/june9_router_fold_fusion_readout.py` and
+  `build-june9-router-fold-fusion-readout`. Artifact/report:
+  `artifacts/v3_june9_router_fold_fusion_readout_current702_20260628.json` /
+  `work/june9_router_fold_fusion_readout_current702_20260628.md`. Status
+  `june9_router_fold_gate_no_pareto_improvement_precision_recall_tradeoff_only`:
+  - June 9 exact recovery ceiling **30/35**; dial point **30/35 @ 8/26 OOS FP** is the top operating
+    point.
+  - Fold-NN OOS-rejection gate gives **no Pareto improvement** at top recovery (cannot beat 8/26 while
+    holding 30/35). Residual OOS FPs are high-fold-similar (0.43–0.73); **7 of 8 are
+    `metal_dependent_hydrolase`** (the drift family).
+  - Fold gate is a precision/recall dial only: 28/35 @ 6/26, 23/35 @ 1/26, 18/35 @ 0/26.
+- Correction to prior read recorded in docs: the fold channel's +3 recovery was specific to the drifted
+  current-57 router; on the healthy June 9 router the cofactor channel already separates the OOS rows.
+- Tests: `tests/test_june9_router_fold_fusion_readout.py` (4) + a CLI parser-defaults case. Regenerated
+  docs artifact-reference check -> missing 0.
+- Validation: focused unittest (June 9 readout + fusion + full test_cli) OK; compileall OK; registry
+  `validate` OK (57 FP intact); docs reference check missing 0; `git diff --check` clean.
+- Next exact action: pick the deployment operating point on the June 9 router (default: dial 30/35 @
+  8/26; or a narrower near-zero-OOS-FP fold-dial regime) and spend the **single heldout-final read** to
+  confirm it, since both the train/cal recovery and precision are now characterized. Do not grow
+  fingerprint families to chase recovery; the current-57 drift is a taxonomy-version artifact, not a
+  supply gap. Separately, consider whether the production router should be pinned to the June 9
+  fingerprint resolution for the cofactor-precision surface.
+
 ## Session run - current-57 cofactor+fold fusion preregistered and fail-closed; fold gate +3 recovery at OOS-FP ceiling; router 26/35 ceiling blocks the bar; no registry apply (2026-06-28)
 
 - Continued on branch `claude/continue-last-commit-ytktge` from the prior commit
