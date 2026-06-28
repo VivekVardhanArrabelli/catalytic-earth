@@ -1,0 +1,1085 @@
+{
+  "artifact_id": "v3_heldout_oneshot_preregistration_current702_20260628",
+  "created_utc": "2026-06-28T17:16:16Z",
+  "execution_procedure": [
+    "In an isolated git worktree at HEAD, pin the registry: git checkout d567ee0d -- data/registries/mechanism_fingerprints.json data/registries/mechanism_ontology.json (the main repo registry is never mutated).",
+    "Construct a held-out split manifest containing exactly the 126 frozen_heldout_set entry_ids (verify sha256 first).",
+    "Run the cofactor_fusion_operating_point router over the held-out coordinate dirs at cofactor_threshold 0.44, producing fused per-row calls and scores for the frozen held-out rows only.",
+    "Count in-scope recovery (fused exact match at threshold) and OOS false positives (fused retained at threshold); compute the two rates.",
+    "Compare to SUCCESS_BAR.primary_pass_criteria; emit PASS or FAIL verbatim and stop. Report the secondary fold-gated point for information only."
+  ],
+  "frozen_heldout_set": {
+    "counts": {
+      "inscope": 47,
+      "oos": 79,
+      "total": 126
+    },
+    "definition": "current702 label rows not in the train/cal split manifest that also have a staged held-out structure (scoreable). Enumerated and content-hashed so the evaluated set cannot be swapped or trimmed after the fact.",
+    "members": [
+      {
+        "accessions": [
+          "P0A6Q3"
+        ],
+        "entry_id": "m_csa:10",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "Q02127"
+        ],
+        "entry_id": "m_csa:109",
+        "row_class": "inscope",
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "accessions": [
+          "Q9T0N8"
+        ],
+        "entry_id": "m_csa:115",
+        "row_class": "inscope",
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "accessions": [
+          "Q00511"
+        ],
+        "entry_id": "m_csa:118",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P00480"
+        ],
+        "entry_id": "m_csa:12",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P07850"
+        ],
+        "entry_id": "m_csa:121",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "Q9ZP19"
+        ],
+        "entry_id": "m_csa:125",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P37610"
+        ],
+        "entry_id": "m_csa:129",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P20586"
+        ],
+        "entry_id": "m_csa:131",
+        "row_class": "inscope",
+        "true_fingerprint_id": "flavin_monooxygenase"
+      },
+      {
+        "accessions": [
+          "P49053"
+        ],
+        "entry_id": "m_csa:14",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "O06644"
+        ],
+        "entry_id": "m_csa:155",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P0A434"
+        ],
+        "entry_id": "m_csa:159",
+        "row_class": "inscope",
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accessions": [
+          "P0A7Y4"
+        ],
+        "entry_id": "m_csa:163",
+        "row_class": "inscope",
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accessions": [
+          "P00730"
+        ],
+        "entry_id": "m_csa:171",
+        "row_class": "inscope",
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accessions": [
+          "P35505"
+        ],
+        "entry_id": "m_csa:180",
+        "row_class": "inscope",
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accessions": [
+          "O15527"
+        ],
+        "entry_id": "m_csa:185",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P09147"
+        ],
+        "entry_id": "m_csa:188",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P07237"
+        ],
+        "entry_id": "m_csa:191",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "Q9N0A4"
+        ],
+        "entry_id": "m_csa:192",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P00952"
+        ],
+        "entry_id": "m_csa:197",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "Q5SKN9"
+        ],
+        "entry_id": "m_csa:198",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P04425"
+        ],
+        "entry_id": "m_csa:199",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "Q07WU7"
+        ],
+        "entry_id": "m_csa:20",
+        "row_class": "inscope",
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "accessions": [
+          "Q9X4K7"
+        ],
+        "entry_id": "m_csa:201",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P38489"
+        ],
+        "entry_id": "m_csa:211",
+        "row_class": "inscope",
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "accessions": [
+          "P10724"
+        ],
+        "entry_id": "m_csa:213",
+        "row_class": "inscope",
+        "true_fingerprint_id": "plp_dependent_enzyme"
+      },
+      {
+        "accessions": [
+          "P52704"
+        ],
+        "entry_id": "m_csa:217",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P20906"
+        ],
+        "entry_id": "m_csa:220",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "Q9WZC3"
+        ],
+        "entry_id": "m_csa:225",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "Q59643"
+        ],
+        "entry_id": "m_csa:230",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P00433"
+        ],
+        "entry_id": "m_csa:239",
+        "row_class": "inscope",
+        "true_fingerprint_id": "heme_peroxidase_oxidase"
+      },
+      {
+        "accessions": [
+          "Q8I914"
+        ],
+        "entry_id": "m_csa:242",
+        "row_class": "inscope",
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accessions": [
+          "P04963"
+        ],
+        "entry_id": "m_csa:250",
+        "row_class": "inscope",
+        "true_fingerprint_id": "heme_peroxidase_oxidase"
+      },
+      {
+        "accessions": [
+          "P33247"
+        ],
+        "entry_id": "m_csa:254",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P00334"
+        ],
+        "entry_id": "m_csa:255",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P0A6L2"
+        ],
+        "entry_id": "m_csa:267",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P77072"
+        ],
+        "entry_id": "m_csa:297",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P15559"
+        ],
+        "entry_id": "m_csa:3",
+        "row_class": "inscope",
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "accessions": [
+          "P09373"
+        ],
+        "entry_id": "m_csa:30",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P00469"
+        ],
+        "entry_id": "m_csa:31",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P00924"
+        ],
+        "entry_id": "m_csa:311",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P04395"
+        ],
+        "entry_id": "m_csa:313",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "Q04760"
+        ],
+        "entry_id": "m_csa:32",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P09155"
+        ],
+        "entry_id": "m_csa:321",
+        "row_class": "inscope",
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accessions": [
+          "P05314"
+        ],
+        "entry_id": "m_csa:323",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "Q9RUB5"
+        ],
+        "entry_id": "m_csa:333",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P44859"
+        ],
+        "entry_id": "m_csa:334",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P06622"
+        ],
+        "entry_id": "m_csa:34",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P9WNP5"
+        ],
+        "entry_id": "m_csa:346",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P00949"
+        ],
+        "entry_id": "m_csa:352",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P30074"
+        ],
+        "entry_id": "m_csa:355",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P14769"
+        ],
+        "entry_id": "m_csa:356",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P08179"
+        ],
+        "entry_id": "m_csa:363",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P33038"
+        ],
+        "entry_id": "m_csa:369",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "O75164"
+        ],
+        "entry_id": "m_csa:370",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P0ABP8"
+        ],
+        "entry_id": "m_csa:375",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P23395"
+        ],
+        "entry_id": "m_csa:384",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P07801"
+        ],
+        "entry_id": "m_csa:392",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P56272"
+        ],
+        "entry_id": "m_csa:396",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P04063"
+        ],
+        "entry_id": "m_csa:397",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P04036"
+        ],
+        "entry_id": "m_csa:402",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P07584"
+        ],
+        "entry_id": "m_csa:403",
+        "row_class": "inscope",
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accessions": [
+          "Q0ZPV7"
+        ],
+        "entry_id": "m_csa:407",
+        "row_class": "inscope",
+        "true_fingerprint_id": "ser_his_acid_hydrolase"
+      },
+      {
+        "accessions": [
+          "P0A790"
+        ],
+        "entry_id": "m_csa:409",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P37821"
+        ],
+        "entry_id": "m_csa:418",
+        "row_class": "inscope",
+        "true_fingerprint_id": "plp_dependent_enzyme"
+      },
+      {
+        "accessions": [
+          "O52552"
+        ],
+        "entry_id": "m_csa:419",
+        "row_class": "inscope",
+        "true_fingerprint_id": "plp_dependent_enzyme"
+      },
+      {
+        "accessions": [
+          "P08236"
+        ],
+        "entry_id": "m_csa:423",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P23721"
+        ],
+        "entry_id": "m_csa:424",
+        "row_class": "inscope",
+        "true_fingerprint_id": "plp_dependent_enzyme"
+      },
+      {
+        "accessions": [
+          "Q9ZF13"
+        ],
+        "entry_id": "m_csa:428",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P80366"
+        ],
+        "entry_id": "m_csa:43",
+        "row_class": "inscope",
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accessions": [
+          "O59893"
+        ],
+        "entry_id": "m_csa:431",
+        "row_class": "inscope",
+        "true_fingerprint_id": "ser_his_acid_hydrolase"
+      },
+      {
+        "accessions": [
+          "P00634"
+        ],
+        "entry_id": "m_csa:44",
+        "row_class": "inscope",
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accessions": [
+          "P07987"
+        ],
+        "entry_id": "m_csa:440",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P62694"
+        ],
+        "entry_id": "m_csa:444",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P33665"
+        ],
+        "entry_id": "m_csa:448",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P43379"
+        ],
+        "entry_id": "m_csa:45",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "O68884"
+        ],
+        "entry_id": "m_csa:453",
+        "row_class": "inscope",
+        "true_fingerprint_id": "ser_his_acid_hydrolase"
+      },
+      {
+        "accessions": [
+          "P14385"
+        ],
+        "entry_id": "m_csa:46",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P19080"
+        ],
+        "entry_id": "m_csa:474",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P26214"
+        ],
+        "entry_id": "m_csa:480",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P07649"
+        ],
+        "entry_id": "m_csa:493",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "Q9FDN7"
+        ],
+        "entry_id": "m_csa:497",
+        "row_class": "inscope",
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "accessions": [
+          "Q9X592"
+        ],
+        "entry_id": "m_csa:509",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "Q13526"
+        ],
+        "entry_id": "m_csa:511",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P61517"
+        ],
+        "entry_id": "m_csa:517",
+        "row_class": "inscope",
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accessions": [
+          "P11708"
+        ],
+        "entry_id": "m_csa:526",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P75430"
+        ],
+        "entry_id": "m_csa:541",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "Q7M523"
+        ],
+        "entry_id": "m_csa:545",
+        "row_class": "inscope",
+        "true_fingerprint_id": "plp_dependent_enzyme"
+      },
+      {
+        "accessions": [
+          "P15245"
+        ],
+        "entry_id": "m_csa:551",
+        "row_class": "inscope",
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "accessions": [
+          "Q9WZW0"
+        ],
+        "entry_id": "m_csa:56",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P46844"
+        ],
+        "entry_id": "m_csa:566",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P29218"
+        ],
+        "entry_id": "m_csa:577",
+        "row_class": "inscope",
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accessions": [
+          "Q01172"
+        ],
+        "entry_id": "m_csa:590",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "Q9UM07"
+        ],
+        "entry_id": "m_csa:594",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P36936"
+        ],
+        "entry_id": "m_csa:599",
+        "row_class": "inscope",
+        "true_fingerprint_id": "ser_his_acid_hydrolase"
+      },
+      {
+        "accessions": [
+          "P0AEK4"
+        ],
+        "entry_id": "m_csa:606",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P00778"
+        ],
+        "entry_id": "m_csa:609",
+        "row_class": "inscope",
+        "true_fingerprint_id": "ser_his_acid_hydrolase"
+      },
+      {
+        "accessions": [
+          "P0A715"
+        ],
+        "entry_id": "m_csa:614",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "Q44297"
+        ],
+        "entry_id": "m_csa:617",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P36655"
+        ],
+        "entry_id": "m_csa:627",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P84147"
+        ],
+        "entry_id": "m_csa:634",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P05057"
+        ],
+        "entry_id": "m_csa:647",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P04807"
+        ],
+        "entry_id": "m_csa:651",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "O52942"
+        ],
+        "entry_id": "m_csa:67",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "Q7SIG4"
+        ],
+        "entry_id": "m_csa:686",
+        "row_class": "inscope",
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accessions": [
+          "Q5JP69"
+        ],
+        "entry_id": "m_csa:688",
+        "row_class": "inscope",
+        "true_fingerprint_id": "ser_his_acid_hydrolase"
+      },
+      {
+        "accessions": [
+          "P00431"
+        ],
+        "entry_id": "m_csa:709",
+        "row_class": "inscope",
+        "true_fingerprint_id": "heme_peroxidase_oxidase"
+      },
+      {
+        "accessions": [
+          "P12295"
+        ],
+        "entry_id": "m_csa:71",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P25524"
+        ],
+        "entry_id": "m_csa:710",
+        "row_class": "inscope",
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accessions": [
+          "P0ABI8",
+          "P0ABJ1",
+          "P0ABJ3"
+        ],
+        "entry_id": "m_csa:714",
+        "row_class": "inscope",
+        "true_fingerprint_id": "heme_peroxidase_oxidase"
+      },
+      {
+        "accessions": [
+          "P00782"
+        ],
+        "entry_id": "m_csa:723",
+        "row_class": "inscope",
+        "true_fingerprint_id": "ser_his_acid_hydrolase"
+      },
+      {
+        "accessions": [
+          "P61459"
+        ],
+        "entry_id": "m_csa:73",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P55792"
+        ],
+        "entry_id": "m_csa:750",
+        "row_class": "inscope",
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "accessions": [
+          "Q05603"
+        ],
+        "entry_id": "m_csa:79",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "Q9X0I0"
+        ],
+        "entry_id": "m_csa:80",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P31570"
+        ],
+        "entry_id": "m_csa:853",
+        "row_class": "inscope",
+        "true_fingerprint_id": "cobalamin_radical_rearrangement"
+      },
+      {
+        "accessions": [
+          "P80147"
+        ],
+        "entry_id": "m_csa:854",
+        "row_class": "inscope",
+        "true_fingerprint_id": "plp_dependent_enzyme"
+      },
+      {
+        "accessions": [
+          "P51541"
+        ],
+        "entry_id": "m_csa:86",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P94388"
+        ],
+        "entry_id": "m_csa:866",
+        "row_class": "inscope",
+        "true_fingerprint_id": "ser_his_acid_hydrolase"
+      },
+      {
+        "accessions": [
+          "A2RJT9"
+        ],
+        "entry_id": "m_csa:892",
+        "row_class": "inscope",
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "accessions": [
+          "P23657"
+        ],
+        "entry_id": "m_csa:897",
+        "row_class": "inscope",
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accessions": [
+          "P31153"
+        ],
+        "entry_id": "m_csa:9",
+        "row_class": "oos",
+        "true_fingerprint_id": null
+      },
+      {
+        "accessions": [
+          "P9WI55"
+        ],
+        "entry_id": "m_csa:916",
+        "row_class": "inscope",
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accessions": [
+          "P0ABF6"
+        ],
+        "entry_id": "m_csa:97",
+        "row_class": "inscope",
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accessions": [
+          "Q8GS60"
+        ],
+        "entry_id": "m_csa:990",
+        "row_class": "inscope",
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "accessions": [
+          "Q9Y3Z3"
+        ],
+        "entry_id": "m_csa:994",
+        "row_class": "inscope",
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      }
+    ],
+    "sha256": "45632519a2b2f9645c2bb82a9fbff681dde34cfda21dde720550402c0bb907b6"
+  },
+  "frozen_rule": {
+    "cofactor_threshold": 0.44,
+    "fold_gate": "off",
+    "inscope_correct_definition": "fused.top1_fingerprint_id == frozen true_fingerprint_id AND fused.top1_score >= 0.44 (identical to the builder's fused_correct_at_threshold that produced the calibration 30/35)",
+    "name": "june9_router_cofactor_dial_0p44_fold_gate_off",
+    "oos_false_positive_definition": "fused.top1_score >= 0.44 on an OOS row",
+    "router": "cofactor_fusion_operating_point builder with the fingerprint registry pinned to git commit d567ee0d (the June 9 state: 8 fingerprint families), default graph artifacts/v1_graph_1025.json, label manifest v3_sequence_nn_label_manifest_current702_20260525, channel v3_cofactor_presence_calibration_current702_20260604, alphafold_version 6"
+  },
+  "guardrails": {
+    "heldout_labels_used_as_features": false,
+    "heldout_labels_used_only_to_size_and_freeze_the_set": true,
+    "heldout_rows_scored": false,
+    "model_weights_changed": false,
+    "production_threshold_changed": false,
+    "registry_or_ontology_changed": false,
+    "success_bar_derived_from_calibration_only": true,
+    "success_bar_derived_from_heldout": false
+  },
+  "heldout_coordinate_dirs": [
+    "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout",
+    "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_cofactor_confounded_oos"
+  ],
+  "one_shot_guardrail": "Run exactly once. Report the resulting counts verbatim. Do not adjust the rule, thresholds, correctness definition, or row set after observing any held-out result. Any re-run or post-hoc change invalidates this pre-registration.",
+  "primary_hypothesis": "The June 9 router at the 0.44 cofactor dial (calibration 30/35 recovery, 8/26 OOS FP) generalizes to the never-seen held-out M-CSA split at the pre-committed bar.",
+  "provenance": {
+    "label_manifest": {
+      "artifact_id": null,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "note": "The committing git commit is the pre-registration lock; the executing run must cite this artifact_id, match frozen_heldout_set.sha256, and apply frozen_rule unchanged.",
+    "split_manifest": {
+      "path": "artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json",
+      "sha256": "d06038f1faa9c42d98c409d949450c6cc953d6da325d98c0636ed4d9daf52d83"
+    }
+  },
+  "result_class": "locked_one_shot_heldout_preregistration_no_heldout_scoring_no_registry_change",
+  "schema_version": "heldout_oneshot_preregistration.v1",
+  "secondary_exploratory": {
+    "description": "Exploratory only, no pass/fail: also apply a fold-NN TM gate >= 0.65 (the M-CSA baseline's high-precision point) on top of the primary rule, to check whether the off-M-CSA-validated abstention signal also tightens held-out precision. Reported alongside the primary result but never used to redefine the primary decision.",
+    "name": "cofactor_dial_0p44_plus_fold_nn_gate_0p65"
+  },
+  "status": "preregistered_not_yet_run",
+  "success_bar": {
+    "calibration_reference": {
+      "inscope_recovery": "30/35 (0.857)",
+      "oos_false_positive_rate": "8/26 (0.308)"
+    },
+    "derivation": "Calibration recovery 0.857 has SE ~0.059 on n=35, so ~2 SE below is ~0.74; rounded conservatively to a 0.70 floor. Calibration OOS-FP 0.308 has SE ~0.090 on n=26, so ~2 SE above is ~0.49; rounded conservatively to a 0.40 ceiling. Both bars were fixed before any held-out row was scored.",
+    "interpretation": "PASS means the calibration June 9 dial operating point generalizes to the never-seen held-out M-CSA split. FAIL means it does not, and no post-hoc threshold change may rescue this pre-registration.",
+    "primary_pass_criteria": "heldout in-scope recovery rate >= 0.70 AND heldout OOS false-positive rate <= 0.40"
+  },
+  "why": "All session operating points are calibration development figures (the calibration rows were inspected repeatedly), so they are optimistic and unvalidated. This locks the single unbiased test before it is run so the result cannot be cherry-picked."
+}

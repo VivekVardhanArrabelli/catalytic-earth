@@ -3,6 +3,37 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-28: Held-out one-shot test PRE-REGISTERED (frozen rule + content-hashed row set + pre-committed bar) — locks the single unbiased test so it cannot be cherry-picked
+
+Decision (automation continuation, no held-out scoring, no registry mutation). Every operating point
+this session (June 9 dial 30/35 @ 8 FP, the fold frontier, 28/35 fold-NN recovery) is a *calibration
+development* figure — the same 35 in-scope + 26 OOS calibration rows were inspected from several angles,
+so those numbers are optimistic by construction and not unbiased generalization estimates. The only
+unbiased estimate is one choices-frozen read of the never-touched held-out split. This commit locks
+that test before it is run. Module + CLI: `src/catalytic_earth/heldout_oneshot_preregistration.py`,
+`build-heldout-oneshot-preregistration`. Artifact/report:
+`artifacts/v3_heldout_oneshot_preregistration_current702_20260628.json` /
+`work/heldout_oneshot_preregistration_current702_20260628.md`. Status `preregistered_not_yet_run`.
+
+Locked contents:
+- **Frozen rule (primary):** the June 9 router (registry pinned to commit `d567ee0d`, 8 families) at
+  cofactor dial **0.44**, fold gate off; in-scope correct = fused exact match at threshold; OOS FP =
+  fused retained at threshold — identical logic to the calibration 30/35.
+- **Frozen held-out set:** the **126** scoreable held-out rows (current702 minus the 524 train/cal,
+  intersected with staged structures) = **47 in-scope + 79 OOS**, enumerated and content-hashed
+  (`sha256 45632519...`, deterministic) so the set cannot be swapped or trimmed.
+- **Pre-committed pass bar (from calibration only, before any held-out scoring):** PASS iff held-out
+  in-scope recovery rate **>= 0.70** AND held-out OOS false-positive rate **<= 0.40** (calibration
+  0.857 / 0.308 minus ~2 SE, rounded conservatively).
+- **Secondary (exploratory, no pass/fail):** the cofactor 0.44 + fold-NN >= 0.65 point.
+- **One-shot guardrail:** run once, report verbatim, no post-hoc rule/threshold/set change; any re-run
+  invalidates the pre-registration. The committing git commit is the lock; the executing run must cite
+  the artifact_id and match the sha256.
+
+This artifact scores no held-out data; held-out labels were used only to size and freeze the set, never
+as features. Executing the test remains a separately authorized one-shot. No registry/ontology/label/
+threshold/model change.
+
 ## 2026-06-28: Fold-NN mechanism recovery harness built and baselined on M-CSA (28/35 recovery; 96% precision at fold>=0.65) — ready to run off-M-CSA once a labelled positive set exists
 
 Decision (automation continuation, no registry mutation). Because the off-M-CSA recovery test is

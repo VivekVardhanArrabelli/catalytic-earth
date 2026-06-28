@@ -279,6 +279,28 @@ class CliTests(unittest.TestCase):
             ),
         )
 
+    def test_heldout_oneshot_preregistration_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            ["build-heldout-oneshot-preregistration"]
+        )
+
+        self.assertEqual(
+            args.split_manifest,
+            (
+                "artifacts/"
+                "v3_mechanism_feature_embedding_train_cal_split_manifest_current702_"
+                "20260601.json"
+            ),
+        )
+        self.assertEqual(
+            args.label_manifest,
+            "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+        )
+        self.assertEqual(
+            args.out,
+            "artifacts/v3_heldout_oneshot_preregistration_current702_20260628.json",
+        )
+
     def test_external_source_pilot_uniref_current_reference_parser_defaults(
         self,
     ) -> None:

@@ -373,3 +373,30 @@ next_action: >
   On the user's decision, materialize/promote a trusted-labeled non-M-CSA positive set with structures,
   foldseek it vs the M-CSA train atlas, and run build-fold-nn-mechanism-recovery-readout --positives ...
   to compare off-M-CSA recovery against the 28/35 M-CSA baseline. Do not grow families.
+
+## Automation run 2026-06-28 (continuation: held-out one-shot pre-registration)
+- started_from: prior commit eea36c59 (branch claude/continue-last-commit-ytktge)
+- registry_mutation: none; no held-out scoring; locked contract only
+- state: heldout_oneshot_preregistered_not_yet_run
+- work_completed:
+  - verified session leakage status: no training, no heldout scoring, no data/ mutation
+  - added heldout_oneshot_preregistration builder/CLI/tests
+  - locked June 9 router @ 0.44 dial; 126-row heldout set (47 in-scope + 79 OOS) content-hashed 45632519...
+  - pre-committed PASS bar: recovery >= 0.70 AND OOS-FP rate <= 0.40 (calibration 0.857/0.308 minus ~2 SE)
+  - one-shot guardrail; heldout labels used only to freeze the set; bar from calibration only
+  - updated project_state, decision_log, handoff; regenerated docs reference check (missing 0)
+- current_gate_state:
+  - heldout_preregistration_locked: true (sha256 45632519..., deterministic)
+  - heldout_test_executed: false (separately authorized one-shot)
+  - heldout_execution_path_implemented: false (must match frozen sha when built)
+  - registry_mutated: false; heldout_rows_scored: false
+- validation:
+  - focused_prereg_cli_unittest: passed
+  - compileall: passed
+  - registry_validate: passed (57 fingerprints)
+  - current_docs_reference_check: missing 0
+  - git_diff_check: passed
+- next_action: >
+  Decide whether to authorize the frozen held-out one-shot (certifies M-CSA generalization only) and/or
+  the still-pending off-M-CSA recovery data decision. The pre-registration is locked; execution is a
+  separate authorized step that must match sha256 45632519... Do not grow families.

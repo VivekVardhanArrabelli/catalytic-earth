@@ -26,6 +26,20 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **HELD-OUT ONE-SHOT TEST PRE-REGISTERED — locks the single unbiased test (2026-06-28).**
+  All session operating points are calibration *development* figures (the same calibration rows were
+  inspected repeatedly), so they are optimistic and unvalidated; the only unbiased estimate is one
+  choices-frozen read of the never-touched held-out split. That test is now locked before running:
+  `artifacts/v3_heldout_oneshot_preregistration_current702_20260628.json` /
+  `work/heldout_oneshot_preregistration_current702_20260628.md`
+  (`src/catalytic_earth/heldout_oneshot_preregistration.py`, `build-heldout-oneshot-preregistration`),
+  status `preregistered_not_yet_run`. Frozen: the **June 9 router @ 0.44 dial** (registry pin
+  `d567ee0d`); the **126**-row held-out set (47 in-scope + 79 OOS), content-hashed `45632519...`; the
+  pre-committed PASS bar **recovery >= 0.70 AND OOS-FP rate <= 0.40** (calibration 0.857/0.308 minus
+  ~2 SE); one-shot, no post-hoc changes. It scores no held-out data. **Executing it is a separately
+  authorized one-shot** and is the only thing that converts the session's development figures into an
+  honest generalization claim (and even then only for M-CSA — see the off-M-CSA work).
+
 - **FOLD-NN MECHANISM RECOVERY HARNESS + M-CSA BASELINE (28/35; 96% PRECISION AT FOLD>=0.65) — READY FOR THE OFF-M-CSA RUN (2026-06-28).**
   Built the reusable recovery harness so the (data-gated) off-M-CSA recovery run is a one-liner. Module
   + CLI: `src/catalytic_earth/fold_nn_mechanism_recovery_readout.py`,

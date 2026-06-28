@@ -1,5 +1,37 @@
 # Handoff
 
+## Session run - held-out one-shot test PRE-REGISTERED (frozen rule + content-hashed 126-row set + pre-committed bar); scores no held-out data; no registry apply (2026-06-28)
+
+- Continued on branch `claude/continue-last-commit-ytktge` from commit `eea36c59`. Prompted by the
+  user's leakage question ("are we training on test / using test to modify / cheating?"). Verified the
+  honest answer: this session trained nothing, scored no held-out rows (every artifact
+  `heldout_rows_scored: False`), and mutated no `data/` files (session diff touches only
+  artifacts/docs/src/tests/work). The real caveat is calibration *reuse*: the same 35+26 calibration
+  rows were inspected repeatedly, so all session operating points are optimistic development figures,
+  not validated. This run locks the one unbiased test before running it.
+- Module + CLI: `src/catalytic_earth/heldout_oneshot_preregistration.py`,
+  `build-heldout-oneshot-preregistration`. Artifact/report:
+  `artifacts/v3_heldout_oneshot_preregistration_current702_20260628.json` /
+  `work/heldout_oneshot_preregistration_current702_20260628.md`. Status `preregistered_not_yet_run`.
+  Locked: June 9 router @ 0.44 dial (registry pin `d567ee0d`); the 126-row held-out set (47 in-scope +
+  79 OOS), enumerated + content-hashed `sha256 45632519...` (deterministic); pre-committed PASS bar
+  recovery >= 0.70 AND OOS-FP rate <= 0.40 (calibration 0.857/0.308 minus ~2 SE); one-shot guardrail.
+  Held-out labels used only to size/freeze the set, never as features; bar derived from calibration
+  only.
+- Execution (separately authorized one-shot, NOT done here): isolated worktree, pin registry to
+  `d567ee0d`, build a held-out split manifest of exactly the 126 frozen entry_ids (verify sha256), run
+  the cofactor_fusion_operating_point router over the held-out coordinate dirs at threshold 0.44, count
+  recovery + OOS FP, compare to the bar, emit PASS/FAIL verbatim, stop. The execution path (scoring the
+  held-out split) is not implemented yet and must match the frozen sha when built.
+- Tests: `tests/test_heldout_oneshot_preregistration.py` (4) + a CLI parser-defaults case. Regenerated
+  docs artifact-reference check -> missing 0.
+- Validation: focused unittest (prereg + full test_cli) OK; compileall OK; registry `validate` OK
+  (57 FP intact); docs reference check missing 0; `git diff --check` clean.
+- Next exact action: decide whether to spend the held-out one-shot (it only certifies M-CSA, per the
+  earlier note) by authorizing the frozen execution; and/or proceed with the still-pending off-M-CSA
+  recovery decision (download trusted positives, or promote wave2 candidates via import gates). Do not
+  grow fingerprint families.
+
 ## Session run - fold-NN mechanism recovery harness built + M-CSA baseline (28/35; 96% precision at fold>=0.65); ready to run off-M-CSA once a labelled positive set exists; no registry apply (2026-06-28)
 
 - Continued on branch `claude/continue-last-commit-ytktge` from commit `3f94b35b` (recovery

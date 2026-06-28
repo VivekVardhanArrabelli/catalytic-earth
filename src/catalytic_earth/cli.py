@@ -155,6 +155,13 @@ from .fold_nn_mechanism_recovery_readout import (
     DEFAULT_REPORT_PATH as DEFAULT_FOLD_RECOVERY_REPORT_PATH,
     write_fold_nn_mechanism_recovery_readout,
 )
+from .heldout_oneshot_preregistration import (
+    DEFAULT_LABEL_MANIFEST_PATH as DEFAULT_HELDOUT_PREREG_LABEL_MANIFEST_PATH,
+    DEFAULT_OUT_PATH as DEFAULT_HELDOUT_PREREG_OUT_PATH,
+    DEFAULT_REPORT_PATH as DEFAULT_HELDOUT_PREREG_REPORT_PATH,
+    DEFAULT_SPLIT_MANIFEST_PATH as DEFAULT_HELDOUT_PREREG_SPLIT_MANIFEST_PATH,
+    write_heldout_oneshot_preregistration,
+)
 from .predicted_geometry_atlas_engine_preregistration import (
     DEFAULT_COFACTOR_CHANNEL_PATH,
     DEFAULT_COFACTOR_PRECISION_PATH,
@@ -3082,6 +3089,24 @@ def cmd_build_fold_nn_mechanism_recovery_readout(args: argparse.Namespace) -> in
         f"{rec.get('fold_nn_recovered')}/{rec.get('fold_nn_scored')} "
         f"({rec.get('recovery_rate_no_abstention')}); coverage "
         f"{cov.get('positives_with_fold_hit')}/{cov.get('positives_total')})"
+    )
+    return 0
+
+
+def cmd_build_heldout_oneshot_preregistration(args: argparse.Namespace) -> int:
+    prereg = write_heldout_oneshot_preregistration(
+        split_manifest_path=Path(args.split_manifest),
+        label_manifest_path=Path(args.label_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    fs = prereg.get("frozen_heldout_set", {})
+    counts = fs.get("counts", {})
+    print(
+        "Wrote held-out one-shot pre-registration to "
+        f"{args.out} ({prereg.get('status')}; frozen heldout set "
+        f"{counts.get('total')} rows ({counts.get('inscope')} in-scope, "
+        f"{counts.get('oos')} OOS); sha256 {fs.get('sha256', '')[:16]}...)"
     )
     return 0
 
@@ -23782,6 +23807,35 @@ def build_parser() -> argparse.ArgumentParser:
     )
     fold_nn_mechanism_recovery_readout.set_defaults(
         func=cmd_build_fold_nn_mechanism_recovery_readout
+    )
+
+    heldout_oneshot_preregistration = subparsers.add_parser(
+        "build-heldout-oneshot-preregistration",
+        help=(
+            "freeze the single one-shot held-out test (rule + content-hashed row set + "
+            "pre-committed pass/fail bar + procedure); scores no held-out data"
+        ),
+    )
+    heldout_oneshot_preregistration.add_argument(
+        "--split-manifest",
+        default=DEFAULT_HELDOUT_PREREG_SPLIT_MANIFEST_PATH,
+        help="train/cal split manifest (held-out = current702 minus these)",
+    )
+    heldout_oneshot_preregistration.add_argument(
+        "--label-manifest",
+        default=DEFAULT_HELDOUT_PREREG_LABEL_MANIFEST_PATH,
+        help="current702 label manifest (to size and freeze the held-out set)",
+    )
+    heldout_oneshot_preregistration.add_argument(
+        "--out",
+        default=DEFAULT_HELDOUT_PREREG_OUT_PATH,
+    )
+    heldout_oneshot_preregistration.add_argument(
+        "--report",
+        default=DEFAULT_HELDOUT_PREREG_REPORT_PATH,
+    )
+    heldout_oneshot_preregistration.set_defaults(
+        func=cmd_build_heldout_oneshot_preregistration
     )
 
     predicted_geometry_atlas_engine_preregistration = subparsers.add_parser(
