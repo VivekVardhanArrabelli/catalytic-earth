@@ -1,0 +1,5502 @@
+{
+  "artifact_id": "v3_current702_reaction_cofactor_sidecar",
+  "chemistry_by_accession": {
+    "A0A0C6DRW4": {
+      "cofactors": [],
+      "reactions": [
+        "dibenzothiophene + 2 FMNH2 + 2 O2 = dibenzothiophene 5,5-dioxide + 2 FMN + 2 H2O + 2 H(+)",
+        "dibenzothiophene + FMNH2 + O2 = dibenzothiophene 5-oxide + FMN + H2O + H(+)",
+        "dibenzothiophene 5-oxide + FMNH2 + O2 = dibenzothiophene 5,5-dioxide + FMN + H2O + H(+)"
+      ]
+    },
+    "A0A0H3JGH6": {
+      "cofactors": [],
+      "reactions": [
+        "L-glutamate = D-glutamate",
+        "L-aspartate = D-aspartate"
+      ]
+    },
+    "A1AA28": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": []
+    },
+    "A2RJT9": {
+      "cofactors": [
+        "FMN"
+      ],
+      "reactions": [
+        "(S)-dihydroorotate + fumarate = orotate + succinate"
+      ]
+    },
+    "A5JTM5": {
+      "cofactors": [],
+      "reactions": [
+        "4-chlorobenzoyl-CoA + H2O = 4-hydroxybenzoyl-CoA + chloride + H(+)"
+      ]
+    },
+    "A5JUY8": {
+      "cofactors": [
+        "Ca(2+)",
+        "heme b"
+      ],
+      "reactions": [
+        "2 a phenolic donor + H2O2 = 2 a phenolic radical donor + 2 H2O",
+        "thiocyanate + H2O2 + H(+) = hypothiocyanous acid + H2O",
+        "iodide + H2O2 = hypoiodite + H2O"
+      ]
+    },
+    "A9CEQ8": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "D-glucaro-1,4-lactone = 5-dehydro-4-deoxy-D-glucarate + H(+)",
+        "D-galactaro-1,4-lactone = 5-dehydro-4-deoxy-D-glucarate + H(+)"
+      ]
+    },
+    "D4Z2G1": {
+      "cofactors": [],
+      "reactions": [
+        "1-haloalkane + H2O = a halide anion + a primary alcohol + H(+)",
+        "(3R,6R)-1,3,4,6-tetrachlorocyclohexa-1,4-diene + 2 H2O = 2,5-dichlorocyclohexa-2,5-dien-1,4-diol + 2 chloride + 2 H(+)"
+      ]
+    },
+    "F8W4B7": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "N(6)-acetyl-L-lysyl-[alpha-tubulin] + H2O = L-lysyl-[alpha-tubulin] + acetate",
+        "N(6)-acetyl-L-lysyl-[protein] + H2O = L-lysyl-[protein] + acetate"
+      ]
+    },
+    "O06644": {
+      "cofactors": [],
+      "reactions": [
+        "formyl-CoA + oxalate = oxalyl-CoA + formate",
+        "formyl-CoA + succinate = succinyl-CoA + formate"
+      ]
+    },
+    "O13297": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "a 5'-end triphospho-ribonucleoside in mRNA + H2O = a 5'-end diphospho-ribonucleoside in mRNA + phosphate + H(+)"
+      ]
+    },
+    "O15527": {
+      "cofactors": [],
+      "reactions": [
+        "2'-deoxyribonucleotide-(2'-deoxyribose 5'-phosphate)-2'-deoxyribonucleotide-DNA = a 3'-end 2'-deoxyribonucleotide-(2,3-dehydro-2,3-deoxyribose 5'-phosphate)-DNA + a 5'-end 5'-phospho-2'-deoxyribonucleoside-DNA + H(+)"
+      ]
+    },
+    "O16025": {
+      "cofactors": [
+        "Ca(2+)",
+        "Fe cation",
+        "heme"
+      ],
+      "reactions": [
+        "(5Z,8Z,11Z,14Z)-eicosatetraenoate + O2 = (8R)-hydroperoxy-(5Z,9E,11Z,14Z)-eicosatetraenoate",
+        "(8R)-hydroperoxy-(5Z,9E,11Z,14Z)-eicosatetraenoate = 8,9-epoxy-(5Z,9E,11Z,14Z)-eicosatetraenoate + H2O",
+        "(5Z,8Z,11Z,14Z,17Z)-eicosapentaenoate + O2 = (8R)-hydroperoxy-(5Z,9E,11Z,14Z,17Z)-eicosapentaenoate",
+        "(4Z,7Z,10Z,13Z,16Z,19Z)-docosahexaenoate + O2 = 10-hydroperoxy-(4Z,7Z,11E,13Z,16Z,19Z)-docosahexaenoate",
+        "(8Z,11Z,14Z)-eicosatrienoate + O2 = (8R)-hydroperoxy-(9E,11Z,14Z)-eicosatrienoate",
+        "(8Z,11Z,14Z)-eicosatrienoate + O2 = 10-hydroperoxy-(8Z,11Z,14Z)-eicosatrienoate",
+        "(8Z,11Z,14Z)-eicosatrienoate + O2 = 11-hydroperoxy-(8Z,12E,14Z)-eicosatrienoate"
+      ]
+    },
+    "O31156": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "phosphonoacetaldehyde + H2O = acetaldehyde + phosphate + H(+)"
+      ]
+    },
+    "O31465": {
+      "cofactors": [],
+      "reactions": [
+        "L-glutamine + H2O = L-glutamate + NH4(+)"
+      ]
+    },
+    "O34714": {
+      "cofactors": [
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "oxalate + H(+) = formate + CO2"
+      ]
+    },
+    "O48917": {
+      "cofactors": [
+        "NAD(+)"
+      ],
+      "reactions": [
+        "sulfite + UDP-alpha-D-glucose + H(+) = UDP-alpha-D-6-sulfoquinovose + H2O"
+      ]
+    },
+    "O52552": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "5-deoxy-5-amino-3-dehydroshikimate = 3-amino-5-hydroxybenzoate + H2O + H(+)",
+        "UDP-3-oxo-alpha-D-glucose + L-glutamine = UDP-alpha-D-kanosamine + 2-oxoglutaramate"
+      ]
+    },
+    "O52942": {
+      "cofactors": [],
+      "reactions": [
+        "L-alanine + NAD(+) + H2O = pyruvate + NH4(+) + NADH + H(+)"
+      ]
+    },
+    "O58403": {
+      "cofactors": [],
+      "reactions": [
+        "L-aspartate = D-aspartate"
+      ]
+    },
+    "O59791": {
+      "cofactors": [
+        "Mg(2+)",
+        "Mn(2+)",
+        "Ca(2+)",
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "L-serine = D-serine",
+        "L-serine = pyruvate + NH4(+)",
+        "L-serine = 2-aminoprop-2-enoate + H2O",
+        "D-serine = pyruvate + NH4(+)",
+        "D-serine = 2-aminoprop-2-enoate + H2O"
+      ]
+    },
+    "O59893": {
+      "cofactors": [],
+      "reactions": [
+        "Deacetylation of xylans and xylo-oligosaccharides."
+      ]
+    },
+    "O66186": {
+      "cofactors": [],
+      "reactions": [
+        "thiocyanate + H2O + 2 H(+) = carbonyl sulfide + NH4(+)"
+      ]
+    },
+    "O68557": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "Endonucleolytic cleavage of DNA to give specific double-stranded fragments with terminal 5'-phosphates."
+      ]
+    },
+    "O69762": {
+      "cofactors": [],
+      "reactions": [
+        "(E)-feruloyl-CoA + H2O = vanillin + acetyl-CoA",
+        "(E)-caffeoyl-CoA + H2O = 3,4-dihydroxybenzaldehyde + acetyl-CoA",
+        "(E)-4-coumaroyl-CoA + H2O = 4-hydroxybenzaldehyde + acetyl-CoA",
+        "(E)-feruloyl-CoA + H2O = 3-hydroxy-3-(4-hydroxy-3-methoxyphenyl)propanoyl-CoA",
+        "3-hydroxy-3-(4-hydroxy-3-methoxyphenyl)propanoyl-CoA = vanillin + acetyl-CoA",
+        "(E)-caffeoyl-CoA + H2O = 3-hydroxy-3-(3,4-dihydroxyphenyl)propanoyl-CoA",
+        "3-hydroxy-3-(3,4-dihydroxyphenyl)propanoyl-CoA = 3,4-dihydroxybenzaldehyde + acetyl-CoA",
+        "(E)-4-coumaroyl-CoA + H2O = 3-hydroxy-3-(4-hydroxyphenyl)propanoyl-CoA",
+        "3-hydroxy-3-(4-hydroxyphenyl)propanoyl-CoA = 4-hydroxybenzaldehyde + acetyl-CoA"
+      ]
+    },
+    "O75164": {
+      "cofactors": [
+        "Fe(2+)"
+      ],
+      "reactions": [
+        "N(6),N(6),N(6)-trimethyl-L-lysyl(9)-[histone H3] + 2 2-oxoglutarate + 2 O2 = N(6)-methyl-L-lysyl(9)-[histone H3] + 2 formaldehyde + 2 succinate + 2 CO2",
+        "N(6),N(6),N(6)-trimethyl-L-lysyl(36)-[histone H3] + 2 2-oxoglutarate + 2 O2 = N(6)-methyl-L-lysyl(36)-[histone H3] + 2 formaldehyde + 2 succinate + 2 CO2"
+      ]
+    },
+    "O81192": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "(2E)-geranyl diphosphate = (2S,4R)-bornyl diphosphate",
+        "(2E)-geranyl diphosphate = (1R,4S)-camphene + diphosphate",
+        "(2E)-geranyl diphosphate = (1R,5R)-alpha-pinene + diphosphate"
+      ]
+    },
+    "O82827": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "8 isopentenyl diphosphate + (2E,6E)-farnesyl diphosphate = di-trans,octa-cis-undecaprenyl diphosphate + 8 diphosphate"
+      ]
+    },
+    "O87172": {
+      "cofactors": [],
+      "reactions": [
+        "Transfers a segment of a (1->4)-alpha-D-glucan to a new position in an acceptor, which may be glucose or a (1->4)-alpha-D-glucan."
+      ]
+    },
+    "P00163": {
+      "cofactors": [
+        "heme b"
+      ],
+      "reactions": [
+        "a quinol + 2 Fe(III)-[cytochrome c](out) = a quinone + 2 Fe(II)-[cytochrome c](out) + 2 H(+)(out)"
+      ]
+    },
+    "P00175": {
+      "cofactors": [
+        "FMN",
+        "heme b"
+      ],
+      "reactions": [
+        "(S)-lactate + 2 Fe(III)-[cytochrome c] = 2 Fe(II)-[cytochrome c] + pyruvate + 2 H(+)"
+      ]
+    },
+    "P00183": {
+      "cofactors": [
+        "heme"
+      ],
+      "reactions": [
+        "2 reduced [2Fe-2S]-[putidaredoxin] + (1R,4R)-camphor + O2 + 2 H(+) = (1R,4R,5R)-5-hydroxycamphor + 2 oxidized [2Fe-2S]-[putidaredoxin] + H2O"
+      ]
+    },
+    "P00327": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "a primary alcohol + NAD(+) = an aldehyde + NADH + H(+)",
+        "a secondary alcohol + NAD(+) = a ketone + NADH + H(+)"
+      ]
+    },
+    "P00334": {
+      "cofactors": [],
+      "reactions": [
+        "a primary alcohol + NAD(+) = an aldehyde + NADH + H(+)",
+        "a secondary alcohol + NAD(+) = a ketone + NADH + H(+)"
+      ]
+    },
+    "P00341": {
+      "cofactors": [],
+      "reactions": [
+        "(S)-lactate + NAD(+) = pyruvate + NADH + H(+)"
+      ]
+    },
+    "P00374": {
+      "cofactors": [],
+      "reactions": [
+        "(6S)-5,6,7,8-tetrahydrofolate + NADP(+) = 7,8-dihydrofolate + NADPH + H(+)"
+      ]
+    },
+    "P00381": {
+      "cofactors": [],
+      "reactions": [
+        "(6S)-5,6,7,8-tetrahydrofolate + NADP(+) = 7,8-dihydrofolate + NADPH + H(+)"
+      ]
+    },
+    "P00388": {
+      "cofactors": [
+        "FAD",
+        "FMN"
+      ],
+      "reactions": [
+        "2 oxidized [cytochrome P450] + NADPH = 2 reduced [cytochrome P450] + NADP(+) + H(+)"
+      ]
+    },
+    "P00390": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "2 glutathione + NADP(+) = glutathione disulfide + NADPH + H(+)"
+      ]
+    },
+    "P00392": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "Hg + NADP(+) + H(+) = Hg(2+) + NADPH"
+      ]
+    },
+    "P00396": {
+      "cofactors": [
+        "heme",
+        "Cu cation"
+      ],
+      "reactions": [
+        "4 Fe(II)-[cytochrome c] + O2 + 8 H(+)(in) = 4 Fe(III)-[cytochrome c] + 2 H2O + 4 H(+)(out)"
+      ]
+    },
+    "P00431": {
+      "cofactors": [
+        "heme b"
+      ],
+      "reactions": [
+        "2 Fe(II)-[cytochrome c] + H2O2 + 2 H(+) = 2 Fe(III)-[cytochrome c] + 2 H2O"
+      ]
+    },
+    "P00433": {
+      "cofactors": [
+        "Ca(2+)",
+        "heme b"
+      ],
+      "reactions": [
+        "2 a phenolic donor + H2O2 = 2 a phenolic radical donor + 2 H2O"
+      ]
+    },
+    "P00445": {
+      "cofactors": [
+        "Cu cation",
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "2 superoxide + 2 H(+) = H2O2 + O2",
+        "hydrogen sulfide + 2 O2 = sulfate + H(+)"
+      ]
+    },
+    "P00455": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "2 reduced [2Fe-2S]-[ferredoxin] + NADP(+) + H(+) = 2 oxidized [2Fe-2S]-[ferredoxin] + NADPH"
+      ]
+    },
+    "P00459": {
+      "cofactors": [
+        "[4Fe-4S] cluster"
+      ],
+      "reactions": [
+        "N2 + 8 reduced [2Fe-2S]-[ferredoxin] + 16 ATP + 16 H2O = H2 + 8 oxidized [2Fe-2S]-[ferredoxin] + 2 NH4(+) + 16 ADP + 16 phosphate + 6 H(+)"
+      ]
+    },
+    "P00469": {
+      "cofactors": [],
+      "reactions": [
+        "dUMP + (6R)-5,10-methylene-5,6,7,8-tetrahydrofolate = 7,8-dihydrofolate + dTMP"
+      ]
+    },
+    "P00480": {
+      "cofactors": [],
+      "reactions": [
+        "carbamoyl phosphate + L-ornithine = L-citrulline + phosphate + H(+)"
+      ]
+    },
+    "P00488": {
+      "cofactors": [
+        "Ca(2+)"
+      ],
+      "reactions": [
+        "L-glutaminyl-[protein] + L-lysyl-[protein] = [protein]-L-lysyl-N(6)-5-L-glutamyl-[protein] + NH4(+)"
+      ]
+    },
+    "P00489": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "[(1->4)-alpha-D-glucosyl](n) + phosphate = [(1->4)-alpha-D-glucosyl](n-1) + alpha-D-glucose 1-phosphate"
+      ]
+    },
+    "P00491": {
+      "cofactors": [],
+      "reactions": [
+        "inosine + phosphate = alpha-D-ribose 1-phosphate + hypoxanthine",
+        "guanosine + phosphate = alpha-D-ribose 1-phosphate + guanine",
+        "2'-deoxyguanosine + phosphate = 2-deoxy-alpha-D-ribose 1-phosphate + guanine",
+        "2'-deoxyinosine + phosphate = 2-deoxy-alpha-D-ribose 1-phosphate + hypoxanthine"
+      ]
+    },
+    "P00492": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "IMP + diphosphate = hypoxanthine + 5-phospho-alpha-D-ribose 1-diphosphate",
+        "GMP + diphosphate = guanine + 5-phospho-alpha-D-ribose 1-diphosphate"
+      ]
+    },
+    "P00518": {
+      "cofactors": [],
+      "reactions": [
+        "2 ATP + phosphorylase b = 2 ADP + phosphorylase a.",
+        "L-seryl-[tau protein] + ATP = O-phospho-L-seryl-[tau protein] + ADP + H(+)",
+        "L-threonyl-[tau protein] + ATP = O-phospho-L-threonyl-[tau protein] + ADP + H(+)",
+        "L-seryl-[protein] + ATP = O-phospho-L-seryl-[protein] + ADP + H(+)",
+        "L-threonyl-[protein] + ATP = O-phospho-L-threonyl-[protein] + ADP + H(+)"
+      ]
+    },
+    "P00586": {
+      "cofactors": [],
+      "reactions": [
+        "thiosulfate + hydrogen cyanide = thiocyanate + sulfite + 2 H(+)"
+      ]
+    },
+    "P00590": {
+      "cofactors": [],
+      "reactions": [
+        "cutin + H2O = cutin monomers."
+      ]
+    },
+    "P00592": {
+      "cofactors": [
+        "Ca(2+)"
+      ],
+      "reactions": [
+        "a 1,2-diacyl-sn-glycero-3-phosphocholine + H2O = a 1-acyl-sn-glycero-3-phosphocholine + a fatty acid + H(+)",
+        "1,2-ditetradecanoyl-sn-glycero-3-phosphocholine + H2O = 2-tetradecanoyl-sn-glycero-3-phosphocholine + tetradecanoate + H(+)",
+        "1,2-dihexadecanoyl-sn-glycero-3-phosphocholine + H2O = 1-hexadecanoyl-sn-glycero-3-phosphocholine + hexadecanoate + H(+)",
+        "1-hexadecanoyl-2-(9Z-octadecenoyl)-sn-glycero-3-phosphocholine + H2O = 1-hexadecanoyl-sn-glycero-3-phosphocholine + (9Z)-octadecenoate + H(+)",
+        "1-hexadecanoyl-2-(5Z,8Z,11Z,14Z-eicosatetraenoyl)-sn-glycero-3-phosphocholine + H2O = 1-hexadecanoyl-sn-glycero-3-phosphocholine + (5Z,8Z,11Z,14Z)-eicosatetraenoate + H(+)",
+        "1-hexadecanoyl-2-(9Z-octadecenoyl)-sn-glycero-3-phospho-(1'-sn-glycerol) + H2O = 1-hexadecanoyl-sn-glycero-3-phospho-(1'-sn-glycerol) + (9Z)-octadecenoate + H(+)",
+        "N-hexadecanoyl-1,2-di-(9Z-octadecenoyl)-sn-glycero-3-phosphoethanolamine + H2O = N-hexadecanoyl-1-(9Z-octadecenoyl)-sn-glycero-3-phosphoethanolamine + (9Z)-octadecenoate + H(+)",
+        "1-hexadecanoyl-2-(9Z,12Z-octadecadienoyl)-sn-glycero-3-phosphoethanolamine + H2O = 1-hexadecanoyl-sn-glycero-3-phosphoethanolamine + (9Z,12Z)-octadecadienoate + H(+)",
+        "N,1-dihexadecanoyl-2-(9Z,12Z-octadecadienoyl)-sn-glycero-3-phosphoethanolamine + H2O = N,1-dihexadecanoyl-sn-glycero-3-phosphoethanolamine + (9Z,12Z)-octadecadienoate + H(+)"
+      ]
+    },
+    "P00634": {
+      "cofactors": [
+        "Mg(2+)",
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "a phosphate monoester + H2O = an alcohol + phosphate"
+      ]
+    },
+    "P00636": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "beta-D-fructose 1,6-bisphosphate + H2O = beta-D-fructose 6-phosphate + phosphate"
+      ]
+    },
+    "P00639": {
+      "cofactors": [
+        "Ca(2+)",
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "Endonucleolytic cleavage to 5'-phosphodinucleotide and 5'-phosphooligonucleotide end-products."
+      ]
+    },
+    "P00644": {
+      "cofactors": [
+        "Ca(2+)"
+      ],
+      "reactions": [
+        "Endonucleolytic cleavage to nucleoside 3'-phosphates and 3'-phosphooligonucleotide end-products."
+      ]
+    },
+    "P00651": {
+      "cofactors": [],
+      "reactions": [
+        "[RNA] containing guanosine + H2O = an [RNA fragment]-3'-guanosine-3'-phosphate + a 5'-hydroxy-ribonucleotide-3'-[RNA fragment]."
+      ]
+    },
+    "P00698": {
+      "cofactors": [],
+      "reactions": [
+        "Hydrolysis of (1->4)-beta-linkages between N-acetylmuramic acid and N-acetyl-D-glucosamine residues in a peptidoglycan and between N-acetyl-D-glucosamine residues in chitodextrins."
+      ]
+    },
+    "P00722": {
+      "cofactors": [
+        "Mg(2+)",
+        "Mn(2+)",
+        "Na(+)"
+      ],
+      "reactions": [
+        "Hydrolysis of terminal non-reducing beta-D-galactose residues in beta-D-galactosides."
+      ]
+    },
+    "P00727": {
+      "cofactors": [
+        "Zn(2+)",
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "Release of an N-terminal amino acid, Xaa-|-Yaa-, in which Xaa is preferably Leu, but may be other amino acids including Pro although not Arg or Lys, and Yaa may be Pro. Amino acid amides and methyl esters are also readily hydrolyzed, but rates on arylamides are exceedingly low.",
+        "an S-substituted L-cysteinylglycine + H2O = an S-substituted L-cysteine + glycine",
+        "L-cysteinylglycine + H2O = L-cysteine + glycine",
+        "S-benzyl-L-cysteinylglycine + H2O = S-benzyl-L-cysteine + glycine",
+        "Release of N-terminal proline from a peptide."
+      ]
+    },
+    "P00730": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "Release of a C-terminal amino acid, but little or no action with -Asp, -Glu, -Arg, -Lys or -Pro.",
+        "leukotriene C4 + H2O = leukotriene F4 + glycine"
+      ]
+    },
+    "P00733": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "Cleavage of the bond: (Ac)2-L-lysyl-D-alanyl-|-D-alanine."
+      ]
+    },
+    "P00747": {
+      "cofactors": [],
+      "reactions": [
+        "Preferential cleavage: Lys-|-Xaa > Arg-|-Xaa, higher selectivity than trypsin. Converts fibrin into soluble products."
+      ]
+    },
+    "P00750": {
+      "cofactors": [],
+      "reactions": [
+        "Specific cleavage of Arg-|-Val bond in plasminogen to form plasmin."
+      ]
+    },
+    "P00766": {
+      "cofactors": [],
+      "reactions": [
+        "Preferential cleavage: Tyr-|-Xaa, Trp-|-Xaa, Phe-|-Xaa, Leu-|-Xaa."
+      ]
+    },
+    "P00777": {
+      "cofactors": [],
+      "reactions": [
+        "Hydrolysis of proteins with trypsin-like specificity."
+      ]
+    },
+    "P00778": {
+      "cofactors": [],
+      "reactions": [
+        "Preferential cleavage: Ala-|-Xaa, Val-|-Xaa in bacterial cell walls, elastin and other proteins."
+      ]
+    },
+    "P00782": {
+      "cofactors": [
+        "Ca(2+)"
+      ],
+      "reactions": [
+        "Hydrolysis of proteins with broad specificity for peptide bonds, and a preference for a large uncharged residue in P1. Hydrolyzes peptide amides."
+      ]
+    },
+    "P00784": {
+      "cofactors": [],
+      "reactions": [
+        "Hydrolysis of proteins with broad specificity for peptide bonds, but preference for an amino acid bearing a large hydrophobic side chain at the P2 position. Does not accept Val in P1'."
+      ]
+    },
+    "P00800": {
+      "cofactors": [
+        "Ca(2+)",
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "Preferential cleavage: Xaa-|-Leu > Xaa-|-Phe."
+      ]
+    },
+    "P00803": {
+      "cofactors": [],
+      "reactions": [
+        "Cleavage of hydrophobic, N-terminal signal or leader sequences from secreted and periplasmic proteins."
+      ]
+    },
+    "P00805": {
+      "cofactors": [],
+      "reactions": [
+        "L-asparagine + H2O = L-aspartate + NH4(+)"
+      ]
+    },
+    "P00806": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "Hydrolyzes the link between N-acetylmuramoyl residues and L-amino acid residues in certain cell-wall glycopeptides."
+      ]
+    },
+    "P00829": {
+      "cofactors": [],
+      "reactions": [
+        "ATP + H2O + 4 H(+)(in) = ADP + phosphate + 5 H(+)(out)"
+      ]
+    },
+    "P00860": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "L-ornithine + H(+) = putrescine + CO2"
+      ]
+    },
+    "P00862": {
+      "cofactors": [
+        "pyruvate"
+      ],
+      "reactions": [
+        "L-histidine + H(+) = histamine + CO2"
+      ]
+    },
+    "P00883": {
+      "cofactors": [],
+      "reactions": [
+        "beta-D-fructose 1,6-bisphosphate = D-glyceraldehyde 3-phosphate + dihydroxyacetone phosphate"
+      ]
+    },
+    "P00903": {
+      "cofactors": [],
+      "reactions": [
+        "chorismate + L-glutamine = 4-amino-4-deoxychorismate + L-glutamate"
+      ]
+    },
+    "P00914": {
+      "cofactors": [
+        "FAD",
+        "(6R)-5,10-methylene-5,6,7,8-tetrahydrofolate"
+      ],
+      "reactions": [
+        "cyclobutadipyrimidine (in DNA) = 2 pyrimidine residues (in DNA)."
+      ]
+    },
+    "P00918": {
+      "cofactors": [
+        "Zn(2+)",
+        "Co(2+)"
+      ],
+      "reactions": [
+        "hydrogencarbonate + H(+) = CO2 + H2O",
+        "urea = cyanamide + H2O"
+      ]
+    },
+    "P00924": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "(2R)-2-phosphoglycerate = phosphoenolpyruvate + H2O"
+      ]
+    },
+    "P00929": {
+      "cofactors": [],
+      "reactions": [
+        "(1S,2R)-1-C-(indol-3-yl)glycerol 3-phosphate + L-serine = D-glyceraldehyde 3-phosphate + L-tryptophan + H2O"
+      ]
+    },
+    "P00935": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "O-succinyl-L-homoserine + L-cysteine = L,L-cystathionine + succinate + H(+)"
+      ]
+    },
+    "P00940": {
+      "cofactors": [],
+      "reactions": [
+        "dihydroxyacetone phosphate = methylglyoxal + phosphate",
+        "D-glyceraldehyde 3-phosphate = dihydroxyacetone phosphate"
+      ]
+    },
+    "P00949": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "alpha-D-glucose 1-phosphate = alpha-D-glucose 6-phosphate",
+        "O-phospho-L-seryl-[protein] + alpha-D-glucose 1-phosphate = alpha-D-glucose 1,6-bisphosphate + L-seryl-[protein]",
+        "alpha-D-glucose 1,6-bisphosphate + L-seryl-[protein] = O-phospho-L-seryl-[protein] + alpha-D-glucose 6-phosphate"
+      ]
+    },
+    "P00950": {
+      "cofactors": [],
+      "reactions": [
+        "(2R)-2-phosphoglycerate = (2R)-3-phosphoglycerate"
+      ]
+    },
+    "P00952": {
+      "cofactors": [],
+      "reactions": [
+        "tRNA(Tyr) + L-tyrosine + ATP = L-tyrosyl-tRNA(Tyr) + AMP + diphosphate + H(+)"
+      ]
+    },
+    "P00953": {
+      "cofactors": [],
+      "reactions": [
+        "tRNA(Trp) + L-tryptophan + ATP = L-tryptophyl-tRNA(Trp) + AMP + diphosphate + H(+)"
+      ]
+    },
+    "P00963": {
+      "cofactors": [],
+      "reactions": [
+        "L-aspartate + NH4(+) + ATP = L-asparagine + AMP + diphosphate + H(+)"
+      ]
+    },
+    "P00968": {
+      "cofactors": [
+        "Mg(2+)",
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "hydrogencarbonate + L-glutamine + 2 ATP + H2O = carbamoyl phosphate + L-glutamate + 2 ADP + phosphate + 2 H(+)",
+        "hydrogencarbonate + NH4(+) + 2 ATP = carbamoyl phosphate + 2 ADP + phosphate + 2 H(+)"
+      ]
+    },
+    "P00969": {
+      "cofactors": [
+        "a divalent metal cation"
+      ],
+      "reactions": [
+        "ATP + (deoxyribonucleotide)n-3'-hydroxyl + 5'-phospho-(deoxyribonucleotide)m = (deoxyribonucleotide)n+m + AMP + diphosphate."
+      ]
+    },
+    "P01116": {
+      "cofactors": [],
+      "reactions": [
+        "GTP + H2O = GDP + phosphate + H(+)"
+      ]
+    },
+    "P03007": {
+      "cofactors": [
+        "Mg(2+)",
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "DNA(n) + a 2'-deoxyribonucleoside 5'-triphosphate = DNA(n+1) + diphosphate"
+      ]
+    },
+    "P03958": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "adenosine + H2O + H(+) = inosine + NH4(+)",
+        "2'-deoxyadenosine + H2O + H(+) = 2'-deoxyinosine + NH4(+)",
+        "cordycepin + H2O + H(+) = 3'-deoxyinosine + NH4(+)"
+      ]
+    },
+    "P04035": {
+      "cofactors": [],
+      "reactions": [
+        "(R)-mevalonate + 2 NADP(+) + CoA = (3S)-3-hydroxy-3-methylglutaryl-CoA + 2 NADPH + 2 H(+)"
+      ]
+    },
+    "P04036": {
+      "cofactors": [],
+      "reactions": [
+        "(S)-2,3,4,5-tetrahydrodipicolinate + NAD(+) + H2O = (2S,4S)-4-hydroxy-2,3,4,5-tetrahydrodipicolinate + NADH + H(+)",
+        "(S)-2,3,4,5-tetrahydrodipicolinate + NADP(+) + H2O = (2S,4S)-4-hydroxy-2,3,4,5-tetrahydrodipicolinate + NADPH + H(+)"
+      ]
+    },
+    "P04042": {
+      "cofactors": [],
+      "reactions": [
+        "[protein]-L-glutamate 5-O-methyl ester + H2O = L-glutamyl-[protein] + methanol + H(+)",
+        "L-glutaminyl-[protein] + H2O = L-glutamyl-[protein] + NH4(+)"
+      ]
+    },
+    "P04063": {
+      "cofactors": [
+        "Ca(2+)"
+      ],
+      "reactions": [
+        "Endohydrolysis of (1->4)-alpha-D-glucosidic linkages in polysaccharides containing three or more (1->4)-alpha-linked D-glucose units."
+      ]
+    },
+    "P04079": {
+      "cofactors": [],
+      "reactions": [
+        "XMP + L-glutamine + ATP + H2O = GMP + L-glutamate + AMP + diphosphate + 2 H(+)"
+      ]
+    },
+    "P04177": {
+      "cofactors": [
+        "Fe(2+)"
+      ],
+      "reactions": [
+        "(6R)-L-erythro-5,6,7,8-tetrahydrobiopterin + L-tyrosine + O2 = (4aS,6R)-4a-hydroxy-L-erythro-5,6,7,8-tetrahydrobiopterin + L-dopa"
+      ]
+    },
+    "P04190": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "a beta-lactam + H2O = a substituted beta-amino acid"
+      ]
+    },
+    "P04395": {
+      "cofactors": [],
+      "reactions": [
+        "Hydrolysis of alkylated DNA, releasing 3-methyladenine, 3-methylguanine, 7-methylguanine and 7-methyladenine."
+      ]
+    },
+    "P04418": {
+      "cofactors": [],
+      "reactions": [
+        "Cleaves the N-glycosidic bond between the 5'-pyrimidine residue in cyclobutadipyrimidine (in DNA) and the corresponding deoxy-D-ribose residue.",
+        "2'-deoxyribonucleotide-(2'-deoxyribose 5'-phosphate)-2'-deoxyribonucleotide-DNA = a 3'-end 2'-deoxyribonucleotide-(2,3-dehydro-2,3-deoxyribose 5'-phosphate)-DNA + a 5'-end 5'-phospho-2'-deoxyribonucleoside-DNA + H(+)"
+      ]
+    },
+    "P04425": {
+      "cofactors": [
+        "Mg(2+)",
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "gamma-L-glutamyl-L-cysteine + glycine + ATP = glutathione + ADP + phosphate + H(+)"
+      ]
+    },
+    "P04531": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "dTMP + ATP = dTDP + ADP",
+        "dGMP + ATP = dGDP + ADP",
+        "5-hydroxymethyl-dCMP + ATP = 5-hydroxymethyl-dCDP + ADP"
+      ]
+    },
+    "P04547": {
+      "cofactors": [],
+      "reactions": [
+        "Transfers a beta-D-glucosyl residue from UDP-alpha-D-glucose to a hydroxymethylcytosine residue in DNA."
+      ]
+    },
+    "P04585": {
+      "cofactors": [
+        "Mg(2+)",
+        "Mg(2+)",
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "Specific for a P1 residue that is hydrophobic, and P1' variable, but often Pro.",
+        "Endohydrolysis of RNA in RNA/DNA hybrids. Three different cleavage modes: 1. sequence-specific internal cleavage of RNA. Human immunodeficiency virus type 1 and Moloney murine leukemia virus enzymes prefer to cleave the RNA strand one nucleotide away from the RNA-DNA junction. 2. RNA 5'-end directed cleavage 13-19 nucleotides from the RNA end. 3. DNA 3'-end directed cleavage 15-20 nucleotides away from the primer terminus.",
+        "3'-end directed exonucleolytic cleavage of viral RNA-DNA hybrid.",
+        "DNA(n) + a 2'-deoxyribonucleoside 5'-triphosphate = DNA(n+1) + diphosphate",
+        "DNA(n) + a 2'-deoxyribonucleoside 5'-triphosphate = DNA(n+1) + diphosphate"
+      ]
+    },
+    "P04802": {
+      "cofactors": [],
+      "reactions": [
+        "tRNA(Asp) + L-aspartate + ATP = L-aspartyl-tRNA(Asp) + AMP + diphosphate"
+      ]
+    },
+    "P04807": {
+      "cofactors": [],
+      "reactions": [
+        "a D-hexose + ATP = a D-hexose 6-phosphate + ADP + H(+)",
+        "D-fructose + ATP = D-fructose 6-phosphate + ADP + H(+)",
+        "D-glucose + ATP = D-glucose 6-phosphate + ADP + H(+)"
+      ]
+    },
+    "P04936": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "a ribonucleoside 5'-triphosphate + H2O = a ribonucleoside 5'-diphosphate + phosphate + H(+)",
+        "Selective cleavage of Tyr-|-Gly bond in the picornavirus polyprotein.",
+        "RNA(n) + a ribonucleoside 5'-triphosphate = RNA(n+1) + diphosphate",
+        "Selective cleavage of Gln-|-Gly bond in the poliovirus polyprotein. In other picornavirus reactions Glu may be substituted for Gln, and Ser or Thr for Gly."
+      ]
+    },
+    "P04963": {
+      "cofactors": [
+        "heme b",
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "RH + Cl(-) + H2O2 = RCl + 2 H2O."
+      ]
+    },
+    "P05020": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "(S)-dihydroorotate + H2O = N-carbamoyl-L-aspartate + H(+)"
+      ]
+    },
+    "P05042": {
+      "cofactors": [],
+      "reactions": [
+        "(S)-malate = fumarate + H2O"
+      ]
+    },
+    "P05057": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "amikacin + ATP = 4'-adenylylamikacin + diphosphate",
+        "kanamycin A + ATP = 4'-adenylylkanamycin A + diphosphate",
+        "neomycin B + ATP = 4'-adenylylneomycin B + diphosphate",
+        "paromomycin + ATP = 4'-adenylylparomomycin + diphosphate",
+        "ribostamycin + ATP = 4'-adenylylribostamycin + diphosphate",
+        "tobramycin + ATP = 4'-adenylyltobramycin + diphosphate",
+        "kanamycin A + CTP = 4'-cytidylylkanamycin A + diphosphate",
+        "kanamycin A + GTP = 4'-guanylylkanamycin A + diphosphate",
+        "kanamycin A + ITP = 4'-inosinylylkanamycin A + diphosphate",
+        "dTTP + kanamycin A = 4'-thymidylylkanamycin A + diphosphate",
+        "kanamycin A + UTP = 4'-uridylylkanamycin A + diphosphate",
+        "kanamycin A + dATP = 4'-(2'-deoxyadenylyl)kanamycin A + diphosphate",
+        "kanamycin A + dCTP = 4'-(2'-deoxycytidylyl)kanamycin A + diphosphate",
+        "kanamycin A + dGTP = 4'-(2'-deoxyguanylyl)kanamycin A + diphosphate",
+        "dUTP + kanamycin A = 4'-(2'-deoxyuridylyl)kanamycin A + diphosphate",
+        "amikacin + GTP = 4'-guanylylamikacin + diphosphate",
+        "amikacin + ITP = 4'-inosinylylamikacin + diphosphate",
+        "amikacin + CTP = 4'-cytidylylamikacin + diphosphate",
+        "amikacin + UTP = 4'-uridylylamikacin + diphosphate",
+        "amikacin + dTTP = 4'-thymidylylamikacin + diphosphate"
+      ]
+    },
+    "P05102": {
+      "cofactors": [],
+      "reactions": [
+        "a 2'-deoxycytidine in DNA + S-adenosyl-L-methionine = a 5-methyl-2'-deoxycytidine in DNA + S-adenosyl-L-homocysteine + H(+)"
+      ]
+    },
+    "P05164": {
+      "cofactors": [
+        "Ca(2+)",
+        "heme b"
+      ],
+      "reactions": [
+        "chloride + H2O2 + H(+) = hypochlorous acid + H2O",
+        "thiocyanate + H2O2 + H(+) = hypothiocyanous acid + H2O",
+        "bromide + H2O2 = hypobromite + H2O",
+        "iodide + H2O2 = hypoiodite + H2O"
+      ]
+    },
+    "P05314": {
+      "cofactors": [
+        "siroheme",
+        "[4Fe-4S] cluster"
+      ],
+      "reactions": [
+        "6 oxidized [2Fe-2S]-[ferredoxin] + NH4(+) + 2 H2O = nitrite + 6 reduced [2Fe-2S]-[ferredoxin] + 8 H(+)"
+      ]
+    },
+    "P05326": {
+      "cofactors": [
+        "Fe(2+)"
+      ],
+      "reactions": [
+        "N-[(5S)-5-amino-5-carboxypentanoyl]-L-cysteinyl-D-valine + O2 = isopenicillin N + 2 H2O"
+      ]
+    },
+    "P05364": {
+      "cofactors": [],
+      "reactions": [
+        "a beta-lactam + H2O = a substituted beta-amino acid"
+      ]
+    },
+    "P05404": {
+      "cofactors": [
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "2-[(2R)-2-chloro-2,5-dihydro-5-oxofuryl]acetate = 3-chloro-cis,cis-muconate + H(+)"
+      ]
+    },
+    "P05414": {
+      "cofactors": [
+        "FMN"
+      ],
+      "reactions": [
+        "glycolate + O2 = glyoxylate + H2O2",
+        "a (2S)-2-hydroxycarboxylate + O2 = a 2-oxocarboxylate + H2O2"
+      ]
+    },
+    "P05725": {
+      "cofactors": [
+        "Mg(2+)",
+        "Mn(2+)",
+        "Co(2+)",
+        "Ni(2+)",
+        "Zn(2+)"
+      ],
+      "reactions": []
+    },
+    "P06104": {
+      "cofactors": [],
+      "reactions": [
+        "S-ubiquitinyl-[E1 ubiquitin-activating enzyme]-L-cysteine + [E2 ubiquitin-conjugating enzyme]-L-cysteine = [E1 ubiquitin-activating enzyme]-L-cysteine + S-ubiquitinyl-[E2 ubiquitin-conjugating enzyme]-L-cysteine."
+      ]
+    },
+    "P06134": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "(2'-deoxyribonucleoside 5'-methylphosphotriester)-DNA + L-cysteinyl-[protein] = 2'-deoxyribonucleotide-DNA + S-methyl-L-cysteinyl-[protein] + H(+)",
+        "a 6-O-methyl-2'-deoxyguanosine in DNA + L-cysteinyl-[protein] = S-methyl-L-cysteinyl-[protein] + a 2'-deoxyguanosine in DNA",
+        "a 4-O-methyl-thymidine in DNA + L-cysteinyl-[protein] = a thymidine in DNA + S-methyl-L-cysteinyl-[protein]"
+      ]
+    },
+    "P06169": {
+      "cofactors": [
+        "Mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "reactions": [
+        "pyruvate + H(+) = acetaldehyde + CO2",
+        "3-methyl-2-oxobutanoate + H(+) = 2-methylpropanal + CO2",
+        "(S)-3-methyl-2-oxopentanoate + H(+) = 2-methylbutanal + CO2",
+        "indole-3-pyruvate + H(+) = indole-3-acetaldehyde + CO2",
+        "3-phenylpyruvate + H(+) = 2-phenylacetaldehyde + CO2",
+        "2-oxobutanoate + H(+) = propanal + CO2",
+        "2-oxopentanoate + H(+) = butanal + CO2",
+        "2 acetaldehyde = acetoin",
+        "acetaldehyde + pyruvate + H(+) = acetoin + CO2"
+      ]
+    },
+    "P06213": {
+      "cofactors": [],
+      "reactions": [
+        "L-tyrosyl-[protein] + ATP = O-phospho-L-tyrosyl-[protein] + ADP + H(+)"
+      ]
+    },
+    "P06229": {
+      "cofactors": [
+        "Mg(2+)",
+        "K(+)"
+      ],
+      "reactions": [
+        "Exonucleolytic cleavage in the 5'- to 3'-direction to yield nucleoside 5'-phosphates."
+      ]
+    },
+    "P06612": {
+      "cofactors": [
+        "Mn(2+)",
+        "Ca(2+)"
+      ],
+      "reactions": [
+        "ATP-independent breakage of single-stranded DNA, followed by passage and rejoining."
+      ]
+    },
+    "P06621": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "Release of C-terminal glutamate residues from a wide range of N-acylating moieties, including peptidyl, aminoacyl, benzoyl, benzyloxycarbonyl, folyl and pteroyl groups."
+      ]
+    },
+    "P06622": {
+      "cofactors": [
+        "Fe(2+)"
+      ],
+      "reactions": [
+        "catechol + O2 = (2Z,4E)-2-hydroxy-6-oxohexa-2,4-dienoate + H(+)"
+      ]
+    },
+    "P06709": {
+      "cofactors": [],
+      "reactions": [
+        "biotin + L-lysyl-[protein] + ATP = N(6)-biotinyl-L-lysyl-[protein] + AMP + diphosphate + H(+)"
+      ]
+    },
+    "P06721": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "L,L-cystathionine + H2O = L-homocysteine + pyruvate + NH4(+)",
+        "L-cysteine + H2O = hydrogen sulfide + pyruvate + NH4(+) + H(+)",
+        "an S-substituted L-cysteine + H2O = a thiol + pyruvate + NH4(+)"
+      ]
+    },
+    "P06744": {
+      "cofactors": [],
+      "reactions": [
+        "alpha-D-glucose 6-phosphate = beta-D-fructose 6-phosphate",
+        "alpha-D-glucose 6-phosphate = beta-D-glucose 6-phosphate",
+        "alpha-D-fructose 6-phosphate = beta-D-fructose 6-phosphate",
+        "alpha-D-mannose 6-phosphate = beta-D-mannose 6-phosphate",
+        "D-glucose 6-phosphate = D-mannose 6-phosphate"
+      ]
+    },
+    "P06855": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "a 5'-end dephospho-2'-deoxyribonucleoside-DNA + ATP = a 5'-end 5'-phospho-2'-deoxyribonucleoside-DNA + ADP + H(+)",
+        "a 2'-deoxyribonucleoside 3'-phosphate + H2O = a 2'-deoxyribonucleoside + phosphate"
+      ]
+    },
+    "P06983": {
+      "cofactors": [
+        "dipyrromethane"
+      ],
+      "reactions": [
+        "4 porphobilinogen + H2O = hydroxymethylbilane + 4 NH4(+)"
+      ]
+    },
+    "P07003": {
+      "cofactors": [
+        "FAD",
+        "Mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "reactions": [
+        "a ubiquinone + pyruvate + H2O = a ubiquinol + acetate + CO2"
+      ]
+    },
+    "P07071": {
+      "cofactors": [],
+      "reactions": [
+        "a ribonucleoside 5'-triphosphate + formate + H(+) = a 2'-deoxyribonucleoside 5'-triphosphate + CO2 + H2O"
+      ]
+    },
+    "P07237": {
+      "cofactors": [],
+      "reactions": [
+        "Catalyzes the rearrangement of -S-S- bonds in proteins."
+      ]
+    },
+    "P07254": {
+      "cofactors": [],
+      "reactions": [
+        "Random endo-hydrolysis of N-acetyl-beta-D-glucosaminide (1->4)-beta-linkages in chitin and chitodextrins."
+      ]
+    },
+    "P07342": {
+      "cofactors": [
+        "Mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "reactions": [
+        "2 pyruvate + H(+) = (2S)-2-acetolactate + CO2",
+        "2-oxobutanoate + pyruvate + H(+) = (S)-2-ethyl-2-hydroxy-3-oxobutanoate + CO2"
+      ]
+    },
+    "P07378": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "(2R)-3-phosphoglycerate + ATP = (2R)-3-phospho-glyceroyl phosphate + ADP"
+      ]
+    },
+    "P07445": {
+      "cofactors": [],
+      "reactions": [
+        "a 3-oxo-Delta(5)-steroid = a 3-oxo-Delta(4)-steroid"
+      ]
+    },
+    "P07511": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "(6R)-5,10-methylene-5,6,7,8-tetrahydrofolate + glycine + H2O = (6S)-5,6,7,8-tetrahydrofolate + L-serine",
+        "L-allo-threonine = acetaldehyde + glycine",
+        "L-threonine = acetaldehyde + glycine",
+        "(6R)-5,10-methenyltetrahydrofolate + H2O = (6S)-5-formyl-5,6,7,8-tetrahydrofolate + H(+)",
+        "(3S)-3-hydroxy-N(6),N(6),N(6)-trimethyl-L-lysine = 4-(trimethylamino)butanal + glycine",
+        "L-threo-3-phenylserine = benzaldehyde + glycine"
+      ]
+    },
+    "P07547": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "7-phospho-2-dehydro-3-deoxy-D-arabino-heptonate = 3-dehydroquinate + phosphate",
+        "3-dehydroquinate = 3-dehydroshikimate + H2O",
+        "shikimate + NADP(+) = 3-dehydroshikimate + NADPH + H(+)",
+        "shikimate + ATP = 3-phosphoshikimate + ADP + H(+)",
+        "3-phosphoshikimate + phosphoenolpyruvate = 5-O-(1-carboxyvinyl)-3-phosphoshikimate + phosphate"
+      ]
+    },
+    "P07584": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "Hydrolysis of peptide bonds in substrates containing five or more amino acids, preferentially with Ala in P1', and Pro in P2'."
+      ]
+    },
+    "P07598": {
+      "cofactors": [
+        "[4Fe-4S] cluster",
+        "Fe(2+)"
+      ],
+      "reactions": [
+        "H2 + 2 oxidized [2Fe-2S]-[ferredoxin] = 2 reduced [2Fe-2S]-[ferredoxin] + 2 H(+)"
+      ]
+    },
+    "P07649": {
+      "cofactors": [],
+      "reactions": [
+        "uridine(38/39/40) in tRNA = pseudouridine(38/39/40) in tRNA"
+      ]
+    },
+    "P07650": {
+      "cofactors": [],
+      "reactions": [
+        "thymidine + phosphate = 2-deoxy-alpha-D-ribose 1-phosphate + thymine"
+      ]
+    },
+    "P07658": {
+      "cofactors": [
+        "[4Fe-4S] cluster",
+        "Mo-bis(molybdopterin guanine dinucleotide)"
+      ],
+      "reactions": [
+        "formate + A + H(+) = AH2 + CO2"
+      ]
+    },
+    "P07662": {
+      "cofactors": [],
+      "reactions": [
+        "(7R)-7-(4-carboxybutanamido)cephalosporanate + H2O = (7R)-7-aminocephalosporanate + glutarate"
+      ]
+    },
+    "P07739": {
+      "cofactors": [],
+      "reactions": [
+        "a long-chain fatty aldehyde + FMNH2 + O2 = a long-chain fatty acid + hnu + FMN + H2O + 2 H(+)"
+      ]
+    },
+    "P07801": {
+      "cofactors": [],
+      "reactions": [
+        "L-glutamyl-[protein] + S-adenosyl-L-methionine = [protein]-L-glutamate 5-O-methyl ester + S-adenosyl-L-homocysteine"
+      ]
+    },
+    "P07850": {
+      "cofactors": [
+        "heme b",
+        "Mo-molybdopterin"
+      ],
+      "reactions": [
+        "sulfite + O2 + H2O = sulfate + H2O2",
+        "2 nitrite + AH2 + 2 H(+) = 2 nitric oxide + A + 2 H2O"
+      ]
+    },
+    "P07986": {
+      "cofactors": [],
+      "reactions": [
+        "Hydrolysis of (1->4)-beta-D-glucosidic linkages in cellulose and cellotetraose, releasing cellobiose from the non-reducing ends of the chains.",
+        "Endohydrolysis of (1->4)-beta-D-xylosidic linkages in xylans."
+      ]
+    },
+    "P07987": {
+      "cofactors": [],
+      "reactions": [
+        "Hydrolysis of (1->4)-beta-D-glucosidic linkages in cellulose and cellotetraose, releasing cellobiose from the non-reducing ends of the chains."
+      ]
+    },
+    "P08037": {
+      "cofactors": [
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "D-glucose + UDP-alpha-D-galactose = lactose + UDP + H(+)",
+        "an N-acetyl-beta-D-glucosaminyl derivative + UDP-alpha-D-galactose = a beta-D-galactosyl-(1->4)-N-acetyl-beta-D-glucosaminyl derivative + UDP + H(+)",
+        "N-acetyl-D-glucosamine + UDP-alpha-D-galactose = beta-D-galactosyl-(1->4)-N-acetyl-D-glucosamine + UDP + H(+)",
+        "a beta-D-GlcNAc-(1->3)-beta-D-Gal-(1->4)-beta-D-Glc-(1<->1)-Cer(d18:1(4E)) + UDP-alpha-D-galactose = a neolactoside nLc4Cer(d18:1(4E)) + UDP + H(+)",
+        "a beta-D-glucosylceramide + UDP-alpha-D-galactose = a beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-ceramide + UDP + H(+)",
+        "a neolactoside IV(3)-beta-GlcNAc-nLc4Cer + UDP-alpha-D-galactose = a neolactoside nLc6Cer + UDP + H(+)",
+        "an N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->4)]-[beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-[alpha-L-Fuc-(1->6)]-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP-alpha-D-galactose = an N(4)-{beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->4)]-[beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-[alpha-L-Fuc-(1->6)]-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP + H(+)",
+        "an N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-[alpha-L-Fuc-(1->6)]-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP-alpha-D-galactose = an N(4)-{beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-[alpha-L-Fuc-(1->6)]-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP + H(+)",
+        "an N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->4)]-[beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-[alpha-L-Fuc-(1->6)]-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP-alpha-D-galactose = an N(4)-{beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->4)]-[beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-[alpha-L-Fuc-(1->6)]-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP + H(+)",
+        "an N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-[alpha-L-Fuc-(1->6)]-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP-alpha-D-galactose = an N(4)-{beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-[alpha-L-Fuc-(1->6)]-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP + H(+)",
+        "an N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-[alpha-L-Fuc-(1->6)]-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP-alpha-D-galactose = an N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-[alpha-L-Fuc-(1->6)]-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP + H(+)",
+        "N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP-alpha-D-galactose = an N(4)-{beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP + H(+)",
+        "an N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[alpha-Neu5Ac-(2->6)-beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-[alpha-L-Fuc-(1->6)]-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP-alpha-D-galactose = an N(4)-{beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[alpha-Neu5Ac-(2->6)-beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-[alpha-L-Fuc-(1->6)]-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP + H(+)",
+        "an N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[alpha-Neu5Ac-(2->3)-beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-[alpha-L-Fuc-(1->6)]-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP-alpha-D-galactose = an N(4)-{beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[alpha-Neu5Ac-(2->3)-beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-[alpha-L-Fuc-(1->6)]-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP + H(+)",
+        "an N(4)-{alpha-Neu5Ac-(2->3)-beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-[alpha-L-Fuc-(1->6)]-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP-alpha-D-galactose = an N(4)-{alpha-Neu5Ac-(2->3)-beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-[alpha-L-Fuc-(1->6)]-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP + H(+)",
+        "an N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->4)]-[alpha-Neu5Ac-(2->6)-beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-[alpha-L-Fuc-(1->6)]-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP-alpha-D-galactose = an N(4)-{beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->4)]-[alpha-Neu5Ac-(2->6)-beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-[alpha-L-Fuc-(1->6)]-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP + H(+)",
+        "an N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->4)]-[alpha-Neu5Ac-(2->3)-beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-[alpha-L-Fuc-(1->6)]-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP-alpha-D-galactose = an N(4)-{beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->4)]-[alpha-Neu5Ac-(2->3)-beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-[alpha-L-Fuc-(1->6)]-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP + H(+)",
+        "an N(4)-{alpha-Neu5Ac-(2->3)-beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->4)]-[beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-[alpha-L-Fuc-(1->6)]-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP-alpha-D-galactose = an N(4)-{alpha-Neu5Ac-(2->3)-beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->4)]-[beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-[alpha-L-Fuc-(1->6)]-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP + H(+)",
+        "N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP-alpha-D-galactose = N(4)-{beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP + H(+)",
+        "an N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->4)]-[alpha-Neu5Ac-(2->3)-beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP-alpha-D-galactose = an N(4)-{beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->4)]-[alpha-Neu5Ac-(2->3)-beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP + H(+)",
+        "an N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->4)]-[alpha-Neu5Ac-(2->6)-beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP-alpha-D-galactose = an N(4)-{beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->4)]-[alpha-Neu5Ac-(2->6)-beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP + H(+)",
+        "an N(4)-{alpha-Neu5Ac-(2->6)-beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->4)]-[beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP-alpha-D-galactose = an N(4)-{alpha-Neu5Ac-(2->6)-beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->4)]-[beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP + H(+)",
+        "an N(4)-{beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->4)]-[beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP-alpha-D-galactose = an N(4)-{beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->4)]-[beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP + H(+)",
+        "an N(4)-{alpha-Neu5Ac-(2->3)-beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->4)]-[beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP-alpha-D-galactose = an N(4)-{alpha-Neu5Ac-(2->3)-beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->4)]-[beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP + H(+)",
+        "an N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP-alpha-D-galactose = an N(4)-{beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP + H(+)",
+        "N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP-alpha-D-galactose = an N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP + H(+)",
+        "an N(4)-{beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP-alpha-D-galactose = an N(4)-{beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->3)-[beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->2)-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc}-L-asparaginyl-[protein] + UDP + H(+)"
+      ]
+    },
+    "P08056": {
+      "cofactors": [],
+      "reactions": [
+        "a ribonucleotidyl-ribonucleotide-RNA + H2O = a 3'-end 3'-phospho-ribonucleotide-RNA + a 5'-end dephospho-ribonucleoside-RNA + H(+)"
+      ]
+    },
+    "P08078": {
+      "cofactors": [],
+      "reactions": [
+        "1-amino-1-deoxy-scyllo-inositol 4-phosphate + L-arginine = 1-guanidino-1-deoxy-scyllo-inositol 4-phosphate + L-ornithine"
+      ]
+    },
+    "P08148": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "Preference for hydrophobic residues at P1 and P1' and basic residues at P2' and P3'. A model nonapeptide is cleaved at -Ala-Tyr-|-Leu-Lys-Lys-."
+      ]
+    },
+    "P08164": {
+      "cofactors": [],
+      "reactions": [
+        "deamido-NAD(+) + NH4(+) + ATP = AMP + diphosphate + NAD(+) + H(+)"
+      ]
+    },
+    "P08165": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "2 reduced [adrenodoxin] + NADP(+) + H(+) = 2 oxidized [adrenodoxin] + NADPH",
+        "2 reduced [2Fe-2S]-[ferredoxin] + NADP(+) + H(+) = 2 oxidized [2Fe-2S]-[ferredoxin] + NADPH"
+      ]
+    },
+    "P08179": {
+      "cofactors": [],
+      "reactions": [
+        "N(1)-(5-phospho-beta-D-ribosyl)glycinamide + (6R)-10-formyltetrahydrofolate = N(2)-formyl-N(1)-(5-phospho-beta-D-ribosyl)glycinamide + (6S)-5,6,7,8-tetrahydrofolate + H(+)"
+      ]
+    },
+    "P08200": {
+      "cofactors": [
+        "Mg(2+)",
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "D-threo-isocitrate + NADP(+) = 2-oxoglutarate + CO2 + NADPH"
+      ]
+    },
+    "P08203": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "L-ribulose 5-phosphate = D-xylulose 5-phosphate"
+      ]
+    },
+    "P08236": {
+      "cofactors": [],
+      "reactions": [
+        "a beta-D-glucuronoside + H2O = D-glucuronate + an alcohol"
+      ]
+    },
+    "P08373": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "UDP-N-acetyl-alpha-D-muramate + NADP(+) = UDP-N-acetyl-3-O-(1-carboxyvinyl)-alpha-D-glucosamine + NADPH + H(+)"
+      ]
+    },
+    "P08473": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "Preferential cleavage of polypeptides between hydrophobic residues, particularly with Phe or Tyr at P1'.",
+        "substance P + H2O = substance P(1-9) + L-Leu-L-Met-NH2",
+        "substance P + H2O = substance P(1-7) + L-Phe-Gly-L-Leu-L-Met-NH2",
+        "neurotensin + H2O = neurotensin(1-11) + L-isoleucyl-L-leucine",
+        "neurotensin + H2O = neurotensin(1-10) + L-tyrosyl-L-isoleucyl-L-leucine"
+      ]
+    },
+    "P08536": {
+      "cofactors": [],
+      "reactions": [
+        "sulfate + ATP + H(+) = adenosine 5'-phosphosulfate + diphosphate"
+      ]
+    },
+    "P08659": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "firefly D-luciferin + ATP + O2 = firefly oxyluciferin + hnu + AMP + CO2 + diphosphate"
+      ]
+    },
+    "P08819": {
+      "cofactors": [],
+      "reactions": [
+        "Preferential release of a C-terminal arginine or lysine residue."
+      ]
+    },
+    "P08836": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "isopentenyl diphosphate + dimethylallyl diphosphate = (2E)-geranyl diphosphate + diphosphate",
+        "isopentenyl diphosphate + (2E)-geranyl diphosphate = (2E,6E)-farnesyl diphosphate + diphosphate"
+      ]
+    },
+    "P09030": {
+      "cofactors": [
+        "Mg(2+)",
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "Exonucleolytic cleavage in the 3'- to 5'-direction to yield nucleoside 5'-phosphates."
+      ]
+    },
+    "P09147": {
+      "cofactors": [
+        "NAD(+)"
+      ],
+      "reactions": [
+        "UDP-alpha-D-glucose = UDP-alpha-D-galactose"
+      ]
+    },
+    "P09148": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "alpha-D-galactose 1-phosphate + UDP-alpha-D-glucose = alpha-D-glucose 1-phosphate + UDP-alpha-D-galactose"
+      ]
+    },
+    "P09155": {
+      "cofactors": [
+        "a divalent metal cation"
+      ],
+      "reactions": [
+        "Exonucleolytic cleavage that removes extra residues from the 3'-terminus of tRNA to produce 5'-mononucleotides."
+      ]
+    },
+    "P09184": {
+      "cofactors": [
+        "Mg(2+)",
+        "Zn(2+)"
+      ],
+      "reactions": []
+    },
+    "P09186": {
+      "cofactors": [
+        "Fe cation"
+      ],
+      "reactions": [
+        "(9Z,12Z)-octadecadienoate + O2 = (9S)-hydroperoxy-(10E,12Z)-octadecadienoate"
+      ]
+    },
+    "P09367": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "L-serine = pyruvate + NH4(+)",
+        "L-threonine = 2-oxobutanoate + NH4(+)"
+      ]
+    },
+    "P09373": {
+      "cofactors": [],
+      "reactions": [
+        "formate + acetyl-CoA = pyruvate + CoA"
+      ]
+    },
+    "P09598": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "a 1,2-diacyl-sn-glycero-3-phosphocholine + H2O = phosphocholine + a 1,2-diacyl-sn-glycerol + H(+)"
+      ]
+    },
+    "P09850": {
+      "cofactors": [],
+      "reactions": [
+        "Endohydrolysis of (1->4)-beta-D-xylosidic linkages in xylans."
+      ]
+    },
+    "P09960": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "leukotriene A4 + H2O = leukotriene B4",
+        "(5S,6S)-epoxy-(18R)-hydroxy-(7E,9E,11Z,14Z,16E)-eicosapentaenoate + H2O = resolvin E1",
+        "(5S,6S)-epoxy-(18S)-hydroxy-(7E,9E,11Z,14Z,16E)-eicosapentaenoate + H2O = 18S-resolvin E1",
+        "Release of the N-terminal residue from a tripeptide.",
+        "leukotriene A5 + H2O = leukotriene B5"
+      ]
+    },
+    "P0A006": {
+      "cofactors": [],
+      "reactions": [
+        "arsenate + [thioredoxin]-dithiol + H(+) = arsenite + [thioredoxin]-disulfide + H2O"
+      ]
+    },
+    "P0A110": {
+      "cofactors": [
+        "[2Fe-2S] cluster",
+        "Fe(2+)"
+      ],
+      "reactions": [
+        "naphthalene + NADH + O2 + H(+) = (1R,2S)-1,2-dihydronaphthalene-1,2-diol + NAD(+)"
+      ]
+    },
+    "P0A115": {
+      "cofactors": [],
+      "reactions": [
+        "2-(5-oxo-2,5-dihydrofuran-2-ylidene)acetate + H2O = 4-oxohex-2-enedioate + H(+)"
+      ]
+    },
+    "P0A1E3": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "O-acetyl-L-serine + hydrogen sulfide = L-cysteine + acetate"
+      ]
+    },
+    "P0A3Y5": {
+      "cofactors": [],
+      "reactions": [
+        "kanamycin A + ATP = kanamycin 3'-phosphate + ADP + H(+)"
+      ]
+    },
+    "P0A434": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "An aryl dialkyl phosphate + H2O = dialkyl phosphate + an aryl alcohol."
+      ]
+    },
+    "P0A6C1": {
+      "cofactors": [
+        "Zn(2+)",
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "Endonucleolytic cleavage to 5'-phosphooligonucleotide end-products."
+      ]
+    },
+    "P0A6D3": {
+      "cofactors": [],
+      "reactions": [
+        "3-phosphoshikimate + phosphoenolpyruvate = 5-O-(1-carboxyvinyl)-3-phosphoshikimate + phosphate"
+      ]
+    },
+    "P0A6G7": {
+      "cofactors": [],
+      "reactions": [
+        "Hydrolysis of proteins to small peptides in the presence of ATP and magnesium. alpha-casein is the usual test substrate. In the absence of ATP, only oligopeptides shorter than five residues are hydrolyzed (such as succinyl-Leu-Tyr-|-NHMec, and Leu-Tyr-Leu-|-Tyr-Trp, in which cleavage of the -Tyr-|-Leu- and -Tyr-|-Trp bonds also occurs)."
+      ]
+    },
+    "P0A6I6": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "(R)-4'-phosphopantetheine + ATP + H(+) = 3'-dephospho-CoA + diphosphate"
+      ]
+    },
+    "P0A6K3": {
+      "cofactors": [
+        "Fe(2+)",
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "N-terminal N-formyl-L-methionyl-[peptide] + H2O = N-terminal L-methionyl-[peptide] + formate"
+      ]
+    },
+    "P0A6L0": {
+      "cofactors": [],
+      "reactions": [
+        "2-deoxy-D-ribose 5-phosphate = D-glyceraldehyde 3-phosphate + acetaldehyde"
+      ]
+    },
+    "P0A6L2": {
+      "cofactors": [],
+      "reactions": [
+        "L-aspartate 4-semialdehyde + pyruvate = (2S,4S)-4-hydroxy-2,3,4,5-tetrahydrodipicolinate + H2O + H(+)"
+      ]
+    },
+    "P0A6Q3": {
+      "cofactors": [],
+      "reactions": [
+        "a (3R)-hydroxyacyl-[ACP] = a (2E)-enoyl-[ACP] + H2O",
+        "(3R)-hydroxydecanoyl-[ACP] = (2E)-decenoyl-[ACP] + H2O",
+        "(2E)-decenoyl-[ACP] = (3Z)-decenoyl-[ACP]",
+        "(3R)-hydroxybutanoyl-[ACP] = (2E)-butenoyl-[ACP] + H2O",
+        "(3R)-hydroxyhexanoyl-[ACP] = (2E)-hexenoyl-[ACP] + H2O",
+        "(3R)-hydroxyoctanoyl-[ACP] = (2E)-octenoyl-[ACP] + H2O",
+        "(3R)-hydroxydodecanoyl-[ACP] = (2E)-dodecenoyl-[ACP] + H2O",
+        "(3R)-hydroxytetradecanoyl-[ACP] = (2E)-tetradecenoyl-[ACP] + H2O",
+        "(3R)-hydroxyhexadecanoyl-[ACP] = (2E)-hexadecenoyl-[ACP] + H2O",
+        "(3R)-hydroxy-5-methylhexanoyl-[ACP] = (2E)-5-methylhexenoyl-[ACP] + H2O"
+      ]
+    },
+    "P0A6T5": {
+      "cofactors": [],
+      "reactions": [
+        "GTP + H2O = 7,8-dihydroneopterin 3'-triphosphate + formate + H(+)"
+      ]
+    },
+    "P0A715": {
+      "cofactors": [],
+      "reactions": [
+        "D-arabinose 5-phosphate + phosphoenolpyruvate + H2O = 3-deoxy-alpha-D-manno-2-octulosonate-8-phosphate + phosphate"
+      ]
+    },
+    "P0A722": {
+      "cofactors": [],
+      "reactions": [
+        "a (3R)-hydroxyacyl-[ACP] + UDP-N-acetyl-alpha-D-glucosamine = a UDP-3-O-[(3R)-3-hydroxyacyl]-N-acetyl-alpha-D-glucosamine + holo-[ACP]"
+      ]
+    },
+    "P0A731": {
+      "cofactors": [],
+      "reactions": [
+        "dihydroxyacetone phosphate = methylglyoxal + phosphate"
+      ]
+    },
+    "P0A759": {
+      "cofactors": [],
+      "reactions": [
+        "alpha-D-glucosamine 6-phosphate + H2O = beta-D-fructose 6-phosphate + NH4(+)"
+      ]
+    },
+    "P0A786": {
+      "cofactors": [],
+      "reactions": [
+        "carbamoyl phosphate + L-aspartate = N-carbamoyl-L-aspartate + phosphate + H(+)"
+      ]
+    },
+    "P0A790": {
+      "cofactors": [
+        "pyruvate"
+      ],
+      "reactions": [
+        "L-aspartate + H(+) = beta-alanine + CO2"
+      ]
+    },
+    "P0A794": {
+      "cofactors": [],
+      "reactions": [
+        "3-amino-2-oxopropyl phosphate + 1-deoxy-D-xylulose 5-phosphate = pyridoxine 5'-phosphate + phosphate + 2 H2O + H(+)"
+      ]
+    },
+    "P0A796": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "beta-D-fructose 6-phosphate + ATP = beta-D-fructose 1,6-bisphosphate + ADP + H(+)",
+        "D-sedoheptulose 7-phosphate + ATP = D-sedoheptulose 1,7-bisphosphate + ADP + H(+)"
+      ]
+    },
+    "P0A7D4": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "IMP + L-aspartate + GTP = N(6)-(1,2-dicarboxyethyl)-AMP + GDP + phosphate + 2 H(+)"
+      ]
+    },
+    "P0A7Y4": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "Endonucleolytic cleavage to 5'-phosphomonoester."
+      ]
+    },
+    "P0A836": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "succinate + ATP + CoA = succinyl-CoA + ADP + phosphate",
+        "GTP + succinate + CoA = succinyl-CoA + GDP + phosphate"
+      ]
+    },
+    "P0A870": {
+      "cofactors": [],
+      "reactions": [
+        "D-sedoheptulose 7-phosphate + D-glyceraldehyde 3-phosphate = D-erythrose 4-phosphate + beta-D-fructose 6-phosphate"
+      ]
+    },
+    "P0A8M3": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "tRNA(Thr) + L-threonine + ATP = L-threonyl-tRNA(Thr) + AMP + diphosphate + H(+)"
+      ]
+    },
+    "P0A953": {
+      "cofactors": [],
+      "reactions": [
+        "a fatty acyl-[ACP] + malonyl-[ACP] + H(+) = a 3-oxoacyl-[ACP] + holo-[ACP] + CO2",
+        "(3Z)-decenoyl-[ACP] + malonyl-[ACP] + H(+) = 3-oxo-(5Z)-dodecenoyl-[ACP] + holo-[ACP] + CO2",
+        "hexanoyl-[ACP] + malonyl-[ACP] + H(+) = 3-oxooctanoyl-[ACP] + holo-[ACP] + CO2",
+        "octanoyl-[ACP] + malonyl-[ACP] + H(+) = 3-oxodecanoyl-[ACP] + holo-[ACP] + CO2",
+        "decanoyl-[ACP] + malonyl-[ACP] + H(+) = 3-oxododecanoyl-[ACP] + holo-[ACP] + CO2",
+        "dodecanoyl-[ACP] + malonyl-[ACP] + H(+) = 3-oxotetradecanoyl-[ACP] + holo-[ACP] + CO2",
+        "tetradecanoyl-[ACP] + malonyl-[ACP] + H(+) = 3-oxohexadecanoyl-[ACP] + holo-[ACP] + CO2",
+        "(7Z)-tetradecenoyl-[ACP] + malonyl-[ACP] + H(+) = 3-oxo-(9Z)-hexadecenoyl-[ACP] + holo-[ACP] + CO2"
+      ]
+    },
+    "P0A955": {
+      "cofactors": [],
+      "reactions": [
+        "2-dehydro-3-deoxy-6-phospho-D-gluconate = D-glyceraldehyde 3-phosphate + pyruvate",
+        "(4S)-4-hydroxy-2-oxoglutarate = glyoxylate + pyruvate",
+        "oxaloacetate + H(+) = pyruvate + CO2"
+      ]
+    },
+    "P0A9M5": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "GMP + diphosphate = guanine + 5-phospho-alpha-D-ribose 1-diphosphate",
+        "XMP + diphosphate = xanthine + 5-phospho-alpha-D-ribose 1-diphosphate",
+        "IMP + diphosphate = hypoxanthine + 5-phospho-alpha-D-ribose 1-diphosphate"
+      ]
+    },
+    "P0A9P4": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "[thioredoxin]-dithiol + NADP(+) = [thioredoxin]-disulfide + NADPH + H(+)"
+      ]
+    },
+    "P0A9Q9": {
+      "cofactors": [],
+      "reactions": [
+        "L-aspartate 4-semialdehyde + phosphate + NADP(+) = 4-phospho-L-aspartate + NADPH + H(+)"
+      ]
+    },
+    "P0AAI5": {
+      "cofactors": [],
+      "reactions": [
+        "a fatty acyl-[ACP] + malonyl-[ACP] + H(+) = a 3-oxoacyl-[ACP] + holo-[ACP] + CO2",
+        "(9Z)-hexadecenoyl-[ACP] + malonyl-[ACP] + H(+) = 3-oxo-(11Z)-octadecenoyl-[ACP] + holo-[ACP] + CO2",
+        "hexanoyl-[ACP] + malonyl-[ACP] + H(+) = 3-oxooctanoyl-[ACP] + holo-[ACP] + CO2",
+        "octanoyl-[ACP] + malonyl-[ACP] + H(+) = 3-oxodecanoyl-[ACP] + holo-[ACP] + CO2",
+        "decanoyl-[ACP] + malonyl-[ACP] + H(+) = 3-oxododecanoyl-[ACP] + holo-[ACP] + CO2",
+        "dodecanoyl-[ACP] + malonyl-[ACP] + H(+) = 3-oxotetradecanoyl-[ACP] + holo-[ACP] + CO2",
+        "tetradecanoyl-[ACP] + malonyl-[ACP] + H(+) = 3-oxohexadecanoyl-[ACP] + holo-[ACP] + CO2"
+      ]
+    },
+    "P0AAI9": {
+      "cofactors": [],
+      "reactions": [
+        "holo-[ACP] + malonyl-CoA = malonyl-[ACP] + CoA"
+      ]
+    },
+    "P0AAJ3": {
+      "cofactors": [
+        "[4Fe-4S] cluster"
+      ],
+      "reactions": []
+    },
+    "P0AB71": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "beta-D-fructose 1,6-bisphosphate = D-glyceraldehyde 3-phosphate + dihydroxyacetone phosphate",
+        "D-erythrose 4-phosphate + dihydroxyacetone phosphate = D-sedoheptulose 1,7-bisphosphate"
+      ]
+    },
+    "P0AB77": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "glycine + acetyl-CoA = (2S)-2-amino-3-oxobutanoate + CoA"
+      ]
+    },
+    "P0AB87": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "L-fuculose 1-phosphate = (S)-lactaldehyde + dihydroxyacetone phosphate",
+        "D-ribulose 1-phosphate = glycolaldehyde + dihydroxyacetone phosphate"
+      ]
+    },
+    "P0ABF6": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "cytidine + H2O + H(+) = uridine + NH4(+)",
+        "2'-deoxycytidine + H2O + H(+) = 2'-deoxyuridine + NH4(+)"
+      ]
+    },
+    "P0ABI8": {
+      "cofactors": [
+        "Cu(2+)",
+        "heme b",
+        "Fe(II)-heme o"
+      ],
+      "reactions": [
+        "2 a ubiquinol + O2 + n H(+)(in) = 2 a ubiquinone + 2 H2O + n H(+)(out)"
+      ]
+    },
+    "P0ABP8": {
+      "cofactors": [],
+      "reactions": [
+        "a purine D-ribonucleoside + phosphate = a purine nucleobase + alpha-D-ribose 1-phosphate",
+        "a purine 2'-deoxy-D-ribonucleoside + phosphate = a purine nucleobase + 2-deoxy-alpha-D-ribose 1-phosphate",
+        "inosine + phosphate = alpha-D-ribose 1-phosphate + hypoxanthine",
+        "adenosine + phosphate = alpha-D-ribose 1-phosphate + adenine",
+        "guanosine + phosphate = alpha-D-ribose 1-phosphate + guanine",
+        "2'-deoxyadenosine + phosphate = 2-deoxy-alpha-D-ribose 1-phosphate + adenine",
+        "2'-deoxyguanosine + phosphate = 2-deoxy-alpha-D-ribose 1-phosphate + guanine",
+        "2'-deoxyinosine + phosphate = 2-deoxy-alpha-D-ribose 1-phosphate + hypoxanthine"
+      ]
+    },
+    "P0AC13": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "(7,8-dihydropterin-6-yl)methyl diphosphate + 4-aminobenzoate = 7,8-dihydropteroate + diphosphate"
+      ]
+    },
+    "P0AC81": {
+      "cofactors": [
+        "Ni(2+)"
+      ],
+      "reactions": [
+        "(R)-S-lactoylglutathione = methylglyoxal + glutathione"
+      ]
+    },
+    "P0AC88": {
+      "cofactors": [
+        "NADP(+)"
+      ],
+      "reactions": [
+        "GDP-alpha-D-mannose = GDP-4-dehydro-alpha-D-rhamnose + H2O"
+      ]
+    },
+    "P0AEK4": {
+      "cofactors": [],
+      "reactions": [
+        "a 2,3-saturated acyl-[ACP] + NAD(+) = a (2E)-enoyl-[ACP] + NADH + H(+)",
+        "(2E)-butenoyl-[ACP] + NADH + H(+) = butanoyl-[ACP] + NAD(+)",
+        "(2E)-decenoyl-[ACP] + NADH + H(+) = decanoyl-[ACP] + NAD(+)",
+        "(2E)-hexadecenoyl-[ACP] + NADH + H(+) = hexadecanoyl-[ACP] + NAD(+)",
+        "(2E,9Z)-hexadecadienoyl-[ACP] + NADH + H(+) = (9Z)-hexadecenoyl-[ACP] + NAD(+)",
+        "(2E)-5-methylhexenoyl-[ACP] + NADH + H(+) = 5-methylhexanoyl-[ACP] + NAD(+)"
+      ]
+    },
+    "P0AEP7": {
+      "cofactors": [
+        "Mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "reactions": [
+        "2 glyoxylate + H(+) = 2-hydroxy-3-oxopropanoate + CO2"
+      ]
+    },
+    "P0AES2": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "D-glucarate = 5-dehydro-4-deoxy-D-glucarate + H2O"
+      ]
+    },
+    "P0AEZ1": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "(6S)-5-methyl-5,6,7,8-tetrahydrofolate + NAD(+) = (6R)-5,10-methylene-5,6,7,8-tetrahydrofolate + NADH + H(+)"
+      ]
+    },
+    "P0AG16": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "5-phospho-beta-D-ribosylamine + L-glutamate + diphosphate = 5-phospho-alpha-D-ribose 1-diphosphate + L-glutamine + H2O"
+      ]
+    },
+    "P0C0F4": {
+      "cofactors": [],
+      "reactions": [
+        "UDP-alpha-D-glucose + 2 NAD(+) + H2O = UDP-alpha-D-glucuronate + 2 NADH + 3 H(+)"
+      ]
+    },
+    "P0C1A7": {
+      "cofactors": [
+        "Ca(2+)"
+      ],
+      "reactions": [
+        "Eliminative cleavage of (1->4)-alpha-D-galacturonan to give oligosaccharides with 4-deoxy-alpha-D-galact-4-enuronosyl groups at their non-reducing ends."
+      ]
+    },
+    "P0CE47": {
+      "cofactors": [],
+      "reactions": [
+        "GTP + H2O = GDP + phosphate + H(+)"
+      ]
+    },
+    "P0CS93": {
+      "cofactors": [
+        "Cu(2+)"
+      ],
+      "reactions": [
+        "D-galactose + O2 = D-galacto-hexodialdose + H2O2"
+      ]
+    },
+    "P0DJQ7": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "N(2)-(2-carboxyethyl)-L-arginine + ATP = deoxyamidinoproclavaminate + AMP + diphosphate + H(+)"
+      ]
+    },
+    "P10182": {
+      "cofactors": [],
+      "reactions": [
+        "L-glutamine + H2O = L-glutamate + NH4(+)",
+        "L-asparagine + H2O = L-aspartate + NH4(+)"
+      ]
+    },
+    "P10342": {
+      "cofactors": [
+        "Ca(2+)"
+      ],
+      "reactions": [
+        "Hydrolysis of (1->6)-alpha-D-glucosidic branch linkages in glycogen, amylopectin and their beta-limit dextrins."
+      ]
+    },
+    "P10538": {
+      "cofactors": [],
+      "reactions": [
+        "Hydrolysis of (1->4)-alpha-D-glucosidic linkages in polysaccharides so as to remove successive maltose units from the non-reducing ends of the chains."
+      ]
+    },
+    "P10618": {
+      "cofactors": [],
+      "reactions": [
+        "D-glyceraldehyde 3-phosphate + phosphate + NADP(+) = (2R)-3-phospho-glyceroyl phosphate + NADPH + H(+)",
+        "D-glyceraldehyde 3-phosphate + phosphate + NAD(+) = (2R)-3-phospho-glyceroyl phosphate + NADH + H(+)"
+      ]
+    },
+    "P10688": {
+      "cofactors": [
+        "Ca(2+)"
+      ],
+      "reactions": [
+        "a 1,2-diacyl-sn-glycero-3-phospho-(1D-myo-inositol-4,5-bisphosphate) + H2O = 1D-myo-inositol 1,4,5-trisphosphate + a 1,2-diacyl-sn-glycerol + H(+)",
+        "a 1,2-diacyl-sn-glycero-3-phospho-(1D-myo-inositol) + H2O = 1D-myo-inositol 1-phosphate + a 1,2-diacyl-sn-glycerol + H(+)"
+      ]
+    },
+    "P10724": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "L-alanine = D-alanine"
+      ]
+    },
+    "P10746": {
+      "cofactors": [],
+      "reactions": [
+        "hydroxymethylbilane = uroporphyrinogen III + H2O"
+      ]
+    },
+    "P10760": {
+      "cofactors": [
+        "NAD(+)"
+      ],
+      "reactions": [
+        "S-adenosyl-L-homocysteine + H2O = L-homocysteine + adenosine"
+      ]
+    },
+    "P10824": {
+      "cofactors": [],
+      "reactions": [
+        "GTP + H2O = GDP + phosphate + H(+)"
+      ]
+    },
+    "P10844": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "Limited hydrolysis of proteins of the neuroexocytosis apparatus, synaptobrevins, SNAP25 or syntaxin. No detected action on small molecule substrates."
+      ]
+    },
+    "P10902": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "L-aspartate + O2 = iminosuccinate + H2O2",
+        "fumarate + L-aspartate = iminosuccinate + succinate"
+      ]
+    },
+    "P11064": {
+      "cofactors": [],
+      "reactions": [
+        "O-phospho-L-tyrosyl-[protein] + H2O = L-tyrosyl-[protein] + phosphate",
+        "a phosphate monoester + H2O = an alcohol + phosphate"
+      ]
+    },
+    "P11348": {
+      "cofactors": [],
+      "reactions": [
+        "5,6,7,8-tetrahydropteridine + NAD(+) = 6,7-dihydropteridine + NADH + H(+)",
+        "5,6,7,8-tetrahydropteridine + NADP(+) = 6,7-dihydropteridine + NADPH + H(+)"
+      ]
+    },
+    "P11409": {
+      "cofactors": [],
+      "reactions": [
+        "a 2'-deoxycytidine in DNA + S-adenosyl-L-methionine = an N(4)-methyl-2'-deoxycytidine in DNA + S-adenosyl-L-homocysteine + H(+)"
+      ]
+    },
+    "P11444": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "(S)-mandelate = (R)-mandelate"
+      ]
+    },
+    "P11558": {
+      "cofactors": [
+        "coenzyme F430"
+      ],
+      "reactions": [
+        "coenzyme B + methyl-coenzyme M = methane + coenzyme M-coenzyme B heterodisulfide"
+      ]
+    },
+    "P11586": {
+      "cofactors": [],
+      "reactions": [
+        "(6R)-5,10-methylene-5,6,7,8-tetrahydrofolate + NADP(+) = (6R)-5,10-methenyltetrahydrofolate + NADPH",
+        "(6R)-5,10-methenyltetrahydrofolate + H2O = (6R)-10-formyltetrahydrofolate + H(+)",
+        "(6S)-5,6,7,8-tetrahydrofolate + formate + ATP = (6R)-10-formyltetrahydrofolate + ADP + phosphate"
+      ]
+    },
+    "P11652": {
+      "cofactors": [
+        "adenosylcob(III)alamin"
+      ],
+      "reactions": [
+        "(R)-methylmalonyl-CoA = succinyl-CoA"
+      ]
+    },
+    "P11708": {
+      "cofactors": [],
+      "reactions": [
+        "(S)-malate + NAD(+) = oxaloacetate + NADH + H(+)",
+        "(2R)-2-hydroxy-3-(4-hydroxyphenyl)propanoate + NAD(+) = 3-(4-hydroxyphenyl)pyruvate + NADH + H(+)",
+        "(S)-2-hydroxyglutarate + NAD(+) = 2-oxoglutarate + NADH + H(+)"
+      ]
+    },
+    "P11766": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "a primary alcohol + NAD(+) = an aldehyde + NADH + H(+)",
+        "a secondary alcohol + NAD(+) = a ketone + NADH + H(+)",
+        "S-(hydroxymethyl)glutathione + NADP(+) = S-formylglutathione + NADPH + H(+)",
+        "S-(hydroxymethyl)glutathione + NAD(+) = S-formylglutathione + NADH + H(+)",
+        "20-oxo-(5Z,8Z,11Z,14Z)-eicosatetraenoate + NAD(+) + H2O = (5Z,8Z,11Z,14Z)-eicosatetraenedioate + NADH + 2 H(+)",
+        "20-hydroxy-(5Z,8Z,11Z,14Z)-eicosatetraenoate + NAD(+) = 20-oxo-(5Z,8Z,11Z,14Z)-eicosatetraenoate + NADH + H(+)",
+        "S-nitrosoglutathione + NADH + H(+) = S-(hydroxysulfenamide)glutathione + NAD(+)"
+      ]
+    },
+    "P11974": {
+      "cofactors": [
+        "Mg(2+)",
+        "K(+)"
+      ],
+      "reactions": [
+        "pyruvate + ATP = phosphoenolpyruvate + ADP + H(+)",
+        "pyruvate + ATP = phosphoenolpyruvate + ADP + H(+)",
+        "L-tyrosyl-[protein] + ATP = O-phospho-L-tyrosyl-[protein] + ADP + H(+)",
+        "L-threonyl-[protein] + ATP = O-phospho-L-threonyl-[protein] + ADP + H(+)"
+      ]
+    },
+    "P11986": {
+      "cofactors": [
+        "NAD(+)"
+      ],
+      "reactions": [
+        "D-glucose 6-phosphate = 1D-myo-inositol 3-phosphate"
+      ]
+    },
+    "P12070": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "alpha-D-xylose = alpha-D-xylulofuranose"
+      ]
+    },
+    "P12256": {
+      "cofactors": [],
+      "reactions": [
+        "a penicillin + H2O = 6-aminopenicillanate + a carboxylate"
+      ]
+    },
+    "P12257": {
+      "cofactors": [],
+      "reactions": [
+        "Hydrolysis of (1->4)-beta-D-glucosidic linkages in beta-D-glucans containing (1->3)- and (1->4)-bonds."
+      ]
+    },
+    "P12295": {
+      "cofactors": [],
+      "reactions": [
+        "Hydrolyzes single-stranded DNA or mismatched double-stranded DNA and polynucleotides, releasing free uracil."
+      ]
+    },
+    "P12694": {
+      "cofactors": [
+        "thiamine diphosphate",
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "N(6)-[(R)-lipoyl]-L-lysyl-[protein] + 3-methyl-2-oxobutanoate + H(+) = N(6)-[(R)-S(8)-2-methylpropanoyldihydrolipoyl]-L-lysyl-[protein] + CO2",
+        "N(6)-[(R)-lipoyl]-L-lysyl-[protein] + 4-methyl-2-oxopentanoate + H(+) = N(6)-[(R)-S(8)-3-methylbutanoyldihydrolipoyl]-L-lysyl-[protein] + CO2",
+        "N(6)-[(R)-lipoyl]-L-lysyl-[protein] + (S)-3-methyl-2-oxopentanoate + H(+) = N(6)-{(R)-S(8)-[(2S)-2-methylbutanoyl]dihydrolipoyl}-L-lysyl-[protein] + CO2"
+      ]
+    },
+    "P12821": {
+      "cofactors": [
+        "Zn(2+)",
+        "Zn(2+)",
+        "chloride",
+        "chloride"
+      ],
+      "reactions": [
+        "Release of a C-terminal dipeptide, oligopeptide-|-Xaa-Yaa, when Xaa is not Pro, and Yaa is neither Asp nor Glu. Thus, conversion of angiotensin I to angiotensin II, with increase in vasoconstrictor activity, but no action on angiotensin II.",
+        "angiotensin I + H2O = L-histidyl-L-leucine + angiotensin II",
+        "bradykinin + H2O = L-Phe-L-Arg + bradykinin(1-7)",
+        "substance P + H2O = substance P(1-9) + L-Leu-L-Met-NH2",
+        "substance P + H2O = substance P(1-8) + Gly-L-Leu-L-Met-NH2",
+        "substance P + H2O = L-Phe-L-Phe-Gly-L-Leu-L-Met-NH2 + substance P(1-6)",
+        "neurotensin + H2O = neurotensin(1-11) + L-isoleucyl-L-leucine",
+        "goralatide + H2O = N-acetyl-L-seryl-L-aspartate + L-lysyl-L-proline",
+        "Met-enkephalin + H2O = L-phenylalanyl-L-methionine + L-tyrosylglycylglycine",
+        "Leu-enkephalin + H2O = L-tyrosylglycylglycine + L-phenylalanyl-L-leucine",
+        "Met-enkephalin-Arg-Phe + H2O = L-arginyl-L-phenylalanine + Met-enkephalin",
+        "Release of a C-terminal dipeptide, oligopeptide-|-Xaa-Yaa, when Xaa is not Pro, and Yaa is neither Asp nor Glu. Thus, conversion of angiotensin I to angiotensin II, with increase in vasoconstrictor activity, but no action on angiotensin II."
+      ]
+    },
+    "P12944": {
+      "cofactors": [
+        "Ni(2+)"
+      ],
+      "reactions": [
+        "2 Fe(III)-[cytochrome c3] + H2 = 2 Fe(II)-[cytochrome c3] + 2 H(+)"
+      ]
+    },
+    "P12995": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "(8S)-8-amino-7-oxononanoate + S-adenosyl-L-methionine = S-adenosyl-4-methylsulfanyl-2-oxobutanoate + (7R,8S)-7,8-diammoniononanoate"
+      ]
+    },
+    "P12998": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "6-carboxyhexanoyl-[ACP] + L-alanine + H(+) = (8S)-8-amino-7-oxononanoate + holo-[ACP] + CO2"
+      ]
+    },
+    "P13000": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "(7R,8S)-7,8-diammoniononanoate + CO2 + ATP = (4R,5S)-dethiobiotin + ADP + phosphate + 3 H(+)"
+      ]
+    },
+    "P13009": {
+      "cofactors": [
+        "methylcob(III)alamin",
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "(6S)-5-methyl-5,6,7,8-tetrahydrofolate + L-homocysteine = (6S)-5,6,7,8-tetrahydrofolate + L-methionine"
+      ]
+    },
+    "P13063": {
+      "cofactors": [
+        "[4Fe-4S] cluster"
+      ],
+      "reactions": [
+        "H2 + A = AH2"
+      ]
+    },
+    "P13255": {
+      "cofactors": [],
+      "reactions": [
+        "glycine + S-adenosyl-L-methionine = sarcosine + S-adenosyl-L-homocysteine + H(+)"
+      ]
+    },
+    "P13340": {
+      "cofactors": [
+        "Ca(2+)",
+        "Zn(2+)"
+      ],
+      "reactions": []
+    },
+    "P13448": {
+      "cofactors": [
+        "Fe(3+)"
+      ],
+      "reactions": [
+        "an amide = a nitrile + H2O",
+        "an aliphatic primary amide = an aliphatic nitrile + H2O",
+        "2-methylacrylamide = methylacrylonitrile + H2O",
+        "acrylamide = acrylonitrile + H2O",
+        "tert-butylisonitrile + H2O + H(+) = tert-butylamine + CO"
+      ]
+    },
+    "P13513": {
+      "cofactors": [
+        "Mg(2+)",
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "(2E,6E)-farnesyl diphosphate = trichodiene + diphosphate"
+      ]
+    },
+    "P13650": {
+      "cofactors": [
+        "pyrroloquinoline quinone",
+        "Ca(2+)"
+      ],
+      "reactions": [
+        "a ubiquinone + D-glucose = D-glucono-1,5-lactone + a ubiquinol"
+      ]
+    },
+    "P13661": {
+      "cofactors": [],
+      "reactions": [
+        "a beta-lactam + H2O = a substituted beta-amino acid"
+      ]
+    },
+    "P13717": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "Endonucleolytic cleavage to 5'-phosphomononucleotide and 5'-phosphooligonucleotide end-products."
+      ]
+    },
+    "P14262": {
+      "cofactors": [],
+      "reactions": [
+        "a 1,2-diacyl-sn-glycero-3-phospho-(1D-myo-inositol) = 1D-myo-inositol 1,2-cyclic phosphate + a 1,2-diacyl-sn-glycerol"
+      ]
+    },
+    "P14294": {
+      "cofactors": [
+        "Mg(2+)",
+        "Mn(2+)",
+        "Ca(2+)"
+      ],
+      "reactions": [
+        "ATP-independent breakage of single-stranded DNA, followed by passage and rejoining."
+      ]
+    },
+    "P14385": {
+      "cofactors": [],
+      "reactions": [
+        "a 2'-deoxyadenosine in DNA + S-adenosyl-L-methionine = an N(6)-methyl-2'-deoxyadenosine in DNA + S-adenosyl-L-homocysteine + H(+)"
+      ]
+    },
+    "P14604": {
+      "cofactors": [],
+      "reactions": [
+        "a (3S)-3-hydroxyacyl-CoA = a (2E)-enoyl-CoA + H2O",
+        "a (3E)-enoyl-CoA = a 4-saturated (2E)-enoyl-CoA",
+        "(3E)-hexenoyl-CoA = (2E)-hexenoyl-CoA",
+        "(3S)-3-hydroxybutanoyl-CoA = (2E)-butenoyl-CoA + H2O",
+        "3-hydroxyisovaleryl-CoA = 3-methylbut-2-enoyl-CoA + H2O",
+        "3-hydroxypropanoyl-CoA = acryloyl-CoA + H2O",
+        "3-hydroxybutanoyl-CoA = (2E)-butenoyl-CoA + H2O",
+        "2-methylpropenoyl-CoA + H2O = (S)-3-hydroxyisobutanoyl-CoA",
+        "(3S)-hydroxyhexanoyl-CoA = (2E)-hexenoyl-CoA + H2O",
+        "(3S)-hydroxydecanoyl-CoA = (2E)-decenoyl-CoA + H2O"
+      ]
+    },
+    "P14769": {
+      "cofactors": [
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "a beta-D-galactosyl-(1->4)-N-acetyl-beta-D-glucosaminyl derivative + UDP-alpha-D-galactose = an alpha-D-galactosyl-(1->3)-beta-D-galactosyl-(1->4)-N-acetyl-beta-D-glucosaminyl derivative + UDP + H(+)"
+      ]
+    },
+    "P14779": {
+      "cofactors": [
+        "FAD",
+        "FMN",
+        "heme"
+      ],
+      "reactions": [
+        "2 oxidized [cytochrome P450] + NADPH = 2 reduced [cytochrome P450] + NADP(+) + H(+)",
+        "an organic molecule + reduced [NADPH--hemoprotein reductase] + O2 = an alcohol + oxidized [NADPH--hemoprotein reductase] + H2O + H(+)"
+      ]
+    },
+    "P14900": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "UDP-N-acetyl-alpha-D-muramoyl-L-alanine + D-glutamate + ATP = UDP-N-acetyl-alpha-D-muramoyl-L-alanyl-D-glutamate + ADP + phosphate + H(+)"
+      ]
+    },
+    "P14925": {
+      "cofactors": [
+        "Zn(2+)",
+        "Cu(2+)"
+      ],
+      "reactions": [
+        "a [peptide]-C-terminal glycine + 2 L-ascorbate + O2 = a [peptide]-C-terminal (2S)-2-hydroxyglycine + 2 monodehydro-L-ascorbate radical + H2O",
+        "a [peptide]-C-terminal (2S)-2-hydroxyglycine = a [peptide]-C-terminal amide + glyoxylate",
+        "N-dodecanoylglycine + 2 L-ascorbate + O2 = N-dodecanoyl-(2S)-hydroxyglycine + 2 monodehydro-L-ascorbate radical + H2O",
+        "N-dodecanoyl-(2S)-hydroxyglycine = dodecanamide + glyoxylate",
+        "N-(9Z,12Z,15Z)-octadecatrienoylglycine + 2 L-ascorbate + O2 = N-(9Z,12Z,15Z)-octadecatrienoyl-(2S)-hydroxyglycine + 2 monodehydro-L-ascorbate radical + H2O",
+        "N-(9Z,12Z,15Z)-octadecatrienoyl-(2S)-hydroxyglycine = (9Z,12Z,15Z)-octadecatrienamide + glyoxylate",
+        "N-(9Z-octadecenoyl)glycine + 2 L-ascorbate + O2 = N-(9Z-octadecenoyl)-(2S)-hydroxyglycine + 2 monodehydro-L-ascorbate radical + H2O",
+        "N-(9Z-octadecenoyl)-(2S)-hydroxyglycine = (9Z)-octadecenamide + glyoxylate",
+        "N-tetradecanoylglycine + 2 L-ascorbate + O2 = N-tetradecanoyl-(2S)-hydroxyglycine + 2 monodehydro-L-ascorbate radical + H2O",
+        "N-tetradecanoyl-(2S)-hydroxyglycine = tetradecamide + glyoxylate",
+        "N-decanoylglycine + 2 L-ascorbate + O2 = N-decanoyl-(2S)-hydroxyglycine + 2 monodehydro-L-ascorbate radical + H2O",
+        "N-decanoyl-(2S)-hydroxyglycine = decanamide + glyoxylate",
+        "N-octanoylglycine + 2 L-ascorbate + O2 = N-octanoyl-(2S)-hydroxyglycine + 2 monodehydro-L-ascorbate radical + H2O",
+        "N-octanoyl-(2S)-hydroxyglycine = octanamide + glyoxylate"
+      ]
+    },
+    "P15034": {
+      "cofactors": [
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "Release of any N-terminal amino acid, including proline, that is linked to proline, even from a dipeptide or tripeptide."
+      ]
+    },
+    "P15245": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "phenol + NADPH + O2 + H(+) = catechol + NADP(+) + H2O"
+      ]
+    },
+    "P15273": {
+      "cofactors": [],
+      "reactions": [
+        "O-phospho-L-tyrosyl-[protein] + H2O = L-tyrosyl-[protein] + phosphate"
+      ]
+    },
+    "P15289": {
+      "cofactors": [
+        "Ca(2+)"
+      ],
+      "reactions": [
+        "an N-acyl-1-beta-D-(3-O-sulfo)-galactosyl-sphing-4-enine + H2O = a beta-D-galactosyl-(1<->1')-N-acylsphing-4-enine + sulfate + H(+)"
+      ]
+    },
+    "P15369": {
+      "cofactors": [],
+      "reactions": [
+        "Hydrolysis of proteins with broad specificity, cleaving 24-Phe-|-Phe-25, but not 15-Leu-|-Tyr-16 and 25-Phe-|-Tyr-26 in the B chain of insulin."
+      ]
+    },
+    "P15474": {
+      "cofactors": [],
+      "reactions": [
+        "3-dehydroquinate = 3-dehydroshikimate + H2O"
+      ]
+    },
+    "P15559": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "a quinone + NADH + H(+) = a quinol + NAD(+)",
+        "a quinone + NADPH + H(+) = a quinol + NADP(+)",
+        "ubiquinone-10 + NADH + H(+) = ubiquinol-10 + NAD(+)",
+        "menadione + NADH + H(+) = menadiol + NAD(+)"
+      ]
+    },
+    "P15737": {
+      "cofactors": [],
+      "reactions": [
+        "Hydrolysis of (1->3)-beta-D-glucosidic linkages in (1->3)-beta-D-glucans."
+      ]
+    },
+    "P15807": {
+      "cofactors": [],
+      "reactions": [
+        "precorrin-2 + NAD(+) = sirohydrochlorin + NADH + 2 H(+)",
+        "siroheme + 2 H(+) = sirohydrochlorin + Fe(2+)"
+      ]
+    },
+    "P15917": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "Preferred amino acids around the cleavage site can be denoted BBBBxHx-|-H, in which B denotes Arg or Lys, H denotes a hydrophobic amino acid, and x is any amino acid. The only known protein substrates are mitogen-activated protein (MAP) kinase kinases."
+      ]
+    },
+    "P16099": {
+      "cofactors": [
+        "FMN",
+        "[4Fe-4S] cluster"
+      ],
+      "reactions": [
+        "trimethylamine + oxidized [electron-transfer flavoprotein] + H2O + H(+) = dimethylamine + reduced [electron-transfer flavoprotein] + formaldehyde"
+      ]
+    },
+    "P16444": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "an L-aminoacyl-L-amino acid + H2O = 2 an L-alpha-amino acid",
+        "leukotriene D4 + H2O = leukotriene E4 + glycine",
+        "a beta-lactam + H2O = a substituted beta-amino acid",
+        "L-cystine-bis-glycine + 2 H2O = L-cystine + 2 glycine",
+        "glycyldehydrophenylalanine + H2O = 2,3-didehydrophenylalanine + glycine"
+      ]
+    },
+    "P16455": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "a 6-O-methyl-2'-deoxyguanosine in DNA + L-cysteinyl-[protein] = S-methyl-L-cysteinyl-[protein] + a 2'-deoxyguanosine in DNA",
+        "a 4-O-methyl-thymidine in DNA + L-cysteinyl-[protein] = a thymidine in DNA + S-methyl-L-cysteinyl-[protein]"
+      ]
+    },
+    "P16753": {
+      "cofactors": [],
+      "reactions": [
+        "Cleaves -Ala-|-Ser- and -Ala-|-Ala- bonds in the scaffold protein."
+      ]
+    },
+    "P16932": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "2,2-dialkylglycine + pyruvate + H(+) = dialkyl ketone + L-alanine + CO2"
+      ]
+    },
+    "P17169": {
+      "cofactors": [],
+      "reactions": [
+        "D-fructose 6-phosphate + L-glutamine = D-glucosamine 6-phosphate + L-glutamate"
+      ]
+    },
+    "P17255": {
+      "cofactors": [],
+      "reactions": [
+        "ATP + H2O + 4 H(+)(in) = ADP + phosphate + 5 H(+)(out)"
+      ]
+    },
+    "P17707": {
+      "cofactors": [
+        "pyruvate"
+      ],
+      "reactions": [
+        "S-adenosyl-L-methionine + H(+) = S-adenosyl 3-(methylsulfanyl)propylamine + CO2"
+      ]
+    },
+    "P17846": {
+      "cofactors": [
+        "siroheme",
+        "[4Fe-4S] cluster"
+      ],
+      "reactions": [
+        "hydrogen sulfide + 3 NADP(+) + 3 H2O = sulfite + 3 NADPH + 4 H(+)"
+      ]
+    },
+    "P17854": {
+      "cofactors": [],
+      "reactions": [
+        "[thioredoxin]-disulfide + sulfite + adenosine 3',5'-bisphosphate + 2 H(+) = [thioredoxin]-dithiol + 3'-phosphoadenylyl sulfate"
+      ]
+    },
+    "P18031": {
+      "cofactors": [],
+      "reactions": [
+        "O-phospho-L-tyrosyl-[protein] + H2O = L-tyrosyl-[protein] + phosphate"
+      ]
+    },
+    "P18314": {
+      "cofactors": [
+        "Ni cation"
+      ],
+      "reactions": [
+        "urea + 2 H2O + H(+) = hydrogencarbonate + 2 NH4(+)"
+      ]
+    },
+    "P18548": {
+      "cofactors": [
+        "Fe cation",
+        "L-ascorbate"
+      ],
+      "reactions": [
+        "penicillin N + 2-oxoglutarate + O2 = deacetoxycephalosporin C + succinate + CO2 + H2O"
+      ]
+    },
+    "P19080": {
+      "cofactors": [],
+      "reactions": [
+        "chorismate = prephenate"
+      ]
+    },
+    "P19919": {
+      "cofactors": [
+        "Cu(+)",
+        "Mo-molybdopterin cytosine dinucleotide"
+      ],
+      "reactions": [
+        "CO + a quinone + H2O = a quinol + CO2"
+      ]
+    },
+    "P19938": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "D-alanine + 2-oxoglutarate = D-glutamate + pyruvate"
+      ]
+    },
+    "P20004": {
+      "cofactors": [
+        "[4Fe-4S] cluster"
+      ],
+      "reactions": [
+        "citrate = D-threo-isocitrate"
+      ]
+    },
+    "P20586": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "4-hydroxybenzoate + NADPH + O2 + H(+) = 3,4-dihydroxybenzoate + NADP(+) + H2O"
+      ]
+    },
+    "P20646": {
+      "cofactors": [],
+      "reactions": [
+        "a phosphate monoester + H2O = an alcohol + phosphate",
+        "a ribonucleoside 5'-phosphate + H2O = a ribonucleoside + phosphate",
+        "1-(9Z-octadecenoyl)-sn-glycero-3-phosphate + H2O = 1-(9Z-octadecenoyl)-sn-glycerol + phosphate",
+        "O-phospho-L-tyrosyl-[protein] + H2O = L-tyrosyl-[protein] + phosphate"
+      ]
+    },
+    "P20906": {
+      "cofactors": [
+        "Ca(2+)",
+        "thiamine diphosphate",
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "phenylglyoxylate + H(+) = benzaldehyde + CO2"
+      ]
+    },
+    "P20933": {
+      "cofactors": [],
+      "reactions": [
+        "N(4)-(beta-N-acetyl-D-glucosaminyl)-L-asparagine + H2O = N-acetyl-beta-D-glucosaminylamine + L-aspartate + H(+)"
+      ]
+    },
+    "P21164": {
+      "cofactors": [],
+      "reactions": [
+        "(6S)-5,6,7,8-tetrahydrofolate + formate + ATP = (6R)-10-formyltetrahydrofolate + ADP + phosphate"
+      ]
+    },
+    "P21179": {
+      "cofactors": [
+        "heme"
+      ],
+      "reactions": [
+        "2 H2O2 = O2 + 2 H2O"
+      ]
+    },
+    "P21310": {
+      "cofactors": [],
+      "reactions": [
+        "L-histidine = trans-urocanate + NH4(+)"
+      ]
+    },
+    "P21327": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "1D-myo-inositol 1,4-bisphosphate + H2O = 1D-myo-inositol 4-phosphate + phosphate",
+        "1D-myo-inositol 1,3,4-trisphosphate + H2O = 1D-myo-inositol 3,4-bisphosphate + phosphate"
+      ]
+    },
+    "P21332": {
+      "cofactors": [],
+      "reactions": [
+        "Hydrolysis of (1->6)-alpha-D-glucosidic linkages in some oligosaccharides produced from starch and glycogen by alpha-amylase, and in isomaltose."
+      ]
+    },
+    "P21638": {
+      "cofactors": [],
+      "reactions": [
+        "precorrin-8X + 3 H(+) = hydrogenobyrinate"
+      ]
+    },
+    "P21836": {
+      "cofactors": [],
+      "reactions": [
+        "acetylcholine + H2O = choline + acetate + H(+)"
+      ]
+    },
+    "P21873": {
+      "cofactors": [
+        "thiamine diphosphate"
+      ],
+      "reactions": [
+        "N(6)-[(R)-lipoyl]-L-lysyl-[protein] + pyruvate + H(+) = N(6)-[(R)-S(8)-acetyldihydrolipoyl]-L-lysyl-[protein] + CO2"
+      ]
+    },
+    "P22106": {
+      "cofactors": [],
+      "reactions": [
+        "L-aspartate + L-glutamine + ATP + H2O = L-asparagine + L-glutamate + AMP + diphosphate + H(+)"
+      ]
+    },
+    "P22259": {
+      "cofactors": [
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "oxaloacetate + ATP = phosphoenolpyruvate + ADP + CO2"
+      ]
+    },
+    "P22337": {
+      "cofactors": [
+        "Fe(2+)"
+      ],
+      "reactions": [
+        "octadecanoyl-[ACP] + 2 reduced [2Fe-2S]-[ferredoxin] + O2 + 2 H(+) = (9Z)-octadecenoyl-[ACP] + 2 oxidized [2Fe-2S]-[ferredoxin] + 2 H2O"
+      ]
+    },
+    "P22394": {
+      "cofactors": [],
+      "reactions": [
+        "a triacylglycerol + H2O = a diacylglycerol + a fatty acid + H(+)"
+      ]
+    },
+    "P22619": {
+      "cofactors": [
+        "tryptophan tryptophylquinone residue"
+      ],
+      "reactions": [
+        "2 oxidized [amicyanin] + methylamine + H2O = 2 reduced [amicyanin] + formaldehyde + NH4(+) + 2 H(+)"
+      ]
+    },
+    "P22637": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "cholesterol + O2 = cholest-5-en-3-one + H2O2",
+        "cholest-5-en-3-one = cholest-4-en-3-one"
+      ]
+    },
+    "P22643": {
+      "cofactors": [],
+      "reactions": [
+        "1-haloalkane + H2O = a halide anion + a primary alcohol + H(+)",
+        "1,2-dichloroethane + H2O = 2-chloroethanol + chloride + H(+)"
+      ]
+    },
+    "P22887": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "a 2'-deoxyribonucleoside 5'-diphosphate + ATP = a 2'-deoxyribonucleoside 5'-triphosphate + ADP",
+        "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP"
+      ]
+    },
+    "P22983": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "pyruvate + phosphate + ATP = phosphoenolpyruvate + AMP + diphosphate + H(+)"
+      ]
+    },
+    "P23007": {
+      "cofactors": [],
+      "reactions": [
+        "oxaloacetate + acetyl-CoA + H2O = citrate + CoA + H(+)"
+      ]
+    },
+    "P23295": {
+      "cofactors": [
+        "heme"
+      ],
+      "reactions": [
+        "nitrous oxide + NADP(+) + H2O = 2 nitric oxide + NADPH + H(+)",
+        "nitrous oxide + NAD(+) + H2O = 2 nitric oxide + NADH + H(+)"
+      ]
+    },
+    "P23368": {
+      "cofactors": [
+        "Mg(2+)",
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "(S)-malate + NAD(+) = pyruvate + CO2 + NADH",
+        "oxaloacetate + H(+) = pyruvate + CO2"
+      ]
+    },
+    "P23395": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "tRNA(Met) + L-methionine + ATP = L-methionyl-tRNA(Met) + AMP + diphosphate"
+      ]
+    },
+    "P23532": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": []
+    },
+    "P23657": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "Endonucleolytic cleavage of DNA to give specific double-stranded fragments with terminal 5'-phosphates."
+      ]
+    },
+    "P23687": {
+      "cofactors": [],
+      "reactions": [
+        "Hydrolysis of Pro-|-Xaa >> Ala-|-Xaa in oligopeptides."
+      ]
+    },
+    "P23721": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "O-phospho-L-serine + 2-oxoglutarate = 3-phosphooxypyruvate + L-glutamate",
+        "4-(phosphooxy)-L-threonine + 2-oxoglutarate = (R)-3-hydroxy-2-oxo-4-phosphooxybutanoate + L-glutamate"
+      ]
+    },
+    "P23951": {
+      "cofactors": [],
+      "reactions": [
+        "Random endo-hydrolysis of N-acetyl-beta-D-glucosaminide (1->4)-beta-linkages in chitin and chitodextrins."
+      ]
+    },
+    "P24058": {
+      "cofactors": [],
+      "reactions": [
+        "2-(N(omega)-L-arginino)succinate = fumarate + L-arginine"
+      ]
+    },
+    "P24289": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "Endonucleolytic cleavage to 5'-phosphomononucleotide and 5'-phosphooligonucleotide end-products."
+      ]
+    },
+    "P24295": {
+      "cofactors": [],
+      "reactions": [
+        "L-glutamate + NAD(+) + H2O = 2-oxoglutarate + NH4(+) + NADH + H(+)"
+      ]
+    },
+    "P24474": {
+      "cofactors": [
+        "heme c",
+        "heme"
+      ],
+      "reactions": [
+        "nitric oxide + Fe(III)-[cytochrome c] + H2O = Fe(II)-[cytochrome c] + nitrite + 2 H(+)",
+        "A + NH4(+) + H2O = hydroxylamine + AH2 + H(+)"
+      ]
+    },
+    "P24630": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "(S)-4-amino-5-oxopentanoate = 5-aminolevulinate"
+      ]
+    },
+    "P24670": {
+      "cofactors": [],
+      "reactions": [
+        "3-dehydroquinate = 3-dehydroshikimate + H2O"
+      ]
+    },
+    "P25006": {
+      "cofactors": [
+        "Cu(+)",
+        "Cu(2+)",
+        "FAD"
+      ],
+      "reactions": [
+        "nitric oxide + Fe(III)-[cytochrome c] + H2O = Fe(II)-[cytochrome c] + nitrite + 2 H(+)"
+      ]
+    },
+    "P25043": {
+      "cofactors": [],
+      "reactions": [
+        "Cleavage of peptide bonds with very broad specificity."
+      ]
+    },
+    "P25051": {
+      "cofactors": [
+        "Mg(2+)",
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "(R)-lactate + D-alanine + ATP = D-alanyl-(R)-lactate + ADP + phosphate"
+      ]
+    },
+    "P25524": {
+      "cofactors": [
+        "Fe(2+)",
+        "Mn(2+)",
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "cytosine + H2O + H(+) = uracil + NH4(+)",
+        "isoguanine + H2O + H(+) = xanthine + NH4(+)"
+      ]
+    },
+    "P25910": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "a beta-lactam + H2O = a substituted beta-amino acid"
+      ]
+    },
+    "P25971": {
+      "cofactors": [],
+      "reactions": [
+        "orotidine 5'-phosphate + H(+) = UMP + CO2"
+      ]
+    },
+    "P26205": {
+      "cofactors": [],
+      "reactions": [
+        "Hydrolysis of terminal, non-reducing beta-D-glucosyl residues with release of beta-D-glucose."
+      ]
+    },
+    "P26214": {
+      "cofactors": [],
+      "reactions": [
+        "(1,4-alpha-D-galacturonosyl)n+m + H2O = (1,4-alpha-D-galacturonosyl)n + (1,4-alpha-D-galacturonosyl)m."
+      ]
+    },
+    "P26239": {
+      "cofactors": [],
+      "reactions": [
+        "protoporphyrin IX + Mg(2+) + ATP + H2O = Mg-protoporphyrin IX + ADP + phosphate + 3 H(+)"
+      ]
+    },
+    "P26276": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "alpha-D-mannose 1-phosphate = D-mannose 6-phosphate",
+        "alpha-D-glucose 1-phosphate = alpha-D-glucose 6-phosphate"
+      ]
+    },
+    "P26281": {
+      "cofactors": [],
+      "reactions": [
+        "6-hydroxymethyl-7,8-dihydropterin + ATP = (7,8-dihydropterin-6-yl)methyl diphosphate + AMP + H(+)"
+      ]
+    },
+    "P26297": {
+      "cofactors": [],
+      "reactions": [
+        "(R)-lactate + NAD(+) = pyruvate + NADH + H(+)"
+      ]
+    },
+    "P26440": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "3-methylbutanoyl-CoA + oxidized [electron-transfer flavoprotein] + H(+) = 3-methylbut-2-enoyl-CoA + reduced [electron-transfer flavoprotein]",
+        "a short-chain 2,3-saturated fatty acyl-CoA + oxidized [electron-transfer flavoprotein] + H(+) = a short-chain (2E)-enoyl-CoA + reduced [electron-transfer flavoprotein]",
+        "butanoyl-CoA + oxidized [electron-transfer flavoprotein] + H(+) = (2E)-butenoyl-CoA + reduced [electron-transfer flavoprotein]",
+        "pentanoyl-CoA + oxidized [electron-transfer flavoprotein] + H(+) = (2E)-pentenoyl-CoA + reduced [electron-transfer flavoprotein]",
+        "hexanoyl-CoA + oxidized [electron-transfer flavoprotein] + H(+) = (2E)-hexenoyl-CoA + reduced [electron-transfer flavoprotein]"
+      ]
+    },
+    "P26446": {
+      "cofactors": [],
+      "reactions": [
+        "NAD(+) + (ADP-D-ribosyl)n-acceptor = nicotinamide + (ADP-D-ribosyl)n+1-acceptor + H(+).",
+        "L-seryl-[protein] + NAD(+) = O-(ADP-D-ribosyl)-L-seryl-[protein] + nicotinamide + H(+)",
+        "L-aspartyl-[protein] + NAD(+) = 4-O-(ADP-D-ribosyl)-L-aspartyl-[protein] + nicotinamide",
+        "L-glutamyl-[protein] + NAD(+) = 5-O-(ADP-D-ribosyl)-L-glutamyl-[protein] + nicotinamide",
+        "L-tyrosyl-[protein] + NAD(+) = O-(ADP-D-ribosyl)-L-tyrosyl-[protein] + nicotinamide + H(+)",
+        "L-histidyl-[protein] + NAD(+) = N(tele)-(ADP-D-ribosyl)-L-histidyl-[protein] + nicotinamide + H(+)"
+      ]
+    },
+    "P26769": {
+      "cofactors": [
+        "Mg(2+)",
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "ATP = 3',5'-cyclic AMP + diphosphate"
+      ]
+    },
+    "P27000": {
+      "cofactors": [],
+      "reactions": [
+        "tRNA(Glu) + L-glutamate + ATP = L-glutamyl-tRNA(Glu) + AMP + diphosphate"
+      ]
+    },
+    "P27001": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "tRNA(Phe) + L-phenylalanine + ATP = L-phenylalanyl-tRNA(Phe) + AMP + diphosphate + H(+)"
+      ]
+    },
+    "P27142": {
+      "cofactors": [],
+      "reactions": [
+        "AMP + ATP = 2 ADP"
+      ]
+    },
+    "P27170": {
+      "cofactors": [
+        "Ca(2+)"
+      ],
+      "reactions": [
+        "a phenyl acetate + H2O = a phenol + acetate + H(+)",
+        "An aryl dialkyl phosphate + H2O = dialkyl phosphate + an aryl alcohol.",
+        "an N-acyl-L-homoserine lactone + H2O = an N-acyl-L-homoserine + H(+)"
+      ]
+    },
+    "P27213": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "7,8-dihydroneopterin 3'-triphosphate = 6-pyruvoyl-5,6,7,8-tetrahydropterin + triphosphate + H(+)"
+      ]
+    },
+    "P27487": {
+      "cofactors": [],
+      "reactions": [
+        "Release of an N-terminal dipeptide, Xaa-Yaa-|-Zaa-, from a polypeptide, preferentially when Yaa is Pro, provided Zaa is neither Pro nor hydroxyproline."
+      ]
+    },
+    "P27623": {
+      "cofactors": [],
+      "reactions": [
+        "sn-glycerol 3-phosphate + CTP + H(+) = CDP-glycerol + diphosphate"
+      ]
+    },
+    "P27796": {
+      "cofactors": [],
+      "reactions": [
+        "an acyl-CoA + acetyl-CoA = a 3-oxoacyl-CoA + CoA"
+      ]
+    },
+    "P27828": {
+      "cofactors": [],
+      "reactions": [
+        "UDP-N-acetyl-alpha-D-glucosamine = UDP-N-acetyl-alpha-D-mannosamine"
+      ]
+    },
+    "P27830": {
+      "cofactors": [
+        "NAD(+)"
+      ],
+      "reactions": [
+        "dTDP-alpha-D-glucose = dTDP-4-dehydro-6-deoxy-alpha-D-glucose + H2O"
+      ]
+    },
+    "P28002": {
+      "cofactors": [],
+      "reactions": [
+        "(E)-caffeate + S-adenosyl-L-methionine = (E)-ferulate + S-adenosyl-L-homocysteine + H(+)",
+        "(E)-5-hydroxyferulate + S-adenosyl-L-methionine = (E)-sinapate + S-adenosyl-L-homocysteine + H(+)"
+      ]
+    },
+    "P28012": {
+      "cofactors": [],
+      "reactions": [
+        "a chalcone = a flavanone."
+      ]
+    },
+    "P28305": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "4-amino-4-deoxychorismate = 4-aminobenzoate + pyruvate + H(+)"
+      ]
+    },
+    "P28332": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "a primary alcohol + NAD(+) = an aldehyde + NADH + H(+)",
+        "a secondary alcohol + NAD(+) = a ketone + NADH + H(+)"
+      ]
+    },
+    "P28796": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "L-tryptophan + H2O = indole + pyruvate + NH4(+)"
+      ]
+    },
+    "P29183": {
+      "cofactors": [],
+      "reactions": [
+        "a triacylglycerol + H2O = a diacylglycerol + a fatty acid + H(+)",
+        "1,2,3-tributanoylglycerol + H2O = dibutanoylglycerol + butanoate + H(+)",
+        "1,2,3-tri-(9Z-octadecenoyl)-glycerol + H2O = di-(9Z)-octadecenoylglycerol + (9Z)-octadecenoate + H(+)",
+        "all-trans-retinyl hexadecanoate + H2O = all-trans-retinol + hexadecanoate + H(+)",
+        "1,2-di-(9Z-octadecenoyl)-glycerol + H2O = (9Z-octadecenoyl)-glycerol + (9Z)-octadecenoate + H(+)"
+      ]
+    },
+    "P29218": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "a myo-inositol phosphate + H2O = myo-inositol + phosphate",
+        "1D-myo-inositol 1-phosphate + H2O = myo-inositol + phosphate",
+        "1D-myo-inositol 2-phosphate + H2O = myo-inositol + phosphate",
+        "1D-myo-inositol 3-phosphate + H2O = myo-inositol + phosphate",
+        "1D-myo-inositol 4-phosphate + H2O = myo-inositol + phosphate",
+        "1D-myo-inositol 5-phosphate + H2O = myo-inositol + phosphate",
+        "1D-myo-inositol 6-phosphate + H2O = myo-inositol + phosphate",
+        "scyllo-inositol 1-phosphate + H2O = scyllo-inositol + phosphate",
+        "alpha-D-galactose 1-phosphate + H2O = D-galactose + phosphate",
+        "alpha-D-glucose 1-phosphate + H2O = D-glucose + phosphate",
+        "D-glucose 6-phosphate + H2O = D-glucose + phosphate",
+        "beta-D-fructose 1-phosphate + H2O = D-fructose + phosphate",
+        "glycerol 2-phosphate + H2O = glycerol + phosphate",
+        "adenosine 2'-phosphate + H2O = adenosine + phosphate"
+      ]
+    },
+    "P29241": {
+      "cofactors": [],
+      "reactions": [
+        "NAD(+) = cyclic ADP-beta-D-ribose + nicotinamide + H(+)",
+        "nicotinate + NADP(+) = NAADP(+) + nicotinamide",
+        "2'-phospho-cyclic ADP-ribose + nicotinate = NAADP(+)"
+      ]
+    },
+    "P29401": {
+      "cofactors": [
+        "Mg(2+)",
+        "Ca(2+)",
+        "Mn(2+)",
+        "Co(2+)",
+        "thiamine diphosphate"
+      ],
+      "reactions": [
+        "D-sedoheptulose 7-phosphate + D-glyceraldehyde 3-phosphate = aldehydo-D-ribose 5-phosphate + D-xylulose 5-phosphate"
+      ]
+    },
+    "P29474": {
+      "cofactors": [
+        "heme b",
+        "FAD",
+        "FMN",
+        "(6R)-L-erythro-5,6,7,8-tetrahydrobiopterin"
+      ],
+      "reactions": [
+        "2 L-arginine + 3 NADPH + 4 O2 + H(+) = 2 L-citrulline + 2 nitric oxide + 3 NADP(+) + 4 H2O"
+      ]
+    },
+    "P29736": {
+      "cofactors": [],
+      "reactions": [
+        "a thioglucoside + H2O = a sugar + a thiol."
+      ]
+    },
+    "P30074": {
+      "cofactors": [],
+      "reactions": [
+        "(E)-4-coumaroyl-CoA + 3 malonyl-CoA + 3 H(+) = 2',4,4',6'-tetrahydroxychalcone + 3 CO2 + 4 CoA"
+      ]
+    },
+    "P30122": {
+      "cofactors": [],
+      "reactions": [
+        "a triacylglycerol + H2O = a diacylglycerol + a fatty acid + H(+)",
+        "1,2,3-tri-(9Z-octadecenoyl)-glycerol + H2O = di-(9Z)-octadecenoylglycerol + (9Z)-octadecenoate + H(+)",
+        "1,2,3-trioctanoylglycerol + H2O = dioctanoylglycerol + octanoate + H(+)",
+        "a sterol ester + H2O = a sterol + a fatty acid + H(+)",
+        "cholesteryl (9Z-octadecenoate) + H2O = cholesterol + (9Z)-octadecenoate + H(+)",
+        "an acetyl ester + H2O = an aliphatic alcohol + acetate + H(+)",
+        "a butanoate ester + H2O = an aliphatic alcohol + butanoate + H(+)",
+        "9-hexadecanoyloxy-octadecanoate + H2O = 9-hydroxy-octadecanoate + hexadecanoate + H(+)",
+        "9-(9Z-octadecenoyloxy)-octadecanoate + H2O = 9-hydroxy-octadecanoate + (9Z)-octadecenoate + H(+)",
+        "1-hexadecanoyl-sn-glycero-3-phosphocholine + H2O = sn-glycerol 3-phosphocholine + hexadecanoate + H(+)",
+        "12-hexadecanoyloxy-octadecanoate + H2O = 12-hydroxyoctadecanoate + hexadecanoate + H(+)",
+        "12-(9Z-octadecenoyloxy)-octadecanoate + H2O = 12-hydroxyoctadecanoate + (9Z)-octadecenoate + H(+)",
+        "13-(9Z-octadecenoyloxy)-octadecanoate + H2O = 13-hydroxy-octadecanoate + (9Z)-octadecenoate + H(+)",
+        "9-(9Z-hexadecenoyloxy)-octadecanoate + H2O = (9Z)-hexadecenoate + 9-hydroxy-octadecanoate + H(+)",
+        "12-(9Z-hexadecenoyloxy)-octadecanoate + H2O = 12-hydroxyoctadecanoate + (9Z)-hexadecenoate + H(+)",
+        "13-(9Z-hexadecenoyloxy)-octadecanoate + H2O = 13-hydroxy-octadecanoate + (9Z)-hexadecenoate + H(+)",
+        "12-octadecanoyloxy-octadecanoate + H2O = 12-hydroxyoctadecanoate + octadecanoate + H(+)",
+        "13-octadecanoyloxy-octadecanoate + H2O = 13-hydroxy-octadecanoate + octadecanoate + H(+)",
+        "5-(9Z-hexadecenoyloxy)-octadecanoate + H2O = 5-hydroxy-octadecanoate + (9Z)-hexadecenoate + H(+)",
+        "9-octadecanoyloxy-octadecanoate + H2O = 9-hydroxy-octadecanoate + octadecanoate + H(+)"
+      ]
+    },
+    "P30850": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "Exonucleolytic cleavage in the 3'- to 5'-direction to yield nucleoside 5'-phosphates."
+      ]
+    },
+    "P31013": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "L-tyrosine + H2O = phenol + pyruvate + NH4(+)"
+      ]
+    },
+    "P31116": {
+      "cofactors": [
+        "a metal cation"
+      ],
+      "reactions": [
+        "L-homoserine + NADP(+) = L-aspartate 4-semialdehyde + NADPH + H(+)",
+        "L-homoserine + NAD(+) = L-aspartate 4-semialdehyde + NADH + H(+)"
+      ]
+    },
+    "P31153": {
+      "cofactors": [
+        "Mg(2+)",
+        "K(+)"
+      ],
+      "reactions": [
+        "L-methionine + ATP + H2O = S-adenosyl-L-methionine + phosphate + diphosphate"
+      ]
+    },
+    "P31570": {
+      "cofactors": [],
+      "reactions": [
+        "2 cob(II)yrinate a,c diamide + reduced [electron-transfer flavoprotein] + 2 ATP = 2 adenosylcob(III)yrinate a,c-diamide + 2 triphosphate + oxidized [electron-transfer flavoprotein] + 3 H(+)",
+        "2 cob(II)alamin + reduced [electron-transfer flavoprotein] + 2 ATP = 2 adenosylcob(III)alamin + 2 triphosphate + oxidized [electron-transfer flavoprotein] + 3 H(+)"
+      ]
+    },
+    "P31572": {
+      "cofactors": [],
+      "reactions": [
+        "crotonobetainyl-CoA + (R)-carnitine = crotonobetaine + (R)-carnitinyl-CoA",
+        "4-(trimethylamino)butanoyl-CoA + (R)-carnitine = (R)-carnitinyl-CoA + 4-(trimethylamino)butanoate"
+      ]
+    },
+    "P31677": {
+      "cofactors": [],
+      "reactions": [
+        "D-glucose 6-phosphate + UDP-alpha-D-glucose = alpha,alpha-trehalose 6-phosphate + UDP + H(+)"
+      ]
+    },
+    "P31939": {
+      "cofactors": [],
+      "reactions": [
+        "(6R)-10-formyltetrahydrofolate + 5-amino-1-(5-phospho-beta-D-ribosyl)imidazole-4-carboxamide = 5-formamido-1-(5-phospho-D-ribosyl)imidazole-4-carboxamide + (6S)-5,6,7,8-tetrahydrofolate",
+        "10-formyldihydrofolate + 5-amino-1-(5-phospho-beta-D-ribosyl)imidazole-4-carboxamide = 5-formamido-1-(5-phospho-D-ribosyl)imidazole-4-carboxamide + 7,8-dihydrofolate",
+        "IMP + H2O = 5-formamido-1-(5-phospho-D-ribosyl)imidazole-4-carboxamide",
+        "5-amino-1-(5-phospho-D-ribosyl)imidazole-4-thiocarboxamide + 10-formyldihydrofolate = 6-thio-IMP + 7,8-dihydrofolate + H2O"
+      ]
+    },
+    "P32055": {
+      "cofactors": [],
+      "reactions": [
+        "GDP-beta-L-fucose + NADP(+) = GDP-4-dehydro-alpha-D-rhamnose + NADPH + H(+)"
+      ]
+    },
+    "P32169": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "L-rhamnulose 1-phosphate = (S)-lactaldehyde + dihydroxyacetone phosphate"
+      ]
+    },
+    "P32170": {
+      "cofactors": [
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "L-rhamnopyranose = L-rhamnulose",
+        "L-lyxopyranose = L-xylulose"
+      ]
+    },
+    "P32178": {
+      "cofactors": [],
+      "reactions": [
+        "chorismate = prephenate"
+      ]
+    },
+    "P32400": {
+      "cofactors": [
+        "sulfate"
+      ],
+      "reactions": [
+        "N-carbamoylsarcosine + H2O + 2 H(+) = sarcosine + NH4(+) + CO2"
+      ]
+    },
+    "P32738": {
+      "cofactors": [],
+      "reactions": [
+        "choline + acetyl-CoA = acetylcholine + CoA"
+      ]
+    },
+    "P33038": {
+      "cofactors": [],
+      "reactions": [
+        "phosphoenolpyruvate + UDP-N-acetyl-alpha-D-glucosamine = UDP-N-acetyl-3-O-(1-carboxyvinyl)-alpha-D-glucosamine + phosphate"
+      ]
+    },
+    "P33247": {
+      "cofactors": [],
+      "reactions": [
+        "squalene = hop-22(29)-ene",
+        "squalene + H2O = hopan-22-ol"
+      ]
+    },
+    "P33665": {
+      "cofactors": [],
+      "reactions": [
+        "Endohydrolysis of beta-(1->4)-linkages between D-glucosamine residues in a partly acetylated chitosan."
+      ]
+    },
+    "P35049": {
+      "cofactors": [],
+      "reactions": [
+        "Preferential cleavage: Arg-|-Xaa, Lys-|-Xaa."
+      ]
+    },
+    "P35505": {
+      "cofactors": [
+        "Ca(2+)",
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "4-fumarylacetoacetate + H2O = acetoacetate + fumarate + H(+)"
+      ]
+    },
+    "P36234": {
+      "cofactors": [],
+      "reactions": [
+        "(R)-glycerate + NAD(+) = 3-hydroxypyruvate + NADH + H(+)"
+      ]
+    },
+    "P36507": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "L-seryl-[protein] + ATP = O-phospho-L-seryl-[protein] + ADP + H(+)",
+        "L-threonyl-[protein] + ATP = O-phospho-L-threonyl-[protein] + ADP + H(+)",
+        "L-tyrosyl-[protein] + ATP = O-phospho-L-tyrosyl-[protein] + ADP + H(+)"
+      ]
+    },
+    "P36655": {
+      "cofactors": [],
+      "reactions": [
+        "[protein]-dithiol + NAD(+) = [protein]-disulfide + NADH + H(+)",
+        "[protein]-dithiol + NADP(+) = [protein]-disulfide + NADPH + H(+)"
+      ]
+    },
+    "P36936": {
+      "cofactors": [],
+      "reactions": [
+        "Dipeptidase E catalyzes the hydrolysis of dipeptides Asp-|-Xaa. It does not act on peptides with N-terminal Glu, Asn or Gln, nor does it cleave isoaspartyl peptides."
+      ]
+    },
+    "P37062": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "H2O2 + NADH + H(+) = NAD(+) + 2 H2O"
+      ]
+    },
+    "P37063": {
+      "cofactors": [
+        "FAD",
+        "Mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "reactions": [
+        "pyruvate + phosphate + O2 + H(+) = acetyl phosphate + H2O2 + CO2"
+      ]
+    },
+    "P37268": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "2 (2E,6E)-farnesyl diphosphate + NADPH + H(+) = squalene + 2 diphosphate + NADP(+)",
+        "2 (2E,6E)-farnesyl diphosphate + NADH + H(+) = squalene + 2 diphosphate + NAD(+)",
+        "2 (2E,6E)-farnesyl diphosphate = presqualene diphosphate + diphosphate",
+        "presqualene diphosphate + NADH + H(+) = squalene + diphosphate + NAD(+)",
+        "presqualene diphosphate + NADPH + H(+) = squalene + diphosphate + NADP(+)"
+      ]
+    },
+    "P37330": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "glyoxylate + acetyl-CoA + H2O = (S)-malate + CoA + H(+)"
+      ]
+    },
+    "P37610": {
+      "cofactors": [
+        "Fe(2+)"
+      ],
+      "reactions": [
+        "taurine + 2-oxoglutarate + O2 = aminoacetaldehyde + sulfite + succinate + CO2 + H(+)"
+      ]
+    },
+    "P37747": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "UDP-alpha-D-galactose = UDP-alpha-D-galactofuranose"
+      ]
+    },
+    "P37821": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "S-adenosyl-L-methionine = 1-aminocyclopropane-1-carboxylate + S-methyl-5'-thioadenosine + H(+)",
+        "(2S)-2-amino-3-butenoate + H2O = 2-oxobutanoate + NH4(+)"
+      ]
+    },
+    "P37957": {
+      "cofactors": [],
+      "reactions": [
+        "a triacylglycerol + H2O = a diacylglycerol + a fatty acid + H(+)"
+      ]
+    },
+    "P38051": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "chorismate = isochorismate"
+      ]
+    },
+    "P38488": {
+      "cofactors": [],
+      "reactions": [
+        "creatine + H2O = sarcosine + urea"
+      ]
+    },
+    "P38489": {
+      "cofactors": [
+        "FMN"
+      ],
+      "reactions": [
+        "5,6,7,8-tetrahydropteridine + NAD(+) = 6,7-dihydropteridine + NADH + H(+)",
+        "5,6,7,8-tetrahydropteridine + NADP(+) = 6,7-dihydropteridine + NADPH + H(+)"
+      ]
+    },
+    "P38539": {
+      "cofactors": [
+        "Ca(2+)",
+        "pyrroloquinoline quinone"
+      ],
+      "reactions": [
+        "2 Fe(III)-[cytochrome cL] + a primary alcohol = 2 Fe(II)-[cytochrome cL] + an aldehyde + 2 H(+)"
+      ]
+    },
+    "P38677": {
+      "cofactors": [],
+      "reactions": [
+        "3-carboxy-2,5-dihydro-5-oxofuran-2-acetate = 3-carboxy-cis,cis-muconate"
+      ]
+    },
+    "P39304": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "3-dehydro-L-gulonate 6-phosphate + H(+) = L-xylulose 5-phosphate + CO2"
+      ]
+    },
+    "P39377": {
+      "cofactors": [
+        "Zn(2+)",
+        "Co(2+)"
+      ],
+      "reactions": []
+    },
+    "P39594": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "2-[(2R,5Z)-2-carboxy-4-methylthiazol-5(2H)-ylidene]ethyl phosphate + 4-amino-2-methyl-5-(diphosphooxymethyl)pyrimidine + 2 H(+) = thiamine phosphate + CO2 + diphosphate",
+        "2-(2-carboxy-4-methylthiazol-5-yl)ethyl phosphate + 4-amino-2-methyl-5-(diphosphooxymethyl)pyrimidine + 2 H(+) = thiamine phosphate + CO2 + diphosphate",
+        "4-methyl-5-(2-phosphooxyethyl)-thiazole + 4-amino-2-methyl-5-(diphosphooxymethyl)pyrimidine + H(+) = thiamine phosphate + diphosphate"
+      ]
+    },
+    "P40859": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "sarcosine + O2 + H2O = formaldehyde + glycine + H2O2"
+      ]
+    },
+    "P40881": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "hydrogencarbonate + H(+) = CO2 + H2O"
+      ]
+    },
+    "P42126": {
+      "cofactors": [],
+      "reactions": [
+        "a (3Z)-enoyl-CoA = a 4-saturated (2E)-enoyl-CoA",
+        "a (3E)-enoyl-CoA = a 4-saturated (2E)-enoyl-CoA",
+        "(3E)-hexadecenoyl-CoA = (2E)-hexadecenoyl-CoA",
+        "(2E)-tetradecenoyl-CoA = (3Z)-tetradecenoyl-CoA",
+        "(3Z)-dodecenoyl-CoA = (2E)-dodecenoyl-CoA",
+        "(3Z)-decenoyl-CoA = (2E)-decenoyl-CoA",
+        "(3E)-decenoyl-CoA = (2E)-decenoyl-CoA",
+        "(3Z)-octenoyl-CoA = (2E)-octenoyl-CoA",
+        "(3Z)-hexenoyl-CoA = (2E)-hexenoyl-CoA",
+        "(3E)-tetradecenoyl-CoA = (2E)-tetradecenoyl-CoA",
+        "(3E,5Z)-tetradecadienoyl-CoA = (2E,5Z)-tetradecadienoyl-CoA",
+        "(2E,5Z,8Z)-tetradecatrienoyl-CoA = (3E,5Z,8Z)-tetradecatrienoyl-CoA",
+        "(3E,8Z)-tetradecadienoyl-CoA = (2E,8Z)-tetradecadienoyl-CoA",
+        "(2E,5Z,8Z,11Z)-tetradecatetraenoyl-CoA = (3E,5Z,8Z,11Z)-tetradecatetraenoyl-CoA",
+        "(3E,8Z,11Z)-tetradecatrienoyl-CoA = (2E,8Z,11Z)-tetradecatrienoyl-CoA",
+        "(3E,7Z)-decadienoyl-CoA = (2E,7Z)-decadienoyl-CoA",
+        "(3E,5Z)-octadienoyl-CoA = (2E,5Z)-octadienoyl-CoA",
+        "(3E)-octenoyl-CoA = (2E)-octenoyl-CoA",
+        "(3E,7Z,10Z)-hexadecatrienoyl-CoA = (2E,7Z,10Z)-hexadecatrienoyl-CoA",
+        "(3E,7Z,10Z,13Z)-hexadecatetraenoyl-CoA = (2E,7Z,10Z,13Z)-hexadecatetraenoyl-CoA"
+      ]
+    },
+    "P42593": {
+      "cofactors": [
+        "FMN",
+        "FAD",
+        "[4Fe-4S] cluster"
+      ],
+      "reactions": [
+        "a 4,5-saturated-(2E)-enoyl-CoA + NADP(+) = a (2E,4E)-dienoyl-CoA + NADPH + H(+)",
+        "a (2E,4Z)-dienoyl-CoA + NADPH + H(+) = a 4,5-saturated-(2E)-enoyl-CoA + NADP(+)",
+        "(2E)-decenoyl-CoA + NADP(+) = (2E,4E)-decadienoyl-CoA + NADPH + H(+)",
+        "(2E)-decenoyl-CoA + NADP(+) = (2E,4Z)-decadienoyl-CoA + NADPH + H(+)"
+      ]
+    },
+    "P42676": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "Preferential cleavage in neurotensin: 10-Pro-|-Tyr-11."
+      ]
+    },
+    "P42790": {
+      "cofactors": [
+        "Ca(2+)"
+      ],
+      "reactions": [
+        "Hydrolysis of the B chain of insulin at 13-Glu-|-Ala-14, 15-Leu-|-Tyr-16 and 25-Phe-|-Tyr-26 and angiotensin I at 4-Tyr-|-Ile-5. A good synthetic substrate is Lys-Pro-Ile-Glu-Phe-|-Phe(NO2)-Arg-Leu."
+      ]
+    },
+    "P43099": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "L-ornithine + H(+) = putrescine + CO2"
+      ]
+    },
+    "P43316": {
+      "cofactors": [],
+      "reactions": [
+        "Endohydrolysis of (1->4)-beta-D-glucosidic linkages in cellulose, lichenin and cereal beta-D-glucans."
+      ]
+    },
+    "P43379": {
+      "cofactors": [
+        "Ca(2+)"
+      ],
+      "reactions": [
+        "Cyclizes part of a (1->4)-alpha-D-glucan chain by formation of a (1->4)-alpha-D-glucosidic bond."
+      ]
+    },
+    "P43912": {
+      "cofactors": [],
+      "reactions": [
+        "guanosine(37) in tRNA + S-adenosyl-L-methionine = N(1)-methylguanosine(37) in tRNA + S-adenosyl-L-homocysteine + H(+)"
+      ]
+    },
+    "P44859": {
+      "cofactors": [],
+      "reactions": [
+        "(2S,6S)-2,6-diaminopimelate = meso-2,6-diaminopimelate"
+      ]
+    },
+    "P45478": {
+      "cofactors": [],
+      "reactions": [
+        "S-hexadecanoyl-L-cysteinyl-[protein] + H2O = L-cysteinyl-[protein] + hexadecanoate + H(+)",
+        "hexadecanoyl-CoA + H2O = hexadecanoate + CoA + H(+)",
+        "S-hexadecanoyl-N-acetylcysteamine + H2O = N-acetylcysteamine + hexadecanoate + H(+)",
+        "S-hexadecanoyl-N-acetylcysteine methyl ester + H2O = N-acetylcysteine methyl ester + hexadecanoate + H(+)"
+      ]
+    },
+    "P45741": {
+      "cofactors": [],
+      "reactions": [
+        "pyridine + thiamine = heteropyrithiamine + 5-(2-hydroxyethyl)-4-methylthiazole"
+      ]
+    },
+    "P46076": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "Preferential cleavage of bonds with hydrophobic residues in P1'. Also 3-Asn-|-Gln-4 and 8-Gly-|-Ser-9 bonds in insulin B chain."
+      ]
+    },
+    "P46107": {
+      "cofactors": [],
+      "reactions": [
+        "Release of an N-terminal pyroglutamyl group from a polypeptide, the second amino acid generally not being Pro."
+      ]
+    },
+    "P46844": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "(4Z,15Z)-bilirubin IXalpha + NAD(+) = biliverdin IXalpha + NADH + H(+)",
+        "(4Z,15Z)-bilirubin IXalpha + NADP(+) = biliverdin IXalpha + NADPH + H(+)"
+      ]
+    },
+    "P47934": {
+      "cofactors": [],
+      "reactions": [
+        "(R)-carnitine + acetyl-CoA = O-acetyl-(R)-carnitine + CoA",
+        "propanoyl-CoA + (R)-carnitine = O-propanoyl-(R)-carnitine + CoA",
+        "butanoyl-CoA + (R)-carnitine = O-butanoyl-(R)-carnitine + CoA",
+        "hexanoyl-CoA + (R)-carnitine = O-hexanoyl-(R)-carnitine + CoA",
+        "octanoyl-CoA + (R)-carnitine = O-octanoyl-(R)-carnitine + CoA",
+        "decanoyl-CoA + (R)-carnitine = O-decanoyl-(R)-carnitine + CoA",
+        "3-methylbutanoyl-CoA + (R)-carnitine = O-3-methylbutanoyl-(R)-carnitine + CoA",
+        "2-methylpropanoyl-CoA + (R)-carnitine = O-isobutanoyl-(R)-carnitine + CoA",
+        "2-methylbutanoyl-CoA + (R)-carnitine = O-2-methylbutanoyl-(R)-carnitine + CoA",
+        "acetoacetyl-CoA + (R)-carnitine = O-3-oxobutanoyl-(R)-carnitine + CoA",
+        "3-hydroxybutanoyl-CoA + (R)-carnitine = O-3-hydroxybutanoyl-(R)-carnitine + CoA",
+        "4,8-dimethylnonanoyl-CoA + (R)-carnitine = O-4,8-dimethylnonanoyl-(R)-carnitine + CoA",
+        "2,6-dimethylheptanoyl-CoA + (R)-carnitine = O-2,6-dimethylheptanoyl-(R)-carnitine + CoA"
+      ]
+    },
+    "P48534": {
+      "cofactors": [
+        "heme b"
+      ],
+      "reactions": [
+        "L-ascorbate + H2O2 = L-dehydroascorbate + 2 H2O"
+      ]
+    },
+    "P48637": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "gamma-L-glutamyl-L-cysteine + glycine + ATP = glutathione + ADP + phosphate + H(+)",
+        "gamma-L-glutamyl-(2S)-2-aminobutanoate + glycine + ATP = ophthalmate + ADP + phosphate + H(+)"
+      ]
+    },
+    "P49053": {
+      "cofactors": [
+        "vanadate"
+      ],
+      "reactions": [
+        "RH + Cl(-) + H2O2 = RCl + 2 H2O."
+      ]
+    },
+    "P49789": {
+      "cofactors": [],
+      "reactions": [
+        "P(1),P(3)-bis(5'-adenosyl) triphosphate + H2O = AMP + ADP + 2 H(+)",
+        "adenosine 5'-phosphosulfate + H2O = sulfate + AMP + 2 H(+)",
+        "adenosine 5'-phosphosulfate + NH4(+) = adenosine 5'-phosphoramidate + sulfate + 2 H(+)",
+        "adenosine 5'-phosphoramidate + H2O = NH4(+) + AMP"
+      ]
+    },
+    "P49888": {
+      "cofactors": [],
+      "reactions": [
+        "estrone + 3'-phosphoadenylyl sulfate = estrone 3-sulfate + adenosine 3',5'-bisphosphate + H(+)",
+        "(24S)-hydroxycholesterol + 3'-phosphoadenylyl sulfate = (24S)-hydroxycholesterol 3-sulfate + adenosine 3',5'-bisphosphate + H(+)",
+        "17beta-estradiol + 3'-phosphoadenylyl sulfate = 17beta-estradiol 3-sulfate + adenosine 3',5'-bisphosphate + H(+)",
+        "3beta-hydroxyandrost-5-en-17-one + 3'-phosphoadenylyl sulfate = dehydroepiandrosterone 3-sulfate + adenosine 3',5'-bisphosphate + H(+)",
+        "4-ethylphenol + 3'-phosphoadenylyl sulfate = 4-ethylphenyl sulfate + adenosine 3',5'-bisphosphate + H(+)"
+      ]
+    },
+    "P50057": {
+      "cofactors": [
+        "Cu(2+)"
+      ],
+      "reactions": []
+    },
+    "P50440": {
+      "cofactors": [],
+      "reactions": [
+        "L-arginine + glycine = guanidinoacetate + L-ornithine",
+        "4-aminobutanoate + L-arginine = 4-guanidinobutanoate + L-ornithine",
+        "beta-alanine + L-arginine = 3-guanidinopropanoate + L-ornithine",
+        "taurine + L-arginine = taurocyamine + L-ornithine"
+      ]
+    },
+    "P51016": {
+      "cofactors": [],
+      "reactions": [
+        "(S)-4-hydroxy-2-oxopentanoate = acetaldehyde + pyruvate"
+      ]
+    },
+    "P51541": {
+      "cofactors": [],
+      "reactions": [
+        "L-arginine + ATP = N(omega)-phospho-L-arginine + ADP + H(+)"
+      ]
+    },
+    "P51659": {
+      "cofactors": [],
+      "reactions": [
+        "a (3R)-3-hydroxyacyl-CoA = a (2E)-enoyl-CoA + H2O",
+        "a (3R)-3-hydroxyacyl-CoA + NAD(+) = a 3-oxoacyl-CoA + NADH + H(+)",
+        "a very-long-chain (3R)-3-hydroxyacyl-CoA = a very-long-chain (2E)-enoyl-CoA + H2O",
+        "(3R)-hydroxytriacontanoyl-CoA = (2E)-triacontenoyl-CoA + H2O",
+        "(3R)-hydroxyoctacosanoyl-CoA = (2E)-octacosenoyl-CoA + H2O",
+        "(3R)-hydroxyhexacosanoyl-CoA = (2E)-hexacosenoyl-CoA + H2O",
+        "(2E,17Z)-hexacosadienoyl-CoA + H2O = (3R)-hydroxy-(17Z)-hexacosenoyl-CoA",
+        "(3R)-hydroxy-(15Z)-tetracosenoyl-CoA = (2E,15Z)-tetracosadienoyl-CoA + H2O",
+        "(2E,6Z,9Z,12Z,15Z,18Z)-tetracosahexaenoyl-CoA + H2O = (3R)-hydroxy-(6Z,9Z,12Z,15Z,18Z)-tetracosapentaenoyl-CoA",
+        "(2E,6Z,9Z,12Z,15Z,18Z,21Z)-tetracosaheptaenoyl-CoA + H2O = (3R)-hydroxy-(6Z,9Z,12Z,15Z,18Z,21Z)-tetracosahexaenoyl-CoA",
+        "a very-long-chain (3R)-3-hydroxyacyl-CoA + NAD(+) = a very-long-chain 3-oxoacyl-CoA + NADH + H(+)",
+        "(3R)-hydroxytriacontanoyl-CoA + NAD(+) = 3-oxo-triacontanoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxyoctacosanoyl-CoA + NAD(+) = 3-oxooctacosanyol-CoA + NADH + H(+)",
+        "3-oxohexacosanoyl-CoA + NADH + H(+) = (3R)-hydroxyhexacosanoyl-CoA + NAD(+)",
+        "(3R)-hydroxy-(17Z)-hexacosenoyl-CoA + NAD(+) = 3-oxo-(17Z)-hexacosenoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(15Z)-tetracosenoyl-CoA + NAD(+) = 3-oxo-(15Z)-tetracosenoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(6Z,9Z,12Z,15Z,18Z)-tetracosapentaenoyl-CoA + NAD(+) = 3-oxo-(6Z,9Z,12Z,15Z,18Z)-tetracosapentaenoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(6Z,9Z,12Z,15Z,18Z,21Z)-tetracosahexaenoyl-CoA + NAD(+) = 3-oxo-(6Z,9Z,12Z,15Z,18Z,21Z)-tetracosahexaenoyl-CoA + NADH + H(+)",
+        "a long-chain (3R)-hydroxyacyl-CoA = a long-chain (2E)-enoyl-CoA + H2O",
+        "(3R)-hydroxyhexadecanoyl-CoA = (2E)-hexadecenoyl-CoA + H2O",
+        "(2E,9Z)-octadecadienoyl-CoA + H2O = (3R)-hydroxy-(9Z)-octadecenoyl-CoA",
+        "(2E,7Z)-hexadecadienoyl-CoA + H2O = (3R)-hydroxy-(7Z)-hexadecenoyl-CoA",
+        "(2E,5Z)-tetradecadienoyl-CoA + H2O = (3R)-hydroxy-(5Z)-tetradecenoyl-CoA",
+        "(3R)-hydroxy-(7Z,10Z,13Z,16Z)-docosatetraenoyl-CoA = (2E,7Z,10Z,13Z,16Z)-docosapentaenoyl-CoA + H2O",
+        "(3R)-hydroxy-(7Z,10Z,13Z,16Z,19Z)-docosapentaenoyl-CoA = (2E,7Z,10Z,13Z,16Z,19Z)-docosahexaenoyl-CoA + H2O",
+        "(3R)-hydroxy-(8Z,11Z,14Z)-eicosatrienoyl-CoA = (2E,8Z,11Z,14Z)-eicosatetraenoyl-CoA + H2O",
+        "(3R)-hydroxy-(8Z,11Z,14Z,17Z)-eicosatetraenoyl-CoA = (2E,8Z,11Z,14Z,17Z)-eicosapentaenoyl-CoA + H2O",
+        "(2E,6Z,9Z,12Z)-octadecatetraenoyl-CoA + H2O = (3R)-hydroxy-(6Z,9Z,12Z)-octadecatrienoyl-CoA",
+        "(2E,6Z,9Z,12Z,15Z)-octadecapentaenoyl-CoA + H2O = 3R-hydroxy-(6Z,9Z,12Z,15Z)-octadecatetraenoyl-CoA",
+        "(2E,7Z,10Z)-hexadecatrienoyl-CoA + H2O = (3R)-hydroxy-(7Z,10Z)-hexadecadienoyl-CoA",
+        "(2E,7Z,10Z,13Z)-hexadecatetraenoyl-CoA + H2O = (3R)-hydroxy-(7Z,10Z,13Z)-hexadecatrienoyl-CoA",
+        "(2E,8Z,11Z)-tetradecatrienoyl-CoA + H2O = (3R)-hydroxy-(8Z,11Z)-tetradecadienoyl-CoA",
+        "a long-chain (3R)-hydroxyacyl-CoA + NAD(+) = a long-chain 3-oxo-fatty acyl-CoA + NADH + H(+)",
+        "(3R)-hydroxyhexadecanoyl-CoA + NAD(+) = 3-oxohexadecanoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(13Z)-docosenoyl-CoA + NAD(+) = 3-oxo-(13Z)-docosenoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(5Z)-tetradecenoyl-CoA + NAD(+) = 3-oxo-(5Z-tetradecenoyl)-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(7Z,10Z,13Z,16Z)-docosatetraenoyl-CoA + NAD(+) = (7Z,10Z,13Z,16Z)-3-oxodocosatetraenoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(7Z,10Z,13Z,16Z,19Z)-docosapentaenoyl-CoA + NAD(+) = 3-oxo-(7Z,10Z,13Z,16Z,19Z)-docosapentaenoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(8Z,11Z,14Z)-eicosatrienoyl-CoA + NAD(+) = 3-oxo-(8Z,11Z,14Z)-eicosatrienoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(8Z,11Z,14Z,17Z)-eicosatetraenoyl-CoA + NAD(+) = 3-oxo-(8Z,11Z,14Z,17Z)-eicosatetraenoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(6Z,9Z,12Z)-octadecatrienoyl-CoA + NAD(+) = 3-oxo-(6Z,9Z,12Z)-octadecatrienoyl-CoA + NADH + H(+)",
+        "3R-hydroxy-(6Z,9Z,12Z,15Z)-octadecatetraenoyl-CoA + NAD(+) = 3-oxo-(6Z,9Z,12Z,15Z)-octadecatetraenoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(7Z,10Z)-hexadecadienoyl-CoA + NAD(+) = 3-oxo-(7Z,10Z)-hexadecadienoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(7Z,10Z,13Z)-hexadecatrienoyl-CoA + NAD(+) = 3-oxo-(7Z,10Z,13Z)-hexadecatrienoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(8Z,11Z)-tetradecadienoyl-CoA + NAD(+) = 3-oxo-(8Z,11Z)-tetradecadienoyl-CoA + NADH + H(+)",
+        "a medium-chain (3R)-hydroxyacyl-CoA = a medium-chain (2E)-enoyl-CoA + H2O",
+        "(3R)-3-hydroxydecanoyl-CoA = (2E)-decenoyl-CoA + H2O",
+        "(2E)-octenoyl-CoA + H2O = (3R)-hydroxyoctanoyl-CoA",
+        "a medium-chain (3R)-hydroxyacyl-CoA + NAD(+) = a medium-chain 3-oxoacyl-CoA + NADH + H(+)",
+        "(3R)-3-hydroxydecanoyl-CoA + NAD(+) = 3-oxodecanoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxyoctanoyl-CoA + NAD(+) = 3-oxooctanoyl-CoA + NADH + H(+)",
+        "(2E)-hexadecenedioyl-CoA + H2O = (3R)-hydroxyhexadecanedioyl-CoA",
+        "(3R)-hydroxyhexadecanedioyl-CoA + NAD(+) = 3-oxohexadecanedioyl-CoA + NADH + H(+)",
+        "(24R,25R)-3alpha,7alpha,12alpha,24-tetrahydroxy-5beta-cholestan-26-oyl-CoA = (24E)-3alpha,7alpha,12alpha-trihydroxy-5beta-cholest-24-en-26-oyl-CoA + H2O",
+        "(24R,25R)-3alpha,7alpha,12alpha,24-tetrahydroxy-5beta-cholestan-26-oyl-CoA + NAD(+) = 3alpha,7alpha,12alpha-trihydroxy-24-oxo-5beta-cholestan-26-oyl-CoA + NADH + H(+)"
+      ]
+    },
+    "P52045": {
+      "cofactors": [],
+      "reactions": [
+        "(R)-methylmalonyl-CoA + H(+) = propanoyl-CoA + CO2"
+      ]
+    },
+    "P52197": {
+      "cofactors": [],
+      "reactions": [
+        "thiosulfate + hydrogen cyanide = thiocyanate + sulfite + 2 H(+)"
+      ]
+    },
+    "P52279": {
+      "cofactors": [],
+      "reactions": [
+        "Release of N-terminal proline from a peptide."
+      ]
+    },
+    "P52700": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "a beta-lactam + H2O = a substituted beta-amino acid"
+      ]
+    },
+    "P52704": {
+      "cofactors": [],
+      "reactions": [
+        "a monosubstituted aliphatic (S)-hydroxynitrile = an aldehyde + hydrogen cyanide",
+        "a disubstituted aliphatic (S)-hydroxynitrile = a ketone + hydrogen cyanide",
+        "an aromatic (S)-hydroxynitrile = an aromatic aldehyde + hydrogen cyanide",
+        "2-hydroxy-2-methylpropanenitrile = acetone + hydrogen cyanide",
+        "butan-2-one + hydrogen cyanide = 2-hydroxy-2-methylbutanenitrile",
+        "benzaldehyde + hydrogen cyanide = (S)-mandelonitrile",
+        "butanal + hydrogen cyanide = (2S)-2-hydroxypentanenitrile",
+        "2-methylpropanal + hydrogen cyanide = (2S)-2-hydroxy-3-methylbutanenitrile",
+        "2,2-dimethylpropanal + hydrogen cyanide = (2S)-2-hydroxy-3,3-dimethylbutanenitrile",
+        "hexanal + hydrogen cyanide = (2S)-2-hydroxyheptanenitrile",
+        "nonanal + hydrogen cyanide = (2S)-2-hydroxydecanenitrile",
+        "acrolein + hydrogen cyanide = (2S)-2-hydroxybut-3-enenitrile",
+        "2-phenylacetaldehyde + hydrogen cyanide = (2S)-2-hydroxy-3-phenylpropanenitrile",
+        "3-phenylpropanal + hydrogen cyanide = (2S)-2-hydroxy-4-phenylbutanenitrile",
+        "(E)-cinnamaldehyde + hydrogen cyanide = (2S,3E)-2-hydroxy-4-phenylbut-3-enenitrile",
+        "2-methoxybenzaldehyde + hydrogen cyanide = (2S)-2-hydroxy-2-(2-methoxyphenyl)acetonitrile",
+        "3-methoxybenzaldehyde + hydrogen cyanide = (2S)-2-hydroxy-2-(3-methoxyphenyl)acetonitrile",
+        "4-methoxybenzaldehyde + hydrogen cyanide = (2S)-2-hydroxy-2-(4-methoxyphenyl)acetonitrile",
+        "cyclohexanecarbaldehyde + hydrogen cyanide = (2S)-2-cyclohexyl-2-hydroxyacetonitrile",
+        "furfural + hydrogen cyanide = (2R)-2-(furan-2-yl)-2-hydroxyacetonitrile",
+        "formylthiophene + hydrogen cyanide = (2R)-2-hydroxy-2-(thiophen-2-yl)acetonitrile",
+        "3-formylthiophene + hydrogen cyanide = (2S)-2-hydroxy-2-(thiophen-3-yl)acetonitrile"
+      ]
+    },
+    "P52708": {
+      "cofactors": [],
+      "reactions": [
+        "(S)-4-hydroxymandelonitrile = 4-hydroxybenzaldehyde + hydrogen cyanide"
+      ]
+    },
+    "P53041": {
+      "cofactors": [
+        "Mg(2+)",
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+        "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate"
+      ]
+    },
+    "P53608": {
+      "cofactors": [
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "L-arginine + H2O = urea + L-ornithine"
+      ]
+    },
+    "P53686": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "N(6)-acetyl-L-lysyl-[protein] + NAD(+) + H2O = 2''-O-acetyl-ADP-D-ribose + nicotinamide + L-lysyl-[protein]"
+      ]
+    },
+    "P54149": {
+      "cofactors": [],
+      "reactions": [
+        "L-methionyl-[protein] + [thioredoxin]-disulfide + H2O = L-methionyl-(S)-S-oxide-[protein] + [thioredoxin]-dithiol",
+        "[thioredoxin]-disulfide + L-methionine + H2O = L-methionine (S)-S-oxide + [thioredoxin]-dithiol"
+      ]
+    },
+    "P55038": {
+      "cofactors": [
+        "[3Fe-4S] cluster",
+        "FAD",
+        "FMN"
+      ],
+      "reactions": [
+        "2 oxidized [2Fe-2S]-[ferredoxin] + 2 L-glutamate = L-glutamine + 2 reduced [2Fe-2S]-[ferredoxin] + 2-oxoglutarate + 2 H(+)"
+      ]
+    },
+    "P55792": {
+      "cofactors": [
+        "FAD",
+        "[4Fe-4S] cluster"
+      ],
+      "reactions": [
+        "4-hydroxybutanoyl-CoA = (2E)-butenoyl-CoA + H2O",
+        "vinylacetyl-CoA = (2E)-butenoyl-CoA"
+      ]
+    },
+    "P55931": {
+      "cofactors": [
+        "[4Fe-4S] cluster",
+        "FAD"
+      ],
+      "reactions": [
+        "a ubiquinone + reduced [electron-transfer flavoprotein] = a ubiquinol + oxidized [electron-transfer flavoprotein] + H(+)"
+      ]
+    },
+    "P56200": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "Endonucleolytic cleavage of DNA to give specific double-stranded fragments with terminal 5'-phosphates."
+      ]
+    },
+    "P56216": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "4-hydroxy-3-methoxy-benzenemethanol + O2 = vanillin + H2O2"
+      ]
+    },
+    "P56218": {
+      "cofactors": [
+        "Co(2+)",
+        "Zn(2+)",
+        "Mn(2+)",
+        "Fe(2+)"
+      ],
+      "reactions": [
+        "Release of N-terminal amino acids, preferentially methionine, from peptides and arylamides."
+      ]
+    },
+    "P56533": {
+      "cofactors": [],
+      "reactions": [
+        "4-(trimethylamino)butanal + NAD(+) + H2O = 4-(trimethylamino)butanoate + NADH + 2 H(+)",
+        "an aldehyde + NAD(+) + H2O = a carboxylate + NADH + 2 H(+)"
+      ]
+    },
+    "P56690": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "tRNA(Ile) + L-isoleucine + ATP = L-isoleucyl-tRNA(Ile) + AMP + diphosphate"
+      ]
+    },
+    "P56839": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "phosphoenolpyruvate + H(+) = 3-phosphonopyruvate"
+      ]
+    },
+    "P56868": {
+      "cofactors": [],
+      "reactions": [
+        "L-glutamate = D-glutamate"
+      ]
+    },
+    "P59846": {
+      "cofactors": [],
+      "reactions": [
+        "L-citrulline + L-aspartate + ATP = 2-(N(omega)-L-arginino)succinate + AMP + diphosphate + H(+)"
+      ]
+    },
+    "P60484": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "a 1,2-diacyl-sn-glycero-3-phospho-(1D-myo-inositol-3,4,5-trisphosphate) + H2O = a 1,2-diacyl-sn-glycero-3-phospho-(1D-myo-inositol-4,5-bisphosphate) + phosphate",
+        "O-phospho-L-seryl-[protein] + H2O = L-seryl-[protein] + phosphate",
+        "O-phospho-L-threonyl-[protein] + H2O = L-threonyl-[protein] + phosphate",
+        "O-phospho-L-tyrosyl-[protein] + H2O = L-tyrosyl-[protein] + phosphate",
+        "1,2-dioctanoyl-sn-glycero-3-phospho-(1D-myo-inositol-3,4,5-trisphosphate) + H2O = 1,2-dioctanoyl-sn-glycero-3-phospho-(1D-myo-inositol-4,5-bisphosphate) + phosphate",
+        "1,2-dihexadecanoyl-sn-glycero-3-phospho-(1D-myo-inositol-3,4,5-trisphosphate) + H2O = 1,2-dihexadecanoyl-sn-glycero-3-phospho-(1D-myo-inositol-4,5-bisphosphate) + phosphate",
+        "1D-myo-inositol 1,3,4,5,6-pentakisphosphate + H2O = 1D-myo-inositol 1,4,5,6-tetrakisphosphate + phosphate",
+        "1D-myo-inositol 1,3,4,5-tetrakisphosphate + H2O = 1D-myo-inositol 1,4,5-trisphosphate + phosphate"
+      ]
+    },
+    "P61112": {
+      "cofactors": [],
+      "reactions": [
+        "ATP + H2O + an unfolded polypeptide = ADP + phosphate + a folded polypeptide."
+      ]
+    },
+    "P61459": {
+      "cofactors": [],
+      "reactions": [
+        "(4aS,6R)-4a-hydroxy-L-erythro-5,6,7,8-tetrahydrobiopterin = (6R)-L-erythro-6,7-dihydrobiopterin + H2O"
+      ]
+    },
+    "P61517": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "hydrogencarbonate + H(+) = CO2 + H2O"
+      ]
+    },
+    "P61823": {
+      "cofactors": [],
+      "reactions": [
+        "an [RNA] containing cytidine + H2O = an [RNA]-3'-cytidine-3'-phosphate + a 5'-hydroxy-ribonucleotide-3'-[RNA].",
+        "an [RNA] containing uridine + H2O = an [RNA]-3'-uridine-3'-phosphate + a 5'-hydroxy-ribonucleotide-3'-[RNA]."
+      ]
+    },
+    "P61889": {
+      "cofactors": [],
+      "reactions": [
+        "(S)-malate + NAD(+) = oxaloacetate + NADH + H(+)"
+      ]
+    },
+    "P62593": {
+      "cofactors": [],
+      "reactions": [
+        "a beta-lactam + H2O = a substituted beta-amino acid"
+      ]
+    },
+    "P62694": {
+      "cofactors": [],
+      "reactions": [
+        "Hydrolysis of (1->4)-beta-D-glucosidic linkages in cellulose and cellotetraose, releasing cellobiose from the non-reducing ends of the chains."
+      ]
+    },
+    "P62937": {
+      "cofactors": [],
+      "reactions": [
+        "[protein]-peptidylproline (omega=180) = [protein]-peptidylproline (omega=0)"
+      ]
+    },
+    "P62942": {
+      "cofactors": [],
+      "reactions": [
+        "[protein]-peptidylproline (omega=180) = [protein]-peptidylproline (omega=0)"
+      ]
+    },
+    "P67910": {
+      "cofactors": [
+        "NADP(+)",
+        "NAD(+)"
+      ],
+      "reactions": [
+        "ADP-D-glycero-beta-D-manno-heptose = ADP-L-glycero-beta-D-manno-heptose"
+      ]
+    },
+    "P68036": {
+      "cofactors": [],
+      "reactions": [
+        "S-ubiquitinyl-[E1 ubiquitin-activating enzyme]-L-cysteine + [E2 ubiquitin-conjugating enzyme]-L-cysteine = [E1 ubiquitin-activating enzyme]-L-cysteine + S-ubiquitinyl-[E2 ubiquitin-conjugating enzyme]-L-cysteine."
+      ]
+    },
+    "P68175": {
+      "cofactors": [],
+      "reactions": [
+        "3alpha(S)-strictosidine + H2O = secologanin + tryptamine",
+        "secologanin + serotonin = (2S,3R,4S)-5-(methoxycarbonyl)-4-[(1S)-2,3,4,9-tetrahydro-1H-beta-carbolin-2-ium-6-ol-1-ylmethyl]-3-vinyl-3,4-dihydro-2H-pyran-2-yl beta-D-glucopyranoside + H2O"
+      ]
+    },
+    "P68698": {
+      "cofactors": [],
+      "reactions": [
+        "ATP-independent breakage of single-stranded DNA, followed by passage and rejoining."
+      ]
+    },
+    "P69327": {
+      "cofactors": [],
+      "reactions": [
+        "Hydrolysis of terminal (1->4)-linked alpha-D-glucose residues successively from non-reducing ends of the chains with release of beta-D-glucose."
+      ]
+    },
+    "P69922": {
+      "cofactors": [
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "L-fucose = L-fuculose",
+        "D-arabinose = D-ribulose",
+        "L-xylopyranose = L-xylulose"
+      ]
+    },
+    "P71119": {
+      "cofactors": [],
+      "reactions": [
+        "heme b + 3 reduced [NADPH--hemoprotein reductase] + 3 O2 = biliverdin IXalpha + CO + Fe(2+) + 3 oxidized [NADPH--hemoprotein reductase] + 3 H2O + H(+)"
+      ]
+    },
+    "P71447": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "beta-D-glucose 1-phosphate = beta-D-glucose 6-phosphate"
+      ]
+    },
+    "P75430": {
+      "cofactors": [
+        "Mg(2+)",
+        "Mn(2+)",
+        "Ca(2+)",
+        "Zn(2+)",
+        "Fe(2+)",
+        "Co(2+)",
+        "Cu(2+)"
+      ],
+      "reactions": [
+        "(6S)-5-formyl-5,6,7,8-tetrahydrofolate + ATP = (6R)-5,10-methenyltetrahydrofolate + ADP + phosphate"
+      ]
+    },
+    "P77072": {
+      "cofactors": [],
+      "reactions": [
+        "an alkylmercury + H(+) = an alkane + Hg(2+)"
+      ]
+    },
+    "P77444": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "(sulfur carrier)-H + L-cysteine = (sulfur carrier)-SH + L-alanine",
+        "L-selenocysteine + AH2 = hydrogenselenide + L-alanine + A + H(+)",
+        "3-sulfino-L-alanine + H2O = sulfite + L-alanine + H(+)"
+      ]
+    },
+    "P77541": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "(2S,3R)-3-hydroxybutane-1,2,3-tricarboxylate = pyruvate + succinate"
+      ]
+    },
+    "P77836": {
+      "cofactors": [
+        "K(+)"
+      ],
+      "reactions": [
+        "uridine + phosphate = alpha-D-ribose 1-phosphate + uracil",
+        "thymidine + phosphate = 2-deoxy-alpha-D-ribose 1-phosphate + thymine",
+        "2'-deoxyuridine + phosphate = 2-deoxy-alpha-D-ribose 1-phosphate + uracil"
+      ]
+    },
+    "P78549": {
+      "cofactors": [
+        "[4Fe-4S] cluster"
+      ],
+      "reactions": [
+        "2'-deoxyribonucleotide-(2'-deoxyribose 5'-phosphate)-2'-deoxyribonucleotide-DNA = a 3'-end 2'-deoxyribonucleotide-(2,3-dehydro-2,3-deoxyribose 5'-phosphate)-DNA + a 5'-end 5'-phospho-2'-deoxyribonucleoside-DNA + H(+)"
+      ]
+    },
+    "P80077": {
+      "cofactors": [
+        "adenosylcob(III)alamin"
+      ],
+      "reactions": [
+        "(2S,3S)-3-methyl-L-aspartate = L-glutamate"
+      ]
+    },
+    "P80147": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate",
+        "[2Fe-2S] cluster"
+      ],
+      "reactions": [
+        "4-aminobutanoate + 2-oxoglutarate = succinate semialdehyde + L-glutamate",
+        "(S)-3-amino-2-methylpropanoate + 2-oxoglutarate = 2-methyl-3-oxopropanoate + L-glutamate"
+      ]
+    },
+    "P80324": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "a D-alpha-amino acid + O2 + H2O = a 2-oxocarboxylate + H2O2 + NH4(+)",
+        "D-leucine + O2 + H2O = 4-methyl-2-oxopentanoate + H2O2 + NH4(+)",
+        "D-alanine + O2 + H2O = pyruvate + H2O2 + NH4(+)",
+        "D-glutamate + O2 + H2O = 2-oxoglutarate + H2O2 + NH4(+)",
+        "D-histidine + O2 + H2O = 3-(imidazol-5-yl)pyruvate + H2O2 + NH4(+)",
+        "D-proline + O2 = 1-pyrroline-2-carboxylate + H2O2",
+        "D-methionine + O2 + H2O = 4-methylsulfanyl-2-oxobutanoate + H2O2 + NH4(+)",
+        "D-arginine + O2 + H2O = 5-guanidino-2-oxopentanoate + H2O2 + NH4(+)",
+        "D-valine + O2 + H2O = 3-methyl-2-oxobutanoate + H2O2 + NH4(+)",
+        "D-threonine + O2 + H2O = (S)-3-hydroxy-2-oxobutanoate + H2O2 + NH4(+)",
+        "D-serine + O2 + H2O = 3-hydroxypyruvate + H2O2 + NH4(+)",
+        "D-tryptophan + O2 + H2O = indole-3-pyruvate + H2O2 + NH4(+)"
+      ]
+    },
+    "P80366": {
+      "cofactors": [
+        "Fe cation",
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "a phosphate monoester + H2O = an alcohol + phosphate"
+      ]
+    },
+    "P80457": {
+      "cofactors": [
+        "[2Fe-2S] cluster",
+        "FAD",
+        "Mo-molybdopterin"
+      ],
+      "reactions": [
+        "xanthine + NAD(+) + H2O = urate + NADH + H(+)",
+        "hypoxanthine + NAD(+) + H2O = xanthine + NADH + H(+)",
+        "xanthine + O2 + H2O = urate + H2O2"
+      ]
+    },
+    "P80563": {
+      "cofactors": [
+        "Mo-bis(molybdopterin guanine dinucleotide)"
+      ],
+      "reactions": [
+        "1,2,3,5-tetrahydroxybenzene + 1,2,3-trihydroxybenzene = 1,2,3,5-tetrahydroxybenzene + 1,3,5-trihydroxybenzene"
+      ]
+    },
+    "P81054": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "Preferential cleavage in proteins: -Xaa-|-Lys- (in which Xaa may be Pro)."
+      ]
+    },
+    "P81382": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "an L-alpha-amino acid + O2 + H2O = a 2-oxocarboxylate + H2O2 + NH4(+)",
+        "L-leucine + O2 + H2O = 4-methyl-2-oxopentanoate + H2O2 + NH4(+)",
+        "L-phenylalanine + O2 + H2O = 3-phenylpyruvate + H2O2 + NH4(+)",
+        "L-tryptophan + O2 + H2O = indole-3-pyruvate + H2O2 + NH4(+)",
+        "L-methionine + O2 + H2O = 4-methylsulfanyl-2-oxobutanoate + H2O2 + NH4(+)",
+        "L-isoleucine + O2 + H2O = (S)-3-methyl-2-oxopentanoate + H2O2 + NH4(+)",
+        "L-arginine + O2 + H2O = 5-guanidino-2-oxopentanoate + H2O2 + NH4(+)",
+        "L-aspartate + O2 + H2O = oxaloacetate + H2O2 + NH4(+)",
+        "L-histidine + O2 + H2O = 3-(imidazol-5-yl)pyruvate + H2O2 + NH4(+)",
+        "L-2-aminohexanoate + O2 + H2O = 2-oxohexanoate + H2O2 + NH4(+)",
+        "L-2-aminopentanoate + O2 + H2O = 2-oxopentanoate + H2O2 + NH4(+)"
+      ]
+    },
+    "P81701": {
+      "cofactors": [
+        "vanadate"
+      ],
+      "reactions": [
+        "RH + Br(-) + H2O2 = RBr + 2 H2O."
+      ]
+    },
+    "P82543": {
+      "cofactors": [],
+      "reactions": [
+        "4 Fe(II)-[cytochrome c] + O2 + 8 H(+)(in) = 4 Fe(III)-[cytochrome c] + 2 H2O + 4 H(+)(out)"
+      ]
+    },
+    "P83686": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "2 Fe(III)-[cytochrome b5] + NADH = 2 Fe(II)-[cytochrome b5] + NAD(+) + H(+)"
+      ]
+    },
+    "P83772": {
+      "cofactors": [
+        "Zn(2+)",
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "creatinine + H2O = creatine"
+      ]
+    },
+    "P83788": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "L-kynurenine + H2O = anthranilate + L-alanine + H(+)",
+        "3-hydroxy-L-kynurenine + H2O = 3-hydroxyanthranilate + L-alanine + H(+)"
+      ]
+    },
+    "P90551": {
+      "cofactors": [],
+      "reactions": [
+        "sn-glycerol 3-phosphate + NAD(+) = dihydroxyacetone phosphate + NADH + H(+)"
+      ]
+    },
+    "P94388": {
+      "cofactors": [],
+      "reactions": [
+        "Deacetylation of xylans and xylo-oligosaccharides.",
+        "cephalosporin C + H2O = deacetylcephalosporin C + acetate + H(+)"
+      ]
+    },
+    "P94692": {
+      "cofactors": [
+        "[4Fe-4S] cluster",
+        "thiamine diphosphate",
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "2 oxidized [2Fe-2S]-[ferredoxin] + pyruvate + CoA = 2 reduced [2Fe-2S]-[ferredoxin] + acetyl-CoA + CO2 + H(+)"
+      ]
+    },
+    "P95468": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "an aromatic L-alpha-amino acid + 2-oxoglutarate = an aromatic oxo-acid + L-glutamate"
+      ]
+    },
+    "P97852": {
+      "cofactors": [],
+      "reactions": [
+        "a (3R)-3-hydroxyacyl-CoA = a (2E)-enoyl-CoA + H2O",
+        "a (3R)-3-hydroxyacyl-CoA + NAD(+) = a 3-oxoacyl-CoA + NADH + H(+)",
+        "a very-long-chain (3R)-3-hydroxyacyl-CoA = a very-long-chain (2E)-enoyl-CoA + H2O",
+        "(3R)-hydroxytriacontanoyl-CoA = (2E)-triacontenoyl-CoA + H2O",
+        "(3R)-hydroxyoctacosanoyl-CoA = (2E)-octacosenoyl-CoA + H2O",
+        "(3R)-hydroxyhexacosanoyl-CoA = (2E)-hexacosenoyl-CoA + H2O",
+        "(2E,17Z)-hexacosadienoyl-CoA + H2O = (3R)-hydroxy-(17Z)-hexacosenoyl-CoA",
+        "(3R)-hydroxy-(15Z)-tetracosenoyl-CoA = (2E,15Z)-tetracosadienoyl-CoA + H2O",
+        "(2E,6Z,9Z,12Z,15Z,18Z)-tetracosahexaenoyl-CoA + H2O = (3R)-hydroxy-(6Z,9Z,12Z,15Z,18Z)-tetracosapentaenoyl-CoA",
+        "(2E,6Z,9Z,12Z,15Z,18Z,21Z)-tetracosaheptaenoyl-CoA + H2O = (3R)-hydroxy-(6Z,9Z,12Z,15Z,18Z,21Z)-tetracosahexaenoyl-CoA",
+        "a very-long-chain (3R)-3-hydroxyacyl-CoA + NAD(+) = a very-long-chain 3-oxoacyl-CoA + NADH + H(+)",
+        "(3R)-hydroxytriacontanoyl-CoA + NAD(+) = 3-oxo-triacontanoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxyoctacosanoyl-CoA + NAD(+) = 3-oxooctacosanyol-CoA + NADH + H(+)",
+        "3-oxohexacosanoyl-CoA + NADH + H(+) = (3R)-hydroxyhexacosanoyl-CoA + NAD(+)",
+        "(3R)-hydroxy-(17Z)-hexacosenoyl-CoA + NAD(+) = 3-oxo-(17Z)-hexacosenoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(15Z)-tetracosenoyl-CoA + NAD(+) = 3-oxo-(15Z)-tetracosenoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(6Z,9Z,12Z,15Z,18Z)-tetracosapentaenoyl-CoA + NAD(+) = 3-oxo-(6Z,9Z,12Z,15Z,18Z)-tetracosapentaenoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(6Z,9Z,12Z,15Z,18Z,21Z)-tetracosahexaenoyl-CoA + NAD(+) = 3-oxo-(6Z,9Z,12Z,15Z,18Z,21Z)-tetracosahexaenoyl-CoA + NADH + H(+)",
+        "a long-chain (3R)-hydroxyacyl-CoA = a long-chain (2E)-enoyl-CoA + H2O",
+        "(3R)-hydroxyhexadecanoyl-CoA = (2E)-hexadecenoyl-CoA + H2O",
+        "(2E,9Z)-octadecadienoyl-CoA + H2O = (3R)-hydroxy-(9Z)-octadecenoyl-CoA",
+        "(2E,7Z)-hexadecadienoyl-CoA + H2O = (3R)-hydroxy-(7Z)-hexadecenoyl-CoA",
+        "(2E,5Z)-tetradecadienoyl-CoA + H2O = (3R)-hydroxy-(5Z)-tetradecenoyl-CoA",
+        "(3R)-hydroxy-(7Z,10Z,13Z,16Z)-docosatetraenoyl-CoA = (2E,7Z,10Z,13Z,16Z)-docosapentaenoyl-CoA + H2O",
+        "(3R)-hydroxy-(7Z,10Z,13Z,16Z,19Z)-docosapentaenoyl-CoA = (2E,7Z,10Z,13Z,16Z,19Z)-docosahexaenoyl-CoA + H2O",
+        "(3R)-hydroxy-(8Z,11Z,14Z)-eicosatrienoyl-CoA = (2E,8Z,11Z,14Z)-eicosatetraenoyl-CoA + H2O",
+        "(3R)-hydroxy-(8Z,11Z,14Z,17Z)-eicosatetraenoyl-CoA = (2E,8Z,11Z,14Z,17Z)-eicosapentaenoyl-CoA + H2O",
+        "(2E,6Z,9Z,12Z)-octadecatetraenoyl-CoA + H2O = (3R)-hydroxy-(6Z,9Z,12Z)-octadecatrienoyl-CoA",
+        "(2E,6Z,9Z,12Z,15Z)-octadecapentaenoyl-CoA + H2O = 3R-hydroxy-(6Z,9Z,12Z,15Z)-octadecatetraenoyl-CoA",
+        "(2E,7Z,10Z)-hexadecatrienoyl-CoA + H2O = (3R)-hydroxy-(7Z,10Z)-hexadecadienoyl-CoA",
+        "(2E,7Z,10Z,13Z)-hexadecatetraenoyl-CoA + H2O = (3R)-hydroxy-(7Z,10Z,13Z)-hexadecatrienoyl-CoA",
+        "(2E,8Z,11Z)-tetradecatrienoyl-CoA + H2O = (3R)-hydroxy-(8Z,11Z)-tetradecadienoyl-CoA",
+        "a long-chain (3R)-hydroxyacyl-CoA + NAD(+) = a long-chain 3-oxo-fatty acyl-CoA + NADH + H(+)",
+        "(3R)-hydroxyhexadecanoyl-CoA + NAD(+) = 3-oxohexadecanoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(13Z)-docosenoyl-CoA + NAD(+) = 3-oxo-(13Z)-docosenoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(5Z)-tetradecenoyl-CoA + NAD(+) = 3-oxo-(5Z-tetradecenoyl)-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(7Z,10Z,13Z,16Z)-docosatetraenoyl-CoA + NAD(+) = (7Z,10Z,13Z,16Z)-3-oxodocosatetraenoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(7Z,10Z,13Z,16Z,19Z)-docosapentaenoyl-CoA + NAD(+) = 3-oxo-(7Z,10Z,13Z,16Z,19Z)-docosapentaenoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(8Z,11Z,14Z)-eicosatrienoyl-CoA + NAD(+) = 3-oxo-(8Z,11Z,14Z)-eicosatrienoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(8Z,11Z,14Z,17Z)-eicosatetraenoyl-CoA + NAD(+) = 3-oxo-(8Z,11Z,14Z,17Z)-eicosatetraenoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(6Z,9Z,12Z)-octadecatrienoyl-CoA + NAD(+) = 3-oxo-(6Z,9Z,12Z)-octadecatrienoyl-CoA + NADH + H(+)",
+        "3R-hydroxy-(6Z,9Z,12Z,15Z)-octadecatetraenoyl-CoA + NAD(+) = 3-oxo-(6Z,9Z,12Z,15Z)-octadecatetraenoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(7Z,10Z)-hexadecadienoyl-CoA + NAD(+) = 3-oxo-(7Z,10Z)-hexadecadienoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(7Z,10Z,13Z)-hexadecatrienoyl-CoA + NAD(+) = 3-oxo-(7Z,10Z,13Z)-hexadecatrienoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxy-(8Z,11Z)-tetradecadienoyl-CoA + NAD(+) = 3-oxo-(8Z,11Z)-tetradecadienoyl-CoA + NADH + H(+)",
+        "a medium-chain (3R)-hydroxyacyl-CoA = a medium-chain (2E)-enoyl-CoA + H2O",
+        "(3R)-3-hydroxydecanoyl-CoA = (2E)-decenoyl-CoA + H2O",
+        "(2E)-octenoyl-CoA + H2O = (3R)-hydroxyoctanoyl-CoA",
+        "a medium-chain (3R)-hydroxyacyl-CoA + NAD(+) = a medium-chain 3-oxoacyl-CoA + NADH + H(+)",
+        "(3R)-3-hydroxydecanoyl-CoA + NAD(+) = 3-oxodecanoyl-CoA + NADH + H(+)",
+        "(3R)-hydroxyoctanoyl-CoA + NAD(+) = 3-oxooctanoyl-CoA + NADH + H(+)",
+        "(2E)-hexadecenedioyl-CoA + H2O = (3R)-hydroxyhexadecanedioyl-CoA",
+        "(3R)-hydroxyhexadecanedioyl-CoA + NAD(+) = 3-oxohexadecanedioyl-CoA + NADH + H(+)",
+        "(24R,25R)-3alpha,7alpha,12alpha,24-tetrahydroxy-5beta-cholestan-26-oyl-CoA = (24E)-3alpha,7alpha,12alpha-trihydroxy-5beta-cholest-24-en-26-oyl-CoA + H2O",
+        "(24R,25R)-3alpha,7alpha,12alpha,24-tetrahydroxy-5beta-cholestan-26-oyl-CoA + NAD(+) = 3alpha,7alpha,12alpha-trihydroxy-24-oxo-5beta-cholestan-26-oyl-CoA + NADH + H(+)"
+      ]
+    },
+    "P9WI55": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "diphosphate + H2O = 2 phosphate + H(+)"
+      ]
+    },
+    "P9WIL5": {
+      "cofactors": [],
+      "reactions": [
+        "(R)-pantoate + beta-alanine + ATP = (R)-pantothenate + AMP + diphosphate + H(+)"
+      ]
+    },
+    "P9WJJ7": {
+      "cofactors": [],
+      "reactions": [
+        "nicotinate beta-D-ribonucleotide + CO2 + diphosphate = quinolinate + 5-phospho-alpha-D-ribose 1-diphosphate + 2 H(+)"
+      ]
+    },
+    "P9WKK7": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "D-threo-isocitrate = glyoxylate + succinate"
+      ]
+    },
+    "P9WN39": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "L-glutamate + NH4(+) + ATP = L-glutamine + ADP + phosphate + H(+)"
+      ]
+    },
+    "P9WNP5": {
+      "cofactors": [],
+      "reactions": [
+        "2-succinylbenzoyl-CoA + H(+) = 1,4-dihydroxy-2-naphthoyl-CoA + H2O"
+      ]
+    },
+    "Q00017": {
+      "cofactors": [],
+      "reactions": [
+        "Hydrolytic cleavage of 2-O-acetyl- or 3-O-acetyl groups of alpha-D-galacturonic acid in rhamnogalacturonan I."
+      ]
+    },
+    "Q00267": {
+      "cofactors": [],
+      "reactions": [
+        "an arylamine + acetyl-CoA = an N-acetylarylamine + CoA",
+        "an N-hydroxyarylamine + acetyl-CoA = an N-acetoxyarylamine + CoA"
+      ]
+    },
+    "Q00441": {
+      "cofactors": [
+        "heme"
+      ],
+      "reactions": [
+        "6-deoxyerythronolide B + 2 reduced [2Fe-2S]-[ferredoxin] + O2 + 2 H(+) = erythronolide B + 2 oxidized [2Fe-2S]-[ferredoxin] + H2O"
+      ]
+    },
+    "Q00511": {
+      "cofactors": [],
+      "reactions": [
+        "urate + O2 + H2O = 5-hydroxyisourate + H2O2"
+      ]
+    },
+    "Q01172": {
+      "cofactors": [],
+      "reactions": [
+        "Eliminative cleavage of (1->4)-alpha-D-galacturonan methyl ester to give oligosaccharides with 4-deoxy-6-O-methyl-alpha-D-galact-4-enuronosyl groups at their non-reducing ends."
+      ]
+    },
+    "Q01468": {
+      "cofactors": [],
+      "reactions": [
+        "(2Z,4E)-2-hydroxyhexa-2,4-dienedioate = (3E)-2-oxohex-3-enedioate"
+      ]
+    },
+    "Q01693": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "Release of an N-terminal amino acid, preferentially leucine, but not glutamic or aspartic acids."
+      ]
+    },
+    "Q02127": {
+      "cofactors": [
+        "FMN"
+      ],
+      "reactions": [
+        "(S)-dihydroorotate + a quinone = orotate + a quinol"
+      ]
+    },
+    "Q02745": {
+      "cofactors": [],
+      "reactions": [
+        "a beta-D-galactosyl-(1->3)-N-acetyl-alpha-D-galactosaminyl derivative + CMP-N-acetyl-beta-neuraminate = an N-acetyl-alpha-neuraminyl-(2->3)-beta-D-galactosyl-(1->3)-N-acetyl-alpha-D-galactosaminyl derivative + CMP + H(+)",
+        "a ganglioside GM1 (d18:1(4E)) + CMP-N-acetyl-beta-neuraminate = a ganglioside GD1a (d18:1(4E)) + CMP + H(+)",
+        "ganglioside GM1 (d18:1(4E)/18:0) + CMP-N-acetyl-beta-neuraminate = ganglioside GD1a (18:1(4E)/18:0) + CMP + H(+)",
+        "a ganglioside GA1 (d18:1(4E)) + CMP-N-acetyl-beta-neuraminate = a ganglioside GM1b (d18:1(4E)) + CMP + H(+)",
+        "a ganglioside GD1b + CMP-N-acetyl-beta-neuraminate = a ganglioside GT1b + CMP + H(+)",
+        "a 3-O-[beta-D-galactosyl-(1->3)-N-acetyl-alpha-D-galactosaminyl]-L-threonyl-[protein] + CMP-N-acetyl-beta-neuraminate = a 3-O-[N-acetyl-alpha-neuraminyl-(2->3)-beta-D-galactosyl-(1->3)-N-acetyl-alpha-D-galactosaminyl]-L-threonyl-[protein] + CMP + H(+)",
+        "a 3-O-[beta-D-galactosyl-(1->3)-N-acetyl-alpha-D-galactosaminyl]-L-seryl-[protein] + CMP-N-acetyl-beta-neuraminate = a 3-O-[N-acetyl-alpha-neuraminyl-(2->3)-beta-D-galactosyl-(1->3)-N-acetyl-alpha-D-galactosaminyl]-L-seryl-[protein] + CMP + H(+)"
+      ]
+    },
+    "Q02899": {
+      "cofactors": [
+        "FMN"
+      ],
+      "reactions": [
+        "A + NADPH + H(+) = AH2 + NADP(+)"
+      ]
+    },
+    "Q03471": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "(2E,6E)-farnesyl diphosphate = (+)-aristolochene + diphosphate"
+      ]
+    },
+    "Q04760": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "(R)-S-lactoylglutathione = methylglyoxal + glutathione"
+      ]
+    },
+    "Q05506": {
+      "cofactors": [],
+      "reactions": [
+        "tRNA(Arg) + L-arginine + ATP = L-arginyl-tRNA(Arg) + AMP + diphosphate"
+      ]
+    },
+    "Q05514": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "(2S,3S)-3-methyl-L-aspartate = mesaconate + NH4(+)"
+      ]
+    },
+    "Q05603": {
+      "cofactors": [],
+      "reactions": [
+        "5,6-dimethylbenzimidazole + nicotinate beta-D-ribonucleotide = alpha-ribazole 5'-phosphate + nicotinate + H(+)"
+      ]
+    },
+    "Q05755": {
+      "cofactors": [
+        "[3Fe-4S] cluster",
+        "FAD",
+        "FMN"
+      ],
+      "reactions": [
+        "2 L-glutamate + NADP(+) = L-glutamine + 2-oxoglutarate + NADPH + H(+)"
+      ]
+    },
+    "Q05769": {
+      "cofactors": [
+        "heme b"
+      ],
+      "reactions": [
+        "(5Z,8Z,11Z,14Z)-eicosatetraenoate + AH2 + 2 O2 = prostaglandin H2 + A + H2O",
+        "(5Z,8Z,11Z,14Z)-eicosatetraenoate + 2 O2 = prostaglandin G2",
+        "prostaglandin G2 + AH2 = prostaglandin H2 + A + H2O",
+        "(5Z,8Z,11Z,14Z,17Z)-eicosapentaenoate + 2 O2 = prostaglandin G3",
+        "prostaglandin G3 + AH2 = prostaglandin H3 + A + H2O",
+        "(8Z,11Z,14Z)-eicosatrienoate + 2 O2 = prostaglandin G1",
+        "prostaglandin G1 + AH2 = prostaglandin H1 + A + H2O",
+        "2-(5Z,8Z,11Z,14Z)-eicosatetraenoyl-sn-glycero-3-phosphoethanolamine + 2 O2 = 2-(prostaglandin G2)-sn-glycero-3-phosphoethanolamine",
+        "2-(prostaglandin G2)-sn-glycero-3-phosphoethanolamine + AH2 = 2-(prostaglandin H2)-sn-glycero-3-phosphoethanolamine + A + H2O",
+        "2-(5Z,8Z,11Z,14Z)-eicosatetraenoyl-sn-glycero-3-phosphocholine + 2 O2 = 2-(prostaglandin G2)-sn-glycero-3-phosphocholine",
+        "2-(prostaglandin G2)-sn-glycero-3-phosphocholine + AH2 = 2-(prostaglandin H2)-sn-glycero-3-phosphocholine + A + H2O",
+        "(15S)-hydroperoxy-(5Z,8Z,11Z,13E)-eicosatetraenoate + AH2 = (15S)-hydroxy-(5Z,8Z,11Z,13E)-eicosatetraenoate + A + H2O",
+        "2-(5Z,8Z,11Z,14Z)-eicosatetraenoyl-sn-glycero-3-phosphocholine + AH2 + O2 = 2-[(15S)-hydroxy-(5Z,8Z,11Z,13E)-eicosatetraenoyl]-sn-glycero-3-phosphocholine + A + H2O",
+        "2-(5Z,8Z,11Z,14Z)-eicosatetraenoyl-sn-glycero-3-phosphocholine + AH2 + O2 = 2-[(15R)-hydroxy-(5Z,8Z,11Z,13E)-eicosatetraenoyl]-sn-glycero-3-phosphocholine + A + H2O",
+        "2-(5Z,8Z,11Z,14Z)-eicosatetraenoyl-sn-glycero-3-phosphocholine + AH2 + O2 = 2-[(11R)-hydroxy-(5Z,8Z,12E,14Z)-eicosatetraenoyl]-sn-glycero-3-phosphocholine + A + H2O",
+        "(9Z,12Z)-octadecadienoate + AH2 + O2 = 9-hydroxy-(10E,12Z)-octadecadienoate + A + H2O",
+        "(9Z,12Z)-octadecadienoate + AH2 + O2 = 13-hydroxy-(9Z,11E)-octadecadienoate + A + H2O",
+        "(5Z,8Z,11Z,14Z)-eicosatetraenoate + AH2 + O2 = (15R)-hydroxy-(5Z,8Z,11Z,13E)-eicosatetraenoate + A + H2O",
+        "(5Z,8Z,11Z,14Z)-eicosatetraenoate + AH2 + O2 = (11R)-hydroxy-(5Z,8Z,12E,14Z)-eicosatetraenoate + A + H2O",
+        "(5Z,8Z,11Z,14Z,17Z)-eicosapentaenoate + AH2 + O2 = (11R)-hydroxy-(5Z,8Z,12E,14Z,17Z)-eicosapentaenoate + A + H2O",
+        "(5Z,8Z,11Z,14Z,17Z)-eicosapentaenoate + AH2 + O2 = (18S)-hydroxy-(5Z,8Z,11Z,14Z,16E)-eicosapentaenoate + A + H2O",
+        "(5Z,8Z,11Z,14Z,17Z)-eicosapentaenoate + AH2 + O2 = (18R)-hydroxy-(5Z,8Z,11Z,14Z,16E)-eicosapentaenoate + A + H2O",
+        "(5Z,8Z,11Z,14Z,17Z)-eicosapentaenoate + AH2 + O2 = (15R)-hydroxy-(5Z,8Z,11Z,13E,17Z)-eicosapentaenoate + A + H2O",
+        "(5Z,8Z,11Z,14Z,17Z)-eicosapentaenoate + AH2 + O2 = (15S)-hydroxy-(5Z,8Z,11Z,13E,17Z)-eicosapentaenoate + A + H2O",
+        "(7Z,10Z,13Z,16Z,19Z)-docosapentaenoate + AH2 + O2 = 13R-hydroxy-(7Z,10Z,14E,16Z,19Z)-docosapentaenoate + A + H2O",
+        "(4Z,7Z,10Z,13Z,16Z,19Z)-docosahexaenoate + AH2 + O2 = 13-hydroxy-(4Z,7Z,10Z,14E,16Z,19Z)-docosahexaenoate + A + H2O",
+        "(5S)-hydroxy-(6E,8Z,11Z,14Z)-eicosatetraenoate + AH2 + O2 = (5S,15R)-dihydroxy-(6E,8Z,11Z,13E)-eicosatetraenoate + A + H2O",
+        "(4Z,7Z,10Z,13Z,16Z,19Z)-docosahexaenoate + AH2 + O2 = 17R-hydroxy-(4Z,7Z,10Z,13Z,15E,19Z)-docosahexaenoate + A + H2O",
+        "(5S)-hydroxy-(6E,8Z,11Z,14Z)-eicosatetraenoate + AH2 + O2 = (5S,15S)-dihydroxy-(6E,8Z,11Z,13E)-eicosatetraenoate + A + H2O",
+        "(5S)-hydroxy-(6E,8Z,11Z,14Z)-eicosatetraenoate + AH2 + O2 = (5S,11R)-dihydroxy-(6E,8Z,12E,14Z)-eicosatetraenoate + A + H2O",
+        "2-(5Z,8Z,11Z,14Z-eicosatetraenoyl)-glycerol + 2 O2 = 2-glyceryl-prostaglandin G2",
+        "2-glyceryl-prostaglandin G2 + AH2 = 2-glyceryl-prostaglandin H2 + A + H2O",
+        "(5Z,8Z,11Z,14Z)-eicosatetraenoate + O2 = (15R)-hydroperoxy-(5Z,8Z,11Z,13E)-eicosatetraenoate",
+        "(5Z,8Z,11Z,14Z)-eicosatetraenoate + O2 = 11R-hydroperoxy-(5Z,8Z,12E,14Z)-eicosatetraenoate",
+        "(9Z,12Z)-octadecadienoate + AH2 + O2 = (9R)-hydroxy-(10E,12Z)-octadecadienoate + A + H2O",
+        "(9Z,12Z)-octadecadienoate + AH2 + O2 = (9S)-hydroxy-(10E,12Z)-octadecadienoate + A + H2O",
+        "(9Z,12Z)-octadecadienoate + AH2 + O2 = (13S)-hydroxy-(9Z,11E)-octadecadienoate + A + H2O",
+        "(9Z,12Z)-octadecadienoate + AH2 + O2 = (13R)-hydroxy-(9Z,11E)-octadecadienoate + A + H2O"
+      ]
+    },
+    "Q05871": {
+      "cofactors": [],
+      "reactions": [
+        "a (3Z)-enoyl-CoA = a 4-saturated (2E)-enoyl-CoA",
+        "a (3E)-enoyl-CoA = a 4-saturated (2E)-enoyl-CoA"
+      ]
+    },
+    "Q06121": {
+      "cofactors": [],
+      "reactions": [
+        "1-(2-carboxyphenylamino)-1-deoxy-D-ribulose 5-phosphate + H(+) = (1S,2R)-1-C-(indol-3-yl)glycerol 3-phosphate + CO2 + H2O"
+      ]
+    },
+    "Q06128": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "chorismate + L-glutamine = anthranilate + pyruvate + L-glutamate + H(+)"
+      ]
+    },
+    "Q06241": {
+      "cofactors": [
+        "Zn(2+)",
+        "Fe(2+)",
+        "Co(2+)",
+        "Ni(2+)"
+      ],
+      "reactions": [
+        "D-alanyl-D-alanine + H2O = 2 D-alanine"
+      ]
+    },
+    "Q07WU7": {
+      "cofactors": [
+        "FAD",
+        "heme c"
+      ],
+      "reactions": [
+        "2 Fe(III)-[cytochrome c] + succinate = fumarate + 2 Fe(II)-[cytochrome c] + 2 H(+)"
+      ]
+    },
+    "Q08169": {
+      "cofactors": [],
+      "reactions": [
+        "Random hydrolysis of (1->4)-linkages between N-acetyl-beta-D-glucosamine and D-glucuronate residues in hyaluronate."
+      ]
+    },
+    "Q08649": {
+      "cofactors": [],
+      "reactions": [
+        "L-lysyl-[histone] + acetyl-CoA = N(6)-acetyl-L-lysyl-[histone] + CoA + H(+)",
+        "L-lysyl-[protein] + acetyl-CoA = N(6)-acetyl-L-lysyl-[protein] + CoA + H(+)",
+        "2-hydroxyisobutanoyl-CoA + L-lysyl-[protein] = N(6)-(2-hydroxyisobutanoyl)-L-lysyl-[protein] + CoA + H(+)",
+        "(2E)-butenoyl-CoA + L-lysyl-[protein] = N(6)-(2E)-butenoyl-L-lysyl-[protein] + CoA + H(+)"
+      ]
+    },
+    "Q08751": {
+      "cofactors": [
+        "Ca(2+)"
+      ],
+      "reactions": [
+        "Hydrolysis of pullulan to panose (6-alpha-D-glucosylmaltose)."
+      ]
+    },
+    "Q0ZPV7": {
+      "cofactors": [],
+      "reactions": [
+        "a carboxylic ester + H2O = an alcohol + a carboxylate + H(+)"
+      ]
+    },
+    "Q12178": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "cytosine + H2O + H(+) = uracil + NH4(+)"
+      ]
+    },
+    "Q12341": {
+      "cofactors": [],
+      "reactions": [
+        "L-lysyl-[protein] + acetyl-CoA = N(6)-acetyl-L-lysyl-[protein] + CoA + H(+)"
+      ]
+    },
+    "Q13126": {
+      "cofactors": [],
+      "reactions": [
+        "S-methyl-5'-thioadenosine + phosphate = 5-(methylsulfanyl)-alpha-D-ribose 1-phosphate + adenine"
+      ]
+    },
+    "Q13423": {
+      "cofactors": [],
+      "reactions": [
+        "NAD(+) + NADPH + H(+)(in) = NADH + NADP(+) + H(+)(out)"
+      ]
+    },
+    "Q13526": {
+      "cofactors": [],
+      "reactions": [
+        "[protein]-peptidylproline (omega=180) = [protein]-peptidylproline (omega=0)"
+      ]
+    },
+    "Q13825": {
+      "cofactors": [],
+      "reactions": [
+        "(3S)-3-hydroxy-3-methylglutaryl-CoA = 3-methyl-(2E)-glutaconyl-CoA + H2O",
+        "(3S)-citramalyl-CoA = itaconyl-CoA + H2O",
+        "3-hydroxyisovaleryl-CoA = 3-methylbut-2-enoyl-CoA + H2O",
+        "(S)-3-hydroxyglutaryl-CoA = (2E)-glutaconyl-CoA + H2O"
+      ]
+    },
+    "Q16775": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "an S-(2-hydroxyacyl)glutathione + H2O = a 2-hydroxy carboxylate + glutathione + H(+)",
+        "(R)-S-lactoylglutathione + H2O = (R)-lactate + glutathione + H(+)"
+      ]
+    },
+    "Q16836": {
+      "cofactors": [],
+      "reactions": [
+        "a (3S)-3-hydroxyacyl-CoA + NAD(+) = a 3-oxoacyl-CoA + NADH + H(+)",
+        "(3S)-3-hydroxybutanoyl-CoA + NAD(+) = acetoacetyl-CoA + NADH + H(+)",
+        "(3S)-hydroxydecanoyl-CoA + NAD(+) = 3-oxodecanoyl-CoA + NADH + H(+)",
+        "(3S)-hydroxyhexadecanoyl-CoA + NAD(+) = 3-oxohexadecanoyl-CoA + NADH + H(+)"
+      ]
+    },
+    "Q16854": {
+      "cofactors": [],
+      "reactions": [
+        "2'-deoxyguanosine + ATP = dGMP + ADP + H(+)",
+        "2'-deoxyadenosine + ATP = dAMP + ADP + H(+)"
+      ]
+    },
+    "Q26998": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "UMP + diphosphate = 5-phospho-alpha-D-ribose 1-diphosphate + uracil"
+      ]
+    },
+    "Q27546": {
+      "cofactors": [
+        "Ca(2+)"
+      ],
+      "reactions": [
+        "inosine + H2O = hypoxanthine + D-ribose",
+        "uridine + H2O = D-ribose + uracil"
+      ]
+    },
+    "Q27701": {
+      "cofactors": [],
+      "reactions": [
+        "Elimination of alpha-sialyl groups in N-acetylneuraminic acid glycosides, releasing 2,7-anhydro-alpha-N-acetylneuraminate."
+      ]
+    },
+    "Q28943": {
+      "cofactors": [
+        "FAD",
+        "FMN",
+        "[4Fe-4S] cluster"
+      ],
+      "reactions": [
+        "5,6-dihydrouracil + NADP(+) = uracil + NADPH + H(+)",
+        "5,6-dihydrothymine + NADP(+) = thymine + NADPH + H(+)"
+      ]
+    },
+    "Q29460": {
+      "cofactors": [],
+      "reactions": [
+        "a 1-O-alkyl-2-acetyl-sn-glycero-3-phosphocholine + H2O = a 1-O-alkyl-sn-glycero-3-phosphocholine + acetate + H(+)",
+        "1-O-hexadecyl-2-acetyl-sn-glycero-3-phosphocholine + H2O = 1-O-hexadecyl-sn-glycero-3-phosphocholine + acetate + H(+)",
+        "1-O-hexadecyl-2-acetyl-sn-glycero-3-phosphate + H2O = 1-O-hexadecyl-sn-glycero-3-phosphate + acetate + H(+)"
+      ]
+    },
+    "Q29495": {
+      "cofactors": [],
+      "reactions": [
+        "a 2-arylethylamine + acetyl-CoA = an N-acetyl-2-arylethylamine + CoA + H(+)"
+      ]
+    },
+    "Q2K340": {
+      "cofactors": [
+        "biotin"
+      ],
+      "reactions": [
+        "hydrogencarbonate + pyruvate + ATP = oxaloacetate + ADP + phosphate + H(+)"
+      ]
+    },
+    "Q2RSB2": {
+      "cofactors": [],
+      "reactions": [
+        "NAD(+) + NADPH + H(+)(in) = NADH + NADP(+) + H(+)(out)"
+      ]
+    },
+    "Q3LXA3": {
+      "cofactors": [
+        "Mg(2+)",
+        "Mn(2+)",
+        "Co(2+)"
+      ],
+      "reactions": [
+        "dihydroxyacetone + ATP = dihydroxyacetone phosphate + ADP + H(+)",
+        "D-glyceraldehyde + ATP = D-glyceraldehyde 3-phosphate + ADP + H(+)",
+        "FAD = riboflavin cyclic-4',5'-phosphate + AMP + H(+)"
+      ]
+    },
+    "Q40577": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "(2E,6E)-farnesyl diphosphate = (+)-5-epi-aristolochene + diphosphate",
+        "(2Z,6E)-farnesyl diphosphate = (+)-2-epi-prezizaene + diphosphate",
+        "(2Z,6E)-farnesyl diphosphate = (-)-alpha-cedrene + diphosphate",
+        "(2Z,6E)-farnesyl diphosphate = (-)-beta-curcumene + diphosphate"
+      ]
+    },
+    "Q43088": {
+      "cofactors": [],
+      "reactions": [
+        "L-lysyl-[ribulose-1,5-bisphosphate carboxylase] + 3 S-adenosyl-L-methionine = N(6),N(6),N(6)-trimethyl-L-lysyl-[ribulose-1,5-bisphosphate carboxylase] + 3 S-adenosyl-L-homocysteine + 3 H(+)",
+        "[fructose-bisphosphate aldolase]-L-lysine + 3 S-adenosyl-L-methionine = [fructose-bisphosphate aldolase]-N(6),N(6),N(6)-trimethyl-L-lysine + 3 S-adenosyl-L-homocysteine + 3 H(+)"
+      ]
+    },
+    "Q44297": {
+      "cofactors": [],
+      "reactions": [
+        "(2S)-2-[(R)-1-carboxyethylamino]pentanoate + NAD(+) + H2O = L-2-aminopentanoate + pyruvate + NADH + H(+)"
+      ]
+    },
+    "Q46509": {
+      "cofactors": [
+        "Mo-molybdopterin cytosine dinucleotide",
+        "[2Fe-2S] cluster"
+      ],
+      "reactions": [
+        "an aldehyde + A + H2O = a carboxylate + AH2 + H(+)"
+      ]
+    },
+    "Q46822": {
+      "cofactors": [
+        "Mg(2+)",
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "isopentenyl diphosphate = dimethylallyl diphosphate"
+      ]
+    },
+    "Q4K9X1": {
+      "cofactors": [
+        "Mn(2+)"
+      ],
+      "reactions": []
+    },
+    "Q50925": {
+      "cofactors": [
+        "heme c"
+      ],
+      "reactions": [
+        "hydroxylamine + 4 Fe(III)-[cytochrome c] + H2O = 4 Fe(II)-[cytochrome c] + nitrite + 5 H(+)",
+        "hydroxylamine + 3 Fe(III)-[cytochrome c] = nitric oxide + 3 Fe(II)-[cytochrome c] + 3 H(+)"
+      ]
+    },
+    "Q53176": {
+      "cofactors": [
+        "[4Fe-4S] cluster",
+        "Mo-bis(molybdopterin guanine dinucleotide)"
+      ],
+      "reactions": [
+        "2 Fe(II)-[cytochrome] + nitrate + 2 H(+) = 2 Fe(III)-[cytochrome] + nitrite + H2O"
+      ]
+    },
+    "Q54873": {
+      "cofactors": [],
+      "reactions": [
+        "[hyaluronan](n) = n 3-(4-deoxy-beta-D-gluc-4-enuronosyl)-N-acetyl-D-glucosamine + H2O"
+      ]
+    },
+    "Q55012": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "(2E,6E)-farnesyl diphosphate = pentalenene + diphosphate"
+      ]
+    },
+    "Q56268": {
+      "cofactors": [
+        "Mg(2+)",
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "(2R,3S)-3-isopropylmalate + NAD(+) = 4-methyl-2-oxopentanoate + CO2 + NADH"
+      ]
+    },
+    "Q56310": {
+      "cofactors": [],
+      "reactions": [
+        "ATP + protein L-histidine = ADP + protein N-phospho-L-histidine."
+      ]
+    },
+    "Q56320": {
+      "cofactors": [],
+      "reactions": [
+        "N-(5-phospho-beta-D-ribosyl)anthranilate = 1-(2-carboxyphenylamino)-1-deoxy-D-ribulose 5-phosphate"
+      ]
+    },
+    "Q56839": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "coenzyme M + acetoacetate + NADP(+) = 2-oxopropyl-coenzyme M + CO2 + NADPH"
+      ]
+    },
+    "Q58819": {
+      "cofactors": [],
+      "reactions": [
+        "pretRNA = a 3'-half-tRNA molecule with a 5'-OH end + a 5'-half-tRNA molecule with a 2',3'-cyclic phosphate end + an intron with a 2',3'-cyclic phosphate and a 5'-hydroxyl terminus."
+      ]
+    },
+    "Q58989": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "O-phospho-L-serine + H2O = L-serine + phosphate",
+        "O-phospho-D-serine + H2O = D-serine + phosphate"
+      ]
+    },
+    "Q58MU6": {
+      "cofactors": [],
+      "reactions": [
+        "(3Z)-phycoerythrobilin + 2 oxidized 2[4Fe-4S]-[ferredoxin] = biliverdin IXalpha + 2 reduced 2[4Fe-4S]-[ferredoxin] + 4 H(+)"
+      ]
+    },
+    "Q59288": {
+      "cofactors": [
+        "Ca(2+)"
+      ],
+      "reactions": [
+        "Eliminative degradation of polysaccharides containing 1,4-beta-D-hexosaminyl and 1,3-beta-D-glucuronosyl linkages to disaccharides containing 4-deoxy-beta-D-gluc-4-enuronosyl groups."
+      ]
+    },
+    "Q59490": {
+      "cofactors": [
+        "adenosylcob(III)alamin"
+      ],
+      "reactions": [
+        "a 2'-deoxyribonucleoside 5'-triphosphate + [thioredoxin]-disulfide + H2O = a ribonucleoside 5'-triphosphate + [thioredoxin]-dithiol"
+      ]
+    },
+    "Q59643": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "2 5-aminolevulinate = porphobilinogen + 2 H2O + H(+)"
+      ]
+    },
+    "Q5EBY5": {
+      "cofactors": [
+        "Cu cation"
+      ],
+      "reactions": [
+        "4 hydroquinone + O2 = 4 benzosemiquinone + 2 H2O"
+      ]
+    },
+    "Q5JP69": {
+      "cofactors": [
+        "Mg(2+)",
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "Selective cleavage of Arg-|-Ser bond in complement component C3 alpha-chain to form C3a and C3b, and Arg-|-Xaa bond in complement component C5 alpha-chain to form C5a and C5b."
+      ]
+    },
+    "Q5SKN9": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "a long-chain fatty acid + ATP + CoA = a long-chain fatty acyl-CoA + AMP + diphosphate",
+        "tetradecanoate + ATP + CoA = tetradecanoyl-CoA + AMP + diphosphate",
+        "hexadecanoate + ATP + CoA = hexadecanoyl-CoA + AMP + diphosphate"
+      ]
+    },
+    "Q60099": {
+      "cofactors": [],
+      "reactions": [
+        "an (S)-2-haloacid + H2O = a (2R)-2-hydroxycarboxylate + a halide anion + H(+)",
+        "(S)-2-chloropropanoate + H2O = (R)-lactate + chloride + H(+)"
+      ]
+    },
+    "Q60364": {
+      "cofactors": [
+        "Mg(2+)",
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "D-ribulose 5-phosphate = (2S)-2-hydroxy-3-oxobutyl phosphate + formate + H(+)"
+      ]
+    },
+    "Q62651": {
+      "cofactors": [],
+      "reactions": [
+        "a (3E,5Z)-dienoyl-CoA = a (2E,4E)-(5,6-saturated)-dienoyl-CoA",
+        "(3E,5Z)-octadienoyl-CoA = (2E,4E)-octadienoyl-CoA",
+        "(3E,5Z,8Z,11Z,14Z)-eicosapentaenoyl-CoA = (2E,4E,8Z,11Z,14Z)-eicosapentaenoyl-CoA",
+        "(2E,4E)-tetradecadienoyl-CoA = (3E,5Z)-tetradecadienoyl-CoA",
+        "(3E,5Z,8Z)-tetradecatrienoyl-CoA = (2E,4E,8Z)-tetradecatrienoyl-CoA",
+        "(3E,5Z,8Z,11Z)-tetradecatetraenoyl-CoA = (2E,4E,8Z,11Z)-tetradecatetraenoyl-CoA"
+      ]
+    },
+    "Q64536": {
+      "cofactors": [],
+      "reactions": [
+        "L-seryl-[pyruvate dehydrogenase E1 alpha subunit] + ATP = O-phospho-L-seryl-[pyruvate dehydrogenase E1 alpha subunit] + ADP + H(+)"
+      ]
+    },
+    "Q6LZM9": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "O-phospho-L-seryl-tRNA(Sec) + selenophosphate + H2O = L-selenocysteinyl-tRNA(Sec) + 2 phosphate"
+      ]
+    },
+    "Q6NVY1": {
+      "cofactors": [],
+      "reactions": [
+        "3-hydroxy-2-methylpropanoyl-CoA + H2O = 3-hydroxy-2-methylpropanoate + CoA + H(+)"
+      ]
+    },
+    "Q76K71": {
+      "cofactors": [
+        "heme b"
+      ],
+      "reactions": [
+        "an aliphatic aldoxime = a nitrile + H2O"
+      ]
+    },
+    "Q7M523": {
+      "cofactors": [
+        "pyridoxal 5'-phosphate"
+      ],
+      "reactions": [
+        "1-aminocyclopropane-1-carboxylate + H2O = 2-oxobutanoate + NH4(+)"
+      ]
+    },
+    "Q7SIF3": {
+      "cofactors": [
+        "[2Fe-2S] cluster"
+      ],
+      "reactions": [
+        "2 oxidized [azurin] + arsenite + H2O = 2 reduced [azurin] + arsenate + 3 H(+)"
+      ]
+    },
+    "Q7SIG4": {
+      "cofactors": [
+        "Ca(2+)"
+      ],
+      "reactions": [
+        "diisopropyl fluorophosphate + H2O = diisopropyl phosphate + fluoride + 2 H(+)"
+      ]
+    },
+    "Q7ZAG8": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "n a quinone + n hydrogen sulfide + n H(+) = polysulfur(n-2) + n a quinol"
+      ]
+    },
+    "Q89FH0": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "(S,S)-tartrate = oxaloacetate + H2O"
+      ]
+    },
+    "Q8EMJ9": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "galactarate = (2S,3R)-dihydroxy-5-oxohexanedioate + H2O"
+      ]
+    },
+    "Q8GMG0": {
+      "cofactors": [],
+      "reactions": [
+        "L-tyrosine = 3-amino-3-(4-hydroxyphenyl)propanoate",
+        "L-tyrosine = (E)-4-coumarate + NH4(+)"
+      ]
+    },
+    "Q8GS60": {
+      "cofactors": [
+        "FAD",
+        "iron-sulfur cluster"
+      ],
+      "reactions": [
+        "chlorophyll a + 2 oxidized [2Fe-2S]-[ferredoxin] + H2O = 7(1)-hydroxychlorophyll a + 2 reduced [2Fe-2S]-[ferredoxin] + 2 H(+)"
+      ]
+    },
+    "Q8I914": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "an N-(acyl)-sphingosylphosphocholine = an N-(acyl)-sphingosyl-1,3-cyclic phosphate + choline",
+        "an N-(acyl)-sphingosylphosphoethanolamine = an N-(acyl)-sphingosyl-1,3-cyclic phosphate + ethanolamine",
+        "a 1-acyl-sn-glycero-3-phosphocholine = a 1-acyl-sn-glycero-2,3-cyclic phosphate + choline",
+        "a 1-acyl-sn-glycero-3-phosphoethanolamine = a 1-acyl-sn-glycero-2,3-cyclic phosphate + ethanolamine"
+      ]
+    },
+    "Q8KBW6": {
+      "cofactors": [],
+      "reactions": [
+        "prephenate + H(+) = 3-phenylpyruvate + CO2 + H2O"
+      ]
+    },
+    "Q8KR84": {
+      "cofactors": [],
+      "reactions": [
+        "sucrose = 6-O-alpha-D-glucopyranosyl-D-fructose",
+        "sucrose = trehalulose"
+      ]
+    },
+    "Q8RB32": {
+      "cofactors": [
+        "Mg(2+)",
+        "Ca(2+)"
+      ],
+      "reactions": [
+        "a sn-glycero-3-phosphodiester + H2O = an alcohol + sn-glycerol 3-phosphate + H(+)",
+        "sn-glycerol 3-phosphocholine + H2O = sn-glycerol 3-phosphate + choline + H(+)"
+      ]
+    },
+    "Q8WTS6": {
+      "cofactors": [],
+      "reactions": [
+        "L-lysyl(4)-[histone H3] + S-adenosyl-L-methionine = N(6)-methyl-L-lysyl(4)-[histone H3] + S-adenosyl-L-homocysteine + H(+)",
+        "L-lysyl-[protein] + S-adenosyl-L-methionine = N(6)-methyl-L-lysyl-[protein] + S-adenosyl-L-homocysteine + H(+)"
+      ]
+    },
+    "Q8WZM3": {
+      "cofactors": [],
+      "reactions": [
+        "a 2,3-saturated acyl-[ACP] + NADP(+) = a (2E)-enoyl-[ACP] + NADPH + H(+)",
+        "(2E,4E)-hexadienoyl-CoA + NADPH + H(+) = (4E)-hexenoyl-CoA + NADP(+)",
+        "(2E)-hexenoyl-CoA + NADPH + H(+) = hexanoyl-CoA + NADP(+)"
+      ]
+    },
+    "Q92830": {
+      "cofactors": [],
+      "reactions": [
+        "L-lysyl-[histone] + acetyl-CoA = N(6)-acetyl-L-lysyl-[histone] + CoA + H(+)",
+        "L-lysyl-[protein] + acetyl-CoA = N(6)-acetyl-L-lysyl-[protein] + CoA + H(+)",
+        "succinyl-CoA + L-lysyl-[protein] = N(6)-succinyl-L-lysyl-[protein] + CoA + H(+)",
+        "glutaryl-CoA + L-lysyl-[protein] = N(6)-glutaryl-L-lysyl-[protein] + CoA + H(+)",
+        "(S)-lactoyl-CoA + L-lysyl-[protein] = N(6)-[(S)-lactoyl]-L-lysyl-[protein] + CoA + H(+)",
+        "(2E)-butenoyl-CoA + L-lysyl-[protein] = N(6)-(2E)-butenoyl-L-lysyl-[protein] + CoA + H(+)",
+        "propanoyl-CoA + L-lysyl-[protein] = N(6)-propanoyl-L-lysyl-[protein] + CoA + H(+)",
+        "butanoyl-CoA + L-lysyl-[protein] = N(6)-butanoyl-L-lysyl-[protein] + CoA + H(+)"
+      ]
+    },
+    "Q93099": {
+      "cofactors": [
+        "Fe cation"
+      ],
+      "reactions": [
+        "homogentisate + O2 = 4-maleylacetoacetate + H(+)"
+      ]
+    },
+    "Q945K2": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "(R)-mandelonitrile = benzaldehyde + hydrogen cyanide"
+      ]
+    },
+    "Q94702": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": []
+    },
+    "Q96C23": {
+      "cofactors": [],
+      "reactions": [
+        "alpha-D-galactose = beta-D-galactose",
+        "alpha-D-glucose = beta-D-glucose"
+      ]
+    },
+    "Q9AGP8": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "N,N-dimethylglycine + O2 + H2O = sarcosine + formaldehyde + H2O2",
+        "N,N-dimethylglycine + (6S)-5,6,7,8-tetrahydrofolate + O2 = sarcosine + (6R)-5,10-methylene-5,6,7,8-tetrahydrofolate + H2O2"
+      ]
+    },
+    "Q9F4L3": {
+      "cofactors": [
+        "thiamine diphosphate"
+      ],
+      "reactions": []
+    },
+    "Q9FDN7": {
+      "cofactors": [
+        "FMN",
+        "Fe cation"
+      ],
+      "reactions": []
+    },
+    "Q9FEW9": {
+      "cofactors": [
+        "FMN"
+      ],
+      "reactions": [
+        "(1S,2S)-OPC-8 + NADP(+) = (9S,13S,15Z)-12-oxophyto-10,15-dienoate + NADPH + H(+)"
+      ]
+    },
+    "Q9HU21": {
+      "cofactors": [],
+      "reactions": [
+        "dTDP-4-dehydro-6-deoxy-alpha-D-glucose = dTDP-4-dehydro-beta-L-rhamnose"
+      ]
+    },
+    "Q9HXE3": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "D-arginine + A + H2O = 5-guanidino-2-oxopentanoate + AH2 + NH4(+)",
+        "a D-alpha-amino acid + A + H2O = a 2-oxocarboxylate + AH2 + NH4(+)"
+      ]
+    },
+    "Q9K499": {
+      "cofactors": [
+        "Mg(2+)",
+        "Mn(2+)",
+        "Fe(3+)"
+      ],
+      "reactions": [
+        "(2E,6E)-farnesyl diphosphate = (+)-epi-isozizaene + diphosphate"
+      ]
+    },
+    "Q9L9D7": {
+      "cofactors": [],
+      "reactions": [
+        "cocaine + H2O = ecgonine methyl ester + benzoate + H(+)"
+      ]
+    },
+    "Q9LCV9": {
+      "cofactors": [
+        "Mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "reactions": [
+        "D-glyceraldehyde 3-phosphate + L-arginine = N(2)-(2-carboxyethyl)-L-arginine + phosphate + H(+)"
+      ]
+    },
+    "Q9N0A4": {
+      "cofactors": [],
+      "reactions": [
+        "prostaglandin H2 = prostaglandin E2",
+        "prostaglandin H2 = (12S)-hydroxy-(5Z,8E,10E)-heptadecatrienoate + malonaldehyde"
+      ]
+    },
+    "Q9NPB1": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "dTMP + H2O = thymidine + phosphate",
+        "dUMP + H2O = 2'-deoxyuridine + phosphate",
+        "UMP + H2O = uridine + phosphate",
+        "thymidine 3'-phosphate + H2O = thymidine + phosphate",
+        "uridine 2'-phosphate + H2O = uridine + phosphate",
+        "3'-UMP + H2O = uridine + phosphate",
+        "dGMP + H2O = 2'-deoxyguanosine + phosphate"
+      ]
+    },
+    "Q9P4R4": {
+      "cofactors": [],
+      "reactions": [
+        "L-saccharopine + NADP(+) + H2O = (S)-2-amino-6-oxohexanoate + L-glutamate + NADPH + H(+)"
+      ]
+    },
+    "Q9QYY9": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "all-trans-retinol + NAD(+) = all-trans-retinal + NADH + H(+)",
+        "9-cis-retinol + NAD(+) = 9-cis-retinal + NADH + H(+)",
+        "20-hydroxy-(5Z,8Z,11Z,14Z)-eicosatetraenoate + NAD(+) = 20-oxo-(5Z,8Z,11Z,14Z)-eicosatetraenoate + NADH + H(+)",
+        "20-oxo-(5Z,8Z,11Z,14Z)-eicosatetraenoate + NAD(+) + H2O = (5Z,8Z,11Z,14Z)-eicosatetraenedioate + NADH + 2 H(+)",
+        "1,4-benzoquinone + NADH + H(+) = hydroquinone + NAD(+)"
+      ]
+    },
+    "Q9R5V5": {
+      "cofactors": [],
+      "reactions": [
+        "2-deoxy-D-ribosyl-base(1) + base(2) = 2-deoxy-D-ribosyl-base(2) + base(1)."
+      ]
+    },
+    "Q9RUB5": {
+      "cofactors": [
+        "Mg(2+)",
+        "thiamine diphosphate"
+      ],
+      "reactions": [
+        "D-glyceraldehyde 3-phosphate + pyruvate + H(+) = 1-deoxy-D-xylulose 5-phosphate + CO2"
+      ]
+    },
+    "Q9RYA6": {
+      "cofactors": [
+        "a divalent metal cation"
+      ],
+      "reactions": [
+        "N-acetyl-D-methionine = N-acetyl-L-methionine",
+        "N-acetyl-D-phenylalanine = N-acetyl-L-phenylalanine",
+        "N-acetyl-L-glutamine = N-acetyl-D-glutamine",
+        "N-acetyl-L-tryptophan = N-acetyl-D-tryptophan",
+        "N-acetyl-L-leucine = N-acetyl-D-leucine",
+        "(1R,6R)-6-hydroxy-2-succinyl-cyclohexa-2,4-diene-1-carboxylate = 2-succinylbenzoate + H2O"
+      ]
+    },
+    "Q9SE42": {
+      "cofactors": [
+        "Co(2+)",
+        "Fe(2+)",
+        "Mn(2+)",
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "D-ribulose 5-phosphate = D-xylulose 5-phosphate"
+      ]
+    },
+    "Q9SWE5": {
+      "cofactors": [
+        "FMN"
+      ],
+      "reactions": [
+        "N-[(R)-4-phosphopantothenoyl]-L-cysteine + H(+) = (R)-4'-phosphopantetheine + CO2"
+      ]
+    },
+    "Q9T0N8": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "N(6)-dimethylallyladenine + A + H2O = 3-methyl-2-butenal + adenine + AH2"
+      ]
+    },
+    "Q9TVW2": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "adenosine + ATP = AMP + ADP + H(+)"
+      ]
+    },
+    "Q9UKM7": {
+      "cofactors": [
+        "Ca(2+)"
+      ],
+      "reactions": [
+        "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 9A1,2,3B1,2,3) + 4 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 4 beta-D-mannose",
+        "N(4)-(alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 8A1,2,3B1,3) + 3 H2O = N(4)-(alpha-D-Man-(1->3)-[alpha-D-Man-(1->3)-[alpha-D-Man-(1->6)]-alpha-D-Man-(1->6)]-beta-D-Man-(1->4)-beta-D-GlcNAc-(1->4)-beta-D-GlcNAc)-L-asparaginyl-[protein] (N-glucan mannose isomer 5A1,2) + 3 beta-D-mannose"
+      ]
+    },
+    "Q9UM07": {
+      "cofactors": [
+        "Ca(2+)"
+      ],
+      "reactions": [
+        "L-arginyl-[protein] + H2O = L-citrullyl-[protein] + NH4(+)"
+      ]
+    },
+    "Q9UMR5": {
+      "cofactors": [],
+      "reactions": [
+        "hexadecanoyl-CoA + H2O = hexadecanoate + CoA + H(+)",
+        "S-hexadecanoyl-N-acetylcysteamine + H2O = N-acetylcysteamine + hexadecanoate + H(+)"
+      ]
+    },
+    "Q9WYQ4": {
+      "cofactors": [
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "glycerol + NAD(+) = dihydroxyacetone + NADH + H(+)"
+      ]
+    },
+    "Q9WZC3": {
+      "cofactors": [
+        "pyruvate"
+      ],
+      "reactions": [
+        "S-adenosyl-L-methionine + H(+) = S-adenosyl 3-(methylsulfanyl)propylamine + CO2"
+      ]
+    },
+    "Q9WZW0": {
+      "cofactors": [],
+      "reactions": [
+        "uridine(55) in tRNA = pseudouridine(55) in tRNA"
+      ]
+    },
+    "Q9X0I0": {
+      "cofactors": [],
+      "reactions": [
+        "N(6)-(1,2-dicarboxyethyl)-AMP = fumarate + AMP",
+        "(2S)-2-[5-amino-1-(5-phospho-beta-D-ribosyl)imidazole-4-carboxamido]succinate = 5-amino-1-(5-phospho-beta-D-ribosyl)imidazole-4-carboxamide + fumarate"
+      ]
+    },
+    "Q9X9P9": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": []
+    },
+    "Q9XBQ8": {
+      "cofactors": [
+        "[4Fe-4S] cluster",
+        "pyridoxal 5'-phosphate",
+        "Co(2+)",
+        "Zn(2+)"
+      ],
+      "reactions": [
+        "L-lysine = (3S)-3,6-diaminohexanoate"
+      ]
+    },
+    "Q9Y232": {
+      "cofactors": [],
+      "reactions": [
+        "3-hydroxybutanoyl-CoA = (2E)-butenoyl-CoA + H2O"
+      ]
+    },
+    "Q9Y3Z3": {
+      "cofactors": [
+        "Mn(2+)"
+      ],
+      "reactions": [
+        "a 2'-deoxyribonucleoside 5'-triphosphate + H2O = a 2'-deoxyribonucleoside + triphosphate + H(+)",
+        "dATP + H2O = 2'-deoxyadenosine + triphosphate + H(+)",
+        "dCTP + H2O = 2'-deoxycytidine + triphosphate + H(+)",
+        "dGTP + H2O = 2'-deoxyguanosine + triphosphate + H(+)",
+        "dTTP + H2O = thymidine + triphosphate + H(+)"
+      ]
+    },
+    "Q9Y7P0": {
+      "cofactors": [],
+      "reactions": [
+        "2 6,7-dimethyl-8-(1-D-ribityl)lumazine + H(+) = 5-amino-6-(D-ribitylamino)uracil + riboflavin"
+      ]
+    },
+    "Q9YHT1": {
+      "cofactors": [
+        "FAD"
+      ],
+      "reactions": [
+        "a ubiquinone + succinate = a ubiquinol + fumarate",
+        "(R)-malate + a quinone = enol-oxaloacetate + a quinol",
+        "(S)-malate + a quinone = enol-oxaloacetate + a quinol"
+      ]
+    },
+    "Q9ZHI0": {
+      "cofactors": [
+        "Mg(2+)"
+      ],
+      "reactions": [
+        "NAD(+) + (deoxyribonucleotide)n-3'-hydroxyl + 5'-phospho-(deoxyribonucleotide)m = (deoxyribonucleotide)n+m + AMP + beta-nicotinamide D-nucleotide."
+      ]
+    },
+    "Q9ZP19": {
+      "cofactors": [
+        "Cu(2+)"
+      ],
+      "reactions": [
+        "2 catechol + O2 = 2 1,2-benzoquinone + 2 H2O"
+      ]
+    }
+  },
+  "counts": {
+    "accessions_fetched": 696,
+    "accessions_in_sidecar": 654,
+    "accessions_requested": 698,
+    "accessions_with_cofactor": 371,
+    "accessions_with_reaction": 641
+  },
+  "leakage_basis": "curated UniProt catalytic-activity reaction equation + cofactor identity = chemical/mechanistic evidence (same category the representation reads for bronze); NOT EC/name/prose/fingerprint. Registry untouched.",
+  "leakage_safe": true,
+  "method": "read-only batched UniProt TSV fetch (cc_catalytic_activity, cc_cofactor) for the current702 manifest accessions; writes only this sidecar artifact",
+  "schema_version": "catalytic_earth.reaction_cofactor_sidecar.v1",
+  "source_manifest": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json"
+}

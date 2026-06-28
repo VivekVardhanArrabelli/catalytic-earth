@@ -1,8 +1,46 @@
 # Catalytic Earth — The Map
 
 *A compass to re-orient in five minutes when the project feels too big to hold.
-The detail lives in `decision_log.md` (64 dated decisions) and `project_state.md`.
-This is the fold-down. Last updated 2026-06-04.*
+The detail lives in `decision_log.md` and `project_state.md`.
+This is the fold-down. Core last updated 2026-06-04; scaling-era addendum 2026-06-27.*
+
+---
+
+## 2026-06-27 addendum — the scaling era + a non-circular reality check (read first)
+
+Since 2026-06-04 the **breadth/atlas axis** moved a lot and the **deployment axis** did not.
+
+- **The atlas grew 8,728 → 10,001 combined mechanism labels across 57 fingerprint families**
+  (eleven new families this run: peroxiredoxin, PAPS-ST, GST, aaRS, acid-CoA-ligase, cysteine-protease,
+  flavin-disulfide-reductase, dihydrofolate-reductase, …). The frozen `current702` benchmark is
+  byte-unchanged throughout; all growth is append-only expansion bronze.
+- **The reaction-representation lever (the "big bet") is a *converging gradient* — it fired four times
+  cleanly:** `bc_peroxide_reduction` (peroxiredoxin 0→0.95), `bc_phosphodiester` (PDE 0.07→0.97),
+  the catalytic-residue sidecar (ser_his 0→0.67), `bc_disulfide_reduction` (flavin_dehydr 0.33→0.65).
+  Each recovered a collapsed family with **zero regressions**. Leakage-safe in-distribution LOO is now
+  **0.744** across 57 families (30 separate cleanly at sc≥0.9; the low ones collapse only into
+  mechanistic *siblings* that differ by fold — the principled wall, not noise).
+
+- **The honest test (`artifacts/v3_mechanism_from_chemistry_gold702_eval.json`).** That 0.744 is a
+  *coherence* number on bronze the admission engine grouped, so we ran a **non-circular** check:
+  centroids trained on the bronze atlas, evaluated on the **expert-curated gold current702** (labels
+  the engine never touched), chemistry-only features. Three results:
+  1. **POSITIVE:** chemistry-only recovers the gold mechanism class **76%** (160/210) at the gold's
+     coarse-taxonomy granularity → the thesis generalises beyond its own bootstrap.
+  2. The exact-fingerprint **31%** is a *taxonomy-version artifact* — the representation resolves a
+     finer, correct subfamily the 2026-05-25 gold seed taxonomy predates (e.g. glutathione reductase
+     P00390 → flavin_disulfide_reductase), not a failure.
+  3. **NEGATIVE — and this is the steer:** OOS enzymes score nearest-centroid similarity **median 0.83,
+     NOT below** the in-distribution 0.80. **Growing breadth to 10k did NOT create an abstention /
+     novelty signal.** The binding constraint is still feature overlap — exactly the Northstar Pivot
+     below. **More families will not move the deployment wall.**
+
+**The one-line steer for the next session:** breadth has delivered (a coherent, generalising 10k
+mechanism atlas); the North Star product still lives on the **predicted-geometry recovery line** (the
+converging gradient: apo-loss → cofactor channel → fold/TM fusion → localisation). That axis needs the
+**full ML env (numpy/torch/esm/mmseqs/foldseek)** — it cannot run in the web container, where the
+relevant tests are the 6 known "env failures." Do not spend the heldout one-shot blind; pre-register a
+hypothesis on the leakage-safe in-distribution split first.
 
 ---
 
