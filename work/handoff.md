@@ -1,5 +1,32 @@
 # Handoff
 
+## Session run - Option B started: M-CSA held-out EXHAUSTED; new untouched off-M-CSA bronze held-out FROZEN before any router fix (2026-06-28)
+
+- Continued on `main`/branch (d14fa1f7+). User: "pursue Option B — the new held-out." Leakage-safe order:
+  freeze the validation vehicle before any model change.
+- FINDING: M-CSA held-out is spent. Designated partition 140; one-shot spent 126; only **14 untouched
+  (1 in-scope, 13 OOS), no structures**. (All 126 spent rows were inside the partition -> original claim
+  clean.) So a repaired fine-57 router cannot be validated on a fresh M-CSA held-out.
+- NEW HELD-OUT: `src/catalytic_earth/option_b_heldout_preregistration.py`,
+  `build-option-b-heldout-preregistration` ->
+  `artifacts/v3_option_b_heldout_preregistration_current702_20260628.json` /
+  `work/option_b_heldout_preregistration_current702_20260628.md`, status
+  `preregistered_not_yet_run_pending_router_fix`. Drawn from untouched off-M-CSA bronze: **22**
+  high-confidence atlas-family non-M-CSA positives (**13 non-metal, 9 metal**), disjoint from train/cal,
+  M-CSA, and the 162 used in recovery dev. Content-hash `7ffa38d8...` (deterministic). Pre-committed bar
+  (first principles, before scoring): recovery >= **0.70** AND non-metal->metal misroute <= **0.20**.
+  The metal/non-metal split directly tests the Gate-1 failure mode.
+- Caveats (honest): n=22 (focused probe, not precise), bronze (concordance not gold), off-M-CSA,
+  structures to materialise. A deployment-grade Option-B validation needs gold-curated rows.
+- Tests: `tests/test_option_b_heldout_preregistration.py` (5) + CLI parser case.
+- Validation: focused unittest OK; compileall OK; registry `validate` OK (57 FP); reference check regen
+  below; `git diff --check` clean; no held-out scored; no data/ change.
+- Next exact action (Option B continuation): (1) implement the fine-57 router repair on train/cal only
+  (constrain metal v2-subclasses to require metal-cofactor support; re-verify calibration -> ~30/35);
+  (2) freeze the repaired-router rule; (3) materialise structures for the 22 frozen accessions (verify
+  sha 7ffa38d8 first) and run the one-shot vs the bar. Do not re-run the spent M-CSA held-out; do not
+  grow fingerprint families.
+
 ## Session run - Gate 1 router reconciliation (fine-57 drift = genuine misrouting, adopt June 9 coarse router); branch merged to main via clean fast-forward (2026-06-28)
 
 - MERGE CORRECTION: an earlier claim in this run that branch and `main` were "unrelated histories with

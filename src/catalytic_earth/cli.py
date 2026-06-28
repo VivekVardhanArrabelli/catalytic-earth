@@ -193,6 +193,16 @@ from .router_reconciliation_diagnostic import (
     DEFAULT_REPORT_PATH as DEFAULT_ROUTER_RECON_REPORT_PATH,
     write_router_reconciliation_diagnostic,
 )
+from .option_b_heldout_preregistration import (
+    DEFAULT_ATLAS_MANIFEST_PATH as DEFAULT_OPTB_ATLAS_MANIFEST_PATH,
+    DEFAULT_BRONZE_SHARD_GLOB as DEFAULT_OPTB_BRONZE_SHARD_GLOB,
+    DEFAULT_LABEL_MANIFEST_PATH as DEFAULT_OPTB_LABEL_MANIFEST_PATH,
+    DEFAULT_OUT_PATH as DEFAULT_OPTB_OUT_PATH,
+    DEFAULT_RECOVERY_DOWNLOAD_MANIFEST_PATH as DEFAULT_OPTB_RECOVERY_DL_PATH,
+    DEFAULT_RECOVERY_POSITIVE_MAP_PATH as DEFAULT_OPTB_RECOVERY_MAP_PATH,
+    DEFAULT_REPORT_PATH as DEFAULT_OPTB_REPORT_PATH,
+    write_option_b_heldout_preregistration,
+)
 from .predicted_geometry_atlas_engine_preregistration import (
     DEFAULT_COFACTOR_CHANNEL_PATH,
     DEFAULT_COFACTOR_PRECISION_PATH,
@@ -3233,6 +3243,26 @@ def cmd_build_router_reconciliation_diagnostic(args: argparse.Namespace) -> int:
         f"{rc.get('current57_documented_compatible')} vs June 9 "
         f"{rc.get('june9_reference')}; reconcilable by relabeling "
         f"{rc.get('reconcilable_by_documented_relabeling')})"
+    )
+    return 0
+
+
+def cmd_build_option_b_heldout_preregistration(args: argparse.Namespace) -> int:
+    prereg = write_option_b_heldout_preregistration(
+        atlas_manifest_path=Path(args.atlas_manifest),
+        label_manifest_path=Path(args.label_manifest),
+        recovery_positive_map_path=Path(args.recovery_positive_map),
+        recovery_download_manifest_path=Path(args.recovery_download_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    fs = prereg.get("frozen_heldout_set", {})
+    counts = fs.get("counts", {})
+    print(
+        "Wrote Option B held-out pre-registration to "
+        f"{args.out} ({prereg.get('status')}; {counts.get('total')} positives "
+        f"({counts.get('non_metal_family')} non-metal, {counts.get('metal_family')} "
+        f"metal); sha256 {fs.get('sha256', '')[:16]}...)"
     )
     return 0
 
@@ -24130,6 +24160,38 @@ def build_parser() -> argparse.ArgumentParser:
     )
     router_reconciliation_diagnostic.set_defaults(
         func=cmd_build_router_reconciliation_diagnostic
+    )
+
+    option_b_heldout_preregistration = subparsers.add_parser(
+        "build-option-b-heldout-preregistration",
+        help=(
+            "Option B: freeze a NEW untouched off-M-CSA bronze held-out (content-hashed) "
+            "to validate a repaired fine-57 router; scores nothing"
+        ),
+    )
+    option_b_heldout_preregistration.add_argument(
+        "--bronze-shard-glob", default=DEFAULT_OPTB_BRONZE_SHARD_GLOB
+    )
+    option_b_heldout_preregistration.add_argument(
+        "--atlas-manifest", default=DEFAULT_OPTB_ATLAS_MANIFEST_PATH
+    )
+    option_b_heldout_preregistration.add_argument(
+        "--label-manifest", default=DEFAULT_OPTB_LABEL_MANIFEST_PATH
+    )
+    option_b_heldout_preregistration.add_argument(
+        "--recovery-positive-map", default=DEFAULT_OPTB_RECOVERY_MAP_PATH
+    )
+    option_b_heldout_preregistration.add_argument(
+        "--recovery-download-manifest", default=DEFAULT_OPTB_RECOVERY_DL_PATH
+    )
+    option_b_heldout_preregistration.add_argument(
+        "--out", default=DEFAULT_OPTB_OUT_PATH
+    )
+    option_b_heldout_preregistration.add_argument(
+        "--report", default=DEFAULT_OPTB_REPORT_PATH
+    )
+    option_b_heldout_preregistration.set_defaults(
+        func=cmd_build_option_b_heldout_preregistration
     )
 
     predicted_geometry_atlas_engine_preregistration = subparsers.add_parser(

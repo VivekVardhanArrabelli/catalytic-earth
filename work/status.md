@@ -532,3 +532,30 @@ next_action: >
   the June 9 coarse router (-> Gate 2 gold off-M-CSA, Gate 3 productionize), or invest in Option B
   fine-router repair (constrain metal subclasses + new pre-registration + new held-out). Do not re-run
   the spent held-out; do not grow fingerprint families.
+
+## Automation run 2026-06-28 (continuation: Option B new held-out frozen)
+- started_from: main d14fa1f7 (merge complete)
+- registry_mutation: none; no held-out scored
+- state: option_b_started_new_heldout_frozen_mcsa_heldout_exhausted
+- work_completed:
+  - found M-CSA held-out EXHAUSTED (140 partition; 126 spent; 14 untouched, 1 in-scope, no structures)
+  - confirmed all 126 spent rows were inside the designated partition (original claim clean)
+  - froze NEW held-out from untouched off-M-CSA bronze: 22 positives (13 non-metal, 9 metal), sha 7ffa38d8 (deterministic)
+  - pre-committed pass bar: recovery >= 0.70 AND non-metal->metal misroute <= 0.20 (first principles)
+  - added option_b_heldout_preregistration module/CLI/tests
+  - updated project_state, decision_log, handoff; regenerated docs reference check (missing 0)
+- current_gate_state:
+  - mcsa_heldout: exhausted (14 untouched, 1 in-scope)
+  - option_b_new_heldout: frozen (22 bronze positives, sha 7ffa38d8), not yet run, pending router fix
+  - router_fix: not started (constrain metal v2-subclasses on train/cal)
+  - registry_mutated: false; spent_mcsa_heldout_touched: false
+- validation:
+  - focused_option_b_cli_unittest: passed
+  - compileall: passed
+  - registry_validate: passed (57 fingerprints)
+  - git_diff_check: passed
+- next_action: >
+  Option B continuation: implement the fine-57 router repair on train/cal (constrain metal v2-subclasses
+  to require metal-cofactor support; re-verify calibration ~30/35), freeze the repaired-router rule,
+  materialise structures for the 22 frozen accessions (verify sha 7ffa38d8), run the one-shot vs the bar
+  (recovery >= 0.70, misroute <= 0.20). Do not re-run the spent M-CSA held-out; do not grow families.

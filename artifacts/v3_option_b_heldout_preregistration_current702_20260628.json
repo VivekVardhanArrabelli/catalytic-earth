@@ -1,0 +1,186 @@
+{
+  "artifact_id": "v3_option_b_heldout_preregistration_current702_20260628",
+  "caveats": [
+    "Small n (22 positives; 13 non-metal, 9 metal) -- a focused failure-mode probe, not a high-precision estimate.",
+    "Bronze labels are automation-curated (concordance, not gold truth).",
+    "Off-M-CSA and structure-materialisation-gated; a deployment-grade validation would need gold-curated rows."
+  ],
+  "created_utc": "2026-06-28T23:18:15Z",
+  "execution_procedure": [
+    "Repair the fine-57 router on TRAIN/CAL only (constrain the metal v2-subclasses so they require metal-cofactor support; re-verify calibration recovery moves toward 30/35).",
+    "Freeze the repaired-router rule (its own pre-registration / sha) BEFORE touching this held-out.",
+    "Materialise AlphaFold structures for the frozen held-out accessions (bounded download; verify the sha256 first).",
+    "Score the held-out once through the repaired router; compute recovery rate and non-metal-into-metal misroute rate.",
+    "Compare to PASS_BAR; emit PASS/FAIL verbatim and stop. Run once."
+  ],
+  "frozen_heldout_set": {
+    "counts": {
+      "metal_family": 9,
+      "non_metal_family": 13,
+      "total": 22
+    },
+    "definition": "Untouched high-confidence, atlas-family, non-M-CSA bronze positives, disjoint from train/cal, M-CSA accessions, and the off-M-CSA recovery development set. Enumerated and content-hashed.",
+    "members": [
+      {
+        "accession": "C7C422",
+        "entry_id": "uniprot:C7C422",
+        "metal_family": true,
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accession": "P04040",
+        "entry_id": "uniprot:P04040",
+        "metal_family": false,
+        "true_fingerprint_id": "heme_peroxidase_oxidase"
+      },
+      {
+        "accession": "P0AGE6",
+        "entry_id": "uniprot:P0AGE6",
+        "metal_family": false,
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "accession": "P0DPD6",
+        "entry_id": "uniprot:P0DPD6",
+        "metal_family": true,
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accession": "P11678",
+        "entry_id": "uniprot:P11678",
+        "metal_family": false,
+        "true_fingerprint_id": "heme_peroxidase_oxidase"
+      },
+      {
+        "accession": "P13029",
+        "entry_id": "uniprot:P13029",
+        "metal_family": false,
+        "true_fingerprint_id": "heme_peroxidase_oxidase"
+      },
+      {
+        "accession": "P21375",
+        "entry_id": "uniprot:P21375",
+        "metal_family": false,
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "accession": "P24155",
+        "entry_id": "uniprot:P24155",
+        "metal_family": true,
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accession": "P31545",
+        "entry_id": "uniprot:P31545",
+        "metal_family": false,
+        "true_fingerprint_id": "heme_peroxidase_oxidase"
+      },
+      {
+        "accession": "P39597",
+        "entry_id": "uniprot:P39597",
+        "metal_family": false,
+        "true_fingerprint_id": "heme_peroxidase_oxidase"
+      },
+      {
+        "accession": "P41407",
+        "entry_id": "uniprot:P41407",
+        "metal_family": false,
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "accession": "P52699",
+        "entry_id": "uniprot:P52699",
+        "metal_family": true,
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accession": "P77258",
+        "entry_id": "uniprot:P77258",
+        "metal_family": false,
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "accession": "P78562",
+        "entry_id": "uniprot:P78562",
+        "metal_family": true,
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accession": "Q652L6",
+        "entry_id": "uniprot:Q652L6",
+        "metal_family": false,
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "accession": "Q96TA2",
+        "entry_id": "uniprot:Q96TA2",
+        "metal_family": true,
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accession": "Q9BRQ8",
+        "entry_id": "uniprot:Q9BRQ8",
+        "metal_family": false,
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "accession": "Q9FUP0",
+        "entry_id": "uniprot:Q9FUP0",
+        "metal_family": false,
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "accession": "Q9HAU8",
+        "entry_id": "uniprot:Q9HAU8",
+        "metal_family": true,
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accession": "Q9NX74",
+        "entry_id": "uniprot:Q9NX74",
+        "metal_family": false,
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "accession": "Q9P2N4",
+        "entry_id": "uniprot:Q9P2N4",
+        "metal_family": true,
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "accession": "Q9X482",
+        "entry_id": "uniprot:Q9X482",
+        "metal_family": true,
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      }
+    ],
+    "sha256": "7ffa38d8505d90f9354d7455d21516831871586ae17b56a5236670ea3d8b1d68"
+  },
+  "guardrails": {
+    "disjoint_from_offmcsa_recovery_development_set": true,
+    "disjoint_from_train_cal_and_mcsa": true,
+    "heldout_rows_scored": false,
+    "labels_are_bronze_not_gold": true,
+    "pass_bar_from_first_principles_before_scoring": true,
+    "registry_or_ontology_changed": false,
+    "set_is_untouched_by_development": true,
+    "structures_to_be_materialised": true
+  },
+  "one_shot_guardrail": "Run exactly once, after the repaired-router rule is frozen. No post-hoc change to the rule, bar, or set; any re-run invalidates this pre-registration.",
+  "pass_bar": {
+    "derivation": "Recovery floor mirrors the held-out one-shot bar (0.70). The non-metal misroute ceiling (0.20) targets the Gate-1 failure mode directly: on M-CSA calibration 7/8 misroutes were non-metal enzymes routed into metal subclasses; a repaired router should keep that well under 1-in-5 on never-seen non-metal positives. Both fixed before any held-out scoring.",
+    "max_nonmetal_into_metal_misroute_rate": 0.2,
+    "min_recovery_rate": 0.7
+  },
+  "primary_hypothesis": "A repaired fine-57 router that constrains the metal v2-subclasses will, on this never-seen set, (a) recover true mechanism families at >= the bar AND (b) stop routing non-metal (flavin/heme/PLP) positives into metal subclasses (the Gate-1 failure mode).",
+  "result_class": "frozen_untouched_offmcsa_bronze_heldout_no_scoring_no_registry_change",
+  "schema_version": "option_b_heldout_preregistration.v1",
+  "source_artifacts": {
+    "atlas_manifest_id": "v3_current57_fold_tm_recompute_input_manifest_current702_20260628",
+    "bronze_shard_glob": "data/registries/external_bronze_labels.shards/*.json",
+    "label_manifest_id": null,
+    "used_accessions_excluded": 162
+  },
+  "status": "preregistered_not_yet_run_pending_router_fix",
+  "why": "The M-CSA held-out is spent (~14 rows left, 1 in-scope), so a repaired fine-57 router cannot be validated on a fresh M-CSA held-out. This freezes the next best untouched validation vehicle before any router fix."
+}

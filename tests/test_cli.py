@@ -357,6 +357,19 @@ class CliTests(unittest.TestCase):
             "artifacts/v3_router_reconciliation_diagnostic_current702_20260628.json",
         )
 
+    def test_option_b_heldout_preregistration_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            ["build-option-b-heldout-preregistration"]
+        )
+        self.assertEqual(
+            args.bronze_shard_glob,
+            "data/registries/external_bronze_labels.shards/*.json",
+        )
+        self.assertEqual(
+            args.out,
+            "artifacts/v3_option_b_heldout_preregistration_current702_20260628.json",
+        )
+
     def test_external_source_pilot_uniref_current_reference_parser_defaults(
         self,
     ) -> None:

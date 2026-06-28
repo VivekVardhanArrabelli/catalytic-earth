@@ -3,6 +3,35 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-28: Option B started — the M-CSA held-out is EXHAUSTED; a new untouched off-M-CSA bronze held-out is frozen before any router fix
+
+Decision (user-directed: "pursue Option B — the new held-out"). Done the leakage-safe way: freeze the
+validation vehicle before any model change.
+
+Finding: the M-CSA held-out is **spent**. Of the 140-row designated held-out partition, the one-shot
+spent 126; only **14 remain untouched (1 in-scope, 13 OOS), none with local structures**. (Sanity: all
+126 spent rows were inside the designated held-out partition — the original deployment claim was clean.)
+So a repaired fine-57 router cannot be validated on a fresh M-CSA held-out — there is not one.
+
+New held-out (`src/catalytic_earth/option_b_heldout_preregistration.py`,
+`build-option-b-heldout-preregistration`):
+`artifacts/v3_option_b_heldout_preregistration_current702_20260628.json` /
+`work/option_b_heldout_preregistration_current702_20260628.md`, status
+`preregistered_not_yet_run_pending_router_fix`. It is drawn from untouched off-M-CSA bronze: the
+**22** high-confidence, atlas-family, non-M-CSA bronze positives that are disjoint from train/cal, the
+M-CSA accessions, and the 162-row off-M-CSA recovery development set. Split **13 non-metal / 9 metal**,
+which directly probes the Gate-1 failure mode (metal subclasses over-claiming non-metal enzymes).
+Content-hashed `7ffa38d8...` (deterministic). Pre-committed pass bar, set from first principles before
+any scoring: recovery rate >= **0.70** AND non-metal-into-metal misroute rate <= **0.20**.
+
+Remaining Option-B steps (not done here): (1) repair the fine-57 router on train/cal only — constrain
+the metal v2-subclasses to require metal-cofactor support, re-verify calibration recovery moves toward
+30/35; (2) freeze the repaired-router rule; (3) materialise AlphaFold structures for the 22 accessions
+and score this held-out once, comparing to the bar. Honest limits: n=22 (a focused failure-mode probe,
+not a precise estimate), bronze labels (concordance, not gold), off-M-CSA; a deployment-grade Option-B
+validation would need gold-curated rows. No held-out scored; no registry/ontology/label change; the
+spent M-CSA held-out was not touched.
+
 ## 2026-06-28: Gate 1 (router reconciliation) — fine-57 drift is genuine misrouting, not relabeling; adopt the June 9 coarse router as the deployable baseline
 
 Decision (user-directed: "merge progress and start Gate 1"). Two findings.

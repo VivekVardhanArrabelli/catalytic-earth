@@ -26,6 +26,25 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **OPTION B STARTED — new held-out FROZEN; M-CSA held-out is exhausted (2026-06-28).**
+  Pursuing Option B (repair the fine-57 router) the leakage-safe way: freeze the validation held-out
+  BEFORE any fix. Key finding: the M-CSA held-out is **spent** — only **14 untouched rows remain (1
+  in-scope)**, none with structures — so a repaired fine-57 router cannot be validated on a fresh M-CSA
+  held-out. The new held-out is therefore drawn from untouched off-M-CSA bronze:
+  `artifacts/v3_option_b_heldout_preregistration_current702_20260628.json` /
+  `work/option_b_heldout_preregistration_current702_20260628.md`
+  (`src/catalytic_earth/option_b_heldout_preregistration.py`,
+  `build-option-b-heldout-preregistration`), status `preregistered_not_yet_run_pending_router_fix`.
+  Frozen set: **22** untouched high-confidence atlas-family non-M-CSA bronze positives (**13 non-metal,
+  9 metal**), disjoint from train/cal + M-CSA + the off-M-CSA recovery development set, content-hashed
+  `7ffa38d8...` (deterministic). The metal/non-metal split directly probes the Gate-1 failure mode.
+  Pre-committed pass bar (from first principles, before any scoring): recovery rate ≥ **0.70** AND
+  non-metal-into-metal misroute rate ≤ **0.20**. Honest caveats: small n (22), bronze (concordance, not
+  gold), off-M-CSA, structures to materialise. Remaining Option-B steps: (1) repair the fine-57 router
+  on train/cal (constrain metal v2-subclasses to require metal-cofactor support), (2) freeze the
+  repaired-router rule, (3) materialise structures + spend this held-out once. The spent M-CSA held-out
+  was not touched.
+
 - **GATE 1 (router reconciliation) DIAGNOSED — fine-57 drift is genuine misrouting, not relabeling; June 9 coarse router is the deployable validated baseline (2026-06-28).**
   `artifacts/v3_router_reconciliation_diagnostic_current702_20260628.json` /
   `work/router_reconciliation_diagnostic_current702_20260628.md`
