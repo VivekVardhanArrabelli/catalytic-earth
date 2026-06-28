@@ -113,6 +113,35 @@ class CliTests(unittest.TestCase):
             ),
         )
 
+    def test_current57_fold_tm_recompute_readout_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            ["build-current57-fold-tm-recompute-readout"]
+        )
+
+        self.assertEqual(
+            args.manifest,
+            (
+                "artifacts/"
+                "v3_current57_fold_tm_recompute_input_manifest_current702_20260628.json"
+            ),
+        )
+        self.assertEqual(
+            args.foldseek_tsv,
+            (
+                "artifacts/"
+                "v3_current57_fold_tm_recompute_current702_20260628_results/"
+                "calibration_vs_current57_train_atlas.tsv"
+            ),
+        )
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/"
+                "v3_current57_fold_tm_recompute_readout_current702_20260628.json"
+            ),
+        )
+        self.assertIsNone(args.foldseek_version)
+
     def test_external_source_pilot_uniref_current_reference_parser_defaults(
         self,
     ) -> None:

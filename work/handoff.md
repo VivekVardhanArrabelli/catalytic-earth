@@ -1,5 +1,45 @@
 # Handoff
 
+## Session run - current-57 Fold/TM recomputed; row alignment resolved; fold-NN separates in-scope from OOS; no registry apply (2026-06-28)
+
+- Continued from `origin/main` last commit `79dc2d3a` ("Block current57 cached fold fusion") on branch
+  `claude/continue-last-commit-ytktge`. No registry, ontology, label, split, threshold, heldout,
+  model-weight, or fingerprint-family mutation was made. Frozen current702 SHA unchanged.
+- Installed `foldseek` (commit `718d42176d2f67d36a60866fedfb881f8d5a7ebf`, linux-avx2, user-authorized)
+  and materialized the `v3_current57_fold_tm_recompute_input_manifest_current702_20260628` staging plan
+  via symlinks (calibration cofactor queries + train in-scope fold atlas; heldout dirs excluded by
+  construction). Ran the manifest's recorded `foldseek easy-search` command, producing
+  `artifacts/v3_current57_fold_tm_recompute_current702_20260628_results/calibration_vs_current57_train_atlas.tsv`
+  (4756 alignment rows, 61 calibration queries × 132 train in-scope targets). Staged coordinate
+  symlinks and the foldseek temp dir are reconstructible and git-ignored; the result TSV is committed.
+- Added the row-aligned readout builder + CLI:
+  `src/catalytic_earth/current57_fold_tm_recompute_readout.py` and
+  `build-current57-fold-tm-recompute-readout`. New artifact/report:
+  `artifacts/v3_current57_fold_tm_recompute_readout_current702_20260628.json` and
+  `work/current57_fold_tm_recompute_readout_current702_20260628.md`. Result
+  `current57_fold_tm_recompute_readout_row_aligned`:
+  - Recomputed fold-NN coverage **35/35** calibration in-scope and **26/26** OOS (cached overlap was
+    **4/35** and **0/26**) — the cofactor/fold alignment blocker is resolved.
+  - Fold-NN abstention separation: in-scope best-alntmscore median **0.743** vs OOS **0.566** (gap
+    **0.177**); in-scope fold nearest neighbor recovers the true fingerprint in **28/35 (0.80)**.
+  - Heldout-excluded, calibration-vs-train only; no threshold selected, no supervised model trained,
+    no heldout row read or scored.
+- Durable docs updated: `docs/project_state.md` (new headline) and `docs/decision_log.md` (new dated
+  entry) record the resolved alignment and the fold-NN separation. Regenerated
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260628.json` -> missing 0.
+- Tests: `tests/test_current57_fold_tm_recompute_readout.py` (5 tests) and a CLI parser-defaults case
+  in `tests/test_cli.py`.
+- Validation:
+  - `PYTHONPATH=src python -m unittest tests.test_current57_fold_tm_recompute_readout tests.test_cli` -> OK (241 tests).
+  - `PYTHONPATH=src python -m compileall -q src tests` -> OK.
+  - `PYTHONPATH=src python -m catalytic_earth.cli validate` -> 57 fingerprints, 54 ontology families, 702 labels.
+  - Docs artifact-reference check -> missing 0.
+  - `git diff --check` clean.
+- Next exact action: preregister a current-57 cofactor+fold fusion rule that uses this now-aligned fold
+  surface as the OOS-rejection/abstention channel, and test on train/cal whether it clears the trusted
+  June 9 in-scope-recovery / OOS-FP bar before any heldout read. The current-57 cofactor precision
+  contract (OOS FP 26/26) still governs deployment; this readout alone does not authorize fusion.
+
 ## Session run - current-57 cofactor/fold alignment blocked; recompute manifest ready; no registry apply (2026-06-28, Codex automation)
 
 - Started at `2026-06-28T03:32:44Z` from current `origin/main`

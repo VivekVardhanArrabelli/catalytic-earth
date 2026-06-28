@@ -11,6 +11,11 @@ venv/
 data/raw/
 data/cache/
 
+# Reconstructible Fold/TM recompute staging (symlinks/copies of already-committed
+# CIFs and foldseek temp dirs). The committed manifest + result TSV are the record.
+artifacts/v3_current57_fold_tm_recompute_current702_20260628_coordinates/
+artifacts/**/tmp_calibration_vs_current57_train_atlas/
+
 # Python editable-install metadata
 *.egg-info/
 tests_full2.log

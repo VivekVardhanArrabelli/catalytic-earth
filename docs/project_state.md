@@ -26,6 +26,27 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **CURRENT-57 FOLD/TM RECOMPUTED — ROW ALIGNMENT RESOLVED; FOLD-NN SEPARATES IN-SCOPE FROM OOS (2026-06-28).**
+  `foldseek` (commit `718d42176d2f67d36a60866fedfb881f8d5a7ebf`) was installed and the recompute input
+  manifest staging plan was materialized and run (`foldseek easy-search`, calibration cofactor queries
+  vs the current-57 train in-scope fold atlas, heldout dirs excluded by construction). Raw output:
+  `artifacts/v3_current57_fold_tm_recompute_current702_20260628_results/calibration_vs_current57_train_atlas.tsv`
+  (4756 rows, 61 queries × 132 targets). New row-aligned readout:
+  `artifacts/v3_current57_fold_tm_recompute_readout_current702_20260628.json` /
+  `work/current57_fold_tm_recompute_readout_current702_20260628.md`
+  (`src/catalytic_earth/current57_fold_tm_recompute_readout.py`,
+  `build-current57-fold-tm-recompute-readout`). Status
+  `current57_fold_tm_recompute_readout_row_aligned`: recomputed fold-NN coverage is **35/35**
+  calibration in-scope and **26/26** OOS (vs cached **4/35** and **0/26**), so the cofactor/fold
+  alignment blocker no longer applies. The fold channel carries an abstention-relevant signal the
+  cofactor channel lacked: in-scope best-alntmscore median **0.743** vs OOS **0.566** (gap **0.177**),
+  and the in-scope fold nearest neighbor recovers the true fingerprint in **28/35 (0.80)** of scored
+  rows. This is calibration-only and heldout-excluded — **no threshold was selected and no heldout row
+  was read.** Deployment is still governed by the current-57 cofactor precision contract below (OOS FP
+  26/26); the next step is to preregister a current-57 cofactor+fold fusion rule that uses this
+  now-aligned fold surface as the OOS-rejection channel and test it on train/cal before any heldout
+  read.
+
 - **PREDICTED-GEOMETRY ATLAS-ENGINE PREREGISTRATION BLOCKED BY CURRENT-57 PRECISION AND ROW ALIGNMENT (2026-06-28).**
   A full-env capability/preregistration artifact now exists for the deployment recovery line:
   `artifacts/v3_predicted_geometry_atlas_engine_preregistration_current702_20260628.json`

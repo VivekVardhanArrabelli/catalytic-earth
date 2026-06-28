@@ -3,6 +3,43 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-28: Fold/TM recomputed on the current-57 train/cal surface — row alignment resolved; in-scope fold-NN TM separates from OOS (precision contract still governs deployment)
+
+Decision (automation continuation, no registry mutation). `foldseek` (commit
+`718d42176d2f67d36a60866fedfb881f8d5a7ebf`, linux-avx2) was installed and the
+`v3_current57_fold_tm_recompute_input_manifest_current702_20260628` staging plan was materialized
+(calibration cofactor queries + train in-scope fold atlas, heldout dirs excluded by construction). The
+recorded `foldseek easy-search` command was run, producing
+`artifacts/v3_current57_fold_tm_recompute_current702_20260628_results/calibration_vs_current57_train_atlas.tsv`
+(4756 alignment rows over 61 calibration queries vs 132 train in-scope targets). The staged
+coordinate symlinks and foldseek temp dirs are reconstructible and git-ignored; the manifest and the
+result TSV are the durable record.
+
+New row-aligned readout (heldout-excluded, calibration-vs-train only):
+`artifacts/v3_current57_fold_tm_recompute_readout_current702_20260628.json` and
+`work/current57_fold_tm_recompute_readout_current702_20260628.md`, via
+`src/catalytic_earth/current57_fold_tm_recompute_readout.py` and the
+`build-current57-fold-tm-recompute-readout` CLI. Result
+`current57_fold_tm_recompute_readout_row_aligned`:
+
+- Row alignment is resolved. Recomputed fold-NN coverage is **35/35** calibration in-scope and
+  **26/26** calibration OOS, versus the cached overlap of **4/35** and **0/26** that fail-closed the
+  alignment audit. The cofactor/fold alignment blocker therefore no longer applies.
+- The fold channel shows an abstention-relevant separation the cofactor channel lacked: in-scope
+  best-alntmscore median **0.743** vs OOS **0.566** (in-scope-minus-OOS median gap **0.177**), and
+  in-scope fold-NN nearest neighbor recovers the true fingerprint in **28/35 (0.80)** of scored rows.
+  This is a calibration-level diagnostic only; **no threshold was selected here and no heldout row was
+  read or scored.**
+
+Durable rule (unchanged where it still binds): this readout does **not** authorize a fused
+atlas-engine readout on its own. The current-57 cofactor precision contract
+(`blocked_current57_cofactor_precision_contract_not_deployable`, OOS FP still 26/26) continues to
+govern deployment, and any fold-augmented fusion must be separately preregistered with a
+heldout-final selection rule. Next step on the recovery line: preregister a current-57 cofactor+fold
+fusion rule that uses this now-aligned fold surface as the abstention/OOS-rejection channel, and test
+whether it clears the trusted June 9 in-scope-recovery / OOS-FP bar on train/cal before any heldout
+read.
+
 ## 2026-06-28: Predicted-geometry atlas-engine preregistration is blocked by current-57 precision and row alignment; recompute Fold/TM or replay the old surface
 
 Decision (automation run `ce-nad-glyco-floor-expansion`, no registry mutation). The next recovery-line

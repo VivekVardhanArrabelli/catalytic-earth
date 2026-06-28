@@ -111,6 +111,13 @@ from .current57_fold_tm_recompute_manifest import (
     DEFAULT_REPORT_PATH as DEFAULT_CURRENT57_FOLD_TM_RECOMPUTE_REPORT_PATH,
     write_current57_fold_tm_recompute_manifest,
 )
+from .current57_fold_tm_recompute_readout import (
+    DEFAULT_FOLDSEEK_TSV_PATH as DEFAULT_CURRENT57_FOLD_TM_READOUT_TSV_PATH,
+    DEFAULT_MANIFEST_PATH as DEFAULT_CURRENT57_FOLD_TM_READOUT_MANIFEST_PATH,
+    DEFAULT_OUT_PATH as DEFAULT_CURRENT57_FOLD_TM_READOUT_OUT_PATH,
+    DEFAULT_REPORT_PATH as DEFAULT_CURRENT57_FOLD_TM_READOUT_REPORT_PATH,
+    write_current57_fold_tm_recompute_readout,
+)
 from .predicted_geometry_atlas_engine_preregistration import (
     DEFAULT_COFACTOR_CHANNEL_PATH,
     DEFAULT_COFACTOR_PRECISION_PATH,
@@ -2902,6 +2909,29 @@ def cmd_build_current57_fold_tm_recompute_manifest(args: argparse.Namespace) -> 
         f"{calibration.get('rows')}; train target CIFs "
         f"{targets.get('staged_train_cal_safe_cif_found')}/"
         f"{targets.get('rows')})"
+    )
+    return 0
+
+
+def cmd_build_current57_fold_tm_recompute_readout(args: argparse.Namespace) -> int:
+    readout = write_current57_fold_tm_recompute_readout(
+        manifest_path=Path(args.manifest),
+        foldseek_tsv_path=Path(args.foldseek_tsv),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        foldseek_version=args.foldseek_version,
+    )
+    coverage = readout.get("coverage", {})
+    inscope = coverage.get("calibration_inscope", {})
+    oos = coverage.get("calibration_oos", {})
+    separation = readout.get("fold_nn_distribution", {}).get("separation", {})
+    print(
+        "Wrote current-57 Fold/TM recompute readout to "
+        f"{args.out} ({readout.get('status')}; calibration in-scope "
+        f"{inscope.get('rows_with_fold_score')}/{inscope.get('rows')}; OOS "
+        f"{oos.get('rows_with_fold_score')}/{oos.get('rows')}; in-scope-minus-OOS "
+        f"median {separation.get('inscope_minus_oos_median')}; abstention signal "
+        f"{separation.get('abstention_signal_present')})"
     )
     return 0
 
@@ -23395,6 +23425,40 @@ def build_parser() -> argparse.ArgumentParser:
     )
     current57_fold_tm_recompute_manifest.set_defaults(
         func=cmd_build_current57_fold_tm_recompute_manifest
+    )
+
+    current57_fold_tm_recompute_readout = subparsers.add_parser(
+        "build-current57-fold-tm-recompute-readout",
+        help=(
+            "heldout-excluded, row-aligned Fold/TM readout from the recomputed "
+            "foldseek easy-search output over the current-57 cofactor train/cal rows"
+        ),
+    )
+    current57_fold_tm_recompute_readout.add_argument(
+        "--manifest",
+        default=DEFAULT_CURRENT57_FOLD_TM_READOUT_MANIFEST_PATH,
+        help="current-57 Fold/TM recompute input manifest artifact",
+    )
+    current57_fold_tm_recompute_readout.add_argument(
+        "--foldseek-tsv",
+        default=DEFAULT_CURRENT57_FOLD_TM_READOUT_TSV_PATH,
+        help="foldseek easy-search result TSV (calibration queries vs train atlas)",
+    )
+    current57_fold_tm_recompute_readout.add_argument(
+        "--foldseek-version",
+        default=None,
+        help="optional foldseek binary version/commit recorded for provenance",
+    )
+    current57_fold_tm_recompute_readout.add_argument(
+        "--out",
+        default=DEFAULT_CURRENT57_FOLD_TM_READOUT_OUT_PATH,
+    )
+    current57_fold_tm_recompute_readout.add_argument(
+        "--report",
+        default=DEFAULT_CURRENT57_FOLD_TM_READOUT_REPORT_PATH,
+    )
+    current57_fold_tm_recompute_readout.set_defaults(
+        func=cmd_build_current57_fold_tm_recompute_readout
     )
 
     predicted_geometry_atlas_engine_preregistration = subparsers.add_parser(

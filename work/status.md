@@ -200,3 +200,33 @@ next_action: >
   run its recorded calibration-vs-train easy-search command, then build a current-57 fold/TM
   score readout before any cached atlas-engine fusion or heldout read. Alternative: pin/replay
   the intended June 9 router/fold row surface.
+
+## Automation run 2026-06-28 (continuation: foldseek recompute + readout)
+- started_from: origin last commit 79dc2d3a (branch claude/continue-last-commit-ytktge)
+- registry_mutation: none
+- frozen_current702_sha: unchanged
+- state: current57_fold_tm_recomputed_row_alignment_resolved_fold_nn_separates_inscope_oos
+- work_completed:
+  - installed foldseek 718d42176d2f67d36a60866fedfb881f8d5a7ebf (user-authorized) and ran the manifest easy-search
+  - produced calibration_vs_current57_train_atlas.tsv (4756 rows, 61 queries x 132 targets)
+  - added current57_fold_tm_recompute_readout builder + CLI + tests
+  - readout row-aligned: in-scope 35/35, OOS 26/26 (cached was 4/35, 0/26)
+  - fold-NN separation: in-scope median alntm 0.743 vs OOS 0.566 (gap 0.177); fingerprint match 28/35
+  - updated project_state, decision_log, handoff; regenerated docs reference check (missing 0)
+- current_gate_state:
+  - cofactor_fold_alignment_blocker: resolved
+  - current57_precision_contract_blocks: true (OOS FP 26/26, deployment still gated)
+  - fold_augmented_fusion_preregistered: false (next action)
+  - heldout_rows_scored: false
+  - threshold_selected_on_heldout: false
+- validation:
+  - focused_readout_and_cli_unittest: 241 passed
+  - compileall: passed
+  - registry_validate: passed
+  - current_docs_reference_check: missing 0
+  - git_diff_check: passed
+- next_action: >
+  Preregister a current-57 cofactor+fold fusion rule using the now row-aligned fold-NN surface as the
+  OOS-rejection/abstention channel; test on train/cal against the trusted June 9 in-scope-recovery /
+  OOS-FP bar before any heldout read. The current-57 cofactor precision contract still governs
+  deployment; this readout alone does not authorize fusion.
