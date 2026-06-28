@@ -142,6 +142,44 @@ class CliTests(unittest.TestCase):
         )
         self.assertIsNone(args.foldseek_version)
 
+    def test_current57_cofactor_fold_fusion_preregistration_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-current57-cofactor-fold-fusion-preregistration"]
+        )
+
+        self.assertEqual(
+            args.current_operating_point,
+            (
+                "artifacts/"
+                "v3_cofactor_fusion_operating_point_train_cal_oos_current702_"
+                "20260628_current57_rerun.json"
+            ),
+        )
+        self.assertEqual(
+            args.fold_readout,
+            (
+                "artifacts/"
+                "v3_current57_fold_tm_recompute_readout_current702_20260628.json"
+            ),
+        )
+        self.assertEqual(
+            args.trusted_precision,
+            (
+                "artifacts/"
+                "v3_cofactor_fusion_operating_point_train_cal_oos_current702_20260609.json"
+            ),
+        )
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/"
+                "v3_current57_cofactor_fold_fusion_preregistration_current702_"
+                "20260628.json"
+            ),
+        )
+
     def test_external_source_pilot_uniref_current_reference_parser_defaults(
         self,
     ) -> None:

@@ -230,3 +230,34 @@ next_action: >
   OOS-rejection/abstention channel; test on train/cal against the trusted June 9 in-scope-recovery /
   OOS-FP bar before any heldout read. The current-57 cofactor precision contract still governs
   deployment; this readout alone does not authorize fusion.
+
+## Automation run 2026-06-28 (continuation: cofactor+fold fusion preregistration)
+- started_from: prior commit a177f460 (branch claude/continue-last-commit-ytktge)
+- registry_mutation: none
+- frozen_current702_sha: unchanged
+- state: current57_cofactor_fold_fusion_preregistered_fail_closed_router_recovery_ceiling_blocks_bar
+- work_completed:
+  - added current57_cofactor_fold_fusion_preregistration builder + CLI + tests
+  - preregistered two-gate rule (cofactor score AND fold-NN TM OOS-rejection gate), calibration-only sweep
+  - status blocked_current57_cofactor_fold_fusion_not_deployable; eligible points 0
+  - fold marginal value: cofactor-only 20/35 @ FP6 -> fusion 23/35 @ FP8 (+3); max-precision 20/35 @ FP5
+  - compatible recovery ceiling 26/35 (exact 13/35) < trusted 30/35 bar -> recovery is the binding constraint
+  - updated project_state, decision_log, handoff; regenerated docs reference check (missing 0)
+- current_gate_state:
+  - cofactor_fold_alignment_blocker: resolved (prior run)
+  - fold_nn_oos_rejection_signal: confirmed (+3 recovery at OOS-FP ceiling)
+  - binding_constraint: current57_router_compatible_recovery_ceiling_26_of_35
+  - eligible_fusion_points: 0
+  - heldout_rows_scored: false
+  - threshold_selected_on_heldout: false
+- validation:
+  - focused_fusion_readout_cli_unittest: passed
+  - compileall: passed
+  - registry_validate: passed
+  - current_docs_reference_check: missing 0
+  - git_diff_check: passed
+- next_action: >
+  Pin/replay the intended June 9 router/fingerprint surface so in-scope recovery clears the trusted
+  bar, then re-apply this fold-NN OOS-rejection gate and promote one calibration operating point to a
+  single heldout-final read. Router recovery (26/35 ceiling), not OOS FP, is the blocker; more
+  fingerprint families will not move it.

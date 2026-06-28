@@ -1,5 +1,38 @@
 # Handoff
 
+## Session run - current-57 cofactor+fold fusion preregistered and fail-closed; fold gate +3 recovery at OOS-FP ceiling; router 26/35 ceiling blocks the bar; no registry apply (2026-06-28)
+
+- Continued on branch `claude/continue-last-commit-ytktge` from the prior commit
+  (`a177f460`, current-57 Fold/TM recompute readout). No registry, ontology, label, split, threshold,
+  heldout, model-weight, or fingerprint-family mutation. Frozen current702 SHA unchanged.
+- Added the preregistered current-57 cofactor + fold-NN fusion rule:
+  `src/catalytic_earth/current57_cofactor_fold_fusion_preregistration.py` and
+  `build-current57-cofactor-fold-fusion-preregistration`. Rule
+  `retained := fused.top1_score >= cofactor_threshold AND fold_nn_alntmscore >= fold_threshold`,
+  correctness under the legacy-v1 metal-umbrella projection, fold-NN as an OOS-rejection/abstention
+  gate; both thresholds swept on calibration only (out-of-sample for the cofactor channel, never
+  heldout).
+- New artifact/report:
+  `artifacts/v3_current57_cofactor_fold_fusion_preregistration_current702_20260628.json` and
+  `work/current57_cofactor_fold_fusion_preregistration_current702_20260628.md`. Status
+  `blocked_current57_cofactor_fold_fusion_not_deployable`:
+  - Trusted June 9 done bar: recovery >= **30/35**, OOS FP <= **8/26** (0.44 dial).
+  - Fold-NN marginal value: cofactor-only best under OOS-FP ceiling **20/35 @ FP 6**; fusion best
+    **23/35 @ FP 8** (+3 recovery); max-precision regime **20/35 @ FP 5**.
+  - Fail-closed because the binding constraint is recovery: current-57 compatible-recovery ceiling is
+    **26/35** (exact 13/35), below the 30/35 bar; eligible calibration points **0**.
+- Durable docs: `docs/project_state.md` and `docs/decision_log.md` updated with the fail-closed fusion
+  and the recovery-ceiling diagnosis. Regenerated docs artifact-reference check -> missing 0.
+- Tests: `tests/test_current57_cofactor_fold_fusion_preregistration.py` (4) and a CLI parser-defaults
+  case in `tests/test_cli.py`.
+- Validation: focused unittest (new fusion + readout + full test_cli) OK; compileall OK; registry
+  `validate` OK (57 FP / 54 families / 702 labels); docs reference check missing 0; `git diff --check`
+  clean.
+- Next exact action: pin/replay the intended June 9 router/fingerprint surface so in-scope recovery
+  clears the trusted bar, then re-apply this fold-NN OOS-rejection gate and promote a single
+  calibration operating point to one heldout-final evaluation. The current-57 router recovery ceiling
+  (26/35), not OOS FP, is now the documented blocker; growing fingerprint families will not move it.
+
 ## Session run - current-57 Fold/TM recomputed; row alignment resolved; fold-NN separates in-scope from OOS; no registry apply (2026-06-28)
 
 - Continued from `origin/main` last commit `79dc2d3a` ("Block current57 cached fold fusion") on branch

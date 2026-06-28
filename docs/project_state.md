@@ -26,6 +26,23 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **CURRENT-57 COFACTOR + FOLD-NN FUSION PREREGISTERED AND FAIL-CLOSED — FOLD GATE ADDS +3 RECOVERY AT THE OOS-FP CEILING, BUT THE 26/35 ROUTER CEILING BLOCKS THE 30/35 BAR (2026-06-28).**
+  Using the row-aligned fold-NN surface, a two-gate fusion rule was preregistered (cofactor-score gate
+  AND fold-NN TM OOS-rejection gate; correctness under the legacy-v1 metal-umbrella projection; both
+  thresholds swept on calibration only, never heldout):
+  `artifacts/v3_current57_cofactor_fold_fusion_preregistration_current702_20260628.json` /
+  `work/current57_cofactor_fold_fusion_preregistration_current702_20260628.md`
+  (`src/catalytic_earth/current57_cofactor_fold_fusion_preregistration.py`,
+  `build-current57-cofactor-fold-fusion-preregistration`). Status
+  `blocked_current57_cofactor_fold_fusion_not_deployable`. The fold-NN gate is a real OOS-rejection
+  signal — cofactor-only best under the trusted OOS-FP ceiling (≤8/26) is **20/35 @ FP 6**, fusion best
+  is **23/35 @ FP 8** (+3 recovery), and the gate can hold 20/35 at **FP 5/26**. But it stays
+  fail-closed because the **binding constraint is recovery, not OOS FP**: the current-57 router's
+  compatible-recovery ceiling is **26/35** (exact 13/35), below the trusted **30/35** bar, so no
+  threshold pair is eligible. Next step: pin/replay the intended June 9 router/fingerprint surface
+  (whose recovery clears the bar), re-apply this fold-NN OOS-rejection gate, then promote one
+  calibration point to a single heldout-final read.
+
 - **CURRENT-57 FOLD/TM RECOMPUTED — ROW ALIGNMENT RESOLVED; FOLD-NN SEPARATES IN-SCOPE FROM OOS (2026-06-28).**
   `foldseek` (commit `718d42176d2f67d36a60866fedfb881f8d5a7ebf`) was installed and the recompute input
   manifest staging plan was materialized and run (`foldseek easy-search`, calibration cofactor queries

@@ -118,6 +118,14 @@ from .current57_fold_tm_recompute_readout import (
     DEFAULT_REPORT_PATH as DEFAULT_CURRENT57_FOLD_TM_READOUT_REPORT_PATH,
     write_current57_fold_tm_recompute_readout,
 )
+from .current57_cofactor_fold_fusion_preregistration import (
+    DEFAULT_CURRENT57_OPERATING_POINT_PATH as DEFAULT_CURRENT57_FUSION_OPERATING_POINT_PATH,
+    DEFAULT_FOLD_READOUT_PATH as DEFAULT_CURRENT57_FUSION_FOLD_READOUT_PATH,
+    DEFAULT_OUT_PATH as DEFAULT_CURRENT57_FUSION_OUT_PATH,
+    DEFAULT_REPORT_PATH as DEFAULT_CURRENT57_FUSION_REPORT_PATH,
+    DEFAULT_TRUSTED_PRECISION_PATH as DEFAULT_CURRENT57_FUSION_TRUSTED_PRECISION_PATH,
+    write_current57_cofactor_fold_fusion_preregistration,
+)
 from .predicted_geometry_atlas_engine_preregistration import (
     DEFAULT_COFACTOR_CHANNEL_PATH,
     DEFAULT_COFACTOR_PRECISION_PATH,
@@ -2932,6 +2940,32 @@ def cmd_build_current57_fold_tm_recompute_readout(args: argparse.Namespace) -> i
         f"{oos.get('rows_with_fold_score')}/{oos.get('rows')}; in-scope-minus-OOS "
         f"median {separation.get('inscope_minus_oos_median')}; abstention signal "
         f"{separation.get('abstention_signal_present')})"
+    )
+    return 0
+
+
+def cmd_build_current57_cofactor_fold_fusion_preregistration(
+    args: argparse.Namespace,
+) -> int:
+    prereg = write_current57_cofactor_fold_fusion_preregistration(
+        current_operating_point_path=Path(args.current_operating_point),
+        fold_readout_path=Path(args.fold_readout),
+        trusted_precision_path=Path(args.trusted_precision),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    marginal = prereg.get("fold_marginal_value", {})
+    ceiling = prereg.get("recovery_ceiling", {})
+    fusion_best = marginal.get("fusion_best_under_trusted_oos_fp") or {}
+    print(
+        "Wrote current-57 cofactor+fold fusion preregistration to "
+        f"{args.out} ({prereg.get('status')}; eligible "
+        f"{len(prereg.get('selection_rule', {}).get('eligible_points', []))}; "
+        f"fusion best under OOS-FP ceiling "
+        f"{fusion_best.get('inscope_correct')}/{fusion_best.get('inscope_total')} "
+        f"@ FP {fusion_best.get('oos_false_positives')}; fold recovery gain "
+        f"{marginal.get('fold_recovery_gain_at_oos_fp_ceiling')}; compatible ceiling "
+        f"{ceiling.get('compatible_recovery_ceiling')}/{ceiling.get('inscope_total')})"
     )
     return 0
 
@@ -23459,6 +23493,40 @@ def build_parser() -> argparse.ArgumentParser:
     )
     current57_fold_tm_recompute_readout.set_defaults(
         func=cmd_build_current57_fold_tm_recompute_readout
+    )
+
+    current57_cofactor_fold_fusion_preregistration = subparsers.add_parser(
+        "build-current57-cofactor-fold-fusion-preregistration",
+        help=(
+            "preregister and fail-close a current-57 cofactor + row-aligned fold-NN "
+            "OOS-rejection fusion rule against the trusted June 9 done bar (train/cal)"
+        ),
+    )
+    current57_cofactor_fold_fusion_preregistration.add_argument(
+        "--current-operating-point",
+        default=DEFAULT_CURRENT57_FUSION_OPERATING_POINT_PATH,
+        help="current-57 cofactor operating-point diagnostic artifact",
+    )
+    current57_cofactor_fold_fusion_preregistration.add_argument(
+        "--fold-readout",
+        default=DEFAULT_CURRENT57_FUSION_FOLD_READOUT_PATH,
+        help="row-aligned current-57 Fold/TM recompute readout artifact",
+    )
+    current57_cofactor_fold_fusion_preregistration.add_argument(
+        "--trusted-precision",
+        default=DEFAULT_CURRENT57_FUSION_TRUSTED_PRECISION_PATH,
+        help="trusted June 9 cofactor-fusion precision artifact for the done bar",
+    )
+    current57_cofactor_fold_fusion_preregistration.add_argument(
+        "--out",
+        default=DEFAULT_CURRENT57_FUSION_OUT_PATH,
+    )
+    current57_cofactor_fold_fusion_preregistration.add_argument(
+        "--report",
+        default=DEFAULT_CURRENT57_FUSION_REPORT_PATH,
+    )
+    current57_cofactor_fold_fusion_preregistration.set_defaults(
+        func=cmd_build_current57_cofactor_fold_fusion_preregistration
     )
 
     predicted_geometry_atlas_engine_preregistration = subparsers.add_parser(

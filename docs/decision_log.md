@@ -3,6 +3,39 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-28: Current-57 cofactor + fold-NN fusion preregistered and fail-closed — fold gate adds +3 recovery at the OOS-FP ceiling, but the 26/35 router recovery ceiling blocks the 30/35 bar
+
+Decision (automation continuation, no registry mutation). With the row-aligned fold-NN surface from
+`v3_current57_fold_tm_recompute_readout_current702_20260628`, a two-gate fusion rule was preregistered:
+`retained_in_scope_call := fused.top1_score >= cofactor_threshold AND fold_nn_alntmscore >=
+fold_threshold`, with correctness under the documented legacy-v1 metal-umbrella compatibility
+projection and the fold-NN TM acting purely as an out-of-scope-rejection / abstention gate. Both
+thresholds are swept on the **calibration** split only (out-of-sample for the cofactor channel, never
+heldout). Artifact/report:
+`artifacts/v3_current57_cofactor_fold_fusion_preregistration_current702_20260628.json` /
+`work/current57_cofactor_fold_fusion_preregistration_current702_20260628.md`
+(`src/catalytic_earth/current57_cofactor_fold_fusion_preregistration.py`,
+`build-current57-cofactor-fold-fusion-preregistration`). Status
+`blocked_current57_cofactor_fold_fusion_not_deployable`:
+
+- Trusted June 9 done bar: recovery **>= 30/35**, OOS FP **<= 8/26** (the 0.44 threshold dial).
+- The fold-NN gate has real OOS-rejection value: cofactor-only best under the OOS-FP ceiling is
+  **20/35 @ FP 6**, while the fusion best under the same ceiling is **23/35 @ FP 8** — a **+3
+  recovery** gain at matched precision. The gate can also drive OOS FP down to **5/26** while holding
+  20/35 (a high-precision regime).
+- It is still fail-closed because the **binding constraint is recovery, not OOS FP**: the current-57
+  router's compatible-recovery ceiling is **26/35** (exact 13/35), so no threshold pair can reach the
+  30/35 bar regardless of the fold channel. Eligible calibration points: **0**.
+
+Durable rule: the fold channel is confirmed as a useful OOS-rejection signal and should be retained,
+but it cannot repair current-57 router recovery drift. The documented next step is unchanged in
+direction and now better motivated: **pin/replay the intended June 9 router/fingerprint surface**
+(whose in-scope recovery clears the bar) and re-apply this fold-NN OOS-rejection gate on top, then
+promote a single calibration point to one heldout-final evaluation. The near-zero-OOS-FP fusion regime
+at reduced recovery is a separate, narrower product framing that would still require heldout
+confirmation. No heldout row was read or scored; no production threshold, registry, ontology, label, or
+fingerprint-family change was made.
+
 ## 2026-06-28: Fold/TM recomputed on the current-57 train/cal surface — row alignment resolved; in-scope fold-NN TM separates from OOS (precision contract still governs deployment)
 
 Decision (automation continuation, no registry mutation). `foldseek` (commit
