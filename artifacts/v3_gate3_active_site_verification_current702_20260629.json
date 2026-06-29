@@ -1,0 +1,284 @@
+{
+ "artifact_id": "v3_gate3_active_site_verification_current702_20260629",
+ "created_utc": "2026-06-29T20:22:48Z",
+ "schema_version": "gate3_active_site_verification.v1",
+ "result_class": "read_only_active_site_check_no_registry_no_threshold_no_heldout_change",
+ "purpose": "De-risk the novel dark-target shortlist before any lab spend by checking whether each AlphaFold model carries an INTACT catalytic apparatus, not merely the fold. Two source-free methods: (1) Ser-His-Asp triad geometry detection for serine hydrolases; (2) catalytic-residue conservation, mapping the M-CSA neighbour catalytic residues through the foldseek structural alignment onto the candidate.",
+ "method_notes": "AlphaFold models are apo (no metal/heme/FAD/PLP ligand), so ligand-contact detectors cannot confirm cofactor sites; residue-conservation via structural alignment is used instead. M-CSA catalytic residues fetched from the M-CSA API per neighbour.",
+ "verdict_counts": {
+  "verified": 6,
+  "partial": 2,
+  "not_verified": 3,
+  "no_check": 0
+ },
+ "records": [
+  {
+   "accession": "F0Y210",
+   "organism": "Aureococcus anophagefferens (Harmful bloom alga)",
+   "predicted_mechanism_family": "plp_dependent_enzyme",
+   "fold_tm": 0.9735,
+   "neighbor": "P12995",
+   "predicted_specific_enzyme": "Adenosylmethionine-8-amino-7-oxononanoate aminotransferase",
+   "active_site_method": "catalytic_residue_conservation_vs_mcsa_neighbor",
+   "active_site": {
+    "neighbor": "P12995",
+    "alntm": 0.974,
+    "n_catalytic": 4,
+    "n_aligned": 4,
+    "n_conserved": 4,
+    "conserved_fraction": 1.0,
+    "detail": [
+     "Y17->Y56=",
+     "Y144->Y184=",
+     "D245->D286=",
+     "K274->K317="
+    ]
+   },
+   "verdict": "verified"
+  },
+  {
+   "accession": "A0A177THN5",
+   "organism": "Tilletia indica",
+   "predicted_mechanism_family": "heme_peroxidase_oxidase",
+   "fold_tm": 0.9515,
+   "neighbor": "P48534",
+   "predicted_specific_enzyme": "L-ascorbate peroxidase, cytosolic",
+   "active_site_method": "catalytic_residue_conservation_vs_mcsa_neighbor",
+   "active_site": {
+    "neighbor": "P48534",
+    "alntm": 0.952,
+    "n_catalytic": 5,
+    "n_aligned": 5,
+    "n_conserved": 5,
+    "conserved_fraction": 1.0,
+    "detail": [
+     "R38->R36=",
+     "H42->H40=",
+     "H163->H164=",
+     "W179->W180=",
+     "D208->D231="
+    ]
+   },
+   "verdict": "verified"
+  },
+  {
+   "accession": "A0AAD9KVE2",
+   "organism": "Ridgeia piscesae (Tubeworm)",
+   "predicted_mechanism_family": "ser_his_acid_hydrolase",
+   "fold_tm": 0.9394,
+   "neighbor": "P35049",
+   "predicted_specific_enzyme": "Trypsin",
+   "active_site_method": "source_free_ser_his_triad_geometry",
+   "active_site": {
+    "status": "ser_his_acid_triad_resolved",
+    "ser_his_distance_angstrom": 2.988,
+    "his_acid_distance_angstrom": 2.758,
+    "residues": [
+     "SER1087",
+     "HIS938",
+     "ASP986"
+    ]
+   },
+   "verdict": "verified"
+  },
+  {
+   "accession": "A0AA38MP07",
+   "organism": "Zophobas morio",
+   "predicted_mechanism_family": "ser_his_acid_hydrolase",
+   "fold_tm": 0.9255,
+   "neighbor": "P00766",
+   "predicted_specific_enzyme": "Chymotrypsinogen A",
+   "active_site_method": "source_free_ser_his_triad_geometry",
+   "active_site": {
+    "status": "ser_his_acid_triad_resolved",
+    "ser_his_distance_angstrom": 3.217,
+    "his_acid_distance_angstrom": 2.797,
+    "residues": [
+     "SER580",
+     "HIS423",
+     "ASP481"
+    ]
+   },
+   "verdict": "verified"
+  },
+  {
+   "accession": "A0A918P095",
+   "organism": "Streptomyces minutiscleroticus",
+   "predicted_mechanism_family": "ser_his_acid_hydrolase",
+   "fold_tm": 0.9244,
+   "neighbor": "P00777",
+   "predicted_specific_enzyme": "Streptogrisin-B",
+   "active_site_method": "source_free_ser_his_triad_geometry",
+   "active_site": {
+    "status": "ser_his_acid_triad_resolved",
+    "ser_his_distance_angstrom": 2.799,
+    "his_acid_distance_angstrom": 2.788,
+    "residues": [
+     "SER321",
+     "HIS204",
+     "ASP238"
+    ]
+   },
+   "verdict": "verified"
+  },
+  {
+   "accession": "M3JW22",
+   "organism": "Candida maltosa (strain Xu316) (Yeast)",
+   "predicted_mechanism_family": "metal_dependent_hydrolase",
+   "fold_tm": 0.8552,
+   "neighbor": "Q16775",
+   "predicted_specific_enzyme": "Hydroxyacylglutathione hydrolase, mitochondrial",
+   "active_site_method": "catalytic_residue_conservation_vs_mcsa_neighbor",
+   "active_site": {
+    "neighbor": "Q16775",
+    "alntm": 0.855,
+    "n_catalytic": 7,
+    "n_aligned": 7,
+    "n_conserved": 7,
+    "conserved_fraction": 1.0,
+    "detail": [
+     "H102->H890=",
+     "H104->H892=",
+     "D106->D894=",
+     "H107->H895=",
+     "H158->H946=",
+     "D182->D969=",
+     "H221->H1008="
+    ]
+   },
+   "verdict": "verified"
+  },
+  {
+   "accession": "B3NHH6",
+   "organism": "Drosophila erecta (Fruit fly)",
+   "predicted_mechanism_family": "plp_dependent_enzyme",
+   "fold_tm": 0.9358,
+   "neighbor": "P16932",
+   "predicted_specific_enzyme": "2,2-dialkylglycine decarboxylase",
+   "active_site_method": "catalytic_residue_conservation_vs_mcsa_neighbor",
+   "active_site": {
+    "neighbor": "P16932",
+    "alntm": 0.936,
+    "n_catalytic": 6,
+    "n_aligned": 6,
+    "n_conserved": 4,
+    "conserved_fraction": 0.667,
+    "detail": [
+     "W138->Y150x",
+     "E210->E228=",
+     "D243->D261=",
+     "Q246->Q264=",
+     "K272->K291=",
+     "R406->K424x"
+    ]
+   },
+   "verdict": "partial"
+  },
+  {
+   "accession": "A0AAD6NFH7",
+   "organism": "Drechslerella dactyloides (Nematode-trapping fungus) (Arthrobotrys dactyloides)",
+   "predicted_mechanism_family": "plp_dependent_enzyme",
+   "fold_tm": 0.8823,
+   "neighbor": "P24630",
+   "predicted_specific_enzyme": "Glutamate-1-semialdehyde 2,1-aminomutase",
+   "active_site_method": "catalytic_residue_conservation_vs_mcsa_neighbor",
+   "active_site": {
+    "neighbor": "P24630",
+    "alntm": 0.882,
+    "n_catalytic": 3,
+    "n_aligned": 2,
+    "n_conserved": 2,
+    "conserved_fraction": 0.667,
+    "detail": [
+     "Y150->Y23=",
+     "D245->unaligned",
+     "K273->K107="
+    ]
+   },
+   "verdict": "partial"
+  },
+  {
+   "accession": "A0A1R2B242",
+   "organism": "Stentor coeruleus",
+   "predicted_mechanism_family": "flavin_dehydrogenase_reductase",
+   "fold_tm": 0.9325,
+   "neighbor": "P00392",
+   "predicted_specific_enzyme": "Mercuric reductase",
+   "active_site_method": "catalytic_residue_conservation_vs_mcsa_neighbor",
+   "active_site": {
+    "neighbor": "P00392",
+    "alntm": 0.932,
+    "n_catalytic": 8,
+    "n_aligned": 2,
+    "n_conserved": 2,
+    "conserved_fraction": 0.25,
+    "detail": [
+     "M9->not_covered",
+     "C11->not_covered",
+     "C14->not_covered",
+     "Y62->not_covered",
+     "C136->C42=",
+     "C141->C47=",
+     "C558->not_covered",
+     "C559->not_covered"
+    ]
+   },
+   "verdict": "not_verified"
+  },
+  {
+   "accession": "A0A1M6CQU7",
+   "organism": "Nocardiopsis flavescens",
+   "predicted_mechanism_family": "flavin_dehydrogenase_reductase",
+   "fold_tm": 0.9243,
+   "neighbor": "P16099",
+   "predicted_specific_enzyme": "Trimethylamine dehydrogenase",
+   "active_site_method": "catalytic_residue_conservation_vs_mcsa_neighbor",
+   "active_site": {
+    "neighbor": "P16099",
+    "alntm": 0.924,
+    "n_catalytic": 4,
+    "n_aligned": 4,
+    "n_conserved": 1,
+    "conserved_fraction": 0.25,
+    "detail": [
+     "C31->T34x",
+     "Y170->H172x",
+     "H173->H175=",
+     "D268->H272x"
+    ]
+   },
+   "verdict": "not_verified"
+  },
+  {
+   "accession": "A0A8H5HZQ9",
+   "organism": "Collybiopsis confluens",
+   "predicted_mechanism_family": "flavin_dehydrogenase_reductase",
+   "fold_tm": 0.851,
+   "neighbor": "P37062",
+   "predicted_specific_enzyme": "NADH peroxidase",
+   "active_site_method": "catalytic_residue_conservation_vs_mcsa_neighbor",
+   "active_site": {
+    "neighbor": "P37062",
+    "alntm": 0.851,
+    "n_catalytic": 4,
+    "n_aligned": 4,
+    "n_conserved": 0,
+    "conserved_fraction": 0.0,
+    "detail": [
+     "H10->S177x",
+     "S41->R208x",
+     "C42->S209x",
+     "R303->G472x"
+    ]
+   },
+   "verdict": "not_verified"
+  }
+ ],
+ "guardrails": {
+  "registry_or_ontology_changed": false,
+  "production_threshold_changed": false,
+  "heldout_rows_scored": false,
+  "fingerprint_family_growth": false,
+  "supervised_model_trained": false
+ }
+}

@@ -1,0 +1,123 @@
+{
+ "M3JW22": {
+  "neighbor": "Q16775",
+  "alntm": 0.855,
+  "n_catalytic": 7,
+  "n_aligned": 7,
+  "n_conserved": 7,
+  "conserved_fraction": 1.0,
+  "detail": [
+   "H102->H890=",
+   "H104->H892=",
+   "D106->D894=",
+   "H107->H895=",
+   "H158->H946=",
+   "D182->D969=",
+   "H221->H1008="
+  ]
+ },
+ "A0A177THN5": {
+  "neighbor": "P48534",
+  "alntm": 0.952,
+  "n_catalytic": 5,
+  "n_aligned": 5,
+  "n_conserved": 5,
+  "conserved_fraction": 1.0,
+  "detail": [
+   "R38->R36=",
+   "H42->H40=",
+   "H163->H164=",
+   "W179->W180=",
+   "D208->D231="
+  ]
+ },
+ "A0AAD6NFH7": {
+  "neighbor": "P24630",
+  "alntm": 0.882,
+  "n_catalytic": 3,
+  "n_aligned": 2,
+  "n_conserved": 2,
+  "conserved_fraction": 0.667,
+  "detail": [
+   "Y150->Y23=",
+   "D245->unaligned",
+   "K273->K107="
+  ]
+ },
+ "F0Y210": {
+  "neighbor": "P12995",
+  "alntm": 0.974,
+  "n_catalytic": 4,
+  "n_aligned": 4,
+  "n_conserved": 4,
+  "conserved_fraction": 1.0,
+  "detail": [
+   "Y17->Y56=",
+   "Y144->Y184=",
+   "D245->D286=",
+   "K274->K317="
+  ]
+ },
+ "B3NHH6": {
+  "neighbor": "P16932",
+  "alntm": 0.936,
+  "n_catalytic": 6,
+  "n_aligned": 6,
+  "n_conserved": 4,
+  "conserved_fraction": 0.667,
+  "detail": [
+   "W138->Y150x",
+   "E210->E228=",
+   "D243->D261=",
+   "Q246->Q264=",
+   "K272->K291=",
+   "R406->K424x"
+  ]
+ },
+ "A0A8H5HZQ9": {
+  "neighbor": "P37062",
+  "alntm": 0.851,
+  "n_catalytic": 4,
+  "n_aligned": 4,
+  "n_conserved": 0,
+  "conserved_fraction": 0.0,
+  "detail": [
+   "H10->S177x",
+   "S41->R208x",
+   "C42->S209x",
+   "R303->G472x"
+  ]
+ },
+ "A0A1R2B242": {
+  "neighbor": "P00392",
+  "alntm": 0.932,
+  "n_catalytic": 8,
+  "n_aligned": 2,
+  "n_conserved": 2,
+  "conserved_fraction": 0.25,
+  "detail": [
+   "M9->not_covered",
+   "C11->not_covered",
+   "C14->not_covered",
+   "Y62->not_covered",
+   "C136->C42=",
+   "C141->C47=",
+   "C558->not_covered",
+   "C559->not_covered"
+  ]
+ },
+ "A0A1M6CQU7": {
+  "neighbor": "P16099",
+  "alntm": 0.924,
+  "n_catalytic": 4,
+  "n_aligned": 4,
+  "n_conserved": 1,
+  "conserved_fraction": 0.25,
+  "detail": [
+   "C31->T34x",
+   "Y170->H172x",
+   "H173->H175=",
+   "D268->H272x"
+  ]
+ }
+}
