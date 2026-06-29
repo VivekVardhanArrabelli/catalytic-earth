@@ -3,6 +3,36 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-29: First GOLD off-M-CSA validation (the last non-lab rung) — PASS; recovery generalises for 3/4 families, metal is a coverage gap
+
+Decision (user-directed: build the independent-gold held-out, "the last free rung" before lab). Built
+and **spent once** a leakage-safe gold held-out whose labels come from **experimental EC** (reviewed
+Swiss-Prot, evidence at protein level), mapped to mechanism family by a fixed unambiguous EC→family
+table — **independent of structure**, so scoring the fold channel is non-circular. Disjoint from M-CSA
+(996 uniprots), the 133-atlas, and all prior dev pools (1,839 exclusions).
+
+- Pre-registration: `artifacts/v3_swissprot_pdbholo_gold_heldout_preregistration_current702_20260629.json`
+  (frozen 136 rows — 64 in-scope 16/family + 72 OOS 18/class; sha256 `54119a7d…`; rule = fold-NN vs
+  atlas gate TM≥0.70; bar recovery≥0.70 AND OOS-FP≤0.40). Committed **before** any structure fetch.
+- Result: `artifacts/v3_swissprot_pdbholo_gold_heldout_eval_result_current702_20260629.json` /
+  `work/swissprot_gold_heldout_result_20260629.md`. **PASS** — recovery 45/64=0.703, OOS-FP 2/72=0.028.
+
+Durable findings future agents must apply:
+1. **Recovery generalises off-M-CSA on GOLD for heme (16/16), PLP (14/16), ser_his (13/16)** = 43/48
+   (0.90). First non-circular gold beyond-M-CSA evidence the structural channel works.
+2. **Zero confident misroutes in any family; every miss is a safe abstention.** When the channel
+   commits it is right (45/45 in-scope, 2/72 OOS). The system fails safe.
+3. **metal_dependent_hydrolase is a COVERAGE gap, not a precision failure:** 2/16 recovered, **14/16
+   abstained, 0 misrouted.** The held-out used EC 3.4.24 metalloendopeptidases (metzincin/gluzincin:
+   MMPs/ADAMs/astacins); the atlas family is metallo-β-lactamase-fold-centric, so those folds fall
+   below the gate and abstain. The atlas "metal_dependent_hydrolase" family is effectively
+   "MBL-fold metal hydrolase." Actionable fix: add metzincin/gluzincin representatives.
+4. Deployable claim widens from "M-CSA only" to **"validated on independent gold for heme/PLP/serine
+   mechanisms with fail-safe abstention; metal coverage limited to the MBL fold."**
+
+This was the last validation rung reachable without a wet lab (gold only exists for already-characterized
+proteins). Discovery and deployment-distribution (dark/novel) validation remain lab-only.
+
 ## 2026-06-28: Option B started — the M-CSA held-out is EXHAUSTED; a new untouched off-M-CSA bronze held-out is frozen before any router fix
 
 Decision (user-directed: "pursue Option B — the new held-out"). Done the leakage-safe way: freeze the
