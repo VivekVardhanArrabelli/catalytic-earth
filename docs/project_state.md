@@ -30,6 +30,34 @@ artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
 
+- **FOLD-CHANNEL OPERATING-POINT CONTRACT BUILT — one unified curve + serving rule; KEY FINDING: a single global fold threshold is family-dependent (metal hydrolases collapse) (2026-06-29).**
+  The pure-synthesis core of Gate 3 (productionise the fold channel) that runs without the ML env:
+  `artifacts/v3_fold_channel_operating_point_contract_current702_20260629.json` /
+  `work/fold_channel_operating_point_contract_current702_20260629.md`
+  (`src/catalytic_earth/fold_channel_operating_point.py`, `build-fold-channel-operating-point`),
+  status `fold_channel_operating_point_contract_development_surface_pending_heldout_validation`. It
+  recomputes the recovery/precision/abstention curve directly from the per-row fold-NN scores of the
+  two recovery readouts (M-CSA in-distribution baseline 35 + off-M-CSA bronze 156) on ONE common
+  threshold grid, for each surface and their union, and **asserts the recomputation reproduces each
+  readout's own published curve** (0 mismatches) — then joins the rejection half from the off-M-CSA
+  abstention frontier (M-CSA OOS + external non-M-CSA false-accept + in-scope retention) on the same
+  grid, cross-checking that the frontier's in-scope retention equals the recomputed M-CSA retention.
+  Objective fixed before any number was read: lowest fold-NN threshold whose external (off-distribution)
+  false-accept rate ≤ 0.20 (the 0.20 floor mirrors the validated held-out OOS-FP rate 0.19, so it is
+  anchored, not tuned). **Recommended operating point: fold-NN τ\* = 0.65** — off-M-CSA recovery 0.712 @
+  precision 0.895, external non-M-CSA false-accept 0.192, M-CSA OOS false-accept 0.192, in-scope
+  retention 0.714 — with the serving contract (sequence → AF structure → foldseek vs M-CSA atlas →
+  top-1; emit if alntmscore ≥ τ\*, else ABSTAIN). **KEY ENGINEERING FINDING (newly surfaced by the
+  unified curve):** at τ\*=0.65 `metal_dependent_hydrolase` recovery **collapses 0.765 → 0.206** (loses
+  >50% of recall) while flavin (0.865→0.854), heme (0.85→0.80), and PLP (1.0→1.0) hold — so a single
+  global fold threshold is **family-dependent**, and a per-family threshold (family-aware calibration)
+  is the bounded next step before a uniform τ\* deploys. Leakage posture (loud): selected on the
+  DEVELOPMENT surfaces only (M-CSA calibration in-scope/OOS + off-M-CSA bronze + external negatives); the
+  spent M-CSA held-out was NOT read; nothing trained; no registry/ontology/label/production-threshold
+  change. τ\* is a development-surface recommendation that still requires a NEW pre-registered held-out
+  (ideally non-M-CSA gold) before it becomes a deployment claim. Off-M-CSA labels are bronze
+  (concordance, not gold). New test: `tests/test_fold_channel_operating_point.py` (7 tests).
+
 - **OPTION B STARTED — new held-out FROZEN; M-CSA held-out is exhausted (2026-06-28).**
   Pursuing Option B (repair the fine-57 router) the leakage-safe way: freeze the validation held-out
   BEFORE any fix. Key finding: the M-CSA held-out is **spent** — only **14 untouched rows remain (1

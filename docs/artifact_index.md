@@ -38,6 +38,14 @@ ePK NO-GO learnings are archived (not in main): `git checkout archive/epk-<track
 | `README.md` | What is this repo and how do I get started? | Front door |
 | `artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json` | Which Lever 2/3/4 mechanical gates are runnable now? | Current active-lever gate; 0 mechanical gates ready, 15 blockers, follow-up Lever 3 proxy axis fully scored but not closure-sufficient |
 
+## 2026-06-29 Fold-Channel Operating-Point Contract (Gate 3 core)
+
+| Artifact | Answers | Status |
+| --- | --- | --- |
+| `artifacts/v3_fold_channel_operating_point_contract_current702_20260629.json` | What is the deployable fold-channel operating point (one unified recovery+rejection curve + a serving rule), and how does each cofactor family behave at it? | Current Gate-3 core; development-surface (recommended τ\*=0.65), pending a new pre-registered held-out; KEY FINDING: a single global fold threshold is family-dependent (metal_dependent_hydrolase collapses 0.765→0.206 at τ\*) → per-family threshold is the next step |
+| `work/fold_channel_operating_point_contract_current702_20260629.md` | Human-readable operating-point curve, recommended point, per-family robustness, and serving contract | Current report |
+| `src/catalytic_earth/fold_channel_operating_point.py` | How is the contract recomputed from the per-row fold-NN scores and verified against the published curves? | Rerunnable CLI (`build-fold-channel-operating-point`); read-only synthesis, no held-out read, no training |
+
 ## 2026-06-15 Metal-Independent PDE 43fp Infrastructure
 
 | Artifact | Answers | Status |

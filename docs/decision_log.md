@@ -3,6 +3,55 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-29: Fold-channel operating-point contract — a single global fold threshold is family-dependent (metal hydrolases collapse); use a per-family threshold next
+
+Decision (autonomous continuation toward the North Star, web container — no ML env, so the
+deployment-line ML work cannot run here). Built the pure-synthesis core of Gate 3 (productionise the
+fold channel): turn the already-measured fold-NN readouts into one decision-ready operating-point curve
+and a frozen serving contract, recomputing recovery from the per-row scores and verifying the
+recomputation reproduces each readout's published curve.
+
+Artifact (`src/catalytic_earth/fold_channel_operating_point.py`, `build-fold-channel-operating-point`):
+`artifacts/v3_fold_channel_operating_point_contract_current702_20260629.json` /
+`work/fold_channel_operating_point_contract_current702_20260629.md`, status
+`fold_channel_operating_point_contract_development_surface_pending_heldout_validation`. It unifies three
+prior artifacts that lived on separate threshold grids — the M-CSA recovery baseline (35), the off-M-CSA
+bronze recovery (156), and the off-M-CSA abstention frontier (OOS 26 + external negatives 52) — into one
+grid {0.5, 0.566, 0.6, 0.65, 0.7, 0.74}, with recovery/precision per surface + combined + per-family on
+the recovery side and false-accept rates on the rejection side.
+
+Objective fixed before reading any number: the lowest fold-NN threshold whose external (off-distribution)
+false-accept rate ≤ 0.20; the 0.20 floor mirrors the validated held-out OOS-FP rate (0.19) so it is
+anchored to a validated regime, not tuned to maximise recovery. **Recommended τ\* = 0.65** (off-M-CSA
+recovery 0.712 @ precision 0.895; external non-M-CSA false-accept 0.192; M-CSA OOS false-accept 0.192;
+in-scope retention 0.714).
+
+**KEY FINDING (new, surfaced only by the unified per-family-at-τ\* view):** the single global threshold
+is **family-dependent**. At τ\*=0.65 `metal_dependent_hydrolase` recovery collapses **0.765 → 0.206**
+(loses >50% of its no-abstention recall) while `flavin_dehydrogenase_reductase` (0.865→0.854),
+`heme_peroxidase_oxidase` (0.85→0.80) and `plp_dependent_enzyme` (1.0→1.0) hold. Metal hydrolases are a
+structurally diverse superfamily whose true within-family fold-NN alignment-TM scores run lower, so a
+threshold tuned for open-set rejection guts that family. **Decision: the bounded next step on the
+recovery line is a per-family (family-aware) fold threshold, not a single global τ\*.**
+
+Leakage posture: selected on the DEVELOPMENT surfaces only (M-CSA calibration in-scope/OOS + off-M-CSA
+bronze + external negatives). The spent M-CSA held-out was NOT read; nothing was trained; no registry,
+ontology, label, or production threshold was changed. Per standing discipline, τ\* (or any per-family
+thresholds) remains a development-surface recommendation that requires a NEW pre-registered held-out
+(ideally non-M-CSA gold) before becoming a deployment claim. Off-M-CSA labels are bronze (concordance,
+not gold). Verified: recompute reproduces both published recovery curves exactly (0 mismatches) and the
+frontier's in-scope retention matches the recomputed M-CSA retention. New test:
+`tests/test_fold_channel_operating_point.py` (7 tests). Full suite unchanged except the 8 known ML-env
+failures (esm2/mmseqs/foldseek unavailable in the web container).
+
+References:
+
+- `artifacts/v3_fold_channel_operating_point_contract_current702_20260629.json`
+- `work/fold_channel_operating_point_contract_current702_20260629.md`
+- `artifacts/v3_fold_nn_mechanism_recovery_mcsa_baseline_current702_20260628.json`
+- `artifacts/v3_fold_nn_mechanism_recovery_offmcsa_bronze_current702_20260628.json`
+- `artifacts/v3_external_offmcsa_fold_abstention_readout_current702_20260628.json`
+
 ## 2026-06-28: Option B started — the M-CSA held-out is EXHAUSTED; a new untouched off-M-CSA bronze held-out is frozen before any router fix
 
 Decision (user-directed: "pursue Option B — the new held-out"). Done the leakage-safe way: freeze the

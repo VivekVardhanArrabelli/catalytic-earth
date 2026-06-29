@@ -44,6 +44,25 @@ hypothesis on the leakage-safe in-distribution split first.
 
 ---
 
+## 2026-06-29 addendum — the fold channel now has a written operating point (and a per-family wall)
+
+Two things changed on the deployment line since 06-28. (1) The M-CSA held-out one-shot was **spent and
+PASSED** (35/47 recovery at 15/79 OOS FP) — the project's first validated, pre-registered
+mechanism-recovery claim, scoped to M-CSA. (2) The fold (structural) channel now has a **written,
+verifiable operating-point contract** (`build-fold-channel-operating-point`): the measured fold-NN
+readouts are unified into one recovery+rejection curve, with a recommended development-surface point
+**τ\*=0.65** (off-M-CSA recovery 0.71 @ precision 0.90, external false-accept 0.19) and the serving rule
+(sequence → AF structure → foldseek vs atlas → emit if alntmscore ≥ τ\*, else abstain).
+
+**The steer this adds:** the unified per-family view exposed a wall the aggregate numbers hid — at a
+single global τ\* tuned for open-set rejection, **`metal_dependent_hydrolase` recovery collapses
+0.765 → 0.206** while flavin/heme/PLP hold. Metal hydrolases are a structurally diverse superfamily;
+their within-family fold scores run lower. So the next bounded step on the recovery line is a
+**per-family (family-aware) fold threshold**, validated on a fresh pre-registered held-out — not another
+global dial. This runs as pure synthesis in the web container; the held-out validation needs the ML env.
+
+---
+
 ## The one sentence
 
 **We are building a way to search enzymes by *how they catalyze* — the chemical

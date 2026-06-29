@@ -1,0 +1,628 @@
+{
+  "alternative_operating_points": {
+    "high_precision": {
+      "fold_threshold": 0.74,
+      "row": {
+        "fold_threshold": 0.74,
+        "recovery": {
+          "combined": {
+            "abstained": 78,
+            "n": 191,
+            "precision_on_retained": 0.9735,
+            "recovery_of_all_positives": 0.5759,
+            "retained": 113,
+            "retained_recovered": 110
+          },
+          "mcsa_indistribution": {
+            "abstained": 17,
+            "n": 35,
+            "precision_on_retained": 0.9444,
+            "recovery_of_all_positives": 0.4857,
+            "retained": 18,
+            "retained_recovered": 17
+          },
+          "offmcsa_bronze": {
+            "abstained": 61,
+            "n": 156,
+            "precision_on_retained": 0.9789,
+            "recovery_of_all_positives": 0.5962,
+            "retained": 95,
+            "retained_recovered": 93
+          },
+          "offmcsa_per_family": {
+            "flavin_dehydrogenase_reductase": {
+              "recovered_retained": 67,
+              "recovery_of_all_positives": 0.6979,
+              "total": 96
+            },
+            "heme_peroxidase_oxidase": {
+              "recovered_retained": 15,
+              "recovery_of_all_positives": 0.75,
+              "total": 20
+            },
+            "metal_dependent_hydrolase": {
+              "recovered_retained": 7,
+              "recovery_of_all_positives": 0.2059,
+              "total": 34
+            },
+            "plp_dependent_enzyme": {
+              "recovered_retained": 4,
+              "recovery_of_all_positives": 0.6667,
+              "total": 6
+            }
+          }
+        },
+        "rejection": {
+          "external_offmcsa_false_accept_rate": 0.0385,
+          "mcsa_inscope_retention_rate": 0.5143,
+          "mcsa_oos_false_accept_rate": 0.1154
+        }
+      },
+      "selected_because": "maximises off-M-CSA precision on retained"
+    }
+  },
+  "artifact_id": "v3_fold_channel_operating_point_contract_current702_20260629",
+  "caveats": [
+    "Development-surface recommendation, NOT a validated deployment claim: tau* is selected on calibration + bronze + external-negative surfaces.",
+    "Off-M-CSA recovery uses bronze (automation-curated) labels -- it measures fold/sequence concordance, not gold accuracy (non-circular for fold: bronze admission used sequence/cofactor, not structure).",
+    "Coverage is the 4 cofactor atlas families; broader-family behaviour is not measured here.",
+    "n is small (35 M-CSA + 156 off-M-CSA positives; 26 OOS + 52 external negatives); the curve is an estimate, not a precise operating guarantee."
+  ],
+  "created_utc": "2026-06-29T13:58:09Z",
+  "family_robustness_at_recommended_tau": {
+    "criterion": "a family survives the global threshold if recovery at tau* retains >= 50% of its no-abstention recovery",
+    "families_that_collapse_at_recommended_tau": [
+      "metal_dependent_hydrolase"
+    ],
+    "implication": "A single global fold threshold is family-dependent: metal_dependent_hydrolase each lose >50% of recall at tau*=0.65 because their true within-family fold-NN scores run lower than the flavin/heme/PLP families. A per-family threshold (or a family-aware calibration) is the bounded next step before a uniform tau* deploys.",
+    "per_family": [
+      {
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "recovery_at_recommended_tau": 0.8542,
+        "recovery_no_abstention": 0.8646,
+        "retained_recovered_at_recommended_tau": 82,
+        "survives_global_threshold": true,
+        "total": 96
+      },
+      {
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "recovery_at_recommended_tau": 0.2059,
+        "recovery_no_abstention": 0.7647,
+        "retained_recovered_at_recommended_tau": 7,
+        "survives_global_threshold": false,
+        "total": 34
+      },
+      {
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "recovery_at_recommended_tau": 0.8,
+        "recovery_no_abstention": 0.85,
+        "retained_recovered_at_recommended_tau": 16,
+        "survives_global_threshold": true,
+        "total": 20
+      },
+      {
+        "fingerprint_id": "plp_dependent_enzyme",
+        "recovery_at_recommended_tau": 1.0,
+        "recovery_no_abstention": 1.0,
+        "retained_recovered_at_recommended_tau": 6,
+        "survives_global_threshold": true,
+        "total": 6
+      }
+    ],
+    "recommended_tau": 0.65,
+    "single_global_threshold_uniform_across_families": false
+  },
+  "guardrails": {
+    "fingerprint_family_growth": false,
+    "heldout_rows_scored": false,
+    "new_scores_computed": "recomputed from published per-row fold-NN scores; verified to reproduce each readout's published curve (no new measurement)",
+    "production_threshold_changed": false,
+    "registry_or_ontology_changed": false,
+    "supervised_model_trained": false,
+    "threshold_selected_on_heldout": false
+  },
+  "interpretation": {
+    "headline": "FOLD-CHANNEL OPERATING-POINT CONTRACT (development surface): the recommended deployable point is fold-NN tau* = 0.65, where the channel recovers 0.7115 of off-M-CSA positives at 0.8952 precision while abstaining on 0.1923 of external non-M-CSA negatives. The recomputed curve reproduces both published readouts exactly. This is a development-surface recommendation; it needs a fresh pre-registered held-out before it is a deployment claim.",
+    "key_engineering_finding": "A single global fold threshold is family-dependent: metal_dependent_hydrolase each lose >50% of recall at tau*=0.65 because their true within-family fold-NN scores run lower than the flavin/heme/PLP families. A per-family threshold (or a family-aware calibration) is the bounded next step before a uniform tau* deploys."
+  },
+  "no_abstention_reference": {
+    "deployable_open_set": false,
+    "fold_threshold": 0.0,
+    "recovery": {
+      "combined": {
+        "abstained": 0,
+        "n": 191,
+        "precision_on_retained": 0.8377,
+        "recovery_of_all_positives": 0.8377,
+        "retained": 191,
+        "retained_recovered": 160
+      },
+      "mcsa_indistribution": {
+        "abstained": 0,
+        "n": 35,
+        "precision_on_retained": 0.8,
+        "recovery_of_all_positives": 0.8,
+        "retained": 35,
+        "retained_recovered": 28
+      },
+      "offmcsa_bronze": {
+        "abstained": 0,
+        "n": 156,
+        "precision_on_retained": 0.8462,
+        "recovery_of_all_positives": 0.8462,
+        "retained": 156,
+        "retained_recovered": 132
+      }
+    },
+    "rejection": {
+      "external_offmcsa_false_accept_rate": 1.0,
+      "mcsa_inscope_retention_rate": 1.0,
+      "mcsa_oos_false_accept_rate": 1.0,
+      "note": "tau=0 accepts every input by definition; not deployable open-set."
+    }
+  },
+  "objective": {
+    "rationale": "The 0.2 rejection floor mirrors the project's one validated open-set number -- the held-out OOS false-positive rate (0.19) -- so the point is anchored to a validated operating regime rather than tuned to maximise recovery.",
+    "selection_surface": "development only: M-CSA calibration in-scope (35) + OOS (26) + off-M-CSA bronze positives (156) + external non-M-CSA negatives (52). The spent M-CSA held-out one-shot was NOT read.",
+    "statement": "Select the lowest fold-NN threshold whose off-distribution (external non-M-CSA) false-accept rate is <= 0.2; that is the deployable abstaining point."
+  },
+  "operating_point_curve": [
+    {
+      "fold_threshold": 0.5,
+      "recovery": {
+        "combined": {
+          "abstained": 23,
+          "n": 191,
+          "precision_on_retained": 0.881,
+          "recovery_of_all_positives": 0.7749,
+          "retained": 168,
+          "retained_recovered": 148
+        },
+        "mcsa_indistribution": {
+          "abstained": 5,
+          "n": 35,
+          "precision_on_retained": 0.8667,
+          "recovery_of_all_positives": 0.7429,
+          "retained": 30,
+          "retained_recovered": 26
+        },
+        "offmcsa_bronze": {
+          "abstained": 18,
+          "n": 156,
+          "precision_on_retained": 0.8841,
+          "recovery_of_all_positives": 0.7821,
+          "retained": 138,
+          "retained_recovered": 122
+        },
+        "offmcsa_per_family": {
+          "flavin_dehydrogenase_reductase": {
+            "recovered_retained": 83,
+            "recovery_of_all_positives": 0.8646,
+            "total": 96
+          },
+          "heme_peroxidase_oxidase": {
+            "recovered_retained": 16,
+            "recovery_of_all_positives": 0.8,
+            "total": 20
+          },
+          "metal_dependent_hydrolase": {
+            "recovered_retained": 17,
+            "recovery_of_all_positives": 0.5,
+            "total": 34
+          },
+          "plp_dependent_enzyme": {
+            "recovered_retained": 6,
+            "recovery_of_all_positives": 1.0,
+            "total": 6
+          }
+        }
+      },
+      "rejection": {
+        "external_offmcsa_false_accept_rate": 0.7308,
+        "mcsa_inscope_retention_rate": 0.8571,
+        "mcsa_oos_false_accept_rate": 0.6923
+      }
+    },
+    {
+      "fold_threshold": 0.566,
+      "recovery": {
+        "combined": {
+          "abstained": 31,
+          "n": 191,
+          "precision_on_retained": 0.9062,
+          "recovery_of_all_positives": 0.7592,
+          "retained": 160,
+          "retained_recovered": 145
+        },
+        "mcsa_indistribution": {
+          "abstained": 8,
+          "n": 35,
+          "precision_on_retained": 0.9259,
+          "recovery_of_all_positives": 0.7143,
+          "retained": 27,
+          "retained_recovered": 25
+        },
+        "offmcsa_bronze": {
+          "abstained": 23,
+          "n": 156,
+          "precision_on_retained": 0.9023,
+          "recovery_of_all_positives": 0.7692,
+          "retained": 133,
+          "retained_recovered": 120
+        },
+        "offmcsa_per_family": {
+          "flavin_dehydrogenase_reductase": {
+            "recovered_retained": 83,
+            "recovery_of_all_positives": 0.8646,
+            "total": 96
+          },
+          "heme_peroxidase_oxidase": {
+            "recovered_retained": 16,
+            "recovery_of_all_positives": 0.8,
+            "total": 20
+          },
+          "metal_dependent_hydrolase": {
+            "recovered_retained": 15,
+            "recovery_of_all_positives": 0.4412,
+            "total": 34
+          },
+          "plp_dependent_enzyme": {
+            "recovered_retained": 6,
+            "recovery_of_all_positives": 1.0,
+            "total": 6
+          }
+        }
+      },
+      "rejection": {
+        "external_offmcsa_false_accept_rate": 0.5192,
+        "mcsa_inscope_retention_rate": 0.7714,
+        "mcsa_oos_false_accept_rate": 0.5
+      }
+    },
+    {
+      "fold_threshold": 0.6,
+      "recovery": {
+        "combined": {
+          "abstained": 38,
+          "n": 191,
+          "precision_on_retained": 0.902,
+          "recovery_of_all_positives": 0.7225,
+          "retained": 153,
+          "retained_recovered": 138
+        },
+        "mcsa_indistribution": {
+          "abstained": 8,
+          "n": 35,
+          "precision_on_retained": 0.9259,
+          "recovery_of_all_positives": 0.7143,
+          "retained": 27,
+          "retained_recovered": 25
+        },
+        "offmcsa_bronze": {
+          "abstained": 30,
+          "n": 156,
+          "precision_on_retained": 0.8968,
+          "recovery_of_all_positives": 0.7244,
+          "retained": 126,
+          "retained_recovered": 113
+        },
+        "offmcsa_per_family": {
+          "flavin_dehydrogenase_reductase": {
+            "recovered_retained": 83,
+            "recovery_of_all_positives": 0.8646,
+            "total": 96
+          },
+          "heme_peroxidase_oxidase": {
+            "recovered_retained": 16,
+            "recovery_of_all_positives": 0.8,
+            "total": 20
+          },
+          "metal_dependent_hydrolase": {
+            "recovered_retained": 8,
+            "recovery_of_all_positives": 0.2353,
+            "total": 34
+          },
+          "plp_dependent_enzyme": {
+            "recovered_retained": 6,
+            "recovery_of_all_positives": 1.0,
+            "total": 6
+          }
+        }
+      },
+      "rejection": {
+        "external_offmcsa_false_accept_rate": 0.3462,
+        "mcsa_inscope_retention_rate": 0.7714,
+        "mcsa_oos_false_accept_rate": 0.4615
+      }
+    },
+    {
+      "fold_threshold": 0.65,
+      "recovery": {
+        "combined": {
+          "abstained": 42,
+          "n": 191,
+          "precision_on_retained": 0.906,
+          "recovery_of_all_positives": 0.7068,
+          "retained": 149,
+          "retained_recovered": 135
+        },
+        "mcsa_indistribution": {
+          "abstained": 10,
+          "n": 35,
+          "precision_on_retained": 0.96,
+          "recovery_of_all_positives": 0.6857,
+          "retained": 25,
+          "retained_recovered": 24
+        },
+        "offmcsa_bronze": {
+          "abstained": 32,
+          "n": 156,
+          "precision_on_retained": 0.8952,
+          "recovery_of_all_positives": 0.7115,
+          "retained": 124,
+          "retained_recovered": 111
+        },
+        "offmcsa_per_family": {
+          "flavin_dehydrogenase_reductase": {
+            "recovered_retained": 82,
+            "recovery_of_all_positives": 0.8542,
+            "total": 96
+          },
+          "heme_peroxidase_oxidase": {
+            "recovered_retained": 16,
+            "recovery_of_all_positives": 0.8,
+            "total": 20
+          },
+          "metal_dependent_hydrolase": {
+            "recovered_retained": 7,
+            "recovery_of_all_positives": 0.2059,
+            "total": 34
+          },
+          "plp_dependent_enzyme": {
+            "recovered_retained": 6,
+            "recovery_of_all_positives": 1.0,
+            "total": 6
+          }
+        }
+      },
+      "rejection": {
+        "external_offmcsa_false_accept_rate": 0.1923,
+        "mcsa_inscope_retention_rate": 0.7143,
+        "mcsa_oos_false_accept_rate": 0.1923
+      }
+    },
+    {
+      "fold_threshold": 0.7,
+      "recovery": {
+        "combined": {
+          "abstained": 59,
+          "n": 191,
+          "precision_on_retained": 0.9091,
+          "recovery_of_all_positives": 0.6283,
+          "retained": 132,
+          "retained_recovered": 120
+        },
+        "mcsa_indistribution": {
+          "abstained": 15,
+          "n": 35,
+          "precision_on_retained": 0.95,
+          "recovery_of_all_positives": 0.5429,
+          "retained": 20,
+          "retained_recovered": 19
+        },
+        "offmcsa_bronze": {
+          "abstained": 44,
+          "n": 156,
+          "precision_on_retained": 0.9018,
+          "recovery_of_all_positives": 0.6474,
+          "retained": 112,
+          "retained_recovered": 101
+        },
+        "offmcsa_per_family": {
+          "flavin_dehydrogenase_reductase": {
+            "recovered_retained": 73,
+            "recovery_of_all_positives": 0.7604,
+            "total": 96
+          },
+          "heme_peroxidase_oxidase": {
+            "recovered_retained": 16,
+            "recovery_of_all_positives": 0.8,
+            "total": 20
+          },
+          "metal_dependent_hydrolase": {
+            "recovered_retained": 7,
+            "recovery_of_all_positives": 0.2059,
+            "total": 34
+          },
+          "plp_dependent_enzyme": {
+            "recovered_retained": 5,
+            "recovery_of_all_positives": 0.8333,
+            "total": 6
+          }
+        }
+      },
+      "rejection": {
+        "external_offmcsa_false_accept_rate": 0.0577,
+        "mcsa_inscope_retention_rate": 0.5714,
+        "mcsa_oos_false_accept_rate": 0.1538
+      }
+    },
+    {
+      "fold_threshold": 0.74,
+      "recovery": {
+        "combined": {
+          "abstained": 78,
+          "n": 191,
+          "precision_on_retained": 0.9735,
+          "recovery_of_all_positives": 0.5759,
+          "retained": 113,
+          "retained_recovered": 110
+        },
+        "mcsa_indistribution": {
+          "abstained": 17,
+          "n": 35,
+          "precision_on_retained": 0.9444,
+          "recovery_of_all_positives": 0.4857,
+          "retained": 18,
+          "retained_recovered": 17
+        },
+        "offmcsa_bronze": {
+          "abstained": 61,
+          "n": 156,
+          "precision_on_retained": 0.9789,
+          "recovery_of_all_positives": 0.5962,
+          "retained": 95,
+          "retained_recovered": 93
+        },
+        "offmcsa_per_family": {
+          "flavin_dehydrogenase_reductase": {
+            "recovered_retained": 67,
+            "recovery_of_all_positives": 0.6979,
+            "total": 96
+          },
+          "heme_peroxidase_oxidase": {
+            "recovered_retained": 15,
+            "recovery_of_all_positives": 0.75,
+            "total": 20
+          },
+          "metal_dependent_hydrolase": {
+            "recovered_retained": 7,
+            "recovery_of_all_positives": 0.2059,
+            "total": 34
+          },
+          "plp_dependent_enzyme": {
+            "recovered_retained": 4,
+            "recovery_of_all_positives": 0.6667,
+            "total": 6
+          }
+        }
+      },
+      "rejection": {
+        "external_offmcsa_false_accept_rate": 0.0385,
+        "mcsa_inscope_retention_rate": 0.5143,
+        "mcsa_oos_false_accept_rate": 0.1154
+      }
+    }
+  ],
+  "question": "What is the deployable fold-channel operating point -- the threshold on the top-1 fold-NN alignment-TM score that turns the validated structural signal into a mechanism call with a calibrated open-set abstention -- and what does it deliver on the measured development surfaces?",
+  "recommended_operating_point": {
+    "fold_threshold": 0.65,
+    "found": true,
+    "row": {
+      "fold_threshold": 0.65,
+      "recovery": {
+        "combined": {
+          "abstained": 42,
+          "n": 191,
+          "precision_on_retained": 0.906,
+          "recovery_of_all_positives": 0.7068,
+          "retained": 149,
+          "retained_recovered": 135
+        },
+        "mcsa_indistribution": {
+          "abstained": 10,
+          "n": 35,
+          "precision_on_retained": 0.96,
+          "recovery_of_all_positives": 0.6857,
+          "retained": 25,
+          "retained_recovered": 24
+        },
+        "offmcsa_bronze": {
+          "abstained": 32,
+          "n": 156,
+          "precision_on_retained": 0.8952,
+          "recovery_of_all_positives": 0.7115,
+          "retained": 124,
+          "retained_recovered": 111
+        },
+        "offmcsa_per_family": {
+          "flavin_dehydrogenase_reductase": {
+            "recovered_retained": 82,
+            "recovery_of_all_positives": 0.8542,
+            "total": 96
+          },
+          "heme_peroxidase_oxidase": {
+            "recovered_retained": 16,
+            "recovery_of_all_positives": 0.8,
+            "total": 20
+          },
+          "metal_dependent_hydrolase": {
+            "recovered_retained": 7,
+            "recovery_of_all_positives": 0.2059,
+            "total": 34
+          },
+          "plp_dependent_enzyme": {
+            "recovered_retained": 6,
+            "recovery_of_all_positives": 1.0,
+            "total": 6
+          }
+        }
+      },
+      "rejection": {
+        "external_offmcsa_false_accept_rate": 0.1923,
+        "mcsa_inscope_retention_rate": 0.7143,
+        "mcsa_oos_false_accept_rate": 0.1923
+      }
+    },
+    "selected_because": "lowest grid threshold with external off-distribution false-accept rate <= 0.2"
+  },
+  "requires_before_deployment": [
+    "A NEW pre-registered held-out (ideally including non-M-CSA gold rows) that validates tau* once, after it is frozen -- per the standing discipline that every operating-point change needs a fresh unbiased test.",
+    "A gold-labelled off-M-CSA recovery check to replace the bronze concordance estimate."
+  ],
+  "result_class": "development_surface_operating_point_synthesis_no_heldout_read_no_training",
+  "schema_version": "fold_channel_operating_point_contract.v1",
+  "serving_contract": {
+    "abstain_rule": "Abstain below tau*: the channel is a high-precision retriever with a calibrated open-set reject, not a forced classifier.",
+    "atlas": "M-CSA fold atlas (the in-distribution structural reference set)",
+    "decision_function": [
+      "input: protein sequence",
+      "1. predict structure (AlphaFold / equivalent) -> 3D coordinates",
+      "2. foldseek query vs the M-CSA fold atlas -> top-1 hit (target accession, target fingerprint_id, alntmscore s)",
+      "3. if s >= tau* (0.65): emit (mechanism = target fingerprint_id, confidence = s)",
+      "   else: ABSTAIN (out-of-scope / novel mechanism)"
+    ],
+    "expected_behaviour_on_development_surfaces": {
+      "external_offmcsa_false_accept_rate": 0.1923,
+      "mcsa_inscope_retention_rate": 0.7143,
+      "mcsa_oos_false_accept_rate": 0.1923,
+      "offmcsa_precision_on_retained": 0.8952,
+      "offmcsa_recovery_of_all_positives": 0.7115
+    },
+    "tau_star": 0.65
+  },
+  "source_artifacts": {
+    "mcsa_recovery_baseline": {
+      "artifact_id": "v3_fold_nn_mechanism_recovery_readout_current702_20260628",
+      "path": "artifacts/v3_fold_nn_mechanism_recovery_mcsa_baseline_current702_20260628.json",
+      "sha256": "43c8fa6a8c7245467ef41ff74b5b5065b7f9e9b17f395d57f9283105daac54aa",
+      "status": "fold_nn_mechanism_recovery_readout_complete"
+    },
+    "offmcsa_abstention": {
+      "artifact_id": "v3_external_offmcsa_fold_abstention_readout_current702_20260628",
+      "path": "artifacts/v3_external_offmcsa_fold_abstention_readout_current702_20260628.json",
+      "sha256": "5ea9f44b378fda69e4c2917b64fee682fe77b68a921b4ee76ab87cf356092439",
+      "status": "fold_nn_abstention_signal_generalizes_off_mcsa"
+    },
+    "offmcsa_recovery": {
+      "artifact_id": "v3_fold_nn_mechanism_recovery_readout_current702_20260628",
+      "path": "artifacts/v3_fold_nn_mechanism_recovery_offmcsa_bronze_current702_20260628.json",
+      "sha256": "caa18013cc06d81b218d606af9b752e867fbfac28ca02bb1544928305fe21d24",
+      "status": "fold_nn_mechanism_recovery_readout_complete"
+    }
+  },
+  "status": "fold_channel_operating_point_contract_development_surface_pending_heldout_validation",
+  "threshold_grid": [
+    0.5,
+    0.566,
+    0.6,
+    0.65,
+    0.7,
+    0.74
+  ],
+  "verification": {
+    "recompute_matches_published_mcsa_curve": true,
+    "recompute_matches_published_offmcsa_curve": true,
+    "recomputed_inscope_retention_matches_frontier": true
+  }
+}

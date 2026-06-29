@@ -176,6 +176,11 @@ from .fold_channel_deployment_readiness import (
     DEFAULT_REPORT_PATH as DEFAULT_FOLD_READINESS_REPORT_PATH,
     write_fold_channel_deployment_readiness,
 )
+from .fold_channel_operating_point import (
+    DEFAULT_OUT_PATH as DEFAULT_FOLD_OPPOINT_OUT_PATH,
+    DEFAULT_REPORT_PATH as DEFAULT_FOLD_OPPOINT_REPORT_PATH,
+    write_fold_channel_operating_point,
+)
 from .atlas_broadening_feasibility import (
     DEFAULT_ATLAS_MANIFEST_PATH as DEFAULT_ATLAS_BROADEN_ATLAS_MANIFEST_PATH,
     DEFAULT_CURATED_LABELS_PATH as DEFAULT_ATLAS_BROADEN_CURATED_LABELS_PATH,
@@ -3183,6 +3188,25 @@ def cmd_build_fold_channel_deployment_readiness(args: argparse.Namespace) -> int
         f"{args.out} ({summary.get('status')}; off-M-CSA recovery "
         f"{off.get('recovery_half', {}).get('recovery')}; both halves generalize "
         f"{off.get('both_halves_generalize_off_mcsa')})"
+    )
+    return 0
+
+
+def cmd_build_fold_channel_operating_point(args: argparse.Namespace) -> int:
+    summary = write_fold_channel_operating_point(
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    rec = summary.get("recommended_operating_point", {})
+    sc = summary.get("serving_contract", {}).get(
+        "expected_behaviour_on_development_surfaces", {}
+    )
+    print(
+        "Wrote fold-channel operating-point contract to "
+        f"{args.out} ({summary.get('status')}; tau*={rec.get('fold_threshold')}; "
+        f"offMCSA recovery {sc.get('offmcsa_recovery_of_all_positives')} @ precision "
+        f"{sc.get('offmcsa_precision_on_retained')}; external false-accept "
+        f"{sc.get('external_offmcsa_false_accept_rate')})"
     )
     return 0
 
@@ -24049,6 +24073,26 @@ def build_parser() -> argparse.ArgumentParser:
     )
     fold_channel_deployment_readiness.set_defaults(
         func=cmd_build_fold_channel_deployment_readiness
+    )
+
+    fold_channel_operating_point = subparsers.add_parser(
+        "build-fold-channel-operating-point",
+        help=(
+            "synthesise the measured fold-NN readouts into one deployable "
+            "operating-point curve + serving contract (development surface, "
+            "recomputed from per-row scores, no held-out read, no training)"
+        ),
+    )
+    fold_channel_operating_point.add_argument(
+        "--out",
+        default=DEFAULT_FOLD_OPPOINT_OUT_PATH,
+    )
+    fold_channel_operating_point.add_argument(
+        "--report",
+        default=DEFAULT_FOLD_OPPOINT_REPORT_PATH,
+    )
+    fold_channel_operating_point.set_defaults(
+        func=cmd_build_fold_channel_operating_point
     )
 
     atlas_broadening_feasibility = subparsers.add_parser(
