@@ -1,0 +1,555 @@
+{
+ "artifact_id": "v3_gate3_lab_candidate_shortlist_current702_20260629",
+ "created_utc": "2026-06-29T14:34:37Z",
+ "schema_version": "gate3_lab_candidate_shortlist.v1",
+ "result_class": "read_only_composition_no_registry_no_threshold_no_heldout_change",
+ "operating_point": {
+  "router": "june9_coarse_validated",
+  "fold_gate_alntmscore": 0.7,
+  "fold_gate_provenance": "M-CSA baseline: fold>=0.65 -> 24/25=0.96 precision; off-M-CSA bronze recovery 132/156"
+ },
+ "candidate_pool": {
+  "source": "artifacts/v3_fold_nn_mechanism_recovery_offmcsa_bronze_current702_20260628.json",
+  "pool_size": 112,
+  "families": [
+   "flavin_dehydrogenase_reductase",
+   "heme_peroxidase_oxidase",
+   "metal_dependent_hydrolase",
+   "plp_dependent_enzyme"
+  ]
+ },
+ "critical_finding": "Every one of the 112 confident off-M-CSA candidates is reviewed Swiss-Prot with 'Evidence at protein level' \u2014 i.e. already experimentally characterized. The annotation-anchored bronze pool contains NO unknown-function proteins, so it cannot yield a novel benchtop discovery target. It is a validation set, not a discovery set.",
+ "tiers": {
+  "blind_validation_panel": [
+   {
+    "accession": "O08498",
+    "reviewed": "Swiss-Prot",
+    "organism": "Elizabethkingia meningoseptica",
+    "name": "Metallo-beta-lactamase type 2",
+    "ec": "3.5.2.6",
+    "evidence": "Evidence at protein level",
+    "fold_tm_to_atlas": 0.946,
+    "predicted_mechanism_family": "metal_dependent_hydrolase",
+    "cofactor_channel_family": "metal_dependent_hydrolase",
+    "channels_agree": true,
+    "atlas_neighbor": {
+     "accession": "P25910",
+     "reviewed": "Swiss-Prot",
+     "organism": "Bacteroides fragilis",
+     "name": "Metallo-beta-lactamase type 2",
+     "ec": "3.5.2.6",
+     "evidence": "Evidence at protein level"
+    },
+    "suggested_assay": "Hydrolase activity on the family substrate (e.g. nitrocefin/\u03b2-lactam hydrolysis for MBLs); Zn2+ dependence + metal-chelation (EDTA) abolition.",
+    "role": "blind_validation"
+   },
+   {
+    "accession": "Q7WYA8",
+    "reviewed": "Swiss-Prot",
+    "organism": "Pseudomonas aeruginosa",
+    "name": "Metallo-beta-lactamase type 2",
+    "ec": "3.5.2.6",
+    "evidence": "Evidence at protein level",
+    "fold_tm_to_atlas": 0.934,
+    "predicted_mechanism_family": "metal_dependent_hydrolase",
+    "cofactor_channel_family": "metal_dependent_hydrolase",
+    "channels_agree": true,
+    "atlas_neighbor": {
+     "accession": "P25910",
+     "reviewed": "Swiss-Prot",
+     "organism": "Bacteroides fragilis",
+     "name": "Metallo-beta-lactamase type 2",
+     "ec": "3.5.2.6",
+     "evidence": "Evidence at protein level"
+    },
+    "suggested_assay": "Hydrolase activity on the family substrate (e.g. nitrocefin/\u03b2-lactam hydrolysis for MBLs); Zn2+ dependence + metal-chelation (EDTA) abolition.",
+    "role": "blind_validation"
+   },
+   {
+    "accession": "Q840P9",
+    "reviewed": "Swiss-Prot",
+    "organism": "Pseudomonas aeruginosa",
+    "name": "Metallo-beta-lactamase VIM-7",
+    "ec": "3.5.2.6",
+    "evidence": "Evidence at protein level",
+    "fold_tm_to_atlas": 0.925,
+    "predicted_mechanism_family": "metal_dependent_hydrolase",
+    "cofactor_channel_family": "metal_dependent_hydrolase",
+    "channels_agree": true,
+    "atlas_neighbor": {
+     "accession": "P04190",
+     "reviewed": "Swiss-Prot",
+     "organism": "Bacillus cereus",
+     "name": "Metallo-beta-lactamase type 2",
+     "ec": "3.5.2.6",
+     "evidence": "Evidence at protein level"
+    },
+    "suggested_assay": "Hydrolase activity on the family substrate (e.g. nitrocefin/\u03b2-lactam hydrolysis for MBLs); Zn2+ dependence + metal-chelation (EDTA) abolition.",
+    "role": "blind_validation"
+   },
+   {
+    "accession": "P16435",
+    "reviewed": "Swiss-Prot",
+    "organism": "Homo sapiens",
+    "name": "NADPH--cytochrome P450 reductase",
+    "ec": "1.6.2.4",
+    "evidence": "Evidence at protein level",
+    "fold_tm_to_atlas": 0.992,
+    "predicted_mechanism_family": "flavin_dehydrogenase_reductase",
+    "cofactor_channel_family": "flavin_dehydrogenase_reductase",
+    "channels_agree": true,
+    "atlas_neighbor": {
+     "accession": "P00388",
+     "reviewed": "Swiss-Prot",
+     "organism": "Rattus norvegicus",
+     "name": "NADPH--cytochrome P450 reductase",
+     "ec": "1.6.2.4",
+     "evidence": "Evidence at protein level"
+    },
+    "suggested_assay": "NAD(P)H oxidation (340 nm) coupled to electron-acceptor reduction; FAD/FMN cofactor confirmation.",
+    "role": "blind_validation"
+   },
+   {
+    "accession": "Q9ZNT1",
+    "reviewed": "Swiss-Prot",
+    "organism": "Arabidopsis thaliana",
+    "name": "NADH--cytochrome b5 reductase 1",
+    "ec": "1.6.2.2",
+    "evidence": "Evidence at protein level",
+    "fold_tm_to_atlas": 0.972,
+    "predicted_mechanism_family": "flavin_dehydrogenase_reductase",
+    "cofactor_channel_family": "flavin_dehydrogenase_reductase",
+    "channels_agree": true,
+    "atlas_neighbor": {
+     "accession": "P83686",
+     "reviewed": "Swiss-Prot",
+     "organism": "Sus scrofa",
+     "name": "NADH-cytochrome b5 reductase 3",
+     "ec": "1.6.2.2",
+     "evidence": "Evidence at protein level"
+    },
+    "suggested_assay": "NAD(P)H oxidation (340 nm) coupled to electron-acceptor reduction; FAD/FMN cofactor confirmation.",
+    "role": "blind_validation"
+   },
+   {
+    "accession": "Q8GYB8",
+    "reviewed": "Swiss-Prot",
+    "organism": "Arabidopsis thaliana",
+    "name": "12-oxophytodienoate reductase 2",
+    "ec": "1.3.1.-; 1.3.1.42",
+    "evidence": "Evidence at protein level",
+    "fold_tm_to_atlas": 0.959,
+    "predicted_mechanism_family": "flavin_dehydrogenase_reductase",
+    "cofactor_channel_family": "flavin_dehydrogenase_reductase",
+    "channels_agree": true,
+    "atlas_neighbor": {
+     "accession": "Q9FEW9",
+     "reviewed": "Swiss-Prot",
+     "organism": "Solanum lycopersicum",
+     "name": "12-oxophytodienoate reductase 3",
+     "ec": "1.3.1.42",
+     "evidence": "Evidence at protein level"
+    },
+    "suggested_assay": "NAD(P)H oxidation (340 nm) coupled to electron-acceptor reduction; FAD/FMN cofactor confirmation.",
+    "role": "blind_validation"
+   },
+   {
+    "accession": "Q9MA74",
+    "reviewed": "Swiss-Prot",
+    "organism": "Arabidopsis thaliana",
+    "name": "Serine decarboxylase",
+    "ec": "4.1.1.-",
+    "evidence": "Evidence at protein level",
+    "fold_tm_to_atlas": 0.803,
+    "predicted_mechanism_family": "plp_dependent_enzyme",
+    "cofactor_channel_family": "plp_dependent_enzyme",
+    "channels_agree": true,
+    "atlas_neighbor": {
+     "accession": "P77444",
+     "reviewed": "Swiss-Prot",
+     "organism": "Escherichia coli",
+     "name": "Cysteine desulfurase",
+     "ec": "2.8.1.7; 3.13.1.-; 4.4.1.16",
+     "evidence": "Evidence at protein level"
+    },
+    "suggested_assay": "PLP-dependent turnover on the proposed substrate; 420 nm PLP-aldimine spectral signature; PLP-dependence.",
+    "role": "blind_validation"
+   },
+   {
+    "accession": "O95470",
+    "reviewed": "Swiss-Prot",
+    "organism": "Homo sapiens",
+    "name": "Sphingosine-1-phosphate lyase 1",
+    "ec": "4.1.2.27",
+    "evidence": "Evidence at protein level",
+    "fold_tm_to_atlas": 0.792,
+    "predicted_mechanism_family": "plp_dependent_enzyme",
+    "cofactor_channel_family": "plp_dependent_enzyme",
+    "channels_agree": true,
+    "atlas_neighbor": {
+     "accession": "P77444",
+     "reviewed": "Swiss-Prot",
+     "organism": "Escherichia coli",
+     "name": "Cysteine desulfurase",
+     "ec": "2.8.1.7; 3.13.1.-; 4.4.1.16",
+     "evidence": "Evidence at protein level"
+    },
+    "suggested_assay": "PLP-dependent turnover on the proposed substrate; 420 nm PLP-aldimine spectral signature; PLP-dependence.",
+    "role": "blind_validation"
+   },
+   {
+    "accession": "P34896",
+    "reviewed": "Swiss-Prot",
+    "organism": "Homo sapiens",
+    "name": "Serine hydroxymethyltransferase, cytosolic",
+    "ec": "2.1.2.1",
+    "evidence": "Evidence at protein level",
+    "fold_tm_to_atlas": 0.787,
+    "predicted_mechanism_family": "plp_dependent_enzyme",
+    "cofactor_channel_family": "plp_dependent_enzyme",
+    "channels_agree": true,
+    "atlas_neighbor": {
+     "accession": "P0AB77",
+     "reviewed": "Swiss-Prot",
+     "organism": "Escherichia coli",
+     "name": "2-amino-3-ketobutyrate coenzyme A ligase",
+     "ec": "2.3.1.29",
+     "evidence": "Evidence at protein level"
+    },
+    "suggested_assay": "PLP-dependent turnover on the proposed substrate; 420 nm PLP-aldimine spectral signature; PLP-dependence.",
+    "role": "blind_validation"
+   },
+   {
+    "accession": "Q55DH8",
+    "reviewed": "Swiss-Prot",
+    "organism": "Dictyostelium discoideum",
+    "name": "Catalase-B",
+    "ec": "1.11.1.6",
+    "evidence": "Evidence at protein level",
+    "fold_tm_to_atlas": 0.98,
+    "predicted_mechanism_family": "heme_peroxidase_oxidase",
+    "cofactor_channel_family": "heme_peroxidase_oxidase",
+    "channels_agree": true,
+    "atlas_neighbor": {
+     "accession": "P21179",
+     "reviewed": "Swiss-Prot",
+     "organism": "Escherichia coli",
+     "name": "Catalase HPII",
+     "ec": "1.11.1.6",
+     "evidence": "Evidence at protein level"
+    },
+    "suggested_assay": "H2O2 decomposition (catalase, 240 nm) or peroxidase dye oxidation; heme (Soret ~405 nm) confirmation.",
+    "role": "blind_validation"
+   },
+   {
+    "accession": "P26901",
+    "reviewed": "Swiss-Prot",
+    "organism": "Bacillus subtilis",
+    "name": "Vegetative catalase",
+    "ec": "1.11.1.6",
+    "evidence": "Evidence at protein level",
+    "fold_tm_to_atlas": 0.978,
+    "predicted_mechanism_family": "heme_peroxidase_oxidase",
+    "cofactor_channel_family": "heme_peroxidase_oxidase",
+    "channels_agree": true,
+    "atlas_neighbor": {
+     "accession": "P21179",
+     "reviewed": "Swiss-Prot",
+     "organism": "Escherichia coli",
+     "name": "Catalase HPII",
+     "ec": "1.11.1.6",
+     "evidence": "Evidence at protein level"
+    },
+    "suggested_assay": "H2O2 decomposition (catalase, 240 nm) or peroxidase dye oxidation; heme (Soret ~405 nm) confirmation.",
+    "role": "blind_validation"
+   },
+   {
+    "accession": "Q0E4K1",
+    "reviewed": "Swiss-Prot",
+    "organism": "Oryza sativa subsp. japonica",
+    "name": "Catalase isozyme A",
+    "ec": "1.11.1.6",
+    "evidence": "Evidence at protein level",
+    "fold_tm_to_atlas": 0.966,
+    "predicted_mechanism_family": "heme_peroxidase_oxidase",
+    "cofactor_channel_family": "heme_peroxidase_oxidase",
+    "channels_agree": true,
+    "atlas_neighbor": {
+     "accession": "P21179",
+     "reviewed": "Swiss-Prot",
+     "organism": "Escherichia coli",
+     "name": "Catalase HPII",
+     "ec": "1.11.1.6",
+     "evidence": "Evidence at protein level"
+    },
+    "suggested_assay": "H2O2 decomposition (catalase, 240 nm) or peroxidase dye oxidation; heme (Soret ~405 nm) confirmation.",
+    "role": "blind_validation"
+   }
+  ],
+  "multi_cofactor_discovery": [
+   {
+    "accession": "Q97GC0",
+    "reviewed": "Swiss-Prot",
+    "organism": "Clostridium acetobutylicum",
+    "name": "Flavo-diiron protein FprA2",
+    "ec": "1.6.3.4",
+    "evidence": "Evidence at protein level",
+    "fold_tm_to_atlas": 0.801,
+    "predicted_mechanism_family": "metal_dependent_hydrolase",
+    "cofactor_channel_family": "flavin_dehydrogenase_reductase",
+    "channels_agree": false,
+    "atlas_neighbor": {
+     "accession": "P04190",
+     "reviewed": "Swiss-Prot",
+     "organism": "Bacillus cereus",
+     "name": "Metallo-beta-lactamase type 2",
+     "ec": "3.5.2.6",
+     "evidence": "Evidence at protein level"
+    },
+    "suggested_assay": "Assay BOTH activities: flavin-dependent NAD(P)H oxidation AND di-iron O2/NO reductase (FprA-type); confirm di-iron center spectroscopically.",
+    "role": "multi_cofactor_discovery",
+    "insight": "Fold channel matches a di-iron metallo-hydrolase fold (metallo-\u03b2-lactamase neighbor) while the cofactor channel calls flavin. The protein is a flavo-di-iron protein with BOTH a flavin and a di-iron site \u2014 the fold channel correctly surfaces a second catalytic module the cofactor label collapses."
+   },
+   {
+    "accession": "Q97K92",
+    "reviewed": "Swiss-Prot",
+    "organism": "Clostridium acetobutylicum",
+    "name": "Flavo-diiron protein FprA1",
+    "ec": "1.6.3.4",
+    "evidence": "Evidence at protein level",
+    "fold_tm_to_atlas": 0.807,
+    "predicted_mechanism_family": "metal_dependent_hydrolase",
+    "cofactor_channel_family": "flavin_dehydrogenase_reductase",
+    "channels_agree": false,
+    "atlas_neighbor": {
+     "accession": "P04190",
+     "reviewed": "Swiss-Prot",
+     "organism": "Bacillus cereus",
+     "name": "Metallo-beta-lactamase type 2",
+     "ec": "3.5.2.6",
+     "evidence": "Evidence at protein level"
+    },
+    "suggested_assay": "Assay BOTH activities: flavin-dependent NAD(P)H oxidation AND di-iron O2/NO reductase (FprA-type); confirm di-iron center spectroscopically.",
+    "role": "multi_cofactor_discovery",
+    "insight": "Fold channel matches a di-iron metallo-hydrolase fold (metallo-\u03b2-lactamase neighbor) while the cofactor channel calls flavin. The protein is a flavo-di-iron protein with BOTH a flavin and a di-iron site \u2014 the fold channel correctly surfaces a second catalytic module the cofactor label collapses."
+   }
+  ],
+  "caution_do_not_test": [
+   {
+    "accession": "C1I202",
+    "reviewed": "Swiss-Prot",
+    "organism": "Pseudomonas sp.",
+    "name": "p-benzoquinone reductase",
+    "ec": "1.6.5.6",
+    "evidence": "Evidence at protein level",
+    "fold_tm_to_atlas": 0.714,
+    "predicted_mechanism_family": "heme_peroxidase_oxidase",
+    "cofactor_channel_family": "flavin_dehydrogenase_reductase",
+    "channels_agree": false,
+    "atlas_neighbor": {
+     "accession": "P14779",
+     "reviewed": "Swiss-Prot",
+     "organism": "Priestia megaterium",
+     "name": "Bifunctional cytochrome P450/NADPH--P450 reductase",
+     "ec": "1.14.14.1; 1.6.2.4",
+     "evidence": "Evidence at protein level"
+    },
+    "suggested_assay": "H2O2 decomposition (catalase, 240 nm) or peroxidase dye oxidation; heme (Soret ~405 nm) confirmation.",
+    "role": "caution_label_transfer_artifact",
+    "insight": "Fold matched a multidomain flavohemoprotein (cyt P450-BM3, P14779) and inherited its heme label, but these are flavin-only quinone reductases. Multidomain label-transfer artifact \u2014 NOT a lab target."
+   },
+   {
+    "accession": "O32224",
+    "reviewed": "Swiss-Prot",
+    "organism": "Bacillus subtilis",
+    "name": "FMN-dependent NADH:quinone oxidoreductase 2",
+    "ec": "1.6.5.-; 1.7.1.17",
+    "evidence": "Evidence at protein level",
+    "fold_tm_to_atlas": 0.714,
+    "predicted_mechanism_family": "heme_peroxidase_oxidase",
+    "cofactor_channel_family": "flavin_dehydrogenase_reductase",
+    "channels_agree": false,
+    "atlas_neighbor": {
+     "accession": "P14779",
+     "reviewed": "Swiss-Prot",
+     "organism": "Priestia megaterium",
+     "name": "Bifunctional cytochrome P450/NADPH--P450 reductase",
+     "ec": "1.14.14.1; 1.6.2.4",
+     "evidence": "Evidence at protein level"
+    },
+    "suggested_assay": "H2O2 decomposition (catalase, 240 nm) or peroxidase dye oxidation; heme (Soret ~405 nm) confirmation.",
+    "role": "caution_label_transfer_artifact",
+    "insight": "Fold matched a multidomain flavohemoprotein (cyt P450-BM3, P14779) and inherited its heme label, but these are flavin-only quinone reductases. Multidomain label-transfer artifact \u2014 NOT a lab target."
+   },
+   {
+    "accession": "P0A8G6",
+    "reviewed": "Swiss-Prot",
+    "organism": "Escherichia coli",
+    "name": "NAD(P)H dehydrogenase",
+    "ec": "1.6.5.2",
+    "evidence": "Evidence at protein level",
+    "fold_tm_to_atlas": 0.719,
+    "predicted_mechanism_family": "heme_peroxidase_oxidase",
+    "cofactor_channel_family": "flavin_dehydrogenase_reductase",
+    "channels_agree": false,
+    "atlas_neighbor": {
+     "accession": "P14779",
+     "reviewed": "Swiss-Prot",
+     "organism": "Priestia megaterium",
+     "name": "Bifunctional cytochrome P450/NADPH--P450 reductase",
+     "ec": "1.14.14.1; 1.6.2.4",
+     "evidence": "Evidence at protein level"
+    },
+    "suggested_assay": "H2O2 decomposition (catalase, 240 nm) or peroxidase dye oxidation; heme (Soret ~405 nm) confirmation.",
+    "role": "caution_label_transfer_artifact",
+    "insight": "Fold matched a multidomain flavohemoprotein (cyt P450-BM3, P14779) and inherited its heme label, but these are flavin-only quinone reductases. Multidomain label-transfer artifact \u2014 NOT a lab target."
+   },
+   {
+    "accession": "P0AEY5",
+    "reviewed": "Swiss-Prot",
+    "organism": "Escherichia coli",
+    "name": "NADPH:quinone oxidoreductase MdaB",
+    "ec": "1.6.5.10",
+    "evidence": "Evidence at protein level",
+    "fold_tm_to_atlas": 0.709,
+    "predicted_mechanism_family": "heme_peroxidase_oxidase",
+    "cofactor_channel_family": "flavin_dehydrogenase_reductase",
+    "channels_agree": false,
+    "atlas_neighbor": {
+     "accession": "P14779",
+     "reviewed": "Swiss-Prot",
+     "organism": "Priestia megaterium",
+     "name": "Bifunctional cytochrome P450/NADPH--P450 reductase",
+     "ec": "1.14.14.1; 1.6.2.4",
+     "evidence": "Evidence at protein level"
+    },
+    "suggested_assay": "H2O2 decomposition (catalase, 240 nm) or peroxidase dye oxidation; heme (Soret ~405 nm) confirmation.",
+    "role": "caution_label_transfer_artifact",
+    "insight": "Fold matched a multidomain flavohemoprotein (cyt P450-BM3, P14779) and inherited its heme label, but these are flavin-only quinone reductases. Multidomain label-transfer artifact \u2014 NOT a lab target."
+   },
+   {
+    "accession": "P74312",
+    "reviewed": "Swiss-Prot",
+    "organism": "Synechocystis sp.",
+    "name": "NADPH-dependent quinone reductase ArsH",
+    "ec": "1.6.5.2",
+    "evidence": "Evidence at protein level",
+    "fold_tm_to_atlas": 0.724,
+    "predicted_mechanism_family": "heme_peroxidase_oxidase",
+    "cofactor_channel_family": "flavin_dehydrogenase_reductase",
+    "channels_agree": false,
+    "atlas_neighbor": {
+     "accession": "P14779",
+     "reviewed": "Swiss-Prot",
+     "organism": "Priestia megaterium",
+     "name": "Bifunctional cytochrome P450/NADPH--P450 reductase",
+     "ec": "1.14.14.1; 1.6.2.4",
+     "evidence": "Evidence at protein level"
+    },
+    "suggested_assay": "H2O2 decomposition (catalase, 240 nm) or peroxidase dye oxidation; heme (Soret ~405 nm) confirmation.",
+    "role": "caution_label_transfer_artifact",
+    "insight": "Fold matched a multidomain flavohemoprotein (cyt P450-BM3, P14779) and inherited its heme label, but these are flavin-only quinone reductases. Multidomain label-transfer artifact \u2014 NOT a lab target."
+   },
+   {
+    "accession": "Q64669",
+    "reviewed": "Swiss-Prot",
+    "organism": "Mus musculus",
+    "name": "NAD(P)H dehydrogenase [quinone] 1",
+    "ec": "1.6.5.2",
+    "evidence": "Evidence at protein level",
+    "fold_tm_to_atlas": 0.7,
+    "predicted_mechanism_family": "heme_peroxidase_oxidase",
+    "cofactor_channel_family": "flavin_dehydrogenase_reductase",
+    "channels_agree": false,
+    "atlas_neighbor": {
+     "accession": "P14779",
+     "reviewed": "Swiss-Prot",
+     "organism": "Priestia megaterium",
+     "name": "Bifunctional cytochrome P450/NADPH--P450 reductase",
+     "ec": "1.14.14.1; 1.6.2.4",
+     "evidence": "Evidence at protein level"
+    },
+    "suggested_assay": "H2O2 decomposition (catalase, 240 nm) or peroxidase dye oxidation; heme (Soret ~405 nm) confirmation.",
+    "role": "caution_label_transfer_artifact",
+    "insight": "Fold matched a multidomain flavohemoprotein (cyt P450-BM3, P14779) and inherited its heme label, but these are flavin-only quinone reductases. Multidomain label-transfer artifact \u2014 NOT a lab target."
+   },
+   {
+    "accession": "Q88FF8",
+    "reviewed": "Swiss-Prot",
+    "organism": "Pseudomonas putida",
+    "name": "Quinone reductase",
+    "ec": "1.6.-.-; 1.6.5.2",
+    "evidence": "Evidence at protein level",
+    "fold_tm_to_atlas": 0.701,
+    "predicted_mechanism_family": "heme_peroxidase_oxidase",
+    "cofactor_channel_family": "flavin_dehydrogenase_reductase",
+    "channels_agree": false,
+    "atlas_neighbor": {
+     "accession": "P14779",
+     "reviewed": "Swiss-Prot",
+     "organism": "Priestia megaterium",
+     "name": "Bifunctional cytochrome P450/NADPH--P450 reductase",
+     "ec": "1.14.14.1; 1.6.2.4",
+     "evidence": "Evidence at protein level"
+    },
+    "suggested_assay": "H2O2 decomposition (catalase, 240 nm) or peroxidase dye oxidation; heme (Soret ~405 nm) confirmation.",
+    "role": "caution_label_transfer_artifact",
+    "insight": "Fold matched a multidomain flavohemoprotein (cyt P450-BM3, P14779) and inherited its heme label, but these are flavin-only quinone reductases. Multidomain label-transfer artifact \u2014 NOT a lab target."
+   },
+   {
+    "accession": "Q9I509",
+    "reviewed": "Swiss-Prot",
+    "organism": "Pseudomonas aeruginosa",
+    "name": "NAD(P)H dehydrogenase",
+    "ec": "1.6.5.2",
+    "evidence": "Evidence at protein level",
+    "fold_tm_to_atlas": 0.703,
+    "predicted_mechanism_family": "heme_peroxidase_oxidase",
+    "cofactor_channel_family": "flavin_dehydrogenase_reductase",
+    "channels_agree": false,
+    "atlas_neighbor": {
+     "accession": "P14779",
+     "reviewed": "Swiss-Prot",
+     "organism": "Priestia megaterium",
+     "name": "Bifunctional cytochrome P450/NADPH--P450 reductase",
+     "ec": "1.14.14.1; 1.6.2.4",
+     "evidence": "Evidence at protein level"
+    },
+    "suggested_assay": "H2O2 decomposition (catalase, 240 nm) or peroxidase dye oxidation; heme (Soret ~405 nm) confirmation.",
+    "role": "caution_label_transfer_artifact",
+    "insight": "Fold matched a multidomain flavohemoprotein (cyt P450-BM3, P14779) and inherited its heme label, but these are flavin-only quinone reductases. Multidomain label-transfer artifact \u2014 NOT a lab target."
+   },
+   {
+    "accession": "Q9I5F3",
+    "reviewed": "Swiss-Prot",
+    "organism": "Pseudomonas aeruginosa",
+    "name": "FMN-dependent NAD(P)H:quinone oxidoreductase 1",
+    "ec": "1.6.5.-; 1.7.1.17",
+    "evidence": "Evidence at protein level",
+    "fold_tm_to_atlas": 0.735,
+    "predicted_mechanism_family": "heme_peroxidase_oxidase",
+    "cofactor_channel_family": "flavin_dehydrogenase_reductase",
+    "channels_agree": false,
+    "atlas_neighbor": {
+     "accession": "P14779",
+     "reviewed": "Swiss-Prot",
+     "organism": "Priestia megaterium",
+     "name": "Bifunctional cytochrome P450/NADPH--P450 reductase",
+     "ec": "1.14.14.1; 1.6.2.4",
+     "evidence": "Evidence at protein level"
+    },
+    "suggested_assay": "H2O2 decomposition (catalase, 240 nm) or peroxidase dye oxidation; heme (Soret ~405 nm) confirmation.",
+    "role": "caution_label_transfer_artifact",
+    "insight": "Fold matched a multidomain flavohemoprotein (cyt P450-BM3, P14779) and inherited its heme label, but these are flavin-only quinone reductases. Multidomain label-transfer artifact \u2014 NOT a lab target."
+   }
+  ]
+ },
+ "novel_target_next_step": "For a genuinely novel (unknown-function) benchtop target, re-run the SAME engine over an UNCHARACTERIZED in-family pool (TrEMBL / 'Predicted'/'Inferred from homology' / no experimental EC), fetch AlphaFold structures, foldseek vs the M-CSA atlas, apply the same fold>=0.70 gate. That swap of input pool is the only missing step and is bounded.",
+ "guardrails": {
+  "registry_or_ontology_changed": false,
+  "production_threshold_changed": false,
+  "heldout_rows_scored": false,
+  "fingerprint_family_growth": false,
+  "supervised_model_trained": false
+ }
+}
