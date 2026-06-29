@@ -1,6 +1,6 @@
 # Project State
 
-Last refreshed: 2026-06-28
+Last refreshed: 2026-06-29
 
 This file is the durable state summary for agents who do not have chat context.
 Treat it as an orientation layer, not as a replacement for the referenced
@@ -13,9 +13,12 @@ Read order for a fresh run:
 3. `docs/artifact_index.md`
 4. `docs/agent_runbook.md`
 
-> Deployment-line summary (2026-06-28): `docs/session_decision_record_20260628.md`
-> consolidates the validated M-CSA deployment claim, the off-M-CSA fold-channel
-> findings, Gate 1 (adopt the June 9 coarse router), and the Option B held-out.
+> Latest session summary (2026-06-29): `docs/session_decision_record_20260629.md`
+> consolidates the first GOLD off-M-CSA validation (PASS; heme/PLP/serine
+> generalise, metal is a coverage gap, fail-safe abstention), the novel
+> dark-target pipeline + active-site verification, and the lab-pilot handoff
+> (`docs/lab_pilot_guide_20260629.md`). Prior: `docs/session_decision_record_20260628.md`
+> (validated M-CSA deployment claim, off-M-CSA fold findings, Gate 1, Option B).
 
 ## North Star
 
@@ -29,6 +32,29 @@ biological design system. Current benchmark claims must be framed as local,
 artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
+
+- **FIRST GOLD OFF-M-CSA VALIDATION — PASS; the last non-lab rung is climbed (2026-06-29).**
+  A leakage-safe, pre-registered, content-hashed (`54119a7d…`) gold held-out with **experimental
+  EC-derived labels (independent of structure)**, disjoint from M-CSA + atlas + all dev pools (1,839
+  exclusions), was spent once:
+  `artifacts/v3_swissprot_pdbholo_gold_heldout_preregistration_current702_20260629.json` →
+  `artifacts/v3_swissprot_pdbholo_gold_heldout_eval_result_current702_20260629.json` /
+  `work/swissprot_gold_heldout_result_20260629.md`. **PASS** (in-scope recovery 45/64=0.703 ≥0.70;
+  OOS-FP 2/72=0.028 ≤0.40). Decomposition: heme **16/16**, PLP **14/16**, ser_his **13/16** generalise
+  off-M-CSA on GOLD (43/48=0.90); **zero confident misroutes in any family** — every miss is a safe
+  abstention (when the channel commits it is right: 45/45 in-scope, 2/72 OOS) → **fails safe**.
+  `metal_dependent_hydrolase` is a **coverage gap, not a precision failure** (2/16 recovered, 14/16
+  abstained, 0 misrouted): the held-out used EC 3.4.24 metalloendopeptidases (metzincin/gluzincin) but
+  the atlas family is metallo-β-lactamase-fold-centric → "MBL-fold metal hydrolase." **Deployable claim
+  now: validated on independent gold for heme/PLP/serine mechanisms with fail-safe abstention; metal
+  coverage limited to the MBL fold.** Non-lab validation is now exhausted — discovery and dark/novel
+  validation are lab-only (`docs/lab_pilot_guide_20260629.md`).
+
+- **NOVEL DARK-TARGET PIPELINE + ACTIVE-SITE VERIFICATION (2026-06-29).** Fold channel over genuinely
+  uncharacterized proteins → 326 dark / 239 confident calls
+  (`artifacts/v3_gate3_novel_dark_target_shortlist_current702_20260629.json`); de-risked to **6
+  active-site-verified** lab targets, 3 rejected (all flavin: fold-only, catalytic residues degraded)
+  (`artifacts/v3_gate3_active_site_verification_current702_20260629.json`).
 
 - **OPTION B STARTED — new held-out FROZEN; M-CSA held-out is exhausted (2026-06-28).**
   Pursuing Option B (repair the fine-57 router) the leakage-safe way: freeze the validation held-out
