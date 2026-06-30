@@ -38,14 +38,23 @@ constellation **would** catch all three. This is exactly the regime the current 
 
 ## The decisive demonstration — FREE, no wet lab
 This is the key payoff: the unique capability may be provable **computationally**.
-> **Cross-fold mechanism recovery.** Give the geometry channel **only trypsin-fold (PA) references**
-> and ask it to recognise a **subtilisin-fold or α/β-hydrolase-fold** serine hydrolase — proteins
-> that are *sequence- and fold-unrelated* to the references. Pre-register the baselines (BLAST /
-> Pfam / fold-NN) which **must fail** cross-fold. If geometry recovers the mechanism where they
-> can't, the unique capability is **demonstrated in silico**, isolating the atlas — no lab, no money.
 
-A held-out **fold** (not just a held-out protein) is the unit; recovery across the fold boundary is
-the metric.
+> **Cross-fold mechanism recovery.** References = the atlas with an **entire fold removed** (e.g.
+> remove the trypsin/PA-clan serine hydrolases). Queries = **independent gold**: SwissProt
+> experimentally-characterised serine endopeptidases (EC 3.4.21, label independent of structure) from
+> the **held-out folds** (subtilisin PF00082, α/β-hydrolase PF00561). Pre-register the baselines
+> (BLAST / Pfam / fold-NN, query→references) which **must fail** cross-fold. If the active-site
+> **geometry** channel recovers the mechanism where they can't, the unique capability is
+> **demonstrated in silico**, isolating the atlas — no lab, no money.
+
+**Do NOT grade on M-CSA.** M-CSA appears only as the **reference set** (that is the atlas, which is
+unavoidable and not circular). The **evaluation/query set is independent** (SwissProt/EC), exactly as
+in the gold held-out — never M-CSA-vs-M-CSA.
+
+**Hold out a whole FOLD, not a protein.** A held-out protein within the same fold ("recognise a
+trypsin from trypsin references") is something sequence/fold baselines also pass — it proves nothing
+unique. Removing an entire fold from the references and querying it forces the test to measure the one
+thing only geometry can do: bridge a sequence- and fold-boundary the model never saw.
 
 ## Honest constraints (this is research, not a quick win)
 - The geometry channel's reliability is **unproven** — prior predicted-geometry work hit robustness
@@ -57,6 +66,9 @@ the metric.
 - Effort: weeks of compute + curation. **Cost: compute only.** No lab, no spend.
 
 ## First step
-Quantify convergence in M-CSA: for the catalytic-triad mechanism, enumerate the distinct Pfam
-clans/folds it appears in, and assemble a multi-fold reference + a held-out-fold test set. That
-turns this scoping into the cross-fold recovery experiment above.
+1. Enumerate the distinct folds/Pfam-clans the Ser-His-Asp triad spans (PA / SB / SC …) — using
+   M-CSA + Pfam **only to define the fold map and the reference anchors**, not to grade.
+2. Assemble reference triad enzymes per fold (the atlas side) and an **independent** query set
+   (SwissProt EC 3.4.21 in the held-out folds).
+3. Run cross-fold geometry recovery with the pre-registered failing baselines. That is the free,
+   in-silico, atlas-isolating experiment — the legitimate successor to the deferred wet lab.
