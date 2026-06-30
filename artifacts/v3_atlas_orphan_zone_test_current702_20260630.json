@@ -1,0 +1,42 @@
+{
+ "artifact_id": "v3_atlas_orphan_zone_test_current702_20260630",
+ "created_utc": "2026-06-30T21:00:16Z",
+ "schema_version": "atlas_orphan_zone_test.v1",
+ "question": "The strongest north-star claim: does the atlas assign mechanism to TRUE sequence-orphans (proteins structurally matchable to the atlas but <25% sequence identity to any atlas member, i.e. where sequence/BLAST transfer fails)? Scored against experimental EC labels.",
+ "orphan_scarcity": {
+  "characterized_covered_family_enzymes_screened": 1139,
+  "sequence_orphans_found_lt25pct": 7,
+  "lt20pct": 1,
+  "finding": "Only 7/1139 (0.6%) experimentally-characterized covered-family enzymes are sequence-orphans to the atlas. Among VALIDATABLE proteins the orphan zone is nearly empty - being characterizable correlates with being sequence-reachable. The atlas's unique 'structure where sequence is blind' capability therefore rarely decides cases we can check; it presumably matters more in the uncharacterized dark proteome, which lacks ground truth."
+ },
+ "orphan_recovery": {
+  "n": 7,
+  "confident_calls": 2,
+  "recovered": 2,
+  "when_confident_correct": "2/2",
+  "abstained": 5,
+  "recovered_cases": [
+   {
+    "accession": "C0IW58",
+    "true": "heme_peroxidase_oxidase",
+    "best_seq_identity": 0.231,
+    "tm": 0.8511,
+    "struct_fp": "heme_peroxidase_oxidase"
+   },
+   {
+    "accession": "Q55828",
+    "true": "plp_dependent_enzyme",
+    "best_seq_identity": 0.21,
+    "tm": 0.7393,
+    "struct_fp": "plp_dependent_enzyme"
+   }
+  ],
+  "interpretation": "Existence proof: structure correctly recovered mechanism for 2 sequence-orphans (PLP @21% id TM0.74; heme @23% id TM0.85) where sequence transfer would fail. On the other 5 the atlas ABSTAINED (TM<0.70) rather than misroute - so even in the hardest regime it makes 0 confident errors (2/2 confident calls correct). Strongest claim demonstrated as existence proof (n=2), not at scale."
+ },
+ "verdict": "Atlas value over sequence baselines is REAL (twilight-zone accuracy 0.70 vs 0.28; fail-safe discrimination) and the strongest 'orphan' claim is demonstrated as a small existence proof (2/2 confident orphan calls correct) - but true orphans are rare among characterizable proteins (0.6%), so that unique capability is thinly evidenced where measurable and is a dark-proteome hypothesis where it is not.",
+ "guardrails": {
+  "labels_from_structure": false,
+  "heldout_tuned": false,
+  "registry_changed": false
+ }
+}
