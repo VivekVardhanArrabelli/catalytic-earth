@@ -1,0 +1,49 @@
+{
+ "artifact_id": "v3_atlas_value_vs_baselines_current702_20260630",
+ "created_utc": "2026-06-30T20:30:05Z",
+ "schema_version": "atlas_value_head_to_head.v1",
+ "question": "Does the atlas (structural-NN mechanism transfer) add value over the cheap baseline (sequence-NN transfer to the same M-CSA reference set)? Run on the independent gold held-out (EC-derived labels).",
+ "design": "Same nearest-neighbour-transfer paradigm, two distance metrics: STRUCTURE (foldseek TM vs 133 atlas members, gate 0.70) vs SEQUENCE (best Smith-Waterman/BLOSUM62 hit among the same members, BLAST-like). Truth = experimental EC, independent of both. Apples-to-apples.",
+ "in_scope_recovery": {
+  "n": 64,
+  "atlas_structure": 0.703,
+  "sequence_NN_baseline": 0.406,
+  "absolute_gap": 0.297
+ },
+ "recovery_by_sequence_identity_to_matched_mcsa_entry": {
+  "15-25%": {
+   "n": 4,
+   "atlas_recovery": 0.25,
+   "seqNN_recovery": 0.0
+  },
+  "25-40%": {
+   "n": 40,
+   "atlas_recovery": 0.7,
+   "seqNN_recovery": 0.275
+  },
+  "40-100%": {
+   "n": 20,
+   "atlas_recovery": 0.8,
+   "seqNN_recovery": 0.75
+  }
+ },
+ "discrimination_failsafe": {
+  "note": "OOS = 72 enzymes outside all covered families (methyltransferase/glycosidase/isomerase/ligase). Can each method tell 'covered' from 'not'?",
+  "atlas_confident_FP_on_OOS": "2/72",
+  "OOS_median_sequence_identity_to_an_atlas_member": 0.341,
+  "OOS_with_seq_identity_ge_30pct": "61/72",
+  "in_scope_recovered_median_seq_identity": 0.389,
+  "interpretation": "OOS enzymes are as sequence-similar to atlas members (median 0.34) as the in-scope ones (0.39), so sequence identity CANNOT separate covered from non-covered. The atlas's structural TM gate abstains on 70/72. Structure discriminates; sequence does not."
+ },
+ "verdict": {
+  "value_proven_twilight_zone": "At 25-40% identity (homology twilight), atlas recovers 0.70 vs sequence-NN 0.28 - a ~2.5x advantage where sequence transfer becomes unreliable.",
+  "value_proven_failsafe": "Atlas abstains on out-of-family enzymes (2/72 FP) that are sequence-indistinguishable from covered ones - a discrimination sequence-NN cannot do at any threshold.",
+  "NOT_proven_orphan_recovery": "0/45 atlas-recovered proteins were sequence-orphans (all had >=25% identity to some atlas member; recovered median identity 0.37). So the STRONGEST claim - structure assigns mechanism where sequence is fully blind - is NOT demonstrated by this gold set (it contains ~no orphans).",
+  "baseline_caveat": "Baseline is pairwise BLAST-like NN, not a profile HMM (HMMER/Pfam). Profile methods detect remoter homology and could narrow the twilight-zone gap; the discrimination/fail-safe result would likely persist and is the stronger finding."
+ },
+ "guardrails": {
+  "registry_or_ontology_changed": false,
+  "heldout_reused_for_tuning": false,
+  "labels_from_structure": false
+ }
+}
