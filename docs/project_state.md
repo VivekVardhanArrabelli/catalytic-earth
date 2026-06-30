@@ -1,6 +1,6 @@
 # Project State
 
-Last refreshed: 2026-06-29
+Last refreshed: 2026-06-30
 
 This file is the durable state summary for agents who do not have chat context.
 Treat it as an orientation layer, not as a replacement for the referenced
@@ -32,6 +32,21 @@ biological design system. Current benchmark claims must be framed as local,
 artifact-backed mechanism diagnostics.
 
 ## Current Benchmark State
+
+- **ATLAS VALUE IS BOUNDED — beats sequence on accuracy + abstention, but its unique "sequence-blind" capability is NOT demonstrable for current families; LAB VALIDATION DEFERRED (2026-06-30).**
+  Three controls (`artifacts/v3_atlas_value_vs_baselines_current702_20260630.json`,
+  `..._atlas_orphan_zone_test_...`, `..._decisive_orphan_search_...`;
+  `work/atlas_value_vs_baselines_20260630.md`, `work/decisive_orphan_search_20260630.md`):
+  (1) vs sequence-NN on gold, structure **0.70 vs 0.41** (twilight zone **0.70 vs 0.28**) + fail-safe
+  abstention sequence can't replicate — **real value**; (2) orphan existence proof 2/2 but orphans are
+  **0.6%** of characterizable enzymes; (3) decisive orphan search — 676 clan-sibling dark → 4
+  atlas-confident sequence-orphans, **all carrying their own mechanism-revealing Pfam** → **no lab
+  target can isolate the atlas's unique value for the 4 current families** (they are
+  sequence-recognisable superfamilies). **Ruling:** claim the *proven* value (twilight accuracy,
+  fail-safe, searchability); **defer wet-lab** (lab docs archived in
+  `docs/archive/lab_experiment_explorations_202606/`); pursue the unique capability via an
+  **active-site-geometry channel on sequence-cryptic mechanisms** — see
+  `docs/atlas_extension_scoping_20260630.md`. See `docs/decision_log.md` (2026-06-30).
 
 - **FIRST GOLD OFF-M-CSA VALIDATION — PASS; the last non-lab rung is climbed (2026-06-29).**
   A leakage-safe, pre-registered, content-hashed (`54119a7d…`) gold held-out with **experimental

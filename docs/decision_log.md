@@ -3,6 +3,41 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-30: Atlas value is bounded — beats sequence on accuracy + abstention, but its unique "sequence-blind" capability is NOT demonstrable for current families; lab validation deferred
+
+Three controls run to answer "is the atlas reproducible by cheap tools / are we fooling ourselves":
+
+1. **Head-to-head vs. sequence-NN** (`artifacts/v3_atlas_value_vs_baselines_current702_20260630.json`):
+   on the gold held-out, same nearest-neighbour paradigm, **structure 0.70 vs sequence 0.41**; in the
+   homology twilight zone (25–40% id) **0.70 vs 0.28**. Fail-safe: out-of-family enzymes are as
+   sequence-similar to the atlas (median 0.34) as in-family ones (0.39), yet the atlas abstains on
+   70/72 — **a discrimination sequence cannot do at any threshold.** Atlas value over the cheap
+   baseline is REAL on accuracy + abstention.
+
+2. **Orphan-zone existence proof** (`artifacts/v3_atlas_orphan_zone_test_current702_20260630.json`):
+   structure recovered mechanism for 2 sequence-orphans (≤23% id) correctly, abstaining (not
+   misrouting) on the rest — but orphans are **0.6% (7/1139)** of characterizable enzymes.
+
+3. **Decisive orphan search** (`artifacts/v3_decisive_orphan_search_current702_20260630.json`):
+   searched clan-sibling dark proteins for a target whose mechanism is **hidden from its own
+   sequence/Pfam** but revealed by the atlas. 676 → 12 sequence-orphans → 4 atlas-confident — and
+   **all 4 carry their own mechanism-revealing Pfam** (heme peroxidase / peptidase S64 / PLP
+   decarboxylase / trypsin-like DUF). **No isolating target exists for the current 4 families.**
+
+**Durable ruling.** The atlas's four mechanisms inhabit **sequence-recognisable superfamilies**, so
+sequence/Pfam always recovers the mechanism class — the atlas is never the *only* path for these
+families. Therefore:
+- The atlas's **unique** claim ("mechanism where sequence is blind") is **not demonstrable for current
+  coverage**, and **no lab experiment can isolate it now** → **wet-lab validation is DEFERRED** (the
+  lab-experiment docs are archived under `docs/archive/lab_experiment_explorations_202606/`; do not act
+  on them).
+- The atlas's **proven** value stands and is what to claim: better twilight-zone accuracy, fail-safe
+  abstention, mechanism-searchability.
+- The unique capability lives in **sequence-cryptic mechanisms** (same chemistry across unrelated
+  folds), reachable by an **active-site-geometry** retrieval channel, not whole-fold matching. Path:
+  `docs/atlas_extension_scoping_20260630.md`. This is broadening + research, **not** a wet experiment to
+  fund today.
+
 ## 2026-06-29: First GOLD off-M-CSA validation (the last non-lab rung) — PASS; recovery generalises for 3/4 families, metal is a coverage gap
 
 Decision (user-directed: build the independent-gold held-out, "the last free rung" before lab). Built
