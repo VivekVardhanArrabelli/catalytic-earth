@@ -25,11 +25,27 @@ A trypsin, a subtilisin, and a lipase do the *same* serine-hydrolase chemistry, 
 matching to one will **never** find the others. A geometry channel that detects the Ser-His-Asp
 constellation **would** catch all three. This is exactly the regime the current atlas misses.
 
+## ⚠️ Correction (2026-06-30): the geometry channel is NOT a fresh, sequence-independent path
+An earlier version of this doc oversold "activate the geometry channel." The existing
+`predicted_geometry_recovery` harness shows its recovery mechanism **is the sequence cofactor
+channel**: holo geometry works (45/45) → **apo** AlphaFold drops it to 23/45 (cofactor missing from
+the model) → the **sequence cofactor-presence channel** recovers it (fused). So for **cofactor
+mechanisms, active-site-geometry recovery == cofactor recovery** — same lever, and NOT
+sequence-independent on apo structures. Known limitations already on record: the geometry channel has
+**no abstention signal** (10k eval) and modest accuracy (76% coarse / 31% exact), so it would forfeit
+the atlas's one proven virtue (fail-safe abstention).
+
+**Only genuinely non-redundant piece:** protein-only catalytic constellations (Ser-His-Asp triads)
+have *no cofactor to be missing*, so apo triad geometry is the one case that is truly
+sequence-independent. Everything else here is cofactor recovery re-labelled. Treat the triad-cross-fold
+idea below as a **long shot that inherits the no-abstention weakness**, not the clean free win.
+
 ## The extension
 1. **Switch retrieval to active-site geometry.** The modules already exist in the repo
    (`serine_active_site`, `metal_active_site`, `plp_active_site`, `geometry_retrieval`,
-   `geometry_head`) but were **not** the validated channel. Wire them into a calibrated,
-   abstaining geometry-NN retrieval.
+   `geometry_head`) and were **already studied** — for cofactor families this is the cofactor-fusion
+   recovery (see correction above), so it is **not new** there. The only untried angle is
+   **protein-only triad geometry**, and it must first be shown to carry an abstention signal at all.
 2. **Target convergent mechanisms.** Start with **catalytic triads / protein-only active sites**,
    because their geometry is detectable on **apo AlphaFold models** (no ligand needed). Cofactor
    mechanisms (metal/heme/PLP) need holo structures — defer them.
