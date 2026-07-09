@@ -19,6 +19,11 @@ Read order for a fresh run:
 > dark-target pipeline + active-site verification, and the lab-pilot handoff
 > (`docs/lab_pilot_guide_20260629.md`). Prior: `docs/session_decision_record_20260628.md`
 > (validated M-CSA deployment claim, off-M-CSA fold findings, Gate 1, Option B).
+>
+> **Superseded on framing (2026-07-03):** the "last non-lab rung climbed / validation exhausted →
+> lab pilot" reading in the 06-28/06-29 summaries is a **predictor-framing artifact**. The north star
+> is the atlas; that predictor/held-out/lab work is a subordinate diagnostic, and the lab pilot is
+> deferred to V2. See the North Star framing correction below and `decision_log.md` (2026-07-03).
 
 ## North Star
 
@@ -30,6 +35,19 @@ context to mechanism-level function hypotheses.
 The repo is not an EC-number classifier, a wet-lab protocol, or a production
 biological design system. Current benchmark claims must be framed as local,
 artifact-backed mechanism diagnostics.
+
+**Framing correction (2026-07-03 — read before the Current Benchmark State below).** The north star is
+the **atlas** — grounded coverage of mechanism space via labels, families, and fingerprints — **not** a
+deployable predictor. For ~a week the project drifted into a predictor/deployment framing (held-out
+"deployment claims," OOS-FP bars, a lab pilot to certify the predictor); that work is **demoted to a
+subordinate diagnostic.** At **57 fingerprints / 54 families** (order **~2% of known mechanism space**)
+the predictor "walls" (no novelty signal, feature overlap, the 06-30 orphan null) are **maturity
+readouts, not verdicts** — you cannot calibrate novelty on a 2% map. Judge progress by **coverage +
+resolution of mechanism space and discovery-queue depth**, not held-out recovery vs a sequence
+baseline. The primary axis is diverse, grounded scaling steered by the discovery compass, plus a
+compositional reaction-center vocabulary. The lab pilot is shelved as the *eventual* V2 (confirm a
+well-evidenced unknown), not the current milestone. The "non-lab validation exhausted → lab" conclusion
+in the Current Benchmark State below is **superseded** by this note. See `decision_log.md` (2026-07-03).
 
 ## Current Benchmark State
 
@@ -47,8 +65,10 @@ artifact-backed mechanism diagnostics.
   abstained, 0 misrouted): the held-out used EC 3.4.24 metalloendopeptidases (metzincin/gluzincin) but
   the atlas family is metallo-β-lactamase-fold-centric → "MBL-fold metal hydrolase." **Deployable claim
   now: validated on independent gold for heme/PLP/serine mechanisms with fail-safe abstention; metal
-  coverage limited to the MBL fold.** Non-lab validation is now exhausted — discovery and dark/novel
-  validation are lab-only (`docs/lab_pilot_guide_20260629.md`).
+  coverage limited to the MBL fold.** _(This is a **predictor-side diagnostic / maturity readout**, not
+  the north star. Under the 2026-07-03 framing correction the earlier "non-lab validation exhausted →
+  lab-only" conclusion is **superseded**: the atlas's primary axis is coverage/resolution scaling, and
+  the lab pilot — `docs/lab_pilot_guide_20260629.md` — is deferred to V2.)_
 
 - **NOVEL DARK-TARGET PIPELINE + ACTIVE-SITE VERIFICATION (2026-06-29).** Fold channel over genuinely
   uncharacterized proteins → 326 dark / 239 confident calls

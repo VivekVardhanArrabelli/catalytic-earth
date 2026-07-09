@@ -3,6 +3,58 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-07-03: Framing correction — the north star is the ATLAS, not a deployable predictor; the deleted 06-30 orphan/baseline finding is restored as a coverage/maturity readout
+
+Decision (user-directed). For roughly the preceding week the project drifted from its stated north
+star — a **grounded mechanism atlas** (coverage of mechanism space via labels, families, fingerprints,
+ontology) — into being run as a **deployable sequence→mechanism predictor**: the 06-28 M-CSA
+"deployment claim," the 06-29 gold held-out, fold-channel readiness, OOS-FP bars, and a lab pilot to
+certify the predictor. This is corrected. The predictor/held-out/lab track is **demoted to a
+subordinate diagnostic**; it is not the goal and its metrics are not the scoreboard.
+
+Why the "walls" are maturity readouts, not verdicts. The atlas currently spans **57 fingerprints / 54
+ontology families** against **thousands** of known mechanism types (Rhea alone ~15k reactions) — order
+**~2% of mechanism space.** At 2% coverage, occupied by the common sequence-recognisable superfamilies,
+the predictor findings are exactly what an early atlas must produce: novel chemistry sits inside
+occupied regions (no abstention signal; D11 de novo AUC 0.55–0.65), and the atlas does not out-recover
+sequence/Pfam on its covered families. These are **coverage readouts marking the frontier**, not proof
+the approach fails. You cannot calibrate novelty on a 2% map.
+
+Restoration (record discipline). The 06-30 orphan/baseline experiments were deleted at commit 44e9d4c
+under the predictor framing ("wrong-framing content"). Deleting a negative violates the project's core
+discipline. They are **restored**:
+- `artifacts/v3_atlas_value_vs_baselines_current702_20260630.json` (+ `_results/per_protein_struct_vs_seq.json`),
+  `work/atlas_value_vs_baselines_20260630.md` — structure-NN 0.70 vs sequence-NN 0.41 on gold (twilight
+  zone 0.70 vs 0.28); fail-safe abstention sequence cannot do.
+- `artifacts/v3_atlas_orphan_zone_test_current702_20260630.json` (+ `_results/orphans_scored.json`) —
+  only 0.6% (7/1139) of characterizable covered-family enzymes are sequence-orphans; 2 recovered, rest
+  abstained.
+- `artifacts/v3_decisive_orphan_search_current702_20260630.json`, `work/decisive_orphan_search_20260630.md`
+  — 676→12→4; all 4 atlas-confident sequence-orphans carry their own mechanism-revealing Pfam. No
+  isolating target exists **for the current 4 families**.
+
+Corrected interpretation (atlas framing). The finding is true and it is a **coverage-frontier readout**:
+the current families inhabit sequence-recognisable superfamilies, so Pfam already recovers them — i.e.
+the atlas's *unique* value does not live where it is currently dense. It lives at the **frontier the
+atlas has not yet mapped**: sequence-cryptic mechanisms (same chemistry across unrelated folds) and
+finer resolution between families. That is a **mapping/broadening direction**, not a predictor verdict
+and not a reason to run a wet experiment now.
+
+Durable ruling.
+1. **Scoreboard = coverage + resolution of mechanism space + discovery-queue depth**, not held-out
+   recovery vs a baseline. Predictor/held-out diagnostics keep running as a maturity gauge only.
+2. **Primary axis = diverse, grounded scaling** steered by the read-only discovery compass (already
+   surfaced metal-independent phosphodiesterase; an unmodeled glycosidase cluster) **plus a
+   compositional reaction-center vocabulary** (graph-edit bond primitives) so novelty is a continuous
+   residual, not an out-of-vocabulary miss.
+3. **Lab pilot deferred to V2** — confirm one well-evidenced *unknown* from the discovery queue, not a
+   pre-filtered slam-dunk that validates the demoted predictor.
+4. **Negatives are reinterpreted, never deleted.**
+
+References (restored): the five artifacts + two work notes above; superseded framing in
+`docs/MAP.md` (2026-06-27 addendum) and `docs/project_state.md` session summary. No registry,
+ontology, label, threshold, split, or model change.
+
 ## 2026-06-29: First GOLD off-M-CSA validation (the last non-lab rung) — PASS; recovery generalises for 3/4 families, metal is a coverage gap
 
 Decision (user-directed: build the independent-gold held-out, "the last free rung" before lab). Built

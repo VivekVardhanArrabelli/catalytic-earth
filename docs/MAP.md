@@ -2,11 +2,49 @@
 
 *A compass to re-orient in five minutes when the project feels too big to hold.
 The detail lives in `decision_log.md` and `project_state.md`.
-This is the fold-down. Core last updated 2026-06-04; scaling-era addendum 2026-06-27.*
+This is the fold-down. Core last updated 2026-06-04; scaling-era addendum 2026-06-27;
+framing correction 2026-07-03 (top — read first).*
 
 ---
 
-## 2026-06-27 addendum — the scaling era + a non-circular reality check (read first)
+## 2026-07-03 — framing correction (read first): it is an ATLAS, not a predictor
+
+The north star is, and always was, a **grounded mechanism atlas** — a curated, provenance-tracked map
+of enzyme catalysis that you extend by adding well-evidenced **labels, families, and fingerprints**
+toward ontology completion. It is **not** a deployable sequence→mechanism *classifier*, and it is not
+a learned embedding space.
+
+For roughly the last week the project drifted into running as a predictor: held-out "deployment
+claims," OOS-FP bars, a validated-vs-baseline scoreboard, and a lab pilot to certify the predictor.
+That framing is **subordinate and has been demoted.** Its walls — "no abstention/novelty signal,"
+"feature overlap," the 06-30 orphan/baseline null — are **not verdicts.** They are a **maturity readout
+of an atlas that currently spans ~57 fingerprints / 54 families against thousands of known mechanism
+types (order ~2% of mechanism space).** You cannot calibrate novelty on a 2% map. The readout says
+*keep mapping*, not *dead end*.
+
+What this changes:
+- **Scoreboard.** Judge the project by **coverage + resolution of mechanism space** and **discovery-queue
+  depth** (well-evidenced, replicated, low-match clusters the compass surfaces) — not held-out recovery
+  vs a sequence baseline. The predictor/held-out diagnostics keep running underneath as a maturity gauge.
+- **Primary axis.** Diverse, grounded scaling steered by the read-only discovery compass (it already
+  named metal-independent phosphodiesterase and an unmodeled glycosidase cluster), plus a **compositional
+  reaction-center vocabulary** (graph-edit bond primitives) so novelty becomes a continuous residual
+  instead of an out-of-vocabulary miss against 57 boxes.
+- **Lab pilot.** Shelved as the *eventual* V2 experiment (confirm one well-evidenced **unknown** from the
+  discovery queue — the research program's own V2), **not** the current milestone. The 6
+  active-site-verified slam-dunk targets validate a predictor we've demoted; they are not the atlas's
+  next step.
+- **Record discipline restored.** The 06-30 orphan/baseline experiments (deleted at 44e9d4c under the
+  predictor framing) are **restored**; negatives are reinterpreted, never deleted. See `decision_log.md`
+  (2026-07-03).
+
+The 06-27 addendum below is retained for its scaling facts but is **superseded on framing**: its "the
+North Star product lives on the predicted-geometry recovery line" sentence is the drift this note
+corrects.
+
+---
+
+## 2026-06-27 addendum — the scaling era + a non-circular reality check (scaling facts valid; superseded on framing by the 2026-07-03 note above)
 
 Since 2026-06-04 the **breadth/atlas axis** moved a lot and the **deployment axis** did not.
 
