@@ -1,12 +1,16 @@
 # Catalytic Earth
 
-Catalytic Earth is a mechanism-first enzyme function atlas scaffold. The goal
-is to make enzyme function searchable by catalytic mechanism, not only by EC
-number, name, keyword, or sequence similarity.
+Catalytic Earth is an open, computable catalytic-mechanism atlas. The goal is
+to make enzyme function searchable by how catalysis happens — from net
+reaction through elementary steps, catalytic residues and geometry, protein
+evidence, uncertainty, and experimental outcomes — not only by EC number,
+name, keyword, or sequence similarity.
 
 ## North Star
 
-Build a computable map from protein evidence to chemical function:
+Build the world's computable catalytic-mechanism atlas: a continuously
+expanding, provenance-grounded map from biochemical reaction and protein
+evidence to explicit, testable chemical-function hypotheses.
 
 ```text
 protein sequence
@@ -20,35 +24,53 @@ protein sequence
 = mechanism-level function hypothesis
 ```
 
-This repository is a research scaffold and benchmark workspace. It is not a
-wet-lab protocol, not a claim that computational candidates are validated
-enzymes, and not a production biological design system.
+The full atlas is the mission. A typed mechanism intermediate representation
+and evidence compiler are the engine. Benchmarks, exposure ledgers, and fresh
+external tests are quality-control systems inside the atlas; they are not the
+product or the limit of its ambition. Search/API surfaces deliver the atlas to
+users, and prospective experimental loops correct it against biological
+reality.
 
-## Quick Status
+The atlas is tiered so breadth can grow quickly without implying equal truth:
 
-- Current benchmark surface: `current702`, with 702 curated labels, 562
-  in-distribution rows, and 140 heldout rows.
-- Current primary v1 targets: serine hydrolase, metal hydrolase, PLP enzyme,
-  broad flavin dehydrogenase/reductase, and heme peroxidase/oxidase.
-- Current secondary OOD probes: radical SAM, cobalamin radical rearrangement,
-  and flavin monooxygenase.
-- Current gate: geometry-first router. The Wave 1.2 audit re-exported geometry
-  on the standardized heldout rows, joined 140/140 rows, and reported 45/45
-  canonical primary accuracy with 0/92 pure-OOS false positives under the
-  existing geometry abstention threshold.
-- Deployment caveat + recovery (2026-06-06): the clean experimental result is not a
-  bare-sequence claim — on predicted (AlphaFoldDB apo) geometry the hand router drops to
-  23/45. This is now **recovered**: a leakage-safe sequence -> cofactor-presence channel
-  fused into the router lifts the heldout one-shot to **37/45** primary (+14), at a
-  precision cost (OOS/sec FP 12.3% -> 25.9%). The one-shot is spent; the open question is
-  the precision operating point (suppression vs recalibrated threshold + the Lever-2
-  electron-flow OOS lever). See `docs/MAP.md` for the one-page compass.
-- Learned representation results are diagnostic. ESM-C logistic versus ESM-C
-  cosine shows decoder choice is confounded; ProtT5 and SaProt matched logistic
-  reruns are blocked until raw local sidecars or weights exist.
-- FMO remains secondary-only and review-only for now. No FMO primary promotion,
-  registry edit, threshold change, production scoring change, or import is
-  currently authorized.
+1. canonical reaction record;
+2. explicit mechanism hypothesis;
+3. protein/site-grounded hypothesis;
+4. independently reviewed mechanism;
+5. experimentally tested positive or negative outcome.
+
+This repository remains a research scaffold. It is not a wet-lab protocol,
+not a claim that computational candidates are validated enzymes, and not yet
+a production biological design system.
+
+## Quick Status — 2026-07-13 truth reset
+
+- `current702` contains 702 project benchmark labels: 685 bronze, 17 silver,
+  zero project-gold; 683 are automation-curated and 19 author-reviewed.
+- The combined 10,001-row surface is **8,305 positive fingerprint assignments
+  plus 1,696 out-of-scope protein-label records**, not 10,001 distinct
+  mechanisms.
+- The reported 76% chemistry result is a **cofactor-bucket consistency**
+  endpoint. Exact fingerprint recovery was 65/210 (31%) on the featurizable,
+  centroid-covered positive subset. The reported ID/OOS medians do not by
+  themselves establish useful novelty separation.
+- The 2026-06-28 M-CSA result is **retrospective analysis of an exhausted test
+  surface**, not a never-touched independent validation: all 126 rows were
+  already exposed by 2026-06-04 and the one-shot was explicitly declared spent.
+- The 2026-06-29 Swiss-Prot/PDB-holo surface is an EC-proxy validation set, not
+  mechanism gold. It recovered 45/64 overall, including 2/16 metal, with 2/72
+  OOS false positives; its 40% preregistered OOS ceiling was too permissive for
+  a deployment claim.
+- A Python 3.13 full-suite audit ran 2,559 tests: 74 failures, 20 errors, and one
+  skip. Some are dependency/Windows-path failures; many reflect stale hashes
+  and checked-in state drift. Targeted green tests do not make the full suite
+  green.
+- New label/family expansion and new performance headlines are frozen until
+  the claim ledger, exposure ledger, reproducible core environment, and live
+  artifact manifest are in place.
+- The active execution plan is `docs/RAPID_ATLAS_PLAN.md`: a 35-day
+  computational atlas loop with a parallel 60–90-day experimental target when
+  a ready assay and external execution route exist.
 
 ## Start Here
 
@@ -57,6 +79,9 @@ agent run:
 
 | File | Use it for |
 | --- | --- |
+| `docs/RAPID_ATLAS_PLAN.md` | Current 35-day computational plan, parallel experimental clock, and atlas scale gates |
+| `docs/reviews/catalytic-earth-full-review-2026-07-10.md` | Independent audit, evidence corrections, strategic amendment, and full rationale |
+| `docs/reviews/catalytic-earth-90-day-map-2026-07-10.md` | Compact operating map derived from the full review |
 | `docs/project_state.md` | Current state, trusted results, blockers, and next gates |
 | `docs/decision_log.md` | Dated decisions that override older artifact wording |
 | `docs/artifact_index.md` | Which artifact answers which question, and what is deprecated |

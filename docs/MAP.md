@@ -3,11 +3,91 @@
 *A compass to re-orient in five minutes when the project feels too big to hold.
 The detail lives in `decision_log.md` and `project_state.md`.
 This is the fold-down. Core last updated 2026-06-04; scaling-era addendum 2026-06-27;
-framing correction 2026-07-03 (top — read first).*
+framing correction 2026-07-03; strategic unification and truth reset 2026-07-13
+(top — read first).*
 
 ---
 
-## 2026-07-03 — framing correction (read first): it is an ATLAS, not a predictor
+## 2026-07-13 — strategic unification: the full atlas is the mission
+
+The project is not being narrowed into a benchmark. The north star is the
+**world's computable catalytic-mechanism atlas**: a continuously expanding,
+provenance-grounded map connecting canonical reactions, alternative elementary
+mechanisms, catalytic residues and geometry, protein/evolutionary evidence,
+uncertainty, design constraints, assays, and positive and negative experimental
+outcomes.
+
+The project layers are now explicit:
+
+| Layer | Role |
+| --- | --- |
+| Full atlas | The mission and public knowledge product |
+| Mechanism IR/evidence compiler | The durable technical engine |
+| Benchmarks + exposure ledger | Internal truth control, never the product |
+| Search/API/browser | The public delivery surface |
+| Prospective loops | Contact with biological reality and atlas correction |
+
+The atlas is tiered so it can grow rapidly without claiming that every record
+has equal evidential status:
+
+1. canonical reaction record;
+2. explicit computational mechanism hypothesis;
+3. protein/site-grounded hypothesis;
+4. independently reviewed mechanism;
+5. experimentally tested positive or negative outcome.
+
+The current 10,001 count is **not 10,001 mechanisms**. It is 8,305 positive
+fingerprint assignments plus 1,696 out-of-scope protein-label records. The
+phrase "~2% of mechanism space" is withdrawn because no defensible mechanism
+unit or denominator was defined.
+
+### Truth reset that precedes further scaling
+
+- `current702` is a bronze/silver project-label surface, not expert-curated
+  project gold: 685 bronze, 17 silver, zero gold; 683 automation-curated and 19
+  author-reviewed.
+- The 76% result is cofactor-bucket consistency, not exact mechanism recovery;
+  exact fingerprint recovery was 65/210 (31%) on the scored positive subset.
+- The 2026-06-28 M-CSA "never-touched" claim is withdrawn as independent
+  validation. All 126 later-frozen rows were present in the June 4 scored
+  artifact, and the one-shot had been declared spent.
+- The 2026-06-29 Swiss-Prot/PDB-holo surface is an EC-proxy validation set, not
+  mechanism gold. Its 45/64 aggregate PASS is narrow and fragile, with 2/16
+  metal recovery; the successful three-family view is post-hoc.
+- Automated active-site checks are computational consistency checks, not expert
+  or experimental verification.
+- Negative results are preserved. A renamed split, new preregistration, or new
+  agent session never resets prior exposure.
+
+These corrections do not weaken the atlas mission. They prevent the atlas from
+scaling ambiguous objects and overstated evidence.
+
+### Rapid operating clocks
+
+- **0–48 hours:** claims/errata, freeze, exposure ledger, atlas evidence tiers.
+- **Days 3–7:** typed atlas kernel, lean reproducible entry path, first three
+  diverse mechanisms.
+- **Days 8–14:** Atlas-10 with source crosswalks, two useful queries, one strong
+  baseline pipeline, and bounded external review.
+- **Days 15–30:** Atlas-50 alpha, draft crosswalk of the 57 fingerprints, first
+  bronze audit tranche, searchable release.
+- **Days 31–35:** one complete computational loop from canonical reaction to
+  evidence, alternatives, abstention, atomic constraints where justified, and
+  an assay/falsification contract.
+- **Days 1–90 in parallel:** pursue one existing-assay experimental route;
+  target a 60–90-day readout when a partner, core, or vendor is ready.
+
+Speed comes from parallel execution, upstream reuse, content-hash caching,
+small frozen batches, and weekly releases — never from resetting holdouts,
+collapsing endpoints after scoring, or treating automated hypotheses as gold.
+
+The detailed execution contract is `docs/RAPID_ATLAS_PLAN.md`. Sections below
+are retained as history. Where their terminology, counts, claims, or timeline
+conflict with this section, this 2026-07-13 section supersedes them.
+
+---
+
+## 2026-07-03 — framing correction (historical; superseded where conflicting): it is an ATLAS, not a predictor
 
 The north star is, and always was, a **grounded mechanism atlas** — a curated, provenance-tracked map
 of enzyme catalysis that you extend by adding well-evidenced **labels, families, and fingerprints**
