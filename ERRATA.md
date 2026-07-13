@@ -67,6 +67,55 @@ audit. `CLAIMS.md` is the canonical current claim ledger.
   adjudication. The 40% OOS ceiling was too permissive for deployment, and the
   three-family success view is post-hoc.
 
+## ER-007 — GFAT2/O94808 PLP proxy assignment
+
+- **Affected claim:** CE-016 and the O94808 row in the June 29 proxy surface.
+- **Previous wording:** GFAT2 is `plp_dependent_enzyme` because EC 2.6.1.* is
+  PLP by definition.
+- **Correction:** the blanket EC-prefix rule is not chemically valid for
+  GFAT2/EC 2.6.1.16. The assignment is withdrawn pending independent domain
+  adjudication; the row must not count as a correct PLP-family recovery.
+- **Record rule:** preserve the historical artifact byte-for-byte and carry
+  this correction beside every current presentation or reuse of that row.
+
+## ER-008 — post-hoc three-family endpoint
+
+- **Affected claim:** CE-006 and CE-014.
+- **Previous wording:** the 43/48 result on three non-metal families was a
+  successful validation endpoint.
+- **Correction:** that family subset was emphasized after the family
+  decomposition was observed. It is exploratory, belongs in a `posthoc/`
+  namespace, and needs a fresh disjoint test.
+
+## ER-009 — predictor-to-atlas reframe and retained negative
+
+- **Affected claim:** CE-007 and CE-015.
+- **Previous risk:** the atlas reframe could obscure the original structural
+  orphan/predictor hypothesis after it failed.
+- **Correction:** the original hypothesis and the June 30 negative result are
+  first-class records. On the tested families, Pfam exposed the family of every
+  putative structural orphan; the atlas mission does not reverse that outcome.
+
+## ER-010 — full-suite failure root-cause attribution
+
+- **Affected claim:** CE-009 and Section 5.1 of the 2026-07-10 full review.
+- **Previous wording:** many of the 74 failures and 20 errors reflected stale
+  artifact hashes and checked-in state drift.
+- **Correction:** the failure counts were real, but that attribution was too
+  broad. Fifty-four failed tests surfaced 179 comparisons where recorded
+  hashes matched the canonical Git LF blobs and differed only from Windows
+  CRLF checkout bytes. Those comparisons are portability defects, not content
+  drift. The audit found one genuine current lineage mismatch: the historical
+  prediction contract points to a pre-expansion mechanism-fingerprint registry.
+  That artifact is quarantined and its embedded hash was not refreshed.
+- **Remediation evidence:** `data/governance/test_baseline.json`, the preserved
+  compressed complete-suite log under `release/validation/`, and
+  `data/governance/historical_lineage_quarantine.json`. The pinned complete
+  suite subsequently ran 2,585 tests with zero failures, zero errors, and one
+  skip.
+- **Claim boundary:** green software contracts do not validate any biological
+  result.
+
 ## Propagation rule
 
 Current entry documents must link to this file and `CLAIMS.md`. Historical

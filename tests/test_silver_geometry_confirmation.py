@@ -124,7 +124,7 @@ class SilverGeometryConfirmationAuditTests(unittest.TestCase):
                 cofactors=["Zn(2+)"],
                 coordinate_path=str(coord),
                 structure_positions=True,
-                coordinate_sha256=hashlib.sha256(content.encode("utf-8")).hexdigest(),
+                coordinate_sha256=hashlib.sha256(coord.read_bytes()).hexdigest(),
             )
             audit = build_silver_geometry_confirmation_audit(
                 _population(candidate),

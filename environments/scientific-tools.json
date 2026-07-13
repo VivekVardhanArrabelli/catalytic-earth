@@ -1,0 +1,56 @@
+{
+  "schema_version": "catalytic-earth.scientific-tools.v1",
+  "scope": "Legacy and future scientific lanes outside the locked core runtime",
+  "external_tools": [
+    {
+      "id": "foldseek",
+      "resolution": "CE_FOLDSEEK_BINARY or PATH",
+      "locked_version": null,
+      "status": "historical_runs_not_globally_reproducible",
+      "required_for": ["structure retrieval", "Foldseek/TM evaluation"]
+    },
+    {
+      "id": "mmseqs2",
+      "resolution": "CE_MMSEQS_BINARY or PATH",
+      "locked_version": null,
+      "status": "historical_runs_not_globally_reproducible",
+      "required_for": ["sequence clustering", "duplicate screening"]
+    },
+    {
+      "id": "hmmer",
+      "resolution": "CE_HMMER_BINARY or PATH",
+      "locked_version": null,
+      "status": "required_future_baseline_not_yet_locked",
+      "required_for": ["profile-HMM baseline"]
+    }
+  ],
+  "models": [
+    {
+      "id": "AlphaFoldDB",
+      "revision": "v6 where explicitly named by source artifacts",
+      "status": "partially_pinned",
+      "known_unavailable_inputs": "Some historical coordinate caches and fetch sessions are absent."
+    },
+    {
+      "id": "ESM-2",
+      "revision": null,
+      "status": "historical_weights_or_cache_not_release_locked"
+    },
+    {
+      "id": "ESM-C",
+      "revision": null,
+      "status": "historical_weights_or_cache_not_release_locked"
+    },
+    {
+      "id": "ProtT5",
+      "revision": null,
+      "status": "historical_weights_or_cache_not_release_locked"
+    },
+    {
+      "id": "SaProt",
+      "revision": null,
+      "status": "historical_weights_or_cache_not_release_locked"
+    }
+  ],
+  "rule": "A scientific result cannot be called reproducible until every tool/model row it uses has an exact version or immutable revision and all input hashes are in its release manifest."
+}

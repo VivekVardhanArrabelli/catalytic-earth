@@ -1,0 +1,5 @@
+# Catalytic Earth 0.1.0 locked core runtime
+#
+# Intentionally empty: the bounded core path uses only Python's standard
+# library. Install its wheel with --no-deps. Optional scientific stacks are
+# declared separately in pyproject.toml and are not part of the core claim.

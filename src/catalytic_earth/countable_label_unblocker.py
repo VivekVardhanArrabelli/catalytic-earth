@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from .registry_io import load_json
+from .path_compat import io_path
 
 
 RUN_DATE = "20260608"
@@ -104,17 +105,18 @@ def _utc_now_iso() -> str:
 
 def sha256_path(path: Path) -> str:
     digest = hashlib.sha256()
-    with path.open("rb") as handle:
+    with io_path(path).open("rb") as handle:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
 
 
 def _source_record(path: Path) -> dict[str, Any]:
+    resolved_path = io_path(path)
     return {
         "path": str(path),
         "sha256": sha256_path(path),
-        "bytes": path.stat().st_size,
+        "bytes": resolved_path.stat().st_size,
     }
 
 
@@ -125,7 +127,7 @@ def _canonical_sha256(payload: Any) -> str:
 
 
 def _read_json(path: Path) -> Any:
-    return load_json(path)
+    return load_json(io_path(path))
 
 
 def _write_json(path: Path, payload: Any) -> None:
@@ -251,7 +253,7 @@ def _index_coordinate_files(artifacts_dir: Path = Path("artifacts")) -> dict[str
             if name.startswith("af-") and "-f1-model" in name:
                 keys.add(name.split("-")[1].lower())
                 keys.add(f"uniprot:{name.split('-')[1].lower()}")
-            record = {"path": str(path), "bytes": path.stat().st_size}
+            record = {"path": str(path), "bytes": io_path(path).stat().st_size}
             for key in keys:
                 index.setdefault(key, []).append(record)
     return index
@@ -367,15 +369,16 @@ def _load_source_rows(merged: dict[str, Any]) -> tuple[dict[str, list[dict[str, 
         path = Path(shard["artifact_path"])
         payload = _read_json(path)
         rows = payload.get(shard.get("row_key", "rows"), [])
-        source_rows[str(path)] = rows
-        source_records[str(path)] = _source_record(path)
+        portable_key = path.as_posix()
+        source_rows[portable_key] = rows
+        source_records[portable_key] = _source_record(path)
     return source_rows, source_records
 
 
 def _source_row_for_member(
     member: dict[str, Any], source_rows: dict[str, list[dict[str, Any]]]
 ) -> dict[str, Any]:
-    rows = source_rows[str(member["source_artifact"])]
+    rows = source_rows[Path(str(member["source_artifact"])).as_posix()]
     return rows[int(member["row_index"])]
 
 
@@ -516,9 +519,10 @@ def _source_summary(
     )
     for path in coordinate_paths:
         coordinate_path = Path(path)
-        if coordinate_path.exists():
+        coordinate_io_path = io_path(coordinate_path)
+        if coordinate_io_path.exists():
             local_coordinate_matches.append(
-                {"path": path, "bytes": coordinate_path.stat().st_size}
+                {"path": path, "bytes": coordinate_io_path.stat().st_size}
             )
     seen_paths: set[str] = set()
     deduped_coordinate_matches: list[dict[str, Any]] = []

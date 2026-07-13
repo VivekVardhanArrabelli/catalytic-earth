@@ -7,6 +7,7 @@ import os
 import shlex
 import shutil
 import subprocess
+import tempfile
 import time
 from collections import Counter, defaultdict
 from dataclasses import dataclass
@@ -9862,7 +9863,7 @@ def build_external_structural_cluster_index(
     external_structural_tm_holdout_path: dict[str, Any],
     pilot_terminal_decisions: dict[str, Any] | None = None,
     coordinate_dir: str | Path = "artifacts/v3_external_structural_coordinates_1025",
-    foldseek_binary: str = "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    foldseek_binary: str = "foldseek",
     tm_score_threshold: float = 0.7,
     max_rows: int = 10,
     threads: int = 1,
@@ -9983,7 +9984,7 @@ def build_external_structural_cluster_index(
                 sorted(str(row["coordinate_digest_sha256"]) for row in materialized_rows)
             ).encode("utf-8")
         ).hexdigest()[:16]
-        workdir = Path("/private/tmp") / (
+        workdir = Path(tempfile.gettempdir()) / (
             f"catalytic-earth-external-structural-{coordinate_digest}"
         )
         if workdir.exists():
@@ -10549,7 +10550,7 @@ def build_external_hard_negative_second_tranche_current_countable_structural_scr
     second_tranche_selection: dict[str, Any],
     foldseek_coordinate_readiness: dict[str, Any],
     external_coordinate_dir: str | Path = "artifacts/v3_external_structural_coordinates_1025_all30",
-    foldseek_binary: str = "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    foldseek_binary: str = "foldseek",
     tm_score_threshold: float = 0.7,
     max_rows: int = 3,
     max_reported_hits: int = 5,
@@ -10637,7 +10638,7 @@ def build_external_hard_negative_second_tranche_current_countable_structural_scr
                 )
             ).encode("utf-8")
         ).hexdigest()[:16]
-        workdir = Path("/private/tmp") / (
+        workdir = Path(tempfile.gettempdir()) / (
             f"catalytic-earth-second-tranche-current-structural-{digest}"
         )
         if workdir.exists():
@@ -10944,7 +10945,7 @@ def build_external_hard_negative_new_candidate_current_countable_structural_scre
         "artifacts/"
         "v3_external_hard_negative_new_candidate_structural_coordinates_1025"
     ),
-    foldseek_binary: str = "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    foldseek_binary: str = "foldseek",
     tm_score_threshold: float = 0.7,
     max_rows: int = 7,
     max_reported_hits: int = 5,
@@ -28947,7 +28948,7 @@ def _external_sequence_search_workdir(
     digest = hashlib.sha256()
     for path in (external_fasta, reference_fasta):
         digest.update(path.read_bytes())
-    workdir = Path("/private/tmp") / (
+    workdir = Path(tempfile.gettempdir()) / (
         f"catalytic-earth-external-sequence-{backend_name}-"
         f"{digest.hexdigest()[:16]}"
     )

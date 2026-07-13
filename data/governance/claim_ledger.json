@@ -101,12 +101,13 @@
     "claim_id": "CE-009",
     "claim_kind": "software_state",
     "status": "Supported",
-    "claim": "The audited Python 3.13 full suite ran 2,559 tests with 74 failures, 20 errors, and one skip.",
-    "current_wording": "Do not call the full suite green until a fresh complete run passes; targeted green tests must be identified as targeted.",
-    "rationale": "Some failures are environmental, but checked-in state drift and stale hashes are also present and cannot be hidden by selective runs.",
+    "claim": "The preserved Python 3.13 audit ran 2,559 tests with 74 failures, 20 errors, and one skip; after root-cause correction and remediation, the pinned complete suite ran 2,585 tests with zero failures, zero errors, and one skip.",
+    "current_wording": "Preserve both runs. Fifty-four failed tests contained 179 CRLF-only hash comparisons, not content drift; one genuine historical lineage mismatch is quarantined without rehashing. A green software suite is not scientific validation.",
+    "rationale": "The initial failure counts were real, but the review over-attributed them to stale checked-in hashes. Exact Git-blob comparison separated checkout newline effects from the single genuine lineage drift, and the complete suite was rerun after bounded repairs.",
     "evidence": [
-      "docs/reviews/catalytic-earth-full-review-2026-07-10.md",
-      "README.md"
+      "data/governance/test_baseline.json",
+      "data/governance/historical_lineage_quarantine.json",
+      "docs/reviews/catalytic-earth-full-review-2026-07-10.md"
     ]
   },
   {
@@ -137,9 +138,9 @@
     "claim_id": "CE-012",
     "claim_kind": "governance_decision",
     "status": "Supported",
-    "claim": "New label/family expansion and new performance headlines are frozen until the truth-governance, exposure, environment, and live-manifest gates pass.",
-    "current_wording": "Treat the freeze as an active admission rule, not a suggestion or a ban on corrective work.",
-    "rationale": "Scaling before object definitions, exposure history, and evidence labels are reliable would amplify known defects.",
+    "claim": "Protected registry writes and new performance headlines remain frozen after the truth-reset implementation until an explicit reviewed post-reset admission decision changes the machine gate.",
+    "current_wording": "P0 completion does not silently lift the registry safety latch. Continue crosswalk, schema, corrective, packaging, and preregistered proposal work; change frozen to false only in a reviewed decision.",
+    "rationale": "The mechanical gates now exist, but preserving an explicit transition prevents cleanup completion from being mistaken for authority to expand labels or make new performance claims.",
     "evidence": [
       "README.md",
       "docs/RAPID_ATLAS_PLAN.md",
@@ -156,6 +157,42 @@
     "evidence": [
       "artifacts/v3_option_b_heldout_preregistration_current702_20260628.json",
       "data/governance/exposure_ledger.jsonl"
+    ]
+  },
+  {
+    "claim_id": "CE-014",
+    "claim_kind": "evaluation_claim",
+    "status": "Diagnostic",
+    "claim": "Family-selected and three-family views produced after inspecting a result are exploratory and require a fresh disjoint test.",
+    "current_wording": "Preserve post-hoc views in the posthoc namespace and never present them as preregistered confirmatory endpoints.",
+    "rationale": "Selecting a successful family subset after observing the decomposition changes the endpoint and cannot support the original validation claim.",
+    "evidence": [
+      "artifacts/v3_swissprot_pdbholo_gold_heldout_eval_result_current702_20260629.json",
+      "docs/reviews/catalytic-earth-full-review-2026-07-10.md"
+    ]
+  },
+  {
+    "claim_id": "CE-015",
+    "claim_kind": "negative_result",
+    "status": "Supported",
+    "claim": "The tested structural-orphan hypothesis failed on the current families because Pfam revealed the family of every putative structural orphan.",
+    "current_wording": "Retain the original predictor hypothesis and its negative result as first-class records; the atlas reframe does not turn the failure into a success.",
+    "rationale": "A project north star must not become unfalsifiable by discarding the narrower prediction that motivated a test.",
+    "evidence": [
+      "artifacts/v3_decisive_orphan_search_current702_20260630.json",
+      "work/decisive_orphan_search_20260630.md"
+    ]
+  },
+  {
+    "claim_id": "CE-016",
+    "claim_kind": "label_error",
+    "status": "Retracted",
+    "claim": "Human GFAT2/O94808 is PLP-dependent because it belongs to EC 2.6.1.*.",
+    "current_wording": "Withdraw the blanket proxy assignment, preserve the historical row, and exclude or independently adjudicate it before reuse.",
+    "rationale": "EC 2.6.1.16 describes lysine-ketimine/transamidination chemistry and does not justify the PLP-family mapping applied by the proxy rule.",
+    "evidence": [
+      "artifacts/v3_swissprot_pdbholo_gold_heldout_preregistration_current702_20260629.json",
+      "docs/reviews/catalytic-earth-full-review-2026-07-10.md"
     ]
   }
 ]

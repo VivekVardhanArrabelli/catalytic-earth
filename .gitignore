@@ -20,6 +20,8 @@ artifacts/**/tmp/
 
 # Python editable-install metadata
 *.egg-info/
+build/
+dist/
 tests_full2.log
 artifacts/v3_offmcsa_recovery_current702_20260628_coordinates/
 artifacts/**/foldseek.log

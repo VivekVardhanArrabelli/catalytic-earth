@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import hashlib
+import subprocess
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -8,10 +10,16 @@ from tempfile import TemporaryDirectory
 from catalytic_earth.truth_guard import (
     _load_registry_rows,
     append_exposure_event,
+    assert_evaluation_request_allowed,
     assert_expansion_write_allowed,
+    compute_one_shot_status,
     load_exposure_ledger,
+    load_exposure_rows,
+    preregistration_sha256,
     validate_expansion_freeze,
     validate_exposure_events,
+    validate_exposure_rows,
+    validate_preregistration_contract,
     validate_truth_governance,
 )
 
@@ -43,7 +51,7 @@ class TruthGuardTests(unittest.TestCase):
         repo_root = Path(__file__).resolve().parents[1]
         result = validate_truth_governance(repo_root)
 
-        self.assertEqual(result["claims"], 13)
+        self.assertEqual(result["claims"], 16)
         self.assertEqual(result["exposure_events"], 9)
         self.assertEqual(result["exposure_surfaces"], 4)
         self.assertEqual(result["frozen_unscored_surfaces"], 1)
@@ -52,6 +60,142 @@ class TruthGuardTests(unittest.TestCase):
         self.assertEqual(result["combined_oos_records"], 1696)
         self.assertEqual(result["chemistry_exact_correct"], 65)
         self.assertEqual(result["swissprot_metal_recovered"], 2)
+        self.assertEqual(result["exposure_rows"], 1000)
+        self.assertEqual(result["independent_eligible_rows"], 22)
+        self.assertEqual(result["drifted_first_exposure_sources"], 0)
+
+    def test_row_memory_computes_one_shot_status(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        result = validate_exposure_rows(repo_root=repo_root)
+
+        self.assertEqual(result["exposure_row_surfaces"], 4)
+        self.assertEqual(
+            compute_one_shot_status("offmcsa.option_b.bronze22", repo_root=repo_root),
+            "available_once",
+        )
+        self.assertEqual(
+            compute_one_shot_status("mcsa.current702.heldout140", repo_root=repo_root),
+            "spent",
+        )
+
+    def test_evaluator_refuses_spent_independent_claim(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        rows = load_exposure_rows(repo_root / "data/governance/exposure_rows.jsonl")
+        heldout = [
+            row["row_id"]
+            for row in rows
+            if row["surface_id"] == "mcsa.current702.heldout140"
+        ]
+
+        with self.assertRaisesRegex(ValueError, "not eligible for an independent test"):
+            assert_evaluation_request_allowed(
+                "mcsa.current702.heldout140",
+                heldout,
+                claimed_role="independent_test",
+                namespace="evaluation/mcsa",
+                repo_root=repo_root,
+            )
+
+    def test_evaluator_protects_frozen_surface_and_requires_exact_set(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        rows = load_exposure_rows(repo_root / "data/governance/exposure_rows.jsonl")
+        option_b = [
+            row["row_id"]
+            for row in rows
+            if row["surface_id"] == "offmcsa.option_b.bronze22"
+        ]
+
+        decision = assert_evaluation_request_allowed(
+            "offmcsa.option_b.bronze22",
+            option_b,
+            claimed_role="independent_test",
+            namespace="evaluation/option-b",
+            repo_root=repo_root,
+        )
+        self.assertEqual(decision["one_shot_status"], "available_once")
+        with self.assertRaisesRegex(ValueError, "entire frozen row set"):
+            assert_evaluation_request_allowed(
+                "offmcsa.option_b.bronze22",
+                option_b[:-1],
+                claimed_role="independent_test",
+                namespace="evaluation/option-b",
+                repo_root=repo_root,
+            )
+        with self.assertRaisesRegex(ValueError, "protected from development use"):
+            assert_evaluation_request_allowed(
+                "offmcsa.option_b.bronze22",
+                option_b,
+                claimed_role="development",
+                namespace="development/option-b",
+                repo_root=repo_root,
+            )
+
+    def test_posthoc_requires_separate_namespace(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        rows = load_exposure_rows(repo_root / "data/governance/exposure_rows.jsonl")
+        row_id = next(
+            row["row_id"]
+            for row in rows
+            if row["surface_id"] == "mcsa.current702.heldout140"
+        )
+        with self.assertRaisesRegex(ValueError, "posthoc/"):
+            assert_evaluation_request_allowed(
+                "mcsa.current702.heldout140",
+                [row_id],
+                claimed_role="posthoc",
+                namespace="analysis/mcsa",
+                repo_root=repo_root,
+            )
+
+    def test_preregistration_contract_binds_required_fields_and_role(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest_path = repo_root / "data/governance/exposure_rows_manifest.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        commit = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=repo_root, text=True
+        ).strip()
+        contract = {
+            "schema_version": "catalytic-earth.preregistration.v1",
+            "preregistration_id": "test.option-b.v1",
+            "registered_at": "2026-07-13T21:00:00Z",
+            "code_commit": commit,
+            "data_hashes": {
+                "data/governance/exposure_rows_manifest.json": hashlib.sha256(
+                    manifest_path.read_bytes()
+                ).hexdigest()
+            },
+            "surface_id": "offmcsa.option_b.bronze22",
+            "row_id_set_sha256": manifest["surfaces"][
+                "offmcsa.option_b.bronze22"
+            ]["row_id_set_sha256"],
+            "claimed_role": "independent_test",
+            "namespace": "evaluation/option-b",
+            "threshold": {"name": "combined_score", "value": 0.44155, "comparison": ">="},
+            "metric": {
+                "name": "exact_proxy_family_recovery",
+                "aggregation": "micro",
+                "higher_is_better": True,
+            },
+            "seed": 0,
+            "endpoint": {
+                "name": "option-b bronze proxy recovery",
+                "population": "all 22 frozen rows",
+                "unit": "protein-label record",
+                "decision_rule": "report all predictions and exact proxy matches once",
+            },
+        }
+        contract["signature"] = {
+            "algorithm": "sha256",
+            "digest": preregistration_sha256(contract),
+        }
+        self.assertIs(
+            validate_preregistration_contract(contract, repo_root=repo_root), contract
+        )
+
+        contract["claimed_role"] = "development"
+        contract["signature"]["digest"] = preregistration_sha256(contract)
+        with self.assertRaisesRegex(ValueError, "protected from development use"):
+            validate_preregistration_contract(contract, repo_root=repo_root)
 
     def test_expansion_freeze_blocks_protected_registry(self) -> None:
         repo_root = Path(__file__).resolve().parents[1]

@@ -1,0 +1,53 @@
+{
+  "schema_version": "catalytic-earth.golden-input.v1",
+  "records": [
+    {
+      "schema_version": "catalytic-earth.mechanism-record.v1",
+      "record_id": "fixture:reaction:1",
+      "object_type": "net_reaction",
+      "evidence_tier": 0,
+      "label": "Synthetic canonical reaction fixture",
+      "fixture_only": true,
+      "evidence": [],
+      "mechanism_steps": [],
+      "counterevidence": [],
+      "outcome": null
+    },
+    {
+      "schema_version": "catalytic-earth.mechanism-record.v1",
+      "record_id": "fixture:hypothesis:1",
+      "object_type": "mechanism_hypothesis",
+      "evidence_tier": 1,
+      "label": "Synthetic two-step catalytic hypothesis fixture",
+      "fixture_only": true,
+      "evidence": [],
+      "mechanism_steps": ["activate synthetic nucleophile", "resolve synthetic intermediate"],
+      "counterevidence": ["No protein or experiment is attached to this fixture."],
+      "outcome": null
+    },
+    {
+      "schema_version": "catalytic-earth.mechanism-record.v1",
+      "record_id": "fixture:protein-record:1",
+      "object_type": "protein_annotation_record",
+      "evidence_tier": 2,
+      "label": "Synthetic protein/site-grounded hypothesis fixture",
+      "fixture_only": true,
+      "evidence": [],
+      "mechanism_steps": ["map synthetic catalytic role to synthetic residue"],
+      "counterevidence": ["No independent review or experiment is implied."],
+      "outcome": null
+    },
+    {
+      "schema_version": "catalytic-earth.mechanism-record.v1",
+      "record_id": "fixture:observation:negative:1",
+      "object_type": "experimental_observation",
+      "evidence_tier": 4,
+      "label": "Synthetic negative-outcome retention fixture",
+      "fixture_only": true,
+      "evidence": [],
+      "mechanism_steps": [],
+      "counterevidence": ["Synthetic negative outcomes remain first-class records."],
+      "outcome": "negative"
+    }
+  ]
+}

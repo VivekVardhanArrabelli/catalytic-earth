@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://catalytic-earth.invalid/schemas/release-manifest-v1.schema.json",
+  "title": "Catalytic Earth release manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "release",
+    "release_tag",
+    "source_commit",
+    "source_tree",
+    "source_commit_epoch",
+    "canonical_surface",
+    "dataset_and_split_hashes",
+    "build_and_reproduce_commands",
+    "restore_verification",
+    "environment",
+    "assets",
+    "source_bindings",
+    "historical_surface",
+    "attribution_and_rights"
+  ],
+  "properties": {
+    "schema_version": {"const": "catalytic-earth.release-manifest.v1"},
+    "release": {"const": "0.1.0"},
+    "release_tag": {"type": "string"},
+    "source_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "source_tree": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "source_commit_epoch": {"type": "integer", "minimum": 1},
+    "canonical_surface": {"type": "object"},
+    "dataset_and_split_hashes": {"type": "object"},
+    "build_and_reproduce_commands": {"type": "array", "items": {"type": "string"}},
+    "restore_verification": {"type": "object"},
+    "environment": {"type": "object"},
+    "assets": {"type": "array", "minItems": 3},
+    "source_bindings": {"type": "array", "minItems": 1},
+    "historical_surface": {"type": "object"},
+    "attribution_and_rights": {"type": "object"}
+  }
+}

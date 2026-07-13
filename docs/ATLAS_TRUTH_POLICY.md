@@ -116,9 +116,23 @@ All freeze, score, review, and correction events are appended to
 such. Existing lines are never edited to improve the story; corrections append
 new events and preserve the prior event.
 
+Row-level state lives in `data/governance/exposure_rows.jsonl` and is bound by
+`exposure_rows_manifest.json`. An evaluator must call the mechanical gate
+before reading scores. Independent-test requests must match the entire frozen
+row set. One-shot availability is computed from exposure state, eligibility,
+and exposed fields; a boolean assertion in an artifact has no authority.
+
+Every new preregistration uses `preregistration-v1.schema.json` and freezes an
+exact code commit, data hashes, row-set hash, threshold, metric, seed, endpoint,
+role, and namespace under a deterministic SHA-256 content signature. Post-hoc
+analyses use a `posthoc/` namespace.
+
 ## Expansion freeze and admission
 
-Until the truth-governance, environment, and live-manifest gates pass:
+The truth-governance, environment, and live-manifest controls are now
+implemented. The registry latch nevertheless remains active until an explicit
+reviewed post-reset admission decision changes `frozen` to `false`. P0
+completion is not itself that decision. While the latch is active:
 
 - no new label/family expansion;
 - no threshold or feature tuning on exposed surfaces;
@@ -130,7 +144,7 @@ Allowed work includes corrections, exposure backfill, tests, schema and IR
 work, packaging, source crosswalks, strong-baseline integration, bounded
 external review, and experimental-access preparation.
 
-After the freeze lifts, a new atlas record must declare its counted object,
+After a reviewed decision lifts the freeze, a new atlas record must declare its counted object,
 evidence tier, source/version lineage, exposure relationship, and whether the
 record is a hypothesis, review, or observation.
 

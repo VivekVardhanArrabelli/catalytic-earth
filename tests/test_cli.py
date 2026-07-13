@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -18776,7 +18777,7 @@ ATOM 2 O OG SER D 3 3.0 0.0 0.0 OG SER D 3
     def test_automation_lock_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             lock_dir = Path(tmpdir) / "run.lock"
-            env = {"PYTHONPATH": str(ROOT / "src")}
+            env = {**os.environ, "PYTHONPATH": str(ROOT / "src")}
             acquire = subprocess.run(
                 [
                     sys.executable,
@@ -18861,7 +18862,7 @@ ATOM 2 O OG SER D 3 3.0 0.0 0.0 OG SER D 3
             repo.mkdir()
             subprocess.run(["git", "init"], cwd=repo, check=True, capture_output=True, text=True)
             lock_dir = Path(tmpdir) / "run.lock"
-            env = {"PYTHONPATH": str(ROOT / "src")}
+            env = {**os.environ, "PYTHONPATH": str(ROOT / "src")}
             subprocess.run(
                 [
                     sys.executable,

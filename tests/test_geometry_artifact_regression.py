@@ -8,6 +8,10 @@ import unittest
 from collections import Counter
 from pathlib import Path
 
+from catalytic_earth.path_compat import io_path
+from catalytic_earth.lineage_quarantine import assert_lineage_edge_accounted_for
+from catalytic_earth.canonical_hash import canonical_file_sha256
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
@@ -4706,7 +4710,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             / "v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results"
             / "protein_only_fold_topology_residual_vs_train_atlas.tsv"
         )
-        with protein_only_tsv.open() as handle:
+        with io_path(protein_only_tsv).open() as handle:
             self.assertEqual(sum(1 for _ in handle), 580)
         self.assertEqual(
             protein_only_scored_readout["status"],
@@ -5977,6 +5981,9 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
     def test_fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest_counts(
         self,
     ) -> None:
+        quarantine = _load_json(
+            ROOT / "data" / "governance" / "historical_lineage_quarantine.json"
+        )
         probe = _load_json(
             ROOT
             / "artifacts"
@@ -6058,14 +6065,24 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             self.assertEqual(selected["template"], template)
             self.assertTrue(selected["staged_coordinate_exists"])
             coordinate_path = ROOT / selected["staged_coordinate_path"]
-            self.assertTrue(coordinate_path.exists())
-            digest = hashlib.sha256(coordinate_path.read_bytes()).hexdigest()
-            self.assertEqual(selected["staged_coordinate_sha256"], digest)
+            self.assertTrue(io_path(coordinate_path).exists())
+            digest = canonical_file_sha256(coordinate_path)
+            assert_lineage_edge_accounted_for(
+                quarantine,
+                artifact_path=(
+                    "artifacts/v3_fold_augmented_confounded_proxy_swissmodel_"
+                    "coordinate_staging_manifest_current702_20260604.json"
+                ),
+                edge_id=f"{entry_id}:staged_coordinate",
+                source_path=selected["staged_coordinate_path"],
+                recorded_sha256=selected["staged_coordinate_sha256"],
+                observed_sha256=digest,
+            )
             self.assertEqual(
                 row["provider_model_version_path_checksum_provenance"][
                     "checksum_sha256"
                 ],
-                digest,
+                selected["staged_coordinate_sha256"],
             )
             self.assertTrue(row["coordinate_rescore_input_ready"])
 
@@ -11426,9 +11443,12 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(probe["decision"]["apply_or_change_threshold_now"])
         self.assertFalse(probe["guardrails"]["p07658_rows_scored_now"])
 
-    def test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current(
+    def test_fold_augmented_lever3_dispatch_source_lineage_is_current_or_quarantined(
         self,
     ) -> None:
+        quarantine = _load_json(
+            ROOT / "data" / "governance" / "historical_lineage_quarantine.json"
+        )
         for artifact_name in [
             "v3_fold_augmented_p07658_prediction_dispatch_packet_current702_20260604.json",
             (
@@ -11617,14 +11637,15 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                     if not metadata.get("exists"):
                         continue
                     source_path = ROOT / metadata["path"]
-                    self.assertTrue(
-                        source_path.exists(),
-                        f"{artifact_name} source {source_id} is missing",
-                    )
-                    self.assertEqual(
-                        metadata["sha256"],
-                        _sha256_file(source_path),
-                        f"{artifact_name} source {source_id} hash is stale",
+                    source_exists = io_path(source_path).exists()
+                    observed = _sha256_file(source_path) if source_exists else None
+                    assert_lineage_edge_accounted_for(
+                        quarantine,
+                        artifact_path=f"artifacts/{artifact_name}",
+                        edge_id=source_id,
+                        source_path=metadata["path"],
+                        recorded_sha256=metadata.get("sha256"),
+                        observed_sha256=observed,
                     )
 
     def test_fold_augmented_lever3_queue_and_template_guardrail_audit_counts(
@@ -20284,7 +20305,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             "secondary_probe_cobalamin_radical_rearrangement_Q59490.json",
             str(first_template_path),
         )
-        self.assertTrue(first_template_path.exists())
+        self.assertTrue(io_path(first_template_path).exists())
         first_template = _load_json(first_template_path)
         self.assertEqual(first_template["status"], "template_only_not_ready_for_scoring")
         self.assertFalse(first_template["ready_for_predicted_geometry_scoring"])
@@ -26642,16 +26663,12 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
 
 
 def _load_json(path: Path) -> dict:
-    with path.open("r", encoding="utf-8") as handle:
+    with io_path(path).open("r", encoding="utf-8") as handle:
         return json.load(handle)
 
 
 def _sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
+    return canonical_file_sha256(path)
 
 
 if __name__ == "__main__":

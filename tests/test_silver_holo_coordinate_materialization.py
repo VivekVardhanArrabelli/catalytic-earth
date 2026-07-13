@@ -103,7 +103,7 @@ class SilverHoloCoordinateMaterializationTests(unittest.TestCase):
                 entry_id="uniprot:CANDIDATE",
                 fp="metal_dependent_hydrolase",
                 cofactors=["Zn(2+)"],
-                coordinate_sha256=_sha("verified_coordinate\n"),
+                coordinate_sha256=hashlib.sha256(coord.read_bytes()).hexdigest(),
             )
             audit = build_silver_holo_coordinate_materialization(
                 expansion_payload=_population(candidate),

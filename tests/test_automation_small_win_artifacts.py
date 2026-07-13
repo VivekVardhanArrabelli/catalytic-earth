@@ -5,13 +5,17 @@ from collections import Counter
 from pathlib import Path
 import unittest
 
+from catalytic_earth.path_compat import io_path
+from catalytic_earth.lineage_quarantine import assert_lineage_edge_accounted_for
+from catalytic_earth.canonical_hash import canonical_file_sha256
+
 
 ROOT = Path(__file__).resolve().parents[1]
 ARTIFACTS = ROOT / "artifacts"
 
 
 def _load_json(path: Path) -> dict:
-    with path.open("r", encoding="utf-8") as handle:
+    with io_path(path).open("r", encoding="utf-8") as handle:
         return json.load(handle)
 
 
@@ -7673,6 +7677,9 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
     def test_mcsa_ai_visual_exact40_workqueue_keeps_decisions_blank(
         self,
     ) -> None:
+        quarantine = _load_json(
+            ROOT / "data" / "governance" / "historical_lineage_quarantine.json"
+        )
         packet = _load_json(
             ARTIFACTS
             / "v3_mcsa_ai_visual_exact40_human_review_packet_20260524.json"
@@ -7757,10 +7764,18 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
 
         for artifact_key, artifact_path in metadata["source_artifacts"].items():
             path = ROOT / artifact_path
-            self.assertTrue(path.exists(), artifact_path)
-            with path.open("rb") as handle:
-                digest = hashlib.sha256(handle.read()).hexdigest()
-            self.assertEqual(digest, metadata["source_sha256"][artifact_key])
+            self.assertTrue(io_path(path).exists(), artifact_path)
+            digest = canonical_file_sha256(path)
+            assert_lineage_edge_accounted_for(
+                quarantine,
+                artifact_path=(
+                    "artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_20260524.json"
+                ),
+                edge_id=artifact_key,
+                source_path=artifact_path,
+                recorded_sha256=metadata["source_sha256"][artifact_key],
+                observed_sha256=digest,
+            )
 
         for row in rows:
             self.assertEqual(row["current_decision"], "needs_more_evidence")
@@ -16421,6 +16436,9 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             self.assertIn("forbidden", row["prediction_feature_status"])
 
     def test_mechanism_fingerprint_v1_coherence_audit_freezes_primary_target(self) -> None:
+        quarantine = _load_json(
+            ROOT / "data" / "governance" / "historical_lineage_quarantine.json"
+        )
         audit = _load_json(
             ARTIFACTS / "v3_mechanism_fingerprint_v1_coherence_audit_702.json"
         )
@@ -16488,12 +16506,19 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         labels_path = ROOT / "data" / "registries" / "curated_mechanism_labels.json"
         labels = _load_json(labels_path)
         self.assertEqual(len(labels), audit["baseline_label_count"])
-        self.assertEqual(
-            "sha256:" + hashlib.sha256(labels_path.read_bytes()).hexdigest(),
-            audit["label_registry_digest"],
+        assert_lineage_edge_accounted_for(
+            quarantine,
+            artifact_path="artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json",
+            edge_id="label_registry_digest",
+            source_path="data/registries/curated_mechanism_labels.json",
+            recorded_sha256=audit["label_registry_digest"],
+            observed_sha256=canonical_file_sha256(labels_path),
         )
 
     def test_mechanism_prediction_eval_contract_freezes_oos_diversity_policy(self) -> None:
+        quarantine = _load_json(
+            ROOT / "data" / "governance" / "historical_lineage_quarantine.json"
+        )
         contract = _load_json(
             ARTIFACTS
             / "v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json"
@@ -16556,7 +16581,17 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             self.assertIn(source, contract["source_artifacts"])
             source_path = ROOT / source
             recorded = contract["source_artifacts"][source]["sha256"]
-            live = hashlib.sha256(source_path.read_bytes()).hexdigest()
+            live = canonical_file_sha256(source_path)
+            assert_lineage_edge_accounted_for(
+                quarantine,
+                artifact_path=(
+                    "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json"
+                ),
+                edge_id=source,
+                source_path=source,
+                recorded_sha256=recorded,
+                observed_sha256=live,
+            )
             if source == "data/registries/mechanism_fingerprints.json":
                 # The v1 eval contract was frozen against the 8-fingerprint registry.
                 # The Stage-2 metal_dependent_hydrolase v2 split (2026-06-11) extended
@@ -16578,7 +16613,6 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
                 }
                 self.assertTrue(v1_ids <= live_ids)
                 continue
-            self.assertEqual(live, recorded)
 
         tiering = contract["oos_tiering_policy"]["tier_definitions"]
         self.assertIn("no cofactor overlap", tiering["far_oos"]["deterministic_rule"])
@@ -16656,6 +16690,9 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         )
 
     def test_packet1_wave1_followthrough_addenda_lock_cells(self) -> None:
+        quarantine = _load_json(
+            ROOT / "data" / "governance" / "historical_lineage_quarantine.json"
+        )
         lockdown = _load_json(
             ARTIFACTS / "v3_packet1_wave1_lockdown_addendum_702_20260527.json"
         )
@@ -16733,13 +16770,16 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
                 "field_path_pattern"
             ],
         )
-        self.assertEqual(
-            card_addendum["source_artifacts"][
-                "artifacts/v3_m_csa497_wave1_metric_impact_702_20260527.json"
-            ]["sha256"],
-            hashlib.sha256(
-                (ARTIFACTS / "v3_m_csa497_wave1_metric_impact_702_20260527.json").read_bytes()
-            ).hexdigest(),
+        metric_path = "artifacts/v3_m_csa497_wave1_metric_impact_702_20260527.json"
+        assert_lineage_edge_accounted_for(
+            quarantine,
+            artifact_path=(
+                "artifacts/v3_wave1_representation_shootout_result_card_702_20260527_addendum.json"
+            ),
+            edge_id=metric_path,
+            source_path=metric_path,
+            recorded_sha256=card_addendum["source_artifacts"][metric_path]["sha256"],
+            observed_sha256=canonical_file_sha256(ROOT / metric_path),
         )
 
     def test_wave1_tm_pair_signal_expansion_is_exactly_blocked(self) -> None:

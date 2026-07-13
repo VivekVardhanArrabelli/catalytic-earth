@@ -2005,7 +2005,7 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-representatio
   --representation-backend-sample artifacts/v3_external_source_kmer_representation_backend_sample_1025.json \
   --out artifacts/v3_external_source_kmer_representation_backend_sample_audit_1025.json
 
-HF_HOME=/private/tmp/catalytic-earth-hf \
+HF_HOME="${TMPDIR:-/tmp}/catalytic-earth-hf" \
 PYTHONPATH=src python -m catalytic_earth.cli build-external-source-representation-backend-sample \
   --representation-backend-plan artifacts/v3_external_source_representation_backend_plan_1025.json \
   --sequence-neighborhood-sample artifacts/v3_external_source_sequence_neighborhood_sample_1025.json \
@@ -2021,7 +2021,7 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-representatio
 
 # The current 650M sidecar is generated after caching the largest feasible
 # smaller ESM-2 tier (`facebook/esm2_t30_150M_UR50D`) in
-# `/private/tmp/catalytic-earth-hf-cache`. It records 650M as requested and 150M
+# `${TMPDIR:-/tmp}/catalytic-earth-hf-cache`. It records 650M as requested and 150M
 # as the actual computed fallback; do not read it as a completed 650M control.
 PYTHONPATH=src python -m catalytic_earth.cli build-external-source-representation-backend-sample \
   --representation-backend-plan artifacts/v3_external_source_representation_backend_plan_1025.json \
@@ -2135,7 +2135,7 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-representatio
   --representation-backend-plan artifacts/v3_external_source_pilot_representation_backend_plan_1025.json \
   --out artifacts/v3_external_source_pilot_representation_backend_plan_audit_1025.json
 
-HF_HOME=/private/tmp/catalytic-earth-hf-cache \
+HF_HOME="${TMPDIR:-/tmp}/catalytic-earth-hf-cache" \
 PYTHONPATH=src python -m catalytic_earth.cli build-external-source-representation-backend-sample \
   --representation-backend-plan artifacts/v3_external_source_pilot_representation_backend_plan_1025.json \
   --sequence-neighborhood-sample artifacts/v3_external_source_sequence_neighborhood_sample_1025.json \

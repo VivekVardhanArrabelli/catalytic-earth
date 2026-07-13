@@ -89,10 +89,15 @@ atlas evidence tier and identify the checking process.
 
 **Status:** Supported
 
-The audited Python 3.13 suite ran 2,559 tests with 74 failures, 20 errors, and
-one skip. Some failures are environmental; others reflect stale hashes and
-checked-in state drift. The full suite is not called green until a fresh full
-run passes. Targeted passing tests are labeled targeted.
+The preserved Python 3.13 audit ran 2,559 tests with 74 failures, 20 errors,
+and one skip. Its later root-cause attribution is corrected: 54 failed tests
+contained 179 hash comparisons that differed only because a Windows checkout
+converted Git's LF blobs to CRLF; those were not content drift. One genuine
+historical lineage mismatch remains quarantined without rewriting its embedded
+hash. After dependency, path, compatibility, and fixture repairs, the pinned
+Python 3.13 environment ran the complete expanded 2,585-test suite with zero
+failures, zero errors, and one skip. This is software validation, not
+scientific validation.
 
 ## CE-010 — fabrication audit boundary
 
@@ -115,10 +120,12 @@ The full atlas remains the mission.
 
 **Status:** Supported
 
-New label/family expansion and new performance headlines remain frozen until
-the claim ledger, append-only exposure ledger, reproducible core environment,
-and live artifact manifest gates pass. Corrective work, schema work, audits,
-and packaging remain allowed.
+The truth-reset gates are implemented, but protected registry writes and new
+performance headlines remain frozen as a deliberate safety latch until an
+explicit reviewed post-reset admission decision changes `frozen` to `false`.
+P0 completion does not silently authorize registry mutation. Corrective work,
+schema/crosswalk work, bounded preregistered experiments, audits, and packaging
+remain allowed.
 
 ## CE-013 — Option-B bronze22 state
 
@@ -128,6 +135,35 @@ The 22-row off-M-CSA Option-B bronze surface is recorded as frozen and unscored.
 It may be spent once under its frozen contract. Because its labels are bronze
 proxies, even a clean result cannot be described as expert or mechanism-gold
 validation.
+
+## CE-014 — post-hoc family views
+
+**Status:** Diagnostic
+
+Family-selected and three-family views produced after inspecting a result are
+exploratory analyses. They remain visible because they can generate useful
+hypotheses, but they are not preregistered endpoints and require a fresh,
+disjoint test before supporting a confirmatory claim.
+
+## CE-015 — original predictor hypothesis and negative result
+
+**Status:** Supported
+
+The original hypothesis that the current structural atlas would reveal
+mechanism-family orphans missed by ordinary sequence annotation failed on the
+tested families: every proposed structural orphan carried a Pfam annotation
+that revealed its family. The atlas north star does not erase this negative
+predictor result or convert it into a success.
+
+## CE-016 — GFAT2 proxy mapping
+
+**Status:** Retracted
+
+The June 29 EC-proxy set mapped human GFAT2/O94808 (EC 2.6.1.16) to
+`plp_dependent_enzyme` by a blanket `2.6.1.*` rule. That assignment is
+withdrawn: the cited EC chemistry is lysine-ketimine/transamidination chemistry,
+not evidence of PLP dependence. The historical row remains unchanged for
+provenance and must be excluded or independently adjudicated in any reuse.
 
 ## Change rule
 

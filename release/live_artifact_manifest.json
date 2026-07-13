@@ -1,0 +1,999 @@
+{
+  "artifact_git_index_sha256": "3ccc2310f5900aad000d11d05cc7a65b64b37e2a7fccddb10ecf37b64bbe40c5",
+  "artifact_index_sha256": "e82bcb239c666a6a8cba5c8fccbe2059dc1454a63cc19b6357fb212739162640",
+  "hash_rule": "SHA-256 over mode, Git object ID, blob size, and UTF-8 path, sorted by path",
+  "large_file_count": 164,
+  "large_file_threshold_bytes": 5242880,
+  "large_files": [
+    {
+      "bytes": 5585226,
+      "git_object_id": "8b147f8ad64d04ffe69fb91ef02f98f208ec96f5",
+      "path": "artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 5422005,
+      "git_object_id": "4ebc6710397c558e82b981287eecd14a3e6bb36f",
+      "path": "artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_embeddings_current702_20260525.npz",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 23810301,
+      "git_object_id": "86f8700680569c9d26503c05f64d828a28f76a35",
+      "path": "artifacts/v1_graph_1000.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 23871866,
+      "git_object_id": "c9bfa25b27b0c7549f37b5110a0f80663a4eb08b",
+      "path": "artifacts/v1_graph_1025.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 5356188,
+      "git_object_id": "5f6b064fbf5306bc9b5246df310a3472d69e542c",
+      "path": "artifacts/v1_graph_200.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 7496154,
+      "git_object_id": "95b9c007db337e36fcc038bbf0d2a3229c540fcd",
+      "path": "artifacts/v1_graph_225.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 8006111,
+      "git_object_id": "5222efdbb0199c443af47cbb2db4a921531e4115",
+      "path": "artifacts/v1_graph_250.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 8556309,
+      "git_object_id": "dc844be58baad79184b9a55173d9528f4a5426cd",
+      "path": "artifacts/v1_graph_275.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 9043525,
+      "git_object_id": "284c9c31e53dddc49ed2e9f77218eca10f436388",
+      "path": "artifacts/v1_graph_300.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 9444903,
+      "git_object_id": "da7c81d8c35b82c6f9336eb572c58f69a0439c3a",
+      "path": "artifacts/v1_graph_325.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 9965975,
+      "git_object_id": "01c33c29c570a494f7c6235c76225e455d619985",
+      "path": "artifacts/v1_graph_350.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 10484213,
+      "git_object_id": "bde90b9df90f169519fbe31f5108192a6e126223",
+      "path": "artifacts/v1_graph_375.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 11006633,
+      "git_object_id": "ad606753c7bbe6b1e1f4b66e2d9a551d509609cf",
+      "path": "artifacts/v1_graph_400.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 11527355,
+      "git_object_id": "0be42918c3faf5be480f43d62e20763733c4237f",
+      "path": "artifacts/v1_graph_425.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 11951659,
+      "git_object_id": "a7580cffae7e599a7e9b5d811e54d8e6a43e8fde",
+      "path": "artifacts/v1_graph_450.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 12758124,
+      "git_object_id": "f79ee35f3fd88c5db7521cf4b5eb2434ab1ad878",
+      "path": "artifacts/v1_graph_475.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 13453635,
+      "git_object_id": "17b435776f60cd1b6f954e32fcdef7eefa9dfd0b",
+      "path": "artifacts/v1_graph_500.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 13932049,
+      "git_object_id": "10407714dc9394c0b2c3d9888a1a9eb444dd4b00",
+      "path": "artifacts/v1_graph_525.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 14426207,
+      "git_object_id": "79b8a04ece25d09ba3a6747a913f61c6d3f8ada1",
+      "path": "artifacts/v1_graph_550.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 14805678,
+      "git_object_id": "1fa578ddad7809eb260916afcd9313f16b5c0105",
+      "path": "artifacts/v1_graph_575.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 15179590,
+      "git_object_id": "fdcd318786c6e8f90379c342e3b354f87180ca15",
+      "path": "artifacts/v1_graph_600.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 15553785,
+      "git_object_id": "2027a243a11acc278da69b45893aa977c61f9fcf",
+      "path": "artifacts/v1_graph_625.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 16026089,
+      "git_object_id": "5fa2e2676d79cd4f1d940c829b9efd2655c2902b",
+      "path": "artifacts/v1_graph_650.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 16343561,
+      "git_object_id": "176ad55c429d5498c3309792276adafc0fdf8440",
+      "path": "artifacts/v1_graph_675.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 16812963,
+      "git_object_id": "821c225b674d23ffaf7378285a74d6c5e23f30bd",
+      "path": "artifacts/v1_graph_700.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 17495000,
+      "git_object_id": "6e5f11bd30a21c2341e8ba18d2896eee3105153c",
+      "path": "artifacts/v1_graph_725.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 18090156,
+      "git_object_id": "2e1472252e08b80c10bc1779969050fc21e335eb",
+      "path": "artifacts/v1_graph_750.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 18633860,
+      "git_object_id": "b8b503d3fff9a8afdb429fd19ece38e4797c6911",
+      "path": "artifacts/v1_graph_775.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 19392814,
+      "git_object_id": "23a9ef6ac1dd5fe59fab1ea9811f94a20400cd99",
+      "path": "artifacts/v1_graph_800.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 19963703,
+      "git_object_id": "1a3ccc2370aba3b839fb8092ba63d1ce843473f0",
+      "path": "artifacts/v1_graph_825.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 20468291,
+      "git_object_id": "9f3aa9b17cc28d6ebe4c56ca16dfa65f7bacbad1",
+      "path": "artifacts/v1_graph_850.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 20773842,
+      "git_object_id": "f046cf760f47e9f785c91a90bd1e512e4ddcaa73",
+      "path": "artifacts/v1_graph_875.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 21182285,
+      "git_object_id": "6bb37bb952d3fd6a6b1dd2491d98f35a77d14b75",
+      "path": "artifacts/v1_graph_900.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 22125045,
+      "git_object_id": "6163309c8fc6dd948ba7cd28fe1f30cc206d7617",
+      "path": "artifacts/v1_graph_925.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 22560935,
+      "git_object_id": "0713948ccc9b2db3bffd900cb1489cb381cd8abb",
+      "path": "artifacts/v1_graph_950.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 23062288,
+      "git_object_id": "12fee73f3e52b2ca71fe39fa3d01adb2f251f056",
+      "path": "artifacts/v1_graph_975.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 8846275,
+      "git_object_id": "01f5317fc7057684fcf69c9241e55d9e0713b4e6",
+      "path": "artifacts/v3_artifact_storage_inventory_current702_20260616_run0008.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 8859574,
+      "git_object_id": "d5b9b7a1cd9692affe87a9506ca9d151086acbf7",
+      "path": "artifacts/v3_artifact_storage_inventory_current702_20260616_run0009.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 8911105,
+      "git_object_id": "f92a5432b0c63a5b9e65148fd45765fb25eeeaef",
+      "path": "artifacts/v3_artifact_storage_inventory_current702_20260616_run0310.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 8625957,
+      "git_object_id": "75c66dfd05e5f283641c031712571613ab9cd990",
+      "path": "artifacts/v3_artifact_storage_inventory_current702_20260616_run1503.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 8738680,
+      "git_object_id": "2f964463a62ce3a9e344e829acf2b51ca6406580",
+      "path": "artifacts/v3_artifact_storage_inventory_current702_20260616_run1804.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 8765287,
+      "git_object_id": "82a16fb4584cbeb65d84e09041d95ab442475e5f",
+      "path": "artifacts/v3_artifact_storage_inventory_current702_20260616_run1904.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 8785063,
+      "git_object_id": "020a6d31deb1d8725e613625fffd823c110a4a17",
+      "path": "artifacts/v3_artifact_storage_inventory_current702_20260616_run2004.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 8799829,
+      "git_object_id": "f3602c14832c2755039c3c2c6aedca8a14419729",
+      "path": "artifacts/v3_artifact_storage_inventory_current702_20260616_run2105.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 8817695,
+      "git_object_id": "1ff7c27636cd46a50e436cadb8740dc7fb972307",
+      "path": "artifacts/v3_artifact_storage_inventory_current702_20260616_run2205.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 8831567,
+      "git_object_id": "f8645e1ebe505aa39a84558fd9dd6502face52cf",
+      "path": "artifacts/v3_artifact_storage_inventory_current702_20260616_run2306.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 10460084,
+      "git_object_id": "0610ffecfd055a82a74fe55d6644e8088b74d504",
+      "path": "artifacts/v3_external_admission_merged_surface_current702_20260608.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 19183922,
+      "git_object_id": "ed423dd59474ba09d89cf2f5af0ee7d87bc31196",
+      "path": "artifacts/v3_external_admission_merged_surface_current702_20260609.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 8720512,
+      "git_object_id": "3e3915f1a4b741ffa3199923d4669da0474f1936",
+      "path": "artifacts/v3_external_batch_import_approval_packet_current702_20260610.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 12490314,
+      "git_object_id": "37af9ddfe9e04e99ace58a1e9f1790ec5983549e",
+      "path": "artifacts/v3_external_bulk_ingestion_scaleout_current702_20260609.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 67077595,
+      "git_object_id": "0333af22221a0e75161f7045c93c54734f9c0474",
+      "path": "artifacts/v3_external_bulk_ingestion_scaleout_wave2_current702_20260609.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 10931526,
+      "git_object_id": "9a468eda2ceed596931f36691445e6ca84b78517",
+      "path": "artifacts/v3_external_bulk_ingestion_scaleout_wave2_provisional_import_preview_current702_20260609.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 10253705,
+      "git_object_id": "0e14e01bf0d051d4a27e7f7807d3703c8438f111",
+      "path": "artifacts/v3_external_bulk_ingestion_scout_current702_20260608.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 13393192,
+      "git_object_id": "28cf5b76a120f93b505284849ceb9333874373d5",
+      "path": "artifacts/v3_external_bulk_ingestion_scout_current702_20260616_run1403_size120.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 52557539,
+      "git_object_id": "94dc8eb871e6a88925e8d537d54eda25fc08a273",
+      "path": "artifacts/v3_external_import_review_preflight_current702_20260609.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 52557539,
+      "git_object_id": "19d2dff20f139a08e2757900570d992d0c248957",
+      "path": "artifacts/v3_external_import_review_preflight_current702_20260610.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 13862390,
+      "git_object_id": "4d4df6a85235753586dfd38759c0e8c815288913",
+      "path": "artifacts/v3_external_import_review_repair_queue_current702_20260609.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 13862390,
+      "git_object_id": "3803ef2cff3a1d3b73453ffe64a3ae11ac8ad964",
+      "path": "artifacts/v3_external_import_review_repair_queue_current702_20260610.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 6914926,
+      "git_object_id": "d6abc85eda47b1b9a02fdec7db4152383f38acb7",
+      "path": "artifacts/v3_external_materialization_admission_batch_current702_20260608.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 38596930,
+      "git_object_id": "5b452e7eede2b82c53a7e7ced1fe5e2e73c993a7",
+      "path": "artifacts/v3_external_materialization_wave2_current702_20260609.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 5689245,
+      "git_object_id": "c4f194ceb0cc8b649f6c42b6f3f8e398b3ca92aa",
+      "path": "artifacts/v3_external_materialization_wave2_import_ready_preview_current702_20260609.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 35950347,
+      "git_object_id": "c550fe5a7f480669a5bc8e28353ca5eb42df7187",
+      "path": "artifacts/v3_external_materialization_wave2_repair_queue_current702_20260609.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 12496100,
+      "git_object_id": "e8d1be3234202528261a680185ae7c58cd08ed37",
+      "path": "artifacts/v3_external_scaleout_bronze_import_preview_current702_20260609.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 57349142,
+      "git_object_id": "c0a568f267babc1a63b534eec0617deb22a5fad0",
+      "path": "artifacts/v3_external_scaleout_shard_metal_phosphoryl_glycoside_current702_20260609.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 9683301,
+      "git_object_id": "28cb3506fda4886dffa01639842517303fc46c13",
+      "path": "artifacts/v3_external_scaleout_shard_metal_phosphoryl_glycoside_import_ready_preview_current702_20260609.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 27137773,
+      "git_object_id": "f30f6003216becae01047fa64713d96234bf42b2",
+      "path": "artifacts/v3_external_scaleout_shard_near_orphan_diversity_current702_20260609.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 24837308,
+      "git_object_id": "28792a70e9af6edad9f0165392f7019ff1785b3a",
+      "path": "artifacts/v3_external_scaleout_shard_plp_radical_cobalamin_current702_20260609.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 30994352,
+      "git_object_id": "97510c61178027e709ea5929bcc9ed4adde9ddf5",
+      "path": "artifacts/v3_external_scaleout_shard_redox_cofactor_confounded_current702_20260609.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 7014038,
+      "git_object_id": "10edc785b2ff0abfdedcce17c3091fc3d030779b",
+      "path": "artifacts/v3_external_scaleout_shard_redox_cofactor_confounded_import_ready_preview_current702_20260609.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 5449692,
+      "git_object_id": "4fdc2bde8cbdc619137a314666f0c6a71be1ade2",
+      "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BXR.cif",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 6913294,
+      "git_object_id": "9b44faff003f584011613f42f65707c8719d2935",
+      "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1MCZ.cif",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 6686819,
+      "git_object_id": "4f000b8c653b63d7777a8c1119d12d1d6819e659",
+      "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 6309247,
+      "git_object_id": "1358f00d1c0b73e957c79f01e38cec1d2ced67f6",
+      "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OGY.cif",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 5572562,
+      "git_object_id": "aa7c8b94fa352eefff9ed3dba1869ba12b4b0557",
+      "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RYP.cif",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 5299662,
+      "git_object_id": "1d14310f723d332902913030a5822f67d7bdde40",
+      "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1S6L.cif",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 5507198,
+      "git_object_id": "7ea2aa710280b799ad2b38d15efc5b3940f8bdcb",
+      "path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PAN.cif",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 13841581,
+      "git_object_id": "27a6dd610c42f07012edf17ef5d4167b6453f599",
+      "path": "artifacts/v3_foldseek_coordinates_1000/pdb_4V40.cif",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 13374918,
+      "git_object_id": "f45d6b52810eb711fa0fd5ba192391c3d3812ad5",
+      "path": "artifacts/v3_foldseek_coordinates_1000/pdb_4V4E.cif",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 17828264,
+      "git_object_id": "1ddba3e7a06e9a4b7f020386e3d49700bac38290",
+      "path": "artifacts/v3_geometry_features_1000.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 17829438,
+      "git_object_id": "2b85028599d8944d88b114cc26e6919c07f33d56",
+      "path": "artifacts/v3_geometry_features_1000_selected_pdb_override.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 17887021,
+      "git_object_id": "da9cd873071d48c81cbae2c91944ff54a8dfd329",
+      "path": "artifacts/v3_geometry_features_1025.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 5713804,
+      "git_object_id": "4f878f7dacb7d26dbe50071d2aa92d58a8c12020",
+      "path": "artifacts/v3_geometry_features_275.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 6140111,
+      "git_object_id": "92fc89c1f54d6aebda9e2a0696dbd6c1021d7b74",
+      "path": "artifacts/v3_geometry_features_300.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 6641911,
+      "git_object_id": "1d1efd311c6c04d54cf46024113fa7f64f801b4c",
+      "path": "artifacts/v3_geometry_features_325.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 7034865,
+      "git_object_id": "674ac4486a663d443bc7b2e05b8251f5074a44ab",
+      "path": "artifacts/v3_geometry_features_350.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 7496393,
+      "git_object_id": "bce6f9445d4591727eb55319fc81659c89a416a9",
+      "path": "artifacts/v3_geometry_features_375.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 8049367,
+      "git_object_id": "8ba9c174824beaba808e8c116637c55e32f96146",
+      "path": "artifacts/v3_geometry_features_400.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 8537965,
+      "git_object_id": "17a7590c82e5d29585bc508e5d3037216d9e5519",
+      "path": "artifacts/v3_geometry_features_425.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 9124233,
+      "git_object_id": "9d5fde686a5fdfba3cb7c83700fb471572feef03",
+      "path": "artifacts/v3_geometry_features_450.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 9634388,
+      "git_object_id": "b71366e88b1b8fd9c35ecf2304ba077c022acd4b",
+      "path": "artifacts/v3_geometry_features_475.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 10066342,
+      "git_object_id": "293cc7f9ad05ce19f1b7f3a2852519e9ca3cb368",
+      "path": "artifacts/v3_geometry_features_500.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 10467300,
+      "git_object_id": "20e67b5a3b16877ee79eed4bede97e5d0aab0ed9",
+      "path": "artifacts/v3_geometry_features_525.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 10883412,
+      "git_object_id": "00e1e0f304a45e5011fb6258ce11e667ca24fc24",
+      "path": "artifacts/v3_geometry_features_550.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 11254989,
+      "git_object_id": "075b6132dcf5203f222080315d49ace7d644e477",
+      "path": "artifacts/v3_geometry_features_575.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 11619618,
+      "git_object_id": "3eb49fe38b137c57d5e102b5860f831aba605fe8",
+      "path": "artifacts/v3_geometry_features_600.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 11956951,
+      "git_object_id": "2ba8de7561145ffc8391ea9e0ae24ba154affeaa",
+      "path": "artifacts/v3_geometry_features_625.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 12344003,
+      "git_object_id": "6c24b5a18b87940121e9a022339402a9a5c6726f",
+      "path": "artifacts/v3_geometry_features_650.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 12707170,
+      "git_object_id": "f0f19ab28834c5ce5ba4db20125ea6f8c53833d7",
+      "path": "artifacts/v3_geometry_features_675.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 13072196,
+      "git_object_id": "18cabd190cbf554835bea0f0f6d7df3408704ee0",
+      "path": "artifacts/v3_geometry_features_700.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 13528170,
+      "git_object_id": "7695013aca8554846b672092b55e93f2b51e7412",
+      "path": "artifacts/v3_geometry_features_725.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 13958922,
+      "git_object_id": "4725faa939e3c1c5d8417dd6d03a337de297c324",
+      "path": "artifacts/v3_geometry_features_750.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 14273070,
+      "git_object_id": "2c79f134a00c5743bf3a8856341d3f72bc0bef5b",
+      "path": "artifacts/v3_geometry_features_775.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 14672254,
+      "git_object_id": "6048c6d2efd9a634619f8d2445400235d01b5a06",
+      "path": "artifacts/v3_geometry_features_800.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 15005231,
+      "git_object_id": "54de4474f688a65dde84e1e035021512d83533c6",
+      "path": "artifacts/v3_geometry_features_825.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 15391193,
+      "git_object_id": "257ce40b9ba6bd00c781182d8642807df1b85d53",
+      "path": "artifacts/v3_geometry_features_850.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 15777634,
+      "git_object_id": "8a68e5f11aca86fc5594febcd51f9ce7981a033f",
+      "path": "artifacts/v3_geometry_features_875.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 16143489,
+      "git_object_id": "0a5976515e095ebc56ff84d6b4a0aa4798c15bb1",
+      "path": "artifacts/v3_geometry_features_900.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 16526861,
+      "git_object_id": "215c789540e0efb4b7ed28fd05c8a5025dde4c13",
+      "path": "artifacts/v3_geometry_features_925.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 16934998,
+      "git_object_id": "28669febc44ca04c9eec4c9b285a9d8e23aecf90",
+      "path": "artifacts/v3_geometry_features_950.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 17390582,
+      "git_object_id": "88cf79cc51f17cbf6e77f529e1619ff3a0e2a0dc",
+      "path": "artifacts/v3_geometry_features_975.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 32299902,
+      "git_object_id": "a545b67ea5e74b9ea0735e21bee0ce00dbbaa334",
+      "path": "artifacts/v3_geometry_retrieval_1000.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 24405932,
+      "git_object_id": "8fc163e4e284e4a27b707e017c94beac8a3e5bdd",
+      "path": "artifacts/v3_geometry_retrieval_1000_selected_pdb_override.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 24479409,
+      "git_object_id": "1fc1486f0a2d5cff5307d506b3564fcde3f0c116",
+      "path": "artifacts/v3_geometry_retrieval_1025.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 5454312,
+      "git_object_id": "787a53f060ae2ce9c02365f2a8dbf797735612fc",
+      "path": "artifacts/v3_geometry_retrieval_250.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 6182354,
+      "git_object_id": "759becb0eb4b7d32233462380993540ef40735d4",
+      "path": "artifacts/v3_geometry_retrieval_275.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 6684416,
+      "git_object_id": "0f67fe9634a211897943b2656051b9c828ba9979",
+      "path": "artifacts/v3_geometry_retrieval_300.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 7238107,
+      "git_object_id": "1570ace0c78448d46e7a57b8c53f8c50480b09ca",
+      "path": "artifacts/v3_geometry_retrieval_325.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 7727127,
+      "git_object_id": "31c48b86e39c838e91eee4093ae9395ba535c0e9",
+      "path": "artifacts/v3_geometry_retrieval_350.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 8255524,
+      "git_object_id": "914fbea3dd81ccca17c976e3c4e6a5ccce8d4e20",
+      "path": "artifacts/v3_geometry_retrieval_375.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 8817883,
+      "git_object_id": "5e82ff79b05d7462f33954569cd888e72c27cdc8",
+      "path": "artifacts/v3_geometry_retrieval_400.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 9363677,
+      "git_object_id": "b11360c4807db10921fe781d78ee474b7bd494d3",
+      "path": "artifacts/v3_geometry_retrieval_425.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 9951128,
+      "git_object_id": "2c7f06aef6ac7db40b0d717ba24b7741d73b2e93",
+      "path": "artifacts/v3_geometry_retrieval_450.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 10497237,
+      "git_object_id": "06277f8f65abdd9d8a1e7d5ad2e549fbef156ad1",
+      "path": "artifacts/v3_geometry_retrieval_475.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 10998349,
+      "git_object_id": "38cda0e317709d2d669c18935b651f52e306eea9",
+      "path": "artifacts/v3_geometry_retrieval_500.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 11484875,
+      "git_object_id": "6d766f2305ad6b4e83d9458c7de7d3c5b26a8e49",
+      "path": "artifacts/v3_geometry_retrieval_525.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 11984759,
+      "git_object_id": "b2efb2b4095a8aedc094f741f83b91528abb6af3",
+      "path": "artifacts/v3_geometry_retrieval_550.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 12469210,
+      "git_object_id": "b9eb439794c21567578dcf9fd63d5870fdd01697",
+      "path": "artifacts/v3_geometry_retrieval_575.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 12938734,
+      "git_object_id": "22a89b832bd35090517c4538df676f2908663e45",
+      "path": "artifacts/v3_geometry_retrieval_600.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 13381376,
+      "git_object_id": "9ab2eede29a4347c0e0a4f6ebee2712144aa5e6b",
+      "path": "artifacts/v3_geometry_retrieval_625.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 13871250,
+      "git_object_id": "947cabe0c5a94d2dd376bc2e07c6c72d94358d48",
+      "path": "artifacts/v3_geometry_retrieval_650.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 14325679,
+      "git_object_id": "83a2d2762e3066685b70b4e3ab7e06e291a684f2",
+      "path": "artifacts/v3_geometry_retrieval_675.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 14804240,
+      "git_object_id": "95c01a044476a753d05d777189140aecfca8ef12",
+      "path": "artifacts/v3_geometry_retrieval_700.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 15315981,
+      "git_object_id": "4f8bfabc23ce7c7df9ff7a6cd5c6340b7b3da41e",
+      "path": "artifacts/v3_geometry_retrieval_725.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 15822060,
+      "git_object_id": "8915424765aa7766e00e67ef40827ba4817cadcd",
+      "path": "artifacts/v3_geometry_retrieval_750.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 16257062,
+      "git_object_id": "49b58566cccd70a983b06b358c0c84002459c8ef",
+      "path": "artifacts/v3_geometry_retrieval_775.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 16745321,
+      "git_object_id": "733030f9b90e814e26f1478b77b1f4fe2b1fdf13",
+      "path": "artifacts/v3_geometry_retrieval_800.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 17186717,
+      "git_object_id": "80e4956bc2402be47913d01b61efa002a4e9bbfc",
+      "path": "artifacts/v3_geometry_retrieval_825.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 17676356,
+      "git_object_id": "4c1354f7f486b1eb082f6eaa58c35b0dcd7357ba",
+      "path": "artifacts/v3_geometry_retrieval_850.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 18164931,
+      "git_object_id": "e50c0bc3b0150ecaff585579ea919fada38ab93d",
+      "path": "artifacts/v3_geometry_retrieval_875.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 18630705,
+      "git_object_id": "3d67de93a97a64d905d28e52dd07d37c2f80bfab",
+      "path": "artifacts/v3_geometry_retrieval_900.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 19110611,
+      "git_object_id": "94997946c997b275abfd0011f096c474ff532542",
+      "path": "artifacts/v3_geometry_retrieval_925.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 19595930,
+      "git_object_id": "7e0b8211720a9d1c2226d91fb28181f797087742",
+      "path": "artifacts/v3_geometry_retrieval_950.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 20128731,
+      "git_object_id": "5154eecd864e8e5d9e111e90704c4526b2bf2262",
+      "path": "artifacts/v3_geometry_retrieval_975.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 17889468,
+      "git_object_id": "9189e58223049cd968842a3f4c407c8f7dd032c6",
+      "path": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_features_1025.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 32392663,
+      "git_object_id": "5bc992c65e3810862ffd743f6341d6c7f0d8811b",
+      "path": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_retrieval_1025.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 17888322,
+      "git_object_id": "9846e93a36894c36ba10c02dacac7935be51523b",
+      "path": "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_geometry_features_1025.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 32394354,
+      "git_object_id": "ea0eea3d40b9f4150a8e109473b37691fb64a785",
+      "path": "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_geometry_retrieval_1025.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 6276121,
+      "git_object_id": "7f25143a90309982a1155a0888650471f309a804",
+      "path": "artifacts/v3_mcsa_pymol_eleventh_materialized_coordinates_20260522/pdb_5ODI.cif",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 6149111,
+      "git_object_id": "532ba2cc1ab0e868786949a99c3514ba962f2c4d",
+      "path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_2VZ9.cif",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 6669246,
+      "git_object_id": "8bb9797a9efbb0c5204a3d155aab74b02b7ca712",
+      "path": "artifacts/v3_mcsa_pymol_ninth_materialized_coordinates_20260522/pdb_1P7M.cif",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 10396319,
+      "git_object_id": "ad26bf407cf713d79d74a47e41e7b1dc53f33b8b",
+      "path": "artifacts/v3_mcsa_pymol_ninth_materialized_coordinates_20260522/pdb_3AIE.cif",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 6473062,
+      "git_object_id": "7f45c534c72eb25bcebb74050ae14aa3ce7f281c",
+      "path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1MT5.cif",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 5553022,
+      "git_object_id": "91e5026d64587f2c2519a3231b7cbe568bdeb1da",
+      "path": "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_current702_20260601.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 16276355,
+      "git_object_id": "3ebb8eb07729d23b109165ac73280c23979d3728",
+      "path": "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 7566944,
+      "git_object_id": "1eacd996d2014ed96d418b419954088eb24d6f25",
+      "path": "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 7530060,
+      "git_object_id": "9a35b29fcde7abad9f7dfb80c984aafd0d6a5205",
+      "path": "artifacts/v3_scaleout_glycoside_nucleoside_shard_current702_20260608.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 10823818,
+      "git_object_id": "32df5d19725fe7ede237881599c78c29ac5a73c3",
+      "path": "artifacts/v3_scaleout_merged_acceptance_surface_current702_20260608.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 23043135,
+      "git_object_id": "b79f6d99189abcbe824aee97d8a3d18f52ac3f57",
+      "path": "artifacts/v3_scaleout_phosphoryl_transfer_shard_current702_20260608.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 8611072,
+      "git_object_id": "245f7484a4e63e3ed53278490a8143907f942456",
+      "path": "artifacts/v3_scaleout_radical_sam_cobalamin_shard_current702_20260608.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 7270800,
+      "git_object_id": "2fc2fa748739bc78971e18acfe7ab2f45668494a",
+      "path": "artifacts/v3_sequence_embedding_sidecar_current702_esm2_t12_35m_20260529.jsonl",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 9626874,
+      "git_object_id": "921fa3280213dcc4c476c471ebe3f6dac056f04d",
+      "path": "artifacts/v3_sequence_embedding_sidecar_current702_kmer_20260529.jsonl",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 9004810,
+      "git_object_id": "722eb80dd26a589cacb48cfe14748f7f59b6d600",
+      "path": "artifacts/v3_silver_holo_coordinates_current702/pdb_6O9L.cif",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 7412347,
+      "git_object_id": "3ce1e931ce71e1b9687a42cdcda8e6ccb112c069",
+      "path": "artifacts/v3_silver_holo_coordinates_current702/pdb_6X91.cif",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    },
+    {
+      "bytes": 5395497,
+      "git_object_id": "b7c78064b2b12c5216228de87a03aaf193a60cd3",
+      "path": "artifacts/v3_stage2_hydrolase_subfamily_sourcing_preview_current702.json",
+      "storage_state": "legacy_git_history_not_in_lean_release"
+    }
+  ],
+  "restore_policy": "The full historical artifact surface remains in Git. The canonical lean release contains only explicitly hashed core/governance inputs.",
+  "schema_version": "catalytic-earth.live-artifact-manifest.v1",
+  "scope": "Every tracked file under artifacts/ at the Git index state",
+  "tracked_artifact_files": 15281,
+  "tracked_artifact_logical_bytes": 5114921622,
+  "untracked_artifacts_at_generation": []
+}

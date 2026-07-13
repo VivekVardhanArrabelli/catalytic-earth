@@ -10,17 +10,22 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import subprocess
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Iterable
 
+from .canonical_hash import canonical_file_sha256
+
 CLAIM_STATUSES = {"Supported", "Diagnostic", "Superseded", "Retracted"}
 EXPOSURE_STATES = {"frozen_unscored", "exposed", "exhausted"}
 EXPOSURE_EVENT_TYPES = {"freeze", "score", "review", "correction"}
-REQUIRED_CLAIM_IDS = {f"CE-{index:03d}" for index in range(1, 14)}
+REQUIRED_CLAIM_IDS = {f"CE-{index:03d}" for index in range(1, 17)}
 
 DEFAULT_CLAIM_LEDGER = Path("data/governance/claim_ledger.json")
 DEFAULT_EXPOSURE_LEDGER = Path("data/governance/exposure_ledger.jsonl")
+DEFAULT_EXPOSURE_ROWS = Path("data/governance/exposure_rows.jsonl")
+DEFAULT_EXPOSURE_ROWS_MANIFEST = Path("data/governance/exposure_rows_manifest.json")
 DEFAULT_EXPANSION_FREEZE = Path("data/governance/expansion_freeze.json")
 DEFAULT_CLAIMS_DOC = Path("CLAIMS.md")
 DEFAULT_ERRATA_DOC = Path("ERRATA.md")
@@ -128,7 +133,7 @@ def validate_expansion_freeze(
             raise ValueError(f"expansion freeze protects a missing path: {protected_path}")
         if not freeze["frozen"]:
             continue
-        digest = hashlib.sha256(full_path.read_bytes()).hexdigest()
+        digest = canonical_file_sha256(full_path)
         expected = freeze["expected_sha256"][protected_path]
         if digest != expected:
             raise ValueError(
@@ -437,6 +442,318 @@ def validate_exposure_ledger(
     return validate_exposure_events(events, repo_root=repo_root)
 
 
+def _row_id_set_sha256(row_ids: Iterable[str]) -> str:
+    payload = "".join(f"{row_id}\n" for row_id in sorted(row_ids)).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
+def load_exposure_rows(path: Path = DEFAULT_EXPOSURE_ROWS) -> list[dict[str, Any]]:
+    """Load immutable row/surface exposure facts from JSONL."""
+    return load_exposure_ledger(path)
+
+
+def validate_exposure_rows(
+    path: Path = DEFAULT_EXPOSURE_ROWS,
+    manifest_path: Path = DEFAULT_EXPOSURE_ROWS_MANIFEST,
+    *,
+    repo_root: Path = Path("."),
+) -> dict[str, int]:
+    """Validate row-level memory, its content hash, and surface event state."""
+    repo_root = Path(repo_root)
+    full_path = repo_root / path
+    raw = full_path.read_bytes()
+    rows = load_exposure_rows(full_path)
+    manifest = _read_json(repo_root / manifest_path)
+    if manifest.get("schema_version") != "catalytic-earth.exposure-row-ledger.v1":
+        raise ValueError(f"{manifest_path} has an unsupported schema_version")
+    if manifest.get("ledger_path") != path.as_posix():
+        raise ValueError(f"{manifest_path} ledger_path does not name {path}")
+    if manifest.get("ledger_sha256") != hashlib.sha256(raw).hexdigest():
+        raise ValueError(f"{path} SHA-256 does not match {manifest_path}")
+    if manifest.get("row_count") != len(rows):
+        raise ValueError(f"{manifest_path} row_count does not match {path}")
+
+    allowed_exposure_kinds = {"input", "label", "score", "outcome"}
+    rows_by_surface: dict[str, list[dict[str, Any]]] = {}
+    seen: set[tuple[str, str]] = set()
+    for line_number, row in enumerate(rows, start=1):
+        surface_id = row.get("surface_id")
+        row_id = row.get("row_id")
+        if not isinstance(surface_id, str) or not surface_id:
+            raise ValueError(f"{path}:{line_number} requires surface_id")
+        if not isinstance(row_id, str) or not row_id:
+            raise ValueError(f"{path}:{line_number} requires row_id")
+        key = (surface_id, row_id)
+        if key in seen:
+            raise ValueError(f"duplicate exposure row: {surface_id}/{row_id}")
+        seen.add(key)
+        rows_by_surface.setdefault(surface_id, []).append(row)
+
+        source = row.get("source_release_and_hash")
+        if not isinstance(source, dict):
+            raise ValueError(f"{surface_id}/{row_id} requires source_release_and_hash")
+        for field in ("release", "path", "sha256_at_first_exposure"):
+            if not isinstance(source.get(field), str) or not source[field]:
+                raise ValueError(f"{surface_id}/{row_id} source requires {field}")
+        if not re.fullmatch(r"[0-9a-f]{64}", source["sha256_at_first_exposure"]):
+            raise ValueError(f"{surface_id}/{row_id} has invalid source SHA-256")
+        if not (repo_root / source["path"]).exists():
+            raise ValueError(f"{surface_id}/{row_id} source path is absent: {source['path']}")
+        if not re.fullmatch(r"[0-9a-f]{64}", row.get("row_source_record_sha256", "")):
+            raise ValueError(f"{surface_id}/{row_id} has invalid row-source SHA-256")
+        if not re.fullmatch(r"[0-9a-f]{40}", row.get("first_exposure_commit", "")):
+            raise ValueError(f"{surface_id}/{row_id} has invalid first_exposure_commit")
+        _parse_timestamp(
+            row.get("first_exposure_timestamp"),
+            field="first_exposure_timestamp",
+            event_id=f"{surface_id}/{row_id}",
+        )
+        for field in ("label_version", "split_role", "first_exposure_artifact"):
+            if not isinstance(row.get(field), str) or not row[field]:
+                raise ValueError(f"{surface_id}/{row_id} requires {field}")
+        if not (repo_root / row["first_exposure_artifact"]).exists():
+            raise ValueError(
+                f"{surface_id}/{row_id} first-exposure artifact is absent: "
+                f"{row['first_exposure_artifact']}"
+            )
+        exposed = row.get("what_was_exposed")
+        if (
+            not isinstance(exposed, list)
+            or not exposed
+            or not set(exposed).issubset(allowed_exposure_kinds)
+        ):
+            raise ValueError(f"{surface_id}/{row_id} has invalid what_was_exposed")
+        decisions = row.get("models_or_decisions_made_after_exposure")
+        if not isinstance(decisions, list) or any(not isinstance(item, str) for item in decisions):
+            raise ValueError(
+                f"{surface_id}/{row_id} models_or_decisions_made_after_exposure must be strings"
+            )
+        if row.get("exposure_state") not in EXPOSURE_STATES:
+            raise ValueError(f"{surface_id}/{row_id} has invalid exposure_state")
+        for field in ("eligible_for_development", "eligible_for_independent_test"):
+            if not isinstance(row.get(field), bool):
+                raise ValueError(f"{surface_id}/{row_id} {field} must be boolean")
+
+    surface_manifest = manifest.get("surfaces")
+    if not isinstance(surface_manifest, dict) or set(surface_manifest) != set(rows_by_surface):
+        raise ValueError(f"{manifest_path} surfaces do not exactly cover row-ledger surfaces")
+    event_states: dict[str, str] = {}
+    for event in load_exposure_ledger(repo_root / DEFAULT_EXPOSURE_LEDGER):
+        event_states[event["surface_id"]] = event["state_after"]
+    for surface_id, surface_rows in rows_by_surface.items():
+        surface = surface_manifest[surface_id]
+        if surface.get("row_count") != len(surface_rows):
+            raise ValueError(f"{surface_id} row count differs from its manifest")
+        observed_digest = _row_id_set_sha256(row["row_id"] for row in surface_rows)
+        if surface.get("row_id_set_sha256") != observed_digest:
+            raise ValueError(f"{surface_id} row identities differ from its manifest")
+        states = {row["exposure_state"] for row in surface_rows}
+        if len(states) != 1 or surface.get("exposure_state") not in states:
+            raise ValueError(f"{surface_id} has inconsistent row exposure states")
+        if event_states.get(surface_id) != surface.get("exposure_state"):
+            raise ValueError(f"{surface_id} row state contradicts append-only event state")
+
+    return {
+        "exposure_rows": len(rows),
+        "exposure_row_surfaces": len(rows_by_surface),
+        "independent_eligible_rows": sum(
+            row["eligible_for_independent_test"] for row in rows
+        ),
+        "drifted_first_exposure_sources": sum(
+            bool(surface.get("source_bytes_drifted_since_first_exposure"))
+            for surface in surface_manifest.values()
+        ),
+    }
+
+
+def compute_one_shot_status(
+    surface_id: str,
+    *,
+    repo_root: Path = Path("."),
+) -> str:
+    """Compute one-shot availability from rows and events; never trust a flag."""
+    repo_root = Path(repo_root)
+    validate_exposure_rows(repo_root=repo_root)
+    rows = [
+        row
+        for row in load_exposure_rows(repo_root / DEFAULT_EXPOSURE_ROWS)
+        if row["surface_id"] == surface_id
+    ]
+    if not rows:
+        raise ValueError(f"unknown evaluation surface: {surface_id}")
+    if all(
+        row["exposure_state"] == "frozen_unscored"
+        and row["eligible_for_independent_test"]
+        and "score" not in row["what_was_exposed"]
+        and "outcome" not in row["what_was_exposed"]
+        for row in rows
+    ):
+        return "available_once"
+    return "spent"
+
+
+def assert_evaluation_request_allowed(
+    surface_id: str,
+    row_ids: Iterable[str],
+    *,
+    claimed_role: str,
+    namespace: str,
+    repo_root: Path = Path("."),
+) -> dict[str, Any]:
+    """Fail closed when the requested role contradicts row-level memory."""
+    if claimed_role not in {"development", "independent_test", "posthoc"}:
+        raise ValueError(f"unsupported claimed evaluation role: {claimed_role}")
+    repo_root = Path(repo_root)
+    validate_exposure_rows(repo_root=repo_root)
+    surface_rows = [
+        row
+        for row in load_exposure_rows(repo_root / DEFAULT_EXPOSURE_ROWS)
+        if row["surface_id"] == surface_id
+    ]
+    if not surface_rows:
+        raise ValueError(f"unknown evaluation surface: {surface_id}")
+    expected_ids = {row["row_id"] for row in surface_rows}
+    requested_ids = set(row_ids)
+    if not requested_ids:
+        raise ValueError("evaluation request has no row IDs")
+    unknown = requested_ids - expected_ids
+    if unknown:
+        raise ValueError(f"evaluation request contains unknown rows: {sorted(unknown)[:5]}")
+    if claimed_role == "independent_test":
+        if requested_ids != expected_ids:
+            raise ValueError("independent-test requests must use the entire frozen row set")
+        blocked = [
+            row["row_id"]
+            for row in surface_rows
+            if not row["eligible_for_independent_test"]
+        ]
+        if blocked or compute_one_shot_status(surface_id, repo_root=repo_root) != "available_once":
+            raise ValueError(
+                f"surface {surface_id} is not eligible for an independent test; "
+                f"blocked rows={len(blocked)}"
+            )
+    elif claimed_role == "development":
+        blocked = [
+            row["row_id"]
+            for row in surface_rows
+            if row["row_id"] in requested_ids and not row["eligible_for_development"]
+        ]
+        if blocked:
+            raise ValueError(
+                f"surface {surface_id} is protected from development use; "
+                f"blocked rows={len(blocked)}"
+            )
+    elif not namespace.startswith("posthoc/"):
+        raise ValueError("post-hoc analyses must use a posthoc/ namespace")
+    return {
+        "surface_id": surface_id,
+        "row_count": len(requested_ids),
+        "claimed_role": claimed_role,
+        "namespace": namespace,
+        "one_shot_status": compute_one_shot_status(surface_id, repo_root=repo_root),
+    }
+
+
+def preregistration_sha256(contract: dict[str, Any]) -> str:
+    """Return the content signature for a preregistration without its signature."""
+    unsigned = {key: value for key, value in contract.items() if key != "signature"}
+    payload = json.dumps(unsigned, separators=(",", ":"), sort_keys=True).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
+def validate_preregistration_contract(
+    contract: dict[str, Any],
+    *,
+    repo_root: Path = Path("."),
+    verify_data_hashes: bool = True,
+) -> dict[str, Any]:
+    """Validate the mandatory v1 fields and its deterministic content signature."""
+    repo_root = Path(repo_root)
+    if contract.get("schema_version") != "catalytic-earth.preregistration.v1":
+        raise ValueError("unsupported preregistration schema_version")
+    for field in ("preregistration_id", "surface_id", "claimed_role", "namespace"):
+        if not isinstance(contract.get(field), str) or not contract[field]:
+            raise ValueError(f"preregistration requires {field}")
+    _parse_timestamp(
+        contract.get("registered_at"),
+        field="registered_at",
+        event_id=contract["preregistration_id"],
+    )
+    if not re.fullmatch(r"[0-9a-f]{40}", contract.get("code_commit", "")):
+        raise ValueError("preregistration code_commit must be an exact 40-character Git commit")
+    if (repo_root / ".git").exists():
+        commit_check = subprocess.run(
+            ["git", "cat-file", "-e", f"{contract['code_commit']}^{{commit}}"],
+            cwd=repo_root,
+            capture_output=True,
+            check=False,
+        )
+        if commit_check.returncode:
+            raise ValueError("preregistration code_commit is not present in repository history")
+    if not re.fullmatch(r"[0-9a-f]{64}", contract.get("row_id_set_sha256", "")):
+        raise ValueError("preregistration requires row_id_set_sha256")
+    data_hashes = contract.get("data_hashes")
+    if not isinstance(data_hashes, dict) or not data_hashes:
+        raise ValueError("preregistration requires at least one data hash")
+    for relative_path, digest in data_hashes.items():
+        if not isinstance(relative_path, str) or not re.fullmatch(r"[0-9a-f]{64}", digest or ""):
+            raise ValueError("preregistration data_hashes must map paths to SHA-256 values")
+        if verify_data_hashes:
+            full_path = repo_root / relative_path
+            if not full_path.is_file():
+                raise ValueError(f"preregistered data path is absent: {relative_path}")
+            if canonical_file_sha256(full_path) != digest:
+                raise ValueError(f"preregistered data hash drifted: {relative_path}")
+    threshold = contract.get("threshold")
+    if not isinstance(threshold, dict) or set(threshold) != {"name", "value", "comparison"}:
+        raise ValueError("preregistration threshold must freeze name, value, and comparison")
+    if not isinstance(threshold["name"], str) or not isinstance(threshold["comparison"], str):
+        raise ValueError("preregistration threshold name/comparison must be strings")
+    metric = contract.get("metric")
+    if not isinstance(metric, dict) or set(metric) != {"name", "aggregation", "higher_is_better"}:
+        raise ValueError("preregistration metric must freeze name, aggregation, and direction")
+    if not isinstance(metric["name"], str) or not isinstance(metric["aggregation"], str):
+        raise ValueError("preregistration metric name/aggregation must be strings")
+    if not isinstance(metric["higher_is_better"], bool):
+        raise ValueError("preregistration metric direction must be boolean")
+    seed = contract.get("seed")
+    if not isinstance(seed, int) or isinstance(seed, bool) or seed < 0:
+        raise ValueError("preregistration seed must be a non-negative integer")
+    endpoint = contract.get("endpoint")
+    if not isinstance(endpoint, dict) or set(endpoint) != {
+        "name",
+        "population",
+        "unit",
+        "decision_rule",
+    }:
+        raise ValueError(
+            "preregistration endpoint must freeze name, population, unit, and decision_rule"
+        )
+    if any(not isinstance(value, str) or not value for value in endpoint.values()):
+        raise ValueError("preregistration endpoint fields must be non-empty strings")
+    signature = contract.get("signature")
+    if signature != {"algorithm": "sha256", "digest": preregistration_sha256(contract)}:
+        raise ValueError("preregistration content signature is absent or invalid")
+    surface_rows = [
+        row
+        for row in load_exposure_rows(repo_root / DEFAULT_EXPOSURE_ROWS)
+        if row["surface_id"] == contract["surface_id"]
+    ]
+    if not surface_rows:
+        raise ValueError(f"unknown preregistered surface: {contract['surface_id']}")
+    row_ids = [row["row_id"] for row in surface_rows]
+    if _row_id_set_sha256(row_ids) != contract["row_id_set_sha256"]:
+        raise ValueError("preregistration row_id_set_sha256 contradicts exposure memory")
+    assert_evaluation_request_allowed(
+        contract["surface_id"],
+        row_ids,
+        claimed_role=contract["claimed_role"],
+        namespace=contract["namespace"],
+        repo_root=repo_root,
+    )
+    return contract
+
+
 def append_exposure_event(
     event: dict[str, Any],
     path: Path = DEFAULT_EXPOSURE_LEDGER,
@@ -468,7 +785,17 @@ def validate_truth_documents(repo_root: Path = Path(".")) -> dict[str, int]:
         raise ValueError(f"truth policy is missing required terms: {missing_terms}")
 
     errata_text = (repo_root / DEFAULT_ERRATA_DOC).read_text(encoding="utf-8")
-    for erratum_id in ("ER-001", "ER-002", "ER-003", "ER-004", "ER-005", "ER-006"):
+    for erratum_id in (
+        "ER-001",
+        "ER-002",
+        "ER-003",
+        "ER-004",
+        "ER-005",
+        "ER-006",
+        "ER-007",
+        "ER-008",
+        "ER-009",
+    ):
         if erratum_id not in errata_text:
             raise ValueError(f"{DEFAULT_ERRATA_DOC} is missing {erratum_id}")
 
@@ -501,5 +828,6 @@ def validate_truth_governance(repo_root: Path = Path(".")) -> dict[str, int]:
         **validate_registry_claim_counts(repo_root=repo_root),
         **validate_evaluation_claim_counts(repo_root=repo_root),
         **validate_exposure_ledger(repo_root=repo_root),
+        **validate_exposure_rows(repo_root=repo_root),
         **validate_truth_documents(repo_root=repo_root),
     }
