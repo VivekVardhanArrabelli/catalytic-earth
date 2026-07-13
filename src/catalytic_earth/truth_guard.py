@@ -12,10 +12,11 @@ import json
 import re
 import subprocess
 from datetime import datetime
+from functools import lru_cache
 from pathlib import Path
 from typing import Any, Iterable
 
-from .canonical_hash import canonical_file_sha256
+from .canonical_hash import canonical_bytes_sha256, canonical_file_sha256
 
 CLAIM_STATUSES = {"Supported", "Diagnostic", "Superseded", "Retracted"}
 EXPOSURE_STATES = {"frozen_unscored", "exposed", "exhausted"}
@@ -46,9 +47,84 @@ _REQUIRED_POLICY_TERMS = {
 }
 
 
+def _find_git_root(path: Path) -> Path | None:
+    candidate = path if path.is_dir() else path.parent
+    for parent in (candidate, *candidate.parents):
+        if (parent / ".git").exists():
+            return parent.resolve()
+    return None
+
+
+def _git_relative(root: Path, path: Path) -> str:
+    try:
+        return path.resolve().relative_to(root.resolve()).as_posix()
+    except ValueError as exc:
+        raise ValueError(f"repository path escapes Git root: {path}") from exc
+
+
+def _read_repository_bytes(path: Path) -> bytes:
+    path = Path(path)
+    if path.is_file():
+        return path.read_bytes()
+    root = _find_git_root(path)
+    if root is None:
+        raise FileNotFoundError(path)
+    relative = _git_relative(root, path)
+    result = subprocess.run(
+        ["git", "show", f"HEAD:{relative}"],
+        cwd=root,
+        capture_output=True,
+        check=False,
+    )
+    if result.returncode:
+        raise FileNotFoundError(path)
+    return result.stdout
+
+
+@lru_cache(maxsize=8)
+def _tracked_paths_at_head(root: str) -> frozenset[str]:
+    result = subprocess.run(
+        ["git", "ls-tree", "-r", "-z", "--name-only", "HEAD"],
+        cwd=root,
+        capture_output=True,
+        check=False,
+    )
+    if result.returncode:
+        return frozenset()
+    return frozenset(
+        path.decode("utf-8", errors="surrogateescape")
+        for path in result.stdout.split(b"\0")
+        if path
+    )
+
+
+def _repository_path_exists(root: Path, relative_path: str) -> bool:
+    relative = Path(relative_path)
+    if relative.is_absolute() or ".." in relative.parts:
+        return False
+    full_path = root / relative
+    if full_path.exists():
+        return True
+    git_root = _find_git_root(full_path)
+    if git_root is None:
+        return False
+    try:
+        git_relative = _git_relative(git_root, full_path)
+    except ValueError:
+        return False
+    return git_relative in _tracked_paths_at_head(str(git_root))
+
+
+def _repository_file_sha256(root: Path, relative_path: str) -> str:
+    full_path = root / relative_path
+    if full_path.is_file():
+        return canonical_file_sha256(full_path)
+    raw = _read_repository_bytes(full_path)
+    return canonical_bytes_sha256(raw, relative_path)
+
+
 def _read_json(path: Path) -> Any:
-    with path.open("r", encoding="utf-8") as handle:
-        return json.load(handle)
+    return json.loads(_read_repository_bytes(Path(path)))
 
 
 def _load_registry_rows(path: Path) -> list[dict[str, Any]]:
@@ -65,9 +141,12 @@ def _load_registry_rows(path: Path) -> list[dict[str, Any]]:
         shard_path = (path.parent / shard["path"]).resolve()
         if root != shard_path and root not in shard_path.parents:
             raise ValueError(f"registry shard escapes its directory: {shard['path']}")
-        shard_text = shard_path.read_text(encoding="utf-8")
+        shard_raw = _read_repository_bytes(shard_path)
+        shard_text = (
+            shard_raw.decode("utf-8").replace("\r\n", "\n").replace("\r", "\n")
+        )
         expected_sha = shard.get("sha256")
-        actual_sha = hashlib.sha256(shard_text.encode("utf-8")).hexdigest()
+        actual_sha = canonical_bytes_sha256(shard_raw, shard_path)
         if not isinstance(expected_sha, str) or actual_sha != expected_sha:
             raise ValueError(
                 f"registry shard SHA-256 mismatch for {shard['path']}: "
@@ -128,12 +207,11 @@ def validate_expansion_freeze(
     root = (Path(repo_root) if repo_root is not None else _project_root()).resolve()
     freeze = load_expansion_freeze(path, repo_root=root)
     for protected_path in freeze["protected_paths"]:
-        full_path = root / protected_path
-        if not full_path.exists():
+        if not _repository_path_exists(root, protected_path):
             raise ValueError(f"expansion freeze protects a missing path: {protected_path}")
         if not freeze["frozen"]:
             continue
-        digest = canonical_file_sha256(full_path)
+        digest = _repository_file_sha256(root, protected_path)
         expected = freeze["expected_sha256"][protected_path]
         if digest != expected:
             raise ValueError(
@@ -149,7 +227,7 @@ def assert_expansion_write_allowed(
 ) -> None:
     """Block protected checkout registries while the truth-reset freeze is active."""
     root = (Path(repo_root) if repo_root is not None else _project_root()).resolve()
-    if not (root / DEFAULT_EXPANSION_FREEZE).exists():
+    if not _repository_path_exists(root, DEFAULT_EXPANSION_FREEZE.as_posix()):
         return
     freeze = load_expansion_freeze(repo_root=root)
     if not freeze["frozen"]:
@@ -217,7 +295,7 @@ def validate_claim_ledger(
         for evidence_path in evidence:
             if not isinstance(evidence_path, str) or not evidence_path:
                 raise ValueError(f"{claim_id} has an invalid evidence path")
-            if not (repo_root / evidence_path).exists():
+            if not _repository_path_exists(repo_root, evidence_path):
                 raise ValueError(f"{claim_id} evidence path does not exist: {evidence_path}")
 
     missing = REQUIRED_CLAIM_IDS - seen
@@ -406,7 +484,9 @@ def validate_exposure_events(
         if not isinstance(source_artifacts, list) or not source_artifacts:
             raise ValueError(f"{event_id} requires source_artifacts")
         for source_path in source_artifacts:
-            if not isinstance(source_path, str) or not (repo_root / source_path).exists():
+            if not isinstance(source_path, str) or not _repository_path_exists(
+                repo_root, source_path
+            ):
                 raise ValueError(f"{event_id} source artifact does not exist: {source_path!r}")
 
         previous_state = state_by_surface.get(surface_id)
@@ -497,7 +577,7 @@ def validate_exposure_rows(
                 raise ValueError(f"{surface_id}/{row_id} source requires {field}")
         if not re.fullmatch(r"[0-9a-f]{64}", source["sha256_at_first_exposure"]):
             raise ValueError(f"{surface_id}/{row_id} has invalid source SHA-256")
-        if not (repo_root / source["path"]).exists():
+        if not _repository_path_exists(repo_root, source["path"]):
             raise ValueError(f"{surface_id}/{row_id} source path is absent: {source['path']}")
         if not re.fullmatch(r"[0-9a-f]{64}", row.get("row_source_record_sha256", "")):
             raise ValueError(f"{surface_id}/{row_id} has invalid row-source SHA-256")
@@ -511,7 +591,7 @@ def validate_exposure_rows(
         for field in ("label_version", "split_role", "first_exposure_artifact"):
             if not isinstance(row.get(field), str) or not row[field]:
                 raise ValueError(f"{surface_id}/{row_id} requires {field}")
-        if not (repo_root / row["first_exposure_artifact"]).exists():
+        if not _repository_path_exists(repo_root, row["first_exposure_artifact"]):
             raise ValueError(
                 f"{surface_id}/{row_id} first-exposure artifact is absent: "
                 f"{row['first_exposure_artifact']}"
@@ -699,10 +779,9 @@ def validate_preregistration_contract(
         if not isinstance(relative_path, str) or not re.fullmatch(r"[0-9a-f]{64}", digest or ""):
             raise ValueError("preregistration data_hashes must map paths to SHA-256 values")
         if verify_data_hashes:
-            full_path = repo_root / relative_path
-            if not full_path.is_file():
+            if not _repository_path_exists(repo_root, relative_path):
                 raise ValueError(f"preregistered data path is absent: {relative_path}")
-            if canonical_file_sha256(full_path) != digest:
+            if _repository_file_sha256(repo_root, relative_path) != digest:
                 raise ValueError(f"preregistered data hash drifted: {relative_path}")
     threshold = contract.get("threshold")
     if not isinstance(threshold, dict) or set(threshold) != {"name", "value", "comparison"}:

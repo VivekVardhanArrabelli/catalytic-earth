@@ -62,7 +62,7 @@ byte-preserved. Silent result rewriting is not a correction mechanism.
 | 7 | Packaging and CWD independence | Complete | Package data includes typed schemas and fixture records. The wheel is installed with `--no-deps` and executed from an unrelated empty directory. |
 | 8 | Machine paths and private SSH examples | Complete | Active code/docs resolve tools from configuration/PATH and use public HTTPS instructions; the validator rejects known private-path markers. |
 | 9 | Fresh Linux and Windows path | Complete; externally verified per release | The CI matrix starts from GitHub-hosted clean machines. Local `verify_core_release.py` separately proves empty-directory wheel and source execution. |
-| 10 | Triage 74 failures and 20 errors | Complete | `data/governance/test_baseline.json` preserves the original 2,559/74/20/1 run, corrects its root-cause attribution, and binds the pinned green 2,585/0/0/1 run and compressed log. No scientific snapshot was bulk-refreshed. |
+| 10 | Triage 74 failures and 20 errors | Complete | `data/governance/test_baseline.json` preserves the original 2,559/74/20/1 run, corrects its root-cause attribution, and binds the pinned green 2,586/0/0/1 run and compressed log. No scientific snapshot was bulk-refreshed. |
 
 The 54 tests once described as stale-hash failures contained 179 comparisons
 that matched canonical Git LF blobs and differed only after Windows CRLF

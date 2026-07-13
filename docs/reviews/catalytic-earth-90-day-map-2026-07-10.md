@@ -30,7 +30,7 @@ Breadth can grow rapidly, but every record keeps its tier. Automated hypotheses 
 - “About 2% of mechanism space” has no defensible mechanism unit or denominator and is withdrawn.
 - The June 29 Swiss-Prot result is a narrow EC-proxy result, not mechanism gold.
 - Structure beat pairwise Smith–Waterman on a selected set; Pfam/HMM and other modern baselines were not run.
-- The preserved Python 3.13 audit ran 2,559 tests with 74 failures, 20 errors, and one skip. A later Git-blob audit corrected the attribution: 54 failed tests contained 179 CRLF-only hash comparisons, and one genuine historical lineage mismatch was quarantined without rehashing. After bounded dependency, portability, compatibility, and fixture repairs, the pinned expanded suite ran 2,585 tests with zero failures, zero errors, and one skip. This is software validation, not biological validation.
+- The preserved Python 3.13 audit ran 2,559 tests with 74 failures, 20 errors, and one skip. A later Git-blob audit corrected the attribution: 54 failed tests contained 179 CRLF-only hash comparisons, and one genuine historical lineage mismatch was quarantined without rehashing. After bounded dependency, portability, compatibility, and fixture repairs, the pinned expanded suite ran 2,586 tests with zero failures, zero errors, and one skip. This is software validation, not biological validation.
 
 ## Stop now
 

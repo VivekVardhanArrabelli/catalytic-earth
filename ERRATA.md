@@ -111,7 +111,7 @@ audit. `CLAIMS.md` is the canonical current claim ledger.
 - **Remediation evidence:** `data/governance/test_baseline.json`, the preserved
   compressed complete-suite log under `release/validation/`, and
   `data/governance/historical_lineage_quarantine.json`. The pinned complete
-  suite subsequently ran 2,585 tests with zero failures, zero errors, and one
+  suite subsequently ran 2,586 tests with zero failures, zero errors, and one
   skip.
 - **Claim boundary:** green software contracts do not validate any biological
   result.

@@ -1,8 +1,8 @@
 """Rebuild the row-level evaluation-memory ledger from first-exposure commits.
 
-This script intentionally reads historical Git objects.  Current checkout
-copies of the source artifacts have drifted since their first use, so deriving
-row identity from HEAD would rewrite evaluation history.
+This script intentionally reads historical Git objects. Deriving row identity
+from HEAD would rewrite evaluation history; HEAD bytes are only a drift
+diagnostic and may be read directly from Git in a sparse worktree.
 """
 
 from __future__ import annotations
@@ -19,7 +19,10 @@ from typing import Any, Callable
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from catalytic_earth.canonical_hash import canonical_file_sha256  # noqa: E402
+from catalytic_earth.canonical_hash import (  # noqa: E402
+    canonical_bytes_sha256,
+    canonical_file_sha256,
+)
 LEDGER_PATH = ROOT / "data/governance/exposure_rows.jsonl"
 MANIFEST_PATH = ROOT / "data/governance/exposure_rows_manifest.json"
 
@@ -55,9 +58,12 @@ def _rowset_sha(row_ids: list[str]) -> str:
 
 def _current_sha(path: str) -> str | None:
     full_path = ROOT / path
-    if not full_path.is_file():
+    if full_path.is_file():
+        return canonical_file_sha256(full_path)
+    try:
+        return canonical_bytes_sha256(_git_bytes("HEAD", path), path)
+    except RuntimeError:
         return None
-    return canonical_file_sha256(full_path)
 
 
 def _heldout_rows(payload: dict[str, Any]) -> list[dict[str, Any]]:

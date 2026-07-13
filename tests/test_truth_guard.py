@@ -9,6 +9,9 @@ from tempfile import TemporaryDirectory
 
 from catalytic_earth.truth_guard import (
     _load_registry_rows,
+    _read_json,
+    _repository_file_sha256,
+    _repository_path_exists,
     append_exposure_event,
     assert_evaluation_request_allowed,
     assert_expansion_write_allowed,
@@ -63,6 +66,106 @@ class TruthGuardTests(unittest.TestCase):
         self.assertEqual(result["exposure_rows"], 1000)
         self.assertEqual(result["independent_eligible_rows"], 22)
         self.assertEqual(result["drifted_first_exposure_sources"], 0)
+
+    def test_git_blob_fallback_reads_sparse_absent_evidence(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            subprocess.run(["git", "init", "--quiet"], cwd=root, check=True)
+            subprocess.run(
+                ["git", "config", "user.email", "test@example.invalid"],
+                cwd=root,
+                check=True,
+            )
+            subprocess.run(
+                ["git", "config", "user.name", "Truth Guard Test"],
+                cwd=root,
+                check=True,
+            )
+            subprocess.run(
+                ["git", "config", "core.autocrlf", "false"], cwd=root, check=True
+            )
+            evidence = root / "evidence.json"
+            raw = b'{"status":"committed"}\n'
+            evidence.write_bytes(raw)
+            subprocess.run(["git", "add", "evidence.json"], cwd=root, check=True)
+            subprocess.run(
+                ["git", "commit", "--quiet", "-m", "fixture"], cwd=root, check=True
+            )
+            evidence.unlink()
+
+            self.assertFalse(evidence.exists())
+            self.assertTrue(_repository_path_exists(root, "evidence.json"))
+            self.assertEqual(_read_json(evidence), {"status": "committed"})
+            self.assertEqual(
+                _repository_file_sha256(root, "evidence.json"),
+                hashlib.sha256(raw).hexdigest(),
+            )
+
+            event = self._event(
+                "EXP-0001",
+                state_after="frozen_unscored",
+                event_type="freeze",
+                effective_at="2026-07-01T00:00:00Z",
+            )
+            self.assertEqual(
+                validate_exposure_events([event], repo_root=root)["exposure_events"],
+                1,
+            )
+
+            governance = root / "data/governance"
+            governance.mkdir(parents=True)
+            row = {
+                "eligible_for_development": False,
+                "eligible_for_independent_test": True,
+                "exposure_state": "frozen_unscored",
+                "first_exposure_artifact": "evidence.json",
+                "first_exposure_commit": "0" * 40,
+                "first_exposure_timestamp": "2026-07-01T00:00:00Z",
+                "label_version": "fixture-v1",
+                "models_or_decisions_made_after_exposure": [],
+                "row_id": "row:test",
+                "row_source_record_sha256": "1" * 64,
+                "source_release_and_hash": {
+                    "path": "evidence.json",
+                    "release": "fixture-v1",
+                    "sha256_at_first_exposure": hashlib.sha256(raw).hexdigest(),
+                },
+                "split_role": "independent_test",
+                "surface_id": "surface:test",
+                "what_was_exposed": ["input", "label"],
+            }
+            ledger_raw = (
+                json.dumps(row, separators=(",", ":"), sort_keys=True) + "\n"
+            ).encode("utf-8")
+            (governance / "exposure_rows.jsonl").write_bytes(ledger_raw)
+            (governance / "exposure_ledger.jsonl").write_text(
+                json.dumps(event, separators=(",", ":"), sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            (governance / "exposure_rows_manifest.json").write_text(
+                json.dumps(
+                    {
+                        "schema_version": "catalytic-earth.exposure-row-ledger.v1",
+                        "ledger_path": "data/governance/exposure_rows.jsonl",
+                        "ledger_sha256": hashlib.sha256(ledger_raw).hexdigest(),
+                        "row_count": 1,
+                        "surfaces": {
+                            "surface:test": {
+                                "row_count": 1,
+                                "row_id_set_sha256": hashlib.sha256(
+                                    b"row:test\n"
+                                ).hexdigest(),
+                                "exposure_state": "frozen_unscored",
+                                "source_bytes_drifted_since_first_exposure": False,
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            self.assertEqual(
+                validate_exposure_rows(repo_root=root)["exposure_rows"], 1
+            )
 
     def test_row_memory_computes_one_shot_status(self) -> None:
         repo_root = Path(__file__).resolve().parents[1]

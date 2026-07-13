@@ -95,7 +95,7 @@ contained 179 hash comparisons that differed only because a Windows checkout
 converted Git's LF blobs to CRLF; those were not content drift. One genuine
 historical lineage mismatch remains quarantined without rewriting its embedded
 hash. After dependency, path, compatibility, and fixture repairs, the pinned
-Python 3.13 environment ran the complete expanded 2,585-test suite with zero
+Python 3.13 environment ran the complete expanded 2,586-test suite with zero
 failures, zero errors, and one skip. This is software validation, not
 scientific validation.
 

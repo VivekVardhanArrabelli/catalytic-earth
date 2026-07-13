@@ -101,7 +101,7 @@
     "claim_id": "CE-009",
     "claim_kind": "software_state",
     "status": "Supported",
-    "claim": "The preserved Python 3.13 audit ran 2,559 tests with 74 failures, 20 errors, and one skip; after root-cause correction and remediation, the pinned complete suite ran 2,585 tests with zero failures, zero errors, and one skip.",
+    "claim": "The preserved Python 3.13 audit ran 2,559 tests with 74 failures, 20 errors, and one skip; after root-cause correction and remediation, the pinned complete suite ran 2,586 tests with zero failures, zero errors, and one skip.",
     "current_wording": "Preserve both runs. Fifty-four failed tests contained 179 CRLF-only hash comparisons, not content drift; one genuine historical lineage mismatch is quarantined without rehashing. A green software suite is not scientific validation.",
     "rationale": "The initial failure counts were real, but the review over-attributed them to stale checked-in hashes. Exact Git-blob comparison separated checkout newline effects from the single genuine lineage drift, and the complete suite was rerun after bounded repairs.",
     "evidence": [

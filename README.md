@@ -65,7 +65,7 @@ a production biological design system.
   and one skip. Root-cause review corrected an overstatement: 54 failed tests
   contained 179 CRLF-only hash comparisons, while exactly one genuine
   historical lineage mismatch remains quarantined. After bounded repairs, the
-  pinned complete suite ran 2,585 tests with zero failures, zero errors, and
+  pinned complete suite ran 2,586 tests with zero failures, zero errors, and
   one skip. This is software health, not biological validation.
 - The P0 truth-reset implementation is complete and evidence-mapped in
   `docs/P0_COMPLETION.md`. The registry expansion latch remains intentionally

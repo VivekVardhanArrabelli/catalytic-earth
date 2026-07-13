@@ -1,13 +1,13 @@
 {
   "current_validation": {
     "command": "python -m unittest discover -s tests -v",
-    "duration_seconds": 473.858,
+    "duration_seconds": 482.245,
     "errors": 0,
     "failures": 0,
     "return_code": 0,
     "skipped": 1,
     "status": "green",
-    "tests": 2585
+    "tests": 2586
   },
   "environment": {
     "implementation": "CPython",
@@ -27,12 +27,12 @@
     "tests": 2559
   },
   "log": {
-    "compressed_bytes": 49379,
-    "compressed_sha256": "26cd94e2589aeb0a96a04fd5c9a76cecc4b60b5cb32887c3c9f18d8d569c37f0",
+    "compressed_bytes": 49406,
+    "compressed_sha256": "436908167ac4e02d23d0ad7088ad0b2fad31c4ab4cbfd50d7017d65ec163b730",
     "compression": "gzip",
     "path": "release/validation/full-suite-python313-windows.log.gz",
-    "uncompressed_bytes": 466371,
-    "uncompressed_sha256": "4bf2e4e720af33539078ba14592ce34bf476a4cf7a964004f32a2607775ee760"
+    "uncompressed_bytes": 466518,
+    "uncompressed_sha256": "ac2bd75b59f1a9a314ceb1fa0e342a571257de80d28d1d7eb608724109fb4b6d"
   },
   "recorded_date": "2026-07-13",
   "root_cause_correction": {
