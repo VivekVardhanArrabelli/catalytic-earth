@@ -4,6 +4,10 @@
 **Status:** current execution contract
 **Supersedes:** benchmark-as-destination framing and serial 12–24-month execution assumptions
 
+The day counts below are target cadence and dependency order, not promises or
+permission to weaken a gate. Work advances when its exit condition is met; an
+external assay dependency may move independently of the computational track.
+
 ## North Star
 
 Build the world's computable catalytic-mechanism atlas: a continuously

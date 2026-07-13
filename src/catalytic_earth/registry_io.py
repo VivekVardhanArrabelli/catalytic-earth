@@ -8,6 +8,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .truth_guard import assert_expansion_write_allowed
+
 SHARDED_REGISTRY_SCHEMA = "catalytic_earth.sharded_registry.v1"
 DEFAULT_SHARD_THRESHOLD_BYTES = 45_000_000
 DEFAULT_TARGET_SHARD_BYTES = 18_000_000
@@ -134,6 +136,7 @@ def write_registry_payload(
 ) -> dict[str, Any]:
     """Write a registry as a list or, when large, as a manifest plus shard files."""
     path = Path(path)
+    assert_expansion_write_allowed(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     serialized = dump_registry(registry)
     serialized_bytes = len(serialized.encode("utf-8"))

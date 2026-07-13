@@ -72,6 +72,25 @@ a production biological design system.
   computational atlas loop with a parallel 60–90-day experimental target when
   a ready assay and external execution route exist.
 
+## Truth-governance gate
+
+Before interpreting older reports, use the canonical truth surfaces:
+
+- [`CLAIMS.md`](CLAIMS.md) — current Supported / Diagnostic / Superseded /
+  Retracted claims;
+- [`ERRATA.md`](ERRATA.md) — public corrections that preserve the historical
+  artifacts;
+- [`docs/ATLAS_TRUTH_POLICY.md`](docs/ATLAS_TRUTH_POLICY.md) — counted objects,
+  evidence tiers, endpoint rules, and the expansion freeze;
+- [`data/governance/exposure_ledger.jsonl`](data/governance/exposure_ledger.jsonl)
+  — append-only history of frozen, exposed, and exhausted evaluation surfaces.
+- [`data/governance/expansion_freeze.json`](data/governance/expansion_freeze.json)
+  — machine-enforced registry-write freeze while CE-012 is active.
+
+Historical artifacts are not silently rewritten. If an older document
+conflicts with these files, the canonical claim ledger and errata control
+current wording.
+
 ## Start Here
 
 Read these files in order before interpreting older reports or starting an
@@ -79,11 +98,17 @@ agent run:
 
 | File | Use it for |
 | --- | --- |
+| `CLAIMS.md` | Canonical current scientific and project claims |
+| `ERRATA.md` | Corrections to invalid or misleading historical wording |
+| `docs/ATLAS_TRUTH_POLICY.md` | Counted objects, evidence tiers, exposure rules, and admission freeze |
+| `data/governance/exposure_ledger.jsonl` | Append-only evaluation exposure state |
+| `docs/CURRENT_STATE.md` | Compact current state, trusted results, blockers, and next gates |
+| `docs/CURRENT_DECISIONS.md` | Current durable decisions that govern historical records |
 | `docs/RAPID_ATLAS_PLAN.md` | Current 35-day computational plan, parallel experimental clock, and atlas scale gates |
 | `docs/reviews/catalytic-earth-full-review-2026-07-10.md` | Independent audit, evidence corrections, strategic amendment, and full rationale |
 | `docs/reviews/catalytic-earth-90-day-map-2026-07-10.md` | Compact operating map derived from the full review |
-| `docs/project_state.md` | Current state, trusted results, blockers, and next gates |
-| `docs/decision_log.md` | Dated decisions that override older artifact wording |
+| `docs/project_state.md` | Historical detailed state retained for provenance |
+| `docs/decision_log.md` | Historical decision log retained for provenance |
 | `docs/artifact_index.md` | Which artifact answers which question, and what is deprecated |
 | `docs/agent_runbook.md` | Safe edit boundaries, validation, and output locations |
 
@@ -100,6 +125,7 @@ pip install -e .
 Validate the repo:
 
 ```bash
+PYTHONPATH=src python scripts/validate_truth_governance.py
 PYTHONPATH=src python -m catalytic_earth.cli validate
 git diff --check
 ```

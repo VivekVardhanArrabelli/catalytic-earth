@@ -5,6 +5,27 @@ the main repo.
 
 ## Source Of Truth Order
 
+Current order:
+
+1. `CLAIMS.md` for canonical current claim status and permitted wording.
+2. `ERRATA.md` for explicit corrections to historical wording.
+3. `docs/ATLAS_TRUTH_POLICY.md` for counted objects, evidence tiers, exposure,
+   and admission rules.
+4. `data/governance/exposure_ledger.jsonl` before evaluation or tuning work.
+5. `docs/MAP.md` and `docs/RAPID_ATLAS_PLAN.md` for mission and execution order.
+6. `docs/CURRENT_STATE.md` and `docs/CURRENT_DECISIONS.md` for the compact
+   current reset.
+7. `docs/project_state.md`, `docs/decision_log.md`, `docs/artifact_index.md`,
+   machine artifacts, registries, and human reports
+   for progressively older or more detailed evidence.
+
+If history conflicts with the claim ledger or errata, preserve the historical
+record and use the corrected wording. Never reset exposure by renaming a split,
+branch, artifact, endpoint, or agent session.
+
+The pre-reset order below is retained only as history and is superseded by the
+list above.
+
 Quick compass first: `docs/MAP.md` — one page with the current headline
 (**cofactor reconstruction**: predicted-apo 23/45 → 37/45, confirmed) and where each
 thing lives. Then in order:

@@ -1,0 +1,25 @@
+{
+  "claim_id": "CE-012",
+  "effective_at": "2026-07-13T20:30:00Z",
+  "frozen": true,
+  "expected_sha256": {
+    "data/registries/curated_mechanism_labels.json": "7af1009ab03b7a9db008d1a70a83e5db0ba55cce956963dcd04d73b136669701",
+    "data/registries/external_bronze_labels.json": "deadb8b7321c6068031110d0103571aaa2512bc1530af95bda19341ec7cee446",
+    "data/registries/mechanism_fingerprints.json": "8b39c3ecbce7fe0814e5c3979be8d4c4bca3558baabe140e87d3fbb3e4356dfe",
+    "data/registries/mechanism_ontology.json": "830edb3e8c74c15dfbfb51f991f9adbc464f802e19be99f2a4fb39e41cd81761"
+  },
+  "protected_paths": [
+    "data/registries/curated_mechanism_labels.json",
+    "data/registries/external_bronze_labels.json",
+    "data/registries/mechanism_fingerprints.json",
+    "data/registries/mechanism_ontology.json"
+  ],
+  "reason": "Prevent known claim, exposure, evidence-tier, environment, and artifact-state defects from being amplified by further registry expansion.",
+  "unfreeze_requirements": [
+    "claim and errata ledgers validate",
+    "exposure ledger validates and every intended evaluation surface is classified",
+    "one locked core environment reproduces a bounded result",
+    "live artifact manifest replaces stale passing inventory",
+    "an explicit reviewed decision changes frozen to false"
+  ]
+}

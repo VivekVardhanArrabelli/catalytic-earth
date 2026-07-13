@@ -1,5 +1,10 @@
 # Lab Handoff — what to send, and how (2026-06-29)
 
+> **SUPERSEDED — DO NOT ORDER OR SHIP FROM THIS DOCUMENT.** The supporting
+> validation and active-site-verification interpretations were corrected on
+> 2026-07-13. Rebuild any future handoff under `docs/ATLAS_TRUTH_POLICY.md` with
+> a fresh reviewed assay contract, controls, safety review, and exposure entry.
+
 Companion to `docs/lab_pilot_guide_20260629.md` (assays, controls, interpretation).
 This file is the **materials + ordering** spec: exactly what to hand a lab or a
 gene-synthesis vendor.

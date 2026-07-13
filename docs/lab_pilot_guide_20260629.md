@@ -1,5 +1,11 @@
 # Lab Pilot Guide — Catalytic Earth mechanism atlas (2026-06-29)
 
+> **SUPERSEDED — DO NOT EXECUTE AS A CURRENT PROTOCOL.** The “independent gold”
+> and automated “active-site verified” premises below were overstated. This
+> historical candidate brief requires fresh evidence review, assay-specific
+> safety review, controls, and a new frozen contract before use. See
+> `CLAIMS.md` CE-006/CE-008 and `ERRATA.md` ER-006.
+
 A handoff-ready brief for the first wet-lab test of the atlas's mechanism calls.
 Written so a bench scientist can act without reading the codebase.
 
