@@ -1,0 +1,482 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://catalytic.earth/schemas/atlas10-selection-v1.schema.json",
+  "title": "Catalytic Earth Atlas-10 frozen follow-on selection v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "selection_id",
+    "status",
+    "frozen_at",
+    "baseline_commit",
+    "namespace",
+    "registry_mutation_permitted",
+    "objective",
+    "inherited_selection",
+    "all_case_ids",
+    "selection_axes",
+    "phase_compute_budget",
+    "relationship_groups",
+    "follow_on_cases",
+    "query_contracts",
+    "baseline_contract",
+    "review_contract",
+    "assay_lane",
+    "exit_gate",
+    "prohibited_claims"
+  ],
+  "properties": {
+    "schema_version": {"const": "catalytic-earth.atlas10-selection.v1"},
+    "selection_id": {"type": "string", "minLength": 1},
+    "status": {"const": "frozen_precompilation"},
+    "frozen_at": {"type": "string", "format": "date-time"},
+    "baseline_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "namespace": {"const": "data/atlas/atlas10"},
+    "registry_mutation_permitted": {"const": false},
+    "objective": {"type": "string", "minLength": 1},
+    "inherited_selection": {"$ref": "#/$defs/inherited_selection"},
+    "all_case_ids": {
+      "const": [
+        "atlas3.mcm-pfre.radical",
+        "atlas3.mnsod-ecoli.redox",
+        "atlas3.tem1-ecoli.covalent",
+        "atlas10.caii-human.proton-relay",
+        "atlas10.hewl-chicken.covalent-glycosidase",
+        "atlas10.trypsin-fusarium.serine-protease",
+        "atlas10.subtilisin-bpn-bacillus.serine-protease",
+        "atlas10.mandelate-racemase-pputida.enolate",
+        "atlas10.methylaspartate-lyase-ctetanomorphum.enolate",
+        "atlas10.cyclophilin-a-human.isomerization"
+      ]
+    },
+    "selection_axes": {
+      "const": [
+        "proton_relay_and_geometry",
+        "alternative_mechanism_preservation",
+        "convergent_strategy_unrelated_folds",
+        "shared_fold_divergent_chemistry",
+        "mandatory_detail_abstention"
+      ]
+    },
+    "phase_compute_budget": {"$ref": "#/$defs/compute_budget"},
+    "relationship_groups": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {"$ref": "#/$defs/relationship_group"}
+    },
+    "follow_on_cases": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {"$ref": "#/$defs/case"}
+    },
+    "query_contracts": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {"$ref": "#/$defs/query_contract"}
+    },
+    "baseline_contract": {"$ref": "#/$defs/baseline_contract"},
+    "review_contract": {"$ref": "#/$defs/review_contract"},
+    "assay_lane": {"$ref": "#/$defs/assay_lane"},
+    "exit_gate": {"$ref": "#/$defs/nonempty_unique_strings"},
+    "prohibited_claims": {"$ref": "#/$defs/nonempty_unique_strings"}
+  },
+  "$defs": {
+    "nonempty_unique_strings": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "compute_budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cpu_hours_max",
+        "gpu_hours_max",
+        "external_requests_max",
+        "download_bytes_max",
+        "reuse_required",
+        "stop_if_exceeded"
+      ],
+      "properties": {
+        "cpu_hours_max": {"type": "integer", "minimum": 1},
+        "gpu_hours_max": {"const": 0},
+        "external_requests_max": {"type": "integer", "minimum": 0},
+        "download_bytes_max": {"type": "integer", "minimum": 1},
+        "reuse_required": {"const": true},
+        "stop_if_exceeded": {"const": true}
+      }
+    },
+    "inherited_selection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["selection_id", "selection_sha256", "case_ids", "immutable"],
+      "properties": {
+        "selection_id": {"const": "atlas3.kernel.selection.2026-07-13"},
+        "selection_sha256": {"const": "d24361bb9fc000d39d7209c5538bd23df845a94aa2dce1fb38c18d56dd8e1ada"},
+        "case_ids": {
+          "const": [
+            "atlas3.mcm-pfre.radical",
+            "atlas3.mnsod-ecoli.redox",
+            "atlas3.tem1-ecoli.covalent"
+          ]
+        },
+        "immutable": {"const": true}
+      }
+    },
+    "fingerprint_bridge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fingerprint_id", "use", "registry_write"],
+      "properties": {
+        "fingerprint_id": {"type": ["string", "null"], "minLength": 1},
+        "use": {"const": "historical_crosswalk_only_not_evidence"},
+        "registry_write": {"const": false}
+      }
+    },
+    "source_mechanism_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mcsa_record_id",
+        "annotation_level",
+        "step_detail_policy",
+        "highest_target_tier",
+        "mandatory_abstentions"
+      ],
+      "properties": {
+        "mcsa_record_id": {"type": "string", "pattern": "^M[0-9]{4}$"},
+        "annotation_level": {
+          "enum": [
+            "detailed_direct",
+            "detailed_direct_with_alternatives",
+            "non_detailed_direct"
+          ]
+        },
+        "step_detail_policy": {
+          "enum": [
+            "compile_source_steps",
+            "preserve_competing_source_steps",
+            "mandatory_abstention_from_discrete_step_edits"
+          ]
+        },
+        "highest_target_tier": {"const": 2},
+        "mandatory_abstentions": {
+          "allOf": [
+            {"$ref": "#/$defs/nonempty_unique_strings"},
+            {"minItems": 2}
+          ]
+        }
+      }
+    },
+    "source_handle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "record_id",
+        "uri",
+        "evidence_role",
+        "applicability",
+        "verified_at",
+        "verification_note"
+      ],
+      "properties": {
+        "source_id": {
+          "enum": ["CATH", "DOI", "M-CSA", "PDB", "Rhea", "UniProtKB"]
+        },
+        "record_id": {"type": "string", "minLength": 1},
+        "uri": {"type": "string", "format": "uri", "pattern": "^https://"},
+        "evidence_role": {
+          "enum": [
+            "engineered_source_reference_structure",
+            "experimental_structure",
+            "fold_classification",
+            "net_reaction",
+            "official_net_reaction_search_gap",
+            "primary_mechanism_evidence",
+            "primary_structure_evidence",
+            "protein_identity",
+            "source_mechanism"
+          ]
+        },
+        "applicability": {
+          "enum": [
+            "direct",
+            "direct_non_detailed",
+            "engineered_source_reference",
+            "source_gap"
+          ]
+        },
+        "verified_at": {"type": "string", "format": "date-time"},
+        "verification_note": {"type": "string", "minLength": 1}
+      }
+    },
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "case_id",
+        "target_record_id",
+        "label",
+        "organism",
+        "ec_number",
+        "representation_axis",
+        "representation_pressures",
+        "relationship_group_ids",
+        "fingerprint_bridge",
+        "target_evidence_tier",
+        "source_mechanism_contract",
+        "selection_rationale",
+        "reaction_participant_ids",
+        "fold_classification_ids",
+        "source_handles",
+        "required_outputs",
+        "known_ambiguities",
+        "success_condition",
+        "stop_conditions",
+        "case_compute_budget",
+        "assay_candidate"
+      ],
+      "properties": {
+        "case_id": {"type": "string", "pattern": "^atlas10\\."},
+        "target_record_id": {"type": "string", "minLength": 1},
+        "label": {"type": "string", "minLength": 1},
+        "organism": {"type": "string", "minLength": 1},
+        "ec_number": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$"},
+        "representation_axis": {
+          "enum": [
+            "proton_relay_and_geometry",
+            "alternative_mechanism_preservation",
+            "convergent_strategy_unrelated_folds",
+            "shared_fold_divergent_chemistry",
+            "mandatory_detail_abstention"
+          ]
+        },
+        "representation_pressures": {
+          "allOf": [
+            {"$ref": "#/$defs/nonempty_unique_strings"},
+            {"minItems": 3}
+          ]
+        },
+        "relationship_group_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "fingerprint_bridge": {"$ref": "#/$defs/fingerprint_bridge"},
+        "target_evidence_tier": {"const": 2},
+        "source_mechanism_contract": {"$ref": "#/$defs/source_mechanism_contract"},
+        "selection_rationale": {"type": "string", "minLength": 1},
+        "reaction_participant_ids": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^(?:CHEBI|RHEA-COMP):[0-9]+$"}
+        },
+        "fold_classification_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^CATH:[0-9]+(?:\\.[0-9]+){3}$"}
+        },
+        "source_handles": {
+          "type": "array",
+          "minItems": 5,
+          "items": {"$ref": "#/$defs/source_handle"}
+        },
+        "required_outputs": {
+          "const": [
+            "canonical_reaction_or_source_gap",
+            "source_mechanism_or_abstention",
+            "mechanism_hypothesis_or_abstention",
+            "protein_site_grounding",
+            "counterevidence_and_conflicts",
+            "uncertainty_and_abstention",
+            "provenance",
+            "relationship_query_projection"
+          ]
+        },
+        "known_ambiguities": {
+          "allOf": [
+            {"$ref": "#/$defs/nonempty_unique_strings"},
+            {"minItems": 3}
+          ]
+        },
+        "success_condition": {"type": "string", "minLength": 1},
+        "stop_conditions": {
+          "allOf": [
+            {"$ref": "#/$defs/nonempty_unique_strings"},
+            {"minItems": 4}
+          ]
+        },
+        "case_compute_budget": {"$ref": "#/$defs/compute_budget"},
+        "assay_candidate": {"const": false}
+      }
+    },
+    "relationship_group": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "group_id",
+        "relationship_type",
+        "case_ids",
+        "fold_classification_ids",
+        "comparison_claim",
+        "transfer_prohibition",
+        "required_query_id"
+      ],
+      "properties": {
+        "group_id": {"type": "string", "minLength": 1},
+        "relationship_type": {
+          "enum": [
+            "convergent_strategy_unrelated_folds",
+            "shared_fold_divergent_chemistry"
+          ]
+        },
+        "case_ids": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "fold_classification_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^CATH:[0-9]+(?:\\.[0-9]+){3}$"}
+        },
+        "comparison_claim": {"type": "string", "minLength": 1},
+        "transfer_prohibition": {"type": "string", "minLength": 1},
+        "required_query_id": {"type": "string", "minLength": 1}
+      }
+    },
+    "query_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "query_id",
+        "relationship_group_id",
+        "question",
+        "case_ids",
+        "required_fields",
+        "success_condition",
+        "prohibited_shortcut"
+      ],
+      "properties": {
+        "query_id": {"type": "string", "minLength": 1},
+        "relationship_group_id": {"type": "string", "minLength": 1},
+        "question": {"type": "string", "minLength": 1},
+        "case_ids": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "required_fields": {"$ref": "#/$defs/nonempty_unique_strings"},
+        "success_condition": {"type": "string", "minLength": 1},
+        "prohibited_shortcut": {"type": "string", "minLength": 1}
+      }
+    },
+    "baseline_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "baseline_id",
+        "status",
+        "comparator",
+        "same_source_budget_required",
+        "atlas_outputs_prohibited_as_inputs",
+        "measurements",
+        "claim_boundary"
+      ],
+      "properties": {
+        "baseline_id": {"const": "atlas10.unintegrated-source-stack.v1"},
+        "status": {"const": "frozen_before_compilation"},
+        "comparator": {"type": "string", "minLength": 1},
+        "same_source_budget_required": {"const": true},
+        "atlas_outputs_prohibited_as_inputs": {"const": true},
+        "measurements": {
+          "allOf": [
+            {"$ref": "#/$defs/nonempty_unique_strings"},
+            {"minItems": 6}
+          ]
+        },
+        "claim_boundary": {"type": "string", "minLength": 1}
+      }
+    },
+    "review_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "packet_count_min",
+        "packet_count_max",
+        "review_unit",
+        "micro_questions",
+        "independent_reviewer_target",
+        "upstream_curation_counts_as_independent_review",
+        "external_review_attempt_required",
+        "external_response_required_for_phase_exit",
+        "no_response_disposition"
+      ],
+      "properties": {
+        "status": {"const": "frozen_before_compilation"},
+        "packet_count_min": {"const": 5},
+        "packet_count_max": {"const": 10},
+        "review_unit": {"const": "bounded_claim_packet"},
+        "micro_questions": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "independent_reviewer_target": {"const": true},
+        "upstream_curation_counts_as_independent_review": {"const": false},
+        "external_review_attempt_required": {"const": true},
+        "external_response_required_for_phase_exit": {"const": false},
+        "no_response_disposition": {"type": "string", "minLength": 1}
+      }
+    },
+    "assay_lane": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_case_id",
+        "inherited_from_selection_sha256",
+        "status",
+        "assay_name",
+        "new_assay_candidates_permitted",
+        "external_execution_required",
+        "preregistration_required",
+        "decision_frozen_before_results",
+        "materials_committed",
+        "stop_conditions"
+      ],
+      "properties": {
+        "candidate_case_id": {"const": "atlas3.tem1-ecoli.covalent"},
+        "inherited_from_selection_sha256": {"const": "d24361bb9fc000d39d7209c5538bd23df845a94aa2dce1fb38c18d56dd8e1ada"},
+        "status": {"const": "candidate_only_not_started"},
+        "assay_name": {"const": "nitrocefin hydrolysis absorbance assay"},
+        "new_assay_candidates_permitted": {"const": false},
+        "external_execution_required": {"const": true},
+        "preregistration_required": {"const": true},
+        "decision_frozen_before_results": {"const": true},
+        "materials_committed": {"const": false},
+        "stop_conditions": {
+          "allOf": [
+            {"$ref": "#/$defs/nonempty_unique_strings"},
+            {"minItems": 4}
+          ]
+        }
+      }
+    }
+  }
+}

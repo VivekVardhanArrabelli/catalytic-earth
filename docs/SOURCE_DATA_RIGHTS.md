@@ -1,6 +1,6 @@
 # Source data rights and attribution matrix
 
-**Checked:** 2026-07-13
+**Checked:** 2026-07-14
 
 This is an engineering control, not legal advice. Code licensing does not
 relicense upstream data. A release may include a source-derived record only
@@ -13,6 +13,7 @@ are recorded. Unknown means blocked, not implicitly open.
 | Rhea | [CC BY 4.0](https://www.rhea-db.org/help/license-disclaimer) | Credit Rhea and cite the release/publication | Allowed with attribution and change notice |
 | M-CSA | [CC BY 4.0](https://www.ebi.ac.uk/thornton-srv/m-csa/) | Credit M-CSA and cite Ribeiro et al. plus the accessed release | Allowed with attribution and change notice |
 | PDB archive | [Archive data files are CC0 1.0](https://www.rcsb.org/pages/policies) | Cite PDB IDs, structure authors/publications, and RCSB/wwPDB as requested | Allowed for PDB archive files; integrated external API fields retain provider terms |
+| CATH | [CC BY 4.0](https://www.cathdb.info/version/latest/home) | Credit CATH-Gene3D, cite the applicable release/publication, and preserve superfamily identifiers | Allowed with attribution and change notice; freeze the accessed version because `latest` classifications can change |
 | AlphaFold DB | [CC BY 4.0; academic and commercial use](https://alphafold.ebi.ac.uk/) | Credit AlphaFold DB/EMBL-EBI/Google DeepMind and cite the resource and applicable model publication | Allowed with attribution, confidence/disclaimer text, and change notice |
 | BRENDA | [CC BY 4.0 for copyrightable parts](https://www.brenda-enzymes.org/license.php) | Credit BRENDA and cite the current release/publication | Allowed only after the download-time acceptance is recorded; preserve DSI/benefit-sharing and third-party cautions |
 | SABIO-RK | Current license page could not be reliably retrieved; release-specific terms remain unresolved | Cite SABIO-RK and source publications when referenced | **Blocked from bundled redistribution** until current written terms and commercial scope are captured |
@@ -33,7 +34,9 @@ are recorded. Unknown means blocked, not implicitly open.
    attributed compiled kernel and source hashes, but not raw third-party
    structures, sequences, article bodies, kinetics tables, or
    restricted/reference-only exports. Its raw 1.2 MB source package remains a
-   repository audit input under `data/atlas/atlas3/sources`.
+   repository audit input under `data/atlas/atlas3/sources`. The Atlas-10
+   selection currently stores CATH and other source handles only; it does not
+   yet bundle the seven follow-on source packages.
 3. CC BY-derived fields retain source identifiers and change notices. Database
    citations are additional to, not substitutes for, record-level literature
    citations.

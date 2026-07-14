@@ -21,6 +21,7 @@ GIANT_MODULES = (
     "src/catalytic_earth/transfer_scope.py",
 )
 DETERMINISTIC_MODULES = (
+    "src/catalytic_earth/atlas10_selection.py",
     "src/catalytic_earth/atlas_kernel.py",
     "src/catalytic_earth/atlas_selection.py",
     "src/catalytic_earth/atlas_source_adapters.py",
@@ -119,7 +120,12 @@ def build() -> bytes:
             "atlas3_selection_schema": (
                 "src/catalytic_earth/schemas/atlas3-selection-v1.schema.json"
             ),
-            "atlas3_selection_contract": "data/atlas/atlas3_selection.json"
+            "atlas3_selection_contract": "data/atlas/atlas3_selection.json",
+            "atlas10_selection_python": "src/catalytic_earth/atlas10_selection.py",
+            "atlas10_selection_schema": (
+                "src/catalytic_earth/schemas/atlas10-selection-v1.schema.json"
+            ),
+            "atlas10_selection_contract": "data/atlas/atlas10_selection.json",
         },
         "deterministic_modules": deterministic,
         "test_tiers": {

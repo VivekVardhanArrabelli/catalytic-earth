@@ -1,6 +1,8 @@
 # Current State
 
-## 2026-07-13 truth reset
+## 2026-07-14 Atlas-10 selection checkpoint
+
+**Foundation:** 2026-07-13 truth reset
 
 This is the compact current project state. It supersedes conflicting claims,
 counts, evidence labels, and deployment language in historical documents.
@@ -17,6 +19,7 @@ Read in this order:
 5. `docs/RAPID_ATLAS_PLAN.md` — current execution sequence.
 6. `docs/ATLAS3_SELECTION.md` — frozen first biological-kernel cases and gates.
 7. `docs/ATLAS3_KERNEL.md` — compiled records, source checks, query, and open gates.
+8. `docs/ATLAS10_SELECTION.md` — frozen seven-case follow-on and next build gate.
 
 Current truth:
 
@@ -48,9 +51,21 @@ Current truth:
   three source-mechanism objects, and three Tier-2 grounded hypotheses. MnSOD's
   source object abstains because M-CSA M0138 is Cu/Zn SOD; no M0138 step or site
   is transferred. The query exposes tiers, handles, sites, uncertainty,
-  counterevidence, and key abstentions. Clean Windows/Linux CI reproduction is
-  the remaining software exit gate. TEM-1 nitrocefin hydrolysis remains
-  candidate-only; nothing has been commissioned or run.
+  counterevidence, and key abstentions. Clean packaged reproduction passed the
+  Windows/Linux Python 3.10/3.12 CI matrix, PR #25 was merged, and immutable
+  checkpoint tag `snapshot/atlas3-kernel-20260714` points to the merge. TEM-1
+  nitrocefin hydrolysis remains candidate-only; nothing has been commissioned
+  or run.
+- Atlas-10 selection is frozen before compilation. It inherits Atlas-3 by
+  content hash and adds human carbonic anhydrase II, hen egg-white lysozyme,
+  *Fusarium* trypsin, subtilisin BPN', *Pseudomonas* mandelate racemase,
+  *Clostridium* methylaspartate ammonia-lyase, and human cyclophilin A. The
+  contract freezes 45 source handles, three Rhea query gaps, the direct 1SUP
+  versus engineered 1S01 boundary, a mandatory non-detailed cyclophilin
+  abstention, two relationship queries, an unintegrated-source comparator,
+  five-to-ten review packets, bounded compute, and no new assay candidate.
+  Source snapshotting and the seven follow-on compilations are the next gate;
+  no Atlas-10 biological record is claimed complete yet.
 
 The project is early and scientifically unvalidated, not empty. Its strongest
 current assets are the typed schema, provenance-bearing registries, negative

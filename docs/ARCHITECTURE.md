@@ -18,7 +18,9 @@ not a template for future work.
   Biological Atlas compilation uses the richer, strict `mechanism-record.v2`
   plus the `atlas3-kernel.v1` wrapper. Unsupported counted objects, evidence
   references, site mappings, and provenance bindings fail instead of falling
-  into prose.
+  into prose. `atlas10-selection.v1` freezes the seven-case follow-on and its
+  source-granularity, gap, applicability, relationship, baseline, review, and
+  compute boundaries before any Atlas-10 compiler or wrapper is admitted.
 - Every test module belongs to exactly one tier in `tests/test_tiers.json`.
 - `catalytic-earth reproduce` remains the canonical locked fixture path;
   `catalytic-earth atlas3` reproduces the first biological kernel and query.
@@ -30,6 +32,7 @@ Run:
 
 ```bash
 python scripts/build_architecture_freeze.py --check
+python scripts/validate_atlas10_selection.py
 python scripts/build_atlas3_kernel.py --check
 python scripts/run_test_tier.py --check
 ```
