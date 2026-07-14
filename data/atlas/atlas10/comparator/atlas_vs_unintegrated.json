@@ -1,0 +1,165 @@
+{
+  "atlas_runtime_result_sha256": "57fb5e4708d6963b994a9ffd125549b822effe060da3e735c1afd987f1c84bdb",
+  "baseline_id": "atlas10.unintegrated-source-stack.v1",
+  "claim_boundary": "This comparator measures whether the integrated atlas is more usable and truth-preserving than opening the incumbent sources separately; it is not a biological-accuracy benchmark or proof of discovery.",
+  "conclusion": "On the frozen structural contract, the integrated Atlas query surface fills every required field while the unintegrated source rows leave relationship, uncertainty, counterevidence, or compiled-lineage fields absent or partial. No human-time speedup, biological-accuracy gain, or discovery claim is supported by this run.",
+  "measurements": {
+    "applicability_errors": {
+      "atlas": null,
+      "baseline": null,
+      "status": "not measured without observed human answers or external review"
+    },
+    "elapsed_human_minutes": {
+      "atlas": null,
+      "baseline": null,
+      "speedup_claim": null,
+      "status": "not_measured; no timing or speedup is claimed"
+    },
+    "machine_requests": {
+      "atlas_frozen_runtime": 0,
+      "baseline_frozen_replay": 0,
+      "shared_source_acquisition": 64
+    },
+    "query_answer_completeness": {
+      "atlas_mean_fraction": 1.0,
+      "baseline_mean_fraction": 0.6875,
+      "interpretation": "Structural required-field completeness only; not biological correctness or discovery utility."
+    },
+    "required_field_completeness": {
+      "atlas": {
+        "atlas10.query.convergent-strategy": {
+          "complete_field_count": 8,
+          "completeness_fraction": 1.0,
+          "field_nonempty_for_every_row": {
+            "case_id": true,
+            "catalytic_site_roles": true,
+            "counterevidence": true,
+            "fold_classification_ids": true,
+            "mechanism_steps_or_abstention": true,
+            "provenance": true,
+            "source_applicability": true,
+            "uncertainty": true
+          },
+          "required_field_count": 8,
+          "row_count": 2
+        },
+        "atlas10.query.shared-fold-divergent-chemistry": {
+          "complete_field_count": 8,
+          "completeness_fraction": 1.0,
+          "field_nonempty_for_every_row": {
+            "case_id": true,
+            "conserved_and_repurposed_sites": true,
+            "fold_classification_ids": true,
+            "mechanism_steps_or_abstention": true,
+            "metal_and_intermediate_roles": true,
+            "provenance": true,
+            "reaction_or_source_gap": true,
+            "uncertainty": true
+          },
+          "required_field_count": 8,
+          "row_count": 2
+        }
+      },
+      "baseline": {
+        "by_query": {
+          "atlas10.query.convergent-strategy": {
+            "completeness_fraction": 0.6875,
+            "fields": {
+              "case_id": {
+                "basis": "Frozen selection identifier.",
+                "status": "complete"
+              },
+              "catalytic_site_roles": {
+                "basis": "Individual M-CSA residue/role rows.",
+                "status": "complete"
+              },
+              "counterevidence": {
+                "basis": "No integrated counterevidence object exists in the unjoined source rows.",
+                "status": "absent"
+              },
+              "fold_classification_ids": {
+                "basis": "Individual CATH source rows.",
+                "status": "complete"
+              },
+              "mechanism_steps_or_abstention": {
+                "basis": "M-CSA step rows and is_detailed flag, without cross-source grounding.",
+                "status": "complete"
+              },
+              "provenance": {
+                "basis": "Per-source hashes exist, but no compiled record lineage binds the cross-source answer.",
+                "status": "partial"
+              },
+              "source_applicability": {
+                "basis": "Frozen handle applicability labels and individual structure metadata.",
+                "status": "complete"
+              },
+              "uncertainty": {
+                "basis": "No integrated open-uncertainty/abstention object exists in the source rows.",
+                "status": "absent"
+              }
+            },
+            "required_field_count": 8,
+            "weighted_complete_equivalent": 5.5
+          },
+          "atlas10.query.shared-fold-divergent-chemistry": {
+            "completeness_fraction": 0.6875,
+            "fields": {
+              "case_id": {
+                "basis": "Frozen selection identifier.",
+                "status": "complete"
+              },
+              "conserved_and_repurposed_sites": {
+                "basis": "Requires the cross-case relationship join prohibited in this baseline.",
+                "status": "absent"
+              },
+              "fold_classification_ids": {
+                "basis": "Individual CATH source rows.",
+                "status": "complete"
+              },
+              "mechanism_steps_or_abstention": {
+                "basis": "M-CSA step rows and is_detailed flag, without cross-source grounding.",
+                "status": "complete"
+              },
+              "metal_and_intermediate_roles": {
+                "basis": "Individual M-CSA role and step text.",
+                "status": "complete"
+              },
+              "provenance": {
+                "basis": "Per-source hashes exist, but no compiled record lineage binds the cross-source answer.",
+                "status": "partial"
+              },
+              "reaction_or_source_gap": {
+                "basis": "Individual Rhea record or zero-row query.",
+                "status": "complete"
+              },
+              "uncertainty": {
+                "basis": "No integrated open-uncertainty/abstention object exists in the source rows.",
+                "status": "absent"
+              }
+            },
+            "required_field_count": 8,
+            "weighted_complete_equivalent": 5.5
+          }
+        },
+        "overall_mean_completeness_fraction": 0.6875,
+        "scoring": {
+          "absent": 0.0,
+          "complete": 1.0,
+          "partial": 0.5
+        }
+      }
+    },
+    "unresolved_source_conflicts": {
+      "atlas_explicitly_represented_not_biologically_adjudicated_count": 5,
+      "atlas_silently_collapsed_count": 0,
+      "baseline_unintegrated_count": 5
+    },
+    "unsupported_detail_count": {
+      "atlas_detected_by_frozen_guards": 0,
+      "baseline_generated_detail": 0,
+      "cyclophilin_discrete_step_count": 0
+    }
+  },
+  "same_source_budget_confirmed": true,
+  "schema_version": "catalytic-earth.atlas10-comparator-report.v1"
+}

@@ -1,0 +1,52 @@
+{
+  "domain_rows": [
+    {
+      "architecture": 40,
+      "class": 2,
+      "classification_id": "2.40.10.10",
+      "domain_id": "1pq5A01",
+      "domain_length": 124,
+      "homologous_superfamily": 10,
+      "raw_source_row": "1pq5A01     2    40    10    10    17     2     1     1     7   124 0.850",
+      "resolution_angstrom": 0.85,
+      "s100_cluster": 1,
+      "s100_count": 7,
+      "s35_cluster": 17,
+      "s60_cluster": 2,
+      "s95_cluster": 1,
+      "topology": 10
+    },
+    {
+      "architecture": 40,
+      "class": 2,
+      "classification_id": "2.40.10.10",
+      "domain_id": "1pq5A02",
+      "domain_length": 100,
+      "homologous_superfamily": 10,
+      "raw_source_row": "1pq5A02     2    40    10    10     5     1     1     1     7   100 0.850",
+      "resolution_angstrom": 0.85,
+      "s100_cluster": 1,
+      "s100_count": 7,
+      "s35_cluster": 5,
+      "s60_cluster": 1,
+      "s95_cluster": 1,
+      "topology": 10
+    }
+  ],
+  "name_row": {
+    "classification_id": "2.40.10.10",
+    "description": "Trypsin-like serine proteases",
+    "raw_source_row": "2.40.10.10    2h5cA02    :Trypsin-like serine proteases",
+    "representative_domain_id": "2h5cA02"
+  },
+  "record_id": "CATH:2.40.10.10",
+  "release_locator": "latest-release",
+  "selected_pdb_ids": [
+    "1PQ5"
+  ],
+  "source": "CATH",
+  "source_files": [
+    "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-names.txt",
+    "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-domain-list.txt"
+  ]
+}

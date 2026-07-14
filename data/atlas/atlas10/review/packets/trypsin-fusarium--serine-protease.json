@@ -1,0 +1,520 @@
+{
+  "case_id": "atlas10.trypsin-fusarium.serine-protease",
+  "claim_boundary": {
+    "does_not_support": [
+      "Mechanism truth beyond the frozen sources, unrestricted transfer across proteins or substrates, or replacement of experimental validation."
+    ],
+    "supports": [
+      "Produce a source-faithful trypsin mechanism and site mapping that can participate in the cross-fold convergence query while preserving the Rhea gap and refusing any residue or evidence transfer from subtilisin."
+    ]
+  },
+  "compiled_hypothesis_sha256": "9bdfef07aa59ff535e3f42047e69b0ebb4aa50b8bcf2e529c7a8a8e3153910b9",
+  "counterevidence": [
+    {
+      "counterevidence_id": "atlas10.trypsin-fusarium.serine-protease.rhea-source-gap",
+      "disposition": "Preserve the zero-row query and label M-CSA participants as source-scoped context.",
+      "effect": "Prevents attribution of a direct canonical Rhea reaction identifier.",
+      "evidence_ids": [
+        "source:Rhea:EC:3.4.21.4"
+      ],
+      "summary": "No direct Rhea record was returned by this frozen EC query; this is not evidence that no reaction description exists in another source."
+    },
+    {
+      "counterevidence_id": "atlas10.trypsin-fusarium.serine-protease.structure-1pq5-limit",
+      "disposition": "Retain the structure with its explicit applicability and context flags.",
+      "effect": "Limits mechanistic generalization from this static structural context.",
+      "evidence_ids": [
+        "source:PDB:1PQ5"
+      ],
+      "summary": "The 0.85 A pH-5 structure grounds sites but does not alone establish productive physiological protonation through turnover."
+    }
+  ],
+  "detail_abstention": {
+    "reason": "The frozen source schemes preserve curved-arrow endpoints but do not establish a verified atom map, compiled bond-edit list, independent validation, or complete turnover trajectory.",
+    "required": true,
+    "source_basis_evidence_ids": [
+      "source:M-CSA:M0173",
+      "source:UniProtKB:P35049",
+      "source:Rhea:EC:3.4.21.4",
+      "source:PDB:1PQ5",
+      "source:DOI:10.1074/jbc.m306944200",
+      "source:CATH:CATH:2.40.10.10"
+    ],
+    "unsupported_fields": [
+      "atom_mapped_bond_edits",
+      "independent_mechanism_validation",
+      "complete_turnover_trajectory"
+    ]
+  },
+  "evidence": [
+    {
+      "applicability": "direct",
+      "evidence_id": "source:UniProtKB:P35049",
+      "evidence_role": "protein_identity",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "2be2f38c0c1c8d66b7a69bd8af2eea08b445992f517e7e876c684b738cec5ffd",
+      "source_id": "UniProtKB",
+      "source_record_id": "P35049",
+      "uri": "https://www.uniprot.org/uniprotkb/P35049/entry"
+    },
+    {
+      "applicability": "source_gap",
+      "evidence_id": "source:Rhea:EC:3.4.21.4",
+      "evidence_role": "official_net_reaction_search_gap",
+      "retrieval_status": "bundled_query_gap_snapshot",
+      "snapshot_sha256": "e4a7f09fdc7b8968fc95f8aff17899807034ba433a12a374b4681c77d7839dc8",
+      "source_id": "Rhea",
+      "source_record_id": "EC:3.4.21.4",
+      "uri": "https://www.rhea-db.org/rhea?query=ec%3A3.4.21.4"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:PDB:1PQ5",
+      "evidence_role": "experimental_structure",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "b6b8b1fe752907f1252b83807f06c3fe78de2f0b980b07f282f9600b35566946",
+      "source_id": "PDB",
+      "source_record_id": "1PQ5",
+      "uri": "https://www.rcsb.org/structure/1PQ5"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:M-CSA:M0173",
+      "evidence_role": "source_mechanism",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "d3db64e9a1db6e22e8baae48a738bff261a2296f375a884c19f2f4abc7d8f22e",
+      "source_id": "M-CSA",
+      "source_record_id": "M0173",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/173/"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:DOI:10.1074/jbc.m306944200",
+      "evidence_role": "primary_structure_evidence",
+      "retrieval_status": "reference_only_verified_handle",
+      "snapshot_sha256": null,
+      "source_id": "DOI",
+      "source_record_id": "10.1074/jbc.m306944200",
+      "uri": "https://doi.org/10.1074/jbc.m306944200"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:CATH:CATH:2.40.10.10",
+      "evidence_role": "fold_classification",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "a6c1336d96e6d54452b1285c1cca6acb68ed71886fcad5c1999b698c38247b3e",
+      "source_id": "CATH",
+      "source_record_id": "CATH:2.40.10.10",
+      "uri": "https://www.cathdb.info/version/latest/superfamily/2.40.10.10"
+    }
+  ],
+  "packet_id": "review-packet:atlas10.trypsin-fusarium.serine-protease",
+  "protein_scope": {
+    "assay_candidate": false,
+    "case_label": "Fusarium oxysporum trypsin",
+    "direct_pdb_ids": [
+      "1PQ5"
+    ],
+    "ec_number": "3.4.21.4",
+    "fingerprint_bridge": {
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "registry_write": false,
+      "use": "historical_crosswalk_only_not_evidence"
+    },
+    "fold_classification_ids": [
+      "CATH:2.40.10.10"
+    ],
+    "organism": "Fusarium oxysporum",
+    "relationship_group_ids": [
+      "atlas10.relationship.convergent-serine-proteases"
+    ],
+    "uniprot_ids": [
+      "P35049"
+    ]
+  },
+  "provenance": {
+    "compilation_spec_sha256": "89cfa53c23fdeafde11e859cea102a88421ea253446a267b23bca2eb84920932",
+    "compiler_version": "catalytic-earth.atlas10-compiler.v1",
+    "selection_sha256": "9bc114aaf793c51ec3b6273466f62a83974512a2dcf969d95d8b97453dd2795e",
+    "source_snapshot_set_sha256": "a6b6a0059835e8f3f78cd5da9897afb599560bc844c59e82ba523f9387d0550d"
+  },
+  "reaction_or_source_gap": {
+    "directionality": "unknown_no_direct_record",
+    "ec_number": "3.4.21.4",
+    "equation": null,
+    "gap_context": {
+      "interpretation": "No direct Rhea record was returned by this frozen EC query; this is not evidence that no reaction description exists in another source.",
+      "query_result_count": 0,
+      "query_snapshot_kind": "official_zero_row_tsv"
+    },
+    "participants": [
+      {
+        "name": "water",
+        "participant_id": "CHEBI:15377",
+        "participant_type": "small_molecule_or_class",
+        "reactive_part_id": null,
+        "side": "left",
+        "source_accession": "CHEBI:15377",
+        "source_count_values": [
+          1
+        ],
+        "source_row_count": 1,
+        "source_scope": "M-CSA participant context; not a Rhea canonical reaction",
+        "stoichiometry": 1
+      },
+      {
+        "name": "L-alpha-amino acid zwitterion",
+        "participant_id": "CHEBI:59869",
+        "participant_type": "small_molecule_or_class",
+        "reactive_part_id": null,
+        "side": "right",
+        "source_accession": "CHEBI:59869",
+        "source_count_values": [
+          1,
+          1
+        ],
+        "source_row_count": 2,
+        "source_scope": "M-CSA participant context; not a Rhea canonical reaction",
+        "stoichiometry": 2
+      },
+      {
+        "name": "dipeptide zwitterion",
+        "participant_id": "CHEBI:90799",
+        "participant_type": "small_molecule_or_class",
+        "reactive_part_id": null,
+        "side": "left",
+        "source_accession": "CHEBI:90799",
+        "source_count_values": [
+          1
+        ],
+        "source_row_count": 1,
+        "source_scope": "M-CSA participant context; not a Rhea canonical reaction",
+        "stoichiometry": 1
+      }
+    ],
+    "source_id": "Rhea",
+    "source_query": "ec:3.4.21.4",
+    "source_record_id": null,
+    "source_status": "documented_query_gap"
+  },
+  "review_questions": [
+    "Is the reaction or documented source gap correct for this protein scope?",
+    "Are the catalytic sites and numbering mappings faithful to the cited sources?",
+    "Are the represented steps faithful to source granularity, with unsupported detail abstained?",
+    "Are structure and mechanism applicability boundaries correct?",
+    "Does the claim boundary prevent an unjustified evidence-tier upgrade?"
+  ],
+  "review_unit": "bounded_claim_packet",
+  "reviewer_instruction": "Review only the bounded case and cited source scope. A correction, uncertainty, or rejection is useful. Do not infer independent validation from upstream curation, source rating, fold similarity, or another case.",
+  "schema_version": "catalytic-earth.atlas10-review-packet.v1",
+  "sites": [
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0173",
+        "source:UniProtKB:P35049",
+        "source:PDB:1PQ5"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 56,
+          "chain_id": "A",
+          "label_position": 41,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 65 to 1PQ5 chain A author position 56 and mmCIF label position 41; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1PQ5"
+        }
+      ],
+      "residue_name": "His",
+      "roles": [
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "proton acceptor",
+        "proton donor"
+      ],
+      "sequence_position": 65,
+      "site_id": "P35049:H65",
+      "uniprot_id": "P35049"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0173",
+        "source:UniProtKB:P35049",
+        "source:PDB:1PQ5"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 99,
+          "chain_id": "A",
+          "label_position": 84,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 108 to 1PQ5 chain A author position 99 and mmCIF label position 84; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1PQ5"
+        }
+      ],
+      "residue_name": "Asp",
+      "roles": [
+        "activator",
+        "electrostatic stabiliser",
+        "hydrogen bond acceptor"
+      ],
+      "sequence_position": 108,
+      "site_id": "P35049:D108",
+      "uniprot_id": "P35049"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0173",
+        "source:UniProtKB:P35049",
+        "source:PDB:1PQ5"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 192,
+          "chain_id": "A",
+          "label_position": 177,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 201 to 1PQ5 chain A author position 192 and mmCIF label position 177; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1PQ5"
+        }
+      ],
+      "residue_name": "Gln",
+      "roles": [
+        "electrostatic stabiliser",
+        "hydrogen bond donor",
+        "transition state stabiliser"
+      ],
+      "sequence_position": 201,
+      "site_id": "P35049:Q201",
+      "uniprot_id": "P35049"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0173",
+        "source:UniProtKB:P35049",
+        "source:PDB:1PQ5"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 193,
+          "chain_id": "A",
+          "label_position": 178,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 202 to 1PQ5 chain A author position 193 and mmCIF label position 178; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1PQ5"
+        }
+      ],
+      "residue_name": "Gly",
+      "roles": [
+        "electrostatic stabiliser",
+        "hydrogen bond donor",
+        "transition state stabiliser"
+      ],
+      "sequence_position": 202,
+      "site_id": "P35049:G202",
+      "uniprot_id": "P35049"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0173",
+        "source:UniProtKB:P35049",
+        "source:PDB:1PQ5"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 194,
+          "chain_id": "A",
+          "label_position": 179,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 203 to 1PQ5 chain A author position 194 and mmCIF label position 179; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1PQ5"
+        }
+      ],
+      "residue_name": "Asp",
+      "roles": [
+        "electrostatic stabiliser",
+        "hydrogen bond donor",
+        "transition state stabiliser"
+      ],
+      "sequence_position": 203,
+      "site_id": "P35049:D203",
+      "uniprot_id": "P35049"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0173",
+        "source:UniProtKB:P35049",
+        "source:PDB:1PQ5"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 195,
+          "chain_id": "A",
+          "label_position": 180,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 204 to 1PQ5 chain A author position 195 and mmCIF label position 180; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1PQ5"
+        }
+      ],
+      "residue_name": "Ser",
+      "roles": [
+        "covalently attached",
+        "electrostatic stabiliser",
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "nucleofuge",
+        "nucleophile",
+        "proton acceptor",
+        "proton donor",
+        "transition state stabiliser"
+      ],
+      "sequence_position": 204,
+      "site_id": "P35049:S204",
+      "uniprot_id": "P35049"
+    }
+  ],
+  "source_proposals": [
+    {
+      "annotation_texts": [],
+      "components_summary": "intermediate collapse, bimolecular nucleophilic addition, overall reactant used, intermediate terminated, native state of enzyme regenerated, overall product formed, enzyme-substrate complex cleavage, enzyme-substrate complex formation, proton transfer, unimolecular elimination by the conjugate base, intermediate formation",
+      "is_detailed": true,
+      "mechanism_text": "The key feature of the mechanism is the presence of the catalytic triad of serine, histidine and  aspartate. Serine, having been deprotonated by histidine, attacks the carbonyl of the substrate. The negatively charged tetrahedral intermediate is stabilised by the oxyanion hole, while the positive charge on histidine is stabilised by the aspartate residue. When the tetrahedral intermediate collapses, the amide bond of the substrate is broken. The acylenzyme intermediate is hydrolysed by a water molecule, activated by histidine, to release the product and restore the enzyme to its active state.",
+      "preferred": true,
+      "proposal_id": "atlas10.trypsin-fusarium.serine-protease.mcsa-M0173.mechanism-1",
+      "rating": 3,
+      "scheme_retrieval_issues": [],
+      "source_mechanism_id": 1,
+      "source_record_id": "M0173",
+      "steps": [
+        {
+          "atom_mapping_status": "not_inferred",
+          "bond_edit_status": "not_compiled_from_unmapped_source_scheme",
+          "catalyst_site_ids": [
+            "P35049:H65",
+            "P35049:S204"
+          ],
+          "is_inferred": false,
+          "order": 1,
+          "source_electron_flow_count": 3,
+          "source_scheme_sha256": "61e6e50dce4e376699ebbf430c3190a0805efc0586d33f683e31b0f3c7263eab",
+          "source_step_id": 1,
+          "summary": "His56 in a Ser-His-Asp triad deprotonates Ser195. Activated Ser195 then attacks the carbonyl carbon of the peptide bond in a nucleophilic addition."
+        },
+        {
+          "atom_mapping_status": "not_inferred",
+          "bond_edit_status": "not_compiled_from_unmapped_source_scheme",
+          "catalyst_site_ids": [
+            "P35049:H65"
+          ],
+          "is_inferred": false,
+          "order": 2,
+          "source_electron_flow_count": 3,
+          "source_scheme_sha256": "7cc3b37af574d0bb078bd46059d6559729ee4bb633ec7190b273182af0497f88",
+          "source_step_id": 2,
+          "summary": "The oxyanion initiates an elimination reaction that cleaves the peptide bond, releasing the new N-terminus of the protein, which protonates from His56."
+        },
+        {
+          "atom_mapping_status": "not_inferred",
+          "bond_edit_status": "not_compiled_from_unmapped_source_scheme",
+          "catalyst_site_ids": [
+            "P35049:H65",
+            "P35049:S204"
+          ],
+          "is_inferred": false,
+          "order": 3,
+          "source_electron_flow_count": 3,
+          "source_scheme_sha256": "69c950d577fe89bebaac371b18c8ef9be8690d0573e982d7ed599e38bdf474e2",
+          "source_step_id": 3,
+          "summary": "His56 deprotonates water, which attacks the carbonyl carbon bound to Ser195 in a nucleophilic addition."
+        },
+        {
+          "atom_mapping_status": "not_inferred",
+          "bond_edit_status": "not_compiled_from_unmapped_source_scheme",
+          "catalyst_site_ids": [
+            "P35049:H65",
+            "P35049:S204"
+          ],
+          "is_inferred": false,
+          "order": 4,
+          "source_electron_flow_count": 3,
+          "source_scheme_sha256": "fe7457ae639e865e04b10bcbf39a61283ef3396fc27377f8b1ece47a59dfb688",
+          "source_step_id": 4,
+          "summary": "The oxyanion initiates an elimination that cleaves the acyl bond to Ser195, releasing the C-terminus of the protein. Ser195 then deprotonates His56, regenerating the active site."
+        }
+      ],
+      "structured_detail_status": "source_curved_arrows_preserved_no_atom_mapping_inference",
+      "terminal_state_source_step_ids": [
+        5
+      ]
+    }
+  ],
+  "structures": [
+    {
+      "applicability": "direct",
+      "context_flags": [
+        "static_structure",
+        "condition_specific_pH_5",
+        "physiological_protonation_unresolved"
+      ],
+      "evidence_ids": [
+        "source:PDB:1PQ5",
+        "source:UniProtKB:P35049"
+      ],
+      "experimental_method": "X-RAY DIFFRACTION",
+      "limitation": "The 0.85 A pH-5 structure grounds sites but does not alone establish productive physiological protonation through turnover.",
+      "pdb_id": "1PQ5",
+      "resolution_angstrom": 0.85,
+      "uniprot_chain_ranges": [
+        {
+          "chain_id": "A",
+          "uniprot_end": 248,
+          "uniprot_start": 25
+        }
+      ]
+    }
+  ],
+  "target_record_id": "mechanism:trypsin-fusarium-serine-protease-v1",
+  "uncertainties": [
+    {
+      "abstention": "Do not resolve this ambiguity beyond the frozen sources and explicit compilation rules.",
+      "status": "open",
+      "summary": "M-CSA participant classes supply source-scoped peptide hydrolysis context but the frozen Rhea query supplies no direct canonical reaction.",
+      "uncertainty_id": "atlas10.trypsin-fusarium.serine-protease.uncertainty-1"
+    },
+    {
+      "abstention": "Do not resolve this ambiguity beyond the frozen sources and explicit compilation rules.",
+      "status": "open",
+      "summary": "The high-resolution structure is condition-specific and does not uniquely establish productive protonation through turnover.",
+      "uncertainty_id": "atlas10.trypsin-fusarium.serine-protease.uncertainty-2"
+    },
+    {
+      "abstention": "Do not resolve this ambiguity beyond the frozen sources and explicit compilation rules.",
+      "status": "open",
+      "summary": "The catalytic strategy converges with subtilisin, but fold, numbering, substrate context, and evidence remain protein-specific.",
+      "uncertainty_id": "atlas10.trypsin-fusarium.serine-protease.uncertainty-3"
+    }
+  ]
+}

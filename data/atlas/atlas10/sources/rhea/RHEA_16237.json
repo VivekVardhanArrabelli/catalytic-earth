@@ -1,0 +1,48 @@
+{
+  "columns": [
+    "Reaction identifier",
+    "Equation",
+    "EC number",
+    "ChEBI identifier",
+    "ChEBI name"
+  ],
+  "participant_request_url": "https://sparql.rhea-db.org/sparql?query=PREFIX+rh%3A+%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0ASELECT+%3Freaction+%3Fside+%3Fparticipant+%3Fcompound+%3Faccession+%3Fname+%3Fchebi+%3FreactivePart+%3FreactiveChebi%0AWHERE+%7B%0A++VALUES+%3Freaction+%7B+rh%3A16237+%7D%0A++%3Freaction+rh%3Aside+%3Fside+.%0A++%3Fside+rh%3Acontains+%3Fparticipant+.%0A++%3Fparticipant+rh%3Acompound+%3Fcompound+.%0A++OPTIONAL+%7B+%3Fcompound+rh%3Aaccession+%3Faccession+%7D%0A++OPTIONAL+%7B+%3Fcompound+rh%3Aname+%3Fname+%7D%0A++OPTIONAL+%7B+%3Fcompound+rh%3Achebi+%3Fchebi+%7D%0A++OPTIONAL+%7B%0A++++%3Fcompound+rh%3AreactivePart+%3FreactivePart+.%0A++++OPTIONAL+%7B+%3FreactivePart+rh%3Achebi+%3FreactiveChebi+%7D%0A++%7D%0A%7D%0AORDER+BY+%3Freaction+%3Fside+%3Fparticipant&format=application%2Fsparql-results%2Bjson",
+  "participant_rows": [
+    {
+      "accession": "GENERIC:10748",
+      "chebi_uri": null,
+      "compound_uri": "http://rdf.rhea-db.org/Compound_10748",
+      "name": "[protein]-peptidylproline (omega=180)",
+      "participant_uri": "http://rdf.rhea-db.org/Participant_16237_compound_10748",
+      "reaction_uri": "http://rdf.rhea-db.org/16237",
+      "reactive_chebi_uri": "http://purl.obolibrary.org/obo/CHEBI_83834",
+      "reactive_part_uri": "http://rdf.rhea-db.org/Compound_10748_rp1",
+      "side_uri": "http://rdf.rhea-db.org/16237_L"
+    },
+    {
+      "accession": "GENERIC:10747",
+      "chebi_uri": null,
+      "compound_uri": "http://rdf.rhea-db.org/Compound_10747",
+      "name": "[protein]-peptidylproline (omega=0)",
+      "participant_uri": "http://rdf.rhea-db.org/Participant_16237_compound_10747",
+      "reaction_uri": "http://rdf.rhea-db.org/16237",
+      "reactive_chebi_uri": "http://purl.obolibrary.org/obo/CHEBI_83833",
+      "reactive_part_uri": "http://rdf.rhea-db.org/Compound_10747_rp1",
+      "side_uri": "http://rdf.rhea-db.org/16237_R"
+    }
+  ],
+  "query": "id:16237",
+  "query_result_kind": "direct_record",
+  "record_id": "RHEA:16237",
+  "request_url": "https://www.rhea-db.org/rhea?query=id%3A16237&columns=rhea-id%2Cequation%2Cec%2Cchebi-id%2Cchebi&format=tsv&limit=10",
+  "rows": [
+    {
+      "ChEBI identifier": "CHEBI:83834;CHEBI:83833",
+      "ChEBI name": "peptidylproline (omega=180) residue;peptidylproline (omega=0) residue",
+      "EC number": "EC:5.2.1.8",
+      "Equation": "[protein]-peptidylproline (omega=180) = [protein]-peptidylproline (omega=0)",
+      "Reaction identifier": "RHEA:16237"
+    }
+  ],
+  "source": "Rhea"
+}

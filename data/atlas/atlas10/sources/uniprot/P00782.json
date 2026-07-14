@@ -1,0 +1,4290 @@
+{
+  "annotationScore": 5.0,
+  "comments": [
+    {
+      "commentType": "FUNCTION",
+      "texts": [
+        {
+          "evidences": [
+            {
+              "evidenceCode": "ECO:0000269",
+              "id": "12524032",
+              "source": "PubMed"
+            }
+          ],
+          "value": "Subtilisin is an extracellular alkaline serine protease, it catalyzes the hydrolysis of proteins and peptide amides. Has a high substrate specificity to fibrin"
+        }
+      ]
+    },
+    {
+      "commentType": "CATALYTIC ACTIVITY",
+      "reaction": {
+        "ecNumber": "3.4.21.62",
+        "name": "Hydrolysis of proteins with broad specificity for peptide bonds, and a preference for a large uncharged residue in P1. Hydrolyzes peptide amides."
+      }
+    },
+    {
+      "cofactors": [
+        {
+          "cofactorCrossReference": {
+            "database": "ChEBI",
+            "id": "CHEBI:29108"
+          },
+          "name": "Ca(2+)"
+        }
+      ],
+      "commentType": "COFACTOR",
+      "note": {
+        "texts": [
+          {
+            "value": "Binds 2 calcium ions per subunit."
+          }
+        ]
+      }
+    },
+    {
+      "commentType": "ACTIVITY REGULATION",
+      "texts": [
+        {
+          "evidences": [
+            {
+              "evidenceCode": "ECO:0000269",
+              "id": "12524032",
+              "source": "PubMed"
+            }
+          ],
+          "value": "Completely inhibited by phenylmethylsulfony fluoride (PMSF) and partially inhibited by benzamidine hydrochloride, leupeptin, and pepstatin A"
+        }
+      ]
+    },
+    {
+      "commentType": "BIOPHYSICOCHEMICAL PROPERTIES",
+      "phDependence": {
+        "texts": [
+          {
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "12524032",
+                "source": "PubMed"
+              }
+            ],
+            "value": "Optimum pH is 9.0."
+          }
+        ]
+      },
+      "temperatureDependence": {
+        "texts": [
+          {
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "12524032",
+                "source": "PubMed"
+              }
+            ],
+            "value": "Optimum temperature is 48 degrees Celsius."
+          }
+        ]
+      }
+    },
+    {
+      "commentType": "SUBUNIT",
+      "texts": [
+        {
+          "evidences": [
+            {
+              "evidenceCode": "ECO:0000269",
+              "id": "12524032",
+              "source": "PubMed"
+            }
+          ],
+          "value": "Monomer"
+        }
+      ]
+    },
+    {
+      "commentType": "INTERACTION",
+      "interactions": [
+        {
+          "interactantOne": {
+            "intActId": "EBI-1033955",
+            "uniProtKBAccession": "P00782"
+          },
+          "interactantTwo": {
+            "geneName": "Ica-2",
+            "intActId": "EBI-1040468",
+            "uniProtKBAccession": "Q40059"
+          },
+          "numberOfExperiments": 8,
+          "organismDiffer": true
+        }
+      ]
+    },
+    {
+      "commentType": "SUBCELLULAR LOCATION",
+      "subcellularLocations": [
+        {
+          "location": {
+            "id": "SL-0243",
+            "value": "Secreted"
+          }
+        }
+      ]
+    },
+    {
+      "commentType": "BIOTECHNOLOGY",
+      "texts": [
+        {
+          "value": "Used as a detergent protease. Sold under the name Alcalase by Novozymes"
+        }
+      ]
+    },
+    {
+      "commentType": "MISCELLANEOUS",
+      "texts": [
+        {
+          "value": "Secretion of subtilisin is associated with onset of sporulation, and many mutations which block sporulation at early stages affect expression levels of subtilisin. However, subtilisin is not necessary for normal sporulation"
+        }
+      ]
+    },
+    {
+      "commentType": "SIMILARITY",
+      "texts": [
+        {
+          "evidences": [
+            {
+              "evidenceCode": "ECO:0000305"
+            }
+          ],
+          "value": "Belongs to the peptidase S8 family"
+        }
+      ]
+    },
+    {
+      "commentType": "SEQUENCE CAUTION",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000305"
+        }
+      ],
+      "sequence": "CAA24990.1",
+      "sequenceCautionType": "Erroneous initiation"
+    }
+  ],
+  "entryAudit": {
+    "entryVersion": 188,
+    "firstPublicDate": "1986-07-21",
+    "lastAnnotationUpdateDate": "2026-06-10",
+    "lastSequenceUpdateDate": "1986-07-21",
+    "sequenceVersion": 1
+  },
+  "entryType": "UniProtKB reviewed (Swiss-Prot)",
+  "extraAttributes": {
+    "countByCommentType": {
+      "ACTIVITY REGULATION": 1,
+      "BIOPHYSICOCHEMICAL PROPERTIES": 1,
+      "BIOTECHNOLOGY": 1,
+      "CATALYTIC ACTIVITY": 1,
+      "COFACTOR": 1,
+      "FUNCTION": 1,
+      "INTERACTION": 1,
+      "MISCELLANEOUS": 1,
+      "SEQUENCE CAUTION": 1,
+      "SIMILARITY": 1,
+      "SUBCELLULAR LOCATION": 1,
+      "SUBUNIT": 1
+    },
+    "countByFeatureType": {
+      "Active site": 3,
+      "Beta strand": 22,
+      "Binding site": 9,
+      "Chain": 1,
+      "Domain": 2,
+      "Helix": 12,
+      "Natural variant": 1,
+      "Propeptide": 1,
+      "Signal": 1,
+      "Turn": 4
+    },
+    "uniParcId": "UPI0000136180"
+  },
+  "features": [
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000250"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 30
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 1
+        }
+      },
+      "type": "Signal"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "12524032",
+          "source": "PubMed"
+        },
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "6065094",
+          "source": "PubMed"
+        }
+      ],
+      "featureId": "PRO_0000027177",
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 107
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 31
+        }
+      },
+      "type": "Propeptide"
+    },
+    {
+      "description": "Subtilisin BPN'",
+      "featureId": "PRO_0000027178",
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 382
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 108
+        }
+      },
+      "type": "Chain"
+    },
+    {
+      "description": "Inhibitor I9",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000255"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 105
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 39
+        }
+      },
+      "type": "Domain"
+    },
+    {
+      "description": "Peptidase S8",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000255",
+          "id": "PRU01240",
+          "source": "PROSITE-ProRule"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 381
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 112
+        }
+      },
+      "type": "Domain"
+    },
+    {
+      "description": "Charge relay system",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000255",
+          "id": "PRU01240",
+          "source": "PROSITE-ProRule"
+        },
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "5249818",
+          "source": "PubMed"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 139
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 139
+        }
+      },
+      "type": "Active site"
+    },
+    {
+      "description": "Charge relay system",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000255",
+          "id": "PRU01240",
+          "source": "PROSITE-ProRule"
+        },
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "5249818",
+          "source": "PubMed"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 171
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 171
+        }
+      },
+      "type": "Active site"
+    },
+    {
+      "description": "Charge relay system",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000255",
+          "id": "PRU01240",
+          "source": "PROSITE-ProRule"
+        },
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "5249818",
+          "source": "PubMed"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 328
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 328
+        }
+      },
+      "type": "Active site"
+    },
+    {
+      "description": "",
+      "featureCrossReferences": [
+        {
+          "database": "ChEBI",
+          "id": "CHEBI:29108"
+        }
+      ],
+      "ligand": {
+        "id": "ChEBI:CHEBI:29108",
+        "label": "1",
+        "name": "Ca(2+)"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 109
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 109
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "description": "",
+      "featureCrossReferences": [
+        {
+          "database": "ChEBI",
+          "id": "CHEBI:29108"
+        }
+      ],
+      "ligand": {
+        "id": "ChEBI:CHEBI:29108",
+        "label": "1",
+        "name": "Ca(2+)"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 148
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 148
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "description": "",
+      "featureCrossReferences": [
+        {
+          "database": "ChEBI",
+          "id": "CHEBI:29108"
+        }
+      ],
+      "ligand": {
+        "id": "ChEBI:CHEBI:29108",
+        "label": "1",
+        "name": "Ca(2+)"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 182
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 182
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "description": "",
+      "featureCrossReferences": [
+        {
+          "database": "ChEBI",
+          "id": "CHEBI:29108"
+        }
+      ],
+      "ligand": {
+        "id": "ChEBI:CHEBI:29108",
+        "label": "1",
+        "name": "Ca(2+)"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 184
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 184
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "description": "",
+      "featureCrossReferences": [
+        {
+          "database": "ChEBI",
+          "id": "CHEBI:29108"
+        }
+      ],
+      "ligand": {
+        "id": "ChEBI:CHEBI:29108",
+        "label": "1",
+        "name": "Ca(2+)"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 186
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 186
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "description": "",
+      "featureCrossReferences": [
+        {
+          "database": "ChEBI",
+          "id": "CHEBI:29108"
+        }
+      ],
+      "ligand": {
+        "id": "ChEBI:CHEBI:29108",
+        "label": "1",
+        "name": "Ca(2+)"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 188
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 188
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "description": "",
+      "featureCrossReferences": [
+        {
+          "database": "ChEBI",
+          "id": "CHEBI:29108"
+        }
+      ],
+      "ligand": {
+        "id": "ChEBI:CHEBI:29108",
+        "label": "2",
+        "name": "Ca(2+)"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 276
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 276
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "description": "",
+      "featureCrossReferences": [
+        {
+          "database": "ChEBI",
+          "id": "CHEBI:29108"
+        }
+      ],
+      "ligand": {
+        "id": "ChEBI:CHEBI:29108",
+        "label": "2",
+        "name": "Ca(2+)"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 278
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 278
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "description": "",
+      "featureCrossReferences": [
+        {
+          "database": "ChEBI",
+          "id": "CHEBI:29108"
+        }
+      ],
+      "ligand": {
+        "id": "ChEBI:CHEBI:29108",
+        "label": "2",
+        "name": "Ca(2+)"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 281
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 281
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "alternativeSequence": {
+        "alternativeSequences": [
+          "F"
+        ],
+        "originalSequence": "Y"
+      },
+      "description": "in strain: DC-4",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "12524032",
+          "source": "PubMed"
+        }
+      ],
+      "featureId": "",
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 128
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 128
+        }
+      },
+      "type": "Natural variant"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "3CNQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 44
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 39
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1SPB",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 49
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 46
+        }
+      },
+      "type": "Turn"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "3CNQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 61
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 53
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "3CNQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 64
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 62
+        }
+      },
+      "type": "Turn"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "3CNQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 70
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 66
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "3CNQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 80
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 72
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "3CNQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 90
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 83
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "3CNQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 100
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 95
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "3CNQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 106
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 103
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 117
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 113
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 126
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 120
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 140
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 134
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1SUA",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 148
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 146
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 156
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 151
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "2SBT",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 160
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 158
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 170
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 168
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 180
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 171
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 188
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 183
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "7AM3",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 191
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 189
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 201
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 195
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 209
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 207
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 223
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 211
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 231
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 227
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 236
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 233
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 251
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 240
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 259
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 255
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 277
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 275
+        }
+      },
+      "type": "Turn"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 287
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 281
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "2SBT",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 291
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 289
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 308
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 305
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 316
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 310
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 319
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 317
+        }
+      },
+      "type": "Turn"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 324
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 320
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 344
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 327
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 358
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 350
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1SPB",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 362
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 360
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 370
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 367
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1TO2",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 380
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 377
+        }
+      },
+      "type": "Helix"
+    }
+  ],
+  "genes": [
+    {
+      "geneName": {
+        "value": "apr"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "category": "Technical term",
+      "id": "KW-0002",
+      "name": "3D-structure"
+    },
+    {
+      "category": "Ligand",
+      "id": "KW-0106",
+      "name": "Calcium"
+    },
+    {
+      "category": "Technical term",
+      "id": "KW-0903",
+      "name": "Direct protein sequencing"
+    },
+    {
+      "category": "Molecular function",
+      "id": "KW-0378",
+      "name": "Hydrolase"
+    },
+    {
+      "category": "Ligand",
+      "id": "KW-0479",
+      "name": "Metal-binding"
+    },
+    {
+      "category": "Molecular function",
+      "id": "KW-0645",
+      "name": "Protease"
+    },
+    {
+      "category": "Cellular component",
+      "id": "KW-0964",
+      "name": "Secreted"
+    },
+    {
+      "category": "Molecular function",
+      "id": "KW-0720",
+      "name": "Serine protease"
+    },
+    {
+      "category": "Domain",
+      "id": "KW-0732",
+      "name": "Signal"
+    },
+    {
+      "category": "Biological process",
+      "id": "KW-0749",
+      "name": "Sporulation"
+    },
+    {
+      "category": "PTM",
+      "id": "KW-0865",
+      "name": "Zymogen"
+    }
+  ],
+  "organism": {
+    "commonName": "Bacillus velezensis",
+    "lineage": [
+      "Bacteria",
+      "Bacillati",
+      "Bacillota",
+      "Bacilli",
+      "Bacillales",
+      "Bacillaceae",
+      "Bacillus",
+      "Bacillus amyloliquefaciens group"
+    ],
+    "scientificName": "Bacillus amyloliquefaciens",
+    "taxonId": 1390
+  },
+  "primaryAccession": "P00782",
+  "proteinDescription": {
+    "alternativeNames": [
+      {
+        "fullName": {
+          "value": "Alkaline protease"
+        }
+      },
+      {
+        "fullName": {
+          "value": "Subtilisin DFE"
+        }
+      },
+      {
+        "fullName": {
+          "value": "Subtilisin Novo"
+        }
+      }
+    ],
+    "flag": "Precursor",
+    "recommendedName": {
+      "ecNumbers": [
+        {
+          "value": "3.4.21.62"
+        }
+      ],
+      "fullName": {
+        "value": "Subtilisin BPN'"
+      }
+    }
+  },
+  "proteinExistence": "1: Evidence at protein level",
+  "references": [
+    {
+      "citation": {
+        "authors": [
+          "Vasantha N.",
+          "Thompson L.D.",
+          "Rhodes C.",
+          "Banner C.",
+          "Nagle J.",
+          "Filpula D."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "6090391"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1128/jb.159.3.811-819.1984"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "811",
+        "id": "6090391",
+        "journal": "J. Bacteriol.",
+        "lastPage": "819",
+        "publicationDate": "1984",
+        "title": "Genes for alkaline protease and neutral protease from Bacillus amyloliquefaciens contain a large open reading frame between the regions coding for signal sequence and mature protein.",
+        "volume": "159"
+      },
+      "referenceComments": [
+        {
+          "type": "STRAIN",
+          "value": "ATCC 23844 / P"
+        }
+      ],
+      "referenceNumber": 1,
+      "referencePositions": [
+        "NUCLEOTIDE SEQUENCE [GENOMIC DNA]"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Wells J.A.",
+          "Ferrari E.",
+          "Henner D.J.",
+          "Estell D.A.",
+          "Chen E.Y."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "6316278"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1093/nar/11.22.7911"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "7911",
+        "id": "6316278",
+        "journal": "Nucleic Acids Res.",
+        "lastPage": "7925",
+        "publicationDate": "1983",
+        "title": "Cloning, sequencing, and secretion of Bacillus amyloliquefaciens subtilisin in Bacillus subtilis.",
+        "volume": "11"
+      },
+      "referenceNumber": 2,
+      "referencePositions": [
+        "NUCLEOTIDE SEQUENCE [GENOMIC DNA] OF 2-382"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Markland F.S.",
+          "Smith E.L."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "6065094"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1016/s0021-9258(18)99412-3"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "5198",
+        "id": "6065094",
+        "journal": "J. Biol. Chem.",
+        "lastPage": "5211",
+        "publicationDate": "1967",
+        "title": "Subtilisin BPN. VII. Isolation of cyanogen bromide peptides and the complete amino acid sequence.",
+        "volume": "242"
+      },
+      "referenceNumber": 3,
+      "referencePositions": [
+        "PROTEIN SEQUENCE OF 108-382"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Peng Y.",
+          "Huang Q.",
+          "Zhang R.-H.",
+          "Zhang Y.-Z."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "12524032"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1016/s1096-4959(02)00183-5"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "45",
+        "id": "12524032",
+        "journal": "Comp. Biochem. Physiol.",
+        "lastPage": "52",
+        "publicationDate": "2003",
+        "title": "Purification and characterization of a fibrinolytic enzyme produced by Bacillus amyloliquefaciens DC-4 screened from douchi, a traditional Chinese soybean food.",
+        "volume": "134B"
+      },
+      "referenceComments": [
+        {
+          "type": "STRAIN",
+          "value": "DC-4"
+        }
+      ],
+      "referenceNumber": 4,
+      "referencePositions": [
+        "PROTEIN SEQUENCE OF 108-131",
+        "FUNCTION",
+        "SUBUNIT",
+        "BIOPHYSICOCHEMICAL PROPERTIES",
+        "ACTIVITY REGULATION",
+        "VARIANT PHE-128"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Alden R.A.",
+          "Wright C.S.",
+          "Kraut J."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "4399039"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1098/rstb.1970.0014"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "119",
+        "id": "4399039",
+        "journal": "Philos. Trans. R. Soc. Lond., B, Biol. Sci.",
+        "lastPage": "124",
+        "publicationDate": "1970",
+        "title": "A hydrogen-bond network at the active site of subtilisin BPN'.",
+        "volume": "257"
+      },
+      "referenceNumber": 5,
+      "referencePositions": [
+        "X-RAY CRYSTALLOGRAPHY (2.5 ANGSTROMS)"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Hirono S.",
+          "Akagawa H.",
+          "Mitsui Y.",
+          "Iitaka Y."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "6387152"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1016/0022-2836(84)90150-5"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "389",
+        "id": "6387152",
+        "journal": "J. Mol. Biol.",
+        "lastPage": "413",
+        "publicationDate": "1984",
+        "title": "Crystal structure at 2.6-A resolution of the complex of subtilisin BPN' with streptomyces subtilisin inhibitor.",
+        "volume": "178"
+      },
+      "referenceNumber": 6,
+      "referencePositions": [
+        "X-RAY CRYSTALLOGRAPHY (2.6 ANGSTROMS) OF COMPLEX WITH INHIBITOR"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Pantoliano M.W.",
+          "Whitlow M.",
+          "Wood J.F.",
+          "Dodd S.W.",
+          "Hardman K.D.",
+          "Rollence M.L.",
+          "Bryan P.N."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "2684274"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1021/bi00444a012"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "7205",
+        "id": "2684274",
+        "journal": "Biochemistry",
+        "lastPage": "7213",
+        "publicationDate": "1989",
+        "title": "Large increases in general stability for subtilisin BPN' through incremental changes in the free energy of unfolding.",
+        "volume": "28"
+      },
+      "referenceNumber": 7,
+      "referencePositions": [
+        "X-RAY CRYSTALLOGRAPHY (1.8 ANGSTROMS) OF MUTANT"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Gallagher T.",
+          "Oliver J.",
+          "Bott R.",
+          "Betzel C.",
+          "Gilliland G.L."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "15299573"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1107/s0907444996007500"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "1125",
+        "id": "15299573",
+        "journal": "Acta Crystallogr. D",
+        "lastPage": "1135",
+        "publicationDate": "1996",
+        "title": "Subtilisin BPN' at 1.6-A resolution: analysis for discrete disorder and comparison of crystal forms.",
+        "volume": "52"
+      },
+      "referenceNumber": 8,
+      "referencePositions": [
+        "X-RAY CRYSTALLOGRAPHY (1.6 ANGSTROMS)"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Markland F.S.",
+          "Shaw E.",
+          "Smith E.L."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "5249818"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1073/pnas.61.4.1440"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "1440",
+        "id": "5249818",
+        "journal": "Proc. Natl. Acad. Sci. U.S.A.",
+        "lastPage": "1447",
+        "publicationDate": "1968",
+        "title": "Identification of histidine 64 in the active site of subtilisin.",
+        "volume": "61"
+      },
+      "referenceNumber": 9,
+      "referencePositions": [
+        "ACTIVE SITE"
+      ]
+    }
+  ],
+  "secondaryAccessions": [
+    "P83945",
+    "Q44684"
+  ],
+  "sequence": {
+    "crc64": "ED987DAFA37B8335",
+    "length": 382,
+    "md5": "8DCF3C56CDF4CD47E73688DBDA3BFABC",
+    "molWeight": 39181,
+    "value": "MRGKKVWISLLFALALIFTMAFGSTSSAQAAGKSNGEKKYIVGFKQTMSTMSAAKKKDVISEKGGKVQKQFKYVDAASATLNEKAVKELKKDPSVAYVEEDHVAHAYAQSVPYGVSQIKAPALHSQGYTGSNVKVAVIDSGIDSSHPDLKVAGGASMVPSETNPFQDNNSHGTHVAGTVAALNNSIGVLGVAPSASLYAVKVLGADGSGQYSWIINGIEWAIANNMDVINMSLGGPSGSAALKAAVDKAVASGVVVVAAAGNEGTSGSSSTVGYPGKYPSVIAVGAVDSSNQRASFSSVGPELDVMAPGVSIQSTLPGNKYGAYNGTSMASPHVAGAAALILSKHPNWTNTQVRSSLENTTTKLGDSFYYGKGLINVQAAAQ"
+  },
+  "uniProtKBCrossReferences": [
+    {
+      "database": "EMBL",
+      "id": "K02496",
+      "properties": [
+        {
+          "key": "ProteinId",
+          "value": "AAB05345.1"
+        },
+        {
+          "key": "Status",
+          "value": "-"
+        },
+        {
+          "key": "MoleculeType",
+          "value": "Genomic_DNA"
+        }
+      ]
+    },
+    {
+      "database": "EMBL",
+      "id": "X00165",
+      "properties": [
+        {
+          "key": "ProteinId",
+          "value": "CAA24990.1"
+        },
+        {
+          "key": "Status",
+          "value": "ALT_INIT"
+        },
+        {
+          "key": "MoleculeType",
+          "value": "Genomic_DNA"
+        }
+      ]
+    },
+    {
+      "database": "PIR",
+      "id": "B25415",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "SUBSN"
+        }
+      ]
+    },
+    {
+      "database": "RefSeq",
+      "id": "WP_013351733.1",
+      "properties": [
+        {
+          "key": "NucleotideSequenceId",
+          "value": "NZ_BSRV01000001.1"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1A2Q",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.80 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1AK9",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.80 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1AQN",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.80 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1AU9",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.80 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1DUI",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.00 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1GNS",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.80 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=112-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1GNV",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.90 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1LW6",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.50 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1S01",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.70 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1S02",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.90 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1SBH",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.80 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1SBI",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.20 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1SBN",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.10 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1SBT",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.50 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1SIB",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.40 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1SPB",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.00 A"
+        },
+        {
+          "key": "Chains",
+          "value": "P=37-107, S=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1ST2",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.00 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1SUA",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.10 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1SUB",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.75 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1SUC",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.80 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1SUD",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.90 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1SUE",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.80 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1SUP",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.60 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1TM1",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.70 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1TM3",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.57 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1TM4",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.70 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1TM5",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.45 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1TM7",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.59 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1TMG",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.67 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1TO1",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.68 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1TO2",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.30 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1UBN",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.40 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1V5I",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.50 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1Y1K",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.56 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1Y33",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.80 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1Y34",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.55 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1Y3B",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.80 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1Y3C",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.69 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1Y3D",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.80 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1Y3F",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.72 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1Y48",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.84 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1Y4A",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.60 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1Y4D",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.00 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1YJA",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.80 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1YJB",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.80 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1YJC",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.80 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "2SBT",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.80 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "2SIC",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.80 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "2SNI",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.10 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "2ST1",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.80 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "3BGO",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.80 A"
+        },
+        {
+          "key": "Chains",
+          "value": "P=32-111, S=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "3CNQ",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.71 A"
+        },
+        {
+          "key": "Chains",
+          "value": "P=32-111, S=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "3CO0",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.93 A"
+        },
+        {
+          "key": "Chains",
+          "value": "P=32-111, S=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "3F49",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.70 A"
+        },
+        {
+          "key": "Chains",
+          "value": "S=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "3SIC",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.80 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "5OX2",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.24 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "5SIC",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.20 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "7AM3",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.61 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "7AM4",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.81 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "7AM5",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.30 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "7AM6",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.70 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B/C=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "7AM7",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.61 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B/C=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "7AM8",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.04 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=108-382"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1A2Q",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1AK9",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1AQN",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1AU9",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1DUI",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1GNS",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1GNV",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1LW6",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1S01",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1S02",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1SBH",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1SBI",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1SBN",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1SBT",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1SIB",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1SPB",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1ST2",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1SUA",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1SUB",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1SUC",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1SUD",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1SUE",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1SUP",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1TM1",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1TM3",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1TM4",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1TM5",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1TM7",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1TMG",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1TO1",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1TO2",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1UBN",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1V5I",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1Y1K",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1Y33",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1Y34",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1Y3B",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1Y3C",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1Y3D",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1Y3F",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1Y48",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1Y4A",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1Y4D",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1YJA",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1YJB",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1YJC",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "2SBT",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "2SIC",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "2SNI",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "2ST1",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "3BGO",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "3CNQ",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "3CO0",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "3F49",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "3SIC",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "5OX2",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "5SIC",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "7AM3",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "7AM4",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "7AM5",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "7AM6",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "7AM7",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "7AM8",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "AlphaFoldDB",
+      "id": "P00782",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "SMR",
+      "id": "P00782",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "IntAct",
+      "id": "P00782",
+      "properties": [
+        {
+          "key": "Interactions",
+          "value": "2"
+        }
+      ]
+    },
+    {
+      "database": "MINT",
+      "id": "P00782",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "STRING",
+      "id": "692420.BAMF_1119",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "DrugBank",
+      "id": "DB03297",
+      "properties": [
+        {
+          "key": "GenericName",
+          "value": "Benzylsulfonic acid"
+        }
+      ]
+    },
+    {
+      "database": "DrugBank",
+      "id": "DB04491",
+      "properties": [
+        {
+          "key": "GenericName",
+          "value": "Diisopropylphosphono Group"
+        }
+      ]
+    },
+    {
+      "database": "DrugBank",
+      "id": "DB02442",
+      "properties": [
+        {
+          "key": "GenericName",
+          "value": "Dioxyselenocysteine"
+        }
+      ]
+    },
+    {
+      "database": "DrugBank",
+      "id": "DB01805",
+      "properties": [
+        {
+          "key": "GenericName",
+          "value": "Monoisopropylphosphorylserine"
+        }
+      ]
+    },
+    {
+      "database": "DrugBank",
+      "id": "DB01915",
+      "properties": [
+        {
+          "key": "GenericName",
+          "value": "S-Hydroxycysteine"
+        }
+      ]
+    },
+    {
+      "database": "MEROPS",
+      "id": "I09.001",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "MEROPS",
+      "id": "S08.034",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "eggNOG",
+      "id": "COG1404",
+      "properties": [
+        {
+          "key": "ToxonomicScope",
+          "value": "Bacteria"
+        }
+      ]
+    },
+    {
+      "database": "OMA",
+      "id": "DWITANH",
+      "properties": [
+        {
+          "key": "Fingerprint",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "OrthoDB",
+      "id": "9798386at2",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "BRENDA",
+      "id": "3.4.21.62",
+      "properties": [
+        {
+          "key": "OrganismId",
+          "value": "630"
+        }
+      ]
+    },
+    {
+      "database": "SABIO-RK",
+      "id": "P00782",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "EvolutionaryTrace",
+      "id": "P00782",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "id": "GO:0005576",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "C:extracellular region"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IEA:UniProtKB-SubCell"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "id": "GO:0046872",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "F:metal ion binding"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IEA:UniProtKB-KW"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000314",
+          "id": "12524032",
+          "source": "PubMed"
+        }
+      ],
+      "id": "GO:0004252",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "F:serine-type endopeptidase activity"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IDA:UniProtKB"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000314",
+          "id": "12524032",
+          "source": "PubMed"
+        }
+      ],
+      "id": "GO:0042730",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "P:fibrinolysis"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IDA:UniProtKB"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000314",
+          "id": "12524032",
+          "source": "PubMed"
+        }
+      ],
+      "id": "GO:0006508",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "P:proteolysis"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IDA:UniProtKB"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "id": "GO:0030435",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "P:sporulation resulting in formation of a cellular spore"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IEA:UniProtKB-KW"
+        }
+      ]
+    },
+    {
+      "database": "CDD",
+      "id": "cd07477",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Peptidases_S8_Subtilisin_subset"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "FunFam",
+      "id": "3.40.50.200:FF:000055",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Tk-subtilisin"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "Gene3D",
+      "id": "3.30.70.80",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Peptidase S8 propeptide/proteinase inhibitor I9"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "Gene3D",
+      "id": "3.40.50.200",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Peptidase S8/S53 domain"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR054399",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Fervidolysin-like_N_prodom"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR000209",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Peptidase_S8/S53_dom"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR036852",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Peptidase_S8/S53_dom_sf"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR023827",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Peptidase_S8_Asp-AS"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR022398",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Peptidase_S8_His-AS"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR023828",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Peptidase_S8_Ser-AS"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR050131",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Peptidase_S8_subtilisin-like"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR015500",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Peptidase_S8_subtilisin-rel"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR037045",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "S8pro/Inhibitor_I9_sf"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR034202",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Subtilisin_Carlsberg-like"
+        }
+      ]
+    },
+    {
+      "database": "PANTHER",
+      "id": "PTHR43806:SF11",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "CEREVISIN-RELATED"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PANTHER",
+      "id": "PTHR43806",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "PEPTIDASE S8"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "Pfam",
+      "id": "PF22148",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Fervidolysin_NPro-like"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "Pfam",
+      "id": "PF00082",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Peptidase_S8"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PRINTS",
+      "id": "PR00723",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "SUBTILISIN"
+        }
+      ]
+    },
+    {
+      "database": "SUPFAM",
+      "id": "SSF54897",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Protease propeptides/inhibitors"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "SUPFAM",
+      "id": "SSF52743",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Subtilisin-like"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PROSITE",
+      "id": "PS51892",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "SUBTILASE"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PROSITE",
+      "id": "PS00136",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "SUBTILASE_ASP"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PROSITE",
+      "id": "PS00137",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "SUBTILASE_HIS"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PROSITE",
+      "id": "PS00138",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "SUBTILASE_SER"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    }
+  ],
+  "uniProtkbId": "SUBT_BACAM"
+}

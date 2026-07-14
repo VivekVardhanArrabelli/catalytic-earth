@@ -1,0 +1,74 @@
+{
+  "packet_count": 7,
+  "packet_count_contract": {
+    "maximum": 10,
+    "minimum": 5
+  },
+  "packets": [
+    {
+      "case_id": "atlas10.caii-human.proton-relay",
+      "compiled_hypothesis_sha256": "8cca77dc84becb886bd6d46978926d0aae25238348ba02447e29c0f545c21d1b",
+      "json_path": "data/atlas/atlas10/review/packets/caii-human--proton-relay.json",
+      "json_sha256": "2a3173a8f570c4dada684966b9bf31587c2ebe34e16b7edfb53df78921bc45b7",
+      "markdown_path": "data/atlas/atlas10/review/packets/caii-human--proton-relay.md",
+      "markdown_sha256": "0a632e85a8f10a2b23702ea9b3ed6ff83e2e03c688a4fd46860c47e41303ed27",
+      "packet_id": "review-packet:atlas10.caii-human.proton-relay"
+    },
+    {
+      "case_id": "atlas10.hewl-chicken.covalent-glycosidase",
+      "compiled_hypothesis_sha256": "d864960ad4aa4515ea1a2c00e247dcf40c2201513521d7de3bafd1192fb2deea",
+      "json_path": "data/atlas/atlas10/review/packets/hewl-chicken--covalent-glycosidase.json",
+      "json_sha256": "33b01a9b99722cb97bb009d9981ee9a42e718f9acb2fd41b68779c89cbd09752",
+      "markdown_path": "data/atlas/atlas10/review/packets/hewl-chicken--covalent-glycosidase.md",
+      "markdown_sha256": "fa79dc3cfa83b99a36a2fd0c00eaf52421d7a32410b430a4910192893dfdf306",
+      "packet_id": "review-packet:atlas10.hewl-chicken.covalent-glycosidase"
+    },
+    {
+      "case_id": "atlas10.trypsin-fusarium.serine-protease",
+      "compiled_hypothesis_sha256": "9bdfef07aa59ff535e3f42047e69b0ebb4aa50b8bcf2e529c7a8a8e3153910b9",
+      "json_path": "data/atlas/atlas10/review/packets/trypsin-fusarium--serine-protease.json",
+      "json_sha256": "7f1d987026d7c5b6c99035a715ccf44f1981f4ec519b74537018deaac7912ba4",
+      "markdown_path": "data/atlas/atlas10/review/packets/trypsin-fusarium--serine-protease.md",
+      "markdown_sha256": "fe7fd3107e48c7a3263621f0b2997313d4eb73c1f38be65bb3b2860841671fad",
+      "packet_id": "review-packet:atlas10.trypsin-fusarium.serine-protease"
+    },
+    {
+      "case_id": "atlas10.subtilisin-bpn-bacillus.serine-protease",
+      "compiled_hypothesis_sha256": "8df3ff79a3866361f9deac6e915d186732c0979bc28136c64cadfdd4d6583df4",
+      "json_path": "data/atlas/atlas10/review/packets/subtilisin-bpn-bacillus--serine-protease.json",
+      "json_sha256": "e38267a196d152a3030c9929ae0c34cdc02b5ed6cd4eb4abd0271461a413d9ee",
+      "markdown_path": "data/atlas/atlas10/review/packets/subtilisin-bpn-bacillus--serine-protease.md",
+      "markdown_sha256": "9d4e573c65f3f5190d1c9e5d986a2f9b9bffbc8963885cdd83f2d2777417daec",
+      "packet_id": "review-packet:atlas10.subtilisin-bpn-bacillus.serine-protease"
+    },
+    {
+      "case_id": "atlas10.mandelate-racemase-pputida.enolate",
+      "compiled_hypothesis_sha256": "abf13fdc94787ebfb12bdaf45888c0a5c34e7c2f8bfbfebd4d930c1e38e02459",
+      "json_path": "data/atlas/atlas10/review/packets/mandelate-racemase-pputida--enolate.json",
+      "json_sha256": "31f8eb1507d4acf7c279bc9229f441d24fbeb60d8fb5ff7a23fe08b539179178",
+      "markdown_path": "data/atlas/atlas10/review/packets/mandelate-racemase-pputida--enolate.md",
+      "markdown_sha256": "f6c419c2c3ebc8be485483313e2025ebd93d33605ebb55fa6dd688b25d0bdf1c",
+      "packet_id": "review-packet:atlas10.mandelate-racemase-pputida.enolate"
+    },
+    {
+      "case_id": "atlas10.methylaspartate-lyase-ctetanomorphum.enolate",
+      "compiled_hypothesis_sha256": "491bdc5276ad225f1cc3f59a3a0b3859eada3b0ca027d3fbca0af7acc05dbb96",
+      "json_path": "data/atlas/atlas10/review/packets/methylaspartate-lyase-ctetanomorphum--enolate.json",
+      "json_sha256": "b891e7ddffe53a359fdefa1093fbff9220875f4ace039b757a915f6a0042548d",
+      "markdown_path": "data/atlas/atlas10/review/packets/methylaspartate-lyase-ctetanomorphum--enolate.md",
+      "markdown_sha256": "48c31aabf6624058abb801f2148cf838802e4fd218a19353efa697d5653efb31",
+      "packet_id": "review-packet:atlas10.methylaspartate-lyase-ctetanomorphum.enolate"
+    },
+    {
+      "case_id": "atlas10.cyclophilin-a-human.isomerization",
+      "compiled_hypothesis_sha256": "e51bfc88601e9c76a5088adadac633f8f83a288ae72f5b9bd49b697460fac3b1",
+      "json_path": "data/atlas/atlas10/review/packets/cyclophilin-a-human--isomerization.json",
+      "json_sha256": "b3056bdb61527388cadb4c35665c76c35e69299c31f8d4bf336ae5a708383b66",
+      "markdown_path": "data/atlas/atlas10/review/packets/cyclophilin-a-human--isomerization.md",
+      "markdown_sha256": "baa0bc82d5c2a7513b3ba4fc5f23b95cf715ac847b12778e2f0e3283a28c8d67",
+      "packet_id": "review-packet:atlas10.cyclophilin-a-human.isomerization"
+    }
+  ],
+  "review_unit": "bounded_claim_packet",
+  "schema_version": "catalytic-earth.atlas10-review-packet-manifest.v1"
+}

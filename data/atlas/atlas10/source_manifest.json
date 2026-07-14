@@ -1,0 +1,1091 @@
+{
+  "acquisition": {
+    "download_bytes_max": 838860800,
+    "download_bytes_used": 47352954,
+    "external_requests_max": 1200,
+    "external_requests_used": 64
+  },
+  "bindings": [
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.caii-human.proton-relay",
+      "evidence_role": "protein_identity",
+      "record_id": "P00918",
+      "source_id": "UniProtKB"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.caii-human.proton-relay",
+      "evidence_role": "net_reaction",
+      "record_id": "RHEA:10748",
+      "source_id": "Rhea"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.caii-human.proton-relay",
+      "evidence_role": "experimental_structure",
+      "record_id": "1CA2",
+      "source_id": "PDB"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.caii-human.proton-relay",
+      "evidence_role": "source_mechanism",
+      "record_id": "M0216",
+      "source_id": "M-CSA"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.caii-human.proton-relay",
+      "evidence_role": "primary_mechanism_evidence",
+      "record_id": "10.1021/bi0480279",
+      "source_id": "DOI"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.caii-human.proton-relay",
+      "evidence_role": "fold_classification",
+      "record_id": "CATH:3.10.200.10",
+      "source_id": "CATH"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.hewl-chicken.covalent-glycosidase",
+      "evidence_role": "protein_identity",
+      "record_id": "P00698",
+      "source_id": "UniProtKB"
+    },
+    {
+      "applicability": "source_gap",
+      "case_id": "atlas10.hewl-chicken.covalent-glycosidase",
+      "evidence_role": "official_net_reaction_search_gap",
+      "record_id": "EC:3.2.1.17",
+      "source_id": "Rhea"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.hewl-chicken.covalent-glycosidase",
+      "evidence_role": "experimental_structure",
+      "record_id": "1DPX",
+      "source_id": "PDB"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.hewl-chicken.covalent-glycosidase",
+      "evidence_role": "source_mechanism",
+      "record_id": "M0203",
+      "source_id": "M-CSA"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.hewl-chicken.covalent-glycosidase",
+      "evidence_role": "primary_mechanism_evidence",
+      "record_id": "10.1038/35090602",
+      "source_id": "DOI"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.hewl-chicken.covalent-glycosidase",
+      "evidence_role": "fold_classification",
+      "record_id": "CATH:1.10.530.10",
+      "source_id": "CATH"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.trypsin-fusarium.serine-protease",
+      "evidence_role": "protein_identity",
+      "record_id": "P35049",
+      "source_id": "UniProtKB"
+    },
+    {
+      "applicability": "source_gap",
+      "case_id": "atlas10.trypsin-fusarium.serine-protease",
+      "evidence_role": "official_net_reaction_search_gap",
+      "record_id": "EC:3.4.21.4",
+      "source_id": "Rhea"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.trypsin-fusarium.serine-protease",
+      "evidence_role": "experimental_structure",
+      "record_id": "1PQ5",
+      "source_id": "PDB"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.trypsin-fusarium.serine-protease",
+      "evidence_role": "source_mechanism",
+      "record_id": "M0173",
+      "source_id": "M-CSA"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.trypsin-fusarium.serine-protease",
+      "evidence_role": "primary_structure_evidence",
+      "record_id": "10.1074/jbc.m306944200",
+      "source_id": "DOI"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.trypsin-fusarium.serine-protease",
+      "evidence_role": "fold_classification",
+      "record_id": "CATH:2.40.10.10",
+      "source_id": "CATH"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.subtilisin-bpn-bacillus.serine-protease",
+      "evidence_role": "protein_identity",
+      "record_id": "P00782",
+      "source_id": "UniProtKB"
+    },
+    {
+      "applicability": "source_gap",
+      "case_id": "atlas10.subtilisin-bpn-bacillus.serine-protease",
+      "evidence_role": "official_net_reaction_search_gap",
+      "record_id": "EC:3.4.21.62",
+      "source_id": "Rhea"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.subtilisin-bpn-bacillus.serine-protease",
+      "evidence_role": "experimental_structure",
+      "record_id": "1SUP",
+      "source_id": "PDB"
+    },
+    {
+      "applicability": "engineered_source_reference",
+      "case_id": "atlas10.subtilisin-bpn-bacillus.serine-protease",
+      "evidence_role": "engineered_source_reference_structure",
+      "record_id": "1S01",
+      "source_id": "PDB"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.subtilisin-bpn-bacillus.serine-protease",
+      "evidence_role": "source_mechanism",
+      "record_id": "M0723",
+      "source_id": "M-CSA"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.subtilisin-bpn-bacillus.serine-protease",
+      "evidence_role": "primary_structure_evidence",
+      "record_id": "10.1107/S0907444996007500",
+      "source_id": "DOI"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.subtilisin-bpn-bacillus.serine-protease",
+      "evidence_role": "primary_mechanism_evidence",
+      "record_id": "10.1073/pnas.83.11.3743",
+      "source_id": "DOI"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.subtilisin-bpn-bacillus.serine-protease",
+      "evidence_role": "fold_classification",
+      "record_id": "CATH:3.40.50.200",
+      "source_id": "CATH"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.mandelate-racemase-pputida.enolate",
+      "evidence_role": "protein_identity",
+      "record_id": "P11444",
+      "source_id": "UniProtKB"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.mandelate-racemase-pputida.enolate",
+      "evidence_role": "net_reaction",
+      "record_id": "RHEA:13945",
+      "source_id": "Rhea"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.mandelate-racemase-pputida.enolate",
+      "evidence_role": "experimental_structure",
+      "record_id": "1MNS",
+      "source_id": "PDB"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.mandelate-racemase-pputida.enolate",
+      "evidence_role": "source_mechanism",
+      "record_id": "M0187",
+      "source_id": "M-CSA"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.mandelate-racemase-pputida.enolate",
+      "evidence_role": "primary_structure_evidence",
+      "record_id": "10.1021/bi00102a019",
+      "source_id": "DOI"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.mandelate-racemase-pputida.enolate",
+      "evidence_role": "fold_classification",
+      "record_id": "CATH:3.20.20.120",
+      "source_id": "CATH"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.methylaspartate-lyase-ctetanomorphum.enolate",
+      "evidence_role": "protein_identity",
+      "record_id": "Q05514",
+      "source_id": "UniProtKB"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.methylaspartate-lyase-ctetanomorphum.enolate",
+      "evidence_role": "net_reaction",
+      "record_id": "RHEA:12829",
+      "source_id": "Rhea"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.methylaspartate-lyase-ctetanomorphum.enolate",
+      "evidence_role": "experimental_structure",
+      "record_id": "1KCZ",
+      "source_id": "PDB"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.methylaspartate-lyase-ctetanomorphum.enolate",
+      "evidence_role": "source_mechanism",
+      "record_id": "M0468",
+      "source_id": "M-CSA"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.methylaspartate-lyase-ctetanomorphum.enolate",
+      "evidence_role": "primary_structure_evidence",
+      "record_id": "10.1074/jbc.m111180200",
+      "source_id": "DOI"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.methylaspartate-lyase-ctetanomorphum.enolate",
+      "evidence_role": "fold_classification",
+      "record_id": "CATH:3.20.20.120",
+      "source_id": "CATH"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.methylaspartate-lyase-ctetanomorphum.enolate",
+      "evidence_role": "fold_classification",
+      "record_id": "CATH:3.30.390.10",
+      "source_id": "CATH"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.cyclophilin-a-human.isomerization",
+      "evidence_role": "protein_identity",
+      "record_id": "P62937",
+      "source_id": "UniProtKB"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.cyclophilin-a-human.isomerization",
+      "evidence_role": "net_reaction",
+      "record_id": "RHEA:16237",
+      "source_id": "Rhea"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.cyclophilin-a-human.isomerization",
+      "evidence_role": "experimental_structure",
+      "record_id": "1M9C",
+      "source_id": "PDB"
+    },
+    {
+      "applicability": "direct_non_detailed",
+      "case_id": "atlas10.cyclophilin-a-human.isomerization",
+      "evidence_role": "source_mechanism",
+      "record_id": "M0189",
+      "source_id": "M-CSA"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.cyclophilin-a-human.isomerization",
+      "evidence_role": "primary_structure_evidence",
+      "record_id": "10.1038/nsb927",
+      "source_id": "DOI"
+    },
+    {
+      "applicability": "direct",
+      "case_id": "atlas10.cyclophilin-a-human.isomerization",
+      "evidence_role": "fold_classification",
+      "record_id": "CATH:2.40.100.10",
+      "source_id": "CATH"
+    }
+  ],
+  "records": [
+    {
+      "attribution": "Credit CATH-Gene3D and cite the applicable release/publication.",
+      "change_notice": "Selected official release name/domain rows transformed to sorted UTF-8 JSON; identifiers and source rows retained.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "CATH:1.10.530.10",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-names.txt",
+        "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-domain-list.txt"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 1052,
+      "snapshot_path": "data/atlas/atlas10/sources/cath/1.10.530.10.json",
+      "snapshot_sha256": "0a33d1a2d1b62d710910da5f393fb2b462e1ff97056a27a456174d2325a5a459",
+      "source_id": "CATH",
+      "uri": "https://www.cathdb.info/version/latest/superfamily/1.10.530.10"
+    },
+    {
+      "attribution": "Credit CATH-Gene3D and cite the applicable release/publication.",
+      "change_notice": "Selected official release name/domain rows transformed to sorted UTF-8 JSON; identifiers and source rows retained.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "CATH:2.40.10.10",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-names.txt",
+        "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-domain-list.txt"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 1573,
+      "snapshot_path": "data/atlas/atlas10/sources/cath/2.40.10.10.json",
+      "snapshot_sha256": "a6c1336d96e6d54452b1285c1cca6acb68ed71886fcad5c1999b698c38247b3e",
+      "source_id": "CATH",
+      "uri": "https://www.cathdb.info/version/latest/superfamily/2.40.10.10"
+    },
+    {
+      "attribution": "Credit CATH-Gene3D and cite the applicable release/publication.",
+      "change_notice": "Selected official release name/domain rows transformed to sorted UTF-8 JSON; identifiers and source rows retained.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "CATH:2.40.100.10",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-names.txt",
+        "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-domain-list.txt"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 1555,
+      "snapshot_path": "data/atlas/atlas10/sources/cath/2.40.100.10.json",
+      "snapshot_sha256": "b75adfd431aeef86287662fc375c078ca39e597e73b051f45dfc85c0bde8c4b9",
+      "source_id": "CATH",
+      "uri": "https://www.cathdb.info/version/latest/superfamily/2.40.100.10"
+    },
+    {
+      "attribution": "Credit CATH-Gene3D and cite the applicable release/publication.",
+      "change_notice": "Selected official release name/domain rows transformed to sorted UTF-8 JSON; identifiers and source rows retained.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "CATH:3.10.200.10",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-names.txt",
+        "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-domain-list.txt"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 1099,
+      "snapshot_path": "data/atlas/atlas10/sources/cath/3.10.200.10.json",
+      "snapshot_sha256": "f630fb34682313cc381a1129b702fac3aca62dd1ce58c6b533d3cb689607e3d2",
+      "source_id": "CATH",
+      "uri": "https://www.cathdb.info/version/latest/superfamily/3.10.200.10"
+    },
+    {
+      "attribution": "Credit CATH-Gene3D and cite the applicable release/publication.",
+      "change_notice": "Selected official release name/domain rows transformed to sorted UTF-8 JSON; identifiers and source rows retained.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "CATH:3.20.20.120",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-names.txt",
+        "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-domain-list.txt"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 2062,
+      "snapshot_path": "data/atlas/atlas10/sources/cath/3.20.20.120.json",
+      "snapshot_sha256": "8b57f92676b44fb43d4429d7403b78d6cd27040a7b3a2ec9baa82eff1787f5b4",
+      "source_id": "CATH",
+      "uri": "https://www.cathdb.info/version/latest/superfamily/3.20.20.120"
+    },
+    {
+      "attribution": "Credit CATH-Gene3D and cite the applicable release/publication.",
+      "change_notice": "Selected official release name/domain rows transformed to sorted UTF-8 JSON; identifiers and source rows retained.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "CATH:3.30.390.10",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-names.txt",
+        "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-domain-list.txt"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 2054,
+      "snapshot_path": "data/atlas/atlas10/sources/cath/3.30.390.10.json",
+      "snapshot_sha256": "b8bc2e1b1a2286fe9d9a1cf252977aada355cfa1ac5d599bb10e01d1895df764",
+      "source_id": "CATH",
+      "uri": "https://www.cathdb.info/version/latest/superfamily/3.30.390.10"
+    },
+    {
+      "attribution": "Credit CATH-Gene3D and cite the applicable release/publication.",
+      "change_notice": "Selected official release name/domain rows transformed to sorted UTF-8 JSON; identifiers and source rows retained.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "CATH:3.40.50.200",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-names.txt",
+        "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-domain-list.txt"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 1577,
+      "snapshot_path": "data/atlas/atlas10/sources/cath/3.40.50.200.json",
+      "snapshot_sha256": "77f982742ddff893e9a5e05ccf45600fa7a5dd5e53084f40619ca0ff76106bb4",
+      "source_id": "CATH",
+      "uri": "https://www.cathdb.info/version/latest/superfamily/3.40.50.200"
+    },
+    {
+      "attribution": "Cite the identified primary article and publisher; no article content bundled.",
+      "change_notice": "Reference-only handle; no third-party article text copied or modified.",
+      "license": "article-specific terms; reference-only handle",
+      "media_type": "text/uri-list",
+      "record_id": "10.1021/bi00102a019",
+      "retrieval_status": "reference_only_verified_handle",
+      "retrieval_urls": [
+        "https://doi.org/10.1021/bi00102a019"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 0,
+      "snapshot_path": null,
+      "snapshot_sha256": null,
+      "source_id": "DOI",
+      "uri": "https://doi.org/10.1021/bi00102a019"
+    },
+    {
+      "attribution": "Cite the identified primary article and publisher; no article content bundled.",
+      "change_notice": "Reference-only handle; no third-party article text copied or modified.",
+      "license": "article-specific terms; reference-only handle",
+      "media_type": "text/uri-list",
+      "record_id": "10.1021/bi0480279",
+      "retrieval_status": "reference_only_verified_handle",
+      "retrieval_urls": [
+        "https://doi.org/10.1021/bi0480279"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 0,
+      "snapshot_path": null,
+      "snapshot_sha256": null,
+      "source_id": "DOI",
+      "uri": "https://doi.org/10.1021/bi0480279"
+    },
+    {
+      "attribution": "Cite the identified primary article and publisher; no article content bundled.",
+      "change_notice": "Reference-only handle; no third-party article text copied or modified.",
+      "license": "article-specific terms; reference-only handle",
+      "media_type": "text/uri-list",
+      "record_id": "10.1038/35090602",
+      "retrieval_status": "reference_only_verified_handle",
+      "retrieval_urls": [
+        "https://doi.org/10.1038/35090602"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 0,
+      "snapshot_path": null,
+      "snapshot_sha256": null,
+      "source_id": "DOI",
+      "uri": "https://doi.org/10.1038/35090602"
+    },
+    {
+      "attribution": "Cite the identified primary article and publisher; no article content bundled.",
+      "change_notice": "Reference-only handle; no third-party article text copied or modified.",
+      "license": "article-specific terms; reference-only handle",
+      "media_type": "text/uri-list",
+      "record_id": "10.1038/nsb927",
+      "retrieval_status": "reference_only_verified_handle",
+      "retrieval_urls": [
+        "https://doi.org/10.1038/nsb927"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 0,
+      "snapshot_path": null,
+      "snapshot_sha256": null,
+      "source_id": "DOI",
+      "uri": "https://doi.org/10.1038/nsb927"
+    },
+    {
+      "attribution": "Cite the identified primary article and publisher; no article content bundled.",
+      "change_notice": "Reference-only handle; no third-party article text copied or modified.",
+      "license": "article-specific terms; reference-only handle",
+      "media_type": "text/uri-list",
+      "record_id": "10.1073/pnas.83.11.3743",
+      "retrieval_status": "reference_only_verified_handle",
+      "retrieval_urls": [
+        "https://doi.org/10.1073/pnas.83.11.3743"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 0,
+      "snapshot_path": null,
+      "snapshot_sha256": null,
+      "source_id": "DOI",
+      "uri": "https://doi.org/10.1073/pnas.83.11.3743"
+    },
+    {
+      "attribution": "Cite the identified primary article and publisher; no article content bundled.",
+      "change_notice": "Reference-only handle; no third-party article text copied or modified.",
+      "license": "article-specific terms; reference-only handle",
+      "media_type": "text/uri-list",
+      "record_id": "10.1074/jbc.m111180200",
+      "retrieval_status": "reference_only_verified_handle",
+      "retrieval_urls": [
+        "https://doi.org/10.1074/jbc.m111180200"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 0,
+      "snapshot_path": null,
+      "snapshot_sha256": null,
+      "source_id": "DOI",
+      "uri": "https://doi.org/10.1074/jbc.m111180200"
+    },
+    {
+      "attribution": "Cite the identified primary article and publisher; no article content bundled.",
+      "change_notice": "Reference-only handle; no third-party article text copied or modified.",
+      "license": "article-specific terms; reference-only handle",
+      "media_type": "text/uri-list",
+      "record_id": "10.1074/jbc.m306944200",
+      "retrieval_status": "reference_only_verified_handle",
+      "retrieval_urls": [
+        "https://doi.org/10.1074/jbc.m306944200"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 0,
+      "snapshot_path": null,
+      "snapshot_sha256": null,
+      "source_id": "DOI",
+      "uri": "https://doi.org/10.1074/jbc.m306944200"
+    },
+    {
+      "attribution": "Cite the identified primary article and publisher; no article content bundled.",
+      "change_notice": "Reference-only handle; no third-party article text copied or modified.",
+      "license": "article-specific terms; reference-only handle",
+      "media_type": "text/uri-list",
+      "record_id": "10.1107/S0907444996007500",
+      "retrieval_status": "reference_only_verified_handle",
+      "retrieval_urls": [
+        "https://doi.org/10.1107/S0907444996007500"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 0,
+      "snapshot_path": null,
+      "snapshot_sha256": null,
+      "source_id": "DOI",
+      "uri": "https://doi.org/10.1107/S0907444996007500"
+    },
+    {
+      "attribution": "Credit M-CSA and cite Ribeiro et al. plus the accessed entry.",
+      "change_notice": "API JSON and its linked Marvin step schemes wrapped in sorted UTF-8 JSON; source content and per-scheme hashes retained.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "M0173",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=173"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 85112,
+      "snapshot_path": "data/atlas/atlas10/sources/mcsa/M0173.json",
+      "snapshot_sha256": "d3db64e9a1db6e22e8baae48a738bff261a2296f375a884c19f2f4abc7d8f22e",
+      "source_id": "M-CSA",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/173/"
+    },
+    {
+      "attribution": "Credit M-CSA and cite Ribeiro et al. plus the accessed entry.",
+      "change_notice": "API JSON and its linked Marvin step schemes wrapped in sorted UTF-8 JSON; source content and per-scheme hashes retained.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "M0187",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=187"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 91495,
+      "snapshot_path": "data/atlas/atlas10/sources/mcsa/M0187.json",
+      "snapshot_sha256": "45663712262387e7eec092c49b16994d03f9b6d186008b737b94c613a87458e3",
+      "source_id": "M-CSA",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/187/"
+    },
+    {
+      "attribution": "Credit M-CSA and cite Ribeiro et al. plus the accessed entry.",
+      "change_notice": "API JSON and its linked Marvin step schemes wrapped in sorted UTF-8 JSON; source content and per-scheme hashes retained.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "M0189",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=189"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 14280,
+      "snapshot_path": "data/atlas/atlas10/sources/mcsa/M0189.json",
+      "snapshot_sha256": "929daa856c1096a4eabae1ec8308cd5b1a0fd2a0176697013d698845080353d6",
+      "source_id": "M-CSA",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/189/"
+    },
+    {
+      "attribution": "Credit M-CSA and cite Ribeiro et al. plus the accessed entry.",
+      "change_notice": "API JSON and its linked Marvin step schemes wrapped in sorted UTF-8 JSON; source content and per-scheme hashes retained.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "M0203",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=203"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 93344,
+      "snapshot_path": "data/atlas/atlas10/sources/mcsa/M0203.json",
+      "snapshot_sha256": "f50de0f2b325cb7e7964a1c239acbfdc484a7513e11c9487073c8ac44f1d7df7",
+      "source_id": "M-CSA",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/203/"
+    },
+    {
+      "attribution": "Credit M-CSA and cite Ribeiro et al. plus the accessed entry.",
+      "change_notice": "API JSON and its linked Marvin step schemes wrapped in sorted UTF-8 JSON; source content and per-scheme hashes retained.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "M0216",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=216"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 65459,
+      "snapshot_path": "data/atlas/atlas10/sources/mcsa/M0216.json",
+      "snapshot_sha256": "449917894cb59c92709f9ac17d9058355774f3230ab7e698b328807d86a0ccfe",
+      "source_id": "M-CSA",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/216/"
+    },
+    {
+      "attribution": "Credit M-CSA and cite Ribeiro et al. plus the accessed entry.",
+      "change_notice": "API JSON and its linked Marvin step schemes wrapped in sorted UTF-8 JSON; source content and per-scheme hashes retained.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "M0468",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=468"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 69935,
+      "snapshot_path": "data/atlas/atlas10/sources/mcsa/M0468.json",
+      "snapshot_sha256": "1e6fc303f8f7416b19b701b5921a309b439743941f3c5253e8d353318ca9e9d7",
+      "source_id": "M-CSA",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/468/"
+    },
+    {
+      "attribution": "Credit M-CSA and cite Ribeiro et al. plus the accessed entry.",
+      "change_notice": "API JSON and its linked Marvin step schemes wrapped in sorted UTF-8 JSON; source content and per-scheme hashes retained.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "M0723",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=723"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 76660,
+      "snapshot_path": "data/atlas/atlas10/sources/mcsa/M0723.json",
+      "snapshot_sha256": "ad94c81dcdd316d18dbc054f0d22086210f4901dd47a56c1060f53fa3e7c6258",
+      "source_id": "M-CSA",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/723/"
+    },
+    {
+      "attribution": "Cite the PDB identifier, structure authors/publication, RCSB PDB, and wwPDB.",
+      "change_notice": "Exact gzip-compressed mmCIF archive bytes; no transformation.",
+      "license": "CC0 1.0 archive file",
+      "media_type": "application/gzip",
+      "record_id": "1CA2",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://files.rcsb.org/download/1CA2.cif.gz"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 69212,
+      "snapshot_path": "data/atlas/atlas10/sources/pdb/1CA2.cif.gz",
+      "snapshot_sha256": "928b865b26f2751de5bc1623aaf4aa08c806c1e9efa7ab1dd5874433f345ba55",
+      "source_id": "PDB",
+      "uri": "https://www.rcsb.org/structure/1CA2"
+    },
+    {
+      "attribution": "Cite the PDB identifier, structure authors/publication, RCSB PDB, and wwPDB.",
+      "change_notice": "Exact gzip-compressed mmCIF archive bytes; no transformation.",
+      "license": "CC0 1.0 archive file",
+      "media_type": "application/gzip",
+      "record_id": "1DPX",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://files.rcsb.org/download/1DPX.cif.gz"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 42082,
+      "snapshot_path": "data/atlas/atlas10/sources/pdb/1DPX.cif.gz",
+      "snapshot_sha256": "4225e131cc2351d4b028b3dd0fd81ffddefd2885f87be1f2e04c442949cce378",
+      "source_id": "PDB",
+      "uri": "https://www.rcsb.org/structure/1DPX"
+    },
+    {
+      "attribution": "Cite the PDB identifier, structure authors/publication, RCSB PDB, and wwPDB.",
+      "change_notice": "Exact gzip-compressed mmCIF archive bytes; no transformation.",
+      "license": "CC0 1.0 archive file",
+      "media_type": "application/gzip",
+      "record_id": "1KCZ",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://files.rcsb.org/download/1KCZ.cif.gz"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 195619,
+      "snapshot_path": "data/atlas/atlas10/sources/pdb/1KCZ.cif.gz",
+      "snapshot_sha256": "6e67d7bfd6b43f0de7a2c4d73e21d533227fb4e0d4a7ad269fb4a344b66861c8",
+      "source_id": "PDB",
+      "uri": "https://www.rcsb.org/structure/1KCZ"
+    },
+    {
+      "attribution": "Cite the PDB identifier, structure authors/publication, RCSB PDB, and wwPDB.",
+      "change_notice": "Exact gzip-compressed mmCIF archive bytes; no transformation.",
+      "license": "CC0 1.0 archive file",
+      "media_type": "application/gzip",
+      "record_id": "1M9C",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://files.rcsb.org/download/1M9C.cif.gz"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 131035,
+      "snapshot_path": "data/atlas/atlas10/sources/pdb/1M9C.cif.gz",
+      "snapshot_sha256": "8a6b4c51252b08b7f98d1f20537565c4d206229122da7d00a8f38a42d43f14dc",
+      "source_id": "PDB",
+      "uri": "https://www.rcsb.org/structure/1M9C"
+    },
+    {
+      "attribution": "Cite the PDB identifier, structure authors/publication, RCSB PDB, and wwPDB.",
+      "change_notice": "Exact gzip-compressed mmCIF archive bytes; no transformation.",
+      "license": "CC0 1.0 archive file",
+      "media_type": "application/gzip",
+      "record_id": "1MNS",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://files.rcsb.org/download/1MNS.cif.gz"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 87141,
+      "snapshot_path": "data/atlas/atlas10/sources/pdb/1MNS.cif.gz",
+      "snapshot_sha256": "205f14186bf789b3033dcb361e726cd0179efd4a72a212b71c7376aeee2438c6",
+      "source_id": "PDB",
+      "uri": "https://www.rcsb.org/structure/1MNS"
+    },
+    {
+      "attribution": "Cite the PDB identifier, structure authors/publication, RCSB PDB, and wwPDB.",
+      "change_notice": "Exact gzip-compressed mmCIF archive bytes; no transformation.",
+      "license": "CC0 1.0 archive file",
+      "media_type": "application/gzip",
+      "record_id": "1PQ5",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://files.rcsb.org/download/1PQ5.cif.gz"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 158969,
+      "snapshot_path": "data/atlas/atlas10/sources/pdb/1PQ5.cif.gz",
+      "snapshot_sha256": "b6b8b1fe752907f1252b83807f06c3fe78de2f0b980b07f282f9600b35566946",
+      "source_id": "PDB",
+      "uri": "https://www.rcsb.org/structure/1PQ5"
+    },
+    {
+      "attribution": "Cite the PDB identifier, structure authors/publication, RCSB PDB, and wwPDB.",
+      "change_notice": "Exact gzip-compressed mmCIF archive bytes; no transformation.",
+      "license": "CC0 1.0 archive file",
+      "media_type": "application/gzip",
+      "record_id": "1S01",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://files.rcsb.org/download/1S01.cif.gz"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 69499,
+      "snapshot_path": "data/atlas/atlas10/sources/pdb/1S01.cif.gz",
+      "snapshot_sha256": "d715f581e1c9976eadfc888a379e5b1738c32a31ce31ffe2c510014111c70dca",
+      "source_id": "PDB",
+      "uri": "https://www.rcsb.org/structure/1S01"
+    },
+    {
+      "attribution": "Cite the PDB identifier, structure authors/publication, RCSB PDB, and wwPDB.",
+      "change_notice": "Exact gzip-compressed mmCIF archive bytes; no transformation.",
+      "license": "CC0 1.0 archive file",
+      "media_type": "application/gzip",
+      "record_id": "1SUP",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://files.rcsb.org/download/1SUP.cif.gz"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 69941,
+      "snapshot_path": "data/atlas/atlas10/sources/pdb/1SUP.cif.gz",
+      "snapshot_sha256": "40c3fe986db69bdcb11cbb61294dc78b1a0911c9bc255082831b7f7b4a308b8b",
+      "source_id": "PDB",
+      "uri": "https://www.rcsb.org/structure/1SUP"
+    },
+    {
+      "attribution": "Credit Rhea and cite the database release/publication.",
+      "change_notice": "Official TSV result transformed to sorted UTF-8 JSON with the query and request URL retained.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "EC:3.2.1.17",
+      "retrieval_status": "bundled_query_gap_snapshot",
+      "retrieval_urls": [
+        "https://www.rhea-db.org/rhea?query=ec%3A3.2.1.17&columns=rhea-id%2Cequation%2Cec%2Cchebi-id%2Cchebi&format=tsv&limit=10"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 467,
+      "snapshot_path": "data/atlas/atlas10/sources/rhea/EC_3_2_1_17.query-gap.json",
+      "snapshot_sha256": "77c567d2505f871f200cd20188a6bad47f460e73b06e2c244dae3ce2d5dce0bc",
+      "source_id": "Rhea",
+      "uri": "https://www.rhea-db.org/rhea?query=ec%3A3.2.1.17"
+    },
+    {
+      "attribution": "Credit Rhea and cite the database release/publication.",
+      "change_notice": "Official TSV result transformed to sorted UTF-8 JSON with the query and request URL retained.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "EC:3.4.21.4",
+      "retrieval_status": "bundled_query_gap_snapshot",
+      "retrieval_urls": [
+        "https://www.rhea-db.org/rhea?query=ec%3A3.4.21.4&columns=rhea-id%2Cequation%2Cec%2Cchebi-id%2Cchebi&format=tsv&limit=10"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 467,
+      "snapshot_path": "data/atlas/atlas10/sources/rhea/EC_3_4_21_4.query-gap.json",
+      "snapshot_sha256": "e4a7f09fdc7b8968fc95f8aff17899807034ba433a12a374b4681c77d7839dc8",
+      "source_id": "Rhea",
+      "uri": "https://www.rhea-db.org/rhea?query=ec%3A3.4.21.4"
+    },
+    {
+      "attribution": "Credit Rhea and cite the database release/publication.",
+      "change_notice": "Official TSV result transformed to sorted UTF-8 JSON with the query and request URL retained.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "EC:3.4.21.62",
+      "retrieval_status": "bundled_query_gap_snapshot",
+      "retrieval_urls": [
+        "https://www.rhea-db.org/rhea?query=ec%3A3.4.21.62&columns=rhea-id%2Cequation%2Cec%2Cchebi-id%2Cchebi&format=tsv&limit=10"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 470,
+      "snapshot_path": "data/atlas/atlas10/sources/rhea/EC_3_4_21_62.query-gap.json",
+      "snapshot_sha256": "4e477f638494fcb18ee98c837dc1502c3c18debc6eb4a21c4608bb2bd707822d",
+      "source_id": "Rhea",
+      "uri": "https://www.rhea-db.org/rhea?query=ec%3A3.4.21.62"
+    },
+    {
+      "attribution": "Credit Rhea and cite the database release/publication.",
+      "change_notice": "Official TSV result transformed to sorted UTF-8 JSON with the query and request URL retained.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "RHEA:10748",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://www.rhea-db.org/rhea?query=id%3A10748&columns=rhea-id%2Cequation%2Cec%2Cchebi-id%2Cchebi&format=tsv&limit=10",
+        "https://sparql.rhea-db.org/sparql?query=PREFIX+rh%3A+%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0ASELECT+%3Freaction+%3Fside+%3Fparticipant+%3Fcompound+%3Faccession+%3Fname+%3Fchebi+%3FreactivePart+%3FreactiveChebi%0AWHERE+%7B%0A++VALUES+%3Freaction+%7B+rh%3A10748+%7D%0A++%3Freaction+rh%3Aside+%3Fside+.%0A++%3Fside+rh%3Acontains+%3Fparticipant+.%0A++%3Fparticipant+rh%3Acompound+%3Fcompound+.%0A++OPTIONAL+%7B+%3Fcompound+rh%3Aaccession+%3Faccession+%7D%0A++OPTIONAL+%7B+%3Fcompound+rh%3Aname+%3Fname+%7D%0A++OPTIONAL+%7B+%3Fcompound+rh%3Achebi+%3Fchebi+%7D%0A++OPTIONAL+%7B%0A++++%3Fcompound+rh%3AreactivePart+%3FreactivePart+.%0A++++OPTIONAL+%7B+%3FreactivePart+rh%3Achebi+%3FreactiveChebi+%7D%0A++%7D%0A%7D%0AORDER+BY+%3Freaction+%3Fside+%3Fparticipant&format=application%2Fsparql-results%2Bjson"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 3352,
+      "snapshot_path": "data/atlas/atlas10/sources/rhea/RHEA_10748.json",
+      "snapshot_sha256": "4f16bdff2e572df78f22b60391350a917e43e423d3a4b9e3da3ead482c6a53bf",
+      "source_id": "Rhea",
+      "uri": "https://www.rhea-db.org/rhea/10748"
+    },
+    {
+      "attribution": "Credit Rhea and cite the database release/publication.",
+      "change_notice": "Official TSV result transformed to sorted UTF-8 JSON with the query and request URL retained.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "RHEA:12829",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://www.rhea-db.org/rhea?query=id%3A12829&columns=rhea-id%2Cequation%2Cec%2Cchebi-id%2Cchebi&format=tsv&limit=10",
+        "https://sparql.rhea-db.org/sparql?query=PREFIX+rh%3A+%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0ASELECT+%3Freaction+%3Fside+%3Fparticipant+%3Fcompound+%3Faccession+%3Fname+%3Fchebi+%3FreactivePart+%3FreactiveChebi%0AWHERE+%7B%0A++VALUES+%3Freaction+%7B+rh%3A12829+%7D%0A++%3Freaction+rh%3Aside+%3Fside+.%0A++%3Fside+rh%3Acontains+%3Fparticipant+.%0A++%3Fparticipant+rh%3Acompound+%3Fcompound+.%0A++OPTIONAL+%7B+%3Fcompound+rh%3Aaccession+%3Faccession+%7D%0A++OPTIONAL+%7B+%3Fcompound+rh%3Aname+%3Fname+%7D%0A++OPTIONAL+%7B+%3Fcompound+rh%3Achebi+%3Fchebi+%7D%0A++OPTIONAL+%7B%0A++++%3Fcompound+rh%3AreactivePart+%3FreactivePart+.%0A++++OPTIONAL+%7B+%3FreactivePart+rh%3Achebi+%3FreactiveChebi+%7D%0A++%7D%0A%7D%0AORDER+BY+%3Freaction+%3Fside+%3Fparticipant&format=application%2Fsparql-results%2Bjson"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 2933,
+      "snapshot_path": "data/atlas/atlas10/sources/rhea/RHEA_12829.json",
+      "snapshot_sha256": "d40c4e9c3ce2e70eb01be9df24c1a6ace25f97a07457e4c2ce4473f2aa8a9520",
+      "source_id": "Rhea",
+      "uri": "https://www.rhea-db.org/rhea/12829"
+    },
+    {
+      "attribution": "Credit Rhea and cite the database release/publication.",
+      "change_notice": "Official TSV result transformed to sorted UTF-8 JSON with the query and request URL retained.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "RHEA:13945",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://www.rhea-db.org/rhea?query=id%3A13945&columns=rhea-id%2Cequation%2Cec%2Cchebi-id%2Cchebi&format=tsv&limit=10",
+        "https://sparql.rhea-db.org/sparql?query=PREFIX+rh%3A+%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0ASELECT+%3Freaction+%3Fside+%3Fparticipant+%3Fcompound+%3Faccession+%3Fname+%3Fchebi+%3FreactivePart+%3FreactiveChebi%0AWHERE+%7B%0A++VALUES+%3Freaction+%7B+rh%3A13945+%7D%0A++%3Freaction+rh%3Aside+%3Fside+.%0A++%3Fside+rh%3Acontains+%3Fparticipant+.%0A++%3Fparticipant+rh%3Acompound+%3Fcompound+.%0A++OPTIONAL+%7B+%3Fcompound+rh%3Aaccession+%3Faccession+%7D%0A++OPTIONAL+%7B+%3Fcompound+rh%3Aname+%3Fname+%7D%0A++OPTIONAL+%7B+%3Fcompound+rh%3Achebi+%3Fchebi+%7D%0A++OPTIONAL+%7B%0A++++%3Fcompound+rh%3AreactivePart+%3FreactivePart+.%0A++++OPTIONAL+%7B+%3FreactivePart+rh%3Achebi+%3FreactiveChebi+%7D%0A++%7D%0A%7D%0AORDER+BY+%3Freaction+%3Fside+%3Fparticipant&format=application%2Fsparql-results%2Bjson"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 2408,
+      "snapshot_path": "data/atlas/atlas10/sources/rhea/RHEA_13945.json",
+      "snapshot_sha256": "dd9e64c0925d293e978fc31c518ae6e65fb5dacd87e10fd57aa6478a6ef6e98e",
+      "source_id": "Rhea",
+      "uri": "https://www.rhea-db.org/rhea/13945"
+    },
+    {
+      "attribution": "Credit Rhea and cite the database release/publication.",
+      "change_notice": "Official TSV result transformed to sorted UTF-8 JSON with the query and request URL retained.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "RHEA:16237",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://www.rhea-db.org/rhea?query=id%3A16237&columns=rhea-id%2Cequation%2Cec%2Cchebi-id%2Cchebi&format=tsv&limit=10",
+        "https://sparql.rhea-db.org/sparql?query=PREFIX+rh%3A+%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0ASELECT+%3Freaction+%3Fside+%3Fparticipant+%3Fcompound+%3Faccession+%3Fname+%3Fchebi+%3FreactivePart+%3FreactiveChebi%0AWHERE+%7B%0A++VALUES+%3Freaction+%7B+rh%3A16237+%7D%0A++%3Freaction+rh%3Aside+%3Fside+.%0A++%3Fside+rh%3Acontains+%3Fparticipant+.%0A++%3Fparticipant+rh%3Acompound+%3Fcompound+.%0A++OPTIONAL+%7B+%3Fcompound+rh%3Aaccession+%3Faccession+%7D%0A++OPTIONAL+%7B+%3Fcompound+rh%3Aname+%3Fname+%7D%0A++OPTIONAL+%7B+%3Fcompound+rh%3Achebi+%3Fchebi+%7D%0A++OPTIONAL+%7B%0A++++%3Fcompound+rh%3AreactivePart+%3FreactivePart+.%0A++++OPTIONAL+%7B+%3FreactivePart+rh%3Achebi+%3FreactiveChebi+%7D%0A++%7D%0A%7D%0AORDER+BY+%3Freaction+%3Fside+%3Fparticipant&format=application%2Fsparql-results%2Bjson"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 2628,
+      "snapshot_path": "data/atlas/atlas10/sources/rhea/RHEA_16237.json",
+      "snapshot_sha256": "17e11f814f4685614e1604dc416da979adeee7fa644956bab8b7082410979e6c",
+      "source_id": "Rhea",
+      "uri": "https://www.rhea-db.org/rhea/16237"
+    },
+    {
+      "attribution": "Credit UniProt and cite the database release/publication.",
+      "change_notice": "REST JSON normalized to sorted UTF-8 JSON; no scientific fields intentionally changed.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "P00698",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://rest.uniprot.org/uniprotkb/P00698.json"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 760059,
+      "snapshot_path": "data/atlas/atlas10/sources/uniprot/P00698.json",
+      "snapshot_sha256": "e101fad8a0fbe74372b6bfc96ec697883fc7c67c9656070629f7fe3cc1c0a494",
+      "source_id": "UniProtKB",
+      "uri": "https://www.uniprot.org/uniprotkb/P00698/entry"
+    },
+    {
+      "attribution": "Credit UniProt and cite the database release/publication.",
+      "change_notice": "REST JSON normalized to sorted UTF-8 JSON; no scientific fields intentionally changed.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "P00782",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://rest.uniprot.org/uniprotkb/P00782.json"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 83078,
+      "snapshot_path": "data/atlas/atlas10/sources/uniprot/P00782.json",
+      "snapshot_sha256": "d826f1f10c912acb484de3492a511cf023d29b16369e728abec28f9124eb3b89",
+      "source_id": "UniProtKB",
+      "uri": "https://www.uniprot.org/uniprotkb/P00782/entry"
+    },
+    {
+      "attribution": "Credit UniProt and cite the database release/publication.",
+      "change_notice": "REST JSON normalized to sorted UTF-8 JSON; no scientific fields intentionally changed.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "P00918",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://rest.uniprot.org/uniprotkb/P00918.json"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 857610,
+      "snapshot_path": "data/atlas/atlas10/sources/uniprot/P00918.json",
+      "snapshot_sha256": "f68c3e4ffaaeee3a072226ae45060acd61cbd062ca5e80a9656cdde4ff0adf8f",
+      "source_id": "UniProtKB",
+      "uri": "https://www.uniprot.org/uniprotkb/P00918/entry"
+    },
+    {
+      "attribution": "Credit UniProt and cite the database release/publication.",
+      "change_notice": "REST JSON normalized to sorted UTF-8 JSON; no scientific fields intentionally changed.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "P11444",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://rest.uniprot.org/uniprotkb/P11444.json"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 49038,
+      "snapshot_path": "data/atlas/atlas10/sources/uniprot/P11444.json",
+      "snapshot_sha256": "cb5efb114709e8f79f58376643fde10d8e2981296091d09936c41589ce7ae6ef",
+      "source_id": "UniProtKB",
+      "uri": "https://www.uniprot.org/uniprotkb/P11444/entry"
+    },
+    {
+      "attribution": "Credit UniProt and cite the database release/publication.",
+      "change_notice": "REST JSON normalized to sorted UTF-8 JSON; no scientific fields intentionally changed.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "P35049",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://rest.uniprot.org/uniprotkb/P35049.json"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 35494,
+      "snapshot_path": "data/atlas/atlas10/sources/uniprot/P35049.json",
+      "snapshot_sha256": "2be2f38c0c1c8d66b7a69bd8af2eea08b445992f517e7e876c684b738cec5ffd",
+      "source_id": "UniProtKB",
+      "uri": "https://www.uniprot.org/uniprotkb/P35049/entry"
+    },
+    {
+      "attribution": "Credit UniProt and cite the database release/publication.",
+      "change_notice": "REST JSON normalized to sorted UTF-8 JSON; no scientific fields intentionally changed.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "P62937",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://rest.uniprot.org/uniprotkb/P62937.json"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 281875,
+      "snapshot_path": "data/atlas/atlas10/sources/uniprot/P62937.json",
+      "snapshot_sha256": "fd854c2994f70b48d8514f594e41b4ce64066f984148e4c97d03db1e2cdbefc1",
+      "source_id": "UniProtKB",
+      "uri": "https://www.uniprot.org/uniprotkb/P62937/entry"
+    },
+    {
+      "attribution": "Credit UniProt and cite the database release/publication.",
+      "change_notice": "REST JSON normalized to sorted UTF-8 JSON; no scientific fields intentionally changed.",
+      "license": "CC BY 4.0",
+      "media_type": "application/json",
+      "record_id": "Q05514",
+      "retrieval_status": "bundled_snapshot",
+      "retrieval_urls": [
+        "https://rest.uniprot.org/uniprotkb/Q05514.json"
+      ],
+      "retrieved_at": "2026-07-14T17:42:17Z",
+      "snapshot_bytes": 63171,
+      "snapshot_path": "data/atlas/atlas10/sources/uniprot/Q05514.json",
+      "snapshot_sha256": "178ee97c99c10d3bdd41a274745e89f5ebe745b766ee5a085886b0cd756c59dd",
+      "source_id": "UniProtKB",
+      "uri": "https://www.uniprot.org/uniprotkb/Q05514/entry"
+    }
+  ],
+  "retrieved_at": "2026-07-14T17:42:17Z",
+  "rights_matrix_path": "docs/SOURCE_DATA_RIGHTS.md",
+  "schema_version": "catalytic-earth.atlas10-source-manifest.v1",
+  "selection_sha256": "9bc114aaf793c51ec3b6273466f62a83974512a2dcf969d95d8b97453dd2795e",
+  "snapshot_set_sha256": "a6b6a0059835e8f3f78cd5da9897afb599560bc844c59e82ba523f9387d0550d"
+}

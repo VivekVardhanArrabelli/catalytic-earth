@@ -10,15 +10,18 @@ objects live under `data/atlas/atlas3/` and do not mutate the historical label
 registries.
 
 `atlas10_selection.json` freezes the seven-case follow-on that extends the
-immutable Atlas-3 selection to ten cases. It adds source-gap, source-granularity,
-structure-applicability, relationship-query, baseline, review, compute, and
-assay-lane constraints before evidence compilation. Future Atlas-10 objects
-will live under `data/atlas/atlas10/`; the selection does not claim those
-objects are compiled yet.
+immutable Atlas-3 selection to ten cases. The compiled v3 records, source
+manifest/snapshots, compilation spec, relationship queries, expected runtime,
+same-source comparator, and bounded review packets live under
+`data/atlas/atlas10/`. The external review-attempt ledger remains pending; the
+compiled surface is not biological validation or representative coverage.
 
 Validate the selection with:
 
 ```bash
 python scripts/validate_atlas3_selection.py
 python scripts/validate_atlas10_selection.py
+python scripts/build_atlas10_sources.py
+python scripts/build_atlas10_kernel.py --check
+python scripts/build_atlas10_runtime.py --check
 ```

@@ -1,0 +1,1821 @@
+{
+  "annotationScore": 4.0,
+  "comments": [
+    {
+      "commentType": "CATALYTIC ACTIVITY",
+      "reaction": {
+        "ecNumber": "3.4.21.4",
+        "name": "Preferential cleavage: Arg-|-Xaa, Lys-|-Xaa."
+      }
+    },
+    {
+      "commentType": "SUBCELLULAR LOCATION",
+      "subcellularLocations": [
+        {
+          "location": {
+            "id": "SL-0243",
+            "value": "Secreted"
+          }
+        }
+      ]
+    },
+    {
+      "commentType": "SIMILARITY",
+      "texts": [
+        {
+          "evidences": [
+            {
+              "evidenceCode": "ECO:0000255",
+              "id": "PRU00274",
+              "source": "PROSITE-ProRule"
+            }
+          ],
+          "value": "Belongs to the peptidase S1 family"
+        }
+      ]
+    }
+  ],
+  "entryAudit": {
+    "entryVersion": 121,
+    "firstPublicDate": "1994-02-01",
+    "lastAnnotationUpdateDate": "2026-06-10",
+    "lastSequenceUpdateDate": "1994-02-01",
+    "sequenceVersion": 1
+  },
+  "entryType": "UniProtKB reviewed (Swiss-Prot)",
+  "extraAttributes": {
+    "countByCommentType": {
+      "CATALYTIC ACTIVITY": 1,
+      "SIMILARITY": 1,
+      "SUBCELLULAR LOCATION": 1
+    },
+    "countByFeatureType": {
+      "Active site": 3,
+      "Beta strand": 14,
+      "Chain": 1,
+      "Disulfide bond": 3,
+      "Domain": 1,
+      "Helix": 5,
+      "Propeptide": 1,
+      "Signal": 1,
+      "Site": 1,
+      "Turn": 2
+    },
+    "uniParcId": "UPI000013770E"
+  },
+  "features": [
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000255"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 17
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 1
+        }
+      },
+      "type": "Signal"
+    },
+    {
+      "description": "Activation peptide",
+      "featureId": "PRO_0000028301",
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 24
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 18
+        }
+      },
+      "type": "Propeptide"
+    },
+    {
+      "description": "Trypsin",
+      "featureId": "PRO_0000028302",
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 248
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 25
+        }
+      },
+      "type": "Chain"
+    },
+    {
+      "description": "Peptidase S1",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000255",
+          "id": "PRU00274",
+          "source": "PROSITE-ProRule"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 248
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 25
+        }
+      },
+      "type": "Domain"
+    },
+    {
+      "description": "Charge relay system",
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 65
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 65
+        }
+      },
+      "type": "Active site"
+    },
+    {
+      "description": "Charge relay system",
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 108
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 108
+        }
+      },
+      "type": "Active site"
+    },
+    {
+      "description": "Charge relay system",
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 204
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 204
+        }
+      },
+      "type": "Active site"
+    },
+    {
+      "description": "Required for specificity",
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 198
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 198
+        }
+      },
+      "type": "Site"
+    },
+    {
+      "description": "",
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 66
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 50
+        }
+      },
+      "type": "Disulfide bond"
+    },
+    {
+      "description": "",
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 189
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 174
+        }
+      },
+      "type": "Disulfide bond"
+    },
+    {
+      "description": "",
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 225
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 200
+        }
+      },
+      "type": "Disulfide bond"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1PQ7",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 44
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 39
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1PQ7",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 56
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 47
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1PQ7",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 62
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 59
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1PQ7",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 67
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 64
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1PQ7",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 74
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 72
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1PQ7",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 80
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 75
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1PQ7",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 91
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 82
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1PQ7",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 98
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 93
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1PQ7",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 116
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 110
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1XVO",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 128
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 126
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1PQ7",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 148
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 141
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1PQ7",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 169
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 162
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1PQ7",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 178
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 171
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1PQ7",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 182
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 180
+        }
+      },
+      "type": "Turn"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1PQ7",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 190
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 187
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1PQ7",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 210
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 207
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1PQ7",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 221
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 215
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1PQ7",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 226
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 223
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1PQ7",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 236
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 232
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1PQ7",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 239
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 237
+        }
+      },
+      "type": "Turn"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1PQ7",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 247
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 241
+        }
+      },
+      "type": "Helix"
+    }
+  ],
+  "keywords": [
+    {
+      "category": "Technical term",
+      "id": "KW-0002",
+      "name": "3D-structure"
+    },
+    {
+      "category": "PTM",
+      "id": "KW-1015",
+      "name": "Disulfide bond"
+    },
+    {
+      "category": "Molecular function",
+      "id": "KW-0378",
+      "name": "Hydrolase"
+    },
+    {
+      "category": "Molecular function",
+      "id": "KW-0645",
+      "name": "Protease"
+    },
+    {
+      "category": "Cellular component",
+      "id": "KW-0964",
+      "name": "Secreted"
+    },
+    {
+      "category": "Molecular function",
+      "id": "KW-0720",
+      "name": "Serine protease"
+    },
+    {
+      "category": "Domain",
+      "id": "KW-0732",
+      "name": "Signal"
+    },
+    {
+      "category": "PTM",
+      "id": "KW-0865",
+      "name": "Zymogen"
+    }
+  ],
+  "organism": {
+    "commonName": "Fusarium vascular wilt",
+    "lineage": [
+      "Eukaryota",
+      "Fungi",
+      "Dikarya",
+      "Ascomycota",
+      "Pezizomycotina",
+      "Sordariomycetes",
+      "Hypocreomycetidae",
+      "Hypocreales",
+      "Nectriaceae",
+      "Fusarium",
+      "Fusarium oxysporum species complex"
+    ],
+    "scientificName": "Fusarium oxysporum",
+    "taxonId": 5507
+  },
+  "primaryAccession": "P35049",
+  "proteinDescription": {
+    "flag": "Precursor",
+    "recommendedName": {
+      "ecNumbers": [
+        {
+          "value": "3.4.21.4"
+        }
+      ],
+      "fullName": {
+        "value": "Trypsin"
+      }
+    }
+  },
+  "proteinExistence": "1: Evidence at protein level",
+  "references": [
+    {
+      "citation": {
+        "authors": [
+          "Rypniewski W.R.",
+          "Hastrup S.",
+          "Betzel C.",
+          "Dauter M.",
+          "Dauter Z.",
+          "Papendorf G.",
+          "Branner S.",
+          "Wilson K.S."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "8332590"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1093/protein/6.4.341"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "341",
+        "id": "8332590",
+        "journal": "Protein Eng.",
+        "lastPage": "348",
+        "publicationDate": "1993",
+        "title": "The sequence and X-ray structure of the trypsin from Fusarium oxysporum.",
+        "volume": "6"
+      },
+      "referenceNumber": 1,
+      "referencePositions": [
+        "NUCLEOTIDE SEQUENCE [MRNA]",
+        "X-RAY CRYSTALLOGRAPHY (1.8 ANGSTROMS)"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Rypniewski W.R.",
+          "Dambmann C.",
+          "von der Osten C.",
+          "Dauter M.",
+          "Wilson K.S."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "15299338"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1107/s0907444994009169"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "73",
+        "id": "15299338",
+        "journal": "Acta Crystallogr. D",
+        "lastPage": "84",
+        "publicationDate": "1995",
+        "title": "Structure of inhibited trypsin from Fusarium oxysporum at 1.55 A.",
+        "volume": "51"
+      },
+      "referenceNumber": 2,
+      "referencePositions": [
+        "X-RAY CRYSTALLOGRAPHY (1.55 ANGSTROMS)"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Rypniewski W.R.",
+          "Ostergaard P.R.",
+          "Norregaard-Madsen M.",
+          "Dauter M.",
+          "Wilson K.S."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "11134922"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1107/s0907444900014116"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "8",
+        "id": "11134922",
+        "journal": "Acta Crystallogr.",
+        "lastPage": "19",
+        "publicationDate": "2001",
+        "title": "Fusarium oxysporum trypsin at atomic resolution at 100 and 283 K: a study of ligand binding.",
+        "volume": "57"
+      },
+      "referenceNumber": 3,
+      "referencePositions": [
+        "X-RAY CRYSTALLOGRAPHY (0.81 ANGSTROMS)"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Schmidt A.",
+          "Jelsch C.",
+          "Ostergaard P.",
+          "Rypniewski W.",
+          "Lamzin V.S."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "12937176"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1074/jbc.m306944200"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "43357",
+        "id": "12937176",
+        "journal": "J. Biol. Chem.",
+        "lastPage": "43362",
+        "publicationDate": "2003",
+        "title": "Trypsin revisited: crystallography AT (SUB) atomic resolution and quantum chemistry revealing details of catalysis.",
+        "volume": "278"
+      },
+      "referenceNumber": 4,
+      "referencePositions": [
+        "X-RAY CRYSTALLOGRAPHY (0.80 ANGSTROMS)"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Leone P.",
+          "Roussel A.",
+          "Kellenberger C."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "19020355"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1107/s0907444908030400"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "1165",
+        "id": "19020355",
+        "journal": "Acta Crystallogr.",
+        "lastPage": "1171",
+        "publicationDate": "2008",
+        "title": "Structure of Locusta migratoria protease inhibitor 3 (LMPI-3) in complex with Fusarium oxysporum trypsin.",
+        "volume": "64"
+      },
+      "referenceNumber": 5,
+      "referencePositions": [
+        "X-RAY CRYSTALLOGRAPHY (1.80 ANGSTROMS)"
+      ]
+    }
+  ],
+  "sequence": {
+    "crc64": "1A0EBA88C3E70294",
+    "length": 248,
+    "md5": "01BA03E59BD42E2229864DA03DC44E81",
+    "molWeight": 24576,
+    "value": "MVKFASVVALVAPLAAAAPQEIPNIVGGTSASAGDFPFIVSISRNGGPWCGGSLLNANTVLTAAHCVSGYAQSGFQIRAGSLSRTSGGITSSLSSVRVHPSYSGNNNDLAILKLSTSIPSGGNIGYARLAASGSDPVAGSSATVAGWGATSEGGSSTPVNLLKVTVPIVSRATCRAQYGTSAITNQMFCAGVSSGGKDSCQGDSGGPIVDSSNTLIGAVSWGNGCARPNYSGVYASVGALRSFIDTYA"
+  },
+  "uniProtKBCrossReferences": [
+    {
+      "database": "EMBL",
+      "id": "S63827",
+      "properties": [
+        {
+          "key": "ProteinId",
+          "value": "AAB27568.1"
+        },
+        {
+          "key": "Status",
+          "value": "-"
+        },
+        {
+          "key": "MoleculeType",
+          "value": "mRNA"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1FN8",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "0.81 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=25-248"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1FY4",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "0.81 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=25-248"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1FY5",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "0.81 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=25-248"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1GDN",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "0.81 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=25-248"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1GDQ",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "0.93 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=25-248"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1GDU",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.07 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=25-248"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1PPZ",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.23 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=25-248"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1PQ5",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "0.85 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=25-248"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1PQ7",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "0.80 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=25-248"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1PQ8",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.00 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=25-248"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1PQA",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.23 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=25-248"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1TRY",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.55 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=25-248"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1XVM",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.10 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=25-248"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1XVO",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "0.84 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=25-248"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "2G51",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.84 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=25-248"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "2G52",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.84 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=25-248"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "2VU8",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.80 A"
+        },
+        {
+          "key": "Chains",
+          "value": "E=25-248"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1FN8",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1FY4",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1FY5",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1GDN",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1GDQ",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1GDU",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1PPZ",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1PQ5",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1PQ7",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1PQ8",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1PQA",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1TRY",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1XVM",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1XVO",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "2G51",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "2G52",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "2VU8",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "AlphaFoldDB",
+      "id": "P35049",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "SMR",
+      "id": "P35049",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "MEROPS",
+      "id": "S01.103",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "VEuPathDB",
+      "id": "FungiDB:FOC1_g10004256",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "VEuPathDB",
+      "id": "FungiDB:FOC4_g10005692",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "VEuPathDB",
+      "id": "FungiDB:FOIG_10361",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "VEuPathDB",
+      "id": "FungiDB:FOMG_09652",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "VEuPathDB",
+      "id": "FungiDB:FOXG_13248",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "VEuPathDB",
+      "id": "FungiDB:FOZG_15528",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "VEuPathDB",
+      "id": "FungiDB:HZS61_010782",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "BRENDA",
+      "id": "3.4.21.4",
+      "properties": [
+        {
+          "key": "OrganismId",
+          "value": "2351"
+        }
+      ]
+    },
+    {
+      "database": "EvolutionaryTrace",
+      "id": "P35049",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "id": "GO:0005576",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "C:extracellular region"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IEA:UniProtKB-SubCell"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "id": "GO:0004252",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "F:serine-type endopeptidase activity"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IEA:UniProtKB-EC"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "id": "GO:0006508",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "P:proteolysis"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IEA:UniProtKB-KW"
+        }
+      ]
+    },
+    {
+      "database": "CDD",
+      "id": "cd00190",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Tryp_SPc"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "FunFam",
+      "id": "2.40.10.10:FF:000077",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Predicted protein"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "Gene3D",
+      "id": "2.40.10.10",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Trypsin-like serine proteases"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "2"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR050430",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Peptidase_S1"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR009003",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Peptidase_S1_PA"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR043504",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Peptidase_S1_PA_chymotrypsin"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR001314",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Peptidase_S1A"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR001254",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Trypsin_dom"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR018114",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "TRYPSIN_HIS"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR033116",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "TRYPSIN_SER"
+        }
+      ]
+    },
+    {
+      "database": "PANTHER",
+      "id": "PTHR24276:SF98",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "FI18310P1-RELATED"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PANTHER",
+      "id": "PTHR24276",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "POLYSERASE-RELATED"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "Pfam",
+      "id": "PF00089",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Trypsin"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PRINTS",
+      "id": "PR00722",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "CHYMOTRYPSIN"
+        }
+      ]
+    },
+    {
+      "database": "SMART",
+      "id": "SM00020",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Tryp_SPc"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "SUPFAM",
+      "id": "SSF50494",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Trypsin-like serine proteases"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PROSITE",
+      "id": "PS50240",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "TRYPSIN_DOM"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PROSITE",
+      "id": "PS00134",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "TRYPSIN_HIS"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PROSITE",
+      "id": "PS00135",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "TRYPSIN_SER"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    }
+  ],
+  "uniProtkbId": "TRYP_FUSOX"
+}

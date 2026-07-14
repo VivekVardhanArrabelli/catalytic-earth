@@ -1,5 +1,31 @@
 # Current Decisions
 
+## 2026-07-14: Atlas-10 compiled without upgrading source truth
+
+Decision: admit the seven follow-on packages as `mechanism-record.v3` objects
+and expose the two preregistered relationship queries while keeping Atlas-3,
+protected registries, evidence tiers, source gaps, and assay state unchanged.
+
+Durable rulings:
+
+1. The compiled surface counts 10 cases and 30 truth objects, not 30 mechanisms
+   and not a representative benchmark.
+2. Source-ordered Marvin electron-flow endpoints are retained, but atom maps
+   and bond edits remain explicitly uncompiled.
+3. A source residue may have an empty role list. Missing M-CSA role text is not
+   filled with a plausible project-authored role.
+4. The unintegrated comparator may support a structural usability comparison
+   only. Unobserved human minutes, speedup, and applicability errors remain
+   null.
+5. The five baseline cross-source conflicts are represented explicitly by the
+   Atlas; they are not claimed biologically resolved.
+6. Seven review packets are ready. Until a real request is sent, the attempt
+   ledger remains unattempted and Atlas-10 is not called phase-exit complete.
+7. Local fresh-directory wheel reproduction passed on Windows/Python 3.13.
+   The next expansion decision still waits for the external-attempt record and
+   the published Windows/Linux Python 3.10/3.12 CI matrix; it does not reopen
+   protected registries.
+
 ## 2026-07-14: Atlas-10 seven-case follow-on frozen before compilation
 
 Decision: preserve the complete Atlas-3 kernel by content hash and add seven

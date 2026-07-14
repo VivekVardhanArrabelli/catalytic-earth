@@ -1,0 +1,59 @@
+{
+  "columns": [
+    "Reaction identifier",
+    "Equation",
+    "EC number",
+    "ChEBI identifier",
+    "ChEBI name"
+  ],
+  "participant_request_url": "https://sparql.rhea-db.org/sparql?query=PREFIX+rh%3A+%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0ASELECT+%3Freaction+%3Fside+%3Fparticipant+%3Fcompound+%3Faccession+%3Fname+%3Fchebi+%3FreactivePart+%3FreactiveChebi%0AWHERE+%7B%0A++VALUES+%3Freaction+%7B+rh%3A12829+%7D%0A++%3Freaction+rh%3Aside+%3Fside+.%0A++%3Fside+rh%3Acontains+%3Fparticipant+.%0A++%3Fparticipant+rh%3Acompound+%3Fcompound+.%0A++OPTIONAL+%7B+%3Fcompound+rh%3Aaccession+%3Faccession+%7D%0A++OPTIONAL+%7B+%3Fcompound+rh%3Aname+%3Fname+%7D%0A++OPTIONAL+%7B+%3Fcompound+rh%3Achebi+%3Fchebi+%7D%0A++OPTIONAL+%7B%0A++++%3Fcompound+rh%3AreactivePart+%3FreactivePart+.%0A++++OPTIONAL+%7B+%3FreactivePart+rh%3Achebi+%3FreactiveChebi+%7D%0A++%7D%0A%7D%0AORDER+BY+%3Freaction+%3Fside+%3Fparticipant&format=application%2Fsparql-results%2Bjson",
+  "participant_rows": [
+    {
+      "accession": "CHEBI:58724",
+      "chebi_uri": "http://purl.obolibrary.org/obo/CHEBI_58724",
+      "compound_uri": "http://rdf.rhea-db.org/Compound_5242",
+      "name": "(2S,3S)-3-methyl-L-aspartate",
+      "participant_uri": "http://rdf.rhea-db.org/Participant_12829_compound_5242",
+      "reaction_uri": "http://rdf.rhea-db.org/12829",
+      "reactive_chebi_uri": null,
+      "reactive_part_uri": null,
+      "side_uri": "http://rdf.rhea-db.org/12829_L"
+    },
+    {
+      "accession": "CHEBI:28938",
+      "chebi_uri": "http://purl.obolibrary.org/obo/CHEBI_28938",
+      "compound_uri": "http://rdf.rhea-db.org/Compound_1012",
+      "name": "NH4(+)",
+      "participant_uri": "http://rdf.rhea-db.org/Participant_12829_compound_1012",
+      "reaction_uri": "http://rdf.rhea-db.org/12829",
+      "reactive_chebi_uri": null,
+      "reactive_part_uri": null,
+      "side_uri": "http://rdf.rhea-db.org/12829_R"
+    },
+    {
+      "accession": "CHEBI:36986",
+      "chebi_uri": "http://purl.obolibrary.org/obo/CHEBI_36986",
+      "compound_uri": "http://rdf.rhea-db.org/Compound_6077",
+      "name": "mesaconate",
+      "participant_uri": "http://rdf.rhea-db.org/Participant_12829_compound_6077",
+      "reaction_uri": "http://rdf.rhea-db.org/12829",
+      "reactive_chebi_uri": null,
+      "reactive_part_uri": null,
+      "side_uri": "http://rdf.rhea-db.org/12829_R"
+    }
+  ],
+  "query": "id:12829",
+  "query_result_kind": "direct_record",
+  "record_id": "RHEA:12829",
+  "request_url": "https://www.rhea-db.org/rhea?query=id%3A12829&columns=rhea-id%2Cequation%2Cec%2Cchebi-id%2Cchebi&format=tsv&limit=10",
+  "rows": [
+    {
+      "ChEBI identifier": "CHEBI:58724;CHEBI:36986;CHEBI:28938",
+      "ChEBI name": "threo-3-methyl-L-aspartate(1-);mesaconate(2-);ammonium",
+      "EC number": "EC:4.3.1.2",
+      "Equation": "(2S,3S)-3-methyl-L-aspartate = mesaconate + NH4(+)",
+      "Reaction identifier": "RHEA:12829"
+    }
+  ],
+  "source": "Rhea"
+}

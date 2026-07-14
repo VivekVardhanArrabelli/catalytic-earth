@@ -21,7 +21,10 @@ GIANT_MODULES = (
     "src/catalytic_earth/transfer_scope.py",
 )
 DETERMINISTIC_MODULES = (
+    "src/catalytic_earth/atlas10_kernel.py",
     "src/catalytic_earth/atlas10_selection.py",
+    "src/catalytic_earth/atlas10_source_adapters.py",
+    "src/catalytic_earth/atlas10_sources.py",
     "src/catalytic_earth/atlas_kernel.py",
     "src/catalytic_earth/atlas_selection.py",
     "src/catalytic_earth/atlas_source_adapters.py",
@@ -126,6 +129,16 @@ def build() -> bytes:
                 "src/catalytic_earth/schemas/atlas10-selection-v1.schema.json"
             ),
             "atlas10_selection_contract": "data/atlas/atlas10_selection.json",
+            "atlas10_kernel_python": "src/catalytic_earth/atlas10_kernel.py",
+            "atlas10_record_schema": (
+                "src/catalytic_earth/schemas/mechanism-record-v3.schema.json"
+            ),
+            "atlas10_kernel_schema": (
+                "src/catalytic_earth/schemas/atlas10-kernel-v1.schema.json"
+            ),
+            "atlas10_compilation_contract": (
+                "data/atlas/atlas10/compilation_spec.json"
+            ),
         },
         "deterministic_modules": deterministic,
         "test_tiers": {
@@ -136,6 +149,7 @@ def build() -> bytes:
         "installed_commands": {
             "canonical": "catalytic-earth reproduce",
             "first_biological_kernel": "catalytic-earth atlas3",
+            "ten_case_query_surface": "catalytic-earth atlas10",
             "legacy": "catalytic-earth-legacy",
             "legacy_status": "deprecated_frozen_outside_core_guarantee"
         },

@@ -1,0 +1,556 @@
+{
+  "case_id": "atlas10.mandelate-racemase-pputida.enolate",
+  "claim_boundary": {
+    "does_not_support": [
+      "Mechanism truth beyond the frozen sources, unrestricted transfer across proteins or substrates, or replacement of experimental validation."
+    ],
+    "supports": [
+      "Represent the two-base metal-stabilized racemization hypothesis and its structure-applicability boundary, then expose conserved versus repurposed features in the paired enolase query without mechanism transfer."
+    ]
+  },
+  "compiled_hypothesis_sha256": "abf13fdc94787ebfb12bdaf45888c0a5c34e7c2f8bfbfebd4d930c1e38e02459",
+  "counterevidence": [
+    {
+      "counterevidence_id": "atlas10.mandelate-racemase-pputida.enolate.structure-1mns-limit",
+      "disposition": "Retain the structure with its explicit applicability and context flags.",
+      "effect": "Limits mechanistic generalization from this static structural context.",
+      "evidence_ids": [
+        "source:PDB:1MNS"
+      ],
+      "summary": "Use for site geometry; do not interpret inhibitor-bound or chemically modified context as direct substrate turnover."
+    }
+  ],
+  "detail_abstention": {
+    "reason": "The frozen source schemes preserve curved-arrow endpoints but do not establish a verified atom map, compiled bond-edit list, independent validation, or complete turnover trajectory.",
+    "required": true,
+    "source_basis_evidence_ids": [
+      "source:M-CSA:M0187",
+      "source:UniProtKB:P11444",
+      "source:Rhea:RHEA:13945",
+      "source:PDB:1MNS",
+      "source:DOI:10.1021/bi00102a019",
+      "source:CATH:CATH:3.20.20.120"
+    ],
+    "unsupported_fields": [
+      "atom_mapped_bond_edits",
+      "independent_mechanism_validation",
+      "complete_turnover_trajectory"
+    ]
+  },
+  "evidence": [
+    {
+      "applicability": "direct",
+      "evidence_id": "source:UniProtKB:P11444",
+      "evidence_role": "protein_identity",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "cb5efb114709e8f79f58376643fde10d8e2981296091d09936c41589ce7ae6ef",
+      "source_id": "UniProtKB",
+      "source_record_id": "P11444",
+      "uri": "https://www.uniprot.org/uniprotkb/P11444/entry"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:Rhea:RHEA:13945",
+      "evidence_role": "net_reaction",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "dd9e64c0925d293e978fc31c518ae6e65fb5dacd87e10fd57aa6478a6ef6e98e",
+      "source_id": "Rhea",
+      "source_record_id": "RHEA:13945",
+      "uri": "https://www.rhea-db.org/rhea/13945"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:PDB:1MNS",
+      "evidence_role": "experimental_structure",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "205f14186bf789b3033dcb361e726cd0179efd4a72a212b71c7376aeee2438c6",
+      "source_id": "PDB",
+      "source_record_id": "1MNS",
+      "uri": "https://www.rcsb.org/structure/1MNS"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:M-CSA:M0187",
+      "evidence_role": "source_mechanism",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "45663712262387e7eec092c49b16994d03f9b6d186008b737b94c613a87458e3",
+      "source_id": "M-CSA",
+      "source_record_id": "M0187",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/187/"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:DOI:10.1021/bi00102a019",
+      "evidence_role": "primary_structure_evidence",
+      "retrieval_status": "reference_only_verified_handle",
+      "snapshot_sha256": null,
+      "source_id": "DOI",
+      "source_record_id": "10.1021/bi00102a019",
+      "uri": "https://doi.org/10.1021/bi00102a019"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:CATH:CATH:3.20.20.120",
+      "evidence_role": "fold_classification",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "8b57f92676b44fb43d4429d7403b78d6cd27040a7b3a2ec9baa82eff1787f5b4",
+      "source_id": "CATH",
+      "source_record_id": "CATH:3.20.20.120",
+      "uri": "https://www.cathdb.info/version/latest/superfamily/3.20.20.120"
+    }
+  ],
+  "packet_id": "review-packet:atlas10.mandelate-racemase-pputida.enolate",
+  "protein_scope": {
+    "assay_candidate": false,
+    "case_label": "Mandelate racemase",
+    "direct_pdb_ids": [
+      "1MNS"
+    ],
+    "ec_number": "5.1.2.2",
+    "fingerprint_bridge": {
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "registry_write": false,
+      "use": "historical_crosswalk_only_not_evidence"
+    },
+    "fold_classification_ids": [
+      "CATH:3.20.20.120"
+    ],
+    "organism": "Pseudomonas putida",
+    "relationship_group_ids": [
+      "atlas10.relationship.divergent-enolase-chemistry"
+    ],
+    "uniprot_ids": [
+      "P11444"
+    ]
+  },
+  "provenance": {
+    "compilation_spec_sha256": "89cfa53c23fdeafde11e859cea102a88421ea253446a267b23bca2eb84920932",
+    "compiler_version": "catalytic-earth.atlas10-compiler.v1",
+    "selection_sha256": "9bc114aaf793c51ec3b6273466f62a83974512a2dcf969d95d8b97453dd2795e",
+    "source_snapshot_set_sha256": "a6b6a0059835e8f3f78cd5da9897afb599560bc844c59e82ba523f9387d0550d"
+  },
+  "reaction_or_source_gap": {
+    "directionality": "undirected",
+    "ec_number": "5.1.2.2",
+    "equation": "(S)-mandelate = (R)-mandelate",
+    "gap_context": null,
+    "participants": [
+      {
+        "name": "(S)-mandelate",
+        "participant_id": "CHEBI:17756",
+        "participant_type": "small_molecule",
+        "reactive_part_id": null,
+        "side": "left",
+        "source_accession": "CHEBI:17756",
+        "source_count_values": [
+          1
+        ],
+        "source_row_count": 1,
+        "source_scope": "Rhea RDF participant",
+        "stoichiometry": 1
+      },
+      {
+        "name": "(R)-mandelate",
+        "participant_id": "CHEBI:32382",
+        "participant_type": "small_molecule",
+        "reactive_part_id": null,
+        "side": "right",
+        "source_accession": "CHEBI:32382",
+        "source_count_values": [
+          1
+        ],
+        "source_row_count": 1,
+        "source_scope": "Rhea RDF participant",
+        "stoichiometry": 1
+      }
+    ],
+    "source_id": "Rhea",
+    "source_query": "id:13945",
+    "source_record_id": "RHEA:13945",
+    "source_status": "direct_record"
+  },
+  "review_questions": [
+    "Is the reaction or documented source gap correct for this protein scope?",
+    "Are the catalytic sites and numbering mappings faithful to the cited sources?",
+    "Are the represented steps faithful to source granularity, with unsupported detail abstained?",
+    "Are structure and mechanism applicability boundaries correct?",
+    "Does the claim boundary prevent an unjustified evidence-tier upgrade?"
+  ],
+  "review_unit": "bounded_claim_packet",
+  "reviewer_instruction": "Review only the bounded case and cited source scope. A correction, uncertainty, or rejection is useful. Do not infer independent validation from upstream curation, source rating, fold similarity, or another case.",
+  "schema_version": "catalytic-earth.atlas10-review-packet.v1",
+  "sites": [
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0187",
+        "source:UniProtKB:P11444",
+        "source:PDB:1MNS"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 164,
+          "chain_id": "A",
+          "label_position": 162,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 164 to 1MNS chain A author position 164 and mmCIF label position 162; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1MNS"
+        }
+      ],
+      "residue_name": "Lys",
+      "roles": [
+        "electrostatic stabiliser",
+        "hydrogen bond donor"
+      ],
+      "sequence_position": 164,
+      "site_id": "P11444:K164",
+      "uniprot_id": "P11444"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0187",
+        "source:UniProtKB:P11444",
+        "source:PDB:1MNS"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 166,
+          "chain_id": "A",
+          "label_position": 164,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 166 to 1MNS chain A author position 166 and mmCIF label position 164; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1MNS"
+        }
+      ],
+      "residue_name": "Lys",
+      "roles": [
+        "electrostatic stabiliser",
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "proton acceptor",
+        "proton donor"
+      ],
+      "sequence_position": 166,
+      "site_id": "P11444:K166",
+      "uniprot_id": "P11444"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0187",
+        "source:UniProtKB:P11444",
+        "source:PDB:1MNS"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 195,
+          "chain_id": "A",
+          "label_position": 193,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 195 to 1MNS chain A author position 195 and mmCIF label position 193; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1MNS"
+        }
+      ],
+      "residue_name": "Asp",
+      "roles": [
+        "metal ligand"
+      ],
+      "sequence_position": 195,
+      "site_id": "P11444:D195",
+      "uniprot_id": "P11444"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0187",
+        "source:UniProtKB:P11444",
+        "source:PDB:1MNS"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 197,
+          "chain_id": "A",
+          "label_position": 195,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 197 to 1MNS chain A author position 197 and mmCIF label position 195; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1MNS"
+        }
+      ],
+      "residue_name": "Asn",
+      "roles": [
+        "electrostatic stabiliser"
+      ],
+      "sequence_position": 197,
+      "site_id": "P11444:N197",
+      "uniprot_id": "P11444"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0187",
+        "source:UniProtKB:P11444",
+        "source:PDB:1MNS"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 221,
+          "chain_id": "A",
+          "label_position": 219,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 221 to 1MNS chain A author position 221 and mmCIF label position 219; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1MNS"
+        }
+      ],
+      "residue_name": "Glu",
+      "roles": [
+        "metal ligand"
+      ],
+      "sequence_position": 221,
+      "site_id": "P11444:E221",
+      "uniprot_id": "P11444"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0187",
+        "source:UniProtKB:P11444",
+        "source:PDB:1MNS"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 247,
+          "chain_id": "A",
+          "label_position": 245,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 247 to 1MNS chain A author position 247 and mmCIF label position 245; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1MNS"
+        }
+      ],
+      "residue_name": "Glu",
+      "roles": [
+        "metal ligand"
+      ],
+      "sequence_position": 247,
+      "site_id": "P11444:E247",
+      "uniprot_id": "P11444"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0187",
+        "source:UniProtKB:P11444",
+        "source:PDB:1MNS"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 270,
+          "chain_id": "A",
+          "label_position": 268,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 270 to 1MNS chain A author position 270 and mmCIF label position 268; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1MNS"
+        }
+      ],
+      "residue_name": "Asp",
+      "roles": [
+        "electrostatic stabiliser",
+        "hydrogen bond acceptor",
+        "increase basicity"
+      ],
+      "sequence_position": 270,
+      "site_id": "P11444:D270",
+      "uniprot_id": "P11444"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0187",
+        "source:UniProtKB:P11444",
+        "source:PDB:1MNS"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 297,
+          "chain_id": "A",
+          "label_position": 295,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 297 to 1MNS chain A author position 297 and mmCIF label position 295; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1MNS"
+        }
+      ],
+      "residue_name": "His",
+      "roles": [
+        "electrostatic stabiliser",
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "proton acceptor",
+        "proton donor"
+      ],
+      "sequence_position": 297,
+      "site_id": "P11444:H297",
+      "uniprot_id": "P11444"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0187",
+        "source:UniProtKB:P11444",
+        "source:PDB:1MNS"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 317,
+          "chain_id": "A",
+          "label_position": 315,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 317 to 1MNS chain A author position 317 and mmCIF label position 315; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1MNS"
+        }
+      ],
+      "residue_name": "Glu",
+      "roles": [
+        "electrostatic stabiliser",
+        "hydrogen bond donor",
+        "proton acceptor",
+        "proton donor"
+      ],
+      "sequence_position": 317,
+      "site_id": "P11444:E317",
+      "uniprot_id": "P11444"
+    }
+  ],
+  "source_proposals": [
+    {
+      "annotation_texts": [],
+      "components_summary": "overall reactant used, intermediate terminated, inferred reaction step, assisted keto-enol tautomerisation, native state of enzyme regenerated, overall product formed, proton transfer, intermediate formation",
+      "is_detailed": true,
+      "mechanism_text": "The mechanism shown in the following steps refers to the direction shown in overall reaction not in the reverse direction. Lys166 is the (S)-specific acid/base catalyst and His297 is the (R)-specific acid/base catalyst, thus in the reverse reaction, Lys166 deprotonates the (S)-mandelate and the intermediate is reprotonated from His297.",
+      "preferred": true,
+      "proposal_id": "atlas10.mandelate-racemase-pputida.enolate.mcsa-M0187.mechanism-1",
+      "rating": 3,
+      "scheme_retrieval_issues": [],
+      "source_mechanism_id": 1,
+      "source_record_id": "M0187",
+      "steps": [
+        {
+          "atom_mapping_status": "not_inferred",
+          "bond_edit_status": "not_compiled_from_unmapped_source_scheme",
+          "catalyst_site_ids": [
+            "P11444:H297"
+          ],
+          "is_inferred": false,
+          "order": 1,
+          "source_electron_flow_count": 4,
+          "source_scheme_sha256": "64308a1d95a102c692bc597794237b268800eebab3973a121f99d5ad10ff2188",
+          "source_step_id": 1,
+          "summary": "His297 deprotonates the (R)-mandelate substrate, which results in a keto-enol tautomerisation."
+        },
+        {
+          "atom_mapping_status": "not_inferred",
+          "bond_edit_status": "not_compiled_from_unmapped_source_scheme",
+          "catalyst_site_ids": [
+            "P11444:K166"
+          ],
+          "is_inferred": false,
+          "order": 2,
+          "source_electron_flow_count": 4,
+          "source_scheme_sha256": "476cc9e8455890fce1bbe40c4c307c93dae3c3cc0a4e568bbd255db57195662b",
+          "source_step_id": 2,
+          "summary": "The intermediate undergoes another keto-enol tautomerisation which reprotonates the intermediate from Lys166."
+        },
+        {
+          "atom_mapping_status": "not_inferred",
+          "bond_edit_status": "not_compiled_from_unmapped_source_scheme",
+          "catalyst_site_ids": [
+            "P11444:H297",
+            "P11444:K166"
+          ],
+          "is_inferred": true,
+          "order": 3,
+          "source_electron_flow_count": 3,
+          "source_scheme_sha256": "8d9b0ee445e50cb7e32e9ae67f653ffd0b7dc1f5b5f979564dfe0ff2d292345e",
+          "source_step_id": 3,
+          "summary": "Lys166 deprotonates water, which deprotonates His297 in an inferred return step."
+        }
+      ],
+      "structured_detail_status": "source_curved_arrows_preserved_no_atom_mapping_inference",
+      "terminal_state_source_step_ids": [
+        4
+      ]
+    }
+  ],
+  "structures": [
+    {
+      "applicability": "direct",
+      "context_flags": [
+        "static_structure",
+        "inhibitor_bound_context",
+        "chemical_modification_context"
+      ],
+      "evidence_ids": [
+        "source:PDB:1MNS",
+        "source:UniProtKB:P11444"
+      ],
+      "experimental_method": "X-RAY DIFFRACTION",
+      "limitation": "Use for site geometry; do not interpret inhibitor-bound or chemically modified context as direct substrate turnover.",
+      "pdb_id": "1MNS",
+      "resolution_angstrom": 2.0,
+      "uniprot_chain_ranges": [
+        {
+          "chain_id": "A",
+          "uniprot_end": 359,
+          "uniprot_start": 3
+        }
+      ]
+    }
+  ],
+  "target_record_id": "mechanism:mandelate-racemase-pputida-enolate-v1",
+  "uncertainties": [
+    {
+      "abstention": "Do not resolve this ambiguity beyond the frozen sources and explicit compilation rules.",
+      "status": "open",
+      "summary": "PDB 1MNS contains inhibitor and chemical-modification context rather than a substrate turnover trajectory.",
+      "uncertainty_id": "atlas10.mandelate-racemase-pputida.enolate.uncertainty-1"
+    },
+    {
+      "abstention": "Do not resolve this ambiguity beyond the frozen sources and explicit compilation rules.",
+      "status": "open",
+      "summary": "The source mechanism uses an inferred return half of the racemization cycle whose evidence must remain source-scoped.",
+      "uncertainty_id": "atlas10.mandelate-racemase-pputida.enolate.uncertainty-2"
+    },
+    {
+      "abstention": "Do not resolve this ambiguity beyond the frozen sources and explicit compilation rules.",
+      "status": "open",
+      "summary": "Shared enolase-like fold and enolate stabilization with methylaspartate ammonia-lyase do not imply identical bases, substrates, or net chemistry.",
+      "uncertainty_id": "atlas10.mandelate-racemase-pputida.enolate.uncertainty-3"
+    }
+  ]
+}

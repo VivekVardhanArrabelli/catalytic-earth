@@ -1,0 +1,541 @@
+{
+  "case_id": "atlas10.cyclophilin-a-human.isomerization",
+  "claim_boundary": {
+    "does_not_support": [
+      "Mechanism truth beyond the frozen sources, unrestricted transfer across proteins or substrates, or replacement of experimental validation."
+    ],
+    "supports": [
+      "Produce a site-grounded Tier-2 transition-state/isomerization hypothesis with a valid reaction and applicability record, zero fabricated discrete electron-flow edits, and a machine-visible mandatory abstention from unsupported detail."
+    ]
+  },
+  "compiled_hypothesis_sha256": "e51bfc88601e9c76a5088adadac633f8f83a288ae72f5b9bd49b697460fac3b1",
+  "counterevidence": [
+    {
+      "counterevidence_id": "atlas10.cyclophilin-a-human.isomerization.structure-1m9c-limit",
+      "disposition": "Retain the structure with its explicit applicability and context flags.",
+      "effect": "Limits mechanistic generalization from this static structural context.",
+      "evidence_ids": [
+        "source:PDB:1M9C"
+      ],
+      "summary": "Direct for unmutated human cyclophilin A in this HIV-1 capsid complex; do not generalize the substrate context to every cyclophilin target."
+    },
+    {
+      "counterevidence_id": "atlas10.cyclophilin-a-human.isomerization.non-detailed-source",
+      "disposition": "Retain source text, sites, reaction, and a mandatory zero-step detail abstention.",
+      "effect": "Blocks compilation of discrete electron-flow, atom-mapped, or bond-edit steps.",
+      "evidence_ids": [
+        "source:M-CSA:M0189"
+      ],
+      "summary": "M-CSA M0189 is explicitly non-detailed and its linked Marvin scheme returns HTTP 404 in the frozen acquisition."
+    }
+  ],
+  "detail_abstention": {
+    "reason": "M-CSA explicitly marks the selected proposal non-detailed and the linked scheme was unavailable; rating 3 does not authorize fabrication of discrete chemistry.",
+    "required": true,
+    "source_basis_evidence_ids": [
+      "source:M-CSA:M0189",
+      "source:UniProtKB:P62937",
+      "source:Rhea:RHEA:16237",
+      "source:PDB:1M9C",
+      "source:DOI:10.1038/nsb927",
+      "source:CATH:CATH:2.40.100.10"
+    ],
+    "unsupported_fields": [
+      "atom_mapped_bond_edits",
+      "discrete_electron_and_proton_transfer_steps",
+      "covalent_intermediates",
+      "ordered_elementary_steps",
+      "universal_substrate_applicability",
+      "independent_mechanism_validation",
+      "complete_turnover_trajectory"
+    ]
+  },
+  "evidence": [
+    {
+      "applicability": "direct",
+      "evidence_id": "source:UniProtKB:P62937",
+      "evidence_role": "protein_identity",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "fd854c2994f70b48d8514f594e41b4ce64066f984148e4c97d03db1e2cdbefc1",
+      "source_id": "UniProtKB",
+      "source_record_id": "P62937",
+      "uri": "https://www.uniprot.org/uniprotkb/P62937/entry"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:Rhea:RHEA:16237",
+      "evidence_role": "net_reaction",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "17e11f814f4685614e1604dc416da979adeee7fa644956bab8b7082410979e6c",
+      "source_id": "Rhea",
+      "source_record_id": "RHEA:16237",
+      "uri": "https://www.rhea-db.org/rhea/16237"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:PDB:1M9C",
+      "evidence_role": "experimental_structure",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "8a6b4c51252b08b7f98d1f20537565c4d206229122da7d00a8f38a42d43f14dc",
+      "source_id": "PDB",
+      "source_record_id": "1M9C",
+      "uri": "https://www.rcsb.org/structure/1M9C"
+    },
+    {
+      "applicability": "direct_non_detailed",
+      "evidence_id": "source:M-CSA:M0189",
+      "evidence_role": "source_mechanism",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "929daa856c1096a4eabae1ec8308cd5b1a0fd2a0176697013d698845080353d6",
+      "source_id": "M-CSA",
+      "source_record_id": "M0189",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/189/"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:DOI:10.1038/nsb927",
+      "evidence_role": "primary_structure_evidence",
+      "retrieval_status": "reference_only_verified_handle",
+      "snapshot_sha256": null,
+      "source_id": "DOI",
+      "source_record_id": "10.1038/nsb927",
+      "uri": "https://doi.org/10.1038/nsb927"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:CATH:CATH:2.40.100.10",
+      "evidence_role": "fold_classification",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "b75adfd431aeef86287662fc375c078ca39e597e73b051f45dfc85c0bde8c4b9",
+      "source_id": "CATH",
+      "source_record_id": "CATH:2.40.100.10",
+      "uri": "https://www.cathdb.info/version/latest/superfamily/2.40.100.10"
+    }
+  ],
+  "packet_id": "review-packet:atlas10.cyclophilin-a-human.isomerization",
+  "protein_scope": {
+    "assay_candidate": false,
+    "case_label": "Human cyclophilin A",
+    "direct_pdb_ids": [
+      "1M9C"
+    ],
+    "ec_number": "5.2.1.8",
+    "fingerprint_bridge": {
+      "fingerprint_id": null,
+      "registry_write": false,
+      "use": "historical_crosswalk_only_not_evidence"
+    },
+    "fold_classification_ids": [
+      "CATH:2.40.100.10"
+    ],
+    "organism": "Homo sapiens",
+    "relationship_group_ids": [],
+    "uniprot_ids": [
+      "P62937"
+    ]
+  },
+  "provenance": {
+    "compilation_spec_sha256": "89cfa53c23fdeafde11e859cea102a88421ea253446a267b23bca2eb84920932",
+    "compiler_version": "catalytic-earth.atlas10-compiler.v1",
+    "selection_sha256": "9bc114aaf793c51ec3b6273466f62a83974512a2dcf969d95d8b97453dd2795e",
+    "source_snapshot_set_sha256": "a6b6a0059835e8f3f78cd5da9897afb599560bc844c59e82ba523f9387d0550d"
+  },
+  "reaction_or_source_gap": {
+    "directionality": "undirected",
+    "ec_number": "5.2.1.8",
+    "equation": "[protein]-peptidylproline (omega=180) = [protein]-peptidylproline (omega=0)",
+    "gap_context": null,
+    "participants": [
+      {
+        "name": "[protein]-peptidylproline (omega=180)",
+        "participant_id": "RHEA-COMP:10748",
+        "participant_type": "macromolecule",
+        "reactive_part_id": "CHEBI:83834",
+        "side": "left",
+        "source_accession": "GENERIC:10748",
+        "source_count_values": [
+          1
+        ],
+        "source_row_count": 1,
+        "source_scope": "Rhea RDF participant",
+        "stoichiometry": 1
+      },
+      {
+        "name": "[protein]-peptidylproline (omega=0)",
+        "participant_id": "RHEA-COMP:10747",
+        "participant_type": "macromolecule",
+        "reactive_part_id": "CHEBI:83833",
+        "side": "right",
+        "source_accession": "GENERIC:10747",
+        "source_count_values": [
+          1
+        ],
+        "source_row_count": 1,
+        "source_scope": "Rhea RDF participant",
+        "stoichiometry": 1
+      }
+    ],
+    "source_id": "Rhea",
+    "source_query": "id:16237",
+    "source_record_id": "RHEA:16237",
+    "source_status": "direct_record"
+  },
+  "review_questions": [
+    "Is the reaction or documented source gap correct for this protein scope?",
+    "Are the catalytic sites and numbering mappings faithful to the cited sources?",
+    "Are the represented steps faithful to source granularity, with unsupported detail abstained?",
+    "Are structure and mechanism applicability boundaries correct?",
+    "Does the claim boundary prevent an unjustified evidence-tier upgrade?"
+  ],
+  "review_unit": "bounded_claim_packet",
+  "reviewer_instruction": "Review only the bounded case and cited source scope. A correction, uncertainty, or rejection is useful. Do not infer independent validation from upstream curation, source rating, fold similarity, or another case.",
+  "schema_version": "catalytic-earth.atlas10-review-packet.v1",
+  "sites": [
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0189",
+        "source:UniProtKB:P62937",
+        "source:PDB:1M9C"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 55,
+          "chain_id": "A",
+          "label_position": 55,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 55 to 1M9C chain A author position 55 and mmCIF label position 55; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1M9C"
+        },
+        {
+          "applicability": "direct",
+          "author_position": 55,
+          "chain_id": "B",
+          "label_position": 55,
+          "mapping_basis": "uniprot_chain_range_and_coordinate",
+          "numbering_note": "UniProt maps 1M9C chain B to natural positions 1-165; natural position 55 resolves to mmCIF label 55 and author position 55 in the frozen coordinate file.",
+          "pdb_id": "1M9C"
+        }
+      ],
+      "residue_name": "Arg",
+      "roles": [
+        "electrostatic stabiliser",
+        "hydrogen bond donor",
+        "steric role"
+      ],
+      "sequence_position": 55,
+      "site_id": "P62937:R55",
+      "uniprot_id": "P62937"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0189",
+        "source:UniProtKB:P62937",
+        "source:PDB:1M9C"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 60,
+          "chain_id": "A",
+          "label_position": 60,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 60 to 1M9C chain A author position 60 and mmCIF label position 60; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1M9C"
+        },
+        {
+          "applicability": "direct",
+          "author_position": 60,
+          "chain_id": "B",
+          "label_position": 60,
+          "mapping_basis": "uniprot_chain_range_and_coordinate",
+          "numbering_note": "UniProt maps 1M9C chain B to natural positions 1-165; natural position 60 resolves to mmCIF label 60 and author position 60 in the frozen coordinate file.",
+          "pdb_id": "1M9C"
+        }
+      ],
+      "residue_name": "Phe",
+      "roles": [
+        "polar/non-polar interaction",
+        "steric role"
+      ],
+      "sequence_position": 60,
+      "site_id": "P62937:F60",
+      "uniprot_id": "P62937"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0189",
+        "source:UniProtKB:P62937",
+        "source:PDB:1M9C"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 63,
+          "chain_id": "A",
+          "label_position": 63,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 63 to 1M9C chain A author position 63 and mmCIF label position 63; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1M9C"
+        },
+        {
+          "applicability": "direct",
+          "author_position": 63,
+          "chain_id": "B",
+          "label_position": 63,
+          "mapping_basis": "uniprot_chain_range_and_coordinate",
+          "numbering_note": "UniProt maps 1M9C chain B to natural positions 1-165; natural position 63 resolves to mmCIF label 63 and author position 63 in the frozen coordinate file.",
+          "pdb_id": "1M9C"
+        }
+      ],
+      "residue_name": "Gln",
+      "roles": [
+        "electrostatic stabiliser",
+        "hydrogen bond acceptor",
+        "hydrogen bond donor"
+      ],
+      "sequence_position": 63,
+      "site_id": "P62937:Q63",
+      "uniprot_id": "P62937"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0189",
+        "source:UniProtKB:P62937",
+        "source:PDB:1M9C"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 102,
+          "chain_id": "A",
+          "label_position": 102,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 102 to 1M9C chain A author position 102 and mmCIF label position 102; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1M9C"
+        },
+        {
+          "applicability": "direct",
+          "author_position": 102,
+          "chain_id": "B",
+          "label_position": 102,
+          "mapping_basis": "uniprot_chain_range_and_coordinate",
+          "numbering_note": "UniProt maps 1M9C chain B to natural positions 1-165; natural position 102 resolves to mmCIF label 102 and author position 102 in the frozen coordinate file.",
+          "pdb_id": "1M9C"
+        }
+      ],
+      "residue_name": "Asn",
+      "roles": [
+        "electrostatic stabiliser",
+        "hydrogen bond acceptor",
+        "hydrogen bond donor"
+      ],
+      "sequence_position": 102,
+      "site_id": "P62937:N102",
+      "uniprot_id": "P62937"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0189",
+        "source:UniProtKB:P62937",
+        "source:PDB:1M9C"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 113,
+          "chain_id": "A",
+          "label_position": 113,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 113 to 1M9C chain A author position 113 and mmCIF label position 113; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1M9C"
+        },
+        {
+          "applicability": "direct",
+          "author_position": 113,
+          "chain_id": "B",
+          "label_position": 113,
+          "mapping_basis": "uniprot_chain_range_and_coordinate",
+          "numbering_note": "UniProt maps 1M9C chain B to natural positions 1-165; natural position 113 resolves to mmCIF label 113 and author position 113 in the frozen coordinate file.",
+          "pdb_id": "1M9C"
+        }
+      ],
+      "residue_name": "Phe",
+      "roles": [
+        "polar/non-polar interaction",
+        "steric role"
+      ],
+      "sequence_position": 113,
+      "site_id": "P62937:F113",
+      "uniprot_id": "P62937"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0189",
+        "source:UniProtKB:P62937",
+        "source:PDB:1M9C"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 122,
+          "chain_id": "A",
+          "label_position": 122,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 122 to 1M9C chain A author position 122 and mmCIF label position 122; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1M9C"
+        },
+        {
+          "applicability": "direct",
+          "author_position": 122,
+          "chain_id": "B",
+          "label_position": 122,
+          "mapping_basis": "uniprot_chain_range_and_coordinate",
+          "numbering_note": "UniProt maps 1M9C chain B to natural positions 1-165; natural position 122 resolves to mmCIF label 122 and author position 122 in the frozen coordinate file.",
+          "pdb_id": "1M9C"
+        }
+      ],
+      "residue_name": "Leu",
+      "roles": [
+        "polar/non-polar interaction",
+        "steric role"
+      ],
+      "sequence_position": 122,
+      "site_id": "P62937:L122",
+      "uniprot_id": "P62937"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0189",
+        "source:UniProtKB:P62937",
+        "source:PDB:1M9C"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 126,
+          "chain_id": "A",
+          "label_position": 126,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 126 to 1M9C chain A author position 126 and mmCIF label position 126; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1M9C"
+        },
+        {
+          "applicability": "direct",
+          "author_position": 126,
+          "chain_id": "B",
+          "label_position": 126,
+          "mapping_basis": "uniprot_chain_range_and_coordinate",
+          "numbering_note": "UniProt maps 1M9C chain B to natural positions 1-165; natural position 126 resolves to mmCIF label 126 and author position 126 in the frozen coordinate file.",
+          "pdb_id": "1M9C"
+        }
+      ],
+      "residue_name": "His",
+      "roles": [
+        "polar/non-polar interaction",
+        "steric role"
+      ],
+      "sequence_position": 126,
+      "site_id": "P62937:H126",
+      "uniprot_id": "P62937"
+    }
+  ],
+  "source_proposals": [
+    {
+      "annotation_texts": [
+        "The cyclophilin family of enzymes catalyses the cis-trans isomerisation of peptide bonds preceding proline residues. This activity accelerates protein folding in vitro and may underlie some of the many roles of cyclophilins, which include signalling, mitochondrial function, chaperone activity, RNA splicing, stress response, gene expression and regulation of kinase activity. The biological activities of cyclophilin A (CypA) in humans include binding the HIV-1 CA protein in the virions and facilitating viral replication; the basis for this is unclear and isomerase activity is not required for HIV-1 infectivity.<br/>",
+        "The enzyme stabilises the transition state of the isomerisation of peptidylproline omega=180 to peptidylproline omega=0."
+      ],
+      "components_summary": "isomerisation reaction (not covered by named reactions), overall reactant used, overall product formed",
+      "is_detailed": false,
+      "mechanism_text": "The 'reaction' is only a rotation of a peptide bond preceding the substrate proline. The proline itself remains more or less stationary, with the N-terminal residues rotating anticlockwise 180 degrees. The catalysis is mainly through stabilisation of the transition state. There is also a steric clash between the side chain of the residue preceding the substrate Pro and Arg 55 in the trans conformation. (HIV-1 CA protein has a Gly residue in this position so binding of the trans conformation is more favourable compared to other substrates.)",
+      "preferred": true,
+      "proposal_id": "atlas10.cyclophilin-a-human.isomerization.mcsa-M0189.mechanism-1",
+      "rating": 3,
+      "scheme_retrieval_issues": [
+        {
+          "source_step_id": 1,
+          "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_189_mechanism_1_step_1_LoqMBYP.mrv",
+          "status": "source_link_missing_http_404"
+        }
+      ],
+      "source_mechanism_id": 1,
+      "source_record_id": "M0189",
+      "steps": [],
+      "structured_detail_status": "abstained_non_detailed_source",
+      "terminal_state_source_step_ids": []
+    }
+  ],
+  "structures": [
+    {
+      "applicability": "direct",
+      "context_flags": [
+        "static_structure",
+        "HIV_1_capsid_complex",
+        "substrate_context_limited"
+      ],
+      "evidence_ids": [
+        "source:PDB:1M9C",
+        "source:UniProtKB:P62937"
+      ],
+      "experimental_method": "X-RAY DIFFRACTION",
+      "limitation": "Direct for unmutated human cyclophilin A in this HIV-1 capsid complex; do not generalize the substrate context to every cyclophilin target.",
+      "pdb_id": "1M9C",
+      "resolution_angstrom": 2.0,
+      "uniprot_chain_ranges": [
+        {
+          "chain_id": "A",
+          "uniprot_end": 165,
+          "uniprot_start": 1
+        },
+        {
+          "chain_id": "B",
+          "uniprot_end": 165,
+          "uniprot_start": 1
+        }
+      ]
+    }
+  ],
+  "target_record_id": "mechanism:cyclophilin-a-human-isomerization-v1",
+  "uncertainties": [
+    {
+      "abstention": "Do not resolve this ambiguity beyond the frozen sources and explicit compilation rules.",
+      "status": "open",
+      "summary": "M-CSA M0189 is high-rated but explicitly non-detailed; rating and mechanistic granularity are different dimensions.",
+      "uncertainty_id": "atlas10.cyclophilin-a-human.isomerization.uncertainty-1"
+    },
+    {
+      "abstention": "Do not resolve this ambiguity beyond the frozen sources and explicit compilation rules.",
+      "status": "open",
+      "summary": "Peptidyl-proline isomerization does not require a conventional net bond-change list, and forcing one would misrepresent the chemistry.",
+      "uncertainty_id": "atlas10.cyclophilin-a-human.isomerization.uncertainty-2"
+    },
+    {
+      "abstention": "Do not resolve this ambiguity beyond the frozen sources and explicit compilation rules.",
+      "status": "open",
+      "summary": "PDB 1M9C has an HIV-1 capsid substrate context that cannot be generalized silently to every cyclophilin target.",
+      "uncertainty_id": "atlas10.cyclophilin-a-human.isomerization.uncertainty-3"
+    }
+  ]
+}

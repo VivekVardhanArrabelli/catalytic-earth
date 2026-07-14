@@ -10,6 +10,7 @@ from importlib.resources import files
 from pathlib import Path
 from typing import Any, Sequence
 
+from .atlas10_kernel import build_atlas10_runtime_result
 from .atlas_kernel import build_atlas3_runtime_result, canonical_sha256
 from .schema import MechanismRecord, SCHEMA_VERSION
 
@@ -19,6 +20,10 @@ GOLDEN_EXPECTED = "release_data/golden_expected_v1.json"
 ATLAS3_KERNEL = "atlas_data/atlas3_kernel.json"
 ATLAS3_QUERY = "atlas_data/case_truth_summary.sql"
 ATLAS3_EXPECTED = "atlas_data/case_truth_summary_expected.json"
+ATLAS10_KERNEL = "atlas_data/atlas10_kernel.json"
+ATLAS10_CONVERGENT_QUERY = "atlas_data/atlas10_convergent_strategy.sql"
+ATLAS10_DIVERGENT_QUERY = "atlas_data/atlas10_shared_fold_divergent_chemistry.sql"
+ATLAS10_EXPECTED = "atlas_data/atlas10_runtime_expected.json"
 
 
 def _resource_bytes(relative_path: str) -> bytes:
@@ -106,6 +111,37 @@ def verified_atlas3_result() -> dict[str, Any]:
     }
 
 
+def verified_atlas10_result() -> dict[str, Any]:
+    """Reproduce the immutable Atlas-3 plus seven-case Atlas-10 query surface."""
+    inherited_kernel = json.loads(_resource_bytes(ATLAS3_KERNEL))
+    kernel = json.loads(_resource_bytes(ATLAS10_KERNEL))
+    queries = {
+        "atlas10.query.convergent-strategy": _resource_bytes(
+            ATLAS10_CONVERGENT_QUERY
+        ).decode("utf-8"),
+        "atlas10.query.shared-fold-divergent-chemistry": _resource_bytes(
+            ATLAS10_DIVERGENT_QUERY
+        ).decode("utf-8"),
+    }
+    expected = json.loads(_resource_bytes(ATLAS10_EXPECTED))
+    result = build_atlas10_runtime_result(kernel, inherited_kernel, queries)
+    digest = canonical_sha256(result)
+    checks = {
+        "kernel_sha256": result["kernel_sha256"],
+        "inherited_kernel_sha256": result["inherited_kernel_sha256"],
+        "query_sha256": result["query_sha256"],
+        "runtime_result_sha256": digest,
+        "relationship_query_results": result["relationship_query_results"],
+    }
+    if any(expected.get(field) != value for field, value in checks.items()):
+        raise ValueError("Atlas-10 kernel/query result differs from the packaged expectation")
+    return {
+        **result,
+        "runtime_result_sha256": digest,
+        "matches_expected": True,
+    }
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="catalytic-earth",
@@ -120,6 +156,10 @@ def build_parser() -> argparse.ArgumentParser:
         "atlas3", help="reproduce the first three-case biological Atlas kernel"
     )
     atlas3.add_argument("--output", type=Path, help="optional JSON output path")
+    atlas10 = subparsers.add_parser(
+        "atlas10", help="reproduce the ten-case Atlas relationship-query surface"
+    )
+    atlas10.add_argument("--output", type=Path, help="optional JSON output path")
     subparsers.add_parser("claims", help="print the exact golden-result claim boundary")
     return parser
 
@@ -135,6 +175,13 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 0
     if args.command == "atlas3":
         result = verified_atlas3_result()
+        rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
+        if args.output:
+            args.output.write_text(rendered, encoding="utf-8", newline="\n")
+        print(rendered, end="")
+        return 0
+    if args.command == "atlas10":
+        result = verified_atlas10_result()
         rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
         if args.output:
             args.output.write_text(rendered, encoding="utf-8", newline="\n")

@@ -1,0 +1,576 @@
+{
+  "case_id": "atlas10.methylaspartate-lyase-ctetanomorphum.enolate",
+  "claim_boundary": {
+    "does_not_support": [
+      "Mechanism truth beyond the frozen sources, unrestricted transfer across proteins or substrates, or replacement of experimental validation."
+    ],
+    "supports": [
+      "Represent the magnesium-stabilized E1cB elimination, both domain anchors, and inferred-step uncertainty, then expose conserved versus repurposed features in the paired enolase query without forcing a historical fingerprint assignment."
+    ]
+  },
+  "compiled_hypothesis_sha256": "491bdc5276ad225f1cc3f59a3a0b3859eada3b0ca027d3fbca0af7acc05dbb96",
+  "counterevidence": [
+    {
+      "counterevidence_id": "atlas10.methylaspartate-lyase-ctetanomorphum.enolate.structure-1kcz-limit",
+      "disposition": "Retain the structure with its explicit applicability and context flags.",
+      "effect": "Limits mechanistic generalization from this static structural context.",
+      "evidence_ids": [
+        "source:PDB:1KCZ"
+      ],
+      "summary": "Use for both domain anchors and catalytic sites; shared catalytic fold does not collapse the additional N-terminal domain."
+    }
+  ],
+  "detail_abstention": {
+    "reason": "The frozen source schemes preserve curved-arrow endpoints but do not establish a verified atom map, compiled bond-edit list, independent validation, or complete turnover trajectory.",
+    "required": true,
+    "source_basis_evidence_ids": [
+      "source:M-CSA:M0468",
+      "source:UniProtKB:Q05514",
+      "source:Rhea:RHEA:12829",
+      "source:PDB:1KCZ",
+      "source:DOI:10.1074/jbc.m111180200",
+      "source:CATH:CATH:3.20.20.120",
+      "source:CATH:CATH:3.30.390.10"
+    ],
+    "unsupported_fields": [
+      "atom_mapped_bond_edits",
+      "independent_mechanism_validation",
+      "complete_turnover_trajectory"
+    ]
+  },
+  "evidence": [
+    {
+      "applicability": "direct",
+      "evidence_id": "source:UniProtKB:Q05514",
+      "evidence_role": "protein_identity",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "178ee97c99c10d3bdd41a274745e89f5ebe745b766ee5a085886b0cd756c59dd",
+      "source_id": "UniProtKB",
+      "source_record_id": "Q05514",
+      "uri": "https://www.uniprot.org/uniprotkb/Q05514/entry"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:Rhea:RHEA:12829",
+      "evidence_role": "net_reaction",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "d40c4e9c3ce2e70eb01be9df24c1a6ace25f97a07457e4c2ce4473f2aa8a9520",
+      "source_id": "Rhea",
+      "source_record_id": "RHEA:12829",
+      "uri": "https://www.rhea-db.org/rhea/12829"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:PDB:1KCZ",
+      "evidence_role": "experimental_structure",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "6e67d7bfd6b43f0de7a2c4d73e21d533227fb4e0d4a7ad269fb4a344b66861c8",
+      "source_id": "PDB",
+      "source_record_id": "1KCZ",
+      "uri": "https://www.rcsb.org/structure/1KCZ"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:M-CSA:M0468",
+      "evidence_role": "source_mechanism",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "1e6fc303f8f7416b19b701b5921a309b439743941f3c5253e8d353318ca9e9d7",
+      "source_id": "M-CSA",
+      "source_record_id": "M0468",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/468/"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:DOI:10.1074/jbc.m111180200",
+      "evidence_role": "primary_structure_evidence",
+      "retrieval_status": "reference_only_verified_handle",
+      "snapshot_sha256": null,
+      "source_id": "DOI",
+      "source_record_id": "10.1074/jbc.m111180200",
+      "uri": "https://doi.org/10.1074/jbc.m111180200"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:CATH:CATH:3.20.20.120",
+      "evidence_role": "fold_classification",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "8b57f92676b44fb43d4429d7403b78d6cd27040a7b3a2ec9baa82eff1787f5b4",
+      "source_id": "CATH",
+      "source_record_id": "CATH:3.20.20.120",
+      "uri": "https://www.cathdb.info/version/latest/superfamily/3.20.20.120"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:CATH:CATH:3.30.390.10",
+      "evidence_role": "fold_classification",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "b8bc2e1b1a2286fe9d9a1cf252977aada355cfa1ac5d599bb10e01d1895df764",
+      "source_id": "CATH",
+      "source_record_id": "CATH:3.30.390.10",
+      "uri": "https://www.cathdb.info/version/latest/superfamily/3.30.390.10"
+    }
+  ],
+  "packet_id": "review-packet:atlas10.methylaspartate-lyase-ctetanomorphum.enolate",
+  "protein_scope": {
+    "assay_candidate": false,
+    "case_label": "Methylaspartate ammonia-lyase",
+    "direct_pdb_ids": [
+      "1KCZ"
+    ],
+    "ec_number": "4.3.1.2",
+    "fingerprint_bridge": {
+      "fingerprint_id": null,
+      "registry_write": false,
+      "use": "historical_crosswalk_only_not_evidence"
+    },
+    "fold_classification_ids": [
+      "CATH:3.20.20.120",
+      "CATH:3.30.390.10"
+    ],
+    "organism": "Clostridium tetanomorphum",
+    "relationship_group_ids": [
+      "atlas10.relationship.divergent-enolase-chemistry"
+    ],
+    "uniprot_ids": [
+      "Q05514"
+    ]
+  },
+  "provenance": {
+    "compilation_spec_sha256": "89cfa53c23fdeafde11e859cea102a88421ea253446a267b23bca2eb84920932",
+    "compiler_version": "catalytic-earth.atlas10-compiler.v1",
+    "selection_sha256": "9bc114aaf793c51ec3b6273466f62a83974512a2dcf969d95d8b97453dd2795e",
+    "source_snapshot_set_sha256": "a6b6a0059835e8f3f78cd5da9897afb599560bc844c59e82ba523f9387d0550d"
+  },
+  "reaction_or_source_gap": {
+    "directionality": "undirected",
+    "ec_number": "4.3.1.2",
+    "equation": "(2S,3S)-3-methyl-L-aspartate = mesaconate + NH4(+)",
+    "gap_context": null,
+    "participants": [
+      {
+        "name": "(2S,3S)-3-methyl-L-aspartate",
+        "participant_id": "CHEBI:58724",
+        "participant_type": "small_molecule",
+        "reactive_part_id": null,
+        "side": "left",
+        "source_accession": "CHEBI:58724",
+        "source_count_values": [
+          1
+        ],
+        "source_row_count": 1,
+        "source_scope": "Rhea RDF participant",
+        "stoichiometry": 1
+      },
+      {
+        "name": "NH4(+)",
+        "participant_id": "CHEBI:28938",
+        "participant_type": "small_molecule",
+        "reactive_part_id": null,
+        "side": "right",
+        "source_accession": "CHEBI:28938",
+        "source_count_values": [
+          1
+        ],
+        "source_row_count": 1,
+        "source_scope": "Rhea RDF participant",
+        "stoichiometry": 1
+      },
+      {
+        "name": "mesaconate",
+        "participant_id": "CHEBI:36986",
+        "participant_type": "small_molecule",
+        "reactive_part_id": null,
+        "side": "right",
+        "source_accession": "CHEBI:36986",
+        "source_count_values": [
+          1
+        ],
+        "source_row_count": 1,
+        "source_scope": "Rhea RDF participant",
+        "stoichiometry": 1
+      }
+    ],
+    "source_id": "Rhea",
+    "source_query": "id:12829",
+    "source_record_id": "RHEA:12829",
+    "source_status": "direct_record"
+  },
+  "review_questions": [
+    "Is the reaction or documented source gap correct for this protein scope?",
+    "Are the catalytic sites and numbering mappings faithful to the cited sources?",
+    "Are the represented steps faithful to source granularity, with unsupported detail abstained?",
+    "Are structure and mechanism applicability boundaries correct?",
+    "Does the claim boundary prevent an unjustified evidence-tier upgrade?"
+  ],
+  "review_unit": "bounded_claim_packet",
+  "reviewer_instruction": "Review only the bounded case and cited source scope. A correction, uncertainty, or rejection is useful. Do not infer independent validation from upstream curation, source rating, fold similarity, or another case.",
+  "schema_version": "catalytic-earth.atlas10-review-packet.v1",
+  "sites": [
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0468",
+        "source:UniProtKB:Q05514",
+        "source:PDB:1KCZ"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 172,
+          "chain_id": "A",
+          "label_position": 172,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 172 to 1KCZ chain A author position 172 and mmCIF label position 172; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1KCZ"
+        },
+        {
+          "applicability": "direct",
+          "author_position": 172,
+          "chain_id": "B",
+          "label_position": 172,
+          "mapping_basis": "uniprot_chain_range_and_coordinate",
+          "numbering_note": "UniProt maps 1KCZ chain B to natural positions 1-413; natural position 172 resolves to mmCIF label 172 and author position 172 in the frozen coordinate file.",
+          "pdb_id": "1KCZ"
+        }
+      ],
+      "residue_name": "Gln",
+      "roles": [
+        "electrostatic stabiliser"
+      ],
+      "sequence_position": 172,
+      "site_id": "Q05514:Q172",
+      "uniprot_id": "Q05514"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0468",
+        "source:UniProtKB:Q05514",
+        "source:PDB:1KCZ"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 194,
+          "chain_id": "A",
+          "label_position": 194,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 194 to 1KCZ chain A author position 194 and mmCIF label position 194; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1KCZ"
+        },
+        {
+          "applicability": "direct",
+          "author_position": 194,
+          "chain_id": "B",
+          "label_position": 194,
+          "mapping_basis": "uniprot_chain_range_and_coordinate",
+          "numbering_note": "UniProt maps 1KCZ chain B to natural positions 1-413; natural position 194 resolves to mmCIF label 194 and author position 194 in the frozen coordinate file.",
+          "pdb_id": "1KCZ"
+        }
+      ],
+      "residue_name": "His",
+      "roles": [
+        "electrostatic stabiliser"
+      ],
+      "sequence_position": 194,
+      "site_id": "Q05514:H194",
+      "uniprot_id": "Q05514"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0468",
+        "source:UniProtKB:Q05514",
+        "source:PDB:1KCZ"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 238,
+          "chain_id": "A",
+          "label_position": 238,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 238 to 1KCZ chain A author position 238 and mmCIF label position 238; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1KCZ"
+        },
+        {
+          "applicability": "direct",
+          "author_position": 238,
+          "chain_id": "B",
+          "label_position": 238,
+          "mapping_basis": "uniprot_chain_range_and_coordinate",
+          "numbering_note": "UniProt maps 1KCZ chain B to natural positions 1-413; natural position 238 resolves to mmCIF label 238 and author position 238 in the frozen coordinate file.",
+          "pdb_id": "1KCZ"
+        }
+      ],
+      "residue_name": "Asp",
+      "roles": [
+        "metal ligand"
+      ],
+      "sequence_position": 238,
+      "site_id": "Q05514:D238",
+      "uniprot_id": "Q05514"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0468",
+        "source:UniProtKB:Q05514",
+        "source:PDB:1KCZ"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 273,
+          "chain_id": "A",
+          "label_position": 273,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 273 to 1KCZ chain A author position 273 and mmCIF label position 273; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1KCZ"
+        },
+        {
+          "applicability": "direct",
+          "author_position": 273,
+          "chain_id": "B",
+          "label_position": 273,
+          "mapping_basis": "uniprot_chain_range_and_coordinate",
+          "numbering_note": "UniProt maps 1KCZ chain B to natural positions 1-413; natural position 273 resolves to mmCIF label 273 and author position 273 in the frozen coordinate file.",
+          "pdb_id": "1KCZ"
+        }
+      ],
+      "residue_name": "Glu",
+      "roles": [
+        "metal ligand"
+      ],
+      "sequence_position": 273,
+      "site_id": "Q05514:E273",
+      "uniprot_id": "Q05514"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0468",
+        "source:UniProtKB:Q05514",
+        "source:PDB:1KCZ"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 307,
+          "chain_id": "A",
+          "label_position": 307,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 307 to 1KCZ chain A author position 307 and mmCIF label position 307; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1KCZ"
+        },
+        {
+          "applicability": "direct",
+          "author_position": 307,
+          "chain_id": "B",
+          "label_position": 307,
+          "mapping_basis": "uniprot_chain_range_and_coordinate",
+          "numbering_note": "UniProt maps 1KCZ chain B to natural positions 1-413; natural position 307 resolves to mmCIF label 307 and author position 307 in the frozen coordinate file.",
+          "pdb_id": "1KCZ"
+        }
+      ],
+      "residue_name": "Asp",
+      "roles": [
+        "metal ligand"
+      ],
+      "sequence_position": 307,
+      "site_id": "Q05514:D307",
+      "uniprot_id": "Q05514"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0468",
+        "source:UniProtKB:Q05514",
+        "source:PDB:1KCZ"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 329,
+          "chain_id": "A",
+          "label_position": 329,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 329 to 1KCZ chain A author position 329 and mmCIF label position 329; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1KCZ"
+        },
+        {
+          "applicability": "direct",
+          "author_position": 329,
+          "chain_id": "B",
+          "label_position": 329,
+          "mapping_basis": "uniprot_chain_range_and_coordinate",
+          "numbering_note": "UniProt maps 1KCZ chain B to natural positions 1-413; natural position 329 resolves to mmCIF label 329 and author position 329 in the frozen coordinate file.",
+          "pdb_id": "1KCZ"
+        }
+      ],
+      "residue_name": "Gln",
+      "roles": [
+        "electrostatic stabiliser"
+      ],
+      "sequence_position": 329,
+      "site_id": "Q05514:Q329",
+      "uniprot_id": "Q05514"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0468",
+        "source:UniProtKB:Q05514",
+        "source:PDB:1KCZ"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 331,
+          "chain_id": "A",
+          "label_position": 331,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 331 to 1KCZ chain A author position 331 and mmCIF label position 331; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1KCZ"
+        },
+        {
+          "applicability": "direct",
+          "author_position": 331,
+          "chain_id": "B",
+          "label_position": 331,
+          "mapping_basis": "uniprot_chain_range_and_coordinate",
+          "numbering_note": "UniProt maps 1KCZ chain B to natural positions 1-413; natural position 331 resolves to mmCIF label 331 and author position 331 in the frozen coordinate file.",
+          "pdb_id": "1KCZ"
+        }
+      ],
+      "residue_name": "Lys",
+      "roles": [
+        "electrostatic stabiliser",
+        "proton acceptor",
+        "proton donor"
+      ],
+      "sequence_position": 331,
+      "site_id": "Q05514:K331",
+      "uniprot_id": "Q05514"
+    }
+  ],
+  "source_proposals": [
+    {
+      "annotation_texts": [],
+      "components_summary": "proton transfer, unimolecular elimination by the conjugate base, assisted keto-enol tautomerisation, inferred reaction step",
+      "is_detailed": true,
+      "mechanism_text": "Lys 331 acts as a general base to remove the 3-proton from 3-methyl aspartate to generate an enolic intermediate. An Mg(II) cation and His 194 provide positive charges to stabilise the accumulation of negative charge on the substrate carboxyl group during the formation of this intermediate. Collapse of the enolate leads to elimination of ammonia in an E1cB mechanism.",
+      "preferred": true,
+      "proposal_id": "atlas10.methylaspartate-lyase-ctetanomorphum.enolate.mcsa-M0468.mechanism-2",
+      "rating": 3,
+      "scheme_retrieval_issues": [],
+      "source_mechanism_id": 2,
+      "source_record_id": "M0468",
+      "steps": [
+        {
+          "atom_mapping_status": "not_inferred",
+          "bond_edit_status": "not_compiled_from_unmapped_source_scheme",
+          "catalyst_site_ids": [
+            "Q05514:K331"
+          ],
+          "is_inferred": false,
+          "order": 1,
+          "source_electron_flow_count": 3,
+          "source_scheme_sha256": "db923a8b122071d647990704cc6e90e5c4f2a6759fe010988ad2792b29ad90c0",
+          "source_step_id": 1,
+          "summary": "Lys331 abstracts the alpha proton from the substrate."
+        },
+        {
+          "atom_mapping_status": "not_inferred",
+          "bond_edit_status": "not_compiled_from_unmapped_source_scheme",
+          "catalyst_site_ids": [],
+          "is_inferred": false,
+          "order": 2,
+          "source_electron_flow_count": 3,
+          "source_scheme_sha256": "1c63802e75f89ecd03e8fb6ec197b64e4600fd5ba476e0ff4c760d40734ed210",
+          "source_step_id": 2,
+          "summary": "The negatively charged intermediate collapses, eliminating ammonia."
+        },
+        {
+          "atom_mapping_status": "not_inferred",
+          "bond_edit_status": "not_compiled_from_unmapped_source_scheme",
+          "catalyst_site_ids": [],
+          "is_inferred": true,
+          "order": 3,
+          "source_electron_flow_count": 2,
+          "source_scheme_sha256": "036137e92102d6a8a04fca70c57550ebeb32ddbe7e7385c5f4286f587ef97020",
+          "source_step_id": 3,
+          "summary": "Inferred return step, using the product ammonia as the base."
+        }
+      ],
+      "structured_detail_status": "source_curved_arrows_preserved_no_atom_mapping_inference",
+      "terminal_state_source_step_ids": [
+        4
+      ]
+    }
+  ],
+  "structures": [
+    {
+      "applicability": "direct",
+      "context_flags": [
+        "static_structure",
+        "multi_domain_target"
+      ],
+      "evidence_ids": [
+        "source:PDB:1KCZ",
+        "source:UniProtKB:Q05514"
+      ],
+      "experimental_method": "X-RAY DIFFRACTION",
+      "limitation": "Use for both domain anchors and catalytic sites; shared catalytic fold does not collapse the additional N-terminal domain.",
+      "pdb_id": "1KCZ",
+      "resolution_angstrom": 1.9,
+      "uniprot_chain_ranges": [
+        {
+          "chain_id": "A",
+          "uniprot_end": 413,
+          "uniprot_start": 1
+        },
+        {
+          "chain_id": "B",
+          "uniprot_end": 413,
+          "uniprot_start": 1
+        }
+      ]
+    }
+  ],
+  "target_record_id": "mechanism:methylaspartate-lyase-ctetanomorphum-enolate-v1",
+  "uncertainties": [
+    {
+      "abstention": "Do not resolve this ambiguity beyond the frozen sources and explicit compilation rules.",
+      "status": "open",
+      "summary": "The selected protein includes an additional N-terminal domain beyond the shared enolase-like catalytic domain.",
+      "uncertainty_id": "atlas10.methylaspartate-lyase-ctetanomorphum.enolate.uncertainty-1"
+    },
+    {
+      "abstention": "Do not resolve this ambiguity beyond the frozen sources and explicit compilation rules.",
+      "status": "open",
+      "summary": "The source mechanism includes an inferred return or regeneration step whose support must remain explicit.",
+      "uncertainty_id": "atlas10.methylaspartate-lyase-ctetanomorphum.enolate.uncertainty-2"
+    },
+    {
+      "abstention": "Do not resolve this ambiguity beyond the frozen sources and explicit compilation rules.",
+      "status": "open",
+      "summary": "A common metal-stabilized enolate strategy with mandelate racemase does not make elimination and racemization interchangeable.",
+      "uncertainty_id": "atlas10.methylaspartate-lyase-ctetanomorphum.enolate.uncertainty-3"
+    }
+  ]
+}

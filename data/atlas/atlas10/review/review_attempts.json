@@ -1,0 +1,91 @@
+{
+  "attempts": [
+    {
+      "attempted_at": null,
+      "channel": null,
+      "independent_review_completed": false,
+      "note": "Packet is ready; no external request is claimed.",
+      "packet_id": "review-packet:atlas10.caii-human.proton-relay",
+      "packet_json_sha256": "2a3173a8f570c4dada684966b9bf31587c2ebe34e16b7edfb53df78921bc45b7",
+      "recipient": null,
+      "request_reference": null,
+      "response_status": "not_requested",
+      "status": "not_attempted_missing_reviewer_channel"
+    },
+    {
+      "attempted_at": null,
+      "channel": null,
+      "independent_review_completed": false,
+      "note": "Packet is ready; no external request is claimed.",
+      "packet_id": "review-packet:atlas10.hewl-chicken.covalent-glycosidase",
+      "packet_json_sha256": "33b01a9b99722cb97bb009d9981ee9a42e718f9acb2fd41b68779c89cbd09752",
+      "recipient": null,
+      "request_reference": null,
+      "response_status": "not_requested",
+      "status": "not_attempted_missing_reviewer_channel"
+    },
+    {
+      "attempted_at": null,
+      "channel": null,
+      "independent_review_completed": false,
+      "note": "Packet is ready; no external request is claimed.",
+      "packet_id": "review-packet:atlas10.trypsin-fusarium.serine-protease",
+      "packet_json_sha256": "7f1d987026d7c5b6c99035a715ccf44f1981f4ec519b74537018deaac7912ba4",
+      "recipient": null,
+      "request_reference": null,
+      "response_status": "not_requested",
+      "status": "not_attempted_missing_reviewer_channel"
+    },
+    {
+      "attempted_at": null,
+      "channel": null,
+      "independent_review_completed": false,
+      "note": "Packet is ready; no external request is claimed.",
+      "packet_id": "review-packet:atlas10.subtilisin-bpn-bacillus.serine-protease",
+      "packet_json_sha256": "e38267a196d152a3030c9929ae0c34cdc02b5ed6cd4eb4abd0271461a413d9ee",
+      "recipient": null,
+      "request_reference": null,
+      "response_status": "not_requested",
+      "status": "not_attempted_missing_reviewer_channel"
+    },
+    {
+      "attempted_at": null,
+      "channel": null,
+      "independent_review_completed": false,
+      "note": "Packet is ready; no external request is claimed.",
+      "packet_id": "review-packet:atlas10.mandelate-racemase-pputida.enolate",
+      "packet_json_sha256": "31f8eb1507d4acf7c279bc9229f441d24fbeb60d8fb5ff7a23fe08b539179178",
+      "recipient": null,
+      "request_reference": null,
+      "response_status": "not_requested",
+      "status": "not_attempted_missing_reviewer_channel"
+    },
+    {
+      "attempted_at": null,
+      "channel": null,
+      "independent_review_completed": false,
+      "note": "Packet is ready; no external request is claimed.",
+      "packet_id": "review-packet:atlas10.methylaspartate-lyase-ctetanomorphum.enolate",
+      "packet_json_sha256": "b891e7ddffe53a359fdefa1093fbff9220875f4ace039b757a915f6a0042548d",
+      "recipient": null,
+      "request_reference": null,
+      "response_status": "not_requested",
+      "status": "not_attempted_missing_reviewer_channel"
+    },
+    {
+      "attempted_at": null,
+      "channel": null,
+      "independent_review_completed": false,
+      "note": "Packet is ready; no external request is claimed.",
+      "packet_id": "review-packet:atlas10.cyclophilin-a-human.isomerization",
+      "packet_json_sha256": "b3056bdb61527388cadb4c35665c76c35e69299c31f8d4bf336ae5a708383b66",
+      "recipient": null,
+      "request_reference": null,
+      "response_status": "not_requested",
+      "status": "not_attempted_missing_reviewer_channel"
+    }
+  ],
+  "honesty_rule": "No request, response, or independent review may be recorded without a real dated event and resolvable channel/reference.",
+  "schema_version": "catalytic-earth.atlas10-review-attempt-ledger.v1",
+  "status": "external_review_attempt_gate_pending"
+}

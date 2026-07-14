@@ -1,6 +1,6 @@
 # Current State
 
-## 2026-07-14 Atlas-10 selection checkpoint
+## 2026-07-14 Atlas-10 compilation checkpoint
 
 **Foundation:** 2026-07-13 truth reset
 
@@ -19,7 +19,9 @@ Read in this order:
 5. `docs/RAPID_ATLAS_PLAN.md` — current execution sequence.
 6. `docs/ATLAS3_SELECTION.md` — frozen first biological-kernel cases and gates.
 7. `docs/ATLAS3_KERNEL.md` — compiled records, source checks, query, and open gates.
-8. `docs/ATLAS10_SELECTION.md` — frozen seven-case follow-on and next build gate.
+8. `docs/ATLAS10_SELECTION.md` — frozen seven-case follow-on contract.
+9. `docs/ATLAS10_KERNEL.md` — compiled ten-case surface, queries, comparator,
+   review state, and remaining gate.
 
 Current truth:
 
@@ -56,16 +58,22 @@ Current truth:
   checkpoint tag `snapshot/atlas3-kernel-20260714` points to the merge. TEM-1
   nitrocefin hydrolysis remains candidate-only; nothing has been commissioned
   or run.
-- Atlas-10 selection is frozen before compilation. It inherits Atlas-3 by
-  content hash and adds human carbonic anhydrase II, hen egg-white lysozyme,
-  *Fusarium* trypsin, subtilisin BPN', *Pseudomonas* mandelate racemase,
-  *Clostridium* methylaspartate ammonia-lyase, and human cyclophilin A. The
-  contract freezes 45 source handles, three Rhea query gaps, the direct 1SUP
-  versus engineered 1S01 boundary, a mandatory non-detailed cyclophilin
-  abstention, two relationship queries, an unintegrated-source comparator,
-  five-to-ten review packets, bounded compute, and no new assay candidate.
-  Source snapshotting and the seven follow-on compilations are the next gate;
-  no Atlas-10 biological record is claimed complete yet.
+- Atlas-10 is computationally compiled while Atlas-3 remains byte-bound and
+  immutable. The surface contains ten cases and 30 typed truth objects. The
+  seven follow-on packages bind 45 case/source handles over 44 unique records,
+  including 36 redistributed snapshots, eight DOI reference-only handles,
+  three explicit zero-row Rhea queries, 21 detailed M-CSA source steps, and 61
+  preserved curved-arrow objects with no inferred atom maps or bond edits.
+  Cyclophilin remains non-detailed with zero compiled steps; subtilisin keeps
+  P00782/1SUP direct and engineered 1S01 separate. Both relationship queries
+  reproduce locally and from package assets. The same-source comparator reports
+  68.75% versus 100% structural field completeness but no human-time, speedup,
+  accuracy, or discovery claim. Seven review packets exist; all outreach ledger
+  entries honestly remain unattempted because no real recipient/channel has
+  been supplied. A locally built wheel passed fresh-directory Atlas-3 and
+  Atlas-10 verification on Windows/Python 3.13 and excluded the raw source
+  snapshots. A real external attempt and the published Windows/Linux Python
+  3.10/3.12 CI matrix are the remaining Atlas-10 phase-exit gates.
 
 The project is early and scientifically unvalidated, not empty. Its strongest
 current assets are the typed schema, provenance-bearing registries, negative
