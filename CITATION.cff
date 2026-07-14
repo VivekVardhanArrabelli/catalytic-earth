@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use Catalytic Earth, cite the software and the upstream data resources listed in NOTICE."
+title: "Catalytic Earth"
+type: software
+authors:
+  - family-names: Arrabelli
+    given-names: "Vivek Vardhan"
+repository-code: "https://github.com/VivekVardhanArrabelli/catalytic-earth"
+url: "https://github.com/VivekVardhanArrabelli/catalytic-earth"
+license: Apache-2.0
+version: 0.1.0
+date-released: 2026-07-13
+abstract: >-
+  A research scaffold for an open, computable, provenance-grounded
+  catalytic-mechanism atlas.
+keywords:
+  - enzyme mechanism
+  - catalysis
+  - bioinformatics
+  - provenance

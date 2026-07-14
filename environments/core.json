@@ -1,0 +1,17 @@
+{
+  "schema_version": "catalytic-earth.core-environment.v1",
+  "release": "0.1.0",
+  "python": {
+    "requires": ">=3.10",
+    "ci_interpreters": ["3.10", "3.12"],
+    "implementation": "CPython"
+  },
+  "runtime_dependencies": [],
+  "lockfile": "requirements/core.lock",
+  "installation": "python -m pip install --no-deps catalytic_earth-0.1.0-py3-none-any.whl",
+  "network_required_at_runtime": false,
+  "external_binary_required_at_runtime": false,
+  "accelerator_required_at_runtime": false,
+  "seed": 0,
+  "clock_policy": "Core outputs contain no wall-clock fields."
+}

@@ -1,0 +1,135 @@
+{
+  "deterministic_modules": {
+    "src/catalytic_earth/canonical_hash.py": {
+      "bytes": 2032,
+      "sha256": "5ca95dc3c7cf4fd0ae9ddd72cbc58bad8aa4e6179a45c579b2556f649d6e04b9"
+    },
+    "src/catalytic_earth/core_cli.py": {
+      "bytes": 4047,
+      "sha256": "9b7c90ec9b137aad90dd7b89f602c4ca3a76d377bd4fd63a2ae9b4035ea79041"
+    },
+    "src/catalytic_earth/execution_context.py": {
+      "bytes": 792,
+      "sha256": "93df3984fb01e4016649f542ca04472f88f14c5f531d6eb2a90d936d7242eb9a"
+    },
+    "src/catalytic_earth/family_onboarding.py": {
+      "bytes": 5771,
+      "sha256": "242ad7b10c7ea55b98f4de295dac9722ce4f3ba5071b07e47ff08522d54a2f41"
+    },
+    "src/catalytic_earth/lineage_quarantine.py": {
+      "bytes": 1390,
+      "sha256": "fc3e2251c913ce61b545802fe1194aa30cdb4822f8522d37a61a3accd30e7a1d"
+    },
+    "src/catalytic_earth/path_compat.py": {
+      "bytes": 810,
+      "sha256": "ef4431702feb3fbaa0d58a200456bbf38be42592da0ee5336d0de384b0dfe738"
+    },
+    "src/catalytic_earth/schema.py": {
+      "bytes": 3964,
+      "sha256": "11eec0ad974f043e6fb04a15b9f0e2a718d3f368adb7b787ecc993bc787cd59c"
+    }
+  },
+  "frozen": true,
+  "giant_modules_no_new_code": {
+    "src/catalytic_earth/cli.py": {
+      "bytes": 2054216,
+      "sha256": "50a4734da98d1b11fe65dd29f661a2dde71302eb7e3429da04c1081bc070cbf7"
+    },
+    "src/catalytic_earth/labels.py": {
+      "bytes": 2443404,
+      "sha256": "a9fb31e473871f08303727af751d7adb798f1b64c1e1415dd8f528cd3bc61332"
+    },
+    "src/catalytic_earth/lever2_mechanism_incremental_readout.py": {
+      "bytes": 1636341,
+      "sha256": "7cbcefd2043a8db1bf38f2df201a7dec740ebc7e9cdddef677c3027a91ac4c19"
+    },
+    "src/catalytic_earth/northstar_next_levers.py": {
+      "bytes": 4340333,
+      "sha256": "bc512bdb7129d73533ba3bd88e624a506a72f617436d1febb5ace5b6dd18e552"
+    },
+    "src/catalytic_earth/transfer_scope.py": {
+      "bytes": 1342995,
+      "sha256": "10af357d33e47127587931b9b7d8304c161aa613dad1652af0696d0c478a0bc7"
+    }
+  },
+  "grandfathered_family_source_module_count": 47,
+  "grandfathered_family_source_module_set_sha256": "2dd4244803aa3681cf760ef229b4c454c62cd6398a244a4d3bf3acfaeea11104",
+  "grandfathered_family_source_modules": [
+    "scripts/source_acid_coa_ligase_family.py",
+    "scripts/source_aldehyde_dehydrogenase_family.py",
+    "scripts/source_aldo_keto_reductase_family.py",
+    "scripts/source_alpha_beta_hydrolase_esterase_lipase_family.py",
+    "scripts/source_aminoacyl_trna_synthetase_family.py",
+    "scripts/source_aminoglycoside_acetyltransferase_family.py",
+    "scripts/source_aminoglycoside_phosphotransferase_family.py",
+    "scripts/source_askha_sugar_acetate_kinase_family.py",
+    "scripts/source_atp_amide_ligase_family.py",
+    "scripts/source_biotin_dependent_carboxylase_family.py",
+    "scripts/source_class_ii_metal_aldolase_family.py",
+    "scripts/source_coa_acyltransferase_family.py",
+    "scripts/source_cofactor_independent_isomerase_family.py",
+    "scripts/source_copper_oxidoreductase_family.py",
+    "scripts/source_cysteine_protease_family.py",
+    "scripts/source_cytochrome_p450_family.py",
+    "scripts/source_deoxynucleoside_kinase_family.py",
+    "scripts/source_dihydrofolate_reductase_family.py",
+    "scripts/source_flavin_disulfide_reductase_family.py",
+    "scripts/source_ghmp_small_molecule_kinase_family.py",
+    "scripts/source_glutathione_s_transferase_family.py",
+    "scripts/source_glycoside_hydrolase_family.py",
+    "scripts/source_had_like_phosphatase_family.py",
+    "scripts/source_manganese_iron_superoxide_dismutase_family.py",
+    "scripts/source_metal_independent_phosphodiesterase_family.py",
+    "scripts/source_metal_racemase_epimerase_family.py",
+    "scripts/source_metallo_beta_lactamase_family.py",
+    "scripts/source_molybdopterin_oxidoreductase_family.py",
+    "scripts/source_n_ribosyl_hydrolase_family.py",
+    "scripts/source_nad_glycosyltransferase_families.py",
+    "scripts/source_non_heme_iron_2og_family.py",
+    "scripts/source_nucleoside_diphosphate_kinase_family.py",
+    "scripts/source_paps_sulfotransferase_family.py",
+    "scripts/source_peroxiredoxin_thiol_peroxidase_family.py",
+    "scripts/source_pfka_phosphofructokinase_family.py",
+    "scripts/source_pfkb_ribokinase_family.py",
+    "scripts/source_protein_kinase_family.py",
+    "scripts/source_sam_methyltransferase_family.py",
+    "scripts/source_ser_his_hole.py",
+    "scripts/source_ser_thr_protein_phosphatase_family.py",
+    "scripts/source_serine_beta_lactamase_family.py",
+    "scripts/source_short_chain_dehydrogenase_reductase_family.py",
+    "scripts/source_stage2_hydrolase_subfamilies.py",
+    "scripts/source_terpene_cyclase_synthase_family.py",
+    "scripts/source_thiamine_diphosphate_family.py",
+    "scripts/source_zinc_lyase_hydratase_family.py",
+    "scripts/stage1_source_holes.py"
+  ],
+  "installed_commands": {
+    "canonical": "catalytic-earth reproduce",
+    "legacy": "catalytic-earth-legacy",
+    "legacy_status": "deprecated_frozen_outside_core_guarantee"
+  },
+  "path_policy": {
+    "excluded_post_source_release_metadata": [
+      "release/release_manifest.json"
+    ],
+    "maximum_relative_path_characters": 180,
+    "observed_maximum": 180,
+    "paths_checked": 17095
+  },
+  "replacement_family_path": {
+    "engine": "src/catalytic_earth/family_onboarding.py",
+    "example": "config/family_onboarding.example.json",
+    "rule": "No new family-specific Python module; use declarative proposal-only configuration and the shared engine.",
+    "schema": "src/catalytic_earth/schemas/family-onboarding-v1.schema.json"
+  },
+  "schema_version": "catalytic-earth.architecture-freeze.v1",
+  "test_tiers": {
+    "manifest": "tests/test_tiers.json",
+    "runner": "scripts/run_test_tier.py",
+    "sha256": "a37dac1b2ad71718930d426330a930aff06f9652552bca31cbebbb4b1ff37ca1"
+  },
+  "typed_schema": {
+    "json_schema": "src/catalytic_earth/schemas/mechanism-record-v1.schema.json",
+    "python": "src/catalytic_earth/schema.py"
+  }
+}

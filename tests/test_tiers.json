@@ -1,0 +1,47 @@
+{
+  "schema_version": "catalytic-earth.test-tiers.v1",
+  "precedence": [
+    "core/unit",
+    "external/integration",
+    "artifact-regression",
+    "scientific-small"
+  ],
+  "tiers": {
+    "core/unit": {
+      "patterns": [
+        "^tests/core/test_.*\\.py$",
+        "^tests/test_truth_guard\\.py$"
+      ],
+      "network": false,
+      "external_binaries": false,
+      "purpose": "Packaging, schemas, governance, pure functions, and deterministic core contracts"
+    },
+    "external/integration": {
+      "patterns": [
+        "^tests/test_(adapters|external|source|pymol|holo|predicted).*\\.py$",
+        "^tests/test_.*(download|fetch|integration).*\\.py$"
+      ],
+      "network": "may_be_required",
+      "external_binaries": "may_be_required",
+      "purpose": "Network, external source, model, structure, and binary integration boundaries"
+    },
+    "artifact-regression": {
+      "patterns": [
+        "^tests/test_.*(artifact|automation|cli|leakage|registry|snapshot|shard|review_only).*\\.py$",
+        "^tests/test_geometry_artifact_regression\\.py$"
+      ],
+      "network": false,
+      "external_binaries": false,
+      "purpose": "Large checked-in artifact and historical contract regression surface"
+    },
+    "scientific-small": {
+      "patterns": [
+        "^tests/test_.*\\.py$"
+      ],
+      "network": false,
+      "external_binaries": false,
+      "purpose": "Bounded scientific algorithms and small synthetic examples"
+    }
+  },
+  "rule": "Each tests/test_*.py or tests/**/test_*.py file is assigned to the first matching tier. No test is unclassified."
+}

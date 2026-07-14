@@ -1,5 +1,10 @@
 # Session Decision Record — 2026-06-29
 
+> **Historical record corrected 2026-07-13:** the Swiss-Prot/PDB-holo surface
+> is a spent EC-proxy validation set, not independent stepwise-mechanism gold or
+> a broad deployment validation. Use `CLAIMS.md` CE-006 and `ERRATA.md` ER-006
+> for current wording.
+
 Consolidates the 2026-06-29 work: turning the validated fold channel into
 benchtop candidates, de-risking them, and climbing the **last non-lab validation
 rung** (independent gold beyond M-CSA). Machine artifacts named below are the

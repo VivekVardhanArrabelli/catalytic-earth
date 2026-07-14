@@ -725,7 +725,7 @@ def build_foldseek_tm_score_signal(
     *,
     readiness: dict[str, Any],
     slice_id: str | None = None,
-    foldseek_binary: str = "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    foldseek_binary: str = "foldseek",
     readiness_path: str | None = None,
     max_staged_coordinates: int | None = None,
     prior_staged_coordinate_count: int | None = None,
@@ -796,7 +796,7 @@ def build_foldseek_tm_score_signal(
     run_status = "not_run"
     run_error: str | None = None
 
-    if not foldseek_info["available"]:
+    if not foldseek_info["available"] and runner is None:
         run_status = "foldseek_unavailable"
     elif len(staged_structures) < 2:
         run_status = "insufficient_staged_coordinates"
@@ -804,7 +804,7 @@ def build_foldseek_tm_score_signal(
         run_status = "staged_coordinates_span_multiple_directories"
     else:
         digest = _coordinate_paths_digest(staged_structures)
-        workdir = Path("/private/tmp") / (
+        workdir = Path(tempfile.gettempdir()) / (
             f"catalytic-earth-foldseek-tm-{requested_slice_id or 'slice'}-{digest}"
         )
         if workdir.exists():
@@ -1176,6 +1176,7 @@ def build_foldseek_tm_score_signal(
         "foldseek_binary_requested": foldseek_info["requested"],
         "foldseek_binary_resolved": foldseek_info["resolved"],
         "foldseek_binary_available": foldseek_info["available"],
+        "foldseek_execution_injected": runner is not None,
         "foldseek_version": foldseek_info["version"],
         "foldseek_version_command": foldseek_info["version_command"],
         "foldseek_command": command_string,
@@ -1251,7 +1252,7 @@ def build_foldseek_tm_score_all_materializable_signal(
     *,
     readiness: dict[str, Any],
     slice_id: str | None = None,
-    foldseek_binary: str = "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    foldseek_binary: str = "foldseek",
     readiness_path: str | None = None,
     max_runtime_seconds: int | None = None,
     threads: int = 1,
@@ -1306,7 +1307,7 @@ def build_foldseek_tm_score_all_materializable_signal(
     run_error: str | None = None
     pair_summary = _empty_foldseek_tm_score_pair_summary()
 
-    if not foldseek_info["available"]:
+    if not foldseek_info["available"] and runner is None:
         run_status = "foldseek_unavailable"
     elif len(staged_structures) < 2:
         run_status = "insufficient_staged_coordinates"
@@ -1314,7 +1315,7 @@ def build_foldseek_tm_score_all_materializable_signal(
         run_status = "staged_coordinates_span_multiple_directories"
     else:
         digest = _coordinate_paths_digest(staged_structures)
-        workdir = Path("/private/tmp") / (
+        workdir = Path(tempfile.gettempdir()) / (
             f"catalytic-earth-foldseek-tm-all-{requested_slice_id or 'slice'}-{digest}"
         )
         if workdir.exists():
@@ -1520,6 +1521,7 @@ def build_foldseek_tm_score_all_materializable_signal(
         "foldseek_binary_requested": foldseek_info["requested"],
         "foldseek_binary_resolved": foldseek_info["resolved"],
         "foldseek_binary_available": foldseek_info["available"],
+        "foldseek_execution_injected": runner is not None,
         "foldseek_version": foldseek_info["version"],
         "foldseek_version_command": foldseek_info["version_command"],
         "foldseek_command": command_string,
@@ -1576,7 +1578,7 @@ def build_foldseek_tm_score_query_chunk_signal(
     *,
     readiness: dict[str, Any],
     slice_id: str | None = None,
-    foldseek_binary: str = "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    foldseek_binary: str = "foldseek",
     readiness_path: str | None = None,
     chunk_index: int = 0,
     chunk_size: int = 12,
@@ -1651,7 +1653,7 @@ def build_foldseek_tm_score_query_chunk_signal(
     run_error: str | None = None
     pair_summary = _empty_foldseek_tm_score_pair_summary()
 
-    if not foldseek_info["available"]:
+    if not foldseek_info["available"] and runner is None:
         run_status = "foldseek_unavailable"
     elif len(staged_structures) < 2 or not query_structures:
         run_status = "insufficient_staged_coordinates"
@@ -1659,7 +1661,7 @@ def build_foldseek_tm_score_query_chunk_signal(
         run_status = "staged_coordinates_span_multiple_directories"
     else:
         digest = _coordinate_paths_digest(staged_structures)
-        workdir = Path("/private/tmp") / (
+        workdir = Path(tempfile.gettempdir()) / (
             "catalytic-earth-foldseek-tm-query-chunk-"
             f"{requested_slice_id or 'slice'}-{chunk_index_value:04d}-{digest}"
         )
@@ -1899,6 +1901,7 @@ def build_foldseek_tm_score_query_chunk_signal(
         "foldseek_binary_requested": foldseek_info["requested"],
         "foldseek_binary_resolved": foldseek_info["resolved"],
         "foldseek_binary_available": foldseek_info["available"],
+        "foldseek_execution_injected": runner is not None,
         "foldseek_version": foldseek_info["version"],
         "foldseek_version_command": foldseek_info["version_command"],
         "foldseek_command": command_string,
@@ -4786,7 +4789,7 @@ def _real_sequence_identity_split(
     workdir = Path(
         tempfile.mkdtemp(
             prefix=f"catalytic-earth-mmseqs-{slice_id}-{digest}-",
-            dir="/private/tmp",
+            dir=tempfile.gettempdir(),
         )
     )
     commands: list[str] = []
@@ -5370,7 +5373,7 @@ def _compute_mmseqs_train_test_identity(
     workdir = Path(
         tempfile.mkdtemp(
             prefix=f"catalytic-earth-mmseqs-search-{slice_id}-{digest}-",
-            dir="/private/tmp",
+            dir=tempfile.gettempdir(),
         )
     )
     commands = list(prior_commands)
@@ -6283,11 +6286,8 @@ def _command_string(command: list[str]) -> str:
 
 def _foldseek_binary_info(foldseek_binary: str) -> dict[str, Any]:
     requested = str(foldseek_binary or "foldseek")
-    if "/" in requested:
-        candidate = Path(requested)
-        resolved = str(candidate) if candidate.exists() else None
-    else:
-        resolved = shutil.which(requested)
+    candidate = Path(requested)
+    resolved = str(candidate) if candidate.exists() else shutil.which(requested)
     version = _backend_version(resolved) if resolved else None
     version_command = _command_string([resolved or requested, "version"])
     return {

@@ -62,6 +62,14 @@ unit or denominator was defined.
 These corrections do not weaken the atlas mission. They prevent the atlas from
 scaling ambiguous objects and overstated evidence.
 
+Canonical governance surfaces:
+
+- `CLAIMS.md` — current claim status and permitted wording;
+- `ERRATA.md` — corrections without deletion of historical evidence;
+- `docs/ATLAS_TRUTH_POLICY.md` — counted objects and atlas evidence tiers;
+- `data/governance/exposure_ledger.jsonl` — append-only fresh/exposed/exhausted
+  state for evaluation surfaces.
+
 ### Rapid operating clocks
 
 - **0–48 hours:** claims/errata, freeze, exposure ledger, atlas evidence tiers.

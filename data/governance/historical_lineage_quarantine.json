@@ -1,0 +1,35 @@
+{
+  "metadata": {
+    "canonical_release_exclusion_required": true,
+    "hash_rule": "LF-normalized SHA-256 for declared repository text formats; byte-exact SHA-256 for binary formats",
+    "issue_count": 1,
+    "issue_type_counts": {
+      "stale_source_hash": 1
+    },
+    "policy": "Preserve recorded hashes. Quarantined artifacts are historical-only and must not enter a canonical release until genuinely regenerated from declared source bytes. Never update embedded hashes merely to make tests pass.",
+    "quarantined_artifact_count": 1
+  },
+  "quarantined_artifacts": [
+    {
+      "artifact_path": "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json",
+      "artifact_sha256": "731b94ebd3b4f7ae483a3cca75d2b8c3b88242024ecd9c364d70bdfcda6624ee",
+      "issue_count": 1,
+      "release_eligible": false
+    }
+  ],
+  "rows": [
+    {
+      "artifact_path": "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json",
+      "artifact_sha256": "731b94ebd3b4f7ae483a3cca75d2b8c3b88242024ecd9c364d70bdfcda6624ee",
+      "disposition": "historical_only_regenerate_do_not_rehash",
+      "edge_id": "data/registries/mechanism_fingerprints.json",
+      "hash_mode": "lf_normalized_text_sha256",
+      "issue_type": "stale_source_hash",
+      "observed_source_sha256": "f3f57858f041447f474f0cb849e283528521243f1439ba918264286df93cb75a",
+      "recorded_source_sha256": "a1e7ae135adb97dc79d8cab91345bc3ed4720cf3371115737e05f10b629a2516",
+      "release_eligible": false,
+      "source_path": "data/registries/mechanism_fingerprints.json"
+    }
+  ],
+  "schema_version": "catalytic-earth.historical-lineage-quarantine.v1"
+}

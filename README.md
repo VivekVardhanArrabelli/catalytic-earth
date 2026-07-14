@@ -61,16 +61,43 @@ a production biological design system.
   mechanism gold. It recovered 45/64 overall, including 2/16 metal, with 2/72
   OOS false positives; its 40% preregistered OOS ceiling was too permissive for
   a deployment claim.
-- A Python 3.13 full-suite audit ran 2,559 tests: 74 failures, 20 errors, and one
-  skip. Some are dependency/Windows-path failures; many reflect stale hashes
-  and checked-in state drift. Targeted green tests do not make the full suite
-  green.
-- New label/family expansion and new performance headlines are frozen until
-  the claim ledger, exposure ledger, reproducible core environment, and live
-  artifact manifest are in place.
+- The preserved Python 3.13 audit ran 2,559 tests with 74 failures, 20 errors,
+  and one skip. Root-cause review corrected an overstatement: 54 failed tests
+  contained 179 CRLF-only hash comparisons, while exactly one genuine
+  historical lineage mismatch remains quarantined. After bounded repairs, the
+  pinned complete suite ran 2,586 tests with zero failures, zero errors, and
+  one skip. This is software health, not biological validation.
+- The P0 truth-reset implementation is complete and evidence-mapped in
+  `docs/P0_COMPLETION.md`. The registry expansion latch remains intentionally
+  active until a separate reviewed post-reset admission decision; cleanup does
+  not silently authorize new labels or performance headlines.
 - The active execution plan is `docs/RAPID_ATLAS_PLAN.md`: a 35-day
   computational atlas loop with a parallel 60–90-day experimental target when
   a ready assay and external execution route exist.
+
+## Truth-governance gate
+
+Before interpreting older reports, use the canonical truth surfaces:
+
+- [`CLAIMS.md`](CLAIMS.md) — current Supported / Diagnostic / Superseded /
+  Retracted claims;
+- [`ERRATA.md`](ERRATA.md) — public corrections that preserve the historical
+  artifacts;
+- [`docs/ATLAS_TRUTH_POLICY.md`](docs/ATLAS_TRUTH_POLICY.md) — counted objects,
+  evidence tiers, endpoint rules, and the expansion freeze;
+- [`data/governance/exposure_ledger.jsonl`](data/governance/exposure_ledger.jsonl)
+  — append-only event history of frozen, exposed, and exhausted surfaces;
+- [`data/governance/exposure_rows.jsonl`](data/governance/exposure_rows.jsonl)
+  — one mechanical memory row per data item and evaluation surface;
+- [`data/governance/expansion_freeze.json`](data/governance/expansion_freeze.json)
+  — machine-enforced registry-write freeze while CE-012 is active;
+- [`docs/P0_COMPLETION.md`](docs/P0_COMPLETION.md) — every cleanup item, its
+  evidence, its validation command, and the one deliberately deferred storage
+  migration.
+
+Historical artifacts are not silently rewritten. If an older document
+conflicts with these files, the canonical claim ledger and errata control
+current wording.
 
 ## Start Here
 
@@ -79,35 +106,50 @@ agent run:
 
 | File | Use it for |
 | --- | --- |
+| `CLAIMS.md` | Canonical current scientific and project claims |
+| `ERRATA.md` | Corrections to invalid or misleading historical wording |
+| `docs/ATLAS_TRUTH_POLICY.md` | Counted objects, evidence tiers, exposure rules, and admission freeze |
+| `data/governance/exposure_ledger.jsonl` | Append-only evaluation exposure state |
+| `docs/CURRENT_STATE.md` | Compact current state, trusted results, blockers, and next gates |
+| `docs/CURRENT_DECISIONS.md` | Current durable decisions that govern historical records |
 | `docs/RAPID_ATLAS_PLAN.md` | Current 35-day computational plan, parallel experimental clock, and atlas scale gates |
+| `docs/P0_COMPLETION.md` | Auditable completion map for the truth-first review's P0 cleanup |
 | `docs/reviews/catalytic-earth-full-review-2026-07-10.md` | Independent audit, evidence corrections, strategic amendment, and full rationale |
 | `docs/reviews/catalytic-earth-90-day-map-2026-07-10.md` | Compact operating map derived from the full review |
-| `docs/project_state.md` | Current state, trusted results, blockers, and next gates |
-| `docs/decision_log.md` | Dated decisions that override older artifact wording |
+| `docs/project_state.md` | Historical detailed state retained for provenance |
+| `docs/decision_log.md` | Historical decision log retained for provenance |
 | `docs/artifact_index.md` | Which artifact answers which question, and what is deprecated |
 | `docs/agent_runbook.md` | Safe edit boundaries, validation, and output locations |
 
 ## Key Commands
 
-Install locally:
+Run the bounded canonical result from a release wheel:
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -e .
+python -m pip install --no-deps catalytic_earth-0.1.0-py3-none-any.whl
+catalytic-earth reproduce
 ```
+
+The expected `result_sha256` is
+`a2374c6530dfd3b4681db5c3db691fdcdedbf645604c6e7dfe0b95ab7e89ea98`.
+It validates packaging, typed schema behavior, determinism, and retention of a
+synthetic negative record only; it is not a biological benchmark.
 
 Validate the repo:
 
 ```bash
-PYTHONPATH=src python -m catalytic_earth.cli validate
+python scripts/validate_repository_contracts.py
+python scripts/run_test_tier.py "core/unit"
 git diff --check
 ```
 
 Run the test suite after code changes:
 
 ```bash
-python -m unittest discover -s tests
+python -m pip install -r requirements/ml.lock
+python -m unittest discover -s tests -v
 ```
 
 Check JSON artifacts:

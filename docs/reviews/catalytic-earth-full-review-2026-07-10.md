@@ -451,6 +451,12 @@ This is **not a green suite**. Some errors are environment/portability failures:
 
 The exact mix should be rerun in declared Python 3.10/3.12 environments after dependencies and path behavior are fixed. The important present fact is that targeted tests can be green while the checked-in full suite has 94 failure/error outcomes. The worktree remained clean after the run.
 
+#### 2026-07-13 remediation amendment
+
+The table above remains the exact historical audit outcome, but the paragraph's root-cause attribution was too broad. A Git-blob audit found that 54 failed tests contained 179 hash comparisons where the recorded digest matched the canonical LF Git blob and only the Windows CRLF checkout bytes differed. Those were portability defects, not stale scientific content. Exactly one genuine current lineage mismatch was found: `artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json` records the pre-expansion hash of `data/registries/mechanism_fingerprints.json`. That historical artifact is now release-excluded in `data/governance/historical_lineage_quarantine.json`; its embedded hash was deliberately not refreshed.
+
+The other failures/errors were traced to undeclared ML test dependencies, Windows long-path and POSIX-path assumptions, scikit-learn sparse index-width compatibility, subprocess environment replacement, and newline-sensitive fixtures. After bounded fixes rather than bulk snapshot refresh, the pinned Windows CPython 3.13 environment completed the expanded 2,586-test suite with zero failures, zero errors, and one skip. `data/governance/test_baseline.json` binds the environment lock, counts, duration, and preserved compressed log. This corrects software-state attribution only; it does not strengthen a biological claim.
+
 The validator is much narrower than its name suggests. It loads four registries and prints counts. It does not verify artifact freshness, environment dependencies, split independence, scientific metrics, source snapshots, or reproducibility of a headline result.
 
 ### 5.2 Installation does not reproduce the scientific environment
@@ -834,6 +840,12 @@ lean source archive/wheel or blob-filtered sparse Git clone
 ```
 
 Target: under ten minutes for the core path.
+
+### 2026-07-13 P0 closure map
+
+The implementation and evidence for every P0A–P0E line are mapped in `docs/P0_COMPLETION.md`, with machine checks in `scripts/validate_repository_contracts.py`. The canonical result is intentionally a small typed, project-authored fixture—not a substitute biological benchmark. It exists to prove that a stranger can enter and reproduce the repository while the atlas remains the product.
+
+One distinction is deliberate: the canonical lean release, report archive, and their SHA-256-bound assets are published, while a second copy of the 5.1 GB historical artifact tree is not fabricated merely to claim cleanup. Those blobs remain restorable from the exact Git commit. Any future externalization or history migration is blocked until per-source redistribution rights, a durable destination, upload checksums, and an empty-directory restore are all approved. No artifact was deleted and no history was rewritten.
 
 ---
 

@@ -1,0 +1,1 @@
+"""Locked-core test tier."""

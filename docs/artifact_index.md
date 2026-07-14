@@ -1,5 +1,10 @@
 # Artifact Index
 
+The machine-current inventory is `release/live_artifact_manifest.json`.
+Historical human reports under `work/` are indexed by exact Git blob in
+`release/report_archive_index.json`. Older storage-count artifacts are
+snapshots and must not be used as live repository counts.
+
 This index maps important artifacts to the question they answer. It also marks
 artifacts that are historical, superseded, or confounded for current decisions.
 

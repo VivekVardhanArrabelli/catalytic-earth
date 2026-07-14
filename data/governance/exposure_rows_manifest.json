@@ -1,0 +1,50 @@
+{
+  "generation_rule": "Rows are reconstructed from the first-exposure Git commits; HEAD copies are recorded only as drift diagnostics and never replace historical identity. Current repository text is LF-normalized before hashing so Windows checkout line endings cannot create false drift.",
+  "ledger_path": "data/governance/exposure_rows.jsonl",
+  "ledger_sha256": "b04986bd8e404bc31991d5299835dcd30d6fb0fbeb4584f620c7b987abfc20ac",
+  "row_count": 1000,
+  "schema_version": "catalytic-earth.exposure-row-ledger.v1",
+  "surface_count": 4,
+  "surfaces": {
+    "current702.chemistry_eval702": {
+      "exposure_state": "exhausted",
+      "first_exposure_commit": "f2055b72fa51722cbcfb37cd6e020d4ff5cf2f39",
+      "row_count": 702,
+      "row_id_set_sha256": "603ba7909aaded76dc697688f316a702303d46ac2043e2dfc2de398cba591c02",
+      "source_bytes_drifted_since_first_exposure": false,
+      "source_path": "data/registries/curated_mechanism_labels.json",
+      "source_sha256_at_first_exposure": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+      "source_sha256_in_current_checkout": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    },
+    "mcsa.current702.heldout140": {
+      "exposure_state": "exhausted",
+      "first_exposure_commit": "d102bc5a9806e31146b0d2f9c84b3c161805133d",
+      "row_count": 140,
+      "row_id_set_sha256": "d990a25065fab716ff361b73050e3754a80cb7c960eeb5287dbfd0a5074fcd4c",
+      "source_bytes_drifted_since_first_exposure": false,
+      "source_path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "source_sha256_at_first_exposure": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151",
+      "source_sha256_in_current_checkout": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "offmcsa.option_b.bronze22": {
+      "exposure_state": "frozen_unscored",
+      "first_exposure_commit": "e3a40a5c2a9fccb2734ec8ef20693cb1448c1247",
+      "row_count": 22,
+      "row_id_set_sha256": "ec0dc78e28b619e2819290107776a7a6987b4d65c3f8286caa91c167245f3ed6",
+      "source_bytes_drifted_since_first_exposure": false,
+      "source_path": "artifacts/v3_option_b_heldout_preregistration_current702_20260628.json",
+      "source_sha256_at_first_exposure": "854447f43ace9522161e4564a2daca9fe6dcaf6f4936622372652ca570d9e852",
+      "source_sha256_in_current_checkout": "854447f43ace9522161e4564a2daca9fe6dcaf6f4936622372652ca570d9e852"
+    },
+    "offmcsa.swissprot_pdbholo.ec_proxy136": {
+      "exposure_state": "exhausted",
+      "first_exposure_commit": "55d31b72fd5da2ade6adeee06ba2b2ceb58d8aa9",
+      "row_count": 136,
+      "row_id_set_sha256": "162b25fc0235af3550335597de8caf8735c1d14ddb1fdd6862da5f6f357bcfcd",
+      "source_bytes_drifted_since_first_exposure": false,
+      "source_path": "artifacts/v3_swissprot_pdbholo_gold_heldout_preregistration_current702_20260629.json",
+      "source_sha256_at_first_exposure": "bfa6d9511d392bf744600236055ffff88c75a1e6785e95ba2185b92324717d54",
+      "source_sha256_in_current_checkout": "bfa6d9511d392bf744600236055ffff88c75a1e6785e95ba2185b92324717d54"
+    }
+  }
+}

@@ -145,7 +145,7 @@ class SilverPdbResidueMappingTests(unittest.TestCase):
                 fp="metal_dependent_hydrolase",
                 cofactors=["Zn(2+)"],
                 coordinate_path=str(coord),
-                coordinate_sha256=_sha(cif),
+                coordinate_sha256=hashlib.sha256(coord.read_bytes()).hexdigest(),
             )
             audit = build_silver_pdb_residue_mapping(
                 expansion_payload=_population(candidate),
@@ -182,7 +182,7 @@ class SilverPdbResidueMappingTests(unittest.TestCase):
                 fp="metal_dependent_hydrolase",
                 cofactors=["Zn(2+)"],
                 coordinate_path=str(coord),
-                coordinate_sha256=_sha(cif),
+                coordinate_sha256=hashlib.sha256(coord.read_bytes()).hexdigest(),
             )
             expansion.write_text(json.dumps(_population(candidate)), encoding="utf-8")
             frozen.write_text("[]\n", encoding="utf-8")

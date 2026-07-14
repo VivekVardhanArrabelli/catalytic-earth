@@ -6,7 +6,7 @@ preserved in a committed manifest or canonical summary.
 
 ## Current Inventory
 
-The current storage inventory is:
+The old Phase-1 storage planning files are:
 
 ```text
 artifacts/v3_artifact_storage_inventory_1025.json
@@ -17,11 +17,17 @@ artifacts/v3_artifact_migration_execution_1025.json
 artifacts/v3_artifact_admission_guard_1025.json
 ```
 
-The refreshed inventory covers 6,054 artifact files and 2.9489 GiB, including
-storage planning artifacts. The large-file surface is 113 files above the
-5 MiB threshold after the bounded PyMOL review coordinate materialization. The
-policy check passes with zero deletion authorization and zero unclassified
-large artifacts. The producer/consumer manifest covers all 113 large
+Those counts are historical snapshots, not the live inventory. The canonical
+live manifest is `release/live_artifact_manifest.json`; it is rebuilt from the
+Git index and currently covers **15,281 tracked artifact files,
+5,114,921,622 logical bytes, and 164 files above 5 MiB**. CI rejects a stale
+manifest or artifact worktree drift. The report archive index is
+`release/report_archive_index.json`; it binds every `work/` report to its Git
+blob and a deterministic release-bundle membership hash.
+
+The historical policy check passed with zero deletion authorization and zero
+unclassified large artifacts at its recorded snapshot. The then-current
+producer/consumer manifest covered 113 large
 `regenerable_intermediate` and `raw_cache` rows; the
 migration-readiness plan ranks those rows for future review but authorizes no
 migration; the Phase 1 execution manifest records exact current-Git target
@@ -175,8 +181,7 @@ A source-only checkout can avoid the artifact payload while still validating
 code imports:
 
 ```bash
-export GIT_SSH_COMMAND='ssh -i /Users/vivekvardhanarrabelli/.ssh/catalytic_earth_deploy_ed25519 -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=accept-new'
-git clone --filter=blob:none --sparse git@github.com:VivekVardhanArrabelli/catalytic-earth.git catalytic-earth-source
+git clone --filter=blob:none --sparse https://github.com/VivekVardhanArrabelli/catalytic-earth.git catalytic-earth-source
 cd catalytic-earth-source
 git sparse-checkout set src tests docs data artifacts/v3_artifact_migration_execution_1025.json
 PYTHONPATH=src python -m catalytic_earth.cli validate

@@ -122,7 +122,7 @@ class SilverGeometryConfirmationRunTests(unittest.TestCase):
             candidate = _row(
                 entry_id="candidate",
                 coordinate_path=str(coord),
-                coordinate_sha256=hashlib.sha256(text.encode("utf-8")).hexdigest(),
+                coordinate_sha256=hashlib.sha256(coord.read_bytes()).hexdigest(),
                 structure_positions=True,
             )
             audit = build_silver_geometry_confirmation_run(
@@ -147,7 +147,7 @@ class SilverGeometryConfirmationRunTests(unittest.TestCase):
             candidate = _row(
                 entry_id="candidate",
                 coordinate_path=str(coord),
-                coordinate_sha256=hashlib.sha256(text.encode("utf-8")).hexdigest(),
+                coordinate_sha256=hashlib.sha256(coord.read_bytes()).hexdigest(),
                 structure_positions=True,
             )
             expansion = root / "external.json"

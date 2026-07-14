@@ -1,0 +1,6 @@
+{
+  "schema_version": "catalytic-earth.golden-expected.v1",
+  "result_sha256": "a2374c6530dfd3b4681db5c3db691fdcdedbf645604c6e7dfe0b95ab7e89ea98",
+  "what_it_claims": "The installed core can load, type-check, count, and hash four project-authored fixture records deterministically without network, accelerator, external binary, or repository checkout.",
+  "what_it_does_not_claim": "This fixture is not a biological benchmark, mechanism prediction, external validation, or evidence that any real enzyme record is correct."
+}

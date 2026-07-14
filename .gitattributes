@@ -1,1 +1,11 @@
+* text=auto eol=lf
+
+# Scientific binary payloads must never be newline-normalized.
 *.cif binary
+*.npz binary
+*.npy binary
+*.gz binary
+*.zip binary
+*.bin binary
+*.pkl binary
+*.parquet binary

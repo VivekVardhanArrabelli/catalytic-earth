@@ -5,6 +5,7 @@ import hashlib
 import json
 import re
 import subprocess
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -21818,7 +21819,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     foldseek_tm_signal.add_argument(
         "--foldseek-binary",
-        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+        default="foldseek",
         help="explicit Foldseek binary path for version provenance and easy-search",
     )
     foldseek_tm_signal.add_argument(
@@ -21881,7 +21882,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     foldseek_all_materializable.add_argument(
         "--foldseek-binary",
-        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+        default="foldseek",
         help="explicit Foldseek binary path for version provenance and easy-search",
     )
     foldseek_all_materializable.add_argument(
@@ -21931,7 +21932,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     foldseek_query_chunk.add_argument(
         "--foldseek-binary",
-        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+        default="foldseek",
         help="explicit Foldseek binary path for version provenance and easy-search",
     )
     foldseek_query_chunk.add_argument(
@@ -24940,27 +24941,27 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_import_review_preflight.add_argument(
         "--preview",
-        default=str(DEFAULT_PREVIEW_SOURCE),
+        default=DEFAULT_PREVIEW_SOURCE.as_posix(),
     )
     external_import_review_preflight.add_argument(
         "--merged-surface",
         default=(
-            str(DEFAULT_MERGED_SURFACE_SOURCE)
+            DEFAULT_MERGED_SURFACE_SOURCE.as_posix()
             if DEFAULT_MERGED_SURFACE_SOURCE is not None
             else None
         ),
     )
     external_import_review_preflight.add_argument(
         "--materialization",
-        default=str(DEFAULT_MATERIALIZATION_SOURCE),
+        default=DEFAULT_MATERIALIZATION_SOURCE.as_posix(),
     )
     external_import_review_preflight.add_argument(
         "--repair-surface",
-        default=str(DEFAULT_REPAIR_SURFACE_SOURCE),
+        default=DEFAULT_REPAIR_SURFACE_SOURCE.as_posix(),
     )
     external_import_review_preflight.add_argument(
         "--current702-coordinate-manifest",
-        default=str(DEFAULT_CURRENT702_COORDINATE_MANIFEST_PATH),
+        default=DEFAULT_CURRENT702_COORDINATE_MANIFEST_PATH.as_posix(),
     )
     external_import_review_preflight.add_argument(
         "--out",
@@ -25023,27 +25024,27 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_import_closure.add_argument(
         "--preview",
-        default=str(DEFAULT_PREVIEW_SOURCE),
+        default=DEFAULT_PREVIEW_SOURCE.as_posix(),
     )
     external_import_closure.add_argument(
         "--merged-surface",
         default=(
-            str(DEFAULT_MERGED_SURFACE_SOURCE)
+            DEFAULT_MERGED_SURFACE_SOURCE.as_posix()
             if DEFAULT_MERGED_SURFACE_SOURCE is not None
             else None
         ),
     )
     external_import_closure.add_argument(
         "--materialization",
-        default=str(DEFAULT_MATERIALIZATION_SOURCE),
+        default=DEFAULT_MATERIALIZATION_SOURCE.as_posix(),
     )
     external_import_closure.add_argument(
         "--repair-surface",
-        default=str(DEFAULT_REPAIR_SURFACE_SOURCE),
+        default=DEFAULT_REPAIR_SURFACE_SOURCE.as_posix(),
     )
     external_import_closure.add_argument(
         "--current702-coordinate-manifest",
-        default=str(DEFAULT_CURRENT702_COORDINATE_MANIFEST_PATH),
+        default=DEFAULT_CURRENT702_COORDINATE_MANIFEST_PATH.as_posix(),
     )
     external_import_closure.add_argument(
         "--preflight-out",
@@ -28284,7 +28285,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_structural_cluster.add_argument(
         "--foldseek-binary",
-        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+        default="foldseek",
     )
     external_structural_cluster.add_argument(
         "--tm-score-threshold",
@@ -28355,7 +28356,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_second_tranche_structural.add_argument(
         "--foldseek-binary",
-        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+        default="foldseek",
     )
     external_second_tranche_structural.add_argument(
         "--tm-score-threshold",
@@ -28694,7 +28695,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_hard_negative_new_current_structural.add_argument(
         "--foldseek-binary",
-        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+        default="foldseek",
     )
     external_hard_negative_new_current_structural.add_argument(
         "--tm-score-threshold", type=float, default=0.7
@@ -35045,7 +35046,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     predicted_structure_fold.add_argument(
         "--foldseek-binary",
-        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+        default="foldseek",
     )
     predicted_structure_fold.add_argument("--threads", type=int, default=4)
     predicted_structure_fold.add_argument(
@@ -35579,18 +35580,22 @@ def build_parser() -> argparse.ArgumentParser:
     )
     family_panel_source_backed_materialization.add_argument(
         "--query-dir",
-        default="/private/tmp/catalytic-earth-family-panel-source-backed-afdb-queries",
+        default=str(
+            Path(tempfile.gettempdir())
+            / "catalytic-earth-family-panel-source-backed-afdb-queries"
+        ),
     )
     family_panel_source_backed_materialization.add_argument(
         "--target-atlas-dir",
-        default=(
-            "/private/tmp/catalytic-earth-predicted-structure-fold-channel-"
-            "current702/atlas_in_distribution"
+        default=str(
+            Path(tempfile.gettempdir())
+            / "catalytic-earth-predicted-structure-fold-channel-current702"
+            / "atlas_in_distribution"
         ),
     )
     family_panel_source_backed_materialization.add_argument(
         "--foldseek-binary",
-        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+        default="foldseek",
     )
     family_panel_source_backed_materialization.add_argument(
         "--target-priorities",
@@ -36537,7 +36542,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     fold_threshold_contract.add_argument(
         "--foldseek-binary",
-        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+        default="foldseek",
     )
     fold_threshold_contract.add_argument("--threads", type=int, default=4)
     fold_threshold_contract.add_argument(
@@ -36595,7 +36600,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     train_cal_oos_surface.add_argument(
         "--coordinate-root",
-        default="/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek",
+        default=str(
+            Path(tempfile.gettempdir())
+            / "catalytic_train_cal_oos_negative_surface_foldseek"
+        ),
     )
     train_cal_oos_surface.add_argument(
         "--train-cal-oos-foldseek-tsv",
@@ -36606,7 +36614,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     train_cal_oos_surface.add_argument(
         "--foldseek-binary",
-        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+        default="foldseek",
     )
     train_cal_oos_surface.add_argument("--alphafold-version", default="auto")
     train_cal_oos_surface.add_argument("--threads", type=int, default=4)
@@ -37456,7 +37464,11 @@ def build_parser() -> argparse.ArgumentParser:
     )
     fixed_threshold_combined_rerun_readout.add_argument(
         "--approved-coordinate-root",
-        default="/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/calibration_oos_queries",
+        default=str(
+            Path(tempfile.gettempdir())
+            / "catalytic_train_cal_oos_negative_surface_foldseek"
+            / "calibration_oos_queries"
+        ),
     )
     fixed_threshold_combined_rerun_readout.add_argument(
         "--out",
@@ -38553,7 +38565,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     confounded_proxy_train_cal_scoring_input.add_argument(
         "--foldseek-binary",
-        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+        default="foldseek",
     )
     confounded_proxy_train_cal_scoring_input.add_argument(
         "--threads",
@@ -46479,16 +46491,17 @@ def build_parser() -> argparse.ArgumentParser:
     )
     family_panel_m_csa_repair.add_argument(
         "--coordinate-root",
-        default=(
-            "/private/tmp/catalytic-earth-family-panel-mcsa-primary-channel-"
-            "repair-current702"
+        default=str(
+            Path(tempfile.gettempdir())
+            / "catalytic-earth-family-panel-mcsa-primary-channel-repair-current702"
         ),
     )
     family_panel_m_csa_repair.add_argument(
         "--target-atlas-dir",
-        default=(
-            "/private/tmp/catalytic-earth-predicted-structure-fold-channel-"
-            "current702/atlas_in_distribution"
+        default=str(
+            Path(tempfile.gettempdir())
+            / "catalytic-earth-predicted-structure-fold-channel-current702"
+            / "atlas_in_distribution"
         ),
     )
     family_panel_m_csa_repair.add_argument(
@@ -46501,7 +46514,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     family_panel_m_csa_repair.add_argument(
         "--foldseek-binary",
-        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+        default="foldseek",
     )
     family_panel_m_csa_repair.add_argument("--threads", type=int, default=4)
     family_panel_m_csa_repair.add_argument("--alphafold-version", default="auto")

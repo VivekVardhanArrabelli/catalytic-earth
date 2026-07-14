@@ -54,7 +54,7 @@ from .structure import (
 )
 
 SCHEMA_VERSION = "northstar_next_levers.v0"
-DEFAULT_FOLDSEEK_BINARY = "/private/tmp/catalytic-foldseek-env/bin/foldseek"
+DEFAULT_FOLDSEEK_BINARY = "foldseek"
 PREDICTED_STRUCTURE_FOLD_CHANNEL_ID = (
     "v3_predicted_structure_fold_channel_current702_20260601"
 )
@@ -6444,7 +6444,10 @@ def build_family_panel_source_backed_sidecar_materialization(
         query_dir=query_dir,
         target_dir=target_atlas_dir,
         result_tsv=foldseek_result_tsv,
-        tmp_dir=Path("/private/tmp/catalytic-earth-family-panel-source-backed-foldseek"),
+        tmp_dir=(
+            Path(tempfile.gettempdir())
+            / "catalytic-earth-family-panel-source-backed-foldseek"
+        ),
         threads=threads,
     )
     row_scores: list[dict[str, Any]] = []
@@ -13719,7 +13722,7 @@ def _calibration_foldseek_command(
     result_tsv: Path,
     threads: int,
 ) -> str:
-    root = Path("/private/tmp/catalytic_threshold_train_cal_foldseek")
+    root = Path(tempfile.gettempdir()) / "catalytic_threshold_train_cal_foldseek"
     result_root = result_tsv.parent
     return _foldseek_easy_search_command(
         binary=foldseek_binary,
@@ -13758,10 +13761,11 @@ def _stage_train_calibration_dirs_command() -> str:
         "python - <<'PY'\n"
         "import json\n"
         "import shutil\n"
+        "import tempfile\n"
         "from pathlib import Path\n"
         f"contract = json.loads(Path('artifacts/{FOLD_AUGMENTED_THRESHOLD_CONTRACT_ID}.json').read_text())\n"
         f"fold = json.loads(Path('artifacts/{PREDICTED_STRUCTURE_FOLD_CHANNEL_ID}.json').read_text())\n"
-        "root = Path('/private/tmp/catalytic_threshold_train_cal_foldseek')\n"
+        "root = Path(tempfile.gettempdir()) / 'catalytic_threshold_train_cal_foldseek'\n"
         "if root.exists():\n"
         "    shutil.rmtree(root)\n"
         "query_dir = root / 'calibration_queries'\n"
@@ -63060,10 +63064,11 @@ def _stage_confounded_proxy_tranche_foldseek_dirs_command(
         "python - <<'PY'\n"
         "import json\n"
         "import shutil\n"
+        "import tempfile\n"
         "from pathlib import Path\n"
         f"artifact = json.loads(Path({str(artifact_path)!r}).read_text())\n"
         "groups = artifact['foldseek_input_manifest']['coordinate_request_groups']\n"
-        "root = Path('/private/tmp/catalytic_confounded_proxy_tranche_foldseek')\n"
+        "root = Path(tempfile.gettempdir()) / 'catalytic_confounded_proxy_tranche_foldseek'\n"
         "if root.exists():\n"
         "    shutil.rmtree(root)\n"
         "query_dir = root / 'queries'\n"
@@ -63243,6 +63248,7 @@ def build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest(
         if request.get("accession")
     }
     result_root = result_tsv.parent
+    staging_root = Path(tempfile.gettempdir()) / "catalytic_confounded_proxy_tranche_foldseek"
     return {
         "artifact_id": artifact_id,
         "schema_version": (
@@ -63312,9 +63318,8 @@ def build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest(
             "confounded_proxy_tranche_query_dir": str(
                 root / "confounded_proxy_train_cal_tranche_queries"
             ),
-            "threshold_contract_train_target_staging_dir": (
-                "/private/tmp/catalytic_confounded_proxy_tranche_foldseek/"
-                "train_atlas_targets"
+            "threshold_contract_train_target_staging_dir": str(
+                staging_root / "train_atlas_targets"
             ),
             "result_root": str(result_root),
             "result_tsv": str(result_tsv),
@@ -63340,13 +63345,8 @@ def build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest(
             ),
             "run_tranche_vs_train_atlas": _foldseek_easy_search_command(
                 binary=str(foldseek.get("resolved") or foldseek_binary),
-                query_dir=Path(
-                    "/private/tmp/catalytic_confounded_proxy_tranche_foldseek/queries"
-                ),
-                target_dir=Path(
-                    "/private/tmp/catalytic_confounded_proxy_tranche_foldseek/"
-                    "train_atlas_targets"
-                ),
+                query_dir=staging_root / "queries",
+                target_dir=staging_root / "train_atlas_targets",
                 result_tsv=result_tsv,
                 tmp_dir=result_root / "tmp_confounded_proxy_tranche_vs_train_atlas",
                 threads=threads,

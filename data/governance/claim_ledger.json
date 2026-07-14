@@ -1,0 +1,198 @@
+[
+  {
+    "claim_id": "CE-001",
+    "claim_kind": "project_state",
+    "status": "Supported",
+    "claim": "current702 contains 702 project benchmark labels: 685 bronze and 17 silver, with zero project-gold labels; 683 were automation-curated and 19 author-reviewed.",
+    "current_wording": "Describe current702 as a project benchmark-label surface with its exact tier and review composition.",
+    "rationale": "The registry audit supports these counts; neither upstream source curation nor project automation makes a project label gold.",
+    "evidence": [
+      "data/registries/curated_mechanism_labels.json",
+      "docs/reviews/catalytic-earth-full-review-2026-07-10.md"
+    ]
+  },
+  {
+    "claim_id": "CE-002",
+    "claim_kind": "project_state",
+    "status": "Supported",
+    "claim": "The combined 10,001-row surface comprises 8,305 positive fingerprint assignments and 1,696 out-of-scope protein-label records.",
+    "current_wording": "Report positive assignments and OOS/control records separately; do not call the total mechanisms.",
+    "rationale": "Rows are protein-label records across a much smaller project taxonomy, not independently established mechanism objects.",
+    "evidence": [
+      "data/registries/external_bronze_labels.json",
+      "docs/reviews/catalytic-earth-full-review-2026-07-10.md"
+    ]
+  },
+  {
+    "claim_id": "CE-003",
+    "claim_kind": "scientific_result",
+    "status": "Diagnostic",
+    "claim": "The chemistry evaluation recovered 160/210 coarse cofactor buckets (76.19%) and 65/210 exact fingerprints (30.95%) on its featurizable, centroid-covered positive subset.",
+    "current_wording": "Call 76.19% coarse cofactor-bucket consistency and report the 30.95% exact result beside it.",
+    "rationale": "The coarse endpoint was substituted for the exact fingerprint endpoint and does not establish mechanism recovery at fine granularity.",
+    "evidence": [
+      "artifacts/v3_mechanism_from_chemistry_gold702_eval.json",
+      "work/mechanism_from_chemistry_gold702_eval.md"
+    ]
+  },
+  {
+    "claim_id": "CE-004",
+    "claim_kind": "coverage_claim",
+    "status": "Retracted",
+    "claim": "Catalytic Earth covers about 2% of mechanism space.",
+    "current_wording": "No percentage of global mechanism-space coverage is claimed until a mechanism unit and denominator are formally defined.",
+    "rationale": "Rhea reactions, M-CSA exemplars, EC classes, ontology families, fingerprints, and protein records are not commensurate units.",
+    "evidence": [
+      "docs/ATLAS_TRUTH_POLICY.md",
+      "docs/reviews/catalytic-earth-full-review-2026-07-10.md"
+    ]
+  },
+  {
+    "claim_id": "CE-005",
+    "claim_kind": "evaluation_claim",
+    "status": "Retracted",
+    "claim": "The 2026-06-28 M-CSA evaluation was a never-touched independent holdout.",
+    "current_wording": "Treat it as retrospective analysis of an exhausted surface; all 126 later-frozen rows had already appeared in scored project artifacts.",
+    "rationale": "Renaming or preregistering an already scored surface does not restore independence.",
+    "evidence": [
+      "artifacts/v3_heldout_oneshot_cofactor_fusion_blind_pass_current702_20260604.json",
+      "artifacts/v3_heldout_oneshot_preregistration_current702_20260628.json",
+      "artifacts/v3_heldout_oneshot_eval_result_current702_20260628.json"
+    ]
+  },
+  {
+    "claim_id": "CE-006",
+    "claim_kind": "evaluation_claim",
+    "status": "Superseded",
+    "claim": "The 2026-06-29 Swiss-Prot/PDB-holo surface is independent mechanism gold and supports a broad deployable mechanism claim.",
+    "current_wording": "Describe it as a spent EC-proxy validation set: 45/64 in-scope recovery, including 2/16 metal, and 2/72 OOS false positives; the 40% OOS ceiling was too permissive for deployment.",
+    "rationale": "The fixed EC-to-family mapping supplies proxy family labels, not independently adjudicated stepwise mechanisms, and the aggregate hides the metal failure.",
+    "evidence": [
+      "artifacts/v3_swissprot_pdbholo_gold_heldout_preregistration_current702_20260629.json",
+      "artifacts/v3_swissprot_pdbholo_gold_heldout_eval_result_current702_20260629.json",
+      "work/swissprot_gold_heldout_result_20260629.md"
+    ]
+  },
+  {
+    "claim_id": "CE-007",
+    "claim_kind": "evaluation_claim",
+    "status": "Diagnostic",
+    "claim": "Structure retrieval outperformed pairwise Smith-Waterman on a selected evaluation surface.",
+    "current_wording": "Keep the selected-surface result diagnostic until profile, family, structure-template, reaction, and current learned baselines are run on a disjoint set.",
+    "rationale": "A weak pairwise sequence baseline cannot establish that structure generally beats mature sequence or profile methods.",
+    "evidence": [
+      "artifacts/v3_atlas_value_vs_baselines_current702_20260630.json",
+      "work/atlas_value_vs_baselines_20260630.md"
+    ]
+  },
+  {
+    "claim_id": "CE-008",
+    "claim_kind": "evidence_claim",
+    "status": "Superseded",
+    "claim": "Automated active-site checks verify candidate mechanisms.",
+    "current_wording": "Call these computational active-site or geometry consistency checks; reserve verified for independent review or experiment with a declared evidence tier.",
+    "rationale": "Automated residue and geometry agreement is useful evidence but is not expert adjudication or experimental verification.",
+    "evidence": [
+      "artifacts/v3_gate3_active_site_verification_current702_20260629.json",
+      "docs/ATLAS_TRUTH_POLICY.md"
+    ]
+  },
+  {
+    "claim_id": "CE-009",
+    "claim_kind": "software_state",
+    "status": "Supported",
+    "claim": "The preserved Python 3.13 audit ran 2,559 tests with 74 failures, 20 errors, and one skip; after root-cause correction and remediation, the pinned complete suite ran 2,586 tests with zero failures, zero errors, and one skip.",
+    "current_wording": "Preserve both runs. Fifty-four failed tests contained 179 CRLF-only hash comparisons, not content drift; one genuine historical lineage mismatch is quarantined without rehashing. A green software suite is not scientific validation.",
+    "rationale": "The initial failure counts were real, but the review over-attributed them to stale checked-in hashes. Exact Git-blob comparison separated checkout newline effects from the single genuine lineage drift, and the complete suite was rerun after bounded repairs.",
+    "evidence": [
+      "data/governance/test_baseline.json",
+      "data/governance/historical_lineage_quarantine.json",
+      "docs/reviews/catalytic-earth-full-review-2026-07-10.md"
+    ]
+  },
+  {
+    "claim_id": "CE-010",
+    "claim_kind": "integrity_finding",
+    "status": "Diagnostic",
+    "claim": "The bounded public-repository audit found no evidence of fabricated raw results, invented structures, or falsified Foldseek outputs.",
+    "current_wording": "State this only with the bounded-audit and intent-not-inferable qualifications.",
+    "rationale": "Absence of observed fabrication in a bounded public audit is not proof about every private action or artifact.",
+    "evidence": [
+      "docs/reviews/catalytic-earth-full-review-2026-07-10.md"
+    ]
+  },
+  {
+    "claim_id": "CE-011",
+    "claim_kind": "project_state",
+    "status": "Supported",
+    "claim": "Catalytic Earth is a research scaffold for an open computable catalytic-mechanism atlas, not yet a validated global atlas, validated predictor, or production biological design system.",
+    "current_wording": "Keep the full atlas as the mission while labeling the current implementation and evidence honestly.",
+    "rationale": "The project has real structured assets but lacks independent review, reproducible release quality, and prospective biological validation at atlas scale.",
+    "evidence": [
+      "README.md",
+      "docs/RAPID_ATLAS_PLAN.md",
+      "docs/reviews/catalytic-earth-full-review-2026-07-10.md"
+    ]
+  },
+  {
+    "claim_id": "CE-012",
+    "claim_kind": "governance_decision",
+    "status": "Supported",
+    "claim": "Protected registry writes and new performance headlines remain frozen after the truth-reset implementation until an explicit reviewed post-reset admission decision changes the machine gate.",
+    "current_wording": "P0 completion does not silently lift the registry safety latch. Continue crosswalk, schema, corrective, packaging, and preregistered proposal work; change frozen to false only in a reviewed decision.",
+    "rationale": "The mechanical gates now exist, but preserving an explicit transition prevents cleanup completion from being mistaken for authority to expand labels or make new performance claims.",
+    "evidence": [
+      "README.md",
+      "docs/RAPID_ATLAS_PLAN.md",
+      "docs/ATLAS_TRUTH_POLICY.md"
+    ]
+  },
+  {
+    "claim_id": "CE-013",
+    "claim_kind": "evaluation_state",
+    "status": "Supported",
+    "claim": "The 22-row Option-B off-M-CSA bronze surface is frozen and recorded as unscored in the initial exposure ledger.",
+    "current_wording": "It may be spent once only under its frozen contract; bronze labels limit the strength of any resulting claim.",
+    "rationale": "Unlike the reused M-CSA surface, this row set was enumerated and content-hashed before the proposed router repair and has no recorded score event.",
+    "evidence": [
+      "artifacts/v3_option_b_heldout_preregistration_current702_20260628.json",
+      "data/governance/exposure_ledger.jsonl"
+    ]
+  },
+  {
+    "claim_id": "CE-014",
+    "claim_kind": "evaluation_claim",
+    "status": "Diagnostic",
+    "claim": "Family-selected and three-family views produced after inspecting a result are exploratory and require a fresh disjoint test.",
+    "current_wording": "Preserve post-hoc views in the posthoc namespace and never present them as preregistered confirmatory endpoints.",
+    "rationale": "Selecting a successful family subset after observing the decomposition changes the endpoint and cannot support the original validation claim.",
+    "evidence": [
+      "artifacts/v3_swissprot_pdbholo_gold_heldout_eval_result_current702_20260629.json",
+      "docs/reviews/catalytic-earth-full-review-2026-07-10.md"
+    ]
+  },
+  {
+    "claim_id": "CE-015",
+    "claim_kind": "negative_result",
+    "status": "Supported",
+    "claim": "The tested structural-orphan hypothesis failed on the current families because Pfam revealed the family of every putative structural orphan.",
+    "current_wording": "Retain the original predictor hypothesis and its negative result as first-class records; the atlas reframe does not turn the failure into a success.",
+    "rationale": "A project north star must not become unfalsifiable by discarding the narrower prediction that motivated a test.",
+    "evidence": [
+      "artifacts/v3_decisive_orphan_search_current702_20260630.json",
+      "work/decisive_orphan_search_20260630.md"
+    ]
+  },
+  {
+    "claim_id": "CE-016",
+    "claim_kind": "label_error",
+    "status": "Retracted",
+    "claim": "Human GFAT2/O94808 is PLP-dependent because it belongs to EC 2.6.1.*.",
+    "current_wording": "Withdraw the blanket proxy assignment, preserve the historical row, and exclude or independently adjudicate it before reuse.",
+    "rationale": "EC 2.6.1.16 describes lysine-ketimine/transamidination chemistry and does not justify the PLP-family mapping applied by the proxy rule.",
+    "evidence": [
+      "artifacts/v3_swissprot_pdbholo_gold_heldout_preregistration_current702_20260629.json",
+      "docs/reviews/catalytic-earth-full-review-2026-07-10.md"
+    ]
+  }
+]

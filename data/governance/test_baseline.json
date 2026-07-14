@@ -1,0 +1,53 @@
+{
+  "current_validation": {
+    "command": "python -m unittest discover -s tests -v",
+    "duration_seconds": 690.23,
+    "errors": 0,
+    "failures": 0,
+    "return_code": 0,
+    "skipped": 1,
+    "status": "green",
+    "tests": 2586
+  },
+  "environment": {
+    "implementation": "CPython",
+    "os": "Windows",
+    "os_release": "10",
+    "python": "3.13.2",
+    "requirements_lock": "requirements/ml.lock",
+    "requirements_lock_sha256": "5eca1e013594e28cc3f58d077634a5d87a4698c97fa22cf339f514658a30e8ec"
+  },
+  "historical_audit": {
+    "errors": 20,
+    "failures": 74,
+    "os": "Windows",
+    "python": "3.13.2",
+    "skipped": 1,
+    "status": "preserved_not_green",
+    "tests": 2559
+  },
+  "log": {
+    "compressed_bytes": 49406,
+    "compressed_sha256": "65496d1180266f3ddf22c0686995afa59b633a08ebd9e0b5ca137e41e48ab11d",
+    "compression": "gzip",
+    "path": "release/validation/full-suite-python313-windows.log.gz",
+    "uncompressed_bytes": 466518,
+    "uncompressed_sha256": "30cd05ef19aa81677ef4a0e1c3d65e1939187624393ee0f3a111ae2e7d8f4878"
+  },
+  "recorded_date": "2026-07-13",
+  "root_cause_correction": {
+    "genuine_current_content_lineage_drifts": 1,
+    "genuine_drift_disposition": "historical artifact quarantined; embedded hash not refreshed",
+    "other_remediated_classes": [
+      "undeclared ML test dependencies",
+      "Windows long paths and POSIX path assumptions",
+      "scikit-learn sparse index-width compatibility",
+      "test subprocess environment replacement",
+      "newline-sensitive test fixtures"
+    ],
+    "test_failures_previously_attributed_to_stale_hashes": 54,
+    "underlying_crlf_only_hash_comparisons": 179
+  },
+  "schema_version": "catalytic-earth.test-baseline.v1",
+  "source_binding": "This baseline and its log are hashed by release/release_manifest.json against the exact source commit."
+}

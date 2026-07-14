@@ -1,5 +1,10 @@
 # Session Decision Record — 2026-06-28
 
+> **Historical record corrected 2026-07-13:** the M-CSA surface described here
+> as never-touched had already been scored. Preserve the numerical result as a
+> retrospective diagnostic, but use `CLAIMS.md` CE-005, `ERRATA.md` ER-001, and
+> `data/governance/exposure_ledger.jsonl` for current interpretation.
+
 Consolidated progress, decisions, and findings for the deployment-line work of
 2026-06-28. This is a durable summary; the machine artifacts named below are the
 source of truth, and `docs/decision_log.md` holds the dated rulings.

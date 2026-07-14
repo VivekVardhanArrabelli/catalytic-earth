@@ -4,13 +4,41 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "catalytic-earth"
-version = "0.0.1"
+version = "0.1.0"
 description = "Mechanism-first enzyme function atlas scaffold"
+readme = "README.md"
 requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [
+  {name = "Vivek Vardhan Arrabelli"},
+]
 dependencies = []
 
+[project.optional-dependencies]
+core = []
+ml = [
+  "numpy>=1.26,<3",
+  "scikit-learn>=1.4,<2",
+]
+plm = [
+  "torch>=2.2,<3",
+  "transformers>=4.40,<6",
+]
+structure = []
+dev = [
+  "build>=1.2,<2",
+]
+
 [project.scripts]
-catalytic-earth = "catalytic_earth.cli:main"
+catalytic-earth = "catalytic_earth.core_cli:main"
+catalytic-earth-legacy = "catalytic_earth.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+catalytic_earth = [
+  "release_data/*.json",
+  "schemas/*.json",
+]

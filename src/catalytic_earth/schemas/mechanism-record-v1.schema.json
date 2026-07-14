@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://catalytic.earth/schemas/mechanism-record-v1.schema.json",
+  "title": "Catalytic Earth mechanism record v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_id",
+    "object_type",
+    "evidence_tier",
+    "label",
+    "fixture_only",
+    "evidence",
+    "mechanism_steps",
+    "counterevidence",
+    "outcome"
+  ],
+  "properties": {
+    "schema_version": {"const": "catalytic-earth.mechanism-record.v1"},
+    "record_id": {"type": "string", "minLength": 1},
+    "object_type": {
+      "enum": [
+        "net_reaction",
+        "source_mechanism",
+        "mechanism_hypothesis",
+        "mechanism_family",
+        "protein_annotation_record",
+        "experimental_observation"
+      ]
+    },
+    "evidence_tier": {"type": "integer", "minimum": 0, "maximum": 4},
+    "label": {"type": "string", "minLength": 1},
+    "fixture_only": {"type": "boolean"},
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_id", "source_release", "evidence_type", "source_record_id"],
+        "properties": {
+          "source_id": {"type": "string", "minLength": 1},
+          "source_release": {"type": "string", "minLength": 1},
+          "evidence_type": {"type": "string", "minLength": 1},
+          "source_record_id": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "mechanism_steps": {"type": "array", "items": {"type": "string"}},
+    "counterevidence": {"type": "array", "items": {"type": "string"}},
+    "outcome": {"type": ["string", "null"], "enum": ["positive", "negative", "inconclusive", null]}
+  }
+}

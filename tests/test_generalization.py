@@ -3,6 +3,7 @@ import shutil
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from catalytic_earth.generalization import (
     aggregate_foldseek_tm_score_query_chunks,
@@ -204,7 +205,8 @@ class SequenceDistanceHoldoutTests(unittest.TestCase):
             artifact["metadata"]["backend"], "mmseqs2_cluster_sequence_identity"
         )
         self.assertEqual(
-            artifact["metadata"]["backend_resolved_path"], shutil.which("mmseqs")
+            artifact["metadata"]["backend_resolved_path"],
+            "/opt/homebrew/bin/mmseqs",
         )
         self.assertEqual(artifact["metadata"]["cluster_threshold"], 0.3)
         self.assertEqual(artifact["metadata"]["target_max_train_test_identity"], 0.3)
@@ -315,14 +317,18 @@ class FoldseekCoordinateReadinessTests(unittest.TestCase):
                 encoding="utf-8",
             )
             foldseek.chmod(0o755)
-            artifact = build_foldseek_coordinate_readiness(
-                retrieval=retrieval,
-                labels=labels,
-                slice_id="test",
-                foldseek_binary=str(foldseek),
-                coordinate_dir=str(Path(tmpdir) / "coords"),
-                max_coordinate_files=0,
-            )
+            with patch(
+                "catalytic_earth.generalization._backend_version",
+                return_value="10.test-explicit",
+            ):
+                artifact = build_foldseek_coordinate_readiness(
+                    retrieval=retrieval,
+                    labels=labels,
+                    slice_id="test",
+                    foldseek_binary=str(foldseek),
+                    coordinate_dir=str(Path(tmpdir) / "coords"),
+                    max_coordinate_files=0,
+                )
 
         self.assertEqual(artifact["metadata"]["foldseek_binary_requested"], str(foldseek))
         self.assertEqual(artifact["metadata"]["foldseek_binary_resolved"], str(foldseek))
@@ -427,12 +433,21 @@ class FoldseekCoordinateReadinessTests(unittest.TestCase):
             ]
         }
 
-        with tempfile.TemporaryDirectory() as tmpdir:
+        with tempfile.TemporaryDirectory() as tmpdir, patch(
+            "catalytic_earth.generalization._foldseek_binary_info",
+            return_value={
+                "requested": "foldseek-test-double",
+                "resolved": "foldseek-test-double",
+                "available": True,
+                "version": "10.test",
+                "version_command": "foldseek-test-double version",
+            },
+        ):
             artifact = build_foldseek_coordinate_readiness(
                 retrieval=retrieval,
                 labels=labels,
                 slice_id="test",
-                foldseek_binary="/bin/echo",
+                foldseek_binary="foldseek-test-double",
                 coordinate_dir=str(Path(tmpdir) / "coords"),
                 max_coordinate_files=2,
                 fetch_pdb_cif_fn=lambda pdb_id: f"data_{pdb_id}\n#\n",

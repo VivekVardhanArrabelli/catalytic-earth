@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://catalytic.earth/schemas/preregistration-v1.schema.json",
+  "title": "Catalytic Earth preregistration contract v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "preregistration_id",
+    "registered_at",
+    "code_commit",
+    "data_hashes",
+    "surface_id",
+    "row_id_set_sha256",
+    "claimed_role",
+    "namespace",
+    "threshold",
+    "metric",
+    "seed",
+    "endpoint",
+    "signature"
+  ],
+  "properties": {
+    "schema_version": {"const": "catalytic-earth.preregistration.v1"},
+    "preregistration_id": {"type": "string", "minLength": 1},
+    "registered_at": {"type": "string", "format": "date-time"},
+    "code_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "data_hashes": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+    },
+    "surface_id": {"type": "string", "minLength": 1},
+    "row_id_set_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "claimed_role": {"enum": ["development", "independent_test", "posthoc"]},
+    "namespace": {"type": "string", "minLength": 1},
+    "threshold": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "value", "comparison"],
+      "properties": {
+        "name": {"type": "string"},
+        "value": {"type": ["number", "integer", "string", "null"]},
+        "comparison": {"type": "string"}
+      }
+    },
+    "metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "aggregation", "higher_is_better"],
+      "properties": {
+        "name": {"type": "string"},
+        "aggregation": {"type": "string"},
+        "higher_is_better": {"type": "boolean"}
+      }
+    },
+    "seed": {"type": "integer", "minimum": 0},
+    "endpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "population", "unit", "decision_rule"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "population": {"type": "string", "minLength": 1},
+        "unit": {"type": "string", "minLength": 1},
+        "decision_rule": {"type": "string", "minLength": 1}
+      }
+    },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "digest"],
+      "properties": {
+        "algorithm": {"const": "sha256"},
+        "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

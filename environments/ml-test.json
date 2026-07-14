@@ -1,0 +1,15 @@
+{
+  "schema_version": "catalytic-earth.ml-test-environment.v1",
+  "validated": {
+    "date": "2026-07-13",
+    "os": "Windows",
+    "python": "3.13.2",
+    "requirements_lock": "requirements/ml.lock",
+    "full_suite_command": "python -m unittest discover -s tests -v"
+  },
+  "scope": "Bounded ML and scientific-small tests; not a model-training or historical-result reproduction environment",
+  "limitations": [
+    "Historical PLM weights and external scientific binaries remain outside this environment.",
+    "The cross-platform core release has zero runtime dependencies and does not require this environment."
+  ]
+}

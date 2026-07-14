@@ -1,0 +1,9 @@
+# Exact environment used to remediate and run the bounded scientific test lane
+# on CPython 3.13 / Windows on 2026-07-13. Install the project separately with
+# ``pip install -e . --no-deps`` after this file.
+joblib==1.5.3
+narwhals==2.24.0
+numpy==2.5.1
+scikit-learn==1.9.0
+scipy==1.18.0
+threadpoolctl==3.6.0

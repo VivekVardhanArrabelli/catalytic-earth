@@ -1,0 +1,16 @@
+Catalytic Earth
+Copyright 2026 Vivek Vardhan Arrabelli and Catalytic Earth contributors
+
+Original source code and original documentation in this repository are
+licensed under the Apache License, Version 2.0, unless a file says otherwise.
+That license does not relicense third-party database records, structures,
+sequences, publications, models, trademarks, or other source material.
+
+The repository contains identifiers, derived annotations, cached data, and/or
+provenance referring to external scientific resources. Their licenses and
+attribution requirements remain controlling. See docs/SOURCE_DATA_RIGHTS.md
+before redistributing any dataset or generated release.
+
+The canonical lean release intentionally excludes records whose redistribution
+rights are unverified or release-specific. A source being publicly accessible
+does not by itself authorize bulk copying or relicensing.

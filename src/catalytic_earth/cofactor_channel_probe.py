@@ -301,7 +301,6 @@ def _run_kmer_presence_probe(
             precision_recall_fscore_support,
             roc_auc_score,
         )
-        from sklearn.pipeline import make_pipeline
     except Exception as exc:  # pragma: no cover - environment dependent
         return {
             "status": "blocked",
@@ -326,6 +325,21 @@ def _run_kmer_presence_probe(
             "train_row_count": len(train_rows),
             "heldout_row_count": len(heldout_rows),
         }
+    # Vectorize once for every one-vs-rest head.  Recent SciPy versions may
+    # emit int64 sparse indices while scikit-learn's liblinear boundary still
+    # requires int32.  The values remain untouched; only index storage is
+    # normalized at the compatibility boundary.
+    vectorizer = DictVectorizer(sparse=True)
+    train_x = vectorizer.fit_transform(
+        [embeddings[row["entry_id"]] for row in train_rows]
+    )
+    heldout_x = vectorizer.transform(
+        [embeddings[row["entry_id"]] for row in heldout_rows]
+    )
+    for matrix in (train_x, heldout_x):
+        matrix.indices = matrix.indices.astype("int32", copy=False)
+        matrix.indptr = matrix.indptr.astype("int32", copy=False)
+
     class_results: dict[str, Any] = {}
     for cofactor_class in cofactor_classes:
         train_y = [
@@ -336,20 +350,15 @@ def _run_kmer_presence_probe(
             int(cofactor_class in row["local_cofactor_families"])
             for row in heldout_rows
         ]
-        model = make_pipeline(
-            DictVectorizer(sparse=True),
-            LogisticRegression(
-                max_iter=2000,
-                class_weight="balanced",
-                solver="liblinear",
-                random_state=random_state,
-            ),
+        model = LogisticRegression(
+            max_iter=2000,
+            class_weight="balanced",
+            solver="liblinear",
+            random_state=random_state,
         )
-        model.fit([embeddings[row["entry_id"]] for row in train_rows], train_y)
-        heldout_pred = model.predict([embeddings[row["entry_id"]] for row in heldout_rows])
-        heldout_prob = model.predict_proba(
-            [embeddings[row["entry_id"]] for row in heldout_rows]
-        )[:, 1]
+        model.fit(train_x, train_y)
+        heldout_pred = model.predict(heldout_x)
+        heldout_prob = model.predict_proba(heldout_x)[:, 1]
         class_results[cofactor_class] = _binary_metrics(
             y_true=heldout_y,
             y_pred=[int(value) for value in heldout_pred],

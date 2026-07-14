@@ -1,0 +1,33 @@
+{
+  "claim_id": "CE-012",
+  "effective_at": "2026-07-13T20:30:00Z",
+  "frozen": true,
+  "hash_rule": "LF-normalized SHA-256 for repository text, invariant to checkout line endings",
+  "expected_sha256": {
+    "data/registries/curated_mechanism_labels.json": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+    "data/registries/external_bronze_labels.json": "ae8e4b317e4fe49b99602c22ea154fa059edd73e7d066bc3422c54ea9198e585",
+    "data/registries/mechanism_fingerprints.json": "f3f57858f041447f474f0cb849e283528521243f1439ba918264286df93cb75a",
+    "data/registries/mechanism_ontology.json": "bbacf9ef24fb2e5eb229cdba754ec0a3ba90a1d0de08c8afc0016924c5deff03"
+  },
+  "protected_paths": [
+    "data/registries/curated_mechanism_labels.json",
+    "data/registries/external_bronze_labels.json",
+    "data/registries/mechanism_fingerprints.json",
+    "data/registries/mechanism_ontology.json"
+  ],
+  "reason": "The P0 mechanical gates are implemented. Keep protected registry writes closed as an explicit post-reset safety latch until a reviewed admission decision deliberately changes frozen to false; cleanup completion must not silently authorize expansion.",
+  "requirement_status": {
+    "claim_and_errata_ledgers": "met",
+    "exposure_memory": "met",
+    "locked_core_reproduction": "met",
+    "live_artifact_manifest": "met",
+    "explicit_reviewed_unfreeze_decision": "pending"
+  },
+  "unfreeze_requirements": [
+    "claim and errata ledgers validate",
+    "exposure ledger validates and every intended evaluation surface is classified",
+    "one locked core environment reproduces a bounded result",
+    "live artifact manifest replaces stale passing inventory",
+    "an explicit reviewed decision changes frozen to false"
+  ]
+}

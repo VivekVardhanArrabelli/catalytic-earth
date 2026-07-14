@@ -616,7 +616,7 @@ def _producer_consumer_profile(row: dict[str, Any]) -> dict[str, Any]:
                         "--retrieval artifacts/v3_geometry_retrieval_1000.json "
                         "--labels data/registries/curated_mechanism_labels.json "
                         "--geometry artifacts/v3_geometry_features_1000.json "
-                        "--foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek "
+                        "--foldseek-binary foldseek "
                         "--coordinate-dir artifacts/v3_foldseek_coordinates_1000 "
                         "--max-coordinate-files 25 "
                         "--out artifacts/v3_foldseek_coordinate_readiness_1000.json"
@@ -1922,6 +1922,12 @@ def _selected_restore_rows(
 
 
 def _fetch_target_bytes(target_uri: str, *, repo_root: Path) -> bytes:
+    # ``urlparse`` interprets a Windows drive letter (for example ``C:``) as
+    # a URI scheme.  Resolve native absolute paths before URI dispatch so a
+    # local restore behaves identically on Windows, macOS, and Linux.
+    native_path = Path(target_uri)
+    if native_path.is_absolute():
+        return native_path.read_bytes()
     parsed = urlparse(target_uri)
     if target_uri.startswith("git:"):
         spec = target_uri[len("git:") :]
@@ -1942,7 +1948,7 @@ def _fetch_target_bytes(target_uri: str, *, repo_root: Path) -> bytes:
             return response.read()
     if parsed.scheme:
         raise ValueError(f"unsupported target_uri scheme: {parsed.scheme}")
-    local_path = Path(target_uri)
+    local_path = native_path
     if not local_path.is_absolute():
         local_path = repo_root / local_path
     return local_path.read_bytes()
