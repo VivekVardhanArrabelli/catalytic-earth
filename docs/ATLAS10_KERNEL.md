@@ -1,8 +1,8 @@
 # Atlas-10 compiled query surface
 
 **Compiled:** 2026-07-14
-**Status:** computational artifacts and local wheel verification complete;
-external review-attempt and published CI gates pending
+**Status:** computational artifacts, local wheel verification, and supported
+PR CI complete; external review-attempt gate pending
 
 Atlas-10 is the immutable Atlas-3 kernel plus seven source-bound follow-on
 cases. It is useful atlas knowledge and a representation stress test, not a
@@ -93,13 +93,16 @@ claimed.
 The computational artifacts are ready. A wheel built from this tree passed
 fresh-directory Atlas-3 and Atlas-10 verification on Windows with Python 3.13;
 the Atlas-10 runtime digest above reproduced exactly, and the raw source
-snapshots were absent from the wheel. This local result does not stand in for
-the repository's Windows/Linux Python 3.10/3.12 CI matrix.
+snapshots were absent from the wheel. The published PR #27 matrix then passed
+all four supported Ubuntu/Windows Python 3.10/3.12 jobs in
+[Actions run 29364282230](https://github.com/VivekVardhanArrabelli/catalytic-earth/actions/runs/29364282230),
+including clean-wheel reproduction.
 
 Atlas-10 is not phase-exit complete until at least one real external review
-attempt is recorded and the published branch passes that supported CI matrix.
-A response is welcome but is not required for this bounded phase; a
-non-response still must be recorded as a non-response.
+attempt is recorded. A response is welcome but is not required for this
+bounded phase; a non-response still must be recorded as a non-response. This
+bounded attempt is not the two-expert independent-annotation requirement in
+Section 10.3 of the truth-first review.
 
 ## Reproduce and audit
 

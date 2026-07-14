@@ -72,8 +72,17 @@ Current truth:
   entries honestly remain unattempted because no real recipient/channel has
   been supplied. A locally built wheel passed fresh-directory Atlas-3 and
   Atlas-10 verification on Windows/Python 3.13 and excluded the raw source
-  snapshots. A real external attempt and the published Windows/Linux Python
-  3.10/3.12 CI matrix are the remaining Atlas-10 phase-exit gates.
+  snapshots. The published PR #27 Ubuntu/Windows Python 3.10/3.12 matrix
+  passed in Actions run 29364282230. A real external attempt is the sole
+  remaining Atlas-10 phase-exit gate.
+- The next computational checkpoint is Atlas-50 alpha under Section 10 of the
+  truth-first review. A machine draft does not complete the reviewed
+  57-fingerprint crosswalk; one review attempt does not complete independent
+  annotation; and the first 50-row bronze audit tranche does not authorize
+  expansion. Protected registry writes remain frozen until the mandatory
+  stratified 200-row independent audit reaches at least 90% precision at the
+  exact granularity claimed and an explicit reviewed unfreeze decision is
+  recorded.
 
 The project is early and scientifically unvalidated, not empty. Its strongest
 current assets are the typed schema, provenance-bearing registries, negative

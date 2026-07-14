@@ -1,5 +1,34 @@
 # Current Decisions
 
+## 2026-07-14: Section 10 scientific-reset gates remain mandatory
+
+Decision: the rapid atlas cadence does not weaken Section 10 of the truth-first
+review. Atlas-50 is useful atlas construction, not permission to substitute
+drafts, outreach attempts, or small diagnostic samples for reviewed gates.
+
+Durable rulings:
+
+1. A machine-generated crosswalk draft may accelerate work, but all 57 current
+   fingerprints must be source-linked, classified, and reviewed before the
+   Section 10.1 crosswalk is called complete.
+2. The 50-case panel must be deliberately difficult. At least 90% must fit the
+   shared representation without family-specific ad hoc fields; unsupported
+   cases fail explicitly.
+3. An Atlas-10 external-review attempt is not independent annotation. Section
+   10.3 still requires two independent domain experts, agreement at declared
+   granularity, disagreement preservation/adjudication, and time per record.
+4. A first 50-row bronze audit is diagnostic only. Protected registry expansion
+   remains frozen until at least 200 stratified automated-bronze records are
+   independently reviewed, precision is at least 90% at the exact granularity
+   claimed, circular admission-derived evaluation is excluded, and an explicit
+   reviewed unfreeze decision is recorded.
+5. Atlas-10 is not the fresh difficult benchmark. That one-shot surface must be
+   frozen after the representation, kept unexposed before scoring, independently
+   adjudicated, and evaluated with matched information budgets.
+6. The same-source Atlas-10 comparator is not the modern baseline suite.
+   Applicable profile, sequence, structure, reaction, mechanism, and learned
+   baselines remain required before comparative performance claims.
+
 ## 2026-07-14: Atlas-10 compiled without upgrading source truth
 
 Decision: admit the seven follow-on packages as `mechanism-record.v3` objects
@@ -21,10 +50,10 @@ Durable rulings:
    Atlas; they are not claimed biologically resolved.
 6. Seven review packets are ready. Until a real request is sent, the attempt
    ledger remains unattempted and Atlas-10 is not called phase-exit complete.
-7. Local fresh-directory wheel reproduction passed on Windows/Python 3.13.
-   The next expansion decision still waits for the external-attempt record and
-   the published Windows/Linux Python 3.10/3.12 CI matrix; it does not reopen
-   protected registries.
+7. Local fresh-directory wheel reproduction passed on Windows/Python 3.13, and
+   PR #27 passed the published Ubuntu/Windows Python 3.10/3.12 matrix in Actions
+   run 29364282230. Atlas-10 phase exit still waits for the external-attempt
+   record, and neither result reopens protected registries.
 
 ## 2026-07-14: Atlas-10 seven-case follow-on frozen before compilation
 

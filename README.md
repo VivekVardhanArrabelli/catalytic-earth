@@ -90,8 +90,9 @@ a production biological design system.
   comparator supports a structural usability result only; no human-time,
   accuracy, or discovery claim is made. A local Windows/Python 3.13 wheel
   passed fresh-directory Atlas-3 and Atlas-10 verification and excludes raw
-  source snapshots. Seven review packets are ready, while the real
-  external-attempt and published supported-CI gates remain pending.
+  source snapshots. The published PR #27 Ubuntu/Windows Python 3.10/3.12
+  matrix also passed. Seven review packets are ready; a real external attempt
+  is the sole remaining Atlas-10 phase-exit gate.
 
 ## Truth-governance gate
 
