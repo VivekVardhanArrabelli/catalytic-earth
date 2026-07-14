@@ -18,7 +18,7 @@ INDEX_PATH = ROOT / "release/report_archive_index.json"
 DEFAULT_BUNDLE = ROOT / "dist/catalytic-earth-report-archive-0.1.0.zip"
 
 
-def _work_entries() -> list[dict[str, Any]]:
+def _work_index_entries() -> list[dict[str, Any]]:
     raw = subprocess.check_output(["git", "ls-files", "-s", "-z", "--", "work"], cwd=ROOT)
     entries: list[dict[str, Any]] = []
     for item in raw.split(b"\0"):
@@ -33,12 +33,17 @@ def _work_entries() -> list[dict[str, Any]]:
         month = date_match.group(1)[:6] if date_match else "undated"
         entries.append(
             {
+                "mode": mode,
                 "path": path,
                 "git_object_id": object_id,
-                "bytes": 0,
                 "bundle_group": month,
             }
         )
+    return sorted(entries, key=lambda row: row["path"])
+
+
+def _work_entries() -> list[dict[str, Any]]:
+    entries = _work_index_entries()
     size_result = subprocess.run(
         ["git", "cat-file", "--batch-check=%(objectname) %(objectsize)"],
         cwd=ROOT,
@@ -53,7 +58,14 @@ def _work_entries() -> list[dict[str, Any]]:
     }
     for row in entries:
         row["bytes"] = sizes[row["git_object_id"]]
-    return sorted(entries, key=lambda row: row["path"])
+    return entries
+
+
+def _git_index_sha(entries: list[dict[str, Any]]) -> str:
+    payload = "".join(
+        f"{row['mode']}\t{row['git_object_id']}\t{row['path']}\n" for row in entries
+    ).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
 
 
 def _membership_sha(entries: list[dict[str, Any]]) -> str:
@@ -72,8 +84,12 @@ def build_index() -> bytes:
         "member_count": len(entries),
         "logical_bytes": sum(row["bytes"] for row in entries),
         "membership_sha256": _membership_sha(entries),
+        "git_index_sha256": _git_index_sha(entries),
         "bundle_groups": dict(sorted(groups.items())),
-        "members": entries,
+        "members": [
+            {key: value for key, value in row.items() if key != "mode"}
+            for row in entries
+        ],
         "provenance": (
             "Members are the exact Git-index blobs under work/. The deterministic ZIP is a "
             "release asset; Git history remains authoritative and is not rewritten."
@@ -111,9 +127,27 @@ def build_bundle(output: Path) -> tuple[str, int]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true")
+    parser.add_argument(
+        "--index-only",
+        action="store_true",
+        help="validate Git index identity without materializing partial-clone blobs",
+    )
     parser.add_argument("--build-bundle", action="store_true")
     parser.add_argument("--output", type=Path, default=DEFAULT_BUNDLE)
     args = parser.parse_args()
+    if args.index_only and not args.check:
+        parser.error("--index-only is valid only with --check")
+    if args.index_only:
+        if not INDEX_PATH.is_file():
+            raise SystemExit("release/report_archive_index.json is missing")
+        manifest = json.loads(INDEX_PATH.read_text(encoding="utf-8"))
+        entries = _work_index_entries()
+        if _git_index_sha(entries) != manifest.get("git_index_sha256"):
+            raise SystemExit("report archive Git index differs from manifest")
+        if len(entries) != manifest.get("member_count"):
+            raise SystemExit("report archive member count differs from manifest")
+        print("Report archive Git index is current (partial-clone mode)")
+        return 0
     index = build_index()
     if args.check:
         if not INDEX_PATH.is_file() or INDEX_PATH.read_bytes() != index:

@@ -224,7 +224,10 @@ def main() -> int:
         _run("scripts/build_live_artifact_manifest.py", "--check", "--index-only")
     else:
         _run("scripts/build_live_artifact_manifest.py", "--check")
-    _run("scripts/build_report_archive.py", "--check")
+    if os.environ.get("CE_PARTIAL_CLONE") == "1":
+        _run("scripts/build_report_archive.py", "--check", "--index-only")
+    else:
+        _run("scripts/build_report_archive.py", "--check")
     if not args.pre_release:
         _run("scripts/build_release_manifest.py", "--check")
     _run("scripts/build_architecture_freeze.py", "--check")

@@ -1,7 +1,7 @@
 {
   "current_validation": {
     "command": "python -m unittest discover -s tests -v",
-    "duration_seconds": 482.245,
+    "duration_seconds": 690.23,
     "errors": 0,
     "failures": 0,
     "return_code": 0,
@@ -28,11 +28,11 @@
   },
   "log": {
     "compressed_bytes": 49406,
-    "compressed_sha256": "436908167ac4e02d23d0ad7088ad0b2fad31c4ab4cbfd50d7017d65ec163b730",
+    "compressed_sha256": "65496d1180266f3ddf22c0686995afa59b633a08ebd9e0b5ca137e41e48ab11d",
     "compression": "gzip",
     "path": "release/validation/full-suite-python313-windows.log.gz",
     "uncompressed_bytes": 466518,
-    "uncompressed_sha256": "ac2bd75b59f1a9a314ceb1fa0e342a571257de80d28d1d7eb608724109fb4b6d"
+    "uncompressed_sha256": "30cd05ef19aa81677ef4a0e1c3d65e1939187624393ee0f3a111ae2e7d8f4878"
   },
   "recorded_date": "2026-07-13",
   "root_cause_correction": {

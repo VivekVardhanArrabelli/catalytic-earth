@@ -2,7 +2,12 @@ name: P0 contracts
 
 on:
   push:
+    branches: [main]
   pull_request:
+
+concurrency:
+  group: p0-contracts-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read

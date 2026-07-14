@@ -6,6 +6,7 @@
     "undated": 69
   },
   "current_storage_state": "Indexed and bundle-buildable. External upload remains blocked until a release destination is approved and rights checks pass.",
+  "git_index_sha256": "5b9482a6de7b5ae7393ad03b6097cd6be47393cb2baf83766b4f3998ccddd8e1",
   "logical_bytes": 10436409,
   "member_count": 1316,
   "members": [
