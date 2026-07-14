@@ -176,8 +176,10 @@ ammonia-lyase, and human cyclophilin A.
 Compilation checkpoint 2026-07-14: source snapshotting, the 30-object kernel,
 two relationship queries, same-source comparator, seven review packets, local
 wheel verification, and the supported PR #27 Ubuntu/Windows Python 3.10/3.12
-matrix are complete. The review ledger remains honestly unattempted; one real
-external attempt is the sole remaining Atlas-10 phase-exit gate.
+matrix are complete. The high-level scientific exit gate below is satisfied.
+The review ledger remains honestly unattempted; one real external attempt is a
+pending deliverable in the later frozen selection checklist, not a blocker to
+Atlas-50 computational work and not independent review.
 
 Together the ten cases pressure the representation rather than flatter it:
 

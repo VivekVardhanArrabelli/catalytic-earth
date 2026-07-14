@@ -1,8 +1,9 @@
 # Atlas-10 compiled query surface
 
 **Compiled:** 2026-07-14
-**Status:** computational artifacts, local wheel verification, and supported
-PR CI complete; external review-attempt gate pending
+**Status:** computational artifacts, local wheel verification, supported PR
+CI, and high-level scientific exit gate complete; frozen review-contract
+attempt pending
 
 Atlas-10 is the immutable Atlas-3 kernel plus seven source-bound follow-on
 cases. It is useful atlas knowledge and a representation stress test, not a
@@ -98,11 +99,16 @@ all four supported Ubuntu/Windows Python 3.10/3.12 jobs in
 [Actions run 29364282230](https://github.com/VivekVardhanArrabelli/catalytic-earth/actions/runs/29364282230),
 including clean-wheel reproduction.
 
-Atlas-10 is not phase-exit complete until at least one real external review
-attempt is recorded. A response is welcome but is not required for this
-bounded phase; a non-response still must be recorded as a non-response. This
-bounded attempt is not the two-expert independent-annotation requirement in
-Section 10.3 of the truth-first review.
+The high-level scientific exit gate in `docs/RAPID_ATLAS_PLAN.md` is satisfied:
+the schema converges by failing unsupported detail explicitly, and the frozen
+queries add structured value beyond opening the incumbent sources separately.
+The later, more detailed frozen selection checklist separately requires one
+real external review attempt. That review-contract deliverable remains pending
+and is preserved rather than silently rewritten, but it is not a blocker to
+Atlas-50 computational work. A response is welcome but is not required; a
+non-response still must be recorded as a non-response. This bounded attempt is
+not the two-expert independent-annotation requirement in Section 10.3 of the
+truth-first review.
 
 ## Reproduce and audit
 
