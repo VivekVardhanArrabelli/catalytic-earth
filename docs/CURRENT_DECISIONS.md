@@ -1,6 +1,42 @@
 # Current Decisions
 
-## 2026-07-13: Atlas-3 compiled as the first non-fixture biological kernel
+## 2026-07-14: Atlas-10 seven-case follow-on frozen before compilation
+
+Decision: preserve the complete Atlas-3 kernel by content hash and add seven
+cases chosen to expose missing representation and truth-boundary behavior, not
+to estimate performance or flatter the current system. The frozen contract is
+`data/atlas/atlas10_selection.json`; compilation writes only under
+`data/atlas/atlas10/`.
+
+Durable rulings:
+
+1. Atlas-10 means ten selected biological cases, not ten equally detailed
+   mechanisms and not a representative benchmark.
+2. Lysozyme, trypsin, and subtilisin retain explicit frozen Rhea-query gaps;
+   no canonical reaction identifier may be invented from another source.
+3. Cyclophilin A's M-CSA M0189 is non-detailed despite its high rating. The
+   atlas must abstain from unsupported atom, bond, charge, electron, proton,
+   covalent-intermediate, and ordered-step edits.
+4. Subtilisin is grounded directly to unmutated P00782/1SUP. Engineered PDB
+   1S01 remains source-reference applicability evidence, never the unmodified
+   target structure.
+5. Trypsin/subtilisin test convergent catalytic strategy across unrelated
+   folds. Mandelate racemase/methylaspartate ammonia-lyase test shared
+   enolase-fold logic with different chemistry. Relationships enable queries;
+   they do not license field transfer.
+6. The usefulness comparator is the same frozen source stack opened
+   separately, without Atlas-derived joins or generated synthesis. It is not a
+   biological-accuracy benchmark.
+7. Five to ten bounded review packets and external-review attempts are
+   required. A no-response record is acceptable for bounded phase completion
+   but never counts as independent review.
+8. The follow-on phase allows 48 CPU hours, zero GPU hours, 1,200 requests, and
+   800 MiB as stop ceilings, not targets. Larger compute needs a separate
+   information-gain amendment.
+9. No new assay is selected. The inherited TEM-1 lane remains candidate-only,
+   uncommitted, and separately preregistered before outcomes are exposed.
+
+## 2026-07-14: Atlas-3 compiled as the first non-fixture biological kernel
 
 Decision: advance from the frozen selection to nine separately counted
 objects—Tier-0 reaction, Tier-1 source mechanism, and Tier-2 grounded
@@ -22,8 +58,9 @@ Durable rulings:
    Nitrocefin activity cannot automatically upgrade the detailed mechanism.
 6. Literature bodies are not bundled. Four DOI items and one PMCID remain
    reference-only handles under article-specific terms.
-7. The final Atlas-3 software exit gate is clean packaged reproduction on the
-   Windows/Linux CI matrix. The assay lane remains separately unstarted.
+7. Clean packaged reproduction passed the Windows/Linux Python 3.10/3.12 CI
+   matrix, PR #25 was merged, and tag `snapshot/atlas3-kernel-20260714`
+   preserves the checkpoint. The assay lane remains separately unstarted.
 
 ## 2026-07-13: Atlas-3 first biological-kernel selection frozen before compilation
 

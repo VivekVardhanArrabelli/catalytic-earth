@@ -28,3 +28,9 @@ The Atlas-3 DOI and PMCID items are reference-only; no article body text is
 bundled. Per-record identities, transformations, attribution, rights, and
 content hashes are documented in data/atlas/atlas3/source_manifest.json and
 data/atlas/atlas3/SOURCE_ATTRIBUTION.md.
+
+The frozen Atlas-10 selection references CATH-Gene3D superfamily identifiers,
+copyright the CATH contributors and licensed under CC BY 4.0. No Atlas-10 CATH
+bulk export or seven-case source package is bundled at selection time. Any
+compiled release must record the accessed CATH version, attribution, changes,
+and content hashes.

@@ -41,6 +41,8 @@ ePK NO-GO learnings are archived (not in main): `git checkout archive/epk-<track
 | `docs/decision_log.md` | Which dated decisions override older artifact wording? | Current orientation |
 | `docs/agent_runbook.md` | How should an agent run bounded work safely? | Current orientation |
 | `README.md` | What is this repo and how do I get started? | Front door |
+| `docs/ATLAS3_KERNEL.md` | What biological kernel is compiled and reproducible now? | Current completed computational checkpoint |
+| `docs/ATLAS10_SELECTION.md` | Which seven cases, sources, truth traps, queries, baseline, review, and compute boundaries govern the next phase? | Current build gate; frozen before compilation |
 | `artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json` | Which Lever 2/3/4 mechanical gates are runnable now? | Current active-lever gate; 0 mechanical gates ready, 15 blockers, follow-up Lever 3 proxy axis fully scored but not closure-sufficient |
 
 ## 2026-06-15 Metal-Independent PDE 43fp Infrastructure

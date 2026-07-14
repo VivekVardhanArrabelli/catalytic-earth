@@ -166,28 +166,39 @@ records and their provenance without loading the multi-gigabyte artifact tree.
 
 ### Days 8–14 — Atlas-10
 
-Select ten cases that pressure the representation rather than flatter it:
+Selection checkpoint frozen 2026-07-14: Atlas-3 remains immutable and seven
+follow-on cases are defined in `docs/ATLAS10_SELECTION.md` and
+machine-enforced by `data/atlas/atlas10_selection.json`. The cases are human
+carbonic anhydrase II, hen egg-white lysozyme, *Fusarium* trypsin, subtilisin
+BPN', *Pseudomonas* mandelate racemase, *Clostridium* methylaspartate
+ammonia-lyase, and human cyclophilin A. Selection is complete; source
+snapshotting and compilation are not.
+
+Together the ten cases pressure the representation rather than flatter it:
 
 - radical chemistry;
 - metal/redox chemistry;
 - covalent intermediate;
 - proton relay/protonation ambiguity;
-- same net reaction with alternative mechanisms;
+- competing mechanistic interpretations and source history;
 - similar catalytic strategy across unrelated folds;
 - same fold with different chemistry;
-- conflicting literature interpretation;
-- one unsupported case that must abstain;
+- reaction-source and structure-applicability gaps;
+- one non-detailed case that must abstain from invented step edits;
 - one design-relevant geometry case.
 
 Deliverables:
 
-- ten typed mechanism records;
+- a ten-case surface of tiered reaction, source-annotation, protein/site
+  hypothesis, and abstention objects—not a forced claim of ten detailed
+  mechanisms;
 - crosswalks to M-CSA, Rhea/ChEBI, EC-BLAST/EnzymeMap, MechFind/EzMechanism,
   and EnzyMM where applicable;
-- two useful queries;
-- one strong external baseline pipeline;
+- the frozen cross-fold convergence and same-fold/divergent-chemistry queries;
+- the frozen unintegrated-source baseline under the same source budget;
 - one-command reproduction;
-- bounded outside review of five to ten cases.
+- five to ten content-hashed review packets and recorded external-review
+  attempts, including no-response outcomes.
 
 Exit gate: the schema is converging, unsupported fields fail explicitly, and at
 least one query is useful beyond opening the incumbent resources separately.

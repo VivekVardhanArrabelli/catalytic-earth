@@ -43,7 +43,7 @@ This repository remains a research scaffold. It is not a wet-lab protocol,
 not a claim that computational candidates are validated enzymes, and not yet
 a production biological design system.
 
-## Quick Status — 2026-07-13 truth reset
+## Quick Status — 2026-07-14 (built on the 2026-07-13 truth reset)
 
 - `current702` contains 702 project benchmark labels: 685 bronze, 17 silver,
   zero project-gold; 683 are automation-curated and 19 author-reviewed.
@@ -82,6 +82,13 @@ a production biological design system.
   handles, the nine records, and a local truth-boundary query are content-bound
   and reproducible. This is useful Atlas knowledge, not biological validation
   or a coverage benchmark.
+- The Atlas-10 follow-on selection is frozen, not yet compiled. Seven cases add
+  proton-relay, competing-mechanism, cross-fold convergence,
+  same-fold/different-chemistry, source-gap, engineered-structure, and
+  mandatory-abstention pressures. The machine contract fixes 45 source
+  handles, two relationship queries, the unintegrated-source baseline, review
+  packets, and compute ceilings while preserving Atlas-3 and the sole TEM-1
+  assay candidate.
 
 ## Truth-governance gate
 
@@ -123,6 +130,7 @@ agent run:
 | `docs/RAPID_ATLAS_PLAN.md` | Current 35-day computational plan, parallel experimental clock, and atlas scale gates |
 | `docs/ATLAS3_SELECTION.md` | Frozen first-kernel cases, authoritative handles, budgets, stop conditions, and build sequence |
 | `docs/ATLAS3_KERNEL.md` | Compiled nine-object biological kernel, source checks, query, truth boundaries, and reproduction |
+| `docs/ATLAS10_SELECTION.md` | Frozen seven-case extension, source gaps, relationship queries, applicability traps, baseline, review, and compute contracts |
 | `docs/P0_COMPLETION.md` | Auditable completion map for the truth-first review's P0 cleanup |
 | `docs/reviews/catalytic-earth-full-review-2026-07-10.md` | Independent audit, evidence corrections, strategic amendment, and full rationale |
 | `docs/reviews/catalytic-earth-90-day-map-2026-07-10.md` | Compact operating map derived from the full review |
@@ -164,6 +172,7 @@ Validate the repo:
 ```bash
 python scripts/validate_repository_contracts.py
 python scripts/validate_atlas3_selection.py
+python scripts/validate_atlas10_selection.py
 python scripts/build_atlas3_sources.py
 python scripts/build_atlas3_kernel.py --check
 python scripts/run_test_tier.py "core/unit"
@@ -222,6 +231,21 @@ and decoder choice were confounded.
   refresh.
 - Keep disk above 10 GiB free and avoid large downloads unless a task
   explicitly authorizes them.
+
+## Repository visibility
+
+**Recommended visibility for the canonical repository: public.** Openness is
+part of the project's credibility and usefulness: claims, corrections,
+provenance, schemas, abstentions, and reproducible releases should be
+inspectable without permission from the author.
+
+Use a separate private or local lab workspace for secrets, credentials,
+licensed non-redistributable data, blinded labels, embargoed collaborator
+material, unpublished assay outcomes before their frozen reveal boundary, and
+large disposable intermediates. Public records should contain redistributable
+snapshots where permitted and otherwise stable source handles, rights notes,
+hashes, and applicability metadata. Repository privacy must never be used to
+hide corrections, failed results, or claim history.
 
 ## Contributing And Agent Work
 

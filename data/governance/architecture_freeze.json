@@ -1,5 +1,9 @@
 {
   "deterministic_modules": {
+    "src/catalytic_earth/atlas10_selection.py": {
+      "bytes": 34010,
+      "sha256": "ffb1fe1f35526ab933146a48cddefdcf1515454357a723afea0964b026d28637"
+    },
     "src/catalytic_earth/atlas_kernel.py": {
       "bytes": 30725,
       "sha256": "465b740c582fe1a24575afcfca90e51270a26f4eba46f8ff7d810314cbf5a634"
@@ -131,7 +135,7 @@
     ],
     "maximum_relative_path_characters": 180,
     "observed_maximum": 180,
-    "paths_checked": 17136
+    "paths_checked": 17142
   },
   "replacement_family_path": {
     "engine": "src/catalytic_earth/family_onboarding.py",
@@ -146,6 +150,9 @@
     "sha256": "a37dac1b2ad71718930d426330a930aff06f9652552bca31cbebbb4b1ff37ca1"
   },
   "typed_schema": {
+    "atlas10_selection_contract": "data/atlas/atlas10_selection.json",
+    "atlas10_selection_python": "src/catalytic_earth/atlas10_selection.py",
+    "atlas10_selection_schema": "src/catalytic_earth/schemas/atlas10-selection-v1.schema.json",
     "atlas3_selection_contract": "data/atlas/atlas3_selection.json",
     "atlas3_selection_python": "src/catalytic_earth/atlas_selection.py",
     "atlas3_selection_schema": "src/catalytic_earth/schemas/atlas3-selection-v1.schema.json",

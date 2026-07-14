@@ -1,0 +1,1126 @@
+{
+  "schema_version": "catalytic-earth.atlas10-selection.v1",
+  "selection_id": "atlas10.follow-on.selection.2026-07-14",
+  "status": "frozen_precompilation",
+  "frozen_at": "2026-07-14T14:58:04Z",
+  "baseline_commit": "c129735c45a09ecc366ce71607e448dffe6669e7",
+  "namespace": "data/atlas/atlas10",
+  "registry_mutation_permitted": false,
+  "objective": "Extend the first biological kernel from three to ten cases while forcing the atlas to preserve source gaps, non-detailed mechanisms, competing proposals, engineered-structure applicability, catalytic convergence across unrelated folds, divergent chemistry within one fold, bounded compute, and explicit abstention.",
+  "inherited_selection": {
+    "selection_id": "atlas3.kernel.selection.2026-07-13",
+    "selection_sha256": "d24361bb9fc000d39d7209c5538bd23df845a94aa2dce1fb38c18d56dd8e1ada",
+    "case_ids": [
+      "atlas3.mcm-pfre.radical",
+      "atlas3.mnsod-ecoli.redox",
+      "atlas3.tem1-ecoli.covalent"
+    ],
+    "immutable": true
+  },
+  "all_case_ids": [
+    "atlas3.mcm-pfre.radical",
+    "atlas3.mnsod-ecoli.redox",
+    "atlas3.tem1-ecoli.covalent",
+    "atlas10.caii-human.proton-relay",
+    "atlas10.hewl-chicken.covalent-glycosidase",
+    "atlas10.trypsin-fusarium.serine-protease",
+    "atlas10.subtilisin-bpn-bacillus.serine-protease",
+    "atlas10.mandelate-racemase-pputida.enolate",
+    "atlas10.methylaspartate-lyase-ctetanomorphum.enolate",
+    "atlas10.cyclophilin-a-human.isomerization"
+  ],
+  "selection_axes": [
+    "proton_relay_and_geometry",
+    "alternative_mechanism_preservation",
+    "convergent_strategy_unrelated_folds",
+    "shared_fold_divergent_chemistry",
+    "mandatory_detail_abstention"
+  ],
+  "phase_compute_budget": {
+    "cpu_hours_max": 48,
+    "gpu_hours_max": 0,
+    "external_requests_max": 1200,
+    "download_bytes_max": 838860800,
+    "reuse_required": true,
+    "stop_if_exceeded": true
+  },
+  "relationship_groups": [
+    {
+      "group_id": "atlas10.relationship.convergent-serine-proteases",
+      "relationship_type": "convergent_strategy_unrelated_folds",
+      "case_ids": [
+        "atlas10.trypsin-fusarium.serine-protease",
+        "atlas10.subtilisin-bpn-bacillus.serine-protease"
+      ],
+      "fold_classification_ids": [
+        "CATH:2.40.10.10",
+        "CATH:3.40.50.200"
+      ],
+      "comparison_claim": "The selected trypsin and subtilisin use a convergent Ser-His-Asp catalytic strategy in different CATH superfamilies; the atlas must make the shared roles queryable while preserving unrelated folds, protein-specific numbering, source-scoped steps, and reaction-source gaps.",
+      "transfer_prohibition": "Do not transfer a residue number, step, substrate scope, or evidence grade between the two enzymes merely because both use a Ser-His-Asp catalytic strategy.",
+      "required_query_id": "atlas10.query.convergent-strategy"
+    },
+    {
+      "group_id": "atlas10.relationship.divergent-enolase-chemistry",
+      "relationship_type": "shared_fold_divergent_chemistry",
+      "case_ids": [
+        "atlas10.mandelate-racemase-pputida.enolate",
+        "atlas10.methylaspartate-lyase-ctetanomorphum.enolate"
+      ],
+      "fold_classification_ids": [
+        "CATH:3.20.20.120"
+      ],
+      "comparison_claim": "The selected enzymes share an enolase-like C-terminal superfamily and metal-stabilized enolate chemistry but direct that common catalytic logic toward racemization versus ammonia elimination.",
+      "transfer_prohibition": "Do not collapse shared fold or a common enolate substep into identical net chemistry, catalytic residue roles, substrate scope, or full mechanism.",
+      "required_query_id": "atlas10.query.shared-fold-divergent-chemistry"
+    }
+  ],
+  "follow_on_cases": [
+    {
+      "case_id": "atlas10.caii-human.proton-relay",
+      "target_record_id": "mechanism:caii-human-proton-relay-v1",
+      "label": "Human carbonic anhydrase II",
+      "organism": "Homo sapiens",
+      "ec_number": "4.2.1.1",
+      "representation_axis": "proton_relay_and_geometry",
+      "representation_pressures": [
+        "proton_relay_and_geometry",
+        "zinc_bound_hydroxide_nucleophile",
+        "protonation_state_and_solvent_network",
+        "geometry_constraints_without_turnover_movie"
+      ],
+      "relationship_group_ids": [],
+      "fingerprint_bridge": {
+        "fingerprint_id": "zinc_lyase_hydratase",
+        "use": "historical_crosswalk_only_not_evidence",
+        "registry_write": false
+      },
+      "target_evidence_tier": 2,
+      "source_mechanism_contract": {
+        "mcsa_record_id": "M0216",
+        "annotation_level": "detailed_direct",
+        "step_detail_policy": "compile_source_steps",
+        "highest_target_tier": 2,
+        "mandatory_abstentions": [
+          "Do not treat PDB 1CA2 as a turnover trajectory or assign a unique solvent proton wire where the frozen sources do not resolve one.",
+          "Do not treat a geometry constraint or historical fingerprint as independent mechanistic evidence."
+        ]
+      },
+      "selection_rationale": "Carbonic anhydrase II forces the representation to connect a metal-bound hydroxide, substrate conversion, proton-shuttle residue, protonation state, ordered solvent, and geometry constraints without confusing a static structure with direct observation of proton transfer.",
+      "reaction_participant_ids": [
+        "CHEBI:17544",
+        "CHEBI:15378",
+        "CHEBI:16526",
+        "CHEBI:15377"
+      ],
+      "fold_classification_ids": [
+        "CATH:3.10.200.10"
+      ],
+      "source_handles": [
+        {
+          "source_id": "UniProtKB",
+          "record_id": "P00918",
+          "uri": "https://www.uniprot.org/uniprotkb/P00918/entry",
+          "evidence_role": "protein_identity",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Reviewed human CA2 identity and catalytic-activity anchor."
+        },
+        {
+          "source_id": "Rhea",
+          "record_id": "RHEA:10748",
+          "uri": "https://www.rhea-db.org/rhea/10748",
+          "evidence_role": "net_reaction",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Direct carbon dioxide hydration reaction with the frozen ChEBI participants."
+        },
+        {
+          "source_id": "PDB",
+          "record_id": "1CA2",
+          "uri": "https://www.rcsb.org/structure/1CA2",
+          "evidence_role": "experimental_structure",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Direct experimental CA II structure for site and geometry grounding; not a turnover trajectory."
+        },
+        {
+          "source_id": "M-CSA",
+          "record_id": "M0216",
+          "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/216/",
+          "evidence_role": "source_mechanism",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Detailed direct mechanism annotation for P00918 and alpha carbonic anhydrase chemistry."
+        },
+        {
+          "source_id": "DOI",
+          "record_id": "10.1021/bi0480279",
+          "uri": "https://doi.org/10.1021/bi0480279",
+          "evidence_role": "primary_mechanism_evidence",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Primary mechanistic evidence retained as a reference-only handle for the proton-transfer boundary."
+        },
+        {
+          "source_id": "CATH",
+          "record_id": "CATH:3.10.200.10",
+          "uri": "https://www.cathdb.info/version/latest/superfamily/3.10.200.10",
+          "evidence_role": "fold_classification",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Alpha carbonic anhydrase superfamily anchor."
+        }
+      ],
+      "required_outputs": [
+        "canonical_reaction_or_source_gap",
+        "source_mechanism_or_abstention",
+        "mechanism_hypothesis_or_abstention",
+        "protein_site_grounding",
+        "counterevidence_and_conflicts",
+        "uncertainty_and_abstention",
+        "provenance",
+        "relationship_query_projection"
+      ],
+      "known_ambiguities": [
+        "The productive proton-transfer network depends on protonation and solvent organization that a single static structure does not uniquely determine.",
+        "A zinc-bound water or hydroxide assignment and carbon dioxide orientation are state- and condition-dependent.",
+        "Catalytic-site geometry can constrain a mechanism but does not by itself establish a unique elementary path."
+      ],
+      "success_condition": "Produce a site-grounded Tier-2 hypothesis that preserves the zinc-water and proton-shuttle logic, labels unresolved protonation and solvent states, and exposes every atom/charge edit as source-derived or explicitly abstained.",
+      "stop_conditions": [
+        "Stop before assigning a unique proton wire not resolved by the frozen evidence.",
+        "Stop if metal identity, coordination, residue numbering, or reaction participants cannot be reconciled explicitly.",
+        "Stop before converting geometric plausibility into evidence of turnover.",
+        "Stop at the case compute ceiling and emit an abstaining partial record."
+      ],
+      "case_compute_budget": {
+        "cpu_hours_max": 6,
+        "gpu_hours_max": 0,
+        "external_requests_max": 150,
+        "download_bytes_max": 104857600,
+        "reuse_required": true,
+        "stop_if_exceeded": true
+      },
+      "assay_candidate": false
+    },
+    {
+      "case_id": "atlas10.hewl-chicken.covalent-glycosidase",
+      "target_record_id": "mechanism:hewl-chicken-covalent-glycosidase-v1",
+      "label": "Hen egg-white lysozyme",
+      "organism": "Gallus gallus",
+      "ec_number": "3.2.1.17",
+      "representation_axis": "alternative_mechanism_preservation",
+      "representation_pressures": [
+        "alternative_mechanism_preservation",
+        "covalent_glycosyl_enzyme_intermediate",
+        "historically_competing_mechanistic_interpretations",
+        "net_reaction_source_gap"
+      ],
+      "relationship_group_ids": [],
+      "fingerprint_bridge": {
+        "fingerprint_id": "glycoside_hydrolase",
+        "use": "historical_crosswalk_only_not_evidence",
+        "registry_write": false
+      },
+      "target_evidence_tier": 2,
+      "source_mechanism_contract": {
+        "mcsa_record_id": "M0203",
+        "annotation_level": "detailed_direct_with_alternatives",
+        "step_detail_policy": "preserve_competing_source_steps",
+        "highest_target_tier": 2,
+        "mandatory_abstentions": [
+          "Do not flatten the covalent-intermediate and historical alternative descriptions into one certain route.",
+          "Do not invent a Rhea identifier for a reaction absent from the frozen official query."
+        ]
+      },
+      "selection_rationale": "Lysozyme is a compact, deeply studied case that tests whether the atlas can preserve mechanism history and competing interpretations, represent a covalent glycosyl-enzyme route, and record an official reaction-source gap without silently manufacturing a canonical identifier.",
+      "reaction_participant_ids": [
+        "CHEBI:15377",
+        "CHEBI:87004",
+        "CHEBI:40729",
+        "CHEBI:28009"
+      ],
+      "fold_classification_ids": [
+        "CATH:1.10.530.10"
+      ],
+      "source_handles": [
+        {
+          "source_id": "UniProtKB",
+          "record_id": "P00698",
+          "uri": "https://www.uniprot.org/uniprotkb/P00698/entry",
+          "evidence_role": "protein_identity",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Reviewed chicken lysozyme C identity."
+        },
+        {
+          "source_id": "Rhea",
+          "record_id": "EC:3.2.1.17",
+          "uri": "https://www.rhea-db.org/rhea?query=ec%3A3.2.1.17",
+          "evidence_role": "official_net_reaction_search_gap",
+          "applicability": "source_gap",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "The frozen official EC query returned no direct Rhea reaction; this is a documented source gap, not evidence that no reaction description exists elsewhere."
+        },
+        {
+          "source_id": "PDB",
+          "record_id": "1DPX",
+          "uri": "https://www.rcsb.org/structure/1DPX",
+          "evidence_role": "experimental_structure",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Direct experimental structure used for protein-site and covalent-intermediate grounding."
+        },
+        {
+          "source_id": "M-CSA",
+          "record_id": "M0203",
+          "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/203/",
+          "evidence_role": "source_mechanism",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Direct detailed entry preserving a high-rated covalent mechanism and a lower-detail historical alternative."
+        },
+        {
+          "source_id": "DOI",
+          "record_id": "10.1038/35090602",
+          "uri": "https://doi.org/10.1038/35090602",
+          "evidence_role": "primary_mechanism_evidence",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Primary covalent-intermediate evidence retained as a reference-only handle."
+        },
+        {
+          "source_id": "CATH",
+          "record_id": "CATH:1.10.530.10",
+          "uri": "https://www.cathdb.info/version/latest/superfamily/1.10.530.10",
+          "evidence_role": "fold_classification",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Lysozyme-like superfamily anchor."
+        }
+      ],
+      "required_outputs": [
+        "canonical_reaction_or_source_gap",
+        "source_mechanism_or_abstention",
+        "mechanism_hypothesis_or_abstention",
+        "protein_site_grounding",
+        "counterevidence_and_conflicts",
+        "uncertainty_and_abstention",
+        "provenance",
+        "relationship_query_projection"
+      ],
+      "known_ambiguities": [
+        "The selected M-CSA entry preserves mechanistic descriptions with different detail and ratings; they must remain separate source-scoped proposals.",
+        "No direct Rhea reaction was returned by the frozen EC query, so M-CSA participant classes must not be mislabeled as a Rhea canonical reaction.",
+        "A trapped covalent intermediate supports a route but does not observe every proton-transfer event."
+      ],
+      "success_condition": "Compile the source gap, high-rated covalent mechanism, historical alternative, sites, and evidence as distinct queryable objects without inventing a canonical Rhea record or declaring the alternatives adjudicated.",
+      "stop_conditions": [
+        "Stop if alternative mechanisms cannot be represented without overwriting each other.",
+        "Stop before assigning a fabricated Rhea identifier or silently relabeling M-CSA participants as Rhea participants.",
+        "Stop before calling every proton transfer directly observed from a covalent-intermediate structure.",
+        "Stop at the case compute ceiling and emit an abstaining partial record."
+      ],
+      "case_compute_budget": {
+        "cpu_hours_max": 6,
+        "gpu_hours_max": 0,
+        "external_requests_max": 150,
+        "download_bytes_max": 104857600,
+        "reuse_required": true,
+        "stop_if_exceeded": true
+      },
+      "assay_candidate": false
+    },
+    {
+      "case_id": "atlas10.trypsin-fusarium.serine-protease",
+      "target_record_id": "mechanism:trypsin-fusarium-serine-protease-v1",
+      "label": "Fusarium oxysporum trypsin",
+      "organism": "Fusarium oxysporum",
+      "ec_number": "3.4.21.4",
+      "representation_axis": "convergent_strategy_unrelated_folds",
+      "representation_pressures": [
+        "convergent_strategy_unrelated_folds",
+        "serine_protease_acyl_enzyme",
+        "condition_specific_protonation_interpretation",
+        "net_reaction_source_gap"
+      ],
+      "relationship_group_ids": [
+        "atlas10.relationship.convergent-serine-proteases"
+      ],
+      "fingerprint_bridge": {
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "use": "historical_crosswalk_only_not_evidence",
+        "registry_write": false
+      },
+      "target_evidence_tier": 2,
+      "source_mechanism_contract": {
+        "mcsa_record_id": "M0173",
+        "annotation_level": "detailed_direct",
+        "step_detail_policy": "compile_source_steps",
+        "highest_target_tier": 2,
+        "mandatory_abstentions": [
+          "Do not transfer subtilisin residue numbering or source steps into trypsin despite the convergent catalytic triad.",
+          "Do not infer physiological protonation states solely from the pH 5 crystallographic condition."
+        ]
+      },
+      "selection_rationale": "Trypsin supplies one side of a high-value convergence query: a classic Ser-His-Asp acyl-enzyme mechanism in the trypsin-like fold, paired with subtilisin's independently evolved fold and the same broad catalytic strategy.",
+      "reaction_participant_ids": [
+        "CHEBI:15377",
+        "CHEBI:90799",
+        "CHEBI:59869"
+      ],
+      "fold_classification_ids": [
+        "CATH:2.40.10.10"
+      ],
+      "source_handles": [
+        {
+          "source_id": "UniProtKB",
+          "record_id": "P35049",
+          "uri": "https://www.uniprot.org/uniprotkb/P35049/entry",
+          "evidence_role": "protein_identity",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Reviewed Fusarium trypsin identity."
+        },
+        {
+          "source_id": "Rhea",
+          "record_id": "EC:3.4.21.4",
+          "uri": "https://www.rhea-db.org/rhea?query=ec%3A3.4.21.4",
+          "evidence_role": "official_net_reaction_search_gap",
+          "applicability": "source_gap",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "The frozen official EC query returned no direct Rhea reaction; retain an explicit reaction-source gap."
+        },
+        {
+          "source_id": "PDB",
+          "record_id": "1PQ5",
+          "uri": "https://www.rcsb.org/structure/1PQ5",
+          "evidence_role": "experimental_structure",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Direct 0.85 A experimental structure at reported pH 5 for site and protonation-boundary grounding."
+        },
+        {
+          "source_id": "M-CSA",
+          "record_id": "M0173",
+          "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/173/",
+          "evidence_role": "source_mechanism",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Direct detailed trypsin mechanism and catalytic-site annotation."
+        },
+        {
+          "source_id": "DOI",
+          "record_id": "10.1074/jbc.m306944200",
+          "uri": "https://doi.org/10.1074/jbc.m306944200",
+          "evidence_role": "primary_structure_evidence",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Primary high-resolution structure study retained as a reference-only handle."
+        },
+        {
+          "source_id": "CATH",
+          "record_id": "CATH:2.40.10.10",
+          "uri": "https://www.cathdb.info/version/latest/superfamily/2.40.10.10",
+          "evidence_role": "fold_classification",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Trypsin-like serine protease superfamily anchor."
+        }
+      ],
+      "required_outputs": [
+        "canonical_reaction_or_source_gap",
+        "source_mechanism_or_abstention",
+        "mechanism_hypothesis_or_abstention",
+        "protein_site_grounding",
+        "counterevidence_and_conflicts",
+        "uncertainty_and_abstention",
+        "provenance",
+        "relationship_query_projection"
+      ],
+      "known_ambiguities": [
+        "M-CSA participant classes supply source-scoped peptide hydrolysis context but the frozen Rhea query supplies no direct canonical reaction.",
+        "The high-resolution structure is condition-specific and does not uniquely establish productive protonation through turnover.",
+        "The catalytic strategy converges with subtilisin, but fold, numbering, substrate context, and evidence remain protein-specific."
+      ],
+      "success_condition": "Produce a source-faithful trypsin mechanism and site mapping that can participate in the cross-fold convergence query while preserving the Rhea gap and refusing any residue or evidence transfer from subtilisin.",
+      "stop_conditions": [
+        "Stop if trypsin and subtilisin are collapsed into one mechanism record or shared numbering system.",
+        "Stop before inventing a direct Rhea reaction.",
+        "Stop before treating the pH 5 structure as a complete physiological protonation assignment.",
+        "Stop at the case compute ceiling and emit an abstaining partial record."
+      ],
+      "case_compute_budget": {
+        "cpu_hours_max": 6,
+        "gpu_hours_max": 0,
+        "external_requests_max": 150,
+        "download_bytes_max": 104857600,
+        "reuse_required": true,
+        "stop_if_exceeded": true
+      },
+      "assay_candidate": false
+    },
+    {
+      "case_id": "atlas10.subtilisin-bpn-bacillus.serine-protease",
+      "target_record_id": "mechanism:subtilisin-bpn-bacillus-serine-protease-v1",
+      "label": "Subtilisin BPN'",
+      "organism": "Bacillus amyloliquefaciens",
+      "ec_number": "3.4.21.62",
+      "representation_axis": "convergent_strategy_unrelated_folds",
+      "representation_pressures": [
+        "convergent_strategy_unrelated_folds",
+        "serine_protease_acyl_enzyme",
+        "engineered_source_reference_structure",
+        "net_reaction_source_gap"
+      ],
+      "relationship_group_ids": [
+        "atlas10.relationship.convergent-serine-proteases"
+      ],
+      "fingerprint_bridge": {
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "use": "historical_crosswalk_only_not_evidence",
+        "registry_write": false
+      },
+      "target_evidence_tier": 2,
+      "source_mechanism_contract": {
+        "mcsa_record_id": "M0723",
+        "annotation_level": "detailed_direct",
+        "step_detail_policy": "compile_source_steps",
+        "highest_target_tier": 2,
+        "mandatory_abstentions": [
+          "Do not label engineered PDB 1S01 as the unmodified target structure or silently transfer its coordinates to the wild-type scope.",
+          "Do not transfer trypsin residue numbering or evidence into subtilisin despite the convergent catalytic triad."
+        ]
+      },
+      "selection_rationale": "Subtilisin is the second half of the convergence query and adds a severe applicability trap: M-CSA points to an engineered structure, while the target needs an explicit unmutated structural anchor. Correct handling matters more than a polished but biologically mismatched record.",
+      "reaction_participant_ids": [
+        "CHEBI:15377",
+        "CHEBI:90799",
+        "CHEBI:59869"
+      ],
+      "fold_classification_ids": [
+        "CATH:3.40.50.200"
+      ],
+      "source_handles": [
+        {
+          "source_id": "UniProtKB",
+          "record_id": "P00782",
+          "uri": "https://www.uniprot.org/uniprotkb/P00782/entry",
+          "evidence_role": "protein_identity",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Reviewed subtilisin BPN' target identity."
+        },
+        {
+          "source_id": "Rhea",
+          "record_id": "EC:3.4.21.62",
+          "uri": "https://www.rhea-db.org/rhea?query=ec%3A3.4.21.62",
+          "evidence_role": "official_net_reaction_search_gap",
+          "applicability": "source_gap",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "The frozen official EC query returned no direct Rhea reaction; retain an explicit reaction-source gap."
+        },
+        {
+          "source_id": "PDB",
+          "record_id": "1SUP",
+          "uri": "https://www.rcsb.org/structure/1SUP",
+          "evidence_role": "experimental_structure",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Direct 1.60 A target structure mapped to P00782 with no reported mutations."
+        },
+        {
+          "source_id": "PDB",
+          "record_id": "1S01",
+          "uri": "https://www.rcsb.org/structure/1S01",
+          "evidence_role": "engineered_source_reference_structure",
+          "applicability": "engineered_source_reference",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "M-CSA reference structure carrying multiple engineered substitutions; retained for source traceability and applicability counterevidence, not as the unmodified target."
+        },
+        {
+          "source_id": "M-CSA",
+          "record_id": "M0723",
+          "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/723/",
+          "evidence_role": "source_mechanism",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Detailed subtilisin mechanism annotation whose reference-structure applicability must remain explicit."
+        },
+        {
+          "source_id": "DOI",
+          "record_id": "10.1107/S0907444996007500",
+          "uri": "https://doi.org/10.1107/S0907444996007500",
+          "evidence_role": "primary_structure_evidence",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Primary 1SUP structure evidence retained as a reference-only handle."
+        },
+        {
+          "source_id": "DOI",
+          "record_id": "10.1073/pnas.83.11.3743",
+          "uri": "https://doi.org/10.1073/pnas.83.11.3743",
+          "evidence_role": "primary_mechanism_evidence",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Primary subtilisin catalytic-triad evidence retained as a reference-only handle."
+        },
+        {
+          "source_id": "CATH",
+          "record_id": "CATH:3.40.50.200",
+          "uri": "https://www.cathdb.info/version/latest/superfamily/3.40.50.200",
+          "evidence_role": "fold_classification",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Peptidase S8/S53 superfamily anchor, distinct from the trypsin-like fold."
+        }
+      ],
+      "required_outputs": [
+        "canonical_reaction_or_source_gap",
+        "source_mechanism_or_abstention",
+        "mechanism_hypothesis_or_abstention",
+        "protein_site_grounding",
+        "counterevidence_and_conflicts",
+        "uncertainty_and_abstention",
+        "provenance",
+        "relationship_query_projection"
+      ],
+      "known_ambiguities": [
+        "M-CSA's reference PDB 1S01 is engineered and cannot be treated as the unmodified P00782 target structure.",
+        "The direct target structure 1SUP supports identity and geometry but not an uninterrupted catalytic trajectory.",
+        "M-CSA participant stoichiometry differs in presentation from the paired trypsin entry and must remain source-scoped rather than normalized silently."
+      ],
+      "success_condition": "Compile an unmodified-target record grounded to P00782/1SUP, preserve 1S01 as engineered source-reference counterevidence, and answer the convergence query without importing trypsin-specific numbering, steps, or evidence.",
+      "stop_conditions": [
+        "Stop if 1S01 is marked direct-unmodified or 1SUP is omitted from target grounding.",
+        "Stop before inventing a direct Rhea reaction.",
+        "Stop if source-specific peptide participant stoichiometry is silently harmonized.",
+        "Stop at the case compute ceiling and emit an abstaining partial record."
+      ],
+      "case_compute_budget": {
+        "cpu_hours_max": 6,
+        "gpu_hours_max": 0,
+        "external_requests_max": 150,
+        "download_bytes_max": 104857600,
+        "reuse_required": true,
+        "stop_if_exceeded": true
+      },
+      "assay_candidate": false
+    },
+    {
+      "case_id": "atlas10.mandelate-racemase-pputida.enolate",
+      "target_record_id": "mechanism:mandelate-racemase-pputida-enolate-v1",
+      "label": "Mandelate racemase",
+      "organism": "Pseudomonas putida",
+      "ec_number": "5.1.2.2",
+      "representation_axis": "shared_fold_divergent_chemistry",
+      "representation_pressures": [
+        "shared_fold_divergent_chemistry",
+        "metal_stabilized_enolate",
+        "stereospecific_two_base_racemization",
+        "inhibitor_structure_not_turnover"
+      ],
+      "relationship_group_ids": [
+        "atlas10.relationship.divergent-enolase-chemistry"
+      ],
+      "fingerprint_bridge": {
+        "fingerprint_id": "metal_racemase_epimerase_non_plp",
+        "use": "historical_crosswalk_only_not_evidence",
+        "registry_write": false
+      },
+      "target_evidence_tier": 2,
+      "source_mechanism_contract": {
+        "mcsa_record_id": "M0187",
+        "annotation_level": "detailed_direct",
+        "step_detail_policy": "compile_source_steps",
+        "highest_target_tier": 2,
+        "mandatory_abstentions": [
+          "Do not interpret inhibitor-bound or chemically modified PDB 1MNS as direct observation of substrate turnover.",
+          "Do not transfer methylaspartate ammonia-lyase's elimination outcome into the racemase because the fold and enolate logic overlap."
+        ]
+      },
+      "selection_rationale": "Mandelate racemase supplies the racemization half of a same-fold/different-chemistry query, testing metal coordination, stereospecific acid-base roles, an enolate intermediate, and the distinction between an inhibitor structure and catalytic turnover.",
+      "reaction_participant_ids": [
+        "CHEBI:17756",
+        "CHEBI:32382"
+      ],
+      "fold_classification_ids": [
+        "CATH:3.20.20.120"
+      ],
+      "source_handles": [
+        {
+          "source_id": "UniProtKB",
+          "record_id": "P11444",
+          "uri": "https://www.uniprot.org/uniprotkb/P11444/entry",
+          "evidence_role": "protein_identity",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Reviewed Pseudomonas mandelate racemase identity."
+        },
+        {
+          "source_id": "Rhea",
+          "record_id": "RHEA:13945",
+          "uri": "https://www.rhea-db.org/rhea/13945",
+          "evidence_role": "net_reaction",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Direct mandelate racemization reaction with frozen stereoisomer participants."
+        },
+        {
+          "source_id": "PDB",
+          "record_id": "1MNS",
+          "uri": "https://www.rcsb.org/structure/1MNS",
+          "evidence_role": "experimental_structure",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Direct protein structure with inhibitor/chemical-modification context; useful for site geometry but not a turnover movie."
+        },
+        {
+          "source_id": "M-CSA",
+          "record_id": "M0187",
+          "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/187/",
+          "evidence_role": "source_mechanism",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Direct detailed two-base racemization mechanism and catalytic-site annotation."
+        },
+        {
+          "source_id": "DOI",
+          "record_id": "10.1021/bi00102a019",
+          "uri": "https://doi.org/10.1021/bi00102a019",
+          "evidence_role": "primary_structure_evidence",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Primary 1MNS structural/mechanistic evidence retained as a reference-only handle."
+        },
+        {
+          "source_id": "CATH",
+          "record_id": "CATH:3.20.20.120",
+          "uri": "https://www.cathdb.info/version/latest/superfamily/3.20.20.120",
+          "evidence_role": "fold_classification",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Enolase-like C-terminal superfamily anchor shared with the selected ammonia-lyase."
+        }
+      ],
+      "required_outputs": [
+        "canonical_reaction_or_source_gap",
+        "source_mechanism_or_abstention",
+        "mechanism_hypothesis_or_abstention",
+        "protein_site_grounding",
+        "counterevidence_and_conflicts",
+        "uncertainty_and_abstention",
+        "provenance",
+        "relationship_query_projection"
+      ],
+      "known_ambiguities": [
+        "PDB 1MNS contains inhibitor and chemical-modification context rather than a substrate turnover trajectory.",
+        "The source mechanism uses an inferred return half of the racemization cycle whose evidence must remain source-scoped.",
+        "Shared enolase-like fold and enolate stabilization with methylaspartate ammonia-lyase do not imply identical bases, substrates, or net chemistry."
+      ],
+      "success_condition": "Represent the two-base metal-stabilized racemization hypothesis and its structure-applicability boundary, then expose conserved versus repurposed features in the paired enolase query without mechanism transfer.",
+      "stop_conditions": [
+        "Stop if inhibitor-bound geometry is described as direct turnover observation.",
+        "Stop if the inferred return step is upgraded beyond its source support.",
+        "Stop if shared fold is used to overwrite reaction or residue-role differences with the ammonia-lyase.",
+        "Stop at the case compute ceiling and emit an abstaining partial record."
+      ],
+      "case_compute_budget": {
+        "cpu_hours_max": 6,
+        "gpu_hours_max": 0,
+        "external_requests_max": 150,
+        "download_bytes_max": 104857600,
+        "reuse_required": true,
+        "stop_if_exceeded": true
+      },
+      "assay_candidate": false
+    },
+    {
+      "case_id": "atlas10.methylaspartate-lyase-ctetanomorphum.enolate",
+      "target_record_id": "mechanism:methylaspartate-lyase-ctetanomorphum-enolate-v1",
+      "label": "Methylaspartate ammonia-lyase",
+      "organism": "Clostridium tetanomorphum",
+      "ec_number": "4.3.1.2",
+      "representation_axis": "shared_fold_divergent_chemistry",
+      "representation_pressures": [
+        "shared_fold_divergent_chemistry",
+        "magnesium_stabilized_enolate",
+        "e1cb_ammonia_elimination",
+        "multi_domain_fold_grounding"
+      ],
+      "relationship_group_ids": [
+        "atlas10.relationship.divergent-enolase-chemistry"
+      ],
+      "fingerprint_bridge": {
+        "fingerprint_id": null,
+        "use": "historical_crosswalk_only_not_evidence",
+        "registry_write": false
+      },
+      "target_evidence_tier": 2,
+      "source_mechanism_contract": {
+        "mcsa_record_id": "M0468",
+        "annotation_level": "detailed_direct",
+        "step_detail_policy": "compile_source_steps",
+        "highest_target_tier": 2,
+        "mandatory_abstentions": [
+          "Do not force this ammonia-elimination chemistry into an existing historical fingerprint when the frozen bridge is null.",
+          "Do not transfer mandelate racemase's two-base return step or racemization outcome into the ammonia-lyase."
+        ]
+      },
+      "selection_rationale": "Methylaspartate ammonia-lyase supplies the elimination half of a same-fold/different-chemistry query, testing multi-domain identity, magnesium-stabilized E1cB chemistry, an inferred return step, and useful atlas knowledge outside the historical fingerprint wall.",
+      "reaction_participant_ids": [
+        "CHEBI:58724",
+        "CHEBI:36986",
+        "CHEBI:28938"
+      ],
+      "fold_classification_ids": [
+        "CATH:3.20.20.120",
+        "CATH:3.30.390.10"
+      ],
+      "source_handles": [
+        {
+          "source_id": "UniProtKB",
+          "record_id": "Q05514",
+          "uri": "https://www.uniprot.org/uniprotkb/Q05514/entry",
+          "evidence_role": "protein_identity",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Reviewed Clostridium methylaspartate ammonia-lyase identity and reaction anchor."
+        },
+        {
+          "source_id": "Rhea",
+          "record_id": "RHEA:12829",
+          "uri": "https://www.rhea-db.org/rhea/12829",
+          "evidence_role": "net_reaction",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Direct methylaspartate ammonia-elimination reaction with frozen participants."
+        },
+        {
+          "source_id": "PDB",
+          "record_id": "1KCZ",
+          "uri": "https://www.rcsb.org/structure/1KCZ",
+          "evidence_role": "experimental_structure",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Direct experimental structure for multi-domain and catalytic-site grounding."
+        },
+        {
+          "source_id": "M-CSA",
+          "record_id": "M0468",
+          "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/468/",
+          "evidence_role": "source_mechanism",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Direct detailed magnesium-stabilized E1cB mechanism and catalytic-site annotation."
+        },
+        {
+          "source_id": "DOI",
+          "record_id": "10.1074/jbc.m111180200",
+          "uri": "https://doi.org/10.1074/jbc.m111180200",
+          "evidence_role": "primary_structure_evidence",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Primary 1KCZ structure/mechanism evidence retained as a reference-only handle."
+        },
+        {
+          "source_id": "CATH",
+          "record_id": "CATH:3.20.20.120",
+          "uri": "https://www.cathdb.info/version/latest/superfamily/3.20.20.120",
+          "evidence_role": "fold_classification",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Catalytic enolase-like C-terminal superfamily anchor shared with mandelate racemase."
+        },
+        {
+          "source_id": "CATH",
+          "record_id": "CATH:3.30.390.10",
+          "uri": "https://www.cathdb.info/version/latest/superfamily/3.30.390.10",
+          "evidence_role": "fold_classification",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Additional N-terminal domain classification retained so multi-domain identity is not collapsed to the shared catalytic domain."
+        }
+      ],
+      "required_outputs": [
+        "canonical_reaction_or_source_gap",
+        "source_mechanism_or_abstention",
+        "mechanism_hypothesis_or_abstention",
+        "protein_site_grounding",
+        "counterevidence_and_conflicts",
+        "uncertainty_and_abstention",
+        "provenance",
+        "relationship_query_projection"
+      ],
+      "known_ambiguities": [
+        "The selected protein includes an additional N-terminal domain beyond the shared enolase-like catalytic domain.",
+        "The source mechanism includes an inferred return or regeneration step whose support must remain explicit.",
+        "A common metal-stabilized enolate strategy with mandelate racemase does not make elimination and racemization interchangeable."
+      ],
+      "success_condition": "Represent the magnesium-stabilized E1cB elimination, both domain anchors, and inferred-step uncertainty, then expose conserved versus repurposed features in the paired enolase query without forcing a historical fingerprint assignment.",
+      "stop_conditions": [
+        "Stop if the null historical fingerprint bridge is filled merely to improve apparent coverage.",
+        "Stop if the inferred return step is upgraded beyond its source support.",
+        "Stop if shared fold is used to overwrite reaction or residue-role differences with mandelate racemase.",
+        "Stop at the case compute ceiling and emit an abstaining partial record."
+      ],
+      "case_compute_budget": {
+        "cpu_hours_max": 6,
+        "gpu_hours_max": 0,
+        "external_requests_max": 150,
+        "download_bytes_max": 104857600,
+        "reuse_required": true,
+        "stop_if_exceeded": true
+      },
+      "assay_candidate": false
+    },
+    {
+      "case_id": "atlas10.cyclophilin-a-human.isomerization",
+      "target_record_id": "mechanism:cyclophilin-a-human-isomerization-v1",
+      "label": "Human cyclophilin A",
+      "organism": "Homo sapiens",
+      "ec_number": "5.2.1.8",
+      "representation_axis": "mandatory_detail_abstention",
+      "representation_pressures": [
+        "mandatory_detail_abstention",
+        "peptidyl_proline_cis_trans_isomerization",
+        "transition_state_stabilization_without_discrete_electron_flow",
+        "polymeric_reaction_participants_and_complex_applicability"
+      ],
+      "relationship_group_ids": [],
+      "fingerprint_bridge": {
+        "fingerprint_id": null,
+        "use": "historical_crosswalk_only_not_evidence",
+        "registry_write": false
+      },
+      "target_evidence_tier": 2,
+      "source_mechanism_contract": {
+        "mcsa_record_id": "M0189",
+        "annotation_level": "non_detailed_direct",
+        "step_detail_policy": "mandatory_abstention_from_discrete_step_edits",
+        "highest_target_tier": 2,
+        "mandatory_abstentions": [
+          "Do not fabricate atom-mapped bond edits, electron transfers, proton transfers, covalent intermediates, or ordered elementary steps absent from the non-detailed source annotation.",
+          "Do not generalize the HIV-1 capsid complex structure to every cyclophilin substrate without an explicit applicability record.",
+          "Do not force a historical fingerprint assignment merely to avoid an out-of-scope result."
+        ]
+      },
+      "selection_rationale": "Cyclophilin A is the anti-hallucination case. The sources support protein identity, reaction class, catalytic-site and transition-state concepts, but the M-CSA record is not a detailed electron-flow mechanism. A useful atlas must represent this knowledge while mechanically refusing fabricated step edits.",
+      "reaction_participant_ids": [
+        "CHEBI:83834",
+        "CHEBI:83833",
+        "RHEA-COMP:10747",
+        "RHEA-COMP:10748"
+      ],
+      "fold_classification_ids": [
+        "CATH:2.40.100.10"
+      ],
+      "source_handles": [
+        {
+          "source_id": "UniProtKB",
+          "record_id": "P62937",
+          "uri": "https://www.uniprot.org/uniprotkb/P62937/entry",
+          "evidence_role": "protein_identity",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Reviewed human cyclophilin A identity and catalytic-activity anchor."
+        },
+        {
+          "source_id": "Rhea",
+          "record_id": "RHEA:16237",
+          "uri": "https://www.rhea-db.org/rhea/16237",
+          "evidence_role": "net_reaction",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Direct peptidyl-proline cis-trans isomerization reaction with polymer component references."
+        },
+        {
+          "source_id": "PDB",
+          "record_id": "1M9C",
+          "uri": "https://www.rcsb.org/structure/1M9C",
+          "evidence_role": "experimental_structure",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Unmutated human cyclophilin A in complex with HIV-1 capsid; direct for that complex and explicitly substrate-context limited."
+        },
+        {
+          "source_id": "M-CSA",
+          "record_id": "M0189",
+          "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/189/",
+          "evidence_role": "source_mechanism",
+          "applicability": "direct_non_detailed",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Direct three-star but non-detailed catalytic-site/transition-state annotation; it does not license invented discrete electron-flow steps."
+        },
+        {
+          "source_id": "DOI",
+          "record_id": "10.1038/nsb927",
+          "uri": "https://doi.org/10.1038/nsb927",
+          "evidence_role": "primary_structure_evidence",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Primary 1M9C complex-structure evidence retained as a reference-only handle."
+        },
+        {
+          "source_id": "CATH",
+          "record_id": "CATH:2.40.100.10",
+          "uri": "https://www.cathdb.info/version/latest/superfamily/2.40.100.10",
+          "evidence_role": "fold_classification",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T14:58:04Z",
+          "verification_note": "Cyclophilin-like superfamily anchor."
+        }
+      ],
+      "required_outputs": [
+        "canonical_reaction_or_source_gap",
+        "source_mechanism_or_abstention",
+        "mechanism_hypothesis_or_abstention",
+        "protein_site_grounding",
+        "counterevidence_and_conflicts",
+        "uncertainty_and_abstention",
+        "provenance",
+        "relationship_query_projection"
+      ],
+      "known_ambiguities": [
+        "M-CSA M0189 is high-rated but explicitly non-detailed; rating and mechanistic granularity are different dimensions.",
+        "Peptidyl-proline isomerization does not require a conventional net bond-change list, and forcing one would misrepresent the chemistry.",
+        "PDB 1M9C has an HIV-1 capsid substrate context that cannot be generalized silently to every cyclophilin target."
+      ],
+      "success_condition": "Produce a site-grounded Tier-2 transition-state/isomerization hypothesis with a valid reaction and applicability record, zero fabricated discrete electron-flow edits, and a machine-visible mandatory abstention from unsupported detail.",
+      "stop_conditions": [
+        "Stop if any discrete atom, bond, charge, electron, proton, or covalent-intermediate edit lacks a direct frozen source.",
+        "Stop if a non-detailed source is relabeled detailed because its rating is high.",
+        "Stop if the HIV-1 capsid complex is generalized to unrelated substrates without evidence.",
+        "Stop at the case compute ceiling and emit an abstaining partial record."
+      ],
+      "case_compute_budget": {
+        "cpu_hours_max": 6,
+        "gpu_hours_max": 0,
+        "external_requests_max": 150,
+        "download_bytes_max": 104857600,
+        "reuse_required": true,
+        "stop_if_exceeded": true
+      },
+      "assay_candidate": false
+    }
+  ],
+  "query_contracts": [
+    {
+      "query_id": "atlas10.query.convergent-strategy",
+      "relationship_group_id": "atlas10.relationship.convergent-serine-proteases",
+      "question": "Which selected enzymes use a convergent Ser-His-Asp acyl-enzyme strategy in unrelated folds, and what steps, sites, evidence, applicability limits, and deviations belong to each protein?",
+      "case_ids": [
+        "atlas10.trypsin-fusarium.serine-protease",
+        "atlas10.subtilisin-bpn-bacillus.serine-protease"
+      ],
+      "required_fields": [
+        "case_id",
+        "fold_classification_ids",
+        "catalytic_site_roles",
+        "mechanism_steps_or_abstention",
+        "source_applicability",
+        "counterevidence",
+        "uncertainty",
+        "provenance"
+      ],
+      "success_condition": "One query returns both cases, their distinct folds and numbering, the shared catalytic strategy, protein-specific evidence and steps, the Rhea gaps, and the engineered 1S01 applicability warning.",
+      "prohibited_shortcut": "A shared fingerprint, EC class, catalytic-triad label, or language-model analogy cannot populate either case's residue numbers, steps, evidence, or confidence."
+    },
+    {
+      "query_id": "atlas10.query.shared-fold-divergent-chemistry",
+      "relationship_group_id": "atlas10.relationship.divergent-enolase-chemistry",
+      "question": "Which selected enzymes share an enolase-like catalytic fold and metal-stabilized enolate logic while producing different net chemistry, and which catalytic roles are conserved, repurposed, or unresolved?",
+      "case_ids": [
+        "atlas10.mandelate-racemase-pputida.enolate",
+        "atlas10.methylaspartate-lyase-ctetanomorphum.enolate"
+      ],
+      "required_fields": [
+        "case_id",
+        "reaction_or_source_gap",
+        "fold_classification_ids",
+        "metal_and_intermediate_roles",
+        "mechanism_steps_or_abstention",
+        "conserved_and_repurposed_sites",
+        "uncertainty",
+        "provenance"
+      ],
+      "success_condition": "One query returns the shared catalytic-domain anchor and enolate logic alongside racemization versus ammonia elimination, protein-specific residues, the ammonia-lyase's extra domain, inferred-step uncertainty, and the null historical fingerprint bridge.",
+      "prohibited_shortcut": "Shared fold or intermediate class cannot overwrite different substrates, products, residue roles, step sequences, evidence grades, or fingerprint scope."
+    }
+  ],
+  "baseline_contract": {
+    "baseline_id": "atlas10.unintegrated-source-stack.v1",
+    "status": "frozen_before_compilation",
+    "comparator": "Independent source-by-source retrieval from the same frozen UniProtKB, Rhea or Rhea-gap, PDB, M-CSA, DOI, and CATH handles without Atlas-derived joins, generated synthesis, relationship inference, or hidden labels.",
+    "same_source_budget_required": true,
+    "atlas_outputs_prohibited_as_inputs": true,
+    "measurements": [
+      "elapsed_human_minutes",
+      "machine_requests",
+      "required_field_completeness",
+      "unresolved_source_conflicts",
+      "applicability_errors",
+      "unsupported_detail_count",
+      "query_answer_completeness"
+    ],
+    "claim_boundary": "This comparator measures whether the integrated atlas is more usable and truth-preserving than opening the incumbent sources separately; it is not a biological-accuracy benchmark or proof of discovery."
+  },
+  "review_contract": {
+    "status": "frozen_before_compilation",
+    "packet_count_min": 5,
+    "packet_count_max": 10,
+    "review_unit": "bounded_claim_packet",
+    "micro_questions": [
+      "Is the reaction or documented source gap correct for this protein scope?",
+      "Are the catalytic sites and numbering mappings faithful to the cited sources?",
+      "Are the represented steps faithful to source granularity, with unsupported detail abstained?",
+      "Are structure and mechanism applicability boundaries correct?",
+      "Does the claim boundary prevent an unjustified evidence-tier upgrade?"
+    ],
+    "independent_reviewer_target": true,
+    "upstream_curation_counts_as_independent_review": false,
+    "external_review_attempt_required": true,
+    "external_response_required_for_phase_exit": false,
+    "no_response_disposition": "Record the dated request, packet hash, channel, and no-response status; do not fabricate review, block bounded compilation indefinitely, or upgrade the evidence tier."
+  },
+  "assay_lane": {
+    "candidate_case_id": "atlas3.tem1-ecoli.covalent",
+    "inherited_from_selection_sha256": "d24361bb9fc000d39d7209c5538bd23df845a94aa2dce1fb38c18d56dd8e1ada",
+    "status": "candidate_only_not_started",
+    "assay_name": "nitrocefin hydrolysis absorbance assay",
+    "new_assay_candidates_permitted": false,
+    "external_execution_required": true,
+    "preregistration_required": true,
+    "decision_frozen_before_results": true,
+    "materials_committed": false,
+    "stop_conditions": [
+      "Do not select a second assay during Atlas-10 evidence compilation.",
+      "Do not expose outcomes before the TEM-1 computational decision and assay acceptance criteria are content-hashed and frozen.",
+      "Do not turn activity into a detailed-mechanism claim.",
+      "Record failed execution, null results, and no external executor as outcomes rather than silently changing the lane."
+    ]
+  },
+  "exit_gate": [
+    "The Atlas-3 selection and compiled kernel remain byte-valid and the three inherited case identities remain immutable.",
+    "Exactly seven follow-on evidence packages compile outside protected registries, producing a ten-case query surface without claiming ten equally detailed mechanisms.",
+    "Every source handle is snapshotted or retained as an explicit reference-only or source-gap record with retrieval metadata, rights, and content hashes where redistribution permits.",
+    "Cyclophilin A mechanically abstains from unsupported discrete step edits, and high source rating cannot override non-detailed granularity.",
+    "Subtilisin uses P00782/1SUP for direct target grounding and retains engineered 1S01 only as source-reference applicability evidence.",
+    "The convergence and divergent-chemistry queries reproduce their required fields and transfer prohibitions from a clean install.",
+    "The frozen unintegrated-source baseline is run under the same source budget and reported without tuning the atlas after viewing comparator outcomes.",
+    "Five to ten bounded review packets are produced and external review attempts are recorded; no response cannot be relabeled independent review.",
+    "The sole assay candidate remains inherited TEM-1, candidate-only, unrun, and separately preregistered before any physical work.",
+    "Repository contracts and the core unit tier pass on supported Windows and Linux environments with protected registries unchanged."
+  ],
+  "prohibited_claims": [
+    "Do not call the ten selected cases a representative biological benchmark, population sample, accuracy estimate, or atlas-completeness result.",
+    "Do not call a source-derived or author-compiled Tier-2 object independently reviewed, experimentally validated, prospectively discovered, or design-ready.",
+    "Do not report ten mechanisms when a case may contain only a reaction, a non-detailed source annotation, a site-grounded hypothesis, or an explicit abstention.",
+    "Do not treat a missing direct Rhea record as permission to invent one or as proof that no reaction description exists.",
+    "Do not treat shared EC, fold, fingerprint, catalytic strategy, or language-model similarity as evidence for transferring steps, sites, numbering, substrate scope, or confidence.",
+    "Do not treat static, inhibitor-bound, engineered, complex-specific, or condition-specific structures as complete turnover trajectories or universally applicable target structures.",
+    "Do not mutate protected registries, backfill historical fingerprints, or improve apparent coverage as a side effect of Atlas-10 compilation.",
+    "Do not spend beyond the frozen ceilings or add GPU work without a separate content-hashed amendment stating expected information gain and stop conditions."
+  ]
+}
