@@ -73,8 +73,11 @@ Current truth:
   been supplied. A locally built wheel passed fresh-directory Atlas-3 and
   Atlas-10 verification on Windows/Python 3.13 and excluded the raw source
   snapshots. The published PR #27 Ubuntu/Windows Python 3.10/3.12 matrix
-  passed in Actions run 29364282230. A real external attempt is the sole
-  remaining Atlas-10 phase-exit gate.
+  passed in Actions run 29364282230. The high-level scientific exit gate is
+  satisfied: the schema converges by failing unsupported detail explicitly,
+  and at least one integrated query is useful beyond opening the incumbent
+  sources separately. A real external attempt remains pending under the later
+  frozen review contract; no external or independent review is claimed.
 - The next computational checkpoint is Atlas-50 alpha under Section 10 of the
   truth-first review. A machine draft does not complete the reviewed
   57-fingerprint crosswalk; one review attempt does not complete independent

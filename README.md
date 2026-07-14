@@ -91,8 +91,9 @@ a production biological design system.
   accuracy, or discovery claim is made. A local Windows/Python 3.13 wheel
   passed fresh-directory Atlas-3 and Atlas-10 verification and excludes raw
   source snapshots. The published PR #27 Ubuntu/Windows Python 3.10/3.12
-  matrix also passed. Seven review packets are ready; a real external attempt
-  is the sole remaining Atlas-10 phase-exit gate.
+  matrix also passed, satisfying the high-level Atlas-10 scientific exit gate.
+  Seven review packets are ready; a real external attempt remains a pending
+  frozen review-contract deliverable and is not independent review.
 
 ## Truth-governance gate
 

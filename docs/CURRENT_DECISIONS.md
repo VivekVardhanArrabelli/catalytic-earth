@@ -1,5 +1,20 @@
 # Current Decisions
 
+## 2026-07-14: Distinguish Atlas-10 scientific exit from review closure
+
+Decision: the high-level Atlas-10 scientific exit gate in the rapid plan is the
+converging fail-explicit schema plus at least one integrated query that is
+useful beyond opening incumbent resources separately. The compiled ten-case
+surface, comparator, reproducible queries, and supported CI satisfy that gate,
+so Atlas-50 computational work may proceed.
+
+The later frozen `atlas10-selection.v1` contract also records a real external
+review attempt in its detailed completion checklist. That unattempted item is
+preserved as a pending review-contract deliverable; it is not silently removed,
+called completed, or confused with independent annotation. This interpretation
+changes no frozen selection bytes, evidence tier, review record, protected
+registry, or biological claim.
+
 ## 2026-07-14: Section 10 scientific-reset gates remain mandatory
 
 Decision: the rapid atlas cadence does not weaken Section 10 of the truth-first
@@ -49,11 +64,13 @@ Durable rulings:
 5. The five baseline cross-source conflicts are represented explicitly by the
    Atlas; they are not claimed biologically resolved.
 6. Seven review packets are ready. Until a real request is sent, the attempt
-   ledger remains unattempted and Atlas-10 is not called phase-exit complete.
+   ledger and the frozen selection checklist's review item remain incomplete;
+   neither outreach nor independent review is claimed.
 7. Local fresh-directory wheel reproduction passed on Windows/Python 3.13, and
    PR #27 passed the published Ubuntu/Windows Python 3.10/3.12 matrix in Actions
-   run 29364282230. Atlas-10 phase exit still waits for the external-attempt
-   record, and neither result reopens protected registries.
+   run 29364282230. This satisfies the high-level scientific exit gate; frozen
+   review-contract closure still awaits the external-attempt record, and
+   neither result reopens protected registries.
 
 ## 2026-07-14: Atlas-10 seven-case follow-on frozen before compilation
 
