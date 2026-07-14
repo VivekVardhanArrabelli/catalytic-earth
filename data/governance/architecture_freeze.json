@@ -1,8 +1,8 @@
 {
   "deterministic_modules": {
     "src/catalytic_earth/atlas10_kernel.py": {
-      "bytes": 68631,
-      "sha256": "c2892e3276348916680538d9177aa5ce40d6ceafb68593144704242776d9ce73"
+      "bytes": 68650,
+      "sha256": "b38551acf00f409258ed3d0f1d2e28b15d8bc0aa5274a09dcfca6bcde4c91d69"
     },
     "src/catalytic_earth/atlas10_selection.py": {
       "bytes": 34010,

@@ -1560,7 +1560,7 @@ def execute_atlas10_query(
             # after a syntactically valid SELECT; unlike string splitting, it
             # also understands semicolons inside quoted output text.
             cursor = connection.execute(statement)
-        except sqlite3.ProgrammingError as exc:
+        except (sqlite3.ProgrammingError, sqlite3.Warning) as exc:
             raise ValueError(
                 "Atlas-10 query surface accepts exactly one SELECT statement"
             ) from exc
