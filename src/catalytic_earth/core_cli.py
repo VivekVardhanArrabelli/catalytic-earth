@@ -10,11 +10,15 @@ from importlib.resources import files
 from pathlib import Path
 from typing import Any, Sequence
 
+from .atlas_kernel import build_atlas3_runtime_result, canonical_sha256
 from .schema import MechanismRecord, SCHEMA_VERSION
 
 
 GOLDEN_INPUT = "release_data/golden_input_v1.json"
 GOLDEN_EXPECTED = "release_data/golden_expected_v1.json"
+ATLAS3_KERNEL = "atlas_data/atlas3_kernel.json"
+ATLAS3_QUERY = "atlas_data/case_truth_summary.sql"
+ATLAS3_EXPECTED = "atlas_data/case_truth_summary_expected.json"
 
 
 def _resource_bytes(relative_path: str) -> bytes:
@@ -78,6 +82,30 @@ def verified_golden_result() -> dict[str, Any]:
     }
 
 
+def verified_atlas3_result() -> dict[str, Any]:
+    """Reproduce the first biological kernel and its local truth-boundary query."""
+    kernel = json.loads(_resource_bytes(ATLAS3_KERNEL))
+    query_sql = _resource_bytes(ATLAS3_QUERY).decode("utf-8")
+    expected = json.loads(_resource_bytes(ATLAS3_EXPECTED))
+    result = build_atlas3_runtime_result(kernel, query_sql)
+    digest = canonical_sha256(result)
+    checks = {
+        "kernel_sha256": result["kernel_sha256"],
+        "query_sha256": result["query_sha256"],
+        "runtime_result_sha256": digest,
+        "query_rows": result["query_rows"],
+    }
+    if any(expected.get(field) != value for field, value in checks.items()):
+        raise ValueError("Atlas-3 kernel/query result differs from the packaged expectation")
+    return {
+        **result,
+        "runtime_result_sha256": digest,
+        "matches_expected": True,
+        "what_it_claims": expected["what_it_claims"],
+        "what_it_does_not_claim": expected["what_it_does_not_claim"],
+    }
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="catalytic-earth",
@@ -88,6 +116,10 @@ def build_parser() -> argparse.ArgumentParser:
         "reproduce", help="reproduce and verify the canonical fixture result"
     )
     reproduce.add_argument("--output", type=Path, help="optional JSON output path")
+    atlas3 = subparsers.add_parser(
+        "atlas3", help="reproduce the first three-case biological Atlas kernel"
+    )
+    atlas3.add_argument("--output", type=Path, help="optional JSON output path")
     subparsers.add_parser("claims", help="print the exact golden-result claim boundary")
     return parser
 
@@ -101,10 +133,19 @@ def main(argv: Sequence[str] | None = None) -> int:
             args.output.write_text(rendered, encoding="utf-8", newline="\n")
         print(rendered, end="")
         return 0
-    expected = json.loads(_resource_bytes(GOLDEN_EXPECTED))
-    print(expected["what_it_claims"])
-    print(expected["what_it_does_not_claim"])
-    return 0
+    if args.command == "atlas3":
+        result = verified_atlas3_result()
+        rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
+        if args.output:
+            args.output.write_text(rendered, encoding="utf-8", newline="\n")
+        print(rendered, end="")
+        return 0
+    if args.command == "claims":
+        expected = json.loads(_resource_bytes(GOLDEN_EXPECTED))
+        print(expected["what_it_claims"])
+        print(expected["what_it_does_not_claim"])
+        return 0
+    raise AssertionError(f"unhandled command: {args.command}")
 
 
 if __name__ == "__main__":

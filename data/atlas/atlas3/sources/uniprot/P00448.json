@@ -1,0 +1,2800 @@
+{
+  "annotationScore": 5.0,
+  "comments": [
+    {
+      "commentType": "FUNCTION",
+      "texts": [
+        {
+          "value": "Destroys superoxide anion radicals which are normally produced within the cells and which are toxic to biological systems"
+        }
+      ]
+    },
+    {
+      "commentType": "CATALYTIC ACTIVITY",
+      "reaction": {
+        "ecNumber": "1.15.1.1",
+        "name": "2 superoxide + 2 H(+) = H2O2 + O2",
+        "reactionCrossReferences": [
+          {
+            "database": "Rhea",
+            "id": "RHEA:20696"
+          },
+          {
+            "database": "ChEBI",
+            "id": "CHEBI:15378"
+          },
+          {
+            "database": "ChEBI",
+            "id": "CHEBI:15379"
+          },
+          {
+            "database": "ChEBI",
+            "id": "CHEBI:16240"
+          },
+          {
+            "database": "ChEBI",
+            "id": "CHEBI:18421"
+          }
+        ]
+      }
+    },
+    {
+      "cofactors": [
+        {
+          "cofactorCrossReference": {
+            "database": "ChEBI",
+            "id": "CHEBI:29035"
+          },
+          "name": "Mn(2+)"
+        }
+      ],
+      "commentType": "COFACTOR",
+      "note": {
+        "texts": [
+          {
+            "value": "Binds 1 Mn(2+) ion per subunit."
+          }
+        ]
+      }
+    },
+    {
+      "commentType": "SUBUNIT",
+      "texts": [
+        {
+          "value": "Homodimer"
+        }
+      ]
+    },
+    {
+      "commentType": "SIMILARITY",
+      "texts": [
+        {
+          "evidences": [
+            {
+              "evidenceCode": "ECO:0000305"
+            }
+          ],
+          "value": "Belongs to the iron/manganese superoxide dismutase family"
+        }
+      ]
+    }
+  ],
+  "entryAudit": {
+    "entryVersion": 210,
+    "firstPublicDate": "1986-07-21",
+    "lastAnnotationUpdateDate": "2026-06-10",
+    "lastSequenceUpdateDate": "2007-01-23",
+    "sequenceVersion": 2
+  },
+  "entryType": "UniProtKB reviewed (Swiss-Prot)",
+  "extraAttributes": {
+    "countByCommentType": {
+      "CATALYTIC ACTIVITY": 1,
+      "COFACTOR": 1,
+      "FUNCTION": 1,
+      "SIMILARITY": 1,
+      "SUBUNIT": 1
+    },
+    "countByFeatureType": {
+      "Beta strand": 3,
+      "Binding site": 4,
+      "Chain": 1,
+      "Helix": 16,
+      "Initiator methionine": 1,
+      "Natural variant": 1,
+      "Sequence conflict": 1,
+      "Turn": 1
+    },
+    "uniParcId": "UPI0000168202"
+  },
+  "features": [
+    {
+      "description": "Removed",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "363708",
+          "source": "PubMed"
+        },
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "4590170",
+          "source": "PubMed"
+        },
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "9298646",
+          "source": "PubMed"
+        },
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "Ref.10",
+          "source": "Reference"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 1
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 1
+        }
+      },
+      "type": "Initiator methionine"
+    },
+    {
+      "description": "Superoxide dismutase [Mn]",
+      "featureId": "PRO_0000160030",
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 206
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 2
+        }
+      },
+      "type": "Chain"
+    },
+    {
+      "description": "",
+      "featureCrossReferences": [
+        {
+          "database": "ChEBI",
+          "id": "CHEBI:29035"
+        }
+      ],
+      "ligand": {
+        "id": "ChEBI:CHEBI:29035",
+        "name": "Mn(2+)"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 27
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 27
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "description": "",
+      "featureCrossReferences": [
+        {
+          "database": "ChEBI",
+          "id": "CHEBI:29035"
+        }
+      ],
+      "ligand": {
+        "id": "ChEBI:CHEBI:29035",
+        "name": "Mn(2+)"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 82
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 82
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "description": "",
+      "featureCrossReferences": [
+        {
+          "database": "ChEBI",
+          "id": "CHEBI:29035"
+        }
+      ],
+      "ligand": {
+        "id": "ChEBI:CHEBI:29035",
+        "name": "Mn(2+)"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 168
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 168
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "description": "",
+      "featureCrossReferences": [
+        {
+          "database": "ChEBI",
+          "id": "CHEBI:29035"
+        }
+      ],
+      "ligand": {
+        "id": "ChEBI:CHEBI:29035",
+        "name": "Mn(2+)"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 172
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 172
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "alternativeSequence": {
+        "alternativeSequences": [
+          "L"
+        ],
+        "originalSequence": "M"
+      },
+      "description": "in strain: B",
+      "featureId": "",
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 165
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 165
+        }
+      },
+      "type": "Natural variant"
+    },
+    {
+      "alternativeSequence": {
+        "alternativeSequences": [
+          "L"
+        ],
+        "originalSequence": "I"
+      },
+      "description": "in Ref. 9; AA sequence",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000305"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 26
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 26
+        }
+      },
+      "type": "Sequence conflict"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1IX9",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 8
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 5
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1IX9",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 18
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 12
+        }
+      },
+      "type": "Turn"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1IX9",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 26
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 21
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1IX9",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 32
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 27
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1IX9",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 43
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 33
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1IX9",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 50
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 47
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1IX9",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 57
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 54
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1IX9",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 63
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 61
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1IX9",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 87
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 66
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1IX9",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 107
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 97
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1IX9",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 123
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 110
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1IX9",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 135
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 126
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1IX9",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 145
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 138
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1IX9",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 152
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 150
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1IX9",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 157
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 154
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1IX9",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 168
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 161
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1IX9",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 173
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 171
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1IX9",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 178
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 175
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1IX9",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 192
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 182
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1IX9",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 205
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 195
+        }
+      },
+      "type": "Helix"
+    }
+  ],
+  "genes": [
+    {
+      "geneName": {
+        "value": "sodA"
+      },
+      "orderedLocusNames": [
+        {
+          "value": "b3908"
+        },
+        {
+          "value": "JW3879"
+        }
+      ]
+    }
+  ],
+  "keywords": [
+    {
+      "category": "Technical term",
+      "id": "KW-0002",
+      "name": "3D-structure"
+    },
+    {
+      "category": "Technical term",
+      "id": "KW-0903",
+      "name": "Direct protein sequencing"
+    },
+    {
+      "category": "Ligand",
+      "id": "KW-0464",
+      "name": "Manganese"
+    },
+    {
+      "category": "Ligand",
+      "id": "KW-0479",
+      "name": "Metal-binding"
+    },
+    {
+      "category": "Molecular function",
+      "id": "KW-0560",
+      "name": "Oxidoreductase"
+    },
+    {
+      "category": "Technical term",
+      "id": "KW-1185",
+      "name": "Reference proteome"
+    }
+  ],
+  "organism": {
+    "lineage": [
+      "Bacteria",
+      "Pseudomonadati",
+      "Pseudomonadota",
+      "Gammaproteobacteria",
+      "Enterobacterales",
+      "Enterobacteriaceae",
+      "Escherichia"
+    ],
+    "scientificName": "Escherichia coli (strain K12)",
+    "taxonId": 83333
+  },
+  "primaryAccession": "P00448",
+  "proteinDescription": {
+    "alternativeNames": [
+      {
+        "fullName": {
+          "value": "MnSOD"
+        }
+      }
+    ],
+    "recommendedName": {
+      "ecNumbers": [
+        {
+          "value": "1.15.1.1"
+        }
+      ],
+      "fullName": {
+        "value": "Superoxide dismutase [Mn]"
+      }
+    }
+  },
+  "proteinExistence": "1: Evidence at protein level",
+  "references": [
+    {
+      "citation": {
+        "authors": [
+          "Takeda Y.",
+          "Avila H."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "3520487"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1093/nar/14.11.4577"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "4577",
+        "id": "3520487",
+        "journal": "Nucleic Acids Res.",
+        "lastPage": "4589",
+        "publicationDate": "1986",
+        "title": "Structure and gene expression of the E. coli Mn-superoxide dismutase gene.",
+        "volume": "14"
+      },
+      "referenceNumber": 1,
+      "referencePositions": [
+        "NUCLEOTIDE SEQUENCE [GENOMIC DNA]"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Plunkett G. III",
+          "Burland V.",
+          "Daniels D.L.",
+          "Blattner F.R."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "8346018"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1093/nar/21.15.3391"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "3391",
+        "id": "8346018",
+        "journal": "Nucleic Acids Res.",
+        "lastPage": "3398",
+        "publicationDate": "1993",
+        "title": "Analysis of the Escherichia coli genome. III. DNA sequence of the region from 87.2 to 89.2 minutes.",
+        "volume": "21"
+      },
+      "referenceComments": [
+        {
+          "type": "STRAIN",
+          "value": "K12 / MG1655 / ATCC 47076"
+        }
+      ],
+      "referenceNumber": 2,
+      "referencePositions": [
+        "NUCLEOTIDE SEQUENCE [LARGE SCALE GENOMIC DNA]"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Blattner F.R.",
+          "Plunkett G. III",
+          "Bloch C.A.",
+          "Perna N.T.",
+          "Burland V.",
+          "Riley M.",
+          "Collado-Vides J.",
+          "Glasner J.D.",
+          "Rode C.K.",
+          "Mayhew G.F.",
+          "Gregor J.",
+          "Davis N.W.",
+          "Kirkpatrick H.A.",
+          "Goeden M.A.",
+          "Rose D.J.",
+          "Mau B.",
+          "Shao Y."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "9278503"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1126/science.277.5331.1453"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "1453",
+        "id": "9278503",
+        "journal": "Science",
+        "lastPage": "1462",
+        "publicationDate": "1997",
+        "title": "The complete genome sequence of Escherichia coli K-12.",
+        "volume": "277"
+      },
+      "referenceComments": [
+        {
+          "type": "STRAIN",
+          "value": "K12 / MG1655 / ATCC 47076"
+        }
+      ],
+      "referenceNumber": 3,
+      "referencePositions": [
+        "NUCLEOTIDE SEQUENCE [LARGE SCALE GENOMIC DNA]"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Hayashi K.",
+          "Morooka N.",
+          "Yamamoto Y.",
+          "Fujita K.",
+          "Isono K.",
+          "Choi S.",
+          "Ohtsubo E.",
+          "Baba T.",
+          "Wanner B.L.",
+          "Mori H.",
+          "Horiuchi T."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "16738553"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1038/msb4100049"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "E1",
+        "id": "16738553",
+        "journal": "Mol. Syst. Biol.",
+        "lastPage": "E5",
+        "publicationDate": "2006",
+        "title": "Highly accurate genome sequences of Escherichia coli K-12 strains MG1655 and W3110.",
+        "volume": "2"
+      },
+      "referenceComments": [
+        {
+          "type": "STRAIN",
+          "value": "K12 / W3110 / ATCC 27325 / DSM 5911"
+        }
+      ],
+      "referenceNumber": 4,
+      "referencePositions": [
+        "NUCLEOTIDE SEQUENCE [LARGE SCALE GENOMIC DNA]"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Steinman H.M."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "363708"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1016/s0021-9258(17)34235-7"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "8708",
+        "id": "363708",
+        "journal": "J. Biol. Chem.",
+        "lastPage": "8720",
+        "publicationDate": "1978",
+        "title": "The amino acid sequence of mangano superoxide dismutase from Escherichia coli B.",
+        "volume": "253"
+      },
+      "referenceComments": [
+        {
+          "type": "STRAIN",
+          "value": "B"
+        }
+      ],
+      "referenceNumber": 5,
+      "referencePositions": [
+        "PROTEIN SEQUENCE OF 2-206"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Garcia C.",
+          "Baldoma L.",
+          "Badia J.",
+          "Aguilar J."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "1339463"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1099/00221287-138-6-1109"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "1109",
+        "id": "1339463",
+        "journal": "J. Gen. Microbiol.",
+        "lastPage": "1116",
+        "publicationDate": "1992",
+        "title": "Nucleotide sequence of the rhaR-sodA interval specifying rhaT in Escherichia coli.",
+        "volume": "138"
+      },
+      "referenceComments": [
+        {
+          "type": "STRAIN",
+          "value": "K12"
+        }
+      ],
+      "referenceNumber": 6,
+      "referencePositions": [
+        "NUCLEOTIDE SEQUENCE [GENOMIC DNA] OF 1-96"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Tate C.G.",
+          "Muiry J.A.R.",
+          "Henderson P.J.F."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "1551902"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1016/s0021-9258(19)50517-8"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "6923",
+        "id": "1551902",
+        "journal": "J. Biol. Chem.",
+        "lastPage": "6932",
+        "publicationDate": "1992",
+        "title": "Mapping, cloning, expression, and sequencing of the rhaT gene, which encodes a novel L-rhamnose-H+ transport protein in Salmonella typhimurium and Escherichia coli.",
+        "volume": "267"
+      },
+      "referenceComments": [
+        {
+          "type": "STRAIN",
+          "value": "K12"
+        }
+      ],
+      "referenceNumber": 7,
+      "referencePositions": [
+        "NUCLEOTIDE SEQUENCE [GENOMIC DNA] OF 1-63"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Touati D."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "3131302"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1128/jb.170.6.2511-2520.1988"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "2511",
+        "id": "3131302",
+        "journal": "J. Bacteriol.",
+        "lastPage": "2520",
+        "publicationDate": "1988",
+        "title": "Transcriptional and posttranscriptional regulation of manganese superoxide dismutase biosynthesis in Escherichia coli, studied with operon and protein fusions.",
+        "volume": "170"
+      },
+      "referenceNumber": 8,
+      "referencePositions": [
+        "NUCLEOTIDE SEQUENCE [GENOMIC DNA] OF 1-2"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Steinman H.M.",
+          "Hill R.L."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "4590170"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1073/pnas.70.12.3725"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "3725",
+        "id": "4590170",
+        "journal": "Proc. Natl. Acad. Sci. U.S.A.",
+        "lastPage": "3729",
+        "publicationDate": "1973",
+        "title": "Sequence homologies among bacterial and mitochondrial superoxide dismutases.",
+        "volume": "70"
+      },
+      "referenceNumber": 9,
+      "referencePositions": [
+        "PROTEIN SEQUENCE OF 2-30"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Pasquali C.",
+          "Sanchez J.-C.",
+          "Ravier F.",
+          "Golaz O.",
+          "Hughes G.J.",
+          "Frutiger S.",
+          "Paquet N.",
+          "Wilkins M.",
+          "Appel R.D.",
+          "Bairoch A.",
+          "Hochstrasser D.F."
+        ],
+        "citationType": "submission",
+        "id": "CI-72L6FDRKDTIQ0",
+        "publicationDate": "SEP-1994",
+        "submissionDatabase": "UniProtKB"
+      },
+      "referenceComments": [
+        {
+          "type": "STRAIN",
+          "value": "K12 / W3110 / ATCC 27325 / DSM 5911"
+        }
+      ],
+      "referenceNumber": 10,
+      "referencePositions": [
+        "PROTEIN SEQUENCE OF 2-11"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Link A.J.",
+          "Robison K.",
+          "Church G.M."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "9298646"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1002/elps.1150180807"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "1259",
+        "id": "9298646",
+        "journal": "Electrophoresis",
+        "lastPage": "1313",
+        "publicationDate": "1997",
+        "title": "Comparing the predicted and observed properties of proteins encoded in the genome of Escherichia coli K-12.",
+        "volume": "18"
+      },
+      "referenceComments": [
+        {
+          "type": "STRAIN",
+          "value": "K12 / EMG2"
+        }
+      ],
+      "referenceNumber": 11,
+      "referencePositions": [
+        "PROTEIN SEQUENCE OF 2-13"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "VanBogelen R.A.",
+          "Abshire K.Z.",
+          "Moldover B.",
+          "Olson E.R.",
+          "Neidhardt F.C."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "9298644"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1002/elps.1150180805"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "1243",
+        "id": "9298644",
+        "journal": "Electrophoresis",
+        "lastPage": "1251",
+        "publicationDate": "1997",
+        "title": "Escherichia coli proteome analysis using the gene-protein database.",
+        "volume": "18"
+      },
+      "referenceNumber": 12,
+      "referencePositions": [
+        "IDENTIFICATION BY 2D-GEL"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Edwards R.A.",
+          "Whittaker M.M.",
+          "Whittaker J.W.",
+          "Baker E.N.",
+          "Jameson G.B."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "11141052"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1021/bi0018943"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "15",
+        "id": "11141052",
+        "journal": "Biochemistry",
+        "lastPage": "27",
+        "publicationDate": "2001",
+        "title": "Outer sphere mutations perturb metal reactivity in manganese superoxide dismutase.",
+        "volume": "40"
+      },
+      "referenceNumber": 13,
+      "referencePositions": [
+        "X-RAY CRYSTALLOGRAPHY (2.0 ANGSTROMS) OF MUTANTS PHE-35; LEU-147 AND HIS-147"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Edwards R.A.",
+          "Whittaker M.M.",
+          "Whittaker J.W.",
+          "Baker E.N.",
+          "Jameson G.B."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "11294629"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1021/bi002403h"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "4622",
+        "id": "11294629",
+        "journal": "Biochemistry",
+        "lastPage": "4632",
+        "publicationDate": "2001",
+        "title": "Removing a hydrogen bond in the dimer interface of Escherichia coli manganese superoxide dismutase alters structure and reactivity.",
+        "volume": "40"
+      },
+      "referenceNumber": 14,
+      "referencePositions": [
+        "X-RAY CRYSTALLOGRAPHY (1.35 ANGSTROMS) OF MUTANTS ALA-31 AND PHE-175"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Renault J.P.",
+          "Verchere-Beau R.",
+          "Morgenstern-Badarau I.",
+          "Piccioli M."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "9003797"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1016/s0014-5793(96)31420-2"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "15",
+        "id": "9003797",
+        "journal": "FEBS Lett.",
+        "lastPage": "19",
+        "publicationDate": "1997",
+        "title": "Paramagnetic NMR spectroscopy of native and cobalt substituted manganese superoxide dismutase from Escherichia coli.",
+        "volume": "401"
+      },
+      "referenceNumber": 15,
+      "referencePositions": [
+        "STRUCTURE BY NMR"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Edwards R.A.",
+          "Baker H.M.",
+          "Whittaker M.M.",
+          "Whittaker J.W.",
+          "Jameson G.B.",
+          "Baker E.N."
+        ],
+        "citationType": "journal article",
+        "firstPage": "161",
+        "id": "CI-6245MNCIABBFD",
+        "journal": "J. Biol. Inorg. Chem.",
+        "lastPage": "171",
+        "publicationDate": "1998",
+        "title": "Crystal structure of Escherichia coli manganese superoxide dismutase at 2.1-A resolution.",
+        "volume": "3"
+      },
+      "referenceNumber": 16,
+      "referencePositions": [
+        "X-RAY CRYSTALLOGRAPHY (2.1 ANGSTROMS)"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Borgstahl G.E.",
+          "Pokross M.",
+          "Chehab R.",
+          "Sekher A.",
+          "Snell E.H."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "10686094"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1006/jmbi.1999.3506"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "951",
+        "id": "10686094",
+        "journal": "J. Mol. Biol.",
+        "lastPage": "959",
+        "publicationDate": "2000",
+        "title": "Cryo-trapping the six-coordinate, distorted-octahedral active site of manganese superoxide dismutase.",
+        "volume": "296"
+      },
+      "referenceNumber": 17,
+      "referencePositions": [
+        "X-RAY CRYSTALLOGRAPHY (1.55 ANGSTROMS)"
+      ]
+    }
+  ],
+  "secondaryAccessions": [
+    "Q2M8K5"
+  ],
+  "sequence": {
+    "crc64": "082DAF56EA3C15CC",
+    "length": 206,
+    "md5": "8738A8053DAF45E99FE4295483914470",
+    "molWeight": 23097,
+    "value": "MSYTLPSLPYAYDALEPHFDKQTMEIHHTKHHQTYVNNANAALESLPEFANLPVEELITKLDQLPADKKTVLRNNAGGHANHSLFWKGLKKGTTLQGDLKAAIERDFGSVDNFKAEFEKAAASRFGSGWAWLVLKGDKLAVVSTANQDSPLMGEAISGASGFPIMGLDVWEHAYYLKFQNRRPDYIKEFWNVVNWDEAAARFAAKK"
+  },
+  "uniProtKBCrossReferences": [
+    {
+      "database": "EMBL",
+      "id": "X03951",
+      "properties": [
+        {
+          "key": "ProteinId",
+          "value": "CAA27580.1"
+        },
+        {
+          "key": "Status",
+          "value": "-"
+        },
+        {
+          "key": "MoleculeType",
+          "value": "Genomic_DNA"
+        }
+      ]
+    },
+    {
+      "database": "EMBL",
+      "id": "M20984",
+      "properties": [
+        {
+          "key": "ProteinId",
+          "value": "-"
+        },
+        {
+          "key": "Status",
+          "value": "NOT_ANNOTATED_CDS"
+        },
+        {
+          "key": "MoleculeType",
+          "value": "Genomic_DNA"
+        }
+      ]
+    },
+    {
+      "database": "EMBL",
+      "id": "L19201",
+      "properties": [
+        {
+          "key": "ProteinId",
+          "value": "AAB03041.1"
+        },
+        {
+          "key": "Status",
+          "value": "-"
+        },
+        {
+          "key": "MoleculeType",
+          "value": "Genomic_DNA"
+        }
+      ]
+    },
+    {
+      "database": "EMBL",
+      "id": "U00096",
+      "properties": [
+        {
+          "key": "ProteinId",
+          "value": "AAC76890.1"
+        },
+        {
+          "key": "Status",
+          "value": "-"
+        },
+        {
+          "key": "MoleculeType",
+          "value": "Genomic_DNA"
+        }
+      ]
+    },
+    {
+      "database": "EMBL",
+      "id": "AP009048",
+      "properties": [
+        {
+          "key": "ProteinId",
+          "value": "BAE77401.1"
+        },
+        {
+          "key": "Status",
+          "value": "-"
+        },
+        {
+          "key": "MoleculeType",
+          "value": "Genomic_DNA"
+        }
+      ]
+    },
+    {
+      "database": "EMBL",
+      "id": "X60699",
+      "properties": [
+        {
+          "key": "ProteinId",
+          "value": "CAA43108.1"
+        },
+        {
+          "key": "Status",
+          "value": "-"
+        },
+        {
+          "key": "MoleculeType",
+          "value": "Genomic_DNA"
+        }
+      ]
+    },
+    {
+      "database": "EMBL",
+      "id": "M85158",
+      "properties": [
+        {
+          "key": "ProteinId",
+          "value": "AAA24528.1"
+        },
+        {
+          "key": "Status",
+          "value": "ALT_SEQ"
+        },
+        {
+          "key": "MoleculeType",
+          "value": "Genomic_DNA"
+        }
+      ]
+    },
+    {
+      "database": "PIR",
+      "id": "A24141",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "DSECN"
+        }
+      ]
+    },
+    {
+      "database": "RefSeq",
+      "id": "NP_418344.3",
+      "properties": [
+        {
+          "key": "NucleotideSequenceId",
+          "value": "NC_000913.3"
+        }
+      ]
+    },
+    {
+      "database": "RefSeq",
+      "id": "WP_000122641.1",
+      "properties": [
+        {
+          "key": "NucleotideSequenceId",
+          "value": "NZ_CP009789.1"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1D5N",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.55 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B/C/D=2-206"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1EN4",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.00 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B/C/D=2-206"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1EN5",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.30 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B/C/D=2-206"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1EN6",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.00 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B/C/D=2-206"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1I08",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.20 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B/C/D=2-206"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1I0H",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.35 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B=2-206"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1IX9",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "0.90 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B=2-206"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1IXB",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "0.90 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B=2-206"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1MMM",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.20 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B=2-206"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1VEW",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.10 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B/C/D=2-206"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1ZLZ",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.55 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B=2-206"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "3K9S",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.55 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B/C/D=2-206"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "3OT7",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.90 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B/C/D=2-206"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1D5N",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1EN4",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1EN5",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1EN6",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1I08",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1I0H",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1IX9",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1IXB",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1MMM",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1VEW",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1ZLZ",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "3K9S",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "3OT7",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "AlphaFoldDB",
+      "id": "P00448",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "SASBDB",
+      "id": "P00448",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "SMR",
+      "id": "P00448",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "BioGRID",
+      "id": "4262227",
+      "properties": [
+        {
+          "key": "Interactions",
+          "value": "71"
+        }
+      ]
+    },
+    {
+      "database": "FunCoup",
+      "id": "P00448",
+      "properties": [
+        {
+          "key": "Number of interactors",
+          "value": "637"
+        }
+      ]
+    },
+    {
+      "database": "IntAct",
+      "id": "P00448",
+      "properties": [
+        {
+          "key": "Interactions",
+          "value": "7"
+        }
+      ]
+    },
+    {
+      "database": "STRING",
+      "id": "511145.b3908",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "jPOST",
+      "id": "P00448",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PaxDb",
+      "id": "511145-b3908",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "EnsemblBacteria",
+      "id": "AAC76890",
+      "properties": [
+        {
+          "key": "ProteinId",
+          "value": "AAC76890"
+        },
+        {
+          "key": "GeneId",
+          "value": "b3908"
+        }
+      ]
+    },
+    {
+      "database": "GeneID",
+      "id": "948403",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "KEGG",
+      "id": "ecj:JW3879",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "KEGG",
+      "id": "eco:b3908",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "KEGG",
+      "id": "ecoc:C3026_21130",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PATRIC",
+      "id": "fig|1411691.4.peg.2797",
+      "properties": [
+        {
+          "key": "GeneDesignation",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "EchoBASE",
+      "id": "EB0946",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "eggNOG",
+      "id": "COG0605",
+      "properties": [
+        {
+          "key": "ToxonomicScope",
+          "value": "Bacteria"
+        }
+      ]
+    },
+    {
+      "database": "HOGENOM",
+      "id": "CLU_031625_0_1_6",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "InParanoid",
+      "id": "P00448",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "OMA",
+      "id": "GSYEGWK",
+      "properties": [
+        {
+          "key": "Fingerprint",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "OrthoDB",
+      "id": "9803125at2",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PhylomeDB",
+      "id": "P00448",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "BioCyc",
+      "id": "EcoCyc:SUPEROX-DISMUTMN-MONOMER",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "BioCyc",
+      "id": "MetaCyc:SUPEROX-DISMUTMN-MONOMER",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "BRENDA",
+      "id": "1.15.1.1",
+      "properties": [
+        {
+          "key": "OrganismId",
+          "value": "2026"
+        }
+      ]
+    },
+    {
+      "database": "EvolutionaryTrace",
+      "id": "P00448",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PHI-base",
+      "id": "PHI:9764",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PRO",
+      "id": "PR:P00448",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "Proteomes",
+      "id": "UP000000625",
+      "properties": [
+        {
+          "key": "Component",
+          "value": "Chromosome"
+        }
+      ]
+    },
+    {
+      "database": "AbasyAtlas",
+      "id": "P00448",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000314",
+          "id": "330499",
+          "source": "PubMed"
+        },
+        {
+          "evidenceCode": "ECO:0000314",
+          "id": "4580575",
+          "source": "PubMed"
+        }
+      ],
+      "id": "GO:0005737",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "C:cytoplasm"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IDA:EcoliWiki"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000314",
+          "id": "18304323",
+          "source": "PubMed"
+        }
+      ],
+      "id": "GO:0005829",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "C:cytosol"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IDA:EcoCyc"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000315",
+          "id": "3011417",
+          "source": "PubMed"
+        }
+      ],
+      "id": "GO:0016209",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "F:antioxidant activity"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IMP:EcoCyc"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000314",
+          "id": "7961811",
+          "source": "PubMed"
+        }
+      ],
+      "id": "GO:0003677",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "F:DNA binding"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IDA:EcoCyc"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000314",
+          "id": "9220980",
+          "source": "PubMed"
+        },
+        {
+          "evidenceCode": "ECO:0000314",
+          "id": "9548935",
+          "source": "PubMed"
+        }
+      ],
+      "id": "GO:0030145",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "F:manganese ion binding"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IDA:EcoCyc"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000314",
+          "id": "4921969",
+          "source": "PubMed"
+        }
+      ],
+      "id": "GO:0046872",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "F:metal ion binding"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IDA:EcoliWiki"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000314",
+          "id": "3517866",
+          "source": "PubMed"
+        }
+      ],
+      "id": "GO:0042803",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "F:protein homodimerization activity"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IDA:EcoCyc"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000314",
+          "id": "330499",
+          "source": "PubMed"
+        },
+        {
+          "evidenceCode": "ECO:0000314",
+          "id": "4921969",
+          "source": "PubMed"
+        },
+        {
+          "evidenceCode": "ECO:0000314",
+          "id": "4943714",
+          "source": "PubMed"
+        }
+      ],
+      "id": "GO:0004784",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "F:superoxide dismutase activity"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IDA:EcoCyc"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000270",
+          "id": "11872706",
+          "source": "PubMed"
+        }
+      ],
+      "id": "GO:0071291",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "P:cellular response to selenium ion"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IEP:EcoCyc"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000314",
+          "id": "4943714",
+          "source": "PubMed"
+        }
+      ],
+      "id": "GO:0019430",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "P:removal of superoxide radicals"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IDA:EcoliWiki"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000315",
+          "id": "20305033",
+          "source": "PubMed"
+        }
+      ],
+      "id": "GO:0010447",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "P:response to acidic pH"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IMP:EcoCyc"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000315",
+          "id": "7768839",
+          "source": "PubMed"
+        }
+      ],
+      "id": "GO:0009408",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "P:response to heat"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IMP:EcoCyc"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000315",
+          "id": "7730258",
+          "source": "PubMed"
+        }
+      ],
+      "id": "GO:0006979",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "P:response to oxidative stress"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IMP:EcoCyc"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000314",
+          "id": "4196244",
+          "source": "PubMed"
+        }
+      ],
+      "id": "GO:0006801",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "P:superoxide metabolic process"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IDA:EcoliWiki"
+        }
+      ]
+    },
+    {
+      "database": "FunFam",
+      "id": "1.10.287.990:FF:000001",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Superoxide dismutase"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "FunFam",
+      "id": "3.55.40.20:FF:000001",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Superoxide dismutase"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "Gene3D",
+      "id": "1.10.287.990",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Fe,Mn superoxide dismutase (SOD) domain"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "Gene3D",
+      "id": "3.55.40.20",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Iron/manganese superoxide dismutase, C-terminal domain"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR001189",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Mn/Fe_SOD"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR019833",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Mn/Fe_SOD_BS"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR019832",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Mn/Fe_SOD_C"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR019831",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Mn/Fe_SOD_N"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR036324",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Mn/Fe_SOD_N_sf"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR036314",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "SOD_C_sf"
+        }
+      ]
+    },
+    {
+      "database": "NCBIfam",
+      "id": "NF008177",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "PRK10925.1"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PANTHER",
+      "id": "PTHR43595",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "37S RIBOSOMAL PROTEIN S26, MITOCHONDRIAL"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PANTHER",
+      "id": "PTHR43595:SF2",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "SMALL RIBOSOMAL SUBUNIT PROTEIN MS42"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "Pfam",
+      "id": "PF02777",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Sod_Fe_C"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "Pfam",
+      "id": "PF00081",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Sod_Fe_N"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PIRSF",
+      "id": "PIRSF000349",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "SODismutase"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PRINTS",
+      "id": "PR01703",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "MNSODISMTASE"
+        }
+      ]
+    },
+    {
+      "database": "SUPFAM",
+      "id": "SSF54719",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Fe,Mn superoxide dismutase (SOD), C-terminal domain"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "SUPFAM",
+      "id": "SSF46609",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Fe,Mn superoxide dismutase (SOD), N-terminal domain"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PROSITE",
+      "id": "PS00088",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "SOD_MN"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    }
+  ],
+  "uniProtkbId": "SODM_ECOLI"
+}

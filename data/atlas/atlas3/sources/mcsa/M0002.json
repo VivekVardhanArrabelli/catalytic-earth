@@ -1,0 +1,1342 @@
+{
+  "all_ecs": [
+    "3.5.2.6"
+  ],
+  "description": "The Class A Beta lactamase acts to hydrolyse the endocyclic amide bond of beta-lactam substrates in a two step mechanism: acylation (covalent attachment of the beta-lactam to an active site serine, Ser70), followed by deacylation. The TEM-type are the most prevalent beta-lactamases in enterobacteria and confer resistance to penicillins and cephalosporins in these species. \r\n<br/><br/>\r\nTEM-3 and TEM-4 are capable of hydrolyzing cefotaxime and ceftazidime. TEM-5 is capable of hydrolysing ceftazidime. TEM-6 is capable of hydrolysing ceftazidime and aztreonam. TEM-8/CAZ-2, TEM-16/CAZ-7 and TEM-24/CAZ-6 are markedly active against ceftazidime. IRT-4 shows resistance to beta-lactamase inhibitors.",
+  "enzyme_name": "beta-lactamase (Class A)",
+  "is_reference_uniprot_id": true,
+  "mcsa_id": 2,
+  "protein": {
+    "sequences": [
+      {
+        "uniprot_id": "P62593"
+      }
+    ]
+  },
+  "reaction": {
+    "compounds": [
+      {
+        "chebi_id": "35627",
+        "count": 1,
+        "mol_file": "www.ebi.ac.uk/thornton-srv/m-csa/media/compound_mols/35627.mol",
+        "name": "beta-lactam",
+        "type": "reactant"
+      },
+      {
+        "chebi_id": "15377",
+        "count": 1,
+        "mol_file": "www.ebi.ac.uk/thornton-srv/m-csa/media/compound_mols/15377_Sw86oy5.mol",
+        "name": "water",
+        "type": "reactant"
+      },
+      {
+        "chebi_id": "33705",
+        "count": 1,
+        "mol_file": "www.ebi.ac.uk/thornton-srv/m-csa/media/compound_mols/33705.mol",
+        "name": "substituted beta-amino acids",
+        "type": "product"
+      }
+    ],
+    "ec": "3.5.2.6",
+    "is_polymeric": false,
+    "mechanisms": [
+      {
+        "components_summary": "intermediate collapse, bimolecular nucleophilic addition, overall reactant used, intermediate terminated, native state of enzyme regenerated, overall product formed, enzyme-substrate complex cleavage, enzyme-substrate complex formation, proton transfer, unimolecular elimination by the conjugate base, intermediate formation",
+        "is_detailed": true,
+        "mechanism_id": 2,
+        "mechanism_text": "The beta-lactamase mechanism consists of two steps: acylation (covalent attachment of the beta-lactam to an active site serine, Ser70), followed by deacylation. The first step, base catalysed nucleophilic attack from Ser70 at the carbonyl carbon of the lactam occurs where activation of Ser70 by Glu166 and nucleophilic attack happen simultaneously. The protonation at lactam N(1) is catalysed within a hydrogen bonded cluster involving the 2-carboxylate group in the substrate, side chains Ser130, Lys234 and a exogenous solvent molecule. The nucleophilic Ser70 has been shown to approach the butterfly cadge beta-lactam structure from the exo face, its activity directed by interactions with the surrounding ion pairs.",
+        "rating": 3,
+        "references": [
+          {
+            "doi": "10.1021/ja034434g",
+            "evidence_types": [
+              "computational experiment"
+            ],
+            "pubmed_id": "12904016",
+            "title": "Identification of Glu166 as the General Base in the Acylation Reaction of Class A β-Lactamases through QM/MM Modeling"
+          },
+          {
+            "doi": "10.1042/bj2790213",
+            "evidence_types": [
+              "biological system reconstruction (modelling)",
+              "inferred from mutant phenotype",
+              "crystallography evidence"
+            ],
+            "pubmed_id": "1930139",
+            "title": "Mechanism of acyl transfer by the class A serineβ-lactamase ofStreptomyces albusG"
+          },
+          {
+            "doi": "10.1038/359700a0",
+            "evidence_types": [
+              "spectrometry evidence",
+              "crystallography evidence"
+            ],
+            "pubmed_id": "1436034",
+            "title": "Molecular structure of the acyl-enzyme intermediate in β-lactam hydrolysis at 1.7 Å resolution"
+          },
+          {
+            "doi": "10.1021/bi961153v",
+            "evidence_types": [
+              "spectrometry evidence",
+              "inferred from mutant phenotype",
+              "crystallography evidence"
+            ],
+            "pubmed_id": "8823158",
+            "title": "Structure and Kinetics of the β-Lactamase Mutants S70A and K73H fromStaphylococcus aureusPC1†,‡"
+          },
+          {
+            "doi": "10.1021/ja0712064",
+            "evidence_types": [
+              "crystallography evidence"
+            ],
+            "pubmed_id": "17408273",
+            "title": "The Acylation Mechanism of CTX-M β-Lactamase at 0.88 Å Resolution"
+          },
+          {
+            "doi": "10.1016/s0022-2836(03)00210-9",
+            "evidence_types": [
+              "crystallography evidence"
+            ],
+            "pubmed_id": null,
+            "title": "Ultrahigh Resolution Structure of a Class A β-Lactamase: On the Mechanism and Specificity of the Extended-spectrum SHV-2 Enzyme"
+          },
+          {
+            "doi": "10.1042/bj3300581",
+            "evidence_types": [
+              "traceable author statement (general)"
+            ],
+            "pubmed_id": null,
+            "title": "Catalytic properties of class A β-lactamases: efficiency and diversity"
+          },
+          {
+            "doi": "10.1021/ja017156z",
+            "evidence_types": [
+              "computational experiment"
+            ],
+            "pubmed_id": "11853460",
+            "title": "Role of Protein Flexibility in Enzymatic Catalysis:  Quantum Mechanical−Molecular Mechanical Study of the Deacylation Reaction in Class A β-Lactamases"
+          },
+          {
+            "doi": "10.1074/jbc.272.9.5438",
+            "evidence_types": [
+              "inferred from mutant phenotype"
+            ],
+            "pubmed_id": null,
+            "title": "Site-directed Mutagenesis of Glutamate 166 in Two  -Lactamases: KINETIC AND MOLECULAR MODELING STUDIES"
+          },
+          {
+            "doi": "10.1073/pnas.060027897",
+            "evidence_types": [
+              "crystallography evidence",
+              "computational experiment"
+            ],
+            "pubmed_id": "10716727",
+            "title": "Protonation of the beta -lactam nitrogen is the trigger event in the catalytic action of class A beta -lactamases"
+          },
+          {
+            "doi": "10.1039/b512969a",
+            "evidence_types": [
+              "computational experiment"
+            ],
+            "pubmed_id": "16391762",
+            "title": "Molecular mechanisms of antibiotic resistance: QM/MM modelling of deacylation in a class A β-lactamase"
+          },
+          {
+            "doi": "10.1073/pnas.93.5.1747",
+            "evidence_types": [
+              "spectrometry evidence"
+            ],
+            "pubmed_id": "8700829",
+            "title": "The catalytic mechanism of beta-lactamases: NMR titration of an active-site lysine residue of the TEM-1 enzyme."
+          }
+        ],
+        "steps": [
+          {
+            "description": "Glu166 deprotonates a conserved water molecule which in turn deprotonates the nucleophilic Ser70, initiating the nucleophilic addition onto the carbonyl carbon of the beta-lactam, forming a tetrahedral intermediate.",
+            "figure": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes_svg/macie_entry_2_mechanism_2_step_1_QKUoG5m",
+            "is_product": false,
+            "marvin_xml": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/macie_entry_2_mechanism_2_step_1_QKUoG5m.mrv",
+            "step_id": 1
+          },
+          {
+            "description": "The tetrahedral intermediate collapses, cleaving the C-N bond in the beta-lactam, the nitrogen deprotonates Ser130.",
+            "figure": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes_svg/Step_macie.2.2.2_2yFKd4X",
+            "is_product": false,
+            "marvin_xml": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/Step_macie.2.2.2_2yFKd4X.mrv",
+            "step_id": 2
+          },
+          {
+            "description": "Ser130 deprotonates water, which in turn deprotonates Glu166.",
+            "figure": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes_svg/Step_macie.2.2.3_jcb2P37",
+            "is_product": false,
+            "marvin_xml": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/Step_macie.2.2.3_jcb2P37.mrv",
+            "step_id": 3
+          },
+          {
+            "description": "Glu166 deprotonates water, which initiates a nucleophilic addition at the carbonyl carbon, forming a new tetrahedral intermediate.",
+            "figure": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes_svg/Step_macie.2.2.4_kt0U9pI",
+            "is_product": false,
+            "marvin_xml": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/Step_macie.2.2.4_kt0U9pI.mrv",
+            "step_id": 4
+          },
+          {
+            "description": "The tetrahedral intermediate collapses, cleaving the acyl-enzyme bond and liberating Ser70, which in turn deprotonates the Glu166.",
+            "figure": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes_svg/Step_macie.2.2.5_TF4uVuY",
+            "is_product": false,
+            "marvin_xml": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/Step_macie.2.2.5_TF4uVuY.mrv",
+            "step_id": 5
+          },
+          {
+            "description": "Products",
+            "figure": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes_svg/Step_macie.2.2.6_bL77bSR",
+            "is_product": true,
+            "marvin_xml": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/Step_macie.2.2.6_bL77bSR.mrv",
+            "step_id": 6
+          }
+        ]
+      },
+      {
+        "components_summary": "intermediate collapse, bimolecular nucleophilic addition, overall reactant used, intermediate terminated, native state of enzyme regenerated, overall product formed, enzyme-substrate complex cleavage, enzyme-substrate complex formation, proton transfer, unimolecular elimination by the conjugate base, intermediate formation",
+        "is_detailed": true,
+        "mechanism_id": 1,
+        "mechanism_text": "The beta-lactamase mechanism consists of two steps: acylation (covalent attachment of the beta-lactam to an active site serine, Ser70), followed by deacylation. In the first step, a base catalysed nucleophilic attack from Ser70 at the carbonyl carbon of the beta-lactam occurs, where activation of Ser70 by Lys73 and nucleophilic attack happen simultaneously. The protonation at lactam N(1) is catalysed within a hydrogen bonded cluster involving the 2-carboxylate group in the substrate, side chains Ser130, Lys234 and a exogenous solvent molecule. The nucleophilic Ser70 has been shown to approach the butterfly cadge beta-lactam structure from the exo face, its activity directed by interactions with the surrounding ion pairs.",
+        "rating": 1,
+        "references": [
+          {
+            "doi": "10.1021/ja034434g",
+            "evidence_types": [
+              "traceable author statement (general)"
+            ],
+            "pubmed_id": "12904016",
+            "title": "Identification of Glu166 as the General Base in the Acylation Reaction of Class A β-Lactamases through QM/MM Modeling"
+          },
+          {
+            "doi": "10.1073/pnas.060027897",
+            "evidence_types": [
+              "traceable author statement (general)"
+            ],
+            "pubmed_id": "10716727",
+            "title": "Protonation of the beta -lactam nitrogen is the trigger event in the catalytic action of class A beta -lactamases"
+          },
+          {
+            "doi": "10.1021/bi972501b",
+            "evidence_types": [
+              "inferred from mutant phenotype",
+              "crystallography evidence",
+              "covalently attached"
+            ],
+            "pubmed_id": "9485412",
+            "title": "Crystal Structure of an Acylation Transition-State Analog of the TEM-1 β-Lactamase. Mechanistic Implications for Class A β-Lactamases†"
+          },
+          {
+            "doi": "10.1021/ja017156z",
+            "evidence_types": [
+              "computational experiment"
+            ],
+            "pubmed_id": "11853460",
+            "title": "Role of Protein Flexibility in Enzymatic Catalysis:  Quantum Mechanical−Molecular Mechanical Study of the Deacylation Reaction in Class A β-Lactamases"
+          },
+          {
+            "doi": "10.1039/a908264f",
+            "evidence_types": [
+              "computational experiment"
+            ],
+            "pubmed_id": null,
+            "title": "A quantum mechanics/molecular mechanics study of the acylation reaction of TEM1 β-lactamase and penicillanate"
+          },
+          {
+            "doi": "10.1016/s0969-2126(00)00534-7",
+            "evidence_types": [
+              "crystallography evidence"
+            ],
+            "pubmed_id": "11188693",
+            "title": "Insights into Class D β-Lactamases Are Revealed by the Crystal Structure of the OXA10 Enzyme from Pseudomonas aeruginosa"
+          },
+          {
+            "doi": "10.1039/C4CC06495J",
+            "evidence_types": [
+              "computational experiment"
+            ],
+            "pubmed_id": "25321894",
+            "title": "QM/MM simulations as an assay for carbapenemase activity in class A β-lactamases."
+          }
+        ],
+        "steps": [
+          {
+            "description": "Lys73 deprotonates Ser70, which initiates a nucleophilic addition onto the carbonyl carbon of the beta-lactam, forming a tetrahedral intermediate.",
+            "figure": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes_svg/Step_macie.2.1.1_SKWRDOM",
+            "is_product": false,
+            "marvin_xml": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/Step_macie.2.1.1_SKWRDOM.mrv",
+            "step_id": 1
+          },
+          {
+            "description": "The tetrahedral intermediate collapses, cleaving the C-N bond in the beta-lactam, the nitrogen deprotonates Ser130.",
+            "figure": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes_svg/Step_macie.2.1.2_ieLRYlr",
+            "is_product": false,
+            "marvin_xml": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/Step_macie.2.1.2_ieLRYlr.mrv",
+            "step_id": 2
+          },
+          {
+            "description": "Ser130 deprotonates Lys73.",
+            "figure": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes_svg/Step_macie.2.1.3_pvdhpVQ",
+            "is_product": false,
+            "marvin_xml": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/Step_macie.2.1.3_pvdhpVQ.mrv",
+            "step_id": 3
+          },
+          {
+            "description": "Glu166 deprotonates water, which initiates a nucleophilic addition at the carbonyl carbon, forming a new tetrahedral intermediate.",
+            "figure": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes_svg/Step_macie.2.1.4_IVS2VLp",
+            "is_product": false,
+            "marvin_xml": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/Step_macie.2.1.4_IVS2VLp.mrv",
+            "step_id": 4
+          },
+          {
+            "description": "The tetrahedral intermediate collapses, cleaving the acyl-enzyme bond and liberating Ser70, which in turn deprotonates the Glu166.",
+            "figure": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes_svg/Step_macie.2.1.5_iH8ow6I",
+            "is_product": false,
+            "marvin_xml": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/Step_macie.2.1.5_iH8ow6I.mrv",
+            "step_id": 5
+          },
+          {
+            "description": "Products",
+            "figure": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes_svg/Step_macie.2.1.6_R8sJPNd",
+            "is_product": true,
+            "marvin_xml": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/Step_macie.2.1.6_R8sJPNd.mrv",
+            "step_id": 6
+          }
+        ]
+      }
+    ]
+  },
+  "reference_uniprot_id": "P62593",
+  "residues": [
+    {
+      "function_location_abv": "",
+      "main_annotation": "",
+      "mcsa_id": 2,
+      "ptm": "",
+      "residue_chains": [
+        {
+          "assembly": 1,
+          "assembly_chain_name": "A",
+          "auth_resid": 70,
+          "chain_name": "A",
+          "code": "Ser",
+          "domain_cath_id": "3.40.710.10",
+          "domain_name": "A00",
+          "is_reference": true,
+          "pdb_id": "1btl",
+          "resid": 45
+        }
+      ],
+      "residue_sequences": [
+        {
+          "code": "Ser",
+          "is_reference": true,
+          "resid": 68,
+          "uniprot_id": "P62593"
+        }
+      ],
+      "roles": [
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00115",
+          "function": "covalently attached",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00115",
+          "function": "covalently attached",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00115",
+          "function": "covalently attached",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00115",
+          "function": "covalently attached",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00115",
+          "function": "covalently attached",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00115",
+          "function": "covalently attached",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00066",
+          "function": "proton acceptor",
+          "function_type": "reactant",
+          "group_function": "proton shuttle (general acid/base)"
+        },
+        {
+          "emo": "EMO_00068",
+          "function": "proton donor",
+          "function_type": "reactant",
+          "group_function": "proton shuttle (general acid/base)"
+        },
+        {
+          "emo": "EMO_00068",
+          "function": "proton donor",
+          "function_type": "reactant",
+          "group_function": "proton shuttle (general acid/base)"
+        },
+        {
+          "emo": "EMO_00054",
+          "function": "nucleophile",
+          "function_type": "reactant",
+          "group_function": "covalent catalysis"
+        },
+        {
+          "emo": "EMO_00054",
+          "function": "nucleophile",
+          "function_type": "reactant",
+          "group_function": "covalent catalysis"
+        },
+        {
+          "emo": "EMO_00066",
+          "function": "proton acceptor",
+          "function_type": "reactant",
+          "group_function": "proton shuttle (general acid/base)"
+        },
+        {
+          "emo": "EMO_00058",
+          "function": "nucleofuge",
+          "function_type": "reactant",
+          "group_function": "covalent catalysis"
+        },
+        {
+          "emo": "EMO_00058",
+          "function": "nucleofuge",
+          "function_type": "reactant",
+          "group_function": "covalent catalysis"
+        }
+      ],
+      "roles_summary": "covalently attached, electrostatic stabiliser, hydrogen bond acceptor, hydrogen bond donor, nucleofuge, nucleophile, proton acceptor, proton donor"
+    },
+    {
+      "function_location_abv": "",
+      "main_annotation": "",
+      "mcsa_id": 2,
+      "ptm": "",
+      "residue_chains": [
+        {
+          "assembly": 1,
+          "assembly_chain_name": "A",
+          "auth_resid": 73,
+          "chain_name": "A",
+          "code": "Lys",
+          "domain_cath_id": "3.40.710.10",
+          "domain_name": "A00",
+          "is_reference": true,
+          "pdb_id": "1btl",
+          "resid": 48
+        }
+      ],
+      "residue_sequences": [
+        {
+          "code": "Lys",
+          "is_reference": true,
+          "resid": 71,
+          "uniprot_id": "P62593"
+        }
+      ],
+      "roles": [
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00068",
+          "function": "proton donor",
+          "function_type": "reactant",
+          "group_function": "proton shuttle (general acid/base)"
+        },
+        {
+          "emo": "EMO_00066",
+          "function": "proton acceptor",
+          "function_type": "reactant",
+          "group_function": "proton shuttle (general acid/base)"
+        }
+      ],
+      "roles_summary": "hydrogen bond acceptor, hydrogen bond donor, proton acceptor, proton donor"
+    },
+    {
+      "function_location_abv": "",
+      "main_annotation": "",
+      "mcsa_id": 2,
+      "ptm": "",
+      "residue_chains": [
+        {
+          "assembly": 1,
+          "assembly_chain_name": "A",
+          "auth_resid": 130,
+          "chain_name": "A",
+          "code": "Ser",
+          "domain_cath_id": "3.40.710.10",
+          "domain_name": "A00",
+          "is_reference": true,
+          "pdb_id": "1btl",
+          "resid": 105
+        }
+      ],
+      "residue_sequences": [
+        {
+          "code": "Ser",
+          "is_reference": true,
+          "resid": 128,
+          "uniprot_id": "P62593"
+        }
+      ],
+      "roles": [
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00038",
+          "function": "activator",
+          "function_type": "spectator",
+          "group_function": "activator"
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00038",
+          "function": "activator",
+          "function_type": "spectator",
+          "group_function": "activator"
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00066",
+          "function": "proton acceptor",
+          "function_type": "reactant",
+          "group_function": "proton shuttle (general acid/base)"
+        },
+        {
+          "emo": "EMO_00066",
+          "function": "proton acceptor",
+          "function_type": "reactant",
+          "group_function": "proton shuttle (general acid/base)"
+        },
+        {
+          "emo": "EMO_00068",
+          "function": "proton donor",
+          "function_type": "reactant",
+          "group_function": "proton shuttle (general acid/base)"
+        },
+        {
+          "emo": "EMO_00068",
+          "function": "proton donor",
+          "function_type": "reactant",
+          "group_function": "proton shuttle (general acid/base)"
+        }
+      ],
+      "roles_summary": "activator, electrostatic stabiliser, hydrogen bond acceptor, hydrogen bond donor, proton acceptor, proton donor"
+    },
+    {
+      "function_location_abv": "",
+      "main_annotation": "",
+      "mcsa_id": 2,
+      "ptm": "",
+      "residue_chains": [
+        {
+          "assembly": 1,
+          "assembly_chain_name": "A",
+          "auth_resid": 166,
+          "chain_name": "A",
+          "code": "Glu",
+          "domain_cath_id": "3.40.710.10",
+          "domain_name": "A00",
+          "is_reference": true,
+          "pdb_id": "1btl",
+          "resid": 141
+        }
+      ],
+      "residue_sequences": [
+        {
+          "code": "Glu",
+          "is_reference": true,
+          "resid": 164,
+          "uniprot_id": "P62593"
+        }
+      ],
+      "roles": [
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00038",
+          "function": "activator",
+          "function_type": "spectator",
+          "group_function": "activator"
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00038",
+          "function": "activator",
+          "function_type": "spectator",
+          "group_function": "activator"
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00066",
+          "function": "proton acceptor",
+          "function_type": "reactant",
+          "group_function": "proton shuttle (general acid/base)"
+        },
+        {
+          "emo": "EMO_00066",
+          "function": "proton acceptor",
+          "function_type": "reactant",
+          "group_function": "proton shuttle (general acid/base)"
+        },
+        {
+          "emo": "EMO_00066",
+          "function": "proton acceptor",
+          "function_type": "reactant",
+          "group_function": "proton shuttle (general acid/base)"
+        },
+        {
+          "emo": "EMO_00068",
+          "function": "proton donor",
+          "function_type": "reactant",
+          "group_function": "proton shuttle (general acid/base)"
+        },
+        {
+          "emo": "EMO_00068",
+          "function": "proton donor",
+          "function_type": "reactant",
+          "group_function": "proton shuttle (general acid/base)"
+        },
+        {
+          "emo": "EMO_00068",
+          "function": "proton donor",
+          "function_type": "reactant",
+          "group_function": "proton shuttle (general acid/base)"
+        }
+      ],
+      "roles_summary": "activator, electrostatic stabiliser, hydrogen bond acceptor, hydrogen bond donor, proton acceptor, proton donor"
+    },
+    {
+      "function_location_abv": "",
+      "main_annotation": "",
+      "mcsa_id": 2,
+      "ptm": "",
+      "residue_chains": [
+        {
+          "assembly": 1,
+          "assembly_chain_name": "A",
+          "auth_resid": 234,
+          "chain_name": "A",
+          "code": "Lys",
+          "domain_cath_id": "3.40.710.10",
+          "domain_name": "A00",
+          "is_reference": true,
+          "pdb_id": "1btl",
+          "resid": 209
+        }
+      ],
+      "residue_sequences": [
+        {
+          "code": "Lys",
+          "is_reference": true,
+          "resid": 232,
+          "uniprot_id": "P62593"
+        }
+      ],
+      "roles": [
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        }
+      ],
+      "roles_summary": "electrostatic stabiliser"
+    },
+    {
+      "function_location_abv": "main-N",
+      "main_annotation": "",
+      "mcsa_id": 2,
+      "ptm": "",
+      "residue_chains": [
+        {
+          "assembly": 1,
+          "assembly_chain_name": "A",
+          "auth_resid": 237,
+          "chain_name": "A",
+          "code": "Ala",
+          "domain_cath_id": "3.40.710.10",
+          "domain_name": "A00",
+          "is_reference": true,
+          "pdb_id": "1btl",
+          "resid": 212
+        }
+      ],
+      "residue_sequences": [
+        {
+          "code": "Ala",
+          "is_reference": true,
+          "resid": 235,
+          "uniprot_id": "P62593"
+        }
+      ],
+      "roles": [
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        }
+      ],
+      "roles_summary": "electrostatic stabiliser, hydrogen bond donor"
+    },
+    {
+      "function_location_abv": "main-N",
+      "main_annotation": "",
+      "mcsa_id": 2,
+      "ptm": "",
+      "residue_chains": [
+        {
+          "assembly": 1,
+          "assembly_chain_name": "A",
+          "auth_resid": 70,
+          "chain_name": "A",
+          "code": "Ser",
+          "domain_cath_id": "3.40.710.10",
+          "domain_name": "A00",
+          "is_reference": true,
+          "pdb_id": "1btl",
+          "resid": 45
+        }
+      ],
+      "residue_sequences": [
+        {
+          "code": "Ser",
+          "is_reference": true,
+          "resid": 68,
+          "uniprot_id": "P62593"
+        }
+      ],
+      "roles": [
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        }
+      ],
+      "roles_summary": "electrostatic stabiliser"
+    }
+  ],
+  "url": "www.ebi.ac.uk/thornton-srv/m-csa/entry/2/"
+}

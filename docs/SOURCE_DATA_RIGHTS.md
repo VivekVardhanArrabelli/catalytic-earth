@@ -24,11 +24,16 @@ are recorded. Unknown means blocked, not implicitly open.
 
 ## Release rules
 
-1. `release/release_manifest.json` lists every included dataset and its exact
-   hash, source release, rights row, and attribution.
-2. The lean core release contains project-authored fixture records only. It
-   does not package raw third-party structures, sequences, kinetics tables, or
-   restricted/reference-only exports.
+1. A published release manifest lists every included dataset or compiled data
+   surface and its exact hash, source release/snapshot, rights row, and
+   attribution. The frozen v0.1.0 truth-reset manifest predates Atlas-3; a new
+   release cannot reuse it unchanged.
+2. The locked `catalytic-earth reproduce` surface contains project-authored
+   fixture records only. The Atlas-3 wheel surface additionally packages the
+   attributed compiled kernel and source hashes, but not raw third-party
+   structures, sequences, article bodies, kinetics tables, or
+   restricted/reference-only exports. Its raw 1.2 MB source package remains a
+   repository audit input under `data/atlas/atlas3/sources`.
 3. CC BY-derived fields retain source identifiers and change notices. Database
    citations are additional to, not substitutes for, record-level literature
    citations.

@@ -21,6 +21,10 @@ GIANT_MODULES = (
     "src/catalytic_earth/transfer_scope.py",
 )
 DETERMINISTIC_MODULES = (
+    "src/catalytic_earth/atlas_kernel.py",
+    "src/catalytic_earth/atlas_selection.py",
+    "src/catalytic_earth/atlas_source_adapters.py",
+    "src/catalytic_earth/atlas_sources.py",
     "src/catalytic_earth/canonical_hash.py",
     "src/catalytic_earth/core_cli.py",
     "src/catalytic_earth/schema.py",
@@ -106,8 +110,16 @@ def build() -> bytes:
             "rule": "No new family-specific Python module; use declarative proposal-only configuration and the shared engine."
         },
         "typed_schema": {
-            "python": "src/catalytic_earth/schema.py",
-            "json_schema": "src/catalytic_earth/schemas/mechanism-record-v1.schema.json"
+            "fixture_python": "src/catalytic_earth/schema.py",
+            "fixture_json_schema": "src/catalytic_earth/schemas/mechanism-record-v1.schema.json",
+            "atlas_kernel_python": "src/catalytic_earth/atlas_kernel.py",
+            "atlas_record_schema": "src/catalytic_earth/schemas/mechanism-record-v2.schema.json",
+            "atlas_kernel_schema": "src/catalytic_earth/schemas/atlas3-kernel-v1.schema.json",
+            "atlas3_selection_python": "src/catalytic_earth/atlas_selection.py",
+            "atlas3_selection_schema": (
+                "src/catalytic_earth/schemas/atlas3-selection-v1.schema.json"
+            ),
+            "atlas3_selection_contract": "data/atlas/atlas3_selection.json"
         },
         "deterministic_modules": deterministic,
         "test_tiers": {
@@ -117,6 +129,7 @@ def build() -> bytes:
         },
         "installed_commands": {
             "canonical": "catalytic-earth reproduce",
+            "first_biological_kernel": "catalytic-earth atlas3",
             "legacy": "catalytic-earth-legacy",
             "legacy_status": "deprecated_frozen_outside_core_guarantee"
         },

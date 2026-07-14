@@ -1,12 +1,28 @@
 {
   "deterministic_modules": {
+    "src/catalytic_earth/atlas_kernel.py": {
+      "bytes": 30725,
+      "sha256": "465b740c582fe1a24575afcfca90e51270a26f4eba46f8ff7d810314cbf5a634"
+    },
+    "src/catalytic_earth/atlas_selection.py": {
+      "bytes": 19873,
+      "sha256": "f2d1f1bc40d31e0280b1b4b6b6f4fb88b75fab4b4225baa14838a9e68648d371"
+    },
+    "src/catalytic_earth/atlas_source_adapters.py": {
+      "bytes": 10402,
+      "sha256": "5103eb69b108edfeda953cd2550eb04139f6855c99d56e59bcab7ce8931ae73e"
+    },
+    "src/catalytic_earth/atlas_sources.py": {
+      "bytes": 8344,
+      "sha256": "b7655c96c47fc6d9757a3902953b800a65770b1cb4e4f35023ace2f4b2fbff2c"
+    },
     "src/catalytic_earth/canonical_hash.py": {
       "bytes": 2032,
       "sha256": "5ca95dc3c7cf4fd0ae9ddd72cbc58bad8aa4e6179a45c579b2556f649d6e04b9"
     },
     "src/catalytic_earth/core_cli.py": {
-      "bytes": 4047,
-      "sha256": "9b7c90ec9b137aad90dd7b89f602c4ca3a76d377bd4fd63a2ae9b4035ea79041"
+      "bytes": 5914,
+      "sha256": "7f39edff9b501f4b374304c726df7bf5aac5e732e39a4c48acf435c4e9fb19d1"
     },
     "src/catalytic_earth/execution_context.py": {
       "bytes": 792,
@@ -105,6 +121,7 @@
   ],
   "installed_commands": {
     "canonical": "catalytic-earth reproduce",
+    "first_biological_kernel": "catalytic-earth atlas3",
     "legacy": "catalytic-earth-legacy",
     "legacy_status": "deprecated_frozen_outside_core_guarantee"
   },
@@ -114,7 +131,7 @@
     ],
     "maximum_relative_path_characters": 180,
     "observed_maximum": 180,
-    "paths_checked": 17095
+    "paths_checked": 17136
   },
   "replacement_family_path": {
     "engine": "src/catalytic_earth/family_onboarding.py",
@@ -129,7 +146,13 @@
     "sha256": "a37dac1b2ad71718930d426330a930aff06f9652552bca31cbebbb4b1ff37ca1"
   },
   "typed_schema": {
-    "json_schema": "src/catalytic_earth/schemas/mechanism-record-v1.schema.json",
-    "python": "src/catalytic_earth/schema.py"
+    "atlas3_selection_contract": "data/atlas/atlas3_selection.json",
+    "atlas3_selection_python": "src/catalytic_earth/atlas_selection.py",
+    "atlas3_selection_schema": "src/catalytic_earth/schemas/atlas3-selection-v1.schema.json",
+    "atlas_kernel_python": "src/catalytic_earth/atlas_kernel.py",
+    "atlas_kernel_schema": "src/catalytic_earth/schemas/atlas3-kernel-v1.schema.json",
+    "atlas_record_schema": "src/catalytic_earth/schemas/mechanism-record-v2.schema.json",
+    "fixture_json_schema": "src/catalytic_earth/schemas/mechanism-record-v1.schema.json",
+    "fixture_python": "src/catalytic_earth/schema.py"
   }
 }

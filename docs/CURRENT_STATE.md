@@ -15,6 +15,8 @@ Read in this order:
 4. `data/governance/exposure_ledger.jsonl` — frozen, exposed, and exhausted
    evaluation surfaces;
 5. `docs/RAPID_ATLAS_PLAN.md` — current execution sequence.
+6. `docs/ATLAS3_SELECTION.md` — frozen first biological-kernel cases and gates.
+7. `docs/ATLAS3_KERNEL.md` — compiled records, source checks, query, and open gates.
 
 Current truth:
 
@@ -34,11 +36,23 @@ Current truth:
 - The undefined “about 2% of mechanism space” estimate is retracted.
 - Automated active-site checks are computational consistency evidence, not
   expert or experimental verification.
-- The audited Python 3.13 full suite had 74 failures, 20 errors, and one skip;
-  it is not currently represented as globally green.
-- New expansion and performance headlines are frozen until the governance,
-  reproducible-environment, and live-manifest gates pass.
+- The preserved pre-repair Python 3.13 audit had 74 failures, 20 errors, and one
+  skip. The bounded repairs are complete, and the pinned complete suite then
+  ran 2,586 tests with zero failures, zero errors, and one skip. This is
+  software validation, not biological validation.
+- The P0 governance, locked-core, live-manifest, and release gates passed. The
+  separate registry-expansion latch remains active pending an explicit reviewed
+  admission decision; real atlas compilation may proceed in `data/atlas`
+  without mutating the protected registries.
+- Atlas-3 is locally compiled into nine non-fixture objects: three reactions,
+  three source-mechanism objects, and three Tier-2 grounded hypotheses. MnSOD's
+  source object abstains because M-CSA M0138 is Cu/Zn SOD; no M0138 step or site
+  is transferred. The query exposes tiers, handles, sites, uncertainty,
+  counterevidence, and key abstentions. Clean Windows/Linux CI reproduction is
+  the remaining software exit gate. TEM-1 nitrocefin hydrolysis remains
+  candidate-only; nothing has been commissioned or run.
 
 The project is early and scientifically unvalidated, not empty. Its strongest
 current assets are the typed schema, provenance-bearing registries, negative
-results, and the ability to turn every important claim into a falsifiable gate.
+results, a reproducible lean release, the first source-grounded Atlas kernel,
+and the ability to turn every important claim into a falsifiable gate.

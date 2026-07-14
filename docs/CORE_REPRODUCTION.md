@@ -32,3 +32,29 @@ and prospective evidence.
 The old research command surface remains available as
 `catalytic-earth-legacy`, is outside the locked core guarantee, and is frozen
 pending decomposition.
+
+## First biological kernel
+
+The same dependency-free wheel also packages the compiled Atlas-3 records and
+one local SQLite query:
+
+```bash
+catalytic-earth atlas3
+```
+
+Expected runtime-result SHA-256:
+
+```text
+1c21a74b09b5812f27c18d49e891cbe9cad6030364a4b6a41a895cdccb1f1921
+```
+
+This command loads three real biological cases and nine separately counted
+Tier-0/Tier-1/Tier-2 objects, validates their internal provenance bindings,
+materializes an in-memory database, executes the frozen query, and checks the
+expected result. The wheel contains the compiled records and source hashes,
+not the 1.2 MB raw source package; source-level re-audit remains a repository
+operation described in [`ATLAS3_KERNEL.md`](ATLAS3_KERNEL.md).
+
+This is deterministic reproduction of useful compiled knowledge. It is not
+independent review, biological validation, a coverage or accuracy estimate,
+prospective discovery, or a completed assay.

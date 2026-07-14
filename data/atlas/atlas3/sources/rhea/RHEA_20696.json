@@ -1,0 +1,12 @@
+{
+  "record_id": "RHEA:20696",
+  "request_url": "https://www.rhea-db.org/rhea?query=id%3A20696&columns=rhea-id%2Cequation%2Cec%2Cchebi-id%2Cchebi&format=tsv&limit=10",
+  "row": {
+    "ChEBI identifier": "CHEBI:18421;CHEBI:15378;CHEBI:16240;CHEBI:15379",
+    "ChEBI name": "superoxide;hydron;hydrogen peroxide;dioxygen",
+    "EC number": "EC:1.15.1.1",
+    "Equation": "2 superoxide + 2 H(+) = H2O2 + O2",
+    "Reaction identifier": "RHEA:20696"
+  },
+  "source": "Rhea"
+}

@@ -1,0 +1,12 @@
+{
+  "record_id": "RHEA:20401",
+  "request_url": "https://www.rhea-db.org/rhea?query=id%3A20401&columns=rhea-id%2Cequation%2Cec%2Cchebi-id%2Cchebi&format=tsv&limit=10",
+  "row": {
+    "ChEBI identifier": "CHEBI:35627;CHEBI:15377;CHEBI:140347",
+    "ChEBI name": "beta-lactam;water;substituted beta-amino acid zwitterion",
+    "EC number": "EC:3.5.2.6",
+    "Equation": "a beta-lactam + H2O = a substituted beta-amino acid",
+    "Reaction identifier": "RHEA:20401"
+  },
+  "source": "Rhea"
+}

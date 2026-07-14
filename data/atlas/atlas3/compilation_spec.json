@@ -1,0 +1,677 @@
+{
+  "schema_version": "catalytic-earth.atlas3-compilation-spec.v1",
+  "compiler_version": "catalytic-earth.atlas3-compiler.v1",
+  "selection_sha256": "d24361bb9fc000d39d7209c5538bd23df845a94aa2dce1fb38c18d56dd8e1ada",
+  "source_snapshot_set_sha256": "71a4d85f6bd0d50f9f51ef02f125220dd45545f5357fea5ced5b66783149822e",
+  "cases": [
+    {
+      "case_id": "atlas3.mcm-pfre.radical",
+      "ec_number": "5.4.99.2",
+      "rhea_record_id": "RHEA:22888",
+      "net_reaction": {
+        "record_id": "net-reaction:RHEA:22888",
+        "evidence_keys": ["Rhea::RHEA:22888"],
+        "counterevidence": [],
+        "uncertainties": [
+          {
+            "uncertainty_id": "mcm.net.direction",
+            "summary": "Rhea freezes an undirected reaction while UniProt and M-CSA describe source-specific physiological or drawn directions.",
+            "status": "open",
+            "abstention": "Do not infer a physiological direction from the undirected Tier-0 reaction object."
+          }
+        ],
+        "claim_boundary": {
+          "supports": ["The selected ChEBI participants and undirected Rhea reaction identity."],
+          "does_not_support": ["A physiological direction, catalytic route, rate, or protein assignment by itself."]
+        }
+      },
+      "source_mechanism": {
+        "record_id": "source-mechanism:M0062:2",
+        "status": "curated_source_proposal",
+        "mcsa_record_id": "M0062",
+        "mechanism_id": 2,
+        "step_transformations": [
+          "cofactor_bond_homolysis",
+          "hydrogen_atom_abstraction",
+          "radical_cyclization_and_proton_transfer",
+          "radical_rearrangement_and_ring_cleavage",
+          "hydrogen_atom_return",
+          "cofactor_recombination"
+        ],
+        "evidence_keys": [
+          "M-CSA::M0062",
+          "PDB::1REQ",
+          "UniProtKB::P11652",
+          "UniProtKB::P11653",
+          "DOI::10.1016/s0969-2126(96)00037-8"
+        ],
+        "counterevidence": [
+          {
+            "counterevidence_id": "mcm.source.cobalt-wording",
+            "summary": "M-CSA step 1 says a Co(II)-C bond yields Co(I), while the same entry's prose describes formation of the active Co(II) species; those oxidation-state labels are internally inconsistent.",
+            "evidence_keys": ["M-CSA::M0062"],
+            "effect": "source_internal_chemistry_conflict",
+            "disposition": "Preserve the source wording in this Tier-1 extraction and do not propagate the disputed oxidation-state labels as settled Atlas chemistry."
+          }
+        ],
+        "uncertainties": [
+          {
+            "uncertainty_id": "mcm.source.radical-states",
+            "summary": "M-CSA supplies a rated proposal, but its own text says the detailed rearrangement mechanism has not been fully elucidated.",
+            "status": "open",
+            "abstention": "Treat individual radical and protonation states as proposal-scoped, not experimentally observed turnover states."
+          }
+        ],
+        "claim_boundary": {
+          "supports": ["A faithful extraction of M-CSA M0062 mechanism 2, its six non-product steps, rating, and reference residue mappings."],
+          "does_not_support": ["Independent confirmation of M-CSA, exact cobalt oxidation labels, or observation of every proposed intermediate."]
+        }
+      },
+      "hypothesis": {
+        "record_id": "mechanism:mcm-pfre-radical-v1",
+        "evidence_keys": [
+          "Rhea::RHEA:22888",
+          "M-CSA::M0062",
+          "PDB::1REQ",
+          "UniProtKB::P11652",
+          "UniProtKB::P11653",
+          "DOI::10.1016/s0969-2126(96)00037-8"
+        ],
+        "steps": [
+          {
+            "step_id": "mcm.h1",
+            "order": 1,
+            "summary": "AdoCbl Co-C bond homolysis forms a 5'-deoxyadenosyl radical/cobalamin radical-pair state; this record deliberately leaves the disputed source oxidation-state labels unresolved.",
+            "transformation": "cofactor_bond_homolysis",
+            "catalyst_site_ids": ["P11653:H610", "P11653:D608", "P11653:K604", "P11653:Y89"],
+            "evidence_keys": ["M-CSA::M0062", "UniProtKB::P11653", "DOI::10.1016/s0969-2126(96)00037-8"],
+            "confidence": "plausible_unresolved",
+            "source_step_id": 1
+          },
+          {
+            "step_id": "mcm.h2",
+            "order": 2,
+            "summary": "The adenosyl radical abstracts hydrogen from the bound acyl-CoA substrate to initiate the substrate radical.",
+            "transformation": "hydrogen_atom_abstraction",
+            "catalyst_site_ids": ["P11653:Y89", "P11653:R207"],
+            "evidence_keys": ["M-CSA::M0062", "UniProtKB::P11653"],
+            "confidence": "source_curated",
+            "source_step_id": 2
+          },
+          {
+            "step_id": "mcm.h3",
+            "order": 3,
+            "summary": "The substrate radical undergoes the source-proposed intramolecular addition and proton-coupled rearrangement involving His244.",
+            "transformation": "radical_cyclization_and_proton_transfer",
+            "catalyst_site_ids": ["P11653:H244", "P11653:Y243", "P11653:R207"],
+            "evidence_keys": ["M-CSA::M0062"],
+            "confidence": "plausible_unresolved",
+            "source_step_id": 3
+          },
+          {
+            "step_id": "mcm.h4",
+            "order": 4,
+            "summary": "The source-proposed cyclic radical intermediate opens to complete the carbon-skeleton rearrangement, with proton transfer assigned to His244.",
+            "transformation": "radical_rearrangement_and_ring_cleavage",
+            "catalyst_site_ids": ["P11653:H244", "P11653:Y243"],
+            "evidence_keys": ["M-CSA::M0062"],
+            "confidence": "plausible_unresolved",
+            "source_step_id": 4
+          },
+          {
+            "step_id": "mcm.h5",
+            "order": 5,
+            "summary": "The rearranged substrate radical takes hydrogen back from 5'-deoxyadenosine, yielding product and regenerating the adenosyl radical.",
+            "transformation": "hydrogen_atom_return",
+            "catalyst_site_ids": ["P11653:Y89"],
+            "evidence_keys": ["M-CSA::M0062"],
+            "confidence": "source_curated",
+            "source_step_id": 5
+          },
+          {
+            "step_id": "mcm.h6",
+            "order": 6,
+            "summary": "Radical-pair recombination restores the AdoCbl cofactor state.",
+            "transformation": "cofactor_recombination",
+            "catalyst_site_ids": ["P11653:H610", "P11653:D608", "P11653:K604"],
+            "evidence_keys": ["M-CSA::M0062", "UniProtKB::P11653"],
+            "confidence": "plausible_unresolved",
+            "source_step_id": 6
+          }
+        ],
+        "sites": [
+          {
+            "site_id": "P11653:Y89",
+            "uniprot_id": "P11653",
+            "residue_name": "Tyr",
+            "sequence_position": 89,
+            "numbering_system": "UniProt natural sequence",
+            "roles": ["radical stabilization", "transition-state stabilization"],
+            "pdb_mapping": {"pdb_id": "1REQ", "chain_ids": ["A", "C"], "author_position": 89, "label_position": 88, "numbering_note": "UniProt maps 1REQ chains A/C to P11653 positions 2-728; mmCIF label position is one lower than natural sequence position."},
+            "evidence_keys": ["M-CSA::M0062", "PDB::1REQ", "UniProtKB::P11653"],
+            "mapping_status": "source_reported_and_coordinate_verified",
+            "notes": "M-CSA and UniProt both associate Tyr89 with radical/transition-state effects."
+          },
+          {
+            "site_id": "P11653:R207",
+            "uniprot_id": "P11653",
+            "residue_name": "Arg",
+            "sequence_position": 207,
+            "numbering_system": "UniProt natural sequence",
+            "roles": ["substrate carboxylate positioning"],
+            "pdb_mapping": {"pdb_id": "1REQ", "chain_ids": ["A", "C"], "author_position": 207, "label_position": 206, "numbering_note": "UniProt maps 1REQ chains A/C to P11653 positions 2-728; mmCIF label position is one lower than natural sequence position."},
+            "evidence_keys": ["M-CSA::M0062", "PDB::1REQ", "UniProtKB::P11653"],
+            "mapping_status": "source_reported_and_coordinate_verified",
+            "notes": "M-CSA prose assigns substrate positioning; UniProt marks this position as a substrate/cobalamin binding site."
+          },
+          {
+            "site_id": "P11653:Y243",
+            "uniprot_id": "P11653",
+            "residue_name": "Tyr",
+            "sequence_position": 243,
+            "numbering_system": "UniProt natural sequence",
+            "roles": ["radical stabilization", "electrostatic stabilization"],
+            "pdb_mapping": {"pdb_id": "1REQ", "chain_ids": ["A", "C"], "author_position": 243, "label_position": 242, "numbering_note": "UniProt maps 1REQ chains A/C to P11653 positions 2-728; mmCIF label position is one lower than natural sequence position."},
+            "evidence_keys": ["M-CSA::M0062", "PDB::1REQ"],
+            "mapping_status": "source_reported_and_coordinate_verified",
+            "notes": "Role is retained as an M-CSA proposal."
+          },
+          {
+            "site_id": "P11653:H244",
+            "uniprot_id": "P11653",
+            "residue_name": "His",
+            "sequence_position": 244,
+            "numbering_system": "UniProt natural sequence",
+            "roles": ["proton transfer", "intermediate stabilization"],
+            "pdb_mapping": {"pdb_id": "1REQ", "chain_ids": ["A", "C"], "author_position": 244, "label_position": 243, "numbering_note": "UniProt maps 1REQ chains A/C to P11653 positions 2-728; mmCIF label position is one lower than natural sequence position."},
+            "evidence_keys": ["M-CSA::M0062", "PDB::1REQ", "UniProtKB::P11653"],
+            "mapping_status": "source_reported_and_coordinate_verified",
+            "notes": "The exact protonation sequence remains proposal-scoped."
+          },
+          {
+            "site_id": "P11653:K604",
+            "uniprot_id": "P11653",
+            "residue_name": "Lys",
+            "sequence_position": 604,
+            "numbering_system": "UniProt natural sequence",
+            "roles": ["electrostatic stabilization of the Asp608-His610 network"],
+            "pdb_mapping": {"pdb_id": "1REQ", "chain_ids": ["A", "C"], "author_position": 604, "label_position": 603, "numbering_note": "UniProt maps 1REQ chains A/C to P11653 positions 2-728; mmCIF label position is one lower than natural sequence position."},
+            "evidence_keys": ["M-CSA::M0062", "PDB::1REQ"],
+            "mapping_status": "source_reported_and_coordinate_verified",
+            "notes": "Role is retained as an M-CSA proposal."
+          },
+          {
+            "site_id": "P11653:D608",
+            "uniprot_id": "P11653",
+            "residue_name": "Asp",
+            "sequence_position": 608,
+            "numbering_system": "UniProt natural sequence",
+            "roles": ["His610 hydrogen-bond network", "electrostatic stabilization"],
+            "pdb_mapping": {"pdb_id": "1REQ", "chain_ids": ["A", "C"], "author_position": 608, "label_position": 607, "numbering_note": "UniProt maps 1REQ chains A/C to P11653 positions 2-728; mmCIF label position is one lower than natural sequence position."},
+            "evidence_keys": ["M-CSA::M0062", "PDB::1REQ"],
+            "mapping_status": "source_reported_and_coordinate_verified",
+            "notes": "Role is retained as an M-CSA proposal."
+          },
+          {
+            "site_id": "P11653:H610",
+            "uniprot_id": "P11653",
+            "residue_name": "His",
+            "sequence_position": 610,
+            "numbering_system": "UniProt natural sequence",
+            "roles": ["axial cobalt ligand", "cofactor activation network"],
+            "pdb_mapping": {"pdb_id": "1REQ", "chain_ids": ["A", "C"], "author_position": 610, "label_position": 609, "numbering_note": "UniProt maps 1REQ chains A/C to P11653 positions 2-728; mmCIF label position is one lower than natural sequence position."},
+            "evidence_keys": ["M-CSA::M0062", "PDB::1REQ", "UniProtKB::P11653"],
+            "mapping_status": "source_reported_and_coordinate_verified",
+            "notes": "UniProt explicitly calls His610 the axial cobalt-binding residue."
+          }
+        ],
+        "counterevidence": [
+          {
+            "counterevidence_id": "mcm.hypothesis.cobalt-wording",
+            "summary": "The direct M-CSA entry is internally inconsistent about the cobalt oxidation labels in step 1.",
+            "evidence_keys": ["M-CSA::M0062"],
+            "effect": "blocks_exact_oxidation_state_claim",
+            "disposition": "The hypothesis asserts bond homolysis and a radical-pair state but abstains on the conflicting labels."
+          },
+          {
+            "counterevidence_id": "mcm.hypothesis.structure-state",
+            "summary": "PDB 1REQ is a static structure with cofactor and partial substrate analogue, not a catalytic trajectory.",
+            "evidence_keys": ["PDB::1REQ", "DOI::10.1016/s0969-2126(96)00037-8"],
+            "effect": "limits_intermediate_observation",
+            "disposition": "Use 1REQ for identity and site geometry only."
+          }
+        ],
+        "uncertainties": [
+          {
+            "uncertainty_id": "mcm.hypothesis.intermediates",
+            "summary": "The structures, protonation states, and ordering of proposed radical intermediates are not uniformly established by the selected evidence.",
+            "status": "open",
+            "abstention": "Do not claim exact radical/protonation microstates or their energies until direct spectroscopy or a preregistered calculation adjudicates them."
+          },
+          {
+            "uncertainty_id": "mcm.hypothesis.direction",
+            "summary": "The selected sources use different reaction directions for an otherwise reversible isomerization.",
+            "status": "open",
+            "abstention": "Keep direction attached to the source and conditions rather than declaring one universal forward direction."
+          }
+        ],
+        "claim_boundary": {
+          "supports": ["A protein- and site-grounded, source-traceable radical rearrangement hypothesis for the P11653/P11652 heterodimer."],
+          "does_not_support": ["Biological validation, exact free-energy ordering, an observed turnover movie, or transfer to another mutase by fold alone."]
+        }
+      }
+    },
+    {
+      "case_id": "atlas3.mnsod-ecoli.redox",
+      "ec_number": "1.15.1.1",
+      "rhea_record_id": "RHEA:20696",
+      "net_reaction": {
+        "record_id": "net-reaction:RHEA:20696",
+        "evidence_keys": ["Rhea::RHEA:20696"],
+        "counterevidence": [],
+        "uncertainties": [
+          {
+            "uncertainty_id": "mnsod.net.family",
+            "summary": "The same net reaction and EC number are shared by mechanistically distinct SOD metallocofactor families.",
+            "status": "open",
+            "abstention": "Do not infer metal identity, residues, or detailed steps from the Tier-0 reaction object."
+          }
+        ],
+        "claim_boundary": {
+          "supports": ["The selected four ChEBI participants, stoichiometric equation text, and undirected Rhea reaction identity."],
+          "does_not_support": ["A Cu/Zn, Fe, Mn, or Ni SOD mechanism assignment by itself."]
+        }
+      },
+      "source_mechanism": {
+        "record_id": "source-mechanism:mnsod-direct-unavailable-v1",
+        "status": "abstained_no_direct_source_mechanism",
+        "mcsa_record_id": "M0138",
+        "mechanism_id": null,
+        "step_transformations": [],
+        "evidence_keys": ["M-CSA::M0138", "UniProtKB::P00448", "Rhea::RHEA:20696"],
+        "counterevidence": [
+          {
+            "counterevidence_id": "mnsod.source.same-ec-cu-zn",
+            "summary": "M-CSA M0138 is Cu/Zn SOD P00445 with a copper/histidine-bridge mechanism, not E. coli MnSOD P00448.",
+            "evidence_keys": ["M-CSA::M0138", "UniProtKB::P00448"],
+            "effect": "blocks_same_ec_mechanism_transfer",
+            "disposition": "Emit an abstaining Tier-1 source-mechanism object with zero imported steps and zero imported sites."
+          }
+        ],
+        "uncertainties": [
+          {
+            "uncertainty_id": "mnsod.source.direct-curation-gap",
+            "summary": "No direct M-CSA mechanism entry for the selected P00448/1D5N MnSOD was present in the bounded source set.",
+            "status": "open",
+            "abstention": "Do not interpret this bounded curation gap as evidence that no MnSOD mechanism literature exists."
+          }
+        ],
+        "claim_boundary": {
+          "supports": ["A mechanical refusal to transfer M-CSA's Cu/Zn SOD mechanism into the selected MnSOD case."],
+          "does_not_support": ["A global literature-absence claim or a detailed direct source mechanism for P00448."]
+        }
+      },
+      "hypothesis": {
+        "record_id": "mechanism:mnsod-ecoli-redox-v1",
+        "evidence_keys": [
+          "Rhea::RHEA:20696",
+          "UniProtKB::P00448",
+          "PDB::1D5N",
+          "DOI::10.1006/jmbi.1999.3506",
+          "DOI::10.1021/bi9704212",
+          "M-CSA::M0138"
+        ],
+        "steps": [
+          {
+            "step_id": "mnsod.h1",
+            "order": 1,
+            "summary": "In one half-reaction, the Mn(III)-centered enzyme accepts an electron from superoxide, releases O2, and forms a Mn(II)-centered state.",
+            "transformation": "metal_center_reduction_and_superoxide_oxidation",
+            "catalyst_site_ids": ["P00448:H27", "P00448:H82", "P00448:D168", "P00448:H172"],
+            "evidence_keys": ["UniProtKB::P00448", "DOI::10.1021/bi9704212"],
+            "confidence": "supported_bounded",
+            "source_step_id": null
+          },
+          {
+            "step_id": "mnsod.h2",
+            "order": 2,
+            "summary": "In the complementary half-reaction, the Mn(II)-centered enzyme returns an electron to a second superoxide while proton uptake yields H2O2 and restores Mn(III); the exact proton donors and timing remain unresolved here.",
+            "transformation": "metal_center_oxidation_and_proton_coupled_superoxide_reduction",
+            "catalyst_site_ids": ["P00448:H27", "P00448:H82", "P00448:D168", "P00448:H172"],
+            "evidence_keys": ["Rhea::RHEA:20696", "UniProtKB::P00448", "DOI::10.1021/bi9704212"],
+            "confidence": "plausible_unresolved",
+            "source_step_id": null
+          }
+        ],
+        "sites": [
+          {
+            "site_id": "P00448:H27",
+            "uniprot_id": "P00448",
+            "residue_name": "His",
+            "sequence_position": 27,
+            "numbering_system": "UniProt natural sequence",
+            "roles": ["manganese ligand"],
+            "pdb_mapping": {"pdb_id": "1D5N", "chain_ids": ["A", "B", "C", "D"], "author_position": 26, "label_position": 26, "numbering_note": "UniProt maps 1D5N chains A-D to P00448 positions 2-206; natural position 27 therefore maps to PDB author/label position 26."},
+            "evidence_keys": ["UniProtKB::P00448", "PDB::1D5N"],
+            "mapping_status": "sequence_range_and_coordinate_verified",
+            "notes": "The mmCIF coordinate is histidine in all four protein chains and lies in the manganese coordination sphere."
+          },
+          {
+            "site_id": "P00448:H82",
+            "uniprot_id": "P00448",
+            "residue_name": "His",
+            "sequence_position": 82,
+            "numbering_system": "UniProt natural sequence",
+            "roles": ["manganese ligand"],
+            "pdb_mapping": {"pdb_id": "1D5N", "chain_ids": ["A", "B", "C", "D"], "author_position": 81, "label_position": 81, "numbering_note": "UniProt maps 1D5N chains A-D to P00448 positions 2-206; natural position 82 therefore maps to PDB author/label position 81."},
+            "evidence_keys": ["UniProtKB::P00448", "PDB::1D5N"],
+            "mapping_status": "sequence_range_and_coordinate_verified",
+            "notes": "The mmCIF coordinate is histidine in all four protein chains and lies in the manganese coordination sphere."
+          },
+          {
+            "site_id": "P00448:D168",
+            "uniprot_id": "P00448",
+            "residue_name": "Asp",
+            "sequence_position": 168,
+            "numbering_system": "UniProt natural sequence",
+            "roles": ["manganese ligand"],
+            "pdb_mapping": {"pdb_id": "1D5N", "chain_ids": ["A", "B", "C", "D"], "author_position": 167, "label_position": 167, "numbering_note": "UniProt maps 1D5N chains A-D to P00448 positions 2-206; natural position 168 therefore maps to PDB author/label position 167."},
+            "evidence_keys": ["UniProtKB::P00448", "PDB::1D5N"],
+            "mapping_status": "sequence_range_and_coordinate_verified",
+            "notes": "The mmCIF coordinate is aspartate in all four protein chains and lies in the manganese coordination sphere."
+          },
+          {
+            "site_id": "P00448:H172",
+            "uniprot_id": "P00448",
+            "residue_name": "His",
+            "sequence_position": 172,
+            "numbering_system": "UniProt natural sequence",
+            "roles": ["manganese ligand"],
+            "pdb_mapping": {"pdb_id": "1D5N", "chain_ids": ["A", "B", "C", "D"], "author_position": 171, "label_position": 171, "numbering_note": "UniProt maps 1D5N chains A-D to P00448 positions 2-206; natural position 172 therefore maps to PDB author/label position 171."},
+            "evidence_keys": ["UniProtKB::P00448", "PDB::1D5N"],
+            "mapping_status": "sequence_range_and_coordinate_verified",
+            "notes": "The mmCIF coordinate is histidine in all four protein chains and lies in the manganese coordination sphere."
+          }
+        ],
+        "counterevidence": [
+          {
+            "counterevidence_id": "mnsod.hypothesis.same-ec-cu-zn",
+            "summary": "The available M-CSA same-EC mechanism uses Cu/Zn, P00445, PDB 2JCW, and a histidine bridge absent from this selected MnSOD evidence package.",
+            "evidence_keys": ["M-CSA::M0138", "UniProtKB::P00448"],
+            "effect": "blocks_same_ec_mechanism_transfer",
+            "disposition": "No M0138 residue or step is imported into the MnSOD hypothesis."
+          },
+          {
+            "counterevidence_id": "mnsod.hypothesis.inhibited-structure",
+            "summary": "PDB 1D5N captures a cryotrapped six-coordinate hydroxide-inhibited state rather than an uninterrupted catalytic trajectory.",
+            "evidence_keys": ["PDB::1D5N", "DOI::10.1006/jmbi.1999.3506"],
+            "effect": "limits_structure_state_interpretation",
+            "disposition": "Use 1D5N for metal/site grounding and retain catalytic-state alternatives."
+          }
+        ],
+        "uncertainties": [
+          {
+            "uncertainty_id": "mnsod.hypothesis.pcet-order",
+            "summary": "The selected package does not uniquely resolve prompt protonation, proton donors, half-reaction ordering under each condition, or productive versus inhibited inner-sphere states.",
+            "status": "open",
+            "abstention": "Do not assign an exact proton relay or claim that the 1D5N inhibited geometry is the productive turnover state."
+          },
+          {
+            "uncertainty_id": "mnsod.hypothesis.reference-only-paper",
+            "summary": "The primary mechanism article is retained as a verified DOI handle; no publisher article text is bundled for sentence-level re-audit.",
+            "status": "open",
+            "abstention": "Keep the hypothesis at broad two-half-reaction resolution until the primary paper can be independently re-audited under its access terms."
+          }
+        ],
+        "claim_boundary": {
+          "supports": ["A Mn-specific, four-ligand-grounded, two-half-reaction redox/PCET hypothesis with an explicit same-EC transfer refusal."],
+          "does_not_support": ["A Cu/Zn mechanism, exact proton-transfer path, productive interpretation of the trapped inhibited state, or biological validation."]
+        }
+      }
+    },
+    {
+      "case_id": "atlas3.tem1-ecoli.covalent",
+      "ec_number": "3.5.2.6",
+      "rhea_record_id": "RHEA:20401",
+      "net_reaction": {
+        "record_id": "net-reaction:RHEA:20401",
+        "evidence_keys": ["Rhea::RHEA:20401"],
+        "counterevidence": [],
+        "uncertainties": [
+          {
+            "uncertainty_id": "tem1.net.generic-substrate",
+            "summary": "Rhea represents a generic beta-lactam and product class, not the nitrocefin substrate proposed for a later assay.",
+            "status": "open",
+            "abstention": "Do not substitute a specific assay substrate into the Tier-0 reaction without a source-scoped mapping."
+          }
+        ],
+        "claim_boundary": {
+          "supports": ["The generic beta-lactam hydrolysis reaction and selected ChEBI participant classes."],
+          "does_not_support": ["A TEM-1 protein assignment, a covalent route, nitrocefin specificity, or assay performance by itself."]
+        }
+      },
+      "source_mechanism": {
+        "record_id": "source-mechanism:M0002:2",
+        "status": "curated_source_proposal",
+        "mcsa_record_id": "M0002",
+        "mechanism_id": 2,
+        "step_transformations": [
+          "general_base_activation_and_nucleophilic_addition",
+          "tetrahedral_collapse_and_ring_opening",
+          "proton_relay_reset",
+          "water_activation_and_nucleophilic_addition",
+          "tetrahedral_collapse_and_deacylation"
+        ],
+        "evidence_keys": [
+          "M-CSA::M0002",
+          "PDB::1BTL",
+          "UniProtKB::P62593",
+          "DOI::10.1073/pnas.060027897"
+        ],
+        "counterevidence": [
+          {
+            "counterevidence_id": "tem1.source.lower-rated-alternative",
+            "summary": "M-CSA mechanism 1 is a lower-rated alternative in which Lys73 directly activates Ser70 during acylation instead of the mechanism-2 Glu166/water route.",
+            "evidence_keys": ["M-CSA::M0002"],
+            "effect": "preserves_competing_source_proposal",
+            "disposition": "Keep mechanism 2 as the extracted three-star source proposal while retaining mechanism 1 as an unresolved alternative, not deleting it."
+          }
+        ],
+        "uncertainties": [
+          {
+            "uncertainty_id": "tem1.source.general-base",
+            "summary": "The direct M-CSA entry contains competing general-base assignments for acylation.",
+            "status": "open",
+            "abstention": "Do not report the preferred three-star route as the only physically possible proton path."
+          }
+        ],
+        "claim_boundary": {
+          "supports": ["A faithful extraction of M-CSA M0002 mechanism 2, its five non-product steps, rating, residue roles, and numbering mappings."],
+          "does_not_support": ["Independent adjudication of the lower-rated alternative or observation of the proposed proton transfers in 1BTL."]
+        }
+      },
+      "hypothesis": {
+        "record_id": "mechanism:tem1-ecoli-covalent-v1",
+        "evidence_keys": [
+          "Rhea::RHEA:20401",
+          "M-CSA::M0002",
+          "PDB::1BTL",
+          "UniProtKB::P62593",
+          "DOI::10.1073/pnas.060027897",
+          "PMCID::PMC14582"
+        ],
+        "steps": [
+          {
+            "step_id": "tem1.h1",
+            "order": 1,
+            "summary": "In the preferred source proposal, Glu166 activates a conserved water relay that deprotonates Ser70 (P62593 natural Ser68) as it attacks the beta-lactam carbonyl to form a tetrahedral intermediate.",
+            "transformation": "general_base_activation_and_nucleophilic_addition",
+            "catalyst_site_ids": ["P62593:S68", "P62593:E164"],
+            "evidence_keys": ["M-CSA::M0002", "UniProtKB::P62593", "DOI::10.1073/pnas.060027897"],
+            "confidence": "plausible_unresolved",
+            "source_step_id": 1
+          },
+          {
+            "step_id": "tem1.h2",
+            "order": 2,
+            "summary": "Collapse of the tetrahedral intermediate opens the beta-lactam C-N bond and leaves the substrate covalently acylated to Ser70, with the source assigning coupled proton transfer through Ser130.",
+            "transformation": "tetrahedral_collapse_ring_opening_and_acyl_enzyme_formation",
+            "catalyst_site_ids": ["P62593:S68", "P62593:S128", "P62593:K232"],
+            "evidence_keys": ["M-CSA::M0002", "UniProtKB::P62593", "DOI::10.1073/pnas.060027897"],
+            "confidence": "source_curated",
+            "source_step_id": 2
+          },
+          {
+            "step_id": "tem1.h3",
+            "order": 3,
+            "summary": "The source proposal resets the Ser130/Glu166 proton network through water before deacylation.",
+            "transformation": "proton_relay_reset",
+            "catalyst_site_ids": ["P62593:S128", "P62593:E164", "P62593:K71"],
+            "evidence_keys": ["M-CSA::M0002"],
+            "confidence": "plausible_unresolved",
+            "source_step_id": 3
+          },
+          {
+            "step_id": "tem1.h4",
+            "order": 4,
+            "summary": "Glu166 activates water for nucleophilic attack on the acyl-enzyme carbonyl, forming a second tetrahedral intermediate.",
+            "transformation": "water_activation_and_nucleophilic_addition",
+            "catalyst_site_ids": ["P62593:E164", "P62593:S68"],
+            "evidence_keys": ["M-CSA::M0002", "UniProtKB::P62593"],
+            "confidence": "source_curated",
+            "source_step_id": 4
+          },
+          {
+            "step_id": "tem1.h5",
+            "order": 5,
+            "summary": "Collapse of the second tetrahedral intermediate cleaves the acyl-enzyme bond, releases hydrolyzed product, and regenerates Ser70/Glu166 states.",
+            "transformation": "tetrahedral_collapse_and_deacylation",
+            "catalyst_site_ids": ["P62593:S68", "P62593:E164"],
+            "evidence_keys": ["M-CSA::M0002", "UniProtKB::P62593"],
+            "confidence": "source_curated",
+            "source_step_id": 5
+          }
+        ],
+        "sites": [
+          {
+            "site_id": "P62593:S68",
+            "uniprot_id": "P62593",
+            "residue_name": "Ser",
+            "sequence_position": 68,
+            "numbering_system": "UniProt natural sequence",
+            "roles": ["nucleophile", "covalent acyl-enzyme attachment"],
+            "pdb_mapping": {"pdb_id": "1BTL", "chain_ids": ["A"], "author_position": 70, "label_position": 45, "numbering_note": "P62593 natural Ser68 equals Ambler/PDB author Ser70; 1BTL chain A covers natural positions 24-286."},
+            "evidence_keys": ["M-CSA::M0002", "PDB::1BTL", "UniProtKB::P62593"],
+            "mapping_status": "source_reported_and_coordinate_verified",
+            "notes": "UniProt explicitly annotates natural Ser68 as the acyl-ester nucleophile."
+          },
+          {
+            "site_id": "P62593:K71",
+            "uniprot_id": "P62593",
+            "residue_name": "Lys",
+            "sequence_position": 71,
+            "numbering_system": "UniProt natural sequence",
+            "roles": ["proton relay", "alternative Ser70 activation proposal"],
+            "pdb_mapping": {"pdb_id": "1BTL", "chain_ids": ["A"], "author_position": 73, "label_position": 48, "numbering_note": "P62593 natural Lys71 equals Ambler/PDB author Lys73; 1BTL chain A covers natural positions 24-286."},
+            "evidence_keys": ["M-CSA::M0002", "PDB::1BTL", "UniProtKB::P62593"],
+            "mapping_status": "source_reported_and_coordinate_verified",
+            "notes": "The direct-activation role belongs to the retained lower-rated source alternative."
+          },
+          {
+            "site_id": "P62593:S128",
+            "uniprot_id": "P62593",
+            "residue_name": "Ser",
+            "sequence_position": 128,
+            "numbering_system": "UniProt natural sequence",
+            "roles": ["proton relay", "lactam-nitrogen protonation network"],
+            "pdb_mapping": {"pdb_id": "1BTL", "chain_ids": ["A"], "author_position": 130, "label_position": 105, "numbering_note": "P62593 natural Ser128 equals Ambler/PDB author Ser130; 1BTL chain A covers natural positions 24-286."},
+            "evidence_keys": ["M-CSA::M0002", "PDB::1BTL", "UniProtKB::P62593"],
+            "mapping_status": "source_reported_and_coordinate_verified",
+            "notes": "Role is source-proposal scoped."
+          },
+          {
+            "site_id": "P62593:E164",
+            "uniprot_id": "P62593",
+            "residue_name": "Glu",
+            "sequence_position": 164,
+            "numbering_system": "UniProt natural sequence",
+            "roles": ["general base", "deacylating-water activation"],
+            "pdb_mapping": {"pdb_id": "1BTL", "chain_ids": ["A"], "author_position": 166, "label_position": 141, "numbering_note": "P62593 natural Glu164 equals Ambler/PDB author Glu166; 1BTL chain A covers natural positions 24-286."},
+            "evidence_keys": ["M-CSA::M0002", "PDB::1BTL", "UniProtKB::P62593"],
+            "mapping_status": "source_reported_and_coordinate_verified",
+            "notes": "UniProt annotates natural Glu164 as a proton acceptor."
+          },
+          {
+            "site_id": "P62593:K232",
+            "uniprot_id": "P62593",
+            "residue_name": "Lys",
+            "sequence_position": 232,
+            "numbering_system": "UniProt natural sequence",
+            "roles": ["electrostatic stabilization", "lactam-nitrogen protonation network"],
+            "pdb_mapping": {"pdb_id": "1BTL", "chain_ids": ["A"], "author_position": 234, "label_position": 209, "numbering_note": "P62593 natural Lys232 equals Ambler/PDB author Lys234; 1BTL chain A covers natural positions 24-286."},
+            "evidence_keys": ["M-CSA::M0002", "PDB::1BTL"],
+            "mapping_status": "source_reported_and_coordinate_verified",
+            "notes": "Role is source-proposal scoped."
+          },
+          {
+            "site_id": "P62593:A235",
+            "uniprot_id": "P62593",
+            "residue_name": "Ala",
+            "sequence_position": 235,
+            "numbering_system": "UniProt natural sequence",
+            "roles": ["oxyanion-hole backbone stabilization"],
+            "pdb_mapping": {"pdb_id": "1BTL", "chain_ids": ["A"], "author_position": 237, "label_position": 212, "numbering_note": "P62593 natural Ala235 equals Ambler/PDB author Ala237; 1BTL chain A covers natural positions 24-286."},
+            "evidence_keys": ["M-CSA::M0002", "PDB::1BTL"],
+            "mapping_status": "source_reported_and_coordinate_verified",
+            "notes": "The role is carried from the M-CSA source residue annotation."
+          }
+        ],
+        "counterevidence": [
+          {
+            "counterevidence_id": "tem1.hypothesis.lower-rated-alternative",
+            "summary": "M-CSA retains a lower-rated acylation route in which Lys73, not the Glu166/water relay, directly activates Ser70.",
+            "evidence_keys": ["M-CSA::M0002"],
+            "effect": "prevents_single_route_certainty",
+            "disposition": "Represent the three-star route as preferred source hypothesis and keep Lys73 activation as an explicit alternative."
+          },
+          {
+            "counterevidence_id": "tem1.hypothesis.static-structure",
+            "summary": "PDB 1BTL is an apo/sulfate-bound static structure rather than an acylation/deacylation trajectory.",
+            "evidence_keys": ["PDB::1BTL"],
+            "effect": "limits_intermediate_observation",
+            "disposition": "Use 1BTL for identity and numbering/site geometry only."
+          },
+          {
+            "counterevidence_id": "tem1.hypothesis.activity-not-mechanism",
+            "summary": "Nitrocefin hydrolysis can establish enzyme-dependent activity under assay conditions but cannot by itself identify the detailed proton path.",
+            "evidence_keys": ["PMCID::PMC14582"],
+            "effect": "blocks_activity_to_mechanism_upgrade",
+            "disposition": "Keep the assay as candidate-only and require preregistered mechanistic discrimination before any Tier-4 claim."
+          }
+        ],
+        "uncertainties": [
+          {
+            "uncertainty_id": "tem1.hypothesis.general-base",
+            "summary": "The selected evidence compilation does not eliminate the lower-rated Lys73 activation alternative during acylation.",
+            "status": "open",
+            "abstention": "Do not call the Glu166/water acylation route uniquely proven; preserve the Lys73 alternative until a discriminating test is frozen and run."
+          },
+          {
+            "uncertainty_id": "tem1.hypothesis.assay-scope",
+            "summary": "The proposed nitrocefin assay has not been preregistered, commissioned, or run, and its specific substrate is narrower than the generic Rhea reaction.",
+            "status": "open",
+            "abstention": "Do not report assay validation, nitrocefin specificity, or a detailed mechanism result from this compiled record."
+          }
+        ],
+        "claim_boundary": {
+          "supports": ["A residue-numbered, covalent acyl-enzyme/deacylation hypothesis for TEM-1 with its competing general-base route preserved."],
+          "does_not_support": ["A completed assay, detailed-mechanism validation, universal beta-lactam substrate behavior, or elimination of the Lys73 alternative."]
+        }
+      }
+    }
+  ],
+  "claim_boundary": {
+    "supports": ["A first end-to-end biological Atlas kernel containing three non-fixture reactions, source-mechanism objects, protein/site-grounded hypotheses, provenance, counterevidence, and abstentions."],
+    "does_not_support": ["Atlas-scale coverage, benchmark performance, independent biological validation, prospective discovery, assay completion, or transfer to uncompiled proteins."]
+  }
+}
