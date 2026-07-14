@@ -142,12 +142,14 @@ candidate-only TEM-1 nitrocefin assay lane are defined in
 `data/atlas/atlas3_selection.json`. This freezes selection before compilation;
 it did not mark the three biological records complete.
 
-Local checkpoint reached 2026-07-13: the 13 redistributable source snapshots,
-five reference-only literature handles, `mechanism-record.v2`, nine typed
-objects, explicit MnSOD source abstention, site-numbering crosswalks, and the
-SQLite truth-boundary query are compiled and reproduce locally. See
-`docs/ATLAS3_KERNEL.md`. The Days 3â€“7 exit gate remains open until the packaged
-command passes the published Windows/Linux CI matrix.
+Checkpoint closed 2026-07-14: the 13 redistributable source snapshots, five
+reference-only literature handles, `mechanism-record.v2`, nine typed objects,
+explicit MnSOD source abstention, site-numbering crosswalks, and the SQLite
+truth-boundary query compile locally and reproduce from the packaged wheel.
+The published package and query passed Ubuntu and Windows on Python 3.10 and
+3.12 in [P0 contracts run 7](https://github.com/VivekVardhanArrabelli/catalytic-earth/actions/runs/29337409847),
+closing the Days 3–7 computational reproduction gate. See
+`docs/ATLAS3_KERNEL.md` for the remaining biological claim boundary.
 
 Deliverables:
 

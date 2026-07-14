@@ -99,14 +99,16 @@ The current frozen digests are:
 | Query | `c656d025a851142c38487172f0bad57a18eb97ceffa9487bcb51d45b02c1bb98` |
 | Runtime result | `1c21a74b09b5812f27c18d49e891cbe9cad6030364a4b6a41a895cdccb1f1921` |
 
-## Claim boundary and remaining gate
+## Claim boundary and exit gate
 
 Atlas-3 supports deterministic reproduction of a first small, useful,
 source-grounded knowledge kernel. It does not establish biological validation,
 coverage, accuracy, prospective discovery, or a completed assay.
 
-Local compilation and reproduction are necessary but not the final exit gate.
-The same packaged kernel and query must still pass the repository's clean
-Windows/Linux CI matrix after publication. The TEM-1 assay remains
-candidate-only until a separate executor/material/control/threshold contract
-is preregistered and frozen before outcomes are visible.
+The published packaged kernel and query passed the repository's clean
+Windows/Linux CI matrix on Python 3.10 and 3.12 in
+[P0 contracts run 7](https://github.com/VivekVardhanArrabelli/catalytic-earth/actions/runs/29337409847).
+This closes the Atlas-3 computational reproduction gate; it does not raise any
+record above Tier 2. The TEM-1 assay remains candidate-only until a separate
+executor/material/control/threshold contract is preregistered and frozen
+before outcomes are visible.
