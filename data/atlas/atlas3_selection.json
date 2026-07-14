@@ -1,0 +1,382 @@
+{
+  "schema_version": "catalytic-earth.atlas3-selection.v1",
+  "selection_id": "atlas3.kernel.selection.2026-07-13",
+  "status": "frozen_precompilation",
+  "frozen_at": "2026-07-14T02:17:10Z",
+  "baseline_commit": "3dca66a5d799b6952b17a8ac9d315155918fa1a5",
+  "namespace": "data/atlas/atlas3",
+  "registry_mutation_permitted": false,
+  "objective": "Build the first three genuine biological atlas records while forcing the representation to handle radical chemistry, metal/redox chemistry, covalent catalysis, source mismatch, ambiguity, counterevidence, and abstention.",
+  "selection_axes": [
+    "radical_rearrangement",
+    "metal_redox_pcet",
+    "covalent_acyl_enzyme"
+  ],
+  "phase_compute_budget": {
+    "cpu_hours_max": 18,
+    "gpu_hours_max": 0,
+    "external_requests_max": 450,
+    "download_bytes_max": 314572800,
+    "reuse_required": true,
+    "stop_if_exceeded": true
+  },
+  "cases": [
+    {
+      "case_id": "atlas3.mcm-pfre.radical",
+      "target_record_id": "mechanism:mcm-pfre-radical-v1",
+      "label": "Adenosylcobalamin-dependent methylmalonyl-CoA mutase",
+      "organism": "Propionibacterium freudenreichii subsp. shermanii",
+      "representation_axis": "radical_rearrangement",
+      "representation_pressures": [
+        "radical_rearrangement",
+        "cofactor_bond_homolysis_and_state_changes",
+        "heterodimeric_protein_identity",
+        "ordered_intermediates_with_incomplete_direct_observation"
+      ],
+      "fingerprint_bridge": "cobalamin_radical_rearrangement",
+      "target_evidence_tier": 2,
+      "selection_rationale": "This is a canonical, source-rich AdoCbl radical rearrangement with a detailed M-CSA proposal, an experimental holo structure, two reference protein chains, and explicit uncertainty about radical intermediates. It tests whether the atlas can preserve cofactor state, atom movement, subunit mapping, and evidence strength without reducing the record to a B12 label.",
+      "reaction_participant_ids": [
+        "CHEBI:57326",
+        "CHEBI:57292"
+      ],
+      "source_handles": [
+        {
+          "source_id": "UniProtKB",
+          "record_id": "P11653",
+          "uri": "https://www.uniprot.org/uniprotkb/P11653/entry",
+          "evidence_role": "protein_identity",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T02:17:10Z",
+          "verification_note": "Reviewed large-subunit entry; names EC 5.4.99.2, RHEA:22888, AdoCbl dependence, radical catalysis, and the reference organism."
+        },
+        {
+          "source_id": "UniProtKB",
+          "record_id": "P11652",
+          "uri": "https://www.uniprot.org/uniprotkb/P11652/entry",
+          "evidence_role": "protein_identity",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T02:17:10Z",
+          "verification_note": "Reviewed small-subunit entry; names EC 5.4.99.2, RHEA:22888, AdoCbl dependence, the heterodimer, and the reference organism."
+        },
+        {
+          "source_id": "Rhea",
+          "record_id": "RHEA:22888",
+          "uri": "https://www.rhea-db.org/rhea/22888",
+          "evidence_role": "net_reaction",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T02:17:10Z",
+          "verification_note": "Current Rhea page identifies the undirected (R)-methylmalonyl-CoA/succinyl-CoA reaction, EC 5.4.99.2, CHEBI:57326, CHEBI:57292, and M-CSA M0062."
+        },
+        {
+          "source_id": "PDB",
+          "record_id": "1REQ",
+          "uri": "https://www.rcsb.org/structure/1REQ",
+          "evidence_role": "experimental_structure",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T02:17:10Z",
+          "verification_note": "2.0 A experimental structure of the reference enzyme with coenzyme B12 and partial substrate desulpho-CoA; no mutation is reported."
+        },
+        {
+          "source_id": "M-CSA",
+          "record_id": "M0062",
+          "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/62/",
+          "evidence_role": "source_mechanism",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T02:17:10Z",
+          "verification_note": "Direct reference entry for P11653/P11652 and PDB 1REQ with a three-star, six-step radical mechanism proposal and catalytic-residue roles."
+        },
+        {
+          "source_id": "DOI",
+          "record_id": "10.1016/s0969-2126(96)00037-8",
+          "uri": "https://doi.org/10.1016/s0969-2126(96)00037-8",
+          "evidence_role": "primary_structure_evidence",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T02:17:10Z",
+          "verification_note": "Primary 1REQ structure paper describing AdoCbl radical generation and the reference alpha/beta enzyme."
+        }
+      ],
+      "required_outputs": [
+        "canonical_reaction",
+        "source_mechanism",
+        "mechanism_hypothesis",
+        "protein_site_grounding",
+        "counterevidence_and_conflicts",
+        "uncertainty_and_abstention",
+        "provenance"
+      ],
+      "known_ambiguities": [
+        "Rhea freezes an undirected reaction while UniProt describes physiological direction and M-CSA draws succinyl-CoA toward methylmalonyl-CoA; direction must remain source-scoped.",
+        "The reference enzyme is an alpha/beta heterodimer represented by two UniProt accessions; protein and PDB residue numbering must not be collapsed.",
+        "PDB 1REQ contains a partial substrate analogue rather than a catalytic turnover trajectory.",
+        "Several radical intermediates and protonation states are mechanistic proposals supported unevenly across structural, spectroscopic, mutational, and computational evidence."
+      ],
+      "success_condition": "A non-fixture Tier-2 hypothesis can reproduce the Rhea reaction and M-CSA proposal, map every asserted catalytic role to the correct chain and source, expose uncertain radical/protonation states, and avoid treating the fingerprint bridge as evidence.",
+      "stop_conditions": [
+        "Stop and preserve an unresolved mapping if P11653/P11652 residue numbering cannot be reconciled with 1REQ without an explicit alignment artifact.",
+        "Stop before asserting an intermediate or protonation state that is supported only by an uncited analogy.",
+        "Stop if source snapshots and licenses cannot be recorded in a redistributable provenance package.",
+        "Stop at the case compute ceiling and emit an abstaining partial record instead of expanding the search silently."
+      ],
+      "case_compute_budget": {
+        "cpu_hours_max": 6,
+        "gpu_hours_max": 0,
+        "external_requests_max": 150,
+        "download_bytes_max": 104857600,
+        "reuse_required": true,
+        "stop_if_exceeded": true
+      },
+      "assay_candidate": false
+    },
+    {
+      "case_id": "atlas3.mnsod-ecoli.redox",
+      "target_record_id": "mechanism:mnsod-ecoli-redox-v1",
+      "label": "Manganese superoxide dismutase",
+      "organism": "Escherichia coli K-12",
+      "representation_axis": "metal_redox_pcet",
+      "representation_pressures": [
+        "metal_redox_pcet",
+        "same_ec_different_metallocofactor_mechanisms",
+        "metal_identity_and_oxidation_state",
+        "proton_relay_and_inhibited_state_ambiguity"
+      ],
+      "fingerprint_bridge": "manganese_iron_superoxide_dismutase",
+      "target_evidence_tier": 2,
+      "selection_rationale": "This case forces explicit metal identity, oxidation-state cycling, proton coupling, and a hard applicability boundary. Rhea and EC unify SOD net chemistry, but the only current M-CSA SOD mechanism is Cu/Zn SOD; the kernel must reject that tempting same-EC mechanism transfer and compile MnSOD from direct protein, structure, and primary evidence.",
+      "reaction_participant_ids": [
+        "CHEBI:18421",
+        "CHEBI:15378",
+        "CHEBI:16240",
+        "CHEBI:15379"
+      ],
+      "source_handles": [
+        {
+          "source_id": "UniProtKB",
+          "record_id": "P00448",
+          "uri": "https://www.uniprot.org/uniprotkb/P00448/entry",
+          "evidence_role": "protein_identity",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T02:17:10Z",
+          "verification_note": "Reviewed E. coli K-12 sodA entry; identifies Mn2+ CHEBI:29035, RHEA:20696, EC 1.15.1.1, the Fe/Mn SOD family, and four metal-binding residues."
+        },
+        {
+          "source_id": "Rhea",
+          "record_id": "RHEA:20696",
+          "uri": "https://www.rhea-db.org/rhea/20696",
+          "evidence_role": "net_reaction",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T02:17:10Z",
+          "verification_note": "Current Rhea page identifies 2 superoxide + 2 H+ = H2O2 + O2, the four selected ChEBI participants, EC 1.15.1.1, and a broad M-CSA cross-reference."
+        },
+        {
+          "source_id": "PDB",
+          "record_id": "1D5N",
+          "uri": "https://www.rcsb.org/structure/1D5N",
+          "evidence_role": "experimental_structure",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T02:17:10Z",
+          "verification_note": "1.55 A, unmutated E. coli MnSOD structure with manganese and a cryotrapped six-coordinate hydroxide-inhibited active site."
+        },
+        {
+          "source_id": "DOI",
+          "record_id": "10.1006/jmbi.1999.3506",
+          "uri": "https://doi.org/10.1006/jmbi.1999.3506",
+          "evidence_role": "primary_structure_evidence",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T02:17:10Z",
+          "verification_note": "Primary 1D5N cryotrapping study; supports the six-coordinate inhibited-state interpretation and active-site geometry."
+        },
+        {
+          "source_id": "DOI",
+          "record_id": "10.1021/bi9704212",
+          "uri": "https://doi.org/10.1021/bi9704212",
+          "evidence_role": "primary_mechanism_evidence",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T02:17:10Z",
+          "verification_note": "Primary mutagenesis study of the E. coli MnSOD proton-linkage pathway; supports a proton-coupled, metal-sensitive mechanism without resolving every turnover state."
+        },
+        {
+          "source_id": "M-CSA",
+          "record_id": "M0138",
+          "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/138/",
+          "evidence_role": "same_ec_counterexample",
+          "applicability": "counterexample_same_ec",
+          "verified_at": "2026-07-14T02:17:10Z",
+          "verification_note": "The sole current M-CSA entry returned for EC 1.15.1.1 is Cu/Zn SOD P00445 with PDB 2JCW and a copper/histidine-bridge mechanism; it is not a mechanism source for Fe/Mn SOD P00448."
+        }
+      ],
+      "required_outputs": [
+        "canonical_reaction",
+        "source_mechanism",
+        "mechanism_hypothesis",
+        "protein_site_grounding",
+        "counterevidence_and_conflicts",
+        "uncertainty_and_abstention",
+        "provenance"
+      ],
+      "known_ambiguities": [
+        "Rhea and EC unite several evolutionarily and mechanistically distinct SOD families; net-reaction identity is not mechanism identity.",
+        "M-CSA M0138 is a Cu/Zn SOD mechanism and must remain counterevidence against same-EC transfer to MnSOD.",
+        "PDB 1D5N captures a cryogenic hydroxide-inhibited state, not an uninterrupted catalytic trajectory.",
+        "The ordering and proton donors for Mn(II)/Mn(III) turnover, prompt protonation, and inhibited inner-sphere pathways remain evidence-dependent alternatives."
+      ],
+      "success_condition": "A non-fixture Tier-2 hypothesis represents Mn identity and redox/proton steps, grounds residues to P00448/1D5N, records plausible alternative states, and mechanically refuses the Cu/Zn M-CSA mechanism despite the shared EC and Rhea reaction.",
+      "stop_conditions": [
+        "Stop if any Cu/Zn SOD residue, cofactor, or step is imported into the MnSOD hypothesis solely through EC 1.15.1.1 or RHEA:20696.",
+        "Stop and retain alternatives if primary evidence cannot distinguish prompt-protonation and inhibited inner-sphere pathways for the selected enzyme and conditions.",
+        "Stop before assigning a metal oxidation or protonation state to 1D5N that its experimental record does not support.",
+        "Stop at the case compute ceiling and emit an abstaining partial record instead of launching broad simulation."
+      ],
+      "case_compute_budget": {
+        "cpu_hours_max": 6,
+        "gpu_hours_max": 0,
+        "external_requests_max": 150,
+        "download_bytes_max": 104857600,
+        "reuse_required": true,
+        "stop_if_exceeded": true
+      },
+      "assay_candidate": false
+    },
+    {
+      "case_id": "atlas3.tem1-ecoli.covalent",
+      "target_record_id": "mechanism:tem1-ecoli-covalent-v1",
+      "label": "TEM-1 class A serine beta-lactamase",
+      "organism": "Escherichia coli",
+      "representation_axis": "covalent_acyl_enzyme",
+      "representation_pressures": [
+        "covalent_acyl_enzyme",
+        "alternative_general_base_proposals",
+        "generic_net_reaction_to_specific_substrate_assay",
+        "natural_versus_ambler_residue_numbering"
+      ],
+      "fingerprint_bridge": "serine_beta_lactamase",
+      "target_evidence_tier": 2,
+      "selection_rationale": "TEM-1 supplies a direct M-CSA mechanism with competing proposals, an experimental reference structure, a reviewed sequence with catalytic roles, and a cheap chromogenic activity assay precedent. It tests covalent intermediates, residue-numbering crosswalks, source disagreement, and the boundary between observing hydrolysis and validating a detailed mechanism.",
+      "reaction_participant_ids": [
+        "CHEBI:35627",
+        "CHEBI:15377",
+        "CHEBI:140347"
+      ],
+      "source_handles": [
+        {
+          "source_id": "UniProtKB",
+          "record_id": "P62593",
+          "uri": "https://www.uniprot.org/uniprotkb/P62593/entry",
+          "evidence_role": "protein_identity",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T02:17:10Z",
+          "verification_note": "Reviewed TEM beta-lactamase entry; identifies TEM-1, RHEA:20401, EC 3.5.2.6, the acyl-enzyme nucleophile, catalytic acid/base roles, and the natural-numbering caveat."
+        },
+        {
+          "source_id": "Rhea",
+          "record_id": "RHEA:20401",
+          "uri": "https://www.rhea-db.org/rhea/20401",
+          "evidence_role": "net_reaction",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T02:17:10Z",
+          "verification_note": "Current Rhea page identifies generic beta-lactam hydrolysis, EC 3.5.2.6, CHEBI:35627, CHEBI:15377, and current product class CHEBI:140347."
+        },
+        {
+          "source_id": "PDB",
+          "record_id": "1BTL",
+          "uri": "https://www.rcsb.org/structure/1BTL",
+          "evidence_role": "experimental_structure",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T02:17:10Z",
+          "verification_note": "1.80 A, unmutated E. coli TEM-1 structure mapped to P62593; apo/sulfate-bound structural evidence, not a turnover trajectory."
+        },
+        {
+          "source_id": "M-CSA",
+          "record_id": "M0002",
+          "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/2/",
+          "evidence_role": "source_mechanism",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T02:17:10Z",
+          "verification_note": "Direct reference entry for P62593 and 1BTL with a three-star proposal and a lower-rated alternative for acylation/deacylation chemistry."
+        },
+        {
+          "source_id": "DOI",
+          "record_id": "10.1073/pnas.060027897",
+          "uri": "https://doi.org/10.1073/pnas.060027897",
+          "evidence_role": "primary_mechanism_evidence",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T02:17:10Z",
+          "verification_note": "Primary evidence cited by M-CSA for beta-lactam nitrogen protonation and the class A catalytic mechanism."
+        },
+        {
+          "source_id": "PMCID",
+          "record_id": "PMC14582",
+          "uri": "https://pmc.ncbi.nlm.nih.gov/articles/PMC14582/",
+          "evidence_role": "assay_precedent",
+          "applicability": "direct",
+          "verified_at": "2026-07-14T02:17:10Z",
+          "verification_note": "Open primary study using TEM-1 nitrocefin hydrolysis as a continuous absorbance assay; a precedent to evaluate, not a preregistered project protocol."
+        }
+      ],
+      "required_outputs": [
+        "canonical_reaction",
+        "source_mechanism",
+        "mechanism_hypothesis",
+        "protein_site_grounding",
+        "counterevidence_and_conflicts",
+        "uncertainty_and_abstention",
+        "provenance"
+      ],
+      "known_ambiguities": [
+        "M-CSA preserves a three-star proposal and a lower-rated alternative; the atlas must not flatten them into one certain route.",
+        "UniProt natural residue numbering and Ambler class A numbering differ and require an explicit crosswalk.",
+        "Rhea uses a generic beta-lactam and current product class CHEBI:140347, while M-CSA displays an older generic product identifier; source-specific identifiers must be retained.",
+        "Nitrocefin hydrolysis establishes activity under assay conditions but cannot by itself validate the detailed acylation/deacylation proton pathway."
+      ],
+      "success_condition": "A non-fixture Tier-2 hypothesis represents covalent acylation and deacylation, keeps alternative base/proton proposals, maps natural and Ambler numbering, and links an assay contract without calling activity a full mechanism validation.",
+      "stop_conditions": [
+        "Stop and preserve both proposals if the evidence compilation cannot adjudicate the competing general-base assignments.",
+        "Stop if residue numbering is asserted without an explicit P62593/1BTL/Ambler mapping.",
+        "Stop before turning a nitrocefin activity readout into a Tier-4 mechanism claim; the observation and mechanistic interpretation must remain separate objects.",
+        "Stop at the case compute ceiling and emit an abstaining partial record instead of expanding the substrate panel."
+      ],
+      "case_compute_budget": {
+        "cpu_hours_max": 6,
+        "gpu_hours_max": 0,
+        "external_requests_max": 150,
+        "download_bytes_max": 104857600,
+        "reuse_required": true,
+        "stop_if_exceeded": true
+      },
+      "assay_candidate": true
+    }
+  ],
+  "assay_lane": {
+    "candidate_case_id": "atlas3.tem1-ecoli.covalent",
+    "status": "candidate_only_not_started",
+    "assay_name": "nitrocefin hydrolysis absorbance assay",
+    "selection_reason": "TEM-1 has an existing fast chromogenic activity readout, tractable positive and inactive-enzyme controls, and direct source/structure/mechanism anchors. It is selected only as the first assay candidate; executor, materials, exact conditions, controls, and acceptance thresholds remain to be frozen before any result is observed.",
+    "existing_assay_only": true,
+    "external_execution_required": true,
+    "preregistration_required": true,
+    "decision_frozen_before_results": true,
+    "materials_committed": false,
+    "stop_conditions": [
+      "Do not order or stage materials until an executor, material identity, controls, and costs are documented.",
+      "Do not expose outcomes until the computational decision and assay acceptance criteria are content-hashed and frozen.",
+      "Do not proceed if the available assay cannot distinguish enzyme-dependent hydrolysis from substrate background and handling artifacts.",
+      "Record a failed execution or null result as an experimental observation rather than silently replacing the assay."
+    ]
+  },
+  "exit_gate": [
+    "Each selected case has non-fixture typed reaction, source-mechanism, and protein/site-grounded hypothesis objects at the declared evidence tiers.",
+    "Every source-derived assertion resolves to a content-hashed source snapshot or an authoritative handle plus retrieval metadata; unavailable evidence remains explicit.",
+    "Every case preserves at least one ambiguity, counterevidence item, or abstention boundary instead of filling unsupported fields by analogy.",
+    "One local query returns all three cases, their evidence tiers, source handles, uncertainty, and applicability boundaries without loading the legacy artifact tree.",
+    "A fresh Windows and Linux environment reproduce the three records, provenance summary, and query result from the lean core environment.",
+    "No file under data/registries is changed and no P0 expansion latch is opened by Atlas-3 compilation."
+  ],
+  "prohibited_claims": [
+    "Selection or compilation of these three cases is biological validation.",
+    "Three deliberately chosen cases estimate atlas coverage, accuracy, or deployment performance.",
+    "M-CSA curation is independent review of Catalytic Earth's downstream compilation.",
+    "A shared EC number or net reaction licenses transfer of a detailed mechanism between protein families.",
+    "The TEM-1 assay candidate has been preregistered, commissioned, run, or validated.",
+    "A positive activity assay by itself validates the detailed mechanism hypothesis."
+  ]
+}

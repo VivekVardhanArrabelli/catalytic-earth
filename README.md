@@ -74,6 +74,11 @@ a production biological design system.
 - The active execution plan is `docs/RAPID_ATLAS_PLAN.md`: a 35-day
   computational atlas loop with a parallel 60–90-day experimental target when
   a ready assay and external execution route exist.
+- The Atlas-3 first-kernel selection is now frozen before compilation:
+  AdoCbl methylmalonyl-CoA mutase, E. coli MnSOD, and TEM-1. The exact source
+  handles, counterexample boundary, compute ceilings, and provisional assay
+  lane are machine-enforced in `data/atlas/atlas3_selection.json`; this is a
+  start checkpoint, not three completed mechanism records.
 
 ## Truth-governance gate
 
@@ -113,6 +118,7 @@ agent run:
 | `docs/CURRENT_STATE.md` | Compact current state, trusted results, blockers, and next gates |
 | `docs/CURRENT_DECISIONS.md` | Current durable decisions that govern historical records |
 | `docs/RAPID_ATLAS_PLAN.md` | Current 35-day computational plan, parallel experimental clock, and atlas scale gates |
+| `docs/ATLAS3_SELECTION.md` | Frozen first-kernel cases, authoritative handles, budgets, stop conditions, and build sequence |
 | `docs/P0_COMPLETION.md` | Auditable completion map for the truth-first review's P0 cleanup |
 | `docs/reviews/catalytic-earth-full-review-2026-07-10.md` | Independent audit, evidence corrections, strategic amendment, and full rationale |
 | `docs/reviews/catalytic-earth-90-day-map-2026-07-10.md` | Compact operating map derived from the full review |
@@ -141,6 +147,7 @@ Validate the repo:
 
 ```bash
 python scripts/validate_repository_contracts.py
+python scripts/validate_atlas3_selection.py
 python scripts/run_test_tier.py "core/unit"
 git diff --check
 ```
@@ -217,6 +224,7 @@ gates are run.
 
 ```text
 data/registries/        Source, fingerprint, ontology, and label registries
+data/atlas/             Real atlas proposal/release objects outside protected registries
 docs/                   Durable project memory and design references
 src/catalytic_earth/    CLI and artifact-building code
 tests/                  Unit and artifact regression tests

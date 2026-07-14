@@ -16,6 +16,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
+from catalytic_earth.atlas_selection import validate_atlas3_selection  # noqa: E402
 from catalytic_earth.core_cli import verified_golden_result  # noqa: E402
 from catalytic_earth.truth_guard import validate_truth_governance  # noqa: E402
 
@@ -55,6 +56,7 @@ def _validate_active_paths() -> None:
     docs = [
         ROOT / "README.md",
         ROOT / "docs/ARCHITECTURE.md",
+        ROOT / "docs/ATLAS3_SELECTION.md",
         ROOT / "docs/CORE_REPRODUCTION.md",
         ROOT / "docs/EVALUATION_MEMORY.md",
         ROOT / "docs/LEAN_RELEASE.md",
@@ -90,11 +92,13 @@ def _validate_markdown_links() -> None:
         "CLAIMS.md",
         "ERRATA.md",
         "docs/ARCHITECTURE.md",
+        "docs/ATLAS3_SELECTION.md",
         "docs/ATLAS_TRUTH_POLICY.md",
         "docs/CORE_REPRODUCTION.md",
         "docs/EVALUATION_MEMORY.md",
         "docs/LEAN_RELEASE.md",
         "docs/P0_COMPLETION.md",
+        "docs/RAPID_ATLAS_PLAN.md",
         "docs/SOURCE_DATA_RIGHTS.md",
     )
     link_pattern = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
@@ -119,6 +123,7 @@ def _validate_json_surfaces(*, include_release_manifest: bool) -> None:
         "data/governance/architecture_freeze.json",
         "data/governance/historical_lineage_quarantine.json",
         "data/governance/test_baseline.json",
+        "data/atlas/atlas3_selection.json",
         "environments/core.json",
         "environments/ml-test.json",
         "environments/scientific-tools.json",
@@ -211,6 +216,10 @@ def main() -> int:
     )
     args = parser.parse_args()
     result = validate_truth_governance(ROOT)
+    atlas3 = json.loads(
+        (ROOT / "data/atlas/atlas3_selection.json").read_text(encoding="utf-8")
+    )
+    validate_atlas3_selection(atlas3)
     _validate_legal_surfaces()
     _validate_active_paths()
     _validate_markdown_links()
@@ -220,6 +229,7 @@ def main() -> int:
     verified_golden_result()
     _run("scripts/build_exposure_row_ledger.py", "--check")
     _run("scripts/build_historical_lineage_quarantine.py", "--check")
+    _run("scripts/validate_atlas3_selection.py")
     if os.environ.get("CE_PARTIAL_CLONE") == "1":
         _run("scripts/build_live_artifact_manifest.py", "--check", "--index-only")
     else:

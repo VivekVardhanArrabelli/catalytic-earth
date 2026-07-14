@@ -1,0 +1,232 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://catalytic.earth/schemas/atlas3-selection-v1.schema.json",
+  "title": "Catalytic Earth Atlas-3 frozen selection v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "selection_id",
+    "status",
+    "frozen_at",
+    "baseline_commit",
+    "namespace",
+    "registry_mutation_permitted",
+    "objective",
+    "selection_axes",
+    "phase_compute_budget",
+    "cases",
+    "assay_lane",
+    "exit_gate",
+    "prohibited_claims"
+  ],
+  "properties": {
+    "schema_version": {"const": "catalytic-earth.atlas3-selection.v1"},
+    "selection_id": {"type": "string", "minLength": 1},
+    "status": {"const": "frozen_precompilation"},
+    "frozen_at": {"type": "string", "format": "date-time"},
+    "baseline_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "namespace": {"const": "data/atlas/atlas3"},
+    "registry_mutation_permitted": {"const": false},
+    "objective": {"type": "string", "minLength": 1},
+    "selection_axes": {
+      "const": [
+        "radical_rearrangement",
+        "metal_redox_pcet",
+        "covalent_acyl_enzyme"
+      ]
+    },
+    "phase_compute_budget": {"$ref": "#/$defs/compute_budget"},
+    "cases": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"$ref": "#/$defs/case"}
+    },
+    "assay_lane": {"$ref": "#/$defs/assay_lane"},
+    "exit_gate": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "prohibited_claims": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  },
+  "$defs": {
+    "compute_budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cpu_hours_max",
+        "gpu_hours_max",
+        "external_requests_max",
+        "download_bytes_max",
+        "reuse_required",
+        "stop_if_exceeded"
+      ],
+      "properties": {
+        "cpu_hours_max": {"type": "integer", "minimum": 1},
+        "gpu_hours_max": {"const": 0},
+        "external_requests_max": {"type": "integer", "minimum": 0},
+        "download_bytes_max": {"type": "integer", "minimum": 1},
+        "reuse_required": {"const": true},
+        "stop_if_exceeded": {"const": true}
+      }
+    },
+    "source_handle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "record_id",
+        "uri",
+        "evidence_role",
+        "applicability",
+        "verified_at",
+        "verification_note"
+      ],
+      "properties": {
+        "source_id": {
+          "enum": ["DOI", "M-CSA", "PDB", "PMCID", "Rhea", "UniProtKB"]
+        },
+        "record_id": {"type": "string", "minLength": 1},
+        "uri": {"type": "string", "format": "uri", "pattern": "^https://"},
+        "evidence_role": {
+          "enum": [
+            "assay_precedent",
+            "experimental_structure",
+            "net_reaction",
+            "primary_mechanism_evidence",
+            "primary_structure_evidence",
+            "protein_identity",
+            "same_ec_counterexample",
+            "source_mechanism"
+          ]
+        },
+        "applicability": {"enum": ["direct", "counterexample_same_ec"]},
+        "verified_at": {"type": "string", "format": "date-time"},
+        "verification_note": {"type": "string", "minLength": 1}
+      }
+    },
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "case_id",
+        "target_record_id",
+        "label",
+        "organism",
+        "representation_axis",
+        "representation_pressures",
+        "fingerprint_bridge",
+        "target_evidence_tier",
+        "selection_rationale",
+        "reaction_participant_ids",
+        "source_handles",
+        "required_outputs",
+        "known_ambiguities",
+        "success_condition",
+        "stop_conditions",
+        "case_compute_budget",
+        "assay_candidate"
+      ],
+      "properties": {
+        "case_id": {"type": "string", "minLength": 1},
+        "target_record_id": {"type": "string", "minLength": 1},
+        "label": {"type": "string", "minLength": 1},
+        "organism": {"type": "string", "minLength": 1},
+        "representation_axis": {
+          "enum": [
+            "radical_rearrangement",
+            "metal_redox_pcet",
+            "covalent_acyl_enzyme"
+          ]
+        },
+        "representation_pressures": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "fingerprint_bridge": {"type": "string", "minLength": 1},
+        "target_evidence_tier": {"const": 2},
+        "selection_rationale": {"type": "string", "minLength": 1},
+        "reaction_participant_ids": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^CHEBI:[0-9]+$"}
+        },
+        "source_handles": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/source_handle"}
+        },
+        "required_outputs": {
+          "const": [
+            "canonical_reaction",
+            "source_mechanism",
+            "mechanism_hypothesis",
+            "protein_site_grounding",
+            "counterevidence_and_conflicts",
+            "uncertainty_and_abstention",
+            "provenance"
+          ]
+        },
+        "known_ambiguities": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "success_condition": {"type": "string", "minLength": 1},
+        "stop_conditions": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "case_compute_budget": {"$ref": "#/$defs/compute_budget"},
+        "assay_candidate": {"type": "boolean"}
+      }
+    },
+    "assay_lane": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_case_id",
+        "status",
+        "assay_name",
+        "selection_reason",
+        "existing_assay_only",
+        "external_execution_required",
+        "preregistration_required",
+        "decision_frozen_before_results",
+        "materials_committed",
+        "stop_conditions"
+      ],
+      "properties": {
+        "candidate_case_id": {"const": "atlas3.tem1-ecoli.covalent"},
+        "status": {"const": "candidate_only_not_started"},
+        "assay_name": {"const": "nitrocefin hydrolysis absorbance assay"},
+        "selection_reason": {"type": "string", "minLength": 1},
+        "existing_assay_only": {"const": true},
+        "external_execution_required": {"const": true},
+        "preregistration_required": {"const": true},
+        "decision_frozen_before_results": {"const": true},
+        "materials_committed": {"const": false},
+        "stop_conditions": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

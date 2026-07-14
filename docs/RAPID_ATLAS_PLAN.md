@@ -134,6 +134,14 @@ bucket a mechanism endpoint, or a protein-label count a mechanism count.
 
 ### Days 3–7 — build the atlas kernel
 
+Start checkpoint frozen 2026-07-13: the three cases are AdoCbl
+methylmalonyl-CoA mutase, E. coli MnSOD, and TEM-1. Their authoritative source
+handles, representation pressures, compute ceilings, stop conditions, and the
+candidate-only TEM-1 nitrocefin assay lane are defined in
+`docs/ATLAS3_SELECTION.md` and machine-enforced by
+`data/atlas/atlas3_selection.json`. This freezes selection before compilation;
+it does not mark the three biological records complete.
+
 Deliverables:
 
 - versioned mechanism IR/schema;
