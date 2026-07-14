@@ -5,12 +5,13 @@
 **Machine contract:**
 [`data/atlas/atlas3_selection.json`](../data/atlas/atlas3_selection.json)
 
-**Status:** selection freeze honored; local nine-object kernel compiled
+**Status:** selection freeze honored; all six computational exit gates passed
 
-Implementation status: this checkpoint has now produced the first local
-nine-object kernel. See [`ATLAS3_KERNEL.md`](ATLAS3_KERNEL.md) for the compiled
-records, source snapshots and rights, numbering crosswalks, local query,
-hashes, claim boundary, and remaining cross-platform reproduction gate.
+Implementation status: this checkpoint produced the first nine-object
+biological kernel and reproduced its packaged command and query on Windows and
+Linux. See [`ATLAS3_KERNEL.md`](ATLAS3_KERNEL.md) for the compiled records,
+source snapshots and rights, numbering crosswalks, query, hashes, CI evidence,
+and remaining biological claim boundary.
 
 ## Outcome
 
@@ -142,14 +143,14 @@ resolve which detailed proton-transfer proposal is correct.
    conflicts and applicability.
 5. **Complete locally:** materialize a tiny in-memory SQLite surface and one
    query returning tiers, uncertainty, source applicability, steps, and sites.
-6. **Pending published CI:** reproduce the packaged kernel and query on fresh
-   Windows and Linux environments.
+6. **Complete in published CI:** reproduced the packaged kernel and query on
+   fresh Windows and Linux environments using Python 3.10 and 3.12.
 7. **Not started:** only after the computational decision is frozen, prepare
    the separate assay preregistration and external execution decision.
 
-Atlas-3 is complete only when all six machine exit gates in the selection
-contract pass. The frozen selection itself is the start checkpoint, not the
-finished biological kernel.
+All six machine exit gates in the selection contract now pass. This completes
+the Atlas-3 computational kernel; it does not complete the assay lane or imply
+biological validation, coverage, accuracy, or prospective discovery.
 
 ## Validation
 
