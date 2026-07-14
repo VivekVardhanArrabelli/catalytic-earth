@@ -16,6 +16,7 @@ Read in this order:
    evaluation surfaces;
 5. `docs/RAPID_ATLAS_PLAN.md` — current execution sequence.
 6. `docs/ATLAS3_SELECTION.md` — frozen first biological-kernel cases and gates.
+7. `docs/ATLAS3_KERNEL.md` — compiled records, source checks, query, and open gates.
 
 Current truth:
 
@@ -43,12 +44,15 @@ Current truth:
   separate registry-expansion latch remains active pending an explicit reviewed
   admission decision; real atlas compilation may proceed in `data/atlas`
   without mutating the protected registries.
-- Atlas-3 selection is frozen before compilation: AdoCbl methylmalonyl-CoA
-  mutase, E. coli MnSOD, and TEM-1. M-CSA M0138 is a Cu/Zn same-EC
-  counterexample for MnSOD, not a transferable mechanism. TEM-1 nitrocefin
-  hydrolysis is candidate-only; nothing has been commissioned or run.
+- Atlas-3 is locally compiled into nine non-fixture objects: three reactions,
+  three source-mechanism objects, and three Tier-2 grounded hypotheses. MnSOD's
+  source object abstains because M-CSA M0138 is Cu/Zn SOD; no M0138 step or site
+  is transferred. The query exposes tiers, handles, sites, uncertainty,
+  counterevidence, and key abstentions. Clean Windows/Linux CI reproduction is
+  the remaining software exit gate. TEM-1 nitrocefin hydrolysis remains
+  candidate-only; nothing has been commissioned or run.
 
 The project is early and scientifically unvalidated, not empty. Its strongest
 current assets are the typed schema, provenance-bearing registries, negative
-results, a reproducible lean release, the frozen Atlas-3 source boundary, and
-the ability to turn every important claim into a falsifiable gate.
+results, a reproducible lean release, the first source-grounded Atlas kernel,
+and the ability to turn every important claim into a falsifiable gate.

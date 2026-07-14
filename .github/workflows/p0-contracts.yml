@@ -33,7 +33,7 @@ jobs:
             "https://github.com/${GITHUB_REPOSITORY}.git" .
           git sparse-checkout init --cone
           git sparse-checkout set \
-            .github config data/governance docs environments release \
+            .github config data/atlas data/governance docs environments release \
             requirements scripts src tests
           git fetch --no-tags --filter=blob:none origin "${GITHUB_REF}"
           git checkout --detach FETCH_HEAD
@@ -68,6 +68,12 @@ jobs:
 
       - name: Run core/unit tier
         run: python scripts/run_test_tier.py "core/unit"
+
+      - name: Build current Atlas-3 wheel
+        run: python -m build --wheel --no-isolation --outdir dist-atlas3
+
+      - name: Verify Atlas-3 wheel and query from an empty directory
+        run: python scripts/verify_atlas3_release.py --wheel dist-atlas3
 
       - name: Build wheel and lean archive from the exact release source commit
         run: python scripts/build_canonical_release_assets.py

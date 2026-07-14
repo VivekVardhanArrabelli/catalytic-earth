@@ -5,7 +5,12 @@
 **Machine contract:**
 [`data/atlas/atlas3_selection.json`](../data/atlas/atlas3_selection.json)
 
-**Status:** cases and boundaries frozen before evidence compilation
+**Status:** selection freeze honored; local nine-object kernel compiled
+
+Implementation status: this checkpoint has now produced the first local
+nine-object kernel. See [`ATLAS3_KERNEL.md`](ATLAS3_KERNEL.md) for the compiled
+records, source snapshots and rights, numbering crosswalks, local query,
+hashes, claim boundary, and remaining cross-platform reproduction gate.
 
 ## Outcome
 
@@ -127,19 +132,20 @@ resolve which detailed proton-transfer proposal is correct.
 
 ## Immediate build sequence
 
-1. Snapshot the selected authoritative records and store retrieval metadata and
-   content hashes in the lean atlas namespace.
-2. Extend the mechanism IR only for fields demanded by these cases; unsupported
-   states must fail or remain null explicitly.
-3. Encode separate Tier-0 reaction, Tier-1 source-mechanism, and Tier-2
-   protein/site-grounded hypothesis objects rather than inflating one object.
-4. Compile evidence and counterevidence, including source conflicts and
-   applicability.
-5. Materialize a tiny SQLite surface and one query returning all three records,
-   tiers, uncertainty, and source handles.
-6. Reproduce the release and query on fresh Windows and Linux environments.
-7. Only after the computational decision is frozen, prepare the separate assay
-   preregistration and external execution decision.
+1. **Complete locally:** snapshot the selected authoritative records and store
+   retrieval metadata and content hashes in the lean atlas namespace.
+2. **Complete locally:** extend the mechanism IR only for fields demanded by
+   these cases; unsupported states fail or remain explicit.
+3. **Complete locally:** encode separate Tier-0 reaction, Tier-1
+   source-mechanism, and Tier-2 protein/site-grounded hypothesis objects.
+4. **Complete locally:** compile evidence and counterevidence, including source
+   conflicts and applicability.
+5. **Complete locally:** materialize a tiny in-memory SQLite surface and one
+   query returning tiers, uncertainty, source applicability, steps, and sites.
+6. **Pending published CI:** reproduce the packaged kernel and query on fresh
+   Windows and Linux environments.
+7. **Not started:** only after the computational decision is frozen, prepare
+   the separate assay preregistration and external execution decision.
 
 Atlas-3 is complete only when all six machine exit gates in the selection
 contract pass. The frozen selection itself is the start checkpoint, not the
@@ -149,6 +155,8 @@ finished biological kernel.
 
 ```bash
 python scripts/validate_atlas3_selection.py
+python scripts/build_atlas3_sources.py
+python scripts/build_atlas3_kernel.py --check
 python scripts/validate_repository_contracts.py
 python scripts/run_test_tier.py "core/unit"
 ```

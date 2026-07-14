@@ -1,0 +1,321 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://catalytic.earth/schemas/mechanism-record-v2.schema.json",
+  "title": "Catalytic Earth mechanism record v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_id",
+    "case_id",
+    "object_type",
+    "evidence_tier",
+    "label",
+    "fixture_only",
+    "status",
+    "biological_scope",
+    "reaction",
+    "mechanism_steps",
+    "sites",
+    "evidence",
+    "counterevidence",
+    "uncertainties",
+    "claim_boundary",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {"const": "catalytic-earth.mechanism-record.v2"},
+    "record_id": {"type": "string", "minLength": 1},
+    "case_id": {"type": "string", "minLength": 1},
+    "object_type": {
+      "enum": ["net_reaction", "source_mechanism", "mechanism_hypothesis"]
+    },
+    "evidence_tier": {"type": "integer", "minimum": 0, "maximum": 2},
+    "label": {"type": "string", "minLength": 1},
+    "fixture_only": {"const": false},
+    "status": {
+      "enum": [
+        "source_assertion",
+        "curated_source_proposal",
+        "abstained_no_direct_source_mechanism",
+        "bounded_hypothesis"
+      ]
+    },
+    "biological_scope": {"$ref": "#/$defs/biological_scope"},
+    "reaction": {"$ref": "#/$defs/reaction"},
+    "mechanism_steps": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/mechanism_step"}
+    },
+    "sites": {"type": "array", "items": {"$ref": "#/$defs/site"}},
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/evidence"}
+    },
+    "counterevidence": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/counterevidence"}
+    },
+    "uncertainties": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/uncertainty"}
+    },
+    "claim_boundary": {"$ref": "#/$defs/claim_boundary"},
+    "provenance": {"$ref": "#/$defs/provenance"}
+  },
+  "$defs": {
+    "nonempty_string_array": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "biological_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "case_label",
+        "organism",
+        "ec_number",
+        "uniprot_ids",
+        "pdb_ids",
+        "assay_candidate"
+      ],
+      "properties": {
+        "case_label": {"type": "string", "minLength": 1},
+        "organism": {"type": "string", "minLength": 1},
+        "ec_number": {"type": "string", "minLength": 1},
+        "uniprot_ids": {
+          "allOf": [
+            {"$ref": "#/$defs/nonempty_string_array"},
+            {"minItems": 1}
+          ]
+        },
+        "pdb_ids": {
+          "allOf": [
+            {"$ref": "#/$defs/nonempty_string_array"},
+            {"minItems": 1}
+          ]
+        },
+        "assay_candidate": {"type": "boolean"}
+      }
+    },
+    "reaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "source_record_id",
+        "directionality",
+        "equation",
+        "participants"
+      ],
+      "properties": {
+        "source_id": {"const": "Rhea"},
+        "source_record_id": {"type": "string", "pattern": "^RHEA:[0-9]+$"},
+        "directionality": {"const": "undirected"},
+        "equation": {"type": "string", "minLength": 1},
+        "participants": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["chebi_id", "name"],
+            "properties": {
+              "chebi_id": {"type": "string", "pattern": "^CHEBI:[0-9]+$"},
+              "name": {"type": "string", "minLength": 1}
+            }
+          }
+        }
+      }
+    },
+    "mechanism_step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "step_id",
+        "order",
+        "summary",
+        "transformation",
+        "catalyst_site_ids",
+        "evidence_ids",
+        "confidence",
+        "source_step_id"
+      ],
+      "properties": {
+        "step_id": {"type": "string", "minLength": 1},
+        "order": {"type": "integer", "minimum": 1},
+        "summary": {"type": "string", "minLength": 1},
+        "transformation": {"type": "string", "minLength": 1},
+        "catalyst_site_ids": {"$ref": "#/$defs/nonempty_string_array"},
+        "evidence_ids": {
+          "allOf": [
+            {"$ref": "#/$defs/nonempty_string_array"},
+            {"minItems": 1}
+          ]
+        },
+        "confidence": {
+          "enum": ["source_curated", "supported_bounded", "plausible_unresolved"]
+        },
+        "source_step_id": {"type": ["integer", "null"], "minimum": 1}
+      }
+    },
+    "site": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "site_id",
+        "uniprot_id",
+        "residue_name",
+        "sequence_position",
+        "numbering_system",
+        "roles",
+        "pdb_mapping",
+        "evidence_ids",
+        "mapping_status",
+        "notes"
+      ],
+      "properties": {
+        "site_id": {"type": "string", "minLength": 1},
+        "uniprot_id": {"type": "string", "minLength": 1},
+        "residue_name": {"type": "string", "minLength": 1},
+        "sequence_position": {"type": "integer", "minimum": 1},
+        "numbering_system": {"type": "string", "minLength": 1},
+        "roles": {
+          "allOf": [
+            {"$ref": "#/$defs/nonempty_string_array"},
+            {"minItems": 1}
+          ]
+        },
+        "pdb_mapping": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "pdb_id",
+            "chain_ids",
+            "author_position",
+            "label_position",
+            "numbering_note"
+          ],
+          "properties": {
+            "pdb_id": {"type": "string", "minLength": 4},
+            "chain_ids": {
+              "allOf": [
+                {"$ref": "#/$defs/nonempty_string_array"},
+                {"minItems": 1}
+              ]
+            },
+            "author_position": {"type": "integer", "minimum": 1},
+            "label_position": {"type": "integer", "minimum": 1},
+            "numbering_note": {"type": "string", "minLength": 1}
+          }
+        },
+        "evidence_ids": {
+          "allOf": [
+            {"$ref": "#/$defs/nonempty_string_array"},
+            {"minItems": 1}
+          ]
+        },
+        "mapping_status": {"type": "string", "minLength": 1},
+        "notes": {"type": "string", "minLength": 1}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_id",
+        "source_id",
+        "source_record_id",
+        "evidence_role",
+        "applicability",
+        "uri",
+        "retrieval_status",
+        "snapshot_sha256"
+      ],
+      "properties": {
+        "evidence_id": {"type": "string", "minLength": 1},
+        "source_id": {"type": "string", "minLength": 1},
+        "source_record_id": {"type": "string", "minLength": 1},
+        "evidence_role": {"type": "string", "minLength": 1},
+        "applicability": {"type": "string", "minLength": 1},
+        "uri": {"type": "string", "format": "uri"},
+        "retrieval_status": {"type": "string", "minLength": 1},
+        "snapshot_sha256": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "counterevidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "counterevidence_id",
+        "summary",
+        "evidence_ids",
+        "effect",
+        "disposition"
+      ],
+      "properties": {
+        "counterevidence_id": {"type": "string", "minLength": 1},
+        "summary": {"type": "string", "minLength": 1},
+        "evidence_ids": {
+          "allOf": [
+            {"$ref": "#/$defs/nonempty_string_array"},
+            {"minItems": 1}
+          ]
+        },
+        "effect": {"type": "string", "minLength": 1},
+        "disposition": {"type": "string", "minLength": 1}
+      }
+    },
+    "uncertainty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["uncertainty_id", "summary", "status", "abstention"],
+      "properties": {
+        "uncertainty_id": {"type": "string", "minLength": 1},
+        "summary": {"type": "string", "minLength": 1},
+        "status": {"const": "open"},
+        "abstention": {"type": "string", "minLength": 1}
+      }
+    },
+    "claim_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["supports", "does_not_support"],
+      "properties": {
+        "supports": {
+          "allOf": [
+            {"$ref": "#/$defs/nonempty_string_array"},
+            {"minItems": 1}
+          ]
+        },
+        "does_not_support": {
+          "allOf": [
+            {"$ref": "#/$defs/nonempty_string_array"},
+            {"minItems": 1}
+          ]
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "selection_sha256",
+        "source_snapshot_set_sha256",
+        "compilation_spec_sha256",
+        "compiler_version"
+      ],
+      "properties": {
+        "selection_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "source_snapshot_set_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "compilation_spec_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "compiler_version": {"const": "catalytic-earth.atlas3-compiler.v1"}
+      }
+    }
+  }
+}

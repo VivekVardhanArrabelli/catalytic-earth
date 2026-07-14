@@ -1,0 +1,521 @@
+{
+  "all_ecs": [
+    "1.15.1.1"
+  ],
+  "description": "Copper-zinc superoxide dimutase (CuZnSOD) catalyses the disproportionation of superoxide into dioxygen and hydrogen peroxide. \r\n<br/><br/>\r\nIn higher organisms, superoxide anions are produced as an occasional byproduct during the one-electron reduction of dioxygen in respiration and photosynthesis. Superoxides are also produced by macrophages as a part of the immune response. Excess amounts of superoxides can inactivate enzymes with iron-sulphur clusters and can lead to the formation of highly oxidising species that can damage cellular constituents. Therefore, organisms must have ways to regulate the concentration of superoxide concentrations. Many Gram-negative bacterial pathogens also possess CuZnSOD to counteract the phagocyte superoxide burst from their hosts.",
+  "enzyme_name": "superoxide dismutase",
+  "is_reference_uniprot_id": true,
+  "mcsa_id": 138,
+  "protein": {
+    "sequences": [
+      {
+        "uniprot_id": "P00445"
+      }
+    ]
+  },
+  "reaction": {
+    "compounds": [
+      {
+        "chebi_id": "18421",
+        "count": 2,
+        "mol_file": "www.ebi.ac.uk/thornton-srv/m-csa/media/compound_mols/18421.mol",
+        "name": "superoxide",
+        "type": "reactant"
+      },
+      {
+        "chebi_id": "16240",
+        "count": 1,
+        "mol_file": "www.ebi.ac.uk/thornton-srv/m-csa/media/compound_mols/16240.mol",
+        "name": "hydrogen peroxide",
+        "type": "product"
+      },
+      {
+        "chebi_id": "15379",
+        "count": 1,
+        "mol_file": "www.ebi.ac.uk/thornton-srv/m-csa/media/compound_mols/15379_qbRZJ4C.mol",
+        "name": "dioxygen",
+        "type": "product"
+      },
+      {
+        "chebi_id": "15378",
+        "count": 2,
+        "mol_file": "www.ebi.ac.uk/thornton-srv/m-csa/media/compound_mols/15378_Fxpq4oZ.mol",
+        "name": "hydron",
+        "type": "reactant"
+      }
+    ],
+    "ec": "1.15.1.1",
+    "is_polymeric": false,
+    "mechanisms": [
+      {
+        "components_summary": "cofactor used, electron transfer, native state of cofactor regenerated, coordination to a metal ion, proton relay, native state of enzyme regenerated, proton transfer, radical termination",
+        "is_detailed": true,
+        "mechanism_id": 1,
+        "mechanism_text": "Based on crystal structures, a mechanism is proposed. Guided by the electrostatic channel, superoxide enters the active site, displaces a water molecule, forms a hydrogen bond with Arg143 and binds to the copper(II) ion. Bound superoxide reduces Cu(II) to Cu(I) with simultaneous breaking of the bond between His63 and the Cu(I) ion. Dioxygen is released and His63 is protonated by the solvent. Another superoxide enters the active site. Electron is transferred from Cu(I) to the superoxide and at the same time, two protons are transferred to the superoxides from protonated His63 and a water molecule, forming hydrogen peroxide. Cu(II) then moves to reform the histidine bridge. <br/><br/>Zn(II) bound to His63 ND1 raises the pKa of NE2 to ~13, so that unliganded NE2 will always be protonated at physiological pH.",
+        "rating": 3,
+        "references": [
+          {
+            "doi": "10.1021/bi982284u",
+            "evidence_types": [
+              "crystallography evidence"
+            ],
+            "pubmed_id": "10026301",
+            "title": "A Structure-Based Mechanism for Copper−Zinc Superoxide Dismutase†,‡"
+          },
+          {
+            "doi": "10.1038/306284a0",
+            "evidence_types": [
+              "crystallography evidence",
+              "required"
+            ],
+            "pubmed_id": "6316150",
+            "title": "Structure and mechanism of copper, zinc superoxide dismutase"
+          },
+          {
+            "doi": "10.1006/jmbi.1999.2681",
+            "evidence_types": [
+              "crystallography evidence"
+            ],
+            "pubmed_id": "10329151",
+            "title": "The crystal structure of the monomeric human SOD mutant F50E/G51E/E133Q at atomic resolution. the enzyme mechanism revisited"
+          },
+          {
+            "doi": "10.1074/jbc.m114.588798",
+            "evidence_types": [
+              "crystallography evidence"
+            ],
+            "pubmed_id": "25433341",
+            "title": "Insights into the Role of the Unusual Disulfide Bond in Copper-Zinc Superoxide Dismutase"
+          },
+          {
+            "doi": "10.1016/j.fob.2014.12.003",
+            "evidence_types": [
+              "nuclear magnetic resonance spectroscopy evidence"
+            ],
+            "pubmed_id": "25685664",
+            "title": "Diffuse binding of Zn2+to the denatured ensemble of Cu/Zn superoxide dismutase 1"
+          },
+          {
+            "doi": "10.1039/c6dt02220k",
+            "evidence_types": [
+              "computational experiment"
+            ],
+            "pubmed_id": "27383660",
+            "title": "Electron transfer mechanism of catalytic superoxide dismutation via Cu(ii/i) complexes: evidence of cupric-superoxo/-hydroperoxo species."
+          },
+          {
+            "doi": "10.1016/j.jmb.2008.11.031",
+            "evidence_types": [
+              "multiple sequence alignment (conservation)",
+              "match to InterPro member signature (homology)",
+              "required"
+            ],
+            "pubmed_id": "19063897",
+            "title": "Superoxide Dismutase from the Eukaryotic Thermophile Alvinella pompejana: Structures, Stability, Mechanism, and Insights into Amyotrophic Lateral Sclerosis"
+          }
+        ],
+        "steps": [
+          {
+            "description": "In the resting state of the enzyme, there is a water coordinated to the copper, analogous to the final state of this step, save that the histidine in the resting state is negatively charged and bound to the copper II ion. The superoxide gives up its electron to the Copper II ion. Dioxygen, no longer charged and electrostatically attracted to Arg143, diffuses out of the active site channel, and it is replaced by a water molecule, which starts of as a oxonium and concurrently gives up its proton to the His63, which breaks the histidine bridge [PMID:10026301",
+            "figure": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes_svg/Step_macie.138.1.1_8mYmeQ3",
+            "is_product": false,
+            "marvin_xml": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/Step_macie.138.1.1_8mYmeQ3.mrv",
+            "step_id": 1
+          },
+          {
+            "description": "The second superoxide molecule enters the active site cavity, displaces a water molecule and hydrogen bonds with the protonated NE2 atom of His63 and a water molecule. A chain of water molecules can relay protons to the active site, replenishing those delivered to form peroxide. The neutral hydrogen peroxide is displaced from the active site by a water molecule to return the enzyme to its initial resting state",
+            "figure": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes_svg/Step_macie.138.1.2_PkVek4h",
+            "is_product": false,
+            "marvin_xml": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/Step_macie.138.1.2_PkVek4h.mrv",
+            "step_id": 2
+          },
+          {
+            "description": "Products.",
+            "figure": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes_svg/Step_macie.138.1.3",
+            "is_product": true,
+            "marvin_xml": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/Step_macie.138.1.3.mrv",
+            "step_id": 3
+          }
+        ]
+      }
+    ]
+  },
+  "reference_uniprot_id": "P00445",
+  "residues": [
+    {
+      "function_location_abv": "",
+      "main_annotation": "",
+      "mcsa_id": 138,
+      "ptm": "",
+      "residue_chains": [
+        {
+          "assembly": 1,
+          "assembly_chain_name": "A",
+          "auth_resid": 71,
+          "chain_name": "A",
+          "code": "His",
+          "domain_cath_id": "2.60.40.200",
+          "domain_name": "A00",
+          "is_reference": true,
+          "pdb_id": "2jcw",
+          "resid": 71
+        }
+      ],
+      "residue_sequences": [
+        {
+          "code": "His",
+          "is_reference": true,
+          "resid": 72,
+          "uniprot_id": "P00445"
+        }
+      ],
+      "roles": [
+        {
+          "emo": "EMO_00116",
+          "function": "metal ligand",
+          "function_type": "interaction",
+          "group_function": "metal ligand"
+        },
+        {
+          "emo": "EMO_00116",
+          "function": "metal ligand",
+          "function_type": "interaction",
+          "group_function": "metal ligand"
+        }
+      ],
+      "roles_summary": "metal ligand"
+    },
+    {
+      "function_location_abv": "",
+      "main_annotation": "",
+      "mcsa_id": 138,
+      "ptm": "",
+      "residue_chains": [
+        {
+          "assembly": 1,
+          "assembly_chain_name": "A",
+          "auth_resid": 83,
+          "chain_name": "A",
+          "code": "Asp",
+          "domain_cath_id": "2.60.40.200",
+          "domain_name": "A00",
+          "is_reference": true,
+          "pdb_id": "2jcw",
+          "resid": 83
+        }
+      ],
+      "residue_sequences": [
+        {
+          "code": "Asp",
+          "is_reference": true,
+          "resid": 84,
+          "uniprot_id": "P00445"
+        }
+      ],
+      "roles": [
+        {
+          "emo": "EMO_00116",
+          "function": "metal ligand",
+          "function_type": "interaction",
+          "group_function": "metal ligand"
+        },
+        {
+          "emo": "EMO_00116",
+          "function": "metal ligand",
+          "function_type": "interaction",
+          "group_function": "metal ligand"
+        }
+      ],
+      "roles_summary": "metal ligand"
+    },
+    {
+      "function_location_abv": "",
+      "main_annotation": "",
+      "mcsa_id": 138,
+      "ptm": "",
+      "residue_chains": [
+        {
+          "assembly": 1,
+          "assembly_chain_name": "A",
+          "auth_resid": 80,
+          "chain_name": "A",
+          "code": "His",
+          "domain_cath_id": "2.60.40.200",
+          "domain_name": "A00",
+          "is_reference": true,
+          "pdb_id": "2jcw",
+          "resid": 80
+        }
+      ],
+      "residue_sequences": [
+        {
+          "code": "His",
+          "is_reference": true,
+          "resid": 81,
+          "uniprot_id": "P00445"
+        }
+      ],
+      "roles": [
+        {
+          "emo": "EMO_00116",
+          "function": "metal ligand",
+          "function_type": "interaction",
+          "group_function": "metal ligand"
+        },
+        {
+          "emo": "EMO_00116",
+          "function": "metal ligand",
+          "function_type": "interaction",
+          "group_function": "metal ligand"
+        }
+      ],
+      "roles_summary": "metal ligand"
+    },
+    {
+      "function_location_abv": "",
+      "main_annotation": "",
+      "mcsa_id": 138,
+      "ptm": "",
+      "residue_chains": [
+        {
+          "assembly": 1,
+          "assembly_chain_name": "A",
+          "auth_resid": 120,
+          "chain_name": "A",
+          "code": "His",
+          "domain_cath_id": "2.60.40.200",
+          "domain_name": "A00",
+          "is_reference": true,
+          "pdb_id": "2jcw",
+          "resid": 120
+        }
+      ],
+      "residue_sequences": [
+        {
+          "code": "His",
+          "is_reference": true,
+          "resid": 121,
+          "uniprot_id": "P00445"
+        }
+      ],
+      "roles": [
+        {
+          "emo": "EMO_00116",
+          "function": "metal ligand",
+          "function_type": "interaction",
+          "group_function": "metal ligand"
+        },
+        {
+          "emo": "EMO_00116",
+          "function": "metal ligand",
+          "function_type": "interaction",
+          "group_function": "metal ligand"
+        }
+      ],
+      "roles_summary": "metal ligand"
+    },
+    {
+      "function_location_abv": "",
+      "main_annotation": "",
+      "mcsa_id": 138,
+      "ptm": "",
+      "residue_chains": [
+        {
+          "assembly": 1,
+          "assembly_chain_name": "A",
+          "auth_resid": 63,
+          "chain_name": "A",
+          "code": "His",
+          "domain_cath_id": "2.60.40.200",
+          "domain_name": "A00",
+          "is_reference": true,
+          "pdb_id": "2jcw",
+          "resid": 63
+        }
+      ],
+      "residue_sequences": [
+        {
+          "code": "His",
+          "is_reference": true,
+          "resid": 64,
+          "uniprot_id": "P00445"
+        }
+      ],
+      "roles": [
+        {
+          "emo": "EMO_00116",
+          "function": "metal ligand",
+          "function_type": "interaction",
+          "group_function": "metal ligand"
+        },
+        {
+          "emo": "EMO_00113",
+          "function": "hydrogen bond acceptor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00116",
+          "function": "metal ligand",
+          "function_type": "interaction",
+          "group_function": "metal ligand"
+        },
+        {
+          "emo": "EMO_00068",
+          "function": "proton donor",
+          "function_type": "reactant",
+          "group_function": "proton shuttle (general acid/base)"
+        },
+        {
+          "emo": "EMO_00066",
+          "function": "proton acceptor",
+          "function_type": "reactant",
+          "group_function": "proton shuttle (general acid/base)"
+        }
+      ],
+      "roles_summary": "hydrogen bond acceptor, hydrogen bond donor, metal ligand, proton acceptor, proton donor"
+    },
+    {
+      "function_location_abv": "",
+      "main_annotation": "",
+      "mcsa_id": 138,
+      "ptm": "",
+      "residue_chains": [
+        {
+          "assembly": 1,
+          "assembly_chain_name": "A",
+          "auth_resid": 143,
+          "chain_name": "A",
+          "code": "Arg",
+          "domain_cath_id": "2.60.40.200",
+          "domain_name": "A00",
+          "is_reference": true,
+          "pdb_id": "2jcw",
+          "resid": 143
+        }
+      ],
+      "residue_sequences": [
+        {
+          "code": "Arg",
+          "is_reference": true,
+          "resid": 144,
+          "uniprot_id": "P00445"
+        }
+      ],
+      "roles": [
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        },
+        {
+          "emo": "EMO_00114",
+          "function": "hydrogen bond donor",
+          "function_type": "interaction",
+          "group_function": ""
+        },
+        {
+          "emo": "EMO_00033",
+          "function": "electrostatic stabiliser",
+          "function_type": "spectator",
+          "group_function": "electrostatic interaction"
+        }
+      ],
+      "roles_summary": "electrostatic stabiliser, hydrogen bond donor"
+    },
+    {
+      "function_location_abv": "",
+      "main_annotation": "",
+      "mcsa_id": 138,
+      "ptm": "",
+      "residue_chains": [
+        {
+          "assembly": 1,
+          "assembly_chain_name": "A",
+          "auth_resid": 46,
+          "chain_name": "A",
+          "code": "His",
+          "domain_cath_id": "2.60.40.200",
+          "domain_name": "A00",
+          "is_reference": true,
+          "pdb_id": "2jcw",
+          "resid": 46
+        }
+      ],
+      "residue_sequences": [
+        {
+          "code": "His",
+          "is_reference": true,
+          "resid": 47,
+          "uniprot_id": "P00445"
+        }
+      ],
+      "roles": [
+        {
+          "emo": "EMO_00116",
+          "function": "metal ligand",
+          "function_type": "interaction",
+          "group_function": "metal ligand"
+        },
+        {
+          "emo": "EMO_00116",
+          "function": "metal ligand",
+          "function_type": "interaction",
+          "group_function": "metal ligand"
+        }
+      ],
+      "roles_summary": "metal ligand"
+    },
+    {
+      "function_location_abv": "",
+      "main_annotation": "",
+      "mcsa_id": 138,
+      "ptm": "",
+      "residue_chains": [
+        {
+          "assembly": 1,
+          "assembly_chain_name": "A",
+          "auth_resid": 48,
+          "chain_name": "A",
+          "code": "His",
+          "domain_cath_id": "2.60.40.200",
+          "domain_name": "A00",
+          "is_reference": true,
+          "pdb_id": "2jcw",
+          "resid": 48
+        }
+      ],
+      "residue_sequences": [
+        {
+          "code": "His",
+          "is_reference": true,
+          "resid": 49,
+          "uniprot_id": "P00445"
+        }
+      ],
+      "roles": [
+        {
+          "emo": "EMO_00116",
+          "function": "metal ligand",
+          "function_type": "interaction",
+          "group_function": "metal ligand"
+        },
+        {
+          "emo": "EMO_00116",
+          "function": "metal ligand",
+          "function_type": "interaction",
+          "group_function": "metal ligand"
+        }
+      ],
+      "roles_summary": "metal ligand"
+    }
+  ],
+  "url": "www.ebi.ac.uk/thornton-srv/m-csa/entry/138/"
+}

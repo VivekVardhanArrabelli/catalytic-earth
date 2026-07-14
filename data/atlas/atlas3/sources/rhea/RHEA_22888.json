@@ -1,0 +1,12 @@
+{
+  "record_id": "RHEA:22888",
+  "request_url": "https://www.rhea-db.org/rhea?query=id%3A22888&columns=rhea-id%2Cequation%2Cec%2Cchebi-id%2Cchebi&format=tsv&limit=10",
+  "row": {
+    "ChEBI identifier": "CHEBI:57326;CHEBI:57292",
+    "ChEBI name": "(R)-methylmalonyl-CoA(5-);succinyl-CoA(5-)",
+    "EC number": "EC:5.4.99.2",
+    "Equation": "(R)-methylmalonyl-CoA = succinyl-CoA",
+    "Reaction identifier": "RHEA:22888"
+  },
+  "source": "Rhea"
+}

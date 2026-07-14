@@ -39,6 +39,9 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 catalytic_earth = [
+  "atlas_data/*.json",
+  "atlas_data/*.md",
+  "atlas_data/*.sql",
   "release_data/*.json",
   "schemas/*.json",
 ]

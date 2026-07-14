@@ -1,5 +1,30 @@
 # Current Decisions
 
+## 2026-07-13: Atlas-3 compiled as the first non-fixture biological kernel
+
+Decision: advance from the frozen selection to nine separately counted
+objects—Tier-0 reaction, Tier-1 source mechanism, and Tier-2 grounded
+hypothesis for each of the three cases—with a bounded source package and local
+query. The compilation is useful Atlas knowledge, not a benchmark or a
+biological-validation claim.
+
+Durable rulings:
+
+1. The checked compilation spec is human-auditable scientific input; the
+   generated kernel, packaged copy, and expected query must be byte-current.
+2. Every site must reconcile UniProt natural positions, PDB author numbering,
+   mmCIF label numbering, and coordinate residue identity.
+3. MnSOD has an explicit abstaining Tier-1 object. Same-EC Cu/Zn M-CSA M0138
+   remains counterevidence and contributes no MnSOD step or site.
+4. M-CSA M0062's inconsistent cobalt oxidation-state wording is preserved and
+   flagged; it is not silently promoted into the Tier-2 hypothesis.
+5. TEM-1's lower-rated Lys73 activation route remains an explicit alternative.
+   Nitrocefin activity cannot automatically upgrade the detailed mechanism.
+6. Literature bodies are not bundled. Four DOI items and one PMCID remain
+   reference-only handles under article-specific terms.
+7. The final Atlas-3 software exit gate is clean packaged reproduction on the
+   Windows/Linux CI matrix. The assay lane remains separately unstarted.
+
 ## 2026-07-13: Atlas-3 first biological-kernel selection frozen before compilation
 
 Decision: begin the first real atlas kernel with three deliberately

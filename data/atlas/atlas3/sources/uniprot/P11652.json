@@ -1,0 +1,2423 @@
+{
+  "annotationScore": 4.0,
+  "comments": [
+    {
+      "commentType": "FUNCTION",
+      "texts": [
+        {
+          "value": "Catalyzes the isomerization of succinyl-CoA to methylmalonyl-CoA during synthesis of propionate from tricarboxylic acid-cycle intermediates"
+        }
+      ]
+    },
+    {
+      "commentType": "CATALYTIC ACTIVITY",
+      "reaction": {
+        "ecNumber": "5.4.99.2",
+        "name": "(R)-methylmalonyl-CoA = succinyl-CoA",
+        "reactionCrossReferences": [
+          {
+            "database": "Rhea",
+            "id": "RHEA:22888"
+          },
+          {
+            "database": "ChEBI",
+            "id": "CHEBI:57292"
+          },
+          {
+            "database": "ChEBI",
+            "id": "CHEBI:57326"
+          }
+        ]
+      }
+    },
+    {
+      "cofactors": [
+        {
+          "cofactorCrossReference": {
+            "database": "ChEBI",
+            "id": "CHEBI:18408"
+          },
+          "name": "adenosylcob(III)alamin"
+        }
+      ],
+      "commentType": "COFACTOR"
+    },
+    {
+      "commentType": "PATHWAY",
+      "texts": [
+        {
+          "value": "Metabolic intermediate metabolism; propanoyl-CoA degradation; succinyl-CoA from propanoyl-CoA: step 3/3"
+        }
+      ]
+    },
+    {
+      "commentType": "SUBUNIT",
+      "texts": [
+        {
+          "value": "Heterodimer of an alpha and a beta chain"
+        }
+      ]
+    },
+    {
+      "commentType": "INTERACTION",
+      "interactions": [
+        {
+          "interactantOne": {
+            "intActId": "EBI-1027328",
+            "uniProtKBAccession": "P11652"
+          },
+          "interactantTwo": {
+            "geneName": "mutB",
+            "intActId": "EBI-1027336",
+            "uniProtKBAccession": "P11653"
+          },
+          "numberOfExperiments": 4,
+          "organismDiffer": false
+        }
+      ]
+    },
+    {
+      "commentType": "SIMILARITY",
+      "texts": [
+        {
+          "evidences": [
+            {
+              "evidenceCode": "ECO:0000305"
+            }
+          ],
+          "value": "Belongs to the methylmalonyl-CoA mutase family"
+        }
+      ]
+    }
+  ],
+  "entryAudit": {
+    "entryVersion": 152,
+    "firstPublicDate": "1989-10-01",
+    "lastAnnotationUpdateDate": "2026-06-10",
+    "lastSequenceUpdateDate": "2007-01-23",
+    "sequenceVersion": 3
+  },
+  "entryType": "UniProtKB reviewed (Swiss-Prot)",
+  "extraAttributes": {
+    "countByCommentType": {
+      "CATALYTIC ACTIVITY": 1,
+      "COFACTOR": 1,
+      "FUNCTION": 1,
+      "INTERACTION": 1,
+      "PATHWAY": 1,
+      "SIMILARITY": 1,
+      "SUBUNIT": 1
+    },
+    "countByFeatureType": {
+      "Beta strand": 21,
+      "Chain": 1,
+      "Compositional bias": 1,
+      "Helix": 35,
+      "Initiator methionine": 1,
+      "Region": 1,
+      "Turn": 8
+    },
+    "uniParcId": "UPI000016FDFD"
+  },
+  "features": [
+    {
+      "description": "Removed",
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 1
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 1
+        }
+      },
+      "type": "Initiator methionine"
+    },
+    {
+      "description": "Methylmalonyl-CoA mutase small subunit",
+      "featureId": "PRO_0000194268",
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 638
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 2
+        }
+      },
+      "type": "Chain"
+    },
+    {
+      "description": "Disordered",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000256",
+          "id": "MobiDB-lite",
+          "source": "SAM"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 34
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 1
+        }
+      },
+      "type": "Region"
+    },
+    {
+      "description": "Polar residues",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000256",
+          "id": "MobiDB-lite",
+          "source": "SAM"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 11
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 1
+        }
+      },
+      "type": "Compositional bias"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 26
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 24
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 30
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 28
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 44
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 32
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "3REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 51
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 49
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 54
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 52
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 62
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 55
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 80
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 78
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 104
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 102
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 113
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 107
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 129
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 118
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 132
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 130
+        }
+      },
+      "type": "Turn"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 141
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 135
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 149
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 147
+        }
+      },
+      "type": "Turn"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 153
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 150
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 156
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 154
+        }
+      },
+      "type": "Turn"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 161
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 159
+        }
+      },
+      "type": "Turn"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 167
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 163
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 184
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 172
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 188
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 186
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 192
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 190
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 199
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 195
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 208
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 201
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "2REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 216
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 214
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 223
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 217
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 227
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 225
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 237
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 232
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 242
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 239
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 245
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 243
+        }
+      },
+      "type": "Turn"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 268
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 248
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 277
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 273
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 286
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 280
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 311
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 290
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 317
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 315
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "7REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 321
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 319
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 326
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 322
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "2REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 330
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 328
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 335
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 333
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 353
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 338
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 359
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 356
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 362
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 360
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 367
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 363
+        }
+      },
+      "type": "Turn"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 373
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 369
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 388
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 374
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 396
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 394
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 401
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 398
+        }
+      },
+      "type": "Turn"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 425
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 403
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 434
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 429
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 454
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 437
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 464
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 462
+        }
+      },
+      "type": "Turn"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 481
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 478
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 506
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 495
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 509
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 507
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 517
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 514
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 537
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 521
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 546
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 544
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 560
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 550
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 568
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 563
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 578
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 574
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 587
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 579
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 597
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 591
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 605
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 599
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 612
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 606
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 617
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 615
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1REQ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 633
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 623
+        }
+      },
+      "type": "Helix"
+    }
+  ],
+  "genes": [
+    {
+      "geneName": {
+        "value": "mutA"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "category": "Technical term",
+      "id": "KW-0002",
+      "name": "3D-structure"
+    },
+    {
+      "category": "Ligand",
+      "id": "KW-0846",
+      "name": "Cobalamin"
+    },
+    {
+      "category": "Ligand",
+      "id": "KW-0170",
+      "name": "Cobalt"
+    },
+    {
+      "category": "Technical term",
+      "id": "KW-0903",
+      "name": "Direct protein sequencing"
+    },
+    {
+      "category": "Molecular function",
+      "id": "KW-0413",
+      "name": "Isomerase"
+    }
+  ],
+  "organism": {
+    "lineage": [
+      "Bacteria",
+      "Bacillati",
+      "Actinomycetota",
+      "Actinomycetes",
+      "Propionibacteriales",
+      "Propionibacteriaceae",
+      "Propionibacterium"
+    ],
+    "scientificName": "Propionibacterium freudenreichii subsp. shermanii",
+    "taxonId": 1752
+  },
+  "primaryAccession": "P11652",
+  "proteinDescription": {
+    "alternativeNames": [
+      {
+        "fullName": {
+          "value": "MCB-beta"
+        }
+      }
+    ],
+    "recommendedName": {
+      "ecNumbers": [
+        {
+          "value": "5.4.99.2"
+        }
+      ],
+      "fullName": {
+        "value": "Methylmalonyl-CoA mutase small subunit"
+      }
+    }
+  },
+  "proteinExistence": "1: Evidence at protein level",
+  "references": [
+    {
+      "citation": {
+        "authors": [
+          "Marsh E.N.",
+          "McKie N.",
+          "Davis N.K.",
+          "Leadlay P.F."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "2569861"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1042/bj2600345"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "345",
+        "id": "2569861",
+        "journal": "Biochem. J.",
+        "lastPage": "352",
+        "publicationDate": "1989",
+        "title": "Cloning and structural characterization of the genes coding for adenosylcobalamin-dependent methylmalonyl-CoA mutase from Propionibacterium shermanii.",
+        "volume": "260"
+      },
+      "referenceComments": [
+        {
+          "type": "STRAIN",
+          "value": "NCIMB 9885"
+        }
+      ],
+      "referenceNumber": 1,
+      "referencePositions": [
+        "NUCLEOTIDE SEQUENCE [GENOMIC DNA]",
+        "PROTEIN SEQUENCE OF 4-9; 96-100; 302-306; 473-478 AND 523-527"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Marsh E.N.",
+          "Leadlay P.F."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "2569860"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1042/bj2600339"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "339",
+        "id": "2569860",
+        "journal": "Biochem. J.",
+        "lastPage": "343",
+        "publicationDate": "1989",
+        "title": "Methylmalonyl-CoA mutase from Propionibacterium shermanii. Evidence for the presence of two masked cysteine residues.",
+        "volume": "260"
+      },
+      "referenceComments": [
+        {
+          "type": "STRAIN",
+          "value": "NCIMB 9885"
+        }
+      ],
+      "referenceNumber": 2,
+      "referencePositions": [
+        "PROTEIN SEQUENCE OF 515-518"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Mancia F.",
+          "Keep N.H.",
+          "Nakagawa A.",
+          "Leadlay P.F.",
+          "McSweeney S.",
+          "Rasmussen B.",
+          "Bosecke P.",
+          "Diat O.",
+          "Evans P.R."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "8805541"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1016/s0969-2126(96)00037-8"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "339",
+        "id": "8805541",
+        "journal": "Structure",
+        "lastPage": "350",
+        "publicationDate": "1996",
+        "title": "How coenzyme B12 radicals are generated: the crystal structure of methylmalonyl-coenzyme A mutase at 2-A resolution.",
+        "volume": "4"
+      },
+      "referenceComments": [
+        {
+          "type": "STRAIN",
+          "value": "NCIMB 9885"
+        }
+      ],
+      "referenceNumber": 3,
+      "referencePositions": [
+        "X-RAY CRYSTALLOGRAPHY (2.0 ANGSTROMS)"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Mancia F.",
+          "Evans P.R."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "9655823"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1016/s0969-2126(98)00073-2"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "711",
+        "id": "9655823",
+        "journal": "Structure",
+        "lastPage": "720",
+        "publicationDate": "1998",
+        "title": "Conformational changes on substrate binding to methylmalonyl CoA mutase and new insights into the free radical mechanism.",
+        "volume": "6"
+      },
+      "referenceComments": [
+        {
+          "type": "STRAIN",
+          "value": "NCIMB 9885"
+        }
+      ],
+      "referenceNumber": 4,
+      "referencePositions": [
+        "X-RAY CRYSTALLOGRAPHY (2.5 ANGSTROMS)"
+      ]
+    }
+  ],
+  "sequence": {
+    "crc64": "F44C708AA8D47075",
+    "length": 638,
+    "md5": "BE78FF95FD16E1D9D4CA9D563D6289E8",
+    "molWeight": 69464,
+    "value": "MSSTDQGTNPADTDDLTPTTLSLAGDFPKATEEQWEREVEKVLNRGRPPEKQLTFAECLKRLTVHTVDGIDIVPMYRPKDAPKKLGYPGVAPFTRGTTVRNGDMDAWDVRALHEDPDEKFTRKAILEGLERGVTSLLLRVDPDAIAPEHLDEVLSDVLLEMTKVEVFSRYDQGAAAEALVSVYERSDKPAKDLALNLGLDPIAFAALQGTEPDLTVLGDWVRRLAKFSPDSRAVTIDANIYHNAGAGDVAELAWALATGAEYVRALVEQGFTATEAFDTINFRVTATHDQFLTIARLRALREAWARIGEVFGVDEDKRGARQNAITSWRDVTREDPYVNILRGSIATFSASVGGAESITTLPFTQALGLPEDDFPLRIARNTGIVLAEEVNIGRVNDPAGGSYYVESLTRSLADAAWKEFQEVEKLGGMSKAVMTEHVTKVLDACNAERAKRLANRKQPITAVSEFPMIGARSIETKPFPAAPARKGLAWHRDSEVFEQLMDRSTSVSERPKVFLACLGTRRDFGGREGFSSPVWHIAGIDTPQVEGGTTAEIVEAFKKSGAQVADLCSSAKVYAQQGLEVAKALKAAGAKALYLSGAFKEFGDDAAEAEKLIDGRLFMGMDVVDTLSSTLDILGVAK"
+  },
+  "uniProtKBCrossReferences": [
+    {
+      "database": "EMBL",
+      "id": "X14965",
+      "properties": [
+        {
+          "key": "ProteinId",
+          "value": "CAA33089.1"
+        },
+        {
+          "key": "Status",
+          "value": "-"
+        },
+        {
+          "key": "MoleculeType",
+          "value": "Genomic_DNA"
+        }
+      ]
+    },
+    {
+      "database": "PIR",
+      "id": "S04640",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "S04640"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1E1C",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.62 A"
+        },
+        {
+          "key": "Chains",
+          "value": "B/D=2-638"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1REQ",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.00 A"
+        },
+        {
+          "key": "Chains",
+          "value": "B/D=2-638"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "2REQ",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.50 A"
+        },
+        {
+          "key": "Chains",
+          "value": "B/D=2-638"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "3REQ",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.70 A"
+        },
+        {
+          "key": "Chains",
+          "value": "B=2-638"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "4REQ",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.20 A"
+        },
+        {
+          "key": "Chains",
+          "value": "B/D=2-638"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "5REQ",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.20 A"
+        },
+        {
+          "key": "Chains",
+          "value": "B/D=2-638"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "6REQ",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.20 A"
+        },
+        {
+          "key": "Chains",
+          "value": "B/D=2-638"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "7REQ",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.20 A"
+        },
+        {
+          "key": "Chains",
+          "value": "B/D=2-638"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1E1C",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1REQ",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "2REQ",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "3REQ",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "4REQ",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "5REQ",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "6REQ",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "7REQ",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "AlphaFoldDB",
+      "id": "P11652",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "SMR",
+      "id": "P11652",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "DIP",
+      "id": "DIP-6149N",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "IntAct",
+      "id": "P11652",
+      "properties": [
+        {
+          "key": "Interactions",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "MINT",
+      "id": "P11652",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "BioCyc",
+      "id": "MetaCyc:MONOMER-13076",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "BRENDA",
+      "id": "5.4.99.2",
+      "properties": [
+        {
+          "key": "OrganismId",
+          "value": "5032"
+        }
+      ]
+    },
+    {
+      "database": "SABIO-RK",
+      "id": "P11652",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "UniPathway",
+      "id": "UPA00945",
+      "properties": [
+        {
+          "key": "RectionId",
+          "value": "UER00910"
+        }
+      ]
+    },
+    {
+      "database": "EvolutionaryTrace",
+      "id": "P11652",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "id": "GO:0005737",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "C:cytoplasm"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IEA:TreeGrafter"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "id": "GO:0031419",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "F:cobalamin binding"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IEA:UniProtKB-KW"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "id": "GO:0046872",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "F:metal ion binding"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IEA:InterPro"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "id": "GO:0004494",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "F:methylmalonyl-CoA mutase activity"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IEA:UniProtKB-EC"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "id": "GO:0019652",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "P:L-alanine fermentation to propanoate and acetate"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IEA:InterPro"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "id": "GO:0019678",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "P:propionate metabolic process, methylmalonyl pathway"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IEA:TreeGrafter"
+        }
+      ]
+    },
+    {
+      "database": "CDD",
+      "id": "cd03677",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "MM_CoA_mutase_beta"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "Gene3D",
+      "id": "1.10.196.20",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "-"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "Gene3D",
+      "id": "3.40.50.280",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Cobalamin-binding domain"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "Gene3D",
+      "id": "3.20.20.240",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Methylmalonyl-CoA mutase"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR016176",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Cbl-dep_enz_cat"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR036724",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Cobalamin-bd_sf"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR024067",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Me-malonyl-CoA_mutase_sm_su_N"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR006099",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "MeMalonylCoA_mutase_a/b_cat"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR058549",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "MeMalonylCoA_mutase_a/b_site"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR004608",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "MMCoA_mutase_b"
+        }
+      ]
+    },
+    {
+      "database": "NCBIfam",
+      "id": "TIGR00642",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "mmCoA_mut_beta"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PANTHER",
+      "id": "PTHR48101:SF4",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "METHYLMALONYL-COA MUTASE, MITOCHONDRIAL"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PANTHER",
+      "id": "PTHR48101",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "METHYLMALONYL-COA MUTASE, MITOCHONDRIAL-RELATED"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "Pfam",
+      "id": "PF01642",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "MM_CoA_mutase"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "SUPFAM",
+      "id": "SSF52242",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Cobalamin (vitamin B12)-binding domain"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "SUPFAM",
+      "id": "SSF51703",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Cobalamin (vitamin B12)-dependent enzymes"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PROSITE",
+      "id": "PS00544",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "METMALONYL_COA_MUTASE"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    }
+  ],
+  "uniProtkbId": "MUTA_PROFR"
+}

@@ -140,7 +140,14 @@ handles, representation pressures, compute ceilings, stop conditions, and the
 candidate-only TEM-1 nitrocefin assay lane are defined in
 `docs/ATLAS3_SELECTION.md` and machine-enforced by
 `data/atlas/atlas3_selection.json`. This freezes selection before compilation;
-it does not mark the three biological records complete.
+it did not mark the three biological records complete.
+
+Local checkpoint reached 2026-07-13: the 13 redistributable source snapshots,
+five reference-only literature handles, `mechanism-record.v2`, nine typed
+objects, explicit MnSOD source abstention, site-numbering crosswalks, and the
+SQLite truth-boundary query are compiled and reproduce locally. See
+`docs/ATLAS3_KERNEL.md`. The Days 3â€“7 exit gate remains open until the packaged
+command passes the published Windows/Linux CI matrix.
 
 Deliverables:
 

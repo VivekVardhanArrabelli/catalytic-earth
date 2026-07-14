@@ -16,8 +16,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
+from catalytic_earth.atlas_kernel import validate_atlas3_kernel  # noqa: E402
 from catalytic_earth.atlas_selection import validate_atlas3_selection  # noqa: E402
-from catalytic_earth.core_cli import verified_golden_result  # noqa: E402
+from catalytic_earth.atlas_sources import validate_atlas3_source_manifest  # noqa: E402
+from catalytic_earth.core_cli import verified_atlas3_result, verified_golden_result  # noqa: E402
 from catalytic_earth.truth_guard import validate_truth_governance  # noqa: E402
 
 
@@ -56,6 +58,7 @@ def _validate_active_paths() -> None:
     docs = [
         ROOT / "README.md",
         ROOT / "docs/ARCHITECTURE.md",
+        ROOT / "docs/ATLAS3_KERNEL.md",
         ROOT / "docs/ATLAS3_SELECTION.md",
         ROOT / "docs/CORE_REPRODUCTION.md",
         ROOT / "docs/EVALUATION_MEMORY.md",
@@ -92,6 +95,7 @@ def _validate_markdown_links() -> None:
         "CLAIMS.md",
         "ERRATA.md",
         "docs/ARCHITECTURE.md",
+        "docs/ATLAS3_KERNEL.md",
         "docs/ATLAS3_SELECTION.md",
         "docs/ATLAS_TRUTH_POLICY.md",
         "docs/CORE_REPRODUCTION.md",
@@ -124,6 +128,10 @@ def _validate_json_surfaces(*, include_release_manifest: bool) -> None:
         "data/governance/historical_lineage_quarantine.json",
         "data/governance/test_baseline.json",
         "data/atlas/atlas3_selection.json",
+        "data/atlas/atlas3/compilation_spec.json",
+        "data/atlas/atlas3/kernel.json",
+        "data/atlas/atlas3/queries/case_truth_summary_expected.json",
+        "data/atlas/atlas3/source_manifest.json",
         "environments/core.json",
         "environments/ml-test.json",
         "environments/scientific-tools.json",
@@ -220,6 +228,22 @@ def main() -> int:
         (ROOT / "data/atlas/atlas3_selection.json").read_text(encoding="utf-8")
     )
     validate_atlas3_selection(atlas3)
+    atlas3_sources = json.loads(
+        (ROOT / "data/atlas/atlas3/source_manifest.json").read_text(encoding="utf-8")
+    )
+    validate_atlas3_source_manifest(
+        atlas3_sources,
+        repo_root=ROOT,
+        selection=atlas3,
+    )
+    atlas3_kernel = json.loads(
+        (ROOT / "data/atlas/atlas3/kernel.json").read_text(encoding="utf-8")
+    )
+    validate_atlas3_kernel(
+        atlas3_kernel,
+        selection=atlas3,
+        source_manifest=atlas3_sources,
+    )
     _validate_legal_surfaces()
     _validate_active_paths()
     _validate_markdown_links()
@@ -227,9 +251,12 @@ def main() -> int:
     _validate_test_baseline()
     _validate_p0_closure()
     verified_golden_result()
+    verified_atlas3_result()
     _run("scripts/build_exposure_row_ledger.py", "--check")
     _run("scripts/build_historical_lineage_quarantine.py", "--check")
     _run("scripts/validate_atlas3_selection.py")
+    _run("scripts/build_atlas3_sources.py")
+    _run("scripts/build_atlas3_kernel.py", "--check")
     if os.environ.get("CE_PARTIAL_CLONE") == "1":
         _run("scripts/build_live_artifact_manifest.py", "--check", "--index-only")
     else:
