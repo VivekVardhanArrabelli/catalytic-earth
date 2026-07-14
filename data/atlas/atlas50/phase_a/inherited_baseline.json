@@ -1,0 +1,78 @@
+{
+  "schema_version": "catalytic-earth.atlas50-inherited-baseline.v1",
+  "baseline_commit": "89498a7b0e6e5ea419654bb8ff563512ab36bb89",
+  "status": "immutable_inherited_byte_baseline",
+  "hash_rule": "Git object SHA-1 plus LF-normalized content-set SHA-256 for text and raw SHA-256 for binary files",
+  "scopes": [
+    {
+      "path": "data/atlas/atlas3",
+      "kind": "tree",
+      "git_object_sha1": "35b06d91fb235ad8368ccc48731f8bc857bf360f",
+      "file_count": 19,
+      "content_set_sha256": "be8d8fef8b2dca98fb081e59eaf3156107afd02702a4a1b0414fa78e5b7c165b"
+    },
+    {
+      "path": "data/atlas/atlas10",
+      "kind": "tree",
+      "git_object_sha1": "933681cd1efd0de068a279469df660a790842cea",
+      "file_count": 62,
+      "content_set_sha256": "40c569bd8b1ebf90661c4369429356c752bc25a945eabdcb94803df7aefd6311"
+    },
+    {
+      "path": "data/atlas/atlas3_selection.json",
+      "kind": "blob",
+      "git_object_sha1": "2fe1b72aae68ee7bfb0569b43bec83198096624b",
+      "file_count": 1,
+      "content_set_sha256": "ed60154d43df3a99ad35f53a5f98abd12b065f72eb9a95c6457a98344367a8f4"
+    },
+    {
+      "path": "data/atlas/atlas10_selection.json",
+      "kind": "blob",
+      "git_object_sha1": "4c3e9af70d9c5394b17c20824cae125ad908e08b",
+      "file_count": 1,
+      "content_set_sha256": "d2b96da0ed8851944a9df8ced4a226e615c2bc2717f26a297f2e6638e7b9a1cf"
+    },
+    {
+      "path": "src/catalytic_earth/atlas_data",
+      "kind": "tree",
+      "git_object_sha1": "0edd077e49c71ff11d8f9b7a9902456e8b901e1f",
+      "file_count": 9,
+      "content_set_sha256": "62c163eab8fa541d3684b22dcc75fb8e0b9208c95c0ef21c3aaf9b40ebb13318"
+    },
+    {
+      "path": "docs/ATLAS3_KERNEL.md",
+      "kind": "blob",
+      "git_object_sha1": "54fe412f8d3fbf6c8eb6a0a730f9829b30d774e0",
+      "file_count": 1,
+      "content_set_sha256": "06a6b97cf014bd3437f530da86eded67abbb130cb9c91af5061943029a4baee0"
+    },
+    {
+      "path": "docs/ATLAS3_SELECTION.md",
+      "kind": "blob",
+      "git_object_sha1": "4fd0157b64832477c91342c940096af692ee219c",
+      "file_count": 1,
+      "content_set_sha256": "06e1d116238b5b2d85360c79e92ff237f437a5096b1c5f9cd4b8ffdfa14dc403"
+    },
+    {
+      "path": "docs/ATLAS10_KERNEL.md",
+      "kind": "blob",
+      "git_object_sha1": "4014ffa7e85945e9bd5faf712c9430fe54e21351",
+      "file_count": 1,
+      "content_set_sha256": "08f433656eaa6fbfa72b6ea06c254f93e1e88dcfc51d990a753ab887557fe7c8"
+    },
+    {
+      "path": "docs/ATLAS10_SELECTION.md",
+      "kind": "blob",
+      "git_object_sha1": "42c61c8060fd233021d2e14633029ca13c560609",
+      "file_count": 1,
+      "content_set_sha256": "a9628af9a9efab45c5b1a274ca3e4a0935091f3d4417438c500fcad912f5d4b0"
+    }
+  ],
+  "protected_registry_lf_sha256": {
+    "data/registries/curated_mechanism_labels.json": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+    "data/registries/external_bronze_labels.json": "ae8e4b317e4fe49b99602c22ea154fa059edd73e7d066bc3422c54ea9198e585",
+    "data/registries/mechanism_fingerprints.json": "f3f57858f041447f474f0cb849e283528521243f1439ba918264286df93cb75a",
+    "data/registries/mechanism_ontology.json": "bbacf9ef24fb2e5eb229cdba754ec0a3ba90a1d0de08c8afc0016924c5deff03"
+  },
+  "claim_boundary": "This manifest proves inherited repository objects and protected registries are unchanged from the Phase A baseline; it does not validate their scientific content."
+}

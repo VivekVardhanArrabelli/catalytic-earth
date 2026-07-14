@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://catalytic.earth/schemas/atlas50-crosswalk-draft-v1.schema.json",
+  "title": "Catalytic Earth Atlas-50 Phase A crosswalk draft v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "draft_id",
+    "status",
+    "baseline_commit",
+    "generated_from",
+    "review_contract",
+    "classification_vocabulary",
+    "classification_counts",
+    "required_source_keys",
+    "row_count",
+    "rows",
+    "claim_boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "catalytic-earth.atlas50-crosswalk-draft.v1"},
+    "draft_id": {"type": "string", "minLength": 1},
+    "status": {"const": "machine_draft_unreviewed"},
+    "baseline_commit": {"const": "89498a7b0e6e5ea419654bb8ff563512ab36bb89"},
+    "generated_from": {"type": "object"},
+    "review_contract": {
+      "type": "object",
+      "required": ["default_status", "upstream_curation_counts_as_independent_review", "machine_draft_counts_as_reviewed_crosswalk", "outreach_or_expert_agreement_claimed"],
+      "properties": {
+        "default_status": {"const": "unreviewed"},
+        "upstream_curation_counts_as_independent_review": {"const": false},
+        "machine_draft_counts_as_reviewed_crosswalk": {"const": false},
+        "outreach_or_expert_agreement_claimed": {"const": false}
+      },
+      "additionalProperties": false
+    },
+    "classification_vocabulary": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/classification"}
+    },
+    "classification_counts": {"type": "object"},
+    "required_source_keys": {
+      "type": "array",
+      "minItems": 13,
+      "maxItems": 13,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "row_count": {"const": 57},
+    "rows": {
+      "type": "array",
+      "minItems": 57,
+      "maxItems": 57,
+      "items": {"$ref": "#/$defs/row"}
+    },
+    "claim_boundary": {"$ref": "#/$defs/nonempty_string_array"}
+  },
+  "$defs": {
+    "classification": {
+      "enum": ["exact_duplicate", "aggregation", "specialization", "interoperability_bridge", "genuinely_missing_concept", "unsupported_or_ill_defined"]
+    },
+    "nonempty_string_array": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["record_id", "role"],
+      "properties": {
+        "record_id": {"type": "string", "minLength": 1},
+        "role": {"type": "string", "minLength": 1}
+      }
+    },
+    "source_link": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "records", "uris", "lookup_keys", "gap_reason", "mapping_assertion"],
+      "properties": {
+        "status": {"type": "string", "minLength": 1},
+        "records": {"type": "array", "items": {"$ref": "#/$defs/record"}},
+        "uris": {"type": "array", "items": {"type": "string", "format": "uri"}, "uniqueItems": true},
+        "lookup_keys": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "gap_reason": {"type": ["string", "null"]},
+        "mapping_assertion": {"const": "none_unreviewed_candidate_only"}
+      }
+    },
+    "source_links": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mcsa", "mcsa_arrow_environments", "rhea", "chebi", "ec_blast", "enzymemap", "mechfind", "ezmechanism", "enzymm", "ec", "interpro", "pfam", "cath"],
+      "properties": {
+        "mcsa": {"$ref": "#/$defs/source_link"},
+        "mcsa_arrow_environments": {"$ref": "#/$defs/source_link"},
+        "rhea": {"$ref": "#/$defs/source_link"},
+        "chebi": {"$ref": "#/$defs/source_link"},
+        "ec_blast": {"$ref": "#/$defs/source_link"},
+        "enzymemap": {"$ref": "#/$defs/source_link"},
+        "mechfind": {"$ref": "#/$defs/source_link"},
+        "ezmechanism": {"$ref": "#/$defs/source_link"},
+        "enzymm": {"$ref": "#/$defs/source_link"},
+        "ec": {"$ref": "#/$defs/source_link"},
+        "interpro": {"$ref": "#/$defs/source_link"},
+        "pfam": {"$ref": "#/$defs/source_link"},
+        "cath": {"$ref": "#/$defs/source_link"}
+      }
+    },
+    "row": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ordinal", "fingerprint_id", "fingerprint_name", "classification", "classification_rationale", "uncertainty", "review_status", "reviewer", "reviewed_at", "source_links"],
+      "properties": {
+        "ordinal": {"type": "integer", "minimum": 1, "maximum": 57},
+        "fingerprint_id": {"type": "string", "minLength": 1},
+        "fingerprint_name": {"type": "string", "minLength": 1},
+        "classification": {"$ref": "#/$defs/classification"},
+        "classification_rationale": {"type": "string", "minLength": 1},
+        "uncertainty": {"type": "string", "minLength": 1},
+        "review_status": {"const": "unreviewed"},
+        "reviewer": {"type": "null"},
+        "reviewed_at": {"type": "null"},
+        "source_links": {"$ref": "#/$defs/source_links"}
+      }
+    }
+  }
+}

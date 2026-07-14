@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://catalytic.earth/schemas/atlas50-candidate-matrix-v1.schema.json",
+  "title": "Catalytic Earth Atlas-50 Phase A candidate matrix v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "matrix_id", "status", "baseline_commit", "candidate_count", "proposed_include_count", "excluded_blocked_count", "mechanisms_compiled", "gpu_hours", "source_response", "gate_order", "pressure_counts", "rows", "claim_boundary"],
+  "properties": {
+    "schema_version": {"const": "catalytic-earth.atlas50-candidate-matrix.v1"},
+    "matrix_id": {"type": "string", "minLength": 1},
+    "status": {"const": "precompilation_feasibility_projection_unreviewed"},
+    "baseline_commit": {"const": "89498a7b0e6e5ea419654bb8ff563512ab36bb89"},
+    "candidate_count": {"const": 40},
+    "proposed_include_count": {"type": "integer", "minimum": 0, "maximum": 40},
+    "excluded_blocked_count": {"type": "integer", "minimum": 0, "maximum": 40},
+    "mechanisms_compiled": {"const": 0},
+    "gpu_hours": {"const": 0},
+    "source_response": {"type": "object"},
+    "gate_order": {"const": ["source", "diversity", "rights", "provenance", "representation"]},
+    "pressure_counts": {"type": "object"},
+    "rows": {"type": "array", "minItems": 40, "maxItems": 40, "items": {"$ref": "#/$defs/row"}},
+    "claim_boundary": {"$ref": "#/$defs/nonempty_string_array"}
+  },
+  "$defs": {
+    "nonempty_string_array": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "gate": {
+      "type": "object",
+      "required": ["outcome", "reason"],
+      "properties": {
+        "outcome": {"enum": ["pass", "fail"]},
+        "reason": {"type": "string", "minLength": 1},
+        "blocker_id": {"type": ["string", "null"]}
+      }
+    },
+    "gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "diversity", "rights", "provenance", "representation"],
+      "properties": {
+        "source": {"$ref": "#/$defs/gate"},
+        "diversity": {"$ref": "#/$defs/gate"},
+        "rights": {"$ref": "#/$defs/gate"},
+        "provenance": {"$ref": "#/$defs/gate"},
+        "representation": {"$ref": "#/$defs/gate"}
+      }
+    },
+    "row": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ordinal", "candidate_id", "label", "decision", "review_status", "inclusion_reasons", "exclusion_reasons", "source_identity", "source_availability", "licensing", "representation_pressures", "expected_object_tiers", "phase_a_compute_ceiling", "stop_conditions", "gates", "mechanism_compiled", "independent_review_claimed", "uncertainties"],
+      "properties": {
+        "ordinal": {"type": "integer", "minimum": 1, "maximum": 40},
+        "candidate_id": {"type": "string", "pattern": "^atlas50\\.candidate\\.m[0-9]{4}$"},
+        "label": {"type": "string", "minLength": 1},
+        "decision": {"enum": ["propose_include", "exclude_blocked"]},
+        "review_status": {"const": "unreviewed"},
+        "inclusion_reasons": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "exclusion_reasons": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "source_identity": {"type": "object"},
+        "source_availability": {"type": "object"},
+        "licensing": {"type": "object"},
+        "representation_pressures": {"$ref": "#/$defs/nonempty_string_array"},
+        "expected_object_tiers": {"type": "object"},
+        "phase_a_compute_ceiling": {
+          "type": "object",
+          "required": ["cpu_seconds_max_per_deterministic_row_build", "gpu_hours_max", "external_requests_max", "mechanism_compilation_permitted"],
+          "properties": {
+            "cpu_seconds_max_per_deterministic_row_build": {"type": "number", "minimum": 0},
+            "gpu_hours_max": {"const": 0},
+            "external_requests_max": {"const": 0},
+            "mechanism_compilation_permitted": {"const": false}
+          },
+          "additionalProperties": false
+        },
+        "stop_conditions": {"$ref": "#/$defs/nonempty_string_array"},
+        "gates": {"$ref": "#/$defs/gates"},
+        "mechanism_compiled": {"const": false},
+        "independent_review_claimed": {"const": false},
+        "uncertainties": {"$ref": "#/$defs/nonempty_string_array"}
+      }
+    }
+  }
+}

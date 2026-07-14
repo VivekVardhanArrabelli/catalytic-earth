@@ -1,0 +1,472 @@
+{
+  "schema_version": "catalytic-earth.atlas50-crosswalk-spec.v1",
+  "spec_id": "atlas50.phase-a.fingerprint-crosswalk.2026-07-14",
+  "baseline_commit": "89498a7b0e6e5ea419654bb8ff563512ab36bb89",
+  "status": "machine_draft_input_not_reviewed",
+  "classification_vocabulary": [
+    "exact_duplicate",
+    "aggregation",
+    "specialization",
+    "interoperability_bridge",
+    "genuinely_missing_concept",
+    "unsupported_or_ill_defined"
+  ],
+  "decisions": [
+    {
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": ["M0173", "M0723"],
+      "candidate_ec_numbers": ["3.4.21.4", "3.4.21.62"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "Two inherited Atlas-10 serine-protease entries are candidate examples, while the fingerprint also names esterases, lipases, and cutinases; no family-wide equivalence is asserted."
+    },
+    {
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The label spans phosphatases, amidohydrolases, and beta-lactamases, so a single source mechanism would be under-scoped."
+    },
+    {
+      "fingerprint_id": "metallopeptidase",
+      "classification": "specialization",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "This is a peptidase-focused specialization within the broader metal-hydrolase surface; no representative entry was adjudicated."
+    },
+    {
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "classification": "specialization",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The fingerprint narrows metal hydrolysis toward phosphodiesters and nucleic-acid substrates but still mixes several reaction contexts."
+    },
+    {
+      "fingerprint_id": "metallophosphomonoesterase",
+      "classification": "specialization",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The monoester scope is narrower than generic metal hydrolysis, but the seed set includes mechanistically distinct phosphatase families."
+    },
+    {
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The label combines beta-lactam hydrolysis, deamination, and cyclic-amide hydrolysis without an adjudicated shared mechanism object."
+    },
+    {
+      "fingerprint_id": "plp_dependent_enzyme",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": ["M0049"],
+      "candidate_ec_numbers": ["4.1.1.22"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "M0049 is a source candidate for one PLP decarboxylation context; the fingerprint also spans transfer, racemization, and other PLP chemistries."
+    },
+    {
+      "fingerprint_id": "radical_sam_enzyme",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": ["M0767"],
+      "candidate_ec_numbers": ["2.8.1.6"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "M0767 is a non-detailed radical-SAM source candidate, while the fingerprint spans many distinct radical outcomes and cluster contexts."
+    },
+    {
+      "fingerprint_id": "cobalamin_radical_rearrangement",
+      "classification": "specialization",
+      "candidate_mcsa_ids": ["M0062"],
+      "candidate_ec_numbers": ["5.4.99.2"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "Inherited Atlas-3 M0062 is a candidate example for an AdoCbl rearrangement; broader substrate and cofactor-state applicability remains unreviewed."
+    },
+    {
+      "fingerprint_id": "flavin_monooxygenase",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": ["M0132"],
+      "candidate_ec_numbers": ["1.14.14.3"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "M0132 supplies one source candidate, but the fingerprint aggregates several flavin oxygenation strategies and substrate classes."
+    },
+    {
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": ["M0139"],
+      "candidate_ec_numbers": ["1.17.1.4"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "M0139 is a multi-cofactor oxidoreductase candidate, not evidence that the broad flavin dehydrogenase/reductase bucket is one mechanism."
+    },
+    {
+      "fingerprint_id": "heme_peroxidase_oxidase",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": ["M0133"],
+      "candidate_ec_numbers": ["1.14.15.1"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "M0133 is a heme monooxygenase candidate within a label that also names peroxidases and oxidases; equivalence is explicitly unresolved."
+    },
+    {
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "classification": "specialization",
+      "candidate_mcsa_ids": ["M0133"],
+      "candidate_ec_numbers": ["1.14.15.1"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "M0133 is a source candidate for P450cam; the fingerprint specializes the broader heme-oxidase bucket but still spans many P450 contexts."
+    },
+    {
+      "fingerprint_id": "non_heme_iron_2og_dioxygenase",
+      "classification": "specialization",
+      "candidate_mcsa_ids": ["M0129"],
+      "candidate_ec_numbers": ["1.14.11.17"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "M0129 is a taurine-dioxygenase candidate; transfer to the full Fe(II)/2-oxoglutarate space requires applicability review."
+    },
+    {
+      "fingerprint_id": "coa_acyltransferase",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The seed set spans multiple acyl-transfer architectures and acceptor types, with no adjudicated common source mechanism."
+    },
+    {
+      "fingerprint_id": "cofactor_independent_isomerase",
+      "classification": "unsupported_or_ill_defined",
+      "candidate_mcsa_ids": ["M0081"],
+      "candidate_ec_numbers": ["5.4.99.5"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "M0081 is one cofactor-independent rearrangement candidate, but the negative definition by cofactor absence does not specify a coherent mechanism class."
+    },
+    {
+      "fingerprint_id": "molybdopterin_oxidoreductase",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": ["M0107", "M0121", "M0139"],
+      "candidate_ec_numbers": ["1.2.5.3", "1.8.3.1", "1.17.1.4"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "Three source candidates expose distinct electron acceptors, auxiliary cofactors, and reaction directions under the same broad Mo-cofactor label."
+    },
+    {
+      "fingerprint_id": "copper_oxidoreductase",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": ["M0135"],
+      "candidate_ec_numbers": ["1.14.17.3"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "M0135 is a copper-dependent monooxygenase candidate, while the fingerprint includes multicopper oxidases and copper amine chemistry."
+    },
+    {
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": ["M0187"],
+      "candidate_ec_numbers": ["5.1.2.2"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "Inherited Atlas-10 M0187 is a metal-dependent racemase candidate; the fingerprint also names non-metal and macromolecular epimerization contexts."
+    },
+    {
+      "fingerprint_id": "atp_amide_ligase",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The label spans multiple ATP activation chemistries and oligomeric architectures, so no single mechanism object is an adequate match."
+    },
+    {
+      "fingerprint_id": "class_ii_metal_aldolase",
+      "classification": "specialization",
+      "candidate_mcsa_ids": ["M0052"],
+      "candidate_ec_numbers": ["4.1.2.13"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "M0052 is a class-II fructose-bisphosphate aldolase candidate and is deliberately paired with M0222 to retain same-EC mechanistic alternatives."
+    },
+    {
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": ["M0216"],
+      "candidate_ec_numbers": ["4.2.1.1"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "Inherited Atlas-10 M0216 is a carbonic-anhydrase candidate, while the label aggregates other zinc-dependent lyase and hydratase contexts."
+    },
+    {
+      "fingerprint_id": "biotin_dependent_carboxylase",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The fingerprint groups multi-component and single-chain biotin carboxylation systems without a reviewed component-state mapping."
+    },
+    {
+      "fingerprint_id": "deoxynucleoside_kinase",
+      "classification": "specialization",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "This substrate-focused kinase specialization has no adjudicated source entry in the bounded draft."
+    },
+    {
+      "fingerprint_id": "nucleoside_diphosphate_kinase",
+      "classification": "specialization",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The family is narrower than a general kinase fingerprint, but no exact source-object equivalence was established during Phase A."
+    },
+    {
+      "fingerprint_id": "askha_sugar_acetate_kinase",
+      "classification": "interoperability_bridge",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The fingerprint primarily bridges an architecture/fold grouping to multiple reaction labels; it is not itself a reviewed mechanism."
+    },
+    {
+      "fingerprint_id": "ghmp_small_molecule_kinase",
+      "classification": "interoperability_bridge",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The GHMP grouping is useful for cross-source family lookup but does not select one substrate-specific reaction or mechanism."
+    },
+    {
+      "fingerprint_id": "pfka_phosphofructokinase",
+      "classification": "specialization",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "This is a reaction- and fold-focused specialization; no direct source handle was frozen in Phase A."
+    },
+    {
+      "fingerprint_id": "pfkb_ribokinase_family",
+      "classification": "interoperability_bridge",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The PfkB/ribokinase family links fold/family annotations to several EC reactions and therefore behaves as a bridge rather than one mechanism."
+    },
+    {
+      "fingerprint_id": "thiamine_diphosphate_enzyme",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": ["M0106", "M0219"],
+      "candidate_ec_numbers": ["1.2.4.1", "2.2.1.1"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "M0106 and M0219 are distinct ThDP source candidates; their coexistence demonstrates that the cofactor label aggregates multiple transformations."
+    },
+    {
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": ["M0007", "M0139"],
+      "candidate_ec_numbers": ["1.1.1.42", "1.17.1.4"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The cofactor-oriented fingerprint spans many substrates and auxiliary cofactors; two source candidates are lookup examples only."
+    },
+    {
+      "fingerprint_id": "glycosyltransferase",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": ["M0970"],
+      "candidate_ec_numbers": ["2.4.1.129"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "M0970 is a polymerizing glycosyltransferase candidate, while the fingerprint spans many donors, acceptors, and processivity regimes."
+    },
+    {
+      "fingerprint_id": "glycoside_hydrolase",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": ["M0203"],
+      "candidate_ec_numbers": ["3.2.1.17"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "Inherited Atlas-10 M0203 carries alternatives for one glycoside hydrolase; the fingerprint spans retaining, inverting, and substrate-specific contexts."
+    },
+    {
+      "fingerprint_id": "sam_methyltransferase",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The fingerprint aggregates transfers to different atoms and macromolecular or small-molecule acceptors; no direct candidate was adjudicated."
+    },
+    {
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "classification": "specialization",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": ["1.15.1.1"],
+      "counterexample_mcsa_ids": ["M0138"],
+      "basis_note": "Inherited Atlas-3 proves M0138 is Cu/Zn SOD and counterevidence only; no Mn/Fe M-CSA mechanism is transferred into this row."
+    },
+    {
+      "fingerprint_id": "terpene_cyclase_synthase",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The label groups ionization-initiated and protonation-initiated cyclizations across distinct substrates without one adjudicated source object."
+    },
+    {
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "classification": "interoperability_bridge",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The fingerprint bridges protein-family/fold annotations to substrate-residue classes and does not by itself fix a protein-specific catalytic state."
+    },
+    {
+      "fingerprint_id": "had_like_phosphatase",
+      "classification": "specialization",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The Asp-phosphoenzyme scope is narrower than general phosphatase labels, but no row-level source match was retained in the bounded acquisition."
+    },
+    {
+      "fingerprint_id": "aldehyde_dehydrogenase",
+      "classification": "specialization",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The fingerprint is substrate-class specific, while phosphorylation-coupled and non-phosphorylating variants make exact equivalence unsafe without review."
+    },
+    {
+      "fingerprint_id": "alpha_beta_hydrolase_esterase_lipase",
+      "classification": "specialization",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "This fold/family specialization overlaps the broader Ser-His-Asp/Glu label but does not establish shared substrate applicability or exact steps."
+    },
+    {
+      "fingerprint_id": "ser_thr_protein_phosphatase",
+      "classification": "specialization",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The protein-substrate specialization remains broader than any one PPP, PPM, or calcineurin mechanism and has no adjudicated direct handle."
+    },
+    {
+      "fingerprint_id": "n_ribosyl_hydrolase",
+      "classification": "specialization",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The bond-type specialization does not resolve substrate, leaving-group, or protonation applicability across the seed families."
+    },
+    {
+      "fingerprint_id": "metal_independent_phosphodiesterase",
+      "classification": "unsupported_or_ill_defined",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The label is defined chiefly by absence of a metal and mixes cyclic-nucleotide and other phosphodiester contexts without a supported common mechanism."
+    },
+    {
+      "fingerprint_id": "aminoglycoside_phosphotransferase",
+      "classification": "specialization",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The antibiotic-substrate specialization is plausible as a family lane, but position specificity and family applicability remain unresolved."
+    },
+    {
+      "fingerprint_id": "serine_beta_lactamase",
+      "classification": "specialization",
+      "candidate_mcsa_ids": ["M0002"],
+      "candidate_ec_numbers": ["3.5.2.6"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "Inherited Atlas-3 M0002 is a TEM-1 candidate with an explicit alternative; transfer across serine beta-lactamase classes is not asserted."
+    },
+    {
+      "fingerprint_id": "short_chain_dehydrogenase_reductase",
+      "classification": "specialization",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The SDR family is narrower than the NAD(P) bucket but still spans distinct substrates and reaction directions without a frozen direct handle."
+    },
+    {
+      "fingerprint_id": "aldo_keto_reductase",
+      "classification": "specialization",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The AKR family specialization remains reaction- and substrate-ambiguous, and no representative source mechanism was adjudicated."
+    },
+    {
+      "fingerprint_id": "aminoglycoside_acetyltransferase",
+      "classification": "specialization",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The family lane is narrower than generic acyl transfer, but acceptor position and acetyltransferase architecture remain applicability gaps."
+    },
+    {
+      "fingerprint_id": "metallo_beta_lactamase",
+      "classification": "specialization",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": ["3.5.2.6"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "This metal-dependent beta-lactamase specialization shares an EC label with serine enzymes but must retain its distinct metal chemistry and class variability."
+    },
+    {
+      "fingerprint_id": "peroxiredoxin_thiol_peroxidase",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": ["M0851"],
+      "candidate_ec_numbers": ["1.11.1.9"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "M0851 is a non-detailed glutathione-peroxidase candidate; the fingerprint also names peroxiredoxin families with different resolving chemistry."
+    },
+    {
+      "fingerprint_id": "paps_sulfotransferase",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The PAPS donor is shared while acceptor type, topology, and substrate scope vary; no exact source mechanism was adjudicated."
+    },
+    {
+      "fingerprint_id": "glutathione_s_transferase",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The GST label covers many electrophiles, reaction outcomes, and classes, so the machine draft treats it as an aggregation."
+    },
+    {
+      "fingerprint_id": "aminoacyl_trna_synthetase",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "Class I, class II, editing, and amino-acid specificity make this a multi-mechanism aggregation rather than one transferable object."
+    },
+    {
+      "fingerprint_id": "acid_coa_ligase",
+      "classification": "specialization",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The acid-to-CoA activation lane is narrower than ATP-dependent ligases, but substrate range and domain architecture remain unresolved."
+    },
+    {
+      "fingerprint_id": "cysteine_protease",
+      "classification": "aggregation",
+      "candidate_mcsa_ids": ["M0174"],
+      "candidate_ec_numbers": ["3.4.22.2"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "M0174 is a papain candidate, while caspases, calpains, and deubiquitinases make the fingerprint a broader aggregation."
+    },
+    {
+      "fingerprint_id": "flavin_disulfide_reductase",
+      "classification": "specialization",
+      "candidate_mcsa_ids": [],
+      "candidate_ec_numbers": [],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The disulfide-reductase lane narrows the flavin redox bucket but still spans distinct electron donors, relay cysteines, and oligomeric contexts."
+    },
+    {
+      "fingerprint_id": "dihydrofolate_reductase",
+      "classification": "exact_duplicate",
+      "candidate_mcsa_ids": ["M0112"],
+      "candidate_ec_numbers": ["1.5.1.3"],
+      "counterexample_mcsa_ids": [],
+      "basis_note": "The narrow EC/family scope and M0112 make exact duplication a machine-draft candidate classification only; real review can still reject it."
+    }
+  ]
+}

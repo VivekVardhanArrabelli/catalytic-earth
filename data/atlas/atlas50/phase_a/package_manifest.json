@@ -1,0 +1,98 @@
+{
+  "artifact_count": 13,
+  "artifacts": [
+    {
+      "bytes": 7215,
+      "path": "data/atlas/atlas50/phase_a/job_ledger.json",
+      "role": "input_or_contract",
+      "sha256": "2ba821f1301bfb80c4c08e23c181612fe9812e43508a58684e4ff965e6afa2ce"
+    },
+    {
+      "bytes": 19969,
+      "path": "data/atlas/atlas50/phase_a/source_catalog.json",
+      "role": "input_or_contract",
+      "sha256": "79f702bad421c7cdb603d50c79f0ea672d7fc0820d6582d54b6e510b92b980e8"
+    },
+    {
+      "bytes": 22005,
+      "path": "data/atlas/atlas50/phase_a/crosswalk_spec.json",
+      "role": "input_or_contract",
+      "sha256": "dbb159b92ac35e2489a3f8e70794216146eab324dcc128a164115ff381a4b5d0"
+    },
+    {
+      "bytes": 27233,
+      "path": "data/atlas/atlas50/phase_a/candidate_spec.json",
+      "role": "input_or_contract",
+      "sha256": "a8900044fd1fd9e2e75eaf16c6c9e466721e0db697e463e967c5f7e8aff3f42a"
+    },
+    {
+      "bytes": 3404,
+      "path": "data/atlas/atlas50/phase_a/inherited_baseline.json",
+      "role": "input_or_contract",
+      "sha256": "ff3a95650a60c2ffb20265f7d329a2a97e8450534d4c144b2b5ed553a7e83124"
+    },
+    {
+      "bytes": 5193,
+      "path": "src/catalytic_earth/schemas/atlas50-crosswalk-draft-v1.schema.json",
+      "role": "input_or_contract",
+      "sha256": "7c2c5a7205b6483cbe0d25e7d1073b6c8ecc87b7fe65e05d0802850a7a88457f"
+    },
+    {
+      "bytes": 4378,
+      "path": "src/catalytic_earth/schemas/atlas50-candidate-matrix-v1.schema.json",
+      "role": "input_or_contract",
+      "sha256": "192c4fd087c3a123773ca825620aa79468d5998b20157ba57758d4b359b86aa2"
+    },
+    {
+      "bytes": 3311,
+      "path": "src/catalytic_earth/schemas/atlas50-proposal-v1.schema.json",
+      "role": "input_or_contract",
+      "sha256": "2c05e3717113a221e52de23f4d0cbbe836c4b769d2ff1194e557f294ab91c9af"
+    },
+    {
+      "bytes": 2126,
+      "path": "src/catalytic_earth/schemas/atlas50-blocker-report-v1.schema.json",
+      "role": "input_or_contract",
+      "sha256": "16d0d95526bbdb7f6765c03161ccac7a7f0b28745e468513cfdf883d10c07d4f"
+    },
+    {
+      "bytes": 403092,
+      "path": "data/atlas/atlas50/phase_a/crosswalk_draft.json",
+      "role": "deterministic_generated_output",
+      "sha256": "6c6abce06600556b32d9d0ba3042012737f8de7f8a5f3eb3a669ff73f34a5f41"
+    },
+    {
+      "bytes": 244588,
+      "path": "data/atlas/atlas50/phase_a/candidate_matrix.json",
+      "role": "deterministic_generated_output",
+      "sha256": "6740708d764eb84d7c1a8f83c98c9b90fa458974d9a28a6112accd7ed54346f9"
+    },
+    {
+      "bytes": 9134,
+      "path": "data/atlas/atlas50/phase_a/proposed_panel.json",
+      "role": "deterministic_generated_output",
+      "sha256": "2aa76eead9dd44bcb52c0cdacba6279990bd1b313bbd6c589909475b61b6b765"
+    },
+    {
+      "bytes": 3115,
+      "path": "data/atlas/atlas50/phase_a/blocker_report.json",
+      "role": "deterministic_generated_output",
+      "sha256": "9f2ec811e4694f438b1d607df1dab139bbf444ef035f06bc063df39eaec85b38"
+    }
+  ],
+  "baseline_commit": "89498a7b0e6e5ea419654bb8ff563512ab36bb89",
+  "governance": {
+    "candidate_rows": 40,
+    "compiled_follow_on_mechanisms": 0,
+    "crosswalk_rows": 57,
+    "gpu_hours": 0,
+    "open_blockers": 3,
+    "proposed_additions": 37,
+    "proposed_total": 47,
+    "reviewed_crosswalk_rows": 0
+  },
+  "package_id": "atlas50.phase-a.precompilation.2026-07-14",
+  "schema_version": "catalytic-earth.atlas50-phase-a-package-manifest.v1",
+  "self_hash_excluded": true,
+  "status": "deterministic_precompilation_package"
+}

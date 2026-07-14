@@ -1,0 +1,135 @@
+{
+  "schema_version": "catalytic-earth.atlas50-phase-a-job-ledger.v1",
+  "phase": "Atlas-50 Phase A precompilation only",
+  "baseline_commit": "89498a7b0e6e5ea419654bb8ff563512ab36bb89",
+  "created_on": "2026-07-14",
+  "policy": {
+    "gpu_hours_max": 0,
+    "registry_mutation_permitted": false,
+    "mechanism_compilation_permitted": false,
+    "performance_evaluation_permitted": false
+  },
+  "jobs": [
+    {
+      "job_id": "atlas50.phase-a.inherited-byte-audit",
+      "status": "completed",
+      "scientific_question": "Can Phase A add only precompilation artifacts while preserving every inherited Atlas-3, Atlas-10, and protected-registry Git blob?",
+      "cheapest_credible_method": "Hash the baseline Git blobs once and make deterministic validators compare the current blobs and LF-normalized protected-registry SHA-256 values to the frozen manifest.",
+      "expected_information_gain": "A direct fail-closed proof that Phase A did not rewrite inherited scientific artifacts or reopen registry expansion.",
+      "budget": {
+        "cpu_hours_max": 0.05,
+        "gpu_hours_max": 0,
+        "external_requests_max": 0,
+        "download_mib_max": 0
+      },
+      "reusable_outputs": [
+        "data/atlas/atlas50/phase_a/inherited_baseline.json",
+        "scripts/validate_atlas50_phase_a.py"
+      ],
+      "actual_usage": {
+        "cpu_hours_less_than": 0.05,
+        "gpu_hours": 0,
+        "external_requests": 0,
+        "download_mib": 0,
+        "stop_condition_triggered": false
+      },
+      "stop_condition": "Stop immediately on any inherited blob mismatch, protected hash mismatch, changed freeze state, or nonzero GPU/network use."
+    },
+    {
+      "job_id": "atlas50.phase-a.source-landscape",
+      "status": "completed",
+      "scientific_question": "Which authoritative source surfaces can support a source-linked machine draft for the 57 current fingerprints, and which are reference-only, inaccessible, ambiguous, or missing?",
+      "cheapest_credible_method": "Inspect bounded official documentation and public metadata endpoints; prefer source-level query handles and release metadata over bulk mirroring or inferred record identifiers.",
+      "expected_information_gain": "A reusable source catalog with versions, retrieval metadata, rights boundaries, content hashes where a response is acquired, and explicit failed-acquisition records.",
+      "budget": {
+        "cpu_hours_max": 1,
+        "gpu_hours_max": 0,
+        "external_requests_max": 80,
+        "download_mib_max": 32
+      },
+      "budget_amendments": [
+        {
+          "amended_on": "2026-07-14",
+          "field": "download_mib_max",
+          "previous": 20,
+          "current": 32,
+          "reason": "The official M-CSA API ignored page_size=2000 and caps responses at 100 of 1,003 entries. Ten additional bounded pages are required to inventory candidate source handles without guessing identifiers; no raw page will be redistributed."
+        }
+      ],
+      "reusable_outputs": [
+        "data/atlas/atlas50/phase_a/source_catalog.json",
+        "data/atlas/atlas50/phase_a/crosswalk_draft.json"
+      ],
+      "actual_usage": {
+        "cpu_hours_less_than": 1,
+        "gpu_hours": 0,
+        "external_operations_conservatively_counted": 72,
+        "hashed_http_response_bytes": 16055601,
+        "download_mib_conservatively_accounted": 18,
+        "raw_source_bodies_committed": false,
+        "article_bodies_acquired": false,
+        "stop_condition_met": true
+      },
+      "stop_condition": "Stop after every required source family has an authoritative access/rights boundary or an explicit failed-acquisition reason; never guess a canonical identifier to fill a gap."
+    },
+    {
+      "job_id": "atlas50.phase-a.candidate-feasibility",
+      "status": "completed",
+      "scientific_question": "Can forty deliberately difficult follow-on cases pass declared source, diversity, rights, provenance, and shared-representation gates without compiling their mechanisms?",
+      "cheapest_credible_method": "Use authoritative case handles already present in source records where possible, then perform bounded targeted metadata checks only for candidate identity and feasibility; evaluate gates without atom mapping, step compilation, structure search, or scoring.",
+      "expected_information_gain": "A fail-closed 40-row feasibility/diversity matrix, a proposed panel only for passing rows, and exact blockers for all excluded rows.",
+      "budget": {
+        "cpu_hours_max": 2,
+        "gpu_hours_max": 0,
+        "external_requests_max": 240,
+        "download_mib_max": 80
+      },
+      "reusable_outputs": [
+        "data/atlas/atlas50/phase_a/candidate_matrix.json",
+        "data/atlas/atlas50/phase_a/proposed_panel.json",
+        "data/atlas/atlas50/phase_a/blocker_report.json"
+      ],
+      "actual_usage": {
+        "cpu_hours_less_than": 0.1,
+        "gpu_hours": 0,
+        "external_requests_charged_to_this_job": 0,
+        "shared_source_acquisition_id": "mcsa-selected-40-query",
+        "mechanisms_compiled": 0,
+        "blocked_candidates": 3,
+        "stop_condition_triggered": true,
+        "stop_condition_disposition": "Three rows were excluded and emitted as blockers; no missing contract was chosen for convenience."
+      },
+      "stop_condition": "Stop when all forty candidates have deterministic gate outcomes, or earlier if any missing governing contract would require a scientific choice for convenience; emit fewer than forty additions whenever a gate does not pass."
+    },
+    {
+      "job_id": "atlas50.phase-a.deterministic-build-validation",
+      "status": "completed",
+      "scientific_question": "Do the frozen Phase A inputs deterministically reproduce exactly 57 draft rows, forty feasibility rows, the fail-closed proposal, blockers, and the representation projection?",
+      "cheapest_credible_method": "Run dependency-free local builders twice in check mode plus focused unit tests, repository-contract validation, and Git diff checks.",
+      "expected_information_gain": "Machine-verifiable contracts for a later selection freeze and compilation phase without making scientific performance or coverage claims.",
+      "budget": {
+        "cpu_hours_max": 1,
+        "gpu_hours_max": 0,
+        "external_requests_max": 0,
+        "download_mib_max": 0
+      },
+      "reusable_outputs": [
+        "src/catalytic_earth/atlas50_phase_a.py",
+        "src/catalytic_earth/schemas/atlas50-crosswalk-draft-v1.schema.json",
+        "src/catalytic_earth/schemas/atlas50-candidate-matrix-v1.schema.json",
+        "src/catalytic_earth/schemas/atlas50-proposal-v1.schema.json",
+        "src/catalytic_earth/schemas/atlas50-blocker-report-v1.schema.json",
+        "tests/core/test_atlas50_phase_a.py"
+      ],
+      "actual_usage": {
+        "cpu_hours_less_than": 0.1,
+        "gpu_hours": 0,
+        "external_requests": 0,
+        "download_mib": 0,
+        "deterministic_check_passed": true,
+        "stop_condition_triggered": false
+      },
+      "stop_condition": "Stop on nondeterminism, schema or semantic validation failure, changed inherited bytes, or any claim that exceeds precompilation projection scope."
+    }
+  ]
+}

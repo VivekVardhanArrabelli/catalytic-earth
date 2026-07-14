@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://catalytic.earth/schemas/atlas50-blocker-report-v1.schema.json",
+  "title": "Catalytic Earth Atlas-50 Phase A blocker report v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "report_id", "status", "candidate_count", "passing_candidate_count", "blocked_candidate_count", "proposed_total_with_immutable_atlas10", "shortfall_from_50", "blockers", "next_action_boundary"],
+  "properties": {
+    "schema_version": {"const": "catalytic-earth.atlas50-blocker-report.v1"},
+    "report_id": {"type": "string", "minLength": 1},
+    "status": {"const": "open_material_representation_blockers"},
+    "candidate_count": {"const": 40},
+    "passing_candidate_count": {"type": "integer", "minimum": 0, "maximum": 40},
+    "blocked_candidate_count": {"type": "integer", "minimum": 0, "maximum": 40},
+    "proposed_total_with_immutable_atlas10": {"type": "integer", "minimum": 10, "maximum": 50},
+    "shortfall_from_50": {"type": "integer", "minimum": 0, "maximum": 40},
+    "blockers": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/blocker"}},
+    "next_action_boundary": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "blocker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["blocker_id", "candidate_id", "mcsa_id", "gate", "missing_general_contract", "why_material", "unlock_condition", "current_disposition", "convenience_choice_made"],
+      "properties": {
+        "blocker_id": {"type": "string", "minLength": 1},
+        "candidate_id": {"type": "string", "minLength": 1},
+        "mcsa_id": {"type": "string", "pattern": "^M[0-9]{4}$"},
+        "gate": {"const": "representation"},
+        "missing_general_contract": {"type": "string", "minLength": 1},
+        "why_material": {"type": "string", "minLength": 1},
+        "unlock_condition": {"type": "string", "minLength": 1},
+        "current_disposition": {"const": "excluded_from_proposed_panel_pending_governing_contract"},
+        "convenience_choice_made": {"const": false}
+      }
+    }
+  }
+}

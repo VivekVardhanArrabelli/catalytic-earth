@@ -70,6 +70,7 @@ def _validate_active_paths() -> None:
         ROOT / "docs/ATLAS3_SELECTION.md",
         ROOT / "docs/ATLAS10_SELECTION.md",
         ROOT / "docs/ATLAS10_KERNEL.md",
+        ROOT / "docs/ATLAS50_PHASE_A.md",
         ROOT / "docs/CORE_REPRODUCTION.md",
         ROOT / "docs/EVALUATION_MEMORY.md",
         ROOT / "docs/LEAN_RELEASE.md",
@@ -109,6 +110,7 @@ def _validate_markdown_links() -> None:
         "docs/ATLAS3_SELECTION.md",
         "docs/ATLAS10_SELECTION.md",
         "docs/ATLAS10_KERNEL.md",
+        "docs/ATLAS50_PHASE_A.md",
         "docs/ATLAS_TRUTH_POLICY.md",
         "docs/CORE_REPRODUCTION.md",
         "docs/EVALUATION_MEMORY.md",
@@ -153,6 +155,16 @@ def _validate_json_surfaces(*, include_release_manifest: bool) -> None:
         "data/atlas/atlas10/comparator/atlas_vs_unintegrated.json",
         "data/atlas/atlas10/review/packet_manifest.json",
         "data/atlas/atlas10/review/review_attempts.json",
+        "data/atlas/atlas50/phase_a/job_ledger.json",
+        "data/atlas/atlas50/phase_a/source_catalog.json",
+        "data/atlas/atlas50/phase_a/crosswalk_spec.json",
+        "data/atlas/atlas50/phase_a/candidate_spec.json",
+        "data/atlas/atlas50/phase_a/inherited_baseline.json",
+        "data/atlas/atlas50/phase_a/crosswalk_draft.json",
+        "data/atlas/atlas50/phase_a/candidate_matrix.json",
+        "data/atlas/atlas50/phase_a/proposed_panel.json",
+        "data/atlas/atlas50/phase_a/blocker_report.json",
+        "data/atlas/atlas50/phase_a/package_manifest.json",
         "environments/core.json",
         "environments/ml-test.json",
         "environments/scientific-tools.json",
@@ -161,6 +173,10 @@ def _validate_json_surfaces(*, include_release_manifest: bool) -> None:
         "release/report_archive_index.json",
         "src/catalytic_earth/schemas/atlas10-selection-v1.schema.json",
         "src/catalytic_earth/schemas/atlas10-kernel-v1.schema.json",
+        "src/catalytic_earth/schemas/atlas50-crosswalk-draft-v1.schema.json",
+        "src/catalytic_earth/schemas/atlas50-candidate-matrix-v1.schema.json",
+        "src/catalytic_earth/schemas/atlas50-proposal-v1.schema.json",
+        "src/catalytic_earth/schemas/atlas50-blocker-report-v1.schema.json",
         "src/catalytic_earth/schemas/mechanism-record-v3.schema.json",
         "tests/test_tiers.json",
     ]
@@ -310,6 +326,8 @@ def main() -> int:
     _run("scripts/build_atlas10_baseline.py", "--check")
     _run("scripts/build_atlas10_comparator.py", "--check")
     _run("scripts/build_atlas10_review_packets.py", "--check")
+    _run("scripts/build_atlas50_phase_a.py", "--check")
+    _run("scripts/validate_atlas50_phase_a.py")
     if os.environ.get("CE_PARTIAL_CLONE") == "1":
         _run("scripts/build_live_artifact_manifest.py", "--check", "--index-only")
     else:
