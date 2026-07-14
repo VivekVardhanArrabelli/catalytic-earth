@@ -58,3 +58,31 @@ operation described in [`ATLAS3_KERNEL.md`](ATLAS3_KERNEL.md).
 This is deterministic reproduction of useful compiled knowledge. It is not
 independent review, biological validation, a coverage or accuracy estimate,
 prospective discovery, or a completed assay.
+
+## Ten-case relationship-query surface
+
+The wheel also packages the immutable Atlas-3 kernel plus the seven-case
+Atlas-10 extension and its two frozen queries:
+
+```bash
+catalytic-earth atlas10
+```
+
+Expected runtime-result SHA-256:
+
+```text
+57fb5e4708d6963b994a9ffd125549b822effe060da3e735c1afd987f1c84bdb
+```
+
+The command reproduces 10 cases and 30 typed truth objects, three documented
+Rhea query gaps, one mandatory non-detailed abstention, 21 source steps, and 61
+source electron-flow objects. It executes the convergent-strategy and
+shared-fold/divergent-chemistry queries without network, accelerator, external
+binary, or current-working-directory dependence.
+
+The wheel contains compiled fields, source hashes, query expectations, and
+attribution—not the raw Atlas-10 upstream snapshots. See
+[`ATLAS10_KERNEL.md`](ATLAS10_KERNEL.md) for repository audit commands and the
+still-pending external review-attempt gate. Reproduction is not independent
+review, biological accuracy, representative coverage, discovery, design
+readiness, or an assay result.

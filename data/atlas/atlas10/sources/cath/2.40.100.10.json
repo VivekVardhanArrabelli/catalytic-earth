@@ -1,0 +1,52 @@
+{
+  "domain_rows": [
+    {
+      "architecture": 40,
+      "class": 2,
+      "classification_id": "2.40.100.10",
+      "domain_id": "1m9cA00",
+      "domain_length": 165,
+      "homologous_superfamily": 10,
+      "raw_source_row": "1m9cA00     2    40   100    10     1     1     2     1   104   165 2.000",
+      "resolution_angstrom": 2.0,
+      "s100_cluster": 1,
+      "s100_count": 104,
+      "s35_cluster": 1,
+      "s60_cluster": 1,
+      "s95_cluster": 2,
+      "topology": 100
+    },
+    {
+      "architecture": 40,
+      "class": 2,
+      "classification_id": "2.40.100.10",
+      "domain_id": "1m9cB00",
+      "domain_length": 163,
+      "homologous_superfamily": 10,
+      "raw_source_row": "1m9cB00     2    40   100    10     1     1     2     1   108   163 2.000",
+      "resolution_angstrom": 2.0,
+      "s100_cluster": 1,
+      "s100_count": 108,
+      "s35_cluster": 1,
+      "s60_cluster": 1,
+      "s95_cluster": 2,
+      "topology": 100
+    }
+  ],
+  "name_row": {
+    "classification_id": "2.40.100.10",
+    "description": "Cyclophilin-like",
+    "raw_source_row": "2.40.100.10    4o8hA00    :Cyclophilin-like",
+    "representative_domain_id": "4o8hA00"
+  },
+  "record_id": "CATH:2.40.100.10",
+  "release_locator": "latest-release",
+  "selected_pdb_ids": [
+    "1M9C"
+  ],
+  "source": "CATH",
+  "source_files": [
+    "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-names.txt",
+    "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-domain-list.txt"
+  ]
+}

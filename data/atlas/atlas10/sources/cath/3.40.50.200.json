@@ -1,0 +1,53 @@
+{
+  "domain_rows": [
+    {
+      "architecture": 40,
+      "class": 3,
+      "classification_id": "3.40.50.200",
+      "domain_id": "1s01A00",
+      "domain_length": 275,
+      "homologous_superfamily": 200,
+      "raw_source_row": "1s01A00     3    40    50   200     3     2     2     3     1   275 1.700",
+      "resolution_angstrom": 1.7,
+      "s100_cluster": 3,
+      "s100_count": 1,
+      "s35_cluster": 3,
+      "s60_cluster": 2,
+      "s95_cluster": 2,
+      "topology": 50
+    },
+    {
+      "architecture": 40,
+      "class": 3,
+      "classification_id": "3.40.50.200",
+      "domain_id": "1supA00",
+      "domain_length": 275,
+      "homologous_superfamily": 200,
+      "raw_source_row": "1supA00     3    40    50   200     3     2     2     1     8   275 1.600",
+      "resolution_angstrom": 1.6,
+      "s100_cluster": 1,
+      "s100_count": 8,
+      "s35_cluster": 3,
+      "s60_cluster": 2,
+      "s95_cluster": 2,
+      "topology": 50
+    }
+  ],
+  "name_row": {
+    "classification_id": "3.40.50.200",
+    "description": "Peptidase S8/S53 domain",
+    "raw_source_row": "3.40.50.200    2ixtA00    :Peptidase S8/S53 domain",
+    "representative_domain_id": "2ixtA00"
+  },
+  "record_id": "CATH:3.40.50.200",
+  "release_locator": "latest-release",
+  "selected_pdb_ids": [
+    "1S01",
+    "1SUP"
+  ],
+  "source": "CATH",
+  "source_files": [
+    "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-names.txt",
+    "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-domain-list.txt"
+  ]
+}

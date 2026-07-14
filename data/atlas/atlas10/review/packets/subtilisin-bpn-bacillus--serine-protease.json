@@ -1,0 +1,543 @@
+{
+  "case_id": "atlas10.subtilisin-bpn-bacillus.serine-protease",
+  "claim_boundary": {
+    "does_not_support": [
+      "Mechanism truth beyond the frozen sources, unrestricted transfer across proteins or substrates, or replacement of experimental validation."
+    ],
+    "supports": [
+      "Compile an unmodified-target record grounded to P00782/1SUP, preserve 1S01 as engineered source-reference counterevidence, and answer the convergence query without importing trypsin-specific numbering, steps, or evidence."
+    ]
+  },
+  "compiled_hypothesis_sha256": "8df3ff79a3866361f9deac6e915d186732c0979bc28136c64cadfdd4d6583df4",
+  "counterevidence": [
+    {
+      "counterevidence_id": "atlas10.subtilisin-bpn-bacillus.serine-protease.rhea-source-gap",
+      "disposition": "Preserve the zero-row query and label M-CSA participants as source-scoped context.",
+      "effect": "Prevents attribution of a direct canonical Rhea reaction identifier.",
+      "evidence_ids": [
+        "source:Rhea:EC:3.4.21.62"
+      ],
+      "summary": "No direct Rhea record was returned by this frozen EC query; this is not evidence that no reaction description exists in another source."
+    },
+    {
+      "counterevidence_id": "atlas10.subtilisin-bpn-bacillus.serine-protease.structure-1sup-limit",
+      "disposition": "Retain the structure with its explicit applicability and context flags.",
+      "effect": "Limits mechanistic generalization from this static structural context.",
+      "evidence_ids": [
+        "source:PDB:1SUP"
+      ],
+      "summary": "Use as the direct P00782 target structure for identity and geometry, not as an uninterrupted catalytic trajectory."
+    },
+    {
+      "counterevidence_id": "atlas10.subtilisin-bpn-bacillus.serine-protease.structure-1s01-limit",
+      "disposition": "Retain the structure with its explicit applicability and context flags.",
+      "effect": "Limits mechanistic generalization from this static structural context.",
+      "evidence_ids": [
+        "source:PDB:1S01"
+      ],
+      "summary": "Retain for M-CSA source traceability and residue numbering only; do not label it the unmodified target."
+    }
+  ],
+  "detail_abstention": {
+    "reason": "The frozen source schemes preserve curved-arrow endpoints but do not establish a verified atom map, compiled bond-edit list, independent validation, or complete turnover trajectory.",
+    "required": true,
+    "source_basis_evidence_ids": [
+      "source:M-CSA:M0723",
+      "source:UniProtKB:P00782",
+      "source:Rhea:EC:3.4.21.62",
+      "source:PDB:1SUP",
+      "source:PDB:1S01",
+      "source:DOI:10.1107/S0907444996007500",
+      "source:DOI:10.1073/pnas.83.11.3743",
+      "source:CATH:CATH:3.40.50.200"
+    ],
+    "unsupported_fields": [
+      "atom_mapped_bond_edits",
+      "independent_mechanism_validation",
+      "complete_turnover_trajectory"
+    ]
+  },
+  "evidence": [
+    {
+      "applicability": "direct",
+      "evidence_id": "source:UniProtKB:P00782",
+      "evidence_role": "protein_identity",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "d826f1f10c912acb484de3492a511cf023d29b16369e728abec28f9124eb3b89",
+      "source_id": "UniProtKB",
+      "source_record_id": "P00782",
+      "uri": "https://www.uniprot.org/uniprotkb/P00782/entry"
+    },
+    {
+      "applicability": "source_gap",
+      "evidence_id": "source:Rhea:EC:3.4.21.62",
+      "evidence_role": "official_net_reaction_search_gap",
+      "retrieval_status": "bundled_query_gap_snapshot",
+      "snapshot_sha256": "4e477f638494fcb18ee98c837dc1502c3c18debc6eb4a21c4608bb2bd707822d",
+      "source_id": "Rhea",
+      "source_record_id": "EC:3.4.21.62",
+      "uri": "https://www.rhea-db.org/rhea?query=ec%3A3.4.21.62"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:PDB:1SUP",
+      "evidence_role": "experimental_structure",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "40c3fe986db69bdcb11cbb61294dc78b1a0911c9bc255082831b7f7b4a308b8b",
+      "source_id": "PDB",
+      "source_record_id": "1SUP",
+      "uri": "https://www.rcsb.org/structure/1SUP"
+    },
+    {
+      "applicability": "engineered_source_reference",
+      "evidence_id": "source:PDB:1S01",
+      "evidence_role": "engineered_source_reference_structure",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "d715f581e1c9976eadfc888a379e5b1738c32a31ce31ffe2c510014111c70dca",
+      "source_id": "PDB",
+      "source_record_id": "1S01",
+      "uri": "https://www.rcsb.org/structure/1S01"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:M-CSA:M0723",
+      "evidence_role": "source_mechanism",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "ad94c81dcdd316d18dbc054f0d22086210f4901dd47a56c1060f53fa3e7c6258",
+      "source_id": "M-CSA",
+      "source_record_id": "M0723",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/723/"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:DOI:10.1107/S0907444996007500",
+      "evidence_role": "primary_structure_evidence",
+      "retrieval_status": "reference_only_verified_handle",
+      "snapshot_sha256": null,
+      "source_id": "DOI",
+      "source_record_id": "10.1107/S0907444996007500",
+      "uri": "https://doi.org/10.1107/S0907444996007500"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:DOI:10.1073/pnas.83.11.3743",
+      "evidence_role": "primary_mechanism_evidence",
+      "retrieval_status": "reference_only_verified_handle",
+      "snapshot_sha256": null,
+      "source_id": "DOI",
+      "source_record_id": "10.1073/pnas.83.11.3743",
+      "uri": "https://doi.org/10.1073/pnas.83.11.3743"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:CATH:CATH:3.40.50.200",
+      "evidence_role": "fold_classification",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "77f982742ddff893e9a5e05ccf45600fa7a5dd5e53084f40619ca0ff76106bb4",
+      "source_id": "CATH",
+      "source_record_id": "CATH:3.40.50.200",
+      "uri": "https://www.cathdb.info/version/latest/superfamily/3.40.50.200"
+    }
+  ],
+  "packet_id": "review-packet:atlas10.subtilisin-bpn-bacillus.serine-protease",
+  "protein_scope": {
+    "assay_candidate": false,
+    "case_label": "Subtilisin BPN'",
+    "direct_pdb_ids": [
+      "1SUP"
+    ],
+    "ec_number": "3.4.21.62",
+    "fingerprint_bridge": {
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "registry_write": false,
+      "use": "historical_crosswalk_only_not_evidence"
+    },
+    "fold_classification_ids": [
+      "CATH:3.40.50.200"
+    ],
+    "organism": "Bacillus amyloliquefaciens",
+    "relationship_group_ids": [
+      "atlas10.relationship.convergent-serine-proteases"
+    ],
+    "uniprot_ids": [
+      "P00782"
+    ]
+  },
+  "provenance": {
+    "compilation_spec_sha256": "89cfa53c23fdeafde11e859cea102a88421ea253446a267b23bca2eb84920932",
+    "compiler_version": "catalytic-earth.atlas10-compiler.v1",
+    "selection_sha256": "9bc114aaf793c51ec3b6273466f62a83974512a2dcf969d95d8b97453dd2795e",
+    "source_snapshot_set_sha256": "a6b6a0059835e8f3f78cd5da9897afb599560bc844c59e82ba523f9387d0550d"
+  },
+  "reaction_or_source_gap": {
+    "directionality": "unknown_no_direct_record",
+    "ec_number": "3.4.21.62",
+    "equation": null,
+    "gap_context": {
+      "interpretation": "No direct Rhea record was returned by this frozen EC query; this is not evidence that no reaction description exists in another source.",
+      "query_result_count": 0,
+      "query_snapshot_kind": "official_zero_row_tsv"
+    },
+    "participants": [
+      {
+        "name": "water",
+        "participant_id": "CHEBI:15377",
+        "participant_type": "small_molecule_or_class",
+        "reactive_part_id": null,
+        "side": "left",
+        "source_accession": "CHEBI:15377",
+        "source_count_values": [
+          1
+        ],
+        "source_row_count": 1,
+        "source_scope": "M-CSA participant context; not a Rhea canonical reaction",
+        "stoichiometry": 1
+      },
+      {
+        "name": "L-alpha-amino acid zwitterion",
+        "participant_id": "CHEBI:59869",
+        "participant_type": "small_molecule_or_class",
+        "reactive_part_id": null,
+        "side": "right",
+        "source_accession": "CHEBI:59869",
+        "source_count_values": [
+          2
+        ],
+        "source_row_count": 1,
+        "source_scope": "M-CSA participant context; not a Rhea canonical reaction",
+        "stoichiometry": 2
+      },
+      {
+        "name": "dipeptide zwitterion",
+        "participant_id": "CHEBI:90799",
+        "participant_type": "small_molecule_or_class",
+        "reactive_part_id": null,
+        "side": "left",
+        "source_accession": "CHEBI:90799",
+        "source_count_values": [
+          1
+        ],
+        "source_row_count": 1,
+        "source_scope": "M-CSA participant context; not a Rhea canonical reaction",
+        "stoichiometry": 1
+      }
+    ],
+    "source_id": "Rhea",
+    "source_query": "ec:3.4.21.62",
+    "source_record_id": null,
+    "source_status": "documented_query_gap"
+  },
+  "review_questions": [
+    "Is the reaction or documented source gap correct for this protein scope?",
+    "Are the catalytic sites and numbering mappings faithful to the cited sources?",
+    "Are the represented steps faithful to source granularity, with unsupported detail abstained?",
+    "Are structure and mechanism applicability boundaries correct?",
+    "Does the claim boundary prevent an unjustified evidence-tier upgrade?"
+  ],
+  "review_unit": "bounded_claim_packet",
+  "reviewer_instruction": "Review only the bounded case and cited source scope. A correction, uncertainty, or rejection is useful. Do not infer independent validation from upstream curation, source rating, fold similarity, or another case.",
+  "schema_version": "catalytic-earth.atlas10-review-packet.v1",
+  "sites": [
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0723",
+        "source:UniProtKB:P00782",
+        "source:PDB:1S01",
+        "source:PDB:1SUP"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "engineered_source_reference",
+          "author_position": 32,
+          "chain_id": "A",
+          "label_position": 32,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 139 to 1S01 chain A author position 32 and mmCIF label position 32; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1S01"
+        },
+        {
+          "applicability": "direct",
+          "author_position": 32,
+          "chain_id": "A",
+          "label_position": 32,
+          "mapping_basis": "uniprot_chain_range_and_coordinate",
+          "numbering_note": "UniProt maps 1SUP chain A to natural positions 108-382; natural position 139 resolves to mmCIF label 32 and author position 32 in the frozen coordinate file.",
+          "pdb_id": "1SUP"
+        }
+      ],
+      "residue_name": "Asp",
+      "roles": [
+        "electrostatic interaction",
+        "electrostatic stabiliser"
+      ],
+      "sequence_position": 139,
+      "site_id": "P00782:D139",
+      "uniprot_id": "P00782"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0723",
+        "source:UniProtKB:P00782",
+        "source:PDB:1S01",
+        "source:PDB:1SUP"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "engineered_source_reference",
+          "author_position": 64,
+          "chain_id": "A",
+          "label_position": 64,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 171 to 1S01 chain A author position 64 and mmCIF label position 64; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1S01"
+        },
+        {
+          "applicability": "direct",
+          "author_position": 64,
+          "chain_id": "A",
+          "label_position": 64,
+          "mapping_basis": "uniprot_chain_range_and_coordinate",
+          "numbering_note": "UniProt maps 1SUP chain A to natural positions 108-382; natural position 171 resolves to mmCIF label 64 and author position 64 in the frozen coordinate file.",
+          "pdb_id": "1SUP"
+        }
+      ],
+      "residue_name": "His",
+      "roles": [
+        "proton acceptor",
+        "proton donor"
+      ],
+      "sequence_position": 171,
+      "site_id": "P00782:H171",
+      "uniprot_id": "P00782"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0723",
+        "source:UniProtKB:P00782",
+        "source:PDB:1S01",
+        "source:PDB:1SUP"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "engineered_source_reference",
+          "author_position": 155,
+          "chain_id": "A",
+          "label_position": 155,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 262 to 1S01 chain A author position 155 and mmCIF label position 155; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1S01"
+        },
+        {
+          "applicability": "direct",
+          "author_position": 155,
+          "chain_id": "A",
+          "label_position": 155,
+          "mapping_basis": "uniprot_chain_range_and_coordinate",
+          "numbering_note": "UniProt maps 1SUP chain A to natural positions 108-382; natural position 262 resolves to mmCIF label 155 and author position 155 in the frozen coordinate file.",
+          "pdb_id": "1SUP"
+        }
+      ],
+      "residue_name": "Asn",
+      "roles": [
+        "electrostatic interaction",
+        "electrostatic stabiliser"
+      ],
+      "sequence_position": 262,
+      "site_id": "P00782:N262",
+      "uniprot_id": "P00782"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0723",
+        "source:UniProtKB:P00782",
+        "source:PDB:1S01",
+        "source:PDB:1SUP"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "engineered_source_reference",
+          "author_position": 221,
+          "chain_id": "A",
+          "label_position": 221,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 328 to 1S01 chain A author position 221 and mmCIF label position 221; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1S01"
+        },
+        {
+          "applicability": "direct",
+          "author_position": 221,
+          "chain_id": "A",
+          "label_position": 221,
+          "mapping_basis": "uniprot_chain_range_and_coordinate",
+          "numbering_note": "UniProt maps 1SUP chain A to natural positions 108-382; natural position 328 resolves to mmCIF label 221 and author position 221 in the frozen coordinate file.",
+          "pdb_id": "1SUP"
+        }
+      ],
+      "residue_name": "Ser",
+      "roles": [
+        "electrostatic interaction",
+        "electrostatic stabiliser",
+        "nucleofuge",
+        "nucleophile",
+        "proton acceptor",
+        "proton donor"
+      ],
+      "sequence_position": 328,
+      "site_id": "P00782:S328",
+      "uniprot_id": "P00782"
+    }
+  ],
+  "source_proposals": [
+    {
+      "annotation_texts": [],
+      "components_summary": "intermediate formation, intermediate collapse, bimolecular nucleophilic addition, overall reactant used, native state of enzyme regenerated, overall product formed, proton transfer, unimolecular elimination by the conjugate base, rate-determining step",
+      "is_detailed": true,
+      "mechanism_text": "His 171 acts as a general base, deprotonating Ser 328. Ser 328 performs nucleophilic attack on the carbonyl carbon of the amide bond.  This results in a tetrahedral transition state, which is stabilised through Coulombic interactions with protonated His 171, hydrogen bonding with the backbone amide of Ser 328 and the amide side-chain of Asn 262. The transition state is also stabilised by hydrogen bonding between the P1 amide nitrogen and the carbonyl oxygen of Ser 232. His 171 is stabilised by electrostatic interactions with Asp 139.  The tetrahedral transition state collapses, forming an acyl-enzyme and His 171 acts as a general acid, protonating the amide leaving group. His 171 acts as a general base, deprotonating a water molecule. The activated water molecule performs nucleophilic attack upon the acyl enzyme, forming a tetrahedral transition state. The tetrahedral transition state collapses, forming the acid component of the substrate and Ser 328. His 171 acts as a general acid, protonating the leaving group Ser 328.",
+      "preferred": true,
+      "proposal_id": "atlas10.subtilisin-bpn-bacillus.serine-protease.mcsa-M0723.mechanism-1",
+      "rating": 3,
+      "scheme_retrieval_issues": [],
+      "source_mechanism_id": 1,
+      "source_record_id": "M0723",
+      "steps": [
+        {
+          "atom_mapping_status": "not_inferred",
+          "bond_edit_status": "not_compiled_from_unmapped_source_scheme",
+          "catalyst_site_ids": [
+            "P00782:H171",
+            "P00782:S328"
+          ],
+          "is_inferred": false,
+          "order": 1,
+          "source_electron_flow_count": 3,
+          "source_scheme_sha256": "13a0857b009797f03bfad55e7d4e9b34f55960bb78f0e6b79b2ad04316b9051e",
+          "source_step_id": 1,
+          "summary": "His171 deprotonates Ser328 activating it to attack the carbon of the peptide bond in a nucleophilic addition."
+        },
+        {
+          "atom_mapping_status": "not_inferred",
+          "bond_edit_status": "not_compiled_from_unmapped_source_scheme",
+          "catalyst_site_ids": [
+            "P00782:H171"
+          ],
+          "is_inferred": false,
+          "order": 2,
+          "source_electron_flow_count": 3,
+          "source_scheme_sha256": "502c8e9a5e86d7a2657419322262743aa5ae9f9aca62cb85875cb084fd976acc",
+          "source_step_id": 2,
+          "summary": "The tetrahedral transition state collapses, forming an acyl-enzyme and His171 acts as a general acid, protonating the amide leaving group"
+        },
+        {
+          "atom_mapping_status": "not_inferred",
+          "bond_edit_status": "not_compiled_from_unmapped_source_scheme",
+          "catalyst_site_ids": [
+            "P00782:H171"
+          ],
+          "is_inferred": false,
+          "order": 3,
+          "source_electron_flow_count": 3,
+          "source_scheme_sha256": "e8038057e5196943a50ac8137097d39f59b7710fb463c624de6343758ea3d1a6",
+          "source_step_id": 3,
+          "summary": "His171 abstracts a proton from a water which in turn activates it to attack the carbon of the ester bond in a nucleophilic addition to produce another transition state tetrahedral intermediate"
+        },
+        {
+          "atom_mapping_status": "not_inferred",
+          "bond_edit_status": "not_compiled_from_unmapped_source_scheme",
+          "catalyst_site_ids": [
+            "P00782:H171",
+            "P00782:S328"
+          ],
+          "is_inferred": false,
+          "order": 4,
+          "source_electron_flow_count": 3,
+          "source_scheme_sha256": "e480a58e0001f2278e440800e993ef0ae61bdc7714da62a0ec2909ad1bd09779",
+          "source_step_id": 4,
+          "summary": "The tetrahedral transition state collapses, forming the acid component of the substrate and Ser328. His171 acts as a general acid, protonating the leaving group Ser328 which returns the enzyme to its native state."
+        }
+      ],
+      "structured_detail_status": "source_curved_arrows_preserved_no_atom_mapping_inference",
+      "terminal_state_source_step_ids": [
+        5
+      ]
+    }
+  ],
+  "structures": [
+    {
+      "applicability": "direct",
+      "context_flags": [
+        "static_structure",
+        "unmutated_target_scope"
+      ],
+      "evidence_ids": [
+        "source:PDB:1SUP",
+        "source:UniProtKB:P00782"
+      ],
+      "experimental_method": "X-RAY DIFFRACTION",
+      "limitation": "Use as the direct P00782 target structure for identity and geometry, not as an uninterrupted catalytic trajectory.",
+      "pdb_id": "1SUP",
+      "resolution_angstrom": 1.6,
+      "uniprot_chain_ranges": [
+        {
+          "chain_id": "A",
+          "uniprot_end": 382,
+          "uniprot_start": 108
+        }
+      ]
+    },
+    {
+      "applicability": "engineered_source_reference",
+      "context_flags": [
+        "static_structure",
+        "engineered_multiple_substitutions"
+      ],
+      "evidence_ids": [
+        "source:PDB:1S01",
+        "source:UniProtKB:P00782"
+      ],
+      "experimental_method": "X-RAY DIFFRACTION",
+      "limitation": "Retain for M-CSA source traceability and residue numbering only; do not label it the unmodified target.",
+      "pdb_id": "1S01",
+      "resolution_angstrom": 1.7,
+      "uniprot_chain_ranges": [
+        {
+          "chain_id": "A",
+          "uniprot_end": 382,
+          "uniprot_start": 108
+        }
+      ]
+    }
+  ],
+  "target_record_id": "mechanism:subtilisin-bpn-bacillus-serine-protease-v1",
+  "uncertainties": [
+    {
+      "abstention": "Do not resolve this ambiguity beyond the frozen sources and explicit compilation rules.",
+      "status": "open",
+      "summary": "M-CSA's reference PDB 1S01 is engineered and cannot be treated as the unmodified P00782 target structure.",
+      "uncertainty_id": "atlas10.subtilisin-bpn-bacillus.serine-protease.uncertainty-1"
+    },
+    {
+      "abstention": "Do not resolve this ambiguity beyond the frozen sources and explicit compilation rules.",
+      "status": "open",
+      "summary": "The direct target structure 1SUP supports identity and geometry but not an uninterrupted catalytic trajectory.",
+      "uncertainty_id": "atlas10.subtilisin-bpn-bacillus.serine-protease.uncertainty-2"
+    },
+    {
+      "abstention": "Do not resolve this ambiguity beyond the frozen sources and explicit compilation rules.",
+      "status": "open",
+      "summary": "M-CSA participant stoichiometry differs in presentation from the paired trypsin entry and must remain source-scoped rather than normalized silently.",
+      "uncertainty_id": "atlas10.subtilisin-bpn-bacillus.serine-protease.uncertainty-3"
+    }
+  ]
+}

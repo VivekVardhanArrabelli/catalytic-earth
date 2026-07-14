@@ -1,0 +1,36 @@
+{
+  "domain_rows": [
+    {
+      "architecture": 10,
+      "class": 1,
+      "classification_id": "1.10.530.10",
+      "domain_id": "1dpxA00",
+      "domain_length": 129,
+      "homologous_superfamily": 10,
+      "raw_source_row": "1dpxA00     1    10   530    10     1     1     1     1   308   129 1.650",
+      "resolution_angstrom": 1.65,
+      "s100_cluster": 1,
+      "s100_count": 308,
+      "s35_cluster": 1,
+      "s60_cluster": 1,
+      "s95_cluster": 1,
+      "topology": 530
+    }
+  ],
+  "name_row": {
+    "classification_id": "1.10.530.10",
+    "description": "",
+    "raw_source_row": "1.10.530.10    2vb1A00    :",
+    "representative_domain_id": "2vb1A00"
+  },
+  "record_id": "CATH:1.10.530.10",
+  "release_locator": "latest-release",
+  "selected_pdb_ids": [
+    "1DPX"
+  ],
+  "source": "CATH",
+  "source_files": [
+    "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-names.txt",
+    "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-domain-list.txt"
+  ]
+}

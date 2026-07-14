@@ -34,9 +34,12 @@ are recorded. Unknown means blocked, not implicitly open.
    attributed compiled kernel and source hashes, but not raw third-party
    structures, sequences, article bodies, kinetics tables, or
    restricted/reference-only exports. Its raw 1.2 MB source package remains a
-   repository audit input under `data/atlas/atlas3/sources`. The Atlas-10
-   selection currently stores CATH and other source handles only; it does not
-   yet bundle the seven follow-on source packages.
+   repository audit input under `data/atlas/atlas3/sources`. The Atlas-10 raw
+   audit package contains 36 redistributed snapshots under
+   `data/atlas/atlas10/sources` plus eight DOI reference-only handles. Its wheel
+   surface packages the attributed compiled kernel, queries, expected result,
+   and source hashes, not raw sequences, structures, source API payloads,
+   linked Marvin schemes, or article bodies.
 3. CC BY-derived fields retain source identifiers and change notices. Database
    citations are additional to, not substitutes for, record-level literature
    citations.

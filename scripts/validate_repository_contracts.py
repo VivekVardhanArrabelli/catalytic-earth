@@ -16,11 +16,17 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from catalytic_earth.atlas_kernel import validate_atlas3_kernel  # noqa: E402
+from catalytic_earth.atlas10_kernel import validate_atlas10_kernel  # noqa: E402
 from catalytic_earth.atlas10_selection import validate_atlas10_selection  # noqa: E402
+from catalytic_earth.atlas10_sources import validate_atlas10_source_manifest  # noqa: E402
+from catalytic_earth.atlas_kernel import validate_atlas3_kernel  # noqa: E402
 from catalytic_earth.atlas_selection import validate_atlas3_selection  # noqa: E402
 from catalytic_earth.atlas_sources import validate_atlas3_source_manifest  # noqa: E402
-from catalytic_earth.core_cli import verified_atlas3_result, verified_golden_result  # noqa: E402
+from catalytic_earth.core_cli import (  # noqa: E402
+    verified_atlas10_result,
+    verified_atlas3_result,
+    verified_golden_result,
+)
 from catalytic_earth.truth_guard import validate_truth_governance  # noqa: E402
 
 
@@ -63,6 +69,7 @@ def _validate_active_paths() -> None:
         ROOT / "docs/ATLAS3_KERNEL.md",
         ROOT / "docs/ATLAS3_SELECTION.md",
         ROOT / "docs/ATLAS10_SELECTION.md",
+        ROOT / "docs/ATLAS10_KERNEL.md",
         ROOT / "docs/CORE_REPRODUCTION.md",
         ROOT / "docs/EVALUATION_MEMORY.md",
         ROOT / "docs/LEAN_RELEASE.md",
@@ -101,6 +108,7 @@ def _validate_markdown_links() -> None:
         "docs/ATLAS3_KERNEL.md",
         "docs/ATLAS3_SELECTION.md",
         "docs/ATLAS10_SELECTION.md",
+        "docs/ATLAS10_KERNEL.md",
         "docs/ATLAS_TRUTH_POLICY.md",
         "docs/CORE_REPRODUCTION.md",
         "docs/EVALUATION_MEMORY.md",
@@ -137,6 +145,14 @@ def _validate_json_surfaces(*, include_release_manifest: bool) -> None:
         "data/atlas/atlas3/kernel.json",
         "data/atlas/atlas3/queries/case_truth_summary_expected.json",
         "data/atlas/atlas3/source_manifest.json",
+        "data/atlas/atlas10/compilation_spec.json",
+        "data/atlas/atlas10/kernel.json",
+        "data/atlas/atlas10/source_manifest.json",
+        "data/atlas/atlas10/queries/runtime_expected.json",
+        "data/atlas/atlas10/comparator/unintegrated_source_stack.json",
+        "data/atlas/atlas10/comparator/atlas_vs_unintegrated.json",
+        "data/atlas/atlas10/review/packet_manifest.json",
+        "data/atlas/atlas10/review/review_attempts.json",
         "environments/core.json",
         "environments/ml-test.json",
         "environments/scientific-tools.json",
@@ -144,6 +160,8 @@ def _validate_json_surfaces(*, include_release_manifest: bool) -> None:
         "release/release-manifest-v1.schema.json",
         "release/report_archive_index.json",
         "src/catalytic_earth/schemas/atlas10-selection-v1.schema.json",
+        "src/catalytic_earth/schemas/atlas10-kernel-v1.schema.json",
+        "src/catalytic_earth/schemas/mechanism-record-v3.schema.json",
         "tests/test_tiers.json",
     ]
     if include_release_manifest:
@@ -254,6 +272,23 @@ def main() -> int:
         selection=atlas3,
         source_manifest=atlas3_sources,
     )
+    atlas10_sources = json.loads(
+        (ROOT / "data/atlas/atlas10/source_manifest.json").read_text(encoding="utf-8")
+    )
+    validate_atlas10_source_manifest(
+        atlas10_sources,
+        repo_root=ROOT,
+        selection=atlas10,
+    )
+    atlas10_kernel = json.loads(
+        (ROOT / "data/atlas/atlas10/kernel.json").read_text(encoding="utf-8")
+    )
+    validate_atlas10_kernel(
+        atlas10_kernel,
+        selection=atlas10,
+        source_manifest=atlas10_sources,
+        inherited_kernel=atlas3_kernel,
+    )
     _validate_legal_surfaces()
     _validate_active_paths()
     _validate_markdown_links()
@@ -262,12 +297,19 @@ def main() -> int:
     _validate_p0_closure()
     verified_golden_result()
     verified_atlas3_result()
+    verified_atlas10_result()
     _run("scripts/build_exposure_row_ledger.py", "--check")
     _run("scripts/build_historical_lineage_quarantine.py", "--check")
     _run("scripts/validate_atlas3_selection.py")
     _run("scripts/validate_atlas10_selection.py")
     _run("scripts/build_atlas3_sources.py")
     _run("scripts/build_atlas3_kernel.py", "--check")
+    _run("scripts/build_atlas10_sources.py")
+    _run("scripts/build_atlas10_kernel.py", "--check")
+    _run("scripts/build_atlas10_runtime.py", "--check")
+    _run("scripts/build_atlas10_baseline.py", "--check")
+    _run("scripts/build_atlas10_comparator.py", "--check")
+    _run("scripts/build_atlas10_review_packets.py", "--check")
     if os.environ.get("CE_PARTIAL_CLONE") == "1":
         _run("scripts/build_live_artifact_manifest.py", "--check", "--index-only")
     else:

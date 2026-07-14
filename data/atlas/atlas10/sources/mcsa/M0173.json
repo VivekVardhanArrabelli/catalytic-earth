@@ -1,0 +1,768 @@
+{
+  "entry": {
+    "all_ecs": [
+      "3.4.21.4"
+    ],
+    "description": "The mechanism of the serine proteases is commonly believed to be among the best understood of all enzymes. As their name suggests, they are involved in hydrolysis of proteins using a serine nucleophile. As well as the active site, there is also a 'specificity pocket' which determines which amino acids the enzyme will cleave at. For trypsin, this pocket contains a negatively charged residue, which results in it having a preference for cleaving at positively charged residues i.e. lysine or arginine.",
+    "enzyme_name": "trypsin",
+    "is_reference_uniprot_id": true,
+    "mcsa_id": 173,
+    "protein": {
+      "sequences": [
+        {
+          "uniprot_id": "P35049"
+        }
+      ]
+    },
+    "reaction": {
+      "compounds": [
+        {
+          "chebi_id": "15377",
+          "count": 1,
+          "mol_file": "www.ebi.ac.uk/thornton-srv/m-csa/media/compound_mols/15377_Sw86oy5.mol",
+          "name": "water",
+          "type": "reactant"
+        },
+        {
+          "chebi_id": "90799",
+          "count": 1,
+          "mol_file": "www.ebi.ac.uk/thornton-srv/m-csa/media/compound_mols/90799_wftoND5.mol",
+          "name": "dipeptide zwitterion",
+          "type": "reactant"
+        },
+        {
+          "chebi_id": "59869",
+          "count": 1,
+          "mol_file": "www.ebi.ac.uk/thornton-srv/m-csa/media/compound_mols/59869.mol",
+          "name": "L-alpha-amino acid zwitterion",
+          "type": "product"
+        },
+        {
+          "chebi_id": "59869",
+          "count": 1,
+          "mol_file": "www.ebi.ac.uk/thornton-srv/m-csa/media/compound_mols/59869.mol",
+          "name": "L-alpha-amino acid zwitterion",
+          "type": "product"
+        }
+      ],
+      "ec": "3.4.21.4",
+      "is_polymeric": true,
+      "mechanisms": [
+        {
+          "components_summary": "intermediate collapse, bimolecular nucleophilic addition, overall reactant used, intermediate terminated, native state of enzyme regenerated, overall product formed, enzyme-substrate complex cleavage, enzyme-substrate complex formation, proton transfer, unimolecular elimination by the conjugate base, intermediate formation",
+          "is_detailed": true,
+          "mechanism_id": 1,
+          "mechanism_text": "The key feature of the mechanism is the presence of the catalytic triad of serine, histidine and  aspartate. Serine, having been deprotonated by histidine, attacks the carbonyl of the substrate. The negatively charged tetrahedral intermediate is stabilised by the oxyanion hole, while the positive charge on histidine is stabilised by the aspartate residue. When the tetrahedral intermediate collapses, the amide bond of the substrate is broken. The acylenzyme intermediate is hydrolysed by a water molecule, activated by histidine, to release the product and restore the enzyme to its active state.",
+          "rating": 3,
+          "references": [
+            {
+              "doi": "10.1074/jbc.m306944200",
+              "evidence_types": [
+                "crystallography evidence"
+              ],
+              "pubmed_id": "12937176",
+              "title": "Trypsin Revisited: CRYSTALLOGRAPHY AT (SUB) ATOMIC RESOLUTION AND QUANTUM CHEMISTRY REVEALING DETAILS OF CATALYSIS"
+            },
+            {
+              "doi": "10.1002/prot.10097",
+              "evidence_types": [
+                "crystallography evidence",
+                "computational experiment",
+                "covalently attached"
+              ],
+              "pubmed_id": "11948789",
+              "title": "Molecular dynamics simulations of the acyl-enzyme and the tetrahedral intermediate in the deacylation step of serine proteases"
+            },
+            {
+              "doi": "10.1074/jbc.M110.161604",
+              "evidence_types": [
+                "crystallography evidence"
+              ],
+              "pubmed_id": "21097875",
+              "title": "The catalytic aspartate is protonated in the Michaelis complex formed between trypsin and an in vitro evolved substrate-like inhibitor: a refined mechanism of serine protease action."
+            },
+            {
+              "doi": "10.1107/S1399004713033658",
+              "evidence_types": [
+                "crystallography evidence"
+              ],
+              "pubmed_id": "24598752",
+              "title": "Conformational flexibility in the catalytic triad revealed by the high-resolution crystal structure of Streptomyces erythraeus trypsin in an unliganded state."
+            }
+          ],
+          "steps": [
+            {
+              "description": "His56 in a Ser-His-Asp triad deprotonates Ser195. Activated Ser195 then attacks the carbonyl carbon of the peptide bond in a nucleophilic addition.",
+              "figure": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes_svg/MACiE__entry_173_mechanism_1_step_1_4ymAOAv",
+              "is_product": false,
+              "marvin_xml": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_173_mechanism_1_step_1_4ymAOAv.mrv",
+              "step_id": 1
+            },
+            {
+              "description": "The oxyanion initiates an elimination reaction that cleaves the peptide bond, releasing the new N-terminus of the protein, which protonates from His56.",
+              "figure": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes_svg/MACiE__entry_173_mechanism_1_step_2",
+              "is_product": false,
+              "marvin_xml": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_173_mechanism_1_step_2.mrv",
+              "step_id": 2
+            },
+            {
+              "description": "His56 deprotonates water, which attacks the carbonyl carbon bound to Ser195 in a nucleophilic addition.",
+              "figure": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes_svg/MACiE__entry_173_mechanism_1_step_3",
+              "is_product": false,
+              "marvin_xml": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_173_mechanism_1_step_3.mrv",
+              "step_id": 3
+            },
+            {
+              "description": "The oxyanion initiates an elimination that cleaves the acyl bond to Ser195, releasing the C-terminus of the protein. Ser195 then deprotonates His56, regenerating the active site.",
+              "figure": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes_svg/MACiE__entry_173_mechanism_1_step_4",
+              "is_product": false,
+              "marvin_xml": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_173_mechanism_1_step_4.mrv",
+              "step_id": 4
+            },
+            {
+              "description": "Product",
+              "figure": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes_svg/macie_entry_173_mechanism_1_step_5",
+              "is_product": true,
+              "marvin_xml": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/macie_entry_173_mechanism_1_step_5.mrv",
+              "step_id": 5
+            }
+          ]
+        }
+      ]
+    },
+    "reference_uniprot_id": "P35049",
+    "residues": [
+      {
+        "function_location_abv": "main-N",
+        "main_annotation": "",
+        "mcsa_id": 173,
+        "ptm": "",
+        "residue_chains": [
+          {
+            "assembly": 1,
+            "assembly_chain_name": "A",
+            "auth_resid": 193,
+            "chain_name": "A",
+            "code": "Gly",
+            "domain_cath_id": "2.40.10.10",
+            "domain_name": "A01",
+            "is_reference": true,
+            "pdb_id": "1pq5",
+            "resid": 178
+          }
+        ],
+        "residue_sequences": [
+          {
+            "code": "Gly",
+            "is_reference": true,
+            "resid": 202,
+            "uniprot_id": "P35049"
+          }
+        ],
+        "roles": [
+          {
+            "emo": "EMO_00114",
+            "function": "hydrogen bond donor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00114",
+            "function": "hydrogen bond donor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00033",
+            "function": "electrostatic stabiliser",
+            "function_type": "spectator",
+            "group_function": "electrostatic interaction"
+          },
+          {
+            "emo": "EMO_00114",
+            "function": "hydrogen bond donor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00114",
+            "function": "hydrogen bond donor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00033",
+            "function": "electrostatic stabiliser",
+            "function_type": "spectator",
+            "group_function": "electrostatic interaction"
+          },
+          {
+            "emo": "EMO_00035",
+            "function": "transition state stabiliser",
+            "function_type": "spectator",
+            "group_function": "electrostatic interaction"
+          },
+          {
+            "emo": "EMO_00035",
+            "function": "transition state stabiliser",
+            "function_type": "spectator",
+            "group_function": "electrostatic interaction"
+          }
+        ],
+        "roles_summary": "electrostatic stabiliser, hydrogen bond donor, transition state stabiliser"
+      },
+      {
+        "function_location_abv": "main-N",
+        "main_annotation": "",
+        "mcsa_id": 173,
+        "ptm": "",
+        "residue_chains": [
+          {
+            "assembly": 1,
+            "assembly_chain_name": "A",
+            "auth_resid": 195,
+            "chain_name": "A",
+            "code": "Ser",
+            "domain_cath_id": "2.40.10.10",
+            "domain_name": "A01",
+            "is_reference": true,
+            "pdb_id": "1pq5",
+            "resid": 180
+          }
+        ],
+        "residue_sequences": [
+          {
+            "code": "Ser",
+            "is_reference": true,
+            "resid": 204,
+            "uniprot_id": "P35049"
+          }
+        ],
+        "roles": [
+          {
+            "emo": "EMO_00035",
+            "function": "transition state stabiliser",
+            "function_type": "spectator",
+            "group_function": "electrostatic interaction"
+          },
+          {
+            "emo": "EMO_00033",
+            "function": "electrostatic stabiliser",
+            "function_type": "spectator",
+            "group_function": "electrostatic interaction"
+          },
+          {
+            "emo": "EMO_00035",
+            "function": "transition state stabiliser",
+            "function_type": "spectator",
+            "group_function": "electrostatic interaction"
+          },
+          {
+            "emo": "EMO_00033",
+            "function": "electrostatic stabiliser",
+            "function_type": "spectator",
+            "group_function": "electrostatic interaction"
+          }
+        ],
+        "roles_summary": "electrostatic stabiliser, transition state stabiliser"
+      },
+      {
+        "function_location_abv": "main-N",
+        "main_annotation": "",
+        "mcsa_id": 173,
+        "ptm": "",
+        "residue_chains": [
+          {
+            "assembly": 1,
+            "assembly_chain_name": "A",
+            "auth_resid": 192,
+            "chain_name": "A",
+            "code": "Gln",
+            "domain_cath_id": "2.40.10.10",
+            "domain_name": "A01",
+            "is_reference": true,
+            "pdb_id": "1pq5",
+            "resid": 177
+          }
+        ],
+        "residue_sequences": [
+          {
+            "code": "Gln",
+            "is_reference": true,
+            "resid": 201,
+            "uniprot_id": "P35049"
+          }
+        ],
+        "roles": [
+          {
+            "emo": "EMO_00114",
+            "function": "hydrogen bond donor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00114",
+            "function": "hydrogen bond donor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00033",
+            "function": "electrostatic stabiliser",
+            "function_type": "spectator",
+            "group_function": "electrostatic interaction"
+          },
+          {
+            "emo": "EMO_00114",
+            "function": "hydrogen bond donor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00114",
+            "function": "hydrogen bond donor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00033",
+            "function": "electrostatic stabiliser",
+            "function_type": "spectator",
+            "group_function": "electrostatic interaction"
+          },
+          {
+            "emo": "EMO_00035",
+            "function": "transition state stabiliser",
+            "function_type": "spectator",
+            "group_function": "electrostatic interaction"
+          },
+          {
+            "emo": "EMO_00035",
+            "function": "transition state stabiliser",
+            "function_type": "spectator",
+            "group_function": "electrostatic interaction"
+          }
+        ],
+        "roles_summary": "electrostatic stabiliser, hydrogen bond donor, transition state stabiliser"
+      },
+      {
+        "function_location_abv": "",
+        "main_annotation": "",
+        "mcsa_id": 173,
+        "ptm": "",
+        "residue_chains": [
+          {
+            "assembly": 1,
+            "assembly_chain_name": "A",
+            "auth_resid": 56,
+            "chain_name": "A",
+            "code": "His",
+            "domain_cath_id": "2.40.10.10",
+            "domain_name": "A02",
+            "is_reference": true,
+            "pdb_id": "1pq5",
+            "resid": 41
+          }
+        ],
+        "residue_sequences": [
+          {
+            "code": "His",
+            "is_reference": true,
+            "resid": 65,
+            "uniprot_id": "P35049"
+          }
+        ],
+        "roles": [
+          {
+            "emo": "EMO_00113",
+            "function": "hydrogen bond acceptor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00114",
+            "function": "hydrogen bond donor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00114",
+            "function": "hydrogen bond donor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00114",
+            "function": "hydrogen bond donor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00113",
+            "function": "hydrogen bond acceptor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00114",
+            "function": "hydrogen bond donor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00068",
+            "function": "proton donor",
+            "function_type": "reactant",
+            "group_function": "proton shuttle (general acid/base)"
+          },
+          {
+            "emo": "EMO_00068",
+            "function": "proton donor",
+            "function_type": "reactant",
+            "group_function": "proton shuttle (general acid/base)"
+          },
+          {
+            "emo": "EMO_00066",
+            "function": "proton acceptor",
+            "function_type": "reactant",
+            "group_function": "proton shuttle (general acid/base)"
+          },
+          {
+            "emo": "EMO_00066",
+            "function": "proton acceptor",
+            "function_type": "reactant",
+            "group_function": "proton shuttle (general acid/base)"
+          }
+        ],
+        "roles_summary": "hydrogen bond acceptor, hydrogen bond donor, proton acceptor, proton donor"
+      },
+      {
+        "function_location_abv": "",
+        "main_annotation": "",
+        "mcsa_id": 173,
+        "ptm": "",
+        "residue_chains": [
+          {
+            "assembly": 1,
+            "assembly_chain_name": "A",
+            "auth_resid": 99,
+            "chain_name": "A",
+            "code": "Asp",
+            "domain_cath_id": "2.40.10.10",
+            "domain_name": "A02",
+            "is_reference": true,
+            "pdb_id": "1pq5",
+            "resid": 84
+          }
+        ],
+        "residue_sequences": [
+          {
+            "code": "Asp",
+            "is_reference": true,
+            "resid": 108,
+            "uniprot_id": "P35049"
+          }
+        ],
+        "roles": [
+          {
+            "emo": "EMO_00113",
+            "function": "hydrogen bond acceptor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00038",
+            "function": "activator",
+            "function_type": "spectator",
+            "group_function": "activator"
+          },
+          {
+            "emo": "EMO_00113",
+            "function": "hydrogen bond acceptor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00033",
+            "function": "electrostatic stabiliser",
+            "function_type": "spectator",
+            "group_function": "electrostatic interaction"
+          },
+          {
+            "emo": "EMO_00113",
+            "function": "hydrogen bond acceptor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00113",
+            "function": "hydrogen bond acceptor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00033",
+            "function": "electrostatic stabiliser",
+            "function_type": "spectator",
+            "group_function": "electrostatic interaction"
+          }
+        ],
+        "roles_summary": "activator, electrostatic stabiliser, hydrogen bond acceptor"
+      },
+      {
+        "function_location_abv": "",
+        "main_annotation": "",
+        "mcsa_id": 173,
+        "ptm": "",
+        "residue_chains": [
+          {
+            "assembly": 1,
+            "assembly_chain_name": "A",
+            "auth_resid": 195,
+            "chain_name": "A",
+            "code": "Ser",
+            "domain_cath_id": "2.40.10.10",
+            "domain_name": "A01",
+            "is_reference": true,
+            "pdb_id": "1pq5",
+            "resid": 180
+          }
+        ],
+        "residue_sequences": [
+          {
+            "code": "Ser",
+            "is_reference": true,
+            "resid": 204,
+            "uniprot_id": "P35049"
+          }
+        ],
+        "roles": [
+          {
+            "emo": "EMO_00114",
+            "function": "hydrogen bond donor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00115",
+            "function": "covalently attached",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00113",
+            "function": "hydrogen bond acceptor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00114",
+            "function": "hydrogen bond donor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00033",
+            "function": "electrostatic stabiliser",
+            "function_type": "spectator",
+            "group_function": "electrostatic interaction"
+          },
+          {
+            "emo": "EMO_00115",
+            "function": "covalently attached",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00114",
+            "function": "hydrogen bond donor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00113",
+            "function": "hydrogen bond acceptor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00114",
+            "function": "hydrogen bond donor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00033",
+            "function": "electrostatic stabiliser",
+            "function_type": "spectator",
+            "group_function": "electrostatic interaction"
+          },
+          {
+            "emo": "EMO_00058",
+            "function": "nucleofuge",
+            "function_type": "reactant",
+            "group_function": "covalent catalysis"
+          },
+          {
+            "emo": "EMO_00068",
+            "function": "proton donor",
+            "function_type": "reactant",
+            "group_function": "proton shuttle (general acid/base)"
+          },
+          {
+            "emo": "EMO_00066",
+            "function": "proton acceptor",
+            "function_type": "reactant",
+            "group_function": "proton shuttle (general acid/base)"
+          },
+          {
+            "emo": "EMO_00054",
+            "function": "nucleophile",
+            "function_type": "reactant",
+            "group_function": "covalent catalysis"
+          }
+        ],
+        "roles_summary": "covalently attached, electrostatic stabiliser, hydrogen bond acceptor, hydrogen bond donor, nucleofuge, nucleophile, proton acceptor, proton donor"
+      },
+      {
+        "function_location_abv": "main-N",
+        "main_annotation": "",
+        "mcsa_id": 173,
+        "ptm": "",
+        "residue_chains": [
+          {
+            "assembly": 1,
+            "assembly_chain_name": "A",
+            "auth_resid": 194,
+            "chain_name": "A",
+            "code": "Asp",
+            "domain_cath_id": "2.40.10.10",
+            "domain_name": "A01",
+            "is_reference": true,
+            "pdb_id": "1pq5",
+            "resid": 179
+          }
+        ],
+        "residue_sequences": [
+          {
+            "code": "Asp",
+            "is_reference": true,
+            "resid": 203,
+            "uniprot_id": "P35049"
+          }
+        ],
+        "roles": [
+          {
+            "emo": "EMO_00114",
+            "function": "hydrogen bond donor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00114",
+            "function": "hydrogen bond donor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00033",
+            "function": "electrostatic stabiliser",
+            "function_type": "spectator",
+            "group_function": "electrostatic interaction"
+          },
+          {
+            "emo": "EMO_00114",
+            "function": "hydrogen bond donor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00114",
+            "function": "hydrogen bond donor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00033",
+            "function": "electrostatic stabiliser",
+            "function_type": "spectator",
+            "group_function": "electrostatic interaction"
+          },
+          {
+            "emo": "EMO_00035",
+            "function": "transition state stabiliser",
+            "function_type": "spectator",
+            "group_function": "electrostatic interaction"
+          },
+          {
+            "emo": "EMO_00035",
+            "function": "transition state stabiliser",
+            "function_type": "spectator",
+            "group_function": "electrostatic interaction"
+          }
+        ],
+        "roles_summary": "electrostatic stabiliser, hydrogen bond donor, transition state stabiliser"
+      }
+    ],
+    "url": "www.ebi.ac.uk/thornton-srv/m-csa/entry/173/"
+  },
+  "record_id": "M0173",
+  "source": "M-CSA",
+  "step_schemes": [
+    {
+      "content_sha256": "61e6e50dce4e376699ebbf430c3190a0805efc0586d33f683e31b0f3c7263eab",
+      "content_utf8": "<cml><MDocument><MChemicalStruct><molecule molID=\"m1\"><atomArray><atom id=\"a1\" elementType=\"N\" x2=\"12.709370698817441\" y2=\"-7.9833333333333325\" formalCharge=\"1\" mrvExtraLabel=\"chebi:90799\"/><atom id=\"a2\" elementType=\"C\" x2=\"11.375691576989407\" y2=\"-8.753333333333334\" mrvExtraLabel=\"chebi:90799\"/><atom id=\"a3\" elementType=\"C\" x2=\"10.042012455161371\" y2=\"-7.9833333333333325\" mrvExtraLabel=\"chebi:90799\"/><atom id=\"a4\" elementType=\"N\" x2=\"8.708333333333336\" y2=\"-8.753333333333334\" mrvExtraLabel=\"chebi:90799\" lonePair=\"1\"/><atom id=\"a5\" elementType=\"C\" x2=\"7.3746542115053\" y2=\"-7.983333333333333\" mrvExtraLabel=\"chebi:90799\"/><atom id=\"a6\" elementType=\"C\" x2=\"6.040975089677264\" y2=\"-8.753333333333334\" mrvExtraLabel=\"chebi:90799\"/><atom id=\"a7\" elementType=\"O\" x2=\"4.7072959678492285\" y2=\"-7.983333333333334\" formalCharge=\"-1\" mrvExtraLabel=\"chebi:90799\" lonePair=\"3\"/><atom id=\"a8\" elementType=\"O\" x2=\"6.040975089677264\" y2=\"-10.293333333333333\" mrvExtraLabel=\"chebi:90799\" lonePair=\"2\"/><atom id=\"a9\" elementType=\"R\" x2=\"6.082987544838633\" y2=\"-6.901666666666667\" mrvExtraLabel=\"chebi:90799\" rgroupRef=\"0\"/><atom id=\"a10\" elementType=\"O\" x2=\"10.042012455161371\" y2=\"-6.4433333333333325\" lonePair=\"2\"/><atom id=\"a11\" elementType=\"R\" x2=\"11.375691576989407\" y2=\"-10.293333333333333\" rgroupRef=\"0\"/><atom id=\"a12\" elementType=\"H\" x2=\"12.518975319551929\" y2=\"-11.654531514791731\" mrvExtraLabel=\"chebi:15377\"/><atom id=\"a13\" elementType=\"O\" x2=\"12.35800148611974\" y2=\"-10.12296779592459\" mrvExtraLabel=\"chebi:15377\" lonePair=\"2\"/><atom id=\"a14\" elementType=\"H\" x2=\"13.603887657457163\" y2=\"-9.217778507394181\" mrvExtraLabel=\"chebi:15377\"/><atom id=\"a15\" elementType=\"C\" x2=\"6.19420489459978\" y2=\"-16.195769189150745\" mrvAlias=\"His56A\"/><atom id=\"a16\" elementType=\"C\" x2=\"7.079307842399306\" y2=\"-14.7734096892496\" mrvExtraLabel=\"res:His56A\"/><atom id=\"a17\" elementType=\"C\" x2=\"6.174118553868897\" y2=\"-13.527523517912181\" mrvExtraLabel=\"res:His56A\"/><atom id=\"a18\" elementType=\"C\" x2=\"4.634118553868896\" y2=\"-13.527523517912183\" mrvExtraLabel=\"res:His56A\"/><atom id=\"a19\" elementType=\"N\" x2=\"4.158232382531475\" y2=\"-12.062896482817646\" mrvExtraLabel=\"res:His56A\" lonePair=\"1\"/><atom id=\"a20\" elementType=\"C\" x2=\"5.404118553868893\" y2=\"-11.157707194287237\" mrvExtraLabel=\"res:His56A\"/><atom id=\"a21\" elementType=\"N\" x2=\"6.6500047252063155\" y2=\"-12.062896482817646\" mrvExtraLabel=\"res:His56A\" lonePair=\"1\"/><atom id=\"a22\" elementType=\"C\" x2=\"-0.6351728942473518\" y2=\"-8.905283021410213\" mrvAlias=\"Asp99A\"/><atom id=\"a23\" elementType=\"C\" x2=\"0.6985062275806844\" y2=\"-9.675283021410213\" mrvExtraLabel=\"res:Asp99A\"/><atom id=\"a24\" elementType=\"C\" x2=\"0.6985062275806844\" y2=\"-11.215283021410212\" mrvExtraLabel=\"res:Asp99A\"/><atom id=\"a25\" elementType=\"O\" x2=\"2.032185349408721\" y2=\"-11.985283021410215\" formalCharge=\"-1\" mrvExtraLabel=\"res:Asp99A\" lonePair=\"3\"/><atom id=\"a26\" elementType=\"O\" x2=\"-0.6351728942473513\" y2=\"-11.985283021410211\" mrvExtraLabel=\"res:Asp99A\" lonePair=\"2\"/><atom id=\"a27\" elementType=\"C\" x2=\"10.779218140566433\" y2=\"-2.811772700562513\" mrvExtraLabel=\"res:Gln192A\"/><atom id=\"a28\" elementType=\"C\" x2=\"9.872654421699293\" y2=\"-1.8894132006613644\" mrvAlias=\"R\" mrvExtraLabel=\"res:Gln192A\"/><atom id=\"a29\" elementType=\"N\" x2=\"10.892740762430174\" y2=\"-4.1409922052332675\" mrvExtraLabel=\"res:Gln192A\" lonePair=\"1\"/><atom id=\"a30\" elementType=\"C\" x2=\"12.340971147963986\" y2=\"-3.3133517051344117\" mrvAlias=\"R\"/><atom id=\"a31\" elementType=\"C\" x2=\"11.405592570903165\" y2=\"-1.4049126957929077\" mrvAlias=\"Gln192A\"/><atom id=\"a32\" elementType=\"C\" x2=\"8.184513083283905\" y2=\"-3.705400976613326\" mrvExtraLabel=\"res:Gly193A\"/><atom id=\"a33\" elementType=\"C\" x2=\"8.440205916518384\" y2=\"-2.3619646954804656\" mrvAlias=\"R\" mrvExtraLabel=\"res:Gly193A\"/><atom id=\"a34\" elementType=\"N\" x2=\"9.133039754720176\" y2=\"-3.9540265462765927\" mrvExtraLabel=\"res:Gly193A\" lonePair=\"1\"/><atom id=\"a35\" elementType=\"C\" x2=\"9.294013588152364\" y2=\"-2.4224628274094524\" mrvAlias=\"R\"/><atom id=\"a36\" elementType=\"C\" x2=\"6.938626911946486\" y2=\"-2.8002116880829164\" mrvAlias=\"Gly193A\"/><atom id=\"a37\" elementType=\"C\" x2=\"7.295000000000001\" y2=\"-5.646175165405913\" mrvExtraLabel=\"res:Asp194A\"/><atom id=\"a38\" elementType=\"C\" x2=\"8.065000000000001\" y2=\"-6.979854287233951\" mrvAlias=\"R\" mrvExtraLabel=\"res:Asp194A\"/><atom id=\"a39\" elementType=\"N\" x2=\"8.523333333333335\" y2=\"-5.645829376911211\" mrvExtraLabel=\"res:Asp194A\" lonePair=\"1\"/><atom id=\"a40\" elementType=\"C\" x2=\"7.753333333333334\" y2=\"-4.312150255083175\" mrvAlias=\"R\"/><atom id=\"a41\" elementType=\"C\" x2=\"5.755000000000001\" y2=\"-5.646175165405913\" mrvAlias=\"Asp194A\"/><atom id=\"a42\" elementType=\"C\" x2=\"10.871026614072015\" y2=\"-13.86387458006987\" mrvAlias=\"Ser195A\"/><atom id=\"a43\" elementType=\"C\" x2=\"11.032000447504203\" y2=\"-12.332310861202727\" mrvExtraLabel=\"res:Ser195A\"/><atom id=\"a44\" elementType=\"O\" x2=\"9.786114276166783\" y2=\"-11.427121572672318\" mrvExtraLabel=\"res:Ser195A\" lonePair=\"2\"/><atom id=\"a45\" elementType=\"C\" x2=\"13.081178493705496\" y2=\"-5.463553745058327\" mrvExtraLabel=\"res:Ser195A\"/><atom id=\"a46\" elementType=\"C\" x2=\"13.242152327137685\" y2=\"-3.931990026191185\" mrvAlias=\"R\" mrvExtraLabel=\"res:Ser195A\"/><atom id=\"a47\" elementType=\"N\" x2=\"11.67431848893589\" y2=\"-6.089928175395061\" mrvExtraLabel=\"res:Ser195A\" lonePair=\"1\"/><atom id=\"a48\" elementType=\"C\" x2=\"11.513344655503703\" y2=\"-7.621491894262199\" mrvAlias=\"R\"/><atom id=\"a49\" elementType=\"C\" x2=\"14.327064665042913\" y2=\"-6.368743033588736\" mrvAlias=\"Ser195A\"/><atom id=\"a50\" elementType=\"H\" x2=\"8.37925427139718\" y2=\"-12.053496003009052\"/></atomArray><bondArray><bond atomRefs2=\"a1 a2\" order=\"1\" id=\"b1\"/><bond atomRefs2=\"a2 a3\" order=\"1\" id=\"b2\"/><bond atomRefs2=\"a3 a4\" order=\"1\" id=\"b3\"/><bond atomRefs2=\"a4 a5\" order=\"1\" id=\"b4\"/><bond atomRefs2=\"a5 a6\" order=\"1\" id=\"b5\"/><bond atomRefs2=\"a6 a7\" order=\"1\" id=\"b6\"/><bond atomRefs2=\"a6 a8\" order=\"2\" id=\"b7\"/><bond atomRefs2=\"a5 a9\" order=\"1\" id=\"b8\"/><bond atomRefs2=\"a3 a10\" order=\"2\" id=\"b9\"/><bond atomRefs2=\"a2 a11\" order=\"1\" id=\"b10\"/><bond atomRefs2=\"a13 a12\" order=\"1\" id=\"b11\"/><bond atomRefs2=\"a13 a14\" order=\"1\" id=\"b12\"/><bond atomRefs2=\"a15 a16\" order=\"1\" id=\"b13\"/><bond atomRefs2=\"a16 a17\" order=\"1\" id=\"b14\"/><bond atomRefs2=\"a17 a18\" order=\"2\" id=\"b15\"/><bond atomRefs2=\"a17 a21\" order=\"1\" id=\"b16\"/><bond atomRefs2=\"a18 a19\" order=\"1\" id=\"b17\"/><bond atomRefs2=\"a19 a20\" order=\"1\" id=\"b18\"/><bond atomRefs2=\"a20 a21\" order=\"2\" id=\"b19\"/><bond atomRefs2=\"a22 a23\" order=\"1\" id=\"b20\"/><bond atomRefs2=\"a23 a24\" order=\"1\" id=\"b21\"/><bond atomRefs2=\"a24 a25\" order=\"1\" id=\"b22\"/><bond atomRefs2=\"a24 a26\" order=\"2\" id=\"b23\"/><bond atomRefs2=\"a27 a28\" order=\"1\" id=\"b24\"/><bond atomRefs2=\"a27 a29\" order=\"1\" id=\"b25\"/><bond atomRefs2=\"a29 a30\" order=\"1\" id=\"b26\"/><bond atomRefs2=\"a27 a31\" order=\"1\" id=\"b27\"/><bond atomRefs2=\"a32 a33\" order=\"1\" id=\"b28\"/><bond atomRefs2=\"a32 a34\" order=\"1\" id=\"b29\"/><bond atomRefs2=\"a34 a35\" order=\"1\" id=\"b30\"/><bond atomRefs2=\"a32 a36\" order=\"1\" id=\"b31\"/><bond atomRefs2=\"a37 a38\" order=\"1\" id=\"b32\"/><bond atomRefs2=\"a37 a39\" order=\"1\" id=\"b33\"/><bond atomRefs2=\"a39 a40\" order=\"1\" id=\"b34\"/><bond atomRefs2=\"a37 a41\" order=\"1\" id=\"b35\"/><bond atomRefs2=\"a42 a43\" order=\"1\" id=\"b36\"/><bond atomRefs2=\"a43 a44\" order=\"1\" id=\"b37\"/><bond atomRefs2=\"a45 a46\" order=\"1\" id=\"b38\"/><bond atomRefs2=\"a45 a47\" order=\"1\" id=\"b39\"/><bond atomRefs2=\"a47 a48\" order=\"1\" id=\"b40\"/><bond atomRefs2=\"a45 a49\" order=\"1\" id=\"b41\"/><bond atomRefs2=\"a44 a50\" order=\"1\" id=\"b42\"/></bondArray></molecule></MChemicalStruct><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o1\"><MElectron atomRefs=\"m1.a4\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a4\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o2\"><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o3\"><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o4\"><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o5\"><MElectron atomRefs=\"m1.a8\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a8\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o6\"><MElectron atomRefs=\"m1.a8\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a8\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o7\"><MElectron atomRefs=\"m1.a10\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a10\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o8\"><MElectron atomRefs=\"m1.a10\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a10\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o9\"><MElectron atomRefs=\"m1.a13\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a13\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o10\"><MElectron atomRefs=\"m1.a13\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a13\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o11\"><MElectron atomRefs=\"m1.a19\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a19\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"1 1\" radical=\"0\" id=\"o12\"><MElectron atomRefs=\"m1.a21\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a21\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o13\"><MElectron atomRefs=\"m1.a25\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a25\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o14\"><MElectron atomRefs=\"m1.a25\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a25\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o15\"><MElectron atomRefs=\"m1.a25\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a25\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o16\"><MElectron atomRefs=\"m1.a26\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a26\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o17\"><MElectron atomRefs=\"m1.a26\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a26\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o18\"><MElectron atomRefs=\"m1.a29\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a29\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o19\"><MElectron atomRefs=\"m1.a34\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a34\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o20\"><MElectron atomRefs=\"m1.a39\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a39\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o21\"><MElectron atomRefs=\"m1.a44\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a44\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o22\"><MElectron atomRefs=\"m1.a44\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a44\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o23\"><MElectron atomRefs=\"m1.a47\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a47\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MEFlow arcAngle=\"90\" id=\"o24\"><MAtomSetPoint atomRefs=\"m1.a44 m1.a50\"/><MAtomSetPoint atomRefs=\"m1.a44 m1.a3\"/></MEFlow><MEFlow arcAngle=\"270\" id=\"o25\"><MAtomSetPoint atomRefs=\"m1.a3 m1.a10\"/><MAtomSetPoint atomRefs=\"m1.a10\"/></MEFlow><MEFlow arcAngle=\"270\" baseElectronContainerIndex=\"0\" baseElectronIndexInContainer=\"-1\" id=\"o26\"><MEFlowBasePoint atomRef=\"m1.a21\"/><MAtomSetPoint atomRefs=\"m1.a21 m1.a50\"/></MEFlow></MDocument></cml>",
+      "http_status": 200,
+      "is_product": false,
+      "mechanism_id": 1,
+      "media_type": "chemical/x-mdl-molfile+xml",
+      "retrieval_status": "bundled_linked_scheme",
+      "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_173_mechanism_1_step_1_4ymAOAv.mrv",
+      "step_id": 1
+    },
+    {
+      "content_sha256": "7cc3b37af574d0bb078bd46059d6559729ee4bb633ec7190b273182af0497f88",
+      "content_utf8": "<cml><MDocument><MChemicalStruct><molecule molID=\"m1\"><atomArray><atom id=\"a1\" elementType=\"N\" x2=\"12.709370698817441\" y2=\"-7.9833333333333325\" formalCharge=\"1\" mrvExtraLabel=\"chebi:90799\"/><atom id=\"a2\" elementType=\"C\" x2=\"11.375691576989407\" y2=\"-8.753333333333334\" mrvExtraLabel=\"chebi:90799\"/><atom id=\"a3\" elementType=\"C\" x2=\"10.042012455161371\" y2=\"-7.9833333333333325\" mrvExtraLabel=\"chebi:90799\"/><atom id=\"a4\" elementType=\"N\" x2=\"8.708333333333336\" y2=\"-8.753333333333334\" mrvExtraLabel=\"chebi:90799\" lonePair=\"1\"/><atom id=\"a5\" elementType=\"C\" x2=\"7.3746542115053\" y2=\"-7.983333333333333\" mrvExtraLabel=\"chebi:90799\"/><atom id=\"a6\" elementType=\"C\" x2=\"6.040975089677264\" y2=\"-8.753333333333334\" mrvExtraLabel=\"chebi:90799\"/><atom id=\"a7\" elementType=\"O\" x2=\"4.7072959678492285\" y2=\"-7.983333333333334\" formalCharge=\"-1\" mrvExtraLabel=\"chebi:90799\" lonePair=\"3\"/><atom id=\"a8\" elementType=\"O\" x2=\"6.040975089677264\" y2=\"-10.293333333333333\" mrvExtraLabel=\"chebi:90799\" lonePair=\"2\"/><atom id=\"a9\" elementType=\"R\" x2=\"6.082987544838633\" y2=\"-6.901666666666667\" mrvExtraLabel=\"chebi:90799\" rgroupRef=\"0\"/><atom id=\"a10\" elementType=\"O\" x2=\"10.042012455161371\" y2=\"-6.4433333333333325\" formalCharge=\"-1\" lonePair=\"3\"/><atom id=\"a11\" elementType=\"R\" x2=\"11.375691576989407\" y2=\"-10.293333333333333\" rgroupRef=\"0\"/><atom id=\"a12\" elementType=\"H\" x2=\"12.518975319551929\" y2=\"-11.654531514791731\" mrvExtraLabel=\"chebi:15377\"/><atom id=\"a13\" elementType=\"O\" x2=\"12.35800148611974\" y2=\"-10.12296779592459\" mrvExtraLabel=\"chebi:15377\" lonePair=\"2\"/><atom id=\"a14\" elementType=\"H\" x2=\"13.603887657457163\" y2=\"-9.217778507394181\" mrvExtraLabel=\"chebi:15377\"/><atom id=\"a15\" elementType=\"C\" x2=\"6.19420489459978\" y2=\"-16.195769189150745\" mrvAlias=\"His56A\"/><atom id=\"a16\" elementType=\"C\" x2=\"7.079307842399306\" y2=\"-14.7734096892496\" mrvExtraLabel=\"res:His56A\"/><atom id=\"a17\" elementType=\"C\" x2=\"6.174118553868897\" y2=\"-13.527523517912181\" mrvExtraLabel=\"res:His56A\"/><atom id=\"a18\" elementType=\"C\" x2=\"4.634118553868896\" y2=\"-13.527523517912183\" mrvExtraLabel=\"res:His56A\"/><atom id=\"a19\" elementType=\"N\" x2=\"4.158232382531475\" y2=\"-12.062896482817646\" mrvExtraLabel=\"res:His56A\" lonePair=\"1\"/><atom id=\"a20\" elementType=\"C\" x2=\"5.404118553868893\" y2=\"-11.157707194287237\" mrvExtraLabel=\"res:His56A\"/><atom id=\"a21\" elementType=\"N\" x2=\"6.6500047252063155\" y2=\"-12.062896482817646\" formalCharge=\"1\" mrvExtraLabel=\"res:His56A\"/><atom id=\"a22\" elementType=\"C\" x2=\"-0.6351728942473518\" y2=\"-8.905283021410213\" mrvAlias=\"Asp99A\"/><atom id=\"a23\" elementType=\"C\" x2=\"0.6985062275806844\" y2=\"-9.675283021410213\" mrvExtraLabel=\"res:Asp99A\"/><atom id=\"a24\" elementType=\"C\" x2=\"0.6985062275806844\" y2=\"-11.215283021410212\" mrvExtraLabel=\"res:Asp99A\"/><atom id=\"a25\" elementType=\"O\" x2=\"2.032185349408721\" y2=\"-11.985283021410215\" formalCharge=\"-1\" mrvExtraLabel=\"res:Asp99A\" lonePair=\"3\"/><atom id=\"a26\" elementType=\"O\" x2=\"-0.6351728942473513\" y2=\"-11.985283021410211\" mrvExtraLabel=\"res:Asp99A\" lonePair=\"2\"/><atom id=\"a27\" elementType=\"C\" x2=\"10.779218140566433\" y2=\"-2.811772700562513\" mrvExtraLabel=\"res:Gln192A\"/><atom id=\"a28\" elementType=\"C\" x2=\"9.872654421699293\" y2=\"-1.8894132006613644\" mrvAlias=\"R\" mrvExtraLabel=\"res:Gln192A\"/><atom id=\"a29\" elementType=\"N\" x2=\"10.892740762430174\" y2=\"-4.1409922052332675\" mrvExtraLabel=\"res:Gln192A\" lonePair=\"1\"/><atom id=\"a30\" elementType=\"C\" x2=\"12.340971147963986\" y2=\"-3.3133517051344117\" mrvAlias=\"R\"/><atom id=\"a31\" elementType=\"C\" x2=\"11.405592570903165\" y2=\"-1.4049126957929077\" mrvAlias=\"Gln192A\"/><atom id=\"a32\" elementType=\"C\" x2=\"8.184513083283905\" y2=\"-3.705400976613326\" mrvExtraLabel=\"res:Gly193A\"/><atom id=\"a33\" elementType=\"C\" x2=\"8.440205916518384\" y2=\"-2.3619646954804656\" mrvAlias=\"R\" mrvExtraLabel=\"res:Gly193A\"/><atom id=\"a34\" elementType=\"N\" x2=\"9.133039754720176\" y2=\"-3.9540265462765927\" mrvExtraLabel=\"res:Gly193A\" lonePair=\"1\"/><atom id=\"a35\" elementType=\"C\" x2=\"9.294013588152364\" y2=\"-2.4224628274094524\" mrvAlias=\"R\"/><atom id=\"a36\" elementType=\"C\" x2=\"6.938626911946486\" y2=\"-2.8002116880829164\" mrvAlias=\"Gly193A\"/><atom id=\"a37\" elementType=\"C\" x2=\"7.295000000000001\" y2=\"-5.646175165405913\" mrvExtraLabel=\"res:Asp194A\"/><atom id=\"a38\" elementType=\"C\" x2=\"8.065000000000001\" y2=\"-6.979854287233951\" mrvAlias=\"R\" mrvExtraLabel=\"res:Asp194A\"/><atom id=\"a39\" elementType=\"N\" x2=\"8.523333333333335\" y2=\"-5.645829376911211\" mrvExtraLabel=\"res:Asp194A\" lonePair=\"1\"/><atom id=\"a40\" elementType=\"C\" x2=\"7.753333333333334\" y2=\"-4.312150255083175\" mrvAlias=\"R\"/><atom id=\"a41\" elementType=\"C\" x2=\"5.755000000000001\" y2=\"-5.646175165405913\" mrvAlias=\"Asp194A\"/><atom id=\"a42\" elementType=\"C\" x2=\"10.871026614072015\" y2=\"-13.86387458006987\" mrvAlias=\"Ser195A\"/><atom id=\"a43\" elementType=\"C\" x2=\"11.032000447504203\" y2=\"-12.332310861202727\" mrvExtraLabel=\"res:Ser195A\"/><atom id=\"a44\" elementType=\"O\" x2=\"9.786114276166783\" y2=\"-11.427121572672318\" mrvExtraLabel=\"res:Ser195A\" lonePair=\"2\"/><atom id=\"a45\" elementType=\"C\" x2=\"13.081178493705496\" y2=\"-5.463553745058327\" mrvExtraLabel=\"res:Ser195A\"/><atom id=\"a46\" elementType=\"C\" x2=\"13.242152327137685\" y2=\"-3.931990026191185\" mrvAlias=\"R\" mrvExtraLabel=\"res:Ser195A\"/><atom id=\"a47\" elementType=\"N\" x2=\"11.67431848893589\" y2=\"-6.089928175395061\" mrvExtraLabel=\"res:Ser195A\" lonePair=\"1\"/><atom id=\"a48\" elementType=\"C\" x2=\"11.513344655503703\" y2=\"-7.621491894262199\" mrvAlias=\"R\"/><atom id=\"a49\" elementType=\"C\" x2=\"14.327064665042913\" y2=\"-6.368743033588736\" mrvAlias=\"Ser195A\"/><atom id=\"a50\" elementType=\"H\" x2=\"8.37925427139718\" y2=\"-12.053496003009052\"/></atomArray><bondArray><bond atomRefs2=\"a1 a2\" order=\"1\" id=\"b1\"/><bond atomRefs2=\"a2 a3\" order=\"1\" id=\"b2\"/><bond atomRefs2=\"a3 a4\" order=\"1\" id=\"b3\"/><bond atomRefs2=\"a4 a5\" order=\"1\" id=\"b4\"/><bond atomRefs2=\"a5 a6\" order=\"1\" id=\"b5\"/><bond atomRefs2=\"a6 a7\" order=\"1\" id=\"b6\"/><bond atomRefs2=\"a6 a8\" order=\"2\" id=\"b7\"/><bond atomRefs2=\"a5 a9\" order=\"1\" id=\"b8\"/><bond atomRefs2=\"a3 a10\" order=\"1\" id=\"b9\"/><bond atomRefs2=\"a2 a11\" order=\"1\" id=\"b10\"/><bond atomRefs2=\"a13 a12\" order=\"1\" id=\"b11\"/><bond atomRefs2=\"a13 a14\" order=\"1\" id=\"b12\"/><bond atomRefs2=\"a15 a16\" order=\"1\" id=\"b13\"/><bond atomRefs2=\"a16 a17\" order=\"1\" id=\"b14\"/><bond atomRefs2=\"a17 a18\" order=\"2\" id=\"b15\"/><bond atomRefs2=\"a17 a21\" order=\"1\" id=\"b16\"/><bond atomRefs2=\"a18 a19\" order=\"1\" id=\"b17\"/><bond atomRefs2=\"a19 a20\" order=\"1\" id=\"b18\"/><bond atomRefs2=\"a20 a21\" order=\"2\" id=\"b19\"/><bond atomRefs2=\"a22 a23\" order=\"1\" id=\"b20\"/><bond atomRefs2=\"a23 a24\" order=\"1\" id=\"b21\"/><bond atomRefs2=\"a24 a25\" order=\"1\" id=\"b22\"/><bond atomRefs2=\"a24 a26\" order=\"2\" id=\"b23\"/><bond atomRefs2=\"a27 a28\" order=\"1\" id=\"b24\"/><bond atomRefs2=\"a27 a29\" order=\"1\" id=\"b25\"/><bond atomRefs2=\"a29 a30\" order=\"1\" id=\"b26\"/><bond atomRefs2=\"a27 a31\" order=\"1\" id=\"b27\"/><bond atomRefs2=\"a32 a33\" order=\"1\" id=\"b28\"/><bond atomRefs2=\"a32 a34\" order=\"1\" id=\"b29\"/><bond atomRefs2=\"a34 a35\" order=\"1\" id=\"b30\"/><bond atomRefs2=\"a32 a36\" order=\"1\" id=\"b31\"/><bond atomRefs2=\"a37 a38\" order=\"1\" id=\"b32\"/><bond atomRefs2=\"a37 a39\" order=\"1\" id=\"b33\"/><bond atomRefs2=\"a39 a40\" order=\"1\" id=\"b34\"/><bond atomRefs2=\"a37 a41\" order=\"1\" id=\"b35\"/><bond atomRefs2=\"a42 a43\" order=\"1\" id=\"b36\"/><bond atomRefs2=\"a43 a44\" order=\"1\" id=\"b37\"/><bond atomRefs2=\"a45 a46\" order=\"1\" id=\"b38\"/><bond atomRefs2=\"a45 a47\" order=\"1\" id=\"b39\"/><bond atomRefs2=\"a47 a48\" order=\"1\" id=\"b40\"/><bond atomRefs2=\"a45 a49\" order=\"1\" id=\"b41\"/><bond atomRefs2=\"a44 a3\" order=\"1\" id=\"b42\"/><bond atomRefs2=\"a21 a50\" order=\"1\" id=\"b43\"/></bondArray></molecule></MChemicalStruct><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o1\"><MElectron atomRefs=\"m1.a4\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a4\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o2\"><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o3\"><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o4\"><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o5\"><MElectron atomRefs=\"m1.a8\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a8\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o6\"><MElectron atomRefs=\"m1.a8\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a8\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"1 1\" radical=\"0\" id=\"o7\"><MElectron atomRefs=\"m1.a10\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a10\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o8\"><MElectron atomRefs=\"m1.a10\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a10\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o9\"><MElectron atomRefs=\"m1.a10\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a10\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o10\"><MElectron atomRefs=\"m1.a13\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a13\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o11\"><MElectron atomRefs=\"m1.a13\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a13\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o12\"><MElectron atomRefs=\"m1.a19\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a19\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o13\"><MElectron atomRefs=\"m1.a25\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a25\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o14\"><MElectron atomRefs=\"m1.a25\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a25\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o15\"><MElectron atomRefs=\"m1.a25\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a25\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o16\"><MElectron atomRefs=\"m1.a26\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a26\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o17\"><MElectron atomRefs=\"m1.a26\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a26\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o18\"><MElectron atomRefs=\"m1.a29\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a29\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o19\"><MElectron atomRefs=\"m1.a34\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a34\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o20\"><MElectron atomRefs=\"m1.a39\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a39\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o21\"><MElectron atomRefs=\"m1.a44\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a44\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o22\"><MElectron atomRefs=\"m1.a44\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a44\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o23\"><MElectron atomRefs=\"m1.a47\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a47\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MEFlow arcAngle=\"90\" id=\"o24\"><MAtomSetPoint atomRefs=\"m1.a3 m1.a4\"/><MAtomSetPoint atomRefs=\"m1.a4 m1.a50\"/></MEFlow><MEFlow arcAngle=\"270\" id=\"o25\"><MAtomSetPoint atomRefs=\"m1.a21 m1.a50\"/><MAtomSetPoint atomRefs=\"m1.a21\"/></MEFlow><MEFlow arcAngle=\"270\" baseElectronContainerIndex=\"0\" baseElectronIndexInContainer=\"-1\" id=\"o26\"><MEFlowBasePoint atomRef=\"m1.a10\"/><MAtomSetPoint atomRefs=\"m1.a3 m1.a10\"/></MEFlow></MDocument></cml>",
+      "http_status": 200,
+      "is_product": false,
+      "mechanism_id": 1,
+      "media_type": "chemical/x-mdl-molfile+xml",
+      "retrieval_status": "bundled_linked_scheme",
+      "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_173_mechanism_1_step_2.mrv",
+      "step_id": 2
+    },
+    {
+      "content_sha256": "69c950d577fe89bebaac371b18c8ef9be8690d0573e982d7ed599e38bdf474e2",
+      "content_utf8": "<cml><MDocument><MChemicalStruct><molecule molID=\"m1\"><atomArray><atom id=\"a1\" elementType=\"N\" x2=\"12.709370698817441\" y2=\"-7.9833333333333325\" formalCharge=\"1\" mrvExtraLabel=\"chebi:90799\"/><atom id=\"a2\" elementType=\"C\" x2=\"11.375691576989407\" y2=\"-8.753333333333334\" mrvExtraLabel=\"chebi:90799\"/><atom id=\"a3\" elementType=\"C\" x2=\"10.042012455161371\" y2=\"-7.9833333333333325\" mrvExtraLabel=\"chebi:90799\"/><atom id=\"a4\" elementType=\"O\" x2=\"10.042012455161371\" y2=\"-6.4433333333333325\" lonePair=\"2\"/><atom id=\"a5\" elementType=\"R\" x2=\"11.375691576989407\" y2=\"-10.293333333333333\" rgroupRef=\"0\"/><atom id=\"a6\" elementType=\"H\" x2=\"8.248206200201897\" y2=\"-10.78773593908032\" mrvExtraLabel=\"chebi:15377\"/><atom id=\"a7\" elementType=\"O\" x2=\"8.248206200201896\" y2=\"-9.24773593908032\" mrvExtraLabel=\"chebi:15377\" lonePair=\"2\"/><atom id=\"a8\" elementType=\"C\" x2=\"6.19420489459978\" y2=\"-16.195769189150745\" mrvAlias=\"His56A\"/><atom id=\"a9\" elementType=\"C\" x2=\"7.079307842399306\" y2=\"-14.7734096892496\" mrvExtraLabel=\"res:His56A\"/><atom id=\"a10\" elementType=\"C\" x2=\"6.174118553868897\" y2=\"-13.527523517912181\" mrvExtraLabel=\"res:His56A\"/><atom id=\"a11\" elementType=\"C\" x2=\"4.634118553868896\" y2=\"-13.527523517912183\" mrvExtraLabel=\"res:His56A\"/><atom id=\"a12\" elementType=\"N\" x2=\"4.158232382531475\" y2=\"-12.062896482817646\" mrvExtraLabel=\"res:His56A\" lonePair=\"1\"/><atom id=\"a13\" elementType=\"C\" x2=\"5.404118553868893\" y2=\"-11.157707194287237\" mrvExtraLabel=\"res:His56A\"/><atom id=\"a14\" elementType=\"N\" x2=\"6.6500047252063155\" y2=\"-12.062896482817646\" mrvExtraLabel=\"res:His56A\" lonePair=\"1\"/><atom id=\"a15\" elementType=\"C\" x2=\"-0.6351728942473518\" y2=\"-8.905283021410213\" mrvAlias=\"Asp99A\"/><atom id=\"a16\" elementType=\"C\" x2=\"0.6985062275806844\" y2=\"-9.675283021410213\" mrvExtraLabel=\"res:Asp99A\"/><atom id=\"a17\" elementType=\"C\" x2=\"0.6985062275806844\" y2=\"-11.215283021410212\" mrvExtraLabel=\"res:Asp99A\"/><atom id=\"a18\" elementType=\"O\" x2=\"2.032185349408721\" y2=\"-11.985283021410215\" formalCharge=\"-1\" mrvExtraLabel=\"res:Asp99A\" lonePair=\"3\"/><atom id=\"a19\" elementType=\"O\" x2=\"-0.6351728942473513\" y2=\"-11.985283021410211\" mrvExtraLabel=\"res:Asp99A\" lonePair=\"2\"/><atom id=\"a20\" elementType=\"C\" x2=\"10.779218140566433\" y2=\"-2.811772700562513\" mrvExtraLabel=\"res:Gln192A\"/><atom id=\"a21\" elementType=\"C\" x2=\"9.872654421699293\" y2=\"-1.8894132006613644\" mrvAlias=\"R\" mrvExtraLabel=\"res:Gln192A\"/><atom id=\"a22\" elementType=\"N\" x2=\"10.892740762430174\" y2=\"-4.1409922052332675\" mrvExtraLabel=\"res:Gln192A\" lonePair=\"1\"/><atom id=\"a23\" elementType=\"C\" x2=\"12.340971147963986\" y2=\"-3.3133517051344117\" mrvAlias=\"R\"/><atom id=\"a24\" elementType=\"C\" x2=\"11.405592570903165\" y2=\"-1.4049126957929077\" mrvAlias=\"Gln192A\"/><atom id=\"a25\" elementType=\"C\" x2=\"8.184513083283905\" y2=\"-3.705400976613326\" mrvExtraLabel=\"res:Gly193A\"/><atom id=\"a26\" elementType=\"C\" x2=\"8.440205916518384\" y2=\"-2.3619646954804656\" mrvAlias=\"R\" mrvExtraLabel=\"res:Gly193A\"/><atom id=\"a27\" elementType=\"N\" x2=\"9.133039754720176\" y2=\"-3.9540265462765927\" mrvExtraLabel=\"res:Gly193A\" lonePair=\"1\"/><atom id=\"a28\" elementType=\"C\" x2=\"9.294013588152364\" y2=\"-2.4224628274094524\" mrvAlias=\"R\"/><atom id=\"a29\" elementType=\"C\" x2=\"6.938626911946486\" y2=\"-2.8002116880829164\" mrvAlias=\"Gly193A\"/><atom id=\"a30\" elementType=\"C\" x2=\"7.295000000000001\" y2=\"-5.646175165405913\" mrvExtraLabel=\"res:Asp194A\"/><atom id=\"a31\" elementType=\"C\" x2=\"8.065000000000001\" y2=\"-6.979854287233951\" mrvAlias=\"R\" mrvExtraLabel=\"res:Asp194A\"/><atom id=\"a32\" elementType=\"N\" x2=\"8.523333333333335\" y2=\"-5.645829376911211\" mrvExtraLabel=\"res:Asp194A\" lonePair=\"1\"/><atom id=\"a33\" elementType=\"C\" x2=\"7.753333333333334\" y2=\"-4.312150255083175\" mrvAlias=\"R\"/><atom id=\"a34\" elementType=\"C\" x2=\"5.755000000000001\" y2=\"-5.646175165405913\" mrvAlias=\"Asp194A\"/><atom id=\"a35\" elementType=\"C\" x2=\"10.871026614072015\" y2=\"-13.86387458006987\" mrvAlias=\"Ser195A\"/><atom id=\"a36\" elementType=\"C\" x2=\"11.032000447504203\" y2=\"-12.332310861202727\" mrvExtraLabel=\"res:Ser195A\"/><atom id=\"a37\" elementType=\"O\" x2=\"9.786114276166783\" y2=\"-11.427121572672318\" mrvExtraLabel=\"res:Ser195A\" lonePair=\"2\"/><atom id=\"a38\" elementType=\"C\" x2=\"13.081178493705496\" y2=\"-5.463553745058327\" mrvExtraLabel=\"res:Ser195A\"/><atom id=\"a39\" elementType=\"C\" x2=\"13.242152327137685\" y2=\"-3.931990026191185\" mrvAlias=\"R\" mrvExtraLabel=\"res:Ser195A\"/><atom id=\"a40\" elementType=\"N\" x2=\"11.67431848893589\" y2=\"-6.089928175395061\" mrvExtraLabel=\"res:Ser195A\" lonePair=\"1\"/><atom id=\"a41\" elementType=\"C\" x2=\"11.513344655503703\" y2=\"-7.621491894262199\" mrvAlias=\"R\"/><atom id=\"a42\" elementType=\"C\" x2=\"14.327064665042913\" y2=\"-6.368743033588736\" mrvAlias=\"Ser195A\"/></atomArray><bondArray><bond atomRefs2=\"a1 a2\" order=\"1\" id=\"b1\"/><bond atomRefs2=\"a2 a3\" order=\"1\" id=\"b2\"/><bond atomRefs2=\"a3 a4\" order=\"2\" id=\"b3\"/><bond atomRefs2=\"a2 a5\" order=\"1\" id=\"b4\"/><bond atomRefs2=\"a7 a6\" order=\"1\" id=\"b5\"/><bond atomRefs2=\"a8 a9\" order=\"1\" id=\"b6\"/><bond atomRefs2=\"a9 a10\" order=\"1\" id=\"b7\"/><bond atomRefs2=\"a10 a11\" order=\"2\" id=\"b8\"/><bond atomRefs2=\"a10 a14\" order=\"1\" id=\"b9\"/><bond atomRefs2=\"a11 a12\" order=\"1\" id=\"b10\"/><bond atomRefs2=\"a12 a13\" order=\"1\" id=\"b11\"/><bond atomRefs2=\"a13 a14\" order=\"2\" id=\"b12\"/><bond atomRefs2=\"a15 a16\" order=\"1\" id=\"b13\"/><bond atomRefs2=\"a16 a17\" order=\"1\" id=\"b14\"/><bond atomRefs2=\"a17 a18\" order=\"1\" id=\"b15\"/><bond atomRefs2=\"a17 a19\" order=\"2\" id=\"b16\"/><bond atomRefs2=\"a20 a21\" order=\"1\" id=\"b17\"/><bond atomRefs2=\"a20 a22\" order=\"1\" id=\"b18\"/><bond atomRefs2=\"a22 a23\" order=\"1\" id=\"b19\"/><bond atomRefs2=\"a20 a24\" order=\"1\" id=\"b20\"/><bond atomRefs2=\"a25 a26\" order=\"1\" id=\"b21\"/><bond atomRefs2=\"a25 a27\" order=\"1\" id=\"b22\"/><bond atomRefs2=\"a27 a28\" order=\"1\" id=\"b23\"/><bond atomRefs2=\"a25 a29\" order=\"1\" id=\"b24\"/><bond atomRefs2=\"a30 a31\" order=\"1\" id=\"b25\"/><bond atomRefs2=\"a30 a32\" order=\"1\" id=\"b26\"/><bond atomRefs2=\"a32 a33\" order=\"1\" id=\"b27\"/><bond atomRefs2=\"a30 a34\" order=\"1\" id=\"b28\"/><bond atomRefs2=\"a35 a36\" order=\"1\" id=\"b29\"/><bond atomRefs2=\"a36 a37\" order=\"1\" id=\"b30\"/><bond atomRefs2=\"a38 a39\" order=\"1\" id=\"b31\"/><bond atomRefs2=\"a38 a40\" order=\"1\" id=\"b32\"/><bond atomRefs2=\"a40 a41\" order=\"1\" id=\"b33\"/><bond atomRefs2=\"a38 a42\" order=\"1\" id=\"b34\"/><bond atomRefs2=\"a37 a3\" order=\"1\" id=\"b35\"/></bondArray></molecule></MChemicalStruct><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o1\"><MElectron atomRefs=\"m1.a4\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a4\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o2\"><MElectron atomRefs=\"m1.a4\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a4\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o3\"><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o4\"><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o5\"><MElectron atomRefs=\"m1.a12\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a12\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"1 1\" radical=\"0\" id=\"o6\"><MElectron atomRefs=\"m1.a14\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a14\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o7\"><MElectron atomRefs=\"m1.a18\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a18\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o8\"><MElectron atomRefs=\"m1.a18\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a18\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o9\"><MElectron atomRefs=\"m1.a18\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a18\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o10\"><MElectron atomRefs=\"m1.a19\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a19\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o11\"><MElectron atomRefs=\"m1.a19\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a19\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o12\"><MElectron atomRefs=\"m1.a22\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a22\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o13\"><MElectron atomRefs=\"m1.a27\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a27\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o14\"><MElectron atomRefs=\"m1.a32\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a32\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o15\"><MElectron atomRefs=\"m1.a37\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a37\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o16\"><MElectron atomRefs=\"m1.a37\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a37\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o17\"><MElectron atomRefs=\"m1.a40\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a40\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MEFlow arcAngle=\"270\" id=\"o18\"><MAtomSetPoint atomRefs=\"m1.a7 m1.a6\"/><MAtomSetPoint atomRefs=\"m1.a7 m1.a3\"/></MEFlow><MEFlow arcAngle=\"270\" id=\"o19\"><MAtomSetPoint atomRefs=\"m1.a3 m1.a4\"/><MAtomSetPoint atomRefs=\"m1.a4\"/></MEFlow><MEFlow arcAngle=\"270\" baseElectronContainerIndex=\"0\" baseElectronIndexInContainer=\"-1\" id=\"o20\"><MEFlowBasePoint atomRef=\"m1.a14\"/><MAtomSetPoint atomRefs=\"m1.a14 m1.a6\"/></MEFlow></MDocument></cml>",
+      "http_status": 200,
+      "is_product": false,
+      "mechanism_id": 1,
+      "media_type": "chemical/x-mdl-molfile+xml",
+      "retrieval_status": "bundled_linked_scheme",
+      "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_173_mechanism_1_step_3.mrv",
+      "step_id": 3
+    },
+    {
+      "content_sha256": "fe7457ae639e865e04b10bcbf39a61283ef3396fc27377f8b1ece47a59dfb688",
+      "content_utf8": "<cml><MDocument><MChemicalStruct><molecule molID=\"m1\"><atomArray><atom id=\"a1\" elementType=\"N\" x2=\"12.709370698817441\" y2=\"-7.9833333333333325\" formalCharge=\"1\" mrvExtraLabel=\"chebi:90799\"/><atom id=\"a2\" elementType=\"C\" x2=\"11.375691576989407\" y2=\"-8.753333333333334\" mrvExtraLabel=\"chebi:90799\"/><atom id=\"a3\" elementType=\"C\" x2=\"10.042012455161371\" y2=\"-7.9833333333333325\" mrvExtraLabel=\"chebi:90799\"/><atom id=\"a4\" elementType=\"O\" x2=\"10.042012455161371\" y2=\"-6.4433333333333325\" formalCharge=\"-1\" lonePair=\"3\"/><atom id=\"a5\" elementType=\"R\" x2=\"11.375691576989407\" y2=\"-10.293333333333333\" rgroupRef=\"0\"/><atom id=\"a6\" elementType=\"H\" x2=\"8.248206200201897\" y2=\"-10.78773593908032\" mrvExtraLabel=\"chebi:15377\"/><atom id=\"a7\" elementType=\"O\" x2=\"8.248206200201896\" y2=\"-9.24773593908032\" mrvExtraLabel=\"chebi:15377\" lonePair=\"2\"/><atom id=\"a8\" elementType=\"C\" x2=\"6.19420489459978\" y2=\"-16.195769189150745\" mrvAlias=\"His56A\"/><atom id=\"a9\" elementType=\"C\" x2=\"7.079307842399306\" y2=\"-14.7734096892496\" mrvExtraLabel=\"res:His56A\"/><atom id=\"a10\" elementType=\"C\" x2=\"6.174118553868897\" y2=\"-13.527523517912181\" mrvExtraLabel=\"res:His56A\"/><atom id=\"a11\" elementType=\"C\" x2=\"4.634118553868896\" y2=\"-13.527523517912183\" mrvExtraLabel=\"res:His56A\"/><atom id=\"a12\" elementType=\"N\" x2=\"4.158232382531475\" y2=\"-12.062896482817646\" mrvExtraLabel=\"res:His56A\" lonePair=\"1\"/><atom id=\"a13\" elementType=\"C\" x2=\"5.404118553868893\" y2=\"-11.157707194287237\" mrvExtraLabel=\"res:His56A\"/><atom id=\"a14\" elementType=\"N\" x2=\"6.6500047252063155\" y2=\"-12.062896482817646\" formalCharge=\"1\" mrvExtraLabel=\"res:His56A\"/><atom id=\"a15\" elementType=\"C\" x2=\"-0.6351728942473518\" y2=\"-8.905283021410213\" mrvAlias=\"Asp99A\"/><atom id=\"a16\" elementType=\"C\" x2=\"0.6985062275806844\" y2=\"-9.675283021410213\" mrvExtraLabel=\"res:Asp99A\"/><atom id=\"a17\" elementType=\"C\" x2=\"0.6985062275806844\" y2=\"-11.215283021410212\" mrvExtraLabel=\"res:Asp99A\"/><atom id=\"a18\" elementType=\"O\" x2=\"2.032185349408721\" y2=\"-11.985283021410215\" formalCharge=\"-1\" mrvExtraLabel=\"res:Asp99A\" lonePair=\"3\"/><atom id=\"a19\" elementType=\"O\" x2=\"-0.6351728942473513\" y2=\"-11.985283021410211\" mrvExtraLabel=\"res:Asp99A\" lonePair=\"2\"/><atom id=\"a20\" elementType=\"C\" x2=\"10.779218140566433\" y2=\"-2.811772700562513\" mrvExtraLabel=\"res:Gln192A\"/><atom id=\"a21\" elementType=\"C\" x2=\"9.872654421699293\" y2=\"-1.8894132006613644\" mrvAlias=\"R\" mrvExtraLabel=\"res:Gln192A\"/><atom id=\"a22\" elementType=\"N\" x2=\"10.892740762430174\" y2=\"-4.1409922052332675\" mrvExtraLabel=\"res:Gln192A\" lonePair=\"1\"/><atom id=\"a23\" elementType=\"C\" x2=\"12.340971147963986\" y2=\"-3.3133517051344117\" mrvAlias=\"R\"/><atom id=\"a24\" elementType=\"C\" x2=\"11.405592570903165\" y2=\"-1.4049126957929077\" mrvAlias=\"Gln192A\"/><atom id=\"a25\" elementType=\"C\" x2=\"8.184513083283905\" y2=\"-3.705400976613326\" mrvExtraLabel=\"res:Gly193A\"/><atom id=\"a26\" elementType=\"C\" x2=\"8.440205916518384\" y2=\"-2.3619646954804656\" mrvAlias=\"R\" mrvExtraLabel=\"res:Gly193A\"/><atom id=\"a27\" elementType=\"N\" x2=\"9.133039754720176\" y2=\"-3.9540265462765927\" mrvExtraLabel=\"res:Gly193A\" lonePair=\"1\"/><atom id=\"a28\" elementType=\"C\" x2=\"9.294013588152364\" y2=\"-2.4224628274094524\" mrvAlias=\"R\"/><atom id=\"a29\" elementType=\"C\" x2=\"6.938626911946486\" y2=\"-2.8002116880829164\" mrvAlias=\"Gly193A\"/><atom id=\"a30\" elementType=\"C\" x2=\"7.295000000000001\" y2=\"-5.646175165405913\" mrvExtraLabel=\"res:Asp194A\"/><atom id=\"a31\" elementType=\"C\" x2=\"8.065000000000001\" y2=\"-6.979854287233951\" mrvAlias=\"R\" mrvExtraLabel=\"res:Asp194A\"/><atom id=\"a32\" elementType=\"N\" x2=\"8.523333333333335\" y2=\"-5.645829376911211\" mrvExtraLabel=\"res:Asp194A\" lonePair=\"1\"/><atom id=\"a33\" elementType=\"C\" x2=\"7.753333333333334\" y2=\"-4.312150255083175\" mrvAlias=\"R\"/><atom id=\"a34\" elementType=\"C\" x2=\"5.755000000000001\" y2=\"-5.646175165405913\" mrvAlias=\"Asp194A\"/><atom id=\"a35\" elementType=\"C\" x2=\"10.871026614072015\" y2=\"-13.86387458006987\" mrvAlias=\"Ser195A\"/><atom id=\"a36\" elementType=\"C\" x2=\"11.032000447504203\" y2=\"-12.332310861202727\" mrvExtraLabel=\"res:Ser195A\"/><atom id=\"a37\" elementType=\"O\" x2=\"9.786114276166783\" y2=\"-11.427121572672318\" mrvExtraLabel=\"res:Ser195A\" lonePair=\"2\"/><atom id=\"a38\" elementType=\"C\" x2=\"13.081178493705496\" y2=\"-5.463553745058327\" mrvExtraLabel=\"res:Ser195A\"/><atom id=\"a39\" elementType=\"C\" x2=\"13.242152327137685\" y2=\"-3.931990026191185\" mrvAlias=\"R\" mrvExtraLabel=\"res:Ser195A\"/><atom id=\"a40\" elementType=\"N\" x2=\"11.67431848893589\" y2=\"-6.089928175395061\" mrvExtraLabel=\"res:Ser195A\" lonePair=\"1\"/><atom id=\"a41\" elementType=\"C\" x2=\"11.513344655503703\" y2=\"-7.621491894262199\" mrvAlias=\"R\"/><atom id=\"a42\" elementType=\"C\" x2=\"14.327064665042913\" y2=\"-6.368743033588736\" mrvAlias=\"Ser195A\"/></atomArray><bondArray><bond atomRefs2=\"a1 a2\" order=\"1\" id=\"b1\"/><bond atomRefs2=\"a2 a3\" order=\"1\" id=\"b2\"/><bond atomRefs2=\"a3 a4\" order=\"1\" id=\"b3\"/><bond atomRefs2=\"a2 a5\" order=\"1\" id=\"b4\"/><bond atomRefs2=\"a8 a9\" order=\"1\" id=\"b5\"/><bond atomRefs2=\"a9 a10\" order=\"1\" id=\"b6\"/><bond atomRefs2=\"a10 a11\" order=\"2\" id=\"b7\"/><bond atomRefs2=\"a10 a14\" order=\"1\" id=\"b8\"/><bond atomRefs2=\"a11 a12\" order=\"1\" id=\"b9\"/><bond atomRefs2=\"a12 a13\" order=\"1\" id=\"b10\"/><bond atomRefs2=\"a13 a14\" order=\"2\" id=\"b11\"/><bond atomRefs2=\"a15 a16\" order=\"1\" id=\"b12\"/><bond atomRefs2=\"a16 a17\" order=\"1\" id=\"b13\"/><bond atomRefs2=\"a17 a18\" order=\"1\" id=\"b14\"/><bond atomRefs2=\"a17 a19\" order=\"2\" id=\"b15\"/><bond atomRefs2=\"a20 a21\" order=\"1\" id=\"b16\"/><bond atomRefs2=\"a20 a22\" order=\"1\" id=\"b17\"/><bond atomRefs2=\"a22 a23\" order=\"1\" id=\"b18\"/><bond atomRefs2=\"a20 a24\" order=\"1\" id=\"b19\"/><bond atomRefs2=\"a25 a26\" order=\"1\" id=\"b20\"/><bond atomRefs2=\"a25 a27\" order=\"1\" id=\"b21\"/><bond atomRefs2=\"a27 a28\" order=\"1\" id=\"b22\"/><bond atomRefs2=\"a25 a29\" order=\"1\" id=\"b23\"/><bond atomRefs2=\"a30 a31\" order=\"1\" id=\"b24\"/><bond atomRefs2=\"a30 a32\" order=\"1\" id=\"b25\"/><bond atomRefs2=\"a32 a33\" order=\"1\" id=\"b26\"/><bond atomRefs2=\"a30 a34\" order=\"1\" id=\"b27\"/><bond atomRefs2=\"a35 a36\" order=\"1\" id=\"b28\"/><bond atomRefs2=\"a36 a37\" order=\"1\" id=\"b29\"/><bond atomRefs2=\"a38 a39\" order=\"1\" id=\"b30\"/><bond atomRefs2=\"a38 a40\" order=\"1\" id=\"b31\"/><bond atomRefs2=\"a40 a41\" order=\"1\" id=\"b32\"/><bond atomRefs2=\"a38 a42\" order=\"1\" id=\"b33\"/><bond atomRefs2=\"a37 a3\" order=\"1\" id=\"b34\"/><bond atomRefs2=\"a7 a3\" order=\"1\" id=\"b35\"/><bond atomRefs2=\"a14 a6\" order=\"1\" id=\"b36\"/></bondArray></molecule></MChemicalStruct><MElectronContainer occupation=\"1 1\" radical=\"0\" id=\"o1\"><MElectron atomRefs=\"m1.a4\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a4\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o2\"><MElectron atomRefs=\"m1.a4\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a4\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o3\"><MElectron atomRefs=\"m1.a4\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a4\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o4\"><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o5\"><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o6\"><MElectron atomRefs=\"m1.a12\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a12\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o7\"><MElectron atomRefs=\"m1.a18\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a18\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o8\"><MElectron atomRefs=\"m1.a18\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a18\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o9\"><MElectron atomRefs=\"m1.a18\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a18\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o10\"><MElectron atomRefs=\"m1.a19\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a19\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o11\"><MElectron atomRefs=\"m1.a19\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a19\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o12\"><MElectron atomRefs=\"m1.a22\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a22\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o13\"><MElectron atomRefs=\"m1.a27\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a27\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o14\"><MElectron atomRefs=\"m1.a32\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a32\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o15\"><MElectron atomRefs=\"m1.a37\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a37\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o16\"><MElectron atomRefs=\"m1.a37\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a37\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o17\"><MElectron atomRefs=\"m1.a40\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a40\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MEFlow arcAngle=\"270\" id=\"o18\"><MAtomSetPoint atomRefs=\"m1.a37 m1.a3\"/><MAtomSetPoint atomRefs=\"m1.a37 m1.a6\"/></MEFlow><MEFlow arcAngle=\"270\" id=\"o19\"><MAtomSetPoint atomRefs=\"m1.a14 m1.a6\"/><MAtomSetPoint atomRefs=\"m1.a14\"/></MEFlow><MEFlow arcAngle=\"270\" baseElectronContainerIndex=\"0\" baseElectronIndexInContainer=\"-1\" id=\"o20\"><MEFlowBasePoint atomRef=\"m1.a4\"/><MAtomSetPoint atomRefs=\"m1.a3 m1.a4\"/></MEFlow></MDocument></cml>",
+      "http_status": 200,
+      "is_product": false,
+      "mechanism_id": 1,
+      "media_type": "chemical/x-mdl-molfile+xml",
+      "retrieval_status": "bundled_linked_scheme",
+      "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_173_mechanism_1_step_4.mrv",
+      "step_id": 4
+    },
+    {
+      "content_sha256": "241527cb240954e6308e55dbe25563a1498383f77e9ae48834f72bd80a07c266",
+      "content_utf8": "<cml><MDocument><MChemicalStruct><molecule molID=\"m1\"><atomArray><atom id=\"a1\" elementType=\"N\" x2=\"12.709370698817441\" y2=\"-7.9833333333333325\" formalCharge=\"1\" mrvExtraLabel=\"chebi:90799\"/><atom id=\"a2\" elementType=\"C\" x2=\"11.375691576989407\" y2=\"-8.753333333333334\" mrvExtraLabel=\"chebi:90799\"/><atom id=\"a3\" elementType=\"C\" x2=\"10.042012455161371\" y2=\"-7.9833333333333325\" mrvExtraLabel=\"chebi:90799\"/><atom id=\"a4\" elementType=\"O\" x2=\"10.042012455161371\" y2=\"-6.4433333333333325\" lonePair=\"2\"/><atom id=\"a5\" elementType=\"R\" x2=\"11.375691576989407\" y2=\"-10.293333333333333\" rgroupRef=\"0\"/><atom id=\"a6\" elementType=\"H\" x2=\"8.248206200201897\" y2=\"-10.78773593908032\" mrvExtraLabel=\"chebi:15377\"/><atom id=\"a7\" elementType=\"O\" x2=\"8.248206200201896\" y2=\"-9.24773593908032\" mrvExtraLabel=\"chebi:15377\" lonePair=\"2\"/><atom id=\"a8\" elementType=\"C\" x2=\"6.19420489459978\" y2=\"-16.195769189150745\" mrvAlias=\"His56A\"/><atom id=\"a9\" elementType=\"C\" x2=\"7.079307842399306\" y2=\"-14.7734096892496\" mrvExtraLabel=\"res:His56A\"/><atom id=\"a10\" elementType=\"C\" x2=\"6.174118553868897\" y2=\"-13.527523517912181\" mrvExtraLabel=\"res:His56A\"/><atom id=\"a11\" elementType=\"C\" x2=\"4.634118553868896\" y2=\"-13.527523517912183\" mrvExtraLabel=\"res:His56A\"/><atom id=\"a12\" elementType=\"N\" x2=\"4.158232382531475\" y2=\"-12.062896482817646\" mrvExtraLabel=\"res:His56A\" lonePair=\"1\"/><atom id=\"a13\" elementType=\"C\" x2=\"5.404118553868893\" y2=\"-11.157707194287237\" mrvExtraLabel=\"res:His56A\"/><atom id=\"a14\" elementType=\"N\" x2=\"6.6500047252063155\" y2=\"-12.062896482817646\" mrvExtraLabel=\"res:His56A\" lonePair=\"1\"/><atom id=\"a15\" elementType=\"C\" x2=\"-0.6351728942473518\" y2=\"-8.905283021410213\" mrvAlias=\"Asp99A\"/><atom id=\"a16\" elementType=\"C\" x2=\"0.6985062275806844\" y2=\"-9.675283021410213\" mrvExtraLabel=\"res:Asp99A\"/><atom id=\"a17\" elementType=\"C\" x2=\"0.6985062275806844\" y2=\"-11.215283021410212\" mrvExtraLabel=\"res:Asp99A\"/><atom id=\"a18\" elementType=\"O\" x2=\"2.032185349408721\" y2=\"-11.985283021410215\" formalCharge=\"-1\" mrvExtraLabel=\"res:Asp99A\" lonePair=\"3\"/><atom id=\"a19\" elementType=\"O\" x2=\"-0.6351728942473513\" y2=\"-11.985283021410211\" mrvExtraLabel=\"res:Asp99A\" lonePair=\"2\"/><atom id=\"a20\" elementType=\"C\" x2=\"10.779218140566433\" y2=\"-2.811772700562513\" mrvExtraLabel=\"res:Gln192A\"/><atom id=\"a21\" elementType=\"C\" x2=\"9.872654421699293\" y2=\"-1.8894132006613644\" mrvAlias=\"R\" mrvExtraLabel=\"res:Gln192A\"/><atom id=\"a22\" elementType=\"N\" x2=\"10.892740762430174\" y2=\"-4.1409922052332675\" mrvExtraLabel=\"res:Gln192A\" lonePair=\"1\"/><atom id=\"a23\" elementType=\"C\" x2=\"12.340971147963986\" y2=\"-3.3133517051344117\" mrvAlias=\"R\"/><atom id=\"a24\" elementType=\"C\" x2=\"11.405592570903165\" y2=\"-1.4049126957929077\" mrvAlias=\"Gln192A\"/><atom id=\"a25\" elementType=\"C\" x2=\"8.184513083283905\" y2=\"-3.705400976613326\" mrvExtraLabel=\"res:Gly193A\"/><atom id=\"a26\" elementType=\"C\" x2=\"8.440205916518384\" y2=\"-2.3619646954804656\" mrvAlias=\"R\" mrvExtraLabel=\"res:Gly193A\"/><atom id=\"a27\" elementType=\"N\" x2=\"9.133039754720176\" y2=\"-3.9540265462765927\" mrvExtraLabel=\"res:Gly193A\" lonePair=\"1\"/><atom id=\"a28\" elementType=\"C\" x2=\"9.294013588152364\" y2=\"-2.4224628274094524\" mrvAlias=\"R\"/><atom id=\"a29\" elementType=\"C\" x2=\"6.938626911946486\" y2=\"-2.8002116880829164\" mrvAlias=\"Gly193A\"/><atom id=\"a30\" elementType=\"C\" x2=\"7.295000000000001\" y2=\"-5.646175165405913\" mrvExtraLabel=\"res:Asp194A\"/><atom id=\"a31\" elementType=\"C\" x2=\"8.065000000000001\" y2=\"-6.979854287233951\" mrvAlias=\"R\" mrvExtraLabel=\"res:Asp194A\"/><atom id=\"a32\" elementType=\"N\" x2=\"8.523333333333335\" y2=\"-5.645829376911211\" mrvExtraLabel=\"res:Asp194A\" lonePair=\"1\"/><atom id=\"a33\" elementType=\"C\" x2=\"7.753333333333334\" y2=\"-4.312150255083175\" mrvAlias=\"R\"/><atom id=\"a34\" elementType=\"C\" x2=\"5.755000000000001\" y2=\"-5.646175165405913\" mrvAlias=\"Asp194A\"/><atom id=\"a35\" elementType=\"C\" x2=\"10.871026614072015\" y2=\"-13.86387458006987\" mrvAlias=\"Ser195A\"/><atom id=\"a36\" elementType=\"C\" x2=\"11.032000447504203\" y2=\"-12.332310861202727\" mrvExtraLabel=\"res:Ser195A\"/><atom id=\"a37\" elementType=\"O\" x2=\"9.786114276166783\" y2=\"-11.427121572672318\" mrvExtraLabel=\"res:Ser195A\" lonePair=\"2\"/><atom id=\"a38\" elementType=\"C\" x2=\"13.081178493705496\" y2=\"-5.463553745058327\" mrvExtraLabel=\"res:Ser195A\"/><atom id=\"a39\" elementType=\"C\" x2=\"13.242152327137685\" y2=\"-3.931990026191185\" mrvAlias=\"R\" mrvExtraLabel=\"res:Ser195A\"/><atom id=\"a40\" elementType=\"N\" x2=\"11.67431848893589\" y2=\"-6.089928175395061\" mrvExtraLabel=\"res:Ser195A\" lonePair=\"1\"/><atom id=\"a41\" elementType=\"C\" x2=\"11.513344655503703\" y2=\"-7.621491894262199\" mrvAlias=\"R\"/><atom id=\"a42\" elementType=\"C\" x2=\"14.327064665042913\" y2=\"-6.368743033588736\" mrvAlias=\"Ser195A\"/></atomArray><bondArray><bond atomRefs2=\"a1 a2\" order=\"1\" id=\"b1\"/><bond atomRefs2=\"a2 a3\" order=\"1\" id=\"b2\"/><bond atomRefs2=\"a3 a4\" order=\"2\" id=\"b3\"/><bond atomRefs2=\"a2 a5\" order=\"1\" id=\"b4\"/><bond atomRefs2=\"a8 a9\" order=\"1\" id=\"b5\"/><bond atomRefs2=\"a9 a10\" order=\"1\" id=\"b6\"/><bond atomRefs2=\"a10 a11\" order=\"2\" id=\"b7\"/><bond atomRefs2=\"a10 a14\" order=\"1\" id=\"b8\"/><bond atomRefs2=\"a11 a12\" order=\"1\" id=\"b9\"/><bond atomRefs2=\"a12 a13\" order=\"1\" id=\"b10\"/><bond atomRefs2=\"a13 a14\" order=\"2\" id=\"b11\"/><bond atomRefs2=\"a15 a16\" order=\"1\" id=\"b12\"/><bond atomRefs2=\"a16 a17\" order=\"1\" id=\"b13\"/><bond atomRefs2=\"a17 a18\" order=\"1\" id=\"b14\"/><bond atomRefs2=\"a17 a19\" order=\"2\" id=\"b15\"/><bond atomRefs2=\"a20 a21\" order=\"1\" id=\"b16\"/><bond atomRefs2=\"a20 a22\" order=\"1\" id=\"b17\"/><bond atomRefs2=\"a22 a23\" order=\"1\" id=\"b18\"/><bond atomRefs2=\"a20 a24\" order=\"1\" id=\"b19\"/><bond atomRefs2=\"a25 a26\" order=\"1\" id=\"b20\"/><bond atomRefs2=\"a25 a27\" order=\"1\" id=\"b21\"/><bond atomRefs2=\"a27 a28\" order=\"1\" id=\"b22\"/><bond atomRefs2=\"a25 a29\" order=\"1\" id=\"b23\"/><bond atomRefs2=\"a30 a31\" order=\"1\" id=\"b24\"/><bond atomRefs2=\"a30 a32\" order=\"1\" id=\"b25\"/><bond atomRefs2=\"a32 a33\" order=\"1\" id=\"b26\"/><bond atomRefs2=\"a30 a34\" order=\"1\" id=\"b27\"/><bond atomRefs2=\"a35 a36\" order=\"1\" id=\"b28\"/><bond atomRefs2=\"a36 a37\" order=\"1\" id=\"b29\"/><bond atomRefs2=\"a38 a39\" order=\"1\" id=\"b30\"/><bond atomRefs2=\"a38 a40\" order=\"1\" id=\"b31\"/><bond atomRefs2=\"a40 a41\" order=\"1\" id=\"b32\"/><bond atomRefs2=\"a38 a42\" order=\"1\" id=\"b33\"/><bond atomRefs2=\"a7 a3\" order=\"1\" id=\"b34\"/><bond atomRefs2=\"a37 a6\" order=\"1\" id=\"b35\"/></bondArray></molecule></MChemicalStruct><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o1\"><MElectron atomRefs=\"m1.a4\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a4\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o2\"><MElectron atomRefs=\"m1.a4\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a4\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o3\"><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o4\"><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a7\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o5\"><MElectron atomRefs=\"m1.a12\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a12\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o6\"><MElectron atomRefs=\"m1.a14\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a14\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o7\"><MElectron atomRefs=\"m1.a18\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a18\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o8\"><MElectron atomRefs=\"m1.a18\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a18\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o9\"><MElectron atomRefs=\"m1.a18\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a18\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o10\"><MElectron atomRefs=\"m1.a19\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a19\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o11\"><MElectron atomRefs=\"m1.a19\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a19\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o12\"><MElectron atomRefs=\"m1.a22\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a22\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o13\"><MElectron atomRefs=\"m1.a27\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a27\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o14\"><MElectron atomRefs=\"m1.a32\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a32\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o15\"><MElectron atomRefs=\"m1.a37\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a37\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o16\"><MElectron atomRefs=\"m1.a37\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a37\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer><MElectronContainer occupation=\"0 0\" radical=\"0\" id=\"o17\"><MElectron atomRefs=\"m1.a40\" difLoc=\"0.0 0.0 0.0\"/><MElectron atomRefs=\"m1.a40\" difLoc=\"0.0 0.0 0.0\"/></MElectronContainer></MDocument></cml>",
+      "http_status": 200,
+      "is_product": true,
+      "mechanism_id": 1,
+      "media_type": "chemical/x-mdl-molfile+xml",
+      "retrieval_status": "bundled_linked_scheme",
+      "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/macie_entry_173_mechanism_1_step_5.mrv",
+      "step_id": 5
+    }
+  ]
+}

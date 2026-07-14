@@ -1,0 +1,48 @@
+{
+  "columns": [
+    "Reaction identifier",
+    "Equation",
+    "EC number",
+    "ChEBI identifier",
+    "ChEBI name"
+  ],
+  "participant_request_url": "https://sparql.rhea-db.org/sparql?query=PREFIX+rh%3A+%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0ASELECT+%3Freaction+%3Fside+%3Fparticipant+%3Fcompound+%3Faccession+%3Fname+%3Fchebi+%3FreactivePart+%3FreactiveChebi%0AWHERE+%7B%0A++VALUES+%3Freaction+%7B+rh%3A13945+%7D%0A++%3Freaction+rh%3Aside+%3Fside+.%0A++%3Fside+rh%3Acontains+%3Fparticipant+.%0A++%3Fparticipant+rh%3Acompound+%3Fcompound+.%0A++OPTIONAL+%7B+%3Fcompound+rh%3Aaccession+%3Faccession+%7D%0A++OPTIONAL+%7B+%3Fcompound+rh%3Aname+%3Fname+%7D%0A++OPTIONAL+%7B+%3Fcompound+rh%3Achebi+%3Fchebi+%7D%0A++OPTIONAL+%7B%0A++++%3Fcompound+rh%3AreactivePart+%3FreactivePart+.%0A++++OPTIONAL+%7B+%3FreactivePart+rh%3Achebi+%3FreactiveChebi+%7D%0A++%7D%0A%7D%0AORDER+BY+%3Freaction+%3Fside+%3Fparticipant&format=application%2Fsparql-results%2Bjson",
+  "participant_rows": [
+    {
+      "accession": "CHEBI:17756",
+      "chebi_uri": "http://purl.obolibrary.org/obo/CHEBI_17756",
+      "compound_uri": "http://rdf.rhea-db.org/Compound_5310",
+      "name": "(S)-mandelate",
+      "participant_uri": "http://rdf.rhea-db.org/Participant_13945_compound_5310",
+      "reaction_uri": "http://rdf.rhea-db.org/13945",
+      "reactive_chebi_uri": null,
+      "reactive_part_uri": null,
+      "side_uri": "http://rdf.rhea-db.org/13945_L"
+    },
+    {
+      "accession": "CHEBI:32382",
+      "chebi_uri": "http://purl.obolibrary.org/obo/CHEBI_32382",
+      "compound_uri": "http://rdf.rhea-db.org/Compound_5311",
+      "name": "(R)-mandelate",
+      "participant_uri": "http://rdf.rhea-db.org/Participant_13945_compound_5311",
+      "reaction_uri": "http://rdf.rhea-db.org/13945",
+      "reactive_chebi_uri": null,
+      "reactive_part_uri": null,
+      "side_uri": "http://rdf.rhea-db.org/13945_R"
+    }
+  ],
+  "query": "id:13945",
+  "query_result_kind": "direct_record",
+  "record_id": "RHEA:13945",
+  "request_url": "https://www.rhea-db.org/rhea?query=id%3A13945&columns=rhea-id%2Cequation%2Cec%2Cchebi-id%2Cchebi&format=tsv&limit=10",
+  "rows": [
+    {
+      "ChEBI identifier": "CHEBI:17756;CHEBI:32382",
+      "ChEBI name": "(S)-mandelate;(R)-mandelate",
+      "EC number": "EC:5.1.2.2",
+      "Equation": "(S)-mandelate = (R)-mandelate",
+      "Reaction identifier": "RHEA:13945"
+    }
+  ],
+  "source": "Rhea"
+}

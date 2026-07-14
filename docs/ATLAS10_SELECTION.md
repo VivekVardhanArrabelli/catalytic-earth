@@ -154,6 +154,15 @@ criteria, and frozen computational decision before results are exposed.
 
 ## Immediate execution sequence
 
+Implementation status on 2026-07-14: steps 1–6 have computational artifacts.
+The source package, v3 compiler, 21 follow-on records, two query expectations,
+same-source comparator, and seven review packets are frozen and reproducible.
+Step 6 is not fully exited because the review ledger records zero real external
+attempts. Step 7 passed a local fresh-directory wheel check on
+Windows/Python 3.13 but still needs the supported Windows/Linux Python
+3.10/3.12 CI matrix on the published branch. See
+[`ATLAS10_KERNEL.md`](ATLAS10_KERNEL.md).
+
 1. Snapshot or reference the 45 frozen source handles with retrieval metadata,
    rights, hashes, and explicit gap/applicability records.
 2. Freeze the Atlas-10 compilation specification and extend the mechanism IR
@@ -179,7 +188,11 @@ python scripts/run_test_tier.py "core/unit"
 git diff --check
 ```
 
-The JSON Schema is
+The selection JSON Schema is
 [`src/catalytic_earth/schemas/atlas10-selection-v1.schema.json`](../src/catalytic_earth/schemas/atlas10-selection-v1.schema.json),
 and semantic enforcement lives in
 [`src/catalytic_earth/atlas10_selection.py`](../src/catalytic_earth/atlas10_selection.py).
+Compiled records use
+[`src/catalytic_earth/schemas/mechanism-record-v3.schema.json`](../src/catalytic_earth/schemas/mechanism-record-v3.schema.json)
+inside
+[`src/catalytic_earth/schemas/atlas10-kernel-v1.schema.json`](../src/catalytic_earth/schemas/atlas10-kernel-v1.schema.json).

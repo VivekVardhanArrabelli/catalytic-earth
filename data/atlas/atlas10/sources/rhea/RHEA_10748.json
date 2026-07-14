@@ -1,0 +1,70 @@
+{
+  "columns": [
+    "Reaction identifier",
+    "Equation",
+    "EC number",
+    "ChEBI identifier",
+    "ChEBI name"
+  ],
+  "participant_request_url": "https://sparql.rhea-db.org/sparql?query=PREFIX+rh%3A+%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0ASELECT+%3Freaction+%3Fside+%3Fparticipant+%3Fcompound+%3Faccession+%3Fname+%3Fchebi+%3FreactivePart+%3FreactiveChebi%0AWHERE+%7B%0A++VALUES+%3Freaction+%7B+rh%3A10748+%7D%0A++%3Freaction+rh%3Aside+%3Fside+.%0A++%3Fside+rh%3Acontains+%3Fparticipant+.%0A++%3Fparticipant+rh%3Acompound+%3Fcompound+.%0A++OPTIONAL+%7B+%3Fcompound+rh%3Aaccession+%3Faccession+%7D%0A++OPTIONAL+%7B+%3Fcompound+rh%3Aname+%3Fname+%7D%0A++OPTIONAL+%7B+%3Fcompound+rh%3Achebi+%3Fchebi+%7D%0A++OPTIONAL+%7B%0A++++%3Fcompound+rh%3AreactivePart+%3FreactivePart+.%0A++++OPTIONAL+%7B+%3FreactivePart+rh%3Achebi+%3FreactiveChebi+%7D%0A++%7D%0A%7D%0AORDER+BY+%3Freaction+%3Fside+%3Fparticipant&format=application%2Fsparql-results%2Bjson",
+  "participant_rows": [
+    {
+      "accession": "CHEBI:17544",
+      "chebi_uri": "http://purl.obolibrary.org/obo/CHEBI_17544",
+      "compound_uri": "http://rdf.rhea-db.org/Compound_1123",
+      "name": "hydrogencarbonate",
+      "participant_uri": "http://rdf.rhea-db.org/Participant_10748_compound_1123",
+      "reaction_uri": "http://rdf.rhea-db.org/10748",
+      "reactive_chebi_uri": null,
+      "reactive_part_uri": null,
+      "side_uri": "http://rdf.rhea-db.org/10748_L"
+    },
+    {
+      "accession": "CHEBI:15378",
+      "chebi_uri": "http://purl.obolibrary.org/obo/CHEBI_15378",
+      "compound_uri": "http://rdf.rhea-db.org/Compound_3249",
+      "name": "H(+)",
+      "participant_uri": "http://rdf.rhea-db.org/Participant_10748_compound_3249",
+      "reaction_uri": "http://rdf.rhea-db.org/10748",
+      "reactive_chebi_uri": null,
+      "reactive_part_uri": null,
+      "side_uri": "http://rdf.rhea-db.org/10748_L"
+    },
+    {
+      "accession": "CHEBI:15377",
+      "chebi_uri": "http://purl.obolibrary.org/obo/CHEBI_15377",
+      "compound_uri": "http://rdf.rhea-db.org/Compound_1283",
+      "name": "H2O",
+      "participant_uri": "http://rdf.rhea-db.org/Participant_10748_compound_1283",
+      "reaction_uri": "http://rdf.rhea-db.org/10748",
+      "reactive_chebi_uri": null,
+      "reactive_part_uri": null,
+      "side_uri": "http://rdf.rhea-db.org/10748_R"
+    },
+    {
+      "accession": "CHEBI:16526",
+      "chebi_uri": "http://purl.obolibrary.org/obo/CHEBI_16526",
+      "compound_uri": "http://rdf.rhea-db.org/Compound_4391",
+      "name": "CO2",
+      "participant_uri": "http://rdf.rhea-db.org/Participant_10748_compound_4391",
+      "reaction_uri": "http://rdf.rhea-db.org/10748",
+      "reactive_chebi_uri": null,
+      "reactive_part_uri": null,
+      "side_uri": "http://rdf.rhea-db.org/10748_R"
+    }
+  ],
+  "query": "id:10748",
+  "query_result_kind": "direct_record",
+  "record_id": "RHEA:10748",
+  "request_url": "https://www.rhea-db.org/rhea?query=id%3A10748&columns=rhea-id%2Cequation%2Cec%2Cchebi-id%2Cchebi&format=tsv&limit=10",
+  "rows": [
+    {
+      "ChEBI identifier": "CHEBI:17544;CHEBI:15378;CHEBI:16526;CHEBI:15377",
+      "ChEBI name": "hydrogencarbonate;hydron;carbon dioxide;water",
+      "EC number": "EC:4.2.1.1",
+      "Equation": "hydrogencarbonate + H(+) = CO2 + H2O",
+      "Reaction identifier": "RHEA:10748"
+    }
+  ],
+  "source": "Rhea"
+}

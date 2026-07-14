@@ -1,0 +1,439 @@
+{
+  "entry": {
+    "all_ecs": [
+      "5.2.1.8"
+    ],
+    "description": "The cyclophilin family of enzymes catalyses the cis-trans isomerisation of peptide bonds preceding proline residues. This activity accelerates protein folding in vitro and may underlie some of the many roles of cyclophilins, which include signalling, mitochondrial function, chaperone activity, RNA splicing, stress response, gene expression and regulation of kinase activity. The biological activities of cyclophilin A (CypA) in humans include binding the HIV-1 CA protein in the virions and facilitating viral replication; the basis for this is unclear and isomerase activity is not required for HIV-1 infectivity.<br/>",
+    "enzyme_name": "peptidylprolyl isomerase (cyclophilin-type)",
+    "is_reference_uniprot_id": true,
+    "mcsa_id": 189,
+    "protein": {
+      "sequences": [
+        {
+          "uniprot_id": "P62937"
+        }
+      ]
+    },
+    "reaction": {
+      "compounds": [
+        {
+          "chebi_id": "83834",
+          "count": 1,
+          "mol_file": "www.ebi.ac.uk/thornton-srv/m-csa/media/compound_mols/83834.mol",
+          "name": "peptidylproline (omega=180) residue",
+          "type": "reactant"
+        },
+        {
+          "chebi_id": "83833",
+          "count": 1,
+          "mol_file": "www.ebi.ac.uk/thornton-srv/m-csa/media/compound_mols/83833.mol",
+          "name": "peptidylproline (omega=0) residue",
+          "type": "product"
+        }
+      ],
+      "ec": "5.2.1.8",
+      "is_polymeric": true,
+      "mechanisms": [
+        {
+          "components_summary": "isomerisation reaction (not covered by named reactions), overall reactant used, overall product formed",
+          "is_detailed": false,
+          "mechanism_id": 1,
+          "mechanism_text": "The 'reaction' is only a rotation of a peptide bond preceding the substrate proline. The proline itself remains more or less stationary, with the N-terminal residues rotating anticlockwise 180 degrees. The catalysis is mainly through stabilisation of the transition state. There is also a steric clash between the side chain of the residue preceding the substrate Pro and Arg 55 in the trans conformation. (HIV-1 CA protein has a Gly residue in this position so binding of the trans conformation is more favourable compared to other substrates.)",
+          "rating": 3,
+          "references": [
+            {
+              "doi": "10.1038/nsb927",
+              "evidence_types": [
+                "traceable author statement (general)",
+                "crystallography evidence"
+              ],
+              "pubmed_id": "12730686",
+              "title": "Structural insights into the catalytic mechanism of cyclophilin A"
+            },
+            {
+              "doi": "10.1002/prot.20135",
+              "evidence_types": [
+                "traceable author statement (general)",
+                "biological system reconstruction (modelling)",
+                "crystallography evidence"
+              ],
+              "pubmed_id": "15229879",
+              "title": "Cis/trans isomerization in HIV-1 capsid protein catalyzed by cyclophilin A: Insights from computational and theoretical studies"
+            },
+            {
+              "doi": "10.1021/ja0367851",
+              "evidence_types": [
+                "traceable author statement (general)"
+              ],
+              "pubmed_id": "14653737",
+              "title": "What Is So Special about Arg 55 in the Catalysis of Cyclophilin A? Insights from Hybrid QM/MM Simulations"
+            },
+            {
+              "doi": "10.1016/j.bbagen.2014.12.023",
+              "evidence_types": [
+                "computational experiment"
+              ],
+              "pubmed_id": "25585011",
+              "title": "Computational perspective and evaluation of plausible catalytic mechanisms of peptidyl-prolyl cis-trans isomerases."
+            },
+            {
+              "doi": "10.1080/08927022.2014.919498",
+              "evidence_types": [
+                "computational experiment"
+              ],
+              "pubmed_id": null,
+              "title": "Intricacies of interactions, dynamics and solvent effects in enzyme catalysis: a computational perspective on cyclophilin A"
+            }
+          ],
+          "steps": [
+            {
+              "description": "The enzyme stabilises the transition state of the isomerisation of peptidylproline omega=180 to peptidylproline omega=0.",
+              "figure": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes_svg/Step_macie.189.1.1_65zkYS1",
+              "is_product": false,
+              "marvin_xml": "www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_189_mechanism_1_step_1_LoqMBYP.mrv",
+              "step_id": 1
+            }
+          ]
+        }
+      ]
+    },
+    "reference_uniprot_id": "P62937",
+    "residues": [
+      {
+        "function_location_abv": "",
+        "main_annotation": "",
+        "mcsa_id": 189,
+        "ptm": "",
+        "residue_chains": [
+          {
+            "assembly": 1,
+            "assembly_chain_name": "A",
+            "auth_resid": 55,
+            "chain_name": "A",
+            "code": "Arg",
+            "domain_cath_id": "2.40.100.10",
+            "domain_name": "A00",
+            "is_reference": true,
+            "pdb_id": "1m9c",
+            "resid": 55
+          }
+        ],
+        "residue_sequences": [
+          {
+            "code": "Arg",
+            "is_reference": true,
+            "resid": 55,
+            "uniprot_id": "P62937"
+          }
+        ],
+        "roles": [
+          {
+            "emo": "EMO_00114",
+            "function": "hydrogen bond donor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00033",
+            "function": "electrostatic stabiliser",
+            "function_type": "spectator",
+            "group_function": "electrostatic interaction"
+          },
+          {
+            "emo": "EMO_00029",
+            "function": "steric role",
+            "function_type": "spectator",
+            "group_function": "steric role"
+          }
+        ],
+        "roles_summary": "electrostatic stabiliser, hydrogen bond donor, steric role"
+      },
+      {
+        "function_location_abv": "",
+        "main_annotation": "",
+        "mcsa_id": 189,
+        "ptm": "",
+        "residue_chains": [
+          {
+            "assembly": 1,
+            "assembly_chain_name": "A",
+            "auth_resid": 63,
+            "chain_name": "A",
+            "code": "Gln",
+            "domain_cath_id": "2.40.100.10",
+            "domain_name": "A00",
+            "is_reference": true,
+            "pdb_id": "1m9c",
+            "resid": 63
+          }
+        ],
+        "residue_sequences": [
+          {
+            "code": "Gln",
+            "is_reference": true,
+            "resid": 63,
+            "uniprot_id": "P62937"
+          }
+        ],
+        "roles": [
+          {
+            "emo": "EMO_00113",
+            "function": "hydrogen bond acceptor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00114",
+            "function": "hydrogen bond donor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00033",
+            "function": "electrostatic stabiliser",
+            "function_type": "spectator",
+            "group_function": "electrostatic interaction"
+          }
+        ],
+        "roles_summary": "electrostatic stabiliser, hydrogen bond acceptor, hydrogen bond donor"
+      },
+      {
+        "function_location_abv": "",
+        "main_annotation": "",
+        "mcsa_id": 189,
+        "ptm": "",
+        "residue_chains": [
+          {
+            "assembly": 1,
+            "assembly_chain_name": "A",
+            "auth_resid": 60,
+            "chain_name": "A",
+            "code": "Phe",
+            "domain_cath_id": "2.40.100.10",
+            "domain_name": "A00",
+            "is_reference": true,
+            "pdb_id": "1m9c",
+            "resid": 60
+          }
+        ],
+        "residue_sequences": [
+          {
+            "code": "Phe",
+            "is_reference": true,
+            "resid": 60,
+            "uniprot_id": "P62937"
+          }
+        ],
+        "roles": [
+          {
+            "emo": "EMO_00118",
+            "function": "polar/non-polar interaction",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00029",
+            "function": "steric role",
+            "function_type": "spectator",
+            "group_function": "steric role"
+          }
+        ],
+        "roles_summary": "polar/non-polar interaction, steric role"
+      },
+      {
+        "function_location_abv": "main-C",
+        "main_annotation": "",
+        "mcsa_id": 189,
+        "ptm": "",
+        "residue_chains": [
+          {
+            "assembly": 1,
+            "assembly_chain_name": "A",
+            "auth_resid": 102,
+            "chain_name": "A",
+            "code": "Asn",
+            "domain_cath_id": "2.40.100.10",
+            "domain_name": "A00",
+            "is_reference": true,
+            "pdb_id": "1m9c",
+            "resid": 102
+          }
+        ],
+        "residue_sequences": [
+          {
+            "code": "Asn",
+            "is_reference": true,
+            "resid": 102,
+            "uniprot_id": "P62937"
+          }
+        ],
+        "roles": [
+          {
+            "emo": "EMO_00113",
+            "function": "hydrogen bond acceptor",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00033",
+            "function": "electrostatic stabiliser",
+            "function_type": "spectator",
+            "group_function": "electrostatic interaction"
+          },
+          {
+            "emo": "EMO_00114",
+            "function": "hydrogen bond donor",
+            "function_type": "interaction",
+            "group_function": ""
+          }
+        ],
+        "roles_summary": "electrostatic stabiliser, hydrogen bond acceptor, hydrogen bond donor"
+      },
+      {
+        "function_location_abv": "",
+        "main_annotation": "",
+        "mcsa_id": 189,
+        "ptm": "",
+        "residue_chains": [
+          {
+            "assembly": 1,
+            "assembly_chain_name": "A",
+            "auth_resid": 113,
+            "chain_name": "A",
+            "code": "Phe",
+            "domain_cath_id": "2.40.100.10",
+            "domain_name": "A00",
+            "is_reference": true,
+            "pdb_id": "1m9c",
+            "resid": 113
+          }
+        ],
+        "residue_sequences": [
+          {
+            "code": "Phe",
+            "is_reference": true,
+            "resid": 113,
+            "uniprot_id": "P62937"
+          }
+        ],
+        "roles": [
+          {
+            "emo": "EMO_00118",
+            "function": "polar/non-polar interaction",
+            "function_type": "interaction",
+            "group_function": ""
+          },
+          {
+            "emo": "EMO_00029",
+            "function": "steric role",
+            "function_type": "spectator",
+            "group_function": "steric role"
+          }
+        ],
+        "roles_summary": "polar/non-polar interaction, steric role"
+      },
+      {
+        "function_location_abv": "",
+        "main_annotation": "",
+        "mcsa_id": 189,
+        "ptm": "",
+        "residue_chains": [
+          {
+            "assembly": 1,
+            "assembly_chain_name": "A",
+            "auth_resid": 122,
+            "chain_name": "A",
+            "code": "Leu",
+            "domain_cath_id": "2.40.100.10",
+            "domain_name": "A00",
+            "is_reference": true,
+            "pdb_id": "1m9c",
+            "resid": 122
+          }
+        ],
+        "residue_sequences": [
+          {
+            "code": "Leu",
+            "is_reference": true,
+            "resid": 122,
+            "uniprot_id": "P62937"
+          }
+        ],
+        "roles": [
+          {
+            "emo": "EMO_00029",
+            "function": "steric role",
+            "function_type": "spectator",
+            "group_function": "steric role"
+          },
+          {
+            "emo": "EMO_00118",
+            "function": "polar/non-polar interaction",
+            "function_type": "interaction",
+            "group_function": ""
+          }
+        ],
+        "roles_summary": "polar/non-polar interaction, steric role"
+      },
+      {
+        "function_location_abv": "",
+        "main_annotation": "",
+        "mcsa_id": 189,
+        "ptm": "",
+        "residue_chains": [
+          {
+            "assembly": 1,
+            "assembly_chain_name": "A",
+            "auth_resid": 126,
+            "chain_name": "A",
+            "code": "His",
+            "domain_cath_id": "2.40.100.10",
+            "domain_name": "A00",
+            "is_reference": true,
+            "pdb_id": "1m9c",
+            "resid": 126
+          }
+        ],
+        "residue_sequences": [
+          {
+            "code": "His",
+            "is_reference": true,
+            "resid": 126,
+            "uniprot_id": "P62937"
+          }
+        ],
+        "roles": [
+          {
+            "emo": "EMO_00029",
+            "function": "steric role",
+            "function_type": "spectator",
+            "group_function": "steric role"
+          },
+          {
+            "emo": "EMO_00118",
+            "function": "polar/non-polar interaction",
+            "function_type": "interaction",
+            "group_function": ""
+          }
+        ],
+        "roles_summary": "polar/non-polar interaction, steric role"
+      }
+    ],
+    "url": "www.ebi.ac.uk/thornton-srv/m-csa/entry/189/"
+  },
+  "record_id": "M0189",
+  "source": "M-CSA",
+  "step_schemes": [
+    {
+      "content_sha256": null,
+      "content_utf8": null,
+      "http_status": 404,
+      "is_product": false,
+      "mechanism_id": 1,
+      "media_type": "chemical/x-mdl-molfile+xml",
+      "retrieval_status": "source_link_missing_http_404",
+      "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_189_mechanism_1_step_1_LoqMBYP.mrv",
+      "step_id": 1
+    }
+  ]
+}

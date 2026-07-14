@@ -75,22 +75,26 @@ Breadth can grow rapidly, but every record keeps its tier. Automated hypotheses 
 - encode ten difficult mechanisms spanning radicals, metals/redox, covalent intermediates, proton ambiguity, alternative mechanisms, convergent folds, changed chemistry, conflicting literature, abstention, and design geometry;
 - crosswalk them to incumbent reaction/mechanism/site resources;
 - implement two useful queries;
-- run one strong external baseline pipeline;
+- run one preregistered same-source comparator without calling it a modern
+  performance baseline;
 - publish one-command reproduction;
-- obtain bounded outside review of five to ten cases.
+- send and record bounded outside-review attempts for five to ten cases,
+  without calling an attempt independent annotation.
 
 **Gate:** the schema is converging and one query adds measurable value beyond opening incumbent resources separately.
 
 ## Days 15–30: Atlas-50 alpha
 
-- expand to 50 only if the Atlas-10 schema is stable;
-- draft-crosswalk all 57 existing fingerprints as duplicate / aggregation / specialization / bridge / genuinely missing / unsupported;
-- audit 50 bronze rows to identify error modes;
+- expand to 50 deliberately difficult cases only if the Atlas-10 schema is stable, requiring at least 90% to fit without family-specific ad hoc fields;
+- machine-draft and then review all 57 existing fingerprint crosswalks as duplicate / aggregation / specialization / bridge / genuinely missing / unsupported;
+- audit a first stratified 50-row bronze tranche to identify error modes, while keeping it non-authorizing;
+- obtain independent annotation from two domain experts with agreement and time-per-record reporting;
+- complete at least 200 stratified independent bronze reviews at at least 90% exact-granularity precision before any explicit registry-unfreeze decision;
 - ship a searchable public alpha;
 - publish weekly immutable release manifests;
 - record external task failures as first-class data.
 
-Stretch work: expand the audit toward 200, add a second reviewer, run broader baselines, and begin machine-import drafts for the detailed M-CSA mechanism core.
+Fresh one-shot benchmarking and the strongest applicable modern baselines remain mandatory before comparative performance claims; Atlas-10 is not that benchmark. Stretch work may expand beyond 200 audited rows, add reviewers beyond the required two, broaden the applicable baseline set, and begin machine-import drafts for the detailed M-CSA mechanism core.
 
 ## Days 31–35: first complete computational loop
 

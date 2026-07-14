@@ -1,0 +1,537 @@
+{
+  "case_id": "atlas10.hewl-chicken.covalent-glycosidase",
+  "claim_boundary": {
+    "does_not_support": [
+      "Mechanism truth beyond the frozen sources, unrestricted transfer across proteins or substrates, or replacement of experimental validation."
+    ],
+    "supports": [
+      "Compile the source gap, high-rated covalent mechanism, historical alternative, sites, and evidence as distinct queryable objects without inventing a canonical Rhea record or declaring the alternatives adjudicated."
+    ]
+  },
+  "compiled_hypothesis_sha256": "d864960ad4aa4515ea1a2c00e247dcf40c2201513521d7de3bafd1192fb2deea",
+  "counterevidence": [
+    {
+      "counterevidence_id": "atlas10.hewl-chicken.covalent-glycosidase.rhea-source-gap",
+      "disposition": "Preserve the zero-row query and label M-CSA participants as source-scoped context.",
+      "effect": "Prevents attribution of a direct canonical Rhea reaction identifier.",
+      "evidence_ids": [
+        "source:Rhea:EC:3.2.1.17"
+      ],
+      "summary": "No direct Rhea record was returned by this frozen EC query; this is not evidence that no reaction description exists in another source."
+    },
+    {
+      "counterevidence_id": "atlas10.hewl-chicken.covalent-glycosidase.structure-1dpx-limit",
+      "disposition": "Retain the structure with its explicit applicability and context flags.",
+      "effect": "Limits mechanistic generalization from this static structural context.",
+      "evidence_ids": [
+        "source:PDB:1DPX"
+      ],
+      "summary": "The trapped covalent intermediate supports a route but does not directly observe every proton-transfer event."
+    },
+    {
+      "counterevidence_id": "atlas10.hewl-chicken.covalent-glycosidase.source-alternatives",
+      "disposition": "Keep both proposals, ratings, wording, and preferred status queryable without independent adjudication.",
+      "effect": "Prevents flattening source history into a single unqualified mechanism object.",
+      "evidence_ids": [
+        "source:M-CSA:M0203"
+      ],
+      "summary": "M-CSA preserves two detailed proposals with ratings 3 and 1, including a source description that calls the lower-rated Phillips route disproved."
+    }
+  ],
+  "detail_abstention": {
+    "reason": "The frozen source schemes preserve curved-arrow endpoints but do not establish a verified atom map, compiled bond-edit list, independent validation, or complete turnover trajectory.",
+    "required": true,
+    "source_basis_evidence_ids": [
+      "source:M-CSA:M0203",
+      "source:UniProtKB:P00698",
+      "source:Rhea:EC:3.2.1.17",
+      "source:PDB:1DPX",
+      "source:DOI:10.1038/35090602",
+      "source:CATH:CATH:1.10.530.10"
+    ],
+    "unsupported_fields": [
+      "atom_mapped_bond_edits",
+      "independent_mechanism_validation",
+      "complete_turnover_trajectory"
+    ]
+  },
+  "evidence": [
+    {
+      "applicability": "direct",
+      "evidence_id": "source:UniProtKB:P00698",
+      "evidence_role": "protein_identity",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "e101fad8a0fbe74372b6bfc96ec697883fc7c67c9656070629f7fe3cc1c0a494",
+      "source_id": "UniProtKB",
+      "source_record_id": "P00698",
+      "uri": "https://www.uniprot.org/uniprotkb/P00698/entry"
+    },
+    {
+      "applicability": "source_gap",
+      "evidence_id": "source:Rhea:EC:3.2.1.17",
+      "evidence_role": "official_net_reaction_search_gap",
+      "retrieval_status": "bundled_query_gap_snapshot",
+      "snapshot_sha256": "77c567d2505f871f200cd20188a6bad47f460e73b06e2c244dae3ce2d5dce0bc",
+      "source_id": "Rhea",
+      "source_record_id": "EC:3.2.1.17",
+      "uri": "https://www.rhea-db.org/rhea?query=ec%3A3.2.1.17"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:PDB:1DPX",
+      "evidence_role": "experimental_structure",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "4225e131cc2351d4b028b3dd0fd81ffddefd2885f87be1f2e04c442949cce378",
+      "source_id": "PDB",
+      "source_record_id": "1DPX",
+      "uri": "https://www.rcsb.org/structure/1DPX"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:M-CSA:M0203",
+      "evidence_role": "source_mechanism",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "f50de0f2b325cb7e7964a1c239acbfdc484a7513e11c9487073c8ac44f1d7df7",
+      "source_id": "M-CSA",
+      "source_record_id": "M0203",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/203/"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:DOI:10.1038/35090602",
+      "evidence_role": "primary_mechanism_evidence",
+      "retrieval_status": "reference_only_verified_handle",
+      "snapshot_sha256": null,
+      "source_id": "DOI",
+      "source_record_id": "10.1038/35090602",
+      "uri": "https://doi.org/10.1038/35090602"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:CATH:CATH:1.10.530.10",
+      "evidence_role": "fold_classification",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "0a33d1a2d1b62d710910da5f393fb2b462e1ff97056a27a456174d2325a5a459",
+      "source_id": "CATH",
+      "source_record_id": "CATH:1.10.530.10",
+      "uri": "https://www.cathdb.info/version/latest/superfamily/1.10.530.10"
+    }
+  ],
+  "packet_id": "review-packet:atlas10.hewl-chicken.covalent-glycosidase",
+  "protein_scope": {
+    "assay_candidate": false,
+    "case_label": "Hen egg-white lysozyme",
+    "direct_pdb_ids": [
+      "1DPX"
+    ],
+    "ec_number": "3.2.1.17",
+    "fingerprint_bridge": {
+      "fingerprint_id": "glycoside_hydrolase",
+      "registry_write": false,
+      "use": "historical_crosswalk_only_not_evidence"
+    },
+    "fold_classification_ids": [
+      "CATH:1.10.530.10"
+    ],
+    "organism": "Gallus gallus",
+    "relationship_group_ids": [],
+    "uniprot_ids": [
+      "P00698"
+    ]
+  },
+  "provenance": {
+    "compilation_spec_sha256": "89cfa53c23fdeafde11e859cea102a88421ea253446a267b23bca2eb84920932",
+    "compiler_version": "catalytic-earth.atlas10-compiler.v1",
+    "selection_sha256": "9bc114aaf793c51ec3b6273466f62a83974512a2dcf969d95d8b97453dd2795e",
+    "source_snapshot_set_sha256": "a6b6a0059835e8f3f78cd5da9897afb599560bc844c59e82ba523f9387d0550d"
+  },
+  "reaction_or_source_gap": {
+    "directionality": "unknown_no_direct_record",
+    "ec_number": "3.2.1.17",
+    "equation": null,
+    "gap_context": {
+      "interpretation": "No direct Rhea record was returned by this frozen EC query; this is not evidence that no reaction description exists in another source.",
+      "query_result_count": 0,
+      "query_snapshot_kind": "official_zero_row_tsv"
+    },
+    "participants": [
+      {
+        "name": "water",
+        "participant_id": "CHEBI:15377",
+        "participant_type": "small_molecule_or_class",
+        "reactive_part_id": null,
+        "side": "left",
+        "source_accession": "CHEBI:15377",
+        "source_count_values": [
+          1
+        ],
+        "source_row_count": 1,
+        "source_scope": "M-CSA participant context; not a Rhea canonical reaction",
+        "stoichiometry": 1
+      },
+      {
+        "name": "N-acetyl-beta-D-glucosamine",
+        "participant_id": "CHEBI:28009",
+        "participant_type": "small_molecule_or_class",
+        "reactive_part_id": null,
+        "side": "right",
+        "source_accession": "CHEBI:28009",
+        "source_count_values": [
+          1
+        ],
+        "source_row_count": 1,
+        "source_scope": "M-CSA participant context; not a Rhea canonical reaction",
+        "stoichiometry": 1
+      },
+      {
+        "name": "N-acetyl-beta-D-muramic acid",
+        "participant_id": "CHEBI:40729",
+        "participant_type": "small_molecule_or_class",
+        "reactive_part_id": null,
+        "side": "right",
+        "source_accession": "CHEBI:40729",
+        "source_count_values": [
+          1
+        ],
+        "source_row_count": 1,
+        "source_scope": "M-CSA participant context; not a Rhea canonical reaction",
+        "stoichiometry": 1
+      },
+      {
+        "name": "beta-MurNAc-(1->4)-beta-D-GlcpNAc",
+        "participant_id": "CHEBI:87004",
+        "participant_type": "small_molecule_or_class",
+        "reactive_part_id": null,
+        "side": "left",
+        "source_accession": "CHEBI:87004",
+        "source_count_values": [
+          1
+        ],
+        "source_row_count": 1,
+        "source_scope": "M-CSA participant context; not a Rhea canonical reaction",
+        "stoichiometry": 1
+      }
+    ],
+    "source_id": "Rhea",
+    "source_query": "ec:3.2.1.17",
+    "source_record_id": null,
+    "source_status": "documented_query_gap"
+  },
+  "review_questions": [
+    "Is the reaction or documented source gap correct for this protein scope?",
+    "Are the catalytic sites and numbering mappings faithful to the cited sources?",
+    "Are the represented steps faithful to source granularity, with unsupported detail abstained?",
+    "Are structure and mechanism applicability boundaries correct?",
+    "Does the claim boundary prevent an unjustified evidence-tier upgrade?"
+  ],
+  "review_unit": "bounded_claim_packet",
+  "reviewer_instruction": "Review only the bounded case and cited source scope. A correction, uncertainty, or rejection is useful. Do not infer independent validation from upstream curation, source rating, fold similarity, or another case.",
+  "schema_version": "catalytic-earth.atlas10-review-packet.v1",
+  "sites": [
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0203",
+        "source:UniProtKB:P00698",
+        "source:PDB:1DPX"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 35,
+          "chain_id": "A",
+          "label_position": 35,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 53 to 1DPX chain A author position 35 and mmCIF label position 35; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1DPX"
+        }
+      ],
+      "residue_name": "Glu",
+      "roles": [
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "proton acceptor",
+        "proton donor"
+      ],
+      "sequence_position": 53,
+      "site_id": "P00698:E53",
+      "uniprot_id": "P00698"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0203",
+        "source:UniProtKB:P00698",
+        "source:PDB:1DPX"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 46,
+          "chain_id": "A",
+          "label_position": 46,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 64 to 1DPX chain A author position 46 and mmCIF label position 46; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1DPX"
+        }
+      ],
+      "residue_name": "Asn",
+      "roles": [],
+      "sequence_position": 64,
+      "site_id": "P00698:N64",
+      "uniprot_id": "P00698"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0203",
+        "source:UniProtKB:P00698",
+        "source:PDB:1DPX"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 48,
+          "chain_id": "A",
+          "label_position": 48,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 66 to 1DPX chain A author position 48 and mmCIF label position 48; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1DPX"
+        }
+      ],
+      "residue_name": "Asp",
+      "roles": [],
+      "sequence_position": 66,
+      "site_id": "P00698:D66",
+      "uniprot_id": "P00698"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0203",
+        "source:UniProtKB:P00698",
+        "source:PDB:1DPX"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 50,
+          "chain_id": "A",
+          "label_position": 50,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 68 to 1DPX chain A author position 50 and mmCIF label position 50; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1DPX"
+        }
+      ],
+      "residue_name": "Ser",
+      "roles": [],
+      "sequence_position": 68,
+      "site_id": "P00698:S68",
+      "uniprot_id": "P00698"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0203",
+        "source:UniProtKB:P00698",
+        "source:PDB:1DPX"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 52,
+          "chain_id": "A",
+          "label_position": 52,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 70 to 1DPX chain A author position 52 and mmCIF label position 52; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1DPX"
+        }
+      ],
+      "residue_name": "Asp",
+      "roles": [
+        "covalently attached",
+        "electrostatic stabiliser",
+        "nucleofuge",
+        "nucleophile",
+        "polar/non-polar interaction"
+      ],
+      "sequence_position": 70,
+      "site_id": "P00698:D70",
+      "uniprot_id": "P00698"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0203",
+        "source:UniProtKB:P00698",
+        "source:PDB:1DPX"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 59,
+          "chain_id": "A",
+          "label_position": 59,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 77 to 1DPX chain A author position 59 and mmCIF label position 59; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1DPX"
+        }
+      ],
+      "residue_name": "Asn",
+      "roles": [],
+      "sequence_position": 77,
+      "site_id": "P00698:N77",
+      "uniprot_id": "P00698"
+    }
+  ],
+  "source_proposals": [
+    {
+      "annotation_texts": [],
+      "components_summary": "intermediate collapse, rate-determining step, hydrolysis, overall reactant used, intermediate terminated, bimolecular nucleophilic substitution, native state of enzyme regenerated, overall product formed, enzyme-substrate complex cleavage, enzyme-substrate complex formation, proton transfer, intermediate formation",
+      "is_detailed": true,
+      "mechanism_text": "Asp52 attacks the C1 of the peptidoglycan in a nucleophilic substitution that results in the NAG portion of the peptidoglycan being covalently attached to the enzyme and the NAM being released. NAM deprotonates Glu35. Glu35 deprotonates water, which attacks the C1 of the covalently bound NAG intermediate in a nucleophilic substitution that results in the NAG product and free Asp52",
+      "preferred": true,
+      "proposal_id": "atlas10.hewl-chicken.covalent-glycosidase.mcsa-M0203.mechanism-1",
+      "rating": 3,
+      "scheme_retrieval_issues": [],
+      "source_mechanism_id": 1,
+      "source_record_id": "M0203",
+      "steps": [
+        {
+          "atom_mapping_status": "not_inferred",
+          "bond_edit_status": "not_compiled_from_unmapped_source_scheme",
+          "catalyst_site_ids": [
+            "P00698:D70",
+            "P00698:E53"
+          ],
+          "is_inferred": false,
+          "order": 1,
+          "source_electron_flow_count": 3,
+          "source_scheme_sha256": "30f92858a582d1775b8ced60af1999751c9c6ce9cdc6099de2d91534f2601ff9",
+          "source_step_id": 1,
+          "summary": "During this step, the C1 migrates (in an electrophilic manner) from above the ring plane to below the ring plane to approach the catalytic nucleophile (Asp52), which hardly changes its position during the course of the reaction. Asp52 then attacks the C1 of the peptidoglycan in a nucleophilic substitution that results in the NAG portion of the peptidoglycan being covalently attached to the enzyme and the NAM being released. NAM deprotonates Glu35."
+        },
+        {
+          "atom_mapping_status": "not_inferred",
+          "bond_edit_status": "not_compiled_from_unmapped_source_scheme",
+          "catalyst_site_ids": [
+            "P00698:D70",
+            "P00698:E53"
+          ],
+          "is_inferred": false,
+          "order": 2,
+          "source_electron_flow_count": 3,
+          "source_scheme_sha256": "b0a54ddf581649786c69c5f5d512b7d7f230403941dd6e011e4741e53332d616",
+          "source_step_id": 2,
+          "summary": "During this step, the C1 migrates from its position below the ring plane to form a bond with a water molecule positioned in the location previously occupied by the substrate glycosidic oxygen [PMID:11518970]. Glu35 deprotonates water, which attacks the C1 of the covalently bound NAG intermediate in a nucleophilic substitution that results in the NAG product and free Asp52."
+        }
+      ],
+      "structured_detail_status": "source_curved_arrows_preserved_no_atom_mapping_inference",
+      "terminal_state_source_step_ids": [
+        3
+      ]
+    },
+    {
+      "annotation_texts": [],
+      "components_summary": "proton transfer, unimolecular elimination by the conjugate base, bimolecular nucleophilic addition",
+      "is_detailed": true,
+      "mechanism_text": "The so-called Phillips mechanism in which the enzyme proceeds via a oxycarbenium intermediate. Text book mechanism of Lysozyme, disproved.",
+      "preferred": false,
+      "proposal_id": "atlas10.hewl-chicken.covalent-glycosidase.mcsa-M0203.mechanism-2",
+      "rating": 1,
+      "scheme_retrieval_issues": [],
+      "source_mechanism_id": 2,
+      "source_record_id": "M0203",
+      "steps": [
+        {
+          "atom_mapping_status": "not_inferred",
+          "bond_edit_status": "not_compiled_from_unmapped_source_scheme",
+          "catalyst_site_ids": [
+            "P00698:E53"
+          ],
+          "is_inferred": false,
+          "order": 1,
+          "source_electron_flow_count": 3,
+          "source_scheme_sha256": "d22413da3be43029d712e2d2c54cad9138a2e5a0b00efd7c3b4787565e00b3f5",
+          "source_step_id": 1,
+          "summary": "The anomeric oxygen eliminates the NAG with concomitant deprotontaion of Glu35."
+        },
+        {
+          "atom_mapping_status": "not_inferred",
+          "bond_edit_status": "not_compiled_from_unmapped_source_scheme",
+          "catalyst_site_ids": [
+            "P00698:E53"
+          ],
+          "is_inferred": false,
+          "order": 2,
+          "source_electron_flow_count": 3,
+          "source_scheme_sha256": "a0586bad143e13263a606ac0b9c27e32e3bcb0b33f14a0e1dd349bb70b2c1ce3",
+          "source_step_id": 2,
+          "summary": "Glu35 deprotonates the catalytic water, which adds to the carbon of the oxycarbocation group."
+        }
+      ],
+      "structured_detail_status": "source_curved_arrows_preserved_no_atom_mapping_inference",
+      "terminal_state_source_step_ids": [
+        3
+      ]
+    }
+  ],
+  "structures": [
+    {
+      "applicability": "direct",
+      "context_flags": [
+        "static_structure",
+        "covalent_intermediate_context",
+        "proton_transfer_sequence_not_fully_observed"
+      ],
+      "evidence_ids": [
+        "source:PDB:1DPX",
+        "source:UniProtKB:P00698"
+      ],
+      "experimental_method": "X-RAY DIFFRACTION",
+      "limitation": "The trapped covalent intermediate supports a route but does not directly observe every proton-transfer event.",
+      "pdb_id": "1DPX",
+      "resolution_angstrom": 1.65,
+      "uniprot_chain_ranges": [
+        {
+          "chain_id": "A",
+          "uniprot_end": 147,
+          "uniprot_start": 19
+        }
+      ]
+    }
+  ],
+  "target_record_id": "mechanism:hewl-chicken-covalent-glycosidase-v1",
+  "uncertainties": [
+    {
+      "abstention": "Do not resolve this ambiguity beyond the frozen sources and explicit compilation rules.",
+      "status": "open",
+      "summary": "The selected M-CSA entry preserves mechanistic descriptions with different detail and ratings; they must remain separate source-scoped proposals.",
+      "uncertainty_id": "atlas10.hewl-chicken.covalent-glycosidase.uncertainty-1"
+    },
+    {
+      "abstention": "Do not resolve this ambiguity beyond the frozen sources and explicit compilation rules.",
+      "status": "open",
+      "summary": "No direct Rhea reaction was returned by the frozen EC query, so M-CSA participant classes must not be mislabeled as a Rhea canonical reaction.",
+      "uncertainty_id": "atlas10.hewl-chicken.covalent-glycosidase.uncertainty-2"
+    },
+    {
+      "abstention": "Do not resolve this ambiguity beyond the frozen sources and explicit compilation rules.",
+      "status": "open",
+      "summary": "A trapped covalent intermediate supports a route but does not observe every proton-transfer event.",
+      "uncertainty_id": "atlas10.hewl-chicken.covalent-glycosidase.uncertainty-3"
+    }
+  ]
+}

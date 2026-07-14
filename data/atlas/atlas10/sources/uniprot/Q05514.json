@@ -1,0 +1,2795 @@
+{
+  "annotationScore": 5.0,
+  "comments": [
+    {
+      "commentType": "FUNCTION",
+      "texts": [
+        {
+          "evidences": [
+            {
+              "evidenceCode": "ECO:0000269",
+              "id": "13630903",
+              "source": "PubMed"
+            },
+            {
+              "evidenceCode": "ECO:0000269",
+              "id": "1420191",
+              "source": "PubMed"
+            },
+            {
+              "evidenceCode": "ECO:0000269",
+              "id": "19670200",
+              "source": "PubMed"
+            },
+            {
+              "evidenceCode": "ECO:0000269",
+              "id": "22614383",
+              "source": "PubMed"
+            }
+          ],
+          "value": "Involved in the methylaspartate cycle. Catalyzes the formation of the alpha,beta-unsaturated bond by the reversible anti elimination of ammonia from L-threo-beta-methylaspartate (L-threo-(2S,3S)-3-methylaspartate) to give mesaconate. It can also use L-erythro-beta-methylaspartate (L-erythro-(2S,3R)-3-methylaspartate), L-aspartate, fumarate and ethylfumarate as substrates"
+        }
+      ]
+    },
+    {
+      "commentType": "CATALYTIC ACTIVITY",
+      "reaction": {
+        "ecNumber": "4.3.1.2",
+        "evidences": [
+          {
+            "evidenceCode": "ECO:0000269",
+            "id": "13630903",
+            "source": "PubMed"
+          },
+          {
+            "evidenceCode": "ECO:0000269",
+            "id": "1420191",
+            "source": "PubMed"
+          },
+          {
+            "evidenceCode": "ECO:0000269",
+            "id": "19670200",
+            "source": "PubMed"
+          },
+          {
+            "evidenceCode": "ECO:0000269",
+            "id": "22614383",
+            "source": "PubMed"
+          }
+        ],
+        "name": "(2S,3S)-3-methyl-L-aspartate = mesaconate + NH4(+)",
+        "reactionCrossReferences": [
+          {
+            "database": "Rhea",
+            "id": "RHEA:12829"
+          },
+          {
+            "database": "ChEBI",
+            "id": "CHEBI:28938"
+          },
+          {
+            "database": "ChEBI",
+            "id": "CHEBI:36986"
+          },
+          {
+            "database": "ChEBI",
+            "id": "CHEBI:58724"
+          }
+        ]
+      }
+    },
+    {
+      "cofactors": [
+        {
+          "cofactorCrossReference": {
+            "database": "ChEBI",
+            "id": "CHEBI:18420"
+          },
+          "evidences": [
+            {
+              "evidenceCode": "ECO:0000269",
+              "id": "11748244",
+              "source": "PubMed"
+            },
+            {
+              "evidenceCode": "ECO:0000269",
+              "id": "13630903",
+              "source": "PubMed"
+            },
+            {
+              "evidenceCode": "ECO:0000269",
+              "id": "22614383",
+              "source": "PubMed"
+            }
+          ],
+          "name": "Mg(2+)"
+        }
+      ],
+      "commentType": "COFACTOR"
+    },
+    {
+      "commentType": "ACTIVITY REGULATION",
+      "texts": [
+        {
+          "evidences": [
+            {
+              "evidenceCode": "ECO:0000269",
+              "id": "13630903",
+              "source": "PubMed"
+            }
+          ],
+          "value": "Inhibited by calcium ions"
+        }
+      ]
+    },
+    {
+      "commentType": "BIOPHYSICOCHEMICAL PROPERTIES",
+      "kineticParameters": {
+        "maximumVelocities": [
+          {
+            "enzyme": "enzyme with L-threo-beta-methylaspartate as substrate (with 50 mM of KCl at pH 9 and at 30 degrees Celsius)",
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "13630903",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "1420191",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "19670200",
+                "source": "PubMed"
+              }
+            ],
+            "unit": "umol/min/mg",
+            "velocity": 2089.0
+          },
+          {
+            "enzyme": "enzyme with L-threo-beta-methylaspartate as substrate (with 0.3 mM of KCl at pH 9 and at 30 degrees Celsius)",
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "13630903",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "1420191",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "19670200",
+                "source": "PubMed"
+              }
+            ],
+            "unit": "umol/min/mg",
+            "velocity": 309.0
+          },
+          {
+            "enzyme": "enzyme with L-threo-beta-methylaspartate as substrate (with 4 mM of KCl at pH 9.76 and at 25 degrees Celsius)",
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "13630903",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "1420191",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "19670200",
+                "source": "PubMed"
+              }
+            ],
+            "unit": "umol/min/mg",
+            "velocity": 266.0
+          },
+          {
+            "enzyme": "enzyme with L-erythro-beta-methylaspartate as substrate (with 4 mM of KCl at pH 9.76 and at 25 degrees Celsius)",
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "13630903",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "1420191",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "19670200",
+                "source": "PubMed"
+              }
+            ],
+            "unit": "umol/min/mg",
+            "velocity": 2.5
+          },
+          {
+            "enzyme": "enzyme with L-aspartate as substrate (with 4 mM of KCl at pH 9.76 and at 25 degrees Celsius)",
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "13630903",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "1420191",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "19670200",
+                "source": "PubMed"
+              }
+            ],
+            "unit": "umol/min/mg",
+            "velocity": 2.4
+          }
+        ],
+        "michaelisConstants": [
+          {
+            "constant": 0.65,
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "13630903",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "1420191",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "19670200",
+                "source": "PubMed"
+              }
+            ],
+            "substrate": "L-threo-beta-methylaspartate (with 4 mM of KCl at pH 9.76 and at 25 degrees Celsius)",
+            "unit": "mM"
+          },
+          {
+            "constant": 0.67,
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "13630903",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "1420191",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "19670200",
+                "source": "PubMed"
+              }
+            ],
+            "substrate": "L-threo-beta-methylaspartate (with 50 mM of KCl at pH 9 and at 30 degrees Celsius)",
+            "unit": "mM"
+          },
+          {
+            "constant": 0.7,
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "13630903",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "1420191",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "19670200",
+                "source": "PubMed"
+              }
+            ],
+            "substrate": "mesaconate (with 20 mM of MgCl(2) at pH 9 and at 30 degrees Celsius)",
+            "unit": "mM"
+          },
+          {
+            "constant": 1.0,
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "13630903",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "1420191",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "19670200",
+                "source": "PubMed"
+              }
+            ],
+            "substrate": "L-threo-beta-methylaspartate (with 20 mM of MgCl(2) at pH 9 and at 30 degrees Celsius)",
+            "unit": "mM"
+          },
+          {
+            "constant": 2.3,
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "13630903",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "1420191",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "19670200",
+                "source": "PubMed"
+              }
+            ],
+            "substrate": "L-aspartate (with 4 mM of KCl at pH 9.76 and at 25 degrees Celsius)",
+            "unit": "mM"
+          },
+          {
+            "constant": 2.8,
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "13630903",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "1420191",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "19670200",
+                "source": "PubMed"
+              }
+            ],
+            "substrate": "L-threo-beta-methylaspartate (with 0.3 mM of KCl at pH 9 and at 30 degrees Celsius)",
+            "unit": "mM"
+          }
+        ],
+        "note": {
+          "texts": [
+            {
+              "value": "kcat is 61 sec(-1) for amination of mesaconate (with 20 mM of MgCl(2) at pH 9 and at 30 degrees Celsius). kcat is 89 sec(-1) for deamination of L-threo-beta-methylaspartate (with 20 mM of MgCl(2) at pH 9 and at 30 degrees Celsius)."
+            }
+          ]
+        }
+      },
+      "phDependence": {
+        "texts": [
+          {
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "13630903",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "1420191",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "19670200",
+                "source": "PubMed"
+              }
+            ],
+            "value": "Optimum pH is 9.7."
+          }
+        ]
+      },
+      "temperatureDependence": {
+        "texts": [
+          {
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "13630903",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "1420191",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "19670200",
+                "source": "PubMed"
+              }
+            ],
+            "value": "Optimum temperature is 55 degrees Celsius. It retains only half of its original activity after a 30 minutes incubation period at 50 degrees Celsius."
+          }
+        ]
+      }
+    },
+    {
+      "commentType": "PATHWAY",
+      "texts": [
+        {
+          "value": "Amino-acid degradation; L-glutamate degradation via mesaconate pathway; acetate and pyruvate from L-glutamate: step 2/4"
+        }
+      ]
+    },
+    {
+      "commentType": "SUBUNIT",
+      "texts": [
+        {
+          "evidences": [
+            {
+              "evidenceCode": "ECO:0000269",
+              "id": "11748244",
+              "source": "PubMed"
+            },
+            {
+              "evidenceCode": "ECO:0000269",
+              "id": "1420191",
+              "source": "PubMed"
+            },
+            {
+              "evidenceCode": "ECO:0000269",
+              "id": "19670200",
+              "source": "PubMed"
+            },
+            {
+              "evidenceCode": "ECO:0000269",
+              "id": "22614383",
+              "source": "PubMed"
+            }
+          ],
+          "value": "Homodimer"
+        }
+      ]
+    },
+    {
+      "commentType": "SIMILARITY",
+      "texts": [
+        {
+          "evidences": [
+            {
+              "evidenceCode": "ECO:0000305"
+            }
+          ],
+          "value": "Belongs to the methylaspartate ammonia-lyase family"
+        }
+      ]
+    }
+  ],
+  "entryAudit": {
+    "entryVersion": 113,
+    "firstPublicDate": "1995-02-01",
+    "lastAnnotationUpdateDate": "2026-06-10",
+    "lastSequenceUpdateDate": "1995-02-01",
+    "sequenceVersion": 1
+  },
+  "entryType": "UniProtKB reviewed (Swiss-Prot)",
+  "extraAttributes": {
+    "countByCommentType": {
+      "ACTIVITY REGULATION": 1,
+      "BIOPHYSICOCHEMICAL PROPERTIES": 1,
+      "CATALYTIC ACTIVITY": 1,
+      "COFACTOR": 1,
+      "FUNCTION": 1,
+      "PATHWAY": 1,
+      "SIMILARITY": 1,
+      "SUBUNIT": 1
+    },
+    "countByFeatureType": {
+      "Active site": 1,
+      "Beta strand": 15,
+      "Binding site": 7,
+      "Chain": 1,
+      "Helix": 18,
+      "Mutagenesis": 11,
+      "Site": 1,
+      "Turn": 2
+    },
+    "uniParcId": "UPI000012EAFF"
+  },
+  "features": [
+    {
+      "description": "Methylaspartate ammonia-lyase",
+      "featureId": "PRO_0000084547",
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 413
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 1
+        }
+      },
+      "type": "Chain"
+    },
+    {
+      "description": "Proton acceptor",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "11748244",
+          "source": "PubMed"
+        },
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "19670200",
+          "source": "PubMed"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 331
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 331
+        }
+      },
+      "type": "Active site"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000250"
+        }
+      ],
+      "featureCrossReferences": [
+        {
+          "database": "ChEBI",
+          "id": "CHEBI:58724"
+        }
+      ],
+      "ligand": {
+        "id": "ChEBI:CHEBI:58724",
+        "name": "(2S,3S)-3-methyl-L-aspartate"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 172
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 172
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "11748244",
+          "source": "PubMed"
+        },
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "22614383",
+          "source": "PubMed"
+        }
+      ],
+      "featureCrossReferences": [
+        {
+          "database": "ChEBI",
+          "id": "CHEBI:18420"
+        }
+      ],
+      "ligand": {
+        "id": "ChEBI:CHEBI:18420",
+        "name": "Mg(2+)"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 238
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 238
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "11748244",
+          "source": "PubMed"
+        },
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "22614383",
+          "source": "PubMed"
+        }
+      ],
+      "featureCrossReferences": [
+        {
+          "database": "ChEBI",
+          "id": "CHEBI:18420"
+        }
+      ],
+      "ligand": {
+        "id": "ChEBI:CHEBI:18420",
+        "name": "Mg(2+)"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 273
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 273
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "11748244",
+          "source": "PubMed"
+        },
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "22614383",
+          "source": "PubMed"
+        }
+      ],
+      "featureCrossReferences": [
+        {
+          "database": "ChEBI",
+          "id": "CHEBI:18420"
+        }
+      ],
+      "ligand": {
+        "id": "ChEBI:CHEBI:18420",
+        "name": "Mg(2+)"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 307
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 307
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "description": "",
+      "featureCrossReferences": [
+        {
+          "database": "ChEBI",
+          "id": "CHEBI:58724"
+        }
+      ],
+      "ligand": {
+        "id": "ChEBI:CHEBI:58724",
+        "name": "(2S,3S)-3-methyl-L-aspartate"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 329
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 329
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000250"
+        }
+      ],
+      "featureCrossReferences": [
+        {
+          "database": "ChEBI",
+          "id": "CHEBI:58724"
+        }
+      ],
+      "ligand": {
+        "id": "ChEBI:CHEBI:58724",
+        "name": "(2S,3S)-3-methyl-L-aspartate"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 361
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 360
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "description": "",
+      "featureCrossReferences": [
+        {
+          "database": "ChEBI",
+          "id": "CHEBI:58724"
+        }
+      ],
+      "ligand": {
+        "id": "ChEBI:CHEBI:58724",
+        "name": "(2S,3S)-3-methyl-L-aspartate"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 361
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 361
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "description": "Transition state stabilizer",
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 194
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 194
+        }
+      },
+      "type": "Site"
+    },
+    {
+      "alternativeSequence": {
+        "alternativeSequences": [
+          "A"
+        ],
+        "originalSequence": "Q"
+      },
+      "description": "It has very broad nucleophile scope and excellent regio- and diastereoselectivity in the amination reaction. This mutation strongly moves the specificity of MAL away from ammonia and towards methylamine. It is highly enantioselective.",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "22614383",
+          "source": "PubMed"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 73
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 73
+        }
+      },
+      "type": "Mutagenesis"
+    },
+    {
+      "alternativeSequence": {
+        "alternativeSequences": [
+          "A"
+        ],
+        "originalSequence": "H"
+      },
+      "description": "Strong (160-fold) decrease of the catalytic efficiency for deamination and slight (1.8-fold) decrease of affinity binding for L-threo-beta-methylaspartate. 7-fold decrease of the catalytic efficiency for amination and 20-fold decrease of affinity binding for mesaconate. It does not show any major conformational changes.",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "19670200",
+          "source": "PubMed"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 194
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 194
+        }
+      },
+      "type": "Mutagenesis"
+    },
+    {
+      "alternativeSequence": {
+        "alternativeSequences": [
+          "R"
+        ],
+        "originalSequence": "H"
+      },
+      "description": "It abolishes deaminase and aminase activities and does not show any major conformational changes.",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "19670200",
+          "source": "PubMed"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 194
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 194
+        }
+      },
+      "type": "Mutagenesis"
+    },
+    {
+      "alternativeSequence": {
+        "alternativeSequences": [
+          "A"
+        ],
+        "originalSequence": "Q"
+      },
+      "description": "Very strong decrease of the catalytic efficiency for deamination, whereas the affinity binding for L-threo-beta-methylaspartate is not affected. Strong (240-fold) decrease of the catalytic efficiency for amination and slight (2.4-fold) decrease of affinity binding for mesaconate. It does not show any major conformational changes.",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "19670200",
+          "source": "PubMed"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 329
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 329
+        }
+      },
+      "type": "Mutagenesis"
+    },
+    {
+      "alternativeSequence": {
+        "alternativeSequences": [
+          "R"
+        ],
+        "originalSequence": "Q"
+      },
+      "description": "It abolishes deaminase and aminase activities and does not show any major conformational changes.",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "19670200",
+          "source": "PubMed"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 329
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 329
+        }
+      },
+      "type": "Mutagenesis"
+    },
+    {
+      "alternativeSequence": {
+        "alternativeSequences": [
+          "A"
+        ],
+        "originalSequence": "K"
+      },
+      "description": "It abolishes deaminase and aminase activities and does not show any major conformational changes.",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "19670200",
+          "source": "PubMed"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 331
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 331
+        }
+      },
+      "type": "Mutagenesis"
+    },
+    {
+      "alternativeSequence": {
+        "alternativeSequences": [
+          "G"
+        ],
+        "originalSequence": "K"
+      },
+      "description": "It abolishes deaminase and aminase activities and does not show any major conformational changes.",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "19670200",
+          "source": "PubMed"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 331
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 331
+        }
+      },
+      "type": "Mutagenesis"
+    },
+    {
+      "alternativeSequence": {
+        "alternativeSequences": [
+          "H"
+        ],
+        "originalSequence": "K"
+      },
+      "description": "It abolishes deaminase and aminase activities and does not show any major conformational changes.",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "19670200",
+          "source": "PubMed"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 331
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 331
+        }
+      },
+      "type": "Mutagenesis"
+    },
+    {
+      "alternativeSequence": {
+        "alternativeSequences": [
+          "Q"
+        ],
+        "originalSequence": "K"
+      },
+      "description": "It abolishes deaminase and aminase activities and does not show any major conformational changes.",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "19670200",
+          "source": "PubMed"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 331
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 331
+        }
+      },
+      "type": "Mutagenesis"
+    },
+    {
+      "alternativeSequence": {
+        "alternativeSequences": [
+          "R"
+        ],
+        "originalSequence": "K"
+      },
+      "description": "It abolishes deaminase and aminase activities and does not show any major conformational changes.",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "19670200",
+          "source": "PubMed"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 331
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 331
+        }
+      },
+      "type": "Mutagenesis"
+    },
+    {
+      "alternativeSequence": {
+        "alternativeSequences": [
+          "A"
+        ],
+        "originalSequence": "L"
+      },
+      "description": "It has very broad electrophile scope and excellent regio- and enantioselectivity in the amination reaction.",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "22614383",
+          "source": "PubMed"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 384
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 384
+        }
+      },
+      "type": "Mutagenesis"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 11
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 2
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 18
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 14
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 24
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 20
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 30
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 28
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 36
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 33
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 49
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 44
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 59
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 52
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 69
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 64
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 76
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 73
+        }
+      },
+      "type": "Turn"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 92
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 86
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 97
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 93
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 101
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 98
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 118
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 109
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 146
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 128
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 158
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 150
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 186
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 179
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 194
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 190
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 204
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 200
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 225
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 209
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 238
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 234
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 246
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 242
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 249
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 247
+        }
+      },
+      "type": "Turn"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 265
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 251
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 273
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 270
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 298
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 281
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 306
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 302
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 321
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 313
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 330
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 325
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 335
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 333
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 350
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 339
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 357
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 354
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 378
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 365
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 384
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 381
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 391
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 387
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "1KCZ",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 410
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 392
+        }
+      },
+      "type": "Helix"
+    }
+  ],
+  "keywords": [
+    {
+      "category": "Technical term",
+      "id": "KW-0002",
+      "name": "3D-structure"
+    },
+    {
+      "category": "Ligand",
+      "id": "KW-0846",
+      "name": "Cobalamin"
+    },
+    {
+      "category": "Ligand",
+      "id": "KW-0170",
+      "name": "Cobalt"
+    },
+    {
+      "category": "Technical term",
+      "id": "KW-0903",
+      "name": "Direct protein sequencing"
+    },
+    {
+      "category": "Molecular function",
+      "id": "KW-0456",
+      "name": "Lyase"
+    },
+    {
+      "category": "Ligand",
+      "id": "KW-0460",
+      "name": "Magnesium"
+    },
+    {
+      "category": "Ligand",
+      "id": "KW-0479",
+      "name": "Metal-binding"
+    }
+  ],
+  "organism": {
+    "lineage": [
+      "Bacteria",
+      "Bacillati",
+      "Bacillota",
+      "Clostridia",
+      "Eubacteriales",
+      "Clostridiaceae",
+      "Clostridium"
+    ],
+    "scientificName": "Clostridium tetanomorphum",
+    "taxonId": 1553
+  },
+  "primaryAccession": "Q05514",
+  "proteinDescription": {
+    "alternativeNames": [
+      {
+        "fullName": {
+          "value": "3-methylaspartase ammonia-lyase"
+        }
+      },
+      {
+        "fullName": {
+          "value": "Beta-methylaspartase"
+        }
+      }
+    ],
+    "recommendedName": {
+      "ecNumbers": [
+        {
+          "value": "4.3.1.2"
+        }
+      ],
+      "fullName": {
+        "value": "Methylaspartate ammonia-lyase"
+      },
+      "shortNames": [
+        {
+          "value": "MAL"
+        }
+      ]
+    }
+  },
+  "proteinExistence": "1: Evidence at protein level",
+  "references": [
+    {
+      "citation": {
+        "authors": [
+          "Goda S.K.",
+          "Minton N.P.",
+          "Botting N.P.",
+          "Gani D."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "1420191"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1021/bi00159a015"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "10747",
+        "id": "1420191",
+        "journal": "Biochemistry",
+        "lastPage": "10756",
+        "publicationDate": "1992",
+        "title": "Cloning, sequencing, and expression in Escherichia coli of the Clostridium tetanomorphum gene encoding beta-methylaspartase and characterization of the recombinant protein.",
+        "volume": "31"
+      },
+      "referenceComments": [
+        {
+          "type": "STRAIN",
+          "value": "ATCC 15920 / DSM 528 / NCIMB 11547 / H1"
+        }
+      ],
+      "referenceNumber": 1,
+      "referencePositions": [
+        "NUCLEOTIDE SEQUENCE [GENOMIC DNA]",
+        "PROTEIN SEQUENCE OF 1-26",
+        "FUNCTION",
+        "CATALYTIC ACTIVITY",
+        "BIOPHYSICOCHEMICAL PROPERTIES",
+        "SUBUNIT"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Brecht M.",
+          "Kellermann J.",
+          "Plueckthun A."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "8454064"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1016/0014-5793(93)80042-s"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "84",
+        "id": "8454064",
+        "journal": "FEBS Lett.",
+        "lastPage": "89",
+        "publicationDate": "1993",
+        "title": "Cloning and sequencing of glutamate mutase component E from Clostridium tetanomorphum.",
+        "volume": "319"
+      },
+      "referenceComments": [
+        {
+          "type": "STRAIN",
+          "value": "ATCC 15920 / DSM 528 / NCIMB 11547 / H1"
+        }
+      ],
+      "referenceNumber": 2,
+      "referencePositions": [
+        "NUCLEOTIDE SEQUENCE [GENOMIC DNA] OF 1-24",
+        "PROTEIN SEQUENCE OF 1-24"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Holloway D.E.",
+          "Marsh E.N.G."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "8428631"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1016/0014-5793(93)81488-l"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "44",
+        "id": "8428631",
+        "journal": "FEBS Lett.",
+        "lastPage": "48",
+        "publicationDate": "1993",
+        "title": "Cloning and sequencing of glutamate mutase component E from Clostridium tetanomorphum. Organization of the mut genes.",
+        "volume": "317"
+      },
+      "referenceComments": [
+        {
+          "type": "STRAIN",
+          "value": "ATCC 15920 / DSM 528 / NCIMB 11547 / H1"
+        }
+      ],
+      "referenceNumber": 3,
+      "referencePositions": [
+        "NUCLEOTIDE SEQUENCE [GENOMIC DNA] OF 1-71"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Marsh E.N.G.",
+          "Holloway D.E."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "1397267"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1016/0014-5793(92)81321-c"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "167",
+        "id": "1397267",
+        "journal": "FEBS Lett.",
+        "lastPage": "170",
+        "publicationDate": "1992",
+        "title": "Cloning and sequencing of glutamate mutase component S from Clostridium tetanomorphum. Homologies with other cobalamin-dependent enzymes.",
+        "volume": "310"
+      },
+      "referenceComments": [
+        {
+          "type": "STRAIN",
+          "value": "ATCC 15920 / DSM 528 / NCIMB 11547 / H1"
+        }
+      ],
+      "referenceNumber": 4,
+      "referencePositions": [
+        "PROTEIN SEQUENCE OF 1-15"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Barker H.A.",
+          "Smyth R.D.",
+          "Wilson R.M.",
+          "Weissbach H."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "13630903"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1016/s0021-9258(18)70297-4"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "320",
+        "id": "13630903",
+        "journal": "J. Biol. Chem.",
+        "lastPage": "328",
+        "publicationDate": "1959",
+        "title": "The purification and properties of beta-methylaspartase.",
+        "volume": "234"
+      },
+      "referenceComments": [
+        {
+          "type": "STRAIN",
+          "value": "ATCC 15920 / DSM 528 / NCIMB 11547 / H1"
+        }
+      ],
+      "referenceNumber": 5,
+      "referencePositions": [
+        "FUNCTION",
+        "CATALYTIC ACTIVITY",
+        "BIOPHYSICOCHEMICAL PROPERTIES",
+        "ACTIVITY REGULATION",
+        "SUBSTRATE SPECIFICITY",
+        "COFACTOR"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Raj H.",
+          "Weiner B.",
+          "Veetil V.P.",
+          "Reis C.R.",
+          "Quax W.J.",
+          "Janssen D.B.",
+          "Feringa B.L.",
+          "Poelarends G.J."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "19670200"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1002/cbic.200900311"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "2236",
+        "id": "19670200",
+        "journal": "ChemBioChem",
+        "lastPage": "2245",
+        "publicationDate": "2009",
+        "title": "Alteration of the diastereoselectivity of 3-methylaspartate ammonia lyase by using structure-based mutagenesis.",
+        "volume": "10"
+      },
+      "referenceComments": [
+        {
+          "type": "STRAIN",
+          "value": "ATCC 15920 / DSM 528 / NCIMB 11547 / H1"
+        }
+      ],
+      "referenceNumber": 6,
+      "referencePositions": [
+        "FUNCTION",
+        "CATALYTIC ACTIVITY",
+        "BIOPHYSICOCHEMICAL PROPERTIES",
+        "MUTAGENESIS OF HIS-194; GLN-329 AND LYS-331",
+        "SUBSTRATE SPECIFICITY",
+        "ACTIVE SITE",
+        "SUBUNIT"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Asuncion M.",
+          "Blankenfeldt W.",
+          "Barlow J.N.",
+          "Gani D.",
+          "Naismith J.H."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "11748244"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1074/jbc.m111180200"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "8306",
+        "id": "11748244",
+        "journal": "J. Biol. Chem.",
+        "lastPage": "8311",
+        "publicationDate": "2002",
+        "title": "The structure of 3-methylaspartase from Clostridium tetanomorphum functions via the common enolase chemical step.",
+        "volume": "277"
+      },
+      "referenceNumber": 7,
+      "referencePositions": [
+        "X-RAY CRYSTALLOGRAPHY (1.90 ANGSTROMS) IN COMPLEX WITH MAGNESIUM",
+        "ACTIVE SITE",
+        "COFACTOR",
+        "SUBUNIT"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Raj H.",
+          "Szymanski W.",
+          "de Villiers J.",
+          "Rozeboom H.J.",
+          "Veetil V.P.",
+          "Reis C.R.",
+          "de Villiers M.",
+          "Dekker F.J.",
+          "de Wildeman S.",
+          "Quax W.J.",
+          "Thunnissen A.M.",
+          "Feringa B.L.",
+          "Janssen D.B.",
+          "Poelarends G.J."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "22614383"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1038/nchem.1338"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "478",
+        "id": "22614383",
+        "journal": "Nat. Chem.",
+        "lastPage": "484",
+        "publicationDate": "2012",
+        "title": "Engineering methylaspartate ammonia lyase for the asymmetric synthesis of unnatural amino acids.",
+        "volume": "4"
+      },
+      "referenceNumber": 8,
+      "referencePositions": [
+        "X-RAY CRYSTALLOGRAPHY (1.90 ANGSTROMS) IN COMPLEX WITH SUBSTRATE ANALOGS AND MAGNESIUM",
+        "FUNCTION",
+        "CATALYTIC ACTIVITY",
+        "MUTAGENESIS OF GLN-73 AND LEU-384",
+        "COFACTOR",
+        "SUBUNIT"
+      ]
+    }
+  ],
+  "sequence": {
+    "crc64": "4451923DB035EF13",
+    "length": 413,
+    "md5": "6851D7A664F5A103BB98D0883111E5A7",
+    "molWeight": 45534,
+    "value": "MKIVDVLCTPGLTGFYFDDQRAIKKGAGHDGFTYTGSTVTEGFTQVRQKGESISVLLVLEDGQVAHGDCAAVQYSGAGGRDPLFLAKDFIPVIEKEIAPKLIGREITNFKPMAEEFDKMTVNGNRLHTAIRYGITQAILDAVAKTRKVTMAEVIRDEYNPGAEINAVPVFAQSGDDRYDNVDKMIIKEADVLPHALINNVEEKLGLKGEKLLEYVKWLRDRIIKLRVREDYAPIFHIDVYGTIGAAFDVDIKAMADYIQTLAEAAKPFHLRIEGPMDVEDRQKQMEAMRDLRAELDGRGVDAELVADEWCNTVEDVKFFTDNKAGHMVQIKTPDLGGVNNIADAIMYCKANGMGAYCGGTCNETNRSAEVTTNIGMACGARQVLAKPGMGVDEGMMIVKNEMNRVLALVGRRK"
+  },
+  "uniProtKBCrossReferences": [
+    {
+      "database": "EMBL",
+      "id": "S48141",
+      "properties": [
+        {
+          "key": "ProteinId",
+          "value": "AAB24070.1"
+        },
+        {
+          "key": "Status",
+          "value": "-"
+        },
+        {
+          "key": "MoleculeType",
+          "value": "Genomic_DNA"
+        }
+      ]
+    },
+    {
+      "database": "EMBL",
+      "id": "X70499",
+      "properties": [
+        {
+          "key": "ProteinId",
+          "value": "CAA49911.1"
+        },
+        {
+          "key": "Status",
+          "value": "-"
+        },
+        {
+          "key": "MoleculeType",
+          "value": "Genomic_DNA"
+        }
+      ]
+    },
+    {
+      "database": "EMBL",
+      "id": "X70695",
+      "properties": [
+        {
+          "key": "ProteinId",
+          "value": "CAA50027.1"
+        },
+        {
+          "key": "Status",
+          "value": "-"
+        },
+        {
+          "key": "MoleculeType",
+          "value": "Genomic_DNA"
+        }
+      ]
+    },
+    {
+      "database": "PIR",
+      "id": "B44285",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "B44285"
+        }
+      ]
+    },
+    {
+      "database": "RefSeq",
+      "id": "WP_035147529.1",
+      "properties": [
+        {
+          "key": "NucleotideSequenceId",
+          "value": "NZ_JAAZWO010000006.1"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1KCZ",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.90 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B=1-413"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1KD0",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.90 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B=1-413"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "3ZVH",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.99 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B=1-413"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "3ZVI",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.90 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B=1-413"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1KCZ",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1KD0",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "3ZVH",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "3ZVI",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "AlphaFoldDB",
+      "id": "Q05514",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "SMR",
+      "id": "Q05514",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "DrugBank",
+      "id": "DB03661",
+      "properties": [
+        {
+          "key": "GenericName",
+          "value": "L-cysteic acid"
+        }
+      ]
+    },
+    {
+      "database": "BioCyc",
+      "id": "MetaCyc:MONOMER-1103",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "BRENDA",
+      "id": "4.3.1.2",
+      "properties": [
+        {
+          "key": "OrganismId",
+          "value": "1527"
+        }
+      ]
+    },
+    {
+      "database": "UniPathway",
+      "id": "UPA00561",
+      "properties": [
+        {
+          "key": "RectionId",
+          "value": "UER00618"
+        }
+      ]
+    },
+    {
+      "database": "EvolutionaryTrace",
+      "id": "Q05514",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "id": "GO:0031419",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "F:cobalamin binding"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IEA:UniProtKB-KW"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "id": "GO:0046872",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "F:metal ion binding"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IEA:UniProtKB-KW"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "id": "GO:0050096",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "F:methylaspartate ammonia-lyase activity"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IEA:UniProtKB-EC"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "id": "GO:0019553",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "P:L-glutamate catabolic process via L-citramalate"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IEA:UniProtKB-UniPathway"
+        }
+      ]
+    },
+    {
+      "database": "CDD",
+      "id": "cd03314",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "MAL"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "Gene3D",
+      "id": "3.20.20.120",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Enolase-like C-terminal domain"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "Gene3D",
+      "id": "3.30.390.10",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Enolase-like, N-terminal domain"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR036849",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Enolase-like_C_sf"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR029017",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Enolase-like_N"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR006395",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Me_Asp_am_lyase"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR022662",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "MeAsp_NH4-lyase_C"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR022665",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "MeAsp_NH4-lyase_N"
+        }
+      ]
+    },
+    {
+      "database": "NCBIfam",
+      "id": "TIGR01502",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "B_methylAsp_ase"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PANTHER",
+      "id": "PTHR48073:SF2",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "O-SUCCINYLBENZOATE SYNTHASE"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PANTHER",
+      "id": "PTHR48073",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "O-SUCCINYLBENZOATE SYNTHASE-RELATED"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "Pfam",
+      "id": "PF07476",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "MAAL_C"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "Pfam",
+      "id": "PF05034",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "MAAL_N"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PIRSF",
+      "id": "PIRSF017107",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "MAL"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "SFLD",
+      "id": "SFLDS00001",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Enolase"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "SFLD",
+      "id": "SFLDF00007",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "methylaspartate_ammonia-lyase"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "SFLD",
+      "id": "SFLDG00151",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "methylaspartate_ammonia-lyase"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "SUPFAM",
+      "id": "SSF51604",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Enolase C-terminal domain-like"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "SUPFAM",
+      "id": "SSF54826",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Enolase N-terminal domain-like"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    }
+  ],
+  "uniProtkbId": "MAAL_CLOTT"
+}

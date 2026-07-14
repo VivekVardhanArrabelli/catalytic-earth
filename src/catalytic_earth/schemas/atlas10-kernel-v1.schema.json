@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://catalytic.earth/schemas/atlas10-kernel-v1.schema.json",
+  "title": "Catalytic Earth Atlas-10 compiled query surface",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "compiler_version",
+    "selection_sha256",
+    "source_snapshot_set_sha256",
+    "compilation_spec_sha256",
+    "source_manifest_retrieved_at",
+    "inherited_kernel",
+    "case_count",
+    "record_count",
+    "follow_on_case_count",
+    "follow_on_record_count",
+    "follow_on_records",
+    "relationships",
+    "claim_boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "catalytic-earth.atlas10-kernel.v1"},
+    "compiler_version": {"const": "catalytic-earth.atlas10-compiler.v1"},
+    "selection_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_snapshot_set_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "compilation_spec_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_manifest_retrieved_at": {"type": "string", "pattern": "Z$"},
+    "inherited_kernel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "file_sha256", "schema_version", "case_count", "record_count", "immutable"],
+      "properties": {
+        "path": {"const": "data/atlas/atlas3/kernel.json"},
+        "file_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "schema_version": {"const": "catalytic-earth.atlas3-kernel.v1"},
+        "case_count": {"const": 3},
+        "record_count": {"const": 9},
+        "immutable": {"const": true}
+      }
+    },
+    "case_count": {"const": 10},
+    "record_count": {"const": 30},
+    "follow_on_case_count": {"const": 7},
+    "follow_on_record_count": {"const": 21},
+    "follow_on_records": {
+      "type": "array",
+      "minItems": 21,
+      "maxItems": 21,
+      "items": {"$ref": "mechanism-record-v3.schema.json"}
+    },
+    "relationships": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "group_id",
+          "relationship_type",
+          "case_ids",
+          "shared_features",
+          "member_distinctions",
+          "comparison_boundary"
+        ],
+        "properties": {
+          "group_id": {"type": "string", "minLength": 1},
+          "relationship_type": {"type": "string", "minLength": 1},
+          "case_ids": {
+            "type": "array",
+            "minItems": 2,
+            "uniqueItems": true,
+            "items": {"type": "string", "minLength": 1}
+          },
+          "shared_features": {"type": "array", "minItems": 3, "items": {"$ref": "#/$defs/feature"}},
+          "member_distinctions": {
+            "type": "array",
+            "minItems": 2,
+            "items": {"$ref": "#/$defs/member_feature"}
+          },
+          "comparison_boundary": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "claim_boundary": {"$ref": "#/$defs/claim_boundary"}
+  },
+  "$defs": {
+    "feature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["feature_id", "label", "evidence_keys"],
+      "properties": {
+        "feature_id": {"type": "string", "minLength": 1},
+        "label": {"type": "string", "minLength": 1},
+        "evidence_keys": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "member_feature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["case_id", "feature_id", "label", "site_ids", "evidence_keys"],
+      "properties": {
+        "case_id": {"type": "string", "minLength": 1},
+        "feature_id": {"type": "string", "minLength": 1},
+        "label": {"type": "string", "minLength": 1},
+        "site_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "evidence_keys": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "claim_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["supports", "does_not_support"],
+      "properties": {
+        "supports": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "does_not_support": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

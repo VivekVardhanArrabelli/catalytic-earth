@@ -8,7 +8,12 @@ from contextlib import redirect_stdout
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from catalytic_earth.core_cli import main, verified_atlas3_result, verified_golden_result
+from catalytic_earth.core_cli import (
+    main,
+    verified_atlas10_result,
+    verified_atlas3_result,
+    verified_golden_result,
+)
 from catalytic_earth.schema import MechanismRecord, SCHEMA_VERSION
 
 
@@ -92,6 +97,44 @@ class CoreCliTests(unittest.TestCase):
         self.assertIn("source:UniProtKB:P00448", mnsod["direct_source_handles"])
         self.assertEqual(
             mnsod["counterexample_source_handles"], "source:M-CSA:M0138"
+        )
+
+    def test_atlas10_result_matches_from_an_empty_working_directory(self) -> None:
+        original = Path.cwd()
+        with TemporaryDirectory() as tmp:
+            os.chdir(tmp)
+            try:
+                result = verified_atlas10_result()
+            finally:
+                os.chdir(original)
+
+        self.assertEqual(result["case_count"], 10)
+        self.assertEqual(result["record_count"], 30)
+        self.assertEqual(result["documented_rhea_gap_count"], 3)
+        self.assertEqual(result["non_detailed_abstention_count"], 1)
+        self.assertEqual(result["source_mechanism_step_count"], 21)
+        self.assertEqual(result["source_electron_flow_count"], 61)
+        self.assertTrue(result["matches_expected"])
+
+    def test_atlas10_command_emits_both_relationship_queries(self) -> None:
+        stdout = io.StringIO()
+        with redirect_stdout(stdout):
+            exit_code = main(["atlas10"])
+        result = json.loads(stdout.getvalue())
+
+        self.assertEqual(exit_code, 0)
+        self.assertEqual(
+            set(result["relationship_query_results"]),
+            {
+                "atlas10.query.convergent-strategy",
+                "atlas10.query.shared-fold-divergent-chemistry",
+            },
+        )
+        self.assertIn(
+            "not residue-number",
+            result["relationship_query_results"][
+                "atlas10.query.convergent-strategy"
+            ][0]["transfer_boundary"],
         )
 
 

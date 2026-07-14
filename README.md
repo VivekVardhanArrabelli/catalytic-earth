@@ -82,13 +82,17 @@ a production biological design system.
   handles, the nine records, and a local truth-boundary query are content-bound
   and reproducible. This is useful Atlas knowledge, not biological validation
   or a coverage benchmark.
-- The Atlas-10 follow-on selection is frozen, not yet compiled. Seven cases add
-  proton-relay, competing-mechanism, cross-fold convergence,
-  same-fold/different-chemistry, source-gap, engineered-structure, and
-  mandatory-abstention pressures. The machine contract fixes 45 source
-  handles, two relationship queries, the unintegrated-source baseline, review
-  packets, and compute ceilings while preserving Atlas-3 and the sole TEM-1
-  assay candidate.
+- Atlas-10 is computationally compiled as the immutable Atlas-3 plus seven v3
+  follow-on packages: 10 cases, 30 typed truth objects, 45 source bindings, 3
+  explicit Rhea gaps, 21 detailed source steps, 61 preserved source electron
+  flows, and one mandatory zero-step cyclophilin abstention. Two relationship
+  queries reproduce from package assets. The matched unintegrated-source
+  comparator supports a structural usability result only; no human-time,
+  accuracy, or discovery claim is made. A local Windows/Python 3.13 wheel
+  passed fresh-directory Atlas-3 and Atlas-10 verification and excludes raw
+  source snapshots. The published PR #27 Ubuntu/Windows Python 3.10/3.12
+  matrix also passed. Seven review packets are ready; a real external attempt
+  is the sole remaining Atlas-10 phase-exit gate.
 
 ## Truth-governance gate
 
@@ -131,6 +135,7 @@ agent run:
 | `docs/ATLAS3_SELECTION.md` | Frozen first-kernel cases, authoritative handles, budgets, stop conditions, and build sequence |
 | `docs/ATLAS3_KERNEL.md` | Compiled nine-object biological kernel, source checks, query, truth boundaries, and reproduction |
 | `docs/ATLAS10_SELECTION.md` | Frozen seven-case extension, source gaps, relationship queries, applicability traps, baseline, review, and compute contracts |
+| `docs/ATLAS10_KERNEL.md` | Compiled ten-case surface, v3 truth objects, source package, queries, comparator, review state, and remaining gate |
 | `docs/P0_COMPLETION.md` | Auditable completion map for the truth-first review's P0 cleanup |
 | `docs/reviews/catalytic-earth-full-review-2026-07-10.md` | Independent audit, evidence corrections, strategic amendment, and full rationale |
 | `docs/reviews/catalytic-earth-90-day-map-2026-07-10.md` | Compact operating map derived from the full review |
@@ -167,6 +172,19 @@ It reproduces three cases and nine typed biological objects with provenance,
 counterevidence, and abstentions. It is not a claim of biological validation,
 coverage, prospective discovery, or assay completion.
 
+Reproduce the ten-case Atlas relationship surface:
+
+```bash
+catalytic-earth atlas10
+```
+
+The expected Atlas-10 `runtime_result_sha256` is
+`57fb5e4708d6963b994a9ffd125549b822effe060da3e735c1afd987f1c84bdb`.
+It executes two frozen relationship queries with source gaps, applicability,
+counterevidence, uncertainty, and provenance. It is not biological validation,
+representative coverage, mechanism accuracy, prospective discovery, or a
+speedup claim.
+
 Validate the repo:
 
 ```bash
@@ -175,6 +193,12 @@ python scripts/validate_atlas3_selection.py
 python scripts/validate_atlas10_selection.py
 python scripts/build_atlas3_sources.py
 python scripts/build_atlas3_kernel.py --check
+python scripts/build_atlas10_sources.py
+python scripts/build_atlas10_kernel.py --check
+python scripts/build_atlas10_runtime.py --check
+python scripts/build_atlas10_baseline.py --check
+python scripts/build_atlas10_comparator.py --check
+python scripts/build_atlas10_review_packets.py --check
 python scripts/run_test_tier.py "core/unit"
 git diff --check
 ```

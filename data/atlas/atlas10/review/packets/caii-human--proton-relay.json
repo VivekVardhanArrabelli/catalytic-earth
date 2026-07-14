@@ -1,0 +1,492 @@
+{
+  "case_id": "atlas10.caii-human.proton-relay",
+  "claim_boundary": {
+    "does_not_support": [
+      "Mechanism truth beyond the frozen sources, unrestricted transfer across proteins or substrates, or replacement of experimental validation."
+    ],
+    "supports": [
+      "Produce a site-grounded Tier-2 hypothesis that preserves the zinc-water and proton-shuttle logic, labels unresolved protonation and solvent states, and exposes every atom/charge edit as source-derived or explicitly abstained."
+    ]
+  },
+  "compiled_hypothesis_sha256": "8cca77dc84becb886bd6d46978926d0aae25238348ba02447e29c0f545c21d1b",
+  "counterevidence": [
+    {
+      "counterevidence_id": "atlas10.caii-human.proton-relay.structure-1ca2-limit",
+      "disposition": "Retain the structure with its explicit applicability and context flags.",
+      "effect": "Limits mechanistic generalization from this static structural context.",
+      "evidence_ids": [
+        "source:PDB:1CA2"
+      ],
+      "summary": "Use for site and geometry grounding, not as a turnover trajectory or a uniquely resolved solvent proton wire."
+    }
+  ],
+  "detail_abstention": {
+    "reason": "The frozen source schemes preserve curved-arrow endpoints but do not establish a verified atom map, compiled bond-edit list, independent validation, or complete turnover trajectory.",
+    "required": true,
+    "source_basis_evidence_ids": [
+      "source:M-CSA:M0216",
+      "source:UniProtKB:P00918",
+      "source:Rhea:RHEA:10748",
+      "source:PDB:1CA2",
+      "source:DOI:10.1021/bi0480279",
+      "source:CATH:CATH:3.10.200.10"
+    ],
+    "unsupported_fields": [
+      "atom_mapped_bond_edits",
+      "independent_mechanism_validation",
+      "complete_turnover_trajectory"
+    ]
+  },
+  "evidence": [
+    {
+      "applicability": "direct",
+      "evidence_id": "source:UniProtKB:P00918",
+      "evidence_role": "protein_identity",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "f68c3e4ffaaeee3a072226ae45060acd61cbd062ca5e80a9656cdde4ff0adf8f",
+      "source_id": "UniProtKB",
+      "source_record_id": "P00918",
+      "uri": "https://www.uniprot.org/uniprotkb/P00918/entry"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:Rhea:RHEA:10748",
+      "evidence_role": "net_reaction",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "4f16bdff2e572df78f22b60391350a917e43e423d3a4b9e3da3ead482c6a53bf",
+      "source_id": "Rhea",
+      "source_record_id": "RHEA:10748",
+      "uri": "https://www.rhea-db.org/rhea/10748"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:PDB:1CA2",
+      "evidence_role": "experimental_structure",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "928b865b26f2751de5bc1623aaf4aa08c806c1e9efa7ab1dd5874433f345ba55",
+      "source_id": "PDB",
+      "source_record_id": "1CA2",
+      "uri": "https://www.rcsb.org/structure/1CA2"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:M-CSA:M0216",
+      "evidence_role": "source_mechanism",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "449917894cb59c92709f9ac17d9058355774f3230ab7e698b328807d86a0ccfe",
+      "source_id": "M-CSA",
+      "source_record_id": "M0216",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/216/"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:DOI:10.1021/bi0480279",
+      "evidence_role": "primary_mechanism_evidence",
+      "retrieval_status": "reference_only_verified_handle",
+      "snapshot_sha256": null,
+      "source_id": "DOI",
+      "source_record_id": "10.1021/bi0480279",
+      "uri": "https://doi.org/10.1021/bi0480279"
+    },
+    {
+      "applicability": "direct",
+      "evidence_id": "source:CATH:CATH:3.10.200.10",
+      "evidence_role": "fold_classification",
+      "retrieval_status": "bundled_snapshot",
+      "snapshot_sha256": "f630fb34682313cc381a1129b702fac3aca62dd1ce58c6b533d3cb689607e3d2",
+      "source_id": "CATH",
+      "source_record_id": "CATH:3.10.200.10",
+      "uri": "https://www.cathdb.info/version/latest/superfamily/3.10.200.10"
+    }
+  ],
+  "packet_id": "review-packet:atlas10.caii-human.proton-relay",
+  "protein_scope": {
+    "assay_candidate": false,
+    "case_label": "Human carbonic anhydrase II",
+    "direct_pdb_ids": [
+      "1CA2"
+    ],
+    "ec_number": "4.2.1.1",
+    "fingerprint_bridge": {
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "registry_write": false,
+      "use": "historical_crosswalk_only_not_evidence"
+    },
+    "fold_classification_ids": [
+      "CATH:3.10.200.10"
+    ],
+    "organism": "Homo sapiens",
+    "relationship_group_ids": [],
+    "uniprot_ids": [
+      "P00918"
+    ]
+  },
+  "provenance": {
+    "compilation_spec_sha256": "89cfa53c23fdeafde11e859cea102a88421ea253446a267b23bca2eb84920932",
+    "compiler_version": "catalytic-earth.atlas10-compiler.v1",
+    "selection_sha256": "9bc114aaf793c51ec3b6273466f62a83974512a2dcf969d95d8b97453dd2795e",
+    "source_snapshot_set_sha256": "a6b6a0059835e8f3f78cd5da9897afb599560bc844c59e82ba523f9387d0550d"
+  },
+  "reaction_or_source_gap": {
+    "directionality": "undirected",
+    "ec_number": "4.2.1.1",
+    "equation": "hydrogencarbonate + H(+) = CO2 + H2O",
+    "gap_context": null,
+    "participants": [
+      {
+        "name": "H(+)",
+        "participant_id": "CHEBI:15378",
+        "participant_type": "small_molecule",
+        "reactive_part_id": null,
+        "side": "left",
+        "source_accession": "CHEBI:15378",
+        "source_count_values": [
+          1
+        ],
+        "source_row_count": 1,
+        "source_scope": "Rhea RDF participant",
+        "stoichiometry": 1
+      },
+      {
+        "name": "hydrogencarbonate",
+        "participant_id": "CHEBI:17544",
+        "participant_type": "small_molecule",
+        "reactive_part_id": null,
+        "side": "left",
+        "source_accession": "CHEBI:17544",
+        "source_count_values": [
+          1
+        ],
+        "source_row_count": 1,
+        "source_scope": "Rhea RDF participant",
+        "stoichiometry": 1
+      },
+      {
+        "name": "H2O",
+        "participant_id": "CHEBI:15377",
+        "participant_type": "small_molecule",
+        "reactive_part_id": null,
+        "side": "right",
+        "source_accession": "CHEBI:15377",
+        "source_count_values": [
+          1
+        ],
+        "source_row_count": 1,
+        "source_scope": "Rhea RDF participant",
+        "stoichiometry": 1
+      },
+      {
+        "name": "CO2",
+        "participant_id": "CHEBI:16526",
+        "participant_type": "small_molecule",
+        "reactive_part_id": null,
+        "side": "right",
+        "source_accession": "CHEBI:16526",
+        "source_count_values": [
+          1
+        ],
+        "source_row_count": 1,
+        "source_scope": "Rhea RDF participant",
+        "stoichiometry": 1
+      }
+    ],
+    "source_id": "Rhea",
+    "source_query": "id:10748",
+    "source_record_id": "RHEA:10748",
+    "source_status": "direct_record"
+  },
+  "review_questions": [
+    "Is the reaction or documented source gap correct for this protein scope?",
+    "Are the catalytic sites and numbering mappings faithful to the cited sources?",
+    "Are the represented steps faithful to source granularity, with unsupported detail abstained?",
+    "Are structure and mechanism applicability boundaries correct?",
+    "Does the claim boundary prevent an unjustified evidence-tier upgrade?"
+  ],
+  "review_unit": "bounded_claim_packet",
+  "reviewer_instruction": "Review only the bounded case and cited source scope. A correction, uncertainty, or rejection is useful. Do not infer independent validation from upstream curation, source rating, fold similarity, or another case.",
+  "schema_version": "catalytic-earth.atlas10-review-packet.v1",
+  "sites": [
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0216",
+        "source:UniProtKB:P00918",
+        "source:PDB:1CA2"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 64,
+          "chain_id": "A",
+          "label_position": 63,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 64 to 1CA2 chain A author position 64 and mmCIF label position 63; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1CA2"
+        }
+      ],
+      "residue_name": "His",
+      "roles": [
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "proton acceptor",
+        "proton donor"
+      ],
+      "sequence_position": 64,
+      "site_id": "P00918:H64",
+      "uniprot_id": "P00918"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0216",
+        "source:UniProtKB:P00918",
+        "source:PDB:1CA2"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 94,
+          "chain_id": "A",
+          "label_position": 93,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 94 to 1CA2 chain A author position 94 and mmCIF label position 93; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1CA2"
+        }
+      ],
+      "residue_name": "His",
+      "roles": [
+        "metal ligand"
+      ],
+      "sequence_position": 94,
+      "site_id": "P00918:H94",
+      "uniprot_id": "P00918"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0216",
+        "source:UniProtKB:P00918",
+        "source:PDB:1CA2"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 96,
+          "chain_id": "A",
+          "label_position": 95,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 96 to 1CA2 chain A author position 96 and mmCIF label position 95; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1CA2"
+        }
+      ],
+      "residue_name": "His",
+      "roles": [
+        "metal ligand"
+      ],
+      "sequence_position": 96,
+      "site_id": "P00918:H96",
+      "uniprot_id": "P00918"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0216",
+        "source:UniProtKB:P00918",
+        "source:PDB:1CA2"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 106,
+          "chain_id": "A",
+          "label_position": 105,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 106 to 1CA2 chain A author position 106 and mmCIF label position 105; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1CA2"
+        }
+      ],
+      "residue_name": "Glu",
+      "roles": [
+        "activator",
+        "electrostatic stabiliser",
+        "hydrogen bond acceptor"
+      ],
+      "sequence_position": 106,
+      "site_id": "P00918:E106",
+      "uniprot_id": "P00918"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0216",
+        "source:UniProtKB:P00918",
+        "source:PDB:1CA2"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 119,
+          "chain_id": "A",
+          "label_position": 118,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 119 to 1CA2 chain A author position 119 and mmCIF label position 118; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1CA2"
+        }
+      ],
+      "residue_name": "His",
+      "roles": [
+        "metal ligand"
+      ],
+      "sequence_position": 119,
+      "site_id": "P00918:H119",
+      "uniprot_id": "P00918"
+    },
+    {
+      "evidence_ids": [
+        "source:M-CSA:M0216",
+        "source:UniProtKB:P00918",
+        "source:PDB:1CA2"
+      ],
+      "mapping_status": "source_and_coordinate_verified",
+      "notes": "M-CSA reference numbering, UniProt natural-sequence identity, and every listed local mmCIF coordinate were checked. An empty roles list means the source listed the residue without a role string.",
+      "numbering_system": "UniProt natural sequence",
+      "pdb_mappings": [
+        {
+          "applicability": "direct",
+          "author_position": 199,
+          "chain_id": "A",
+          "label_position": 197,
+          "mapping_basis": "mcsa_reference_and_coordinate",
+          "numbering_note": "M-CSA maps UniProt natural position 198 to 1CA2 chain A author position 199 and mmCIF label position 197; the residue identity was checked in the frozen coordinate file.",
+          "pdb_id": "1CA2"
+        }
+      ],
+      "residue_name": "Thr",
+      "roles": [
+        "activator",
+        "electrostatic stabiliser",
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "increase nucleophilicity"
+      ],
+      "sequence_position": 198,
+      "site_id": "P00918:T198",
+      "uniprot_id": "P00918"
+    }
+  ],
+  "source_proposals": [
+    {
+      "annotation_texts": [],
+      "components_summary": "bimolecular nucleophilic addition, overall reactant used, coordination to a metal ion, native state of enzyme regenerated, overall product formed, proton transfer",
+      "is_detailed": true,
+      "mechanism_text": "The reaction proceeds in two steps. First, an OH- bound to the Zinc ion attacks the carbon dioxide substrate forming bicarbonate and leaving a water at the Zinc ion. Polarisation of the C=O bond of carbon dioxide is achieved by Thr 199. Following this step, the OH- is regenerated by deprotonation of a water molecule by His 64, with Zinc acting to increase the polarity of the OH bond by withdrawing electrons from the oxygen atom.",
+      "preferred": true,
+      "proposal_id": "atlas10.caii-human.proton-relay.mcsa-M0216.mechanism-1",
+      "rating": 3,
+      "scheme_retrieval_issues": [],
+      "source_mechanism_id": 1,
+      "source_record_id": "M0216",
+      "steps": [
+        {
+          "atom_mapping_status": "not_inferred",
+          "bond_edit_status": "not_compiled_from_unmapped_source_scheme",
+          "catalyst_site_ids": [
+            "P00918:T198"
+          ],
+          "is_inferred": false,
+          "order": 1,
+          "source_electron_flow_count": 2,
+          "source_scheme_sha256": "de942c1a7ba507eed278b89b12bfdf59442d7404f76b496272b4029612364cd2",
+          "source_step_id": 1,
+          "summary": "The interactions between the zinc bound hydroxide, Thr199 and Gu106 serve to enhance the nucleophilicity of the hydroxide and help to orient the substrate (carbon dioxide) in the active site [PMID:12500287]. Zinc activated water attacks the carbon of carbon dioxide in a nucleophilic addition, which results in the bicarbonate moiety being bound to the zinc in a bidentate manner."
+        },
+        {
+          "atom_mapping_status": "not_inferred",
+          "bond_edit_status": "not_compiled_from_unmapped_source_scheme",
+          "catalyst_site_ids": [
+            "P00918:H64"
+          ],
+          "is_inferred": false,
+          "order": 2,
+          "source_electron_flow_count": 2,
+          "source_scheme_sha256": "232a7e506c4244a819b022bb1a98f2b21ff4d094f33995b6c5ec66e20b6137be",
+          "source_step_id": 2,
+          "summary": "The bicarbonate ion formed at the end of the first step is displaced by a water molecules before this step occurs [PMID:12500287]. His64 deprotonates the zinc bound water."
+        },
+        {
+          "atom_mapping_status": "not_inferred",
+          "bond_edit_status": "not_compiled_from_unmapped_source_scheme",
+          "catalyst_site_ids": [
+            "P00918:H64"
+          ],
+          "is_inferred": false,
+          "order": 3,
+          "source_electron_flow_count": 2,
+          "source_scheme_sha256": "16912995d52aafdcba0542c084f286d10a04b79c63dd759f48dc48c9794961b7",
+          "source_step_id": 3,
+          "summary": "Evidence suggests that upon receiving the proton from the water, the His64 flips from the \"in\" configuration to the \"out\" configuration to deliver its proton to the solution. It is possible there is a longer proton relay chain present [PMID:15667203]."
+        }
+      ],
+      "structured_detail_status": "source_curved_arrows_preserved_no_atom_mapping_inference",
+      "terminal_state_source_step_ids": [
+        4
+      ]
+    }
+  ],
+  "structures": [
+    {
+      "applicability": "direct",
+      "context_flags": [
+        "static_structure",
+        "protonation_state_unresolved",
+        "solvent_network_unresolved"
+      ],
+      "evidence_ids": [
+        "source:PDB:1CA2",
+        "source:UniProtKB:P00918"
+      ],
+      "experimental_method": "X-RAY DIFFRACTION",
+      "limitation": "Use for site and geometry grounding, not as a turnover trajectory or a uniquely resolved solvent proton wire.",
+      "pdb_id": "1CA2",
+      "resolution_angstrom": 2.0,
+      "uniprot_chain_ranges": [
+        {
+          "chain_id": "A",
+          "uniprot_end": 260,
+          "uniprot_start": 2
+        }
+      ]
+    }
+  ],
+  "target_record_id": "mechanism:caii-human-proton-relay-v1",
+  "uncertainties": [
+    {
+      "abstention": "Do not resolve this ambiguity beyond the frozen sources and explicit compilation rules.",
+      "status": "open",
+      "summary": "The productive proton-transfer network depends on protonation and solvent organization that a single static structure does not uniquely determine.",
+      "uncertainty_id": "atlas10.caii-human.proton-relay.uncertainty-1"
+    },
+    {
+      "abstention": "Do not resolve this ambiguity beyond the frozen sources and explicit compilation rules.",
+      "status": "open",
+      "summary": "A zinc-bound water or hydroxide assignment and carbon dioxide orientation are state- and condition-dependent.",
+      "uncertainty_id": "atlas10.caii-human.proton-relay.uncertainty-2"
+    },
+    {
+      "abstention": "Do not resolve this ambiguity beyond the frozen sources and explicit compilation rules.",
+      "status": "open",
+      "summary": "Catalytic-site geometry can constrain a mechanism but does not by itself establish a unique elementary path.",
+      "uncertainty_id": "atlas10.caii-human.proton-relay.uncertainty-3"
+    }
+  ]
+}

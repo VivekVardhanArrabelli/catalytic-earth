@@ -1,0 +1,17 @@
+{
+  "columns": [
+    "Reaction identifier",
+    "Equation",
+    "EC number",
+    "ChEBI identifier",
+    "ChEBI name"
+  ],
+  "participant_request_url": null,
+  "participant_rows": [],
+  "query": "ec:3.4.21.4",
+  "query_result_kind": "documented_zero_row_query",
+  "record_id": "EC:3.4.21.4",
+  "request_url": "https://www.rhea-db.org/rhea?query=ec%3A3.4.21.4&columns=rhea-id%2Cequation%2Cec%2Cchebi-id%2Cchebi&format=tsv&limit=10",
+  "rows": [],
+  "source": "Rhea"
+}

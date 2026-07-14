@@ -1,0 +1,2403 @@
+{
+  "annotationScore": 4.0,
+  "comments": [
+    {
+      "commentType": "CATALYTIC ACTIVITY",
+      "reaction": {
+        "ecNumber": "5.1.2.2",
+        "evidences": [
+          {
+            "evidenceCode": "ECO:0000269",
+            "id": "1909893",
+            "source": "PubMed"
+          },
+          {
+            "evidenceCode": "ECO:0000269",
+            "id": "7893689",
+            "source": "PubMed"
+          },
+          {
+            "evidenceCode": "ECO:0000269",
+            "id": "7893690",
+            "source": "PubMed"
+          }
+        ],
+        "name": "(S)-mandelate = (R)-mandelate",
+        "reactionCrossReferences": [
+          {
+            "database": "Rhea",
+            "id": "RHEA:13945"
+          },
+          {
+            "database": "ChEBI",
+            "id": "CHEBI:17756"
+          },
+          {
+            "database": "ChEBI",
+            "id": "CHEBI:32382"
+          }
+        ]
+      }
+    },
+    {
+      "cofactors": [
+        {
+          "cofactorCrossReference": {
+            "database": "ChEBI",
+            "id": "CHEBI:18420"
+          },
+          "evidences": [
+            {
+              "evidenceCode": "ECO:0000269",
+              "id": "1892834",
+              "source": "PubMed"
+            },
+            {
+              "evidenceCode": "ECO:0000269",
+              "id": "7893689",
+              "source": "PubMed"
+            },
+            {
+              "evidenceCode": "ECO:0000269",
+              "id": "7893690",
+              "source": "PubMed"
+            }
+          ],
+          "name": "Mg(2+)"
+        }
+      ],
+      "commentType": "COFACTOR",
+      "note": {
+        "texts": [
+          {
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "1892834",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "7893689",
+                "source": "PubMed"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "id": "7893690",
+                "source": "PubMed"
+              }
+            ],
+            "value": "Divalent metal ions. Magnesium seems to be the preferred ion."
+          }
+        ]
+      }
+    },
+    {
+      "commentType": "PATHWAY",
+      "texts": [
+        {
+          "evidences": [
+            {
+              "evidenceCode": "ECO:0000305"
+            }
+          ],
+          "value": "Aromatic compound metabolism; (R)-mandelate degradation; benzoate from (R)-mandelate: step 1/4"
+        }
+      ]
+    },
+    {
+      "commentType": "SUBUNIT",
+      "texts": [
+        {
+          "evidences": [
+            {
+              "evidenceCode": "ECO:0000269",
+              "id": "7893690",
+              "source": "PubMed"
+            }
+          ],
+          "value": "Homooctamer"
+        }
+      ]
+    },
+    {
+      "commentType": "SIMILARITY",
+      "texts": [
+        {
+          "evidences": [
+            {
+              "evidenceCode": "ECO:0000305"
+            }
+          ],
+          "value": "Belongs to the mandelate racemase/muconate lactonizing enzyme family"
+        }
+      ]
+    }
+  ],
+  "entryAudit": {
+    "entryVersion": 141,
+    "firstPublicDate": "1989-10-01",
+    "lastAnnotationUpdateDate": "2026-06-10",
+    "lastSequenceUpdateDate": "1989-10-01",
+    "sequenceVersion": 1
+  },
+  "entryType": "UniProtKB reviewed (Swiss-Prot)",
+  "extraAttributes": {
+    "countByCommentType": {
+      "CATALYTIC ACTIVITY": 1,
+      "COFACTOR": 1,
+      "PATHWAY": 1,
+      "SIMILARITY": 1,
+      "SUBUNIT": 1
+    },
+    "countByFeatureType": {
+      "Active site": 2,
+      "Beta strand": 14,
+      "Binding site": 4,
+      "Chain": 1,
+      "Helix": 13,
+      "Mutagenesis": 3,
+      "Turn": 3
+    },
+    "uniParcId": "UPI00001125B7"
+  },
+  "features": [
+    {
+      "description": "Mandelate racemase",
+      "featureId": "PRO_0000171247",
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 359
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 1
+        }
+      },
+      "type": "Chain"
+    },
+    {
+      "description": "Proton acceptor; specific for S-mandelate",
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 166
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 166
+        }
+      },
+      "type": "Active site"
+    },
+    {
+      "description": "Proton acceptor; specific for R-mandelate",
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 297
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 297
+        }
+      },
+      "type": "Active site"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "7893689",
+          "source": "PubMed"
+        },
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "7893690",
+          "source": "PubMed"
+        },
+        {
+          "evidenceCode": "ECO:0000305",
+          "id": "1892834",
+          "source": "PubMed"
+        }
+      ],
+      "featureCrossReferences": [
+        {
+          "database": "ChEBI",
+          "id": "CHEBI:18420"
+        }
+      ],
+      "ligand": {
+        "id": "ChEBI:CHEBI:18420",
+        "name": "Mg(2+)"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 195
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 195
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "7893689",
+          "source": "PubMed"
+        },
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "7893690",
+          "source": "PubMed"
+        },
+        {
+          "evidenceCode": "ECO:0000305",
+          "id": "1892834",
+          "source": "PubMed"
+        }
+      ],
+      "featureCrossReferences": [
+        {
+          "database": "ChEBI",
+          "id": "CHEBI:18420"
+        }
+      ],
+      "ligand": {
+        "id": "ChEBI:CHEBI:18420",
+        "name": "Mg(2+)"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 221
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 221
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "7893689",
+          "source": "PubMed"
+        },
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "7893690",
+          "source": "PubMed"
+        },
+        {
+          "evidenceCode": "ECO:0000305",
+          "id": "1892834",
+          "source": "PubMed"
+        }
+      ],
+      "featureCrossReferences": [
+        {
+          "database": "ChEBI",
+          "id": "CHEBI:18420"
+        }
+      ],
+      "ligand": {
+        "id": "ChEBI:CHEBI:18420",
+        "name": "Mg(2+)"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 247
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 247
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "7893689",
+          "source": "PubMed"
+        },
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "7893690",
+          "source": "PubMed"
+        },
+        {
+          "evidenceCode": "ECO:0000305",
+          "id": "1892834",
+          "source": "PubMed"
+        }
+      ],
+      "ligand": {
+        "name": "substrate"
+      },
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 317
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 317
+        }
+      },
+      "type": "Binding site"
+    },
+    {
+      "alternativeSequence": {
+        "alternativeSequences": [
+          "A",
+          "M",
+          "Q"
+        ],
+        "originalSequence": "K"
+      },
+      "description": "Loss of activity.",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "7893690",
+          "source": "PubMed"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 166
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 166
+        }
+      },
+      "type": "Mutagenesis"
+    },
+    {
+      "alternativeSequence": {
+        "alternativeSequences": [
+          "N"
+        ],
+        "originalSequence": "H"
+      },
+      "description": "Loss of activity.",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "1909893",
+          "source": "PubMed"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 297
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 297
+        }
+      },
+      "type": "Mutagenesis"
+    },
+    {
+      "alternativeSequence": {
+        "alternativeSequences": [
+          "Q"
+        ],
+        "originalSequence": "E"
+      },
+      "description": "Reduces activity 10000-fold.",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0000269",
+          "id": "7893689",
+          "source": "PubMed"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 317
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 317
+        }
+      },
+      "type": "Mutagenesis"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 23
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 5
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 41
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 28
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 52
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 46
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 58
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 56
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 73
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 59
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 78
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 76
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 90
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 80
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 94
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 91
+        }
+      },
+      "type": "Turn"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 118
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 98
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 126
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 123
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 139
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 134
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 157
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 144
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 166
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 161
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 186
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 172
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 195
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 188
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 215
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 202
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4M6U",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 221
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 218
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 237
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 229
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 245
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 243
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 260
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 252
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 267
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 265
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 275
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 271
+        }
+      },
+      "type": "Turn"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 290
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 276
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 308
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 300
+        }
+      },
+      "type": "Helix"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 318
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 316
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 325
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 321
+        }
+      },
+      "type": "Turn"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 333
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 330
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 338
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 336
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 344
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 341
+        }
+      },
+      "type": "Beta strand"
+    },
+    {
+      "description": "",
+      "evidences": [
+        {
+          "evidenceCode": "ECO:0007829",
+          "id": "4X2P",
+          "source": "PDB"
+        }
+      ],
+      "location": {
+        "end": {
+          "modifier": "EXACT",
+          "value": 357
+        },
+        "start": {
+          "modifier": "EXACT",
+          "value": 351
+        }
+      },
+      "type": "Helix"
+    }
+  ],
+  "genes": [
+    {
+      "geneName": {
+        "value": "mdlA"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "category": "Technical term",
+      "id": "KW-0002",
+      "name": "3D-structure"
+    },
+    {
+      "category": "Molecular function",
+      "id": "KW-0413",
+      "name": "Isomerase"
+    },
+    {
+      "category": "Ligand",
+      "id": "KW-0460",
+      "name": "Magnesium"
+    },
+    {
+      "category": "Biological process",
+      "id": "KW-0463",
+      "name": "Mandelate pathway"
+    },
+    {
+      "category": "Ligand",
+      "id": "KW-0479",
+      "name": "Metal-binding"
+    }
+  ],
+  "organism": {
+    "commonName": "Arthrobacter siderocapsulatus",
+    "lineage": [
+      "Bacteria",
+      "Pseudomonadati",
+      "Pseudomonadota",
+      "Gammaproteobacteria",
+      "Pseudomonadales",
+      "Pseudomonadaceae",
+      "Pseudomonas"
+    ],
+    "scientificName": "Pseudomonas putida",
+    "taxonId": 303
+  },
+  "primaryAccession": "P11444",
+  "proteinDescription": {
+    "recommendedName": {
+      "ecNumbers": [
+        {
+          "evidences": [
+            {
+              "evidenceCode": "ECO:0000269",
+              "id": "1909893",
+              "source": "PubMed"
+            },
+            {
+              "evidenceCode": "ECO:0000269",
+              "id": "7893689",
+              "source": "PubMed"
+            },
+            {
+              "evidenceCode": "ECO:0000269",
+              "id": "7893690",
+              "source": "PubMed"
+            }
+          ],
+          "value": "5.1.2.2"
+        }
+      ],
+      "fullName": {
+        "value": "Mandelate racemase"
+      },
+      "shortNames": [
+        {
+          "value": "MR"
+        }
+      ]
+    }
+  },
+  "proteinExistence": "1: Evidence at protein level",
+  "references": [
+    {
+      "citation": {
+        "authors": [
+          "Ransom S.C.",
+          "Gerlt J.A.",
+          "Powers V.M.",
+          "Kenyon G.L."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "2831968"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1021/bi00402a006"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "540",
+        "id": "2831968",
+        "journal": "Biochemistry",
+        "lastPage": "545",
+        "publicationDate": "1988",
+        "title": "Cloning, DNA sequence analysis, and expression in Escherichia coli of the gene for mandelate racemase from Pseudomonas putida.",
+        "volume": "27"
+      },
+      "referenceComments": [
+        {
+          "type": "STRAIN",
+          "value": "ATCC 12633 / DSM 291 / JCM 13063 / CCUG 12690 / LMG 2257 / NBRC 14164 / NCIMB 9494 / NCTC 10936 / VKM B-2187 / Stanier 90"
+        }
+      ],
+      "referenceNumber": 1,
+      "referencePositions": [
+        "NUCLEOTIDE SEQUENCE [GENOMIC DNA]"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Tsou A.Y.",
+          "Ransom S.C.",
+          "Gerlt J.A.",
+          "Buechter D.D.",
+          "Babbitt P.C.",
+          "Kenyon G.L."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "2271624"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1021/bi00494a015"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "9856",
+        "id": "2271624",
+        "journal": "Biochemistry",
+        "lastPage": "9862",
+        "publicationDate": "1990",
+        "title": "Mandelate pathway of Pseudomonas putida: sequence relationships involving mandelate racemase, (S)-mandelate dehydrogenase, and benzoylformate decarboxylase and expression of benzoylformate decarboxylase in Escherichia coli.",
+        "volume": "29"
+      },
+      "referenceComments": [
+        {
+          "type": "STRAIN",
+          "value": "ATCC 12633 / DSM 291 / JCM 13063 / CCUG 12690 / LMG 2257 / NBRC 14164 / NCIMB 9494 / NCTC 10936 / VKM B-2187 / Stanier 90"
+        }
+      ],
+      "referenceNumber": 2,
+      "referencePositions": [
+        "NUCLEOTIDE SEQUENCE [GENOMIC DNA]"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Neidhart D.J.",
+          "Kenyon G.L.",
+          "Gerlt J.A.",
+          "Petsko G.A."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "2215699"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1038/347692a0"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "692",
+        "id": "2215699",
+        "journal": "Nature",
+        "lastPage": "694",
+        "publicationDate": "1990",
+        "title": "Mandelate racemase and muconate lactonizing enzyme are mechanistically distinct and structurally homologous.",
+        "volume": "347"
+      },
+      "referenceNumber": 3,
+      "referencePositions": [
+        "SIMILARITY TO MLE"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Landro J.A.",
+          "Kallarakal A.T.",
+          "Ransom S.C.",
+          "Gerlt J.A.",
+          "Kozarich J.W.",
+          "Neidhart D.J.",
+          "Kenyon G.L."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "1909893"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1021/bi00102a020"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "9274",
+        "id": "1909893",
+        "journal": "Biochemistry",
+        "lastPage": "9281",
+        "publicationDate": "1991",
+        "title": "Mechanism of the reaction catalyzed by mandelate racemase. 3. Asymmetry in reactions catalyzed by the H297N mutant.",
+        "volume": "30"
+      },
+      "referenceNumber": 4,
+      "referencePositions": [
+        "MUTAGENESIS OF HIS-297",
+        "CATALYTIC ACTIVITY"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Neidhart D.J.",
+          "Howell P.L.",
+          "Petsko G.A.",
+          "Powers V.M.",
+          "Li R.S.",
+          "Kenyon G.L.",
+          "Gerlt J.A."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "1892834"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1021/bi00102a019"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "9264",
+        "id": "1892834",
+        "journal": "Biochemistry",
+        "lastPage": "9273",
+        "publicationDate": "1991",
+        "title": "Mechanism of the reaction catalyzed by mandelate racemase. 2. Crystal structure of mandelate racemase at 2.5-A resolution: identification of the active site and possible catalytic residues.",
+        "volume": "30"
+      },
+      "referenceNumber": 5,
+      "referencePositions": [
+        "X-RAY CRYSTALLOGRAPHY (1.90 ANGSTROMS) OF 3-359 IN COMPLEX WITH MANGANESE",
+        "COFACTOR"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Mitra B.",
+          "Kallarakal A.T.",
+          "Kozarich J.W.",
+          "Gerlt J.A.",
+          "Clifton J.G.",
+          "Petsko G.A.",
+          "Kenyon G.L."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "7893689"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1021/bi00009a006"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "2777",
+        "id": "7893689",
+        "journal": "Biochemistry",
+        "lastPage": "2787",
+        "publicationDate": "1995",
+        "title": "Mechanism of the reaction catalyzed by mandelate racemase: importance of electrophilic catalysis by glutamic acid 317.",
+        "volume": "34"
+      },
+      "referenceNumber": 6,
+      "referencePositions": [
+        "X-RAY CRYSTALLOGRAPHY (2.1 ANGSTROMS) OF MUTANT GLN-317 IN COMPLEX WITH MAGNESIUM",
+        "COFACTOR",
+        "MUTAGENESIS OF GLU-317",
+        "CATALYTIC ACTIVITY"
+      ]
+    },
+    {
+      "citation": {
+        "authors": [
+          "Kallarakal A.T.",
+          "Mitra B.",
+          "Kozarich J.W.",
+          "Gerlt J.A.",
+          "Clifton J.G.",
+          "Petsko G.A.",
+          "Kenyon G.L."
+        ],
+        "citationCrossReferences": [
+          {
+            "database": "PubMed",
+            "id": "7893690"
+          },
+          {
+            "database": "DOI",
+            "id": "10.1021/bi00009a007"
+          }
+        ],
+        "citationType": "journal article",
+        "firstPage": "2788",
+        "id": "7893690",
+        "journal": "Biochemistry",
+        "lastPage": "2797",
+        "publicationDate": "1995",
+        "title": "Mechanism of the reaction catalyzed by mandelate racemase: structure and mechanistic properties of the K166R mutant.",
+        "volume": "34"
+      },
+      "referenceNumber": 7,
+      "referencePositions": [
+        "X-RAY CRYSTALLOGRAPHY (1.85 ANGSTROMS) OF MUTANT ARG-166 IN COMPLEX WITH SUBSTRATE AND MAGNESIUM",
+        "COFACTOR",
+        "MUTAGENESIS OF LYS-166",
+        "CATALYTIC ACTIVITY"
+      ]
+    }
+  ],
+  "sequence": {
+    "crc64": "1C105BCA021F4028",
+    "length": 359,
+    "md5": "C26AA949473585AFAF8B18D02921797C",
+    "molWeight": 38565,
+    "value": "MSEVLITGLRTRAVNVPLAYPVHTAVGTVGTAPLVLIDLATSAGVVGHSYLFAYTPVALKSLKQLLDDMAAMIVNEPLAPVSLEAMLAKRFCLAGYTGLIRMAAAGIDMAAWDALGKVHETPLVKLLGANARPVQAYDSHSLDGVKLATERAVTAAELGFRAVKTKIGYPALDQDLAVVRSIRQAVGDDFGIMVDYNQSLDVPAAIKRSQALQQEGVTWIEEPTLQHDYEGHQRIQSKLNVPVQMGENWLGPEEMFKALSIGACRLAMPDAMKIGGVTGWIRASALAQQFGIPMSSHLFQEISAHLLAATPTAHWLERLDLAGSVIEPTLTFEGGNAVIPDLPGVGIIWREKEIGKYLV"
+  },
+  "uniProtKBCrossReferences": [
+    {
+      "database": "EMBL",
+      "id": "M19043",
+      "properties": [
+        {
+          "key": "ProteinId",
+          "value": "AAA25887.1"
+        },
+        {
+          "key": "Status",
+          "value": "-"
+        },
+        {
+          "key": "MoleculeType",
+          "value": "Genomic_DNA"
+        }
+      ]
+    },
+    {
+      "database": "EMBL",
+      "id": "AY143338",
+      "properties": [
+        {
+          "key": "ProteinId",
+          "value": "AAC15504.1"
+        },
+        {
+          "key": "Status",
+          "value": "-"
+        },
+        {
+          "key": "MoleculeType",
+          "value": "Genomic_DNA"
+        }
+      ]
+    },
+    {
+      "database": "PIR",
+      "id": "A28700",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "A28700"
+        }
+      ]
+    },
+    {
+      "database": "RefSeq",
+      "id": "WP_016501748.1",
+      "properties": [
+        {
+          "key": "NucleotideSequenceId",
+          "value": "NZ_CP101910.1"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1DTN",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.10 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=1-359"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1MDL",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.85 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=1-359"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1MDR",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.10 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=1-359"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1MNS",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.00 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=3-359"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "1MRA",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.10 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=1-359"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "2MNR",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.90 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=3-359"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "3UXK",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.20 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B/C/D=1-359"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "3UXL",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.20 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B/C/D=1-359"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "4FP1",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.68 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B=1-359"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "4HNC",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.89 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B=1-359"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "4M6U",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.80 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B=1-359"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "4X2P",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.65 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A=1-359"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "6VIM",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "2.00 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B/C/D/E/F/G/H=1-359"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "7MQX",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.91 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B/C/D/E/F/G/H=1-359"
+        }
+      ]
+    },
+    {
+      "database": "PDB",
+      "id": "9P1B",
+      "properties": [
+        {
+          "key": "Method",
+          "value": "X-ray"
+        },
+        {
+          "key": "Resolution",
+          "value": "1.80 A"
+        },
+        {
+          "key": "Chains",
+          "value": "A/B=1-359"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1DTN",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1MDL",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1MDR",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1MNS",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "1MRA",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "2MNR",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "3UXK",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "3UXL",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "4FP1",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "4HNC",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "4M6U",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "4X2P",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "6VIM",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "7MQX",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "PDBsum",
+      "id": "9P1B",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "AlphaFoldDB",
+      "id": "P11444",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "SMR",
+      "id": "P11444",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "BindingDB",
+      "id": "P11444",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "ChEMBL",
+      "id": "CHEMBL4739",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "DrugBank",
+      "id": "DB02280",
+      "properties": [
+        {
+          "key": "GenericName",
+          "value": "(R)-Mandelic acid"
+        }
+      ]
+    },
+    {
+      "database": "DrugBank",
+      "id": "DB07381",
+      "properties": [
+        {
+          "key": "GenericName",
+          "value": "(S)-atrolactic acid"
+        }
+      ]
+    },
+    {
+      "database": "DrugBank",
+      "id": "DB03357",
+      "properties": [
+        {
+          "key": "GenericName",
+          "value": "(S)-Mandelic acid"
+        }
+      ]
+    },
+    {
+      "database": "GeneID",
+      "id": "45526288",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "BioCyc",
+      "id": "MetaCyc:MONOMER-2421",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "BRENDA",
+      "id": "5.1.2.2",
+      "properties": [
+        {
+          "key": "OrganismId",
+          "value": "5092"
+        }
+      ]
+    },
+    {
+      "database": "UniPathway",
+      "id": "UPA00873",
+      "properties": [
+        {
+          "key": "RectionId",
+          "value": "UER00852"
+        }
+      ]
+    },
+    {
+      "database": "EvolutionaryTrace",
+      "id": "P11444",
+      "properties": [
+        {
+          "key": "Description",
+          "value": "-"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "id": "GO:0016836",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "F:hydro-lyase activity"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IEA:TreeGrafter"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "id": "GO:0000287",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "F:magnesium ion binding"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IEA:TreeGrafter"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "id": "GO:0018838",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "F:mandelate racemase activity"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IEA:UniProtKB-EC"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "id": "GO:0009063",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "P:amino acid catabolic process"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IEA:InterPro"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "id": "GO:0016052",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "P:carbohydrate catabolic process"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IEA:TreeGrafter"
+        }
+      ]
+    },
+    {
+      "database": "GO",
+      "id": "GO:0019596",
+      "properties": [
+        {
+          "key": "GoTerm",
+          "value": "P:mandelate catabolic process"
+        },
+        {
+          "key": "GoEvidenceType",
+          "value": "IEA:UniProtKB-UniPathway"
+        }
+      ]
+    },
+    {
+      "database": "CDD",
+      "id": "cd03321",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "mandelate_racemase"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "Gene3D",
+      "id": "3.20.20.120",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Enolase-like C-terminal domain"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "Gene3D",
+      "id": "3.30.390.10",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Enolase-like, N-terminal domain"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR036849",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Enolase-like_C_sf"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR029017",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Enolase-like_N"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR029065",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Enolase_C-like"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR018110",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Mandel_Rmase/mucon_lact_enz_CS"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR015654",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Mandelate_racemase"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR013342",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Mandelate_racemase_C"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR013341",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Mandelate_racemase_N_dom"
+        }
+      ]
+    },
+    {
+      "database": "InterPro",
+      "id": "IPR046945",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "RHMD-like"
+        }
+      ]
+    },
+    {
+      "database": "PANTHER",
+      "id": "PTHR13794",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "ENOLASE SUPERFAMILY, MANDELATE RACEMASE"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PANTHER",
+      "id": "PTHR13794:SF58",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "MITOCHONDRIAL ENOLASE SUPERFAMILY MEMBER 1"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "Pfam",
+      "id": "PF13378",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "MR_MLE_C"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "Pfam",
+      "id": "PF02746",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "MR_MLE_N"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "SFLD",
+      "id": "SFLDS00001",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Enolase"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "SFLD",
+      "id": "SFLDF00004",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "mandelate_racemase"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "SFLD",
+      "id": "SFLDG00179",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "mandelate_racemase"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "SMART",
+      "id": "SM00922",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "MR_MLE"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "SUPFAM",
+      "id": "SSF51604",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Enolase C-terminal domain-like"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "SUPFAM",
+      "id": "SSF54826",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "Enolase N-terminal domain-like"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PROSITE",
+      "id": "PS00908",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "MR_MLE_1"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "database": "PROSITE",
+      "id": "PS00909",
+      "properties": [
+        {
+          "key": "EntryName",
+          "value": "MR_MLE_2"
+        },
+        {
+          "key": "MatchStatus",
+          "value": "1"
+        }
+      ]
+    }
+  ],
+  "uniProtkbId": "MANR_PSEPU"
+}

@@ -1,0 +1,294 @@
+{
+  "schema_version": "catalytic-earth.atlas10-compilation-spec.v1",
+  "compiler_version": "catalytic-earth.atlas10-compiler.v1",
+  "record_schema_version": "catalytic-earth.mechanism-record.v3",
+  "selection_sha256": "9bc114aaf793c51ec3b6273466f62a83974512a2dcf969d95d8b97453dd2795e",
+  "source_snapshot_set_sha256": "a6b6a0059835e8f3f78cd5da9897afb599560bc844c59e82ba523f9387d0550d",
+  "inherited_kernel": {
+    "path": "data/atlas/atlas3/kernel.json",
+    "file_sha256": "0733a029b3eaa0900ff4124276c2060f94204ce3f3bf0b9bcf2c80e7589d674b",
+    "schema_version": "catalytic-earth.atlas3-kernel.v1",
+    "case_count": 3,
+    "record_count": 9,
+    "immutable": true
+  },
+  "compilation_policies": {
+    "case_object_contract": "Exactly one reaction_or_source_gap, one source_annotation, and one mechanism_hypothesis record per follow-on case.",
+    "reaction_gap_policy": "A zero-row official Rhea EC query remains a documented source gap; M-CSA participant context may be attached only with explicit non-Rhea source scope.",
+    "source_step_policy": "Detailed, non-product M-CSA steps are retained in source order with exact descriptions and source-ordered Marvin MEFlow endpoints; no atom mapping is inferred.",
+    "terminal_state_policy": "M-CSA product-state rows are retained as terminal source step identifiers but are not counted as elementary mechanism steps.",
+    "non_detailed_policy": "A high-rated is_detailed=false M-CSA mechanism produces zero discrete steps and a mandatory machine-visible detail abstention.",
+    "site_mapping_policy": "M-CSA reference residue mappings must match UniProt natural-sequence identity and local mmCIF coordinates; direct target structures are mapped independently through UniProt chain ranges.",
+    "structure_policy": "Static, condition-specific, inhibitor-bound, engineered, or complex-specific structures retain explicit applicability and cannot be treated as turnover trajectories.",
+    "hypothesis_policy": "Tier 2 integrates source reaction, proposal, site, structure, uncertainty, and relationship fields without upgrading source curation to independent validation.",
+    "registry_policy": "No protected registry or historical fingerprint is mutated during compilation."
+  },
+  "cases": [
+    {
+      "case_id": "atlas10.caii-human.proton-relay",
+      "reaction_policy": "direct_rhea_record",
+      "mcsa_record_id": "M0216",
+      "mechanism_ids": [1],
+      "preferred_mechanism_ids": [1],
+      "expected_ratings": {"1": 3},
+      "expected_granularity": "detailed",
+      "hypothesis_policy": "project_source_proposal_with_bounded_site_structure_join",
+      "structured_chemistry_policy": "preserve_source_curved_arrows_no_atom_mapping_inference",
+      "structure_contexts": [
+        {
+          "pdb_id": "1CA2",
+          "applicability": "direct",
+          "context_flags": [
+            "static_structure",
+            "protonation_state_unresolved",
+            "solvent_network_unresolved"
+          ],
+          "limitation": "Use for site and geometry grounding, not as a turnover trajectory or a uniquely resolved solvent proton wire."
+        }
+      ]
+    },
+    {
+      "case_id": "atlas10.hewl-chicken.covalent-glycosidase",
+      "reaction_policy": "documented_rhea_query_gap_with_mcsa_participant_context",
+      "mcsa_record_id": "M0203",
+      "mechanism_ids": [1, 2],
+      "preferred_mechanism_ids": [1],
+      "expected_ratings": {"1": 3, "2": 1},
+      "expected_granularity": "detailed_with_alternatives",
+      "hypothesis_policy": "preserve_all_source_proposals_without_adjudication",
+      "structured_chemistry_policy": "preserve_source_curved_arrows_no_atom_mapping_inference",
+      "structure_contexts": [
+        {
+          "pdb_id": "1DPX",
+          "applicability": "direct",
+          "context_flags": [
+            "static_structure",
+            "covalent_intermediate_context",
+            "proton_transfer_sequence_not_fully_observed"
+          ],
+          "limitation": "The trapped covalent intermediate supports a route but does not directly observe every proton-transfer event."
+        }
+      ]
+    },
+    {
+      "case_id": "atlas10.trypsin-fusarium.serine-protease",
+      "reaction_policy": "documented_rhea_query_gap_with_mcsa_participant_context",
+      "mcsa_record_id": "M0173",
+      "mechanism_ids": [1],
+      "preferred_mechanism_ids": [1],
+      "expected_ratings": {"1": 3},
+      "expected_granularity": "detailed",
+      "hypothesis_policy": "project_source_proposal_with_bounded_site_structure_join",
+      "structured_chemistry_policy": "preserve_source_curved_arrows_no_atom_mapping_inference",
+      "structure_contexts": [
+        {
+          "pdb_id": "1PQ5",
+          "applicability": "direct",
+          "context_flags": [
+            "static_structure",
+            "condition_specific_pH_5",
+            "physiological_protonation_unresolved"
+          ],
+          "limitation": "The 0.85 A pH-5 structure grounds sites but does not alone establish productive physiological protonation through turnover."
+        }
+      ]
+    },
+    {
+      "case_id": "atlas10.subtilisin-bpn-bacillus.serine-protease",
+      "reaction_policy": "documented_rhea_query_gap_with_mcsa_participant_context",
+      "mcsa_record_id": "M0723",
+      "mechanism_ids": [1],
+      "preferred_mechanism_ids": [1],
+      "expected_ratings": {"1": 3},
+      "expected_granularity": "detailed",
+      "hypothesis_policy": "project_source_proposal_with_bounded_site_structure_join",
+      "structured_chemistry_policy": "preserve_source_curved_arrows_no_atom_mapping_inference",
+      "structure_contexts": [
+        {
+          "pdb_id": "1SUP",
+          "applicability": "direct",
+          "context_flags": ["static_structure", "unmutated_target_scope"],
+          "limitation": "Use as the direct P00782 target structure for identity and geometry, not as an uninterrupted catalytic trajectory."
+        },
+        {
+          "pdb_id": "1S01",
+          "applicability": "engineered_source_reference",
+          "context_flags": ["static_structure", "engineered_multiple_substitutions"],
+          "limitation": "Retain for M-CSA source traceability and residue numbering only; do not label it the unmodified target."
+        }
+      ]
+    },
+    {
+      "case_id": "atlas10.mandelate-racemase-pputida.enolate",
+      "reaction_policy": "direct_rhea_record",
+      "mcsa_record_id": "M0187",
+      "mechanism_ids": [1],
+      "preferred_mechanism_ids": [1],
+      "expected_ratings": {"1": 3},
+      "expected_granularity": "detailed",
+      "hypothesis_policy": "project_source_proposal_with_bounded_site_structure_join",
+      "structured_chemistry_policy": "preserve_source_curved_arrows_no_atom_mapping_inference",
+      "structure_contexts": [
+        {
+          "pdb_id": "1MNS",
+          "applicability": "direct",
+          "context_flags": [
+            "static_structure",
+            "inhibitor_bound_context",
+            "chemical_modification_context"
+          ],
+          "limitation": "Use for site geometry; do not interpret inhibitor-bound or chemically modified context as direct substrate turnover."
+        }
+      ]
+    },
+    {
+      "case_id": "atlas10.methylaspartate-lyase-ctetanomorphum.enolate",
+      "reaction_policy": "direct_rhea_record",
+      "mcsa_record_id": "M0468",
+      "mechanism_ids": [2],
+      "preferred_mechanism_ids": [2],
+      "expected_ratings": {"2": 3},
+      "expected_granularity": "detailed",
+      "hypothesis_policy": "project_source_proposal_with_bounded_site_structure_join",
+      "structured_chemistry_policy": "preserve_source_curved_arrows_no_atom_mapping_inference",
+      "structure_contexts": [
+        {
+          "pdb_id": "1KCZ",
+          "applicability": "direct",
+          "context_flags": ["static_structure", "multi_domain_target"],
+          "limitation": "Use for both domain anchors and catalytic sites; shared catalytic fold does not collapse the additional N-terminal domain."
+        }
+      ]
+    },
+    {
+      "case_id": "atlas10.cyclophilin-a-human.isomerization",
+      "reaction_policy": "direct_rhea_record",
+      "mcsa_record_id": "M0189",
+      "mechanism_ids": [1],
+      "preferred_mechanism_ids": [1],
+      "expected_ratings": {"1": 3},
+      "expected_granularity": "non_detailed",
+      "hypothesis_policy": "site_grounded_non_detailed_transition_state_abstention",
+      "structured_chemistry_policy": "mandatory_zero_discrete_steps",
+      "structure_contexts": [
+        {
+          "pdb_id": "1M9C",
+          "applicability": "direct",
+          "context_flags": [
+            "static_structure",
+            "HIV_1_capsid_complex",
+            "substrate_context_limited"
+          ],
+          "limitation": "Direct for unmutated human cyclophilin A in this HIV-1 capsid complex; do not generalize the substrate context to every cyclophilin target."
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "group_id": "atlas10.relationship.convergent-serine-proteases",
+      "relationship_type": "convergent_strategy_unrelated_folds",
+      "case_ids": [
+        "atlas10.trypsin-fusarium.serine-protease",
+        "atlas10.subtilisin-bpn-bacillus.serine-protease"
+      ],
+      "shared_features": [
+        {
+          "feature_id": "serine_nucleophile",
+          "label": "Serine nucleophile in an acyl-enzyme hydrolysis strategy",
+          "evidence_keys": ["M-CSA::M0173", "M-CSA::M0723"]
+        },
+        {
+          "feature_id": "histidine_general_acid_base",
+          "label": "Histidine proton-transfer role across acylation and deacylation",
+          "evidence_keys": ["M-CSA::M0173", "M-CSA::M0723"]
+        },
+        {
+          "feature_id": "acid_supported_catalytic_triad",
+          "label": "Acid-supported Ser-His catalytic triad logic",
+          "evidence_keys": ["M-CSA::M0173", "M-CSA::M0723"]
+        },
+        {
+          "feature_id": "unrelated_cath_superfamilies",
+          "label": "Shared strategy occurs in distinct CATH superfamilies",
+          "evidence_keys": ["CATH::CATH:2.40.10.10", "CATH::CATH:3.40.50.200"]
+        }
+      ],
+      "member_distinctions": [
+        {
+          "case_id": "atlas10.trypsin-fusarium.serine-protease",
+          "feature_id": "trypsin_specific_triad_numbering",
+          "label": "UniProt natural-sequence triad projection P35049 H65/D108/S204; source/PDB author numbering remains separate",
+          "site_ids": ["P35049:H65", "P35049:D108", "P35049:S204"],
+          "evidence_keys": ["M-CSA::M0173", "PDB::1PQ5", "UniProtKB::P35049"]
+        },
+        {
+          "case_id": "atlas10.subtilisin-bpn-bacillus.serine-protease",
+          "feature_id": "subtilisin_specific_triad_numbering",
+          "label": "UniProt natural-sequence triad projection P00782 D139/H171/S328; engineered and direct structures remain distinct",
+          "site_ids": ["P00782:D139", "P00782:H171", "P00782:S328"],
+          "evidence_keys": ["M-CSA::M0723", "PDB::1S01", "PDB::1SUP", "UniProtKB::P00782"]
+        }
+      ],
+      "comparison_boundary": "Convergence supports a shared role-level strategy, not residue-number, step, substrate, structure-applicability, or confidence transfer."
+    },
+    {
+      "group_id": "atlas10.relationship.divergent-enolase-chemistry",
+      "relationship_type": "shared_fold_divergent_chemistry",
+      "case_ids": [
+        "atlas10.mandelate-racemase-pputida.enolate",
+        "atlas10.methylaspartate-lyase-ctetanomorphum.enolate"
+      ],
+      "shared_features": [
+        {
+          "feature_id": "shared_enolase_like_c_terminal_superfamily",
+          "label": "Shared CATH 3.20.20.120 enolase-like C-terminal superfamily",
+          "evidence_keys": ["CATH::CATH:3.20.20.120"]
+        },
+        {
+          "feature_id": "metal_ligand_network",
+          "label": "Source-annotated metal-ligand network stabilizes anionic chemistry",
+          "evidence_keys": ["M-CSA::M0187", "M-CSA::M0468"]
+        },
+        {
+          "feature_id": "proton_abstraction_to_anionic_intermediate",
+          "label": "Proton abstraction leads to an enolate/enolic or negatively charged intermediate",
+          "evidence_keys": ["M-CSA::M0187", "M-CSA::M0468"]
+        }
+      ],
+      "member_distinctions": [
+        {
+          "case_id": "atlas10.mandelate-racemase-pputida.enolate",
+          "feature_id": "two_base_racemization",
+          "label": "Racemization uses source-scoped His297 and Lys166 face-specific acid/base roles",
+          "site_ids": ["P11444:H297", "P11444:K166"],
+          "evidence_keys": ["M-CSA::M0187", "Rhea::RHEA:13945"]
+        },
+        {
+          "case_id": "atlas10.methylaspartate-lyase-ctetanomorphum.enolate",
+          "feature_id": "e1cb_ammonia_elimination",
+          "label": "Lys331 proton abstraction precedes ammonia elimination, with an explicitly inferred return step",
+          "site_ids": ["Q05514:K331"],
+          "evidence_keys": ["M-CSA::M0468", "Rhea::RHEA:12829"]
+        },
+        {
+          "case_id": "atlas10.methylaspartate-lyase-ctetanomorphum.enolate",
+          "feature_id": "additional_n_terminal_domain",
+          "label": "Methylaspartate ammonia-lyase also carries CATH 3.30.390.10",
+          "site_ids": [],
+          "evidence_keys": ["CATH::CATH:3.30.390.10", "PDB::1KCZ"]
+        }
+      ],
+      "comparison_boundary": "Shared fold and anionic-intermediate logic do not support transferring substrates, products, bases, full step sequences, fingerprint assignments, or net chemistry."
+    }
+  ],
+  "claim_boundary": {
+    "supports": [
+      "A ten-case query surface consisting of the unchanged Atlas-3 kernel plus seven source-bound follow-on evidence packages.",
+      "Machine-queryable reaction gaps, source granularity, M-CSA curved-arrow endpoints, residue-number mappings, structure applicability, uncertainty, and two bounded relationship projections."
+    ],
+    "does_not_support": [
+      "Ten equally detailed mechanisms, representative benchmark coverage, independent biological validation, prospective discovery, atom-mapped bond edits, complete turnover trajectories, or design readiness."
+    ]
+  }
+}

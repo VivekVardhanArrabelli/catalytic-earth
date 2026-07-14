@@ -171,8 +171,13 @@ follow-on cases are defined in `docs/ATLAS10_SELECTION.md` and
 machine-enforced by `data/atlas/atlas10_selection.json`. The cases are human
 carbonic anhydrase II, hen egg-white lysozyme, *Fusarium* trypsin, subtilisin
 BPN', *Pseudomonas* mandelate racemase, *Clostridium* methylaspartate
-ammonia-lyase, and human cyclophilin A. Selection is complete; source
-snapshotting and compilation are not.
+ammonia-lyase, and human cyclophilin A.
+
+Compilation checkpoint 2026-07-14: source snapshotting, the 30-object kernel,
+two relationship queries, same-source comparator, seven review packets, local
+wheel verification, and the supported PR #27 Ubuntu/Windows Python 3.10/3.12
+matrix are complete. The review ledger remains honestly unattempted; one real
+external attempt is the sole remaining Atlas-10 phase-exit gate.
 
 Together the ten cases pressure the representation rather than flatter it:
 
@@ -203,30 +208,57 @@ Deliverables:
 Exit gate: the schema is converging, unsupported fields fail explicitly, and at
 least one query is useful beyond opening the incumbent resources separately.
 
+#### Section 10 scientific-reset gates carried forward
+
+The day targets compress execution, not evidence requirements. Section 10 of
+the truth-first review remains controlling:
+
+1. A machine-generated draft may start the 57-fingerprint crosswalk, but every
+   row must be source-linked, classified, and reviewed before the crosswalk is
+   complete.
+2. The 50-case panel must be difficult, with at least 90% represented without
+   family-specific ad hoc fields and unsupported cases failing explicitly.
+3. Two independent domain experts must annotate a stratified subset; an
+   outreach attempt or upstream curation is not independent annotation.
+4. The first 50-row bronze audit is an error-finding tranche only. At least 200
+   stratified automated-bronze records require independent review and at least
+   90% precision at the exact claimed granularity before protected registry
+   expansion can be considered for an explicit reviewed unfreeze.
+5. A fresh difficult one-shot benchmark is frozen only after representation
+   freeze and remains separate from Atlas-10 and Atlas-50 construction.
+6. Applicable modern profile, sequence, structure, reaction, mechanism, and
+   learned baselines must precede comparative performance claims. The
+   Atlas-10 same-source completeness comparator does not satisfy that suite.
+
 ### Days 15–30 — Atlas-50 alpha
 
 Deliverables:
 
-- 50 diverse mechanisms, expanding only when the ten-case schema is stable;
-- automated draft crosswalk for all 57 current fingerprints, each marked as
-  duplicate, aggregation, specialization, interoperability bridge, genuinely
-  missing concept, or unsupported;
-- first 50-row bronze audit to identify error modes;
+- 50 deliberately difficult cases, expanding only when the ten-case schema is
+  stable and counting abstentions or source gaps honestly rather than forcing
+  every case into a detailed mechanism;
+- machine-draft and then review the source-linked crosswalk for all 57 current
+  fingerprints, each marked as duplicate, aggregation, specialization,
+  interoperability bridge, genuinely missing concept, or unsupported;
+- run the first stratified 50-row bronze audit tranche to identify error modes,
+  without treating it as expansion authorization;
 - public searchable release/API/browser alpha;
 - weekly immutable release manifests;
 - external task feedback recorded as data, including failures.
 
-Stretch deliverables, never hidden prerequisites:
+Stretch deliverables, never substitutes for the gates above:
 
-- expand the bronze audit toward 200 rows;
-- recruit a second reviewer;
-- run multiple matched sequence, profile, structure, reaction, and learned
-  baselines;
+- expand the independently reviewed bronze audit beyond the required 200 rows;
+- recruit reviewers beyond the required two independent experts;
+- run additional matched baselines beyond the strongest applicable Section
+  10.6 set;
 - begin machine-import drafts for the broader M-CSA detailed-mechanism core.
 
 Exit gate: the alpha answers at least one real mechanism question faster or
 more completely than the unintegrated incumbent stack. Otherwise contribute
-the adapters/crosswalk upstream or narrow to the useful component.
+the adapters/crosswalk upstream or narrow to the useful component. This alpha
+gate does not by itself lift the protected-registry freeze or satisfy the
+independent-review, 200-row audit, fresh-benchmark, or modern-baseline gates.
 
 ### Days 31–35 — first complete computational loop
 

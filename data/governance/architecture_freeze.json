@@ -1,8 +1,20 @@
 {
   "deterministic_modules": {
+    "src/catalytic_earth/atlas10_kernel.py": {
+      "bytes": 68650,
+      "sha256": "b38551acf00f409258ed3d0f1d2e28b15d8bc0aa5274a09dcfca6bcde4c91d69"
+    },
     "src/catalytic_earth/atlas10_selection.py": {
       "bytes": 34010,
       "sha256": "ffb1fe1f35526ab933146a48cddefdcf1515454357a723afea0964b026d28637"
+    },
+    "src/catalytic_earth/atlas10_source_adapters.py": {
+      "bytes": 14933,
+      "sha256": "dc8da8da65f5113526c4618b955c5bb2da7c21ff0725e28c97372efdda693731"
+    },
+    "src/catalytic_earth/atlas10_sources.py": {
+      "bytes": 20093,
+      "sha256": "d7cf0c4697c9238c5fa02e027547a7f8337b137a2fa0d76a9c958438e357bebf"
     },
     "src/catalytic_earth/atlas_kernel.py": {
       "bytes": 30725,
@@ -25,8 +37,8 @@
       "sha256": "5ca95dc3c7cf4fd0ae9ddd72cbc58bad8aa4e6179a45c579b2556f649d6e04b9"
     },
     "src/catalytic_earth/core_cli.py": {
-      "bytes": 5914,
-      "sha256": "7f39edff9b501f4b374304c726df7bf5aac5e732e39a4c48acf435c4e9fb19d1"
+      "bytes": 8050,
+      "sha256": "6c111f69afc287bdcb300d0dc76eb2908388be84626ea4a276c778bca5914b05"
     },
     "src/catalytic_earth/execution_context.py": {
       "bytes": 792,
@@ -127,7 +139,8 @@
     "canonical": "catalytic-earth reproduce",
     "first_biological_kernel": "catalytic-earth atlas3",
     "legacy": "catalytic-earth-legacy",
-    "legacy_status": "deprecated_frozen_outside_core_guarantee"
+    "legacy_status": "deprecated_frozen_outside_core_guarantee",
+    "ten_case_query_surface": "catalytic-earth atlas10"
   },
   "path_policy": {
     "excluded_post_source_release_metadata": [
@@ -135,7 +148,7 @@
     ],
     "maximum_relative_path_characters": 180,
     "observed_maximum": 180,
-    "paths_checked": 17142
+    "paths_checked": 17226
   },
   "replacement_family_path": {
     "engine": "src/catalytic_earth/family_onboarding.py",
@@ -150,6 +163,10 @@
     "sha256": "a37dac1b2ad71718930d426330a930aff06f9652552bca31cbebbb4b1ff37ca1"
   },
   "typed_schema": {
+    "atlas10_compilation_contract": "data/atlas/atlas10/compilation_spec.json",
+    "atlas10_kernel_python": "src/catalytic_earth/atlas10_kernel.py",
+    "atlas10_kernel_schema": "src/catalytic_earth/schemas/atlas10-kernel-v1.schema.json",
+    "atlas10_record_schema": "src/catalytic_earth/schemas/mechanism-record-v3.schema.json",
     "atlas10_selection_contract": "data/atlas/atlas10_selection.json",
     "atlas10_selection_python": "src/catalytic_earth/atlas10_selection.py",
     "atlas10_selection_schema": "src/catalytic_earth/schemas/atlas10-selection-v1.schema.json",

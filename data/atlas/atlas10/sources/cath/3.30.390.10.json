@@ -1,0 +1,68 @@
+{
+  "domain_rows": [
+    {
+      "architecture": 30,
+      "class": 3,
+      "classification_id": "3.30.390.10",
+      "domain_id": "1kczA01",
+      "domain_length": 163,
+      "homologous_superfamily": 10,
+      "raw_source_row": "1kczA01     3    30   390    10    44     2     1     3     1   163 1.900",
+      "resolution_angstrom": 1.9,
+      "s100_cluster": 3,
+      "s100_count": 1,
+      "s35_cluster": 44,
+      "s60_cluster": 2,
+      "s95_cluster": 1,
+      "topology": 390
+    },
+    {
+      "architecture": 30,
+      "class": 3,
+      "classification_id": "3.30.390.10",
+      "domain_id": "1kczB01",
+      "domain_length": 163,
+      "homologous_superfamily": 10,
+      "raw_source_row": "1kczB01     3    30   390    10    44     2     1     3     2   163 1.900",
+      "resolution_angstrom": 1.9,
+      "s100_cluster": 3,
+      "s100_count": 2,
+      "s35_cluster": 44,
+      "s60_cluster": 2,
+      "s95_cluster": 1,
+      "topology": 390
+    },
+    {
+      "architecture": 30,
+      "class": 3,
+      "classification_id": "3.30.390.10",
+      "domain_id": "1mnsA01",
+      "domain_length": 126,
+      "homologous_superfamily": 10,
+      "raw_source_row": "1mnsA01     3    30   390    10    17     1     1     1     7   126 2.000",
+      "resolution_angstrom": 2.0,
+      "s100_cluster": 1,
+      "s100_count": 7,
+      "s35_cluster": 17,
+      "s60_cluster": 1,
+      "s95_cluster": 1,
+      "topology": 390
+    }
+  ],
+  "name_row": {
+    "classification_id": "3.30.390.10",
+    "description": "Enolase-like, N-terminal domain",
+    "raw_source_row": "3.30.390.10    1r0mA01    :Enolase-like, N-terminal domain",
+    "representative_domain_id": "1r0mA01"
+  },
+  "record_id": "CATH:3.30.390.10",
+  "release_locator": "latest-release",
+  "selected_pdb_ids": [
+    "1KCZ"
+  ],
+  "source": "CATH",
+  "source_files": [
+    "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-names.txt",
+    "https://download.cathdb.info/cath/releases/latest-release/cath-classification-data/cath-domain-list.txt"
+  ]
+}
