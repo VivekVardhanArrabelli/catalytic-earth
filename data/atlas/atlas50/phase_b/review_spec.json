@@ -1,0 +1,149 @@
+{
+  "schema_version": "catalytic-earth.atlas50-phase-b-review-spec.v1",
+  "spec_id": "atlas50.phase-b.review-and-freeze-readiness.2026-07-14",
+  "baseline_commit": "375548419e7435efa2bffc89be5e32aa70864875",
+  "status": "review_readiness_not_review_or_selection_freeze",
+  "mission": "Prepare the merged Phase A machine draft and fail-closed 47-case proposal for attributable scientific review and a later explicit selection freeze without compiling mechanisms or manufacturing reviewer evidence.",
+  "phase_a_contract": {
+    "path": "data/atlas/atlas50/phase_a",
+    "required_unchanged": true,
+    "crosswalk_rows": 57,
+    "candidate_rows": 40,
+    "proposed_additions": 37,
+    "proposed_total": 47,
+    "open_representation_blockers": 3
+  },
+  "crosswalk_review_contract": {
+    "expected_packet_count": 57,
+    "required_source_keys": [
+      "mcsa",
+      "mcsa_arrow_environments",
+      "rhea",
+      "chebi",
+      "ec_blast",
+      "enzymemap",
+      "mechfind",
+      "ezmechanism",
+      "enzymm",
+      "ec",
+      "interpro",
+      "pfam",
+      "cath"
+    ],
+    "permitted_classification_decisions": [
+      "accept_machine_draft",
+      "revise_classification",
+      "unresolved"
+    ],
+    "permitted_source_decisions": [
+      "confirm_candidate_mapping",
+      "reject_candidate_mapping",
+      "confirm_explicit_gap",
+      "replace_with_supported_mapping",
+      "unresolved"
+    ],
+    "completion_rule": "Every row requires an attributable real-human submission covering classification, rationale, uncertainty, and all thirteen source-family decisions. Unresolved decisions remain explicit and cannot be counted as agreement.",
+    "upstream_curation_is_review": false,
+    "agent_or_builder_output_is_review": false
+  },
+  "panel_review_contract": {
+    "expected_packet_count": 40,
+    "permitted_disposition_decisions": [
+      "accept_proposed_include",
+      "accept_fail_closed_exclusion",
+      "revise_with_evidence",
+      "unresolved"
+    ],
+    "permitted_dimension_decisions": [
+      "accept_machine_draft_gate",
+      "revise_with_evidence",
+      "unresolved"
+    ],
+    "review_dimensions": [
+      "source_gate",
+      "diversity_gate",
+      "rights_gate",
+      "provenance_gate",
+      "shared_representation_gate",
+      "object_tier_expectations",
+      "mandatory_abstentions",
+      "stop_conditions"
+    ],
+    "completion_rule": "Every candidate requires an attributable real-human disposition. A revision must cite evidence and cannot introduce family-specific fields or compiled chemistry. Unresolved rows fail closed at freeze time."
+  },
+  "reviewer_evidence_contract": {
+    "review_kind": "scientific_crosswalk_or_panel_review_not_section_10_3_independent_annotation",
+    "required_identity_fields": [
+      "reviewer_id",
+      "reviewer_display_name",
+      "expertise_context",
+      "reviewed_on"
+    ],
+    "required_attestation": "The reviewer inspected the packet and supplied the recorded decisions; upstream curation alone was not treated as review.",
+    "evidence_references_required_for_revisions": true,
+    "conflicts_and_alternatives_must_be_preserved": true,
+    "section_10_3_independent_annotation_satisfied_by_this_contract": false,
+    "project_author_review_may_not_be_called_independent": true
+  },
+  "review_submission_contract": {
+    "schema_path": "src/catalytic_earth/schemas/atlas50-review-submission-v1.schema.json",
+    "submission_directory": "data/atlas/atlas50/phase_b/review_submissions",
+    "append_only": true,
+    "accepted_packet_types": [
+      "crosswalk",
+      "panel"
+    ],
+    "current_submission_count": 0
+  },
+  "selection_freeze_gate": {
+    "selection_frozen_by_this_spec": false,
+    "required_conditions": [
+      "all_57_crosswalk_packets_have_valid_attributable_submissions",
+      "all_40_panel_packets_have_valid_attributable_submissions",
+      "revisions_and_conflicts_are_preserved_in_a_regenerated_candidate",
+      "unresolved_cases_are_excluded_fail_closed",
+      "each_missing_general_contract_has_an_explicit_governance_disposition",
+      "post_freeze_source_reacquisition_budget_is_bounded_and_approved",
+      "phase_a_atlas3_atlas10_and_protected_registries_are_unchanged",
+      "an_explicit_selection_freeze_approval_artifact_is_recorded"
+    ],
+    "blocked_case_default": "remain_excluded_pending_generic_contract_validation",
+    "round_number_completion_permitted": false
+  },
+  "source_reacquisition_contract": {
+    "planned_follow_on_case_count": 37,
+    "may_execute_before_selection_freeze": false,
+    "pre_freeze_external_requests_max": 0,
+    "pre_freeze_download_mib_max": 0,
+    "gpu_hours_max": 0,
+    "post_freeze_budget_status": "unset_requires_explicit_freeze_approval",
+    "required_source_lanes": [
+      "mcsa_mechanism_and_arrow_environment",
+      "rhea_and_chebi_reaction",
+      "uniprot_protein",
+      "pdb_and_cath_structure",
+      "ec_interpro_pfam_function",
+      "ec_blast_bond_change",
+      "enzymemap_atom_mapping",
+      "mechfind_and_ezmechanism_hypotheses",
+      "enzymm_template",
+      "primary_literature_claims"
+    ],
+    "stop_rule": "Stop on unavailable permission, mutable or unhashed evidence, identifier ambiguity, representation escape, or any need to invent chemistry, sites, applicability, or source agreement."
+  },
+  "prohibited_outputs": [
+    "reviewed rows without attributable submissions",
+    "independent-review or expert-agreement claims",
+    "a frozen Atlas-50 selection",
+    "compiled follow-on mechanisms or object tiers",
+    "resolved generic contracts for the three blocked cases",
+    "source acquisitions before freeze",
+    "accuracy, speedup, discovery, design-readiness, assay, or atlas-coverage claims",
+    "protected registry mutation or expansion-freeze change"
+  ],
+  "claim_boundary": [
+    "Review packets are preparation for review, not review.",
+    "The 47-case object is an unfrozen candidate inherited from Phase A.",
+    "Section 10.3 independent annotation, the bronze audit, fresh benchmark, modern baselines, external coordination, and assays remain separate and undone."
+  ]
+}

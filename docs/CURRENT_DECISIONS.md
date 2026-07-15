@@ -1,5 +1,32 @@
 # Current Decisions
 
+## 2026-07-14: Atlas-50 Phase B starts with review readiness, not simulated review
+
+Decision: after merging Phase A as commit `375548419e7435efa2bffc89be5e32aa70864875`,
+prepare deterministic review queues and an unfrozen selection candidate. Do not
+contact outsiders, upgrade review status, reacquire sources, or freeze the
+selection without the corresponding explicit evidence and authority.
+
+Durable rulings:
+
+1. Every one of the 57 crosswalk rows and 40 panel candidates receives a
+   content-bound review packet; all 97 remain unreviewed until attributable
+   real-human submissions exist.
+2. Packet preparation, upstream curation, agent output, and outreach attempts
+   are not review. This contract does not satisfy Section 10.3 independent
+   annotation or support inter-reviewer/expert-agreement claims.
+3. The exact 47-case proposal is an unfrozen candidate. The three representation
+   blockers remain excluded; no case is added for numerical convenience.
+4. Source reacquisition is planned for the 37 proposed additions across ten
+   source lanes, but execution remains prohibited before reviewed freeze and an
+   approved bounded budget. Missing post-freeze ceilings remain null.
+5. Review submissions are append-only and must bind the exact packet hash,
+   reviewer identity/context, attestation, decisions, evidence, conflicts, and
+   timestamp. Revisions without evidence fail validation.
+6. Phase B readiness uses zero GPU work, compiles zero mechanisms, preserves
+   Phase A and inherited Atlas bytes, and does not mutate protected registries
+   or lift the expansion freeze.
+
 ## 2026-07-14: Atlas-50 Phase A fails closed at 47 proposed cases
 
 Decision: freeze a deterministic precompilation package, not an Atlas-50

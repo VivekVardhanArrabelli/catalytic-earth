@@ -251,6 +251,14 @@ used, and no protected registry or inherited Atlas object changed. Real
 crosswalk review, any governing-contract decision, later selection freeze, and
 case compilation remain ahead.
 
+Phase B review/freeze-readiness checkpoint 2026-07-14: the deterministic
+package in `data/atlas/atlas50/phase_b/` now exposes 57 crosswalk and 40 panel
+review packets, all explicitly unreviewed, plus the exact unfrozen 47-case
+candidate and a ten-lane post-freeze source plan for the 37 passing additions.
+No reviewer is identified, no outreach or submission exists, no source record
+was reacquired, and all six scientific/governance freeze conditions remain
+blocked. See `docs/ATLAS50_PHASE_B.md`.
+
 Deliverables:
 
 - 50 deliberately difficult cases, expanding only when the ten-case schema is

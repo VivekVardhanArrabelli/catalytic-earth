@@ -52,6 +52,9 @@ are recorded. Unknown means blocked, not implicitly open.
    projections. It bundles no raw M-CSA page, EnzymeMap reaction file,
    MechFind rule/arrow environment, EnzyMM template, EC-BLAST/EzMechanism
    result, or article body.
+   The Phase B readiness package adds a post-freeze acquisition plan only. It
+   authorizes zero pre-freeze requests, leaves post-freeze budgets unset, and
+   bundles no newly acquired source record or source-derived mechanism object.
 3. CC BY-derived fields retain source identifiers and change notices. Database
    citations are additional to, not substitutes for, record-level literature
    citations.

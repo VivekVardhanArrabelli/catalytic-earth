@@ -1,0 +1,18 @@
+{
+  "attempt_count": 0,
+  "attempts": [],
+  "baseline_commit": "375548419e7435efa2bffc89be5e32aa70864875",
+  "claim_boundary": [
+    "Packet preparation is not outreach or review.",
+    "No reviewer has been contacted, agreed, submitted a decision, or been counted as independent."
+  ],
+  "external_messages_sent": 0,
+  "identified_reviewer_count": 0,
+  "independent_annotation_claimed": false,
+  "ledger_id": "atlas50.phase-b.review-attempts.2026-07-14",
+  "review_claimed": false,
+  "schema_version": "catalytic-earth.atlas50-review-attempts.v1",
+  "status": "no_review_or_outreach_attempted",
+  "submission_count": 0,
+  "submission_directory": "data/atlas/atlas50/phase_b/review_submissions"
+}

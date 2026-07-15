@@ -1,0 +1,71 @@
+{
+  "baseline_commit": "375548419e7435efa2bffc89be5e32aa70864875",
+  "blockers": [
+    {
+      "blocker_id": "atlas50.phase-b.real-crosswalk-review",
+      "missing": 57,
+      "required_evidence": "Attributable valid review submissions for every crosswalk packet."
+    },
+    {
+      "blocker_id": "atlas50.phase-b.real-panel-review",
+      "missing": 40,
+      "required_evidence": "Attributable valid review submissions for every panel packet."
+    },
+    {
+      "blocker_id": "atlas50.phase-b.reviewer-and-outreach-authority",
+      "missing": 1,
+      "required_evidence": "Explicit authority and identified reviewer context before any external message or claimed attempt."
+    },
+    {
+      "blocker_id": "atlas50.phase-b.post-freeze-source-budget",
+      "missing": 1,
+      "required_evidence": "A bounded approved post-freeze CPU/request/download budget."
+    },
+    {
+      "blocker_id": "atlas50.phase-b.selection-freeze-approval",
+      "missing": 1,
+      "required_evidence": "An explicit approval artifact after all review and fail-closed dispositions are incorporated."
+    }
+  ],
+  "claims_not_supported": [
+    "review completion",
+    "expert agreement",
+    "independent annotation",
+    "selection freeze",
+    "source reacquisition",
+    "mechanism compilation",
+    "accuracy, speedup, discovery, assay, design-readiness, or atlas coverage"
+  ],
+  "compiled_follow_on_mechanisms": 0,
+  "freeze_candidate": {
+    "blocked_gate_conditions": 6,
+    "freeze_ready": false,
+    "proposed_total": 47,
+    "selection_frozen": false,
+    "shortfall_from_50": 3
+  },
+  "gpu_hours": 0,
+  "next_action_boundary": "Obtain explicit reviewer/outreach authority and attributable submissions; do not freeze selection or execute source acquisition before all gates and a bounded budget are satisfied.",
+  "open_blocker_count": 5,
+  "queues": {
+    "crosswalk_packets": 57,
+    "crosswalk_reviewed": 0,
+    "panel_packets": 40,
+    "panel_reviewed": 0
+  },
+  "report_id": "atlas50.phase-b.review-freeze-readiness.2026-07-14",
+  "review_activity": {
+    "attempts": 0,
+    "external_messages_sent": 0,
+    "identified_reviewers": 0,
+    "submissions": 0
+  },
+  "schema_version": "catalytic-earth.atlas50-readiness-report.v1",
+  "source_reacquisition": {
+    "may_execute": false,
+    "planned_cases": 37,
+    "planned_lanes": 10,
+    "records_acquired": 0
+  },
+  "status": "ready_for_review_blocked_for_selection_freeze"
+}
