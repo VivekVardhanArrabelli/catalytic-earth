@@ -1,0 +1,446 @@
+{
+  "schema_version": "catalytic-earth.atlas50-phase-a-source-catalog.v1",
+  "catalog_id": "atlas50.phase-a.source-landscape.2026-07-14",
+  "status": "bounded_acquisition_complete",
+  "retrieved_on": "2026-07-14",
+  "baseline_commit": "89498a7b0e6e5ea419654bb8ff563512ab36bb89",
+  "job_id": "atlas50.phase-a.source-landscape",
+  "usage": {
+    "external_operations_conservatively_counted": 72,
+    "external_requests_max": 80,
+    "hashed_http_response_bytes": 16055601,
+    "download_mib_conservatively_accounted": 18,
+    "download_mib_max": 32,
+    "cpu_hours_less_than": 1,
+    "gpu_hours": 0,
+    "raw_source_bodies_committed": false,
+    "article_bodies_acquired": false
+  },
+  "required_crosswalk_source_keys": [
+    "mcsa",
+    "mcsa_arrow_environments",
+    "rhea",
+    "chebi",
+    "ec_blast",
+    "enzymemap",
+    "mechfind",
+    "ezmechanism",
+    "enzymm",
+    "ec",
+    "interpro",
+    "pfam",
+    "cath"
+  ],
+  "resources": [
+    {
+      "source_key": "mcsa",
+      "name": "Mechanism and Catalytic Site Atlas",
+      "version": "live API; 1,003 entries observed 2026-07-14",
+      "official_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/",
+      "access_state": "public_api_available",
+      "rights": "CC BY 4.0",
+      "redistribution_boundary": "Derived identifiers and metadata may be redistributed with attribution and change notice; no raw API page is bundled in Phase A.",
+      "row_link_policy": "Direct M-CSA records are unreviewed candidate handles only; absence of a candidate handle is an explicit gap, not evidence that no entry exists.",
+      "limitations": [
+        "An upstream curated entry is not independent review of this downstream crosswalk.",
+        "Entry granularity ranges from detailed mechanisms to active-site-only records.",
+        "Candidate handle overlap does not establish exact fingerprint equivalence."
+      ]
+    },
+    {
+      "source_key": "mcsa_arrow_environments",
+      "name": "M-CSA arrow environments distributed with MechFind",
+      "version": "MechFind v1.0.0, commit fcc0896",
+      "official_uri": "https://github.com/maranasgroup/MechFind/tree/fcc0896",
+      "access_state": "reference_only_not_downloaded",
+      "rights": "MechFind non-profit/non-commercial license; underlying M-CSA attribution also applies",
+      "redistribution_boundary": "Reference-only in Phase A; no arrow-environment file or derived rule content is bundled.",
+      "row_link_policy": "Rows carry M-CSA lookup keys only; no arrow-environment match was computed.",
+      "limitations": [
+        "The repository license is not a general permissive redistribution grant.",
+        "A shared M-CSA key is not an adjudicated arrow-environment equivalence."
+      ]
+    },
+    {
+      "source_key": "rhea",
+      "name": "Rhea",
+      "version": "release not frozen in Phase A",
+      "official_uri": "https://www.rhea-db.org/",
+      "access_state": "official_documentation_visible_but_local_acquisition_failed",
+      "rights": "CC BY 4.0",
+      "redistribution_boundary": "Only query URIs and existing inherited snapshots are referenced; no new Rhea body is bundled.",
+      "row_link_policy": "EC-based query handles are lookup keys, never invented Rhea identifiers or asserted reaction matches.",
+      "limitations": [
+        "Local DNS resolution failed for the official help pages during the bounded acquisition.",
+        "The FTP endpoint failed TLS negotiation in the local client.",
+        "No new direct Rhea record was assigned in Phase A."
+      ]
+    },
+    {
+      "source_key": "chebi",
+      "name": "ChEBI",
+      "version": "live site observed 2026-07-14; monthly release not frozen",
+      "official_uri": "https://www.ebi.ac.uk/chebi/",
+      "access_state": "public_site_available",
+      "rights": "CC BY 4.0",
+      "redistribution_boundary": "Only identifiers reported by the frozen M-CSA candidate response are carried; no ontology dump is bundled.",
+      "row_link_policy": "Candidate participant identifiers inherit M-CSA scope and remain unreviewed; protonation and microspecies applicability are unresolved.",
+      "limitations": [
+        "Participant identity does not establish a balanced Rhea reaction.",
+        "Protonation and tautomer states can change mechanistic interpretation."
+      ]
+    },
+    {
+      "source_key": "ec_blast",
+      "name": "EC-BLAST",
+      "version": "live interactive service observed 2026-07-14",
+      "official_uri": "https://www.ebi.ac.uk/thornton-srv/software/rbl/",
+      "access_state": "interactive_service_available_no_stable_api_frozen",
+      "rights": "redistribution terms not captured",
+      "redistribution_boundary": "Reference-only; no result table or bond-change object is bundled.",
+      "row_link_policy": "EC keys are recorded for a later bounded lookup; no bond-change match is asserted.",
+      "limitations": [
+        "No stable batch API or release identifier was established.",
+        "No EC-BLAST search was run in Phase A."
+      ]
+    },
+    {
+      "source_key": "enzymemap",
+      "name": "EnzymeMap",
+      "version": "version 2, Zenodo 10.5281/zenodo.8254726",
+      "official_uri": "https://zenodo.org/records/8254726",
+      "access_state": "dataset_metadata_available_dataset_not_downloaded",
+      "rights": "CC BY 4.0",
+      "redistribution_boundary": "The 13.1 MiB atom-mapped reaction file was not acquired or bundled; metadata and EC lookup keys only.",
+      "row_link_policy": "An EC key indicates a possible future dataset lookup, not an atom-mapped reaction match.",
+      "limitations": [
+        "BRENDA-derived reactions can be multiple and substrate-specific within one EC number.",
+        "No row-level EnzymeMap lookup or atom-map adjudication occurred."
+      ]
+    },
+    {
+      "source_key": "mechfind",
+      "name": "MechFind",
+      "version": "v1.0.0, commit fcc0896",
+      "official_uri": "https://github.com/maranasgroup/MechFind/tree/fcc0896",
+      "access_state": "public_reference_available_not_run",
+      "rights": "non-profit/non-commercial license",
+      "redistribution_boundary": "Reference-only; no rules, predictions, or arrow environments are bundled.",
+      "row_link_policy": "M-CSA and EC keys are possible future lookup inputs; no prediction or equivalence is asserted.",
+      "limitations": [
+        "Generated mechanisms would be hypotheses, not source truth.",
+        "No optimization, scoring, or reuse of published predictions occurred in Phase A."
+      ]
+    },
+    {
+      "source_key": "ezmechanism",
+      "name": "EzMechanism",
+      "version": "live documentation observed 2026-07-14",
+      "official_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/EzMechanism/documentation",
+      "access_state": "registration_required_not_accessed",
+      "rights": "M-CSA site content CC BY 4.0; generated-result terms not separately captured",
+      "redistribution_boundary": "Documentation link only; no account was requested and no result was generated or bundled.",
+      "row_link_policy": "Every row records the access gap explicitly; no outreach or registration attempt is claimed.",
+      "limitations": [
+        "The service requires a registered M-CSA account.",
+        "Its inputs require structure, active-site, substrate, cofactor, reaction, and protonation choices that Phase A does not invent."
+      ]
+    },
+    {
+      "source_key": "enzymm",
+      "name": "EnzyMM",
+      "version": "0.3.1 reported by the M-CSA interface",
+      "official_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/enzymm-documentation/",
+      "access_state": "software_and_documentation_available_not_run",
+      "rights": "MIT software; M-CSA-derived template attribution applies",
+      "redistribution_boundary": "No software, templates, structures, or match tables are bundled.",
+      "row_link_policy": "M-CSA and UniProt handles are future lookup keys only; no structural template match is asserted.",
+      "limitations": [
+        "Template matches are conformation-sensitive and do not predict EC numbers.",
+        "No structure scan was run in Phase A."
+      ]
+    },
+    {
+      "source_key": "ec",
+      "name": "ENZYME/EC nomenclature",
+      "version": "live per-EC pages; bulk release not frozen",
+      "official_uri": "https://enzyme.expasy.org/",
+      "access_state": "per_record_reference_available_bulk_probe_failed",
+      "rights": "bulk redistribution terms not recaptured in Phase A",
+      "redistribution_boundary": "Per-EC reference links only.",
+      "row_link_policy": "EC numbers from M-CSA are source lookup keys and do not define a unique mechanism.",
+      "limitations": [
+        "The guessed enzyme.dat endpoint returned HTTP 404.",
+        "EC classification is reaction-oriented and often broader or narrower than a mechanism family."
+      ]
+    },
+    {
+      "source_key": "interpro",
+      "name": "InterPro",
+      "version": "release not frozen; release probe duplicated the license response",
+      "official_uri": "https://www.ebi.ac.uk/interpro/",
+      "access_state": "license_and_api_documentation_available_no_row_lookups",
+      "rights": "CC0 1.0 for InterPro, Pfam, PRINTS, and SFLD downloadable data",
+      "redistribution_boundary": "UniProt lookup links only; no InterPro match data is bundled.",
+      "row_link_policy": "Protein handles are lookup keys, not asserted domain assignments.",
+      "limitations": [
+        "No row-level API lookup was run.",
+        "A family/domain match does not establish detailed mechanism applicability."
+      ]
+    },
+    {
+      "source_key": "pfam",
+      "name": "Pfam through InterPro",
+      "version": "not frozen",
+      "official_uri": "https://www.ebi.ac.uk/interpro/entry/pfam/",
+      "access_state": "reference_available_no_row_lookups",
+      "rights": "CC0 1.0 for downloadable Pfam data on InterPro",
+      "redistribution_boundary": "Lookup links only; no Pfam assignments are bundled.",
+      "row_link_policy": "Protein handles are future lookup keys; no family-to-mechanism transfer is made.",
+      "limitations": [
+        "No HMM or API search was run.",
+        "Family membership cannot independently review a mechanism mapping."
+      ]
+    },
+    {
+      "source_key": "cath",
+      "name": "CATH-Gene3D",
+      "version": "CATH-Plus 4.4; live latest links remain mutable",
+      "official_uri": "https://www.cathdb.info/",
+      "access_state": "release_documentation_available",
+      "rights": "CC BY 4.0",
+      "redistribution_boundary": "Only CATH identifiers returned by M-CSA are carried; no classification files are bundled.",
+      "row_link_policy": "Candidate fold handles remain unreviewed and do not license mechanism-field transfer.",
+      "limitations": [
+        "Two selected candidates have explicit missing CATH handles.",
+        "A shared fold can support relationship queries but not copied chemistry."
+      ]
+    }
+  ],
+  "acquisitions": [
+    {
+      "acquisition_id": "mcsa-download-page",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/download/",
+      "status": "acquired_metadata_only",
+      "http_status": 200,
+      "bytes": 15238,
+      "sha256": "27b238559725f830e180bb8488598a8d7328622e6d66966909ff5d4883dbd686"
+    },
+    {
+      "acquisition_id": "mcsa-entries-page-1",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json",
+      "status": "acquired_in_memory_not_bundled",
+      "http_status": 200,
+      "bytes": 1543199,
+      "sha256": "d06470b8ffa2c826cac448d5dbfbb91e6412cc77a3c23c74d0ab871c5819ce4a"
+    },
+    {
+      "acquisition_id": "mcsa-page-size-probe",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&page_size=2000",
+      "status": "acquired_probe_parameter_ignored",
+      "http_status": 200,
+      "bytes": 1543214,
+      "sha256": "ff208342854a7327e2a35e283487f7a7d9883913086cadd2ea33102d9c2b5cb4"
+    },
+    {
+      "acquisition_id": "mcsa-entries-page-2",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&page=2",
+      "status": "acquired_in_memory_not_bundled",
+      "http_status": 200,
+      "bytes": 1624295,
+      "sha256": "13058de5ac0028ec90b8989ce1d7b16f1fb3aae945be873ce70bab55436f182a"
+    },
+    {
+      "acquisition_id": "mcsa-entries-page-3",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&page=3",
+      "status": "acquired_in_memory_not_bundled",
+      "http_status": 200,
+      "bytes": 1732635,
+      "sha256": "3f198cc053915d316633eeabf521d70dfcbf939373061d56bbca816f0481f416"
+    },
+    {
+      "acquisition_id": "mcsa-entries-page-4",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&page=4",
+      "status": "acquired_in_memory_not_bundled",
+      "http_status": 200,
+      "bytes": 1200121,
+      "sha256": "6d3e29e7b12f40bd657dc13560c34e5162cd01efa94ffe0809c13ef3068cdc72"
+    },
+    {
+      "acquisition_id": "mcsa-entries-page-5",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&page=5",
+      "status": "acquired_in_memory_not_bundled",
+      "http_status": 200,
+      "bytes": 834209,
+      "sha256": "e76f2377908470a6f37ab14a31f36c496695a729ce5bc08c22b95dbb67cc3c45"
+    },
+    {
+      "acquisition_id": "mcsa-entries-page-6",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&page=6",
+      "status": "acquired_in_memory_not_bundled",
+      "http_status": 200,
+      "bytes": 856928,
+      "sha256": "105903eb0c1a68caacc5d3d7e8026183bf55077b7ec1be9aaf760ab2458c32c3"
+    },
+    {
+      "acquisition_id": "mcsa-entries-page-7",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&page=7",
+      "status": "acquired_in_memory_not_bundled",
+      "http_status": 200,
+      "bytes": 817827,
+      "sha256": "4ed558ce4b219099e9aed158a608cdb5f1b7ad7f8544dcf3cd8be03f1400f246"
+    },
+    {
+      "acquisition_id": "mcsa-entries-page-8",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&page=8",
+      "status": "acquired_in_memory_not_bundled",
+      "http_status": 200,
+      "bytes": 950447,
+      "sha256": "55a06387fcf0d2d003f11d29d5a14e57abb809529ab904020b32dc4e89135c4a"
+    },
+    {
+      "acquisition_id": "mcsa-entries-page-9",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&page=9",
+      "status": "acquired_in_memory_not_bundled",
+      "http_status": 200,
+      "bytes": 783662,
+      "sha256": "e9a400a635a4961a64c4a225733104cf5a966715d016681bd68af1a463a64b01"
+    },
+    {
+      "acquisition_id": "mcsa-entries-page-10",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&page=10",
+      "status": "acquired_in_memory_not_bundled",
+      "http_status": 200,
+      "bytes": 870711,
+      "sha256": "2422301610b1ba14178474b14e186140ae7c4538e453dd33995aa5d6915adaf1"
+    },
+    {
+      "acquisition_id": "mcsa-entries-page-11",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&page=11",
+      "status": "acquired_in_memory_not_bundled",
+      "http_status": 200,
+      "bytes": 22744,
+      "sha256": "5e78f3061a404d908398420ff309d948d7ed8f5fe64d448f4ab3e3ff93b3555f"
+    },
+    {
+      "acquisition_id": "mcsa-selected-40-query",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=1,7,14,31,34,49,50,52,64,81,99,106,107,121,126,127,128,129,132,133,135,139,145,174,190,191,204,212,219,222,753,767,797,851,907,935,970,980,991,997",
+      "status": "acquired_in_memory_not_bundled",
+      "http_status": 200,
+      "bytes": 722009,
+      "sha256": "99ba483ed6fc38e3deda262ce0737326c121ba776f21b51d458861bfed789915"
+    },
+    {
+      "acquisition_id": "ezmechanism-documentation",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/EzMechanism/documentation",
+      "status": "acquired_metadata_only",
+      "http_status": 200,
+      "bytes": 26152,
+      "sha256": "6da6a3e69166f5d22015e433a77bc9ad7b148924c362d5604665ae4fbd907480"
+    },
+    {
+      "acquisition_id": "ec-blast-service",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/software/rbl/",
+      "status": "acquired_service_page_only",
+      "http_status": 200,
+      "bytes": 19282,
+      "sha256": "5223256062093f38147ee408bfe29d7068b9eac688c325a865dbffe8b90f2548"
+    },
+    {
+      "acquisition_id": "chebi-about",
+      "uri": "https://www.ebi.ac.uk/chebi/about",
+      "status": "acquired_metadata_only",
+      "http_status": 200,
+      "bytes": 824651,
+      "sha256": "5958aaac9fc52b1e88a7868540968cc076fb92cc4aec4564fcb9234735672f66"
+    },
+    {
+      "acquisition_id": "enzymemap-v2-metadata",
+      "uri": "https://zenodo.org/api/records/8254726",
+      "status": "acquired_metadata_only",
+      "http_status": 200,
+      "bytes": 6739,
+      "sha256": "16e1d78173a5661c792553741a66bfce91281493ace867f0783b05deb28d975d"
+    },
+    {
+      "acquisition_id": "mechfind-v1-metadata",
+      "uri": "https://zenodo.org/api/records/18674529",
+      "status": "acquired_metadata_only",
+      "http_status": 200,
+      "bytes": 7475,
+      "sha256": "425adba9cd8e9dc1b1c314ffb351a9fc6f73d4971b0dc03bd3e984fd4edb31ad"
+    },
+    {
+      "acquisition_id": "mechfind-fcc0896-commit",
+      "uri": "https://api.github.com/repos/maranasgroup/MechFind/commits/fcc0896",
+      "status": "acquired_metadata_only",
+      "http_status": 200,
+      "bytes": 27551,
+      "sha256": "74e365e0f262624c8954acb89b5b4b84e2952a4f29319b0c05f79a2c5a06d875"
+    },
+    {
+      "acquisition_id": "enzymm-metadata",
+      "uri": "https://zenodo.org/api/records/19386890",
+      "status": "acquired_metadata_only",
+      "http_status": 200,
+      "bytes": 6676,
+      "sha256": "80d7367bd54c541508d36ef9dd862f65739580d59bc14af799f64afdc9858398"
+    },
+    {
+      "acquisition_id": "interpro-license",
+      "uri": "https://www.ebi.ac.uk/interpro/about/license/",
+      "status": "acquired_metadata_only",
+      "http_status": 200,
+      "bytes": 16054,
+      "sha256": "f1368583422c69a767bdf3f6fa7fc6daf651600fc2f1815000f30f08503d51a3"
+    },
+    {
+      "acquisition_id": "interpro-release-probe",
+      "uri": "https://www.ebi.ac.uk/interpro/release_notes/108.0/",
+      "status": "failed_semantic_probe_response_duplicated_license_page",
+      "http_status": 200,
+      "bytes": 16054,
+      "sha256": "f1368583422c69a767bdf3f6fa7fc6daf651600fc2f1815000f30f08503d51a3"
+    },
+    {
+      "acquisition_id": "cath-release-notes",
+      "uri": "https://wiki.cathdb.info/doku.php?id=release_notes",
+      "status": "acquired_metadata_only",
+      "http_status": 200,
+      "bytes": 44529,
+      "sha256": "10866ab09056ad332ca314a6e437c2dcbdfaffe73923475db2943fe0dab32830"
+    }
+  ],
+  "failed_acquisitions": [
+    {
+      "source_key": "rhea",
+      "uri": "https://www.rhea-db.org/help/download",
+      "failure": "local DNS resolution failed",
+      "fallback": "official documentation was inspected through the bounded web reader; no raw body hash is claimed"
+    },
+    {
+      "source_key": "rhea",
+      "uri": "https://www.rhea-db.org/help/license-disclaimer",
+      "failure": "local DNS resolution failed",
+      "fallback": "existing repository rights policy and official web documentation identify CC BY 4.0"
+    },
+    {
+      "source_key": "rhea",
+      "uri": "https://ftp.expasy.org/databases/rhea/",
+      "failure": "local TLS secure-channel negotiation failed",
+      "fallback": "no release or bulk file was acquired"
+    },
+    {
+      "source_key": "ec",
+      "uri": "https://enzyme.expasy.org/enzyme.dat",
+      "failure": "HTTP 404",
+      "fallback": "use per-EC reference pages only; bulk version remains unfrozen"
+    },
+    {
+      "source_key": "interpro",
+      "uri": "https://www.ebi.ac.uk/interpro/release_notes/108.0/",
+      "failure": "response bytes exactly duplicated the license page, so the release could not be authenticated",
+      "fallback": "no release number is frozen and no row-level lookup is claimed"
+    }
+  ]
+}

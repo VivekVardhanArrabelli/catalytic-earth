@@ -234,6 +234,23 @@ the truth-first review remains controlling:
 
 ### Days 15–30 — Atlas-50 alpha
 
+Phase A precompilation checkpoint 2026-07-14: the deterministic package in
+`data/atlas/atlas50/phase_a/` contains 57 source-linked crosswalk rows, all
+explicitly unreviewed, and a 40-row follow-on feasibility matrix. Thirty-seven
+candidates pass the declared Phase A gates. Nitrogenase, imidazole glycerol
+phosphate synthase, and peptidoglycan glycosyltransferase fail closed because
+the current shared representation lacks general contracts for their defining
+component/state, channel/gating, or polymer/processivity pressure. The proposal
+therefore contains immutable Atlas-10 plus 37 additions (47 total) and reports
+the exact three-case shortfall. The 47/50 (94%) shared-field value is a
+precompilation projection, not the final Section 10.2 result. See
+`docs/ATLAS50_PHASE_A.md`.
+
+No follow-on mechanism was compiled, no selection was frozen, no GPU work was
+used, and no protected registry or inherited Atlas object changed. Real
+crosswalk review, any governing-contract decision, later selection freeze, and
+case compilation remain ahead.
+
 Deliverables:
 
 - 50 deliberately difficult cases, expanding only when the ten-case schema is

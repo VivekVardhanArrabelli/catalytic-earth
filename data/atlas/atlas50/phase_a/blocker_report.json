@@ -1,0 +1,46 @@
+{
+  "blocked_candidate_count": 3,
+  "blockers": [
+    {
+      "blocker_id": "atlas50.blocker.multi-component-metallocluster-state",
+      "candidate_id": "atlas50.candidate.m0212",
+      "convenience_choice_made": false,
+      "current_disposition": "excluded_from_proposed_panel_pending_governing_contract",
+      "gate": "representation",
+      "mcsa_id": "M0212",
+      "missing_general_contract": "A source-neutral contract for coupled multi-component electron delivery, metallocluster identity/state, and state-transition provenance.",
+      "unlock_condition": "Approve and validate a generic component/state-transition object against at least three unrelated multi-component metallocluster cases before selection freeze.",
+      "why_material": "Flattening component and cluster states into mechanism prose would hide applicability and redox uncertainty and would create nitrogenase-specific fields."
+    },
+    {
+      "blocker_id": "atlas50.blocker.coupled-channel-conformational-state",
+      "candidate_id": "atlas50.candidate.m0753",
+      "convenience_choice_made": false,
+      "current_disposition": "excluded_from_proposed_panel_pending_governing_contract",
+      "gate": "representation",
+      "mcsa_id": "M0753",
+      "missing_general_contract": "A source-neutral contract for coupled subunit conformations, channel state, transported-intermediate identity, and evidence-scoped gating alternatives.",
+      "unlock_condition": "Approve and validate a generic coupled-state/channel representation on unrelated gated multi-component enzymes before selection freeze.",
+      "why_material": "Treating the channel and allosteric coupling as unstructured notes would lose the defining applicability pressure and invite family-specific fields."
+    },
+    {
+      "blocker_id": "atlas50.blocker.polymer-processivity-reaction-instance",
+      "candidate_id": "atlas50.candidate.m0970",
+      "convenience_choice_made": false,
+      "current_disposition": "excluded_from_proposed_panel_pending_governing_contract",
+      "gate": "representation",
+      "mcsa_id": "M0970",
+      "missing_general_contract": "A source-neutral contract for polymer chain state, reaction-instance boundaries, processivity, and repeat-unit provenance.",
+      "unlock_condition": "Approve and validate generic polymer/reaction-instance semantics across at least three unrelated polymer-processing enzymes before selection freeze.",
+      "why_material": "A single small-molecule reaction object cannot distinguish initiation, elongation, product chain length, and processivity without convenience assumptions."
+    }
+  ],
+  "candidate_count": 40,
+  "next_action_boundary": "Do not add family-specific fields or compile these cases. A later explicit governing-contract decision is required before any blocked case can enter a selection freeze.",
+  "passing_candidate_count": 37,
+  "proposed_total_with_immutable_atlas10": 47,
+  "report_id": "atlas50.phase-a.blockers.2026-07-14",
+  "schema_version": "catalytic-earth.atlas50-blocker-report.v1",
+  "shortfall_from_50": 3,
+  "status": "open_material_representation_blockers"
+}

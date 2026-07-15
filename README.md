@@ -137,6 +137,7 @@ agent run:
 | `docs/ATLAS3_KERNEL.md` | Compiled nine-object biological kernel, source checks, query, truth boundaries, and reproduction |
 | `docs/ATLAS10_SELECTION.md` | Frozen seven-case extension, source gaps, relationship queries, applicability traps, baseline, review, and compute contracts |
 | `docs/ATLAS10_KERNEL.md` | Compiled ten-case surface, v3 truth objects, source package, queries, comparator, review state, and remaining gate |
+| `docs/ATLAS50_PHASE_A.md` | Deterministic 57-row machine draft, 40-case feasibility matrix, fail-closed 47-case proposal, blockers, and inherited-byte proof |
 | `docs/P0_COMPLETION.md` | Auditable completion map for the truth-first review's P0 cleanup |
 | `docs/reviews/catalytic-earth-full-review-2026-07-10.md` | Independent audit, evidence corrections, strategic amendment, and full rationale |
 | `docs/reviews/catalytic-earth-90-day-map-2026-07-10.md` | Compact operating map derived from the full review |

@@ -1,5 +1,33 @@
 # Current Decisions
 
+## 2026-07-14: Atlas-50 Phase A fails closed at 47 proposed cases
+
+Decision: freeze a deterministic precompilation package, not an Atlas-50
+selection. Preserve immutable Atlas-10, emit all 40 follow-on feasibility rows,
+and include only the 37 rows that pass the declared source, diversity, rights,
+provenance, and shared-representation gates. Keep M0212, M0753, and M0970
+excluded until general governing contracts exist.
+
+Durable rulings:
+
+1. The 57-row crosswalk is a machine draft. Every row remains unreviewed;
+   upstream curation and source links do not upgrade it to Section 10.1 review.
+2. Nitrogenase cannot introduce ad hoc metallocluster/component-state fields;
+   imidazole glycerol phosphate synthase cannot introduce ad hoc channel/gating
+   fields; and peptidoglycan glycosyltransferase cannot introduce ad hoc
+   polymer/processivity fields.
+3. Immutable Atlas-10 plus 37 passing additions yields a 47-case proposal and a
+   three-case shortfall. Forty additions are not emitted merely to reach a
+   round number.
+4. The 47/50 (94%) shared-field value is a precompilation projection, not the
+   final Section 10.2 result and not an atlas-coverage claim.
+5. Phase A compiles no follow-on mechanism, invents no missing chemistry or
+   identifiers, uses zero GPU work, creates no benchmark, and does not lift the
+   protected-registry freeze.
+6. The next material decision is a later reviewed selection freeze. Blocked
+   cases require explicit general contracts; passing cases still require source
+   reacquisition/checks and compilation before they become atlas mechanisms.
+
 ## 2026-07-14: Distinguish Atlas-10 scientific exit from review closure
 
 Decision: the high-level Atlas-10 scientific exit gate in the rapid plan is the

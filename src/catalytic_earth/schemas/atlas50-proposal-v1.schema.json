@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://catalytic.earth/schemas/atlas50-proposal-v1.schema.json",
+  "title": "Catalytic Earth Atlas-50 Phase A proposal v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "proposal_id", "status", "baseline_commit", "mission", "inherited_atlas10", "follow_on_surface", "proposed_panel", "representation_projection", "pressure_inventory", "governance", "claim_boundary"],
+  "properties": {
+    "schema_version": {"const": "catalytic-earth.atlas50-proposal.v1"},
+    "proposal_id": {"type": "string", "minLength": 1},
+    "status": {"const": "proposal_not_selection_freeze"},
+    "baseline_commit": {"const": "89498a7b0e6e5ea419654bb8ff563512ab36bb89"},
+    "mission": {"type": "string", "minLength": 1},
+    "inherited_atlas10": {
+      "type": "object",
+      "required": ["selection_id", "selection_sha256", "immutable", "scientific_exit_gate_treated_as_passed", "case_count", "case_ids"],
+      "properties": {
+        "selection_id": {"type": "string", "minLength": 1},
+        "selection_sha256": {"const": "9bc114aaf793c51ec3b6273466f62a83974512a2dcf969d95d8b97453dd2795e"},
+        "immutable": {"const": true},
+        "scientific_exit_gate_treated_as_passed": {"const": true},
+        "case_count": {"const": 10},
+        "case_ids": {"type": "array", "minItems": 10, "maxItems": 10, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      },
+      "additionalProperties": false
+    },
+    "follow_on_surface": {"type": "object"},
+    "proposed_panel": {
+      "type": "object",
+      "required": ["total_case_count", "case_ids", "shortfall_from_50", "forty_additions_emitted", "fail_closed"],
+      "properties": {
+        "total_case_count": {"type": "integer", "minimum": 10, "maximum": 50},
+        "case_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "shortfall_from_50": {"type": "integer", "minimum": 0, "maximum": 40},
+        "forty_additions_emitted": {"type": "boolean"},
+        "fail_closed": {"const": true}
+      },
+      "additionalProperties": false
+    },
+    "representation_projection": {
+      "type": "object",
+      "required": ["denominator_description", "denominator_case_count", "projected_representable_without_family_specific_ad_hoc_fields", "projected_percentage", "at_least_90_percent", "final_section_10_2_result", "requires_later_compilation_and_case_level_validation"],
+      "properties": {
+        "denominator_description": {"type": "string", "minLength": 1},
+        "denominator_case_count": {"const": 50},
+        "projected_representable_without_family_specific_ad_hoc_fields": {"type": "integer", "minimum": 0, "maximum": 50},
+        "projected_percentage": {"type": "number", "minimum": 0, "maximum": 100},
+        "at_least_90_percent": {"type": "boolean"},
+        "final_section_10_2_result": {"const": false},
+        "requires_later_compilation_and_case_level_validation": {"const": true}
+      },
+      "additionalProperties": false
+    },
+    "pressure_inventory": {"type": "array", "minItems": 14, "items": {"type": "object"}},
+    "governance": {"type": "object"},
+    "claim_boundary": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+  }
+}

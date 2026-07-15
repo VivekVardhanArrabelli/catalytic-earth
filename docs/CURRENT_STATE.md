@@ -1,6 +1,6 @@
 # Current State
 
-## 2026-07-14 Atlas-10 compilation checkpoint
+## 2026-07-14 Atlas-50 Phase A precompilation checkpoint
 
 **Foundation:** 2026-07-13 truth reset
 
@@ -22,6 +22,8 @@ Read in this order:
 8. `docs/ATLAS10_SELECTION.md` — frozen seven-case follow-on contract.
 9. `docs/ATLAS10_KERNEL.md` — compiled ten-case surface, queries, comparator,
    review state, and remaining gate.
+10. `docs/ATLAS50_PHASE_A.md` — deterministic machine draft, 40-case
+    feasibility matrix, fail-closed proposal, blockers, and claim boundary.
 
 Current truth:
 
@@ -78,14 +80,28 @@ Current truth:
   and at least one integrated query is useful beyond opening the incumbent
   sources separately. A real external attempt remains pending under the later
   frozen review contract; no external or independent review is claimed.
-- The next computational checkpoint is Atlas-50 alpha under Section 10 of the
-  truth-first review. A machine draft does not complete the reviewed
-  57-fingerprint crosswalk; one review attempt does not complete independent
-  annotation; and the first 50-row bronze audit tranche does not authorize
-  expansion. Protected registry writes remain frozen until the mandatory
-  stratified 200-row independent audit reaches at least 90% precision at the
-  exact granularity claimed and an explicit reviewed unfreeze decision is
-  recorded.
+- Atlas-50 Phase A now exists as a deterministic precompilation package, not a
+  selection freeze or mechanism compilation. Its crosswalk has exactly 57
+  source-linked machine-draft rows and all 57 remain explicitly unreviewed. Its
+  feasibility matrix has 40 proposed follow-on cases: 37 pass the declared
+  Phase A gates and three fail the shared-representation gate because general
+  contracts are missing for multi-component metallocluster state, coupled
+  channel/conformational state, and polymer processivity/reaction instances.
+  The fail-closed proposal therefore contains immutable Atlas-10 plus 37
+  additions, or 47 cases, with an exact three-case shortfall. The 47/50 (94%)
+  representability value is a precompilation field projection, not the final
+  Section 10.2 result. Zero follow-on mechanisms were compiled, zero GPU work
+  was used, and no review, outreach, benchmark, assay, performance, discovery,
+  design, or atlas-coverage claim was created. The inherited baseline proves 96
+  Atlas-3/Atlas-10 files and all four protected registries unchanged.
+- The next Atlas-50 checkpoint is a later review and selection-freeze decision,
+  after the three material representation blockers are either governed or kept
+  excluded. A machine draft does not complete the reviewed 57-fingerprint
+  crosswalk; one review attempt does not complete independent annotation; and
+  the first 50-row bronze audit tranche does not authorize expansion. Protected
+  registry writes remain frozen until the mandatory stratified 200-row
+  independent audit reaches at least 90% precision at the exact granularity
+  claimed and an explicit reviewed unfreeze decision is recorded.
 
 The project is early and scientifically unvalidated, not empty. Its strongest
 current assets are the typed schema, provenance-bearing registries, negative

@@ -1,0 +1,282 @@
+{
+  "baseline_commit": "89498a7b0e6e5ea419654bb8ff563512ab36bb89",
+  "claim_boundary": [
+    "The 94% value is a precompilation field-projection check over a deliberately proposed surface, not the final Section 10.2 result.",
+    "The 47-case fail-closed proposal is not a frozen selection and contains no newly compiled mechanism objects.",
+    "Pressure inventory records selection intent and explicit gaps; it is not an atlas-coverage, accuracy, validation, discovery, design, assay, or speed claim."
+  ],
+  "follow_on_surface": {
+    "candidate_count": 40,
+    "excluded_blocked_count": 3,
+    "excluded_candidate_ids": [
+      "atlas50.candidate.m0212",
+      "atlas50.candidate.m0753",
+      "atlas50.candidate.m0970"
+    ],
+    "proposed_addition_count": 37,
+    "proposed_addition_ids": [
+      "atlas50.candidate.m0001",
+      "atlas50.candidate.m0007",
+      "atlas50.candidate.m0014",
+      "atlas50.candidate.m0031",
+      "atlas50.candidate.m0034",
+      "atlas50.candidate.m0049",
+      "atlas50.candidate.m0050",
+      "atlas50.candidate.m0052",
+      "atlas50.candidate.m0064",
+      "atlas50.candidate.m0081",
+      "atlas50.candidate.m0099",
+      "atlas50.candidate.m0106",
+      "atlas50.candidate.m0107",
+      "atlas50.candidate.m0121",
+      "atlas50.candidate.m0126",
+      "atlas50.candidate.m0127",
+      "atlas50.candidate.m0128",
+      "atlas50.candidate.m0129",
+      "atlas50.candidate.m0132",
+      "atlas50.candidate.m0133",
+      "atlas50.candidate.m0135",
+      "atlas50.candidate.m0139",
+      "atlas50.candidate.m0145",
+      "atlas50.candidate.m0174",
+      "atlas50.candidate.m0190",
+      "atlas50.candidate.m0191",
+      "atlas50.candidate.m0204",
+      "atlas50.candidate.m0219",
+      "atlas50.candidate.m0222",
+      "atlas50.candidate.m0767",
+      "atlas50.candidate.m0797",
+      "atlas50.candidate.m0851",
+      "atlas50.candidate.m0907",
+      "atlas50.candidate.m0935",
+      "atlas50.candidate.m0980",
+      "atlas50.candidate.m0991",
+      "atlas50.candidate.m0997"
+    ]
+  },
+  "governance": {
+    "benchmark_created": false,
+    "expansion_freeze_lifted": false,
+    "gpu_hours": 0,
+    "independent_review_claimed": false,
+    "mechanism_compilation_performed": false,
+    "outreach_claimed": false,
+    "registry_mutation_permitted": false
+  },
+  "inherited_atlas10": {
+    "case_count": 10,
+    "case_ids": [
+      "atlas3.mcm-pfre.radical",
+      "atlas3.mnsod-ecoli.redox",
+      "atlas3.tem1-ecoli.covalent",
+      "atlas10.caii-human.proton-relay",
+      "atlas10.hewl-chicken.covalent-glycosidase",
+      "atlas10.trypsin-fusarium.serine-protease",
+      "atlas10.subtilisin-bpn-bacillus.serine-protease",
+      "atlas10.mandelate-racemase-pputida.enolate",
+      "atlas10.methylaspartate-lyase-ctetanomorphum.enolate",
+      "atlas10.cyclophilin-a-human.isomerization"
+    ],
+    "immutable": true,
+    "scientific_exit_gate_treated_as_passed": true,
+    "selection_id": "atlas10.follow-on.selection.2026-07-14",
+    "selection_sha256": "9bc114aaf793c51ec3b6273466f62a83974512a2dcf969d95d8b97453dd2795e"
+  },
+  "mission": "The full useful catalytic-mechanism atlas; Atlas-50 is a representation checkpoint, not a benchmark destination.",
+  "pressure_inventory": [
+    {
+      "examples": [
+        "atlas3.mcm-pfre.radical",
+        "atlas50.candidate.m0767",
+        "atlas50.candidate.m0991"
+      ],
+      "pressure": "radicals",
+      "status": "present"
+    },
+    {
+      "examples": [
+        "atlas3.mnsod-ecoli.redox",
+        "atlas50.candidate.m0107",
+        "atlas50.candidate.m0127",
+        "atlas50.candidate.m0212"
+      ],
+      "pressure": "metals_and_metalloclusters",
+      "status": "present_with_one_blocked_extreme"
+    },
+    {
+      "examples": [
+        "atlas50.candidate.m0099",
+        "atlas50.candidate.m0139",
+        "atlas50.candidate.m0980"
+      ],
+      "pressure": "redox_and_cofactor_states",
+      "status": "present"
+    },
+    {
+      "examples": [
+        "atlas3.tem1-ecoli.covalent",
+        "atlas50.candidate.m0031",
+        "atlas50.candidate.m0174"
+      ],
+      "pressure": "covalent_intermediates",
+      "status": "present"
+    },
+    {
+      "examples": [
+        "atlas10.caii-human.proton-relay",
+        "atlas50.candidate.m0050",
+        "atlas50.candidate.m0133"
+      ],
+      "pressure": "proton_ambiguity",
+      "status": "present"
+    },
+    {
+      "examples": [
+        "atlas50.candidate.m0064",
+        "atlas50.candidate.m0191",
+        "atlas50.candidate.m0753"
+      ],
+      "pressure": "conformational_gating",
+      "status": "present_with_one_blocked_extreme"
+    },
+    {
+      "examples": [
+        "atlas50.candidate.m0052",
+        "atlas50.candidate.m0222"
+      ],
+      "pressure": "same_net_reaction_different_mechanisms",
+      "status": "present"
+    },
+    {
+      "examples": [
+        "atlas10.trypsin-fusarium.serine-protease",
+        "atlas10.subtilisin-bpn-bacillus.serine-protease"
+      ],
+      "pressure": "convergent_strategy_unrelated_folds",
+      "status": "inherited_atlas10"
+    },
+    {
+      "examples": [
+        "atlas10.mandelate-racemase-pputida.enolate",
+        "atlas10.methylaspartate-lyase-ctetanomorphum.enolate",
+        "atlas50.candidate.m0050",
+        "atlas50.candidate.m0052"
+      ],
+      "pressure": "divergent_chemistry_within_a_fold",
+      "status": "inherited_and_extended"
+    },
+    {
+      "examples": [
+        "atlas10.hewl-chicken.covalent-glycosidase",
+        "atlas50.candidate.m0007",
+        "atlas50.candidate.m0135"
+      ],
+      "pressure": "alternative_mechanisms",
+      "status": "source_alternatives_present_unadjudicated"
+    },
+    {
+      "examples": [
+        "atlas50.candidate.m0007",
+        "atlas50.candidate.m0132",
+        "atlas50.candidate.m0139"
+      ],
+      "pressure": "conflicting_literature",
+      "status": "pressure_flagged_for_later_adjudication_not_established_as_fact"
+    },
+    {
+      "examples": [
+        "atlas10.cyclophilin-a-human.isomerization",
+        "atlas50.candidate.m0767",
+        "atlas50.candidate.m0851",
+        "atlas50.candidate.m0935"
+      ],
+      "pressure": "experimentally_unresolved_mechanisms",
+      "status": "non_detailed_source_abstentions_present"
+    },
+    {
+      "examples": [
+        "atlas50.candidate.m0204",
+        "atlas50.candidate.m0997"
+      ],
+      "pressure": "applicability_gaps",
+      "status": "present"
+    },
+    {
+      "examples": [
+        "atlas10.cyclophilin-a-human.isomerization",
+        "atlas50.candidate.m0767",
+        "atlas50.candidate.m0851",
+        "atlas50.candidate.m0935"
+      ],
+      "pressure": "abstention",
+      "status": "present"
+    }
+  ],
+  "proposal_id": "atlas50.phase-a.fail-closed-panel.2026-07-14",
+  "proposed_panel": {
+    "case_ids": [
+      "atlas3.mcm-pfre.radical",
+      "atlas3.mnsod-ecoli.redox",
+      "atlas3.tem1-ecoli.covalent",
+      "atlas10.caii-human.proton-relay",
+      "atlas10.hewl-chicken.covalent-glycosidase",
+      "atlas10.trypsin-fusarium.serine-protease",
+      "atlas10.subtilisin-bpn-bacillus.serine-protease",
+      "atlas10.mandelate-racemase-pputida.enolate",
+      "atlas10.methylaspartate-lyase-ctetanomorphum.enolate",
+      "atlas10.cyclophilin-a-human.isomerization",
+      "atlas50.candidate.m0001",
+      "atlas50.candidate.m0007",
+      "atlas50.candidate.m0014",
+      "atlas50.candidate.m0031",
+      "atlas50.candidate.m0034",
+      "atlas50.candidate.m0049",
+      "atlas50.candidate.m0050",
+      "atlas50.candidate.m0052",
+      "atlas50.candidate.m0064",
+      "atlas50.candidate.m0081",
+      "atlas50.candidate.m0099",
+      "atlas50.candidate.m0106",
+      "atlas50.candidate.m0107",
+      "atlas50.candidate.m0121",
+      "atlas50.candidate.m0126",
+      "atlas50.candidate.m0127",
+      "atlas50.candidate.m0128",
+      "atlas50.candidate.m0129",
+      "atlas50.candidate.m0132",
+      "atlas50.candidate.m0133",
+      "atlas50.candidate.m0135",
+      "atlas50.candidate.m0139",
+      "atlas50.candidate.m0145",
+      "atlas50.candidate.m0174",
+      "atlas50.candidate.m0190",
+      "atlas50.candidate.m0191",
+      "atlas50.candidate.m0204",
+      "atlas50.candidate.m0219",
+      "atlas50.candidate.m0222",
+      "atlas50.candidate.m0767",
+      "atlas50.candidate.m0797",
+      "atlas50.candidate.m0851",
+      "atlas50.candidate.m0907",
+      "atlas50.candidate.m0935",
+      "atlas50.candidate.m0980",
+      "atlas50.candidate.m0991",
+      "atlas50.candidate.m0997"
+    ],
+    "fail_closed": true,
+    "forty_additions_emitted": false,
+    "shortfall_from_50": 3,
+    "total_case_count": 47
+  },
+  "representation_projection": {
+    "at_least_90_percent": true,
+    "denominator_case_count": 50,
+    "denominator_description": "Immutable Atlas-10 plus all 40 proposed follow-on candidates before fail-closed exclusion.",
+    "final_section_10_2_result": false,
+    "projected_percentage": 94.0,
+    "projected_representable_without_family_specific_ad_hoc_fields": 47,
+    "requires_later_compilation_and_case_level_validation": true
+  },
+  "schema_version": "catalytic-earth.atlas50-proposal.v1",
+  "status": "proposal_not_selection_freeze"
+}
