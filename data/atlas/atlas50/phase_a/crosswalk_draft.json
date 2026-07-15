@@ -26,7 +26,7 @@
     "candidate_spec_sha256": "a8900044fd1fd9e2e75eaf16c6c9e466721e0db697e463e967c5f7e8aff3f42a",
     "crosswalk_spec_sha256": "dbb159b92ac35e2489a3f8e70794216146eab324dcc128a164115ff381a4b5d0",
     "fingerprint_registry_path": "data/registries/mechanism_fingerprints.json",
-    "fingerprint_registry_sha256": "8b39c3ecbce7fe0814e5c3979be8d4c4bca3558baabe140e87d3fbb3e4356dfe",
+    "fingerprint_registry_sha256": "f3f57858f041447f474f0cb849e283528521243f1439ba918264286df93cb75a",
     "source_catalog_sha256": "79f702bad421c7cdb603d50c79f0ea672d7fc0820d6582d54b6e510b92b980e8"
   },
   "required_source_keys": [

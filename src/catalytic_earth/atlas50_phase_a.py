@@ -76,6 +76,7 @@ _PDB_RE = re.compile(r"^[0-9][a-z0-9]{3}$")
 _CATH_RE = re.compile(r"^[0-9]+(?:\.[0-9]+){3}$")
 _CHEBI_RE = re.compile(r"^CHEBI:[0-9]+$")
 _SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
+_TEXT_SUFFIXES = {".json", ".md", ".py", ".sql", ".toml", ".yaml", ".yml"}
 
 
 def canonical_json_bytes(value: Any) -> bytes:
@@ -93,8 +94,47 @@ def compact_digest(value: Any) -> str:
     return hashlib.sha256(payload).hexdigest()
 
 
+def _find_git_root(path: Path) -> Path | None:
+    candidate = path if path.is_dir() else path.parent
+    for parent in (candidate, *candidate.parents):
+        if (parent / ".git").exists():
+            return parent.resolve()
+    return None
+
+
+def _read_repository_bytes(path: Path) -> bytes:
+    """Read a worktree file or its HEAD blob when sparse checkout omits it."""
+
+    path = Path(path)
+    if path.is_file():
+        return path.read_bytes()
+    root = _find_git_root(path)
+    if root is None:
+        raise FileNotFoundError(path)
+    try:
+        relative = path.resolve().relative_to(root).as_posix()
+    except ValueError as exc:
+        raise FileNotFoundError(path) from exc
+    result = subprocess.run(
+        ["git", "show", f"HEAD:{relative}"],
+        cwd=root,
+        capture_output=True,
+        check=False,
+    )
+    if result.returncode:
+        raise FileNotFoundError(path)
+    return result.stdout
+
+
+def _canonical_repository_payload(path: Path) -> bytes:
+    payload = _read_repository_bytes(path)
+    if path.suffix.lower() in _TEXT_SUFFIXES:
+        return payload.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    return payload
+
+
 def _load_json(path: Path) -> Any:
-    return json.loads(path.read_text(encoding="utf-8"))
+    return json.loads(_read_repository_bytes(path))
 
 
 def _sha256_bytes(payload: bytes) -> str:
@@ -102,7 +142,7 @@ def _sha256_bytes(payload: bytes) -> str:
 
 
 def _file_sha256(path: Path) -> str:
-    return _sha256_bytes(path.read_bytes())
+    return _sha256_bytes(_canonical_repository_payload(path))
 
 
 def _require(condition: bool, message: str) -> None:
@@ -1038,10 +1078,7 @@ def validate_blocker_report(value: Any, matrix: dict[str, Any]) -> None:
 
 
 def _normalized_payload(path: Path) -> bytes:
-    payload = path.read_bytes()
-    if path.suffix.lower() in {".json", ".md", ".py", ".sql", ".toml", ".yaml", ".yml"}:
-        return payload.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
-    return payload
+    return _canonical_repository_payload(path)
 
 
 def _scope_content_digest(repo_root: Path, relative: str, kind: str) -> tuple[int, str]:
@@ -1068,7 +1105,7 @@ def _scope_content_digest(repo_root: Path, relative: str, kind: str) -> tuple[in
             check=True,
             capture_output=True,
         ).stdout
-        if Path(path).suffix.lower() in {".json", ".md", ".py", ".sql", ".toml", ".yaml", ".yml"}:
+        if Path(path).suffix.lower() in _TEXT_SUFFIXES:
             payload = payload.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
         path_key = path.encode("utf-8")
         hasher.update(path_key + b"\0" + str(len(payload)).encode("ascii") + b"\0" + _sha256_bytes(payload).encode("ascii") + b"\n")
@@ -1186,7 +1223,7 @@ def build_package_manifest(
     ]
     artifacts: list[dict[str, Any]] = []
     for relative in static_paths:
-        payload = (repo_root / relative).read_bytes()
+        payload = _canonical_repository_payload(repo_root / relative)
         artifacts.append(
             {
                 "path": relative,

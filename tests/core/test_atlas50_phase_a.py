@@ -1,12 +1,17 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
+import subprocess
 import unittest
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 from catalytic_earth.atlas50_phase_a import (
     PHASE_RELATIVE,
+    _file_sha256,
+    _load_json,
     build_phase_a_outputs,
     canonical_json_bytes,
     validate_blocker_report,
@@ -122,6 +127,46 @@ class Atlas50PhaseATests(unittest.TestCase):
 
         for filename, value in expected.items():
             self.assertEqual((PHASE / filename).read_bytes(), canonical_json_bytes(value))
+
+    def test_repository_reader_uses_head_blob_and_lf_canonical_hash(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            fixture = root / "data/registries/fixture.json"
+            fixture.parent.mkdir(parents=True)
+            crlf_payload = b'{\r\n  "status": "committed"\r\n}\r\n'
+            lf_payload = crlf_payload.replace(b"\r\n", b"\n")
+            fixture.write_bytes(crlf_payload)
+            subprocess.run(["git", "init"], cwd=root, check=True, capture_output=True)
+            subprocess.run(
+                ["git", "config", "user.email", "atlas50@example.invalid"],
+                cwd=root,
+                check=True,
+            )
+            subprocess.run(
+                ["git", "config", "user.name", "Atlas-50 test"],
+                cwd=root,
+                check=True,
+            )
+            subprocess.run(
+                ["git", "config", "core.autocrlf", "false"],
+                cwd=root,
+                check=True,
+            )
+            subprocess.run(
+                ["git", "add", "data/registries/fixture.json"],
+                cwd=root,
+                check=True,
+            )
+            subprocess.run(
+                ["git", "commit", "-m", "Add sparse fixture"],
+                cwd=root,
+                check=True,
+                capture_output=True,
+            )
+            fixture.unlink()
+
+            self.assertEqual(_load_json(fixture), {"status": "committed"})
+            self.assertEqual(_file_sha256(fixture), hashlib.sha256(lf_payload).hexdigest())
 
     def test_review_status_cannot_be_upgraded_by_edit(self) -> None:
         changed = copy.deepcopy(self.crosswalk)
