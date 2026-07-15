@@ -34,10 +34,8 @@ def _load(name: str) -> dict:
 class Atlas50PhaseATests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        cls.registry = json.loads(
-            (ROOT / "data/registries/mechanism_fingerprints.json").read_text(
-                encoding="utf-8"
-            )
+        cls.registry = _load_json(
+            ROOT / "data/registries/mechanism_fingerprints.json"
         )
         cls.crosswalk = _load("crosswalk_draft.json")
         cls.matrix = _load("candidate_matrix.json")
