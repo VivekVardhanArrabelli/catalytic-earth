@@ -1,6 +1,6 @@
 # Current State
 
-## 2026-07-14 Atlas-50 Phase A precompilation checkpoint
+## 2026-07-14 Atlas-50 Phase B review/freeze-readiness checkpoint
 
 **Foundation:** 2026-07-13 truth reset
 
@@ -24,6 +24,8 @@ Read in this order:
    review state, and remaining gate.
 10. `docs/ATLAS50_PHASE_A.md` — deterministic machine draft, 40-case
     feasibility matrix, fail-closed proposal, blockers, and claim boundary.
+11. `docs/ATLAS50_PHASE_B.md` — deterministic review queues, unfrozen
+    selection candidate, source-reacquisition plan, and open freeze gates.
 
 Current truth:
 
@@ -94,14 +96,24 @@ Current truth:
   was used, and no review, outreach, benchmark, assay, performance, discovery,
   design, or atlas-coverage claim was created. The inherited baseline proves 96
   Atlas-3/Atlas-10 files and all four protected registries unchanged.
-- The next Atlas-50 checkpoint is a later review and selection-freeze decision,
-  after the three material representation blockers are either governed or kept
-  excluded. A machine draft does not complete the reviewed 57-fingerprint
-  crosswalk; one review attempt does not complete independent annotation; and
-  the first 50-row bronze audit tranche does not authorize expansion. Protected
-  registry writes remain frozen until the mandatory stratified 200-row
-  independent audit reaches at least 90% precision at the exact granularity
-  claimed and an explicit reviewed unfreeze decision is recorded.
+- Atlas-50 Phase B has started as deterministic review and selection-freeze
+  readiness, not completed review or a frozen selection. It provides 57
+  crosswalk packets and 40 panel packets; all 97 remain unreviewed. The attempt
+  ledger records zero reviewers, submissions, or external messages. The exact
+  47-case candidate remains `selection_frozen=false` with six blocked freeze
+  conditions. A ten-lane source-reacquisition plan exists for the 37 passing
+  additions, but it authorizes zero pre-freeze requests, leaves post-freeze
+  budgets unset, and records zero acquired records. Phase A, Atlas-3, Atlas-10,
+  and all protected registries remain unchanged. No mechanism was compiled and
+  no GPU work was used.
+- The next Atlas-50 action requires explicit reviewer/outreach authority and
+  attributable submissions. A machine draft or packet does not complete the
+  reviewed 57-fingerprint crosswalk; an outreach attempt does not complete
+  independent annotation; and the first 50-row bronze audit tranche does not
+  authorize expansion. Protected registry writes remain frozen until the
+  mandatory stratified 200-row independent audit reaches at least 90% precision
+  at the exact granularity claimed and an explicit reviewed unfreeze decision
+  is recorded.
 
 The project is early and scientifically unvalidated, not empty. Its strongest
 current assets are the typed schema, provenance-bearing registries, negative

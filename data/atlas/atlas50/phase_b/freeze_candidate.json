@@ -1,0 +1,152 @@
+{
+  "baseline_commit": "375548419e7435efa2bffc89be5e32aa70864875",
+  "blocker_dispositions": [
+    {
+      "blocker_id": "atlas50.blocker.multi-component-metallocluster-state",
+      "candidate_id": "atlas50.candidate.m0212",
+      "convenience_choice_made": false,
+      "current_disposition": "remain_excluded_pending_reviewed_generic_contract_disposition",
+      "generic_contract_validated": false,
+      "mcsa_id": "M0212",
+      "reviewed": false
+    },
+    {
+      "blocker_id": "atlas50.blocker.coupled-channel-conformational-state",
+      "candidate_id": "atlas50.candidate.m0753",
+      "convenience_choice_made": false,
+      "current_disposition": "remain_excluded_pending_reviewed_generic_contract_disposition",
+      "generic_contract_validated": false,
+      "mcsa_id": "M0753",
+      "reviewed": false
+    },
+    {
+      "blocker_id": "atlas50.blocker.polymer-processivity-reaction-instance",
+      "candidate_id": "atlas50.candidate.m0970",
+      "convenience_choice_made": false,
+      "current_disposition": "remain_excluded_pending_reviewed_generic_contract_disposition",
+      "generic_contract_validated": false,
+      "mcsa_id": "M0970",
+      "reviewed": false
+    }
+  ],
+  "candidate_id": "atlas50.phase-b.selection-freeze-candidate.2026-07-14",
+  "candidate_panel": {
+    "case_ids": [
+      "atlas3.mcm-pfre.radical",
+      "atlas3.mnsod-ecoli.redox",
+      "atlas3.tem1-ecoli.covalent",
+      "atlas10.caii-human.proton-relay",
+      "atlas10.hewl-chicken.covalent-glycosidase",
+      "atlas10.trypsin-fusarium.serine-protease",
+      "atlas10.subtilisin-bpn-bacillus.serine-protease",
+      "atlas10.mandelate-racemase-pputida.enolate",
+      "atlas10.methylaspartate-lyase-ctetanomorphum.enolate",
+      "atlas10.cyclophilin-a-human.isomerization",
+      "atlas50.candidate.m0001",
+      "atlas50.candidate.m0007",
+      "atlas50.candidate.m0014",
+      "atlas50.candidate.m0031",
+      "atlas50.candidate.m0034",
+      "atlas50.candidate.m0049",
+      "atlas50.candidate.m0050",
+      "atlas50.candidate.m0052",
+      "atlas50.candidate.m0064",
+      "atlas50.candidate.m0081",
+      "atlas50.candidate.m0099",
+      "atlas50.candidate.m0106",
+      "atlas50.candidate.m0107",
+      "atlas50.candidate.m0121",
+      "atlas50.candidate.m0126",
+      "atlas50.candidate.m0127",
+      "atlas50.candidate.m0128",
+      "atlas50.candidate.m0129",
+      "atlas50.candidate.m0132",
+      "atlas50.candidate.m0133",
+      "atlas50.candidate.m0135",
+      "atlas50.candidate.m0139",
+      "atlas50.candidate.m0145",
+      "atlas50.candidate.m0174",
+      "atlas50.candidate.m0190",
+      "atlas50.candidate.m0191",
+      "atlas50.candidate.m0204",
+      "atlas50.candidate.m0219",
+      "atlas50.candidate.m0222",
+      "atlas50.candidate.m0767",
+      "atlas50.candidate.m0797",
+      "atlas50.candidate.m0851",
+      "atlas50.candidate.m0907",
+      "atlas50.candidate.m0935",
+      "atlas50.candidate.m0980",
+      "atlas50.candidate.m0991",
+      "atlas50.candidate.m0997"
+    ],
+    "fail_closed": true,
+    "forty_additions_emitted": false,
+    "shortfall_from_50": 3,
+    "total_case_count": 47
+  },
+  "claim_boundary": [
+    "This is an exact unfrozen candidate inherited from Phase A, not an Atlas-50 selection.",
+    "The 47-of-50 value remains a precompilation projection and not the final Section 10.2 result.",
+    "No review, agreement, source reacquisition, mechanism compilation, or independent annotation is claimed."
+  ],
+  "compiled_follow_on_mechanisms": 0,
+  "freeze_gate": {
+    "blocked_condition_count": 6,
+    "outcomes": {
+      "all_40_panel_packets_reviewed": "blocked_no_submissions",
+      "all_57_crosswalk_packets_reviewed": "blocked_no_submissions",
+      "explicit_selection_freeze_approval_recorded": "blocked_no_approval_artifact",
+      "generic_contract_dispositions_reviewed": "blocked_no_reviewed_dispositions",
+      "phase_a_and_protected_inheritance_unchanged": "pass",
+      "post_freeze_source_budget_approved": "blocked_budget_unset",
+      "revisions_conflicts_and_unresolved_fields_preserved": "blocked_no_submissions"
+    },
+    "ready": false
+  },
+  "gpu_hours": 0,
+  "inherited_atlas10": {
+    "case_count": 10,
+    "case_ids": [
+      "atlas3.mcm-pfre.radical",
+      "atlas3.mnsod-ecoli.redox",
+      "atlas3.tem1-ecoli.covalent",
+      "atlas10.caii-human.proton-relay",
+      "atlas10.hewl-chicken.covalent-glycosidase",
+      "atlas10.trypsin-fusarium.serine-protease",
+      "atlas10.subtilisin-bpn-bacillus.serine-protease",
+      "atlas10.mandelate-racemase-pputida.enolate",
+      "atlas10.methylaspartate-lyase-ctetanomorphum.enolate",
+      "atlas10.cyclophilin-a-human.isomerization"
+    ],
+    "immutable": true,
+    "scientific_exit_gate_treated_as_passed": true,
+    "selection_id": "atlas10.follow-on.selection.2026-07-14",
+    "selection_sha256": "9bc114aaf793c51ec3b6273466f62a83974512a2dcf969d95d8b97453dd2795e"
+  },
+  "phase_a_proposal": {
+    "path": "data/atlas/atlas50/phase_a/proposed_panel.json",
+    "sha256": "2aa76eead9dd44bcb52c0cdacba6279990bd1b313bbd6c589909475b61b6b765"
+  },
+  "representation_projection": {
+    "at_least_90_percent": true,
+    "denominator_case_count": 50,
+    "denominator_description": "Immutable Atlas-10 plus all 40 proposed follow-on candidates before fail-closed exclusion.",
+    "final_section_10_2_result": false,
+    "projected_percentage": 94.0,
+    "projected_representable_without_family_specific_ad_hoc_fields": 47,
+    "requires_later_compilation_and_case_level_validation": true
+  },
+  "review_state": {
+    "crosswalk_packets": 57,
+    "crosswalk_reviewed": 0,
+    "independent_annotation_claimed": false,
+    "panel_packets": 40,
+    "panel_reviewed": 0,
+    "review_attempts": 0,
+    "review_submissions": 0
+  },
+  "schema_version": "catalytic-earth.atlas50-freeze-candidate.v1",
+  "selection_frozen": false,
+  "status": "unfrozen_blocked_pending_real_review_budget_and_approval"
+}

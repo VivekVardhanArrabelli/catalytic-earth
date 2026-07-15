@@ -1,0 +1,3028 @@
+{
+  "actual_usage": {
+    "cpu_hours": 0,
+    "downloaded_bytes": 0,
+    "external_requests": 0,
+    "gpu_hours": 0,
+    "source_records_acquired": 0
+  },
+  "baseline_commit": "375548419e7435efa2bffc89be5e32aa70864875",
+  "budget": {
+    "gpu_hours_max": 0,
+    "post_freeze_budget_status": "unset_requires_explicit_freeze_approval",
+    "post_freeze_cpu_hours_max": null,
+    "post_freeze_download_mib_max": null,
+    "post_freeze_external_requests_max": null,
+    "pre_freeze_download_mib_max": 0,
+    "pre_freeze_external_requests_max": 0
+  },
+  "cases": [
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0001",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Glutamate racemase",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0001",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.40.50.1860"
+        ],
+        "chebi_ids": [
+          "CHEBI:29985",
+          "CHEBI:29986"
+        ],
+        "ec_numbers": [
+          "5.1.1.3"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0001",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/1/",
+        "pdb_ids": [
+          "1b73"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "P56868"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0007",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Isocitrate dehydrogenase (NADP+)",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0007",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.40.718.10"
+        ],
+        "chebi_ids": [
+          "CHEBI:15562",
+          "CHEBI:16474",
+          "CHEBI:16526",
+          "CHEBI:16810",
+          "CHEBI:18009"
+        ],
+        "ec_numbers": [
+          "1.1.1.42"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0007",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/7/",
+        "pdb_ids": [
+          "5icd"
+        ],
+        "source_reported_mechanism_proposal_count": 3,
+        "uniprot_ids": [
+          "P08200"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0014",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Vanadate-dependent chloride peroxidase",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0014",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:1.10.606.10"
+        ],
+        "chebi_ids": [
+          "CHEBI:15377",
+          "CHEBI:15378",
+          "CHEBI:16240",
+          "CHEBI:17996",
+          "CHEBI:24757"
+        ],
+        "ec_numbers": [
+          "1.11.1.10"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0014",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/14/",
+        "pdb_ids": [
+          "1vnc"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "P49053"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0031",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Thymidylate synthase",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0031",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.30.572.10"
+        ],
+        "chebi_ids": [
+          "CHEBI:15636",
+          "CHEBI:246422",
+          "CHEBI:57451",
+          "CHEBI:63528"
+        ],
+        "ec_numbers": [
+          "2.1.1.45"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0031",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/31/",
+        "pdb_ids": [
+          "1lcb"
+        ],
+        "source_reported_mechanism_proposal_count": 2,
+        "uniprot_ids": [
+          "P00469"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0034",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Catechol 2,3-dioxygenase",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0034",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.10.180.10"
+        ],
+        "chebi_ids": [
+          "CHEBI:15379",
+          "CHEBI:17236",
+          "CHEBI:18135"
+        ],
+        "ec_numbers": [
+          "1.13.11.2"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0034",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/34/",
+        "pdb_ids": [
+          "1mpy"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "P06622"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0049",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Histidine decarboxylase",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0049",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.50.20.10",
+          "CATH:4.10.510.10"
+        ],
+        "chebi_ids": [
+          "CHEBI:15378",
+          "CHEBI:16526",
+          "CHEBI:57595",
+          "CHEBI:58432"
+        ],
+        "ec_numbers": [
+          "4.1.1.22"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0049",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/49/",
+        "pdb_ids": [
+          "1pya"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "P00862"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0050",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Orotidine 5'-phosphate decarboxylase",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0050",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.20.20.70"
+        ],
+        "chebi_ids": [
+          "CHEBI:15378",
+          "CHEBI:16526",
+          "CHEBI:57538",
+          "CHEBI:57865"
+        ],
+        "ec_numbers": [
+          "4.1.1.23"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0050",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/50/",
+        "pdb_ids": [
+          "1dbt"
+        ],
+        "source_reported_mechanism_proposal_count": 3,
+        "uniprot_ids": [
+          "P25971"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0052",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Fructose-bisphosphate aldolase, class II",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0052",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.20.20.70"
+        ],
+        "chebi_ids": [
+          "CHEBI:49299",
+          "CHEBI:57642",
+          "CHEBI:59776"
+        ],
+        "ec_numbers": [
+          "4.1.2.13"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0052",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/52/",
+        "pdb_ids": [
+          "1b57"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "P0AB71"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0064",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "DNA topoisomerase III",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0064",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:1.10.290.10",
+          "CATH:3.40.50.140"
+        ],
+        "chebi_ids": [
+          "CHEBI:9160"
+        ],
+        "ec_numbers": [
+          "5.6.2.1"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0064",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/64/",
+        "pdb_ids": [
+          "1d6m"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "P14294"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0081",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Chorismate mutase AroQ class",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0081",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:1.10.590.10"
+        ],
+        "chebi_ids": [
+          "CHEBI:29748",
+          "CHEBI:29934"
+        ],
+        "ec_numbers": [
+          "5.4.99.5"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0081",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/81/",
+        "pdb_ids": [
+          "3csm"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "P32178"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0099",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Cytochrome-dependent methanol dehydrogenase",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0099",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:2.140.10.10"
+        ],
+        "chebi_ids": [
+          "CHEBI:15378",
+          "CHEBI:15734",
+          "CHEBI:17478",
+          "CHEBI:29033",
+          "CHEBI:29034"
+        ],
+        "ec_numbers": [
+          "1.1.2.7"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0099",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/99/",
+        "pdb_ids": [
+          "1g72"
+        ],
+        "source_reported_mechanism_proposal_count": 2,
+        "uniprot_ids": [
+          "P38539",
+          "P38540"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0106",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Pyruvate dehydrogenase E1",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0106",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.40.50.970"
+        ],
+        "chebi_ids": [
+          "CHEBI:15361",
+          "CHEBI:15378",
+          "CHEBI:16526",
+          "CHEBI:83099",
+          "CHEBI:83111"
+        ],
+        "ec_numbers": [
+          "1.2.4.1"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0106",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/106/",
+        "pdb_ids": [
+          "1w85"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "P21873",
+          "P21874"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0107",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Aerobic carbon monoxide dehydrogenase",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0107",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.30.365.10"
+        ],
+        "chebi_ids": [
+          "CHEBI:132124",
+          "CHEBI:15377",
+          "CHEBI:16526",
+          "CHEBI:17245",
+          "CHEBI:24646"
+        ],
+        "ec_numbers": [
+          "1.2.5.3"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0107",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/107/",
+        "pdb_ids": [
+          "1n62"
+        ],
+        "source_reported_mechanism_proposal_count": 2,
+        "uniprot_ids": [
+          "P19919",
+          "P19920",
+          "P19921"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0121",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Sulfite oxidase",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0121",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.10.120.10",
+          "CATH:3.90.420.10"
+        ],
+        "chebi_ids": [
+          "CHEBI:15377",
+          "CHEBI:15378",
+          "CHEBI:16189",
+          "CHEBI:17359",
+          "CHEBI:29033",
+          "CHEBI:29034"
+        ],
+        "ec_numbers": [
+          "1.8.3.1"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0121",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/121/",
+        "pdb_ids": [
+          "1sox"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "P07850"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0126",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Cytochrome-c3 hydrogenase",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0126",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:1.10.645.10"
+        ],
+        "chebi_ids": [
+          "CHEBI:15378",
+          "CHEBI:18276",
+          "CHEBI:29033",
+          "CHEBI:29034"
+        ],
+        "ec_numbers": [
+          "1.12.2.1"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0126",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/126/",
+        "pdb_ids": [
+          "2frv"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "P12944"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0127",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Ferredoxin hydrogenase",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0127",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.40.50.1780",
+          "CATH:3.40.950.10"
+        ],
+        "chebi_ids": [
+          "CHEBI:15378",
+          "CHEBI:18276",
+          "CHEBI:33737",
+          "CHEBI:33738"
+        ],
+        "ec_numbers": [
+          "1.12.7.2"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0127",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/127/",
+        "pdb_ids": [
+          "1hfe"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "P07598",
+          "P07603"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0128",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Firefly luciferase",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0128",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.30.300.30",
+          "CATH:3.40.50.980"
+        ],
+        "chebi_ids": [
+          "CHEBI:15379",
+          "CHEBI:16526",
+          "CHEBI:16792",
+          "CHEBI:30212",
+          "CHEBI:30616",
+          "CHEBI:33019",
+          "CHEBI:456215",
+          "CHEBI:58038"
+        ],
+        "ec_numbers": [
+          "1.13.12.7"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0128",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/128/",
+        "pdb_ids": [
+          "1ba3"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "P08659"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0129",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Taurine dioxygenase",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0129",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.60.130.10"
+        ],
+        "chebi_ids": [
+          "CHEBI:15379",
+          "CHEBI:16526",
+          "CHEBI:16810",
+          "CHEBI:17137",
+          "CHEBI:30031",
+          "CHEBI:507393",
+          "CHEBI:58213"
+        ],
+        "ec_numbers": [
+          "1.14.11.17"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0129",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/129/",
+        "pdb_ids": [
+          "1os7"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "P37610"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0132",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Alkanal monooxygenase (FMN-linked)",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0132",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.20.20.30"
+        ],
+        "chebi_ids": [
+          "CHEBI:15377",
+          "CHEBI:15378",
+          "CHEBI:15379",
+          "CHEBI:17176",
+          "CHEBI:30212",
+          "CHEBI:57560",
+          "CHEBI:57618",
+          "CHEBI:58210"
+        ],
+        "ec_numbers": [
+          "1.14.14.3"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0132",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/132/",
+        "pdb_ids": [
+          "1luc"
+        ],
+        "source_reported_mechanism_proposal_count": 3,
+        "uniprot_ids": [
+          "P07739",
+          "P07740"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0133",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Cytochrome P450cam",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0133",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:1.10.630.10"
+        ],
+        "chebi_ids": [
+          "CHEBI:15377",
+          "CHEBI:15378",
+          "CHEBI:15379",
+          "CHEBI:15396",
+          "CHEBI:15398",
+          "CHEBI:33737",
+          "CHEBI:33739"
+        ],
+        "ec_numbers": [
+          "1.14.15.1"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0133",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/133/",
+        "pdb_ids": [
+          "1yrc"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "P00183"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0135",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Peptidylglycine monooxygenase",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0135",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:2.60.120.230",
+          "CATH:2.60.120.310"
+        ],
+        "chebi_ids": [
+          "CHEBI:15377",
+          "CHEBI:15379",
+          "CHEBI:38290",
+          "CHEBI:58539",
+          "CHEBI:83148",
+          "CHEBI:85224"
+        ],
+        "ec_numbers": [
+          "1.14.17.3"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0135",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/135/",
+        "pdb_ids": [
+          "1sdw"
+        ],
+        "source_reported_mechanism_proposal_count": 4,
+        "uniprot_ids": [
+          "P14925"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0139",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Xanthine dehydrogenase",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0139",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.30.365.10"
+        ],
+        "chebi_ids": [
+          "CHEBI:15377",
+          "CHEBI:15378",
+          "CHEBI:17712",
+          "CHEBI:17775",
+          "CHEBI:57540",
+          "CHEBI:57945"
+        ],
+        "ec_numbers": [
+          "1.17.1.4"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0139",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/139/",
+        "pdb_ids": [
+          "1v97"
+        ],
+        "source_reported_mechanism_proposal_count": 3,
+        "uniprot_ids": [
+          "P80457"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0145",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Isopenicillin N synthase",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0145",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:2.60.120.330"
+        ],
+        "chebi_ids": [
+          "CHEBI:15377",
+          "CHEBI:15379",
+          "CHEBI:58399",
+          "CHEBI:58572"
+        ],
+        "ec_numbers": [
+          "1.21.3.1"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0145",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/145/",
+        "pdb_ids": [
+          "1odm"
+        ],
+        "source_reported_mechanism_proposal_count": 2,
+        "uniprot_ids": [
+          "P05326"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0174",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Papain",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0174",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.90.70.10"
+        ],
+        "chebi_ids": [
+          "CHEBI:15377",
+          "CHEBI:59869",
+          "CHEBI:90799"
+        ],
+        "ec_numbers": [
+          "3.4.22.2"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0174",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/174/",
+        "pdb_ids": [
+          "9pap"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "P00784"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0190",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Isopentenyl-diphosphate delta-isomerase, type I",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0190",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.90.79.10"
+        ],
+        "chebi_ids": [
+          "CHEBI:128769",
+          "CHEBI:57623"
+        ],
+        "ec_numbers": [
+          "5.3.3.2"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0190",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/190/",
+        "pdb_ids": [
+          "1nfs"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "Q46822"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0191",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Protein disulfide isomerase",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0191",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.40.30.10"
+        ],
+        "chebi_ids": [
+          "CHEBI:137058",
+          "CHEBI:137060"
+        ],
+        "ec_numbers": [
+          "5.3.4.1"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0191",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/191/",
+        "pdb_ids": [
+          "1mek"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "P07237"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0204",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Uroporphyrinogen-III synthase",
+      "mandatory_abstentions": [
+        "Tier 2 is blocked until a directly applicable structure/site evidence handle is established."
+      ],
+      "mcsa_id": "M0204",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "explicit_source_gap",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row.",
+          "No source-reported PDB handle was present in the selected M-CSA response.",
+          "No source-reported CATH handle was present in the selected M-CSA response."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "explicit_source_gap",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [],
+        "chebi_ids": [
+          "CHEBI:15377",
+          "CHEBI:57308",
+          "CHEBI:57845"
+        ],
+        "ec_numbers": [
+          "4.2.1.75"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0204",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/204/",
+        "pdb_ids": [],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "P10746"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0219",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Transketolase",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0219",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.40.50.970"
+        ],
+        "chebi_ids": [
+          "CHEBI:57483",
+          "CHEBI:57737",
+          "CHEBI:58273",
+          "CHEBI:59776"
+        ],
+        "ec_numbers": [
+          "2.2.1.1"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0219",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/219/",
+        "pdb_ids": [
+          "1trk",
+          "4kxv"
+        ],
+        "source_reported_mechanism_proposal_count": 2,
+        "uniprot_ids": [
+          "P29401"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0222",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Fructose-bisphosphate aldolase, class I",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0222",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.20.20.70"
+        ],
+        "chebi_ids": [
+          "CHEBI:49299",
+          "CHEBI:57642",
+          "CHEBI:59776"
+        ],
+        "ec_numbers": [
+          "4.1.2.13"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0222",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/222/",
+        "pdb_ids": [
+          "2qut"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "P00883"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0767",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Biotin synthase",
+      "mandatory_abstentions": [
+        "Tier 1 ordered-step detail is unsupported by the non-detailed source entry.",
+        "Tier 2 is unsupported until a bounded mechanism hypothesis and site-grounding evidence both exist."
+      ],
+      "mcsa_id": "M0767",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row.",
+          "The selected M-CSA entry is non-detailed; ordered steps and discrete electron-flow detail require abstention."
+        ],
+        "mcsa": "public_entry_handle_non_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "non_detailed",
+        "cath_ids": [
+          "CATH:3.20.20.70"
+        ],
+        "chebi_ids": [
+          "CHEBI:17319",
+          "CHEBI:29917",
+          "CHEBI:33737",
+          "CHEBI:33738",
+          "CHEBI:57586",
+          "CHEBI:57844",
+          "CHEBI:57861",
+          "CHEBI:59789",
+          "CHEBI:64428"
+        ],
+        "ec_numbers": [
+          "2.8.1.6"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0767",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/767/",
+        "pdb_ids": [
+          "1r30"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "P12996"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0797",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Ribulose-bisphosphate carboxylase/oxygenase, form II",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0797",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.20.20.110"
+        ],
+        "chebi_ids": [
+          "CHEBI:15377",
+          "CHEBI:15378",
+          "CHEBI:16526",
+          "CHEBI:57870",
+          "CHEBI:58272"
+        ],
+        "ec_numbers": [
+          "4.1.1.39"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0797",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/797/",
+        "pdb_ids": [
+          "1rba"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "P04718"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0851",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Glutathione peroxidase",
+      "mandatory_abstentions": [
+        "Tier 1 ordered-step detail is unsupported by the non-detailed source entry.",
+        "Tier 2 is unsupported until a bounded mechanism hypothesis and site-grounding evidence both exist."
+      ],
+      "mcsa_id": "M0851",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row.",
+          "The selected M-CSA entry is non-detailed; ordered steps and discrete electron-flow detail require abstention."
+        ],
+        "mcsa": "public_entry_handle_non_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "non_detailed",
+        "cath_ids": [
+          "CATH:3.40.30.10"
+        ],
+        "chebi_ids": [
+          "CHEBI:15377",
+          "CHEBI:16240",
+          "CHEBI:57925",
+          "CHEBI:58297"
+        ],
+        "ec_numbers": [
+          "1.11.1.9"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0851",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/851/",
+        "pdb_ids": [
+          "1gp1"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "P00435"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0907",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Ribulose-bisphosphate carboxylase/oxygenase, form I",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0907",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.20.20.110"
+        ],
+        "chebi_ids": [
+          "CHEBI:15377",
+          "CHEBI:15378",
+          "CHEBI:16526",
+          "CHEBI:57870",
+          "CHEBI:58272"
+        ],
+        "ec_numbers": [
+          "4.1.1.39"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0907",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/907/",
+        "pdb_ids": [
+          "1rbl"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "P00880",
+          "P04716"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0935",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Nitric oxide synthase",
+      "mandatory_abstentions": [
+        "Tier 1 ordered-step detail is unsupported by the non-detailed source entry.",
+        "Tier 2 is unsupported until a bounded mechanism hypothesis and site-grounding evidence both exist."
+      ],
+      "mcsa_id": "M0935",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row.",
+          "The selected M-CSA entry is non-detailed; ordered steps and discrete electron-flow detail require abstention."
+        ],
+        "mcsa": "public_entry_handle_non_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "non_detailed",
+        "cath_ids": [
+          "CATH:3.90.1230.10",
+          "CATH:3.90.340.10"
+        ],
+        "chebi_ids": [
+          "CHEBI:15377",
+          "CHEBI:15378",
+          "CHEBI:15379",
+          "CHEBI:16480",
+          "CHEBI:32682",
+          "CHEBI:57743",
+          "CHEBI:57783",
+          "CHEBI:58349"
+        ],
+        "ec_numbers": [
+          "1.14.13.39"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0935",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/935/",
+        "pdb_ids": [
+          "3nos"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "P29474"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0980",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Ferredoxin:thioredoxin reductase",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0980",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.90.460.10"
+        ],
+        "chebi_ids": [
+          "CHEBI:15378",
+          "CHEBI:29950",
+          "CHEBI:33737",
+          "CHEBI:33738",
+          "CHEBI:50058"
+        ],
+        "ec_numbers": [
+          "1.8.7.2"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0980",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/980/",
+        "pdb_ids": [
+          "1dj7"
+        ],
+        "source_reported_mechanism_proposal_count": 2,
+        "uniprot_ids": [
+          "Q55389"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0991",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "IspG",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0991",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "source_reported_candidate_handles_unreviewed",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [
+          "CATH:3.20.20.20"
+        ],
+        "chebi_ids": [
+          "CHEBI:128753",
+          "CHEBI:15377",
+          "CHEBI:15378",
+          "CHEBI:57618",
+          "CHEBI:58210",
+          "CHEBI:58483"
+        ],
+        "ec_numbers": [
+          "1.17.7.3"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0991",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/991/",
+        "pdb_ids": [
+          "4s38"
+        ],
+        "source_reported_mechanism_proposal_count": 1,
+        "uniprot_ids": [
+          "Q5SLI8"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    },
+    {
+      "acquisitions": [],
+      "candidate_id": "atlas50.candidate.m0997",
+      "downloaded_bytes": 0,
+      "executed_external_requests": 0,
+      "gpu_hours": 0,
+      "label": "Lanthanide-dependent methanol dehydrogenase",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0997",
+      "phase_a_uncertainties": [
+        "All row metadata and gate interpretations remain unreviewed.",
+        "M-CSA candidate participants do not establish a balanced canonical reaction or ChEBI microspecies applicability.",
+        "Primary-literature conflicts and source alternatives have not been adjudicated."
+      ],
+      "post_freeze_budget": null,
+      "required_lane_ids": [
+        "mcsa_mechanism_and_arrow_environment",
+        "rhea_and_chebi_reaction",
+        "uniprot_protein",
+        "pdb_and_cath_structure",
+        "ec_interpro_pfam_function",
+        "ec_blast_bond_change",
+        "enzymemap_atom_mapping",
+        "mechfind_and_ezmechanism_hypotheses",
+        "enzymm_template",
+        "primary_literature_claims"
+      ],
+      "source_availability": {
+        "cath": "explicit_source_gap",
+        "chebi": "source_reported_candidate_ids_not_reaction_adjudication",
+        "comparison_tools": "reference_or_lookup_surfaces_available_not_run",
+        "explicit_gaps": [
+          "No direct Rhea record, balanced reaction, or Rhea participant applicability was assigned in Phase A.",
+          "No primary-literature body or claim-level literature adjudication was acquired.",
+          "EC-BLAST, EnzymeMap, MechFind, EzMechanism, EnzyMM, InterPro, and Pfam were not run per row.",
+          "No source-reported CATH handle was present in the selected M-CSA response."
+        ],
+        "mcsa": "public_entry_handle_detailed",
+        "pdb": "source_reported_lookup_handles_not_retrieved",
+        "primary_literature": "claim_level_sources_not_acquired_or_adjudicated",
+        "rhea": "ec_query_key_only_no_direct_record_assigned",
+        "uniprot": "source_reported_lookup_handles_not_retrieved"
+      },
+      "source_identity": {
+        "annotation_level": "detailed",
+        "cath_ids": [],
+        "chebi_ids": [
+          "CHEBI:16842",
+          "CHEBI:17790",
+          "CHEBI:18315",
+          "CHEBI:18356"
+        ],
+        "ec_numbers": [
+          "1.1.2.10"
+        ],
+        "mapping_assertion": "source_reported_candidates_unreviewed",
+        "mcsa_id": "M0997",
+        "mcsa_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/997/",
+        "pdb_ids": [
+          "6fkw"
+        ],
+        "source_reported_mechanism_proposal_count": 3,
+        "uniprot_ids": [
+          "I0JWN7"
+        ]
+      },
+      "status": "not_started_pending_reviewed_selection_freeze",
+      "stop_conditions": [
+        "Stop if a source identifier, reaction, participant, step, site, cofactor state, or applicability claim would need to be guessed.",
+        "Stop if a rights or provenance boundary cannot be recorded.",
+        "Stop and exclude if generic shared fields plus abstention cannot represent the pressure without a family-specific field."
+      ]
+    }
+  ],
+  "claim_boundary": [
+    "This artifact is a source plan, not a source manifest.",
+    "No source record has been reacquired or verified in Phase B readiness work.",
+    "A source gap remains a gap and cannot be filled by a query key, family transfer, or invented identifier."
+  ],
+  "may_execute": false,
+  "plan_id": "atlas50.phase-b.post-freeze-source-reacquisition.2026-07-14",
+  "planned_case_count": 37,
+  "schema_version": "catalytic-earth.atlas50-source-reacquisition-plan.v1",
+  "selection_frozen": false,
+  "shared_lane_count": 10,
+  "shared_lanes": [
+    {
+      "cheapest_credible_method": "Retrieve the exact entry and permitted scheme metadata after freeze; hash the response and retain detailed versus non-detailed status.",
+      "lane_id": "mcsa_mechanism_and_arrow_environment",
+      "required_output": "Content-bound entry metadata, detail status, mechanism alternatives, and explicit arrow-environment availability or gap.",
+      "rights_boundaries": [
+        {
+          "redistribution_boundary": "Derived identifiers and metadata may be redistributed with attribution and change notice; no raw API page is bundled in Phase A.",
+          "rights": "CC BY 4.0",
+          "source_key": "mcsa"
+        },
+        {
+          "redistribution_boundary": "Reference-only in Phase A; no arrow-environment file or derived rule content is bundled.",
+          "rights": "MechFind non-profit/non-commercial license; underlying M-CSA attribution also applies",
+          "source_key": "mcsa_arrow_environments"
+        }
+      ],
+      "scientific_question": "What mechanism detail and electron-flow representation does the exact M-CSA entry expose for this case?",
+      "source_keys": [
+        "mcsa",
+        "mcsa_arrow_environments"
+      ],
+      "stop_condition": "Stop if the entry cannot be bound by an exact identifier, content hash, version boundary, and redistribution rule; never infer missing steps."
+    },
+    {
+      "cheapest_credible_method": "Query authoritative Rhea surfaces using the frozen candidate handles, then verify ChEBI participants without promoting query keys to canonical mappings.",
+      "lane_id": "rhea_and_chebi_reaction",
+      "required_output": "Direct Rhea record and ChEBI bindings, or a content-bound zero-result/ambiguity gap.",
+      "rights_boundaries": [
+        {
+          "redistribution_boundary": "Only query URIs and existing inherited snapshots are referenced; no new Rhea body is bundled.",
+          "rights": "CC BY 4.0",
+          "source_key": "rhea"
+        },
+        {
+          "redistribution_boundary": "Only identifiers reported by the frozen M-CSA candidate response are carried; no ontology dump is bundled.",
+          "rights": "CC BY 4.0",
+          "source_key": "chebi"
+        }
+      ],
+      "scientific_question": "Is there a directly supported balanced reaction and participant/microspecies mapping for this exact case?",
+      "source_keys": [
+        "rhea",
+        "chebi"
+      ],
+      "stop_condition": "Stop rather than select a reaction or microspecies when multiple records remain applicable or no direct record is supported."
+    },
+    {
+      "cheapest_credible_method": "Retrieve exact UniProt entries after freeze and verify sequence, organism, evidence, catalytic annotations, and isoform boundaries.",
+      "lane_id": "uniprot_protein",
+      "required_output": "Versioned protein records and explicit applicability/site gaps.",
+      "rights_boundaries": [
+        {
+          "redistribution_boundary": "Do not acquire or redistribute until rights and provenance are recorded.",
+          "rights": "not_recorded_in_phase_a_catalog",
+          "source_key": "uniprot"
+        }
+      ],
+      "scientific_question": "Do the source-reported protein handles identify the intended natural protein and evidence-bearing site context?",
+      "source_keys": [
+        "uniprot"
+      ],
+      "stop_condition": "Stop on isoform, organism, sequence, numbering, or applicability ambiguity."
+    },
+    {
+      "cheapest_credible_method": "Retrieve reported PDB/mmCIF and CATH records, then bind author, label, and natural-protein numbering without transfer by fold alone.",
+      "lane_id": "pdb_and_cath_structure",
+      "required_output": "Content-addressed structure/domain records, numbering crosswalks, and engineered/missing-state warnings.",
+      "rights_boundaries": [
+        {
+          "redistribution_boundary": "Do not acquire or redistribute until rights and provenance are recorded.",
+          "rights": "not_recorded_in_phase_a_catalog",
+          "source_key": "pdb"
+        },
+        {
+          "redistribution_boundary": "Only CATH identifiers returned by M-CSA are carried; no classification files are bundled.",
+          "rights": "CC BY 4.0",
+          "source_key": "cath"
+        }
+      ],
+      "scientific_question": "Which exact structures and fold/domain assignments support or limit the case?",
+      "source_keys": [
+        "pdb",
+        "cath"
+      ],
+      "stop_condition": "Stop if residue identity, construct provenance, ligand/state applicability, or domain assignment cannot be reconciled."
+    },
+    {
+      "cheapest_credible_method": "Retrieve exact EC, InterPro, and Pfam records for frozen handles and preserve specificity limits.",
+      "lane_id": "ec_interpro_pfam_function",
+      "required_output": "Versioned functional/family context and explicit non-uniqueness/applicability boundaries.",
+      "rights_boundaries": [
+        {
+          "redistribution_boundary": "Per-EC reference links only.",
+          "rights": "bulk redistribution terms not recaptured in Phase A",
+          "source_key": "ec"
+        },
+        {
+          "redistribution_boundary": "UniProt lookup links only; no InterPro match data is bundled.",
+          "rights": "CC0 1.0 for InterPro, Pfam, PRINTS, and SFLD downloadable data",
+          "source_key": "interpro"
+        },
+        {
+          "redistribution_boundary": "Lookup links only; no Pfam assignments are bundled.",
+          "rights": "CC0 1.0 for downloadable Pfam data on InterPro",
+          "source_key": "pfam"
+        }
+      ],
+      "scientific_question": "What functional and family context is supported without treating EC or family membership as a unique mechanism?",
+      "source_keys": [
+        "ec",
+        "interpro",
+        "pfam"
+      ],
+      "stop_condition": "Stop any mechanism transfer justified only by EC, domain, family, or fold membership."
+    },
+    {
+      "cheapest_credible_method": "Run only after a balanced reaction is frozen and record tool/version, inputs, outputs, rights, and failures.",
+      "lane_id": "ec_blast_bond_change",
+      "required_output": "Content-bound bond-change result or explicit inapplicability/failure.",
+      "rights_boundaries": [
+        {
+          "redistribution_boundary": "Reference-only; no result table or bond-change object is bundled.",
+          "rights": "redistribution terms not captured",
+          "source_key": "ec_blast"
+        }
+      ],
+      "scientific_question": "Does an applicable EC-BLAST result provide supported net bond changes for the exact reaction?",
+      "source_keys": [
+        "ec_blast"
+      ],
+      "stop_condition": "Do not run on an unfrozen or ambiguous reaction and do not reinterpret net edits as mechanism steps."
+    },
+    {
+      "cheapest_credible_method": "Match only by supported identifiers/reaction evidence and retain dataset version, mapping provenance, and licensing boundary.",
+      "lane_id": "enzymemap_atom_mapping",
+      "required_output": "Versioned candidate mapping or explicit no-match/ambiguity record.",
+      "rights_boundaries": [
+        {
+          "redistribution_boundary": "The 13.1 MiB atom-mapped reaction file was not acquired or bundled; metadata and EC lookup keys only.",
+          "rights": "CC BY 4.0",
+          "source_key": "enzymemap"
+        }
+      ],
+      "scientific_question": "Is an applicable EnzymeMap reaction and atom mapping available for the frozen reaction?",
+      "source_keys": [
+        "enzymemap"
+      ],
+      "stop_condition": "Never invent or repair atom maps to force a match."
+    },
+    {
+      "cheapest_credible_method": "Use reference-only boundaries and exact supported inputs; record tool versions, parameters, outputs, conflicts, and failures.",
+      "lane_id": "mechfind_and_ezmechanism_hypotheses",
+      "required_output": "Reference-bound hypothesis identifiers/results or explicit unsupported-input/rights gaps.",
+      "rights_boundaries": [
+        {
+          "redistribution_boundary": "Reference-only; no rules, predictions, or arrow environments are bundled.",
+          "rights": "non-profit/non-commercial license",
+          "source_key": "mechfind"
+        },
+        {
+          "redistribution_boundary": "Documentation link only; no account was requested and no result was generated or bundled.",
+          "rights": "M-CSA site content CC BY 4.0; generated-result terms not separately captured",
+          "source_key": "ezmechanism"
+        }
+      ],
+      "scientific_question": "Which tool-supported hypotheses or rules apply to the frozen inputs, and where do they conflict or abstain?",
+      "source_keys": [
+        "mechfind",
+        "ezmechanism"
+      ],
+      "stop_condition": "Stop when rights prohibit redistribution or tool applicability/input requirements are unmet; do not call a hypothesis reviewed truth."
+    },
+    {
+      "cheapest_credible_method": "Query documented template surfaces only after reaction and source mechanism identities are frozen.",
+      "lane_id": "enzymm_template",
+      "required_output": "Template identifier/version and applicability boundary, or an explicit gap.",
+      "rights_boundaries": [
+        {
+          "redistribution_boundary": "No software, templates, structures, or match tables are bundled.",
+          "rights": "MIT software; M-CSA-derived template attribution applies",
+          "source_key": "enzymm"
+        }
+      ],
+      "scientific_question": "Is an applicable EnzyMM template available at the supported granularity?",
+      "source_keys": [
+        "enzymm"
+      ],
+      "stop_condition": "Do not adapt a template across unsupported chemistry, cofactors, sites, or substrate states."
+    },
+    {
+      "cheapest_credible_method": "Acquire only permitted metadata/full text after freeze, bind claim-level citations, and preserve conflicting interpretations.",
+      "lane_id": "primary_literature_claims",
+      "required_output": "Claim-level evidence/counterevidence references, rights boundaries, and unresolved alternatives.",
+      "rights_boundaries": [
+        {
+          "redistribution_boundary": "Do not acquire or redistribute until rights and provenance are recorded.",
+          "rights": "not_recorded_in_phase_a_catalog",
+          "source_key": "primary_literature"
+        }
+      ],
+      "scientific_question": "What primary claims, alternatives, conflicts, and unresolved mechanism details govern this case?",
+      "source_keys": [
+        "primary_literature"
+      ],
+      "stop_condition": "Stop on unavailable permission or inaccessible evidence; never fill the gap from secondary summaries alone."
+    }
+  ],
+  "status": "planned_not_authorized_pending_reviewed_selection_freeze_and_budget"
+}

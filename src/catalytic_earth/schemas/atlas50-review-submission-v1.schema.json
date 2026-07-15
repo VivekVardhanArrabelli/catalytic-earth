@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://catalytic.earth/schemas/atlas50-review-submission-v1.schema.json",
+  "title": "Catalytic Earth Atlas-50 attributable review submission v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "submission_id", "packet_id", "packet_type", "packet_sha256", "reviewer", "attestation", "decision", "evidence_references", "conflicts", "submitted_at", "independent_annotation_claimed"],
+  "properties": {
+    "schema_version": {"const": "catalytic-earth.atlas50-review-submission.v1"},
+    "submission_id": {"type": "string", "minLength": 1},
+    "packet_id": {"type": "string", "minLength": 1},
+    "packet_type": {"enum": ["crosswalk", "panel"]},
+    "packet_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "reviewer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reviewer_id", "reviewer_display_name", "expertise_context", "reviewed_on", "project_author"],
+      "properties": {
+        "reviewer_id": {"type": "string", "minLength": 1},
+        "reviewer_display_name": {"type": "string", "minLength": 1},
+        "expertise_context": {"type": "string", "minLength": 1},
+        "reviewed_on": {"type": "string", "format": "date"},
+        "project_author": {"type": "boolean"}
+      }
+    },
+    "attestation": {"type": "string", "minLength": 1},
+    "decision": {
+      "type": "object",
+      "required": ["outcome", "rationale", "uncertainty", "field_decisions"],
+      "properties": {
+        "outcome": {"enum": ["accept_machine_draft", "revise_classification", "unresolved", "accept_proposed_include", "accept_fail_closed_exclusion", "revise_with_evidence"]},
+        "rationale": {"type": "string", "minLength": 1},
+        "uncertainty": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "field_decisions": {"type": "object", "minProperties": 1}
+      }
+    },
+    "evidence_references": {"type": "array", "items": {"type": "object"}},
+    "conflicts": {"type": "array", "items": {"type": "object"}},
+    "submitted_at": {"type": "string", "format": "date-time"},
+    "independent_annotation_claimed": {"const": false}
+  }
+}

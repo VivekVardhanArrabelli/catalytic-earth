@@ -1,0 +1,68 @@
+{
+  "schema_version": "catalytic-earth.atlas50-phase-b-job-ledger.v1",
+  "ledger_id": "atlas50.phase-b.review-freeze-readiness.2026-07-14",
+  "baseline_commit": "375548419e7435efa2bffc89be5e32aa70864875",
+  "status": "active_bounded_readiness_work",
+  "jobs": [
+    {
+      "job_id": "atlas50-phase-b-deterministic-readiness-build",
+      "scientific_question": "Can the Phase A draft and proposal be converted into complete review queues and an auditable selection-freeze candidate without upgrading any scientific claim?",
+      "cheapest_credible_method": "Use a standard-library deterministic builder over the merged Phase A JSON package; copy source-linked draft content into review packets, leave every reviewer field unfilled, and compute freeze gates mechanically.",
+      "expected_information_gain": "Expose every review decision required for all 57 crosswalk rows and all 40 follow-on candidates, while proving that the 47-case panel remains a candidate rather than a frozen selection.",
+      "budget": {
+        "cpu_hours_max": 1,
+        "external_requests_max": 0,
+        "download_mib_max": 0,
+        "gpu_hours_max": 0
+      },
+      "reusable_output": "Versioned review queues, freeze candidate, readiness report, inheritance proof, schemas, builder, validator, and tests.",
+      "stop_condition": "Stop if the builder would need to infer a reviewer decision, resolve a scientific conflict, alter a Phase A row, or mark the selection frozen.",
+      "actual_usage": {
+        "cpu_hours_less_than": 1,
+        "external_requests": 0,
+        "downloaded_bytes": 0,
+        "gpu_hours": 0,
+        "review_packets_generated": 97,
+        "review_submissions": 0,
+        "source_records_acquired": 0
+      },
+      "status": "completed_with_review_and_freeze_gates_still_blocked"
+    },
+    {
+      "job_id": "atlas50-phase-b-real-crosswalk-and-panel-review",
+      "scientific_question": "Do identified human reviewers accept, revise, or leave unresolved the machine-draft crosswalk classifications, source mappings, and proposed panel dispositions?",
+      "cheapest_credible_method": "Provide deterministic packets to identified reviewers and preserve signed or otherwise attributable submissions verbatim under the review-submission contract.",
+      "expected_information_gain": "Convert machine-draft classifications and proposal dispositions into review evidence while retaining disagreements and unresolved fields.",
+      "budget": {
+        "external_messages_max_before_explicit_outreach_approval": 0,
+        "reviewer_count_committed": 0,
+        "gpu_hours_max": 0
+      },
+      "reusable_output": "Attributable per-row review submissions and an append-only attempt ledger.",
+      "stop_condition": "Do not contact anyone or claim a review attempt until explicit outreach authority and reviewer identity are recorded; stop on missing evidence rather than filling fields for convenience.",
+      "status": "blocked_not_started_no_reviewer_or_outreach_authority"
+    },
+    {
+      "job_id": "atlas50-phase-b-post-freeze-source-reacquisition",
+      "scientific_question": "Can exact source records for every frozen follow-on case be reacquired, rights-checked, content-hashed, and bound without inventing reaction, mechanism, site, or applicability claims?",
+      "cheapest_credible_method": "After an explicit reviewed selection freeze, execute the per-case bounded source plan against authoritative resources and preserve source gaps and reference-only boundaries.",
+      "expected_information_gain": "Determine which selected cases have sufficient source evidence for later compilation and which must abstain or fail closed.",
+      "budget": {
+        "external_requests_max_before_selection_freeze": 0,
+        "download_mib_max_before_selection_freeze": 0,
+        "post_freeze_cpu_hours_max": null,
+        "post_freeze_external_requests_max": null,
+        "post_freeze_download_mib_max": null,
+        "gpu_hours_max": 0
+      },
+      "reusable_output": "A content-addressed source manifest suitable for a later compilation phase.",
+      "stop_condition": "Do not acquire sources before the selection is reviewed and frozen and a bounded post-freeze budget is approved; stop on unclear rights, provenance, identifiers, or applicability.",
+      "status": "blocked_not_started_pending_reviewed_selection_freeze_and_budget"
+    }
+  ],
+  "claim_boundary": [
+    "This ledger records planned or blocked jobs, not completed review, acquisition, or selection freeze.",
+    "Zero GPU work is authorized because the current bottlenecks are review, provenance, rights, and governance.",
+    "No outsider has been contacted and no reviewer has agreed to participate."
+  ]
+}

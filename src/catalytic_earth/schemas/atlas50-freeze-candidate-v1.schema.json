@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://catalytic.earth/schemas/atlas50-freeze-candidate-v1.schema.json",
+  "title": "Catalytic Earth Atlas-50 unfrozen selection candidate v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "candidate_id", "status", "baseline_commit", "selection_frozen", "phase_a_proposal", "candidate_panel", "inherited_atlas10", "representation_projection", "review_state", "blocker_dispositions", "freeze_gate", "compiled_follow_on_mechanisms", "gpu_hours", "claim_boundary"],
+  "properties": {
+    "schema_version": {"const": "catalytic-earth.atlas50-freeze-candidate.v1"},
+    "candidate_id": {"type": "string", "minLength": 1},
+    "status": {"const": "unfrozen_blocked_pending_real_review_budget_and_approval"},
+    "baseline_commit": {"const": "375548419e7435efa2bffc89be5e32aa70864875"},
+    "selection_frozen": {"const": false},
+    "phase_a_proposal": {"type": "object"},
+    "candidate_panel": {
+      "type": "object",
+      "required": ["total_case_count", "case_ids", "shortfall_from_50", "forty_additions_emitted", "fail_closed"],
+      "properties": {
+        "total_case_count": {"const": 47},
+        "case_ids": {"type": "array", "minItems": 47, "maxItems": 47, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "shortfall_from_50": {"const": 3},
+        "forty_additions_emitted": {"const": false},
+        "fail_closed": {"const": true}
+      }
+    },
+    "inherited_atlas10": {"type": "object"},
+    "representation_projection": {"type": "object"},
+    "review_state": {"type": "object"},
+    "blocker_dispositions": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "object"}},
+    "freeze_gate": {
+      "type": "object",
+      "required": ["ready", "outcomes", "blocked_condition_count"],
+      "properties": {
+        "ready": {"const": false},
+        "outcomes": {"type": "object"},
+        "blocked_condition_count": {"const": 6}
+      }
+    },
+    "compiled_follow_on_mechanisms": {"const": 0},
+    "gpu_hours": {"const": 0},
+    "claim_boundary": {"type": "array", "minItems": 3, "items": {"type": "string", "minLength": 1}}
+  }
+}

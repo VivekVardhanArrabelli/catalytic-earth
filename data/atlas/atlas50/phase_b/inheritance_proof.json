@@ -1,0 +1,82 @@
+{
+  "atlas3_atlas10_and_protected_registries_unchanged": true,
+  "baseline_commit": "375548419e7435efa2bffc89be5e32aa70864875",
+  "phase_a_file_count": 10,
+  "phase_a_files": [
+    {
+      "bytes": 3115,
+      "path": "data/atlas/atlas50/phase_a/blocker_report.json",
+      "sha256": "9f2ec811e4694f438b1d607df1dab139bbf444ef035f06bc063df39eaec85b38",
+      "unchanged": true
+    },
+    {
+      "bytes": 244588,
+      "path": "data/atlas/atlas50/phase_a/candidate_matrix.json",
+      "sha256": "6740708d764eb84d7c1a8f83c98c9b90fa458974d9a28a6112accd7ed54346f9",
+      "unchanged": true
+    },
+    {
+      "bytes": 27233,
+      "path": "data/atlas/atlas50/phase_a/candidate_spec.json",
+      "sha256": "a8900044fd1fd9e2e75eaf16c6c9e466721e0db697e463e967c5f7e8aff3f42a",
+      "unchanged": true
+    },
+    {
+      "bytes": 403092,
+      "path": "data/atlas/atlas50/phase_a/crosswalk_draft.json",
+      "sha256": "838d74b142fc82c81183daa8d469db9e2baab52ffade4c8c6cf0b07826da1dac",
+      "unchanged": true
+    },
+    {
+      "bytes": 22005,
+      "path": "data/atlas/atlas50/phase_a/crosswalk_spec.json",
+      "sha256": "dbb159b92ac35e2489a3f8e70794216146eab324dcc128a164115ff381a4b5d0",
+      "unchanged": true
+    },
+    {
+      "bytes": 3404,
+      "path": "data/atlas/atlas50/phase_a/inherited_baseline.json",
+      "sha256": "ff3a95650a60c2ffb20265f7d329a2a97e8450534d4c144b2b5ed553a7e83124",
+      "unchanged": true
+    },
+    {
+      "bytes": 7215,
+      "path": "data/atlas/atlas50/phase_a/job_ledger.json",
+      "sha256": "2ba821f1301bfb80c4c08e23c181612fe9812e43508a58684e4ff965e6afa2ce",
+      "unchanged": true
+    },
+    {
+      "bytes": 3522,
+      "path": "data/atlas/atlas50/phase_a/package_manifest.json",
+      "sha256": "17369b686c91f37daef9a212c82a12c9b22b71ec44676f3985b66730fb67a100",
+      "unchanged": true
+    },
+    {
+      "bytes": 9134,
+      "path": "data/atlas/atlas50/phase_a/proposed_panel.json",
+      "sha256": "2aa76eead9dd44bcb52c0cdacba6279990bd1b313bbd6c589909475b61b6b765",
+      "unchanged": true
+    },
+    {
+      "bytes": 19969,
+      "path": "data/atlas/atlas50/phase_a/source_catalog.json",
+      "sha256": "79f702bad421c7cdb603d50c79f0ea672d7fc0820d6582d54b6e510b92b980e8",
+      "unchanged": true
+    }
+  ],
+  "phase_a_path": "data/atlas/atlas50/phase_a",
+  "phase_a_unchanged": true,
+  "phase_a_validation": {
+    "blockers": 3,
+    "candidate_rows": 40,
+    "compiled_follow_on_mechanisms": 0,
+    "crosswalk_rows": 57,
+    "gpu_hours": 0,
+    "projection_percentage": 94.0,
+    "proposed_additions": 37,
+    "proposed_total": 47,
+    "reviewed_crosswalk_rows": 0
+  },
+  "proof_id": "atlas50.phase-b.inheritance.2026-07-14",
+  "schema_version": "catalytic-earth.atlas50-phase-b-inheritance-proof.v1"
+}

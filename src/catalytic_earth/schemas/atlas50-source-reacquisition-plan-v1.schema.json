@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://catalytic.earth/schemas/atlas50-source-reacquisition-plan-v1.schema.json",
+  "title": "Catalytic Earth Atlas-50 post-freeze source reacquisition plan v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "plan_id", "status", "baseline_commit", "may_execute", "selection_frozen", "planned_case_count", "shared_lane_count", "shared_lanes", "cases", "budget", "actual_usage", "claim_boundary"],
+  "properties": {
+    "schema_version": {"const": "catalytic-earth.atlas50-source-reacquisition-plan.v1"},
+    "plan_id": {"type": "string", "minLength": 1},
+    "status": {"const": "planned_not_authorized_pending_reviewed_selection_freeze_and_budget"},
+    "baseline_commit": {"const": "375548419e7435efa2bffc89be5e32aa70864875"},
+    "may_execute": {"const": false},
+    "selection_frozen": {"const": false},
+    "planned_case_count": {"const": 37},
+    "shared_lane_count": {"const": 10},
+    "shared_lanes": {"type": "array", "minItems": 10, "maxItems": 10, "items": {"type": "object"}},
+    "cases": {
+      "type": "array",
+      "minItems": 37,
+      "maxItems": 37,
+      "items": {
+        "type": "object",
+        "required": ["candidate_id", "label", "mcsa_id", "source_identity", "source_availability", "required_lane_ids", "mandatory_abstentions", "phase_a_uncertainties", "status", "acquisitions", "executed_external_requests", "downloaded_bytes", "gpu_hours", "post_freeze_budget", "stop_conditions"],
+        "properties": {
+          "candidate_id": {"type": "string", "minLength": 1},
+          "label": {"type": "string", "minLength": 1},
+          "mcsa_id": {"type": "string", "pattern": "^M[0-9]{4}$"},
+          "source_identity": {"type": "object"},
+          "source_availability": {"type": "object"},
+          "required_lane_ids": {"type": "array", "minItems": 10, "maxItems": 10, "uniqueItems": true},
+          "mandatory_abstentions": {"type": "array"},
+          "phase_a_uncertainties": {"type": "array", "minItems": 1},
+          "status": {"const": "not_started_pending_reviewed_selection_freeze"},
+          "acquisitions": {"type": "array", "maxItems": 0},
+          "executed_external_requests": {"const": 0},
+          "downloaded_bytes": {"const": 0},
+          "gpu_hours": {"const": 0},
+          "post_freeze_budget": {"type": "null"},
+          "stop_conditions": {"type": "array", "minItems": 1}
+        }
+      }
+    },
+    "budget": {"type": "object"},
+    "actual_usage": {"type": "object"},
+    "claim_boundary": {"type": "array", "minItems": 3, "items": {"type": "string", "minLength": 1}}
+  }
+}

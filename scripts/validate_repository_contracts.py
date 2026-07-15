@@ -71,6 +71,7 @@ def _validate_active_paths() -> None:
         ROOT / "docs/ATLAS10_SELECTION.md",
         ROOT / "docs/ATLAS10_KERNEL.md",
         ROOT / "docs/ATLAS50_PHASE_A.md",
+        ROOT / "docs/ATLAS50_PHASE_B.md",
         ROOT / "docs/CORE_REPRODUCTION.md",
         ROOT / "docs/EVALUATION_MEMORY.md",
         ROOT / "docs/LEAN_RELEASE.md",
@@ -111,6 +112,7 @@ def _validate_markdown_links() -> None:
         "docs/ATLAS10_SELECTION.md",
         "docs/ATLAS10_KERNEL.md",
         "docs/ATLAS50_PHASE_A.md",
+        "docs/ATLAS50_PHASE_B.md",
         "docs/ATLAS_TRUTH_POLICY.md",
         "docs/CORE_REPRODUCTION.md",
         "docs/EVALUATION_MEMORY.md",
@@ -165,6 +167,16 @@ def _validate_json_surfaces(*, include_release_manifest: bool) -> None:
         "data/atlas/atlas50/phase_a/proposed_panel.json",
         "data/atlas/atlas50/phase_a/blocker_report.json",
         "data/atlas/atlas50/phase_a/package_manifest.json",
+        "data/atlas/atlas50/phase_b/job_ledger.json",
+        "data/atlas/atlas50/phase_b/review_spec.json",
+        "data/atlas/atlas50/phase_b/crosswalk_review_queue.json",
+        "data/atlas/atlas50/phase_b/panel_review_queue.json",
+        "data/atlas/atlas50/phase_b/review_attempts.json",
+        "data/atlas/atlas50/phase_b/freeze_candidate.json",
+        "data/atlas/atlas50/phase_b/source_reacquisition_plan.json",
+        "data/atlas/atlas50/phase_b/inheritance_proof.json",
+        "data/atlas/atlas50/phase_b/readiness_report.json",
+        "data/atlas/atlas50/phase_b/package_manifest.json",
         "environments/core.json",
         "environments/ml-test.json",
         "environments/scientific-tools.json",
@@ -177,6 +189,11 @@ def _validate_json_surfaces(*, include_release_manifest: bool) -> None:
         "src/catalytic_earth/schemas/atlas50-candidate-matrix-v1.schema.json",
         "src/catalytic_earth/schemas/atlas50-proposal-v1.schema.json",
         "src/catalytic_earth/schemas/atlas50-blocker-report-v1.schema.json",
+        "src/catalytic_earth/schemas/atlas50-review-queue-v1.schema.json",
+        "src/catalytic_earth/schemas/atlas50-review-submission-v1.schema.json",
+        "src/catalytic_earth/schemas/atlas50-freeze-candidate-v1.schema.json",
+        "src/catalytic_earth/schemas/atlas50-source-reacquisition-plan-v1.schema.json",
+        "src/catalytic_earth/schemas/atlas50-readiness-report-v1.schema.json",
         "src/catalytic_earth/schemas/mechanism-record-v3.schema.json",
         "tests/test_tiers.json",
     ]
@@ -328,6 +345,8 @@ def main() -> int:
     _run("scripts/build_atlas10_review_packets.py", "--check")
     _run("scripts/build_atlas50_phase_a.py", "--check")
     _run("scripts/validate_atlas50_phase_a.py")
+    _run("scripts/build_atlas50_phase_b.py", "--check")
+    _run("scripts/validate_atlas50_phase_b.py")
     if os.environ.get("CE_PARTIAL_CLONE") == "1":
         _run("scripts/build_live_artifact_manifest.py", "--check", "--index-only")
     else:
