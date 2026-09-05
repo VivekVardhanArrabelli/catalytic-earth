@@ -1,6 +1,6 @@
 # Current State
 
-## 2026-09-05 Atlas-50 Phase B review-intake checkpoint
+## 2026-09-05 computational review and Atlas-50 review intake
 
 **Foundation:** 2026-07-13 truth reset and 2026-07-14 Phase B package
 
@@ -28,6 +28,15 @@ Read in this order:
     selection candidate, source-reacquisition plan, and open freeze gates.
 
 Current truth:
+
+- A separate [computational review](COMPUTATIONAL_REVIEW_20260905.md) now
+  records source-backed correction proposals for the 57-row crosswalk and
+  40-case panel. These are agent assessments with declared inspection depth,
+  not human submissions. Bounded source checks occurred for this overlay;
+  the frozen Phase B acquisition plan remains unexecuted.
+- A0A177THN5's APX-specific transfer is withdrawn and the larger APX-versus-CcP
+  study is retired (CE-017/ER-011). CcP-like remains a provisional working
+  interpretation; no target-specific donor activity is established.
 
 - The full computable catalytic-mechanism atlas is the mission. The typed IR
   and evidence compiler are its engine; benchmarks are internal truth controls.
@@ -85,8 +94,8 @@ Current truth:
 - Atlas-50 Phase A now exists as a deterministic precompilation package, not a
   selection freeze or mechanism compilation. Its crosswalk has exactly 57
   source-linked machine-draft rows and all 57 remain explicitly unreviewed. Its
-  feasibility matrix has 40 proposed follow-on cases: 37 pass the declared
-  Phase A gates and three fail the shared-representation gate because general
+  feasibility matrix has 40 proposed follow-on cases: the July draft marks 37
+  as passing the declared Phase A gates and three as failing the shared-representation gate because general
   contracts are missing for multi-component metallocluster state, coupled
   channel/conformational state, and polymer processivity/reaction instances.
   The fail-closed proposal therefore contains immutable Atlas-10 plus 37

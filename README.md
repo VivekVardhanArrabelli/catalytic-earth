@@ -45,9 +45,12 @@ a production biological design system.
 
 ## Quick Status — 2026-09-05
 
-The scientific state remains the 2026-07-14 checkpoint built on the 2026-07-13
-truth reset. The September update adds review intake and maintenance; it does
-not rescore a benchmark or upgrade evidence.
+The compiled atlas remains the 2026-07-14 checkpoint built on the 2026-07-13
+truth reset. The September update adds review intake and a
+[computational correction review](docs/COMPUTATIONAL_REVIEW_20260905.md) of the
+57-row crosswalk and 40-case proposal. It also withdraws the A0A177THN5
+APX-specific transfer and retires the study based on it (CE-017). No benchmark
+was rescored or independent human-review status upgraded.
 
 - `current702` contains 702 project benchmark labels: 685 bronze, 17 silver,
   zero project-gold; 683 are automation-curated and 19 author-reviewed.

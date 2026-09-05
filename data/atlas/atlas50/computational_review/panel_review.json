@@ -1,0 +1,300 @@
+{
+  "schema_version": "catalytic-earth.atlas50-computational-panel-review.v1",
+  "review_id": "atlas50.computational-panel-review.2026-09-05",
+  "generated_on": "2026-09-05",
+  "basis_commit": "a459ec78c032579d460bbf803f1df16e17379394",
+  "status": "computational_agent_review_only_not_human_panel_review",
+  "reviewer_counts": {
+    "computational_agents": 1,
+    "human_reviewers": 0,
+    "attributable_phase_b_submissions_created": 0
+  },
+  "scope": {
+    "phase_b_panel_packets": 40,
+    "proposed_include_packets": 37,
+    "fail_closed_exclusion_packets": 3,
+    "targeted_evidence_checks": 6,
+    "transcription_only_checks": 34,
+    "domain_model_or_gpu_jobs": 0,
+    "external_response_bytes": 1125005,
+    "external_download_limit_bytes": 31457280
+  },
+  "claim_boundary": [
+    "This is an agent-generated computational review aid, not an attributable real-human Phase B panel submission.",
+    "Every candidate remains unreviewed under the Phase B contract; this artifact cannot satisfy review coverage, upgrade a tier, resolve a blocker, or freeze selection.",
+    "Live upstream metadata were checked for transcription and selected structures were checked for identity and context. Primary-paper bodies and full claim-level mechanisms were not independently adjudicated.",
+    "Suggested actions are HOLD recommendations for human review, not formal dispositions or edits to frozen Phase A or Phase B artifacts."
+  ],
+  "method": {
+    "declared_dimensions_inspected": [
+      "source_gate",
+      "diversity_gate",
+      "rights_gate",
+      "provenance_gate",
+      "shared_representation_gate",
+      "object_tier_expectations",
+      "mandatory_abstentions",
+      "stop_conditions"
+    ],
+    "live_mcsa_comparison": {
+      "status": "40_of_40_exact_for_compared_fields",
+      "compared_fields": [
+        "EC numbers",
+        "UniProt identifiers",
+        "PDB identifiers",
+        "CATH identifiers",
+        "numeric ChEBI identifiers",
+        "detailed versus non-detailed annotation",
+        "mechanism proposal count"
+      ],
+      "qualification": "The comparison verifies source transcription only. For M0970 the non-ChEBI placeholder X00676 was inspected separately and was not treated as a numeric ChEBI identifier."
+    },
+    "depth_definitions": {
+      "transcription_only": "The packet and all declared review dimensions were inspected for internal transcription and boundary consistency; only the listed live M-CSA fields were independently checked. Scientific gate outcomes remain unresolved.",
+      "targeted_evidence_check": "The transcription check was supplemented with bounded official M-CSA reaction metadata and RCSB structure/entity metadata for a decision-relevant source, representation, or tier concern."
+    },
+    "gate_summary": {
+      "source_gate": "All 40 direct M-CSA records resolved and all compared fields matched. Four proposed-inclusion or exclusion rationales still require contextual source review: M0064, M0106, M0753, and M0970.",
+      "diversity_gate": "Declared pressure labels and the 37/3 proposal split were inspected. No independent scientific diversity adjudication was performed; row diversity passes remain machine draft.",
+      "rights_gate": "Only identifiers, links, bounded metadata, byte counts, and hashes are redistributed here. No raw API response or article body is committed, and no new rights defect was found in this bounded pass.",
+      "provenance_gate": "The live M-CSA response and targeted RCSB responses have retrieval date, URL, byte count, and SHA-256 receipts below. This supplements but does not replace the frozen Phase A acquisition provenance.",
+      "shared_representation_gate": "M0064, M0106, and M0107 should be held because the current evidence does not demonstrate that generic v3 captures topology, tethered carrier context, or coupled component/cofactor states consistently. M0212 and M0970 remain appropriately fail-closed; M0753 should first be rechecked at the source/applicability gate.",
+      "object_tier_expectations": "No tier was upgraded. M0064 and M0106 need additional Tier 0/Tier 2 applicability checks; the three non-detailed entries M0767, M0851, and M0935 retain mandatory Tier 1 and Tier 2 abstention; M0204 retains its Tier 2 abstention.",
+      "stop_conditions": "No reaction, component, topology, chain state, structure applicability, or mechanism detail was guessed. Unresolved contextual claims are recorded as HOLD recommendations."
+    }
+  },
+  "evidence_receipts": [
+    {
+      "source": "M-CSA official API selected 40 response",
+      "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=1,7,14,31,34,49,50,52,64,81,99,106,107,121,126,127,128,129,132,133,135,139,145,174,190,191,204,212,219,222,753,767,797,851,907,935,970,980,991,997",
+      "retrieved_on": "2026-09-05",
+      "bytes": 721603,
+      "sha256": "0fdb9641822cfb78c095e0f4f54d2b81f92c54c854ae03b53892b20988b562cf",
+      "raw_response_committed": false
+    },
+    {
+      "source": "RCSB PDB official Data API entry 1D6M",
+      "url": "https://data.rcsb.org/rest/v1/core/entry/1D6M",
+      "retrieved_on": "2026-09-05",
+      "bytes": 9548,
+      "sha256": "39d606d4b0160ac9781c0247aab1ae7ce0147c2e3bf604a468cf913d43ae3c17"
+    },
+    {
+      "source": "RCSB PDB official Data API polymer entity 1D6M/1",
+      "url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1D6M/1",
+      "retrieved_on": "2026-09-05",
+      "bytes": 31850,
+      "sha256": "90517f6412f388d4338ed0590b3439022fd09fb304b4e564ee9916a71fdc7872"
+    },
+    {
+      "source": "RCSB PDB official Data API entry 1W85",
+      "url": "https://data.rcsb.org/rest/v1/core/entry/1W85",
+      "retrieved_on": "2026-09-05",
+      "bytes": 28333,
+      "sha256": "3df9f9e97a34c4b59fbe8827bea6e697264992ff0b4b23e0bbf6e400db5a7ff0"
+    },
+    {
+      "source": "RCSB PDB official Data API polymer entities 1W85/1, 1W85/2, and 1W85/3",
+      "urls": [
+        "https://data.rcsb.org/rest/v1/core/polymer_entity/1W85/1",
+        "https://data.rcsb.org/rest/v1/core/polymer_entity/1W85/2",
+        "https://data.rcsb.org/rest/v1/core/polymer_entity/1W85/3"
+      ],
+      "retrieved_on": "2026-09-05",
+      "bytes": [18842, 17160, 14091],
+      "sha256": [
+        "e85aa6aa32fa7e7b9c422fb18565796fcf67fc3fa40708966178e8c6d1ede6d2",
+        "630dd13e88972cfa2d0aadedeb3cc0a77d6a203133c0f2839114bd398a5e4fd2",
+        "472ec91006afa35b30945b3d7df2a039bc82195448f2fa30ee21854ca91620c3"
+      ]
+    },
+    {
+      "source": "RCSB PDB official Data API entry 1N62",
+      "url": "https://data.rcsb.org/rest/v1/core/entry/1N62",
+      "retrieved_on": "2026-09-05",
+      "bytes": 21234,
+      "sha256": "5a8781c588b1e25296ee68298f0bc839d0c32bc5ed51d1f8660bdc8a47cbfba8"
+    },
+    {
+      "source": "RCSB PDB official Data API polymer entities 1N62/1, 1N62/2, and 1N62/3",
+      "urls": [
+        "https://data.rcsb.org/rest/v1/core/polymer_entity/1N62/1",
+        "https://data.rcsb.org/rest/v1/core/polymer_entity/1N62/2",
+        "https://data.rcsb.org/rest/v1/core/polymer_entity/1N62/3"
+      ],
+      "retrieved_on": "2026-09-05",
+      "bytes": [13970, 28042, 16445],
+      "sha256": [
+        "1207e974d3540629e0f8a695f2fb37cf12a24e0615f4234a8a685ed9bc3d90dd",
+        "7116d2d55b7d9fd5e9afbccfaa49297e67ef8afb692146246eb6fee93a57b873",
+        "6d657b814e12d3ff97bdbf4b0a0ac9cf48a5d4a2e5ce335769ea0153e97911e1"
+      ]
+    },
+    {
+      "source": "RCSB PDB official Data API entry 1N2C",
+      "url": "https://data.rcsb.org/rest/v1/core/entry/1N2C",
+      "retrieved_on": "2026-09-05",
+      "bytes": 22973,
+      "sha256": "264d5228e3d6f3a5c1e09c9c6d4e010c88acf8776d7e831ad0f384dd0391b113"
+    },
+    {
+      "source": "RCSB PDB official Data API polymer entities 1N2C/1, 1N2C/2, and 1N2C/3",
+      "urls": [
+        "https://data.rcsb.org/rest/v1/core/polymer_entity/1N2C/1",
+        "https://data.rcsb.org/rest/v1/core/polymer_entity/1N2C/2",
+        "https://data.rcsb.org/rest/v1/core/polymer_entity/1N2C/3"
+      ],
+      "retrieved_on": "2026-09-05",
+      "bytes": [20823, 20920, 16110],
+      "sha256": [
+        "843c15abbdc4577cdd1f2f221bb42ebbf9499ddfa38424c22b2b02bb46a59cb3",
+        "3418db94f7652cc70a3291c7cfa50c41c309193c299131d283e576ff22679f3e",
+        "ba5960dfb7c9d0f5694da4939105e7e32f6b1a9cf18a537d62f91589acdbc615"
+      ]
+    },
+    {
+      "source": "RCSB PDB official Data API entry 2A0N and polymer entity 2A0N/1",
+      "urls": [
+        "https://data.rcsb.org/rest/v1/core/entry/2A0N",
+        "https://data.rcsb.org/rest/v1/core/polymer_entity/2A0N/1"
+      ],
+      "retrieved_on": "2026-09-05",
+      "bytes": [20792, 19069],
+      "sha256": [
+        "3d9f014cab8470980d1a329dc6257508fd12f69726f0771f080fd6e90b2fa9e0",
+        "738f8072cd1191d92cb5f78b41d61e76fe67e35b01329b7113bae620712cfc69"
+      ]
+    },
+    {
+      "source": "RCSB PDB official Data API entry 3VMT and polymer entity 3VMT/1",
+      "urls": [
+        "https://data.rcsb.org/rest/v1/core/entry/3VMT",
+        "https://data.rcsb.org/rest/v1/core/polymer_entity/3VMT/1"
+      ],
+      "retrieved_on": "2026-09-05",
+      "bytes": [15903, 22466],
+      "sha256": [
+        "e2511159151a7205df145555ee1872a5849c653f55a5b554215d46b4f9927cb0",
+        "0b2786e77cd7f2609e765748cbcb29d65742510257150f5ff12d24688f7d70be"
+      ]
+    },
+    {
+      "source": "RCSB PDB official Data API entry 4S38 and polymer entity 4S38/1",
+      "role": "exploratory metadata check; no decision-changing finding; M0991 remains transcription-only",
+      "urls": [
+        "https://data.rcsb.org/rest/v1/core/entry/4S38",
+        "https://data.rcsb.org/rest/v1/core/polymer_entity/4S38/1"
+      ],
+      "retrieved_on": "2026-09-05",
+      "bytes": [19892, 24939],
+      "sha256": [
+        "6afdf76d286754a0d3e9fa53ab48aa7daf0ab42d855d9de737fc191ac36f298c",
+        "86ff9d4da7fbb63707733dcfba00dfae74df43c8ad59667230712f9913e0b80b"
+      ]
+    }
+  ],
+  "decision_relevant_findings": [
+    {
+      "candidate_id": "atlas50.candidate.m0064",
+      "mcsa_id": "M0064",
+      "severity": "hold_before_selection_freeze",
+      "affected_dimensions": ["source_gate", "shared_representation_gate", "object_tier_expectations"],
+      "verified_observation": "The live M-CSA reaction is marked polymeric and represents single-stranded DNA as the same ChEBI participant on both sides. RCSB 1D6M exposes one polymer entity, P14294 DNA topoisomerase III, and no nucleic-acid polymer entity.",
+      "interpretation": "The exact structure handle does not ground the DNA/topological state, and the generic reaction projection does not yet demonstrate how initial and final topology are encoded without prose-only assumptions.",
+      "reference_metadata_only": ["https://doi.org/10.1038/35082615"],
+      "suggested_action": "HOLD the proposed inclusion and any Tier 0 or Tier 2 expectation until a source-neutral macromolecular topology and reaction-state contract is demonstrated with directly applicable evidence."
+    },
+    {
+      "candidate_id": "atlas50.candidate.m0106",
+      "mcsa_id": "M0106",
+      "severity": "hold_before_selection_freeze",
+      "affected_dimensions": ["source_gate", "shared_representation_gate", "object_tier_expectations"],
+      "verified_observation": "The live M-CSA reaction is marked polymeric and consumes a protein-tethered lipoyl-lysine residue. RCSB 1W85 contains E1 alpha P21873, E1 beta P21874, and an E2 peripheral subunit-binding-domain entity P11961; the Phase A M-CSA source identity correctly transcribes only P21873 and P21874.",
+      "interpretation": "This is not an M-CSA transcription error. It is an unresolved structure-applicability and reaction-instance context: the E2 carrier/domain must be recorded as PDB context rather than silently omitted or misattributed to M-CSA.",
+      "reference_metadata_only": ["https://doi.org/10.1074/jbc.m300339200"],
+      "suggested_action": "HOLD the proposed inclusion and Tier 2 projection until the generic contract represents tethered-carrier identity/state and explicitly scopes P11961 as structure context."
+    },
+    {
+      "candidate_id": "atlas50.candidate.m0107",
+      "mcsa_id": "M0107",
+      "severity": "hold_before_selection_freeze",
+      "affected_dimensions": ["shared_representation_gate", "object_tier_expectations"],
+      "verified_observation": "The live M-CSA record identifies three proteins P19919/P19920/P19921 and describes electron transfer from the Mo-Cu center through two iron-sulfur clusters and FAD to an external acceptor. RCSB 1N62 exposes matching large, medium, and small protein entities.",
+      "interpretation": "This row passes the Phase A representation gate while M0212 fails for the same generic class of coupled multi-component metallocluster and state-transition provenance. The current artifacts do not explain a source-neutral distinction that makes one representable and the other blocked.",
+      "reference_metadata_only": ["https://doi.org/10.1073/pnas.212640899"],
+      "suggested_action": "HOLD the proposed inclusion and apply the same generic multi-component/cofactor-state contract test used for M0212 before selection."
+    },
+    {
+      "candidate_id": "atlas50.candidate.m0212",
+      "mcsa_id": "M0212",
+      "severity": "keep_fail_closed_pending_human_review",
+      "affected_dimensions": ["shared_representation_gate", "object_tier_expectations"],
+      "verified_observation": "The live M-CSA record identifies P07328, P07329, and P00459 and includes ATP/ADP, nitrogen/hydrogen/ammonium, and two iron-sulfur states. RCSB 1N2C contains the two MoFe-protein entities and the iron-protein entity in an ADP-tetrafluoroaluminate-stabilized complex.",
+      "interpretation": "The official metadata supports the existing generic-contract concern and also establishes the comparison point that must be applied consistently to M0107.",
+      "reference_metadata_only": ["https://doi.org/10.1038/387370a0"],
+      "suggested_action": "HOLD the current fail-closed exclusion; do not admit or upgrade tiers until a generic coupled-component, nucleotide, and metallocluster-state contract is validated across candidates."
+    },
+    {
+      "candidate_id": "atlas50.candidate.m0753",
+      "mcsa_id": "M0753",
+      "severity": "hold_source_applicability_before_representation",
+      "affected_dimensions": ["source_gate", "shared_representation_gate", "object_tier_expectations"],
+      "verified_observation": "The exact live M-CSA record uses free ammonium and identifies only HisF Q9X0C6. RCSB 2A0N is likewise the HisF cyclase subunit alone. Neither exact handle contains the glutaminase partner or a channelled ammonia intermediate.",
+      "interpretation": "The packet's channel/allosteric representation blocker may be relevant to the full synthase complex, but the exact selected source handle does not establish that applicability. Source identity and reaction scope should be resolved before representation is adjudicated.",
+      "reference_metadata_only": ["https://doi.org/10.1074/jbc.m102012200", "https://doi.org/10.1021/bi034320h"],
+      "suggested_action": "HOLD the fail-closed exclusion and revise the review sequence: first establish whether the candidate is the isolated HisF half-reaction or the coupled synthase complex, then assess a generic channel-state contract."
+    },
+    {
+      "candidate_id": "atlas50.candidate.m0970",
+      "mcsa_id": "M0970",
+      "severity": "keep_fail_closed_pending_human_review",
+      "affected_dimensions": ["source_gate", "shared_representation_gate", "object_tier_expectations"],
+      "verified_observation": "The live M-CSA reaction contains a polymeric reactant name, a non-ChEBI product placeholder X00676, and two detailed mechanism proposals while its API is_polymeric flag is false. RCSB 3VMT is a monofunctional glycosyltransferase bound to a Lipid II analog.",
+      "interpretation": "The exact source cannot by itself establish a balanced Tier 0 reaction instance, product chain length, initiation versus elongation, or processivity. The existing polymer-processivity blocker remains supported, with an additional source-schema inconsistency to preserve.",
+      "reference_metadata_only": ["https://doi.org/10.1021/acs.jcim.0c00377", "https://doi.org/10.2210/pdb3vmt/pdb"],
+      "suggested_action": "HOLD the current fail-closed exclusion; require a source-neutral polymer reaction-instance contract and an adjudicated reaction source before selection or tier projection."
+    }
+  ],
+  "rows": [
+    {"ordinal": 1, "candidate_id": "atlas50.candidate.m0001", "mcsa_id": "M0001", "label": "Glutamate racemase", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/1/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 2, "candidate_id": "atlas50.candidate.m0007", "mcsa_id": "M0007", "label": "Isocitrate dehydrogenase (NADP+)", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/7/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 3, "candidate_id": "atlas50.candidate.m0014", "mcsa_id": "M0014", "label": "Vanadate-dependent chloride peroxidase", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/14/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 4, "candidate_id": "atlas50.candidate.m0031", "mcsa_id": "M0031", "label": "Thymidylate synthase", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/31/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 5, "candidate_id": "atlas50.candidate.m0034", "mcsa_id": "M0034", "label": "Catechol 2,3-dioxygenase", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/34/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 6, "candidate_id": "atlas50.candidate.m0049", "mcsa_id": "M0049", "label": "Histidine decarboxylase", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/49/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 7, "candidate_id": "atlas50.candidate.m0050", "mcsa_id": "M0050", "label": "Orotidine 5'-phosphate decarboxylase", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/50/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 8, "candidate_id": "atlas50.candidate.m0052", "mcsa_id": "M0052", "label": "Fructose-bisphosphate aldolase, class II", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/52/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 9, "candidate_id": "atlas50.candidate.m0064", "mcsa_id": "M0064", "label": "DNA topoisomerase III", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "targeted_evidence_check", "gate_audit_status": "source_representation_and_tiers_require_human_resolution", "tier_boundary": "tiers_0_and_2_held_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/64/", "suggested_action": "HOLD before selection freeze"},
+    {"ordinal": 10, "candidate_id": "atlas50.candidate.m0081", "mcsa_id": "M0081", "label": "Chorismate mutase AroQ class", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/81/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 11, "candidate_id": "atlas50.candidate.m0099", "mcsa_id": "M0099", "label": "Cytochrome-dependent methanol dehydrogenase", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/99/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 12, "candidate_id": "atlas50.candidate.m0106", "mcsa_id": "M0106", "label": "Pyruvate dehydrogenase E1", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "targeted_evidence_check", "gate_audit_status": "source_representation_and_tiers_require_human_resolution", "tier_boundary": "tier_2_held_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/106/", "suggested_action": "HOLD before selection freeze"},
+    {"ordinal": 13, "candidate_id": "atlas50.candidate.m0107", "mcsa_id": "M0107", "label": "Aerobic carbon monoxide dehydrogenase", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "targeted_evidence_check", "gate_audit_status": "representation_and_tiers_require_human_resolution", "tier_boundary": "tiers_1_and_2_held_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/107/", "suggested_action": "HOLD before selection freeze"},
+    {"ordinal": 14, "candidate_id": "atlas50.candidate.m0121", "mcsa_id": "M0121", "label": "Sulfite oxidase", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/121/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 15, "candidate_id": "atlas50.candidate.m0126", "mcsa_id": "M0126", "label": "Cytochrome-c3 hydrogenase", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/126/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 16, "candidate_id": "atlas50.candidate.m0127", "mcsa_id": "M0127", "label": "Ferredoxin hydrogenase", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/127/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 17, "candidate_id": "atlas50.candidate.m0128", "mcsa_id": "M0128", "label": "Firefly luciferase", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/128/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 18, "candidate_id": "atlas50.candidate.m0129", "mcsa_id": "M0129", "label": "Taurine dioxygenase", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/129/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 19, "candidate_id": "atlas50.candidate.m0132", "mcsa_id": "M0132", "label": "Alkanal monooxygenase (FMN-linked)", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/132/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 20, "candidate_id": "atlas50.candidate.m0133", "mcsa_id": "M0133", "label": "Cytochrome P450cam", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/133/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 21, "candidate_id": "atlas50.candidate.m0135", "mcsa_id": "M0135", "label": "Peptidylglycine monooxygenase", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/135/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 22, "candidate_id": "atlas50.candidate.m0139", "mcsa_id": "M0139", "label": "Xanthine dehydrogenase", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/139/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 23, "candidate_id": "atlas50.candidate.m0145", "mcsa_id": "M0145", "label": "Isopenicillin N synthase", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/145/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 24, "candidate_id": "atlas50.candidate.m0174", "mcsa_id": "M0174", "label": "Papain", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/174/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 25, "candidate_id": "atlas50.candidate.m0190", "mcsa_id": "M0190", "label": "Isopentenyl-diphosphate delta-isomerase, type I", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/190/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 26, "candidate_id": "atlas50.candidate.m0191", "mcsa_id": "M0191", "label": "Protein disulfide isomerase", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/191/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 27, "candidate_id": "atlas50.candidate.m0204", "mcsa_id": "M0204", "label": "Uroporphyrinogen-III synthase", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tier_2_mandatory_abstention_retained", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/204/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 28, "candidate_id": "atlas50.candidate.m0212", "mcsa_id": "M0212", "label": "Nitrogenase", "phase_a_disposition": "exclude_blocked", "annotation_level": "detailed", "review_depth": "targeted_evidence_check", "gate_audit_status": "representation_blocker_supported_human_resolution_required", "tier_boundary": "all_contingent_tiers_held_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/212/", "suggested_action": "HOLD current fail-closed exclusion"},
+    {"ordinal": 29, "candidate_id": "atlas50.candidate.m0219", "mcsa_id": "M0219", "label": "Transketolase", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/219/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 30, "candidate_id": "atlas50.candidate.m0222", "mcsa_id": "M0222", "label": "Fructose-bisphosphate aldolase, class I", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/222/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 31, "candidate_id": "atlas50.candidate.m0753", "mcsa_id": "M0753", "label": "Imidazole glycerol phosphate synthase", "phase_a_disposition": "exclude_blocked", "annotation_level": "detailed", "review_depth": "targeted_evidence_check", "gate_audit_status": "source_applicability_precedes_representation_human_resolution_required", "tier_boundary": "all_contingent_tiers_held_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/753/", "suggested_action": "HOLD current fail-closed exclusion and re-sequence gate review"},
+    {"ordinal": 32, "candidate_id": "atlas50.candidate.m0767", "mcsa_id": "M0767", "label": "Biotin synthase", "phase_a_disposition": "propose_include", "annotation_level": "non_detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_1_and_2_mandatory_abstention_retained", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/767/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 33, "candidate_id": "atlas50.candidate.m0797", "mcsa_id": "M0797", "label": "Ribulose-bisphosphate carboxylase/oxygenase, form II", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/797/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 34, "candidate_id": "atlas50.candidate.m0851", "mcsa_id": "M0851", "label": "Glutathione peroxidase", "phase_a_disposition": "propose_include", "annotation_level": "non_detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_1_and_2_mandatory_abstention_retained", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/851/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 35, "candidate_id": "atlas50.candidate.m0907", "mcsa_id": "M0907", "label": "Ribulose-bisphosphate carboxylase/oxygenase, form I", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/907/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 36, "candidate_id": "atlas50.candidate.m0935", "mcsa_id": "M0935", "label": "Nitric oxide synthase", "phase_a_disposition": "propose_include", "annotation_level": "non_detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_1_and_2_mandatory_abstention_retained", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/935/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 37, "candidate_id": "atlas50.candidate.m0970", "mcsa_id": "M0970", "label": "Peptidoglycan glycosyltransferase", "phase_a_disposition": "exclude_blocked", "annotation_level": "detailed", "review_depth": "targeted_evidence_check", "gate_audit_status": "source_and_representation_blockers_supported_human_resolution_required", "tier_boundary": "all_contingent_tiers_held_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/970/", "suggested_action": "HOLD current fail-closed exclusion"},
+    {"ordinal": 38, "candidate_id": "atlas50.candidate.m0980", "mcsa_id": "M0980", "label": "Ferredoxin:thioredoxin reductase", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/980/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 39, "candidate_id": "atlas50.candidate.m0991", "mcsa_id": "M0991", "label": "IspG", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/991/", "suggested_action": "HOLD for attributable human panel review"},
+    {"ordinal": 40, "candidate_id": "atlas50.candidate.m0997", "mcsa_id": "M0997", "label": "Lanthanide-dependent methanol dehydrogenase", "phase_a_disposition": "propose_include", "annotation_level": "detailed", "review_depth": "transcription_only", "gate_audit_status": "all_five_gates_inspected_science_unresolved", "tier_boundary": "tiers_0_1_2_contingent_no_upgrade", "source_transcription": "verified_against_live_mcsa", "evidence_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/997/", "suggested_action": "HOLD for attributable human panel review"}
+  ]
+}

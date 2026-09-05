@@ -1,5 +1,10 @@
 # Gate 3 — Novel (uncharacterized) lab-target shortlist (2026-06-29)
 
+> **2026-09-05 correction — A0A177THN5:** the APX-specific transfer from
+> P48534 is withdrawn, and the larger APX-versus-CcP study is retired.
+> CcP-like is a provisional working interpretation, not demonstrated activity.
+> See [CE-017 and the public-source reassessment](../docs/COMPUTATIONAL_REVIEW_20260905.md).
+
 Fold channel run over **genuinely uncharacterized** proteins (unreviewed, named "Uncharacterized
 protein", no EC, predicted/inferred existence) carrying an atlas-family Pfam. Each is folded
 (AlphaFold) and matched by foldseek (exhaustive, exact TM) to the 133-member M-CSA atlas; calls

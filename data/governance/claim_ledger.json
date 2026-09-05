@@ -194,5 +194,18 @@
       "artifacts/v3_swissprot_pdbholo_gold_heldout_preregistration_current702_20260629.json",
       "docs/reviews/catalytic-earth-full-review-2026-07-10.md"
     ]
+  },
+  {
+    "claim_id": "CE-017",
+    "claim_kind": "label_error",
+    "status": "Retracted",
+    "claim": "A0A177THN5 has APX-specific donor chemistry because its nearest characterized structural neighbour is L-ascorbate peroxidase P48534.",
+    "current_wording": "Withdraw the APX-specific transfer and retire the larger APX-versus-CcP study based on it. Retain a class-I-like heme-peroxidase hypothesis; CcP-like is a provisional working interpretation, not experimentally established specificity.",
+    "rationale": "Global structural agreement and shared catalytic residues do not distinguish these donor-specific activities. Current UniProt is unreviewed; the Ccp1-like InterPro family includes both CcP and APX.",
+    "evidence": [
+      "data/diagnostics/peroxidase_reassessment_20260905.json",
+      "docs/COMPUTATIONAL_REVIEW_20260905.md",
+      "work/gate3_active_site_verification_20260629.md"
+    ]
   }
 ]

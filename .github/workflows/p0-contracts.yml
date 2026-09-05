@@ -33,7 +33,7 @@ jobs:
             "https://github.com/${GITHUB_REPOSITORY}.git" .
           git sparse-checkout init --cone
           git sparse-checkout set \
-            .github config data/atlas data/governance docs environments release \
+            .github config data/atlas data/diagnostics data/governance docs environments release \
             requirements scripts src tests
           git fetch --no-tags --filter=blob:none origin "${GITHUB_REF}"
           git checkout --detach FETCH_HEAD

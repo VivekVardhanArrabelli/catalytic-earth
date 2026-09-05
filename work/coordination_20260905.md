@@ -88,3 +88,88 @@ Actual reviewer submissions, conflict adjudication, an approved source budget,
 and an explicit reviewed selection freeze remain scientific follow-on work.
 No external outreach is performed by this change. Root will publish the tested
 branch as a pull request and report its CI and merge state separately.
+
+## Follow-on: scientific review acceleration
+
+The owner requested Rosalind setup and substantive review work while external
+review is slow. The prior engineering checkpoint is pushed as PR #31 at
+`a459ec78`; all four Linux/Windows Python 3.10/3.12 CI jobs passed.
+
+- Root: identify/setup the requested Rosalind tool, reconcile current guidance,
+  integrate source-supported corrections, and keep private correspondence out
+  of the public repository.
+- phase_b_audit: computational assessment of all 40 panel candidates, with
+  primary-source checks concentrated on inclusion errors and representation
+  blockers. Owns the new panel review JSON and report only.
+- forward_path: computational assessment of the 57 fingerprint crosswalk rows,
+  including granularity and candidate-handle mismatches. Owns the new crosswalk
+  review JSON and report only.
+- All new review results explicitly identify agent assessment and distinguish
+  local inspection from refreshed source verification. Existing human review
+  counts, frozen Phase A/B bytes, evidence tiers, and protected registries are
+  not silently upgraded.
+- Progress is measured by corrected claims, ruled-out mappings, usable source
+  evidence, and fewer specific questions for humans—not additional blank forms.
+
+### Scientific correction round
+
+- Root completed the A0A177THN5 public-source reassessment. UniProt entry 32
+  remains unreviewed/homology-inferred. InterPro IPR044831 explicitly contains
+  both Ccp1 and APX; its short name cannot resolve donor specificity. CE-017
+  and ER-011 withdraw the APX transfer and record retirement of the larger
+  comparison. The current interpretation stays provisional. Historical
+  handoff/shortlist documents carry the specific correction.
+- The panel agent refreshed all 40 official M-CSA records and found exact
+  agreement for the checked identifier/detail fields. That transcription
+  result does not establish the source/applicability or representation gates.
+  Focused concerns include M0106 carrier state, M0064 topology, M0107 component
+  state, and M0753 exact source scope.
+- The crosswalk agent found a direct cofactor mismatch at M0049 (pyruvoyl,
+  placed under PLP), a missing named target for relation labels, and concrete
+  locator omissions. A second agent pass used historical curated702 labels
+  only as discovery leads; root specifically requested reconciliation against
+  direct source evidence where the second pass overaccepted M0049.
+- Root bounded the deeper follow-up to decision-changing rows. The full-row
+  reports must say when a row received only local/identifier checks rather
+  than imply 97 complete mechanistic adjudications.
+- Rosalind Workbench was installed/enabled at 0.2.5-research-preview via the
+  official app CLI; its launcher/settings are app-only. No GPT-Rosalind model
+  inference or account Research entitlement is claimed. Current agents perform
+  the assessment using public sources. No private correspondence is archived.
+
+### Integration and second-pass checks
+
+- The completed crosswalk artifact covers exactly the 57 frozen fingerprint
+  IDs with 15 provisional, 26 targetless-unresolved, and 16 correction flags.
+  Root verified every frozen input hash and byte count and directly checked
+  M0049, M0112 and M0239. A summary-count error was caught: 33 rows lack M-CSA
+  handles, but only 32 have all source slots empty because row 49 has EC-based
+  lookups. The agent was asked to correct the JSON summary before publication.
+- The panel artifact covers exactly 40 candidate IDs: 34 transcription-only
+  and six targeted checks. It recommends priority holds for three proposed
+  inclusions (M0064/M0106/M0107) and retains three existing exclusions
+  (M0212/M0753/M0970). It does not assert that all 40 mechanisms were deeply
+  reviewed or that any new mechanism was admitted.
+- The consolidated report groups remaining human decisions around named
+  relation targets, generic state representation, and exact source scope.
+  This keeps computational correction work moving while preserving the
+  missing independent annotation boundary.
+- The APX correction raised the canonical claim count from 16 to 17. Root
+  updated the required-claim gate and its existing regression expectation;
+  all 117 core/unit tests pass on Python 3.12 after that change. CI now checks
+  the diagnostic evidence namespace and the new review document/JSON paths.
+
+### Scientific review publication checkpoint
+
+Final crosswalk triage is 15 provisional, 26 unresolved and 16 correction
+flags; the cobalamin relation remains unresolved rather than asserting an
+unsupported classification change. Root checked count parity and source-slot
+counts after the final refinement. Both agents have completed their files.
+
+All repository contracts pass with 17 canonical claims. The 117 core/unit
+tests pass. Root verified all frozen Atlas-3/10 and Atlas-50 Phase A/B data,
+protected registries, and exposure-ledger bytes unchanged from `a459ec78`.
+The review overlay's receipt accounting and exact row coverage pass, and
+`git diff --check` is clean. The report archive index is regenerated from the
+staged board and historical correction banners. Root will push this tested
+checkpoint to the existing PR #31 and check CI at its new commit separately.

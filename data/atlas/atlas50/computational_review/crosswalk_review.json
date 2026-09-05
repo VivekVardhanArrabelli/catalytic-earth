@@ -1,0 +1,2966 @@
+{
+  "schema_version": "catalytic-earth.atlas50-computational-crosswalk-review.v1",
+  "review_id": "atlas50.computational-crosswalk-review.2026-09-05.v1",
+  "reviewed_at": "2026-09-05",
+  "status": "computational_source_audit_not_human_review",
+  "claim_boundary": [
+    "This is an agent-produced proposal overlay. It is not a Phase-B submission, expert review, independent review, registry admission, tier lift, or freeze decision.",
+    "All 57 Phase-B packets remain unreviewed. No frozen Phase-A or Phase-B artifact is changed.",
+    "Official M-CSA checks establish entry identity, reaction, and available mechanism detail only; they do not establish fingerprint-wide equivalence or applicability.",
+    "Historical curated_mechanism_labels rows are prior automation outputs used only as discovery locators, never as gold or verified corrections."
+  ],
+  "method": {
+    "rows_inspected": 57,
+    "per_row_internal_inspection": [
+      "fingerprint definition",
+      "machine classification and rationale",
+      "all thirteen Phase-A source slots",
+      "corresponding Phase-B review packet"
+    ],
+    "authoritative_external_inspection": "Current official M-CSA API records were checked for every Phase-A M-CSA handle. Selected high-impact omissions and contradictions were checked on official M-CSA entry pages.",
+    "not_run": [
+      "Rhea row retrieval beyond inherited handles",
+      "EC-BLAST bond-change search",
+      "EnzymeMap atom-map search",
+      "MechFind prediction",
+      "EzMechanism",
+      "EnzyMM scan",
+      "InterPro API",
+      "Pfam API",
+      "CATH reassignment",
+      "literature full-text acquisition"
+    ]
+  },
+  "inputs": {
+    "data/atlas/atlas50/phase_a/crosswalk_draft.json": {
+      "sha256": "838d74b142fc82c81183daa8d469db9e2baab52ffade4c8c6cf0b07826da1dac",
+      "bytes": 403092
+    },
+    "data/atlas/atlas50/phase_a/crosswalk_spec.json": {
+      "sha256": "dbb159b92ac35e2489a3f8e70794216146eab324dcc128a164115ff381a4b5d0",
+      "bytes": 22005
+    },
+    "data/atlas/atlas50/phase_b/crosswalk_review_queue.json": {
+      "sha256": "655f2d72863d51790cdd836e311a23498a2de6b63f6a94adf172ccb9aef08436",
+      "bytes": 486635
+    },
+    "data/registries/mechanism_fingerprints.json": {
+      "sha256": "f3f57858f041447f474f0cb849e283528521243f1439ba918264286df93cb75a",
+      "bytes": 201310
+    },
+    "data/registries/curated_mechanism_labels.json": {
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
+      "bytes": 508366
+    }
+  },
+  "bounded_external_access": {
+    "raw_bodies_committed": false,
+    "literature_bodies_downloaded": false,
+    "temporary_machine_readable_bytes": 491701,
+    "temporary_browse_index_bytes": 481479,
+    "largest_measured_request_bytes": 481479,
+    "rendered_official_entry_pages_byte_count": "not_reported_by_browser_tool",
+    "api_sha256": {
+      "selected_26_entries": "a4ab2f8a808fbc5add66a0573a9184702277fc0822b169ed6c6c751bfbb35449",
+      "additional_M0015_M0016_M0482": "9ecbb4fb094215fd1e5cfbe113be0fb0e6549140a2b31cbf56d90968324ee020",
+      "EC_1.15.1.1_filter": "5fde7e29ecf413a65ec0347cfb69760c0b171f29ba4a2ca3a9ae056aec5668ba"
+    }
+  },
+  "source_coverage_findings": {
+    "phase_a_rows_with_mcsa_candidates": 23,
+    "phase_a_rows_with_mcsa_counterexample_only": 1,
+    "phase_a_rows_with_no_mcsa_record": 33,
+    "phase_a_rows_with_all_thirteen_source_slots_empty": 32,
+    "rows_lacking_any_mcsa_ec_interpro_or_cath_target": 32,
+    "root_cause": "The Phase-A selection source index is built from the 40 candidate rows plus Atlas-3/Atlas-10 selections, not from the broader incumbent source stack.",
+    "legacy_automation_registry_counts": {
+      "cobalamin_radical_rearrangement": 3,
+      "flavin_dehydrogenase_reductase": 48,
+      "flavin_monooxygenase": 2,
+      "heme_peroxidase_oxidase": 20,
+      "metal_dependent_hydrolase": 83,
+      "plp_dependent_enzyme": 31,
+      "radical_sam_enzyme": 1,
+      "ser_his_acid_hydrolase": 42
+    },
+    "interpretation": "An empty Phase-A row means not found in the bounded selection index; it is not evidence that the source universe has no relevant object."
+  },
+  "summary": {
+    "dispositions": {
+      "provisional_support": 15,
+      "unresolved_insufficient_source_targets": 26,
+      "correction_required": 16
+    },
+    "classification_revisions_proposed": {
+      "serine_beta_lactamase": "aggregation",
+      "metallo_beta_lactamase": "aggregation",
+      "flavin_disulfide_reductase": "aggregation",
+      "dihydrofolate_reductase": "aggregation"
+    },
+    "rows_with_specific_corrections": [
+      "plp_dependent_enzyme",
+      "heme_peroxidase_oxidase",
+      "copper_oxidoreductase",
+      "metal_racemase_epimerase_non_plp",
+      "class_ii_metal_aldolase",
+      "nucleoside_diphosphate_kinase",
+      "manganese_iron_superoxide_dismutase",
+      "had_like_phosphatase",
+      "aldehyde_dehydrogenase",
+      "alpha_beta_hydrolase_esterase_lipase",
+      "ser_thr_protein_phosphatase",
+      "metal_independent_phosphodiesterase",
+      "serine_beta_lactamase",
+      "metallo_beta_lactamase",
+      "flavin_disulfide_reductase",
+      "dihydrofolate_reductase"
+    ]
+  },
+  "prioritized_corrections": [
+    {
+      "priority": 1,
+      "scope": "row 7 PLP",
+      "action": "Reject M0049 and its derived handle bundle; review M0482 and multiple verified PLP reaction classes instead.",
+      "reason": "Official M-CSA identifies M0049 as pyruvoyl-dependent."
+    },
+    {
+      "priority": 2,
+      "scope": "crosswalk schema and acquisition",
+      "action": "Add relation_targets with source key, object or row ID, and relation; populate from the incumbent stack rather than only the Phase-A selection index.",
+      "reason": "Targetless categories and 32 fully empty rows cannot answer Section 10.1."
+    },
+    {
+      "priority": 3,
+      "scope": "row 21 class-II aldolase",
+      "action": "Add M0222 as same-EC different-mechanism counterevidence or remove the stated pairing.",
+      "reason": "Rationale and packet content contradict."
+    },
+    {
+      "priority": 4,
+      "scope": "rows 12 and 18 heme/copper",
+      "action": "Move laccase scope to copper oxidoreductase; use M0239 for direct heme-peroxidase coverage and keep M0133 primarily in P450.",
+      "reason": "The present bucket mixes copper and heme chemistry."
+    },
+    {
+      "priority": 5,
+      "scope": "rows 45 and 49 beta-lactamases",
+      "action": "Add class-specific serine and metallo mechanisms; reclassify broad rows as aggregations or split them.",
+      "reason": "M0002 covers Class A only; M0015/M0016 provide missing Class-B1 mechanisms."
+    },
+    {
+      "priority": 6,
+      "scope": "row 57 DHFR",
+      "action": "Withdraw exact_duplicate at current scope or narrow the fingerprint to M0112; correct the N5 proton-donor role.",
+      "reason": "The fingerprint is broader than one bacterial object and M0112 names conserved water as donor."
+    },
+    {
+      "priority": 7,
+      "scope": "row 56 flavin disulfide reductase",
+      "action": "Add M0006/M0381 and treat the current broad scope as an aggregation proposal.",
+      "reason": "Direct incumbent mechanisms exist but were not indexed."
+    },
+    {
+      "priority": 8,
+      "scope": "row 35 Mn/Fe SOD",
+      "action": "Keep M0138 negative; decide missing-concept versus bridge relative to an explicit source boundary.",
+      "reason": "The current M-CSA EC filter exposes only Cu/Zn SOD."
+    }
+  ],
+  "rows": [
+    {
+      "ordinal": 1,
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "provisional_support",
+      "proposed_classification": "aggregation",
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [
+          "M0173",
+          "M0723"
+        ],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "ezmechanism"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0173",
+          "official_name": "trypsin",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "representative_only_scope_not_transferred",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/173/"
+        },
+        {
+          "mcsa_id": "M0723",
+          "official_name": "subtilisin",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "representative_only_scope_not_transferred",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/723/"
+        }
+      ],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 42,
+      "issue": "The two direct M-CSA handles are proteases; they do not cover the esterase, lipase, cutinase, or polyesterase scope.",
+      "proposed_correction": "Keep aggregation provisional and add non-protease incumbents before deciding family-wide equivalence.",
+      "small_human_question": "Do M0173/M0723 define only the protease branch, and which incumbent entries cover the non-protease branches?"
+    },
+    {
+      "ordinal": 2,
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "fingerprint_name": "Metal-dependent hydrolase",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [
+        {
+          "mcsa_id": "M0015",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/15/"
+        },
+        {
+          "mcsa_id": "M0016",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/16/"
+        },
+        {
+          "mcsa_id": "M0027",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/27/"
+        },
+        {
+          "mcsa_id": "M0041",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/41/"
+        },
+        {
+          "mcsa_id": "M0403",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/403/"
+        }
+      ],
+      "historical_automation_same_fingerprint_locator_count": 83,
+      "issue": "All thirteen source slots are empty even though the local historical automation registry contains 83 broad metal-hydrolase locators; absence here reflects the selection index, not upstream absence.",
+      "proposed_correction": "Reacquire representative metal-hydrolase objects and split them across the four v2 children before classification review.",
+      "small_human_question": "Which incumbent mechanism objects define the parent umbrella, and should this coarse parent disappear after the v2 split?"
+    },
+    {
+      "ordinal": 3,
+      "fingerprint_id": "metallopeptidase",
+      "fingerprint_name": "Metal-dependent peptidase",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [
+        {
+          "mcsa_id": "M0379",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/379/"
+        },
+        {
+          "mcsa_id": "M0403",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/403/"
+        },
+        {
+          "mcsa_id": "M0447",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/447/"
+        }
+      ],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "The narrower-relation target is not named; the empty row cannot establish specialization.",
+      "proposed_correction": "Verify peptidase locators such as M0403/M0447 and name the parent/source targets.",
+      "small_human_question": "Is this a specialization of row 2, an aggregation of peptidase mechanisms, or both under a stated precedence rule?"
+    },
+    {
+      "ordinal": 4,
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "fingerprint_name": "Metal-dependent phosphodiesterase / nuclease",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [
+        {
+          "mcsa_id": "M0011",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/11/"
+        },
+        {
+          "mcsa_id": "M0041",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/41/"
+        },
+        {
+          "mcsa_id": "M0042",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/42/"
+        },
+        {
+          "mcsa_id": "M0395",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/395/"
+        },
+        {
+          "mcsa_id": "M0446",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/446/"
+        }
+      ],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "The narrower-relation target is absent and no nuclease/phosphodiesterase source object was retrieved.",
+      "proposed_correction": "Verify nuclease locators from the historical metal-hydrolase set and state the parent/source targets.",
+      "small_human_question": "Which one- or two-metal nuclease objects bound this fingerprint, and does small-molecule phosphodiesterase chemistry belong in the same row?"
+    },
+    {
+      "ordinal": 5,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "fingerprint_name": "Metal-dependent phosphomonoesterase (phosphatase)",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [
+        {
+          "mcsa_id": "M0043",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/43/"
+        },
+        {
+          "mcsa_id": "M0044",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/44/"
+        },
+        {
+          "mcsa_id": "M0406",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/406/"
+        },
+        {
+          "mcsa_id": "M0472",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/472/"
+        }
+      ],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "The row names multiple phosphatase families but has no incumbent target or source handle.",
+      "proposed_correction": "Verify M0406/M0472-class phosphatase locators and name the relation target.",
+      "small_human_question": "Do PPP, PPM, alkaline, and purple-acid phosphatases share enough mechanism to remain one specialization?"
+    },
+    {
+      "ordinal": 6,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "fingerprint_name": "Metal-dependent amidohydrolase / deaminase",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [
+        {
+          "mcsa_id": "M0087",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/87/"
+        },
+        {
+          "mcsa_id": "M0097",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/97/"
+        },
+        {
+          "mcsa_id": "M0376",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/376/"
+        },
+        {
+          "mcsa_id": "M0630",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/630/"
+        }
+      ],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "Aggregation is plausible, but the source gap was never tested against the historical metal-hydrolase pool.",
+      "proposed_correction": "Verify deaminase/amidohydrolase and metallo-beta-lactamase branches separately.",
+      "small_human_question": "Should beta-lactamases remain here once row 49 has direct class-B objects?"
+    },
+    {
+      "ordinal": 7,
+      "fingerprint_id": "plp_dependent_enzyme",
+      "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "correction_required",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [
+          "M0049"
+        ],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "ezmechanism"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0049",
+          "official_name": "histidine decarboxylase",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "contradicts_fingerprint_cofactor",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/49/"
+        }
+      ],
+      "additional_mcsa_review_locators": [
+        {
+          "mcsa_id": "M0482",
+          "official_name": "2,2-dialkylglycine decarboxylase (PLP)",
+          "role": "non-detailed replacement candidate",
+          "evidence_status": "official_entry_checked",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/482/"
+        }
+      ],
+      "historical_automation_same_fingerprint_locator_count": 31,
+      "issue": "M0049 is pyruvoyl-dependent histidine decarboxylase, not a PLP enzyme; its entire derived handle bundle is a false candidate mapping.",
+      "proposed_correction": "Reject M0049. Review M0482 and several distinct PLP reaction classes as replacements; M0482 is non-detailed and cannot support ordered steps.",
+      "small_human_question": "Which verified PLP entries cover transamination, decarboxylation, racemization, and elimination without collapsing them?"
+    },
+    {
+      "ordinal": 8,
+      "fingerprint_id": "radical_sam_enzyme",
+      "fingerprint_name": "Radical SAM enzyme",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "provisional_support",
+      "proposed_classification": "aggregation",
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [
+          "M0767"
+        ],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "ezmechanism"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0767",
+          "official_name": "biotin synthase",
+          "mechanism_detail": "non_detailed",
+          "fit_assessment": "representative_only_non_detailed",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/767/"
+        }
+      ],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 1,
+      "issue": "M0767 is a valid radical-SAM exemplar but its M-CSA mechanism is non-detailed and covers one sulfur-insertion outcome.",
+      "proposed_correction": "Retain it only as a broad-family exemplar and add mechanistically different radical-SAM entries.",
+      "small_human_question": "Which radical outcomes must be separate mechanism objects, and what evidence is adequate when M-CSA is non-detailed?"
+    },
+    {
+      "ordinal": 9,
+      "fingerprint_id": "cobalamin_radical_rearrangement",
+      "fingerprint_name": "Adenosylcobalamin radical rearrangement",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [
+        "aggregation",
+        "specialization"
+      ],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [
+          "M0062"
+        ],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "cath",
+          "ezmechanism"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0062",
+          "official_name": "methylmalonyl-CoA mutase",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "representative_only_scope_not_transferred",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/62/"
+        }
+      ],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 3,
+      "issue": "M0062 is valid, but M0063 is another historical B12 rearrangement locator; the row spans more than one source mechanism.",
+      "proposed_correction": "Hold between aggregation and specialization until M0063 is verified and an explicit comparison target is supplied.",
+      "small_human_question": "Does this row aggregate distinct AdoCbl rearrangements, or is there a named source parent of which it is narrower?"
+    },
+    {
+      "ordinal": 10,
+      "fingerprint_id": "flavin_monooxygenase",
+      "fingerprint_name": "Flavin-dependent monooxygenase",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "provisional_support",
+      "proposed_classification": "aggregation",
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [
+          "M0132"
+        ],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "ezmechanism"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0132",
+          "official_name": "alkanal monooxygenase (FMN-linked)",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "representative_only_scope_not_transferred",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/132/"
+        }
+      ],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 2,
+      "issue": "M0132 is a valid FMN-linked example but not family-wide evidence.",
+      "proposed_correction": "Keep aggregation and review an FAD aromatic hydroxylase such as M0131 as a second branch.",
+      "small_human_question": "Which flavin-peroxide oxygen-transfer branches require separate applicability rules?"
+    },
+    {
+      "ordinal": 11,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "fingerprint_name": "Flavin-dependent dehydrogenase or reductase",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "provisional_support",
+      "proposed_classification": "aggregation",
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [
+          "M0139"
+        ],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "ezmechanism"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0139",
+          "official_name": "xanthine dehydrogenase (mammalian)",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "representative_only_scope_not_transferred",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/139/"
+        }
+      ],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 48,
+      "issue": "M0139 is a Mo/FAD/Fe-S multi-centre enzyme; its relevance is module-level and overlaps rows 17 and 31.",
+      "proposed_correction": "Retain as an overlap example, not a clean standalone representative; add simpler flavin-redox objects.",
+      "small_human_question": "Should the xanthine-dehydrogenase FAD module be represented separately from its Mo reaction centre?"
+    },
+    {
+      "ordinal": 12,
+      "fingerprint_id": "heme_peroxidase_oxidase",
+      "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "correction_required",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [
+          "M0133"
+        ],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "ezmechanism"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0133",
+          "official_name": "camphor 5-monooxygenase (P450cam)",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "overlap_subtype_not_peroxidase_representative",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/133/"
+        }
+      ],
+      "additional_mcsa_review_locators": [
+        {
+          "mcsa_id": "M0239",
+          "official_name": "horseradish peroxidase C",
+          "role": "direct heme-peroxidase candidate",
+          "evidence_status": "official_entry_checked",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/239/"
+        }
+      ],
+      "historical_automation_same_fingerprint_locator_count": 20,
+      "issue": "M0133 is P450cam, not a heme peroxidase; the fingerprint also incorrectly names laccase-like oxidases, which are copper enzymes represented by row 18.",
+      "proposed_correction": "Use M0239 or another direct heme-peroxidase object; move laccases to row 18 and treat M0133 as overlap with row 13.",
+      "small_human_question": "Should this row be restricted to heme peroxidases/oxidases, with P450 and laccase handled by rows 13 and 18?"
+    },
+    {
+      "ordinal": 13,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "fingerprint_name": "Cytochrome P450 heme-thiolate monooxygenase",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "provisional_support",
+      "proposed_classification": "specialization",
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [
+          "M0133"
+        ],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "ezmechanism"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0133",
+          "official_name": "camphor 5-monooxygenase (P450cam)",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "representative_only_scope_not_transferred",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/133/"
+        }
+      ],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "M0133 is a direct P450 exemplar, but the same handle is also used in row 12 and no relation target is named.",
+      "proposed_correction": "Retain M0133 here, expose the collision with row 12, and state the parent/source relation.",
+      "small_human_question": "Is P450 a specialization of a heme-redox parent, or an aggregation of distinct P450 reaction mechanisms at the chosen granularity?"
+    },
+    {
+      "ordinal": 14,
+      "fingerprint_id": "non_heme_iron_2og_dioxygenase",
+      "fingerprint_name": "Non-heme Fe(II)/2-oxoglutarate dioxygenase",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "provisional_support",
+      "proposed_classification": "specialization",
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [
+          "M0129"
+        ],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "ezmechanism"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0129",
+          "official_name": "taurine dioxygenase",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "representative_only_scope_not_transferred",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/129/"
+        }
+      ],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "M0129 is a direct taurine-dioxygenase exemplar, but it cannot establish applicability across JmjC, AlkB, and hydroxylase branches.",
+      "proposed_correction": "Retain as an exemplar and add representatives for the other branches before scope transfer.",
+      "small_human_question": "Which Fe(II)/2OG subclasses share ordered steps versus only cofactor logic?"
+    },
+    {
+      "ordinal": 15,
+      "fingerprint_id": "coa_acyltransferase",
+      "fingerprint_name": "CoA/acyl-CoA-dependent acyltransferase",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_only",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "The broad acyl-transfer aggregation has no incumbent source targets.",
+      "proposed_correction": "Retrieve distinct thiolase, GNAT/natural-product, and other acyl-transfer objects before review.",
+      "small_human_question": "Which architectures share the same acyl-transfer object, and which require separate mechanisms?"
+    },
+    {
+      "ordinal": 16,
+      "fingerprint_id": "cofactor_independent_isomerase",
+      "fingerprint_name": "Cofactor-independent isomerase",
+      "machine_draft_classification": "unsupported_or_ill_defined",
+      "computational_disposition": "provisional_support",
+      "proposed_classification": "unsupported_or_ill_defined",
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [
+          "M0081"
+        ],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "ezmechanism"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0081",
+          "official_name": "chorismate mutase (AroQ)",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "representative_only_scope_not_transferred",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/81/"
+        }
+      ],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "M0081 is a valid cofactor-independent isomerase example, but absence of a cofactor does not define a coherent mechanism class.",
+      "proposed_correction": "Keep unsupported_or_ill_defined unless the row is split by reaction chemistry.",
+      "small_human_question": "Can this negative bucket be replaced by named pericyclic, acid-base, and racemase mechanism objects?"
+    },
+    {
+      "ordinal": 17,
+      "fingerprint_id": "molybdopterin_oxidoreductase",
+      "fingerprint_name": "Molybdopterin/Mo-cofactor oxidoreductase",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "provisional_support",
+      "proposed_classification": "aggregation",
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [
+          "M0107",
+          "M0121",
+          "M0139"
+        ],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "ezmechanism"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0107",
+          "official_name": "aerobic carbon monoxide dehydrogenase",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "representative_only_scope_not_transferred",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/107/"
+        },
+        {
+          "mcsa_id": "M0121",
+          "official_name": "sulfite oxidase",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "representative_only_scope_not_transferred",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/121/"
+        },
+        {
+          "mcsa_id": "M0139",
+          "official_name": "xanthine dehydrogenase (mammalian)",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "representative_only_scope_not_transferred",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/139/"
+        }
+      ],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "M0107, M0121, and M0139 are valid but mechanistically diverse; M0139 also overlaps flavin and NAD(P) rows.",
+      "proposed_correction": "Keep aggregation and model cofactor-module overlaps explicitly.",
+      "small_human_question": "Should Mo-centre chemistry and downstream electron-transfer modules be separate linked objects?"
+    },
+    {
+      "ordinal": 18,
+      "fingerprint_id": "copper_oxidoreductase",
+      "fingerprint_name": "Copper-center oxidoreductase",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "correction_required",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [
+          "M0135"
+        ],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "ezmechanism"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0135",
+          "official_name": "peptidylglycine monooxygenase",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "representative_only_scope_not_transferred",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/135/"
+        }
+      ],
+      "additional_mcsa_review_locators": [
+        {
+          "mcsa_id": "M0390",
+          "official_name": "laccase",
+          "role": "copper-oxidase locator; move laccase scope here",
+          "evidence_status": "official_entry_checked",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/390/"
+        }
+      ],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "M0135 is one copper monooxygenase branch; laccase is misplaced in row 12.",
+      "proposed_correction": "Keep aggregation, move laccase scope here, and review M0390 as a locator.",
+      "small_human_question": "Which copper-centre subclasses need distinct mechanism objects?"
+    },
+    {
+      "ordinal": 19,
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "fingerprint_name": "Non-PLP racemase / epimerase",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "correction_required",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [
+          "M0187"
+        ],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "ezmechanism"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0187",
+          "official_name": "mandelate racemase",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "representative_only_scope_not_transferred",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/187/"
+        }
+      ],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "The ID says metal racemase while the registry declares cofactors=[] and includes metal-independent mutarotases.",
+      "proposed_correction": "Split metal-dependent and cofactor-independent cases, or declare optional/diverse metal state explicitly.",
+      "small_human_question": "Is metal required by this fingerprint, and do mutarotases belong in the same object?"
+    },
+    {
+      "ordinal": 20,
+      "fingerprint_id": "atp_amide_ligase",
+      "fingerprint_name": "ATP-dependent amide ligase",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_only",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "The ATP-dependent amide-ligase aggregation has no source targets.",
+      "proposed_correction": "Retrieve examples from ATP-grasp, D-Ala ligase, and acid-ammonia ligase branches.",
+      "small_human_question": "Which activation intermediates and oligomeric states justify separate mechanisms?"
+    },
+    {
+      "ordinal": 21,
+      "fingerprint_id": "class_ii_metal_aldolase",
+      "fingerprint_name": "Class-II metal-dependent aldolase",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "correction_required",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [
+          "M0052"
+        ],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "ezmechanism"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0052",
+          "official_name": "fructose-bisphosphate aldolase (Class II)",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "representative_only_scope_not_transferred",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/52/"
+        }
+      ],
+      "additional_mcsa_review_locators": [
+        {
+          "mcsa_id": "M0222",
+          "official_name": "fructose-bisphosphate aldolase (Class I)",
+          "role": "same-EC different-mechanism counterexample",
+          "evidence_status": "official_entry_checked",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/222/"
+        }
+      ],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "The rationale says M0052 is deliberately paired with M0222, but the row and Phase-B packet contain only M0052.",
+      "proposed_correction": "Add M0222 explicitly as same-EC/different-mechanism counterevidence or delete the pairing claim.",
+      "small_human_question": "Should class-I M0222 be a required negative comparator for the class-II metal fingerprint?"
+    },
+    {
+      "ordinal": 22,
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "fingerprint_name": "Zinc-dependent hydro-lyase / hydratase",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "provisional_support",
+      "proposed_classification": "aggregation",
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [
+          "M0216"
+        ],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "ezmechanism"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0216",
+          "official_name": "carbonate dehydratase (alpha class)",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "representative_only_scope_not_transferred",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/216/"
+        }
+      ],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "M0216 is a valid alpha-carbonic-anhydrase exemplar but is much narrower than the zinc hydratase/lyase bucket.",
+      "proposed_correction": "Keep aggregation and add non-carbonic hydro-lyase representatives.",
+      "small_human_question": "Which zinc hydration/dehydration chemistries share more than metal-activated water?"
+    },
+    {
+      "ordinal": 23,
+      "fingerprint_id": "biotin_dependent_carboxylase",
+      "fingerprint_name": "Biotin-dependent carboxylase",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_only",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "The multi-component biotin-carboxylase aggregation has no source object or component-state mapping.",
+      "proposed_correction": "Retrieve carboxylase, biotin-carboxylase, and carboxyl-transferase component objects separately.",
+      "small_human_question": "Is the fingerprint one catalytic cycle with linked components, or several mechanism objects?"
+    },
+    {
+      "ordinal": 24,
+      "fingerprint_id": "deoxynucleoside_kinase",
+      "fingerprint_name": "Deoxynucleoside kinase",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [
+        {
+          "mcsa_id": "M0588",
+          "official_name": "thymidine kinase",
+          "role": "one deoxynucleoside-kinase branch",
+          "evidence_status": "official_entry_checked",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/588/"
+        }
+      ],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "The row has no handles and spans several deoxynucleoside kinases; M0588 is a verified thymidine-kinase locator for one branch.",
+      "proposed_correction": "Use M0588 as an exemplar only and retrieve other dNK branches before classification.",
+      "small_human_question": "Does the row aggregate substrate-specific kinases, or specialize a named kinase object?"
+    },
+    {
+      "ordinal": 25,
+      "fingerprint_id": "nucleoside_diphosphate_kinase",
+      "fingerprint_name": "Nucleoside diphosphate kinase",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "correction_required",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [
+        "exact_duplicate",
+        "specialization"
+      ],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [
+        {
+          "mcsa_id": "M0150",
+          "official_name": "nucleoside-diphosphate kinase",
+          "role": "detailed direct reaction candidate",
+          "evidence_status": "official_entry_checked",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/150/"
+        }
+      ],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "The row is empty despite a detailed exact-reaction M-CSA object, M0150 nucleoside-diphosphate kinase.",
+      "proposed_correction": "Add M0150 and reassess specialization versus exact_duplicate at declared granularity.",
+      "small_human_question": "Is species-general NDPK the same mechanism object as M0150, or does the project require a broader applicability object?"
+    },
+    {
+      "ordinal": 26,
+      "fingerprint_id": "askha_sugar_acetate_kinase",
+      "fingerprint_name": "ASKHA sugar/acetate kinase",
+      "machine_draft_classification": "interoperability_bridge",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_only",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "A bridge is asserted without either endpoint or mapped source object.",
+      "proposed_correction": "Add relation_targets naming the ASKHA family/fold endpoint and each reaction endpoint.",
+      "small_human_question": "Which exact family and reaction identifiers does this bridge connect?"
+    },
+    {
+      "ordinal": 27,
+      "fingerprint_id": "ghmp_small_molecule_kinase",
+      "fingerprint_name": "GHMP small-molecule kinase",
+      "machine_draft_classification": "interoperability_bridge",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_only",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "A bridge is asserted without either endpoint or mapped source object.",
+      "proposed_correction": "Add relation_targets for the GHMP family and substrate-specific reaction objects.",
+      "small_human_question": "Which GHMP members share catalytic steps rather than only architecture?"
+    },
+    {
+      "ordinal": 28,
+      "fingerprint_id": "pfka_phosphofructokinase",
+      "fingerprint_name": "PfkA-fold phosphofructokinase",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_only",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "The PfkA specialization has no direct source target.",
+      "proposed_correction": "Retrieve a PfkA mechanism object and name the broader kinase parent if that is the intended relation.",
+      "small_human_question": "Is this an exact reaction object, a fold specialization, or both?"
+    },
+    {
+      "ordinal": 29,
+      "fingerprint_id": "pfkb_ribokinase_family",
+      "fingerprint_name": "PfkB/ribokinase-family kinase",
+      "machine_draft_classification": "interoperability_bridge",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_only",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "A PfkB family bridge is asserted without family or reaction endpoints.",
+      "proposed_correction": "Add InterPro/Pfam/fold and reaction targets before accepting bridge status.",
+      "small_human_question": "Which exact PfkB family identifiers and EC/Rhea reactions are bridged?"
+    },
+    {
+      "ordinal": 30,
+      "fingerprint_id": "thiamine_diphosphate_enzyme",
+      "fingerprint_name": "Thiamine-diphosphate ylide enzyme",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "provisional_support",
+      "proposed_classification": "aggregation",
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [
+          "M0106",
+          "M0219"
+        ],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "ezmechanism"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0106",
+          "official_name": "pyruvate dehydrogenase (acetyl-transferring)",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "representative_only_scope_not_transferred",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/106/"
+        },
+        {
+          "mcsa_id": "M0219",
+          "official_name": "transketolase",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "representative_only_scope_not_transferred",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/219/"
+        }
+      ],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "M0106 and M0219 are valid, distinct ThDP examples and support aggregation.",
+      "proposed_correction": "Retain aggregation; keep their different acceptor and multienzyme contexts separate.",
+      "small_human_question": "Which common ThDP steps can be shared without transferring reaction-specific steps?"
+    },
+    {
+      "ordinal": 31,
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "fingerprint_name": "NAD(P)-dependent dehydrogenase/reductase",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "provisional_support",
+      "proposed_classification": "aggregation",
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [
+          "M0007",
+          "M0139"
+        ],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "ezmechanism"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0007",
+          "official_name": "isocitrate dehydrogenase (NADP+)",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "representative_only_scope_not_transferred",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/7/"
+        },
+        {
+          "mcsa_id": "M0139",
+          "official_name": "xanthine dehydrogenase (mammalian)",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "representative_only_scope_not_transferred",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/139/"
+        }
+      ],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "M0007 and M0139 are valid examples, but the cofactor bucket is extremely broad and M0139 overlaps rows 11/17.",
+      "proposed_correction": "Keep aggregation and represent cross-row cofactor modules explicitly.",
+      "small_human_question": "Should NAD(P) hydride transfer be a reusable module rather than a family-wide mechanism?"
+    },
+    {
+      "ordinal": 32,
+      "fingerprint_id": "glycosyltransferase",
+      "fingerprint_name": "Sugar-nucleotide-dependent glycosyltransferase",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "provisional_support",
+      "proposed_classification": "aggregation",
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [
+          "M0970"
+        ],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "ezmechanism"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0970",
+          "official_name": "peptidoglycan glycosyltransferase",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "representative_only_scope_not_transferred",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/970/"
+        }
+      ],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "M0970 is a valid peptidoglycan glycosyltransferase exemplar only.",
+      "proposed_correction": "Keep aggregation and add retaining/inverting and soluble/polymerizing representatives.",
+      "small_human_question": "Which donor, acceptor, and processivity differences require distinct objects?"
+    },
+    {
+      "ordinal": 33,
+      "fingerprint_id": "glycoside_hydrolase",
+      "fingerprint_name": "Glycoside hydrolase",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "provisional_support",
+      "proposed_classification": "aggregation",
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [
+          "M0203"
+        ],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "ezmechanism"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0203",
+          "official_name": "lysozyme (glycosyl hydrolase 22)",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "representative_only_scope_not_transferred",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/203/"
+        }
+      ],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "M0203 is a valid GH22 exemplar with competing mechanisms, but cannot cover all retaining and inverting glycosidases.",
+      "proposed_correction": "Keep aggregation and preserve mechanism alternatives by family.",
+      "small_human_question": "Which glycoside-hydrolase families can share arrow environments safely?"
+    },
+    {
+      "ordinal": 34,
+      "fingerprint_id": "sam_methyltransferase",
+      "fingerprint_name": "SAM-dependent methyltransferase",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_only",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "The SAM methyltransferase aggregation has no direct source objects.",
+      "proposed_correction": "Retrieve N-, O-, C-, and S-methyltransferase examples across protein/nucleic-acid/small-molecule acceptors.",
+      "small_human_question": "Which acceptor atom and substrate classes define separate mechanisms?"
+    },
+    {
+      "ordinal": 35,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "fingerprint_name": "Manganese/iron superoxide dismutase",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "correction_required",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [
+        "genuinely_missing_concept",
+        "interoperability_bridge"
+      ],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [
+          "M0138"
+        ],
+        "populated_source_slots": [
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "mcsa",
+          "mechfind",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa_arrow_environments",
+          "pfam"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0138",
+          "official_name": "copper/zinc superoxide dismutase",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "correct_counterexample_only",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/138/"
+        }
+      ],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "M0138 is correctly a Cu/Zn counterexample. The current M-CSA API EC filter returns no Mn/Fe mechanism object, so specialization is targetless.",
+      "proposed_correction": "Review genuinely_missing_concept for the M-CSA mechanism boundary or interoperability_bridge for EC/Rhea-to-literature; do not map M0138 positively.",
+      "small_human_question": "Is the classification relative to M-CSA mechanism coverage or to the whole source stack?"
+    },
+    {
+      "ordinal": 36,
+      "fingerprint_id": "terpene_cyclase_synthase",
+      "fingerprint_name": "Terpene cyclase/synthase",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_only",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "The terpene-cyclase aggregation has no source object.",
+      "proposed_correction": "Retrieve ionization-initiated and protonation-initiated cyclase representatives separately.",
+      "small_human_question": "Which initiation modes and metal requirements define distinct mechanisms?"
+    },
+    {
+      "ordinal": 37,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "fingerprint_name": "Ser/Thr/Tyr protein kinase",
+      "machine_draft_classification": "interoperability_bridge",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [
+        {
+          "mcsa_id": "M0282",
+          "official_name": "mitogen-activated protein kinase kinase",
+          "role": "protein-kinase candidate",
+          "evidence_status": "official_entry_checked",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/282/"
+        },
+        {
+          "mcsa_id": "M0760",
+          "official_name": "non-specific serine/threonine protein kinase",
+          "role": "protein-kinase candidate",
+          "evidence_status": "official_entry_checked",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/760/"
+        }
+      ],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "A bridge is asserted without endpoints, although official M-CSA protein-kinase examples M0282/M0760 exist.",
+      "proposed_correction": "Add family/fold and reaction endpoints, then reassess bridge versus aggregation.",
+      "small_human_question": "Which exact protein-kinase object and substrate-residue objects are being bridged?"
+    },
+    {
+      "ordinal": 38,
+      "fingerprint_id": "had_like_phosphatase",
+      "fingerprint_name": "HAD-like Asp-phosphoenzyme phosphatase",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "correction_required",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [
+        {
+          "mcsa_id": "M0727",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/727/"
+        }
+      ],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "Specialization likely targets row 5, but the target is absent and the source gap is untested.",
+      "proposed_correction": "Name row 5 as target and verify a HAD mechanism locator such as historical M0727.",
+      "small_human_question": "Is the Asp-phosphoenzyme intermediate sufficient to make this a distinct specialization?"
+    },
+    {
+      "ordinal": 39,
+      "fingerprint_id": "aldehyde_dehydrogenase",
+      "fingerprint_name": "Aldehyde dehydrogenase",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "correction_required",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [
+        {
+          "mcsa_id": "M0803",
+          "official_name": "aldehyde dehydrogenase (NAD+) class 2",
+          "role": "ALDH-family candidate",
+          "evidence_status": "official_entry_checked",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/803/"
+        }
+      ],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "The rationale invokes phosphorylation-coupled variants although the fingerprint defines ALDH-family thiohemiacetal oxidation; direct M0803 exists.",
+      "proposed_correction": "Add M0803, correct the rationale, and state whether phosphorylation-coupled GAPDH is in or out of scope.",
+      "small_human_question": "Does this row exclude GAPDH-type phosphorylating aldehyde oxidation?"
+    },
+    {
+      "ordinal": 40,
+      "fingerprint_id": "alpha_beta_hydrolase_esterase_lipase",
+      "fingerprint_name": "Alpha/beta hydrolase esterase/lipase",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "correction_required",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [
+        "specialization",
+        "interoperability_bridge"
+      ],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [
+        {
+          "mcsa_id": "M0094",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/94/"
+        },
+        {
+          "mcsa_id": "M0218",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/218/"
+        },
+        {
+          "mcsa_id": "M0401",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/401/"
+        }
+      ],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "The apparent source gap conflicts with historical alpha/beta-hydrolase locators, and the relation to row 1 is unnamed.",
+      "proposed_correction": "Verify representative esterase/lipase locators and add row 1 plus fold/family endpoints.",
+      "small_human_question": "Is the primary relation a mechanism specialization or an interoperability bridge from fold to chemistry?"
+    },
+    {
+      "ordinal": 41,
+      "fingerprint_id": "ser_thr_protein_phosphatase",
+      "fingerprint_name": "Ser/Thr protein phosphatase",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "correction_required",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [
+        {
+          "mcsa_id": "M0406",
+          "role": "discovery_locator_only",
+          "evidence_status": "historical_automation_not_verified",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/406/"
+        }
+      ],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "Historical M0406 contradicts the impression of no candidate, but the intended relation to row 5 is unstated.",
+      "proposed_correction": "Verify M0406 and add explicit parent plus PPP/PPM scope.",
+      "small_human_question": "Does this row aggregate PPP, PPM, and calcineurin mechanisms despite being narrower than row 5?"
+    },
+    {
+      "ordinal": 42,
+      "fingerprint_id": "n_ribosyl_hydrolase",
+      "fingerprint_name": "N-ribosyl / nucleoside hydrolase",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_only",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "The N-ribosyl hydrolase specialization has no source target.",
+      "proposed_correction": "Retrieve purine/pyrimidine nucleoside-hydrolase objects and name the broader parent.",
+      "small_human_question": "Which substrate and leaving-group differences change the mechanism object?"
+    },
+    {
+      "ordinal": 43,
+      "fingerprint_id": "metal_independent_phosphodiesterase",
+      "fingerprint_name": "Metal-independent phosphodiesterase",
+      "machine_draft_classification": "unsupported_or_ill_defined",
+      "computational_disposition": "correction_required",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_only",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "Unsupported_or_ill_defined is reasonable, but canonical cyclic-nucleotide phosphodiesterases are often metal-dependent, conflicting with the seed phrase.",
+      "proposed_correction": "Name verified metal-independent subclasses or remove cyclic-nucleotide PDEs from the scope.",
+      "small_human_question": "Which concrete metal-independent family supports this fingerprint?"
+    },
+    {
+      "ordinal": 44,
+      "fingerprint_id": "aminoglycoside_phosphotransferase",
+      "fingerprint_name": "Aminoglycoside phosphotransferase",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_only",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "The aminoglycoside-phosphotransferase specialization has no source target.",
+      "proposed_correction": "Retrieve APH family and regiospecific reaction objects before accepting the relation.",
+      "small_human_question": "Do position-specific APH subfamilies share one transferable mechanism?"
+    },
+    {
+      "ordinal": 45,
+      "fingerprint_id": "serine_beta_lactamase",
+      "fingerprint_name": "Serine beta-lactamase",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "correction_required",
+      "proposed_classification": "aggregation",
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [
+          "M0002"
+        ],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "cath",
+          "ezmechanism"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0002",
+          "official_name": "beta-lactamase (Class A)",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "representative_only_scope_not_transferred",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/2/"
+        }
+      ],
+      "additional_mcsa_review_locators": [
+        {
+          "mcsa_id": "M0210",
+          "official_name": "beta-lactamase (Class D)",
+          "role": "class-specific candidate",
+          "evidence_status": "official_entry_checked",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/210/"
+        },
+        {
+          "mcsa_id": "M0257",
+          "official_name": "beta-lactamase (Class C)",
+          "role": "class-specific candidate",
+          "evidence_status": "official_entry_checked",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/257/"
+        }
+      ],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "M0002 is Class A only, while the fingerprint spans serine beta-lactamase Classes A, C, and D with distinct catalytic networks.",
+      "proposed_correction": "Add class-C M0257 and class-D M0210 or narrow to Class A; propose aggregation for the current broad scope.",
+      "small_human_question": "Should this fingerprint be split by Ambler serine class?"
+    },
+    {
+      "ordinal": 46,
+      "fingerprint_id": "short_chain_dehydrogenase_reductase",
+      "fingerprint_name": "Short-chain dehydrogenase/reductase",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_only",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "Specialization relative to row 31 is plausible but no source or parent target is recorded.",
+      "proposed_correction": "Add row 31 and SDR family/reaction targets.",
+      "small_human_question": "Which SDR substrates and reaction directions preserve the same catalytic network?"
+    },
+    {
+      "ordinal": 47,
+      "fingerprint_id": "aldo_keto_reductase",
+      "fingerprint_name": "Aldo-keto reductase",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_only",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "Specialization relative to row 31 is plausible but no source or parent target is recorded.",
+      "proposed_correction": "Add row 31 and AKR family/reaction targets.",
+      "small_human_question": "Which AKR subfamilies share the same hydride/proton geometry?"
+    },
+    {
+      "ordinal": 48,
+      "fingerprint_id": "aminoglycoside_acetyltransferase",
+      "fingerprint_name": "Aminoglycoside acetyltransferase",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_only",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "Specialization relative to row 15 is plausible but no source or parent target is recorded.",
+      "proposed_correction": "Add row 15 and GNAT/AAC family plus regiospecific reaction targets.",
+      "small_human_question": "Should AAC(1), AAC(3), AAC(2-prime), and AAC(6-prime) be distinct objects?"
+    },
+    {
+      "ordinal": 49,
+      "fingerprint_id": "metallo_beta_lactamase",
+      "fingerprint_name": "Metallo-beta-lactamase",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "correction_required",
+      "proposed_classification": "aggregation",
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "mechfind",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "pfam"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [
+        {
+          "mcsa_id": "M0015",
+          "official_name": "beta-lactamase (Class B1)",
+          "role": "detailed dimetal candidate",
+          "evidence_status": "official_entry_checked",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/15/"
+        },
+        {
+          "mcsa_id": "M0016",
+          "official_name": "beta-lactamase (Class B1)",
+          "role": "detailed monometal candidate",
+          "evidence_status": "official_entry_checked",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/16/"
+        }
+      ],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "The same EC as row 45 is present, yet no M-CSA candidate is linked; official detailed Class-B1 objects M0015/M0016 exist.",
+      "proposed_correction": "Add M0015/M0016, distinguish mono- and dimetal mechanisms and B1/B2/B3, and propose aggregation for the broad row.",
+      "small_human_question": "Should B1, B2, and B3 be split by zinc stoichiometry and catalytic network?"
+    },
+    {
+      "ordinal": 50,
+      "fingerprint_id": "peroxiredoxin_thiol_peroxidase",
+      "fingerprint_name": "Peroxiredoxin / thiol-based peroxidase",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "provisional_support",
+      "proposed_classification": "aggregation",
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [
+          "M0851"
+        ],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "ezmechanism"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0851",
+          "official_name": "glutathione peroxidase",
+          "mechanism_detail": "non_detailed",
+          "fit_assessment": "representative_only_non_detailed",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/851/"
+        }
+      ],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "M0851 is a valid glutathione-peroxidase subset but is non-detailed and does not represent peroxiredoxin resolving chemistry.",
+      "proposed_correction": "Keep aggregation and add 1-Cys, 2-Cys, and thioredoxin-dependent representatives.",
+      "small_human_question": "Should GPx and peroxiredoxin be separate linked objects?"
+    },
+    {
+      "ordinal": 51,
+      "fingerprint_id": "paps_sulfotransferase",
+      "fingerprint_name": "PAPS-dependent sulfotransferase",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_only",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "The broad PAPS-sulfotransferase aggregation has no source object.",
+      "proposed_correction": "Retrieve soluble and Golgi/membrane sulfotransferase representatives.",
+      "small_human_question": "Which acceptor classes and topologies require separate mechanisms?"
+    },
+    {
+      "ordinal": 52,
+      "fingerprint_id": "glutathione_s_transferase",
+      "fingerprint_name": "Glutathione S-transferase",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_only",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "The GST aggregation has no source object, although the family spans multiple reaction outcomes.",
+      "proposed_correction": "Retrieve conjugation representatives and keep non-conjugation GST activities separate.",
+      "small_human_question": "Which GST activities are true GSH conjugation versus other chemistry?"
+    },
+    {
+      "ordinal": 53,
+      "fingerprint_id": "aminoacyl_trna_synthetase",
+      "fingerprint_name": "Aminoacyl-tRNA synthetase",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [
+        {
+          "mcsa_id": "M0481",
+          "official_name": "tryptophan--tRNA ligase",
+          "role": "class-I aaRS candidate",
+          "evidence_status": "official_entry_checked",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/481/"
+        },
+        {
+          "mcsa_id": "M0235",
+          "official_name": "arginine--tRNA ligase",
+          "role": "class-I aaRS candidate",
+          "evidence_status": "official_entry_checked",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/235/"
+        }
+      ],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "Aggregation is plausible, but the row has no source objects; official M0481/M0235 are class-I aminoacyl-tRNA synthetase locators.",
+      "proposed_correction": "Add class-I and class-II representatives and preserve editing as a separate process.",
+      "small_human_question": "Which aminoacylation steps are shared across classes I and II?"
+    },
+    {
+      "ordinal": 54,
+      "fingerprint_id": "acid_coa_ligase",
+      "fingerprint_name": "Acid--CoA ligase (acyl-CoA synthetase)",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "unresolved_insufficient_source_targets",
+      "proposed_classification": null,
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_only",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "The acid-CoA ligase specialization has no source target.",
+      "proposed_correction": "Retrieve ANL-family representatives and name the parent ligase relation.",
+      "small_human_question": "Which substrate scopes share the acyl-adenylate and thioester-forming steps?"
+    },
+    {
+      "ordinal": 55,
+      "fingerprint_id": "cysteine_protease",
+      "fingerprint_name": "Cysteine protease (Cys-His thiol peptidase)",
+      "machine_draft_classification": "aggregation",
+      "computational_disposition": "provisional_support",
+      "proposed_classification": "aggregation",
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [
+          "M0174"
+        ],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "ezmechanism"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0174",
+          "official_name": "papain",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "representative_only_scope_not_transferred",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/174/"
+        }
+      ],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "M0174 is a valid papain exemplar but covers only one cysteine-protease clan.",
+      "proposed_correction": "Keep aggregation and add caspase, calpain, and deubiquitinase representatives.",
+      "small_human_question": "Which clans share a transferable Cys-His catalytic network?"
+    },
+    {
+      "ordinal": 56,
+      "fingerprint_id": "flavin_disulfide_reductase",
+      "fingerprint_name": "Flavin-dependent disulfide reductase (NAD(P)H:disulfide oxidoreductase)",
+      "machine_draft_classification": "specialization",
+      "computational_disposition": "correction_required",
+      "proposed_classification": "aggregation",
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "ezmechanism",
+          "interpro",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "pfam",
+          "rhea"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [],
+      "additional_mcsa_review_locators": [
+        {
+          "mcsa_id": "M0006",
+          "official_name": "glutathione-disulfide reductase",
+          "role": "FAD/NADPH disulfide-reductase candidate",
+          "evidence_status": "official_entry_checked",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/6/"
+        },
+        {
+          "mcsa_id": "M0381",
+          "official_name": "thioredoxin reductase",
+          "role": "distinct disulfide-reductase architecture",
+          "evidence_status": "official_entry_checked",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/381/"
+        }
+      ],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "The empty row misses official glutathione-reductase M0006 and thioredoxin-reductase M0381; its broad substrate/relay scope spans several source mechanisms.",
+      "proposed_correction": "Add M0006/M0381, preserve different relay/domain arrangements, and propose aggregation.",
+      "small_human_question": "Should each disulfide reductase substrate/relay architecture be a separate mechanism object?"
+    },
+    {
+      "ordinal": 57,
+      "fingerprint_id": "dihydrofolate_reductase",
+      "fingerprint_name": "Dihydrofolate reductase (NADPH-dependent folate reduction)",
+      "machine_draft_classification": "exact_duplicate",
+      "computational_disposition": "correction_required",
+      "proposed_classification": "aggregation",
+      "classification_alternatives_requiring_human_precedence": [],
+      "inspection_depth": "internal_definition_packet_and_all_source_slots_plus_official_mcsa_handles",
+      "phase_a_source_state": {
+        "mcsa_candidate_ids": [
+          "M0112"
+        ],
+        "mcsa_counterexample_ids": [],
+        "populated_source_slots": [
+          "ec",
+          "ec_blast",
+          "enzymemap",
+          "enzymm",
+          "mcsa",
+          "mcsa_arrow_environments",
+          "mechfind",
+          "rhea"
+        ],
+        "empty_source_slots": [
+          "cath",
+          "chebi",
+          "ezmechanism",
+          "interpro",
+          "pfam"
+        ],
+        "all_mapping_assertions": "none_unreviewed_candidate_only"
+      },
+      "authoritative_mcsa_checks": [
+        {
+          "mcsa_id": "M0112",
+          "official_name": "dihydrofolate reductase (bacterial)",
+          "mechanism_detail": "detailed",
+          "fit_assessment": "reaction_match_but_fingerprint_scope_broader",
+          "source_uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/112/"
+        }
+      ],
+      "additional_mcsa_review_locators": [],
+      "historical_automation_same_fingerprint_locator_count": 0,
+      "issue": "Exact duplicate is unsupported at the declared scope: the fingerprint spans bacterial, resistant, human, and bifunctional DHFR contexts while M0112 is one bacterial object. Its proton donor is a conserved water, with Asp26 tuning the network, not direct Asp/Glu protonation as the fingerprint states.",
+      "proposed_correction": "Propose aggregation or narrow the fingerprint to M0112; correct the N5-protonation role before any equivalence claim.",
+      "small_human_question": "What object granularity makes this exact, and is the conserved water the explicit N5 proton donor in the fingerprint?"
+    }
+  ],
+  "primary_source_refs": [
+    {
+      "label": "M-CSA API documentation",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/download/"
+    },
+    {
+      "label": "M-CSA entry semantics",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/documentation/"
+    },
+    {
+      "label": "M0049 pyruvoyl histidine decarboxylase",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/49/"
+    },
+    {
+      "label": "M0482 PLP dialkylglycine decarboxylase",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/482/"
+    },
+    {
+      "label": "M0052 class-II aldolase",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/52/"
+    },
+    {
+      "label": "M0222 class-I aldolase",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/222/"
+    },
+    {
+      "label": "M0133 P450cam",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/133/"
+    },
+    {
+      "label": "M0239 heme peroxidase",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/239/"
+    },
+    {
+      "label": "M0138 Cu/Zn SOD",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/138/"
+    },
+    {
+      "label": "M0002 class-A beta-lactamase",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/2/"
+    },
+    {
+      "label": "M0015 class-B1 beta-lactamase",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/15/"
+    },
+    {
+      "label": "M0016 class-B1 beta-lactamase",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/16/"
+    },
+    {
+      "label": "M0112 bacterial DHFR",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/112/"
+    },
+    {
+      "label": "M0006 glutathione reductase",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/6/"
+    },
+    {
+      "label": "M0381 thioredoxin reductase",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/381/"
+    },
+    {
+      "label": "M0150 nucleoside-diphosphate kinase",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/150/"
+    },
+    {
+      "label": "M0851 glutathione peroxidase",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/851/"
+    },
+    {
+      "label": "M0970 peptidoglycan glycosyltransferase",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/970/"
+    }
+  ]
+}

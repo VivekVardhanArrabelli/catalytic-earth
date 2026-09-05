@@ -1,5 +1,17 @@
 # Current Decisions
 
+## 2026-09-05: accelerate correction with an explicit computational review overlay
+
+The owner requested substantive review while external review is slow. Bounded
+public-source checks and agent assessments may proceed as corrective work in
+a separate namespace. They do not execute the frozen Phase B acquisition plan,
+resolve a human packet, admit a mechanism, or grant a selection freeze.
+
+Withdraw the A0A177THN5 APX-specific transfer and retire the larger comparison
+study based on it (CE-017/ER-011). CcP-like remains a provisional working
+interpretation. Read [the review and next actions](COMPUTATIONAL_REVIEW_20260905.md)
+before reusing the July candidate proposal or historical lab documents.
+
 ## 2026-09-05: Atlas-50 review intake is append-only and does not authenticate science
 
 Decision: make the frozen Phase B packets usable by a real reviewer through a

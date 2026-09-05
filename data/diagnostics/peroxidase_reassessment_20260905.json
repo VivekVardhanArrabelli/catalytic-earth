@@ -1,0 +1,75 @@
+{
+  "schema_version": "catalytic-earth.computational-reassessment.v1",
+  "assessment_date": "2026-09-05",
+  "subject": "A0A177THN5",
+  "review_kind": "agent_computational_assessment",
+  "independent_human_review": false,
+  "exposure_status": "Previously exposed June 29 diagnostic candidate; not a fresh evaluation surface.",
+  "decision": {
+    "withdraw": "APX-specific donor assignment inferred from nearest structural neighbour P48534.",
+    "retain": "Class-I-like heme-peroxidase family hypothesis.",
+    "working_hypothesis": "CcP-like; provisional author interpretation, not experimentally established substrate specificity.",
+    "study_disposition": "Retire the larger APX-versus-CcP study based on the withdrawn APX premise."
+  },
+  "public_source_checks": [
+    {
+      "source": "UniProt",
+      "url": "https://rest.uniprot.org/uniprotkb/A0A177THN5.json",
+      "accessed_on": "2026-09-05",
+      "response_sha256": "082e402f8ddfeba88fa1d73596db0a4483d563745adeff26ac688153361f6bab",
+      "response_bytes": 10497,
+      "entry_audit": {
+        "firstPublicDate": "2016-09-07",
+        "lastAnnotationUpdateDate": "2026-09-02",
+        "lastSequenceUpdateDate": "2016-09-07",
+        "entryVersion": 32,
+        "sequenceVersion": 1
+      },
+      "entry_type": "UniProtKB unreviewed (TrEMBL)",
+      "protein_name": "Uncharacterized protein",
+      "organism": "Tilletia indica",
+      "length": 313,
+      "sequence_md5": "BDD19A897AA68EBE686DF6112A3C897A",
+      "protein_existence": "3: Inferred from homology",
+      "interpro_ids": [
+        "IPR044831",
+        "IPR002016",
+        "IPR010255",
+        "IPR002207",
+        "IPR019794"
+      ],
+      "interpretation": "Unreviewed, homology-inferred entry does not establish donor specificity.",
+      "rights": "UniProt CC BY 4.0; selected metadata summarized by Catalytic Earth; no raw sequence redistributed."
+    },
+    {
+      "source": "InterPro",
+      "url": "https://www.ebi.ac.uk/interpro/api/entry/interpro/IPR044831/",
+      "accessed_on": "2026-09-05",
+      "response_sha256": "9c759f3fa98c90a1af110929b0bb0134bfaba14ec5108f6738f77eca1222d892",
+      "response_bytes": 3196,
+      "accession": "IPR044831",
+      "name": "Heme-binding peroxidase Ccp1-like",
+      "interpretation": "This family includes yeast Ccp1 and Arabidopsis APX1-6. The Ccp1-like label is not diagnostic of CcP over APX.",
+      "rights": "InterPro CC0; selected metadata summarized by Catalytic Earth."
+    },
+    {
+      "source": "Meharenna et al., Biochemistry (2008)",
+      "doi": "10.1021/bi8007565",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2770236/",
+      "inspection_depth": "Public abstract and indexed Results excerpts; no target-specific result.",
+      "interpretation": "Closely similar APX and CcP folds can differ in donor specificity; substrate-pocket geometry and radical environment matter. Global fold agreement and shared catalytic residues do not establish APX activity."
+    },
+    {
+      "source": "Patterson et al., Biochemistry (1995)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7703248/",
+      "inspection_depth": "Public indexed abstract; no target-specific result.",
+      "interpretation": "The conserved proximal Trp is also present in APX, whose compound I was identified as a porphyrin radical. Trp conservation alone does not prove a CcP radical state."
+    }
+  ],
+  "not_performed": [
+    "No new structure prediction, structural alignment, pocket measurement, docking or radical-energy calculation.",
+    "No target-specific substrate assay, kinetics, spectroscopy or wet-lab execution.",
+    "No independent human annotation, frozen Atlas review submission, or benchmark scoring."
+  ],
+  "residual_question": "Only if a new practical use justifies reopening: what target-specific evidence establishes the physiological electron donor? Do not spend on the retired comparison merely to validate a nearest-neighbour label."
+}

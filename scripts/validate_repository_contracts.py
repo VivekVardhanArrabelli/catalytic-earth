@@ -114,6 +114,9 @@ def _validate_markdown_links() -> None:
         "docs/ATLAS10_KERNEL.md",
         "docs/ATLAS50_PHASE_A.md",
         "docs/ATLAS50_PHASE_B.md",
+        "docs/COMPUTATIONAL_REVIEW_20260905.md",
+        "docs/ATLAS50_COMPUTATIONAL_CROSSWALK_REVIEW.md",
+        "docs/ATLAS50_COMPUTATIONAL_PANEL_REVIEW.md",
         "docs/ATLAS_TRUTH_POLICY.md",
         "docs/CORE_REPRODUCTION.md",
         "docs/EVALUATION_MEMORY.md",
@@ -139,6 +142,9 @@ def _validate_markdown_links() -> None:
 def _validate_json_surfaces(*, include_release_manifest: bool) -> None:
     paths = [
         "data/governance/claim_ledger.json",
+        "data/diagnostics/peroxidase_reassessment_20260905.json",
+        "data/atlas/atlas50/computational_review/crosswalk_review.json",
+        "data/atlas/atlas50/computational_review/panel_review.json",
         "data/governance/exposure_rows_manifest.json",
         "data/governance/preregistration-v1.schema.json",
         "data/governance/architecture_freeze.json",

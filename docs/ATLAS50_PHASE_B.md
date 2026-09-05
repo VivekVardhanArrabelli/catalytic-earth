@@ -1,5 +1,10 @@
 # Atlas-50 Phase B review and selection-freeze readiness
 
+> **2026-09-05 computational findings:** read the
+> [correction overlay](COMPUTATIONAL_REVIEW_20260905.md) before using this July
+> proposal. It identifies source-mapping and representation concerns; it does
+> not alter these frozen packets or count as their required human review.
+
 ## Status
 
 Phase B has started from merged Phase A commit

@@ -116,6 +116,22 @@ audit. `CLAIMS.md` is the canonical current claim ledger.
 - **Claim boundary:** green software contracts do not validate any biological
   result.
 
+## ER-011 — A0A177THN5 APX-specific interpretation
+
+- **Affected claim:** CE-017 and the June 29 candidate shortlist/lab handoff.
+- **Previous wording:** the nearest L-ascorbate-peroxidase reference and five
+  conserved residues establish an APX-like candidate suitable for the proposed
+  donor comparison.
+- **Correction:** withdraw the donor-specific transfer and retire the larger
+  APX-versus-CcP study premised on it. CcP-like remains a provisional working
+  interpretation; no target-specific activity or radical state is established.
+- **Evidence:** public UniProt and InterPro metadata plus primary peroxidase
+  research, separated from inference in the
+  [reassessment](docs/COMPUTATIONAL_REVIEW_20260905.md). In particular,
+  InterPro's `Ccp1-like` group includes APX as well as CcP.
+- **Record rule:** preserve historical outputs, add the specific correction to
+  old handoff surfaces, and do not count this exposed candidate as a fresh test.
+
 ## Propagation rule
 
 Current entry documents must link to this file and `CLAIMS.md`. Historical
