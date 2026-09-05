@@ -72,8 +72,10 @@ non-overlapping file ownership before edits. Agents may read this board anytime.
   retain the actual proposed corrections and adjudications; no revision is
   inferred from an accept/revise/unresolved verb.
 - Current scientific data and all frozen Atlas/registry/exposure assets remain
-  byte-identical to the GitHub baseline. Only the architecture file-count field
-  is refreshed for the new engineering files.
+  byte-identical to the GitHub baseline. The architecture file-count field and
+  report-archive membership index are refreshed for the new engineering files
+  and this board. The archive index uses staged Git blobs, so its update must
+  follow staging the board; a post-commit check caught and corrected that order.
 - Final local checks: 117 core/unit tests pass on Python 3.12; full repository
   contracts pass, including both deterministic Atlas-50 packages, all inherited
   Atlas objects, manifests, exposure controls, and the new intake scan.
