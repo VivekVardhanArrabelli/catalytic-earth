@@ -255,3 +255,71 @@ July Phase A/B, protected registries, expansion freeze and exposure ledgers.
 
 The new checkpoint is ready to publish. Cross-platform CI and merge status
 will be reported separately from these local results.
+
+## Impact-driven atlas development
+
+The owner explicitly directed optimizing each next action for progress toward
+an open, computable mechanism atlas. A demonstration or benchmark is not a
+prerequisite unless it resolves a decision that affects that goal. Do not
+spend a sprint proving progress for its own sake. Review priorities whenever
+the binding bottleneck changes. This supersedes the conversational suggestion
+to make an enzyme-decision showcase the immediate next milestone.
+
+Current branch: `codex/atlas-source-drafts`, based on PR #32 merged at
+`3c3ef59775b5e347b90415b0f4aa953c94a9437c` after all four CI jobs passed.
+The selected bottleneck is the gap between reviewed chemistry and usable records.
+
+| Agent | Ownership in this batch | Work |
+| --- | --- | --- |
+| root | architecture choice, compiler integration, query/package, current docs, board | turn allowed source chemistry into usable atlas drafts |
+| state_contracts | generic v4 schema/compiler and focused tests | preserve source proposals and positive typed state fields |
+| source_ingestion | bounded official-source importer, snapshots, manifest, tests | preserve receipt evidence and source uncertainty; check scientific fidelity |
+| draft_integration_review | read-only query and release integration review | check material omissions and package isolation |
+
+No new evidence claim follows from the priority change. Existing source scope,
+HisF role conflict, carrier-identity gaps and nitrogenase uncertainty remain
+part of the chemistry we must represent. The intended output is a reusable
+source-to-draft path, not another review-administration layer.
+
+### Implementation and challenge results
+
+- Official-source acquisition retrieved four entries and 48 linked MRV schemes
+  using 49 requests and 1,109,896 bytes. All responses were HTTP 200; inputs
+  are snapshotted with attribution, response receipts, and content hashes.
+- One generic compiler produces four Tier-1 v4 records, with five source
+  proposals, 43 reaction steps, five terminal states and 148 source arrow
+  annotations. The fixed and cycling assemblies, unknown carrier owner/site,
+  incomplete nitrogenase pathway and HisF role conflict remain explicit.
+- The compiler selects from manifest and gate data rather than branching by
+  enzyme family. Offline rebuilds check source completeness and preserve
+  inferred steps and alternatives. It makes no balanced-reaction, exact-instance
+  or Tier-2 claim.
+- Root added package assets and an offline CLI. Review caught omitted residue
+  evidence in compact results and missing batch scope in empty results. Both
+  were corrected and the reviewer confirmed closure; five query tests pass.
+- The inherited Atlas-3/10, July Phase A/B, state probe, adjudications and
+  crosswalk v2 remain unchanged. No independent review or biological result is
+  inferred from these engineering checks.
+- Full-suite integration initially caught the new assets inside the frozen
+  Atlas-10 package directory. Root relocated them to `draft_data` and added
+  that directory to the wheel package list; the inherited directory stays
+  byte-identical. The subsequent core run and repository contracts passed.
+- Source-fidelity review confirmed exact scopes, alternatives and step text,
+  then identified that absence of the word "inferred" was encoded as false.
+  The successor record now uses null (unspecified) when the source provides no
+  explicit tag. Its validator rejects guessed false values, and a regression
+  test checks nitrogenase uncertainty and explicitly inferred return steps.
+- The built wheel queries the four drafts from an empty directory with network
+  connections blocked. Its existing Atlas-10 query still returns 10 cases,
+  30 objects and runtime hash
+  `57fb5e4708d6963b994a9ffd125549b822effe060da3e735c1afd987f1c84bdb`.
+
+### Final local checkpoint
+
+After the inference correction, the full core tier runs 166 tests: 165 pass,
+with one optional JSON Schema test skipped in the Python 3.12 build environment.
+The compiler agent's schema-enabled run passes all nine focused tests. The
+rebuilt wheel again passes the network-blocked draft query and unchanged
+Atlas-10 result check. Sixteen frozen/registry/exposure scopes are unchanged
+from merged PR #32. Root will publish this checkpoint and report exact-head CI
+and merge status separately.

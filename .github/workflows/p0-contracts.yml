@@ -78,8 +78,8 @@ jobs:
       - name: Verify Atlas-3 wheel and query from an empty directory
         run: python scripts/verify_atlas3_release.py --wheel dist-atlas3
 
-      - name: Verify Atlas-10 wheel and relationship queries from an empty directory
-        run: python scripts/verify_atlas10_release.py --wheel dist-atlas3
+      - name: Verify Atlas-10 and source drafts from an empty directory
+        run: python scripts/verify_atlas10_release.py --wheel dist-atlas3 --include-source-drafts
 
       - name: Build wheel and lean archive from the exact release source commit
         run: python scripts/build_canonical_release_assets.py

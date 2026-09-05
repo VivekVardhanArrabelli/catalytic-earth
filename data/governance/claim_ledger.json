@@ -127,10 +127,11 @@
     "status": "Supported",
     "claim": "Catalytic Earth is a research scaffold for an open computable catalytic-mechanism atlas, not yet a validated global atlas, validated predictor, or production biological design system.",
     "current_wording": "Keep the full atlas as the mission while labeling the current implementation and evidence honestly.",
-    "rationale": "The project has real structured assets but lacks independent review, reproducible release quality, and prospective biological validation at atlas scale.",
+    "rationale": "The project has structured assets, reproducible release checks, and source-scoped compilation. It still lacks independent validation and prospective biological validation at atlas scale.",
     "evidence": [
       "README.md",
       "docs/RAPID_ATLAS_PLAN.md",
+      "docs/ATLAS_SOURCE_DRAFTS.md",
       "docs/reviews/catalytic-earth-full-review-2026-07-10.md"
     ]
   },

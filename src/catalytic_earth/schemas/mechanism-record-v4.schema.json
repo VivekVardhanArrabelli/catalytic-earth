@@ -1,0 +1,719 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://catalytic.earth/schemas/mechanism-record-v4.schema.json",
+  "title": "Catalytic Earth source-scoped mechanism record v4",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_id",
+    "case_id",
+    "mcsa_id",
+    "label",
+    "object_type",
+    "evidence_tier",
+    "status",
+    "source_scope",
+    "reaction_context",
+    "state_context",
+    "mechanism_proposals",
+    "source_residue_assertions",
+    "residue_role_resolution",
+    "mandatory_abstentions",
+    "source",
+    "claim_boundary",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {"const": "catalytic-earth.mechanism-record.v4"},
+    "record_id": {"type": "string", "minLength": 1},
+    "case_id": {"type": "string", "minLength": 1},
+    "mcsa_id": {"type": "string", "pattern": "^M[0-9]{4}$"},
+    "label": {"type": "string", "minLength": 1},
+    "object_type": {
+      "enum": ["source_annotation", "source_scoped_mechanism_draft"]
+    },
+    "evidence_tier": {"const": 1},
+    "status": {"enum": ["source_transcription", "source_scoped_draft"]},
+    "source_scope": {"type": "string", "minLength": 1},
+    "reaction_context": {"$ref": "#/$defs/reaction_context"},
+    "state_context": {"$ref": "#/$defs/state_context"},
+    "mechanism_proposals": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/mechanism_proposal"}
+    },
+    "source_residue_assertions": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/source_residue_assertion"}
+    },
+    "residue_role_resolution": {"$ref": "#/$defs/residue_role_resolution"},
+    "mandatory_abstentions": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/abstention"}
+    },
+    "source": {"$ref": "#/$defs/source"},
+    "claim_boundary": {"$ref": "#/$defs/claim_boundary"},
+    "provenance": {"$ref": "#/$defs/provenance"}
+  },
+  "$defs": {
+    "string_array": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "nullable_string": {"type": ["string", "null"]},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "reaction_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "source_record_id",
+        "assertion_scope",
+        "canonical_reaction",
+        "balanced_net_reaction",
+        "exact_reaction_instance",
+        "ec_numbers",
+        "participants"
+      ],
+      "properties": {
+        "source_id": {"const": "M-CSA"},
+        "source_record_id": {"type": "string", "pattern": "^M[0-9]{4}$"},
+        "assertion_scope": {"const": "source_reported_reaction_context"},
+        "canonical_reaction": {"const": false},
+        "balanced_net_reaction": {"const": false},
+        "exact_reaction_instance": {"const": false},
+        "ec_numbers": {"$ref": "#/$defs/string_array"},
+        "participants": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/reaction_participant"}
+        }
+      }
+    },
+    "reaction_participant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_row_index",
+        "source_compound_token",
+        "normalized_chebi_id",
+        "name",
+        "side",
+        "source_count"
+      ],
+      "properties": {
+        "source_row_index": {"type": "integer", "minimum": 1},
+        "source_compound_token": {"type": "string", "minLength": 1},
+        "normalized_chebi_id": {
+          "type": ["string", "null"],
+          "pattern": "^CHEBI:[0-9]+$"
+        },
+        "name": {"type": "string", "minLength": 1},
+        "side": {"enum": ["left", "right"]},
+        "source_count": {"type": "integer", "minimum": 1}
+      }
+    },
+    "state_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "components",
+        "assembly",
+        "state_transitions",
+        "tethered_carrier",
+        "polymer_topology"
+      ],
+      "properties": {
+        "components": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/component"}
+        },
+        "assembly": {"$ref": "#/$defs/assembly"},
+        "state_transitions": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/state_transition"}
+        },
+        "tethered_carrier": {
+          "oneOf": [
+            {"type": "null"},
+            {"$ref": "#/$defs/tethered_carrier"}
+          ]
+        },
+        "polymer_topology": {
+          "oneOf": [
+            {"type": "null"},
+            {"$ref": "#/$defs/polymer_topology"}
+          ]
+        }
+      }
+    },
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "component_id",
+        "component_kind",
+        "source_identifiers",
+        "role",
+        "identity_scope",
+        "evidence_ids"
+      ],
+      "properties": {
+        "component_id": {"type": "string", "minLength": 1},
+        "component_kind": {
+          "enum": [
+            "protein",
+            "protein_role",
+            "cofactor",
+            "metallocluster",
+            "redox_partner",
+            "polymer"
+          ]
+        },
+        "source_identifiers": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/source_identifier"}
+        },
+        "role": {"type": "string", "minLength": 1},
+        "identity_scope": {
+          "enum": ["source_identity", "source_defined", "context_only", "role_only"]
+        },
+        "evidence_ids": {
+          "allOf": [{"$ref": "#/$defs/string_array"}, {"minItems": 1}]
+        }
+      }
+    },
+    "source_identifier": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["namespace", "accession"],
+      "properties": {
+        "namespace": {"type": "string", "minLength": 1},
+        "accession": {"type": "string", "minLength": 1}
+      }
+    },
+    "assembly": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "member_component_ids", "assertion_scope", "evidence_ids", "note"],
+      "properties": {
+        "mode": {
+          "enum": [
+            "single_source_component",
+            "fixed_multisubunit",
+            "cycle_coupled_association",
+            "external_carrier_encounter"
+          ]
+        },
+        "member_component_ids": {
+          "allOf": [{"$ref": "#/$defs/string_array"}, {"minItems": 1}]
+        },
+        "assertion_scope": {"type": "string", "minLength": 1},
+        "evidence_ids": {
+          "allOf": [{"$ref": "#/$defs/string_array"}, {"minItems": 1}]
+        },
+        "note": {"type": "string", "minLength": 1}
+      }
+    },
+    "state_transition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "transition_id",
+        "subject_component_ids",
+        "before_state_id",
+        "after_state_id",
+        "transition_kind",
+        "assertion_scope",
+        "evidence_ids"
+      ],
+      "properties": {
+        "transition_id": {"type": "string", "minLength": 1},
+        "subject_component_ids": {
+          "allOf": [{"$ref": "#/$defs/string_array"}, {"minItems": 1}]
+        },
+        "before_state_id": {"type": "string", "minLength": 1},
+        "after_state_id": {"type": "string", "minLength": 1},
+        "transition_kind": {"type": "string", "minLength": 1},
+        "assertion_scope": {"type": "string", "minLength": 1},
+        "evidence_ids": {
+          "allOf": [{"$ref": "#/$defs/string_array"}, {"minItems": 1}]
+        }
+      }
+    },
+    "tethered_carrier": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "owner_component_id",
+        "attachment_residue",
+        "attachment_site",
+        "reactant_state_id",
+        "product_state_id",
+        "structure_component_ids",
+        "status",
+        "evidence_ids"
+      ],
+      "properties": {
+        "owner_component_id": {"type": "string", "minLength": 1},
+        "attachment_residue": {"type": "string", "minLength": 1},
+        "attachment_site": {"$ref": "#/$defs/nullable_string"},
+        "reactant_state_id": {"type": "string", "minLength": 1},
+        "product_state_id": {"type": "string", "minLength": 1},
+        "structure_component_ids": {"$ref": "#/$defs/string_array"},
+        "status": {"type": "string", "minLength": 1},
+        "evidence_ids": {
+          "allOf": [{"$ref": "#/$defs/string_array"}, {"minItems": 1}]
+        }
+      }
+    },
+    "polymer_topology": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "polymer_component_id",
+        "reactant_state_id",
+        "product_state_id",
+        "source_product_placeholder",
+        "reaction_event",
+        "topology_before",
+        "topology_after",
+        "chain_length_before",
+        "chain_length_after",
+        "initiation_or_elongation",
+        "processivity",
+        "status",
+        "evidence_ids"
+      ],
+      "properties": {
+        "polymer_component_id": {"type": "string", "minLength": 1},
+        "reactant_state_id": {"type": "string", "minLength": 1},
+        "product_state_id": {"$ref": "#/$defs/nullable_string"},
+        "source_product_placeholder": {"$ref": "#/$defs/nullable_string"},
+        "reaction_event": {"$ref": "#/$defs/nullable_string"},
+        "topology_before": {"$ref": "#/$defs/nullable_string"},
+        "topology_after": {"$ref": "#/$defs/nullable_string"},
+        "chain_length_before": {"$ref": "#/$defs/nullable_string"},
+        "chain_length_after": {"$ref": "#/$defs/nullable_string"},
+        "initiation_or_elongation": {"$ref": "#/$defs/nullable_string"},
+        "processivity": {"$ref": "#/$defs/nullable_string"},
+        "status": {"type": "string", "minLength": 1},
+        "evidence_ids": {
+          "allOf": [{"$ref": "#/$defs/string_array"}, {"minItems": 1}]
+        }
+      }
+    },
+    "mechanism_proposal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "proposal_id",
+        "source_id",
+        "source_record_id",
+        "source_mechanism_id",
+        "rating",
+        "is_detailed",
+        "proposal_scope",
+        "components_summary",
+        "mechanism_text",
+        "source_references",
+        "mechanism_steps",
+        "terminal_state_source_step_ids",
+        "structured_detail_status",
+        "scheme_retrieval_issues"
+      ],
+      "properties": {
+        "proposal_id": {"type": "string", "minLength": 1},
+        "source_id": {"const": "M-CSA"},
+        "source_record_id": {"type": "string", "pattern": "^M[0-9]{4}$"},
+        "source_mechanism_id": {"type": "integer", "minimum": 1},
+        "rating": {"type": "integer", "minimum": 0, "maximum": 3},
+        "is_detailed": {"type": "boolean"},
+        "proposal_scope": {"enum": ["source_transcription", "bounded_source_scoped"]},
+        "components_summary": {"type": "string", "minLength": 1},
+        "mechanism_text": {"type": "string", "minLength": 1},
+        "source_references": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/source_reference"}
+        },
+        "mechanism_steps": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/mechanism_step"}
+        },
+        "terminal_state_source_step_ids": {
+          "type": "array",
+          "items": {"type": "integer", "minimum": 1},
+          "uniqueItems": true
+        },
+        "structured_detail_status": {
+          "enum": [
+            "source_curved_arrows_preserved_no_atom_mapping_inference",
+            "source_steps_preserved_with_flow_abstentions",
+            "source_non_detailed_no_ordered_mechanism_claim"
+          ]
+        },
+        "scheme_retrieval_issues": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/scheme_issue"}
+        }
+      }
+    },
+    "source_reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "doi", "pubmed_id", "evidence_types"],
+      "properties": {
+        "title": {"$ref": "#/$defs/nullable_string"},
+        "doi": {"$ref": "#/$defs/nullable_string"},
+        "pubmed_id": {"$ref": "#/$defs/nullable_string"},
+        "evidence_types": {"$ref": "#/$defs/string_array"}
+      }
+    },
+    "mechanism_step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "step_id",
+        "order",
+        "summary",
+        "source_step_id",
+        "is_inferred",
+        "evidence_ids",
+        "source_scheme_sha256",
+        "scheme_status",
+        "electron_flows",
+        "electron_flow_semantics",
+        "electron_flow_abstention",
+        "atom_mapping_status",
+        "bond_edit_status"
+      ],
+      "properties": {
+        "step_id": {"type": "string", "minLength": 1},
+        "order": {"type": "integer", "minimum": 1},
+        "summary": {"type": "string", "minLength": 1},
+        "source_step_id": {"type": "integer", "minimum": 1},
+        "is_inferred": {
+          "type": ["boolean", "null"],
+          "description": "True only when the source step text explicitly tags the step as inferred; null means the source is silent. False is reserved for a future explicit source assertion and must not be derived from silence."
+        },
+        "evidence_ids": {
+          "allOf": [{"$ref": "#/$defs/string_array"}, {"minItems": 1}]
+        },
+        "source_scheme_sha256": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "scheme_status": {"type": "string", "minLength": 1},
+        "electron_flows": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/electron_flow"}
+        },
+        "electron_flow_semantics": {
+          "const": "source_ordered_curved_arrow_endpoints_not_atom_mapped_bond_edits"
+        },
+        "electron_flow_abstention": {"$ref": "#/$defs/nullable_string"},
+        "atom_mapping_status": {"const": "not_inferred"},
+        "bond_edit_status": {"const": "not_compiled_from_unmapped_source_scheme"}
+      }
+    },
+    "electron_flow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["flow_id", "source_point", "target_point", "ordering_semantics"],
+      "properties": {
+        "flow_id": {"type": "string", "minLength": 1},
+        "source_point": {"$ref": "#/$defs/electron_point"},
+        "target_point": {"$ref": "#/$defs/electron_point"},
+        "ordering_semantics": {"const": "source_file_order_not_independently_inferred"}
+      }
+    },
+    "electron_point": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["point_kind", "atoms"],
+      "properties": {
+        "point_kind": {"enum": ["electron_base_atom", "atom_set"]},
+        "atoms": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/electron_atom"}
+        }
+      }
+    },
+    "electron_atom": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_atom_ref", "element", "formal_charge", "semantic_labels"],
+      "properties": {
+        "source_atom_ref": {"type": "string", "minLength": 1},
+        "element": {"type": "string", "minLength": 1},
+        "formal_charge": {"type": ["integer", "null"]},
+        "semantic_labels": {"$ref": "#/$defs/string_array"}
+      }
+    },
+    "scheme_issue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_step_id", "status", "source_url", "reason"],
+      "properties": {
+        "source_step_id": {"type": "integer", "minimum": 1},
+        "status": {"type": "string", "minLength": 1},
+        "source_url": {"type": "string", "minLength": 1},
+        "reason": {"type": "string", "minLength": 1}
+      }
+    },
+    "source_residue_assertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assertion_id",
+        "assertion_scope",
+        "source_role_labels",
+        "source_roles_summary",
+        "source_sequence_locations",
+        "source_structure_locations",
+        "mapping_status"
+      ],
+      "properties": {
+        "assertion_id": {"type": "string", "minLength": 1},
+        "assertion_scope": {"const": "mcsa_source_transcription_not_independently_mapped"},
+        "source_role_labels": {"$ref": "#/$defs/string_array"},
+        "source_roles_summary": {"$ref": "#/$defs/nullable_string"},
+        "source_sequence_locations": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/source_sequence_location"}
+        },
+        "source_structure_locations": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/source_structure_location"}
+        },
+        "mapping_status": {"const": "source_transcription_not_coordinate_verified"}
+      }
+    },
+    "source_sequence_location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["uniprot_id", "residue_name", "sequence_position", "is_reference"],
+      "properties": {
+        "uniprot_id": {"$ref": "#/$defs/nullable_string"},
+        "residue_name": {"$ref": "#/$defs/nullable_string"},
+        "sequence_position": {"type": ["integer", "null"], "minimum": 1},
+        "is_reference": {"type": "boolean"}
+      }
+    },
+    "source_structure_location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pdb_id",
+        "chain_id",
+        "author_position",
+        "label_position",
+        "residue_name",
+        "is_reference"
+      ],
+      "properties": {
+        "pdb_id": {"$ref": "#/$defs/nullable_string"},
+        "chain_id": {"$ref": "#/$defs/nullable_string"},
+        "author_position": {"type": ["integer", "null"], "minimum": 1},
+        "label_position": {"type": ["integer", "null"], "minimum": 1},
+        "residue_name": {"$ref": "#/$defs/nullable_string"},
+        "is_reference": {"type": "boolean"}
+      }
+    },
+    "residue_role_resolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "abstention_clause_ids"],
+      "properties": {
+        "status": {
+          "enum": [
+            "source_transcription_only_not_independently_adjudicated",
+            "source_conflict_unresolved"
+          ]
+        },
+        "abstention_clause_ids": {"$ref": "#/$defs/string_array"}
+      }
+    },
+    "abstention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["clause_id", "reason"],
+      "properties": {
+        "clause_id": {"type": "string", "minLength": 1},
+        "reason": {"type": "string", "minLength": 1}
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "source_record_id",
+        "uri",
+        "retrieval_status",
+        "snapshot_sha256",
+        "snapshot_bytes",
+        "retrieved_at",
+        "entry_response_sha256",
+        "license",
+        "attribution",
+        "change_notice",
+        "probe_identity",
+        "source_step_inventory"
+      ],
+      "properties": {
+        "source_id": {"const": "M-CSA"},
+        "source_record_id": {"type": "string", "pattern": "^M[0-9]{4}$"},
+        "uri": {"type": "string", "minLength": 1},
+        "retrieval_status": {"type": "string", "minLength": 1},
+        "snapshot_sha256": {"$ref": "#/$defs/sha256"},
+        "snapshot_bytes": {"type": "integer", "minimum": 1},
+        "retrieved_at": {"type": "string", "minLength": 1},
+        "entry_response_sha256": {"$ref": "#/$defs/sha256"},
+        "license": {"type": "string", "minLength": 1},
+        "attribution": {"type": "string", "minLength": 1},
+        "change_notice": {"type": "string", "minLength": 1},
+        "probe_identity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mcsa_id",
+            "source_entry_url",
+            "mechanism_ids",
+            "mechanism_step_ids",
+            "source_step_count",
+            "terminal_source_step_keys"
+          ],
+          "properties": {
+            "mcsa_id": {"type": "integer", "minimum": 1},
+            "source_entry_url": {"type": "string", "minLength": 1},
+            "mechanism_ids": {
+              "type": "array",
+              "minItems": 1,
+              "items": {"type": "integer", "minimum": 1},
+              "uniqueItems": true
+            },
+            "mechanism_step_ids": {
+              "type": "array",
+              "minItems": 1,
+              "items": {"$ref": "#/$defs/source_mechanism_step_ids"}
+            },
+            "source_step_count": {"type": "integer", "minimum": 1},
+            "terminal_source_step_keys": {
+              "type": "array",
+              "minItems": 1,
+              "items": {"$ref": "#/$defs/source_step_key"}
+            }
+          }
+        },
+        "source_step_inventory": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/source_step_inventory_item"}
+        }
+      }
+    },
+    "source_mechanism_step_ids": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mechanism_id", "step_ids"],
+      "properties": {
+        "mechanism_id": {"type": "integer", "minimum": 1},
+        "step_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "integer", "minimum": 1},
+          "uniqueItems": true
+        }
+      }
+    },
+    "source_step_key": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mechanism_id", "step_id"],
+      "properties": {
+        "mechanism_id": {"type": "integer", "minimum": 1},
+        "step_id": {"type": "integer", "minimum": 1}
+      }
+    },
+    "source_step_inventory_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_mechanism_id",
+        "source_step_id",
+        "is_terminal_state",
+        "flow_parse_status",
+        "source_scheme_sha256",
+        "electron_flow_count"
+      ],
+      "properties": {
+        "source_mechanism_id": {"type": "integer", "minimum": 1},
+        "source_step_id": {"type": "integer", "minimum": 1},
+        "is_terminal_state": {"type": "boolean"},
+        "flow_parse_status": {"type": "string", "minLength": 1},
+        "source_scheme_sha256": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "electron_flow_count": {"type": ["integer", "null"], "minimum": 0}
+      }
+    },
+    "claim_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["supports", "does_not_support"],
+      "properties": {
+        "supports": {
+          "allOf": [{"$ref": "#/$defs/string_array"}, {"minItems": 1}]
+        },
+        "does_not_support": {
+          "allOf": [{"$ref": "#/$defs/string_array"}, {"minItems": 1}]
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "compiler_version",
+        "requested_operation",
+        "allowed_operations",
+        "case_control_sha256",
+        "source_snapshot_sha256",
+        "source_manifest_sha256",
+        "source_snapshot_set_sha256",
+        "development_gate_status_sha256",
+        "state_probe_report_sha256",
+        "source_projection_sha256",
+        "state_context_sha256"
+      ],
+      "properties": {
+        "compiler_version": {"const": "catalytic-earth.atlas-source-draft-compiler.v1"},
+        "requested_operation": {
+          "enum": ["source_annotation", "source_scoped_mechanism_draft"]
+        },
+        "allowed_operations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "enum": ["source_annotation", "source_scoped_mechanism_draft"]
+          },
+          "uniqueItems": true
+        },
+        "case_control_sha256": {"$ref": "#/$defs/sha256"},
+        "source_snapshot_sha256": {"$ref": "#/$defs/sha256"},
+        "source_manifest_sha256": {"$ref": "#/$defs/sha256"},
+        "source_snapshot_set_sha256": {"$ref": "#/$defs/sha256"},
+        "development_gate_status_sha256": {"$ref": "#/$defs/sha256"},
+        "state_probe_report_sha256": {"$ref": "#/$defs/sha256"},
+        "source_projection_sha256": {"$ref": "#/$defs/sha256"},
+        "state_context_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

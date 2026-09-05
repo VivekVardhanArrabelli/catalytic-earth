@@ -20,7 +20,7 @@ def _venv_python(root: Path) -> Path:
     return root / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
 
 
-def verify_wheel(wheel: Path) -> dict[str, object]:
+def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[str, object]:
     wheel = wheel.resolve()
     with TemporaryDirectory(dir=Path.home()) as tmp:
         root = Path(tmp)
@@ -44,6 +44,38 @@ def verify_wheel(wheel: Path) -> dict[str, object]:
             text=True,
         )
         payload = json.loads(completed.stdout)
+        if include_source_drafts:
+            # A packaged query must work without the checkout, raw snapshots,
+            # inherited PYTHONPATH, or a network connection.
+            isolated_env = dict(os.environ)
+            isolated_env.pop("PYTHONPATH", None)
+            query = (
+                "import sys\n"
+                "def block_network(event, args):\n"
+                "    if event == 'socket.connect':\n"
+                "        raise RuntimeError('network is forbidden during offline query')\n"
+                "sys.addaudithook(block_network)\n"
+                "from catalytic_earth.core_cli import main\n"
+                "raise SystemExit(main(['atlas-drafts', '--steps']))\n"
+            )
+            draft_run = subprocess.run(
+                [str(python), "-c", query], cwd=empty_cwd, env=isolated_env,
+                check=True, capture_output=True, text=True,
+            )
+            drafts = json.loads(draft_run.stdout)
+            records = drafts["records"]
+            if {record["mcsa_id"] for record in records} != {"M0106", "M0107", "M0212", "M0753"}:
+                raise ValueError("installed source draft batch differs")
+            if len(records) != 4 or any(record["evidence_tier"] != 1 for record in records):
+                raise ValueError("installed source drafts overstate their record count or tier")
+            hisf = next(record for record in records if record["mcsa_id"] == "M0753")
+            if not any(item["clause_id"] == "resolved_aspartate_roles"
+                       for item in hisf["mandatory_abstentions"]):
+                raise ValueError("installed source draft lost HisF source conflict")
+            if not any(proposal["mechanism_steps"] for record in records
+                       for proposal in record["mechanism_proposals"]):
+                raise ValueError("installed source draft package lacks source steps")
+            print("Fresh-directory source draft query passed with network connections blocked")
     expected_counts = {
         "case_count": 10,
         "record_count": 30,
@@ -86,6 +118,7 @@ def verify_wheel(wheel: Path) -> dict[str, object]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--wheel", type=Path, required=True)
+    parser.add_argument("--include-source-drafts", action="store_true")
     args = parser.parse_args()
     wheel = args.wheel
     if wheel.is_dir():
@@ -93,7 +126,7 @@ def main() -> int:
         if len(wheels) != 1:
             raise SystemExit(f"expected one wheel in {wheel}, found {len(wheels)}")
         wheel = wheels[0]
-    payload = verify_wheel(wheel)
+    payload = verify_wheel(wheel, include_source_drafts=args.include_source_drafts)
     print(
         "Fresh-directory Atlas-10 wheel verification passed: "
         f"cases={payload['case_count']}, records={payload['record_count']}, "

@@ -129,11 +129,14 @@ Current truth:
   decisions without editing the July queues. Structural validation cannot
   authenticate a reviewer or establish scientific agreement. No review
   submission was supplied or recorded in this update.
-- The next development batch uses the four permitted source-scoped drafts to
-  test a successor schema. The typed state sidecar is already built; the v3
-  kernel cannot yet store its positive structured fields. Human submissions
-  are not a prerequisite for this batch. M0064 topology and M0970 polymer
-  state remain unresolved and block only their affected operations.
+- The [reusable source compiler](ATLAS_SOURCE_DRAFTS.md) now represents the four
+  permitted cases in a separate v4 Tier-1 package: five mechanism proposals,
+  43 reaction steps, five terminal states and 148 source arrow annotations.
+  Its offline query retains typed state fields, evidence, scope and mandatory
+  abstentions. The acquired inputs used 49 requests and 1,109,896 bytes under
+  the September authority; the frozen July acquisition plan stays unexecuted.
+  Further batches can use the same importer and compiler. M0064 topology and
+  M0970 polymer state remain unresolved and block their affected operations.
 - The historical July packet contract still requires actual human submissions
   for its own completion; contacting reviewers requires outreach authority.
   Computational review does not complete independent annotation, and the first
