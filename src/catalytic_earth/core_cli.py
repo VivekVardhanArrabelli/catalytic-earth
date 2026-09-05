@@ -160,6 +160,15 @@ def verified_source_drafts() -> dict[str, Any]:
     return bundle
 
 
+def _chebi_argument(value: str) -> str:
+    from .atlas_draft_index import normalize_chebi_id
+
+    try:
+        return normalize_chebi_id(value)
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError(str(exc)) from exc
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="catalytic-earth",
@@ -184,6 +193,18 @@ def build_parser() -> argparse.ArgumentParser:
     drafts.add_argument("--mcsa-id", help="filter an exact M-CSA identifier, e.g. M0107")
     drafts.add_argument("--assembly", help="filter the source-described assembly mode")
     drafts.add_argument("--text", help="search source chemistry and state descriptions")
+    drafts.add_argument(
+        "--participant", action="append", type=_chebi_argument, metavar="CHEBI_ID",
+        help="require an exact source ChEBI participant on either side; repeat for AND",
+    )
+    drafts.add_argument(
+        "--reactant", action="append", type=_chebi_argument, metavar="CHEBI_ID",
+        help="require a ChEBI participant on the source's left side; repeat for AND",
+    )
+    drafts.add_argument(
+        "--product", action="append", type=_chebi_argument, metavar="CHEBI_ID",
+        help="require a ChEBI participant on the source's right side; repeat for AND",
+    )
     drafts.add_argument("--steps", action="store_true", help="include source steps and electron flows")
     drafts.add_argument("--output", type=Path, help="optional JSON output path")
     subparsers.add_parser("claims", help="print the exact golden-result claim boundary")
@@ -219,6 +240,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         result = query_source_drafts(
             verified_source_drafts(), mcsa_id=args.mcsa_id,
             assembly=args.assembly, text=args.text, include_steps=args.steps,
+            participants=args.participant or (), reactants=args.reactant or (),
+            products=args.product or (),
         )
         rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
         if args.output:

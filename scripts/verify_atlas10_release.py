@@ -50,19 +50,29 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
             isolated_env = dict(os.environ)
             isolated_env.pop("PYTHONPATH", None)
             query = (
-                "import sys\n"
+                "import contextlib, io, json, sys\n"
                 "def block_network(event, args):\n"
                 "    if event == 'socket.connect':\n"
                 "        raise RuntimeError('network is forbidden during offline query')\n"
                 "sys.addaudithook(block_network)\n"
                 "from catalytic_earth.core_cli import main\n"
-                "raise SystemExit(main(['atlas-drafts', '--steps']))\n"
+                "def run_query(*args):\n"
+                "    output = io.StringIO()\n"
+                "    with contextlib.redirect_stdout(output):\n"
+                "        main(['atlas-drafts', *args])\n"
+                "    return json.loads(output.getvalue())\n"
+                "print(json.dumps({\n"
+                "    'all': run_query('--steps'),\n"
+                "    'ammonium': run_query('--reactant', '28938', '--product', '58278'),\n"
+                "    'carbon_dioxide': run_query('--product', 'CHEBI:16526'),\n"
+                "}))\n"
             )
             draft_run = subprocess.run(
                 [str(python), "-c", query], cwd=empty_cwd, env=isolated_env,
                 check=True, capture_output=True, text=True,
             )
-            drafts = json.loads(draft_run.stdout)
+            queries = json.loads(draft_run.stdout)
+            drafts = queries["all"]
             records = drafts["records"]
             if {record["mcsa_id"] for record in records} != {"M0106", "M0107", "M0212", "M0753"}:
                 raise ValueError("installed source draft batch differs")
@@ -75,6 +85,15 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
             if not any(proposal["mechanism_steps"] for record in records
                        for proposal in record["mechanism_proposals"]):
                 raise ValueError("installed source draft package lacks source steps")
+            ammonium = queries["ammonium"]["records"]
+            if len(ammonium) != 1 or ammonium[0]["mcsa_id"] != "M0753":
+                raise ValueError("installed chemical query confused source reaction sides")
+            if [row["source_row_index"] for row in ammonium[0]["participant_matches"]] != [1, 5]:
+                raise ValueError("installed chemical query lost matching source evidence")
+            if {r["mcsa_id"] for r in queries["carbon_dioxide"]["records"]} != {"M0106", "M0107"}:
+                raise ValueError("installed chemical query lost distinct source reactions")
+            if queries["carbon_dioxide"]["query_semantics"]["shared_participant_implies_reaction_equivalence"] is not False:
+                raise ValueError("installed chemical query overstates participant matching")
             print("Fresh-directory source draft query passed with network connections blocked")
     expected_counts = {
         "case_count": 10,

@@ -60,6 +60,145 @@ class SourceDraftQueryTests(unittest.TestCase):
         clauses = {a["clause_id"] for a in result["records"][0]["mandatory_abstentions"]}
         self.assertTrue({"carrier_host_identity", "attachment_site", "structure_localization"} <= clauses)
 
+    def test_participant_filter_finds_co2_records_without_proposal_duplication(self):
+        result = query_source_drafts(
+            self.bundle,
+            participants=("CHEBI:16526",),
+            products=("CHEBI:16526",),
+        )
+
+        self.assertEqual(
+            [record["mcsa_id"] for record in result["records"]],
+            ["M0106", "M0107"],
+        )
+        self.assertEqual(result["filters"]["participants"], ["CHEBI:16526"])
+        self.assertEqual(result["filters"]["products"], ["CHEBI:16526"])
+        for record in result["records"]:
+            self.assertEqual(len(record["participant_matches"]), 1)
+            self.assertEqual(
+                record["participant_matches"][0]["normalized_chebi_id"],
+                "CHEBI:16526",
+            )
+            self.assertEqual(record["participant_matches"][0]["side"], "right")
+        codh = next(record for record in result["records"] if record["mcsa_id"] == "M0107")
+        self.assertEqual(len(codh["mechanism_proposals"]), 2)
+        self.assertEqual(
+            query_source_drafts(
+                self.bundle,
+                reactants=("CHEBI:16526",),
+            )["record_count"],
+            0,
+        )
+
+    def test_reactant_and_product_filters_preserve_ammonium_direction(self):
+        cases = (
+            (
+                {"participants": ("CHEBI:28938",)},
+                [("M0212", "right", 2), ("M0753", "left", 1)],
+            ),
+            ({"reactants": ("CHEBI:28938",)}, [("M0753", "left", 1)]),
+            ({"products": ("CHEBI:28938",)}, [("M0212", "right", 2)]),
+        )
+        for filters, expected in cases:
+            with self.subTest(filters=filters):
+                result = query_source_drafts(self.bundle, **filters)
+                self.assertEqual(
+                    [
+                        (
+                            record["mcsa_id"],
+                            record["participant_matches"][0]["side"],
+                            record["participant_matches"][0]["source_count"],
+                        )
+                        for record in result["records"]
+                    ],
+                    expected,
+                )
+
+    def test_all_chemical_clauses_must_match_within_one_source_record(self):
+        result = query_source_drafts(
+            self.bundle,
+            participants=("CHEBI:16526", "CHEBI:28938"),
+        )
+
+        self.assertEqual(result["record_count"], 0)
+        self.assertEqual(result["records"], [])
+        self.assertEqual(result["selection"], self.bundle["selection"])
+        self.assertEqual(result["claim_boundary"], self.bundle["claim_boundary"])
+        self.assertEqual(
+            result["filters"]["participants"],
+            ["CHEBI:16526", "CHEBI:28938"],
+        )
+        semantics = result["query_semantics"]
+        self.assertEqual(
+            semantics["filter_combination"],
+            "all_clauses_within_one_record",
+        )
+        self.assertIn("does_not_ground", semantics["proposal_applicability"])
+        self.assertFalse(semantics["shared_participant_implies_reaction_equivalence"])
+
+    def test_chemical_filters_intersect_with_existing_filters(self):
+        result = query_source_drafts(
+            self.bundle,
+            participants=("CHEBI:16526",),
+            reactants=("CHEBI:15377",),
+            assembly="fixed_multisubunit",
+            text="benzoquinones",
+        )
+
+        self.assertEqual([record["mcsa_id"] for record in result["records"]], ["M0107"])
+        self.assertEqual(
+            [match["source_row_index"] for match in result["records"][0]["participant_matches"]],
+            [2, 3],
+        )
+
+    def test_compact_chemical_result_preserves_evidence_and_does_not_alias_bundle(self):
+        before = copy.deepcopy(self.bundle)
+        result = query_source_drafts(
+            self.bundle,
+            mcsa_id="M0106",
+            participants=("CHEBI:83099", "CHEBI:15378"),
+        )
+        record = result["records"][0]
+        source = next(item for item in self.bundle["records"] if item["mcsa_id"] == "M0106")
+
+        self.assertEqual(
+            [match["source_row_index"] for match in record["participant_matches"]],
+            [3, 4],
+        )
+        self.assertEqual(record["source_residue_assertions"], source["source_residue_assertions"])
+        self.assertEqual(record["mandatory_abstentions"], source["mandatory_abstentions"])
+        self.assertNotIn("mechanism_steps", record["mechanism_proposals"][0])
+        self.assertEqual(self.bundle, before)
+        record["participant_matches"][0]["name"] = "changed in query result"
+        self.assertEqual(self.bundle, before)
+
+    def test_cli_repeated_chemical_filters_normalize_numeric_identifiers(self):
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            code = main([
+                "atlas-drafts",
+                "--participant", "16526",
+                "--participant", "CHEBI:15377",
+                "--product", "24646",
+            ])
+        result = json.loads(output.getvalue())
+
+        self.assertEqual(code, 0)
+        self.assertEqual([record["mcsa_id"] for record in result["records"]], ["M0107"])
+        self.assertEqual(
+            result["filters"]["participants"],
+            ["CHEBI:16526", "CHEBI:15377"],
+        )
+        self.assertEqual(result["filters"]["products"], ["CHEBI:24646"])
+
+    def test_cli_rejects_malformed_chemical_identifier(self):
+        error = io.StringIO()
+        with contextlib.redirect_stderr(error), self.assertRaises(SystemExit) as raised:
+            main(["atlas-drafts", "--participant", "CHEBI:not-a-number"])
+
+        self.assertEqual(raised.exception.code, 2)
+        self.assertIn("CHEBI", error.getvalue())
+
 
 if __name__ == "__main__":
     unittest.main()
