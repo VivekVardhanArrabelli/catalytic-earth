@@ -1,5 +1,12 @@
 # Catalytic Earth — Rapid Full-Atlas Plan
 
+> **Current priority rule:** choose work by its impact on the full atlas's
+> current bottleneck. Demonstrations and benchmarks are performed when they
+> inform a consequential decision, not as mandatory ceremonies. The reusable
+> [source compiler](ATLAS_SOURCE_DRAFTS.md) connects reviewed chemistry to
+> queryable records. Calendar milestones below guide sequencing; they do not
+> override this owner-directed prioritization.
+
 > **2026-09-05 execution update:** use the
 > [computational development review](COMPUTATIONAL_DEVELOPMENT_REVIEW.md) to
 > advance new versioned drafts without waiting for human submissions. The

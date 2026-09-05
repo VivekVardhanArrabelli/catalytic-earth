@@ -121,6 +121,7 @@ def _validate_markdown_links() -> None:
         "docs/ATLAS50_SOURCE_CHALLENGE.md",
         "docs/ATLAS50_STATE_PROBE.md",
         "docs/COMPUTATIONAL_DEVELOPMENT_REVIEW.md",
+        "docs/ATLAS_SOURCE_DRAFTS.md",
         "docs/ATLAS_TRUTH_POLICY.md",
         "docs/CORE_REPRODUCTION.md",
         "docs/EVALUATION_MEMORY.md",
@@ -160,6 +161,11 @@ def _validate_json_surfaces(*, include_release_manifest: bool) -> None:
         "data/atlas/atlas50/development_gate/status.json",
         "data/governance/exposure_rows_manifest.json",
         "data/governance/computational_review_policy.json",
+        "data/atlas/source_drafts/source_manifest.json",
+        "data/atlas/source_drafts/records.json",
+        "src/catalytic_earth/draft_data/source_drafts.json",
+        "src/catalytic_earth/draft_data/source_drafts_expected.json",
+        "src/catalytic_earth/schemas/mechanism-record-v4.schema.json",
         "data/governance/preregistration-v1.schema.json",
         "data/governance/architecture_freeze.json",
         "data/governance/historical_lineage_quarantine.json",
@@ -371,6 +377,8 @@ def main() -> int:
     _run("scripts/build_atlas50_crosswalk_v2.py", "--check")
     _run("scripts/build_atlas50_state_probe.py", "--check")
     _run("scripts/build_atlas50_development_gate.py", "--check")
+    _run("scripts/build_atlas_draft_sources.py", "--check")
+    _run("scripts/build_atlas_drafts.py", "--check")
     review_spec, review_packets = load_review_context(ROOT)
     review_baseline = os.environ.get("CE_REVIEW_BASE_REF") or "HEAD"
     if review_baseline == "0" * 40:

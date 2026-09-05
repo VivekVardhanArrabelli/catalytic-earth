@@ -1,5 +1,19 @@
 # Current Decisions
 
+## 2026-09-05: prioritize the current bottleneck to the full atlas
+
+The owner explicitly directed choosing work by its current impact on the final
+computable-atlas goal. A showcase or benchmark is not a prerequisite unless it
+resolves a decision that changes the work. Reassess priorities as bottlenecks
+move; do not optimize for visible activity or finish a previous plan by habit.
+
+The resulting implementation is the reusable source-to-record path described in
+[Source-mechanism compilation](ATLAS_SOURCE_DRAFTS.md): represent reviewed
+chemistry in queryable source-scoped records and reuse that path for later
+batches. Its first four records exercise shared component/state and carrier
+semantics. Preserve substantive source uncertainty while removing unnecessary
+workflow waits.
+
 ## 2026-09-05: use computational review to authorize scoped development
 
 The owner explicitly requested an urgent substitute for the human-review

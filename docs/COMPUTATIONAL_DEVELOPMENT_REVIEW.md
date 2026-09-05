@@ -23,7 +23,8 @@ no human-equivalence, review-accuracy, or measured speedup claim.
   These counts are successor dispositions, not improvement or accuracy scores.
 - [The state probe](ATLAS50_STATE_PROBE.md) supplies shared component/state,
   tethered-carrier, and polymer/topology fields for all six disputed cases.
-  They are typed sidecar representations; no new kernel mechanism is compiled.
+  The probe is a typed sidecar; the four permitted cases now also have
+  [compiled source-draft records](ATLAS_SOURCE_DRAFTS.md).
 - [Source challenge](ATLAS50_SOURCE_CHALLENGE.md) checked claims against
   official mechanism/structure records, primary papers at declared inspection
   depth, and actual repository admission rules. It changed decisions rather
@@ -44,8 +45,9 @@ no human-equivalence, review-accuracy, or measured speedup claim.
 All six permit annotation, four permit a source-scoped mechanism draft, and
 none permits an exact reaction instance. A probe `PASS` describes only its
 named operation. It does not admit an entire panel case at every evidence tier.
-The existing v3 schema cannot store all positive typed state fields, so kernel
-compilation requires a separately versioned schema decision and migration.
+The new v4 source-draft schema carries the positive typed state fields. It
+preserves the Atlas-3/10 v2/v3 objects and does not promote drafts into their
+canonical reaction or protein/site-grounded tiers.
 
 The challenge also corrected our first computational review: M0112 can be an
 exact relation to DHFR at the implemented EC 1.5.1.3 **reaction-core** scope.
@@ -59,8 +61,8 @@ Root's direct check also found a source-internal conflict in
 [M0753](https://www.ebi.ac.uk/thornton-srv/m-csa/entry/753/): its overall residue
 role table reverses the Asp11/Asp130 roles assigned in the summary and Step 5.
 The state probe assigns no resolved residue roles. The HisF adjudication adds
-an explicit abstention so a subsequent draft must preserve that disagreement
-instead of copying a single confident role sequence.
+an explicit abstention, retained in the compiled HisF record, alongside the
+conflicting source assertions.
 
 ## Operational checks
 
@@ -97,8 +99,10 @@ for finding objections; they do not create statistical independence.
 
 ## Next development batch
 
-Use the four permitted source-scoped drafts to test a successor schema against
-the existing Atlas-10 contract, then compile only fields the source supplies.
+The four permitted source-scoped drafts now compile and query through a reusable
+offline path. Prioritize subsequent source batches or compiler changes by the
+atlas bottleneck they remove; a demonstration or another review layer is not
+an automatic prerequisite.
 For M0064 and M0970, acquire evidence for the missing state variables before
 requesting those blocked operations. Resolve the 34 crosswalk rows through
 named source targets and explicit granularity; absence from the old bounded

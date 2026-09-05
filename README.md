@@ -45,8 +45,9 @@ a production biological design system.
 
 ## Quick Status — 2026-09-05
 
-The compiled atlas remains the 2026-07-14 checkpoint built on the 2026-07-13
-truth reset. The September update adds an executable
+The Atlas-10 kernel remains the 2026-07-14 checkpoint built on the 2026-07-13
+truth reset. September adds four queryable Tier-1 source drafts through a
+[reusable M-CSA importer and compiler](docs/ATLAS_SOURCE_DRAFTS.md), alongside an executable
 [computational development review](docs/COMPUTATIONAL_DEVELOPMENT_REVIEW.md):
 57 corrected crosswalk rows (23 provisional, 34 unresolved), six generic state
 probes, and source-backed adjudications. Human submissions no longer block
@@ -106,13 +107,19 @@ was rescored or independent human-review status upgraded.
   frozen review-contract deliverable and is not independent review.
 - Atlas-50 Phase A and B provide a 57-row machine-draft crosswalk, 40 proposed
   follow-on cases, 97 unreviewed packets, and an unfrozen 47-case candidate.
-  Only the inherited Atlas-10 cases are compiled. A local review-intake command
+  The inherited Atlas-10 kernel remains unchanged. A local review-intake command
   now exports packets and intentionally incomplete templates, validates and
   append-only records supplied assertions, and reports unresolved decisions.
   No submission or reviewer was supplied in this update: all 97 packets remain
   without a valid submission and the July selection remains unfrozen. The July
   acquisition plan remains unexecuted. New bounded source checks and scoped
   drafts proceed under the September computational development policy.
+- The separate source-draft package contains M0106, M0107, M0212 and M0753:
+  four Tier-1 records, five mechanism proposals, 43 reaction steps, five
+  terminal states, and 148 preserved source arrow annotations. Typed assembly,
+  carrier and state fields travel with source scope and unresolved questions.
+  `catalytic-earth atlas-drafts --steps` queries the package offline. These
+  records do not add canonical reactions or protein/site-grounded Tier-2 cases.
 
 ## Truth-governance gate
 
@@ -158,6 +165,7 @@ agent run:
 | `docs/ATLAS10_KERNEL.md` | Compiled ten-case surface, v3 truth objects, source package, queries, comparator, review state, and remaining gate |
 | `docs/ATLAS50_PHASE_A.md` | Deterministic 57-row machine draft, 40-case feasibility matrix, fail-closed 47-case proposal, blockers, and inherited-byte proof |
 | `docs/COMPUTATIONAL_DEVELOPMENT_REVIEW.md` | Current computational review, corrected crosswalk, six-case permissions, objections, and next development batch |
+| `docs/ATLAS_SOURCE_DRAFTS.md` | Reusable M-CSA ingestion, v4 source drafts, offline query, and retained scientific uncertainty |
 | `docs/ATLAS50_PHASE_B.md` | Deterministic 97-packet review queue, local append-only review intake, unfrozen 47-case candidate, post-freeze source plan, and explicit review/freeze blockers |
 | `docs/P0_COMPLETION.md` | Auditable completion map for the truth-first review's P0 cleanup |
 | `docs/reviews/catalytic-earth-full-review-2026-07-10.md` | Independent audit, evidence corrections, strategic amendment, and full rationale |

@@ -142,6 +142,24 @@ def verified_atlas10_result() -> dict[str, Any]:
     }
 
 
+def verified_source_drafts() -> dict[str, Any]:
+    """Read the reviewed source projections without requiring a checkout or network."""
+    from .atlas_drafts import validate_source_drafts
+
+    raw = _resource_bytes("draft_data/source_drafts.json")
+    expected = json.loads(_resource_bytes("draft_data/source_drafts_expected.json"))
+    attribution = _resource_bytes("draft_data/source_drafts_attribution.md")
+    if expected.get("schema_version") != "catalytic-earth.source-drafts-package.v1":
+        raise ValueError("unsupported source draft package")
+    if hashlib.sha256(raw).hexdigest() != expected.get("bundle_sha256"):
+        raise ValueError("source draft package differs from its expected hash")
+    if hashlib.sha256(attribution).hexdigest() != expected.get("attribution_sha256"):
+        raise ValueError("source draft attribution differs from its expected hash")
+    bundle = json.loads(raw)
+    validate_source_drafts(bundle)
+    return bundle
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="catalytic-earth",
@@ -160,6 +178,14 @@ def build_parser() -> argparse.ArgumentParser:
         "atlas10", help="reproduce the ten-case Atlas relationship-query surface"
     )
     atlas10.add_argument("--output", type=Path, help="optional JSON output path")
+    drafts = subparsers.add_parser(
+        "atlas-drafts", help="query source-scoped mechanisms, states and abstentions offline"
+    )
+    drafts.add_argument("--mcsa-id", help="filter an exact M-CSA identifier, e.g. M0107")
+    drafts.add_argument("--assembly", help="filter the source-described assembly mode")
+    drafts.add_argument("--text", help="search source chemistry and state descriptions")
+    drafts.add_argument("--steps", action="store_true", help="include source steps and electron flows")
+    drafts.add_argument("--output", type=Path, help="optional JSON output path")
     subparsers.add_parser("claims", help="print the exact golden-result claim boundary")
     return parser
 
@@ -182,6 +208,18 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 0
     if args.command == "atlas10":
         result = verified_atlas10_result()
+        rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
+        if args.output:
+            args.output.write_text(rendered, encoding="utf-8", newline="\n")
+        print(rendered, end="")
+        return 0
+    if args.command == "atlas-drafts":
+        from .atlas_draft_query import query_source_drafts
+
+        result = query_source_drafts(
+            verified_source_drafts(), mcsa_id=args.mcsa_id,
+            assembly=args.assembly, text=args.text, include_steps=args.steps,
+        )
         rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
         if args.output:
             args.output.write_text(rendered, encoding="utf-8", newline="\n")
