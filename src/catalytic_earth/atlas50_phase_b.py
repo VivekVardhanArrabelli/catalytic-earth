@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import subprocess
+from datetime import date, datetime
 from pathlib import Path
 from typing import Any
 
@@ -40,6 +42,31 @@ REQUIRED_CROSSWALK_SOURCE_KEYS = {
     "pfam",
     "rhea",
 }
+
+REVIEW_SUBMISSION_KEYS = {
+    "schema_version",
+    "submission_id",
+    "packet_id",
+    "packet_type",
+    "packet_sha256",
+    "reviewer",
+    "attestation",
+    "decision",
+    "evidence_references",
+    "conflicts",
+    "submitted_at",
+    "independent_annotation_claimed",
+}
+REVIEWER_KEYS = {
+    "reviewer_id",
+    "reviewer_display_name",
+    "expertise_context",
+    "reviewed_on",
+    "project_author",
+}
+RFC3339_DATETIME = re.compile(
+    r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$"
+)
 
 GENERATED_FILENAMES = (
     "crosswalk_review_queue.json",
@@ -172,6 +199,33 @@ def _load_json(path: Path) -> Any:
 def _require(condition: bool, message: str) -> None:
     if not condition:
         raise ValueError(message)
+
+
+def _require_nonempty_string(value: Any, message: str) -> None:
+    _require(isinstance(value, str) and bool(value.strip()), message)
+
+
+def _require_iso_date(value: Any, message: str) -> None:
+    _require_nonempty_string(value, message)
+    try:
+        parsed = date.fromisoformat(value)
+    except ValueError:
+        raise ValueError(message) from None
+    _require(parsed.isoformat() == value, message)
+
+
+def _require_rfc3339_datetime(value: Any, message: str) -> None:
+    _require_nonempty_string(value, message)
+    _require(bool(RFC3339_DATETIME.fullmatch(value)), message)
+    if not value.endswith("Z"):
+        offset_hour = int(value[-5:-3])
+        offset_minute = int(value[-2:])
+        _require(offset_hour <= 23 and offset_minute <= 59, message)
+    try:
+        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        raise ValueError(message) from None
+    _require(parsed.tzinfo is not None and parsed.utcoffset() is not None, message)
 
 
 def _assert_no_compiled_fields(value: Any, context: str) -> None:
@@ -867,20 +921,41 @@ def validate_review_queue(
 def validate_review_submission(
     value: dict[str, Any], packet: dict[str, Any], spec: dict[str, Any]
 ) -> None:
+    _require(isinstance(value, dict), "review submission must be an object")
+    _require(
+        set(value) == REVIEW_SUBMISSION_KEYS,
+        "review submission fields do not match the declared schema",
+    )
+    _assert_no_compiled_fields(value, "review submission")
     _require(
         value.get("schema_version")
         == "catalytic-earth.atlas50-review-submission.v1",
         "unsupported review submission schema",
     )
     _require(value.get("packet_id") == packet["packet_id"], "submission packet id changed")
-    _require(bool(value.get("submission_id")), "submission id missing")
-    _require(bool(value.get("submitted_at")), "submission timestamp missing")
+    _require_nonempty_string(value.get("submission_id"), "submission id missing")
+    _require_rfc3339_datetime(
+        value.get("submitted_at"), "submission timestamp must be RFC 3339"
+    )
     _require(value.get("packet_type") == packet["packet_type"], "submission packet type changed")
     _require(value.get("packet_sha256") == _json_digest(packet), "submission packet hash changed")
     reviewer = value.get("reviewer", {})
+    _require(isinstance(reviewer, dict), "submission reviewer must be an object")
+    _require(
+        set(reviewer) == REVIEWER_KEYS,
+        "submission reviewer fields do not match the declared schema",
+    )
     for field in spec["reviewer_evidence_contract"]["required_identity_fields"]:
-        _require(bool(reviewer.get(field)), f"submission reviewer field missing: {field}")
-    _require("project_author" in reviewer, "submission project-author flag missing")
+        _require_nonempty_string(
+            reviewer.get(field), f"submission reviewer field missing: {field}"
+        )
+    _require_iso_date(
+        reviewer.get("reviewed_on"), "submission review date must be ISO 8601"
+    )
+    _require(
+        isinstance(reviewer.get("project_author"), bool),
+        "submission project-author flag must be boolean",
+    )
     _require(
         value.get("attestation")
         == spec["reviewer_evidence_contract"]["required_attestation"],
@@ -891,21 +966,40 @@ def validate_review_submission(
         "Phase B submission cannot claim Section 10.3 independent annotation",
     )
     decision = value.get("decision", {})
+    _require(isinstance(decision, dict), "review decision must be an object")
+    _require(
+        set(decision) == {"outcome", "rationale", "uncertainty", "field_decisions"},
+        "review decision fields do not match the declared contract",
+    )
     field_decisions = decision.get("field_decisions", {})
+    _require(isinstance(field_decisions, dict), "review field decisions must be an object")
     if packet["packet_type"] == "crosswalk":
         permitted_outcomes = set(
             spec["crosswalk_review_contract"]["permitted_classification_decisions"]
         )
-        _require(decision.get("outcome") in permitted_outcomes, "invalid crosswalk review outcome")
+        _require(
+            isinstance(decision.get("outcome"), str)
+            and decision.get("outcome") in permitted_outcomes,
+            "invalid crosswalk review outcome",
+        )
         _require(
             set(field_decisions) == {"classification", "source_links"},
             "crosswalk review field decisions incomplete",
         )
         _require(
-            field_decisions["classification"] in permitted_outcomes,
+            isinstance(field_decisions["classification"], str)
+            and field_decisions["classification"] in permitted_outcomes,
             "invalid classification decision",
         )
+        _require(
+            field_decisions["classification"] == decision.get("outcome"),
+            "crosswalk classification decision conflicts with outcome",
+        )
         source_decisions = field_decisions["source_links"]
+        _require(
+            isinstance(source_decisions, dict),
+            "crosswalk source decisions must be an object",
+        )
         _require(
             set(source_decisions)
             == set(spec["crosswalk_review_contract"]["required_source_keys"]),
@@ -915,9 +1009,24 @@ def validate_review_submission(
             spec["crosswalk_review_contract"]["permitted_source_decisions"]
         )
         _require(
-            set(source_decisions.values()) <= permitted_source,
+            all(isinstance(item, str) for item in source_decisions.values())
+            and set(source_decisions.values()) <= permitted_source,
             "invalid crosswalk source decision",
         )
+        for source_key, source_decision in source_decisions.items():
+            explicit_gap = bool(
+                packet["machine_draft"]["source_links"][source_key].get(
+                    "gap_reason"
+                )
+            )
+            _require(
+                source_decision != "confirm_candidate_mapping" or not explicit_gap,
+                f"cannot confirm candidate mapping for explicit source gap: {source_key}",
+            )
+            _require(
+                source_decision != "confirm_explicit_gap" or explicit_gap,
+                f"cannot confirm explicit gap where none is recorded: {source_key}",
+            )
         revision_present = decision.get("outcome") == "revise_classification" or any(
             item in {"reject_candidate_mapping", "replace_with_supported_mapping"}
             for item in source_decisions.values()
@@ -926,7 +1035,11 @@ def validate_review_submission(
         permitted_outcomes = set(
             spec["panel_review_contract"]["permitted_disposition_decisions"]
         )
-        _require(decision.get("outcome") in permitted_outcomes, "invalid panel review outcome")
+        _require(
+            isinstance(decision.get("outcome"), str)
+            and decision.get("outcome") in permitted_outcomes,
+            "invalid panel review outcome",
+        )
         _require(
             set(field_decisions)
             == set(spec["panel_review_contract"]["review_dimensions"]),
@@ -936,19 +1049,53 @@ def validate_review_submission(
             spec["panel_review_contract"]["permitted_dimension_decisions"]
         )
         _require(
-            set(field_decisions.values()) <= permitted_dimensions,
+            all(isinstance(item, str) for item in field_decisions.values())
+            and set(field_decisions.values()) <= permitted_dimensions,
             "invalid panel dimension decision",
         )
+        accepted_outcome_for_draft = {
+            "propose_include": "accept_proposed_include",
+            "exclude_blocked": "accept_fail_closed_exclusion",
+        }.get(packet["machine_draft"]["proposed_disposition"])
+        if decision.get("outcome") in {
+            "accept_proposed_include",
+            "accept_fail_closed_exclusion",
+        }:
+            _require(
+                decision.get("outcome") == accepted_outcome_for_draft,
+                "panel acceptance outcome conflicts with machine-draft disposition",
+            )
+            _require(
+                set(field_decisions.values()) == {"accept_machine_draft_gate"},
+                "panel acceptance outcome conflicts with field decisions",
+            )
         revision_present = decision.get("outcome") == "revise_with_evidence" or any(
             item == "revise_with_evidence" for item in field_decisions.values()
         )
-    _require(bool(decision.get("rationale")), "review rationale missing")
-    _require(isinstance(decision.get("uncertainty"), list), "review uncertainty missing")
-    _require(isinstance(value.get("conflicts"), list), "review conflicts missing")
+    _require_nonempty_string(decision.get("rationale"), "review rationale missing")
+    uncertainty = decision.get("uncertainty")
+    _require(
+        isinstance(uncertainty, list)
+        and all(isinstance(item, str) and bool(item.strip()) for item in uncertainty),
+        "review uncertainty must be a list of non-empty strings",
+    )
+    conflicts = value.get("conflicts")
+    _require(
+        isinstance(conflicts, list)
+        and all(isinstance(item, dict) for item in conflicts),
+        "review conflicts must be a list of objects",
+    )
     evidence = value.get("evidence_references")
-    _require(isinstance(evidence, list), "review evidence references missing")
+    _require(
+        isinstance(evidence, list)
+        and all(isinstance(item, dict) for item in evidence),
+        "review evidence references must be a list of objects",
+    )
     if revision_present:
-        _require(bool(evidence), "review revisions require evidence references")
+        _require(
+            bool(evidence) and all(bool(item) for item in evidence),
+            "review revisions require evidence references with content",
+        )
 
 
 def validate_freeze_candidate(value: dict[str, Any], proposal: dict[str, Any]) -> None:

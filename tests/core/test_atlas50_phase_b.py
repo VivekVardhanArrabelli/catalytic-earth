@@ -129,44 +129,7 @@ class Atlas50PhaseBTests(unittest.TestCase):
 
     def test_attributable_crosswalk_submission_contract_accepts_complete_review(self) -> None:
         packet = self.crosswalk_queue["packets"][0]
-        source_decisions = {
-            key: (
-                "confirm_explicit_gap"
-                if link["gap_reason"]
-                else "confirm_candidate_mapping"
-            )
-            for key, link in packet["machine_draft"]["source_links"].items()
-        }
-        submission = {
-            "schema_version": "catalytic-earth.atlas50-review-submission.v1",
-            "submission_id": "review.example.crosswalk.fp-001",
-            "packet_id": packet["packet_id"],
-            "packet_type": "crosswalk",
-            "packet_sha256": hashlib.sha256(canonical_json_bytes(packet)).hexdigest(),
-            "reviewer": {
-                "reviewer_id": "reviewer.example",
-                "reviewer_display_name": "Example Reviewer",
-                "expertise_context": "Contract-only synthetic test fixture",
-                "reviewed_on": "2026-07-14",
-                "project_author": False,
-            },
-            "attestation": self.spec["reviewer_evidence_contract"][
-                "required_attestation"
-            ],
-            "decision": {
-                "outcome": "accept_machine_draft",
-                "rationale": "Synthetic complete submission used only to test the contract.",
-                "uncertainty": [],
-                "field_decisions": {
-                    "classification": "accept_machine_draft",
-                    "source_links": source_decisions,
-                },
-            },
-            "evidence_references": [],
-            "conflicts": [],
-            "submitted_at": "2026-07-14T00:00:00Z",
-            "independent_annotation_claimed": False,
-        }
+        submission = self._valid_crosswalk_submission(packet)
 
         validate_review_submission(submission, packet, self.spec)
 
@@ -214,7 +177,148 @@ class Atlas50PhaseBTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "require evidence"):
             validate_review_submission(submission, packet, self.spec)
 
+    def test_crosswalk_submission_rejects_contradictory_revision(self) -> None:
+        packet = self.crosswalk_queue["packets"][0]
+        submission = self._valid_crosswalk_submission(packet)
+        submission["decision"]["field_decisions"][
+            "classification"
+        ] = "revise_classification"
+
+        with self.assertRaisesRegex(ValueError, "conflicts with outcome"):
+            validate_review_submission(submission, packet, self.spec)
+
+    def test_crosswalk_source_confirmation_must_match_packet_gap_state(self) -> None:
+        packet = self.crosswalk_queue["packets"][0]
+        links = packet["machine_draft"]["source_links"]
+        gap_key = next(key for key, link in links.items() if link["gap_reason"])
+        mapped_key = next(key for key, link in links.items() if not link["gap_reason"])
+
+        submission = self._valid_crosswalk_submission(packet)
+        submission["decision"]["field_decisions"]["source_links"][
+            gap_key
+        ] = "confirm_candidate_mapping"
+        with self.assertRaisesRegex(ValueError, "explicit source gap"):
+            validate_review_submission(submission, packet, self.spec)
+
+        submission = self._valid_crosswalk_submission(packet)
+        submission["decision"]["field_decisions"]["source_links"][
+            mapped_key
+        ] = "confirm_explicit_gap"
+        with self.assertRaisesRegex(ValueError, "none is recorded"):
+            validate_review_submission(submission, packet, self.spec)
+
+    def test_panel_acceptance_must_match_machine_draft_disposition(self) -> None:
+        packet = next(
+            item
+            for item in self.panel_queue["packets"]
+            if item["machine_draft"]["proposed_disposition"] == "exclude_blocked"
+        )
+        submission = self._valid_panel_submission(packet)
+        submission["decision"]["outcome"] = "accept_proposed_include"
+
+        with self.assertRaisesRegex(ValueError, "conflicts with machine-draft"):
+            validate_review_submission(submission, packet, self.spec)
+
+    def test_review_submission_enforces_identity_and_timestamp_types(self) -> None:
+        packet = self.crosswalk_queue["packets"][0]
+        changes = (
+            (
+                lambda submission: submission.update({"unexpected": True}),
+                "declared schema",
+            ),
+            (
+                lambda submission: submission["reviewer"].update(
+                    {"project_author": "false"}
+                ),
+                "must be boolean",
+            ),
+            (
+                lambda submission: submission["reviewer"].update(
+                    {"reviewed_on": "not-a-date"}
+                ),
+                "must be ISO 8601",
+            ),
+            (
+                lambda submission: submission.update({"submitted_at": "not-a-date"}),
+                "must be RFC 3339",
+            ),
+            (
+                lambda submission: submission.update(
+                    {"submitted_at": "2026-07-14T00:00:00+00:99"}
+                ),
+                "must be RFC 3339",
+            ),
+        )
+        for change, expected_error in changes:
+            with self.subTest(expected_error=expected_error):
+                submission = self._valid_crosswalk_submission(packet)
+                change(submission)
+                with self.assertRaisesRegex(ValueError, expected_error):
+                    validate_review_submission(submission, packet, self.spec)
+
+    def test_revision_evidence_reference_cannot_be_empty_placeholder(self) -> None:
+        packet = self.panel_queue["packets"][0]
+        submission = self._valid_panel_submission(packet)
+        submission["decision"]["outcome"] = "revise_with_evidence"
+        submission["evidence_references"] = [{}]
+
+        with self.assertRaisesRegex(ValueError, "require evidence"):
+            validate_review_submission(submission, packet, self.spec)
+
+    def test_review_submission_cannot_introduce_compiled_chemistry(self) -> None:
+        packet = self.panel_queue["packets"][0]
+        submission = self._valid_panel_submission(packet)
+        submission["decision"]["mechanism_steps"] = [{"invented": True}]
+
+        with self.assertRaisesRegex(ValueError, "prohibited compiled fields"):
+            validate_review_submission(submission, packet, self.spec)
+
+    def _valid_crosswalk_submission(self, packet: dict) -> dict:
+        source_decisions = {
+            key: (
+                "confirm_explicit_gap"
+                if link["gap_reason"]
+                else "confirm_candidate_mapping"
+            )
+            for key, link in packet["machine_draft"]["source_links"].items()
+        }
+        return {
+            "schema_version": "catalytic-earth.atlas50-review-submission.v1",
+            "submission_id": "review.example.crosswalk.fp-001",
+            "packet_id": packet["packet_id"],
+            "packet_type": "crosswalk",
+            "packet_sha256": hashlib.sha256(canonical_json_bytes(packet)).hexdigest(),
+            "reviewer": {
+                "reviewer_id": "reviewer.example",
+                "reviewer_display_name": "Example Reviewer",
+                "expertise_context": "Contract-only synthetic test fixture",
+                "reviewed_on": "2026-07-14",
+                "project_author": False,
+            },
+            "attestation": self.spec["reviewer_evidence_contract"][
+                "required_attestation"
+            ],
+            "decision": {
+                "outcome": "accept_machine_draft",
+                "rationale": "Synthetic complete submission used only to test the contract.",
+                "uncertainty": [],
+                "field_decisions": {
+                    "classification": "accept_machine_draft",
+                    "source_links": source_decisions,
+                },
+            },
+            "evidence_references": [],
+            "conflicts": [],
+            "submitted_at": "2026-07-14T00:00:00Z",
+            "independent_annotation_claimed": False,
+        }
+
     def _valid_panel_submission(self, packet: dict) -> dict:
+        outcome = (
+            "accept_proposed_include"
+            if packet["machine_draft"]["proposed_disposition"] == "propose_include"
+            else "accept_fail_closed_exclusion"
+        )
         return {
             "schema_version": "catalytic-earth.atlas50-review-submission.v1",
             "submission_id": "review.example.panel.m0001",
@@ -232,7 +336,7 @@ class Atlas50PhaseBTests(unittest.TestCase):
                 "required_attestation"
             ],
             "decision": {
-                "outcome": "accept_proposed_include",
+                "outcome": outcome,
                 "rationale": "Synthetic complete submission used only to test the contract.",
                 "uncertainty": [],
                 "field_decisions": {

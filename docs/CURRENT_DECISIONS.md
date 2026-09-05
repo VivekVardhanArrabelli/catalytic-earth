@@ -1,5 +1,33 @@
 # Current Decisions
 
+## 2026-09-05: Atlas-50 review intake is append-only and does not authenticate science
+
+Decision: make the frozen Phase B packets usable by a real reviewer through a
+local command while leaving the July checkpoint, review state, selection, and
+source-acquisition gate unchanged.
+
+Durable rulings:
+
+1. `scripts/atlas50_review.py` may list packets and export a packet or an
+   intentionally incomplete submission template only to a new path outside the
+   repository. It does not prefill reviewer identity, attestation, outcomes, or
+   field decisions.
+2. Validation binds a submission to an exact packet ID, type, and canonical
+   packet hash and enforces the frozen review contract. It rejects malformed or
+   incomplete assertions but cannot verify that the named person performed the
+   review or that the scientific decisions are correct.
+3. Recording preserves the supplied bytes under the append-only
+   `data/atlas/atlas50/phase_b/review_submissions/` namespace and rejects
+   duplicate submission IDs or overwrites. Existing committed submissions must
+   remain byte-identical to the selected Git baseline.
+4. Status reports valid submission coverage, conflicting decision variants,
+   and unresolved fields separately. A schema-valid submission is a recorded
+   assertion, not automatic packet resolution, expert agreement, Section 10.3
+   independent annotation, or selection-freeze approval.
+5. Intake never edits the frozen queues, Phase A/B package outputs, inherited
+   Atlas objects, or protected registries. It cannot authorize source
+   acquisition, mechanism compilation, or a scientific claim.
+
 ## 2026-07-14: Atlas-50 Phase B starts with review readiness, not simulated review
 
 Decision: after merging Phase A as commit `375548419e7435efa2bffc89be5e32aa70864875`,

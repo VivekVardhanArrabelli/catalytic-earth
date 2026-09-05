@@ -1,8 +1,8 @@
 # Current State
 
-## 2026-07-14 Atlas-50 Phase B review/freeze-readiness checkpoint
+## 2026-09-05 Atlas-50 Phase B review-intake checkpoint
 
-**Foundation:** 2026-07-13 truth reset
+**Foundation:** 2026-07-13 truth reset and 2026-07-14 Phase B package
 
 This is the compact current project state. It supersedes conflicting claims,
 counts, evidence labels, and deployment language in historical documents.
@@ -106,10 +106,19 @@ Current truth:
   budgets unset, and records zero acquired records. Phase A, Atlas-3, Atlas-10,
   and all protected registries remain unchanged. No mechanism was compiled and
   no GPU work was used.
-- The next Atlas-50 action requires explicit reviewer/outreach authority and
-  attributable submissions. A machine draft or packet does not complete the
-  reviewed 57-fingerprint crosswalk; an outreach attempt does not complete
-  independent annotation; and the first 50-row bronze audit tranche does not
+- Local review intake is now executable with `scripts/atlas50_review.py`. It
+  lists and exports frozen packets, creates deliberately incomplete drafts
+  outside the repository, validates supplied submissions, records validated
+  source bytes append-only, and reports coverage, conflicts, and unresolved
+  decisions without editing the July queues. Structural validation cannot
+  authenticate a reviewer or establish scientific agreement. No review
+  submission was supplied or recorded in this update.
+- The next Atlas-50 scientific gate requires actual attributable human
+  submissions; contacting reviewers also requires explicit outreach authority.
+  A machine draft, prepared packet, valid JSON assertion, or outreach attempt
+  does not complete the reviewed 57-fingerprint crosswalk; an outreach attempt
+  does not complete independent annotation; and the first 50-row bronze audit
+  tranche does not
   authorize expansion. Protected registry writes remain frozen until the
   mandatory stratified 200-row independent audit reaches at least 90% precision
   at the exact granularity claimed and an explicit reviewed unfreeze decision

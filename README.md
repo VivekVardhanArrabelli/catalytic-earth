@@ -43,7 +43,11 @@ This repository remains a research scaffold. It is not a wet-lab protocol,
 not a claim that computational candidates are validated enzymes, and not yet
 a production biological design system.
 
-## Quick Status — 2026-07-14 (built on the 2026-07-13 truth reset)
+## Quick Status — 2026-09-05
+
+The scientific state remains the 2026-07-14 checkpoint built on the 2026-07-13
+truth reset. The September update adds review intake and maintenance; it does
+not rescore a benchmark or upgrade evidence.
 
 - `current702` contains 702 project benchmark labels: 685 bronze, 17 silver,
   zero project-gold; 683 are automation-curated and 19 author-reviewed.
@@ -94,6 +98,14 @@ a production biological design system.
   matrix also passed, satisfying the high-level Atlas-10 scientific exit gate.
   Seven review packets are ready; a real external attempt remains a pending
   frozen review-contract deliverable and is not independent review.
+- Atlas-50 Phase A and B provide a 57-row machine-draft crosswalk, 40 proposed
+  follow-on cases, 97 unreviewed packets, and an unfrozen 47-case candidate.
+  Only the inherited Atlas-10 cases are compiled. A local review-intake command
+  now exports packets and intentionally incomplete templates, validates and
+  append-only records supplied assertions, and reports unresolved decisions.
+  No submission or reviewer was supplied in this update: all 97 packets remain
+  without a valid submission, the selection remains unfrozen, and source
+  acquisition remains prohibited.
 
 ## Truth-governance gate
 
@@ -138,7 +150,7 @@ agent run:
 | `docs/ATLAS10_SELECTION.md` | Frozen seven-case extension, source gaps, relationship queries, applicability traps, baseline, review, and compute contracts |
 | `docs/ATLAS10_KERNEL.md` | Compiled ten-case surface, v3 truth objects, source package, queries, comparator, review state, and remaining gate |
 | `docs/ATLAS50_PHASE_A.md` | Deterministic 57-row machine draft, 40-case feasibility matrix, fail-closed 47-case proposal, blockers, and inherited-byte proof |
-| `docs/ATLAS50_PHASE_B.md` | Deterministic 97-packet review queue, unfrozen 47-case candidate, post-freeze source plan, and explicit review/freeze blockers |
+| `docs/ATLAS50_PHASE_B.md` | Deterministic 97-packet review queue, local append-only review intake, unfrozen 47-case candidate, post-freeze source plan, and explicit review/freeze blockers |
 | `docs/P0_COMPLETION.md` | Auditable completion map for the truth-first review's P0 cleanup |
 | `docs/reviews/catalytic-earth-full-review-2026-07-10.md` | Independent audit, evidence corrections, strategic amendment, and full rationale |
 | `docs/reviews/catalytic-earth-90-day-map-2026-07-10.md` | Compact operating map derived from the full review |
@@ -202,6 +214,11 @@ python scripts/build_atlas10_runtime.py --check
 python scripts/build_atlas10_baseline.py --check
 python scripts/build_atlas10_comparator.py --check
 python scripts/build_atlas10_review_packets.py --check
+python scripts/build_atlas50_phase_a.py --check
+python scripts/validate_atlas50_phase_a.py
+python scripts/build_atlas50_phase_b.py --check
+python scripts/validate_atlas50_phase_b.py
+python scripts/atlas50_review.py status
 python scripts/run_test_tier.py "core/unit"
 git diff --check
 ```

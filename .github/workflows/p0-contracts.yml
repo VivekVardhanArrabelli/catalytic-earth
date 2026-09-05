@@ -64,6 +64,9 @@ jobs:
       - name: Validate governance, registry, manifests, docs, and path safety
         env:
           CE_PARTIAL_CLONE: "1"
+          # Compare review evidence with the PR base/previous push, so a
+          # committed deletion or rewrite cannot hide behind a clean HEAD.
+          CE_REVIEW_BASE_REF: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: python scripts/validate_repository_contracts.py
 
       - name: Run core/unit tier
