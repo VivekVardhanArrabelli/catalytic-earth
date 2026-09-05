@@ -165,6 +165,18 @@ withdrawn: the cited EC chemistry is lysine-ketimine/transamidination chemistry,
 not evidence of PLP dependence. The historical row remains unchanged for
 provenance and must be excluded or independently adjudicated in any reuse.
 
+## CE-017 — A0A177THN5 donor-specific transfer
+
+**Status:** Retracted
+
+The APX-specific assignment inferred from neighbour P48534 is withdrawn. The
+larger APX-versus-CcP study based on that premise is retired. Retain the
+class-I-like heme-peroxidase family hypothesis; CcP-like is a provisional
+working interpretation, not experimentally established donor specificity.
+Neither conserved catalytic residues nor the broad InterPro `Ccp1-like`
+family distinguishes APX from CcP. See the
+[computational reassessment](docs/COMPUTATIONAL_REVIEW_20260905.md).
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,

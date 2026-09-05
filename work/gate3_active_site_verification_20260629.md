@@ -1,5 +1,10 @@
 # Gate 3 — Active-site verification of the novel shortlist (2026-06-29)
 
+> **2026-09-05 correction — A0A177THN5:** the APX-specific transfer from
+> P48534 is withdrawn, and the larger APX-versus-CcP study is retired.
+> CcP-like is a provisional working interpretation, not demonstrated activity.
+> See [CE-017 and the public-source reassessment](../docs/COMPUTATIONAL_REVIEW_20260905.md).
+
 De-risking step before any lab spend. For each of the 11 dark-protein fold-matches, check whether
 the AlphaFold model carries an **intact catalytic apparatus**, not merely the right fold.
 

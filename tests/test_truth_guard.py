@@ -54,7 +54,7 @@ class TruthGuardTests(unittest.TestCase):
         repo_root = Path(__file__).resolve().parents[1]
         result = validate_truth_governance(repo_root)
 
-        self.assertEqual(result["claims"], 16)
+        self.assertEqual(result["claims"], 17)
         self.assertEqual(result["exposure_events"], 9)
         self.assertEqual(result["exposure_surfaces"], 4)
         self.assertEqual(result["frozen_unscored_surfaces"], 1)

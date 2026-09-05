@@ -3,12 +3,13 @@
   "bundle_groups": {
     "202605": 95,
     "202606": 1152,
+    "202609": 1,
     "undated": 69
   },
   "current_storage_state": "Indexed and bundle-buildable. External upload remains blocked until a release destination is approved and rights checks pass.",
-  "git_index_sha256": "5b9482a6de7b5ae7393ad03b6097cd6be47393cb2baf83766b4f3998ccddd8e1",
-  "logical_bytes": 10436409,
-  "member_count": 1316,
+  "git_index_sha256": "e0da5f76c7bd4302a2bcef18399b0a85b6a073256246fc1e29ee79809d965522",
+  "logical_bytes": 10447928,
+  "member_count": 1317,
   "members": [
     {
       "bundle_group": "202605",
@@ -873,6 +874,12 @@
       "bytes": 4066,
       "git_object_id": "bc3a83913d35106ee452504ac6e96b27307e6553",
       "path": "work/cohesion_threshold_calibration_current702_20260614_post_silver_apply.md"
+    },
+    {
+      "bundle_group": "202609",
+      "bytes": 10881,
+      "git_object_id": "7a9b569921c9a7ff48a7e393a9822bc5187d7c9b",
+      "path": "work/coordination_20260905.md"
     },
     {
       "bundle_group": "202606",
@@ -3648,8 +3655,8 @@
     },
     {
       "bundle_group": "202606",
-      "bytes": 5305,
-      "git_object_id": "a9ecb5f2c8b4e95b6c4f0964449d38a23a018e14",
+      "bytes": 5624,
+      "git_object_id": "0a9cbd9a60e44e93d19741974eb62ed2cfe6da4b",
       "path": "work/gate3_active_site_verification_20260629.md"
     },
     {
@@ -3660,8 +3667,8 @@
     },
     {
       "bundle_group": "202606",
-      "bytes": 5769,
-      "git_object_id": "4c68c9346740596663b261654286b7781e0322f3",
+      "bytes": 6088,
+      "git_object_id": "d82a719501ecf00e6d465e83f33daa3e75e577a3",
       "path": "work/gate3_novel_dark_target_shortlist_20260629.md"
     },
     {
@@ -7907,7 +7914,7 @@
       "path": "work/zinc_lyase_hydratase_under_cap_sourcing_current702_20260613.md"
     }
   ],
-  "membership_sha256": "5afd645dbe9c0dee34721b7675e360a3813aae6d74fc0e7298862624f84be428",
+  "membership_sha256": "f8b60b5c5efd31605c63f2f0be7af837ce4571a5e2f632e82b1ab91c7ad078f1",
   "provenance": "Members are the exact Git-index blobs under work/. The deterministic ZIP is a release asset; Git history remains authoritative and is not rewritten.",
   "schema_version": "catalytic-earth.report-archive-index.v1"
 }

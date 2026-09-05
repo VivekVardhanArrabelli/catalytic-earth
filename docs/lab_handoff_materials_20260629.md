@@ -1,5 +1,10 @@
 # Lab Handoff — what to send, and how (2026-06-29)
 
+> **2026-09-05 correction — A0A177THN5:** the APX-specific transfer from
+> P48534 is withdrawn, and the larger APX-versus-CcP study is retired.
+> CcP-like is a provisional working interpretation, not demonstrated activity.
+> See [CE-017 and the public-source reassessment](../docs/COMPUTATIONAL_REVIEW_20260905.md).
+
 > **SUPERSEDED — DO NOT ORDER OR SHIP FROM THIS DOCUMENT.** The supporting
 > validation and active-site-verification interpretations were corrected on
 > 2026-07-13. Rebuild any future handoff under `docs/ATLAS_TRUTH_POLICY.md` with

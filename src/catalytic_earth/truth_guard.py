@@ -21,7 +21,7 @@ from .canonical_hash import canonical_bytes_sha256, canonical_file_sha256
 CLAIM_STATUSES = {"Supported", "Diagnostic", "Superseded", "Retracted"}
 EXPOSURE_STATES = {"frozen_unscored", "exposed", "exhausted"}
 EXPOSURE_EVENT_TYPES = {"freeze", "score", "review", "correction"}
-REQUIRED_CLAIM_IDS = {f"CE-{index:03d}" for index in range(1, 17)}
+REQUIRED_CLAIM_IDS = {f"CE-{index:03d}" for index in range(1, 18)}
 
 DEFAULT_CLAIM_LEDGER = Path("data/governance/claim_ledger.json")
 DEFAULT_EXPOSURE_LEDGER = Path("data/governance/exposure_ledger.jsonl")

@@ -22,6 +22,7 @@ from catalytic_earth.atlas10_sources import validate_atlas10_source_manifest  # 
 from catalytic_earth.atlas_kernel import validate_atlas3_kernel  # noqa: E402
 from catalytic_earth.atlas_selection import validate_atlas3_selection  # noqa: E402
 from catalytic_earth.atlas_sources import validate_atlas3_source_manifest  # noqa: E402
+from catalytic_earth.atlas50_review import build_review_status, load_review_context  # noqa: E402
 from catalytic_earth.core_cli import (  # noqa: E402
     verified_atlas10_result,
     verified_atlas3_result,
@@ -113,6 +114,9 @@ def _validate_markdown_links() -> None:
         "docs/ATLAS10_KERNEL.md",
         "docs/ATLAS50_PHASE_A.md",
         "docs/ATLAS50_PHASE_B.md",
+        "docs/COMPUTATIONAL_REVIEW_20260905.md",
+        "docs/ATLAS50_COMPUTATIONAL_CROSSWALK_REVIEW.md",
+        "docs/ATLAS50_COMPUTATIONAL_PANEL_REVIEW.md",
         "docs/ATLAS_TRUTH_POLICY.md",
         "docs/CORE_REPRODUCTION.md",
         "docs/EVALUATION_MEMORY.md",
@@ -138,6 +142,9 @@ def _validate_markdown_links() -> None:
 def _validate_json_surfaces(*, include_release_manifest: bool) -> None:
     paths = [
         "data/governance/claim_ledger.json",
+        "data/diagnostics/peroxidase_reassessment_20260905.json",
+        "data/atlas/atlas50/computational_review/crosswalk_review.json",
+        "data/atlas/atlas50/computational_review/panel_review.json",
         "data/governance/exposure_rows_manifest.json",
         "data/governance/preregistration-v1.schema.json",
         "data/governance/architecture_freeze.json",
@@ -347,6 +354,19 @@ def main() -> int:
     _run("scripts/validate_atlas50_phase_a.py")
     _run("scripts/build_atlas50_phase_b.py", "--check")
     _run("scripts/validate_atlas50_phase_b.py")
+    review_spec, review_packets = load_review_context(ROOT)
+    review_baseline = os.environ.get("CE_REVIEW_BASE_REF") or "HEAD"
+    if review_baseline == "0" * 40:
+        review_baseline = "HEAD"  # First push has no previous commit.
+    review_status = build_review_status(
+        ROOT, review_packets, review_spec, baseline_ref=review_baseline
+    )
+    print(
+        "Atlas-50 intake valid: "
+        f"submissions={review_status['valid_submission_count']}, "
+        f"packets_without_submissions={review_status['packets_without_submissions']}, "
+        "selection_frozen=false"
+    )
     if os.environ.get("CE_PARTIAL_CLONE") == "1":
         _run("scripts/build_live_artifact_manifest.py", "--check", "--index-only")
     else:

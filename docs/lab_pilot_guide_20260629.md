@@ -1,5 +1,10 @@
 # Lab Pilot Guide — Catalytic Earth mechanism atlas (2026-06-29)
 
+> **2026-09-05 correction — A0A177THN5:** the APX-specific transfer from
+> P48534 is withdrawn, and the larger APX-versus-CcP study is retired.
+> CcP-like is a provisional working interpretation, not demonstrated activity.
+> See [CE-017 and the public-source reassessment](../docs/COMPUTATIONAL_REVIEW_20260905.md).
+
 > **SUPERSEDED — DO NOT EXECUTE AS A CURRENT PROTOCOL.** The “independent gold”
 > and automated “active-site verified” premises below were overstated. This
 > historical candidate brief requires fresh evidence review, assay-specific

@@ -1,5 +1,10 @@
 # Atlas-50 Phase B review and selection-freeze readiness
 
+> **2026-09-05 computational findings:** read the
+> [correction overlay](COMPUTATIONAL_REVIEW_20260905.md) before using this July
+> proposal. It identifies source-mapping and representation concerns; it does
+> not alter these frozen packets or count as their required human review.
+
 ## Status
 
 Phase B has started from merged Phase A commit
@@ -11,6 +16,10 @@ mechanism compilation.
 The complete useful atlas remains the mission. This checkpoint makes the next
 human and governance decisions inspectable without substituting automation,
 upstream curation, packet preparation, or an outreach attempt for real review.
+
+On 2026-09-05, local append-only intake was added around this frozen package.
+It makes the packets usable without changing their bytes or claiming that a
+submission has occurred. No submission was supplied in that maintenance run.
 
 ## Deterministic package
 
@@ -58,6 +67,48 @@ This review contract is not the Section 10.3 independent-annotation contract.
 It cannot support an independent-review, inter-reviewer-agreement, or expert-
 agreement claim. The project author flag is recorded so author review cannot be
 presented as independent annotation.
+
+## Local review intake
+
+The review command operates from a source checkout and validates the complete
+Phase A/B package before accepting any input:
+
+```bash
+python scripts/atlas50_review.py list
+python scripts/atlas50_review.py packet \
+  --packet-id atlas50.phase-b.crosswalk.ser_his_acid_hydrolase \
+  --output ../atlas50-packet.json
+python scripts/atlas50_review.py template \
+  --packet-id atlas50.phase-b.crosswalk.ser_his_acid_hydrolase \
+  --output ../atlas50-review-draft.json
+# After a real reviewer completes the draft:
+python scripts/atlas50_review.py validate \
+  --submission ../atlas50-review-draft.json
+python scripts/atlas50_review.py record \
+  --submission ../atlas50-review-draft.json
+python scripts/atlas50_review.py status
+```
+
+`packet` and `template` require a new output path outside the repository. The
+template is intentionally invalid until a real reviewer fills every required
+identity, attestation, outcome, rationale, uncertainty, and field decision.
+The attestation must exactly match the frozen text in `review_spec.json`.
+`validate` checks structure and frozen-contract consistency but does not record
+the file. `record` repeats validation, rejects duplicate submission IDs, and
+preserves the supplied bytes under a SHA-256-derived filename in the append-only
+`review_submissions` namespace.
+
+`status` scans recorded submissions without rewriting a queue or advancing a
+freeze gate. It reports valid-submission coverage, decision variants, conflicts,
+and unresolved work. In CI, pass the merge base or previous commit with
+`--baseline-ref SHA` so append-only verification also covers submissions that
+were already committed before the current change. `--output` writes the status
+JSON to a new path outside the repository.
+
+Successful structural validation means only that the supplied assertions fit
+the contract and bind the stated packet. It cannot authenticate reviewer
+identity, establish the scientific quality of a decision, resolve conflicting
+submissions, support independent annotation, or approve a selection freeze.
 
 ## Unfrozen candidate and blockers
 
@@ -109,12 +160,13 @@ unfrozen, and revalidates Phase A plus inherited Atlas/protected objects.
 
 ## What remains
 
-The next authorized scientific work requires explicit reviewer/outreach
-authority and actual attributable submissions. Until those exist, Phase B is
-truthfully blocked for selection freeze. Source acquisition and mechanism
-compilation remain prohibited. Section 10.3 independent annotation, the
-200-row bronze audit, fresh benchmark, modern baselines, external task work,
-and assays remain separate and undone.
+Local review intake is ready. The next scientific gate requires actual
+attributable human submissions, and contacting a reviewer requires explicit
+outreach authority. Until valid submissions exist and their unresolved or
+conflicting decisions are handled, Phase B remains blocked for selection
+freeze. Source acquisition and mechanism compilation remain prohibited.
+Section 10.3 independent annotation, the 200-row bronze audit, fresh benchmark,
+modern baselines, external task work, and assays remain separate and undone.
 
 This checkpoint supports no accuracy, speedup, independent-validation,
 discovery, design-readiness, assay, or atlas-coverage claim.
