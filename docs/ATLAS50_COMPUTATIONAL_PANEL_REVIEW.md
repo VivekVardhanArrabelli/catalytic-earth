@@ -1,5 +1,14 @@
 # Atlas-50 computational panel review
 
+> **Successor review, 2026-09-05:** read
+> [Computational development review](COMPUTATIONAL_DEVELOPMENT_REVIEW.md) for
+> current permissions and adjudications. This first-pass report is preserved
+> as review history. The successor narrows several panel holds and corrects
+> the first-pass DHFR rationale: M0112 is exact only at the implemented
+> reaction-core scope, with narrower source applicability. The earlier
+> aggregation/bifunctional-scope statement does not control current use.
+
+
 **Status:** agent-generated review aid; zero human reviewers; no Phase B review coverage; no tier upgrade; no selection freeze.
 
 This bounded pass checked all 40 Phase B panel packets against the live official M-CSA API and examined official RCSB structure metadata for six decision-relevant rows. It does not replace the real-human review required by `review_spec.json`. Every row remains unreviewed under that contract, and every suggested action below is a **HOLD** for attributable human adjudication.

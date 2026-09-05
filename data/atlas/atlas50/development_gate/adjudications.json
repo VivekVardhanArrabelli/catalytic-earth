@@ -1,0 +1,261 @@
+{
+  "adjudicator": "Coordinating software agent, informed by producer outputs and same-model source challenge",
+  "blind_review": false,
+  "cases": [
+    {
+      "allowed_operations": [
+        "source_annotation"
+      ],
+      "challenge_claim_ids": [
+        "sc-m0064-current-reaction-represents-topology"
+      ],
+      "evidence_ids": [
+        "source:M-CSA:M0064",
+        "source:PubMed:11429611",
+        "source:RCSB:1D6M"
+      ],
+      "mandatory_abstentions": [
+        {
+          "clause_id": "topology_before",
+          "reason": "Neither the same-identity M-CSA reaction nor protein-only 1D6M assigns an initial DNA topology."
+        },
+        {
+          "clause_id": "topology_after",
+          "reason": "Neither exact handle assigns the final DNA topology."
+        },
+        {
+          "clause_id": "chain_length_before",
+          "reason": "M-CSA supplies no chain-length state for the DNA reactant."
+        },
+        {
+          "clause_id": "chain_length_after",
+          "reason": "M-CSA supplies no chain-length state for the DNA product."
+        },
+        {
+          "clause_id": "initiation_or_elongation",
+          "reason": "Initiation and elongation are not assigned for this topology event."
+        },
+        {
+          "clause_id": "processivity",
+          "reason": "The exact source handles do not establish a processivity state."
+        }
+      ],
+      "mcsa_id": "M0064",
+      "open_objections": [
+        {
+          "blocks": [
+            "source_scoped_mechanism_draft",
+            "exact_reaction_instance"
+          ],
+          "reason": "Initial and final DNA topology and DNA-bound structural applicability are not established by the selected sources."
+        }
+      ],
+      "resolution": "The source challenge correctly rejects a complete transformation inferred from identical CHEBI:9160 participants. The state probe is more conservative than the challenge suggestion to compile local cleavage steps: this release permits identity and qualitative-event annotation only. Apo 1D6M does not establish a DNA-bound topology transition; mechanism drafting and exact instances stay blocked.",
+      "scope": "Preserve the exact M-CSA M0064 protein and single-stranded-DNA identities as source metadata. Record the source wording that DNA uncoils only as a qualitative event, without assigning before/after topology."
+    },
+    {
+      "allowed_operations": [
+        "source_annotation",
+        "source_scoped_mechanism_draft"
+      ],
+      "challenge_claim_ids": [
+        "sc-m0106-1w85-contains-lipoyl-carrier"
+      ],
+      "evidence_ids": [
+        "source:M-CSA:M0106",
+        "source:PubMed:12795594",
+        "source:RCSB:1W85"
+      ],
+      "mandatory_abstentions": [
+        {
+          "clause_id": "carrier_host_identity",
+          "reason": "M-CSA identifies only E1 accessions, and 1W85 P11961 is an E2 peripheral subunit-binding domain rather than a demonstrated mobile lipoyl carrier domain."
+        },
+        {
+          "clause_id": "attachment_site",
+          "reason": "The sources establish a lysine residue class but do not identify a carrier-protein accession and numbered attachment site for this reaction instance."
+        },
+        {
+          "clause_id": "structure_localization",
+          "reason": "The selected structure does not localize the tethered lipoyl-lysine carrier state."
+        }
+      ],
+      "mcsa_id": "M0106",
+      "open_objections": [
+        {
+          "blocks": [
+            "exact_reaction_instance"
+          ],
+          "reason": "A complete carrier instance lacks an identified carrier accession, numbered attachment lysine, and structural localization."
+        }
+      ],
+      "resolution": "The M-CSA reaction supports the E2-owned lipoyl-lysine to acetyldihydrolipoyl-lysine transition at a role-defined carrier scope. The source challenge establishes that P11961 in 1W85 is the peripheral binding domain, so its presence cannot resolve carrier accession, numbered lysine, or pose. Permit the source-scoped transition draft while retaining all three carrier abstentions.",
+      "scope": "Preserve M-CSA M0106 E1 alpha/beta identity and the source-reported lipoyl-lysine to acetyldihydrolipoyl-lysine carrier-state transition. Represent the carrier owner only as the E2 catalytic-component role; keep P11961 as structure context rather than assigning it as the mobile lipoyl carrier."
+    },
+    {
+      "allowed_operations": [
+        "source_annotation",
+        "source_scoped_mechanism_draft"
+      ],
+      "challenge_claim_ids": [
+        "sc-m0107-m0212-same-component-state-class"
+      ],
+      "evidence_ids": [
+        "source:M-CSA:M0107",
+        "source:PubMed:12475995",
+        "source:RCSB:1N62"
+      ],
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0107",
+      "open_objections": [
+        {
+          "blocks": [
+            "exact_reaction_instance"
+          ],
+          "reason": "The source-scoped state probe does not establish a fully normalized exact reaction instance; alternative proposed cofactor states are retained."
+        }
+      ],
+      "resolution": "The source challenge distinguishes the source-described fixed CODH heterotrimer assembly from nitrogenase association cycles. The generic assembly and proposal-scoped state fields can preserve both M-CSA alternatives without asserting universal redox chemistry. Permit a source-scoped mechanism draft; the PASS label applies to those named operations only and does not authorize a complete reaction instance or direct v3 compilation.",
+      "scope": "Represent the exact three M-CSA CODH subunits as one fixed multisubunit enzyme assembly. Represent Mo(VI)-Cu(I) to Mo(IV)-Cu(I) and reoxidation only as M-CSA source-mechanism proposals, preserving the two alternatives. PASS is limited to source_annotation and source_scoped_mechanism_draft; it does not authorize a v3 record, exact reaction instance, tier upgrade, or independently validated mechanism."
+    },
+    {
+      "allowed_operations": [
+        "source_annotation",
+        "source_scoped_mechanism_draft"
+      ],
+      "challenge_claim_ids": [
+        "sc-m0107-m0212-same-component-state-class"
+      ],
+      "evidence_ids": [
+        "source:M-CSA:M0212",
+        "source:PubMed:9163420",
+        "source:RCSB:1N2C"
+      ],
+      "mandatory_abstentions": [
+        {
+          "clause_id": "complete_target_state",
+          "reason": "M-CSA says the electron pathway is poorly understood and the exact reactive FeMo-cofactor atoms are unknown, so a complete cluster-state sequence is withheld."
+        }
+      ],
+      "mcsa_id": "M0212",
+      "open_objections": [
+        {
+          "blocks": [
+            "exact_reaction_instance"
+          ],
+          "reason": "Complete FeMo/P-cluster state and exact reactive atoms remain unknown in the selected mechanism account."
+        }
+      ],
+      "resolution": "A blanket multi-component exclusion is unnecessarily broad: the selected source supports partner association, ATP-to-ADP, and dissociation. The same generic contract distinguishes this cycle from fixed CODH assembly. Permit that source-scoped cycle draft, while abstaining from exact reactive FeMo atoms and a complete FeMo/P-cluster state sequence; ATP bookkeeping does not fill the unknown catalytic pathway.",
+      "scope": "Represent the exact Fe-protein and MoFe-protein identities and their ATP-coupled association/dissociation cycle. Represent ATP to ADP only as a source-bound transition; preserve the source's explicit uncertainty about the complete FeMo/P-cluster pathway and reactive atoms."
+    },
+    {
+      "allowed_operations": [
+        "source_annotation",
+        "source_scoped_mechanism_draft"
+      ],
+      "challenge_claim_ids": [
+        "sc-m0753-selected-handle-full-channel",
+        "sc-m0753-hisf-development-inclusion"
+      ],
+      "evidence_ids": [
+        "source:M-CSA:M0753",
+        "source:PubMed:11264293",
+        "source:RCSB:2A0N"
+      ],
+      "mandatory_abstentions": [
+        {
+          "clause_id": "complete_target_state",
+          "reason": "The exact selected handles do not contain HisH or an observed channelled-ammonia state, so no full-complex state is represented."
+        },
+        {
+          "clause_id": "resolved_aspartate_roles",
+          "reason": "The current M-CSA M0753 summary/Step 5 assigns Asp130 as proton acceptor and Asp11 as donor, while the overall catalytic-residue role table reverses those assignments. Preserve that source disagreement; do not infer one resolved Asp11/Asp130 role sequence."
+        }
+      ],
+      "mcsa_id": "M0753",
+      "open_objections": [
+        {
+          "blocks": [
+            "exact_reaction_instance"
+          ],
+          "reason": "The selected object supports a half-reaction, not a complete HisH-HisF coupled reaction instance."
+        }
+      ],
+      "resolution": "The selected M-CSA reaction and Q9X0C6/2A0N identity directly support the HisF cyclase half-reaction with free ammonium. The challenge resolves the earlier exclusion through a narrower source object, not through an inferred full complex. Permit this half-reaction draft and keep HisH identity, channel occupancy, intersubunit signaling, and complete coupled-cycle state unasserted. A separate 1GPW context does not retroactively change 2A0N. Root directly rechecked the official M-CSA page and found disagreement between the summary/Step 5 and overall residue-role table. This state-only draft makes no resolved residue-role assignment. Preserve the conflict and abstain from resolving Asp11/Asp130 roles until the underlying mechanism evidence is reconciled.",
+      "scope": "Treat M-CSA M0753 as the Q9X0C6 HisF cyclase half-reaction with free ammonium in the drawn reaction. Do not project HisH identity, ammonia-channel occupancy, intersubunit signaling, or a full synthase-complex mechanism into this exact source handle."
+    },
+    {
+      "allowed_operations": [
+        "source_annotation"
+      ],
+      "challenge_claim_ids": [
+        "sc-m0970-complete-polymer-instance"
+      ],
+      "evidence_ids": [
+        "source:M-CSA:M0970",
+        "source:PubMed:32786224",
+        "source:RCSB:3VMT"
+      ],
+      "mandatory_abstentions": [
+        {
+          "clause_id": "polymer_product_identity",
+          "reason": "The polymer product is an unnamed non-ChEBI X00676 placeholder, so it is not a resolved state identity."
+        },
+        {
+          "clause_id": "topology_before",
+          "reason": "No exact source handle specifies an initial polymer topology."
+        },
+        {
+          "clause_id": "topology_after",
+          "reason": "No exact source handle specifies a final polymer topology."
+        },
+        {
+          "clause_id": "chain_length_before",
+          "reason": "The reactant name contains an uninstantiated n variable rather than an exact chain length."
+        },
+        {
+          "clause_id": "chain_length_after",
+          "reason": "The unnamed X00676 product does not establish n+1 or another product length."
+        },
+        {
+          "clause_id": "initiation_or_elongation",
+          "reason": "The exact source reaction does not distinguish initiation from elongation."
+        },
+        {
+          "clause_id": "processivity",
+          "reason": "Neither the source reaction nor the Lipid-II-analog structure demonstrates processivity."
+        }
+      ],
+      "mcsa_id": "M0970",
+      "open_objections": [
+        {
+          "blocks": [
+            "source_scoped_mechanism_draft",
+            "exact_reaction_instance"
+          ],
+          "reason": "The selected sources do not resolve the polymer product, before/after chain state, initiation versus elongation, or processivity."
+        }
+      ],
+      "resolution": "The challenge remains unresolved for mechanism drafting and exact reaction instances. M-CSA local alternatives and the 3VMT bound analog support metadata but do not resolve X00676 into a defined product or establish polymer chain state and processivity. Preserve the alternatives as source annotations; do not instantiate n-to-n+1 or invent an elongation trajectory.",
+      "scope": "Preserve Q99T05, 3VMT, the named M-CSA reactants, the X00676 placeholder, and the two source mechanism alternatives as metadata. Do not create an n-to-n+1 product, chain length, initiation/elongation assignment, or processivity claim."
+    }
+  ],
+  "correlated_errors_possible": true,
+  "crosswalk_resolutions": [
+    {
+      "resolution": "Quarantine the complete M0049-derived PLP locator bundle. Retain M0049 outside that relation as a pyruvoyl candidate; correction of its panel pressure label remains draft work.",
+      "subject": "M0049"
+    },
+    {
+      "resolution": "Supersede the earlier computational aggregation recommendation. The implemented EC 1.5.1.3 admission contract supports exact relation at reaction-core granularity only. Retain source-specific protein/organism/structure limits and correct water versus Asp proton roles.",
+      "subject": "M0112"
+    }
+  ],
+  "date": "2026-09-05",
+  "decision_rule": "Source-supported scope and unresolved objections determine permissions; vote counts confer no evidence.",
+  "human_review": false,
+  "independent_review": false,
+  "same_model_family": true,
+  "schema_version": "catalytic-earth.computational-adjudications.v1"
+}

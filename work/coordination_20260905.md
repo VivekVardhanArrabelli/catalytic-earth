@@ -173,3 +173,85 @@ The review overlay's receipt accounting and exact row coverage pass, and
 `git diff --check` is clean. The report archive index is regenerated from the
 staged board and historical correction banners. Root will push this tested
 checkpoint to the existing PR #31 and check CI at its new commit separately.
+
+## Owner-authorized computational development track
+
+The owner explicitly authorized proceeding and urgently replacing the human
+review dependency for development. PR #31 was merged at `5e917f3b`; the next
+work runs on `codex/atlas50-computational-gate`. The July human-review contract
+stays intact as a historical validation commitment. A new versioned policy
+will permit source-scoped draft work through evidence and challenge checks;
+it will not fabricate people, independent validation, gold labels, or assays.
+
+| Agent | Current ownership | Required result |
+| --- | --- | --- |
+| root | computational development gate, current policy, integration, this board | executable bounded permissions and adjudications, tests, release checks |
+| crosswalk_v2 | successor generator, crosswalk_v2 data/report/tests | 57 corrected rows with named relation targets and old/new change map |
+| state_contracts | shared state probe, six-case data/report/tests | concrete PASS/SCOPED_PASS/ABSTAIN at exact source scope |
+| forward_path | source challenge JSON/report | challenge prior holds and corrections using primary evidence |
+
+A fresh challenge-agent spawn hit the tool's thread limit, so the existing
+forward_path agent is reused and explicitly reports prior exposure. No blind
+or statistically independent panel is claimed. Distinct roles and contexts
+help find objections; source evidence, not vote count, decides their resolution.
+
+Early challenge results already narrow blanket holds: M0049 is invalid PLP
+evidence but remains a pyruvoyl panel candidate; HisF with free ammonium is a
+legitimate scoped alternative to a full coupled synthase claim; a permanent
+CODH heterotrimer may be distinguishable from ATP-coupled transient nitrogenase
+association. E2 accession presence must not be mistaken for lipoyl-carrier
+structure coverage. These points are sent directly to the implementation agents.
+
+### Review resolutions and integration
+
+- Crosswalk v2 is final: 57 rows, 23 computational-provisional and 34
+  unresolved, with named targets, source applicability, and an old/new map.
+  Source challenge corrected our first DHFR review: the actual EC 1.5.1.3
+  reaction-core admission contract supports the one M0112 exact relation.
+  The earlier broad/bifunctional aggregation rationale is superseded. Water
+  remains the proton donor; Asp26/Asp27 has a network role.
+- The shared six-case state probe is final. M0106/M0107/M0212/M0753 permit
+  source-scoped mechanism drafts; M0064/M0970 permit source annotation only.
+  The typed sidecar does not compile a new v3 kernel mechanism. M0106 retains
+  the E2 binding-domain versus lipoyl-domain distinction. M0753 is HisF only.
+- Source challenge reviewed final crosswalk/state bytes and preserved the
+  M0970 polymer-state objection. Root created six evidence-linked
+  adjudications, kept all probe abstentions and blocked exact reaction
+  instances in every case. Topoisomerase and polymer work remain annotation
+  only; useful work on the other four cases can advance.
+- Root updated current policy and CE-012 wording to replace the human-only
+  draft-development dependency under the owner's explicit instruction.
+  Frozen July packet completion, independent annotation, and protected
+  registry admission retain their distinct meanings. Source checks are
+  bounded to public primary sources, 100 requests and 30 MiB per batch.
+- The crosswalk agent is hardening the executable development gate against
+  real structured abstentions and attempted permission promotion. Its nested
+  read-only shape audit found the initial root implementation's list-of-dicts
+  bug before publication. The state agent integrated all three deterministic
+  builders into the existing repository/CI contract runner.
+- Updated documentation points to the successor review and labels old
+  computational judgments as history. Rosalind Workbench is installed, but
+  no GPT-Rosalind scientific model run or account entitlement is claimed.
+  No private correspondence or reviewer endorsement is included.
+
+Publication checkpoint: targeted crosswalk/state checks pass (18 tests).
+Root is completing gate tests, full repository contracts, frozen-byte checks,
+and cross-platform CI before landing this development checkpoint.
+
+### Local release checks
+
+Root's direct M0753 source check found reversed Asp11/Asp130 role assignments
+between the overall residue-role table and summary/Step 5. The adjudication
+adds `resolved_aspartate_roles` as a mandatory abstention. The probe makes no
+resolved residue-role assignment, so its scoped state permissions remain valid.
+
+The final gate binds adjudications and transitive reviewed inputs, preserves
+structured abstentions, checks source evidence/scope and material objections,
+and rejects scientific or independence promotion. All 147 core/unit tests pass
+on Python 3.12, including 12 gate adversarial tests. The three deterministic
+builders and repository-wide contracts pass. Root's comparison against merged
+PR #31 (`5e917f3b79b0237eafc1523aa6ab6d35b40cd2ef`) confirms unchanged Atlas-3/10,
+July Phase A/B, protected registries, expansion freeze and exposure ledgers.
+
+The new checkpoint is ready to publish. Cross-platform CI and merge status
+will be reported separately from these local results.

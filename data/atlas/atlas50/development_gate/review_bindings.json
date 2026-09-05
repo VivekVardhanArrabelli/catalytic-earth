@@ -1,0 +1,13 @@
+{
+  "date": "2026-09-05",
+  "inputs": {
+    "data/atlas/atlas50/computational_review/source_challenge_20260905.json": "3135ca1a181f518c7e75ba8451ef7ad057ddb8bf0d862abd65a14073bf4ea7d8",
+    "data/atlas/atlas50/crosswalk_v2/change_map.json": "4975a8bb079f919de5da061db83c32d4add688bc95f665212a40a2944b240ccc",
+    "data/atlas/atlas50/crosswalk_v2/crosswalk.json": "fc0e176b0c6881c949d052889607179ba087dc52ebb7786ee96f96f3ad73615e",
+    "data/atlas/atlas50/development_gate/adjudications.json": "673e58babbc53a8c190866182b418459481c024c491b90c7f353e20dcd2ffe1b",
+    "data/atlas/atlas50/state_probe/report.json": "bbc0f6013574af5b36a62a8b86fad39938340decbcdda78d40131253607822f9",
+    "data/governance/computational_review_policy.json": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "schema_version": "catalytic-earth.computational-review-bindings.v1",
+  "update_rule": "Do not automatically refresh these pins after input changes. Repeat source-to-decision review and adjudication first."
+}

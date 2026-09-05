@@ -1,0 +1,2205 @@
+{
+  "claim_boundary": [
+    "This is a computational development successor, not a human or expert review.",
+    "Same-model computational agents have correlated errors and are not statistically independent reviewers.",
+    "It does not modify frozen Phase A/B, protected registries, tiers, or selection.",
+    "It makes no experimental, independent-annotation, or scientific-completion claim."
+  ],
+  "classification_counts": {
+    "aggregation": 18,
+    "exact_duplicate": 1,
+    "specialization": 3,
+    "unresolved": 34,
+    "unsupported_or_ill_defined": 1
+  },
+  "classification_vocabulary": [
+    "exact_duplicate",
+    "aggregation",
+    "specialization",
+    "interoperability_bridge",
+    "genuinely_missing_concept",
+    "unsupported_or_ill_defined",
+    "unresolved"
+  ],
+  "draft_id": "atlas50.crosswalk-v2.computational.2026-09-05.v1",
+  "generated_at": "2026-09-05",
+  "inputs": [
+    {
+      "path": "data/atlas/atlas50/computational_review/crosswalk_review.json",
+      "sha256": "84150aff2cb563c1f624aa3ce000c91c3588c520604715e81197f87e77d8ad4e"
+    },
+    {
+      "path": "data/atlas/atlas50/phase_a/crosswalk_draft.json",
+      "sha256": "838d74b142fc82c81183daa8d469db9e2baab52ffade4c8c6cf0b07826da1dac"
+    }
+  ],
+  "review_independence": {
+    "correlated_error_risk": true,
+    "experimental_validation_count": 0,
+    "independent_human_reviewer_count": 0,
+    "reviewer_kind": "same_model_computational_agents",
+    "statistically_independent": false
+  },
+  "row_count": 57,
+  "rows": [
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "aggregation",
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+      "ordinal": 1,
+      "prior_classification": "aggregation",
+      "rationale": "Keep aggregation provisional and add non-protease incumbents before deciding family-wide equivalence.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "The two direct M-CSA handles are proteases; they do not cover the esterase, lipase, cutinase, or polyesterase scope.",
+            "scope": "Ser-His-Asp/Glu hydrolase triad",
+            "status": "representative_scope_only"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "mechanism_detail": "detailed",
+            "name": "trypsin",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/173/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0173"
+        },
+        {
+          "mechanistic_applicability": {
+            "rationale": "The two direct M-CSA handles are proteases; they do not cover the esterase, lipase, cutinase, or polyesterase scope.",
+            "scope": "Ser-His-Asp/Glu hydrolase triad",
+            "status": "representative_scope_only"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "mechanism_detail": "detailed",
+            "name": "subtilisin",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/723/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0723"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Ser-His-Asp/Glu hydrolase triad.",
+      "status": "computational_provisional_relation",
+      "unresolved_reason": null
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "fingerprint_name": "Metal-dependent hydrolase",
+      "ordinal": 2,
+      "prior_classification": "aggregation",
+      "rationale": "Reacquire representative metal-hydrolase objects and split them across the four v2 children before classification review.",
+      "rejected_source_mappings": [],
+      "relation_targets": [],
+      "scope_statement": "Scope inherited for computational comparison only: Metal-dependent hydrolase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "All thirteen source slots are empty even though the local historical automation registry contains 83 broad metal-hydrolase locators; absence here reflects the selection index, not upstream absence."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "metallopeptidase",
+      "fingerprint_name": "Metal-dependent peptidase",
+      "ordinal": 3,
+      "prior_classification": "specialization",
+      "rationale": "Verify peptidase locators such as M0403/M0447 and name the parent/source targets.",
+      "rejected_source_mappings": [],
+      "relation_targets": [],
+      "scope_statement": "Scope inherited for computational comparison only: Metal-dependent peptidase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "The narrower-relation target is not named; the empty row cannot establish specialization."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "fingerprint_name": "Metal-dependent phosphodiesterase / nuclease",
+      "ordinal": 4,
+      "prior_classification": "specialization",
+      "rationale": "Verify nuclease locators from the historical metal-hydrolase set and state the parent/source targets.",
+      "rejected_source_mappings": [],
+      "relation_targets": [],
+      "scope_statement": "Scope inherited for computational comparison only: Metal-dependent phosphodiesterase / nuclease.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "The narrower-relation target is absent and no nuclease/phosphodiesterase source object was retrieved."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "metallophosphomonoesterase",
+      "fingerprint_name": "Metal-dependent phosphomonoesterase (phosphatase)",
+      "ordinal": 5,
+      "prior_classification": "specialization",
+      "rationale": "Verify M0406/M0472-class phosphatase locators and name the relation target.",
+      "rejected_source_mappings": [],
+      "relation_targets": [],
+      "scope_statement": "Scope inherited for computational comparison only: Metal-dependent phosphomonoesterase (phosphatase).",
+      "status": "computational_unresolved",
+      "unresolved_reason": "The row names multiple phosphatase families but has no incumbent target or source handle."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "fingerprint_name": "Metal-dependent amidohydrolase / deaminase",
+      "ordinal": 6,
+      "prior_classification": "aggregation",
+      "rationale": "Verify deaminase/amidohydrolase and metallo-beta-lactamase branches separately.",
+      "rejected_source_mappings": [],
+      "relation_targets": [],
+      "scope_statement": "Scope inherited for computational comparison only: Metal-dependent amidohydrolase / deaminase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "Aggregation is plausible, but the source gap was never tested against the historical metal-hydrolase pool."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "aggregation",
+      "fingerprint_id": "plp_dependent_enzyme",
+      "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+      "ordinal": 7,
+      "prior_classification": "aggregation",
+      "rationale": "Reject M0049. Review M0482 and several distinct PLP reaction classes as replacements; M0482 is non-detailed and cannot support ordered steps.",
+      "rejected_source_mappings": [
+        {
+          "anchor_id": "M0049",
+          "anchor_valid_outside_this_mapping": true,
+          "propagation_policy": "drop_entire_anchor_derived_bundle",
+          "reason": "The official M0049 identity is pyruvoyl-dependent; no source handle inherited through that anchor is positive PLP evidence.",
+          "removed_source_bundle": [
+            {
+              "lookup_keys": [
+                "3.50.20.10",
+                "4.10.510.10"
+              ],
+              "record_ids": [
+                "CATH:3.50.20.10",
+                "CATH:4.10.510.10"
+              ],
+              "source_key": "cath",
+              "uris": [
+                "https://www.cathdb.info/version/latest/superfamily/3.50.20.10",
+                "https://www.cathdb.info/version/latest/superfamily/4.10.510.10"
+              ]
+            },
+            {
+              "lookup_keys": [
+                "CHEBI:15378",
+                "CHEBI:16526",
+                "CHEBI:57595",
+                "CHEBI:58432"
+              ],
+              "record_ids": [
+                "CHEBI:15378",
+                "CHEBI:16526",
+                "CHEBI:57595",
+                "CHEBI:58432"
+              ],
+              "source_key": "chebi",
+              "uris": [
+                "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI%3A15378",
+                "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI%3A16526",
+                "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI%3A57595",
+                "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI%3A58432"
+              ]
+            },
+            {
+              "lookup_keys": [
+                "4.1.1.22"
+              ],
+              "record_ids": [
+                "EC:4.1.1.22"
+              ],
+              "source_key": "ec",
+              "uris": [
+                "https://enzyme.expasy.org/EC/4.1.1.22"
+              ]
+            },
+            {
+              "lookup_keys": [
+                "4.1.1.22"
+              ],
+              "record_ids": [
+                "EC:4.1.1.22"
+              ],
+              "source_key": "ec_blast",
+              "uris": [
+                "https://www.ebi.ac.uk/thornton-srv/software/rbl/"
+              ]
+            },
+            {
+              "lookup_keys": [
+                "4.1.1.22"
+              ],
+              "record_ids": [
+                "EC:4.1.1.22"
+              ],
+              "source_key": "enzymemap",
+              "uris": [
+                "https://zenodo.org/records/8254726"
+              ]
+            },
+            {
+              "lookup_keys": [
+                "M0049",
+                "P00862"
+              ],
+              "record_ids": [
+                "M0049",
+                "P00862"
+              ],
+              "source_key": "enzymm",
+              "uris": [
+                "https://www.ebi.ac.uk/thornton-srv/m-csa/enzymm-documentation/"
+              ]
+            },
+            {
+              "lookup_keys": [
+                "4.1.1.22",
+                "M0049"
+              ],
+              "record_ids": [],
+              "source_key": "ezmechanism",
+              "uris": [
+                "https://www.ebi.ac.uk/thornton-srv/m-csa/EzMechanism/documentation"
+              ]
+            },
+            {
+              "lookup_keys": [
+                "P00862"
+              ],
+              "record_ids": [
+                "P00862"
+              ],
+              "source_key": "interpro",
+              "uris": [
+                "https://www.ebi.ac.uk/interpro/protein/UniProt/P00862/"
+              ]
+            },
+            {
+              "lookup_keys": [
+                "M0049"
+              ],
+              "record_ids": [
+                "M0049"
+              ],
+              "source_key": "mcsa",
+              "uris": [
+                "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/49/"
+              ]
+            },
+            {
+              "lookup_keys": [
+                "M-CSA_arrow_rules_r0.json",
+                "M0049"
+              ],
+              "record_ids": [
+                "M0049"
+              ],
+              "source_key": "mcsa_arrow_environments",
+              "uris": [
+                "https://github.com/maranasgroup/MechFind/tree/fcc0896"
+              ]
+            },
+            {
+              "lookup_keys": [
+                "4.1.1.22",
+                "M0049"
+              ],
+              "record_ids": [
+                "4.1.1.22",
+                "M0049"
+              ],
+              "source_key": "mechfind",
+              "uris": [
+                "https://github.com/maranasgroup/MechFind/tree/fcc0896"
+              ]
+            },
+            {
+              "lookup_keys": [
+                "P00862"
+              ],
+              "record_ids": [
+                "P00862"
+              ],
+              "source_key": "pfam",
+              "uris": [
+                "https://www.ebi.ac.uk/interpro/entry/pfam/"
+              ]
+            },
+            {
+              "lookup_keys": [
+                "4.1.1.22"
+              ],
+              "record_ids": [
+                "EC:4.1.1.22"
+              ],
+              "source_key": "rhea",
+              "uris": [
+                "https://www.rhea-db.org/rhea?query=ec%3A4.1.1.22"
+              ]
+            }
+          ]
+        }
+      ],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "Official identity is pyruvoyl-dependent histidine decarboxylase. M0049 remains a valid source object outside this PLP mapping.",
+            "scope": "PLP fingerprint",
+            "status": "contradicted"
+          },
+          "relation": "rejected_mapping",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "4.1.1.22",
+            "mechanism_detail": "detailed",
+            "name": "histidine decarboxylase (pyruvoyl-dependent)",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/49/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0049"
+        },
+        {
+          "mechanistic_applicability": {
+            "rationale": "Official entry identifies PLP-dependent D-amino-acid transamination.",
+            "scope": "PLP transamination branch",
+            "status": "supported_branch"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "2.6.1.21",
+            "mechanism_detail": "detailed",
+            "name": "D-alanine transaminase",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/66/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0066"
+        },
+        {
+          "mechanistic_applicability": {
+            "rationale": "Official entry identifies PLP-dependent alanine racemization.",
+            "scope": "PLP racemization branch",
+            "status": "supported_branch"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "5.1.1.1",
+            "mechanism_detail": "detailed",
+            "name": "alanine racemase",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/213/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0213"
+        },
+        {
+          "mechanistic_applicability": {
+            "rationale": "Official entry identifies PLP-dependent serine ammonia elimination.",
+            "scope": "PLP elimination branch",
+            "status": "supported_branch"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "4.3.1.17",
+            "mechanism_detail": "detailed",
+            "name": "L-serine ammonia-lyase",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/186/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0186"
+        },
+        {
+          "mechanistic_applicability": {
+            "rationale": "Official identity and PLP cofactor are explicit, but the entry has summary-level rather than ordered-step mechanism content.",
+            "scope": "PLP decarboxylation/transamination branch",
+            "status": "representative_non_detailed"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "4.1.1.64",
+            "mechanism_detail": "summary_only_no_ordered_steps",
+            "name": "2,2-dialkylglycine decarboxylase (pyruvate)",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/482/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0482"
+        }
+      ],
+      "scope_statement": "Broad PLP aggregation represented by separately named transamination, racemization, elimination, and decarboxylation branches; pyruvoyl M0049 is outside PLP scope.",
+      "status": "computational_provisional_relation",
+      "unresolved_reason": null
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "aggregation",
+      "fingerprint_id": "radical_sam_enzyme",
+      "fingerprint_name": "Radical SAM enzyme",
+      "ordinal": 8,
+      "prior_classification": "aggregation",
+      "rationale": "Retain it only as a broad-family exemplar and add mechanistically different radical-SAM entries.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "M0767 is a valid radical-SAM exemplar but its M-CSA mechanism is non-detailed and covers one sulfur-insertion outcome.",
+            "scope": "Radical SAM enzyme",
+            "status": "representative_non_detailed"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "mechanism_detail": "non_detailed",
+            "name": "biotin synthase",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/767/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0767"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Radical SAM enzyme.",
+      "status": "computational_provisional_relation",
+      "unresolved_reason": null
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "cobalamin_radical_rearrangement",
+      "fingerprint_name": "Adenosylcobalamin radical rearrangement",
+      "ordinal": 9,
+      "prior_classification": "specialization",
+      "rationale": "Hold between aggregation and specialization until M0063 is verified and an explicit comparison target is supplied.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "M0062 is valid, but M0063 is another historical B12 rearrangement locator; the row spans more than one source mechanism.",
+            "scope": "Adenosylcobalamin radical rearrangement",
+            "status": "scope_unresolved"
+          },
+          "relation": "specialization",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "mechanism_detail": "detailed",
+            "name": "methylmalonyl-CoA mutase",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/62/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0062"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Adenosylcobalamin radical rearrangement.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "M0062 is valid, but M0063 is another historical B12 rearrangement locator; the row spans more than one source mechanism."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "aggregation",
+      "fingerprint_id": "flavin_monooxygenase",
+      "fingerprint_name": "Flavin-dependent monooxygenase",
+      "ordinal": 10,
+      "prior_classification": "aggregation",
+      "rationale": "Keep aggregation and review an FAD aromatic hydroxylase such as M0131 as a second branch.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "M0132 is a valid FMN-linked example but not family-wide evidence.",
+            "scope": "Flavin-dependent monooxygenase",
+            "status": "representative_scope_only"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "mechanism_detail": "detailed",
+            "name": "alkanal monooxygenase (FMN-linked)",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/132/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0132"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Flavin-dependent monooxygenase.",
+      "status": "computational_provisional_relation",
+      "unresolved_reason": null
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "aggregation",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "fingerprint_name": "Flavin-dependent dehydrogenase or reductase",
+      "ordinal": 11,
+      "prior_classification": "aggregation",
+      "rationale": "Retain as an overlap example, not a clean standalone representative; add simpler flavin-redox objects.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "M0139 is a Mo/FAD/Fe-S multi-centre enzyme; its relevance is module-level and overlaps rows 17 and 31.",
+            "scope": "Flavin-dependent dehydrogenase or reductase",
+            "status": "representative_scope_only"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "mechanism_detail": "detailed",
+            "name": "xanthine dehydrogenase (mammalian)",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/139/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0139"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Flavin-dependent dehydrogenase or reductase.",
+      "status": "computational_provisional_relation",
+      "unresolved_reason": null
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "aggregation",
+      "fingerprint_id": "heme_peroxidase_oxidase",
+      "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+      "ordinal": 12,
+      "prior_classification": "aggregation",
+      "rationale": "Use M0239 or another direct heme-peroxidase object; move laccases to row 18 and treat M0133 as overlap with row 13.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "Official entry is a heme-b peroxidase using hydrogen peroxide.",
+            "scope": "heme peroxidase branch",
+            "status": "supported_branch"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "1.11.1.7",
+            "mechanism_detail": "detailed",
+            "name": "horseradish peroxidase C",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/239/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0239"
+        },
+        {
+          "mechanistic_applicability": {
+            "rationale": "P450cam belongs to the dedicated P450 fingerprint, not direct peroxidase coverage.",
+            "scope": "cytochrome P450 branch",
+            "status": "out_of_scope"
+          },
+          "relation": "scope_exclusion",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "1.14.15.1",
+            "mechanism_detail": "detailed",
+            "name": "camphor 5-monooxygenase (P450cam)",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/133/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0133"
+        },
+        {
+          "mechanistic_applicability": {
+            "rationale": "Official laccase entry uses a multicopper centre and belongs in row 18.",
+            "scope": "copper laccase branch",
+            "status": "out_of_scope"
+          },
+          "relation": "scope_exclusion",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "1.10.3.2",
+            "mechanism_detail": "summary_only",
+            "name": "laccase",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/390/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0390"
+        }
+      ],
+      "scope_statement": "Heme peroxidase/oxidase scope anchored by a direct heme-peroxidase object; cytochrome P450 and copper laccase remain in rows 13 and 18.",
+      "status": "computational_provisional_relation",
+      "unresolved_reason": null
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "specialization",
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "fingerprint_name": "Cytochrome P450 heme-thiolate monooxygenase",
+      "ordinal": 13,
+      "prior_classification": "specialization",
+      "rationale": "Retain M0133 here, expose the collision with row 12, and state the parent/source relation.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "Official entry identifies P450cam with heme b and a cysteine axial ligand.",
+            "scope": "P450 heme-thiolate monooxygenation",
+            "status": "representative_scope_only"
+          },
+          "relation": "specialization",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "1.14.15.1",
+            "mechanism_detail": "detailed",
+            "name": "camphor 5-monooxygenase (P450cam)",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/133/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0133"
+        },
+        {
+          "mechanistic_applicability": {
+            "rationale": "Peroxidase chemistry remains in row 12.",
+            "scope": "direct heme peroxidase",
+            "status": "out_of_scope"
+          },
+          "relation": "scope_exclusion",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "1.11.1.7",
+            "mechanism_detail": "detailed",
+            "name": "horseradish peroxidase C",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/239/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0239"
+        },
+        {
+          "mechanistic_applicability": {
+            "rationale": "Laccase chemistry remains in row 18.",
+            "scope": "multicopper laccase",
+            "status": "out_of_scope"
+          },
+          "relation": "scope_exclusion",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "1.10.3.2",
+            "mechanism_detail": "summary_only",
+            "name": "laccase",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/390/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0390"
+        }
+      ],
+      "scope_statement": "Cytochrome P450 heme-thiolate monooxygenases; direct heme peroxidases and copper laccases are excluded.",
+      "status": "computational_provisional_relation",
+      "unresolved_reason": null
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "specialization",
+      "fingerprint_id": "non_heme_iron_2og_dioxygenase",
+      "fingerprint_name": "Non-heme Fe(II)/2-oxoglutarate dioxygenase",
+      "ordinal": 14,
+      "prior_classification": "specialization",
+      "rationale": "Retain as an exemplar and add representatives for the other branches before scope transfer.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "M0129 is a direct taurine-dioxygenase exemplar, but it cannot establish applicability across JmjC, AlkB, and hydroxylase branches.",
+            "scope": "Non-heme Fe(II)/2-oxoglutarate dioxygenase",
+            "status": "representative_scope_only"
+          },
+          "relation": "specialization",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "mechanism_detail": "detailed",
+            "name": "taurine dioxygenase",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/129/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0129"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Non-heme Fe(II)/2-oxoglutarate dioxygenase.",
+      "status": "computational_provisional_relation",
+      "unresolved_reason": null
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "coa_acyltransferase",
+      "fingerprint_name": "CoA/acyl-CoA-dependent acyltransferase",
+      "ordinal": 15,
+      "prior_classification": "aggregation",
+      "rationale": "Retrieve distinct thiolase, GNAT/natural-product, and other acyl-transfer objects before review.",
+      "rejected_source_mappings": [],
+      "relation_targets": [],
+      "scope_statement": "Scope inherited for computational comparison only: CoA/acyl-CoA-dependent acyltransferase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "The broad acyl-transfer aggregation has no incumbent source targets."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unsupported_or_ill_defined",
+      "fingerprint_id": "cofactor_independent_isomerase",
+      "fingerprint_name": "Cofactor-independent isomerase",
+      "ordinal": 16,
+      "prior_classification": "unsupported_or_ill_defined",
+      "rationale": "Keep unsupported_or_ill_defined unless the row is split by reaction chemistry.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "M0081 is a valid cofactor-independent isomerase example, but absence of a cofactor does not define a coherent mechanism class.",
+            "scope": "Cofactor-independent isomerase",
+            "status": "representative_scope_only"
+          },
+          "relation": "scope_probe",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "mechanism_detail": "detailed",
+            "name": "chorismate mutase (AroQ)",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/81/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0081"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Cofactor-independent isomerase.",
+      "status": "computational_provisional_relation",
+      "unresolved_reason": null
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "aggregation",
+      "fingerprint_id": "molybdopterin_oxidoreductase",
+      "fingerprint_name": "Molybdopterin/Mo-cofactor oxidoreductase",
+      "ordinal": 17,
+      "prior_classification": "aggregation",
+      "rationale": "Keep aggregation and model cofactor-module overlaps explicitly.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "M0107, M0121, and M0139 are valid but mechanistically diverse; M0139 also overlaps flavin and NAD(P) rows.",
+            "scope": "Molybdopterin/Mo-cofactor oxidoreductase",
+            "status": "representative_scope_only"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "mechanism_detail": "detailed",
+            "name": "aerobic carbon monoxide dehydrogenase",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/107/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0107"
+        },
+        {
+          "mechanistic_applicability": {
+            "rationale": "M0107, M0121, and M0139 are valid but mechanistically diverse; M0139 also overlaps flavin and NAD(P) rows.",
+            "scope": "Molybdopterin/Mo-cofactor oxidoreductase",
+            "status": "representative_scope_only"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "mechanism_detail": "detailed",
+            "name": "sulfite oxidase",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/121/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0121"
+        },
+        {
+          "mechanistic_applicability": {
+            "rationale": "M0107, M0121, and M0139 are valid but mechanistically diverse; M0139 also overlaps flavin and NAD(P) rows.",
+            "scope": "Molybdopterin/Mo-cofactor oxidoreductase",
+            "status": "representative_scope_only"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "mechanism_detail": "detailed",
+            "name": "xanthine dehydrogenase (mammalian)",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/139/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0139"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Molybdopterin/Mo-cofactor oxidoreductase.",
+      "status": "computational_provisional_relation",
+      "unresolved_reason": null
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "aggregation",
+      "fingerprint_id": "copper_oxidoreductase",
+      "fingerprint_name": "Copper-center oxidoreductase",
+      "ordinal": 18,
+      "prior_classification": "aggregation",
+      "rationale": "Keep aggregation, move laccase scope here, and review M0390 as a locator.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "Official entry identifies a two-copper peptidylglycine monooxygenase.",
+            "scope": "copper monooxygenase branch",
+            "status": "supported_branch"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "1.14.17.3",
+            "mechanism_detail": "detailed",
+            "name": "peptidylglycine monooxygenase",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/135/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0135"
+        },
+        {
+          "mechanistic_applicability": {
+            "rationale": "Official entry identifies a four-copper laccase and oxygen reduction.",
+            "scope": "multicopper oxidase branch",
+            "status": "supported_branch"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "1.10.3.2",
+            "mechanism_detail": "summary_only",
+            "name": "laccase",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/390/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0390"
+        },
+        {
+          "mechanistic_applicability": {
+            "rationale": "Heme peroxidase chemistry remains in row 12.",
+            "scope": "heme peroxidase branch",
+            "status": "out_of_scope"
+          },
+          "relation": "scope_exclusion",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "1.11.1.7",
+            "mechanism_detail": "detailed",
+            "name": "horseradish peroxidase C",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/239/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0239"
+        }
+      ],
+      "scope_statement": "Copper oxidoreductases include copper monooxygenase and multicopper laccase branches; heme enzymes are excluded.",
+      "status": "computational_provisional_relation",
+      "unresolved_reason": null
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "fingerprint_name": "Non-PLP racemase / epimerase",
+      "ordinal": 19,
+      "prior_classification": "aggregation",
+      "rationale": "Split metal-dependent and cofactor-independent cases, or declare optional/diverse metal state explicitly.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "The ID says metal racemase while the registry declares cofactors=[] and includes metal-independent mutarotases.",
+            "scope": "Non-PLP racemase / epimerase",
+            "status": "representative_scope_only"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "mechanism_detail": "detailed",
+            "name": "mandelate racemase",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/187/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0187"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Non-PLP racemase / epimerase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "The ID says metal racemase while the registry declares cofactors=[] and includes metal-independent mutarotases."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "atp_amide_ligase",
+      "fingerprint_name": "ATP-dependent amide ligase",
+      "ordinal": 20,
+      "prior_classification": "aggregation",
+      "rationale": "Retrieve examples from ATP-grasp, D-Ala ligase, and acid-ammonia ligase branches.",
+      "rejected_source_mappings": [],
+      "relation_targets": [],
+      "scope_statement": "Scope inherited for computational comparison only: ATP-dependent amide ligase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "The ATP-dependent amide-ligase aggregation has no source targets."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "specialization",
+      "fingerprint_id": "class_ii_metal_aldolase",
+      "fingerprint_name": "Class-II metal-dependent aldolase",
+      "ordinal": 21,
+      "prior_classification": "specialization",
+      "rationale": "Add M0222 explicitly as same-EC/different-mechanism counterevidence or delete the pairing claim.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "Official entry explicitly requires divalent metal and identifies Class II.",
+            "scope": "metal-dependent class-II fructose-bisphosphate aldolase",
+            "status": "representative_scope_only"
+          },
+          "relation": "specialization",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "4.1.2.13",
+            "mechanism_detail": "detailed",
+            "name": "fructose-bisphosphate aldolase (Class II)",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/52/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0052"
+        },
+        {
+          "mechanistic_applicability": {
+            "rationale": "Official entry has the same EC 4.1.2.13 but a distinct Class-I mechanism.",
+            "scope": "same EC, class-I Schiff-base mechanism",
+            "status": "counterexample_only"
+          },
+          "relation": "counterevidence",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "4.1.2.13",
+            "mechanism_detail": "detailed",
+            "name": "fructose-bisphosphate aldolase (Class I)",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/222/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0222"
+        }
+      ],
+      "scope_statement": "Metal-dependent class-II aldolases. Same-EC class-I Schiff-base aldolase M0222 is mandatory counterevidence.",
+      "status": "computational_provisional_relation",
+      "unresolved_reason": null
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "aggregation",
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "fingerprint_name": "Zinc-dependent hydro-lyase / hydratase",
+      "ordinal": 22,
+      "prior_classification": "aggregation",
+      "rationale": "Keep aggregation and add non-carbonic hydro-lyase representatives.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "M0216 is a valid alpha-carbonic-anhydrase exemplar but is much narrower than the zinc hydratase/lyase bucket.",
+            "scope": "Zinc-dependent hydro-lyase / hydratase",
+            "status": "representative_scope_only"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "mechanism_detail": "detailed",
+            "name": "carbonate dehydratase (alpha class)",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/216/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0216"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Zinc-dependent hydro-lyase / hydratase.",
+      "status": "computational_provisional_relation",
+      "unresolved_reason": null
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "biotin_dependent_carboxylase",
+      "fingerprint_name": "Biotin-dependent carboxylase",
+      "ordinal": 23,
+      "prior_classification": "aggregation",
+      "rationale": "Retrieve carboxylase, biotin-carboxylase, and carboxyl-transferase component objects separately.",
+      "rejected_source_mappings": [],
+      "relation_targets": [],
+      "scope_statement": "Scope inherited for computational comparison only: Biotin-dependent carboxylase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "The multi-component biotin-carboxylase aggregation has no source object or component-state mapping."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "deoxynucleoside_kinase",
+      "fingerprint_name": "Deoxynucleoside kinase",
+      "ordinal": 24,
+      "prior_classification": "specialization",
+      "rationale": "Use M0588 as an exemplar only and retrieve other dNK branches before classification.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "Official identity is checked; fingerprint-wide applicability remains unresolved.",
+            "scope": "one deoxynucleoside-kinase branch",
+            "status": "scope_unresolved"
+          },
+          "relation": "specialization",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "name": "thymidine kinase",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/588/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0588"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Deoxynucleoside kinase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "The row has no handles and spans several deoxynucleoside kinases; M0588 is a verified thymidine-kinase locator for one branch."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "nucleoside_diphosphate_kinase",
+      "fingerprint_name": "Nucleoside diphosphate kinase",
+      "ordinal": 25,
+      "prior_classification": "specialization",
+      "rationale": "Add M0150 and reassess specialization versus exact_duplicate at declared granularity.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "The direct exact-reaction locator exists, but species-general fingerprint equivalence has not been established.",
+            "scope": "NDPK overall reaction and phosphohistidine mechanism",
+            "status": "scope_unresolved"
+          },
+          "relation": "exact_duplicate",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "2.7.4.6",
+            "mechanism_detail": "detailed",
+            "name": "nucleoside-diphosphate kinase",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/150/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0150"
+        }
+      ],
+      "scope_statement": "NDPK chemistry includes a phosphohistidine ping-pong intermediate; species-general equivalence to M0150 remains unresolved.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "The row is empty despite a detailed exact-reaction M-CSA object, M0150 nucleoside-diphosphate kinase."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "askha_sugar_acetate_kinase",
+      "fingerprint_name": "ASKHA sugar/acetate kinase",
+      "ordinal": 26,
+      "prior_classification": "interoperability_bridge",
+      "rationale": "Add relation_targets naming the ASKHA family/fold endpoint and each reaction endpoint.",
+      "rejected_source_mappings": [],
+      "relation_targets": [],
+      "scope_statement": "Scope inherited for computational comparison only: ASKHA sugar/acetate kinase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "A bridge is asserted without either endpoint or mapped source object."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "ghmp_small_molecule_kinase",
+      "fingerprint_name": "GHMP small-molecule kinase",
+      "ordinal": 27,
+      "prior_classification": "interoperability_bridge",
+      "rationale": "Add relation_targets for the GHMP family and substrate-specific reaction objects.",
+      "rejected_source_mappings": [],
+      "relation_targets": [],
+      "scope_statement": "Scope inherited for computational comparison only: GHMP small-molecule kinase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "A bridge is asserted without either endpoint or mapped source object."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "pfka_phosphofructokinase",
+      "fingerprint_name": "PfkA-fold phosphofructokinase",
+      "ordinal": 28,
+      "prior_classification": "specialization",
+      "rationale": "Retrieve a PfkA mechanism object and name the broader kinase parent if that is the intended relation.",
+      "rejected_source_mappings": [],
+      "relation_targets": [],
+      "scope_statement": "Scope inherited for computational comparison only: PfkA-fold phosphofructokinase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "The PfkA specialization has no direct source target."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "pfkb_ribokinase_family",
+      "fingerprint_name": "PfkB/ribokinase-family kinase",
+      "ordinal": 29,
+      "prior_classification": "interoperability_bridge",
+      "rationale": "Add InterPro/Pfam/fold and reaction targets before accepting bridge status.",
+      "rejected_source_mappings": [],
+      "relation_targets": [],
+      "scope_statement": "Scope inherited for computational comparison only: PfkB/ribokinase-family kinase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "A PfkB family bridge is asserted without family or reaction endpoints."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "aggregation",
+      "fingerprint_id": "thiamine_diphosphate_enzyme",
+      "fingerprint_name": "Thiamine-diphosphate ylide enzyme",
+      "ordinal": 30,
+      "prior_classification": "aggregation",
+      "rationale": "Retain aggregation; keep their different acceptor and multienzyme contexts separate.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "M0106 and M0219 are valid, distinct ThDP examples and support aggregation.",
+            "scope": "Thiamine-diphosphate ylide enzyme",
+            "status": "representative_scope_only"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "mechanism_detail": "detailed",
+            "name": "pyruvate dehydrogenase (acetyl-transferring)",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/106/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0106"
+        },
+        {
+          "mechanistic_applicability": {
+            "rationale": "M0106 and M0219 are valid, distinct ThDP examples and support aggregation.",
+            "scope": "Thiamine-diphosphate ylide enzyme",
+            "status": "representative_scope_only"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "mechanism_detail": "detailed",
+            "name": "transketolase",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/219/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0219"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Thiamine-diphosphate ylide enzyme.",
+      "status": "computational_provisional_relation",
+      "unresolved_reason": null
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "aggregation",
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "fingerprint_name": "NAD(P)-dependent dehydrogenase/reductase",
+      "ordinal": 31,
+      "prior_classification": "aggregation",
+      "rationale": "Keep aggregation and represent cross-row cofactor modules explicitly.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "M0007 and M0139 are valid examples, but the cofactor bucket is extremely broad and M0139 overlaps rows 11/17.",
+            "scope": "NAD(P)-dependent dehydrogenase/reductase",
+            "status": "representative_scope_only"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "mechanism_detail": "detailed",
+            "name": "isocitrate dehydrogenase (NADP+)",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/7/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0007"
+        },
+        {
+          "mechanistic_applicability": {
+            "rationale": "M0007 and M0139 are valid examples, but the cofactor bucket is extremely broad and M0139 overlaps rows 11/17.",
+            "scope": "NAD(P)-dependent dehydrogenase/reductase",
+            "status": "representative_scope_only"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "mechanism_detail": "detailed",
+            "name": "xanthine dehydrogenase (mammalian)",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/139/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0139"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: NAD(P)-dependent dehydrogenase/reductase.",
+      "status": "computational_provisional_relation",
+      "unresolved_reason": null
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "aggregation",
+      "fingerprint_id": "glycosyltransferase",
+      "fingerprint_name": "Sugar-nucleotide-dependent glycosyltransferase",
+      "ordinal": 32,
+      "prior_classification": "aggregation",
+      "rationale": "Keep aggregation and add retaining/inverting and soluble/polymerizing representatives.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "M0970 is a valid peptidoglycan glycosyltransferase exemplar only.",
+            "scope": "Sugar-nucleotide-dependent glycosyltransferase",
+            "status": "representative_scope_only"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "mechanism_detail": "detailed",
+            "name": "peptidoglycan glycosyltransferase",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/970/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0970"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Sugar-nucleotide-dependent glycosyltransferase.",
+      "status": "computational_provisional_relation",
+      "unresolved_reason": null
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "aggregation",
+      "fingerprint_id": "glycoside_hydrolase",
+      "fingerprint_name": "Glycoside hydrolase",
+      "ordinal": 33,
+      "prior_classification": "aggregation",
+      "rationale": "Keep aggregation and preserve mechanism alternatives by family.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "M0203 is a valid GH22 exemplar with competing mechanisms, but cannot cover all retaining and inverting glycosidases.",
+            "scope": "Glycoside hydrolase",
+            "status": "representative_scope_only"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "mechanism_detail": "detailed",
+            "name": "lysozyme (glycosyl hydrolase 22)",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/203/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0203"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Glycoside hydrolase.",
+      "status": "computational_provisional_relation",
+      "unresolved_reason": null
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "sam_methyltransferase",
+      "fingerprint_name": "SAM-dependent methyltransferase",
+      "ordinal": 34,
+      "prior_classification": "aggregation",
+      "rationale": "Retrieve N-, O-, C-, and S-methyltransferase examples across protein/nucleic-acid/small-molecule acceptors.",
+      "rejected_source_mappings": [],
+      "relation_targets": [],
+      "scope_statement": "Scope inherited for computational comparison only: SAM-dependent methyltransferase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "The SAM methyltransferase aggregation has no direct source objects."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "fingerprint_name": "Manganese/iron superoxide dismutase",
+      "ordinal": 35,
+      "prior_classification": "specialization",
+      "rationale": "Review genuinely_missing_concept for the M-CSA mechanism boundary or interoperability_bridge for EC/Rhea-to-literature; do not map M0138 positively.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "Official identity and metal centre contradict positive Mn/Fe coverage.",
+            "scope": "Cu/Zn SOD",
+            "status": "counterexample_only"
+          },
+          "relation": "counterevidence",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "1.15.1.1",
+            "mechanism_detail": "detailed",
+            "name": "copper/zinc superoxide dismutase",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/138/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0138"
+        }
+      ],
+      "scope_statement": "Mn/Fe SOD only. M0138 is a Cu/Zn SOD counterexample, not positive coverage for this fingerprint.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "M0138 is correctly a Cu/Zn counterexample. The current M-CSA API EC filter returns no Mn/Fe mechanism object, so specialization is targetless."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "terpene_cyclase_synthase",
+      "fingerprint_name": "Terpene cyclase/synthase",
+      "ordinal": 36,
+      "prior_classification": "aggregation",
+      "rationale": "Retrieve ionization-initiated and protonation-initiated cyclase representatives separately.",
+      "rejected_source_mappings": [],
+      "relation_targets": [],
+      "scope_statement": "Scope inherited for computational comparison only: Terpene cyclase/synthase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "The terpene-cyclase aggregation has no source object."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "fingerprint_name": "Ser/Thr/Tyr protein kinase",
+      "ordinal": 37,
+      "prior_classification": "interoperability_bridge",
+      "rationale": "Add family/fold and reaction endpoints, then reassess bridge versus aggregation.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "Official identity is checked; fingerprint-wide applicability remains unresolved.",
+            "scope": "protein-kinase candidate",
+            "status": "scope_unresolved"
+          },
+          "relation": "interoperability_bridge",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "name": "mitogen-activated protein kinase kinase",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/282/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0282"
+        },
+        {
+          "mechanistic_applicability": {
+            "rationale": "Official identity is checked; fingerprint-wide applicability remains unresolved.",
+            "scope": "protein-kinase candidate",
+            "status": "scope_unresolved"
+          },
+          "relation": "interoperability_bridge",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "name": "non-specific serine/threonine protein kinase",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/760/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0760"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Ser/Thr/Tyr protein kinase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "A bridge is asserted without endpoints, although official M-CSA protein-kinase examples M0282/M0760 exist."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "had_like_phosphatase",
+      "fingerprint_name": "HAD-like Asp-phosphoenzyme phosphatase",
+      "ordinal": 38,
+      "prior_classification": "specialization",
+      "rationale": "Name row 5 as target and verify a HAD mechanism locator such as historical M0727.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "The parent is now named, but source-supported applicability remains unresolved.",
+            "scope": "putative parent row",
+            "status": "scope_unresolved"
+          },
+          "relation": "specialization",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "name": "metallophosphomonoesterase",
+            "origin": "frozen_phase_a_row_identity",
+            "status": "frozen_fingerprint_identity",
+            "uri": null
+          },
+          "source_key": "atlas50_fingerprint",
+          "target_id": "atlas50:metallophosphomonoesterase"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: HAD-like Asp-phosphoenzyme phosphatase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "Specialization likely targets row 5, but the target is absent and the source gap is untested."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "aldehyde_dehydrogenase",
+      "fingerprint_name": "Aldehyde dehydrogenase",
+      "ordinal": 39,
+      "prior_classification": "specialization",
+      "rationale": "Add M0803, correct the rationale, and state whether phosphorylation-coupled GAPDH is in or out of scope.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "Official identity is checked; fingerprint-wide applicability remains unresolved.",
+            "scope": "ALDH-family candidate",
+            "status": "scope_unresolved"
+          },
+          "relation": "specialization",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "name": "aldehyde dehydrogenase (NAD+) class 2",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/803/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0803"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Aldehyde dehydrogenase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "The rationale invokes phosphorylation-coupled variants although the fingerprint defines ALDH-family thiohemiacetal oxidation; direct M0803 exists."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "alpha_beta_hydrolase_esterase_lipase",
+      "fingerprint_name": "Alpha/beta hydrolase esterase/lipase",
+      "ordinal": 40,
+      "prior_classification": "specialization",
+      "rationale": "Verify representative esterase/lipase locators and add row 1 plus fold/family endpoints.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "The parent is named; fold-to-mechanism transfer is still unresolved.",
+            "scope": "putative parent row",
+            "status": "scope_unresolved"
+          },
+          "relation": "specialization",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "name": "ser_his_acid_hydrolase",
+            "origin": "frozen_phase_a_row_identity",
+            "status": "frozen_fingerprint_identity",
+            "uri": null
+          },
+          "source_key": "atlas50_fingerprint",
+          "target_id": "atlas50:ser_his_acid_hydrolase"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Alpha/beta hydrolase esterase/lipase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "The apparent source gap conflicts with historical alpha/beta-hydrolase locators, and the relation to row 1 is unnamed."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "ser_thr_protein_phosphatase",
+      "fingerprint_name": "Ser/Thr protein phosphatase",
+      "ordinal": 41,
+      "prior_classification": "specialization",
+      "rationale": "Verify M0406 and add explicit parent plus PPP/PPM scope.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "The parent is named; PPP/PPM applicability is still unresolved.",
+            "scope": "putative parent row",
+            "status": "scope_unresolved"
+          },
+          "relation": "specialization",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "name": "metallophosphomonoesterase",
+            "origin": "frozen_phase_a_row_identity",
+            "status": "frozen_fingerprint_identity",
+            "uri": null
+          },
+          "source_key": "atlas50_fingerprint",
+          "target_id": "atlas50:metallophosphomonoesterase"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Ser/Thr protein phosphatase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "Historical M0406 contradicts the impression of no candidate, but the intended relation to row 5 is unstated."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "n_ribosyl_hydrolase",
+      "fingerprint_name": "N-ribosyl / nucleoside hydrolase",
+      "ordinal": 42,
+      "prior_classification": "specialization",
+      "rationale": "Retrieve purine/pyrimidine nucleoside-hydrolase objects and name the broader parent.",
+      "rejected_source_mappings": [],
+      "relation_targets": [],
+      "scope_statement": "Scope inherited for computational comparison only: N-ribosyl / nucleoside hydrolase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "The N-ribosyl hydrolase specialization has no source target."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "metal_independent_phosphodiesterase",
+      "fingerprint_name": "Metal-independent phosphodiesterase",
+      "ordinal": 43,
+      "prior_classification": "unsupported_or_ill_defined",
+      "rationale": "Name verified metal-independent subclasses or remove cyclic-nucleotide PDEs from the scope.",
+      "rejected_source_mappings": [],
+      "relation_targets": [],
+      "scope_statement": "Scope inherited for computational comparison only: Metal-independent phosphodiesterase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "Unsupported_or_ill_defined is reasonable, but canonical cyclic-nucleotide phosphodiesterases are often metal-dependent, conflicting with the seed phrase."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "aminoglycoside_phosphotransferase",
+      "fingerprint_name": "Aminoglycoside phosphotransferase",
+      "ordinal": 44,
+      "prior_classification": "specialization",
+      "rationale": "Retrieve APH family and regiospecific reaction objects before accepting the relation.",
+      "rejected_source_mappings": [],
+      "relation_targets": [],
+      "scope_statement": "Scope inherited for computational comparison only: Aminoglycoside phosphotransferase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "The aminoglycoside-phosphotransferase specialization has no source target."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "aggregation",
+      "fingerprint_id": "serine_beta_lactamase",
+      "fingerprint_name": "Serine beta-lactamase",
+      "ordinal": 45,
+      "prior_classification": "specialization",
+      "rationale": "Add class-C M0257 and class-D M0210 or narrow to Class A; propose aggregation for the current broad scope.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "Class-A serine acyl-enzyme mechanism only.",
+            "scope": "Ambler Class A",
+            "status": "supported_branch"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "3.5.2.6",
+            "mechanism_detail": "detailed",
+            "name": "beta-lactamase (Class A)",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/2/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0002"
+        },
+        {
+          "mechanistic_applicability": {
+            "rationale": "Class-C serine mechanism uses a distinct Tyr150-centred network.",
+            "scope": "Ambler Class C",
+            "status": "supported_branch"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "3.5.2.6",
+            "mechanism_detail": "detailed",
+            "name": "beta-lactamase (Class C)",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/257/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0257"
+        },
+        {
+          "mechanistic_applicability": {
+            "rationale": "Class-D serine mechanism uses a carboxylated lysine network.",
+            "scope": "Ambler Class D",
+            "status": "supported_branch"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "3.5.2.6",
+            "mechanism_detail": "detailed",
+            "name": "beta-lactamase (Class D)",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/210/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0210"
+        }
+      ],
+      "scope_statement": "Aggregation of serine beta-lactamase Classes A, C, and D with class-specific catalytic networks retained.",
+      "status": "computational_provisional_relation",
+      "unresolved_reason": null
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "short_chain_dehydrogenase_reductase",
+      "fingerprint_name": "Short-chain dehydrogenase/reductase",
+      "ordinal": 46,
+      "prior_classification": "specialization",
+      "rationale": "Add row 31 and SDR family/reaction targets.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "The parent is named; reaction-specific applicability remains unresolved.",
+            "scope": "putative parent row",
+            "status": "scope_unresolved"
+          },
+          "relation": "specialization",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "name": "nad_p_dehydrogenase",
+            "origin": "frozen_phase_a_row_identity",
+            "status": "frozen_fingerprint_identity",
+            "uri": null
+          },
+          "source_key": "atlas50_fingerprint",
+          "target_id": "atlas50:nad_p_dehydrogenase"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Short-chain dehydrogenase/reductase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "Specialization relative to row 31 is plausible but no source or parent target is recorded."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "aldo_keto_reductase",
+      "fingerprint_name": "Aldo-keto reductase",
+      "ordinal": 47,
+      "prior_classification": "specialization",
+      "rationale": "Add row 31 and AKR family/reaction targets.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "The parent is named; reaction-specific applicability remains unresolved.",
+            "scope": "putative parent row",
+            "status": "scope_unresolved"
+          },
+          "relation": "specialization",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "name": "nad_p_dehydrogenase",
+            "origin": "frozen_phase_a_row_identity",
+            "status": "frozen_fingerprint_identity",
+            "uri": null
+          },
+          "source_key": "atlas50_fingerprint",
+          "target_id": "atlas50:nad_p_dehydrogenase"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Aldo-keto reductase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "Specialization relative to row 31 is plausible but no source or parent target is recorded."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "aminoglycoside_acetyltransferase",
+      "fingerprint_name": "Aminoglycoside acetyltransferase",
+      "ordinal": 48,
+      "prior_classification": "specialization",
+      "rationale": "Add row 15 and GNAT/AAC family plus regiospecific reaction targets.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "The parent is named; GNAT/AAC relation remains unresolved.",
+            "scope": "putative parent row",
+            "status": "scope_unresolved"
+          },
+          "relation": "specialization",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "name": "coa_acyltransferase",
+            "origin": "frozen_phase_a_row_identity",
+            "status": "frozen_fingerprint_identity",
+            "uri": null
+          },
+          "source_key": "atlas50_fingerprint",
+          "target_id": "atlas50:coa_acyltransferase"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Aminoglycoside acetyltransferase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "Specialization relative to row 15 is plausible but no source or parent target is recorded."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "aggregation",
+      "fingerprint_id": "metallo_beta_lactamase",
+      "fingerprint_name": "Metallo-beta-lactamase",
+      "ordinal": 49,
+      "prior_classification": "specialization",
+      "rationale": "Add M0015/M0016, distinguish mono- and dimetal mechanisms and B1/B2/B3, and propose aggregation for the broad row.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "Official entry explicitly describes a two-zinc Class-B1 mechanism.",
+            "scope": "Ambler Class B1, dimetallic mechanism",
+            "status": "supported_branch"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "3.5.2.6",
+            "mechanism_detail": "detailed",
+            "name": "beta-lactamase (Class B1), dimetallic mechanism",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/15/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0015"
+        },
+        {
+          "mechanistic_applicability": {
+            "rationale": "Official entry explicitly describes a one-zinc Class-B1 mechanism.",
+            "scope": "Ambler Class B1, monometallic mechanism",
+            "status": "supported_branch"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "3.5.2.6",
+            "mechanism_detail": "detailed",
+            "name": "beta-lactamase (Class B1), monometallic mechanism",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/16/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0016"
+        }
+      ],
+      "scope_statement": "Broad class-B metallo-beta-lactamase aggregation. M0015 and M0016 cover dimetallic and monometallic Class-B1 mechanisms only; B2/B3 remain unrepresented.",
+      "status": "computational_provisional_relation",
+      "unresolved_reason": null
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "aggregation",
+      "fingerprint_id": "peroxiredoxin_thiol_peroxidase",
+      "fingerprint_name": "Peroxiredoxin / thiol-based peroxidase",
+      "ordinal": 50,
+      "prior_classification": "aggregation",
+      "rationale": "Keep aggregation and add 1-Cys, 2-Cys, and thioredoxin-dependent representatives.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "M0851 is a valid glutathione-peroxidase subset but is non-detailed and does not represent peroxiredoxin resolving chemistry.",
+            "scope": "Peroxiredoxin / thiol-based peroxidase",
+            "status": "representative_non_detailed"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "mechanism_detail": "non_detailed",
+            "name": "glutathione peroxidase",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/851/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0851"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Peroxiredoxin / thiol-based peroxidase.",
+      "status": "computational_provisional_relation",
+      "unresolved_reason": null
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "paps_sulfotransferase",
+      "fingerprint_name": "PAPS-dependent sulfotransferase",
+      "ordinal": 51,
+      "prior_classification": "aggregation",
+      "rationale": "Retrieve soluble and Golgi/membrane sulfotransferase representatives.",
+      "rejected_source_mappings": [],
+      "relation_targets": [],
+      "scope_statement": "Scope inherited for computational comparison only: PAPS-dependent sulfotransferase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "The broad PAPS-sulfotransferase aggregation has no source object."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "glutathione_s_transferase",
+      "fingerprint_name": "Glutathione S-transferase",
+      "ordinal": 52,
+      "prior_classification": "aggregation",
+      "rationale": "Retrieve conjugation representatives and keep non-conjugation GST activities separate.",
+      "rejected_source_mappings": [],
+      "relation_targets": [],
+      "scope_statement": "Scope inherited for computational comparison only: Glutathione S-transferase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "The GST aggregation has no source object, although the family spans multiple reaction outcomes."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "aminoacyl_trna_synthetase",
+      "fingerprint_name": "Aminoacyl-tRNA synthetase",
+      "ordinal": 53,
+      "prior_classification": "aggregation",
+      "rationale": "Add class-I and class-II representatives and preserve editing as a separate process.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "Official identity is checked; fingerprint-wide applicability remains unresolved.",
+            "scope": "class-I aaRS candidate",
+            "status": "scope_unresolved"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "name": "tryptophan--tRNA ligase",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/481/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0481"
+        },
+        {
+          "mechanistic_applicability": {
+            "rationale": "Official identity is checked; fingerprint-wide applicability remains unresolved.",
+            "scope": "class-I aaRS candidate",
+            "status": "scope_unresolved"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "name": "arginine--tRNA ligase",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/235/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0235"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Aminoacyl-tRNA synthetase.",
+      "status": "computational_unresolved",
+      "unresolved_reason": "Aggregation is plausible, but the row has no source objects; official M0481/M0235 are class-I aminoacyl-tRNA synthetase locators."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "unresolved",
+      "fingerprint_id": "acid_coa_ligase",
+      "fingerprint_name": "Acid--CoA ligase (acyl-CoA synthetase)",
+      "ordinal": 54,
+      "prior_classification": "specialization",
+      "rationale": "Retrieve ANL-family representatives and name the parent ligase relation.",
+      "rejected_source_mappings": [],
+      "relation_targets": [],
+      "scope_statement": "Scope inherited for computational comparison only: Acid--CoA ligase (acyl-CoA synthetase).",
+      "status": "computational_unresolved",
+      "unresolved_reason": "The acid-CoA ligase specialization has no source target."
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "aggregation",
+      "fingerprint_id": "cysteine_protease",
+      "fingerprint_name": "Cysteine protease (Cys-His thiol peptidase)",
+      "ordinal": 55,
+      "prior_classification": "aggregation",
+      "rationale": "Keep aggregation and add caspase, calpain, and deubiquitinase representatives.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "M0174 is a valid papain exemplar but covers only one cysteine-protease clan.",
+            "scope": "Cysteine protease (Cys-His thiol peptidase)",
+            "status": "representative_scope_only"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "mechanism_detail": "detailed",
+            "name": "papain",
+            "origin": "computational_review_official_check",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/174/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0174"
+        }
+      ],
+      "scope_statement": "Scope inherited for computational comparison only: Cysteine protease (Cys-His thiol peptidase).",
+      "status": "computational_provisional_relation",
+      "unresolved_reason": null
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "aggregation",
+      "fingerprint_id": "flavin_disulfide_reductase",
+      "fingerprint_name": "Flavin-dependent disulfide reductase (NAD(P)H:disulfide oxidoreductase)",
+      "ordinal": 56,
+      "prior_classification": "specialization",
+      "rationale": "Add M0006/M0381, preserve different relay/domain arrangements, and propose aggregation.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "Official entry describes NADPH-to-FAD-to-active-site-disulfide transfer.",
+            "scope": "glutathione reductase relay",
+            "status": "supported_branch"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "1.8.1.7",
+            "mechanism_detail": "detailed",
+            "name": "glutathione-disulfide reductase",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/6/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0006"
+        },
+        {
+          "mechanistic_applicability": {
+            "rationale": "Official entry identifies the FAD/NADPH domains and distinct domain motion, but provides only summary-level steps.",
+            "scope": "thioredoxin reductase relay",
+            "status": "representative_non_detailed"
+          },
+          "relation": "aggregation",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "1.8.1.9",
+            "mechanism_detail": "summary_only",
+            "name": "thioredoxin reductase",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/381/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0381"
+        }
+      ],
+      "scope_statement": "Aggregation of FAD-dependent disulfide-reductase branches with distinct substrate relays and domain arrangements.",
+      "status": "computational_provisional_relation",
+      "unresolved_reason": null
+    },
+    {
+      "claim_boundary": "Computational proposal only; no independent-human review, experimental validation, registry admission, tier lift, or Phase-A/Phase-B change.",
+      "computational_classification": "exact_duplicate",
+      "fingerprint_id": "dihydrofolate_reductase",
+      "fingerprint_name": "Dihydrofolate reductase (NADPH-dependent folate reduction)",
+      "ordinal": 57,
+      "prior_classification": "exact_duplicate",
+      "rationale": "Keep exact_duplicate only at the declared EC 1.5.1.3 reaction-core granularity. Correct N5 protonation to conserved-water donation with Asp26 organizing and tuning the hydrogen-bond network; do not transfer protein, organism, resistance, fusion, or structure applicability.",
+      "rejected_source_mappings": [],
+      "relation_targets": [
+        {
+          "mechanistic_applicability": {
+            "rationale": "M0112 matches hydride transfer to C6 with concomitant N5 protonation at reaction-core granularity. Protein, organism, resistance, fusion, and structure applicability are not asserted equivalent.",
+            "scope": "reaction_core: EC 1.5.1.3 NADPH-dependent DHF-to-THF chemistry",
+            "status": "exact_scope_supported"
+          },
+          "relation": "exact_duplicate",
+          "relation_direction": "fingerprint_to_target",
+          "source_identity": {
+            "checked_at": "2026-09-05",
+            "ec": "1.5.1.3",
+            "mechanism_detail": "detailed",
+            "name": "dihydrofolate reductase (bacterial)",
+            "origin": "direct_official_source_check_2026-09-05",
+            "status": "official_entry_checked",
+            "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/112/"
+          },
+          "source_key": "mcsa",
+          "target_id": "M0112"
+        }
+      ],
+      "scope_statement": "Exact duplicate of M0112 only at reaction-core granularity: EC 1.5.1.3 NADPH-dependent DHF-to-THF chemistry. Protein, organism, resistance, fusion, and structure applicability remain narrower than that relation. Conserved water donates the N5 proton while Asp26 tunes the hydrogen-bond network and pKa.",
+      "status": "computational_provisional_relation",
+      "unresolved_reason": null
+    }
+  ],
+  "schema_version": "catalytic-earth.atlas50-crosswalk-v2.v1",
+  "source_policy": {
+    "historical_curated_702_used_as_truth": false,
+    "replacement_identifiers_checked_against_official_source": true,
+    "source_identity_does_not_imply_mechanistic_applicability": true,
+    "targetless_relations_resolve_to_unresolved": true
+  },
+  "status": "computational_provisional_not_human_or_experimental_review"
+}

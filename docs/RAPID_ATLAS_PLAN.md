@@ -1,5 +1,14 @@
 # Catalytic Earth — Rapid Full-Atlas Plan
 
+> **2026-09-05 execution update:** use the
+> [computational development review](COMPUTATIONAL_DEVELOPMENT_REVIEW.md) to
+> advance new versioned drafts without waiting for human submissions. The
+> corrected 57-row crosswalk, six-case state probe and adjudicated permissions
+> are implemented. Source objections block affected operations; the July
+> freeze/review commitments and independent-annotation requirements below
+> remain incomplete validation commitments, not a blanket draft-work stop.
+
+
 **Decision date:** 2026-07-13
 **Status:** current execution contract
 **Supersedes:** benchmark-as-destination framing and serial 12–24-month execution assumptions

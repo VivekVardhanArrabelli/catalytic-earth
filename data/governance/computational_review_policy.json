@@ -1,0 +1,38 @@
+{
+  "schema_version": "catalytic-earth.computational-development-policy.v1",
+  "policy_id": "owner-authorized-computational-development.2026-09-05.v1",
+  "authority": "Project owner explicitly requested proceeding with a computational substitute for the human-review dependency on 2026-09-05.",
+  "purpose": "Permit evidence-bounded draft development while independent human review remains outstanding.",
+  "human_submission_required_for_development": false,
+  "agent_consensus_is_evidence": false,
+  "correlated_agent_errors_possible": true,
+  "independent_validation_claim_permitted": false,
+  "experimental_validation_claim_permitted": false,
+  "gold_label_admission_permitted": false,
+  "protected_registry_expansion_permitted": false,
+  "frozen_phase_b_completion_permitted": false,
+  "allowed_operations": [
+    "corrected_crosswalk_development",
+    "source_annotation",
+    "source_scoped_mechanism_draft",
+    "exact_reaction_instance"
+  ],
+  "source_access": {
+    "public_primary_sources_only": true,
+    "paid_services_permitted": false,
+    "gpu_jobs_permitted": false,
+    "maximum_requests_per_batch": 100,
+    "maximum_download_bytes_per_batch": 31457280,
+    "scope": "Only source checks for the named draft objects. This is a new bounded development authority, not execution of the frozen July acquisition plan."
+  },
+  "review_requirements": [
+    "Exact versioned draft and source bindings",
+    "Source identity separated from mechanistic applicability",
+    "Explicit challenge review with context and model provenance",
+    "Evidence-linked adjudication preserving objections and narrowed scopes",
+    "No unsupported promotion from metadata or cofactor agreement to full mechanism",
+    "Reproducible structural checks and adversarial regression tests",
+    "Unresolved objections block affected operations rather than every unrelated draft"
+  ],
+  "supersession": "This policy replaces the human-only development prerequisite for new versioned source-scoped drafts. It leaves the July Phase B review contract, independent-annotation commitments, protected registries, and evidence-tier definitions intact."
+}
