@@ -1,5 +1,13 @@
 # Atlas truth policy
 
+> **2026-09-05 development amendment (CE-012):** the owner-authorized
+> [computational policy](../data/governance/computational_review_policy.json)
+> permits named source-scoped draft operations after challenge and adjudication.
+> Human submissions are not required for those operations. This changes the
+> development dependency, while preserving the evidence tiers and protected
+> registry freeze below. See [the current review](COMPUTATIONAL_DEVELOPMENT_REVIEW.md).
+
+
 **Effective:** 2026-07-13
 
 This policy defines what Catalytic Earth counts, what its evidence tiers mean,

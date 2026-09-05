@@ -139,12 +139,15 @@
     "claim_kind": "governance_decision",
     "status": "Supported",
     "claim": "Protected registry writes and new performance headlines remain frozen after the truth-reset implementation until an explicit reviewed post-reset admission decision changes the machine gate.",
-    "current_wording": "P0 completion does not silently lift the registry safety latch. Continue crosswalk, schema, corrective, packaging, and preregistered proposal work; change frozen to false only in a reviewed decision.",
+    "current_wording": "P0 completion does not silently lift the registry safety latch. The owner-authorized September computational policy permits source-scoped draft development after evidence-backed challenge and adjudication, without requiring human submissions. It does not establish independent validation, expand protected registries, or create performance-claim authority.",
     "rationale": "The mechanical gates now exist, but preserving an explicit transition prevents cleanup completion from being mistaken for authority to expand labels or make new performance claims.",
     "evidence": [
       "README.md",
       "docs/RAPID_ATLAS_PLAN.md",
-      "docs/ATLAS_TRUTH_POLICY.md"
+      "docs/ATLAS_TRUTH_POLICY.md",
+      "data/governance/computational_review_policy.json",
+      "data/atlas/atlas50/development_gate/status.json",
+      "docs/COMPUTATIONAL_DEVELOPMENT_REVIEW.md"
     ]
   },
   {

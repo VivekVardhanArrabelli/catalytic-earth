@@ -118,6 +118,12 @@ The full atlas remains the mission.
 
 ## CE-012 — expansion freeze
 
+September development amendment: the owner-authorized
+[computational policy](data/governance/computational_review_policy.json)
+permits source-scoped draft operations after source challenge and adjudication,
+without waiting for human submissions. It does not establish independent
+validation, expand protected registries, or authorize performance claims.
+
 **Status:** Supported
 
 The truth-reset gates are implemented, but protected registry writes and new

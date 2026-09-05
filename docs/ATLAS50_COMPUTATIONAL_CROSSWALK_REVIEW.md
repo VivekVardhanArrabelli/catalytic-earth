@@ -1,5 +1,14 @@
 # Atlas-50 computational crosswalk review
 
+> **Successor review, 2026-09-05:** read
+> [Computational development review](COMPUTATIONAL_DEVELOPMENT_REVIEW.md) for
+> current permissions and adjudications. This first-pass report is preserved
+> as review history. The successor narrows several panel holds and corrects
+> the first-pass DHFR rationale: M0112 is exact only at the implemented
+> reaction-core scope, with narrower source applicability. The earlier
+> aggregation/bifunctional-scope statement does not control current use.
+
+
 **Status:** agent-produced proposal overlay, dated 2026-09-05. It is not a human or expert review submission, does not change the frozen Phase A/B checkpoint, and does not authorize a tier lift or scientific completion claim.
 
 ## Outcome

@@ -1,0 +1,1450 @@
+{
+  "change_map_id": "atlas50.crosswalk-v2.change-map.2026-09-05.v1",
+  "changes": [
+    {
+      "change_kind": "provisional_target_normalization",
+      "classification_changed": false,
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "new_classification": "aggregation",
+      "new_relation_targets": [
+        {
+          "applicability_status": "representative_scope_only",
+          "relation": "aggregation",
+          "scope": "Ser-His-Asp/Glu hydrolase triad",
+          "source_key": "mcsa",
+          "target_id": "M0173"
+        },
+        {
+          "applicability_status": "representative_scope_only",
+          "relation": "aggregation",
+          "scope": "Ser-His-Asp/Glu hydrolase triad",
+          "source_key": "mcsa",
+          "target_id": "M0723"
+        }
+      ],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [
+        "3.4.21.4",
+        "3.4.21.62",
+        "CATH:2.40.10.10",
+        "CATH:3.40.50.200",
+        "CHEBI:15377",
+        "CHEBI:59869",
+        "CHEBI:90799",
+        "EC:3.4.21.4",
+        "EC:3.4.21.62",
+        "M0173",
+        "M0723",
+        "P00782",
+        "P35049"
+      ],
+      "ordinal": 1,
+      "reason": "The two direct M-CSA handles are proteases; they do not cover the esterase, lipase, cutinase, or polyesterase scope.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [],
+      "ordinal": 2,
+      "reason": "All thirteen source slots are empty even though the local historical automation registry contains 83 broad metal-hydrolase locators; absence here reflects the selection index, not upstream absence.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "metallopeptidase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [],
+      "old_classification": "specialization",
+      "old_named_record_ids": [],
+      "ordinal": 3,
+      "reason": "The narrower-relation target is not named; the empty row cannot establish specialization.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "metallophosphoesterase_nuclease",
+      "new_classification": "unresolved",
+      "new_relation_targets": [],
+      "old_classification": "specialization",
+      "old_named_record_ids": [],
+      "ordinal": 4,
+      "reason": "The narrower-relation target is absent and no nuclease/phosphodiesterase source object was retrieved.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "metallophosphomonoesterase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [],
+      "old_classification": "specialization",
+      "old_named_record_ids": [],
+      "ordinal": 5,
+      "reason": "The row names multiple phosphatase families but has no incumbent target or source handle.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "metallo_amidohydrolase_deaminase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [],
+      "ordinal": 6,
+      "reason": "Aggregation is plausible, but the source gap was never tested against the historical metal-hydrolase pool.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "source_and_or_scope_correction",
+      "classification_changed": false,
+      "fingerprint_id": "plp_dependent_enzyme",
+      "new_classification": "aggregation",
+      "new_relation_targets": [
+        {
+          "applicability_status": "contradicted",
+          "relation": "rejected_mapping",
+          "scope": "PLP fingerprint",
+          "source_key": "mcsa",
+          "target_id": "M0049"
+        },
+        {
+          "applicability_status": "supported_branch",
+          "relation": "aggregation",
+          "scope": "PLP transamination branch",
+          "source_key": "mcsa",
+          "target_id": "M0066"
+        },
+        {
+          "applicability_status": "supported_branch",
+          "relation": "aggregation",
+          "scope": "PLP racemization branch",
+          "source_key": "mcsa",
+          "target_id": "M0213"
+        },
+        {
+          "applicability_status": "supported_branch",
+          "relation": "aggregation",
+          "scope": "PLP elimination branch",
+          "source_key": "mcsa",
+          "target_id": "M0186"
+        },
+        {
+          "applicability_status": "representative_non_detailed",
+          "relation": "aggregation",
+          "scope": "PLP decarboxylation/transamination branch",
+          "source_key": "mcsa",
+          "target_id": "M0482"
+        }
+      ],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [
+        "4.1.1.22",
+        "CATH:3.50.20.10",
+        "CATH:4.10.510.10",
+        "CHEBI:15378",
+        "CHEBI:16526",
+        "CHEBI:57595",
+        "CHEBI:58432",
+        "EC:4.1.1.22",
+        "M0049",
+        "P00862"
+      ],
+      "ordinal": 7,
+      "reason": "M0049 is pyruvoyl-dependent histidine decarboxylase, not a PLP enzyme; its entire derived handle bundle is a false candidate mapping.",
+      "wrong_anchor_bundle_removed": true
+    },
+    {
+      "change_kind": "provisional_target_normalization",
+      "classification_changed": false,
+      "fingerprint_id": "radical_sam_enzyme",
+      "new_classification": "aggregation",
+      "new_relation_targets": [
+        {
+          "applicability_status": "representative_non_detailed",
+          "relation": "aggregation",
+          "scope": "Radical SAM enzyme",
+          "source_key": "mcsa",
+          "target_id": "M0767"
+        }
+      ],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [
+        "2.8.1.6",
+        "CATH:3.20.20.70",
+        "CHEBI:17319",
+        "CHEBI:29917",
+        "CHEBI:33737",
+        "CHEBI:33738",
+        "CHEBI:57586",
+        "CHEBI:57844",
+        "CHEBI:57861",
+        "CHEBI:59789",
+        "CHEBI:64428",
+        "EC:2.8.1.6",
+        "M0767",
+        "P12996"
+      ],
+      "ordinal": 8,
+      "reason": "M0767 is a valid radical-SAM exemplar but its M-CSA mechanism is non-detailed and covers one sulfur-insertion outcome.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "cobalamin_radical_rearrangement",
+      "new_classification": "unresolved",
+      "new_relation_targets": [
+        {
+          "applicability_status": "scope_unresolved",
+          "relation": "specialization",
+          "scope": "Adenosylcobalamin radical rearrangement",
+          "source_key": "mcsa",
+          "target_id": "M0062"
+        }
+      ],
+      "old_classification": "specialization",
+      "old_named_record_ids": [
+        "5.4.99.2",
+        "CHEBI:57292",
+        "CHEBI:57326",
+        "EC:5.4.99.2",
+        "M0062",
+        "P11652",
+        "P11653",
+        "RHEA:22888"
+      ],
+      "ordinal": 9,
+      "reason": "M0062 is valid, but M0063 is another historical B12 rearrangement locator; the row spans more than one source mechanism.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "provisional_target_normalization",
+      "classification_changed": false,
+      "fingerprint_id": "flavin_monooxygenase",
+      "new_classification": "aggregation",
+      "new_relation_targets": [
+        {
+          "applicability_status": "representative_scope_only",
+          "relation": "aggregation",
+          "scope": "Flavin-dependent monooxygenase",
+          "source_key": "mcsa",
+          "target_id": "M0132"
+        }
+      ],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [
+        "1.14.14.3",
+        "CATH:3.20.20.30",
+        "CHEBI:15377",
+        "CHEBI:15378",
+        "CHEBI:15379",
+        "CHEBI:17176",
+        "CHEBI:30212",
+        "CHEBI:57560",
+        "CHEBI:57618",
+        "CHEBI:58210",
+        "EC:1.14.14.3",
+        "M0132",
+        "P07739",
+        "P07740"
+      ],
+      "ordinal": 10,
+      "reason": "M0132 is a valid FMN-linked example but not family-wide evidence.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "provisional_target_normalization",
+      "classification_changed": false,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "new_classification": "aggregation",
+      "new_relation_targets": [
+        {
+          "applicability_status": "representative_scope_only",
+          "relation": "aggregation",
+          "scope": "Flavin-dependent dehydrogenase or reductase",
+          "source_key": "mcsa",
+          "target_id": "M0139"
+        }
+      ],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [
+        "1.17.1.4",
+        "CATH:3.30.365.10",
+        "CHEBI:15377",
+        "CHEBI:15378",
+        "CHEBI:17712",
+        "CHEBI:17775",
+        "CHEBI:57540",
+        "CHEBI:57945",
+        "EC:1.17.1.4",
+        "M0139",
+        "P80457"
+      ],
+      "ordinal": 11,
+      "reason": "M0139 is a Mo/FAD/Fe-S multi-centre enzyme; its relevance is module-level and overlaps rows 17 and 31.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "source_and_or_scope_correction",
+      "classification_changed": false,
+      "fingerprint_id": "heme_peroxidase_oxidase",
+      "new_classification": "aggregation",
+      "new_relation_targets": [
+        {
+          "applicability_status": "supported_branch",
+          "relation": "aggregation",
+          "scope": "heme peroxidase branch",
+          "source_key": "mcsa",
+          "target_id": "M0239"
+        },
+        {
+          "applicability_status": "out_of_scope",
+          "relation": "scope_exclusion",
+          "scope": "cytochrome P450 branch",
+          "source_key": "mcsa",
+          "target_id": "M0133"
+        },
+        {
+          "applicability_status": "out_of_scope",
+          "relation": "scope_exclusion",
+          "scope": "copper laccase branch",
+          "source_key": "mcsa",
+          "target_id": "M0390"
+        }
+      ],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [
+        "1.14.15.1",
+        "CATH:1.10.630.10",
+        "CHEBI:15377",
+        "CHEBI:15378",
+        "CHEBI:15379",
+        "CHEBI:15396",
+        "CHEBI:15398",
+        "CHEBI:33737",
+        "CHEBI:33739",
+        "EC:1.14.15.1",
+        "M0133",
+        "P00183"
+      ],
+      "ordinal": 12,
+      "reason": "M0133 is P450cam, not a heme peroxidase; the fingerprint also incorrectly names laccase-like oxidases, which are copper enzymes represented by row 18.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "provisional_target_normalization",
+      "classification_changed": false,
+      "fingerprint_id": "cytochrome_p450_monooxygenase",
+      "new_classification": "specialization",
+      "new_relation_targets": [
+        {
+          "applicability_status": "representative_scope_only",
+          "relation": "specialization",
+          "scope": "P450 heme-thiolate monooxygenation",
+          "source_key": "mcsa",
+          "target_id": "M0133"
+        },
+        {
+          "applicability_status": "out_of_scope",
+          "relation": "scope_exclusion",
+          "scope": "direct heme peroxidase",
+          "source_key": "mcsa",
+          "target_id": "M0239"
+        },
+        {
+          "applicability_status": "out_of_scope",
+          "relation": "scope_exclusion",
+          "scope": "multicopper laccase",
+          "source_key": "mcsa",
+          "target_id": "M0390"
+        }
+      ],
+      "old_classification": "specialization",
+      "old_named_record_ids": [
+        "1.14.15.1",
+        "CATH:1.10.630.10",
+        "CHEBI:15377",
+        "CHEBI:15378",
+        "CHEBI:15379",
+        "CHEBI:15396",
+        "CHEBI:15398",
+        "CHEBI:33737",
+        "CHEBI:33739",
+        "EC:1.14.15.1",
+        "M0133",
+        "P00183"
+      ],
+      "ordinal": 13,
+      "reason": "M0133 is a direct P450 exemplar, but the same handle is also used in row 12 and no relation target is named.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "provisional_target_normalization",
+      "classification_changed": false,
+      "fingerprint_id": "non_heme_iron_2og_dioxygenase",
+      "new_classification": "specialization",
+      "new_relation_targets": [
+        {
+          "applicability_status": "representative_scope_only",
+          "relation": "specialization",
+          "scope": "Non-heme Fe(II)/2-oxoglutarate dioxygenase",
+          "source_key": "mcsa",
+          "target_id": "M0129"
+        }
+      ],
+      "old_classification": "specialization",
+      "old_named_record_ids": [
+        "1.14.11.17",
+        "CATH:3.60.130.10",
+        "CHEBI:15379",
+        "CHEBI:16526",
+        "CHEBI:16810",
+        "CHEBI:17137",
+        "CHEBI:30031",
+        "CHEBI:507393",
+        "CHEBI:58213",
+        "EC:1.14.11.17",
+        "M0129",
+        "P37610"
+      ],
+      "ordinal": 14,
+      "reason": "M0129 is a direct taurine-dioxygenase exemplar, but it cannot establish applicability across JmjC, AlkB, and hydroxylase branches.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "coa_acyltransferase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [],
+      "ordinal": 15,
+      "reason": "The broad acyl-transfer aggregation has no incumbent source targets.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "provisional_target_normalization",
+      "classification_changed": false,
+      "fingerprint_id": "cofactor_independent_isomerase",
+      "new_classification": "unsupported_or_ill_defined",
+      "new_relation_targets": [
+        {
+          "applicability_status": "representative_scope_only",
+          "relation": "scope_probe",
+          "scope": "Cofactor-independent isomerase",
+          "source_key": "mcsa",
+          "target_id": "M0081"
+        }
+      ],
+      "old_classification": "unsupported_or_ill_defined",
+      "old_named_record_ids": [
+        "5.4.99.5",
+        "CATH:1.10.590.10",
+        "CHEBI:29748",
+        "CHEBI:29934",
+        "EC:5.4.99.5",
+        "M0081",
+        "P32178"
+      ],
+      "ordinal": 16,
+      "reason": "M0081 is a valid cofactor-independent isomerase example, but absence of a cofactor does not define a coherent mechanism class.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "provisional_target_normalization",
+      "classification_changed": false,
+      "fingerprint_id": "molybdopterin_oxidoreductase",
+      "new_classification": "aggregation",
+      "new_relation_targets": [
+        {
+          "applicability_status": "representative_scope_only",
+          "relation": "aggregation",
+          "scope": "Molybdopterin/Mo-cofactor oxidoreductase",
+          "source_key": "mcsa",
+          "target_id": "M0107"
+        },
+        {
+          "applicability_status": "representative_scope_only",
+          "relation": "aggregation",
+          "scope": "Molybdopterin/Mo-cofactor oxidoreductase",
+          "source_key": "mcsa",
+          "target_id": "M0121"
+        },
+        {
+          "applicability_status": "representative_scope_only",
+          "relation": "aggregation",
+          "scope": "Molybdopterin/Mo-cofactor oxidoreductase",
+          "source_key": "mcsa",
+          "target_id": "M0139"
+        }
+      ],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [
+        "1.17.1.4",
+        "1.2.5.3",
+        "1.8.3.1",
+        "CATH:3.10.120.10",
+        "CATH:3.30.365.10",
+        "CATH:3.90.420.10",
+        "CHEBI:132124",
+        "CHEBI:15377",
+        "CHEBI:15378",
+        "CHEBI:16189",
+        "CHEBI:16526",
+        "CHEBI:17245",
+        "CHEBI:17359",
+        "CHEBI:17712",
+        "CHEBI:17775",
+        "CHEBI:24646",
+        "CHEBI:29033",
+        "CHEBI:29034",
+        "CHEBI:57540",
+        "CHEBI:57945",
+        "EC:1.17.1.4",
+        "EC:1.2.5.3",
+        "EC:1.8.3.1",
+        "M0107",
+        "M0121",
+        "M0139",
+        "P07850",
+        "P19919",
+        "P19920",
+        "P19921",
+        "P80457"
+      ],
+      "ordinal": 17,
+      "reason": "M0107, M0121, and M0139 are valid but mechanistically diverse; M0139 also overlaps flavin and NAD(P) rows.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "source_and_or_scope_correction",
+      "classification_changed": false,
+      "fingerprint_id": "copper_oxidoreductase",
+      "new_classification": "aggregation",
+      "new_relation_targets": [
+        {
+          "applicability_status": "supported_branch",
+          "relation": "aggregation",
+          "scope": "copper monooxygenase branch",
+          "source_key": "mcsa",
+          "target_id": "M0135"
+        },
+        {
+          "applicability_status": "supported_branch",
+          "relation": "aggregation",
+          "scope": "multicopper oxidase branch",
+          "source_key": "mcsa",
+          "target_id": "M0390"
+        },
+        {
+          "applicability_status": "out_of_scope",
+          "relation": "scope_exclusion",
+          "scope": "heme peroxidase branch",
+          "source_key": "mcsa",
+          "target_id": "M0239"
+        }
+      ],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [
+        "1.14.17.3",
+        "CATH:2.60.120.230",
+        "CATH:2.60.120.310",
+        "CHEBI:15377",
+        "CHEBI:15379",
+        "CHEBI:38290",
+        "CHEBI:58539",
+        "CHEBI:83148",
+        "CHEBI:85224",
+        "EC:1.14.17.3",
+        "M0135",
+        "P14925"
+      ],
+      "ordinal": 18,
+      "reason": "M0135 is one copper monooxygenase branch; laccase is misplaced in row 12.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "source_and_or_scope_correction",
+      "classification_changed": true,
+      "fingerprint_id": "metal_racemase_epimerase_non_plp",
+      "new_classification": "unresolved",
+      "new_relation_targets": [
+        {
+          "applicability_status": "representative_scope_only",
+          "relation": "aggregation",
+          "scope": "Non-PLP racemase / epimerase",
+          "source_key": "mcsa",
+          "target_id": "M0187"
+        }
+      ],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [
+        "5.1.2.2",
+        "CATH:3.20.20.120",
+        "CHEBI:17756",
+        "CHEBI:32382",
+        "EC:5.1.2.2",
+        "M0187",
+        "P11444",
+        "RHEA:13945"
+      ],
+      "ordinal": 19,
+      "reason": "The ID says metal racemase while the registry declares cofactors=[] and includes metal-independent mutarotases.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "atp_amide_ligase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [],
+      "ordinal": 20,
+      "reason": "The ATP-dependent amide-ligase aggregation has no source targets.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "source_and_or_scope_correction",
+      "classification_changed": false,
+      "fingerprint_id": "class_ii_metal_aldolase",
+      "new_classification": "specialization",
+      "new_relation_targets": [
+        {
+          "applicability_status": "representative_scope_only",
+          "relation": "specialization",
+          "scope": "metal-dependent class-II fructose-bisphosphate aldolase",
+          "source_key": "mcsa",
+          "target_id": "M0052"
+        },
+        {
+          "applicability_status": "counterexample_only",
+          "relation": "counterevidence",
+          "scope": "same EC, class-I Schiff-base mechanism",
+          "source_key": "mcsa",
+          "target_id": "M0222"
+        }
+      ],
+      "old_classification": "specialization",
+      "old_named_record_ids": [
+        "4.1.2.13",
+        "CATH:3.20.20.70",
+        "CHEBI:49299",
+        "CHEBI:57642",
+        "CHEBI:59776",
+        "EC:4.1.2.13",
+        "M0052",
+        "P0AB71"
+      ],
+      "ordinal": 21,
+      "reason": "The rationale says M0052 is deliberately paired with M0222, but the row and Phase-B packet contain only M0052.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "provisional_target_normalization",
+      "classification_changed": false,
+      "fingerprint_id": "zinc_lyase_hydratase",
+      "new_classification": "aggregation",
+      "new_relation_targets": [
+        {
+          "applicability_status": "representative_scope_only",
+          "relation": "aggregation",
+          "scope": "Zinc-dependent hydro-lyase / hydratase",
+          "source_key": "mcsa",
+          "target_id": "M0216"
+        }
+      ],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [
+        "4.2.1.1",
+        "CATH:3.10.200.10",
+        "CHEBI:15377",
+        "CHEBI:15378",
+        "CHEBI:16526",
+        "CHEBI:17544",
+        "EC:4.2.1.1",
+        "M0216",
+        "P00918",
+        "RHEA:10748"
+      ],
+      "ordinal": 22,
+      "reason": "M0216 is a valid alpha-carbonic-anhydrase exemplar but is much narrower than the zinc hydratase/lyase bucket.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "biotin_dependent_carboxylase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [],
+      "ordinal": 23,
+      "reason": "The multi-component biotin-carboxylase aggregation has no source object or component-state mapping.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "deoxynucleoside_kinase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [
+        {
+          "applicability_status": "scope_unresolved",
+          "relation": "specialization",
+          "scope": "one deoxynucleoside-kinase branch",
+          "source_key": "mcsa",
+          "target_id": "M0588"
+        }
+      ],
+      "old_classification": "specialization",
+      "old_named_record_ids": [],
+      "ordinal": 24,
+      "reason": "The row has no handles and spans several deoxynucleoside kinases; M0588 is a verified thymidine-kinase locator for one branch.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "source_and_or_scope_correction",
+      "classification_changed": true,
+      "fingerprint_id": "nucleoside_diphosphate_kinase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [
+        {
+          "applicability_status": "scope_unresolved",
+          "relation": "exact_duplicate",
+          "scope": "NDPK overall reaction and phosphohistidine mechanism",
+          "source_key": "mcsa",
+          "target_id": "M0150"
+        }
+      ],
+      "old_classification": "specialization",
+      "old_named_record_ids": [],
+      "ordinal": 25,
+      "reason": "The row is empty despite a detailed exact-reaction M-CSA object, M0150 nucleoside-diphosphate kinase.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "askha_sugar_acetate_kinase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [],
+      "old_classification": "interoperability_bridge",
+      "old_named_record_ids": [],
+      "ordinal": 26,
+      "reason": "A bridge is asserted without either endpoint or mapped source object.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "ghmp_small_molecule_kinase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [],
+      "old_classification": "interoperability_bridge",
+      "old_named_record_ids": [],
+      "ordinal": 27,
+      "reason": "A bridge is asserted without either endpoint or mapped source object.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "pfka_phosphofructokinase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [],
+      "old_classification": "specialization",
+      "old_named_record_ids": [],
+      "ordinal": 28,
+      "reason": "The PfkA specialization has no direct source target.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "pfkb_ribokinase_family",
+      "new_classification": "unresolved",
+      "new_relation_targets": [],
+      "old_classification": "interoperability_bridge",
+      "old_named_record_ids": [],
+      "ordinal": 29,
+      "reason": "A PfkB family bridge is asserted without family or reaction endpoints.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "provisional_target_normalization",
+      "classification_changed": false,
+      "fingerprint_id": "thiamine_diphosphate_enzyme",
+      "new_classification": "aggregation",
+      "new_relation_targets": [
+        {
+          "applicability_status": "representative_scope_only",
+          "relation": "aggregation",
+          "scope": "Thiamine-diphosphate ylide enzyme",
+          "source_key": "mcsa",
+          "target_id": "M0106"
+        },
+        {
+          "applicability_status": "representative_scope_only",
+          "relation": "aggregation",
+          "scope": "Thiamine-diphosphate ylide enzyme",
+          "source_key": "mcsa",
+          "target_id": "M0219"
+        }
+      ],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [
+        "1.2.4.1",
+        "2.2.1.1",
+        "CATH:3.40.50.970",
+        "CHEBI:15361",
+        "CHEBI:15378",
+        "CHEBI:16526",
+        "CHEBI:57483",
+        "CHEBI:57737",
+        "CHEBI:58273",
+        "CHEBI:59776",
+        "CHEBI:83099",
+        "CHEBI:83111",
+        "EC:1.2.4.1",
+        "EC:2.2.1.1",
+        "M0106",
+        "M0219",
+        "P21873",
+        "P21874",
+        "P29401"
+      ],
+      "ordinal": 30,
+      "reason": "M0106 and M0219 are valid, distinct ThDP examples and support aggregation.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "provisional_target_normalization",
+      "classification_changed": false,
+      "fingerprint_id": "nad_p_dehydrogenase",
+      "new_classification": "aggregation",
+      "new_relation_targets": [
+        {
+          "applicability_status": "representative_scope_only",
+          "relation": "aggregation",
+          "scope": "NAD(P)-dependent dehydrogenase/reductase",
+          "source_key": "mcsa",
+          "target_id": "M0007"
+        },
+        {
+          "applicability_status": "representative_scope_only",
+          "relation": "aggregation",
+          "scope": "NAD(P)-dependent dehydrogenase/reductase",
+          "source_key": "mcsa",
+          "target_id": "M0139"
+        }
+      ],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [
+        "1.1.1.42",
+        "1.17.1.4",
+        "CATH:3.30.365.10",
+        "CATH:3.40.718.10",
+        "CHEBI:15377",
+        "CHEBI:15378",
+        "CHEBI:15562",
+        "CHEBI:16474",
+        "CHEBI:16526",
+        "CHEBI:16810",
+        "CHEBI:17712",
+        "CHEBI:17775",
+        "CHEBI:18009",
+        "CHEBI:57540",
+        "CHEBI:57945",
+        "EC:1.1.1.42",
+        "EC:1.17.1.4",
+        "M0007",
+        "M0139",
+        "P08200",
+        "P80457"
+      ],
+      "ordinal": 31,
+      "reason": "M0007 and M0139 are valid examples, but the cofactor bucket is extremely broad and M0139 overlaps rows 11/17.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "provisional_target_normalization",
+      "classification_changed": false,
+      "fingerprint_id": "glycosyltransferase",
+      "new_classification": "aggregation",
+      "new_relation_targets": [
+        {
+          "applicability_status": "representative_scope_only",
+          "relation": "aggregation",
+          "scope": "Sugar-nucleotide-dependent glycosyltransferase",
+          "source_key": "mcsa",
+          "target_id": "M0970"
+        }
+      ],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [
+        "2.4.1.129",
+        "CATH:1.10.3810.10",
+        "CHEBI:15378",
+        "CHEBI:58405",
+        "CHEBI:60033",
+        "CHEBI:78435",
+        "EC:2.4.1.129",
+        "M0970",
+        "Q99T05"
+      ],
+      "ordinal": 32,
+      "reason": "M0970 is a valid peptidoglycan glycosyltransferase exemplar only.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "provisional_target_normalization",
+      "classification_changed": false,
+      "fingerprint_id": "glycoside_hydrolase",
+      "new_classification": "aggregation",
+      "new_relation_targets": [
+        {
+          "applicability_status": "representative_scope_only",
+          "relation": "aggregation",
+          "scope": "Glycoside hydrolase",
+          "source_key": "mcsa",
+          "target_id": "M0203"
+        }
+      ],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [
+        "3.2.1.17",
+        "CATH:1.10.530.10",
+        "CHEBI:15377",
+        "CHEBI:28009",
+        "CHEBI:40729",
+        "CHEBI:87004",
+        "EC:3.2.1.17",
+        "M0203",
+        "P00698"
+      ],
+      "ordinal": 33,
+      "reason": "M0203 is a valid GH22 exemplar with competing mechanisms, but cannot cover all retaining and inverting glycosidases.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "sam_methyltransferase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [],
+      "ordinal": 34,
+      "reason": "The SAM methyltransferase aggregation has no direct source objects.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "source_and_or_scope_correction",
+      "classification_changed": true,
+      "fingerprint_id": "manganese_iron_superoxide_dismutase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [
+        {
+          "applicability_status": "counterexample_only",
+          "relation": "counterevidence",
+          "scope": "Cu/Zn SOD",
+          "source_key": "mcsa",
+          "target_id": "M0138"
+        }
+      ],
+      "old_classification": "specialization",
+      "old_named_record_ids": [
+        "1.15.1.1",
+        "EC:1.15.1.1",
+        "M0138"
+      ],
+      "ordinal": 35,
+      "reason": "M0138 is correctly a Cu/Zn counterexample. The current M-CSA API EC filter returns no Mn/Fe mechanism object, so specialization is targetless.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "terpene_cyclase_synthase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [],
+      "ordinal": 36,
+      "reason": "The terpene-cyclase aggregation has no source object.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "protein_kinase_ser_thr_tyr",
+      "new_classification": "unresolved",
+      "new_relation_targets": [
+        {
+          "applicability_status": "scope_unresolved",
+          "relation": "interoperability_bridge",
+          "scope": "protein-kinase candidate",
+          "source_key": "mcsa",
+          "target_id": "M0282"
+        },
+        {
+          "applicability_status": "scope_unresolved",
+          "relation": "interoperability_bridge",
+          "scope": "protein-kinase candidate",
+          "source_key": "mcsa",
+          "target_id": "M0760"
+        }
+      ],
+      "old_classification": "interoperability_bridge",
+      "old_named_record_ids": [],
+      "ordinal": 37,
+      "reason": "A bridge is asserted without endpoints, although official M-CSA protein-kinase examples M0282/M0760 exist.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "source_and_or_scope_correction",
+      "classification_changed": true,
+      "fingerprint_id": "had_like_phosphatase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [
+        {
+          "applicability_status": "scope_unresolved",
+          "relation": "specialization",
+          "scope": "putative parent row",
+          "source_key": "atlas50_fingerprint",
+          "target_id": "atlas50:metallophosphomonoesterase"
+        }
+      ],
+      "old_classification": "specialization",
+      "old_named_record_ids": [],
+      "ordinal": 38,
+      "reason": "Specialization likely targets row 5, but the target is absent and the source gap is untested.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "source_and_or_scope_correction",
+      "classification_changed": true,
+      "fingerprint_id": "aldehyde_dehydrogenase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [
+        {
+          "applicability_status": "scope_unresolved",
+          "relation": "specialization",
+          "scope": "ALDH-family candidate",
+          "source_key": "mcsa",
+          "target_id": "M0803"
+        }
+      ],
+      "old_classification": "specialization",
+      "old_named_record_ids": [],
+      "ordinal": 39,
+      "reason": "The rationale invokes phosphorylation-coupled variants although the fingerprint defines ALDH-family thiohemiacetal oxidation; direct M0803 exists.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "source_and_or_scope_correction",
+      "classification_changed": true,
+      "fingerprint_id": "alpha_beta_hydrolase_esterase_lipase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [
+        {
+          "applicability_status": "scope_unresolved",
+          "relation": "specialization",
+          "scope": "putative parent row",
+          "source_key": "atlas50_fingerprint",
+          "target_id": "atlas50:ser_his_acid_hydrolase"
+        }
+      ],
+      "old_classification": "specialization",
+      "old_named_record_ids": [],
+      "ordinal": 40,
+      "reason": "The apparent source gap conflicts with historical alpha/beta-hydrolase locators, and the relation to row 1 is unnamed.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "source_and_or_scope_correction",
+      "classification_changed": true,
+      "fingerprint_id": "ser_thr_protein_phosphatase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [
+        {
+          "applicability_status": "scope_unresolved",
+          "relation": "specialization",
+          "scope": "putative parent row",
+          "source_key": "atlas50_fingerprint",
+          "target_id": "atlas50:metallophosphomonoesterase"
+        }
+      ],
+      "old_classification": "specialization",
+      "old_named_record_ids": [],
+      "ordinal": 41,
+      "reason": "Historical M0406 contradicts the impression of no candidate, but the intended relation to row 5 is unstated.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "n_ribosyl_hydrolase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [],
+      "old_classification": "specialization",
+      "old_named_record_ids": [],
+      "ordinal": 42,
+      "reason": "The N-ribosyl hydrolase specialization has no source target.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "source_and_or_scope_correction",
+      "classification_changed": true,
+      "fingerprint_id": "metal_independent_phosphodiesterase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [],
+      "old_classification": "unsupported_or_ill_defined",
+      "old_named_record_ids": [],
+      "ordinal": 43,
+      "reason": "Unsupported_or_ill_defined is reasonable, but canonical cyclic-nucleotide phosphodiesterases are often metal-dependent, conflicting with the seed phrase.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "aminoglycoside_phosphotransferase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [],
+      "old_classification": "specialization",
+      "old_named_record_ids": [],
+      "ordinal": 44,
+      "reason": "The aminoglycoside-phosphotransferase specialization has no source target.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "source_and_or_scope_correction",
+      "classification_changed": true,
+      "fingerprint_id": "serine_beta_lactamase",
+      "new_classification": "aggregation",
+      "new_relation_targets": [
+        {
+          "applicability_status": "supported_branch",
+          "relation": "aggregation",
+          "scope": "Ambler Class A",
+          "source_key": "mcsa",
+          "target_id": "M0002"
+        },
+        {
+          "applicability_status": "supported_branch",
+          "relation": "aggregation",
+          "scope": "Ambler Class C",
+          "source_key": "mcsa",
+          "target_id": "M0257"
+        },
+        {
+          "applicability_status": "supported_branch",
+          "relation": "aggregation",
+          "scope": "Ambler Class D",
+          "source_key": "mcsa",
+          "target_id": "M0210"
+        }
+      ],
+      "old_classification": "specialization",
+      "old_named_record_ids": [
+        "3.5.2.6",
+        "CHEBI:140347",
+        "CHEBI:15377",
+        "CHEBI:35627",
+        "EC:3.5.2.6",
+        "M0002",
+        "P62593",
+        "RHEA:20401"
+      ],
+      "ordinal": 45,
+      "reason": "M0002 is Class A only, while the fingerprint spans serine beta-lactamase Classes A, C, and D with distinct catalytic networks.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "short_chain_dehydrogenase_reductase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [
+        {
+          "applicability_status": "scope_unresolved",
+          "relation": "specialization",
+          "scope": "putative parent row",
+          "source_key": "atlas50_fingerprint",
+          "target_id": "atlas50:nad_p_dehydrogenase"
+        }
+      ],
+      "old_classification": "specialization",
+      "old_named_record_ids": [],
+      "ordinal": 46,
+      "reason": "Specialization relative to row 31 is plausible but no source or parent target is recorded.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "aldo_keto_reductase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [
+        {
+          "applicability_status": "scope_unresolved",
+          "relation": "specialization",
+          "scope": "putative parent row",
+          "source_key": "atlas50_fingerprint",
+          "target_id": "atlas50:nad_p_dehydrogenase"
+        }
+      ],
+      "old_classification": "specialization",
+      "old_named_record_ids": [],
+      "ordinal": 47,
+      "reason": "Specialization relative to row 31 is plausible but no source or parent target is recorded.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "aminoglycoside_acetyltransferase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [
+        {
+          "applicability_status": "scope_unresolved",
+          "relation": "specialization",
+          "scope": "putative parent row",
+          "source_key": "atlas50_fingerprint",
+          "target_id": "atlas50:coa_acyltransferase"
+        }
+      ],
+      "old_classification": "specialization",
+      "old_named_record_ids": [],
+      "ordinal": 48,
+      "reason": "Specialization relative to row 15 is plausible but no source or parent target is recorded.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "source_and_or_scope_correction",
+      "classification_changed": true,
+      "fingerprint_id": "metallo_beta_lactamase",
+      "new_classification": "aggregation",
+      "new_relation_targets": [
+        {
+          "applicability_status": "supported_branch",
+          "relation": "aggregation",
+          "scope": "Ambler Class B1, dimetallic mechanism",
+          "source_key": "mcsa",
+          "target_id": "M0015"
+        },
+        {
+          "applicability_status": "supported_branch",
+          "relation": "aggregation",
+          "scope": "Ambler Class B1, monometallic mechanism",
+          "source_key": "mcsa",
+          "target_id": "M0016"
+        }
+      ],
+      "old_classification": "specialization",
+      "old_named_record_ids": [
+        "3.5.2.6",
+        "EC:3.5.2.6"
+      ],
+      "ordinal": 49,
+      "reason": "The same EC as row 45 is present, yet no M-CSA candidate is linked; official detailed Class-B1 objects M0015/M0016 exist.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "provisional_target_normalization",
+      "classification_changed": false,
+      "fingerprint_id": "peroxiredoxin_thiol_peroxidase",
+      "new_classification": "aggregation",
+      "new_relation_targets": [
+        {
+          "applicability_status": "representative_non_detailed",
+          "relation": "aggregation",
+          "scope": "Peroxiredoxin / thiol-based peroxidase",
+          "source_key": "mcsa",
+          "target_id": "M0851"
+        }
+      ],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [
+        "1.11.1.9",
+        "CATH:3.40.30.10",
+        "CHEBI:15377",
+        "CHEBI:16240",
+        "CHEBI:57925",
+        "CHEBI:58297",
+        "EC:1.11.1.9",
+        "M0851",
+        "P00435"
+      ],
+      "ordinal": 50,
+      "reason": "M0851 is a valid glutathione-peroxidase subset but is non-detailed and does not represent peroxiredoxin resolving chemistry.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "paps_sulfotransferase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [],
+      "ordinal": 51,
+      "reason": "The broad PAPS-sulfotransferase aggregation has no source object.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "glutathione_s_transferase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [],
+      "ordinal": 52,
+      "reason": "The GST aggregation has no source object, although the family spans multiple reaction outcomes.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "aminoacyl_trna_synthetase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [
+        {
+          "applicability_status": "scope_unresolved",
+          "relation": "aggregation",
+          "scope": "class-I aaRS candidate",
+          "source_key": "mcsa",
+          "target_id": "M0481"
+        },
+        {
+          "applicability_status": "scope_unresolved",
+          "relation": "aggregation",
+          "scope": "class-I aaRS candidate",
+          "source_key": "mcsa",
+          "target_id": "M0235"
+        }
+      ],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [],
+      "ordinal": 53,
+      "reason": "Aggregation is plausible, but the row has no source objects; official M0481/M0235 are class-I aminoacyl-tRNA synthetase locators.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "unresolved_relation",
+      "classification_changed": true,
+      "fingerprint_id": "acid_coa_ligase",
+      "new_classification": "unresolved",
+      "new_relation_targets": [],
+      "old_classification": "specialization",
+      "old_named_record_ids": [],
+      "ordinal": 54,
+      "reason": "The acid-CoA ligase specialization has no source target.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "provisional_target_normalization",
+      "classification_changed": false,
+      "fingerprint_id": "cysteine_protease",
+      "new_classification": "aggregation",
+      "new_relation_targets": [
+        {
+          "applicability_status": "representative_scope_only",
+          "relation": "aggregation",
+          "scope": "Cysteine protease (Cys-His thiol peptidase)",
+          "source_key": "mcsa",
+          "target_id": "M0174"
+        }
+      ],
+      "old_classification": "aggregation",
+      "old_named_record_ids": [
+        "3.4.22.2",
+        "CATH:3.90.70.10",
+        "CHEBI:15377",
+        "CHEBI:59869",
+        "CHEBI:90799",
+        "EC:3.4.22.2",
+        "M0174",
+        "P00784"
+      ],
+      "ordinal": 55,
+      "reason": "M0174 is a valid papain exemplar but covers only one cysteine-protease clan.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "source_and_or_scope_correction",
+      "classification_changed": true,
+      "fingerprint_id": "flavin_disulfide_reductase",
+      "new_classification": "aggregation",
+      "new_relation_targets": [
+        {
+          "applicability_status": "supported_branch",
+          "relation": "aggregation",
+          "scope": "glutathione reductase relay",
+          "source_key": "mcsa",
+          "target_id": "M0006"
+        },
+        {
+          "applicability_status": "representative_non_detailed",
+          "relation": "aggregation",
+          "scope": "thioredoxin reductase relay",
+          "source_key": "mcsa",
+          "target_id": "M0381"
+        }
+      ],
+      "old_classification": "specialization",
+      "old_named_record_ids": [],
+      "ordinal": 56,
+      "reason": "The empty row misses official glutathione-reductase M0006 and thioredoxin-reductase M0381; its broad substrate/relay scope spans several source mechanisms.",
+      "wrong_anchor_bundle_removed": false
+    },
+    {
+      "change_kind": "source_and_or_scope_correction",
+      "classification_changed": false,
+      "fingerprint_id": "dihydrofolate_reductase",
+      "new_classification": "exact_duplicate",
+      "new_relation_targets": [
+        {
+          "applicability_status": "exact_scope_supported",
+          "relation": "exact_duplicate",
+          "scope": "reaction_core: EC 1.5.1.3 NADPH-dependent DHF-to-THF chemistry",
+          "source_key": "mcsa",
+          "target_id": "M0112"
+        }
+      ],
+      "old_classification": "exact_duplicate",
+      "old_named_record_ids": [
+        "1.5.1.3",
+        "EC:1.5.1.3",
+        "M0112"
+      ],
+      "ordinal": 57,
+      "reason": "The Phase-A exact relation lacked an explicit granularity and assigned direct N5 proton donation to Asp/Glu. M0112 supports the reaction core, with conserved water as proton donor and Asp26 as network/pKa organizer; broader applicability is not asserted.",
+      "wrong_anchor_bundle_removed": false
+    }
+  ],
+  "claim_boundary": "Old-to-new trace only; same-model agent results are correlated and not statistically independent, and this is not a Phase-B decision or registry mutation.",
+  "from_draft_id": "atlas50.phase-a.crosswalk-draft.2026-07-14",
+  "review_independence": {
+    "correlated_error_risk": true,
+    "experimental_validation_count": 0,
+    "independent_human_reviewer_count": 0,
+    "reviewer_kind": "same_model_computational_agents",
+    "statistically_independent": false
+  },
+  "row_count": 57,
+  "schema_version": "catalytic-earth.atlas50-crosswalk-v2-change-map.v1",
+  "status": "computational_provisional_not_human_review",
+  "to_draft_id": "atlas50.crosswalk-v2.computational.2026-09-05.v1"
+}

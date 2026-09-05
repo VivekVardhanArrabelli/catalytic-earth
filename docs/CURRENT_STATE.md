@@ -1,6 +1,6 @@
 # Current State
 
-## 2026-09-05 computational review and Atlas-50 review intake
+## 2026-09-05 computational development is open at declared source scopes
 
 **Foundation:** 2026-07-13 truth reset and 2026-07-14 Phase B package
 
@@ -29,11 +29,18 @@ Read in this order:
 
 Current truth:
 
-- A separate [computational review](COMPUTATIONAL_REVIEW_20260905.md) now
-  records source-backed correction proposals for the 57-row crosswalk and
-  40-case panel. These are agent assessments with declared inspection depth,
-  not human submissions. Bounded source checks occurred for this overlay;
-  the frozen Phase B acquisition plan remains unexecuted.
+- The [computational development review](COMPUTATIONAL_DEVELOPMENT_REVIEW.md)
+  replaces the human-only prerequisite for new source-scoped drafts. Crosswalk
+  v2 has 57 rows: 23 provisional and 34 unresolved. Six generic state probes
+  permit annotation for all six cases and mechanism drafts for M0106, M0107,
+  M0212 and M0753. No exact reaction instance is authorized. Source challenges,
+  explicit adjudications and pinned-input checks govern these operations;
+  same-model agreement does not establish independent validation.
+- The first [correction review](COMPUTATIONAL_REVIEW_20260905.md) remains input
+  history. Its DHFR aggregation rationale is superseded: the implemented
+  reaction-core scope permits the single M0112 exact relation, with narrower
+  protein/structure applicability and a corrected water/Asp proton role.
+  The July Phase B acquisition plan remains unexecuted.
 - A0A177THN5's APX-specific transfer is withdrawn and the larger APX-versus-CcP
   study is retired (CE-017/ER-011). CcP-like remains a provisional working
   interpretation; no target-specific donor activity is established.
@@ -122,13 +129,16 @@ Current truth:
   decisions without editing the July queues. Structural validation cannot
   authenticate a reviewer or establish scientific agreement. No review
   submission was supplied or recorded in this update.
-- The next Atlas-50 scientific gate requires actual attributable human
-  submissions; contacting reviewers also requires explicit outreach authority.
-  A machine draft, prepared packet, valid JSON assertion, or outreach attempt
-  does not complete the reviewed 57-fingerprint crosswalk; an outreach attempt
-  does not complete independent annotation; and the first 50-row bronze audit
-  tranche does not
-  authorize expansion. Protected registry writes remain frozen until the
+- The next development batch uses the four permitted source-scoped drafts to
+  test a successor schema. The typed state sidecar is already built; the v3
+  kernel cannot yet store its positive structured fields. Human submissions
+  are not a prerequisite for this batch. M0064 topology and M0970 polymer
+  state remain unresolved and block only their affected operations.
+- The historical July packet contract still requires actual human submissions
+  for its own completion; contacting reviewers requires outreach authority.
+  Computational review does not complete independent annotation, and the first
+  50-row bronze audit tranche does not authorize expansion. Protected registry writes remain frozen
+  until the
   mandatory stratified 200-row independent audit reaches at least 90% precision
   at the exact granularity claimed and an explicit reviewed unfreeze decision
   is recorded.

@@ -1,5 +1,14 @@
 # Computational review — 2026-09-05
 
+> **Successor review, 2026-09-05:** read
+> [Computational development review](COMPUTATIONAL_DEVELOPMENT_REVIEW.md) for
+> current permissions and adjudications. This first-pass report is preserved
+> as review history. The successor narrows several panel holds and corrects
+> the first-pass DHFR rationale: M0112 is exact only at the implemented
+> reaction-core scope, with narrower source applicability. The earlier
+> aggregation/bifunctional-scope statement does not control current use.
+
+
 This is an agent assessment and corrective work, with a public-source trail.
 It does not fill or resolve the frozen human-review submissions. The July
 Phase A/B packages remain historical checkpoints. Their all-unreviewed state

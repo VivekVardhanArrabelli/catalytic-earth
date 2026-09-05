@@ -1,9 +1,11 @@
 # Atlas-50 Phase B review and selection-freeze readiness
 
-> **2026-09-05 computational findings:** read the
-> [correction overlay](COMPUTATIONAL_REVIEW_20260905.md) before using this July
-> proposal. It identifies source-mapping and representation concerns; it does
-> not alter these frozen packets or count as their required human review.
+> **2026-09-05 scope update:** this document describes the frozen July
+> contract. Its human-review and acquisition restrictions continue to apply
+> to that package. New source-scoped development proceeds under the
+> [computational policy and review](COMPUTATIONAL_DEVELOPMENT_REVIEW.md),
+> without waiting for human submissions. The corrected crosswalk and state
+> probe do not alter these packets or claim their human review is complete.
 
 ## Status
 
@@ -164,7 +166,8 @@ Local review intake is ready. The next scientific gate requires actual
 attributable human submissions, and contacting a reviewer requires explicit
 outreach authority. Until valid submissions exist and their unresolved or
 conflicting decisions are handled, Phase B remains blocked for selection
-freeze. Source acquisition and mechanism compilation remain prohibited.
+freeze. Execution of this July acquisition/compilation plan remains prohibited; the
+separate September policy permits its explicitly named draft operations.
 Section 10.3 independent annotation, the 200-row bronze audit, fresh benchmark,
 modern baselines, external task work, and assays remain separate and undone.
 

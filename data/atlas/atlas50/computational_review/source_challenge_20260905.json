@@ -1,0 +1,393 @@
+{
+  "schema_version": "catalytic-earth.atlas50-source-challenge.v1",
+  "challenge_id": "atlas50.source-challenge.2026-09-05",
+  "status": "computational_development_review_complete",
+  "review_boundary": {
+    "purpose": "Challenge decision-changing source and representation claims for development use.",
+    "informed_by_prior_crosswalk_audit": true,
+    "blind_review": false,
+    "reviewer_class": "same-model Codex agents",
+    "statistically_independent": false,
+    "correlated_error_risk": true,
+    "human_or_domain_expert_review_claimed": false,
+    "independent_validation_or_gold_status_conferred": false,
+    "selection_freeze_changed": false,
+    "scope_limit": "The findings may support corrected source-specific development records with explicit abstentions. They do not authenticate authorship, establish independent agreement, or turn unresolved source claims into gold evidence."
+  },
+  "source_method": {
+    "inspection": "Targeted inspection of repository contracts, official M-CSA and RCSB records, and decision-changing primary papers or their authoritative abstracts.",
+    "systematic_literature_review": false,
+    "public_sources_only": true,
+    "paid_access_used": false,
+    "outreach_performed": false,
+    "gpu_or_model_experiment_run": false,
+    "download_budget_mib": 30,
+    "large_or_full_literature_downloads": false
+  },
+  "claims": [
+    {
+      "claim_id": "sc-m0049-plp-equivalence",
+      "subject_ids": [
+        "plp_dependent_enzyme",
+        "M0049",
+        "P00862",
+        "1PYA"
+      ],
+      "claim": "M0049 is a PLP-dependent source candidate for the PLP-enzyme fingerprint.",
+      "verdict": "contradicted",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/49/",
+          "type": "official_mechanism_record",
+          "finding": "M-CSA identifies a covalently bound pyruvoyl cofactor and a substrate-pyruvoyl Schiff base, not PLP."
+        },
+        {
+          "url": "https://pubmed.ncbi.nlm.nih.gov/2745463/",
+          "type": "primary_paper_authoritative_abstract",
+          "finding": "The reference structure paper is explicitly for pyruvoyl-dependent histidine decarboxylase."
+        }
+      ],
+      "reasoning": "The cofactor identity is a direct contradiction, not an unresolved family-transfer question. The earlier audit correctly rejected M0049 from this fingerprint, but its wording could be misread as rejecting M0049 from the panel altogether.",
+      "recommended_scope": "Remove M0049 and every M0049-derived handle from the PLP crosswalk row. Do not use PLP language for M0049.",
+      "objection_resolved": true
+    },
+    {
+      "claim_id": "sc-m0049-pyruvoyl-development-value",
+      "subject_ids": [
+        "atlas50.candidate.m0049",
+        "M0049"
+      ],
+      "claim": "M0049 remains a useful source-specific Atlas-50 development candidate when represented as pyruvoyl-dependent histidine decarboxylase.",
+      "verdict": "supported",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/49/",
+          "type": "official_mechanism_record",
+          "finding": "The record supplies a detailed covalent-pyruvoyl mechanism and reference structure."
+        },
+        {
+          "url": "https://pubmed.ncbi.nlm.nih.gov/8464063/",
+          "type": "primary_paper_authoritative_abstract",
+          "finding": "Autocatalytic serine cleavage creates the pyruvoyl cofactor, giving a distinct post-translational covalent-cofactor case."
+        }
+      ],
+      "reasoning": "The false PLP mapping does not invalidate the candidate itself. It exposes a scientifically useful cofactor-identity error and adds chemistry not represented by ordinary PLP catalysis.",
+      "recommended_scope": "Retain for source-specific development as a pyruvoyl/PTM covalent-cofactor case. Replace the pressure label redox_or_cofactor_state_changes with a non-redox covalent-cofactor maturation/state label unless actual redox cycling is sourced.",
+      "objection_resolved": true
+    },
+    {
+      "claim_id": "sc-m0112-reaction-core-equivalence",
+      "subject_ids": [
+        "dihydrofolate_reductase",
+        "M0112",
+        "EC:1.5.1.3"
+      ],
+      "claim": "M0112 is an exact match to the implemented DHFR fingerprint at the NADPH-dependent dihydrofolate-to-tetrahydrofolate reaction-core granularity.",
+      "verdict": "supported",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/112/",
+          "type": "official_mechanism_record",
+          "finding": "M-CSA records bacterial EC 1.5.1.3 with hydride transfer from NADPH to dihydrofolate and formation of tetrahydrofolate."
+        },
+        {
+          "path": "src/catalytic_earth/dihydrofolate_reductase_sourcing.py",
+          "type": "repository_scope_contract",
+          "finding": "The implemented fingerprint requires the EC 1.5.1.3 folate-reduction reaction center and treats the handle as admission scope, with side-reaction boundaries."
+        }
+      ],
+      "reasoning": "The previous audit proposed aggregation because protein contexts can differ. Reinspection of the implemented fingerprint changed that judgment: the code narrows admission to the same reaction core and explicitly excludes side-EC cases. Exact equivalence is therefore defensible only when its granularity is named; it does not make one bacterial structure universal evidence for every DHFR protein context.",
+      "recommended_scope": "Keep exact_duplicate only as exact_reaction_core. Record protein, organism, resistance, fusion, and structural applicability as narrower source scope rather than implied equivalence.",
+      "objection_resolved": true
+    },
+    {
+      "claim_id": "sc-m0112-direct-aspartate-proton-donor",
+      "subject_ids": [
+        "dihydrofolate_reductase",
+        "M0112",
+        "Asp26_Lactobacillus_casei",
+        "Asp27_Escherichia_coli"
+      ],
+      "claim": "The conserved Asp/Glu directly donates the proton to dihydrofolate N5 in the M0112 mechanism.",
+      "verdict": "contradicted",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/112/",
+          "type": "official_mechanism_record",
+          "finding": "M-CSA assigns N5 proton donation to a conserved water and assigns Asp26 a pKa/electrostatic-network role."
+        },
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4280594/",
+          "type": "primary_paper",
+          "finding": "Kinetic analysis supports solvent-assisted N5 proton delivery and roles for Asp27 and Tyr100 in orientation/electrostatics."
+        },
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4280638/",
+          "type": "primary_paper",
+          "finding": "Neutron and ultrahigh-resolution crystallography directly identify an active-site water positioned for N5 protonation."
+        }
+      ],
+      "reasoning": "The acidic residue is catalytically important but importance is not the same as direct proton donation. Collapsing the water-mediated route into a direct Asp/Glu role changes the causal mechanism.",
+      "recommended_scope": "Encode water/solvent as the N5 proton source and Asp26/Asp27 as pKa, electrostatic, and water-network organizer. Preserve species-specific numbering.",
+      "objection_resolved": true
+    },
+    {
+      "claim_id": "sc-m0753-selected-handle-full-channel",
+      "subject_ids": [
+        "atlas50.candidate.m0753",
+        "M0753",
+        "Q9X0C6",
+        "2A0N"
+      ],
+      "claim": "The selected M0753/Q9X0C6/2A0N handle is a structurally grounded full HisH-HisF coupled-channel record.",
+      "verdict": "contradicted",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/753/",
+          "type": "official_mechanism_record",
+          "finding": "The explicit reaction consumes free ammonium and the reference sequence and mechanistic steps are HisF only, even though the introduction notes physiological delivery from HisH."
+        },
+        {
+          "url": "https://www.rcsb.org/structure/2A0N",
+          "type": "official_structure_record",
+          "finding": "2A0N is a monomeric HisF-only structure with one unique protein chain."
+        }
+      ],
+      "reasoning": "A narrative mention of delivery from an associated subunit does not make the selected identity and structure a full-complex observation. The locator package cannot ground HisH identity, interface state, allosteric coupling, or a transported-ammonia trajectory.",
+      "recommended_scope": "Do not attach full-complex or observed-channel structural claims to 2A0N. Relabel this source object as the HisF cyclase half-reaction.",
+      "objection_resolved": true
+    },
+    {
+      "claim_id": "sc-m0753-hisf-development-inclusion",
+      "subject_ids": [
+        "atlas50.candidate.m0753",
+        "M0753",
+        "1GPW"
+      ],
+      "claim": "M0753 can be included in the development panel without pretending that 2A0N proves the full ammonia-channel cycle.",
+      "verdict": "supported",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/753/",
+          "type": "official_mechanism_record",
+          "finding": "The source provides a six-step detailed HisF cyclization mechanism using ammonium."
+        },
+        {
+          "url": "https://www.rcsb.org/structure/1GPW",
+          "type": "official_structure_and_primary_paper_record",
+          "finding": "A separate T. maritima HisH-HisF heterodimer structure contains Q9X0C6 and HisH Q9X0C8 and supports a putative 25-Angstrom ammonia tunnel."
+        },
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC164632/",
+          "type": "primary_paper",
+          "finding": "The study distinguishes HisH ammonia production, HisF cyclization, and proposed channel conduction; it explicitly notes that conclusive experimental channeling evidence was then absent."
+        }
+      ],
+      "reasoning": "The source-identity objection has a concrete resolution. The half-reaction is directly supported; the full channel is a different, separately sourced application with its own uncertainty.",
+      "recommended_scope": "Admit M0753 for source-specific development as HisF/free-ammonium cyclization. Set full-complex channel and allosteric fields to abstain. If a coupled-channel record is desired, add 1GPW, Q9X0C8, and its mutation/putative-tunnel caveats as separate structure context.",
+      "objection_resolved": true
+    },
+    {
+      "claim_id": "sc-m0107-m0212-same-component-state-class",
+      "subject_ids": [
+        "atlas50.candidate.m0107",
+        "atlas50.candidate.m0212",
+        "M0107",
+        "M0212",
+        "1N62",
+        "1N2C"
+      ],
+      "claim": "M0107 aerobic CODH and M0212 nitrogenase present the same generic component-association and state-transition burden, so M0107 must inherit the nitrogenase blocker unchanged.",
+      "verdict": "contradicted",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/107/",
+          "type": "official_mechanism_record",
+          "finding": "CODH is a stable dimer of heterotrimers with an intramolecular Mo/Cu-to-two-FeS-to-FAD relay and external acceptor."
+        },
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC138549/",
+          "type": "primary_paper",
+          "finding": "The 1N62 study characterizes the 277-kDa fixed LMS heterotrimer assembly and active-site states."
+        },
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/212/",
+          "type": "official_mechanism_record",
+          "finding": "Nitrogenase repeatedly associates Fe protein with MoFe protein, couples ATP hydrolysis to electron delivery, then dissociates and re-reduces Fe protein."
+        },
+        {
+          "url": "https://www.nature.com/articles/387370a0",
+          "type": "primary_paper_authoritative_abstract",
+          "finding": "The trapped nitrogenase complex shows nucleotide-switch conformational changes and repositioning of the redox center for interprotein transfer."
+        }
+      ],
+      "reasoning": "Both are multi-component metallocluster systems, but assembly topology and cycle semantics differ materially. CODH transfers electrons within a fixed biological assembly; nitrogenase requires nucleotide-dependent transient association, electron delivery, dissociation, nucleotide exchange, re-reduction, and repeated accumulation states. A source-neutral contract should encode this difference rather than use one boolean multi_component flag.",
+      "recommended_scope": "Allow M0107 source-specific development under fixed_multisubunit assembly with proposal-specific cofactor-state uncertainty. Represent M0212 under cycle_coupled_association with explicit ATP/ADP, partner-association, electron-count, and completeness fields; unknown FeMo chemistry must remain abstained.",
+      "objection_resolved": true
+    },
+    {
+      "claim_id": "sc-m0064-current-reaction-represents-topology",
+      "subject_ids": [
+        "atlas50.candidate.m0064",
+        "M0064",
+        "P14294",
+        "1D6M",
+        "CHEBI:9160"
+      ],
+      "claim": "The current generic reaction projection, single-stranded DNA to the same single-stranded-DNA identifier, completely represents the topoisomerase III transformation and its structure applicability.",
+      "verdict": "contradicted",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/64/",
+          "type": "official_mechanism_record",
+          "finding": "The equation uses CHEBI:9160 on both sides while the mechanism requires covalent cleavage, DNA uncoiling/strand passage, and religation."
+        },
+        {
+          "url": "https://www.rcsb.org/structure/1D6M",
+          "type": "official_structure_and_primary_paper_record",
+          "finding": "1D6M is the apo monomeric enzyme without DNA; its primary paper says topoisomerase III can relax, catenate, and decatenate and that residue-role evidence was then incomplete."
+        }
+      ],
+      "reasoning": "Participant identity and local bond cleavage do not encode the intended change in linking/catenation state, strand roles, or gate state. The apo structure supports fold and candidate identity but not a specific DNA-bound reaction state.",
+      "recommended_scope": "Include M0064 as a development stressor and compile sourced covalent cleavage/religation steps. Require typed before/after topology and strand-role variables for any complete Tier-0 outcome; until sourced, mark those values and DNA-bound Tier-2 applicability as abstentions rather than dropping the row.",
+      "objection_resolved": true
+    },
+    {
+      "claim_id": "sc-m0106-1w85-contains-lipoyl-carrier",
+      "subject_ids": [
+        "atlas50.candidate.m0106",
+        "M0106",
+        "P21873",
+        "P21874",
+        "P11961",
+        "1W85"
+      ],
+      "claim": "The E2 entity in 1W85 is the lipoyl carrier domain that structurally grounds transfer to the protein-tethered lipoyl-lysine substrate.",
+      "verdict": "contradicted",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/106/",
+          "type": "official_mechanism_record",
+          "finding": "The reaction consumes an E2-tethered N6-lipoyl-Lys residue, but the selected PDB is described as E1 bound to the E2 peripheral subunit-binding domain."
+        },
+        {
+          "url": "https://www.rcsb.org/structure/1W85",
+          "type": "official_structure_and_primary_paper_record",
+          "finding": "1W85 contains E1 alpha/beta plus a 49-residue P11961 peripheral subunit-binding-domain entity and no lipoyl-lysine ligand or lipoyl-domain entity."
+        },
+        {
+          "url": "https://pubmed.ncbi.nlm.nih.gov/3421911/",
+          "type": "primary_paper_authoritative_abstract",
+          "finding": "Sequence and proteolysis experiments distinguish the N-terminal lipoyl domain from the approximately 50-residue E1/E3-binding domain in this species."
+        }
+      ],
+      "reasoning": "The E2 binding domain anchors E1 within the multienzyme assembly; it is not the mobile lipoyl carrier that supplies the second substrate. Treating them as interchangeable would create a false structural observation.",
+      "recommended_scope": "Retain P21873/P21874 as M-CSA enzyme identity and P11961 as structure_context_only. Include M0106 for source-specific development, but abstain from Tier-2 lipoyl-carrier pose/applicability and represent the reaction participant as a generic E2-owned tethered carrier with identity unresolved by 1W85.",
+      "objection_resolved": true
+    },
+    {
+      "claim_id": "sc-m0970-complete-polymer-instance",
+      "subject_ids": [
+        "atlas50.candidate.m0970",
+        "M0970",
+        "Q99T05",
+        "3VMT",
+        "CHEBI:X00676"
+      ],
+      "claim": "M0970 and 3VMT are sufficient to compile a complete peptidoglycan polymer reaction instance, including chain-length change and processivity.",
+      "verdict": "insufficient",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/970/",
+          "type": "official_mechanism_record",
+          "finding": "M-CSA supplies local glycosyl-transfer proposals, but its overall product is placeholder CHEBI:X00676 and the equation does not instantiate n before and after a defined elongation event."
+        },
+        {
+          "url": "https://www.rcsb.org/structure/3VMT",
+          "type": "official_structure_and_primary_paper_record",
+          "finding": "3VMT is a monofunctional glycosyltransferase bound to a Lipid II analog and supports donor/acceptor-site chemistry; it does not observe a processive polymerization trajectory or product chain length."
+        }
+      ],
+      "reasoning": "The sources support candidate identity, a bound analog, catalytic-site residues, and competing local SN2/SNi proposals. They do not close the reaction-instance variables needed for initiation versus elongation, incoming and outgoing chain length, or processivity.",
+      "recommended_scope": "Permit source annotation and explicit local-mechanism alternatives. Keep complete reaction-instance and source-scoped mechanism-draft operations blocked until the product identity and chain-state transition are sourced; do not fill n or processivity by convention.",
+      "objection_resolved": false
+    }
+  ],
+  "cross_review": {
+    "artifacts_checked": [
+      {
+        "artifact_family": "atlas50_crosswalk_v2",
+        "paths": [
+          "data/atlas/atlas50/crosswalk_v2/crosswalk.json",
+          "data/atlas/atlas50/crosswalk_v2/change_map.json",
+          "data/atlas/atlas50/crosswalk_v2/manifest.json",
+          "src/catalytic_earth/atlas50_crosswalk_v2.py",
+          "scripts/build_atlas50_crosswalk_v2.py",
+          "tests/core/test_atlas50_crosswalk_v2.py"
+        ],
+        "pinned_file_sha256": {
+          "crosswalk.json": "fc0e176b0c6881c949d052889607179ba087dc52ebb7786ee96f96f3ad73615e",
+          "change_map.json": "4975a8bb079f919de5da061db83c32d4add688bc95f665212a40a2944b240ccc",
+          "manifest.json": "617db79d7f7a6ce8eed898256228602546cd770c14275078bad5d4989e9d0e5f"
+        },
+        "checks": [
+          "python scripts/build_atlas50_crosswalk_v2.py --check",
+          "PYTHONPATH=src python -m unittest tests.core.test_atlas50_crosswalk_v2 -q (9 tests)"
+        ],
+        "result": "accepted_after_corrections",
+        "corrections_verified": [
+          "M0049 and all M0049-derived locators are quarantined from the PLP row while the M0049 pyruvoyl panel candidate is preserved.",
+          "M0112 appears once as exact_duplicate at explicit EC 1.5.1.3 reaction-core scope; water is the N5 proton source and Asp26/Asp27 has a network role.",
+          "Source identity, applicability scope, and unresolved candidate relation labels remain separate.",
+          "Same-model correlated-error, non-independence, zero-human-review, and zero-experimental-validation disclosures are machine-readable."
+        ]
+      },
+      {
+        "artifact_family": "atlas50_state_probe",
+        "paths": [
+          "data/atlas/atlas50/state_probe/spec.json",
+          "data/atlas/atlas50/state_probe/report.json",
+          "src/catalytic_earth/atlas50_state_probe.py",
+          "scripts/build_atlas50_state_probe.py",
+          "tests/core/test_atlas50_state_probe.py"
+        ],
+        "pinned_file_sha256": {
+          "spec.json": "1e2d3a71d5b1ca85eb29d0cf0680ce873014abb9cf8f9734c1def1495985bb34",
+          "report.json": "bbc0f6013574af5b36a62a8b86fad39938340decbcdda78d40131253607822f9"
+        },
+        "checks": [
+          "python scripts/build_atlas50_state_probe.py --check",
+          "PYTHONPATH=src python -m unittest tests.core.test_atlas50_state_probe -q (9 tests)"
+        ],
+        "result": "accepted_after_provenance_correction",
+        "decisions_verified": [
+          "M0064 permits source annotation only; before/after topology and DNA-bound structure applicability remain abstained.",
+          "M0106 permits a source-scoped carrier-state draft while carrier host identity, numbered attachment site, and structure localization remain abstained.",
+          "M0107 represents a fixed multisubunit assembly and source-proposal redox states; PASS is limited to the two named source operations.",
+          "M0212 represents the ATP-coupled association cycle while complete FeMo/P-cluster state remains abstained.",
+          "M0753 is narrowed to the HisF/free-ammonium half-reaction and does not project a full HisH-HisF channel into 2A0N.",
+          "M0970 permits source annotation only and blocks exact reaction instance and mechanism draft.",
+          "The validator now requires same-model, informed/not-blind, correlated-error, non-independent, zero-human, and no-domain-expert disclosures."
+        ]
+      }
+    ],
+    "result": "accepted_for_scoped_computational_development_after_corrections",
+    "material_open_objections": [
+      {
+        "subject_ids": [
+          "atlas50.candidate.m0970",
+          "M0970"
+        ],
+        "objection": "The selected sources do not resolve the polymer product, before/after chain state, initiation versus elongation, or processivity.",
+        "blocks": [
+          "source_scoped_mechanism_draft",
+          "exact_reaction_instance"
+        ],
+        "permitted": [
+          "source_annotation"
+        ]
+      }
+    ],
+    "boundary": "This informed same-model cross-review checks source-to-decision consistency and deterministic bytes. It is not blind or statistically independent, does not authenticate scientific truth, and does not grant human, expert, independent-validation, gold, tier, freeze, or mechanism-completion status."
+  }
+}

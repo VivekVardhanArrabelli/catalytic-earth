@@ -117,6 +117,10 @@ def _validate_markdown_links() -> None:
         "docs/COMPUTATIONAL_REVIEW_20260905.md",
         "docs/ATLAS50_COMPUTATIONAL_CROSSWALK_REVIEW.md",
         "docs/ATLAS50_COMPUTATIONAL_PANEL_REVIEW.md",
+        "docs/ATLAS50_CROSSWALK_V2.md",
+        "docs/ATLAS50_SOURCE_CHALLENGE.md",
+        "docs/ATLAS50_STATE_PROBE.md",
+        "docs/COMPUTATIONAL_DEVELOPMENT_REVIEW.md",
         "docs/ATLAS_TRUTH_POLICY.md",
         "docs/CORE_REPRODUCTION.md",
         "docs/EVALUATION_MEMORY.md",
@@ -145,7 +149,17 @@ def _validate_json_surfaces(*, include_release_manifest: bool) -> None:
         "data/diagnostics/peroxidase_reassessment_20260905.json",
         "data/atlas/atlas50/computational_review/crosswalk_review.json",
         "data/atlas/atlas50/computational_review/panel_review.json",
+        "data/atlas/atlas50/computational_review/source_challenge_20260905.json",
+        "data/atlas/atlas50/crosswalk_v2/change_map.json",
+        "data/atlas/atlas50/crosswalk_v2/crosswalk.json",
+        "data/atlas/atlas50/crosswalk_v2/manifest.json",
+        "data/atlas/atlas50/state_probe/spec.json",
+        "data/atlas/atlas50/state_probe/report.json",
+        "data/atlas/atlas50/development_gate/adjudications.json",
+        "data/atlas/atlas50/development_gate/review_bindings.json",
+        "data/atlas/atlas50/development_gate/status.json",
         "data/governance/exposure_rows_manifest.json",
+        "data/governance/computational_review_policy.json",
         "data/governance/preregistration-v1.schema.json",
         "data/governance/architecture_freeze.json",
         "data/governance/historical_lineage_quarantine.json",
@@ -354,6 +368,9 @@ def main() -> int:
     _run("scripts/validate_atlas50_phase_a.py")
     _run("scripts/build_atlas50_phase_b.py", "--check")
     _run("scripts/validate_atlas50_phase_b.py")
+    _run("scripts/build_atlas50_crosswalk_v2.py", "--check")
+    _run("scripts/build_atlas50_state_probe.py", "--check")
+    _run("scripts/build_atlas50_development_gate.py", "--check")
     review_spec, review_packets = load_review_context(ROOT)
     review_baseline = os.environ.get("CE_REVIEW_BASE_REF") or "HEAD"
     if review_baseline == "0" * 40:

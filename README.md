@@ -46,9 +46,12 @@ a production biological design system.
 ## Quick Status — 2026-09-05
 
 The compiled atlas remains the 2026-07-14 checkpoint built on the 2026-07-13
-truth reset. The September update adds review intake and a
-[computational correction review](docs/COMPUTATIONAL_REVIEW_20260905.md) of the
-57-row crosswalk and 40-case proposal. It also withdraws the A0A177THN5
+truth reset. The September update adds an executable
+[computational development review](docs/COMPUTATIONAL_DEVELOPMENT_REVIEW.md):
+57 corrected crosswalk rows (23 provisional, 34 unresolved), six generic state
+probes, and source-backed adjudications. Human submissions no longer block
+these scoped draft operations. Four cases permit mechanism drafting; all six
+permit annotation. It also withdraws the A0A177THN5
 APX-specific transfer and retires the study based on it (CE-017). No benchmark
 was rescored or independent human-review status upgraded.
 
@@ -107,8 +110,9 @@ was rescored or independent human-review status upgraded.
   now exports packets and intentionally incomplete templates, validates and
   append-only records supplied assertions, and reports unresolved decisions.
   No submission or reviewer was supplied in this update: all 97 packets remain
-  without a valid submission, the selection remains unfrozen, and source
-  acquisition remains prohibited.
+  without a valid submission and the July selection remains unfrozen. The July
+  acquisition plan remains unexecuted. New bounded source checks and scoped
+  drafts proceed under the September computational development policy.
 
 ## Truth-governance gate
 
@@ -153,6 +157,7 @@ agent run:
 | `docs/ATLAS10_SELECTION.md` | Frozen seven-case extension, source gaps, relationship queries, applicability traps, baseline, review, and compute contracts |
 | `docs/ATLAS10_KERNEL.md` | Compiled ten-case surface, v3 truth objects, source package, queries, comparator, review state, and remaining gate |
 | `docs/ATLAS50_PHASE_A.md` | Deterministic 57-row machine draft, 40-case feasibility matrix, fail-closed 47-case proposal, blockers, and inherited-byte proof |
+| `docs/COMPUTATIONAL_DEVELOPMENT_REVIEW.md` | Current computational review, corrected crosswalk, six-case permissions, objections, and next development batch |
 | `docs/ATLAS50_PHASE_B.md` | Deterministic 97-packet review queue, local append-only review intake, unfrozen 47-case candidate, post-freeze source plan, and explicit review/freeze blockers |
 | `docs/P0_COMPLETION.md` | Auditable completion map for the truth-first review's P0 cleanup |
 | `docs/reviews/catalytic-earth-full-review-2026-07-10.md` | Independent audit, evidence corrections, strategic amendment, and full rationale |
@@ -222,6 +227,9 @@ python scripts/validate_atlas50_phase_a.py
 python scripts/build_atlas50_phase_b.py --check
 python scripts/validate_atlas50_phase_b.py
 python scripts/atlas50_review.py status
+python scripts/build_atlas50_crosswalk_v2.py --check
+python scripts/build_atlas50_state_probe.py --check
+python scripts/build_atlas50_development_gate.py --check
 python scripts/run_test_tier.py "core/unit"
 git diff --check
 ```

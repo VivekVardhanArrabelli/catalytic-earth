@@ -1,5 +1,29 @@
 # Current Decisions
 
+## 2026-09-05: use computational review to authorize scoped development
+
+The owner explicitly requested an urgent substitute for the human-review
+workflow dependency. The [computational development policy](../data/governance/computational_review_policy.json)
+and [review](COMPUTATIONAL_DEVELOPMENT_REVIEW.md) now govern new versioned
+drafts. Source checks, informed challenge, evidence-linked adjudication and
+reproducible permission checks replace waiting for human submissions for
+those operations. Source objections take precedence over agent agreement.
+
+Crosswalk v2 is the current 57-row development draft. Its 23 provisional and
+34 unresolved classifications preserve scope and named target gaps. The
+six-case state sidecar permits four source-scoped mechanism drafts and six
+annotations, with no exact reaction instance authorized. The earlier DHFR
+aggregation recommendation is superseded by an exact reaction-core relation
+and narrower applicability. The agents share a model family and can share
+errors; no independent review or calibrated human equivalence is claimed.
+
+This decision supersedes earlier human-only development restrictions for the
+new draft namespace. It preserves the July frozen packet contract as an
+incomplete historical commitment, existing kernels, protected registries,
+evidence tiers, independent-annotation commitments and experimental claims.
+The new public-source budget is 100 requests/30 MiB per batch for named draft
+checks, without paid services or GPU jobs. No outreach is authorized here.
+
 ## 2026-09-05: accelerate correction with an explicit computational review overlay
 
 The owner requested substantive review while external review is slow. Bounded

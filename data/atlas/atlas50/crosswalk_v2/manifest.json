@@ -1,0 +1,37 @@
+{
+  "experimental_validation_claimed": false,
+  "frozen_phase_a_or_b_modified": false,
+  "independent_human_review_claimed": false,
+  "inputs": [
+    {
+      "path": "data/atlas/atlas50/computational_review/crosswalk_review.json",
+      "sha256": "84150aff2cb563c1f624aa3ce000c91c3588c520604715e81197f87e77d8ad4e"
+    },
+    {
+      "path": "data/atlas/atlas50/phase_a/crosswalk_draft.json",
+      "sha256": "838d74b142fc82c81183daa8d469db9e2baab52ffade4c8c6cf0b07826da1dac"
+    }
+  ],
+  "manifest_id": "atlas50.crosswalk-v2.manifest.2026-09-05.v1",
+  "outputs": [
+    {
+      "path": "change_map.json",
+      "sha256": "4975a8bb079f919de5da061db83c32d4add688bc95f665212a40a2944b240ccc"
+    },
+    {
+      "path": "crosswalk.json",
+      "sha256": "fc0e176b0c6881c949d052889607179ba087dc52ebb7786ee96f96f3ad73615e"
+    }
+  ],
+  "protected_registry_modified": false,
+  "review_independence": {
+    "correlated_error_risk": true,
+    "experimental_validation_count": 0,
+    "independent_human_reviewer_count": 0,
+    "reviewer_kind": "same_model_computational_agents",
+    "statistically_independent": false
+  },
+  "row_count": 57,
+  "schema_version": "catalytic-earth.atlas50-crosswalk-v2-manifest.v1",
+  "status": "computational_provisional_not_human_review"
+}
