@@ -552,3 +552,62 @@ the source evidence tier at 1. The Atlas-10 runtime hash is unchanged, and
 153 checked baseline scientific files are byte-identical to the PR #36 merge.
 The inherited M0222 annotation and its original source bindings are unchanged.
 Publication and remote CI follow this locally verified state.
+
+## Proposal-component search across reviewed batches
+
+PR #37 merged at `b92effb25bd4e9534de86fe51ebb8aa037c9b34b` after all four
+Linux/Windows Python 3.10/3.12 jobs passed (Actions 34005760585). Its feature
+commit is `44525f3965c0f294846241554312dbc526eb9a97`. The clean main revision
+is the base of `codex/mechanism-component-search`.
+
+The next bottleneck is using the existing source chemistry across batches.
+Both the source challenge and engineering assessment favored exact
+proposal-component retrieval over another isolated annotation or more equally
+hard-to-search records. All seven drafts already preserve a source event
+vocabulary in nine proposal summaries. This change makes that vocabulary
+queryable; it adds no scientific coverage or validation claim.
+
+- Root owns the batch catalog, CLI, integration/release checks, documentation
+  and publication.
+- state_contracts owns exact label matching, proposal-level query witnesses
+  and focused regressions.
+- draft_integration_review checks the implementation in a separate pass and
+  remains a same-model, informed, correlated reviewer; it challenges false
+  joins, source scopes and interpretation of the shared Schiff-base label.
+- source_ingestion ran a bounded read-only HisF literature probe to assess
+  whether another isolated correction would be more consequential. No source
+  package, query annotation, or adjudication was changed from that probe.
+
+Repeated component filters are ANDed within one proposal. M0107 proposal 2
+contains decoordination while proposal 3 contains decarboxylation: their
+conjunction correctly returns zero. Matching records retain all alternatives,
+abstentions, primary annotations, and exact proposal/raw-summary witnesses.
+The cross-batch Schiff-base query returns HisF M0753 and class I aldolase
+M0222; it does not imply an enzyme-attached intermediate in both. Event labels
+remain source taxonomy rather than atom-mapped edits or validated mechanisms.
+
+`--batch all` dispatches separate queries with original batch selection and
+review metadata, including empty results. It creates no merged scientific
+bundle. The original default stays four records, and unused component filters
+preserve v1/v2 query output. Event-filter responses use v3. Source participant
+filters remain entry-level and do not ground matched proposals or steps.
+
+The HisF probe found a concrete follow-up lead in Beismann-Driemeyer and
+Sterner (2001), DOI 10.1074/jbc.M102012200 / PMID 11264293: the proposed
+Step-5 acid/base assignments align with the M-CSA step description, while the
+overall residue descriptions appear transposed. Precise roles remain proposals.
+The publisher page/PDF was not directly captured; indexed primary-paper text
+supplied the lead. Retain the current abstention until a source-to-claim review
+and preserved evidence support a scoped correction; do not report this probe
+as a new verified annotation.
+
+The separate implementation challenge found no material issue. Focused checks
+confirm proposal-local conjunction, exact label normalization, preserved batch
+provenance and primary annotations, and unchanged legacy response structures.
+
+Final local verification: 234 core tests ran (233 passed, one optional
+jsonschema skip); repository contracts passed against the PR #37 merge base;
+the built wheel passed fresh-directory Atlas-10 and source-draft queries with
+networking blocked. All 167 checked baseline scientific files are byte-identical
+to that merge. The original Atlas-10 runtime hash and all source/annotation
+payloads remain unchanged. Remote CI and publication follow this verified state.

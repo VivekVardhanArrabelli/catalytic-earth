@@ -1,8 +1,9 @@
-"""Exact SQLite participant lookup for validated Atlas source drafts.
+"""Exact participant and proposal-component lookup for Atlas source drafts.
 
-This module indexes source-reported participant identifiers and reaction sides.
-It deliberately performs no chemical-equivalence, ontology, salt, charge, or
-protonation inference.
+This module indexes source-reported participant identifiers and reaction sides,
+and matches source-reported component labels within one mechanism proposal. It
+deliberately performs no chemical-equivalence, ontology, event, role, or
+mechanism inference.
 """
 
 from __future__ import annotations
@@ -32,6 +33,19 @@ def normalize_chebi_id(value: str) -> str:
     return f"CHEBI:{number}"
 
 
+def normalize_mechanism_component(value: str) -> str:
+    """Normalize one complete M-CSA mechanism-component label for matching."""
+
+    if not isinstance(value, str):
+        raise ValueError("mechanism component must be text")
+    normalized = value.strip().casefold()
+    if not normalized:
+        raise ValueError("mechanism component must not be blank")
+    if "," in normalized:
+        raise ValueError("mechanism component must be one label without commas")
+    return normalized
+
+
 def _normalized_filter(values: Iterable[str], name: str) -> list[str]:
     if not isinstance(values, (list, tuple)):
         raise ValueError(f"{name} must be a list or tuple of ChEBI identifiers")
@@ -43,6 +57,67 @@ def _normalized_filter(values: Iterable[str], name: str) -> list[str]:
             output.append(normalized)
             seen.add(normalized)
     return output
+
+
+def _normalized_component_filter(values: Iterable[str]) -> list[str]:
+    if not isinstance(values, (list, tuple)):
+        raise ValueError("mechanism_components must be a list or tuple of labels")
+    output: list[str] = []
+    seen: set[str] = set()
+    for value in values:
+        normalized = normalize_mechanism_component(value)
+        if normalized not in seen:
+            output.append(normalized)
+            seen.add(normalized)
+    return output
+
+
+def _source_component_labels(summary: str) -> list[tuple[str, str]]:
+    raw_labels = summary.split(", ")
+    if not raw_labels or any(not label or label != label.strip() for label in raw_labels):
+        raise ValueError("source components_summary is not an exact comma-space list")
+    return [(label, normalize_mechanism_component(label)) for label in raw_labels]
+
+
+def match_source_mechanism_components(
+    bundle: dict[str, Any], *, components: Iterable[str] = (),
+) -> dict[str, Any]:
+    """Match exact source labels with every requested label in one proposal."""
+
+    filters = {"mechanism_components": _normalized_component_filter(components)}
+    validate_source_drafts(bundle)
+    if not filters["mechanism_components"]:
+        return {
+            "filters": filters,
+            "matches": {record["record_id"]: [] for record in bundle["records"]},
+        }
+
+    requested = set(filters["mechanism_components"])
+    matches: dict[str, list[dict[str, Any]]] = {}
+    for record in bundle["records"]:
+        proposal_matches: list[dict[str, Any]] = []
+        for proposal in record["mechanism_proposals"]:
+            labels = _source_component_labels(proposal["components_summary"])
+            normalized_labels = {normalized for _, normalized in labels}
+            if not requested <= normalized_labels:
+                continue
+            matched_labels: list[str] = []
+            seen: set[str] = set()
+            for raw_label, normalized in labels:
+                if normalized in requested and normalized not in seen:
+                    matched_labels.append(raw_label)
+                    seen.add(normalized)
+            proposal_matches.append(
+                {
+                    "proposal_id": proposal["proposal_id"],
+                    "source_mechanism_id": proposal["source_mechanism_id"],
+                    "raw_components_summary": proposal["components_summary"],
+                    "matched_labels": matched_labels,
+                }
+            )
+        if proposal_matches:
+            matches[record["record_id"]] = proposal_matches
+    return {"filters": filters, "matches": matches}
 
 
 def materialize_source_drafts(bundle: dict[str, Any]) -> sqlite3.Connection:

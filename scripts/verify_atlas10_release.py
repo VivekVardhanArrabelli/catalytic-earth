@@ -74,6 +74,9 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                 "    'aldolases': run_query('--batch', 'aldolase-transketolase', '--reactant', '57642', '--product', '49299'),\n"
                 "    'primary': run_query('--batch', 'aldolase-transketolase', '--mcsa-id', 'M0222', '--text', 'DHAP-derived covalent moiety'),\n"
                 "    'transketolase_context': run_query('--batch', 'aldolase-transketolase', '--mcsa-id', 'M0219', '--text', 'P29401'),\n"
+                "    'events': run_query('--batch', 'all', '--mechanism-component', 'schiff base formed'),\n"
+                "    'full_events': run_query('--batch', 'all', '--mechanism-component', 'schiff base formed', '--steps'),\n"
+                "    'split_proposal': run_query('--batch', 'all', '--mechanism-component', 'decoordination from a metal ion', '--mechanism-component', 'decarboxylation'),\n"
                 "}))\n"
             )
             draft_run = subprocess.run(
@@ -162,6 +165,37 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                     or support["full_mechanism"] != "not_validated"
                     or context_records[0]["evidence_tier"] != 1):
                 raise ValueError("installed transketolase context overstates evidence")
+            events = queries["events"]
+            if (events["searched_batch_ids"] != ["aldolase-transketolase", "default"]
+                    or events["searched_record_count"] != 7
+                    or events["record_count"] != 2
+                    or events["mechanism_proposal_match_count"] != 2):
+                raise ValueError("installed all-batch event query differs")
+            event_records = {
+                record["mcsa_id"]: record
+                for batch in events["batches"] for record in batch["result"]["records"]
+            }
+            if set(event_records) != {"M0753", "M0222"}:
+                raise ValueError("installed event query lost a batch or added a false match")
+            for batch, full_batch in zip(events["batches"], queries["full_events"]["batches"]):
+                result, full_result = batch["result"], full_batch["result"]
+                if result["selection"] != full_result["selection"]:
+                    raise ValueError("installed event query changed the source selection")
+                for record, whole in zip(result["records"], full_result["records"]):
+                    if (record["mechanism_component_matches"] != whole["mechanism_component_matches"]
+                            or record["mandatory_abstentions"] != whole["mandatory_abstentions"]
+                            or record["evidence_tier"] != 1):
+                        raise ValueError("installed compact/full event evidence differs")
+                    for witness in record["mechanism_component_matches"]:
+                        if witness["matched_labels"] != ["schiff base formed"]:
+                            raise ValueError("installed event query lost its exact source label")
+            if event_records["M0222"]["primary_evidence_annotations"] != primary:
+                raise ValueError("installed event query lost primary evidence")
+            split = queries["split_proposal"]
+            if (split["record_count"] != 0 or split["mechanism_proposal_match_count"] != 0
+                    or len(split["batches"]) != 2
+                    or any(not batch["result"]["selection"] for batch in split["batches"])):
+                raise ValueError("installed query combined alternative proposals or lost empty-batch scope")
             print("Fresh-directory source draft query passed with network connections blocked")
     expected_counts = {
         "case_count": 10,

@@ -172,6 +172,15 @@ def _chebi_argument(value: str) -> str:
         raise argparse.ArgumentTypeError(str(exc)) from exc
 
 
+def _mechanism_component_argument(value: str) -> str:
+    from .atlas_draft_index import normalize_mechanism_component
+
+    try:
+        return normalize_mechanism_component(value)
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError(str(exc)) from exc
+
+
 def verified_primary_evidence(
     batch_name: str = "default", *, bundle: dict[str, Any] | None = None,
 ) -> dict[str, Any] | None:
@@ -220,12 +229,17 @@ def build_parser() -> argparse.ArgumentParser:
         "atlas-drafts", help="query source-scoped mechanisms, states and abstentions offline"
     )
     drafts.add_argument(
-        "--batch", choices=sorted(BATCHES), default="default",
-        help="select a separately reviewed source batch (default: original four records)",
+        "--batch", choices=[*sorted(BATCHES), "all"], default="default",
+        help="select a source batch, or query all separately (default: original four records)",
     )
     drafts.add_argument("--mcsa-id", help="filter an exact M-CSA identifier, e.g. M0107")
     drafts.add_argument("--assembly", help="filter the source-described assembly mode")
     drafts.add_argument("--text", help="search source chemistry and state descriptions")
+    drafts.add_argument(
+        "--mechanism-component", action="append", type=_mechanism_component_argument,
+        metavar="SOURCE_LABEL",
+        help="require an exact source event label; repeat for AND within one proposal",
+    )
     drafts.add_argument(
         "--participant", action="append", type=_chebi_argument, metavar="CHEBI_ID",
         help="require an exact source ChEBI participant on either side; repeat for AND",
@@ -268,16 +282,32 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(rendered, end="")
         return 0
     if args.command == "atlas-drafts":
+        from .atlas_draft_batch import BATCHES
+        from .atlas_draft_catalog import query_source_draft_batches
         from .atlas_draft_query import query_source_drafts
 
-        bundle = verified_source_drafts(args.batch)
-        result = query_source_drafts(
-            bundle, mcsa_id=args.mcsa_id,
-            assembly=args.assembly, text=args.text, include_steps=args.steps,
-            participants=args.participant or (), reactants=args.reactant or (),
-            products=args.product or (),
-            primary_evidence=verified_primary_evidence(args.batch, bundle=bundle),
-        )
+        filters = {
+            "mcsa_id": args.mcsa_id, "assembly": args.assembly,
+            "text": args.text, "include_steps": args.steps,
+            "participants": args.participant or (), "reactants": args.reactant or (),
+            "products": args.product or (),
+            "mechanism_components": args.mechanism_component or (),
+        }
+        if args.batch == "all":
+            bundles = {name: verified_source_drafts(name) for name in sorted(BATCHES)}
+            evidence = {
+                name: verified_primary_evidence(name, bundle=bundle)
+                for name, bundle in bundles.items()
+            }
+            result = query_source_draft_batches(
+                bundles, primary_evidence_by_batch=evidence, **filters,
+            )
+        else:
+            bundle = verified_source_drafts(args.batch)
+            result = query_source_drafts(
+                bundle, **filters,
+                primary_evidence=verified_primary_evidence(args.batch, bundle=bundle),
+            )
         rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
         if args.output:
             args.output.write_text(rendered, encoding="utf-8", newline="\n")

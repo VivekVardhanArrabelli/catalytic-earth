@@ -62,6 +62,8 @@ catalytic-earth atlas-drafts --reactant CHEBI:28938 --product CHEBI:58278
 catalytic-earth atlas-drafts --batch aldolase-transketolase --reactant 57642 --reactant 59776 --product 49299
 catalytic-earth atlas-drafts --batch aldolase-transketolase --mcsa-id M0219 --steps
 catalytic-earth atlas-drafts --batch aldolase-transketolase --mcsa-id M0222 --text "DHAP-derived covalent moiety"
+catalytic-earth atlas-drafts --batch all --mechanism-component "schiff base formed"
+catalytic-earth atlas-drafts --batch all --mechanism-component decarboxylation --product 16526
 ```
 
 Compact results omit step bodies while retaining scope, residue evidence and
@@ -87,7 +89,39 @@ protein-applicability abstentions, assign a free-metabolite ChEBI identity to
 the bound adduct, or change evidence tiers. Annotated responses use query
 schema v2 and include `primary_evidence_annotations` in compact and full
 results; text search includes those annotations. Calls without a sidecar,
-including the default batch, retain query schema v1.
+including the default batch, retain query schema v1 unless a mechanism-component
+filter is used.
+
+### Search source mechanism events across batches
+
+`--mechanism-component` matches a complete label from a proposal's
+`components_summary`. Matching trims surrounding whitespace and ignores case;
+it does not expand synonyms or match substrings. Repeat the flag to require
+every label in **one proposal**. For example, M0107 proposal 2 names
+`decoordination from a metal ion`, while proposal 3 names `decarboxylation`.
+Searching for both returns no match instead of combining the two alternatives.
+
+Each matching record retains all its proposals and gains
+`mechanism_component_matches`: the proposal ID, source mechanism ID, original
+summary and matched source labels. These filtered results use query schema v3;
+compact and full results carry identical witnesses and uncertainty. Chemical
+filters still apply to the entry-level reaction, so their intersection with an
+event label does not assign the matched participant to that proposal or step.
+
+`--batch all` applies the query separately to each available batch. Its catalog
+response contains `batches`, each with `batch_id` and its complete `result`,
+including selection and review metadata even when empty. It also reports the
+searched batch IDs, searched record count, matching record count, and, for event
+filters, matching proposal count. The default batch remains the original four
+records. Existing single-batch responses are unchanged when event filters are
+unused; this aggregation creates no combined scientific source bundle.
+
+The Schiff-base label query finds M0753 HisF and M0222 class I aldolase. This
+is a shared source event label, not an assertion that both form an
+enzyme-attached intermediate or use identical chemistry. Source labels do not
+locate events to individual steps, establish conserved function, or validate
+mechanisms. A missing label means no matching annotation in the selected
+source summaries, not absence of that chemistry from the enzyme.
 
 Chemical filters accept ChEBI identifiers or their numeric part. Repeat
 `--participant` (either side), `--reactant` (left), or `--product` (right) to

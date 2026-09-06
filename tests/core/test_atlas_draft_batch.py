@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import copy
+import contextlib
+import io
 import json
 import unittest
 from dataclasses import FrozenInstanceError
@@ -26,6 +28,9 @@ from catalytic_earth.atlas_draft_batch import (
     DraftBatchPaths,
     resolve_batch,
 )
+from catalytic_earth.atlas_draft_catalog import query_source_draft_batches
+from catalytic_earth.atlas_draft_query import query_source_drafts
+from catalytic_earth.core_cli import main, verified_primary_evidence, verified_source_drafts
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -229,6 +234,102 @@ class AtlasDraftBatchTests(unittest.TestCase):
                 batch=self.batch,
                 repo_root=ROOT,
             )
+
+
+class SourceDraftCatalogTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.bundles = {name: verified_source_drafts(name) for name in BATCHES}
+        cls.evidence = {
+            name: verified_primary_evidence(name, bundle=bundle)
+            for name, bundle in cls.bundles.items()
+        }
+
+    def query(self, **filters):
+        return query_source_draft_batches(
+            self.bundles, primary_evidence_by_batch=self.evidence, **filters,
+        )
+
+    def test_catalog_retains_exact_per_batch_queries_and_source_boundaries(self):
+        result = self.query()
+        self.assertEqual(result["searched_batch_ids"], sorted(BATCHES))
+        self.assertEqual(result["searched_record_count"], 7)
+        self.assertEqual(result["record_count"], 7)
+        self.assertNotIn("mechanism_proposal_match_count", result)
+        for item in result["batches"]:
+            name = item["batch_id"]
+            self.assertEqual(item["result"], query_source_drafts(
+                self.bundles[name], primary_evidence=self.evidence[name],
+            ))
+        self.assertFalse(result["query_semantics"]["cross_batch_evidence_join"])
+
+    def test_schiff_base_query_spans_batches_and_preserves_source_conflicts(self):
+        before = copy.deepcopy((self.bundles, self.evidence))
+        compact = self.query(mechanism_components=(" Schiff Base Formed ",))
+        full = self.query(mechanism_components=("schiff base formed",), include_steps=True)
+        self.assertEqual(compact["record_count"], 2)
+        self.assertEqual(compact["mechanism_proposal_match_count"], 2)
+        records = [r for b in compact["batches"] for r in b["result"]["records"]]
+        self.assertEqual({r["mcsa_id"] for r in records}, {"M0753", "M0222"})
+        self.assertTrue(all(r["evidence_tier"] == 1 for r in records))
+        for item, full_item in zip(compact["batches"], full["batches"]):
+            for record, whole in zip(item["result"]["records"], full_item["result"]["records"]):
+                self.assertEqual(record["mechanism_component_matches"], whole["mechanism_component_matches"])
+                self.assertEqual(record["mandatory_abstentions"], whole["mandatory_abstentions"])
+                self.assertTrue(record["mandatory_abstentions"])
+        aldolase = next(r for r in records if r["mcsa_id"] == "M0222")
+        self.assertEqual(aldolase["primary_evidence_annotations"], [self.evidence["aldolase-transketolase"]["annotations"][1]])
+        self.assertEqual((self.bundles, self.evidence), before)
+
+    def test_component_conjunction_cannot_join_alternative_proposals(self):
+        result = self.query(mechanism_components=(
+            "decoordination from a metal ion", "decarboxylation",
+        ))
+        self.assertEqual(result["record_count"], 0)
+        self.assertEqual(result["mechanism_proposal_match_count"], 0)
+        self.assertEqual(len(result["batches"]), 2)
+        for item in result["batches"]:
+            self.assertEqual(item["result"]["selection"], self.bundles[item["batch_id"]]["selection"])
+            self.assertEqual(item["result"]["records"], [])
+
+    def test_record_chemical_filter_preserves_the_proposal_match_scope(self):
+        result = self.query(
+            mechanism_components=("schiff base formed",), reactants=("57642",),
+        )
+        records = [r for b in result["batches"] for r in b["result"]["records"]]
+        self.assertEqual([r["mcsa_id"] for r in records], ["M0222"])
+        self.assertTrue(records[0]["participant_matches"])
+        self.assertTrue(records[0]["mechanism_component_matches"])
+        self.assertTrue(records[0]["mandatory_abstentions"])
+
+    def test_catalog_rejects_mislabeled_bundles_and_orphan_evidence(self):
+        with self.assertRaisesRegex(ValueError, "bundle identity"):
+            query_source_draft_batches({"aldolase-transketolase": self.bundles["default"]})
+        with self.assertRaisesRegex(ValueError, "unselected"):
+            query_source_draft_batches(self.bundles, primary_evidence_by_batch={"missing": {}})
+        with self.assertRaisesRegex(ValueError, "at least one"):
+            query_source_draft_batches({})
+
+    def test_filter_cannot_hide_duplicate_records_in_separate_batches(self):
+        duplicate = copy.deepcopy(self.bundles["default"])
+        duplicate["bundle_id"] = "atlas50.source-scoped-mechanism-drafts.copy"
+        with self.assertRaisesRegex(ValueError, "multiple selected batches"):
+            query_source_draft_batches(
+                {"default": self.bundles["default"], "copy": duplicate},
+                mcsa_id="M9999",
+            )
+
+    def test_cli_searches_all_batches_and_rejects_multiple_labels_in_one_flag(self):
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            code = main(["atlas-drafts", "--batch", "all", "--mechanism-component", "schiff base formed"])
+        self.assertEqual(code, 0)
+        result = json.loads(output.getvalue())
+        self.assertEqual(result["record_count"], 2)
+        self.assertEqual(result["searched_batch_ids"], sorted(BATCHES))
+        with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit) as raised:
+            main(["atlas-drafts", "--mechanism-component", "proton transfer, electron transfer"])
+        self.assertEqual(raised.exception.code, 2)
 
 
 if __name__ == "__main__":

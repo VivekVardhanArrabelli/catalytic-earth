@@ -5,7 +5,10 @@ import copy
 import json
 from typing import Any, Sequence
 
-from .atlas_draft_index import match_source_participants
+from .atlas_draft_index import (
+    match_source_mechanism_components,
+    match_source_participants,
+)
 from .atlas_primary_evidence import validate_primary_evidence
 
 
@@ -15,9 +18,10 @@ def query_source_drafts(
     include_steps: bool = False,
     participants: Sequence[str] = (), reactants: Sequence[str] = (),
     products: Sequence[str] = (),
+    mechanism_components: Sequence[str] = (),
     primary_evidence: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    """Intersect record filters and exact source participants, retaining evidence."""
+    """Intersect record filters and exact source witnesses, retaining evidence."""
     primary_summary = None
     annotations_by_record: dict[str, list[dict[str, Any]]] = {}
     if primary_evidence is not None:
@@ -28,9 +32,15 @@ def query_source_drafts(
     chemical_matches = match_source_participants(
         bundle, participants=participants, reactants=reactants, products=products,
     )
+    component_matches = match_source_mechanism_components(
+        bundle, components=mechanism_components,
+    )
+    component_filter_used = bool(component_matches["filters"]["mechanism_components"])
     results = []
     for record in bundle["records"]:
         if record["record_id"] not in chemical_matches["matches"]:
+            continue
+        if record["record_id"] not in component_matches["matches"]:
             continue
         if mcsa_id is not None and record["mcsa_id"].upper() != mcsa_id.upper():
             continue
@@ -52,6 +62,10 @@ def query_source_drafts(
             continue
         result = copy.deepcopy(record)
         result["participant_matches"] = chemical_matches["matches"][record["record_id"]]
+        if component_filter_used:
+            result["mechanism_component_matches"] = copy.deepcopy(
+                component_matches["matches"][record["record_id"]]
+            )
         if primary_evidence is not None:
             result["primary_evidence_annotations"] = copy.deepcopy(
                 annotations_by_record.get(record["record_id"], [])
@@ -107,4 +121,19 @@ def query_source_drafts(
                 )
             },
         }
+    if component_filter_used:
+        output["schema_version"] = "catalytic-earth.source-draft-query.v3"
+        output["filters"].update(component_matches["filters"])
+        output["query_semantics"].update(
+            {
+                "mechanism_component_match_scope": (
+                    "all_requested_exact_source_labels_within_one_proposal"
+                ),
+                "mechanism_component_normalization": "trim_and_casefold_only",
+                "mechanism_component_step_localization": "not_established",
+                "mechanism_component_implies_conserved_function": False,
+                "mechanism_component_implies_exact_reaction": False,
+                "participant_match_grounds_matching_proposal": False,
+            }
+        )
     return output
