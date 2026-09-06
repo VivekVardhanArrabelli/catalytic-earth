@@ -358,3 +358,74 @@ contracts and offline rebuilds pass. The installed wheel returns correct
 same-record ammonium/HisF and cross-record CO2 results with network connections
 blocked; the inherited Atlas-10 runtime hash is unchanged. All source snapshots,
 compiled records, schema files and scientific gates remain unchanged from PR #33.
+
+## Aldolase and transketolase source coverage
+
+PR #34 merged at `7d19f5e64aad9eb53636cec51a4c8b90e7e0238c` after all four
+CI jobs passed. Work continues on `codex/atlas-aldolase-transketolase`.
+
+The selected batch is M0052 Class II aldolase, M0222 Class I aldolase, and
+M0219 transketolase. The aldolases share source reaction participants but
+different catalytic chemistry; transketolase adds distinct ThDP proposals.
+A versioned successor review set inherits the earlier six cases and adds the
+three declared cases. Default legacy checks remain strict, while batch paths
+and declared case IDs replace the fixed-six limitation for successors.
+
+- Root owns final adjudication/bindings, compiler/build and package/query
+  integration, verification and publication.
+- state_contracts owns batch paths, generic probe/gate support, focused tests
+  and the nine-case successor probe/spec.
+- source_ingestion owns the batch-aware importer and three source snapshots,
+  manifest, attribution and receipt reuse.
+- draft_integration_review owns the evidence-linked source challenge, informed
+  by raw API/MRV files and root's specific M0222/M0052 leads.
+
+Source inspection fetched three official entries and all 30 linked schemes:
+31 requests, 569,327 bytes, all present and parsed. Root additionally inspected
+the three official entry pages; their download bytes are not fabricated in
+the raw-source receipt ledger. No old acquisition receipt is relabeled as new.
+
+Challenge found M0222 step-1 text/drawing substrate disagreement and mixed
+rabbit/archaeal applicability. M0219 has proposal-specific reaction/protein
+contexts and unresolved native metal; ThDP covalent chemistry does not imply a
+redox transition. M0052 retains an explicitly inferred step and extraenzymatic
+cyclization. These remain scope limits and abstentions in the new records.
+
+Final successor adjudications preserve the earlier six cases exactly and bind
+all seven reviewed input files. The new source package compiles to three
+Tier-1 records, four distinct proposals, 26 nonterminal steps, four terminal
+states and 98 source arrows. Default batch selection remains the original
+four records; the new named batch selects only its three newly declared cases.
+Compact and full chemical queries preserve the explicit source conflicts.
+
+Verification before publication: 19 focused source/batch/query tests passed;
+the initial full core suite ran 196 tests (195 passed, one optional jsonschema skip).
+The built wheel queries both batches from a fresh directory with network
+connections blocked, including the two aldolases under shared participants.
+Atlas-10 still has ten cases/30 typed objects and runtime hash
+`57fb5e4708d6963b994a9ffd125549b822effe060da3e735c1afd987f1c84bdb`.
+All 135 checked baseline atlas data/package files and the exposure ledger are
+byte-identical to PR #34's merge. No independent, human, experimental, Tier-2,
+or exact-reaction validation was added.
+
+The separate-agent compiled-source inspection found no material defect:
+entry/proposal contexts, source residue mappings, inference and evidence status,
+and all mandatory abstentions survive packaged compact/full queries. A software
+review found two gaps now corrected: explicit annotation selection cannot claim a
+mechanism-draft operation, and live redirected responses are rejected before
+their body is read or attributed. New regressions also reject reordered capture
+ledgers. The receipt flag now correctly reports that complete raw API responses
+are not committed; parsed entries and all linked diagrams are retained in source
+wrappers. Root reviewed this exact metadata correction, updated its pins, and
+rebuilt the successor package offline without changing source snapshot bytes.
+Source research is checking whether
+primary M0222 papers can resolve the substrate and protein-context conflicts
+at a narrower scope. Repository contracts passed before the final narrow corrections; final checks and remote CI follow.
+
+Final rerun after corrections: 199 core tests (198 passed, one optional skip),
+repository contracts, both source batches and installed-wheel network-blocked
+queries all passed. The next evidence-led task has a concrete lead: primary
+rabbit aldolase structures support a DHAP-derived Lys229 covalent intermediate
+(P00883 UniProt Lys230), while archaeal Tyr146/Lys177 work must remain separate.
+That can support a narrower cited correction, without treating an entire source
+proposal or detailed attack trajectory as experimentally established.

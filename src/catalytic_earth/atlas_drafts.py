@@ -15,6 +15,8 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
+from .atlas_draft_batch import DEFAULT_BATCH, DraftBatchPaths
+
 BUNDLE_SCHEMA_VERSION = "catalytic-earth.atlas-source-draft-bundle.v1"
 RECORD_SCHEMA_VERSION = "catalytic-earth.mechanism-record.v4"
 COMPILER_VERSION = "catalytic-earth.atlas-source-draft-compiler.v1"
@@ -791,7 +793,9 @@ def _build_source_drafts(
     return bundle
 
 
-def build_source_drafts(repo_root: str | Path) -> dict[str, Any]:
+def build_source_drafts(
+    repo_root: str | Path, *, batch: DraftBatchPaths = DEFAULT_BATCH,
+) -> dict[str, Any]:
     """Build v4 records from offline source snapshots and live gate inputs."""
 
     root = Path(repo_root)
@@ -801,28 +805,32 @@ def build_source_drafts(repo_root: str | Path) -> dict[str, Any]:
     from .atlas50_development_gate import build_development_status
     from .canonical_hash import canonical_file_sha256
 
-    source_manifest, entries = load_draft_sources(root)
-    gate = build_development_status(root)
-    committed_gate = _read_json(root / GATE_PATH)
+    source_manifest, entries = load_draft_sources(root, batch=batch)
+    gate = build_development_status(root, batch=batch)
+    committed_gate = _read_json(root / batch.status_path)
     _require(
         committed_gate == gate,
         "committed computational development status is stale",
     )
-    state_probe = _read_json(root / PROBE_PATH)
+    state_probe = _read_json(root / batch.probe_report_path)
     source_manifest_sha256 = _value_sha256(source_manifest)
     input_bindings = {
-        "development_gate_status": canonical_file_sha256(root / GATE_PATH),
-        "state_probe_report": canonical_file_sha256(root / PROBE_PATH),
+        "development_gate_status": canonical_file_sha256(root / batch.status_path),
+        "state_probe_report": canonical_file_sha256(root / batch.probe_report_path),
         "source_manifest": source_manifest_sha256,
         "record_schema": canonical_file_sha256(root / SCHEMA_PATH),
     }
-    return _build_source_drafts(
+    bundle = _build_source_drafts(
         source_manifest=source_manifest,
         entries=entries,
         development_gate=gate,
         state_probe=state_probe,
         input_bindings=input_bindings,
     )
+    if batch != DEFAULT_BATCH:
+        bundle["bundle_id"] += "." + batch.batch_id
+    validate_source_drafts(bundle)
+    return bundle
 
 
 def _validate_claim_boundary(value: Any, context: str) -> None:

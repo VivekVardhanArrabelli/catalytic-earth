@@ -36,6 +36,10 @@ Current truth:
   M0212 and M0753. No exact reaction instance is authorized. Source challenges,
   explicit adjudications and pinned-input checks govern these operations;
   same-model agreement does not establish independent validation.
+  A separate successor review inherits those six decisions and adds M0052,
+  M0219 and M0222 with source annotation and mechanism transcription permitted.
+  The resulting nine-case review permits seven mechanism drafts and still
+  authorizes no exact reaction instance.
 - The first [correction review](COMPUTATIONAL_REVIEW_20260905.md) remains input
   history. Its DHFR aggregation rationale is superseded: the implemented
   reaction-core scope permits the single M0112 exact relation, with narrower
@@ -137,6 +141,17 @@ Current truth:
   the September authority; the frozen July acquisition plan stays unexecuted.
   Further batches can use the same importer and compiler. M0064 topology and
   M0970 polymer state remain unresolved and block their affected operations.
+- The separately selectable `aldolase-transketolase` batch adds three Tier-1
+  records, four proposals, 26 reaction steps, four terminal states and 98 source
+  arrows. Across both source batches this is seven records and nine proposals.
+  The original batch remains unchanged. The new batch acquired three entries
+  and all 30 linked schemes in 31 recorded requests/569,327 bytes, with three
+  ancillary official-page checks. M0222 retains a Step 1 substrate conflict and
+  mixed rabbit/archaeal applicability. M0219 retains different proposal reaction
+  and protein contexts and uncertain native metal. Inferred, extra-enzymatic
+  and computational-source steps retain their source status. The installed
+  chemical query returns the two aldolases under shared source participants
+  without asserting canonical reaction equivalence or resolving those conflicts.
 - The historical July packet contract still requires actual human submissions
   for its own completion; contacting reviewers requires outreach authority.
   Computational review does not complete independent annotation, and the first

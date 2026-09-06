@@ -142,13 +142,16 @@ def verified_atlas10_result() -> dict[str, Any]:
     }
 
 
-def verified_source_drafts() -> dict[str, Any]:
+def verified_source_drafts(batch_name: str = "default") -> dict[str, Any]:
     """Read the reviewed source projections without requiring a checkout or network."""
     from .atlas_drafts import validate_source_drafts
+    from .atlas_draft_batch import DEFAULT_BATCH, resolve_batch
 
-    raw = _resource_bytes("draft_data/source_drafts.json")
-    expected = json.loads(_resource_bytes("draft_data/source_drafts_expected.json"))
-    attribution = _resource_bytes("draft_data/source_drafts_attribution.md")
+    batch = resolve_batch(batch_name)
+    stem = "source_drafts" if batch == DEFAULT_BATCH else batch.batch_id.replace("-", "_")
+    raw = _resource_bytes(f"draft_data/{stem}.json")
+    expected = json.loads(_resource_bytes(f"draft_data/{stem}_expected.json"))
+    attribution = _resource_bytes(f"draft_data/{stem}_attribution.md")
     if expected.get("schema_version") != "catalytic-earth.source-drafts-package.v1":
         raise ValueError("unsupported source draft package")
     if hashlib.sha256(raw).hexdigest() != expected.get("bundle_sha256"):
@@ -170,6 +173,8 @@ def _chebi_argument(value: str) -> str:
 
 
 def build_parser() -> argparse.ArgumentParser:
+    from .atlas_draft_batch import BATCHES
+
     parser = argparse.ArgumentParser(
         prog="catalytic-earth",
         description="Deterministic, dependency-free Catalytic Earth core",
@@ -189,6 +194,10 @@ def build_parser() -> argparse.ArgumentParser:
     atlas10.add_argument("--output", type=Path, help="optional JSON output path")
     drafts = subparsers.add_parser(
         "atlas-drafts", help="query source-scoped mechanisms, states and abstentions offline"
+    )
+    drafts.add_argument(
+        "--batch", choices=sorted(BATCHES), default="default",
+        help="select a separately reviewed source batch (default: original four records)",
     )
     drafts.add_argument("--mcsa-id", help="filter an exact M-CSA identifier, e.g. M0107")
     drafts.add_argument("--assembly", help="filter the source-described assembly mode")
@@ -238,7 +247,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         from .atlas_draft_query import query_source_drafts
 
         result = query_source_drafts(
-            verified_source_drafts(), mcsa_id=args.mcsa_id,
+            verified_source_drafts(args.batch), mcsa_id=args.mcsa_id,
             assembly=args.assembly, text=args.text, include_steps=args.steps,
             participants=args.participant or (), reactants=args.reactant or (),
             products=args.product or (),
