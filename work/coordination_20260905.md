@@ -429,3 +429,61 @@ rabbit aldolase structures support a DHAP-derived Lys229 covalent intermediate
 (P00883 UniProt Lys230), while archaeal Tyr146/Lys177 work must remain separate.
 That can support a narrower cited correction, without treating an entire source
 proposal or detailed attack trajectory as experimentally established.
+
+## Primary-evidence correction after the additional batch
+
+PR #35 merged at `d4b4244c81343da2beaa8ad49b68f78d145849a0` after all four
+Linux/Windows Python 3.10/3.12 jobs passed (Actions 34001622124). Its feature
+commit is `5b499989ab5b647c64f73fe3affe05960b6f1efa`. Work continues on
+`codex/atlas-primary-evidence`, initially based on that feature commit.
+
+The highest-impact next step is resolving a source ambiguity with primary
+structure evidence. Source ingestion inspected the underlying publications,
+PDB records and numbering. A separate same-model challenge confirmed the narrow
+result and caught a chemical-state trap: the bound DHAP-derived adduct must not
+be equated with the free ChEBI species. 1J4E is an engineered, NaBH4-reduced trap,
+not a direct observation of the native Schiff base. Its legacy sequence mapping
+is not used; 2QUT maps author Lys229 to P00883 Lys230.
+
+- Root owns final scientific adjudication/annotation, build/CLI/package wiring,
+  documentation, verification and publication.
+- state_contracts owns the generic optional annotation validator, query support
+  and tests. It must preserve default v1 query results and immutable source
+  records, reject stale review/source pins and forbid scope/tier promotion.
+- source_ingestion owns the minimal 2QUT raw audit package and field projection,
+  with truthful inventory, exact hash and attribution.
+- draft_integration_review challenges the precise final annotation against
+  primary evidence, including trapping chemistry, numbering and bound-species
+  limits. These roles remain informed, same-model and statistically correlated.
+
+The annotation retains source Step 1/7 prose-versus-scheme conflicts, supplies a
+rabbit-site DHAP-derived covalent-moiety observation and sourced numbering, and
+keeps whole-step trajectory, exact bound species, and full-proposal applicability
+unasserted. One additive query annotation does not count as another mechanism,
+reaction, Tier-2 case, project experiment or independent validation. The whole
+2QUT CIF remains in the audit package; its original download lacks an HTTP
+receipt, explicitly disclosed rather than reconstructed as a new acquisition.
+
+Final source challenge narrowed two phrases: the captured adduct provides
+structural counterevidence to Step 1's G3P wording, and resolves its deposited
+DHAP parent-moiety designation rather than an exact bound chemical species.
+The field projection now explicitly retains unknown bond order and protonation.
+Root applied the precise reviewed changes and repinned the final payload to
+`a7ec87ea2f5446e592c9288764069f49d95f9ff0f1dca056607272eb6076ec8c`.
+
+A cross-check confirmed the actual raw hash, Lys229-to-Lys230 mapping, bound-state
+limits and evidence roles. The generic validator does not rederive arbitrary
+scientific prose or mappings from coordinates; an editor who recomputes the
+manual review pin must repeat source-to-claim review. Its source-digest checks
+establish integrity, not scientific truth. No additional semantic adjudication
+engine is represented as implemented.
+
+Final verification: 16 focused primary-evidence tests passed. The full core run
+has 215 tests (214 passed, one optional jsonschema skip); repository contracts
+and installed-wheel queries with networking blocked passed. The wheel excludes
+raw CIF files, retains the source tier and all original abstentions, returns
+the author/canonical residue mapping, and includes identical annotations in
+compact/full query results. All 149 checked existing scientific files remain
+byte-identical; only the additional package expectation gains the annotation
+asset hash. The complete source records, snapshots and reviewed scope decisions
+remain unchanged. Remote CI and publication follow this verified local state.

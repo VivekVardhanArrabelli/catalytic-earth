@@ -129,6 +129,9 @@ was rescored or independent human-review status upgraded.
   diagram conflicts, mixed protein applicability, inferred/extra-enzymatic
   steps and unresolved native-metal identity remain visible. No source draft
   claims an exact reaction instance or independent scientific validation.
+  M0222 also exposes a separate primary-structure annotation supporting a
+  DHAP-derived covalent moiety at author Lys229 / P00883 Lys230. The original
+  source fields and broader mechanism abstentions remain intact.
 
 ## Truth-governance gate
 

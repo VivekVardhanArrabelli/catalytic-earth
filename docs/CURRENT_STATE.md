@@ -152,6 +152,13 @@ Current truth:
   and computational-source steps retain their source status. The installed
   chemical query returns the two aldolases under shared source participants
   without asserting canonical reaction equivalence or resolving those conflicts.
+- M0222 now also carries a separate reviewed primary-structure annotation:
+  2QUT supports a DHAP-derived covalent moiety at author Lys229 / P00883 Lys230.
+  The deposited enamine and the engineered reduced 1J4E trap remain distinct.
+  This refines the substrate conflict at one site without rewriting M-CSA,
+  validating the full Step 1 trajectory, resolving bound protonation, or
+  assigning the mixed-species proposal to rabbit. Source records stay Tier 1.
+  The optional annotation is hash-bound, query-visible and reproducible offline.
 - The historical July packet contract still requires actual human submissions
   for its own completion; contacting reviewers requires outreach authority.
   Computational review does not complete independent annotation, and the first

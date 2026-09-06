@@ -172,6 +172,30 @@ def _chebi_argument(value: str) -> str:
         raise argparse.ArgumentTypeError(str(exc)) from exc
 
 
+def verified_primary_evidence(
+    batch_name: str = "default", *, bundle: dict[str, Any] | None = None,
+) -> dict[str, Any] | None:
+    """Load optional reviewed annotations separately from immutable source records."""
+    from .atlas_draft_batch import DEFAULT_BATCH, resolve_batch
+    from .atlas_primary_evidence import validate_primary_evidence
+
+    batch = resolve_batch(batch_name)
+    stem = "source_drafts" if batch == DEFAULT_BATCH else batch.batch_id.replace("-", "_")
+    expected = json.loads(_resource_bytes(f"draft_data/{stem}_expected.json"))
+    if expected.get("schema_version") != "catalytic-earth.source-drafts-package.v1":
+        raise ValueError("unsupported source draft package")
+    if "primary_evidence_sha256" not in expected:
+        return None
+    raw = _resource_bytes(f"draft_data/{stem}_primary_evidence.json")
+    if hashlib.sha256(raw).hexdigest() != expected["primary_evidence_sha256"]:
+        raise ValueError("primary evidence package differs from its expected hash")
+    primary = json.loads(raw)
+    validate_primary_evidence(
+        primary, bundle=verified_source_drafts(batch_name) if bundle is None else bundle,
+    )
+    return primary
+
+
 def build_parser() -> argparse.ArgumentParser:
     from .atlas_draft_batch import BATCHES
 
@@ -246,11 +270,13 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.command == "atlas-drafts":
         from .atlas_draft_query import query_source_drafts
 
+        bundle = verified_source_drafts(args.batch)
         result = query_source_drafts(
-            verified_source_drafts(args.batch), mcsa_id=args.mcsa_id,
+            bundle, mcsa_id=args.mcsa_id,
             assembly=args.assembly, text=args.text, include_steps=args.steps,
             participants=args.participant or (), reactants=args.reactant or (),
             products=args.product or (),
+            primary_evidence=verified_primary_evidence(args.batch, bundle=bundle),
         )
         rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
         if args.output:
