@@ -108,6 +108,12 @@ annotations without interpretation. It returns twelve candidates in total and
 withholds two earlier candidates with unsupported global stereo metadata.
 Both complete transketolase covalent-graph replays retain their source limits.
 
+Those twelve candidates now support [exact bond and charge-change search](docs/ATLAS_CANDIDATE_EVENTS.md).
+For example, C–C addition retrieves two transketolase steps; requiring a carbon
+charge change narrows the result to one. Every match retains source witnesses,
+coverage and unreviewed status. Clauses combine within one candidate, and
+after-graph-confirmed support is required by default.
+
 - `current702` contains 702 project benchmark labels: 685 bronze, 17 silver,
   zero project-gold; 683 are automation-curated and 19 author-reviewed.
 - The combined 10,001-row surface is **8,305 positive fingerprint assignments
