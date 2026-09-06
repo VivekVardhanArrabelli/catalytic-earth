@@ -250,7 +250,8 @@ hashes enter the wheel.
 ## Query deposited structural contexts
 
 Typed primary contexts distinguish a processed protein component, a
-source-designated analogue, and a source-described bound adduct. These are
+source-designated analogue, a source-described bound adduct, and a
+deposit-described covalent intermediate. These are
 record-level observations with explicit evidence paths; they do not establish
 the identity or trajectory of any matching proposed step.
 
@@ -259,6 +260,7 @@ catalytic-earth atlas-drafts --batch all --observed-state-context
 catalytic-earth atlas-drafts --batch all --observed-state bound_ligand_analogue --observed-component PDD
 catalytic-earth atlas-drafts --batch plp-pyruvoyl --observed-component PYR
 catalytic-earth atlas-drafts --batch plp-pyruvoyl --observed-state bound_ligand_adduct --step-enzyme-context extra_enzymatic
+catalytic-earth atlas-drafts --batch all --observed-state protein_ligand_covalent_adduct --observed-component 13P
 ```
 
 M0049's typed context separates the directly deposited PYR author82/label1
@@ -282,6 +284,24 @@ disagreement remain visible. The abstract does not explicitly designate an
 analogue, and the annotation does not establish a native intermediate,
 protonation state, acid/base role or subsequent trajectory.
 
+M0222's additive 2QUT context describes four deposited `13P` instances, each
+with its exact Lys229 NZ–ligand C2 covalent connection. It preserves protein
+and ligand author/label namespaces, connection IDs and distances. Deposited
+bond order remains unknown (`source_bond_order_code=null`, raw token `?`).
+The generic 13P component dictionary contains C2–O2 `doub`, while all four
+modeled instances omit O2; the generic dictionary cannot supply the bound
+moiety's topology. The deposit title/remark supplies its enamine description.
+The inspected abstract's native-enzyme versus Lys146Met comparison remains
+separately scoped, with detailed preparation conditions and exact
+publication-era coordinate bytes unasserted.
+
+This refines the existing 2QUT observation and does not add independent
+experimental evidence. The original v1 annotation retains the separately
+supported author Lys229 to UniProt Lys230 mapping. New typed attachment rows
+leave canonical mapping unasserted. The separately reduced 1J4E trap remains
+corroboration in the old annotation; M0219's computational template context
+does not become an observed chemical state.
+
 Observed-state filters match one typed annotation. Component matching only
 trims whitespace and folds case: `PDD` does not match free PLP or a ChEBI
 participant. Combining an observed-state filter with a step filter joins at
@@ -297,7 +317,8 @@ and source locators; `primary_evidence.source_bindings` identifies captured
 source files, curated references and reviewed factual article projections.
 An article-projection hash does not claim to bind a retained full article.
 `observed_state_context_count` counts typed
-annotations, not independent observations. Existing aldolase and transketolase
+annotations, not independent observations. There are four typed contexts
+across the eleven source records. Existing aldolase and transketolase
 primary annotations keep their original record/proposal scope and are not
 automatically reclassified into this new type. An empty typed result therefore
 means no matching reviewed typed annotation, not an absence of evidence or

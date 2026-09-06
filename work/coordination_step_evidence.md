@@ -50,8 +50,8 @@ abstention and a pivot to another useful work package, not endless retries.
 | Agent | Owned paths/work | Next handoff |
 | --- | --- | --- |
 | Root | CLI/query/catalog, package builder/assets, query tests, docs, this board, Git/CI/publication | Integrate reviewed evidence and implementation |
-| source_ingestion | PLP primary sidecar and new `review/primary_sources/observed_state_v3/` only | Populate M0049/M0213/M0186 from captured sources; preserve old annotation and source bytes |
-| state_contracts | `atlas_primary_evidence.py` and new `test_atlas_primary_observed_state.py` only | Generic v3 types, edge validation and portable falsification fixtures |
+| source_ingestion | Aldolase/transketolase primary sidecar and new `review/primary_sources/observed_state_v3/` only | Add M0222 covalent context; preserve all old annotation objects and source files |
+| state_contracts | `atlas_primary_evidence.py` and new `test_atlas_primary_covalent_state.py` only | Minimal covalent attachments, edge validation and portable falsification fixtures |
 | draft_integration_review | Read-only scientific/source and integration challenge | Direct witnesses, objections, scoped review verdict |
 
 Agents message one another when a dependency is ready. They share model and
@@ -251,3 +251,64 @@ ground a matching source step.
   passes with the fix; all twenty observed-state validator tests pass.
   Production code, reviewed evidence and package bytes are unchanged. The
   corrected CI run must pass before merging.
+
+## Third increment in progress
+
+PR #41 merged on 2026-09-06 at 07:31:10 UTC after all four jobs passed in
+Actions run `34018987268`. Final head `87d1987c230bca6043d00ebf7e5c3ea64b35c320`
+and merge `b30a8dfdd59274040d53b8710974d17c8df17786` have identical trees.
+Main was clean and matched origin/main. Current branch:
+`codex/covalent-observed-state-context`.
+
+- The retained 2QUT audit supports four 13P instances and four exact
+  Lys229 NZ–13P C2 covalent connections, with raw bond order `?`. All modeled
+  instances omit O2 while the generic component dictionary has C2–O2 `doub`.
+  Keep those scopes separate; neither supplies a normalized bound molecule.
+- Root authorized two primary-source requests after the retained-source audit
+  found an experimental-description gap: PMID17728250 XML and Europe PMC
+  availability. Both returned HTTP 200, totaling 9,174 bytes. Europe PMC
+  reported no OA/PMC/PDF copy; no article-body request was made. Ledger:
+  `/tmp/catalytic-observed-m0222-20260906/receipts.json`, SHA
+  `00cf1132fc611ddfe425eef31f97f4adcdf9ddf3ff51904dc79908548aae1c96`.
+- The primary abstract compares native enzyme with Lys146Met and reports an
+  enamine versus putative iminium. Preserve its construct wording without
+  assigning every statement to every listed PDB entry or inferring that no
+  reducing treatment occurred. The 2QUT title/remark provides the specific
+  deposited enamine description. Current 2024 bytes are not publication-era
+  bytes. Raw PubMed XML remains local; a factual projection may be retained.
+- The new type adds only exact protein attachments and evidence for deposited
+  description/connectivity/dictionary-versus-modeled atom inventory. Canonical
+  Lys230 alignment stays in the existing v1 annotation and audit; it is deferred
+  from the new typed attachments. M0219 remains an untyped computational
+  negative control. Existing PLP v3 annotations and all old v1/v2 objects stay
+  unchanged. Temp work is under `/tmp/catalytic-primary-covalent-v3-20260906/`
+  and `/tmp/catalytic-observed-m0222-20260906/` until reviewed integration.
+- A later high-impact check is deterministic comparison of declared mmCIF
+  tuples to retained source rows. Existing private parsers are narrow and
+  should not be imported from frozen large modules or advertised as complete
+  mmCIF support. Evaluate a small build-time reader after the covalent
+  comparison ships; additional records or normalization flags are lower value.
+- Source and integration review accepted the materialized M0222 annotation,
+  full projection and primary-abstract factual projection. Reviewed payload:
+  `c6f0d2e76d3edf29f4f453b333536fa089a57e78d6ff1b944611b85a41cb71d4`.
+  The typed row refines the same 2QUT observation as the unchanged v1 row;
+  it is not independent experimental corroboration. The actual source/free
+  identifier `CHEBI:57642` is a negative control for typed component matching.
+- Root corrected two old tests that assumed exactly two annotations or their
+  array positions. The final core suite ran 298 tests successfully, with one
+  optional dependency skip. Installed-wheel queries passed from an empty
+  directory with network connections blocked, including exact 13P retrieval,
+  unknown attachment order, O2 omission and rejection of DHAP/ChEBI aliases.
+  Atlas10 retained runtime SHA
+  `57fb5e4708d6963b994a9ffd125549b822effe060da3e735c1afd987f1c84bdb`.
+  Byte comparisons preserved 70 frozen/package input paths, both old primary
+  annotation objects and the retained 2QUT mmCIF. CI remains before merge.
+- The next bounded increment is a raw-source factual checker, prepared only
+  in `/tmp/catalytic-primary-source-check-20260906/` while this change ships.
+  `state_contracts` implements selected mmCIF checks at draft-build time;
+  `draft_integration_review` challenges correlated edits with all JSON pins
+  recomputed; `source_ingestion` independently extracted four-case raw
+  expectations and is assessing remaining scientific gaps. M0049 selects
+  chain F only, whereas the complete source contains three PYR instances;
+  preserve that declared scope. Do not equate syntax/tuple verification with
+  protein crosswalk, article interpretation or chemical validation.

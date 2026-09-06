@@ -81,24 +81,60 @@ class ObservedStateQueryTests(unittest.TestCase):
         self.assertEqual((self.bundle, self.primary), original)
 
     def test_untyped_legacy_annotations_are_preserved_without_inferred_classification(self):
+        from tests.core.test_atlas_primary_evidence import _valid_v2_sidecar
+
         catalog = query_source_draft_batches(
             self.bundles, primary_evidence_by_batch=self.evidence,
             include_observed_state_context=True,
         )
         self.assertEqual(catalog["searched_record_count"], 11)
         self.assertEqual(catalog["record_count"], 11)
-        self.assertEqual(catalog["observed_state_context_count"], 3)
-        legacy = next(b["result"] for b in catalog["batches"] if b["batch_id"] == "aldolase-transketolase")
-        self.assertEqual(legacy["observed_state_context_count"], 0)
-        self.assertEqual(legacy["query_semantics"]["legacy_primary_annotation_state_classification"], "not_inferred")
-        for record in legacy["records"]:
+        self.assertEqual(catalog["observed_state_context_count"], 4)
+        additional = next(b["result"] for b in catalog["batches"] if b["batch_id"] == "aldolase-transketolase")
+        self.assertEqual(additional["observed_state_context_count"], 1)
+        self.assertEqual(additional["query_semantics"]["legacy_primary_annotation_state_classification"], "not_inferred")
+        for record in additional["records"]:
             expected = [a for a in self.evidence["aldolase-transketolase"]["annotations"]
                         if a["record_binding"]["record_id"] == record["record_id"]]
             self.assertEqual(record["primary_evidence_annotations"], expected)
+            if record["mcsa_id"] == "M0219":
+                self.assertEqual(record["observed_state_contexts"], [])
+        old_bundle = self.bundles["aldolase-transketolase"]
+        legacy = query_source_drafts(
+            old_bundle, primary_evidence=_valid_v2_sidecar(old_bundle),
+            observed_states=["protein_ligand_covalent_adduct"],
+        )
+        self.assertEqual(legacy["record_count"], 0)
         filtered = query_source_draft_batches(
             self.bundles, primary_evidence_by_batch=self.evidence, observed_components=["PDD"],
         )
         self.assertEqual(filtered["record_count"], 1)
+
+    def test_covalent_comparison_keeps_unknown_order_and_dictionary_instance_distinction(self):
+        kwargs = {"primary_evidence_by_batch": self.evidence,
+                  "observed_states": ["protein_ligand_covalent_adduct"]}
+        result = query_source_draft_batches(self.bundles, observed_components=["13P"], **kwargs)
+        rows = [r for b in result["batches"] for r in b["result"]["records"]]
+        self.assertEqual([r["mcsa_id"] for r in rows], ["M0222"])
+        self.assertEqual(result["observed_state_context_count"], 1)
+        annotation = rows[0]["observed_state_contexts"][0]
+        attachments = annotation["claim"]["protein_attachments"]
+        self.assertEqual(len(attachments), 4)
+        self.assertEqual({a["ligand_endpoint"]["label_asym_id"] for a in attachments}, {"E", "F", "G", "H"})
+        self.assertTrue(all(a["source_bond_order_code"] is None and a["source_bond_order_token"] == "?"
+                            and a["raw_conn_type"] == "covale" for a in attachments))
+        observations = {o["observation_kind"]: o for o in annotation["claim"]["chemical_observations"]}
+        self.assertEqual(observations["deposited_component_dictionary_bond_order"]["source_bond_order_code"], "doub")
+        self.assertEqual(observations["deposited_modeled_instance_atom_inventory"]["omitted_atom_ids"], ["O2"])
+        self.assertIsNone(annotation["claim"]["observed_entity"]["normalized_chebi_id"])
+        self.assertFalse(result["query_semantics"]["observed_state_grounds_step"])
+        for component in ("DHAP", "CHEBI:57642", "PDD"):
+            with self.subTest(component=component):
+                self.assertEqual(query_source_draft_batches(self.bundles, observed_components=[component], **kwargs)["record_count"], 0)
+        self.assertEqual(query_source_draft_batches(
+            self.bundles, step_evidence_by_batch={"plp-pyruvoyl": self.steps},
+            cofactors=["PLP"], **kwargs,
+        )["record_count"], 0)
 
     def test_additive_pyruvoyl_context_does_not_rewrite_or_double_count_old_observation(self):
         annotation = next(a for a in self.primary["annotations"]

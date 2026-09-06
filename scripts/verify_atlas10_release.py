@@ -92,6 +92,9 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                 "    'observed_analogue': run_query('--batch', 'all', '--observed-state', 'bound_ligand_analogue', '--observed-component', 'PDD'),\n"
                 "    'observed_step_join': run_query('--batch', 'plp-pyruvoyl', '--observed-state', 'bound_ligand_adduct', '--step-enzyme-context', 'extra_enzymatic'),\n"
                 "    'observed_false_join': run_query('--batch', 'all', '--observed-component', 'PDD', '--observed-component', 'PLV'),\n"
+                "    'observed_covalent': run_query('--batch', 'all', '--observed-state', 'protein_ligand_covalent_adduct', '--observed-component', '13P'),\n"
+                "    'observed_covalent_false_alias': run_query('--batch', 'all', '--observed-state', 'protein_ligand_covalent_adduct', '--observed-component', 'DHAP'),\n"
+                "    'observed_covalent_false_chebi': run_query('--batch', 'all', '--observed-state', 'protein_ligand_covalent_adduct', '--observed-component', 'CHEBI:57642'),\n"
                 "}))\n"
             )
             draft_run = subprocess.run(
@@ -139,9 +142,12 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                 raise ValueError("installed primary-evidence text query differs")
             primary = primary_records[0]["primary_evidence_annotations"]
             full = next(r for r in additional if r["mcsa_id"] == "M0222")
-            if primary != full["primary_evidence_annotations"] or len(primary) != 1:
+            if primary != full["primary_evidence_annotations"]:
                 raise ValueError("compact/full primary evidence differs")
-            claim = primary[0]["claim"]
+            legacy_primary = [a for a in primary if a["annotation_id"] == "m0222.2qut.dhap-derived-covalent-moiety"]
+            if len(legacy_primary) != 1:
+                raise ValueError("installed query lost the preserved aldolase primary observation")
+            claim = legacy_primary[0]["claim"]
             if (claim["structure_site"]["author_residue_number"] != 229
                     or claim["sequence_mapping"]["sequence_position"] != 230
                     or claim["sequence_mapping"]["uniprot_id"] != "P00883"):
@@ -268,7 +274,7 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                     or [a["step_binding"]["source_step_id"] for a in assumed[0]["step_evidence_annotations"]] != [5]):
                 raise ValueError("installed step query confused inference and assumption")
             observed = queries["observed_contexts"]
-            if observed["record_count"] != 11 or observed["observed_state_context_count"] != 3:
+            if observed["record_count"] != 11 or observed["observed_state_context_count"] != 4:
                 raise ValueError("installed observed-state annotation coverage differs")
             for batch in observed["batches"]:
                 result = batch["result"]
@@ -291,8 +297,26 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                 if (row["observed_state_contexts"] != full_observed_rows[name]["observed_state_contexts"]
                         or row.get("primary_evidence_annotations") != full_observed_rows[name].get("primary_evidence_annotations")):
                     raise ValueError("compact/full observed-state evidence differs")
-            if any(observed_rows[name]["observed_state_contexts"] for name in ("M0219", "M0222")):
+            if observed_rows["M0219"]["observed_state_contexts"]:
                 raise ValueError("installed query inferred a typed state for a legacy annotation")
+            covalent = [r for b in queries["observed_covalent"]["batches"] for r in b["result"]["records"]]
+            if ([r["mcsa_id"] for r in covalent] != ["M0222"]
+                    or queries["observed_covalent_false_alias"]["record_count"]
+                    or queries["observed_covalent_false_chebi"]["record_count"]):
+                raise ValueError("installed covalent query lost the exact deposited component boundary")
+            covalent_claim = covalent[0]["observed_state_contexts"][0]["claim"]
+            attachments = covalent_claim["protein_attachments"]
+            if (len(attachments) != 4
+                    or {a["connection_id"] for a in attachments} != {"covale1", "covale2", "covale3", "covale4"}
+                    or any(a["source_bond_order_code"] is not None or a["source_bond_order_token"] != "?"
+                           or a["protein_endpoint"]["atom_author_residue_number"] != 229
+                           for a in attachments)):
+                raise ValueError("installed covalent query lost attachment or unknown bond-order evidence")
+            observations = {o["observation_kind"]: o for o in covalent_claim["chemical_observations"]}
+            if (observations["deposited_component_dictionary_bond_order"]["source_bond_order_code"] != "doub"
+                    or observations["deposited_modeled_instance_atom_inventory"]["omitted_atom_ids"] != ["O2"]
+                    or covalent_claim["observed_entity"]["normalized_chebi_id"] is not None):
+                raise ValueError("installed covalent query equated dictionary and modeled chemical state")
             adduct = observed_rows["M0186"]["observed_state_contexts"][0]["claim"]
             if adduct["chemical_reconciliation"]["status"] != "unresolved_source_description_vs_deposit":
                 raise ValueError("installed query lost the paper/deposited chemistry disagreement")

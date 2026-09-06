@@ -1,0 +1,1043 @@
+{
+  "chemical_observations": [
+    {
+      "evidence_ids": [
+        "evidence:2qut-cif"
+      ],
+      "observation_id": "observation:2qut-deposited-component-state",
+      "observation_kind": "deposited_component_state",
+      "source_bond_order_code": null,
+      "source_description": "The current 2QUT deposit contains four modeled nonpolymer 13P instances.",
+      "source_scope": "deposited_structure",
+      "support_edge_ids": [
+        "edge:2qut-deposited-structure-state"
+      ]
+    },
+    {
+      "evidence_ids": [
+        "evidence:2qut-cif"
+      ],
+      "observation_id": "observation:2qut-deposited-dictionary-c2-o2",
+      "observation_kind": "deposited_component_dictionary_bond_order",
+      "source_atom_ids": [
+        "C2",
+        "O2"
+      ],
+      "source_bond_order_code": "doub",
+      "source_description": "The generic deposited 13P component dictionary records C2-O2 value_order doub.",
+      "source_scope": "deposited_structure",
+      "support_edge_ids": [
+        "edge:2qut-deposited-dictionary-c2-o2"
+      ]
+    },
+    {
+      "evidence_ids": [
+        "evidence:2qut-cif"
+      ],
+      "observation_id": "observation:2qut-deposited-enamine-description",
+      "observation_kind": "deposited_state_description",
+      "source_bond_order_code": null,
+      "source_description": "The 2QUT structure title designates a dihydroxyacetone phosphate enamine intermediate in rabbit-muscle fructose-bisphosphate aldolase.",
+      "source_scope": "deposited_structure",
+      "support_edge_ids": [
+        "edge:2qut-deposited-enamine-description"
+      ]
+    },
+    {
+      "evidence_ids": [
+        "evidence:2qut-cif"
+      ],
+      "modeled_instance_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "observation_id": "observation:2qut-deposited-modeled-o2-omission",
+      "observation_kind": "deposited_modeled_instance_atom_inventory",
+      "omitted_atom_ids": [
+        "O2"
+      ],
+      "source_bond_order_code": null,
+      "source_description": "All four modeled deposited 13P instances omit dictionary atom O2.",
+      "source_scope": "deposited_structure",
+      "support_edge_ids": [
+        "edge:2qut-deposited-modeled-o2-omission"
+      ]
+    },
+    {
+      "evidence_ids": [
+        "evidence:17728250-article"
+      ],
+      "observation_id": "observation:2qut-primary-enamine-description",
+      "observation_kind": "primary_article_state_description",
+      "source_bond_order_code": null,
+      "source_description": "The primary abstract describes trapping of the enamine intermediate at Lys229 in the authors' native aldolase context.",
+      "source_scope": "primary_research_article",
+      "support_edge_ids": [
+        "edge:2qut-primary-enamine-description"
+      ]
+    }
+  ],
+  "chemical_reconciliation": {
+    "statement": "The generic 13P dictionary C2-O2 doub record, modeled O2 omission, four Lys-NZ to 13P-C2 connections with unknown value_order, and paper/deposit enamine descriptions remain separate source facts; no exact bound bond order or protonation is assigned.",
+    "status": "unresolved_component_dictionary_vs_bound_instance_and_connection"
+  },
+  "context_id": "2qut-13p-protein-covalent-enamine-context",
+  "limits": [
+    "The generic 13P dictionary contains O2 and C2-O2 doub, whereas all four modeled 13P instances omit O2 and each Lys-C2 connection has unknown value_order; these facts are not normalized into an exact bound structure.",
+    "The current captured 2QUT revision 1.3 bytes are not asserted to be exact 2007 publication-era coordinate or dictionary bytes.",
+    "The paper's native-enzyme wording is a construct comparison with Lys146Met and is not a generic physiological or validated-native-state classification.",
+    "No canonical protein-site mapping is encoded in this new typed context; the current-deposit author Lys229 to P00883 Lys230 correspondence remains audit evidence and an unchanged legacy-v1 claim.",
+    "No exact free ChEBI identity, protonation, reaction direction, source-step trajectory, proposal applicability, or archaeal transfer is asserted.",
+    "The PubMed abstract does not expose preparation detail sufficient to prove absence of reducing treatment; it provides no reduced or analogue designation for 2QUT.",
+    "This typed context refines the retained legacy m0222.2qut.dhap-derived-covalent-moiety observation and is not independent supporting evidence."
+  ],
+  "locators": [
+    {
+      "extracted_values": {
+        "chemical_context": "source_described_bound_intermediate",
+        "source_component_id": "13P",
+        "source_description": "The primary abstract describes trapping of the enamine intermediate at Lys229 in the authors' native aldolase context."
+      },
+      "locator_id": "locator:17728250-enamine-description",
+      "physical_lines": [
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "selector": {
+        "json_pointer": "/claims/1"
+      },
+      "source_binding_id": "projection:PubMed:17728250:abstract",
+      "source_format": "primary abstract factual projection JSON",
+      "supports": "Primary-article trapped-enamine description in the authors' native aldolase context."
+    },
+    {
+      "extracted_values": {
+        "entity_context": "nonpolymer_component",
+        "entity_id": "2",
+        "source_component_id": "13P",
+        "source_description": "1,3-DIHYDROXYACETONEPHOSPHATE",
+        "structure_instances": [
+          {
+            "atom_author_chain_id": "A",
+            "atom_author_component_id": "13P",
+            "atom_author_residue_number": 3001,
+            "label_asym_id": "E",
+            "label_component_id": "13P",
+            "label_entity_id": "2",
+            "label_seq_id": null,
+            "source_author_component_id": "13P",
+            "source_author_residue_number": 3001,
+            "structure_site_id": "AC1"
+          },
+          {
+            "atom_author_chain_id": "B",
+            "atom_author_component_id": "13P",
+            "atom_author_residue_number": 3002,
+            "label_asym_id": "F",
+            "label_component_id": "13P",
+            "label_entity_id": "2",
+            "label_seq_id": null,
+            "source_author_component_id": "13P",
+            "source_author_residue_number": 3002,
+            "structure_site_id": "AC2"
+          },
+          {
+            "atom_author_chain_id": "C",
+            "atom_author_component_id": "13P",
+            "atom_author_residue_number": 3003,
+            "label_asym_id": "G",
+            "label_component_id": "13P",
+            "label_entity_id": "2",
+            "label_seq_id": null,
+            "source_author_component_id": "13P",
+            "source_author_residue_number": 3003,
+            "structure_site_id": "AC3"
+          },
+          {
+            "atom_author_chain_id": "D",
+            "atom_author_component_id": "13P",
+            "atom_author_residue_number": 3004,
+            "label_asym_id": "H",
+            "label_component_id": "13P",
+            "label_entity_id": "2",
+            "label_seq_id": null,
+            "source_author_component_id": "13P",
+            "source_author_residue_number": 3004,
+            "structure_site_id": "AC4"
+          }
+        ]
+      },
+      "locator_id": "locator:2qut-13p-instances",
+      "physical_lines": [
+        139,
+        140,
+        168,
+        169,
+        170,
+        171,
+        2090,
+        2091,
+        2092,
+        2095,
+        2097,
+        2098,
+        2100,
+        2101,
+        2102,
+        2103,
+        5692,
+        5693,
+        5695,
+        5696,
+        5697,
+        5701,
+        5702,
+        5703,
+        5704
+      ],
+      "selector": {
+        "categories": [
+          "_entity",
+          "_pdbx_entity_nonpoly",
+          "_pdbx_nonpoly_scheme",
+          "_struct_site"
+        ],
+        "rows": {
+          "component_id": "13P",
+          "label_asym_ids": [
+            "E",
+            "F",
+            "G",
+            "H"
+          ]
+        }
+      },
+      "source_binding_id": "source:2qut-cif",
+      "source_format": "mmCIF",
+      "supports": "All four deposited 13P instances and their author/source-author namespaces."
+    },
+    {
+      "extracted_values": {
+        "connection_id": "covale1",
+        "distance_angstrom": 1.478,
+        "ligand_endpoint": {
+          "atom_author_chain_id": "A",
+          "atom_author_component_id": "13P",
+          "atom_author_residue_number": 3001,
+          "atom_name": "C2",
+          "label_asym_id": "E",
+          "label_component_id": "13P",
+          "label_entity_id": "2",
+          "label_seq_id": null
+        },
+        "protein_endpoint": {
+          "atom_author_chain_id": "A",
+          "atom_author_component_id": "LYS",
+          "atom_author_residue_number": 229,
+          "atom_name": "NZ",
+          "label_asym_id": "A",
+          "label_component_id": "LYS",
+          "label_entity_id": "1",
+          "label_seq_id": 229
+        },
+        "raw_conn_type": "covale",
+        "source_bond_order_token": "?"
+      },
+      "locator_id": "locator:2qut-covale1",
+      "physical_lines": [
+        5449
+      ],
+      "selector": {
+        "category": "_struct_conn",
+        "row": {
+          "id": "covale1"
+        }
+      },
+      "source_binding_id": "source:2qut-cif",
+      "source_format": "mmCIF",
+      "supports": "Exact deposited covale1 Lys229 NZ to 13P C2 connection with unknown value_order token."
+    },
+    {
+      "extracted_values": {
+        "connection_id": "covale2",
+        "distance_angstrom": 1.477,
+        "ligand_endpoint": {
+          "atom_author_chain_id": "B",
+          "atom_author_component_id": "13P",
+          "atom_author_residue_number": 3002,
+          "atom_name": "C2",
+          "label_asym_id": "F",
+          "label_component_id": "13P",
+          "label_entity_id": "2",
+          "label_seq_id": null
+        },
+        "protein_endpoint": {
+          "atom_author_chain_id": "B",
+          "atom_author_component_id": "LYS",
+          "atom_author_residue_number": 229,
+          "atom_name": "NZ",
+          "label_asym_id": "B",
+          "label_component_id": "LYS",
+          "label_entity_id": "1",
+          "label_seq_id": 229
+        },
+        "raw_conn_type": "covale",
+        "source_bond_order_token": "?"
+      },
+      "locator_id": "locator:2qut-covale2",
+      "physical_lines": [
+        5450
+      ],
+      "selector": {
+        "category": "_struct_conn",
+        "row": {
+          "id": "covale2"
+        }
+      },
+      "source_binding_id": "source:2qut-cif",
+      "source_format": "mmCIF",
+      "supports": "Exact deposited covale2 Lys229 NZ to 13P C2 connection with unknown value_order token."
+    },
+    {
+      "extracted_values": {
+        "connection_id": "covale3",
+        "distance_angstrom": 1.477,
+        "ligand_endpoint": {
+          "atom_author_chain_id": "C",
+          "atom_author_component_id": "13P",
+          "atom_author_residue_number": 3003,
+          "atom_name": "C2",
+          "label_asym_id": "G",
+          "label_component_id": "13P",
+          "label_entity_id": "2",
+          "label_seq_id": null
+        },
+        "protein_endpoint": {
+          "atom_author_chain_id": "C",
+          "atom_author_component_id": "LYS",
+          "atom_author_residue_number": 229,
+          "atom_name": "NZ",
+          "label_asym_id": "C",
+          "label_component_id": "LYS",
+          "label_entity_id": "1",
+          "label_seq_id": 229
+        },
+        "raw_conn_type": "covale",
+        "source_bond_order_token": "?"
+      },
+      "locator_id": "locator:2qut-covale3",
+      "physical_lines": [
+        5451
+      ],
+      "selector": {
+        "category": "_struct_conn",
+        "row": {
+          "id": "covale3"
+        }
+      },
+      "source_binding_id": "source:2qut-cif",
+      "source_format": "mmCIF",
+      "supports": "Exact deposited covale3 Lys229 NZ to 13P C2 connection with unknown value_order token."
+    },
+    {
+      "extracted_values": {
+        "connection_id": "covale4",
+        "distance_angstrom": 1.479,
+        "ligand_endpoint": {
+          "atom_author_chain_id": "D",
+          "atom_author_component_id": "13P",
+          "atom_author_residue_number": 3004,
+          "atom_name": "C2",
+          "label_asym_id": "H",
+          "label_component_id": "13P",
+          "label_entity_id": "2",
+          "label_seq_id": null
+        },
+        "protein_endpoint": {
+          "atom_author_chain_id": "D",
+          "atom_author_component_id": "LYS",
+          "atom_author_residue_number": 229,
+          "atom_name": "NZ",
+          "label_asym_id": "D",
+          "label_component_id": "LYS",
+          "label_entity_id": "1",
+          "label_seq_id": 229
+        },
+        "raw_conn_type": "covale",
+        "source_bond_order_token": "?"
+      },
+      "locator_id": "locator:2qut-covale4",
+      "physical_lines": [
+        5452
+      ],
+      "selector": {
+        "category": "_struct_conn",
+        "row": {
+          "id": "covale4"
+        }
+      },
+      "source_binding_id": "source:2qut-cif",
+      "source_format": "mmCIF",
+      "supports": "Exact deposited covale4 Lys229 NZ to 13P C2 connection with unknown value_order token."
+    },
+    {
+      "extracted_values": {
+        "scope": "generic_component_dictionary",
+        "source_atom_ids": [
+          "C2",
+          "O2"
+        ],
+        "source_bond_order_code": "doub",
+        "source_component_id": "13P",
+        "source_description": "The generic deposited 13P component dictionary records C2-O2 value_order doub."
+      },
+      "locator_id": "locator:2qut-dictionary-c2-o2",
+      "physical_lines": [
+        5894,
+        5906,
+        5907,
+        6309,
+        6310,
+        6311,
+        6312,
+        6326
+      ],
+      "selector": {
+        "categories": [
+          "_chem_comp_atom",
+          "_chem_comp_bond"
+        ],
+        "row": {
+          "atom_id_1": "C2",
+          "atom_id_2": "O2",
+          "comp_id": "13P"
+        }
+      },
+      "source_binding_id": "source:2qut-cif",
+      "source_format": "mmCIF",
+      "supports": "Generic 13P dictionary contains O2 and records C2-O2 value_order doub."
+    },
+    {
+      "extracted_values": {
+        "chemical_context": "deposit_described_bound_intermediate",
+        "source_component_id": "13P",
+        "source_description": "The 2QUT structure title designates a dihydroxyacetone phosphate enamine intermediate in rabbit-muscle fructose-bisphosphate aldolase."
+      },
+      "locator_id": "locator:2qut-enamine-title",
+      "physical_lines": [
+        5224,
+        5225,
+        5226
+      ],
+      "selector": {
+        "category": "_struct",
+        "row": {
+          "entry_id": "2QUT"
+        }
+      },
+      "source_binding_id": "source:2qut-cif",
+      "source_format": "mmCIF",
+      "supports": "Deposit title designates the 2QUT state as a DHAP enamine intermediate in rabbit-muscle aldolase."
+    },
+    {
+      "extracted_values": {
+        "modeled_instance_indices": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "omitted_atom_ids": [
+          "O2"
+        ],
+        "scope": "modeled_deposited_instances",
+        "source_component_id": "13P",
+        "source_description": "All four modeled deposited 13P instances omit dictionary atom O2."
+      },
+      "locator_id": "locator:2qut-modeled-o2-omission",
+      "physical_lines": [
+        17526,
+        17534,
+        17535,
+        17543,
+        17544,
+        17552,
+        17553,
+        17561
+      ],
+      "selector": {
+        "category": "_atom_site",
+        "instance_row_ranges": [
+          [
+            17526,
+            17534
+          ],
+          [
+            17535,
+            17543
+          ],
+          [
+            17544,
+            17552
+          ],
+          [
+            17553,
+            17561
+          ]
+        ],
+        "queried_atom_id": "O2"
+      },
+      "source_binding_id": "source:2qut-cif",
+      "source_format": "mmCIF",
+      "supports": "Complete modeled atom-name inventories for all four 13P instances omit O2."
+    }
+  ],
+  "observed_entity": {
+    "attachment_context": "deposited_covalent_connection",
+    "chemical_context": "deposit_described_bound_intermediate",
+    "entity_context": "nonpolymer_component",
+    "entity_id": "2",
+    "normalized_chebi_id": null,
+    "source_component_id": "13P",
+    "source_description": "1,3-DIHYDROXYACETONEPHOSPHATE",
+    "state_kind": "protein_ligand_covalent_adduct"
+  },
+  "projection_id": "primary-observed-state:M0222:2QUT:13P-covalent-enamine",
+  "protein_attachments": [
+    {
+      "attachment_id": "attachment:2qut-covale1",
+      "connection_id": "covale1",
+      "distance_angstrom": 1.478,
+      "ligand_endpoint": {
+        "atom_author_chain_id": "A",
+        "atom_author_component_id": "13P",
+        "atom_author_residue_number": 3001,
+        "atom_name": "C2",
+        "label_asym_id": "E",
+        "label_component_id": "13P",
+        "label_entity_id": "2",
+        "label_seq_id": null
+      },
+      "observed_instance_index": 0,
+      "protein_endpoint": {
+        "atom_author_chain_id": "A",
+        "atom_author_component_id": "LYS",
+        "atom_author_residue_number": 229,
+        "atom_name": "NZ",
+        "label_asym_id": "A",
+        "label_component_id": "LYS",
+        "label_entity_id": "1",
+        "label_seq_id": 229
+      },
+      "raw_conn_type": "covale",
+      "source_bond_order_code": null,
+      "source_bond_order_token": "?",
+      "support_edge_ids": [
+        "edge:2qut-covale1"
+      ]
+    },
+    {
+      "attachment_id": "attachment:2qut-covale2",
+      "connection_id": "covale2",
+      "distance_angstrom": 1.477,
+      "ligand_endpoint": {
+        "atom_author_chain_id": "B",
+        "atom_author_component_id": "13P",
+        "atom_author_residue_number": 3002,
+        "atom_name": "C2",
+        "label_asym_id": "F",
+        "label_component_id": "13P",
+        "label_entity_id": "2",
+        "label_seq_id": null
+      },
+      "observed_instance_index": 1,
+      "protein_endpoint": {
+        "atom_author_chain_id": "B",
+        "atom_author_component_id": "LYS",
+        "atom_author_residue_number": 229,
+        "atom_name": "NZ",
+        "label_asym_id": "B",
+        "label_component_id": "LYS",
+        "label_entity_id": "1",
+        "label_seq_id": 229
+      },
+      "raw_conn_type": "covale",
+      "source_bond_order_code": null,
+      "source_bond_order_token": "?",
+      "support_edge_ids": [
+        "edge:2qut-covale2"
+      ]
+    },
+    {
+      "attachment_id": "attachment:2qut-covale3",
+      "connection_id": "covale3",
+      "distance_angstrom": 1.477,
+      "ligand_endpoint": {
+        "atom_author_chain_id": "C",
+        "atom_author_component_id": "13P",
+        "atom_author_residue_number": 3003,
+        "atom_name": "C2",
+        "label_asym_id": "G",
+        "label_component_id": "13P",
+        "label_entity_id": "2",
+        "label_seq_id": null
+      },
+      "observed_instance_index": 2,
+      "protein_endpoint": {
+        "atom_author_chain_id": "C",
+        "atom_author_component_id": "LYS",
+        "atom_author_residue_number": 229,
+        "atom_name": "NZ",
+        "label_asym_id": "C",
+        "label_component_id": "LYS",
+        "label_entity_id": "1",
+        "label_seq_id": 229
+      },
+      "raw_conn_type": "covale",
+      "source_bond_order_code": null,
+      "source_bond_order_token": "?",
+      "support_edge_ids": [
+        "edge:2qut-covale3"
+      ]
+    },
+    {
+      "attachment_id": "attachment:2qut-covale4",
+      "connection_id": "covale4",
+      "distance_angstrom": 1.479,
+      "ligand_endpoint": {
+        "atom_author_chain_id": "D",
+        "atom_author_component_id": "13P",
+        "atom_author_residue_number": 3004,
+        "atom_name": "C2",
+        "label_asym_id": "H",
+        "label_component_id": "13P",
+        "label_entity_id": "2",
+        "label_seq_id": null
+      },
+      "observed_instance_index": 3,
+      "protein_endpoint": {
+        "atom_author_chain_id": "D",
+        "atom_author_component_id": "LYS",
+        "atom_author_residue_number": 229,
+        "atom_name": "NZ",
+        "label_asym_id": "D",
+        "label_component_id": "LYS",
+        "label_entity_id": "1",
+        "label_seq_id": 229
+      },
+      "raw_conn_type": "covale",
+      "source_bond_order_code": null,
+      "source_bond_order_token": "?",
+      "support_edge_ids": [
+        "edge:2qut-covale4"
+      ]
+    }
+  ],
+  "record_binding": {
+    "mcsa_id": "M0222",
+    "record_id": "atlas50-draft:m0222:source-scoped-mechanism-draft",
+    "source_snapshot_sha256": "a798aef39309cdf3af82a003112b13949b160f9d305339c6ab9c08a3273908a7"
+  },
+  "schema_version": "catalytic-earth.primary-observed-state-projection.v1",
+  "site_crosswalk": {
+    "author_number_mapping_status": "not_asserted",
+    "canonical_site": null,
+    "relationship": "not_asserted",
+    "source_record_alias": null,
+    "status": "not_asserted",
+    "structure_instance_index": null,
+    "support_edge_ids": []
+  },
+  "source_bindings": [
+    {
+      "binding_id": "source:2qut-cif",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_sources/2QUT.cif",
+      "sha256": "82fcf22bac7ffaad5eb64a392c00f31780726181491f21d24736e46ed084a5e7"
+    },
+    {
+      "binding_id": "projection:PubMed:17728250:abstract",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_sources/observed_state_v3/m0222/PMID_17728250_projection.json",
+      "sha256": "572a3412f81e3230180a115fd46c9a69aa92895e5cf3b82807527be3797087c3"
+    }
+  ],
+  "structure_context": {
+    "curated_protein_accession": null,
+    "model_id": 1,
+    "pdb_id": "2QUT",
+    "protein_author_chain_ids": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "protein_entity_ids": [
+      "1"
+    ],
+    "protein_label_asym_ids": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  "structure_instances": [
+    {
+      "atom_author_chain_id": "A",
+      "atom_author_component_id": "13P",
+      "atom_author_residue_number": 3001,
+      "label_asym_id": "E",
+      "label_component_id": "13P",
+      "label_entity_id": "2",
+      "label_seq_id": null,
+      "source_author_component_id": "13P",
+      "source_author_residue_number": 3001,
+      "structure_site_id": "AC1"
+    },
+    {
+      "atom_author_chain_id": "B",
+      "atom_author_component_id": "13P",
+      "atom_author_residue_number": 3002,
+      "label_asym_id": "F",
+      "label_component_id": "13P",
+      "label_entity_id": "2",
+      "label_seq_id": null,
+      "source_author_component_id": "13P",
+      "source_author_residue_number": 3002,
+      "structure_site_id": "AC2"
+    },
+    {
+      "atom_author_chain_id": "C",
+      "atom_author_component_id": "13P",
+      "atom_author_residue_number": 3003,
+      "label_asym_id": "G",
+      "label_component_id": "13P",
+      "label_entity_id": "2",
+      "label_seq_id": null,
+      "source_author_component_id": "13P",
+      "source_author_residue_number": 3003,
+      "structure_site_id": "AC3"
+    },
+    {
+      "atom_author_chain_id": "D",
+      "atom_author_component_id": "13P",
+      "atom_author_residue_number": 3004,
+      "label_asym_id": "H",
+      "label_component_id": "13P",
+      "label_entity_id": "2",
+      "label_seq_id": null,
+      "source_author_component_id": "13P",
+      "source_author_residue_number": 3004,
+      "structure_site_id": "AC4"
+    }
+  ],
+  "support_edges": [
+    {
+      "edge_id": "edge:2qut-covale1",
+      "edge_kind": "deposited_covalent_connection",
+      "extracted_values": {
+        "connection_id": "covale1",
+        "distance_angstrom": 1.478,
+        "ligand_endpoint": {
+          "atom_author_chain_id": "A",
+          "atom_author_component_id": "13P",
+          "atom_author_residue_number": 3001,
+          "atom_name": "C2",
+          "label_asym_id": "E",
+          "label_component_id": "13P",
+          "label_entity_id": "2",
+          "label_seq_id": null
+        },
+        "observed_instance_index": 0,
+        "protein_endpoint": {
+          "atom_author_chain_id": "A",
+          "atom_author_component_id": "LYS",
+          "atom_author_residue_number": 229,
+          "atom_name": "NZ",
+          "label_asym_id": "A",
+          "label_component_id": "LYS",
+          "label_entity_id": "1",
+          "label_seq_id": 229
+        },
+        "raw_conn_type": "covale",
+        "source_bond_order_code": null,
+        "source_bond_order_token": "?"
+      },
+      "locator_ids": [
+        "locator:2qut-covale1"
+      ],
+      "source_binding_ids": [
+        "source:2qut-cif"
+      ],
+      "support_status": "direct_structure_observation"
+    },
+    {
+      "edge_id": "edge:2qut-covale2",
+      "edge_kind": "deposited_covalent_connection",
+      "extracted_values": {
+        "connection_id": "covale2",
+        "distance_angstrom": 1.477,
+        "ligand_endpoint": {
+          "atom_author_chain_id": "B",
+          "atom_author_component_id": "13P",
+          "atom_author_residue_number": 3002,
+          "atom_name": "C2",
+          "label_asym_id": "F",
+          "label_component_id": "13P",
+          "label_entity_id": "2",
+          "label_seq_id": null
+        },
+        "observed_instance_index": 1,
+        "protein_endpoint": {
+          "atom_author_chain_id": "B",
+          "atom_author_component_id": "LYS",
+          "atom_author_residue_number": 229,
+          "atom_name": "NZ",
+          "label_asym_id": "B",
+          "label_component_id": "LYS",
+          "label_entity_id": "1",
+          "label_seq_id": 229
+        },
+        "raw_conn_type": "covale",
+        "source_bond_order_code": null,
+        "source_bond_order_token": "?"
+      },
+      "locator_ids": [
+        "locator:2qut-covale2"
+      ],
+      "source_binding_ids": [
+        "source:2qut-cif"
+      ],
+      "support_status": "direct_structure_observation"
+    },
+    {
+      "edge_id": "edge:2qut-covale3",
+      "edge_kind": "deposited_covalent_connection",
+      "extracted_values": {
+        "connection_id": "covale3",
+        "distance_angstrom": 1.477,
+        "ligand_endpoint": {
+          "atom_author_chain_id": "C",
+          "atom_author_component_id": "13P",
+          "atom_author_residue_number": 3003,
+          "atom_name": "C2",
+          "label_asym_id": "G",
+          "label_component_id": "13P",
+          "label_entity_id": "2",
+          "label_seq_id": null
+        },
+        "observed_instance_index": 2,
+        "protein_endpoint": {
+          "atom_author_chain_id": "C",
+          "atom_author_component_id": "LYS",
+          "atom_author_residue_number": 229,
+          "atom_name": "NZ",
+          "label_asym_id": "C",
+          "label_component_id": "LYS",
+          "label_entity_id": "1",
+          "label_seq_id": 229
+        },
+        "raw_conn_type": "covale",
+        "source_bond_order_code": null,
+        "source_bond_order_token": "?"
+      },
+      "locator_ids": [
+        "locator:2qut-covale3"
+      ],
+      "source_binding_ids": [
+        "source:2qut-cif"
+      ],
+      "support_status": "direct_structure_observation"
+    },
+    {
+      "edge_id": "edge:2qut-covale4",
+      "edge_kind": "deposited_covalent_connection",
+      "extracted_values": {
+        "connection_id": "covale4",
+        "distance_angstrom": 1.479,
+        "ligand_endpoint": {
+          "atom_author_chain_id": "D",
+          "atom_author_component_id": "13P",
+          "atom_author_residue_number": 3004,
+          "atom_name": "C2",
+          "label_asym_id": "H",
+          "label_component_id": "13P",
+          "label_entity_id": "2",
+          "label_seq_id": null
+        },
+        "observed_instance_index": 3,
+        "protein_endpoint": {
+          "atom_author_chain_id": "D",
+          "atom_author_component_id": "LYS",
+          "atom_author_residue_number": 229,
+          "atom_name": "NZ",
+          "label_asym_id": "D",
+          "label_component_id": "LYS",
+          "label_entity_id": "1",
+          "label_seq_id": 229
+        },
+        "raw_conn_type": "covale",
+        "source_bond_order_code": null,
+        "source_bond_order_token": "?"
+      },
+      "locator_ids": [
+        "locator:2qut-covale4"
+      ],
+      "source_binding_ids": [
+        "source:2qut-cif"
+      ],
+      "support_status": "direct_structure_observation"
+    },
+    {
+      "edge_id": "edge:2qut-deposited-dictionary-c2-o2",
+      "edge_kind": "deposited_component_dictionary_bond_order",
+      "extracted_values": {
+        "scope": "generic_component_dictionary",
+        "source_atom_ids": [
+          "C2",
+          "O2"
+        ],
+        "source_bond_order_code": "doub",
+        "source_component_id": "13P",
+        "source_description": "The generic deposited 13P component dictionary records C2-O2 value_order doub."
+      },
+      "locator_ids": [
+        "locator:2qut-dictionary-c2-o2"
+      ],
+      "source_binding_ids": [
+        "source:2qut-cif"
+      ],
+      "support_status": "direct_structure_observation"
+    },
+    {
+      "edge_id": "edge:2qut-deposited-enamine-description",
+      "edge_kind": "deposited_state_description",
+      "extracted_values": {
+        "chemical_context": "deposit_described_bound_intermediate",
+        "source_component_id": "13P",
+        "source_description": "The 2QUT structure title designates a dihydroxyacetone phosphate enamine intermediate in rabbit-muscle fructose-bisphosphate aldolase."
+      },
+      "locator_ids": [
+        "locator:2qut-enamine-title"
+      ],
+      "source_binding_ids": [
+        "source:2qut-cif"
+      ],
+      "support_status": "deposit_described_bound_intermediate"
+    },
+    {
+      "edge_id": "edge:2qut-deposited-modeled-o2-omission",
+      "edge_kind": "deposited_modeled_instance_atom_inventory",
+      "extracted_values": {
+        "modeled_instance_indices": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "omitted_atom_ids": [
+          "O2"
+        ],
+        "scope": "modeled_deposited_instances",
+        "source_component_id": "13P",
+        "source_description": "All four modeled deposited 13P instances omit dictionary atom O2."
+      },
+      "locator_ids": [
+        "locator:2qut-modeled-o2-omission"
+      ],
+      "source_binding_ids": [
+        "source:2qut-cif"
+      ],
+      "support_status": "direct_structure_observation"
+    },
+    {
+      "edge_id": "edge:2qut-deposited-structure-state",
+      "edge_kind": "deposited_structure_state",
+      "extracted_values": {
+        "entity_context": "nonpolymer_component",
+        "entity_id": "2",
+        "source_component_id": "13P",
+        "source_description": "1,3-DIHYDROXYACETONEPHOSPHATE",
+        "structure_instances": [
+          {
+            "atom_author_chain_id": "A",
+            "atom_author_component_id": "13P",
+            "atom_author_residue_number": 3001,
+            "label_asym_id": "E",
+            "label_component_id": "13P",
+            "label_entity_id": "2",
+            "label_seq_id": null,
+            "source_author_component_id": "13P",
+            "source_author_residue_number": 3001,
+            "structure_site_id": "AC1"
+          },
+          {
+            "atom_author_chain_id": "B",
+            "atom_author_component_id": "13P",
+            "atom_author_residue_number": 3002,
+            "label_asym_id": "F",
+            "label_component_id": "13P",
+            "label_entity_id": "2",
+            "label_seq_id": null,
+            "source_author_component_id": "13P",
+            "source_author_residue_number": 3002,
+            "structure_site_id": "AC2"
+          },
+          {
+            "atom_author_chain_id": "C",
+            "atom_author_component_id": "13P",
+            "atom_author_residue_number": 3003,
+            "label_asym_id": "G",
+            "label_component_id": "13P",
+            "label_entity_id": "2",
+            "label_seq_id": null,
+            "source_author_component_id": "13P",
+            "source_author_residue_number": 3003,
+            "structure_site_id": "AC3"
+          },
+          {
+            "atom_author_chain_id": "D",
+            "atom_author_component_id": "13P",
+            "atom_author_residue_number": 3004,
+            "label_asym_id": "H",
+            "label_component_id": "13P",
+            "label_entity_id": "2",
+            "label_seq_id": null,
+            "source_author_component_id": "13P",
+            "source_author_residue_number": 3004,
+            "structure_site_id": "AC4"
+          }
+        ]
+      },
+      "locator_ids": [
+        "locator:2qut-13p-instances"
+      ],
+      "source_binding_ids": [
+        "source:2qut-cif"
+      ],
+      "support_status": "direct_structure_observation"
+    },
+    {
+      "edge_id": "edge:2qut-primary-enamine-description",
+      "edge_kind": "primary_article_bound_intermediate_description",
+      "extracted_values": {
+        "chemical_context": "source_described_bound_intermediate",
+        "source_component_id": "13P",
+        "source_description": "The primary abstract describes trapping of the enamine intermediate at Lys229 in the authors' native aldolase context."
+      },
+      "locator_ids": [
+        "locator:17728250-enamine-description"
+      ],
+      "source_binding_ids": [
+        "projection:PubMed:17728250:abstract"
+      ],
+      "support_status": "source_described_bound_intermediate"
+    }
+  ]
+}

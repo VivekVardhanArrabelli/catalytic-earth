@@ -28,6 +28,9 @@ RAW_2QUT = (
 M0222_V1_ANNOTATION_SHA256 = (
     "b3ec318c98396833ade49cca3d811ef202066fa1c36ad8f60c4c1cb5f6cd9792"
 )
+CURRENT_PRIMARY_PAYLOAD_SHA256 = (
+    "c6f0d2e76d3edf29f4f453b333536fa089a57e78d6ff1b944611b85a41cb71d4"
+)
 
 
 def _valid_sidecar(bundle: dict) -> dict:
@@ -185,8 +188,22 @@ def _valid_v2_sidecar(bundle: dict) -> dict:
         "aldolase-transketolase", bundle=bundle
     )
     assert sidecar is not None
+    sidecar = copy.deepcopy(sidecar)
+    if sidecar["schema_version"] == "catalytic-earth.atlas-primary-evidence.v3":
+        # Recover the exact earlier contract, including its original source
+        # metadata, so new package contents cannot erase v2 regression coverage.
+        sidecar["schema_version"] = "catalytic-earth.atlas-primary-evidence.v2"
+        sidecar["annotation_set_id"] = "atlas-primary-evidence.aldolase-transketolase.2026-09-06.v2"
+        sidecar["annotations"] = [a for a in sidecar["annotations"]
+                                  if a["annotation_kind"] != "primary_observed_state_context"]
+        sidecar["source_bindings"] = [b for b in sidecar["source_bindings"]
+                                     if "/observed_state_v3/" not in b["path"]]
+        _repin(sidecar)
     assert sidecar["schema_version"] == "catalytic-earth.atlas-primary-evidence.v2"
-    return copy.deepcopy(sidecar)
+    assert canonical_annotation_payload_sha256(sidecar) == (
+        "575b0772268a6dd2b6e733d8e811eb9956c991fea6f88d0b167504594a4b2eb6"
+    )
+    return sidecar
 
 
 class PrimaryEvidenceTests(unittest.TestCase):
@@ -416,7 +433,7 @@ class PrimaryEvidenceTests(unittest.TestCase):
         assert sidecar is not None
         self.assertEqual(
             sidecar["review"]["annotation_payload_sha256"],
-            "575b0772268a6dd2b6e733d8e811eb9956c991fea6f88d0b167504594a4b2eb6",
+            CURRENT_PRIMARY_PAYLOAD_SHA256,
         )
         packaged_raw = core_cli._resource_bytes(
             "draft_data/aldolase_transketolase_primary_evidence.json"
@@ -540,9 +557,10 @@ class PrimaryEvidenceTests(unittest.TestCase):
         self.assertEqual(result["records"][0]["mcsa_id"], "M0222")
         self.assertEqual(
             result["primary_evidence"]["annotation_payload_sha256"],
-            "575b0772268a6dd2b6e733d8e811eb9956c991fea6f88d0b167504594a4b2eb6",
+            CURRENT_PRIMARY_PAYLOAD_SHA256,
         )
-        annotation = result["records"][0]["primary_evidence_annotations"][0]
+        annotation = next(a for a in result["records"][0]["primary_evidence_annotations"]
+                          if a["annotation_id"] == "m0222.2qut.dhap-derived-covalent-moiety")
         self.assertIsNone(
             annotation["claim"]["observed_state"]["normalized_chebi_id"]
         )
