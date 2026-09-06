@@ -75,11 +75,18 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                 "trypsin = command('atlas-transformations', '--mcsa-id', 'M0173')\n"
                 "trypsin_panel = trypsin['transformations'][0]['panel_correspondence']\n"
                 "assert replay_graph_edits(trypsin_panel['before_graph'], trypsin_panel['graph_edits'], trypsin_panel['after_graph'], trypsin_panel['replay']['atom_map'])\n"
+                "partial = command('atlas-panel-comparisons', '--mcsa-id', 'M0173')\n"
+                "from catalytic_earth.atlas_partial_panels import derive_partial_panel_coverage\n"
+                "comparison = partial['comparisons'][0]\n"
+                "panels = comparison['source_panels']\n"
+                "assert derive_partial_panel_coverage(panels['before_graph'], panels['after_graph'], comparison['correspondence']['atom_map'], comparison['proposed_graph_edits'], comparison['source_flow_bindings']) == comparison['coverage']\n"
                 "import importlib.util\n"
                 "assert importlib.util.find_spec('rdkit') is None\n"
                 "print(json.dumps({\n"
                 "    'transformations': transitions,\n"
                 "    'trypsin': trypsin,\n"
+                "    'partial_panels': partial,\n"
+                "    'partial_panels_empty': command('atlas-panel-comparisons', '--mcsa-id', 'M0187'),\n"
                 "    'transformation_catalog': command('atlas-transformations', '--all'),\n"
                 "    'transformations_empty': command('atlas-transformations', '--mcsa-id', 'M0213'),\n"
                 "    'all': run_query('--steps'),\n"
@@ -164,6 +171,25 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                 for field in ("transformations", "review", "source_bindings", "transformation_payload_sha256"):
                     if catalog_by_id[mcsa_id][field] != single[field]:
                         raise ValueError("installed transformation catalog changed individual-set provenance")
+            partial = queries["partial_panels"]
+            comparison = partial["comparisons"][0]
+            coverage = comparison["coverage"]
+            if (partial["schema_version"] != "catalytic-earth.partial-panel-query.v1"
+                    or partial["comparison_count"] != 1
+                    or queries["partial_panels_empty"]["comparison_count"] != 0
+                    or partial["query_semantics"]["count_is_complete_transition_count"] is not False
+                    or (coverage["before_node_count"], coverage["after_node_count"], coverage["mapped_node_count"]) != (50, 42, 40)
+                    or set(coverage["unmatched_before_atom_ids"]) != {"a4", "a5", "a6", "a7", "a8", "a9", "a12", "a13", "a14", "a50"}
+                    or set(coverage["unmatched_after_atom_ids"]) != {"a6", "a7"}
+                    or len(coverage["before_boundary_bonds"]) != 2
+                    or coverage["after_boundary_bonds"] != []
+                    or len(coverage["replayed_edit_ids"]) != 3
+                    or len(coverage["after_graph_unverified_edit_ids"]) != 3
+                    or {item["status"] for item in coverage["flow_coverage"]} != {"fully_replayed", "partially_replayed", "after_graph_unverified"}
+                    or coverage["projection_replays_exactly"] is not True
+                    or coverage["full_panel_replay_asserted"] is not False
+                    or comparison["scope_effect"]["omitted_nodes_are_deleted"] is not False):
+                raise ValueError("installed partial-panel comparison lost replay or missing-evidence boundaries")
             drafts = queries["all"]
             records = drafts["records"]
             if {record["mcsa_id"] for record in records} != {"M0106", "M0107", "M0212", "M0753"}:
