@@ -312,3 +312,60 @@ Main was clean and matched origin/main. Current branch:
   chain F only, whereas the complete source contains three PYR instances;
   preserve that declared scope. Do not equate syntax/tuple verification with
   protein crosswalk, article interpretation or chemical validation.
+
+## Fourth increment: rederive deposited facts
+
+PR #42 merged on 2026-09-06 at 07:57:13 UTC after all four jobs passed in
+Actions run `34020227412`. Scientific head
+`9dea2dc608ddf47d88ff05378c402a7f13df9204` and merge
+`e306cd1d82be0ca7cc1a8006878b492366893f1d` have identical trees. Main was
+clean and matched origin/main. Current branch:
+`codex/primary-structure-source-check`.
+
+- `source_ingestion` independently extracted exact retained-source
+  expectations for 1PYA, 1PWH, 1L6G and 2QUT, without network acquisition.
+  `state_contracts` implements a narrow parser and build-time factual audit;
+  `draft_integration_review` challenges correlated JSON edits with all authored
+  pins recomputed. Root integrates the build gate and checks package/CI behavior.
+- Early review found three real gaps in the prototype: it did not compare
+  component/entity identity or all declared protein context; an invented atom
+  name could pass as an omitted atom; and connection inventories needed
+  explicit required-field checks. These are raw-source factual checks, not
+  a reason to expand into chemical interpretation or a general CIF framework.
+- Build-time auditing follows the existing primary-evidence validation and
+  applies only to typed observed-state annotations. Existing synthetic schema
+  fixtures and v1/v2 annotations retain their intended validation path.
+  No new permanent scientific output, source capture or package data is needed.
+- The source checker was approved at module SHA
+  `9af012cb1e08bdb6bc8c410806afee5716c7d242f668ddd53d09c25da4f088e8`.
+  Root ported those exact bytes and normalized only test imports/root paths.
+  All fourteen targeted tests passed, including a real C2-O2 bond accompanied
+  by a fictitious omitted atom: the authored layers accept its recomputed pins,
+  but raw dictionary membership rejects it. All four retained structures and
+  both typed batch builders pass. The complete core suite ran 312 tests
+  successfully with one optional dependency skip. Scientific data, existing
+  annotations and package projections are unchanged. Installed-wheel checks,
+  repository contracts and all four CI jobs are required before this merge.
+
+## Remaining scientific boundary
+
+The delivered step layer retrieves exact source cofactor labels, directionally
+scoped role text, inferred/assumed details and extra-enzymatic steps across all
+32 PLP/pyruvoyl reaction steps. Four typed structural contexts distinguish
+processed PYR, a PDD analogue, a PLV adduct and the covalent 13P intermediate.
+None establishes an exact source-step trajectory; every such record join
+retains `observed_state_grounds_step=false`.
+
+After the raw-source checker ships, no additional internal schema expansion
+identified in this review would change that conclusion. The next scientific
+bottleneck is authoritative correspondence between a net reaction and its
+source steps. M0213 exposes the clearest existing conflict: its entry reports
+L-alanine to D-alanine while scheme identifiers retain L-alanine despite drawn
+inversion. The retained package has no authoritative reaction atom map that
+resolves it. More flags, examples or records cannot supply that missing evidence.
+
+Human availability is not a prerequisite for completing this computational
+goal or for further scoped development. Same-model agent review is correlated
+and does not confer independent expert review. Physical and mechanistic claims
+still require appropriately scoped evidence; these software checks establish
+neither chemical identity/protonation nor causal residue roles or trajectories.
