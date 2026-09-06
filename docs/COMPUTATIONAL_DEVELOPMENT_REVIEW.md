@@ -99,8 +99,18 @@ for finding objections; they do not create statistical independence.
 
 ## Next development batch
 
-The four permitted source-scoped drafts now compile and query through a reusable
-offline path. Prioritize subsequent source batches or compiler changes by the
+The original four permitted drafts and two additive batches now provide eleven
+source-scoped records through the reusable offline path. The latest
+[`plp-pyruvoyl` review](../data/atlas/source_drafts/batches/plp-pyruvoyl/review/challenge.json)
+inherits the preceding nine decisions and adds M0049, M0066, M0186 and M0213.
+It preserves source conflicts in stereochemical labels, PTM numbering, inferred
+roles and extra-enzymatic chemistry. Its
+[internal board](https://github.com/VivekVardhanArrabelli/catalytic-earth/blob/main/work/coordination_plp_pyruvoyl.md)
+records the parallel work and corrections. The current successor gate permits
+annotation for thirteen cases and drafting for eleven, with no exact-reaction
+instance admitted. Earlier gates remain unchanged historical generations.
+
+Prioritize subsequent source batches or compiler changes by the
 atlas bottleneck they remove; a demonstration or another review layer is not
 an automatic prerequisite.
 For M0064 and M0970, acquire evidence for the missing state variables before

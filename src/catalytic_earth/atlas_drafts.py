@@ -47,13 +47,15 @@ _MCSA_RE = re.compile(r"^M[0-9]{4}$")
 
 
 def _source_inference_flag(source_step_text: str) -> bool | None:
-    """Transcribe only an explicit source ``inferred`` tag.
+    """Transcribe explicit source inference or assumption wording.
 
     ``None`` means that the source does not classify the step. Hedging such as
     "thought" is not converted into either True or False.
     """
 
-    return True if re.search(r"\binferred\b", source_step_text, re.IGNORECASE) else None
+    return True if re.search(
+        r"\binferred\b|\bwe\s+(?:infer|assume)\b", source_step_text, re.IGNORECASE
+    ) else None
 
 
 def canonical_json_bytes(value: Any) -> bytes:

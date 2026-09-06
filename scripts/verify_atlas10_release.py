@@ -74,6 +74,9 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                 "    'aldolases': run_query('--batch', 'aldolase-transketolase', '--reactant', '57642', '--product', '49299'),\n"
                 "    'primary': run_query('--batch', 'aldolase-transketolase', '--mcsa-id', 'M0222', '--text', 'DHAP-derived covalent moiety'),\n"
                 "    'transketolase_context': run_query('--batch', 'aldolase-transketolase', '--mcsa-id', 'M0219', '--text', 'P29401'),\n"
+                "    'plp_pyruvoyl': run_query('--batch', 'plp-pyruvoyl', '--steps'),\n"
+                "    'pyruvoyl_event': run_query('--batch', 'plp-pyruvoyl', '--mechanism-component', 'decarboxylation'),\n"
+                "    'extra_enzymatic': run_query('--batch', 'plp-pyruvoyl', '--mechanism-component', 'reaction occurs outside the enzyme'),\n"
                 "    'events': run_query('--batch', 'all', '--mechanism-component', 'schiff base formed'),\n"
                 "    'full_events': run_query('--batch', 'all', '--mechanism-component', 'schiff base formed', '--steps'),\n"
                 "    'split_proposal': run_query('--batch', 'all', '--mechanism-component', 'decoordination from a metal ion', '--mechanism-component', 'decarboxylation'),\n"
@@ -166,16 +169,16 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                     or context_records[0]["evidence_tier"] != 1):
                 raise ValueError("installed transketolase context overstates evidence")
             events = queries["events"]
-            if (events["searched_batch_ids"] != ["aldolase-transketolase", "default"]
-                    or events["searched_record_count"] != 7
-                    or events["record_count"] != 2
-                    or events["mechanism_proposal_match_count"] != 2):
+            if (events["searched_batch_ids"] != ["aldolase-transketolase", "default", "plp-pyruvoyl"]
+                    or events["searched_record_count"] != 11
+                    or events["record_count"] != 5
+                    or events["mechanism_proposal_match_count"] != 5):
                 raise ValueError("installed all-batch event query differs")
             event_records = {
                 record["mcsa_id"]: record
                 for batch in events["batches"] for record in batch["result"]["records"]
             }
-            if set(event_records) != {"M0753", "M0222"}:
+            if set(event_records) != {"M0753", "M0222", "M0049", "M0066", "M0213"}:
                 raise ValueError("installed event query lost a batch or added a false match")
             for batch, full_batch in zip(events["batches"], queries["full_events"]["batches"]):
                 result, full_result = batch["result"], full_batch["result"]
@@ -193,9 +196,31 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                 raise ValueError("installed event query lost primary evidence")
             split = queries["split_proposal"]
             if (split["record_count"] != 0 or split["mechanism_proposal_match_count"] != 0
-                    or len(split["batches"]) != 2
+                    or len(split["batches"]) != 3
                     or any(not batch["result"]["selection"] for batch in split["batches"])):
                 raise ValueError("installed query combined alternative proposals or lost empty-batch scope")
+            new_records = {r["mcsa_id"]: r for r in queries["plp_pyruvoyl"]["records"]}
+            if set(new_records) != {"M0049", "M0066", "M0186", "M0213"}:
+                raise ValueError("installed PLP/pyruvoyl batch identity differs")
+            if any(r["evidence_tier"] != 1 or not r["mandatory_abstentions"]
+                   for r in new_records.values()):
+                raise ValueError("installed PLP/pyruvoyl batch lost its review boundary")
+            required_limits = {
+                "M0049": {"entry_scheme_substrate_identity", "pyruvoyl_maturation_mapping", "plp_equivalence"},
+                "M0066": {"step_1_substrate_stereochemistry"},
+                "M0186": {"plp_phosphate_base_assignment", "all_steps_enzyme_catalysed"},
+                "M0213": {"direction_specific_role_assignment", "terminal_product_identity", "analogue_structure_context"},
+            }
+            for mcsa_id, limits in required_limits.items():
+                if not limits <= {a["clause_id"] for a in new_records[mcsa_id]["mandatory_abstentions"]}:
+                    raise ValueError("installed PLP/pyruvoyl record lost a specific scientific objection")
+            if [r["mcsa_id"] for r in queries["pyruvoyl_event"]["records"]] != ["M0049"]:
+                raise ValueError("installed decarboxylation query conflates PLP and pyruvoyl")
+            if [r["mcsa_id"] for r in queries["extra_enzymatic"]["records"]] != ["M0186"]:
+                raise ValueError("installed source query lost extra-enzymatic hydrolysis")
+            serine_steps = new_records["M0186"]["mechanism_proposals"][0]["mechanism_steps"]
+            if not all(serine_steps[i]["is_inferred"] is True for i in (3, 4)):
+                raise ValueError("installed source steps lost explicit inference/assumption wording")
             print("Fresh-directory source draft query passed with network connections blocked")
     expected_counts = {
         "case_count": 10,

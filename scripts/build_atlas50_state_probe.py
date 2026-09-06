@@ -67,6 +67,7 @@ def build(*, batch: DraftBatchPaths = DEFAULT_BATCH) -> dict[str, Any]:
         atlas10_kernel=atlas10,
         basis_inputs=basis_inputs,
         batch=batch,
+        repo_root=ROOT,
     )
 
 
