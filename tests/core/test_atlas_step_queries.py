@@ -143,7 +143,7 @@ class StepQueryTests(unittest.TestCase):
     def test_pyruvoyl_structure_keeps_author_and_processed_chain_namespaces(self):
         self.assertIsNotNone(self.primary)
         annotation = next(a for a in self.primary["annotations"]
-                          if a["record_binding"]["mcsa_id"] == "M0049")
+                          if a["annotation_id"] == "m0049.1pya.processed-pyruvoyl-site")
         self.assertEqual(annotation["target_scope"], "record_only")
         self.assertEqual(annotation["claim"]["structure_site"], {
             "pdb_id": "1PYA", "chain_id": "F",
@@ -155,7 +155,7 @@ class StepQueryTests(unittest.TestCase):
                          "precursor_maturation_mechanism", "source_substrate_identity"}
                         <= {item["limit_id"] for item in annotation["limits"]})
         result = self.query(mcsa_id="M0049")
-        self.assertEqual(result["records"][0]["primary_evidence_annotations"], [annotation])
+        self.assertIn(annotation, result["records"][0]["primary_evidence_annotations"])
         self.assertTrue(all(a["context"]["chemical_context"]["value"] == "unresolved"
                             for a in result["records"][0]["step_evidence_annotations"]))
 

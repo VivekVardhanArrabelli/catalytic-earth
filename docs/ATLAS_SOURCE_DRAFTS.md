@@ -247,6 +247,62 @@ UniProt record, acquisition receipts, scoped projection and source inventory
 are available in the audit directory; only the reviewed annotation and source
 hashes enter the wheel.
 
+## Query deposited structural contexts
+
+Typed primary contexts distinguish a processed protein component, a
+source-designated analogue, and a source-described bound adduct. These are
+record-level observations with explicit evidence paths; they do not establish
+the identity or trajectory of any matching proposed step.
+
+```bash
+catalytic-earth atlas-drafts --batch all --observed-state-context
+catalytic-earth atlas-drafts --batch all --observed-state bound_ligand_analogue --observed-component PDD
+catalytic-earth atlas-drafts --batch plp-pyruvoyl --observed-component PYR
+catalytic-earth atlas-drafts --batch plp-pyruvoyl --observed-state bound_ligand_adduct --step-enzyme-context extra_enzymatic
+```
+
+M0049's typed context separates the directly deposited PYR author82/label1
+site from the curated correspondence to precursor Ser83. The older v1
+observation remains unchanged; the additional context is not a second
+independent observation. Standard alignment alone cannot establish that
+modified-site correspondence.
+
+M0213's 1L6G context retains the primary abstract's explicit analogue
+designation for PDD, its two deposited instances, and their distinct numbering
+namespaces. The second instance is atom-author B1390 but nonpolymer
+source-author 390, with no polymer label sequence position. No deposited PDD
+protein connection is listed. The structure's four other covalent connection
+rows do not establish PDD attachment, and absence from that table does not
+prove a physical noncovalency claim.
+
+M0186's 1PWH context is a PLV bound adduct. The inspected primary abstract
+describes an aldimine and says dehydration did not occur; deposited chemistry
+assigns a single N–C4A bond. Both descriptions and their unresolved
+disagreement remain visible. The abstract does not explicitly designate an
+analogue, and the annotation does not establish a native intermediate,
+protonation state, acid/base role or subsequent trajectory.
+
+Observed-state filters match one typed annotation. Component matching only
+trims whitespace and folds case: `PDD` does not match free PLP or a ChEBI
+participant. Combining an observed-state filter with a step filter joins at
+the record level and explicitly reports `observed_state_grounds_step=false`.
+For example, the last query returns M0186's separately described outside-enzyme
+Steps 6 and 7 alongside its structural context; the bound adduct does not
+validate those steps.
+
+Single-batch opt-in output uses query schema v5; catalog output uses v3.
+Compact and full results preserve the same selected `observed_state_contexts`
+and complete primary annotations. Projection excerpts retain evidence edges
+and source locators; `primary_evidence.source_bindings` identifies captured
+source files, curated references and reviewed factual article projections.
+An article-projection hash does not claim to bind a retained full article.
+`observed_state_context_count` counts typed
+annotations, not independent observations. Existing aldolase and transketolase
+primary annotations keep their original record/proposal scope and are not
+automatically reclassified into this new type. An empty typed result therefore
+means no matching reviewed typed annotation, not an absence of evidence or
+chemistry. Default queries keep their existing field layout.
+
 ## Rebuild and extend
 
 ```bash

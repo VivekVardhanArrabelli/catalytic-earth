@@ -19,6 +19,8 @@ def query_source_draft_batches(
     products: Sequence[str] = (), mechanism_components: Sequence[str] = (),
     cofactors: Sequence[str] = (), enzyme_contexts: Sequence[str] = (),
     source_assertions: Sequence[str] = (),
+    include_observed_state_context: bool = False,
+    observed_states: Sequence[str] = (), observed_components: Sequence[str] = (),
 ) -> dict[str, Any]:
     """Apply the same query independently to each named, validated source bundle.
 
@@ -56,6 +58,8 @@ def query_source_draft_batches(
             step_evidence=step_evidence.get(batch_id),
             cofactors=cofactors, enzyme_contexts=enzyme_contexts,
             source_assertions=source_assertions,
+            include_observed_state_context=include_observed_state_context,
+            observed_states=observed_states, observed_components=observed_components,
         )
         # Check the complete validated corpus, not just records that happened
         # to match this query; filters must not hide overlapping source sets.
@@ -95,4 +99,13 @@ def query_source_draft_batches(
         output["step_evidence_batch_ids"] = sorted(
             name for name, sidecar in step_evidence.items() if sidecar is not None
         )
+    if include_observed_state_context or observed_states or observed_components:
+        output["schema_version"] = "catalytic-earth.source-draft-catalog-query.v3"
+        output["observed_state_context_count"] = sum(
+            item["result"]["observed_state_context_count"] for item in results
+        )
+        output["query_semantics"].update({
+            "observed_state_grounds_step": False,
+            "observed_state_context_count_is_independent_observation_count": False,
+        })
     return output

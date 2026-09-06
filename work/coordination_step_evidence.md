@@ -49,10 +49,10 @@ abstention and a pivot to another useful work package, not endless retries.
 
 | Agent | Owned paths/work | Next handoff |
 | --- | --- | --- |
-| Root | Shared CLI/catalog integration, durable sidecars, docs, this board, Git/CI/publication | Integrate only reviewed evidence and implementation |
-| source_ingestion | `/tmp/catalytic-step-evidence-m0049-20260906/`; public 1PYA captures and proposed primary annotation | Exact source bytes, locators, hashes, request ledger and limitations |
-| state_contracts | New `atlas_step_evidence.py` and `test_atlas_step_evidence.py`; generic additive validation/query module | Data shape first, then negative tests and implementation |
-| draft_integration_review | `/tmp/catalytic-step-evidence-review-20260906/`; four-record scientific context inventory and adversarial review | Direct witnesses, objections, scoped review verdict |
+| Root | CLI/query/catalog, package builder/assets, query tests, docs, this board, Git/CI/publication | Integrate reviewed evidence and implementation |
+| source_ingestion | PLP primary sidecar and new `review/primary_sources/observed_state_v3/` only | Populate M0049/M0213/M0186 from captured sources; preserve old annotation and source bytes |
+| state_contracts | `atlas_primary_evidence.py` and new `test_atlas_primary_observed_state.py` only | Generic v3 types, edge validation and portable falsification fixtures |
+| draft_integration_review | Read-only scientific/source and integration challenge | Direct witnesses, objections, scoped review verdict |
 
 Agents message one another when a dependency is ready. They share model and
 prior context; this is correlated computational review, not statistically
@@ -154,6 +154,13 @@ integration and publication.
 
 ## Resume after this increment
 
+PR #40 merged on 2026-09-06 at 06:39:55 UTC after all four Ubuntu/Windows
+Python 3.10/3.12 jobs passed in Actions run `34016730558`. Scientific commit
+`75d9c0ac1436a89bf64542d975dbb017737113db` and merge commit
+`0e77f11a76fd9565fad6671298154caf701024ce` have identical trees. Local main
+was clean and matched origin/main. The next goal milestone starts from that
+merge on `codex/primary-observed-state-context`; the goal remains active.
+
 The active goal remains incomplete after shipping this first increment. The
 next useful deliverable is typed record-only primary observed-state context,
 with evidence for each mapping kept distinct. A v3 projection must distinguish
@@ -170,13 +177,67 @@ ground a matching source step.
   connections and cannot imply PDD-protein attachment. Preserve author
   residue 1390 versus nonpolymer source-author 390 for the second instance.
 - The same agent is preparing an isolated v3 implementation prototype under
-  `/tmp/catalytic-primary-v3-implementation-20260906/`, with no current-branch
-  edits. Integrate it only after the first increment is shipped and reviewed.
+  `/tmp/catalytic-primary-v3-implementation-20260906/`. After PR #40 merged,
+  root authorized the disjoint validator/test edits listed above.
 - `source_ingestion` is probing M0186/1PWH under
   `/tmp/catalytic-step-evidence-m0186-20260906/`, bounded to ten requests and
-  5 MiB. Await its exact analogue/connectivity/protein-context findings.
+  5 MiB. It captured nine requests / 1,122,086 bytes (eight HTTP 200; ACS 403)
+  without full publisher text. The primary abstract reports PLP-OMS aldimine
+  and no subsequent dehydration; the deposited PLV dictionary has a single
+  N-C4A bond. Retain that unresolved paper/deposit distinction. The inspected
+  abstract does not explicitly designate an analogue, so represent a
+  source-described bound adduct unless stronger evidence changes that scope.
 - `draft_integration_review` requires edge-level falsification: reject
   standard-alignment-only mapping of modified PYR, global-count-as-ligand-bond
   inference, analogue classification without explicit primary support, and
   any propagation of a record-level observation into step/role/protonation or
   trajectory validation. A flat tuple equality check is insufficient.
+
+## Second increment in progress
+
+- Typed queries select a deposited state kind/component within one annotation.
+  Combining with step filters joins at record scope only, with explicit
+  `observed_state_grounds_step=false`. Legacy primary annotations remain
+  available but are not automatically reclassified. Annotation counts are not
+  independent observation counts.
+- Root review rejected a case-specific validator rule that treated every
+  bound adduct as a chemical disagreement; evidence and projection pins must
+  retain this particular disagreement without defining all adducts that way.
+  Unsupported state variants are being removed rather than exposed partially.
+- Offline queries must include scoped projection edges and locators; hashes
+  and dangling edge IDs alone cannot explain the mapping evidence. State and
+  source agents are adding a factual excerpt mirrored against the bound
+  repository projection. Raw structures and article bodies stay out of wheels.
+- Independent source review caught a prototype error in 1PWH: four potassium
+  instances are not its connection inventory. The mmCIF has 26 metal
+  coordination rows and zero PLV connection rows. Correct both source edges
+  and falsification fixtures before accepting the data package.
+- After the second increment ships, the remaining useful generalization test
+  is M0222's existing 2QUT DHAP-derived covalent intermediate. Preserving its
+  v1 annotation prevents regression but does not yet permit a typed comparison
+  with the PLP analogue and processed cofactor. `state_contracts` will inspect
+  already retained 2QUT sources without network or branch edits, then propose
+  the minimum validated covalent-attachment extension. Do not force that case
+  into an unimplemented enum or expand the current PR before review. M0219's
+  computational template context remains the negative control. M0186's
+  unresolved chemistry needs primary clarification, not additional flags.
+- Final source review accepted the four-annotation sidecar (three new typed
+  contexts plus the untouched M0049 v1 annotation). Reviewed payload:
+  `e14123f3f7757904124d4f85c21a83a8240f6177898abd2ed57c0097e28e7ad2`;
+  repository and packaged file SHA:
+  `a55b55d56791612dc9d76773f0a8eed6341bf7d23f729ffab7ba6e8f71d7162c`.
+  M0186/M0213 now carry publication-era versus current-capture limits in
+  offline annotations. Source requests remained bounded (six/738,363 bytes
+  for M0213; nine/1,122,086 bytes for M0186); no full publisher text was acquired.
+- Root review added a missing crosswalk invariant: the selected deposited
+  site must agree with the M-CSA alias's PDB, author-chain and label position.
+  Author residue numbers and label/author chain namespaces remain distinct.
+  Retained source/projection pins cannot substitute for that structural join.
+- The final core suite passed 288 tests with one optional dependency skip.
+  Eighteen legacy query comparisons match the base for identical source inputs.
+  The installed wheel passes from an empty directory with networking blocked,
+  including exact observed-state filters, compact/full source witnesses,
+  unresolved M0186 chemistry and record-only joins to Steps 6/7. Atlas10's
+  runtime hash, all three source bundles, the 32-step sidecar, existing
+  aldolase/transketolase primary sidecar and release manifest are unchanged.
+  Repository contracts and four-platform CI remain before publication.

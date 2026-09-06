@@ -1,0 +1,59 @@
+{
+  "authorship": "Project-authored factual projection; it is not the article body.",
+  "claims": [
+    {
+      "claim_id": "plp-oms-aldimine-no-dehydration",
+      "scope": "Primary-article description of the bound state; the abstract does not explicitly designate OMS as an analogue.",
+      "short_source_terms": [
+        "PLP-OMS aldimine",
+        "subsequent dehydration did not occur"
+      ],
+      "source_locator": "PubMedArticleSet/PubmedArticle/MedlineCitation/Article/Abstract/AbstractText",
+      "statement": "The authors describe the holoenzyme as containing a PLP-OMS aldimine and report that subsequent dehydration did not occur."
+    },
+    {
+      "claim_id": "phosphate-general-acid-is-proposed",
+      "scope": "Conditional model language only; no observed proton transfer, protonation assignment, or role validation.",
+      "short_source_terms": [
+        "suggesting",
+        "A possible catalytic mechanism"
+      ],
+      "source_locator": "PubMedArticleSet/PubmedArticle/MedlineCitation/Article/Abstract/AbstractText",
+      "statement": "The authors present phosphate protonation as suggested by the hydrogen-bonding geometry and phosphate general-acid catalysis as a possible mechanism."
+    },
+    {
+      "claim_id": "aminoacrylate-hydrolysis-described-nonenzymatic",
+      "scope": "Paper-level reaction description; it does not make either M-CSA extra-active-site drawing a structure-observed trajectory.",
+      "short_source_terms": [
+        "nonenzymatic hydrolysis"
+      ],
+      "source_locator": "PubMedArticleSet/PubmedArticle/MedlineCitation/Article/Abstract/AbstractText",
+      "statement": "The abstract describes aminoacrylate conversion to pyruvate as nonenzymatic hydrolysis."
+    }
+  ],
+  "limits": [
+    "This projection paraphrases only the inspected official abstract and does not redistribute the abstract or full article.",
+    "The accessible abstract and 1PWH deposit do not explicitly designate OMS or PLV as an analogue class.",
+    "The abstract calls the state an aldimine while the current deposited PLV component dictionary gives N-C4A bond order sing; this package leaves those source descriptions unresolved.",
+    "No native trajectory, proton transfer, phosphate protonation, acid/base role, or exact source-step applicability is asserted."
+  ],
+  "projection_id": "primary-abstract:PMID:14596599:observed-state-scope",
+  "schema_version": "catalytic-earth.primary-abstract-factual-projection.v1",
+  "source_capture": {
+    "http_status": 200,
+    "raw_response_bytes": 8347,
+    "raw_response_repository_path": null,
+    "raw_response_sha256": "cad3d8e080576be7453467dbd74938dbfded8ea1d1122f489963b7ec7244f733",
+    "receipt_ledger_repository_path": null,
+    "receipt_ledger_sha256": "3d2a3182f415e893fd1d348346e758ab51beced2706b5e8570575fed1f95e54b",
+    "retention_scope": "local_analysis_only; no raw abstract body is redistributed by this package",
+    "retrieved_at_utc": "2026-09-06T06:28:16.165019+00:00"
+  },
+  "source_identity": {
+    "canonical_url": "https://pubmed.ncbi.nlm.nih.gov/14596599/",
+    "doi": "10.1021/bi035324p",
+    "pmid": "14596599",
+    "source_scope": "official PubMed abstract record",
+    "title": "Crystal structure of serine dehydratase from rat liver."
+  }
+}
