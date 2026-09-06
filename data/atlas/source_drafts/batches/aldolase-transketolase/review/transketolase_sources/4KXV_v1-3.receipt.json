@@ -1,0 +1,19 @@
+{
+  "decode": "gzip",
+  "decoded_bytes": 1306541,
+  "decoded_file": "/tmp/4KXV_v1-3.cif",
+  "decoded_sha256": "26c6421dd5298f14eb79dc24bd604e7dbb2b7b0086261716f0f3930cd6a69226",
+  "final_url": "https://files-versioned.wwpdb.org/pdb_versioned/data/entries/kx/pdb_00004kxv/pdb_00004kxv_xyz_v1-3.cif.gz",
+  "http_status": 200,
+  "request_url": "https://files-versioned.wwpdb.org/pdb_versioned/data/entries/kx/pdb_00004kxv/pdb_00004kxv_xyz_v1-3.cif.gz",
+  "response_headers": {
+    "content-length": "317845",
+    "content-type": "application/octet-stream",
+    "etag": "\"5d6975fd-4d995\"",
+    "last-modified": "Fri, 30 Aug 2019 19:16:13 GMT"
+  },
+  "retrieved_at_utc": "2026-09-06T02:00:27.412373+00:00",
+  "retrieved_bytes": 317845,
+  "retrieved_file": "/tmp/pdb_00004kxv_xyz_v1-3.cif.gz",
+  "retrieved_sha256": "064c98209d4dade5ca319b8634d14041bae381fc51d531dd917a5cec571e73f8"
+}

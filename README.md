@@ -132,6 +132,10 @@ was rescored or independent human-review status upgraded.
   M0222 also exposes a separate primary-structure annotation supporting a
   DHAP-derived covalent moiety at author Lys229 / P00883 Lys230. The original
   source fields and broader mechanism abstentions remain intact.
+  M0219 proposal 2 separately binds its cited human model to 4KXV chain A /
+  P29401, including author Lys244 and His258 at the same canonical sequence
+  positions. Proposed catalytic roles and protonation remain computational;
+  the mapping does not transfer to proposal 1's yeast evidence.
 
 ## Truth-governance gate
 

@@ -1,0 +1,246 @@
+{
+  "inventory_id": "primary-source-audit:M0219:mechanism-2:4KXV-chain-A",
+  "project_authored_projection": {
+    "bytes": 17236,
+    "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/evidence_projection.json",
+    "sha256": "54d0bfeefc1ba24cf4020ec75380cc60b74a91f2b78016b32868daf92c098f64"
+  },
+  "receipt_ledgers": [
+    {
+      "bytes": 6091,
+      "coverage": "Seven attempts: three initial successful body captures with incomplete receipts, one failed HTTP 404 with no body read, and three byte-identical complete reacquisitions.",
+      "ledger_id": "receipt-ledger:current-4KXV-and-PDBe",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/acquisition_receipts.json",
+      "sha256": "481f828f080a35bd552175c21cdc99e4842438e9b8ce2c112c8249e5a4963077"
+    },
+    {
+      "bytes": 881,
+      "coverage": "One complete official versioned-archive response plus deterministic gzip-decoding hashes, acquired by the collaborating reviewer and copied byte-for-byte.",
+      "ledger_id": "receipt:wwPDB:4KXV:v1.3",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/4KXV_v1-3.receipt.json",
+      "sha256": "57ca0484618cf2b6073f8ff42a4033f8265770b611684066aecade56565f025b"
+    }
+  ],
+  "redistribution_and_claim_limits": [
+    "No UniProt full response is redistributed; P29401 mapping comes from the retained PDB/PDBe sources.",
+    "The PMC BioC XML is redistributed under its embedded CC BY 4.0 notice; the original HTTP receipt is unavailable and is not reconstructed.",
+    "The archived major-v1 4KXV file corroborates that the P29401/Lys244/His258 mapping predates the 2020 paper, but it does not prove which exact coordinate bytes the paper authors used.",
+    "The package resolves proposal-2 protein, chain, and sequence-position context only. It does not experimentally validate residue roles, protonation, reaction direction, the full mechanism, or the conflicting M-CSA scheme labels."
+  ],
+  "request_budget": {
+    "accounting_note": "The live total combines seven request attempts in acquisition_receipts.json with the one archived-v1.3 request in 4KXV_v1-3.receipt.json. The cached PMC BioC file has no contemporaneous HTTP receipt; one request and its retained file bytes are included conservatively without claiming unknown HTTP transfer details.",
+    "conservative_total_bytes": 3250862,
+    "conservative_total_request_count": 9,
+    "max_requests": 100,
+    "max_response_bytes": 31457280,
+    "recorded_live_request_count": 8,
+    "recorded_live_response_bytes": 3161127,
+    "reused_article_request_count_included_conservatively": 1,
+    "reused_article_retained_bytes_included_conservatively": 89735,
+    "scope_note": "These counts cover only the requests enumerated in this package receipt material plus the cached-article allowance. They are not a complete ledger of all agents source-discovery or web-review requests; unpreserved archive-URL probes and root page views are outside this inventory.",
+    "within_limits": true
+  },
+  "schema_version": 1,
+  "scope": "Minimal primary evidence for binding M0219 mechanism proposal 2 to the human 4KXV chain-A/P29401 protein context and exact Lys244/His258 sequence positions.",
+  "sources": [
+    {
+      "acquisition": {
+        "bytes_read": 1338622,
+        "completed_at_utc": "2026-09-06T01:52:51.488Z",
+        "final_url": "https://files.rcsb.org/download/4KXV.cif",
+        "http_status": 200,
+        "mode": "live_official_https_complete_reacquisition",
+        "receipt_ledger_id": "receipt-ledger:current-4KXV-and-PDBe",
+        "redirects_followed": 0,
+        "request_index": 5,
+        "request_time_utc": "2026-09-06T01:52:51.276Z",
+        "requested_url": "https://files.rcsb.org/download/4KXV.cif",
+        "response_content_type": "chemical/x-cif",
+        "statement": "The complete receipt is a byte-identical reacquisition of the body preserved by the initial successful attempt."
+      },
+      "artifact_id": "primary:RCSB:4KXV:mmCIF",
+      "bytes": 1338622,
+      "canonical_official_url": "https://files.rcsb.org/download/4KXV.cif",
+      "deposit": {
+        "database_accession": "pdb_00004kxv",
+        "deposit_site": "RCSB",
+        "dictionary_name": "mmcif_pdbx.dic",
+        "dictionary_version": "5.379",
+        "entry_id": "4KXV",
+        "initial_deposition_date": "2013-05-28",
+        "initial_release": {
+          "major_revision": 1,
+          "minor_revision": 0,
+          "revision_date": "2013-08-21"
+        },
+        "latest_revision_in_file": {
+          "major_revision": 2,
+          "minor_revision": 1,
+          "revision_date": "2023-09-20"
+        },
+        "major_revision_2_date": "2021-08-04",
+        "pdb_doi": "10.2210/pdb4kxv/pdb",
+        "status_code": "REL"
+      },
+      "landing_page": "https://www.rcsb.org/structure/4KXV",
+      "license": {
+        "designation": "CC0 1.0 Universal",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "policy_url": "https://www.rcsb.org/pages/policies",
+        "scope_note": "PDB archive data file. Structure-author and primary-citation attribution is retained voluntarily."
+      },
+      "media_type": "chemical/x-mmcif",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/4KXV.cif",
+      "sha256": "2211b8bd450ac25f432a3db1e93ebcca4bf08a4223c8f8ac12fff100fada300f"
+    },
+    {
+      "acquisition": {
+        "decoded_bytes": 1306541,
+        "decoded_sha256": "26c6421dd5298f14eb79dc24bd604e7dbb2b7b0086261716f0f3930cd6a69226",
+        "final_url": "https://files-versioned.wwpdb.org/pdb_versioned/data/entries/kx/pdb_00004kxv/pdb_00004kxv_xyz_v1-3.cif.gz",
+        "http_status": 200,
+        "mode": "collaborating_reviewer_live_official_https_then_gzip_decode",
+        "receipt_ledger_id": "receipt:wwPDB:4KXV:v1.3",
+        "requested_url": "https://files-versioned.wwpdb.org/pdb_versioned/data/entries/kx/pdb_00004kxv/pdb_00004kxv_xyz_v1-3.cif.gz",
+        "response_last_modified": "Fri, 30 Aug 2019 19:16:13 GMT",
+        "retrieved_at_utc": "2026-09-06T02:00:27.412373+00:00",
+        "retrieved_bytes": 317845,
+        "retrieved_sha256": "064c98209d4dade5ca319b8634d14041bae381fc51d531dd917a5cec571e73f8",
+        "statement": "The network gzip, decoded CIF, and factual receipt were copied byte-for-byte from the collaborating reviewer files; no receipt fields were reconstructed here."
+      },
+      "artifact_id": "primary:wwPDB:4KXV:v1.3:mmCIF",
+      "bytes": 1306541,
+      "canonical_official_url": "https://files-versioned.wwpdb.org/pdb_versioned/data/entries/kx/pdb_00004kxv/pdb_00004kxv_xyz_v1-3.cif.gz",
+      "compressed_artifact": {
+        "bytes": 317845,
+        "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/4KXV_v1-3.cif.gz",
+        "sha256": "064c98209d4dade5ca319b8634d14041bae381fc51d531dd917a5cec571e73f8"
+      },
+      "deposit": {
+        "archive_revision": {
+          "major_revision": 1,
+          "minor_revision": 3,
+          "revision_date": "2019-09-04"
+        },
+        "entry_id": "4KXV",
+        "scope_note": "This is the latest archived major-v1 structure-model snapshot before major revision 2.0. It corroborates the mapping that predates the 2020 computational paper but is not asserted to be the paper authors exact coordinate input."
+      },
+      "landing_page": "https://www.rcsb.org/versions/4KXV",
+      "license": {
+        "designation": "CC0 1.0 Universal",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "policy_url": "https://www.rcsb.org/pages/policies",
+        "scope_note": "Versioned PDB archive data file."
+      },
+      "media_type": "chemical/x-mmcif",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/4KXV_v1-3.cif",
+      "sha256": "26c6421dd5298f14eb79dc24bd604e7dbb2b7b0086261716f0f3930cd6a69226"
+    },
+    {
+      "acquisition": {
+        "bytes_read": 82649,
+        "completed_at_utc": "2026-09-06T01:52:53.055Z",
+        "final_url": "https://www.ebi.ac.uk/pdbe/api/pdb/entry/residue_listing/4kxv",
+        "http_status": 200,
+        "mode": "live_official_https_complete_reacquisition",
+        "receipt_ledger_id": "receipt-ledger:current-4KXV-and-PDBe",
+        "redirects_followed": 0,
+        "request_index": 7,
+        "request_time_utc": "2026-09-06T01:52:52.023Z",
+        "requested_url": "https://www.ebi.ac.uk/pdbe/api/pdb/entry/residue_listing/4kxv",
+        "response_content_type": "application/json",
+        "statement": "The complete receipt is a byte-identical reacquisition of the body preserved by the initial successful attempt."
+      },
+      "artifact_id": "primary:PDBe:4KXV:residue-listing",
+      "bytes": 82649,
+      "canonical_official_url": "https://www.ebi.ac.uk/pdbe/api/pdb/entry/residue_listing/4kxv",
+      "license": {
+        "attribution": "PDBe at EMBL-EBI and wwPDB/RCSB PDB are credited.",
+        "designation": "PDB archive-derived fields treated as CC0 1.0 Universal",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "policy_url": "https://www.rcsb.org/pages/policies"
+      },
+      "media_type": "application/json",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/4kxv_residue_listing.json",
+      "sha256": "8697dbb433cf2300a1e9aab0a5503ae599de47594e47234b3722f26a332a37ff",
+      "version_scope": "No release/version field appears in the response; exact bytes are pinned by SHA-256 and retrieval time."
+    },
+    {
+      "acquisition": {
+        "bytes_read": 370,
+        "completed_at_utc": "2026-09-06T01:52:52.021Z",
+        "final_url": "https://www.ebi.ac.uk/pdbe/api/mappings/uniprot/4kxv",
+        "http_status": 200,
+        "mode": "live_official_https_complete_reacquisition",
+        "receipt_ledger_id": "receipt-ledger:current-4KXV-and-PDBe",
+        "redirects_followed": 0,
+        "request_index": 6,
+        "request_time_utc": "2026-09-06T01:52:51.489Z",
+        "requested_url": "https://www.ebi.ac.uk/pdbe/api/mappings/uniprot/4kxv",
+        "response_content_type": "application/json",
+        "statement": "The complete receipt is a byte-identical reacquisition of the body preserved by the initial successful attempt."
+      },
+      "artifact_id": "primary:PDBe:4KXV:uniprot-mapping",
+      "bytes": 370,
+      "canonical_official_url": "https://www.ebi.ac.uk/pdbe/api/mappings/uniprot/4kxv",
+      "license": {
+        "attribution": "PDBe/SIFTS at EMBL-EBI and UniProt are credited; the project projection is a changed, selected extraction from the unmodified raw response.",
+        "designation": "Provider terms retained: PDB archive CC0; copyrightable UniProt-derived mapping fields CC BY 4.0",
+        "pdb_policy_url": "https://www.rcsb.org/pages/policies",
+        "uniprot_license_url": "https://www.uniprot.org/help/license"
+      },
+      "media_type": "application/json",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/4kxv_uniprot_mapping.json",
+      "sha256": "058d36d71c99e450b7beaaa6171cb93663ce0a7d70d92bf65f6c78e30287701c",
+      "version_scope": "No release/version field appears in the response; exact bytes are pinned by SHA-256 and retrieval time."
+    },
+    {
+      "acquisition": {
+        "mode": "reused_existing_research_file",
+        "original_http_receipt_available": false,
+        "original_http_status_recorded": false,
+        "original_request_time_recorded": false,
+        "original_response_headers_recorded": false,
+        "research_file_birth_time_utc": "2026-09-06T00:58:18.331Z",
+        "research_file_path": "/tmp/pmc8016368.xml",
+        "retrieval_url_retained_in_research_command_history": "https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_xml/PMC8016368/unicode",
+        "statement": "Copied byte-for-byte from the existing research file because its embedded article metadata permits redistribution. The retained command URL identifies the BioC service call, but no HTTP status, headers, redirects, or request/completion time are reconstructed."
+      },
+      "article": {
+        "authors": [
+          "Mario Prejanò",
+          "Fabiola E. Medina",
+          "Maria J. Ramos",
+          "Nino Russo",
+          "Pedro A. Fernandes",
+          "Tiziana Marino"
+        ],
+        "bioc_collection_date": "20260905",
+        "bioc_collection_source": "BioC-API",
+        "doi": "10.1021/acscatal.9b04690",
+        "issue": "4",
+        "journal": "ACS Catalysis",
+        "pages": "2872-2881",
+        "pmc_id": "PMC8016368",
+        "pubmed_id": "33828899",
+        "title": "How the Destabilization of a Reaction Intermediate Affects Enzymatic Efficiency: The Case of Human Transketolase",
+        "volume": "10",
+        "year": 2020
+      },
+      "artifact_id": "primary:PMC:PMC8016368:BioC-XML",
+      "bytes": 89735,
+      "canonical_official_url": "https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_xml/PMC8016368/unicode",
+      "landing_page": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8016368/",
+      "license": {
+        "change_notice": "This file is copied unchanged; evidence_projection.json is a project-authored extraction and interpretation.",
+        "designation": "Creative Commons Attribution 4.0 International",
+        "embedded_locator": "document[id='PMC8016368']/passage[0]/infon[@key='license']",
+        "embedded_notice_scope": "The BioC title passage explicitly permits broad reuse with author attribution and integrity maintained.",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "media_type": "application/xml; profile=BioC",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/PMC8016368.xml",
+      "sha256": "b3908df8d1e364a9781c74427011fd7de298d490cc6f77e2f0f80267317d2654"
+    }
+  ]
+}

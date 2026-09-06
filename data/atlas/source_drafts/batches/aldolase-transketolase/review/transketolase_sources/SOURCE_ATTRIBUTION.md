@@ -1,0 +1,24 @@
+# Primary source attribution for the M0219 mechanism-2 protein context
+
+This directory preserves a small, source-bound audit package for one claim: the computational paper cited by M-CSA M0219 mechanism proposal 2 used a human transketolase model derived from PDB 4KXV, and the deposited chain-A sequence maps Lys244 and His258 to UniProt P29401 positions 244 and 258. The package does not turn the paper's computational residue roles or protonation model into experimental evidence.
+
+## Structure and mapping sources
+
+- **Current structure:** RCSB PDB [4KXV](https://www.rcsb.org/structure/4KXV), DOI [10.2210/pdb4kxv/pdb](https://doi.org/10.2210/pdb4kxv/pdb). The byte-exact current mmCIF came from <https://files.rcsb.org/download/4KXV.cif>. It reports structure-model revision 2.1 dated 2023-09-20.
+- **Archived structure:** wwPDB/RCSB [4KXV version history](https://www.rcsb.org/versions/4KXV), archived major-version file 1.3. Both the downloaded gzip and its byte-exact decoded mmCIF are retained. Version 1.3 corroborates that the chain-A/P29401 alignment and LYS 244/HIS 258 numbering were present before the 2020 computational paper. It does not establish that these exact coordinate bytes were the paper authors' simulation input.
+- **Structure citation:** Ludtke S, Neumann P, Erixon KM, Leeper F, Kluger R, Ficner R, Tittmann K. “Sub-angstrom-resolution crystallography reveals physical distortions that enhance reactivity of a covalent enzymatic intermediate.” *Nature Chemistry* 5 (2013), 762–767. DOI [10.1038/nchem.1728](https://doi.org/10.1038/nchem.1728); [PubMed 23965678](https://pubmed.ncbi.nlm.nih.gov/23965678/).
+- **Mapping APIs:** the retained PDBe responses are the official [4KXV UniProt mapping](https://www.ebi.ac.uk/pdbe/api/mappings/uniprot/4kxv) and [4KXV residue listing](https://www.ebi.ac.uk/pdbe/api/pdb/entry/residue_listing/4kxv). Credit is retained for PDBe/SIFTS at EMBL-EBI, wwPDB/RCSB PDB, and [UniProt P29401](https://www.uniprot.org/uniprotkb/P29401/entry).
+
+PDB archive files are made available under the [CC0 1.0 Universal Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/); see the [RCSB PDB usage policy](https://www.rcsb.org/pages/policies). Integrated external-resource fields retain their provider terms. The UniProt-derived mapping fields are attributed under the [UniProt CC BY 4.0 license](https://www.uniprot.org/help/license), and `evidence_projection.json` identifies the project-authored selection and change from the unmodified API responses.
+
+## Computational article
+
+Mario Prejanò, Fabiola E. Medina, Maria J. Ramos, Nino Russo, Pedro A. Fernandes, and Tiziana Marino. “How the Destabilization of a Reaction Intermediate Affects Enzymatic Efficiency: The Case of Human Transketolase.” *ACS Catalysis* 10 (2020), 2872–2881. DOI [10.1021/acscatal.9b04690](https://doi.org/10.1021/acscatal.9b04690); [PubMed 33828899](https://pubmed.ncbi.nlm.nih.gov/33828899/); [PMC8016368](https://pmc.ncbi.nlm.nih.gov/articles/PMC8016368/).
+
+`PMC8016368.xml` is the complete BioC XML already present in the research workspace. Its embedded title-passage metadata identifies the article as [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/) and permits redistribution with attribution and integrity maintained. The file is copied unchanged; `evidence_projection.json` is a separate project-authored extraction. The original BioC HTTP status, headers, redirects, and request/completion time were not retained and are not reconstructed. The exact service URL survives in the research command history and is recorded as such in `source_inventory.json`.
+
+## Acquisition and claim limits
+
+`acquisition_receipts.json` records seven attempts for the current 4KXV/PDBe capture, including the aborted run and byte-identical complete reacquisitions. `4KXV_v1-3.receipt.json` records the collaborating reviewer's one official archive request and both compressed and decoded hashes. For the requests enumerated in this package, conservative accounting includes those eight recorded live requests plus one request for the reused BioC artifact: 9 requests and 3,250,862 retained or read bytes, below the limits of 100 requests and 30 MiB. This is not a complete ledger of all agents’ source-discovery or web-review traffic; unpreserved archive-URL probes and root page views are outside this package count.
+
+The direct sources support proposal-2 paper identity, human 4KXV chain A to P29401 mapping, and the exact LYS 244/HIS 258 author-to-UniProt positions. The article's acid/base roles, Lys244 protonation, and pKa are computational. Mechanism proposal 1 remains scoped to yeast P23254/1TRK. The paper's textual X5P/E4P context does not resolve M-CSA mechanism-2 MRV sugar atoms labeled with CHEBI:57483 (S7P), establish a balanced canonical reaction instance, or validate the complete ordered mechanism.

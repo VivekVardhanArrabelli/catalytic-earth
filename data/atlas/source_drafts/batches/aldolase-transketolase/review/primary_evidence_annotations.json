@@ -1,6 +1,164 @@
 {
-  "annotation_set_id": "atlas-primary-evidence.m0222-dhap-moiety.2026-09-06.v1",
+  "annotation_set_id": "atlas-primary-evidence.aldolase-transketolase.2026-09-06.v2",
   "annotations": [
+    {
+      "annotation_id": "m0219.proposal-2.4kxv.p29401-protein-context",
+      "annotation_kind": "source_proposal_protein_context",
+      "claim": {
+        "corroborating_evidence_ids": [
+          "source:PDBe:4KXV:uniprot-mapping",
+          "source:PDBe:4KXV:residue-listing",
+          "source:wwPDB:4KXV:v1-3"
+        ],
+        "direct_evidence_ids": [
+          "source:RCSB:4KXV",
+          "source:PubMed:33828899"
+        ],
+        "protein_context": {
+          "chain_id": "A",
+          "pdb_id": "4KXV",
+          "uniprot_id": "P29401"
+        },
+        "site_mappings": [
+          {
+            "author_residue_number": 244,
+            "residue_name": "LYS",
+            "uniprot_sequence_position": 244
+          },
+          {
+            "author_residue_number": 258,
+            "residue_name": "HIS",
+            "uniprot_sequence_position": 258
+          }
+        ],
+        "statement": "The primary paper cited by M-CSA M0219 proposal 2 explicitly starts its QM/MM model from human transketolase structure 4KXV. The preserved structure maps its P29401-derived chain-A construct and author Lys244/His258 to P29401 sequence positions 244/258. This resolves the model-template protein and two residue identities; it does not establish the proposed catalytic roles or experimental applicability of the complete mechanism.",
+        "support_scope": {
+          "chain_mapping": "primary_structure_supported",
+          "full_mechanism": "not_validated",
+          "protein_identity": "primary_structure_supported",
+          "protonation_states": "computational_only",
+          "residue_roles": "computational_only",
+          "site_mapping": "primary_structure_supported"
+        }
+      },
+      "evidence": [
+        {
+          "citation": "Luedtke et al. (2013), PDB 4KXV; DOI 10.2210/pdb4KXV/pdb; PMID 23965678. PDB archive data: CC0 1.0.",
+          "evidence_id": "source:RCSB:4KXV",
+          "evidence_role": "direct_support",
+          "experimental_context": "Current revision 2.1 (2023-09-20), human-derived TKT expressed in E. coli. The deposited alignment maps chain-A author/label positions 1-623 to P29401 1-623; Lys244 and His258 retain those positions. The trailing 14 residues are an expression tag. No physiological metal or catalytic protonation is inferred.",
+          "source_binding_id": "primary:RCSB:4KXV:mmCIF",
+          "source_id": "RCSB PDB:4KXV",
+          "source_kind": "primary_structure_record",
+          "source_sha256": "2211b8bd450ac25f432a3db1e93ebcca4bf08a4223c8f8ac12fff100fada300f",
+          "uri": "https://www.rcsb.org/structure/4KXV"
+        },
+        {
+          "citation": "Prejano, Medina, Ramos, Russo, Fernandes and Marino (2020), ACS Catalysis 10, 2872-2881; DOI 10.1021/acscatal.9b04690; PMID 33828899. Preserved BioC text: CC BY 4.0.",
+          "evidence_id": "source:PubMed:33828899",
+          "evidence_role": "direct_support",
+          "experimental_context": "The methods explicitly identify a QM/MM model derived from human 4KXV and name Lys244A/His258A. Direct support is limited to the reported model-template and residue context. Catalytic roles/protonation are computational, informed by cited yeast experiments. The local prior download has no original HTTP receipt, as disclosed in the inventory.",
+          "source_binding_id": "primary:PMC:PMC8016368:BioC-XML",
+          "source_id": "PubMed:33828899",
+          "source_kind": "primary_research_article",
+          "source_sha256": "b3908df8d1e364a9781c74427011fd7de298d490cc6f77e2f0f80267317d2654",
+          "uri": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8016368/"
+        },
+        {
+          "citation": "PDBe official UniProt mapping for 4KXV, retrieved 2026-09-06.",
+          "evidence_id": "source:PDBe:4KXV:uniprot-mapping",
+          "evidence_role": "corroboration_only",
+          "experimental_context": "The official mapping exposes entity 1/chain A/struct asym A as P29401 positions 1-623 with identity 1.0. This is a second representation of the same deposit, not independent experimental evidence.",
+          "source_binding_id": "primary:PDBe:4KXV:uniprot-mapping",
+          "source_id": "PDBe:4KXV:UniProt-mapping",
+          "source_kind": "primary_structure_record",
+          "source_sha256": "058d36d71c99e450b7beaaa6171cb93663ce0a7d70d92bf65f6c78e30287701c",
+          "uri": "https://www.ebi.ac.uk/pdbe/api/mappings/uniprot/4kxv"
+        },
+        {
+          "citation": "PDBe official residue listing for 4KXV, retrieved 2026-09-06.",
+          "evidence_id": "source:PDBe:4KXV:residue-listing",
+          "evidence_role": "corroboration_only",
+          "experimental_context": "Entity 1/chain A/struct asym A lists LYS author/label 244 and HIS author/label 258 with observed_ratio 1.0. This supports residue presence and numbering only.",
+          "source_binding_id": "primary:PDBe:4KXV:residue-listing",
+          "source_id": "PDBe:4KXV:residue-listing",
+          "source_kind": "primary_structure_record",
+          "source_sha256": "8697dbb433cf2300a1e9aab0a5503ae599de47594e47234b3722f26a332a37ff",
+          "uri": "https://www.ebi.ac.uk/pdbe/api/pdb/entry/residue_listing/4kxv"
+        },
+        {
+          "citation": "wwPDB versioned archive, 4KXV revision 1.3 (2019-09-04); DOI 10.2210/pdb4KXV/pdb. PDB archive data: CC0 1.0.",
+          "evidence_id": "source:wwPDB:4KXV:v1-3",
+          "evidence_role": "corroboration_only",
+          "experimental_context": "The archived pre-publication entry maps chain-A author/label Lys244 and His258 to P29401 244 and 258, agreeing with current revision 2.1. Archive provenance corroborates numbering across revisions; it does not establish the exact coordinate file used in the computation.",
+          "source_binding_id": "primary:wwPDB:4KXV:v1.3:mmCIF",
+          "source_id": "wwPDB:4KXV:version-1.3",
+          "source_kind": "primary_structure_record",
+          "source_sha256": "26c6421dd5298f14eb79dc24bd604e7dbb2b7b0086261716f0f3930cd6a69226",
+          "uri": "https://files-versioned.wwpdb.org/pdb_versioned/data/entries/kx/pdb_00004kxv/pdb_00004kxv_xyz_v1-3.cif.gz"
+        }
+      ],
+      "limits": [
+        {
+          "limit_id": "catalytic_role_validation",
+          "statement": "The paper cites prior yeast mutagenesis and kinetics to motivate the human His258A-Lys244A dyad and models its catalytic roles. Protein and residue identity do not establish those roles experimentally.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "protonation_state_validation",
+          "statement": "The neutral Lys244A assignment and reported pKa 3.99 are computational choices/predictions; this annotation does not infer protonation from residue identity or the deposited structure.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "full_mechanism_validation",
+          "statement": "The cited paper investigates the first catalytic stage with QM/MM; a prior cluster model supplies its broader cycle. No full source trajectory, atom-mapped bond edits, or proposal-wide experimental applicability is validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "Proposal-2 prose and the paper describe X5P + E4P to G3P + F6P. The sugar-derived components have carbon counts consistent with that context, while all six raw proposal-2 MRVs retain conflicting CHEBI:57483 (S7P) labels on sugar atoms. This does not establish exact structures, stereochemistry, or speciation. Those source labels and the distinct entry-level reaction are preserved; no exact chemical normalization or entry-reaction/proposal equivalence is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cross_proposal_transfer",
+          "statement": "Proposal 1 retains its yeast P23254/1TRK context. This human model-template mapping does not transfer proposal-1 residue roles to P29401 or merge the alternatives.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "coordinate_input_provenance",
+          "statement": "Archived 4KXV v1.3 and current v2.1 both contain P29401 residues 1-623 followed by a 14-residue expression tag and map Lys244/His258 identically. A major atomic-model revision followed the paper; neither archive provenance nor the citation establishes the exact coordinate bytes used for the computation.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "native_metal_identity",
+          "statement": "The structure/model context does not resolve one physiological divalent-metal identity for human transketolase.",
+          "status": "abstained"
+        }
+      ],
+      "projection_binding": {
+        "binding_id": "project:M0219:mechanism-2:protein-context-projection",
+        "context_id": "4kxv-chain-a-p29401",
+        "projection_id": "primary-protein-context:M0219:mechanism-2:4KXV-chain-A"
+      },
+      "proposal_binding": {
+        "proposal_id": "atlas-draft.m0219.mechanism-2",
+        "reference_pubmed_id": "33828899",
+        "source_mechanism_id": 2
+      },
+      "record_binding": {
+        "mcsa_id": "M0219",
+        "record_id": "atlas50-draft:m0219:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "054f1c3bee9ff38938b59e81b6b4065fe4d4204cb899171f4f68c284bad7d01c"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "mechanism_scope_expanded": false,
+        "proposal_applicability_claimed": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_claimed": false
+      },
+      "target_scope": "source_proposal_only"
+    },
     {
       "annotation_id": "m0222.2qut.dhap-derived-covalent-moiety",
       "annotation_kind": "primary_structure_observation",
@@ -115,7 +273,7 @@
   ],
   "batch_id": "aldolase-transketolase",
   "review": {
-    "annotation_payload_sha256": "a7ec87ea2f5446e592c9288764069f49d95f9ff0f1dca056607272eb6076ec8c",
+    "annotation_payload_sha256": "575b0772268a6dd2b6e733d8e811eb9956c991fea6f88d0b167504594a4b2eb6",
     "blind_review": false,
     "correlated_error_risk": true,
     "domain_expert_review_claimed": false,
@@ -126,23 +284,97 @@
     "statistically_independent": false,
     "update_rule": "Do not automatically refresh this pin after annotation changes. Repeat source-to-claim primary-evidence review first."
   },
-  "schema_version": "catalytic-earth.atlas-primary-evidence.v1",
+  "schema_version": "catalytic-earth.atlas-primary-evidence.v2",
   "source_bindings": [
     {
+      "artifact_kind": "primary_source",
+      "binding_id": "source:2qut-cif",
       "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_sources/2QUT.cif",
       "sha256": "82fcf22bac7ffaad5eb64a392c00f31780726181491f21d24736e46ed084a5e7"
     },
     {
+      "artifact_kind": "attribution",
+      "binding_id": "audit:2qut-attribution",
       "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_sources/SOURCE_ATTRIBUTION.md",
       "sha256": "8c1677a5f227d7f5ecd10d715bf3b56472ad49af552b8c4fc84aa33c04375ed4"
     },
     {
+      "artifact_kind": "project_projection",
+      "binding_id": "projection:2qut",
       "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_sources/evidence_projection.json",
       "sha256": "6caa0158b64b8cebc9f4ccaf8798d686d50d611f37c7d583221e4563c005d8e5"
     },
     {
+      "artifact_kind": "source_inventory",
+      "binding_id": "audit:2qut-inventory",
       "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_sources/source_inventory.json",
       "sha256": "a8f054322a6cb89fdda78375241778b9f081cbce1312f4c578668241b519859d"
+    },
+    {
+      "artifact_kind": "primary_source",
+      "binding_id": "primary:RCSB:4KXV:mmCIF",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/4KXV.cif",
+      "sha256": "2211b8bd450ac25f432a3db1e93ebcca4bf08a4223c8f8ac12fff100fada300f"
+    },
+    {
+      "artifact_kind": "primary_source",
+      "binding_id": "primary:wwPDB:4KXV:v1.3:mmCIF",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/4KXV_v1-3.cif",
+      "sha256": "26c6421dd5298f14eb79dc24bd604e7dbb2b7b0086261716f0f3930cd6a69226"
+    },
+    {
+      "artifact_kind": "primary_source",
+      "binding_id": "primary:wwPDB:4KXV:v1.3:gzip",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/4KXV_v1-3.cif.gz",
+      "sha256": "064c98209d4dade5ca319b8634d14041bae381fc51d531dd917a5cec571e73f8"
+    },
+    {
+      "artifact_kind": "source_inventory",
+      "binding_id": "audit:wwPDB:4KXV:v1.3:receipt",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/4KXV_v1-3.receipt.json",
+      "sha256": "57ca0484618cf2b6073f8ff42a4033f8265770b611684066aecade56565f025b"
+    },
+    {
+      "artifact_kind": "primary_source",
+      "binding_id": "primary:PDBe:4KXV:residue-listing",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/4kxv_residue_listing.json",
+      "sha256": "8697dbb433cf2300a1e9aab0a5503ae599de47594e47234b3722f26a332a37ff"
+    },
+    {
+      "artifact_kind": "primary_source",
+      "binding_id": "primary:PDBe:4KXV:uniprot-mapping",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/4kxv_uniprot_mapping.json",
+      "sha256": "058d36d71c99e450b7beaaa6171cb93663ce0a7d70d92bf65f6c78e30287701c"
+    },
+    {
+      "artifact_kind": "primary_source",
+      "binding_id": "primary:PMC:PMC8016368:BioC-XML",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/PMC8016368.xml",
+      "sha256": "b3908df8d1e364a9781c74427011fd7de298d490cc6f77e2f0f80267317d2654"
+    },
+    {
+      "artifact_kind": "attribution",
+      "binding_id": "audit:M0219:protein-context:attribution",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/SOURCE_ATTRIBUTION.md",
+      "sha256": "3f02b0d589ec3ef93169348449d41fc1b92c78a37d6948d9ee3ee1a86ce05fb5"
+    },
+    {
+      "artifact_kind": "source_inventory",
+      "binding_id": "audit:M0219:current-source-receipts",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/acquisition_receipts.json",
+      "sha256": "481f828f080a35bd552175c21cdc99e4842438e9b8ce2c112c8249e5a4963077"
+    },
+    {
+      "artifact_kind": "project_projection",
+      "binding_id": "project:M0219:mechanism-2:protein-context-projection",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/evidence_projection.json",
+      "sha256": "54d0bfeefc1ba24cf4020ec75380cc60b74a91f2b78016b32868daf92c098f64"
+    },
+    {
+      "artifact_kind": "source_inventory",
+      "binding_id": "audit:M0219:protein-context:inventory",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/source_inventory.json",
+      "sha256": "d5c59df0e74e1a36cdb52d006101e2733137c1f59d29b522a62bf9d0c910f234"
     }
   ],
   "status": "reviewed_primary_evidence_annotations_not_mechanism_expansion"
