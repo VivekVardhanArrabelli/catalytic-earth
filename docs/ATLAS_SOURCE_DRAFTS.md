@@ -377,6 +377,25 @@ The validator checks integrity and declared scope. It does not rederive free-for
 scientific claims or residue mappings from coordinates; those require the
 recorded source-to-claim review. Recomputing a pin is not scientific evidence.
 
+For typed observed-state annotations, `scripts/build_atlas_drafts.py` additionally
+rederives selected facts from the hash-bound mmCIF after validating the sidecar
+and projection. This build check compares model-bound component instances,
+component/entity identity, declared protein context, source-author aliases,
+connection inventories, exact covalent endpoints and raw order/distance tokens,
+dictionary bonds, and declared modeled-atom omissions. The modified pyruvoyl
+case keeps its declared chain-F subset; the other two PYR copies in the source
+are not silently added to the annotation. The reader handles the retained
+categories and rejects malformed or unsupported syntax; it is not a general
+mmCIF parser.
+
+The check can reject a false tuple even when the annotation, projection,
+locators and review hashes have been changed together. It does not rederive
+article interpretation, curated sequence crosswalks, chemical identity,
+protonation, reaction direction or source-step applicability. Legacy v1/v2
+annotations keep their existing validation path. Wheels contain the reviewed
+query projections and source witnesses, with no raw structure files or runtime
+network requirement.
+
 ## Priority rule
 
 Choose the next batch or compiler improvement by the bottleneck it removes

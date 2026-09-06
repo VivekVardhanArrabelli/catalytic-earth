@@ -63,6 +63,14 @@ scoped source inferences, with source witnesses and unresolved identities
 retained. This adds chemical retrieval capability without promoting source
 descriptions into observed reaction trajectories.
 
+Opt-in [observed-state queries](docs/ATLAS_SOURCE_DRAFTS.md#query-deposited-structural-contexts)
+also distinguish a processed pyruvoyl component, a source-designated PLP
+analogue, a source-described PLP adduct, and a deposited aldolase covalent
+intermediate. Results retain exact source witnesses, unknown bond orders and
+unresolved chemical descriptions. Package compilation checks selected deposited
+facts against the retained structure files; a record-level observation does
+not validate an individual source step.
+
 - `current702` contains 702 project benchmark labels: 685 bronze, 17 silver,
   zero project-gold; 683 are automation-curated and 19 author-reviewed.
 - The combined 10,001-row surface is **8,305 positive fingerprint assignments

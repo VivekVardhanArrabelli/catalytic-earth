@@ -46,6 +46,15 @@ def main() -> int:
 
         primary = json.loads(primary_source.read_text(encoding="utf-8"))
         validate_primary_evidence(primary, bundle=bundle, repo_root=ROOT)
+        if any(
+            annotation["annotation_kind"] == "primary_observed_state_context"
+            for annotation in primary["annotations"]
+        ):
+            from catalytic_earth.atlas_primary_source_check import (
+                audit_primary_structure_evidence,
+            )
+
+            audit_primary_structure_evidence(primary, ROOT)
         primary_raw = canonical_bytes(primary)
         expected["primary_evidence_sha256"] = hashlib.sha256(primary_raw).hexdigest()
         outputs[primary_target] = primary_raw
