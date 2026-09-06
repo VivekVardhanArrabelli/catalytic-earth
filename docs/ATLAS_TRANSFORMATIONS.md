@@ -1,21 +1,26 @@
 # Computable source-state transformations
 
-M0187 mandelate racemase now has one executable transformation: the depicted
-input of mechanism 1, Step 1, to the depicted intermediate entering Step 2.
-It connects an official R-mandelate structure to source-panel atom locators
-and supplies before/after covalent graphs plus explicit graph edits.
+Two reviewed source-depiction transitions use the shared graph-edit engine.
+M0187 mandelate racemase connects an official R-mandelate structure to a
+depicted intermediate. M0173 trypsin forms a depicted enzyme–substrate
+covalent bond, retaining generic peptide groups without asserting an exact
+canonical peptide. Each set supplies before/after graphs and executable edits
+with its own review and source bindings.
 
 ```sh
 catalytic-earth atlas-transformations --mcsa-id M0187
+catalytic-earth atlas-transformations --mcsa-id M0173
+catalytic-earth atlas-transformations --all
 ```
 
 The query runs offline with the dependency-free installed package. It returns
-the complete transformation, source bindings, two symmetry-equivalent ligand
-mappings, and the limits on what that transformation establishes. A query for
-another M-CSA identifier returns an empty result; that means no reviewed
-transformation is packaged for that identifier.
+the complete selected transformation and its limits. With no options, the
+command reproduces the original M0187 query. `--all` queries each reviewed
+set separately and retains both results and their provenance; it accepts
+`--mcsa-id` to filter the catalog. An empty result means no matching reviewed
+transition is packaged, not absence of the chemistry.
 
-## The chemical result
+## M0187: substrate to intermediate
 
 The retained Step-1 graph matches R-mandelate (CHEBI:32382) with chirality
 enabled. The raw source label says CHEBI:17756, which is S-mandelate and does
@@ -53,6 +58,38 @@ matches have separate provenance. Both phenyl orientations are retained at
 the ligand topology level. Only one orientation preserves the exact depicted
 Kekule bond orders; the second is not a second literal raw-graph replay.
 
+## M0173: enzyme–substrate covalent addition
+
+M0173 mechanism 1, Step 1, depicts His56 deprotonating Ser195 while the
+serine oxygen attacks the substrate carbonyl carbon. The next input panel
+contains the proposed tetrahedral oxyanion intermediate. Three source arrows
+support four bond edits and two charge changes:
+
+| Change | Source-panel nodes |
+| --- | --- |
+| Transfer the serine proton to histidine | break a44–a50; form a21–a50 |
+| Form the enzyme–substrate covalent bond | add a44–a3 |
+| Convert the carbonyl to an oxyanion | a3–a10: double → single; a10: 0 → −1 |
+| Update histidine charge | a21: 0 → +1 |
+
+Replay preserves all 50 depiction nodes, changes 42 bonds to 43, and merges
+the substrate and serine fragments. Those nodes include two literal R-group
+pseudoatoms and carbon tokens used as generic or residue-fragment placeholders.
+The context preserves the source's labels and aliases, including disconnected
+fragments with the same Ser195 label. These are not 50 resolved physical atoms
+or a reconstructed protein. His56 is the source-panel numbering; no sequence
+or structure atom mapping is added.
+
+Both panels lack bond-stereochemistry assignments. The product of this
+depicted addition has no asserted absolute configuration. Bond IDs and flow
+IDs can be reused for different endpoints in later panels, so evidence binds
+the step and endpoints. The atom-token alignment is project-reviewed source
+continuity, not an upstream atom map or proof of unique physical atom identity.
+
+This separately versioned source-only set carries no canonical participant
+bridge or inferred phenyl-symmetry mappings. Its scope ends at the depicted
+intermediate, before peptide cleavage or the complete catalytic cycle.
+
 ## Evidence and reproduction
 
 The [reviewed input](../data/atlas/transformations/m0187/transformations.json)
@@ -75,9 +112,24 @@ raw MOL files, source acquisition or network access.
 Source rights and transformations are recorded in the
 [attribution](../data/atlas/transformations/m0187/SOURCE_ATTRIBUTION.md).
 
+M0173 has a separate [reviewed input](../data/atlas/transformations/m0173/transformations.json),
+[source inventory](../data/atlas/transformations/m0173/source_inventory.json),
+and [attribution](../data/atlas/transformations/m0173/SOURCE_ATTRIBUTION.md).
+Its audit parses the retained MRV directly using the standard library:
+
+```sh
+python data/atlas/transformations/m0173/audit_m0173.py --check
+python scripts/build_atlas_transformations.py --check
+```
+
+The source audit derives both graphs and checks the six reviewed edits against
+the original source arrows and after graph. The package builder validates
+each set separately. New downloads, chemical toolkit installation and merged
+review claims are not required to reproduce this addition.
+
 ## Scope
 
-Steps 3 and 4 omit mandelate, so there is no depicted S-product graph to
+M0187 Steps 3 and 4 omit mandelate, so there is no depicted S-product graph to
 verify. This result establishes a replayable source-depiction transition. It
 does not establish a complete racemization path, net-reaction atom map,
 Step-2 product stereochemistry, inferred enzyme-return step, or observed

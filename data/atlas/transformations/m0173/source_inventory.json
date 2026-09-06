@@ -1,0 +1,166 @@
+{
+  "acquired_artifacts": [],
+  "acquisition": {
+    "limits": {
+      "requests": 0,
+      "response_bytes": 0
+    },
+    "reason": "Both bound MRVs are already retained in the repository.",
+    "used": {
+      "requests": 0,
+      "response_bytes": 0
+    }
+  },
+  "inventory_id": "m0173-step-1-source-panel-transformation-sources",
+  "required_boundaries": [
+    "Preserve a9/a11 as elementType=R with rgroupRef=0 and eight mrvAlias=R carbon tokens. The chebi:90799 label covers a1..a9, only part of the eleven-node substrate component; it is not a canonical exact peptide match.",
+    "These 50 vertices are source depiction nodes, including 15 carbon alias tokens. His56A is the source name; Ser195A occurs in disconnected sidechain/backbone fragments that must not be merged into a physical residue map.",
+    "Neither bound panel contains a bondStereo token; stereochemistry is unasserted, not an assertion of achirality.",
+    "Raw bond b42 changes endpoints across the panels. Step 2 also reuses Step 1 flow IDs with different endpoints. Graph edges and arrows are bound by source mechanism, step, endpoint tokens and exact bytes, not ID continuity alone.",
+    "No canonical exact peptide participant bridge is established by these generic source panels."
+  ],
+  "reused_repository_sources": [
+    {
+      "artifact_id": "source:M-CSA:M0173",
+      "artifact_kind": "source_record_snapshot",
+      "bytes": 85112,
+      "repository_path": "data/atlas/atlas10/sources/mcsa/M0173.json",
+      "role": "Mechanism prose, complete Step 1 and Step 2 MRV panels, source-local nodes, aliases and electron-flow endpoints",
+      "sha256": "d3db64e9a1db6e22e8baae48a738bff261a2296f375a884c19f2f4abc7d8f22e",
+      "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/173/"
+    }
+  ],
+  "rights": {
+    "M-CSA": {
+      "license": "CC BY 4.0",
+      "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/"
+    }
+  },
+  "schema_version": "catalytic-earth.transformation-source-inventory.v1",
+  "scope": "Retained M-CSA mechanism 1 Step 1 input to Step 2 depicted tetrahedral intermediate; source panel only.",
+  "source_facts": {
+    "alias_r_atom_ids": [
+      "a28",
+      "a30",
+      "a33",
+      "a35",
+      "a38",
+      "a40",
+      "a46",
+      "a48"
+    ],
+    "all_alias_rows": [
+      {
+        "atom_id": "a15",
+        "mrv_alias": "His56A"
+      },
+      {
+        "atom_id": "a22",
+        "mrv_alias": "Asp99A"
+      },
+      {
+        "atom_id": "a28",
+        "mrv_alias": "R"
+      },
+      {
+        "atom_id": "a30",
+        "mrv_alias": "R"
+      },
+      {
+        "atom_id": "a31",
+        "mrv_alias": "Gln192A"
+      },
+      {
+        "atom_id": "a33",
+        "mrv_alias": "R"
+      },
+      {
+        "atom_id": "a35",
+        "mrv_alias": "R"
+      },
+      {
+        "atom_id": "a36",
+        "mrv_alias": "Gly193A"
+      },
+      {
+        "atom_id": "a38",
+        "mrv_alias": "R"
+      },
+      {
+        "atom_id": "a40",
+        "mrv_alias": "R"
+      },
+      {
+        "atom_id": "a41",
+        "mrv_alias": "Asp194A"
+      },
+      {
+        "atom_id": "a42",
+        "mrv_alias": "Ser195A"
+      },
+      {
+        "atom_id": "a46",
+        "mrv_alias": "R"
+      },
+      {
+        "atom_id": "a48",
+        "mrv_alias": "R"
+      },
+      {
+        "atom_id": "a49",
+        "mrv_alias": "Ser195A"
+      }
+    ],
+    "bond_edit_count": 4,
+    "bound_flow_ids": [
+      "o24",
+      "o25",
+      "o26"
+    ],
+    "bound_flow_source_step_id": 1,
+    "charge_edit_count": 2,
+    "edit_count": 6,
+    "element_r_atom_ids": [
+      "a9",
+      "a11"
+    ],
+    "raw_bond_id_endpoint_reuse": [
+      "b42"
+    ],
+    "source_histidine_alias": "His56A"
+  },
+  "state_pair": {
+    "atom_id_alignment_scope": "project_reviewed_same_token_alignment_not_upstream_atom_map",
+    "same_50_depiction_node_ids": true,
+    "same_coordinates": true,
+    "same_source_identity_annotations": true,
+    "step_1": {
+      "component_count": 9,
+      "covalent_bond_count": 42,
+      "element_counts": {
+        "C": 30,
+        "H": 3,
+        "N": 8,
+        "O": 7,
+        "R": 2
+      },
+      "formal_charge_sum": -1,
+      "node_count": 50,
+      "scheme_sha256": "61e6e50dce4e376699ebbf430c3190a0805efc0586d33f683e31b0f3c7263eab"
+    },
+    "step_2": {
+      "component_count": 8,
+      "covalent_bond_count": 43,
+      "element_counts": {
+        "C": 30,
+        "H": 3,
+        "N": 8,
+        "O": 7,
+        "R": 2
+      },
+      "formal_charge_sum": -1,
+      "node_count": 50,
+      "scheme_sha256": "7cc3b37af574d0bb078bd46059d6559729ee4bb633ec7190b273182af0497f88"
+    }
+  }
+}
