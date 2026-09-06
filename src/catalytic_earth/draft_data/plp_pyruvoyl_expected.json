@@ -2,6 +2,8 @@
   "attribution_sha256": "56aad15c0589a24077e0cebad99e47ff83389a0ce8a66a6a593b6fd84437105f",
   "bundle_sha256": "7f21e56cdb778e6c92008b740aa2dbce9b1b3de5700f730ffe47d4e922c11227",
   "primary_evidence_sha256": "a55b55d56791612dc9d76773f0a8eed6341bf7d23f729ffab7ba6e8f71d7162c",
+  "reaction_attribution_sha256": "d2f6ca535230e1c22941c2a64d1164a0324ad49b5345e39d32e9dc161f90935d",
+  "reaction_correspondence_sha256": "c62b985e879f1877e009a4fa1f50282a6a5c701049311c0751a4e0cc589ad118",
   "schema_version": "catalytic-earth.source-drafts-package.v1",
   "step_evidence_sha256": "53985577f146bc8610c9581e52de0331d5b75c97c1eff52249578a46fe50c13e"
 }

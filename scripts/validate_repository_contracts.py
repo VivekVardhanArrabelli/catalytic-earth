@@ -246,6 +246,12 @@ def _validate_json_surfaces(*, include_release_manifest: bool) -> None:
                 primary_path.as_posix(),
                 f"src/catalytic_earth/draft_data/{stem}_primary_evidence.json",
             ))
+        reaction_path = batch.gate_directory / "reaction_correspondence_annotations.json"
+        if (ROOT / reaction_path).is_file():
+            paths.extend((
+                reaction_path.as_posix(),
+                f"src/catalytic_earth/draft_data/{stem}_reaction_correspondence.json",
+            ))
         step_path = batch.gate_directory / "step_evidence_annotations.json"
         if (ROOT / step_path).is_file():
             paths.extend((

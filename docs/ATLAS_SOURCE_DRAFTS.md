@@ -47,8 +47,12 @@ The new source challenge retains these material conflicts:
   identifier for D-histidinium. Precursor Ser83, prose Prv-82 and mature-chain
   Pyr1F numbering also remain distinct source assertions.
 - M0213 retains an L-alanine scheme identifier even in its terminal panel,
-  while the entry product is D-alanine and the drawing changes stereochemistry.
-  Direction-dependent catalytic roles and the reference analogue are retained.
+  while the entry product is D-alanine. A later endpoint diagnostic finds
+  R/D-like configuration at the start and S/L-like configuration at the end,
+  opposite the forward prose; depicted charge forms differ from the curated
+  zwitterions. Intermediate panels do not establish a coherent reverse
+  trajectory. Direction-dependent roles and the reference analogue remain
+  separate assertions.
 - M0186 explicitly infers its Step 4 phosphate-base assignment and assumes
   the corresponding acid assignment in Step 5. Panels 6 and 7 describe
   hydrolysis outside the active site and are retained as distinct source panels.
@@ -310,7 +314,9 @@ For example, the last query returns M0186's separately described outside-enzyme
 Steps 6 and 7 alongside its structural context; the bound adduct does not
 validate those steps.
 
-Single-batch opt-in output uses query schema v5; catalog output uses v3.
+Without a reaction-correspondence sidecar, single-batch observed-state output
+uses query schema v5 and catalog output uses v3. The PLP/pyruvoyl sidecar
+adds query v6 and catalog v4 as described below.
 Compact and full results preserve the same selected `observed_state_contexts`
 and complete primary annotations. Projection excerpts retain evidence edges
 and source locators; `primary_evidence.source_bindings` identifies captured
@@ -322,7 +328,58 @@ across the eleven source records. Existing aldolase and transketolase
 primary annotations keep their original record/proposal scope and are not
 automatically reclassified into this new type. An empty typed result therefore
 means no matching reviewed typed annotation, not an absence of evidence or
-chemistry. Default queries keep their existing field layout.
+chemistry. The default source batch keeps its existing field layout.
+
+## Curated reaction correspondence and depiction conflicts
+
+M0213 has a separate reviewed correspondence to the curated net reaction:
+**RHEA:20250, L-alanine zwitterion (CHEBI:57972) → D-alanine zwitterion
+(CHEBI:57416)**, one participant on each side. Rhea's machine-readable
+M-CSA cross-reference table binds M0213 to 20250. Its master 20249 is
+unspecified direction; 20251 is the reverse and 20252 is bidirectional.
+The retained UniProt P10724 catalytic activity references the same master
+and participants. The source proposal and Steps 1 and 6 independently agree
+with the forward direction. A record cross-reference does not validate a
+proposal or its individual steps.
+[Rhea direction definitions](https://www.rhea-db.org/help/reaction-side-direction)
+
+The exact retained MRV endpoints conflict with that prose: a pinned
+RDKit 2025.03.3 diagnostic reads **R at Step 1 and S at terminal Step 7**.
+Rhea's reference molecules read S for L-alanine and R for D-alanine.
+The depicted endpoint fragments have formal charge −1, compared with the
+curated zwitterions' charge 0, and the terminal panel retains the source
+label CHEBI:57972. These findings support a depiction inconsistency; they
+do not assign exact ChEBI identities to the drawn fragments. Step 3 contains
+an explicit alpha hydrogen and differs from the other early panels, while
+Step 4 has no assigned tetrahedral center. No coherent reverse trajectory
+is inferred from the intermediate sequence.
+
+```bash
+catalytic-earth atlas-drafts --batch plp-pyruvoyl --mcsa-id M0213
+catalytic-earth atlas-drafts --batch plp-pyruvoyl --reactant 57972 --product 57416 --steps
+```
+
+These existing queries automatically attach
+`curated_reaction_correspondences`, including the source direction witnesses,
+terminal conflict, computational diagnostic, required abstentions and
+explicitly false scope-promotion fields. The PLP/pyruvoyl result uses query
+schema v6; a catalog containing that sidecar uses v4. Compact and expanded
+results retain the same correction. Other source batches and library calls
+without a sidecar keep their previous schemas. Participant filters still
+match the original entry's exact ChEBI identifiers and sides; the new
+context does not broaden identity matching or manufacture a reverse mechanism.
+
+The [reaction source package](../data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/SOURCE_ATTRIBUTION.md)
+retains official structured Rhea data, reference molecules, acquisition
+receipts, source hashes and the optional diagnostic script. The build
+validates selected structured source facts against those retained bytes.
+Offline queries validate the reviewed packaged excerpts and scope; they do
+not rerun a general stereochemistry calculation. RDKit is needed only to
+reproduce the diagnostic, and is not a runtime dependency. Original M-CSA,
+primary-evidence and step-evidence bytes remain unchanged. This additive
+correction supersedes any interpretation that the source drawings themselves
+confirm the forward stereochemical sequence. It adds no independent human
+review, atom mapping, exact reaction instance, trajectory or higher evidence tier.
 
 ## Rebuild and extend
 

@@ -47,6 +47,7 @@ def query_source_drafts(
     mechanism_components: Sequence[str] = (),
     primary_evidence: dict[str, Any] | None = None,
     step_evidence: dict[str, Any] | None = None,
+    reaction_correspondence: dict[str, Any] | None = None,
     cofactors: Sequence[str] = (), enzyme_contexts: Sequence[str] = (),
     source_assertions: Sequence[str] = (),
     include_observed_state_context: bool = False,
@@ -60,6 +61,17 @@ def query_source_drafts(
         for annotation in primary_evidence["annotations"]:
             record_id = annotation["record_binding"]["record_id"]
             annotations_by_record.setdefault(record_id, []).append(annotation)
+    reaction_summary = None
+    reactions_by_record: dict[str, list[dict[str, Any]]] = {}
+    if reaction_correspondence is not None:
+        from .atlas_reaction_correspondence import validate_reaction_correspondence
+
+        reaction_summary = validate_reaction_correspondence(
+            reaction_correspondence, bundle=bundle,
+        )
+        for annotation in reaction_correspondence["annotations"]:
+            record_id = annotation["record_binding"]["record_id"]
+            reactions_by_record.setdefault(record_id, []).append(annotation)
     observed_filters = normalize_observed_state_filters(
         observed_states=observed_states, observed_components=observed_components,
     )
@@ -137,6 +149,10 @@ def query_source_drafts(
             )
         if step_evidence is not None:
             text_fields["step_evidence_annotations"] = record_step_matches
+        if reaction_correspondence is not None:
+            text_fields["curated_reaction_correspondences"] = reactions_by_record.get(
+                record["record_id"], []
+            )
         if text is not None and text.casefold() not in json.dumps(
             text_fields, ensure_ascii=False
         ).casefold():
@@ -161,6 +177,10 @@ def query_source_drafts(
             )
         if use_observed_context:
             result["observed_state_contexts"] = copy.deepcopy(record_observed_contexts)
+        if reaction_correspondence is not None:
+            result["curated_reaction_correspondences"] = copy.deepcopy(
+                reactions_by_record.get(record["record_id"], [])
+            )
         if step_evidence is not None:
             result["step_evidence_annotations"] = record_step_matches
             # Keep the complete source wording in compact results as well.
@@ -293,5 +313,22 @@ def query_source_drafts(
             "observed_state_context_count_is_independent_observation_count": False,
             "legacy_primary_annotation_state_classification": "not_inferred",
             "empty_observed_state_result": "no_matching_reviewed_typed_annotation_not_absence_of_observation",
+        })
+    if reaction_correspondence is not None:
+        output["schema_version"] = "catalytic-earth.source-draft-query.v6"
+        output["curated_reaction_correspondence"] = {
+            "annotation_set_id": reaction_summary["annotation_set_id"],
+            "annotation_payload_sha256": reaction_summary["annotation_payload_sha256"],
+            "review": copy.deepcopy(reaction_correspondence["review"]),
+            "source_bindings": copy.deepcopy(reaction_correspondence["source_bindings"]),
+        }
+        output["curated_reaction_correspondence_count"] = sum(
+            len(record["curated_reaction_correspondences"]) for record in results
+        )
+        output["query_semantics"].update({
+            "curated_reaction_context_join": "record_crossreference_with_separate_proposal_direction_agreement",
+            "curated_reaction_validates_source_steps": False,
+            "curated_reaction_assigns_depicted_species": False,
+            "curated_reaction_establishes_atom_mapping": False,
         })
     return output

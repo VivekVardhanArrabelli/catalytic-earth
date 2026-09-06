@@ -369,3 +369,106 @@ goal or for further scoped development. Same-model agent review is correlated
 and does not confer independent expert review. Physical and mechanistic claims
 still require appropriately scoped evidence; these software checks establish
 neither chemical identity/protonation nor causal residue roles or trajectories.
+
+## M0213 reaction correspondence follow-up
+
+Owner authorized the next scientific question after completion of the previous
+goal. PR #43 merged at 2026-09-06 08:13:51 UTC, merge
+`ea201cf249238405358a92a732699e146f50538e`; its tree matches tested head
+`fd26b4153a44f5e3dbb3830eab38d8a1651b3336`. All four PR CI jobs passed in
+run `34020940597`. Main was clean and matched origin/main before this branch:
+`codex/m0213-reaction-correspondence`.
+
+- Scientific question: which direction and stereochemical correspondence
+  between M0213's net reaction and ordered source steps is actually supported?
+  Correct a concrete retrieval/representation defect if the evidence permits;
+  do not invent an atom map, resolve a source conflict by agreement, or expand
+  schema simply to record another abstention.
+- `source_ingestion`: primary Rhea/UniProt/ChEBI reaction evidence and precise
+  direction/chemical-form semantics, using retained sources first. Additional
+  acquisition cap is twelve requests and 3 MiB, within the existing cumulative
+  batch limit of one hundred requests and 30 MiB. Count retries/redirects and
+  preserve receipts. No paid calls, outreach or experiments.
+- `draft_integration_review`: independently inspect the six source steps and
+  terminal scheme, including actual drawn stereochemistry and persistent
+  identifiers; challenge reversal, protonation/form collapse, proposal-scope
+  leakage and unsupported atom mapping.
+- `state_contracts`: inspect the current representation and propose the
+  smallest useful query/contract after source findings are known. No speculative
+  implementation before the supported correction is concrete.
+- Root coordinates this board, source budget, integration, tests and publication.
+  Initial agent work stays under `/tmp/catalytic-m0213-reaction-20260906/`.
+  Existing source captures, primary/step annotations, frozen benchmarks and
+  Atlas10 remain preserved unless a separately reviewed correction is justified.
+
+### Source result and implementation boundary
+
+The official Rhea machine row is `20250 / LR / 20249 / M0213`.
+RHEA:20249 is the unspecified master, 20250 is left-to-right, 20251 is
+right-to-left and 20252 is bidirectional. Retained UniProt P10724 and the
+M-CSA proposal/Steps 1 and 6 agree on L-alanine to D-alanine. A flattened
+browser-table interpretation was challenged and rejected using the exact
+TSV row; no Rhea-versus-M-CSA direction conflict is retained.
+
+The substantive correction concerns the drawings. The pinned optional
+RDKit 2025.03.3 diagnostic reads the source endpoints R then S, opposite
+the S(L)-to-R(D) curated references. The endpoint alanine fragments have
+charge -1 while the curated zwitterions have charge 0. Source label
+`chebi:57972` remains on the terminal fragment. Step 3 includes an explicit
+alpha H and parses S; Step 4 has no assigned tetrahedral center. Per-panel
+readouts are R, R, S, null, S, S, S. These are separate depiction diagnostics,
+not a coherent reverse mechanism or an atom map. The initial fragment's
+additional bond beyond the six labeled heavy atoms is to an explicit N-H,
+not to PLP.
+
+Root's optional script pins both reference-file hashes, their expected
+CIP/charge and the original M0213 source hash. Script SHA-256 is
+`fa9dfdafb089f3471238ff23ec2446bb67c4e0724a284182f7c8a4f90b7a3eaf`;
+reproduced output is
+`8e58483cd525c35ec4448575df0bb7ed4302240db0194aa87f67ecb239abf232`.
+Swapping the reference files is rejected. RDKit remains outside production
+requirements. The source agent used twelve acquisition requests and
+1,267,489 response bytes; unavailable/header-only probes are negative capture
+records, not positive chemical evidence. The HTTP 403 RXN capture establishes
+no atom-pair correspondence.
+
+The implementation is an additive curated-reaction sidecar. It preserves
+original source, primary and step evidence bytes. Existing PLP/pyruvoyl CLI
+queries automatically attach the correction using query v6; a containing
+catalog uses v4. No new query flag or chemical identity alias is introduced.
+Library calls without a sidecar and other source batches keep their existing
+behavior. Original entry participant filters remain exact. Review is
+same-model, nonblind and correlated, with zero independent human reviewers.
+
+### Final reviewed inputs and local verification
+
+- Reaction sidecar/source and package SHA-256:
+  `c62b985e879f1877e009a4fa1f50282a6a5c701049311c0751a4e0cc589ad118`.
+  Scientific payload pin:
+  `3e80898cf0d9a4d7d5236f9f7587c1a8e2493b88fbf6c37795c10fb8ad1cfff3`.
+  Projection SHA-256:
+  `3bbf80d42ba7c9aceb48d38873509b7d1154b046fe8a19a55e18e3668af23c7c`.
+- The source-bound validator is frozen at SHA-256
+  `ccfb1572e0bcfd7ca89e9d93c7cb28c59bff56c8b15d7c4bc94a4ae81653551f`.
+  Review found and closed a substring-witness loophole: a reverse-direction
+  sentence could not substitute for the complete source proposal passage.
+  Build checks also rederive Rhea direction rows, source endpoint labels and
+  charges, the explicit Step 3 hydrogen, participant MOL facts and linkage
+  to the pinned computational diagnostic. These checks do not independently
+  calculate general chemistry at runtime.
+- `draft_integration_review` owns nine adversarial tests. Internally consistent
+  false annotations/projections with refreshed review hashes still fail against
+  unchanged raw Rhea/source/diagnostic evidence. Root's five query tests cover
+  exact forward participant retrieval, rejected reverse/form aliases, unchanged
+  non-sidecar behavior, package pins and equal compact/full corrections.
+- Final core suite: 326 tests passed with one optional dependency skip.
+  A fresh wheel built from this exact validator passed source-draft queries
+  with network connections blocked and no raw-source checkout. Atlas10's
+  10-case/30-object runtime SHA remains
+  `57fb5e4708d6963b994a9ffd125549b822effe060da3e735c1afd987f1c84bdb`.
+  Rhea attribution is packaged separately with an exact hash; the earlier
+  source/primary/step attribution and annotation bytes are untouched.
+- Local verification logs are under `/tmp/catalytic-m0213-*-final-20260906.log`.
+  Repository contracts and report-index checks passed. Four-job CI remains
+  before merge. No further scientific work is required for this bounded
+  correspondence correction; a separate question requires separate evidence.

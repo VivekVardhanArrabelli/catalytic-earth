@@ -75,6 +75,10 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                 "    'primary': run_query('--batch', 'aldolase-transketolase', '--mcsa-id', 'M0222', '--text', 'DHAP-derived covalent moiety'),\n"
                 "    'transketolase_context': run_query('--batch', 'aldolase-transketolase', '--mcsa-id', 'M0219', '--text', 'P29401'),\n"
                 "    'plp_pyruvoyl': run_query('--batch', 'plp-pyruvoyl', '--steps'),\n"
+                "    'reaction_forward': run_query('--batch', 'plp-pyruvoyl', '--mcsa-id', 'M0213', '--reactant', '57972', '--product', '57416'),\n"
+                "    'reaction_forward_full': run_query('--batch', 'plp-pyruvoyl', '--mcsa-id', 'M0213', '--reactant', '57972', '--product', '57416', '--steps'),\n"
+                "    'reaction_reverse': run_query('--batch', 'plp-pyruvoyl', '--mcsa-id', 'M0213', '--reactant', '57416', '--product', '57972'),\n"
+                "    'reaction_form_alias': run_query('--batch', 'plp-pyruvoyl', '--mcsa-id', 'M0213', '--reactant', '16977'),\n"
                 "    'pyruvoyl_event': run_query('--batch', 'plp-pyruvoyl', '--mechanism-component', 'decarboxylation'),\n"
                 "    'extra_enzymatic': run_query('--batch', 'plp-pyruvoyl', '--mechanism-component', 'reaction occurs outside the enzyme'),\n"
                 "    'events': run_query('--batch', 'all', '--mechanism-component', 'schiff base formed'),\n"
@@ -335,6 +339,32 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                     or joined["query_semantics"]["observed_state_grounds_step"] is not False
                     or queries["observed_false_join"]["record_count"] != 0):
                 raise ValueError("installed observed-state filter overstates the evidence join")
+            forward = queries["reaction_forward"]
+            if (forward["record_count"] != 1 or forward["curated_reaction_correspondence_count"] != 1
+                    or queries["reaction_reverse"]["record_count"]
+                    or queries["reaction_form_alias"]["record_count"]):
+                raise ValueError("installed reaction context changed exact source participant matching")
+            row = forward["records"][0]
+            correspondence = row["curated_reaction_correspondences"][0]
+            full_correspondence = queries["reaction_forward_full"]["records"][0]["curated_reaction_correspondences"]
+            if row["curated_reaction_correspondences"] != full_correspondence:
+                raise ValueError("installed compact/full reaction correction differs")
+            curated = correspondence["curated_reaction"]
+            depiction = correspondence["terminal_depiction"]
+            diagnostic = depiction["endpoint_diagnostic"]
+            if (curated["selected_directed_id"] != "RHEA:20250"
+                    or curated["selected_direction_code"] != "LR"
+                    or curated["left_participants"][0]["chebi_id"] != "CHEBI:57972"
+                    or curated["right_participants"][0]["chebi_id"] != "CHEBI:57416"
+                    or depiction["alanine_fragment_raw_source_labels"] != ["chebi:57972"]
+                    or [diagnostic[side]["computed_cip"] for side in ("initial", "terminal")] != ["R", "S"]
+                    or [diagnostic[side]["fragment_formal_charge"] for side in ("initial", "terminal")] != [-1, -1]
+                    or depiction["all_panel_trajectory_status"] != "not_asserted"
+                    or any(value is not False for value in correspondence["scope_effect"].values())):
+                raise ValueError("installed reaction correction lost its source conflict or scope boundary")
+            if ("curated_reaction_correspondence" in drafts
+                    or any(r.get("curated_reaction_correspondences") for r in additional)):
+                raise ValueError("installed reaction correction leaked into an unrelated source batch")
             print("Fresh-directory source draft query passed with network connections blocked")
     expected_counts = {
         "case_count": 10,
