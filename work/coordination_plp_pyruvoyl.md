@@ -98,3 +98,9 @@ receipts. Final compilation depends on the captured-source challenge.
   flags, distinct M0186 panels, no input mutation, and the generalized ancestry
   and captured-identity checks. Publication and remote CI follow this locally
   verified state.
+- PR #39's first CI run exposed a release-index sequencing issue: the local
+  checks ran before the new board was staged, so the Git-index-based report
+  archive did not yet include it. Every source/probe/gate/compiler check passed
+  remotely. The fix stages the final board first, rebuilds the report archive
+  index from those exact staged blobs, and verifies both ordinary and
+  partial-clone index checks. No source or scientific decision changes.
