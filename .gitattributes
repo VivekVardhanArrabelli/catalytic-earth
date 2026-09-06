@@ -2,6 +2,7 @@
 
 # Scientific binary payloads must never be newline-normalized.
 *.cif binary
+*.mol binary
 *.npz binary
 *.npy binary
 *.gz binary

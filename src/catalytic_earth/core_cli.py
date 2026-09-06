@@ -35,6 +35,23 @@ def _canonical_sha(value: Any) -> str:
     return hashlib.sha256(payload).hexdigest()
 
 
+def verified_transformations() -> dict[str, Any]:
+    from .atlas_transformations import validate_transformations
+
+    expected = json.loads(_resource_bytes("transformation_data/expected.json"))
+    if expected.get("schema_version") != "catalytic-earth.transformation-package.v1":
+        raise ValueError("unsupported transformation package")
+    raw = _resource_bytes("transformation_data/transformations.json")
+    attribution = _resource_bytes("transformation_data/attribution.md")
+    if hashlib.sha256(raw).hexdigest() != expected["transformations_sha256"]:
+        raise ValueError("transformation package differs from its expected hash")
+    if hashlib.sha256(attribution).hexdigest() != expected["attribution_sha256"]:
+        raise ValueError("transformation attribution differs from its expected hash")
+    value = json.loads(raw)
+    validate_transformations(value, atlas10_bundle=json.loads(_resource_bytes(ATLAS10_KERNEL)))
+    return value
+
+
 def build_golden_result() -> dict[str, Any]:
     raw = _resource_bytes(GOLDEN_INPUT)
     payload = json.loads(raw)
@@ -302,6 +319,11 @@ def build_parser() -> argparse.ArgumentParser:
         "atlas10", help="reproduce the ten-case Atlas relationship-query surface"
     )
     atlas10.add_argument("--output", type=Path, help="optional JSON output path")
+    transformations = subparsers.add_parser(
+        "atlas-transformations", help="query computed source-state atom and bond changes offline"
+    )
+    transformations.add_argument("--mcsa-id", help="filter an exact M-CSA identifier, e.g. M0187")
+    transformations.add_argument("--output", type=Path, help="optional JSON output path")
     drafts = subparsers.add_parser(
         "atlas-drafts", help="query source-scoped mechanisms, states and abstentions offline"
     )
@@ -444,6 +466,18 @@ def main(argv: Sequence[str] | None = None) -> int:
                     args.batch, bundle=bundle, primary_evidence=primary,
                 ) if use_step_evidence else None,
             )
+        rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
+        if args.output:
+            args.output.write_text(rendered, encoding="utf-8", newline="\n")
+        print(rendered, end="")
+        return 0
+    if args.command == "atlas-transformations":
+        from .atlas_transformation_query import query_transformations
+
+        result = query_transformations(
+            verified_transformations(), atlas10_bundle=json.loads(_resource_bytes(ATLAS10_KERNEL)),
+            mcsa_id=args.mcsa_id,
+        )
         rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
         if args.output:
             args.output.write_text(rendered, encoding="utf-8", newline="\n")

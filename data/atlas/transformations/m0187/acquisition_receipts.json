@@ -1,0 +1,97 @@
+{
+  "aggregate": {
+    "requests": 3,
+    "response_bytes": 2376
+  },
+  "limits": {
+    "requests": 8,
+    "response_bytes": 2097152
+  },
+  "requests": [
+    {
+      "final_url": "https://ftp.expasy.org/databases/rhea/ctfiles/mol/CHEBI_17756.mol",
+      "http_status": 200,
+      "output_path": "/tmp/catalytic-m0187-20260906/source/CHEBI_17756.mol",
+      "request_index": 1,
+      "request_kind": "direct",
+      "request_url": "https://ftp.expasy.org/databases/rhea/ctfiles/mol/CHEBI_17756.mol",
+      "response_bytes": 1122,
+      "response_headers": {
+        "accept-ranges": "bytes",
+        "access-control-allow-origin": "*",
+        "connection": "close",
+        "content-length": "1122",
+        "content-security-policy": "default-src 'self'; img-src 'self' data: ; frame-ancestors 'none'",
+        "date": "Sun, 06 Sep 2026 11:25:23 GMT",
+        "etag": "\"462-65a80737ab800\"",
+        "last-modified": "Wed, 02 Sep 2026 14:00:00 GMT",
+        "server": "Apache",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN"
+      },
+      "response_sha256": "657e479212f2f37b3435a752c873292a18c10c7358d8ca01b21f585f3b4ac3cd",
+      "retrieved_at_utc": "2026-09-06T11:25:23.156741+00:00",
+      "role": "curated_s_mandelate_participant_structure"
+    },
+    {
+      "final_url": "https://ftp.expasy.org/databases/rhea/ctfiles/mol/CHEBI_32382.mol",
+      "http_status": 200,
+      "output_path": "/tmp/catalytic-m0187-20260906/source/CHEBI_32382.mol",
+      "request_index": 2,
+      "request_kind": "direct",
+      "request_url": "https://ftp.expasy.org/databases/rhea/ctfiles/mol/CHEBI_32382.mol",
+      "response_bytes": 1122,
+      "response_headers": {
+        "accept-ranges": "bytes",
+        "access-control-allow-origin": "*",
+        "connection": "close",
+        "content-length": "1122",
+        "content-security-policy": "default-src 'self'; img-src 'self' data: ; frame-ancestors 'none'",
+        "date": "Sun, 06 Sep 2026 11:25:24 GMT",
+        "etag": "\"462-65a80737ab800\"",
+        "last-modified": "Wed, 02 Sep 2026 14:00:00 GMT",
+        "server": "Apache",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN"
+      },
+      "response_sha256": "4d03fab8cd46d47495f4c2ba407d3ae57c33ed3c671f3e086f44877916c4b21e",
+      "retrieved_at_utc": "2026-09-06T11:25:23.578278+00:00",
+      "role": "curated_r_mandelate_participant_structure"
+    },
+    {
+      "final_url": "https://www.rhea-db.org/rhea?query=RHEA%3A13945&columns=rhea-id%2Cequation%2Cchebi-id%2Cec&format=tsv",
+      "http_status": 200,
+      "output_path": "/tmp/catalytic-m0187-20260906/source/RHEA_13945_query.tsv",
+      "request_index": 3,
+      "request_kind": "direct",
+      "request_url": "https://www.rhea-db.org/rhea?query=RHEA%3A13945&columns=rhea-id%2Cequation%2Cchebi-id%2Cec&format=tsv",
+      "response_bytes": 132,
+      "response_headers": {
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "cache-control": "private",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a36d2476beb81bcb-DFW",
+        "connection": "close",
+        "content-disposition": "inline; filename=Rhea-RHEA%3A13945.tsv",
+        "content-type": "text/plain; charset=UTF-8",
+        "date": "Sun, 06 Sep 2026 11:30:35 GMT",
+        "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+        "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=czidutbJtGNajfi9NemScInV0SF%2BKvvNl%2Fhp5AfQc59y5s2g%2Fu6dxhajasdNUnOrSgyKqZHsLUEOGH0zxR1x11BQE1AHelFSI46EOxrMdMRVkcbTqW5ZsINAnHj4jdF94q4RqaXg4w1kr8zCYUE%3D\"}]}",
+        "server": "cloudflare",
+        "strict-transport-security": "max-age=15552000; includeSubDomains",
+        "transfer-encoding": "chunked",
+        "vary": "accept-encoding",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN",
+        "x-powered-by": "sib.swiss"
+      },
+      "response_sha256": "0288ae86ee14a1f06955fb9c4f32b2ed9738eea5bb13426e87354066c4c668e9",
+      "retrieved_at_utc": "2026-09-06T11:30:34.462865+00:00",
+      "role": "current_master_reaction_and_participant_identifiers"
+    }
+  ],
+  "schema_version": "catalytic-earth.bounded-acquisition-receipts.v1",
+  "scope": "Direct HTTP requests by source_ingestion for the M0187 atom-correspondence feasibility audit only."
+}

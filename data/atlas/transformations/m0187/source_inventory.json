@@ -1,0 +1,161 @@
+{
+  "acquired_artifacts": [
+    {
+      "artifact_id": "official:Rhea:RHEA:13945:query",
+      "artifact_kind": "official_reaction_query",
+      "bytes": 132,
+      "http_status": 200,
+      "repository_path": "data/atlas/transformations/m0187/RHEA_13945_query.tsv",
+      "role": "Current master equation, participant identifiers, and EC number",
+      "sha256": "0288ae86ee14a1f06955fb9c4f32b2ed9738eea5bb13426e87354066c4c668e9",
+      "source_url": "https://www.rhea-db.org/rhea?query=RHEA%3A13945&columns=rhea-id%2Cequation%2Cchebi-id%2Cec&format=tsv",
+      "transformation": "copied byte-for-byte"
+    },
+    {
+      "artifact_id": "official:Rhea:CHEBI:17756:mol",
+      "artifact_kind": "official_participant_structure",
+      "bytes": 1122,
+      "http_status": 200,
+      "repository_path": "data/atlas/transformations/m0187/CHEBI_17756.mol",
+      "role": "Canonical S-mandelate anion reference structure",
+      "sha256": "657e479212f2f37b3435a752c873292a18c10c7358d8ca01b21f585f3b4ac3cd",
+      "source_url": "https://ftp.expasy.org/databases/rhea/ctfiles/mol/CHEBI_17756.mol",
+      "transformation": "copied byte-for-byte"
+    },
+    {
+      "artifact_id": "official:Rhea:CHEBI:32382:mol",
+      "artifact_kind": "official_participant_structure",
+      "bytes": 1122,
+      "http_status": 200,
+      "repository_path": "data/atlas/transformations/m0187/CHEBI_32382.mol",
+      "role": "Canonical R-mandelate anion reference structure",
+      "sha256": "4d03fab8cd46d47495f4c2ba407d3ae57c33ed3c671f3e086f44877916c4b21e",
+      "source_url": "https://ftp.expasy.org/databases/rhea/ctfiles/mol/CHEBI_32382.mol",
+      "transformation": "copied byte-for-byte"
+    }
+  ],
+  "acquisition": {
+    "known_plp_development_ledgers_cumulative": {
+      "global_limits": {
+        "requests": 100,
+        "response_bytes": 31457280
+      },
+      "requests": 76,
+      "response_bytes": 5071107,
+      "scope": "Six enumerated PLP source/primary/observed-state/reaction/transformation ledgers; excludes unledgered web discovery."
+    },
+    "limits": {
+      "requests": 8,
+      "response_bytes": 2097152
+    },
+    "receipt_path": "data/atlas/transformations/m0187/acquisition_receipts.json",
+    "receipt_sha256": "9dbec4385de352a91ae370bd9e7f6473d4df667c039d60687928cf84a9a76b59",
+    "redirects": 0,
+    "retries": 0,
+    "used": {
+      "requests": 3,
+      "response_bytes": 2376
+    }
+  },
+  "inventory_id": "m0187-step-1-transformation-sources",
+  "required_boundaries": [
+    "M-CSA Step 1 raw chebi:17756 label conflicts with its R graph/stereochemistry and R-substrate prose.",
+    "Rhea record cross-reference selects directional child RHEA:13946, S-to-R from the master sides, opposite M-CSA proposal R-to-S; it does not ground the proposal or steps.",
+    "Rhea participant structures contain no atom map.",
+    "M-CSA does not declare cross-panel atom correspondence.",
+    "Steps 3 and 4 omit mandelate, so no source-observed terminal S graph or complete R-to-S trajectory is available.",
+    "Phenyl reflection-equivalent atom pairings remain an equivalence class."
+  ],
+  "reused_repository_sources": [
+    {
+      "artifact_id": "source:M-CSA:M0187",
+      "artifact_kind": "source_record_snapshot",
+      "bytes": 91495,
+      "repository_path": "data/atlas/atlas10/sources/mcsa/M0187.json",
+      "role": "Entry, mechanism prose, steps, arrows, and raw MRV panels",
+      "sha256": "45663712262387e7eec092c49b16994d03f9b6d186008b737b94c613a87458e3",
+      "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/187/"
+    },
+    {
+      "artifact_id": "source:Rhea:RHEA:13945",
+      "artifact_kind": "source_record_snapshot",
+      "bytes": 2408,
+      "repository_path": "data/atlas/atlas10/sources/rhea/RHEA_13945.json",
+      "role": "Retained master reaction and participant-side wrapper",
+      "sha256": "dd9e64c0925d293e978fc31c518ae6e65fb5dacd87e10fd57aa6478a6ef6e98e",
+      "source_url": "https://www.rhea-db.org/rhea/13945"
+    },
+    {
+      "artifact_id": "official:Rhea:directions",
+      "artifact_kind": "official_reaction_direction_map",
+      "bytes": 446712,
+      "repository_path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/rhea-directions.tsv",
+      "role": "Reused exact row 13945/13946/13947/13948; no duplicate acquisition",
+      "sha256": "deae1911da372c70ee8fc97992809c7923e63b288a8702fc4396edcb2633fb04"
+    },
+    {
+      "artifact_id": "official:Rhea:M-CSA-crossrefs",
+      "artifact_kind": "official_reaction_cross_reference_map",
+      "bytes": 2929,
+      "repository_path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/rhea2macie.tsv",
+      "role": "Reused exact record-level row 13946 LR 13945 M0187; no proposal or step grounding",
+      "sha256": "2d0120f01f78e1c1a8fda6476d2587f21ee5fcdc3e4f15ad040c2424ce451ff5"
+    }
+  ],
+  "rights": {
+    "ChEBI": {
+      "license": "CC BY 4.0",
+      "url": "https://www.ebi.ac.uk/ols4/ontologies/chebi"
+    },
+    "M-CSA": {
+      "license": "CC BY 4.0",
+      "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/"
+    },
+    "Rhea": {
+      "license": "CC BY 4.0",
+      "url": "https://www.rhea-db.org/help/license-disclaimer"
+    }
+  },
+  "schema_version": "catalytic-earth.transformation-source-inventory.v1",
+  "scope": "Official structured inputs for a project-derived M0187 Step 1 R-mandelate-to-planar-intermediate correspondence; no complete product or full-cycle atom map.",
+  "source_facts": {
+    "direction_quartet": {
+      "bidirectional": "RHEA:13948",
+      "left_to_right": "RHEA:13946",
+      "master": "RHEA:13945",
+      "right_to_left": "RHEA:13947"
+    },
+    "participant_structures": [
+      {
+        "atom_map_fields": "all_zero",
+        "chebi_id": "CHEBI:17756",
+        "declared_configuration": "S",
+        "formal_charge": -1,
+        "heavy_atom_count": 11,
+        "v2000_alpha_c_oh_stereo_code": 1
+      },
+      {
+        "atom_map_fields": "all_zero",
+        "chebi_id": "CHEBI:32382",
+        "declared_configuration": "R",
+        "formal_charge": -1,
+        "heavy_atom_count": 11,
+        "v2000_alpha_c_oh_stereo_code": 6
+      }
+    ],
+    "record_cross_reference": {
+      "direction_code": "LR",
+      "mcsa_id": "M0187",
+      "rhea_id": "RHEA:13946",
+      "scope": "record_only"
+    },
+    "rhea_master": {
+      "direction_semantics": "Reaction sides are arbitrary; the master alone does not specify direction or assert reversibility.",
+      "directionality": "undirected_master",
+      "equation": "(S)-mandelate = (R)-mandelate",
+      "left_chebi_id": "CHEBI:17756",
+      "rhea_id": "RHEA:13945",
+      "right_chebi_id": "CHEBI:32382"
+    }
+  }
+}

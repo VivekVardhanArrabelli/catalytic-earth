@@ -25,8 +25,8 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
     wheel = wheel.resolve()
     if include_source_drafts:
         with zipfile.ZipFile(wheel) as archive:
-            if any(name.lower().endswith(".cif") for name in archive.namelist()):
-                raise ValueError("raw primary structures must not enter the wheel")
+            if any(name.lower().endswith((".cif", ".mol", ".mrv")) for name in archive.namelist()):
+                raise ValueError("raw primary or chemical structures must not enter the wheel")
     with TemporaryDirectory(dir=Path.home()) as tmp:
         root = Path(tmp)
         environment = root / "venv"
@@ -61,12 +61,22 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                 "        raise RuntimeError('network is forbidden during offline query')\n"
                 "sys.addaudithook(block_network)\n"
                 "from catalytic_earth.core_cli import main\n"
-                "def run_query(*args):\n"
+                "def command(name, *args):\n"
                 "    output = io.StringIO()\n"
                 "    with contextlib.redirect_stdout(output):\n"
-                "        main(['atlas-drafts', *args])\n"
+                "        main([name, *args])\n"
                 "    return json.loads(output.getvalue())\n"
+                "def run_query(*args):\n"
+                "    return command('atlas-drafts', *args)\n"
+                "transitions = command('atlas-transformations', '--mcsa-id', 'M0187')\n"
+                "from catalytic_earth.atlas_transformations import replay_graph_edits\n"
+                "panel = transitions['transformations'][0]['panel_correspondence']\n"
+                "assert replay_graph_edits(panel['before_graph'], panel['graph_edits'], panel['after_graph'], panel['replay']['atom_map'])\n"
+                "import importlib.util\n"
+                "assert importlib.util.find_spec('rdkit') is None\n"
                 "print(json.dumps({\n"
+                "    'transformations': transitions,\n"
+                "    'transformations_empty': command('atlas-transformations', '--mcsa-id', 'M0213'),\n"
                 "    'all': run_query('--steps'),\n"
                 "    'ammonium': run_query('--reactant', '28938', '--product', '58278'),\n"
                 "    'carbon_dioxide': run_query('--product', 'CHEBI:16526'),\n"
@@ -106,6 +116,25 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                 check=True, capture_output=True, text=True,
             )
             queries = json.loads(draft_run.stdout)
+            transitions = queries["transformations"]
+            transition = transitions["transformations"][0]
+            panel = transition["panel_correspondence"]
+            correspondence = transition["canonical_input_correspondence"]
+            if (transitions["transformation_count"] != 1
+                    or queries["transformations_empty"]["transformation_count"] != 0
+                    or transition["record_binding"]["mcsa_id"] != "M0187"
+                    or correspondence["participant_id"] != "CHEBI:32382"
+                    or correspondence["raw_source_labels"] != ["chebi:17756"]
+                    or len(correspondence["map_alternatives"]) != 2
+                    or len(panel["chemical_map_alternatives"]) != 2
+                    or len(panel["source_flow_bindings"]) != 4
+                    or sum(e["operation"] in {"remove_bond", "add_bond", "set_bond_order"}
+                           for e in panel["graph_edits"]) != 6
+                    or sum(e["operation"] == "set_formal_charge" for e in panel["graph_edits"]) != 2
+                    or transition["scope_effect"]["canonical_product_correspondence"] is not False
+                    or transition["scope_effect"]["complete_racemization_path"] is not False
+                    or transitions["query_semantics"]["count_is_complete_mechanism_count"] is not False):
+                raise ValueError("installed transformation lost graph edits, symmetry, or its source limits")
             drafts = queries["all"]
             records = drafts["records"]
             if {record["mcsa_id"] for record in records} != {"M0106", "M0107", "M0212", "M0753"}:

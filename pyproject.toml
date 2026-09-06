@@ -44,6 +44,8 @@ catalytic_earth = [
   "atlas_data/*.sql",
   "draft_data/*.json",
   "draft_data/*.md",
+  "transformation_data/*.json",
+  "transformation_data/*.md",
   "release_data/*.json",
   "schemas/*.json",
 ]
