@@ -90,6 +90,59 @@ This separately versioned source-only set carries no canonical participant
 bridge or inferred phenyl-symmetry mappings. Its scope ends at the depicted
 intermediate, before peptide cleavage or the complete catalytic cycle.
 
+## Partial panels: M0173 Step 2 to Step 3
+
+The next source drawing retains an acyl-enzyme depiction but omits the released
+peptide fragment and transferred proton. Water is redrawn with different
+coordinates and only one explicit hydrogen. The panels have 50 and 42 nodes;
+40 have unique exact source-coordinate and identity-annotation matches. Most
+local IDs are renumbered. These matches establish a reviewed depiction-locator
+alignment; they do not establish physical atom identity.
+
+```sh
+catalytic-earth atlas-panel-comparisons --mcsa-id M0173
+```
+
+The query retains both complete source graphs and all six proposed edits. It
+replays only the three edits with mapped endpoints against the matched after
+graph: C3–O10 single to double, O10 charge −1 to 0, and His N21 charge +1 to 0.
+The peptide C3–N4 cleavage, N4–H50 formation and N21–H50 removal are supported
+by the Step-2 arrows but lack a complete after-graph witness.
+
+| Step-2 arrow | After-graph coverage |
+| --- | --- |
+| o24: peptide bond cleavage and leaving-group protonation | Neither edit verified by the after graph |
+| o25: histidine deprotonation | Nitrogen charge change verified; H-bond removal unverified |
+| o26: carbonyl reformation | Both bond-order and oxygen-charge changes replayed |
+
+The ten unmatched before nodes are the six-node leaving fragment, its
+transferred proton, and the three-node water drawing. The two unmatched after
+nodes are the redrawn water. Unmatched means unresolved correspondence;
+the software does not delete these atoms or synthesize a product graph.
+Both bonds crossing from the mapped core to unmatched nodes (C3–N4 and
+N21–H50) remain explicit in the coverage result.
+
+The complete panels have formal-charge sums −1 and 0 because the omitted
+fragment contains a carboxylate. The 40-node retained core has charge 0 in
+both panels. Neither comparison establishes complete reaction charge balance.
+Generic peptide groups, residue aliases, unassigned stereochemistry and the
+unresolved water correspondence remain visible.
+
+`derive_partial_panel_coverage` validates every proposed edit's preconditions,
+projects the source graphs onto the declared matched nodes, and uses the
+shared graph-edit replay to check the mapped edits. The full validator requires
+the map to contain exactly all unique coordinate-and-identity matches,
+recomputes coverage, and checks the complete raw MRV graphs, metadata and
+ordered arrows when source files are available. Every source arrow and its
+endpoint nodes must remain accounted for. Arrow coverage describes the
+declared proposed edits; it is not proof of an exhaustive chemical
+interpretation. Package queries run offline.
+
+This separate comparison count is not added to `atlas-transformations --all`.
+It does not assert a complete cleavage transition or compose a catalytic path
+with the preceding addition. Its manually pinned informed agent review has
+the same correlated-error limits as the full transformation sets.
+
 ## Evidence and reproduction
 
 The [reviewed input](../data/atlas/transformations/m0187/transformations.json)
@@ -126,6 +179,16 @@ The source audit derives both graphs and checks the six reviewed edits against
 the original source arrows and after graph. The package builder validates
 each set separately. New downloads, chemical toolkit installation and merged
 review claims are not required to reproduce this addition.
+
+The partial comparison has its own [reviewed input](../data/atlas/panel_comparisons/m0173/comparisons.json),
+[source inventory](../data/atlas/panel_comparisons/m0173/source_inventory.json)
+and [attribution](../data/atlas/panel_comparisons/m0173/SOURCE_ATTRIBUTION.md).
+Its retained-source audit and packaged bytes are reproducible with:
+
+```sh
+python data/atlas/panel_comparisons/m0173/audit_m0173_partial.py --check
+python scripts/build_atlas_panel_comparisons.py --check
+```
 
 ## Scope
 

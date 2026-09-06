@@ -1,0 +1,135 @@
+{
+  "acquisition": {
+    "limits": {
+      "requests": 0,
+      "response_bytes": 0
+    },
+    "reason": "All source bytes were already retained in the repository; this package made no network requests.",
+    "used": {
+      "requests": 0,
+      "response_bytes": 0
+    }
+  },
+  "inventory_id": "m0173-step-2-to-step-3-partial-panel-sources",
+  "project_audit_artifacts": [
+    {
+      "artifact_id": "project:M0173:partial-panel-audit-script",
+      "artifact_kind": "computational_audit_script",
+      "bytes": 18335,
+      "repository_path": "data/atlas/panel_comparisons/m0173/audit_m0173_partial.py",
+      "role": "Portable standard-library derivation of complete graphs, unique locator matches, edit coverage and retained-core replay",
+      "sha256": "ad25303d7882dea391b581a7c555af04418cbbb47177aceba7f3489a3a86cb35"
+    },
+    {
+      "artifact_id": "project:M0173:partial-panel-audit-result",
+      "artifact_kind": "computational_audit_result",
+      "bytes": 54657,
+      "repository_path": "data/atlas/panel_comparisons/m0173/retained_graph_audit.json",
+      "role": "Deterministic retained output from the partial-panel audit",
+      "sha256": "999ae8f92de3a1ccc4195ce54f81167677d59ba8ccce1d4739a2bfec7c03e6f6"
+    }
+  ],
+  "required_boundaries": [
+    "The 40 pairs are unique exact source-position and source-annotation locator matches. They are neither an upstream nor a physical atom map.",
+    "Ten Step 2 depiction nodes lack Step 3 locators. Their absence is missing evidence and is never interpreted as atom deletion.",
+    "Step 2 draws water as explicit H-O-H; Step 3 redraws a source-labeled water fragment as H-O. No physical water or hydrogen correspondence is established.",
+    "All six edits have valid Step 2 source-graph preconditions and exact Step 2 arrow bindings. Only three retained-core charge/bond-order edits have after-graph verification.",
+    "Generic CHEBI:90799 labels and R tokens do not establish an exact physical peptide, canonical participant correspondence or net-reaction atom map.",
+    "Neither panel contains bondStereo or bond-convention rows. No stereochemical assignment or preservation is asserted."
+  ],
+  "reused_repository_sources": [
+    {
+      "artifact_id": "source:M-CSA:M0173",
+      "artifact_kind": "source_record_snapshot",
+      "bytes": 85112,
+      "repository_path": "data/atlas/atlas10/sources/mcsa/M0173.json",
+      "role": "Mechanism prose, complete Step 2 and Step 3 MRV panels, source-local depiction nodes, annotations, bonds, charges and electron-flow endpoints",
+      "sha256": "d3db64e9a1db6e22e8baae48a738bff261a2296f375a884c19f2f4abc7d8f22e",
+      "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/173/"
+    },
+    {
+      "artifact_id": "project:M0173:source-panel-extractor",
+      "artifact_kind": "pinned_project_source_extractor",
+      "bytes": 19776,
+      "repository_path": "data/atlas/transformations/m0173/audit_m0173.py",
+      "role": "Existing portable standard-library parser reused by the new partial-panel audit",
+      "sha256": "1683827222e2bf8ea03b236d494493612c0ebc5cfc69dcbfe3eb0a9b5fe3114f",
+      "source_url": null
+    }
+  ],
+  "rights": {
+    "M-CSA": {
+      "entry_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/173/",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  },
+  "schema_version": "catalytic-earth.partial-panel-source-inventory.v1",
+  "scope": "Retained M-CSA mechanism 1 Step 2 input to Step 3 input; exact partial source-panel correspondence only.",
+  "source_facts": {
+    "after_boundary_bonds": [],
+    "after_depiction_node_count": 42,
+    "after_graph_unverified_edit_ids": [
+      "e1",
+      "e2",
+      "e3"
+    ],
+    "after_scheme_sha256": "69c950d577fe89bebaac371b18c8ef9be8690d0573e982d7ed599e38bdf474e2",
+    "after_source_step_id": 3,
+    "before_boundary_bonds": [
+      {
+        "atom_ids": [
+          "a3",
+          "a4"
+        ],
+        "order": 1
+      },
+      {
+        "atom_ids": [
+          "a21",
+          "a50"
+        ],
+        "order": 1
+      }
+    ],
+    "before_depiction_node_count": 50,
+    "before_scheme_sha256": "7cc3b37af574d0bb078bd46059d6559729ee4bb633ec7190b273182af0497f88",
+    "before_source_step_id": 2,
+    "full_formal_charge_pair": [
+      -1,
+      0
+    ],
+    "projected_formal_charge_pair": [
+      0,
+      0
+    ],
+    "proposed_edit_count": 6,
+    "retained_core_replayed_edit_ids": [
+      "e4",
+      "e5",
+      "e6"
+    ],
+    "source_flow_ids": [
+      "o24",
+      "o25",
+      "o26"
+    ],
+    "unique_locator_pair_count": 40,
+    "unmatched_after_atom_ids": [
+      "a6",
+      "a7"
+    ],
+    "unmatched_before_atom_ids": [
+      "a4",
+      "a5",
+      "a6",
+      "a7",
+      "a8",
+      "a9",
+      "a12",
+      "a13",
+      "a14",
+      "a50"
+    ]
+  }
+}

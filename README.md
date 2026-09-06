@@ -90,6 +90,12 @@ residue-fragment aliases and unassigned stereochemistry remain explicit.
 `catalytic-earth atlas-transformations --all` retrieves both separately
 reviewed sets with their original source and review provenance.
 
+The following trypsin drawing omits the released peptide and redraws water.
+An [explicit partial-panel comparison](docs/ATLAS_TRANSFORMATIONS.md#partial-panels-m0173-step-2-to-step-3)
+replays three retained-core changes across 40 matched nodes while preserving
+all unmatched nodes and unverified edits. `catalytic-earth atlas-panel-comparisons
+--mcsa-id M0173` exposes that coverage separately from complete transformations.
+
 - `current702` contains 702 project benchmark labels: 685 bronze, 17 silver,
   zero project-gold; 683 are automation-curated and 19 author-reviewed.
 - The combined 10,001-row surface is **8,305 positive fingerprint assignments

@@ -46,6 +46,8 @@ catalytic_earth = [
   "draft_data/*.md",
   "transformation_data/*.json",
   "transformation_data/*.md",
+  "panel_comparison_data/*.json",
+  "panel_comparison_data/*.md",
   "release_data/*.json",
   "schemas/*.json",
 ]

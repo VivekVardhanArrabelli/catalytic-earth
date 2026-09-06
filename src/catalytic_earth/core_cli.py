@@ -59,6 +59,24 @@ def verified_transformations(mcsa_id: str = "M0187") -> dict[str, Any]:
     return value
 
 
+def verified_panel_comparisons() -> dict[str, Any]:
+    from .atlas_partial_panels import validate_panel_comparisons
+
+    prefix = "panel_comparison_data/"
+    expected = json.loads(_resource_bytes(prefix + "expected.json"))
+    if expected.get("schema_version") != "catalytic-earth.partial-panel-package.v1":
+        raise ValueError("unsupported partial-panel package")
+    raw = _resource_bytes(prefix + "comparisons.json")
+    attribution = _resource_bytes(prefix + "attribution.md")
+    if hashlib.sha256(raw).hexdigest() != expected["comparisons_sha256"]:
+        raise ValueError("partial-panel package differs from its expected hash")
+    if hashlib.sha256(attribution).hexdigest() != expected["attribution_sha256"]:
+        raise ValueError("partial-panel attribution differs from its expected hash")
+    value = json.loads(raw)
+    validate_panel_comparisons(value, atlas10_bundle=json.loads(_resource_bytes(ATLAS10_KERNEL)))
+    return value
+
+
 def build_golden_result() -> dict[str, Any]:
     raw = _resource_bytes(GOLDEN_INPUT)
     payload = json.loads(raw)
@@ -333,6 +351,11 @@ def build_parser() -> argparse.ArgumentParser:
     transformations.add_argument("--mcsa-id", help="filter an exact M-CSA identifier, e.g. M0187")
     transformations.add_argument("--all", action="store_true", help="query all separately reviewed transformation sets")
     transformations.add_argument("--output", type=Path, help="optional JSON output path")
+    comparisons = subparsers.add_parser(
+        "atlas-panel-comparisons", help="query partial source-panel changes and unresolved coverage offline"
+    )
+    comparisons.add_argument("--mcsa-id", help="filter an exact M-CSA identifier, e.g. M0173")
+    comparisons.add_argument("--output", type=Path, help="optional JSON output path")
     drafts = subparsers.add_parser(
         "atlas-drafts", help="query source-scoped mechanisms, states and abstentions offline"
     )
@@ -497,6 +520,18 @@ def main(argv: Sequence[str] | None = None) -> int:
             result = query_transformations(
                 verified_transformations(key), atlas10_bundle=atlas10, mcsa_id=mcsa_id,
             )
+        rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
+        if args.output:
+            args.output.write_text(rendered, encoding="utf-8", newline="\n")
+        print(rendered, end="")
+        return 0
+    if args.command == "atlas-panel-comparisons":
+        from .atlas_partial_panel_query import query_panel_comparisons
+
+        result = query_panel_comparisons(
+            verified_panel_comparisons(), atlas10_bundle=json.loads(_resource_bytes(ATLAS10_KERNEL)),
+            mcsa_id=args.mcsa_id,
+        )
         rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
         if args.output:
             args.output.write_text(rendered, encoding="utf-8", newline="\n")
