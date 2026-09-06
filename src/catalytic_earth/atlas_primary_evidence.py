@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import re
 from dataclasses import dataclass
 from pathlib import Path, PurePosixPath, PureWindowsPath
@@ -33,6 +34,7 @@ PRIMARY_OBSERVED_STATE_KINDS = frozenset(
         "polymer_modified_component",
         "bound_ligand_analogue",
         "bound_ligand_adduct",
+        "protein_ligand_covalent_adduct",
     }
 )
 
@@ -1180,6 +1182,7 @@ def _validate_observed_entity(value: Any, context: str) -> dict[str, Any]:
             "processed_state",
             "source_designated_analogue",
             "source_described_bound_adduct",
+            "deposit_described_bound_intermediate",
         },
         f"{context}.chemical_context is invalid",
     )
@@ -1188,6 +1191,7 @@ def _validate_observed_entity(value: Any, context: str) -> dict[str, Any]:
         in {
             "polymer_integrated",
             "absent_from_deposited_struct_conn",
+            "deposited_covalent_connection",
         },
         f"{context}.attachment_context is invalid",
     )
@@ -1210,6 +1214,11 @@ def _validate_observed_entity(value: Any, context: str) -> dict[str, Any]:
             "nonpolymer_component",
             "source_described_bound_adduct",
             "absent_from_deposited_struct_conn",
+        ),
+        "protein_ligand_covalent_adduct": (
+            "nonpolymer_component",
+            "deposit_described_bound_intermediate",
+            "deposited_covalent_connection",
         ),
     }[state_kind]
     _require(
@@ -1238,21 +1247,31 @@ def _validate_chemical_observations(
     allowed_pairs = {
         "deposited_component_state": "deposited_structure",
         "deposited_component_bond_order": "deposited_structure",
+        "deposited_component_dictionary_bond_order": "deposited_structure",
+        "deposited_modeled_instance_atom_inventory": "deposited_structure",
+        "deposited_state_description": "deposited_structure",
         "primary_article_state_description": "primary_research_article",
     }
     for index, raw_observation in enumerate(value):
         observation_context = f"{context}[{index}]"
+        raw_observation_object = _object(raw_observation, observation_context)
+        kind = raw_observation_object.get("observation_kind")
+        observation_fields = {
+            "observation_id",
+            "source_scope",
+            "observation_kind",
+            "source_description",
+            "source_bond_order_code",
+            "evidence_ids",
+            "support_edge_ids",
+        }
+        if kind == "deposited_component_dictionary_bond_order":
+            observation_fields.add("source_atom_ids")
+        elif kind == "deposited_modeled_instance_atom_inventory":
+            observation_fields.update({"modeled_instance_indices", "omitted_atom_ids"})
         observation = _exact(
-            raw_observation,
-            {
-                "observation_id",
-                "source_scope",
-                "observation_kind",
-                "source_description",
-                "source_bond_order_code",
-                "evidence_ids",
-                "support_edge_ids",
-            },
+            raw_observation_object,
+            observation_fields,
             observation_context,
         )
         observation_id = _string(
@@ -1274,7 +1293,10 @@ def _validate_chemical_observations(
             f"{observation_context}.source_description",
         )
         bond_order = observation["source_bond_order_code"]
-        if kind == "deposited_component_bond_order":
+        if kind in {
+            "deposited_component_bond_order",
+            "deposited_component_dictionary_bond_order",
+        }:
             _require(
                 isinstance(bond_order, str)
                 and bool(re.fullmatch(r"[A-Za-z0-9_.+-]+", bond_order)),
@@ -1284,6 +1306,34 @@ def _validate_chemical_observations(
             _require(
                 bond_order is None,
                 f"{observation_context} cannot assign a deposited bond-order code",
+            )
+        if kind == "deposited_component_dictionary_bond_order":
+            atom_ids = _strings(
+                observation["source_atom_ids"],
+                f"{observation_context}.source_atom_ids",
+                minimum=2,
+            )
+            _require(
+                len(atom_ids) == 2,
+                f"{observation_context}.source_atom_ids must name one source bond",
+            )
+        elif kind == "deposited_modeled_instance_atom_inventory":
+            indices = observation["modeled_instance_indices"]
+            _require(
+                isinstance(indices, list)
+                and indices
+                and all(type(item) is int and item >= 0 for item in indices)
+                and indices == sorted(set(indices)),
+                f"{observation_context}.modeled_instance_indices are invalid",
+            )
+            omitted = _strings(
+                observation["omitted_atom_ids"],
+                f"{observation_context}.omitted_atom_ids",
+                minimum=1,
+            )
+            _require(
+                omitted == sorted(omitted),
+                f"{observation_context}.omitted_atom_ids must be ordered",
             )
         _strings(
             observation["evidence_ids"],
@@ -1310,11 +1360,24 @@ def _validate_chemical_observations(
             "deposited_component_state",
             "primary_article_state_description",
         }
-    else:
+    elif state_kind == "bound_ligand_adduct":
         required = {
             "deposited_component_bond_order",
             "primary_article_state_description",
         }
+    else:
+        required = {
+            "deposited_component_state",
+            "deposited_state_description",
+        }
+        conflict_kinds = {
+            "deposited_component_dictionary_bond_order",
+            "deposited_modeled_instance_atom_inventory",
+        }
+        _require(
+            not (kinds & conflict_kinds) or conflict_kinds <= kinds,
+            f"{context} must preserve dictionary and modeled-instance scopes together",
+        )
     _require(
         required <= kinds,
         f"{context} observations do not preserve the state-specific source scopes",
@@ -1335,6 +1398,10 @@ def _validate_chemical_reconciliation(
         "bound_ligand_adduct": {
             "source_scopes_separated",
             "unresolved_source_description_vs_deposit",
+        },
+        "protein_ligand_covalent_adduct": {
+            "source_scopes_separated",
+            "unresolved_component_dictionary_vs_bound_instance_and_connection",
         },
     }[observed_entity["state_kind"]]
     _require(
@@ -1413,6 +1480,202 @@ def _validate_structure_instances(value: Any, context: str) -> list[dict[str, An
     _require(len(keys) == len(set(keys)), f"{context} contains duplicate instances")
     _require(keys == sorted(keys), f"{context} must be deterministically ordered")
     return result
+
+
+def _validate_attachment_endpoint(
+    value: Any,
+    *,
+    polymer: bool,
+    context: str,
+) -> dict[str, Any]:
+    result = _exact(
+        value,
+        {
+            "label_asym_id",
+            "label_entity_id",
+            "label_component_id",
+            "label_seq_id",
+            "atom_author_chain_id",
+            "atom_author_component_id",
+            "atom_author_residue_number",
+            "atom_name",
+        },
+        context,
+    )
+    for field in (
+        "label_asym_id",
+        "label_entity_id",
+        "label_component_id",
+        "atom_author_chain_id",
+        "atom_author_component_id",
+        "atom_name",
+    ):
+        _string(result[field], f"{context}.{field}")
+    label_seq_id = _optional_positive_int(
+        result["label_seq_id"], f"{context}.label_seq_id"
+    )
+    _require(
+        (label_seq_id is not None) is polymer,
+        f"{context}.label_seq_id differs from the endpoint namespace",
+    )
+    _require(
+        type(result["atom_author_residue_number"]) is int
+        and result["atom_author_residue_number"] > 0,
+        f"{context}.atom_author_residue_number is invalid",
+    )
+    return result
+
+
+def _attachment_edge_values(attachment: dict[str, Any]) -> dict[str, Any]:
+    return {
+        key: attachment[key]
+        for key in (
+            "connection_id",
+            "raw_conn_type",
+            "observed_instance_index",
+            "ligand_endpoint",
+            "protein_endpoint",
+            "distance_angstrom",
+            "source_bond_order_code",
+            "source_bond_order_token",
+        )
+    }
+
+
+def _attachment_locator_values(attachment: dict[str, Any]) -> dict[str, Any]:
+    result = _attachment_edge_values(attachment)
+    result.pop("observed_instance_index")
+    result.pop("source_bond_order_code")
+    return result
+
+
+def _validate_protein_attachments(
+    value: Any,
+    *,
+    structure_context: dict[str, Any],
+    structure_instances: list[dict[str, Any]],
+    context: str,
+) -> list[dict[str, Any]]:
+    """Validate exact deposited connections without assigning canonical sites."""
+
+    _require(isinstance(value, list) and value, f"{context} must be nonempty")
+    attachments: list[dict[str, Any]] = []
+    attachment_ids: list[str] = []
+    connection_ids: list[str] = []
+    instance_indices: list[int] = []
+    support_edge_ids: list[str] = []
+    for index, raw_attachment in enumerate(value):
+        attachment_context = f"{context}[{index}]"
+        attachment = _exact(
+            raw_attachment,
+            {
+                "attachment_id",
+                "connection_id",
+                "raw_conn_type",
+                "observed_instance_index",
+                "ligand_endpoint",
+                "protein_endpoint",
+                "distance_angstrom",
+                "source_bond_order_code",
+                "source_bond_order_token",
+                "support_edge_ids",
+            },
+            attachment_context,
+        )
+        attachment_id = _string(
+            attachment["attachment_id"], f"{attachment_context}.attachment_id"
+        )
+        connection_id = _string(
+            attachment["connection_id"], f"{attachment_context}.connection_id"
+        )
+        _require(
+            attachment["raw_conn_type"] == "covale",
+            f"{attachment_context}.raw_conn_type is not deposited covalent",
+        )
+        instance_index = attachment["observed_instance_index"]
+        _require(
+            type(instance_index) is int
+            and 0 <= instance_index < len(structure_instances),
+            f"{attachment_context}.observed_instance_index is invalid",
+        )
+        ligand_endpoint = _validate_attachment_endpoint(
+            attachment["ligand_endpoint"],
+            polymer=False,
+            context=f"{attachment_context}.ligand_endpoint",
+        )
+        protein_endpoint = _validate_attachment_endpoint(
+            attachment["protein_endpoint"],
+            polymer=True,
+            context=f"{attachment_context}.protein_endpoint",
+        )
+        instance = structure_instances[instance_index]
+        _require(
+            ligand_endpoint
+            == {
+                "label_asym_id": instance["label_asym_id"],
+                "label_entity_id": instance["label_entity_id"],
+                "label_component_id": instance["label_component_id"],
+                "label_seq_id": instance["label_seq_id"],
+                "atom_author_chain_id": instance["atom_author_chain_id"],
+                "atom_author_component_id": instance["atom_author_component_id"],
+                "atom_author_residue_number": instance["atom_author_residue_number"],
+                "atom_name": ligand_endpoint["atom_name"],
+            },
+            f"{attachment_context} ligand endpoint differs from its observed instance",
+        )
+        _require(
+            protein_endpoint["label_asym_id"]
+            in structure_context["protein_label_asym_ids"]
+            and protein_endpoint["label_entity_id"]
+            in structure_context["protein_entity_ids"]
+            and protein_endpoint["atom_author_chain_id"]
+            in structure_context["protein_author_chain_ids"],
+            f"{attachment_context} protein endpoint differs from structure context",
+        )
+        distance = attachment["distance_angstrom"]
+        _require(
+            type(distance) in {int, float}
+            and math.isfinite(distance)
+            and distance > 0,
+            f"{attachment_context}.distance_angstrom is invalid",
+        )
+        _require(
+            attachment["source_bond_order_code"] is None
+            and attachment["source_bond_order_token"] == "?",
+            f"{attachment_context} must preserve unknown deposited bond order",
+        )
+        edge_ids = _strings(
+            attachment["support_edge_ids"],
+            f"{attachment_context}.support_edge_ids",
+            minimum=1,
+        )
+        _require(
+            len(edge_ids) == 1,
+            f"{attachment_context} must bind one exact deposited connection edge",
+        )
+        attachment_ids.append(attachment_id)
+        connection_ids.append(connection_id)
+        instance_indices.append(instance_index)
+        support_edge_ids.extend(edge_ids)
+        attachments.append(attachment)
+
+    _require(
+        len(attachment_ids) == len(set(attachment_ids)),
+        f"{context} repeats attachment_id",
+    )
+    _require(
+        len(connection_ids) == len(set(connection_ids)),
+        f"{context} repeats connection_id",
+    )
+    _require(
+        len(support_edge_ids) == len(set(support_edge_ids)),
+        f"{context} reuses a deposited connection edge",
+    )
+    _require(
+        instance_indices == list(range(len(structure_instances))),
+        f"{context} must cover every observed instance exactly once in source order",
+    )
+    return attachments
 
 
 def _validate_canonical_site(value: Any, context: str) -> dict[str, Any]:
@@ -1706,6 +1969,7 @@ def _validate_observed_state_projection(
     structure_context: dict[str, Any],
     observed_entity: dict[str, Any],
     structure_instances: list[dict[str, Any]],
+    protein_attachments: list[dict[str, Any]] | None,
     site_crosswalk: dict[str, Any],
     chemical_observations: list[dict[str, Any]],
     chemical_reconciliation: dict[str, Any],
@@ -1735,24 +1999,27 @@ def _validate_observed_state_projection(
         projection = None
         projection_source_ids = list(source_bindings.by_id)
     else:
+        projection_fields = {
+            "schema_version",
+            "projection_id",
+            "context_id",
+            "record_binding",
+            "source_bindings",
+            "structure_context",
+            "observed_entity",
+            "structure_instances",
+            "site_crosswalk",
+            "chemical_observations",
+            "chemical_reconciliation",
+            "support_edges",
+            "locators",
+            "limits",
+        }
+        if observed_entity["state_kind"] == "protein_ligand_covalent_adduct":
+            projection_fields.add("protein_attachments")
         projection = _exact(
             json.loads(projection_path.read_text(encoding="utf-8")),
-            {
-                "schema_version",
-                "projection_id",
-                "context_id",
-                "record_binding",
-                "source_bindings",
-                "structure_context",
-                "observed_entity",
-                "structure_instances",
-                "site_crosswalk",
-                "chemical_observations",
-                "chemical_reconciliation",
-                "support_edges",
-                "locators",
-                "limits",
-            },
+            projection_fields,
             f"{context} source",
         )
         _require(
@@ -1814,6 +2081,15 @@ def _validate_observed_state_projection(
         projected_instances = _validate_structure_instances(
             projection["structure_instances"], f"{context} source.structure_instances"
         )
+        if projected_entity["state_kind"] == "protein_ligand_covalent_adduct":
+            projected_attachments = _validate_protein_attachments(
+                projection["protein_attachments"],
+                structure_context=projected_structure,
+                structure_instances=projected_instances,
+                context=f"{context} source.protein_attachments",
+            )
+        else:
+            projected_attachments = None
         projected_crosswalk = _validate_site_crosswalk(
             projection["site_crosswalk"],
             structure_instances=projected_instances,
@@ -1835,6 +2111,10 @@ def _validate_observed_state_projection(
         )
         _require(projected_entity == observed_entity, f"{context} observed entity differs")
         _require(projected_instances == structure_instances, f"{context} instances differ")
+        _require(
+            projected_attachments == protein_attachments,
+            f"{context} protein attachments differ",
+        )
         _require(projected_crosswalk == site_crosswalk, f"{context} site crosswalk differs")
         _require(
             projected_observations == chemical_observations,
@@ -1911,6 +2191,11 @@ def _validate_observed_state_projection(
         "cross_source_correspondence": "cross_source_curated_projection",
         "primary_article_analogue_designation": "source_designated_analogue",
         "primary_article_bound_adduct_description": "source_described_bound_adduct",
+        "primary_article_bound_intermediate_description": "source_described_bound_intermediate",
+        "deposited_state_description": "deposit_described_bound_intermediate",
+        "deposited_covalent_connection": "direct_structure_observation",
+        "deposited_component_dictionary_bond_order": "direct_structure_observation",
+        "deposited_modeled_instance_atom_inventory": "direct_structure_observation",
         "deposited_connection_inventory": "absent_from_deposited_struct_conn",
         "curated_protein_identity": "curated_identity_support",
     }
@@ -1960,6 +2245,10 @@ def _validate_observed_state_projection(
         if edge_kind in {
             "deposited_structure_state",
             "deposited_component_bond_order",
+            "deposited_component_dictionary_bond_order",
+            "deposited_modeled_instance_atom_inventory",
+            "deposited_state_description",
+            "deposited_covalent_connection",
             "deposited_connection_inventory",
         }:
             _require(
@@ -1970,6 +2259,7 @@ def _validate_observed_state_projection(
         elif edge_kind in {
             "primary_article_analogue_designation",
             "primary_article_bound_adduct_description",
+            "primary_article_bound_intermediate_description",
         }:
             _require(
                 len(artifact_kinds) == 1
@@ -2002,10 +2292,21 @@ def _validate_observed_state_projection(
     expected_observation_edges = {
         "deposited_component_state": {"deposited_structure_state"},
         "deposited_component_bond_order": {"deposited_component_bond_order"},
+        "deposited_component_dictionary_bond_order": {
+            "deposited_component_dictionary_bond_order"
+        },
+        "deposited_modeled_instance_atom_inventory": {
+            "deposited_modeled_instance_atom_inventory"
+        },
+        "deposited_state_description": {"deposited_state_description"},
         "primary_article_state_description": {
             "primary_article_analogue_designation"
             if observed_entity["chemical_context"] == "source_designated_analogue"
-            else "primary_article_bound_adduct_description"
+            else (
+                "primary_article_bound_adduct_description"
+                if observed_entity["chemical_context"] == "source_described_bound_adduct"
+                else "primary_article_bound_intermediate_description"
+            )
         },
     }
     for observation in chemical_observations:
@@ -2086,6 +2387,142 @@ def _validate_observed_state_projection(
             ),
             f"{context} deposited bond-order locator differs",
         )
+
+    if observed_entity["state_kind"] == "protein_ligand_covalent_adduct":
+        dictionary_observations = [
+            item
+            for item in chemical_observations
+            if item["observation_kind"]
+            == "deposited_component_dictionary_bond_order"
+        ]
+        inventory_observations = [
+            item
+            for item in chemical_observations
+            if item["observation_kind"]
+            == "deposited_modeled_instance_atom_inventory"
+        ]
+        description_observations = [
+            item
+            for item in chemical_observations
+            if item["observation_kind"] == "deposited_state_description"
+        ]
+        _require(
+            len(description_observations) == 1,
+            f"{context} requires one deposit-description observation",
+        )
+        _require(
+            len(dictionary_observations) == len(inventory_observations) <= 1,
+            f"{context} dictionary and modeled-instance observations differ",
+        )
+        if (
+            chemical_reconciliation["status"]
+            == "unresolved_component_dictionary_vs_bound_instance_and_connection"
+        ):
+            _require(
+                len(dictionary_observations) == 1,
+                f"{context} unresolved dictionary/instance scope lacks both observations",
+            )
+        description_observation = description_observations[0]
+        observation_expectations = {
+            "deposited_state_description": {
+                "source_component_id": observed_entity["source_component_id"],
+                "chemical_context": "deposit_described_bound_intermediate",
+                "source_description": description_observation["source_description"],
+            },
+        }
+        if dictionary_observations:
+            dictionary_observation = dictionary_observations[0]
+            inventory_observation = inventory_observations[0]
+            _require(
+                inventory_observation["modeled_instance_indices"]
+                == list(range(len(structure_instances))),
+                f"{context} modeled-instance inventory does not cover every instance",
+            )
+            _require(
+                set(dictionary_observation["source_atom_ids"])
+                & set(inventory_observation["omitted_atom_ids"]),
+                f"{context} does not identify the dictionary/instance atom-scope difference",
+            )
+            observation_expectations.update(
+                {
+                    "deposited_component_dictionary_bond_order": {
+                        "source_component_id": observed_entity["source_component_id"],
+                        "scope": "generic_component_dictionary",
+                        "source_atom_ids": dictionary_observation["source_atom_ids"],
+                        "source_bond_order_code": dictionary_observation[
+                            "source_bond_order_code"
+                        ],
+                        "source_description": dictionary_observation[
+                            "source_description"
+                        ],
+                    },
+                    "deposited_modeled_instance_atom_inventory": {
+                        "source_component_id": observed_entity["source_component_id"],
+                        "scope": "modeled_deposited_instances",
+                        "modeled_instance_indices": inventory_observation[
+                            "modeled_instance_indices"
+                        ],
+                        "omitted_atom_ids": inventory_observation["omitted_atom_ids"],
+                        "source_description": inventory_observation[
+                            "source_description"
+                        ],
+                    },
+                }
+            )
+        for edge_kind, expected_values in observation_expectations.items():
+            matching_edges = [
+                edge for edge in edges.values() if edge["edge_kind"] == edge_kind
+            ]
+            _require(
+                len(matching_edges) == 1
+                and matching_edges[0]["extracted_values"] == expected_values,
+                f"{context} {edge_kind} edge differs",
+            )
+            _require(
+                any(
+                    locators[locator_id]["extracted_values"] == expected_values
+                    for locator_id in matching_edges[0]["locator_ids"]
+                ),
+                f"{context} {edge_kind} locator differs",
+            )
+
+        _require(
+            protein_attachments is not None,
+            f"{context} lacks typed protein attachments",
+        )
+        connection_edges = {
+            edge["edge_id"]: edge
+            for edge in edges.values()
+            if edge["edge_kind"] == "deposited_covalent_connection"
+        }
+        _require(
+            set(connection_edges)
+            == {
+                attachment["support_edge_ids"][0]
+                for attachment in protein_attachments
+            },
+            f"{context} connection edges do not cover attachments one-to-one",
+        )
+        for attachment in protein_attachments:
+            edge = connection_edges[attachment["support_edge_ids"][0]]
+            _require(
+                edge["extracted_values"] == _attachment_edge_values(attachment),
+                f"{context} connection edge differs from attachment",
+            )
+            _require(
+                any(
+                    locators[locator_id]["extracted_values"]
+                    == _attachment_locator_values(attachment)
+                    for locator_id in edge["locator_ids"]
+                ),
+                f"{context} connection locator differs from attachment",
+            )
+            _require(
+                not inventory_observations
+                or attachment["ligand_endpoint"]["atom_name"]
+                not in inventory_observations[0]["omitted_atom_ids"],
+                f"{context} connection uses an atom absent from modeled instances",
+            )
 
     structure_edges = [
         edge for edge in edges.values() if edge["edge_kind"] == "deposited_structure_state"
@@ -2168,6 +2605,33 @@ def _validate_observed_state_projection(
             },
             f"{context} bound-adduct description differs",
         )
+
+    if observed_entity["chemical_context"] == "deposit_described_bound_intermediate":
+        article_observations = [
+            item
+            for item in chemical_observations
+            if item["observation_kind"] == "primary_article_state_description"
+        ]
+        article_edges = [
+            edge
+            for edge in edges.values()
+            if edge["edge_kind"] == "primary_article_bound_intermediate_description"
+        ]
+        _require(
+            len(article_edges) == len(article_observations),
+            f"{context} primary-article descriptions and edges differ",
+        )
+        if article_observations:
+            _require(
+                len(article_observations) == 1
+                and article_edges[0]["extracted_values"]
+                == {
+                    "source_component_id": observed_entity["source_component_id"],
+                    "chemical_context": "source_described_bound_intermediate",
+                    "source_description": article_observations[0]["source_description"],
+                },
+                f"{context} primary bound-intermediate description differs",
+            )
 
     if observed_entity["attachment_context"] == "absent_from_deposited_struct_conn":
         connection_edges = [
@@ -2252,24 +2716,28 @@ def _validate_observed_state_context_annotation(
         {"binding_id", "projection_id", "context_id"},
         f"{context}.projection_binding",
     )
-    claim = _exact(
-        annotation["claim"],
-        {
-            "statement",
-            "structure_context",
-            "observed_entity",
-            "structure_instances",
-            "site_crosswalk",
-            "chemical_observations",
-            "chemical_reconciliation",
-            "direct_evidence_ids",
-            "curated_identity_evidence_ids",
-            "source_record_evidence_ids",
-            "corroborating_evidence_ids",
-            "observed_state_grounds_step",
-        },
-        f"{context}.claim",
-    )
+    raw_claim = _object(annotation["claim"], f"{context}.claim")
+    claim_fields = {
+        "statement",
+        "structure_context",
+        "observed_entity",
+        "structure_instances",
+        "site_crosswalk",
+        "chemical_observations",
+        "chemical_reconciliation",
+        "direct_evidence_ids",
+        "curated_identity_evidence_ids",
+        "source_record_evidence_ids",
+        "corroborating_evidence_ids",
+        "observed_state_grounds_step",
+    }
+    raw_entity = raw_claim.get("observed_entity")
+    if (
+        isinstance(raw_entity, dict)
+        and raw_entity.get("state_kind") == "protein_ligand_covalent_adduct"
+    ):
+        claim_fields.add("protein_attachments")
+    claim = _exact(raw_claim, claim_fields, f"{context}.claim")
     _string(claim["statement"], f"{context}.claim.statement")
     _require(
         claim["observed_state_grounds_step"] is False,
@@ -2318,6 +2786,15 @@ def _validate_observed_state_context_annotation(
             all(instance["label_seq_id"] is None for instance in instances),
             f"{context} nonpolymer component must preserve null label sequence IDs",
         )
+    if observed_entity["state_kind"] == "protein_ligand_covalent_adduct":
+        protein_attachments = _validate_protein_attachments(
+            claim["protein_attachments"],
+            structure_context=structure_context,
+            structure_instances=instances,
+            context=f"{context}.claim.protein_attachments",
+        )
+    else:
+        protein_attachments = None
     site_crosswalk = _validate_site_crosswalk(
         claim["site_crosswalk"],
         structure_instances=instances,
@@ -2348,6 +2825,11 @@ def _validate_observed_state_context_annotation(
             structure_context["pdb_id"]
             == site_crosswalk["source_record_alias"]["pdb_id"],
             f"{context} structure/source-alias PDB identity differs",
+        )
+    if observed_entity["state_kind"] == "protein_ligand_covalent_adduct":
+        _require(
+            site_crosswalk["status"] == "not_asserted",
+            f"{context} ligand site crosswalk cannot encode a protein attachment mapping",
         )
     evidence_by_id, ids_by_role, bindings_by_role = _validate_observed_context_evidence(
         annotation["evidence"],
@@ -2408,6 +2890,7 @@ def _validate_observed_state_context_annotation(
         structure_context=structure_context,
         observed_entity=observed_entity,
         structure_instances=instances,
+        protein_attachments=protein_attachments,
         site_crosswalk=site_crosswalk,
         chemical_observations=chemical_observations,
         chemical_reconciliation=chemical_reconciliation,
@@ -2417,10 +2900,18 @@ def _validate_observed_state_context_annotation(
         source_bindings=source_bindings,
         context=f"{context}.projection_binding",
     )
+    required_limits = dict(_OBSERVED_STATE_REQUIRED_LIMITS)
+    if observed_entity["state_kind"] == "protein_ligand_covalent_adduct":
+        required_limits["bound_moiety_bond_order"] = "abstained"
+        if (
+            chemical_reconciliation["status"]
+            == "unresolved_component_dictionary_vs_bound_instance_and_connection"
+        ):
+            required_limits["component_dictionary_vs_modeled_instance"] = "abstained"
     _validate_limits_and_scope(
         annotation,
         context,
-        required_limits=_OBSERVED_STATE_REQUIRED_LIMITS,
+        required_limits=required_limits,
     )
     return annotation_id, record_id
 

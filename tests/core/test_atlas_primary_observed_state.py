@@ -1075,16 +1075,14 @@ class PrimaryObservedStateTests(unittest.TestCase):
         )
 
     def test_existing_v2_sidecar_validates_without_mutation(self) -> None:
+        from tests.core.test_atlas_primary_evidence import _valid_v2_sidecar
+
         bundle = json.loads(
             (REPO / "src/catalytic_earth/draft_data/aldolase_transketolase.json").read_text(
                 encoding="utf-8"
             )
         )
-        path = (
-            REPO
-            / "data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_evidence_annotations.json"
-        )
-        sidecar = json.loads(path.read_text(encoding="utf-8"))
+        sidecar = _valid_v2_sidecar(bundle)
         before = copy.deepcopy(sidecar)
         result = PRIMARY.validate_primary_evidence(sidecar, bundle=bundle, repo_root=REPO)
         self.assertEqual(result["schema_version"], "catalytic-earth.atlas-primary-evidence.v2")

@@ -278,7 +278,11 @@ class SourceDraftCatalogTests(unittest.TestCase):
                 self.assertEqual(record["mandatory_abstentions"], whole["mandatory_abstentions"])
                 self.assertTrue(record["mandatory_abstentions"])
         aldolase = next(r for r in records if r["mcsa_id"] == "M0222")
-        self.assertEqual(aldolase["primary_evidence_annotations"], [self.evidence["aldolase-transketolase"]["annotations"][1]])
+        self.assertEqual(aldolase["primary_evidence_annotations"], [
+            annotation
+            for annotation in self.evidence["aldolase-transketolase"]["annotations"]
+            if annotation["record_binding"]["mcsa_id"] == "M0222"
+        ])
         self.assertEqual((self.bundles, self.evidence), before)
 
     def test_component_conjunction_cannot_join_alternative_proposals(self):

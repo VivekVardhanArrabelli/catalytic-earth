@@ -484,7 +484,14 @@ class AtlasStepEvidenceTests(unittest.TestCase):
     def test_primary_links_preserve_proposal_and_record_only_scopes(self):
         bundle = _read_json(ALDOLASE_BUNDLE_PATH)
         primary = _read_json(PRIMARY_EVIDENCE_PATH)
-        proposal_primary, record_primary = primary["annotations"]
+        primary_by_id = {
+            annotation["annotation_id"]: annotation
+            for annotation in primary["annotations"]
+        }
+        proposal_primary = primary_by_id[
+            "m0219.proposal-2.4kxv.p29401-protein-context"
+        ]
+        record_primary = primary_by_id["m0222.2qut.dhap-derived-covalent-moiety"]
         rows = [
             _row(
                 bundle,
