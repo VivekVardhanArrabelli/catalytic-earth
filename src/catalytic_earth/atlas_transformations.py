@@ -19,9 +19,11 @@ from typing import Any
 import xml.etree.ElementTree as ET
 
 from .canonical_hash import canonical_file_sha256
+from .atlas10_source_adapters import parse_mcsa_scheme_flows
 
 
 SCHEMA_VERSION = "catalytic-earth.transformations.v1"
+SCHEMA_VERSION_V2 = "catalytic-earth.transformations.v2"
 _HEX64 = re.compile(r"[0-9a-f]{64}\Z")
 _TOKEN = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.:+-]*\Z")
 _ELEMENT = re.compile(r"[A-Z][a-z]?\Z")
@@ -33,6 +35,17 @@ _SCOPE_KEYS = {
     "net_reaction_atom_map",
     "complete_racemization_path",
     "inferred_return_step",
+}
+_SOURCE_SCOPE_KEYS = {
+    "source_depiction_transition",
+    "canonical_input_correspondence",
+    "canonical_product_correspondence",
+    "upstream_atom_map",
+    "net_reaction_atom_map",
+    "complete_mechanism_path",
+    "exact_physical_peptide_identity",
+    "source_r_group_resolution",
+    "experimentally_observed_intermediate",
 }
 
 
@@ -102,7 +115,7 @@ def _validate_graph(value: Any, label: str) -> dict[str, Any]:
         _require(atom_id not in atom_ids, f"{label} repeats atom {atom_id}")
         atom_ids.add(atom_id)
         element = _string(atom["element"], f"{label}.{atom_id}.element")
-        _require(bool(_ELEMENT.fullmatch(element)), f"{label}.{atom_id}.element is invalid")
+        _require(element == "R" or bool(_ELEMENT.fullmatch(element)), f"{label}.{atom_id}.element is invalid")
         _integer(atom["formal_charge"], f"{label}.{atom_id}.formal_charge")
         _require(atom["stereochemistry"] in {None, "R", "S"}, f"{label}.{atom_id}.stereochemistry is invalid")
     edges: set[tuple[str, str]] = set()
@@ -369,6 +382,65 @@ def _validate_canonical(value: Any, bindings: dict[str, dict[str, Any]], before:
     _require(bool(raw_ids) and item["participant_id"] not in raw_ids and raw_ids <= rejected_ids, "raw identifier conflict semantics differ")
 
 
+def _validate_source_context(
+    value: Any, bindings: dict[str, dict[str, Any]], mcsa_id: str,
+    before: dict[str, Any], after: dict[str, Any],
+) -> dict[str, dict[str, str | None]]:
+    context = _object(value, "source_context")
+    _exact(context, {"status", "depiction_node_semantics", "source_atom_annotations", "source_r_groups", "canonical_participant_correspondence", "source_binding_ids"}, "source_context")
+    _require(context["status"] == "source_panel_only_no_canonical_participant_bridge", "source_context.status differs")
+    _require(context["depiction_node_semantics"] == "source_graph_nodes_not_exact_physical_atoms", "source_context depiction-node semantics differ")
+    _require(context["canonical_participant_correspondence"] == "not_asserted", "source_context promotes a canonical participant")
+    binding_ids = _array(context["source_binding_ids"], "source_context.source_binding_ids")
+    _require(len(binding_ids) == len(set(binding_ids)) and all(item in bindings for item in binding_ids), "source_context has unknown or repeated bindings")
+    _require(f"source:M-CSA:{mcsa_id}" in binding_ids, "source_context omits its M-CSA source")
+    annotations = _object(context["source_atom_annotations"], "source_atom_annotations")
+    _exact(annotations, {"scope", "rows"}, "source_atom_annotations")
+    _require(annotations["scope"] == "identical_across_bound_state_pair", "source atom annotation scope differs")
+    rows: dict[str, dict[str, str | None]] = {}
+    graph_ids = {item["atom_id"] for item in before["atoms"]}
+    _require(graph_ids == {item["atom_id"] for item in after["atoms"]}, "source-panel graphs use different depiction nodes")
+    for index, raw in enumerate(_array(annotations["rows"], "source_atom_annotations.rows")):
+        row = _object(raw, f"source_atom_annotations.rows[{index}]")
+        _exact(row, {"atom_id", "mrv_extra_label", "mrv_alias", "rgroup_ref"}, f"source_atom_annotations.rows[{index}]")
+        atom_id = _string(row["atom_id"], f"source_atom_annotations.rows[{index}].atom_id")
+        _require(atom_id in graph_ids and atom_id not in rows, "source atom annotation references an unknown or repeated node")
+        _require(any(row[key] is not None for key in ("mrv_extra_label", "mrv_alias", "rgroup_ref")), "source atom annotation is empty")
+        _require(all(row[key] is None or isinstance(row[key], str) for key in ("mrv_extra_label", "mrv_alias", "rgroup_ref")), "source atom annotation value is invalid")
+        rows[atom_id] = row
+    groups = _object(context["source_r_groups"], "source_r_groups")
+    _exact(groups, {"status", "element_r_atom_ids", "alias_r_atom_ids", "expansion_asserted"}, "source_r_groups")
+    _require(groups["status"] == "source_tokens_preserved_unresolved" and groups["expansion_asserted"] is False, "source R-group scope differs")
+    element_r = _array(groups["element_r_atom_ids"], "element_r_atom_ids")
+    alias_r = _array(groups["alias_r_atom_ids"], "alias_r_atom_ids")
+    _require(len(element_r) == len(set(element_r)) and set(element_r) == {item["atom_id"] for item in before["atoms"] if item["element"] == "R"}, "element-R node inventory differs")
+    _require(len(alias_r) == len(set(alias_r)) and set(alias_r) == {atom_id for atom_id, row in rows.items() if row["mrv_alias"] == "R"}, "alias-R node inventory differs")
+    return rows
+
+
+def _raw_source_annotations(
+    scheme: dict[str, Any], selected: set[str], label: str,
+) -> tuple[dict[str, dict[str, str | None]], set[str]]:
+    root = ET.fromstring(scheme["content_utf8"])
+    atoms = {
+        item.get("id"): item for item in root.iter()
+        if item.tag.rsplit("}", 1)[-1] == "atom"
+    }
+    _require(set(atoms) == selected, f"{label} does not cover every raw depiction node")
+    rows: dict[str, dict[str, str | None]] = {}
+    for atom_id, atom in atoms.items():
+        row = {
+            "atom_id": atom_id,
+            "mrv_extra_label": atom.get("mrvExtraLabel"),
+            "mrv_alias": atom.get("mrvAlias"),
+            "rgroup_ref": atom.get("rgroupRef"),
+        }
+        if any(row[key] is not None for key in ("mrv_extra_label", "mrv_alias", "rgroup_ref")):
+            rows[atom_id] = row
+    element_r = {atom_id for atom_id, atom in atoms.items() if atom.get("elementType") == "R"}
+    return rows, element_r
+
+
 def _validate_chemical_maps(value: Any, before: dict[str, Any], after: dict[str, Any], replay: dict[str, Any]) -> None:
     alternatives = _array(value, "chemical_map_alternatives")
     _require(len(alternatives) == replay["chemical_topology_map_count"] > replay["raw_kekule_map_count"] >= 1, "raw-Kekule and chemical map counts differ")
@@ -486,7 +558,7 @@ def _validate_rhea_sources(
 def _validate_audit(item: dict[str, Any], bindings: dict[str, dict[str, Any]], repo_root: Path, panel: dict[str, Any]) -> None:
     method = item["canonical_input_correspondence"]["method"]
     audit_binding = bindings[method["audit_result_binding_id"]]
-    audit = json.loads((repo_root / audit_binding["path"]).read_text())
+    audit = json.loads((repo_root / audit_binding["path"]).read_text(encoding="utf-8"))
     _require(audit.get("audit_method", {}).get("rdkit_version") == method["tool_version"], "audit RDKit version differs")
     participant = item["canonical_input_correspondence"]["participant_id"]
     structures = [row for row in audit.get("canonical_structures", []) if row.get("id") == participant]
@@ -527,7 +599,9 @@ def validate_transformations(
     """Validate declarations, replay graph edits, and optionally audit bound sources."""
     data = _object(value, "transformations")
     _exact(data, {"schema_version", "transformation_set_id", "status", "source_bindings", "transformations", "review"}, "transformations")
-    _require(data["schema_version"] == SCHEMA_VERSION and data["status"] == "reviewed", "transformation set identity/status differs")
+    schema_version = data["schema_version"]
+    _require(schema_version in {SCHEMA_VERSION, SCHEMA_VERSION_V2} and data["status"] == "reviewed", "transformation set identity/status differs")
+    source_only = schema_version == SCHEMA_VERSION_V2
     set_id = _string(data["transformation_set_id"], "transformation_set_id")
     root = Path(repo_root) if repo_root is not None else None
     bindings: dict[str, dict[str, Any]] = {}
@@ -545,7 +619,14 @@ def validate_transformations(
     record_ids: set[str] = set()
     for index, raw in enumerate(rows):
         row = _object(raw, f"transformations[{index}]")
-        _exact(row, {"transformation_id", "record_binding", "proposal_binding", "canonical_reaction_binding", "state_pair", "canonical_input_correspondence", "panel_correspondence", "mandatory_abstentions", "scope_effect"}, f"transformations[{index}]")
+        row_keys = (
+            {"transformation_id", "correspondence_kind", "record_binding", "proposal_binding", "state_pair", "source_context", "panel_correspondence", "mandatory_abstentions", "scope_effect"}
+            if source_only else
+            {"transformation_id", "record_binding", "proposal_binding", "canonical_reaction_binding", "state_pair", "canonical_input_correspondence", "panel_correspondence", "mandatory_abstentions", "scope_effect"}
+        )
+        _exact(row, row_keys, f"transformations[{index}]")
+        if source_only:
+            _require(row["correspondence_kind"] == "source_panel_only", "source-only correspondence kind differs")
         transformation_id = _string(row["transformation_id"], f"transformations[{index}].transformation_id")
         _require(transformation_id not in ids, f"transformation_id repeats {transformation_id}")
         ids.add(transformation_id)
@@ -554,26 +635,46 @@ def validate_transformations(
         mcsa_bindings = [item for item in bindings.values() if item["binding_id"] == f"source:M-CSA:{row['record_binding']['mcsa_id']}"]
         _require(len(mcsa_bindings) == 1 and mcsa_bindings[0]["sha256"] == row["record_binding"]["source_snapshot_sha256"], "M-CSA source binding differs")
         _validate_state_pair(row["state_pair"], steps)
-        reaction = _object(row["canonical_reaction_binding"], "canonical_reaction_binding")
-        _exact(reaction, {"provider", "master_id", "master_directionality", "directed_id", "directed_direction_code", "xref_scope", "proposal_direction_relation", "source_binding_ids"}, "canonical_reaction_binding")
-        _require(reaction["provider"] == "Rhea" and reaction["master_directionality"] == "undirected_master" and reaction["directed_direction_code"] in {"LR", "RL"} and reaction["xref_scope"] == "record_cross_reference_not_atom_map" and reaction["proposal_direction_relation"] in {"record_xref_direction_opposes_declared_proposal_direction", "record_xref_direction_agrees_with_declared_proposal_direction"}, "canonical reaction scope differs")
-        _require(re.fullmatch(r"RHEA:[1-9][0-9]*", reaction["master_id"]) is not None and re.fullmatch(r"RHEA:[1-9][0-9]*", reaction["directed_id"]) is not None, "Rhea identifier is invalid")
-        _require(all(binding_id in bindings for binding_id in _array(reaction["source_binding_ids"], "canonical source_binding_ids")), "canonical reaction has an unknown source binding")
+        reaction = None
+        if not source_only:
+            reaction = _object(row["canonical_reaction_binding"], "canonical_reaction_binding")
+            _exact(reaction, {"provider", "master_id", "master_directionality", "directed_id", "directed_direction_code", "xref_scope", "proposal_direction_relation", "source_binding_ids"}, "canonical_reaction_binding")
+            _require(reaction["provider"] == "Rhea" and reaction["master_directionality"] == "undirected_master" and reaction["directed_direction_code"] in {"LR", "RL"} and reaction["xref_scope"] == "record_cross_reference_not_atom_map" and reaction["proposal_direction_relation"] in {"record_xref_direction_opposes_declared_proposal_direction", "record_xref_direction_agrees_with_declared_proposal_direction"}, "canonical reaction scope differs")
+            _require(re.fullmatch(r"RHEA:[1-9][0-9]*", reaction["master_id"]) is not None and re.fullmatch(r"RHEA:[1-9][0-9]*", reaction["directed_id"]) is not None, "Rhea identifier is invalid")
+            _require(all(binding_id in bindings for binding_id in _array(reaction["source_binding_ids"], "canonical source_binding_ids")), "canonical reaction has an unknown source binding")
         panel = _object(row["panel_correspondence"], "panel_correspondence")
-        _exact(panel, {"status", "mapping_scope", "before_graph", "after_graph", "graph_edits", "source_flow_bindings", "chemical_map_alternatives", "replay", "stereochemistry", "product_graph_check", "representation_boundaries"}, "panel_correspondence")
-        _require(panel["status"] == "depicted_before_after_reaction_center_correspondence", "panel correspondence status differs")
-        _string(panel["mapping_scope"], "panel mapping_scope")
+        panel_keys = (
+            {"status", "mapping_scope", "before_graph", "after_graph", "graph_edits", "source_flow_bindings", "replay", "representation_boundaries"}
+            if source_only else
+            {"status", "mapping_scope", "before_graph", "after_graph", "graph_edits", "source_flow_bindings", "chemical_map_alternatives", "replay", "stereochemistry", "product_graph_check", "representation_boundaries"}
+        )
+        _exact(panel, panel_keys, "panel_correspondence")
+        expected_status = "depicted_before_after_source_panel_correspondence" if source_only else "depicted_before_after_reaction_center_correspondence"
+        _require(panel["status"] == expected_status, "panel correspondence status differs")
+        if source_only:
+            _require(panel["mapping_scope"] == "full_source_panel_depiction_node_correspondence", "panel mapping_scope differs")
+        else:
+            _string(panel["mapping_scope"], "panel mapping_scope")
         before = _validate_graph(panel["before_graph"], "before_graph")
         after = _validate_graph(panel["after_graph"], "after_graph")
         edits = _validate_edits(panel["graph_edits"], {item["atom_id"] for item in before["atoms"]}, "graph_edits")
         replay = _object(panel["replay"], "replay")
-        _exact(replay, {"status", "scope", "raw_locator_alignment", "atom_map", "raw_kekule_map_count", "chemical_topology_map_count"}, "replay")
+        replay_keys = {"status", "scope", "raw_locator_alignment", "atom_map"}
+        if not source_only:
+            replay_keys |= {"raw_kekule_map_count", "chemical_topology_map_count"}
+        _exact(replay, replay_keys, "replay")
         _require(replay["status"] == "exact" and replay["raw_locator_alignment"] == "project_reviewed_same_token_alignment_not_upstream_atom_map", "replay scope differs")
         _string(replay["scope"], "replay.scope")
-        _integer(replay["raw_kekule_map_count"], "raw_kekule_map_count")
-        _integer(replay["chemical_topology_map_count"], "chemical_topology_map_count")
+        if not source_only:
+            _integer(replay["raw_kekule_map_count"], "raw_kekule_map_count")
+            _integer(replay["chemical_topology_map_count"], "chemical_topology_map_count")
         _require(replay_graph_edits(before, edits, after, replay["atom_map"]), "graph edits do not replay the after graph")
-        _validate_chemical_maps(panel["chemical_map_alternatives"], before, after, replay)
+        if source_only:
+            _require(all(item["before_atom_id"] == item["after_atom_id"] for item in replay["atom_map"]), "source-panel locator alignment must preserve exact source tokens")
+            _require(all(atom["stereochemistry"] is None for graph in (before, after) for atom in graph["atoms"]), "source-only panel cannot assert computed stereochemistry")
+            _require(all(edit["operation"] != "set_stereochemistry" for edit in edits), "source-only panel cannot add a stereochemistry edit")
+        else:
+            _validate_chemical_maps(panel["chemical_map_alternatives"], before, after, replay)
         flow_rows = _array(panel["source_flow_bindings"], "source_flow_bindings")
         edit_ids = {item["edit_id"] for item in edits}
         bound_edits: list[str] = []
@@ -599,59 +700,87 @@ def validate_transformations(
             ), "graph edit does not match its source flow endpoints")
             bound_edits.extend(flow_edits)
         _require(sorted(bound_edits) == sorted(edit_ids), "source flows do not cover every graph edit exactly once")
-        stereo = _object(panel["stereochemistry"], "stereochemistry")
-        _exact(stereo, {"before_atom_id", "before_assignment", "after_atom_id", "after_assignment", "after_geometry", "assignment_scope"}, "stereochemistry")
-        _require(stereo["assignment_scope"] == "computed_rdkit_cip_not_source_literal" and stereo["after_geometry"] == "sp2", "stereochemistry scope differs")
-        _require(any(edit["operation"] == "set_stereochemistry" and edit["atom_ids"] == [stereo["before_atom_id"]] and edit["before"] == stereo["before_assignment"] and edit["after"] == stereo["after_assignment"] for edit in edits), "stereochemistry transition is not replayed")
-        product = _object(panel["product_graph_check"], "product_graph_check")
-        _exact(product, {"audit_result_binding_id", "canonical_participant_match_counts"}, "product_graph_check")
-        _require(product["audit_result_binding_id"] in bindings, "product graph audit binding is missing")
-        product_rows = _array(product["canonical_participant_match_counts"], "product match counts")
-        _require(bool(product_rows), "product match counts are empty")
-        for item in product_rows:
-            _exact(_object(item, "product match count"), {"source_step_id", "participant_id", "match_mode", "match_count"}, "product match count")
-            _require(item["source_step_id"] > row["state_pair"]["before"]["source_step_id"] and item["match_mode"] in {"achiral", "chiral"} and item["match_count"] == 0, "product graph claim exceeds abstention scope")
+        if not source_only:
+            stereo = _object(panel["stereochemistry"], "stereochemistry")
+            _exact(stereo, {"before_atom_id", "before_assignment", "after_atom_id", "after_assignment", "after_geometry", "assignment_scope"}, "stereochemistry")
+            _require(stereo["assignment_scope"] == "computed_rdkit_cip_not_source_literal" and stereo["after_geometry"] == "sp2", "stereochemistry scope differs")
+            _require(any(edit["operation"] == "set_stereochemistry" and edit["atom_ids"] == [stereo["before_atom_id"]] and edit["before"] == stereo["before_assignment"] and edit["after"] == stereo["after_assignment"] for edit in edits), "stereochemistry transition is not replayed")
+            product = _object(panel["product_graph_check"], "product_graph_check")
+            _exact(product, {"audit_result_binding_id", "canonical_participant_match_counts"}, "product_graph_check")
+            _require(product["audit_result_binding_id"] in bindings, "product graph audit binding is missing")
+            product_rows = _array(product["canonical_participant_match_counts"], "product match counts")
+            _require(bool(product_rows), "product match counts are empty")
+            for item in product_rows:
+                _exact(_object(item, "product match count"), {"source_step_id", "participant_id", "match_mode", "match_count"}, "product match count")
+                _require(item["source_step_id"] > row["state_pair"]["before"]["source_step_id"] and item["match_mode"] in {"achiral", "chiral"} and item["match_count"] == 0, "product graph claim exceeds abstention scope")
         boundaries = _array(panel["representation_boundaries"], "representation_boundaries")
         _require(bool(boundaries), "representation boundaries are empty")
         for item in boundaries:
             _exact(_object(item, "representation boundary"), {"boundary_id", "reason"}, "representation boundary")
             _string(item["boundary_id"], "boundary_id"); _string(item["reason"], "boundary reason")
-        _require("lys166_h67_explicitness" in {item["boundary_id"] for item in boundaries}, "Step 2 explicit-H representation boundary is missing")
-        _validate_canonical(row["canonical_input_correspondence"], bindings, before)
+        boundary_ids = {item["boundary_id"] for item in boundaries}
+        if source_only:
+            required_boundaries = {"generic_peptide_r_groups_unresolved", "depiction_nodes_not_exact_atoms", "new_tetrahedral_stereochemistry_unasserted", "raw_bond_id_reuse", "canonical_participant_bridge_absent"}
+            _require(required_boundaries <= boundary_ids, "source-only representation boundaries are incomplete")
+            _validate_source_context(row["source_context"], bindings, row["record_binding"]["mcsa_id"], before, after)
+        else:
+            _require("lys166_h67_explicitness" in boundary_ids, "Step 2 explicit-H representation boundary is missing")
+            _validate_canonical(row["canonical_input_correspondence"], bindings, before)
         abstentions = _array(row["mandatory_abstentions"], "mandatory_abstentions")
         abstention_ids: set[str] = set()
         for item in abstentions:
             _exact(_object(item, "mandatory abstention"), {"abstention_id", "reason"}, "mandatory abstention")
             abstention_ids.add(_string(item["abstention_id"], "abstention_id")); _string(item["reason"], "abstention reason")
         scope = _object(row["scope_effect"], "scope_effect")
-        _exact(scope, _SCOPE_KEYS, "scope_effect")
+        scope_keys = _SOURCE_SCOPE_KEYS if source_only else _SCOPE_KEYS
+        _exact(scope, scope_keys, "scope_effect")
         _require(all(isinstance(value, bool) for value in scope.values()), "scope_effect values must be boolean")
-        _require(scope["computed_canonical_input_correspondence"] and scope["depicted_intermediate_transition"] and not any(scope[key] for key in _SCOPE_KEYS - {"computed_canonical_input_correspondence", "depicted_intermediate_transition"}), "scope_effect promotes an unsupported claim")
-        required_abstentions = {"canonical_product_correspondence", "net_reaction_atom_map", "complete_racemization_path", "inferred_return_step", "step2_explicit_h67_lineage"}
+        if source_only:
+            _require(scope["source_depiction_transition"] and not any(scope[key] for key in _SOURCE_SCOPE_KEYS - {"source_depiction_transition"}), "scope_effect promotes an unsupported source-panel claim")
+            required_abstentions = {"canonical_input_correspondence", "canonical_product_correspondence", "upstream_atom_map", "net_reaction_atom_map", "complete_mechanism_path", "exact_physical_peptide_identity", "source_r_group_resolution", "experimentally_observed_intermediate", "tetrahedral_stereochemistry"}
+        else:
+            _require(scope["computed_canonical_input_correspondence"] and scope["depicted_intermediate_transition"] and not any(scope[key] for key in _SCOPE_KEYS - {"computed_canonical_input_correspondence", "depicted_intermediate_transition"}), "scope_effect promotes an unsupported claim")
+            required_abstentions = {"canonical_product_correspondence", "net_reaction_atom_map", "complete_racemization_path", "inferred_return_step", "step2_explicit_h67_lineage"}
         _require(required_abstentions <= abstention_ids, "mandatory abstentions omit an unsupported scope")
         if root is not None:
-            mcsa = json.loads((root / mcsa_bindings[0]["path"]).read_text())
-            raw_steps = {item["step_id"]: item for item in mcsa.get("step_schemes", [])}
+            mcsa = json.loads((root / mcsa_bindings[0]["path"]).read_text(encoding="utf-8"))
+            mechanism_schemes = [item for item in mcsa.get("step_schemes", []) if item.get("mechanism_id") == row["proposal_binding"]["source_mechanism_id"]]
+            raw_steps = {item["step_id"]: item for item in mechanism_schemes}
+            _require(len(raw_steps) == len(mechanism_schemes), "raw source mechanism repeats a step")
             before_state, after_state = row["state_pair"]["before"], row["state_pair"]["after"]
             _require(raw_steps.get(before_state["source_step_id"], {}).get("content_sha256") == before_state["scheme_sha256"] and raw_steps.get(after_state["source_step_id"], {}).get("content_sha256") == after_state["scheme_sha256"], "raw scheme binding differs")
+            for state in (before_state, after_state):
+                source_text = raw_steps[state["source_step_id"]]["content_utf8"]
+                _require(hashlib.sha256(source_text.encode("utf-8")).hexdigest() == state["scheme_sha256"], "raw scheme content hash differs")
             _validate_raw_graph(before, raw_steps[before_state["source_step_id"]], "before_graph")
             _validate_raw_graph(after, raw_steps[after_state["source_step_id"]], "after_graph")
-            mapped_atoms = {
-                mapping["before_atom_id"]
-                for alternative in row["canonical_input_correspondence"]["map_alternatives"]
-                for mapping in alternative["canonical_to_before"]
-            }
-            raw_root = ET.fromstring(raw_steps[before_state["source_step_id"]]["content_utf8"])
-            raw_labels = sorted({
-                atom.get("mrvExtraLabel")
-                for atom in raw_root.iter()
-                if atom.tag.rsplit("}", 1)[-1] == "atom"
-                and atom.get("id") in mapped_atoms
-                and atom.get("mrvExtraLabel")
-            })
-            _require(raw_labels == sorted(row["canonical_input_correspondence"]["raw_source_labels"]), "canonical raw source labels differ from raw MRV")
-            _validate_rhea_sources(reaction, row, record, proposal, bindings, root)
-            _validate_audit(row, bindings, root, panel)
+            if source_only:
+                raw_flows = parse_mcsa_scheme_flows(raw_steps[before_state["source_step_id"]])["electron_flows"]
+                _require(raw_flows == steps[before_state["source_step_id"]].get("electron_flows", []), "source flow witnesses differ from raw MRV")
+                selected = {item["atom_id"] for item in before["atoms"]}
+                expected = {item["atom_id"]: item for item in row["source_context"]["source_atom_annotations"]["rows"]}
+                before_annotations, before_r = _raw_source_annotations(raw_steps[before_state["source_step_id"]], selected, "before_graph")
+                after_annotations, after_r = _raw_source_annotations(raw_steps[after_state["source_step_id"]], selected, "after_graph")
+                _require(before_annotations == after_annotations == expected, "source atom annotations differ from raw MRV")
+                claimed_r = set(row["source_context"]["source_r_groups"]["element_r_atom_ids"])
+                _require(before_r == after_r == claimed_r, "source element-R inventory differs from raw MRV")
+            else:
+                mapped_atoms = {
+                    mapping["before_atom_id"]
+                    for alternative in row["canonical_input_correspondence"]["map_alternatives"]
+                    for mapping in alternative["canonical_to_before"]
+                }
+                raw_root = ET.fromstring(raw_steps[before_state["source_step_id"]]["content_utf8"])
+                raw_labels = sorted({
+                    atom.get("mrvExtraLabel")
+                    for atom in raw_root.iter()
+                    if atom.tag.rsplit("}", 1)[-1] == "atom"
+                    and atom.get("id") in mapped_atoms
+                    and atom.get("mrvExtraLabel")
+                })
+                _require(raw_labels == sorted(row["canonical_input_correspondence"]["raw_source_labels"]), "canonical raw source labels differ from raw MRV")
+                _validate_rhea_sources(reaction, row, record, proposal, bindings, root)
+                _validate_audit(row, bindings, root, panel)
     payload_hash = transformation_payload_sha256(data)
     _validate_review(data["review"], payload_hash)
     return {
@@ -664,6 +793,7 @@ def validate_transformations(
 
 __all__ = [
     "SCHEMA_VERSION",
+    "SCHEMA_VERSION_V2",
     "apply_graph_edits",
     "replay_graph_edits",
     "transformation_payload_sha256",

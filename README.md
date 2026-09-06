@@ -84,6 +84,12 @@ intermediate. An offline query returns the before/after graphs, source
 witnesses and both symmetry-equivalent ligand mappings. The missing product
 graph still prevents a complete racemization claim.
 
+M0173 trypsin extends that engine to a depicted enzyme–substrate covalent
+addition, with four bond edits and two charge changes. Generic peptide groups,
+residue-fragment aliases and unassigned stereochemistry remain explicit.
+`catalytic-earth atlas-transformations --all` retrieves both separately
+reviewed sets with their original source and review provenance.
+
 - `current702` contains 702 project benchmark labels: 685 bronze, 17 silver,
   zero project-gold; 683 are automation-curated and 19 author-reviewed.
 - The combined 10,001-row surface is **8,305 positive fingerprint assignments

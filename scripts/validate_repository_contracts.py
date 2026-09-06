@@ -173,6 +173,11 @@ def _validate_json_surfaces(*, include_release_manifest: bool) -> None:
         "data/atlas/transformations/m0187/retained_graph_audit.json",
         "src/catalytic_earth/transformation_data/transformations.json",
         "src/catalytic_earth/transformation_data/expected.json",
+        "data/atlas/transformations/m0173/transformations.json",
+        "data/atlas/transformations/m0173/source_inventory.json",
+        "data/atlas/transformations/m0173/retained_graph_audit.json",
+        "src/catalytic_earth/transformation_data/m0173_transformations.json",
+        "src/catalytic_earth/transformation_data/m0173_expected.json",
         "src/catalytic_earth/schemas/mechanism-record-v4.schema.json",
         "data/governance/preregistration-v1.schema.json",
         "data/governance/architecture_freeze.json",
@@ -419,6 +424,7 @@ def main() -> int:
     _run("scripts/build_atlas_draft_sources.py", "--check")
     _run("scripts/build_atlas_drafts.py", "--check")
     _run("scripts/build_atlas_transformations.py", "--check")
+    _run("data/atlas/transformations/m0173/audit_m0173.py", "--check")
     for batch_name, batch in BATCHES.items():
         if batch == DEFAULT_BATCH:
             continue

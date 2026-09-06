@@ -37,8 +37,8 @@
       "sha256": "5ca95dc3c7cf4fd0ae9ddd72cbc58bad8aa4e6179a45c579b2556f649d6e04b9"
     },
     "src/catalytic_earth/core_cli.py": {
-      "bytes": 22434,
-      "sha256": "c908f378fe66b18381e34d5935ed954aa3f2d7b5d4e4920780578fc77a383fbf"
+      "bytes": 23628,
+      "sha256": "b7001ee3cbb8cc5214e1537be062181bf4009d8324c5ac17ceb7e629d1f7af0a"
     },
     "src/catalytic_earth/execution_context.py": {
       "bytes": 792,
@@ -148,7 +148,7 @@
     ],
     "maximum_relative_path_characters": 180,
     "observed_maximum": 180,
-    "paths_checked": 17445
+    "paths_checked": 17456
   },
   "replacement_family_path": {
     "engine": "src/catalytic_earth/family_onboarding.py",

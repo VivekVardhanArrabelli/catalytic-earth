@@ -35,20 +35,27 @@ def _canonical_sha(value: Any) -> str:
     return hashlib.sha256(payload).hexdigest()
 
 
-def verified_transformations() -> dict[str, Any]:
+def verified_transformations(mcsa_id: str = "M0187") -> dict[str, Any]:
+    from .atlas_transformation_query import TRANSFORMATION_SETS, normalize_mcsa_id
     from .atlas_transformations import validate_transformations
 
-    expected = json.loads(_resource_bytes("transformation_data/expected.json"))
+    key = normalize_mcsa_id(mcsa_id)
+    if key not in TRANSFORMATION_SETS:
+        raise ValueError("unknown transformation set")
+    prefix = "transformation_data/" + TRANSFORMATION_SETS[key]["package_prefix"]
+    expected = json.loads(_resource_bytes(prefix + "expected.json"))
     if expected.get("schema_version") != "catalytic-earth.transformation-package.v1":
         raise ValueError("unsupported transformation package")
-    raw = _resource_bytes("transformation_data/transformations.json")
-    attribution = _resource_bytes("transformation_data/attribution.md")
+    raw = _resource_bytes(prefix + "transformations.json")
+    attribution = _resource_bytes(prefix + "attribution.md")
     if hashlib.sha256(raw).hexdigest() != expected["transformations_sha256"]:
         raise ValueError("transformation package differs from its expected hash")
     if hashlib.sha256(attribution).hexdigest() != expected["attribution_sha256"]:
         raise ValueError("transformation attribution differs from its expected hash")
     value = json.loads(raw)
     validate_transformations(value, atlas10_bundle=json.loads(_resource_bytes(ATLAS10_KERNEL)))
+    if any(row["record_binding"]["mcsa_id"] != key for row in value["transformations"]):
+        raise ValueError("packaged transformation set belongs to another source record")
     return value
 
 
@@ -320,9 +327,11 @@ def build_parser() -> argparse.ArgumentParser:
     )
     atlas10.add_argument("--output", type=Path, help="optional JSON output path")
     transformations = subparsers.add_parser(
-        "atlas-transformations", help="query computed source-state atom and bond changes offline"
+        "atlas-transformations", help="query source-state atom and bond changes offline",
+        description="Select a reviewed M-CSA record or use --all for the catalog. With neither option, reproduce the original M0187 query.",
     )
     transformations.add_argument("--mcsa-id", help="filter an exact M-CSA identifier, e.g. M0187")
+    transformations.add_argument("--all", action="store_true", help="query all separately reviewed transformation sets")
     transformations.add_argument("--output", type=Path, help="optional JSON output path")
     drafts = subparsers.add_parser(
         "atlas-drafts", help="query source-scoped mechanisms, states and abstentions offline"
@@ -472,12 +481,22 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(rendered, end="")
         return 0
     if args.command == "atlas-transformations":
-        from .atlas_transformation_query import query_transformations
-
-        result = query_transformations(
-            verified_transformations(), atlas10_bundle=json.loads(_resource_bytes(ATLAS10_KERNEL)),
-            mcsa_id=args.mcsa_id,
+        from .atlas_transformation_query import (
+            TRANSFORMATION_SETS, normalize_mcsa_id, query_transformation_sets, query_transformations,
         )
+
+        mcsa_id = normalize_mcsa_id(args.mcsa_id)
+        atlas10 = json.loads(_resource_bytes(ATLAS10_KERNEL))
+        if args.all:
+            result = query_transformation_sets(
+                {key: verified_transformations(key) for key in TRANSFORMATION_SETS},
+                atlas10_bundle=atlas10, mcsa_id=mcsa_id,
+            )
+        else:
+            key = mcsa_id if mcsa_id in TRANSFORMATION_SETS else "M0187"
+            result = query_transformations(
+                verified_transformations(key), atlas10_bundle=atlas10, mcsa_id=mcsa_id,
+            )
         rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
         if args.output:
             args.output.write_text(rendered, encoding="utf-8", newline="\n")

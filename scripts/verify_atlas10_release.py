@@ -72,10 +72,15 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                 "from catalytic_earth.atlas_transformations import replay_graph_edits\n"
                 "panel = transitions['transformations'][0]['panel_correspondence']\n"
                 "assert replay_graph_edits(panel['before_graph'], panel['graph_edits'], panel['after_graph'], panel['replay']['atom_map'])\n"
+                "trypsin = command('atlas-transformations', '--mcsa-id', 'M0173')\n"
+                "trypsin_panel = trypsin['transformations'][0]['panel_correspondence']\n"
+                "assert replay_graph_edits(trypsin_panel['before_graph'], trypsin_panel['graph_edits'], trypsin_panel['after_graph'], trypsin_panel['replay']['atom_map'])\n"
                 "import importlib.util\n"
                 "assert importlib.util.find_spec('rdkit') is None\n"
                 "print(json.dumps({\n"
                 "    'transformations': transitions,\n"
+                "    'trypsin': trypsin,\n"
+                "    'transformation_catalog': command('atlas-transformations', '--all'),\n"
                 "    'transformations_empty': command('atlas-transformations', '--mcsa-id', 'M0213'),\n"
                 "    'all': run_query('--steps'),\n"
                 "    'ammonium': run_query('--reactant', '28938', '--product', '58278'),\n"
@@ -135,6 +140,30 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                     or transition["scope_effect"]["complete_racemization_path"] is not False
                     or transitions["query_semantics"]["count_is_complete_mechanism_count"] is not False):
                 raise ValueError("installed transformation lost graph edits, symmetry, or its source limits")
+            trypsin = queries["trypsin"]
+            addition = trypsin["transformations"][0]
+            source_context = addition["source_context"]
+            addition_panel = addition["panel_correspondence"]
+            catalog = queries["transformation_catalog"]
+            if (trypsin["schema_version"] != "catalytic-earth.transformation-query.v2"
+                    or trypsin["transformation_count"] != 1
+                    or addition["correspondence_kind"] != "source_panel_only"
+                    or source_context["canonical_participant_correspondence"] != "not_asserted"
+                    or set(source_context["source_r_groups"]["element_r_atom_ids"]) != {"a9", "a11"}
+                    or len(source_context["source_r_groups"]["alias_r_atom_ids"]) != 8
+                    or len(addition_panel["before_graph"]["atoms"]) != 50
+                    or len(addition_panel["graph_edits"]) != 6
+                    or len(addition_panel["source_flow_bindings"]) != 3
+                    or addition["scope_effect"]["exact_physical_peptide_identity"] is not False
+                    or addition["scope_effect"]["complete_mechanism_path"] is not False
+                    or catalog["transformation_count"] != 2
+                    or catalog["query_semantics"]["cross_set_evidence_join"] is not False):
+                raise ValueError("installed source-only addition lost graph edits, generic groups, or its scope")
+            catalog_by_id = {item["mcsa_id"]: item["result"] for item in catalog["sets"]}
+            for mcsa_id, single in (("M0187", transitions), ("M0173", trypsin)):
+                for field in ("transformations", "review", "source_bindings", "transformation_payload_sha256"):
+                    if catalog_by_id[mcsa_id][field] != single[field]:
+                        raise ValueError("installed transformation catalog changed individual-set provenance")
             drafts = queries["all"]
             records = drafts["records"]
             if {record["mcsa_id"] for record in records} != {"M0106", "M0107", "M0212", "M0753"}:
