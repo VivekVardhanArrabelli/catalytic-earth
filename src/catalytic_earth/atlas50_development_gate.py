@@ -11,7 +11,7 @@ import re
 from pathlib import Path
 from typing import Any
 
-from .atlas_draft_batch import DEFAULT_BATCH, DraftBatchPaths
+from .atlas_draft_batch import DEFAULT_BATCH, DraftBatchPaths, predecessor_batch
 from .atlas50_state_probe import (
     SUCCESSOR_REPORT_SCHEMA_VERSION,
     declared_probe_case_ids,
@@ -452,8 +452,11 @@ def _validate_transitive_review_pins(
         },
     }
     if batch != DEFAULT_BATCH:
+        base_batch = predecessor_batch(batch)
+        base_spec = _read(root / base_batch.probe_spec_path)
+        inherited_ids = set(declared_probe_case_ids(base_spec, batch=base_batch))
         new_case_ids = [
-            case_id for case_id in case_id_order if case_id not in CASE_IDS
+            case_id for case_id in case_id_order if case_id not in inherited_ids
         ]
         _require(new_case_ids, "successor review has no newly declared cases")
         requirements["atlas_source_batch"] = {
@@ -463,6 +466,7 @@ def _validate_transitive_review_pins(
                 for case_id in new_case_ids
             ),
         }
+        _validate_challenge_inheritance(root, challenge, batch=batch)
     for family, requirement in requirements.items():
         _require(family in by_family, f"source challenge did not review {family}")
         artifact = by_family[family]
@@ -577,6 +581,34 @@ def _validate_transitive_review_pins(
         )
 
 
+def _validate_challenge_inheritance(
+    root: Path, challenge: dict[str, Any], *, batch: DraftBatchPaths
+) -> None:
+    """Bind retained scientific decisions to the configured predecessor."""
+    if batch == DEFAULT_BATCH:
+        return
+    base_batch = predecessor_batch(batch)
+    inheritance = _object(challenge.get("inheritance"), "challenge inheritance")
+    _require(inheritance.get("source_path") == base_batch.challenge_path.as_posix(),
+             "successor challenge inheritance path differs")
+    path = root / base_batch.challenge_path
+    _require(inheritance.get("source_sha256") == canonical_file_sha256(path),
+             "successor challenge inheritance pin differs")
+    base = _read(path)
+    claims = base["claims"]
+    objections = base["cross_review"]["material_open_objections"]
+    _require(inheritance.get("retained_claim_ids") == [row["claim_id"] for row in claims],
+             "successor retained challenge claim IDs differ")
+    _require(challenge.get("claims", [])[:len(claims)] == claims,
+             "successor changed an inherited challenge claim")
+    _require(challenge["cross_review"]["material_open_objections"][:len(objections)] == objections,
+             "successor changed an inherited challenge objection")
+    _require(inheritance.get("retained_claims_and_evidence_unchanged") is True
+             and inheritance.get("retained_material_open_objections_unchanged") is True,
+             "successor challenge must declare unchanged inheritance")
+    _validate_challenge_inheritance(root, base, batch=base_batch)
+
+
 def validate_adjudications(
     value: dict[str, Any],
     probe: dict[str, Any],
@@ -609,6 +641,7 @@ def validate_adjudications(
     )
     if batch != DEFAULT_BATCH:
         _require(repo_root is not None, "successor adjudication validation requires repo_root")
+        base_batch = predecessor_batch(batch)
         inheritance = _object(
             value.get("inheritance"), "adjudication inheritance"
         )
@@ -623,15 +656,15 @@ def validate_adjudications(
         )
         _require(
             inheritance["adjudications_path"]
-            == DEFAULT_BATCH.adjudications_path.as_posix(),
+            == base_batch.adjudications_path.as_posix(),
             "successor adjudication inheritance path differs",
         )
         inherited_case_ids = tuple(inheritance["inherited_case_ids"])
         _require(
-            inherited_case_ids == CASE_ID_ORDER,
+            inherited_case_ids == tuple(probe["inheritance"]["inherited_case_ids"]),
             "successor must inherit the exact legacy adjudication cases",
         )
-        base_path = Path(repo_root) / DEFAULT_BATCH.adjudications_path
+        base_path = Path(repo_root) / base_batch.adjudications_path
         _require(
             inheritance["adjudications_sha256"]
             == canonical_file_sha256(base_path),

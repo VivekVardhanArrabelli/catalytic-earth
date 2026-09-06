@@ -46,12 +46,12 @@ a production biological design system.
 ## Quick Status — 2026-09-05
 
 The Atlas-10 kernel remains the 2026-07-14 checkpoint built on the 2026-07-13
-truth reset. September adds seven queryable Tier-1 source drafts in two batches through a
+truth reset. September adds eleven queryable Tier-1 source drafts in three batches through a
 [reusable M-CSA importer and compiler](docs/ATLAS_SOURCE_DRAFTS.md), alongside an executable
 [computational development review](docs/COMPUTATIONAL_DEVELOPMENT_REVIEW.md):
-57 corrected crosswalk rows (23 provisional, 34 unresolved), nine generic state
+57 corrected crosswalk rows (23 provisional, 34 unresolved), thirteen generic state
 probes in an inherited review set, and source-backed adjudications. Human submissions no longer block
-these scoped draft operations. Seven cases permit mechanism drafting; all nine
+these scoped draft operations. Eleven cases permit mechanism drafting; all thirteen
 permit annotation. It also withdraws the A0A177THN5
 APX-specific transfer and retires the study based on it (CE-017). No benchmark
 was rescored or independent human-review status upgraded.
@@ -137,9 +137,18 @@ was rescored or independent human-review status upgraded.
   positions. Proposed catalytic roles and protonation remain computational;
   the mapping does not transfer to proposal 1's yeast evidence.
   `--batch all --mechanism-component "schiff base formed"` searches exact
-  source event labels across both batches and returns the matching proposals.
+  source event labels across all three batches and returns the matching proposals.
   Repeated labels must occur within one proposal; matches retain the original
   alternatives, source scopes and primary-evidence annotations.
+- `--batch plp-pyruvoyl` adds M0066 transamination, M0213 racemization and
+  M0186 elimination as distinct PLP source proposals, plus M0049 pyruvoyl
+  histidine decarboxylation. Four records preserve 32 reaction steps, four
+  terminal states and 99 source arrows. The pyruvoyl PTM is explicitly outside
+  the PLP relation. Stereochemical conflicts between entry, prose and scheme
+  identifiers remain visible, as do inferred phosphate roles and hydrolysis
+  outside the enzyme. These are reviewed source drafts, not validated reaction
+  trajectories; sharing a cofactor or a Schiff-base label does not establish
+  mechanism equivalence.
 
 ## Truth-governance gate
 

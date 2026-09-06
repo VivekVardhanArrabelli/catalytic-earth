@@ -64,7 +64,7 @@ class AtlasDraftBatchTests(unittest.TestCase):
             resolve_batch("aldolase-transketolase"),
             ALDOLASE_TRANSKETOLASE_BATCH,
         )
-        self.assertEqual(set(BATCHES), {"default", "aldolase-transketolase"})
+        self.assertEqual(set(BATCHES), {"default", "aldolase-transketolase", "plp-pyruvoyl"})
         self.assertEqual(
             self.batch.manifest_path,
             self.batch.source_directory / "source_manifest.json",
@@ -253,8 +253,8 @@ class SourceDraftCatalogTests(unittest.TestCase):
     def test_catalog_retains_exact_per_batch_queries_and_source_boundaries(self):
         result = self.query()
         self.assertEqual(result["searched_batch_ids"], sorted(BATCHES))
-        self.assertEqual(result["searched_record_count"], 7)
-        self.assertEqual(result["record_count"], 7)
+        self.assertEqual(result["searched_record_count"], 11)
+        self.assertEqual(result["record_count"], 11)
         self.assertNotIn("mechanism_proposal_match_count", result)
         for item in result["batches"]:
             name = item["batch_id"]
@@ -267,10 +267,10 @@ class SourceDraftCatalogTests(unittest.TestCase):
         before = copy.deepcopy((self.bundles, self.evidence))
         compact = self.query(mechanism_components=(" Schiff Base Formed ",))
         full = self.query(mechanism_components=("schiff base formed",), include_steps=True)
-        self.assertEqual(compact["record_count"], 2)
-        self.assertEqual(compact["mechanism_proposal_match_count"], 2)
+        self.assertEqual(compact["record_count"], 5)
+        self.assertEqual(compact["mechanism_proposal_match_count"], 5)
         records = [r for b in compact["batches"] for r in b["result"]["records"]]
-        self.assertEqual({r["mcsa_id"] for r in records}, {"M0753", "M0222"})
+        self.assertEqual({r["mcsa_id"] for r in records}, {"M0753", "M0222", "M0049", "M0066", "M0213"})
         self.assertTrue(all(r["evidence_tier"] == 1 for r in records))
         for item, full_item in zip(compact["batches"], full["batches"]):
             for record, whole in zip(item["result"]["records"], full_item["result"]["records"]):
@@ -287,7 +287,7 @@ class SourceDraftCatalogTests(unittest.TestCase):
         ))
         self.assertEqual(result["record_count"], 0)
         self.assertEqual(result["mechanism_proposal_match_count"], 0)
-        self.assertEqual(len(result["batches"]), 2)
+        self.assertEqual(len(result["batches"]), 3)
         for item in result["batches"]:
             self.assertEqual(item["result"]["selection"], self.bundles[item["batch_id"]]["selection"])
             self.assertEqual(item["result"]["records"], [])
@@ -325,7 +325,7 @@ class SourceDraftCatalogTests(unittest.TestCase):
             code = main(["atlas-drafts", "--batch", "all", "--mechanism-component", "schiff base formed"])
         self.assertEqual(code, 0)
         result = json.loads(output.getvalue())
-        self.assertEqual(result["record_count"], 2)
+        self.assertEqual(result["record_count"], 5)
         self.assertEqual(result["searched_batch_ids"], sorted(BATCHES))
         with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit) as raised:
             main(["atlas-drafts", "--mechanism-component", "proton transfer, electron transfer"])

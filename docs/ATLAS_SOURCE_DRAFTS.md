@@ -26,10 +26,38 @@ The separate `aldolase-transketolase` batch adds M0052 class II aldolase,
 M0222 class I aldolase, and M0219 transketolase: three records, four proposals,
 26 reaction steps, four terminal states and 98 source arrow annotations. Its
 successor review inherits the earlier six decisions unchanged and adds three
-source-scoped decisions. Across both batches there are seven Tier-1 records,
+source-scoped decisions. Those first two batches contain seven Tier-1 records,
 nine proposals, 69 reaction steps, nine terminal states and 246 source arrows.
 These counts include source-marked inferred and extra-enzymatic steps; they
 are not counts of experimentally observed active-site events.
+
+The `plp-pyruvoyl` batch adds M0066 D-alanine transaminase, M0213 alanine
+racemase, M0186 L-serine ammonia-lyase and M0049 pyruvoyl histidine
+decarboxylase. Its four proposals contain 32 reaction steps, four terminal
+states and 99 source arrows. Across all three batches there are eleven Tier-1
+records, thirteen proposals, 101 reaction steps, thirteen terminal states and
+345 source arrows. Three different PLP reaction branches and the non-PLP
+pyruvoyl example remain separate records with explicit applicability limits.
+
+The new source challenge retains these material conflicts:
+
+- M0066's entry and scheme identifiers describe D-glutamate, while Step 1
+  prose names L-glutamate.
+- M0049's entry specifies L-histidine, while scheme panels 1–6 carry the
+  identifier for D-histidinium. Precursor Ser83, prose Prv-82 and mature-chain
+  Pyr1F numbering also remain distinct source assertions.
+- M0213 retains an L-alanine scheme identifier even in its terminal panel,
+  while the entry product is D-alanine and the drawing changes stereochemistry.
+  Direction-dependent catalytic roles and the reference analogue are retained.
+- M0186 explicitly infers its Step 4 phosphate-base assignment and assumes
+  the corresponding acid assignment in Step 5. Panels 6 and 7 describe
+  hydrolysis outside the active site and are retained as distinct source panels.
+
+The records preserve these discrepancies rather than choosing an exact
+stereochemical trajectory. The [source challenge](../data/atlas/source_drafts/batches/plp-pyruvoyl/review/challenge.json)
+and [batch attribution](../data/atlas/source_drafts/batches/plp-pyruvoyl/SOURCE_ATTRIBUTION.md)
+identify the evidence and reviewed scope. These four examples do not resolve
+the entire PLP crosswalk row or establish conserved function in homologues.
 
 The aldolases share source EC 4.1.2.13 and entry-level participant identifiers
 while describing metal-assisted and covalent Schiff-base chemistry. M0222's
@@ -44,9 +72,11 @@ cluster pathway, and conflicting HisF Asp11/Asp130 roles remain visible in the
 query. Source transcription does not settle those questions or infer geometry,
 atom mappings, balanced bond edits, or experimental validation.
 
-Step `is_inferred` is true only when the source explicitly tags it as inferred;
-otherwise it is null (unspecified). Missing tags do not establish that a step
-was observed, and source hedging is retained in the step text.
+Step `is_inferred` is true when the text contains an explicit `inferred` tag,
+`we infer`, or `we assume`; otherwise it is null (unspecified). The retained
+text determines whether the inference qualifies a role within the step or
+the whole step. Missing markers do not establish observation, and other source
+hedging is retained without automatically assigning a boolean value.
 
 ## Use the atlas
 
@@ -64,6 +94,10 @@ catalytic-earth atlas-drafts --batch aldolase-transketolase --mcsa-id M0219 --st
 catalytic-earth atlas-drafts --batch aldolase-transketolase --mcsa-id M0222 --text "DHAP-derived covalent moiety"
 catalytic-earth atlas-drafts --batch all --mechanism-component "schiff base formed"
 catalytic-earth atlas-drafts --batch all --mechanism-component decarboxylation --product 16526
+catalytic-earth atlas-drafts --batch plp-pyruvoyl --mechanism-component decarboxylation --steps
+catalytic-earth atlas-drafts --batch plp-pyruvoyl --mechanism-component dehydration --mechanism-component "schiff base formed"
+catalytic-earth atlas-drafts --batch plp-pyruvoyl --mechanism-component "reaction occurs outside the enzyme"
+catalytic-earth atlas-drafts --batch plp-pyruvoyl --reactant 57972 --product 57416
 ```
 
 Compact results omit step bodies while retaining scope, residue evidence and
@@ -73,6 +107,11 @@ not a claim that no such mechanism exists elsewhere. Every response identifies
 the selected source IDs and requested operation, including empty results.
 The default selects the original four records. `--batch aldolase-transketolase`
 selects the additional three; it does not silently expand the default corpus.
+`--batch plp-pyruvoyl` selects the next four. Its four examples above retrieve
+M0049, M0066, M0186 and M0213 respectively. These are exact source-annotation
+queries, not normalized reaction-class or cofactor classification. In
+particular, text search for PLP can also match an abstention explaining why
+pyruvoyl is not PLP.
 The paired aldolase query above returns both source records and their separate
 proposal, residue and uncertainty fields.
 
@@ -116,9 +155,11 @@ filters, matching proposal count. The default batch remains the original four
 records. Existing single-batch responses are unchanged when event filters are
 unused; this aggregation creates no combined scientific source bundle.
 
-The Schiff-base label query finds M0753 HisF and M0222 class I aldolase. This
-is a shared source event label, not an assertion that both form an
-enzyme-attached intermediate or use identical chemistry. Source labels do not
+The Schiff-base label query finds M0753 HisF, M0222 class I aldolase, M0049
+pyruvoyl decarboxylase, M0066 transaminase and M0213 racemase. The label is
+shared across different chemistry and attachment contexts. M0186's proposal
+does not contain that label even though its prose describes substrate–PLP
+adduct chemistry; a missing annotation does not exclude that chemistry. Source labels do not
 locate events to individual steps, establish conserved function, or validate
 mechanisms. A missing label means no matching annotation in the selected
 source summaries, not absence of that chemistry from the enzyme.
@@ -151,6 +192,10 @@ python scripts/build_atlas50_state_probe.py --batch aldolase-transketolase --che
 python scripts/build_atlas50_development_gate.py --batch aldolase-transketolase --check
 python scripts/build_atlas_draft_sources.py --batch aldolase-transketolase --check
 python scripts/build_atlas_drafts.py --batch aldolase-transketolase --check
+python scripts/build_atlas50_state_probe.py --batch plp-pyruvoyl --check
+python scripts/build_atlas50_development_gate.py --batch plp-pyruvoyl --check
+python scripts/build_atlas_draft_sources.py --batch plp-pyruvoyl --check
+python scripts/build_atlas_drafts.py --batch plp-pyruvoyl --check
 python scripts/run_test_tier.py "core/unit"
 python scripts/validate_repository_contracts.py
 ```
@@ -165,6 +210,13 @@ snapshots, manifests and compiled outputs live under their own batch directory;
 inherited review decisions are pinned and checked. The additional batch used
 31 recorded API/scheme requests and 569,327 bytes, plus three ancillary official
 page inspections whose bytes are not represented as raw-source receipts.
+The PLP/pyruvoyl batch inherits the nine prior decisions and adds four. Its
+new identities absent from the frozen candidate list are checked against their
+captured official snapshots; admission still requires the source challenge's
+hash bindings and scoped adjudications. No frozen candidate list is extended.
+The new source package used 37 API/scheme requests and 589,303 response bytes;
+ancillary browser and source-label checks are disclosed separately from those
+raw-package receipts.
 
 The source API is the maintained M-CSA interface; its old flat files are no
 longer updated. Upstream also warns that homologous residue matches do not

@@ -19,6 +19,7 @@ class DraftBatchPaths:
     probe_report_path: Path
     gate_directory: Path
     challenge_path: Path
+    predecessor_batch_id: str | None = None
 
     def __post_init__(self) -> None:
         if re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", self.batch_id) is None:
@@ -84,12 +85,25 @@ ALDOLASE_TRANSKETOLASE_BATCH = DraftBatchPaths(
     probe_report_path=_ALDOLASE_ROOT / "review/probe.json",
     gate_directory=_ALDOLASE_ROOT / "review",
     challenge_path=_ALDOLASE_ROOT / "review/challenge.json",
+    predecessor_batch_id="default",
+)
+
+_PLP_ROOT = Path("data/atlas/source_drafts/batches/plp-pyruvoyl")
+PLP_PYRUVOYL_BATCH = DraftBatchPaths(
+    batch_id="plp-pyruvoyl",
+    source_directory=_PLP_ROOT,
+    probe_spec_path=_PLP_ROOT / "review/spec.json",
+    probe_report_path=_PLP_ROOT / "review/probe.json",
+    gate_directory=_PLP_ROOT / "review",
+    challenge_path=_PLP_ROOT / "review/challenge.json",
+    predecessor_batch_id="aldolase-transketolase",
 )
 
 BATCHES: Mapping[str, DraftBatchPaths] = MappingProxyType(
     {
         DEFAULT_BATCH.batch_id: DEFAULT_BATCH,
         ALDOLASE_TRANSKETOLASE_BATCH.batch_id: ALDOLASE_TRANSKETOLASE_BATCH,
+        PLP_PYRUVOYL_BATCH.batch_id: PLP_PYRUVOYL_BATCH,
     }
 )
 
@@ -103,3 +117,14 @@ def resolve_batch(name: str | None) -> DraftBatchPaths:
     except (KeyError, TypeError) as exc:
         choices = ", ".join(BATCHES)
         raise ValueError(f"unknown source-draft batch {name!r}; choose {choices}") from exc
+
+
+def predecessor_batch(batch: DraftBatchPaths) -> DraftBatchPaths:
+    """Return the configured predecessor; source data cannot select its own base."""
+
+    if batch.predecessor_batch_id is None:
+        raise ValueError("source-draft batch has no configured predecessor")
+    predecessor = resolve_batch(batch.predecessor_batch_id)
+    if predecessor.batch_id == batch.batch_id:
+        raise ValueError("source-draft batch cannot inherit itself")
+    return predecessor

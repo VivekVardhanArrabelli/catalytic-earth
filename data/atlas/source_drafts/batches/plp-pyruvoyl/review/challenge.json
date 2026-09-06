@@ -1,0 +1,977 @@
+{
+  "schema_version": "catalytic-earth.atlas50-source-challenge.v1",
+  "challenge_id": "atlas50.source-challenge.plp-pyruvoyl.2026-09-05",
+  "status": "computational_development_review_complete",
+  "review_boundary": {
+    "purpose": "Challenge decision-changing source and representation claims for development use.",
+    "informed_by_prior_crosswalk_audit": true,
+    "blind_review": false,
+    "reviewer_class": "same-model Codex agents",
+    "statistically_independent": false,
+    "correlated_error_risk": true,
+    "human_or_domain_expert_review_claimed": false,
+    "independent_validation_or_gold_status_conferred": false,
+    "selection_freeze_changed": false,
+    "scope_limit": "The findings permit source-scoped transcription with the stated mandatory abstentions. They do not resolve exact reaction or substrate identity, cofactor maturation as a catalytic step, direction-independent residue roles, native-intermediate observation, or scientific truth, and they confer no human, expert, independent-validation, gold, tier, or freeze status.",
+    "informed_by_root_challenge_leads": true,
+    "new_batch_review_sequence": "The reviewer received root-provided conflict leads and prior same-model discussion before inspecting the four acquired official entry snapshots, all linked MRV wrappers, and targeted official sequence, structure, chemical-identifier, and primary-publication records. This was informed, non-blind review."
+  },
+  "source_method": {
+    "inspection": "The inherited claims and objections are retained unchanged from the pinned predecessor. New-batch findings come from targeted inspection of four acquired official M-CSA entry snapshots and all 36 linked MRV wrappers, plus narrowly selected official sequence, structure, chemical-identifier, and primary-publication records; no systematic literature review or new experiment was performed.",
+    "systematic_literature_review": false,
+    "public_sources_only": true,
+    "paid_access_used": false,
+    "outreach_performed": false,
+    "gpu_or_model_experiment_run": false,
+    "download_budget_mib": 30,
+    "large_or_full_literature_downloads": false
+  },
+  "claims": [
+    {
+      "claim_id": "sc-m0049-plp-equivalence",
+      "subject_ids": [
+        "plp_dependent_enzyme",
+        "M0049",
+        "P00862",
+        "1PYA"
+      ],
+      "claim": "M0049 is a PLP-dependent source candidate for the PLP-enzyme fingerprint.",
+      "verdict": "contradicted",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/49/",
+          "type": "official_mechanism_record",
+          "finding": "M-CSA identifies a covalently bound pyruvoyl cofactor and a substrate-pyruvoyl Schiff base, not PLP."
+        },
+        {
+          "url": "https://pubmed.ncbi.nlm.nih.gov/2745463/",
+          "type": "primary_paper_authoritative_abstract",
+          "finding": "The reference structure paper is explicitly for pyruvoyl-dependent histidine decarboxylase."
+        }
+      ],
+      "reasoning": "The cofactor identity is a direct contradiction, not an unresolved family-transfer question. The earlier audit correctly rejected M0049 from this fingerprint, but its wording could be misread as rejecting M0049 from the panel altogether.",
+      "recommended_scope": "Remove M0049 and every M0049-derived handle from the PLP crosswalk row. Do not use PLP language for M0049.",
+      "objection_resolved": true
+    },
+    {
+      "claim_id": "sc-m0049-pyruvoyl-development-value",
+      "subject_ids": [
+        "atlas50.candidate.m0049",
+        "M0049"
+      ],
+      "claim": "M0049 remains a useful source-specific Atlas-50 development candidate when represented as pyruvoyl-dependent histidine decarboxylase.",
+      "verdict": "supported",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/49/",
+          "type": "official_mechanism_record",
+          "finding": "The record supplies a detailed covalent-pyruvoyl mechanism and reference structure."
+        },
+        {
+          "url": "https://pubmed.ncbi.nlm.nih.gov/8464063/",
+          "type": "primary_paper_authoritative_abstract",
+          "finding": "Autocatalytic serine cleavage creates the pyruvoyl cofactor, giving a distinct post-translational covalent-cofactor case."
+        }
+      ],
+      "reasoning": "The false PLP mapping does not invalidate the candidate itself. It exposes a scientifically useful cofactor-identity error and adds chemistry not represented by ordinary PLP catalysis.",
+      "recommended_scope": "Retain for source-specific development as a pyruvoyl/PTM covalent-cofactor case. Replace the pressure label redox_or_cofactor_state_changes with a non-redox covalent-cofactor maturation/state label unless actual redox cycling is sourced.",
+      "objection_resolved": true
+    },
+    {
+      "claim_id": "sc-m0112-reaction-core-equivalence",
+      "subject_ids": [
+        "dihydrofolate_reductase",
+        "M0112",
+        "EC:1.5.1.3"
+      ],
+      "claim": "M0112 is an exact match to the implemented DHFR fingerprint at the NADPH-dependent dihydrofolate-to-tetrahydrofolate reaction-core granularity.",
+      "verdict": "supported",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/112/",
+          "type": "official_mechanism_record",
+          "finding": "M-CSA records bacterial EC 1.5.1.3 with hydride transfer from NADPH to dihydrofolate and formation of tetrahydrofolate."
+        },
+        {
+          "path": "src/catalytic_earth/dihydrofolate_reductase_sourcing.py",
+          "type": "repository_scope_contract",
+          "finding": "The implemented fingerprint requires the EC 1.5.1.3 folate-reduction reaction center and treats the handle as admission scope, with side-reaction boundaries."
+        }
+      ],
+      "reasoning": "The previous audit proposed aggregation because protein contexts can differ. Reinspection of the implemented fingerprint changed that judgment: the code narrows admission to the same reaction core and explicitly excludes side-EC cases. Exact equivalence is therefore defensible only when its granularity is named; it does not make one bacterial structure universal evidence for every DHFR protein context.",
+      "recommended_scope": "Keep exact_duplicate only as exact_reaction_core. Record protein, organism, resistance, fusion, and structural applicability as narrower source scope rather than implied equivalence.",
+      "objection_resolved": true
+    },
+    {
+      "claim_id": "sc-m0112-direct-aspartate-proton-donor",
+      "subject_ids": [
+        "dihydrofolate_reductase",
+        "M0112",
+        "Asp26_Lactobacillus_casei",
+        "Asp27_Escherichia_coli"
+      ],
+      "claim": "The conserved Asp/Glu directly donates the proton to dihydrofolate N5 in the M0112 mechanism.",
+      "verdict": "contradicted",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/112/",
+          "type": "official_mechanism_record",
+          "finding": "M-CSA assigns N5 proton donation to a conserved water and assigns Asp26 a pKa/electrostatic-network role."
+        },
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4280594/",
+          "type": "primary_paper",
+          "finding": "Kinetic analysis supports solvent-assisted N5 proton delivery and roles for Asp27 and Tyr100 in orientation/electrostatics."
+        },
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4280638/",
+          "type": "primary_paper",
+          "finding": "Neutron and ultrahigh-resolution crystallography directly identify an active-site water positioned for N5 protonation."
+        }
+      ],
+      "reasoning": "The acidic residue is catalytically important but importance is not the same as direct proton donation. Collapsing the water-mediated route into a direct Asp/Glu role changes the causal mechanism.",
+      "recommended_scope": "Encode water/solvent as the N5 proton source and Asp26/Asp27 as pKa, electrostatic, and water-network organizer. Preserve species-specific numbering.",
+      "objection_resolved": true
+    },
+    {
+      "claim_id": "sc-m0753-selected-handle-full-channel",
+      "subject_ids": [
+        "atlas50.candidate.m0753",
+        "M0753",
+        "Q9X0C6",
+        "2A0N"
+      ],
+      "claim": "The selected M0753/Q9X0C6/2A0N handle is a structurally grounded full HisH-HisF coupled-channel record.",
+      "verdict": "contradicted",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/753/",
+          "type": "official_mechanism_record",
+          "finding": "The explicit reaction consumes free ammonium and the reference sequence and mechanistic steps are HisF only, even though the introduction notes physiological delivery from HisH."
+        },
+        {
+          "url": "https://www.rcsb.org/structure/2A0N",
+          "type": "official_structure_record",
+          "finding": "2A0N is a monomeric HisF-only structure with one unique protein chain."
+        }
+      ],
+      "reasoning": "A narrative mention of delivery from an associated subunit does not make the selected identity and structure a full-complex observation. The locator package cannot ground HisH identity, interface state, allosteric coupling, or a transported-ammonia trajectory.",
+      "recommended_scope": "Do not attach full-complex or observed-channel structural claims to 2A0N. Relabel this source object as the HisF cyclase half-reaction.",
+      "objection_resolved": true
+    },
+    {
+      "claim_id": "sc-m0753-hisf-development-inclusion",
+      "subject_ids": [
+        "atlas50.candidate.m0753",
+        "M0753",
+        "1GPW"
+      ],
+      "claim": "M0753 can be included in the development panel without pretending that 2A0N proves the full ammonia-channel cycle.",
+      "verdict": "supported",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/753/",
+          "type": "official_mechanism_record",
+          "finding": "The source provides a six-step detailed HisF cyclization mechanism using ammonium."
+        },
+        {
+          "url": "https://www.rcsb.org/structure/1GPW",
+          "type": "official_structure_and_primary_paper_record",
+          "finding": "A separate T. maritima HisH-HisF heterodimer structure contains Q9X0C6 and HisH Q9X0C8 and supports a putative 25-Angstrom ammonia tunnel."
+        },
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC164632/",
+          "type": "primary_paper",
+          "finding": "The study distinguishes HisH ammonia production, HisF cyclization, and proposed channel conduction; it explicitly notes that conclusive experimental channeling evidence was then absent."
+        }
+      ],
+      "reasoning": "The source-identity objection has a concrete resolution. The half-reaction is directly supported; the full channel is a different, separately sourced application with its own uncertainty.",
+      "recommended_scope": "Admit M0753 for source-specific development as HisF/free-ammonium cyclization. Set full-complex channel and allosteric fields to abstain. If a coupled-channel record is desired, add 1GPW, Q9X0C8, and its mutation/putative-tunnel caveats as separate structure context.",
+      "objection_resolved": true
+    },
+    {
+      "claim_id": "sc-m0107-m0212-same-component-state-class",
+      "subject_ids": [
+        "atlas50.candidate.m0107",
+        "atlas50.candidate.m0212",
+        "M0107",
+        "M0212",
+        "1N62",
+        "1N2C"
+      ],
+      "claim": "M0107 aerobic CODH and M0212 nitrogenase present the same generic component-association and state-transition burden, so M0107 must inherit the nitrogenase blocker unchanged.",
+      "verdict": "contradicted",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/107/",
+          "type": "official_mechanism_record",
+          "finding": "CODH is a stable dimer of heterotrimers with an intramolecular Mo/Cu-to-two-FeS-to-FAD relay and external acceptor."
+        },
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC138549/",
+          "type": "primary_paper",
+          "finding": "The 1N62 study characterizes the 277-kDa fixed LMS heterotrimer assembly and active-site states."
+        },
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/212/",
+          "type": "official_mechanism_record",
+          "finding": "Nitrogenase repeatedly associates Fe protein with MoFe protein, couples ATP hydrolysis to electron delivery, then dissociates and re-reduces Fe protein."
+        },
+        {
+          "url": "https://www.nature.com/articles/387370a0",
+          "type": "primary_paper_authoritative_abstract",
+          "finding": "The trapped nitrogenase complex shows nucleotide-switch conformational changes and repositioning of the redox center for interprotein transfer."
+        }
+      ],
+      "reasoning": "Both are multi-component metallocluster systems, but assembly topology and cycle semantics differ materially. CODH transfers electrons within a fixed biological assembly; nitrogenase requires nucleotide-dependent transient association, electron delivery, dissociation, nucleotide exchange, re-reduction, and repeated accumulation states. A source-neutral contract should encode this difference rather than use one boolean multi_component flag.",
+      "recommended_scope": "Allow M0107 source-specific development under fixed_multisubunit assembly with proposal-specific cofactor-state uncertainty. Represent M0212 under cycle_coupled_association with explicit ATP/ADP, partner-association, electron-count, and completeness fields; unknown FeMo chemistry must remain abstained.",
+      "objection_resolved": true
+    },
+    {
+      "claim_id": "sc-m0064-current-reaction-represents-topology",
+      "subject_ids": [
+        "atlas50.candidate.m0064",
+        "M0064",
+        "P14294",
+        "1D6M",
+        "CHEBI:9160"
+      ],
+      "claim": "The current generic reaction projection, single-stranded DNA to the same single-stranded-DNA identifier, completely represents the topoisomerase III transformation and its structure applicability.",
+      "verdict": "contradicted",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/64/",
+          "type": "official_mechanism_record",
+          "finding": "The equation uses CHEBI:9160 on both sides while the mechanism requires covalent cleavage, DNA uncoiling/strand passage, and religation."
+        },
+        {
+          "url": "https://www.rcsb.org/structure/1D6M",
+          "type": "official_structure_and_primary_paper_record",
+          "finding": "1D6M is the apo monomeric enzyme without DNA; its primary paper says topoisomerase III can relax, catenate, and decatenate and that residue-role evidence was then incomplete."
+        }
+      ],
+      "reasoning": "Participant identity and local bond cleavage do not encode the intended change in linking/catenation state, strand roles, or gate state. The apo structure supports fold and candidate identity but not a specific DNA-bound reaction state.",
+      "recommended_scope": "Include M0064 as a development stressor and compile sourced covalent cleavage/religation steps. Require typed before/after topology and strand-role variables for any complete Tier-0 outcome; until sourced, mark those values and DNA-bound Tier-2 applicability as abstentions rather than dropping the row.",
+      "objection_resolved": true
+    },
+    {
+      "claim_id": "sc-m0106-1w85-contains-lipoyl-carrier",
+      "subject_ids": [
+        "atlas50.candidate.m0106",
+        "M0106",
+        "P21873",
+        "P21874",
+        "P11961",
+        "1W85"
+      ],
+      "claim": "The E2 entity in 1W85 is the lipoyl carrier domain that structurally grounds transfer to the protein-tethered lipoyl-lysine substrate.",
+      "verdict": "contradicted",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/106/",
+          "type": "official_mechanism_record",
+          "finding": "The reaction consumes an E2-tethered N6-lipoyl-Lys residue, but the selected PDB is described as E1 bound to the E2 peripheral subunit-binding domain."
+        },
+        {
+          "url": "https://www.rcsb.org/structure/1W85",
+          "type": "official_structure_and_primary_paper_record",
+          "finding": "1W85 contains E1 alpha/beta plus a 49-residue P11961 peripheral subunit-binding-domain entity and no lipoyl-lysine ligand or lipoyl-domain entity."
+        },
+        {
+          "url": "https://pubmed.ncbi.nlm.nih.gov/3421911/",
+          "type": "primary_paper_authoritative_abstract",
+          "finding": "Sequence and proteolysis experiments distinguish the N-terminal lipoyl domain from the approximately 50-residue E1/E3-binding domain in this species."
+        }
+      ],
+      "reasoning": "The E2 binding domain anchors E1 within the multienzyme assembly; it is not the mobile lipoyl carrier that supplies the second substrate. Treating them as interchangeable would create a false structural observation.",
+      "recommended_scope": "Retain P21873/P21874 as M-CSA enzyme identity and P11961 as structure_context_only. Include M0106 for source-specific development, but abstain from Tier-2 lipoyl-carrier pose/applicability and represent the reaction participant as a generic E2-owned tethered carrier with identity unresolved by 1W85.",
+      "objection_resolved": true
+    },
+    {
+      "claim_id": "sc-m0970-complete-polymer-instance",
+      "subject_ids": [
+        "atlas50.candidate.m0970",
+        "M0970",
+        "Q99T05",
+        "3VMT",
+        "CHEBI:X00676"
+      ],
+      "claim": "M0970 and 3VMT are sufficient to compile a complete peptidoglycan polymer reaction instance, including chain-length change and processivity.",
+      "verdict": "insufficient",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/970/",
+          "type": "official_mechanism_record",
+          "finding": "M-CSA supplies local glycosyl-transfer proposals, but its overall product is placeholder CHEBI:X00676 and the equation does not instantiate n before and after a defined elongation event."
+        },
+        {
+          "url": "https://www.rcsb.org/structure/3VMT",
+          "type": "official_structure_and_primary_paper_record",
+          "finding": "3VMT is a monofunctional glycosyltransferase bound to a Lipid II analog and supports donor/acceptor-site chemistry; it does not observe a processive polymerization trajectory or product chain length."
+        }
+      ],
+      "reasoning": "The sources support candidate identity, a bound analog, catalytic-site residues, and competing local SN2/SNi proposals. They do not close the reaction-instance variables needed for initiation versus elongation, incoming and outgoing chain length, or processivity.",
+      "recommended_scope": "Permit source annotation and explicit local-mechanism alternatives. Keep complete reaction-instance and source-scoped mechanism-draft operations blocked until the product identity and chain-state transition are sourced; do not fill n or processivity by convention.",
+      "objection_resolved": false
+    },
+    {
+      "claim_id": "sc-m0052-m0222-shared-source-context",
+      "subject_ids": [
+        "class_ii_metal_aldolase",
+        "atlas50.candidate.m0052",
+        "M0052",
+        "atlas50.candidate.m0222",
+        "M0222",
+        "EC:4.1.2.13"
+      ],
+      "claim": "M0052 and M0222 support a bounded comparison of class-II metal-assisted and class-I covalent-Schiff-base mechanisms within a shared official source reaction context.",
+      "verdict": "supported",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/52/",
+          "type": "official_mechanism_record",
+          "finding": "M0052 is class-II EC 4.1.2.13 and records metal-assisted enediolate chemistry for CHEBI:59776 plus CHEBI:57642 to CHEBI:49299."
+        },
+        {
+          "evidence_id": "source:M-CSA:M0052",
+          "path": "data/atlas/source_drafts/batches/aldolase-transketolase/sources/M0052.json",
+          "type": "pinned_official_entry_and_scheme_snapshot",
+          "finding": "The snapshot preserves the M0052 entry and all five linked MRVs."
+        },
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/222/",
+          "type": "official_mechanism_record",
+          "finding": "M0222 is class-I EC 4.1.2.13 and records a Lys229 Schiff-base route under the same top-level CHEBI participant identifiers."
+        },
+        {
+          "evidence_id": "source:M-CSA:M0222",
+          "path": "data/atlas/source_drafts/batches/aldolase-transketolase/sources/M0222.json",
+          "type": "pinned_official_entry_and_scheme_snapshot",
+          "finding": "The snapshot preserves the M0222 entry and all eleven linked MRVs."
+        }
+      ],
+      "reasoning": "The official records provide a useful source-level same-EC and same-participant contrast with distinct catalytic strategies. They do not supply a normalized balanced reaction identifier, and equal source-reported CATH identifiers are not an independent adjudication of fold equivalence.",
+      "recommended_scope": "Permit comparison only at the shared official source EC and participant context. Do not promote it to canonical balanced-reaction equivalence or independently established same-fold divergence.",
+      "objection_resolved": true
+    },
+    {
+      "claim_id": "sc-m0052-all-steps-enzyme-catalysed",
+      "subject_ids": [
+        "atlas50.candidate.m0052",
+        "M0052",
+        "P0AB71",
+        "1B57"
+      ],
+      "claim": "Every M0052 source step is a directly supported enzyme-catalysed transformation inside the active site.",
+      "verdict": "contradicted",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/52/",
+          "type": "official_mechanism_record",
+          "finding": "Step 3 explicitly calls the Asp109-water-Glu182 return an inferred step; step 4 states that sugar cyclisation occurs outside the enzyme active site."
+        },
+        {
+          "evidence_id": "source:M-CSA:M0052",
+          "path": "data/atlas/source_drafts/batches/aldolase-transketolase/sources/M0052.json",
+          "type": "pinned_official_entry_and_scheme_snapshot",
+          "finding": "The pinned snapshot preserves the official entry object and every linked step MRV used for this challenge."
+        }
+      ],
+      "reasoning": "Treating the five source panels as five directly evidenced active-site events would erase both the inference marker and the extra-enzymatic product process.",
+      "recommended_scope": "Transcribe all source panels and flows, but mark step 3 inferred and step 4 extra-enzymatic; abstain from a complete all-steps-enzyme-catalysed reaction claim.",
+      "objection_resolved": false
+    },
+    {
+      "claim_id": "sc-m0222-step1-substrate-identity",
+      "subject_ids": [
+        "atlas50.candidate.m0222",
+        "M0222",
+        "P00883",
+        "2QUT"
+      ],
+      "claim": "M0222 step 1 unambiguously identifies the substrate attacked by Lys229 as D-glyceraldehyde 3-phosphate.",
+      "verdict": "contradicted",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/222/",
+          "type": "official_mechanism_record",
+          "finding": "Step-1 prose names D-glyceraldehyde 3-phosphate, whereas the linked step-1 MRV labels the attacked substrate CHEBI:57642, glycerone phosphate/DHAP, rather than CHEBI:59776."
+        },
+        {
+          "evidence_id": "source:M-CSA:M0222",
+          "path": "data/atlas/source_drafts/batches/aldolase-transketolase/sources/M0222.json",
+          "type": "pinned_official_entry_and_scheme_snapshot",
+          "finding": "The pinned snapshot preserves the official entry object and every linked step MRV used for this challenge."
+        }
+      ],
+      "reasoning": "The prose and drawing disagree inside the acquired official source package. Mechanistic expectation is not evidence for silently correcting either field.",
+      "recommended_scope": "Preserve the prose and MRV verbatim and attach a step-1 substrate-identity abstention; do not select G3P or DHAP as the resolved attacked substrate.",
+      "objection_resolved": false
+    },
+    {
+      "claim_id": "sc-m0222-rabbit-archaea-applicability",
+      "subject_ids": [
+        "atlas50.candidate.m0222",
+        "M0222",
+        "P00883",
+        "2QUT"
+      ],
+      "claim": "The complete M0222 eleven-step mechanism and every stated residue role are uniformly grounded in the reference rabbit P00883/2QUT protein context.",
+      "verdict": "insufficient",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/222/",
+          "type": "official_mechanism_record",
+          "finding": "The record identifies rabbit P00883/2QUT, while its mechanism text says archaic, mentions Tyr146 in Archaea, and step 10 explicitly locates ring-closing evidence in archaea."
+        },
+        {
+          "evidence_id": "source:M-CSA:M0222",
+          "path": "data/atlas/source_drafts/batches/aldolase-transketolase/sources/M0222.json",
+          "type": "pinned_official_entry_and_scheme_snapshot",
+          "finding": "The pinned snapshot preserves the official entry object and every linked step MRV used for this challenge."
+        }
+      ],
+      "reasoning": "The source mixes rabbit identifiers with archaeal applicability statements. Source transcription is possible, but the complete narrative cannot be made a protein-specific rabbit mechanism by inheritance from the entry header.",
+      "recommended_scope": "Keep each statement source scoped and abstain on proposal-wide protein and step-10 rabbit applicability. Preserve PDB and UniProt residue numbering as distinct source mappings.",
+      "objection_resolved": false
+    },
+    {
+      "claim_id": "sc-m0219-proposals-share-reaction-instance",
+      "subject_ids": [
+        "thiamine_diphosphate_enzyme",
+        "atlas50.candidate.m0219",
+        "M0219"
+      ],
+      "claim": "The two detailed M0219 mechanisms are alternative proposals for one exact top-level reaction instance.",
+      "verdict": "contradicted",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/219/",
+          "type": "official_mechanism_record",
+          "finding": "The top-level entry and mechanism 1 use the sedoheptulose-7-phosphate/ribose-5-phosphate context, but mechanism 2 prose describes xylulose-5-phosphate plus erythrose-4-phosphate to glyceraldehyde-3-phosphate plus fructose-6-phosphate; mechanism-2 MRVs nevertheless retain CHEBI:57483 labels. Mechanism 1 step 7 marks product cyclisation as non-enzyme-catalysed and inferred from the overall products, while mechanism 2 cites only a computational experiment."
+        },
+        {
+          "evidence_id": "source:M-CSA:M0219",
+          "path": "data/atlas/source_drafts/batches/aldolase-transketolase/sources/M0219.json",
+          "type": "pinned_official_entry_and_scheme_snapshot",
+          "finding": "The pinned snapshot preserves the official entry object and every linked step MRV used for this challenge."
+        }
+      ],
+      "reasoning": "Record membership does not make these proposals reaction-equivalent. The second proposal also contains an internal prose-versus-drawing participant conflict, and neither a source-marked extra-enzymatic inference nor a computational proposal can be promoted to a directly observed active-site event.",
+      "recommended_scope": "Retain two source proposals with proposal-specific reaction-context abstentions, preserve mechanism 1 step 7 as extra-enzymatic and inferred, and retain mechanism 2's computational status. Do not let record-level participants ground mechanism 2 or merge both into one exact reaction instance.",
+      "objection_resolved": false
+    },
+    {
+      "claim_id": "sc-m0219-reference-protein-applicability",
+      "subject_ids": [
+        "atlas50.candidate.m0219",
+        "M0219",
+        "P29401",
+        "P23254",
+        "1TRK",
+        "4KXV"
+      ],
+      "claim": "All M0219 residue assertions ground a single P29401 protein/site mechanism.",
+      "verdict": "contradicted",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/219/",
+          "type": "official_mechanism_record",
+          "finding": "The entry-level reference is P29401, mechanism-1 residue mappings cite P23254/1TRK, and mechanism-2 residues cite 4KXV with blank UniProt identifiers."
+        },
+        {
+          "evidence_id": "source:M-CSA:M0219",
+          "path": "data/atlas/source_drafts/batches/aldolase-transketolase/sources/M0219.json",
+          "type": "pinned_official_entry_and_scheme_snapshot",
+          "finding": "The pinned snapshot preserves the official entry object and every linked step MRV used for this challenge."
+        }
+      ],
+      "reasoning": "Merging the residue rows under the entry-level identifier would invent a protein crosswalk that the source does not provide.",
+      "recommended_scope": "Keep residue assertions and structure handles proposal scoped. Abstain from mapping the mechanism-1 or mechanism-2 site wholesale to P29401.",
+      "objection_resolved": false
+    },
+    {
+      "claim_id": "sc-m0219-native-metal-identity",
+      "subject_ids": [
+        "atlas50.candidate.m0219",
+        "M0219",
+        "P29401"
+      ],
+      "claim": "M0219 resolves one native divalent-metal identity for transketolase.",
+      "verdict": "insufficient",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/219/",
+          "type": "official_mechanism_record",
+          "finding": "The introduction says activity occurs with several divalent ions, identifies Mg(II) as the ion used in most mechanism work, and states that native-metal identity remains debated while proposing Ca(II) as more likely from stability."
+        },
+        {
+          "evidence_id": "source:M-CSA:M0219",
+          "path": "data/atlas/source_drafts/batches/aldolase-transketolase/sources/M0219.json",
+          "type": "pinned_official_entry_and_scheme_snapshot",
+          "finding": "The pinned snapshot preserves the official entry object and every linked step MRV used for this challenge."
+        }
+      ],
+      "reasoning": "Experimental convention, catalytic compatibility, and a stability-based proposal do not establish a unique native metal.",
+      "recommended_scope": "Transcribe the source alternatives and abstain on native-metal identity. Do not normalize Mg(II) or Ca(II) into a resolved native cofactor.",
+      "objection_resolved": false
+    },
+    {
+      "claim_id": "sc-m0219-redox-classification",
+      "subject_ids": [
+        "atlas50.candidate.m0219",
+        "M0219"
+      ],
+      "claim": "M0219 supplies source evidence for a redox transformation or redox-cofactor state cycle.",
+      "verdict": "contradicted",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/219/",
+          "type": "official_mechanism_record",
+          "finding": "The source describes ThDP activation, covalent intermediates, double-bond rearrangements, an electron-sink role, and cofactor regeneration, but it does not identify a net redox reaction or external electron donor/acceptor cycle."
+        },
+        {
+          "evidence_id": "source:M-CSA:M0219",
+          "path": "data/atlas/source_drafts/batches/aldolase-transketolase/sources/M0219.json",
+          "type": "pinned_official_entry_and_scheme_snapshot",
+          "finding": "The pinned snapshot preserves the official entry object and every linked step MRV used for this challenge."
+        }
+      ],
+      "reasoning": "Calling ThDP an electron sink describes covalent intermediate stabilization; it does not by itself establish redox chemistry.",
+      "recommended_scope": "Use a non-redox covalent-cofactor or cofactor-state label and make no redox claim.",
+      "objection_resolved": true
+    },
+    {
+      "claim_id": "sc-m0049-entry-scheme-substrate-identity",
+      "subject_ids": [
+        "atlas50.candidate.m0049",
+        "M0049",
+        "P00862",
+        "CHEBI:57595",
+        "CHEBI:32526"
+      ],
+      "claim": "The M0049 entry and ordered scheme wrappers provide one internally consistent exact histidine substrate identity.",
+      "verdict": "contradicted",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/49/",
+          "type": "official_mechanism_record",
+          "finding": "The entry reaction names CHEBI:57595 L-histidine zwitterion as the reactant."
+        },
+        {
+          "evidence_id": "source:M-CSA:M0049",
+          "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0049.json",
+          "type": "pinned_official_entry_and_scheme_snapshot",
+          "finding": "The snapshot preserves CHEBI:57595 in the entry, raw mrvExtraLabel CHEBI:32526 in step wrappers 1 through 6, no ChEBI label in wrappers 7 and 8, and the source drawing geometry separately."
+        },
+        {
+          "url": "https://www.ebi.ac.uk/chebi/backend/api/public/compound/32526/",
+          "type": "official_chemical_identifier_record",
+          "finding": "The ChEBI record identifies CHEBI:32526 as D-histidinium(1+), which differs in stereochemical and protonation identity from entry reactant CHEBI:57595."
+        }
+      ],
+      "reasoning": "The raw scheme identifier conflicts with the entry identity. The retained wedge geometry is a separate source field and does not authorize replacing either identifier or silently choosing an exact substrate identity.",
+      "recommended_scope": "Preserve the entry identity, each raw MRV label, and the drawn geometry as separate source assertions. Abstain from exact substrate and reaction-instance identity; do not normalize CHEBI:32526 to CHEBI:57595.",
+      "objection_resolved": false
+    },
+    {
+      "claim_id": "sc-m0049-catalytic-proposal-covers-pyruvoyl-maturation",
+      "subject_ids": [
+        "atlas50.candidate.m0049",
+        "M0049",
+        "P00862",
+        "1PYA",
+        "Ser83",
+        "Pyr1F"
+      ],
+      "claim": "The ordered M0049 catalytic proposal directly models formation of the pyruvoyl cofactor, and its precursor, legacy-prose, and processed-chain residue numbers can be used without namespaces.",
+      "verdict": "contradicted",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/49/",
+          "type": "official_mechanism_record",
+          "finding": "The catalytic proposal starts with substrate attack on an already formed PTM pyruvoyl group and contains no precursor-cleavage step; its prose uses Prv-82 while the source mappings distinguish precursor and processed-chain coordinates."
+        },
+        {
+          "evidence_id": "source:M-CSA:M0049",
+          "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0049.json",
+          "type": "pinned_official_entry_and_scheme_snapshot",
+          "finding": "The source residue rows map canonical P00862 Ser83 to structure-chain Pyr1F and canonical Ser82 to the beta-chain C-terminal Ser81E, while other sequence-to-structure rows retain the same one-residue processed-chain offset."
+        },
+        {
+          "url": "https://www.uniprot.org/uniprotkb/P00862/entry",
+          "type": "official_sequence_and_processing_record",
+          "finding": "UniProt records precursor-chain processing and the pyruvoyl modification at canonical sequence position 83."
+        },
+        {
+          "url": "https://www.rcsb.org/structure/1PYA",
+          "type": "official_structure_record",
+          "finding": "1PYA represents the processed beta and alpha chains and the modified N-terminal pyruvoyl residue rather than the uncleaved precursor transition."
+        }
+      ],
+      "reasoning": "The qualified mapping supports canonical Ser83 to mature alpha-chain/PDB Pyr1F while explaining legacy Prv-82 prose, but it does not make the coordinate systems interchangeable. The catalytic panels consume the mature cofactor and do not model its precursor-to-pyruvoyl maturation.",
+      "recommended_scope": "Retain the qualified canonical-to-processed mapping and keep Prv-82 as source prose. Treat cofactor maturation as outside the ordered catalytic proposal and abstain from a complete precursor-to-mature cofactor transition.",
+      "objection_resolved": false
+    },
+    {
+      "claim_id": "sc-m0066-step1-substrate-stereochemistry",
+      "subject_ids": [
+        "atlas50.candidate.m0066",
+        "M0066",
+        "P19938",
+        "1DAA",
+        "CHEBI:29986"
+      ],
+      "claim": "M0066 Step 1 and its entry-level reaction unambiguously identify the same glutamate stereoisomer.",
+      "verdict": "contradicted",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/66/",
+          "type": "official_mechanism_record",
+          "finding": "The entry reaction and enzyme description are D-amino-acid specific and identify CHEBI:29986 D-glutamate, while Step 1 prose names L-glutamate."
+        },
+        {
+          "evidence_id": "source:M-CSA:M0066",
+          "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0066.json",
+          "type": "pinned_official_entry_and_scheme_snapshot",
+          "finding": "All thirteen source MRV wrappers retain CHEBI:29986 while the captured Step-1 prose retains L-glutamate; the snapshot also preserves explicit P19938 sequence-to-1DAA residue-number mappings such as Lys146 to Lys145A."
+        },
+        {
+          "url": "https://pubmed.ncbi.nlm.nih.gov/9538014/",
+          "type": "primary_paper_authoritative_abstract",
+          "finding": "The cited structural study concerns D-amino-acid aminotransferase PLP/PMP states and a reduced D-alanine external-aldimine analogue; it does not resolve the source Step-1 L-glutamate wording into D-glutamate."
+        }
+      ],
+      "reasoning": "The entry, enzyme context, and MRV identifiers support a D-amino-acid reaction context, but the explicit Step-1 prose disagrees. Mechanistic expectation and the surrounding panels are not grounds to rewrite that source sentence.",
+      "recommended_scope": "Preserve the D-entry/MRV identifiers and L-glutamate Step-1 prose verbatim, attach a stereochemical substrate abstention, and retain sequence and PDB residue numbers in their source namespaces.",
+      "objection_resolved": false
+    },
+    {
+      "claim_id": "sc-m0186-phosphate-role-and-enzyme-scope",
+      "subject_ids": [
+        "atlas50.candidate.m0186",
+        "M0186",
+        "P09367",
+        "1PWH"
+      ],
+      "claim": "Every M0186 phosphate acid/base assignment and every ordered panel is a directly established enzyme-catalysed active-site transformation.",
+      "verdict": "contradicted",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/186/",
+          "type": "official_mechanism_record",
+          "finding": "Step 4 says the phosphate-base assignment is inferred by analogy, Step 5 says the corresponding acid assignment is assumed, and Steps 6 and 7 say aminoacrylate hydrolysis occurs outside the enzyme active site."
+        },
+        {
+          "evidence_id": "source:M-CSA:M0186",
+          "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0186.json",
+          "type": "pinned_official_entry_and_scheme_snapshot",
+          "finding": "The snapshot preserves the explicit infer and assume wording and two separate extra-enzymatic hydrolysis wrappers with distinct MRV hashes and curved-arrow panels."
+        },
+        {
+          "url": "https://pubmed.ncbi.nlm.nih.gov/14596599/",
+          "type": "primary_paper_authoritative_abstract",
+          "finding": "The primary study distinguishes enzymatic aminoacrylate formation from subsequent nonenzymatic hydrolysis and presents the PLP-phosphate acid role as a possible mechanism."
+        },
+        {
+          "url": "https://www.rcsb.org/structure/1PWH",
+          "type": "official_structure_record",
+          "finding": "The reference structure is an O-methylserine analogue complex, not an observation of the complete turnover and extra-enzymatic product sequence."
+        }
+      ],
+      "reasoning": "An explicit inference and assumption remain proposed roles even when their arrows are transcribed. The duplicate prose for Steps 6 and 7 does not make the panels redundant: their distinct arrows represent successive chemistry outside the enzyme.",
+      "recommended_scope": "Compile Steps 4 and 5 with conservative inference flags, preserve Steps 6 and 7 as distinct extra-enzymatic panels, and abstain from observed enzyme-state or all-steps-enzyme-catalysed claims.",
+      "objection_resolved": false
+    },
+    {
+      "claim_id": "sc-m0213-direction-and-terminal-identity",
+      "subject_ids": [
+        "atlas50.candidate.m0213",
+        "M0213",
+        "P10724",
+        "1L6G",
+        "CHEBI:57972",
+        "CHEBI:57416"
+      ],
+      "claim": "M0213 residue acid/base roles and MRV participant identifiers can be projected as a direction-independent exact L-alanine/D-alanine state sequence.",
+      "verdict": "contradicted",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/213/",
+          "type": "official_mechanism_record",
+          "finding": "The ordered proposal is L-to-D and the introduction explicitly says Tyr265B and Lys39 exchange acid/base roles in the reverse direction; the entry product is CHEBI:57416 D-alanine."
+        },
+        {
+          "evidence_id": "source:M-CSA:M0213",
+          "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0213.json",
+          "type": "pinned_official_entry_and_scheme_snapshot",
+          "finding": "Every MRV wrapper, including the terminal panel, retains CHEBI:57972 L-alanine while the C-alpha-to-nitrogen stereo bond changes from W in Steps 1-3 to absent in Step 4 and H in Steps 5-7; raw identifier and geometry therefore remain separate source assertions."
+        },
+        {
+          "url": "https://www.uniprot.org/uniprotkb/P10724/entry",
+          "type": "official_sequence_and_site_record",
+          "finding": "UniProt assigns substrate-direction-specific proton-acceptor roles to Lys39 and Tyr265 rather than one direction-independent residue role."
+        }
+      ],
+      "reasoning": "The source supports a direction-specific two-base proposal, not a direction-free union of residue roles. A drawn geometry change does not repair the unchanged L-alanine MRV label or replace the entry-level D-alanine product identifier.",
+      "recommended_scope": "Retain the L-to-D panel order and reverse-direction narrative separately, attach roles to their stated direction and step, preserve raw MRV labels and geometry, and abstain from one exact normalized bidirectional reaction instance.",
+      "objection_resolved": false
+    },
+    {
+      "claim_id": "sc-m0213-1l6g-native-intermediate",
+      "subject_ids": [
+        "atlas50.candidate.m0213",
+        "M0213",
+        "P10724",
+        "1L6G"
+      ],
+      "claim": "1L6G directly observes the native transient external-aldimine or quinoid state and experimentally validates the complete M0213 protonation sequence.",
+      "verdict": "contradicted",
+      "evidence": [
+        {
+          "url": "https://www.rcsb.org/structure/1L6G",
+          "type": "official_structure_record",
+          "finding": "1L6G is described as alanine racemase bound to a reaction-intermediate analogue rather than a direct observation of the native transient sequence."
+        },
+        {
+          "url": "https://pubmed.ncbi.nlm.nih.gov/11886871/",
+          "type": "primary_paper_authoritative_abstract",
+          "finding": "The structure paper uses a stable phosphopyridoxyl-D-alanine intermediate analogue to motivate a proposed proton-transfer mechanism."
+        },
+        {
+          "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/213/",
+          "type": "official_mechanism_record",
+          "finding": "Step 3 says Lys39 protonation is inferred from electrostatic calculations, the protonating species is unclear, water is used in the proposal, and the quinoid intermediate has not been experimentally observed."
+        },
+        {
+          "evidence_id": "source:M-CSA:M0213",
+          "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0213.json",
+          "type": "pinned_official_entry_and_scheme_snapshot",
+          "finding": "The captured narrative preserves the analogue, computational, uncertain-proton-source, and unobserved-quinoid limits alongside the curved-arrow proposal."
+        }
+      ],
+      "reasoning": "The analogue supplies structural context for the two-base model but is chemically and evidentially narrower than observation of every native intermediate, protonation state, or curved-arrow event.",
+      "recommended_scope": "Use 1L6G only as analogue-bound structure context and retain the computational statements as proposal evidence. Make no observed-native-intermediate or full-mechanism-validation claim.",
+      "objection_resolved": true
+    }
+  ],
+  "cross_review": {
+    "artifacts_checked": [
+      {
+        "artifact_family": "atlas50_crosswalk_v2",
+        "paths": [
+          "data/atlas/atlas50/crosswalk_v2/crosswalk.json",
+          "data/atlas/atlas50/crosswalk_v2/change_map.json",
+          "data/atlas/atlas50/crosswalk_v2/manifest.json",
+          "src/catalytic_earth/atlas50_crosswalk_v2.py",
+          "scripts/build_atlas50_crosswalk_v2.py",
+          "tests/core/test_atlas50_crosswalk_v2.py"
+        ],
+        "pinned_file_sha256": {
+          "crosswalk.json": "fc0e176b0c6881c949d052889607179ba087dc52ebb7786ee96f96f3ad73615e",
+          "change_map.json": "4975a8bb079f919de5da061db83c32d4add688bc95f665212a40a2944b240ccc",
+          "manifest.json": "617db79d7f7a6ce8eed898256228602546cd770c14275078bad5d4989e9d0e5f"
+        },
+        "checks": [
+          "python scripts/build_atlas50_crosswalk_v2.py --check",
+          "PYTHONPATH=src python -m unittest tests.core.test_atlas50_crosswalk_v2 -q (9 tests)"
+        ],
+        "result": "accepted_after_corrections",
+        "corrections_verified": [
+          "M0049 and all M0049-derived locators are quarantined from the PLP row while the M0049 pyruvoyl panel candidate is preserved.",
+          "M0112 appears once as exact_duplicate at explicit EC 1.5.1.3 reaction-core scope; water is the N5 proton source and Asp26/Asp27 has a network role.",
+          "Source identity, applicability scope, and unresolved candidate relation labels remain separate.",
+          "Same-model correlated-error, non-independence, zero-human-review, and zero-experimental-validation disclosures are machine-readable."
+        ]
+      },
+      {
+        "artifact_family": "atlas50_state_probe",
+        "paths": [
+          "data/atlas/source_drafts/batches/plp-pyruvoyl/review/spec.json",
+          "data/atlas/source_drafts/batches/plp-pyruvoyl/review/probe.json"
+        ],
+        "pinned_file_sha256": {
+          "spec.json": "55bc04fa16464d9ea4ff8e68cf8844539948d0fe2de7fae08997d2dcb0234972",
+          "probe.json": "e91605ae775e5f7ed61fa0874b0d049ab584090351b6eb01c92d245abfda482b"
+        },
+        "checks": [
+          "python scripts/build_atlas50_state_probe.py --batch plp-pyruvoyl --check"
+        ],
+        "result": "accepted_with_explicit_abstentions",
+        "decisions_verified": [
+          "M0049, M0066, M0186, and M0213 permit source annotation and source-scoped mechanism transcription only with the declared mandatory abstentions.",
+          "Exact reaction-instance claims remain unavailable for all four successor cases.",
+          "Same-model, informed, non-blind, correlated-error, zero-human, and no-domain-expert disclosures remain machine-readable."
+        ]
+      },
+      {
+        "artifact_family": "atlas_source_batch",
+        "paths": [
+          "data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0049.json",
+          "data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0066.json",
+          "data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0186.json",
+          "data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0213.json"
+        ],
+        "pinned_file_sha256": {
+          "M0049.json": "37ba50b02ee04d61b50d2b85e559a8d1671eef528e45f98945b947c54d95471d",
+          "M0066.json": "89fa34b9238e224ed7772492165dd331ef455d9bbc32252b98c8148fd2c35770",
+          "M0186.json": "687986c4aaa94ce6bba72c5403bf28a4f04b32891c3493ccb75436defb2a7f38",
+          "M0213.json": "375d66615ee7a38cb3adc817b39ae28308d554590c26c3b4bbb7d08f2a74728d"
+        },
+        "checks": [
+          "All 36 linked MRV wrappers are retained; the entry fields, raw labels, drawn stereo-bond encodings, inference wording, residue mappings, and distinct extra-enzymatic panels material to the listed objections were inspected."
+        ],
+        "result": "accepted_with_explicit_abstentions",
+        "decisions_verified": [
+          "M0049 preserves its entry-versus-MRV substrate conflict, qualified precursor/processed numbering, inferred Step 7, and catalytic-cycle versus cofactor-maturation boundary.",
+          "M0066 preserves the D-entry/MRV versus L-glutamate Step-1 conflict and source-provided sequence-to-structure residue offsets.",
+          "M0186 preserves the Step-4 inference, Step-5 assumption, and two distinct outside-active-site hydrolysis panels.",
+          "M0213 preserves direction-specific residue roles, the terminal L-label versus D-product/drawn-geometry conflict, and analogue/computational evidence limits."
+        ]
+      }
+    ],
+    "result": "accepted_for_source_scoped_transcription_with_explicit_abstentions",
+    "material_open_objections": [
+      {
+        "subject_ids": [
+          "atlas50.candidate.m0970",
+          "M0970"
+        ],
+        "objection": "The selected sources do not resolve the polymer product, before/after chain state, initiation versus elongation, or processivity.",
+        "blocks": [
+          "source_scoped_mechanism_draft",
+          "exact_reaction_instance"
+        ],
+        "permitted": [
+          "source_annotation"
+        ]
+      },
+      {
+        "subject_ids": [
+          "atlas50.candidate.m0052",
+          "M0052"
+        ],
+        "objection": "The source explicitly marks the proton-return step as inferred and the sugar cyclisation as outside the enzyme active site, so it does not support a complete all-steps-enzyme-catalysed reaction instance.",
+        "blocks": [
+          "exact_reaction_instance"
+        ],
+        "permitted": [
+          "source_annotation",
+          "source_scoped_mechanism_draft"
+        ]
+      },
+      {
+        "subject_ids": [
+          "atlas50.candidate.m0219",
+          "M0219"
+        ],
+        "objection": "The two mechanisms diverge in reaction participants and protein mappings, the mechanism-2 prose conflicts with its drawings, and native-metal identity remains debated; these fields cannot be merged into one exact reaction/protein instance.",
+        "blocks": [
+          "exact_reaction_instance"
+        ],
+        "permitted": [
+          "source_annotation",
+          "source_scoped_mechanism_draft"
+        ]
+      },
+      {
+        "subject_ids": [
+          "atlas50.candidate.m0222",
+          "M0222"
+        ],
+        "objection": "Step-1 prose conflicts with the MRV substrate label and the rabbit reference context is mixed with archaeal mechanism statements, leaving exact reaction and proposal-to-protein applicability unresolved.",
+        "blocks": [
+          "exact_reaction_instance"
+        ],
+        "permitted": [
+          "source_annotation",
+          "source_scoped_mechanism_draft"
+        ]
+      },
+      {
+        "subject_ids": [
+          "atlas50.candidate.m0049",
+          "M0049"
+        ],
+        "objection": "The entry L-histidine identity conflicts with CHEBI:32526 retained in MRVs 1-6, and the ordered catalytic proposal starts from an already formed pyruvoyl whose canonical, legacy-prose, and processed-chain numbering must remain qualified; exact substrate, reaction, and precursor-to-mature cofactor state are unresolved.",
+        "blocks": [
+          "exact_reaction_instance"
+        ],
+        "permitted": [
+          "source_annotation",
+          "source_scoped_mechanism_draft"
+        ]
+      },
+      {
+        "subject_ids": [
+          "atlas50.candidate.m0066",
+          "M0066"
+        ],
+        "objection": "The D-glutamate entry/MRV context conflicts with Step-1 prose naming L-glutamate, so the ordered source panels cannot ground one exact stereochemical reaction instance.",
+        "blocks": [
+          "exact_reaction_instance"
+        ],
+        "permitted": [
+          "source_annotation",
+          "source_scoped_mechanism_draft"
+        ]
+      },
+      {
+        "subject_ids": [
+          "atlas50.candidate.m0186",
+          "M0186"
+        ],
+        "objection": "The source explicitly marks the Step-4 phosphate role as inferred and the Step-5 role as assumed, while Steps 6 and 7 are distinct extra-enzymatic hydrolysis panels; these do not establish one complete directly observed enzyme-catalysed reaction instance.",
+        "blocks": [
+          "exact_reaction_instance"
+        ],
+        "permitted": [
+          "source_annotation",
+          "source_scoped_mechanism_draft"
+        ]
+      },
+      {
+        "subject_ids": [
+          "atlas50.candidate.m0213",
+          "M0213"
+        ],
+        "objection": "Residue acid/base roles reverse with reaction direction, all MRVs retain the L-alanine identifier despite the drawn geometry change and D-alanine entry product, and 1L6G is an analogue context; exact bidirectional reaction, terminal-product, and observed-intermediate states remain unresolved.",
+        "blocks": [
+          "exact_reaction_instance"
+        ],
+        "permitted": [
+          "source_annotation",
+          "source_scoped_mechanism_draft"
+        ]
+      }
+    ],
+    "boundary": "This informed same-model review inherits the predecessor challenge and checks the new official M-CSA snapshots, every linked MRV wrapper, the successor state contract, and narrowly selected official primary records. It permits source-scoped transcription with explicit abstentions; it is not blind or statistically independent, does not authenticate scientific truth or resolve exact reaction identity, and grants no human, expert, independent-validation, gold, tier, freeze, or mechanism-completion status."
+  },
+  "inheritance": {
+    "source_path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/challenge.json",
+    "source_sha256": "8148f9c230ee3a36463e1da90b3fef213fddbc0245ae536a5a5bc6ae6b919a5f",
+    "retained_claim_ids": [
+      "sc-m0049-plp-equivalence",
+      "sc-m0049-pyruvoyl-development-value",
+      "sc-m0112-reaction-core-equivalence",
+      "sc-m0112-direct-aspartate-proton-donor",
+      "sc-m0753-selected-handle-full-channel",
+      "sc-m0753-hisf-development-inclusion",
+      "sc-m0107-m0212-same-component-state-class",
+      "sc-m0064-current-reaction-represents-topology",
+      "sc-m0106-1w85-contains-lipoyl-carrier",
+      "sc-m0970-complete-polymer-instance",
+      "sc-m0052-m0222-shared-source-context",
+      "sc-m0052-all-steps-enzyme-catalysed",
+      "sc-m0222-step1-substrate-identity",
+      "sc-m0222-rabbit-archaea-applicability",
+      "sc-m0219-proposals-share-reaction-instance",
+      "sc-m0219-reference-protein-applicability",
+      "sc-m0219-native-metal-identity",
+      "sc-m0219-redox-classification"
+    ],
+    "retained_claims_and_evidence_unchanged": true,
+    "retained_material_open_objections_unchanged": true,
+    "boundary": "Retained rows are inherited development-review decisions. This batch does not claim to have repeated their source review."
+  }
+}
