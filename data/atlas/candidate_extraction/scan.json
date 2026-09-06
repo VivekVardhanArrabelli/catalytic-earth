@@ -1,0 +1,1947 @@
+{
+  "aggregate": {
+    "candidate_count": 7,
+    "diagnostic_counts": {
+      "stereochemistry_requires_review": 67,
+      "unsupported_source_format": 27
+    },
+    "full_panel_replay_count": 1,
+    "mechanism_count": 13,
+    "needs_review_count": 94,
+    "pair_count": 101,
+    "record_count": 11
+  },
+  "implementation_sha256": {
+    "scripts/scan_atlas_candidates.py": "3928af323ee125536d284e55d15981ec3db8e189fadbb068fa6e40ce3ac9e6ac",
+    "src/catalytic_earth/atlas10_source_adapters.py": "dc8da8da65f5113526c4618b955c5bb2da7c21ff0725e28c97372efdda693731",
+    "src/catalytic_earth/atlas_candidate_extraction.py": "d8b5f63eb76ed0995d0f07750bdec40b27d9a0df6dff16d30b03f200a60c645a",
+    "src/catalytic_earth/atlas_partial_panels.py": "aa5d8374a63152f36b369c8c58113a2c75510be114be8ee66f2b70df2dd54c1d",
+    "src/catalytic_earth/atlas_transformations.py": "24c3a95a3ed82b6add1b8257bdbfb5b6307d0f740f169a2633f2c70a3b1cab08"
+  },
+  "pairs": [
+    {
+      "after_step_id": 2,
+      "before_step_id": 1,
+      "candidate_id": "panel-candidate:M0106:mechanism-1:steps-1-2",
+      "candidate_sha256": "944e43d96acb178625bef293284eb8b15086616a53b06ef5cc6d52656bc172b3",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0106",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 3,
+      "before_step_id": 2,
+      "candidate_id": "panel-candidate:M0106:mechanism-1:steps-2-3",
+      "candidate_sha256": "0fb071aaca580e941a9a6533f2d9adab28430ea189ef8218d8205d24b009d56e",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0106",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 4,
+      "before_step_id": 3,
+      "candidate_id": "panel-candidate:M0106:mechanism-1:steps-3-4",
+      "candidate_sha256": "b651643dd12ee8839824903f58bcd06257ea5f601a471b0584fd4c968a7132dd",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0106",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 5,
+      "before_step_id": 4,
+      "candidate_id": "panel-candidate:M0106:mechanism-1:steps-4-5",
+      "candidate_sha256": "5411174e5e5943acb7b137119031350a38085e4cd8c959963b8dd93da48e40aa",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0106",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 6,
+      "before_step_id": 5,
+      "candidate_id": "panel-candidate:M0106:mechanism-1:steps-5-6",
+      "candidate_sha256": "39ebf63e0bdced4f0355ce06a5bad2e2dfdcdb058eb17a85d5ad4acf07189f78",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains an unsupported wildcard atom"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0106",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 7,
+      "before_step_id": 6,
+      "candidate_id": "panel-candidate:M0106:mechanism-1:steps-6-7",
+      "candidate_sha256": "6ec6fe1f5b9218b52f5ec2e966bcca6ddf1fd3f658c5132f9bd521e579c14e66",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains an unsupported wildcard atom"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0106",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 8,
+      "before_step_id": 7,
+      "candidate_id": "panel-candidate:M0106:mechanism-1:steps-7-8",
+      "candidate_sha256": "718ab8fe1e59ceff39079e38c1a8b5bf8af95aa8dc2a7e3d295ec3b2db492f64",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0106",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 9,
+      "before_step_id": 8,
+      "candidate_id": "panel-candidate:M0106:mechanism-1:steps-8-9",
+      "candidate_sha256": "17198181471a759e1cefc6c47108084a785149378f084d0a91cf853554367142",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0106",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 2,
+      "before_step_id": 1,
+      "candidate_id": "panel-candidate:M0107:mechanism-2:steps-1-2",
+      "candidate_sha256": "7a1c081ea3954176e0489ea8ff5290b3eb68d160ddb83ba1e63c62ecb126fcc7",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains an unsupported wildcard atom"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 2,
+      "record_id": "M0107",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 3,
+      "before_step_id": 2,
+      "candidate_id": "panel-candidate:M0107:mechanism-2:steps-2-3",
+      "candidate_sha256": "c6b80f36e50d642e0e17b672b2b8d0f5c353eba28627db7480967ba960941364",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains an unsupported wildcard atom"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 2,
+      "record_id": "M0107",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 4,
+      "before_step_id": 3,
+      "candidate_id": "panel-candidate:M0107:mechanism-2:steps-3-4",
+      "candidate_sha256": "75e5378ebc6da0265f291b6a52ec6d1a7059b1e7455d17648ea30b7bbd77baaa",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains an unsupported wildcard atom"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 2,
+      "record_id": "M0107",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 5,
+      "before_step_id": 4,
+      "candidate_id": "panel-candidate:M0107:mechanism-2:steps-4-5",
+      "candidate_sha256": "da762d3ffec9a3eb58b8792b22b93252f2d8cc1500591e8e476958c35182c362",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains an unsupported wildcard atom"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 2,
+      "record_id": "M0107",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 6,
+      "before_step_id": 5,
+      "candidate_id": "panel-candidate:M0107:mechanism-2:steps-5-6",
+      "candidate_sha256": "24be40b904280db19cdd79ce39de7e6a1b9797467a00a461f1a012f0216509ad",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains an unsupported wildcard atom"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 2,
+      "record_id": "M0107",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 7,
+      "before_step_id": 6,
+      "candidate_id": "panel-candidate:M0107:mechanism-2:steps-6-7",
+      "candidate_sha256": "478d0ddc96bba209737517c8fbcfbd281343b29939ef8a482e82240832fc6595",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains an unsupported wildcard atom"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 2,
+      "record_id": "M0107",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 8,
+      "before_step_id": 7,
+      "candidate_id": "panel-candidate:M0107:mechanism-2:steps-7-8",
+      "candidate_sha256": "06bad7d5496791bf14cc13992914da8cfae6ac995735ce20599320535a9597d8",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains an unsupported wildcard atom"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 2,
+      "record_id": "M0107",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 2,
+      "before_step_id": 1,
+      "candidate_id": "panel-candidate:M0107:mechanism-3:steps-1-2",
+      "candidate_sha256": "d94535e370875ee7fadeca1ad1d595e0a8f49f1cbafc8831db7099a7a3cefab7",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains an unsupported wildcard atom"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 3,
+      "record_id": "M0107",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 3,
+      "before_step_id": 2,
+      "candidate_id": "panel-candidate:M0107:mechanism-3:steps-2-3",
+      "candidate_sha256": "0137140afae9dd0f13ade61ce71d3e5b125fc40afc24fd24a9803cfee45bbe9c",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains an unsupported wildcard atom"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 3,
+      "record_id": "M0107",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 4,
+      "before_step_id": 3,
+      "candidate_id": "panel-candidate:M0107:mechanism-3:steps-3-4",
+      "candidate_sha256": "6539241574727e6e6def6b7d3b475d24b2fc67561af6bb3074295c31a5c0e249",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains an unsupported wildcard atom"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 3,
+      "record_id": "M0107",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 5,
+      "before_step_id": 4,
+      "candidate_id": "panel-candidate:M0107:mechanism-3:steps-4-5",
+      "candidate_sha256": "03e92f53d3aeeb38200993d4b47cd8f45609241a4032bf82ac230c00f2cf9d17",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains an unsupported wildcard atom"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 3,
+      "record_id": "M0107",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 6,
+      "before_step_id": 5,
+      "candidate_id": "panel-candidate:M0107:mechanism-3:steps-5-6",
+      "candidate_sha256": "ad7642ea95171f6b3cf3cbf1864a2a503d611b57c3a08a0c1046e7544815163d",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains an unsupported wildcard atom"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 3,
+      "record_id": "M0107",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 7,
+      "before_step_id": 6,
+      "candidate_id": "panel-candidate:M0107:mechanism-3:steps-6-7",
+      "candidate_sha256": "f00d792e60d0ebf22641ce9d780fc55db788ca5b4f5be4e381a36fe3ff43b70e",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains an unsupported wildcard atom"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 3,
+      "record_id": "M0107",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 8,
+      "before_step_id": 7,
+      "candidate_id": "panel-candidate:M0107:mechanism-3:steps-7-8",
+      "candidate_sha256": "d2060ace6c102a9803dc1580ea441301cb014e1cd9569ff181ffd0e4f7e33f04",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains an unsupported wildcard atom"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 3,
+      "record_id": "M0107",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 2,
+      "before_step_id": 1,
+      "candidate_id": "panel-candidate:M0212:mechanism-1:steps-1-2",
+      "candidate_sha256": "d7f34db5de08f093240af3f548c9e5e370647e69541fd9ab123dc9d8678e1c2f",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0212",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 3,
+      "before_step_id": 2,
+      "candidate_id": "panel-candidate:M0212:mechanism-1:steps-2-3",
+      "candidate_sha256": "9d5c6a754c6ef6c42910ea093e5fe7ae28e0a4df0ba6c093fb1eb882bcba47d8",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains unsupported electron-flow attributes or point shape"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0212",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 4,
+      "before_step_id": 3,
+      "candidate_id": "panel-candidate:M0212:mechanism-1:steps-3-4",
+      "candidate_sha256": "ae29c94e30d95350d3a64a8528d0cf442cbddefd9e5b23f8ea3269029a745387",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0212",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 5,
+      "before_step_id": 4,
+      "candidate_id": "panel-candidate:M0212:mechanism-1:steps-4-5",
+      "candidate_sha256": "40295b9b2f5b313f50da69470d7610c7afc523173318334f6c8a1984d42cb227",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0212",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 6,
+      "before_step_id": 5,
+      "candidate_id": "panel-candidate:M0212:mechanism-1:steps-5-6",
+      "candidate_sha256": "9fa4bf691eeb74503fd00a761903a41fbfa0d3eea3126c0035ebd811e82a6b31",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0212",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 7,
+      "before_step_id": 6,
+      "candidate_id": "panel-candidate:M0212:mechanism-1:steps-6-7",
+      "candidate_sha256": "7a048e7e1d2bd89657b7c39f3754bbeaba9432831730c9166f69802f66f728df",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0212",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 8,
+      "before_step_id": 7,
+      "candidate_id": "panel-candidate:M0212:mechanism-1:steps-7-8",
+      "candidate_sha256": "664e7bc6a88a46a302ae271cd13df598645c46475f0ff9972583f0ce3e986457",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0212",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 9,
+      "before_step_id": 8,
+      "candidate_id": "panel-candidate:M0212:mechanism-1:steps-8-9",
+      "candidate_sha256": "ab9a043941578a7d0dd20c59ab5ada16b6559902551ba5d3bd73375d120cf03b",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0212",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 10,
+      "before_step_id": 9,
+      "candidate_id": "panel-candidate:M0212:mechanism-1:steps-9-10",
+      "candidate_sha256": "3473dcc7ef7b2295950c4e5841bb19e43ebfc05454b994c348330eedbe64ae79",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0212",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 11,
+      "before_step_id": 10,
+      "candidate_id": "panel-candidate:M0212:mechanism-1:steps-10-11",
+      "candidate_sha256": "f40d8b3814010832a69563fd4e491d0c2565325ab0bd14ad02f64ca9e33e10b6",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0212",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 12,
+      "before_step_id": 11,
+      "candidate_id": "panel-candidate:M0212:mechanism-1:steps-11-12",
+      "candidate_sha256": "64eded8e9097b53034af107cf448ea0c91b2b95d68de12203425f4a60e2972cf",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0212",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 13,
+      "before_step_id": 12,
+      "candidate_id": "panel-candidate:M0212:mechanism-1:steps-12-13",
+      "candidate_sha256": "f0af0488aee25797c56253b15cc49667bc75b4484a5a50d8c66eb446ee442e61",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0212",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 14,
+      "before_step_id": 13,
+      "candidate_id": "panel-candidate:M0212:mechanism-1:steps-13-14",
+      "candidate_sha256": "a6cd5c4127841ea47b5c1edeb60132b22442123514145703e4cddb6faedcf5a7",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0212",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 15,
+      "before_step_id": 14,
+      "candidate_id": "panel-candidate:M0212:mechanism-1:steps-14-15",
+      "candidate_sha256": "aceb30b8d4c4727b70885a0270802c975d5b0e378a0aed2456c5b7d2cb937e71",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0212",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 16,
+      "before_step_id": 15,
+      "candidate_id": "panel-candidate:M0212:mechanism-1:steps-15-16",
+      "candidate_sha256": "075cdbd6228eb2d21d0889106286f3542fde99a0f31c3e493ab1c12442a8c545",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0212",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 2,
+      "before_step_id": 1,
+      "candidate_id": "panel-candidate:M0753:mechanism-1:steps-1-2",
+      "candidate_sha256": "e0cc8c8554f716bf9d2cff0c1541fbe575d0c97af637ceaff67508171fc837ff",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0753",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 3,
+      "before_step_id": 2,
+      "candidate_id": "panel-candidate:M0753:mechanism-1:steps-2-3",
+      "candidate_sha256": "47e2a5cba6f5ecfab3b9e0255656cac876d4aad4cbc83542ec6a187a2c4c17fe",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0753",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 4,
+      "before_step_id": 3,
+      "candidate_id": "panel-candidate:M0753:mechanism-1:steps-3-4",
+      "candidate_sha256": "6b1a8b65670befa95a091ad0bb6771908d8905f4ba85ef8fed5cbb8b2ecfca2d",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0753",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 5,
+      "before_step_id": 4,
+      "candidate_id": "panel-candidate:M0753:mechanism-1:steps-4-5",
+      "candidate_sha256": "9102554afe0e0fff81be5e2d51e1c906a0fc22f5da84173d9f16b79b48c7e3b4",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0753",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 6,
+      "before_step_id": 5,
+      "candidate_id": "panel-candidate:M0753:mechanism-1:steps-5-6",
+      "candidate_sha256": "7b99f52e0aeb4f2eb3b28fc4c4ec137964dcea4ac8d88d53fd9ec83585860f82",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0753",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 7,
+      "before_step_id": 6,
+      "candidate_id": "panel-candidate:M0753:mechanism-1:steps-6-7",
+      "candidate_sha256": "cc591e8f39cfbfdf7e668b1a44751c70d6ab5316f05fad0e5e35a2f36bbac85c",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0753",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 2,
+      "before_step_id": 1,
+      "candidate_id": "panel-candidate:M0052:mechanism-1:steps-1-2",
+      "candidate_sha256": "06bafcc2204d5a17ea208e5facdf8e36b9e49a17618e865f53b92f9bb9b284d5",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0052",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 3,
+      "before_step_id": 2,
+      "candidate_id": "panel-candidate:M0052:mechanism-1:steps-2-3",
+      "candidate_sha256": "5593ab7ffe13956cedda27e429e3c367a6c8d76a3dfc64d36c0971cc7ac55b3b",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0052",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 4,
+      "before_step_id": 3,
+      "candidate_id": "panel-candidate:M0052:mechanism-1:steps-3-4",
+      "candidate_sha256": "f4e88b9abc91f59bf28575dc9c7ab4b87e36124f27b5616574d9e7abcee640a5",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0052",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 5,
+      "before_step_id": 4,
+      "candidate_id": "panel-candidate:M0052:mechanism-1:steps-4-5",
+      "candidate_sha256": "353686dc26246c47f6c88dba4b7807d01262127b540405f8c59cdb3fbbfe435f",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0052",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 2,
+      "before_step_id": 1,
+      "candidate_id": "panel-candidate:M0219:mechanism-1:steps-1-2",
+      "candidate_sha256": "f365859f38c833a14337e4a495a9faf20c0e0d6386beec19ac7ed4194f0d0b56",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0219",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 3,
+      "before_step_id": 2,
+      "candidate_id": "panel-candidate:M0219:mechanism-1:steps-2-3",
+      "candidate_sha256": "9954dfce2279724452c6d2ac53b9120e8ee2475a7c44527af98bee7b20ef70a5",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0219",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 4,
+      "before_step_id": 3,
+      "candidate_id": "panel-candidate:M0219:mechanism-1:steps-3-4",
+      "candidate_sha256": "106f16bc0a105dc63d60ade2720305ad9df1575ab6b68fcad5c3bddc0eaed639",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0219",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 5,
+      "before_step_id": 4,
+      "candidate_id": "panel-candidate:M0219:mechanism-1:steps-4-5",
+      "candidate_sha256": "a500942448ac046480a8bc0053c1eaffecbcd358690998d6b7b24a1ba341f4ad",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0219",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 6,
+      "before_step_id": 5,
+      "candidate_id": "panel-candidate:M0219:mechanism-1:steps-5-6",
+      "candidate_sha256": "a76befff146662721dbdec194a413dd819dc44cfd20a01eecddac97decbdfae2",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0219",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 7,
+      "before_step_id": 6,
+      "candidate_id": "panel-candidate:M0219:mechanism-1:steps-6-7",
+      "candidate_sha256": "914aec679850eea4f99969a965a8ea5dbbe9b6f4e8c2ccecd8090953e00f78c7",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0219",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 8,
+      "before_step_id": 7,
+      "candidate_id": "panel-candidate:M0219:mechanism-1:steps-7-8",
+      "candidate_sha256": "19d1bbf70dd4896dcc9265d8590a56d1ed691da14ef1aa7343852c0f9c98dace",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0219",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 2,
+      "before_step_id": 1,
+      "candidate_id": "panel-candidate:M0219:mechanism-2:steps-1-2",
+      "candidate_sha256": "a51d00721064ca3f66ebdcbe1757e118130c7a5696b023036068c3bbda6ad26a",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 2,
+      "record_id": "M0219",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 3,
+      "before_step_id": 2,
+      "candidate_id": "panel-candidate:M0219:mechanism-2:steps-2-3",
+      "candidate_sha256": "2a758a1619eaec18b77a10b977866ea2da201c07a02c9f33f9fcadcb6b3c8ad5",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 2,
+      "record_id": "M0219",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 4,
+      "before_step_id": 3,
+      "candidate_id": "panel-candidate:M0219:mechanism-2:steps-3-4",
+      "candidate_sha256": "1f43664703876750f1b0c24d9e3709615958e8f1e6e97f3f1024eea7c89ced29",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 2,
+      "record_id": "M0219",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 5,
+      "before_step_id": 4,
+      "candidate_id": "panel-candidate:M0219:mechanism-2:steps-4-5",
+      "candidate_sha256": "2ee3b4c4bcb8007a7eb14f089bbe2236e2a0628774ead3edbfe90b94cf8df21d",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 2,
+      "record_id": "M0219",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 6,
+      "before_step_id": 5,
+      "candidate_id": "panel-candidate:M0219:mechanism-2:steps-5-6",
+      "candidate_sha256": "06167f5d65d2e063827e502fcd951e67d40a715a1ff1e4a67fe7aff7c211f866",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 2,
+      "record_id": "M0219",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 2,
+      "before_step_id": 1,
+      "candidate_id": "panel-candidate:M0222:mechanism-1:steps-1-2",
+      "candidate_sha256": "bab0709d06698228c40ab418adbfb8b87c571696ebc54e3d0ddaa49731388a7f",
+      "coverage": {
+        "after_node_count": 57,
+        "before_node_count": 57,
+        "full_panel_replay_asserted": false,
+        "mapped_node_count": 30,
+        "projection_replays_exactly": true
+      },
+      "diagnostics": [],
+      "edit_counts": {
+        "after_graph_confirmed": 4
+      },
+      "extraction_status": "candidate",
+      "mechanism_id": 1,
+      "record_id": "M0222",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 3,
+      "before_step_id": 2,
+      "candidate_id": "panel-candidate:M0222:mechanism-1:steps-2-3",
+      "candidate_sha256": "f6afb5efa480af042bda28acb62b15fa3a00940c370f593af646be53cefdd0c2",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains unsupported electron-flow attributes or point shape"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0222",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 4,
+      "before_step_id": 3,
+      "candidate_id": "panel-candidate:M0222:mechanism-1:steps-3-4",
+      "candidate_sha256": "74893188da8d7f9ba32c8a9c30e79fadabc0a531b87a05ec508e347991a4e72f",
+      "coverage": {
+        "after_node_count": 56,
+        "before_node_count": 56,
+        "full_panel_replay_asserted": false,
+        "mapped_node_count": 54,
+        "projection_replays_exactly": true
+      },
+      "diagnostics": [],
+      "edit_counts": {
+        "after_graph_confirmed": 3,
+        "source_arrow_only": 3
+      },
+      "extraction_status": "candidate",
+      "mechanism_id": 1,
+      "record_id": "M0222",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 5,
+      "before_step_id": 4,
+      "candidate_id": "panel-candidate:M0222:mechanism-1:steps-4-5",
+      "candidate_sha256": "f7b78e9a8c4e19c04f7f9797723dde7729326f0b1b55175ad23e5f58340efd6e",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains unsupported electron-flow attributes or point shape"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0222",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 6,
+      "before_step_id": 5,
+      "candidate_id": "panel-candidate:M0222:mechanism-1:steps-5-6",
+      "candidate_sha256": "c54c15806cb1f13ee53987190fc355e67cb66ec401d2fee2ee30e1d93ba45b9b",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains unsupported electron-flow attributes or point shape"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0222",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 7,
+      "before_step_id": 6,
+      "candidate_id": "panel-candidate:M0222:mechanism-1:steps-6-7",
+      "candidate_sha256": "1751abcc13803db47fa32e32dbaf5c9845e7b7cb64f0f710f5f91c71073a842b",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains unsupported electron-flow attributes or point shape"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0222",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 8,
+      "before_step_id": 7,
+      "candidate_id": "panel-candidate:M0222:mechanism-1:steps-7-8",
+      "candidate_sha256": "67b738c62c4e95863c728f560b7cf7e0cb152a153ed42242e4a4f4420aaa2df9",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0222",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 9,
+      "before_step_id": 8,
+      "candidate_id": "panel-candidate:M0222:mechanism-1:steps-8-9",
+      "candidate_sha256": "7daf993db3c08d40da4128db0e1ffc342dba6ea9f9bc7a4c9fb3312ab2c21e89",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0222",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 10,
+      "before_step_id": 9,
+      "candidate_id": "panel-candidate:M0222:mechanism-1:steps-9-10",
+      "candidate_sha256": "a4521b01d47c602bdf9c5075270b8f8ba384d1efb43c0e88c702dd2a364be177",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0222",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 11,
+      "before_step_id": 10,
+      "candidate_id": "panel-candidate:M0222:mechanism-1:steps-10-11",
+      "candidate_sha256": "a4e99044e893253e2648c885c1f99214cb48c0eeba72be9584348396452213f7",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0222",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 2,
+      "before_step_id": 1,
+      "candidate_id": "panel-candidate:M0049:mechanism-1:steps-1-2",
+      "candidate_sha256": "d405bd1168dd6493557a7fd5ed616a5bf05477534ac32c05814e9ef9a3dd14a5",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0049",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 3,
+      "before_step_id": 2,
+      "candidate_id": "panel-candidate:M0049:mechanism-1:steps-2-3",
+      "candidate_sha256": "627090a366b69fe19a7080f315f0d253d50dd8edae0114512b1c2540f9b189e5",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0049",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 4,
+      "before_step_id": 3,
+      "candidate_id": "panel-candidate:M0049:mechanism-1:steps-3-4",
+      "candidate_sha256": "888911c41f73420741be3e409f49b577909e3c4f6b041748a08358761131cffb",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0049",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 5,
+      "before_step_id": 4,
+      "candidate_id": "panel-candidate:M0049:mechanism-1:steps-4-5",
+      "candidate_sha256": "8300b8f214640a40425753bc8477ec35c21edee1994333f8dfc4acae64eb8205",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains unsupported electron-flow attributes or point shape"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0049",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 6,
+      "before_step_id": 5,
+      "candidate_id": "panel-candidate:M0049:mechanism-1:steps-5-6",
+      "candidate_sha256": "0b16abd07e57fc4c0e0757ec72706b1800159ed47842aa75a97bf7845426c0b8",
+      "coverage": {
+        "after_node_count": 59,
+        "before_node_count": 59,
+        "full_panel_replay_asserted": false,
+        "mapped_node_count": 54,
+        "projection_replays_exactly": true
+      },
+      "diagnostics": [],
+      "edit_counts": {
+        "after_graph_confirmed": 3,
+        "source_arrow_only": 5
+      },
+      "extraction_status": "candidate",
+      "mechanism_id": 1,
+      "record_id": "M0049",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 7,
+      "before_step_id": 6,
+      "candidate_id": "panel-candidate:M0049:mechanism-1:steps-6-7",
+      "candidate_sha256": "1b773207205576612a651d49014a2157145ed69e46fa53da52c53c7cce038a4c",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains unsupported electron-flow attributes or point shape"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0049",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 8,
+      "before_step_id": 7,
+      "candidate_id": "panel-candidate:M0049:mechanism-1:steps-7-8",
+      "candidate_sha256": "2e9f749048b15bd2312bfadfa55afdce3655840d687c18fec4bdac0f4846448b",
+      "coverage": {
+        "after_node_count": 49,
+        "before_node_count": 49,
+        "full_panel_replay_asserted": false,
+        "mapped_node_count": 48,
+        "projection_replays_exactly": true
+      },
+      "diagnostics": [],
+      "edit_counts": {
+        "after_graph_confirmed": 2,
+        "source_arrow_only": 2
+      },
+      "extraction_status": "candidate",
+      "mechanism_id": 1,
+      "record_id": "M0049",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 2,
+      "before_step_id": 1,
+      "candidate_id": "panel-candidate:M0066:mechanism-1:steps-1-2",
+      "candidate_sha256": "5bc909d3c2499cb8dd17f58c8de7c29f94176d6e03d28dfa07cdbccec67d59ab",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0066",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 3,
+      "before_step_id": 2,
+      "candidate_id": "panel-candidate:M0066:mechanism-1:steps-2-3",
+      "candidate_sha256": "6d5dcd3a7ffde232682912e4146f60255b9eb5ac0f8be1285e5987a4ecf13ace",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0066",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 4,
+      "before_step_id": 3,
+      "candidate_id": "panel-candidate:M0066:mechanism-1:steps-3-4",
+      "candidate_sha256": "1ec13f0ce1cc2211bed7db07d29cac4cb5c8760604a4897570039757cdcddf15",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0066",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 5,
+      "before_step_id": 4,
+      "candidate_id": "panel-candidate:M0066:mechanism-1:steps-4-5",
+      "candidate_sha256": "2fa253a24d92d2d445248c74b3c2b3d808c97fde5146fab3abe73f4d5da0e00d",
+      "coverage": {
+        "after_node_count": 60,
+        "before_node_count": 58,
+        "full_panel_replay_asserted": false,
+        "mapped_node_count": 57,
+        "projection_replays_exactly": true
+      },
+      "diagnostics": [],
+      "edit_counts": {
+        "after_graph_confirmed": 6,
+        "source_arrow_only": 2
+      },
+      "extraction_status": "candidate",
+      "mechanism_id": 1,
+      "record_id": "M0066",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 6,
+      "before_step_id": 5,
+      "candidate_id": "panel-candidate:M0066:mechanism-1:steps-5-6",
+      "candidate_sha256": "42965d7314df7905258c0b925a99ae9b499ed20b2653ca1f56434553665f686f",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "o41 source pair cannot yield the bounded single-bond arrow-only proposal"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0066",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 7,
+      "before_step_id": 6,
+      "candidate_id": "panel-candidate:M0066:mechanism-1:steps-6-7",
+      "candidate_sha256": "b53b090dc591208fc3268e8797bc565379617c349745f9bd1925cabbaa7491b1",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "o40 target pair cannot yield the bounded single-bond arrow-only proposal"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0066",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 8,
+      "before_step_id": 7,
+      "candidate_id": "panel-candidate:M0066:mechanism-1:steps-7-8",
+      "candidate_sha256": "a1e20fc3df6bff6d80e309705a36bffbf13634b1bb20f242fcd5d4f158c19e5a",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "before panel contains unsupported electron-flow attributes or point shape"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0066",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 9,
+      "before_step_id": 8,
+      "candidate_id": "panel-candidate:M0066:mechanism-1:steps-8-9",
+      "candidate_sha256": "1f1a84c0192424110295af9da5755afdac454de7b6003be462f29d81899e9cb6",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "unsupported_source_format",
+          "detail": "o30 target pair cannot yield the bounded single-bond arrow-only proposal"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0066",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 10,
+      "before_step_id": 9,
+      "candidate_id": "panel-candidate:M0066:mechanism-1:steps-9-10",
+      "candidate_sha256": "a111adbd9c853608f03fde16e6aae15c1c93020b244310fe031e66d312bd839a",
+      "coverage": {
+        "after_node_count": 52,
+        "before_node_count": 52,
+        "full_panel_replay_asserted": true,
+        "mapped_node_count": 52,
+        "projection_replays_exactly": true
+      },
+      "diagnostics": [],
+      "edit_counts": {
+        "after_graph_confirmed": 8
+      },
+      "extraction_status": "candidate",
+      "mechanism_id": 1,
+      "record_id": "M0066",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 11,
+      "before_step_id": 10,
+      "candidate_id": "panel-candidate:M0066:mechanism-1:steps-10-11",
+      "candidate_sha256": "5296c4d5ee8b567c8df301f3ed531820023aeecf619d4ef2ed4aa2621a3ebcd6",
+      "coverage": {
+        "after_node_count": 53,
+        "before_node_count": 52,
+        "full_panel_replay_asserted": false,
+        "mapped_node_count": 51,
+        "projection_replays_exactly": true
+      },
+      "diagnostics": [],
+      "edit_counts": {
+        "after_graph_confirmed": 8,
+        "source_arrow_only": 2
+      },
+      "extraction_status": "candidate",
+      "mechanism_id": 1,
+      "record_id": "M0066",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 12,
+      "before_step_id": 11,
+      "candidate_id": "panel-candidate:M0066:mechanism-1:steps-11-12",
+      "candidate_sha256": "cec0f43a51ec0fe3abaccca472410e96cccef2399bd88a4df8615011020b9d95",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "after panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0066",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 13,
+      "before_step_id": 12,
+      "candidate_id": "panel-candidate:M0066:mechanism-1:steps-12-13",
+      "candidate_sha256": "fc4487a9eeeb3ea6d9d154fa4efb2e267c1283246bdb981a67d12ac185db4e0e",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0066",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 2,
+      "before_step_id": 1,
+      "candidate_id": "panel-candidate:M0186:mechanism-1:steps-1-2",
+      "candidate_sha256": "7ac1a1fef815aaa2a1bf407fc00961fc9555611914e970338a188edf519c485e",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0186",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 3,
+      "before_step_id": 2,
+      "candidate_id": "panel-candidate:M0186:mechanism-1:steps-2-3",
+      "candidate_sha256": "01fa726409ff25ab9e30d4d10d00c3086a28dbe1d2f8cc5c504720d656497d05",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0186",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 4,
+      "before_step_id": 3,
+      "candidate_id": "panel-candidate:M0186:mechanism-1:steps-3-4",
+      "candidate_sha256": "c28114bb4f3eab2a97c569606c7bf3ccbc1026daa13882d9cdc87f7755aa9978",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0186",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 5,
+      "before_step_id": 4,
+      "candidate_id": "panel-candidate:M0186:mechanism-1:steps-4-5",
+      "candidate_sha256": "14402d5583f9abe1a262c50d997ffe637eeaf1d8061d3e7d54050e43f777cfb1",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0186",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 6,
+      "before_step_id": 5,
+      "candidate_id": "panel-candidate:M0186:mechanism-1:steps-5-6",
+      "candidate_sha256": "c07c2b03f1ffa170e6b987551bc14c8a16275553c2c8d754b0c11ee951a40714",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0186",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 7,
+      "before_step_id": 6,
+      "candidate_id": "panel-candidate:M0186:mechanism-1:steps-6-7",
+      "candidate_sha256": "1136ad0f196d4c20394d61ff8be06e50ad55f2ce2cfa84a958671d02ec3e4e23",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0186",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 8,
+      "before_step_id": 7,
+      "candidate_id": "panel-candidate:M0186:mechanism-1:steps-7-8",
+      "candidate_sha256": "7adc75b54b3b96d9616ddb73fb25afbd1421c271a1e9785e9ef1046aced06bd7",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0186",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 2,
+      "before_step_id": 1,
+      "candidate_id": "panel-candidate:M0213:mechanism-1:steps-1-2",
+      "candidate_sha256": "170ae90064436433c2990b678859de750ffad3ed3cddddf4f57e4bfeb9b4f909",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0213",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 3,
+      "before_step_id": 2,
+      "candidate_id": "panel-candidate:M0213:mechanism-1:steps-2-3",
+      "candidate_sha256": "6fdaae1c815fc1830b9e081bd43ce86cf57ebe7aa01e4b0f6cc1773a2d0e19dc",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0213",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 4,
+      "before_step_id": 3,
+      "candidate_id": "panel-candidate:M0213:mechanism-1:steps-3-4",
+      "candidate_sha256": "c7725e5cecec7b6f3423393c443db061ac3523ffd6dce33a39f7fd1c5f4c9551",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0213",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 5,
+      "before_step_id": 4,
+      "candidate_id": "panel-candidate:M0213:mechanism-1:steps-4-5",
+      "candidate_sha256": "156c3b5231aceab4c113371b758eb18a3157d73f08835975541b31b8a4e6a17d",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "after panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0213",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 6,
+      "before_step_id": 5,
+      "candidate_id": "panel-candidate:M0213:mechanism-1:steps-5-6",
+      "candidate_sha256": "513b03c7597bd210b38385e8778606068f447b3d3f26b092f38619a537836c22",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0213",
+      "status": "unreviewed"
+    },
+    {
+      "after_step_id": 7,
+      "before_step_id": 6,
+      "candidate_id": "panel-candidate:M0213:mechanism-1:steps-6-7",
+      "candidate_sha256": "aa0e81d8e979aae6d5501e19290dd4782020c3d0aab103fb416a0b218e95987a",
+      "coverage": null,
+      "diagnostics": [
+        {
+          "code": "stereochemistry_requires_review",
+          "detail": "before panel contains source stereochemistry or bond-convention data"
+        }
+      ],
+      "edit_counts": {},
+      "extraction_status": "needs_review",
+      "mechanism_id": 1,
+      "record_id": "M0213",
+      "status": "unreviewed"
+    }
+  ],
+  "records": [
+    {
+      "candidate_count": 0,
+      "needs_review_count": 8,
+      "pair_count": 8,
+      "record_id": "M0106"
+    },
+    {
+      "candidate_count": 0,
+      "needs_review_count": 14,
+      "pair_count": 14,
+      "record_id": "M0107"
+    },
+    {
+      "candidate_count": 0,
+      "needs_review_count": 15,
+      "pair_count": 15,
+      "record_id": "M0212"
+    },
+    {
+      "candidate_count": 0,
+      "needs_review_count": 6,
+      "pair_count": 6,
+      "record_id": "M0753"
+    },
+    {
+      "candidate_count": 0,
+      "needs_review_count": 4,
+      "pair_count": 4,
+      "record_id": "M0052"
+    },
+    {
+      "candidate_count": 0,
+      "needs_review_count": 12,
+      "pair_count": 12,
+      "record_id": "M0219"
+    },
+    {
+      "candidate_count": 2,
+      "needs_review_count": 8,
+      "pair_count": 10,
+      "record_id": "M0222"
+    },
+    {
+      "candidate_count": 2,
+      "needs_review_count": 5,
+      "pair_count": 7,
+      "record_id": "M0049"
+    },
+    {
+      "candidate_count": 3,
+      "needs_review_count": 9,
+      "pair_count": 12,
+      "record_id": "M0066"
+    },
+    {
+      "candidate_count": 0,
+      "needs_review_count": 7,
+      "pair_count": 7,
+      "record_id": "M0186"
+    },
+    {
+      "candidate_count": 0,
+      "needs_review_count": 6,
+      "pair_count": 6,
+      "record_id": "M0213"
+    }
+  ],
+  "schema_version": "catalytic-earth.candidate-scan.v1",
+  "scope": {
+    "candidate_count_is_validated_transition_count": false,
+    "diagnostics_are_exhaustive": false,
+    "experimentally_validated": false,
+    "interpretation": "First blocking diagnostic per attempted pair; no claims about unexamined chemistry.",
+    "network_requests": 0,
+    "retained_sources_only": true,
+    "reviewed_evidence": false
+  },
+  "source_registry_sha256": "7dc69dca4234f81a56aa2ec8d1ce023243406c80c6e017866319b49eb30024a2",
+  "status": "unreviewed"
+}

@@ -356,6 +356,15 @@ def build_parser() -> argparse.ArgumentParser:
     )
     comparisons.add_argument("--mcsa-id", help="filter an exact M-CSA identifier, e.g. M0173")
     comparisons.add_argument("--output", type=Path, help="optional JSON output path")
+    candidates = subparsers.add_parser(
+        "atlas-candidates",
+        help="extract an unreviewed adjacent-panel candidate from a local M-CSA snapshot",
+        description="Read retained source bytes offline. Exact replay does not confer scientific review or experimental validation.",
+    )
+    candidates.add_argument("--source", type=Path, required=True, help="local retained M-CSA JSON snapshot")
+    candidates.add_argument("--mechanism-id", type=int, required=True)
+    candidates.add_argument("--before-step", type=int, required=True, help="compare this source panel with the next step's source panel")
+    candidates.add_argument("--output", type=Path, help="optional new JSON file; existing files are never overwritten")
     drafts = subparsers.add_parser(
         "atlas-drafts", help="query source-scoped mechanisms, states and abstentions offline"
     )
@@ -535,6 +544,19 @@ def main(argv: Sequence[str] | None = None) -> int:
         rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
         if args.output:
             args.output.write_text(rendered, encoding="utf-8", newline="\n")
+        print(rendered, end="")
+        return 0
+    if args.command == "atlas-candidates":
+        from .atlas_candidate_extraction import extract_panel_candidate
+
+        result = extract_panel_candidate(
+            args.source.read_bytes(), mechanism_id=args.mechanism_id,
+            before_step_id=args.before_step,
+        )
+        rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
+        if args.output:
+            with args.output.open("x", encoding="utf-8", newline="\n") as stream:
+                stream.write(rendered)
         print(rendered, end="")
         return 0
     if args.command == "claims":

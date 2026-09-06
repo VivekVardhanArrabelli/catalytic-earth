@@ -96,6 +96,12 @@ replays three retained-core changes across 40 matched nodes while preserving
 all unmatched nodes and unverified edits. `catalytic-earth atlas-panel-comparisons
 --mcsa-id M0173` exposes that coverage separately from complete transformations.
 
+The [adjacent-panel extractor](docs/ATLAS_CANDIDATE_EXTRACTION.md) now derives
+unreviewed candidates directly from retained drawings. A scan of 101 source-panel
+pairs yields seven candidates with explicit graph-confirmed and arrow-only edit
+coverage; 94 pairs remain blocked by unsupported representations. These results
+do not change the reviewed transformation catalog or benchmark labels.
+
 - `current702` contains 702 project benchmark labels: 685 bronze, 17 silver,
   zero project-gold; 683 are automation-curated and 19 author-reviewed.
 - The combined 10,001-row surface is **8,305 positive fingerprint assignments
