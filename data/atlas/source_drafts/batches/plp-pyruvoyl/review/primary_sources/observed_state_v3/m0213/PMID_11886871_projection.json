@@ -1,0 +1,39 @@
+{
+  "authorship": "Project-authored factual projection; it is not the article body.",
+  "claims": [
+    {
+      "claim_id": "plp-d-alanine-reaction-intermediate-analogue-designation",
+      "scope": "Primary-article designation of the modeled chemical context; no native intermediate, protonation, direction, role, or trajectory is asserted.",
+      "short_source_terms": [
+        "reaction intermediate analogs",
+        "N-(5'-phosphopyridoxyl)-D-alanine"
+      ],
+      "source_locator": "PubMedArticleSet/PubmedArticle/MedlineCitation/Article/Abstract/AbstractText",
+      "statement": "The authors identify N-(5'-phosphopyridoxyl)-D-alanine (PLP-D-Ala) as one of the reaction-intermediate analogues whose crystal structures were determined."
+    }
+  ],
+  "limits": [
+    "This projection paraphrases only the inspected official abstract and does not redistribute the abstract or full article.",
+    "It does not independently establish that the current 1L6G bytes are the exact coordinate bytes used by the authors.",
+    "The analogue designation does not validate a native external aldimine, quinoid, acid/base role, proton transfer, reaction direction, or mechanism trajectory."
+  ],
+  "projection_id": "primary-abstract:PMID:11886871:observed-state-scope",
+  "schema_version": "catalytic-earth.primary-abstract-factual-projection.v1",
+  "source_capture": {
+    "http_status": 200,
+    "raw_response_bytes": 6684,
+    "raw_response_repository_path": null,
+    "raw_response_sha256": "552698c91228a855a6e71b674f77f3bb7e04ccee99eabbdce3d6409c830362f9",
+    "receipt_ledger_repository_path": null,
+    "receipt_ledger_sha256": "aa8f4f6806fd594f524c2786f60ebd44f274d5160a5a93f61de4978e9198104a",
+    "retention_scope": "local_analysis_only; no raw abstract body is redistributed by this package",
+    "retrieved_at_utc": "2026-09-06T06:22:13Z"
+  },
+  "source_identity": {
+    "canonical_url": "https://pubmed.ncbi.nlm.nih.gov/11886871/",
+    "doi": "10.1074/jbc.M201615200",
+    "pmid": "11886871",
+    "source_scope": "official PubMed abstract record",
+    "title": "Reaction mechanism of alanine racemase from Bacillus stearothermophilus: x-ray crystallographic studies of the enzyme bound with N-(5'-phosphopyridoxyl)alanine."
+  }
+}

@@ -1,0 +1,477 @@
+{
+  "chemical_observations": [
+    {
+      "evidence_ids": [
+        "evidence:1pwh-cif"
+      ],
+      "observation_id": "observation:deposited-plv-bond",
+      "observation_kind": "deposited_component_bond_order",
+      "source_bond_order_code": "sing",
+      "source_description": "The deposited PLV component dictionary records N-C4A value_order sing.",
+      "source_scope": "deposited_structure",
+      "support_edge_ids": [
+        "edge:deposited-component-bond-order"
+      ]
+    },
+    {
+      "evidence_ids": [
+        "evidence:14596599-article"
+      ],
+      "observation_id": "observation:primary-aldimine-description",
+      "observation_kind": "primary_article_state_description",
+      "source_bond_order_code": null,
+      "source_description": "The primary abstract describes a PLP-OMS aldimine and says subsequent dehydration did not occur.",
+      "source_scope": "primary_research_article",
+      "support_edge_ids": [
+        "edge:primary-article-bound-adduct"
+      ]
+    }
+  ],
+  "chemical_reconciliation": {
+    "statement": "The paper aldimine description and deposited PLV N-C4A bond-order token sing are retained as separate observations; their exact chemical reconciliation is unresolved.",
+    "status": "unresolved_source_description_vs_deposit"
+  },
+  "context_id": "1pwh-plv-source-described-bound-adduct",
+  "limits": [
+    "The primary-source aldimine description and deposited sing bond-order token are not normalized into one chemical identity.",
+    "Absence is confined to the deposited struct_conn table; all 26 rows connect potassium to protein components and no row names PLV.",
+    "The accessible sources do not explicitly designate OMS or PLV as an analogue and do not establish a native trajectory, phosphate protonation, or catalytic role.",
+    "The current captured 1PWH bytes and component dictionary are not asserted to be the exact coordinate/dictionary bytes used for the 2003 publication."
+  ],
+  "locators": [
+    {
+      "extracted_values": {
+        "component_id": "PLV",
+        "entity_id": "3",
+        "instances": [
+          {
+            "atom_author_chain_id": "A",
+            "atom_author_component_id": "PLV",
+            "atom_author_residue_number": 328,
+            "label_asym_id": "F",
+            "label_component_id": "PLV",
+            "label_entity_id": "3",
+            "label_seq_id": null,
+            "source_author_component_id": "PLV",
+            "source_author_residue_number": 328,
+            "structure_site_id": "AC5"
+          },
+          {
+            "atom_author_chain_id": "B",
+            "atom_author_component_id": "PLV",
+            "atom_author_residue_number": 329,
+            "label_asym_id": "H",
+            "label_component_id": "PLV",
+            "label_entity_id": "3",
+            "label_seq_id": null,
+            "source_author_component_id": "PLV",
+            "source_author_residue_number": 329,
+            "structure_site_id": "AC6"
+          },
+          {
+            "atom_author_chain_id": "C",
+            "atom_author_component_id": "PLV",
+            "atom_author_residue_number": 330,
+            "label_asym_id": "J",
+            "label_component_id": "PLV",
+            "label_entity_id": "3",
+            "label_seq_id": null,
+            "source_author_component_id": "PLV",
+            "source_author_residue_number": 330,
+            "structure_site_id": "AC7"
+          },
+          {
+            "atom_author_chain_id": "D",
+            "atom_author_component_id": "PLV",
+            "atom_author_residue_number": 331,
+            "label_asym_id": "L",
+            "label_component_id": "PLV",
+            "label_entity_id": "3",
+            "label_seq_id": null,
+            "source_author_component_id": "PLV",
+            "source_author_residue_number": 331,
+            "structure_site_id": "AC8"
+          }
+        ],
+        "source_description": "N-({3-HYDROXY-2-METHYL-5-[(PHOSPHONOOXY)METHYL]PYRIDIN-4-YL}METHYL)-O-METHYL-L-SERINE"
+      },
+      "locator_id": "locator:1pwh-plv-instances",
+      "physical_lines": [
+        585,
+        586,
+        1237,
+        1238,
+        1239,
+        1240,
+        11094,
+        11118,
+        11142,
+        11166,
+        12643,
+        12645,
+        12647,
+        12649
+      ],
+      "selector": {
+        "categories": [
+          "_chem_comp",
+          "_pdbx_nonpoly_scheme",
+          "_struct_site",
+          "_atom_site"
+        ],
+        "rows": {
+          "component_id": "PLV",
+          "label_asym_ids": [
+            "F",
+            "H",
+            "J",
+            "L"
+          ]
+        }
+      },
+      "source_binding_id": "primary:RCSB:1PWH:mmCIF",
+      "source_format": "mmCIF",
+      "supports": "All four deposited PLV instances and author/source-author numbering."
+    },
+    {
+      "extracted_values": {
+        "atom_id_1": "N",
+        "atom_id_2": "C4A",
+        "component_id": "PLV",
+        "value_order": "sing"
+      },
+      "locator_id": "locator:1pwh-plv-bond",
+      "physical_lines": [
+        13783
+      ],
+      "selector": {
+        "category": "_chem_comp_bond",
+        "row": {
+          "atom_id_1": "N",
+          "atom_id_2": "C4A",
+          "comp_id": "PLV"
+        }
+      },
+      "source_binding_id": "primary:RCSB:1PWH:mmCIF",
+      "source_format": "mmCIF",
+      "supports": "Literal deposited PLV N-C4A bond-order token."
+    },
+    {
+      "extracted_values": {
+        "attachment_context": "absent_from_deposited_struct_conn",
+        "connected_component_ids": [
+          "ALA",
+          "GLU",
+          "GLY",
+          "K",
+          "LEU",
+          "SER",
+          "VAL"
+        ],
+        "matching_component_row_count": 0,
+        "queried_component_id": "PLV",
+        "struct_conn_row_count": 26
+      },
+      "locator_id": "locator:1pwh-struct-conn",
+      "physical_lines": [
+        968,
+        1003,
+        1004,
+        1005,
+        1006,
+        1007,
+        1008,
+        1009,
+        1010,
+        1011,
+        1012,
+        1013,
+        1014,
+        1015,
+        1016,
+        1017,
+        1018,
+        1019,
+        1020,
+        1021,
+        1022,
+        1023,
+        1024,
+        1025,
+        1026,
+        1027,
+        1028
+      ],
+      "selector": {
+        "all_partner_component_ids": true,
+        "category": "_struct_conn",
+        "row_range": [
+          "metalc1",
+          "metalc26"
+        ]
+      },
+      "source_binding_id": "primary:RCSB:1PWH:mmCIF",
+      "source_format": "mmCIF",
+      "supports": "Complete 26-row deposited struct_conn table and sorted all-partner component inventory; PLV has zero matching rows."
+    },
+    {
+      "extracted_values": {
+        "analogue_designation": "not_present_in_inspected_sources",
+        "dehydration_status": "did_not_occur",
+        "description": "PLP-OMS aldimine"
+      },
+      "locator_id": "locator:14596599-bound-adduct",
+      "physical_lines": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "selector": {
+        "json_pointer": "/claims/0"
+      },
+      "source_binding_id": "projection:PubMed:14596599:abstract",
+      "source_format": "primary abstract factual projection JSON",
+      "supports": "Primary-article bound-adduct description without analogue classification."
+    }
+  ],
+  "observed_entity": {
+    "attachment_context": "absent_from_deposited_struct_conn",
+    "chemical_context": "source_described_bound_adduct",
+    "entity_context": "nonpolymer_component",
+    "entity_id": "3",
+    "normalized_chebi_id": null,
+    "source_component_id": "PLV",
+    "source_description": "N-({3-HYDROXY-2-METHYL-5-[(PHOSPHONOOXY)METHYL]PYRIDIN-4-YL}METHYL)-O-METHYL-L-SERINE",
+    "state_kind": "bound_ligand_adduct"
+  },
+  "projection_id": "primary-observed-state:M0186:1PWH:PLV",
+  "record_binding": {
+    "mcsa_id": "M0186",
+    "record_id": "atlas50-draft:m0186:source-scoped-mechanism-draft",
+    "source_snapshot_sha256": "687986c4aaa94ce6bba72c5403bf28a4f04b32891c3493ccb75436defb2a7f38"
+  },
+  "schema_version": "catalytic-earth.primary-observed-state-projection.v1",
+  "site_crosswalk": {
+    "author_number_mapping_status": "not_asserted",
+    "canonical_site": null,
+    "relationship": "not_asserted",
+    "source_record_alias": null,
+    "status": "not_asserted",
+    "structure_instance_index": null,
+    "support_edge_ids": []
+  },
+  "source_bindings": [
+    {
+      "binding_id": "primary:RCSB:1PWH:mmCIF",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/observed_state_v3/m0186/1PWH.cif",
+      "sha256": "54f4cb9179ed249bb33b34cce3f0cfecc00c5086464bc119d3f62f41ef6f790e"
+    },
+    {
+      "binding_id": "projection:PubMed:14596599:abstract",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/observed_state_v3/m0186/PMID_14596599_projection.json",
+      "sha256": "7f1f8b32b75873ad15425425dd39b756fa79e66585a673c329ae6da61132da68"
+    }
+  ],
+  "structure_context": {
+    "curated_protein_accession": null,
+    "model_id": 1,
+    "pdb_id": "1PWH",
+    "protein_author_chain_ids": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "protein_entity_ids": [
+      "1"
+    ],
+    "protein_label_asym_ids": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  "structure_instances": [
+    {
+      "atom_author_chain_id": "A",
+      "atom_author_component_id": "PLV",
+      "atom_author_residue_number": 328,
+      "label_asym_id": "F",
+      "label_component_id": "PLV",
+      "label_entity_id": "3",
+      "label_seq_id": null,
+      "source_author_component_id": "PLV",
+      "source_author_residue_number": 328,
+      "structure_site_id": "AC5"
+    },
+    {
+      "atom_author_chain_id": "B",
+      "atom_author_component_id": "PLV",
+      "atom_author_residue_number": 329,
+      "label_asym_id": "H",
+      "label_component_id": "PLV",
+      "label_entity_id": "3",
+      "label_seq_id": null,
+      "source_author_component_id": "PLV",
+      "source_author_residue_number": 329,
+      "structure_site_id": "AC6"
+    },
+    {
+      "atom_author_chain_id": "C",
+      "atom_author_component_id": "PLV",
+      "atom_author_residue_number": 330,
+      "label_asym_id": "J",
+      "label_component_id": "PLV",
+      "label_entity_id": "3",
+      "label_seq_id": null,
+      "source_author_component_id": "PLV",
+      "source_author_residue_number": 330,
+      "structure_site_id": "AC7"
+    },
+    {
+      "atom_author_chain_id": "D",
+      "atom_author_component_id": "PLV",
+      "atom_author_residue_number": 331,
+      "label_asym_id": "L",
+      "label_component_id": "PLV",
+      "label_entity_id": "3",
+      "label_seq_id": null,
+      "source_author_component_id": "PLV",
+      "source_author_residue_number": 331,
+      "structure_site_id": "AC8"
+    }
+  ],
+  "support_edges": [
+    {
+      "edge_id": "edge:deposited-component-bond-order",
+      "edge_kind": "deposited_component_bond_order",
+      "extracted_values": {
+        "source_bond_order_code": "sing",
+        "source_component_id": "PLV",
+        "source_description": "The deposited PLV component dictionary records N-C4A value_order sing."
+      },
+      "locator_ids": [
+        "locator:1pwh-plv-bond"
+      ],
+      "source_binding_ids": [
+        "primary:RCSB:1PWH:mmCIF"
+      ],
+      "support_status": "direct_structure_observation"
+    },
+    {
+      "edge_id": "edge:deposited-connection-inventory",
+      "edge_kind": "deposited_connection_inventory",
+      "extracted_values": {
+        "attachment_context": "absent_from_deposited_struct_conn",
+        "connected_component_ids": [
+          "ALA",
+          "GLU",
+          "GLY",
+          "K",
+          "LEU",
+          "SER",
+          "VAL"
+        ],
+        "matching_component_row_count": 0,
+        "queried_component_id": "PLV",
+        "struct_conn_row_count": 26
+      },
+      "locator_ids": [
+        "locator:1pwh-struct-conn"
+      ],
+      "source_binding_ids": [
+        "primary:RCSB:1PWH:mmCIF"
+      ],
+      "support_status": "absent_from_deposited_struct_conn"
+    },
+    {
+      "edge_id": "edge:deposited-structure-state",
+      "edge_kind": "deposited_structure_state",
+      "extracted_values": {
+        "entity_context": "nonpolymer_component",
+        "entity_id": "3",
+        "source_component_id": "PLV",
+        "source_description": "N-({3-HYDROXY-2-METHYL-5-[(PHOSPHONOOXY)METHYL]PYRIDIN-4-YL}METHYL)-O-METHYL-L-SERINE",
+        "structure_instances": [
+          {
+            "atom_author_chain_id": "A",
+            "atom_author_component_id": "PLV",
+            "atom_author_residue_number": 328,
+            "label_asym_id": "F",
+            "label_component_id": "PLV",
+            "label_entity_id": "3",
+            "label_seq_id": null,
+            "source_author_component_id": "PLV",
+            "source_author_residue_number": 328,
+            "structure_site_id": "AC5"
+          },
+          {
+            "atom_author_chain_id": "B",
+            "atom_author_component_id": "PLV",
+            "atom_author_residue_number": 329,
+            "label_asym_id": "H",
+            "label_component_id": "PLV",
+            "label_entity_id": "3",
+            "label_seq_id": null,
+            "source_author_component_id": "PLV",
+            "source_author_residue_number": 329,
+            "structure_site_id": "AC6"
+          },
+          {
+            "atom_author_chain_id": "C",
+            "atom_author_component_id": "PLV",
+            "atom_author_residue_number": 330,
+            "label_asym_id": "J",
+            "label_component_id": "PLV",
+            "label_entity_id": "3",
+            "label_seq_id": null,
+            "source_author_component_id": "PLV",
+            "source_author_residue_number": 330,
+            "structure_site_id": "AC7"
+          },
+          {
+            "atom_author_chain_id": "D",
+            "atom_author_component_id": "PLV",
+            "atom_author_residue_number": 331,
+            "label_asym_id": "L",
+            "label_component_id": "PLV",
+            "label_entity_id": "3",
+            "label_seq_id": null,
+            "source_author_component_id": "PLV",
+            "source_author_residue_number": 331,
+            "structure_site_id": "AC8"
+          }
+        ]
+      },
+      "locator_ids": [
+        "locator:1pwh-plv-instances"
+      ],
+      "source_binding_ids": [
+        "primary:RCSB:1PWH:mmCIF"
+      ],
+      "support_status": "direct_structure_observation"
+    },
+    {
+      "edge_id": "edge:primary-article-bound-adduct",
+      "edge_kind": "primary_article_bound_adduct_description",
+      "extracted_values": {
+        "chemical_context": "source_described_bound_adduct",
+        "source_component_id": "PLV"
+      },
+      "locator_ids": [
+        "locator:14596599-bound-adduct"
+      ],
+      "source_binding_ids": [
+        "projection:PubMed:14596599:abstract"
+      ],
+      "support_status": "source_described_bound_adduct"
+    }
+  ]
+}

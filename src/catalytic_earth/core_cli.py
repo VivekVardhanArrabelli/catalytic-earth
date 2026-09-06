@@ -190,6 +190,15 @@ def _step_cofactor_argument(value: str) -> str:
         raise argparse.ArgumentTypeError(str(exc)) from exc
 
 
+def _observed_component_argument(value: str) -> str:
+    from .atlas_draft_query import normalize_observed_state_filters
+
+    try:
+        return normalize_observed_state_filters(observed_components=[value])["observed_components"][0]
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError(str(exc)) from exc
+
+
 def verified_primary_evidence(
     batch_name: str = "default", *, bundle: dict[str, Any] | None = None,
 ) -> dict[str, Any] | None:
@@ -247,6 +256,7 @@ def verified_step_evidence(
 
 def build_parser() -> argparse.ArgumentParser:
     from .atlas_draft_batch import BATCHES
+    from .atlas_primary_evidence import PRIMARY_OBSERVED_STATE_KINDS
 
     parser = argparse.ArgumentParser(
         prog="catalytic-earth",
@@ -312,6 +322,19 @@ def build_parser() -> argparse.ArgumentParser:
         choices=["explicitly_inferred", "explicitly_assumed", "source_silent"],
         help="filter exact infer/assume markers; source_silent does not mean observed",
     )
+    drafts.add_argument(
+        "--observed-state-context", action="store_true",
+        help="include typed primary structural contexts with evidence and unresolved conflicts",
+    )
+    drafts.add_argument(
+        "--observed-state", action="append", choices=sorted(PRIMARY_OBSERVED_STATE_KINDS),
+        help="require a reviewed state kind; matches record context, not a source step",
+    )
+    drafts.add_argument(
+        "--observed-component", action="append", type=_observed_component_argument,
+        metavar="DEPOSITED_LABEL",
+        help="require an exact deposited component label in one typed context; repeat for AND",
+    )
     drafts.add_argument("--output", type=Path, help="optional JSON output path")
     subparsers.add_parser("claims", help="print the exact golden-result claim boundary")
     return parser
@@ -354,6 +377,9 @@ def main(argv: Sequence[str] | None = None) -> int:
             "cofactors": args.step_cofactor or (),
             "enzyme_contexts": args.step_enzyme_context or (),
             "source_assertions": args.step_source_assertion or (),
+            "include_observed_state_context": args.observed_state_context,
+            "observed_states": args.observed_state or (),
+            "observed_components": args.observed_component or (),
         }
         use_step_evidence = bool(
             args.step_evidence or args.step_cofactor

@@ -1,0 +1,292 @@
+{
+  "chemical_observations": [
+    {
+      "evidence_ids": [
+        "evidence:1pya-cif"
+      ],
+      "observation_id": "observation:deposited-pyr-state",
+      "observation_kind": "deposited_component_state",
+      "source_bond_order_code": null,
+      "source_description": "1PYA deposits chain-F PYR at label sequence position 1 and PDB author residue 82.",
+      "source_scope": "deposited_structure",
+      "support_edge_ids": [
+        "edge:deposited-structure-state"
+      ]
+    }
+  ],
+  "chemical_reconciliation": {
+    "statement": "The deposited processed component, curated precursor site, and M-CSA source alias remain separate evidence edges.",
+    "status": "not_required"
+  },
+  "context_id": "1pya-chain-f-pyr-label1-p00862-ser83",
+  "limits": [
+    "PDB author PYR82, PDB label PYR1, M-CSA author 1, and canonical P00862 Ser83 remain distinct namespaces.",
+    "The cross-source correspondence does not make precursor maturation a structure-observed trajectory or validate an M-CSA source step."
+  ],
+  "locators": [
+    {
+      "extracted_values": {
+        "author_chain_id": "F",
+        "author_component_id": "PYR",
+        "author_residue_number": 82,
+        "component_id": "PYR",
+        "entity_id": "2",
+        "label_asym_id": "F",
+        "label_seq_id": 1,
+        "source_description": "PYRUVIC ACID"
+      },
+      "locator_id": "locator:1pya-pyr-instance",
+      "physical_lines": [
+        600,
+        1321,
+        10300,
+        10304
+      ],
+      "selector": {
+        "categories": [
+          "_chem_comp",
+          "_pdbx_poly_seq_scheme",
+          "_atom_site"
+        ],
+        "row": {
+          "label_asym_id": "F",
+          "label_comp_id": "PYR",
+          "label_seq_id": "1"
+        }
+      },
+      "source_binding_id": "primary:RCSB:1PYA:mmCIF:v2.1",
+      "source_format": "mmCIF",
+      "supports": "Direct deposited processed PYR component and numbering namespaces."
+    },
+    {
+      "extracted_values": {
+        "canonical_site": {
+          "accession": "P00862",
+          "residue_name": "SER",
+          "sequence_position": 83
+        },
+        "source_record_alias": {
+          "author_position": 1,
+          "chain_id": "F",
+          "label_position": 1,
+          "pdb_id": "1PYA",
+          "ptm_name": "Pyr",
+          "residue_code": "X",
+          "source_assertion_id": "atlas-draft.m0049.source-residue-7"
+        }
+      },
+      "locator_id": "locator:m0049-pyr1f-ser83",
+      "physical_lines": [
+        675,
+        678,
+        679,
+        690,
+        693,
+        698
+      ],
+      "selector": {
+        "json_pointer": "/entry/residues/*[function_location_abv=ptm]"
+      },
+      "source_binding_id": "source:M-CSA:M0049:snapshot",
+      "source_format": "M-CSA source snapshot JSON",
+      "supports": "Official-source PTM assertion connects its source alias to P00862 Ser83 without a PDB-author-82 mapping."
+    },
+    {
+      "extracted_values": {
+        "canonical_site": {
+          "accession": "P00862",
+          "residue_name": "SER",
+          "sequence_position": 83
+        },
+        "description": "Pyruvic acid (Ser)",
+        "entry_version": 136
+      },
+      "locator_id": "locator:p00862-ser83",
+      "physical_lines": [
+        1
+      ],
+      "selector": {
+        "json_paths": [
+          "/primaryAccession",
+          "/features[type='Modified residue'][location.start.value=83]",
+          "/sequence/value[83]"
+        ]
+      },
+      "source_binding_id": "curated:UniProt:P00862",
+      "source_format": "UniProtKB JSON",
+      "supports": "Curated P00862 modified-residue identity at canonical position 83."
+    }
+  ],
+  "observed_entity": {
+    "attachment_context": "polymer_integrated",
+    "chemical_context": "processed_state",
+    "entity_context": "polymer_component",
+    "entity_id": "2",
+    "normalized_chebi_id": null,
+    "source_component_id": "PYR",
+    "source_description": "PYRUVIC ACID",
+    "state_kind": "polymer_modified_component"
+  },
+  "projection_id": "primary-observed-state:M0049:1PYA:PYR",
+  "record_binding": {
+    "mcsa_id": "M0049",
+    "record_id": "atlas50-draft:m0049:source-scoped-mechanism-draft",
+    "source_snapshot_sha256": "37ba50b02ee04d61b50d2b85e559a8d1671eef528e45f98945b947c54d95471d"
+  },
+  "schema_version": "catalytic-earth.primary-observed-state-projection.v1",
+  "site_crosswalk": {
+    "author_number_mapping_status": "not_asserted",
+    "canonical_site": {
+      "accession": "P00862",
+      "residue_name": "SER",
+      "sequence_position": 83
+    },
+    "relationship": "precursor_residue_to_processed_component",
+    "source_record_alias": {
+      "author_position": 1,
+      "chain_id": "F",
+      "label_position": 1,
+      "pdb_id": "1PYA",
+      "ptm_name": "Pyr",
+      "residue_code": "X",
+      "source_assertion_id": "atlas-draft.m0049.source-residue-7"
+    },
+    "status": "cross_source_curated_projection",
+    "structure_instance_index": 0,
+    "support_edge_ids": [
+      "edge:curated-canonical-site",
+      "edge:deposited-structure-state",
+      "edge:cross-source-correspondence"
+    ]
+  },
+  "source_bindings": [
+    {
+      "binding_id": "primary:RCSB:1PYA:mmCIF:v2.1",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/1PYA.cif",
+      "sha256": "2f2618f16d45b12285636a392f039c21682fe5ccb81e8d27e9d5c890de05718d"
+    },
+    {
+      "binding_id": "curated:UniProt:P00862",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/UniProt_P00862.json",
+      "sha256": "4b17425b4928aef6b43a6a7b0168c98ce1078aedf0865da3e761c870765ce6e1"
+    },
+    {
+      "binding_id": "source:M-CSA:M0049:snapshot",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0049.json",
+      "sha256": "37ba50b02ee04d61b50d2b85e559a8d1671eef528e45f98945b947c54d95471d"
+    }
+  ],
+  "structure_context": {
+    "curated_protein_accession": "P00862",
+    "model_id": 1,
+    "pdb_id": "1PYA",
+    "protein_author_chain_ids": [
+      "F"
+    ],
+    "protein_entity_ids": [
+      "2"
+    ],
+    "protein_label_asym_ids": [
+      "F"
+    ]
+  },
+  "structure_instances": [
+    {
+      "atom_author_chain_id": "F",
+      "atom_author_component_id": "PYR",
+      "atom_author_residue_number": 82,
+      "label_asym_id": "F",
+      "label_component_id": "PYR",
+      "label_entity_id": "2",
+      "label_seq_id": 1,
+      "source_author_component_id": null,
+      "source_author_residue_number": null,
+      "structure_site_id": null
+    }
+  ],
+  "support_edges": [
+    {
+      "edge_id": "edge:deposited-structure-state",
+      "edge_kind": "deposited_structure_state",
+      "extracted_values": {
+        "entity_context": "polymer_component",
+        "entity_id": "2",
+        "source_component_id": "PYR",
+        "source_description": "PYRUVIC ACID",
+        "structure_instances": [
+          {
+            "atom_author_chain_id": "F",
+            "atom_author_component_id": "PYR",
+            "atom_author_residue_number": 82,
+            "label_asym_id": "F",
+            "label_component_id": "PYR",
+            "label_entity_id": "2",
+            "label_seq_id": 1,
+            "source_author_component_id": null,
+            "source_author_residue_number": null,
+            "structure_site_id": null
+          }
+        ]
+      },
+      "locator_ids": [
+        "locator:1pya-pyr-instance"
+      ],
+      "source_binding_ids": [
+        "primary:RCSB:1PYA:mmCIF:v2.1"
+      ],
+      "support_status": "direct_structure_observation"
+    },
+    {
+      "edge_id": "edge:curated-canonical-site",
+      "edge_kind": "curated_canonical_site",
+      "extracted_values": {
+        "canonical_site": {
+          "accession": "P00862",
+          "residue_name": "SER",
+          "sequence_position": 83
+        }
+      },
+      "locator_ids": [
+        "locator:p00862-ser83"
+      ],
+      "source_binding_ids": [
+        "curated:UniProt:P00862"
+      ],
+      "support_status": "curated_identity_support"
+    },
+    {
+      "edge_id": "edge:cross-source-correspondence",
+      "edge_kind": "cross_source_correspondence",
+      "extracted_values": {
+        "author_number_mapping_status": "not_asserted",
+        "canonical_site": {
+          "accession": "P00862",
+          "residue_name": "SER",
+          "sequence_position": 83
+        },
+        "relationship": "precursor_residue_to_processed_component",
+        "source_record_alias": {
+          "author_position": 1,
+          "chain_id": "F",
+          "label_position": 1,
+          "pdb_id": "1PYA",
+          "ptm_name": "Pyr",
+          "residue_code": "X",
+          "source_assertion_id": "atlas-draft.m0049.source-residue-7"
+        },
+        "structure_instance_index": 0
+      },
+      "locator_ids": [
+        "locator:1pya-pyr-instance",
+        "locator:m0049-pyr1f-ser83",
+        "locator:p00862-ser83"
+      ],
+      "source_binding_ids": [
+        "primary:RCSB:1PYA:mmCIF:v2.1",
+        "curated:UniProt:P00862",
+        "source:M-CSA:M0049:snapshot"
+      ],
+      "support_status": "cross_source_curated_projection"
+    }
+  ]
+}

@@ -1,0 +1,365 @@
+{
+  "chemical_observations": [
+    {
+      "evidence_ids": [
+        "evidence:1l6g-cif"
+      ],
+      "observation_id": "observation:deposited-pdd-state",
+      "observation_kind": "deposited_component_state",
+      "source_bond_order_code": null,
+      "source_description": "1L6G deposits two PDD nonpolymer instances.",
+      "source_scope": "deposited_structure",
+      "support_edge_ids": [
+        "edge:deposited-structure-state"
+      ]
+    },
+    {
+      "evidence_ids": [
+        "evidence:11886871-article"
+      ],
+      "observation_id": "observation:primary-analogue-description",
+      "observation_kind": "primary_article_state_description",
+      "source_bond_order_code": null,
+      "source_description": "The primary article designates PLP-D-Ala as a reaction-intermediate analogue.",
+      "source_scope": "primary_research_article",
+      "support_edge_ids": [
+        "edge:primary-article-analogue"
+      ]
+    }
+  ],
+  "chemical_reconciliation": {
+    "statement": "The deposited PDD identity and primary-article PLP-D-Ala analogue designation are retained as separate observations.",
+    "status": "source_scopes_separated"
+  },
+  "context_id": "1l6g-pdd-bound-d-alanine-analogue",
+  "limits": [
+    "The second PDD instance is atom author B/PDD/1390 while its nonpolymer source-author row is PDA/390; these namespaces are not normalized.",
+    "Absence is confined to the deposited struct_conn table and does not assert general physical noncovalency.",
+    "The source-designated analogue does not validate a native intermediate, acid/base role, protonation, direction, or trajectory.",
+    "The current captured 1L6G bytes are not asserted to be the exact coordinate bytes used for the 2002 publication."
+  ],
+  "locators": [
+    {
+      "extracted_values": {
+        "component_id": "PDD",
+        "entity_id": "2",
+        "instances": [
+          {
+            "atom_author_chain_id": "A",
+            "atom_author_component_id": "PDD",
+            "atom_author_residue_number": 390,
+            "label_asym_id": "C",
+            "label_component_id": "PDD",
+            "label_entity_id": "2",
+            "label_seq_id": null,
+            "source_author_component_id": "PDA",
+            "source_author_residue_number": 390,
+            "structure_site_id": "AC1"
+          },
+          {
+            "atom_author_chain_id": "B",
+            "atom_author_component_id": "PDD",
+            "atom_author_residue_number": 1390,
+            "label_asym_id": "D",
+            "label_component_id": "PDD",
+            "label_entity_id": "2",
+            "label_seq_id": null,
+            "source_author_component_id": "PDA",
+            "source_author_residue_number": 390,
+            "structure_site_id": "AC2"
+          }
+        ],
+        "source_description": "N-(5'-PHOSPHOPYRIDOXYL)-D-ALANINE"
+      },
+      "locator_id": "locator:1l6g-pdd-instances",
+      "physical_lines": [
+        664,
+        1259,
+        1260,
+        7442,
+        7463,
+        8533,
+        8534
+      ],
+      "selector": {
+        "categories": [
+          "_chem_comp",
+          "_pdbx_nonpoly_scheme",
+          "_struct_site",
+          "_atom_site"
+        ],
+        "rows": {
+          "component_id": "PDD",
+          "label_asym_ids": [
+            "C",
+            "D"
+          ]
+        }
+      },
+      "source_binding_id": "primary:RCSB:1L6G:mmCIF",
+      "source_format": "mmCIF",
+      "supports": "Both deposited PDD instances and distinct source-author versus atom-author numbering."
+    },
+    {
+      "extracted_values": {
+        "attachment_context": "absent_from_deposited_struct_conn",
+        "connected_component_ids": [
+          "KCX",
+          "LEU",
+          "MET"
+        ],
+        "matching_component_row_count": 0,
+        "queried_component_id": "PDD",
+        "struct_conn_row_count": 4
+      },
+      "locator_id": "locator:1l6g-struct-conn",
+      "physical_lines": [
+        982,
+        1017,
+        1018,
+        1019,
+        1020
+      ],
+      "selector": {
+        "all_partner_component_ids": true,
+        "category": "_struct_conn",
+        "row_lines": [
+          1017,
+          1018,
+          1019,
+          1020
+        ]
+      },
+      "source_binding_id": "primary:RCSB:1L6G:mmCIF",
+      "source_format": "mmCIF",
+      "supports": "Complete deposited struct_conn row count and all-partner component inventory; PDD has zero matching rows."
+    },
+    {
+      "extracted_values": {
+        "article_term": "PLP-D-Ala",
+        "component_id": "PDD",
+        "designation": "reaction-intermediate analogue"
+      },
+      "locator_id": "locator:11886871-analogue",
+      "physical_lines": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "selector": {
+        "json_pointer": "/claims/0"
+      },
+      "source_binding_id": "projection:PubMed:11886871:abstract",
+      "source_format": "primary abstract factual projection JSON",
+      "supports": "Primary-article analogue designation only."
+    },
+    {
+      "extracted_values": {
+        "accession": "P10724",
+        "chains": "A/B=1-388",
+        "pdb_id": "1L6G"
+      },
+      "locator_id": "locator:p10724-1l6g",
+      "physical_lines": [
+        1
+      ],
+      "selector": {
+        "json_paths": [
+          "/primaryAccession",
+          "/uniProtKBCrossReferences[database='PDB'][id='1L6G']"
+        ]
+      },
+      "source_binding_id": "curated:UniProt:P10724",
+      "source_format": "UniProtKB JSON",
+      "supports": "Curated protein identity only."
+    }
+  ],
+  "observed_entity": {
+    "attachment_context": "absent_from_deposited_struct_conn",
+    "chemical_context": "source_designated_analogue",
+    "entity_context": "nonpolymer_component",
+    "entity_id": "2",
+    "normalized_chebi_id": null,
+    "source_component_id": "PDD",
+    "source_description": "N-(5'-PHOSPHOPYRIDOXYL)-D-ALANINE",
+    "state_kind": "bound_ligand_analogue"
+  },
+  "projection_id": "primary-observed-state:M0213:1L6G:PDD",
+  "record_binding": {
+    "mcsa_id": "M0213",
+    "record_id": "atlas50-draft:m0213:source-scoped-mechanism-draft",
+    "source_snapshot_sha256": "375d66615ee7a38cb3adc817b39ae28308d554590c26c3b4bbb7d08f2a74728d"
+  },
+  "schema_version": "catalytic-earth.primary-observed-state-projection.v1",
+  "site_crosswalk": {
+    "author_number_mapping_status": "not_asserted",
+    "canonical_site": null,
+    "relationship": "not_asserted",
+    "source_record_alias": null,
+    "status": "not_asserted",
+    "structure_instance_index": null,
+    "support_edge_ids": []
+  },
+  "source_bindings": [
+    {
+      "binding_id": "primary:RCSB:1L6G:mmCIF",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/observed_state_v3/m0213/1L6G.cif",
+      "sha256": "30dfaf04024aa524ae69f10ea9b382ab0fa670916982a30b9532bed541b2675a"
+    },
+    {
+      "binding_id": "projection:PubMed:11886871:abstract",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/observed_state_v3/m0213/PMID_11886871_projection.json",
+      "sha256": "a15a1498402668181559b12e6913be91a99232eebdeaefa8c58735051089b9a2"
+    },
+    {
+      "binding_id": "curated:UniProt:P10724",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/observed_state_v3/m0213/UniProt_P10724.json",
+      "sha256": "f3f69d2230dbb0188ae0ad7f03074d7d84e7d492ef366d5a831216d4bcb6b13f"
+    }
+  ],
+  "structure_context": {
+    "curated_protein_accession": "P10724",
+    "model_id": 1,
+    "pdb_id": "1L6G",
+    "protein_author_chain_ids": [
+      "A",
+      "B"
+    ],
+    "protein_entity_ids": [
+      "1"
+    ],
+    "protein_label_asym_ids": [
+      "A",
+      "B"
+    ]
+  },
+  "structure_instances": [
+    {
+      "atom_author_chain_id": "A",
+      "atom_author_component_id": "PDD",
+      "atom_author_residue_number": 390,
+      "label_asym_id": "C",
+      "label_component_id": "PDD",
+      "label_entity_id": "2",
+      "label_seq_id": null,
+      "source_author_component_id": "PDA",
+      "source_author_residue_number": 390,
+      "structure_site_id": "AC1"
+    },
+    {
+      "atom_author_chain_id": "B",
+      "atom_author_component_id": "PDD",
+      "atom_author_residue_number": 1390,
+      "label_asym_id": "D",
+      "label_component_id": "PDD",
+      "label_entity_id": "2",
+      "label_seq_id": null,
+      "source_author_component_id": "PDA",
+      "source_author_residue_number": 390,
+      "structure_site_id": "AC2"
+    }
+  ],
+  "support_edges": [
+    {
+      "edge_id": "edge:deposited-structure-state",
+      "edge_kind": "deposited_structure_state",
+      "extracted_values": {
+        "entity_context": "nonpolymer_component",
+        "entity_id": "2",
+        "source_component_id": "PDD",
+        "source_description": "N-(5'-PHOSPHOPYRIDOXYL)-D-ALANINE",
+        "structure_instances": [
+          {
+            "atom_author_chain_id": "A",
+            "atom_author_component_id": "PDD",
+            "atom_author_residue_number": 390,
+            "label_asym_id": "C",
+            "label_component_id": "PDD",
+            "label_entity_id": "2",
+            "label_seq_id": null,
+            "source_author_component_id": "PDA",
+            "source_author_residue_number": 390,
+            "structure_site_id": "AC1"
+          },
+          {
+            "atom_author_chain_id": "B",
+            "atom_author_component_id": "PDD",
+            "atom_author_residue_number": 1390,
+            "label_asym_id": "D",
+            "label_component_id": "PDD",
+            "label_entity_id": "2",
+            "label_seq_id": null,
+            "source_author_component_id": "PDA",
+            "source_author_residue_number": 390,
+            "structure_site_id": "AC2"
+          }
+        ]
+      },
+      "locator_ids": [
+        "locator:1l6g-pdd-instances"
+      ],
+      "source_binding_ids": [
+        "primary:RCSB:1L6G:mmCIF"
+      ],
+      "support_status": "direct_structure_observation"
+    },
+    {
+      "edge_id": "edge:primary-article-analogue",
+      "edge_kind": "primary_article_analogue_designation",
+      "extracted_values": {
+        "chemical_context": "source_designated_analogue",
+        "source_component_id": "PDD"
+      },
+      "locator_ids": [
+        "locator:11886871-analogue"
+      ],
+      "source_binding_ids": [
+        "projection:PubMed:11886871:abstract"
+      ],
+      "support_status": "source_designated_analogue"
+    },
+    {
+      "edge_id": "edge:deposited-connection-inventory",
+      "edge_kind": "deposited_connection_inventory",
+      "extracted_values": {
+        "attachment_context": "absent_from_deposited_struct_conn",
+        "connected_component_ids": [
+          "KCX",
+          "LEU",
+          "MET"
+        ],
+        "matching_component_row_count": 0,
+        "queried_component_id": "PDD",
+        "struct_conn_row_count": 4
+      },
+      "locator_ids": [
+        "locator:1l6g-struct-conn"
+      ],
+      "source_binding_ids": [
+        "primary:RCSB:1L6G:mmCIF"
+      ],
+      "support_status": "absent_from_deposited_struct_conn"
+    },
+    {
+      "edge_id": "edge:curated-protein-identity",
+      "edge_kind": "curated_protein_identity",
+      "extracted_values": {
+        "accession": "P10724",
+        "pdb_id": "1L6G"
+      },
+      "locator_ids": [
+        "locator:p10724-1l6g"
+      ],
+      "source_binding_ids": [
+        "curated:UniProt:P10724"
+      ],
+      "support_status": "curated_identity_support"
+    }
+  ]
+}

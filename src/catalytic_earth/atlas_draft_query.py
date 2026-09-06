@@ -3,7 +3,8 @@ from __future__ import annotations
 
 import copy
 import json
-from typing import Any, Sequence
+from collections.abc import Sequence
+from typing import Any
 
 from .atlas_draft_index import (
     match_source_mechanism_components,
@@ -11,6 +12,30 @@ from .atlas_draft_index import (
 )
 from .atlas_primary_evidence import validate_primary_evidence
 from .atlas_step_evidence import match_step_evidence, normalize_step_filters
+
+
+def normalize_observed_state_filters(
+    *, observed_states: Sequence[str] = (), observed_components: Sequence[str] = (),
+) -> dict[str, list[str]]:
+    """Normalize explicit typed context filters without inferring chemistry."""
+    from .atlas_primary_evidence import PRIMARY_OBSERVED_STATE_KINDS
+
+    normalized = {}
+    for name, values in (
+        ("observed_states", observed_states), ("observed_components", observed_components),
+    ):
+        if not isinstance(values, Sequence) or isinstance(values, (str, bytes)):
+            raise ValueError(f"{name} must be an array of nonempty strings")
+        labels = []
+        for value in values:
+            if not isinstance(value, str) or not value.strip() or "," in value:
+                raise ValueError(f"{name} requires one nonempty label per clause")
+            label = value.strip().casefold()
+            if name == "observed_states" and label not in PRIMARY_OBSERVED_STATE_KINDS:
+                raise ValueError(f"unknown observed state kind: {value}")
+            labels.append(label)
+        normalized[name] = sorted(set(labels))
+    return normalized
 
 
 def query_source_drafts(
@@ -24,6 +49,8 @@ def query_source_drafts(
     step_evidence: dict[str, Any] | None = None,
     cofactors: Sequence[str] = (), enzyme_contexts: Sequence[str] = (),
     source_assertions: Sequence[str] = (),
+    include_observed_state_context: bool = False,
+    observed_states: Sequence[str] = (), observed_components: Sequence[str] = (),
 ) -> dict[str, Any]:
     """Intersect record filters and exact source witnesses, retaining evidence."""
     primary_summary = None
@@ -33,6 +60,23 @@ def query_source_drafts(
         for annotation in primary_evidence["annotations"]:
             record_id = annotation["record_binding"]["record_id"]
             annotations_by_record.setdefault(record_id, []).append(annotation)
+    observed_filters = normalize_observed_state_filters(
+        observed_states=observed_states, observed_components=observed_components,
+    )
+    if not isinstance(include_observed_state_context, bool):
+        raise ValueError("include_observed_state_context must be a boolean")
+    observed_filter_used = any(observed_filters.values())
+    use_observed_context = include_observed_state_context or observed_filter_used
+    observed_by_record = {}
+    for record_id, annotations in annotations_by_record.items():
+        observed_by_record[record_id] = [
+            annotation for annotation in annotations
+            if annotation["annotation_kind"] == "primary_observed_state_context"
+            and all(label == annotation["claim"]["observed_entity"]["state_kind"].casefold()
+                    for label in observed_filters["observed_states"])
+            and all(label == annotation["claim"]["observed_entity"]["source_component_id"].casefold()
+                    for label in observed_filters["observed_components"])
+        ]
     chemical_matches = match_source_participants(
         bundle, participants=participants, reactants=reactants, products=products,
     )
@@ -64,6 +108,9 @@ def query_source_drafts(
         if mcsa_id is not None and record["mcsa_id"].upper() != mcsa_id.upper():
             continue
         if assembly is not None and record["state_context"]["assembly"]["mode"] != assembly:
+            continue
+        record_observed_contexts = observed_by_record.get(record["record_id"], [])
+        if observed_filter_used and not record_observed_contexts:
             continue
         record_step_matches = [] if step_matches is None else copy.deepcopy(
             step_matches["matches"].get(record["record_id"], [])
@@ -112,6 +159,8 @@ def query_source_drafts(
             result["primary_evidence_annotations"] = copy.deepcopy(
                 annotations_by_record.get(record["record_id"], [])
             )
+        if use_observed_context:
+            result["observed_state_contexts"] = copy.deepcopy(record_observed_contexts)
         if step_evidence is not None:
             result["step_evidence_annotations"] = record_step_matches
             # Keep the complete source wording in compact results as well.
@@ -223,5 +272,26 @@ def query_source_drafts(
             "participant_match_grounds_matching_step": False,
             "compact_step_context": "full_step_summaries_and_separate_proposal_text_without_arrows",
             "empty_step_result": "no_matching_reviewed_step_annotation_not_absence_of_chemistry",
+        })
+    if use_observed_context:
+        output["schema_version"] = "catalytic-earth.source-draft-query.v5"
+        if primary_evidence is not None:
+            # Resolve excerpt and evidence binding IDs offline, including the
+            # distinction between captured bytes and a scoped article projection.
+            output["primary_evidence"]["source_bindings"] = copy.deepcopy(
+                primary_evidence["source_bindings"]
+            )
+        output["filters"].update(observed_filters)
+        output["observed_state_context_count"] = sum(
+            len(record["observed_state_contexts"]) for record in results
+        )
+        output["query_semantics"].update({
+            "observed_state_match_scope": "all_observed_state_filters_within_one_typed_record_annotation",
+            "observed_component_identity": "exact_deposited_component_label_trim_and_casefold_only",
+            "observed_state_and_step_join": "same_record_context_only",
+            "observed_state_grounds_step": False,
+            "observed_state_context_count_is_independent_observation_count": False,
+            "legacy_primary_annotation_state_classification": "not_inferred",
+            "empty_observed_state_result": "no_matching_reviewed_typed_annotation_not_absence_of_observation",
         })
     return output

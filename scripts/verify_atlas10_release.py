@@ -87,6 +87,11 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                 "    'step_false_join': run_query('--batch', 'plp-pyruvoyl', '--step-cofactor', 'PLP', '--step-enzyme-context', 'extra_enzymatic'),\n"
                 "    'step_inferred': run_query('--batch', 'plp-pyruvoyl', '--step-source-assertion', 'explicitly_inferred'),\n"
                 "    'step_assumed': run_query('--batch', 'plp-pyruvoyl', '--step-source-assertion', 'explicitly_assumed'),\n"
+                "    'observed_contexts': run_query('--batch', 'all', '--observed-state-context'),\n"
+                "    'observed_contexts_full': run_query('--batch', 'all', '--observed-state-context', '--steps'),\n"
+                "    'observed_analogue': run_query('--batch', 'all', '--observed-state', 'bound_ligand_analogue', '--observed-component', 'PDD'),\n"
+                "    'observed_step_join': run_query('--batch', 'plp-pyruvoyl', '--observed-state', 'bound_ligand_adduct', '--step-enzyme-context', 'extra_enzymatic'),\n"
+                "    'observed_false_join': run_query('--batch', 'all', '--observed-component', 'PDD', '--observed-component', 'PLV'),\n"
                 "}))\n"
             )
             draft_run = subprocess.run(
@@ -250,7 +255,10 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
             }
             if inferred != {("M0049", 7): "whole_step", ("M0186", 4): "stated_detail_only"}:
                 raise ValueError("installed step query confused inference scope")
-            pyruvoyl_primary = new_records["M0049"].get("primary_evidence_annotations", [])
+            pyruvoyl_primary = [
+                a for a in new_records["M0049"].get("primary_evidence_annotations", [])
+                if a["annotation_id"] == "m0049.1pya.processed-pyruvoyl-site"
+            ]
             if (len(pyruvoyl_primary) != 1
                     or pyruvoyl_primary[0]["claim"]["structure_site"]["author_residue_number"] != 82
                     or pyruvoyl_primary[0]["claim"]["sequence_mapping"]["status"] != "not_asserted"):
@@ -259,6 +267,50 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
             if ([r["mcsa_id"] for r in assumed] != ["M0186"]
                     or [a["step_binding"]["source_step_id"] for a in assumed[0]["step_evidence_annotations"]] != [5]):
                 raise ValueError("installed step query confused inference and assumption")
+            observed = queries["observed_contexts"]
+            if observed["record_count"] != 11 or observed["observed_state_context_count"] != 3:
+                raise ValueError("installed observed-state annotation coverage differs")
+            for batch in observed["batches"]:
+                result = batch["result"]
+                if result["observed_state_context_count"]:
+                    bindings = result["primary_evidence"].get("source_bindings", [])
+                    if not any(b["artifact_kind"] == "primary_source_projection" for b in bindings):
+                        raise ValueError("installed query lost abstract-projection provenance")
+                    for record in result["records"]:
+                        for annotation in record["observed_state_contexts"]:
+                            if not annotation["projection_excerpt"]["support_edges"] or not annotation["projection_excerpt"]["locators"]:
+                                raise ValueError("installed query lost observed-state source witnesses")
+            observed_rows = {
+                r["mcsa_id"]: r for b in observed["batches"] for r in b["result"]["records"]
+            }
+            full_observed_rows = {
+                r["mcsa_id"]: r for b in queries["observed_contexts_full"]["batches"]
+                for r in b["result"]["records"]
+            }
+            for name, row in observed_rows.items():
+                if (row["observed_state_contexts"] != full_observed_rows[name]["observed_state_contexts"]
+                        or row.get("primary_evidence_annotations") != full_observed_rows[name].get("primary_evidence_annotations")):
+                    raise ValueError("compact/full observed-state evidence differs")
+            if any(observed_rows[name]["observed_state_contexts"] for name in ("M0219", "M0222")):
+                raise ValueError("installed query inferred a typed state for a legacy annotation")
+            adduct = observed_rows["M0186"]["observed_state_contexts"][0]["claim"]
+            if adduct["chemical_reconciliation"]["status"] != "unresolved_source_description_vs_deposit":
+                raise ValueError("installed query lost the paper/deposited chemistry disagreement")
+            analogue = [r for b in queries["observed_analogue"]["batches"] for r in b["result"]["records"]]
+            if [r["mcsa_id"] for r in analogue] != ["M0213"]:
+                raise ValueError("installed query confused analogue designation and bound adduct")
+            instance = next(i for i in analogue[0]["observed_state_contexts"][0]["claim"]["structure_instances"]
+                            if i["atom_author_chain_id"] == "B")
+            if (instance["atom_author_residue_number"] != 1390
+                    or instance["source_author_residue_number"] != 390
+                    or instance["label_seq_id"] is not None):
+                raise ValueError("installed query conflated deposited residue namespaces")
+            joined = queries["observed_step_join"]
+            if (joined["record_count"] != 1 or joined["step_evidence_match_count"] != 2
+                    or joined["records"][0]["mcsa_id"] != "M0186"
+                    or joined["query_semantics"]["observed_state_grounds_step"] is not False
+                    or queries["observed_false_join"]["record_count"] != 0):
+                raise ValueError("installed observed-state filter overstates the evidence join")
             print("Fresh-directory source draft query passed with network connections blocked")
     expected_counts = {
         "case_count": 10,
