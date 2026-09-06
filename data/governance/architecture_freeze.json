@@ -148,7 +148,7 @@
     ],
     "maximum_relative_path_characters": 180,
     "observed_maximum": 180,
-    "paths_checked": 17346
+    "paths_checked": 17357
   },
   "replacement_family_path": {
     "engine": "src/catalytic_earth/family_onboarding.py",

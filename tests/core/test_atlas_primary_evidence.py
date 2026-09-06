@@ -25,6 +25,9 @@ RAW_2QUT = (
     "data/atlas/source_drafts/batches/aldolase-transketolase/"
     "review/primary_sources/2QUT.cif"
 )
+M0222_V1_ANNOTATION_SHA256 = (
+    "b3ec318c98396833ade49cca3d811ef202066fa1c36ad8f60c4c1cb5f6cd9792"
+)
 
 
 def _valid_sidecar(bundle: dict) -> dict:
@@ -163,6 +166,29 @@ def _valid_sidecar(bundle: dict) -> dict:
     return sidecar
 
 
+def _canonical_sha256(value: object) -> str:
+    return hashlib.sha256(
+        json.dumps(value, ensure_ascii=False, separators=(",", ":"), sort_keys=True).encode(
+            "utf-8"
+        )
+    ).hexdigest()
+
+
+def _repin(sidecar: dict) -> None:
+    sidecar["review"]["annotation_payload_sha256"] = (
+        canonical_annotation_payload_sha256(sidecar)
+    )
+
+
+def _valid_v2_sidecar(bundle: dict) -> dict:
+    sidecar = verified_primary_evidence(
+        "aldolase-transketolase", bundle=bundle
+    )
+    assert sidecar is not None
+    assert sidecar["schema_version"] == "catalytic-earth.atlas-primary-evidence.v2"
+    return copy.deepcopy(sidecar)
+
+
 class PrimaryEvidenceTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -184,6 +210,100 @@ class PrimaryEvidenceTests(unittest.TestCase):
             result["annotation_payload_sha256"],
             sidecar["review"]["annotation_payload_sha256"],
         )
+
+    def test_v2_validates_proposal_context_and_preserves_the_v1_annotation(self):
+        sidecar = _valid_v2_sidecar(self.bundle)
+
+        summary = validate_primary_evidence(
+            sidecar, bundle=self.bundle, repo_root=ROOT
+        )
+
+        self.assertEqual(summary["annotation_count"], 2)
+        self.assertEqual(
+            [annotation["record_binding"]["mcsa_id"] for annotation in sidecar["annotations"]],
+            ["M0219", "M0222"],
+        )
+        self.assertEqual(
+            _canonical_sha256(sidecar["annotations"][1]),
+            M0222_V1_ANNOTATION_SHA256,
+        )
+
+    def test_v2_rejects_wrong_proposal_or_compiled_reference(self):
+        for field, value, message in (
+            ("source_mechanism_id", 1, "proposal ID differs"),
+            ("reference_pubmed_id", "9398292", "proposal reference PMID is absent"),
+        ):
+            with self.subTest(field=field):
+                sidecar = _valid_v2_sidecar(self.bundle)
+                sidecar["annotations"][0]["proposal_binding"][field] = value
+                _repin(sidecar)
+                with self.assertRaisesRegex(ValueError, message):
+                    validate_primary_evidence(sidecar, bundle=self.bundle)
+
+    def test_v2_rejects_site_mapping_that_differs_from_bound_projection(self):
+        sidecar = _valid_v2_sidecar(self.bundle)
+        sidecar["annotations"][0]["claim"]["site_mappings"][0][
+            "uniprot_sequence_position"
+        ] = 999
+        _repin(sidecar)
+
+        with self.assertRaisesRegex(ValueError, "site mappings differ"):
+            validate_primary_evidence(sidecar, bundle=self.bundle, repo_root=ROOT)
+
+    def test_v2_rejects_wrong_paper_identity_and_artifact_binding(self):
+        sidecar = _valid_v2_sidecar(self.bundle)
+        paper = sidecar["annotations"][0]["evidence"][1]
+        paper["source_id"] = "PubMed:33828999"
+        _repin(sidecar)
+        with self.assertRaisesRegex(ValueError, "lacks unique direct"):
+            validate_primary_evidence(sidecar, bundle=self.bundle)
+
+        sidecar = _valid_v2_sidecar(self.bundle)
+        paper = sidecar["annotations"][0]["evidence"][1]
+        structure_binding = next(
+            binding
+            for binding in sidecar["source_bindings"]
+            if binding["binding_id"] == "primary:RCSB:4KXV:mmCIF"
+        )
+        paper["source_binding_id"] = structure_binding["binding_id"]
+        paper["source_sha256"] = structure_binding["sha256"]
+        _repin(sidecar)
+        with self.assertRaisesRegex(ValueError, "paper evidence binding lacks a PMID locator"):
+            validate_primary_evidence(sidecar, bundle=self.bundle, repo_root=ROOT)
+
+    def test_v2_requires_nonexpanding_support_scope_and_limits(self):
+        sidecar = _valid_v2_sidecar(self.bundle)
+        sidecar["annotations"][0]["claim"]["support_scope"]["residue_roles"] = (
+            "experimentally_validated"
+        )
+        _repin(sidecar)
+        with self.assertRaisesRegex(ValueError, "support scope overclaims"):
+            validate_primary_evidence(sidecar, bundle=self.bundle)
+
+        sidecar = _valid_v2_sidecar(self.bundle)
+        sidecar["annotations"][0]["limits"] = sidecar["annotations"][0]["limits"][1:]
+        _repin(sidecar)
+        with self.assertRaisesRegex(ValueError, "required proposal-context boundary"):
+            validate_primary_evidence(sidecar, bundle=self.bundle)
+
+    def test_v2_query_finds_protein_context_without_mutating_inputs(self):
+        sidecar = _valid_v2_sidecar(self.bundle)
+        before_bundle = copy.deepcopy(self.bundle)
+        before_sidecar = copy.deepcopy(sidecar)
+
+        result = query_source_drafts(
+            self.bundle, text="P29401", primary_evidence=sidecar
+        )
+
+        self.assertEqual([record["mcsa_id"] for record in result["records"]], ["M0219"])
+        annotation = result["records"][0]["primary_evidence_annotations"][0]
+        self.assertEqual(annotation["proposal_binding"]["source_mechanism_id"], 2)
+        self.assertEqual(
+            annotation["claim"]["support_scope"]["residue_roles"],
+            "computational_only",
+        )
+        self.assertEqual(self.bundle, before_bundle)
+        self.assertEqual(sidecar, before_sidecar)
 
     def test_rejects_stale_record_source_binding(self):
         sidecar = _valid_sidecar(self.bundle)
@@ -296,7 +416,7 @@ class PrimaryEvidenceTests(unittest.TestCase):
         assert sidecar is not None
         self.assertEqual(
             sidecar["review"]["annotation_payload_sha256"],
-            "a7ec87ea2f5446e592c9288764069f49d95f9ff0f1dca056607272eb6076ec8c",
+            "575b0772268a6dd2b6e733d8e811eb9956c991fea6f88d0b167504594a4b2eb6",
         )
         packaged_raw = core_cli._resource_bytes(
             "draft_data/aldolase_transketolase_primary_evidence.json"
@@ -420,7 +540,7 @@ class PrimaryEvidenceTests(unittest.TestCase):
         self.assertEqual(result["records"][0]["mcsa_id"], "M0222")
         self.assertEqual(
             result["primary_evidence"]["annotation_payload_sha256"],
-            "a7ec87ea2f5446e592c9288764069f49d95f9ff0f1dca056607272eb6076ec8c",
+            "575b0772268a6dd2b6e733d8e811eb9956c991fea6f88d0b167504594a4b2eb6",
         )
         annotation = result["records"][0]["primary_evidence_annotations"][0]
         self.assertIsNone(

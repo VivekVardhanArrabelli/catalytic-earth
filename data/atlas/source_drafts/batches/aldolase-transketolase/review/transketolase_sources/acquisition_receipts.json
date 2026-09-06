@@ -1,0 +1,149 @@
+{
+  "aggregate": {
+    "request_count": 7,
+    "response_bytes_read": 2843282,
+    "within_limits": true
+  },
+  "attempts": [
+    {
+      "body_file_birth_time_utc": "2026-09-06T01:50:46.330Z",
+      "bytes_read": 1338622,
+      "final_url": "https://files.rcsb.org/download/4KXV.cif",
+      "http_status": 200,
+      "receipt_limit": "The first acquisition run proved HTTP 200 and saved this body but aborted before persisting request timestamps and headers.",
+      "receipt_status": "incomplete_initial_attempt",
+      "redirects_followed": 0,
+      "request_index": 1,
+      "request_time_utc": null,
+      "requested_url": "https://files.rcsb.org/download/4KXV.cif",
+      "response_headers": null,
+      "sha256": "2211b8bd450ac25f432a3db1e93ebcca4bf08a4223c8f8ac12fff100fada300f"
+    },
+    {
+      "body_file_birth_time_utc": "2026-09-06T01:50:46.986Z",
+      "bytes_read": 370,
+      "final_url": "https://www.ebi.ac.uk/pdbe/api/mappings/uniprot/4kxv",
+      "http_status": 200,
+      "receipt_limit": "The first acquisition run proved HTTP 200 and saved this body but aborted before persisting request timestamps and headers.",
+      "receipt_status": "incomplete_initial_attempt",
+      "redirects_followed": 0,
+      "request_index": 2,
+      "request_time_utc": null,
+      "requested_url": "https://www.ebi.ac.uk/pdbe/api/mappings/uniprot/4kxv",
+      "response_headers": null,
+      "sha256": "058d36d71c99e450b7beaaa6171cb93663ce0a7d70d92bf65f6c78e30287701c"
+    },
+    {
+      "body_file_birth_time_utc": "2026-09-06T01:50:47.866Z",
+      "bytes_read": 82649,
+      "final_url": "https://www.ebi.ac.uk/pdbe/api/pdb/entry/residue_listing/4kxv",
+      "http_status": 200,
+      "receipt_limit": "The first acquisition run proved HTTP 200 and saved this body but aborted before persisting request timestamps and headers.",
+      "receipt_status": "incomplete_initial_attempt",
+      "redirects_followed": 0,
+      "request_index": 3,
+      "request_time_utc": null,
+      "requested_url": "https://www.ebi.ac.uk/pdbe/api/pdb/entry/residue_listing/4kxv",
+      "response_headers": null,
+      "sha256": "8697dbb433cf2300a1e9aab0a5503ae599de47594e47234b3722f26a332a37ff"
+    },
+    {
+      "body_file_birth_time_utc": null,
+      "bytes_read": 0,
+      "final_url": null,
+      "http_status": 404,
+      "receipt_limit": "The first acquisition run raised HTTPError 404 before reading or persisting an error body, timestamp, final URL, or headers.",
+      "receipt_status": "incomplete_failed_attempt",
+      "redirects_followed": 0,
+      "request_index": 4,
+      "request_time_utc": null,
+      "requested_url": "https://pmc.ncbi.nlm.nih.gov/utils/oa/oa.fcgi?id=PMC8016368",
+      "response_headers": null,
+      "sha256": null
+    },
+    {
+      "body_file_birth_time_utc": null,
+      "bytes_read": 1338622,
+      "completed_at_utc": "2026-09-06T01:52:51.488Z",
+      "final_url": "https://files.rcsb.org/download/4KXV.cif",
+      "http_status": 200,
+      "receipt_limit": null,
+      "receipt_status": "complete_reacquisition",
+      "redirects_followed": 0,
+      "request_index": 5,
+      "request_time_utc": "2026-09-06T01:52:51.276Z",
+      "requested_url": "https://files.rcsb.org/download/4KXV.cif",
+      "response_headers": {
+        "Content-Disposition": "attachment;filename=4KXV.cif",
+        "Content-Type": "chemical/x-cif",
+        "Date": "Sun, 06 Sep 2026 01:50:46 GMT"
+      },
+      "sha256": "2211b8bd450ac25f432a3db1e93ebcca4bf08a4223c8f8ac12fff100fada300f"
+    },
+    {
+      "body_file_birth_time_utc": null,
+      "bytes_read": 370,
+      "completed_at_utc": "2026-09-06T01:52:52.021Z",
+      "final_url": "https://www.ebi.ac.uk/pdbe/api/mappings/uniprot/4kxv",
+      "http_status": 200,
+      "receipt_limit": null,
+      "receipt_status": "complete_reacquisition",
+      "redirects_followed": 0,
+      "request_index": 6,
+      "request_time_utc": "2026-09-06T01:52:51.489Z",
+      "requested_url": "https://www.ebi.ac.uk/pdbe/api/mappings/uniprot/4kxv",
+      "response_headers": {
+        "Content-Length": "370",
+        "Content-Type": "application/json",
+        "Date": "Sun, 06 Sep 2026 01:52:52 GMT"
+      },
+      "sha256": "058d36d71c99e450b7beaaa6171cb93663ce0a7d70d92bf65f6c78e30287701c"
+    },
+    {
+      "body_file_birth_time_utc": null,
+      "bytes_read": 82649,
+      "completed_at_utc": "2026-09-06T01:52:53.055Z",
+      "final_url": "https://www.ebi.ac.uk/pdbe/api/pdb/entry/residue_listing/4kxv",
+      "http_status": 200,
+      "receipt_limit": null,
+      "receipt_status": "complete_reacquisition",
+      "redirects_followed": 0,
+      "request_index": 7,
+      "request_time_utc": "2026-09-06T01:52:52.023Z",
+      "requested_url": "https://www.ebi.ac.uk/pdbe/api/pdb/entry/residue_listing/4kxv",
+      "response_headers": {
+        "Content-Length": "82649",
+        "Content-Type": "application/json",
+        "Date": "Sun, 06 Sep 2026 01:52:52 GMT"
+      },
+      "sha256": "8697dbb433cf2300a1e9aab0a5503ae599de47594e47234b3722f26a332a37ff"
+    }
+  ],
+  "final_artifacts": [
+    {
+      "bytes": 1338622,
+      "path": "4KXV.cif",
+      "sha256": "2211b8bd450ac25f432a3db1e93ebcca4bf08a4223c8f8ac12fff100fada300f",
+      "source_attempt_index": 5
+    },
+    {
+      "bytes": 370,
+      "path": "4kxv_uniprot_mapping.json",
+      "sha256": "058d36d71c99e450b7beaaa6171cb93663ce0a7d70d92bf65f6c78e30287701c",
+      "source_attempt_index": 6
+    },
+    {
+      "bytes": 82649,
+      "path": "4kxv_residue_listing.json",
+      "sha256": "8697dbb433cf2300a1e9aab0a5503ae599de47594e47234b3722f26a332a37ff",
+      "source_attempt_index": 7
+    }
+  ],
+  "limits": {
+    "enforcement": "Checked before each request, against declared Content-Length when present, and during each body read.",
+    "max_requests": 100,
+    "max_response_bytes": 31457280
+  },
+  "schema_version": "catalytic-earth.primary-source-acquisition-receipts.v1",
+  "scope_note": "Counts include the four calls in the aborted initial run and the three complete reacquisitions. The failed 404 response body was not read, so it contributes zero read bytes."
+}

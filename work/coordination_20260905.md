@@ -487,3 +487,68 @@ compact/full query results. All 149 checked existing scientific files remain
 byte-identical; only the additional package expectation gains the annotation
 asset hash. The complete source records, snapshots and reviewed scope decisions
 remain unchanged. Remote CI and publication follow this verified local state.
+
+## Transketolase proposal-specific protein context
+
+PR #36 merged at `cf26dfd4b530b463fc36bbb0e0c0777fd1c84d4f` after all four
+Linux/Windows Python 3.10/3.12 jobs passed (Actions 34002531313). Its feature
+commit is `f66c288f1b78be466c5b1746f58e25147db3a599`. The current branch,
+`codex/transketolase-protein-context`, starts from that clean main revision.
+
+The next decision-relevant question is whether M0219 proposal 2's cited human
+model supplies an exact protein/site context despite blank source UniProt rows.
+Proposal 1's yeast evidence must remain separate. Root owns adjudication,
+the annotation sidecar, documentation, release checks and publication.
+source_ingestion owns the minimal official structure/article audit package in
+`review/transketolase_sources`. state_contracts owns the typed proposal/context
+validator and focused regressions. draft_integration_review challenges the
+source-to-claim mapping and then the final annotation. All agents use the same
+model; their review is informed and correlated, not independent human review.
+
+Primary-paper methods explicitly name human 4KXV and His258A/Lys244A. Its
+protonation choices and proposed catalytic roles come from modeling and
+cross-species experimental motivation. The current PDB entry has 637 deposited
+polymer residues and a post-publication atomic-model revision, so author versus
+entity numbering and the distinction between current mapping and the paper's
+exact coordinate input require explicit checking before annotation.
+
+The checks resolve that numbering question: the 14-residue expression tag is
+at the C terminus (positions 624-637), so author and canonical positions 244
+and 258 agree. Archived 4KXV v1.3 and current v2.1 both support the same
+P29401 mapping. The cited 2020 paper explicitly names 4KXV and the chain-A
+sites; it predicts protonation and computes catalytic roles. The annotation
+therefore binds proposal 2's model-template identity and these two sites,
+without promoting whole-mechanism applicability or transferring yeast evidence.
+
+The separate challenge also distinguished chemical identifiers from drawings:
+proposal 2's sugar-derived components have carbon counts consistent with its
+X5P/E4P-to-G3P/F6P prose, while all six MRVs retain CHEBI:57483 labels. The
+annotation states this narrower finding and preserves exact structures,
+stereochemistry, speciation and reaction-equivalence abstentions. Root accepted
+the reviewer's wording correction that the paper *cites prior* yeast experiments.
+
+The successor annotation schema preserves the M0222 row exactly, adds typed
+primary-source/projection bindings, and checks the compiled proposal/reference
+and the projected protein/site tuple. At build time it compares the annotation
+with the bound project extraction and checks raw-file hashes; installed queries
+validate the packaged declarations and review pin without raw-source access.
+These checks do not independently rederive arbitrary scientific claims from
+coordinates or replace source-to-claim review. The same-model review remains
+explicitly correlated and non-human.
+
+Final scientific payload is pinned to
+`575b0772268a6dd2b6e733d8e811eb9956c991fea6f88d0b167504594a4b2eb6`.
+The projection pin is
+`54d0bfeefc1ba24cf4020ec75380cc60b74a91f2b78016b32868daf92c098f64`.
+The acquisition inventory distinguishes enumerated package requests from
+unrecorded discovery/page-view traffic and discloses the reused article's
+missing original HTTP receipt.
+
+Local verification passed: 34 focused query/annotation tests, the full core
+suite (221 tests: 220 passed, one optional jsonschema skip), repository
+contracts, and fresh-directory installed-wheel queries with networking
+blocked. Compact/full queries retain identical proposal context and keep
+the source evidence tier at 1. The Atlas-10 runtime hash is unchanged, and
+153 checked baseline scientific files are byte-identical to the PR #36 merge.
+The inherited M0222 annotation and its original source bindings are unchanged.
+Publication and remote CI follow this locally verified state.

@@ -73,6 +73,7 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                 "    'new_batch': run_query('--batch', 'aldolase-transketolase', '--steps'),\n"
                 "    'aldolases': run_query('--batch', 'aldolase-transketolase', '--reactant', '57642', '--product', '49299'),\n"
                 "    'primary': run_query('--batch', 'aldolase-transketolase', '--mcsa-id', 'M0222', '--text', 'DHAP-derived covalent moiety'),\n"
+                "    'transketolase_context': run_query('--batch', 'aldolase-transketolase', '--mcsa-id', 'M0219', '--text', 'P29401'),\n"
                 "}))\n"
             )
             draft_run = subprocess.run(
@@ -131,6 +132,36 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                 raise ValueError("installed primary evidence equated bound and free species")
             if primary_records[0]["evidence_tier"] != 1:
                 raise ValueError("primary evidence changed the source-record tier")
+            context_records = queries["transketolase_context"]["records"]
+            if len(context_records) != 1 or context_records[0]["mcsa_id"] != "M0219":
+                raise ValueError("installed transketolase context query differs")
+            contexts = context_records[0]["primary_evidence_annotations"]
+            full_tkt = next(r for r in additional if r["mcsa_id"] == "M0219")
+            if len(contexts) != 1 or contexts != full_tkt["primary_evidence_annotations"]:
+                raise ValueError("compact/full transketolase context differs")
+            context = contexts[0]
+            if context["proposal_binding"] != {
+                "proposal_id": "atlas-draft.m0219.mechanism-2",
+                "source_mechanism_id": 2,
+                "reference_pubmed_id": "33828899",
+            }:
+                raise ValueError("installed transketolase context lost its proposal binding")
+            context_claim = context["claim"]
+            if context_claim["protein_context"] != {
+                "pdb_id": "4KXV", "chain_id": "A", "uniprot_id": "P29401",
+            } or context_claim["site_mappings"] != [
+                {"residue_name": "LYS", "author_residue_number": 244,
+                 "uniprot_sequence_position": 244},
+                {"residue_name": "HIS", "author_residue_number": 258,
+                 "uniprot_sequence_position": 258},
+            ]:
+                raise ValueError("installed transketolase protein/site mapping differs")
+            support = context_claim["support_scope"]
+            if (support["residue_roles"] != "computational_only"
+                    or support["protonation_states"] != "computational_only"
+                    or support["full_mechanism"] != "not_validated"
+                    or context_records[0]["evidence_tier"] != 1):
+                raise ValueError("installed transketolase context overstates evidence")
             print("Fresh-directory source draft query passed with network connections blocked")
     expected_counts = {
         "case_count": 10,

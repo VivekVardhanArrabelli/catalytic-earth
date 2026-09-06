@@ -1,0 +1,548 @@
+{
+  "context_id": "4kxv-chain-a-p29401",
+  "limits": [
+    "The article directly identifies its human transketolase QM/MM model as derived from PDB 4KXV and names chain-A Lys244 and His258, while the PDB and PDBe mappings establish chain A as UniProt P29401 at those positions.",
+    "The article predicts protonation and acid-base behavior computationally and cites yeast mutagenesis as motivation; this projection makes no experimentally established catalytic-role, protonation-state, pKa, transition-state, or complete-mechanism claim.",
+    "This proposal-specific human context does not apply mechanism 1 or its 1TRK/P23254 yeast residue rows to P29401.",
+    "The paper supports the textual X5P plus E4P to F6P plus G3P context for its human study, but the M-CSA mechanism-2 MRV drawings retain CHEBI:57483 (S7P) identifier labels on sugar atoms. This projection does not resolve, relabel, or atom-map that source conflict and does not assert a canonical balanced reaction instance.",
+    "The retained 4KXV mmCIF is current revision 2.1 dated 2023-09-20, after the 2020 computational paper. It supports current deposited identity and mapping but is not claimed to be byte-identical to the coordinate file used by the paper.",
+    "The 4KXV construct has 637 polymer positions; the deposited P29401 alignment covers positions 1-623 and identifies positions 624-637 as an expression tag. Construct length is not treated as UniProt length."
+  ],
+  "locators": [
+    {
+      "extracted_values": {
+        "entry_id": "4KXV",
+        "title": "Human transketolase in covalent complex with donor ketose D-xylulose-5-phosphate, crystal 1"
+      },
+      "locator_id": "4kxv-entry-and-title",
+      "physical_lines": [
+        3,
+        1151,
+        1152
+      ],
+      "selector": {
+        "categories": [
+          "_entry",
+          "_struct"
+        ],
+        "items": [
+          "_entry.id",
+          "_struct.entry_id",
+          "_struct.title"
+        ],
+        "row_selector": "singleton"
+      },
+      "source_binding_id": "primary:RCSB:4KXV:mmCIF",
+      "source_format": "PDBx/mmCIF",
+      "supports": "The current deposit is entry 4KXV and titles the structure as human transketolase in covalent complex with donor ketose D-xylulose-5-phosphate."
+    },
+    {
+      "extracted_values": {
+        "entity_id": "1",
+        "gene": "TKT",
+        "organism": "Homo sapiens",
+        "taxonomy_id": 9606
+      },
+      "locator_id": "4kxv-human-entity",
+      "physical_lines": [
+        782,
+        829
+      ],
+      "selector": {
+        "category": "_entity_src_gen",
+        "items": [
+          "_entity_src_gen.pdbx_gene_src_gene",
+          "_entity_src_gen.pdbx_gene_src_scientific_name",
+          "_entity_src_gen.pdbx_gene_src_ncbi_taxonomy_id"
+        ],
+        "row_selector": {
+          "entity_id": "1"
+        }
+      },
+      "source_binding_id": "primary:RCSB:4KXV:mmCIF",
+      "source_format": "PDBx/mmCIF",
+      "supports": "Polymer entity 1 is deposited as human TKT, taxonomy 9606."
+    },
+    {
+      "extracted_values": {
+        "author_chain_id": "A",
+        "author_interval": [
+          1,
+          623
+        ],
+        "entity_id": "1",
+        "structure_interval": [
+          1,
+          623
+        ],
+        "uniprot_accession": "P29401",
+        "uniprot_interval": [
+          1,
+          623
+        ]
+      },
+      "locator_id": "4kxv-chain-a-p29401-alignment",
+      "physical_lines": [
+        831,
+        863
+      ],
+      "selector": {
+        "categories": [
+          "_struct_ref",
+          "_struct_ref_seq"
+        ],
+        "items": [
+          "_struct_ref.db_name",
+          "_struct_ref.pdbx_db_accession",
+          "_struct_ref.entity_id",
+          "_struct_ref_seq.pdbx_strand_id",
+          "_struct_ref_seq.seq_align_beg",
+          "_struct_ref_seq.seq_align_end",
+          "_struct_ref_seq.db_align_beg",
+          "_struct_ref_seq.db_align_end",
+          "_struct_ref_seq.pdbx_auth_seq_align_beg",
+          "_struct_ref_seq.pdbx_auth_seq_align_end"
+        ],
+        "row_selectors": [
+          {
+            "id": "1"
+          },
+          {
+            "align_id": "1"
+          }
+        ]
+      },
+      "source_binding_id": "primary:RCSB:4KXV:mmCIF",
+      "source_format": "PDBx/mmCIF",
+      "supports": "Entity 1, author chain A, structure positions 1-623, and author positions 1-623 align directly to UniProt P29401 positions 1-623."
+    },
+    {
+      "extracted_values": {
+        "construct_interval": [
+          624,
+          637
+        ],
+        "details": "expression tag"
+      },
+      "locator_id": "4kxv-expression-tag-boundary",
+      "physical_lines": [
+        866,
+        892
+      ],
+      "selector": {
+        "category": "_struct_ref_seq_dif",
+        "items": [
+          "_struct_ref_seq_dif.seq_num",
+          "_struct_ref_seq_dif.details",
+          "_struct_ref_seq_dif.pdbx_auth_seq_num"
+        ],
+        "row_selector": {
+          "align_id": "1",
+          "pdbx_ordinal_interval": [
+            1,
+            14
+          ]
+        }
+      },
+      "source_binding_id": "primary:RCSB:4KXV:mmCIF",
+      "source_format": "PDBx/mmCIF",
+      "supports": "The deposit labels construct positions 624-637 as expression tag rather than mapped P29401 residues."
+    },
+    {
+      "extracted_values": {
+        "asym_id": "A",
+        "auth_mon_id": "LYS",
+        "auth_seq_num": 244,
+        "entity_id": "1",
+        "insertion_code": ".",
+        "mon_id": "LYS",
+        "pdb_seq_num": 244,
+        "pdb_strand_id": "A",
+        "seq_id": 244
+      },
+      "locator_id": "4kxv-lys244-sequence-row",
+      "physical_lines": [
+        14447
+      ],
+      "selector": {
+        "category": "_pdbx_poly_seq_scheme",
+        "header_lines": [
+          14192,
+          14203
+        ],
+        "row_selector": {
+          "asym_id": "A",
+          "seq_id": "244"
+        }
+      },
+      "source_binding_id": "primary:RCSB:4KXV:mmCIF",
+      "source_format": "PDBx/mmCIF",
+      "supports": "For label asym A, structure position 244 is LYS and has PDB/author residue number 244 on author chain A."
+    },
+    {
+      "extracted_values": {
+        "asym_id": "A",
+        "auth_mon_id": "HIS",
+        "auth_seq_num": 258,
+        "entity_id": "1",
+        "insertion_code": ".",
+        "mon_id": "HIS",
+        "pdb_seq_num": 258,
+        "pdb_strand_id": "A",
+        "seq_id": 258
+      },
+      "locator_id": "4kxv-his258-sequence-row",
+      "physical_lines": [
+        14461
+      ],
+      "selector": {
+        "category": "_pdbx_poly_seq_scheme",
+        "header_lines": [
+          14192,
+          14203
+        ],
+        "row_selector": {
+          "asym_id": "A",
+          "seq_id": "258"
+        }
+      },
+      "source_binding_id": "primary:RCSB:4KXV:mmCIF",
+      "source_format": "PDBx/mmCIF",
+      "supports": "For label asym A, structure position 258 is HIS and has PDB/author residue number 258 on author chain A."
+    },
+    {
+      "extracted_values": {
+        "initial_release": {
+          "date": "2013-08-21",
+          "major": 1,
+          "minor": 0
+        },
+        "latest_revision": {
+          "date": "2023-09-20",
+          "major": 2,
+          "minor": 1
+        }
+      },
+      "locator_id": "4kxv-revision-history",
+      "physical_lines": [
+        15933,
+        15943
+      ],
+      "selector": {
+        "category": "_pdbx_audit_revision_history",
+        "row_selector": {
+          "ordinal": "6"
+        }
+      },
+      "source_binding_id": "primary:RCSB:4KXV:mmCIF",
+      "source_format": "PDBx/mmCIF",
+      "supports": "The retained file reports latest structure-model revision 2.1 dated 2023-09-20."
+    },
+    {
+      "extracted_values": {
+        "chain_id": "A",
+        "coverage": 1.0,
+        "entity_id": 1,
+        "identity": 1.0,
+        "struct_asym_id": "A",
+        "structure_interval": [
+          1,
+          623
+        ],
+        "uniprot_accession": "P29401",
+        "uniprot_interval": [
+          1,
+          623
+        ]
+      },
+      "locator_id": "pdbe-chain-a-p29401-map",
+      "physical_lines": [
+        1
+      ],
+      "selector": {
+        "json_pointer": "/4kxv/UniProt/P29401/mappings/0"
+      },
+      "source_binding_id": "primary:PDBe:4KXV:uniprot-mapping",
+      "source_format": "JSON",
+      "supports": "The official PDBe mapping independently exposes chain A/entity 1/struct asym A as UniProt P29401 positions 1-623 with identity and coverage 1.0 for the mapped segment."
+    },
+    {
+      "extracted_values": {
+        "author_insertion_code": "",
+        "author_residue_number": 244,
+        "observed_ratio": 1.0,
+        "residue_name": "LYS",
+        "residue_number": 244
+      },
+      "locator_id": "pdbe-lys244-observation",
+      "physical_lines": [
+        1
+      ],
+      "selector": {
+        "json_pointer": "/4kxv/molecules/0/chains/0/residues/243",
+        "parent_conditions": {
+          "chain_id": "A",
+          "entity_id": 1,
+          "struct_asym_id": "A"
+        }
+      },
+      "source_binding_id": "primary:PDBe:4KXV:residue-listing",
+      "source_format": "JSON",
+      "supports": "The official residue listing gives chain-A LYS at structure and author residue 244 with observed ratio 1.0."
+    },
+    {
+      "extracted_values": {
+        "author_insertion_code": "",
+        "author_residue_number": 258,
+        "observed_ratio": 1.0,
+        "residue_name": "HIS",
+        "residue_number": 258
+      },
+      "locator_id": "pdbe-his258-observation",
+      "physical_lines": [
+        1
+      ],
+      "selector": {
+        "json_pointer": "/4kxv/molecules/0/chains/0/residues/257",
+        "parent_conditions": {
+          "chain_id": "A",
+          "entity_id": 1,
+          "struct_asym_id": "A"
+        }
+      },
+      "source_binding_id": "primary:PDBe:4KXV:residue-listing",
+      "source_format": "JSON",
+      "supports": "The official residue listing gives chain-A HIS at structure and author residue 258 with observed ratio 1.0."
+    },
+    {
+      "extracted_values": {
+        "doi": "10.1021/acscatal.9b04690",
+        "license": "CC BY 4.0",
+        "pmc_id": "PMC8016368",
+        "pubmed_id": "33828899",
+        "title": "How the Destabilization of a Reaction Intermediate Affects Enzymatic Efficiency: The Case of Human Transketolase",
+        "year": 2020
+      },
+      "locator_id": "pmc-paper-identity-and-license",
+      "physical_lines": [
+        1,
+        2
+      ],
+      "selector": {
+        "document_id": "PMC8016368",
+        "infon_keys": [
+          "article-id_doi",
+          "article-id_pmc",
+          "article-id_pmid",
+          "license",
+          "year"
+        ],
+        "offset": 0,
+        "passage_index": 0
+      },
+      "source_binding_id": "primary:PMC:PMC8016368:BioC-XML",
+      "source_format": "BioC XML",
+      "supports": "The redistributed BioC document identifies the cited proposal-2 paper and embeds a CC BY 4.0 reuse notice."
+    },
+    {
+      "extracted_values": {
+        "acceptor": "D-erythrose-4-phosphate (E4P)",
+        "donor": "D-xylulose-5-phosphate (X5P)",
+        "products": [
+          "D-fructose-6-phosphate (F6P)",
+          "D-glyceraldehyde-3-phosphate (G3P)"
+        ]
+      },
+      "locator_id": "pmc-paper-reaction-context",
+      "physical_lines": [
+        9
+      ],
+      "selector": {
+        "document_id": "PMC8016368",
+        "offset": 3875,
+        "passage_index": 5,
+        "section_type": "INTRO"
+      },
+      "source_binding_id": "primary:PMC:PMC8016368:BioC-XML",
+      "source_format": "BioC XML",
+      "supports": "The paper describes human transketolase as using X5P and E4P to yield F6P and G3P; this supports only the paper/proposal textual context."
+    },
+    {
+      "extracted_values": {
+        "model_type": "QM/MM",
+        "organism": "Homo sapiens",
+        "pdb_id": "4KXV",
+        "resolution_angstrom": 0.97
+      },
+      "locator_id": "pmc-human-4kxv-model-origin",
+      "physical_lines": [
+        16
+      ],
+      "selector": {
+        "document_id": "PMC8016368",
+        "offset": 7124,
+        "passage_index": 12,
+        "section_type": "METHODS"
+      },
+      "source_binding_id": "primary:PMC:PMC8016368:BioC-XML",
+      "source_format": "BioC XML",
+      "supports": "The article says its QM/MM molecular model starts from the 0.97-Angstrom human transketolase ThDP-X5P X-ray structure PDB 4KXV, isolated from Homo sapiens."
+    },
+    {
+      "extracted_values": {
+        "author_sites": [
+          "Lys244",
+          "His258"
+        ],
+        "chain_id": "A",
+        "evidence_kind": "computational model methods informed by cited yeast mutagenesis"
+      },
+      "locator_id": "pmc-model-site-context",
+      "physical_lines": [
+        17
+      ],
+      "selector": {
+        "document_id": "PMC8016368",
+        "offset": 7658,
+        "passage_index": 13,
+        "section_type": "METHODS"
+      },
+      "source_binding_id": "primary:PMC:PMC8016368:BioC-XML",
+      "source_format": "BioC XML",
+      "supports": "The model methods name the His258A-Lys244A dyad and include Lys244A and His258A in the quantum region."
+    },
+    {
+      "extracted_values": {
+        "his258_role_status": "simulated in the model",
+        "lys244_pka_status": "calculated in the model",
+        "study_scope": "first catalytic stage, two elementary reactions"
+      },
+      "locator_id": "pmc-computational-scope",
+      "physical_lines": [
+        17,
+        32,
+        33
+      ],
+      "selector": {
+        "document_id": "PMC8016368",
+        "offsets": [
+          7658,
+          14822,
+          16316
+        ],
+        "passage_indexes": [
+          13,
+          25,
+          26
+        ],
+        "section_types": [
+          "METHODS",
+          "RESULTS",
+          "RESULTS"
+        ]
+      },
+      "source_binding_id": "primary:PMC:PMC8016368:BioC-XML",
+      "source_format": "BioC XML",
+      "supports": "The source itself frames Lys244 protonation and His258 acid-base behavior as modeled or predicted and limits this study to the first catalytic stage."
+    }
+  ],
+  "projection_id": "primary-protein-context:M0219:mechanism-2:4KXV-chain-A",
+  "proposal_binding": {
+    "mcsa_id": "M0219",
+    "proposal_id": "atlas-draft.m0219.mechanism-2",
+    "record_id": "atlas50-draft:m0219:source-scoped-mechanism-draft",
+    "reference": {
+      "doi": "10.1021/acscatal.9b04690",
+      "pmc_id": "PMC8016368",
+      "pubmed_id": "33828899"
+    },
+    "source_mechanism_id": 2
+  },
+  "protein_context": {
+    "author_chain_id": "A",
+    "construct_length": 637,
+    "entity_id": "1",
+    "expression_tag_interval": [
+      624,
+      637
+    ],
+    "mapped_interval": {
+      "author": [
+        1,
+        623
+      ],
+      "structure": [
+        1,
+        623
+      ],
+      "uniprot": [
+        1,
+        623
+      ]
+    },
+    "organism": "Homo sapiens",
+    "pdb_id": "4KXV",
+    "struct_asym_id": "A",
+    "taxonomy_id": 9606,
+    "uniprot_accession": "P29401"
+  },
+  "schema_version": "catalytic-earth.primary-protein-context-projection.v1",
+  "sites": [
+    {
+      "author_residue_number": 244,
+      "label_seq_id": 244,
+      "locator_ids": [
+        "4kxv-chain-a-p29401-alignment",
+        "4kxv-lys244-sequence-row",
+        "pdbe-chain-a-p29401-map",
+        "pdbe-lys244-observation",
+        "pmc-model-site-context"
+      ],
+      "residue_name": "LYS",
+      "uniprot_position": 244
+    },
+    {
+      "author_residue_number": 258,
+      "label_seq_id": 258,
+      "locator_ids": [
+        "4kxv-chain-a-p29401-alignment",
+        "4kxv-his258-sequence-row",
+        "pdbe-chain-a-p29401-map",
+        "pdbe-his258-observation",
+        "pmc-model-site-context"
+      ],
+      "residue_name": "HIS",
+      "uniprot_position": 258
+    }
+  ],
+  "source_bindings": [
+    {
+      "binding_id": "primary:RCSB:4KXV:mmCIF",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/4KXV.cif",
+      "sha256": "2211b8bd450ac25f432a3db1e93ebcca4bf08a4223c8f8ac12fff100fada300f"
+    },
+    {
+      "binding_id": "primary:PDBe:4KXV:residue-listing",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/4kxv_residue_listing.json",
+      "sha256": "8697dbb433cf2300a1e9aab0a5503ae599de47594e47234b3722f26a332a37ff"
+    },
+    {
+      "binding_id": "primary:PDBe:4KXV:uniprot-mapping",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/4kxv_uniprot_mapping.json",
+      "sha256": "058d36d71c99e450b7beaaa6171cb93663ce0a7d70d92bf65f6c78e30287701c"
+    },
+    {
+      "binding_id": "primary:PMC:PMC8016368:BioC-XML",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/transketolase_sources/PMC8016368.xml",
+      "sha256": "b3908df8d1e364a9781c74427011fd7de298d490cc6f77e2f0f80267317d2654"
+    }
+  ],
+  "support_scope": {
+    "chain_mapping": "primary_structure_supported",
+    "full_mechanism": "not_validated",
+    "protein_identity": "primary_structure_supported",
+    "protonation_states": "computational_only",
+    "residue_roles": "computational_only",
+    "site_mapping": "primary_structure_supported"
+  }
+}
