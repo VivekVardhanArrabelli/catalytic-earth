@@ -77,6 +77,25 @@ def verified_panel_comparisons() -> dict[str, Any]:
     return value
 
 
+def verified_candidate_events() -> dict[str, Any]:
+    """Load the separate unreviewed event catalog with its content bindings."""
+    from .atlas_candidate_events import validate_candidate_event_catalog
+
+    prefix = "candidate_event_data/"
+    expected = json.loads(_resource_bytes(prefix + "expected.json"))
+    if expected.get("schema_version") != "catalytic-earth.candidate-event-package.v1":
+        raise ValueError("unsupported candidate event package")
+    raw = _resource_bytes(prefix + "catalog.json")
+    attribution = _resource_bytes(prefix + "attribution.md")
+    if hashlib.sha256(raw).hexdigest() != expected.get("catalog_sha256"):
+        raise ValueError("candidate event catalog differs from its expected hash")
+    if hashlib.sha256(attribution).hexdigest() != expected.get("attribution_sha256"):
+        raise ValueError("candidate event attribution differs from its expected hash")
+    value = json.loads(raw)
+    validate_candidate_event_catalog(value)
+    return value
+
+
 def build_golden_result() -> dict[str, Any]:
     raw = _resource_bytes(GOLDEN_INPUT)
     payload = json.loads(raw)
@@ -366,6 +385,18 @@ def build_parser() -> argparse.ArgumentParser:
     candidates.add_argument("--before-step", type=int, required=True, help="compare this source panel with the next step's source panel")
     candidates.add_argument("--preserve-context", action="store_true", help="retain supported unchanged stereo/coordinate annotations as uninterpreted context")
     candidates.add_argument("--output", type=Path, help="optional new JSON file; existing files are never overwritten")
+    events = subparsers.add_parser(
+        "atlas-candidate-events", help="search unreviewed candidates by exact bond and charge changes offline",
+        description="Require all changes within one retained candidate. Matches are literal drawing-level edits, not mechanism equivalence. With no change clauses, list candidates with eligible edits.",
+    )
+    events.add_argument("--bond", nargs=4, action="append", metavar=("E1", "E2", "BEFORE", "AFTER"),
+                        help="require an undirected element-pair bond change; order 0 means no bond; repeat for AND")
+    events.add_argument("--charge", nargs=3, action="append", metavar=("ELEMENT", "BEFORE", "AFTER"),
+                        help="require an exact element formal-charge change; repeat for AND")
+    events.add_argument("--support", choices=("after_graph_confirmed", "source_arrow_only", "any"),
+                        default="after_graph_confirmed", help="support required of each matching edit (default: after_graph_confirmed)")
+    events.add_argument("--mcsa-id", help="filter an exact M-CSA identifier, e.g. M0219")
+    events.add_argument("--output", type=Path, help="optional new JSON file; existing files are never overwritten")
     drafts = subparsers.add_parser(
         "atlas-drafts", help="query source-scoped mechanisms, states and abstentions offline"
     )
@@ -432,7 +463,8 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    args = build_parser().parse_args(argv)
+    parser = build_parser()
+    args = parser.parse_args(argv)
     if args.command == "reproduce":
         result = verified_golden_result()
         rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
@@ -545,6 +577,28 @@ def main(argv: Sequence[str] | None = None) -> int:
         rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
         if args.output:
             args.output.write_text(rendered, encoding="utf-8", newline="\n")
+        print(rendered, end="")
+        return 0
+    if args.command == "atlas-candidate-events":
+        from .atlas_candidate_events import query_candidate_events
+
+        try:
+            clauses = [
+                {"kind": "bond", "elements": [e1, e2], "before": int(before), "after": int(after)}
+                for e1, e2, before, after in (args.bond or [])
+            ] + [
+                {"kind": "charge", "elements": [element], "before": int(before), "after": int(after)}
+                for element, before, after in (args.charge or [])
+            ]
+            result = query_candidate_events(
+                verified_candidate_events(), clauses=clauses, mcsa_id=args.mcsa_id, support=args.support,
+            )
+        except ValueError as exc:
+            parser.error(str(exc))
+        rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
+        if args.output:
+            with args.output.open("x", encoding="utf-8", newline="\n") as stream:
+                stream.write(rendered)
         print(rendered, end="")
         return 0
     if args.command == "atlas-candidates":

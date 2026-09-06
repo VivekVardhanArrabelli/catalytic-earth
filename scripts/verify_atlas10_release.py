@@ -86,6 +86,11 @@ def verify_wheel(
                 "import importlib.util\n"
                 "assert importlib.util.find_spec('rdkit') is None\n"
                 "print(json.dumps({\n"
+                "    'candidate_events': command('atlas-candidate-events'),\n"
+                "    'candidate_cc': command('atlas-candidate-events', '--bond', 'C', 'C', '0', '1'),\n"
+                "    'candidate_cc_charge': command('atlas-candidate-events', '--bond', 'C', 'C', '0', '1', '--charge', 'C', '-1', '0'),\n"
+                "    'candidate_false_join': command('atlas-candidate-events', '--bond', 'C', 'C', '0', '1', '--bond', 'S', 'H', '1', '0'),\n"
+                "    'candidate_arrows': command('atlas-candidate-events', '--bond', 'O', 'H', '0', '1', '--support', 'source_arrow_only'),\n"
                 "    'transformations': transitions,\n"
                 "    'trypsin': trypsin,\n"
                 "    'partial_panels': partial,\n"
@@ -131,6 +136,42 @@ def verify_wheel(
                 check=True, capture_output=True, text=True,
             )
             queries = json.loads(draft_run.stdout)
+            events = queries["candidate_events"]
+            if (events["schema_version"] != "catalytic-earth.candidate-event-query.v1"
+                    or events["candidate_count"] != 12
+                    or events["filters"]["support"] != "after_graph_confirmed"):
+                raise ValueError("installed candidate event catalog or default support differs")
+            cc = queries["candidate_cc"]
+            bindings = [m["candidate_row"]["candidate"]["source_binding"] for m in cc["matches"]]
+            if [(b["record_id"], b["mechanism_id"], b["before_step_id"]) for b in bindings] != [
+                ("M0219", 1, 2), ("M0219", 1, 4),
+            ]:
+                raise ValueError("installed C-C edit query differs")
+            narrow = queries["candidate_cc_charge"]
+            if (narrow["candidate_count"] != 1
+                    or narrow["matches"][0]["candidate_row"]["candidate"]["source_binding"]["before_step_id"] != 2
+                    or queries["candidate_false_join"]["candidate_count"] != 0):
+                raise ValueError("installed edit conjunction crosses candidate boundaries")
+            for match in events["matches"]:
+                row = match["candidate_row"]
+                candidate = row["candidate"]
+                if (candidate["status"] != "unreviewed"
+                        or candidate["scope_effect"]["experimentally_validated"] is not False
+                        or candidate["scope_effect"]["physical_atom_map"] is not False
+                        or not row["source_context"]):
+                    raise ValueError("installed event result lost source scope")
+            inferred = next(m["candidate_row"] for m in events["matches"]
+                            if m["candidate_row"]["candidate"]["source_binding"]["record_id"] == "M0106"
+                            and m["candidate_row"]["candidate"]["source_binding"]["before_step_id"] == 8)
+            before = next(s for s in inferred["source_context"]["step_bindings"] if s["role"] == "before")
+            if before["is_inferred"] is not True or "inferred" not in before["summary"].lower():
+                raise ValueError("installed event result lost the source-inferred return step")
+            arrows = queries["candidate_arrows"]
+            if not arrows["matches"] or any(
+                event["support"] != "source_arrow_only"
+                for match in arrows["matches"] for witness in match["clause_witnesses"] for event in witness["events"]
+            ):
+                raise ValueError("installed arrow-only query overstates support")
             transitions = queries["transformations"]
             transition = transitions["transformations"][0]
             panel = transition["panel_correspondence"]

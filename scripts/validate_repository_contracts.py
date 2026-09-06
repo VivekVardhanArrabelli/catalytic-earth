@@ -429,6 +429,7 @@ def main() -> int:
     _run("scripts/build_atlas_draft_sources.py", "--check")
     _run("scripts/build_atlas_drafts.py", "--check")
     _run("scripts/build_atlas_transformations.py", "--check")
+    _run("scripts/build_atlas_candidate_events.py", "--check")
     _run("data/atlas/transformations/m0173/audit_m0173.py", "--check")
     _run("scripts/build_atlas_panel_comparisons.py", "--check")
     _run("data/atlas/panel_comparisons/m0173/audit_m0173_partial.py", "--check")
