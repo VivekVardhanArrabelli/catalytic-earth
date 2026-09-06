@@ -1,0 +1,945 @@
+{
+  "atom_correspondence": {
+    "directed_rxn_capture_status": "unavailable_http_403_html",
+    "rhea_participant_mol_mapping_numbers": "all_zero",
+    "scope": "inspected_artifacts_only",
+    "status": "not_established"
+  },
+  "correspondence_id": "reaction-correspondence.m0213.rhea-20250",
+  "curated_reaction": {
+    "bidirectional_id": "RHEA:20252",
+    "directed_equation": "L-alanine => D-alanine",
+    "left_participants": [
+      {
+        "chebi_id": "CHEBI:57972",
+        "name": "L-alanine",
+        "stoichiometry": 1
+      }
+    ],
+    "left_to_right_id": "RHEA:20250",
+    "master_equation": "L-alanine = D-alanine",
+    "master_id": "RHEA:20249",
+    "provider": "Rhea",
+    "right_participants": [
+      {
+        "chebi_id": "CHEBI:57416",
+        "name": "D-alanine",
+        "stoichiometry": 1
+      }
+    ],
+    "right_to_left_id": "RHEA:20251",
+    "selected_directed_id": "RHEA:20250",
+    "selected_direction_code": "LR",
+    "support_edge_ids": [
+      "edge:rhea-master-reaction",
+      "edge:rhea-direction-quartet",
+      "edge:rhea-mcsa-record-cross-reference",
+      "edge:rhea-directed-rdf",
+      "edge:uniprot-master-reaction"
+    ]
+  },
+  "limitations": [
+    {
+      "limit_id": "atom_correspondence",
+      "statement": "No authoritative atom-pair correspondence is present in the inspected successful Rhea/M-CSA artifacts; separate local atom indices are not treated as a map.",
+      "status": "abstained"
+    },
+    {
+      "limit_id": "step_to_canonical_reaction_atom_binding",
+      "statement": "The record-level Rhea correspondence does not bind any M-CSA step atom to a canonical reaction participant atom.",
+      "status": "abstained"
+    },
+    {
+      "limit_id": "terminal_product_identity",
+      "statement": "The terminal source panel retains chebi:57972 while source prose and the curated right participant designate D-alanine/CHEBI:57416.",
+      "status": "abstained"
+    },
+    {
+      "limit_id": "endpoint_microspecies_equivalence",
+      "statement": "The source endpoint fragments have explicit charge -1 with neutral amine, unlike the curated zwitterionic participant mol files; exact microspecies equivalence is not asserted.",
+      "status": "abstained"
+    },
+    {
+      "limit_id": "depiction_to_curated_identity",
+      "statement": "Reviewed endpoint CIP diagnostics conflict with the declared direction and do not license replacement of either source labels or curated participant identities.",
+      "status": "abstained"
+    },
+    {
+      "limit_id": "all_panel_trajectory",
+      "statement": "Step 3 explicitly draws alpha hydrogen a68 and parses S despite W; endpoint disparity is not generalized into a coherent panel trajectory.",
+      "status": "abstained"
+    },
+    {
+      "limit_id": "reverse_direction_step_instantiation",
+      "statement": "The RHEA:20251 reverse reaction identifier does not instantiate a reversed M-CSA step sequence.",
+      "status": "abstained"
+    },
+    {
+      "limit_id": "direction_specific_role_assignment",
+      "statement": "The canonical reaction correspondence does not validate the source residue-role reversal statement for the opposite direction.",
+      "status": "abstained"
+    }
+  ],
+  "locators": [
+    {
+      "extracted_values": {
+        "external_fragment_bond_count_definition": "Count of raw MRV covalent bonds crossing the selected heavy-atom ID set a16..a21; the initial count 1 is b63 a20-a68 to explicit H and is not a cofactor attachment.",
+        "fragment_atom_ids": [
+          "a16",
+          "a17",
+          "a18",
+          "a19",
+          "a20",
+          "a21"
+        ],
+        "initial": {
+          "alpha_carbon_atom_id": "a17",
+          "amine_nitrogen_atom_id": "a20",
+          "amine_nitrogen_formal_charge": null,
+          "amine_nitrogen_lone_pair": 1,
+          "carboxylate_oxygen_atom_id": "a18",
+          "carboxylate_oxygen_formal_charge": -1,
+          "external_fragment_bond_count": 1,
+          "external_fragment_bonds": [
+            {
+              "atom_refs": [
+                "a20",
+                "a68"
+              ],
+              "bond_id": "b63",
+              "external_atom_element": "H",
+              "external_atom_id": "a68",
+              "order": "1"
+            }
+          ],
+          "fragment_atom_ids": [
+            "a16",
+            "a17",
+            "a18",
+            "a19",
+            "a20",
+            "a21"
+          ],
+          "fragment_formal_charge": -1,
+          "scheme_sha256": "2f4c00d1888c800659111cd2294cc2727f99bf26788861a8dc87903cf96352c4",
+          "source_step_id": 1,
+          "stereo_token": "W"
+        },
+        "step_3_exception": {
+          "explicit_alpha_hydrogen_atom_id": "a68",
+          "scheme_sha256": "9955706b994bdc72de8d4e8ed565935e1f04f08c34e37d3a849be1a7c9ce80a4",
+          "source_step_id": 3,
+          "stereo_token": "W"
+        },
+        "terminal": {
+          "alpha_carbon_atom_id": "a17",
+          "amine_nitrogen_atom_id": "a20",
+          "amine_nitrogen_formal_charge": null,
+          "amine_nitrogen_lone_pair": 1,
+          "carboxylate_oxygen_atom_id": "a18",
+          "carboxylate_oxygen_formal_charge": -1,
+          "external_fragment_bond_count": 0,
+          "external_fragment_bonds": [],
+          "fragment_atom_ids": [
+            "a16",
+            "a17",
+            "a18",
+            "a19",
+            "a20",
+            "a21"
+          ],
+          "fragment_formal_charge": -1,
+          "scheme_sha256": "0e6f8a5e4bdce5e46dfe19b5d68eb1adc33061399e13f840ae220e7d5d533ceb",
+          "source_step_id": 7,
+          "stereo_token": "H"
+        }
+      },
+      "locator_id": "locator:mcsa-endpoint-mrv-facts",
+      "physical_lines": [
+        878,
+        879,
+        906,
+        907,
+        962,
+        963
+      ],
+      "selector": {
+        "scheme_sha256s": [
+          "2f4c00d1888c800659111cd2294cc2727f99bf26788861a8dc87903cf96352c4",
+          "9955706b994bdc72de8d4e8ed565935e1f04f08c34e37d3a849be1a7c9ce80a4",
+          "0e6f8a5e4bdce5e46dfe19b5d68eb1adc33061399e13f840ae220e7d5d533ceb"
+        ],
+        "source_atom_ids": [
+          "a16",
+          "a17",
+          "a18",
+          "a19",
+          "a20",
+          "a21",
+          "a68"
+        ]
+      },
+      "source_binding_id": "source:M-CSA:M0213",
+      "source_format": "MRV embedded in wrapped M-CSA JSON",
+      "supports": "Raw source labels, endpoint atom attributes/bonds/stereo tokens, explicit-H fragment-boundary count, and the Step 3 explicit-alpha-H exception. Computed CIP is excluded from this direct-source locator."
+    },
+    {
+      "extracted_values": {
+        "direction": "left_to_right",
+        "mechanism_id": 1,
+        "mechanism_text": "The ground state of the enzyme contains a covalent linkage between Lys39 and the PLP cofactor. The reaction proceeds via an initial transldimination in which the substrate alanine eliminates Lys39 from PLP. In the L-Ala to D-Ala direction Tyr265B abstracts a proton from the alpha carbon of the alanine (and Lys39 deprotonates water). Water deprotonates Tyr265B. The carbanionic intermediate deprotonates Lys39. In the final steps, a second transaldimination occurs, eliminating the product and returning the protein to its ground state. In the D-Ala to L-Ala direction, the roles of Tyr265B and Lys39 are reversed. The tyrosine and the lysine residues are on opposite sides of the PLP cofactor.",
+        "step_1_text": "The amine of the substrate L-alanine attacks the PLP cofactor in a nucleophilic addition and the bound Lys39 deprotonates the newly attached amine.",
+        "step_6_text": "The secondary amine that results from the initial attack initiates an elimination of the covalently bound product, resulting in D-alanine and the regenerated PLP cofactor."
+      },
+      "locator_id": "locator:mcsa-proposal-direction-text",
+      "physical_lines": [
+        41,
+        150,
+        185
+      ],
+      "selector": {
+        "json_paths": [
+          "/entry/reaction/mechanisms/0/mechanism_text",
+          "/entry/reaction/mechanisms/0/steps/0/description",
+          "/entry/reaction/mechanisms/0/steps/5/description"
+        ]
+      },
+      "source_binding_id": "source:M-CSA:M0213",
+      "source_format": "M-CSA wrapped API JSON",
+      "supports": "Separate M-CSA proposal and boundary-step source-text direction designations."
+    },
+    {
+      "extracted_values": {
+        "all_panel_computed_cip": [
+          "R",
+          "R",
+          "S",
+          null,
+          "S",
+          "S",
+          "S"
+        ],
+        "endpoint_fragment_formal_charges": [
+          -1,
+          -1
+        ],
+        "endpoint_source_step_ids": [
+          1,
+          7
+        ],
+        "script_sha256": "fa9dfdafb089f3471238ff23ec2446bb67c4e0724a284182f7c8a4f90b7a3eaf"
+      },
+      "locator_id": "locator:rdkit-depiction-audit",
+      "physical_lines": [
+        1,
+        109
+      ],
+      "selector": {
+        "row_source_step_ids": [
+          1,
+          3,
+          7
+        ],
+        "source_snapshot_sha256": "375d66615ee7a38cb3adc817b39ae28308d554590c26c3b4bbb7d08f2a74728d"
+      },
+      "source_binding_id": "audit:M0213:RDKit-depiction",
+      "source_format": "project computational audit JSON",
+      "supports": "Pinned computational endpoint R/S diagnostic and Step 3 exception; not upstream chemistry or a trajectory."
+    },
+    {
+      "extracted_values": {
+        "chebi_ids": [
+          "CHEBI:57972",
+          "CHEBI:57416"
+        ],
+        "ec": "EC:5.1.1.1",
+        "equation": "L-alanine = D-alanine",
+        "rhea_id": "RHEA:20249"
+      },
+      "locator_id": "locator:rhea-20249-query",
+      "physical_lines": [
+        1,
+        2
+      ],
+      "selector": {
+        "header": "Reaction identifier\tEquation\tChEBI identifier\tEC number",
+        "row_rhea_id": "RHEA:20249"
+      },
+      "source_binding_id": "official:Rhea:20249:query",
+      "source_format": "TSV",
+      "supports": "Master reaction equation, ChEBI participant pair, and EC number."
+    },
+    {
+      "extracted_values": {
+        "bidirectional_equation": "L-alanine <=> D-alanine",
+        "left_to_right_equation": "L-alanine => D-alanine",
+        "mcsa_see_also": "http://identifiers.org/macie/M0213",
+        "right_to_left_equation": "D-alanine => L-alanine",
+        "source_release": "2026_03"
+      },
+      "locator_id": "locator:rhea-directed-rdf",
+      "physical_lines": [
+        493,
+        739,
+        868,
+        882,
+        916,
+        1290
+      ],
+      "selector": {
+        "predicates": [
+          "http://rdf.rhea-db.org/equation",
+          "http://rdf.rhea-db.org/substrates",
+          "http://rdf.rhea-db.org/products",
+          "http://www.w3.org/2000/01/rdf-schema#seeAlso"
+        ],
+        "reaction_uris": [
+          "http://rdf.rhea-db.org/20250",
+          "http://rdf.rhea-db.org/20251",
+          "http://rdf.rhea-db.org/20252"
+        ]
+      },
+      "source_binding_id": "official:Rhea:20249:quartet-rdf",
+      "source_format": "SPARQL results JSON",
+      "supports": "Directed equations, substrate/product side links, and M0213 seeAlso on RHEA:20250; source release comes from the bound acquisition receipt X-Release header."
+    },
+    {
+      "extracted_values": {
+        "content_type": "text/html; charset=UTF-8",
+        "http_status": 403,
+        "receipt_index": 9,
+        "response_sha256": "c7ae125ddae32ac5fd380045d5950d6b8b0089e1a2cc0c05b23a7d43420e14ed"
+      },
+      "locator_id": "locator:rhea-directed-rxn-failure",
+      "physical_lines": [
+        1
+      ],
+      "selector": {
+        "json_path": "/requests/8"
+      },
+      "source_binding_id": "receipt:M0213:Rhea-reaction-audit",
+      "source_format": "bounded acquisition receipt JSON",
+      "supports": "The directed RXN capture was unavailable as HTTP 403 HTML and is excluded from positive evidence."
+    },
+    {
+      "extracted_values": {
+        "bidirectional_id": "RHEA:20252",
+        "left_to_right_id": "RHEA:20250",
+        "master_id": "RHEA:20249",
+        "right_to_left_id": "RHEA:20251"
+      },
+      "locator_id": "locator:rhea-direction-quartet",
+      "physical_lines": [
+        1,
+        2442
+      ],
+      "selector": {
+        "header": "RHEA_ID_MASTER\tRHEA_ID_LR\tRHEA_ID_RL\tRHEA_ID_BI",
+        "master_id": "20249"
+      },
+      "source_binding_id": "official:Rhea:directions",
+      "source_format": "TSV",
+      "supports": "Exact master/LR/RL/bidirectional identifier quartet."
+    },
+    {
+      "extracted_values": {
+        "direction_code": "LR",
+        "mcsa_id": "M0213",
+        "rhea_directed_id": "RHEA:20250",
+        "rhea_master_id": "RHEA:20249"
+      },
+      "locator_id": "locator:rhea-mcsa-record-cross-reference",
+      "physical_lines": [
+        1,
+        93
+      ],
+      "selector": {
+        "header": "RHEA_ID\tDIRECTION\tMASTER_ID\tID",
+        "id": "M0213"
+      },
+      "source_binding_id": "official:Rhea:M-CSA-crossrefs",
+      "source_format": "TSV",
+      "supports": "Official Rhea row maps the M0213 record to the LR reaction; it does not bind a proposal or step."
+    },
+    {
+      "extracted_values": {
+        "alpha_c_n_mdl_stereo_code": 6,
+        "atom_count": 6,
+        "atom_mapping_numbers": "all_zero",
+        "chebi_id": "CHEBI:57416",
+        "formal_charge_records": [
+          "M  CHG  1   3  -1",
+          "M  CHG  1   5   1"
+        ]
+      },
+      "locator_id": "locator:rhea-participant-mol-57416",
+      "physical_lines": [
+        1,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        15,
+        16,
+        17,
+        18
+      ],
+      "selector": {
+        "format": "V2000",
+        "inspect": [
+          "counts",
+          "atom block mapping-number fields",
+          "bond 2-5 stereo code",
+          "M  CHG records"
+        ]
+      },
+      "source_binding_id": "official:Rhea:CHEBI:57416:mol",
+      "source_format": "MDL V2000 mol",
+      "supports": "Curated CHEBI:57416 participant charge/stereo structure and absence of nonzero mapping numbers in this molecule-local file."
+    },
+    {
+      "extracted_values": {
+        "alpha_c_n_mdl_stereo_code": 1,
+        "atom_count": 6,
+        "atom_mapping_numbers": "all_zero",
+        "chebi_id": "CHEBI:57972",
+        "formal_charge_records": [
+          "M  CHG  1   3  -1",
+          "M  CHG  1   5   1"
+        ]
+      },
+      "locator_id": "locator:rhea-participant-mol-57972",
+      "physical_lines": [
+        1,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        15,
+        16,
+        17,
+        18
+      ],
+      "selector": {
+        "format": "V2000",
+        "inspect": [
+          "counts",
+          "atom block mapping-number fields",
+          "bond 2-5 stereo code",
+          "M  CHG records"
+        ]
+      },
+      "source_binding_id": "official:Rhea:CHEBI:57972:mol",
+      "source_format": "MDL V2000 mol",
+      "supports": "Curated CHEBI:57972 participant charge/stereo structure and absence of nonzero mapping numbers in this molecule-local file."
+    },
+    {
+      "extracted_values": {
+        "accession": "P10724",
+        "catalytic_activity": "L-alanine = D-alanine",
+        "chebi_ids": [
+          "CHEBI:57416",
+          "CHEBI:57972"
+        ],
+        "entry_version": 155,
+        "rhea_id": "RHEA:20249"
+      },
+      "locator_id": "locator:uniprot-p10724-master-reaction",
+      "physical_lines": [
+        1
+      ],
+      "selector": {
+        "json_paths": [
+          "/primaryAccession",
+          "/entryAudit/entryVersion",
+          "/comments[commentType='CATALYTIC ACTIVITY']/reaction"
+        ]
+      },
+      "source_binding_id": "curated:UniProtKB:P10724",
+      "source_format": "UniProtKB JSON",
+      "supports": "Protein-level curated activity points to the direction-undefined master reaction and both ChEBI participants."
+    }
+  ],
+  "projection_id": "reaction-correspondence:M0213:RHEA:20250",
+  "proposal_binding": {
+    "proposal_id": "atlas-draft.m0213.mechanism-1",
+    "source_mechanism_id": 1
+  },
+  "record_binding": {
+    "mcsa_id": "M0213",
+    "record_id": "atlas50-draft:m0213:source-scoped-mechanism-draft",
+    "source_snapshot_sha256": "375d66615ee7a38cb3adc817b39ae28308d554590c26c3b4bbb7d08f2a74728d"
+  },
+  "schema_version": "catalytic-earth.reaction-correspondence-projection.v1",
+  "source_bindings": [
+    {
+      "artifact_kind": "curated_protein_record",
+      "binding_id": "curated:UniProtKB:P10724",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/observed_state_v3/m0213/UniProt_P10724.json",
+      "sha256": "f3f69d2230dbb0188ae0ad7f03074d7d84e7d492ef366d5a831216d4bcb6b13f"
+    },
+    {
+      "artifact_kind": "official_participant_structure",
+      "binding_id": "official:Rhea:CHEBI:57416:mol",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/CHEBI_57416.mol",
+      "sha256": "2d65c26df7cf47ddb07e3145ddd88601f43ce44889836e1ee3d50a02ab14f483"
+    },
+    {
+      "artifact_kind": "official_participant_structure",
+      "binding_id": "official:Rhea:CHEBI:57972:mol",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/CHEBI_57972.mol",
+      "sha256": "5ba0e73a3fc10496994273277032a8349759046bc7e50d3da10304bbf11e5a78"
+    },
+    {
+      "artifact_kind": "acquisition_receipt_ledger",
+      "binding_id": "receipt:M0213:Rhea-reaction-audit",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/acquisition_receipts.json",
+      "sha256": "a9a092db176d2b3301d89104742f94b9999b6bd82df437962e3c63c26d709a1c"
+    },
+    {
+      "artifact_kind": "computational_depiction_audit_script",
+      "binding_id": "audit-script:M0213:RDKit-depiction",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/audit_depiction.py",
+      "sha256": "fa9dfdafb089f3471238ff23ec2446bb67c4e0724a284182f7c8a4f90b7a3eaf"
+    },
+    {
+      "artifact_kind": "computational_depiction_audit",
+      "binding_id": "audit:M0213:RDKit-depiction",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/computational_depiction_audit.json",
+      "sha256": "8e58483cd525c35ec4448575df0bb7ed4302240db0194aa87f67ecb239abf232"
+    },
+    {
+      "artifact_kind": "official_reaction_direction_map",
+      "binding_id": "official:Rhea:directions",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/rhea-directions.tsv",
+      "sha256": "deae1911da372c70ee8fc97992809c7923e63b288a8702fc4396edcb2633fb04"
+    },
+    {
+      "artifact_kind": "official_reaction_cross_reference_map",
+      "binding_id": "official:Rhea:M-CSA-crossrefs",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/rhea2macie.tsv",
+      "sha256": "2d0120f01f78e1c1a8fda6476d2587f21ee5fcdc3e4f15ad040c2424ce451ff5"
+    },
+    {
+      "artifact_kind": "official_reaction_rdf_query",
+      "binding_id": "official:Rhea:20249:quartet-rdf",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/rhea_20249_quartet_sparql.json",
+      "sha256": "57c00730fcdde30a7c2627fb7ec6b6231891151159ebb467e7fd625ca358c83c"
+    },
+    {
+      "artifact_kind": "official_reaction_query",
+      "binding_id": "official:Rhea:20249:query",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/rhea_20249_query.tsv",
+      "sha256": "e3b7fceb027278d6e967e312102caf7ebe5430140d47e0d243ef0073d6e69490"
+    },
+    {
+      "artifact_kind": "source_record_snapshot",
+      "binding_id": "source:M-CSA:M0213",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0213.json",
+      "sha256": "375d66615ee7a38cb3adc817b39ae28308d554590c26c3b4bbb7d08f2a74728d"
+    }
+  ],
+  "source_direction": {
+    "agreement_status": "independent_record_and_proposal_direction_witnesses_agree",
+    "proposal_declared_direction": {
+      "boundary_step_witnesses": [
+        {
+          "exact_text": "The amine of the substrate L-alanine attacks the PLP cofactor in a nucleophilic addition and the bound Lys39 deprotonates the newly attached amine.",
+          "field": "summary",
+          "participant_chebi_id": "CHEBI:57972",
+          "participant_side": "left",
+          "role": "initial_reactant_designation",
+          "scope": "source_text_designation_only",
+          "source_scheme_sha256": "2f4c00d1888c800659111cd2294cc2727f99bf26788861a8dc87903cf96352c4",
+          "source_step_id": 1,
+          "step_id": "atlas-draft.m0213.mechanism-1.step-1"
+        },
+        {
+          "exact_text": "The secondary amine that results from the initial attack initiates an elimination of the covalently bound product, resulting in D-alanine and the regenerated PLP cofactor.",
+          "field": "summary",
+          "participant_chebi_id": "CHEBI:57416",
+          "participant_side": "right",
+          "role": "released_product_designation",
+          "scope": "source_text_designation_only",
+          "source_scheme_sha256": "df790732f577265e0f24c5f9693dccfdc98cc87e24ecbca70ca9687ee2836954",
+          "source_step_id": 6,
+          "step_id": "atlas-draft.m0213.mechanism-1.step-6"
+        }
+      ],
+      "direction": "left_to_right",
+      "exact_text": "The ground state of the enzyme contains a covalent linkage between Lys39 and the PLP cofactor. The reaction proceeds via an initial transldimination in which the substrate alanine eliminates Lys39 from PLP. In the L-Ala to D-Ala direction Tyr265B abstracts a proton from the alpha carbon of the alanine (and Lys39 deprotonates water). Water deprotonates Tyr265B. The carbanionic intermediate deprotonates Lys39. In the final steps, a second transaldimination occurs, eliminating the product and returning the protein to its ground state. In the D-Ala to L-Ala direction, the roles of Tyr265B and Lys39 are reversed. The tyrosine and the lysine residues are on opposite sides of the PLP cofactor.",
+      "field": "mechanism_text",
+      "support_edge_id": "edge:mcsa-proposal-declared-direction"
+    },
+    "record_cross_reference": {
+      "direction_code": "LR",
+      "grounds_proposal": false,
+      "grounds_step": false,
+      "mcsa_id": "M0213",
+      "rhea_directed_id": "RHEA:20250",
+      "rhea_master_id": "RHEA:20249",
+      "scope": "source_record_only",
+      "support_edge_id": "edge:rhea-mcsa-record-cross-reference"
+    }
+  },
+  "support_edges": [
+    {
+      "edge_id": "edge:computational-endpoint-cip",
+      "edge_kind": "computational_source_depiction_diagnostic",
+      "extracted_values": {
+        "initial_computed_cip": "R",
+        "terminal_computed_cip": "S"
+      },
+      "locator_ids": [
+        "locator:rdkit-depiction-audit"
+      ],
+      "source_binding_ids": [
+        "audit-script:M0213:RDKit-depiction",
+        "audit:M0213:RDKit-depiction"
+      ],
+      "support_status": "reviewed_project_computation"
+    },
+    {
+      "edge_id": "edge:mcsa-endpoint-depiction",
+      "edge_kind": "source_endpoint_depiction",
+      "extracted_values": {
+        "alanine_fragment_raw_source_labels": [
+          "chebi:57972"
+        ],
+        "external_fragment_bond_count_definition": "Raw MRV covalent bonds crossing selected heavy-atom IDs a16..a21; initial b63 is N a20 to explicit H a68, not a cofactor attachment.",
+        "initial_raw_facts": {
+          "alpha_carbon_atom_id": "a17",
+          "amine_nitrogen_atom_id": "a20",
+          "amine_nitrogen_formal_charge": null,
+          "amine_nitrogen_lone_pair": 1,
+          "carboxylate_oxygen_atom_id": "a18",
+          "carboxylate_oxygen_formal_charge": -1,
+          "external_fragment_bond_count": 1,
+          "fragment_atom_ids": [
+            "a16",
+            "a17",
+            "a18",
+            "a19",
+            "a20",
+            "a21"
+          ],
+          "fragment_formal_charge": -1,
+          "scheme_sha256": "2f4c00d1888c800659111cd2294cc2727f99bf26788861a8dc87903cf96352c4",
+          "source_step_id": 1,
+          "stereo_token": "W"
+        },
+        "terminal_raw_facts": {
+          "alpha_carbon_atom_id": "a17",
+          "amine_nitrogen_atom_id": "a20",
+          "amine_nitrogen_formal_charge": null,
+          "amine_nitrogen_lone_pair": 1,
+          "carboxylate_oxygen_atom_id": "a18",
+          "carboxylate_oxygen_formal_charge": -1,
+          "external_fragment_bond_count": 0,
+          "fragment_atom_ids": [
+            "a16",
+            "a17",
+            "a18",
+            "a19",
+            "a20",
+            "a21"
+          ],
+          "fragment_formal_charge": -1,
+          "scheme_sha256": "0e6f8a5e4bdce5e46dfe19b5d68eb1adc33061399e13f840ae220e7d5d533ceb",
+          "source_step_id": 7,
+          "stereo_token": "H"
+        }
+      },
+      "locator_ids": [
+        "locator:mcsa-endpoint-mrv-facts"
+      ],
+      "source_binding_ids": [
+        "source:M-CSA:M0213"
+      ],
+      "support_status": "direct_source_drawing"
+    },
+    {
+      "edge_id": "edge:mcsa-proposal-declared-direction",
+      "edge_kind": "source_proposal_direction_designation",
+      "extracted_values": {
+        "direction": "left_to_right",
+        "proposal_id": "atlas-draft.m0213.mechanism-1",
+        "record_cross_reference_is_separate": true
+      },
+      "locator_ids": [
+        "locator:mcsa-proposal-direction-text"
+      ],
+      "source_binding_ids": [
+        "source:M-CSA:M0213"
+      ],
+      "support_status": "direct_source_text"
+    },
+    {
+      "edge_id": "edge:rhea-directed-rdf",
+      "edge_kind": "curated_directed_reaction",
+      "extracted_values": {
+        "bidirectional_equation": "L-alanine <=> D-alanine",
+        "left_to_right_equation": "L-alanine => D-alanine",
+        "mcsa_see_also": "http://identifiers.org/macie/M0213",
+        "right_to_left_equation": "D-alanine => L-alanine",
+        "source_release": "2026_03"
+      },
+      "locator_ids": [
+        "locator:rhea-directed-rdf"
+      ],
+      "source_binding_ids": [
+        "official:Rhea:20249:quartet-rdf"
+      ],
+      "support_status": "direct_official_structured_source"
+    },
+    {
+      "edge_id": "edge:rhea-directed-rxn-capture-failure",
+      "edge_kind": "directed_rxn_capture_status",
+      "extracted_values": {
+        "content_type": "text/html; charset=UTF-8",
+        "http_status": 403,
+        "receipt_index": 9,
+        "response_sha256": "c7ae125ddae32ac5fd380045d5950d6b8b0089e1a2cc0c05b23a7d43420e14ed"
+      },
+      "locator_ids": [
+        "locator:rhea-directed-rxn-failure"
+      ],
+      "source_binding_ids": [
+        "receipt:M0213:Rhea-reaction-audit"
+      ],
+      "support_status": "unavailable_http_403_html"
+    },
+    {
+      "edge_id": "edge:rhea-direction-quartet",
+      "edge_kind": "curated_reaction_direction_quartet",
+      "extracted_values": {
+        "bidirectional_id": "RHEA:20252",
+        "left_to_right_id": "RHEA:20250",
+        "master_id": "RHEA:20249",
+        "right_to_left_id": "RHEA:20251"
+      },
+      "locator_ids": [
+        "locator:rhea-direction-quartet"
+      ],
+      "source_binding_ids": [
+        "official:Rhea:directions"
+      ],
+      "support_status": "direct_official_structured_source"
+    },
+    {
+      "edge_id": "edge:rhea-master-reaction",
+      "edge_kind": "curated_master_reaction",
+      "extracted_values": {
+        "chebi_ids": [
+          "CHEBI:57972",
+          "CHEBI:57416"
+        ],
+        "ec": "EC:5.1.1.1",
+        "equation": "L-alanine = D-alanine",
+        "rhea_id": "RHEA:20249"
+      },
+      "locator_ids": [
+        "locator:rhea-20249-query"
+      ],
+      "source_binding_ids": [
+        "official:Rhea:20249:query"
+      ],
+      "support_status": "direct_official_structured_source"
+    },
+    {
+      "edge_id": "edge:rhea-mcsa-record-cross-reference",
+      "edge_kind": "curated_record_reaction_cross_reference",
+      "extracted_values": {
+        "direction_code": "LR",
+        "grounds_proposal": false,
+        "grounds_step": false,
+        "mcsa_id": "M0213",
+        "rhea_directed_id": "RHEA:20250",
+        "rhea_master_id": "RHEA:20249",
+        "scope": "source_record_only"
+      },
+      "locator_ids": [
+        "locator:rhea-mcsa-record-cross-reference"
+      ],
+      "source_binding_ids": [
+        "official:Rhea:M-CSA-crossrefs"
+      ],
+      "support_status": "direct_official_structured_source"
+    },
+    {
+      "edge_id": "edge:rhea-participant-atom-map-inspection",
+      "edge_kind": "participant_atom_mapping_field_inspection",
+      "extracted_values": {
+        "mapping_numbers": "all_zero",
+        "scope": "two_separate_participant_mol_files"
+      },
+      "locator_ids": [
+        "locator:rhea-participant-mol-57416",
+        "locator:rhea-participant-mol-57972"
+      ],
+      "source_binding_ids": [
+        "official:Rhea:CHEBI:57416:mol",
+        "official:Rhea:CHEBI:57972:mol"
+      ],
+      "support_status": "direct_file_inspection"
+    },
+    {
+      "edge_id": "edge:rhea-participant-forms",
+      "edge_kind": "curated_participant_structure",
+      "extracted_values": {
+        "participants": [
+          {
+            "alpha_c_n_mdl_stereo_code": 1,
+            "atom_count": 6,
+            "atom_mapping_numbers": "all_zero",
+            "chebi_id": "CHEBI:57972",
+            "formal_charge_records": [
+              "M  CHG  1   3  -1",
+              "M  CHG  1   5   1"
+            ]
+          },
+          {
+            "alpha_c_n_mdl_stereo_code": 6,
+            "atom_count": 6,
+            "atom_mapping_numbers": "all_zero",
+            "chebi_id": "CHEBI:57416",
+            "formal_charge_records": [
+              "M  CHG  1   3  -1",
+              "M  CHG  1   5   1"
+            ]
+          }
+        ]
+      },
+      "locator_ids": [
+        "locator:rhea-participant-mol-57416",
+        "locator:rhea-participant-mol-57972"
+      ],
+      "source_binding_ids": [
+        "official:Rhea:CHEBI:57416:mol",
+        "official:Rhea:CHEBI:57972:mol"
+      ],
+      "support_status": "direct_official_structured_source"
+    },
+    {
+      "edge_id": "edge:step-3-trajectory-limit",
+      "edge_kind": "source_depiction_trajectory_limit",
+      "extracted_values": {
+        "computed_cip": "S",
+        "explicit_alpha_hydrogen_atom_id": "a68",
+        "scheme_sha256": "9955706b994bdc72de8d4e8ed565935e1f04f08c34e37d3a849be1a7c9ce80a4",
+        "source_step_id": 3,
+        "stereo_token": "W"
+      },
+      "locator_ids": [
+        "locator:mcsa-endpoint-mrv-facts",
+        "locator:rdkit-depiction-audit"
+      ],
+      "source_binding_ids": [
+        "source:M-CSA:M0213",
+        "audit-script:M0213:RDKit-depiction",
+        "audit:M0213:RDKit-depiction"
+      ],
+      "support_status": "direct_source_fact_plus_reviewed_project_computation"
+    },
+    {
+      "edge_id": "edge:uniprot-master-reaction",
+      "edge_kind": "curated_protein_master_reaction",
+      "extracted_values": {
+        "accession": "P10724",
+        "catalytic_activity": "L-alanine = D-alanine",
+        "chebi_ids": [
+          "CHEBI:57416",
+          "CHEBI:57972"
+        ],
+        "entry_version": 155,
+        "rhea_id": "RHEA:20249"
+      },
+      "locator_ids": [
+        "locator:uniprot-p10724-master-reaction"
+      ],
+      "source_binding_ids": [
+        "curated:UniProtKB:P10724"
+      ],
+      "support_status": "direct_curated_record"
+    }
+  ],
+  "terminal_depiction": {
+    "alanine_fragment_raw_source_labels": [
+      "chebi:57972"
+    ],
+    "all_panel_trajectory_status": "not_asserted",
+    "endpoint_diagnostic": {
+      "chemical_identity_status": "not_normalized",
+      "initial": {
+        "alpha_carbon_atom_id": "a17",
+        "amine_nitrogen_atom_id": "a20",
+        "amine_nitrogen_formal_charge": null,
+        "amine_nitrogen_lone_pair": 1,
+        "carboxylate_oxygen_atom_id": "a18",
+        "carboxylate_oxygen_formal_charge": -1,
+        "computed_cip": "R",
+        "external_fragment_bond_count": 1,
+        "fragment_atom_ids": [
+          "a16",
+          "a17",
+          "a18",
+          "a19",
+          "a20",
+          "a21"
+        ],
+        "fragment_formal_charge": -1,
+        "scheme_sha256": "2f4c00d1888c800659111cd2294cc2727f99bf26788861a8dc87903cf96352c4",
+        "source_step_id": 1,
+        "stereo_token": "W"
+      },
+      "scope": "reviewed_per_panel_computational_diagnostic_not_atom_mapping",
+      "status": "endpoint_depictions_conflict_with_reported_direction",
+      "terminal": {
+        "alpha_carbon_atom_id": "a17",
+        "amine_nitrogen_atom_id": "a20",
+        "amine_nitrogen_formal_charge": null,
+        "amine_nitrogen_lone_pair": 1,
+        "carboxylate_oxygen_atom_id": "a18",
+        "carboxylate_oxygen_formal_charge": -1,
+        "computed_cip": "S",
+        "external_fragment_bond_count": 0,
+        "fragment_atom_ids": [
+          "a16",
+          "a17",
+          "a18",
+          "a19",
+          "a20",
+          "a21"
+        ],
+        "fragment_formal_charge": -1,
+        "scheme_sha256": "0e6f8a5e4bdce5e46dfe19b5d68eb1adc33061399e13f840ae220e7d5d533ceb",
+        "source_step_id": 7,
+        "stereo_token": "H"
+      }
+    },
+    "step_3_exception": {
+      "computed_cip": "S",
+      "explicit_alpha_hydrogen_atom_id": "a68",
+      "scheme_sha256": "9955706b994bdc72de8d4e8ed565935e1f04f08c34e37d3a849be1a7c9ce80a4",
+      "source_step_id": 3,
+      "stereo_token": "W"
+    },
+    "support_edge_ids": [
+      "edge:mcsa-endpoint-depiction",
+      "edge:computational-endpoint-cip",
+      "edge:step-3-trajectory-limit",
+      "edge:rhea-participant-forms"
+    ],
+    "terminal_step_binding": {
+      "exact_text": "Products.",
+      "scheme_sha256": "0e6f8a5e4bdce5e46dfe19b5d68eb1adc33061399e13f840ae220e7d5d533ceb",
+      "source_step_id": 7
+    }
+  }
+}

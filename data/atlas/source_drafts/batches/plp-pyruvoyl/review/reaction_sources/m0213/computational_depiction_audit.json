@@ -1,0 +1,109 @@
+{
+  "exact_chebi_species_assigned": false,
+  "intermediate_trajectory_status": "not_asserted",
+  "interpretation_scope": "computed_source_depiction_consistency_only",
+  "limits": [
+    "The source endpoint fragments and curated zwitterions have different charges.",
+    "Panel 3 has an explicit alpha hydrogen and a different readout from panels 1 and 2.",
+    "The panel readouts do not establish a coherent reverse mechanism or physical trajectory."
+  ],
+  "method": "independent_panel_MolFromMrvBlock_and_FindMolChiralCenters",
+  "method_parameters": {
+    "includeUnassigned": true,
+    "removeHs": false,
+    "sanitize": true,
+    "useLegacyImplementation": false
+  },
+  "panels": [
+    {
+      "computed_atom_formal_charge": 0,
+      "computed_cip": "R",
+      "computed_endpoint_formal_charge": -1,
+      "computed_endpoint_smiles": "C[C@@H](N)C(=O)[O-]",
+      "is_product": false,
+      "parser_atom_index": 16,
+      "scheme_sha256": "2f4c00d1888c800659111cd2294cc2727f99bf26788861a8dc87903cf96352c4",
+      "source_atom_id": "a17",
+      "step_id": 1
+    },
+    {
+      "computed_atom_formal_charge": 0,
+      "computed_cip": "R",
+      "is_product": false,
+      "parser_atom_index": 16,
+      "scheme_sha256": "586e063b0fcd10eafc5f1367e26688f7873378a0759032e200b647f40e7b3089",
+      "source_atom_id": "a17",
+      "step_id": 2
+    },
+    {
+      "computed_atom_formal_charge": 0,
+      "computed_cip": "S",
+      "is_product": false,
+      "parser_atom_index": 16,
+      "scheme_sha256": "9955706b994bdc72de8d4e8ed565935e1f04f08c34e37d3a849be1a7c9ce80a4",
+      "source_atom_id": "a17",
+      "step_id": 3
+    },
+    {
+      "computed_atom_formal_charge": -1,
+      "computed_cip": null,
+      "is_product": false,
+      "parser_atom_index": 16,
+      "scheme_sha256": "ba83ff0a5a9483afcbe8e11b5e9b80bc3241acd2390a6590f39d4ef11b09a9ef",
+      "source_atom_id": "a17",
+      "step_id": 4
+    },
+    {
+      "computed_atom_formal_charge": 0,
+      "computed_cip": "S",
+      "is_product": false,
+      "parser_atom_index": 16,
+      "scheme_sha256": "f6954b5e2e97ac4ed03a434c86b55633663376f5c841fe92b856f993f3b4e262",
+      "source_atom_id": "a17",
+      "step_id": 5
+    },
+    {
+      "computed_atom_formal_charge": 0,
+      "computed_cip": "S",
+      "is_product": false,
+      "parser_atom_index": 16,
+      "scheme_sha256": "df790732f577265e0f24c5f9693dccfdc98cc87e24ecbca70ca9687ee2836954",
+      "source_atom_id": "a17",
+      "step_id": 6
+    },
+    {
+      "computed_atom_formal_charge": 0,
+      "computed_cip": "S",
+      "computed_endpoint_formal_charge": -1,
+      "computed_endpoint_smiles": "C[C@H](N)C(=O)[O-]",
+      "is_product": true,
+      "parser_atom_index": 16,
+      "scheme_sha256": "0e6f8a5e4bdce5e46dfe19b5d68eb1adc33061399e13f840ae220e7d5d533ceb",
+      "source_atom_id": "a17",
+      "step_id": 7
+    }
+  ],
+  "rdkit_version": "2025.03.3",
+  "reaction_atom_mapping_established": false,
+  "references": [
+    {
+      "computed_cip": "S",
+      "computed_formal_charge": 0,
+      "computed_smiles": "C[C@H]([NH3+])C(=O)[O-]",
+      "source_chebi_id": "CHEBI:57972",
+      "source_file": "CHEBI_57972.mol",
+      "source_sha256": "5ba0e73a3fc10496994273277032a8349759046bc7e50d3da10304bbf11e5a78"
+    },
+    {
+      "computed_cip": "R",
+      "computed_formal_charge": 0,
+      "computed_smiles": "C[C@@H]([NH3+])C(=O)[O-]",
+      "source_chebi_id": "CHEBI:57416",
+      "source_file": "CHEBI_57416.mol",
+      "source_sha256": "2d65c26df7cf47ddb07e3145ddd88601f43ce44889836e1ee3d50a02ab14f483"
+    }
+  ],
+  "schema_version": "catalytic-earth.m0213-depiction-diagnostic.v1",
+  "script_sha256": "fa9dfdafb089f3471238ff23ec2446bb67c4e0724a284182f7c8a4f90b7a3eaf",
+  "source_snapshot_sha256": "375d66615ee7a38cb3adc817b39ae28308d554590c26c3b4bbb7d08f2a74728d"
+}

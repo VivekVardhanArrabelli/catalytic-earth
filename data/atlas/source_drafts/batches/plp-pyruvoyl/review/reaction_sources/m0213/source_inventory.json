@@ -1,0 +1,292 @@
+{
+  "acquisition": {
+    "aggregate": {
+      "requests": 12,
+      "response_bytes": 1267489
+    },
+    "capture_window_utc": [
+      "2026-09-06T10:23:56.254441+00:00",
+      "2026-09-06T10:26:29.889639+00:00"
+    ],
+    "ledger_path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/acquisition_receipts.json",
+    "ledger_sha256": "a9a092db176d2b3301d89104742f94b9999b6bd82df437962e3c63c26d709a1c",
+    "limits": {
+      "bytes": 3145728,
+      "requests": 12
+    },
+    "scope": "Direct HTTP requests made by the source-ingestion agent for this M0213 reaction audit only; other agents web discovery is outside this ledger."
+  },
+  "artifacts": [
+    {
+      "artifact_id": "acquisition:1",
+      "bytes": 124,
+      "final_url": "https://www.rhea-db.org/rhea?query=RHEA%3A20249&columns=rhea-id%2Cequation%2Cchebi-id%2Cec&format=tsv",
+      "http_status": 200,
+      "media_type": "text/plain; charset=UTF-8",
+      "raw_response_committed": true,
+      "receipt_index": 1,
+      "repository_path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/rhea_20249_query.tsv",
+      "retrieved_at_utc": "2026-09-06T10:23:56.254441+00:00",
+      "role": "master_reaction_and_participant_identifiers",
+      "sha256": "e3b7fceb027278d6e967e312102caf7ebe5430140d47e0d243ef0073d6e69490",
+      "source_url": "https://www.rhea-db.org/rhea?query=RHEA%3A20249&columns=rhea-id%2Cequation%2Cchebi-id%2Cec&format=tsv",
+      "transformation": "copied byte-for-byte from the bounded capture"
+    },
+    {
+      "artifact_id": "acquisition:2",
+      "bytes": 57,
+      "evidence_exclusion": "HTTP 200 response contains only the TSV header",
+      "final_url": "https://www.rhea-db.org/rhea?query=RHEA%3A20250%20OR%20RHEA%3A20251%20OR%20RHEA%3A20252&columns=rhea-id%2Cequation%2Cchebi-id%2Cec&format=tsv",
+      "http_status": 200,
+      "media_type": "text/plain; charset=UTF-8",
+      "raw_response_committed": false,
+      "receipt_index": 2,
+      "repository_path": null,
+      "retrieved_at_utc": "2026-09-06T10:24:11.150162+00:00",
+      "role": "header_only_directed_search_not_evidence",
+      "sha256": "e78c64063988475919f936aaec255fb357477e4504394915aaf10d481f657b39",
+      "source_url": "https://www.rhea-db.org/rhea?query=RHEA%3A20250%20OR%20RHEA%3A20251%20OR%20RHEA%3A20252&columns=rhea-id%2Cequation%2Cchebi-id%2Cec&format=tsv",
+      "transformation": "not redistributed; receipt metadata and hash retained"
+    },
+    {
+      "artifact_id": "acquisition:3",
+      "bytes": 57,
+      "evidence_exclusion": "HTTP 200 response contains only the TSV header",
+      "final_url": "https://www.rhea-db.org/rhea?query=RHEA%3A20250&columns=rhea-id%2Cequation%2Cchebi-id%2Cec&format=tsv",
+      "http_status": 200,
+      "media_type": "text/plain; charset=UTF-8",
+      "raw_response_committed": false,
+      "receipt_index": 3,
+      "repository_path": null,
+      "retrieved_at_utc": "2026-09-06T10:24:21.024538+00:00",
+      "role": "header_only_directed_search_not_evidence",
+      "sha256": "e78c64063988475919f936aaec255fb357477e4504394915aaf10d481f657b39",
+      "source_url": "https://www.rhea-db.org/rhea?query=RHEA%3A20250&columns=rhea-id%2Cequation%2Cchebi-id%2Cec&format=tsv",
+      "transformation": "not redistributed; receipt metadata and hash retained"
+    },
+    {
+      "artifact_id": "acquisition:4",
+      "bytes": 57,
+      "evidence_exclusion": "HTTP 200 response contains only the TSV header",
+      "final_url": "https://www.rhea-db.org/rhea?query=RHEA%3A20251&columns=rhea-id%2Cequation%2Cchebi-id%2Cec&format=tsv",
+      "http_status": 200,
+      "media_type": "text/plain; charset=UTF-8",
+      "raw_response_committed": false,
+      "receipt_index": 4,
+      "repository_path": null,
+      "retrieved_at_utc": "2026-09-06T10:24:21.574195+00:00",
+      "role": "header_only_directed_search_not_evidence",
+      "sha256": "e78c64063988475919f936aaec255fb357477e4504394915aaf10d481f657b39",
+      "source_url": "https://www.rhea-db.org/rhea?query=RHEA%3A20251&columns=rhea-id%2Cequation%2Cchebi-id%2Cec&format=tsv",
+      "transformation": "not redistributed; receipt metadata and hash retained"
+    },
+    {
+      "artifact_id": "acquisition:5",
+      "bytes": 57,
+      "evidence_exclusion": "HTTP 200 response contains only the TSV header",
+      "final_url": "https://www.rhea-db.org/rhea?query=RHEA%3A20252&columns=rhea-id%2Cequation%2Cchebi-id%2Cec&format=tsv",
+      "http_status": 200,
+      "media_type": "text/plain; charset=UTF-8",
+      "raw_response_committed": false,
+      "receipt_index": 5,
+      "repository_path": null,
+      "retrieved_at_utc": "2026-09-06T10:24:22.167340+00:00",
+      "role": "header_only_directed_search_not_evidence",
+      "sha256": "e78c64063988475919f936aaec255fb357477e4504394915aaf10d481f657b39",
+      "source_url": "https://www.rhea-db.org/rhea?query=RHEA%3A20252&columns=rhea-id%2Cequation%2Cchebi-id%2Cec&format=tsv",
+      "transformation": "not redistributed; receipt metadata and hash retained"
+    },
+    {
+      "artifact_id": "acquisition:6",
+      "bytes": 446712,
+      "final_url": "https://ftp.expasy.org/databases/rhea/tsv/rhea-directions.tsv",
+      "http_status": 200,
+      "media_type": "text/tab-separated-values",
+      "raw_response_committed": true,
+      "receipt_index": 6,
+      "repository_path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/rhea-directions.tsv",
+      "retrieved_at_utc": "2026-09-06T10:24:30.574766+00:00",
+      "role": "reaction_direction_quartet",
+      "sha256": "deae1911da372c70ee8fc97992809c7923e63b288a8702fc4396edcb2633fb04",
+      "source_last_modified": "Wed, 02 Sep 2026 14:00:00 GMT",
+      "source_url": "https://ftp.expasy.org/databases/rhea/tsv/rhea-directions.tsv",
+      "transformation": "copied byte-for-byte from the bounded capture"
+    },
+    {
+      "artifact_id": "acquisition:7",
+      "bytes": 2929,
+      "final_url": "https://ftp.expasy.org/databases/rhea/tsv/rhea2macie.tsv",
+      "http_status": 200,
+      "media_type": "text/tab-separated-values",
+      "raw_response_committed": true,
+      "receipt_index": 7,
+      "repository_path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/rhea2macie.tsv",
+      "retrieved_at_utc": "2026-09-06T10:24:38.226651+00:00",
+      "role": "rhea_to_mcsa_record_cross_reference",
+      "sha256": "2d0120f01f78e1c1a8fda6476d2587f21ee5fcdc3e4f15ad040c2424ce451ff5",
+      "source_last_modified": "Wed, 02 Sep 2026 14:00:00 GMT",
+      "source_url": "https://ftp.expasy.org/databases/rhea/tsv/rhea2macie.tsv",
+      "transformation": "copied byte-for-byte from the bounded capture"
+    },
+    {
+      "artifact_id": "acquisition:8",
+      "bytes": 45677,
+      "final_url": "https://sparql.rhea-db.org/sparql?query=PREFIX+rh%3A+%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0ASELECT+%3Frhea+%3Fpredicate+%3Fobject+WHERE+%7B%0A++VALUES+%3Frhea+%7B+rh%3A20249+rh%3A20250+rh%3A20251+rh%3A20252+%7D%0A++%3Frhea+%3Fpredicate+%3Fobject+.%0A%7D%0AORDER+BY+%3Frhea+%3Fpredicate+%3Fobject&format=application%2Fsparql-results%2Bjson",
+      "http_status": 200,
+      "media_type": "application/sparql-results+json",
+      "raw_response_committed": true,
+      "receipt_index": 8,
+      "repository_path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/rhea_20249_quartet_sparql.json",
+      "retrieved_at_utc": "2026-09-06T10:25:26.831804+00:00",
+      "role": "directed_reaction_equations_and_rdf_relations",
+      "sha256": "57c00730fcdde30a7c2627fb7ec6b6231891151159ebb467e7fd625ca358c83c",
+      "source_release": "2026_03",
+      "source_release_evidence": "X-Release response header",
+      "source_url": "https://sparql.rhea-db.org/sparql?query=PREFIX+rh%3A+%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0ASELECT+%3Frhea+%3Fpredicate+%3Fobject+WHERE+%7B%0A++VALUES+%3Frhea+%7B+rh%3A20249+rh%3A20250+rh%3A20251+rh%3A20252+%7D%0A++%3Frhea+%3Fpredicate+%3Fobject+.%0A%7D%0AORDER+BY+%3Frhea+%3Fpredicate+%3Fobject&format=application%2Fsparql-results%2Bjson",
+      "transformation": "copied byte-for-byte from the bounded capture"
+    },
+    {
+      "artifact_id": "acquisition:9",
+      "bytes": 5576,
+      "evidence_exclusion": "HTTP 403 text/html Cloudflare challenge; not an RXN file",
+      "final_url": "https://www.rhea-db.org/rhea/20250.rxn",
+      "http_status": 403,
+      "media_type": "text/html; charset=UTF-8",
+      "raw_response_committed": false,
+      "receipt_index": 9,
+      "repository_path": null,
+      "retrieved_at_utc": "2026-09-06T10:25:49.567517+00:00",
+      "role": "failed_directed_rxn_probe_not_evidence",
+      "sha256": "c7ae125ddae32ac5fd380045d5950d6b8b0089e1a2cc0c05b23a7d43420e14ed",
+      "source_url": "https://www.rhea-db.org/rhea/20250.rxn",
+      "transformation": "not redistributed; receipt metadata and hash retained"
+    },
+    {
+      "artifact_id": "acquisition:10",
+      "bytes": 653,
+      "final_url": "https://ftp.expasy.org/databases/rhea/ctfiles/mol/CHEBI_57972.mol",
+      "http_status": 200,
+      "media_type": null,
+      "raw_response_committed": true,
+      "receipt_index": 10,
+      "repository_path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/CHEBI_57972.mol",
+      "retrieved_at_utc": "2026-09-06T10:26:28.892744+00:00",
+      "role": "curated_left_participant_structure",
+      "sha256": "5ba0e73a3fc10496994273277032a8349759046bc7e50d3da10304bbf11e5a78",
+      "source_last_modified": "Wed, 02 Sep 2026 14:00:00 GMT",
+      "source_url": "https://ftp.expasy.org/databases/rhea/ctfiles/mol/CHEBI_57972.mol",
+      "transformation": "copied byte-for-byte from the bounded capture"
+    },
+    {
+      "artifact_id": "acquisition:11",
+      "bytes": 653,
+      "final_url": "https://ftp.expasy.org/databases/rhea/ctfiles/mol/CHEBI_57416.mol",
+      "http_status": 200,
+      "media_type": null,
+      "raw_response_committed": true,
+      "receipt_index": 11,
+      "repository_path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/CHEBI_57416.mol",
+      "retrieved_at_utc": "2026-09-06T10:26:29.395222+00:00",
+      "role": "curated_right_participant_structure",
+      "sha256": "2d65c26df7cf47ddb07e3145ddd88601f43ce44889836e1ee3d50a02ab14f483",
+      "source_last_modified": "Wed, 02 Sep 2026 14:00:00 GMT",
+      "source_url": "https://ftp.expasy.org/databases/rhea/ctfiles/mol/CHEBI_57416.mol",
+      "transformation": "copied byte-for-byte from the bounded capture"
+    },
+    {
+      "artifact_id": "acquisition:12",
+      "bytes": 764937,
+      "final_url": "https://www.rhea-db.org/help/reaction-side-direction",
+      "http_status": 200,
+      "media_type": "text/html; charset=UTF-8",
+      "raw_response_committed": false,
+      "receipt_index": 12,
+      "repository_path": null,
+      "retrieved_at_utc": "2026-09-06T10:26:29.889639+00:00",
+      "role": "direction_semantics_inspection_only",
+      "sha256": "3e12ec2262ca8bc27253a3c5f5cb38476f179946ebcd3eab091d66b0c84e0fb1",
+      "source_url": "https://www.rhea-db.org/help/reaction-side-direction",
+      "transformation": "not redistributed; receipt metadata and hash retained"
+    }
+  ],
+  "inventory_id": "m0213-rhea-reaction-correspondence-sources",
+  "project_artifacts": [
+    {
+      "artifact_id": "project:M0213:computational-depiction-audit-script",
+      "artifact_kind": "computational_depiction_audit_script",
+      "bytes": 7503,
+      "repository_path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/audit_depiction.py",
+      "role": "Optional reproducibility script for the pinned source-depiction diagnostic; not imported or executed by production runtime.",
+      "runtime_dependency": false,
+      "sha256": "fa9dfdafb089f3471238ff23ec2446bb67c4e0724a284182f7c8a4f90b7a3eaf",
+      "software_version": "RDKit 2025.03.3"
+    },
+    {
+      "artifact_id": "project:M0213:computational-depiction-audit",
+      "artifact_kind": "computational_depiction_audit",
+      "bytes": 3797,
+      "method": "independent_panel_MolFromMrvBlock_and_FindMolChiralCenters",
+      "repository_path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/computational_depiction_audit.json",
+      "role": "Corroborating project computation of per-panel CIP diagnostics; not upstream source evidence, chemical normalization, atom correspondence, or trajectory validation.",
+      "runtime_dependency": false,
+      "sha256": "8e58483cd525c35ec4448575df0bb7ed4302240db0194aa87f67ecb239abf232",
+      "software_version": "RDKit 2025.03.3"
+    }
+  ],
+  "reused_repository_sources": [
+    {
+      "artifact_id": "source:M-CSA:M0213",
+      "bytes": 169984,
+      "repository_path": "data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0213.json",
+      "role": "source record, mechanism prose, ordered steps, and exact MRV bytes",
+      "sha256": "375d66615ee7a38cb3adc817b39ae28308d554590c26c3b4bbb7d08f2a74728d",
+      "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/213/"
+    },
+    {
+      "artifact_id": "curated:UniProtKB:P10724",
+      "bytes": 37109,
+      "entry_version": 155,
+      "last_annotation_update_date": "2026-09-02",
+      "repository_path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/observed_state_v3/m0213/UniProt_P10724.json",
+      "role": "curated protein activity referencing direction-undefined master RHEA:20249",
+      "sha256": "f3f69d2230dbb0188ae0ad7f03074d7d84e7d492ef366d5a831216d4bcb6b13f",
+      "source_url": "https://rest.uniprot.org/uniprotkb/P10724.json"
+    }
+  ],
+  "rights": {
+    "ChEBI": {
+      "license": "CC BY 4.0",
+      "url": "https://www.ebi.ac.uk/ols4/ontologies/chebi"
+    },
+    "M-CSA": {
+      "license": "CC BY 4.0",
+      "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/"
+    },
+    "Rhea": {
+      "license": "CC BY 4.0",
+      "url": "https://www.rhea-db.org/help/license-disclaimer"
+    },
+    "UniProt": {
+      "license": "CC BY 4.0",
+      "url": "https://www.uniprot.org/help/license"
+    }
+  },
+  "schema_version": "catalytic-earth.reaction-source-inventory.v1",
+  "scope": "Official structured evidence for a record-level M0213 to RHEA:20250 correspondence plus a separately reviewed source-depiction consistency audit.",
+  "unbound_citation_only_sources": [
+    {
+      "raw_body_committed": false,
+      "raw_hash_available": false,
+      "scope": "Accepted name/reaction/PLP corroboration only; no bound evidence role.",
+      "source": "IUBMB EC 5.1.1.1",
+      "url": "https://iubmb.qmul.ac.uk/enzyme/EC5/1/1/1.html"
+    },
+    {
+      "raw_body_committed": false,
+      "raw_hash_available": false,
+      "scope": "Current W/H wedge/hatch format semantics applied in a project-authored diagnostic to MRV v18.11.0; no versioned-parser equivalence claim.",
+      "source": "ChemAxon CML format documentation",
+      "url": "https://docs.chemaxon.com/latest/formats_cml.html"
+    }
+  ]
+}

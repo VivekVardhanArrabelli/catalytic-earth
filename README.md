@@ -71,6 +71,12 @@ unresolved chemical descriptions. Package compilation checks selected deposited
 facts against the retained structure files; a record-level observation does
 not validate an individual source step.
 
+M0213 alanine-racemase queries now attach a [curated reaction correspondence](docs/ATLAS_SOURCE_DRAFTS.md#curated-reaction-correspondence-and-depiction-conflicts).
+Rhea and the source prose agree on L-alanine → D-alanine. A reproducible
+check finds the opposite endpoint configurations in the retained drawings,
+with charge forms that also differ from the curated zwitterions. Queries
+expose these conflicts while leaving exact depicted identities unresolved.
+
 - `current702` contains 702 project benchmark labels: 685 bronze, 17 silver,
   zero project-gold; 683 are automation-curated and 19 author-reviewed.
 - The combined 10,001-row surface is **8,305 positive fingerprint assignments

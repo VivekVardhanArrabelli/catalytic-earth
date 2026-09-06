@@ -1,0 +1,1775 @@
+{
+  "head" : {
+    "vars" : [
+      "rhea",
+      "predicate",
+      "object"
+    ]
+  },
+  "results" : {
+    "bindings" : [
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/accession"
+        },
+        "object" : {
+          "type" : "literal",
+          "value" : "RHEA:20249"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/bidirectionalReaction"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/10079072"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/10080917"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/10671527"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/10878136"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/10977898"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/11267762"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/11676496"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/12203980"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/18434499"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/19300994"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/22194336"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/22806802"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/24419381"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/3524677"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/6391537"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/7763424"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/directionalReaction"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/directionalReaction"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/ec"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://purl.uniprot.org/enzyme/5.1.1.1"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/equation"
+        },
+        "object" : {
+          "type" : "literal",
+          "value" : "L-alanine = D-alanine"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/htmlEquation"
+        },
+        "object" : {
+          "type" : "literal",
+          "value" : "<small>L</small>-alanine = <small>D</small>-alanine"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/id"
+        },
+        "object" : {
+          "datatype" : "http://www.w3.org/2001/XMLSchema#long",
+          "type" : "literal",
+          "value" : "20249"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/isChemicallyBalanced"
+        },
+        "object" : {
+          "datatype" : "http://www.w3.org/2001/XMLSchema#boolean",
+          "type" : "literal",
+          "value" : "true"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/isTransport"
+        },
+        "object" : {
+          "datatype" : "http://www.w3.org/2001/XMLSchema#boolean",
+          "type" : "literal",
+          "value" : "false"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/side"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249_L"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/side"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249_R"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/status"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/Approved"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/2000/01/rdf-schema#Class"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/2000/01/rdf-schema#label"
+        },
+        "object" : {
+          "type" : "literal",
+          "value" : "L-alanine = D-alanine"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/2000/01/rdf-schema#seeAlso"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://purl.obolibrary.org/obo/GO_0008784"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/2000/01/rdf-schema#subClassOf"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/18317"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/2000/01/rdf-schema#subClassOf"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/Reaction"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/accession"
+        },
+        "object" : {
+          "type" : "literal",
+          "value" : "RHEA:20250"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/10079072"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/10080917"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/10671527"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/10878136"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/10977898"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/11267762"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/11676496"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/12203980"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/18434499"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/19300994"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/22194336"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/22806802"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/24419381"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/3524677"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/6391537"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/7763424"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/equation"
+        },
+        "object" : {
+          "type" : "literal",
+          "value" : "L-alanine => D-alanine"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/htmlEquation"
+        },
+        "object" : {
+          "type" : "literal",
+          "value" : "<small>L</small>-alanine => <small>D</small>-alanine"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/id"
+        },
+        "object" : {
+          "datatype" : "http://www.w3.org/2001/XMLSchema#long",
+          "type" : "literal",
+          "value" : "20250"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/isChemicallyBalanced"
+        },
+        "object" : {
+          "datatype" : "http://www.w3.org/2001/XMLSchema#boolean",
+          "type" : "literal",
+          "value" : "true"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/isTransport"
+        },
+        "object" : {
+          "datatype" : "http://www.w3.org/2001/XMLSchema#boolean",
+          "type" : "literal",
+          "value" : "false"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/products"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249_R"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/status"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/Approved"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/substrates"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249_L"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/2000/01/rdf-schema#Class"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/2000/01/rdf-schema#label"
+        },
+        "object" : {
+          "type" : "literal",
+          "value" : "L-alanine => D-alanine"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/2000/01/rdf-schema#seeAlso"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://identifiers.org/macie/M0213"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/2000/01/rdf-schema#subClassOf"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/18318"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20250"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/2000/01/rdf-schema#subClassOf"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/DirectionalReaction"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/accession"
+        },
+        "object" : {
+          "type" : "literal",
+          "value" : "RHEA:20251"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/10079072"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/10080917"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/10671527"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/10878136"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/10977898"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/11267762"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/11676496"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/12203980"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/18434499"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/19300994"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/22194336"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/22806802"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/24419381"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/3524677"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/6391537"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/7763424"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/equation"
+        },
+        "object" : {
+          "type" : "literal",
+          "value" : "D-alanine => L-alanine"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/htmlEquation"
+        },
+        "object" : {
+          "type" : "literal",
+          "value" : "<small>D</small>-alanine => <small>L</small>-alanine"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/id"
+        },
+        "object" : {
+          "datatype" : "http://www.w3.org/2001/XMLSchema#long",
+          "type" : "literal",
+          "value" : "20251"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/isChemicallyBalanced"
+        },
+        "object" : {
+          "datatype" : "http://www.w3.org/2001/XMLSchema#boolean",
+          "type" : "literal",
+          "value" : "true"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/isTransport"
+        },
+        "object" : {
+          "datatype" : "http://www.w3.org/2001/XMLSchema#boolean",
+          "type" : "literal",
+          "value" : "false"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/products"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249_L"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/status"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/Approved"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/substrates"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249_R"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/2000/01/rdf-schema#Class"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/2000/01/rdf-schema#label"
+        },
+        "object" : {
+          "type" : "literal",
+          "value" : "D-alanine => L-alanine"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/2000/01/rdf-schema#subClassOf"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/18319"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20251"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/2000/01/rdf-schema#subClassOf"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/DirectionalReaction"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/accession"
+        },
+        "object" : {
+          "type" : "literal",
+          "value" : "RHEA:20252"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/10079072"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/10080917"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/10671527"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/10878136"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/10977898"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/11267762"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/11676496"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/12203980"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/18434499"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/19300994"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/22194336"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/22806802"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/24419381"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/3524677"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/6391537"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/citation"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.ncbi.nlm.nih.gov/pubmed/7763424"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/equation"
+        },
+        "object" : {
+          "type" : "literal",
+          "value" : "L-alanine <=> D-alanine"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/htmlEquation"
+        },
+        "object" : {
+          "type" : "literal",
+          "value" : "<small>L</small>-alanine <=> <small>D</small>-alanine"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/id"
+        },
+        "object" : {
+          "datatype" : "http://www.w3.org/2001/XMLSchema#long",
+          "type" : "literal",
+          "value" : "20252"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/isChemicallyBalanced"
+        },
+        "object" : {
+          "datatype" : "http://www.w3.org/2001/XMLSchema#boolean",
+          "type" : "literal",
+          "value" : "true"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/isTransport"
+        },
+        "object" : {
+          "datatype" : "http://www.w3.org/2001/XMLSchema#boolean",
+          "type" : "literal",
+          "value" : "false"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/status"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/Approved"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/substratesOrProducts"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249_L"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/substratesOrProducts"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20249_R"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/2000/01/rdf-schema#Class"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/2000/01/rdf-schema#label"
+        },
+        "object" : {
+          "type" : "literal",
+          "value" : "L-alanine <=> D-alanine"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/2000/01/rdf-schema#seeAlso"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://identifiers.org/biocyc/ECOCYC:ALARACECAT-RXN"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/2000/01/rdf-schema#seeAlso"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://identifiers.org/biocyc/METACYC:ALARACECAT-RXN"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/2000/01/rdf-schema#seeAlso"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://identifiers.org/kegg.reaction/R00401"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/2000/01/rdf-schema#subClassOf"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/18320"
+        }
+      },
+      {
+        "rhea" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/20252"
+        },
+        "predicate" : {
+          "type" : "uri",
+          "value" : "http://www.w3.org/2000/01/rdf-schema#subClassOf"
+        },
+        "object" : {
+          "type" : "uri",
+          "value" : "http://rdf.rhea-db.org/BidirectionalReaction"
+        }
+      }
+    ]
+  }
+}

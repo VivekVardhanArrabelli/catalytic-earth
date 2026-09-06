@@ -60,6 +60,25 @@ def main() -> int:
         outputs[primary_target] = primary_raw
     elif (ROOT / primary_target).exists():
         raise SystemExit("packaged primary evidence exists without its reviewed repository input")
+    reaction_source = ROOT / batch.gate_directory / "reaction_correspondence_annotations.json"
+    reaction_target = f"src/catalytic_earth/draft_data/{stem}_reaction_correspondence.json"
+    if reaction_source.is_file():
+        from catalytic_earth.atlas_reaction_correspondence import validate_reaction_correspondence
+
+        reaction_correspondence = json.loads(reaction_source.read_text(encoding="utf-8"))
+        validate_reaction_correspondence(reaction_correspondence, bundle=bundle, repo_root=ROOT)
+        reaction_raw = canonical_bytes(reaction_correspondence)
+        expected["reaction_correspondence_sha256"] = hashlib.sha256(reaction_raw).hexdigest()
+        outputs[reaction_target] = reaction_raw
+        attribution_bindings = [item for item in reaction_correspondence["source_bindings"]
+                                if item["artifact_kind"] == "attribution"]
+        if len(attribution_bindings) != 1:
+            raise SystemExit("reaction correspondence requires one source attribution")
+        reaction_attribution = (ROOT / attribution_bindings[0]["path"]).read_bytes()
+        expected["reaction_attribution_sha256"] = hashlib.sha256(reaction_attribution).hexdigest()
+        outputs[f"src/catalytic_earth/draft_data/{stem}_reaction_attribution.md"] = reaction_attribution
+    elif (ROOT / reaction_target).exists():
+        raise SystemExit("packaged reaction correspondence exists without its reviewed repository input")
     step_source = ROOT / batch.gate_directory / "step_evidence_annotations.json"
     step_target = f"src/catalytic_earth/draft_data/{stem}_step_evidence.json"
     if step_source.is_file():

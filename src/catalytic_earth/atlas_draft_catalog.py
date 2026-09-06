@@ -13,6 +13,7 @@ def query_source_draft_batches(
     bundles: Mapping[str, dict[str, Any]], *,
     primary_evidence_by_batch: Mapping[str, dict[str, Any] | None] | None = None,
     step_evidence_by_batch: Mapping[str, dict[str, Any] | None] | None = None,
+    reaction_correspondence_by_batch: Mapping[str, dict[str, Any] | None] | None = None,
     mcsa_id: str | None = None, assembly: str | None = None,
     text: str | None = None, include_steps: bool = False,
     participants: Sequence[str] = (), reactants: Sequence[str] = (),
@@ -38,6 +39,12 @@ def query_source_draft_batches(
     step_evidence = {} if step_evidence_by_batch is None else step_evidence_by_batch
     if not isinstance(step_evidence, Mapping) or set(step_evidence) - set(bundles):
         raise ValueError("step evidence names an unselected source batch")
+    reaction_correspondence = (
+        {} if reaction_correspondence_by_batch is None else reaction_correspondence_by_batch
+    )
+    if (not isinstance(reaction_correspondence, Mapping)
+            or set(reaction_correspondence) - set(bundles)):
+        raise ValueError("reaction correspondence names an unselected source batch")
 
     results = []
     seen_record_ids: set[str] = set()
@@ -56,6 +63,7 @@ def query_source_draft_batches(
             mechanism_components=mechanism_components,
             primary_evidence=evidence.get(batch_id),
             step_evidence=step_evidence.get(batch_id),
+            reaction_correspondence=reaction_correspondence.get(batch_id),
             cofactors=cofactors, enzyme_contexts=enzyme_contexts,
             source_assertions=source_assertions,
             include_observed_state_context=include_observed_state_context,
@@ -107,5 +115,16 @@ def query_source_draft_batches(
         output["query_semantics"].update({
             "observed_state_grounds_step": False,
             "observed_state_context_count_is_independent_observation_count": False,
+        })
+    if any(sidecar is not None for sidecar in reaction_correspondence.values()):
+        output["schema_version"] = "catalytic-earth.source-draft-catalog-query.v4"
+        output["curated_reaction_correspondence_count"] = sum(
+            item["result"].get("curated_reaction_correspondence_count", 0)
+            for item in results
+        )
+        output["query_semantics"].update({
+            "curated_reaction_validates_source_steps": False,
+            "curated_reaction_assigns_depicted_species": False,
+            "curated_reaction_establishes_atom_mapping": False,
         })
     return output

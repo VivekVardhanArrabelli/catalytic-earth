@@ -223,6 +223,33 @@ def verified_primary_evidence(
     return primary
 
 
+def verified_reaction_correspondence(
+    batch_name: str = "default", *, bundle: dict[str, Any] | None = None,
+) -> dict[str, Any] | None:
+    """Load curated net-reaction correspondence separately from source chemistry."""
+    from .atlas_draft_batch import DEFAULT_BATCH, resolve_batch
+    from .atlas_reaction_correspondence import validate_reaction_correspondence
+
+    batch = resolve_batch(batch_name)
+    stem = "source_drafts" if batch == DEFAULT_BATCH else batch.batch_id.replace("-", "_")
+    expected = json.loads(_resource_bytes(f"draft_data/{stem}_expected.json"))
+    if expected.get("schema_version") != "catalytic-earth.source-drafts-package.v1":
+        raise ValueError("unsupported source draft package")
+    if "reaction_correspondence_sha256" not in expected:
+        return None
+    raw = _resource_bytes(f"draft_data/{stem}_reaction_correspondence.json")
+    if hashlib.sha256(raw).hexdigest() != expected["reaction_correspondence_sha256"]:
+        raise ValueError("reaction correspondence package differs from its expected hash")
+    attribution = _resource_bytes(f"draft_data/{stem}_reaction_attribution.md")
+    if hashlib.sha256(attribution).hexdigest() != expected.get("reaction_attribution_sha256"):
+        raise ValueError("reaction attribution package differs from its expected hash")
+    sidecar = json.loads(raw)
+    validate_reaction_correspondence(
+        sidecar, bundle=verified_source_drafts(batch_name) if bundle is None else bundle,
+    )
+    return sidecar
+
+
 def verified_step_evidence(
     batch_name: str = "default", *, bundle: dict[str, Any] | None = None,
     primary_evidence: dict[str, Any] | None = None,
@@ -398,6 +425,10 @@ def main(argv: Sequence[str] | None = None) -> int:
                         name, bundle=bundle, primary_evidence=evidence[name],
                     ) for name, bundle in bundles.items()
                 } if use_step_evidence else None,
+                reaction_correspondence_by_batch={
+                    name: verified_reaction_correspondence(name, bundle=bundle)
+                    for name, bundle in bundles.items()
+                },
                 **filters,
             )
         else:
@@ -406,6 +437,9 @@ def main(argv: Sequence[str] | None = None) -> int:
             result = query_source_drafts(
                 bundle, **filters,
                 primary_evidence=primary,
+                reaction_correspondence=verified_reaction_correspondence(
+                    args.batch, bundle=bundle,
+                ),
                 step_evidence=verified_step_evidence(
                     args.batch, bundle=bundle, primary_evidence=primary,
                 ) if use_step_evidence else None,
