@@ -1,0 +1,314 @@
+{
+  "authorship": "project-authored factual projection of exact retained official records",
+  "claims": [
+    {
+      "claim_id": "1pya-chain-f-processed-pyr-observation",
+      "extracted_values": {
+        "atom_site_author_component_id": "PYR",
+        "author_chain_id": "F",
+        "author_residue_number": 82,
+        "component_name": "PYRUVIC ACID",
+        "covalent_connection": {
+          "connection_id": "covale3",
+          "distance_angstrom": 1.333,
+          "partner_1": "F/PYR/label-1/author-82/C",
+          "partner_2": "F/PHE/label-2/author-83/N",
+          "value_order": null
+        },
+        "entity_id": "2",
+        "label_asym_id": "F",
+        "label_component_id": "PYR",
+        "label_seq_id": 1,
+        "poly_seq_scheme_author_monomer_id": "PVL"
+      },
+      "interpretation": "The current 1PYA deposit models an N-terminal PYR component at processed chain-F label position 1 and PDB author residue 82, covalently connected to the following Phe. PYR is part of polymer entity 2; the only deposited nonpolymer/solvent component is water.",
+      "locators": [
+        {
+          "category": "_entity_poly",
+          "lines": [
+            191,
+            200
+          ],
+          "row_selector": {
+            "entity_id": "2"
+          },
+          "source_binding_id": "primary:RCSB:1PYA:mmCIF:v2.1"
+        },
+        {
+          "category": "_entity_poly_seq",
+          "line": 292,
+          "row_selector": {
+            "entity_id": "2",
+            "num": "1"
+          },
+          "source_binding_id": "primary:RCSB:1PYA:mmCIF:v2.1"
+        },
+        {
+          "category": "_chem_comp",
+          "line": 600,
+          "row_selector": {
+            "id": "PYR"
+          },
+          "source_binding_id": "primary:RCSB:1PYA:mmCIF:v2.1"
+        },
+        {
+          "category": "_pdbx_poly_seq_scheme",
+          "line": 1321,
+          "row_selector": {
+            "asym_id": "F",
+            "entity_id": "2",
+            "seq_id": "1"
+          },
+          "source_binding_id": "primary:RCSB:1PYA:mmCIF:v2.1"
+        },
+        {
+          "category": "_struct_conn",
+          "line": 2419,
+          "row_selector": {
+            "id": "covale3"
+          },
+          "source_binding_id": "primary:RCSB:1PYA:mmCIF:v2.1"
+        },
+        {
+          "category": "_pdbx_modification_feature",
+          "line": 2454,
+          "row_selector": {
+            "ordinal": "3"
+          },
+          "source_binding_id": "primary:RCSB:1PYA:mmCIF:v2.1"
+        },
+        {
+          "category": "_atom_site",
+          "lines": [
+            10300,
+            10304
+          ],
+          "row_selector": {
+            "label_asym_id": "F",
+            "label_comp_id": "PYR",
+            "label_seq_id": "1"
+          },
+          "source_binding_id": "primary:RCSB:1PYA:mmCIF:v2.1"
+        }
+      ],
+      "typed_annotation_use": "record-level processed-structure observation"
+    },
+    {
+      "claim_id": "1pya-p00862-canonical-ser83-audit-correspondence",
+      "extracted_values": {
+        "canonical_record": {
+          "accession": "P00862",
+          "alpha_chain": [
+            83,
+            311
+          ],
+          "cleavage_site": [
+            82,
+            83
+          ],
+          "modified_residue": {
+            "description": "Pyruvic acid (Ser)",
+            "position": 83,
+            "residue": "SER"
+          }
+        },
+        "deposit_reference": {
+          "entity_id": "2",
+          "pdbx_align_begin": 83,
+          "standard_alignment_first_database_position": 83,
+          "standard_alignment_first_label_position": 2
+        },
+        "mcsa_projection": {
+          "canonical_residue": "P00862 Ser83",
+          "processed_residue": "Pyr1F"
+        },
+        "processed_structure_site": {
+          "author_residue_number": 82,
+          "chain_id": "F",
+          "component_id": "PYR",
+          "label_seq_id": 1
+        }
+      },
+      "interpretation": "Current UniProt annotates P00862 Ser83 as the pyruvic-acid modified residue; M-CSA projects P00862 Ser83 to Pyr1F. The deposit identifies entity 2 with P00862 but its standard-residue alignment begins at label position 2, so the mmCIF alignment row does not itself map label-1 PYR. This correspondence is retained as an audit fact and is not asserted through the v1 typed sequence_mapping field.",
+      "locators": [
+        {
+          "category": "_struct_ref",
+          "line": 2262,
+          "row_selector": {
+            "id": "2"
+          },
+          "source_binding_id": "primary:RCSB:1PYA:mmCIF:v2.1"
+        },
+        {
+          "category": "_struct_ref_seq",
+          "line": 2285,
+          "row_selector": {
+            "align_id": "6"
+          },
+          "source_binding_id": "primary:RCSB:1PYA:mmCIF:v2.1",
+          "use_limit": "This row begins at label position 2 and does not map label-1 PYR."
+        },
+        {
+          "selector": "/primaryAccession",
+          "source_binding_id": "source:UniProt:P00862:JSON:2026_03"
+        },
+        {
+          "selector": "/sequence/value[position=83]",
+          "source_binding_id": "source:UniProt:P00862:JSON:2026_03"
+        },
+        {
+          "selector": "/features[type=Chain,description='Histidine decarboxylase alpha chain',start=83,end=311]",
+          "source_binding_id": "source:UniProt:P00862:JSON:2026_03"
+        },
+        {
+          "selector": "/features[type=Site,start=82,end=83,description='Cleavage (non-hydrolytic)']",
+          "source_binding_id": "source:UniProt:P00862:JSON:2026_03"
+        },
+        {
+          "selector": "/features[type='Modified residue',start=83,end=83,description='Pyruvic acid (Ser)']",
+          "source_binding_id": "source:UniProt:P00862:JSON:2026_03"
+        },
+        {
+          "selector": "/entry/residues[function_location_abv='ptm']/residue_sequences[uniprot_id='P00862',code='Ser',resid=83] and /residue_chains[pdb_id='1pya',chain_name='F',resid=1,auth_resid=1]",
+          "source_binding_id": "source:MCSA:M0049:snapshot"
+        }
+      ],
+      "typed_annotation_use": "audit only; v1 sequence_mapping remains not_asserted"
+    },
+    {
+      "claim_id": "1pya-literature-numbering-boundary",
+      "extracted_values": {
+        "mcsa_legacy_label": "Prv-82",
+        "primary_abstract_reported_cleavage_bond": "Ser-81--Ser-82",
+        "pubmed_id": "6698997"
+      },
+      "interpretation": "The inspected PMID 6698997 abstract reports cleavage of the Ser81-Ser82 bond. It does not itself identify Ser82 as the pyruvoyl precursor. M-CSA separately uses Prv-82, and the two statements are not collapsed.",
+      "locators": [
+        {
+          "receipt_id": "pubmed-6698997-2745463-xml",
+          "repository_path": null,
+          "selector": "/PubmedArticleSet/PubmedArticle[PMID='6698997']/Abstract/AbstractText",
+          "source_sha256": "4670477d0391a28eecf17c57b9710573cb903763716eb41e17bb963b45d35268"
+        },
+        {
+          "selector": "/entry/reaction/mechanisms[mechanism_id=1]/mechanism_text[contains(.,'Prv-82')]",
+          "source_binding_id": "source:MCSA:M0049:snapshot"
+        }
+      ],
+      "typed_annotation_use": "numbering limitation only"
+    },
+    {
+      "claim_id": "1pya-v1-3-current-revision-comparison",
+      "extracted_values": {
+        "atom_name_changed_row_count": 12,
+        "atom_rows_same_except_atom_names": true,
+        "atom_site_row_count_each": 10140,
+        "claim_relevant_coordinates_unchanged": true,
+        "current_revision": "2.1",
+        "current_revision_date": "2024-11-20",
+        "historical_revision": "1.3",
+        "historical_revision_date": "2017-11-29",
+        "major_atomic_model_revision_date": "2023-11-15",
+        "v1_0_archive_attempt_http_status": 404
+      },
+      "interpretation": "The public revision-1.3 archive already contains the same chain-F PYR label/author site and coordinates. Current revision 2.1 changes 12 PYR atom names and adds modification metadata after a major atomic-model revision. Neither retained file is established as the exact coordinate byte stream used for the 1993 publication.",
+      "locators": [
+        {
+          "category": "_pdbx_poly_seq_scheme",
+          "line": 11984,
+          "row_selector": {
+            "asym_id": "F",
+            "entity_id": "2",
+            "seq_id": "1"
+          },
+          "source_binding_id": "primary:wwPDB:1PYA:mmCIF:v1.3"
+        },
+        {
+          "category": "_struct_conn",
+          "line": 856,
+          "row_selector": {
+            "id": "covale3"
+          },
+          "source_binding_id": "primary:wwPDB:1PYA:mmCIF:v1.3"
+        },
+        {
+          "category": "_atom_site",
+          "lines": [
+            7717,
+            7721
+          ],
+          "row_selector": {
+            "label_asym_id": "F",
+            "label_comp_id": "PYR",
+            "label_seq_id": "1"
+          },
+          "source_binding_id": "primary:wwPDB:1PYA:mmCIF:v1.3"
+        },
+        {
+          "category": "_pdbx_audit_revision_history",
+          "line": 12742,
+          "row_selector": {
+            "major_revision": "1",
+            "minor_revision": "3"
+          },
+          "source_binding_id": "primary:wwPDB:1PYA:mmCIF:v1.3"
+        },
+        {
+          "category": "_pdbx_audit_revision_history",
+          "line": 28,
+          "row_selector": {
+            "major_revision": "2",
+            "minor_revision": "1"
+          },
+          "source_binding_id": "primary:RCSB:1PYA:mmCIF:v2.1"
+        },
+        {
+          "category": "_pdbx_audit_revision_group",
+          "line": 47,
+          "row_selector": {
+            "group": "Atomic model",
+            "revision_ordinal": "5"
+          },
+          "source_binding_id": "primary:RCSB:1PYA:mmCIF:v2.1"
+        }
+      ],
+      "typed_annotation_use": "revision provenance and corroboration only"
+    }
+  ],
+  "context_id": "1pya-chain-f-p00862-processed-pyruvoyl",
+  "limits": [
+    "The deposited coordinates show a processed product state; they do not observe the precursor-cleavage trajectory or maturation atom edits.",
+    "P00862 canonical Ser83, the PMID 6698997 Ser81-Ser82 cleavage bond, M-CSA Prv-82, PDB author PYR82, and processed-chain label/Pyr1F remain separate statements or numbering namespaces.",
+    "The deposited standard-residue alignment begins at label position 2 and cannot independently map label-1 PYR to canonical Ser83.",
+    "The v1 typed annotation leaves sequence_mapping not_asserted because UniProt is a curated protein record, not a primary structure record or primary research article.",
+    "No PLP identity or PLP equivalence is supported for M0049.",
+    "1PYA contains no bound substrate or analogue and cannot resolve the M-CSA CHEBI:57595 versus MRV CHEBI:32526 identity conflict.",
+    "The deposited mutation field is unspecified; native or wild-type status is not asserted.",
+    "Neither current revision 2.1 nor archived revision 1.3 is established as the exact coordinate byte stream used for the 1993 analysis."
+  ],
+  "projection_id": "primary-source-projection:RCSB:1PYA:processed-pyruvoyl",
+  "schema_version": 1,
+  "scope": "Deposited processed-chain PYR state and audit-only source correspondence. No source-step trajectory, precursor maturation mechanism, exact substrate identity, or canonical sequence mapping is admitted.",
+  "source_bindings": [
+    {
+      "binding_id": "primary:RCSB:1PYA:mmCIF:v2.1",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/1PYA.cif",
+      "sha256": "2f2618f16d45b12285636a392f039c21682fe5ccb81e8d27e9d5c890de05718d"
+    },
+    {
+      "binding_id": "primary:wwPDB:1PYA:mmCIF:v1.3",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/1PYA_v1-3.cif",
+      "sha256": "782d1b1fc2f4831664624c62cb0127648b8ad11086c58c5550dc38215de615f9"
+    },
+    {
+      "binding_id": "source:UniProt:P00862:JSON:2026_03",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/UniProt_P00862.json",
+      "sha256": "4b17425b4928aef6b43a6a7b0168c98ce1078aedf0865da3e761c870765ce6e1"
+    },
+    {
+      "binding_id": "source:MCSA:M0049:snapshot",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0049.json",
+      "sha256": "37ba50b02ee04d61b50d2b85e559a8d1671eef528e45f98945b947c54d95471d"
+    }
+  ]
+}

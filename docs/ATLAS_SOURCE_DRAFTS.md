@@ -183,6 +183,70 @@ reactions from a shared participant. Records with unmapped participants remain
 available through the other filters; an identifier query cannot match those
 unmapped rows.
 
+## Evidence for individual source steps
+
+The PLP/pyruvoyl batch has an optional, reviewed context sidecar for all 32
+nonterminal source steps. It binds each annotation to the exact record,
+proposal, step and captured scheme hash. The original source bundles remain
+unchanged. Opt in to the additional step fields with `--step-evidence` or any
+step filter:
+
+```bash
+catalytic-earth atlas-drafts --batch plp-pyruvoyl --step-evidence
+catalytic-earth atlas-drafts --batch all --step-cofactor PLP
+catalytic-earth atlas-drafts --batch plp-pyruvoyl --step-cofactor pyruvoyl
+catalytic-earth atlas-drafts --batch plp-pyruvoyl --step-enzyme-context extra_enzymatic
+catalytic-earth atlas-drafts --batch plp-pyruvoyl --step-source-assertion explicitly_inferred
+catalytic-earth atlas-drafts --batch plp-pyruvoyl --step-source-assertion explicitly_assumed
+```
+
+Cofactor filters match literal labels in a step's source text, with only
+whitespace trimming and case folding. PLP retrieves witnessed steps from
+M0066/M0186/M0213; pyruvoyl retrieves witnessed steps from M0049. These labels
+are not normalized cofactor states, and their absence from a step annotation
+does not mean that the chemistry lacks that cofactor.
+
+The extra-enzymatic query returns M0186 Steps 6 and 7 with their distinct
+scheme hashes. Combining it with `--step-cofactor PLP` returns no match:
+the PLP and outside-enzyme descriptions belong to different steps. All step
+filters must match one annotation; combining a step filter with a mechanism
+component also requires the same proposal. Entry participant filters remain
+entry-scoped and do not resolve the chemical identity of a matching step.
+
+An inferred query preserves the difference between M0049's inferred Step 7
+and the inferred phosphate role within M0186 Step 4. The assumed acid role
+within M0186 Step 5 is separate. `source_silent` means no recognized explicit
+infer/assume marker, never that a step was observed or established. Other
+uncertainties and source conflicts remain visible in the witnesses and limits.
+
+Compact and full results carry the same annotation witnesses, scope and
+abstentions, plus complete step summaries and separately scoped proposal text.
+This preserves qualifications that a selected actor/role fragment cannot
+express, including M0186's conditional concerted model and uncertain water
+identity. Linked primary observations retain their original record or
+proposal scope; attaching one does not establish the exact step trajectory.
+Unresolved native/analogue context remains unresolved. Neither source arrows
+nor a source text annotation establishes atom mapping, bond edits, precise
+protonation, a full catalytic trajectory or an exact reaction instance.
+
+The [M0049 primary audit](../data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/SOURCE_ATTRIBUTION.md)
+adds a record-level observation of the deposited pyruvoyl component in 1PYA.
+It distinguishes processed chain-F label position **1** from PDB author
+residue **82**. Current and historical structure records preserve that
+processed component. The separate audit crosswalk places the precursor
+serine at current UniProt P00862 position **83**; the typed v1 annotation
+leaves sequence mapping unasserted because its evidence types cannot express
+the curated protein record honestly. The standard-residue alignment excludes
+the modified label-1 component and is insufficient by itself for that mapping.
+
+The structure supports a processed state. It does not establish the precursor
+cleavage trajectory or settle the M-CSA substrate-identifier conflict.
+Historical literature identifies the Ser81–Ser82 cleavage bond; that statement
+is kept separate from M-CSA's Prv-82 label. The retained raw structures and
+UniProt record, acquisition receipts, scoped projection and source inventory
+are available in the audit directory; only the reviewed annotation and source
+hashes enter the wheel.
+
 ## Rebuild and extend
 
 ```bash

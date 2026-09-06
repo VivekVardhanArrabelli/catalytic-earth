@@ -40,6 +40,7 @@ def main() -> int:
     }
     primary_source = ROOT / batch.gate_directory / "primary_evidence_annotations.json"
     primary_target = f"src/catalytic_earth/draft_data/{stem}_primary_evidence.json"
+    primary = None
     if primary_source.is_file():
         from catalytic_earth.atlas_primary_evidence import validate_primary_evidence
 
@@ -50,6 +51,23 @@ def main() -> int:
         outputs[primary_target] = primary_raw
     elif (ROOT / primary_target).exists():
         raise SystemExit("packaged primary evidence exists without its reviewed repository input")
+    step_source = ROOT / batch.gate_directory / "step_evidence_annotations.json"
+    step_target = f"src/catalytic_earth/draft_data/{stem}_step_evidence.json"
+    if step_source.is_file():
+        from catalytic_earth.atlas_step_evidence import validate_step_evidence
+
+        step_evidence = json.loads(step_source.read_text(encoding="utf-8"))
+        validate_step_evidence(
+            step_evidence, bundle=bundle, repo_root=ROOT,
+            primary_evidence=(
+                primary if step_evidence.get("primary_evidence_binding") is not None else None
+            ),
+        )
+        step_raw = canonical_bytes(step_evidence)
+        expected["step_evidence_sha256"] = hashlib.sha256(step_raw).hexdigest()
+        outputs[step_target] = step_raw
+    elif (ROOT / step_target).exists():
+        raise SystemExit("packaged step evidence exists without its reviewed repository input")
     outputs[f"src/catalytic_earth/draft_data/{stem}_expected.json"] = canonical_bytes(expected)
     for relative, raw in outputs.items():
         path = ROOT / relative

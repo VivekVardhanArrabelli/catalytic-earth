@@ -181,6 +181,15 @@ def _mechanism_component_argument(value: str) -> str:
         raise argparse.ArgumentTypeError(str(exc)) from exc
 
 
+def _step_cofactor_argument(value: str) -> str:
+    from .atlas_step_evidence import normalize_step_filters
+
+    try:
+        return normalize_step_filters(cofactors=[value])["cofactors"][0]
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError(str(exc)) from exc
+
+
 def verified_primary_evidence(
     batch_name: str = "default", *, bundle: dict[str, Any] | None = None,
 ) -> dict[str, Any] | None:
@@ -203,6 +212,37 @@ def verified_primary_evidence(
         primary, bundle=verified_source_drafts(batch_name) if bundle is None else bundle,
     )
     return primary
+
+
+def verified_step_evidence(
+    batch_name: str = "default", *, bundle: dict[str, Any] | None = None,
+    primary_evidence: dict[str, Any] | None = None,
+) -> dict[str, Any] | None:
+    """Load opt-in step context without altering immutable source drafts."""
+    from .atlas_draft_batch import DEFAULT_BATCH, resolve_batch
+    from .atlas_step_evidence import validate_step_evidence
+
+    batch = resolve_batch(batch_name)
+    stem = "source_drafts" if batch == DEFAULT_BATCH else batch.batch_id.replace("-", "_")
+    expected = json.loads(_resource_bytes(f"draft_data/{stem}_expected.json"))
+    if expected.get("schema_version") != "catalytic-earth.source-drafts-package.v1":
+        raise ValueError("unsupported source draft package")
+    if "step_evidence_sha256" not in expected:
+        return None
+    raw = _resource_bytes(f"draft_data/{stem}_step_evidence.json")
+    if hashlib.sha256(raw).hexdigest() != expected["step_evidence_sha256"]:
+        raise ValueError("step evidence package differs from its expected hash")
+    sidecar = json.loads(raw)
+    source_bundle = verified_source_drafts(batch_name) if bundle is None else bundle
+    primary = (
+        verified_primary_evidence(batch_name, bundle=source_bundle)
+        if primary_evidence is None else primary_evidence
+    )
+    validate_step_evidence(
+        sidecar, bundle=source_bundle,
+        primary_evidence=primary if sidecar.get("primary_evidence_binding") is not None else None,
+    )
+    return sidecar
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -253,6 +293,25 @@ def build_parser() -> argparse.ArgumentParser:
         help="require a ChEBI participant on the source's right side; repeat for AND",
     )
     drafts.add_argument("--steps", action="store_true", help="include source steps and electron flows")
+    drafts.add_argument(
+        "--step-evidence", action="store_true",
+        help="include optional reviewed step-context annotations with exact source witnesses",
+    )
+    drafts.add_argument(
+        "--step-cofactor", action="append", type=_step_cofactor_argument,
+        metavar="SOURCE_LABEL",
+        help="require an exact cofactor label witnessed in one source step; repeat for AND",
+    )
+    drafts.add_argument(
+        "--step-enzyme-context", action="append",
+        choices=["active_site", "extra_enzymatic", "unresolved"],
+        help="filter the explicitly supported enzyme context of one source step",
+    )
+    drafts.add_argument(
+        "--step-source-assertion", action="append",
+        choices=["explicitly_inferred", "explicitly_assumed", "source_silent"],
+        help="filter exact infer/assume markers; source_silent does not mean observed",
+    )
     drafts.add_argument("--output", type=Path, help="optional JSON output path")
     subparsers.add_parser("claims", help="print the exact golden-result claim boundary")
     return parser
@@ -292,7 +351,14 @@ def main(argv: Sequence[str] | None = None) -> int:
             "participants": args.participant or (), "reactants": args.reactant or (),
             "products": args.product or (),
             "mechanism_components": args.mechanism_component or (),
+            "cofactors": args.step_cofactor or (),
+            "enzyme_contexts": args.step_enzyme_context or (),
+            "source_assertions": args.step_source_assertion or (),
         }
+        use_step_evidence = bool(
+            args.step_evidence or args.step_cofactor
+            or args.step_enzyme_context or args.step_source_assertion
+        )
         if args.batch == "all":
             bundles = {name: verified_source_drafts(name) for name in sorted(BATCHES)}
             evidence = {
@@ -300,13 +366,23 @@ def main(argv: Sequence[str] | None = None) -> int:
                 for name, bundle in bundles.items()
             }
             result = query_source_draft_batches(
-                bundles, primary_evidence_by_batch=evidence, **filters,
+                bundles, primary_evidence_by_batch=evidence,
+                step_evidence_by_batch={
+                    name: verified_step_evidence(
+                        name, bundle=bundle, primary_evidence=evidence[name],
+                    ) for name, bundle in bundles.items()
+                } if use_step_evidence else None,
+                **filters,
             )
         else:
             bundle = verified_source_drafts(args.batch)
+            primary = verified_primary_evidence(args.batch, bundle=bundle)
             result = query_source_drafts(
                 bundle, **filters,
-                primary_evidence=verified_primary_evidence(args.batch, bundle=bundle),
+                primary_evidence=primary,
+                step_evidence=verified_step_evidence(
+                    args.batch, bundle=bundle, primary_evidence=primary,
+                ) if use_step_evidence else None,
             )
         rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
         if args.output:

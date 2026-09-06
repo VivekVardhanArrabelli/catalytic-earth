@@ -1,0 +1,4500 @@
+{
+  "annotation_set_id": "atlas-step-evidence:plp-pyruvoyl:v1",
+  "annotations": [
+    {
+      "annotation_id": "step-context:m0049:1",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [
+          {
+            "label": "pyruvoyl",
+            "source_witness": {
+              "exact_text": "pyruvoyl",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [],
+        "roles": [
+          {
+            "actor_label": "C-terminal serine",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "deprotonates the amine of the substrate",
+            "source_witness": {
+              "exact_text": "The C-terminal serine deprotonates the amine of the substrate",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          },
+          {
+            "actor_label": "oxyanion",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "deprotonates Tyr62",
+            "source_witness": {
+              "exact_text": "The oxyanion deprotonates Tyr62",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "entry_scheme_substrate_identity",
+          "statement": "The entry reports CHEBI:57595 L-histidine zwitterion, while source MRVs 1 through 6 carry CHEBI:32526; no exact substrate state is selected.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "plp_equivalence",
+          "statement": "The pyruvoyl PTM is not labeled or treated as PLP.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "pyruvoyl_numbering_namespaces",
+          "statement": "The M-CSA source residue table's P00862 Ser83, legacy Prv-82 prose, and the M-CSA Pyr1F source label remain distinct numbering namespaces.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0049",
+        "record_id": "atlas50-draft:m0049:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "37ba50b02ee04d61b50d2b85e559a8d1671eef528e45f98945b947c54d95471d"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0049.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "8876cd5d0cc0f24f7645eef9173ceba873fa460c4b0603c191b6fbc89b1ff961",
+        "source_step_id": 1,
+        "step_id": "atlas-draft.m0049.mechanism-1.step-1"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0049:2",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [],
+        "roles": [
+          {
+            "actor_label": "Tyr62",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "deprotonates the newly formed secondary amine",
+            "source_witness": {
+              "exact_text": "Tyr62 deprotonates the newly formed secondary amine",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "entry_scheme_substrate_identity",
+          "statement": "The entry reports CHEBI:57595 L-histidine zwitterion, while source MRVs 1 through 6 carry CHEBI:32526; no exact substrate state is selected.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "plp_equivalence",
+          "statement": "The pyruvoyl PTM is not labeled or treated as PLP.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "pyruvoyl_numbering_namespaces",
+          "statement": "The M-CSA source residue table's P00862 Ser83, legacy Prv-82 prose, and the M-CSA Pyr1F source label remain distinct numbering namespaces.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0049",
+        "record_id": "atlas50-draft:m0049:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "37ba50b02ee04d61b50d2b85e559a8d1671eef528e45f98945b947c54d95471d"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0049.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "077f627847ca10561ef1d88a0a79e95c1e4ac1489c2ab1e13c40e249ab263236",
+        "source_step_id": 2,
+        "step_id": "atlas-draft.m0049.mechanism-1.step-2"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0049:3",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [
+          {
+            "label": "pyruvoyl",
+            "source_witness": {
+              "exact_text": "pyruvoyl",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:32526"
+        ],
+        "roles": [
+          {
+            "actor_label": "pyruvoyl moiety",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "acts as an electron sink",
+            "source_witness": {
+              "exact_text": "the pyruvoyl moiety acts as an electron sink",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "entry_scheme_substrate_identity",
+          "statement": "The entry reports CHEBI:57595 L-histidine zwitterion, while source MRVs 1 through 6 carry CHEBI:32526; no exact substrate state is selected.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "plp_equivalence",
+          "statement": "The pyruvoyl PTM is not labeled or treated as PLP.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "pyruvoyl_numbering_namespaces",
+          "statement": "The M-CSA source residue table's P00862 Ser83, legacy Prv-82 prose, and the M-CSA Pyr1F source label remain distinct numbering namespaces.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0049",
+        "record_id": "atlas50-draft:m0049:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "37ba50b02ee04d61b50d2b85e559a8d1671eef528e45f98945b947c54d95471d"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0049.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "45c42b467768e026bbdbd72854c215db028cdc1423c4a5a37bf5d17717e2e23f",
+        "source_step_id": 3,
+        "step_id": "atlas-draft.m0049.mechanism-1.step-3"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0049:4",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:32526"
+        ],
+        "roles": [
+          {
+            "actor_label": "oxyanion",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "initiates double bond rearrangement",
+            "source_witness": {
+              "exact_text": "The oxyanion formed initiates double bond rearrangement",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "entry_scheme_substrate_identity",
+          "statement": "The entry reports CHEBI:57595 L-histidine zwitterion, while source MRVs 1 through 6 carry CHEBI:32526; no exact substrate state is selected.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "plp_equivalence",
+          "statement": "The pyruvoyl PTM is not labeled or treated as PLP.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "pyruvoyl_numbering_namespaces",
+          "statement": "The M-CSA source residue table's P00862 Ser83, legacy Prv-82 prose, and the M-CSA Pyr1F source label remain distinct numbering namespaces.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0049",
+        "record_id": "atlas50-draft:m0049:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "37ba50b02ee04d61b50d2b85e559a8d1671eef528e45f98945b947c54d95471d"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0049.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "9e93e3fea8d125f68f3afeeb927e00f672f862e0d1aec2adee93b7b6e772e848",
+        "source_step_id": 4,
+        "step_id": "atlas-draft.m0049.mechanism-1.step-4"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0049:5",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [],
+        "roles": [
+          {
+            "actor_label": "C-terminal serine residue",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "deprotonates water",
+            "source_witness": {
+              "exact_text": "The C-terminal serine residue deprotonates water",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          },
+          {
+            "actor_label": "nitrogen",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "deprotonates Tyr62",
+            "source_witness": {
+              "exact_text": "the nitrogen deprotonates Tyr62",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          },
+          {
+            "actor_label": "water",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "attacks the imine carbon",
+            "source_witness": {
+              "exact_text": "water, which in turn attacks the imine carbon",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "entry_scheme_substrate_identity",
+          "statement": "The entry reports CHEBI:57595 L-histidine zwitterion, while source MRVs 1 through 6 carry CHEBI:32526; no exact substrate state is selected.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "plp_equivalence",
+          "statement": "The pyruvoyl PTM is not labeled or treated as PLP.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "pyruvoyl_numbering_namespaces",
+          "statement": "The M-CSA source residue table's P00862 Ser83, legacy Prv-82 prose, and the M-CSA Pyr1F source label remain distinct numbering namespaces.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0049",
+        "record_id": "atlas50-draft:m0049:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "37ba50b02ee04d61b50d2b85e559a8d1671eef528e45f98945b947c54d95471d"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0049.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "d82f09ed493b1a35be5c3a7c7bb9fd91e76c5a3220cd0b6e1a4cee110c2c55fa",
+        "source_step_id": 5,
+        "step_id": "atlas-draft.m0049.mechanism-1.step-5"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0049:6",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [
+          {
+            "label": "pyruvoyl",
+            "source_witness": {
+              "exact_text": "pyruvoyl",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [],
+        "roles": [
+          {
+            "actor_label": "Tyr62",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "deprotonates the hydroxyl group of the pyruvoyl residue",
+            "source_witness": {
+              "exact_text": "Tyr62 deprotonates the hydroxyl group of the pyruvoyl residue",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "entry_scheme_substrate_identity",
+          "statement": "The entry reports CHEBI:57595 L-histidine zwitterion, while source MRVs 1 through 6 carry CHEBI:32526; no exact substrate state is selected.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "plp_equivalence",
+          "statement": "The pyruvoyl PTM is not labeled or treated as PLP.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "pyruvoyl_numbering_namespaces",
+          "statement": "The M-CSA source residue table's P00862 Ser83, legacy Prv-82 prose, and the M-CSA Pyr1F source label remain distinct numbering namespaces.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0049",
+        "record_id": "atlas50-draft:m0049:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "37ba50b02ee04d61b50d2b85e559a8d1671eef528e45f98945b947c54d95471d"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0049.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "5d1e5939581c7936e02985d71c04bad86eedc5641ec0afbe5d8da10df6746a60",
+        "source_step_id": 6,
+        "step_id": "atlas-draft.m0049.mechanism-1.step-6"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0049:7",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [],
+        "roles": [
+          {
+            "actor_label": "Glu197F",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "deprotonates water",
+            "source_witness": {
+              "exact_text": "Glu197F deprotonates water",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "whole_step",
+          "source_witness": {
+            "exact_text": "inferred step",
+            "field": "step_summary"
+          },
+          "status": "explicitly_inferred",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "entry_scheme_substrate_identity",
+          "statement": "The entry reports CHEBI:57595 L-histidine zwitterion, while source MRVs 1 through 6 carry CHEBI:32526; no exact substrate state is selected.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "plp_equivalence",
+          "statement": "The pyruvoyl PTM is not labeled or treated as PLP.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "pyruvoyl_numbering_namespaces",
+          "statement": "The M-CSA source residue table's P00862 Ser83, legacy Prv-82 prose, and the M-CSA Pyr1F source label remain distinct numbering namespaces.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0049",
+        "record_id": "atlas50-draft:m0049:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "37ba50b02ee04d61b50d2b85e559a8d1671eef528e45f98945b947c54d95471d"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0049.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "9e5cd76b752c3436d29c5ef1fd1fca45b0637a5bd2396ab08c2a1692dd7d6224",
+        "source_step_id": 7,
+        "step_id": "atlas-draft.m0049.mechanism-1.step-7"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0066:1",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [
+          {
+            "label": "PLP",
+            "source_witness": {
+              "exact_text": "PLP",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:29986"
+        ],
+        "roles": [
+          {
+            "actor_label": "bound Lys145",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "deprotonates the newly attached amine",
+            "source_witness": {
+              "exact_text": "the bound Lys145 deprotonates the newly attached amine",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          },
+          {
+            "actor_label": "L-glutamate",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "attacks the PLP cofactor",
+            "source_witness": {
+              "exact_text": "L-glutamate attacks the PLP cofactor",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_scheme_label_state",
+          "statement": "The repeated CHEBI:597326 MRV label is retained separately from step-text PLP or PMP labels and does not establish the cofactor state.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "product_stereochemistry",
+          "statement": "Step 12 says alanine without a stereochemical qualifier; the entry product does not make that same-step text stereospecific.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "step_1_substrate_stereochemistry",
+          "statement": "Step 1 says L-glutamate, while the entry and MRV label identify D-glutamate/CHEBI:29986; this sidecar preserves rather than resolves the conflict.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0066",
+        "record_id": "atlas50-draft:m0066:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "89fa34b9238e224ed7772492165dd331ef455d9bbc32252b98c8148fd2c35770"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0066.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "4fcba4fd47b2c0484b8a9076a278c7d69207db26670b1e3fc6653b738fa03fac",
+        "source_step_id": 1,
+        "step_id": "atlas-draft.m0066.mechanism-1.step-1"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0066:2",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [
+          {
+            "label": "PLP",
+            "source_witness": {
+              "exact_text": "PLP",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:29986"
+        ],
+        "roles": [
+          {
+            "actor_label": "secondary amine",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "initiates an elimination of the covalently bound lysine",
+            "source_witness": {
+              "exact_text": "The secondary amine that results from the initial attack initiates an elimination of the covalently bound lysine",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_scheme_label_state",
+          "statement": "The repeated CHEBI:597326 MRV label is retained separately from step-text PLP or PMP labels and does not establish the cofactor state.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "product_stereochemistry",
+          "statement": "Step 12 says alanine without a stereochemical qualifier; the entry product does not make that same-step text stereospecific.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "step_1_substrate_stereochemistry",
+          "statement": "The record contains a Step 1 L-glutamate versus D-glutamate conflict; it does not normalize the identity of this step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0066",
+        "record_id": "atlas50-draft:m0066:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "89fa34b9238e224ed7772492165dd331ef455d9bbc32252b98c8148fd2c35770"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0066.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "18801865243ab0a393787addd67bd440b82f852b708e701ab1dfaaa3e7722ae5",
+        "source_step_id": 2,
+        "step_id": "atlas-draft.m0066.mechanism-1.step-2"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0066:3",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [
+          {
+            "label": "PLP",
+            "source_witness": {
+              "exact_text": "PLP",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:29986",
+          "chebi:597326"
+        ],
+        "roles": [
+          {
+            "actor_label": "Lys145",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "deprotonates the CH adjacent to the bound amine",
+            "source_witness": {
+              "exact_text": "Lys145 deprotonates the CH adjacent to the bound amine",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          },
+          {
+            "actor_label": "PLP",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "acts as an electron sink",
+            "source_witness": {
+              "exact_text": "the PLP acts as an electron sink",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_scheme_label_state",
+          "statement": "The repeated CHEBI:597326 MRV label is retained separately from step-text PLP or PMP labels and does not establish the cofactor state.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "product_stereochemistry",
+          "statement": "Step 12 says alanine without a stereochemical qualifier; the entry product does not make that same-step text stereospecific.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "step_1_substrate_stereochemistry",
+          "statement": "The record contains a Step 1 L-glutamate versus D-glutamate conflict; it does not normalize the identity of this step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0066",
+        "record_id": "atlas50-draft:m0066:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "89fa34b9238e224ed7772492165dd331ef455d9bbc32252b98c8148fd2c35770"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0066.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "c7dcddeb6c92bc8b336f95c4d8d349ab1a10edfbcc2363c9d15d82b0ec2f3ea9",
+        "source_step_id": 3,
+        "step_id": "atlas-draft.m0066.mechanism-1.step-3"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0066:4",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [
+          {
+            "label": "PLP",
+            "source_witness": {
+              "exact_text": "PLP",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:597326"
+        ],
+        "roles": [
+          {
+            "actor_label": "C=C attached to the aromatic ring",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "deprotonates Lys145",
+            "source_witness": {
+              "exact_text": "the C=C attached to the aromatic ring deprotonates Lys145",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          },
+          {
+            "actor_label": "PLP",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "feeds the electrons back",
+            "source_witness": {
+              "exact_text": "The PLP feeds the electrons back",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_scheme_label_state",
+          "statement": "The repeated CHEBI:597326 MRV label is retained separately from step-text PLP or PMP labels and does not establish the cofactor state.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "product_stereochemistry",
+          "statement": "Step 12 says alanine without a stereochemical qualifier; the entry product does not make that same-step text stereospecific.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "step_1_substrate_stereochemistry",
+          "statement": "The record contains a Step 1 L-glutamate versus D-glutamate conflict; it does not normalize the identity of this step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0066",
+        "record_id": "atlas50-draft:m0066:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "89fa34b9238e224ed7772492165dd331ef455d9bbc32252b98c8148fd2c35770"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0066.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "4a7adf5cdfbc89db24dd1abc341b1d54b06faff0c8b6dfc6e751ec4f4e1d0f74",
+        "source_step_id": 4,
+        "step_id": "atlas-draft.m0066.mechanism-1.step-4"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0066:5",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:29986"
+        ],
+        "roles": [
+          {
+            "actor_label": "Lys145",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "deprotonates water",
+            "source_witness": {
+              "exact_text": "Lys145 deprotonates water",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          },
+          {
+            "actor_label": "water",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "initiates a nucleophilic attack on the carbon of the C=N group",
+            "source_witness": {
+              "exact_text": "water, which initiates a nucleophilic attack on the carbon of the C=N group",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_scheme_label_state",
+          "statement": "The repeated CHEBI:597326 MRV label is retained separately from step-text PLP or PMP labels and does not establish the cofactor state.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "product_stereochemistry",
+          "statement": "Step 12 says alanine without a stereochemical qualifier; the entry product does not make that same-step text stereospecific.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "step_1_substrate_stereochemistry",
+          "statement": "The record contains a Step 1 L-glutamate versus D-glutamate conflict; it does not normalize the identity of this step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0066",
+        "record_id": "atlas50-draft:m0066:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "89fa34b9238e224ed7772492165dd331ef455d9bbc32252b98c8148fd2c35770"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0066.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "dfbd9f419d0cce26cf3a8035971d998cf83db7b275fc8657029c2cfdf795dc0b",
+        "source_step_id": 5,
+        "step_id": "atlas-draft.m0066.mechanism-1.step-5"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0066:6",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:29986"
+        ],
+        "roles": [
+          {
+            "actor_label": "secondary amine",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "deprotonates the attached hydroxyl group",
+            "source_witness": {
+              "exact_text": "The secondary amine deprotonates the attached hydroxyl group",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_scheme_label_state",
+          "statement": "The repeated CHEBI:597326 MRV label is retained separately from step-text PLP or PMP labels and does not establish the cofactor state.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "product_stereochemistry",
+          "statement": "Step 12 says alanine without a stereochemical qualifier; the entry product does not make that same-step text stereospecific.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "step_1_substrate_stereochemistry",
+          "statement": "The record contains a Step 1 L-glutamate versus D-glutamate conflict; it does not normalize the identity of this step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0066",
+        "record_id": "atlas50-draft:m0066:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "89fa34b9238e224ed7772492165dd331ef455d9bbc32252b98c8148fd2c35770"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0066.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "511dd2d55c17677ff583af9ec0c0c6673270e024609de4e552c33e5b437698bd",
+        "source_step_id": 6,
+        "step_id": "atlas-draft.m0066.mechanism-1.step-6"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0066:7",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [
+          {
+            "label": "PMP",
+            "source_witness": {
+              "exact_text": "PMP",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:15361",
+          "chebi:29986"
+        ],
+        "roles": [
+          {
+            "actor_label": "amine of PMP",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "initiates a nucleophilic attack on the carbonyl carbon of pyruvate",
+            "source_witness": {
+              "exact_text": "The amine of PMP initiates a nucleophilic attack on the carbonyl carbon of pyruvate",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          },
+          {
+            "actor_label": "oxyanion",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "deprotonates the newly formed secondary amine",
+            "source_witness": {
+              "exact_text": "The oxyanion deprotonates the newly formed secondary amine",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_scheme_label_state",
+          "statement": "The repeated CHEBI:597326 MRV label is retained separately from step-text PLP or PMP labels and does not establish the cofactor state.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "product_stereochemistry",
+          "statement": "Step 12 says alanine without a stereochemical qualifier; the entry product does not make that same-step text stereospecific.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "step_1_substrate_stereochemistry",
+          "statement": "The record contains a Step 1 L-glutamate versus D-glutamate conflict; it does not normalize the identity of this step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0066",
+        "record_id": "atlas50-draft:m0066:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "89fa34b9238e224ed7772492165dd331ef455d9bbc32252b98c8148fd2c35770"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0066.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "af9fbbdb931efa5f3eddb6b01758b05eb9d4d406a98bac579c348cb8626e4e64",
+        "source_step_id": 7,
+        "step_id": "atlas-draft.m0066.mechanism-1.step-7"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0066:8",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:15361",
+          "chebi:29986"
+        ],
+        "roles": [
+          {
+            "actor_label": "secondary amine",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "initiates an elimination",
+            "source_witness": {
+              "exact_text": "The secondary amine initiates an elimination",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_scheme_label_state",
+          "statement": "The repeated CHEBI:597326 MRV label is retained separately from step-text PLP or PMP labels and does not establish the cofactor state.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "product_stereochemistry",
+          "statement": "Step 12 says alanine without a stereochemical qualifier; the entry product does not make that same-step text stereospecific.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "step_1_substrate_stereochemistry",
+          "statement": "The record contains a Step 1 L-glutamate versus D-glutamate conflict; it does not normalize the identity of this step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0066",
+        "record_id": "atlas50-draft:m0066:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "89fa34b9238e224ed7772492165dd331ef455d9bbc32252b98c8148fd2c35770"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0066.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "b22c45e80bae1b9364b7b57135bd82484a428f5bb27a2de7ba64ee01f0bc2f08",
+        "source_step_id": 8,
+        "step_id": "atlas-draft.m0066.mechanism-1.step-8"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0066:9",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [
+          {
+            "label": "PLP",
+            "source_witness": {
+              "exact_text": "PLP",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:597326"
+        ],
+        "roles": [
+          {
+            "actor_label": "Lys145",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "deprotonates the CH2 adjacent to the nitrogen",
+            "source_witness": {
+              "exact_text": "Lys145 deprotonates the CH2 adjacent to the nitrogen",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          },
+          {
+            "actor_label": "PLP",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "acts as an electron sink",
+            "source_witness": {
+              "exact_text": "the PLP acts as an electron sink",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_scheme_label_state",
+          "statement": "The repeated CHEBI:597326 MRV label is retained separately from step-text PLP or PMP labels and does not establish the cofactor state.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "product_stereochemistry",
+          "statement": "Step 12 says alanine without a stereochemical qualifier; the entry product does not make that same-step text stereospecific.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "step_1_substrate_stereochemistry",
+          "statement": "The record contains a Step 1 L-glutamate versus D-glutamate conflict; it does not normalize the identity of this step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0066",
+        "record_id": "atlas50-draft:m0066:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "89fa34b9238e224ed7772492165dd331ef455d9bbc32252b98c8148fd2c35770"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0066.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "4f89b51881f0e59ceacd87588463b0572c183caa6de2c1a30021f66094fa969e",
+        "source_step_id": 9,
+        "step_id": "atlas-draft.m0066.mechanism-1.step-9"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0066:10",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [
+          {
+            "label": "PLP",
+            "source_witness": {
+              "exact_text": "PLP",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:15361",
+          "chebi:29986",
+          "chebi:597326"
+        ],
+        "roles": [
+          {
+            "actor_label": "N<sup>+</sup>=C bond",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "deprotonates Lys145",
+            "source_witness": {
+              "exact_text": "the N<sup>+</sup>=C bond deprotonates Lys145",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          },
+          {
+            "actor_label": "PLP",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "feeds the electrons back",
+            "source_witness": {
+              "exact_text": "The PLP feeds the electrons back",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_scheme_label_state",
+          "statement": "The repeated CHEBI:597326 MRV label is retained separately from step-text PLP or PMP labels and does not establish the cofactor state.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "product_stereochemistry",
+          "statement": "Step 12 says alanine without a stereochemical qualifier; the entry product does not make that same-step text stereospecific.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "step_1_substrate_stereochemistry",
+          "statement": "The record contains a Step 1 L-glutamate versus D-glutamate conflict; it does not normalize the identity of this step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0066",
+        "record_id": "atlas50-draft:m0066:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "89fa34b9238e224ed7772492165dd331ef455d9bbc32252b98c8148fd2c35770"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0066.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "8727f581bd640f6cc1d68961fa0d9c419a90bedd4e8107d156dbf5f0336607c3",
+        "source_step_id": 10,
+        "step_id": "atlas-draft.m0066.mechanism-1.step-10"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0066:11",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [
+          {
+            "label": "PLP",
+            "source_witness": {
+              "exact_text": "PLP",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:29986"
+        ],
+        "roles": [
+          {
+            "actor_label": "amine of Lys145",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "attacks the PLP",
+            "source_witness": {
+              "exact_text": "The amine of Lys145 attacks the PLP",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          },
+          {
+            "actor_label": "secondary amine of the attached substrate",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "reprotonates from the bound Lys145",
+            "source_witness": {
+              "exact_text": "the secondary amine of the attached substrate reprotonates from the bound Lys145",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_scheme_label_state",
+          "statement": "The repeated CHEBI:597326 MRV label is retained separately from step-text PLP or PMP labels and does not establish the cofactor state.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "product_stereochemistry",
+          "statement": "Step 12 says alanine without a stereochemical qualifier; the entry product does not make that same-step text stereospecific.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "step_1_substrate_stereochemistry",
+          "statement": "The record contains a Step 1 L-glutamate versus D-glutamate conflict; it does not normalize the identity of this step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0066",
+        "record_id": "atlas50-draft:m0066:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "89fa34b9238e224ed7772492165dd331ef455d9bbc32252b98c8148fd2c35770"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0066.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "ae4d78c1c2cb5c2d22204f6c46b946c60403e7cdcbd2a4645177a97adfaa79e8",
+        "source_step_id": 11,
+        "step_id": "atlas-draft.m0066.mechanism-1.step-11"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0066:12",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [
+          {
+            "label": "PLP",
+            "source_witness": {
+              "exact_text": "PLP",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:29986"
+        ],
+        "roles": [
+          {
+            "actor_label": "secondary amine",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "initiates an elimination of the covalently bound product",
+            "source_witness": {
+              "exact_text": "The secondary amine that results from the initial attack initiates an elimination of the covalently bound product",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_scheme_label_state",
+          "statement": "The repeated CHEBI:597326 MRV label is retained separately from step-text PLP or PMP labels and does not establish the cofactor state.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "product_stereochemistry",
+          "statement": "Step 12 says alanine without a stereochemical qualifier; the entry product does not make that same-step text stereospecific.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "step_1_substrate_stereochemistry",
+          "statement": "The record contains a Step 1 L-glutamate versus D-glutamate conflict; it does not normalize the identity of this step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0066",
+        "record_id": "atlas50-draft:m0066:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "89fa34b9238e224ed7772492165dd331ef455d9bbc32252b98c8148fd2c35770"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0066.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "bd87c89018075fed945049323b232a5498ab407a05de65ef3e4645750f7ce309",
+        "source_step_id": 12,
+        "step_id": "atlas-draft.m0066.mechanism-1.step-12"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0186:1",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [
+          {
+            "label": "PLP",
+            "source_witness": {
+              "exact_text": "PLP",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:33384",
+          "res:Lys41A"
+        ],
+        "roles": [
+          {
+            "actor_label": "bound Lys41",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "deprotonates the newly attached amine",
+            "source_witness": {
+              "exact_text": "the bound Lys41 deprotonates the newly attached amine",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          },
+          {
+            "actor_label": "L-serine",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "attacks the PLP cofactor",
+            "source_witness": {
+              "exact_text": "L-serine, which in turn attacks the PLP cofactor",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          },
+          {
+            "actor_label": "phosphate of the PLP",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "deprotonates the amine of L-serine",
+            "source_witness": {
+              "exact_text": "The phosphate of the PLP deprotonates the amine of L-serine",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "outside_active_site_scope",
+          "statement": "Only Steps 6 and 7 explicitly say outside the enzyme active site; other steps remain unresolved rather than being labeled active-site steps.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "phosphate_role_scope",
+          "statement": "Step 4 infers only the phosphate-as-base detail, and Step 5 assumes only that the previous base is the acid; neither qualifier validates the whole step or identifies an unstated actor.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "scheme_label_intermediate_identity",
+          "statement": "The repeated CHEBI:33384 MRV label is retained separately from intermediate and product prose and does not normalize those chemical states.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0186",
+        "record_id": "atlas50-draft:m0186:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "687986c4aaa94ce6bba72c5403bf28a4f04b32891c3493ccb75436defb2a7f38"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0186.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "95bdf8cfd0dc411c8cbfab7b839fe09ed7d7a3555af9c3b36d2da34b4c0f64b5",
+        "source_step_id": 1,
+        "step_id": "atlas-draft.m0186.mechanism-1.step-1"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0186:2",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [
+          {
+            "label": "PLP",
+            "source_witness": {
+              "exact_text": "PLP",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:33384",
+          "res:Lys41A"
+        ],
+        "roles": [
+          {
+            "actor_label": "secondary amine",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "initiates an elimination of the covalently bound lysine",
+            "source_witness": {
+              "exact_text": "The secondary amine that results from the initial attack initiates an elimination of the covalently bound lysine",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "outside_active_site_scope",
+          "statement": "Only Steps 6 and 7 explicitly say outside the enzyme active site; other steps remain unresolved rather than being labeled active-site steps.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "phosphate_role_scope",
+          "statement": "Step 4 infers only the phosphate-as-base detail, and Step 5 assumes only that the previous base is the acid; neither qualifier validates the whole step or identifies an unstated actor.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "scheme_label_intermediate_identity",
+          "statement": "The repeated CHEBI:33384 MRV label is retained separately from intermediate and product prose and does not normalize those chemical states.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0186",
+        "record_id": "atlas50-draft:m0186:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "687986c4aaa94ce6bba72c5403bf28a4f04b32891c3493ccb75436defb2a7f38"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0186.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "0b0a10e4fec45ca09006b8fc61afeb7e7c842afd4afea27cf6960caf500cc897",
+        "source_step_id": 2,
+        "step_id": "atlas-draft.m0186.mechanism-1.step-2"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0186:3",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [
+          {
+            "label": "PLP",
+            "source_witness": {
+              "exact_text": "PLP",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:33384",
+          "res:Lys41A"
+        ],
+        "roles": [
+          {
+            "actor_label": "hydroxyl group",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "deprotonates the phosphate group",
+            "source_witness": {
+              "exact_text": "the hydroxyl group, which deprotonates the phosphate group",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          },
+          {
+            "actor_label": "Lys41",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "deprotonates the CA of the covalently bound L-serine",
+            "source_witness": {
+              "exact_text": "Lys41 deprotonates the CA of the covalently bound L-serine",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          },
+          {
+            "actor_label": "phosphate OH group",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "can act as a general acid to donate the proton to OG of serine",
+            "source_witness": {
+              "exact_text": "the phosphate OH group can act as a general acid to donate the proton to OG of serine",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "concerted_model_scope",
+          "statement": "Step 3 says unprotonated PLP N1 would preclude Lys41 Cα abstraction, then proposes a concerted phosphate-OH general-acid route; it also says the water formed need not be the water used in final spontaneous hydrolysis. These are source model qualifications, not an observed trajectory.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "outside_active_site_scope",
+          "statement": "Only Steps 6 and 7 explicitly say outside the enzyme active site; other steps remain unresolved rather than being labeled active-site steps.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "phosphate_role_scope",
+          "statement": "Step 4 infers only the phosphate-as-base detail, and Step 5 assumes only that the previous base is the acid; neither qualifier validates the whole step or identifies an unstated actor.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "scheme_label_intermediate_identity",
+          "statement": "The repeated CHEBI:33384 MRV label is retained separately from intermediate and product prose and does not normalize those chemical states.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0186",
+        "record_id": "atlas50-draft:m0186:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "687986c4aaa94ce6bba72c5403bf28a4f04b32891c3493ccb75436defb2a7f38"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0186.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "7edb1e4fd049124b20e156f8b19ec648b63d66e5a36f84d7a999cce7733090fc",
+        "source_step_id": 3,
+        "step_id": "atlas-draft.m0186.mechanism-1.step-3"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0186:4",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [
+          {
+            "label": "PLP",
+            "source_witness": {
+              "exact_text": "PLP",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:33384",
+          "res:Lys41A"
+        ],
+        "roles": [
+          {
+            "actor_label": "Lys41",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "attacks the PLP",
+            "source_witness": {
+              "exact_text": "Lys41, which attacks the PLP",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          },
+          {
+            "actor_label": "Phosphate of PLP",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "deprotonates Lys41",
+            "source_witness": {
+              "exact_text": "Phosphate of PLP deprotonates Lys41",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          },
+          {
+            "actor_label": "secondary amine of the attached substrate",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "reprotonates from the bound Lys41",
+            "source_witness": {
+              "exact_text": "the secondary amine of the attached substrate reprotonates from the bound Lys41",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "stated_detail_only",
+          "source_witness": {
+            "exact_text": "we infer that the phosphate group acts as a base in this step",
+            "field": "step_summary"
+          },
+          "status": "explicitly_inferred",
+          "subject_text": "the phosphate group acts as a base in this step",
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "outside_active_site_scope",
+          "statement": "Only Steps 6 and 7 explicitly say outside the enzyme active site; other steps remain unresolved rather than being labeled active-site steps.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "phosphate_role_scope",
+          "statement": "Step 4 infers only the phosphate-as-base detail, and Step 5 assumes only that the previous base is the acid; neither qualifier validates the whole step or identifies an unstated actor.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "scheme_label_intermediate_identity",
+          "statement": "The repeated CHEBI:33384 MRV label is retained separately from intermediate and product prose and does not normalize those chemical states.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0186",
+        "record_id": "atlas50-draft:m0186:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "687986c4aaa94ce6bba72c5403bf28a4f04b32891c3493ccb75436defb2a7f38"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0186.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "d82e3af3bf77e350dd070bc29e5107eb3bb27cde2aa19cd3d72817b832a8f8aa",
+        "source_step_id": 4,
+        "step_id": "atlas-draft.m0186.mechanism-1.step-4"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0186:5",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [
+          {
+            "label": "PLP",
+            "source_witness": {
+              "exact_text": "PLP",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:33384",
+          "res:Lys41A"
+        ],
+        "roles": [
+          {
+            "actor_label": "secondary amine",
+            "actor_mapping_status": "source_label_only",
+            "direction": "unresolved",
+            "role_text": "initiates an elimination of the covalently bound product",
+            "source_witness": {
+              "exact_text": "The secondary amine that results from the initial attack initiates an elimination of the covalently bound product",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "stated_detail_only",
+          "source_witness": {
+            "exact_text": "We assume that the base in the previous step is the acid in this step",
+            "field": "step_summary"
+          },
+          "status": "explicitly_assumed",
+          "subject_text": "the base in the previous step is the acid in this step",
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "outside_active_site_scope",
+          "statement": "Only Steps 6 and 7 explicitly say outside the enzyme active site; other steps remain unresolved rather than being labeled active-site steps.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "phosphate_role_scope",
+          "statement": "Step 4 infers only the phosphate-as-base detail, and Step 5 assumes only that the previous base is the acid; neither qualifier validates the whole step or identifies an unstated actor.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "scheme_label_intermediate_identity",
+          "statement": "The repeated CHEBI:33384 MRV label is retained separately from intermediate and product prose and does not normalize those chemical states.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0186",
+        "record_id": "atlas50-draft:m0186:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "687986c4aaa94ce6bba72c5403bf28a4f04b32891c3493ccb75436defb2a7f38"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0186.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "a04af2c31b04ce03b60f6c401a4c2a6eea819dfb5cb24f39cb67cd2ca6dfa664",
+        "source_step_id": 5,
+        "step_id": "atlas-draft.m0186.mechanism-1.step-5"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0186:6",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": {
+            "exact_text": "outside the enzyme active site",
+            "field": "step_summary"
+          },
+          "support_scope": "source_record_only",
+          "value": "extra_enzymatic"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:33384"
+        ],
+        "roles": [],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "outside_active_site_scope",
+          "statement": "Only Steps 6 and 7 explicitly say outside the enzyme active site; other steps remain unresolved rather than being labeled active-site steps.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "phosphate_role_scope",
+          "statement": "Step 4 infers only the phosphate-as-base detail, and Step 5 assumes only that the previous base is the acid; neither qualifier validates the whole step or identifies an unstated actor.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "scheme_label_intermediate_identity",
+          "statement": "The repeated CHEBI:33384 MRV label is retained separately from intermediate and product prose and does not normalize those chemical states.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0186",
+        "record_id": "atlas50-draft:m0186:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "687986c4aaa94ce6bba72c5403bf28a4f04b32891c3493ccb75436defb2a7f38"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0186.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "f96123655f33025198d6709a9a3eac603b04ab95920aa91f8234297db0cd78a4",
+        "source_step_id": 6,
+        "step_id": "atlas-draft.m0186.mechanism-1.step-6"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0186:7",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [],
+        "direction": {
+          "scope": "not_established",
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "enzyme_context": {
+          "source_witness": {
+            "exact_text": "outside the enzyme active site",
+            "field": "step_summary"
+          },
+          "support_scope": "source_record_only",
+          "value": "extra_enzymatic"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:33384"
+        ],
+        "roles": [],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "outside_active_site_scope",
+          "statement": "Only Steps 6 and 7 explicitly say outside the enzyme active site; other steps remain unresolved rather than being labeled active-site steps.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "phosphate_role_scope",
+          "statement": "Step 4 infers only the phosphate-as-base detail, and Step 5 assumes only that the previous base is the acid; neither qualifier validates the whole step or identifies an unstated actor.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "scheme_label_intermediate_identity",
+          "statement": "The repeated CHEBI:33384 MRV label is retained separately from intermediate and product prose and does not normalize those chemical states.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0186",
+        "record_id": "atlas50-draft:m0186:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "687986c4aaa94ce6bba72c5403bf28a4f04b32891c3493ccb75436defb2a7f38"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0186.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "4899417bcd126e10dcf5fc6d879b143d64d380fdced5fbfc29ad15b7e0adb8c2",
+        "source_step_id": 7,
+        "step_id": "atlas-draft.m0186.mechanism-1.step-7"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0213:1",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [
+          {
+            "label": "PLP",
+            "source_witness": {
+              "exact_text": "PLP",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "direction": {
+          "scope": "proposal_context",
+          "source_witness": {
+            "exact_text": "In the L-Ala to D-Ala direction",
+            "field": "proposal_mechanism_text"
+          },
+          "support_scope": "source_record_only",
+          "value": "source_forward_order"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:57972",
+          "res:Lys39A"
+        ],
+        "roles": [
+          {
+            "actor_label": "bound Lys39",
+            "actor_mapping_status": "source_label_only",
+            "direction": "source_forward_order",
+            "role_text": "deprotonates the newly attached amine",
+            "source_witness": {
+              "exact_text": "the bound Lys39 deprotonates the newly attached amine",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          },
+          {
+            "actor_label": "L-alanine",
+            "actor_mapping_status": "source_label_only",
+            "direction": "source_forward_order",
+            "role_text": "attacks the PLP cofactor",
+            "source_witness": {
+              "exact_text": "L-alanine attacks the PLP cofactor",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "analogue_structure_context",
+          "statement": "The source structural context includes an analogue and does not validate a native transient, protonation state, or the full ordered proposal.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "protonating_species",
+          "statement": "The proposal has an unresolved Step 3 protonating species; this row does not resolve it.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "reverse_direction_roles",
+          "statement": "The Tyr265B/Lys39 role reversal is proposal-level text for D-Ala to L-Ala and is not projected onto the ordered L-Ala to D-Ala source steps.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "scheme_label_stereochemistry",
+          "statement": "CHEBI:57972 remains on all source panels while the drawing geometry changes and Step 6 names D-alanine; label, drawing, and product identity remain separate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "step_3_evidence_basis",
+          "statement": "The proposal includes mixed and computational Step 3 support and no observed quinoid intermediate; this row does not validate that trajectory.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0213",
+        "record_id": "atlas50-draft:m0213:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "375d66615ee7a38cb3adc817b39ae28308d554590c26c3b4bbb7d08f2a74728d"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0213.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "2f4c00d1888c800659111cd2294cc2727f99bf26788861a8dc87903cf96352c4",
+        "source_step_id": 1,
+        "step_id": "atlas-draft.m0213.mechanism-1.step-1"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0213:2",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [
+          {
+            "label": "PLP",
+            "source_witness": {
+              "exact_text": "PLP",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "direction": {
+          "scope": "proposal_context",
+          "source_witness": {
+            "exact_text": "In the L-Ala to D-Ala direction",
+            "field": "proposal_mechanism_text"
+          },
+          "support_scope": "source_record_only",
+          "value": "source_forward_order"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:57972",
+          "res:Lys39A"
+        ],
+        "roles": [
+          {
+            "actor_label": "secondary amine",
+            "actor_mapping_status": "source_label_only",
+            "direction": "source_forward_order",
+            "role_text": "initiates an elimination of the covalently bound lysine",
+            "source_witness": {
+              "exact_text": "The secondary amine that results from the initial attack initiates an elimination of the covalently bound lysine",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "analogue_structure_context",
+          "statement": "The source structural context includes an analogue and does not validate a native transient, protonation state, or the full ordered proposal.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "protonating_species",
+          "statement": "The proposal has an unresolved Step 3 protonating species; this row does not resolve it.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "reverse_direction_roles",
+          "statement": "The Tyr265B/Lys39 role reversal is proposal-level text for D-Ala to L-Ala and is not projected onto the ordered L-Ala to D-Ala source steps.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "scheme_label_stereochemistry",
+          "statement": "CHEBI:57972 remains on all source panels while the drawing geometry changes and Step 6 names D-alanine; label, drawing, and product identity remain separate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "step_3_evidence_basis",
+          "statement": "The proposal includes mixed and computational Step 3 support and no observed quinoid intermediate; this row does not validate that trajectory.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0213",
+        "record_id": "atlas50-draft:m0213:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "375d66615ee7a38cb3adc817b39ae28308d554590c26c3b4bbb7d08f2a74728d"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0213.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "586e063b0fcd10eafc5f1367e26688f7873378a0759032e200b647f40e7b3089",
+        "source_step_id": 2,
+        "step_id": "atlas-draft.m0213.mechanism-1.step-2"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0213:3",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [
+          {
+            "label": "PLP",
+            "source_witness": {
+              "exact_text": "PLP",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "direction": {
+          "scope": "proposal_context",
+          "source_witness": {
+            "exact_text": "In the L-Ala to D-Ala direction",
+            "field": "proposal_mechanism_text"
+          },
+          "support_scope": "source_record_only",
+          "value": "source_forward_order"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:57972",
+          "res:Lys39A",
+          "res:Tyr265B"
+        ],
+        "roles": [
+          {
+            "actor_label": "Lys39",
+            "actor_mapping_status": "source_label_only",
+            "direction": "source_forward_order",
+            "role_text": "deprotonates water",
+            "source_witness": {
+              "exact_text": "Lys39 deprotonates water",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          },
+          {
+            "actor_label": "Tyr265B",
+            "actor_mapping_status": "source_label_only",
+            "direction": "source_forward_order",
+            "role_text": "deprotonates the alpha carbon of the covalently bound intermediate",
+            "source_witness": {
+              "exact_text": "Tyr265B deprotonates the alpha carbon of the covalently bound intermediate",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "analogue_structure_context",
+          "statement": "The source structural context includes an analogue and does not validate a native transient, protonation state, or the full ordered proposal.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "protonating_species",
+          "statement": "Step 3 explicitly says the protonating species is unclear and that water is used in the proposal.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "reverse_direction_roles",
+          "statement": "The Tyr265B/Lys39 role reversal is proposal-level text for D-Ala to L-Ala and is not projected onto the ordered L-Ala to D-Ala source steps.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "scheme_label_stereochemistry",
+          "statement": "CHEBI:57972 remains on all source panels while the drawing geometry changes and Step 6 names D-alanine; label, drawing, and product identity remain separate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "step_3_evidence_basis",
+          "statement": "Step 3 combines mutagenesis, kinetic-isotope-effect, and computational statements and says the quinoid intermediate was not experimentally observed; it is not an observed trajectory.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0213",
+        "record_id": "atlas50-draft:m0213:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "375d66615ee7a38cb3adc817b39ae28308d554590c26c3b4bbb7d08f2a74728d"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0213.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "9955706b994bdc72de8d4e8ed565935e1f04f08c34e37d3a849be1a7c9ce80a4",
+        "source_step_id": 3,
+        "step_id": "atlas-draft.m0213.mechanism-1.step-3"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0213:4",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [],
+        "direction": {
+          "scope": "proposal_context",
+          "source_witness": {
+            "exact_text": "In the L-Ala to D-Ala direction",
+            "field": "proposal_mechanism_text"
+          },
+          "support_scope": "source_record_only",
+          "value": "source_forward_order"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:57972",
+          "res:Lys39A",
+          "res:Tyr265B"
+        ],
+        "roles": [
+          {
+            "actor_label": "carbanionic intermediate",
+            "actor_mapping_status": "source_label_only",
+            "direction": "source_forward_order",
+            "role_text": "deprotonates Lys39",
+            "source_witness": {
+              "exact_text": "The carbanionic intermediate deprotonates Lys39",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          },
+          {
+            "actor_label": "Water",
+            "actor_mapping_status": "source_label_only",
+            "direction": "source_forward_order",
+            "role_text": "deprotonates Tyr265B",
+            "source_witness": {
+              "exact_text": "Water deprotonates Tyr265B",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "analogue_structure_context",
+          "statement": "The source structural context includes an analogue and does not validate a native transient, protonation state, or the full ordered proposal.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "protonating_species",
+          "statement": "The proposal has an unresolved Step 3 protonating species; this row does not resolve it.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "reverse_direction_roles",
+          "statement": "The Tyr265B/Lys39 role reversal is proposal-level text for D-Ala to L-Ala and is not projected onto the ordered L-Ala to D-Ala source steps.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "scheme_label_stereochemistry",
+          "statement": "CHEBI:57972 remains on all source panels while the drawing geometry changes and Step 6 names D-alanine; label, drawing, and product identity remain separate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "step_3_evidence_basis",
+          "statement": "The proposal includes mixed and computational Step 3 support and no observed quinoid intermediate; this row does not validate that trajectory.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0213",
+        "record_id": "atlas50-draft:m0213:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "375d66615ee7a38cb3adc817b39ae28308d554590c26c3b4bbb7d08f2a74728d"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0213.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "ba83ff0a5a9483afcbe8e11b5e9b80bc3241acd2390a6590f39d4ef11b09a9ef",
+        "source_step_id": 4,
+        "step_id": "atlas-draft.m0213.mechanism-1.step-4"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0213:5",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [
+          {
+            "label": "PLP",
+            "source_witness": {
+              "exact_text": "PLP",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "direction": {
+          "scope": "proposal_context",
+          "source_witness": {
+            "exact_text": "In the L-Ala to D-Ala direction",
+            "field": "proposal_mechanism_text"
+          },
+          "support_scope": "source_record_only",
+          "value": "source_forward_order"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:57972",
+          "res:Lys39A"
+        ],
+        "roles": [
+          {
+            "actor_label": "amine of Lys39",
+            "actor_mapping_status": "source_label_only",
+            "direction": "source_forward_order",
+            "role_text": "attacks the PLP",
+            "source_witness": {
+              "exact_text": "The amine of Lys39 attacks the PLP",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          },
+          {
+            "actor_label": "secondary amine of the attached substrate",
+            "actor_mapping_status": "source_label_only",
+            "direction": "source_forward_order",
+            "role_text": "reprotonates from the bound Lys39",
+            "source_witness": {
+              "exact_text": "the secondary amine of the attached substrate reprotonates from the bound Lys39",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "analogue_structure_context",
+          "statement": "The source structural context includes an analogue and does not validate a native transient, protonation state, or the full ordered proposal.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "protonating_species",
+          "statement": "The proposal has an unresolved Step 3 protonating species; this row does not resolve it.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "reverse_direction_roles",
+          "statement": "The Tyr265B/Lys39 role reversal is proposal-level text for D-Ala to L-Ala and is not projected onto the ordered L-Ala to D-Ala source steps.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "scheme_label_stereochemistry",
+          "statement": "CHEBI:57972 remains on all source panels while the drawing geometry changes and Step 6 names D-alanine; label, drawing, and product identity remain separate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "step_3_evidence_basis",
+          "statement": "The proposal includes mixed and computational Step 3 support and no observed quinoid intermediate; this row does not validate that trajectory.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0213",
+        "record_id": "atlas50-draft:m0213:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "375d66615ee7a38cb3adc817b39ae28308d554590c26c3b4bbb7d08f2a74728d"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0213.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "f6954b5e2e97ac4ed03a434c86b55633663376f5c841fe92b856f993f3b4e262",
+        "source_step_id": 5,
+        "step_id": "atlas-draft.m0213.mechanism-1.step-5"
+      }
+    },
+    {
+      "annotation_id": "step-context:m0213:6",
+      "context": {
+        "chemical_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "cofactor_labels": [
+          {
+            "label": "PLP",
+            "source_witness": {
+              "exact_text": "PLP",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "direction": {
+          "scope": "proposal_context",
+          "source_witness": {
+            "exact_text": "In the L-Ala to D-Ala direction",
+            "field": "proposal_mechanism_text"
+          },
+          "support_scope": "source_record_only",
+          "value": "source_forward_order"
+        },
+        "enzyme_context": {
+          "source_witness": null,
+          "support_scope": "abstained",
+          "value": "unresolved"
+        },
+        "flow_endpoint_source_labels": [
+          "chebi:57972",
+          "res:Lys39A"
+        ],
+        "roles": [
+          {
+            "actor_label": "secondary amine",
+            "actor_mapping_status": "source_label_only",
+            "direction": "source_forward_order",
+            "role_text": "initiates an elimination of the covalently bound product",
+            "source_witness": {
+              "exact_text": "The secondary amine that results from the initial attack initiates an elimination of the covalently bound product",
+              "field": "step_summary"
+            },
+            "support_scope": "source_record_only"
+          }
+        ],
+        "source_assertion": {
+          "scope": "not_established",
+          "source_witness": null,
+          "status": "source_silent",
+          "subject_text": null,
+          "support_scope": "source_record_only"
+        }
+      },
+      "limitations": [
+        {
+          "limit_id": "analogue_structure_context",
+          "statement": "The source structural context includes an analogue and does not validate a native transient, protonation state, or the full ordered proposal.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "atom_mapping",
+          "statement": "No atom mapping is added.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bond_edits",
+          "statement": "No bond edits are compiled.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "cofactor_label_scope",
+          "statement": "A cofactor label is an exact same-step source-text token, not an exact chemical state or proof that the cofactor acts in the step.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "exact_reaction_instance",
+          "statement": "No exact reaction instance is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "protonating_species",
+          "statement": "The proposal has an unresolved Step 3 protonating species; this row does not resolve it.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "reverse_direction_roles",
+          "statement": "The Tyr265B/Lys39 role reversal is proposal-level text for D-Ala to L-Ala and is not projected onto the ordered L-Ala to D-Ala source steps.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "role_mapping",
+          "statement": "Actor labels reproduce the source step text and are not independently mapped to a protein sequence or structure coordinate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "scheme_label_stereochemistry",
+          "statement": "CHEBI:57972 remains on all source panels while the drawing geometry changes and Step 6 names D-alanine; label, drawing, and product identity remain separate.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_step_trajectory",
+          "statement": "The source arrow trajectory is not validated.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "sparse_annotation_semantics",
+          "statement": "An empty context field records no qualifying witness in the reviewed source field; it does not establish chemical absence.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "step_3_evidence_basis",
+          "statement": "The proposal includes mixed and computational Step 3 support and no observed quinoid intermediate; this row does not validate that trajectory.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "whole_proposal_applicability",
+          "statement": "The whole proposal is not validated.",
+          "status": "abstained"
+        }
+      ],
+      "primary_annotation_ids": [],
+      "record_binding": {
+        "mcsa_id": "M0213",
+        "record_id": "atlas50-draft:m0213:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "375d66615ee7a38cb3adc817b39ae28308d554590c26c3b4bbb7d08f2a74728d"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "atom_mapping_added": false,
+        "bond_edits_added": false,
+        "linked_primary_annotation_scope_expanded": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_validated": false,
+        "whole_proposal_validated": false
+      },
+      "step_binding": {
+        "proposal_id": "atlas-draft.m0213.mechanism-1",
+        "source_mechanism_id": 1,
+        "source_scheme_sha256": "df790732f577265e0f24c5f9693dccfdc98cc87e24ecbca70ca9687ee2836954",
+        "source_step_id": 6,
+        "step_id": "atlas-draft.m0213.mechanism-1.step-6"
+      }
+    }
+  ],
+  "batch_id": "plp-pyruvoyl",
+  "primary_evidence_binding": null,
+  "review": {
+    "annotation_payload_sha256": "4993aaafa12ad4473a55367dca3c1f2d946d1a717629aebc6c37de76c1f13385",
+    "blind_review": false,
+    "correlated_error_risk": true,
+    "domain_expert_review_claimed": false,
+    "human_reviewers": 0,
+    "reviewed_on": "2026-09-06",
+    "reviewer_kind": "same_model_computational_agents",
+    "same_model_agents": true,
+    "statistically_independent": false,
+    "update_rule": "Do not automatically refresh this pin after step-context changes. Repeat source-to-annotation review first."
+  },
+  "schema_version": "catalytic-earth.atlas-step-evidence.v1",
+  "status": "reviewed_source_step_context_not_mechanism_expansion"
+}

@@ -12,10 +12,13 @@ from .atlas_draft_query import query_source_drafts
 def query_source_draft_batches(
     bundles: Mapping[str, dict[str, Any]], *,
     primary_evidence_by_batch: Mapping[str, dict[str, Any] | None] | None = None,
+    step_evidence_by_batch: Mapping[str, dict[str, Any] | None] | None = None,
     mcsa_id: str | None = None, assembly: str | None = None,
     text: str | None = None, include_steps: bool = False,
     participants: Sequence[str] = (), reactants: Sequence[str] = (),
     products: Sequence[str] = (), mechanism_components: Sequence[str] = (),
+    cofactors: Sequence[str] = (), enzyme_contexts: Sequence[str] = (),
+    source_assertions: Sequence[str] = (),
 ) -> dict[str, Any]:
     """Apply the same query independently to each named, validated source bundle.
 
@@ -30,6 +33,9 @@ def query_source_draft_batches(
     evidence = {} if primary_evidence_by_batch is None else primary_evidence_by_batch
     if not isinstance(evidence, Mapping) or set(evidence) - set(bundles):
         raise ValueError("primary evidence names an unselected source batch")
+    step_evidence = {} if step_evidence_by_batch is None else step_evidence_by_batch
+    if not isinstance(step_evidence, Mapping) or set(step_evidence) - set(bundles):
+        raise ValueError("step evidence names an unselected source batch")
 
     results = []
     seen_record_ids: set[str] = set()
@@ -47,6 +53,9 @@ def query_source_draft_batches(
             reactants=reactants, products=products,
             mechanism_components=mechanism_components,
             primary_evidence=evidence.get(batch_id),
+            step_evidence=step_evidence.get(batch_id),
+            cofactors=cofactors, enzyme_contexts=enzyme_contexts,
+            source_assertions=source_assertions,
         )
         # Check the complete validated corpus, not just records that happened
         # to match this query; filters must not hide overlapping source sets.
@@ -77,5 +86,13 @@ def query_source_draft_batches(
         output["mechanism_proposal_match_count"] = sum(
             len(record["mechanism_component_matches"])
             for item in results for record in item["result"]["records"]
+        )
+    if step_evidence_by_batch is not None or cofactors or enzyme_contexts or source_assertions:
+        output["schema_version"] = "catalytic-earth.source-draft-catalog-query.v2"
+        output["step_evidence_match_count"] = sum(
+            item["result"].get("step_evidence_match_count", 0) for item in results
+        )
+        output["step_evidence_batch_ids"] = sorted(
+            name for name, sidecar in step_evidence.items() if sidecar is not None
         )
     return output

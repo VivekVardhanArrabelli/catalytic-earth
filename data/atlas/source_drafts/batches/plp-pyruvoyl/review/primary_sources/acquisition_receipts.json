@@ -1,0 +1,191 @@
+{
+  "acquisition_scope": "These receipts cover only the nine requests issued for the M0049 1PYA audit. They are not a ledger of other agents' browser or research requests.",
+  "aggregate": {
+    "requests_attempted": 9,
+    "response_bytes": 1351490,
+    "successful_http_200": 8
+  },
+  "authorship": "project-authored factual acquisition ledger",
+  "header_scope": "Selected non-sensitive response metadata is retained. The complete HTTP header set is not committed.",
+  "limits": {
+    "max_requests": 100,
+    "max_response_bytes": 31457280
+  },
+  "receipts": [
+    {
+      "completed_at_utc": "2026-09-06T05:55:44.428751+00:00",
+      "final_url": "https://files.rcsb.org/download/1PYA.cif",
+      "http_status": 200,
+      "local_body_retained": true,
+      "repository_path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/1PYA.cif",
+      "request_index": 1,
+      "requested_at_utc": "2026-09-06T05:55:43.854919+00:00",
+      "requested_url": "https://files.rcsb.org/download/1PYA.cif",
+      "response_bytes": 1027747,
+      "response_sha256": "2f2618f16d45b12285636a392f039c21682fe5ccb81e8d27e9d5c890de05718d",
+      "retention_scope": "repository_bound_exact_response",
+      "selected_response_metadata": {
+        "content_type": "chemical/x-cif",
+        "response_date": "Sun, 06 Sep 2026 05:55:44 GMT"
+      },
+      "source_id": "rcsb-1pya-current-mmcif"
+    },
+    {
+      "completed_at_utc": "2026-09-06T05:55:44.901359+00:00",
+      "decoded_artifact": {
+        "bytes": 1005645,
+        "compression": "gzip",
+        "repository_path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/1PYA_v1-3.cif",
+        "sha256": "782d1b1fc2f4831664624c62cb0127648b8ad11086c58c5550dc38215de615f9"
+      },
+      "final_url": "https://files-versioned.wwpdb.org/pdb_versioned/data/entries/py/pdb_00001pya/pdb_00001pya_xyz_v1-3.cif.gz",
+      "http_status": 200,
+      "local_body_retained": true,
+      "repository_path": null,
+      "request_index": 2,
+      "requested_at_utc": "2026-09-06T05:55:44.428765+00:00",
+      "requested_url": "https://files-versioned.wwpdb.org/pdb_versioned/data/entries/py/pdb_00001pya/pdb_00001pya_xyz_v1-3.cif.gz",
+      "response_bytes": 246936,
+      "response_sha256": "ef7909aa4a43a9c7a7d292b15273bea3a58ef62f836f4c298dccdb9de472b978",
+      "retention_scope": "local_analysis_only",
+      "selected_response_metadata": {
+        "content_type": "application/octet-stream",
+        "etag": "\"5a187634-3c498\"",
+        "last_modified": "Fri, 24 Nov 2017 19:42:44 GMT",
+        "response_date": "Sun, 06 Sep 2026 05:55:44 GMT"
+      },
+      "source_id": "wwpdb-1pya-v1-3-mmcif-gzip"
+    },
+    {
+      "completed_at_utc": "2026-09-06T05:55:45.139997+00:00",
+      "final_url": "https://data.rcsb.org/rest/v1/core/entry/1PYA",
+      "http_status": 200,
+      "local_body_retained": true,
+      "repository_path": null,
+      "request_index": 3,
+      "requested_at_utc": "2026-09-06T05:55:44.906532+00:00",
+      "requested_url": "https://data.rcsb.org/rest/v1/core/entry/1PYA",
+      "response_bytes": 13756,
+      "response_sha256": "87e2e84a07d7e34048b16d07a3f892a5d66e6d78d1fad9f097365aea92edaabe",
+      "retention_scope": "local_analysis_only",
+      "selected_response_metadata": {
+        "content_type": "application/json",
+        "response_date": "Sun, 06 Sep 2026 05:55:45 GMT"
+      },
+      "source_id": "rcsb-1pya-entry-json"
+    },
+    {
+      "completed_at_utc": "2026-09-06T05:55:45.791940+00:00",
+      "final_url": "https://rest.uniprot.org/uniprotkb/P00862.json",
+      "http_status": 200,
+      "local_body_retained": true,
+      "repository_path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/UniProt_P00862.json",
+      "request_index": 4,
+      "requested_at_utc": "2026-09-06T05:55:45.140071+00:00",
+      "requested_url": "https://rest.uniprot.org/uniprotkb/P00862.json",
+      "response_bytes": 20797,
+      "response_sha256": "4b17425b4928aef6b43a6a7b0168c98ce1078aedf0865da3e761c870765ce6e1",
+      "retention_scope": "repository_bound_exact_response",
+      "selected_response_metadata": {
+        "api_deployment_date": "02-September-2026",
+        "content_type": "application/json",
+        "response_date": "Sun, 06 Sep 2026 05:55:45 GMT",
+        "uniprot_release": "2026_03",
+        "uniprot_release_date": "02-September-2026"
+      },
+      "source_id": "uniprot-p00862-json"
+    },
+    {
+      "completed_at_utc": "2026-09-06T05:55:46.054909+00:00",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8464063&retmode=xml",
+      "http_status": 200,
+      "local_body_retained": true,
+      "repository_path": null,
+      "request_index": 5,
+      "requested_at_utc": "2026-09-06T05:55:45.792009+00:00",
+      "requested_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8464063&retmode=xml",
+      "response_bytes": 6501,
+      "response_sha256": "be21951a6d29968b56c0cad21830578ecae4ac492a72cf85aab4c724259760a2",
+      "retention_scope": "local_analysis_only",
+      "selected_response_metadata": {
+        "content_type": "text/xml; charset=UTF-8",
+        "response_date": "Sun, 06 Sep 2026 05:55:45 GMT"
+      },
+      "source_id": "pubmed-8464063-xml"
+    },
+    {
+      "completed_at_utc": "2026-09-06T05:58:30.744563+00:00",
+      "final_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1PYA/1",
+      "http_status": 200,
+      "local_body_retained": true,
+      "repository_path": null,
+      "request_index": 6,
+      "requested_at_utc": "2026-09-06T05:58:30.533574+00:00",
+      "requested_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1PYA/1",
+      "response_bytes": 9784,
+      "response_sha256": "bdeacea7bb25ea5c4e5648aff4a02ffbe538c40d5d47dd69cb8e6a2b48c2c3c6",
+      "retention_scope": "local_analysis_only",
+      "selected_response_metadata": {
+        "content_type": "application/json",
+        "response_date": "Sun, 06 Sep 2026 05:58:30 GMT"
+      },
+      "source_id": "rcsb-1pya-polymer-entity-1-json"
+    },
+    {
+      "completed_at_utc": "2026-09-06T05:58:30.913322+00:00",
+      "final_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1PYA/2",
+      "http_status": 200,
+      "local_body_retained": true,
+      "repository_path": null,
+      "request_index": 7,
+      "requested_at_utc": "2026-09-06T05:58:30.744581+00:00",
+      "requested_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1PYA/2",
+      "response_bytes": 12965,
+      "response_sha256": "fff5d61c51c6e12b3354481e62dceb2af6f71a815941d7a3bf4d852030950562",
+      "retention_scope": "local_analysis_only",
+      "selected_response_metadata": {
+        "content_type": "application/json",
+        "response_date": "Sun, 06 Sep 2026 05:58:30 GMT"
+      },
+      "source_id": "rcsb-1pya-polymer-entity-2-json"
+    },
+    {
+      "completed_at_utc": "2026-09-06T05:59:49.715805+00:00",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=6698997,2745463&retmode=xml",
+      "http_status": 200,
+      "local_body_retained": true,
+      "repository_path": null,
+      "request_index": 8,
+      "requested_at_utc": "2026-09-06T05:59:49.423221+00:00",
+      "requested_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=6698997,2745463&retmode=xml",
+      "response_bytes": 12851,
+      "response_sha256": "4670477d0391a28eecf17c57b9710573cb903763716eb41e17bb963b45d35268",
+      "retention_scope": "local_analysis_only",
+      "selected_response_metadata": {
+        "content_type": "text/xml; charset=UTF-8",
+        "response_date": "Sun, 06 Sep 2026 05:59:48 GMT"
+      },
+      "source_id": "pubmed-6698997-2745463-xml"
+    },
+    {
+      "completed_at_utc": "2026-09-06T06:01:29.792466+00:00",
+      "error": "HTTP Error 404: Not Found",
+      "final_url": "https://files-versioned.wwpdb.org/pdb_versioned/data/entries/py/pdb_00001pya/pdb_00001pya_xyz_v1-0.cif.gz",
+      "http_status": 404,
+      "local_body_retained": false,
+      "repository_path": null,
+      "request_index": 9,
+      "requested_at_utc": "2026-09-06T06:01:29.236457+00:00",
+      "requested_url": "https://files-versioned.wwpdb.org/pdb_versioned/data/entries/py/pdb_00001pya/pdb_00001pya_xyz_v1-0.cif.gz",
+      "response_bytes": 153,
+      "response_sha256": "814830ec88cff614e3accb03a754434503aaded091c8ea3a1c8a7babf3f5fc14",
+      "retention_scope": "local_analysis_only",
+      "selected_response_metadata": {
+        "content_type": "text/html",
+        "response_date": "Sun, 06 Sep 2026 06:01:29 GMT"
+      },
+      "source_id": "wwpdb-1pya-v1-0-mmcif-gzip"
+    }
+  ],
+  "schema_version": 1
+}
