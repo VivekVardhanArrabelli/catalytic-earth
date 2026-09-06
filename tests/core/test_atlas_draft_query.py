@@ -7,7 +7,11 @@ import json
 import unittest
 
 from catalytic_earth.atlas_draft_query import query_source_drafts
-from catalytic_earth.core_cli import main, verified_source_drafts
+from catalytic_earth.core_cli import (
+    main,
+    verified_primary_evidence,
+    verified_source_drafts,
+)
 
 
 class SourceDraftQueryTests(unittest.TestCase):
@@ -198,6 +202,128 @@ class SourceDraftQueryTests(unittest.TestCase):
 
         self.assertEqual(raised.exception.code, 2)
         self.assertIn("CHEBI", error.getvalue())
+
+    def test_exact_mechanism_component_label_spans_reviewed_batches(self):
+        additional = verified_source_drafts("aldolase-transketolase")
+        default_result = query_source_drafts(
+            self.bundle,
+            mechanism_components=("  Schiff Base Formed  ", "schiff base formed"),
+        )
+        additional_result = query_source_drafts(
+            additional, mechanism_components=("schiff base formed",),
+        )
+
+        self.assertEqual(default_result["schema_version"],
+                         "catalytic-earth.source-draft-query.v3")
+        self.assertEqual(default_result["filters"]["mechanism_components"],
+                         ["schiff base formed"])
+        self.assertEqual([record["mcsa_id"] for record in default_result["records"]],
+                         ["M0753"])
+        self.assertEqual([record["mcsa_id"] for record in additional_result["records"]],
+                         ["M0222"])
+        for result in (default_result, additional_result):
+            witness = result["records"][0]["mechanism_component_matches"]
+            self.assertEqual(len(witness), 1)
+            self.assertEqual(witness[0]["matched_labels"], ["schiff base formed"])
+            self.assertEqual(
+                witness[0]["raw_components_summary"],
+                result["records"][0]["mechanism_proposals"][0]["components_summary"],
+            )
+
+    def test_all_component_labels_must_match_within_one_proposal(self):
+        result = query_source_drafts(
+            self.bundle,
+            mcsa_id="M0107",
+            mechanism_components=(
+                "decoordination from a metal ion",
+                "decarboxylation",
+            ),
+        )
+
+        self.assertEqual(result["record_count"], 0)
+        self.assertEqual(result["records"], [])
+        self.assertEqual(
+            result["query_semantics"]["mechanism_component_match_scope"],
+            "all_requested_exact_source_labels_within_one_proposal",
+        )
+
+    def test_component_witness_does_not_drop_alternatives_or_ground_participants(self):
+        before = copy.deepcopy(self.bundle)
+        result = query_source_drafts(
+            self.bundle,
+            mcsa_id="M0107",
+            products=("CHEBI:16526",),
+            mechanism_components=("decoordination from a metal ion",),
+        )
+
+        self.assertEqual(result["record_count"], 1)
+        record = result["records"][0]
+        self.assertEqual(len(record["mechanism_proposals"]), 2)
+        self.assertEqual(
+            [match["source_mechanism_id"]
+             for match in record["mechanism_component_matches"]],
+            [2],
+        )
+        self.assertEqual(record["participant_matches"][0]["side"], "right")
+        self.assertFalse(
+            result["query_semantics"]["participant_match_grounds_matching_proposal"]
+        )
+        self.assertEqual(self.bundle, before)
+
+    def test_component_matching_is_exact_and_witnesses_follow_source_order(self):
+        exact = query_source_drafts(
+            self.bundle,
+            mcsa_id="M0106",
+            mechanism_components=("proton transfer", "COFACTOR USED"),
+        )
+        substring = query_source_drafts(
+            self.bundle,
+            mcsa_id="M0106",
+            mechanism_components=("proton",),
+        )
+
+        self.assertEqual(exact["filters"]["mechanism_components"],
+                         ["proton transfer", "cofactor used"])
+        self.assertEqual(
+            exact["records"][0]["mechanism_component_matches"][0]["matched_labels"],
+            ["cofactor used", "proton transfer"],
+        )
+        self.assertEqual(substring["record_count"], 0)
+        self.assertFalse(
+            exact["query_semantics"]["mechanism_component_implies_exact_reaction"]
+        )
+        self.assertEqual(
+            exact["query_semantics"]["mechanism_component_step_localization"],
+            "not_established",
+        )
+
+    def test_component_filter_rejects_non_sequences_and_non_labels(self):
+        for invalid in (
+            "proton transfer",
+            None,
+            ("",),
+            ("proton transfer, electron relay",),
+            (3,),
+        ):
+            with self.subTest(invalid=invalid), self.assertRaises(ValueError):
+                query_source_drafts(self.bundle, mechanism_components=invalid)
+
+    def test_unused_component_filter_preserves_v1_and_v2_queries(self):
+        self.assertEqual(
+            query_source_drafts(self.bundle),
+            query_source_drafts(self.bundle, mechanism_components=[]),
+        )
+        additional = verified_source_drafts("aldolase-transketolase")
+        primary = verified_primary_evidence(
+            "aldolase-transketolase", bundle=additional,
+        )
+        original_v2 = query_source_drafts(additional, primary_evidence=primary)
+        explicit_empty_v2 = query_source_drafts(
+            additional, primary_evidence=primary, mechanism_components=(),
+        )
+        self.assertEqual(original_v2["schema_version"],
+                         "catalytic-earth.source-draft-query.v2")
+        self.assertEqual(original_v2, explicit_empty_v2)
 
 
 if __name__ == "__main__":

@@ -136,6 +136,10 @@ was rescored or independent human-review status upgraded.
   P29401, including author Lys244 and His258 at the same canonical sequence
   positions. Proposed catalytic roles and protonation remain computational;
   the mapping does not transfer to proposal 1's yeast evidence.
+  `--batch all --mechanism-component "schiff base formed"` searches exact
+  source event labels across both batches and returns the matching proposals.
+  Repeated labels must occur within one proposal; matches retain the original
+  alternatives, source scopes and primary-evidence annotations.
 
 ## Truth-governance gate
 
