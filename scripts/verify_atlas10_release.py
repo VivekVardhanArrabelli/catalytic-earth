@@ -80,6 +80,13 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                 "    'events': run_query('--batch', 'all', '--mechanism-component', 'schiff base formed'),\n"
                 "    'full_events': run_query('--batch', 'all', '--mechanism-component', 'schiff base formed', '--steps'),\n"
                 "    'split_proposal': run_query('--batch', 'all', '--mechanism-component', 'decoordination from a metal ion', '--mechanism-component', 'decarboxylation'),\n"
+                "    'step_contexts': run_query('--batch', 'plp-pyruvoyl', '--step-evidence'),\n"
+                "    'step_contexts_full': run_query('--batch', 'plp-pyruvoyl', '--step-evidence', '--steps'),\n"
+                "    'step_plp': run_query('--batch', 'all', '--step-cofactor', 'PLP'),\n"
+                "    'step_extra': run_query('--batch', 'plp-pyruvoyl', '--step-enzyme-context', 'extra_enzymatic'),\n"
+                "    'step_false_join': run_query('--batch', 'plp-pyruvoyl', '--step-cofactor', 'PLP', '--step-enzyme-context', 'extra_enzymatic'),\n"
+                "    'step_inferred': run_query('--batch', 'plp-pyruvoyl', '--step-source-assertion', 'explicitly_inferred'),\n"
+                "    'step_assumed': run_query('--batch', 'plp-pyruvoyl', '--step-source-assertion', 'explicitly_assumed'),\n"
                 "}))\n"
             )
             draft_run = subprocess.run(
@@ -221,6 +228,37 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
             serine_steps = new_records["M0186"]["mechanism_proposals"][0]["mechanism_steps"]
             if not all(serine_steps[i]["is_inferred"] is True for i in (3, 4)):
                 raise ValueError("installed source steps lost explicit inference/assumption wording")
+            contexts = queries["step_contexts"]
+            if contexts["step_evidence_match_count"] != 32:
+                raise ValueError("installed step context coverage differs")
+            for compact, full in zip(contexts["records"], queries["step_contexts_full"]["records"]):
+                if (compact["step_evidence_annotations"] != full["step_evidence_annotations"]
+                        or compact["step_evidence_source_context"] != full["step_evidence_source_context"]
+                        or compact["mandatory_abstentions"] != full["mandatory_abstentions"]):
+                    raise ValueError("installed compact step query lost its source witnesses")
+            step_plp = queries["step_plp"]
+            if {r["mcsa_id"] for b in step_plp["batches"] for r in b["result"]["records"]} != {"M0066", "M0186", "M0213"}:
+                raise ValueError("installed step cofactor query conflates source labels")
+            extra_records = queries["step_extra"]["records"]
+            if ([r["mcsa_id"] for r in extra_records] != ["M0186"]
+                    or [a["step_binding"]["source_step_id"] for a in extra_records[0]["step_evidence_annotations"]] != [6, 7]
+                    or queries["step_false_join"]["record_count"] != 0):
+                raise ValueError("installed step query joined different enzyme/cofactor steps")
+            inferred = {
+                (r["mcsa_id"], a["step_binding"]["source_step_id"]): a["context"]["source_assertion"]["scope"]
+                for r in queries["step_inferred"]["records"] for a in r["step_evidence_annotations"]
+            }
+            if inferred != {("M0049", 7): "whole_step", ("M0186", 4): "stated_detail_only"}:
+                raise ValueError("installed step query confused inference scope")
+            pyruvoyl_primary = new_records["M0049"].get("primary_evidence_annotations", [])
+            if (len(pyruvoyl_primary) != 1
+                    or pyruvoyl_primary[0]["claim"]["structure_site"]["author_residue_number"] != 82
+                    or pyruvoyl_primary[0]["claim"]["sequence_mapping"]["status"] != "not_asserted"):
+                raise ValueError("installed pyruvoyl observation confuses numbering or mapping scope")
+            assumed = queries["step_assumed"]["records"]
+            if ([r["mcsa_id"] for r in assumed] != ["M0186"]
+                    or [a["step_binding"]["source_step_id"] for a in assumed[0]["step_evidence_annotations"]] != [5]):
+                raise ValueError("installed step query confused inference and assumption")
             print("Fresh-directory source draft query passed with network connections blocked")
     expected_counts = {
         "case_count": 10,

@@ -1,0 +1,177 @@
+{
+  "acquisition_budget": {
+    "max_requests": 100,
+    "max_response_bytes": 31457280,
+    "requests_attempted": 9,
+    "response_bytes": 1351490,
+    "successful_http_200": 8
+  },
+  "article_body_status": "No publisher full text was acquired. Official PubMed XML metadata and abstracts were retained locally for analysis and are not repository-bound.",
+  "authorship": "project-authored acquisition, rights, and retention inventory",
+  "failed_requests": [
+    {
+      "body_repository_path": null,
+      "body_sha256": "814830ec88cff614e3accb03a754434503aaded091c8ea3a1c8a7babf3f5fc14",
+      "http_status": 404,
+      "receipt_id": "wwpdb-1pya-v1-0-mmcif-gzip",
+      "requested_url": "https://files-versioned.wwpdb.org/pdb_versioned/data/entries/py/pdb_00001pya/pdb_00001pya_xyz_v1-0.cif.gz",
+      "response_bytes": 153,
+      "retention_scope": "local_analysis_only"
+    }
+  ],
+  "inventory_id": "primary-source-audit:M0049:1PYA",
+  "local_analysis_only_sources": [
+    {
+      "bytes": 12851,
+      "completed_at_utc": "2026-09-06T05:59:49.715805+00:00",
+      "http_status": 200,
+      "repository_path": null,
+      "retention_scope": "local_analysis_only",
+      "role": "Official PubMed metadata and abstracts inspected; no full article body acquired; response not redistributed.",
+      "sha256": "4670477d0391a28eecf17c57b9710573cb903763716eb41e17bb963b45d35268",
+      "source_id": "pubmed-6698997-2745463-xml",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=6698997,2745463&retmode=xml"
+    },
+    {
+      "bytes": 6501,
+      "completed_at_utc": "2026-09-06T05:55:46.054909+00:00",
+      "http_status": 200,
+      "repository_path": null,
+      "retention_scope": "local_analysis_only",
+      "role": "Official PubMed metadata and abstract inspected; no full article body acquired; response not redistributed.",
+      "sha256": "be21951a6d29968b56c0cad21830578ecae4ac492a72cf85aab4c724259760a2",
+      "source_id": "pubmed-8464063-xml",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8464063&retmode=xml"
+    },
+    {
+      "bytes": 13756,
+      "completed_at_utc": "2026-09-06T05:55:45.139997+00:00",
+      "http_status": 200,
+      "repository_path": null,
+      "retention_scope": "local_analysis_only",
+      "role": "Entry-level construct and ligand context checked during analysis; body not repository-bound.",
+      "sha256": "87e2e84a07d7e34048b16d07a3f892a5d66e6d78d1fad9f097365aea92edaabe",
+      "source_id": "rcsb-1pya-entry-json",
+      "url": "https://data.rcsb.org/rest/v1/core/entry/1PYA"
+    },
+    {
+      "bytes": 9784,
+      "completed_at_utc": "2026-09-06T05:58:30.744563+00:00",
+      "http_status": 200,
+      "repository_path": null,
+      "retention_scope": "local_analysis_only",
+      "role": "Polymer-entity mutation/source context checked during analysis; body not repository-bound.",
+      "sha256": "bdeacea7bb25ea5c4e5648aff4a02ffbe538c40d5d47dd69cb8e6a2b48c2c3c6",
+      "source_id": "rcsb-1pya-polymer-entity-1-json",
+      "url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1PYA/1"
+    },
+    {
+      "bytes": 12965,
+      "completed_at_utc": "2026-09-06T05:58:30.913322+00:00",
+      "http_status": 200,
+      "repository_path": null,
+      "retention_scope": "local_analysis_only",
+      "role": "Polymer-entity mutation/source context checked during analysis; body not repository-bound.",
+      "sha256": "fff5d61c51c6e12b3354481e62dceb2af6f71a815941d7a3bf4d852030950562",
+      "source_id": "rcsb-1pya-polymer-entity-2-json",
+      "url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1PYA/2"
+    }
+  ],
+  "project_authored_projection": {
+    "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/evidence_projection.json",
+    "sha256": "aaeed1ea0f9e2fe60db8d8b169bf604d4563955326e7b6ed8b93908eedc43070"
+  },
+  "receipt_ledger": {
+    "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/acquisition_receipts.json",
+    "sha256": "050a70deaf613c76e3b32e6bf889edbebf590719338f98ee1ab89e085d51e128"
+  },
+  "schema_version": 1,
+  "scope": "Minimal retained primary-source support for an M0049 record-level processed PYR observation plus an audit-only P00862 correspondence. The acquisition aggregate covers only this package's nine enumerated requests, not other agents' web work.",
+  "sources": [
+    {
+      "acquisition_receipt_id": "rcsb-1pya-current-mmcif",
+      "artifact_id": "primary:RCSB:1PYA:mmCIF:v2.1",
+      "bytes": 1027747,
+      "canonical_official_url": "https://files.rcsb.org/download/1PYA.cif",
+      "deposit": {
+        "database_accession": "pdb_00001pya",
+        "entry_id": "1PYA",
+        "initial_deposition_date": "1992-12-18",
+        "latest_revision_in_file": {
+          "major_revision": 2,
+          "minor_revision": 1,
+          "revision_date": "2024-11-20"
+        },
+        "major_atomic_model_revision": {
+          "major_revision": 2,
+          "minor_revision": 0,
+          "revision_date": "2023-11-15"
+        },
+        "pdb_doi": "10.2210/pdb1pya/pdb",
+        "status_code": "REL"
+      },
+      "license": {
+        "designation": "CC0 1.0 Universal",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "policy_url": "https://www.rcsb.org/pages/policies"
+      },
+      "media_type": "chemical/x-mmcif",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/1PYA.cif",
+      "sha256": "2f2618f16d45b12285636a392f039c21682fe5ccb81e8d27e9d5c890de05718d"
+    },
+    {
+      "acquisition_receipt_id": "wwpdb-1pya-v1-3-mmcif-gzip",
+      "artifact_id": "primary:wwPDB:1PYA:mmCIF:v1.3",
+      "bytes": 1005645,
+      "compressed_response": {
+        "bytes": 246936,
+        "repository_path": null,
+        "retention_scope": "local_analysis_only",
+        "sha256": "ef7909aa4a43a9c7a7d292b15273bea3a58ef62f836f4c298dccdb9de472b978",
+        "url": "https://files-versioned.wwpdb.org/pdb_versioned/data/entries/py/pdb_00001pya/pdb_00001pya_xyz_v1-3.cif.gz"
+      },
+      "deposit": {
+        "database_accession": "pdb_00001pya",
+        "entry_id": "1PYA",
+        "pdb_doi": "10.2210/pdb1pya/pdb",
+        "revision_in_file": {
+          "major_revision": 1,
+          "minor_revision": 3,
+          "revision_date": "2017-11-29"
+        }
+      },
+      "license": {
+        "designation": "CC0 1.0 Universal",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "policy_url": "https://www.rcsb.org/pages/policies"
+      },
+      "media_type": "chemical/x-mmcif",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/1PYA_v1-3.cif",
+      "sha256": "782d1b1fc2f4831664624c62cb0127648b8ad11086c58c5550dc38215de615f9"
+    },
+    {
+      "acquisition_receipt_id": "uniprot-p00862-json",
+      "artifact_id": "source:UniProt:P00862:JSON:2026_03",
+      "bytes": 20797,
+      "canonical_official_url": "https://rest.uniprot.org/uniprotkb/P00862.json",
+      "entry": {
+        "accession": "P00862",
+        "entry_version": 136,
+        "last_annotation_update_date": "2026-09-02",
+        "sequence_length": 311,
+        "sequence_version": 2,
+        "uniprot_release": "2026_03",
+        "uniprot_release_date": "2026-09-02"
+      },
+      "license": {
+        "designation": "Creative Commons Attribution 4.0 International",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "terms_url": "https://www.uniprot.org/help/license"
+      },
+      "media_type": "application/json",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/UniProt_P00862.json",
+      "scope": "Curated protein record used only in the project-authored audit projection; it is not typed as primary structure or primary research evidence.",
+      "sha256": "4b17425b4928aef6b43a6a7b0168c98ce1078aedf0865da3e761c870765ce6e1"
+    }
+  ]
+}

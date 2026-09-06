@@ -1,0 +1,183 @@
+{
+  "annotation_set_id": "atlas-primary-evidence.plp-pyruvoyl.2026-09-06.v1",
+  "annotations": [
+    {
+      "annotation_id": "m0049.1pya.processed-pyruvoyl-site",
+      "annotation_kind": "primary_structure_observation",
+      "claim": {
+        "corroborating_evidence_ids": [
+          "source:PubMed:6698997",
+          "source:PubMed:8464063",
+          "source:wwPDB:1PYA:v1.3"
+        ],
+        "direct_evidence_ids": [
+          "source:RCSB:1PYA"
+        ],
+        "observed_state": {
+          "description": "Deposited processed-chain pyruvoyl component PYR at chain F label position 1 and author residue 82, covalently connected to Phe author residue 83; no free-ligand ChEBI identity or protonation is assigned.",
+          "identity_scope": "structure_bound_adduct_source_description",
+          "normalized_chebi_id": null
+        },
+        "sequence_mapping": {
+          "evidence_ids": [],
+          "sequence_position": null,
+          "status": "not_asserted",
+          "uniprot_id": null
+        },
+        "statement": "The current 1PYA structure record models an N-terminal PYR component at processed chain-F label position 1 and PDB author residue 82, covalently connected to Phe author residue 83. This supports the deposited processed pyruvoyl state without treating precursor cleavage as a structure-observed mechanism or asserting a canonical sequence mapping in the v1 annotation.",
+        "structure_site": {
+          "author_residue_name": "PYR",
+          "author_residue_number": 82,
+          "chain_id": "F",
+          "pdb_id": "1PYA"
+        }
+      },
+      "evidence": [
+        {
+          "citation": "Gallagher, Rozwarski, Ernst and Hackert (1993), PDB 1PYA; DOI 10.2210/pdb1PYA/pdb; PMID 8464063. PDB archive data: CC0 1.0.",
+          "evidence_id": "source:RCSB:1PYA",
+          "evidence_role": "direct_support",
+          "experimental_context": "Current revision 2.1, X-ray diffraction at 2.5 A. Chain F entity 2 begins with deposited PYR label 1/author 82, covalently connected to Phe label 2/author 83. The only deposited nonpolymer/solvent component is water. Native or wild-type status is not asserted.",
+          "source_id": "RCSB PDB:1PYA",
+          "source_kind": "primary_structure_record",
+          "source_sha256": "2f2618f16d45b12285636a392f039c21682fe5ccb81e8d27e9d5c890de05718d",
+          "uri": "https://www.rcsb.org/structure/1PYA"
+        },
+        {
+          "citation": "Huynh, Recsei, Vaaler and Snell (1984), J Biol Chem 259, 2833-2839; PMID 6698997.",
+          "evidence_id": "source:PubMed:6698997",
+          "evidence_role": "corroboration_only",
+          "experimental_context": "The inspected PubMed abstract reports proenzyme activation cleavage at the historical Ser81-Ser82 bond. It does not identify Ser82 as the pyruvoyl precursor and is not used to assert the current canonical mapping. The response body is local-analysis-only.",
+          "source_id": "PubMed:6698997",
+          "source_kind": "primary_research_article",
+          "source_sha256": null,
+          "uri": "https://pubmed.ncbi.nlm.nih.gov/6698997/"
+        },
+        {
+          "citation": "Gallagher, Rozwarski, Ernst and Hackert (1993), J Mol Biol 230, 516-528; DOI 10.1006/jmbi.1993.1168; PMID 8464063.",
+          "evidence_id": "source:PubMed:8464063",
+          "evidence_role": "corroboration_only",
+          "experimental_context": "The inspected PubMed abstract assigns alpha/beta-chain formation and pyruvoyl generation to autocatalytic cleavage between two serines. The structure supports the processed product state, not a directly observed cleavage trajectory. The response body is local-analysis-only.",
+          "source_id": "PubMed:8464063",
+          "source_kind": "primary_research_article",
+          "source_sha256": null,
+          "uri": "https://pubmed.ncbi.nlm.nih.gov/8464063/"
+        },
+        {
+          "citation": "wwPDB versioned archive, 1PYA revision 1.3 (2017-11-29); DOI 10.2210/pdb1PYA/pdb. PDB archive data: CC0 1.0.",
+          "evidence_id": "source:wwPDB:1PYA:v1.3",
+          "evidence_role": "corroboration_only",
+          "experimental_context": "The pre-major-revision archive contains chain-F PYR label 1/author 82 and the same coordinates. It corroborates persistence across revisions but is not established as the exact coordinate byte stream used in the 1993 analysis.",
+          "source_id": "wwPDB:1PYA:version-1.3",
+          "source_kind": "primary_structure_record",
+          "source_sha256": "782d1b1fc2f4831664624c62cb0127648b8ad11086c58c5550dc38215de615f9",
+          "uri": "https://files-versioned.wwpdb.org/pdb_versioned/data/entries/py/pdb_00001pya/pdb_00001pya_xyz_v1-3.cif.gz"
+        }
+      ],
+      "limits": [
+        {
+          "limit_id": "precursor_maturation_mechanism",
+          "statement": "The structure shows the processed pyruvoyl state. It does not directly observe precursor cleavage, maturation atom edits, catalytic ordering, rate, or timing.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "numbering_namespaces",
+          "statement": "Current canonical P00862 Ser83, the PMID 6698997 Ser81-Ser82 cleavage bond, M-CSA Prv-82, PDB author PYR82, and processed-chain label/Pyr1F remain distinct statements or numbering namespaces.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "standard_alignment_offset",
+          "statement": "The deposited _struct_ref_seq row starts at standard residue label 2 and excludes label-1 PYR; it cannot independently ground the modified-site mapping.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "canonical_mapping_schema_boundary",
+          "statement": "The audit projection retains the current UniProt P00862 Ser83 annotation, but primary-evidence v1 has no curated-protein evidence kind. The v1 annotation therefore leaves sequence_mapping not_asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_substrate_identity",
+          "statement": "1PYA has no bound substrate or analogue and does not resolve the preserved M-CSA entry CHEBI:57595 versus MRV CHEBI:32526 conflict.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "plp_equivalence",
+          "statement": "The observed component is pyruvoyl; no PLP identity or PLP-equivalent state is asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "construct_and_mutation_scope",
+          "statement": "The deposited mutation field is unspecified. Native or wild-type status is not asserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "coordinate_version_provenance",
+          "statement": "Revision 1.3 corroborates the processed PYR observation before the 2023 major atomic-model revision. Neither archived revision 1.3 nor current revision 2.1 is claimed to be the exact coordinate file used for the 1993 publication.",
+          "status": "abstained"
+        }
+      ],
+      "record_binding": {
+        "mcsa_id": "M0049",
+        "record_id": "atlas50-draft:m0049:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "37ba50b02ee04d61b50d2b85e559a8d1671eef528e45f98945b947c54d95471d"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "mechanism_scope_expanded": false,
+        "proposal_applicability_claimed": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_claimed": false
+      },
+      "target_scope": "record_only"
+    }
+  ],
+  "batch_id": "plp-pyruvoyl",
+  "review": {
+    "annotation_payload_sha256": "943b22251864d442868ef1059da8422706a09c8e87f1fd423c514e3a49093c1f",
+    "blind_review": false,
+    "correlated_error_risk": true,
+    "domain_expert_review_claimed": false,
+    "human_reviewers": 0,
+    "reviewed_on": "2026-09-06",
+    "reviewer_kind": "same_model_computational_agents",
+    "same_model_agents": true,
+    "statistically_independent": false,
+    "update_rule": "Do not automatically refresh this pin after annotation changes. Repeat source-to-claim primary-evidence review first."
+  },
+  "schema_version": "catalytic-earth.atlas-primary-evidence.v1",
+  "source_bindings": [
+    {
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/1PYA.cif",
+      "sha256": "2f2618f16d45b12285636a392f039c21682fe5ccb81e8d27e9d5c890de05718d"
+    },
+    {
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/1PYA_v1-3.cif",
+      "sha256": "782d1b1fc2f4831664624c62cb0127648b8ad11086c58c5550dc38215de615f9"
+    },
+    {
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/SOURCE_ATTRIBUTION.md",
+      "sha256": "2b03f1ae03f0b30f37177926f608b089a32e866dc5ce2c025ff1815e0738dddb"
+    },
+    {
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/UniProt_P00862.json",
+      "sha256": "4b17425b4928aef6b43a6a7b0168c98ce1078aedf0865da3e761c870765ce6e1"
+    },
+    {
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/acquisition_receipts.json",
+      "sha256": "050a70deaf613c76e3b32e6bf889edbebf590719338f98ee1ab89e085d51e128"
+    },
+    {
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/evidence_projection.json",
+      "sha256": "aaeed1ea0f9e2fe60db8d8b169bf604d4563955326e7b6ed8b93908eedc43070"
+    },
+    {
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/source_inventory.json",
+      "sha256": "b1af4f1f6271ddd84c15584abe11f1959f090e505868d57c5ee471c653d40c8a"
+    },
+    {
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0049.json",
+      "sha256": "37ba50b02ee04d61b50d2b85e559a8d1671eef528e45f98945b947c54d95471d"
+    }
+  ],
+  "status": "reviewed_primary_evidence_annotations_not_mechanism_expansion"
+}

@@ -246,6 +246,12 @@ def _validate_json_surfaces(*, include_release_manifest: bool) -> None:
                 primary_path.as_posix(),
                 f"src/catalytic_earth/draft_data/{stem}_primary_evidence.json",
             ))
+        step_path = batch.gate_directory / "step_evidence_annotations.json"
+        if (ROOT / step_path).is_file():
+            paths.extend((
+                step_path.as_posix(),
+                f"src/catalytic_earth/draft_data/{stem}_step_evidence.json",
+            ))
     for path in paths:
         json.loads((ROOT / path).read_text(encoding="utf-8"))
 

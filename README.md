@@ -43,7 +43,7 @@ This repository remains a research scaffold. It is not a wet-lab protocol,
 not a claim that computational candidates are validated enzymes, and not yet
 a production biological design system.
 
-## Quick Status — 2026-09-05
+## Quick Status — 2026-09-06
 
 The Atlas-10 kernel remains the 2026-07-14 checkpoint built on the 2026-07-13
 truth reset. September adds eleven queryable Tier-1 source drafts in three batches through a
@@ -55,6 +55,13 @@ these scoped draft operations. Eleven cases permit mechanism drafting; all thirt
 permit annotation. It also withdraws the A0A177THN5
 APX-specific transfer and retires the study based on it (CE-017). No benchmark
 was rescored or independent human-review status upgraded.
+
+The PLP/pyruvoyl batch also supports opt-in [queries of individual step
+contexts](docs/ATLAS_SOURCE_DRAFTS.md#evidence-for-individual-source-steps).
+They distinguish literal cofactor labels, extra-enzymatic steps and precisely
+scoped source inferences, with source witnesses and unresolved identities
+retained. This adds chemical retrieval capability without promoting source
+descriptions into observed reaction trajectories.
 
 - `current702` contains 702 project benchmark labels: 685 bronze, 17 silver,
   zero project-gold; 683 are automation-curated and 19 author-reviewed.
