@@ -3,20 +3,26 @@ from __future__ import annotations
 
 import copy
 import json
-from typing import Any
+from typing import Any, Sequence
 
-from .atlas_drafts import validate_source_drafts
+from .atlas_draft_index import match_source_participants
 
 
 def query_source_drafts(
     bundle: dict[str, Any], *, mcsa_id: str | None = None,
     assembly: str | None = None, text: str | None = None,
     include_steps: bool = False,
+    participants: Sequence[str] = (), reactants: Sequence[str] = (),
+    products: Sequence[str] = (),
 ) -> dict[str, Any]:
-    """Filter actual source records; a compact result still retains abstentions."""
-    validate_source_drafts(bundle)
+    """Intersect record filters and exact source participants, retaining evidence."""
+    chemical_matches = match_source_participants(
+        bundle, participants=participants, reactants=reactants, products=products,
+    )
     results = []
     for record in bundle["records"]:
+        if record["record_id"] not in chemical_matches["matches"]:
+            continue
         if mcsa_id is not None and record["mcsa_id"].upper() != mcsa_id.upper():
             continue
         if assembly is not None and record["state_context"]["assembly"]["mode"] != assembly:
@@ -29,6 +35,7 @@ def query_source_drafts(
         ).casefold():
             continue
         result = copy.deepcopy(record)
+        result["participant_matches"] = chemical_matches["matches"][record["record_id"]]
         if not include_steps:
             for proposal in result["mechanism_proposals"]:
                 steps = proposal.pop("mechanism_steps")
@@ -41,7 +48,18 @@ def query_source_drafts(
         "schema_version": "catalytic-earth.source-draft-query.v1",
         "bundle_id": bundle["bundle_id"],
         "selection": copy.deepcopy(bundle["selection"]),
-        "filters": {"mcsa_id": mcsa_id, "assembly": assembly, "text": text},
+        "filters": {
+            "mcsa_id": mcsa_id, "assembly": assembly, "text": text,
+            **chemical_matches["filters"],
+        },
+        "query_semantics": {
+            "participant_match_scope": "source_record_reaction_context",
+            "filter_combination": "all_clauses_within_one_record",
+            "chemical_identity": "exact_source_chebi_identifier_without_ontology_expansion",
+            "side": "left_or_right_in_the_source_drawing_not_physiological_direction",
+            "proposal_applicability": "record_context_does_not_ground_each_proposal_or_step",
+            "shared_participant_implies_reaction_equivalence": False,
+        },
         "source_steps_included": include_steps,
         "record_count": len(results),
         "records": results,

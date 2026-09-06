@@ -120,6 +120,8 @@ was rescored or independent human-review status upgraded.
   carrier and state fields travel with source scope and unresolved questions.
   `catalytic-earth atlas-drafts --steps` queries the package offline. These
   records do not add canonical reactions or protein/site-grounded Tier-2 cases.
+  Repeatable `--participant`, `--reactant` and `--product` filters query exact
+  source ChEBI identifiers while preserving evidence and reaction-side scope.
 
 ## Truth-governance gate
 

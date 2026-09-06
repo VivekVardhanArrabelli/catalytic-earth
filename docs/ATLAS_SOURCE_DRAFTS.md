@@ -40,6 +40,8 @@ without the repository, raw downloads, a model, or a network connection:
 catalytic-earth atlas-drafts --mcsa-id M0107 --steps
 catalytic-earth atlas-drafts --assembly cycle_coupled_association
 catalytic-earth atlas-drafts --text lipoyl
+catalytic-earth atlas-drafts --product CHEBI:16526
+catalytic-earth atlas-drafts --reactant CHEBI:28938 --product CHEBI:58278
 ```
 
 Compact results omit step bodies while retaining scope, residue evidence and
@@ -47,6 +49,25 @@ abstentions. `--steps` includes the ordered source steps and available electron
 flows. An empty result means no matching record in this bounded batch; it is
 not a claim that no such mechanism exists elsewhere. Every response identifies
 the selected source IDs and requested operation, including empty results.
+
+Chemical filters accept ChEBI identifiers or their numeric part. Repeat
+`--participant` (either side), `--reactant` (left), or `--product` (right) to
+require every specified participant within one source record. They intersect
+with record ID, assembly and text filters. Left and right refer to the source
+drawing, without establishing physiological direction or a balanced reaction.
+
+The carbon-dioxide query (`CHEBI:16526`) returns both M0106 and M0107; adding
+reactant pyruvate (`CHEBI:15361`) narrows it to M0106. Ammonium (`CHEBI:28938`)
+is drawn on the right in M0212 and on the left in M0753. Results retain the
+matching participant rows and source counts, all mechanism alternatives, and
+the record's scope and abstentions. A participant match is entry-level context;
+it does not assign that compound to every mechanism proposal or elementary step.
+
+The dependency-free SQLite index uses exact source ChEBI identifiers. It does
+not expand ontology classes, collapse protonation states, or infer equivalent
+reactions from a shared participant. Records with unmapped participants remain
+available through the other filters; an identifier query cannot match those
+unmapped rows.
 
 ## Rebuild and extend
 
@@ -77,5 +98,6 @@ Choose the next batch or compiler improvement by the bottleneck it removes
 from building the full computable atlas. A demonstration, benchmark, new
 review layer or larger row count is not an automatic prerequisite. Add one
 when its result will change what we build, admit, or spend effort on. The
-current continuation is further source compilation using this reusable path,
-with unresolved source applicability handled at its actual affected scope.
+current query layer makes the existing standardized participants usable across
+records. Reassess the next coverage or mechanism-query improvement against the
+remaining bottleneck, with source applicability handled at its affected scope.

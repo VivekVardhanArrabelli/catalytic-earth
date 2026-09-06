@@ -323,3 +323,38 @@ rebuilt wheel again passes the network-blocked draft query and unchanged
 Atlas-10 result check. Sixteen frozen/registry/exposure scopes are unchanged
 from merged PR #32. Root will publish this checkpoint and report exact-head CI
 and merge status separately.
+
+## Structured chemical queries
+
+PR #33 merged at `fdfd2cd65291b5934bff6ad9f062893f847f28e0` after all
+four Linux/Windows Python 3.10/3.12 jobs passed. The owner asked to continue
+without waiting. Current branch: `codex/atlas-chemical-queries`.
+
+The next bottleneck is retrieval: v4 already holds 26 source participant rows
+with ChEBI identifiers, but its query supports only record ID, assembly and
+free text. Implement exact participant-ID and source-side queries using those
+fields, preserving scope and evidence in every result. Source left/right is
+the drawn reaction direction, not physiological direction or proven turnover.
+
+| Agent | Ownership | Deliverable |
+| --- | --- | --- |
+| root | query/CLI integration, release verification, docs, board | useful chemical filtering in the installed offline command |
+| state_contracts | generic participant index module and its focused tests | deterministic relational materialization and exact multi-participant matching |
+| source_ingestion | read-only chemical-query semantic review | source-backed expectations and specific overclaim risks |
+| draft_integration_review | query/CLI regression tests; subsequent read-only integration review | compositional filters and evidence-preserving results |
+
+All work uses the existing compiled package. No new source acquisition, schema
+migration, source-record rewrite or registry change is required for retrieval.
+
+The implementation indexes the existing 26 participant rows in two in-memory
+SQLite tables and adds repeatable CLI filters with same-record AND semantics.
+Source review verified every participant projection against its raw source and
+checked CO2, ammonium side/count differences and water/ammonium conjunctions.
+Both CODH alternatives and all uncertainty remain attached to record results.
+The separate code review found no material integration defect. All 21
+focused index/query/CLI tests pass. The full core run has 182 tests: 181 pass
+and the existing optional schema check skips in Python 3.12. Repository
+contracts and offline rebuilds pass. The installed wheel returns correct
+same-record ammonium/HisF and cross-record CO2 results with network connections
+blocked; the inherited Atlas-10 runtime hash is unchanged. All source snapshots,
+compiled records, schema files and scientific gates remain unchanged from PR #33.
