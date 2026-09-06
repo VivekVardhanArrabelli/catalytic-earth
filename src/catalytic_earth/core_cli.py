@@ -364,6 +364,7 @@ def build_parser() -> argparse.ArgumentParser:
     candidates.add_argument("--source", type=Path, required=True, help="local retained M-CSA JSON snapshot")
     candidates.add_argument("--mechanism-id", type=int, required=True)
     candidates.add_argument("--before-step", type=int, required=True, help="compare this source panel with the next step's source panel")
+    candidates.add_argument("--preserve-context", action="store_true", help="retain supported unchanged stereo/coordinate annotations as uninterpreted context")
     candidates.add_argument("--output", type=Path, help="optional new JSON file; existing files are never overwritten")
     drafts = subparsers.add_parser(
         "atlas-drafts", help="query source-scoped mechanisms, states and abstentions offline"
@@ -549,7 +550,12 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.command == "atlas-candidates":
         from .atlas_candidate_extraction import extract_panel_candidate
 
-        result = extract_panel_candidate(
+        extractor = extract_panel_candidate
+        if args.preserve_context:
+            from .atlas_context_candidates import extract_context_panel_candidate
+
+            extractor = extract_context_panel_candidate
+        result = extractor(
             args.source.read_bytes(), mechanism_id=args.mechanism_id,
             before_step_id=args.before_step,
         )

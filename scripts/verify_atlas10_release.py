@@ -23,6 +23,7 @@ def _venv_python(root: Path) -> Path:
 
 def verify_wheel(
     wheel: Path, *, include_source_drafts: bool = False, candidate_source: Path | None = None,
+    context_candidate_source: Path | None = None,
 ) -> dict[str, object]:
     wheel = wheel.resolve()
     if include_source_drafts:
@@ -484,6 +485,45 @@ def verify_wheel(
                 cwd=empty_cwd, env=isolated_env, check=True, capture_output=True, text=True,
             )
             print("Fresh-directory M0173 candidate extraction passed with network connections blocked")
+        if context_candidate_source is not None:
+            copied_source = root / "context-candidate-source.json"
+            copied_source.write_bytes(context_candidate_source.read_bytes())
+            isolated_env = dict(os.environ)
+            isolated_env.pop("PYTHONPATH", None)
+            context_query = (
+                "import contextlib, hashlib, io, json, sys, importlib.util\n"
+                "from pathlib import Path\n"
+                "def block_network(event, args):\n"
+                "    if event == 'socket.connect':\n"
+                "        raise RuntimeError('network is forbidden during context extraction')\n"
+                "sys.addaudithook(block_network)\n"
+                "from catalytic_earth.core_cli import main\n"
+                "output = io.StringIO()\n"
+                "with contextlib.redirect_stdout(output):\n"
+                "    main(['atlas-candidates', '--source', sys.argv[1], '--mechanism-id', '1', '--before-step', '2', '--preserve-context'])\n"
+                "result = json.loads(output.getvalue())\n"
+                "assert result['schema_version'] == 'catalytic-earth.context-panel-candidate.v1'\n"
+                "assert result['status'] == 'unreviewed' and result['extraction_status'] == 'candidate'\n"
+                "assert result['source_binding']['snapshot_sha256'] == hashlib.sha256(Path(sys.argv[1]).read_bytes()).hexdigest()\n"
+                "assert result['coverage']['mapped_node_count'] == 75\n"
+                "assert result['coverage']['full_covalent_graph_replay_asserted'] is True\n"
+                "assert 'full_panel_replay_asserted' not in result['coverage']\n"
+                "assert len(result['proposed_graph_edits']) == 12\n"
+                "assert all(e['support'] == 'after_graph_confirmed' for e in result['proposed_graph_edits'])\n"
+                "for side in ('before', 'after'):\n"
+                "    context = result['opaque_source_context'][side]\n"
+                "    assert len(context['bond_stereo']) == 4 and len(context['bond_conventions']) == 2\n"
+                "assert result['scope_effect']['reviewed_evidence'] is False\n"
+                "assert result['scope_effect']['stereochemistry_interpreted'] is False\n"
+                "assert result['scope_effect']['coordination_chemistry_interpreted'] is False\n"
+                "assert result['scope_effect']['full_source_electronic_state_replayed'] is False\n"
+                "assert importlib.util.find_spec('rdkit') is None\n"
+            )
+            subprocess.run(
+                [str(python), "-I", "-c", context_query, str(copied_source)],
+                cwd=empty_cwd, env=isolated_env, check=True, capture_output=True, text=True,
+            )
+            print("Fresh-directory M0219 opaque-context extraction passed with network connections blocked")
     expected_counts = {
         "case_count": 10,
         "record_count": 30,
@@ -528,6 +568,7 @@ def main() -> int:
     parser.add_argument("--wheel", type=Path, required=True)
     parser.add_argument("--include-source-drafts", action="store_true")
     parser.add_argument("--candidate-source", type=Path, help="retained M0173 snapshot for optional offline extraction verification")
+    parser.add_argument("--context-candidate-source", type=Path, help="retained M0219 snapshot for optional offline context extraction verification")
     args = parser.parse_args()
     wheel = args.wheel
     if wheel.is_dir():
@@ -537,6 +578,7 @@ def main() -> int:
         wheel = wheels[0]
     payload = verify_wheel(
         wheel, include_source_drafts=args.include_source_drafts, candidate_source=args.candidate_source,
+        context_candidate_source=args.context_candidate_source,
     )
     print(
         "Fresh-directory Atlas-10 wheel verification passed: "

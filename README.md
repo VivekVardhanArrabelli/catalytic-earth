@@ -102,6 +102,12 @@ pairs yields seven candidates with explicit graph-confirmed and arrow-only edit
 coverage; 94 pairs remain blocked by unsupported representations. These results
 do not change the reviewed transformation catalog or benchmark labels.
 
+An opt-in [context-preserving mode](docs/ATLAS_OPAQUE_CONTEXT.md) adds seven
+supported source-panel candidates while retaining raw stereo and coordinate
+annotations without interpretation. It returns twelve candidates in total and
+withholds two earlier candidates with unsupported global stereo metadata.
+Both complete transketolase covalent-graph replays retain their source limits.
+
 - `current702` contains 702 project benchmark labels: 685 bronze, 17 silver,
   zero project-gold; 683 are automation-curated and 19 author-reviewed.
 - The combined 10,001-row surface is **8,305 positive fingerprint assignments
