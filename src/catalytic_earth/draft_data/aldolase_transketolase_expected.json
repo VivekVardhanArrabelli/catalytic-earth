@@ -1,5 +1,6 @@
 {
   "attribution_sha256": "d9526b2ab13bb96609b42d6d30c836b42cf18d0cec0d492cbbeffcef698021b9",
   "bundle_sha256": "cab1532323e28ccffbeb01946608bc7405c746eec34dcf977aed974f82369720",
+  "primary_evidence_sha256": "c480366a23fd69150a3109e26d635cb391c11903074efb23441722d49820bf99",
   "schema_version": "catalytic-earth.source-drafts-package.v1"
 }

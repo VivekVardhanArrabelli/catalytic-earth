@@ -61,6 +61,7 @@ catalytic-earth atlas-drafts --product CHEBI:16526
 catalytic-earth atlas-drafts --reactant CHEBI:28938 --product CHEBI:58278
 catalytic-earth atlas-drafts --batch aldolase-transketolase --reactant 57642 --reactant 59776 --product 49299
 catalytic-earth atlas-drafts --batch aldolase-transketolase --mcsa-id M0219 --steps
+catalytic-earth atlas-drafts --batch aldolase-transketolase --mcsa-id M0222 --text "DHAP-derived covalent moiety"
 ```
 
 Compact results omit step bodies while retaining scope, residue evidence and
@@ -72,6 +73,21 @@ The default selects the original four records. `--batch aldolase-transketolase`
 selects the additional three; it does not silently expand the default corpus.
 The paired aldolase query above returns both source records and their separate
 proposal, residue and uncertainty fields.
+
+The additional batch now includes a reviewed primary-evidence annotation for
+M0222. The preserved 2QUT structure supports a DHAP-derived covalent moiety at
+author Lys229, mapped to P00883 Lys230. Its deposited description and primary
+paper assign an enamine. This narrows the source's G3P/DHAP conflict at the
+covalent-moiety scope. The engineered, chemically reduced 1J4E trap is separate
+corroboration. [2QUT](https://www.rcsb.org/structure/2QUT),
+[1J4E](https://www.rcsb.org/structure/1J4E).
+
+Annotations do not rewrite the source record, remove its whole-step or
+protein-applicability abstentions, assign a free-metabolite ChEBI identity to
+the bound adduct, or change evidence tiers. Annotated responses use query
+schema v2 and include `primary_evidence_annotations` in compact and full
+results; text search includes those annotations. Calls without a sidecar,
+including the default batch, retain query schema v1.
 
 Chemical filters accept ChEBI identifiers or their numeric part. Repeat
 `--participant` (either side), `--reactant` (left), or `--product` (right) to
@@ -124,6 +140,15 @@ Source redistribution follows [the recorded attribution](../data/atlas/source_dr
 and CC BY 4.0 terms. Only compiled projections and attribution enter the wheel.
 The source snapshots remain in the repository source package.
 The additional batch has [its own attribution](../data/atlas/source_drafts/batches/aldolase-transketolase/SOURCE_ATTRIBUTION.md).
+The [primary-evidence audit package](../data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_sources/SOURCE_ATTRIBUTION.md)
+retains the exact 2QUT mmCIF and a project-authored field projection. Its inventory
+explicitly records that the original research download had no saved HTTP
+receipt. The wheel contains only the reviewed annotation and source hashes.
+Changing annotation content or an audit input invalidates the manually reviewed
+payload pin; ordinary compilation cannot refresh that scientific review pin.
+The validator checks integrity and declared scope. It does not rederive free-form
+scientific claims or residue mappings from coordinates; those require the
+recorded source-to-claim review. Recomputing a pin is not scientific evidence.
 
 ## Priority rule
 

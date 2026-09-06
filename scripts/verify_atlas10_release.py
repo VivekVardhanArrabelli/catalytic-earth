@@ -7,6 +7,7 @@ import json
 import os
 import subprocess
 import venv
+import zipfile
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
@@ -22,6 +23,10 @@ def _venv_python(root: Path) -> Path:
 
 def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[str, object]:
     wheel = wheel.resolve()
+    if include_source_drafts:
+        with zipfile.ZipFile(wheel) as archive:
+            if any(name.lower().endswith(".cif") for name in archive.namelist()):
+                raise ValueError("raw primary structures must not enter the wheel")
     with TemporaryDirectory(dir=Path.home()) as tmp:
         root = Path(tmp)
         environment = root / "venv"
@@ -67,6 +72,7 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                 "    'carbon_dioxide': run_query('--product', 'CHEBI:16526'),\n"
                 "    'new_batch': run_query('--batch', 'aldolase-transketolase', '--steps'),\n"
                 "    'aldolases': run_query('--batch', 'aldolase-transketolase', '--reactant', '57642', '--product', '49299'),\n"
+                "    'primary': run_query('--batch', 'aldolase-transketolase', '--mcsa-id', 'M0222', '--text', 'DHAP-derived covalent moiety'),\n"
                 "}))\n"
             )
             draft_run = subprocess.run(
@@ -109,6 +115,22 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                 actual = {a["clause_id"] for a in record["mandatory_abstentions"]}
                 if not expected_abstentions.get(record["mcsa_id"], set()) <= actual:
                     raise ValueError("installed successor source batch lost a source conflict")
+            primary_records = queries["primary"]["records"]
+            if len(primary_records) != 1 or primary_records[0]["mcsa_id"] != "M0222":
+                raise ValueError("installed primary-evidence text query differs")
+            primary = primary_records[0]["primary_evidence_annotations"]
+            full = next(r for r in additional if r["mcsa_id"] == "M0222")
+            if primary != full["primary_evidence_annotations"] or len(primary) != 1:
+                raise ValueError("compact/full primary evidence differs")
+            claim = primary[0]["claim"]
+            if (claim["structure_site"]["author_residue_number"] != 229
+                    or claim["sequence_mapping"]["sequence_position"] != 230
+                    or claim["sequence_mapping"]["uniprot_id"] != "P00883"):
+                raise ValueError("installed primary evidence lost the residue mapping")
+            if claim["observed_state"]["normalized_chebi_id"] is not None:
+                raise ValueError("installed primary evidence equated bound and free species")
+            if primary_records[0]["evidence_tier"] != 1:
+                raise ValueError("primary evidence changed the source-record tier")
             print("Fresh-directory source draft query passed with network connections blocked")
     expected_counts = {
         "case_count": 10,

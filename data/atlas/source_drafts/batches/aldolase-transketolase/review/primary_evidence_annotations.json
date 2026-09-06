@@ -1,0 +1,149 @@
+{
+  "annotation_set_id": "atlas-primary-evidence.m0222-dhap-moiety.2026-09-06.v1",
+  "annotations": [
+    {
+      "annotation_id": "m0222.2qut.dhap-derived-covalent-moiety",
+      "annotation_kind": "primary_structure_observation",
+      "claim": {
+        "corroborating_evidence_ids": [
+          "source:PubMed:17728250",
+          "source:RCSB:1J4E",
+          "source:PubMed:11705376"
+        ],
+        "direct_evidence_ids": [
+          "source:RCSB:2QUT"
+        ],
+        "observed_state": {
+          "description": "Source-assigned DHAP-derived enamine, with a deposited Lys229 NZ-to-13P C2 covalent connection; exact bound protonation and bond order are not inferred.",
+          "identity_scope": "structure_bound_adduct_source_description",
+          "normalized_chebi_id": null
+        },
+        "sequence_mapping": {
+          "evidence_ids": [
+            "source:RCSB:2QUT"
+          ],
+          "sequence_position": 230,
+          "status": "source_supported",
+          "uniprot_id": "P00883"
+        },
+        "statement": "Rabbit ALDOA structure 2QUT supports a DHAP-derived covalent moiety at chain-A author Lys229, mapped to P00883 Lys230. The deposit and primary publication assign an enamine intermediate. This provides direct structural counterevidence to the G3P identity in M-CSA Step 1 prose and supports DHAP as the parent moiety of the captured rabbit Lys adduct; it does not resolve the Step 1 attack trajectory.",
+        "structure_site": {
+          "author_residue_name": "LYS",
+          "author_residue_number": 229,
+          "chain_id": "A",
+          "pdb_id": "2QUT"
+        }
+      },
+      "evidence": [
+        {
+          "citation": "St-Jean and Sygusch (2007), PDB 2QUT; DOI 10.2210/pdb2QUT/pdb; PMID 17728250. PDB archive data: CC0 1.0.",
+          "evidence_id": "source:RCSB:2QUT",
+          "evidence_role": "direct_support",
+          "experimental_context": "The preserved mmCIF records chain-A Lys229 NZ linked to ligand 13P C2, a P00883 alignment offset of one residue, and an enamine title. Its mutation field is unspecified; the native assignment comes from the cited paper and RCSB entry page.",
+          "source_id": "RCSB PDB:2QUT",
+          "source_kind": "primary_structure_record",
+          "source_sha256": "82fcf22bac7ffaad5eb64a392c00f31780726181491f21d24736e46ed084a5e7",
+          "uri": "https://www.rcsb.org/structure/2QUT"
+        },
+        {
+          "citation": "St-Jean and Sygusch (2007), DOI 10.1074/jbc.M704968200.",
+          "evidence_id": "source:PubMed:17728250",
+          "evidence_role": "corroboration_only",
+          "experimental_context": "The accessible abstract assigns the trapped DHAP-derived enamine at Lys229 to native aldolase and distinguishes the Lys146Met iminium context. Article body is not redistributed.",
+          "source_id": "PubMed:17728250",
+          "source_kind": "primary_research_article",
+          "source_sha256": null,
+          "uri": "https://pubmed.ncbi.nlm.nih.gov/17728250/"
+        },
+        {
+          "citation": "Choi et al. (2001), PDB 1J4E; DOI 10.2210/pdb1J4E/pdb; PMID 11705376.",
+          "evidence_id": "source:RCSB:1J4E",
+          "evidence_role": "corroboration_only",
+          "experimental_context": "Four-Cys engineered construct with a reduced DHAP-derived covalent trap. The paper reports NaBH4 trapping in the presence of FBP. This is not a direct observation of a native Schiff base, iminium, or free-DHAP attack; its legacy sequence mapping is not used here.",
+          "source_id": "RCSB PDB:1J4E",
+          "source_kind": "primary_structure_record",
+          "source_sha256": null,
+          "uri": "https://www.rcsb.org/structure/1J4E"
+        },
+        {
+          "citation": "Choi et al. (2001), DOI 10.1021/bi0114877.",
+          "evidence_id": "source:PubMed:11705376",
+          "evidence_role": "corroboration_only",
+          "experimental_context": "The accessible abstract identifies the DHAP-derived Schiff-base precursor and chemical trapping conditions; the deposited reduced trap remains distinct from the 2QUT enamine. Article body is not redistributed.",
+          "source_id": "PubMed:11705376",
+          "source_kind": "primary_research_article",
+          "source_sha256": null,
+          "uri": "https://pubmed.ncbi.nlm.nih.gov/11705376/"
+        }
+      ],
+      "limits": [
+        {
+          "limit_id": "full_source_step_trajectory",
+          "statement": "The structures do not directly observe the complete M-CSA Step 1 attack trajectory, temporal ordering, or condensation from free DHAP. Source arrow annotations remain unvalidated as atom-mapped bond edits.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "protein_wide_proposal_applicability",
+          "statement": "This rabbit-site observation does not assign the entire mixed rabbit/archaeal proposal or the archaeal Step 10 narrative to P00883.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "bound_adduct_free_species_equivalence",
+          "statement": "The DHAP-derived covalent moiety is not assigned an exact free-metabolite ChEBI identifier. M-CSA CHEBI:57642 remains a source label; exact bound protonation and bond order remain unasserted.",
+          "status": "abstained"
+        },
+        {
+          "limit_id": "source_prose_scheme_conflicts",
+          "statement": "The preserved M-CSA Step 1 prose names G3P while its drawing labels DHAP; Step 7 prose names incoming glycerone phosphate while the drawing labels incoming G3P. The primary evidence supports the DHAP-derived covalent moiety, without silently rewriting either source field.",
+          "status": "abstained"
+        }
+      ],
+      "record_binding": {
+        "mcsa_id": "M0222",
+        "record_id": "atlas50-draft:m0222:source-scoped-mechanism-draft",
+        "source_snapshot_sha256": "a798aef39309cdf3af82a003112b13949b160f9d305339c6ab9c08a3273908a7"
+      },
+      "scope_effect": {
+        "allowed_operations_changed": false,
+        "mechanism_scope_expanded": false,
+        "proposal_applicability_claimed": false,
+        "record_evidence_tier_changed": false,
+        "source_step_trajectory_claimed": false
+      },
+      "target_scope": "record_only"
+    }
+  ],
+  "batch_id": "aldolase-transketolase",
+  "review": {
+    "annotation_payload_sha256": "a7ec87ea2f5446e592c9288764069f49d95f9ff0f1dca056607272eb6076ec8c",
+    "blind_review": false,
+    "correlated_error_risk": true,
+    "domain_expert_review_claimed": false,
+    "human_reviewers": 0,
+    "reviewed_on": "2026-09-06",
+    "reviewer_kind": "same_model_computational_agents",
+    "same_model_agents": true,
+    "statistically_independent": false,
+    "update_rule": "Do not automatically refresh this pin after annotation changes. Repeat source-to-claim primary-evidence review first."
+  },
+  "schema_version": "catalytic-earth.atlas-primary-evidence.v1",
+  "source_bindings": [
+    {
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_sources/2QUT.cif",
+      "sha256": "82fcf22bac7ffaad5eb64a392c00f31780726181491f21d24736e46ed084a5e7"
+    },
+    {
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_sources/SOURCE_ATTRIBUTION.md",
+      "sha256": "8c1677a5f227d7f5ecd10d715bf3b56472ad49af552b8c4fc84aa33c04375ed4"
+    },
+    {
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_sources/evidence_projection.json",
+      "sha256": "6caa0158b64b8cebc9f4ccaf8798d686d50d611f37c7d583221e4563c005d8e5"
+    },
+    {
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_sources/source_inventory.json",
+      "sha256": "a8f054322a6cb89fdda78375241778b9f081cbce1312f4c578668241b519859d"
+    }
+  ],
+  "status": "reviewed_primary_evidence_annotations_not_mechanism_expansion"
+}

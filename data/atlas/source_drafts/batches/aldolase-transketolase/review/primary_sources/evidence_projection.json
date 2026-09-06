@@ -1,0 +1,246 @@
+{
+  "authorship": "Project-authored evidence projection from the preserved RCSB PDB mmCIF; not an RCSB-authored annotation.",
+  "cited_context_not_redistributed": [
+    {
+      "context_id": "source:PubMed:17728250",
+      "purpose": "Primary article for 2QUT; its abstract reports native and Lys146Met rabbit aldolase DHAP complexes and the enamine intermediate at Lys229 in native aldolase.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17728250/"
+    },
+    {
+      "context_id": "source:UniProt:P00883",
+      "purpose": "Current curated record labels P00883 Lys230 as the Schiff-base site with dihydroxyacetone phosphate; no UniProt response body is redistributed here.",
+      "url": "https://www.uniprot.org/uniprotkb/P00883/entry"
+    },
+    {
+      "context_id": "source:RCSB:1J4E",
+      "purpose": "Supporting NaBH4-reduced covalent trap generated in the presence of FBP, consistent with a DHAP-Schiff-base precursor; 1J4E is an engineered four-Cys mutant and is not copied into this package.",
+      "url": "https://www.rcsb.org/structure/1J4E"
+    },
+    {
+      "context_id": "source:PubMed:15766250",
+      "purpose": "Separate Thermoproteus tenax mutant context for archaeal ring-opening analysis; it does not establish rabbit applicability or an archaeal Lys229.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15766250/"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "2qut-deposit-identity-and-enamine-title",
+      "extracted_values": {
+        "entry_id": "2QUT",
+        "title": "Dihydroxyacetone phosphate enamine intermediate in fructose-1,6-bisphosphate aldolase from rabbit muscle"
+      },
+      "interpretation": "The deposit identifies 2QUT as a rabbit-muscle fructose-bisphosphate aldolase structure containing a dihydroxyacetone-phosphate enamine intermediate.",
+      "limits": [
+        "A structure title identifies the trapped state; it does not establish reaction direction, temporal order, or every elementary electron-flow assertion in M-CSA M0222.",
+        "The word enamine in the title does not by itself distinguish how the intermediate was generated experimentally."
+      ],
+      "locators": [
+        {
+          "category": "_entry",
+          "items": {
+            "id": "2QUT"
+          },
+          "line": 3,
+          "row_selector": "singleton"
+        },
+        {
+          "category": "_struct",
+          "items": {
+            "entry_id": "2QUT",
+            "title": "Dihydroxyacetone phosphate enamine intermediate in fructose-1,6-bisphosphate aldolase from rabbit muscle"
+          },
+          "lines": [
+            5224,
+            5226
+          ],
+          "row_selector": "singleton"
+        }
+      ]
+    },
+    {
+      "claim_id": "2qut-chain-a-rabbit-reference-protein-identity",
+      "extracted_values": {
+        "author_chain_id": "A",
+        "entity_id": "1",
+        "gene": "ALDOA",
+        "organism": "Oryctolagus cuniculus",
+        "organism_taxonomy_id": 9986,
+        "pdb_author_residue_interval": [
+          1,
+          363
+        ],
+        "pdb_polymer_residue_interval": [
+          1,
+          363
+        ],
+        "uniprot_accession": "P00883",
+        "uniprot_residue_interval": [
+          2,
+          364
+        ]
+      },
+      "interpretation": "Chain A is the deposited rabbit ALDOA polymer aligned to UniProt P00883 residues 2-364. This establishes the one-residue numbering offset: PDB-author Lys229 corresponds to P00883 Lys230.",
+      "limits": [
+        "The raw CIF records `_entity.pdbx_mutation` as the unknown marker `?`; it does not explicitly label the construct 'native'.",
+        "The raw CIF contains no `_struct_ref_seq_dif` category and gives a full 363-residue alignment to P00883 residues 2-364, but category absence alone is not an experimental native-state assertion.",
+        "The primary-article abstract describes native and Lys146Met complexes and assigns the native enamine to Lys229; that cited context is not redistributed in this audit package."
+      ],
+      "locators": [
+        {
+          "category": "_entity",
+          "items": {
+            "id": "1",
+            "pdbx_description": "Fructose-bisphosphate aldolase A",
+            "pdbx_ec": "4.1.2.13",
+            "pdbx_mutation": "?"
+          },
+          "line": 139,
+          "row_selector": {
+            "id": "1"
+          }
+        },
+        {
+          "category": "_entity_src_gen",
+          "items": {
+            "entity_id": "1",
+            "pdbx_gene_src_gene": "ALDOA",
+            "pdbx_gene_src_ncbi_taxonomy_id": "9986",
+            "pdbx_gene_src_scientific_name": "Oryctolagus cuniculus"
+          },
+          "lines": [
+            543,
+            590
+          ],
+          "row_selector": {
+            "entity_id": "1"
+          }
+        },
+        {
+          "category": "_struct_ref",
+          "items": {
+            "db_name": "UNP",
+            "entity_id": "1",
+            "id": "1",
+            "pdbx_align_begin": "2",
+            "pdbx_db_accession": "P00883"
+          },
+          "lines": [
+            5255,
+            5268
+          ],
+          "row_selector": {
+            "id": "1"
+          }
+        },
+        {
+          "category": "_struct_ref_seq",
+          "items": {
+            "align_id": "1",
+            "db_align_beg": "2",
+            "db_align_end": "364",
+            "pdbx_auth_seq_align_beg": "1",
+            "pdbx_auth_seq_align_end": "363",
+            "pdbx_db_accession": "P00883",
+            "pdbx_strand_id": "A",
+            "seq_align_beg": "1",
+            "seq_align_end": "363"
+          },
+          "line": 5286,
+          "row_selector": {
+            "align_id": "1"
+          }
+        }
+      ]
+    },
+    {
+      "claim_id": "2qut-chain-a-lys229-covalent-dhap-link",
+      "extracted_values": {
+        "connection_id": "covale1",
+        "connection_type": "covale",
+        "distance_angstrom": 1.478,
+        "ligand": {
+          "auth_asym_id": "A",
+          "auth_comp_id": "13P",
+          "auth_seq_id": "3001",
+          "label_asym_id": "E",
+          "label_atom_id": "C2"
+        },
+        "ligand_component_name": "1,3-DIHYDROXYACETONEPHOSPHATE",
+        "protein_atom": {
+          "auth_asym_id": "A",
+          "auth_comp_id": "LYS",
+          "auth_seq_id": "229",
+          "label_asym_id": "A",
+          "label_atom_id": "NZ",
+          "label_seq_id": "229"
+        },
+        "uniprot_site_from_alignment": {
+          "accession": "P00883",
+          "residue": "Lys230"
+        }
+      },
+      "interpretation": "The deposited chain-A structure contains a covalent connection between PDB-author Lys229 NZ and C2 of ligand component 13P, which the CIF names 1,3-dihydroxyacetone phosphate. Through the deposited alignment, this lysine is P00883 Lys230.",
+      "limits": [
+        "This connection resolves the deposited DHAP parent-moiety designation for this captured 2QUT adduct; it does not prove that free DHAP attack was directly observed.",
+        "It does not validate the complete M0222 ordered mechanism, proton transfers, atom mapping, or physiological direction.",
+        "It does not transfer the rabbit residue number Lys229 to archaeal proteins.",
+        "The deposited _struct_conn.pdbx_value_order is unknown (?). Protonation is unobserved; CCD 13P is a component label, and no exact bound ChEBI identity is assigned."
+      ],
+      "locators": [
+        {
+          "category": "_struct_conn",
+          "items": {
+            "conn_type_id": "covale",
+            "id": "covale1",
+            "pdbx_dist_value": "1.478",
+            "pdbx_value_order": "?",
+            "ptnr1_auth_asym_id": "A",
+            "ptnr1_auth_comp_id": "LYS",
+            "ptnr1_auth_seq_id": "229",
+            "ptnr1_label_atom_id": "NZ",
+            "ptnr2_auth_asym_id": "A",
+            "ptnr2_auth_comp_id": "13P",
+            "ptnr2_auth_seq_id": "3001",
+            "ptnr2_label_atom_id": "C2"
+          },
+          "line": 5449,
+          "row_selector": {
+            "id": "covale1"
+          }
+        },
+        {
+          "category": "_chem_comp",
+          "items": {
+            "id": "13P",
+            "name": "1,3-DIHYDROXYACETONEPHOSPHATE",
+            "type": "non-polymer"
+          },
+          "line": 600,
+          "row_selector": {
+            "id": "13P"
+          }
+        },
+        {
+          "category": "_struct_ref_seq",
+          "items": {
+            "align_id": "1",
+            "db_align_beg": "2",
+            "pdbx_auth_seq_align_beg": "1"
+          },
+          "line": 5286,
+          "row_selector": {
+            "align_id": "1"
+          }
+        }
+      ]
+    }
+  ],
+  "projection_id": "primary-source-projection:RCSB:2QUT:chain-A-dhap-enamine",
+  "schema_version": 1,
+  "scope": "Exact deposited identity, chain-A reference alignment, and chain-A covalent connection only.",
+  "source": {
+    "artifact_id": "source:RCSB:2QUT:mmCIF",
+    "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_sources/2QUT.cif",
+    "sha256": "82fcf22bac7ffaad5eb64a392c00f31780726181491f21d24736e46ed084a5e7"
+  }
+}
