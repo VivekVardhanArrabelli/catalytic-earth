@@ -77,6 +77,13 @@ check finds the opposite endpoint configurations in the retained drawings,
 with charge forms that also differ from the curated zwitterions. Queries
 expose these conflicts while leaving exact depicted identities unresolved.
 
+M0187 mandelate racemase adds the first [executable source-state
+transformation](docs/ATLAS_TRANSFORMATIONS.md): six bond edits, two charge
+changes and loss of the alpha tetrahedral stereocenter reproduce the depicted
+intermediate. An offline query returns the before/after graphs, source
+witnesses and both symmetry-equivalent ligand mappings. The missing product
+graph still prevents a complete racemization claim.
+
 - `current702` contains 702 project benchmark labels: 685 bronze, 17 silver,
   zero project-gold; 683 are automation-curated and 19 author-reviewed.
 - The combined 10,001-row surface is **8,305 positive fingerprint assignments

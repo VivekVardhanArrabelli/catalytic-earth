@@ -1,0 +1,1465 @@
+{
+  "review": {
+    "agreement_is_not_statistical_independence": true,
+    "errors_may_be_correlated": true,
+    "human_review_performed": false,
+    "review_mode": "informed_nonblind",
+    "reviewed_payload_sha256": "65057e00ab8191505294987e7be7338b09a991eb9715b1116d09713c9a0d56ab",
+    "reviewer_kind": "same_model_agent",
+    "status": "accepted"
+  },
+  "schema_version": "catalytic-earth.transformations.v1",
+  "source_bindings": [
+    {
+      "artifact_kind": "source_record_snapshot",
+      "binding_id": "source:M-CSA:M0187",
+      "path": "data/atlas/atlas10/sources/mcsa/M0187.json",
+      "sha256": "45663712262387e7eec092c49b16994d03f9b6d186008b737b94c613a87458e3"
+    },
+    {
+      "artifact_kind": "source_record_snapshot",
+      "binding_id": "source:Rhea:RHEA:13945",
+      "path": "data/atlas/atlas10/sources/rhea/RHEA_13945.json",
+      "sha256": "dd9e64c0925d293e978fc31c518ae6e65fb5dacd87e10fd57aa6478a6ef6e98e"
+    },
+    {
+      "artifact_kind": "official_reaction_query",
+      "binding_id": "official:Rhea:RHEA:13945:query",
+      "path": "data/atlas/transformations/m0187/RHEA_13945_query.tsv",
+      "sha256": "0288ae86ee14a1f06955fb9c4f32b2ed9738eea5bb13426e87354066c4c668e9"
+    },
+    {
+      "artifact_kind": "official_participant_structure",
+      "binding_id": "official:Rhea:CHEBI:17756:mol",
+      "path": "data/atlas/transformations/m0187/CHEBI_17756.mol",
+      "sha256": "657e479212f2f37b3435a752c873292a18c10c7358d8ca01b21f585f3b4ac3cd"
+    },
+    {
+      "artifact_kind": "official_participant_structure",
+      "binding_id": "official:Rhea:CHEBI:32382:mol",
+      "path": "data/atlas/transformations/m0187/CHEBI_32382.mol",
+      "sha256": "4d03fab8cd46d47495f4c2ba407d3ae57c33ed3c671f3e086f44877916c4b21e"
+    },
+    {
+      "artifact_kind": "official_reaction_direction_map",
+      "binding_id": "official:Rhea:directions",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/rhea-directions.tsv",
+      "sha256": "deae1911da372c70ee8fc97992809c7923e63b288a8702fc4396edcb2633fb04"
+    },
+    {
+      "artifact_kind": "official_reaction_cross_reference_map",
+      "binding_id": "official:Rhea:M-CSA-crossrefs",
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/rhea2macie.tsv",
+      "sha256": "2d0120f01f78e1c1a8fda6476d2587f21ee5fcdc3e4f15ad040c2424ce451ff5"
+    },
+    {
+      "artifact_kind": "computational_audit_script",
+      "binding_id": "project:M0187:transformation-audit-script",
+      "path": "data/atlas/transformations/m0187/audit_m0187.py",
+      "sha256": "004829462ff9ca22b82360aba95734359a5dbc7e746256e85a05ace614dc5c70"
+    },
+    {
+      "artifact_kind": "computational_audit_result",
+      "binding_id": "project:M0187:transformation-audit-result",
+      "path": "data/atlas/transformations/m0187/retained_graph_audit.json",
+      "sha256": "1a4e72d97b534d5a3f65246c90ad5cb1bad4214a7d41340f845aa52af39e3658"
+    },
+    {
+      "artifact_kind": "source_inventory",
+      "binding_id": "project:M0187:source-inventory",
+      "path": "data/atlas/transformations/m0187/source_inventory.json",
+      "sha256": "8fda89ded6e6fd1f754baee1238b92912d99cbcb2830672eb7240fc202d774ec"
+    },
+    {
+      "artifact_kind": "acquisition_ledger",
+      "binding_id": "project:M0187:acquisition-receipts",
+      "path": "data/atlas/transformations/m0187/acquisition_receipts.json",
+      "sha256": "9dbec4385de352a91ae370bd9e7f6473d4df667c039d60687928cf84a9a76b59"
+    }
+  ],
+  "status": "reviewed",
+  "transformation_set_id": "atlas10-m0187-depicted-intermediate-v1",
+  "transformations": [
+    {
+      "canonical_input_correspondence": {
+        "invariant_reactive_core": [
+          {
+            "before_atom_id": "a4",
+            "canonical_atom_id": "3",
+            "role": "ring_ipso_carbon"
+          },
+          {
+            "before_atom_id": "a8",
+            "canonical_atom_id": "7",
+            "role": "carboxyl_carbon"
+          },
+          {
+            "before_atom_id": "a9",
+            "canonical_atom_id": "8",
+            "role": "alpha_carbon"
+          },
+          {
+            "before_atom_id": "a10",
+            "canonical_atom_id": "9",
+            "role": "carbonyl_oxygen"
+          },
+          {
+            "before_atom_id": "a11",
+            "canonical_atom_id": "10",
+            "role": "carboxylate_oxygen"
+          },
+          {
+            "before_atom_id": "a12",
+            "canonical_atom_id": "11",
+            "role": "alpha_hydroxyl_oxygen"
+          }
+        ],
+        "map_alternatives": [
+          {
+            "canonical_to_before": [
+              {
+                "before_atom_id": "a2",
+                "canonical_atom_id": "1"
+              },
+              {
+                "before_atom_id": "a3",
+                "canonical_atom_id": "2"
+              },
+              {
+                "before_atom_id": "a4",
+                "canonical_atom_id": "3"
+              },
+              {
+                "before_atom_id": "a5",
+                "canonical_atom_id": "4"
+              },
+              {
+                "before_atom_id": "a6",
+                "canonical_atom_id": "5"
+              },
+              {
+                "before_atom_id": "a7",
+                "canonical_atom_id": "6"
+              },
+              {
+                "before_atom_id": "a8",
+                "canonical_atom_id": "7"
+              },
+              {
+                "before_atom_id": "a9",
+                "canonical_atom_id": "8"
+              },
+              {
+                "before_atom_id": "a10",
+                "canonical_atom_id": "9"
+              },
+              {
+                "before_atom_id": "a11",
+                "canonical_atom_id": "10"
+              },
+              {
+                "before_atom_id": "a12",
+                "canonical_atom_id": "11"
+              }
+            ],
+            "map_id": "canonical-map-1"
+          },
+          {
+            "canonical_to_before": [
+              {
+                "before_atom_id": "a6",
+                "canonical_atom_id": "1"
+              },
+              {
+                "before_atom_id": "a3",
+                "canonical_atom_id": "2"
+              },
+              {
+                "before_atom_id": "a4",
+                "canonical_atom_id": "3"
+              },
+              {
+                "before_atom_id": "a7",
+                "canonical_atom_id": "4"
+              },
+              {
+                "before_atom_id": "a2",
+                "canonical_atom_id": "5"
+              },
+              {
+                "before_atom_id": "a5",
+                "canonical_atom_id": "6"
+              },
+              {
+                "before_atom_id": "a8",
+                "canonical_atom_id": "7"
+              },
+              {
+                "before_atom_id": "a9",
+                "canonical_atom_id": "8"
+              },
+              {
+                "before_atom_id": "a10",
+                "canonical_atom_id": "9"
+              },
+              {
+                "before_atom_id": "a11",
+                "canonical_atom_id": "10"
+              },
+              {
+                "before_atom_id": "a12",
+                "canonical_atom_id": "11"
+              }
+            ],
+            "map_id": "canonical-map-2"
+          }
+        ],
+        "method": {
+          "audit_result_binding_id": "project:M0187:transformation-audit-result",
+          "audit_script_binding_id": "project:M0187:transformation-audit-script",
+          "kind": "computed_graph_and_stereo_match",
+          "tool": "RDKit",
+          "tool_version": "2025.03.3",
+          "upstream_atom_map": false
+        },
+        "participant_id": "CHEBI:32382",
+        "participant_structure_binding_id": "official:Rhea:CHEBI:32382:mol",
+        "raw_source_labels": [
+          "chebi:17756"
+        ],
+        "rejected_participant_matches": [
+          {
+            "chirality_sensitive_match_count": 0,
+            "participant_id": "CHEBI:17756"
+          }
+        ],
+        "remote_symmetry": {
+          "before_equivalence_classes": [
+            [
+              "a2",
+              "a6"
+            ],
+            [
+              "a5",
+              "a7"
+            ]
+          ],
+          "canonical_equivalence_classes": [
+            [
+              "1",
+              "5"
+            ],
+            [
+              "4",
+              "6"
+            ]
+          ],
+          "full_map_count": 2,
+          "kind": "phenyl_reflection_equivalence"
+        },
+        "status": "computed_graph_and_stereo_match_with_raw_identifier_conflict"
+      },
+      "canonical_reaction_binding": {
+        "directed_direction_code": "LR",
+        "directed_id": "RHEA:13946",
+        "master_directionality": "undirected_master",
+        "master_id": "RHEA:13945",
+        "proposal_direction_relation": "record_xref_direction_opposes_declared_proposal_direction",
+        "provider": "Rhea",
+        "source_binding_ids": [
+          "source:Rhea:RHEA:13945",
+          "official:Rhea:RHEA:13945:query",
+          "official:Rhea:directions",
+          "official:Rhea:M-CSA-crossrefs"
+        ],
+        "xref_scope": "record_cross_reference_not_atom_map"
+      },
+      "mandatory_abstentions": [
+        {
+          "abstention_id": "raw_identifier_relabel",
+          "reason": "Do not rewrite Step 1/2 raw chebi:17756 labels."
+        },
+        {
+          "abstention_id": "canonical_product_correspondence",
+          "reason": "No depicted canonical S product is established."
+        },
+        {
+          "abstention_id": "net_reaction_atom_map",
+          "reason": "Neither Rhea nor M-CSA supplies a net-reaction atom map."
+        },
+        {
+          "abstention_id": "complete_racemization_path",
+          "reason": "The positive scope ends at the depicted Step 2 intermediate."
+        },
+        {
+          "abstention_id": "inferred_return_step",
+          "reason": "Step 3 is source-tagged inferred and outside this transformation."
+        },
+        {
+          "abstention_id": "remote_phenyl_orientation",
+          "reason": "Do not choose between the two reflection-equivalent phenyl maps."
+        },
+        {
+          "abstention_id": "step2_explicit_h67_lineage",
+          "reason": "Do not treat Step 2-only explicit H67 as atom creation or a Step 1 transfer."
+        }
+      ],
+      "panel_correspondence": {
+        "after_graph": {
+          "atom_id_scope": "source_panel_local_locator",
+          "atoms": [
+            {
+              "atom_id": "a2",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a3",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a4",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a5",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a6",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a7",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a8",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a9",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a10",
+              "element": "O",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a11",
+              "element": "O",
+              "formal_charge": -1,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a12",
+              "element": "O",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a52",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a53",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a54",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a55",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a56",
+              "element": "N",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a57",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a58",
+              "element": "N",
+              "formal_charge": 1,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a59",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a60",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a61",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a62",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a63",
+              "element": "O",
+              "formal_charge": -1,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a64",
+              "element": "O",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a65",
+              "element": "H",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a66",
+              "element": "H",
+              "formal_charge": 0,
+              "stereochemistry": null
+            }
+          ],
+          "bonds": [
+            {
+              "atom_ids": [
+                "a2",
+                "a3"
+              ],
+              "order": 2
+            },
+            {
+              "atom_ids": [
+                "a4",
+                "a9"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a4",
+                "a5"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a3",
+                "a6"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a5",
+                "a6"
+              ],
+              "order": 2
+            },
+            {
+              "atom_ids": [
+                "a2",
+                "a7"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a4",
+                "a7"
+              ],
+              "order": 2
+            },
+            {
+              "atom_ids": [
+                "a8",
+                "a9"
+              ],
+              "order": 2
+            },
+            {
+              "atom_ids": [
+                "a8",
+                "a10"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a8",
+                "a11"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a9",
+                "a12"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a52",
+                "a53"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a53",
+                "a54"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a54",
+                "a55"
+              ],
+              "order": 2
+            },
+            {
+              "atom_ids": [
+                "a54",
+                "a58"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a55",
+                "a56"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a56",
+                "a57"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a57",
+                "a58"
+              ],
+              "order": 2
+            },
+            {
+              "atom_ids": [
+                "a59",
+                "a60"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a60",
+                "a61"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a61",
+                "a62"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a62",
+                "a63"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a62",
+                "a64"
+              ],
+              "order": 2
+            },
+            {
+              "atom_ids": [
+                "a10",
+                "a65"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a58",
+                "a66"
+              ],
+              "order": 1
+            }
+          ],
+          "graph_id": "M0187:mechanism-1:step-2:reaction-system"
+        },
+        "before_graph": {
+          "atom_id_scope": "source_panel_local_locator",
+          "atoms": [
+            {
+              "atom_id": "a2",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a3",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a4",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a5",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a6",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a7",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a8",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a9",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": "R"
+            },
+            {
+              "atom_id": "a10",
+              "element": "O",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a11",
+              "element": "O",
+              "formal_charge": -1,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a12",
+              "element": "O",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a52",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a53",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a54",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a55",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a56",
+              "element": "N",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a57",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a58",
+              "element": "N",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a59",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a60",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a61",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a62",
+              "element": "C",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a63",
+              "element": "O",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a64",
+              "element": "O",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a65",
+              "element": "H",
+              "formal_charge": 0,
+              "stereochemistry": null
+            },
+            {
+              "atom_id": "a66",
+              "element": "H",
+              "formal_charge": 0,
+              "stereochemistry": null
+            }
+          ],
+          "bonds": [
+            {
+              "atom_ids": [
+                "a2",
+                "a3"
+              ],
+              "order": 2
+            },
+            {
+              "atom_ids": [
+                "a4",
+                "a9"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a4",
+                "a5"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a3",
+                "a6"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a5",
+                "a6"
+              ],
+              "order": 2
+            },
+            {
+              "atom_ids": [
+                "a2",
+                "a7"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a4",
+                "a7"
+              ],
+              "order": 2
+            },
+            {
+              "atom_ids": [
+                "a8",
+                "a9"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a8",
+                "a10"
+              ],
+              "order": 2
+            },
+            {
+              "atom_ids": [
+                "a8",
+                "a11"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a9",
+                "a12"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a52",
+                "a53"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a53",
+                "a54"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a54",
+                "a55"
+              ],
+              "order": 2
+            },
+            {
+              "atom_ids": [
+                "a54",
+                "a58"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a55",
+                "a56"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a56",
+                "a57"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a57",
+                "a58"
+              ],
+              "order": 2
+            },
+            {
+              "atom_ids": [
+                "a59",
+                "a60"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a60",
+                "a61"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a61",
+                "a62"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a62",
+                "a63"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a62",
+                "a64"
+              ],
+              "order": 2
+            },
+            {
+              "atom_ids": [
+                "a63",
+                "a65"
+              ],
+              "order": 1
+            },
+            {
+              "atom_ids": [
+                "a9",
+                "a66"
+              ],
+              "order": 1
+            }
+          ],
+          "graph_id": "M0187:mechanism-1:step-1:reaction-system"
+        },
+        "chemical_map_alternatives": [
+          {
+            "before_to_after": [
+              {
+                "after_atom_id": "a2",
+                "before_atom_id": "a2"
+              },
+              {
+                "after_atom_id": "a3",
+                "before_atom_id": "a3"
+              },
+              {
+                "after_atom_id": "a4",
+                "before_atom_id": "a4"
+              },
+              {
+                "after_atom_id": "a5",
+                "before_atom_id": "a5"
+              },
+              {
+                "after_atom_id": "a6",
+                "before_atom_id": "a6"
+              },
+              {
+                "after_atom_id": "a7",
+                "before_atom_id": "a7"
+              },
+              {
+                "after_atom_id": "a8",
+                "before_atom_id": "a8"
+              },
+              {
+                "after_atom_id": "a9",
+                "before_atom_id": "a9"
+              },
+              {
+                "after_atom_id": "a10",
+                "before_atom_id": "a10"
+              },
+              {
+                "after_atom_id": "a11",
+                "before_atom_id": "a11"
+              },
+              {
+                "after_atom_id": "a12",
+                "before_atom_id": "a12"
+              }
+            ],
+            "map_id": "topology-map-1"
+          },
+          {
+            "before_to_after": [
+              {
+                "after_atom_id": "a6",
+                "before_atom_id": "a2"
+              },
+              {
+                "after_atom_id": "a3",
+                "before_atom_id": "a3"
+              },
+              {
+                "after_atom_id": "a4",
+                "before_atom_id": "a4"
+              },
+              {
+                "after_atom_id": "a7",
+                "before_atom_id": "a5"
+              },
+              {
+                "after_atom_id": "a2",
+                "before_atom_id": "a6"
+              },
+              {
+                "after_atom_id": "a5",
+                "before_atom_id": "a7"
+              },
+              {
+                "after_atom_id": "a8",
+                "before_atom_id": "a8"
+              },
+              {
+                "after_atom_id": "a9",
+                "before_atom_id": "a9"
+              },
+              {
+                "after_atom_id": "a10",
+                "before_atom_id": "a10"
+              },
+              {
+                "after_atom_id": "a11",
+                "before_atom_id": "a11"
+              },
+              {
+                "after_atom_id": "a12",
+                "before_atom_id": "a12"
+              }
+            ],
+            "map_id": "topology-map-2"
+          }
+        ],
+        "graph_edits": [
+          {
+            "after": 0,
+            "atom_ids": [
+              "a9",
+              "a66"
+            ],
+            "before": 1,
+            "edit_id": "e1",
+            "operation": "remove_bond",
+            "source_flow_id": "o37"
+          },
+          {
+            "after": 2,
+            "atom_ids": [
+              "a8",
+              "a9"
+            ],
+            "before": 1,
+            "edit_id": "e2",
+            "operation": "set_bond_order",
+            "source_flow_id": "o37"
+          },
+          {
+            "after": 1,
+            "atom_ids": [
+              "a8",
+              "a10"
+            ],
+            "before": 2,
+            "edit_id": "e3",
+            "operation": "set_bond_order",
+            "source_flow_id": "o38"
+          },
+          {
+            "after": 1,
+            "atom_ids": [
+              "a10",
+              "a65"
+            ],
+            "before": 0,
+            "edit_id": "e4",
+            "operation": "add_bond",
+            "source_flow_id": "o38"
+          },
+          {
+            "after": 0,
+            "atom_ids": [
+              "a63",
+              "a65"
+            ],
+            "before": 1,
+            "edit_id": "e5",
+            "operation": "remove_bond",
+            "source_flow_id": "o39"
+          },
+          {
+            "after": 1,
+            "atom_ids": [
+              "a58",
+              "a66"
+            ],
+            "before": 0,
+            "edit_id": "e6",
+            "operation": "add_bond",
+            "source_flow_id": "o40"
+          },
+          {
+            "after": -1,
+            "atom_ids": [
+              "a63"
+            ],
+            "before": 0,
+            "edit_id": "e7",
+            "operation": "set_formal_charge",
+            "source_flow_id": "o39"
+          },
+          {
+            "after": 1,
+            "atom_ids": [
+              "a58"
+            ],
+            "before": 0,
+            "edit_id": "e8",
+            "operation": "set_formal_charge",
+            "source_flow_id": "o40"
+          },
+          {
+            "after": null,
+            "atom_ids": [
+              "a9"
+            ],
+            "before": "R",
+            "edit_id": "e9",
+            "operation": "set_stereochemistry",
+            "source_flow_id": "o37"
+          }
+        ],
+        "mapping_scope": "reaction_system_projection_with_ligand_heavy_topology_alternatives",
+        "product_graph_check": {
+          "audit_result_binding_id": "project:M0187:transformation-audit-result",
+          "canonical_participant_match_counts": [
+            {
+              "match_count": 0,
+              "match_mode": "achiral",
+              "participant_id": "CHEBI:17756",
+              "source_step_id": 2
+            },
+            {
+              "match_count": 0,
+              "match_mode": "chiral",
+              "participant_id": "CHEBI:17756",
+              "source_step_id": 2
+            },
+            {
+              "match_count": 0,
+              "match_mode": "achiral",
+              "participant_id": "CHEBI:32382",
+              "source_step_id": 2
+            },
+            {
+              "match_count": 0,
+              "match_mode": "chiral",
+              "participant_id": "CHEBI:32382",
+              "source_step_id": 2
+            },
+            {
+              "match_count": 0,
+              "match_mode": "achiral",
+              "participant_id": "CHEBI:17756",
+              "source_step_id": 3
+            },
+            {
+              "match_count": 0,
+              "match_mode": "chiral",
+              "participant_id": "CHEBI:17756",
+              "source_step_id": 3
+            },
+            {
+              "match_count": 0,
+              "match_mode": "achiral",
+              "participant_id": "CHEBI:32382",
+              "source_step_id": 3
+            },
+            {
+              "match_count": 0,
+              "match_mode": "chiral",
+              "participant_id": "CHEBI:32382",
+              "source_step_id": 3
+            },
+            {
+              "match_count": 0,
+              "match_mode": "achiral",
+              "participant_id": "CHEBI:17756",
+              "source_step_id": 4
+            },
+            {
+              "match_count": 0,
+              "match_mode": "chiral",
+              "participant_id": "CHEBI:17756",
+              "source_step_id": 4
+            },
+            {
+              "match_count": 0,
+              "match_mode": "achiral",
+              "participant_id": "CHEBI:32382",
+              "source_step_id": 4
+            },
+            {
+              "match_count": 0,
+              "match_mode": "chiral",
+              "participant_id": "CHEBI:32382",
+              "source_step_id": 4
+            }
+          ]
+        },
+        "replay": {
+          "atom_map": [
+            {
+              "after_atom_id": "a2",
+              "before_atom_id": "a2"
+            },
+            {
+              "after_atom_id": "a3",
+              "before_atom_id": "a3"
+            },
+            {
+              "after_atom_id": "a4",
+              "before_atom_id": "a4"
+            },
+            {
+              "after_atom_id": "a5",
+              "before_atom_id": "a5"
+            },
+            {
+              "after_atom_id": "a6",
+              "before_atom_id": "a6"
+            },
+            {
+              "after_atom_id": "a7",
+              "before_atom_id": "a7"
+            },
+            {
+              "after_atom_id": "a8",
+              "before_atom_id": "a8"
+            },
+            {
+              "after_atom_id": "a9",
+              "before_atom_id": "a9"
+            },
+            {
+              "after_atom_id": "a10",
+              "before_atom_id": "a10"
+            },
+            {
+              "after_atom_id": "a11",
+              "before_atom_id": "a11"
+            },
+            {
+              "after_atom_id": "a12",
+              "before_atom_id": "a12"
+            },
+            {
+              "after_atom_id": "a52",
+              "before_atom_id": "a52"
+            },
+            {
+              "after_atom_id": "a53",
+              "before_atom_id": "a53"
+            },
+            {
+              "after_atom_id": "a54",
+              "before_atom_id": "a54"
+            },
+            {
+              "after_atom_id": "a55",
+              "before_atom_id": "a55"
+            },
+            {
+              "after_atom_id": "a56",
+              "before_atom_id": "a56"
+            },
+            {
+              "after_atom_id": "a57",
+              "before_atom_id": "a57"
+            },
+            {
+              "after_atom_id": "a58",
+              "before_atom_id": "a58"
+            },
+            {
+              "after_atom_id": "a59",
+              "before_atom_id": "a59"
+            },
+            {
+              "after_atom_id": "a60",
+              "before_atom_id": "a60"
+            },
+            {
+              "after_atom_id": "a61",
+              "before_atom_id": "a61"
+            },
+            {
+              "after_atom_id": "a62",
+              "before_atom_id": "a62"
+            },
+            {
+              "after_atom_id": "a63",
+              "before_atom_id": "a63"
+            },
+            {
+              "after_atom_id": "a64",
+              "before_atom_id": "a64"
+            },
+            {
+              "after_atom_id": "a65",
+              "before_atom_id": "a65"
+            },
+            {
+              "after_atom_id": "a66",
+              "before_atom_id": "a66"
+            }
+          ],
+          "chemical_topology_map_count": 2,
+          "raw_kekule_map_count": 1,
+          "raw_locator_alignment": "project_reviewed_same_token_alignment_not_upstream_atom_map",
+          "scope": "ligand_His297_Glu317_covalent_graph_only",
+          "status": "exact"
+        },
+        "representation_boundaries": [
+          {
+            "boundary_id": "lys166_h67_explicitness",
+            "reason": "Step 2 adds explicit Lys166-bound H67 that was implicit in Step 1; it is excluded from the reaction-system replay and is neither atom birth nor a Step 1 edit."
+          },
+          {
+            "boundary_id": "product_graph_absent",
+            "reason": "Full-panel graph audit finds zero canonical R/S mandelate substructure matches in Steps 2, 3, and 4; no depicted product graph is available."
+          }
+        ],
+        "source_flow_bindings": [
+          {
+            "edit_ids": [
+              "e1",
+              "e2",
+              "e9"
+            ],
+            "flow_id": "o37",
+            "source_step_id": 1
+          },
+          {
+            "edit_ids": [
+              "e3",
+              "e4"
+            ],
+            "flow_id": "o38",
+            "source_step_id": 1
+          },
+          {
+            "edit_ids": [
+              "e5",
+              "e7"
+            ],
+            "flow_id": "o39",
+            "source_step_id": 1
+          },
+          {
+            "edit_ids": [
+              "e6",
+              "e8"
+            ],
+            "flow_id": "o40",
+            "source_step_id": 1
+          }
+        ],
+        "status": "depicted_before_after_reaction_center_correspondence",
+        "stereochemistry": {
+          "after_assignment": null,
+          "after_atom_id": "a9",
+          "after_geometry": "sp2",
+          "assignment_scope": "computed_rdkit_cip_not_source_literal",
+          "before_assignment": "R",
+          "before_atom_id": "a9"
+        }
+      },
+      "proposal_binding": {
+        "proposal_id": "atlas10.mandelate-racemase-pputida.enolate.mcsa-M0187.mechanism-1",
+        "source_mechanism_id": 1
+      },
+      "record_binding": {
+        "case_id": "atlas10.mandelate-racemase-pputida.enolate",
+        "mcsa_id": "M0187",
+        "record_id": "mechanism:mandelate-racemase-pputida-enolate-v1",
+        "source_snapshot_sha256": "45663712262387e7eec092c49b16994d03f9b6d186008b737b94c613a87458e3"
+      },
+      "scope_effect": {
+        "canonical_product_correspondence": false,
+        "complete_racemization_path": false,
+        "computed_canonical_input_correspondence": true,
+        "depicted_intermediate_transition": true,
+        "inferred_return_step": false,
+        "net_reaction_atom_map": false,
+        "upstream_atom_map": false
+      },
+      "state_pair": {
+        "after": {
+          "scheme_sha256": "476cc9e8455890fce1bbe40c4c307c93dae3c3cc0a4e568bbd255db57195662b",
+          "source_step_id": 2,
+          "step_id": "atlas10.mandelate-racemase-pputida.enolate.mcsa-M0187.mechanism-1.step-2"
+        },
+        "before": {
+          "scheme_sha256": "64308a1d95a102c692bc597794237b268800eebab3973a121f99d5ad10ff2188",
+          "source_step_id": 1,
+          "step_id": "atlas10.mandelate-racemase-pputida.enolate.mcsa-M0187.mechanism-1.step-1"
+        },
+        "semantics": "depicted_input_to_depicted_input"
+      },
+      "transformation_id": "transformation:M0187:mechanism-1:step-1-to-step-2"
+    }
+  ]
+}

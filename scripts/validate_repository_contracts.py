@@ -123,6 +123,7 @@ def _validate_markdown_links() -> None:
         "docs/ATLAS50_STATE_PROBE.md",
         "docs/COMPUTATIONAL_DEVELOPMENT_REVIEW.md",
         "docs/ATLAS_SOURCE_DRAFTS.md",
+        "docs/ATLAS_TRANSFORMATIONS.md",
         "docs/ATLAS_TRUTH_POLICY.md",
         "docs/CORE_REPRODUCTION.md",
         "docs/EVALUATION_MEMORY.md",
@@ -166,6 +167,12 @@ def _validate_json_surfaces(*, include_release_manifest: bool) -> None:
         "data/atlas/source_drafts/records.json",
         "src/catalytic_earth/draft_data/source_drafts.json",
         "src/catalytic_earth/draft_data/source_drafts_expected.json",
+        "data/atlas/transformations/m0187/transformations.json",
+        "data/atlas/transformations/m0187/source_inventory.json",
+        "data/atlas/transformations/m0187/acquisition_receipts.json",
+        "data/atlas/transformations/m0187/retained_graph_audit.json",
+        "src/catalytic_earth/transformation_data/transformations.json",
+        "src/catalytic_earth/transformation_data/expected.json",
         "src/catalytic_earth/schemas/mechanism-record-v4.schema.json",
         "data/governance/preregistration-v1.schema.json",
         "data/governance/architecture_freeze.json",
@@ -411,6 +418,7 @@ def main() -> int:
     _run("scripts/build_atlas50_development_gate.py", "--check")
     _run("scripts/build_atlas_draft_sources.py", "--check")
     _run("scripts/build_atlas_drafts.py", "--check")
+    _run("scripts/build_atlas_transformations.py", "--check")
     for batch_name, batch in BATCHES.items():
         if batch == DEFAULT_BATCH:
             continue
