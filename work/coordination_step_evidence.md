@@ -240,4 +240,14 @@ ground a matching source step.
   unresolved M0186 chemistry and record-only joins to Steps 6/7. Atlas10's
   runtime hash, all three source bundles, the 32-step sidecar, existing
   aldolase/transketolase primary sidecar and release manifest are unchanged.
-  Repository contracts and four-platform CI remain before publication.
+  Repository contracts and all four CI jobs remain before publication.
+- PR #41 is open from scientific commit
+  `c8d5e8e081994de291f3d0a008546f7b6606e608`. Initial CI run `34018644383`
+  passed both Ubuntu jobs and failed the new synthetic fixtures on Windows:
+  their helper hashed temporary JSON as raw CRLF bytes instead of using the
+  repository's canonical text hash. Root changed only the fixture helper and
+  added a regression that forces CRLF writes before source pins are computed.
+  It reproduces all three positive-case failures with the old helper and
+  passes with the fix; all twenty observed-state validator tests pass.
+  Production code, reviewed evidence and package bytes are unchanged. The
+  corrected CI run must pass before merging.

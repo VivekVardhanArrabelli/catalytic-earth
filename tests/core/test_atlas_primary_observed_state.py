@@ -6,16 +6,18 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 
 from catalytic_earth import atlas_primary_evidence as PRIMARY
+from catalytic_earth.canonical_hash import canonical_file_sha256
 
 
 REPO = Path(__file__).resolve().parents[2]
 
 
 def _sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return canonical_file_sha256(path)
 
 
 def _write_json(path: Path, value: object) -> None:
@@ -1010,6 +1012,22 @@ def _m0186_fixture(root: Path) -> tuple[dict, dict, dict]:
 
 
 class PrimaryObservedStateTests(unittest.TestCase):
+    def test_projected_fixtures_validate_with_windows_text_line_endings(self) -> None:
+        def write_crlf_json(path: Path, value: object) -> None:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            text = json.dumps(value, indent=2, sort_keys=True) + "\n"
+            path.write_bytes(text.replace("\n", "\r\n").encode("utf-8"))
+
+        # Emulate Windows writes before the fixture computes any source pins.
+        # Changing line endings only after pinning would miss the original bug.
+        with patch(__name__ + "._write_json", side_effect=write_crlf_json):
+            for fixture in (_m0049_fixture, _m0186_fixture, _m0213_fixture):
+                with self.subTest(fixture=fixture.__name__), tempfile.TemporaryDirectory() as temporary:
+                    root = Path(temporary)
+                    bundle, sidecar, _ = fixture(root)
+                    result = PRIMARY.validate_primary_evidence(sidecar, bundle=bundle, repo_root=root)
+                    self.assertEqual(result["annotation_count"], 1)
+
     def test_existing_v1_annotation_is_preserved_and_schema_remains_accepted(self) -> None:
         bundle = _bundle()
         sidecar = json.loads(
