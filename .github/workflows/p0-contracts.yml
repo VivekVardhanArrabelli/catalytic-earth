@@ -82,6 +82,7 @@ jobs:
         run: >-
           python scripts/verify_atlas10_release.py --wheel dist-atlas3 --include-source-drafts
           --candidate-source data/atlas/atlas10/sources/mcsa/M0173.json
+          --context-candidate-source data/atlas/source_drafts/batches/aldolase-transketolase/sources/M0219.json
 
       - name: Build wheel and lean archive from the exact release source commit
         run: python scripts/build_canonical_release_assets.py
