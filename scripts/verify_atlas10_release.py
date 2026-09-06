@@ -21,7 +21,9 @@ def _venv_python(root: Path) -> Path:
     return root / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
 
 
-def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[str, object]:
+def verify_wheel(
+    wheel: Path, *, include_source_drafts: bool = False, candidate_source: Path | None = None,
+) -> dict[str, object]:
     wheel = wheel.resolve()
     if include_source_drafts:
         with zipfile.ZipFile(wheel) as archive:
@@ -450,6 +452,38 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                     or any(r.get("curated_reaction_correspondences") for r in additional)):
                 raise ValueError("installed reaction correction leaked into an unrelated source batch")
             print("Fresh-directory source draft query passed with network connections blocked")
+        if candidate_source is not None:
+            copied_source = root / "candidate-source.json"
+            copied_source.write_bytes(candidate_source.read_bytes())
+            isolated_env = dict(os.environ)
+            isolated_env.pop("PYTHONPATH", None)
+            candidate_query = (
+                "import contextlib, io, json, sys, importlib.util\n"
+                "def block_network(event, args):\n"
+                "    if event == 'socket.connect':\n"
+                "        raise RuntimeError('network is forbidden during candidate extraction')\n"
+                "sys.addaudithook(block_network)\n"
+                "from catalytic_earth.core_cli import main\n"
+                "for step, confirmed, arrow_only, full in [(1, 6, 0, True), (2, 3, 3, False)]:\n"
+                "    output = io.StringIO()\n"
+                "    with contextlib.redirect_stdout(output):\n"
+                "        main(['atlas-candidates', '--source', sys.argv[1], '--mechanism-id', '1', '--before-step', str(step)])\n"
+                "    result = json.loads(output.getvalue())\n"
+                "    assert result['status'] == 'unreviewed' and result['extraction_status'] == 'candidate'\n"
+                "    edits = result['proposed_graph_edits']\n"
+                "    assert sum(e['support'] == 'after_graph_confirmed' for e in edits) == confirmed\n"
+                "    assert sum(e['support'] == 'source_arrow_only' for e in edits) == arrow_only\n"
+                "    assert result['coverage']['full_panel_replay_asserted'] is full\n"
+                "    assert result['scope_effect']['reviewed_evidence'] is False\n"
+                "    assert result['scope_effect']['experimentally_validated'] is False\n"
+                "    assert result['scope_effect']['lone_pair_annotations_replayed'] is False\n"
+                "assert importlib.util.find_spec('rdkit') is None\n"
+            )
+            subprocess.run(
+                [str(python), "-I", "-c", candidate_query, str(copied_source)],
+                cwd=empty_cwd, env=isolated_env, check=True, capture_output=True, text=True,
+            )
+            print("Fresh-directory M0173 candidate extraction passed with network connections blocked")
     expected_counts = {
         "case_count": 10,
         "record_count": 30,
@@ -493,6 +527,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--wheel", type=Path, required=True)
     parser.add_argument("--include-source-drafts", action="store_true")
+    parser.add_argument("--candidate-source", type=Path, help="retained M0173 snapshot for optional offline extraction verification")
     args = parser.parse_args()
     wheel = args.wheel
     if wheel.is_dir():
@@ -500,7 +535,9 @@ def main() -> int:
         if len(wheels) != 1:
             raise SystemExit(f"expected one wheel in {wheel}, found {len(wheels)}")
         wheel = wheels[0]
-    payload = verify_wheel(wheel, include_source_drafts=args.include_source_drafts)
+    payload = verify_wheel(
+        wheel, include_source_drafts=args.include_source_drafts, candidate_source=args.candidate_source,
+    )
     print(
         "Fresh-directory Atlas-10 wheel verification passed: "
         f"cases={payload['case_count']}, records={payload['record_count']}, "

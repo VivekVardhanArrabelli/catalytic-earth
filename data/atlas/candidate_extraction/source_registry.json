@@ -1,0 +1,262 @@
+{
+  "records": [
+    {
+      "mechanisms": [
+        {
+          "mechanism_id": 1,
+          "step_ids": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        }
+      ],
+      "record_id": "M0106",
+      "snapshot_path": "data/atlas/source_drafts/sources/M0106.json",
+      "snapshot_sha256": "2282979dfb6906d46601f6d812726eead8fb985d014587f6ff4e81e77e2a46e9"
+    },
+    {
+      "mechanisms": [
+        {
+          "mechanism_id": 2,
+          "step_ids": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "mechanism_id": 3,
+          "step_ids": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        }
+      ],
+      "record_id": "M0107",
+      "snapshot_path": "data/atlas/source_drafts/sources/M0107.json",
+      "snapshot_sha256": "7bb977a0de24d3c9b07b01452c510e53981cfd299f24367f525bf77064297d85"
+    },
+    {
+      "mechanisms": [
+        {
+          "mechanism_id": 1,
+          "step_ids": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ]
+        }
+      ],
+      "record_id": "M0212",
+      "snapshot_path": "data/atlas/source_drafts/sources/M0212.json",
+      "snapshot_sha256": "23fd20835b7ce46c634381cb8f94ba390444c87a847b05109731a206a333907f"
+    },
+    {
+      "mechanisms": [
+        {
+          "mechanism_id": 1,
+          "step_ids": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        }
+      ],
+      "record_id": "M0753",
+      "snapshot_path": "data/atlas/source_drafts/sources/M0753.json",
+      "snapshot_sha256": "5207c0d529c7f9945ece22c0f372de52a64aa47419c8ace86901cbf26165a2c3"
+    },
+    {
+      "mechanisms": [
+        {
+          "mechanism_id": 1,
+          "step_ids": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      ],
+      "record_id": "M0052",
+      "snapshot_path": "data/atlas/source_drafts/batches/aldolase-transketolase/sources/M0052.json",
+      "snapshot_sha256": "b3d4ce2f44433d1be906bfd7bb696d3a899bb90bd1e70a2a7b39d28b35ead7d5"
+    },
+    {
+      "mechanisms": [
+        {
+          "mechanism_id": 1,
+          "step_ids": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "mechanism_id": 2,
+          "step_ids": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        }
+      ],
+      "record_id": "M0219",
+      "snapshot_path": "data/atlas/source_drafts/batches/aldolase-transketolase/sources/M0219.json",
+      "snapshot_sha256": "054f1c3bee9ff38938b59e81b6b4065fe4d4204cb899171f4f68c284bad7d01c"
+    },
+    {
+      "mechanisms": [
+        {
+          "mechanism_id": 1,
+          "step_ids": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        }
+      ],
+      "record_id": "M0222",
+      "snapshot_path": "data/atlas/source_drafts/batches/aldolase-transketolase/sources/M0222.json",
+      "snapshot_sha256": "a798aef39309cdf3af82a003112b13949b160f9d305339c6ab9c08a3273908a7"
+    },
+    {
+      "mechanisms": [
+        {
+          "mechanism_id": 1,
+          "step_ids": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        }
+      ],
+      "record_id": "M0049",
+      "snapshot_path": "data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0049.json",
+      "snapshot_sha256": "37ba50b02ee04d61b50d2b85e559a8d1671eef528e45f98945b947c54d95471d"
+    },
+    {
+      "mechanisms": [
+        {
+          "mechanism_id": 1,
+          "step_ids": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ]
+        }
+      ],
+      "record_id": "M0066",
+      "snapshot_path": "data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0066.json",
+      "snapshot_sha256": "89fa34b9238e224ed7772492165dd331ef455d9bbc32252b98c8148fd2c35770"
+    },
+    {
+      "mechanisms": [
+        {
+          "mechanism_id": 1,
+          "step_ids": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        }
+      ],
+      "record_id": "M0186",
+      "snapshot_path": "data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0186.json",
+      "snapshot_sha256": "687986c4aaa94ce6bba72c5403bf28a4f04b32891c3493ccb75436defb2a7f38"
+    },
+    {
+      "mechanisms": [
+        {
+          "mechanism_id": 1,
+          "step_ids": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        }
+      ],
+      "record_id": "M0213",
+      "snapshot_path": "data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0213.json",
+      "snapshot_sha256": "375d66615ee7a38cb3adc817b39ae28308d554590c26c3b4bbb7d08f2a74728d"
+    }
+  ],
+  "schema_version": "catalytic-earth.candidate-source-registry.v1",
+  "scope": "All retained input and terminal panels from the eleven Tier-1 source draft records; no candidate review or promotion."
+}
