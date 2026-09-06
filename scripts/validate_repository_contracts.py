@@ -23,6 +23,7 @@ from catalytic_earth.atlas_kernel import validate_atlas3_kernel  # noqa: E402
 from catalytic_earth.atlas_selection import validate_atlas3_selection  # noqa: E402
 from catalytic_earth.atlas_sources import validate_atlas3_source_manifest  # noqa: E402
 from catalytic_earth.atlas50_review import build_review_status, load_review_context  # noqa: E402
+from catalytic_earth.atlas_draft_batch import BATCHES, DEFAULT_BATCH  # noqa: E402
 from catalytic_earth.core_cli import (  # noqa: E402
     verified_atlas10_result,
     verified_atlas3_result,
@@ -226,6 +227,19 @@ def _validate_json_surfaces(*, include_release_manifest: bool) -> None:
     ]
     if include_release_manifest:
         paths.append("release/release_manifest.json")
+    for batch in BATCHES.values():
+        if batch == DEFAULT_BATCH:
+            continue
+        paths.extend(path.as_posix() for path in (
+            batch.manifest_path, batch.records_path, batch.probe_spec_path,
+            batch.probe_report_path, batch.challenge_path, batch.adjudications_path,
+            batch.review_bindings_path, batch.status_path,
+        ))
+        stem = batch.batch_id.replace("-", "_")
+        paths.extend((
+            f"src/catalytic_earth/draft_data/{stem}.json",
+            f"src/catalytic_earth/draft_data/{stem}_expected.json",
+        ))
     for path in paths:
         json.loads((ROOT / path).read_text(encoding="utf-8"))
 
@@ -379,6 +393,16 @@ def main() -> int:
     _run("scripts/build_atlas50_development_gate.py", "--check")
     _run("scripts/build_atlas_draft_sources.py", "--check")
     _run("scripts/build_atlas_drafts.py", "--check")
+    for batch_name, batch in BATCHES.items():
+        if batch == DEFAULT_BATCH:
+            continue
+        for script in (
+            "scripts/build_atlas50_state_probe.py",
+            "scripts/build_atlas50_development_gate.py",
+            "scripts/build_atlas_draft_sources.py",
+            "scripts/build_atlas_drafts.py",
+        ):
+            _run(script, "--batch", batch_name, "--check")
     review_spec, review_packets = load_review_context(ROOT)
     review_baseline = os.environ.get("CE_REVIEW_BASE_REF") or "HEAD"
     if review_baseline == "0" * 40:

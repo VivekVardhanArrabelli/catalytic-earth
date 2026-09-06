@@ -21,15 +21,16 @@ from .atlas10_source_adapters import (
     read_atlas10_mcsa_snapshot,
 )
 from .atlas50_development_gate import build_development_status, require_operation
+from .atlas_draft_batch import DEFAULT_BATCH, DraftBatchPaths
 from .canonical_hash import canonical_file_sha256
 
 
 SCHEMA_VERSION = "catalytic-earth.atlas-source-draft-manifest.v1"
-MANIFEST_PATH = Path("data/atlas/source_drafts/source_manifest.json")
-SOURCE_ROOT = Path("data/atlas/source_drafts/sources")
-ATTRIBUTION_PATH = Path("data/atlas/source_drafts/SOURCE_ATTRIBUTION.md")
+MANIFEST_PATH = DEFAULT_BATCH.manifest_path
+SOURCE_ROOT = DEFAULT_BATCH.sources_directory
+ATTRIBUTION_PATH = DEFAULT_BATCH.attribution_path
 RIGHTS_MATRIX_PATH = Path("docs/SOURCE_DATA_RIGHTS.md")
-DEVELOPMENT_STATUS_PATH = Path("data/atlas/atlas50/development_gate/status.json")
+DEVELOPMENT_STATUS_PATH = DEFAULT_BATCH.status_path
 MCSA_ORIGIN = "https://www.ebi.ac.uk"
 MCSA_ENTRY_API = f"{MCSA_ORIGIN}/thornton-srv/m-csa/api/entries/"
 MCSA_SCHEME_PREFIX = f"{MCSA_ORIGIN}/thornton-srv/m-csa/media/schemes/"
@@ -205,14 +206,30 @@ def _case_control(row: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def default_draft_record_ids(repo_root: Path) -> tuple[str, ...]:
-    """Derive the default batch from current mechanism-draft permissions."""
-    status = build_development_status(Path(repo_root))
+def default_draft_record_ids(
+    repo_root: Path, batch: DraftBatchPaths = DEFAULT_BATCH
+) -> tuple[str, ...]:
+    """Derive draft-permitted IDs introduced by this batch's current gate."""
+    root = Path(repo_root)
+    status = build_development_status(root, batch=batch)
+    inherited_ids: set[str] = set()
+    if batch != DEFAULT_BATCH:
+        spec = _load_json(root / batch.probe_spec_path)
+        inheritance = spec.get("inheritance")
+        _require(isinstance(inheritance, dict), "successor probe inheritance is missing")
+        inherited = inheritance.get("inherited_case_ids")
+        _require(isinstance(inherited, list), "successor inherited case IDs are missing")
+        _require(
+            all(isinstance(value, str) and re.fullmatch(r"M\d{4}", value) for value in inherited),
+            "successor inherited case IDs are invalid",
+        )
+        inherited_ids = set(inherited)
     return tuple(
         sorted(
             row["mcsa_id"]
             for row in status["cases"]
             if "source_scoped_mechanism_draft" in row["allowed_operations"]
+            and row["mcsa_id"] not in inherited_ids
         )
     )
 
@@ -437,7 +454,10 @@ def render_source_attribution(manifest: dict[str, Any]) -> str:
 
 
 def validate_atlas_draft_source_manifest(
-    value: Any, *, repo_root: Path
+    value: Any,
+    *,
+    repo_root: Path,
+    batch: DraftBatchPaths = DEFAULT_BATCH,
 ) -> dict[str, Any]:
     """Validate source identity, full step coverage, rights, receipts, and budgets."""
     root = Path(repo_root)
@@ -461,15 +481,20 @@ def validate_atlas_draft_source_manifest(
     )
     if selection["basis"] == "development_gate_default_mechanism_draft_cases":
         _require(
-            record_ids == default_draft_record_ids(root),
+            record_ids == default_draft_record_ids(root, batch=batch),
             "default source-draft selection differs from the current gate",
         )
         _require(
             selection["requested_operation"] == "source_scoped_mechanism_draft",
             "default source-draft selection operation differs",
         )
+    else:
+        _require(
+            selection["requested_operation"] == "source_annotation",
+            "explicit source-draft selection must request source_annotation",
+        )
     for record_id in record_ids:
-        require_operation(root, "source_annotation", record_id)
+        require_operation(root, "source_annotation", record_id, batch=batch)
 
     retrieved_at = value["retrieved_at"]
     _require(
@@ -497,8 +522,8 @@ def validate_atlas_draft_source_manifest(
     )
     validate_official_mcsa_url(source["entry_request_url"], kind="entry_batch")
 
-    status = build_development_status(root)
-    status_path = root / DEVELOPMENT_STATUS_PATH
+    status = build_development_status(root, batch=batch)
+    status_path = root / batch.status_path
     _require(status_path.is_file(), "generated development status is missing")
     _require(_load_json(status_path) == status, "generated development status is stale")
     development_gate = value["development_gate"]
@@ -513,7 +538,7 @@ def validate_atlas_draft_source_manifest(
         "source acquisition must be authorized as source_annotation",
     )
     _require(
-        development_gate["status_path"] == DEVELOPMENT_STATUS_PATH.as_posix()
+        development_gate["status_path"] == batch.status_path.as_posix()
         and development_gate["status_sha256"] == canonical_file_sha256(status_path),
         "development-gate status binding differs",
     )
@@ -559,7 +584,7 @@ def validate_atlas_draft_source_manifest(
         _require(isinstance(record, dict), f"{context} must be an object")
         _exact_keys(record, RECORD_FIELDS, context)
         record_id = record["record_id"]
-        expected_path = (SOURCE_ROOT / f"{record_id}.json").as_posix()
+        expected_path = (batch.sources_directory / f"{record_id}.json").as_posix()
         expected_uri = MCSA_ENTRY_TEMPLATE.format(mcsa_id=int(record_id[1:]))
         _require(
             record["source_id"] == "M-CSA"
@@ -576,7 +601,7 @@ def validate_atlas_draft_source_manifest(
             f"{context} rights fields differ",
         )
         path = (root / expected_path).resolve()
-        source_root = (root / SOURCE_ROOT).resolve()
+        source_root = (root / batch.sources_directory).resolve()
         _require(source_root in path.parents and path.is_file(), f"{context} snapshot is missing")
         _require(
             record["snapshot_bytes"] == path.stat().st_size
@@ -729,7 +754,7 @@ def validate_atlas_draft_source_manifest(
     )
     _require(scheme_receipt_keys == set(source_step_keys), "scheme response receipts are incomplete")
 
-    attribution_path = root / ATTRIBUTION_PATH
+    attribution_path = root / batch.attribution_path
     _require(attribution_path.is_file(), "source-draft attribution file is missing")
     _require(
         attribution_path.read_text(encoding="utf-8") == render_source_attribution(value),
@@ -748,14 +773,15 @@ def validate_atlas_draft_source_manifest(
 
 def load_draft_sources(
     repo_root: Path,
+    batch: DraftBatchPaths = DEFAULT_BATCH,
 ) -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
     """Load and fail-closed validate the selected M-CSA source-draft package."""
     root = Path(repo_root)
-    manifest = _load_json(root / MANIFEST_PATH)
-    validate_atlas_draft_source_manifest(manifest, repo_root=root)
+    manifest = _load_json(root / batch.manifest_path)
+    validate_atlas_draft_source_manifest(manifest, repo_root=root, batch=batch)
     entries = {
         record_id: read_atlas10_mcsa_snapshot(
-            root / SOURCE_ROOT / f"{record_id}.json", record_id
+            root / batch.sources_directory / f"{record_id}.json", record_id
         )
         for record_id in manifest["selection"]["record_ids"]
     }

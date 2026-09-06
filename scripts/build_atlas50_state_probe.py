@@ -19,6 +19,7 @@ from catalytic_earth.atlas50_state_probe import (  # noqa: E402
     file_sha256,
     validate_state_probe,
 )
+from catalytic_earth.atlas_draft_batch import BATCHES, DEFAULT_BATCH, DraftBatchPaths, resolve_batch
 
 
 STATE_ROOT = ROOT / "data/atlas/atlas50/state_probe"
@@ -47,8 +48,8 @@ def _load(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def build() -> dict[str, Any]:
-    spec = _load(SPEC_PATH)
+def build(*, batch: DraftBatchPaths = DEFAULT_BATCH) -> dict[str, Any]:
+    spec = _load(ROOT / batch.probe_spec_path)
     candidate_spec = _load(CANDIDATE_SPEC_PATH)
     panel_review = _load(PANEL_REVIEW_PATH)
     mechanism_schema = _load(MECHANISM_V3_SCHEMA_PATH)
@@ -65,11 +66,12 @@ def build() -> dict[str, Any]:
         atlas3_kernel=atlas3,
         atlas10_kernel=atlas10,
         basis_inputs=basis_inputs,
+        batch=batch,
     )
 
 
-def verify(report: dict[str, Any]) -> dict[str, Any]:
-    spec = _load(SPEC_PATH)
+def verify(report: dict[str, Any], *, batch: DraftBatchPaths = DEFAULT_BATCH) -> dict[str, Any]:
+    spec = _load(ROOT / batch.probe_spec_path)
     return validate_state_probe(
         report,
         spec=spec,
@@ -81,6 +83,8 @@ def verify(report: dict[str, Any]) -> dict[str, Any]:
         basis_inputs={
             name: file_sha256(path) for name, path in sorted(INPUT_PATHS.items())
         },
+        batch=batch,
+        repo_root=ROOT,
     )
 
 
@@ -91,22 +95,25 @@ def main() -> int:
         action="store_true",
         help="verify that the committed report is byte-current",
     )
+    parser.add_argument("--batch", choices=sorted(BATCHES), default="default")
     args = parser.parse_args()
 
-    expected = build()
+    batch = resolve_batch(args.batch)
+    report_path = ROOT / batch.probe_report_path
+    expected = build(batch=batch)
     payload = canonical_json_bytes(expected)
     if args.check:
-        if not REPORT_PATH.is_file():
-            raise SystemExit(f"missing generated report: {REPORT_PATH}")
-        if REPORT_PATH.read_bytes() != payload:
+        if not report_path.is_file():
+            raise SystemExit(f"missing generated report: {report_path}")
+        if report_path.read_bytes() != payload:
             raise SystemExit("Atlas-50 state probe report is stale")
-        summary = verify(_load(REPORT_PATH))
+        summary = verify(_load(report_path), batch=batch)
         print(json.dumps(summary, sort_keys=True))
         return 0
 
-    STATE_ROOT.mkdir(parents=True, exist_ok=True)
-    REPORT_PATH.write_bytes(payload)
-    summary = verify(expected)
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    report_path.write_bytes(payload)
+    summary = verify(expected, batch=batch)
     print(json.dumps(summary, sort_keys=True))
     return 0
 

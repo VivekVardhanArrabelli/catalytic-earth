@@ -1,0 +1,14 @@
+{
+  "date": "2026-09-05",
+  "inputs": {
+    "data/atlas/atlas50/crosswalk_v2/change_map.json": "4975a8bb079f919de5da061db83c32d4add688bc95f665212a40a2944b240ccc",
+    "data/atlas/atlas50/crosswalk_v2/crosswalk.json": "fc0e176b0c6881c949d052889607179ba087dc52ebb7786ee96f96f3ad73615e",
+    "data/atlas/source_drafts/batches/aldolase-transketolase/review/adjudications.json": "b31f850504a577dfa20721c8bbae215a62830256ec3ea0618acd3a00a507787a",
+    "data/atlas/source_drafts/batches/aldolase-transketolase/review/challenge.json": "8148f9c230ee3a36463e1da90b3fef213fddbc0245ae536a5a5bc6ae6b919a5f",
+    "data/atlas/source_drafts/batches/aldolase-transketolase/review/probe.json": "258ecb925ab133043b6a0629020431f4d5cf206c87a547c99b1468af9d3a7ce4",
+    "data/atlas/source_drafts/batches/aldolase-transketolase/review/spec.json": "8730c5958ec551c5d52efa4fc0c8303004ec832d349de7de6f032f61963873e9",
+    "data/governance/computational_review_policy.json": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "schema_version": "catalytic-earth.computational-review-bindings.v1",
+  "update_rule": "Do not automatically refresh these pins after input changes. Repeat source-to-decision review and adjudication first."
+}

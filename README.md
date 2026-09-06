@@ -46,12 +46,12 @@ a production biological design system.
 ## Quick Status — 2026-09-05
 
 The Atlas-10 kernel remains the 2026-07-14 checkpoint built on the 2026-07-13
-truth reset. September adds four queryable Tier-1 source drafts through a
+truth reset. September adds seven queryable Tier-1 source drafts in two batches through a
 [reusable M-CSA importer and compiler](docs/ATLAS_SOURCE_DRAFTS.md), alongside an executable
 [computational development review](docs/COMPUTATIONAL_DEVELOPMENT_REVIEW.md):
-57 corrected crosswalk rows (23 provisional, 34 unresolved), six generic state
-probes, and source-backed adjudications. Human submissions no longer block
-these scoped draft operations. Four cases permit mechanism drafting; all six
+57 corrected crosswalk rows (23 provisional, 34 unresolved), nine generic state
+probes in an inherited review set, and source-backed adjudications. Human submissions no longer block
+these scoped draft operations. Seven cases permit mechanism drafting; all nine
 permit annotation. It also withdraws the A0A177THN5
 APX-specific transfer and retires the study based on it (CE-017). No benchmark
 was rescored or independent human-review status upgraded.
@@ -122,6 +122,13 @@ was rescored or independent human-review status upgraded.
   records do not add canonical reactions or protein/site-grounded Tier-2 cases.
   Repeatable `--participant`, `--reactant` and `--product` filters query exact
   source ChEBI identifiers while preserving evidence and reaction-side scope.
+- `--batch aldolase-transketolase` adds M0052, M0219 and M0222 as a separate
+  three-record package: four proposals, 26 reaction steps, four terminal states
+  and 98 source arrows. A shared-participant query finds both class I and class
+  II aldolases while preserving their different chemistry. Substrate-text versus
+  diagram conflicts, mixed protein applicability, inferred/extra-enzymatic
+  steps and unresolved native-metal identity remain visible. No source draft
+  claims an exact reaction instance or independent scientific validation.
 
 ## Truth-governance gate
 

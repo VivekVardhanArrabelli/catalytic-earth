@@ -10,6 +10,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from catalytic_earth.atlas_drafts import build_source_drafts, validate_source_drafts
+from catalytic_earth.atlas_draft_batch import BATCHES, DEFAULT_BATCH, resolve_batch
 
 
 def canonical_bytes(value: object) -> bytes:
@@ -19,21 +20,24 @@ def canonical_bytes(value: object) -> bytes:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--batch", choices=sorted(BATCHES), default="default")
     args = parser.parse_args()
-    bundle = build_source_drafts(ROOT)
+    batch = resolve_batch(args.batch)
+    bundle = build_source_drafts(ROOT, batch=batch)
     summary = validate_source_drafts(bundle)
     payload = canonical_bytes(bundle)
-    attribution = (ROOT / "data/atlas/source_drafts/SOURCE_ATTRIBUTION.md").read_bytes()
+    attribution = (ROOT / batch.attribution_path).read_bytes()
     expected = canonical_bytes({
         "schema_version": "catalytic-earth.source-drafts-package.v1",
         "bundle_sha256": hashlib.sha256(payload).hexdigest(),
         "attribution_sha256": hashlib.sha256(attribution).hexdigest(),
     })
+    stem = "source_drafts" if batch == DEFAULT_BATCH else batch.batch_id.replace("-", "_")
     outputs = {
-        "data/atlas/source_drafts/records.json": payload,
-        "src/catalytic_earth/draft_data/source_drafts.json": payload,
-        "src/catalytic_earth/draft_data/source_drafts_expected.json": expected,
-        "src/catalytic_earth/draft_data/source_drafts_attribution.md": attribution,
+        batch.records_path.as_posix(): payload,
+        f"src/catalytic_earth/draft_data/{stem}.json": payload,
+        f"src/catalytic_earth/draft_data/{stem}_expected.json": expected,
+        f"src/catalytic_earth/draft_data/{stem}_attribution.md": attribution,
     }
     for relative, raw in outputs.items():
         path = ROOT / relative

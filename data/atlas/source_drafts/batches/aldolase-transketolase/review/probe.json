@@ -1,0 +1,1701 @@
+{
+  "basis_inputs": {
+    "atlas10_kernel": "2238a3a4570c1a6110c1fd6f7b1d96765eae1d41990b18751293e0301b4a85ef",
+    "atlas3_kernel": "0733a029b3eaa0900ff4124276c2060f94204ce3f3bf0b9bcf2c80e7589d674b",
+    "candidate_spec": "a8900044fd1fd9e2e75eaf16c6c9e466721e0db697e463e967c5f7e8aff3f42a",
+    "computational_panel_review": "54678ddbb5efd8c1905c3650c5f97782dbdd2abf5493003681a9c81aff581ab4",
+    "mechanism_record_v3_schema": "1dc95d1f55ba4d5f62bcab1216956f4af6c9b3fe5c38c0e6e181096266c8b26f"
+  },
+  "case_count": 9,
+  "cases": [
+    {
+      "allowed_operations": [
+        "source_annotation"
+      ],
+      "allowed_scope": [
+        "Preserve the exact M-CSA M0064 protein and single-stranded-DNA identities as source metadata.",
+        "Record the source wording that DNA uncoils only as a qualitative event, without assigning before/after topology."
+      ],
+      "candidate_id": "atlas50.candidate.m0064",
+      "contract_kind": "polymer_topology",
+      "disposition": "SCOPED_PASS",
+      "evidence_ids": [
+        "source:M-CSA:M0064",
+        "source:PubMed:11429611",
+        "source:RCSB:1D6M"
+      ],
+      "label": "DNA topoisomerase III",
+      "mandatory_abstentions": [
+        {
+          "clause_id": "topology_before",
+          "reason": "Neither the same-identity M-CSA reaction nor protein-only 1D6M assigns an initial DNA topology."
+        },
+        {
+          "clause_id": "topology_after",
+          "reason": "Neither exact handle assigns the final DNA topology."
+        },
+        {
+          "clause_id": "chain_length_before",
+          "reason": "M-CSA supplies no chain-length state for the DNA reactant."
+        },
+        {
+          "clause_id": "chain_length_after",
+          "reason": "M-CSA supplies no chain-length state for the DNA product."
+        },
+        {
+          "clause_id": "initiation_or_elongation",
+          "reason": "Initiation and elongation are not assigned for this topology event."
+        },
+        {
+          "clause_id": "processivity",
+          "reason": "The exact source handles do not establish a processivity state."
+        }
+      ],
+      "mcsa_id": "M0064",
+      "missing_clauses": [
+        "topology_before",
+        "topology_after",
+        "chain_length_before",
+        "chain_length_after",
+        "initiation_or_elongation",
+        "processivity"
+      ],
+      "representation": {
+        "assembly": {
+          "assertion_scope": "source_scope_boundary",
+          "evidence_ids": [
+            "source:M-CSA:M0064",
+            "source:RCSB:1D6M"
+          ],
+          "member_component_ids": [
+            "protein:P14294"
+          ],
+          "mode": "single_source_component",
+          "note": "The selected 1D6M structure grounds the catalyst only; it does not contain a DNA entity."
+        },
+        "components": [
+          {
+            "component_id": "protein:P14294",
+            "component_kind": "protein",
+            "evidence_ids": [
+              "source:M-CSA:M0064",
+              "source:RCSB:1D6M"
+            ],
+            "identity_scope": "source_identity",
+            "role": "source-identified type-IA DNA topoisomerase catalyst",
+            "source_identifiers": [
+              {
+                "accession": "P14294",
+                "namespace": "UniProtKB"
+              }
+            ]
+          },
+          {
+            "component_id": "polymer:CHEBI:9160",
+            "component_kind": "polymer",
+            "evidence_ids": [
+              "source:M-CSA:M0064"
+            ],
+            "identity_scope": "source_defined",
+            "role": "single-stranded DNA participant on both reaction sides",
+            "source_identifiers": [
+              {
+                "accession": "CHEBI:9160",
+                "namespace": "ChEBI"
+              }
+            ]
+          }
+        ],
+        "polymer_topology": {
+          "chain_length_after": null,
+          "chain_length_before": null,
+          "evidence_ids": [
+            "source:M-CSA:M0064",
+            "source:RCSB:1D6M",
+            "source:PubMed:11429611"
+          ],
+          "initiation_or_elongation": null,
+          "polymer_component_id": "polymer:CHEBI:9160",
+          "processivity": null,
+          "product_state_id": "CHEBI:9160",
+          "reactant_state_id": "CHEBI:9160",
+          "reaction_event": "DNA uncoiling (source wording only)",
+          "source_product_placeholder": null,
+          "status": "source_scoped",
+          "topology_after": null,
+          "topology_before": null
+        },
+        "state_transitions": [],
+        "tethered_carrier": null
+      },
+      "review_recommendation": "accept_proposed_include",
+      "satisfied_clauses": [
+        "catalyst_identity",
+        "polymer_reactant_identity",
+        "polymer_product_identity",
+        "reaction_event",
+        "reaction_provenance"
+      ],
+      "scope_status": "candidate_scope",
+      "source_extract": {
+        "pdb_ids": [
+          "1D6M"
+        ],
+        "state_catalog": [
+          {
+            "evidence_ids": [
+              "source:M-CSA:M0064"
+            ],
+            "name": "single-stranded DNA",
+            "resolution": "resolved_identifier",
+            "source_token": "9160",
+            "state_id": "CHEBI:9160"
+          }
+        ],
+        "uniprot_ids": [
+          "P14294"
+        ]
+      },
+      "target_operation": "source_annotation"
+    },
+    {
+      "allowed_operations": [
+        "source_annotation",
+        "source_scoped_mechanism_draft"
+      ],
+      "allowed_scope": [
+        "Preserve M-CSA M0106 E1 alpha/beta identity and the source-reported lipoyl-lysine to acetyldihydrolipoyl-lysine carrier-state transition.",
+        "Represent the carrier owner only as the E2 catalytic-component role; keep P11961 as structure context rather than assigning it as the mobile lipoyl carrier."
+      ],
+      "candidate_id": "atlas50.candidate.m0106",
+      "contract_kind": "tethered_carrier_reaction_instance",
+      "disposition": "SCOPED_PASS",
+      "evidence_ids": [
+        "source:M-CSA:M0106",
+        "source:PubMed:12795594",
+        "source:RCSB:1W85"
+      ],
+      "label": "Pyruvate dehydrogenase E1",
+      "mandatory_abstentions": [
+        {
+          "clause_id": "carrier_host_identity",
+          "reason": "M-CSA identifies only E1 accessions, and 1W85 P11961 is an E2 peripheral subunit-binding domain rather than a demonstrated mobile lipoyl carrier domain."
+        },
+        {
+          "clause_id": "attachment_site",
+          "reason": "The sources establish a lysine residue class but do not identify a carrier-protein accession and numbered attachment site for this reaction instance."
+        },
+        {
+          "clause_id": "structure_localization",
+          "reason": "The selected structure does not localize the tethered lipoyl-lysine carrier state."
+        }
+      ],
+      "mcsa_id": "M0106",
+      "missing_clauses": [
+        "carrier_host_identity",
+        "attachment_site",
+        "structure_localization"
+      ],
+      "representation": {
+        "assembly": {
+          "assertion_scope": "source_assertion",
+          "evidence_ids": [
+            "source:M-CSA:M0106",
+            "source:PubMed:12795594"
+          ],
+          "member_component_ids": [
+            "protein:P21873",
+            "protein:P21874",
+            "protein-role:E2-carrier-owner"
+          ],
+          "mode": "external_carrier_encounter",
+          "note": "The E1 alpha/beta catalyst reacts with a lipoyl group carried by E2; no carrier accession or numbered lysine is assigned."
+        },
+        "components": [
+          {
+            "component_id": "protein:P21873",
+            "component_kind": "protein",
+            "evidence_ids": [
+              "source:M-CSA:M0106",
+              "source:RCSB:1W85"
+            ],
+            "identity_scope": "source_identity",
+            "role": "E1 alpha source component",
+            "source_identifiers": [
+              {
+                "accession": "P21873",
+                "namespace": "UniProtKB"
+              }
+            ]
+          },
+          {
+            "component_id": "protein:P21874",
+            "component_kind": "protein",
+            "evidence_ids": [
+              "source:M-CSA:M0106",
+              "source:RCSB:1W85"
+            ],
+            "identity_scope": "source_identity",
+            "role": "E1 beta source component",
+            "source_identifiers": [
+              {
+                "accession": "P21874",
+                "namespace": "UniProtKB"
+              }
+            ]
+          },
+          {
+            "component_id": "protein-role:E2-carrier-owner",
+            "component_kind": "protein_role",
+            "evidence_ids": [
+              "source:M-CSA:M0106",
+              "source:PubMed:12795594"
+            ],
+            "identity_scope": "role_only",
+            "role": "E2 dihydrolipoyl acetyltransferase carrier owner; accession unresolved",
+            "source_identifiers": []
+          },
+          {
+            "component_id": "protein:P11961-context",
+            "component_kind": "protein",
+            "evidence_ids": [
+              "source:RCSB:1W85"
+            ],
+            "identity_scope": "context_only",
+            "role": "E2 peripheral subunit-binding domain in 1W85; not assigned as the lipoyl carrier",
+            "source_identifiers": [
+              {
+                "accession": "P11961",
+                "namespace": "UniProtKB"
+              }
+            ]
+          }
+        ],
+        "polymer_topology": null,
+        "state_transitions": [
+          {
+            "after_state_id": "CHEBI:83111",
+            "assertion_scope": "source_reaction",
+            "before_state_id": "CHEBI:83099",
+            "evidence_ids": [
+              "source:M-CSA:M0106",
+              "source:PubMed:12795594"
+            ],
+            "subject_component_ids": [
+              "protein-role:E2-carrier-owner"
+            ],
+            "transition_id": "m0106:carrier-reductive-acetylation",
+            "transition_kind": "carrier_loading"
+          }
+        ],
+        "tethered_carrier": {
+          "attachment_residue": "lysine residue class",
+          "attachment_site": null,
+          "evidence_ids": [
+            "source:M-CSA:M0106",
+            "source:PubMed:12795594",
+            "source:RCSB:1W85"
+          ],
+          "owner_component_id": "protein-role:E2-carrier-owner",
+          "product_state_id": "CHEBI:83111",
+          "reactant_state_id": "CHEBI:83099",
+          "status": "source_scoped",
+          "structure_component_ids": []
+        }
+      },
+      "review_recommendation": "accept_proposed_include",
+      "satisfied_clauses": [
+        "enzyme_source_identity",
+        "carrier_owner_role",
+        "carrier_reactant_state",
+        "carrier_product_state",
+        "carrier_state_transition",
+        "reaction_provenance"
+      ],
+      "scope_status": "candidate_scope",
+      "source_extract": {
+        "pdb_ids": [
+          "1W85"
+        ],
+        "state_catalog": [
+          {
+            "evidence_ids": [
+              "source:M-CSA:M0106"
+            ],
+            "name": "N(6)-[(R)-lipoyl]-L-lysine residue",
+            "resolution": "resolved_identifier",
+            "source_token": "83099",
+            "state_id": "CHEBI:83099"
+          },
+          {
+            "evidence_ids": [
+              "source:M-CSA:M0106"
+            ],
+            "name": "N(6)-[(R)-S(8)-acetyldihydrolipoyl]-L-lysine residue",
+            "resolution": "resolved_identifier",
+            "source_token": "83111",
+            "state_id": "CHEBI:83111"
+          }
+        ],
+        "uniprot_ids": [
+          "P21873",
+          "P21874"
+        ]
+      },
+      "target_operation": "source_scoped_mechanism_draft"
+    },
+    {
+      "allowed_operations": [
+        "source_annotation",
+        "source_scoped_mechanism_draft"
+      ],
+      "allowed_scope": [
+        "Represent the exact three M-CSA CODH subunits as one fixed multisubunit enzyme assembly.",
+        "Represent Mo(VI)-Cu(I) to Mo(IV)-Cu(I) and reoxidation only as M-CSA source-mechanism proposals, preserving the two alternatives.",
+        "PASS is limited to source_annotation and source_scoped_mechanism_draft; it does not authorize a v3 record, exact reaction instance, tier upgrade, or independently validated mechanism."
+      ],
+      "candidate_id": "atlas50.candidate.m0107",
+      "contract_kind": "component_state",
+      "disposition": "PASS",
+      "evidence_ids": [
+        "source:M-CSA:M0107",
+        "source:PubMed:12475995",
+        "source:RCSB:1N62"
+      ],
+      "label": "Aerobic carbon monoxide dehydrogenase",
+      "mandatory_abstentions": [],
+      "mcsa_id": "M0107",
+      "missing_clauses": [],
+      "representation": {
+        "assembly": {
+          "assertion_scope": "source_assertion",
+          "evidence_ids": [
+            "source:M-CSA:M0107",
+            "source:RCSB:1N62"
+          ],
+          "member_component_ids": [
+            "protein:P19919",
+            "protein:P19920",
+            "protein:P19921"
+          ],
+          "mode": "fixed_multisubunit",
+          "note": "Fixed means the source describes CODH as the dimer-of-heterotrimers enzyme assembly; it is not a kinetic lifetime claim."
+        },
+        "components": [
+          {
+            "component_id": "protein:P19919",
+            "component_kind": "protein",
+            "evidence_ids": [
+              "source:M-CSA:M0107",
+              "source:RCSB:1N62"
+            ],
+            "identity_scope": "source_identity",
+            "role": "large molybdopterin-containing active-site subunit",
+            "source_identifiers": [
+              {
+                "accession": "P19919",
+                "namespace": "UniProtKB"
+              }
+            ]
+          },
+          {
+            "component_id": "protein:P19920",
+            "component_kind": "protein",
+            "evidence_ids": [
+              "source:M-CSA:M0107",
+              "source:RCSB:1N62"
+            ],
+            "identity_scope": "source_identity",
+            "role": "medium FAD-containing subunit",
+            "source_identifiers": [
+              {
+                "accession": "P19920",
+                "namespace": "UniProtKB"
+              }
+            ]
+          },
+          {
+            "component_id": "protein:P19921",
+            "component_kind": "protein",
+            "evidence_ids": [
+              "source:M-CSA:M0107",
+              "source:RCSB:1N62"
+            ],
+            "identity_scope": "source_identity",
+            "role": "small iron-sulfur subunit",
+            "source_identifiers": [
+              {
+                "accession": "P19921",
+                "namespace": "UniProtKB"
+              }
+            ]
+          },
+          {
+            "component_id": "metallocluster:m0107-mo-cu",
+            "component_kind": "metallocluster",
+            "evidence_ids": [
+              "source:M-CSA:M0107",
+              "source:PubMed:12475995"
+            ],
+            "identity_scope": "source_defined",
+            "role": "Mo-Cu active-site cluster in the M-CSA proposals",
+            "source_identifiers": [
+              {
+                "accession": "M0107",
+                "namespace": "M-CSA"
+              }
+            ]
+          }
+        ],
+        "polymer_topology": null,
+        "state_transitions": [
+          {
+            "after_state_id": "state:M0107:MoIV-CuI",
+            "assertion_scope": "source_mechanism_proposal",
+            "before_state_id": "state:M0107:MoVI-CuI",
+            "evidence_ids": [
+              "source:M-CSA:M0107"
+            ],
+            "subject_component_ids": [
+              "metallocluster:m0107-mo-cu"
+            ],
+            "transition_id": "m0107:source-proposed-reduction",
+            "transition_kind": "redox"
+          },
+          {
+            "after_state_id": "state:M0107:MoVI-CuI",
+            "assertion_scope": "source_mechanism_proposal",
+            "before_state_id": "state:M0107:MoIV-CuI",
+            "evidence_ids": [
+              "source:M-CSA:M0107"
+            ],
+            "subject_component_ids": [
+              "metallocluster:m0107-mo-cu"
+            ],
+            "transition_id": "m0107:source-proposed-reoxidation",
+            "transition_kind": "redox"
+          }
+        ],
+        "tethered_carrier": null
+      },
+      "review_recommendation": "accept_proposed_include",
+      "satisfied_clauses": [
+        "component_identities",
+        "assembly_mode",
+        "state_claim_provenance",
+        "scope_boundary",
+        "complete_target_state"
+      ],
+      "scope_status": "candidate_scope",
+      "source_extract": {
+        "pdb_ids": [
+          "1N62"
+        ],
+        "state_catalog": [
+          {
+            "evidence_ids": [
+              "source:M-CSA:M0107"
+            ],
+            "name": "oxidized Mo(VI)-Cu(I) state",
+            "resolution": "source_proposal_label",
+            "source_token": "oxidized Mo(VI)-Cu(I)",
+            "state_id": "state:M0107:MoVI-CuI"
+          },
+          {
+            "evidence_ids": [
+              "source:M-CSA:M0107"
+            ],
+            "name": "reduced Mo(IV)-Cu(I) state",
+            "resolution": "source_proposal_label",
+            "source_token": "Mo(IV); Cu(I) does not change oxidation state",
+            "state_id": "state:M0107:MoIV-CuI"
+          }
+        ],
+        "uniprot_ids": [
+          "P19919",
+          "P19920",
+          "P19921"
+        ]
+      },
+      "target_operation": "source_scoped_mechanism_draft"
+    },
+    {
+      "allowed_operations": [
+        "source_annotation",
+        "source_scoped_mechanism_draft"
+      ],
+      "allowed_scope": [
+        "Represent the exact Fe-protein and MoFe-protein identities and their ATP-coupled association/dissociation cycle.",
+        "Represent ATP to ADP only as a source-bound transition; preserve the source's explicit uncertainty about the complete FeMo/P-cluster pathway and reactive atoms."
+      ],
+      "candidate_id": "atlas50.candidate.m0212",
+      "contract_kind": "component_state",
+      "disposition": "SCOPED_PASS",
+      "evidence_ids": [
+        "source:M-CSA:M0212",
+        "source:PubMed:9163420",
+        "source:RCSB:1N2C"
+      ],
+      "label": "Nitrogenase",
+      "mandatory_abstentions": [
+        {
+          "clause_id": "complete_target_state",
+          "reason": "M-CSA says the electron pathway is poorly understood and the exact reactive FeMo-cofactor atoms are unknown, so a complete cluster-state sequence is withheld."
+        }
+      ],
+      "mcsa_id": "M0212",
+      "missing_clauses": [
+        "complete_target_state"
+      ],
+      "representation": {
+        "assembly": {
+          "assertion_scope": "source_assertion",
+          "evidence_ids": [
+            "source:M-CSA:M0212",
+            "source:PubMed:9163420",
+            "source:RCSB:1N2C"
+          ],
+          "member_component_ids": [
+            "protein:P00459",
+            "protein:P07328",
+            "protein:P07329"
+          ],
+          "mode": "cycle_coupled_association",
+          "note": "The Fe protein associates with the MoFe protein for ATP-coupled electron transfer and then dissociates; 1N2C is an ADP-AlF4-stabilized complex."
+        },
+        "components": [
+          {
+            "component_id": "protein:P00459",
+            "component_kind": "protein",
+            "evidence_ids": [
+              "source:M-CSA:M0212",
+              "source:RCSB:1N2C",
+              "source:PubMed:9163420"
+            ],
+            "identity_scope": "source_identity",
+            "role": "ATP-hydrolyzing Fe-protein component",
+            "source_identifiers": [
+              {
+                "accession": "P00459",
+                "namespace": "UniProtKB"
+              }
+            ]
+          },
+          {
+            "component_id": "protein:P07328",
+            "component_kind": "protein",
+            "evidence_ids": [
+              "source:M-CSA:M0212",
+              "source:RCSB:1N2C"
+            ],
+            "identity_scope": "source_identity",
+            "role": "MoFe-protein alpha component",
+            "source_identifiers": [
+              {
+                "accession": "P07328",
+                "namespace": "UniProtKB"
+              }
+            ]
+          },
+          {
+            "component_id": "protein:P07329",
+            "component_kind": "protein",
+            "evidence_ids": [
+              "source:M-CSA:M0212",
+              "source:RCSB:1N2C"
+            ],
+            "identity_scope": "source_identity",
+            "role": "MoFe-protein beta component",
+            "source_identifiers": [
+              {
+                "accession": "P07329",
+                "namespace": "UniProtKB"
+              }
+            ]
+          }
+        ],
+        "polymer_topology": null,
+        "state_transitions": [
+          {
+            "after_state_id": "CHEBI:456216",
+            "assertion_scope": "source_reaction",
+            "before_state_id": "CHEBI:30616",
+            "evidence_ids": [
+              "source:M-CSA:M0212",
+              "source:PubMed:9163420"
+            ],
+            "subject_component_ids": [
+              "protein:P00459"
+            ],
+            "transition_id": "m0212:atp-to-adp",
+            "transition_kind": "nucleotide_hydrolysis"
+          }
+        ],
+        "tethered_carrier": null
+      },
+      "review_recommendation": "revise_with_evidence",
+      "satisfied_clauses": [
+        "component_identities",
+        "assembly_mode",
+        "state_claim_provenance",
+        "scope_boundary"
+      ],
+      "scope_status": "candidate_scope",
+      "source_extract": {
+        "pdb_ids": [
+          "1N2C"
+        ],
+        "state_catalog": [
+          {
+            "evidence_ids": [
+              "source:M-CSA:M0212"
+            ],
+            "name": "ATP(4-)",
+            "resolution": "resolved_identifier",
+            "source_token": "30616",
+            "state_id": "CHEBI:30616"
+          },
+          {
+            "evidence_ids": [
+              "source:M-CSA:M0212"
+            ],
+            "name": "ADP(3-)",
+            "resolution": "resolved_identifier",
+            "source_token": "456216",
+            "state_id": "CHEBI:456216"
+          }
+        ],
+        "uniprot_ids": [
+          "P00459",
+          "P07328",
+          "P07329"
+        ]
+      },
+      "target_operation": "source_scoped_mechanism_draft"
+    },
+    {
+      "allowed_operations": [
+        "source_annotation",
+        "source_scoped_mechanism_draft"
+      ],
+      "allowed_scope": [
+        "Treat M-CSA M0753 as the Q9X0C6 HisF cyclase half-reaction with free ammonium in the drawn reaction.",
+        "Do not project HisH identity, ammonia-channel occupancy, intersubunit signaling, or a full synthase-complex mechanism into this exact source handle."
+      ],
+      "candidate_id": "atlas50.candidate.m0753",
+      "contract_kind": "component_state",
+      "disposition": "SCOPED_PASS",
+      "evidence_ids": [
+        "source:M-CSA:M0753",
+        "source:PubMed:11264293",
+        "source:RCSB:2A0N"
+      ],
+      "label": "Imidazole glycerol phosphate synthase",
+      "mandatory_abstentions": [
+        {
+          "clause_id": "complete_target_state",
+          "reason": "The exact selected handles do not contain HisH or an observed channelled-ammonia state, so no full-complex state is represented."
+        }
+      ],
+      "mcsa_id": "M0753",
+      "missing_clauses": [
+        "complete_target_state"
+      ],
+      "representation": {
+        "assembly": {
+          "assertion_scope": "source_scope_boundary",
+          "evidence_ids": [
+            "source:M-CSA:M0753",
+            "source:RCSB:2A0N",
+            "source:PubMed:11264293"
+          ],
+          "member_component_ids": [
+            "protein:Q9X0C6"
+          ],
+          "mode": "single_source_component",
+          "note": "This mode describes the exact selected record and structure, not the physiological bienzyme assembly."
+        },
+        "components": [
+          {
+            "component_id": "protein:Q9X0C6",
+            "component_kind": "protein",
+            "evidence_ids": [
+              "source:M-CSA:M0753",
+              "source:RCSB:2A0N"
+            ],
+            "identity_scope": "source_identity",
+            "role": "HisF cyclase subunit in the selected source handle",
+            "source_identifiers": [
+              {
+                "accession": "Q9X0C6",
+                "namespace": "UniProtKB"
+              }
+            ]
+          },
+          {
+            "component_id": "protein-role:HisH-context",
+            "component_kind": "protein_role",
+            "evidence_ids": [
+              "source:M-CSA:M0753",
+              "source:PubMed:11264293"
+            ],
+            "identity_scope": "role_only",
+            "role": "HisH glutaminase partner in broader biological context; absent from selected protein and structure identities",
+            "source_identifiers": []
+          }
+        ],
+        "polymer_topology": null,
+        "state_transitions": [],
+        "tethered_carrier": null
+      },
+      "review_recommendation": "revise_with_evidence",
+      "satisfied_clauses": [
+        "component_identities",
+        "assembly_mode",
+        "state_claim_provenance",
+        "scope_boundary"
+      ],
+      "scope_status": "source_narrowed",
+      "source_extract": {
+        "pdb_ids": [
+          "2A0N"
+        ],
+        "state_catalog": [
+          {
+            "evidence_ids": [
+              "source:M-CSA:M0753"
+            ],
+            "name": "ammonium",
+            "resolution": "resolved_identifier",
+            "source_token": "28938",
+            "state_id": "CHEBI:28938"
+          }
+        ],
+        "uniprot_ids": [
+          "Q9X0C6"
+        ]
+      },
+      "target_operation": "source_scoped_mechanism_draft"
+    },
+    {
+      "allowed_operations": [
+        "source_annotation"
+      ],
+      "allowed_scope": [
+        "Preserve Q99T05, 3VMT, the named M-CSA reactants, the X00676 placeholder, and the two source mechanism alternatives as metadata.",
+        "Do not create an n-to-n+1 product, chain length, initiation/elongation assignment, or processivity claim."
+      ],
+      "candidate_id": "atlas50.candidate.m0970",
+      "contract_kind": "polymer_topology",
+      "disposition": "ABSTAIN",
+      "evidence_ids": [
+        "source:M-CSA:M0970",
+        "source:PubMed:32786224",
+        "source:RCSB:3VMT"
+      ],
+      "label": "Peptidoglycan glycosyltransferase",
+      "mandatory_abstentions": [
+        {
+          "clause_id": "polymer_product_identity",
+          "reason": "The polymer product is an unnamed non-ChEBI X00676 placeholder, so it is not a resolved state identity."
+        },
+        {
+          "clause_id": "topology_before",
+          "reason": "No exact source handle specifies an initial polymer topology."
+        },
+        {
+          "clause_id": "topology_after",
+          "reason": "No exact source handle specifies a final polymer topology."
+        },
+        {
+          "clause_id": "chain_length_before",
+          "reason": "The reactant name contains an uninstantiated n variable rather than an exact chain length."
+        },
+        {
+          "clause_id": "chain_length_after",
+          "reason": "The unnamed X00676 product does not establish n+1 or another product length."
+        },
+        {
+          "clause_id": "initiation_or_elongation",
+          "reason": "The exact source reaction does not distinguish initiation from elongation."
+        },
+        {
+          "clause_id": "processivity",
+          "reason": "Neither the source reaction nor the Lipid-II-analog structure demonstrates processivity."
+        }
+      ],
+      "mcsa_id": "M0970",
+      "missing_clauses": [
+        "polymer_product_identity",
+        "topology_before",
+        "topology_after",
+        "chain_length_before",
+        "chain_length_after",
+        "initiation_or_elongation",
+        "processivity"
+      ],
+      "representation": {
+        "assembly": {
+          "assertion_scope": "source_scope_boundary",
+          "evidence_ids": [
+            "source:M-CSA:M0970",
+            "source:RCSB:3VMT"
+          ],
+          "member_component_ids": [
+            "protein:Q99T05"
+          ],
+          "mode": "single_source_component",
+          "note": "The selected structure grounds the monofunctional catalyst with a Lipid II analog, not a processive polymerization trajectory."
+        },
+        "components": [
+          {
+            "component_id": "protein:Q99T05",
+            "component_kind": "protein",
+            "evidence_ids": [
+              "source:M-CSA:M0970",
+              "source:RCSB:3VMT"
+            ],
+            "identity_scope": "source_identity",
+            "role": "source-identified monofunctional peptidoglycan glycosyltransferase",
+            "source_identifiers": [
+              {
+                "accession": "Q99T05",
+                "namespace": "UniProtKB"
+              }
+            ]
+          },
+          {
+            "component_id": "polymer:CHEBI:78435",
+            "component_kind": "polymer",
+            "evidence_ids": [
+              "source:M-CSA:M0970"
+            ],
+            "identity_scope": "source_defined",
+            "role": "named polymeric acceptor reactant with uninstantiated n",
+            "source_identifiers": [
+              {
+                "accession": "CHEBI:78435",
+                "namespace": "ChEBI"
+              }
+            ]
+          }
+        ],
+        "polymer_topology": {
+          "chain_length_after": null,
+          "chain_length_before": "n (symbolic source name only)",
+          "evidence_ids": [
+            "source:M-CSA:M0970",
+            "source:RCSB:3VMT",
+            "source:PubMed:32786224"
+          ],
+          "initiation_or_elongation": null,
+          "polymer_component_id": "polymer:CHEBI:78435",
+          "processivity": null,
+          "product_state_id": null,
+          "reactant_state_id": "CHEBI:78435",
+          "reaction_event": "polymerization reaction family; exact product instance unresolved",
+          "source_product_placeholder": "X00676",
+          "status": "abstained",
+          "topology_after": null,
+          "topology_before": null
+        },
+        "state_transitions": [],
+        "tethered_carrier": null
+      },
+      "review_recommendation": "accept_fail_closed_exclusion",
+      "satisfied_clauses": [
+        "catalyst_identity",
+        "polymer_reactant_identity",
+        "reaction_event",
+        "reaction_provenance"
+      ],
+      "scope_status": "candidate_scope",
+      "source_extract": {
+        "pdb_ids": [
+          "3VMT"
+        ],
+        "state_catalog": [
+          {
+            "evidence_ids": [
+              "source:M-CSA:M0970"
+            ],
+            "name": "[GlcNAc-(1->4)-Mur2Ac(oyl-L-Ala-gamma-D-Glu-L-Lys-D-Ala-D-Ala)]n-diphospho-ditrans,polycis-undecaprenol polyanion",
+            "resolution": "resolved_identifier",
+            "source_token": "78435",
+            "state_id": "CHEBI:78435"
+          },
+          {
+            "evidence_ids": [
+              "source:M-CSA:M0970"
+            ],
+            "name": "lipid II(3-)",
+            "resolution": "resolved_identifier",
+            "source_token": "60033",
+            "state_id": "CHEBI:60033"
+          },
+          {
+            "evidence_ids": [
+              "source:M-CSA:M0970"
+            ],
+            "name": "",
+            "resolution": "unresolved_placeholder",
+            "source_token": "X00676",
+            "state_id": null
+          }
+        ],
+        "uniprot_ids": [
+          "Q99T05"
+        ]
+      },
+      "target_operation": "exact_reaction_instance"
+    },
+    {
+      "allowed_operations": [
+        "source_annotation",
+        "source_scoped_mechanism_draft"
+      ],
+      "allowed_scope": [
+        "Treat M-CSA M0052 as the P0AB71 entry-level class II aldolase source handle and retain its ordered proposal as source transcription.",
+        "Keep Step 3 explicitly inferred and Step 4 outside the enzyme active site; do not project either as an observed enzyme-state transition."
+      ],
+      "candidate_id": "atlas50.candidate.m0052",
+      "contract_kind": "component_state",
+      "disposition": "SCOPED_PASS",
+      "evidence_ids": [
+        "source:M-CSA:M0052"
+      ],
+      "label": "Fructose-bisphosphate aldolase, class II",
+      "mandatory_abstentions": [
+        {
+          "clause_id": "complete_target_state",
+          "reason": "The selected evidence does not establish a complete typed metal/cofactor or enzyme-state sequence, so the target state remains withheld."
+        }
+      ],
+      "mcsa_id": "M0052",
+      "missing_clauses": [
+        "complete_target_state"
+      ],
+      "representation": {
+        "assembly": {
+          "assertion_scope": "source_scope_boundary",
+          "evidence_ids": [
+            "source:M-CSA:M0052"
+          ],
+          "member_component_ids": [
+            "protein:P0AB71"
+          ],
+          "mode": "single_source_component",
+          "note": "This mode records the single entry-level reference protein identity; it does not resolve oligomeric state or proposal applicability."
+        },
+        "components": [
+          {
+            "component_id": "protein:P0AB71",
+            "component_kind": "protein",
+            "evidence_ids": [
+              "source:M-CSA:M0052"
+            ],
+            "identity_scope": "source_identity",
+            "role": "entry-level M-CSA reference protein for the selected class II aldolase source handle",
+            "source_identifiers": [
+              {
+                "accession": "P0AB71",
+                "namespace": "UniProtKB"
+              }
+            ]
+          }
+        ],
+        "polymer_topology": null,
+        "state_transitions": [],
+        "tethered_carrier": null
+      },
+      "review_recommendation": "revise_with_evidence",
+      "satisfied_clauses": [
+        "component_identities",
+        "assembly_mode",
+        "state_claim_provenance",
+        "scope_boundary"
+      ],
+      "scope_status": "source_narrowed",
+      "source_extract": {
+        "pdb_ids": [
+          "1B57"
+        ],
+        "state_catalog": [],
+        "uniprot_ids": [
+          "P0AB71"
+        ]
+      },
+      "target_operation": "source_scoped_mechanism_draft"
+    },
+    {
+      "allowed_operations": [
+        "source_annotation",
+        "source_scoped_mechanism_draft"
+      ],
+      "allowed_scope": [
+        "Treat P29401 only as the M-CSA M0219 entry-level reference identity and preserve both source mechanism alternatives independently.",
+        "Do not merge the alternatives, assign both to P29401, normalize their differing substrate contexts, call covalent ThDP chemistry redox, or resolve the debated native metal."
+      ],
+      "candidate_id": "atlas50.candidate.m0219",
+      "contract_kind": "component_state",
+      "disposition": "SCOPED_PASS",
+      "evidence_ids": [
+        "source:M-CSA:M0219"
+      ],
+      "label": "Transketolase",
+      "mandatory_abstentions": [
+        {
+          "clause_id": "complete_target_state",
+          "reason": "Proposal 1 names P23254/1TRK, proposal 2 lacks a UniProt assignment and uses 4KXV, and the proposal-2 prose/scheme substrate context differs; complete applicability and state are withheld."
+        }
+      ],
+      "mcsa_id": "M0219",
+      "missing_clauses": [
+        "complete_target_state"
+      ],
+      "representation": {
+        "assembly": {
+          "assertion_scope": "source_scope_boundary",
+          "evidence_ids": [
+            "source:M-CSA:M0219"
+          ],
+          "member_component_ids": [
+            "protein:P29401"
+          ],
+          "mode": "single_source_component",
+          "note": "This mode records the single entry-level reference protein identity; it does not resolve oligomeric state or proposal applicability."
+        },
+        "components": [
+          {
+            "component_id": "protein:P29401",
+            "component_kind": "protein",
+            "evidence_ids": [
+              "source:M-CSA:M0219"
+            ],
+            "identity_scope": "source_identity",
+            "role": "entry-level M-CSA reference protein; applicability to either source mechanism alternative is unresolved",
+            "source_identifiers": [
+              {
+                "accession": "P29401",
+                "namespace": "UniProtKB"
+              }
+            ]
+          }
+        ],
+        "polymer_topology": null,
+        "state_transitions": [],
+        "tethered_carrier": null
+      },
+      "review_recommendation": "revise_with_evidence",
+      "satisfied_clauses": [
+        "component_identities",
+        "assembly_mode",
+        "state_claim_provenance",
+        "scope_boundary"
+      ],
+      "scope_status": "source_narrowed",
+      "source_extract": {
+        "pdb_ids": [
+          "1TRK",
+          "4KXV"
+        ],
+        "state_catalog": [],
+        "uniprot_ids": [
+          "P29401"
+        ]
+      },
+      "target_operation": "source_scoped_mechanism_draft"
+    },
+    {
+      "allowed_operations": [
+        "source_annotation",
+        "source_scoped_mechanism_draft"
+      ],
+      "allowed_scope": [
+        "Treat P00883 only as the M-CSA M0222 entry-level class I aldolase reference identity and preserve the proposal as source transcription.",
+        "Do not resolve the Step 1 prose/scheme substrate mismatch or project archaeal narrative and residue roles onto the rabbit reference protein."
+      ],
+      "candidate_id": "atlas50.candidate.m0222",
+      "contract_kind": "component_state",
+      "disposition": "SCOPED_PASS",
+      "evidence_ids": [
+        "source:M-CSA:M0222"
+      ],
+      "label": "Fructose-bisphosphate aldolase, class I",
+      "mandatory_abstentions": [
+        {
+          "clause_id": "complete_target_state",
+          "reason": "The substrate and protein-context conflicts prevent a complete typed target state and residue-role assignment."
+        }
+      ],
+      "mcsa_id": "M0222",
+      "missing_clauses": [
+        "complete_target_state"
+      ],
+      "representation": {
+        "assembly": {
+          "assertion_scope": "source_scope_boundary",
+          "evidence_ids": [
+            "source:M-CSA:M0222"
+          ],
+          "member_component_ids": [
+            "protein:P00883"
+          ],
+          "mode": "single_source_component",
+          "note": "This mode records the single entry-level reference protein identity; it does not resolve oligomeric state or proposal applicability."
+        },
+        "components": [
+          {
+            "component_id": "protein:P00883",
+            "component_kind": "protein",
+            "evidence_ids": [
+              "source:M-CSA:M0222"
+            ],
+            "identity_scope": "source_identity",
+            "role": "entry-level rabbit M-CSA reference protein; archaeal mechanism and residue applicability are unresolved",
+            "source_identifiers": [
+              {
+                "accession": "P00883",
+                "namespace": "UniProtKB"
+              }
+            ]
+          }
+        ],
+        "polymer_topology": null,
+        "state_transitions": [],
+        "tethered_carrier": null
+      },
+      "review_recommendation": "revise_with_evidence",
+      "satisfied_clauses": [
+        "component_identities",
+        "assembly_mode",
+        "state_claim_provenance",
+        "scope_boundary"
+      ],
+      "scope_status": "source_narrowed",
+      "source_extract": {
+        "pdb_ids": [
+          "2QUT"
+        ],
+        "state_catalog": [],
+        "uniprot_ids": [
+          "P00883"
+        ]
+      },
+      "target_operation": "source_scoped_mechanism_draft"
+    }
+  ],
+  "claim_boundary": [
+    "This is a deterministic computational development review of six disputed representation cases, not a human Phase B submission or a selection freeze.",
+    "The implementing agent and informed source-challenge agent use the same model family; their errors may be correlated and agreement is not statistical independence, human review, or domain-expert review.",
+    "PASS and SCOPED_PASS mean that the named operation fits the generic probe contract using cited source assertions; they do not mean that a v3 record, balanced Rhea reaction, mechanism, tier, or structure applicability has been compiled.",
+    "ABSTAIN preserves source metadata while blocking the requested operation whose required clauses are absent.",
+    "Source mechanism states remain source proposals unless a primary-source evidence entry explicitly says otherwise; no missing chemistry, topology, carrier site, chain state, or processivity is inferred."
+  ],
+  "compiler_version": "catalytic-earth.atlas50-state-probe-compiler.v1",
+  "contract": {
+    "component_state": {
+      "clauses": [
+        "component_identities",
+        "assembly_mode",
+        "state_claim_provenance",
+        "scope_boundary",
+        "complete_target_state"
+      ],
+      "operation_requirements": {
+        "source_annotation": [
+          "component_identities",
+          "scope_boundary"
+        ],
+        "source_scoped_mechanism_draft": [
+          "component_identities",
+          "assembly_mode",
+          "state_claim_provenance",
+          "scope_boundary"
+        ]
+      },
+      "purpose": "Represent source-identified components, their association mode, and only the component states or transitions the cited source asserts."
+    },
+    "polymer_topology": {
+      "clauses": [
+        "catalyst_identity",
+        "polymer_reactant_identity",
+        "polymer_product_identity",
+        "reaction_event",
+        "topology_before",
+        "topology_after",
+        "chain_length_before",
+        "chain_length_after",
+        "initiation_or_elongation",
+        "processivity",
+        "reaction_provenance"
+      ],
+      "operation_requirements": {
+        "exact_reaction_instance": [
+          "catalyst_identity",
+          "polymer_reactant_identity",
+          "polymer_product_identity",
+          "reaction_event",
+          "topology_before",
+          "topology_after",
+          "chain_length_before",
+          "chain_length_after",
+          "initiation_or_elongation",
+          "processivity",
+          "reaction_provenance"
+        ],
+        "source_annotation": [
+          "catalyst_identity",
+          "polymer_reactant_identity",
+          "reaction_provenance"
+        ],
+        "source_scoped_mechanism_draft": [
+          "catalyst_identity",
+          "polymer_reactant_identity",
+          "polymer_product_identity",
+          "reaction_event",
+          "topology_before",
+          "topology_after",
+          "reaction_provenance"
+        ]
+      },
+      "purpose": "Separate polymer identity from before/after topology, chain-length variables, initiation or elongation, and processivity."
+    },
+    "tethered_carrier_reaction_instance": {
+      "clauses": [
+        "enzyme_source_identity",
+        "carrier_owner_role",
+        "carrier_reactant_state",
+        "carrier_product_state",
+        "carrier_state_transition",
+        "carrier_host_identity",
+        "attachment_site",
+        "structure_localization",
+        "reaction_provenance"
+      ],
+      "operation_requirements": {
+        "exact_reaction_instance": [
+          "enzyme_source_identity",
+          "carrier_owner_role",
+          "carrier_reactant_state",
+          "carrier_product_state",
+          "carrier_state_transition",
+          "carrier_host_identity",
+          "attachment_site",
+          "structure_localization",
+          "reaction_provenance"
+        ],
+        "source_annotation": [
+          "enzyme_source_identity",
+          "reaction_provenance"
+        ],
+        "source_scoped_mechanism_draft": [
+          "enzyme_source_identity",
+          "carrier_owner_role",
+          "carrier_reactant_state",
+          "carrier_product_state",
+          "carrier_state_transition",
+          "reaction_provenance"
+        ]
+      },
+      "purpose": "Separate catalyst identity, carrier-owner role, covalently tethered reactant/product states, attachment site, and structural localization."
+    }
+  },
+  "declared_case_ids": [
+    "M0064",
+    "M0106",
+    "M0107",
+    "M0212",
+    "M0753",
+    "M0970",
+    "M0052",
+    "M0219",
+    "M0222"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "source:M-CSA:M0064",
+      "receipt_ids": [
+        "receipt:mcsa:six-api"
+      ],
+      "source_id": "M-CSA",
+      "source_kind": "official_database_record",
+      "source_record_id": "M0064",
+      "supports": [
+        "P14294 source identity; CHEBI:9160 single-stranded DNA on both sides; is_polymeric true; detailed proposal says DNA uncoils."
+      ],
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/64/"
+    },
+    {
+      "evidence_id": "source:M-CSA:M0106",
+      "receipt_ids": [
+        "receipt:mcsa:six-api"
+      ],
+      "source_id": "M-CSA",
+      "source_kind": "official_database_record",
+      "source_record_id": "M0106",
+      "supports": [
+        "P21873/P21874 E1 identity; CHEBI:83099 to CHEBI:83111 tethered lipoyl-lysine states; E2 carrier-owner role without a carrier accession or site."
+      ],
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/106/"
+    },
+    {
+      "evidence_id": "source:M-CSA:M0107",
+      "receipt_ids": [
+        "receipt:mcsa:six-api"
+      ],
+      "source_id": "M-CSA",
+      "source_kind": "official_database_record",
+      "source_record_id": "M0107",
+      "supports": [
+        "P19919/P19920/P19921 identity; CODH described as a dimer of heterotrimers; two source proposals share Mo(VI)-Cu(I) to Mo(IV)-Cu(I) and reoxidation labels."
+      ],
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/107/"
+    },
+    {
+      "evidence_id": "source:M-CSA:M0212",
+      "receipt_ids": [
+        "receipt:mcsa:six-api"
+      ],
+      "source_id": "M-CSA",
+      "source_kind": "official_database_record",
+      "source_record_id": "M0212",
+      "supports": [
+        "P00459/P07328/P07329 identity; ATP/ADP reaction states; Fe-protein association, ATP-coupled transfer, and dissociation; explicit uncertainty about the electron path and reactive FeMo atoms."
+      ],
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/212/"
+    },
+    {
+      "evidence_id": "source:M-CSA:M0753",
+      "receipt_ids": [
+        "receipt:mcsa:six-api"
+      ],
+      "source_id": "M-CSA",
+      "source_kind": "official_database_record",
+      "source_record_id": "M0753",
+      "supports": [
+        "Q9X0C6 HisF-only protein identity; free ammonium CHEBI:28938 in the drawn half-reaction; HisH delivery mentioned only as broader context."
+      ],
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/753/"
+    },
+    {
+      "evidence_id": "source:M-CSA:M0970",
+      "receipt_ids": [
+        "receipt:mcsa:six-api"
+      ],
+      "source_id": "M-CSA",
+      "source_kind": "official_database_record",
+      "source_record_id": "M0970",
+      "supports": [
+        "Q99T05 identity; CHEBI:78435 polymeric reactant name; unnamed X00676 product; is_polymeric false; two detailed local reaction proposals without chain-state or processivity instantiation."
+      ],
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/970/"
+    },
+    {
+      "evidence_id": "source:RCSB:1D6M",
+      "receipt_ids": [],
+      "source_id": "RCSB PDB",
+      "source_kind": "inherited_official_receipt",
+      "source_record_id": "1D6M",
+      "supports": [
+        "The panel review's hashed RCSB receipt contains P14294 protein only and no nucleic-acid entity."
+      ],
+      "uri": "https://data.rcsb.org/rest/v1/core/entry/1D6M"
+    },
+    {
+      "evidence_id": "source:RCSB:1W85",
+      "receipt_ids": [],
+      "source_id": "RCSB PDB",
+      "source_kind": "inherited_official_receipt",
+      "source_record_id": "1W85",
+      "supports": [
+        "The panel review's hashed RCSB entry/entity receipts contain E1 alpha P21873, E1 beta P21874, and E2 peripheral subunit-binding domain P11961; they do not establish a mobile lipoyl carrier domain or tethered lysine state."
+      ],
+      "uri": "https://data.rcsb.org/rest/v1/core/entry/1W85"
+    },
+    {
+      "evidence_id": "source:RCSB:1N62",
+      "receipt_ids": [],
+      "source_id": "RCSB PDB",
+      "source_kind": "inherited_official_receipt",
+      "source_record_id": "1N62",
+      "supports": [
+        "The panel review's hashed RCSB entry/entity receipts contain the three M-CSA CODH protein identities."
+      ],
+      "uri": "https://data.rcsb.org/rest/v1/core/entry/1N62"
+    },
+    {
+      "evidence_id": "source:RCSB:1N2C",
+      "receipt_ids": [],
+      "source_id": "RCSB PDB",
+      "source_kind": "inherited_official_receipt",
+      "source_record_id": "1N2C",
+      "supports": [
+        "The panel review's hashed RCSB entry/entity receipts contain Fe-protein and MoFe-protein entities in an ADP-AlF4-stabilized complex."
+      ],
+      "uri": "https://data.rcsb.org/rest/v1/core/entry/1N2C"
+    },
+    {
+      "evidence_id": "source:RCSB:2A0N",
+      "receipt_ids": [],
+      "source_id": "RCSB PDB",
+      "source_kind": "inherited_official_receipt",
+      "source_record_id": "2A0N",
+      "supports": [
+        "The panel review's hashed RCSB entry/entity receipts contain HisF Q9X0C6 alone."
+      ],
+      "uri": "https://data.rcsb.org/rest/v1/core/entry/2A0N"
+    },
+    {
+      "evidence_id": "source:RCSB:3VMT",
+      "receipt_ids": [],
+      "source_id": "RCSB PDB",
+      "source_kind": "inherited_official_receipt",
+      "source_record_id": "3VMT",
+      "supports": [
+        "The panel review's hashed RCSB entry/entity receipts describe a monofunctional glycosyltransferase with a Lipid II analog, not a chain-length or processivity trajectory."
+      ],
+      "uri": "https://data.rcsb.org/rest/v1/core/entry/3VMT"
+    },
+    {
+      "evidence_id": "source:PubMed:12475995",
+      "receipt_ids": [
+        "receipt:pubmed:eight-efetch"
+      ],
+      "source_id": "PubMed",
+      "source_kind": "primary_paper_metadata_and_abstract",
+      "source_record_id": "12475995",
+      "supports": [
+        "Primary structural evidence for oxidized/reduced Mo-Cu CODH active-site states; it does not independently validate every M-CSA mechanism step."
+      ],
+      "uri": "https://pubmed.ncbi.nlm.nih.gov/12475995/"
+    },
+    {
+      "evidence_id": "source:PubMed:9163420",
+      "receipt_ids": [
+        "receipt:pubmed:eight-efetch"
+      ],
+      "source_id": "PubMed",
+      "source_kind": "primary_paper_metadata_and_abstract",
+      "source_record_id": "9163420",
+      "supports": [
+        "Primary 1N2C study directly describes ATP-hydrolysis/electron-transfer coupling and an ADP-AlF4-stabilized Fe-protein/MoFe-protein complex."
+      ],
+      "uri": "https://pubmed.ncbi.nlm.nih.gov/9163420/"
+    },
+    {
+      "evidence_id": "source:PubMed:12795594",
+      "receipt_ids": [
+        "receipt:pubmed:eight-efetch"
+      ],
+      "source_id": "PubMed",
+      "source_kind": "primary_paper_metadata_and_abstract",
+      "source_record_id": "12795594",
+      "supports": [
+        "Primary E1 study assigns reductive acetylation to a lipoyl group covalently attached to an E2 lysine residue, without identifying the selected 1W85 binding-domain entity as that carrier."
+      ],
+      "uri": "https://pubmed.ncbi.nlm.nih.gov/12795594/"
+    },
+    {
+      "evidence_id": "source:PubMed:11264293",
+      "receipt_ids": [
+        "receipt:pubmed:eight-efetch"
+      ],
+      "source_id": "PubMed",
+      "source_kind": "primary_paper_metadata_and_abstract",
+      "source_record_id": "11264293",
+      "supports": [
+        "Primary Thermotoga study distinguishes the HisH/HisF bienzyme context and the HisF synthase reaction; this context is broader than the selected HisF-only/free-ammonium handles."
+      ],
+      "uri": "https://pubmed.ncbi.nlm.nih.gov/11264293/"
+    },
+    {
+      "evidence_id": "source:PubMed:11429611",
+      "receipt_ids": [
+        "receipt:pubmed:eight-efetch"
+      ],
+      "source_id": "PubMed",
+      "source_kind": "primary_paper_metadata_and_abstract",
+      "source_record_id": "11429611",
+      "supports": [
+        "Primary type-IA topoisomerase study supports strand cleavage/passage as a topology-changing class while providing no before/after topology state for selected 1D6M."
+      ],
+      "uri": "https://pubmed.ncbi.nlm.nih.gov/11429611/"
+    },
+    {
+      "evidence_id": "source:PubMed:32786224",
+      "receipt_ids": [
+        "receipt:pubmed:eight-efetch"
+      ],
+      "source_id": "PubMed",
+      "source_kind": "primary_paper_metadata_and_abstract",
+      "source_record_id": "32786224",
+      "supports": [
+        "The cited computational primary study proposes a local GT51 reaction model; its abstract does not establish a complete n-to-n+1 reaction instance or processivity."
+      ],
+      "uri": "https://pubmed.ncbi.nlm.nih.gov/32786224/"
+    },
+    {
+      "evidence_id": "source:M-CSA:M0052",
+      "receipt_ids": [
+        "receipt:mcsa:aldolase-transketolase-entry-api"
+      ],
+      "source_id": "M-CSA",
+      "source_kind": "official_database_record",
+      "source_record_id": "M0052",
+      "supports": [
+        "Entry-level P0AB71 identity and the exact M-CSA class II aldolase proposal, including an explicitly inferred Step 3 and Step 4 cyclisation outside the enzyme active site."
+      ],
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/52/"
+    },
+    {
+      "evidence_id": "source:M-CSA:M0219",
+      "receipt_ids": [
+        "receipt:mcsa:aldolase-transketolase-entry-api"
+      ],
+      "source_id": "M-CSA",
+      "source_kind": "official_database_record",
+      "source_record_id": "M0219",
+      "supports": [
+        "Entry-level P29401 identity and two distinct M-CSA transketolase proposals; the source alternatives retain different protein/structure and substrate contexts."
+      ],
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/219/"
+    },
+    {
+      "evidence_id": "source:M-CSA:M0222",
+      "receipt_ids": [
+        "receipt:mcsa:aldolase-transketolase-entry-api"
+      ],
+      "source_id": "M-CSA",
+      "source_kind": "official_database_record",
+      "source_record_id": "M0222",
+      "supports": [
+        "Entry-level P00883 identity and the exact M-CSA class I aldolase proposal; source prose, scheme substrate, organism context, and residue applicability are not treated as resolved."
+      ],
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/222/"
+    }
+  ],
+  "external_source_checks": {
+    "gpu_hours": 0,
+    "limit_bytes": 31457280,
+    "raw_source_bodies_committed": false,
+    "receipts": [
+      {
+        "bytes": 97870,
+        "raw_response_committed": false,
+        "receipt_id": "receipt:mcsa:six-api",
+        "retrieved_on": "2026-09-05",
+        "sha256": "eb0b3cbf31dbca16a7c6be81fd5a0a7eaa6c3edbf63f030c911a01176d1cfa4e",
+        "source": "M-CSA official API, exact six-ID query",
+        "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=64,106,107,212,753,970"
+      },
+      {
+        "bytes": 68364,
+        "raw_response_committed": false,
+        "receipt_id": "receipt:pubmed:eight-efetch",
+        "retrieved_on": "2026-09-05",
+        "sha256": "b64ca6a3ed37cc0950ddc5babcb2c0a6ad073cc8dfe800a336deeee8bfaa8262",
+        "source": "NCBI PubMed EFetch, eight cited records",
+        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12475995,9163420,12651851,12795594,11264293,12795595,11429611,32786224&retmode=xml"
+      },
+      {
+        "bytes": 68683,
+        "raw_response_committed": false,
+        "receipt_id": "receipt:mcsa:aldolase-transketolase-entry-api",
+        "retrieved_on": "2026-09-06",
+        "sha256": "60747ca25c1259849330ad0b288c81ecaaf3dfe0c50551a01a66fb071d09205e",
+        "source": "M-CSA official API, exact M0052/M0219/M0222 query; entry objects preserved in committed source wrappers",
+        "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=52%2C219%2C222"
+      }
+    ],
+    "response_bytes": 234917
+  },
+  "generated_on": "2026-09-06",
+  "inheritance": {
+    "base_batch_id": "default",
+    "inherited_case_ids": [
+      "M0064",
+      "M0106",
+      "M0107",
+      "M0212",
+      "M0753",
+      "M0970"
+    ],
+    "probe_report_path": "data/atlas/atlas50/state_probe/report.json",
+    "probe_report_sha256": "bbc0f6013574af5b36a62a8b86fad39938340decbcdda78d40131253607822f9",
+    "probe_spec_path": "data/atlas/atlas50/state_probe/spec.json",
+    "probe_spec_sha256": "1e2d3a71d5b1ca85eb29d0cf0680ce873014abb9cf8f9734c1def1495985bb34"
+  },
+  "report_id": "atlas50.state-probe.aldolase-transketolase.2026-09-06",
+  "review_independence": {
+    "blind_review": false,
+    "computational_roles": [
+      "state_probe_implementation",
+      "informed_source_challenge"
+    ],
+    "correlation_warning": "Both computational roles use the same model family, so errors may be correlated and agreement is not statistical independence.",
+    "domain_expert_review_claimed": false,
+    "human_reviewers": 0,
+    "same_model_agents": true,
+    "statistical_independence_claimed": false
+  },
+  "schema_version": "catalytic-earth.atlas50-state-probe.v2",
+  "spec_sha256": "fa9996c41b88c4f4dc8a817a1c0b907024ec23240ca8c13c809a520c2291fc82",
+  "status": "computational_development_review_not_mechanism_compilation",
+  "summary": {
+    "allowed_operation_counts": {
+      "source_annotation": 9,
+      "source_scoped_mechanism_draft": 7
+    },
+    "disposition_counts": {
+      "ABSTAIN": 1,
+      "PASS": 1,
+      "SCOPED_PASS": 7
+    },
+    "frozen_artifacts_modified": false,
+    "full_panel_review_recovered": false,
+    "mechanisms_compiled": 0
+  },
+  "v3_compatibility": {
+    "available_boundary_fields": [
+      "biological_scope.uniprot_ids",
+      "reaction.participants",
+      "mechanism_proposals.components_summary",
+      "uncertainties",
+      "detail_abstention",
+      "claim_boundary"
+    ],
+    "kernel_evidence": {
+      "atlas10": {
+        "case_count": 10,
+        "kernel_schema_version": "catalytic-earth.atlas10-kernel.v1",
+        "record_count": 30,
+        "record_schema_versions": [
+          "catalytic-earth.mechanism-record.v3"
+        ]
+      },
+      "atlas3": {
+        "case_count": 3,
+        "kernel_schema_version": "catalytic-earth.atlas3-kernel.v1",
+        "record_count": 9,
+        "record_schema_versions": [
+          "catalytic-earth.mechanism-record.v2"
+        ]
+      }
+    },
+    "missing_structured_fields": [
+      "assembly",
+      "components",
+      "polymer_topology",
+      "state_transitions",
+      "tethered_carrier"
+    ],
+    "status": "sidecar_probe_requires_schema_decision_before_kernel_compilation",
+    "verified_constraints": [
+      "The v3 top-level object rejects undeclared properties.",
+      "The v3 reaction source is fixed to Rhea.",
+      "The v3 participant identifier pattern is ^(?:CHEBI|RHEA-COMP):[0-9]+$ and cannot encode M0970 placeholder X00676.",
+      "The v3 component summary is prose, so it cannot preserve typed component/state applicability by itself."
+    ]
+  }
+}

@@ -22,6 +22,23 @@ records to increase the count. The existing Atlas-3/10 v2/v3 records and query
 results remain unchanged. M0064 and M0970 remain subject to their existing
 mechanism-draft objections.
 
+The separate `aldolase-transketolase` batch adds M0052 class II aldolase,
+M0222 class I aldolase, and M0219 transketolase: three records, four proposals,
+26 reaction steps, four terminal states and 98 source arrow annotations. Its
+successor review inherits the earlier six decisions unchanged and adds three
+source-scoped decisions. Across both batches there are seven Tier-1 records,
+nine proposals, 69 reaction steps, nine terminal states and 246 source arrows.
+These counts include source-marked inferred and extra-enzymatic steps; they
+are not counts of experimentally observed active-site events.
+
+The aldolases share source EC 4.1.2.13 and entry-level participant identifiers
+while describing metal-assisted and covalent Schiff-base chemistry. M0222's
+Step 1 prose and diagram disagree about the substrate, and its rabbit reference
+identity coexists with archaeal mechanism statements. M0219 retains two
+proposals with different reaction and protein contexts, a prose/diagram
+participant conflict, and unresolved native-metal identity. These conflicts
+remain explicit abstentions; entry-level matches do not resolve them.
+
 In particular, the carrier owner/attachment gaps, unknown complete nitrogenase
 cluster pathway, and conflicting HisF Asp11/Asp130 roles remain visible in the
 query. Source transcription does not settle those questions or infer geometry,
@@ -42,6 +59,8 @@ catalytic-earth atlas-drafts --assembly cycle_coupled_association
 catalytic-earth atlas-drafts --text lipoyl
 catalytic-earth atlas-drafts --product CHEBI:16526
 catalytic-earth atlas-drafts --reactant CHEBI:28938 --product CHEBI:58278
+catalytic-earth atlas-drafts --batch aldolase-transketolase --reactant 57642 --reactant 59776 --product 49299
+catalytic-earth atlas-drafts --batch aldolase-transketolase --mcsa-id M0219 --steps
 ```
 
 Compact results omit step bodies while retaining scope, residue evidence and
@@ -49,6 +68,10 @@ abstentions. `--steps` includes the ordered source steps and available electron
 flows. An empty result means no matching record in this bounded batch; it is
 not a claim that no such mechanism exists elsewhere. Every response identifies
 the selected source IDs and requested operation, including empty results.
+The default selects the original four records. `--batch aldolase-transketolase`
+selects the additional three; it does not silently expand the default corpus.
+The paired aldolase query above returns both source records and their separate
+proposal, residue and uncertainty fields.
 
 Chemical filters accept ChEBI identifiers or their numeric part. Repeat
 `--participant` (either side), `--reactant` (left), or `--product` (right) to
@@ -74,6 +97,10 @@ unmapped rows.
 ```bash
 python scripts/build_atlas_draft_sources.py --check
 python scripts/build_atlas_drafts.py --check
+python scripts/build_atlas50_state_probe.py --batch aldolase-transketolase --check
+python scripts/build_atlas50_development_gate.py --batch aldolase-transketolase --check
+python scripts/build_atlas_draft_sources.py --batch aldolase-transketolase --check
+python scripts/build_atlas_drafts.py --batch aldolase-transketolase --check
 python scripts/run_test_tier.py "core/unit"
 python scripts/validate_repository_contracts.py
 ```
@@ -83,6 +110,11 @@ offline. The downloader verifies authorizations, enforces request and byte
 budgets before and during transfer, and retains source receipts, hashes,
 unavailable-scheme status and attribution. The manifest specifies the selected
 IDs; subsequent permitted batches use the same importer and compiler.
+Batch paths are declared in `atlas_draft_batch.py`. Successor review inputs,
+snapshots, manifests and compiled outputs live under their own batch directory;
+inherited review decisions are pinned and checked. The additional batch used
+31 recorded API/scheme requests and 569,327 bytes, plus three ancillary official
+page inspections whose bytes are not represented as raw-source receipts.
 
 The source API is the maintained M-CSA interface; its old flat files are no
 longer updated. Upstream also warns that homologous residue matches do not
@@ -91,6 +123,7 @@ establish conserved catalytic function. [M-CSA API documentation](https://www.eb
 Source redistribution follows [the recorded attribution](../data/atlas/source_drafts/SOURCE_ATTRIBUTION.md)
 and CC BY 4.0 terms. Only compiled projections and attribution enter the wheel.
 The source snapshots remain in the repository source package.
+The additional batch has [its own attribution](../data/atlas/source_drafts/batches/aldolase-transketolase/SOURCE_ATTRIBUTION.md).
 
 ## Priority rule
 

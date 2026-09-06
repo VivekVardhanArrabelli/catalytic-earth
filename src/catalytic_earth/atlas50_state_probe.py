@@ -15,9 +15,13 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
+from .atlas_draft_batch import DEFAULT_BATCH, DraftBatchPaths
+
 
 SPEC_SCHEMA_VERSION = "catalytic-earth.atlas50-state-probe-spec.v1"
 REPORT_SCHEMA_VERSION = "catalytic-earth.atlas50-state-probe.v1"
+SUCCESSOR_SPEC_SCHEMA_VERSION = "catalytic-earth.atlas50-state-probe-spec.v2"
+SUCCESSOR_REPORT_SCHEMA_VERSION = "catalytic-earth.atlas50-state-probe.v2"
 COMPILER_VERSION = "catalytic-earth.atlas50-state-probe-compiler.v1"
 
 TARGET_MCSA_IDS = ("M0064", "M0106", "M0107", "M0212", "M0753", "M0970")
@@ -230,7 +234,9 @@ def _panel_indexes(
     return rows, findings
 
 
-def _validate_receipts(spec: dict[str, Any]) -> set[str]:
+def _validate_receipts(
+    spec: dict[str, Any], *, batch: DraftBatchPaths
+) -> set[str]:
     ids: set[str] = set()
     total_bytes = 0
     for index, receipt in enumerate(spec["source_receipts"]):
@@ -252,10 +258,27 @@ def _validate_receipts(spec: dict[str, Any]) -> set[str]:
         ids.add(receipt["receipt_id"])
         _require(isinstance(receipt["source"], str) and receipt["source"], f"{context} source is empty")
         _require(isinstance(receipt["url"], str) and receipt["url"].startswith("https://"), f"{context} URL must be HTTPS")
-        _require(receipt["retrieved_on"] == spec["generated_on"], f"{context} retrieval date differs")
+        _require(
+            isinstance(receipt["retrieved_on"], str)
+            and bool(re.fullmatch(r"\d{4}-\d{2}-\d{2}", receipt["retrieved_on"])),
+            f"{context} retrieval date differs",
+        )
+        if batch == DEFAULT_BATCH:
+            _require(
+                receipt["retrieved_on"] == spec["generated_on"],
+                f"{context} retrieval date differs",
+            )
         _require(isinstance(receipt["bytes"], int) and receipt["bytes"] > 0, f"{context} bytes are invalid")
         _require(bool(_SHA256_RE.fullmatch(receipt["sha256"])), f"{context} SHA-256 is invalid")
-        _require(receipt["raw_response_committed"] is False, f"{context} must not commit raw source bodies")
+        _require(
+            type(receipt["raw_response_committed"]) is bool,
+            f"{context} raw-response status is invalid",
+        )
+        if batch == DEFAULT_BATCH:
+            _require(
+                receipt["raw_response_committed"] is False,
+                f"{context} must not commit raw source bodies",
+            )
         total_bytes += receipt["bytes"]
     _require(total_bytes < 30 * 1024 * 1024, "external source checks exceed 30 MiB")
     return ids
@@ -505,30 +528,94 @@ def _validate_representation(
         _require(set(links).issubset(evidence_ids), f"{context}.polymer_topology cites unknown evidence")
 
 
+def declared_probe_case_ids(
+    spec: dict[str, Any], *, batch: DraftBatchPaths = DEFAULT_BATCH
+) -> tuple[str, ...]:
+    """Return the exact ordered cases declared by a validated probe generation."""
+
+    cases = spec.get("cases")
+    _require(isinstance(cases, list), "probe cases must be an array")
+    observed = tuple(
+        case.get("mcsa_id") if isinstance(case, dict) else None for case in cases
+    )
+    if batch == DEFAULT_BATCH:
+        _require(
+            spec.get("schema_version") == SPEC_SCHEMA_VERSION,
+            "unsupported probe spec schema",
+        )
+        _require(observed == TARGET_MCSA_IDS, "probe case order or IDs differ")
+        return TARGET_MCSA_IDS
+
+    _require(
+        spec.get("schema_version") == SUCCESSOR_SPEC_SCHEMA_VERSION,
+        "unsupported successor probe spec schema",
+    )
+    declared = spec.get("declared_case_ids")
+    _require(isinstance(declared, list) and declared, "successor case declaration is missing")
+    case_ids = tuple(declared)
+    _require(
+        all(isinstance(value, str) and _MCSA_RE.fullmatch(value) for value in case_ids),
+        "successor case declaration contains an invalid M-CSA ID",
+    )
+    _require(len(case_ids) == len(set(case_ids)), "successor case declaration repeats an ID")
+    _require(observed == case_ids, "successor cases differ from the declared order")
+    inheritance = spec.get("inheritance")
+    _require(isinstance(inheritance, dict), "successor probe inheritance is missing")
+    _exact_keys(
+        inheritance,
+        {
+            "base_batch_id",
+            "probe_spec_path",
+            "probe_spec_sha256",
+            "probe_report_path",
+            "probe_report_sha256",
+            "inherited_case_ids",
+        },
+        "inheritance",
+    )
+    _require(inheritance["base_batch_id"] == DEFAULT_BATCH.batch_id, "successor base batch differs")
+    _require(
+        inheritance["probe_spec_path"] == DEFAULT_BATCH.probe_spec_path.as_posix()
+        and inheritance["probe_report_path"] == DEFAULT_BATCH.probe_report_path.as_posix(),
+        "successor probe inheritance paths differ",
+    )
+    for key in ("probe_spec_sha256", "probe_report_sha256"):
+        _require(
+            isinstance(inheritance[key], str)
+            and bool(_SHA256_RE.fullmatch(inheritance[key])),
+            f"inheritance.{key} is invalid",
+        )
+    inherited = tuple(inheritance["inherited_case_ids"])
+    _require(inherited == TARGET_MCSA_IDS, "successor must inherit the exact legacy cases")
+    _require(case_ids[: len(inherited)] == inherited, "successor must preserve legacy case order")
+    _require(len(case_ids) > len(inherited), "successor must declare at least one new case")
+    return case_ids
+
+
 def validate_probe_spec(
     spec: dict[str, Any],
     *,
     candidate_spec: dict[str, Any],
     panel_review: dict[str, Any],
+    batch: DraftBatchPaths = DEFAULT_BATCH,
 ) -> None:
     """Validate exact source identity, contract coverage, and abstentions."""
 
-    _exact_keys(
-        spec,
-        {
-            "schema_version",
-            "spec_id",
-            "status",
-            "generated_on",
-            "claim_boundary",
-            "review_independence",
-            "source_receipts",
-            "evidence",
-            "cases",
-        },
-        "spec",
-    )
-    _require(spec["schema_version"] == SPEC_SCHEMA_VERSION, "unsupported probe spec schema")
+    fields = {
+        "schema_version",
+        "spec_id",
+        "status",
+        "generated_on",
+        "claim_boundary",
+        "review_independence",
+        "source_receipts",
+        "evidence",
+        "cases",
+    }
+    if batch != DEFAULT_BATCH:
+        fields |= {"declared_case_ids", "inheritance"}
+    _exact_keys(spec, fields, "spec")
+    case_ids = declared_probe_case_ids(spec, batch=batch)
     _require(spec["status"] == "bounded_computational_development_review_input", "probe spec status overclaims")
     _string_list(spec["claim_boundary"], "claim_boundary", minimum=1)
     independence = _exact_keys(
@@ -555,14 +642,13 @@ def validate_probe_spec(
         and "correlated" in independence["correlation_warning"].lower(),
         "review independence must state correlated-error risk",
     )
-    receipt_ids = _validate_receipts(spec)
+    receipt_ids = _validate_receipts(spec, batch=batch)
     evidence_ids = _validate_evidence(spec, receipt_ids)
 
     candidates = _candidate_index(candidate_spec)
     panel_rows, panel_findings = _panel_indexes(panel_review)
     cases = spec["cases"]
-    _require(isinstance(cases, list) and len(cases) == 6, "probe must contain exactly six cases")
-    _require(tuple(case["mcsa_id"] for case in cases) == TARGET_MCSA_IDS, "probe case order or IDs differ")
+    inherited_case_ids = set(TARGET_MCSA_IDS) if batch != DEFAULT_BATCH else set(case_ids)
 
     candidate_ids: set[str] = set()
     for index, case in enumerate(cases):
@@ -588,7 +674,12 @@ def validate_probe_spec(
         _require(bool(_MCSA_RE.fullmatch(mcsa_id)), f"{context} M-CSA ID is invalid")
         _require(case["candidate_id"] not in candidate_ids, f"{context} repeats candidate_id")
         candidate_ids.add(case["candidate_id"])
-        _require(mcsa_id in candidates and mcsa_id in panel_rows and mcsa_id in panel_findings, f"{context} lacks frozen source/review identity")
+        _require(
+            mcsa_id in candidates and mcsa_id in panel_rows,
+            f"{context} lacks frozen source/review identity",
+        )
+        if mcsa_id in inherited_case_ids:
+            _require(mcsa_id in panel_findings, f"{context} lacks inherited panel finding")
         frozen = candidates[mcsa_id]
         panel_row = panel_rows[mcsa_id]
         _require(case["candidate_id"] == f"atlas50.candidate.{mcsa_id.lower()}", f"{context} candidate_id differs")
@@ -771,21 +862,34 @@ def build_state_probe(
     atlas3_kernel: dict[str, Any],
     atlas10_kernel: dict[str, Any],
     basis_inputs: dict[str, str],
+    batch: DraftBatchPaths = DEFAULT_BATCH,
 ) -> dict[str, Any]:
-    """Build a deterministic six-case representation report."""
+    """Build a deterministic representation report for a declared batch."""
 
     validate_probe_spec(
-        spec, candidate_spec=candidate_spec, panel_review=panel_review
+        spec,
+        candidate_spec=candidate_spec,
+        panel_review=panel_review,
+        batch=batch,
     )
+    case_ids = declared_probe_case_ids(spec, batch=batch)
     cases = [_evaluate_case(case) for case in spec["cases"]]
     counts = Counter(case["disposition"] for case in cases)
     operation_counts = Counter(
         operation for case in cases for operation in case["allowed_operations"]
     )
     receipt_bytes = sum(item["bytes"] for item in spec["source_receipts"])
-    return {
-        "schema_version": REPORT_SCHEMA_VERSION,
-        "report_id": "atlas50.state-probe.2026-09-05",
+    report = {
+        "schema_version": (
+            REPORT_SCHEMA_VERSION
+            if batch == DEFAULT_BATCH
+            else SUCCESSOR_REPORT_SCHEMA_VERSION
+        ),
+        "report_id": (
+            "atlas50.state-probe.2026-09-05"
+            if batch == DEFAULT_BATCH
+            else f"atlas50.state-probe.{batch.batch_id}.{spec['generated_on']}"
+        ),
         "generated_on": spec["generated_on"],
         "status": "computational_development_review_not_mechanism_compilation",
         "compiler_version": COMPILER_VERSION,
@@ -801,7 +905,10 @@ def build_state_probe(
             "response_bytes": receipt_bytes,
             "limit_bytes": 30 * 1024 * 1024,
             "gpu_hours": 0,
-            "raw_source_bodies_committed": False,
+            "raw_source_bodies_committed": any(
+                receipt["raw_response_committed"]
+                for receipt in spec["source_receipts"]
+            ),
             "receipts": spec["source_receipts"],
         },
         "case_count": len(cases),
@@ -817,6 +924,46 @@ def build_state_probe(
         "evidence": spec["evidence"],
         "cases": cases,
     }
+    if batch != DEFAULT_BATCH:
+        report["declared_case_ids"] = list(case_ids)
+        report["inheritance"] = spec["inheritance"]
+    return report
+
+
+def validate_successor_probe_inheritance(
+    spec: dict[str, Any],
+    report: dict[str, Any],
+    *,
+    repo_root: str | Path,
+    batch: DraftBatchPaths,
+) -> None:
+    """Verify that a successor carries the pinned legacy cases unchanged."""
+
+    if batch == DEFAULT_BATCH:
+        return
+    root = Path(repo_root)
+    inheritance = spec["inheritance"]
+    base_spec_path = root / DEFAULT_BATCH.probe_spec_path
+    base_report_path = root / DEFAULT_BATCH.probe_report_path
+    _require(
+        file_sha256(base_spec_path) == inheritance["probe_spec_sha256"],
+        "successor legacy probe-spec pin differs",
+    )
+    _require(
+        file_sha256(base_report_path) == inheritance["probe_report_sha256"],
+        "successor legacy probe-report pin differs",
+    )
+    base_spec = json.loads(base_spec_path.read_text(encoding="utf-8"))
+    base_report = json.loads(base_report_path.read_text(encoding="utf-8"))
+    inherited_count = len(inheritance["inherited_case_ids"])
+    _require(
+        spec["cases"][:inherited_count] == base_spec["cases"],
+        "successor changed an inherited probe-spec case",
+    )
+    _require(
+        report["cases"][:inherited_count] == base_report["cases"],
+        "successor changed an inherited probe-report case",
+    )
 
 
 def validate_state_probe(
@@ -829,6 +976,8 @@ def validate_state_probe(
     atlas3_kernel: dict[str, Any],
     atlas10_kernel: dict[str, Any],
     basis_inputs: dict[str, str],
+    batch: DraftBatchPaths = DEFAULT_BATCH,
+    repo_root: str | Path | None = None,
 ) -> dict[str, Any]:
     """Validate a report by rebuilding it from the source-bound spec."""
 
@@ -840,8 +989,13 @@ def validate_state_probe(
         atlas3_kernel=atlas3_kernel,
         atlas10_kernel=atlas10_kernel,
         basis_inputs=basis_inputs,
+        batch=batch,
     )
     _require(report == expected, "state probe differs from deterministic source-bound build")
+    if batch != DEFAULT_BATCH and repo_root is not None:
+        validate_successor_probe_inheritance(
+            spec, report, repo_root=repo_root, batch=batch
+        )
     return {
         "case_count": report["case_count"],
         **report["summary"]["disposition_counts"],

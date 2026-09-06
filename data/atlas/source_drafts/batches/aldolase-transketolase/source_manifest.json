@@ -1,0 +1,768 @@
+{
+  "acquisition": {
+    "download_bytes_max": 31457280,
+    "download_bytes_used": 569327,
+    "external_requests_expected": 31,
+    "external_requests_max": 100,
+    "external_requests_used": 31,
+    "responses": [
+      {
+        "http_status": 200,
+        "mechanism_id": null,
+        "record_ids": [
+          "M0052",
+          "M0219",
+          "M0222"
+        ],
+        "request_index": 1,
+        "request_kind": "entry_batch",
+        "response_bytes": 68683,
+        "response_sha256": "60747ca25c1259849330ad0b288c81ecaaf3dfe0c50551a01a66fb071d09205e",
+        "retrieval_status": "source_response_downloaded",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=52%2C219%2C222",
+        "step_id": null
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0052"
+        ],
+        "request_index": 2,
+        "request_kind": "step_scheme",
+        "response_bytes": 20632,
+        "response_sha256": "43e19aeb9e481e4a26ac82932788b79831e60634685f537045a4ad77eb38370d",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/Step_macie.52.1.1_IsJhX20.mrv",
+        "step_id": 1
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0052"
+        ],
+        "request_index": 3,
+        "request_kind": "step_scheme",
+        "response_bytes": 20627,
+        "response_sha256": "6c14c78e0068e0fe6060b0afdd6207995d185207aff230e457c2d5baea2451db",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/Step_macie.52.1.2_M5jZePr.mrv",
+        "step_id": 2
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0052"
+        ],
+        "request_index": 4,
+        "request_kind": "step_scheme",
+        "response_bytes": 11371,
+        "response_sha256": "cb2e06eb4da2fb04e369abc022b1b235dce4167586610345a2757974a5dd638e",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/Step_macie.52.1.3_zEcPmnq.mrv",
+        "step_id": 3
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0052"
+        ],
+        "request_index": 5,
+        "request_kind": "step_scheme",
+        "response_bytes": 10590,
+        "response_sha256": "2a3cf58bdfadf2583e63f04047a370c8bb7b4517c4bd54193892792119fe6225",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/Step_macie.52.1.4_UcXdqkD.mrv",
+        "step_id": 4
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0052"
+        ],
+        "request_index": 6,
+        "request_kind": "step_scheme",
+        "response_bytes": 10351,
+        "response_sha256": "bce73489cedddd26e50adb3dd994a851ee0434d8578716aa5524a9aef2e57d4b",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/Step_macie.52.1.5.mrv",
+        "step_id": 5
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0219"
+        ],
+        "request_index": 7,
+        "request_kind": "step_scheme",
+        "response_bytes": 15010,
+        "response_sha256": "48563617ec853d43d5869852bd45fb1c9ec08ab5c0de107ee252b2f81e4b5554",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_219_mechanism_1_step_1_fBuchvb.mrv",
+        "step_id": 1
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0219"
+        ],
+        "request_index": 8,
+        "request_kind": "step_scheme",
+        "response_bytes": 22021,
+        "response_sha256": "fa49fc016864c33d502ea1d74a07b19e5a3b65c0b858ca07c1092be73b30c135",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_219_mechanism_1_step_2_XXVQT97.mrv",
+        "step_id": 2
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0219"
+        ],
+        "request_index": 9,
+        "request_kind": "step_scheme",
+        "response_bytes": 21819,
+        "response_sha256": "346c93502f1fb77b354f8a9eeb42e9406b2f6d8166b8ce7bc7102f78b2b11e1a",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_219_mechanism_1_step_3_7JQ5y9M.mrv",
+        "step_id": 3
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0219"
+        ],
+        "request_index": 10,
+        "request_kind": "step_scheme",
+        "response_bytes": 20536,
+        "response_sha256": "81279dc8ea2519913ee2bf802964f9c5171367b3777b9770e1a79a8c80dc80b4",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_219_mechanism_1_step_4_wJBkEAt.mrv",
+        "step_id": 4
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0219"
+        ],
+        "request_index": 11,
+        "request_kind": "step_scheme",
+        "response_bytes": 20818,
+        "response_sha256": "4ac2291276b62bb779c8306f43942139eaf342831b528f7b7b76e2d2959751c9",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_219_mechanism_1_step_5.mrv",
+        "step_id": 5
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0219"
+        ],
+        "request_index": 12,
+        "request_kind": "step_scheme",
+        "response_bytes": 20650,
+        "response_sha256": "de2d063c0321d67c43896f63e5fe621c4a9d59e0e19c02a43ac7e75c551e9fd2",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_219_mechanism_1_step_6.mrv",
+        "step_id": 6
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0219"
+        ],
+        "request_index": 13,
+        "request_kind": "step_scheme",
+        "response_bytes": 6126,
+        "response_sha256": "3e3a9ff22483091da0f40db8a63ef5f703a225194bb2005ff8984f822eceb9fd",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_219_mechanism_1_step_7.mrv",
+        "step_id": 7
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0219"
+        ],
+        "request_index": 14,
+        "request_kind": "step_scheme",
+        "response_bytes": 5631,
+        "response_sha256": "409696b612f8fa9c944eab0c5ac3739e518fee834470d3c8594f7293141974ce",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/macie_entry_219_mechanism_1_step_8.mrv",
+        "step_id": 8
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 2,
+        "record_ids": [
+          "M0219"
+        ],
+        "request_index": 15,
+        "request_kind": "step_scheme",
+        "response_bytes": 17675,
+        "response_sha256": "30032e79d5c2d28f1af2942a6bf3c7f6accb271fc3385281f4c4ffcdcf238ca6",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/macie_entry_219_2_1.mrv",
+        "step_id": 1
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 2,
+        "record_ids": [
+          "M0219"
+        ],
+        "request_index": 16,
+        "request_kind": "step_scheme",
+        "response_bytes": 17542,
+        "response_sha256": "cd68254be6d21e3b2d9a79e13829d2467b246d68dbab0b4c2ca62e35b3237ec2",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/macie_entry_219_2_2.mrv",
+        "step_id": 2
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 2,
+        "record_ids": [
+          "M0219"
+        ],
+        "request_index": 17,
+        "request_kind": "step_scheme",
+        "response_bytes": 16507,
+        "response_sha256": "7b7463fd8d621a5d1fa45971977c350a32871b4dbcc3236d8c85bf2f1fe93633",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/macie_entry_219_2_3.mrv",
+        "step_id": 3
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 2,
+        "record_ids": [
+          "M0219"
+        ],
+        "request_index": 18,
+        "request_kind": "step_scheme",
+        "response_bytes": 18158,
+        "response_sha256": "b67ca4ab76c7fd7b15722c699a109a634795aa2a0a69e719c17cef4ee6e96748",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/macie_entry_219_2_4.mrv",
+        "step_id": 4
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 2,
+        "record_ids": [
+          "M0219"
+        ],
+        "request_index": 19,
+        "request_kind": "step_scheme",
+        "response_bytes": 18033,
+        "response_sha256": "213f69ae9ff81905900e4496c295572cc683255dae952716c622d0c5dbff89c1",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/macie_entry_219_2_5.mrv",
+        "step_id": 5
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 2,
+        "record_ids": [
+          "M0219"
+        ],
+        "request_index": 20,
+        "request_kind": "step_scheme",
+        "response_bytes": 17051,
+        "response_sha256": "01e5782f2538d14f53484feb11c85d7f66a0c5241ce60016f52f8fa2a59040f4",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/macie_entry_219_2_6.mrv",
+        "step_id": 6
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0222"
+        ],
+        "request_index": 21,
+        "request_kind": "step_scheme",
+        "response_bytes": 15185,
+        "response_sha256": "c3f90b7a8abdcddd17507e84ae1836fc48ad1692c8adf44bd0a9313bc35e8ec4",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_222_mechanism_1_step_1_jWbuN8f.mrv",
+        "step_id": 1
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0222"
+        ],
+        "request_index": 22,
+        "request_kind": "step_scheme",
+        "response_bytes": 15364,
+        "response_sha256": "ba89e76a269853d8e6b9df46c306a003e4101a242dd73178d0e2fc020a914eb6",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_222_mechanism_1_step_2_rCZ5Ykp.mrv",
+        "step_id": 2
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0222"
+        ],
+        "request_index": 23,
+        "request_kind": "step_scheme",
+        "response_bytes": 15216,
+        "response_sha256": "e777d8c3edba2e5cb11b09d6cd9ddf7568150dc7fd7691a301b23250708ef8af",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_222_mechanism_1_step_3_gnAq4sI.mrv",
+        "step_id": 3
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0222"
+        ],
+        "request_index": 24,
+        "request_kind": "step_scheme",
+        "response_bytes": 15198,
+        "response_sha256": "a8b7a4a27fd9252789dff350e2feb84acbb8592e115e54d8caf53f46adee911e",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_222_mechanism_1_step_4_xpYMtcn.mrv",
+        "step_id": 4
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0222"
+        ],
+        "request_index": 25,
+        "request_kind": "step_scheme",
+        "response_bytes": 15321,
+        "response_sha256": "91c5821ab3f4d0e0f14f5988323356cbee0d09dcfee163065a975a9a3d64f677",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_222_mechanism_1_step_5_a6caycW.mrv",
+        "step_id": 5
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0222"
+        ],
+        "request_index": 26,
+        "request_kind": "step_scheme",
+        "response_bytes": 15423,
+        "response_sha256": "2573df9695e069c4bf5cd21f8c52744d3e7c6ec1a93a7bd57376d061b10eecce",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_222_mechanism_1_step_6_Qu9VELz.mrv",
+        "step_id": 6
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0222"
+        ],
+        "request_index": 27,
+        "request_kind": "step_scheme",
+        "response_bytes": 19576,
+        "response_sha256": "8939ac37da1bbc18f0537e1693c5880cedf9fcfbc78ea5ad72b53562aab53f1e",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_222_mechanism_1_step_7_4RmNSl8.mrv",
+        "step_id": 7
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0222"
+        ],
+        "request_index": 28,
+        "request_kind": "step_scheme",
+        "response_bytes": 19397,
+        "response_sha256": "1092cfdcec6dc7947d4d37432cff634fb6cba00ed3051760edf704311974b897",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_222_mechanism_1_step_8_URLKmYF.mrv",
+        "step_id": 8
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0222"
+        ],
+        "request_index": 29,
+        "request_kind": "step_scheme",
+        "response_bytes": 19746,
+        "response_sha256": "12a4b4f5025556c9eecbc688f57eaba7421a5e9508a2c5c98fb17a94c4939324",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/macie_entry_222_1_9.mrv",
+        "step_id": 9
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0222"
+        ],
+        "request_index": 30,
+        "request_kind": "step_scheme",
+        "response_bytes": 19824,
+        "response_sha256": "973a850dd0739ec864a476b99f15c6e70d994b6ba5153f59a57a5d74321cd822",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/macie_entry_222_1_10.mrv",
+        "step_id": 10
+      },
+      {
+        "http_status": 200,
+        "mechanism_id": 1,
+        "record_ids": [
+          "M0222"
+        ],
+        "request_index": 31,
+        "request_kind": "step_scheme",
+        "response_bytes": 19246,
+        "response_sha256": "22aaa884cb5c36b4b647c4b8f480854dab976a0b37b3d164aed829fd6afd5bd5",
+        "retrieval_status": "bundled_linked_scheme",
+        "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/macie_entry_222_mechanism_1_step_11_3LmnaWI.mrv",
+        "step_id": 11
+      }
+    ]
+  },
+  "boundaries": {
+    "exact_reaction_instance_established": false,
+    "gold_admission_permitted": false,
+    "independent_validation_established": false,
+    "protected_registry_modified": false,
+    "raw_source_and_gate_controls_only": true
+  },
+  "development_gate": {
+    "authorization_operation": "source_annotation",
+    "case_controls": [
+      {
+        "allowed_operations": [
+          "source_annotation",
+          "source_scoped_mechanism_draft"
+        ],
+        "challenge_claim_ids": [
+          "sc-m0052-m0222-shared-source-context",
+          "sc-m0052-all-steps-enzyme-catalysed"
+        ],
+        "evidence_ids": [
+          "source:M-CSA:M0052"
+        ],
+        "mandatory_abstentions": [
+          {
+            "clause_id": "complete_target_state",
+            "reason": "The selected evidence does not establish a complete typed metal/cofactor or enzyme-state sequence, so the target state remains withheld."
+          },
+          {
+            "clause_id": "all_steps_enzyme_catalysed",
+            "reason": "The source marks Step 3 inferred and places Step 4 sugar cyclisation outside the active site; the panel sequence is not a sequence of observed enzyme-catalysed events."
+          },
+          {
+            "clause_id": "native_metal_identity",
+            "reason": "A source-described Zn(II)-assisted proposal does not resolve a universal native-metal identity or a complete typed metal-coordination state."
+          }
+        ],
+        "open_objections": [
+          {
+            "blocks": [
+              "exact_reaction_instance"
+            ],
+            "reason": "The source explicitly marks the proton-return step as inferred and the sugar cyclisation as outside the enzyme active site, so it does not support a complete all-steps-enzyme-catalysed reaction instance."
+          }
+        ],
+        "record_id": "M0052",
+        "scope": "Treat M-CSA M0052 as the P0AB71 entry-level class II aldolase source handle and retain its ordered proposal as source transcription. Keep Step 3 explicitly inferred and Step 4 outside the enzyme active site; do not project either as an observed enzyme-state transition."
+      },
+      {
+        "allowed_operations": [
+          "source_annotation",
+          "source_scoped_mechanism_draft"
+        ],
+        "challenge_claim_ids": [
+          "sc-m0219-proposals-share-reaction-instance",
+          "sc-m0219-reference-protein-applicability",
+          "sc-m0219-native-metal-identity",
+          "sc-m0219-redox-classification"
+        ],
+        "evidence_ids": [
+          "source:M-CSA:M0219"
+        ],
+        "mandatory_abstentions": [
+          {
+            "clause_id": "complete_target_state",
+            "reason": "Proposal 1 names P23254/1TRK, proposal 2 lacks a UniProt assignment and uses 4KXV, and the proposal-2 prose/scheme substrate context differs; complete applicability and state are withheld."
+          },
+          {
+            "clause_id": "proposal_specific_reaction_context",
+            "reason": "Mechanism 2 prose uses xylulose-5-phosphate and erythrose-4-phosphate, whereas its drawings retain sedoheptulose-7-phosphate labels. Entry-level participants do not resolve that proposal or establish one exact reaction for both alternatives."
+          },
+          {
+            "clause_id": "proposal_protein_applicability",
+            "reason": "The entry reference is P29401, mechanism 1 residue mappings cite P23254/1TRK, and mechanism 2 cites 4KXV with blank UniProt identifiers; no proposal-wide mapping to P29401 is resolved."
+          },
+          {
+            "clause_id": "native_divalent_metal_identity",
+            "reason": "The source reports activity with several divalent ions and debate over the native metal; neither experimental use of Mg(II) nor a stability-based Ca(II) proposal resolves native identity."
+          },
+          {
+            "clause_id": "typed_cofactor_redox_state",
+            "reason": "Covalent ThDP intermediates and an electron-sink role do not establish a redox-cofactor cycle; no typed redox-state transition is asserted."
+          },
+          {
+            "clause_id": "all_steps_directly_observed",
+            "reason": "Mechanism 1 Step 7 is source-marked inferred and extra-enzymatic, and mechanism 2 cites computational evidence; neither is promoted to a directly observed active-site sequence."
+          }
+        ],
+        "open_objections": [
+          {
+            "blocks": [
+              "exact_reaction_instance"
+            ],
+            "reason": "The two mechanisms diverge in reaction participants and protein mappings, the mechanism-2 prose conflicts with its drawings, and native-metal identity remains debated; these fields cannot be merged into one exact reaction/protein instance."
+          }
+        ],
+        "record_id": "M0219",
+        "scope": "Treat P29401 only as the M-CSA M0219 entry-level reference identity and preserve both source mechanism alternatives independently. Do not merge the alternatives, assign both to P29401, normalize their differing substrate contexts, call covalent ThDP chemistry redox, or resolve the debated native metal."
+      },
+      {
+        "allowed_operations": [
+          "source_annotation",
+          "source_scoped_mechanism_draft"
+        ],
+        "challenge_claim_ids": [
+          "sc-m0052-m0222-shared-source-context",
+          "sc-m0222-step1-substrate-identity",
+          "sc-m0222-rabbit-archaea-applicability"
+        ],
+        "evidence_ids": [
+          "source:M-CSA:M0222"
+        ],
+        "mandatory_abstentions": [
+          {
+            "clause_id": "complete_target_state",
+            "reason": "The substrate and protein-context conflicts prevent a complete typed target state and residue-role assignment."
+          },
+          {
+            "clause_id": "step_1_substrate_identity",
+            "reason": "Step 1 prose names D-glyceraldehyde 3-phosphate, but the attacked substrate in its MRV is labelled CHEBI:57642 (glycerone phosphate/DHAP). Both source fields are retained without selecting a resolved identity."
+          },
+          {
+            "clause_id": "protein_specific_mechanism_applicability",
+            "reason": "The entry reference P00883/2QUT is rabbit, while the narrative and Step 10 contain archaeal context; the full proposal and all residue roles are not assigned to the rabbit protein."
+          }
+        ],
+        "open_objections": [
+          {
+            "blocks": [
+              "exact_reaction_instance"
+            ],
+            "reason": "Step-1 prose conflicts with the MRV substrate label and the rabbit reference context is mixed with archaeal mechanism statements, leaving exact reaction and proposal-to-protein applicability unresolved."
+          }
+        ],
+        "record_id": "M0222",
+        "scope": "Treat P00883 only as the M-CSA M0222 entry-level class I aldolase reference identity and preserve the proposal as source transcription. Do not resolve the Step 1 prose/scheme substrate mismatch or project archaeal narrative and residue roles onto the rabbit reference protein."
+      }
+    ],
+    "status_path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/status.json",
+    "status_sha256": "2c7b1ccb27c4192fbe69c3967247732680b4faaecad3c7dff2a3031e20dafb27"
+  },
+  "records": [
+    {
+      "attribution": "Credit M-CSA and cite Ribeiro et al. together with each accessed entry.",
+      "change_notice": "Official API entry objects and linked Marvin step schemes are wrapped in deterministically sorted UTF-8 JSON; source text, identifiers, alternatives, step order, terminal flags, scheme content, and retrieval status are retained.",
+      "entry_response_sha256": "60747ca25c1259849330ad0b288c81ecaaf3dfe0c50551a01a66fb071d09205e",
+      "license": "CC BY 4.0",
+      "probe_identity": {
+        "mcsa_id": 52,
+        "mechanism_ids": [
+          1
+        ],
+        "mechanism_step_ids": [
+          {
+            "mechanism_id": 1,
+            "step_ids": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          }
+        ],
+        "source_entry_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/52/",
+        "source_step_count": 5,
+        "terminal_source_step_keys": [
+          {
+            "mechanism_id": 1,
+            "step_id": 5
+          }
+        ]
+      },
+      "record_id": "M0052",
+      "retrieval_status": "bundled_source_scoped_snapshot",
+      "retrieved_at": "2026-09-06T00:03:19Z",
+      "scheme_status_counts": {
+        "bundled_linked_scheme": 5
+      },
+      "snapshot_bytes": 102596,
+      "snapshot_path": "data/atlas/source_drafts/batches/aldolase-transketolase/sources/M0052.json",
+      "snapshot_sha256": "b3d4ce2f44433d1be906bfd7bb696d3a899bb90bd1e70a2a7b39d28b35ead7d5",
+      "source_id": "M-CSA",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/52/"
+    },
+    {
+      "attribution": "Credit M-CSA and cite Ribeiro et al. together with each accessed entry.",
+      "change_notice": "Official API entry objects and linked Marvin step schemes are wrapped in deterministically sorted UTF-8 JSON; source text, identifiers, alternatives, step order, terminal flags, scheme content, and retrieval status are retained.",
+      "entry_response_sha256": "60747ca25c1259849330ad0b288c81ecaaf3dfe0c50551a01a66fb071d09205e",
+      "license": "CC BY 4.0",
+      "probe_identity": {
+        "mcsa_id": 219,
+        "mechanism_ids": [
+          1,
+          2
+        ],
+        "mechanism_step_ids": [
+          {
+            "mechanism_id": 1,
+            "step_ids": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          {
+            "mechanism_id": 2,
+            "step_ids": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          }
+        ],
+        "source_entry_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/219/",
+        "source_step_count": 14,
+        "terminal_source_step_keys": [
+          {
+            "mechanism_id": 1,
+            "step_id": 8
+          },
+          {
+            "mechanism_id": 2,
+            "step_id": 6
+          }
+        ]
+      },
+      "record_id": "M0219",
+      "retrieval_status": "bundled_source_scoped_snapshot",
+      "retrieved_at": "2026-09-06T00:03:19Z",
+      "scheme_status_counts": {
+        "bundled_linked_scheme": 14
+      },
+      "snapshot_bytes": 297419,
+      "snapshot_path": "data/atlas/source_drafts/batches/aldolase-transketolase/sources/M0219.json",
+      "snapshot_sha256": "054f1c3bee9ff38938b59e81b6b4065fe4d4204cb899171f4f68c284bad7d01c",
+      "source_id": "M-CSA",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/219/"
+    },
+    {
+      "attribution": "Credit M-CSA and cite Ribeiro et al. together with each accessed entry.",
+      "change_notice": "Official API entry objects and linked Marvin step schemes are wrapped in deterministically sorted UTF-8 JSON; source text, identifiers, alternatives, step order, terminal flags, scheme content, and retrieval status are retained.",
+      "entry_response_sha256": "60747ca25c1259849330ad0b288c81ecaaf3dfe0c50551a01a66fb071d09205e",
+      "license": "CC BY 4.0",
+      "probe_identity": {
+        "mcsa_id": 222,
+        "mechanism_ids": [
+          1
+        ],
+        "mechanism_step_ids": [
+          {
+            "mechanism_id": 1,
+            "step_ids": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ]
+          }
+        ],
+        "source_entry_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/222/",
+        "source_step_count": 11,
+        "terminal_source_step_keys": [
+          {
+            "mechanism_id": 1,
+            "step_id": 11
+          }
+        ]
+      },
+      "record_id": "M0222",
+      "retrieval_status": "bundled_source_scoped_snapshot",
+      "retrieved_at": "2026-09-06T00:03:19Z",
+      "scheme_status_counts": {
+        "bundled_linked_scheme": 11
+      },
+      "snapshot_bytes": 267172,
+      "snapshot_path": "data/atlas/source_drafts/batches/aldolase-transketolase/sources/M0222.json",
+      "snapshot_sha256": "a798aef39309cdf3af82a003112b13949b160f9d305339c6ab9c08a3273908a7",
+      "source_id": "M-CSA",
+      "uri": "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/222/"
+    }
+  ],
+  "retrieved_at": "2026-09-06T00:03:19Z",
+  "rights": {
+    "attribution": "Credit M-CSA and cite Ribeiro et al. together with each accessed entry.",
+    "change_notice": "Official API entry objects and linked Marvin step schemes are wrapped in deterministically sorted UTF-8 JSON; source text, identifiers, alternatives, step order, terminal flags, scheme content, and retrieval status are retained.",
+    "license": "CC BY 4.0",
+    "rights_matrix_path": "docs/SOURCE_DATA_RIGHTS.md",
+    "rights_matrix_sha256": "f5e796328e66089ae910f68f4fb35851142e1ecc458ea08419fb6b48b9db1f40"
+  },
+  "schema_version": "catalytic-earth.atlas-source-draft-manifest.v1",
+  "selection": {
+    "basis": "development_gate_default_mechanism_draft_cases",
+    "record_ids": [
+      "M0052",
+      "M0219",
+      "M0222"
+    ],
+    "requested_operation": "source_scoped_mechanism_draft"
+  },
+  "snapshot_set_sha256": "4246441456c20f3042fd9c00c95c2b872b3814f37f7f58c4214727050a4d38d1",
+  "source": {
+    "allowed_https_origin": "https://www.ebi.ac.uk",
+    "allowed_scheme_path_prefix": "/thornton-srv/m-csa/media/schemes/",
+    "entry_request_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=52%2C219%2C222",
+    "source_id": "M-CSA"
+  }
+}

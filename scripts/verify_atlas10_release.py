@@ -65,6 +65,8 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                 "    'all': run_query('--steps'),\n"
                 "    'ammonium': run_query('--reactant', '28938', '--product', '58278'),\n"
                 "    'carbon_dioxide': run_query('--product', 'CHEBI:16526'),\n"
+                "    'new_batch': run_query('--batch', 'aldolase-transketolase', '--steps'),\n"
+                "    'aldolases': run_query('--batch', 'aldolase-transketolase', '--reactant', '57642', '--product', '49299'),\n"
                 "}))\n"
             )
             draft_run = subprocess.run(
@@ -94,6 +96,19 @@ def verify_wheel(wheel: Path, *, include_source_drafts: bool = False) -> dict[st
                 raise ValueError("installed chemical query lost distinct source reactions")
             if queries["carbon_dioxide"]["query_semantics"]["shared_participant_implies_reaction_equivalence"] is not False:
                 raise ValueError("installed chemical query overstates participant matching")
+            additional = queries["new_batch"]["records"]
+            if {r["mcsa_id"] for r in additional} != {"M0052", "M0219", "M0222"} or len(additional) != 3:
+                raise ValueError("installed successor source batch differs")
+            if {r["mcsa_id"] for r in queries["aldolases"]["records"]} != {"M0052", "M0222"}:
+                raise ValueError("installed chemical query lost the distinct aldolase sources")
+            expected_abstentions = {
+                "M0222": {"step_1_substrate_identity", "protein_specific_mechanism_applicability"},
+                "M0219": {"proposal_specific_reaction_context", "proposal_protein_applicability"},
+            }
+            for record in additional:
+                actual = {a["clause_id"] for a in record["mandatory_abstentions"]}
+                if not expected_abstentions.get(record["mcsa_id"], set()) <= actual:
+                    raise ValueError("installed successor source batch lost a source conflict")
             print("Fresh-directory source draft query passed with network connections blocked")
     expected_counts = {
         "case_count": 10,

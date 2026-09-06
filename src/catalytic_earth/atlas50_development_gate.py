@@ -11,6 +11,12 @@ import re
 from pathlib import Path
 from typing import Any
 
+from .atlas_draft_batch import DEFAULT_BATCH, DraftBatchPaths
+from .atlas50_state_probe import (
+    SUCCESSOR_REPORT_SCHEMA_VERSION,
+    declared_probe_case_ids,
+    validate_state_probe,
+)
 from .atlas50_crosswalk_v2 import validate_change_map, validate_crosswalk_v2
 from .canonical_hash import canonical_file_sha256
 
@@ -154,7 +160,23 @@ def validate_policy(policy: dict[str, Any]) -> None:
         _require(type(value) is int and 0 < value <= ceiling, f"invalid bounded budget: {key}")
 
 
-def validate_review_bindings(value: dict[str, Any]) -> dict[str, str]:
+def _required_inputs(batch: DraftBatchPaths) -> set[str]:
+    if batch == DEFAULT_BATCH:
+        return set(REQUIRED_INPUTS)
+    return {
+        batch.adjudications_path.as_posix(),
+        POLICY,
+        CROSSWALK,
+        CROSSWALK_CHANGE_MAP,
+        batch.probe_report_path.as_posix(),
+        batch.probe_spec_path.as_posix(),
+        batch.challenge_path.as_posix(),
+    }
+
+
+def validate_review_bindings(
+    value: dict[str, Any], *, batch: DraftBatchPaths = DEFAULT_BATCH
+) -> dict[str, str]:
     _exact_keys(
         value,
         {"schema_version", "date", "inputs", "update_rule"},
@@ -175,7 +197,7 @@ def validate_review_bindings(value: dict[str, Any]) -> dict[str, str]:
         "review bindings must prohibit automatic pin refresh",
     )
     bindings = _object(value.get("inputs"), "review bindings inputs")
-    _require(set(bindings) == REQUIRED_INPUTS, "review binding inputs differ")
+    _require(set(bindings) == _required_inputs(batch), "review binding inputs differ")
     for name, expected in bindings.items():
         _require(
             isinstance(expected, str) and bool(re.fullmatch(r"[a-f0-9]{64}", expected)),
@@ -184,9 +206,19 @@ def validate_review_bindings(value: dict[str, Any]) -> dict[str, str]:
     return bindings
 
 
-def _validate_probe(probe: dict[str, Any]) -> dict[str, dict[str, Any]]:
+def _validate_probe(
+    probe: dict[str, Any],
+    *,
+    case_id_order: tuple[str, ...] = CASE_ID_ORDER,
+    batch: DraftBatchPaths = DEFAULT_BATCH,
+) -> dict[str, dict[str, Any]]:
+    expected_schema = (
+        "catalytic-earth.atlas50-state-probe.v1"
+        if batch == DEFAULT_BATCH
+        else SUCCESSOR_REPORT_SCHEMA_VERSION
+    )
     _require(
-        probe.get("schema_version") == "catalytic-earth.atlas50-state-probe.v1",
+        probe.get("schema_version") == expected_schema,
         "unsupported state probe",
     )
     _require(
@@ -234,14 +266,19 @@ def _validate_probe(probe: dict[str, Any]) -> dict[str, dict[str, Any]]:
     cases = probe.get("cases")
     _require(isinstance(cases, list), "state probe cases must be an array")
     _require(
-        probe.get("case_count") == len(cases) == len(CASE_ID_ORDER),
-        "state probe must cover exact six disputed cases",
+        probe.get("case_count") == len(cases) == len(case_id_order),
+        "state probe case count differs from its declared cases",
     )
     _require(
         tuple(case.get("mcsa_id") if isinstance(case, dict) else None for case in cases)
-        == CASE_ID_ORDER,
+        == case_id_order,
         "state probe case order or IDs differ",
     )
+    if batch != DEFAULT_BATCH:
+        _require(
+            probe.get("declared_case_ids") == list(case_id_order),
+            "successor probe declaration differs",
+        )
     by_id: dict[str, dict[str, Any]] = {}
     for case in cases:
         context = case["mcsa_id"]
@@ -275,6 +312,8 @@ def _claim_concerns(claim: dict[str, Any], mcsa_id: str) -> bool:
 
 def _validate_challenge(
     challenge: dict[str, Any],
+    *,
+    case_ids: set[str] = CASE_IDS,
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     _require(
         challenge.get("schema_version") == "catalytic-earth.atlas50-source-challenge.v1",
@@ -358,7 +397,10 @@ def _validate_challenge(
             isinstance(objection.get("objection"), str) and objection["objection"],
             f"{context}: reason missing",
         )
-        _require(any(subject in CASE_IDS or subject.startswith("atlas50.candidate.") for subject in subjects),
+        valid_subject_ids = case_ids | {
+            f"atlas50.candidate.{mcsa_id.lower()}" for mcsa_id in case_ids
+        }
+        _require(any(subject in valid_subject_ids for subject in subjects),
                  f"{context}: no disputed case subject")
     return claims, material
 
@@ -374,6 +416,9 @@ def _validate_transitive_review_pins(
     root: Path,
     challenge: dict[str, Any],
     direct_bindings: dict[str, str],
+    *,
+    batch: DraftBatchPaths = DEFAULT_BATCH,
+    case_id_order: tuple[str, ...] = CASE_ID_ORDER,
 ) -> None:
     """Require the files reviewed by the challenge, including transitive inputs."""
 
@@ -388,16 +433,36 @@ def _validate_transitive_review_pins(
         _require(family not in by_family, f"reviewed artifact family repeats: {family}")
         by_family[family] = artifact
 
-    requirements = {
+    probe_paths = (
+        batch.probe_report_path.as_posix(),
+        batch.probe_spec_path.as_posix(),
+    )
+    requirements: dict[str, dict[str, Any]] = {
         "atlas50_crosswalk_v2": {
             "result": "accepted_after_corrections",
             "paths": (CROSSWALK, CROSSWALK_CHANGE_MAP, CROSSWALK_MANIFEST),
         },
         "atlas50_state_probe": {
-            "result": "accepted_after_provenance_correction",
-            "paths": (PROBE, PROBE_SPEC),
+            "result": (
+                "accepted_after_provenance_correction"
+                if batch == DEFAULT_BATCH
+                else "accepted_with_explicit_abstentions"
+            ),
+            "paths": probe_paths,
         },
     }
+    if batch != DEFAULT_BATCH:
+        new_case_ids = [
+            case_id for case_id in case_id_order if case_id not in CASE_IDS
+        ]
+        _require(new_case_ids, "successor review has no newly declared cases")
+        requirements["atlas_source_batch"] = {
+            "result": "accepted_with_explicit_abstentions",
+            "paths": tuple(
+                (batch.sources_directory / f"{case_id}.json").as_posix()
+                for case_id in new_case_ids
+            ),
+        }
     for family, requirement in requirements.items():
         _require(family in by_family, f"source challenge did not review {family}")
         artifact = by_family[family]
@@ -497,8 +562,8 @@ def _validate_transitive_review_pins(
             f"crosswalk manifest input changed: {relative}",
         )
 
-    probe = _read(root / PROBE)
-    probe_spec = _read(root / PROBE_SPEC)
+    probe = _read(root / batch.probe_report_path)
+    probe_spec = _read(root / batch.probe_spec_path)
     _require(
         probe.get("spec_sha256") == _compact_json_sha256(probe_spec),
         "state probe spec binding differs",
@@ -512,8 +577,15 @@ def _validate_transitive_review_pins(
         )
 
 
-def validate_adjudications(value: dict[str, Any], probe: dict[str, Any],
-                          challenge: dict[str, Any]) -> list[dict[str, Any]]:
+def validate_adjudications(
+    value: dict[str, Any],
+    probe: dict[str, Any],
+    challenge: dict[str, Any],
+    *,
+    case_id_order: tuple[str, ...] = CASE_ID_ORDER,
+    batch: DraftBatchPaths = DEFAULT_BATCH,
+    repo_root: str | Path | None = None,
+) -> list[dict[str, Any]]:
     _require(value.get("schema_version") == "catalytic-earth.computational-adjudications.v1",
              "unsupported adjudications")
     _require(value.get("human_review") is False, "adjudication cannot claim human review")
@@ -521,16 +593,55 @@ def validate_adjudications(value: dict[str, Any], probe: dict[str, Any],
     _require(value.get("same_model_family") is True, "same-model adjudication must be disclosed")
     _require(value.get("correlated_errors_possible") is True, "correlated adjudication errors must be disclosed")
     _require(value.get("blind_review") is False, "adjudication was informed, not blind")
-    by_id = _validate_probe(probe)
-    claims, material_objections = _validate_challenge(challenge)
+    by_id = _validate_probe(
+        probe, case_id_order=case_id_order, batch=batch
+    )
+    claims, material_objections = _validate_challenge(
+        challenge, case_ids=set(case_id_order)
+    )
     claim_by_id = {claim["claim_id"]: claim for claim in claims}
     resolutions = value.get("cases", [])
     _require(isinstance(resolutions, list), "adjudication cases must be an array")
     _require(
         tuple(row.get("mcsa_id") if isinstance(row, dict) else None for row in resolutions)
-        == CASE_ID_ORDER,
-        "adjudications must cover exact six disputed cases in probe order",
+        == case_id_order,
+        "adjudications must cover the declared cases in probe order",
     )
+    if batch != DEFAULT_BATCH:
+        _require(repo_root is not None, "successor adjudication validation requires repo_root")
+        inheritance = _object(
+            value.get("inheritance"), "adjudication inheritance"
+        )
+        _exact_keys(
+            inheritance,
+            {
+                "adjudications_path",
+                "adjudications_sha256",
+                "inherited_case_ids",
+            },
+            "adjudication inheritance",
+        )
+        _require(
+            inheritance["adjudications_path"]
+            == DEFAULT_BATCH.adjudications_path.as_posix(),
+            "successor adjudication inheritance path differs",
+        )
+        inherited_case_ids = tuple(inheritance["inherited_case_ids"])
+        _require(
+            inherited_case_ids == CASE_ID_ORDER,
+            "successor must inherit the exact legacy adjudication cases",
+        )
+        base_path = Path(repo_root) / DEFAULT_BATCH.adjudications_path
+        _require(
+            inheritance["adjudications_sha256"]
+            == canonical_file_sha256(base_path),
+            "successor legacy adjudication pin differs",
+        )
+        base = _read(base_path)
+        _require(
+            resolutions[: len(inherited_case_ids)] == base["cases"],
+            "successor changed an inherited adjudication case",
+        )
     result = []
     for row in resolutions:
         source = by_id[row["mcsa_id"]]
@@ -621,12 +732,14 @@ def validate_adjudications(value: dict[str, Any], probe: dict[str, Any],
     return result
 
 
-def build_development_status(repo_root: Path) -> dict[str, Any]:
+def build_development_status(
+    repo_root: Path, *, batch: DraftBatchPaths = DEFAULT_BATCH
+) -> dict[str, Any]:
     root = Path(repo_root)
     policy = _read(root / POLICY)
     validate_policy(policy)
-    manifest = _read(root / DIRECTORY / "review_bindings.json")
-    bindings = validate_review_bindings(manifest)
+    manifest = _read(root / batch.review_bindings_path)
+    bindings = validate_review_bindings(manifest, batch=batch)
     for name, expected in bindings.items():
         _require(canonical_file_sha256(root / name) == expected, f"review input changed: {name}")
     crosswalk = _read(root / CROSSWALK)
@@ -638,10 +751,42 @@ def build_development_status(repo_root: Path) -> dict[str, Any]:
         == "computational_provisional_not_human_or_experimental_review",
         "corrected crosswalk status overclaims",
     )
-    challenge = _read(root / CHALLENGE)
-    _validate_transitive_review_pins(root, challenge, bindings)
-    adjudications = _read(root / ADJUDICATIONS)
-    cases = validate_adjudications(adjudications, _read(root / PROBE), challenge)
+    probe_spec = _read(root / batch.probe_spec_path)
+    probe = _read(root / batch.probe_report_path)
+    case_id_order = declared_probe_case_ids(probe_spec, batch=batch)
+    basis_inputs = {
+        name: canonical_file_sha256(root / relative)
+        for name, relative in STATE_BASIS_INPUTS.items()
+    }
+    validate_state_probe(
+        probe,
+        spec=probe_spec,
+        candidate_spec=_read(root / STATE_BASIS_INPUTS["candidate_spec"]),
+        panel_review=_read(root / STATE_BASIS_INPUTS["computational_panel_review"]),
+        mechanism_v3_schema=_read(root / STATE_BASIS_INPUTS["mechanism_record_v3_schema"]),
+        atlas3_kernel=_read(root / STATE_BASIS_INPUTS["atlas3_kernel"]),
+        atlas10_kernel=_read(root / STATE_BASIS_INPUTS["atlas10_kernel"]),
+        basis_inputs=basis_inputs,
+        batch=batch,
+        repo_root=root,
+    )
+    challenge = _read(root / batch.challenge_path)
+    _validate_transitive_review_pins(
+        root,
+        challenge,
+        bindings,
+        batch=batch,
+        case_id_order=case_id_order,
+    )
+    adjudications = _read(root / batch.adjudications_path)
+    cases = validate_adjudications(
+        adjudications,
+        probe,
+        challenge,
+        case_id_order=case_id_order,
+        batch=batch,
+        repo_root=root,
+    )
     return {
         "schema_version": "catalytic-earth.computational-development-status.v1",
         "policy_id": policy["policy_id"],
@@ -654,7 +799,7 @@ def build_development_status(repo_root: Path) -> dict[str, Any]:
         "protected_registry_expansion_permitted": False,
         "global_operations": ["corrected_crosswalk_development"],
         "input_bindings": bindings,
-        "adjudications_sha256": bindings[ADJUDICATIONS],
+        "adjudications_sha256": bindings[batch.adjudications_path.as_posix()],
         "review_independence": dict(STATUS_REVIEW_INDEPENDENCE),
         "cases": cases,
         "source_access": policy["source_access"],
@@ -663,9 +808,15 @@ def build_development_status(repo_root: Path) -> dict[str, Any]:
     }
 
 
-def require_operation(repo_root: Path, operation: str, mcsa_id: str | None = None) -> None:
+def require_operation(
+    repo_root: Path,
+    operation: str,
+    mcsa_id: str | None = None,
+    *,
+    batch: DraftBatchPaths = DEFAULT_BATCH,
+) -> None:
     """Check pinned inputs anew; a caller-supplied status cannot grant authority."""
-    status = build_development_status(repo_root)
+    status = build_development_status(repo_root, batch=batch)
     _require(operation in OPERATIONS, "operation is outside computational development authority")
     if mcsa_id is None:
         _require(operation in status.get("global_operations", []), "operation requires a scoped case")
