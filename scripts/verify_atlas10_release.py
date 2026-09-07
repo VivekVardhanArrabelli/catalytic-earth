@@ -101,6 +101,9 @@ def verify_wheel(
                 "    'partial_panels_empty': command('atlas-panel-comparisons', '--mcsa-id', 'M0187'),\n"
                 "    'transformation_catalog': command('atlas-transformations', '--all'),\n"
                 "    'transformations_empty': command('atlas-transformations', '--mcsa-id', 'M0213'),\n"
+                "    'transformation_sites': command('atlas-transformation-sites'),\n"
+                "    'transformation_site_oxygen': command('atlas-transformation-sites', '--mcsa-id', 'M0173', '--source-atom', 'a44'),\n"
+                "    'transformation_site_missing_edge': command('atlas-transformation-sites', '--site-id', 'P11444:H297'),\n"
                 "    'all': run_query('--steps'),\n"
                 "    'ammonium': run_query('--reactant', '28938', '--product', '58278'),\n"
                 "    'carbon_dioxide': run_query('--product', 'CHEBI:16526'),\n"
@@ -242,6 +245,41 @@ def verify_wheel(
                 for field in ("transformations", "review", "source_bindings", "transformation_payload_sha256"):
                     if catalog_by_id[mcsa_id][field] != single[field]:
                         raise ValueError("installed transformation catalog changed individual-set provenance")
+            sites = queries["transformation_sites"]
+            if (sites["schema_version"] != "catalytic-earth.transformation-site-query.v1"
+                    or sites["source_transformation_query"] != catalog
+                    or (sites["match_count"], sites["changed_source_atom_count"],
+                        sites["resolved_source_atom_count"], sites["unresolved_source_atom_count"]) != (2, 12, 2, 10)
+                    or sites["query_semantics"]["site_roles_apply_to"] != "source_record_residue_not_source_depiction_atom"
+                    or sites["query_semantics"]["deposited_atom_identity_asserted"] is not False
+                    or sites["query_semantics"]["observed_intermediate_asserted"] is not False
+                    or queries["transformation_site_missing_edge"]["match_count"] != 0):
+                raise ValueError("installed transformation sites lost provenance, coverage, or residue-only scope")
+            site_matches = {row["transformation"]["record_binding"]["mcsa_id"]: row for row in sites["matches"]}
+            for mcsa_id, original in (("M0173", addition), ("M0187", transition)):
+                if site_matches[mcsa_id]["transformation"] != original:
+                    raise ValueError("installed site query rewrote a reviewed transformation")
+            changed = {row["source_atom_id"]: row for row in site_matches["M0173"]["changed_source_atoms"]}
+            for atom_id, site_id, author_position, label_position in (
+                ("a44", "P35049:S204", 195, 180), ("a21", "P35049:H65", 56, 41),
+            ):
+                atom = changed[atom_id]
+                mappings = atom["protein_structure_context"]["pdb_residue_mappings"]
+                if (atom["source_record_residue_mapping"]["site_id"] != site_id
+                        or len(mappings) != 1
+                        or (mappings[0]["pdb_id"], mappings[0]["chain_id"],
+                            mappings[0]["author_position"], mappings[0]["label_position"]) != ("1PQ5", "A", author_position, label_position)
+                        or atom["deposited_atom_identity"]["atom_name"] is not None):
+                    raise ValueError("installed site query lost exact source/protein/structure residue numbering")
+            oxygen = queries["transformation_site_oxygen"]
+            if (oxygen["changed_source_atom_count"] != 1
+                    or oxygen["resolved_source_atom_count"] != 1
+                    or oxygen["matches"][0]["coverage"]["total_changed_source_atom_count"] != 5
+                    or oxygen["matches"][0]["coverage"]["complete_changed_atom_site_coverage"] is not False):
+                raise ValueError("installed atom filter overstates complete transformation site coverage")
+            unresolved_atoms = [changed["a50"], *site_matches["M0187"]["changed_source_atoms"]]
+            if any(atom["source_record_residue_mapping"]["site_id"] is not None for atom in unresolved_atoms):
+                raise ValueError("installed site query inferred an unlabeled atom-to-residue edge")
             partial = queries["partial_panels"]
             comparison = partial["comparisons"][0]
             coverage = comparison["coverage"]

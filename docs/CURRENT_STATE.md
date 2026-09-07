@@ -1,6 +1,6 @@
 # Current State
 
-## 2026-09-05 computational development is open at declared source scopes
+## 2026-09-07 computational development and source transformation queries
 
 **Foundation:** 2026-07-13 truth reset and 2026-07-14 Phase B package
 
@@ -31,15 +31,12 @@ Current truth:
 
 - The [computational development review](COMPUTATIONAL_DEVELOPMENT_REVIEW.md)
   replaces the human-only prerequisite for new source-scoped drafts. Crosswalk
-  v2 has 57 rows: 23 provisional and 34 unresolved. Six generic state probes
-  permit annotation for all six cases and mechanism drafts for M0106, M0107,
-  M0212 and M0753. No exact reaction instance is authorized. Source challenges,
+  v2 has 57 rows: 23 provisional and 34 unresolved. The latest successor gate
+  permits annotation for thirteen cases and mechanism drafts for eleven,
+  including the original four cases and both additive source batches. No exact
+  reaction instance is authorized. Source challenges,
   explicit adjudications and pinned-input checks govern these operations;
   same-model agreement does not establish independent validation.
-  A separate successor review inherits those six decisions and adds M0052,
-  M0219 and M0222 with source annotation and mechanism transcription permitted.
-  The resulting nine-case review permits seven mechanism drafts and still
-  authorizes no exact reaction instance.
 - The first [correction review](COMPUTATIONAL_REVIEW_20260905.md) remains input
   history. Its DHFR aggregation rationale is superseded: the implemented
   reaction-core scope permits the single M0112 exact relation, with narrower
@@ -48,6 +45,15 @@ Current truth:
 - A0A177THN5's APX-specific transfer is withdrawn and the larger APX-versus-CcP
   study is retired (CE-017/ER-011). CcP-like remains a provisional working
   interpretation; no target-specific donor activity is established.
+- The three separate source-draft batches now contain eleven Tier-1 records.
+  M0187 and M0173 additionally have two computationally reviewed
+  [source-state transformations](ATLAS_TRANSFORMATIONS.md); twelve unreviewed
+  adjacent-panel candidates support exact bond, charge and shared-atom queries.
+  The additive transformation-site query links trypsin a44 to P35049:S204 and
+  a21 to P35049:H65, retaining their distinct 1PQ5 author/label numbering and
+  static pH-5 structure context. Unlabeled changed atoms, including M0187 a58
+  and a63, remain unresolved. These links do not establish deposited atom-name
+  correspondence or observed intermediates.
 
 - The full computable catalytic-mechanism atlas is the mission. The typed IR
   and evidence compiler are its engine; benchmarks are internal truth controls.
