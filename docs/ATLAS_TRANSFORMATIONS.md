@@ -90,6 +90,53 @@ This separately versioned source-only set carries no canonical participant
 bridge or inferred phenyl-symmetry mappings. Its scope ends at the depicted
 intermediate, before peptide cleavage or the complete catalytic cycle.
 
+## Connect changed atoms to protein sites
+
+`atlas-transformation-sites` links a changed before-panel atom to a catalytic
+site only when its bound source arrow labels that atom explicitly and the exact
+proposal and step declare a matching site. The result retains the original
+transformation, review, source evidence and protein/structure limitations.
+The reviewed atom annotations must confirm an explicit `mrvExtraLabel`; an
+alias or an unresolved placeholder cannot supply that relationship.
+
+```sh
+catalytic-earth atlas-transformation-sites --mcsa-id M0173 --source-atom a44
+catalytic-earth atlas-transformation-sites --site-id P35049:H65
+catalytic-earth atlas-transformation-sites
+```
+
+The trypsin addition has two such links:
+
+| Changed source node | Source residue label | UniProt natural sequence | PDB author residue | mmCIF label residue |
+| --- | --- | --- | --- | --- |
+| a44, oxygen in the covalent addition | Ser195A | P35049 Ser204 | 1PQ5 chain A Ser195 | 180 |
+| a21, nitrogen accepting the proton | His56A | P35049 His65 | 1PQ5 chain A His56 | 41 |
+
+These distinct numbering systems must travel together. The site mappings were
+already compiled from the retained M-CSA, UniProt and coordinate records; this
+query makes their exact relationship to the reviewed edits accessible. The
+1PQ5 structure is a static, pH-5 context. It does not establish physiological
+protonation during turnover or observation of this depicted intermediate.
+
+The query preserves unlabeled changed nodes as unresolved. It does not assign
+the transferred hydrogen a50 to a residue by following its bonds. M0187's
+edited nodes in the depicted histidine and glutamate fragments likewise lack
+residue labels on their bound flow endpoints. Their nearby source aliases and known catalytic roles do
+not supply an explicit atom-to-site edge for this query. A source-group or
+topology interpretation would need separate evidence and review.
+
+Filters select an exact M-CSA ID, a local source atom (with `--mcsa-id`), or an
+exact atlas site ID. The command searches the two separately reviewed sets by
+default. Source-node and site counts do not count physical atoms, complete
+mechanisms or experimental observations. No PDB atom-name correspondence,
+three-dimensional trajectory or new evidence tier is asserted. An empty match
+means no supported retained correspondence, not absence of catalysis.
+
+The query is derived offline from the existing packaged records and adds no
+source acquisition or rewritten review pins. The source challenge and checks
+are recorded in `work/coordination_transformation_sites.md` in the full
+repository; internal reports are omitted from the sparse CI checkout.
+
 ## Partial panels: M0173 Step 2 to Step 3
 
 The next source drawing retains an acyl-enzyme depiction but omits the released

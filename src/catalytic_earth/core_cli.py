@@ -379,6 +379,15 @@ def build_parser() -> argparse.ArgumentParser:
     transformations.add_argument("--mcsa-id", help="filter an exact M-CSA identifier, e.g. M0187")
     transformations.add_argument("--all", action="store_true", help="query all separately reviewed transformation sets")
     transformations.add_argument("--output", type=Path, help="optional JSON output path")
+    transformation_sites = subparsers.add_parser(
+        "atlas-transformation-sites",
+        help="link changed source atoms to declared catalytic residues and protein structures offline",
+        description="Preserve each transformation's review and exact proposal/step evidence. A residue correspondence does not identify a deposited atom or validate an intermediate.",
+    )
+    transformation_sites.add_argument("--mcsa-id", help="filter an exact M-CSA identifier, e.g. M0173")
+    transformation_sites.add_argument("--source-atom", help="filter a before-panel atom token, e.g. a44; requires --mcsa-id")
+    transformation_sites.add_argument("--site-id", help="filter an exact atlas site identifier, e.g. P35049:S204")
+    transformation_sites.add_argument("--output", type=Path, help="optional new JSON file; existing files are never overwritten")
     comparisons = subparsers.add_parser(
         "atlas-panel-comparisons", help="query partial source-panel changes and unresolved coverage offline"
     )
@@ -586,6 +595,28 @@ def main(argv: Sequence[str] | None = None) -> int:
         rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
         if args.output:
             args.output.write_text(rendered, encoding="utf-8", newline="\n")
+        print(rendered, end="")
+        return 0
+    if args.command == "atlas-transformation-sites":
+        from .atlas_transformation_query import TRANSFORMATION_SETS
+        from .atlas_transformation_sites import query_transformation_sites
+
+        try:
+            atlas10 = json.loads(_resource_bytes(ATLAS10_KERNEL))
+            expected = json.loads(_resource_bytes(ATLAS10_EXPECTED))
+            if _canonical_sha(atlas10) != expected.get("kernel_sha256"):
+                raise ValueError("Atlas-10 site context differs from the packaged expectation")
+            result = query_transformation_sites(
+                {key: verified_transformations(key) for key in TRANSFORMATION_SETS},
+                atlas10_bundle=atlas10,
+                mcsa_id=args.mcsa_id, source_atom_id=args.source_atom, site_id=args.site_id,
+            )
+        except ValueError as exc:
+            parser.error(str(exc))
+        rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
+        if args.output:
+            with args.output.open("x", encoding="utf-8", newline="\n") as stream:
+                stream.write(rendered)
         print(rendered, end="")
         return 0
     if args.command == "atlas-panel-comparisons":

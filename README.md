@@ -90,6 +90,13 @@ residue-fragment aliases and unassigned stereochemistry remain explicit.
 `catalytic-earth atlas-transformations --all` retrieves both separately
 reviewed sets with their original source and review provenance.
 
+An additive [protein-site query](docs/ATLAS_TRANSFORMATIONS.md#connect-changed-atoms-to-protein-sites)
+links explicitly labeled changed atoms to the exact proposal's catalytic sites.
+In trypsin, the drawing's Ser195 and His56 map to P35049 Ser204 and His65,
+with their distinct 1PQ5 author and mmCIF residue numbers retained. Unlabeled
+atoms remain unresolved; residue correspondence does not identify a deposited
+atom or establish an observed intermediate.
+
 The following trypsin drawing omits the released peptide and redraws water.
 An [explicit partial-panel comparison](docs/ATLAS_TRANSFORMATIONS.md#partial-panels-m0173-step-2-to-step-3)
 replays three retained-core changes across 40 matched nodes while preserving
