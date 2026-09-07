@@ -43,7 +43,7 @@ This repository remains a research scaffold. It is not a wet-lab protocol,
 not a claim that computational candidates are validated enzymes, and not yet
 a production biological design system.
 
-## Quick Status — 2026-09-06
+## Quick Status — 2026-09-07
 
 The Atlas-10 kernel remains the 2026-07-14 checkpoint built on the 2026-07-13
 truth reset. September adds eleven queryable Tier-1 source drafts in three batches through a
@@ -113,6 +113,10 @@ For example, C–C addition retrieves two transketolase steps; requiring a carbo
 charge change narrows the result to one. Every match retains source witnesses,
 coverage and unreviewed status. Clauses combine within one candidate, and
 after-graph-confirmed support is required by default.
+
+An opt-in [atom-pattern query](docs/ATLAS_CANDIDATE_PATTERNS.md) can additionally
+require several changes on one named source atom. Matches preserve symmetric
+assignments and each edit's original support.
 
 - `current702` contains 702 project benchmark labels: 685 bronze, 17 silver,
   zero project-gold; 683 are automation-curated and 19 author-reviewed.

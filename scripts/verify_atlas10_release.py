@@ -91,6 +91,10 @@ def verify_wheel(
                 "    'candidate_cc_charge': command('atlas-candidate-events', '--bond', 'C', 'C', '0', '1', '--charge', 'C', '-1', '0'),\n"
                 "    'candidate_false_join': command('atlas-candidate-events', '--bond', 'C', 'C', '0', '1', '--bond', 'S', 'H', '1', '0'),\n"
                 "    'candidate_arrows': command('atlas-candidate-events', '--bond', 'O', 'H', '0', '1', '--support', 'source_arrow_only'),\n"
+                "    'pattern_shared': command('atlas-candidate-patterns', '--bond', 'C:x', 'C:y', '0', '1', '--charge', 'C:x', '-1', '0'),\n"
+                "    'pattern_disjoint': command('atlas-candidate-patterns', '--bond', 'C:x', 'O:y', '2', '1', '--charge', 'C:x', '-1', '0'),\n"
+                "    'pattern_symmetric': command('atlas-candidate-patterns', '--bond', 'C:x', 'C:y', '0', '1'),\n"
+                "    'pattern_arrows': command('atlas-candidate-patterns', '--bond', 'O:x', 'H:y', '0', '1', '--support', 'source_arrow_only', '--mcsa-id', 'M0212'),\n"
                 "    'transformations': transitions,\n"
                 "    'trypsin': trypsin,\n"
                 "    'partial_panels': partial,\n"
@@ -136,6 +140,29 @@ def verify_wheel(
                 check=True, capture_output=True, text=True,
             )
             queries = json.loads(draft_run.stdout)
+            pattern = queries["pattern_shared"]
+            if (pattern["schema_version"] != "catalytic-earth.candidate-pattern-query.v1"
+                    or (pattern["candidate_count"], pattern["binding_count"]) != (1, 1)
+                    or pattern["catalog_sha256"] != "682e6f1a6d30f5328c2efcd3c8f85d661ffb068ef5ed3e31b2aac3f7bd3726e0"):
+                raise ValueError("installed source-atom pattern query differs")
+            match = pattern["matches"][0]
+            if (match["bindings"][0]["atom_bindings"] != {"x": "a10", "y": "a28"}
+                    or match["candidate_row"]["candidate"]["candidate_id"] != "panel-context-candidate:M0219:mechanism-1:steps-2-3"
+                    or match["candidate_row"]["candidate"]["status"] != "unreviewed"
+                    or not match["candidate_row"]["source_context"]["mandatory_abstentions"]
+                    or pattern["query_semantics"]["bindings_imply_physical_atom_identity"] is not False):
+                raise ValueError("installed pattern query lost source atom bindings or scope")
+            disjoint = queries["pattern_disjoint"]
+            symmetric = queries["pattern_symmetric"]
+            if ((disjoint["candidate_count"], disjoint["binding_count"]) != (0, 0)
+                    or (symmetric["candidate_count"], symmetric["binding_count"]) != (2, 4)):
+                raise ValueError("installed pattern query confuses disjoint or symmetric source atoms")
+            pattern_arrows = queries["pattern_arrows"]
+            if ((pattern_arrows["candidate_count"], pattern_arrows["binding_count"]) != (1, 2)
+                    or any(event["support"] != "source_arrow_only"
+                           for row in pattern_arrows["matches"] for binding in row["bindings"]
+                           for witness in binding["clause_witnesses"] for event in witness["events"])):
+                raise ValueError("installed pattern query lost arrow-only assignments")
             events = queries["candidate_events"]
             if (events["schema_version"] != "catalytic-earth.candidate-event-query.v1"
                     or events["candidate_count"] != 12

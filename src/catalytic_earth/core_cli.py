@@ -233,6 +233,15 @@ def _chebi_argument(value: str) -> str:
         raise argparse.ArgumentTypeError(str(exc)) from exc
 
 
+def _pattern_atom_argument(value: str) -> tuple[str, str]:
+    if value.count(":") != 1:
+        raise argparse.ArgumentTypeError("expected ELEMENT:VARIABLE, such as C:x")
+    element, variable = value.split(":")
+    if not element or not variable:
+        raise argparse.ArgumentTypeError("expected ELEMENT:VARIABLE, such as C:x")
+    return element, variable
+
+
 def _mechanism_component_argument(value: str) -> str:
     from .atlas_draft_index import normalize_mechanism_component
 
@@ -397,6 +406,18 @@ def build_parser() -> argparse.ArgumentParser:
                         default="after_graph_confirmed", help="support required of each matching edit (default: after_graph_confirmed)")
     events.add_argument("--mcsa-id", help="filter an exact M-CSA identifier, e.g. M0219")
     events.add_argument("--output", type=Path, help="optional new JSON file; existing files are never overwritten")
+    patterns = subparsers.add_parser(
+        "atlas-candidate-patterns", help="require candidate edits on the same named source atoms offline",
+        description="Name atoms as ELEMENT:VARIABLE, such as C:x. Reuse a name to require the same before-panel source node; different names require distinct nodes. All edits must occur within one unreviewed candidate.",
+    )
+    patterns.add_argument("--bond", nargs=4, action="append", metavar=("ATOM1", "ATOM2", "BEFORE", "AFTER"),
+                          help="require a bond change, e.g. --bond C:x C:y 0 1; repeat for AND")
+    patterns.add_argument("--charge", nargs=3, action="append", metavar=("ATOM", "BEFORE", "AFTER"),
+                          help="require a charge change, e.g. --charge C:x -1 0; repeat for AND")
+    patterns.add_argument("--support", choices=("after_graph_confirmed", "source_arrow_only", "any"),
+                          default="after_graph_confirmed", help="support required of each matching edit (default: after_graph_confirmed)")
+    patterns.add_argument("--mcsa-id", help="filter an exact M-CSA identifier, e.g. M0219")
+    patterns.add_argument("--output", type=Path, help="optional new JSON file; existing files are never overwritten")
     drafts = subparsers.add_parser(
         "atlas-drafts", help="query source-scoped mechanisms, states and abstentions offline"
     )
@@ -577,6 +598,31 @@ def main(argv: Sequence[str] | None = None) -> int:
         rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
         if args.output:
             args.output.write_text(rendered, encoding="utf-8", newline="\n")
+        print(rendered, end="")
+        return 0
+    if args.command == "atlas-candidate-patterns":
+        from .atlas_candidate_patterns import query_candidate_patterns
+
+        try:
+            clauses = []
+            for atom1, atom2, before, after in (args.bond or []):
+                e1, v1 = _pattern_atom_argument(atom1)
+                e2, v2 = _pattern_atom_argument(atom2)
+                clauses.append({"kind": "bond", "elements": [e1, e2], "variables": [v1, v2],
+                                "before": int(before), "after": int(after)})
+            for atom, before, after in (args.charge or []):
+                element, variable = _pattern_atom_argument(atom)
+                clauses.append({"kind": "charge", "elements": [element], "variables": [variable],
+                                "before": int(before), "after": int(after)})
+            result = query_candidate_patterns(
+                verified_candidate_events(), clauses=clauses, mcsa_id=args.mcsa_id, support=args.support,
+            )
+        except (ValueError, argparse.ArgumentTypeError) as exc:
+            parser.error(str(exc))
+        rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
+        if args.output:
+            with args.output.open("x", encoding="utf-8", newline="\n") as stream:
+                stream.write(rendered)
         print(rendered, end="")
         return 0
     if args.command == "atlas-candidate-events":
