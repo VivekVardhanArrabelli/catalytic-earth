@@ -133,9 +133,9 @@ three-dimensional trajectory or new evidence tier is asserted. An empty match
 means no supported retained correspondence, not absence of catalysis.
 
 The query is derived offline from the existing packaged records and adds no
-source acquisition or rewritten review pins. The
-[coordination board](../work/coordination_transformation_sites.md) records the
-source challenge and checks.
+source acquisition or rewritten review pins. The source challenge and checks
+are recorded in `work/coordination_transformation_sites.md` in the full
+repository; internal reports are omitted from the sparse CI checkout.
 
 ## Partial panels: M0173 Step 2 to Step 3
 
