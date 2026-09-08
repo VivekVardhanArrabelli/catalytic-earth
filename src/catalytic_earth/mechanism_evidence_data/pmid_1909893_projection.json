@@ -1,0 +1,192 @@
+{
+  "assayed_construct_sequence_inspected": false,
+  "citation_url": "https://pubmed.ncbi.nlm.nih.gov/1909893/",
+  "doi": "10.1021/bi00102a020",
+  "full_text_inspected": false,
+  "inspection_depth": "retained_truncated_primary_abstract_not_full_methods",
+  "observations": [
+    {
+      "comparator_variant_id": null,
+      "conditions": [],
+      "endpoint": {
+        "kind": "turnover",
+        "name": "racemase activity",
+        "net_direction": null
+      },
+      "observation_id": "H297N-racemization",
+      "result": {
+        "detection_limit": null,
+        "detection_limit_unit": null,
+        "reported_relation": null,
+        "result_class": "not_detected",
+        "unit": null,
+        "value": null
+      },
+      "substrate": {
+        "enantiomer": null,
+        "identifier": null,
+        "name": "mandelate"
+      },
+      "variant": {
+        "substitutions": [
+          {
+            "mutant_residue": "N",
+            "sequence_position": 297,
+            "wild_type_residue": "H"
+          }
+        ],
+        "uniprot_id": "P11444",
+        "variant_id": "H297N"
+      }
+    },
+    {
+      "comparator_variant_id": "WT",
+      "conditions": [
+        {
+          "condition_id": "exchange-pD",
+          "name": "pD",
+          "unit": null,
+          "value": 7.5
+        },
+        {
+          "condition_id": "exchange-solvent",
+          "name": "solvent",
+          "unit": null,
+          "value": "D2O"
+        }
+      ],
+      "endpoint": {
+        "kind": "isotope_exchange",
+        "name": "alpha-proton exchange with solvent deuterium",
+        "net_direction": null
+      },
+      "observation_id": "H297N-S-exchange",
+      "result": {
+        "detection_limit": null,
+        "detection_limit_unit": null,
+        "reported_relation": "fold_lower_than_wild_type",
+        "result_class": "measured",
+        "unit": "fold",
+        "value": 3.3
+      },
+      "substrate": {
+        "enantiomer": "S",
+        "identifier": null,
+        "name": "mandelate"
+      },
+      "variant": {
+        "substitutions": [
+          {
+            "mutant_residue": "N",
+            "sequence_position": 297,
+            "wild_type_residue": "H"
+          }
+        ],
+        "uniprot_id": "P11444",
+        "variant_id": "H297N"
+      }
+    },
+    {
+      "comparator_variant_id": null,
+      "conditions": [
+        {
+          "condition_id": "exchange-pD",
+          "name": "pD",
+          "unit": null,
+          "value": 7.5
+        },
+        {
+          "condition_id": "exchange-solvent",
+          "name": "solvent",
+          "unit": null,
+          "value": "D2O"
+        }
+      ],
+      "endpoint": {
+        "kind": "isotope_exchange",
+        "name": "alpha-proton exchange with solvent deuterium",
+        "net_direction": null
+      },
+      "observation_id": "H297N-R-exchange",
+      "result": {
+        "detection_limit": null,
+        "detection_limit_unit": null,
+        "reported_relation": null,
+        "result_class": "not_detected",
+        "unit": null,
+        "value": null
+      },
+      "substrate": {
+        "enantiomer": "R",
+        "identifier": null,
+        "name": "mandelate"
+      },
+      "variant": {
+        "substitutions": [
+          {
+            "mutant_residue": "N",
+            "sequence_position": 297,
+            "wild_type_residue": "H"
+          }
+        ],
+        "uniprot_id": "P11444",
+        "variant_id": "H297N"
+      }
+    },
+    {
+      "comparator_variant_id": null,
+      "conditions": [
+        {
+          "condition_id": "structure-resolution",
+          "name": "crystallographic resolution",
+          "unit": "angstrom",
+          "value": 2.2
+        }
+      ],
+      "endpoint": {
+        "kind": "structure",
+        "name": "reported conformational comparison",
+        "net_direction": null
+      },
+      "observation_id": "H297N-structure",
+      "result": {
+        "detection_limit": null,
+        "detection_limit_unit": null,
+        "reported_relation": null,
+        "result_class": "no_detectable_difference",
+        "unit": null,
+        "value": null
+      },
+      "substrate": {
+        "enantiomer": null,
+        "identifier": null,
+        "name": null
+      },
+      "variant": {
+        "substitutions": [
+          {
+            "mutant_residue": "N",
+            "sequence_position": 297,
+            "wild_type_residue": "H"
+          }
+        ],
+        "uniprot_id": "P11444",
+        "variant_id": "H297N"
+      }
+    }
+  ],
+  "pdb_identifiers_in_inspected_abstract": [],
+  "protein_identity_support": "The abstract does not name organism or UniProt accession. M0187/P11444 is existing Atlas reference context with cross-publication support from PMID:7893690.",
+  "raw_capture": {
+    "http_status": 200,
+    "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1909893&retmode=xml",
+    "response_bytes": 7922,
+    "response_sha256": "8ea7ef47229482edf8e843453a363b7e4772e349a399b738ce86cedff469edd1",
+    "response_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1909893&retmode=xml",
+    "retention_scope": "local_analysis_only_not_redistributed",
+    "retrieved_at_utc": "2026-09-08T07:51:11.571599+00:00"
+  },
+  "schema_version": "catalytic-earth.primary-observation-projection.v1",
+  "source_id": "PubMed",
+  "source_record_id": "PMID:1909893"
+}

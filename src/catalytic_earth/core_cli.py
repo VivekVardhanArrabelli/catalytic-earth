@@ -59,6 +59,27 @@ def verified_transformations(mcsa_id: str = "M0187") -> dict[str, Any]:
     return value
 
 
+def verified_mechanism_evidence() -> dict[str, Any]:
+    """Load the reviewed case and verify its packaged factual source projections."""
+    prefix = "mechanism_evidence_data/"
+    expected = json.loads(_resource_bytes(prefix + "expected.json"))
+    if expected.get("schema_version") != "catalytic-earth.mechanism-evidence-package.v1":
+        raise ValueError("unsupported mechanism evidence package")
+    for name, digest in expected["files"].items():
+        if Path(name).name != name or "\\" in name:
+            raise ValueError("mechanism evidence package filenames must be local")
+        if hashlib.sha256(_resource_bytes(prefix + name)).hexdigest() != digest:
+            raise ValueError(f"mechanism evidence package differs from its expected hash: {name}")
+    if not {"evidence.json", "attribution.md"} <= expected["files"].keys():
+        raise ValueError("mechanism evidence package is incomplete")
+    value = json.loads(_resource_bytes(prefix + "evidence.json"))
+    for binding in value["source_bindings"]:
+        name = binding["path"].rsplit("/", 1)[-1]
+        if expected["files"].get(name) != binding["sha256"]:
+            raise ValueError("mechanism evidence source binding differs from its packaged projection")
+    return value
+
+
 def verified_panel_comparisons() -> dict[str, Any]:
     from .atlas_partial_panels import validate_panel_comparisons
 
@@ -388,6 +409,14 @@ def build_parser() -> argparse.ArgumentParser:
     transformation_sites.add_argument("--source-atom", help="filter a before-panel atom token, e.g. a44; requires --mcsa-id")
     transformation_sites.add_argument("--site-id", help="filter an exact atlas site identifier, e.g. P35049:S204")
     transformation_sites.add_argument("--output", type=Path, help="optional new JSON file; existing files are never overwritten")
+    mechanism_evidence = subparsers.add_parser(
+        "atlas-mechanism-evidence",
+        help="inspect a reviewed retrospective mechanism case and its published observations offline",
+        description="Filters select observations while retaining the full case, competing explanations and limits. This is source review, not a new experiment or independent expert validation.",
+    )
+    mechanism_evidence.add_argument("--variant", help="exact variant identifier, e.g. H297N or K166R")
+    mechanism_evidence.add_argument("--endpoint", choices=("turnover", "isotope_exchange", "structure"))
+    mechanism_evidence.add_argument("--output", type=Path, help="optional new JSON file; existing files are never overwritten")
     comparisons = subparsers.add_parser(
         "atlas-panel-comparisons", help="query partial source-panel changes and unresolved coverage offline"
     )
@@ -610,6 +639,27 @@ def main(argv: Sequence[str] | None = None) -> int:
                 {key: verified_transformations(key) for key in TRANSFORMATION_SETS},
                 atlas10_bundle=atlas10,
                 mcsa_id=args.mcsa_id, source_atom_id=args.source_atom, site_id=args.site_id,
+            )
+        except ValueError as exc:
+            parser.error(str(exc))
+        rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
+        if args.output:
+            with args.output.open("x", encoding="utf-8", newline="\n") as stream:
+                stream.write(rendered)
+        print(rendered, end="")
+        return 0
+    if args.command == "atlas-mechanism-evidence":
+        from .atlas_mechanism_evidence import query_mechanism_evidence
+
+        try:
+            atlas10 = json.loads(_resource_bytes(ATLAS10_KERNEL))
+            expected = json.loads(_resource_bytes(ATLAS10_EXPECTED))
+            if _canonical_sha(atlas10) != expected.get("kernel_sha256"):
+                raise ValueError("Atlas-10 context differs from the packaged expectation")
+            result = query_mechanism_evidence(
+                verified_mechanism_evidence(), atlas10_bundle=atlas10,
+                transformation_values={"M0187": verified_transformations("M0187")},
+                variant=args.variant, endpoint=args.endpoint,
             )
         except ValueError as exc:
             parser.error(str(exc))

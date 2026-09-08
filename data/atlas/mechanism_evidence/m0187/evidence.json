@@ -1,0 +1,610 @@
+{
+  "cases": [
+    {
+      "adjudication": {
+        "basis_discriminant_ids": [
+          "retained-S-exchange"
+        ],
+        "claim_status": "supported",
+        "selected_alternative_id": "endpoint-selective-impairment",
+        "statement": "At the scope of the inspected published reports, H297N retains S-mandelate alpha-proton exchange despite reported nondetection of racemization. This supports endpoint-selective impairment, without resolving the complete molecular cause.",
+        "unresolved_alternative_ids": []
+      },
+      "alternatives": [
+        {
+          "alternative_id": "all-catalysis-abolished",
+          "statement": "H297N eliminates every catalytic capability in the reported mandelate assays."
+        },
+        {
+          "alternative_id": "endpoint-selective-impairment",
+          "statement": "H297N retains a measured catalytic capability despite loss of detectable racemization."
+        }
+      ],
+      "applicability": {
+        "mcsa_id": "M0187",
+        "observation_ids": [
+          "H297N-racemization",
+          "H297N-S-exchange",
+          "H297N-R-exchange",
+          "H297N-structure",
+          "K166R-R-to-S-turnover",
+          "K166R-S-to-R-turnover"
+        ],
+        "other_proteins": false,
+        "other_variants": false,
+        "scope": "The named published variants and endpoints, with P11444 as existing_atlas_reference_site_context only; no exact assayed-construct identity is asserted.",
+        "uniprot_id": "P11444",
+        "unreported_conditions": false
+      },
+      "case_id": "atlas10.mandelate-racemase-pputida.enolate",
+      "discriminants": [
+        {
+          "alternative_assessments": [
+            {
+              "alternative_id": "all-catalysis-abolished",
+              "relation": "counters",
+              "statement": "The positive S exchange observation contradicts complete loss of catalytic capability."
+            },
+            {
+              "alternative_id": "endpoint-selective-impairment",
+              "relation": "supports",
+              "statement": "Distinct turnover and exchange endpoints have different reported outcomes."
+            }
+          ],
+          "discriminant_id": "retained-S-exchange",
+          "observation_ids": [
+            "H297N-racemization",
+            "H297N-S-exchange",
+            "H297N-R-exchange"
+          ],
+          "status": "retrospectively_observed"
+        },
+        {
+          "alternative_assessments": [
+            {
+              "alternative_id": "all-catalysis-abolished",
+              "relation": "does_not_resolve",
+              "statement": "A static conformational comparison cannot establish which catalytic capabilities remain."
+            },
+            {
+              "alternative_id": "endpoint-selective-impairment",
+              "relation": "does_not_resolve",
+              "statement": "The authors report no conformational change, but this alone does not establish the cause of the functional difference."
+            }
+          ],
+          "discriminant_id": "structure-scope",
+          "observation_ids": [
+            "H297N-structure"
+          ],
+          "status": "retrospectively_observed"
+        },
+        {
+          "alternative_assessments": [
+            {
+              "alternative_id": "all-catalysis-abolished",
+              "relation": "does_not_resolve",
+              "statement": "Different variants and publications cannot substitute for matched H297N controls."
+            },
+            {
+              "alternative_id": "endpoint-selective-impairment",
+              "relation": "does_not_resolve",
+              "statement": "K166R provides contextual two-base evidence, with nonzero turnover in both directions, not a reciprocal zero knockout."
+            }
+          ],
+          "discriminant_id": "K166R-boundary",
+          "observation_ids": [
+            "K166R-R-to-S-turnover",
+            "K166R-S-to-R-turnover"
+          ],
+          "status": "retrospectively_observed"
+        }
+      ],
+      "evidence_references": [
+        {
+          "applicability": "direct",
+          "evidence_id": "paper:PMID:1909893",
+          "evidence_kind": "primary_paper_abstract",
+          "source_binding_id": "primary:PMID:1909893",
+          "source_completeness": "abstract_truncated",
+          "source_id": "PubMed",
+          "source_record_id": "PMID:1909893"
+        },
+        {
+          "applicability": "contextual",
+          "evidence_id": "paper:PMID:7893690",
+          "evidence_kind": "primary_paper_abstract",
+          "source_binding_id": "primary:PMID:7893690",
+          "source_completeness": "abstract_truncated",
+          "source_id": "PubMed",
+          "source_record_id": "PMID:7893690"
+        }
+      ],
+      "focal_variant_id": "H297N",
+      "mandatory_abstentions": [
+        {
+          "abstention_id": "abstract-depth",
+          "reason": "Both retained PubMed abstracts are truncated. Full methods, assay floors, uncertainty estimates and replication details were not inspected."
+        },
+        {
+          "abstention_id": "conditions-and-nondetection",
+          "reason": "H297N general racemase nondetection has no direction or conditions in the inspected text. pD 7.5 and D2O apply only to exchange. Nondetection is not zero."
+        },
+        {
+          "abstention_id": "exchange-not-racemization",
+          "reason": "S-specific exchange does not establish S-to-R racemization. Acid/base enantiomer specificity is not a one-way net reaction assignment."
+        },
+        {
+          "abstention_id": "timing-and-intermediate",
+          "reason": "Overall stepwise racemization does not decide whether proton transfers within a step are concerted. No intermediate observation, exact proton identity or complete trajectory is asserted."
+        },
+        {
+          "abstention_id": "protein-construct-identity",
+          "reason": "P11444 is existing Atlas reference-site context. The H297N abstract supplies neither organism nor UniProt identity; K166R provides contextual P. putida and H297N citation support. Exact assayed construct sequences were not inspected."
+        },
+        {
+          "abstention_id": "structure-applicability",
+          "reason": "No mutant PDB accession is given in either inspected abstract. The H297N structural comparison is source-reported; its comparison structure is not identified in the inspected abstract. Atlas 1MNS is an inhibitor-bound chemically modified Lys166 context, not either mutant structure or a turnover observation."
+        },
+        {
+          "abstention_id": "source-atom-correspondence",
+          "reason": "All seven changed M0187 source atoms retain unresolved site links. Functional evidence adds no explicit source-residue label or deposited atom identity."
+        },
+        {
+          "abstention_id": "K166R-context",
+          "reason": "K166R has nonzero residual turnover and is contextual evidence from another publication, not a matched reciprocal knockout control. Its reported fold-reduction reference is not named in the inspected abstract."
+        },
+        {
+          "abstention_id": "review-scope",
+          "reason": "This is retrospective same-model computational source review, not independent expert review, a prospective prediction or a new experiment."
+        }
+      ],
+      "observations": [
+        {
+          "comparator_variant_id": null,
+          "conditions": [],
+          "endpoint": {
+            "kind": "turnover",
+            "name": "racemase activity",
+            "net_direction": null
+          },
+          "evidence_ids": [
+            "paper:PMID:1909893"
+          ],
+          "observation_id": "H297N-racemization",
+          "project_interpretation": {
+            "statement": "Nondetection of the named endpoint does not establish zero rate or loss of every catalytic capability.",
+            "status": "project_diagnostic"
+          },
+          "result": {
+            "detection_limit": null,
+            "detection_limit_unit": null,
+            "reported_relation": null,
+            "result_class": "not_detected",
+            "unit": null,
+            "value": null
+          },
+          "source_interpretation": null,
+          "source_witnesses": [
+            {
+              "evidence_id": "paper:PMID:1909893",
+              "exact_text": "H297N has no detectable MR activity",
+              "locator": "PubMed Abstract/AbstractText"
+            }
+          ],
+          "substrate": {
+            "enantiomer": null,
+            "identifier": null,
+            "name": "mandelate"
+          },
+          "variant": {
+            "substitutions": [
+              {
+                "mutant_residue": "N",
+                "sequence_position": 297,
+                "wild_type_residue": "H"
+              }
+            ],
+            "uniprot_id": "P11444",
+            "variant_id": "H297N"
+          }
+        },
+        {
+          "comparator_variant_id": "WT",
+          "conditions": [
+            {
+              "condition_id": "exchange-pD",
+              "name": "pD",
+              "unit": null,
+              "value": 7.5
+            },
+            {
+              "condition_id": "exchange-solvent",
+              "name": "solvent",
+              "unit": null,
+              "value": "D2O"
+            }
+          ],
+          "endpoint": {
+            "kind": "isotope_exchange",
+            "name": "alpha-proton exchange with solvent deuterium",
+            "net_direction": null
+          },
+          "evidence_ids": [
+            "paper:PMID:1909893"
+          ],
+          "observation_id": "H297N-S-exchange",
+          "project_interpretation": {
+            "statement": "Retained exchange counters complete abolition of catalysis; exchange is not net racemization.",
+            "status": "project_diagnostic"
+          },
+          "result": {
+            "detection_limit": null,
+            "detection_limit_unit": null,
+            "reported_relation": "fold_lower_than_wild_type",
+            "result_class": "measured",
+            "unit": "fold",
+            "value": 3.3
+          },
+          "source_interpretation": null,
+          "source_witnesses": [
+            {
+              "evidence_id": "paper:PMID:1909893",
+              "exact_text": "At pD 7.5",
+              "locator": "PubMed Abstract/AbstractText"
+            },
+            {
+              "evidence_id": "paper:PMID:1909893",
+              "exact_text": "3.3-fold less",
+              "locator": "PubMed Abstract/AbstractText"
+            },
+            {
+              "evidence_id": "paper:PMID:1909893",
+              "exact_text": "D2O",
+              "locator": "PubMed Abstract/AbstractText"
+            },
+            {
+              "evidence_id": "paper:PMID:1909893",
+              "exact_text": "H297N catalyzes the stereospecific exchange",
+              "locator": "PubMed Abstract/AbstractText"
+            }
+          ],
+          "substrate": {
+            "enantiomer": "S",
+            "identifier": null,
+            "name": "mandelate"
+          },
+          "variant": {
+            "substitutions": [
+              {
+                "mutant_residue": "N",
+                "sequence_position": 297,
+                "wild_type_residue": "H"
+              }
+            ],
+            "uniprot_id": "P11444",
+            "variant_id": "H297N"
+          }
+        },
+        {
+          "comparator_variant_id": null,
+          "conditions": [
+            {
+              "condition_id": "exchange-pD",
+              "name": "pD",
+              "unit": null,
+              "value": 7.5
+            },
+            {
+              "condition_id": "exchange-solvent",
+              "name": "solvent",
+              "unit": null,
+              "value": "D2O"
+            }
+          ],
+          "endpoint": {
+            "kind": "isotope_exchange",
+            "name": "alpha-proton exchange with solvent deuterium",
+            "net_direction": null
+          },
+          "evidence_ids": [
+            "paper:PMID:1909893"
+          ],
+          "observation_id": "H297N-R-exchange",
+          "project_interpretation": {
+            "statement": "The exchange outcomes differ by substrate enantiomer under the reported condition; they do not assign a net racemization direction or elementary proton-transfer timing.",
+            "status": "project_diagnostic"
+          },
+          "result": {
+            "detection_limit": null,
+            "detection_limit_unit": null,
+            "reported_relation": null,
+            "result_class": "not_detected",
+            "unit": null,
+            "value": null
+          },
+          "source_interpretation": null,
+          "source_witnesses": [
+            {
+              "evidence_id": "paper:PMID:1909893",
+              "exact_text": "(S)- but not (R)-mandelate",
+              "locator": "PubMed Abstract/AbstractText"
+            }
+          ],
+          "substrate": {
+            "enantiomer": "R",
+            "identifier": null,
+            "name": "mandelate"
+          },
+          "variant": {
+            "substitutions": [
+              {
+                "mutant_residue": "N",
+                "sequence_position": 297,
+                "wild_type_residue": "H"
+              }
+            ],
+            "uniprot_id": "P11444",
+            "variant_id": "H297N"
+          }
+        },
+        {
+          "comparator_variant_id": null,
+          "conditions": [
+            {
+              "condition_id": "structure-resolution",
+              "name": "crystallographic resolution",
+              "unit": "angstrom",
+              "value": 2.2
+            }
+          ],
+          "endpoint": {
+            "kind": "structure",
+            "name": "reported conformational comparison",
+            "net_direction": null
+          },
+          "evidence_ids": [
+            "paper:PMID:1909893"
+          ],
+          "observation_id": "H297N-structure",
+          "project_interpretation": {
+            "statement": "The authors report no conformational change at this resolution; dynamics and subtle local changes remain unresolved.",
+            "status": "project_diagnostic"
+          },
+          "result": {
+            "detection_limit": null,
+            "detection_limit_unit": null,
+            "reported_relation": null,
+            "result_class": "no_detectable_difference",
+            "unit": null,
+            "value": null
+          },
+          "source_interpretation": null,
+          "source_witnesses": [
+            {
+              "evidence_id": "paper:PMID:1909893",
+              "exact_text": "no conformational alterations",
+              "locator": "PubMed Abstract/AbstractText"
+            },
+            {
+              "evidence_id": "paper:PMID:1909893",
+              "exact_text": "2.2-A",
+              "locator": "PubMed Abstract/AbstractText"
+            }
+          ],
+          "substrate": {
+            "enantiomer": null,
+            "identifier": null,
+            "name": null
+          },
+          "variant": {
+            "substitutions": [
+              {
+                "mutant_residue": "N",
+                "sequence_position": 297,
+                "wild_type_residue": "H"
+              }
+            ],
+            "uniprot_id": "P11444",
+            "variant_id": "H297N"
+          }
+        },
+        {
+          "comparator_variant_id": null,
+          "conditions": [],
+          "endpoint": {
+            "kind": "turnover",
+            "name": "racemization kcat",
+            "net_direction": "R_to_S"
+          },
+          "evidence_ids": [
+            "paper:PMID:7893690"
+          ],
+          "observation_id": "K166R-R-to-S-turnover",
+          "project_interpretation": {
+            "statement": "Residual turnover is positive; K166R cannot serve as a reciprocal zero-activity knockout.",
+            "status": "project_diagnostic"
+          },
+          "result": {
+            "detection_limit": null,
+            "detection_limit_unit": null,
+            "reported_relation": "fold_reduction_reference_unspecified_in_inspected_abstract",
+            "result_class": "measured",
+            "unit": "fold",
+            "value": 5000
+          },
+          "source_interpretation": null,
+          "source_witnesses": [
+            {
+              "evidence_id": "paper:PMID:7893690",
+              "exact_text": "5 x 10(3)-fold",
+              "locator": "PubMed Abstract/AbstractText"
+            },
+            {
+              "evidence_id": "paper:PMID:7893690",
+              "exact_text": "(R)- to (S)-direction",
+              "locator": "PubMed Abstract/AbstractText"
+            },
+            {
+              "evidence_id": "paper:PMID:7893690",
+              "exact_text": "K166R exhibits low levels of racemase activity",
+              "locator": "PubMed Abstract/AbstractText"
+            },
+            {
+              "evidence_id": "paper:PMID:7893690",
+              "exact_text": "kcat is reduced",
+              "locator": "PubMed Abstract/AbstractText"
+            }
+          ],
+          "substrate": {
+            "enantiomer": "R",
+            "identifier": null,
+            "name": "mandelate"
+          },
+          "variant": {
+            "substitutions": [
+              {
+                "mutant_residue": "R",
+                "sequence_position": 166,
+                "wild_type_residue": "K"
+              }
+            ],
+            "uniprot_id": "P11444",
+            "variant_id": "K166R"
+          }
+        },
+        {
+          "comparator_variant_id": null,
+          "conditions": [],
+          "endpoint": {
+            "kind": "turnover",
+            "name": "racemization kcat",
+            "net_direction": "S_to_R"
+          },
+          "evidence_ids": [
+            "paper:PMID:7893690"
+          ],
+          "observation_id": "K166R-S-to-R-turnover",
+          "project_interpretation": {
+            "statement": "The opposite reaction direction also retains turnover; these measurements are from a separate publication.",
+            "status": "project_diagnostic"
+          },
+          "result": {
+            "detection_limit": null,
+            "detection_limit_unit": null,
+            "reported_relation": "fold_reduction_reference_unspecified_in_inspected_abstract",
+            "result_class": "measured",
+            "unit": "fold",
+            "value": 1000
+          },
+          "source_interpretation": null,
+          "source_witnesses": [
+            {
+              "evidence_id": "paper:PMID:7893690",
+              "exact_text": "1 x 10(3)-fold",
+              "locator": "PubMed Abstract/AbstractText"
+            },
+            {
+              "evidence_id": "paper:PMID:7893690",
+              "exact_text": "(S)- to (R)-direction",
+              "locator": "PubMed Abstract/AbstractText"
+            }
+          ],
+          "substrate": {
+            "enantiomer": "S",
+            "identifier": null,
+            "name": "mandelate"
+          },
+          "variant": {
+            "substitutions": [
+              {
+                "mutant_residue": "R",
+                "sequence_position": 166,
+                "wild_type_residue": "K"
+              }
+            ],
+            "uniprot_id": "P11444",
+            "variant_id": "K166R"
+          }
+        }
+      ],
+      "proposal_binding": {
+        "proposal_id": "atlas10.mandelate-racemase-pputida.enolate.mcsa-M0187.mechanism-1",
+        "source_mechanism_id": 1
+      },
+      "question": {
+        "question_id": "H297N-endpoint-specific-loss",
+        "statement": "Does reported nondetection of H297N racemization establish loss of all catalytic capability, or is the impairment selective across measured endpoints?"
+      },
+      "record_binding": {
+        "case_id": "atlas10.mandelate-racemase-pputida.enolate",
+        "mcsa_id": "M0187",
+        "record_id": "mechanism:mandelate-racemase-pputida-enolate-v1",
+        "source_snapshot_sha256": "45663712262387e7eec092c49b16994d03f9b6d186008b737b94c613a87458e3"
+      },
+      "scope_effect": {
+        "atlas10_records_changed": false,
+        "changed_atom_site_link_added": false,
+        "complete_mechanism_validated": false,
+        "deposited_atom_identity_added": false,
+        "independent_review_claimed": false,
+        "new_experiment_claimed": false,
+        "observed_intermediate_claimed": false,
+        "physical_atom_map_added": false,
+        "prospective_prediction_claimed": false,
+        "reviewed_transformations_changed": false,
+        "statistical_confidence_claimed": false,
+        "tier4_outcome_claimed": false,
+        "transformation_review_scope_expanded": false
+      },
+      "site_context_binding": {
+        "assayed_construct_identity_status": "reference_protein_context_not_exact_assayed_construct",
+        "atlas10_bundle_sha256": "27c2f16477911db206f1ff67cfc4c54aa150877e59dc31a7c1ff32dcca4a049e",
+        "changed_source_atom_link_status": "unresolved_no_explicit_source_residue_label",
+        "deposited_atom_identity_status": "not_asserted",
+        "relationship": "before_step_declared_catalyst_site",
+        "site_id": "P11444:H297"
+      },
+      "transformation_binding": {
+        "mcsa_id": "M0187",
+        "transformation_id": "transformation:M0187:mechanism-1:step-1-to-step-2",
+        "transformation_payload_sha256": "65057e00ab8191505294987e7be7338b09a991eb9715b1116d09713c9a0d56ab",
+        "transformation_set_id": "atlas10-m0187-depicted-intermediate-v1"
+      }
+    }
+  ],
+  "evidence_set_id": "atlas10-m0187-functional-evidence-v1",
+  "review": {
+    "blind_review": false,
+    "correlated_error_risk": true,
+    "domain_expert_review_claimed": false,
+    "evidence_payload_sha256": "dd62c8fbbde725e8567a6a2462cb456c26b5c77c4b239ed18ad3e05f468e3241",
+    "human_reviewers": 0,
+    "reviewed_on": "2026-09-08",
+    "reviewer_kind": "same_model_computational_agents",
+    "same_model_agents": true,
+    "statistically_independent": false,
+    "update_rule": "Do not automatically refresh this pin after mechanistic-evidence changes. Repeat source-to-conclusion review first."
+  },
+  "schema_version": "catalytic-earth.mechanism-evidence.v1",
+  "source_bindings": [
+    {
+      "artifact_kind": "primary_source_projection",
+      "binding_id": "primary:PMID:1909893",
+      "path": "data/atlas/mechanism_evidence/m0187/pmid_1909893_projection.json",
+      "sha256": "9b2b1def62dcc47e8700a3bc094ceed382f2a7b8f6ab8b1b08a31c76ee994113"
+    },
+    {
+      "artifact_kind": "primary_source_projection",
+      "binding_id": "primary:PMID:7893690",
+      "path": "data/atlas/mechanism_evidence/m0187/pmid_7893690_projection.json",
+      "sha256": "790a1a57680419f8aecc7e622640c6cb9fb666c774b460a4804ae40687a4a47c"
+    },
+    {
+      "artifact_kind": "acquisition_receipts",
+      "binding_id": "project:M0187:primary-acquisition",
+      "path": "data/atlas/mechanism_evidence/m0187/acquisition_receipts.json",
+      "sha256": "516d02a3986de2a8181d572a1ddcec16926cfc586105ef98eacebe4a2ed25546"
+    }
+  ],
+  "status": "reviewed_retrospective_mechanistic_conclusion_not_upstream_revision"
+}

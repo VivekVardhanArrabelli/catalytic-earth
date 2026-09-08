@@ -104,6 +104,10 @@ def verify_wheel(
                 "    'transformation_sites': command('atlas-transformation-sites'),\n"
                 "    'transformation_site_oxygen': command('atlas-transformation-sites', '--mcsa-id', 'M0173', '--source-atom', 'a44'),\n"
                 "    'transformation_site_missing_edge': command('atlas-transformation-sites', '--site-id', 'P11444:H297'),\n"
+                "    'mechanism_evidence': command('atlas-mechanism-evidence'),\n"
+                "    'mechanism_exchange': command('atlas-mechanism-evidence', '--variant', 'H297N', '--endpoint', 'isotope_exchange'),\n"
+                "    'mechanism_K166R': command('atlas-mechanism-evidence', '--variant', 'K166R', '--endpoint', 'turnover'),\n"
+                "    'mechanism_evidence_empty': command('atlas-mechanism-evidence', '--variant', 'WT'),\n"
                 "    'all': run_query('--steps'),\n"
                 "    'ammonium': run_query('--reactant', '28938', '--product', '58278'),\n"
                 "    'carbon_dioxide': run_query('--product', 'CHEBI:16526'),\n"
@@ -143,6 +147,34 @@ def verify_wheel(
                 check=True, capture_output=True, text=True,
             )
             queries = json.loads(draft_run.stdout)
+            evidence = queries["mechanism_evidence"]
+            if (evidence["schema_version"] != "catalytic-earth.mechanism-evidence-query.v1"
+                    or (evidence["case_count"], evidence["matched_observation_count"]) != (1, 6)):
+                raise ValueError("installed mechanistic evidence case differs")
+            case = evidence["matches"][0]["case"]
+            observations = {row["observation_id"]: row for row in case["observations"]}
+            nondetection = observations["H297N-racemization"]
+            exchange = queries["mechanism_exchange"]
+            control = queries["mechanism_K166R"]
+            if (nondetection["result"]["result_class"] != "not_detected"
+                    or nondetection["result"]["value"] is not None
+                    or nondetection["endpoint"]["net_direction"] is not None
+                    or nondetection["conditions"] != []
+                    or observations["H297N-S-exchange"]["result"]["value"] != 3.3
+                    or observations["H297N-R-exchange"]["result"]["value"] is not None
+                    or observations["K166R-R-to-S-turnover"]["result"]["value"] != 5000
+                    or observations["K166R-S-to-R-turnover"]["result"]["value"] != 1000
+                    or observations["K166R-R-to-S-turnover"]["endpoint"]["net_direction"] != "R_to_S"
+                    or observations["K166R-S-to-R-turnover"]["endpoint"]["net_direction"] != "S_to_R"
+                    or observations["K166R-R-to-S-turnover"]["comparator_variant_id"] is not None
+                    or observations["K166R-S-to-R-turnover"]["comparator_variant_id"] is not None):
+                raise ValueError("installed evidence confuses endpoint, direction or nondetection")
+            if (exchange["matched_observation_count"] != 2 or control["matched_observation_count"] != 2
+                    or exchange["matches"][0]["case"] != case or control["matches"][0]["case"] != case
+                    or case["adjudication"]["selected_alternative_id"] != "endpoint-selective-impairment"
+                    or not case["mandatory_abstentions"] or any(case["scope_effect"].values())
+                    or queries["mechanism_evidence_empty"]["case_count"] != 0):
+                raise ValueError("installed evidence filters prune the adjudicated case or lose scope")
             pattern = queries["pattern_shared"]
             if (pattern["schema_version"] != "catalytic-earth.candidate-pattern-query.v1"
                     or (pattern["candidate_count"], pattern["binding_count"]) != (1, 1)
