@@ -124,6 +124,7 @@ def _validate_markdown_links() -> None:
         "docs/COMPUTATIONAL_DEVELOPMENT_REVIEW.md",
         "docs/ATLAS_SOURCE_DRAFTS.md",
         "docs/ATLAS_TRANSFORMATIONS.md",
+        "docs/ATLAS_MECHANISM_EVIDENCE.md",
         "docs/ATLAS_TRUTH_POLICY.md",
         "docs/CORE_REPRODUCTION.md",
         "docs/EVALUATION_MEMORY.md",
@@ -173,6 +174,12 @@ def _validate_json_surfaces(*, include_release_manifest: bool) -> None:
         "data/atlas/transformations/m0187/retained_graph_audit.json",
         "src/catalytic_earth/transformation_data/transformations.json",
         "src/catalytic_earth/transformation_data/expected.json",
+        "data/atlas/mechanism_evidence/m0187/evidence.json",
+        "data/atlas/mechanism_evidence/m0187/pmid_1909893_projection.json",
+        "data/atlas/mechanism_evidence/m0187/pmid_7893690_projection.json",
+        "data/atlas/mechanism_evidence/m0187/acquisition_receipts.json",
+        "src/catalytic_earth/mechanism_evidence_data/evidence.json",
+        "src/catalytic_earth/mechanism_evidence_data/expected.json",
         "data/atlas/transformations/m0173/transformations.json",
         "data/atlas/transformations/m0173/source_inventory.json",
         "data/atlas/transformations/m0173/retained_graph_audit.json",
@@ -429,6 +436,7 @@ def main() -> int:
     _run("scripts/build_atlas_draft_sources.py", "--check")
     _run("scripts/build_atlas_drafts.py", "--check")
     _run("scripts/build_atlas_transformations.py", "--check")
+    _run("scripts/build_atlas_mechanism_evidence.py", "--check")
     _run("scripts/build_atlas_candidate_events.py", "--check")
     _run("data/atlas/transformations/m0173/audit_m0173.py", "--check")
     _run("scripts/build_atlas_panel_comparisons.py", "--check")

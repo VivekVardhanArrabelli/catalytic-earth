@@ -1,0 +1,38 @@
+{
+  "limits": {
+    "requests": 12,
+    "response_bytes": 2097152
+  },
+  "requests": [
+    {
+      "content_type": "text/xml; charset=UTF-8",
+      "http_status": 200,
+      "raw_response_path": null,
+      "redirects_followed": 0,
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1909893&retmode=xml",
+      "response_bytes": 7922,
+      "response_sha256": "8ea7ef47229482edf8e843453a363b7e4772e349a399b738ce86cedff469edd1",
+      "response_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1909893&retmode=xml",
+      "retention_scope": "local_analysis_only_not_redistributed",
+      "retries": 0,
+      "retrieved_at_utc": "2026-09-08T07:51:11.571599+00:00",
+      "source_record_id": "PMID:1909893"
+    },
+    {
+      "content_type": "text/xml; charset=UTF-8",
+      "http_status": 200,
+      "raw_response_path": null,
+      "redirects_followed": 0,
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7893690&retmode=xml",
+      "response_bytes": 9046,
+      "response_sha256": "ab2024a6078e12fb7570db42460ed027c24687b8598e9dbbac22013858ef0385",
+      "response_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7893690&retmode=xml",
+      "retention_scope": "local_analysis_only_not_redistributed",
+      "retries": 0,
+      "retrieved_at_utc": "2026-09-08T07:51:11.916637+00:00",
+      "source_record_id": "PMID:7893690"
+    }
+  ],
+  "schema_version": "catalytic-earth.primary-case-acquisition.v1",
+  "scope": "M0187 H297N/K166R primary abstract capture; public discovery is separately documented"
+}

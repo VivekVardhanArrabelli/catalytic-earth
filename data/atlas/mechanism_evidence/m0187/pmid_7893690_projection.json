@@ -1,0 +1,91 @@
+{
+  "assayed_construct_sequence_inspected": false,
+  "citation_url": "https://pubmed.ncbi.nlm.nih.gov/7893690/",
+  "doi": "10.1021/bi00009a007",
+  "full_text_inspected": false,
+  "inspection_depth": "retained_truncated_primary_abstract_not_full_methods",
+  "observations": [
+    {
+      "comparator_variant_id": null,
+      "conditions": [],
+      "endpoint": {
+        "kind": "turnover",
+        "name": "racemization kcat",
+        "net_direction": "R_to_S"
+      },
+      "observation_id": "K166R-R-to-S-turnover",
+      "result": {
+        "detection_limit": null,
+        "detection_limit_unit": null,
+        "reported_relation": "fold_reduction_reference_unspecified_in_inspected_abstract",
+        "result_class": "measured",
+        "unit": "fold",
+        "value": 5000
+      },
+      "substrate": {
+        "enantiomer": "R",
+        "identifier": null,
+        "name": "mandelate"
+      },
+      "variant": {
+        "substitutions": [
+          {
+            "mutant_residue": "R",
+            "sequence_position": 166,
+            "wild_type_residue": "K"
+          }
+        ],
+        "uniprot_id": "P11444",
+        "variant_id": "K166R"
+      }
+    },
+    {
+      "comparator_variant_id": null,
+      "conditions": [],
+      "endpoint": {
+        "kind": "turnover",
+        "name": "racemization kcat",
+        "net_direction": "S_to_R"
+      },
+      "observation_id": "K166R-S-to-R-turnover",
+      "result": {
+        "detection_limit": null,
+        "detection_limit_unit": null,
+        "reported_relation": "fold_reduction_reference_unspecified_in_inspected_abstract",
+        "result_class": "measured",
+        "unit": "fold",
+        "value": 1000
+      },
+      "substrate": {
+        "enantiomer": "S",
+        "identifier": null,
+        "name": "mandelate"
+      },
+      "variant": {
+        "substitutions": [
+          {
+            "mutant_residue": "R",
+            "sequence_position": 166,
+            "wild_type_residue": "K"
+          }
+        ],
+        "uniprot_id": "P11444",
+        "variant_id": "K166R"
+      }
+    }
+  ],
+  "pdb_identifiers_in_inspected_abstract": [],
+  "protein_identity_support": "The abstract names Pseudomonas putida and cites the contrasting H297N study; it does not provide a UniProt accession or construct sequence.",
+  "raw_capture": {
+    "http_status": 200,
+    "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7893690&retmode=xml",
+    "response_bytes": 9046,
+    "response_sha256": "ab2024a6078e12fb7570db42460ed027c24687b8598e9dbbac22013858ef0385",
+    "response_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7893690&retmode=xml",
+    "retention_scope": "local_analysis_only_not_redistributed",
+    "retrieved_at_utc": "2026-09-08T07:51:11.916637+00:00"
+  },
+  "schema_version": "catalytic-earth.primary-observation-projection.v1",
+  "source_id": "PubMed",
+  "source_record_id": "PMID:7893690"
+}

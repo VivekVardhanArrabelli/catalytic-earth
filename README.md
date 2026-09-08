@@ -97,6 +97,13 @@ with their distinct 1PQ5 author and mmCIF residue numbers retained. Unlabeled
 atoms remain unresolved; residue correspondence does not identify a deposited
 atom or establish an observed intermediate.
 
+A [functional evidence case](docs/ATLAS_MECHANISM_EVIDENCE.md) now asks whether
+reported nondetection of H297N racemization means all catalytic capability is lost. Published
+S-mandelate exchange supports a narrower impairment. `catalytic-earth
+atlas-mechanism-evidence` returns six source-scoped observations, competing
+explanations and their adjudication, with unknown assay floors and unresolved
+atom/structure applicability retained. This is retrospective source review.
+
 The following trypsin drawing omits the released peptide and redraws water.
 An [explicit partial-panel comparison](docs/ATLAS_TRANSFORMATIONS.md#partial-panels-m0173-step-2-to-step-3)
 replays three retained-core changes across 40 matched nodes while preserving
