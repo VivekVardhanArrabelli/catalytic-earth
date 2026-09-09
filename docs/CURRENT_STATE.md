@@ -1,5 +1,24 @@
 # Current State
 
+## 2026-09-09: POX analogue nonbinding retains separate pyruvate responses
+
+The [six-row POX comparison](ATLAS_STUDY_CONTEXT.md#pox-analogue-binding-does-not-supply-a-generic-activity-label)
+extends the retained study to a second enzyme context using the same data
+concepts. E59Q has source-reported MAP nonbinding but source-reported fitted pyruvate/DCPIP
+kcat 0.49 ± 0.01 s⁻¹ and anaerobic pyruvate/FAD apparent processing rate
+1.07 ± 0.08 s⁻¹. CE-025 prevents a nonproductive-analogue result from supplying
+a blanket inactivity label. These are different assays, not oxygen-turnover
+kinetics, an elementary-step rate or a new experiment.
+
+The data preserve all six rows across three assays, distinct MAP K_D_app,
+pyruvate K_M and single-turnover K0.5, source-derived quotient identity and
+unavailable values. Exact-pointer reuse distinguishes POX analogue nonbinding
+from TKT reporter absence. All facts fit additive data without new runtime or
+validator code; no mechanism/protein registry admission or tier promotion.
+Only retained source bytes were used, with zero new requests; cumulative
+accounting/headroom remains unresolved. MAP's printed `10 mM` optical path
+length and the unstated single-turnover pH remain explicit source limitations.
+
 ## 2026-09-09: variant kinetics preserve distinct functional endpoints
 
 The [seven-row transketolase comparison](ATLAS_STUDY_CONTEXT.md#variant-kinetics-retain-their-assay-and-parameter-identity)

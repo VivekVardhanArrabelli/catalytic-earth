@@ -1,0 +1,1207 @@
+{
+  "schema_version": "catalytic-earth.functional-comparison.v1",
+  "comparison_id": "l-plantarum-pox-2019-kinetic-endpoints",
+  "operation": "source_annotation",
+  "study": {
+    "doi": "10.1038/s41586-019-1581-9",
+    "pmid": "31534226",
+    "title": "Low-barrier hydrogen bonds in enzyme cooperativity",
+    "enzyme_context": "reported L. plantarum pyruvate oxidase wild type and variants",
+    "identity_evidence": "Supplementary Methods printed page 8, POX heading and steady-state paragraph; main Figure 3 title; Extended Data Table 2b and Figure 8.",
+    "exact_sequence_accession": null,
+    "scope": "One published study, a second enzyme context and six Table 2b comparison rows. No biological-case admission, new protein registry record, compiled mechanism or project experiment."
+  },
+  "selection": {
+    "included": "All six POX Table 2b rows and all ten kinetic columns, including reported ratio columns and single-turnover Hill coefficients.",
+    "excluded": "Printed parenthetical fold changes, qualitative cooperativity labels, structural atom/sequence mapping and independent interpretation of the proposed low-barrier hydrogen-bond mechanism.",
+    "reason": "Test whether analogue binding, authentic-substrate processing and steady-state activity can supply an interchangeable functional label; preserve all variant arms."
+  },
+  "source_bindings": [
+    {
+      "path": "data/atlas/study_context/6ha3/source_inventory.json",
+      "sha256": "1605d98776281d52660f32442da9d11996bfc4dc19e5cbbea1b0252882bbfc06"
+    },
+    {
+      "path": "data/atlas/assembly_context/6ha3/acquisition_appendix.json",
+      "sha256": "06dbbcbc8ae4967803c4d4eba1193d1d687bc26b2b159f1699df450059e57192"
+    },
+    {
+      "path": "data/atlas/study_context/6ha3/functional_comparison.json",
+      "sha256": "a8205b4964ac094b41172cdfa9309c70cd004bfa458ee9ea62bbf64785bf6366"
+    }
+  ],
+  "sources": [
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:EDTable2-JPEG",
+      "source_url": "https://media.springernature.com/lw749/springer-static/esm/art%3A10.1038%2Fs41586-019-1581-9/MediaObjects/41586_2019_1581_Tab2_ESM.jpg",
+      "sha256": "51ca21f005b8b5d9dd152e097940656a76821e3e379b7697da219d5522652b8c",
+      "bytes": 146137,
+      "redistributed": false,
+      "inherited_inspection_depth": "Full table image visually inspected; E160Q and wild-type transketolase values transcribed with units and uncertainty.",
+      "this_run_inspection": "All six POX Table 2b rows and all ten kinetic columns visually inspected; printed fold-change/cooperativity prose is not transcribed."
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:EDTable2-HTML",
+      "source_url": "https://www.nature.com/articles/s41586-019-1581-9/tables/2",
+      "sha256": "58012ff70ac04784193dd2c76863c008fd6b10018c3ff4b629d6634b1ba7866e",
+      "bytes": 178782,
+      "redistributed": false,
+      "inherited_inspection_depth": "Table title and endpoint-defining footnotes inspected; numeric cells are in the linked JPEG.",
+      "this_run_inspection": "Table-level uncertainty statement and POX footnotes h-k inspected for assay identity, units, model-derived parameters and E59Q unavailable values."
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:SI-PDF",
+      "source_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-019-1581-9/MediaObjects/41586_2019_1581_MOESM1_ESM.pdf",
+      "sha256": "9e4db71f5e59ee1184991376419894ac4c311b403f74028f9c543337e4d1733c",
+      "bytes": 436294,
+      "redistributed": false,
+      "inherited_inspection_depth": "All 13 pages text-extracted; Supplementary Methods pages 5-7 rendered and visually inspected for NMR and stopped-flow semantics.",
+      "this_run_inspection": "Supplementary Results printed page 4 and Methods printed pages 8-9 (PDF pages 5, 9-10) inspected. Methods pages 8-9 also rendered and visually reviewed."
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:landing-HTML",
+      "source_url": "https://www.nature.com/articles/s41586-019-1581-9",
+      "sha256": "e9d239f6e97bf1a563641d2b1e0a335411b6a07125ad7f250cee2e3fc0c17a59",
+      "bytes": 445216,
+      "redistributed": false,
+      "inherited_inspection_depth": "Subscription preview plus data availability and all relevant Extended Data legends inspected; main methods absent.",
+      "this_run_inspection": "Extended Data Fig. 8 legend inspected for MAP conjugate identity, distinct FAD reporter and repeated experiment statement; POX organism identity is also explicit in Figure 3."
+    }
+  ],
+  "source_access": {
+    "batch_id": "human-tkt-e160q-6ha3-geometry-function",
+    "new_requests": 0,
+    "new_response_bytes": 0,
+    "carried_metered_lower_bound_requests": 7,
+    "carried_metered_lower_bound_response_bytes": 3004884,
+    "complete_cumulative_requests": null,
+    "complete_cumulative_response_bytes": null,
+    "remaining_headroom": null,
+    "limit": "Retained local bytes only. Historical unmetered browser discovery remains unresolved; this operation creates no fresh allowance."
+  },
+  "assays": [
+    {
+      "assay_id": "pyruvate_dcpip_steady_state",
+      "endpoint": "pyruvate-dependent reduction of the artificial electron acceptor DCPIP",
+      "method": "continuous 600 nm spectrophotometric activity assay",
+      "conditions": {
+        "substrate_varied": "pyruvate",
+        "temperature_celsius": 25,
+        "pH": 6.0,
+        "buffer": "200 mM potassium phosphate",
+        "ThDP_uM": 100,
+        "MgSO4_mM": 1,
+        "DCPIP_uM": 100,
+        "enzyme_micrograms_per_mL_range": [
+          1,
+          50
+        ],
+        "pyruvate_range_mM": {
+          "wild_type_H89N_H89A_E60Q_E60A": [
+            0,
+            75
+          ],
+          "E59Q": [
+            0,
+            2500
+          ]
+        },
+        "wavelength_nm": 600,
+        "path_length_mm": 10
+      },
+      "model": "Initial rate versus pyruvate concentration fitted to Michaelis-Menten equation 2; reported K_M and k_cat/K_M retain this assay identity.",
+      "electron_acceptor_scope": "DCPIP replaces oxygen in this assay. These values are not measured oxygen-turnover or physiological rates.",
+      "source_locators": [
+        "Supplementary Methods printed page 8, steady-state paragraph; equation 2 referenced there",
+        "Supplementary Results printed page 4",
+        "Extended Data Table 2b, footnote h"
+      ]
+    },
+    {
+      "assay_id": "map_stopped_flow",
+      "endpoint": "reversible formation of the covalent MAP-ThDP conjugate",
+      "method": "310 nm UV-Vis stopped-flow reporter",
+      "conditions": {
+        "substrate_analogue": "methyl acetylphosphonate (MAP)",
+        "temperature_celsius": 25,
+        "pH": 6.0,
+        "buffer": "200 mM potassium phosphate",
+        "ThDP_uM": 100,
+        "MgSO4_mM": 1,
+        "enzyme_stock_mg_per_mL": 2.5,
+        "mixing": "1+1; enzyme value is stated before mixing",
+        "wavelength_nm": 310,
+        "path_length_mm": null,
+        "source_path_length_display": "10 mM",
+        "path_length_status": "source unit is dimensionally inconsistent; no silent normalization to mm"
+      },
+      "chemical_scope": "MAP is an analogue, not pyruvate. It binds covalently to enzyme-bound ThDP and is not further processed; footnote i attributes this to its stable C-P bond.",
+      "model": "Monophasic transients fitted with equation 9; equation 10 fits k_app = k_off + k_on*[MAP]. Footnote i defines K_D_app = k_off/k_on. The fitted two-state model includes the covalent conjugate.",
+      "parameter_scope": "K_D_app is the source-model apparent MAP equilibrium parameter, not a pyruvate dissociation constant or an isolated noncovalent docking affinity.",
+      "source_locators": [
+        "Supplementary Methods printed page 8, equations 9-10",
+        "Extended Data Table 2b, footnotes i/k",
+        "Extended Data Fig. 8a/b legend"
+      ],
+      "source_analogue_names": [
+        {
+          "source_locator": "Supplementary Methods printed page 8",
+          "source_name": "methyl acetylphosphonate",
+          "abbreviation": "MAP"
+        },
+        {
+          "source_locator": "Extended Data Fig. 8 legend",
+          "source_name": "methylacetyl phosphonate",
+          "abbreviation": "MAP"
+        }
+      ],
+      "name_scope": "Both retained spellings refer to the study-labelled MAP assay; no exact external chemical identifier or atom map is assigned."
+    },
+    {
+      "assay_id": "pyruvate_single_turnover",
+      "endpoint": "anaerobic pyruvate processing monitored by reduction of enzyme-bound FAD",
+      "method": "457 nm stopped-flow flavin reporter",
+      "conditions": {
+        "substrate_varied": "pyruvate",
+        "temperature_celsius": 25,
+        "pH": null,
+        "pH_scope": "not explicitly stated in the retained single-turnover paragraph; not inherited from a different assay",
+        "buffer": "200 mM potassium phosphate",
+        "ThDP_uM": 100,
+        "MgSO4_mM": 1,
+        "enzyme_stock_mg_per_mL": 3,
+        "mixing": "1+1; enzyme value is stated before mixing",
+        "atmosphere": "anaerobic",
+        "wavelength_nm": 457,
+        "path_length_mm": null
+      },
+      "model": "Monophasic transients fitted with equation 11; equation 12 fits k_app = k_app_max*[pyruvate]^n/(K_0.5^n + [pyruvate]^n), with zero intercept and a binding model followed by at least one irreversible processing step.",
+      "parameter_scope": "The source interprets K_0.5 as a preceding binding-equilibrium constant within its cooperative model. k_app_max is the saturated apparent processing rate comprising multiple microscopic steps, not an isolated elementary-step rate, MAP k_on or steady-state k_cat.",
+      "source_locators": [
+        "Supplementary Methods printed page 9, equations 11-12 and scheme",
+        "Extended Data Table 2b, footnote j",
+        "Extended Data Fig. 8c-f legend"
+      ]
+    }
+  ],
+  "uncertainty": {
+    "table_statement": "All measurements carried out in triplicate and reported as mean plus/minus SD.",
+    "n_reported": 3,
+    "n_basis": "table-level statement; independent biological preparation count unspecified",
+    "sd_is_not_standard_error": true,
+    "raw_replicates_retained": false,
+    "figure_repeat_statement": "Figure 8 legend says the experiments were independently repeated twice with similar results; this is not recounted as new table rows or n=6.",
+    "missing_sd": "Source ratio columns have no displayed SD. No uncertainty is invented, and source-rounded ratios are not silently replaced by recomputation.",
+    "not_inferred": [
+      "parameter covariance",
+      "statistical significance",
+      "rate equivalence",
+      "uncertainty on central-value ratios",
+      "numeric MAP detection limit"
+    ],
+    "display_policy": "Values and units are normalized numeric transcriptions, not verbatim strings; n.a. and the inconsistent path-length unit remain literal where they matter.",
+    "source_ratio_rounding_example": {
+      "reported_variant": "E60A",
+      "assay_id": "pyruvate_single_turnover",
+      "parameter": "k_app_max/K_0.5",
+      "reported_value": 12.5,
+      "reported_unit": "mM^-1 s^-1",
+      "displayed_inputs": [
+        113,
+        9.0
+      ],
+      "arithmetic_of_displayed_inputs": 12.555555555555555,
+      "interpretation": "The printed quotient differs from arithmetic on displayed central values. Unreported fit precision is not reconstructed; the printed 12.5 remains the annotation value."
+    }
+  },
+  "variants": [
+    {
+      "reported_variant": "wild_type",
+      "source_row_label": "wild-type",
+      "source_locator": "Extended Data Table 2b, wild-type row; footnotes h-k",
+      "steady_state": {
+        "assay_id": "pyruvate_dcpip_steady_state",
+        "k_cat": {
+          "status": "reported_point_estimate",
+          "value": 31.8,
+          "sd": 0.4,
+          "unit": "s^-1",
+          "parameter": "k_cat",
+          "footnotes": [
+            "h"
+          ]
+        },
+        "substrate_response_constant": {
+          "status": "reported_point_estimate",
+          "value": 1.59,
+          "sd": 0.01,
+          "unit": "mM",
+          "parameter": "K_M",
+          "footnotes": [
+            "h"
+          ],
+          "substrate": "pyruvate"
+        },
+        "source_reported_efficiency": {
+          "status": "reported_point_estimate",
+          "value": 20000,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "parameter": "k_cat/K_M",
+          "footnotes": [
+            "h"
+          ],
+          "denominator_parameter": "K_M",
+          "source_derivation": {
+            "formula": "k_cat/K_M",
+            "numerator_parameter": "k_cat",
+            "denominator_parameter": "K_M",
+            "input_K_M_unit": "mM",
+            "reported_output_unit": "M^-1 s^-1",
+            "unit_conversion_factor": 1000,
+            "independent_measurement": false
+          }
+        }
+      },
+      "analogue_binding": {
+        "assay_id": "map_stopped_flow",
+        "k_on": {
+          "status": "reported_point_estimate",
+          "value": 1.83,
+          "sd": 0.03,
+          "unit": "mM^-1 s^-1",
+          "parameter": "k_on",
+          "footnotes": [
+            "i"
+          ]
+        },
+        "k_off": {
+          "status": "reported_point_estimate",
+          "value": 0.025,
+          "sd": 0.014,
+          "unit": "s^-1",
+          "parameter": "k_off",
+          "footnotes": [
+            "i"
+          ]
+        },
+        "K_D_app": {
+          "status": "reported_point_estimate",
+          "value": 13.7,
+          "sd": null,
+          "unit": "uM",
+          "parameter": "K_D_app",
+          "footnotes": [
+            "i"
+          ],
+          "source_derivation": {
+            "formula": "k_off/k_on",
+            "numerator_parameter": "k_off",
+            "denominator_parameter": "k_on",
+            "quotient_unit": "mM",
+            "reported_output_unit": "uM",
+            "unit_conversion_factor": 1000,
+            "independent_measurement": false
+          }
+        }
+      },
+      "single_turnover": {
+        "assay_id": "pyruvate_single_turnover",
+        "K_0.5": {
+          "status": "reported_point_estimate",
+          "value": 3.4,
+          "sd": 0.1,
+          "unit": "mM",
+          "parameter": "K_0.5",
+          "footnotes": [
+            "j"
+          ]
+        },
+        "k_app_max": {
+          "status": "reported_point_estimate",
+          "value": 136,
+          "sd": 1,
+          "unit": "s^-1",
+          "parameter": "k_app_max",
+          "footnotes": [
+            "j"
+          ]
+        },
+        "source_reported_efficiency": {
+          "status": "reported_point_estimate",
+          "value": 40,
+          "sd": null,
+          "unit": "mM^-1 s^-1",
+          "parameter": "k_app_max/K_0.5",
+          "footnotes": [
+            "j"
+          ],
+          "denominator_parameter": "K_0.5",
+          "source_derivation": {
+            "formula": "k_app_max/K_0.5",
+            "numerator_parameter": "k_app_max",
+            "denominator_parameter": "K_0.5",
+            "unit_conversion_factor": 1,
+            "independent_measurement": false
+          }
+        },
+        "hill_coefficient": {
+          "status": "reported_point_estimate",
+          "value": 1.73,
+          "sd": 0.03,
+          "unit": "dimensionless",
+          "parameter": "n_H",
+          "footnotes": [
+            "j"
+          ]
+        }
+      }
+    },
+    {
+      "reported_variant": "E59Q",
+      "source_row_label": "E59Q (catalytic)",
+      "source_locator": "Extended Data Table 2b, E59Q (catalytic) row; footnotes h-k",
+      "steady_state": {
+        "assay_id": "pyruvate_dcpip_steady_state",
+        "k_cat": {
+          "status": "reported_point_estimate",
+          "value": 0.49,
+          "sd": 0.01,
+          "unit": "s^-1",
+          "parameter": "k_cat",
+          "footnotes": [
+            "h"
+          ]
+        },
+        "substrate_response_constant": {
+          "status": "reported_point_estimate",
+          "value": 979,
+          "sd": 67,
+          "unit": "mM",
+          "parameter": "K_M",
+          "footnotes": [
+            "h"
+          ],
+          "substrate": "pyruvate"
+        },
+        "source_reported_efficiency": {
+          "status": "reported_point_estimate",
+          "value": 0.5,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "parameter": "k_cat/K_M",
+          "footnotes": [
+            "h"
+          ],
+          "denominator_parameter": "K_M",
+          "source_derivation": {
+            "formula": "k_cat/K_M",
+            "numerator_parameter": "k_cat",
+            "denominator_parameter": "K_M",
+            "input_K_M_unit": "mM",
+            "reported_output_unit": "M^-1 s^-1",
+            "unit_conversion_factor": 1000,
+            "independent_measurement": false
+          }
+        }
+      },
+      "analogue_binding": {
+        "assay_id": "map_stopped_flow",
+        "k_on": {
+          "status": "not_applicable_source_reports_no_analogue_binding",
+          "value": null,
+          "sd": null,
+          "unit": "mM^-1 s^-1",
+          "parameter": "k_on",
+          "source_display": "n.a.",
+          "footnotes": [
+            "k"
+          ],
+          "reason": "The source reports that E59Q does not bind MAP; no zero rate, infinite affinity constant, detection limit or inability to process pyruvate is inferred."
+        },
+        "k_off": {
+          "status": "not_applicable_source_reports_no_analogue_binding",
+          "value": null,
+          "sd": null,
+          "unit": "s^-1",
+          "parameter": "k_off",
+          "source_display": "n.a.",
+          "footnotes": [
+            "k"
+          ],
+          "reason": "The source reports that E59Q does not bind MAP; no zero rate, infinite affinity constant, detection limit or inability to process pyruvate is inferred."
+        },
+        "K_D_app": {
+          "status": "not_applicable_source_reports_no_analogue_binding",
+          "value": null,
+          "sd": null,
+          "unit": "uM",
+          "parameter": "K_D_app",
+          "source_display": "n.a.",
+          "footnotes": [
+            "k"
+          ],
+          "reason": "The source reports that E59Q does not bind MAP; no zero rate, infinite affinity constant, detection limit or inability to process pyruvate is inferred."
+        },
+        "footnote_marker_scope": "The k marker is printed in the k_on cell. k_off and K_D_app also read n.a.; the row-level analogue-nonbinding explanation applies to the shared assay."
+      },
+      "single_turnover": {
+        "assay_id": "pyruvate_single_turnover",
+        "K_0.5": {
+          "status": "reported_point_estimate",
+          "value": 888,
+          "sd": 132,
+          "unit": "mM",
+          "parameter": "K_0.5",
+          "footnotes": [
+            "j"
+          ]
+        },
+        "k_app_max": {
+          "status": "reported_point_estimate",
+          "value": 1.07,
+          "sd": 0.08,
+          "unit": "s^-1",
+          "parameter": "k_app_max",
+          "footnotes": [
+            "j"
+          ]
+        },
+        "source_reported_efficiency": {
+          "status": "reported_point_estimate",
+          "value": 0.0012,
+          "sd": null,
+          "unit": "mM^-1 s^-1",
+          "parameter": "k_app_max/K_0.5",
+          "footnotes": [
+            "j"
+          ],
+          "denominator_parameter": "K_0.5",
+          "source_derivation": {
+            "formula": "k_app_max/K_0.5",
+            "numerator_parameter": "k_app_max",
+            "denominator_parameter": "K_0.5",
+            "unit_conversion_factor": 1,
+            "independent_measurement": false
+          }
+        },
+        "hill_coefficient": {
+          "status": "reported_point_estimate",
+          "value": 1.1,
+          "sd": 0.05,
+          "unit": "dimensionless",
+          "parameter": "n_H",
+          "footnotes": [
+            "j"
+          ]
+        }
+      }
+    },
+    {
+      "reported_variant": "H89N",
+      "source_row_label": "H89N",
+      "source_locator": "Extended Data Table 2b, H89N row; footnotes h-k",
+      "steady_state": {
+        "assay_id": "pyruvate_dcpip_steady_state",
+        "k_cat": {
+          "status": "reported_point_estimate",
+          "value": 26.0,
+          "sd": 0.5,
+          "unit": "s^-1",
+          "parameter": "k_cat",
+          "footnotes": [
+            "h"
+          ]
+        },
+        "substrate_response_constant": {
+          "status": "reported_point_estimate",
+          "value": 4.57,
+          "sd": 0.19,
+          "unit": "mM",
+          "parameter": "K_M",
+          "footnotes": [
+            "h"
+          ],
+          "substrate": "pyruvate"
+        },
+        "source_reported_efficiency": {
+          "status": "reported_point_estimate",
+          "value": 5690,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "parameter": "k_cat/K_M",
+          "footnotes": [
+            "h"
+          ],
+          "denominator_parameter": "K_M",
+          "source_derivation": {
+            "formula": "k_cat/K_M",
+            "numerator_parameter": "k_cat",
+            "denominator_parameter": "K_M",
+            "input_K_M_unit": "mM",
+            "reported_output_unit": "M^-1 s^-1",
+            "unit_conversion_factor": 1000,
+            "independent_measurement": false
+          }
+        }
+      },
+      "analogue_binding": {
+        "assay_id": "map_stopped_flow",
+        "k_on": {
+          "status": "reported_point_estimate",
+          "value": 0.26,
+          "sd": 0.01,
+          "unit": "mM^-1 s^-1",
+          "parameter": "k_on",
+          "footnotes": [
+            "i"
+          ]
+        },
+        "k_off": {
+          "status": "reported_point_estimate",
+          "value": 0.019,
+          "sd": 0.003,
+          "unit": "s^-1",
+          "parameter": "k_off",
+          "footnotes": [
+            "i"
+          ]
+        },
+        "K_D_app": {
+          "status": "reported_point_estimate",
+          "value": 73.1,
+          "sd": null,
+          "unit": "uM",
+          "parameter": "K_D_app",
+          "footnotes": [
+            "i"
+          ],
+          "source_derivation": {
+            "formula": "k_off/k_on",
+            "numerator_parameter": "k_off",
+            "denominator_parameter": "k_on",
+            "quotient_unit": "mM",
+            "reported_output_unit": "uM",
+            "unit_conversion_factor": 1000,
+            "independent_measurement": false
+          }
+        }
+      },
+      "single_turnover": {
+        "assay_id": "pyruvate_single_turnover",
+        "K_0.5": {
+          "status": "reported_point_estimate",
+          "value": 11.1,
+          "sd": 1.1,
+          "unit": "mM",
+          "parameter": "K_0.5",
+          "footnotes": [
+            "j"
+          ]
+        },
+        "k_app_max": {
+          "status": "reported_point_estimate",
+          "value": 121,
+          "sd": 5,
+          "unit": "s^-1",
+          "parameter": "k_app_max",
+          "footnotes": [
+            "j"
+          ]
+        },
+        "source_reported_efficiency": {
+          "status": "reported_point_estimate",
+          "value": 10.9,
+          "sd": null,
+          "unit": "mM^-1 s^-1",
+          "parameter": "k_app_max/K_0.5",
+          "footnotes": [
+            "j"
+          ],
+          "denominator_parameter": "K_0.5",
+          "source_derivation": {
+            "formula": "k_app_max/K_0.5",
+            "numerator_parameter": "k_app_max",
+            "denominator_parameter": "K_0.5",
+            "unit_conversion_factor": 1,
+            "independent_measurement": false
+          }
+        },
+        "hill_coefficient": {
+          "status": "reported_point_estimate",
+          "value": 1.03,
+          "sd": 0.05,
+          "unit": "dimensionless",
+          "parameter": "n_H",
+          "footnotes": [
+            "j"
+          ]
+        }
+      }
+    },
+    {
+      "reported_variant": "H89A",
+      "source_row_label": "H89A",
+      "source_locator": "Extended Data Table 2b, H89A row; footnotes h-k",
+      "steady_state": {
+        "assay_id": "pyruvate_dcpip_steady_state",
+        "k_cat": {
+          "status": "reported_point_estimate",
+          "value": 20.1,
+          "sd": 0.3,
+          "unit": "s^-1",
+          "parameter": "k_cat",
+          "footnotes": [
+            "h"
+          ]
+        },
+        "substrate_response_constant": {
+          "status": "reported_point_estimate",
+          "value": 8.21,
+          "sd": 0.37,
+          "unit": "mM",
+          "parameter": "K_M",
+          "footnotes": [
+            "h"
+          ],
+          "substrate": "pyruvate"
+        },
+        "source_reported_efficiency": {
+          "status": "reported_point_estimate",
+          "value": 2448,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "parameter": "k_cat/K_M",
+          "footnotes": [
+            "h"
+          ],
+          "denominator_parameter": "K_M",
+          "source_derivation": {
+            "formula": "k_cat/K_M",
+            "numerator_parameter": "k_cat",
+            "denominator_parameter": "K_M",
+            "input_K_M_unit": "mM",
+            "reported_output_unit": "M^-1 s^-1",
+            "unit_conversion_factor": 1000,
+            "independent_measurement": false
+          }
+        }
+      },
+      "analogue_binding": {
+        "assay_id": "map_stopped_flow",
+        "k_on": {
+          "status": "reported_point_estimate",
+          "value": 0.097,
+          "sd": 0.001,
+          "unit": "mM^-1 s^-1",
+          "parameter": "k_on",
+          "footnotes": [
+            "i"
+          ]
+        },
+        "k_off": {
+          "status": "reported_point_estimate",
+          "value": 0.018,
+          "sd": 0.002,
+          "unit": "s^-1",
+          "parameter": "k_off",
+          "footnotes": [
+            "i"
+          ]
+        },
+        "K_D_app": {
+          "status": "reported_point_estimate",
+          "value": 185.6,
+          "sd": null,
+          "unit": "uM",
+          "parameter": "K_D_app",
+          "footnotes": [
+            "i"
+          ],
+          "source_derivation": {
+            "formula": "k_off/k_on",
+            "numerator_parameter": "k_off",
+            "denominator_parameter": "k_on",
+            "quotient_unit": "mM",
+            "reported_output_unit": "uM",
+            "unit_conversion_factor": 1000,
+            "independent_measurement": false
+          }
+        }
+      },
+      "single_turnover": {
+        "assay_id": "pyruvate_single_turnover",
+        "K_0.5": {
+          "status": "reported_point_estimate",
+          "value": 15.0,
+          "sd": 0.7,
+          "unit": "mM",
+          "parameter": "K_0.5",
+          "footnotes": [
+            "j"
+          ]
+        },
+        "k_app_max": {
+          "status": "reported_point_estimate",
+          "value": 92,
+          "sd": 2,
+          "unit": "s^-1",
+          "parameter": "k_app_max",
+          "footnotes": [
+            "j"
+          ]
+        },
+        "source_reported_efficiency": {
+          "status": "reported_point_estimate",
+          "value": 6.1,
+          "sd": null,
+          "unit": "mM^-1 s^-1",
+          "parameter": "k_app_max/K_0.5",
+          "footnotes": [
+            "j"
+          ],
+          "denominator_parameter": "K_0.5",
+          "source_derivation": {
+            "formula": "k_app_max/K_0.5",
+            "numerator_parameter": "k_app_max",
+            "denominator_parameter": "K_0.5",
+            "unit_conversion_factor": 1,
+            "independent_measurement": false
+          }
+        },
+        "hill_coefficient": {
+          "status": "reported_point_estimate",
+          "value": 1.7,
+          "sd": 0.06,
+          "unit": "dimensionless",
+          "parameter": "n_H",
+          "footnotes": [
+            "j"
+          ]
+        }
+      }
+    },
+    {
+      "reported_variant": "E60Q",
+      "source_row_label": "E60Q",
+      "source_locator": "Extended Data Table 2b, E60Q row; footnotes h-k",
+      "steady_state": {
+        "assay_id": "pyruvate_dcpip_steady_state",
+        "k_cat": {
+          "status": "reported_point_estimate",
+          "value": 20.2,
+          "sd": 0.3,
+          "unit": "s^-1",
+          "parameter": "k_cat",
+          "footnotes": [
+            "h"
+          ]
+        },
+        "substrate_response_constant": {
+          "status": "reported_point_estimate",
+          "value": 3.79,
+          "sd": 0.17,
+          "unit": "mM",
+          "parameter": "K_M",
+          "footnotes": [
+            "h"
+          ],
+          "substrate": "pyruvate"
+        },
+        "source_reported_efficiency": {
+          "status": "reported_point_estimate",
+          "value": 5330,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "parameter": "k_cat/K_M",
+          "footnotes": [
+            "h"
+          ],
+          "denominator_parameter": "K_M",
+          "source_derivation": {
+            "formula": "k_cat/K_M",
+            "numerator_parameter": "k_cat",
+            "denominator_parameter": "K_M",
+            "input_K_M_unit": "mM",
+            "reported_output_unit": "M^-1 s^-1",
+            "unit_conversion_factor": 1000,
+            "independent_measurement": false
+          }
+        }
+      },
+      "analogue_binding": {
+        "assay_id": "map_stopped_flow",
+        "k_on": {
+          "status": "reported_point_estimate",
+          "value": 0.16,
+          "sd": 0.01,
+          "unit": "mM^-1 s^-1",
+          "parameter": "k_on",
+          "footnotes": [
+            "i"
+          ]
+        },
+        "k_off": {
+          "status": "reported_point_estimate",
+          "value": 0.022,
+          "sd": 0.008,
+          "unit": "s^-1",
+          "parameter": "k_off",
+          "footnotes": [
+            "i"
+          ]
+        },
+        "K_D_app": {
+          "status": "reported_point_estimate",
+          "value": 137.5,
+          "sd": null,
+          "unit": "uM",
+          "parameter": "K_D_app",
+          "footnotes": [
+            "i"
+          ],
+          "source_derivation": {
+            "formula": "k_off/k_on",
+            "numerator_parameter": "k_off",
+            "denominator_parameter": "k_on",
+            "quotient_unit": "mM",
+            "reported_output_unit": "uM",
+            "unit_conversion_factor": 1000,
+            "independent_measurement": false
+          }
+        }
+      },
+      "single_turnover": {
+        "assay_id": "pyruvate_single_turnover",
+        "K_0.5": {
+          "status": "reported_point_estimate",
+          "value": 7.4,
+          "sd": 0.7,
+          "unit": "mM",
+          "parameter": "K_0.5",
+          "footnotes": [
+            "j"
+          ]
+        },
+        "k_app_max": {
+          "status": "reported_point_estimate",
+          "value": 91,
+          "sd": 3,
+          "unit": "s^-1",
+          "parameter": "k_app_max",
+          "footnotes": [
+            "j"
+          ]
+        },
+        "source_reported_efficiency": {
+          "status": "reported_point_estimate",
+          "value": 12.3,
+          "sd": null,
+          "unit": "mM^-1 s^-1",
+          "parameter": "k_app_max/K_0.5",
+          "footnotes": [
+            "j"
+          ],
+          "denominator_parameter": "K_0.5",
+          "source_derivation": {
+            "formula": "k_app_max/K_0.5",
+            "numerator_parameter": "k_app_max",
+            "denominator_parameter": "K_0.5",
+            "unit_conversion_factor": 1,
+            "independent_measurement": false
+          }
+        },
+        "hill_coefficient": {
+          "status": "reported_point_estimate",
+          "value": 0.97,
+          "sd": 0.04,
+          "unit": "dimensionless",
+          "parameter": "n_H",
+          "footnotes": [
+            "j"
+          ]
+        }
+      }
+    },
+    {
+      "reported_variant": "E60A",
+      "source_row_label": "E60A",
+      "source_locator": "Extended Data Table 2b, E60A row; footnotes h-k",
+      "steady_state": {
+        "assay_id": "pyruvate_dcpip_steady_state",
+        "k_cat": {
+          "status": "reported_point_estimate",
+          "value": 23.3,
+          "sd": 0.6,
+          "unit": "s^-1",
+          "parameter": "k_cat",
+          "footnotes": [
+            "h"
+          ]
+        },
+        "substrate_response_constant": {
+          "status": "reported_point_estimate",
+          "value": 3.84,
+          "sd": 0.24,
+          "unit": "mM",
+          "parameter": "K_M",
+          "footnotes": [
+            "h"
+          ],
+          "substrate": "pyruvate"
+        },
+        "source_reported_efficiency": {
+          "status": "reported_point_estimate",
+          "value": 6068,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "parameter": "k_cat/K_M",
+          "footnotes": [
+            "h"
+          ],
+          "denominator_parameter": "K_M",
+          "source_derivation": {
+            "formula": "k_cat/K_M",
+            "numerator_parameter": "k_cat",
+            "denominator_parameter": "K_M",
+            "input_K_M_unit": "mM",
+            "reported_output_unit": "M^-1 s^-1",
+            "unit_conversion_factor": 1000,
+            "independent_measurement": false
+          }
+        }
+      },
+      "analogue_binding": {
+        "assay_id": "map_stopped_flow",
+        "k_on": {
+          "status": "reported_point_estimate",
+          "value": 0.17,
+          "sd": 0.01,
+          "unit": "mM^-1 s^-1",
+          "parameter": "k_on",
+          "footnotes": [
+            "i"
+          ]
+        },
+        "k_off": {
+          "status": "reported_point_estimate",
+          "value": 0.048,
+          "sd": 0.004,
+          "unit": "s^-1",
+          "parameter": "k_off",
+          "footnotes": [
+            "i"
+          ]
+        },
+        "K_D_app": {
+          "status": "reported_point_estimate",
+          "value": 282.4,
+          "sd": null,
+          "unit": "uM",
+          "parameter": "K_D_app",
+          "footnotes": [
+            "i"
+          ],
+          "source_derivation": {
+            "formula": "k_off/k_on",
+            "numerator_parameter": "k_off",
+            "denominator_parameter": "k_on",
+            "quotient_unit": "mM",
+            "reported_output_unit": "uM",
+            "unit_conversion_factor": 1000,
+            "independent_measurement": false
+          }
+        }
+      },
+      "single_turnover": {
+        "assay_id": "pyruvate_single_turnover",
+        "K_0.5": {
+          "status": "reported_point_estimate",
+          "value": 9.0,
+          "sd": 0.3,
+          "unit": "mM",
+          "parameter": "K_0.5",
+          "footnotes": [
+            "j"
+          ]
+        },
+        "k_app_max": {
+          "status": "reported_point_estimate",
+          "value": 113,
+          "sd": 2,
+          "unit": "s^-1",
+          "parameter": "k_app_max",
+          "footnotes": [
+            "j"
+          ]
+        },
+        "source_reported_efficiency": {
+          "status": "reported_point_estimate",
+          "value": 12.5,
+          "sd": null,
+          "unit": "mM^-1 s^-1",
+          "parameter": "k_app_max/K_0.5",
+          "footnotes": [
+            "j"
+          ],
+          "denominator_parameter": "K_0.5",
+          "source_derivation": {
+            "formula": "k_app_max/K_0.5",
+            "numerator_parameter": "k_app_max",
+            "denominator_parameter": "K_0.5",
+            "unit_conversion_factor": 1,
+            "independent_measurement": false
+          }
+        },
+        "hill_coefficient": {
+          "status": "reported_point_estimate",
+          "value": 1.42,
+          "sd": 0.04,
+          "unit": "dimensionless",
+          "parameter": "n_H",
+          "footnotes": [
+            "j"
+          ]
+        }
+      }
+    }
+  ],
+  "measurement_identity": "Study DOI + exact source locator + reported enzyme context + variant + assay endpoint + parameter. Ratios derived from the same fitted values and Figure 8 displays are not independent new measurements.",
+  "derived_comparisons": {
+    "status": "arithmetic_of_reported_central_values_not_statistical_inference",
+    "comparisons": [
+      {
+        "reported_variant": "E59Q",
+        "assay_id": "pyruvate_dcpip_steady_state",
+        "parameter": "k_cat",
+        "numerator_pointer": "/variants/1/steady_state/k_cat/value",
+        "denominator_pointer": "/variants/0/steady_state/k_cat/value",
+        "ratio_variant_over_wild_type": 0.015408805031446541,
+        "uncertainty": null
+      },
+      {
+        "reported_variant": "E59Q",
+        "assay_id": "pyruvate_single_turnover",
+        "parameter": "k_app_max",
+        "numerator_pointer": "/variants/1/single_turnover/k_app_max/value",
+        "denominator_pointer": "/variants/0/single_turnover/k_app_max/value",
+        "ratio_variant_over_wild_type": 0.00786764705882353,
+        "uncertainty": null
+      },
+      {
+        "reported_variant": "H89N",
+        "assay_id": "pyruvate_dcpip_steady_state",
+        "parameter": "k_cat",
+        "numerator_pointer": "/variants/2/steady_state/k_cat/value",
+        "denominator_pointer": "/variants/0/steady_state/k_cat/value",
+        "ratio_variant_over_wild_type": 0.8176100628930817,
+        "uncertainty": null
+      },
+      {
+        "reported_variant": "H89N",
+        "assay_id": "pyruvate_single_turnover",
+        "parameter": "k_app_max",
+        "numerator_pointer": "/variants/2/single_turnover/k_app_max/value",
+        "denominator_pointer": "/variants/0/single_turnover/k_app_max/value",
+        "ratio_variant_over_wild_type": 0.8897058823529411,
+        "uncertainty": null
+      },
+      {
+        "reported_variant": "H89N",
+        "assay_id": "map_stopped_flow",
+        "parameter": "K_D_app",
+        "numerator_pointer": "/variants/2/analogue_binding/K_D_app/value",
+        "denominator_pointer": "/variants/0/analogue_binding/K_D_app/value",
+        "ratio_variant_over_wild_type": 5.335766423357664,
+        "uncertainty": null
+      },
+      {
+        "reported_variant": "E60A",
+        "assay_id": "pyruvate_dcpip_steady_state",
+        "parameter": "k_cat",
+        "numerator_pointer": "/variants/5/steady_state/k_cat/value",
+        "denominator_pointer": "/variants/0/steady_state/k_cat/value",
+        "ratio_variant_over_wild_type": 0.7327044025157233,
+        "uncertainty": null
+      },
+      {
+        "reported_variant": "E60A",
+        "assay_id": "pyruvate_single_turnover",
+        "parameter": "k_app_max",
+        "numerator_pointer": "/variants/5/single_turnover/k_app_max/value",
+        "denominator_pointer": "/variants/0/single_turnover/k_app_max/value",
+        "ratio_variant_over_wild_type": 0.8308823529411765,
+        "uncertainty": null
+      },
+      {
+        "reported_variant": "E60A",
+        "assay_id": "map_stopped_flow",
+        "parameter": "K_D_app",
+        "numerator_pointer": "/variants/5/analogue_binding/K_D_app/value",
+        "denominator_pointer": "/variants/0/analogue_binding/K_D_app/value",
+        "ratio_variant_over_wild_type": 20.613138686131386,
+        "uncertainty": null
+      }
+    ],
+    "unavailable_is_not_zero": {
+      "variant": "E59Q",
+      "source": "Extended Data Table 2b, footnote k versus steady-state and single-turnover cells",
+      "finding": "Reported MAP nonbinding leaves its MAP parameters unavailable, while the two authentic-pyruvate assays retain positive source-reported fitted point estimates. Neither absence of all pyruvate processing nor zero generic activity follows."
+    },
+    "not_inferred": [
+      "infinite E59Q MAP K_D_app",
+      "oxygen-dependent turnover",
+      "same protein preparation across assays",
+      "equal raw transients",
+      "elementary decarboxylation rate",
+      "causal geometric effect",
+      "universal binding-to-activity scaling"
+    ]
+  },
+  "cross_context_relations": [
+    {
+      "relation": "different_reasons_for_unavailable_values_do_not_create_a_zero_activity_label",
+      "members": [
+        {
+          "comparison_path": "data/atlas/study_context/6ha3/functional_comparison.json",
+          "json_pointer": "/variants/1/stopped_flow/k_forward",
+          "reported_variant": "E366Q",
+          "enzyme_context": "human transketolase",
+          "reason": "325 nm reporter absent"
+        },
+        {
+          "comparison_path": "data/atlas/study_context/pox2019/functional_comparison.json",
+          "json_pointer": "/variants/1/analogue_binding/k_on",
+          "reported_variant": "E59Q",
+          "enzyme_context": "L. plantarum POX",
+          "reason": "source reports MAP analogue nonbinding"
+        }
+      ],
+      "scope": "This joins the reasons attached to unavailable parameters; it does not pool substrates, rates, residues, assays, detection limits or mechanistic causes. The TKT record is reused by exact hash and pointer, not recounted."
+    }
+  ],
+  "interpretation": {
+    "supported": [
+      "One study supplies six POX rows across three chemically and experimentally distinct assay contexts.",
+      "E59Q MAP nonbinding and positive source-reported fitted pyruvate rate parameters coexist at their reported assay scopes.",
+      "MAP K_D_app, pyruvate K_M and pyruvate single-turnover K_0.5 retain distinct ligand, method and fitted-model identities."
+    ],
+    "not_established": [
+      "new experimental data",
+      "independent human review",
+      "exact preparation identity",
+      "structural atom or sequence mapping",
+      "causal role of a low-barrier hydrogen bond",
+      "complete elementary mechanism",
+      "evidence-tier promotion",
+      "protein/mechanism registry expansion",
+      "generality beyond this study"
+    ],
+    "availability": "Repository-local source annotation, not an installed query, universal schema validation result or new compiled atlas case."
+  },
+  "reconsideration": {
+    "bespoke_code": "No runtime or validator change. Existing assay descriptors and value/status/SD/unit/parameter/footnote concepts express all rows; analogue_binding and single_turnover are generic assay groupings in data.",
+    "reuse": "The source inventory, acquisition accounting, uncertainty conventions and exact TKT comparison pointer are reused. A second enzyme context fits without case-specific runtime logic; no measured curation-time saving is claimed.",
+    "incumbent_value": "A competent reader can recover these facts from Table 2b, its footnotes and the methods. The added value is machine-readable assay identity, distinct missingness reasons and prevention of invalid affinity/activity transfers, not discovery or superior accuracy."
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "schema_version": "catalytic-earth.functional-comparison-review.v1",
+  "comparison_id": "l-plantarum-pox-2019-kinetic-endpoints",
+  "decision": "accept_source_annotation",
+  "authorized_operation": "source_annotation",
+  "policy_binding": {
+    "path": "data/governance/computational_review_policy.json",
+    "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "reviewed_at_utc": "2026-09-09T23:24:51.631968+00:00",
+  "reviewed_comparison": {
+    "path": "data/atlas/study_context/pox2019/functional_comparison.json",
+    "sha256": "570ffb83d9272d41ed72ff389c2f56fbc1415c7d6d9fbdd6c622476957c2a4b5"
+  },
+  "retained_input_bindings": [
+    {
+      "path": "data/atlas/study_context/6ha3/source_inventory.json",
+      "sha256": "1605d98776281d52660f32442da9d11996bfc4dc19e5cbbea1b0252882bbfc06"
+    },
+    {
+      "path": "data/atlas/assembly_context/6ha3/acquisition_appendix.json",
+      "sha256": "06dbbcbc8ae4967803c4d4eba1193d1d687bc26b2b159f1699df450059e57192"
+    },
+    {
+      "path": "data/atlas/study_context/6ha3/functional_comparison.json",
+      "sha256": "a8205b4964ac094b41172cdfa9309c70cd004bfa458ee9ea62bbf64785bf6366"
+    }
+  ],
+  "source_review": {
+    "reviewer_task": "pox_source",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "ultra",
+    "scope": "All six POX rows and ten kinetic columns, table footnotes h-k, Supplementary Results printed page 4 and Methods printed pages 8-9, organism/assay identity, source bytes and user-facing claim wording. Parent separately inspected source image and rendered methods.",
+    "status": "accepted at reviewed comparison hash"
+  },
+  "representation_review": {
+    "reviewer_task": "pox_representation",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "ultra",
+    "scope": "Distinct chemical substrates, covalent analogue model, assay-qualified parameters, unavailable values, quotient provenance, uncertainty and exact cross-context reuse; all cells and bindings independently checked.",
+    "status": "accepted at reviewed comparison hash"
+  },
+  "adversarial_review": {
+    "reviewer_task": "pox_adversarial",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "ultra",
+    "scope": "Generic inactivity, authentic-pyruvate nonbinding, oxygen turnover, elementary-step/geometry causation, evidence duplication and incumbent value.",
+    "status": "accepted at reviewed comparison hash",
+    "decision": "Accept the bounded evidence-semantics constraint and source-reported fitted wording; no design-performance or independent-validation claim."
+  },
+  "adjudications": [
+    {
+      "objection": "The same n.a. token could imply zero activity or the same missingness cause across TKT and POX.",
+      "evidence": "POX Table 2b footnote k versus TKT Table 2a footnote e and exact /variants/1/stopped_flow/k_forward pointer in the hash-bound prior comparison.",
+      "decision": "Retain reported MAP nonbinding separately from TKT reporter absence. All unavailable parameters remain null; positive source-reported pyruvate rate parameters keep their own assay scopes."
+    },
+    {
+      "objection": "MAP affinity could become pyruvate affinity or a noncovalent docking constant.",
+      "evidence": "Table footnote i and Methods printed page 8, equations 9-10: a covalent nonprocessed MAP-ThDP conjugate and two-state apparent model.",
+      "decision": "Keep analogue/chemical identity, k_on, k_off and K_D_app scoped to that model; no substitution for pyruvate K_M or K_0.5."
+    },
+    {
+      "objection": "An apparent processing rate could be described as direct observation of an elementary catalytic step or oxygen turnover.",
+      "evidence": "Methods printed page 9 explicitly combines several microscopic steps under anaerobic FAD reporting; printed page 8 steady state uses DCPIP replacing oxygen.",
+      "decision": "Use positive source-reported fitted parameters; exclude elementary-step, oxygen-turnover, physiological-rate and geometric-causation claims."
+    },
+    {
+      "objection": "Source method omissions and typographic inconsistencies could be silently repaired.",
+      "evidence": "Methods page 8 prints MAP path length 10 mM; page 9 does not state pH. Methods and Fig. 8 use different MAP spellings.",
+      "decision": "Keep normalized path length and unstated pH null, preserve the literal unit and both source names, and do not infer an external chemical identifier."
+    },
+    {
+      "objection": "Source ratios could be recomputed as exact measurements, with wrong denominator units or invented precision.",
+      "evidence": "Table ratio units differ by assay; E60A source single-turnover efficiency is 12.5 while displayed 113/9.0 gives 12.5556.",
+      "decision": "Retain all 17 source quotient values, explicit formula/denominator/conversion provenance, null SD and non-independent identity; keep an arithmetic witness without source repair."
+    },
+    {
+      "objection": "Triplicates, repeated Figure 8 experiments, HTML/JPEG and cross-context projections could duplicate evidence.",
+      "evidence": "One study, one table in two formats; table-level n=3 statement; Fig. 8 repeat statement; exact old TKT comparison binding.",
+      "decision": "Do not infer n=6, independent biological preparation count, new table rows from figures, or new observations from quoted metrics and reuse."
+    },
+    {
+      "objection": "Another table curation might supply no reusable value or require case-specific machinery.",
+      "evidence": "Both comparisons accept the same traversal over assay_id-qualified parameter groups; four unavailable-assay variant contexts preserve their distinct causes beside separate steady-state assays.",
+      "decision": "Use additive data only. The value is preserving functional-label eligibility, not novel chemistry, faster curation or superiority to a competent source reading. No new runtime or validator is warranted."
+    }
+  ],
+  "source_access": {
+    "batch_id": "human-tkt-e160q-6ha3-geometry-function",
+    "new_requests": 0,
+    "new_response_bytes": 0,
+    "carried_metered_lower_bound_requests": 7,
+    "carried_metered_lower_bound_response_bytes": 3004884,
+    "complete_cumulative_requests": null,
+    "complete_cumulative_response_bytes": null,
+    "remaining_headroom": null,
+    "limit": "Retained local bytes only. Historical unmetered browser discovery remains unresolved; this operation creates no fresh allowance."
+  },
+  "verification_scope": "Exact-source computational reviews, source/body hash checks, complete table-cell comparison, 17 quotient arithmetic witnesses at displayed rounding, eight within-assay central-value ratios, exact reuse pointers and one generic traversal. Existing repository contracts/CI remain required and verify software/integrity, not physical truth.",
+  "evidence_limits": {
+    "independent_human_review": false,
+    "laboratory_validation_by_project": false,
+    "new_measurements_collected": 0,
+    "evidence_tier_promotion": false,
+    "new_mechanism_compilation": false,
+    "protected_registry_change": false,
+    "frozen_packet_resolution": false,
+    "correlated_agent_errors_possible": true
+  },
+  "publication_limits": "Publisher source bodies remain locally retained and are not redistributed. Exact transcription review requires matching bodies; hashes and public locators alone do not reproduce the table."
+}

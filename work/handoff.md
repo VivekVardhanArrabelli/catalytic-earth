@@ -7,71 +7,77 @@ This block and `docs/HOURLY_RESEARCH.md` govern the hourly task. Historical
 content below the marker is not an execution queue.
 
 - **Identity/base:** owner
-  `01a08835-a9e1-7d52-90b2-486304367e8d:4e382797-5d10-4b23-8258-123290a2f2a6`;
-  actual UTC start 2026-09-09T22:07:05Z; clean synchronized base
-  `9805f08fbecbb6a8166432816cda1574192d536c`; branch
-  `codex/tkt-functional-comparison-20260909`. No inherited PR/recovery.
-  Checkpoint 2026-09-09T22:29:23Z (22.3 minutes). Exact final head,
-  publication/CI, elapsed time and lock release belong in the Git-local receipt.
-- **Question/result:** does retained F6P-adduct evidence provide a valid generic
-  activity label across human-transketolase variants? All seven Table 2a rows
-  are now curated as a functional comparison. E160A F6P kforward is
-  8.33 ± 1.21 s^-1 versus WT 9.06 ± 0.72 at 4 C; its separate X5P/R5P kcat
-  is 0.21 ± 0.02 versus WT 2.79 ± 0.06 at 20 C. The central-value ratios,
-  0.919 and 0.0753, remain within their respective assays and fitted models.
-  Neither adduct accumulation nor formation replaces endpoint-specific activity.
-- **Scientific scope:** one published study, seven comparison rows, five reused
-  qualitative NMR arms and ten explicitly linked pre-existing numeric summaries.
-  No new measurement was collected, no biological case or compiled mechanism
-  was admitted, and no tier was promoted. No productive F6P cycle, geometric
-  causation, exact preparation identity, raw-transient equivalence or M0219
-  elementary-step map is established (CE-024).
-- **Evidence/representation:**
-  `data/atlas/study_context/6ha3/functional_comparison.json` and
-  `functional_review.json`; readable comparison in `docs/ATLAS_STUDY_CONTEXT.md`.
-  Source table, footnotes a-g and Supplementary Methods printed pages 5-7
-  match retained hashes. Exact local bodies survive at
-  `/private/tmp/ce-6ha3-UOvXho/`; inventory/receipt pins identify them. They are
-  not redistributed, so exact transcription review needs matching source bodies.
-  T382E/Q K0.5 and kcat/K0.5 stay distinct from KM and kcat/KM; lower bounds,
-  missing reporters, separate Hill coefficients and E160A's large reverse-rate
-  SD remain explicit. T382E's literal efficiency `34.127` stays unresolved;
-  separate arithmetic does not silently repair it. T382E concentration SD
-  was corrected to 1 uM during review, before publication.
+  `01a0886c-241d-7f52-82be-7bba435a9956:ced5b696-bc02-4ef8-b517-f660f54b0d4b`;
+  actual UTC start 2026-09-09T23:06:50Z; clean synchronized base
+  `e9ce146bb519e3489d8d43b7d4eb5162391ddf86`; prior PR #64 confirmed merged,
+  no open PR or recovery work. Branch `codex/pox-functional-comparison-20260909`.
+  Checkpoint 2026-09-09T23:27:41Z (20.9 minutes). Exact final head,
+  publication/CI, runtime and release belong in the Git-local receipt.
+- **Question/result:** can the same functional-comparison concepts preserve
+  POX analogue binding, authentic-substrate processing and steady-state function?
+  All six Table 2b rows fit additive data. E59Q has source-reported MAP
+  nonbinding and unavailable MAP parameters, but positive source-reported fitted
+  pyruvate/DCPIP kcat 0.49 ± 0.01 s^-1 and anaerobic pyruvate/FAD k_app_max
+  1.07 ± 0.08 s^-1 at 25 C. MAP nonbinding therefore cannot supply generic
+  inactivity or authentic-pyruvate nonbinding (CE-025).
+- **Scope/limits:** one study, a second enzyme context and six comparison rows
+  across three distinct assays. No new experiment, admitted biological case,
+  protein registry entry, compiled mechanism or tier promotion. MAP forms a
+  covalent nonprocessed conjugate. Its apparent K_D is not pyruvate affinity.
+  The FAD processing rate spans microscopic steps; DCPIP replaces oxygen.
+  Exact sequence/preparation identity, oxygen turnover, elementary-step rates,
+  structural atom links, geometric causation and independent validation remain
+  unestablished. Source-relative central-value ratios imply no significance
+  or equivalence test; no raw transient is refitted.
+- **Evidence:** `data/atlas/study_context/pox2019/functional_comparison.json`
+  SHA256 `570ffb83d9272d41ed72ff389c2f56fbc1415c7d6d9fbdd6c622476957c2a4b5`;
+  `functional_review.json`; readable result in `docs/ATLAS_STUDY_CONTEXT.md`.
+  Retained table image, footnotes h-k, SI printed pages 4 and 8-9 and Figure 8
+  legend are hash-bound. Exact local bodies: `/private/tmp/ce-6ha3-UOvXho/`.
+  Publisher bodies are not redistributed; transcription review needs matching
+  sources. MAP's literal path-length unit `10 mM`, differing source spellings,
+  unstated single-turnover pH and E60A's printed 12.5 versus 113/9.0 arithmetic
+  remain explicit. All 17 source quotients retain formulas/units and null SD.
 - **Acquisition:** ZERO new scientific-source requests/bytes. Exact batch
-  `human-tkt-e160q-6ha3-geometry-function` still has a **metered lower bound**
-  of 7 captures /3,004,884 bytes, pinned through the original inventory and
-  assembly acquisition appendix. Complete totals/headroom remain null because
-  inherited discovery traffic is unmetered. The M0081 panel lower bound remains
-  28/1,474,405 with its separate accounting gap. No scope was renamed/reset;
-  all other source scopes are unchanged.
-- **Reconsideration:** quantitative functional labels and footnote semantics
-  replaced another M0081 trace scan or geometry expansion. All case facts fit
-  additive data; no runtime branch, new validator or frozen-module change.
-  Shared assay descriptors and exact old-observation mappings make this curation
-  reusable. No measured time saving is claimed. Incumbent resources already
-  contain the measurements; the added value is typed joins and prevention of
-  invalid activity/parameter labels, not discovery or superior accuracy.
-  Board: `work/coordination_tkt_function_20260909.md`.
-- **Review/publication:** computational source, representation and adversarial
-  challenge only, with correlated-error limits. Source/body pins, seven-row
-  identity, arithmetic and ten reused numeric mappings pass parent checks.
-  Source and representation reviewers accept the exact comparison hash;
-  repository contracts and 14 truth-governance tests pass; required PR CI is
-  pending at this checkpoint. Original study and
-  assembly packets, raw sources, frozen kernels, protected registries and
-  exposure history are preserved. Resume this branch/PR first if unfinished.
-- **One next action:** after this increment is integrated, test the same data
-  representation against the retained study's POX Table 2b and Supplementary
-  Methods. Expected gain: a second enzyme context that preserves MAP-analogue
-  binding, pyruvate processing and steady-state assay identity without pooling
-  their parameters or duplicating measurements. First confirm the exact enzyme,
-  assay and source linkage; stop if that cannot be done from retained bytes,
-  if extra fields merely encode a case-specific workaround, or if no useful
-  relation beyond the source table is supported. No source reacquisition while
-  inherited cumulative accounting is unresolved. M0081 acquisition remains
-  blocked absent a concrete transport ledger or explicit authority revision;
-  do not repeat the local trace inventory without a new exact locator.
+  `human-tkt-e160q-6ha3-geometry-function` remains a **metered lower bound**
+  of 7 captures / 3,004,884 bytes; complete totals/headroom remain null because
+  inherited discovery traffic is unmetered. M0081 panel lower bound remains
+  28 / 1,474,405 with its own gap. No batch was renamed or reset. No other
+  source scope changed; do not reacquire in unresolved scopes.
+- **Reuse/reconsideration:** all chemistry remains data; no runtime branch or
+  new validator. One shared traversal already consumed both TKT/POX comparisons
+  and preserved three TKT reporter-unavailable contexts versus POX E59Q analogue
+  nonbinding, each beside its separate steady-state assay. Exact old-record
+  pointers and quotient provenance prevent duplicate observations. This check
+  is complete; do not repeat it as the next task. No measured curation-time
+  saving or superiority to a competent source reading is claimed. The added
+  value is reusable eligibility for functional labels, not new chemistry.
+  Further same-study table work now adds little; move toward actual designed
+  enzyme outcomes outside this natural-enzyme study.
+- **Verification/review:** source, representation and adversarial workers each
+  accepted the final comparison hash with no remaining objection and have
+  stopped. Parent verified exact body/repository pins, all six rows, source
+  quotient arithmetic at displayed rounding, eight within-assay ratios and
+  exact reuse pointers. Repository contracts pass with 25 claims; all 14
+  truth-governance tests pass after updating the existing claim-count assertion
+  from 24 to 25. This is computational review only. Original TKT/study/assembly
+  packets, frozen kernels, protected registries and exposure history are
+  unchanged. Board: `work/coordination_pox_function_20260909.md`.
+- **Publication/recovery:** accepted local increment ready for commit/push/PR
+  and required CI at this checkpoint. Inspect this branch/PR first if unfinished;
+  Git and the local receipt establish its final publication state. Only owned
+  files are changed; no unrelated work or active editing worker remains.
+- **One next action:** source-qualify one published designed-enzyme variant
+  series for an exact construct–assay–outcome join, including informative weak
+  or failed variants. Expected gain: determine whether this representation
+  supports design-enabling functional data outside one natural ThDP-enzyme
+  study. Establish the exact primary study and permissions before curation;
+  any new source scope must be bibliographically distinct, explicitly named
+  and metered from its first request, not a reset of an inherited batch. Stop
+  if source access, construct/assay identity or useful outcome contrast cannot
+  be established within a bounded batch; retain a supported negative result.
+  No new model, paid compute, outreach or performance benchmark is implied.
+  Do not reopen M0081 trace recovery without a new exact transport locator.
 
 Preserve historical content below this marked block. Git identifies the
 containing increment; no self-hash follow-up commit is required.

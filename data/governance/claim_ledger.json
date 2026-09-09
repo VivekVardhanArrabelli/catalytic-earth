@@ -303,5 +303,18 @@
       "data/atlas/study_context/6ha3/functional_review.json",
       "docs/ATLAS_STUDY_CONTEXT.md"
     ]
+  },
+  {
+    "claim_id": "CE-025",
+    "claim_kind": "scientific_result",
+    "status": "Supported",
+    "claim": "The retained L. plantarum POX table reports E59Q MAP-analogue nonbinding with unavailable binding parameters alongside source-reported fitted pyruvate/DCPIP k_cat 0.49 +/- 0.01 s^-1 and anaerobic pyruvate/FAD apparent processing k_app_max 1.07 +/- 0.08 s^-1 at 25 C.",
+    "current_wording": "Describe six source-bound variant rows across three distinct assays. MAP forms a covalent conjugate that is not further processed; its K_D_app is not pyruvate affinity. The FAD processing rate combines microscopic steps; the DCPIP assay replaces oxygen. No generic inactivity, oxygen-turnover rate, elementary-step rate, causal geometry, new experiment or evidence-tier promotion follows.",
+    "rationale": "The exact table, footnotes h-k and Supplementary Methods preserve chemical, reporter and fitted-parameter identity. An explicit relation to the prior TKT annotation also separates source-reported analogue nonbinding from unavailable reporter signal.",
+    "evidence": [
+      "data/atlas/study_context/pox2019/functional_comparison.json",
+      "data/atlas/study_context/pox2019/functional_review.json",
+      "docs/ATLAS_STUDY_CONTEXT.md"
+    ]
   }
 ]
