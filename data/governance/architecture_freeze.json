@@ -64,8 +64,8 @@
   "frozen": true,
   "giant_modules_no_new_code": {
     "src/catalytic_earth/cli.py": {
-      "bytes": 2054216,
-      "sha256": "50a4734da98d1b11fe65dd29f661a2dde71302eb7e3429da04c1081bc070cbf7"
+      "bytes": 2054847,
+      "sha256": "425eeabb09fd72bab5ce0a46e648dfd44db7d926cd68eb337204bbfb2fa25a2e"
     },
     "src/catalytic_earth/labels.py": {
       "bytes": 2443404,
@@ -148,7 +148,7 @@
     ],
     "maximum_relative_path_characters": 180,
     "observed_maximum": 180,
-    "paths_checked": 17536
+    "paths_checked": 17537
   },
   "replacement_family_path": {
     "engine": "src/catalytic_earth/family_onboarding.py",
@@ -160,7 +160,7 @@
   "test_tiers": {
     "manifest": "tests/test_tiers.json",
     "runner": "scripts/run_test_tier.py",
-    "sha256": "a37dac1b2ad71718930d426330a930aff06f9652552bca31cbebbb4b1ff37ca1"
+    "sha256": "6790771c1d611930adfd13ec15fae1598ba84a44eaa8b05cd12dd44083614220"
   },
   "typed_schema": {
     "atlas10_compilation_contract": "data/atlas/atlas10/compilation_spec.json",

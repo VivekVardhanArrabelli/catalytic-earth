@@ -1917,19 +1917,22 @@ Current 1,025-preview state:
 
 ## Automation Lock
 
-The local run lock is also available as code, so future schedulers do not have
-to rely only on prompt text:
+This historical label-factory workflow is not the current research queue.
+Use [the hourly research protocol](HOURLY_RESEARCH.md) for ownership, recovery
+and handoff. The lock is shared across linked worktrees and requires a unique
+token for each run:
 
 ```bash
+CE_RUN_OWNER="${CODEX_THREAD_ID:-manual}:$(python -c 'import uuid; print(uuid.uuid4())')"
 PYTHONPATH=src python -m catalytic_earth.cli automation-lock \
-  --lock-dir .git/catalytic-earth-automation.lock \
-  acquire --started-at "$STARTED_AT"
+  acquire --owner-token "$CE_RUN_OWNER"
 
 PYTHONPATH=src python -m catalytic_earth.cli automation-lock \
-  --lock-dir .git/catalytic-earth-automation.lock \
-  release --require-clean --require-no-merge --require-synced
+  release --owner-token "$CE_RUN_OWNER" \
+  --require-clean --require-no-merge --require-synced
 ```
 
-Fresh locks block concurrent runs. Stale locks are replaced only when the git
-worktree is clean; a stale lock plus a dirty worktree enters recovery mode
-instead of starting unrelated work.
+An existing lock blocks acquisition even when old. Age and the diagnostic CLI
+PID do not establish that the owning task stopped. Recovery requires confirming
+task/worker inactivity and preserving unfinished work; only the owning token
+may release the lock normally.

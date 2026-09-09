@@ -1,5 +1,75 @@
 # Handoff
 
+<!-- current-research-handoff:start -->
+## Current research baton — 2026-09-09
+
+This block and `docs/HOURLY_RESEARCH.md` govern the hourly research task.
+Everything below the end marker is historical; do not execute its predictor,
+Option-B, deployment or label-expansion next actions by default. Current claims,
+errata, truth policy and decisions override this handoff when they conflict.
+
+- **Identity/base:** hourly restart setup in task
+  `01a07311-aac6-7010-9516-e0b53605d473`; base scientific commit
+  `7dd5e841e2edcee6056c3c0836faeb05dddc4edd` (merged PR #54).
+  Git identifies the containing operational-change commit; final publication
+  and timing receipts live with the task result and Git-local run receipt.
+- **North Star:** grow the computable catalytic-mechanism atlas toward de novo
+  enzyme design or a dataset that enables it. Coverage, resolution and useful
+  cross-case inference take priority over software/report volume.
+- **Latest science:** the shared structural extractor preserves residue
+  numbering, modifications, alternate conformations, coordinates and occupancy.
+  1SUP's unmutated sequence does not make its PMS-modified catalytic serine an
+  unmodified productive state. Its His64 alternatives stay separate. 1PQ5 is a
+  pH-5, partially occupied product-fragment context. See
+  `docs/ATLAS_STRUCTURAL_CONTEXT.md` and its source bindings. This adds detail
+  to two existing cases; biological coverage and the frozen kernels are unchanged.
+- **Next question:** which available substrate/intermediate arrangement can be
+  joined to compatible chemical state and measured function strongly enough to
+  constrain catalytic geometry beyond a triad? Compare plausible sources against
+  this question before choosing a case; do not select merely because it is cached.
+- **Expected gain / stop:** a reusable connection between reaction-relevant
+  geometry and functional evidence, or a supported finding that an apparent
+  connection is inapplicable. Stop extending a case if the join requires an
+  unsupported construct, ligand, state or endpoint transfer. Reassess the
+  whole-atlas bottleneck rather than collecting more triad distances.
+- **Inherited limitations:** existing functional-evidence ingestion contains
+  first-case assumptions. Do not extend those exceptions mechanically. Two
+  abstracts in the prior M0187 case are truncated; unresolved atom/site and
+  construct correspondence remain unresolved. Source agreement is not independent
+  validation and no prospective design or assay result has been produced.
+- **Acquisition:** no new scientific source acquisition occurred during hourly
+  setup. Use the existing 100-request/30-MiB limit for each named source batch,
+  carrying consumption across runs. No paid compute, outreach or new experiments.
+- **Reuse and reconsideration:** apply the three rules in the standing brief:
+  recurring bespoke chemistry code, non-reusable curation effort, or answers
+  that add insufficient value beyond incumbent resources require a change of
+  approach. Do not create a commit or test merely to fill the hour.
+- **Coordination/review:** root owns setup, Git and scheduling; `state_contracts`
+  audited lock ownership/concurrency and `draft_integration_review` audited
+  scientific continuity. Findings: remove age-only lock takeover and ownerless
+  release; resolve the shared Git directory; retire stale handoff/minimum-time
+  instructions. Reviews are computational operational checks, not scientific
+  or human-review evidence.
+- **Verification:** focused lock/CLI checks, the core tier and repository
+  contracts passed locally. Concurrent processes and linked worktrees share
+  one owner; a wrong token cannot release it and an old lock is not stolen.
+  Final CI, publication and lock-release outcomes belong to the Git-local
+  receipt and task result. The narrow legacy CLI migration is recorded in
+  `docs/CURRENT_DECISIONS.md`; scientific frozen hashes remain unchanged.
+- **Recovery/publication:** all earlier Catalytic Earth schedules were paused
+  when inspected. Only `catalytic-earth-work-loop` is to be re-enabled. The June
+  lock was archived after checking its absent PID, paused schedules, idle other
+  project task and clean checkout; its bytes remain in the Git common directory.
+  The new run must acquire with its own token, inspect any pending branch/PR and
+  recovery receipt, then continue from current remote state. Do not reuse a token
+  or infer task inactivity from the lock's diagnostic CLI PID.
+
+Update this current block only when the scientific baton or recovery state
+changes. Record unchanged skips locally; preserve the historical content below.
+<!-- current-research-handoff:end -->
+
+## Historical handoffs — superseded as an execution queue
+
 ## Session run - Option B started: M-CSA held-out EXHAUSTED; new untouched off-M-CSA bronze held-out FROZEN before any router fix (2026-06-28)
 
 - Continued on `main`/branch (d14fa1f7+). User: "pursue Option B — the new held-out." Leakage-safe order:

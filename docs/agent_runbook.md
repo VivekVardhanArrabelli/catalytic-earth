@@ -1,7 +1,10 @@
 # Agent Runbook
 
-Use this runbook for bounded maintenance, audits, and artifact/report work in
-the main repo.
+Use this runbook for bounded scientific work and necessary maintenance in the
+main repo. Hourly research follows [the current standing brief](HOURLY_RESEARCH.md)
+and the marked current block in `work/handoff.md`. The hourly task uses the
+atlas North Star and its eventual de novo design purpose, not historical
+predictor/deployment queues.
 
 ## Source Of Truth Order
 
@@ -23,24 +26,9 @@ If history conflicts with the claim ledger or errata, preserve the historical
 record and use the corrected wording. Never reset exposure by renaming a split,
 branch, artifact, endpoint, or agent session.
 
-The pre-reset order below is retained only as history and is superseded by the
-list above.
-
-Quick compass first: `docs/MAP.md` — one page with the current headline
-(**cofactor reconstruction**: predicted-apo 23/45 → 37/45, confirmed) and where each
-thing lives. Then in order:
-
-1. `docs/project_state.md` for current north star, benchmark state, blockers,
-   and next gates. (The "Current Benchmark State" section opens with the current
-   headline result — cofactor reconstruction — so it is not buried.)
-2. `docs/decision_log.md` for dated decisions that override older wording.
-2. `docs/decision_log.md` for dated decisions that override older wording.
-3. `docs/artifact_index.md` for which artifacts answer which questions.
-4. Machine artifacts under `artifacts/`, especially JSON contracts and audit
-   outputs named in the project state.
-5. Registries under `data/registries/` as canonical data sources. Read them for
-   context; do not edit them unless the task explicitly authorizes it.
-6. Human reports under `work/` and older docs for historical context.
+Older predictor/cofactor instructions remain recoverable in Git history. They
+do not override this order or become the next task merely because an old
+handoff contains an imperative.
 
 ## Safe Edits
 
@@ -96,10 +84,10 @@ PYTHONPATH=src python -m catalytic_earth.cli validate
 git diff --check
 ```
 
-For code changes:
+For shared code changes, run the relevant focused checks and existing core tier:
 
 ```bash
-python -m unittest discover -s tests
+python scripts/run_test_tier.py core/unit
 ```
 
 For docs-only changes, `PYTHONPATH=src python -m catalytic_earth.cli validate`
@@ -108,29 +96,28 @@ whose output should be verified.
 
 ## Bounded Task Pattern
 
-1. Read the automation memory, if an automation ID is provided.
-2. Check disk headroom and branch status.
-3. Read `docs/project_state.md`, `docs/decision_log.md`, and
-   `docs/artifact_index.md`.
-4. Identify the exact input artifacts and whether newer readthrough addenda
-   supersede them.
-5. Write new outputs with explicit guardrails, source artifacts, split policy,
-   and verification fields.
-6. Validate JSON, run the CLI validator when feasible, and run
-   `git diff --check`.
-7. Commit and push only if the task requests it and verification passes.
+1. For scheduled writers, acquire the owner-checked shared Git lock first.
+2. Check disk headroom, branch, remote and unfinished work; preserve unrelated edits.
+3. Read the current handoff and the source-of-truth order above. Automation
+   memory and older reports are context, not authority over current decisions.
+4. Choose the highest-impact scientific question and its expected information gain.
+5. Produce new content, evidence or a supported decision where justified.
+   A new report, schema, test or artifact is not required merely to fill a run.
+6. Verify the changed content proportionately and run `git diff --check`.
+7. Publish verified changes within task authorization and preserve an exact
+   continuation when incomplete. Stop all workers before releasing ownership.
 
 If the worktree is already dirty, identify which files are unrelated before
 editing. Do not revert or stage unrelated user changes. If a tracked file is
 already modified and affects the requested command, work with it and call out
 the residual risk in the final status.
 
-For timed automation blocks, a clean commit/push is a checkpoint, not a
-wrap-up, while substantial time remains. If a major apply, preview, or scout
-finishes with more than about 15 minutes left, keep the lock and continue with
-the safest bounded next action: a non-destructive scout, source-supply probe,
-spec, or focused test is enough. Reserve only the final 8-10 minutes for final
-validation, docs, push, and lock release.
+For timed automation, continue after a checkpoint only when another bounded
+action has justified scientific information gain and fits the remaining time.
+Reserve approximately 5-10 minutes for verification, publication and handoff;
+aim to finish by minute 55. No minimum runtime or hourly commit is required.
+If a run overruns, its lock makes the next scheduled writer skip. Follow
+`docs/HOURLY_RESEARCH.md` for recovery and the three reconsideration rules.
 
 ## Leakage Rules
 
@@ -144,6 +131,9 @@ validation, docs, push, and lock release.
   inputs.
 
 ## Common Interpretation Traps
+
+The following predictor-specific notes are historical context for those tracks;
+they do not authorize new evaluation or select the hourly atlas research task.
 
 - Wave 1.2 clean experimental-coordinate geometry is the current router gate,
   but it is not a deployment claim. Read

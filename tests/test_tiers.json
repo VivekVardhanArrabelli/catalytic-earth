@@ -10,6 +10,7 @@
     "core/unit": {
       "patterns": [
         "^tests/core/test_.*\\.py$",
+        "^tests/test_automation\\.py$",
         "^tests/test_truth_guard\\.py$"
       ],
       "network": false,
