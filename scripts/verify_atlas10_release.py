@@ -108,6 +108,9 @@ def verify_wheel(
                 "    'mechanism_exchange': command('atlas-mechanism-evidence', '--variant', 'H297N', '--endpoint', 'isotope_exchange'),\n"
                 "    'mechanism_K166R': command('atlas-mechanism-evidence', '--variant', 'K166R', '--endpoint', 'turnover'),\n"
                 "    'mechanism_evidence_empty': command('atlas-mechanism-evidence', '--variant', 'WT'),\n"
+                "    'structural_context': command('atlas-structural-context'),\n"
+                "    'subtilisin_context': command('atlas-structural-context', '--pdb-id', '1SUP'),\n"
+                "    'structural_context_empty': command('atlas-structural-context', '--site-id', 'P11444:H297'),\n"
                 "    'all': run_query('--steps'),\n"
                 "    'ammonium': run_query('--reactant', '28938', '--product', '58278'),\n"
                 "    'carbon_dioxide': run_query('--product', 'CHEBI:16526'),\n"
@@ -147,6 +150,18 @@ def verify_wheel(
                 check=True, capture_output=True, text=True,
             )
             queries = json.loads(draft_run.stdout)
+            structural = queries["structural_context"]
+            if structural["context_count"] != 2 or queries["structural_context_empty"]["context_count"] != 0:
+                raise ValueError("installed structural-context selection differs")
+            subtilisin_context = queries["subtilisin_context"]["structures"][0]
+            pairs = {row["pair_id"]: row for row in subtilisin_context["distance_pairs"]}
+            distances = pairs["serine-oxygen--histidine-ne2"]["measurements"]
+            if {row["right_label_alt_id"] for row in distances} != {"A", "B"}:
+                raise ValueError("installed structural context lost alternate conformations")
+            if [row["connection_id"] for row in subtilisin_context["incident_connections"]] != ["covale1"]:
+                raise ValueError("installed structural context lost catalytic-serine modification")
+            if len(payload.get("current_structure_annotations", [])) != 2:
+                raise ValueError("historical Atlas-10 CLI omitted current structural-state annotations")
             evidence = queries["mechanism_evidence"]
             if (evidence["schema_version"] != "catalytic-earth.mechanism-evidence-query.v1"
                     or (evidence["case_count"], evidence["matched_observation_count"]) != (1, 6)):

@@ -35,6 +35,30 @@ def _canonical_sha(value: Any) -> str:
     return hashlib.sha256(payload).hexdigest()
 
 
+def verified_structural_context() -> dict[str, Any]:
+    """Load the reviewed coordinate projection, without raw mmCIF or a network."""
+    prefix = "structural_context_data/"
+    expected = json.loads(_resource_bytes(prefix + "expected.json"))
+    if expected.get("schema_version") != "catalytic-earth.atlas-structural-context-package.v1":
+        raise ValueError("unsupported structural-context package")
+    assets = {}
+    for name, digest in expected["files"].items():
+        if Path(name).name != name or "\\" in name:
+            raise ValueError("unsafe structural-context asset name")
+        raw = _resource_bytes(prefix + name)
+        if hashlib.sha256(raw).hexdigest() != digest:
+            raise ValueError("structural-context asset differs from expected hash")
+        assets[name] = raw
+    spec = json.loads(assets["spec.json"])
+    review = json.loads(assets["review.json"])
+    for name in ("spec.json", "bundle.json"):
+        if review.get(name.replace(".json", "_sha256")) != hashlib.sha256(assets[name]).hexdigest():
+            raise ValueError("structural-context source review is stale")
+    if spec["atlas10_binding"]["sha256"] != hashlib.sha256(_resource_bytes(ATLAS10_KERNEL)).hexdigest():
+        raise ValueError("structural-context Atlas-10 binding differs")
+    return json.loads(assets["bundle.json"])
+
+
 def verified_transformations(mcsa_id: str = "M0187") -> dict[str, Any]:
     from .atlas_transformation_query import TRANSFORMATION_SETS, normalize_mcsa_id
     from .atlas_transformations import validate_transformations
@@ -393,6 +417,15 @@ def build_parser() -> argparse.ArgumentParser:
         "atlas10", help="reproduce the ten-case Atlas relationship-query surface"
     )
     atlas10.add_argument("--output", type=Path, help="optional JSON output path")
+    structural_context = subparsers.add_parser(
+        "atlas-structural-context",
+        help="compare deposited catalytic atoms with chemical state and alternate conformations",
+        description="Source-bound coordinate evidence, not productive design restraints. Filters retain complete matching contexts and their limitations.",
+    )
+    structural_context.add_argument("--case-id", help="exact Atlas case identifier")
+    structural_context.add_argument("--pdb-id", help="exact PDB identifier, e.g. 1SUP")
+    structural_context.add_argument("--site-id", help="exact canonical site identifier, e.g. P00782:S328")
+    structural_context.add_argument("--output", type=Path, help="optional new JSON file; existing files are never overwritten")
     transformations = subparsers.add_parser(
         "atlas-transformations", help="query source-state atom and bond changes offline",
         description="Select a reviewed M-CSA record or use --all for the catalog. With neither option, reproduce the original M0187 query.",
@@ -540,9 +573,38 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 0
     if args.command == "atlas10":
         result = verified_atlas10_result()
+        # Keep the historical runtime result/hash reproducible, while placing
+        # current source clarifications beside the affected relationship rows.
+        context = verified_structural_context()
+        result["current_structure_annotations"] = [
+            {
+                "case_id": row["case_id"], "pdb_id": row["pdb_id"],
+                "context_id": row["context_id"],
+                "interpretation": row["interpretation"],
+                "inspect_command": "catalytic-earth atlas-structural-context --pdb-id " + row["pdb_id"],
+            }
+            for row in context["structures"]
+        ]
+        result["current_annotation_hash_scope"] = "Current annotations are separate from the frozen runtime_result_sha256; their package and review hashes are checked independently."
         rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
         if args.output:
             args.output.write_text(rendered, encoding="utf-8", newline="\n")
+        print(rendered, end="")
+        return 0
+    if args.command == "atlas-structural-context":
+        from .atlas_structural_context import query_structural_context
+
+        try:
+            result = query_structural_context(
+                verified_structural_context(), case_id=args.case_id,
+                pdb_id=args.pdb_id, site_id=args.site_id,
+            )
+        except ValueError as exc:
+            parser.error(str(exc))
+        rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
+        if args.output:
+            with args.output.open("x", encoding="utf-8", newline="\n") as stream:
+                stream.write(rendered)
         print(rendered, end="")
         return 0
     if args.command == "atlas-drafts":

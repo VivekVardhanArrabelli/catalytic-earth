@@ -48,6 +48,8 @@ catalytic_earth = [
   "transformation_data/*.md",
   "mechanism_evidence_data/*.json",
   "mechanism_evidence_data/*.md",
+  "structural_context_data/*.json",
+  "structural_context_data/*.md",
   "panel_comparison_data/*.json",
   "panel_comparison_data/*.md",
   "candidate_event_data/*.json",

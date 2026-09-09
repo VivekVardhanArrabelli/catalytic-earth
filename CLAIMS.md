@@ -183,6 +183,19 @@ Neither conserved catalytic residues nor the broad InterPro `Ccp1-like`
 family distinguishes APX from CcP. See the
 [computational reassessment](docs/COMPUTATIONAL_REVIEW_20260905.md).
 
+## CE-018 — structural identity does not establish a productive chemical state
+
+**Status:** Supported
+
+The retained 1SUP structure is sequence-unmutated but explicitly deposits a
+PMS covalent modification on catalytic Ser221. Its His64 A/B alternatives
+remain distinct, with no inferred relation to PMS occupancy or catalytic
+activity. 1PQ5 is a pH-5 model with partially occupied ARG atoms and a
+primary-source-described autoproteolytic fragment context. The shared
+[structural-context query](docs/ATLAS_STRUCTURAL_CONTEXT.md) preserves these
+states and atom-specific coordinates. It adds two annotations of existing
+cases, not new biological coverage or validated catalytic arrangements.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,

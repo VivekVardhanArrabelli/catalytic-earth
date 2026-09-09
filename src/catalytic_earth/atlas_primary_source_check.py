@@ -27,8 +27,11 @@ _CATEGORIES = {
     "_chem_comp_bond",
     "_entry",
     "_entity",
+    "_exptl_crystal_grow",
     "_pdbx_nonpoly_scheme",
+    "_pdbx_modification_feature",
     "_pdbx_poly_seq_scheme",
+    "_struct",
     "_struct_conn",
     "_struct_site",
 }
@@ -223,6 +226,31 @@ def _parse_mmcif_categories(text: str) -> dict[str, list[dict[str, str]]]:
     for category, row in scalar_rows.items():
         tables[category].append(row)
     return tables
+
+
+def parse_mmcif_categories(
+    text: str,
+    *,
+    categories: set[str] | frozenset[str] | None = None,
+) -> dict[str, list[dict[str, str]]]:
+    """Parse supported mmCIF categories with the strict primary-source parser.
+
+    The optional category selection limits the returned tables, not the syntax
+    validation.  Unsupported category names fail explicitly so callers cannot
+    mistake an unparsed table for an empty deposited category.
+    """
+
+    tables = _parse_mmcif_categories(text)
+    if categories is None:
+        return tables
+    _require(
+        isinstance(categories, (set, frozenset))
+        and all(isinstance(item, str) for item in categories),
+        "mmCIF categories must be a set of category names",
+    )
+    unsupported = categories - _CATEGORIES
+    _require(not unsupported, f"unsupported mmCIF categories: {sorted(unsupported)}")
+    return {category: tables[category] for category in sorted(categories)}
 
 
 def _integer(value: Any, context: str) -> int:

@@ -1,5 +1,8 @@
 # Catalytic Earth — The Map
 
+Current structural applicability: [state-aware catalytic geometry](ATLAS_STRUCTURAL_CONTEXT.md)
+connects exact atoms, modifications and conformers in existing cases.
+
 *A compass to re-orient in five minutes when the project feels too big to hold.
 The detail lives in `decision_log.md` and `project_state.md`.
 This is the fold-down. Core last updated 2026-06-04; scaling-era addendum 2026-06-27;

@@ -1,5 +1,21 @@
 # Current State
 
+## 2026-09-09: chemical state accompanies catalytic geometry
+
+The [structural-context comparison](ATLAS_STRUCTURAL_CONTEXT.md) adds two
+source-bound annotations to existing trypsin/subtilisin cases, with no new
+proteins, reactions or mechanism cases. 1SUP has an unmutated protein sequence
+but its catalytic Ser221 is covalently linked to PMS. Its His64 alternatives
+and partial PMS occupancy remain separate. 1PQ5 is a pH-5, partially occupied,
+source-described autoproteolytic fragment context. Neither is a generic
+productive catalytic-arrangement template.
+
+A shared extractor derives atom coordinates, alternate conformers, incident
+connections and distances from the retained mmCIF files. The frozen Atlas-10
+kernel remains byte-identical; current CLI annotations carry the clarification
+beside its historical relationship result. This is computational source review,
+not a new experiment, independent validation or demonstrated design performance.
+
 ## 2026-09-07 computational development and source transformation queries
 
 **Foundation:** 2026-07-13 truth reset and 2026-07-14 Phase B package
