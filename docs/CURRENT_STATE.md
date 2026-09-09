@@ -1,5 +1,22 @@
 # Current State
 
+## 2026-09-09: variant kinetics preserve distinct functional endpoints
+
+The [seven-row transketolase comparison](ATLAS_STUDY_CONTEXT.md#variant-kinetics-retain-their-assay-and-parameter-identity)
+curates the retained published kinetic table across all human-TKT variant arms.
+E160A's central F6P-adduct formation rate is 0.919 times wild type at 4 °C,
+while its X5P/R5P kcat is 0.0753 times wild type at 20 °C. These are separate
+within-assay arithmetic comparisons, not a same-substrate or causal relation.
+CE-024 prevents an adduct-bearing structure from supplying a generic activity
+label. No new experiment, biological case or evidence-tier promotion is added.
+
+The data preserve K0.5 versus KM for T382E/Q, assay-specific Hill coefficients,
+instrument-limited lower bounds, unavailable reporters, and an ambiguous
+printed T382E efficiency token. Five existing NMR arms are reused with source
+identities, not counted again. No runtime or frozen-kernel change was needed.
+All work used retained source bytes; the inherited acquisition accounting gap
+remains and no new source request was made.
+
 ## 2026-09-09: M0081 template keeps inhibitor and sequence limits
 
 The [retained 3CSM annotation](ATLAS_DEPOSIT_CONTEXT.md) preserves a bicyclic TSA

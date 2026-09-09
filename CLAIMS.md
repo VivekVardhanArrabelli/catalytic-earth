@@ -267,6 +267,20 @@ as engineered substitutions. It adds one source annotation of an existing
 panel candidate, with no new compiled mechanism, protein record, experimental
 observation or evidence-tier promotion.
 
+## CE-024 — variant kinetics require endpoint and parameter identity
+
+**Status:** Supported
+
+The retained human-transketolase table reports E160A F6P-adduct kforward
+8.33 ± 1.21 s⁻¹ versus wild type 9.06 ± 0.72 s⁻¹ at 4 °C, and E160A
+X5P/R5P kcat 0.21 ± 0.02 s⁻¹ versus wild type 2.79 ± 0.06 s⁻¹ at 20 °C.
+The [seven-row functional comparison](docs/ATLAS_STUDY_CONTEXT.md#variant-kinetics-retain-their-assay-and-parameter-identity)
+keeps these endpoints distinct. T382E/Q steady-state K0.5 values are not KM;
+instrument-limited ES rates remain lower bounds; missing reporters remain
+unavailable. The printed T382E efficiency punctuation remains unresolved.
+This curates published measurements without establishing productive F6P
+turnover, a causal geometric effect, new experiments or a higher evidence tier.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,

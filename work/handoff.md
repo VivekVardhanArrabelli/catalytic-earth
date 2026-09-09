@@ -7,68 +7,71 @@ This block and `docs/HOURLY_RESEARCH.md` govern the hourly task. Historical
 content below the marker is not an execution queue.
 
 - **Identity/base:** owner
-  `01a087fd-5a80-7dd0-be10-dbc798cab4df:ac399f3e-fb18-4b3c-87eb-5a545c0ad8bf`;
-  actual UTC start 2026-09-09T21:05:39Z; clean synchronized base
-  `fab4c17aeda383d3dcd32c68e99c35663239ef90`; branch
-  `codex/panel-acquisition-recovery-20260909`. No inherited PR or recovery.
-  Checkpoint 2026-09-09T21:19:25Z (13.8 minutes). Final head,
-  CI, elapsed time and lock release belong in the Git-local receipt/task result.
-- **Question/result:** can the original panel/source-challenge traces close
-  cumulative acquisition accounting, and does retained M0081 evidence allow
-  useful mechanism work without new requests? The bounded local audit found
-  the original parent, panel producer and actual `forward_path` challenge
-  worker. Their browser outputs preserve rendered text without transport
-  bytes, status, redirects/cache/retry accounting or per-operation batch tags.
-  This establishes a named telemetry/allocation gap, not a complete census.
-- **Scientific limit:** the retained May graph has a coarse M0081/P32178
-  conformation/electrostatics narrative. Additional single-step and bond-order
-  wording belongs to the distinct M0474 entry. Do not transfer it into M0081.
-  No source-resolved concerted event, exact atom map, new annotation, compiled
-  mechanism, protein record, experimental observation or tier is added. This
-  is missing source evidence, not evidence that the enzyme lacks the chemistry.
-  The draft compiler already permits explicit scheme/flow abstention; a missing
-  MRV is not a blanket prohibition on partial source-scoped drafts.
-- **Evidence:** `data/governance/acquisition_audits/atlas50_panel_20260909.json`
-  pins the original receipt inputs and sanitized local trace examples. Raw
-  private traces remain local, so public readers cannot reproduce that part
-  of the audit from the overlay alone. The producer wrote
-  `/tmp/atlas50-mcsa-selected40.json` (721,603 bytes; expected SHA256
-  `0fdb9641822cfb78c095e0f4f54d2b81f92c54c854ae03b53892b20988b562cf`),
-  now absent at that path. Its trace does not retain the full body. The graph
-  `artifacts/v1_graph_1025.json`, SHA256
-  `efaf0e97e740373f647fdb8ace87f4d693eb40356e929ac1e5de1f25a0d56a25`,
-  is a lossy normalized projection and cannot reconstruct it. No claim that
-  every possible backup was searched is made.
-- **Acquisition:** ZERO new scientific-source requests/bytes. The exact inherited
-  `atlas50.computational-panel-review.2026-09-05` scope retains 21 URL captures
-  /1,125,005 bytes plus seven indexed attempts /349,400 bytes, including an
-  empty 404. **28/1,474,405 remains a metered lower bound**, with null complete
-  totals/headroom. Original panel receipts lack transport status; do not infer
-  21 HTTP 200s. Repeated URLs are not deduplicated as requests. Adjacent
-  crosswalk bytes and untagged browser operations are not added to this balance.
-  Other scopes remain unchanged. No scope reset, rename or new allowance.
-- **Correction/reconsideration:** the old panel report's total-response wording
-  and challenge report's below-30-MiB assertion are now qualified as unsupported
-  by complete accounting; pinned historical source/review JSON stays unchanged.
-  No new runtime, chemical primitive or wrapper is justified. Existing data and
-  compiler inspection suffice to expose information lost during normalization.
-  The useful outcome is prevented cross-record transfer and a concrete source
-  authority gap; no measured curation speedup or incumbent advantage is claimed.
-  Board: `work/coordination_panel_accounting_20260909.md`.
+  `01a08835-a9e1-7d52-90b2-486304367e8d:4e382797-5d10-4b23-8258-123290a2f2a6`;
+  actual UTC start 2026-09-09T22:07:05Z; clean synchronized base
+  `9805f08fbecbb6a8166432816cda1574192d536c`; branch
+  `codex/tkt-functional-comparison-20260909`. No inherited PR/recovery.
+  Checkpoint 2026-09-09T22:29:23Z (22.3 minutes). Exact final head,
+  publication/CI, elapsed time and lock release belong in the Git-local receipt.
+- **Question/result:** does retained F6P-adduct evidence provide a valid generic
+  activity label across human-transketolase variants? All seven Table 2a rows
+  are now curated as a functional comparison. E160A F6P kforward is
+  8.33 ± 1.21 s^-1 versus WT 9.06 ± 0.72 at 4 C; its separate X5P/R5P kcat
+  is 0.21 ± 0.02 versus WT 2.79 ± 0.06 at 20 C. The central-value ratios,
+  0.919 and 0.0753, remain within their respective assays and fitted models.
+  Neither adduct accumulation nor formation replaces endpoint-specific activity.
+- **Scientific scope:** one published study, seven comparison rows, five reused
+  qualitative NMR arms and ten explicitly linked pre-existing numeric summaries.
+  No new measurement was collected, no biological case or compiled mechanism
+  was admitted, and no tier was promoted. No productive F6P cycle, geometric
+  causation, exact preparation identity, raw-transient equivalence or M0219
+  elementary-step map is established (CE-024).
+- **Evidence/representation:**
+  `data/atlas/study_context/6ha3/functional_comparison.json` and
+  `functional_review.json`; readable comparison in `docs/ATLAS_STUDY_CONTEXT.md`.
+  Source table, footnotes a-g and Supplementary Methods printed pages 5-7
+  match retained hashes. Exact local bodies survive at
+  `/private/tmp/ce-6ha3-UOvXho/`; inventory/receipt pins identify them. They are
+  not redistributed, so exact transcription review needs matching source bodies.
+  T382E/Q K0.5 and kcat/K0.5 stay distinct from KM and kcat/KM; lower bounds,
+  missing reporters, separate Hill coefficients and E160A's large reverse-rate
+  SD remain explicit. T382E's literal efficiency `34.127` stays unresolved;
+  separate arithmetic does not silently repair it. T382E concentration SD
+  was corrected to 1 uM during review, before publication.
+- **Acquisition:** ZERO new scientific-source requests/bytes. Exact batch
+  `human-tkt-e160q-6ha3-geometry-function` still has a **metered lower bound**
+  of 7 captures /3,004,884 bytes, pinned through the original inventory and
+  assembly acquisition appendix. Complete totals/headroom remain null because
+  inherited discovery traffic is unmetered. The M0081 panel lower bound remains
+  28/1,474,405 with its separate accounting gap. No scope was renamed/reset;
+  all other source scopes are unchanged.
+- **Reconsideration:** quantitative functional labels and footnote semantics
+  replaced another M0081 trace scan or geometry expansion. All case facts fit
+  additive data; no runtime branch, new validator or frozen-module change.
+  Shared assay descriptors and exact old-observation mappings make this curation
+  reusable. No measured time saving is claimed. Incumbent resources already
+  contain the measurements; the added value is typed joins and prevention of
+  invalid activity/parameter labels, not discovery or superior accuracy.
+  Board: `work/coordination_tkt_function_20260909.md`.
 - **Review/publication:** computational source, representation and adversarial
-  review only; no human/laboratory validation. Parent adjudication preserves
-  scope-specific abstention rather than imposing an extra universal MRV gate.
-  Audit arithmetic, source/trace pins, repository contracts and preservation
-  checks pass. Required CI is pending. Resume this branch/PR first
-  if unfinished; exact publication/release status is in the local receipt.
-  Only owned audit/docs/handoff and derived manifests changed.
-- **One next action:** obtain a concrete original transport ledger or explicit
-  owner revision of acquisition authority/accounting for this inherited batch
-  before acquiring the missing M0081 proposal/step evidence. Expected gain:
-  accountable source acquisition that can decide the concerted-event
-  draft. Stop if neither is supplied; no further local trace scan without a
-  new exact locator, no new request, and no M0474-to-M0081 transfer. This gap
-  blocks affected acquisition, not unrelated allowed retained-source work.
+  challenge only, with correlated-error limits. Source/body pins, seven-row
+  identity, arithmetic and ten reused numeric mappings pass parent checks.
+  Source and representation reviewers accept the exact comparison hash;
+  repository contracts and 14 truth-governance tests pass; required PR CI is
+  pending at this checkpoint. Original study and
+  assembly packets, raw sources, frozen kernels, protected registries and
+  exposure history are preserved. Resume this branch/PR first if unfinished.
+- **One next action:** after this increment is integrated, test the same data
+  representation against the retained study's POX Table 2b and Supplementary
+  Methods. Expected gain: a second enzyme context that preserves MAP-analogue
+  binding, pyruvate processing and steady-state assay identity without pooling
+  their parameters or duplicating measurements. First confirm the exact enzyme,
+  assay and source linkage; stop if that cannot be done from retained bytes,
+  if extra fields merely encode a case-specific workaround, or if no useful
+  relation beyond the source table is supported. No source reacquisition while
+  inherited cumulative accounting is unresolved. M0081 acquisition remains
+  blocked absent a concrete transport ledger or explicit authority revision;
+  do not repeat the local trace inventory without a new exact locator.
 
 Preserve historical content below this marked block. Git identifies the
 containing increment; no self-hash follow-up commit is required.

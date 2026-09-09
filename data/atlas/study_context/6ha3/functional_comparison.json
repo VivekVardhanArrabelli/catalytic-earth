@@ -1,0 +1,1090 @@
+{
+  "schema_version": "catalytic-earth.functional-comparison.v1",
+  "comparison_id": "human-tkt-2019-kinetic-endpoints",
+  "operation": "source_annotation",
+  "study": {
+    "doi": "10.1038/s41586-019-1581-9",
+    "pmid": "31534226",
+    "title": "Low-barrier hydrogen bonds in enzyme cooperativity",
+    "enzyme_context": "reported human transketolase wild type and variants",
+    "scope": "One published study, seven Table 2a variant rows. This is neither a new biological-case admission nor a new project experiment."
+  },
+  "selection": {
+    "included": "All seven human transketolase rows; all steady-state and pre-steady-state kinetic columns, with endpoint-specific Hill coefficients from footnotes. Five existing qualitative F6P NMR arms are linked separately.",
+    "excluded": "The apparent pKa/CD titration column, Table 2b pyruvate oxidase rows, printed parenthetical fold-change annotations, and qualitative cooperativity labels in kinetic cells are outside this comparison. Quantitative Hill coefficients remain included.",
+    "reason": "Resolve which measured functional endpoint and fitted parameter can accompany an adduct-bearing structural context; avoid selecting only favorable variants."
+  },
+  "source_bindings": [
+    {
+      "path": "data/atlas/study_context/6ha3/source_inventory.json",
+      "sha256": "1605d98776281d52660f32442da9d11996bfc4dc19e5cbbea1b0252882bbfc06"
+    },
+    {
+      "path": "data/atlas/study_context/6ha3/evidence_projection.json",
+      "sha256": "70bf1eaa59747239990161631432a44440629704aa50051bddd551309fb1213e"
+    },
+    {
+      "path": "data/atlas/assembly_context/6ha3/spec.json",
+      "sha256": "b3a6c9306cab59095c4c3943c35ec7b0cbddadbcc1180fced9e284cff8a4b675"
+    },
+    {
+      "path": "data/atlas/assembly_context/6ha3/acquisition_appendix.json",
+      "sha256": "06dbbcbc8ae4967803c4d4eba1193d1d687bc26b2b159f1699df450059e57192"
+    }
+  ],
+  "sources": [
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:EDTable2-JPEG",
+      "source_url": "https://media.springernature.com/lw749/springer-static/esm/art%3A10.1038%2Fs41586-019-1581-9/MediaObjects/41586_2019_1581_Tab2_ESM.jpg",
+      "sha256": "51ca21f005b8b5d9dd152e097940656a76821e3e379b7697da219d5522652b8c",
+      "bytes": 146137,
+      "redistributed": false,
+      "inherited_inspection_depth": "Full table image visually inspected; E160Q and wild-type transketolase values transcribed with units and uncertainty.",
+      "this_run_inspection": "All seven human-transketolase rows visually inspected against the retained image, including mean/SD, bounds, missing cells, row labels, and T382E punctuation; POX rows not curated."
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:EDTable2-HTML",
+      "source_url": "https://www.nature.com/articles/s41586-019-1581-9/tables/2",
+      "sha256": "58012ff70ac04784193dd2c76863c008fd6b10018c3ff4b629d6634b1ba7866e",
+      "bytes": 178782,
+      "redistributed": false,
+      "inherited_inspection_depth": "Table title and endpoint-defining footnotes inspected; numeric cells are in the linked JPEG.",
+      "this_run_inspection": "Human-transketolase table statement and footnotes a-g inspected for triplicates, parameter semantics, censoring and reporter unavailability."
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:SI-PDF",
+      "source_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-019-1581-9/MediaObjects/41586_2019_1581_MOESM1_ESM.pdf",
+      "sha256": "9e4db71f5e59ee1184991376419894ac4c311b403f74028f9c543337e4d1733c",
+      "bytes": 436294,
+      "redistributed": false,
+      "inherited_inspection_depth": "All 13 pages text-extracted; Supplementary Methods pages 5-7 rendered and visually inspected for NMR and stopped-flow semantics.",
+      "this_run_inspection": "Supplementary Methods printed pages 5-7 (PDF pages 6-8) text and rendered pages inspected for substrate identity, conditions, kinetic model and reporter semantics."
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:landing-HTML",
+      "source_url": "https://www.nature.com/articles/s41586-019-1581-9",
+      "sha256": "e9d239f6e97bf1a563641d2b1e0a335411b6a07125ad7f250cee2e3fc0c17a59",
+      "bytes": 445216,
+      "redistributed": false,
+      "inherited_inspection_depth": "Subscription preview plus data availability and all relevant Extended Data legends inspected; main methods absent.",
+      "this_run_inspection": "Extended Data Fig. 1d legend inspected for the existing five-arm qualitative F6P intermediate-accumulation results."
+    }
+  ],
+  "source_access": {
+    "batch_id": "human-tkt-e160q-6ha3-geometry-function",
+    "new_requests": 0,
+    "new_response_bytes": 0,
+    "carried_metered_lower_bound_requests": 7,
+    "carried_metered_lower_bound_response_bytes": 3004884,
+    "complete_cumulative_requests": null,
+    "complete_cumulative_response_bytes": null,
+    "remaining_headroom": null,
+    "limit": "Retained local bytes only. Historical unmetered browser discovery remains unresolved; this operation creates no fresh allowance."
+  },
+  "assays": [
+    {
+      "assay_id": "x5p_r5p_steady_state",
+      "endpoint": "X5P/R5P turnover to S7P/G3P",
+      "method": "NADH-coupled continuous spectrophotometry",
+      "conditions": {
+        "substrate_varied": "D-xylulose-5-phosphate",
+        "acceptor": "2 mM D-ribose-5-phosphate",
+        "temperature_celsius": 20,
+        "pH": 7.6,
+        "buffer": "50 mM glycyl-glycine",
+        "wavelength_nm": 340,
+        "ThDP_uM": 100,
+        "CaCl2_mM": 5,
+        "NADH_mM": 0.22,
+        "enzyme_mg_per_mL_range": [
+          0.1,
+          2
+        ]
+      },
+      "model": "Supplementary Methods equation 2 supplies the Michaelis-Menten analysis for ordinary steady-state rows. Table footnotes f/g override the T382E/T382Q parameter interpretation with cooperative K_0.5 and k_cat/K_0.5 values; an explicit cooperative steady-state fit equation is not supplied by the retained printed pages 5-7.",
+      "source_locators": [
+        "Supplementary Methods printed page 5, equations 1-2",
+        "Extended Data Table 2a footnotes a, f, g"
+      ]
+    },
+    {
+      "assay_id": "f6p_stopped_flow",
+      "endpoint": "F6P Michaelis-complex formation and reversible covalent F6P-ThDP adduct formation",
+      "method": "325 nm stopped-flow cofactor reporter",
+      "conditions": {
+        "substrate_varied": "D-fructose-6-phosphate",
+        "temperature_celsius": 4,
+        "pH": 7.6,
+        "buffer": "50 mM glycyl-glycine",
+        "CaCl2_mM": 5,
+        "enzyme_stock_mg_per_mL": 4,
+        "mixing": "1+1; enzyme value is stated before mixing",
+        "wavelength_nm": 325,
+        "path_length_mm": 10
+      },
+      "model": "Source equations 6-8: k_app(S) = k_reverse + k_forward*S^n/(K_0.5^n + S^n). k_max_ES refers to preceding noncovalent ES formation, not k_forward.",
+      "K_0.5_scope": "The source interprets this fitted parameter as the pre-equilibrium substrate-binding constant in its two-step model. It is not assigned to the X5P assay or generalized as an independent thermodynamic K_D.",
+      "source_locators": [
+        "Supplementary Methods printed pages 6-7, equations 6-8",
+        "Extended Data Table 2a footnotes c-e"
+      ],
+      "transient_fit_scope": "The source describes wild-type monophasic transients fitted by equation 6, and variant biphasic transients by equation 7. The corresponding k_app (wild type) or k_app2 (variant covalent phase) enters equation 8. Instrument-limited initial phases and unavailable rows remain as reported; no raw trace is re-fitted or assumed available for every variant."
+    }
+  ],
+  "uncertainty": {
+    "table_statement": "Measurements were performed in triplicate and displayed with mean and standard deviation.",
+    "n_reported": 3,
+    "n_basis": "table-level statement; independent biological preparation count is not specified",
+    "sd_is_not_standard_error": true,
+    "raw_replicates_retained": false,
+    "missing_sd": "No uncertainty is invented for source ratio columns or censored/unavailable entries.",
+    "not_inferred": [
+      "parameter covariance",
+      "statistical significance",
+      "equivalence of rates",
+      "uncertainty on ratios of central values"
+    ],
+    "display_policy": "Numeric point-estimate displays normalize decimal formatting and the plus/minus symbol; they are not verbatim image strings. The ambiguous efficiency token is retained literally. Footnotes identify applicable explanations, not a claim that every cell prints that superscript."
+  },
+  "variants": [
+    {
+      "reported_variant": "wild_type",
+      "source_row_label": "wild-type",
+      "source_group": "reference",
+      "source_locator": "Extended Data Table 2a, wild-type row; footnotes a-g",
+      "steady_state": {
+        "assay_id": "x5p_r5p_steady_state",
+        "k_cat": {
+          "status": "reported_point_estimate",
+          "value": 2.79,
+          "sd": 0.06,
+          "unit": "s^-1",
+          "footnotes": [
+            "a"
+          ],
+          "normalized_display": "2.79 +/- 0.06"
+        },
+        "substrate_response_constant": {
+          "status": "reported_point_estimate",
+          "value": 73.9,
+          "sd": 6.7,
+          "unit": "uM",
+          "footnotes": [
+            "a"
+          ],
+          "parameter": "K_M",
+          "substrate": "D-xylulose-5-phosphate",
+          "normalized_display": "73.9 +/- 6.7"
+        },
+        "source_reported_efficiency": {
+          "status": "reported_point_estimate",
+          "value": 37754,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "footnotes": [
+            "a"
+          ],
+          "parameter": "k_cat/K_M",
+          "denominator_parameter": "K_M",
+          "normalized_display": "37754"
+        },
+        "hill_coefficient": {
+          "status": "not_reported_in_selected_table",
+          "value": null,
+          "sd": null,
+          "unit": "dimensionless",
+          "not_assigned_from_model": true
+        }
+      },
+      "stopped_flow": {
+        "assay_id": "f6p_stopped_flow",
+        "k_max_ES": {
+          "status": "lower_bound",
+          "value": 600.0,
+          "sd": null,
+          "unit": "s^-1",
+          "comparator": ">",
+          "source_display": ">600",
+          "footnotes": [
+            "d"
+          ],
+          "reason": "The source reports completion within the approximately 2 ms instrument dead time."
+        },
+        "K_0.5": {
+          "status": "reported_point_estimate",
+          "value": 0.66,
+          "sd": 0.06,
+          "unit": "mM",
+          "footnotes": [
+            "c"
+          ],
+          "normalized_display": "0.66 +/- 0.06"
+        },
+        "k_reverse": {
+          "status": "reported_point_estimate",
+          "value": 2.85,
+          "sd": 0.53,
+          "unit": "s^-1",
+          "footnotes": [
+            "c"
+          ],
+          "normalized_display": "2.85 +/- 0.53"
+        },
+        "k_forward": {
+          "status": "reported_point_estimate",
+          "value": 9.06,
+          "sd": 0.72,
+          "unit": "s^-1",
+          "footnotes": [
+            "c"
+          ],
+          "normalized_display": "9.06 +/- 0.72"
+        },
+        "hill_coefficient": {
+          "status": "reported_point_estimate",
+          "value": 1.56,
+          "sd": 0.25,
+          "unit": "dimensionless",
+          "footnotes": [
+            "c"
+          ],
+          "normalized_display": "1.56 +/- 0.25"
+        }
+      }
+    },
+    {
+      "reported_variant": "E366Q",
+      "source_row_label": "E366Q (catalytic)",
+      "source_group": "proton_wire",
+      "source_locator": "Extended Data Table 2a, E366Q (catalytic) row; footnotes a-g",
+      "steady_state": {
+        "assay_id": "x5p_r5p_steady_state",
+        "k_cat": {
+          "status": "reported_point_estimate",
+          "value": 0.012,
+          "sd": 0.001,
+          "unit": "s^-1",
+          "footnotes": [
+            "a"
+          ],
+          "normalized_display": "0.012 +/- 0.001"
+        },
+        "substrate_response_constant": {
+          "status": "reported_point_estimate",
+          "value": 16270,
+          "sd": 2670,
+          "unit": "uM",
+          "footnotes": [
+            "a"
+          ],
+          "parameter": "K_M",
+          "substrate": "D-xylulose-5-phosphate",
+          "normalized_display": "16270 +/- 2670"
+        },
+        "source_reported_efficiency": {
+          "status": "reported_point_estimate",
+          "value": 0.73,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "footnotes": [
+            "a"
+          ],
+          "parameter": "k_cat/K_M",
+          "denominator_parameter": "K_M",
+          "normalized_display": "0.73"
+        },
+        "hill_coefficient": {
+          "status": "not_reported_in_selected_table",
+          "value": null,
+          "sd": null,
+          "unit": "dimensionless",
+          "not_assigned_from_model": true
+        }
+      },
+      "stopped_flow": {
+        "assay_id": "f6p_stopped_flow",
+        "k_max_ES": {
+          "status": "not_applicable_reporter_absent",
+          "value": null,
+          "sd": null,
+          "source_display": "n.a.",
+          "footnotes": [
+            "e"
+          ],
+          "reason": "The table reports that the bound-cofactor 325 nm band is absent; no zero rate or absence of substrate binding is inferred.",
+          "unit": "s^-1"
+        },
+        "K_0.5": {
+          "status": "not_applicable_reporter_absent",
+          "value": null,
+          "sd": null,
+          "source_display": "n.a.",
+          "footnotes": [
+            "e"
+          ],
+          "reason": "The table reports that the bound-cofactor 325 nm band is absent; no zero rate or absence of substrate binding is inferred.",
+          "unit": "mM"
+        },
+        "k_reverse": {
+          "status": "not_applicable_reporter_absent",
+          "value": null,
+          "sd": null,
+          "source_display": "n.a.",
+          "footnotes": [
+            "e"
+          ],
+          "reason": "The table reports that the bound-cofactor 325 nm band is absent; no zero rate or absence of substrate binding is inferred.",
+          "unit": "s^-1"
+        },
+        "k_forward": {
+          "status": "not_applicable_reporter_absent",
+          "value": null,
+          "sd": null,
+          "source_display": "n.a.",
+          "footnotes": [
+            "e"
+          ],
+          "reason": "The table reports that the bound-cofactor 325 nm band is absent; no zero rate or absence of substrate binding is inferred.",
+          "unit": "s^-1"
+        },
+        "hill_coefficient": {
+          "status": "not_applicable_reporter_absent",
+          "value": null,
+          "sd": null,
+          "source_display": "n.a.",
+          "footnotes": [
+            "e"
+          ],
+          "reason": "The table reports that the bound-cofactor 325 nm band is absent; no zero rate or absence of substrate binding is inferred.",
+          "unit": "dimensionless"
+        }
+      }
+    },
+    {
+      "reported_variant": "E160Q",
+      "source_row_label": "E160Q",
+      "source_group": "proton_wire",
+      "source_locator": "Extended Data Table 2a, E160Q row; footnotes a-g",
+      "steady_state": {
+        "assay_id": "x5p_r5p_steady_state",
+        "k_cat": {
+          "status": "reported_point_estimate",
+          "value": 0.54,
+          "sd": 0.01,
+          "unit": "s^-1",
+          "footnotes": [
+            "a"
+          ],
+          "normalized_display": "0.54 +/- 0.01"
+        },
+        "substrate_response_constant": {
+          "status": "reported_point_estimate",
+          "value": 78.0,
+          "sd": 4.8,
+          "unit": "uM",
+          "footnotes": [
+            "a"
+          ],
+          "parameter": "K_M",
+          "substrate": "D-xylulose-5-phosphate",
+          "normalized_display": "78.0 +/- 4.8"
+        },
+        "source_reported_efficiency": {
+          "status": "reported_point_estimate",
+          "value": 6923,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "footnotes": [
+            "a"
+          ],
+          "parameter": "k_cat/K_M",
+          "denominator_parameter": "K_M",
+          "normalized_display": "6923"
+        },
+        "hill_coefficient": {
+          "status": "not_reported_in_selected_table",
+          "value": null,
+          "sd": null,
+          "unit": "dimensionless",
+          "not_assigned_from_model": true
+        }
+      },
+      "stopped_flow": {
+        "assay_id": "f6p_stopped_flow",
+        "k_max_ES": {
+          "status": "reported_point_estimate",
+          "value": 105.1,
+          "sd": 6.7,
+          "unit": "s^-1",
+          "footnotes": [],
+          "normalized_display": "105.1 +/- 6.7"
+        },
+        "K_0.5": {
+          "status": "reported_point_estimate",
+          "value": 0.95,
+          "sd": 0.07,
+          "unit": "mM",
+          "footnotes": [
+            "c"
+          ],
+          "normalized_display": "0.95 +/- 0.07"
+        },
+        "k_reverse": {
+          "status": "reported_point_estimate",
+          "value": 0.47,
+          "sd": 0.23,
+          "unit": "s^-1",
+          "footnotes": [
+            "c"
+          ],
+          "normalized_display": "0.47 +/- 0.23"
+        },
+        "k_forward": {
+          "status": "reported_point_estimate",
+          "value": 5.91,
+          "sd": 0.43,
+          "unit": "s^-1",
+          "footnotes": [
+            "c"
+          ],
+          "normalized_display": "5.91 +/- 0.43"
+        },
+        "hill_coefficient": {
+          "status": "reported_point_estimate",
+          "value": 0.9,
+          "sd": 0.11,
+          "unit": "dimensionless",
+          "footnotes": [
+            "c"
+          ],
+          "normalized_display": "0.9 +/- 0.11"
+        }
+      }
+    },
+    {
+      "reported_variant": "E160A",
+      "source_row_label": "E160A",
+      "source_group": "proton_wire",
+      "source_locator": "Extended Data Table 2a, E160A row; footnotes a-g",
+      "steady_state": {
+        "assay_id": "x5p_r5p_steady_state",
+        "k_cat": {
+          "status": "reported_point_estimate",
+          "value": 0.21,
+          "sd": 0.02,
+          "unit": "s^-1",
+          "footnotes": [
+            "a"
+          ],
+          "normalized_display": "0.21 +/- 0.02"
+        },
+        "substrate_response_constant": {
+          "status": "reported_point_estimate",
+          "value": 54.6,
+          "sd": 6.3,
+          "unit": "uM",
+          "footnotes": [
+            "a"
+          ],
+          "parameter": "K_M",
+          "substrate": "D-xylulose-5-phosphate",
+          "normalized_display": "54.6 +/- 6.3"
+        },
+        "source_reported_efficiency": {
+          "status": "reported_point_estimate",
+          "value": 3846,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "footnotes": [
+            "a"
+          ],
+          "parameter": "k_cat/K_M",
+          "denominator_parameter": "K_M",
+          "normalized_display": "3846"
+        },
+        "hill_coefficient": {
+          "status": "not_reported_in_selected_table",
+          "value": null,
+          "sd": null,
+          "unit": "dimensionless",
+          "not_assigned_from_model": true
+        }
+      },
+      "stopped_flow": {
+        "assay_id": "f6p_stopped_flow",
+        "k_max_ES": {
+          "status": "reported_point_estimate",
+          "value": 51.0,
+          "sd": 0.7,
+          "unit": "s^-1",
+          "footnotes": [],
+          "normalized_display": "51.0 +/- 0.7"
+        },
+        "K_0.5": {
+          "status": "reported_point_estimate",
+          "value": 0.52,
+          "sd": 0.12,
+          "unit": "mM",
+          "footnotes": [
+            "c"
+          ],
+          "normalized_display": "0.52 +/- 0.12"
+        },
+        "k_reverse": {
+          "status": "reported_point_estimate",
+          "value": 0.62,
+          "sd": 0.99,
+          "unit": "s^-1",
+          "footnotes": [
+            "c"
+          ],
+          "normalized_display": "0.62 +/- 0.99"
+        },
+        "k_forward": {
+          "status": "reported_point_estimate",
+          "value": 8.33,
+          "sd": 1.21,
+          "unit": "s^-1",
+          "footnotes": [
+            "c"
+          ],
+          "normalized_display": "8.33 +/- 1.21"
+        },
+        "hill_coefficient": {
+          "status": "reported_point_estimate",
+          "value": 1.23,
+          "sd": 0.29,
+          "unit": "dimensionless",
+          "footnotes": [
+            "c"
+          ],
+          "normalized_display": "1.23 +/- 0.29"
+        }
+      }
+    },
+    {
+      "reported_variant": "E165Q",
+      "source_row_label": "E165Q",
+      "source_group": "proton_wire",
+      "source_locator": "Extended Data Table 2a, E165Q row; footnotes a-g",
+      "steady_state": {
+        "assay_id": "x5p_r5p_steady_state",
+        "k_cat": {
+          "status": "reported_point_estimate",
+          "value": 0.109,
+          "sd": 0.002,
+          "unit": "s^-1",
+          "footnotes": [
+            "a"
+          ],
+          "normalized_display": "0.109 +/- 0.002"
+        },
+        "substrate_response_constant": {
+          "status": "reported_point_estimate",
+          "value": 149.8,
+          "sd": 10.4,
+          "unit": "uM",
+          "footnotes": [
+            "a"
+          ],
+          "parameter": "K_M",
+          "substrate": "D-xylulose-5-phosphate",
+          "normalized_display": "149.8 +/- 10.4"
+        },
+        "source_reported_efficiency": {
+          "status": "reported_point_estimate",
+          "value": 728,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "footnotes": [
+            "a"
+          ],
+          "parameter": "k_cat/K_M",
+          "denominator_parameter": "K_M",
+          "normalized_display": "728"
+        },
+        "hill_coefficient": {
+          "status": "not_reported_in_selected_table",
+          "value": null,
+          "sd": null,
+          "unit": "dimensionless",
+          "not_assigned_from_model": true
+        }
+      },
+      "stopped_flow": {
+        "assay_id": "f6p_stopped_flow",
+        "k_max_ES": {
+          "status": "not_applicable_reporter_absent",
+          "value": null,
+          "sd": null,
+          "source_display": "n.a.",
+          "footnotes": [
+            "e"
+          ],
+          "reason": "The table reports that the bound-cofactor 325 nm band is absent; no zero rate or absence of substrate binding is inferred.",
+          "unit": "s^-1"
+        },
+        "K_0.5": {
+          "status": "not_applicable_reporter_absent",
+          "value": null,
+          "sd": null,
+          "source_display": "n.a.",
+          "footnotes": [
+            "e"
+          ],
+          "reason": "The table reports that the bound-cofactor 325 nm band is absent; no zero rate or absence of substrate binding is inferred.",
+          "unit": "mM"
+        },
+        "k_reverse": {
+          "status": "not_applicable_reporter_absent",
+          "value": null,
+          "sd": null,
+          "source_display": "n.a.",
+          "footnotes": [
+            "e"
+          ],
+          "reason": "The table reports that the bound-cofactor 325 nm band is absent; no zero rate or absence of substrate binding is inferred.",
+          "unit": "s^-1"
+        },
+        "k_forward": {
+          "status": "not_applicable_reporter_absent",
+          "value": null,
+          "sd": null,
+          "source_display": "n.a.",
+          "footnotes": [
+            "e"
+          ],
+          "reason": "The table reports that the bound-cofactor 325 nm band is absent; no zero rate or absence of substrate binding is inferred.",
+          "unit": "s^-1"
+        },
+        "hill_coefficient": {
+          "status": "not_applicable_reporter_absent",
+          "value": null,
+          "sd": null,
+          "source_display": "n.a.",
+          "footnotes": [
+            "e"
+          ],
+          "reason": "The table reports that the bound-cofactor 325 nm band is absent; no zero rate or absence of substrate binding is inferred.",
+          "unit": "dimensionless"
+        }
+      }
+    },
+    {
+      "reported_variant": "T382E",
+      "source_row_label": "T382E",
+      "source_group": "phosphorylation_site_T382",
+      "source_locator": "Extended Data Table 2a, T382E row; footnotes a-g",
+      "steady_state": {
+        "assay_id": "x5p_r5p_steady_state",
+        "k_cat": {
+          "status": "reported_point_estimate",
+          "value": 4.3,
+          "sd": 0.07,
+          "unit": "s^-1",
+          "footnotes": [
+            "a"
+          ],
+          "normalized_display": "4.3 +/- 0.07"
+        },
+        "substrate_response_constant": {
+          "status": "reported_point_estimate",
+          "value": 126,
+          "sd": 1,
+          "unit": "uM",
+          "footnotes": [
+            "f"
+          ],
+          "parameter": "K_0.5",
+          "substrate": "D-xylulose-5-phosphate",
+          "normalized_display": "126 +/- 1"
+        },
+        "source_reported_efficiency": {
+          "status": "ambiguous_printed_number",
+          "value": null,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "source_display": "34.127",
+          "footnotes": [
+            "f"
+          ],
+          "parameter": "k_cat/K_0.5",
+          "denominator_parameter": "K_0.5",
+          "reason": "The image prints 34.127. Whether the dot is a thousands separator is unresolved. Do not silently turn it into 34127 or use 34.127 as an unambiguous normalized value."
+        },
+        "hill_coefficient": {
+          "status": "reported_point_estimate",
+          "value": 1.4,
+          "sd": 0.06,
+          "unit": "dimensionless",
+          "footnotes": [
+            "f"
+          ],
+          "normalized_display": "1.4 +/- 0.06"
+        }
+      },
+      "stopped_flow": {
+        "assay_id": "f6p_stopped_flow",
+        "k_max_ES": {
+          "status": "lower_bound",
+          "value": 600.0,
+          "sd": null,
+          "unit": "s^-1",
+          "comparator": ">",
+          "source_display": ">600",
+          "footnotes": [
+            "d"
+          ],
+          "reason": "The source reports completion within the approximately 2 ms instrument dead time."
+        },
+        "K_0.5": {
+          "status": "reported_point_estimate",
+          "value": 0.21,
+          "sd": 0.01,
+          "unit": "mM",
+          "footnotes": [
+            "c"
+          ],
+          "normalized_display": "0.21 +/- 0.01"
+        },
+        "k_reverse": {
+          "status": "reported_point_estimate",
+          "value": 2.88,
+          "sd": 0.4,
+          "unit": "s^-1",
+          "footnotes": [
+            "c"
+          ],
+          "normalized_display": "2.88 +/- 0.4"
+        },
+        "k_forward": {
+          "status": "reported_point_estimate",
+          "value": 11.04,
+          "sd": 0.62,
+          "unit": "s^-1",
+          "footnotes": [
+            "c"
+          ],
+          "normalized_display": "11.04 +/- 0.62"
+        },
+        "hill_coefficient": {
+          "status": "reported_point_estimate",
+          "value": 2.42,
+          "sd": 0.36,
+          "unit": "dimensionless",
+          "footnotes": [
+            "c"
+          ],
+          "normalized_display": "2.42 +/- 0.36"
+        }
+      }
+    },
+    {
+      "reported_variant": "T382Q",
+      "source_row_label": "T382Q",
+      "source_group": "phosphorylation_site_T382",
+      "source_locator": "Extended Data Table 2a, T382Q row; footnotes a-g",
+      "steady_state": {
+        "assay_id": "x5p_r5p_steady_state",
+        "k_cat": {
+          "status": "reported_point_estimate",
+          "value": 0.25,
+          "sd": 0.01,
+          "unit": "s^-1",
+          "footnotes": [
+            "a"
+          ],
+          "normalized_display": "0.25 +/- 0.01"
+        },
+        "substrate_response_constant": {
+          "status": "reported_point_estimate",
+          "value": 483,
+          "sd": 66,
+          "unit": "uM",
+          "footnotes": [
+            "g"
+          ],
+          "parameter": "K_0.5",
+          "substrate": "D-xylulose-5-phosphate",
+          "normalized_display": "483 +/- 66"
+        },
+        "source_reported_efficiency": {
+          "status": "reported_point_estimate",
+          "value": 517,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "footnotes": [
+            "g"
+          ],
+          "parameter": "k_cat/K_0.5",
+          "denominator_parameter": "K_0.5",
+          "normalized_display": "517"
+        },
+        "hill_coefficient": {
+          "status": "reported_point_estimate",
+          "value": 0.8,
+          "sd": 0.04,
+          "unit": "dimensionless",
+          "footnotes": [
+            "g"
+          ],
+          "normalized_display": "0.8 +/- 0.04"
+        }
+      },
+      "stopped_flow": {
+        "assay_id": "f6p_stopped_flow",
+        "k_max_ES": {
+          "status": "not_applicable_reporter_absent",
+          "value": null,
+          "sd": null,
+          "source_display": "n.a.",
+          "footnotes": [
+            "e"
+          ],
+          "reason": "The table reports that the bound-cofactor 325 nm band is absent; no zero rate or absence of substrate binding is inferred.",
+          "unit": "s^-1"
+        },
+        "K_0.5": {
+          "status": "not_applicable_reporter_absent",
+          "value": null,
+          "sd": null,
+          "source_display": "n.a.",
+          "footnotes": [
+            "e"
+          ],
+          "reason": "The table reports that the bound-cofactor 325 nm band is absent; no zero rate or absence of substrate binding is inferred.",
+          "unit": "mM"
+        },
+        "k_reverse": {
+          "status": "not_applicable_reporter_absent",
+          "value": null,
+          "sd": null,
+          "source_display": "n.a.",
+          "footnotes": [
+            "e"
+          ],
+          "reason": "The table reports that the bound-cofactor 325 nm band is absent; no zero rate or absence of substrate binding is inferred.",
+          "unit": "s^-1"
+        },
+        "k_forward": {
+          "status": "not_applicable_reporter_absent",
+          "value": null,
+          "sd": null,
+          "source_display": "n.a.",
+          "footnotes": [
+            "e"
+          ],
+          "reason": "The table reports that the bound-cofactor 325 nm band is absent; no zero rate or absence of substrate binding is inferred.",
+          "unit": "s^-1"
+        },
+        "hill_coefficient": {
+          "status": "not_applicable_reporter_absent",
+          "value": null,
+          "sd": null,
+          "source_display": "n.a.",
+          "footnotes": [
+            "e"
+          ],
+          "reason": "The table reports that the bound-cofactor 325 nm band is absent; no zero rate or absence of substrate binding is inferred.",
+          "unit": "dimensionless"
+        }
+      }
+    }
+  ],
+  "reused_accumulation_context": {
+    "source_binding_path": "data/atlas/assembly_context/6ha3/spec.json",
+    "json_pointer": "/source_reviewed_context/functional_panel",
+    "endpoint": "F6P acid-quench NMR at a typical 30 s, 20 C condition",
+    "variant_results": [
+      {
+        "reported_variant": "wild_type",
+        "source_observation_key": "10.1038/s41586-019-1581-9|Extended Data Fig. 1d|wild_type|F6P acid-quench NMR|qualitative accumulation",
+        "reported_result": "F6P-ThDP accumulated",
+        "numeric_detection_floor": null,
+        "numeric_intermediate_fraction": null,
+        "provenance": "reused existing reviewed qualitative annotation; not a newly counted experiment"
+      },
+      {
+        "reported_variant": "E160Q",
+        "source_observation_key": "10.1038/s41586-019-1581-9|Extended Data Fig. 1d|E160Q|F6P acid-quench NMR|qualitative accumulation",
+        "reported_result": "F6P-ThDP accumulated",
+        "numeric_detection_floor": null,
+        "numeric_intermediate_fraction": null,
+        "provenance": "reused existing reviewed qualitative annotation; not a newly counted experiment"
+      },
+      {
+        "reported_variant": "E160A",
+        "source_observation_key": "10.1038/s41586-019-1581-9|Extended Data Fig. 1d|E160A|F6P acid-quench NMR|qualitative accumulation",
+        "reported_result": "F6P-ThDP accumulated",
+        "numeric_detection_floor": null,
+        "numeric_intermediate_fraction": null,
+        "provenance": "reused existing reviewed qualitative annotation; not a newly counted experiment"
+      },
+      {
+        "reported_variant": "E366Q",
+        "source_observation_key": "10.1038/s41586-019-1581-9|Extended Data Fig. 1d|E366Q|F6P acid-quench NMR|qualitative accumulation",
+        "reported_result": "no measurable covalent-intermediate accumulation",
+        "numeric_detection_floor": null,
+        "numeric_intermediate_fraction": null,
+        "provenance": "reused existing reviewed qualitative annotation; not a newly counted experiment"
+      },
+      {
+        "reported_variant": "E165Q",
+        "source_observation_key": "10.1038/s41586-019-1581-9|Extended Data Fig. 1d|E165Q|F6P acid-quench NMR|qualitative accumulation",
+        "reported_result": "no measurable covalent-intermediate accumulation",
+        "numeric_detection_floor": null,
+        "numeric_intermediate_fraction": null,
+        "provenance": "reused existing reviewed qualitative annotation; not a newly counted experiment"
+      }
+    ],
+    "T382E_T382Q_status": "not present in the retained Fig. 1d panel; not coded as negative",
+    "reuse_key": "study DOI + source locator + reported variant + assay endpoint + parameter; duplicate source representations do not add independent observations"
+  },
+  "derived_comparisons": {
+    "status": "project arithmetic from reported central values; not a new measured endpoint",
+    "reference_variant": "wild_type",
+    "ratios": [
+      {
+        "reported_variant": "wild_type",
+        "k_cat_X5P_R5P_over_wild_type": 1.0,
+        "k_forward_F6P_over_wild_type": 1.0,
+        "missing_F6P_ratio_reason": null,
+        "uncertainty_propagated": false
+      },
+      {
+        "reported_variant": "E366Q",
+        "k_cat_X5P_R5P_over_wild_type": 0.004301075,
+        "k_forward_F6P_over_wild_type": null,
+        "missing_F6P_ratio_reason": "reporter unavailable; no numeric F6P rate",
+        "uncertainty_propagated": false
+      },
+      {
+        "reported_variant": "E160Q",
+        "k_cat_X5P_R5P_over_wild_type": 0.193548387,
+        "k_forward_F6P_over_wild_type": 0.652317881,
+        "missing_F6P_ratio_reason": null,
+        "uncertainty_propagated": false
+      },
+      {
+        "reported_variant": "E160A",
+        "k_cat_X5P_R5P_over_wild_type": 0.075268817,
+        "k_forward_F6P_over_wild_type": 0.919426049,
+        "missing_F6P_ratio_reason": null,
+        "uncertainty_propagated": false
+      },
+      {
+        "reported_variant": "E165Q",
+        "k_cat_X5P_R5P_over_wild_type": 0.0390681,
+        "k_forward_F6P_over_wild_type": null,
+        "missing_F6P_ratio_reason": "reporter unavailable; no numeric F6P rate",
+        "uncertainty_propagated": false
+      },
+      {
+        "reported_variant": "T382E",
+        "k_cat_X5P_R5P_over_wild_type": 1.541218638,
+        "k_forward_F6P_over_wild_type": 1.218543046,
+        "missing_F6P_ratio_reason": null,
+        "uncertainty_propagated": false
+      },
+      {
+        "reported_variant": "T382Q",
+        "k_cat_X5P_R5P_over_wild_type": 0.089605735,
+        "k_forward_F6P_over_wild_type": null,
+        "missing_F6P_ratio_reason": "reporter unavailable; no numeric F6P rate",
+        "uncertainty_propagated": false
+      }
+    ],
+    "formulae": [
+      "k_cat_X5P_R5P(variant) / k_cat_X5P_R5P(wild_type)",
+      "k_forward_F6P(variant) / k_forward_F6P(wild_type)"
+    ],
+    "not_combined": "The two ratios describe different substrates, temperatures and endpoints. They are not multiplied, correlated, treated as a causal model, or used to infer productive F6P turnover.",
+    "efficiency_consistency_note": {
+      "variant": "T382E",
+      "raw_table_token": "34.127",
+      "calculated_from_reported_central_values_per_M_s": 34126.984127,
+      "calculation": "4.30 s^-1 / (126 uM * 1e-6 M/uM)",
+      "status": "separate arithmetic witness; the table punctuation is unresolved, not silently corrected",
+      "comparison_limit": "No pooled k_cat/K_M ranking includes k_cat/K_0.5 values."
+    },
+    "parameter_scope": "Ratios compare source-model fitted parameters within the named assay, not equivalence of raw transients or a new fit."
+  },
+  "interpretation": {
+    "bounded_finding": "E160A has reported F6P k_forward 8.33 +/- 1.21 s^-1 versus wild type 9.06 +/- 0.72 s^-1, but X5P/R5P k_cat 0.21 +/- 0.02 s^-1 versus 2.79 +/- 0.06 s^-1. Retained F6P accumulation and formation therefore cannot replace endpoint-specific turnover data.",
+    "design_dataset_use": "Keep ligand/adduct state, donor/acceptor, assay temperature, reported variant, kinetic parameter type and missingness attached to every functional value. A structure-to-activity training label cannot be inferred from adduct presence alone.",
+    "not_established": [
+      "productive F6P full-cycle turnover",
+      "mutation-specific geometry or a causal geometric rate effect",
+      "exact protein preparation or crystal-to-solution identity",
+      "an M0219 elementary-step mapping",
+      "a general structure-to-activity predictor",
+      "new independent experimental evidence or higher atlas evidence tier",
+      "identification of stopped-flow k_forward/k_reverse with the acid-quench NMR microscopic K2 equilibrium",
+      "interchangeability of steady-state K_M, cooperative steady-state K_0.5, and stopped-flow K_0.5 as one affinity or equilibrium constant"
+    ]
+  },
+  "reconsideration": {
+    "bespoke_code": "No runtime change. Case facts and parameter distinctions are represented in data.",
+    "curation_reuse": "Reuses four retained source captures, shared assay descriptors and the five-arm reviewed NMR panel. No measured time saving is claimed.",
+    "incumbent_value": "The paper already contains the measurements. The reusable contribution is endpoint-qualified variant data, explicit footnote corrections to column semantics, censored/missing-value handling and prevention of invalid structure-to-activity labels; no superior accuracy or speed is established."
+  },
+  "source_footnote_e_scope": {
+    "meaning": "Not applicable because the enzyme-bound cofactor lacks the near-UV 325 nm band. Supplementary Methods printed page 6 identifies that band as the stopped-flow reporter.",
+    "marker_locations": {
+      "E366Q": "first unavailable blue k_max cell",
+      "E165Q": "first unavailable blue k_max cell",
+      "T382Q": "orange pKa cell, outside the selected kinetic columns"
+    },
+    "adjudication": "The common reporter and row-level explanation support the unavailable-reporter reason for these rows. No superscript on every individual kinetic cell is asserted. The missingness reason is an evidence-linked integration inference, not a new measurement.",
+    "evidence_status": "Project integration of the source row-level footnote with the source-described common assay reporter, rather than a direct cell-level reporter explanation for every blue n.a. cell. This distinction is explicit for T382Q, whose footnote marker is in the pKa column."
+  },
+  "reused_measurement_bindings": [
+    {
+      "reported_variant": "E160Q",
+      "assay_id": "x5p_r5p_steady_state",
+      "bound_path": "data/atlas/study_context/6ha3/evidence_projection.json",
+      "existing_observation_id": "e160q-x5p-r5p-turnover",
+      "existing_json_pointer": "/observations/2/reported_values",
+      "metric_map": {
+        "k_cat": "k_cat_per_s",
+        "substrate_response_constant:K_M": "km_X5P_micromolar",
+        "source_reported_efficiency:k_cat/K_M": "k_cat_over_KM_per_M_s"
+      }
+    },
+    {
+      "reported_variant": "E160Q",
+      "assay_id": "f6p_stopped_flow",
+      "bound_path": "data/atlas/study_context/6ha3/evidence_projection.json",
+      "existing_observation_id": "e160q-f6p-stopped-flow",
+      "existing_json_pointer": "/observations/0/reported_values",
+      "metric_map": {
+        "k_max_ES": "k_max_ES_per_s",
+        "K_0.5": "k0_5_mM",
+        "k_reverse": "k_reverse_per_s",
+        "k_forward": "k_forward_per_s",
+        "hill_coefficient": "hill_coefficient"
+      }
+    },
+    {
+      "reported_variant": "wild_type",
+      "assay_id": "x5p_r5p_steady_state",
+      "bound_path": "data/atlas/assembly_context/6ha3/spec.json",
+      "existing_observation_id": "human-tkt-table2a-e366q-residual-turnover",
+      "existing_json_pointer": "/source_reviewed_context/separate_turnover_observation/k_cat_per_s/wild_type",
+      "metric_map": {
+        "k_cat": "mean and sd"
+      }
+    },
+    {
+      "reported_variant": "E366Q",
+      "assay_id": "x5p_r5p_steady_state",
+      "bound_path": "data/atlas/assembly_context/6ha3/spec.json",
+      "existing_observation_id": "human-tkt-table2a-e366q-residual-turnover",
+      "existing_json_pointer": "/source_reviewed_context/separate_turnover_observation/k_cat_per_s/E366Q",
+      "metric_map": {
+        "k_cat": "mean and sd"
+      }
+    }
+  ],
+  "measurement_identity": "Study DOI + exact source locator + reported variant + assay endpoint + parameter. Shared original observation IDs are retained in reused_measurement_bindings; reprojecting their values does not create an independent observation."
+}
