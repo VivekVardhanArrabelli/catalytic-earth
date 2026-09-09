@@ -196,6 +196,21 @@ primary-source-described autoproteolytic fragment context. The shared
 states and atom-specific coordinates. It adds two annotations of existing
 cases, not new biological coverage or validated catalytic arrangements.
 
+## CE-019 — partner-subunit omission and distinct functional endpoints
+
+**Status:** Supported
+
+In deposited 6HA3 assembly 1, operator 2 supplies Glu366 beside the
+operator-1 cofactor/Gln160 neighborhood. A crop containing only the original
+protein copy omits that study-implicated group. The same study reports E366Q
+F6P-intermediate nondetection, residual X5P/R5P turnover, and unavailable
+F6P stopped-flow kinetics because the reporter band is absent. These are
+different endpoints, not three demonstrations of abolished catalysis.
+The [assembly context](docs/ATLAS_STUDY_CONTEXT.md#partner-subunit-context)
+preserves exact atom/copy identity and this omission warning. It establishes
+neither a complete catalytic site, a causal geometric tolerance, nor independent
+experimental support for the deposited assembly.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,

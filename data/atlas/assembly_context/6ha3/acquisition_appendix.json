@@ -1,0 +1,29 @@
+{
+  "additional_attempts": [
+    {
+      "batch_id": "human-tkt-e160q-6ha3-geometry-function",
+      "bytes_read": 17727,
+      "completed_at_utc": "2026-09-09T15:13:56.625989+00:00",
+      "final_url": "https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_pdbx_struct_assembly_gen.oper_expression.html",
+      "http_status": 200,
+      "purpose": "Official assembly operator expression semantics",
+      "request_index": 7,
+      "request_time_utc": "2026-09-09T15:13:56.207781+00:00",
+      "requested_url": "https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_pdbx_struct_assembly_gen.oper_expression.html",
+      "scope": "one direct request; no redirects",
+      "sha256": "2f4a8fa9bd3ada99d57db3321ccbe0090955732331860a55475982201fb8ee45"
+    }
+  ],
+  "batch_id": "human-tkt-e160q-6ha3-geometry-function",
+  "cumulative_direct_capture_bytes": 3004884,
+  "cumulative_direct_capture_requests": 7,
+  "inherited_discovery_limit": "Web discovery queries and page views are acknowledged but their underlying HTTP count and bytes are unavailable; they are not falsely included in the six direct captures.",
+  "inherited_receipts": {
+    "path": "data/atlas/study_context/6ha3/acquisition_receipts.json",
+    "sha256": "de10198e89a2f282a02b743202e65bfd957fcca7873d26e52eece8acb4a42050"
+  },
+  "max_requests": 100,
+  "max_response_bytes": 31457280,
+  "retention": "Only the existing CC0 coordinate file is redistributed. This appendix adds an official dictionary capture hash/locator; its HTML is retained locally, not redistributed.",
+  "schema_version": "catalytic-earth.source-acquisition-appendix.v1"
+}

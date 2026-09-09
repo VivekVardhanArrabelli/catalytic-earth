@@ -1,5 +1,23 @@
 # Current State
 
+## 2026-09-09: partner-copy identity prevents an incomplete site transfer
+
+The additive [6HA3 assembly context](ATLAS_STUDY_CONTEXT.md#partner-subunit-context)
+identifies the selected Glu366 atoms from operator 2 beside the operator-1
+cofactor/Gln160 neighborhood. A single-copy crop omits this study-implicated
+group. Its source comparison separates E366Q F6P-intermediate nondetection,
+residual X5P/R5P turnover, and unavailable pre-steady-state reporting. None is
+silently transferred to the E160Q crystal state. CE-019 records the bounded
+omission warning; no complete site, solution-assembly validation, protonation,
+geometry-to-rate causation, or optimal design distance is established.
+
+All chemical selections and source assertions are data. One shared assembly
+operator engine supplies copy-qualified coordinates without choosing alternate
+conformers. Reused captures required no scientific-source recapture; one new
+official dictionary request brings the inherited named batch to seven direct
+captures and 3,004,884 bytes. No new protein, reaction, mechanism or project-run
+experiment is claimed. Frozen kernels and protected registries are unchanged.
+
 ## 2026-09-09: one bounded geometry-to-function study association
 
 The [6HA3 study-context packet](ATLAS_STUDY_CONTEXT.md) adds a reproducible,
