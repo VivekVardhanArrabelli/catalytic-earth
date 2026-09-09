@@ -135,6 +135,55 @@ results; text search includes those annotations. Calls without a sidecar,
 including the default batch, retain query schema v1 unless a mechanism-component
 filter is used.
 
+### M0222: an enamine model does not supply the mobile-catalyst pose
+
+The retained 2QUT coordinates refine the existing structural limitation
+(CE-022). The source proposal assigns a proton-transfer role to Tyr363 with
+Lys146 support, but the enamine model does not capture that arrangement.
+These are distances calculated from deposited coordinates, not measured
+proton-transfer rates or recommended design distances:
+
+| Author chain | Tyr363 OH to same-chain 13P C1 (Å) | Tyr363 OH to same-chain 13P C3 (Å) |
+| --- | ---: | ---: |
+| A | 24.289 | 26.655 |
+| B | 24.275 | 26.722 |
+| C | 24.202 | 26.637 |
+| D | Tyr363 unmodeled | Tyr363 unmodeled |
+
+All four chains retain their deposited Lys229 NZ–13P C2 covalent connections.
+Assembly 1 contains these four protein copies with the identity operator;
+cross-chain checks against both named carbons provide no closer Tyr363 OH.
+The model lacks coordinates for A/B residues 346–358, C349–358 and D361–363.
+These absences are not deletions, inactivity, or a measured conformational
+population. Present Tyr OH occupancy tokens remain `1.00`.
+
+The [factual projection](../data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_sources/mobile_tail_20260909/evidence_projection.json)
+preserves the source rows, atom identities, assembly declaration, per-position
+coordinate coverage and distances. Author Tyr363 and the interval-mapped
+P00883 position 364 remain distinct. Deposited 13P C1/C3 names do not resolve
+their correspondence to M-CSA drawing atoms or identify the transferred proton.
+Crystallographic neighbors outside the declared assembly were not evaluated.
+
+Both existing M0222 annotations expose `mobile_catalyst_pose` as an abstention:
+
+```bash
+catalytic-earth atlas-drafts --batch aldolase-transketolase --mcsa-id M0222 --text mobile_catalyst_pose
+```
+
+The existing limit fields and source bindings suffice; no runtime or chemical
+observation type was added. The factual projection is globally hash-bound to
+the annotation sidecar, not a formally typed limit-to-evidence relation. Source
+review checked the coordinates and interpretation; existing integrity checks
+do not independently adjudicate this new prose or recompute its distances.
+Neither source-draft counts nor experimental-observation counts increase.
+
+The initial functional question remains open: full methods and kinetic tables
+for PMID17728250 were not obtained. The [partial accounting recovery](../data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_sources/mobile_tail_20260909/acquisition_recovery.json) records incomplete cumulative acquisition accounting,
+including historical unmetered and failed discovery, stops further requests in
+this scope. No new source request was made. The native-enamine and Lys146Met
+putative-iminium descriptions, mixed-species mechanism limits, and exact
+assay-specimen uncertainty remain unchanged.
+
 ### Search source mechanism events across batches
 
 `--mechanism-component` matches a complete label from a proposal's

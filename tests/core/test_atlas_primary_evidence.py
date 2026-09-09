@@ -29,7 +29,7 @@ M0222_V1_ANNOTATION_SHA256 = (
     "b3ec318c98396833ade49cca3d811ef202066fa1c36ad8f60c4c1cb5f6cd9792"
 )
 CURRENT_PRIMARY_PAYLOAD_SHA256 = (
-    "c6f0d2e76d3edf29f4f453b333536fa089a57e78d6ff1b944611b85a41cb71d4"
+    "1a39745fe852e5cebb7b764d8d7f4969dadf80d57c4210e006c4c455fdbc9bbf"
 )
 
 
@@ -196,8 +196,13 @@ def _valid_v2_sidecar(bundle: dict) -> dict:
         sidecar["annotation_set_id"] = "atlas-primary-evidence.aldolase-transketolase.2026-09-06.v2"
         sidecar["annotations"] = [a for a in sidecar["annotations"]
                                   if a["annotation_kind"] != "primary_observed_state_context"]
+        for annotation in sidecar["annotations"]:
+            annotation["limits"] = [limit for limit in annotation["limits"]
+                                    if limit["limit_id"] != "mobile_catalyst_pose"]
         sidecar["source_bindings"] = [b for b in sidecar["source_bindings"]
-                                     if "/observed_state_v3/" not in b["path"]]
+                                     if "/observed_state_v3/" not in b["path"]
+                                     and "/mobile_tail_20260909/" not in b["path"]]
+        sidecar["review"]["reviewed_on"] = "2026-09-06"
         _repin(sidecar)
     assert sidecar["schema_version"] == "catalytic-earth.atlas-primary-evidence.v2"
     assert canonical_annotation_payload_sha256(sidecar) == (

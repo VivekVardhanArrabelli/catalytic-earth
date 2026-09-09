@@ -1,0 +1,120 @@
+{
+  "decision": "Stop new requests in the M0222 scope because a complete cumulative request/byte balance cannot be established. Do not rename a batch to reset it.",
+  "historical_failed_direct_open_actions": {
+    "actions": [
+      "DOI open rejected as unsafe",
+      "Elsevier linkhub HTTP403",
+      "Library and Archives Canada central route restricted",
+      "ResearchGate HTTP429",
+      "ScienceDirect article HTTP403",
+      "ScienceDirect PDF HTTP403",
+      "JBC fulltext HTTP403"
+    ],
+    "is_complete_traffic_count": false,
+    "known_count": 7,
+    "scope": "These seven actions include a tool-level refusal; this count is not claimed as seven completed HTTP requests. Search discovery and response sizes remain unmetered.",
+    "trace_lines": [
+      12702,
+      12716,
+      12753,
+      12783
+    ]
+  },
+  "known_metered_lower_bound_only": {
+    "is_exact_cumulative_batch_balance": false,
+    "reason": "Different scope names and additional unmetered/failed discovery prevent a complete cumulative balance.",
+    "requests": 33,
+    "response_bytes": 578501
+  },
+  "limitations": [
+    "No kinetic value or primary-table result was taken from search-indexed text.",
+    "No original acquisition bytes or receipt-file bytes are claimed restored by this recovery note.",
+    "Historical access failures do not establish that the primary article is unavailable everywhere or remains inaccessible today.",
+    "The current run cannot verify a remaining source-request balance from these lower bounds alone."
+  ],
+  "metered_scopes": [
+    {
+      "known_requests": 31,
+      "known_response_bytes": 569327,
+      "maximum_requests": 100,
+      "maximum_response_bytes": 31457280,
+      "name": "aldolase-transketolase",
+      "scope_note": "One shared M0052/M0219/M0222 entry-batch response plus thirty schemes. This is not thirty-one M0222-only requests. Three ancillary official-page checks are documented separately with unrecorded response sizes.",
+      "source_binding": {
+        "path": "data/atlas/source_drafts/batches/aldolase-transketolase/source_manifest.json",
+        "sha256": "60d7396e3e5ce2a2288341a7b43e0e4d63062b6bc15d71aaf42c79116158e477"
+      }
+    },
+    {
+      "known_requests": 2,
+      "known_response_bytes": 9174,
+      "maximum_requests": 3,
+      "maximum_response_bytes": 5242880,
+      "name": "M0222 PMID17728250 primary-paper qualification probe only",
+      "original_directory_present_this_run": false,
+      "original_local_directory": "/tmp/catalytic-observed-m0222-20260906",
+      "original_receipt_ledger_sha256": "00cf1132fc611ddfe425eef31f97f4adcdf9ddf3ff51904dc79908548aae1c96",
+      "scope_note": "Historical two HTTP-200 capture records were recovered from the prior task trace. No full article was requested in that probe. This is a distinct sublimit, not permission to ignore other history.",
+      "source_binding": {
+        "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_sources/observed_state_v3/m0222/PMID_17728250_projection.json",
+        "sha256": "572a3412f81e3230180a115fd46c9a69aa92895e5cf3b82807527be3797087c3"
+      }
+    }
+  ],
+  "new_scientific_source_requests": 0,
+  "new_scientific_source_response_bytes": 0,
+  "record_kind": "partial_historical_acquisition_accounting_recovery",
+  "recorded_at_utc": "2026-09-09T19:24:05Z",
+  "recovered_receipt_records": [
+    {
+      "completed_at_utc": "2026-09-06T07:13:19.474454+00:00",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17728250&retmode=xml",
+      "http_status": 200,
+      "request_index": 1,
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17728250&retmode=xml",
+      "response_bytes": 8128,
+      "response_sha256": "8c2ffca241f904dbfdc450faf4105d6830a82e1d5487cc21e8ec6ab98364bc45",
+      "started_at_utc": "2026-09-06T07:13:19.144515+00:00"
+    },
+    {
+      "completed_at_utc": "2026-09-06T07:13:20.107208+00:00",
+      "final_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:17728250%20AND%20SRC:MED&format=json",
+      "http_status": 200,
+      "request_index": 2,
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:17728250%20AND%20SRC:MED&format=json",
+      "response_bytes": 1046,
+      "response_sha256": "590c00b194d800cd1c6e8f1294460bac82880bc9ce1a27e41464685454841304",
+      "started_at_utc": "2026-09-06T07:13:19.474550+00:00"
+    }
+  ],
+  "recovery_provenance": {
+    "aggregate_confirmation_line": 5621,
+    "capture_record_rule": "Only request/response identity, timing, status, size and hash facts are retained. Header and session metadata are not part of this factual recovery.",
+    "local_trace_path": "/Users/vivekvardhanarrabelli/.codex/sessions/2026/09/05/rollout-2026-09-05T16-42-35-01a07385-fc6c-7c10-b40d-b3845ae1294e.jsonl",
+    "original_task_id": "01a07385-fc6c-7c10-b40d-b3845ae1294e",
+    "receipt_contents_line": 5847,
+    "scope_definition_line": 5618
+  },
+  "retained_access_lead": {
+    "current_access_checked": false,
+    "description": "First-author dissertation containing a primary-article reprint, identified in historical indexed text; direct primary methods/table inspection remains uncompleted.",
+    "url": "https://www.collectionscanada.gc.ca/obj/thesescanada/vol2/QMU/TC-QMU-6591.pdf"
+  },
+  "scope": "M0222 PMID17728250 full-primary-methods followup; no acquisition in this run.",
+  "unmetered_or_unattributed_history": [
+    {
+      "description": "Retained 2QUT was copied from an earlier local research file; its original URL/status/headers/receipt were not preserved. Local file size is not a reconstructed response-byte count.",
+      "evidence_binding": {
+        "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_sources/source_inventory.json",
+        "sha256": "a8f054322a6cb89fdda78375241778b9f081cbce1312f4c578668241b519859d"
+      },
+      "retained_file_bytes": 1476928
+    },
+    {
+      "description": "The aldolase-transketolase curation board records three ancillary official-page checks outside the manifest; bytes unrecorded."
+    },
+    {
+      "description": "Subsequent unmetered source discovery included unsuccessful DOI/Elsevier/ScienceDirect/JBC/ResearchGate/Library and Archives Canada access. This is historical access evidence, not a current or exhaustive search and not a complete traffic ledger."
+    }
+  ]
+}
