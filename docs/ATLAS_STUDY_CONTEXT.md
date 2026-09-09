@@ -151,3 +151,80 @@ PY
 
 This file is a source annotation in the repository, not a new installed query
 or an expansion of the existing three-observation study-context command.
+
+## POX analogue binding does not supply a generic activity label
+
+The same study's [POX comparison](../data/atlas/study_context/pox2019/functional_comparison.json)
+curates all six Extended Data Table 2b rows for reported *L. plantarum* pyruvate
+oxidase. Its three assay contexts remain distinct:
+
+- MAP analogue binding forms a covalent MAP–ThDP conjugate, monitored at
+  310 nm. The analogue is not further processed because of its stable C–P bond.
+- Anaerobic pyruvate single-turnover processing is monitored through FAD
+  reduction at 457 nm. Its apparent saturated rate combines several microscopic
+  steps; it is not an isolated decarboxylation rate.
+- Pyruvate steady-state activity is measured through reduction of DCPIP at
+  600 nm. DCPIP is an artificial electron acceptor replacing oxygen.
+
+| Reported variant | MAP K_D_app, µM | Pyruvate/FAD k_app_max, s⁻¹ | Pyruvate/DCPIP kcat, s⁻¹ |
+| --- | --- | --- | --- |
+| Wild type | 13.7 | 136 ± 1 | 31.8 ± 0.4 |
+| E59Q | Unavailable: source reports no MAP binding | 1.07 ± 0.08 | 0.49 ± 0.01 |
+| H89N | 73.1 | 121 ± 5 | 26.0 ± 0.5 |
+| H89A | 185.6 | 92 ± 2 | 20.1 ± 0.3 |
+| E60Q | 137.5 | 91 ± 3 | 20.2 ± 0.3 |
+| E60A | 282.4 | 113 ± 2 | 23.3 ± 0.6 |
+
+All three methods specify 25 °C. The table reports triplicates and mean ± SD;
+its derived MAP K_D_app column supplies no SD. Figure 8's statement that
+experiments were independently repeated twice does not create extra table
+observations or justify treating the table as n = 6.
+
+E59Q's source-reported fitted pyruvate rates remain positive despite the MAP
+nonbinding statement (CE-025). Its central values are 0.00787 times wild type
+for FAD-reported processing and 0.0154 times wild type for DCPIP turnover.
+Each is a separate within-assay ratio, without propagated uncertainty or a
+statistical test. No oxygen-turnover rate, general activity threshold or exact
+protein-preparation equivalence is established. [Table 2b and footnotes h–k](https://www.nature.com/articles/s41586-019-1581-9/tables/2).
+
+The same qualification matters for apparent affinity. For example, E60A's
+central MAP K_D_app is 20.6 times wild type, while its saturated pyruvate/FAD
+processing rate is 0.831 times wild type. The quantities describe different
+ligands and fitted models. MAP K_D_app = k_off/k_on includes the covalent
+conjugate; it is neither an isolated noncovalent docking constant nor the
+pyruvate K_M or single-turnover K0.5. The latter retains the source's
+pre-equilibrium interpretation within its cooperative model. Reported quotient
+values retain their formula and units, including M⁻¹ versus mM⁻¹; they are not
+recounted as independent measurements or replaced by recalculated values.
+For example, the source prints E60A's single-turnover efficiency as 12.5,
+whereas 113/9.0 gives 12.56 mM⁻¹ s⁻¹ from displayed inputs. The annotation
+retains 12.5 without reconstructing unreported fit precision.
+
+The comparison also links two distinct reasons for unavailable parameters:
+TKT E366Q lacks the stopped-flow reporter, whereas POX E59Q is reported not to
+bind the analogue. This exact-pointer reuse prevents a common `n.a.` token
+from erasing chemical identity or becoming zero activity. It establishes no
+shared residue mechanism, substrate specificity or transferable rate.
+
+Two methods limitations remain explicit in the data. The MAP paragraph prints
+an optical path length of `10 mM`, so the normalized length is unresolved.
+The single-turnover paragraph does not state pH; pH 6.0 from the other methods
+is not silently assigned to it. The retained
+[Supplementary Methods](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-019-1581-9/MediaObjects/41586_2019_1581_MOESM1_ESM.pdf)
+printed pages 8–9 define the three assays and equations 9–12.
+The differing MAP spellings in those methods and the Figure 8 legend are also
+retained; no exact external chemical identifier or atom map is inferred.
+
+This adds a second enzyme-context comparison from one study, using the same
+assay descriptors and value/status/SD/unit/parameter concepts. It requires no
+runtime or validator change. The [computational review](../data/atlas/study_context/pox2019/functional_review.json)
+pins the source annotation; it is not independent human review or validation
+of the paper's hydrogen-bond hypothesis. No mechanism, protein registry entry,
+experiment or evidence tier is added. A competent reader can recover these
+facts from the source; the atlas adds reusable assay identity and prevents
+invalid transfers. No curation speed or comparative accuracy is claimed.
+
+This POX annotation is repository-local. Exact source bodies remain retained
+locally and are not redistributed. New scientific-source requests/bytes are
+zero; the inherited batch remains at a metered lower bound of 7 captures /
+3,004,884 bytes with complete accounting and remaining headroom unresolved.

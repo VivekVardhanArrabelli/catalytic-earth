@@ -281,6 +281,21 @@ unavailable. The printed T382E efficiency punctuation remains unresolved.
 This curates published measurements without establishing productive F6P
 turnover, a causal geometric effect, new experiments or a higher evidence tier.
 
+## CE-025 — analogue nonbinding and authentic-substrate responses are distinct
+
+**Status:** Supported
+
+The retained POX table reports E59Q MAP-analogue nonbinding with unavailable
+binding parameters, alongside source-reported fitted pyruvate/DCPIP
+kcat 0.49 ± 0.01 s⁻¹ and
+anaerobic pyruvate/FAD apparent processing k_app_max 1.07 ± 0.08 s⁻¹ at
+25 °C. The [six-row comparison](docs/ATLAS_STUDY_CONTEXT.md#pox-analogue-binding-does-not-supply-a-generic-activity-label)
+preserves these different endpoints. MAP forms a covalent adduct that is not
+further processed; its apparent equilibrium constant is not pyruvate affinity.
+The FAD rate includes multiple microscopic steps, and DCPIP replaces oxygen.
+These data establish neither generic inactivity, oxygen-turnover kinetics,
+an elementary-step rate, geometric causation nor new experimental validation.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,
