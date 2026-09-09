@@ -132,6 +132,23 @@ audit. `CLAIMS.md` is the canonical current claim ledger.
 - **Record rule:** preserve historical outputs, add the specific correction to
   old handoff surfaces, and do not count this exposed candidate as a fresh test.
 
+## ER-012 — subtilisin unmodified-target and trypsin structural context
+
+- **Affected claim:** CE-018 and the frozen Atlas-10 subtilisin hypothesis.
+- **Previous risk:** “unmodified-target record” and unmutated 1SUP wording
+  could be read as an unmodified catalytic chemical state; 1PQ5 was described
+  principally by its pH-5 condition.
+- **Correction:** 1SUP has an unmutated protein sequence and a deposited PMS
+  covalent modification of catalytic Ser221. Preserve His64 alternative
+  conformations and PMS occupancy without deriving an active fraction.
+  1PQ5 contains partially occupied ARG atoms in a primary-source-described
+  autoproteolytic fragment context. Neither is a generic productive template.
+- **Evidence:** retained mmCIF connection/modification/atom rows and the
+  trypsin primary paper, linked by the
+  [structural-context specification](data/atlas/structural_context/spec.json).
+- **Record rule:** preserve the frozen Atlas-10 bytes; current query output
+  adds the source-bound clarification alongside its historical result.
+
 ## Propagation rule
 
 Current entry documents must link to this file and `CLAIMS.md`. Historical

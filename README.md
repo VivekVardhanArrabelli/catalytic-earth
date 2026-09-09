@@ -31,6 +31,11 @@ product or the limit of its ambition. Search/API surfaces deliver the atlas to
 users, and prospective experimental loops correct it against biological
 reality.
 
+A downstream aim is de novo enzyme design: connecting desired chemistry to
+catalytic requirements, protein implementations and measured function. A
+provenance-grounded dataset that enables other researchers or models to design
+functioning catalysts is a legitimate outcome of the atlas mission.
+
 The atlas is tiered so breadth can grow quickly without implying equal truth:
 
 1. canonical reaction record;
@@ -43,7 +48,16 @@ This repository remains a research scaffold. It is not a wet-lab protocol,
 not a claim that computational candidates are validated enzymes, and not yet
 a production biological design system.
 
-## Quick Status — 2026-09-07
+## Quick Status — 2026-09-09
+
+A [source-bound catalytic-geometry comparison](docs/ATLAS_STRUCTURAL_CONTEXT.md)
+now exposes a material structure-state limitation (CE-018/ER-012): subtilisin
+1SUP has a PMS-modified catalytic serine despite its unmutated sequence, while
+trypsin 1PQ5 is a pH-5, partially occupied fragment-bound context. The offline
+`atlas-structural-context` query preserves atom coordinates, alternative
+conformations, occupancy, covalent connections and distinct residue numbering.
+These are two annotations of existing cases, not additional biological coverage
+or productive design templates.
 
 The Atlas-10 kernel remains the 2026-07-14 checkpoint built on the 2026-07-13
 truth reset. September adds eleven queryable Tier-1 source drafts in three batches through a

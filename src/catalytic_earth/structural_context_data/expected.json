@@ -1,0 +1,10 @@
+{
+  "files": {
+    "acquisition_receipts.json": "87094b850a6f399907f39714aabd011040e8b8aa4ef53205cb63db7a405e1357",
+    "attribution.md": "27d548ed81bda2fc7f67ed310f6a40232a3278c582e0eb861320d7a8466293f7",
+    "bundle.json": "d7f8b917cd8a6a9313b3288957eee09cf69c7f8e0ba3bd3d94f819e11c59c149",
+    "review.json": "50ceb07ad0b226a4d13985fc8234afd380b79f92bff82a545f159d293ae8034f",
+    "spec.json": "2a2258ad2a1debd0663578f3f6410932cea54969eb83e167df23123d6e7cfdf1"
+  },
+  "schema_version": "catalytic-earth.atlas-structural-context-package.v1"
+}

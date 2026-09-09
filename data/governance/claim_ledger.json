@@ -211,5 +211,18 @@
       "docs/COMPUTATIONAL_REVIEW_20260905.md",
       "work/gate3_active_site_verification_20260629.md"
     ]
+  },
+  {
+    "claim_id": "CE-018",
+    "claim_kind": "structure_applicability",
+    "status": "Supported",
+    "claim": "Sequence-unmutated 1SUP deposits a PMS covalent modification on catalytic Ser221 and alternative His64 conformations; 1PQ5 is a pH-5, partially occupied, source-described autoproteolytic fragment context.",
+    "current_wording": "Preserve chemical state, atom-specific occupancy and alternative conformations when comparing catalytic arrangements. Neither structure establishes a generic productive catalytic template or a kinetic population. Two new annotations cover existing cases, not additional proteins, reactions or mechanism cases.",
+    "rationale": "The deposited covalent connection and modification, alternative atom rows, and primary-article context limit transfer independently of sequence identity.",
+    "evidence": [
+      "data/atlas/structural_context/spec.json",
+      "data/atlas/structural_context/bundle.json",
+      "docs/ATLAS_STRUCTURAL_CONTEXT.md"
+    ]
   }
 ]

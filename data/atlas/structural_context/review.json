@@ -1,0 +1,15 @@
+{
+  "bundle_sha256": "d7f8b917cd8a6a9313b3288957eee09cf69c7f8e0ba3bd3d94f819e11c59c149",
+  "independent_expert_validation": false,
+  "review_type": "informed_computational_source_review",
+  "reviewed_on": "2026-09-09",
+  "reviewer_roles": [
+    "root integration/source review",
+    "scientific_bottleneck source-to-conclusion challenge"
+  ],
+  "same_model_agent_errors_may_be_correlated": true,
+  "schema_version": "catalytic-earth.structural-context-review.v1",
+  "source_conclusion": "Approve the deposited PMS covalent-modification interpretation, preserved conformer/occupancy distinctions, and source-described partial trypsin fragment context at their declared scope.",
+  "spec_sha256": "2a2258ad2a1debd0663578f3f6410932cea54969eb83e167df23123d6e7cfdf1",
+  "update_rule": "Do not refresh these pins automatically. Repeat source-to-conclusion review after changing the specification or generated scientific payload."
+}

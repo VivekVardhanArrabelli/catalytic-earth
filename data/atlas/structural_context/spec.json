@@ -1,0 +1,217 @@
+{
+  "atlas10_binding": {
+    "path": "data/atlas/atlas10/kernel.json",
+    "sha256": "2238a3a4570c1a6110c1fd6f7b1d96765eae1d41990b18751293e0301b4a85ef"
+  },
+  "bundle_id": "atlas10.serine-protease-structural-context.2026-09-09",
+  "schema_version": "catalytic-earth.atlas-structural-context-spec.v1",
+  "structures": [
+    {
+      "case_id": "atlas10.trypsin-fusarium.serine-protease",
+      "context_id": "1pq5-catalytic-triad-context",
+      "coordinate_binding": {
+        "path": "data/atlas/atlas10/sources/pdb/1PQ5.cif.gz",
+        "sha256": "b6b8b1fe752907f1252b83807f06c3fe78de2f0b980b07f282f9600b35566946"
+      },
+      "declared_distance_pairs": [
+        {
+          "left": {
+            "atom_name": "OG",
+            "site_id": "P35049:S204"
+          },
+          "pair_id": "serine-oxygen--histidine-ne2",
+          "right": {
+            "atom_name": "NE2",
+            "site_id": "P35049:H65"
+          }
+        },
+        {
+          "left": {
+            "atom_name": "ND1",
+            "site_id": "P35049:H65"
+          },
+          "pair_id": "histidine-nd1--aspartate-od1",
+          "right": {
+            "atom_name": "OD1",
+            "site_id": "P35049:D108"
+          }
+        },
+        {
+          "left": {
+            "atom_name": "ND1",
+            "site_id": "P35049:H65"
+          },
+          "pair_id": "histidine-nd1--aspartate-od2",
+          "right": {
+            "atom_name": "OD2",
+            "site_id": "P35049:D108"
+          }
+        }
+      ],
+      "interpretation": {
+        "article_evidence": {
+          "acquisition_receipt_binding": {
+            "path": "data/atlas/structural_context/acquisition_receipts.json",
+            "sha256": "87094b850a6f399907f39714aabd011040e8b8aa4ef53205cb63db7a405e1357"
+          },
+          "doi": "10.1074/jbc.M306944200",
+          "inspection_depth": "Six-page primary article inspected by source-review agent; root inspected source passages and rendered Table II on article page 43359.",
+          "locators": [
+            "Page 43357 introductory text: autoproteolytic peptide fragment in crystalline enzyme.",
+            "Page 43358 Results: arginine is C-terminal residue of a remaining autoproteolytic fragment; partial occupancy.",
+            "Page 43359 Table II caption: 1PQ5 corresponds to pH 5."
+          ],
+          "project_scope": "Retain the source-described fragment context; do not equate deposited ARG703 with an intact substrate or map it to a source drawing. The article-level occupancy summary is not substituted for deposited atom-specific values.",
+          "raw_article_redistributed": false,
+          "raw_pdf_sha256": "2dc508ec07f7c4e919aab614fd1059ed07dfeeb75d0e592981ef8cc12924c35a",
+          "short_witness": "A peptide fragment can always be found in the active site of the crystalline enzyme.",
+          "url": "https://users.man.poznan.pl/wojtekr/pdf/wr-lit-35.pdf"
+        },
+        "chemical_state": "autoproteolytic_product_fragment_bound_source_described",
+        "measurement_scope": "Euclidean separations in deposited coordinate models, not hydrogen-bond assignments, catalytic distance requirements or a designed transition state. Both Asp oxygen names remain visible without choosing a chemically preferred name.",
+        "mechanistic_relation": {
+          "scope": "Source-described serine nucleophile, histidine acid/base and aspartate stabilization within this exact protein context; shared roles do not transfer substrate scope, protonation or energetic competence.",
+          "source_id": "M0173"
+        },
+        "source_locators": [
+          "_exptl_crystal_grow.pH",
+          "_struct.title",
+          "_atom_site[auth_asym_id=A,auth_seq_id=56]",
+          "_atom_site[auth_asym_id=A,auth_seq_id=195]",
+          "_atom_site[label_asym_id=E,label_comp_id=ARG,auth_seq_id=703]"
+        ],
+        "statement": "The primary paper identifies 1PQ5 as its pH-5 dataset with an autoproteolytic C-terminal arginine/peptide fragment. The retained model deposits ARG703 with partial, atom-specific occupancies. The triad comparison does not define an empty or generic productive active site, productive protonation, or correspondence to M0173 source-panel atoms.",
+        "status": "computational_source_review_not_independent_expert_validation",
+        "transfer_limits": [
+          "No source-drawing atom is identified with a deposited atom by this annotation.",
+          "No solution-state conformer probability, correlated occupancy, productive fraction, or catalytic activity is inferred.",
+          "No synthetic active site, substrate pose, transition-state energy, or full turnover trajectory is supplied.",
+          "A missing deposited connection is not evidence of physical noncovalency."
+        ],
+        "unresolved": [
+          "No intact peptide sequence or elementary-step identity is assigned to deposited ARG703.",
+          "The retained coordinate archive is not asserted byte-identical to the model originally analyzed in the 2003 article.",
+          "No unmodified or active state is inferred solely from the absence of a selected-site deposited connection."
+        ]
+      },
+      "pdb_id": "1PQ5",
+      "record_id": "mechanism:trypsin-fusarium-serine-protease-v1",
+      "selected_sites": [
+        {
+          "atom_names": [
+            "OG"
+          ],
+          "site_id": "P35049:S204"
+        },
+        {
+          "atom_names": [
+            "ND1",
+            "NE2"
+          ],
+          "site_id": "P35049:H65"
+        },
+        {
+          "atom_names": [
+            "OD1",
+            "OD2"
+          ],
+          "site_id": "P35049:D108"
+        }
+      ]
+    },
+    {
+      "case_id": "atlas10.subtilisin-bpn-bacillus.serine-protease",
+      "context_id": "1sup-catalytic-triad-context",
+      "coordinate_binding": {
+        "path": "data/atlas/atlas10/sources/pdb/1SUP.cif.gz",
+        "sha256": "40c3fe986db69bdcb11cbb61294dc78b1a0911c9bc255082831b7f7b4a308b8b"
+      },
+      "declared_distance_pairs": [
+        {
+          "left": {
+            "atom_name": "OG",
+            "site_id": "P00782:S328"
+          },
+          "pair_id": "serine-oxygen--histidine-ne2",
+          "right": {
+            "atom_name": "NE2",
+            "site_id": "P00782:H171"
+          }
+        },
+        {
+          "left": {
+            "atom_name": "ND1",
+            "site_id": "P00782:H171"
+          },
+          "pair_id": "histidine-nd1--aspartate-od1",
+          "right": {
+            "atom_name": "OD1",
+            "site_id": "P00782:D139"
+          }
+        },
+        {
+          "left": {
+            "atom_name": "ND1",
+            "site_id": "P00782:H171"
+          },
+          "pair_id": "histidine-nd1--aspartate-od2",
+          "right": {
+            "atom_name": "OD2",
+            "site_id": "P00782:D139"
+          }
+        }
+      ],
+      "interpretation": {
+        "chemical_state": "deposited_PMS_covalent_modification_of_catalytic_serine",
+        "measurement_scope": "Euclidean separations in deposited coordinate models, not hydrogen-bond assignments, catalytic distance requirements or a designed transition state. Both Asp oxygen names remain visible without choosing a chemically preferred name.",
+        "mechanistic_relation": {
+          "scope": "Source-described serine nucleophile, histidine acid/base and aspartate stabilization within this exact protein context; shared roles do not transfer substrate scope, protonation or energetic competence.",
+          "source_id": "M0723"
+        },
+        "source_locators": [
+          "_struct_conn[id=covale1]",
+          "_pdbx_modification_feature[ordinal=1]",
+          "_atom_site[auth_asym_id=A,auth_seq_id=64,label_atom_id=NE2]",
+          "_atom_site[label_asym_id=D,label_comp_id=PMS]"
+        ],
+        "statement": "The retained 1SUP model explicitly links catalytic Ser221 OG to PMS278 S. The protein sequence is unmutated, but the deposited catalytic serine is chemically modified. Preserve His64 A/B conformers and PMS occupancy separately; this structure is not an unmodified productive catalytic-arrangement template.",
+        "status": "computational_source_review_not_independent_expert_validation",
+        "transfer_limits": [
+          "No source-drawing atom is identified with a deposited atom by this annotation.",
+          "No solution-state conformer probability, correlated occupancy, productive fraction, or catalytic activity is inferred.",
+          "No synthetic active site, substrate pose, transition-state energy, or full turnover trajectory is supplied.",
+          "A missing deposited connection is not evidence of physical noncovalency."
+        ],
+        "unresolved": [
+          "A and B occupancies do not identify their correlation with PMS occupancy.",
+          "The closer B conformer does not establish a catalytically active population.",
+          "No exact inhibited fraction or activity loss is derived from this model."
+        ]
+      },
+      "pdb_id": "1SUP",
+      "record_id": "mechanism:subtilisin-bpn-bacillus-serine-protease-v1",
+      "selected_sites": [
+        {
+          "atom_names": [
+            "OG"
+          ],
+          "site_id": "P00782:S328"
+        },
+        {
+          "atom_names": [
+            "ND1",
+            "NE2"
+          ],
+          "site_id": "P00782:H171"
+        },
+        {
+          "atom_names": [
+            "OD1",
+            "OD2"
+          ],
+          "site_id": "P00782:D139"
+        }
+      ]
+    }
+  ]
+}
