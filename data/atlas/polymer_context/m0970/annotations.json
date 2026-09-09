@@ -11,6 +11,101 @@
           "samgt-donor-acceptor"
         ]
       },
+      "cycle_scope_decision": {
+        "claim_boundary": "No current state field, mechanism proposal, compiled elementary step, evidence tier, registry, performance claim or design result is added or promoted.",
+        "contract_check": {
+          "checked_at_utc": "2026-09-09T17:12:05.045041+00:00",
+          "checks": [
+            {
+              "check": "qualitative_text_with_unresolved_product",
+              "outcome": "accepted"
+            },
+            {
+              "check": "unresolved_X00676_used_as_positive_state",
+              "message": "in_memory_scope_probe.polymer_topology product state is invented",
+              "outcome": "rejected"
+            },
+            {
+              "check": "event_kind_glycosyl_transfer",
+              "message": "in_memory_scope_probe.state_transitions[0] transition_kind is invalid",
+              "outcome": "rejected"
+            },
+            {
+              "check": "event_kind_site_relocation",
+              "message": "in_memory_scope_probe.state_transitions[0] transition_kind is invalid",
+              "outcome": "rejected"
+            },
+            {
+              "check": "event_kind_substrate_binding",
+              "message": "in_memory_scope_probe.state_transitions[0] transition_kind is invalid",
+              "outcome": "rejected"
+            },
+            {
+              "check": "live_permission_source_annotation",
+              "outcome": "accepted"
+            },
+            {
+              "check": "live_permission_source_scoped_mechanism_draft",
+              "message": "operation not authorized for M0970",
+              "outcome": "rejected"
+            },
+            {
+              "check": "live_permission_exact_reaction_instance",
+              "message": "operation not authorized for M0970",
+              "outcome": "rejected"
+            }
+          ],
+          "draft_missing_clauses": [
+            "polymer_product_identity",
+            "topology_after",
+            "topology_before"
+          ],
+          "exact_only_requirements": [
+            "chain_length_after",
+            "chain_length_before",
+            "initiation_or_elongation",
+            "processivity"
+          ],
+          "input_sha256": {
+            "data/atlas/atlas50/development_gate/status.json": "d62b6dcd1c7a4ce7166c5918f02dd2fe764ae90af9d58d377b4788a76e19e3a5",
+            "data/atlas/atlas50/state_probe/spec.json": "1e2d3a71d5b1ca85eb29d0cf0680ce873014abb9cf8f9734c1def1495985bb34",
+            "src/catalytic_earth/atlas50_development_gate.py": "dfda8c3514826b67c8e587d31d9f50327283721a4dfa5e4063abefcbb617e68a",
+            "src/catalytic_earth/atlas50_state_probe.py": "5cd8c1ce2d067cf242d92e85663ab0d7767103e11226b94eb6ddf4164647cb93",
+            "src/catalytic_earth/schemas/mechanism-record-v4.schema.json": "65cdeabd5e7c626658d1782ff2428edf6ff484c26c5e6bfdc1a25b3773480950"
+          },
+          "method": "In-memory copies only; no scientific state or permission input was changed. Event-vocabulary probes use synthetic diagnostic before/after labels solely to isolate validation of transition_kind.",
+          "qualitative_relation_trial": {
+            "X00676_catalog_state_id": null,
+            "checked_at_utc": "2026-09-09T17:19:46.924257+00:00",
+            "exact_instance_allowed": false,
+            "hypothetical_allowed_operations": [
+              "source_annotation",
+              "source_scoped_mechanism_draft"
+            ],
+            "interpretation": "A bounded qualitative relation is representable without numeric n; explicit event-kind support and permission adjudication are separate. A source-proposal product handle must remain distinct from exact chemical identity before any future exact-instance promotion.",
+            "method": "In-memory structural/conditional probe only. Adds a separate paper-source diagnostic evidence ID and source_proposal_label; assumes only the three missing draft clauses are adjudicated. This is not a complete reviewed probe generation or live permission change.",
+            "representation_validation": "accepted",
+            "source_product_placeholder": "X00676",
+            "still_missing_clauses": [
+              "chain_length_before",
+              "chain_length_after",
+              "initiation_or_elongation",
+              "processivity"
+            ]
+          }
+        },
+        "decision": "qualitative_paper_scoped_relation_representable; retain_current_annotation_only_permission",
+        "draft_boundary": "The live M0970 gate still lacks adjudicated product identity and before/after topology for its selected source reaction. A separately evidence-bound paper-source relation can use a source_proposal_label without resolving X00676. A source-scoped draft does not require executable cycle semantics, but does require an explicit source challenge, adjudication and review bindings for the changed scope.",
+        "exact_instance_boundary": "Numeric chain lengths, initiation/elongation assignment and processivity are additional exact-instance requirements, not prerequisites in the source-scoped draft clause list. Unknown numeric n alone is not the reason drafting remains blocked.",
+        "existing_storage": "The existing source_proposal_label and polymer_topology fields can represent a paper-scoped qualitative before/product relation with unknown numeric chain lengths. The current annotation view carries source-model statements and role referents without changing the reviewed M0970 state.",
+        "permission_change": false,
+        "representation_boundary": "The current probe rejects glycosyl_transfer, site_relocation and substrate_binding as typed state_transitions. This limits an explicit typed event sequence, not representation of a qualitative polymer relation. The v4 schema stores free-text kinds and chain fields; it does not interpret symbolic recurrence.",
+        "source_finding_ids": [
+          "samgt-proposed-cycle-order",
+          "samgt-donor-acceptor"
+        ],
+        "what_would_change_the_decision": "Explicit paper-scoped source challenge and adjudication of the product/topology relation could authorize a bounded source draft. Shared event semantics and a concrete consumer are reasons to invest in richer typing, not formal draft requirements. Before any future exact-instance promotion, distinguish a source-proposal product handle from resolved exact chemical identity; never silently equate it with X00676. The current exact gate is unchanged."
+      },
       "erratum_id": "ER-013",
       "mcsa_id": "M0970",
       "not_established": [
@@ -22,9 +117,9 @@
       ],
       "permission_change": false,
       "reconsideration": {
-        "curation": "One correction applies to three pinned inherited reports without rewriting their reviewed generations. No curation-time reduction is measured.",
-        "representation": "Correct reaction roles in data; do not infer them from compound order, names, or the presence of a growing chain. The same compound may occupy different roles during initiation and elongation.",
-        "value": "Prevents reversal of donor/acceptor roles and prevents transfer of a nonproductive sugar-epimer pose. Primary sources already contain the chemistry; the atlas adds an explicit source-bound correction beside the current case."
+        "curation": "Existing source captures, source bindings and current-view projection are reused with zero additional requests. One annotation appears in three pinned report views. No curation-time reduction is measured.",
+        "representation": "Chemical role and source-product referents stay in data. No enzyme-specific runtime branch or event-enum workaround is introduced; unresolved chemical states remain unresolved.",
+        "value": "The scope check shows unknown numeric n is not itself a barrier to a source-proposal relation. It separates representability, reviewed permission and executable event semantics, preventing both unjustified rejection and exact-instance promotion. More same-paper role re-encoding offers limited incremental value, so the next evidence question should change."
       },
       "report_bindings": [
         {
@@ -107,6 +202,59 @@
           ],
           "source_locators": [
             "Article title and abstract"
+          ]
+        },
+        {
+          "evidence_kind": "primary-source schematic proposal; role sequence, not resolved chemical states or an observed trajectory",
+          "finding": "The paper orders glycosyl transfer, movement of the resulting product to the donor site, and binding of another lipid II at the acceptor site. This supports a source-proposed role sequence while the exact M0970 polymer product remains unresolved.",
+          "finding_id": "samgt-proposed-cycle-order",
+          "model_contexts": [
+            {
+              "acceptor_term": "lipid II",
+              "context": "source-proposed initiation",
+              "donor_term": "lipid II",
+              "limit": "Source terms only; no loading order, resolved product identifier or M0970 initiation assignment.",
+              "product_term": "lipid IV"
+            },
+            {
+              "acceptor_term": "lipid II",
+              "context": "source-proposed elongation",
+              "donor_term": "growing glycan chain",
+              "limit": "Opaque source role; no numeric chain size, exact product or equality to X00676.",
+              "product_term": "product/growing glycan chain"
+            }
+          ],
+          "ordering_scope": "The listed order is the authors schematic model. No residence times, vacant-site states, product release from the enzyme, product rebinding or independent leaving-group departure step is assigned.",
+          "proposed_events": [
+            {
+              "chain_referent": "extension_product_after",
+              "description": "The donor at S2 reacts with the lipid II acceptor at S1 to form a beta-1,4-linked extension product associated with S1.",
+              "event_id": "transfer",
+              "handle_scope": "Anonymous source-product role; no atom map or resolved state identity.",
+              "source_locator": "Fig. 4B-C and corresponding Discussion paragraph"
+            },
+            {
+              "chain_referent": "extension_product_after",
+              "description": "The extension product is proposed to move from S1 to donor site S2.",
+              "event_id": "product_relocation",
+              "handle_scope": "Same product referent in the source narrative; no measured trajectory or continuous enzyme retention.",
+              "source_locator": "Fig. 4D and corresponding Discussion paragraph"
+            },
+            {
+              "chain_referent": "extension_product_after",
+              "description": "Another lipid II binds at acceptor site S1 for a subsequent transfer.",
+              "event_id": "substrate_reload",
+              "handle_scope": "Donor-chain context during new lipid II binding, not the output of the binding event; reusing the role configuration does not reset the previous chemical state.",
+              "source_locator": "Fig. 4E and corresponding Discussion paragraph"
+            }
+          ],
+          "recurrence_scope": "A repeated role configuration is not molecular state equality, an executable loop, continuous enzyme retention or measured processivity.",
+          "source_artifact_ids": [
+            "PMC:3340074:HTML"
+          ],
+          "source_locators": [
+            "Discussion, Mechanism of Lipid II Polymerization, paragraph beginning With the comprehensive crystal structures",
+            "Fig. 4 caption, panels A-E"
           ]
         }
       ],

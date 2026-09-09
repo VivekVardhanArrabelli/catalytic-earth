@@ -226,6 +226,20 @@ four PGTs is not a direct Q99T05/SaMGT experiment. Exact product X00676,
 numeric chain length, processivity and the complete M0970 mechanism remain
 unresolved.
 
+## CE-021 — K166R deposited context and inferred product origin
+
+**Status:** Supported
+
+The [1MDL source followup](docs/ATLAS_MECHANISM_EVIDENCE.md#new-source-followup-the-k166r-deposit)
+binds the exact K166R paper citation to a deposited P11444-referenced
+Arg166/Lys166 difference. The model contains distinct R- and S-mandelate
+instances despite its R-mandelate title. The depositor's proposed slow
+racemization origin for SMN is interpretation, not a measured turnover event.
+Conflicting organism metadata remains unresolved. No H297N structure, exact
+assay-preparation identity, assay condition, source-atom map or new functional
+measurement is established. This is a supplemental annotation; the existing
+six-observation query and its endpoint-specific conclusion remain unchanged.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,

@@ -52,6 +52,53 @@ S-exchange comparison explicitly identifies WT in the inspected abstract.
 
 ## Provenance and unresolved links
 
+### New source followup: the K166R deposit
+
+The [supplemental annotation](../data/atlas/mechanism_evidence/m0187/structure_followup/annotation.json)
+now identifies [PDB 1MDL](https://www.rcsb.org/structure/1MDL) through its exact
+primary citation, PMID 7893690 / DOI 10.1021/bi00009a007. The retained mmCIF
+declares entity 1 as K166R, aligns chain A to P11444, and records an engineered
+Arg166 against reference Lys166. This is deposited-specimen evidence; it does
+not identify the exact protein preparation used in each reported assay.
+
+The title names R-mandelate cocrystallization, but the model contains two
+distinct components: RMN at author A398 / label chain C and SMN at author
+A399 / label chain D. The depositor assigns SMN to the active site and RMN
+to the approach region, and suggests that SMN arose by slow racemization.
+That last statement is **depositor interpretation**, not a newly measured
+turnover event or rate. Both modeled ligand instances have occupancy 1.00;
+this is not a solution population or productive fraction. Neither ligand is
+mapped to the M-CSA drawing or treated as an observed intermediate.
+
+A source conflict remains explicit: the gene-source field says
+*Pseudomonas aeruginosa* / taxid 287, while the sequence reference is
+P11444 / MANR_PSEPU and the primary abstract names *Pseudomonas putida*.
+No organism is chosen by majority vote. The current deposit is not asserted
+byte-identical to the coordinates originally studied in 1995.
+
+This followup did not obtain either paper's full methods. H297N structure
+identity, assay conditions and detection limits remain unresolved. The
+H297N text search's 9FI1 result belongs to a different enzyme and paper and
+was rejected. The broader structure search inspected 100 of 306 returned
+candidates, so it does not establish absence of an H297N deposit.
+
+The [cumulative acquisition appendix](../data/atlas/mechanism_evidence/m0187/structure_followup/acquisition_appendix.json)
+carries the original two captures forward. Ten further requests, including
+two ACS 403 responses and two unsupported-query 400 responses, bring the
+same source scope to **12 requests / 440,960 bytes**. Its inherited
+12-request/2-MiB sublimit is reached; the batch was not renamed or reset.
+Earlier unmetered discovery remains disclosed. The public PDB file is
+retained losslessly as gzip; no paper body is redistributed.
+
+The shared mmCIF parser now exposes standard citation, sequence-reference,
+mutation, organism and entry-detail categories. The source rows are checked
+against the retained file. This adds a source annotation to an existing
+case, not another assay observation, mechanism draft, or evidence tier.
+The six-observation CLI output remains unchanged; the supplemental context
+is currently available through this document and its data link (CE-021).
+
+### Boundaries of the original abstract-only query
+
 The sidecar pins the existing Atlas-10 payload, exact M0187 transformation,
 proposal and source snapshot. P11444 is reference-site context: the H297N
 abstract supplies no organism or UniProt identifier; the K166R abstract names

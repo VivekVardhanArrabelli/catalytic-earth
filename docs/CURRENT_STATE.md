@@ -1,5 +1,21 @@
 # Current State
 
+## 2026-09-09: symbolic scope and a distinct K166R deposit
+
+The [polymer scope check](ATLAS_POLYMER_CONTEXT.md#symbolic-cycle-scope-decision--2026-09-09)
+finds that a qualitative, paper-scoped polymer relation fits the existing
+representation without numeric n. Typed cycle events and reviewed permission
+are separate questions; M0970 still permits annotation only. A source-local
+product handle must not become exact chemical identity by implication.
+
+The [K166R followup](ATLAS_MECHANISM_EVIDENCE.md#new-source-followup-the-k166r-deposit)
+links 1MDL to the exact K166R paper and deposited P11444 sequence difference.
+It preserves separate RMN/SMN models, depositor-inferred product origin, and
+conflicting organism metadata (CE-021). H297N structure and assay details
+remain unresolved. The existing six-observation query is unchanged; the new
+annotation is a source supplement. Its original acquisition scope now totals
+12 requests / 440,960 bytes and has reached its 12-request sublimit.
+
 ## 2026-09-09: polymer-role correction precedes more geometry
 
 The [M0970 source annotation](ATLAS_POLYMER_CONTEXT.md) corrects the growing

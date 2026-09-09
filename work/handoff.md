@@ -7,68 +7,69 @@ This block and `docs/HOURLY_RESEARCH.md` govern the hourly research task.
 Everything below the end marker is historical; claims, errata, truth policy
 and current decisions control conflicting wording.
 
-- **Identity/base:** owner
-  `01a086ec-0ced-7bf3-92ae-3e0448bdb035:83aa4384-3910-4370-82c7-6d8c7d78fffc`;
-  actual start 2026-09-09T16:07:04Z; base
-  `4613df97790c555eb7719612ade412e035042bc4` on clean synchronized main.
-  Work is on `codex/polymer-role-20260909`. The Git-local receipt records final
-  elapsed time, reviewed/pushed/merged SHA, CI and release outcome.
-- **Question/result:** primary evidence corrects M0970's growing-polymer
-  acceptor label. In the SaMGT paper's proposed elongation model, the growing
-  chain is donor S2 and incoming lipid II is acceptor S1. The same paper's
-  GalNAc analogue has an inverted position-4 hydroxyl and is described as unable
-  to serve as an E100 substrate. A separate longer-Gal-capped-oligomer experiment
-  supports reducing-end growth in four PGTs, not a direct Q99T05/SaMGT test.
-- **Capability/evidence:** `data/atlas/polymer_context/m0970/` and
-  `docs/ATLAS_POLYMER_CONTEXT.md` bind the role correction, analogue/construct
-  limits, discriminating experimental controls, and conflicting M-CSA prose to
-  retained primary-source hashes/locators. CE-020/ER-013 govern the correction.
-  `python scripts/build_atlas50_state_probe.py --query-case M0970` exposes the
-  current role with its own source references beside the case; `--batch` works
-  for all three pinned generations. Historical reports stay byte-identical.
-- **Limits:** no exact X00676 identity, numeric chain state, processivity,
-  completed M0970 steps, productive native-lipid-II geometry, direct SaMGT
-  direction assay, independent human review or new project experiment. M0970
-  remains ABSTAIN with source-annotation-only permission. The two M-CSA textual
-  attacking-role descriptions are not silently reconciled. No new protein,
-  reaction, mechanism draft or evidence tier is claimed.
-- **POX decision:** a narrow initial search missed a legacy 1POW crop consumer.
-  The representation agent found it; both agent and parent reproduced an
-  operator-2 H89 example through the unchanged coordinate engine. This is
-  adjacent 1POW evidence, not 4FEG copy identity or full-packet portability.
-  The reviewed 6HA3 wrapper remains assay-specific. No 4FEG capture/packet was
-  made; further same-paper geometry was deprioritized when the polymer-role
-  defect became concrete. Do not report biological failure or no POX consumer.
-- **Budget:** carry `atlas50.computational-panel-review.2026-09-05` forward:
-  21 inherited measured captures / 1,125,005 bytes plus seven requests /
-  349,400 bytes, including one empty 404, totals **28 / 1,474,405** of the
-  100-request/30-MiB ceiling. Historical browser checks remain unmetered.
-  `human-tkt-e160q-6ha3-geometry-function` remains **7 / 3,004,884**. No paper,
-  figure or new coordinate body is redistributed; no paid resources/outreach.
-- **Review/reconsideration:** source review corrected exact section locators;
-  code review required validation of every report binding and role-level source
-  references. Both are resolved. Board:
-  `work/coordination_pox_portability_20260909.md`. Chemistry stays in data;
-  no enzyme-ID runtime branch. One correction serves three report generations
-  without rewriting reviews, but no timed curation benefit is claimed. Added
-  value is prevention of role reversal and analogue transfer, not new biology
-  beyond incumbent papers. Frozen kernels, registries and exposure unchanged.
-- **Verification/publication:** prepublication checkpoint at 2026-09-09T16:37:24Z (30.3 elapsed minutes).
-  All 503 core tests pass without skips; installed-wheel role query and existing
-  Atlas-10/draft/transformation/site/candidate release checks pass. The first
-  core run found only the obsolete 19-claim expectation; it is now 20 and the
-  complete rerun passed. Final repository contracts and CI must pass before
-  merge. Source and code reviewers found no remaining blocker and have stopped.
-  Prior main CI run 34372455283 passed. Only owned files are present. The final
-  receipt/task result records exact PR, head, merge, sync and lock release;
-  resume a pending PR first if publication did not complete.
-- **One next action:** make one evidence-backed scope decision on representing
-  the source-proposed elongation cycle symbolically under the existing generic
-  state contract. Expected gain: justified symbolic-chain drafting scope or a
-  precise representation stop. Preserve unknown n/X00676 and distinguish the
-  proposed translocation model from measured direction and processivity. Stop
-  if it requires inventing chemistry or weakening the exact-instance gate.
-  Do not repeat resolved role/analogue review or extend same-paper geometry.
+- **Identity/base:** owner `01a08721-9cf7-7c22-907d-5ba51e9c818b:cf0b2d97-0e25-410b-8c16-97dd78bb86c9`;
+  actual start 2026-09-09T17:05:35Z; clean synchronized base
+  `209f609b6146f0f929c28ca8571eb6a115ed6cbb`; branch
+  `codex/polymer-scope-k166r-context-20260909`. The Git-local receipt records final elapsed
+  time, reviewed/pushed/merged SHA, CI and lock release.
+- **Polymer finding:** a paper-scoped qualitative product/topology relation fits
+  the existing representation with unknown numeric n. Missing typed event kinds
+  do not prohibit qualitative source drafting. Current M0970 permission remains
+  annotation only; its selected source scope still lacks adjudicated product and
+  before/after topology. A source-local product handle is not exact X00676
+  identity. Transfer, relocation and lipid-II loading are the paper's proposed
+  sequence, not observed state recurrence, retention or processivity.
+- **New deposited context:** 1MDL cites the exact K166R paper PMID7893690 and
+  declares entity 1/chain A aligned to P11444 with ARG166 against reference
+  LYS166. Distinct RMN/R and SMN/S ligand models are retained. The depositor's
+  suggested slow-racemization origin for SMN is interpretation, not a new
+  measured turnover event. Gene-source P. aeruginosa conflicts with the
+  P11444/MANR_PSEPU reference and paper P. putida attribution; no organism is
+  silently selected (CE-021).
+- **Capability/evidence:** `data/atlas/polymer_context/m0970/annotations.json`
+  and `docs/ATLAS_POLYMER_CONTEXT.md` record the positive scope decision.
+  `data/atlas/mechanism_evidence/m0187/structure_followup/` retains lossless
+  1MDL mmCIF, annotation, cumulative acquisition appendix and reviewed hashes.
+  `docs/ATLAS_MECHANISM_EVIDENCE.md` links the new source supplement. Six standard
+  mmCIF categories extend the shared parser; the original six-observation CLI
+  remains unchanged. No frozen Atlas-10 structure mapping was rewritten.
+- **Limits:** neither full primary paper's methods was obtained. Exact assay
+  preparation, H297N structure, assay conditions/detection limits, bound
+  protonation, source-drawing atom correspondence and complete mechanisms remain
+  unresolved. No numerical polymer length, exact reaction instance, solution
+  population, independent human review, evidence tier or project-run experiment.
+- **Budgets:** atlas50.computational-panel-review.2026-09-05 remains
+  **28 / 1,474,405 bytes**; human-tkt-e160q-6ha3-geometry-function remains
+  **7 / 3,004,884**. The original M0187 H297N/K166R primary abstract scope carries
+  its two captures forward to **12 requests / 440,960 bytes**. Its inherited
+  **12-request/2-MiB sublimit is reached**; do not rename/reset the batch.
+  Ten requests include two ACS 403 and two unsupported-query 400 responses.
+  Historical unmetered discovery remains disclosed. No paper body is redistributed.
+- **Review/reconsideration:** source objections overrode the initial executable-
+  event blocker interpretation; the positive qualitative decision is accepted.
+  Further same-paper encoding had little value, so work pivoted to M0187 evidence.
+  Exact source joins rejected unrelated 9FI1 and preserved the organism conflict.
+  Chemistry stays in data; parser additions are source-format reuse. Existing
+  captures and three-view annotation projection were reused, with no measured
+  curation-time claim. Added value is prevention of unjustified source transfer,
+  not new biology beyond the papers. Board:
+  `work/coordination_polymer_scope_20260909.md`. All reviewers have completed,
+  no source objection remains, and frozen kernels/registries/exposure are unchanged.
+- **Verification/publication:** checkpoint 2026-09-09T17:38:50.735384+00:00 (33.3 minutes).
+  All 504 core tests pass without skips; network-blocked installed-wheel Atlas-3
+  and Atlas-10/draft/transformation/site/candidate checks pass. Source/code diff
+  reviewed; final repository contracts and all required CI must pass before merge.
+  Prior main CI34379160592 passed all four jobs. Only owned files are present.
+  The local receipt/final task result records exact PR/head/merge/sync/release;
+  resume a pending PR before new research if publication did not complete.
+- **One next action:** expose deposited-variant context through a shared source-
+  context interface in the mechanism-evidence query, keeping PDB deposit evidence
+  distinct from the retained primary-abstract observations. Expected gain:
+  queryable exact variant/citation context without assay-specimen equivalence.
+  Preserve the organism conflict and all six original observations. Use retained
+  sources; no new acquisition is needed. Stop if it requires enzyme-specific
+  runtime or fails to improve a concrete variant-evidence query. Do not repeat
+  resolved polymer-role/analogue review or extend same-paper geometry.
 
 Preserve historical content below this marked block. Git identifies the
 containing increment; no self-hash follow-up commit is required.
