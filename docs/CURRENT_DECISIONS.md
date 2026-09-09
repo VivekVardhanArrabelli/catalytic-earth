@@ -1,5 +1,37 @@
 # Current Decisions
 
+## 2026-09-09: restart one hourly research writer with explicit ownership
+
+The owner requested fresh hourly tasks that inherit prior work through Git.
+The [standing research brief](HOURLY_RESEARCH.md) and marked current handoff
+supersede the paused work loop's old predictor queue, compulsory duration and
+mandatory artifacts. Work is budgeted at roughly 45–50 minutes with wrap-up by
+minute 55; a useful result may finish earlier. Overlapping runs skip. No commit
+is required without a coherent change, and unfinished branches/PRs take priority.
+
+This is a narrow operational architecture migration under
+[the frozen-module policy](ARCHITECTURE.md). The legacy CLI's existing
+`automation-lock` command gains required owner-token arguments, delegates its
+default path to the Git common directory and reports ownership rejection.
+Lock semantics remain in the bounded `automation.py` module: elapsed time never
+transfers ownership and another run cannot release the lock. The CLI freeze
+manifest moves from SHA-256
+`50a4734da98d1b11fe65dd29f661a2dde71302eb7e3429da04c1081bc070cbf7` to
+`425eeabb09fd72bab5ce0a46e648dfd44db7d926cd68eb337204bbfb2fa25a2e`.
+No other giant module, deterministic scientific module or frozen kernel changes.
+This migration does not authorize new research behavior in the legacy CLI.
+
+The same migration moves the lock tests into `core/unit` so the real concurrent
+process and linked-worktree checks run in Linux and Windows CI. The test-tier
+manifest SHA-256 moves from
+`a37dac1b2ad71718930d426330a930aff06f9652552bca31cbebbb4b1ff37ca1` to
+`6790771c1d611930adfd13ec15fae1598ba84a44eaa8b05cd12dd44083614220`.
+
+Keep only `catalytic-earth-work-loop` enabled after verification; leave the
+specialized historical schedules paused. The time budget is an agent instruction,
+not a hard process kill. Active or uncertain ownership prevents takeover.
+This restart adds operational continuity, not scientific evidence or coverage.
+
 ## 2026-09-09: chemical state accompanies catalytic geometry
 
 The [structural-context comparison](ATLAS_STRUCTURAL_CONTEXT.md) adds two

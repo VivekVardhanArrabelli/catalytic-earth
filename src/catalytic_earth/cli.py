@@ -28,7 +28,12 @@ from .artifact_storage import (
     validate_artifact_migration_manifest,
 )
 from .active_site_encoder_cache import write_active_site_encoder_cache
-from .automation import acquire_automation_lock, inspect_automation_lock, release_automation_lock
+from .automation import (
+    acquire_automation_lock,
+    default_automation_lock_dir,
+    inspect_automation_lock,
+    release_automation_lock,
+)
 from .bin_targeted_expansion import write_bin_targeted_expansion_plan
 from .targeted_expansion_factory import (
     DEFAULT_SOURCE_PATHS as TARGETED_EXPANSION_SOURCE_PATHS,
@@ -1242,8 +1247,8 @@ def cmd_validate(_: argparse.Namespace) -> int:
 
 
 def cmd_automation_lock(args: argparse.Namespace) -> int:
-    lock_dir = Path(args.lock_dir)
     repo_root = Path(args.repo_root)
+    lock_dir = Path(args.lock_dir) if args.lock_dir else default_automation_lock_dir(repo_root)
     stale_after_seconds = args.stale_after_minutes * 60
     if args.lock_action == "status":
         result = inspect_automation_lock(
@@ -1259,6 +1264,7 @@ def cmd_automation_lock(args: argparse.Namespace) -> int:
         result = acquire_automation_lock(
             lock_dir,
             started_at=args.started_at or _utc_now_iso(),
+            owner_token=args.owner_token,
             stale_after_seconds=stale_after_seconds,
             worktree_dirty=worktree_dirty,
         )
@@ -1281,7 +1287,12 @@ def cmd_automation_lock(args: argparse.Namespace) -> int:
             }
             print(json.dumps(payload, sort_keys=True))
             return 4
-        release_automation_lock(lock_dir)
+        try:
+            release_automation_lock(lock_dir, owner_token=args.owner_token)
+        except PermissionError as exc:
+            print(json.dumps({"released": False, "lock_dir": str(lock_dir),
+                              "status": "owner_mismatch", "reason": str(exc)}, sort_keys=True))
+            return 4
         print(json.dumps({"released": True, "lock_dir": str(lock_dir)}, sort_keys=True))
         return 0
     raise ValueError(f"unknown automation lock action: {args.lock_action}")
@@ -21458,13 +21469,14 @@ def build_parser() -> argparse.ArgumentParser:
     )
     automation_lock.add_argument(
         "--lock-dir",
-        default=".git/catalytic-earth-automation.lock",
-        help="atomic lock directory path",
+        default=None,
+        help="override the lock path (default: shared Git common directory)",
     )
     automation_lock.add_argument("--repo-root", default=".", help="repository root for git checks")
     automation_lock.add_argument("--stale-after-minutes", type=float, default=90.0)
     lock_actions = automation_lock.add_subparsers(dest="lock_action", required=True)
     lock_acquire = lock_actions.add_parser("acquire", help="create the lock atomically")
+    lock_acquire.add_argument("--owner-token", required=True, help="unique task/run identifier")
     lock_acquire.add_argument("--started-at", default=None)
     lock_acquire.add_argument(
         "--worktree-dirty",
@@ -21480,6 +21492,7 @@ def build_parser() -> argparse.ArgumentParser:
     lock_status = lock_actions.add_parser("status", help="report current lock state")
     lock_status.set_defaults(func=cmd_automation_lock)
     lock_release = lock_actions.add_parser("release", help="remove the lock after safety checks")
+    lock_release.add_argument("--owner-token", required=True, help="the identifier used to acquire")
     lock_release.add_argument("--require-clean", action="store_true")
     lock_release.add_argument("--require-no-merge", action="store_true")
     lock_release.add_argument("--require-synced", action="store_true")
