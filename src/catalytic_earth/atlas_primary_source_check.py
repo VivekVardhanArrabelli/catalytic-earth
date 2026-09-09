@@ -25,10 +25,13 @@ _CATEGORIES = {
     "_chem_comp",
     "_chem_comp_atom",
     "_chem_comp_bond",
+    "_citation",
     "_entry",
     "_entity",
+    "_entity_src_gen",
     "_exptl_crystal_grow",
     "_pdbx_nonpoly_scheme",
+    "_pdbx_entry_details",
     "_pdbx_modification_feature",
     "_pdbx_poly_seq_scheme",
     "_pdbx_struct_assembly",
@@ -37,6 +40,9 @@ _CATEGORIES = {
     "_pdbx_struct_oper_list",
     "_struct",
     "_struct_conn",
+    "_struct_ref",
+    "_struct_ref_seq",
+    "_struct_ref_seq_dif",
     "_struct_site",
 }
 _MISSING = {".", "?"}

@@ -15,6 +15,18 @@
     {
       "adjudication": "Corrected to Discussion / Mechanism of Lipid II Polymerization and Materials and Methods / Cloning, Expression, and Purification; source reviewer rechecked final hashes.",
       "objection": "Mechanism and construct section locators did not match exact primary headings."
+    },
+    {
+      "adjudication": "Representation and adversarial reviewers rejected that claim. A separate parent-reproduced conditional trial accepts a source_proposal_label plus qualitative polymer_topology, without X00676 equality or numeric length. The revised assessment separates data fit, formal permission and typed event execution.",
+      "objection": "The initial scope assessment treated lack of executable event kinds as a blocker to all symbolic source drafting."
+    },
+    {
+      "adjudication": "Keep live permissions unchanged and explicitly require a resolution-level distinction before any future exact-instance promotion. The diagnostic is hypothetical and does not adjudicate the current source generation.",
+      "objection": "A source-local product handle could later be mistaken for exact chemical identity because both operations share the product clause."
+    },
+    {
+      "adjudication": "Keep one anonymous chain referent, separate initiation and elongation contexts, and preserve source-proposed event order without asserting vacant states, release, rebinding, numeric n or processivity.",
+      "objection": "Schematic role recurrence could imply product-state equality, an observed retention cycle or release/rebinding order."
     }
   ],
   "decision": "accept_source_scoped_correction",
@@ -27,11 +39,19 @@
     "reasoning_effort": "ultra",
     "source_and_representation_agent_model": "gpt-5.6-sol"
   },
-  "reviewed_at_utc": "2026-09-09T16:32:07.418941+00:00",
+  "reviewed_at_utc": "2026-09-09T17:31:39.082500+00:00",
   "reviewed_sha256": {
     "acquisition_appendix.json": "38f718ec27e2abff8871b052a283e3d5852dc44d856514e70c10b4c2bf434f66",
-    "annotations.json": "0fec46359bec14c94a2a0fdcabd0e91c9c32c86c90451fa166178218131c0359",
+    "annotations.json": "73f7645e12239209d381ec2af164fe9ee5ef09df05f7b9ee391463c2b0029c33",
     "source_inventory.json": "98942d0b6cf2ee6cbfc06a408dba2cfd4aa3d026078fd2024b3bf3b967f170d6"
   },
-  "schema_version": "catalytic-earth.source-annotation-review.v1"
+  "reviewed_supporting_sha256": {
+    "docs/ATLAS_POLYMER_CONTEXT.md": "5bdc3889b4b934fba3604c8fc00bd2c6adbb41e4f8b80161b78abc9cd3393cd3"
+  },
+  "schema_version": "catalytic-earth.source-annotation-review.v1",
+  "supersedes_review": {
+    "annotations_sha256": "0fec46359bec14c94a2a0fdcabd0e91c9c32c86c90451fa166178218131c0359",
+    "containing_base_commit": "209f609b6146f0f929c28ca8571eb6a115ed6cbb",
+    "review_sha256": "3bd763b1f3c52ecd7ee1fbdff90ebd8d39c8fdf41515c6f44f7d54cbbfd3bf23"
+  }
 }

@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import gzip
+import hashlib
 from pathlib import Path
 import shutil
 import tempfile
@@ -76,6 +78,51 @@ def _walk(value):
 
 
 class PrimaryStructureSourceAuditTests(unittest.TestCase):
+    def test_deposited_citation_variant_and_ligands_keep_their_source_context(self) -> None:
+        directory = REPO / "data/atlas/mechanism_evidence/m0187/structure_followup"
+        annotation = _read_json(directory / "annotation.json")
+        binding = annotation["source_binding"]
+        compressed = (REPO / binding["path"]).read_bytes()
+        self.assertEqual(hashlib.sha256(compressed).hexdigest(), binding["sha256"])
+        raw = gzip.decompress(compressed)
+        self.assertEqual(hashlib.sha256(raw).hexdigest(), binding["uncompressed_sha256"])
+        tables = CHECK.parse_mmcif_categories(raw.decode("utf-8"))
+        for category, expected in annotation["source_rows"].items():
+            rows = tables[category]
+            if category == "_citation":
+                rows = [row for row in rows if row["id"] == "primary"]
+            elif category == "_entity":
+                rows = [row for row in rows if row["id"] == "1"]
+            self.assertEqual(rows, expected, category)
+        citation = annotation["source_rows"]["_citation"][0]
+        self.assertEqual(citation["pdbx_database_id_pubmed"], "7893690")
+        self.assertEqual(citation["pdbx_database_id_doi"], "10.1021/bi00009a007")
+        reference = tables["_struct_ref"][0]
+        alignment = tables["_struct_ref_seq"][0]
+        difference = tables["_struct_ref_seq_dif"][0]
+        self.assertEqual(alignment["ref_id"], reference["id"])
+        self.assertEqual(difference["align_id"], alignment["align_id"])
+        self.assertEqual(reference["pdbx_db_accession"], "P11444")
+        self.assertEqual((difference["mon_id"], difference["db_mon_id"],
+                          difference["seq_num"], difference["pdbx_seq_db_seq_num"]),
+                         ("ARG", "LYS", "166", "166"))
+        self.assertEqual(tables["_entity_src_gen"][0]["pdbx_gene_src_scientific_name"],
+                         "Pseudomonas aeruginosa")
+        self.assertIn("PRESUMABLY", tables["_pdbx_entry_details"][0]["compound_details"])
+        for ligand in annotation["ligand_instances"]:
+            comp = ligand["component"]["id"]
+            self.assertIn(ligand["component"], tables["_chem_comp"])
+            self.assertIn(ligand["instance"], tables["_pdbx_nonpoly_scheme"])
+            atoms = [row for row in tables["_atom_site"] if row["label_comp_id"] == comp]
+            self.assertEqual(len(atoms), ligand["modeled_coordinate_atom_count"])
+            self.assertEqual(sorted({row["occupancy"] for row in atoms}),
+                             ligand["deposited_occupancy_tokens"])
+        self.assertEqual({row["instance"]["asym_id"] for row in annotation["ligand_instances"]},
+                         {"C", "D"})
+        self.assertEqual({row["label_comp_id"] for row in tables["_atom_site"]
+                          if row["label_asym_id"] == "A" and row["label_seq_id"] == "297"},
+                         {"HIS"})
+
     def test_real_retained_structures_rederive_exact_declared_facts(self) -> None:
         plp_sidecar = _read_json(REPO / CASES["plp"][0])
         aldolase_sidecar = _read_json(REPO / CASES["aldolase"][0])

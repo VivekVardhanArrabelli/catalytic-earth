@@ -1,0 +1,44 @@
+{
+  "challenges": [
+    {
+      "adjudication": "Exact primary PMID/DOI plus entity, reference, alignment and engineered difference identify deposited K166R only; assay equivalence and H297N identity remain unresolved.",
+      "objection": "A PDB title or nearby variant could be mistaken for the assayed protein or H297N."
+    },
+    {
+      "adjudication": "Preserve distinct author/label ligand instances, modeled coordinate scope and depositor interpretation; no turnover measurement, protonation, solution fraction, atom-map or complete mechanism is inferred.",
+      "objection": "The two enantiomer models and presumed racemization could be promoted into an observed reaction trajectory."
+    },
+    {
+      "adjudication": "Retain the P. aeruginosa gene-source field beside P11444/MANR_PSEPU and the primary abstract P. putida attribution; no organism resolution is asserted.",
+      "objection": "Conflicting organism attribution could be silently normalized to P11444."
+    },
+    {
+      "adjudication": "Only six standard mmCIF provenance categories are exposed by the shared parser. The supplemental source annotation leaves the original six-observation query, frozen mappings and evidence tier unchanged.",
+      "objection": "New chemistry could require bespoke runtime or silently rewrite the abstract evidence."
+    }
+  ],
+  "decision": "accept_source_scoped_annotation",
+  "open_source_objections": [],
+  "review_process": {
+    "adjudicator": "Parent agent after separate source and representation reviews; source objections control",
+    "blind_review": false,
+    "correlated_errors_possible": true,
+    "independent_human_review": false,
+    "reasoning_effort": "ultra",
+    "source_and_representation_agent_model": "gpt-5.6-sol"
+  },
+  "reviewed_at_utc": "2026-09-09T17:37:02.589667+00:00",
+  "reviewed_sha256": {
+    "1MDL.cif.gz": "2338be31c681766f10af6f9546baa09f9bf622acfefed6ea068fd088fb6e977b",
+    "acquisition_appendix.json": "eaefb2681e0a75a4d9f8ce9b55a18deac12513591e232c04bf37956bb6daebcf",
+    "annotation.json": "7381dc6393ebd091def259b99fcfffb48471ed886258d1c1ddd3c06fd8cafb64"
+  },
+  "reviewed_supporting_sha256": {
+    "CLAIMS.md": "ce03c945095cf2a3f17e98431b12bf366c6101f47c1004904771634e6f4f4655",
+    "data/governance/claim_ledger.json": "a3d987205e981eb729b71b90f657b2e8fe76450d0793c0e3de8370f71c571dcc",
+    "docs/ATLAS_MECHANISM_EVIDENCE.md": "e68a3ca11b112c74ad0d09074b3625381d59fed61e8320829b38f39e65f987d6",
+    "src/catalytic_earth/atlas_primary_source_check.py": "4902a5ab74792d38acf921ca6b1c086a8212d5ae0f053c255e001d02294622a3",
+    "tests/core/test_atlas_primary_source_check.py": "769cd3d44b6341c53f576a260eb0f5510250cb8d429267e48c16dce9e328d7e2"
+  },
+  "schema_version": "catalytic-earth.source-annotation-review.v1"
+}

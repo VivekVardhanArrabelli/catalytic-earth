@@ -250,5 +250,18 @@
       "data/atlas/polymer_context/m0970/source_inventory.json",
       "docs/ATLAS_POLYMER_CONTEXT.md"
     ]
+  },
+  {
+    "claim_id": "CE-021",
+    "claim_kind": "structure_applicability",
+    "status": "Supported",
+    "claim": "1MDL cites the exact K166R paper and declares a P11444-referenced Arg166/Lys166 difference. The deposit models distinct R- and S-mandelate instances; its suggested racemization origin for SMN is depositor interpretation.",
+    "current_wording": "Retain the citation-bound deposited variant and separate ligand instances without inferring a new turnover event, exact assay-preparation identity, H297N structure or source-atom correspondence. Conflicting organism metadata remains unresolved; the existing six-observation query is unchanged.",
+    "rationale": "Primary citation, sequence-reference, engineered-difference and ligand rows provide a bounded structural context while depositor language and conflicting gene-source metadata limit transfer.",
+    "evidence": [
+      "data/atlas/mechanism_evidence/m0187/structure_followup/annotation.json",
+      "data/atlas/mechanism_evidence/m0187/structure_followup/1MDL.cif.gz",
+      "docs/ATLAS_MECHANISM_EVIDENCE.md"
+    ]
   }
 ]

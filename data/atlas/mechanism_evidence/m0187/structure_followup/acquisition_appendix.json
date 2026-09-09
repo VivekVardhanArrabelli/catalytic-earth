@@ -1,0 +1,120 @@
+{
+  "attempts": [
+    {
+      "bytes": 5536,
+      "content_type": "text/html; charset=UTF-8",
+      "local_filename": "h297n-acs.html",
+      "location": null,
+      "request_index": 3,
+      "retrieved_at_utc": "2026-09-09T17:15:17.906018+00:00",
+      "sha256": "5f98a569ce894d79abb8fa0e7b298ffa347747a4282e5f059f2049663661051a",
+      "status": 403,
+      "url": "https://pubs.acs.org/doi/10.1021/bi00102a020"
+    },
+    {
+      "bytes": 5536,
+      "content_type": "text/html; charset=UTF-8",
+      "local_filename": "k166r-acs.html",
+      "location": null,
+      "request_index": 4,
+      "retrieved_at_utc": "2026-09-09T17:15:17.987223+00:00",
+      "sha256": "e3e18bc6df1cdef3165cca56821a1314c79fc2a4844f4e5a3ca397f947e45026",
+      "status": 403,
+      "url": "https://pubs.acs.org/doi/10.1021/bi00009a007"
+    },
+    {
+      "bytes": 6506,
+      "content_type": "application/json;charset=UTF-8",
+      "local_filename": "h297n-europepmc.json",
+      "location": null,
+      "request_index": 5,
+      "retrieved_at_utc": "2026-09-09T17:16:43.314338+00:00",
+      "sha256": "16d786e4ee9af2a0fe939390a25b5161dcb5d84d4416f61ec3f439ca21c181e4",
+      "status": 200,
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID%3A1909893+AND+SRC%3AMED&format=json&resultType=core"
+    },
+    {
+      "bytes": 218,
+      "content_type": "application/json",
+      "local_filename": "h297n-rcsb-search.json",
+      "location": null,
+      "request_index": 6,
+      "retrieved_at_utc": "2026-09-09T17:16:43.548310+00:00",
+      "sha256": "14bd532937f841eca055630082098247644f44ee539137947a85c9c70580485e",
+      "status": 400,
+      "url": "https://search.rcsb.org/rcsbsearch/v2/query?json=%7B%22query%22%3A%7B%22type%22%3A%22terminal%22%2C%22service%22%3A%22text%22%2C%22parameters%22%3A%7B%22attribute%22%3A%22rcsb_primary_citation.pdbx_database_id_PubMed%22%2C%22operator%22%3A%22equals%22%2C%22value%22%3A1909893%7D%7D%2C%22return_type%22%3A%22entry%22%2C%22request_options%22%3A%7B%22paginate%22%3A%7B%22start%22%3A0%2C%22rows%22%3A25%7D%7D%7D"
+    },
+    {
+      "bytes": 178,
+      "local_filename": "h297n-rcsb-fulltext.json",
+      "request_index": 7,
+      "retrieved_at_utc": "2026-09-09T17:18:07.247330+00:00",
+      "sha256": "375f3ea01e195ed4255134ab7b9514b658936b432b77f066ef1cf4d04200f8fc",
+      "status": 200,
+      "url": "https://search.rcsb.org/rcsbsearch/v2/query?json=%7B%22query%22%3A%7B%22type%22%3A%22terminal%22%2C%22service%22%3A%22full_text%22%2C%22parameters%22%3A%7B%22value%22%3A%22H297N%22%7D%7D%2C%22return_type%22%3A%22entry%22%2C%22request_options%22%3A%7B%22paginate%22%3A%7B%22start%22%3A0%2C%22rows%22%3A25%7D%7D%7D"
+    },
+    {
+      "bytes": 11668,
+      "local_filename": "9fi1-entry.json",
+      "request_index": 8,
+      "retrieved_at_utc": "2026-09-09T17:18:46.039453+00:00",
+      "sha256": "ed08bcd26cfb7e6c882238c35f9bd6b18cb779dea3296ecc6f0f542c1033d715",
+      "status": 200,
+      "url": "https://data.rcsb.org/rest/v1/core/entry/9FI1"
+    },
+    {
+      "bytes": 205,
+      "local_filename": "h297n-rcsb-citation.json",
+      "request_index": 9,
+      "retrieved_at_utc": "2026-09-09T17:19:46.840393+00:00",
+      "sha256": "a8936021ac69f68c9bf4ef1e5f975c4c13fa6d1b35ee264eba07f829846000b7",
+      "status": 400,
+      "url": "https://search.rcsb.org/rcsbsearch/v2/query?json=%7B%22query%22%3A%7B%22type%22%3A%22terminal%22%2C%22service%22%3A%22text%22%2C%22parameters%22%3A%7B%22attribute%22%3A%22citation.pdbx_database_id_PubMed%22%2C%22operator%22%3A%22equals%22%2C%22value%22%3A1909893%7D%7D%2C%22return_type%22%3A%22entry%22%2C%22request_options%22%3A%7B%22paginate%22%3A%7B%22start%22%3A0%2C%22rows%22%3A25%7D%7D%7D"
+    },
+    {
+      "bytes": 6803,
+      "local_filename": "mandelate-rcsb-fulltext.json",
+      "request_index": 10,
+      "retrieved_at_utc": "2026-09-09T17:21:26.617267+00:00",
+      "sha256": "e26abe2e71b8d81730948c88ffa107c8b871e464f720dd759db8ec525eadbf76",
+      "status": 200,
+      "url": "https://search.rcsb.org/rcsbsearch/v2/query?json=%7B%22query%22%3A%7B%22type%22%3A%22terminal%22%2C%22service%22%3A%22full_text%22%2C%22parameters%22%3A%7B%22value%22%3A%22%5C%22mandelate+racemase%5C%22%22%7D%7D%2C%22return_type%22%3A%22entry%22%2C%22request_options%22%3A%7B%22paginate%22%3A%7B%22start%22%3A0%2C%22rows%22%3A100%7D%7D%7D"
+    },
+    {
+      "bytes": 36000,
+      "local_filename": "mandelate-candidate-citations.json",
+      "request_index": 11,
+      "retrieved_at_utc": "2026-09-09T17:22:23.950368+00:00",
+      "sha256": "0882a67be62e563fe620ff1a1b17ac70f537dda1e0247be61209b4c894cd805f",
+      "status": 200,
+      "url": "https://data.rcsb.org/graphql?query=%7B+entries%28entry_ids%3A+%5B%221MNS%22%2C+%221MDR%22%2C+%222MNR%22%2C+%221DTN%22%2C+%221MRA%22%2C+%221MDL%22%2C+%223GY1%22%2C+%222QQ6%22%2C+%229P1B%22%2C+%224FP1%22%2C+%224HNC%22%2C+%224M6U%22%2C+%224X2P%22%2C+%223EEZ%22%2C+%223DDM%22%2C+%224DXK%22%2C+%223S47%22%2C+%223T8Q%22%2C+%223UXK%22%2C+%223UXL%22%2C+%224DWD%22%2C+%223H12%22%2C+%224DX3%22%2C+%222QDE%22%2C+%223N6J%22%2C+%224IHC%22%2C+%223N4E%22%2C+%227MQX%22%2C+%222OG9%22%2C+%223S5S%22%2C+%222HZG%22%2C+%223OP2%22%2C+%223N6H%22%2C+%223U4F%22%2C+%223DFH%22%2C+%223CYJ%22%2C+%223SSZ%22%2C+%223T4W%22%2C+%222POD%22%2C+%224DN1%22%2C+%223PFR%22%2C+%223SJN%22%2C+%223SQS%22%2C+%224J3Z%22%2C+%224JHM%22%2C+%226VIM%22%2C+%223TTE%22%2C+%223TOY%22%2C+%223FVD%22%2C+%223N4F%22%2C+%224IP5%22%2C+%222PS2%22%2C+%224K8G%22%2C+%224KEM%22%2C+%223MWC%22%2C+%224IP4%22%2C+%223RCY%22%2C+%223T9P%22%2C+%223VC5%22%2C+%223TJ4%22%2C+%223FV9%22%2C+%222QJJ%22%2C+%222QJM%22%2C+%222QJN%22%2C+%224GME%22%2C+%223GO2%22%2C+%223QLD%22%2C+%222P8B%22%2C+%222PPG%22%2C+%222PMQ%22%2C+%222QDD%22%2C+%223EKG%22%2C+%224E5T%22%2C+%224E8G%22%2C+%224HNL%22%2C+%223U9I%22%2C+%222P8C%22%2C+%224A35%22%2C+%224GGB%22%2C+%222GDQ%22%2C+%223BSM%22%2C+%222PCE%22%2C+%222RDX%22%2C+%223SBF%22%2C+%224IZG%22%2C+%223MY9%22%2C+%222OO6%22%2C+%223MQT%22%2C+%223OZY%22%2C+%223THU%22%2C+%224H19%22%2C+%221JPD%22%2C+%222P3Z%22%2C+%223BOX%22%2C+%223CXO%22%2C+%223V4B%22%2C+%223VC6%22%2C+%224HPN%22%2C+%222CHR%22%2C+%222I5Q%22%5D%29+%7B+rcsb_id+struct+%7B+title+%7D+rcsb_primary_citation+%7B+pdbx_database_id_PubMed+pdbx_database_id_DOI+title+%7D+%7D+%7D"
+    },
+    {
+      "bytes": 351342,
+      "local_filename": "1MDL.cif",
+      "request_index": 12,
+      "retrieved_at_utc": "2026-09-09T17:23:15.426563+00:00",
+      "sha256": "3c26e289e25360c357f1a99027bdb5ced8f18bef503fd67af8c66b2b46858899",
+      "status": 200,
+      "url": "https://files.rcsb.org/download/1MDL.cif"
+    }
+  ],
+  "batch_scope": "M0187 H297N/K166R primary abstract capture; public discovery is separately documented",
+  "cumulative_bytes": 440960,
+  "cumulative_requests": 12,
+  "historical_discovery_disclosure": "The inherited abstract-capture ledger excludes earlier public discovery. Every HTTP request made by this followup, including 403 and invalid-query responses, is listed and counted.",
+  "inherited_bytes": 16968,
+  "inherited_path": "data/atlas/mechanism_evidence/m0187/acquisition_receipts.json",
+  "inherited_requests": 2,
+  "inherited_sha256": "516d02a3986de2a8181d572a1ddcec16926cfc586105ef98eacebe4a2ed25546",
+  "limits": {
+    "requests": 12,
+    "response_bytes": 2097152
+  },
+  "outcome": "Full primary article methods were not obtained. Exact primary-citation and mutation rows identify a K166R deposited context; the H297N structure and assay details remain unresolved. Search coverage is not exhaustive.",
+  "question": "Can accessible full primary text resolve H297N/K166R assay conditions or exact mutant/step correspondence?",
+  "retention": "Only the public PDB mmCIF is redistributed, losslessly gzip-compressed. Other capture bodies remain local analysis material.",
+  "schema_version": "catalytic-earth.source-followup-acquisition.v1",
+  "state": "source acquisition stopped at inherited request ceiling",
+  "stop": "Stop after normal public access paths if inaccessible; no credentials, paywall bypass or extrapolated assay fields."
+}
