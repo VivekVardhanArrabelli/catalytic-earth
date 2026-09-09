@@ -1,0 +1,118 @@
+{
+  "schema_version": "catalytic-earth.functional-comparison-review.v1",
+  "comparison_id": "human-tkt-2019-kinetic-endpoints",
+  "decision": "accept_source_annotation",
+  "authorized_operation": "source_annotation",
+  "policy_binding": {
+    "path": "data/governance/computational_review_policy.json",
+    "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "reviewed_at_utc": "2026-09-09T22:30:02.530071+00:00",
+  "reviewed_comparison": {
+    "path": "data/atlas/study_context/6ha3/functional_comparison.json",
+    "sha256": "a8205b4964ac094b41172cdfa9309c70cd004bfa458ee9ea62bbf64785bf6366"
+  },
+  "retained_input_bindings": [
+    {
+      "path": "data/atlas/study_context/6ha3/source_inventory.json",
+      "sha256": "1605d98776281d52660f32442da9d11996bfc4dc19e5cbbea1b0252882bbfc06"
+    },
+    {
+      "path": "data/atlas/study_context/6ha3/evidence_projection.json",
+      "sha256": "70bf1eaa59747239990161631432a44440629704aa50051bddd551309fb1213e"
+    },
+    {
+      "path": "data/atlas/assembly_context/6ha3/spec.json",
+      "sha256": "b3a6c9306cab59095c4c3943c35ec7b0cbddadbcc1180fced9e284cff8a4b675"
+    },
+    {
+      "path": "data/atlas/assembly_context/6ha3/acquisition_appendix.json",
+      "sha256": "06dbbcbc8ae4967803c4d4eba1193d1d687bc26b2b159f1699df450059e57192"
+    }
+  ],
+  "source_review": {
+    "reviewer_task": "source_audit",
+    "supporting_read_only_worker": "source_audit/cache_table_audit",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "ultra",
+    "scope": "All seven TKT rows, conditions, source bounds, uncertainty, exact marker locations, source identities, method definitions, source-body hashes and user-facing claim wording. Parent separately inspected the table and methods.",
+    "status": "accepted at reviewed comparison hash"
+  },
+  "representation_review": {
+    "reviewer_task": "chemical_representation",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "ultra",
+    "scope": "Parameter types, chemical and assay identity, shared data shape, explicit observation reuse, missingness, fitted-parameter contrasts and non-equivalence boundaries.",
+    "status": "accepted at reviewed comparison hash"
+  },
+  "adversarial_review": {
+    "reviewer_task": "source_audit",
+    "scope": "New value relative to existing partial annotations and a competent incumbent reading; all three reconsideration rules and unsupported kinetic/geometry inference.",
+    "decision": "accept bounded reusable data value; no scientific-discovery, speed or comparative-accuracy claim"
+  },
+  "adjudications": [
+    {
+      "objection": "T382E X5P-response SD was initially transcribed as 11 uM.",
+      "evidence": "Hash-matched Table 2a image; separate source and representation reads both identify 126 +/- 1 uM.",
+      "decision": "Corrected to 1 before publication; numerical audit repeated only on the affected field."
+    },
+    {
+      "objection": "Printed K_M and efficiency headers would misclassify the T382E/Q parameters.",
+      "evidence": "Table footnotes f/g define K_0.5, k_cat/K_0.5 and distinct steady-state Hill coefficients.",
+      "decision": "Typed as the source specifies; no pooled affinity or efficiency ranking."
+    },
+    {
+      "objection": "T382E efficiency text 34.127 is ambiguous under the printed unit.",
+      "evidence": "Exact image token and separate 4.30/(126e-6) arithmetic witness.",
+      "decision": "Keep raw string, null unambiguous normalized value and explicit unresolved punctuation; do not repair source silently."
+    },
+    {
+      "objection": "T382Q blue n.a. cells do not each carry superscript e.",
+      "evidence": "Its e marker is in the orange pKa cell. Footnote e identifies the missing cofactor band; Methods use that same 325 nm band as the stopped-flow reporter.",
+      "decision": "Retain missing reporter as an explicit source-integration inference, with marker location and raw n.a. preserved."
+    },
+    {
+      "objection": "Source kmax lower bounds, large SD and different fit models could be turned into unsupported kinetic relations.",
+      "evidence": "Table footnotes c/d; SI printed pages 6-7, equations 6-8; E160A reverse 0.62 +/- 0.99.",
+      "decision": "Keep >600 as lower bounds, retain SD unchanged, distinguish fit phases, and prohibit inference of NMR K2, raw-transient equivalence or a common affinity constant."
+    },
+    {
+      "objection": "Reprojecting existing E160Q and WT/E366Q values or NMR arms could double-count evidence.",
+      "evidence": "Exact prior observation IDs and JSON pointers, with ten numeric summaries verified equal to existing records.",
+      "decision": "Keep DOI/locator/variant/endpoint/parameter identity and reuse mappings; all five NMR arms are inherited context."
+    },
+    {
+      "objection": "F6P adduct accumulation or formation could be presented as general activity or evidence for the 6HA3 geometry.",
+      "evidence": "F6P stopped-flow at 4 C, qualitative acid-quench context at 20 C and X5P/R5P turnover at 20 C are distinct measurements.",
+      "decision": "Allow only explicit within-assay source-model comparisons and study/variant context; no F6P full-cycle, geometry causation or exact-preparation claim."
+    },
+    {
+      "objection": "Adding code or a full-table copy might repeat prior partial curation without meaningful value.",
+      "evidence": "The previous packets contain the E160Q numerical slice and WT/E366Q kcat; the added rows and parameter qualifiers were absent from those projections.",
+      "decision": "Use additive data and exact reuse bindings; no runtime branch, new validator, raw-source redistribution, performance claim or measured curation speedup."
+    }
+  ],
+  "source_access": {
+    "batch_id": "human-tkt-e160q-6ha3-geometry-function",
+    "new_requests": 0,
+    "new_response_bytes": 0,
+    "carried_metered_lower_bound_requests": 7,
+    "carried_metered_lower_bound_response_bytes": 3004884,
+    "complete_cumulative_requests": null,
+    "complete_cumulative_response_bytes": null,
+    "remaining_headroom": null,
+    "limit": "Retained local bytes only. Historical unmetered browser discovery remains unresolved; this operation creates no fresh allowance."
+  },
+  "verification_scope": "Manual exact-source review plus deterministic source-pin, reuse-identity and arithmetic checks; existing repository contracts and CI remain required. These checks verify transcription/integrity, not the physical truth of the study.",
+  "evidence_limits": {
+    "independent_human_review": false,
+    "laboratory_validation_by_project": false,
+    "new_measurements_collected": 0,
+    "evidence_tier_promotion": false,
+    "new_mechanism_compilation": false,
+    "protected_registry_change": false,
+    "frozen_packet_resolution": false,
+    "correlated_agent_errors_possible": true
+  },
+  "publication_limits": "Publisher source bodies remain locally retained and are not redistributed. Public hashes and locators permit identity checks when matching source bodies are available; the annotation alone does not reproduce image transcription."
+}
