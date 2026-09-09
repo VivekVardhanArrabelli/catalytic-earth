@@ -1,0 +1,465 @@
+{
+  "contexts": [
+    {
+      "annotation": {
+        "acquisition_outcome": {
+          "cumulative_bytes": 440960,
+          "cumulative_requests": 12,
+          "failed_requests": "Two ACS 403 responses and two unsupported RCSB PMID-field query 400 responses counted.",
+          "full_methods_obtained": false,
+          "limits": {
+            "requests": 12,
+            "response_bytes": 2097152
+          },
+          "search_coverage": "RCSB H297N token search returned unrelated 9FI1 (PMID40570315), rejected. A mandelate-racemase text search returned 306 hits; primary citations of the first 100 were inspected and identified 1MDL by exact PMID7893690. No H297N match was established; no absence claim is made."
+        },
+        "annotation_id": "M0187:K166R:1MDL:2026-09-09",
+        "claim_id": "CE-021",
+        "existing_case_binding": {
+          "path": "data/atlas/mechanism_evidence/m0187/evidence.json",
+          "sha256": "5c2488eb848d3d27304dadd81aecf3efc838061e09e4cc77043a27b0f85895a2"
+        },
+        "findings": [
+          {
+            "finding_id": "exact-citation-and-deposited-variant",
+            "source_locators": [
+              "_citation[id=primary]",
+              "_entity[id=1]",
+              "_struct_ref[id=1]",
+              "_struct_ref_seq[align_id=1]",
+              "_struct_ref_seq_dif[align_id=1]"
+            ],
+            "statement": "The primary citation is the K166R paper; entity 1 declares K166R, with chain A aligned to P11444 and an engineered ARG166-versus-LYS166 difference.",
+            "status": "deposited_source_assertion"
+          },
+          {
+            "finding_id": "two-distinct-enantiomer-models",
+            "source_locators": [
+              "_struct.title",
+              "_pdbx_entry_details.compound_details",
+              "_pdbx_nonpoly_scheme",
+              "_chem_comp[id=RMN or SMN]",
+              "_atom_site[label_comp_id=RMN or SMN]"
+            ],
+            "statement": "The title names R-mandelate cocrystallization, but the deposit models RMN at author A398/label C and SMN at author A399/label D. Entry details assign SMN to the active site and RMN to the approach region. Its suggestion that SMN arose by slow racemization is a depositor inference, not an independently measured turnover event or rate.",
+            "status": "deposited_model_and_source_interpretation_separated"
+          },
+          {
+            "finding_id": "organism-metadata-conflict",
+            "source_locators": [
+              "_entity_src_gen.pdbx_gene_src_scientific_name",
+              "_entity_src_gen.pdbx_gene_src_ncbi_taxonomy_id",
+              "_struct_ref",
+              "PMID 7893690 retained abstract"
+            ],
+            "statement": "The deposit gene-source field says Pseudomonas aeruginosa/taxid 287, while its reference is P11444/MANR_PSEPU and the retained K166R primary abstract names Pseudomonas putida. The annotation retains the discrepancy without choosing a source organism.",
+            "status": "unresolved_source_conflict"
+          }
+        ],
+        "ligand_instances": [
+          {
+            "chemical_identity_scope": "Deposited RMN/SMN component assignment; modeled coordinate rows contain carbon and oxygen but no ligand hydrogen atoms. Formal charge is unspecified in atom records. Bound protonation is not established.",
+            "component": {
+              "formula": "C8 H8 O3",
+              "formula_weight": "152.147",
+              "id": "RMN",
+              "mon_nstd_flag": ".",
+              "name": "(R)-MANDELIC ACID",
+              "pdbx_synonyms": "?",
+              "type": "non-polymer"
+            },
+            "deposited_alternative_tokens": [
+              "."
+            ],
+            "deposited_occupancy_tokens": [
+              "1.00"
+            ],
+            "instance": {
+              "asym_id": "C",
+              "auth_mon_id": "RMN",
+              "auth_seq_num": "398",
+              "entity_id": "3",
+              "mon_id": "RMN",
+              "ndb_seq_num": "1",
+              "pdb_ins_code": ".",
+              "pdb_mon_id": "RMN",
+              "pdb_seq_num": "398",
+              "pdb_strand_id": "A"
+            },
+            "modeled_coordinate_atom_count": 11
+          },
+          {
+            "chemical_identity_scope": "Deposited RMN/SMN component assignment; modeled coordinate rows contain carbon and oxygen but no ligand hydrogen atoms. Formal charge is unspecified in atom records. Bound protonation is not established.",
+            "component": {
+              "formula": "C8 H8 O3",
+              "formula_weight": "152.147",
+              "id": "SMN",
+              "mon_nstd_flag": ".",
+              "name": "(S)-MANDELIC ACID",
+              "pdbx_synonyms": "?",
+              "type": "non-polymer"
+            },
+            "deposited_alternative_tokens": [
+              "."
+            ],
+            "deposited_occupancy_tokens": [
+              "1.00"
+            ],
+            "instance": {
+              "asym_id": "D",
+              "auth_mon_id": "SMN",
+              "auth_seq_num": "399",
+              "entity_id": "4",
+              "mon_id": "SMN",
+              "ndb_seq_num": "1",
+              "pdb_ins_code": ".",
+              "pdb_mon_id": "SMN",
+              "pdb_seq_num": "399",
+              "pdb_strand_id": "A"
+            },
+            "modeled_coordinate_atom_count": 11
+          }
+        ],
+        "not_established": [
+          "Exact identity between the deposited sequence and each protein preparation used in the paper assays.",
+          "H297N mutant structure identity, geometry, exchange conditions, detection floor or racemization direction.",
+          "New absolute kinetics, a crystal-to-solution state equivalence, or proof that modeled SMN was generated during crystal growth.",
+          "Bound protonation, measured conformer populations, source-drawing atom correspondence, an observed intermediate or a complete mechanism.",
+          "Resolution of the conflicting organism metadata or equality of the current deposit to the original 1995 coordinates."
+        ],
+        "pdb_id": "1MDL",
+        "reuse_and_scope": "The shared mmCIF parser exposes six additional standard provenance categories. No enzyme-specific runtime, frozen Atlas-10 mapping, abstract observation or evidence tier changes. This supplemental source annotation is linked from documentation; the six-observation CLI remains unchanged.",
+        "schema_version": "catalytic-earth.source-structure-followup.v1",
+        "source_binding": {
+          "path": "data/atlas/mechanism_evidence/m0187/structure_followup/1MDL.cif.gz",
+          "request_index": 12,
+          "sha256": "2338be31c681766f10af6f9546baa09f9bf622acfefed6ea068fd088fb6e977b",
+          "uncompressed_bytes": 351342,
+          "uncompressed_sha256": "3c26e289e25360c357f1a99027bdb5ced8f18bef503fd67af8c66b2b46858899",
+          "url": "https://files.rcsb.org/download/1MDL.cif"
+        },
+        "source_relation": {
+          "author_chain_id": "A",
+          "deposited_residue": "ARG",
+          "deposited_sequence_position": 166,
+          "doi": "10.1021/bi00009a007",
+          "primary_pmid": "7893690",
+          "protein_entity_id": "1",
+          "reference_accession": "P11444",
+          "reference_residue": "LYS",
+          "reference_scope": "deposition-declared UniProt alignment, not independently verified assay construct",
+          "reference_sequence_position": 166,
+          "variant": "K166R"
+        },
+        "source_rows": {
+          "_citation": [
+            {
+              "book_publisher": "?",
+              "country": "US",
+              "id": "primary",
+              "journal_abbrev": "Biochemistry",
+              "journal_id_astm": "BICHAW",
+              "journal_id_csd": "0033",
+              "journal_id_issn": "0006-2960",
+              "journal_volume": "34",
+              "page_first": "2788",
+              "page_last": "2797",
+              "pdbx_database_id_doi": "10.1021/bi00009a007",
+              "pdbx_database_id_pubmed": "7893690",
+              "title": "Mechanism of the reaction catalyzed by mandelate racemase: structure and mechanistic properties of the K166R mutant.",
+              "year": "1995"
+            }
+          ],
+          "_entity": [
+            {
+              "details": "?",
+              "formula_weight": "38630.609",
+              "id": "1",
+              "pdbx_description": "MANDELATE RACEMASE",
+              "pdbx_ec": "5.1.2.2",
+              "pdbx_fragment": "?",
+              "pdbx_mutation": "K166R",
+              "pdbx_number_of_molecules": "1",
+              "src_method": "man",
+              "type": "polymer"
+            }
+          ],
+          "_entity_src_gen": [
+            {
+              "entity_id": "1",
+              "expression_system_id": "?",
+              "gene_src_common_name": "?",
+              "gene_src_details": "?",
+              "gene_src_genus": "Pseudomonas",
+              "gene_src_species": "?",
+              "gene_src_strain": "?",
+              "gene_src_tissue": "?",
+              "gene_src_tissue_fraction": "?",
+              "host_org_common_name": "?",
+              "host_org_details": "?",
+              "host_org_genus": "Escherichia",
+              "host_org_species": "?",
+              "pdbx_alt_source_flag": "sample",
+              "pdbx_beg_seq_num": "?",
+              "pdbx_description": "TRC PROMOTER",
+              "pdbx_end_seq_num": "?",
+              "pdbx_gene_src_atcc": "15692",
+              "pdbx_gene_src_cell": "?",
+              "pdbx_gene_src_cell_line": "?",
+              "pdbx_gene_src_cellular_location": "?",
+              "pdbx_gene_src_fragment": "?",
+              "pdbx_gene_src_gene": "MANDELATE RACEMASE",
+              "pdbx_gene_src_ncbi_taxonomy_id": "287",
+              "pdbx_gene_src_organ": "?",
+              "pdbx_gene_src_organelle": "?",
+              "pdbx_gene_src_scientific_name": "Pseudomonas aeruginosa",
+              "pdbx_gene_src_variant": "?",
+              "pdbx_host_org_atcc": "?",
+              "pdbx_host_org_cell": "?",
+              "pdbx_host_org_cell_line": "?",
+              "pdbx_host_org_cellular_location": "?",
+              "pdbx_host_org_culture_collection": "?",
+              "pdbx_host_org_gene": "MANDELATE RACEMASE",
+              "pdbx_host_org_ncbi_taxonomy_id": "562",
+              "pdbx_host_org_organ": "?",
+              "pdbx_host_org_organelle": "?",
+              "pdbx_host_org_scientific_name": "Escherichia coli",
+              "pdbx_host_org_strain": "?",
+              "pdbx_host_org_tissue": "?",
+              "pdbx_host_org_tissue_fraction": "?",
+              "pdbx_host_org_variant": "?",
+              "pdbx_host_org_vector": "?",
+              "pdbx_host_org_vector_type": "?",
+              "pdbx_seq_type": "?",
+              "pdbx_src_id": "1",
+              "plasmid_details": "?",
+              "plasmid_name": "PKT230"
+            }
+          ],
+          "_pdbx_entry_details": [
+            {
+              "compound_details": "THIS IS THE STRUCTURE OF THE MANDELATE RACEMASE MUTANT\nLYSINE 166 -> ARGININE CO-CRYSTALLIZED WITH THE SUBSTRATE\n(R)-MANDELIC ACID.  THE SUBSTRATE THAT IS BOUND AT THE\nACTIVE SITE IS RESIDUE 399 FOR CONSISTENCY WITH THE\nNOMENCLATURE OF PREVIOUS MANDELATE RACEMASE STRUCTURES.\nIT HAS THE RESIDUE NAME SMN BECAUSE IT IS THE (S)-ISOMER.\nTHE (S)-ENANTIOMER PRESUMABLY AROSE FROM THE SLOW\nRACEMIZATION OF (R)-MANDELATE.  THERE IS A SECOND SUBSTRATE\nMOLECULE IN THE STRUCTURE; IT IS LOCATED IN THE REGION\nLEADING TO THE ACTIVE SITE.  THIS MOLECULE IS THE\n(R)-STEREOISOMER.  IT IS RESIDUE 398 AND, BY ANALOGY, HAS\nTHE RESIDUE NAME RMN.",
+              "entry_id": "1MDL",
+              "has_ligand_of_interest": "?",
+              "nonpolymer_details": "?",
+              "sequence_details": "?",
+              "source_details": "?"
+            }
+          ],
+          "_struct_ref": [
+            {
+              "db_code": "MANR_PSEPU",
+              "db_name": "UNP",
+              "entity_id": "1",
+              "id": "1",
+              "pdbx_align_begin": "1",
+              "pdbx_db_accession": "P11444",
+              "pdbx_db_isoform": "?",
+              "pdbx_seq_one_letter_code": "MSEVLITGLRTRAVNVPLAYPVHTAVGTVGTAPLVLIDLATSAGVVGHSYLFAYTPVALKSLKQLLDDMAAMIVNEPLAP\nVSLEAMLAKRFCLAGYTGLIRMAAAGIDMAAWDALGKVHETPLVKLLGANARPVQAYDSHSLDGVKLATERAVTAAELGF\nRAVKTKIGYPALDQDLAVVRSIRQAVGDDFGIMVDYNQSLDVPAAIKRSQALQQEGVTWIEEPTLQHDYEGHQRIQSKLN\nVPVQMGENWLGPEEMFKALSIGACRLAMPDAMKIGGVTGWIRASALAQQFGIPMSSHLFQEISAHLLAATPTAHWLERLD\nLAGSVIEPTLTFEGGNAVIPDLPGVGIIWREKEIGKYLV"
+            }
+          ],
+          "_struct_ref_seq": [
+            {
+              "align_id": "1",
+              "db_align_beg": "1",
+              "db_align_end": "359",
+              "pdbx_auth_seq_align_beg": "1",
+              "pdbx_auth_seq_align_end": "359",
+              "pdbx_db_accession": "P11444",
+              "pdbx_db_align_beg_ins_code": "?",
+              "pdbx_db_align_end_ins_code": "?",
+              "pdbx_pdb_id_code": "1MDL",
+              "pdbx_seq_align_beg_ins_code": "?",
+              "pdbx_seq_align_end_ins_code": "?",
+              "pdbx_strand_id": "A",
+              "ref_id": "1",
+              "seq_align_beg": "1",
+              "seq_align_end": "359"
+            }
+          ],
+          "_struct_ref_seq_dif": [
+            {
+              "align_id": "1",
+              "db_mon_id": "LYS",
+              "details": "engineered mutation",
+              "mon_id": "ARG",
+              "pdbx_auth_seq_num": "166",
+              "pdbx_ordinal": "1",
+              "pdbx_pdb_id_code": "1MDL",
+              "pdbx_pdb_ins_code": "?",
+              "pdbx_pdb_strand_id": "A",
+              "pdbx_seq_db_accession_code": "P11444",
+              "pdbx_seq_db_name": "UNP",
+              "pdbx_seq_db_seq_num": "166",
+              "seq_num": "166"
+            }
+          ]
+        },
+        "status": "source_scoped_annotation_not_integrated_into_observation_query"
+      },
+      "annotation_review": {
+        "challenges": [
+          {
+            "adjudication": "Exact primary PMID/DOI plus entity, reference, alignment and engineered difference identify deposited K166R only; assay equivalence and H297N identity remain unresolved.",
+            "objection": "A PDB title or nearby variant could be mistaken for the assayed protein or H297N."
+          },
+          {
+            "adjudication": "Preserve distinct author/label ligand instances, modeled coordinate scope and depositor interpretation; no turnover measurement, protonation, solution fraction, atom-map or complete mechanism is inferred.",
+            "objection": "The two enantiomer models and presumed racemization could be promoted into an observed reaction trajectory."
+          },
+          {
+            "adjudication": "Retain the P. aeruginosa gene-source field beside P11444/MANR_PSEPU and the primary abstract P. putida attribution; no organism resolution is asserted.",
+            "objection": "Conflicting organism attribution could be silently normalized to P11444."
+          },
+          {
+            "adjudication": "Only six standard mmCIF provenance categories are exposed by the shared parser. The supplemental source annotation leaves the original six-observation query, frozen mappings and evidence tier unchanged.",
+            "objection": "New chemistry could require bespoke runtime or silently rewrite the abstract evidence."
+          }
+        ],
+        "decision": "accept_source_scoped_annotation",
+        "open_source_objections": [],
+        "review_process": {
+          "adjudicator": "Parent agent after separate source and representation reviews; source objections control",
+          "blind_review": false,
+          "correlated_errors_possible": true,
+          "independent_human_review": false,
+          "reasoning_effort": "ultra",
+          "source_and_representation_agent_model": "gpt-5.6-sol"
+        },
+        "reviewed_at_utc": "2026-09-09T17:37:02.589667+00:00",
+        "reviewed_sha256": {
+          "1MDL.cif.gz": "2338be31c681766f10af6f9546baa09f9bf622acfefed6ea068fd088fb6e977b",
+          "acquisition_appendix.json": "eaefb2681e0a75a4d9f8ce9b55a18deac12513591e232c04bf37956bb6daebcf",
+          "annotation.json": "7381dc6393ebd091def259b99fcfffb48471ed886258d1c1ddd3c06fd8cafb64"
+        },
+        "reviewed_supporting_sha256": {
+          "CLAIMS.md": "ce03c945095cf2a3f17e98431b12bf366c6101f47c1004904771634e6f4f4655",
+          "data/governance/claim_ledger.json": "a3d987205e981eb729b71b90f657b2e8fe76450d0793c0e3de8370f71c571dcc",
+          "docs/ATLAS_MECHANISM_EVIDENCE.md": "e68a3ca11b112c74ad0d09074b3625381d59fed61e8320829b38f39e65f987d6",
+          "src/catalytic_earth/atlas_primary_source_check.py": "4902a5ab74792d38acf921ca6b1c086a8212d5ae0f053c255e001d02294622a3",
+          "tests/core/test_atlas_primary_source_check.py": "769cd3d44b6341c53f576a260eb0f5510250cb8d429267e48c16dce9e328d7e2"
+        },
+        "schema_version": "catalytic-earth.source-annotation-review.v1"
+      },
+      "primary_projection": {
+        "assayed_construct_sequence_inspected": false,
+        "citation_url": "https://pubmed.ncbi.nlm.nih.gov/7893690/",
+        "doi": "10.1021/bi00009a007",
+        "full_text_inspected": false,
+        "inspection_depth": "retained_truncated_primary_abstract_not_full_methods",
+        "observations": [
+          {
+            "comparator_variant_id": null,
+            "conditions": [],
+            "endpoint": {
+              "kind": "turnover",
+              "name": "racemization kcat",
+              "net_direction": "R_to_S"
+            },
+            "observation_id": "K166R-R-to-S-turnover",
+            "result": {
+              "detection_limit": null,
+              "detection_limit_unit": null,
+              "reported_relation": "fold_reduction_reference_unspecified_in_inspected_abstract",
+              "result_class": "measured",
+              "unit": "fold",
+              "value": 5000
+            },
+            "substrate": {
+              "enantiomer": "R",
+              "identifier": null,
+              "name": "mandelate"
+            },
+            "variant": {
+              "substitutions": [
+                {
+                  "mutant_residue": "R",
+                  "sequence_position": 166,
+                  "wild_type_residue": "K"
+                }
+              ],
+              "uniprot_id": "P11444",
+              "variant_id": "K166R"
+            }
+          },
+          {
+            "comparator_variant_id": null,
+            "conditions": [],
+            "endpoint": {
+              "kind": "turnover",
+              "name": "racemization kcat",
+              "net_direction": "S_to_R"
+            },
+            "observation_id": "K166R-S-to-R-turnover",
+            "result": {
+              "detection_limit": null,
+              "detection_limit_unit": null,
+              "reported_relation": "fold_reduction_reference_unspecified_in_inspected_abstract",
+              "result_class": "measured",
+              "unit": "fold",
+              "value": 1000
+            },
+            "substrate": {
+              "enantiomer": "S",
+              "identifier": null,
+              "name": "mandelate"
+            },
+            "variant": {
+              "substitutions": [
+                {
+                  "mutant_residue": "R",
+                  "sequence_position": 166,
+                  "wild_type_residue": "K"
+                }
+              ],
+              "uniprot_id": "P11444",
+              "variant_id": "K166R"
+            }
+          }
+        ],
+        "pdb_identifiers_in_inspected_abstract": [],
+        "protein_identity_support": "The abstract names Pseudomonas putida and cites the contrasting H297N study; it does not provide a UniProt accession or construct sequence.",
+        "raw_capture": {
+          "http_status": 200,
+          "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7893690&retmode=xml",
+          "response_bytes": 9046,
+          "response_sha256": "ab2024a6078e12fb7570db42460ed027c24687b8598e9dbbac22013858ef0385",
+          "response_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7893690&retmode=xml",
+          "retention_scope": "local_analysis_only_not_redistributed",
+          "retrieved_at_utc": "2026-09-08T07:51:11.916637+00:00"
+        },
+        "schema_version": "catalytic-earth.primary-observation-projection.v1",
+        "source_id": "PubMed",
+        "source_record_id": "PMID:7893690"
+      }
+    }
+  ],
+  "schema_version": "catalytic-earth.mechanism-source-contexts.v1",
+  "spec": {
+    "contexts": [
+      {
+        "annotation_binding": {
+          "path": "data/atlas/mechanism_evidence/m0187/structure_followup/annotation.json",
+          "sha256": "7381dc6393ebd091def259b99fcfffb48471ed886258d1c1ddd3c06fd8cafb64"
+        },
+        "case_id": "atlas10.mandelate-racemase-pputida.enolate",
+        "claim_id": "CE-021",
+        "evidence_id": "paper:PMID:7893690",
+        "required_finding_statuses": [
+          "deposited_source_assertion",
+          "deposited_model_and_source_interpretation_separated",
+          "unresolved_source_conflict"
+        ],
+        "review_binding": {
+          "path": "data/atlas/mechanism_evidence/m0187/structure_followup/review.json",
+          "sha256": "4b5f608afefa251d2115cbddf6c355bf7562456e5a22b2d54e4c07e3d2e7dfc7"
+        }
+      }
+    ],
+    "evidence_binding": {
+      "path": "data/atlas/mechanism_evidence/m0187/evidence.json",
+      "sha256": "5c2488eb848d3d27304dadd81aecf3efc838061e09e4cc77043a27b0f85895a2"
+    },
+    "schema_version": "catalytic-earth.mechanism-source-context-spec.v1"
+  }
+}

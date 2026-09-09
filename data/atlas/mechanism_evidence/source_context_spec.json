@@ -1,0 +1,27 @@
+{
+  "contexts": [
+    {
+      "annotation_binding": {
+        "path": "data/atlas/mechanism_evidence/m0187/structure_followup/annotation.json",
+        "sha256": "7381dc6393ebd091def259b99fcfffb48471ed886258d1c1ddd3c06fd8cafb64"
+      },
+      "case_id": "atlas10.mandelate-racemase-pputida.enolate",
+      "claim_id": "CE-021",
+      "evidence_id": "paper:PMID:7893690",
+      "required_finding_statuses": [
+        "deposited_source_assertion",
+        "deposited_model_and_source_interpretation_separated",
+        "unresolved_source_conflict"
+      ],
+      "review_binding": {
+        "path": "data/atlas/mechanism_evidence/m0187/structure_followup/review.json",
+        "sha256": "4b5f608afefa251d2115cbddf6c355bf7562456e5a22b2d54e4c07e3d2e7dfc7"
+      }
+    }
+  ],
+  "evidence_binding": {
+    "path": "data/atlas/mechanism_evidence/m0187/evidence.json",
+    "sha256": "5c2488eb848d3d27304dadd81aecf3efc838061e09e4cc77043a27b0f85895a2"
+  },
+  "schema_version": "catalytic-earth.mechanism-source-context-spec.v1"
+}

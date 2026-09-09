@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import copy
+import gzip
+import hashlib
 import json
 from pathlib import Path
 import unittest
@@ -11,6 +13,10 @@ from catalytic_earth.atlas_mechanism_evidence import (
     validate_mechanism_evidence,
 )
 from catalytic_earth.atlas_transformation_sites import query_transformation_sites
+from catalytic_earth.atlas_evidence_source_context import (
+    audit_deposited_annotation, build_source_contexts, canonical_bytes,
+    query_source_contexts, validate_source_contexts,
+)
 from scripts.build_atlas_mechanism_evidence import validate_source_projections
 
 
@@ -349,6 +355,184 @@ class MechanismEvidenceTests(unittest.TestCase):
         self.validate(rebound_source)
         with self.assertRaisesRegex(ValueError, "source hash differs"):
             validate_source_projections(rebound_source, repo_root=ROOT)
+
+    def source_contexts(self):
+        return json.loads((ROOT / "src/catalytic_earth/mechanism_evidence_data/source_contexts.json").read_text(encoding="utf-8"))
+
+    def repin_context(self, bundle, evidence=None):
+        """Challenge semantic checks after all mutable assertion pins agree."""
+        evidence = self.value if evidence is None else evidence
+        entry, context = bundle["spec"]["contexts"][0], bundle["contexts"][0]
+        evidence_sha = hashlib.sha256(canonical_bytes(evidence)).hexdigest()
+        bundle["spec"]["evidence_binding"]["sha256"] = evidence_sha
+        context["annotation"]["existing_case_binding"]["sha256"] = evidence_sha
+        digest = hashlib.sha256(canonical_bytes(context["annotation"])).hexdigest()
+        entry["annotation_binding"]["sha256"] = digest
+        context["annotation_review"]["reviewed_sha256"]["annotation.json"] = digest
+        entry["review_binding"]["sha256"] = hashlib.sha256(canonical_bytes(context["annotation_review"])).hexdigest()
+
+    def test_primary_projection_requires_all_observation_fields_after_repin(self):
+        bundle, evidence = self.source_contexts(), copy.deepcopy(self.value)
+        projection = bundle["contexts"][0]["primary_projection"]
+        projection["observations"] = [{"observation_id": row["observation_id"]} for row in projection["observations"]]
+        binding = next(row for row in evidence["source_bindings"] if row["binding_id"] == "primary:PMID:7893690")
+        binding["sha256"] = hashlib.sha256(canonical_bytes(projection)).hexdigest()
+        _repin(evidence)
+        self.repin_context(bundle, evidence)
+        with self.assertRaisesRegex(ValueError, "observation differs from primary projection"):
+            validate_source_contexts(bundle, evidence)
+
+    def test_reviewed_scope_cannot_be_promoted_by_refreshing_hashes(self):
+        mutations = [
+            lambda row: row.update(status="measured_turnover"),
+            lambda row: row["source_relation"].update(reference_scope="exact assayed construct identity"),
+            lambda row: row.update(not_established=[]),
+            lambda row: row.update(claim_id="CE-019"),
+            lambda row: row["findings"][1].update(status="observed_functional_turnover"),
+            lambda row: row.update(findings=[f for f in row["findings"] if f["status"] != "unresolved_source_conflict"]),
+        ]
+        for index, mutate in enumerate(mutations):
+            with self.subTest(index=index):
+                bundle = self.source_contexts()
+                mutate(bundle["contexts"][0]["annotation"])
+                self.repin_context(bundle)
+                with self.assertRaises(ValueError):
+                    validate_source_contexts(bundle, self.value)
+
+    def test_bound_sources_are_byte_exact_before_json_decode(self):
+        bundle = self.source_contexts()
+        def changed(path):
+            raw = (ROOT / path).read_bytes()
+            return raw if path.endswith(".gz") else raw.replace(b"\n", b"\r\n")
+        with self.assertRaisesRegex(ValueError, "source hash differs"):
+            build_source_contexts(bundle["spec"], self.value, changed)
+
+    def test_deposit_context_is_separate_from_observations_and_retains_uncertainty(self):
+        bundle = self.source_contexts()
+        baseline = copy.deepcopy(bundle)
+        result = self.query(variant="K166R", endpoint="structure", source_contexts=bundle)
+        self.assertEqual((result["case_count"], result["matched_observation_count"]), (0, 0))
+        contextual = result["source_context_query"]
+        self.assertEqual(contextual["context_count"], 1)
+        self.assertFalse(contextual["query_semantics"]["endpoint_filter_applies"])
+        [match] = contextual["matches"]
+        self.assertEqual(match["case"], self.value["cases"][0])
+        self.assertEqual(match["citation_variant_related_observation_ids"], ["K166R-R-to-S-turnover", "K166R-S-to-R-turnover"])
+        self.assertIn("exact_assayed_construct_and_preparation_identity", match["relation"]["unresolved_equivalences"])
+        context = match["source_context"]
+        self.assertEqual(context["pdb_id"], "1MDL")
+        self.assertEqual(context["source_relation"]["variant"], "K166R")
+        self.assertEqual([(r["component"]["id"], r["instance"]["asym_id"], r["instance"]["pdb_seq_num"])
+                          for r in context["ligand_instances"]], [("RMN", "C", "398"), ("SMN", "D", "399")])
+        self.assertEqual(context["source_rows"]["_entity_src_gen"][0]["pdbx_gene_src_scientific_name"], "Pseudomonas aeruginosa")
+        self.assertTrue(any(r["status"] == "unresolved_source_conflict" for r in context["findings"]))
+        self.assertIn("PRESUMABLY", context["source_rows"]["_pdbx_entry_details"][0]["compound_details"])
+        self.assertTrue(context["not_established"])
+        match["case"]["observations"].clear()
+        context["findings"].clear()
+        self.assertEqual(bundle, baseline)
+        self.assertEqual(len(self.value["cases"][0]["observations"]), 6)
+
+    def test_context_variant_filter_cannot_leak_to_focal_variant(self):
+        for variant, count in ((None, 1), ("k166r", 1), ("H297N", 0), ("WT", 0)):
+            with self.subTest(variant=variant):
+                context = query_source_contexts(self.source_contexts(), self.value, variant=variant)
+                self.assertEqual(context["context_count"], count)
+        for endpoint in (None, "turnover", "isotope_exchange", "structure"):
+            baseline = self.query(variant="K166R", endpoint=endpoint)
+            included = self.query(variant="K166R", endpoint=endpoint, source_contexts=self.source_contexts())
+            self.assertEqual(included.pop("source_context_query")["context_count"], 1)
+            self.assertEqual(included, baseline)
+
+    def test_context_rejects_wrong_case_source_and_primary_projection(self):
+        mutations = []
+        other_evidence = self.source_contexts()
+        other_evidence["spec"]["contexts"][0]["evidence_id"] = "paper:PMID:1909893"
+        mutations.append(other_evidence)
+        other_case = self.source_contexts()
+        other_case["spec"]["contexts"][0]["case_id"] += ".wrong"
+        mutations.append(other_case)
+        altered_projection = self.source_contexts()
+        altered_projection["contexts"][0]["primary_projection"]["doi"] = "10.0/unrelated"
+        mutations.append(altered_projection)
+        altered_annotation = self.source_contexts()
+        altered_annotation["contexts"][0]["annotation"]["source_relation"]["variant"] = "H297N"
+        mutations.append(altered_annotation)
+        duplicate = self.source_contexts()
+        duplicate["contexts"].append(copy.deepcopy(duplicate["contexts"][0]))
+        duplicate["spec"]["contexts"].append(copy.deepcopy(duplicate["spec"]["contexts"][0]))
+        mutations.append(duplicate)
+        for index, changed in enumerate(mutations):
+            with self.subTest(index=index), self.assertRaises(ValueError):
+                validate_source_contexts(changed, self.value)
+
+    def test_coherent_annotation_repin_cannot_bypass_retained_deposit(self):
+        bundle = self.source_contexts()
+        entry, context = bundle["spec"]["contexts"][0], bundle["contexts"][0]
+        changed = context["annotation"]
+        changed["source_rows"]["_entity_src_gen"][0]["pdbx_gene_src_scientific_name"] = "Pseudomonas putida"
+        raw = canonical_bytes(changed)
+        entry["annotation_binding"]["sha256"] = hashlib.sha256(raw).hexdigest()
+        review = context["annotation_review"]
+        review["reviewed_sha256"]["annotation.json"] = entry["annotation_binding"]["sha256"]
+        review_raw = canonical_bytes(review)
+        entry["review_binding"]["sha256"] = hashlib.sha256(review_raw).hexdigest()
+        overrides = {entry["annotation_binding"]["path"]: raw, entry["review_binding"]["path"]: review_raw}
+        with self.assertRaisesRegex(ValueError, "source rows differ"):
+            build_source_contexts(bundle["spec"], self.value,
+                                  lambda path: overrides.get(path) or (ROOT / path).read_bytes())
+
+    def test_citation_swap_with_refreshed_pins_still_requires_the_same_variant(self):
+        bundle = self.source_contexts()
+        entry, context = bundle["spec"]["contexts"][0], bundle["contexts"][0]
+        entry["evidence_id"] = "paper:PMID:1909893"
+        context["primary_projection"] = json.loads((ROOT / "data/atlas/mechanism_evidence/m0187/pmid_1909893_projection.json").read_text(encoding="utf-8"))
+        annotation = context["annotation"]
+        annotation["source_relation"].update(primary_pmid="1909893", doi=context["primary_projection"]["doi"])
+        annotation["source_rows"]["_citation"][0].update(
+            pdbx_database_id_pubmed="1909893", pdbx_database_id_doi=context["primary_projection"]["doi"],
+        )
+        digest = hashlib.sha256(canonical_bytes(annotation)).hexdigest()
+        entry["annotation_binding"]["sha256"] = digest
+        context["annotation_review"]["reviewed_sha256"]["annotation.json"] = digest
+        entry["review_binding"]["sha256"] = hashlib.sha256(canonical_bytes(context["annotation_review"])).hexdigest()
+        with self.assertRaisesRegex(ValueError, "no exact primary-evidence variant relation"):
+            validate_source_contexts(bundle, self.value)
+
+    def test_coherent_h297n_rebinding_cannot_replace_the_retained_k166r_deposit(self):
+        bundle = self.source_contexts()
+        entry, context = bundle["spec"]["contexts"][0], bundle["contexts"][0]
+        entry["evidence_id"] = "paper:PMID:1909893"
+        annotation = context["annotation"]
+        h297n = json.loads((ROOT / "data/atlas/mechanism_evidence/m0187/pmid_1909893_projection.json").read_text(encoding="utf-8"))
+        context["primary_projection"] = h297n
+        annotation["source_relation"].update(
+            primary_pmid="1909893", doi=h297n["doi"], variant="H297N",
+            deposited_sequence_position=297, reference_sequence_position=297,
+            deposited_residue="ASN", reference_residue="HIS",
+        )
+        annotation["source_rows"]["_citation"][0].update(
+            pdbx_database_id_pubmed="1909893", pdbx_database_id_doi=h297n["doi"],
+        )
+        annotation["source_rows"]["_entity"][0]["pdbx_mutation"] = "H297N"
+        annotation["source_rows"]["_struct_ref_seq_dif"][0].update(
+            seq_num="297", pdbx_auth_seq_num="297", pdbx_seq_db_seq_num="297", mon_id="ASN", db_mon_id="HIS",
+        )
+        self.repin_context(bundle)
+        overrides = {
+            entry["annotation_binding"]["path"]: canonical_bytes(annotation),
+            entry["review_binding"]["path"]: canonical_bytes(context["annotation_review"]),
+        }
+        with self.assertRaisesRegex(ValueError, "source rows differ.*_citation"):
+            build_source_contexts(bundle["spec"], self.value,
+                                  lambda path: overrides.get(path) or (ROOT / path).read_bytes())
+
+    def test_ligand_instances_are_not_matched_by_component_name_alone(self):
+        annotation = self.source_contexts()["contexts"][0]["annotation"]
+        raw = gzip.decompress((ROOT / annotation["source_binding"]["path"]).read_bytes())
+        annotation["ligand_instances"][0]["instance"]["asym_id"] = "D"
+        with self.assertRaisesRegex(ValueError, "ligand identity differs"):
+            audit_deposited_annotation(annotation, raw)
 
 
 if __name__ == "__main__":

@@ -34,6 +34,7 @@ effects.
 catalytic-earth atlas-mechanism-evidence
 catalytic-earth atlas-mechanism-evidence --variant H297N --endpoint isotope_exchange
 catalytic-earth atlas-mechanism-evidence --variant K166R --endpoint turnover
+catalytic-earth atlas-mechanism-evidence --variant K166R --include-source-context
 ```
 
 The dependency-free wheel returns one case containing six published-observation
@@ -43,6 +44,20 @@ the **complete case, adjudication and abstentions** alongside the selected rows.
 The two commands with filters match two observations each. An empty result
 means no matching retained observation; it is not evidence of absent chemistry.
 `--output` writes a new JSON file and refuses to overwrite an existing file.
+
+The optional `--include-source-context` adds a separately versioned
+`source_context_query`. It currently returns one deposited K166R context,
+linked through the exact primary PMID/DOI and reported substitution. The
+complete six-observation case and its adjudication accompany the context.
+The original observations, their count, and the default query stay unchanged.
+
+`--variant` filters both planes. `--endpoint` filters **observations only**:
+`--variant K166R --endpoint structure --include-source-context` returns zero
+retained abstract observations and one deposited context. A context match
+does not satisfy the observation filter. `H297N` returns no deposit context;
+that means no matching retained context, not that an H297N structure cannot
+exist. Related observation IDs identify same-citation/variant rows, not new
+measurements or identical crystal and assay specimens.
 
 The [evidence sidecar](../data/atlas/mechanism_evidence/m0187/evidence.json)
 records results separately from source interpretation and project diagnosis.
@@ -94,8 +109,28 @@ The shared mmCIF parser now exposes standard citation, sequence-reference,
 mutation, organism and entry-detail categories. The source rows are checked
 against the retained file. This adds a source annotation to an existing
 case, not another assay observation, mechanism draft, or evidence tier.
-The six-observation CLI output remains unchanged; the supplemental context
-is currently available through this document and its data link (CE-021).
+The default six-observation CLI output remains unchanged; the optional source
+context interface exposes the accepted annotation beside it (CE-021). It
+preserves each ligand instance, raw occupancy and alternate-conformation
+tokens, source interpretation, organism conflict and unresolved identities.
+
+The [source-context specification](../data/atlas/mechanism_evidence/source_context_spec.json)
+pins the accepted annotation/review and existing evidence. A shared adapter
+checks all reviewed source-file pins and rederives deposited citation,
+entity/reference/alignment/substitution and ligand-instance facts from the
+retained mmCIF. Runtime joins also check exact primary-projection hashes,
+PMID/DOI, variant, reference accession and supporting observation IDs. The
+wheel carries the reviewed factual context and provenance, without needing
+the original checkout or network. No enzyme identifier branches or repeated
+manual observation joins are added; only single-substitution deposit contexts
+supported by this source format are currently handled.
+
+The useful relation is a bounded bridge between published functional endpoints
+and deposited specimen evidence. A competent PubMed/PDB workflow can find both
+sources; this interface retains their exact relation and prevents a K166R
+deposit or inferred product origin from becoming H297N or turnover evidence.
+No measured curation-time reduction or comparative biological accuracy is
+claimed.
 
 ### Boundaries of the original abstract-only query
 

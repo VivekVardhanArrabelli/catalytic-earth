@@ -7,69 +7,73 @@ This block and `docs/HOURLY_RESEARCH.md` govern the hourly research task.
 Everything below the end marker is historical; claims, errata, truth policy
 and current decisions control conflicting wording.
 
-- **Identity/base:** owner `01a08721-9cf7-7c22-907d-5ba51e9c818b:cf0b2d97-0e25-410b-8c16-97dd78bb86c9`;
-  actual start 2026-09-09T17:05:35Z; clean synchronized base
-  `209f609b6146f0f929c28ca8571eb6a115ed6cbb`; branch
-  `codex/polymer-scope-k166r-context-20260909`. The Git-local receipt records final elapsed
-  time, reviewed/pushed/merged SHA, CI and lock release.
-- **Polymer finding:** a paper-scoped qualitative product/topology relation fits
-  the existing representation with unknown numeric n. Missing typed event kinds
-  do not prohibit qualitative source drafting. Current M0970 permission remains
-  annotation only; its selected source scope still lacks adjudicated product and
-  before/after topology. A source-local product handle is not exact X00676
-  identity. Transfer, relocation and lipid-II loading are the paper's proposed
-  sequence, not observed state recurrence, retention or processivity.
-- **New deposited context:** 1MDL cites the exact K166R paper PMID7893690 and
-  declares entity 1/chain A aligned to P11444 with ARG166 against reference
-  LYS166. Distinct RMN/R and SMN/S ligand models are retained. The depositor's
-  suggested slow-racemization origin for SMN is interpretation, not a new
-  measured turnover event. Gene-source P. aeruginosa conflicts with the
-  P11444/MANR_PSEPU reference and paper P. putida attribution; no organism is
-  silently selected (CE-021).
-- **Capability/evidence:** `data/atlas/polymer_context/m0970/annotations.json`
-  and `docs/ATLAS_POLYMER_CONTEXT.md` record the positive scope decision.
-  `data/atlas/mechanism_evidence/m0187/structure_followup/` retains lossless
-  1MDL mmCIF, annotation, cumulative acquisition appendix and reviewed hashes.
-  `docs/ATLAS_MECHANISM_EVIDENCE.md` links the new source supplement. Six standard
-  mmCIF categories extend the shared parser; the original six-observation CLI
-  remains unchanged. No frozen Atlas-10 structure mapping was rewritten.
-- **Limits:** neither full primary paper's methods was obtained. Exact assay
-  preparation, H297N structure, assay conditions/detection limits, bound
-  protonation, source-drawing atom correspondence and complete mechanisms remain
-  unresolved. No numerical polymer length, exact reaction instance, solution
-  population, independent human review, evidence tier or project-run experiment.
-- **Budgets:** atlas50.computational-panel-review.2026-09-05 remains
-  **28 / 1,474,405 bytes**; human-tkt-e160q-6ha3-geometry-function remains
-  **7 / 3,004,884**. The original M0187 H297N/K166R primary abstract scope carries
-  its two captures forward to **12 requests / 440,960 bytes**. Its inherited
-  **12-request/2-MiB sublimit is reached**; do not rename/reset the batch.
-  Ten requests include two ACS 403 and two unsupported-query 400 responses.
-  Historical unmetered discovery remains disclosed. No paper body is redistributed.
-- **Review/reconsideration:** source objections overrode the initial executable-
-  event blocker interpretation; the positive qualitative decision is accepted.
-  Further same-paper encoding had little value, so work pivoted to M0187 evidence.
-  Exact source joins rejected unrelated 9FI1 and preserved the organism conflict.
-  Chemistry stays in data; parser additions are source-format reuse. Existing
-  captures and three-view annotation projection were reused, with no measured
-  curation-time claim. Added value is prevention of unjustified source transfer,
-  not new biology beyond the papers. Board:
-  `work/coordination_polymer_scope_20260909.md`. All reviewers have completed,
-  no source objection remains, and frozen kernels/registries/exposure are unchanged.
-- **Verification/publication:** checkpoint 2026-09-09T17:38:50.735384+00:00 (33.3 minutes).
-  All 504 core tests pass without skips; network-blocked installed-wheel Atlas-3
-  and Atlas-10/draft/transformation/site/candidate checks pass. Source/code diff
-  reviewed; final repository contracts and all required CI must pass before merge.
-  Prior main CI34379160592 passed all four jobs. Only owned files are present.
-  The local receipt/final task result records exact PR/head/merge/sync/release;
-  resume a pending PR before new research if publication did not complete.
-- **One next action:** expose deposited-variant context through a shared source-
-  context interface in the mechanism-evidence query, keeping PDB deposit evidence
-  distinct from the retained primary-abstract observations. Expected gain:
-  queryable exact variant/citation context without assay-specimen equivalence.
-  Preserve the organism conflict and all six original observations. Use retained
-  sources; no new acquisition is needed. Stop if it requires enzyme-specific
-  runtime or fails to improve a concrete variant-evidence query. Do not repeat
-  resolved polymer-role/analogue review or extend same-paper geometry.
+- **Identity/base:** owner `01a08759-ebbb-73a1-ab7c-8b4ced7a36c8:097537c6-fc15-4f1a-b86d-9fb55ef0b484`;
+  actual start 2026-09-09T18:07:08Z; clean synchronized base
+  `d775313aea8e751169df77367595f1b66563ca45`; branch
+  `codex/deposited-variant-query-20260909`. Checkpoint 2026-09-09T18:32:22.820372+00:00
+  (25.2 minutes). The Git-local receipt records final
+  elapsed time, reviewed/pushed/merged SHA, CI and release.
+- **Question/finding:** can the accepted K166R deposit be queried beside
+  primary-abstract evidence without assay-specimen equivalence? Yes: exact
+  case/evidence/PMID/DOI and reported-substitution joins expose the current
+  1MDL deposited context. P11444 remains deposition-declared reference and
+  Atlas context, not an abstract-declared assay identity. The useful relation
+  prevents mistaking a deposit or inferred product origin for functional data.
+- **New capability:** `atlas-mechanism-evidence --include-source-context` adds
+  a separately versioned/countable context query. Variant filters both planes;
+  endpoint filters observations only. K166R/structure returns zero original
+  observations and one context; H297N returns no matching retained deposit.
+  Every context retains the complete six-observation adjudicated case.
+  The 16 original variant/endpoint query combinations are byte-identical
+  to the base implementation. No assay, protein, reaction or mechanism is added.
+- **Evidence/limits:** `data/atlas/mechanism_evidence/source_context_spec.json`
+  binds the unchanged accepted `m0187/structure_followup/` annotation, review,
+  acquisition appendix and lossless 1MDL source;
+  `src/catalytic_earth/mechanism_evidence_data/source_contexts.json` packages
+  their factual projection. `docs/ATLAS_MECHANISM_EVIDENCE.md` describes use.
+  RMN/C/author A398 and SMN/D/author A399, occupancy tokens, depositor-inferred
+  SMN origin and organism conflict stay distinct. Exact assay preparation,
+  crystal/assay state identity, bound protonation, H297N structure, conditions,
+  detection floors and source-atom correspondence remain unresolved.
+- **Budgets:** zero new scientific-source requests.
+  atlas50.computational-panel-review.2026-09-05 remains **28 / 1,474,405 bytes**;
+  human-tkt-e160q-6ha3-geometry-function remains **7 / 3,004,884**; original
+  M0187 H297N/K166R primary scope remains **12 / 440,960**, at its inherited
+  **12-request/2-MiB sublimit**. Keep failed requests and historical unmetered
+  discovery disclosed; do not rename/reset a batch. No paper body was obtained.
+- **Review/reconsideration:** all three computational review lanes accepted
+  after source objections drove corrections. Exact projection equality closes
+  a demonstrated refreshed-hash/truncated-projection bypass. Retained-source
+  checks reject coherent H297N rebinding and organism normalization; typed
+  boundaries preserve source interpretation and unresolved scope. Chemistry
+  and case-specific required roles are data; one shared source-format adapter
+  reuses the accepted annotation/projections without retyping observations.
+  No measured curation-time or biological-performance claim. Repeating the
+  class-I/class-II aldolase contrast was rejected because it is already in
+  `docs/ATLAS_SOURCE_DRAFTS.md` and the chemical query. Further M0187 wrappers
+  or same-paper geometry lack information gain. Board:
+  `work/coordination_variant_query_20260909.md`. Reviewers have finished;
+  no source objection remains. Frozen kernels/registries/exposure are unchanged.
+- **Verification/publication:** 516 core tests pass without skips; network-
+  blocked installed-wheel Atlas-3 and Atlas-10/draft/transformation/site/candidate
+  checks pass, including the new context query. Prior main CI34385235075 passed
+  all four jobs. Source/code diff reviewed; final repository contracts and
+  required reviewed-head CI govern publication. Only owned changes exist.
+  Exact PR/head/merge/sync/release state belongs in the local receipt/final
+  task result; resume a pending PR before new research.
+- **One next action:** directly inspect the full primary methods/kinetic table
+  for M0222's mobile-catalyst question, PMID17728250 / DOI10.1074/jbc.M704968200
+  (native versus Lys146Met and Tyr363 roles). The existing projection at
+  `data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_sources/observed_state_v3/m0222/PMID_17728250_projection.json`
+  and `work/coordination_mechanism_case.md` identify the unresolved lead.
+  Expected gain: identify which measured endpoint discriminates the proposed
+  proton-transfer role and which protein/state it applies to, beyond a
+  class-level catalytic label. Recover the existing source-scope acquisition
+  accounting before any request. Stop at a supported source-access or
+  applicability gap if only indexed reprint text is available, the carried
+  budget cannot be established, or the primary methods do not support an
+  exact variant/endpoint join. Do not invent rates, resolve the mixed-species
+  mechanism by inference, or rerun the already available aldolase contrast.
 
 Preserve historical content below this marked block. Git identifies the
 containing increment; no self-hash follow-up commit is required.

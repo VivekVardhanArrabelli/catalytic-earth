@@ -1,5 +1,20 @@
 # Current Decisions
 
+## 2026-09-09: separate deposited context from published observation selection
+
+The [mechanism-evidence command](ATLAS_MECHANISM_EVIDENCE.md) may expose accepted
+deposited annotations through `--include-source-context`. Exact variant filters
+apply to this separately versioned extension; endpoint filters apply only to
+the original observations. Context membership never creates an observation or
+establishes assay-specimen equivalence. Default query semantics and accepted
+source evidence remain unchanged.
+
+The bounded shared adapter uses data-bound citation, sequence and ligand
+declarations; case identifiers are configuration, not runtime branches. The
+existing core CLI gains only loading/wiring for this interface and its
+deterministic manifest is refreshed. No giant legacy module, frozen Atlas
+kernel, protected registry, exposure history or evidence-tier rule changes.
+
 ## 2026-09-09: restart one hourly research writer with explicit ownership
 
 The owner requested fresh hourly tasks that inherit prior work through Git.

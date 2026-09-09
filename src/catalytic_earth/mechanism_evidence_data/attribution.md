@@ -29,3 +29,16 @@ statistically independent, human-equivalent or calibrated for scientific
 accuracy. The manually maintained evidence payload hash binds the conclusion,
 abstentions, observations and source projection hashes. Regenerating packaged
 files does not refresh that review pin.
+
+The optional deposited-context extension reuses the public
+[PDB 1MDL deposit](https://www.rcsb.org/structure/1MDL), captured on
+2026-09-09 from `https://files.rcsb.org/download/1MDL.cif`. The packaged
+annotation preserves deposited citation, sequence-reference and ligand-model
+facts and the depositor's interpretation; these are distinct from the two
+primary-abstract projections. The retained gzip source, acquisition appendix
+and accepted annotation review remain in the full repository under
+`data/atlas/mechanism_evidence/m0187/structure_followup/`.
+
+The same source batch totals 12 requests / 440,960 bytes, reaching its inherited
+12-request sublimit. This query integration made no new scientific-source
+request. Original raw abstract XML and paper bodies remain unbundled.

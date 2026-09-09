@@ -1,5 +1,20 @@
 # Current State
 
+## 2026-09-09: deposited variant evidence is queryable with source boundaries
+
+The optional [mechanism source-context query](ATLAS_MECHANISM_EVIDENCE.md)
+now exposes the accepted 1MDL K166R annotation through exact citation,
+reference/substitution and primary-observation joins. Deposited context is
+counted separately: K166R with a structure endpoint has zero retained
+abstract observations and one source context; H297N has no matching retained
+deposit context. Both planes retain the complete original adjudicated case.
+The six original observations and default query are unchanged.
+
+Distinct RMN/SMN instances, depositor-inferred origin, conflicting organism
+assertions and unresolved assay-specimen identity remain visible. Retained
+sources suffice; no acquisition budget is consumed. This adds a reusable
+query relation, not another biological case, measured outcome or evidence tier.
+
 ## 2026-09-09: symbolic scope and a distinct K166R deposit
 
 The [polymer scope check](ATLAS_POLYMER_CONTEXT.md#symbolic-cycle-scope-decision--2026-09-09)
