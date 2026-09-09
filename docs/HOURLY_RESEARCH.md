@@ -152,7 +152,11 @@ and package checks. A source-only increment need not rerun unrelated legacy
 model experiments. Never weaken a required check to meet the hourly deadline.
 
 Use a `codex/` branch for a coherent change, inspect the actual diff, stage only
-owned files, commit and push it. Open a PR and merge only after appropriate
+owned files, commit and push it. When `work/handoff.md` or another `work/` file
+changes, stage that file first, run `python scripts/build_report_archive.py`,
+then stage `release/report_archive_index.json` and validate; the archive index
+binds staged Git blobs, not unstaged file contents.
+Open a PR and merge only after appropriate
 source/diff review and required checks pass, using the reviewed head SHA.
 Routine publishing and merging of verified increments is authorized. Prefer
 finishing the existing PR over opening a fresh PR every hour. If CI or review
