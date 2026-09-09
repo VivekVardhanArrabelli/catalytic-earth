@@ -1,5 +1,21 @@
 # Current State
 
+## 2026-09-09: M0222 enamine and mobile-catalyst pose remain distinct
+
+The [retained 2QUT check](ATLAS_SOURCE_DRAFTS.md#m0222-an-enamine-model-does-not-supply-the-mobile-catalyst-pose)
+finds the source-proposed Tyr363 proton-transfer arrangement unrepresented in
+the deposited model: its OH is over 24 Å from both named 13P terminal carbons in
+A/B/C and unmodeled in D, despite four deposited Lys229–13P covalent links.
+Both existing M0222 annotation views now carry that source-model limitation
+(CE-022). It supplies no dynamics, inactivity, kinetic rate or new observation.
+The factual projection preserves exact atom/chain identity and coordinate gaps.
+
+The full-paper kinetic inquiry stopped before acquisition because historical
+source accounting is incomplete. No new scientific-source request was made.
+The quantitative functional discriminator remains open; its source scope must
+not be renamed or reset. Frozen kernels, source drafts and exposure history
+are unchanged.
+
 ## 2026-09-09: deposited variant evidence is queryable with source boundaries
 
 The optional [mechanism source-context query](ATLAS_MECHANISM_EVIDENCE.md)

@@ -7,73 +7,86 @@ This block and `docs/HOURLY_RESEARCH.md` govern the hourly research task.
 Everything below the end marker is historical; claims, errata, truth policy
 and current decisions control conflicting wording.
 
-- **Identity/base:** owner `01a08759-ebbb-73a1-ab7c-8b4ced7a36c8:097537c6-fc15-4f1a-b86d-9fb55ef0b484`;
-  actual start 2026-09-09T18:07:08Z; clean synchronized base
-  `d775313aea8e751169df77367595f1b66563ca45`; branch
-  `codex/deposited-variant-query-20260909`. Checkpoint 2026-09-09T18:32:22.820372+00:00
-  (25.2 minutes). The Git-local receipt records final
-  elapsed time, reviewed/pushed/merged SHA, CI and release.
-- **Question/finding:** can the accepted K166R deposit be queried beside
-  primary-abstract evidence without assay-specimen equivalence? Yes: exact
-  case/evidence/PMID/DOI and reported-substitution joins expose the current
-  1MDL deposited context. P11444 remains deposition-declared reference and
-  Atlas context, not an abstract-declared assay identity. The useful relation
-  prevents mistaking a deposit or inferred product origin for functional data.
-- **New capability:** `atlas-mechanism-evidence --include-source-context` adds
-  a separately versioned/countable context query. Variant filters both planes;
-  endpoint filters observations only. K166R/structure returns zero original
-  observations and one context; H297N returns no matching retained deposit.
-  Every context retains the complete six-observation adjudicated case.
-  The 16 original variant/endpoint query combinations are byte-identical
-  to the base implementation. No assay, protein, reaction or mechanism is added.
-- **Evidence/limits:** `data/atlas/mechanism_evidence/source_context_spec.json`
-  binds the unchanged accepted `m0187/structure_followup/` annotation, review,
-  acquisition appendix and lossless 1MDL source;
-  `src/catalytic_earth/mechanism_evidence_data/source_contexts.json` packages
-  their factual projection. `docs/ATLAS_MECHANISM_EVIDENCE.md` describes use.
-  RMN/C/author A398 and SMN/D/author A399, occupancy tokens, depositor-inferred
-  SMN origin and organism conflict stay distinct. Exact assay preparation,
-  crystal/assay state identity, bound protonation, H297N structure, conditions,
-  detection floors and source-atom correspondence remain unresolved.
-- **Budgets:** zero new scientific-source requests.
-  atlas50.computational-panel-review.2026-09-05 remains **28 / 1,474,405 bytes**;
-  human-tkt-e160q-6ha3-geometry-function remains **7 / 3,004,884**; original
-  M0187 H297N/K166R primary scope remains **12 / 440,960**, at its inherited
-  **12-request/2-MiB sublimit**. Keep failed requests and historical unmetered
-  discovery disclosed; do not rename/reset a batch. No paper body was obtained.
-- **Review/reconsideration:** all three computational review lanes accepted
-  after source objections drove corrections. Exact projection equality closes
-  a demonstrated refreshed-hash/truncated-projection bypass. Retained-source
-  checks reject coherent H297N rebinding and organism normalization; typed
-  boundaries preserve source interpretation and unresolved scope. Chemistry
-  and case-specific required roles are data; one shared source-format adapter
-  reuses the accepted annotation/projections without retyping observations.
-  No measured curation-time or biological-performance claim. Repeating the
-  class-I/class-II aldolase contrast was rejected because it is already in
-  `docs/ATLAS_SOURCE_DRAFTS.md` and the chemical query. Further M0187 wrappers
-  or same-paper geometry lack information gain. Board:
-  `work/coordination_variant_query_20260909.md`. Reviewers have finished;
-  no source objection remains. Frozen kernels/registries/exposure are unchanged.
-- **Verification/publication:** 516 core tests pass without skips; network-
-  blocked installed-wheel Atlas-3 and Atlas-10/draft/transformation/site/candidate
-  checks pass, including the new context query. Prior main CI34385235075 passed
-  all four jobs. Source/code diff reviewed; final repository contracts and
-  required reviewed-head CI govern publication. Only owned changes exist.
-  Exact PR/head/merge/sync/release state belongs in the local receipt/final
-  task result; resume a pending PR before new research.
-- **One next action:** directly inspect the full primary methods/kinetic table
-  for M0222's mobile-catalyst question, PMID17728250 / DOI10.1074/jbc.M704968200
-  (native versus Lys146Met and Tyr363 roles). The existing projection at
-  `data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_sources/observed_state_v3/m0222/PMID_17728250_projection.json`
-  and `work/coordination_mechanism_case.md` identify the unresolved lead.
-  Expected gain: identify which measured endpoint discriminates the proposed
-  proton-transfer role and which protein/state it applies to, beyond a
-  class-level catalytic label. Recover the existing source-scope acquisition
-  accounting before any request. Stop at a supported source-access or
-  applicability gap if only indexed reprint text is available, the carried
-  budget cannot be established, or the primary methods do not support an
-  exact variant/endpoint join. Do not invent rates, resolve the mixed-species
-  mechanism by inference, or rerun the already available aldolase contrast.
+- **Identity/base:** owner `01a0878f-f0d4-7f60-9a1c-021163c8c269:c89d7c82-d713-4d17-8136-f2fd85eb374a`;
+  actual UTC start 2026-09-09T19:06:06Z; clean synchronized base
+  `03d4e2f2ddc68570c8023cb481ce5c2a05349af3`; branch
+  `codex/m0222-mobile-catalyst-20260909`. Checkpoint 2026-09-09T19:31:07Z
+  (25.0 minutes). The Git-local receipt records final
+  elapsed time, reviewed/pushed/merged SHA, CI and lock release. No prior PR
+  or recovery work was pending.
+- **Question and stop:** the inherited M0222 primary-methods/kinetic-table
+  inquiry stopped before any acquisition. Two metered scopes can be recovered,
+  but unmetered discovery and unattributed 2QUT acquisition prevent an exact
+  cumulative balance. No kinetic endpoint was extracted from indexed text.
+  The supported alternative asks whether retained 2QUT supplies the proposed
+  mobile Tyr363 proton-transfer pose, beyond its source-assigned enamine label.
+- **Grounded finding:** 2QUT retains four Lys229 NZ–13P C2 covalent connections.
+  In A/B/C, author Tyr363 OH is 24.289/24.275/24.202 Å from same-chain 13P C1
+  and 26.655/26.722/26.637 Å from C3. D Tyr363 is unmodeled. Declared assembly 1
+  uses only identity operator 1; cross-chain checks supply no closer Tyr OH.
+  Coordinate gaps are A/B346–358, C349–358 and D361–363. Thus this retained
+  enamine model does not furnish the proposed mobile-catalyst pose (CE-022).
+  This is not evidence against a transient conformation or for absent catalysis.
+- **Usable content/limits:** both existing M0222 primary annotation views now
+  carry `mobile_catalyst_pose`. The adjacent globally hash-bound factual
+  projection preserves 23 selected atom rows, per-position coverage, named
+  carbon distances and assembly/reference/connection rows. No observation,
+  protein, reaction, mechanism, assay or evidence tier is added. Author Tyr363
+  and interval-mapped P00883 position364 remain distinct; C1/C3 are raw PDB
+  names, not a source-atom/proton map. No dynamics, solution population,
+  protonation, causal geometric threshold, kinetic rate, complete mechanism,
+  assay-specimen identity or Lys146Met coordinate context is established.
+- **Evidence:** `data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_sources/mobile_tail_20260909/`
+  contains `evidence_projection.json` and `acquisition_recovery.json`.
+  Projection SHA256 `b0f7bc0f1004daf33d926cc5e5c93830b9918ea0358e2ca2e16665fcef88a011`;
+  reviewed primary-annotation payload
+  `1a39745fe852e5cebb7b764d8d7f4969dadf80d57c4210e006c4c455fdbc9bbf`.
+  The source mmCIF, old observed-state projection and source-mechanism bytes
+  remain unchanged. See `docs/ATLAS_SOURCE_DRAFTS.md` for query and scope.
+- **Acquisition:** zero new scientific-source requests/bytes. Known M0222-related
+  lower bound is 33 requests / 578,501 bytes across separate scopes, not a
+  remaining balance: source batch 31/569,327 plus primary qualification 2/9,174
+  under its original 3-request/5-MiB sublimit. The original ledger metadata was
+  recovered from its task trace; original raw files are absent. Seven failed
+  direct-open actions include a tool refusal and are not a complete HTTP
+  ledger. Earlier ancillary checks and source discovery remain unmetered.
+  Do not reset or rename this scope. The distinct panel batch remains 28/1,474,405;
+  human-TKT6HA3 remains 7/3,004,884; M0187 remains 12/440,960 at its 12-request cap.
+- **Review/reconsideration:** all three computational lanes accepted the
+  source-model limitation. Source objections retained exact chain gaps, raw
+  numbering and state boundaries. M0187/6HA3 evidence validators still contain
+  first-case assumptions; extending them here would require bespoke runtime.
+  Existing limit fields plus a project projection suffice. Current validators
+  check pins, not the new geometry/prose or a formal limit-to-evidence edge.
+  Independent source recomputation supplied that review, not expert validation.
+  A competent PDB viewer can obtain these facts; the useful addition is keeping
+  the pose limitation beside the enamine annotation. No measured time saving
+  or superiority claim. Board: `work/coordination_m0222_mobile_catalyst_20260909.md`.
+- **Verification/publication:** source rebuild, source/annotation-preservation
+  checks and network-blocked fresh-directory wheel checks pass. The new limit
+  appears in compact, step-inclusive, observed-context and state-filtered CLI
+  queries. All 516 core tests and repository contracts pass without skips;
+  reviewed-head CI remains required before merge. A legacy-v2
+  fixture initially inherited the new limit/binding and was corrected to retain
+  its original pinned historical hash. No production code changed. Exact
+  PR/head/merge/sync/release belongs in the local receipt/final result; resume a
+  pending PR before new research. No unrelated or owned recovery changes remain
+  beyond this increment.
+- **One next action:** source-scope review of the chemically distinct M0081
+  AroQ chorismate-mutase panel case (P32178/3CSM, EC5.4.99.5), toward a draft
+  of its concerted rearrangement and an explicit bound-ligand/template boundary.
+  Expected gain: useful new chemistry and a design-relevant substrate-versus-
+  analogue distinction, rather than another M0222 wrapper. Start from the
+  existing `phase_a/candidate_spec.json` and computational panel review, which
+  are transcription-only. M0081 is already in the shared original 40-ID source
+  response; carry `atlas50.computational-panel-review.2026-09-05` from
+  `data/atlas/polymer_context/m0970/acquisition_appendix.json` (28/1,474,405),
+  retaining its historical-discovery disclosure. Establish applicable carried
+  accounting before requests, then challenge/adjudicate exact source scope
+  before compilation. Stop if accounting or direct ligand/mechanism evidence
+  cannot be established, or if the existing shared representation requires
+  enzyme-specific exceptions. Do not infer canonical identity from a ligand
+  label or execute the frozen July reacquisition plan.
 
 Preserve historical content below this marked block. Git identifies the
 containing increment; no self-hash follow-up commit is required.

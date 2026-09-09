@@ -550,6 +550,11 @@
           "limit_id": "state_trajectory",
           "statement": "No temporal trajectory, free-DHAP attack, atom-mapped transition, proton transfer, or trapping preparation is observed by this annotation.",
           "status": "abstained"
+        },
+        {
+          "limit_id": "mobile_catalyst_pose",
+          "statement": "The retained 2QUT source does not furnish the proposed mobile Tyr363 proton-transfer pose: author Tyr363 OH in A/B/C is over 24 angstrom from same-chain deposited 13P C1 and C3, while D Tyr363 is unmodeled. All four chains retain Lys229–13P covalent connections. A source-assigned enamine is not itself a complete proton-transfer arrangement. This does not infer absent catalysis, solution populations, dynamics, a reacting-atom map or a kinetic result.",
+          "status": "abstained"
         }
       ],
       "projection_binding": {
@@ -1377,6 +1382,11 @@
           "limit_id": "source_prose_scheme_conflicts",
           "statement": "The preserved M-CSA Step 1 prose names G3P while its drawing labels DHAP; Step 7 prose names incoming glycerone phosphate while the drawing labels incoming G3P. The primary evidence supports the DHAP-derived covalent moiety, without silently rewriting either source field.",
           "status": "abstained"
+        },
+        {
+          "limit_id": "mobile_catalyst_pose",
+          "statement": "The retained 2QUT source does not furnish the proposed mobile Tyr363 proton-transfer pose: author Tyr363 OH in A/B/C is over 24 angstrom from same-chain deposited 13P C1 and C3, while D Tyr363 is unmodeled. All four chains retain Lys229–13P covalent connections. A source-assigned enamine is not itself a complete proton-transfer arrangement. This does not infer absent catalysis, solution populations, dynamics, a reacting-atom map or a kinetic result.",
+          "status": "abstained"
         }
       ],
       "record_binding": {
@@ -1396,12 +1406,12 @@
   ],
   "batch_id": "aldolase-transketolase",
   "review": {
-    "annotation_payload_sha256": "c6f0d2e76d3edf29f4f453b333536fa089a57e78d6ff1b944611b85a41cb71d4",
+    "annotation_payload_sha256": "1a39745fe852e5cebb7b764d8d7f4969dadf80d57c4210e006c4c455fdbc9bbf",
     "blind_review": false,
     "correlated_error_risk": true,
     "domain_expert_review_claimed": false,
     "human_reviewers": 0,
-    "reviewed_on": "2026-09-06",
+    "reviewed_on": "2026-09-09",
     "reviewer_kind": "same_model_computational_agents",
     "same_model_agents": true,
     "statistically_independent": false,
@@ -1426,6 +1436,12 @@
       "binding_id": "projection:2qut",
       "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_sources/evidence_projection.json",
       "sha256": "6caa0158b64b8cebc9f4ccaf8798d686d50d611f37c7d583221e4563c005d8e5"
+    },
+    {
+      "artifact_kind": "project_projection",
+      "binding_id": "projection:2qut-mobile-catalyst-pose",
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_sources/mobile_tail_20260909/evidence_projection.json",
+      "sha256": "b0f7bc0f1004daf33d926cc5e5c93830b9918ea0358e2ca2e16665fcef88a011"
     },
     {
       "artifact_kind": "primary_source_projection",

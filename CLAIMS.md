@@ -240,6 +240,20 @@ assay-preparation identity, assay condition, source-atom map or new functional
 measurement is established. This is a supplemental annotation; the existing
 six-observation query and its endpoint-specific conclusion remain unchanged.
 
+## CE-022 — an intermediate label does not identify a mobile-catalyst pose
+
+**Status:** Supported
+
+In retained 2QUT, author Tyr363 OH is over 24 Å from both same-chain deposited
+13P C1/C3 in chains A/B/C; chain D Tyr363 is unmodeled. All four chains retain
+their Lys229–13P covalent connections, and declared assembly 1 uses only the
+identity operator. The [M0222 evidence limitation](docs/ATLAS_SOURCE_DRAFTS.md#m0222-an-enamine-model-does-not-supply-the-mobile-catalyst-pose)
+therefore separates covalent-enamine identity from the proposed Tyr
+proton-transfer arrangement. It establishes no absent catalysis, solution
+population, conformational trajectory, reacting-atom map, kinetic rate or
+design-distance threshold. Existing annotations and source drafts retain their
+counts and evidence tiers.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,
