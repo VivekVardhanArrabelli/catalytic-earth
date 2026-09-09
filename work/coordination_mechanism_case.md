@@ -262,3 +262,12 @@ These checks protect computation and distribution, not chemistry or activity.
 The increment adds two annotations, six sites and nine conformer-specific
 distance calculations over six declared pairs; biological coverage and newly
 performed experiments both increase by zero.
+
+Publication check: PR #54's first CI run exposed a stale report-archive index.
+That manifest reads staged Git blobs, so the pre-staging local contract check
+still saw the old coordination record. The scientific source/package check
+passed in CI. Root staged this final board record, regenerated only the archive
+membership metadata, and checked the exact-index/partial-clone contract path
+against the PR base before pushing the correction. No scientific payload,
+review pin or package source changed. GitHub's PR checks and merge record are
+authoritative for the subsequent publication status.
