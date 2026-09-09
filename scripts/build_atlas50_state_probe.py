@@ -20,6 +20,7 @@ from catalytic_earth.atlas50_state_probe import (  # noqa: E402
     validate_state_probe,
 )
 from catalytic_earth.atlas_draft_batch import BATCHES, DEFAULT_BATCH, DraftBatchPaths, resolve_batch
+from catalytic_earth.atlas_state_annotations import current_cases, query_case
 
 
 STATE_ROOT = ROOT / "data/atlas/atlas50/state_probe"
@@ -97,10 +98,15 @@ def main() -> int:
         help="verify that the committed report is byte-current",
     )
     parser.add_argument("--batch", choices=sorted(BATCHES), default="default")
+    parser.add_argument("--query-case", help="show a current case with reviewed source corrections")
     args = parser.parse_args()
 
     batch = resolve_batch(args.batch)
     report_path = ROOT / batch.probe_report_path
+    if args.query_case:
+        verify(_load(report_path), batch=batch)
+        print(json.dumps(query_case(ROOT, report_path, args.query_case), indent=2, sort_keys=True))
+        return 0
     expected = build(batch=batch)
     payload = canonical_json_bytes(expected)
     if args.check:
@@ -109,12 +115,20 @@ def main() -> int:
         if report_path.read_bytes() != payload:
             raise SystemExit("Atlas-50 state probe report is stale")
         summary = verify(_load(report_path), batch=batch)
+        summary["current_source_annotations"] = [
+            annotation["annotation_id"] for row in current_cases(ROOT, report_path)["cases"]
+            for annotation in row["current_source_annotations"]
+        ]
         print(json.dumps(summary, sort_keys=True))
         return 0
 
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_bytes(payload)
     summary = verify(expected, batch=batch)
+    summary["current_source_annotations"] = [
+        annotation["annotation_id"] for row in current_cases(ROOT, report_path)["cases"]
+        for annotation in row["current_source_annotations"]
+    ]
     print(json.dumps(summary, sort_keys=True))
     return 0
 

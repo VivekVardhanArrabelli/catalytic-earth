@@ -1,0 +1,61 @@
+{
+  "batch_id": "atlas50.computational-panel-review.2026-09-05",
+  "rights_note": "Project-authored factual summaries and provenance only. No raw paper, figure, API body, or new coordinate file is redistributed.",
+  "schema_version": "catalytic-earth.source-annotation-inventory.v1",
+  "sources": [
+    {
+      "artifact_id": "PubMed:32786224:XML",
+      "bytes": 6945,
+      "inspection_depth": "Bibliographic record and complete abstract; computational study, not experimentally measured reaction direction.",
+      "redistributed": false,
+      "request_index": 22,
+      "sha256": "7ea7dc1d583b1469ef044931a16e5226523f79116328ce61c3066ea126d2587f",
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=32786224&retmode=xml"
+    },
+    {
+      "artifact_id": "RCSB:3VMT:entry-JSON",
+      "bytes": 15903,
+      "inspection_depth": "Entry identity, title, and primary-citation DOI/PMID; no coordinates acquired or reinterpreted.",
+      "redistributed": false,
+      "request_index": 23,
+      "sha256": "e2511159151a7205df145555ee1872a5849c653f55a5b554215d46b4f9927cb0",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/3VMT"
+    },
+    {
+      "artifact_id": "M-CSA:M0970:entry-JSON",
+      "bytes": 8751,
+      "inspection_depth": "Complete entry metadata and textual proposals inspected; no linked schemes acquired and no mechanism compiled.",
+      "redistributed": false,
+      "request_index": 24,
+      "sha256": "18ec0b3ee555ca9a719dcc093713a6a94e439035520e740af0cadb288af3ab8d",
+      "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=970"
+    },
+    {
+      "artifact_id": "PubMed:22493270:XML",
+      "bytes": 16297,
+      "inspection_depth": "Primary article bibliographic identity, abstract and PMCID cross-link.",
+      "redistributed": false,
+      "request_index": 25,
+      "sha256": "ac4194b697039ecfb0438aaa67e63445aa487e6bedb68ffa75ed00ab7b04aa31",
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22493270&retmode=xml"
+    },
+    {
+      "artifact_id": "PMC:3340074:HTML",
+      "bytes": 174727,
+      "inspection_depth": "Full accessible primary article text and figure captions inspected, especially the Introduction, Results, and Discussion section Mechanism of Lipid II Polymerization/Fig. 4. Figure pixels and supplementary experimental details not inspected.",
+      "redistributed": false,
+      "request_index": 27,
+      "sha256": "d5a9ea4acb909e6dbe223edc0aed143772dfd4e4482155239127a2ea72a553de",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3340074/"
+    },
+    {
+      "artifact_id": "PMC:3206585:HTML",
+      "bytes": 126777,
+      "inspection_depth": "Full accessible primary article text and figure captions inspected, including blocked short-substrate insufficiency and longer-oligomer direction test. Figure pixels and supplementary experimental details not inspected.",
+      "redistributed": false,
+      "request_index": 28,
+      "sha256": "fe938fa52672ec07f5a2b7e6cb8294b8f2a43a46274a92551f62ca904c2d537f",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3206585/"
+    }
+  ]
+}

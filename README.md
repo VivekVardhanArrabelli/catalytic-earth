@@ -50,6 +50,12 @@ a production biological design system.
 
 ## Quick Status — 2026-09-09
 
+The [current M0970 source view](docs/ATLAS_POLYMER_CONTEXT.md) corrects a
+growing-polymer donor/acceptor reversal and preserves the nonproductive sugar
+analogue in the 3VMT paper. Published direction evidence from four PGTs remains
+distinct from the SaMGT model; exact product, chain state and processivity
+are unresolved. Historical reports and source-only permissions are preserved.
+
 A validated [study-context packet](docs/ATLAS_STUDY_CONTEXT.md) now joins the
 deposited human transketolase E160Q/F6P-ThDP arrangement in 6HA3 to the same
 study's measured intermediate accumulation and reversible adduct-formation

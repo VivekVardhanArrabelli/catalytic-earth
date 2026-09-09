@@ -1,5 +1,22 @@
 # Current State
 
+## 2026-09-09: polymer-role correction precedes more geometry
+
+The [M0970 source annotation](ATLAS_POLYMER_CONTEXT.md) corrects the growing
+glycan from acceptor to donor in the primary SaMGT elongation model. It also
+preserves the nonproductive GalNAc-analogue state in the 3VMT paper, the
+distinct four-PGT direction experiment, and conflicting M-CSA prose. The
+current query shows the corrected role alongside source context across three
+pinned report generations; historical reports and source-only permissions
+are unchanged. No exact product, numeric chain length, processivity or
+complete mechanism is established.
+
+The bounded POX check found a legacy 1POW geometry consumer and an unchanged
+engine example, correcting the initial absence-of-consumer assumption. A
+4FEG-specific coordinate/crop result remains untested and was deprioritized
+once the polymer-role defect became concrete. No 4FEG source was acquired;
+do not treat this as a biological failure or a universal portability result.
+
 ## 2026-09-09: partner-copy identity prevents an incomplete site transfer
 
 The additive [6HA3 assembly context](ATLAS_STUDY_CONTEXT.md#partner-subunit-context)

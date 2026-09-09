@@ -67,7 +67,7 @@ The source handle can therefore be scoped to the HisF/free-ammonium cyclase half
 
 M0064 reports CHEBI:9160 single-stranded DNA on both reaction sides and qualitatively says that DNA uncoils. Neither that identity-preserving reaction nor protein-only 1D6M gives initial and final topology. The primary paper supports a topology-changing reaction class but does not supply the missing state for the selected structure. Source annotation is allowed; topology-dependent mechanism and exact reaction-instance work are blocked.
 
-M0970 names a polymeric acceptor with symbolic `n`, lipid II, and a leaving-group product, but the polymer product is an unnamed non-ChEBI `X00676` placeholder. Its API flag is `is_polymeric=false`. The two source proposals address local reaction alternatives, while 3VMT contains a Lipid II analog. None of those exact handles specifies n-to-n+1, initiation versus elongation, topology, or processivity. Only source annotation is allowed.
+M0970 names a polymeric reactant with symbolic `n`, lipid II, and a leaving-group product, but the polymer product is an unnamed non-ChEBI `X00676` placeholder. Its API flag is `is_polymeric=false`. The historical reports' polymer-acceptor label is corrected by the [current source annotation](ATLAS_POLYMER_CONTEXT.md) (CE-020/ER-013): the growing chain is a donor in the primary SaMGT elongation model. Use `python scripts/build_atlas50_state_probe.py --query-case M0970` for the corrected view and source caveats. The pinned historical reports remain unchanged. Exact chain state and processivity remain unresolved; only source annotation is allowed.
 
 ## Relationship to mechanism-record v3 and current kernels
 

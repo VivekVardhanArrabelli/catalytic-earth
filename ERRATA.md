@@ -149,6 +149,24 @@ audit. `CLAIMS.md` is the canonical current claim ledger.
 - **Record rule:** preserve the frozen Atlas-10 bytes; current query output
   adds the source-bound clarification alongside its historical result.
 
+## ER-013 — growing peptidoglycan chain mislabeled as acceptor
+
+- **Affected claim:** CE-020 and the M0970 component-role field in all three
+  inherited state-probe report generations.
+- **Previous wording:** the CHEBI:78435 component was called a named polymeric
+  acceptor reactant with uninstantiated n.
+- **Correction:** the primary SaMGT model puts the growing chain at the donor
+  site and incoming lipid II at the acceptor site. Its 3VMT analogue has an
+  inverted position-4 sugar hydroxyl and is described as unable to serve as
+  substrate, so its pose is not a productive native-lipid-II template.
+- **Evidence:** [source-bound correction and experiment limits](docs/ATLAS_POLYMER_CONTEXT.md).
+  The four-PGT direction experiment does not directly test Q99T05/SaMGT;
+  M-CSA's conflicting nucleophile-direction prose is retained.
+- **Record rule:** historical reports stay byte-identical. The current
+  `build_atlas50_state_probe.py --query-case` view applies the reviewed role
+  correction beside its evidence and limitations. No gate, exact product,
+  chain length, mechanism or processivity claim changes.
+
 ## Propagation rule
 
 Current entry documents must link to this file and `CLAIMS.md`. Historical

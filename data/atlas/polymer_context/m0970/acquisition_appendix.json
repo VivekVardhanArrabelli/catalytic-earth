@@ -1,0 +1,85 @@
+{
+  "attempts": [
+    {
+      "bytes": 6945,
+      "request_index": 22,
+      "requested_at": "2026-09-09T16:14:35.727686+00:00",
+      "sha256": "7ea7dc1d583b1469ef044931a16e5226523f79116328ce61c3066ea126d2587f",
+      "status": 200,
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=32786224&retmode=xml"
+    },
+    {
+      "bytes": 15903,
+      "content_type": "application/json",
+      "local_filename": "3vmt-entry.json",
+      "request_index": 23,
+      "requested_at": "2026-09-09T16:15:12.655039+00:00",
+      "sha256": "e2511159151a7205df145555ee1872a5849c653f55a5b554215d46b4f9927cb0",
+      "status": 200,
+      "url": "https://data.rcsb.org/rest/v1/core/entry/3VMT"
+    },
+    {
+      "bytes": 8751,
+      "content_type": "application/json",
+      "local_filename": "mcsa-m0970.json",
+      "request_index": 24,
+      "requested_at": "2026-09-09T16:15:13.013267+00:00",
+      "sha256": "18ec0b3ee555ca9a719dcc093713a6a94e439035520e740af0cadb288af3ab8d",
+      "status": 200,
+      "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=970"
+    },
+    {
+      "bytes": 16297,
+      "content_type": "text/xml; charset=UTF-8",
+      "local_filename": "pmid22493270.xml",
+      "request_index": 25,
+      "requested_at": "2026-09-09T16:15:31.997763+00:00",
+      "sha256": "ac4194b697039ecfb0438aaa67e63445aa487e6bedb68ffa75ed00ab7b04aa31",
+      "status": 200,
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22493270&retmode=xml"
+    },
+    {
+      "bytes": 0,
+      "content_type": null,
+      "request_index": 26,
+      "requested_at": "2026-09-09T16:15:44.033331+00:00",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 404,
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC3340074/fullTextXML"
+    },
+    {
+      "bytes": 174727,
+      "content_type": "text/html; charset=utf-8",
+      "local_filename": "pmc3340074.html",
+      "request_index": 27,
+      "requested_at": "2026-09-09T16:16:00.147370+00:00",
+      "sha256": "d5a9ea4acb909e6dbe223edc0aed143772dfd4e4482155239127a2ea72a553de",
+      "status": 200,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3340074/"
+    },
+    {
+      "bytes": 126777,
+      "content_type": "text/html; charset=utf-8",
+      "local_filename": "pmc3206585.html",
+      "request_index": 28,
+      "requested_at": "2026-09-09T16:16:49.901872+00:00",
+      "sha256": "fe938fa52672ec07f5a2b7e6cb8294b8f2a43a46274a92551f62ca904c2d537f",
+      "status": 200,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3206585/"
+    }
+  ],
+  "batch_id": "atlas50.computational-panel-review.2026-09-05",
+  "cumulative_bytes": 1474405,
+  "cumulative_requests": 28,
+  "disclosure": "Carries all 21 measured URL captures from the September panel review, including its prior M0970 metadata checks. Historical browser source-challenge traffic was not metered by those receipts. No budget reset; failed requests count. This run used direct, redirect-counted HTTP captures only. No paper body is redistributed.",
+  "inherited_bytes": 1125005,
+  "inherited_receipts": {
+    "path": "data/atlas/atlas50/computational_review/panel_review.json",
+    "receipt_field": "evidence_receipts",
+    "sha256": "54678ddbb5efd8c1905c3650c5f97782dbdd2abf5493003681a9c81aff581ab4"
+  },
+  "inherited_requests": 21,
+  "maximum_bytes": 31457280,
+  "maximum_requests": 100,
+  "schema_version": "catalytic-earth.source-acquisition-lineage.v1"
+}
