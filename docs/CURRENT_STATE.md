@@ -1,5 +1,21 @@
 # Current State
 
+## 2026-09-09: M0081 template keeps inhibitor and sequence limits
+
+The [retained 3CSM annotation](ATLAS_DEPOSIT_CONTEXT.md) preserves a bicyclic TSA
+inhibitor, separate regulatory tryptophan and four reference-sequence conflicts
+per chain at unmodeled P32178 positions 218–221 (CE-023). Ten selected distances describe
+the inhibitor model without claiming protonation, a reacting transition state
+or design tolerances. A generic source-row projection reuses the existing
+assembly engine; no enzyme-specific runtime or frozen kernel change is needed.
+
+This adds one source annotation of an existing candidate, with zero new
+compiled mechanisms, protein records or experimental observations. M0081
+mechanism admission remains open. New acquisition stopped before requests
+because the inherited panel count excludes historical browser traffic;
+28 requests / 1,474,405 bytes is a metered lower bound, not a remaining balance.
+The source was recovered locally from the historical coordinate archive.
+
 ## 2026-09-09: M0222 enamine and mobile-catalyst pose remain distinct
 
 The [retained 2QUT check](ATLAS_SOURCE_DRAFTS.md#m0222-an-enamine-model-does-not-supply-the-mobile-catalyst-pose)

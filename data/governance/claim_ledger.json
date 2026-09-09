@@ -276,5 +276,19 @@
       "data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_evidence_annotations.json",
       "docs/ATLAS_SOURCE_DRAFTS.md"
     ]
+  },
+  {
+    "claim_id": "CE-023",
+    "claim_kind": "scientific_result",
+    "status": "Supported",
+    "claim": "Retained 3CSM contains two TSA inhibitor instances and two regulatory TRP instances, with four deposited P32178 reference-sequence conflicts per chain at unmodeled positions 218–221.",
+    "current_wording": "Describe one source annotation of an existing panel candidate; preserve inhibitor chemistry, reference conflicts and exact selected coordinate context without substrate/transition-state transfer, engineered-variant inference or new mechanism/observation counts.",
+    "rationale": "The retained PDB source directly identifies the inhibitor/regulatory ligands and labels the sequence differences as conflicts. Exact selected rows and assembly distances support this bounded context, not the M0081 mechanism or design performance.",
+    "evidence": [
+      "data/atlas/deposit_context/m0081/spec.json",
+      "data/atlas/deposit_context/m0081/projection.json",
+      "data/atlas/deposit_context/m0081/review.json",
+      "docs/ATLAS_DEPOSIT_CONTEXT.md"
+    ]
   }
 ]

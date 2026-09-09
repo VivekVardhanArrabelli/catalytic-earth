@@ -1,5 +1,22 @@
 # Current Decisions
 
+## 2026-09-09: permit a retained-source deposit annotation for M0081
+
+The [3CSM packet](ATLAS_DEPOSIT_CONTEXT.md) uses the owner-authorized
+`source_annotation` operation after source challenge and adjudication of the
+exact retained source. Its review pins the specification, projection and
+coordinate bytes. It does not grant `source_scoped_mechanism_draft` or
+`exact_reaction_instance`, modify the existing source-batch gate, or resolve
+the frozen July M0081 panel packet. The permitted output is one standalone
+deposit annotation with explicit chemical and sequence limits.
+
+A generic row-selection adapter and the existing assembly projector separate
+this deposit context from the Atlas-10 and single-variant assay prerequisites.
+The adapter verifies extraction and review bindings, not scientific truth.
+It has no enzyme-specific runtime branches; no frozen module or kernel changes.
+The inherited public-source budget is not reset: further requests in that
+scope remain stopped while historical cumulative accounting is incomplete.
+
 ## 2026-09-09: separate deposited context from published observation selection
 
 The [mechanism-evidence command](ATLAS_MECHANISM_EVIDENCE.md) may expose accepted
