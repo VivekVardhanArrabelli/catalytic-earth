@@ -1,0 +1,294 @@
+{
+  "assembly_spec": {
+    "assembly_id": "1",
+    "distance_pairs": [
+      {
+        "left_selection_id": "partner-e366",
+        "pair_id": "partner-to-q160",
+        "right_selection_id": "q160"
+      },
+      {
+        "left_selection_id": "partner-e366",
+        "pair_id": "partner-to-cofactor",
+        "right_selection_id": "t6f-aminopyrimidine"
+      },
+      {
+        "left_selection_id": "unexpanded-e366",
+        "pair_id": "unexpanded-to-q160",
+        "right_selection_id": "q160"
+      },
+      {
+        "left_selection_id": "unexpanded-e366",
+        "pair_id": "unexpanded-to-cofactor",
+        "right_selection_id": "t6f-aminopyrimidine"
+      }
+    ],
+    "pdb_id": "6HA3",
+    "selections": [
+      {
+        "atom_names": [
+          "NE2"
+        ],
+        "auth_seq_id": "160",
+        "label_asym_id": "A",
+        "label_comp_id": "GLN",
+        "model_id": "1",
+        "operator_ids": [
+          "1"
+        ],
+        "selection_id": "q160"
+      },
+      {
+        "atom_names": [
+          "OE1",
+          "OE2"
+        ],
+        "auth_seq_id": "366",
+        "label_asym_id": "A",
+        "label_comp_id": "GLU",
+        "model_id": "1",
+        "operator_ids": [
+          "2"
+        ],
+        "selection_id": "partner-e366"
+      },
+      {
+        "atom_names": [
+          "N1,"
+        ],
+        "auth_seq_id": "701",
+        "label_asym_id": "B",
+        "label_comp_id": "T6F",
+        "model_id": "1",
+        "operator_ids": [
+          "1"
+        ],
+        "selection_id": "t6f-aminopyrimidine"
+      },
+      {
+        "atom_names": [
+          "OE1",
+          "OE2"
+        ],
+        "auth_seq_id": "366",
+        "label_asym_id": "A",
+        "label_comp_id": "GLU",
+        "model_id": "1",
+        "operator_ids": [
+          "1"
+        ],
+        "selection_id": "unexpanded-e366"
+      }
+    ]
+  },
+  "coordinate_source": {
+    "path": "data/atlas/study_context/6ha3/6HA3.cif",
+    "sha256": "f280bce141a937c4256ff401afcb24df7f29b2ae1422423957cf84711591bb09"
+  },
+  "packet_id": "6HA3:partner-subunit-omission-context:2026-09-09",
+  "retained_context_bindings": [
+    {
+      "binding_role": "study_projection",
+      "path": "data/atlas/study_context/6ha3/evidence_projection.json",
+      "sha256": "70bf1eaa59747239990161631432a44440629704aa50051bddd551309fb1213e"
+    },
+    {
+      "binding_role": "source_inventory",
+      "path": "data/atlas/study_context/6ha3/source_inventory.json",
+      "sha256": "1605d98776281d52660f32442da9d11996bfc4dc19e5cbbea1b0252882bbfc06"
+    }
+  ],
+  "schema_version": "catalytic-earth.assembly-context-spec.v1",
+  "source_reviewed_context": {
+    "functional_panel": {
+      "conditions_limit": "Methods describe a typical experiment; exact variant-specific preparations and per-panel acquisition settings remain unresolved.",
+      "endpoint": "covalent-intermediate accumulation in the F6P donor half-reaction",
+      "locators": [
+        "Extended Data Fig. 1d",
+        "Supplementary Methods printed pages 5-6"
+      ],
+      "method": "1D proton NMR after acid-quench isolation",
+      "numeric_detection_floor": null,
+      "numeric_intermediate_fraction": null,
+      "observation_id": "human-tkt-fig1d-f6p-intermediate-panel",
+      "replication": "source reports two independent repeats with similar results",
+      "source_artifact_ids": [
+        "Nature:s41586-019-1581-9:landing-HTML",
+        "Nature:s41586-019-1581-9:SI-PDF"
+      ],
+      "study_doi": "10.1038/s41586-019-1581-9",
+      "typical_method_conditions": {
+        "buffer": "50 mM glycyl-glycine",
+        "enzyme_stock_mg_per_mL": 15,
+        "f6p_stock_mM": 100,
+        "mixing": "equal 200 microlitre volumes; stocks are pre-mix concentrations",
+        "ph": 7.6,
+        "pre_quench_seconds": 30,
+        "temperature_celsius": 20
+      },
+      "variant_results": [
+        {
+          "reported_result": "F6P-ThDP accumulated",
+          "reported_variant": "wild_type"
+        },
+        {
+          "reported_result": "F6P-ThDP accumulated",
+          "reported_variant": "E160Q"
+        },
+        {
+          "reported_result": "F6P-ThDP accumulated",
+          "reported_variant": "E160A"
+        },
+        {
+          "reported_result": "no measurable covalent-intermediate accumulation",
+          "reported_variant": "E366Q"
+        },
+        {
+          "reported_result": "no measurable covalent-intermediate accumulation",
+          "reported_variant": "E165Q"
+        }
+      ]
+    },
+    "kinetic_reporter_limit": {
+      "endpoint": "pre-steady-state F6P binding kinetics",
+      "inference_limit": "Reporter unavailability is not a measured zero binding or formation rate.",
+      "reason": "The source says the required bound-cofactor band at 325 nm is absent.",
+      "reported_status": "not applicable",
+      "reported_variant": "E366Q",
+      "source_artifact_ids": [
+        "Nature:s41586-019-1581-9:EDTable2-JPEG",
+        "Nature:s41586-019-1581-9:EDTable2-HTML"
+      ],
+      "source_locator": "Extended Data Table 2a E366Q row and footnote e"
+    },
+    "not_established": [
+      "zero catalytic activity or zero intermediate formation from qualitative nondetection",
+      "a causal effect of this distance on any measured rate",
+      "an E366Q structure, selective partner-only mutation, or identical constructs, tag sequences, or preparations",
+      "bound protonation, low-barrier hydrogen bonding, or a solution-state ensemble",
+      "a complete active site or validated minimal catalytic motif",
+      "an M0219 elementary-step assignment or productive F6P full-cycle turnover",
+      "experimental confirmation of the deposited biological assembly; its author-evidence field reports none"
+    ],
+    "reconsideration": {
+      "code": "Assembly operators are a general source-format concept; all residue and chemical selections are data.",
+      "curation": "Reuses the retained 6HA3 coordinate and study sources, including all five reported panel arms; no coordinate or literature recapture.",
+      "incumbent_value": "Binds a partner-copy atom identity to a source-scoped omission warning and separates intermediate nondetection, residual turnover and reporter unavailability. The underlying information is already in RCSB and the paper; no speed, accuracy or discovery advantage is claimed."
+    },
+    "relation": {
+      "compared_variant": "E366Q",
+      "functional_observation_id": "human-tkt-fig1d-f6p-intermediate-panel",
+      "same_variant_as_structure": false,
+      "selective_partner_only_intervention": false,
+      "structure_selection_id": "partner-e366",
+      "type": "same-study residue-position perturbation context for a partner-subunit group"
+    },
+    "reuse_constraint": {
+      "not_a_sufficient_design_template": true,
+      "statement": "A crop retaining this deposited cofactor/Q160 neighborhood but omitting operator-2 Glu366 excludes a group implicated by the study in cofactor activation and F6P-adduct accumulation. Disclose that omission before reusing the crop.",
+      "status": "project inference: omission warning"
+    },
+    "separate_turnover_observation": {
+      "conditions": {
+        "acceptor": "2 mM R5P",
+        "buffer": "50 mM glycyl-glycine",
+        "donor": "X5P, varied concentration",
+        "ph": 7.6,
+        "temperature_celsius": 20,
+        "wavelength_nm": 340
+      },
+      "endpoint": "X5P/R5P steady-state turnover to S7P/G3P",
+      "interpretation": "Published residual activity on a distinct substrate pair contradicts a blanket all-catalysis-lost reading of F6P-intermediate nondetection. It does not measure F6P turnover or the effect of the 6HA3 geometry.",
+      "k_cat_per_s": {
+        "E366Q": {
+          "mean": 0.012,
+          "sd": 0.001
+        },
+        "wild_type": {
+          "mean": 2.79,
+          "sd": 0.06
+        }
+      },
+      "locators": [
+        "Extended Data Table 2a: wild-type and E366Q rows; footnote a",
+        "Supplementary Methods printed page 5, equation 1"
+      ],
+      "method": "NADH-coupled steady-state spectrophotometry",
+      "observation_id": "human-tkt-table2a-e366q-residual-turnover",
+      "source_artifact_ids": [
+        "Nature:s41586-019-1581-9:EDTable2-JPEG",
+        "Nature:s41586-019-1581-9:EDTable2-HTML",
+        "Nature:s41586-019-1581-9:SI-PDF"
+      ]
+    },
+    "source_role": {
+      "assertion": "The source assigns human transketolase E366 a cofactor-activation role. The prime denotes the other protein subunit.",
+      "locators": [
+        "Supplementary Methods printed page 6: Analysis of Protonic and Tautomeric Equilibria",
+        "Extended Data Fig. 1e",
+        "Extended Data Fig. 4d: chain and prime convention"
+      ],
+      "selection_id": "partner-e366",
+      "source_artifact_ids": [
+        "Nature:s41586-019-1581-9:landing-HTML",
+        "Nature:s41586-019-1581-9:SI-PDF"
+      ],
+      "status": "source_assignment; protonation not derived from the coordinates"
+    },
+    "sources": [
+      {
+        "artifact_id": "Nature:s41586-019-1581-9:landing-HTML",
+        "bytes": 445216,
+        "inherited_inspection_depth": "Subscription preview plus data availability and all relevant Extended Data legends inspected; main methods absent.",
+        "redistributed": false,
+        "sha256": "e9d239f6e97bf1a563641d2b1e0a335411b6a07125ad7f250cee2e3fc0c17a59",
+        "source_url": "https://www.nature.com/articles/s41586-019-1581-9"
+      },
+      {
+        "artifact_id": "Nature:s41586-019-1581-9:SI-PDF",
+        "bytes": 436294,
+        "inherited_inspection_depth": "All 13 pages text-extracted; Supplementary Methods pages 5-7 rendered and visually inspected for NMR and stopped-flow semantics.",
+        "redistributed": false,
+        "sha256": "9e4db71f5e59ee1184991376419894ac4c311b403f74028f9c543337e4d1733c",
+        "source_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-019-1581-9/MediaObjects/41586_2019_1581_MOESM1_ESM.pdf"
+      },
+      {
+        "artifact_id": "Nature:s41586-019-1581-9:EDTable2-HTML",
+        "bytes": 178782,
+        "inherited_inspection_depth": "Table title and endpoint-defining footnotes inspected; numeric cells are in the linked JPEG.",
+        "redistributed": false,
+        "sha256": "58012ff70ac04784193dd2c76863c008fd6b10018c3ff4b629d6634b1ba7866e",
+        "source_url": "https://www.nature.com/articles/s41586-019-1581-9/tables/2"
+      },
+      {
+        "artifact_id": "Nature:s41586-019-1581-9:EDTable2-JPEG",
+        "bytes": 146137,
+        "inherited_inspection_depth": "Full table image visually inspected; E160Q and wild-type transketolase values transcribed with units and uncertainty.",
+        "redistributed": false,
+        "sha256": "51ca21f005b8b5d9dd152e097940656a76821e3e379b7697da219d5522652b8c",
+        "source_url": "https://media.springernature.com/lw749/springer-static/esm/art%3A10.1038%2Fs41586-019-1581-9/MediaObjects/41586_2019_1581_Tab2_ESM.jpg",
+        "this_run_inspection": "Full table visually inspected; E366Q and wild-type kcat transcribed, with endpoint and reporter caveats checked against the table HTML and SI."
+      }
+    ],
+    "structure_subject": {
+      "chemical_state": "source-assigned F6P-ThDP conjugate",
+      "partner_site": "GLU author A366 / label A366 under assembly operator 2",
+      "pdb_id": "6HA3",
+      "reported_variant": "E160Q",
+      "site_selection_binding": {
+        "atom_names": [
+          "OE1",
+          "OE2"
+        ],
+        "auth_seq_id": "366",
+        "label_asym_id": "A",
+        "label_comp_id": "GLU",
+        "model_id": "1",
+        "operator_ids": [
+          "2"
+        ],
+        "selection_id": "partner-e366"
+      }
+    }
+  }
+}

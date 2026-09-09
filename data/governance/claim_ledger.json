@@ -224,5 +224,18 @@
       "data/atlas/structural_context/bundle.json",
       "docs/ATLAS_STRUCTURAL_CONTEXT.md"
     ]
+  },
+  {
+    "claim_id": "CE-019",
+    "claim_kind": "structure_applicability",
+    "status": "Supported",
+    "claim": "6HA3 assembly 1 operator 2 supplies Glu366 beside the operator-1 cofactor/Gln160 neighborhood. E366Q F6P-intermediate nondetection, residual X5P/R5P turnover and unavailable pre-steady-state reporting are distinct source endpoints.",
+    "current_wording": "A single-copy crop omits a study-implicated group. Preserve operator-qualified atom identity and the source-scoped omission warning without asserting a complete active site, causal distance, abolished catalysis, or independent experimental assembly support.",
+    "rationale": "Retained assembly operators resolve the partner copy; the primary study assigns a cofactor-activation role and reports a qualitative F6P endpoint separately from measurable X5P/R5P turnover and reporter unavailability.",
+    "evidence": [
+      "data/atlas/assembly_context/6ha3/spec.json",
+      "data/atlas/assembly_context/6ha3/projection.json",
+      "docs/ATLAS_STUDY_CONTEXT.md"
+    ]
   }
 ]

@@ -1,0 +1,45 @@
+{
+  "challenges": [
+    {
+      "adjudication": "Retain deposited experimental_support=none and selected-atom scope; no complete-site or solution-assembly claim.",
+      "objection": "Assembly expansion could imply experimental confirmation or a complete active site."
+    },
+    {
+      "adjudication": "Unknown NMR floor, distinct residual X5P/R5P kcat, and reporter-unavailability preserved separately.",
+      "objection": "F6P nondetection or unavailable stopped-flow could be mislabeled as abolished catalysis."
+    },
+    {
+      "adjudication": "Bind distinct variants; no causal geometry, selective-copy intervention, construct or preparation equivalence.",
+      "objection": "E366Q phenotype could be transferred to the E160Q crystal or a selective partner-only mutation."
+    },
+    {
+      "adjudication": "Rejected by exact retained source: atom_site row 10609 and component/bond rows use literal N1,. Reviewer retracted objection; preserve punctuation.",
+      "objection": "Adversarial reviewer proposed normalizing N1, to N1."
+    },
+    {
+      "adjudication": "Accepted as an explicit omission/endpoint-conflation warning only; no measured speed, accuracy, or discovery gain.",
+      "objection": "Adds no biological discovery beyond incumbent sources."
+    }
+  ],
+  "decision": "accept_source_scoped_omission_warning",
+  "review_process": {
+    "agent_model": "gpt-5.6-sol",
+    "agent_reasoning_effort": "ultra",
+    "blind_review": false,
+    "independent_human_review": false,
+    "reviewer_kind": "same-model computational source and adversarial agents, with parent adjudication",
+    "source_agreement_is_independent_validation": false
+  },
+  "reviewed_at_utc": "2026-09-09T15:32:18.507219+00:00",
+  "reviewed_sha256": {
+    "acquisition_appendix.json": "06dbbcbc8ae4967803c4d4eba1193d1d687bc26b2b159f1699df450059e57192",
+    "projection.json": "3079e16137cb97106efcdf45f99f3942498641d6679e13d8784e40a1bc14f68c",
+    "spec.json": "b3a6c9306cab59095c4c3943c35ec7b0cbddadbcc1180fced9e284cff8a4b675"
+  },
+  "schema_version": "catalytic-earth.assembly-context-review.v1",
+  "source_review": {
+    "decision": "no blocking source objection",
+    "reviewed_spec_sha256": "b3a6c9306cab59095c4c3943c35ec7b0cbddadbcc1180fced9e284cff8a4b675",
+    "scope": "operator-qualified identity; all five qualitative Fig1d arms; separate residual turnover and reporter unavailability; primary-source and study-variant limits"
+  }
+}

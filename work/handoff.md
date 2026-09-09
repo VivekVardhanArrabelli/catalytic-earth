@@ -4,66 +4,72 @@
 ## Current research baton — 2026-09-09
 
 This block and `docs/HOURLY_RESEARCH.md` govern the hourly research task.
-Everything below the end marker is historical; do not execute its predictor,
-Option-B, deployment or label-expansion next actions by default. Current claims,
-errata, truth policy and decisions override this handoff when they conflict.
+Everything below the end marker is historical. Claims, errata, truth policy
+and current decisions override this handoff when they conflict.
 
-- **Identity/base:** hourly run
-  `941da8e2-e883-4a49-b5ac-122b604220a5`; base scientific commit
-  `b9aa9a5fcb1655ffbff476be196292fe96c70813`. Work is on
-  `codex/reaction-geometry-function-20260909`; the final publication and lock
-  state belong in the Git-local run receipt and task result.
-- **North Star:** grow the computable catalytic-mechanism atlas toward de novo
-  enzyme design or a dataset that enables it. Coverage, resolution and useful
-  cross-case inference take priority over software/report volume.
-- **Latest science:** the new `data/atlas/study_context/6ha3/` packet makes one
-  bounded geometry-to-function association. Current 6HA3 deposits an integrated
-  F6P-ThDP component in human transketolase E160Q; the same study reports
-  E160Q F6P-ThDP accumulation and reversible adduct-formation kinetics. The
-  coordinate-derived scissile bond is 1.604779 angstrom and the out-of-plane
-  deviation is 24.192712 degrees. These are descriptive deposit facts; no
-  geometry-to-rate causation, productive F6P turnover or independent validation
-  is established. See `docs/ATLAS_STUDY_CONTEXT.md`.
-- **Next question:** can a generic biological-assembly coordinate contract
-  recover the symmetry-mate E366-prime side of the 6HA3 active site while
-  preserving operator-qualified atom identity, and does that fuller arrangement
-  enable a source-supported comparison rather than another descriptive distance?
-- **Expected gain / stop:** gain a reusable symmetry-aware arrangement primitive
-  or a documented reason to seek a different experimental perturbation. Stop if
-  the result remains descriptive only, if operators/alternate states are
-  collapsed, or if it requires treating E160Q as a selective geometry change.
-- **Inherited limitations:** exact protein-preparation equivalence across crystal,
-  NMR and stopped-flow remains unresolved. The asymmetric unit has one polymer
-  chain; the reported E366-prime contact requires assembly expansion. E160Q also
-  changes charge and acid-base chemistry. F6P measurements do not ground M0219's
-  X5P/E4P proposal steps or resolve its source-label conflict. Source agreement is
-  not independent validation and no prospective design or assay result exists.
-- **Acquisition:** named batch `human-tkt-e160q-6ha3-geometry-function` used six
-  direct retained-body requests and 2,987,157 bytes of its 100-request/30-MiB
-  ceiling. Discovery page views/searches are disclosed but their underlying
-  traffic is unmeasured. Only CC0 6HA3 coordinates are redistributed. No paid
-  compute, outreach or new experiment occurred.
-- **Reuse and reconsideration:** apply the three rules in the standing brief:
-  recurring bespoke chemistry code, non-reusable curation effort, or answers
-  that add insufficient value beyond incumbent resources require a change of
-  approach. Do not create a commit or test merely to fill the hour.
-- **Coordination/review:** source, representation and adversarial Astra lanes
-  independently converged on 6HA3 and challenged construct, substrate, chemical
-  state, assembly and endpoint transfers. Their shared record is
-  `work/coordination_reaction_geometry_function_20260909.md`. This remains
-  computational source review, not scientific or human-review evidence.
-- **Verification:** the generic study-context validator, six focused tests, the
-  complete 477-test core tier and repository contracts pass locally. Final CI,
-  publication and lock release must still be recorded in the Git-local receipt
-  and task result; frozen Atlas kernels and protected registries remain unchanged.
-- **Recovery/publication:** the run acquired the cooperative lock before work,
-  found no resumable PR, fast-forwarded current `origin/main`, and branched from
-  the verified base above. Publish only the owned packet/integration files; then
-  merge after required checks pass, fast-forward local `main`, and release with
-  clean/no-merge/synced guards.
+- **Identity/base:** owner
+  `01a086b4-a813-7be1-84dd-fdec48d14288:46b8ba73-3a5f-4cea-afeb-a61080437d84`;
+  actual start 2026-09-09T15:06:35Z; base
+  `c968007591c79b09c2ab41767a405cbc6683f134` on clean synchronized main.
+  Work is on `codex/assembly-context-20260909`. The Git-local receipt records
+  exact elapsed time, final SHA, PR/CI/merge state and lock release.
+- **Question/result:** does biological assembly add a useful constraint beyond
+  more distances? Yes, narrowly: operator 2 places selected Glu366 atoms from
+  the partner protein copy beside the operator-1 cofactor/Gln160 neighborhood.
+  A single-copy crop omits a study-implicated cofactor-activation group. The
+  source comparison separates E366Q F6P-intermediate nondetection, residual
+  X5P/R5P turnover (kcat 0.012 ± 0.001 s⁻¹), and unavailable pre-steady-state
+  reporting. These are distinct endpoints, not evidence for abolished catalysis.
+- **Evidence/capability:** `data/atlas/assembly_context/6ha3/` binds operator,
+  model, author/label residue, insertion code, alternate identifier and exact
+  atom identity to the retained 6HA3 coordinates and study sources. A shared
+  data-driven engine exposes the selected atoms and all declared pair distances;
+  the CLI script's `--query` returns the reviewed interpretation. CE-019 and
+  `docs/ATLAS_STUDY_CONTEXT.md` state the bounded omission warning.
+- **Limits:** E366Q is not the E160Q crystal or a selective partner-only
+  intervention. Exact construct/tag/preparation equivalence, solution ensemble,
+  protonation, LBHB causation, a geometric tolerance, a complete site, productive
+  F6P full-cycle turnover and an M0219 step remain unestablished. The deposited
+  author/PISA assembly explicitly records `experimental_support=none`.
+- **Sources/budget:** reuse of the original 6HA3 and paper captures adds no
+  coordinate/literature requests. One official wwPDB operator-expression
+  documentation capture adds 17,727 bytes. Named batch
+  `human-tkt-e160q-6ha3-geometry-function` now totals seven direct captures and
+  3,004,884 bytes of 100 requests/30 MiB; carry this cumulative total forward.
+  Prior discovery traffic remains disclosed as unmeasured. Only the existing
+  CC0 coordinate file is redistributed; no paid compute, outreach or experiment.
+- **Review/reconsideration:** source and adversarial lanes accepted the narrow
+  warning and rejected causal promotion. A proposed `N1,` → `N1` normalization
+  was rejected by the exact deposited atom and bond rows; punctuation is real
+  source identity. The shared board is
+  `work/coordination_assembly_context_20260909.md`. Chemistry stays in data;
+  operator parsing is a general source-format concept. Reused captures and
+  joins avoid reacquisition, but no timed curation reduction is claimed. The
+  sources already contain the biology; added value is explicit copy-to-evidence
+  identity and prevention of endpoint conflation. Stop further E160Q distances.
+- **Verification/publication:** prepublication checkpoint at
+  2026-09-09T15:38:14Z (31.7 elapsed minutes). All 498 core
+  tests pass without skips; source/assembly validation, full repository contracts,
+  and installed-wheel reproduction (including Atlas-10/drafts/sites/candidates)
+  pass. Source and final code/diff reviews found no remaining blocker. Only
+  owned changes are present. The prior PR #56 is merged; this branch is ready
+  for PR publication and must pass CI at the reviewed head before merge. Final
+  SHA/PR/CI/merge/release outcomes are recorded in the receipt/task result without
+  a self-hash follow-up commit; if a PR remains open, resume it first.
+- **One next action:** test portability once on the same paper's pyruvate
+  oxidase H89-prime context (candidate WT structure 4FEG), before creating a
+  packet. Expected gain: establish whether the unchanged copy-identity engine
+  prevents a real single-copy omission in a different enzyme while preserving
+  MAP-analogue binding, pyruvate processing and artificial DCPIP-turnover
+  endpoints. Require an identifiable downstream site/crop use; stop if the
+  assembly map adds no consequential distinction, needs enzyme-specific code,
+  or offers only more distances. Same-study reuse is not independent biological
+  corroboration. Do not repeat the already-known T382E state/charge/confound
+  review, and stop further same-paper geometry after this bounded portability
+  decision. Existing source permissions and cumulative batch budget apply.
 
-Update this current block only when the scientific baton or recovery state
-changes. Record unchanged skips locally; preserve the historical content below.
+Preserve historical content below this marked block. Git identifies the
+containing increment; no new commit is needed solely to embed its own hash.
 <!-- current-research-handoff:end -->
 
 ## Historical handoffs — superseded as an execution queue
