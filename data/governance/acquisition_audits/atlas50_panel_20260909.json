@@ -1,0 +1,240 @@
+{
+  "schema_version": "catalytic-earth.local-acquisition-audit.v1",
+  "audit_id": "atlas50.panel-accounting-local-audit.2026-09-09",
+  "batch_id": "atlas50.computational-panel-review.2026-09-05",
+  "status": "bounded_recovery_closed_missing_transport_telemetry",
+  "scope": "Bounded local recovery of inherited panel/source-challenge accounting; no scientific-source acquisition.",
+  "input_bindings": [
+    {
+      "path": "data/atlas/atlas50/computational_review/panel_review.json",
+      "sha256": "54678ddbb5efd8c1905c3650c5f97782dbdd2abf5493003681a9c81aff581ab4"
+    },
+    {
+      "path": "data/atlas/polymer_context/m0970/acquisition_appendix.json",
+      "sha256": "38f718ec27e2abff8871b052a283e3d5852dc44d856514e70c10b4c2bf434f66"
+    },
+    {
+      "path": "data/atlas/deposit_context/m0081/acquisition_recovery.json",
+      "sha256": "e3f4b1519ee802abd66c2cf8f00aec0339fbde7f63f91f4862fe76cc932779b2"
+    },
+    {
+      "path": "data/governance/computational_review_policy.json",
+      "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+    },
+    {
+      "path": "data/atlas/atlas50/computational_review/crosswalk_review.json",
+      "sha256": "84150aff2cb563c1f624aa3ce000c91c3588c520604715e81197f87e77d8ad4e"
+    }
+  ],
+  "retained_metered_receipts": {
+    "panel": {
+      "url_capture_rows": 21,
+      "bytes": 1125005,
+      "receipt_objects": 12,
+      "transport_statuses": "Not recorded in original receipts; do not infer 21 HTTP 200 responses."
+    },
+    "m0970_appendix": {
+      "indexed_attempts": 7,
+      "bytes": 349400,
+      "status_200": 6,
+      "status_404": 1
+    },
+    "known_lower_bound": {
+      "requests": 28,
+      "bytes": 1474405
+    },
+    "qualification": "The historical cumulative fields in the appendix sum retained measurements only; they do not cover unmetered browser traffic or establish complete transport accounting.",
+    "unique_exact_urls_across_panel_and_appendix": 27,
+    "repeated_url_note": "Appendix attempt 23 repeats the panel 3VMT entry URL and hash. URL uniqueness is not request count."
+  },
+  "recovered_operation_examples": [
+    {
+      "call_id": "call_mpOWJEbEw3CZmhNfS8SZ6meK",
+      "task_id": "01a07311-aac6-7010-9516-e0b53605d473",
+      "call_line": 1012,
+      "called_at_utc": "2026-09-05T20:19:20.076Z",
+      "call_line_sha256": "e1ba9efbb5218118fa2072142731d1d5a3fd9a2a87936f871eb9b1120e51490a",
+      "output_line": 1015,
+      "returned_at_utc": "2026-09-05T20:19:20.881Z",
+      "output_line_sha256": "a0253f5069e167ef614c4a040bb3fe905f730b8a71a8dd00f6330d02a5a96cf9",
+      "operation": "web.open",
+      "targets_in_recorded_order": [
+        "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/49/",
+        "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/112/",
+        "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/239/"
+      ],
+      "visible_outcome": "Rendered source text with document content type and line counts.",
+      "batch_attribution": "Shared panel/crosswalk/source-challenge task lineage; no per-operation batch tag. Do not assert exact individual batch assignment.",
+      "transport": {
+        "http_attempts": null,
+        "per_hop_urls_and_statuses": null,
+        "response_body_bytes": null,
+        "response_body_hashes": null,
+        "cache_disposition": null
+      }
+    },
+    {
+      "task_id": "01a07313-96d7-7963-9250-71933abb30e8",
+      "parent_task_id": "01a07311-aac6-7010-9516-e0b53605d473",
+      "task_name": "/root/forward_path",
+      "call_id": "call_THqqBlAqO1aT7TLUMIXBqxte",
+      "call_line": 930,
+      "called_at_utc": "2026-09-05T20:40:19.700Z",
+      "call_line_sha256": "23eaab2138ad6b293208aafbacbce3d5e40a6c8ba09d57af9759b9d7f636b6d0",
+      "output_line": 933,
+      "returned_at_utc": "2026-09-05T20:40:20.607Z",
+      "output_line_sha256": "29f1b468f04741950c3bd5c041133bf2e77520c84ddebcd7959927458e40e9ac",
+      "operation": "web.open",
+      "targets_in_recorded_order": [
+        "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/49/",
+        "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/112/",
+        "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/753/",
+        "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/107/"
+      ],
+      "visible_outcome": "Rendered source text; output blocks contain only type/text keys and no transport telemetry.",
+      "batch_attribution": "Actual source-challenge worker in the inherited review lineage; no per-operation batch tag.",
+      "transport": {
+        "http_attempts": null,
+        "per_hop_urls_and_statuses": null,
+        "response_body_bytes": null,
+        "response_body_hashes": null,
+        "cache_disposition": null
+      }
+    },
+    {
+      "call_id": "call_6tsgfY57jPJqvH14TnJqOywO",
+      "task_id": "01a07311-aac6-7010-9516-e0b53605d473",
+      "call_line": 1680,
+      "called_at_utc": "2026-09-05T21:14:02.087Z",
+      "call_line_sha256": "03b3c005dfe3ad76c2a71d6d7acd66e323321f9e4fe59af0e0daeb1a74de517b",
+      "output_line": 1683,
+      "returned_at_utc": "2026-09-05T21:14:02.939Z",
+      "output_line_sha256": "4c77da67580807eca51943859bd2dd43ec9a8eccf049963db4a5d2e4d8affd06",
+      "operation": "web.open",
+      "targets_in_recorded_order": [
+        "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/106/",
+        "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/753/",
+        "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/112/"
+      ],
+      "visible_outcome": "Rendered source text with document content type and line counts.",
+      "batch_attribution": "Shared panel/crosswalk/source-challenge task lineage; no per-operation batch tag. Do not assert exact individual batch assignment.",
+      "transport": {
+        "http_attempts": null,
+        "per_hop_urls_and_statuses": null,
+        "response_body_bytes": null,
+        "response_body_hashes": null,
+        "cache_disposition": null
+      }
+    }
+  ],
+  "operation_inventory_is_exhaustive": false,
+  "operation_counts_are_http_counts": false,
+  "complete_cumulative_requests": null,
+  "complete_cumulative_bytes": null,
+  "remaining_budget": null,
+  "maximum_requests": 100,
+  "maximum_bytes": 31457280,
+  "new_scientific_source_requests": 0,
+  "new_scientific_source_bytes": 0,
+  "stopping_condition_met": "Attributable source-review operations lack transport telemetry and per-operation batch attribution. A complete ordered HTTP ledger cannot be derived from these rendered tool outputs.",
+  "decision": "No further acquisition in the inherited batch without complete attributable transport receipts or explicitly revised owner authority/accounting rule. Do not rename or reset the batch.",
+  "provenance_limits": [
+    "Sanitized operation metadata and hashes are retained here; original local task traces are not published. Public readers cannot reproduce private-log inspection from this file alone.",
+    "Tool output length, rendered line count and local file size are not historical HTTP-response byte measurements.",
+    "A repeated source URL is retained as an operation; cache reuse, another request and redirect behavior remain unknown.",
+    "This is computational recovery review, not independent human review, scientific evidence promotion or an acquisition allowance."
+  ],
+  "review": {
+    "kind": "source_representation_adversarial_computational_review_with_parent_adjudication",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "ultra",
+    "independent_human_review": false,
+    "experimental_validation": false,
+    "source": "accept_after_correcting_receipt_object_count_to_12",
+    "chemical_representation": "accept_missing_exact_source_evidence_and_no_M0474_transfer",
+    "adversarial": "accept_decisive_bounded_failure_to_recover_no_acquisition_authority_after_timestamp_and_receipt_count_corrections",
+    "parent_adjudication": "Accept the scoped negative result. Do not impose a universal MRV requirement on partial drafts; keep unknown historical transport and batch allocation explicit.",
+    "material_corrections": [
+      "Original panel receipt-object count corrected to 12 while expanded URL rows remain 21.",
+      "Audit start and completion timestamps separated.",
+      "Partial draft scheme abstention retained; no universal MRV prerequisite added."
+    ]
+  },
+  "review_lineage": {
+    "root_task_id": "01a07311-aac6-7010-9516-e0b53605d473",
+    "panel_producer_task_id": "01a07313-724b-7df2-8278-ca9bd59b991c",
+    "source_challenge_worker_task_id": "01a07313-96d7-7963-9250-71933abb30e8",
+    "source_challenge_worker_name": "/root/forward_path",
+    "failed_fresh_challenge_spawn": {
+      "root_call_line": 1342,
+      "root_output_line": 1344,
+      "call_id": "call_K4MqQf49M8rqjTseGPi3a0QJ",
+      "outcome": "Agent thread limit reached; existing forward_path worker was reused."
+    }
+  },
+  "raw_panel_body_recovery": {
+    "producer_task_id": "01a07313-724b-7df2-8278-ca9bd59b991c",
+    "call_id": "call_tNDIgtUp9NMOGLZVV4QXv1Wb",
+    "call_line": 433,
+    "output_line": 436,
+    "called_at_utc": "2026-09-05T20:09:21.183Z",
+    "call_line_sha256": "35146c1ca1cc87a7b64ab5e988bbc9d40b9c3bc010e7f5abd4677b8699056a7a",
+    "output_line_sha256": "88cdf1e8aa521d9fa649af214e7e61f84fcdbdd454d27f680137bbe109c5cae4",
+    "recorded_temporary_path": "/tmp/atlas50-mcsa-selected40.json",
+    "expected_bytes": 721603,
+    "expected_sha256": "0fdb9641822cfb78c095e0f4f54d2b81f92c54c854ae03b53892b20988b562cf",
+    "temporary_file_present_at_audit": false,
+    "checked_at_utc": "2026-09-09T21:17:15.629045+00:00",
+    "trace_payload_scope": "Reports body size and 40 rows, and prints only a truncated first-record excerpt. It does not retain the complete M0081 source body.",
+    "qualification": "Absence at this recorded temporary path is not proof that no backup exists anywhere. No broader cache search is justified without a concrete locator."
+  },
+  "retained_mechanism_projection": {
+    "path": "artifacts/v1_graph_1025.json",
+    "sha256": "efaf0e97e740373f647fdb8ace87f4d693eb40356e929ac1e5de1f25a0d56a25",
+    "bytes": 23871866,
+    "m0081_node": "m_csa:81:mechanism:1",
+    "separate_comparison_node": "m_csa:474:mechanism:1",
+    "finding": "The retained M0081 normalized narrative discusses conformation and electrostatic stabilization. The separate M0474 narrative contains additional single-step and bond-formation-order wording absent from M0081.",
+    "adjudication": "Do not transfer M0474 wording into M0081 or infer M0081 event simultaneity or source atom mapping from the shared enzyme name or 3CSM inhibitor label.",
+    "source_limit": "Normalized historical projection, not a retained exact raw source response with complete proposal/step/panel/atom and response provenance. It does not establish absence of that chemistry in the enzyme.",
+    "new_source_annotations": 0,
+    "new_compiled_mechanisms": 0,
+    "new_protein_records": 0,
+    "new_experimental_observations": 0,
+    "source_processing_evidence": [
+      {
+        "path": "src/catalytic_earth/adapters.py",
+        "sha256": "cdf1f5e59972991d966c72d9f231b5f9d47a0ac802f6dbaf2ed59933f694c226",
+        "scope": "normalize_mcsa_entries and fetch_mcsa_page keep a lossy normalized projection rather than the raw API response."
+      },
+      {
+        "path": "src/catalytic_earth/graph.py",
+        "sha256": "478ba956ced24e02d8c6ea3b31b5042d27819c84d26139d0ca9e378d5480d94a",
+        "scope": "M-CSA entry, residue and mechanism-text graph projection."
+      },
+      {
+        "path": "src/catalytic_earth/atlas_drafts.py",
+        "sha256": "ddb77a28f2a16900a29a05d3a0b4e15c4c31885d4c6f5080a46c40c4221723e5",
+        "scope": "The draft compiler consumes participant/proposal/step objects and has explicit source-scheme-unavailable and flow-parse-abstention branches."
+      }
+    ],
+    "representation_decision": "No new chemical runtime primitive is justified by this evidence gap. Exact concerted-event/atom transcription requires directly sourced event and atom evidence. A partial source-scoped draft may retain explicit scheme/flow abstention; absence of a captured MRV is not a blanket ban on all draft operations.",
+    "missing_for_selected_question": [
+      "Exact M0081 proposal and ordered-step source evidence, with provenance, supporting the proposed concerted-event statement.",
+      "Direct source scheme and atom evidence for any claimed atom/bond correspondence; explicit abstention otherwise."
+    ]
+  },
+  "scope_limit": "This is a decisive bounded failure-to-recover result, not an exhaustive traffic census. The 21 exact receipt URLs cannot seed a complete census because related challenge pages, primary papers and uncited discovery may use different URLs.",
+  "corrections": [
+    "The panel report now labels 1125005 bytes as retained measurements rather than total external response data.",
+    "The source-challenge report withdraws the unsupported statement that cumulative acquisition was below 30 MiB. Historical source/review JSON bytes and bindings remain unchanged."
+  ],
+  "adjacent_scope_nonadditivity": {
+    "review_id": "atlas50.computational-crosswalk-review.2026-09-05.v1",
+    "relationship": "The same parent task conducted a separate crosswalk review. Shared lineage does not assign every source operation to the panel batch.",
+    "decision": "Do not add the crosswalk temporary byte fields or discovery operations to the panel balance; their exact allocation and overlap are unresolved."
+  },
+  "audit_started_at_utc": "2026-09-09T21:14:02.281631+00:00",
+  "audit_completed_at_utc": "2026-09-09T21:21:31.911905+00:00",
+  "trace_line_hash_convention": "SHA-256 of the raw UTF-8 JSONL line bytes including its trailing newline."
+}

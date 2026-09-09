@@ -2,7 +2,7 @@
 
 This is a targeted computational challenge of eight decision-changing Atlas-50 issues. It is informed by the earlier 57-row crosswalk audit, so it is **not blind**. All computational reviewers in this run are same-model Codex agents. Their errors may be correlated; their agreement is not statistical independence, expert consensus, or human review. These decisions support corrected source-specific development work only. They do not confer independent-validation or gold status, authenticate a reviewer, or change the selection freeze.
 
-The inspection used repository contracts, official M-CSA and RCSB records, and primary papers or authoritative primary-paper abstracts where the result could change a decision. It was bounded to public sources and less than 30 MiB of requests, with no paid access, literature corpus download, GPU work, or outreach. This is not a systematic literature review.
+The inspection used repository contracts, official M-CSA and RCSB records, and primary papers or authoritative primary-paper abstracts where the result could change a decision. It used public sources, with no paid access, literature corpus download, GPU work, or outreach. The earlier statement that acquisition stayed below 30 MiB is not established by retained accounting: the [2026-09-09 local audit](../data/governance/acquisition_audits/atlas50_panel_20260909.json) found rendered browser outputs without transport request or response-byte telemetry. Complete cumulative consumption and remaining allowance stay unknown; the historical review inputs remain unchanged. This is not a systematic literature review.
 
 ## Decisions
 
