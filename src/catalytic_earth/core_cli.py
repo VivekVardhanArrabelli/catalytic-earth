@@ -94,7 +94,7 @@ def verified_mechanism_evidence() -> dict[str, Any]:
             raise ValueError("mechanism evidence package filenames must be local")
         if hashlib.sha256(_resource_bytes(prefix + name)).hexdigest() != digest:
             raise ValueError(f"mechanism evidence package differs from its expected hash: {name}")
-    if not {"evidence.json", "attribution.md"} <= expected["files"].keys():
+    if not {"evidence.json", "attribution.md", "source_contexts.json"} <= expected["files"].keys():
         raise ValueError("mechanism evidence package is incomplete")
     value = json.loads(_resource_bytes(prefix + "evidence.json"))
     for binding in value["source_bindings"]:
@@ -449,6 +449,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     mechanism_evidence.add_argument("--variant", help="exact variant identifier, e.g. H297N or K166R")
     mechanism_evidence.add_argument("--endpoint", choices=("turnover", "isotope_exchange", "structure"))
+    mechanism_evidence.add_argument(
+        "--include-source-context", action="store_true",
+        help="include separately counted deposited context; variant filters it, endpoint filters observations only",
+    )
     mechanism_evidence.add_argument("--output", type=Path, help="optional new JSON file; existing files are never overwritten")
     comparisons = subparsers.add_parser(
         "atlas-panel-comparisons", help="query partial source-panel changes and unresolved coverage offline"
@@ -722,6 +726,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                 verified_mechanism_evidence(), atlas10_bundle=atlas10,
                 transformation_values={"M0187": verified_transformations("M0187")},
                 variant=args.variant, endpoint=args.endpoint,
+                source_contexts=(json.loads(_resource_bytes("mechanism_evidence_data/source_contexts.json"))
+                                 if args.include_source_context else None),
             )
         except ValueError as exc:
             parser.error(str(exc))

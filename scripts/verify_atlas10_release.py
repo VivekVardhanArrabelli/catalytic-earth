@@ -107,6 +107,8 @@ def verify_wheel(
                 "    'mechanism_evidence': command('atlas-mechanism-evidence'),\n"
                 "    'mechanism_exchange': command('atlas-mechanism-evidence', '--variant', 'H297N', '--endpoint', 'isotope_exchange'),\n"
                 "    'mechanism_K166R': command('atlas-mechanism-evidence', '--variant', 'K166R', '--endpoint', 'turnover'),\n"
+                "    'mechanism_K166R_context': command('atlas-mechanism-evidence', '--variant', 'K166R', '--endpoint', 'structure', '--include-source-context'),\n"
+                "    'mechanism_H297N_context': command('atlas-mechanism-evidence', '--variant', 'H297N', '--include-source-context'),\n"
                 "    'mechanism_evidence_empty': command('atlas-mechanism-evidence', '--variant', 'WT'),\n"
                 "    'structural_context': command('atlas-structural-context'),\n"
                 "    'subtilisin_context': command('atlas-structural-context', '--pdb-id', '1SUP'),\n"
@@ -190,6 +192,15 @@ def verify_wheel(
                     or not case["mandatory_abstentions"] or any(case["scope_effect"].values())
                     or queries["mechanism_evidence_empty"]["case_count"] != 0):
                 raise ValueError("installed evidence filters prune the adjudicated case or lose scope")
+            contextual = queries["mechanism_K166R_context"]
+            context_query = contextual["source_context_query"]
+            if (contextual["matched_observation_count"] != 0 or contextual["case_count"] != 0
+                    or context_query["context_count"] != 1
+                    or context_query["matches"][0]["case"] != case
+                    or context_query["matches"][0]["source_context"]["pdb_id"] != "1MDL"
+                    or context_query["query_semantics"]["endpoint_filter_applies"] is not False
+                    or queries["mechanism_H297N_context"]["source_context_query"]["context_count"] != 0):
+                raise ValueError("installed source context confuses deposited variant with observations")
             pattern = queries["pattern_shared"]
             if (pattern["schema_version"] != "catalytic-earth.candidate-pattern-query.v1"
                     or (pattern["candidate_count"], pattern["binding_count"]) != (1, 1)

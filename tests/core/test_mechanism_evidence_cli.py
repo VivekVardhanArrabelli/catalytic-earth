@@ -59,6 +59,33 @@ class MechanismEvidenceCliTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "expected hash"):
                 core_cli.verified_mechanism_evidence()
 
+    def test_opt_in_context_can_match_without_inventing_a_structure_observation(self):
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            self.assertEqual(core_cli.main([
+                "atlas-mechanism-evidence", "--variant", "K166R", "--endpoint", "structure",
+                "--include-source-context",
+            ]), 0)
+        result = json.loads(output.getvalue())
+        self.assertEqual(result["matched_observation_count"], 0)
+        self.assertEqual(result["source_context_query"]["context_count"], 1)
+        self.assertEqual(result["source_context_query"]["matches"][0]["source_context"]["pdb_id"], "1MDL")
+
+    def test_source_context_drift_fails_package_verification(self):
+        original = core_cli._resource_bytes
+
+        def changed(path):
+            raw = original(path)
+            if path == "mechanism_evidence_data/source_contexts.json":
+                value = json.loads(raw)
+                value["contexts"][0]["annotation"]["source_relation"]["variant"] = "H297N"
+                return json.dumps(value).encode()
+            return raw
+
+        with patch.object(core_cli, "_resource_bytes", side_effect=changed):
+            with self.assertRaisesRegex(ValueError, "expected hash"):
+                core_cli.verified_mechanism_evidence()
+
 
 if __name__ == "__main__":
     unittest.main()

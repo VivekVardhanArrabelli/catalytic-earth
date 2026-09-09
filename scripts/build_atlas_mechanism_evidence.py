@@ -12,13 +12,11 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from catalytic_earth.atlas_mechanism_evidence import validate_mechanism_evidence
+from catalytic_earth.atlas_evidence_source_context import PRIMARY_OBSERVATION_FIELDS, build_source_contexts
 
 SOURCE = Path("data/atlas/mechanism_evidence/m0187")
 PACKAGE = Path("src/catalytic_earth/mechanism_evidence_data")
-OBSERVATION_FIELDS = (
-    "observation_id", "variant", "substrate", "endpoint", "conditions", "result",
-    "comparator_variant_id",
-)
+OBSERVATION_FIELDS = PRIMARY_OBSERVATION_FIELDS
 CAPTURE_FIELDS = (
     "request_url", "response_url", "http_status", "retrieved_at_utc", "response_bytes",
     "response_sha256", "retention_scope",
@@ -149,6 +147,12 @@ def main() -> int:
         "evidence.json": canonical_bytes(value),
         "attribution.md": _source_bytes(ROOT / SOURCE / "SOURCE_ATTRIBUTION.md"),
     }
+    contexts = build_source_contexts(
+        load("data/atlas/mechanism_evidence/source_context_spec.json"), value,
+        lambda path: (ROOT / path).read_bytes(),
+    )
+    outputs["source_contexts.json"] = canonical_bytes(contexts)
+    summary["source_context_count"] = len(contexts["contexts"])
     for binding in value["source_bindings"]:
         name = Path(binding["path"]).name
         _require(name not in outputs, "packaged source filenames collide")

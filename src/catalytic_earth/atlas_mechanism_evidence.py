@@ -663,6 +663,7 @@ def query_mechanism_evidence(
     value: dict[str, Any], *, atlas10_bundle: dict[str, Any],
     transformation_values: dict[str, dict[str, Any]], variant: str | None = None,
     endpoint: str | None = None,
+    source_contexts: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Filter source observations while preserving each complete adjudicated case."""
     summary = validate_mechanism_evidence(
@@ -686,7 +687,7 @@ def query_mechanism_evidence(
             "matched_observation_ids": [row["observation_id"] for row in observations],
             "matched_observations": copy.deepcopy(observations),
         })
-    return {
+    result = {
         "schema_version": QUERY_SCHEMA_VERSION,
         "evidence_set_id": summary["evidence_set_id"],
         "evidence_payload_sha256": summary["evidence_payload_sha256"],
@@ -707,6 +708,11 @@ def query_mechanism_evidence(
             "empty_result": "no_matching_source_observation_not_absence_of_catalytic_behavior",
         },
     }
+    if source_contexts is not None:
+        from .atlas_evidence_source_context import query_source_contexts
+
+        result["source_context_query"] = query_source_contexts(source_contexts, value, variant=variant)
+    return result
 
 
 __all__ = [
