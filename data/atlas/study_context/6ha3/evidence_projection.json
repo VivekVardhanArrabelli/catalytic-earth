@@ -1,0 +1,357 @@
+{
+  "arrangement": {
+    "assembly_scope": {
+      "complete_active_site_represented": false,
+      "deposited_polymer_asym_ids": [
+        "A"
+      ],
+      "limit": "This packet represents the deposited T6F instance and its asymmetric-unit coordinates. The paper's E366-prime contact requires a biological-assembly symmetry mate, which is not expanded here."
+    },
+    "chemical_state": "source_assigned_covalent_F6P_ThDP_conjugate",
+    "component_dictionary_bonds": [
+      {
+        "atom_ids": [
+          "C2",
+          "CF2"
+        ],
+        "order": "sing"
+      },
+      {
+        "atom_ids": [
+          "CF2",
+          "CF3"
+        ],
+        "order": "sing"
+      }
+    ],
+    "coordinate_conditions": {
+      "crystal_growth_method": "VAPOR DIFFUSION, HANGING DROP",
+      "crystal_growth_ph": 7.9,
+      "growth_temperature_conflict": {
+        "free_text_kelvin": 279.0,
+        "scalar_kelvin": 277.0
+      },
+      "measurement_temperature_kelvin": 100.0
+    },
+    "coordinate_source": {
+      "bytes": 1751139,
+      "path": "data/atlas/study_context/6ha3/6HA3.cif",
+      "sha256": "f280bce141a937c4256ff401afcb24df7f29b2ae1422423957cf84711591bb09"
+    },
+    "deposited_geometry": [
+      {
+        "atom_ids": [
+          "C2",
+          "CF2"
+        ],
+        "metric_id": "cofactor-substrate-covalent-bond",
+        "metric_type": "distance_angstrom",
+        "value": 1.544496
+      },
+      {
+        "atom_ids": [
+          "CF2",
+          "CF3"
+        ],
+        "metric_id": "source-highlighted-scissile-bond",
+        "metric_type": "distance_angstrom",
+        "value": 1.604779
+      },
+      {
+        "atom_ids": [
+          "C5",
+          "S1",
+          "C2",
+          "CF2"
+        ],
+        "metric_id": "source-highlighted-out-of-plane-deviation",
+        "metric_type": "deviation_from_180_degree_torsion",
+        "source_torsion_degrees": 155.807288,
+        "value_degrees": 24.192712
+      }
+    ],
+    "deposited_instance": {
+      "author_chain_id": "A",
+      "author_component_id": "T6F",
+      "author_residue_number": 701,
+      "component_atom_count": 42,
+      "component_id": "T6F",
+      "component_name": "D-FRUCTOSE-6-PHOSPHATE THIAMIN DIPHOSPHATE ADDUCT",
+      "label_asym_id": "B",
+      "label_entity_id": "2",
+      "model_id": 1,
+      "occupancy_range": [
+        0.53,
+        1.0
+      ]
+    },
+    "incident_connections": [
+      {
+        "connection_id": "metalc10",
+        "connection_type": "metalc",
+        "ligand_atom_id": "O1A",
+        "partner_alt_id": "A",
+        "partner_atom_id": "CA",
+        "partner_component_id": "CA"
+      },
+      {
+        "connection_id": "metalc11",
+        "connection_type": "metalc",
+        "ligand_atom_id": "O1B",
+        "partner_alt_id": "A",
+        "partner_atom_id": "CA",
+        "partner_component_id": "CA"
+      },
+      {
+        "connection_id": "metalc12",
+        "connection_type": "metalc",
+        "ligand_atom_id": "O1A",
+        "partner_alt_id": "B",
+        "partner_atom_id": "MG",
+        "partner_component_id": "MG"
+      },
+      {
+        "connection_id": "metalc13",
+        "connection_type": "metalc",
+        "ligand_atom_id": "O1B",
+        "partner_alt_id": "B",
+        "partner_atom_id": "MG",
+        "partner_component_id": "MG"
+      }
+    ],
+    "pdb_id": "6HA3",
+    "protein": {
+      "construct_scope": "P29401-aligned positions 1-623 plus deposited expression-tag positions 624-637",
+      "deposited_mutation": "E160Q",
+      "entity_id": "1",
+      "uniprot_accession": "P29401"
+    },
+    "protein_covalent_connection_count": 0,
+    "selected_atoms": [
+      {
+        "atom_site_id": "10580",
+        "b_iso_or_equiv": 10.26,
+        "element": "C",
+        "label_atom_id": "C5",
+        "occupancy": 1.0,
+        "x": -9.06,
+        "y": 6.09,
+        "z": 13.755
+      },
+      {
+        "atom_site_id": "10581",
+        "b_iso_or_equiv": 11.72,
+        "element": "S",
+        "label_atom_id": "S1",
+        "occupancy": 1.0,
+        "x": -8.228,
+        "y": 6.845,
+        "z": 15.091
+      },
+      {
+        "atom_site_id": "10582",
+        "b_iso_or_equiv": 10.78,
+        "element": "C",
+        "label_atom_id": "C2",
+        "occupancy": 0.65,
+        "x": -8.371,
+        "y": 8.445,
+        "z": 14.352
+      },
+      {
+        "atom_site_id": "10583",
+        "b_iso_or_equiv": 12.27,
+        "element": "C",
+        "label_atom_id": "CF2",
+        "occupancy": 0.76,
+        "x": -8.336,
+        "y": 9.754,
+        "z": 15.171
+      },
+      {
+        "atom_site_id": "10587",
+        "b_iso_or_equiv": 11.37,
+        "element": "C",
+        "label_atom_id": "CF3",
+        "occupancy": 0.68,
+        "x": -9.852,
+        "y": 9.899,
+        "z": 15.677
+      }
+    ],
+    "structure_title": "Human transketolase variant E160Q in covalent complex with donor ketose D-fructose-6-phosphate"
+  },
+  "atlas_record_binding": {
+    "mechanism_id": "M0219",
+    "proposal_step_grounding": false,
+    "relation": "record_scope_only",
+    "source": {
+      "path": "data/atlas/source_drafts/batches/aldolase-transketolase/records.json",
+      "sha256": "cab1532323e28ccffbeb01946608bc7405c746eec34dcf977aed974f82369720"
+    },
+    "transfer_limit": "F6P is the donor in this study. The packet does not ground M0219 proposal 2's X5P/E4P direction, any elementary step, or the unresolved M-CSA sugar-label conflict."
+  },
+  "claim_boundary": {
+    "allowed": "A same-study, same-reported-variant association joins the deposited E160Q/F6P-ThDP arrangement to measured F6P-ThDP accumulation and reversible adduct-formation kinetics.",
+    "not_established": [
+      "identical protein preparation or tag sequence across crystallography and assays",
+      "crystal-to-solution conformer identity, occupancy, protonation, or population",
+      "a complete symmetry-expanded active site",
+      "causation from the deposited distortion to any measured rate",
+      "productive full-cycle turnover with F6P as donor",
+      "an exact M0219 proposal or elementary-step assignment"
+    ],
+    "status": "source_reviewed_study_scoped_association_not_independent_expert_validation"
+  },
+  "observations": [
+    {
+      "conditions": {
+        "buffer": "50 mM glycyl-glycine",
+        "calcium_chloride_mM": 5.0,
+        "mixing": "1+1",
+        "ph": 7.6,
+        "substrate": "F6P",
+        "temperature_celsius": 4.0,
+        "wavelength_nm": 325
+      },
+      "endpoint": "reversible covalent F6P-ThDP adduct formation",
+      "method": "pre-steady-state stopped-flow",
+      "observation_id": "e160q-f6p-stopped-flow",
+      "reported_values": {
+        "hill_coefficient": {
+          "mean": 0.9,
+          "sd": 0.11
+        },
+        "k0_5_mM": {
+          "mean": 0.95,
+          "sd": 0.07
+        },
+        "k_forward_per_s": {
+          "mean": 5.91,
+          "sd": 0.43
+        },
+        "k_max_ES_per_s": {
+          "mean": 105.1,
+          "sd": 6.7
+        },
+        "k_reverse_per_s": {
+          "mean": 0.47,
+          "sd": 0.23
+        },
+        "replicates": "triplicate; experiment independently repeated twice with similar results"
+      },
+      "reported_variant": "E160Q",
+      "source_locators": [
+        "Nature Extended Data Fig. 2e-f",
+        "Supplementary Methods pages 6-7, equations 7-8",
+        "Extended Data Table 2a, E160Q row"
+      ]
+    },
+    {
+      "conditions": {
+        "buffer": "50 mM glycyl-glycine",
+        "enzyme_stock_mg_per_mL": 15.0,
+        "mixing": "equal 200 microlitre volumes before quench",
+        "ph": 7.6,
+        "pre_quench_time_seconds": 30,
+        "substrate_stock_mM": 100.0,
+        "temperature_celsius": 20.0
+      },
+      "endpoint": "acid-isolated covalent-intermediate accumulation",
+      "method": "1D proton NMR after acid quench",
+      "observation_id": "e160q-f6p-nmr",
+      "reported_values": {
+        "f6p_thdp": "accumulated",
+        "quantitative_peak_fraction_retained": false,
+        "replicates": "experiment independently repeated twice with similar results"
+      },
+      "reported_variant": "E160Q",
+      "source_locators": [
+        "Nature Extended Data Fig. 1d",
+        "Supplementary Methods pages 5-6"
+      ]
+    },
+    {
+      "conditions": {
+        "acceptor": "2 mM R5P",
+        "buffer": "50 mM glycyl-glycine",
+        "donor": "X5P",
+        "ph": 7.6,
+        "temperature_celsius": 20.0,
+        "wavelength_nm": 340
+      },
+      "endpoint": "X5P/R5P steady-state turnover to S7P/G3P",
+      "method": "NADH-coupled steady-state spectrophotometry",
+      "observation_id": "e160q-x5p-r5p-turnover",
+      "reported_values": {
+        "k_cat_per_s": {
+          "mean": 0.54,
+          "sd": 0.01
+        },
+        "k_cat_over_KM_per_M_s": 6923,
+        "km_X5P_micromolar": {
+          "mean": 78.0,
+          "sd": 4.8
+        }
+      },
+      "reported_variant": "E160Q",
+      "source_locators": [
+        "Supplementary Methods page 5, equation 1",
+        "Extended Data Table 2a, E160Q row"
+      ]
+    }
+  ],
+  "packet_id": "atlas-study-context:6HA3:E160Q:F6P-ThDP:2026-09-09",
+  "relations": [
+    {
+      "arrangement_id": "6HA3:T6F:B:A701:model1",
+      "asserted_equivalences": [
+        "same DOI/study",
+        "same reported E160Q variant label",
+        "source-assigned F6P-ThDP chemical species"
+      ],
+      "observation_id": "e160q-f6p-stopped-flow",
+      "relation": "study_scoped_structure_state_to_measured_adduct_formation",
+      "unresolved_equivalences": [
+        "exact construct and preparation identity",
+        "physical-state and condition compatibility",
+        "crystal conformer population in solution"
+      ]
+    },
+    {
+      "arrangement_id": "6HA3:T6F:B:A701:model1",
+      "asserted_equivalences": [
+        "same DOI/study",
+        "same reported E160Q variant label",
+        "source-assigned F6P-ThDP chemical species"
+      ],
+      "observation_id": "e160q-f6p-nmr",
+      "relation": "study_scoped_structure_state_to_measured_intermediate_accumulation",
+      "unresolved_equivalences": [
+        "exact construct and preparation identity",
+        "crystal-state identity after acid quench",
+        "intermediate population before quench"
+      ]
+    },
+    {
+      "arrangement_id": "6HA3:T6F:B:A701:model1",
+      "asserted_equivalences": [
+        "same DOI/study",
+        "same reported E160Q variant label"
+      ],
+      "observation_id": "e160q-x5p-r5p-turnover",
+      "relation": "same_variant_turnover_context_not_same_substrate_state",
+      "unresolved_equivalences": [
+        "exact construct and preparation identity",
+        "F6P-adduct geometry relevance to X5P/R5P turnover",
+        "selectivity of E160Q for geometry versus charge and acid-base chemistry"
+      ]
+    }
+  ],
+  "schema_version": "catalytic-earth.atlas-study-context.v1",
+  "study": {
+    "doi": "10.1038/s41586-019-1581-9",
+    "pmid": "31534226",
+    "title": "Low-barrier hydrogen bonds in enzyme cooperativity"
+  }
+}

@@ -126,6 +126,7 @@ def _validate_markdown_links() -> None:
         "docs/ATLAS_TRANSFORMATIONS.md",
         "docs/ATLAS_MECHANISM_EVIDENCE.md",
         "docs/ATLAS_STRUCTURAL_CONTEXT.md",
+        "docs/ATLAS_STUDY_CONTEXT.md",
         "docs/ATLAS_TRUTH_POLICY.md",
         "docs/CORE_REPRODUCTION.md",
         "docs/EVALUATION_MEMORY.md",
@@ -439,6 +440,7 @@ def main() -> int:
     _run("scripts/build_atlas_transformations.py", "--check")
     _run("scripts/build_atlas_mechanism_evidence.py", "--check")
     _run("scripts/build_atlas_structural_context.py", "--check")
+    _run("scripts/validate_atlas_study_context.py")
     _run("scripts/build_atlas_candidate_events.py", "--check")
     _run("data/atlas/transformations/m0173/audit_m0173.py", "--check")
     _run("scripts/build_atlas_panel_comparisons.py", "--check")

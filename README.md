@@ -50,6 +50,14 @@ a production biological design system.
 
 ## Quick Status — 2026-09-09
 
+A validated [study-context packet](docs/ATLAS_STUDY_CONTEXT.md) now joins the
+deposited human transketolase E160Q/F6P-ThDP arrangement in 6HA3 to the same
+study's measured intermediate accumulation and reversible adduct-formation
+kinetics. Its X5P/R5P turnover result remains a separate endpoint. The join is
+study- and reported-variant-scoped: it does not establish identical protein
+preparations, crystal-to-solution state identity, a complete symmetry-expanded
+active site, or causation from the deposited distortion to a measured rate.
+
 A [source-bound catalytic-geometry comparison](docs/ATLAS_STRUCTURAL_CONTEXT.md)
 now exposes a material structure-state limitation (CE-018/ER-012): subtilisin
 1SUP has a PMS-modified catalytic serine despite its unmutated sequence, while

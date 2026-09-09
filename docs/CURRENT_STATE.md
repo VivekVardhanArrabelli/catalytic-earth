@@ -1,5 +1,24 @@
 # Current State
 
+## 2026-09-09: one bounded geometry-to-function study association
+
+The [6HA3 study-context packet](ATLAS_STUDY_CONTEXT.md) adds a reproducible,
+source-reviewed association between a deposited human transketolase
+E160Q/F6P-ThDP arrangement and separately measured F6P-ThDP accumulation and
+reversible formation kinetics in the same study. The retained coordinate facts
+include the integrated T6F component, atom-specific occupancies, a 1.604779
+angstrom scissile-bond distance, a 24.192712-degree out-of-plane deviation and
+four explicitly typed metal-coordination records. These are descriptive facts
+of the current 6HA3 deposit, not catalytic performance claims.
+
+The study's X5P/R5P steady-state turnover is preserved as a different endpoint,
+not mislabeled as F6P turnover. Exact protein-preparation equivalence,
+crystal-to-solution state identity, complete biological-assembly geometry,
+protonation, an M0219 elementary-step mapping and distortion-to-rate causation
+remain unresolved. Existing source-draft counts, evidence tiers, Atlas kernels,
+protected registries and evaluation surfaces are unchanged. This is
+computational source review, not independent expert or experimental validation.
+
 ## 2026-09-09: chemical state accompanies catalytic geometry
 
 The [structural-context comparison](ATLAS_STRUCTURAL_CONTEXT.md) adds two
