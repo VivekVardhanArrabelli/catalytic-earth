@@ -1,0 +1,88 @@
+{
+  "batch_id": "human-tkt-e160q-6ha3-geometry-function",
+  "claim_scope": "Study-scoped association of one deposited E160Q/F6P-ThDP arrangement with separately measured intermediate accumulation, reversible adduct-formation kinetics, and X5P/R5P turnover.",
+  "redistribution_and_claim_limits": [
+    "Only the RCSB mmCIF is redistributed in this packet under the established PDB CC0 convention.",
+    "The Nature landing page was a subscription preview with accessible data-availability and extended-data legends, not inspected full article text.",
+    "Publisher and PubMed captures are represented by project-authored factual projections, hashes, and locators; their full bodies are not redistributed.",
+    "The table HTML and JPEG are two representations of one Extended Data Table, not independent experiments.",
+    "The current 6HA3 v1.4 bytes are not asserted to be byte-identical to publication-era coordinates."
+  ],
+  "request_budget": {
+    "direct_capture_bytes": 2987157,
+    "direct_capture_requests": 6,
+    "max_requests": 100,
+    "max_response_bytes": 31457280,
+    "scope_note": "Web discovery queries and page views are acknowledged but their underlying HTTP count and bytes are unavailable; they are not falsely included in the six direct captures.",
+    "within_limits": true
+  },
+  "schema_version": "catalytic-earth.atlas-study-context-source-inventory.v1",
+  "sources": [
+    {
+      "artifact_id": "RCSB:6HA3:mmCIF:v1.4",
+      "bytes": 1751139,
+      "inspection_depth": "Complete current mmCIF parsed; selected atom, component-bond, connection, construct, condition, assembly, and revision fields inspected.",
+      "license": "CC0 1.0 Universal",
+      "media_type": "chemical/x-mmcif",
+      "path": "data/atlas/study_context/6ha3/6HA3.cif",
+      "redistributed": true,
+      "sha256": "f280bce141a937c4256ff401afcb24df7f29b2ae1422423957cf84711591bb09",
+      "source_url": "https://files.rcsb.org/download/6HA3.cif"
+    },
+    {
+      "artifact_id": "PubMed:31534226:XML",
+      "bytes": 29589,
+      "inspection_depth": "Official bibliographic and abstract representation inspected.",
+      "media_type": "application/xml",
+      "path": null,
+      "redistributed": false,
+      "sha256": "43936f06618ef7e44fcd98b426a8351479d4b99b3ec311c79dbc5752aacd4be8",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/31534226/"
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:landing-HTML",
+      "bytes": 445216,
+      "inspection_depth": "Subscription preview plus data availability and all relevant Extended Data legends inspected; main methods absent.",
+      "media_type": "text/html",
+      "path": null,
+      "redistributed": false,
+      "sha256": "e9d239f6e97bf1a563641d2b1e0a335411b6a07125ad7f250cee2e3fc0c17a59",
+      "source_url": "https://www.nature.com/articles/s41586-019-1581-9"
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:SI-PDF",
+      "bytes": 436294,
+      "inspection_depth": "All 13 pages text-extracted; Supplementary Methods pages 5-7 rendered and visually inspected for NMR and stopped-flow semantics.",
+      "media_type": "application/pdf",
+      "path": null,
+      "redistributed": false,
+      "sha256": "9e4db71f5e59ee1184991376419894ac4c311b403f74028f9c543337e4d1733c",
+      "source_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-019-1581-9/MediaObjects/41586_2019_1581_MOESM1_ESM.pdf"
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:EDTable2-HTML",
+      "bytes": 178782,
+      "inspection_depth": "Table title and endpoint-defining footnotes inspected; numeric cells are in the linked JPEG.",
+      "media_type": "text/html",
+      "path": null,
+      "redistributed": false,
+      "sha256": "58012ff70ac04784193dd2c76863c008fd6b10018c3ff4b629d6634b1ba7866e",
+      "source_url": "https://www.nature.com/articles/s41586-019-1581-9/tables/2"
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:EDTable2-JPEG",
+      "bytes": 146137,
+      "inspection_depth": "Full table image visually inspected; E160Q and wild-type transketolase values transcribed with units and uncertainty.",
+      "media_type": "image/jpeg",
+      "path": null,
+      "redistributed": false,
+      "sha256": "51ca21f005b8b5d9dd152e097940656a76821e3e379b7697da219d5522652b8c",
+      "source_url": "https://media.springernature.com/lw749/springer-static/esm/art%3A10.1038%2Fs41586-019-1581-9/MediaObjects/41586_2019_1581_Tab2_ESM.jpg"
+    }
+  ],
+  "study": {
+    "doi": "10.1038/s41586-019-1581-9",
+    "pmid": "31534226",
+    "pdb_id": "6HA3"
+  }
+}

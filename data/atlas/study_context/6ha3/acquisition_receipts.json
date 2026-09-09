@@ -1,0 +1,117 @@
+{
+  "aggregate": {
+    "direct_capture_request_count": 6,
+    "direct_capture_response_bytes": 2987157,
+    "remaining_direct_capture_bytes": 28470123,
+    "remaining_direct_capture_requests": 94,
+    "within_limits": true
+  },
+  "attempts": [
+    {
+      "artifact_id": "RCSB:6HA3:mmCIF:v1.4",
+      "bytes_read": 1751139,
+      "completed_at_utc": null,
+      "final_url": "https://files.rcsb.org/download/6HA3.cif",
+      "http_status": 200,
+      "redirects_followed": 0,
+      "request_index": 1,
+      "request_time_utc": null,
+      "requested_url": "https://files.rcsb.org/download/6HA3.cif",
+      "response_content_type": null,
+      "sha256": "f280bce141a937c4256ff401afcb24df7f29b2ae1422423957cf84711591bb09"
+    },
+    {
+      "artifact_id": "PubMed:31534226:XML",
+      "bytes_read": 29589,
+      "completed_at_utc": null,
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=31534226&retmode=xml",
+      "http_status": 200,
+      "redirects_followed": null,
+      "request_index": 2,
+      "request_time_utc": null,
+      "requested_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=31534226&retmode=xml",
+      "response_content_type": null,
+      "sha256": "43936f06618ef7e44fcd98b426a8351479d4b99b3ec311c79dbc5752aacd4be8"
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:landing-HTML",
+      "bytes_read": 445216,
+      "completed_at_utc": null,
+      "final_url": null,
+      "http_status": 200,
+      "redirects_followed": null,
+      "request_index": 3,
+      "request_time_utc": null,
+      "requested_url": "https://www.nature.com/articles/s41586-019-1581-9",
+      "response_content_type": null,
+      "sha256": "e9d239f6e97bf1a563641d2b1e0a335411b6a07125ad7f250cee2e3fc0c17a59"
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:SI-PDF",
+      "bytes_read": 436294,
+      "completed_at_utc": null,
+      "final_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-019-1581-9/MediaObjects/41586_2019_1581_MOESM1_ESM.pdf",
+      "http_status": 200,
+      "redirects_followed": 0,
+      "request_index": 4,
+      "request_time_utc": null,
+      "requested_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-019-1581-9/MediaObjects/41586_2019_1581_MOESM1_ESM.pdf",
+      "response_content_type": null,
+      "sha256": "9e4db71f5e59ee1184991376419894ac4c311b403f74028f9c543337e4d1733c"
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:EDTable2-HTML",
+      "bytes_read": 178782,
+      "completed_at_utc": null,
+      "final_url": "https://www.nature.com/articles/s41586-019-1581-9/tables/2?error=cookies_not_supported&code=338b969f-43db-4ebf-8ace-e671e83ecaf9",
+      "http_status": 200,
+      "redirects_followed": null,
+      "request_index": 5,
+      "request_time_utc": null,
+      "requested_url": "https://www.nature.com/articles/s41586-019-1581-9/tables/2",
+      "response_content_type": null,
+      "sha256": "58012ff70ac04784193dd2c76863c008fd6b10018c3ff4b629d6634b1ba7866e"
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:EDTable2-JPEG",
+      "bytes_read": 146137,
+      "completed_at_utc": null,
+      "final_url": "https://media.springernature.com/lw749/springer-static/esm/art%3A10.1038%2Fs41586-019-1581-9/MediaObjects/41586_2019_1581_Tab2_ESM.jpg",
+      "http_status": 200,
+      "redirects_followed": 0,
+      "request_index": 6,
+      "request_time_utc": null,
+      "requested_url": "https://media.springernature.com/lw749/springer-static/esm/art%3A10.1038%2Fs41586-019-1581-9/MediaObjects/41586_2019_1581_Tab2_ESM.jpg",
+      "response_content_type": null,
+      "sha256": "51ca21f005b8b5d9dd152e097940656a76821e3e379b7697da219d5522652b8c"
+    }
+  ],
+  "final_artifacts": [
+    {
+      "bytes": 1751139,
+      "path": "data/atlas/study_context/6ha3/6HA3.cif",
+      "redistributed": true,
+      "sha256": "f280bce141a937c4256ff401afcb24df7f29b2ae1422423957cf84711591bb09",
+      "source_attempt_index": 1
+    },
+    {
+      "artifact_ids": [
+        "PubMed:31534226:XML",
+        "Nature:s41586-019-1581-9:landing-HTML",
+        "Nature:s41586-019-1581-9:SI-PDF",
+        "Nature:s41586-019-1581-9:EDTable2-HTML",
+        "Nature:s41586-019-1581-9:EDTable2-JPEG"
+      ],
+      "path": null,
+      "redistributed": false,
+      "scope": "Publisher and bibliographic captures were inspected locally; only project-authored factual projections and locators are committed."
+    }
+  ],
+  "limits": {
+    "max_requests": 100,
+    "max_response_bytes": 31457280
+  },
+  "receipt_limit": "The direct captures proved HTTP 200, byte counts, hashes, and the final URLs printed by the later curl calls. Request/completion timestamps, headers, and some redirect details were not persisted and are left null rather than reconstructed.",
+  "schema_version": "catalytic-earth.primary-source-acquisition-receipts.v1",
+  "scope_note": "Counts cover the six explicit retained-body captures in this named batch. Web search/page-view discovery traffic is separately acknowledged but its underlying request and byte totals are not measurable from the browsing tool. Local PDF extraction and rendering add zero network requests."
+}

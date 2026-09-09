@@ -1,0 +1,43 @@
+{
+  "challenges": [
+    {
+      "adjudication": "preserved_as_explicit_abstention",
+      "finding": "The deposited asymmetric unit contains one polymer chain, while the paper's E366-prime contact requires a biological-assembly symmetry mate."
+    },
+    {
+      "adjudication": "chemical state and connection inventory modeled separately",
+      "finding": "T6F is one integrated F6P-ThDP component with four metal-coordination rows and no protein-covalent struct_conn row."
+    },
+    {
+      "adjudication": "turnover retained as a separate same-variant context",
+      "finding": "The steady-state assay uses X5P and R5P, whereas the deposited and pre-steady-state state uses F6P."
+    },
+    {
+      "adjudication": "causal claim rejected",
+      "finding": "E160Q changes charge and nearby acid-base chemistry in addition to geometry/proton-wire organization."
+    }
+  ],
+  "decision": "accept_study_scoped_association",
+  "review_scope": "Coordinate identity, selected atoms, component bonds, typed incident connections, assay endpoint separation, numeric transcription, source scope, and transfer limits were independently challenged. This is repository source review, not independent expert validation.",
+  "reviewed_at_utc": "2026-09-09T14:38:16Z",
+  "reviewed_sha256": {
+    "acquisition_receipts.json": "de10198e89a2f282a02b743202e65bfd957fcca7873d26e52eece8acb4a42050",
+    "evidence_projection.json": "70bf1eaa59747239990161631432a44440629704aa50051bddd551309fb1213e",
+    "source_inventory.json": "1605d98776281d52660f32442da9d11996bfc4dc19e5cbbea1b0252882bbfc06"
+  },
+  "reviewers": [
+    {
+      "lane": "source",
+      "scope": "primary-source and receipt audit"
+    },
+    {
+      "lane": "representation",
+      "scope": "identity, chemistry, and reusable IR audit"
+    },
+    {
+      "lane": "adversarial",
+      "scope": "construct, state, endpoint, and causal-transfer challenge"
+    }
+  ],
+  "schema_version": "catalytic-earth.atlas-study-context-review.v1"
+}
