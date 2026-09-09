@@ -6,76 +6,69 @@
 This block and `docs/HOURLY_RESEARCH.md` govern the hourly task. Historical
 content below the marker is not an execution queue.
 
-- **Identity/base:** owner `01a087c6-e005-7793-a0e5-d1ac12fd28e7:c72002c7-abae-4d25-827f-40121f8c8d57`;
-  actual UTC start 2026-09-09T20:06:05Z; clean synchronized base
-  `3e239806429ce30fcf9f8202760eed8f5f7ed056`; branch
-  `codex/m0081-rearrangement-scope-20260909`. No pending PR or recovery.
-  Checkpoint 2026-09-09T20:32:05Z (26.0 minutes). The Git-local receipt records
-  final elapsed time, reviewed/pushed/merged head, CI and lock release.
-- **Question/result:** can M0081/P32178 support a concerted rearrangement draft,
-  and what chemical state does 3CSM supply for a template? New requests stopped
-  before acquisition because inherited panel accounting is incomplete. The
-  useful retained-source alternative found 3CSM in the historical coordinate
-  archive. Its title/keywords identify a bicyclic inhibitor/transition-state
-  analogue; two TSA instances remain distinct from two regulatory TRP instances.
-  At P32178 positions 218–221, each chain declares ERRI versus reference NESG,
-  with all four positions unmodeled. These conflicts are not established
-  engineered substitutions, and the coordinates cannot resolve the sequence.
-- **Usable content/limits:** one source annotation of an existing panel candidate
-  (CE-023), zero new compiled mechanisms, protein records or experimental
-  observations. All 28 TSA component-atom and 29 bond-definition rows retain
-  stereochemical tokens; 32 TSA heavy-atom coordinate rows remain distinct.
-  Ten selected assembly-1 separations retain both oxygen names for Glu198/246.
-  The 3.0 Å refinement limit, TSA B factors 84.37–96.69 Å², occupancy tokens,
-  source BAR alias, unmodeled rows and regulatory-site symmetry are preserved.
-  No source atom map, substrate/TS equivalence, protonation, catalytic role,
-  full regulatory geometry, solution assembly, rate or design tolerance is
-  established. The primary paper is deposit citation metadata only.
-- **Evidence:** `data/atlas/deposit_context/m0081/` contains the source, declarative
-  spec, projection, review, acquisition recovery and attribution. Source SHA256
-  `c5b5ae76cb8471dd29e6317ccb03fdf6bfa808da244c5db7fb0ab4b5661ae194`
-  (443,896 bytes), copied exactly from
-  `artifacts/v3_foldseek_coordinates_1000/pdb_3CSM.cif`; historical producer
-  evidence is pinned to commit `2882460ea5a69da5eba78e6d524b5d43f098722e`.
-  See `docs/ATLAS_DEPOSIT_CONTEXT.md` for interpretation and reproduction.
-- **Acquisition:** zero new source requests/bytes. The inherited
-  `atlas50.computational-panel-review.2026-09-05` receipts reconcile
-  21/1,125,005 plus 7/349,400 = **metered lower bound** 28/1,474,405.
-  Historical browser traffic remains unmetered; cumulative totals and headroom
-  are unknown. Do not treat the prior handoff's carried number as a complete
-  balance, reset the scope or rename a batch. Local file size is not a
-  reconstructed historical response count. Other source batches are unchanged;
-  M0222's methods inquiry remains stopped, and M0187 remains at its sublimit.
-- **Review/reconsideration:** source objections changed the packet: declared
-  sequence versus unmodeled positions, analogue label versus equivalence, both
-  Glu oxygen names, model-quality limits and regulatory symmetry. Computational
-  source/representation/adversarial review accepted the restricted annotation;
-  no independent human or laboratory review is claimed. The previous complete
-  wrappers require an Atlas-10 record or single-variant assay context. A generic
-  source-row wrapper reuses the existing parser and assembly projector, with
-  all case facts in data and no enzyme-specific runtime. Its checks validate
-  extraction/pins, not chemistry or prose. Only this real packet uses the new
-  wrapper so far; no measured curation saving or cross-case performance claim.
-  A PDB viewer can obtain the facts; the addition preserves their limits beside
-  geometry. Board: `work/coordination_m0081_rearrangement_20260909.md`.
-- **Verification/publication:** 523 core/unit tests pass, including new failure-
-  mode tests; focused/shared parser/assembly checks pass. Parent rebuilt after
-  a pre-review projection wording change and the final packet `--check` passes.
-  Repository contracts and fresh-directory installed-wheel Atlas-3/Atlas-10/
-  draft/site/candidate checks pass. The source-reviewed local increment is
-  ready for publication; required CI must pass at the reviewed head before merge. Resume
-  this PR first if pending. Exact head/PR/merge/sync/release goes in the local
-  receipt and task result, not a self-hash follow-up commit. No unrelated edits.
-- **One next action:** bounded local recovery of original 2026-09-05 panel/source-
-  challenge request accounting, limited to the exact inherited batch and its
-  recorded URLs. Expected gain: either an attributable complete request ledger
-  that makes the remaining balance calculable, or a named authority gap. No
-  complete trace location is currently established. Stop if every historical
-  request cannot be tied to URL/status/response bytes and provenance; partial
-  hits are disclosure only and authorize no acquisition. Further M0081 drafting
-  requires direct mechanism/scheme evidence under established accounting or
-  explicit revised acquisition authority. Do not repeat 3CSM geometry, M0222
-  wrappers or a stale cached case to fill the run.
+- **Identity/base:** owner
+  `01a087fd-5a80-7dd0-be10-dbc798cab4df:ac399f3e-fb18-4b3c-87eb-5a545c0ad8bf`;
+  actual UTC start 2026-09-09T21:05:39Z; clean synchronized base
+  `fab4c17aeda383d3dcd32c68e99c35663239ef90`; branch
+  `codex/panel-acquisition-recovery-20260909`. No inherited PR or recovery.
+  Checkpoint 2026-09-09T21:19:25Z (13.8 minutes). Final head,
+  CI, elapsed time and lock release belong in the Git-local receipt/task result.
+- **Question/result:** can the original panel/source-challenge traces close
+  cumulative acquisition accounting, and does retained M0081 evidence allow
+  useful mechanism work without new requests? The bounded local audit found
+  the original parent, panel producer and actual `forward_path` challenge
+  worker. Their browser outputs preserve rendered text without transport
+  bytes, status, redirects/cache/retry accounting or per-operation batch tags.
+  This establishes a named telemetry/allocation gap, not a complete census.
+- **Scientific limit:** the retained May graph has a coarse M0081/P32178
+  conformation/electrostatics narrative. Additional single-step and bond-order
+  wording belongs to the distinct M0474 entry. Do not transfer it into M0081.
+  No source-resolved concerted event, exact atom map, new annotation, compiled
+  mechanism, protein record, experimental observation or tier is added. This
+  is missing source evidence, not evidence that the enzyme lacks the chemistry.
+  The draft compiler already permits explicit scheme/flow abstention; a missing
+  MRV is not a blanket prohibition on partial source-scoped drafts.
+- **Evidence:** `data/governance/acquisition_audits/atlas50_panel_20260909.json`
+  pins the original receipt inputs and sanitized local trace examples. Raw
+  private traces remain local, so public readers cannot reproduce that part
+  of the audit from the overlay alone. The producer wrote
+  `/tmp/atlas50-mcsa-selected40.json` (721,603 bytes; expected SHA256
+  `0fdb9641822cfb78c095e0f4f54d2b81f92c54c854ae03b53892b20988b562cf`),
+  now absent at that path. Its trace does not retain the full body. The graph
+  `artifacts/v1_graph_1025.json`, SHA256
+  `efaf0e97e740373f647fdb8ace87f4d693eb40356e929ac1e5de1f25a0d56a25`,
+  is a lossy normalized projection and cannot reconstruct it. No claim that
+  every possible backup was searched is made.
+- **Acquisition:** ZERO new scientific-source requests/bytes. The exact inherited
+  `atlas50.computational-panel-review.2026-09-05` scope retains 21 URL captures
+  /1,125,005 bytes plus seven indexed attempts /349,400 bytes, including an
+  empty 404. **28/1,474,405 remains a metered lower bound**, with null complete
+  totals/headroom. Original panel receipts lack transport status; do not infer
+  21 HTTP 200s. Repeated URLs are not deduplicated as requests. Adjacent
+  crosswalk bytes and untagged browser operations are not added to this balance.
+  Other scopes remain unchanged. No scope reset, rename or new allowance.
+- **Correction/reconsideration:** the old panel report's total-response wording
+  and challenge report's below-30-MiB assertion are now qualified as unsupported
+  by complete accounting; pinned historical source/review JSON stays unchanged.
+  No new runtime, chemical primitive or wrapper is justified. Existing data and
+  compiler inspection suffice to expose information lost during normalization.
+  The useful outcome is prevented cross-record transfer and a concrete source
+  authority gap; no measured curation speedup or incumbent advantage is claimed.
+  Board: `work/coordination_panel_accounting_20260909.md`.
+- **Review/publication:** computational source, representation and adversarial
+  review only; no human/laboratory validation. Parent adjudication preserves
+  scope-specific abstention rather than imposing an extra universal MRV gate.
+  Audit arithmetic, source/trace pins, repository contracts and preservation
+  checks pass. Required CI is pending. Resume this branch/PR first
+  if unfinished; exact publication/release status is in the local receipt.
+  Only owned audit/docs/handoff and derived manifests changed.
+- **One next action:** obtain a concrete original transport ledger or explicit
+  owner revision of acquisition authority/accounting for this inherited batch
+  before acquiring the missing M0081 proposal/step evidence. Expected gain:
+  accountable source acquisition that can decide the concerted-event
+  draft. Stop if neither is supplied; no further local trace scan without a
+  new exact locator, no new request, and no M0474-to-M0081 transfer. This gap
+  blocks affected acquisition, not unrelated allowed retained-source work.
 
 Preserve historical content below this marked block. Git identifies the
 containing increment; no self-hash follow-up commit is required.
