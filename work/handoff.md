@@ -3,90 +3,79 @@
 <!-- current-research-handoff:start -->
 ## Current research baton — 2026-09-09
 
-This block and `docs/HOURLY_RESEARCH.md` govern the hourly research task.
-Everything below the end marker is historical; claims, errata, truth policy
-and current decisions control conflicting wording.
+This block and `docs/HOURLY_RESEARCH.md` govern the hourly task. Historical
+content below the marker is not an execution queue.
 
-- **Identity/base:** owner `01a0878f-f0d4-7f60-9a1c-021163c8c269:c89d7c82-d713-4d17-8136-f2fd85eb374a`;
-  actual UTC start 2026-09-09T19:06:06Z; clean synchronized base
-  `03d4e2f2ddc68570c8023cb481ce5c2a05349af3`; branch
-  `codex/m0222-mobile-catalyst-20260909`. Checkpoint 2026-09-09T19:31:07Z
-  (25.0 minutes). The Git-local receipt records final
-  elapsed time, reviewed/pushed/merged SHA, CI and lock release. No prior PR
-  or recovery work was pending.
-- **Question and stop:** the inherited M0222 primary-methods/kinetic-table
-  inquiry stopped before any acquisition. Two metered scopes can be recovered,
-  but unmetered discovery and unattributed 2QUT acquisition prevent an exact
-  cumulative balance. No kinetic endpoint was extracted from indexed text.
-  The supported alternative asks whether retained 2QUT supplies the proposed
-  mobile Tyr363 proton-transfer pose, beyond its source-assigned enamine label.
-- **Grounded finding:** 2QUT retains four Lys229 NZ–13P C2 covalent connections.
-  In A/B/C, author Tyr363 OH is 24.289/24.275/24.202 Å from same-chain 13P C1
-  and 26.655/26.722/26.637 Å from C3. D Tyr363 is unmodeled. Declared assembly 1
-  uses only identity operator 1; cross-chain checks supply no closer Tyr OH.
-  Coordinate gaps are A/B346–358, C349–358 and D361–363. Thus this retained
-  enamine model does not furnish the proposed mobile-catalyst pose (CE-022).
-  This is not evidence against a transient conformation or for absent catalysis.
-- **Usable content/limits:** both existing M0222 primary annotation views now
-  carry `mobile_catalyst_pose`. The adjacent globally hash-bound factual
-  projection preserves 23 selected atom rows, per-position coverage, named
-  carbon distances and assembly/reference/connection rows. No observation,
-  protein, reaction, mechanism, assay or evidence tier is added. Author Tyr363
-  and interval-mapped P00883 position364 remain distinct; C1/C3 are raw PDB
-  names, not a source-atom/proton map. No dynamics, solution population,
-  protonation, causal geometric threshold, kinetic rate, complete mechanism,
-  assay-specimen identity or Lys146Met coordinate context is established.
-- **Evidence:** `data/atlas/source_drafts/batches/aldolase-transketolase/review/primary_sources/mobile_tail_20260909/`
-  contains `evidence_projection.json` and `acquisition_recovery.json`.
-  Projection SHA256 `b0f7bc0f1004daf33d926cc5e5c93830b9918ea0358e2ca2e16665fcef88a011`;
-  reviewed primary-annotation payload
-  `1a39745fe852e5cebb7b764d8d7f4969dadf80d57c4210e006c4c455fdbc9bbf`.
-  The source mmCIF, old observed-state projection and source-mechanism bytes
-  remain unchanged. See `docs/ATLAS_SOURCE_DRAFTS.md` for query and scope.
-- **Acquisition:** zero new scientific-source requests/bytes. Known M0222-related
-  lower bound is 33 requests / 578,501 bytes across separate scopes, not a
-  remaining balance: source batch 31/569,327 plus primary qualification 2/9,174
-  under its original 3-request/5-MiB sublimit. The original ledger metadata was
-  recovered from its task trace; original raw files are absent. Seven failed
-  direct-open actions include a tool refusal and are not a complete HTTP
-  ledger. Earlier ancillary checks and source discovery remain unmetered.
-  Do not reset or rename this scope. The distinct panel batch remains 28/1,474,405;
-  human-TKT6HA3 remains 7/3,004,884; M0187 remains 12/440,960 at its 12-request cap.
-- **Review/reconsideration:** all three computational lanes accepted the
-  source-model limitation. Source objections retained exact chain gaps, raw
-  numbering and state boundaries. M0187/6HA3 evidence validators still contain
-  first-case assumptions; extending them here would require bespoke runtime.
-  Existing limit fields plus a project projection suffice. Current validators
-  check pins, not the new geometry/prose or a formal limit-to-evidence edge.
-  Independent source recomputation supplied that review, not expert validation.
-  A competent PDB viewer can obtain these facts; the useful addition is keeping
-  the pose limitation beside the enamine annotation. No measured time saving
-  or superiority claim. Board: `work/coordination_m0222_mobile_catalyst_20260909.md`.
-- **Verification/publication:** source rebuild, source/annotation-preservation
-  checks and network-blocked fresh-directory wheel checks pass. The new limit
-  appears in compact, step-inclusive, observed-context and state-filtered CLI
-  queries. All 516 core tests and repository contracts pass without skips;
-  reviewed-head CI remains required before merge. A legacy-v2
-  fixture initially inherited the new limit/binding and was corrected to retain
-  its original pinned historical hash. No production code changed. Exact
-  PR/head/merge/sync/release belongs in the local receipt/final result; resume a
-  pending PR before new research. No unrelated or owned recovery changes remain
-  beyond this increment.
-- **One next action:** source-scope review of the chemically distinct M0081
-  AroQ chorismate-mutase panel case (P32178/3CSM, EC5.4.99.5), toward a draft
-  of its concerted rearrangement and an explicit bound-ligand/template boundary.
-  Expected gain: useful new chemistry and a design-relevant substrate-versus-
-  analogue distinction, rather than another M0222 wrapper. Start from the
-  existing `phase_a/candidate_spec.json` and computational panel review, which
-  are transcription-only. M0081 is already in the shared original 40-ID source
-  response; carry `atlas50.computational-panel-review.2026-09-05` from
-  `data/atlas/polymer_context/m0970/acquisition_appendix.json` (28/1,474,405),
-  retaining its historical-discovery disclosure. Establish applicable carried
-  accounting before requests, then challenge/adjudicate exact source scope
-  before compilation. Stop if accounting or direct ligand/mechanism evidence
-  cannot be established, or if the existing shared representation requires
-  enzyme-specific exceptions. Do not infer canonical identity from a ligand
-  label or execute the frozen July reacquisition plan.
+- **Identity/base:** owner `01a087c6-e005-7793-a0e5-d1ac12fd28e7:c72002c7-abae-4d25-827f-40121f8c8d57`;
+  actual UTC start 2026-09-09T20:06:05Z; clean synchronized base
+  `3e239806429ce30fcf9f8202760eed8f5f7ed056`; branch
+  `codex/m0081-rearrangement-scope-20260909`. No pending PR or recovery.
+  Checkpoint 2026-09-09T20:32:05Z (26.0 minutes). The Git-local receipt records
+  final elapsed time, reviewed/pushed/merged head, CI and lock release.
+- **Question/result:** can M0081/P32178 support a concerted rearrangement draft,
+  and what chemical state does 3CSM supply for a template? New requests stopped
+  before acquisition because inherited panel accounting is incomplete. The
+  useful retained-source alternative found 3CSM in the historical coordinate
+  archive. Its title/keywords identify a bicyclic inhibitor/transition-state
+  analogue; two TSA instances remain distinct from two regulatory TRP instances.
+  At P32178 positions 218–221, each chain declares ERRI versus reference NESG,
+  with all four positions unmodeled. These conflicts are not established
+  engineered substitutions, and the coordinates cannot resolve the sequence.
+- **Usable content/limits:** one source annotation of an existing panel candidate
+  (CE-023), zero new compiled mechanisms, protein records or experimental
+  observations. All 28 TSA component-atom and 29 bond-definition rows retain
+  stereochemical tokens; 32 TSA heavy-atom coordinate rows remain distinct.
+  Ten selected assembly-1 separations retain both oxygen names for Glu198/246.
+  The 3.0 Å refinement limit, TSA B factors 84.37–96.69 Å², occupancy tokens,
+  source BAR alias, unmodeled rows and regulatory-site symmetry are preserved.
+  No source atom map, substrate/TS equivalence, protonation, catalytic role,
+  full regulatory geometry, solution assembly, rate or design tolerance is
+  established. The primary paper is deposit citation metadata only.
+- **Evidence:** `data/atlas/deposit_context/m0081/` contains the source, declarative
+  spec, projection, review, acquisition recovery and attribution. Source SHA256
+  `c5b5ae76cb8471dd29e6317ccb03fdf6bfa808da244c5db7fb0ab4b5661ae194`
+  (443,896 bytes), copied exactly from
+  `artifacts/v3_foldseek_coordinates_1000/pdb_3CSM.cif`; historical producer
+  evidence is pinned to commit `2882460ea5a69da5eba78e6d524b5d43f098722e`.
+  See `docs/ATLAS_DEPOSIT_CONTEXT.md` for interpretation and reproduction.
+- **Acquisition:** zero new source requests/bytes. The inherited
+  `atlas50.computational-panel-review.2026-09-05` receipts reconcile
+  21/1,125,005 plus 7/349,400 = **metered lower bound** 28/1,474,405.
+  Historical browser traffic remains unmetered; cumulative totals and headroom
+  are unknown. Do not treat the prior handoff's carried number as a complete
+  balance, reset the scope or rename a batch. Local file size is not a
+  reconstructed historical response count. Other source batches are unchanged;
+  M0222's methods inquiry remains stopped, and M0187 remains at its sublimit.
+- **Review/reconsideration:** source objections changed the packet: declared
+  sequence versus unmodeled positions, analogue label versus equivalence, both
+  Glu oxygen names, model-quality limits and regulatory symmetry. Computational
+  source/representation/adversarial review accepted the restricted annotation;
+  no independent human or laboratory review is claimed. The previous complete
+  wrappers require an Atlas-10 record or single-variant assay context. A generic
+  source-row wrapper reuses the existing parser and assembly projector, with
+  all case facts in data and no enzyme-specific runtime. Its checks validate
+  extraction/pins, not chemistry or prose. Only this real packet uses the new
+  wrapper so far; no measured curation saving or cross-case performance claim.
+  A PDB viewer can obtain the facts; the addition preserves their limits beside
+  geometry. Board: `work/coordination_m0081_rearrangement_20260909.md`.
+- **Verification/publication:** 523 core/unit tests pass, including new failure-
+  mode tests; focused/shared parser/assembly checks pass. Parent rebuilt after
+  a pre-review projection wording change and the final packet `--check` passes.
+  Repository contracts and fresh-directory installed-wheel Atlas-3/Atlas-10/
+  draft/site/candidate checks pass. The source-reviewed local increment is
+  ready for publication; required CI must pass at the reviewed head before merge. Resume
+  this PR first if pending. Exact head/PR/merge/sync/release goes in the local
+  receipt and task result, not a self-hash follow-up commit. No unrelated edits.
+- **One next action:** bounded local recovery of original 2026-09-05 panel/source-
+  challenge request accounting, limited to the exact inherited batch and its
+  recorded URLs. Expected gain: either an attributable complete request ledger
+  that makes the remaining balance calculable, or a named authority gap. No
+  complete trace location is currently established. Stop if every historical
+  request cannot be tied to URL/status/response bytes and provenance; partial
+  hits are disclosure only and authorize no acquisition. Further M0081 drafting
+  requires direct mechanism/scheme evidence under established accounting or
+  explicit revised acquisition authority. Do not repeat 3CSM geometry, M0222
+  wrappers or a stale cached case to fill the run.
 
 Preserve historical content below this marked block. Git identifies the
 containing increment; no self-hash follow-up commit is required.

@@ -1,0 +1,48 @@
+{
+  "schema_version": "catalytic-earth.source-acquisition-recovery.v1",
+  "batch_id": "atlas50.computational-panel-review.2026-09-05",
+  "inherited_receipt_binding": {
+    "path": "data/atlas/polymer_context/m0970/acquisition_appendix.json",
+    "sha256": "38f718ec27e2abff8871b052a283e3d5852dc44d856514e70c10b4c2bf434f66"
+  },
+  "known_metered_lower_bound": {
+    "requests": 28,
+    "bytes": 1474405
+  },
+  "cumulative_requests": null,
+  "cumulative_bytes": null,
+  "remaining_budget": null,
+  "maximum_requests": 100,
+  "maximum_bytes": 31457280,
+  "additional_attempts": [],
+  "this_run_requests": 0,
+  "this_run_bytes": 0,
+  "decision": "no_further_acquisition_until_cumulative_accounting_is_established",
+  "reason": "The inherited appendix excludes historical browser source-challenge traffic. Its 28 requests and 1474405 bytes reconcile measured receipts only, so neither the exact cumulative total nor the remaining balance is established. This packet does not rename or reset the batch.",
+  "retained_source_reuse": {
+    "original_path": "artifacts/v3_foldseek_coordinates_1000/pdb_3CSM.cif",
+    "copied_path": "data/atlas/deposit_context/m0081/3CSM.cif",
+    "sha256": "c5b5ae76cb8471dd29e6317ccb03fdf6bfa808da244c5db7fb0ab4b5661ae194",
+    "bytes": 443896,
+    "new_http_requests": 0,
+    "note": "Local byte-identical reuse, not a new response or a reconstructed historical response size; original acquisition request/time accounting is not established by this file.",
+    "first_retained_commit": "2882460ea5a69da5eba78e6d524b5d43f098722e",
+    "commit_timestamp": "2026-05-14T01:44:40-05:00",
+    "historical_producer_url": "https://files.rcsb.org/download/3CSM.cif",
+    "provenance_note": "The introducing commit coordinate-readiness expanded100 report marks pdb:3CSM materialized with source=pdb and no error; its structure.py producer formats this RCSB download URL. This establishes historical producer provenance, not a retained per-request receipt or network accounting.",
+    "historical_evidence": [
+      {
+        "commit": "2882460ea5a69da5eba78e6d524b5d43f098722e",
+        "path": "artifacts/v3_foldseek_coordinate_readiness_1000_expanded100.json",
+        "sha256": "921563330a0cddfdfaed541a31b481119f7035ba17b05b26722ee12215ae1124",
+        "scope": "3CSM coordinate materialization status and source record"
+      },
+      {
+        "commit": "2882460ea5a69da5eba78e6d524b5d43f098722e",
+        "path": "src/catalytic_earth/structure.py",
+        "sha256": "2a53c2ff296cd4aaa36e284f298297b7365279b539a48da385a28e1c098f12c0",
+        "scope": "PDB_CIF_URL producer constant at line 14"
+      }
+    ]
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "schema_version": "catalytic-earth.deposit-context-review.v1",
+  "packet_id": "m0081.3csm.inhibitor-context.2026-09-09",
+  "decision": "accept_source_scoped_deposit_context",
+  "reviewed_at_utc": "2026-09-09T20:29:01.692330+00:00",
+  "reviewed_sha256": {
+    "spec.json": "38959decc64e1d85aa953be950ecb0bb52b1ba21dc981d6526221fba4dd60b65",
+    "projection.json": "761050ba29915cec8a39f7243871e1584e5bfa5507353543ce66a8bf3195cb9c",
+    "source": "c5b5ae76cb8471dd29e6317ccb03fdf6bfa808da244c5db7fb0ab4b5661ae194"
+  },
+  "authority": "owner-authorized-computational-development.2026-09-05.v1",
+  "authorized_operation": "source_annotation",
+  "blocked_operations": [
+    "source_scoped_mechanism_draft",
+    "exact_reaction_instance"
+  ],
+  "source_case": "M0081",
+  "review_kind": "computational_source_challenge_and_parent_adjudication",
+  "independent_human_validation": false,
+  "experimental_validation": false,
+  "review_lanes": [
+    {
+      "lane": "source",
+      "reviewer": "source_review",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "finding": "Final restricted source review accepts inhibitor/analogue-only context, separate TRP, unmodeled 218–221 reference conflicts, model-quality limits and binding-site/project-selection distinctions. Exact source bytes, historical producer provenance and metered accounting lower bound were verified.",
+      "parent_adjudication": "Earlier projection-key drift was resolved by rebuilding from the final generic builder and pinning the projection, spec and source. No primary-paper body, mechanism permission, complete accounting or chemical atom transfer is inferred."
+    },
+    {
+      "lane": "chemical_representation",
+      "reviewer": "representation_review",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "finding": "Generic row+assembly adapter implemented with no case-ID branches; seven deposit-context tests and 26 shared parser/assembly tests pass. The real packet preserves 28 selections, both Glu oxygen names and ten distances; interpretation remains supplied data requiring review.",
+      "parent_adjudication": "Keep this source annotation separate; use generic exact row selection and shared assembly geometry without enzyme-specific code or source-draft admission."
+    },
+    {
+      "lane": "adversarial",
+      "reviewer": "adversarial_review",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "finding": "Accept the revised packet after preserving unmodeled conflicts, source analogue wording, both Glu oxygens, coordinate-quality limits and regulatory symmetry context. No material false-join or interpretation-promotion defect found.",
+      "parent_adjudication": "All limitations retained; deposited/source statements, computed separations and project interpretation remain separate."
+    }
+  ],
+  "source_objections_and_resolutions": [
+    {
+      "objection": "A P32178 alignment could be read as exact wild-type or engineered-variant identity.",
+      "resolution": "Retain all eight conflict rows and matching unmodeled rows. Coordinates cannot adjudicate the sequence; engineered cause and wild-type identity remain unresolved."
+    },
+    {
+      "objection": "A transition-state-analogue keyword could be promoted to a reacting transition state or exact substrate atom map.",
+      "resolution": "Keep the source keyword beside the chemical definition and a distinct project transfer limitation. No reaction or source-atom correspondence is supplied."
+    },
+    {
+      "objection": "The nearer carboxylate oxygen could be selected as a preferred protonation story.",
+      "resolution": "Retain OE1 and OE2 for both selected glutamates; ten separations carry no hydrogen-bond or proton-transfer assignment."
+    },
+    {
+      "objection": "Assembly 1 could imply complete regulatory-interface geometry.",
+      "resolution": "Preserve all assembly alternatives and source TRP-binding-site symmetry labels; project only declared assembly 1 and decline complete-interface/solution claims."
+    },
+    {
+      "objection": "Occupancy 1.00 and numerical distances could imply precise design tolerances.",
+      "resolution": "Retain 3.0 angstrom refinement limit and TSA B-factor range without assigning coordinate errors, catalytic thresholds or design performance."
+    },
+    {
+      "objection": "The inherited 28-request total excludes historical browser traffic.",
+      "resolution": "Treat measured receipts as a lower bound, retain null cumulative totals and headroom, and make zero source requests."
+    }
+  ],
+  "outstanding_objections": [
+    {
+      "scope": "M0081 source-scoped mechanism draft",
+      "blocker": "No inspected complete mechanism/scheme source and incomplete inherited cumulative acquisition accounting."
+    },
+    {
+      "scope": "exact reaction or substrate-to-inhibitor/transition-state transfer",
+      "blocker": "No direct chemically exact atom correspondence or independently established reacting state."
+    }
+  ],
+  "counted_result": {
+    "source_annotations_added": 1,
+    "compiled_mechanisms_added": 0,
+    "protein_records_added": 0,
+    "experimental_observations_added": 0
+  },
+  "validation_boundary": "The generic checker verifies source/spec/projection pins, exact parsed-row selections, witness identifiers and shared geometry. It does not semantically validate prose, authenticate reviewers or establish independent experimental evidence."
+}

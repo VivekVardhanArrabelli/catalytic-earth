@@ -29,8 +29,10 @@ _CATEGORIES = {
     "_entry",
     "_entity",
     "_entity_src_gen",
+    "_exptl",
     "_exptl_crystal_grow",
     "_pdbx_nonpoly_scheme",
+    "_pdbx_unobs_or_zero_occ_residues",
     "_pdbx_entry_details",
     "_pdbx_modification_feature",
     "_pdbx_poly_seq_scheme",
@@ -38,12 +40,15 @@ _CATEGORIES = {
     "_pdbx_struct_assembly_auth_evidence",
     "_pdbx_struct_assembly_gen",
     "_pdbx_struct_oper_list",
+    "_refine",
     "_struct",
     "_struct_conn",
+    "_struct_keywords",
     "_struct_ref",
     "_struct_ref_seq",
     "_struct_ref_seq_dif",
     "_struct_site",
+    "_struct_site_gen",
 }
 _MISSING = {".", "?"}
 _INTEGER_RE = re.compile(r"^[+-]?[0-9]+$")

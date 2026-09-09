@@ -126,6 +126,7 @@ def _validate_markdown_links() -> None:
         "docs/ATLAS_TRANSFORMATIONS.md",
         "docs/ATLAS_MECHANISM_EVIDENCE.md",
         "docs/ATLAS_STRUCTURAL_CONTEXT.md",
+        "docs/ATLAS_DEPOSIT_CONTEXT.md",
         "docs/ATLAS_STUDY_CONTEXT.md",
         "docs/ATLAS_TRUTH_POLICY.md",
         "docs/CORE_REPRODUCTION.md",
@@ -447,6 +448,9 @@ def main() -> int:
     _run("scripts/build_atlas_structural_context.py", "--check")
     _run("scripts/validate_atlas_study_context.py")
     _run("scripts/build_atlas_assembly_context.py", "--check")
+    for spec_path in sorted((ROOT / "data/atlas/deposit_context").glob("*/spec.json")):
+        _run("scripts/build_atlas_deposit_context.py", "--packet",
+             spec_path.parent.relative_to(ROOT).as_posix(), "--check")
     _run("scripts/build_atlas_candidate_events.py", "--check")
     _run("data/atlas/transformations/m0173/audit_m0173.py", "--check")
     _run("scripts/build_atlas_panel_comparisons.py", "--check")

@@ -254,6 +254,19 @@ population, conformational trajectory, reacting-atom map, kinetic rate or
 design-distance threshold. Existing annotations and source drafts retain their
 counts and evidence tiers.
 
+## CE-023 — 3CSM ligand and reference-sequence limits
+
+**Status:** Supported
+
+Retained 3CSM contains two TSA inhibitor instances and two regulatory TRP
+instances. It records four residue conflicts per chain at unmodeled positions 218–221
+relative to its P32178 reference. The [source-scoped deposit context](docs/ATLAS_DEPOSIT_CONTEXT.md)
+preserves the ligand definition, source conflicts and selected assembly
+distances without treating TSA as a substrate/transition state or the conflicts
+as engineered substitutions. It adds one source annotation of an existing
+panel candidate, with no new compiled mechanism, protein record, experimental
+observation or evidence-tier promotion.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,

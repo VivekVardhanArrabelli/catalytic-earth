@@ -1,0 +1,501 @@
+{
+  "schema_version": "catalytic-earth.deposit-context-spec.v1",
+  "packet_id": "m0081.3csm.inhibitor-context.2026-09-09",
+  "source_binding": {
+    "path": "data/atlas/deposit_context/m0081/3CSM.cif",
+    "sha256": "c5b5ae76cb8471dd29e6317ccb03fdf6bfa808da244c5db7fb0ab4b5661ae194"
+  },
+  "row_selections": [
+    {
+      "selection_id": "entry",
+      "category": "_entry",
+      "match": {
+        "id": "3CSM"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "deposit-title",
+      "category": "_struct",
+      "match": {
+        "entry_id": "3CSM"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "primary-citation",
+      "category": "_citation",
+      "match": {
+        "id": "primary"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "protein-entity",
+      "category": "_entity",
+      "match": {
+        "id": "1"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "regulatory-trp-entity",
+      "category": "_entity",
+      "match": {
+        "id": "2"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "inhibitor-entity",
+      "category": "_entity",
+      "match": {
+        "id": "3"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "reference",
+      "category": "_struct_ref",
+      "match": {
+        "pdbx_db_accession": "P32178"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "reference-alignments",
+      "category": "_struct_ref_seq",
+      "match": {
+        "pdbx_db_accession": "P32178"
+      },
+      "expected_row_count": 2
+    },
+    {
+      "selection_id": "reference-conflicts",
+      "category": "_struct_ref_seq_dif",
+      "match": {
+        "pdbx_seq_db_accession_code": "P32178",
+        "details": "conflict"
+      },
+      "expected_row_count": 8
+    },
+    {
+      "selection_id": "nonpolymer-instances",
+      "category": "_pdbx_nonpoly_scheme",
+      "match": {},
+      "expected_row_count": 4
+    },
+    {
+      "selection_id": "tsa-component",
+      "category": "_chem_comp",
+      "match": {
+        "id": "TSA"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "tsa-definition-atoms",
+      "category": "_chem_comp_atom",
+      "match": {
+        "comp_id": "TSA"
+      },
+      "expected_row_count": 28
+    },
+    {
+      "selection_id": "tsa-definition-bonds",
+      "category": "_chem_comp_bond",
+      "match": {
+        "comp_id": "TSA"
+      },
+      "expected_row_count": 29
+    },
+    {
+      "selection_id": "tsa-coordinate-atoms",
+      "category": "_atom_site",
+      "match": {
+        "label_comp_id": "TSA",
+        "label_entity_id": "3"
+      },
+      "expected_row_count": 32
+    },
+    {
+      "selection_id": "regulatory-trp-atoms",
+      "category": "_atom_site",
+      "match": {
+        "label_comp_id": "TRP",
+        "label_entity_id": "2"
+      },
+      "expected_row_count": 30
+    },
+    {
+      "selection_id": "experiment",
+      "category": "_exptl",
+      "match": {
+        "entry_id": "3CSM"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "refinement",
+      "category": "_refine",
+      "match": {
+        "entry_id": "3CSM"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "crystal-growth",
+      "category": "_exptl_crystal_grow",
+      "match": {
+        "crystal_id": "1"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "assembly-declarations",
+      "category": "_pdbx_struct_assembly",
+      "match": {},
+      "expected_row_count": 3
+    },
+    {
+      "selection_id": "assembly-generation",
+      "category": "_pdbx_struct_assembly_gen",
+      "match": {},
+      "expected_row_count": 3
+    },
+    {
+      "selection_id": "assembly-operators",
+      "category": "_pdbx_struct_oper_list",
+      "match": {},
+      "expected_row_count": 3
+    },
+    {
+      "selection_id": "deposit-keywords",
+      "category": "_struct_keywords",
+      "match": {
+        "entry_id": "3CSM"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "unmodeled-residues",
+      "category": "_pdbx_unobs_or_zero_occ_residues",
+      "match": {},
+      "expected_row_count": 8
+    },
+    {
+      "selection_id": "site-declarations",
+      "category": "_struct_site",
+      "match": {},
+      "expected_row_count": 8
+    },
+    {
+      "selection_id": "trp-binding-site-a",
+      "category": "_struct_site_gen",
+      "match": {
+        "site_id": "AC1"
+      },
+      "expected_row_count": 11
+    },
+    {
+      "selection_id": "trp-binding-site-b",
+      "category": "_struct_site_gen",
+      "match": {
+        "site_id": "AC2"
+      },
+      "expected_row_count": 11
+    },
+    {
+      "selection_id": "tsa-binding-site-a",
+      "category": "_struct_site_gen",
+      "match": {
+        "site_id": "AC3"
+      },
+      "expected_row_count": 12
+    },
+    {
+      "selection_id": "tsa-binding-site-b",
+      "category": "_struct_site_gen",
+      "match": {
+        "site_id": "AC4"
+      },
+      "expected_row_count": 12
+    }
+  ],
+  "assembly_spec": {
+    "pdb_id": "3CSM",
+    "assembly_id": "1",
+    "selections": [
+      {
+        "selection_id": "a-tsa-o7",
+        "operator_ids": [
+          "1"
+        ],
+        "model_id": "1",
+        "label_asym_id": "D",
+        "auth_seq_id": "400",
+        "label_comp_id": "TSA",
+        "atom_names": [
+          "O7"
+        ]
+      },
+      {
+        "selection_id": "a-tsa-o5",
+        "operator_ids": [
+          "1"
+        ],
+        "model_id": "1",
+        "label_asym_id": "D",
+        "auth_seq_id": "400",
+        "label_comp_id": "TSA",
+        "atom_names": [
+          "O5"
+        ]
+      },
+      {
+        "selection_id": "a-lys168",
+        "operator_ids": [
+          "1"
+        ],
+        "model_id": "1",
+        "label_asym_id": "A",
+        "auth_seq_id": "168",
+        "label_comp_id": "LYS",
+        "atom_names": [
+          "NZ"
+        ]
+      },
+      {
+        "selection_id": "a-glu246",
+        "operator_ids": [
+          "1"
+        ],
+        "model_id": "1",
+        "label_asym_id": "A",
+        "auth_seq_id": "246",
+        "label_comp_id": "GLU",
+        "atom_names": [
+          "OE1",
+          "OE2"
+        ]
+      },
+      {
+        "selection_id": "a-glu198",
+        "operator_ids": [
+          "1"
+        ],
+        "model_id": "1",
+        "label_asym_id": "A",
+        "auth_seq_id": "198",
+        "label_comp_id": "GLU",
+        "atom_names": [
+          "OE1",
+          "OE2"
+        ]
+      },
+      {
+        "selection_id": "b-tsa-o7",
+        "operator_ids": [
+          "1"
+        ],
+        "model_id": "1",
+        "label_asym_id": "F",
+        "auth_seq_id": "400",
+        "label_comp_id": "TSA",
+        "atom_names": [
+          "O7"
+        ]
+      },
+      {
+        "selection_id": "b-tsa-o5",
+        "operator_ids": [
+          "1"
+        ],
+        "model_id": "1",
+        "label_asym_id": "F",
+        "auth_seq_id": "400",
+        "label_comp_id": "TSA",
+        "atom_names": [
+          "O5"
+        ]
+      },
+      {
+        "selection_id": "b-lys168",
+        "operator_ids": [
+          "1"
+        ],
+        "model_id": "1",
+        "label_asym_id": "B",
+        "auth_seq_id": "168",
+        "label_comp_id": "LYS",
+        "atom_names": [
+          "NZ"
+        ]
+      },
+      {
+        "selection_id": "b-glu246",
+        "operator_ids": [
+          "1"
+        ],
+        "model_id": "1",
+        "label_asym_id": "B",
+        "auth_seq_id": "246",
+        "label_comp_id": "GLU",
+        "atom_names": [
+          "OE1",
+          "OE2"
+        ]
+      },
+      {
+        "selection_id": "b-glu198",
+        "operator_ids": [
+          "1"
+        ],
+        "model_id": "1",
+        "label_asym_id": "B",
+        "auth_seq_id": "198",
+        "label_comp_id": "GLU",
+        "atom_names": [
+          "OE1",
+          "OE2"
+        ]
+      }
+    ],
+    "distance_pairs": [
+      {
+        "pair_id": "a-tsa-o7--lys168",
+        "left_selection_id": "a-tsa-o7",
+        "right_selection_id": "a-lys168"
+      },
+      {
+        "pair_id": "a-tsa-o7--glu246",
+        "left_selection_id": "a-tsa-o7",
+        "right_selection_id": "a-glu246"
+      },
+      {
+        "pair_id": "a-tsa-o5--glu198",
+        "left_selection_id": "a-tsa-o5",
+        "right_selection_id": "a-glu198"
+      },
+      {
+        "pair_id": "b-tsa-o7--lys168",
+        "left_selection_id": "b-tsa-o7",
+        "right_selection_id": "b-lys168"
+      },
+      {
+        "pair_id": "b-tsa-o7--glu246",
+        "left_selection_id": "b-tsa-o7",
+        "right_selection_id": "b-glu246"
+      },
+      {
+        "pair_id": "b-tsa-o5--glu198",
+        "left_selection_id": "b-tsa-o5",
+        "right_selection_id": "b-glu198"
+      }
+    ]
+  },
+  "interpretation": {
+    "assertions": [
+      {
+        "assertion_id": "inhibitor-state",
+        "status": "deposited_source_assertion",
+        "statement": "The deposit title describes an endooxabicyclic inhibitor and its keywords include TRANSITION STATE ANALOG. The two nonpolymer TSA instances have the explicit C10 H12 O6 bicyclic component definition. Definition atom, bond and stereochemical tokens remain separate from coordinate observations.",
+        "supporting_selection_ids": [
+          "deposit-title",
+          "inhibitor-entity",
+          "nonpolymer-instances",
+          "tsa-component",
+          "tsa-definition-atoms",
+          "tsa-definition-bonds",
+          "tsa-coordinate-atoms",
+          "deposit-keywords"
+        ]
+      },
+      {
+        "assertion_id": "inhibitor-transfer-boundary",
+        "status": "project_interpretation",
+        "statement": "Within these retained source records, the inhibitor/analogue label does not establish substrate, prephenate or reacting transition-state identity, nor an atom correspondence to a M0081 source drawing. The project therefore retains TSA as the defined inhibitor and blocks those transfers.",
+        "supporting_selection_ids": [
+          "deposit-title",
+          "deposit-keywords",
+          "tsa-component",
+          "tsa-definition-atoms",
+          "tsa-definition-bonds",
+          "tsa-coordinate-atoms"
+        ]
+      },
+      {
+        "assertion_id": "regulatory-ligand",
+        "status": "deposited_source_assertion",
+        "statement": "Two nonpolymer tryptophan instances are present. The entity details assign tryptophan to a regulatory site; it is not conflated with the separate TSA inhibitor or with polymer tryptophan residues.",
+        "supporting_selection_ids": [
+          "regulatory-trp-entity",
+          "nonpolymer-instances",
+          "regulatory-trp-atoms"
+        ]
+      },
+      {
+        "assertion_id": "reference-sequence-conflict",
+        "status": "unresolved_source_conflict",
+        "statement": "Both chains have source alignments to the deposited P32178 reference over positions 1–256. At positions 218–221, the sequence-difference records declare GLU/ARG/ARG/ILE versus reference ASN/GLU/SER/GLY, labeled conflict. All four positions are unmodeled in both chains, so their coordinates cannot adjudicate the sequence discrepancy. These are not established engineered substitutions; wild-type identity and the cause remain unresolved.",
+        "supporting_selection_ids": [
+          "protein-entity",
+          "reference",
+          "reference-alignments",
+          "reference-conflicts",
+          "unmodeled-residues"
+        ]
+      },
+      {
+        "assertion_id": "snapshot-conditions",
+        "status": "deposited_source_assertion",
+        "statement": "The retained X-ray deposit reports a refinement high-resolution limit of 3.0 angstrom and crystal-growth pH 8.0. TSA component definitions contain hydrogen atoms, while its selected coordinates contain only heavy atoms, with occupancy 1.00 and B factors 84.37–96.69 square angstrom. The reported overall mean B factor is 38.6 square angstrom. These model descriptors do not resolve bound protonation, validate hydrogen positions or provide calibrated coordinate-error estimates.",
+        "supporting_selection_ids": [
+          "experiment",
+          "refinement",
+          "crystal-growth",
+          "tsa-definition-atoms",
+          "tsa-coordinate-atoms"
+        ]
+      },
+      {
+        "assertion_id": "assembly-scope",
+        "status": "deposited_source_assertion",
+        "statement": "Assembly 1 is author-defined and uses identity operator 1 with A,B,C,D,E,F. Two other dimeric assembly declarations are software-defined PISA alternatives and remain separate. Source TRP binding-site rows AC1/AC2 also invoke crystallographic symmetry labels 12_555/4_555; this assembly-1 projection therefore does not claim complete regulatory-interface geometry or independent validation of a solution assembly.",
+        "supporting_selection_ids": [
+          "assembly-declarations",
+          "assembly-generation",
+          "assembly-operators",
+          "site-declarations",
+          "trp-binding-site-a",
+          "trp-binding-site-b"
+        ]
+      },
+      {
+        "assertion_id": "selected-inhibitor-neighborhood",
+        "status": "computed_coordinate_description",
+        "statement": "The deposit software lists Lys168, Glu246 and Glu198 within the TSA binding sites. This project selects O7/O5 separations to those groups, retaining both named oxygens for each selected glutamate. The Euclidean distances describe the inhibitor model; they do not establish catalytic roles, hydrogen bonds, proton transfer, substrate/transition-state atom mapping or design tolerances. Chains A and B are separate coordinate copies, not independent experimental replicates.",
+        "supporting_selection_ids": [
+          "a-tsa-o7--lys168",
+          "a-tsa-o7--glu246",
+          "a-tsa-o5--glu198",
+          "b-tsa-o7--lys168",
+          "b-tsa-o7--glu246",
+          "b-tsa-o5--glu198",
+          "site-declarations",
+          "tsa-binding-site-a",
+          "tsa-binding-site-b"
+        ]
+      }
+    ],
+    "not_established": [
+      "M0081 is a transcription-only panel candidate. No M0081 mechanism draft, balanced exact reaction, source atom map or evidence-tier promotion is authorized by this deposit annotation.",
+      "The primary paper PMID 9384560 / DOI 10.1016/S0969-2126(97)00294-3 is a citation in the deposit, not an inspected article body, kinetic table, mutational result or independent observation in this packet.",
+      "TSA is retained under its deposited chemical definition. No ChEBI identity, substrate equivalence, transition-state equivalence or M-CSA atom correspondence is inferred; the nonpolymer scheme author name BAR is preserved.",
+      "Source sequence conflicts at unmodeled positions are not established engineered substitutions. Their cause, true specimen sequence and mechanistic relevance remain unresolved.",
+      "No productive conformation, solution population, full catalytic site, hydrogen-bond network, protonation, activation energy, catalytic rate or de novo design performance is established.",
+      "This retained snapshot is not asserted to be the latest 3CSM deposition or byte-identical to the model analyzed in the 1997 paper.",
+      "A deposited occupancy of 1.00 does not establish precise localization. B factors and the 3.0 angstrom refinement limit are retained without converting them to an atom-error model. The full regulatory symmetry interface is not projected."
+    ]
+  }
+}
