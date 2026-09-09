@@ -1,0 +1,37 @@
+{
+  "challenges": [
+    {
+      "adjudication": "Retain source-model status, distinct tested constructs, no atom map, exact product, numeric chain length, processivity or permission change.",
+      "objection": "Source-proposed SaMGT model could be promoted to an observed M0970 step or direct four-PGT assay on Q99T05."
+    },
+    {
+      "adjudication": "Preserve GalNAc position-4 epimer, source-reported inability to serve as E100 substrate, construct bounds and absence of a new coordinate inspection.",
+      "objection": "3VMT analogue pose could be reused as productive native lipid II geometry."
+    },
+    {
+      "adjudication": "Check all three report bindings and exact prior role; expose explicit role finding and source references beside corrected role, separate from historical component evidence.",
+      "objection": "One accepted source role could attach to unreviewed report copies or inherit conflicting M-CSA role evidence."
+    },
+    {
+      "adjudication": "Corrected to Discussion / Mechanism of Lipid II Polymerization and Materials and Methods / Cloning, Expression, and Purification; source reviewer rechecked final hashes.",
+      "objection": "Mechanism and construct section locators did not match exact primary headings."
+    }
+  ],
+  "decision": "accept_source_scoped_correction",
+  "open_source_objections": [],
+  "review_process": {
+    "adjudicator": "Parent agent after independent source and representation questions; source objections control",
+    "blind_review": false,
+    "correlated_errors_possible": true,
+    "independent_human_review": false,
+    "reasoning_effort": "ultra",
+    "source_and_representation_agent_model": "gpt-5.6-sol"
+  },
+  "reviewed_at_utc": "2026-09-09T16:32:07.418941+00:00",
+  "reviewed_sha256": {
+    "acquisition_appendix.json": "38f718ec27e2abff8871b052a283e3d5852dc44d856514e70c10b4c2bf434f66",
+    "annotations.json": "0fec46359bec14c94a2a0fdcabd0e91c9c32c86c90451fa166178218131c0359",
+    "source_inventory.json": "98942d0b6cf2ee6cbfc06a408dba2cfd4aa3d026078fd2024b3bf3b967f170d6"
+  },
+  "schema_version": "catalytic-earth.source-annotation-review.v1"
+}

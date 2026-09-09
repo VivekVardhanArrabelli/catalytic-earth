@@ -4,6 +4,8 @@ import copy
 import json
 import unittest
 from pathlib import Path
+from tempfile import TemporaryDirectory
+from unittest.mock import patch
 
 from catalytic_earth.atlas50_state_probe import (
     build_state_probe,
@@ -230,6 +232,85 @@ class Atlas50StateProbeTests(unittest.TestCase):
         self.assertEqual(disclosure["human_reviewers"], 0)
         self.assertFalse(disclosure["domain_expert_review_claimed"])
         self.assertIn("correlated", disclosure["correlation_warning"])
+
+
+class CurrentStateAnnotationTests(unittest.TestCase):
+    def test_all_reviewed_generations_correct_role_without_changing_permissions(self) -> None:
+        from catalytic_earth.atlas_state_annotations import checked_annotations, query_case
+
+        annotation = checked_annotations(ROOT)[0]
+        for binding in annotation["report_bindings"]:
+            path = ROOT / binding["path"]
+            before = path.read_bytes()
+            historical = next(row for row in _load(path)["cases"] if row["mcsa_id"] == "M0970")
+            result = query_case(ROOT, path, "M0970")
+            case = result["case"]
+            self.assertIn("glycan donor", case["representation"]["components"][1]["role"])
+            role_evidence = case["representation"]["components"][1]["role_annotation"]
+            self.assertEqual(role_evidence["source_finding_ids"], ["samgt-donor-acceptor"])
+            self.assertIn("PMC:3340074:HTML", role_evidence["source_artifact_ids"])
+            self.assertEqual(case["allowed_operations"], ["source_annotation"])
+            self.assertEqual(case["representation"]["polymer_topology"],
+                             historical["representation"]["polymer_topology"])
+            self.assertEqual(case["mandatory_abstentions"], historical["mandatory_abstentions"])
+            restored = copy.deepcopy(case)
+            component = restored["representation"]["components"][1]
+            component["role"] = component.pop("role_annotation")["historical_role"]
+            component.pop("evidence_ids_scope")
+            self.assertEqual(restored, historical)
+            self.assertEqual(path.read_bytes(), before)
+            self.assertFalse(result["permission_change"])
+        unrelated = query_case(ROOT, REPORT_PATH, "M0106")
+        self.assertEqual(unrelated["current_source_annotations"], [])
+
+    def test_role_correction_cannot_attach_to_another_component_or_role(self) -> None:
+        from catalytic_earth.atlas_state_annotations import _apply_role, checked_annotations
+
+        annotation = checked_annotations(ROOT)[0]
+        historical = next(row for row in _load(REPORT_PATH)["cases"] if row["mcsa_id"] == "M0970")
+        for field, value, message in [
+            ("component_id", "protein:Q99T05", "historical component role"),
+            ("expected_role", "already-corrected role", "historical component role"),
+            ("component_id", "missing", "component is absent"),
+        ]:
+            changed = copy.deepcopy(annotation)
+            changed["component_role_correction"][field] = value
+            with self.subTest(field=field, value=value), self.assertRaisesRegex(ValueError, message):
+                _apply_role(copy.deepcopy(historical), changed)
+
+    def test_annotation_cannot_be_borrowed_for_an_unreviewed_report(self) -> None:
+        from catalytic_earth.atlas_state_annotations import checked_annotations, query_case
+
+        annotations = checked_annotations(ROOT)
+        annotations[0]["report_bindings"][0]["sha256"] = "0" * 64
+        with patch("catalytic_earth.atlas_state_annotations.checked_annotations", return_value=annotations):
+            with self.assertRaisesRegex(ValueError, "report binding"):
+                query_case(ROOT, REPORT_PATH, "M0970")
+
+    def test_unreviewed_annotation_edit_is_rejected(self) -> None:
+        import shutil
+        from catalytic_earth.atlas_state_annotations import INDEX, checked_annotations
+
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / INDEX).parent.mkdir(parents=True)
+            shutil.copy(ROOT / INDEX, root / INDEX)
+            for relative in _load(ROOT / INDEX)["packets"]:
+                shutil.copytree(ROOT / relative, root / relative)
+                path = root / relative / "annotations.json"
+                document = _load(path)
+                document["annotations"][0]["permission_change"] = True
+                path.write_text(json.dumps(document), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "review pins"):
+                checked_annotations(root)
+
+    def test_noncurrent_report_binding_is_checked(self) -> None:
+        from catalytic_earth.atlas_state_annotations import _validate_report_bindings, checked_annotations
+
+        annotation = checked_annotations(ROOT)[0]
+        annotation["report_bindings"][1]["sha256"] = "0" * 64
+        with self.assertRaisesRegex(ValueError, "report binding"):
+            _validate_report_bindings(ROOT, annotation)
 
 
 if __name__ == "__main__":

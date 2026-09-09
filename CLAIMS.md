@@ -211,6 +211,21 @@ preserves exact atom/copy identity and this omission warning. It establishes
 neither a complete catalytic site, a causal geometric tolerance, nor independent
 experimental support for the deposited assembly.
 
+## CE-020 — peptidoglycan donor role and nonproductive analogue
+
+**Status:** Supported
+
+The prior M0970 state-probe label calling the growing glycan an acceptor is
+corrected. In the primary SaMGT elongation model the growing chain occupies
+donor site S2 and incoming lipid II occupies acceptor site S1. The same paper
+describes the 3VMT GalNAc-containing analogue as binding but unable to serve
+as an E100 substrate. The [current source view](docs/ATLAS_POLYMER_CONTEXT.md)
+exposes these limits beside the corrected role while preserving historical
+reports and source-only permissions. A separate published direction assay on
+four PGTs is not a direct Q99T05/SaMGT experiment. Exact product X00676,
+numeric chain length, processivity and the complete M0970 mechanism remain
+unresolved.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,

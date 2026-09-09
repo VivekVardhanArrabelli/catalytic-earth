@@ -1,0 +1,117 @@
+{
+  "annotations": [
+    {
+      "annotation_id": "M0970:polymer-donor-role:2026-09-09",
+      "claim_id": "CE-020",
+      "component_role_correction": {
+        "component_id": "polymer:CHEBI:78435",
+        "current_role": "growing glycan donor in the source-proposed elongation context; n remains uninstantiated",
+        "expected_role": "named polymeric acceptor reactant with uninstantiated n",
+        "source_finding_ids": [
+          "samgt-donor-acceptor"
+        ]
+      },
+      "erratum_id": "ER-013",
+      "mcsa_id": "M0970",
+      "not_established": [
+        "An exact identity for M-CSA product placeholder X00676 or a numeric before/after chain length.",
+        "A completed M0970 elementary-step mechanism or resolution of its competing source proposals.",
+        "Direct directionality measurements on Q99T05/SaMGT from the four-PGT experiment.",
+        "Productive native lipid II geometry from the analogue-3 pose.",
+        "Processivity, a complete polymer trajectory, bound protonation, or a new independent human review."
+      ],
+      "permission_change": false,
+      "reconsideration": {
+        "curation": "One correction applies to three pinned inherited reports without rewriting their reviewed generations. No curation-time reduction is measured.",
+        "representation": "Correct reaction roles in data; do not infer them from compound order, names, or the presence of a growing chain. The same compound may occupy different roles during initiation and elongation.",
+        "value": "Prevents reversal of donor/acceptor roles and prevents transfer of a nonproductive sugar-epimer pose. Primary sources already contain the chemistry; the atlas adds an explicit source-bound correction beside the current case."
+      },
+      "report_bindings": [
+        {
+          "path": "data/atlas/atlas50/state_probe/report.json",
+          "sha256": "bbc0f6013574af5b36a62a8b86fad39938340decbcdda78d40131253607822f9"
+        },
+        {
+          "path": "data/atlas/source_drafts/batches/aldolase-transketolase/review/probe.json",
+          "sha256": "258ecb925ab133043b6a0629020431f4d5cf206c87a547c99b1468af9d3a7ce4"
+        },
+        {
+          "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/review/probe.json",
+          "sha256": "e91605ae775e5f7ed61fa0874b0d049ab584090351b6eb01c92d245abfda482b"
+        }
+      ],
+      "source_findings": [
+        {
+          "evidence_kind": "source-proposed model supported by structure and mutagenesis, not an observed reaction trajectory",
+          "finding": "The SaMGT paper places the growing glycan at donor site S2 and incoming lipid II at acceptor site S1. Its model has the incoming GlcNAc 4-OH react with the donor C1; the new glycan is then proposed to move from S1 to S2. This is a source-model relation, not an atom map or observed reacting state. Lipid II can occupy both sites during initiation, so donor/acceptor is a reaction role rather than an invariant property of a compound identifier.",
+          "finding_id": "samgt-donor-acceptor",
+          "source_artifact_ids": [
+            "PMC:3340074:HTML",
+            "RCSB:3VMT:entry-JSON"
+          ],
+          "source_locators": [
+            "Introduction, paragraph beginning In the synthesis of bacterial cell wall",
+            "Discussion, Mechanism of Lipid II Polymerization; Fig. 4A-E"
+          ]
+        },
+        {
+          "evidence_kind": "primary-source chemical-state and applicability statement",
+          "finding": "The authors describe analogue 3 as containing GalNAc in place of the lipid II GlcNAc group, with the position-4 hydroxyl inverted. They state it binds in the lipid II pocket but cannot serve as a substrate catalyzed by E100. The deposited analogue pose must not be presented as an observed productive lipid II arrangement. This run inspected the paper and entry metadata, not current atom coordinates. The paper describes a stabilized Mu50 Q28-R269 construct with transmembrane and TG regions and a cleaved His6 tag; this is not a full-length-protein identity claim.",
+          "finding_id": "analogue-state-limit",
+          "source_artifact_ids": [
+            "PMC:3340074:HTML"
+          ],
+          "source_locators": [
+            "Results, Overall Structure of SaMGT in Complex with Lipid II Analog",
+            "Discussion, paragraph beginning From the crystal structure of SaMGT",
+            "Materials and Methods, Cloning, Expression, and Purification"
+          ]
+        },
+        {
+          "controls_and_limits": [
+            "Capped Lipid II/Lipid IV can react at their reducing end, but that alone does not establish polymer-growth direction because the uncapped short substrates can self-condense.",
+            "The longer-oligomer test uses substrates described as unable to self-condense; no-lipid-II controls and lipid-II-supplemented reactions distinguish extension.",
+            "The four tested PGT domains are not the Q99T05/SaMGT preparation. Extension of the conclusion to the full family is an author proposal, not a direct test of every family member.",
+            "This direction assay does not identify M0970 product placeholder X00676, the exact M0970 chain length, or processivity."
+          ],
+          "evidence_kind": "published biochemical direction test; not a project-run experiment",
+          "finding": "Non-reducing-end Gal-capped longer glycan oligomers were extended only when lipid II was supplied. The authors interpret this as extension at the anomeric diphospholipid end, called the reducing end by convention although it is not a free lactol. The tested PGT domains were E. coli PBP1A, E. coli PBP1B, A. aeolicus PBP1A and S. aureus PBP2.",
+          "finding_id": "direction-experiment",
+          "source_artifact_ids": [
+            "PMC:3206585:HTML"
+          ],
+          "source_locators": [
+            "Abstract and main text strategy/results",
+            "Fig. 2B and Fig. 3B captions; concluding paragraph"
+          ]
+        },
+        {
+          "evidence_kind": "source disagreement retained",
+          "finding": "The current M-CSA Step 1 prose describes nucleophilic attack by the strand at the donor site toward the acceptor strand. The SaMGT primary model instead places the attacking GlcNAc 4-OH on acceptor lipid II. Do not resolve this by trusting participant order or silently reversing the imported M-CSA text. The annotation corrects the project polymer-role label at the primary-model scope only. Mechanism 2 Step 2 instead describes attack by the acceptor on the donor; that does not resolve all of the local alternatives.",
+          "finding_id": "mcsa-text-conflict",
+          "source_artifact_ids": [
+            "M-CSA:M0970:entry-JSON",
+            "PMC:3340074:HTML"
+          ],
+          "source_locators": [
+            "M0970 reaction.mechanisms[mechanism_id=1].steps[step_id=1].description",
+            "Huang et al. Fig. 4B-C and corresponding Discussion paragraph"
+          ]
+        },
+        {
+          "evidence_kind": "bibliographic/abstract evidence",
+          "finding": "The M0970-linked 2020 paper describes MD and QM/MM modeling and a proposed metal-bound-hydroxide pathway. Its abstract is not an independent experimental observation of polymer direction or evidence resolving the competing local mechanisms.",
+          "finding_id": "computational-reference-scope",
+          "source_artifact_ids": [
+            "PubMed:32786224:XML"
+          ],
+          "source_locators": [
+            "Article title and abstract"
+          ]
+        }
+      ],
+      "status": "source_scoped_correction"
+    }
+  ],
+  "schema_version": "catalytic-earth.state-source-annotations.v1"
+}

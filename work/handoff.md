@@ -4,72 +4,74 @@
 ## Current research baton — 2026-09-09
 
 This block and `docs/HOURLY_RESEARCH.md` govern the hourly research task.
-Everything below the end marker is historical. Claims, errata, truth policy
-and current decisions override this handoff when they conflict.
+Everything below the end marker is historical; claims, errata, truth policy
+and current decisions control conflicting wording.
 
 - **Identity/base:** owner
-  `01a086b4-a813-7be1-84dd-fdec48d14288:46b8ba73-3a5f-4cea-afeb-a61080437d84`;
-  actual start 2026-09-09T15:06:35Z; base
-  `c968007591c79b09c2ab41767a405cbc6683f134` on clean synchronized main.
-  Work is on `codex/assembly-context-20260909`. The Git-local receipt records
-  exact elapsed time, final SHA, PR/CI/merge state and lock release.
-- **Question/result:** does biological assembly add a useful constraint beyond
-  more distances? Yes, narrowly: operator 2 places selected Glu366 atoms from
-  the partner protein copy beside the operator-1 cofactor/Gln160 neighborhood.
-  A single-copy crop omits a study-implicated cofactor-activation group. The
-  source comparison separates E366Q F6P-intermediate nondetection, residual
-  X5P/R5P turnover (kcat 0.012 ± 0.001 s⁻¹), and unavailable pre-steady-state
-  reporting. These are distinct endpoints, not evidence for abolished catalysis.
-- **Evidence/capability:** `data/atlas/assembly_context/6ha3/` binds operator,
-  model, author/label residue, insertion code, alternate identifier and exact
-  atom identity to the retained 6HA3 coordinates and study sources. A shared
-  data-driven engine exposes the selected atoms and all declared pair distances;
-  the CLI script's `--query` returns the reviewed interpretation. CE-019 and
-  `docs/ATLAS_STUDY_CONTEXT.md` state the bounded omission warning.
-- **Limits:** E366Q is not the E160Q crystal or a selective partner-only
-  intervention. Exact construct/tag/preparation equivalence, solution ensemble,
-  protonation, LBHB causation, a geometric tolerance, a complete site, productive
-  F6P full-cycle turnover and an M0219 step remain unestablished. The deposited
-  author/PISA assembly explicitly records `experimental_support=none`.
-- **Sources/budget:** reuse of the original 6HA3 and paper captures adds no
-  coordinate/literature requests. One official wwPDB operator-expression
-  documentation capture adds 17,727 bytes. Named batch
-  `human-tkt-e160q-6ha3-geometry-function` now totals seven direct captures and
-  3,004,884 bytes of 100 requests/30 MiB; carry this cumulative total forward.
-  Prior discovery traffic remains disclosed as unmeasured. Only the existing
-  CC0 coordinate file is redistributed; no paid compute, outreach or experiment.
-- **Review/reconsideration:** source and adversarial lanes accepted the narrow
-  warning and rejected causal promotion. A proposed `N1,` → `N1` normalization
-  was rejected by the exact deposited atom and bond rows; punctuation is real
-  source identity. The shared board is
-  `work/coordination_assembly_context_20260909.md`. Chemistry stays in data;
-  operator parsing is a general source-format concept. Reused captures and
-  joins avoid reacquisition, but no timed curation reduction is claimed. The
-  sources already contain the biology; added value is explicit copy-to-evidence
-  identity and prevention of endpoint conflation. Stop further E160Q distances.
-- **Verification/publication:** prepublication checkpoint at
-  2026-09-09T15:38:14Z (31.7 elapsed minutes). All 498 core
-  tests pass without skips; source/assembly validation, full repository contracts,
-  and installed-wheel reproduction (including Atlas-10/drafts/sites/candidates)
-  pass. Source and final code/diff reviews found no remaining blocker. Only
-  owned changes are present. The prior PR #56 is merged; this branch is ready
-  for PR publication and must pass CI at the reviewed head before merge. Final
-  SHA/PR/CI/merge/release outcomes are recorded in the receipt/task result without
-  a self-hash follow-up commit; if a PR remains open, resume it first.
-- **One next action:** test portability once on the same paper's pyruvate
-  oxidase H89-prime context (candidate WT structure 4FEG), before creating a
-  packet. Expected gain: establish whether the unchanged copy-identity engine
-  prevents a real single-copy omission in a different enzyme while preserving
-  MAP-analogue binding, pyruvate processing and artificial DCPIP-turnover
-  endpoints. Require an identifiable downstream site/crop use; stop if the
-  assembly map adds no consequential distinction, needs enzyme-specific code,
-  or offers only more distances. Same-study reuse is not independent biological
-  corroboration. Do not repeat the already-known T382E state/charge/confound
-  review, and stop further same-paper geometry after this bounded portability
-  decision. Existing source permissions and cumulative batch budget apply.
+  `01a086ec-0ced-7bf3-92ae-3e0448bdb035:83aa4384-3910-4370-82c7-6d8c7d78fffc`;
+  actual start 2026-09-09T16:07:04Z; base
+  `4613df97790c555eb7719612ade412e035042bc4` on clean synchronized main.
+  Work is on `codex/polymer-role-20260909`. The Git-local receipt records final
+  elapsed time, reviewed/pushed/merged SHA, CI and release outcome.
+- **Question/result:** primary evidence corrects M0970's growing-polymer
+  acceptor label. In the SaMGT paper's proposed elongation model, the growing
+  chain is donor S2 and incoming lipid II is acceptor S1. The same paper's
+  GalNAc analogue has an inverted position-4 hydroxyl and is described as unable
+  to serve as an E100 substrate. A separate longer-Gal-capped-oligomer experiment
+  supports reducing-end growth in four PGTs, not a direct Q99T05/SaMGT test.
+- **Capability/evidence:** `data/atlas/polymer_context/m0970/` and
+  `docs/ATLAS_POLYMER_CONTEXT.md` bind the role correction, analogue/construct
+  limits, discriminating experimental controls, and conflicting M-CSA prose to
+  retained primary-source hashes/locators. CE-020/ER-013 govern the correction.
+  `python scripts/build_atlas50_state_probe.py --query-case M0970` exposes the
+  current role with its own source references beside the case; `--batch` works
+  for all three pinned generations. Historical reports stay byte-identical.
+- **Limits:** no exact X00676 identity, numeric chain state, processivity,
+  completed M0970 steps, productive native-lipid-II geometry, direct SaMGT
+  direction assay, independent human review or new project experiment. M0970
+  remains ABSTAIN with source-annotation-only permission. The two M-CSA textual
+  attacking-role descriptions are not silently reconciled. No new protein,
+  reaction, mechanism draft or evidence tier is claimed.
+- **POX decision:** a narrow initial search missed a legacy 1POW crop consumer.
+  The representation agent found it; both agent and parent reproduced an
+  operator-2 H89 example through the unchanged coordinate engine. This is
+  adjacent 1POW evidence, not 4FEG copy identity or full-packet portability.
+  The reviewed 6HA3 wrapper remains assay-specific. No 4FEG capture/packet was
+  made; further same-paper geometry was deprioritized when the polymer-role
+  defect became concrete. Do not report biological failure or no POX consumer.
+- **Budget:** carry `atlas50.computational-panel-review.2026-09-05` forward:
+  21 inherited measured captures / 1,125,005 bytes plus seven requests /
+  349,400 bytes, including one empty 404, totals **28 / 1,474,405** of the
+  100-request/30-MiB ceiling. Historical browser checks remain unmetered.
+  `human-tkt-e160q-6ha3-geometry-function` remains **7 / 3,004,884**. No paper,
+  figure or new coordinate body is redistributed; no paid resources/outreach.
+- **Review/reconsideration:** source review corrected exact section locators;
+  code review required validation of every report binding and role-level source
+  references. Both are resolved. Board:
+  `work/coordination_pox_portability_20260909.md`. Chemistry stays in data;
+  no enzyme-ID runtime branch. One correction serves three report generations
+  without rewriting reviews, but no timed curation benefit is claimed. Added
+  value is prevention of role reversal and analogue transfer, not new biology
+  beyond incumbent papers. Frozen kernels, registries and exposure unchanged.
+- **Verification/publication:** prepublication checkpoint at 2026-09-09T16:37:24Z (30.3 elapsed minutes).
+  All 503 core tests pass without skips; installed-wheel role query and existing
+  Atlas-10/draft/transformation/site/candidate release checks pass. The first
+  core run found only the obsolete 19-claim expectation; it is now 20 and the
+  complete rerun passed. Final repository contracts and CI must pass before
+  merge. Source and code reviewers found no remaining blocker and have stopped.
+  Prior main CI run 34372455283 passed. Only owned files are present. The final
+  receipt/task result records exact PR, head, merge, sync and lock release;
+  resume a pending PR first if publication did not complete.
+- **One next action:** make one evidence-backed scope decision on representing
+  the source-proposed elongation cycle symbolically under the existing generic
+  state contract. Expected gain: justified symbolic-chain drafting scope or a
+  precise representation stop. Preserve unknown n/X00676 and distinguish the
+  proposed translocation model from measured direction and processivity. Stop
+  if it requires inventing chemistry or weakening the exact-instance gate.
+  Do not repeat resolved role/analogue review or extend same-paper geometry.
 
 Preserve historical content below this marked block. Git identifies the
-containing increment; no new commit is needed solely to embed its own hash.
+containing increment; no self-hash follow-up commit is required.
 <!-- current-research-handoff:end -->
 
 ## Historical handoffs — superseded as an execution queue

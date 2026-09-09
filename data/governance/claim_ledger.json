@@ -237,5 +237,18 @@
       "data/atlas/assembly_context/6ha3/projection.json",
       "docs/ATLAS_STUDY_CONTEXT.md"
     ]
+  },
+  {
+    "claim_id": "CE-020",
+    "claim_kind": "structure_applicability",
+    "status": "Supported",
+    "claim": "The primary SaMGT elongation model places the growing glycan at donor site S2 and incoming lipid II at acceptor site S1; the prior M0970 polymer-acceptor label is corrected. The 3VMT paper describes a bound GalNAc analogue unable to serve as an E100 substrate.",
+    "current_wording": "The current source view corrects the role beside its source context while retaining historical reports and source-only permissions. The four-PGT direction experiment is not a direct Q99T05/SaMGT test. Exact product, numeric chain length, processivity and the complete M0970 mechanism remain unresolved.",
+    "rationale": "Exact primary-source model and analogue statements correct a project role reversal; discriminating biochemical direction evidence is retained at its tested-construct scope, with conflicting M-CSA prose preserved.",
+    "evidence": [
+      "data/atlas/polymer_context/m0970/annotations.json",
+      "data/atlas/polymer_context/m0970/source_inventory.json",
+      "docs/ATLAS_POLYMER_CONTEXT.md"
+    ]
   }
 ]
