@@ -8,6 +8,11 @@ the saved local project each hour; Git and `work/handoff.md` carry continuity.
 The computer must be on and the desktop app running. This is ordinary scheduled
 work, without an open-ended goal.
 
+A separate direction review runs in the oversight task every twelve hours.
+Read [its current assessment and priority](SCIENTIFIC_DIRECTION.md) before
+selecting the next work. It can retarget the hourly prompt and publish necessary
+corrections under the same lock; it is not a second concurrent research writer.
+
 ## Scientific purpose
 
 Build the world's computable catalytic-mechanism atlas: a continuously expanding,
@@ -25,7 +30,8 @@ Keep protein, reaction, mechanism-proposal, step and evidence counts separate.
 
 Read the current block in `work/handoff.md`, then `CLAIMS.md`, `ERRATA.md`,
 `docs/ATLAS_TRUTH_POLICY.md`, `docs/CURRENT_DECISIONS.md`,
-`docs/CURRENT_STATE.md`, and the North Star in `README.md`/`docs/MAP.md`.
+`docs/CURRENT_STATE.md`, the current `docs/SCIENTIFIC_DIRECTION.md` review,
+and the North Star in `README.md`/`docs/MAP.md`.
 Read the exposure ledger before evaluation work. Reconcile the inherited next
 action with current evidence and the strongest alternative; do not restart
 settled investigations without new evidence or a concrete defect. Older handoffs,
@@ -50,6 +56,8 @@ when it resolves a decision, not as a ritual before every useful addition.
    issues. Record concrete effort where observed; never invent timings. Address
    avoidable repetition, and prioritize inherently difficult chemistry by value.
    More throughput must not propagate the same source errors faster.
+   Shared schema names are not enough: check whether one consumer can recover
+   the relevant cross-case relations without source-by-source reinterpretation.
 3. **Integrated answers offer little beyond convenient repackaging.** Identify
    the relation, correction, prevented transfer, useful design constraint or
    demonstrated effort reduction the atlas adds. When comparison matters, allow
