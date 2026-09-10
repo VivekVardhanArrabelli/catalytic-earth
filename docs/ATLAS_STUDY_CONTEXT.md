@@ -149,8 +149,13 @@ for row in data['variants']:
 PY
 ```
 
-This file is a source annotation in the repository, not a new installed query
-or an expansion of the existing three-observation study-context command.
+The [common perturbation query](ATLAS_PERTURBATION_RELATION.md#cofactor-dependent-endpoints-remain-distinct)
+now returns all seven kcat records, all seven kforward records and all five NMR arms, preserving
+reporter-unavailable, qualitative and nondetection results. Use
+`python scripts/query_atlas_perturbations.py --comparison tkt_2019:E366Q:kcat`
+to retain the WT control and the different F6P contexts beside its turnover
+ratio. Other table columns remain in the source annotation; the existing
+installed three-observation study-context command is unchanged.
 
 ## POX analogue binding does not supply a generic activity label
 

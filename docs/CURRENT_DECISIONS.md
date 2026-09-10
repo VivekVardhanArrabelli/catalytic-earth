@@ -1,5 +1,23 @@
 # Current Decisions
 
+## 2026-09-10: distinguish unavailable parameters from observed nondetection
+
+Extend the shared perturbation relation to the retained human-TKT endpoints.
+Use a generic unavailable result kind with source token, scope, reason and null
+value; keep qualitative accumulation and endpoint-specific nondetection separate.
+The [projection and computational review](ATLAS_PERTURBATION_RELATION.md)
+bind the source-bound identity adapter and original source providers. Do not infer
+an exact sequence, partner-only E366Q intervention or E366Q geometry from 6HA3.
+
+The complete selected panels make WT/E366Q turnover computable while refusing
+F6P reporter-rate and numeric NMR-fraction ratios. Other table columns remain
+source context with their bounds and punctuation untouched. Numeric values and
+NMR statements are reused from existing packets, not re-transcribed.
+No source acquisition, frozen-kernel, protected-registry or exposure-history
+change follows. The next useful test is POX's distinct analogue-nonbinding
+reason beside measured pyruvate endpoints, using retained evidence only.
+
+
 ## 2026-09-10: qualify Diels–Alder effects only at their available source scope
 
 The [Diels–Alder review](../data/atlas/study_context/diels_alder_2010/source_review.json)

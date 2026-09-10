@@ -1,18 +1,22 @@
 {
   "schema_version": "catalytic-earth.perturbation-source-review.v1",
   "status": "source_reviewed_computational",
-  "reviewed_at_utc": "2026-09-10T09:29:37.903127+00:00",
-  "scope": "Existing accepted perturbation and forward-methodol annotations plus a main-article-scoped Diels-Alder source relation. Three parent parameters and two reported activity factors preserve an unresolved matched assay; no new runtime, experiment, independent validation, admission or design-success estimate.",
+  "reviewed_at_utc": "2026-09-10T10:40:07.718165+00:00",
+  "scope": "Existing accepted perturbation/product annotations plus source-bound TKT kcat, k_forward and NMR records. Common unavailable and qualitative-result details preserve reporter absence, scoped nondetection and measured turnover as separate endpoints. Source/identity adapters do not establish exact assay sequences, selective subunit perturbation, causal geometry, new experiments or design success.",
   "reviewed_bindings": {
-    "data/atlas/perturbations/projection.json": "8f76890aa6576def7404962d256f8f736d33b24434d5e8c1491d19407a3c979d",
-    "src/catalytic_earth/atlas_perturbations.py": "f0456d2fa9dce9efda390864f523b58666a148942ba31acb65d5e62bd95e89ca",
-    "scripts/query_atlas_perturbations.py": "87fd01dcc9f9ec737579d39c46ea007c60c70a50da745a77c6c64591fceaba51",
-    "docs/ATLAS_PERTURBATION_RELATION.md": "2bb9d0322bfb09f82a6e0be33d7db0371c93cd5e001854b222c80781e025d70e",
+    "data/atlas/perturbations/projection.json": "df5db22766353112c5cd72d69b3bea77bd256e636c875f3c429dff00d999a9e5",
+    "src/catalytic_earth/atlas_perturbations.py": "e154c26947daf76d1c9a13cc1bf8d8415c5aec72baab3e15a708ed69e05f15c6",
+    "scripts/query_atlas_perturbations.py": "fa6746be65dd78f6f7a9d9181f1306922837421e021c974168962b00ccd3d2bc",
+    "docs/ATLAS_PERTURBATION_RELATION.md": "e3423e0d361708521835b5893c33668edda3343116f5d9e573438589321a4427",
     "data/atlas/study_context/ra95_2017/forward_synthesis_review.json": "a8025989cb89415ac59267dc0af2da415019af3786ec2db3debd18630de8be9d",
     "docs/ATLAS_FORWARD_SYNTHESIS.md": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84",
     "data/atlas/study_context/diels_alder_2010/source_review.json": "19759f43826c73005f00265144e3debc9805457b0320b18693da7b9bbdd3a01b",
     "docs/ATLAS_DIELS_ALDER_CONTROLS.md": "eb0319636aea183771290ffb0608ace1bc49c80949e0f1bbd4e41bb3c2acbb48",
-    "tests/core/test_atlas_perturbations.py": "c0a1d1f7b4f54e73097829aca2e67cb17877ee849e2b6dde6024a3719933dcf7"
+    "tests/core/test_atlas_perturbations.py": "2adad6a9c9e32950334d3f9be96e7ec305d6ee65ed74666c854e525db7e45a2e",
+    "data/atlas/study_context/6ha3/perturbation_context.json": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0",
+    "data/atlas/study_context/6ha3/functional_review.json": "9af6d94d77800810d210e032e90e6af6a99ffd22a5548d9d39b5a7f502199200",
+    "data/atlas/assembly_context/6ha3/review.json": "434188c22e847de2add0c76cc06076de9347d39ecd259acc051631792fcc7eaa",
+    "docs/ATLAS_STUDY_CONTEXT.md": "b1d077db319352d316499f0e148cec76bb3482a38761b0ef554de7ed6131f3c7"
   },
   "inherited_source_bindings": {
     "ra95f": {
@@ -38,19 +42,23 @@
     "ra95syn": {
       "path": "data/atlas/study_context/ra95_2017/forward_synthesis.json",
       "sha256": "2b9fbc1b3dc777956a705f8502c1babc9ce2edb1e1cdb18b334d90d504ad5a14"
+    },
+    "da2010": {
+      "path": "data/atlas/study_context/diels_alder_2010/source_qualification.json",
+      "sha256": "eac85e8bd87c3587d3f33a150f879a91ffc1426ce24f0cea251df7dbf8ab160f"
     }
   },
   "review_process": {
     "model": "gpt-5.6-sol",
     "reasoning_effort": "ultra",
     "roles": [
-      "diels_source",
-      "diels_representation",
-      "diels_adversarial"
+      "source",
+      "representation",
+      "adversarial"
     ],
     "independent_human_review": false,
     "correlated_errors_possible": true,
-    "parent_adjudication": "Accept the source-scoped partial relation and explicit parameter-control abstention after three independent-in-team read-only challenges. Preserve source objections and corrected nulls. Same-model agreement is not independent evidence."
+    "parent_adjudication": "Accept exact source, representation and adversarial reviews after narrowing variant-specific evidence and missingness semantics. Parent visually checked the complete table and Supplementary Methods printed pages 5-7, checked the NMR legend and source footnotes, and verified source/identity equality. These are related computational reviews, not independent human or laboratory evidence."
   },
   "resolved_objections": [
     {
@@ -140,6 +148,34 @@
     {
       "issue": "A no-peak-integration statement could be mistaken for absence of source analysis.",
       "resolution": "State no project peak integration and no independently authenticated stereochemical reference; no absence claim about source methods."
+    },
+    {
+      "issue": "Reporter-unavailable F6P kinetic parameters were not a distinct common result kind.",
+      "resolution": "Shared unavailable kind with null value, exact n.a. token, scoped reason and false zero-rate semantics; ratio eligibility abstains. Row-level footnote/method integration remains explicit, including T382Q marker location."
+    },
+    {
+      "issue": "A positive qualitative NMR result otherwise required reading a source-specific field.",
+      "resolution": "Generic qualitative_result payload carries normalized source-annotation wording and scope. NMR presence and nondetection have null units and numeric values; nondetection retains unknown numeric floor. Neither normalized annotation is presented as a verbatim primary quote."
+    },
+    {
+      "issue": "E366Q-specific assembly relation was attached to other variant comparisons.",
+      "resolution": "Only E366Q requests carry that relation. Reporter-footnote evidence is attached only to the relevant unavailable-reporter variants; 6HA3 stays E160Q and is not an E366Q or selective-partner structure."
+    },
+    {
+      "issue": "T382E/Q context included WT NMR alone despite absent variant arms.",
+      "resolution": "Remove one-sided NMR context and attach the explicit source-scoped absent-panel statement; no negative or numeric NMR record is invented."
+    },
+    {
+      "issue": "Legacy variant rows lacked the construct/sequence-provider fields expected by the consumer.",
+      "resolution": "Add a source-bound data identity adapter, with all seven exact assay sequences null. Numeric values and NMR results project directly from unchanged providers. Regression checks resolve each nested adapter pointer and verify variant, row label, WT reference and NMR method/conditions equality; runtime review hashes bind the adapter, but do not claim to execute its nested provenance links."
+    },
+    {
+      "issue": "Selected parameter columns or unqualified pairs could imply all entries were measured or hide excluded bounds.",
+      "resolution": "Name all seven parameter records per kinetic endpoint, including three unavailable k_forward slots. Retain entire source rows: unselected instrument bounds, cooperative parameter semantics and ambiguous source punctuation remain contextual, not common numeric records."
+    },
+    {
+      "issue": "Public JSON stdout inherited Windows CP1252 while an explicit UTF8 consumer decoded it.",
+      "resolution": "Force UTF8 on CLI JSON stdout; test under PYTHONIOENCODING=cp1252 with explicit UTF8 decoding and exact parsed evidence_context/construct equality. Keep scientific data and library semantics unchanged; rerun CI at the updated head."
     }
   ],
   "remaining_limits": [
@@ -147,22 +183,54 @@
     "Comparisons are source-rounded descriptive arithmetic, not inferential statistics or causal roles.",
     "Source witness bytes are host-local and not redistributed. Original witnesses reused with zero requests; new Diels-Alder batch consumed14requests/502726bytes.",
     "Full 2017 main body, KE59 supplement and RA61 earlier-study sequence/lysine controls remain unassessed where stated.",
-    "Diels-Alder supplement, exact sequence, mutant assay/parameter, raw values, product calculation details and analytical reference authentication remain unassessed. Named-source relation does not qualify a same-assay product/control join."
+    "Diels-Alder supplement, exact sequence, mutant assay/parameter, raw values, product calculation details and analytical reference authentication remain unassessed. Named-source relation does not qualify a same-assay product/control join.",
+    "TKT assay sequences/specimen identity are unestablished in retained scope; 6HA3 is E160Q and does not authenticate E366Q geometry or a selective partner-only mutation.",
+    "TKT NMR conditions are source-described typical method conditions; no numeric intermediate fraction/detection floor. T382E/Q are not present in that NMR panel.",
+    "TKT arithmetic is within-source assay/model/parameter and WT background only. No F6P full-cycle rate, raw-transient equivalence, causal geometry or statistical inference is established.",
+    "Four TKT primary witnesses were retained locally with zero requests. Historical TKT acquisition is only a lower bound of 7 requests/3004884 bytes; complete usage and headroom remain unknown."
   ],
-  "coordination_record": "work/coordination_diels_alder_20260910.md",
+  "coordination_record": "work/coordination_tkt_perturbation_20260910.md",
   "added_source_bindings": {
-    "da2010": {
-      "path": "data/atlas/study_context/diels_alder_2010/source_qualification.json",
-      "sha256": "eac85e8bd87c3587d3f33a150f879a91ffc1426ce24f0cea251df7dbf8ab160f"
+    "tktf": {
+      "path": "data/atlas/study_context/6ha3/functional_comparison.json",
+      "sha256": "a8205b4964ac094b41172cdfa9309c70cd004bfa458ee9ea62bbf64785bf6366"
+    },
+    "tkta": {
+      "path": "data/atlas/assembly_context/6ha3/spec.json",
+      "sha256": "b3a6c9306cab59095c4c3943c35ec7b0cbddadbcc1180fced9e284cff8a4b675"
+    },
+    "tkti": {
+      "path": "data/atlas/study_context/6ha3/perturbation_context.json",
+      "sha256": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0"
     }
   },
   "prior_review_binding": {
-    "base_commit": "7e59b7a381dd2ddce70f5fcd2b71eaa4925b15ca",
+    "base_commit": "f1a8f637a495f55c19e45c17a5ca0abb43df717d",
     "path": "data/atlas/perturbations/review.json",
-    "scope": "All six prior packets,113 projected records and55comparison requests retained unchanged; Git preserves previous review bytes."
+    "scope": "All seven preceding packet projections,118 records and56 requests retained unchanged; Git preserves previous review bytes."
   },
   "forward_synthesis_limits": [
     "Forward product configuration is source-assigned; R/S retention mappings remain conflicted and no assignment transfers to the0.7%precursor conversion arm.",
     "The strict>98.4%ee remains structured source context, not a numeric central-value comparison. No repaired yield or quantity is computed."
-  ]
+  ],
+  "this_run_source_access": {
+    "new_requests": 0,
+    "new_response_body_bytes": 0,
+    "batch_id": "human-tkt-e160q-6ha3-geometry-function",
+    "carried_metered_lower_bound_requests": 7,
+    "carried_metered_lower_bound_response_body_bytes": 3004884,
+    "complete_cumulative_usage": null,
+    "remaining_headroom": null,
+    "retained_TKT_witnesses": 4,
+    "retained_TKT_bytes": 1206429
+  },
+  "transport_followup_review": {
+    "reviewed_at_utc": "2026-09-10T10:40:07.718165+00:00",
+    "cause": "PR76 first CI head746236b2 failed only Windows filtered-query decoding: CP1252 stdout byte0xb1 was decoded as UTF8. Scientific comparisons passed.",
+    "fix": "Explicit UTF8 stdout on the public JSON path; no change to file output or source projection.",
+    "source_review": "source task accepted exact new CLI hash; all scientific bytes unchanged",
+    "adversarial_review": "adversarial task accepted exact CLI and tests hashes; CP1252 environment forces actual symbol transport; parsed source/construct context equality checked",
+    "source_interpretation_changed": false,
+    "no_failed_check_bypass": true
+  }
 }

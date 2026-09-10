@@ -17,7 +17,7 @@ from typing import Any
 
 SPEC_PATH = "data/atlas/perturbations/projection.json"
 REVIEW_PATH = "data/atlas/perturbations/review.json"
-KINDS = {"numeric", "nondetection", "source_conflict", "unassessed", "qualitative"}
+KINDS = {"numeric", "nondetection", "unavailable", "source_conflict", "unassessed", "qualitative"}
 
 
 def pointer(document: Any, path: str) -> Any:
@@ -296,6 +296,17 @@ def _project_candidate(repo_root: Path, spec: dict[str, Any] | None = None) -> d
                         raise ValueError("nondetection requires source token and endpoint scope")
                     if nondetection["is_zero_rate"] is not False:
                         raise ValueError("nondetection is not a zero rate")
+                result_detail = {}
+                if kind in {"unavailable", "qualitative"}:
+                    detail_field = "unavailability" if kind == "unavailable" else "qualitative_result"
+                    detail = {key: _pick(raw_parameter, selector)
+                              for key, selector in parameter[detail_field].items()}
+                    required = ("source_token", "scope", "reason") if kind == "unavailable" else ("source_token", "scope")
+                    if not all(detail.get(key) for key in required):
+                        raise ValueError(f"{kind} result requires source token and scope, and a reason if unavailable")
+                    if kind == "unavailable" and detail.get("is_zero_rate") is not False:
+                        raise ValueError("unavailable result is not a zero rate")
+                    result_detail[detail_field] = detail
                 row_id = f"{panel['id']}:{fields['row_id']}:{parameter['id']}"
                 source_pointer = f"{panel['rows_pointer']}/{index}"
                 observations.append({
@@ -311,6 +322,7 @@ def _project_candidate(repo_root: Path, spec: dict[str, Any] | None = None) -> d
                     "parameter": parameter["id"], "result_kind": kind,
                     "value": value, "unit": unit,
                     "uncertainty": uncertainty, "nondetection": nondetection,
+                    **result_detail,
                     "uncertainty_context": deepcopy(assay["uncertainty_context"]),
                     "sequence_identity_available": construct["sequence_identity_available"],
                     "comparison_blocks": comparison_blocks,

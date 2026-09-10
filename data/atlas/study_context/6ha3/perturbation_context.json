@@ -1,0 +1,194 @@
+{
+  "schema_version": "catalytic-earth.perturbation-identity-context.v1",
+  "operation": "source_annotation",
+  "study": {
+    "doi": "10.1038/s41586-019-1581-9",
+    "pmid": "31534226",
+    "title": "Low-barrier hydrogen bonds in enzyme cooperativity",
+    "enzyme_context": "reported human transketolase wild type and variants",
+    "scope": "One published study, seven Table 2a variant rows. This is neither a new biological-case admission nor a new project experiment."
+  },
+  "scope": "Identity adapter for existing source-defined human TKT variant and NMR assay records. No new kinetic or NMR transcription; no protein admission or exact assay-sequence claim.",
+  "source_bindings": [
+    {
+      "path": "data/atlas/study_context/6ha3/functional_comparison.json",
+      "sha256": "a8205b4964ac094b41172cdfa9309c70cd004bfa458ee9ea62bbf64785bf6366"
+    },
+    {
+      "path": "data/atlas/assembly_context/6ha3/spec.json",
+      "sha256": "b3a6c9306cab59095c4c3943c35ec7b0cbddadbcc1180fced9e284cff8a4b675"
+    }
+  ],
+  "constructs": [
+    {
+      "construct_id": "wild_type",
+      "background_construct_id": "wild_type",
+      "declared_substitutions": [],
+      "source_provider": {
+        "path": "data/atlas/study_context/6ha3/functional_comparison.json",
+        "json_pointer": "/variants/0"
+      },
+      "source_identity_field": "reported_variant",
+      "source_row_label": "wild-type",
+      "identity_basis": "Reported source variant on within-study human TKT wild-type background; named substitution, not a project-derived exact sequence.",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "exact_assay_construct_sequence_unestablished_in_retained_evidence",
+      "assay_specimen_sequence_verified": false
+    },
+    {
+      "construct_id": "E366Q",
+      "background_construct_id": "wild_type",
+      "declared_substitutions": [
+        "E366Q"
+      ],
+      "source_provider": {
+        "path": "data/atlas/study_context/6ha3/functional_comparison.json",
+        "json_pointer": "/variants/1"
+      },
+      "source_identity_field": "reported_variant",
+      "source_row_label": "E366Q (catalytic)",
+      "identity_basis": "Reported source variant on within-study human TKT wild-type background; named substitution, not a project-derived exact sequence.",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "exact_assay_construct_sequence_unestablished_in_retained_evidence",
+      "assay_specimen_sequence_verified": false
+    },
+    {
+      "construct_id": "E160Q",
+      "background_construct_id": "wild_type",
+      "declared_substitutions": [
+        "E160Q"
+      ],
+      "source_provider": {
+        "path": "data/atlas/study_context/6ha3/functional_comparison.json",
+        "json_pointer": "/variants/2"
+      },
+      "source_identity_field": "reported_variant",
+      "source_row_label": "E160Q",
+      "identity_basis": "Reported source variant on within-study human TKT wild-type background; named substitution, not a project-derived exact sequence.",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "exact_assay_construct_sequence_unestablished_in_retained_evidence",
+      "assay_specimen_sequence_verified": false
+    },
+    {
+      "construct_id": "E160A",
+      "background_construct_id": "wild_type",
+      "declared_substitutions": [
+        "E160A"
+      ],
+      "source_provider": {
+        "path": "data/atlas/study_context/6ha3/functional_comparison.json",
+        "json_pointer": "/variants/3"
+      },
+      "source_identity_field": "reported_variant",
+      "source_row_label": "E160A",
+      "identity_basis": "Reported source variant on within-study human TKT wild-type background; named substitution, not a project-derived exact sequence.",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "exact_assay_construct_sequence_unestablished_in_retained_evidence",
+      "assay_specimen_sequence_verified": false
+    },
+    {
+      "construct_id": "E165Q",
+      "background_construct_id": "wild_type",
+      "declared_substitutions": [
+        "E165Q"
+      ],
+      "source_provider": {
+        "path": "data/atlas/study_context/6ha3/functional_comparison.json",
+        "json_pointer": "/variants/4"
+      },
+      "source_identity_field": "reported_variant",
+      "source_row_label": "E165Q",
+      "identity_basis": "Reported source variant on within-study human TKT wild-type background; named substitution, not a project-derived exact sequence.",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "exact_assay_construct_sequence_unestablished_in_retained_evidence",
+      "assay_specimen_sequence_verified": false
+    },
+    {
+      "construct_id": "T382E",
+      "background_construct_id": "wild_type",
+      "declared_substitutions": [
+        "T382E"
+      ],
+      "source_provider": {
+        "path": "data/atlas/study_context/6ha3/functional_comparison.json",
+        "json_pointer": "/variants/5"
+      },
+      "source_identity_field": "reported_variant",
+      "source_row_label": "T382E",
+      "identity_basis": "Reported source variant on within-study human TKT wild-type background; named substitution, not a project-derived exact sequence.",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "exact_assay_construct_sequence_unestablished_in_retained_evidence",
+      "assay_specimen_sequence_verified": false
+    },
+    {
+      "construct_id": "T382Q",
+      "background_construct_id": "wild_type",
+      "declared_substitutions": [
+        "T382Q"
+      ],
+      "source_provider": {
+        "path": "data/atlas/study_context/6ha3/functional_comparison.json",
+        "json_pointer": "/variants/6"
+      },
+      "source_identity_field": "reported_variant",
+      "source_row_label": "T382Q",
+      "identity_basis": "Reported source variant on within-study human TKT wild-type background; named substitution, not a project-derived exact sequence.",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "exact_assay_construct_sequence_unestablished_in_retained_evidence",
+      "assay_specimen_sequence_verified": false
+    }
+  ],
+  "assays": [
+    {
+      "assay_id": "f6p_acid_quench_nmr",
+      "endpoint": "covalent-intermediate accumulation in the F6P donor half-reaction",
+      "method": "1D proton NMR after acid-quench isolation",
+      "typical_method_conditions": {
+        "buffer": "50 mM glycyl-glycine",
+        "enzyme_stock_mg_per_mL": 15,
+        "f6p_stock_mM": 100,
+        "mixing": "equal 200 microlitre volumes; stocks are pre-mix concentrations",
+        "ph": 7.6,
+        "pre_quench_seconds": 30,
+        "temperature_celsius": 20
+      },
+      "conditions_limit": "Methods describe a typical experiment; exact variant-specific preparations and per-panel acquisition settings remain unresolved.",
+      "source_provider": {
+        "path": "data/atlas/assembly_context/6ha3/spec.json",
+        "json_pointer": "/source_reviewed_context/functional_panel"
+      },
+      "replication": "source reports two independent repeats with similar results"
+    }
+  ],
+  "identity_limits": [
+    "Names identify variants within this study; exact assay construct sequences and tag identity are not established by the retained variant tables.",
+    "No sequence is borrowed from the E160Q 6HA3 deposition for wild type, E366Q or another assay variant.",
+    "The E366Q intervention is not a selective partner-subunit-only mutation. The 6HA3 structure is E160Q, not E366Q; the prime denotes the partner copy, not a separate assayed gene."
+  ],
+  "source_access": {
+    "batch_id": "human-tkt-e160q-6ha3-geometry-function",
+    "new_requests": 0,
+    "new_response_bytes": 0,
+    "carried_metered_lower_bound_requests": 7,
+    "carried_metered_lower_bound_response_bytes": 3004884,
+    "complete_cumulative_requests": null,
+    "complete_cumulative_response_bytes": null,
+    "remaining_headroom": null,
+    "limit": "Retained local bytes only. Historical unmetered browser discovery remains unresolved; this operation creates no fresh allowance."
+  },
+  "selection": {
+    "qualitative_panel": "all five inherited F6P acid-quench NMR arms; T382E and T382Q are absent from that panel, not negative",
+    "other_parameters": "All other Table 2a columns remain available in original source rows and evidence context, outside common parameter-record selection; censored k_max_ES and T382E efficiency punctuation are not converted or repaired.",
+    "selected_parameter_records": [
+      "all seven X5P/R5P kcat entries",
+      "all seven F6P stopped-flow k_forward entries, including three unavailable reporters"
+    ]
+  }
+}

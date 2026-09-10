@@ -52,6 +52,8 @@ def main() -> int:
     if args.output:
         args.output.write_text(text, encoding="utf-8")
     else:
+        # JSON transport must preserve source symbols across platform locales.
+        sys.stdout.reconfigure(encoding="utf-8")
         print(text, end="")
     return 0
 
