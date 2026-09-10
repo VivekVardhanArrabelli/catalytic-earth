@@ -3,10 +3,10 @@
   "scope": {
     "question": "Which source-defined catalytic-group perturbations retain a measured endpoint, and which apparent comparisons cannot be transferred?",
     "evidence": "Projection of accepted source annotations; not new measurements, an independent evaluation, protein admission or evidence-tier promotion.",
-    "selection": "All rows of the accepted RA95 2013 kinetic and stereoselectivity tables and RA95 2017 kinetic panel; all six RA61 Table4 construct rows; all five KE59 Table2 pH-profile rows and its unassessed E230-control question. The beta-barrel packet is outside this bounded relation. One source-reported RA95.5-8F methodol synthesis outcome and its two precursor comparator contexts extend product evidence with separate conversion, isolation and source-assigned composition records.",
+    "selection": "All rows of the accepted RA95 2013 kinetic and stereoselectivity tables and RA95 2017 kinetic panel; all six RA61 Table4 construct rows; all five KE59 Table2 pH-profile rows and its unassessed E230-control question. The beta-barrel packet is outside this bounded relation. One source-reported RA95.5-8F methodol synthesis outcome and its two precursor comparator contexts extend product evidence with separate conversion, isolation and source-assigned composition records. A Siegel2010 Diels-Alder extension adds three parent kinetic parameters and two author-reported activity-reduction factors with unqualified assay/metric; product bounds remain separate source contexts.",
     "arithmetic": "Source-rounded central values, same-source assay and background only; reported efficiencies are never replaced by kcat/KM division.",
     "identity": "Exact sequence/provider availability is separate from study-declared construct association and physical assay-specimen identity.",
-    "limitations": "No pooled rates, generic inactivity labels, causal residue assignments, full apparatus claims, microscopic coupling energy or design-success estimates. Forward product composition retains source-author configuration and unresolved retention mapping; strict ee bounds remain structured source context, not central-value comparisons."
+    "limitations": "No pooled rates, generic inactivity labels, causal residue assignments, full apparatus claims, microscopic coupling energy or design-success estimates. Forward product composition retains source-author configuration and unresolved retention mapping; strict ee bounds remain structured source context, not central-value comparisons. Diels-Alder activity-reduction summaries do not identify mutant kcat or product outcomes; strict product bounds and mismatched assays remain in context."
   },
   "sources": {
     "ra95f": {
@@ -32,6 +32,10 @@
     "ra95syn": {
       "path": "data/atlas/study_context/ra95_2017/forward_synthesis.json",
       "sha256": "2b9fbc1b3dc777956a705f8502c1babc9ce2edb1e1cdb18b334d90d504ad5a14"
+    },
+    "da2010": {
+      "path": "data/atlas/study_context/diels_alder_2010/source_qualification.json",
+      "sha256": "eac85e8bd87c3587d3f33a150f879a91ffc1426ce24f0cea251df7dbf8ab160f"
     }
   },
   "constructs": {
@@ -754,6 +758,65 @@
       "identity_scope": "Exact2017 sequence equality was previously checked; no shared physical preparation implied",
       "perturbation_provider": null,
       "background_provider": null
+    },
+    "diels_alder_2010:DA_20_10": {
+      "source_construct_id": "DA_20_10",
+      "provider": {
+        "source": "da2010",
+        "pointer": "/constructs/0"
+      },
+      "background_id": "diels_alder_2010:DA_20_10",
+      "perturbation": [],
+      "sequence_provider": {
+        "source": "da2010",
+        "pointer": "/constructs/0"
+      }
+    },
+    "diels_alder_2010:DA_20_10-Q195E": {
+      "source_construct_id": "DA_20_10-Q195E",
+      "provider": {
+        "source": "da2010",
+        "pointer": "/constructs/1"
+      },
+      "background_id": "diels_alder_2010:DA_20_10",
+      "perturbation": [
+        "Q195E"
+      ],
+      "sequence_provider": {
+        "source": "da2010",
+        "pointer": "/constructs/1"
+      },
+      "perturbation_provider": {
+        "source": "da2010",
+        "pointer": "/constructs/1/perturbation"
+      },
+      "background_provider": {
+        "source": "da2010",
+        "pointer": "/constructs/1/comparison_background"
+      }
+    },
+    "diels_alder_2010:DA_20_10-Y121F": {
+      "source_construct_id": "DA_20_10-Y121F",
+      "provider": {
+        "source": "da2010",
+        "pointer": "/constructs/2"
+      },
+      "background_id": "diels_alder_2010:DA_20_10",
+      "perturbation": [
+        "Y121F"
+      ],
+      "sequence_provider": {
+        "source": "da2010",
+        "pointer": "/constructs/2"
+      },
+      "perturbation_provider": {
+        "source": "da2010",
+        "pointer": "/constructs/2/perturbation"
+      },
+      "background_provider": {
+        "source": "da2010",
+        "pointer": "/constructs/2/comparison_background"
+      }
     }
   },
   "assays": {
@@ -877,6 +940,30 @@
       "reaction_direction": "aldol addition (synthesis)",
       "uncertainty_context": "Not reported; not zero uncertainty.",
       "source_assay_id": "precursor-methodol-synthesis-altered-product-chiral"
+    },
+    "diels_alder_2010:Table1-bisubstrate-kinetics": {
+      "source_assay_id": "Table1-bisubstrate-kinetics",
+      "provider": {
+        "source": "da2010",
+        "pointer": "/assays/0"
+      },
+      "qualified": true,
+      "endpoint_kind": "reported_bisubstrate_kinetic_parameter",
+      "reaction_direction": "forward Diels-Alder cycloaddition",
+      "uncertainty_context": "Table1 caption declares calculated95% confidence intervals for printed plus-minus values",
+      "qualification_scope": "Only printedTable1 kinetic context is qualified; not a complete assay reconstruction."
+    },
+    "diels_alder_2010:P9-mutant-activity-undefined": {
+      "source_assay_id": "P9-mutant-activity-undefined",
+      "provider": {
+        "source": "da2010",
+        "pointer": "/assays/1"
+      },
+      "qualified": false,
+      "endpoint_kind": "source_reported_activity_reduction_assay_unresolved",
+      "reaction_direction": "forward Diels-Alder cycloaddition",
+      "uncertainty_context": null,
+      "qualification_scope": "Source mutation-effect assertion only; not parameter-qualified for comparisons."
     }
   },
   "substrates": {
@@ -935,6 +1022,18 @@
         "2a",
         "acetone"
       ]
+    },
+    "diels-alder-inputs:1+2": {
+      "name": "source diene1 + dienophile2",
+      "participant_ids": [
+        "1",
+        "2"
+      ],
+      "stereochemistry": "source-named trans diene; no product assignment inherited",
+      "source": {
+        "source": "da2010",
+        "pointer": "/reaction"
+      }
     }
   },
   "panels": [
@@ -1717,6 +1816,163 @@
         }
       ],
       "reaction_id": "ra95_2017:methodol-aldol-addition"
+    },
+    {
+      "id": "da-kinetics",
+      "study_id": "diels_alder_2010",
+      "source": "da2010",
+      "rows_pointer": "/kinetic_observations",
+      "fields": {
+        "row_id": {
+          "pointer": "/row_id"
+        },
+        "construct_id": {
+          "pointer": "/construct_id"
+        },
+        "assay_id": {
+          "pointer": "/assay_id"
+        },
+        "substrate_id": {
+          "literal": "diels-alder-inputs:1+2"
+        },
+        "source_locator": {
+          "pointer": "/source"
+        }
+      },
+      "parameters": [
+        {
+          "id": "kcat",
+          "pointer": "/kcat",
+          "kind": {
+            "pointer": "/result_kind"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/uncertainty"
+            },
+            "kind": {
+              "pointer": "/uncertainty_kind"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          }
+        },
+        {
+          "id": "KM_diene",
+          "pointer": "/KM_diene",
+          "kind": {
+            "pointer": "/result_kind"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/uncertainty"
+            },
+            "kind": {
+              "pointer": "/uncertainty_kind"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          }
+        },
+        {
+          "id": "KM_dienophile",
+          "pointer": "/KM_dienophile",
+          "kind": {
+            "pointer": "/result_kind"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/uncertainty"
+            },
+            "kind": {
+              "pointer": "/uncertainty_kind"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          }
+        }
+      ],
+      "reaction_id": "diels_alder_2010:diene1-dienophile2-cycloaddition"
+    },
+    {
+      "id": "da-reported-effects",
+      "study_id": "diels_alder_2010",
+      "source": "da2010",
+      "rows_pointer": "/reported_perturbation_effects",
+      "fields": {
+        "row_id": {
+          "pointer": "/row_id"
+        },
+        "construct_id": {
+          "pointer": "/construct_id"
+        },
+        "assay_id": {
+          "pointer": "/assay_id"
+        },
+        "substrate_id": {
+          "literal": "diels-alder-inputs:1+2"
+        },
+        "source_locator": {
+          "pointer": "/source"
+        }
+      },
+      "parameters": [
+        {
+          "id": "source_reported_activity_reduction_factor",
+          "pointer": "/activity_reduction_factor",
+          "kind": {
+            "pointer": "/result_kind"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/uncertainty"
+            },
+            "kind": {
+              "pointer": "/uncertainty_kind"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          }
+        }
+      ],
+      "reaction_id": "diels_alder_2010:diene1-dienophile2-cycloaddition",
+      "row_checks": [
+        {
+          "selector": {
+            "pointer": "/qualified_parameter_comparison"
+          },
+          "expected": true,
+          "reason": "reported_activity_reduction_not_a_parameter_qualified_mutant_measurement"
+        }
+      ]
     }
   ],
   "comparisons": [
@@ -2881,6 +3137,46 @@
         "ke59-pH:Table2:R13-3/11H:apparent_pKa_from_kcat",
         "ke59-pH:Table2:R13-3/11H:apparent_pKa_from_kcat_over_KM"
       ]
+    },
+    {
+      "id": "diels_alder_2010:qualified-mutant-parameter",
+      "study_id": "diels_alder_2010",
+      "operation": "unassessed",
+      "roles": {},
+      "evidence": [
+        {
+          "source": "da2010",
+          "pointer": "/matched_parameter_assessment"
+        },
+        {
+          "source": "da2010",
+          "pointer": "/reported_perturbation_effects"
+        },
+        {
+          "source": "da2010",
+          "pointer": "/product_context"
+        }
+      ],
+      "result_kind": "unassessed",
+      "requested_perturbation": "Assay-qualified parameter-specific effects for the already source-reported Q195E and Y121F mutations",
+      "reported_mutation_effects_assessed": true,
+      "source_named_control_construct_id": "diels_alder_2010:DA_20_10",
+      "matched_control_measurement": null,
+      "assay_id": null,
+      "parameter": null,
+      "observed_value": null,
+      "source_blocks": [
+        "reported_mutation_effects_preserved_but_metric_and_matched_assay_unresolved",
+        "supplement_unacquired_and_unassessed",
+        "product_conversion_and_stereochemistry_are_distinct_unmatched_contexts"
+      ],
+      "context_observations": [
+        "da-kinetics:Table1:DA_20_10:kcat",
+        "da-kinetics:Table1:DA_20_10:KM_diene",
+        "da-kinetics:Table1:DA_20_10:KM_dienophile",
+        "da-reported-effects:P9:Q195E:source_reported_activity_reduction_factor",
+        "da-reported-effects:P9:Y121F:source_reported_activity_reduction_factor"
+      ]
     }
   ],
   "evidence_context": {
@@ -3215,6 +3511,64 @@
         "source": "ra95syn",
         "pointer": "/limits"
       }
+    ],
+    "da2010": [
+      {
+        "source": "da2010",
+        "pointer": "/assessment_id"
+      },
+      {
+        "source": "da2010",
+        "pointer": "/study"
+      },
+      {
+        "source": "da2010",
+        "pointer": "/question"
+      },
+      {
+        "source": "da2010",
+        "pointer": "/conclusion"
+      },
+      {
+        "source": "da2010",
+        "pointer": "/counted_objects"
+      },
+      {
+        "source": "da2010",
+        "pointer": "/source_access"
+      },
+      {
+        "source": "da2010",
+        "pointer": "/selection"
+      },
+      {
+        "source": "da2010",
+        "pointer": "/reaction"
+      },
+      {
+        "source": "da2010",
+        "pointer": "/product_context"
+      },
+      {
+        "source": "da2010",
+        "pointer": "/matched_parameter_assessment"
+      },
+      {
+        "source": "da2010",
+        "pointer": "/structural_context"
+      },
+      {
+        "source": "da2010",
+        "pointer": "/mechanistic_scope"
+      },
+      {
+        "source": "da2010",
+        "pointer": "/limits"
+      },
+      {
+        "source": "da2010",
+        "pointer": "/reconsideration"
+      }
     ]
   },
   "source_witnesses": [
@@ -3331,6 +3685,48 @@
       ],
       "redistributed": false,
       "retention": "Existing acquired bytes copied to host-local Git-common-directory cache; zero new source requests."
+    },
+    {
+      "sha256": "3fccfd28aa75fde68708f85f8aea6b7d3b4f79069279afd0b6b65af1a9c9afda",
+      "bytes": 144652,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/3fccfd28aa75fde68708f85f8aea6b7d3b4f79069279afd0b6b65af1a9c9afda.html",
+      "redistributed": false,
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/",
+      "source_bindings": [
+        {
+          "source": "da2010",
+          "pointer": "/sources/0"
+        }
+      ],
+      "retention": "New metered public capture retained under its hash in Git common directory; bodies are not redistributed."
+    },
+    {
+      "sha256": "ad4f01c4fc0409c7f957d6aac4f4cbab4a7f23ee6d36cc69ac4049745c127f81",
+      "bytes": 23286,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/ad4f01c4fc0409c7f957d6aac4f4cbab4a7f23ee6d36cc69ac4049745c127f81.jpg",
+      "redistributed": false,
+      "source_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/5ec3/3241958/1ff24174f717/nihms338810f1.jpg",
+      "source_bindings": [
+        {
+          "source": "da2010",
+          "pointer": "/sources/1"
+        }
+      ],
+      "retention": "New metered public capture retained under its hash in Git common directory; bodies are not redistributed."
+    },
+    {
+      "sha256": "28c8e7c593f2b9f037e6d33224bbfff3ace8a32694deff578cc2a7faff458c7c",
+      "bytes": 35188,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/28c8e7c593f2b9f037e6d33224bbfff3ace8a32694deff578cc2a7faff458c7c.jpg",
+      "redistributed": false,
+      "source_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/5ec3/3241958/9fc01853d7cc/nihms338810f4.jpg",
+      "source_bindings": [
+        {
+          "source": "da2010",
+          "pointer": "/sources/2"
+        }
+      ],
+      "retention": "New metered public capture retained under its hash in Git common directory; bodies are not redistributed."
     }
   ],
   "parameter_contracts": {
@@ -3340,7 +3736,8 @@
         "kcat"
       ],
       "units": [
-        "s^-1"
+        "s^-1",
+        "hr^-1"
       ]
     },
     "KM": {
@@ -3434,6 +3831,45 @@
       "units": [
         "ratio_parts"
       ]
+    },
+    "KM_diene": {
+      "source_fields": [
+        "KM_diene"
+      ],
+      "units": [
+        "mM"
+      ],
+      "source_markers": {
+        "participant_id": [
+          "1"
+        ]
+      }
+    },
+    "KM_dienophile": {
+      "source_fields": [
+        "KM_dienophile"
+      ],
+      "units": [
+        "mM"
+      ],
+      "source_markers": {
+        "participant_id": [
+          "2"
+        ]
+      }
+    },
+    "source_reported_activity_reduction_factor": {
+      "source_fields": [
+        "activity_reduction_factor"
+      ],
+      "units": [
+        "fold_reduction"
+      ],
+      "source_markers": {
+        "value_origin": [
+          "author_reported_activity_reduction_summary"
+        ]
+      }
     }
   },
   "reactions": {
@@ -3444,6 +3880,14 @@
         "pointer": "/reaction"
       },
       "reactant_substrate_id": "aldol-inputs:acetone+6-methoxy-2-naphthaldehyde"
+    },
+    "diels_alder_2010:diene1-dienophile2-cycloaddition": {
+      "source_reaction_id": "diene1-dienophile2-cycloaddition",
+      "provider": {
+        "source": "da2010",
+        "pointer": "/reaction"
+      },
+      "reactant_substrate_id": "diels-alder-inputs:1+2"
     }
   }
 }

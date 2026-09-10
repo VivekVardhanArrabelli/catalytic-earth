@@ -50,6 +50,11 @@ a production biological design system.
 
 ## Quick Status — 2026-09-10
 
+The [Diels–Alder source relation](docs/ATLAS_DIELS_ALDER_CONTROLS.md) extends
+the same consumer to a different reaction class. It preserves reported mutant
+activity factors and separate product outcomes, while refusing to invent a
+matched kinetic or product-control assay from unavailable supplement details.
+
 The [forward methodol synthesis outcome](docs/ATLAS_FORWARD_SYNTHESIS.md)
 now carries 67% source-reported conversion and 60.1% isolated yield beside
 explicit reactant/product context. Source amount and R/S retention conflicts

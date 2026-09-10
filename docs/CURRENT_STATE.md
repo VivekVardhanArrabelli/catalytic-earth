@@ -1,5 +1,27 @@
 # Current State
 
+## 2026-09-10: Diels–Alder evidence retains an unresolved matched-control assay
+
+The [Diels–Alder relation](ATLAS_DIELS_ALDER_CONTROLS.md) connects the named
+DA_20_10 two-substrate reaction to three parent kinetic parameters and two
+author-reported mutation activity factors. The same consumer returns these
+with no runtime change, while an explicit request abstains from reconstructing
+parameter-matched mutant/control measurements. CE-033 preserves the distinction
+between available mutation-effect summaries and unavailable assay details.
+
+Strict conversion and product-distribution bounds remain separate contexts;
+the stereochemical background differs in concentration and time. The
+article-described apo DA_20_00_A74I structure cannot supply final-construct
+productive geometry. Main article and two figures were acquired; the supplement
+remains unacquired after bounded public routes. The new bibliographic batch
+totals 14 requests / 502,726 bytes; inherited budgets are unchanged.
+
+The common view has 118 parameter records and 56 comparison requests, with
+41 eligible and 15 abstaining. The five additions are three fitted parent
+parameters and two reported fold assertions, not five experiments. All prior
+records and comparisons remain unchanged. No protein admission, experiment,
+independent validation, evidence-tier promotion or design-success rate follows.
+
 ## 2026-09-10: forward synthesis separates yield and stereochemical assignment
 
 The [methodol synthesis outcome](ATLAS_FORWARD_SYNTHESIS.md) connects

@@ -409,6 +409,21 @@ retention-to-configuration label, cleavage-to-synthesis selectivity transfer,
 matched single-group synthesis effect, productive geometry, new project
 experiment, independent validation or design-success estimate follows.
 
+## CE-033 — reported mutation factors do not identify a matched product assay
+
+**Status:** Supported
+
+The [Diels–Alder source relation](docs/ATLAS_DIELS_ALDER_CONTROLS.md) preserves
+DA_20_10 Q195E and Y121F activity-reduction factors of 450 and 27 as author
+summaries with unresolved underlying assay and parameter. They are not identified
+as mutant kcat, KM, yield or stereoselectivity measurements in the acquired scope. The parent kinetic table,
+>80% diene conversion and >97% source-assigned 3R,4S endo product share remain
+distinct contexts; the stereochemical background has different conditions.
+The article-described apo DA_20_00_A74I structure is not DA_20_10. Unacquired
+supplement details remain unassessed. No same-assay product/control relation,
+canonical atom map, productive geometry, causal group contribution, project
+experiment, independent validation or design-success estimate follows.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,

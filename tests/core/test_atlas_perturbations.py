@@ -347,6 +347,48 @@ class PerturbationRelationTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, "reactant and product sides|source name and role"):
                     _project_candidate(root, spec)
 
+    def test_reported_activity_factors_cannot_become_matched_mutant_kinetics(self):
+        question = self.comparisons["diels_alder_2010:qualified-mutant-parameter"]
+        self.assertFalse(question["eligible"])
+        self.assertTrue(question["reported_mutation_effects_assessed"])
+        self.assertEqual(question["roles"], {})
+        for mutation in ("Q195E", "Y121F"):
+            factor_id = f"da-reported-effects:P9:{mutation}:source_reported_activity_reduction_factor"
+            factor = self.rows[factor_id]
+            self.assertFalse(factor["assay_qualified"])
+            self.assertIsNone(factor["source_record"]["numeric_mutant_value"])
+            self.assertIsNone(factor["source_record"]["numeric_parent_value"])
+            for parameter in ("kcat", "KM_diene", "KM_dienophile"):
+                request = {"id": "invalid-factor-as-mutant-parameter", "study_id": "diels_alder_2010",
+                           "operation": "ratio", "roles": {"numerator": factor_id,
+                           "denominator": f"da-kinetics:Table1:DA_20_10:{parameter}"}}
+                result = compare(self.rows, request)
+                self.assertFalse(result["eligible"])
+                self.assertIn("mismatched_parameter", result["reasons"])
+                self.assertIn("mismatched_assay_id", result["reasons"])
+                self.assertIn(f"unresolved_assay:{factor_id}", result["reasons"])
+                self.assertIsNone(result["value"])
+
+    def test_diels_alder_substrate_markers_and_product_contexts_do_not_transfer(self):
+        for parameter, wrong_participant in (("KM_diene", "2"), ("KM_dienophile", "1")):
+            spec = deepcopy(self.spec)
+            spec["parameter_contracts"][parameter]["source_markers"]["participant_id"] = [wrong_participant]
+            with self.assertRaisesRegex(ValueError, "parameter source marker differs"):
+                _project_candidate(ROOT, spec)
+        source = json.loads((ROOT / self.spec["sources"]["da2010"]["path"]).read_text(encoding="utf-8"))
+        conversion = source["product_context"]["conversion"]
+        stereo = source["product_context"]["stereochemical_composition"]
+        self.assertNotEqual(conversion["context_id"], stereo["context_id"])
+        for outcome in (conversion, stereo):
+            self.assertIsNone(outcome["value"])
+            self.assertEqual(outcome["source_comparator"], ">")
+        self.assertIsNone(conversion["product_configuration"])
+        self.assertFalse(stereo["matched_comparison_eligible"])
+        product = next(p for p in source["reaction"]["participants"] if p["side"] == "product")
+        self.assertIsNone(product["configuration"])
+        self.assertIsNone(source["reaction"]["atom_map"])
+        self.assertIsNone(stereo["ee"])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,129 @@
+{
+  "schema_version": "catalytic-earth.source-qualification-review.v1",
+  "assessment_id": "siegel2010-diels-alder-product-control",
+  "decision": "accept_source_annotation",
+  "policy_binding": {
+    "path": "data/governance/computational_review_policy.json",
+    "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "reviewed_assessment": {
+    "path": "data/atlas/study_context/diels_alder_2010/source_qualification.json",
+    "sha256": "eac85e8bd87c3587d3f33a150f879a91ffc1426ce24f0cea251df7dbf8ab160f"
+  },
+  "reviewed_documentation": {
+    "path": "docs/ATLAS_DIELS_ALDER_CONTROLS.md",
+    "sha256": "eb0319636aea183771290ffb0608ace1bc49c80949e0f1bbd4e41bb3c2acbb48"
+  },
+  "acquisition_binding": {
+    "path": "data/atlas/study_context/diels_alder_2010/acquisition_receipts.json",
+    "sha256": "00638dc6ee16f2dab32e4492c74301dd75748a7e434fe24da2934d28fee7b1b8"
+  },
+  "review_process": "Three separately prompted read-only GPT-5.6 Sol/ultra roles; parent alone edits and owns Git/lock. Source objections override agreement.",
+  "adjudications": [
+    {
+      "objection": "Reported450/27-fold mutation effects do not identify the underlying assay or parameter in acquired main text.",
+      "evidence": "article#P9 versus#T1",
+      "decision": "Preserve comparative assertions with unqualified assay, context-implied background and no invented raw values; refuse parameter-matched product/control inference."
+    },
+    {
+      "objection": "Conversion and stereochemical share could collapse into an isolated stereopure yield or borrow conditions.",
+      "evidence": "article#P11,#P14,#F4; FiguresS7/S8 remain unacquired",
+      "decision": "Separate structured strict bounds with null central values and distinct context IDs. F4 conditions accompany its demonstration; underlyingS8 calculation remains unverified."
+    },
+    {
+      "objection": "A47%background denominator suggests matched selectivity improvement despite different assays.",
+      "evidence": "article#P14 and#F4 caption",
+      "decision": "Preserve unmatched context; no enrichment, ee, dr or mutant-selectivity comparison."
+    },
+    {
+      "objection": "Figure1 schematic and drawings could be misread as a canonical balanced reaction or productive structure.",
+      "evidence": "article#F1 and retainedFigure1 image",
+      "decision": "Participants1/2/4;3is transition-state schematic. Neutral source product entity retains observation-specific stereo; no atom map, protonation balance or reverse-equilibrium inference."
+    },
+    {
+      "objection": "3I1C abstract wording could be transferred to optimizedDA_20_10 or mutants.",
+      "evidence": "article#F2,#P7,#P13",
+      "decision": "Use detailed body apoDA_20_00_A74I identity and five extra changes; no coordinates inspected or final-construct geometry."
+    },
+    {
+      "objection": "Two substrate-specificKM columns could be merged or swapped.",
+      "evidence": "article#T1; declarative projection",
+      "decision": "Distinct parameter IDs and source participant markers; existing generic marker check rejects mismatched labels."
+    },
+    {
+      "objection": "Background reaction was converted to numericzero protein although caption gives no amount.",
+      "evidence": "article#F4 caption",
+      "decision": "Protein concentration stays null with explicit omitted-amount scope."
+    },
+    {
+      "objection": "P14 reported47% target share was colocated withF4 conditions despite unverified condition/integration identity.",
+      "evidence": "article#P14 versus#F4",
+      "decision": "Separate source context; conditions null, no matched-enrichment or figure-integration claim."
+    },
+    {
+      "objection": "Not mutantkinetics wording could imply the unacquired assay was proved nonkinetic; partialTable1 might imply missing specificity fields.",
+      "evidence": "article#P9 and#T1",
+      "decision": "Use not identified as in acquired scope; explicitly exclude the three printed specificity columns from this bounded selection without declaring them missing."
+    },
+    {
+      "objection": "A no-peak-integration statement could be mistaken for absence of source analysis.",
+      "evidence": "Review of documentation against unacquiredFigureS8 scope",
+      "decision": "State no project peak integration and no independently authenticated stereochemical reference; no absence claim about source methods."
+    }
+  ],
+  "blocked_operations": [
+    "parameter-qualified mutant/control kinetic arithmetic",
+    "product conversion or stereochemistry transferred to mutants or separate assay arms",
+    "exact sequence or assay-specimen authentication",
+    "canonical reaction, balanced protonation, reverse reaction or atom mapping",
+    "productive geometry or microscopic catalytic-group causal attribution",
+    "independent review, gold admission, new experiment, tier promotion or design-success estimate"
+  ],
+  "coordination_record": "work/coordination_diels_alder_20260910.md",
+  "independent_human_review": false,
+  "new_project_experiments": 0,
+  "reviews": [
+    {
+      "role": "source",
+      "reviewer_task": "/root/diels_source",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_source_scope",
+      "scope": "Primaryarticle, Figures1/4, selectedkinetic/summary/product context, acquisition, claim and current documentation."
+    },
+    {
+      "role": "adversarial",
+      "reviewer_task": "/root/diels_adversarial",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_source_projection_and_documentation",
+      "scope": "Chemical participants, visual Figures1/4, protonation/state limits, distinct outcomes, undefined mutant assay and apo construct mismatch."
+    },
+    {
+      "role": "representation",
+      "reviewer_task": "/root/diels_representation",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_source_projection_consumer_tests_and_documentation",
+      "scope": "Data-only generic reuse, marker checks, blocked factor arithmetic, structured product contexts and unchanged inherited outputs."
+    }
+  ],
+  "reviewed_bindings": {
+    "data/atlas/perturbations/projection.json": "8f76890aa6576def7404962d256f8f736d33b24434d5e8c1491d19407a3c979d",
+    "src/catalytic_earth/atlas_perturbations.py": "f0456d2fa9dce9efda390864f523b58666a148942ba31acb65d5e62bd95e89ca",
+    "scripts/query_atlas_perturbations.py": "87fd01dcc9f9ec737579d39c46ea007c60c70a50da745a77c6c64591fceaba51",
+    "tests/core/test_atlas_perturbations.py": "c0a1d1f7b4f54e73097829aca2e67cb17877ee849e2b6dde6024a3719933dcf7",
+    "docs/ATLAS_PERTURBATION_RELATION.md": "2bb9d0322bfb09f82a6e0be33d7db0371c93cd5e001854b222c80781e025d70e",
+    "CLAIMS.md": "05ef859b0c44cb8441b40429da4ea27ed1ba520741668166e203534f19917b9c",
+    "data/governance/claim_ledger.json": "760c55328925ba4d64673c3a499fed7da34ee1b75e9268883f9212eecc59e39b"
+  },
+  "authorized_operation": "source_annotation",
+  "reviewed_at_utc": "2026-09-10T09:29:37.903127+00:00",
+  "completion_note": "All three read-only roles completed and accepted the exact scientific source/data/code/documentation scope. Remaining repository checks and exact-head CI are publication gates, not source evidence.",
+  "parent_serialization_verification": {
+    "path": "data/governance/claim_ledger.json",
+    "source_review_sha256": "0674012c5ab1edb7520802e6c414bc5f912e20dd9ad32b2cafc05c97647ee732",
+    "final_sha256": "760c55328925ba4d64673c3a499fed7da34ee1b75e9268883f9212eecc59e39b",
+    "change": "Restore inherited CE-022 unicode escape spelling; parsed JSON before/after identical and prior32 claim objects unchanged. No scientific claim change."
+  }
+}
