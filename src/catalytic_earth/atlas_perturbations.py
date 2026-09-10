@@ -333,6 +333,61 @@ def _project_candidate(repo_root: Path, spec: dict[str, Any] | None = None) -> d
                     "source_record": deepcopy(source_row),
                 })
     rows = _unique(observations, "id")
+    state_links = []
+    for link in spec.get("state_links", []):
+        construct = constructs[link["construct_id"]]
+        context = resolve(link["context_provider"])
+        if context["schema_version"] != "catalytic-earth.construct-chemical-state-context.v1":
+            raise ValueError("state link context schema differs")
+        if context["construct_id"] != construct["source_construct_id"]:
+            raise ValueError("state link source construct differs")
+        source_states = _unique(context["states"], "state_id")
+        ids = link["observation_ids"]
+        if not ids or len(ids) != len(set(ids)):
+            raise ValueError("state link requires unique observations")
+        if any(row_id not in rows or rows[row_id]["construct_id"] != link["construct_id"]
+               or rows[row_id]["study_id"] != link["study_id"] for row_id in ids):
+            raise ValueError("state link observation construct or study differs")
+        functional = context["functional_context"]
+        for row_id in ids:
+            provider = rows[row_id]["provider"]
+            if (spec["sources"][provider["source"]] != functional["provider"] or
+                    provider["pointer"] != functional["row_pointer"]):
+                raise ValueError("state link functional source row differs")
+        if {rows[row_id]["parameter"] for row_id in ids} != set(functional["parameter_ids"]):
+            raise ValueError("state link functional parameters differ")
+        states = []
+        for state in link["states"]:
+            deposit = resolve(state["provider"])
+            if (deposit["packet_id"] != state["packet_id"] or
+                    source_states[state["state_id"]]["deposit_packet_id"] != state["packet_id"]):
+                raise ValueError("state link deposit packet differs")
+            if deposit["schema_version"] != "catalytic-earth.deposit-context.v1":
+                raise ValueError("state link deposit schema differs")
+            entries = [row for selection in deposit["row_selections"]
+                       if selection["category"] == "_entry" for row in selection["rows"]]
+            if len(entries) != 1 or entries[0]["id"] != source_states[state["state_id"]]["pdb_id"]:
+                raise ValueError("state link PDB entry differs")
+            selections = _unique(deposit["row_selections"], "selection_id")
+            selection = selections[state["polymer_selection_id"]]
+            if selection["category"] != "_entity_poly" or len(selection["rows"]) != 1:
+                raise ValueError("state link requires one deposited polymer sequence")
+            polymer = selection["rows"][0]
+            canonical = "".join(polymer["pdbx_seq_one_letter_code_can"].split())
+            if not construct["sequence"] or canonical != construct["sequence"]:
+                raise ValueError("state link canonical sequence differs from construct")
+            states.append({**deepcopy(state), "canonical_sequence_equal": True,
+                           "canonical_sequence_sha256": construct["sequence_sha256"],
+                           "deposit_context": deposit})
+        if not states:
+            raise ValueError("state link requires deposited states")
+        _unique(states, "packet_id")
+        _unique(states, "state_id")
+        state_links.append({**deepcopy(link), "states": states, "source_context": context,
+                            "identity_scope": "source-named construct and full canonical sequence equality",
+                            "physical_preparation_identity_established": False,
+                            "chemical_state_identity_from_sequence": False})
+    _unique(state_links, "id")
     comparisons = []
     for request in spec["comparisons"]:
         if not request["evidence"]:
@@ -374,6 +429,7 @@ def _project_candidate(repo_root: Path, spec: dict[str, Any] | None = None) -> d
         "constructs": constructs, "assays": assays, "substrates": deepcopy(spec["substrates"]),
         "reactions": reactions,
         "observations": observations, "comparisons": comparisons,
+        "state_links": state_links,
         "evidence_context": {key: [resolve(ref) for ref in refs]
                              for key, refs in spec["evidence_context"].items()},
         "source_witnesses": deepcopy(spec.get("source_witnesses", [])),
@@ -407,6 +463,16 @@ def project(repo_root: Path, spec: dict[str, Any] | None = None) -> dict[str, An
     if spec is not None and spec != accepted:
         raise ValueError("candidate differs from reviewed projection; use internal development path")
     result = _project_candidate(repo_root, accepted)
+    if result["state_links"]:
+        from .atlas_deposit_context import check_deposit_context
+        checked = {}
+        for link in result["state_links"]:
+            for state in link["states"]:
+                relative = accepted["sources"][state["provider"]["source"]]["path"]
+                if relative not in checked:
+                    checked[relative] = check_deposit_context(Path(relative).parent, repo_root)
+                if checked[relative] != state["deposit_context"]:
+                    raise ValueError("state link differs from reviewed deposit reconstruction")
     result["review_status"] = "source_reviewed_computational; not independent human or experimental validation"
     result["review"] = review
     return result

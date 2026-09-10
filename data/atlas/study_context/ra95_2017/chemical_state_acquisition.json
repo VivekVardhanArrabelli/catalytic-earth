@@ -1,0 +1,53 @@
+{
+  "batch_id": "designed-retroaldolase-ra95-giger2013",
+  "prior_requests": 24,
+  "prior_response_body_bytes": 15353338,
+  "requests": [
+    {
+      "request_id": 25,
+      "url": "https://files.rcsb.org/download/5AOU.cif",
+      "started_at_utc": "2026-09-10T14:10:56.816304+00:00",
+      "state": "captured",
+      "response_body_bytes": 492371,
+      "status": 200,
+      "content_type": "chemical/x-cif",
+      "content_encoding": null,
+      "location": null,
+      "sha256": "f97adeb9ea6b49b76f3cdb83366aa17bdfb56a42c8c168eb9e4d3f6ef121130e",
+      "finished_at_utc": "2026-09-10T14:10:57.426383+00:00",
+      "local_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-runs/969071d2-sources/5AOU.cif",
+      "retained_path": "data/atlas/deposit_context/ra95_5aou/5AOU.cif"
+    },
+    {
+      "request_id": 26,
+      "url": "https://files.rcsb.org/download/5AN7.cif",
+      "started_at_utc": "2026-09-10T14:10:57.429190+00:00",
+      "state": "captured",
+      "response_body_bytes": 745525,
+      "status": 200,
+      "content_type": "chemical/x-cif",
+      "content_encoding": null,
+      "location": null,
+      "sha256": "2ec74e2ac07a32c763a9f7ba75b2a0f33d92e5249ed0b2bcc89aa38a17dc9d5f",
+      "finished_at_utc": "2026-09-10T14:10:57.883107+00:00",
+      "local_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-runs/969071d2-sources/5AN7.cif",
+      "retained_path": "data/atlas/deposit_context/ra95_5an7/5AN7.cif"
+    }
+  ],
+  "max_requests": 100,
+  "max_response_body_bytes": 31457280,
+  "accounting": "Serial parent transport; no automatic redirects/retries; Accept-Encoding identity; every request and received response-body byte including errors counted.",
+  "schema_version": "catalytic-earth.primary-source-acquisition-appendix.v1",
+  "prior_receipt": {
+    "path": "data/atlas/study_context/ra95_2017/acquisition_appendix.json",
+    "sha256": "3a679e4628e2e884a703aedc185dbd4cf97f9fc2ece4face4f7004189946d710"
+  },
+  "cumulative_request_count": 26,
+  "cumulative_response_body_bytes": 16591234,
+  "remaining_requests": 74,
+  "remaining_response_body_bytes": 14866046,
+  "complete_cumulative_accounting": true,
+  "acquisition_stopped": true,
+  "source_bodies_redistributed": "Only public RCSB mmCIF deposits retained; publisher PDF remains cache-only.",
+  "finalized_at_utc": "2026-09-10T14:16:54.319908+00:00"
+}

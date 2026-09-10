@@ -20,6 +20,79 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 class PerturbationRelationTests(unittest.TestCase):
+    def test_parent_state_link_retains_chemical_and_model_conflicts(self):
+        link = self.view["state_links"][0]
+        self.assertEqual(len(link["observation_ids"]), 3)
+        self.assertEqual({self.rows[key]["construct_id"] for key in link["observation_ids"]},
+                         {"ra95_2017:RA95.5-8F"})
+        self.assertFalse(link["physical_preparation_identity_established"])
+        self.assertFalse(link["chemical_state_identity_from_sequence"])
+        for state in link["states"]:
+            self.assertTrue(state["canonical_sequence_equal"])
+            selections = {row["selection_id"]: row for row in state["deposit_context"]["row_selections"]}
+            polymer = selections["polymer-sequence"]["rows"][0]
+            self.assertIn("(MHO)", polymer["pdbx_seq_one_letter_code"])
+            self.assertEqual(selections["chemical-modification"]["rows"][0]["label_seq_id"], "237")
+        context = link["source_context"]
+        holo = context["states"][1]
+        self.assertIsNone(holo["crystal_pH"]["resolved"])
+        self.assertEqual((holo["crystal_pH"]["supplement"], holo["crystal_pH"]["deposit"]), (7.5, 4.5))
+        self.assertIsNone(holo["covalent_state_evidence"]["normalized_interfragment_bond"])
+        self.assertFalse(holo["covalent_state_evidence"]["absence_of_adduct_established"])
+        conflict = context["sequence_correspondence"]["source_deposit_model_conflict"]
+        self.assertEqual(conflict["deposits"]["5AN7_modeled_despite_source_statement"], [62, 63])
+
+    def test_state_link_rejects_wrong_observation_and_deposit(self):
+        for defect in ("mutant", "study", "packet", "duplicate", "polymer", "synthesis"):
+            spec = deepcopy(self.spec)
+            link = spec["state_links"][0]
+            if defect == "mutant":
+                link["observation_ids"][0] = "ra95-tetrad:S1:Y51F:kcat"
+            elif defect == "study":
+                link["study_id"] = "ra95_2013"
+            elif defect == "packet":
+                link["states"][0]["packet_id"] = link["states"][1]["packet_id"]
+            elif defect == "duplicate":
+                link["observation_ids"].append(link["observation_ids"][0])
+            elif defect == "polymer":
+                link["states"][0]["polymer_selection_id"] = "chemical-modification"
+            else:
+                link["observation_ids"] = [next(row["id"] for row in self.view["observations"]
+                                               if row["construct_id"] == link["construct_id"]
+                                               and row["parameter"] == "conversion")]
+            with self.subTest(defect=defect), self.assertRaises(ValueError):
+                _project_candidate(ROOT, spec)
+
+    def test_state_link_rejects_changed_canonical_sequence(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            spec = deepcopy(self.spec)
+            for binding in spec["sources"].values():
+                target = root / binding["path"]
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(ROOT / binding["path"], target)
+            binding = spec["sources"]["ra95apo"]
+            target = root / binding["path"]
+            deposit = json.loads(target.read_text(encoding="utf-8"))
+            selection = next(row for row in deposit["row_selections"] if row["selection_id"] == "polymer-sequence")
+            selection["rows"][0]["pdbx_seq_one_letter_code_can"] += "A"
+            target.write_text(json.dumps(deposit), encoding="utf-8")
+            binding["sha256"] = hashlib.sha256(target.read_bytes()).hexdigest()
+            with self.assertRaisesRegex(ValueError, "canonical sequence differs"):
+                _project_candidate(root, spec)
+
+    def test_state_link_query_keeps_only_linked_observations(self):
+        result = subprocess.run(
+            [sys.executable, str(ROOT / "scripts/query_atlas_perturbations.py"),
+             "--state-link", "ra95_2017:RA95.5-8F-states"],
+            check=True, capture_output=True, text=True, encoding="utf-8",
+        )
+        view = json.loads(result.stdout)
+        self.assertEqual({row["id"] for row in view["observations"]},
+                         set(view["state_links"][0]["observation_ids"]))
+        self.assertEqual(view["comparisons"], [])
+        self.assertEqual(len(view["state_links"][0]["states"]), 2)
+
     @classmethod
     def setUpClass(cls):
         cls.spec = json.loads((ROOT / SPEC_PATH).read_text(encoding="utf-8"))

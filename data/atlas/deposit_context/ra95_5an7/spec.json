@@ -1,0 +1,349 @@
+{
+  "schema_version": "catalytic-earth.deposit-context-spec.v1",
+  "packet_id": "ra95.5an7.chemical-state.2026-09-10",
+  "source_binding": {
+    "path": "data/atlas/deposit_context/ra95_5an7/5AN7.cif",
+    "sha256": "2ec74e2ac07a32c763a9f7ba75b2a0f33d92e5249ed0b2bcc89aa38a17dc9d5f"
+  },
+  "row_selections": [
+    {
+      "selection_id": "entry",
+      "category": "_entry",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "title",
+      "category": "_struct",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "citation",
+      "category": "_citation",
+      "match": {
+        "id": "primary"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "protein-entity",
+      "category": "_entity",
+      "match": {
+        "id": "1"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "polymer-sequence",
+      "category": "_entity_poly",
+      "match": {
+        "entity_id": "1"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "residue-numbering",
+      "category": "_pdbx_poly_seq_scheme",
+      "match": {
+        "asym_id": "A"
+      },
+      "expected_row_count": 258
+    },
+    {
+      "selection_id": "chemical-modification",
+      "category": "_pdbx_struct_mod_residue",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "modification-feature",
+      "category": "_pdbx_modification_feature",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "crystal-growth",
+      "category": "_exptl_crystal_grow",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "diffraction",
+      "category": "_diffrn",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "refinement",
+      "category": "_refine",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "unmodeled-residues",
+      "category": "_pdbx_unobs_or_zero_occ_residues",
+      "match": {},
+      "expected_row_count": 14
+    },
+    {
+      "selection_id": "connection-inventory",
+      "category": "_struct_conn",
+      "match": {},
+      "expected_row_count": 2
+    },
+    {
+      "selection_id": "entry-details",
+      "category": "_pdbx_entry_details",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "reference",
+      "category": "_struct_ref",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "reference-alignment",
+      "category": "_struct_ref_seq",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "components",
+      "category": "_chem_comp",
+      "match": {},
+      "expected_row_count": 23
+    },
+    {
+      "selection_id": "tyr51-atoms",
+      "category": "_atom_site",
+      "match": {
+        "label_asym_id": "A",
+        "label_seq_id": "51"
+      },
+      "expected_row_count": 42
+    },
+    {
+      "selection_id": "ser81-atoms",
+      "category": "_atom_site",
+      "match": {
+        "label_asym_id": "A",
+        "label_seq_id": "81"
+      },
+      "expected_row_count": 11
+    },
+    {
+      "selection_id": "lys83-atoms",
+      "category": "_atom_site",
+      "match": {
+        "label_asym_id": "A",
+        "label_seq_id": "83"
+      },
+      "expected_row_count": 39
+    },
+    {
+      "selection_id": "asn110-atoms",
+      "category": "_atom_site",
+      "match": {
+        "label_asym_id": "A",
+        "label_seq_id": "110"
+      },
+      "expected_row_count": 14
+    },
+    {
+      "selection_id": "tyr180-atoms",
+      "category": "_atom_site",
+      "match": {
+        "label_asym_id": "A",
+        "label_seq_id": "180"
+      },
+      "expected_row_count": 21
+    },
+    {
+      "selection_id": "ligand-instance",
+      "category": "_pdbx_nonpoly_scheme",
+      "match": {
+        "mon_id": "LLK"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "ligand-definition-atoms",
+      "category": "_chem_comp_atom",
+      "match": {
+        "comp_id": "LLK"
+      },
+      "expected_row_count": 31
+    },
+    {
+      "selection_id": "ligand-definition-bonds",
+      "category": "_chem_comp_bond",
+      "match": {
+        "comp_id": "LLK"
+      },
+      "expected_row_count": 32
+    },
+    {
+      "selection_id": "ligand-atoms",
+      "category": "_atom_site",
+      "match": {
+        "label_comp_id": "LLK"
+      },
+      "expected_row_count": 31
+    },
+    {
+      "selection_id": "mho237-atoms",
+      "category": "_atom_site",
+      "match": {
+        "label_seq_id": "237",
+        "label_comp_id": "MHO"
+      },
+      "expected_row_count": 18
+    }
+  ],
+  "interpretation": {
+    "assertions": [
+      {
+        "assertion_id": "parent-deposit",
+        "status": "deposited_source_assertion",
+        "statement": "5AN7 names RA95.5-8F in its title and cites Obexer2017 DOI10.1038/nchem.2596. Canonical sequence is distinguished from MHO237 chemical modification and incomplete observed coordinates.",
+        "supporting_selection_ids": [
+          "title",
+          "citation",
+          "polymer-sequence",
+          "chemical-modification",
+          "unmodeled-residues"
+        ]
+      },
+      {
+        "assertion_id": "numbering-not-offset",
+        "status": "project_interpretation",
+        "statement": "Exact per-residue author numbering is retained; never apply one global offset or equate PDB reference/scaffold annotation to assay identity.",
+        "supporting_selection_ids": [
+          "residue-numbering",
+          "reference",
+          "reference-alignment"
+        ]
+      },
+      {
+        "assertion_id": "conditions",
+        "status": "deposited_source_assertion",
+        "statement": "Deposited crystal pH is 4.5; diffraction temperature is100K and reported high resolution is1.10angstrom. These conditions do not identify a reacting solution or the29C activity assay.",
+        "supporting_selection_ids": [
+          "crystal-growth",
+          "diffraction",
+          "refinement"
+        ]
+      },
+      {
+        "assertion_id": "ligand-identity-conflict",
+        "status": "unresolved_source_conflict",
+        "statement": "Entry prose calls a1,3-diketone CC1 covalently bonded to Lys2083. The coordinate instance is LLK at authorA5001/labelD, and Lys83 is authorA1083. The deposited LLK enone component has no lysine nitrogen and the full struct_conn inventory contains only two MHO peptide connections. No exact typed Lys–LLK bond/order/protonation is supplied; the source-reported covalent adduct is retained separately, not negated.",
+        "supporting_selection_ids": [
+          "entry-details",
+          "ligand-instance",
+          "ligand-definition-atoms",
+          "ligand-definition-bonds",
+          "connection-inventory",
+          "lys83-atoms"
+        ]
+      },
+      {
+        "assertion_id": "occupancy-context",
+        "status": "deposited_source_assertion",
+        "statement": "LLK atoms carry0.75 occupancy; Lys83 alternativesA/B carry0.57/0.43 and Tyr51A/B0.75/0.25. Equal or differing occupancies do not identify joint populations.",
+        "supporting_selection_ids": [
+          "ligand-atoms",
+          "lys83-atoms",
+          "tyr51-atoms"
+        ]
+      },
+      {
+        "assertion_id": "selected-arrangement",
+        "status": "computed_coordinate_description",
+        "statement": "Selected Lys83NZ-to-LLKC13 and Tyr51OH-to-LLKO1 distances retain both protein alternatives against the sole deposited ligand instance. They describe coordinates only, not a typed bond, hydrogen-bond assignment or correlated alternate state.",
+        "supporting_selection_ids": [
+          "lys83-nz-to-ligand-c13",
+          "tyr51-oh-to-ligand-o1"
+        ]
+      }
+    ],
+    "not_established": [
+      "No exact physical assay/crystal preparation identity, active fraction, complete mechanism, mutant geometry or productive solution arrangement.",
+      "Canonical sequence equality does not erase MHO237 oxidation or unmodeled residues; occupancy is not a kinetic population.",
+      "Selected functional-group atoms follow SI FiguresS8/S9; no exhaustive apparatus inventory or generic distance catalogue."
+    ]
+  },
+  "assembly_spec": {
+    "pdb_id": "5AN7",
+    "assembly_id": "1",
+    "selections": [
+      {
+        "selection_id": "lys83-nz",
+        "operator_ids": [
+          "1"
+        ],
+        "model_id": "1",
+        "label_asym_id": "A",
+        "auth_seq_id": "1083",
+        "label_comp_id": "LYS",
+        "atom_names": [
+          "NZ"
+        ]
+      },
+      {
+        "selection_id": "tyr51-oh",
+        "operator_ids": [
+          "1"
+        ],
+        "model_id": "1",
+        "label_asym_id": "A",
+        "auth_seq_id": "1051",
+        "label_comp_id": "TYR",
+        "atom_names": [
+          "OH"
+        ]
+      },
+      {
+        "selection_id": "ligand-c13",
+        "operator_ids": [
+          "1"
+        ],
+        "model_id": "1",
+        "label_asym_id": "D",
+        "auth_seq_id": "5001",
+        "label_comp_id": "LLK",
+        "atom_names": [
+          "C13"
+        ]
+      },
+      {
+        "selection_id": "ligand-o1",
+        "operator_ids": [
+          "1"
+        ],
+        "model_id": "1",
+        "label_asym_id": "D",
+        "auth_seq_id": "5001",
+        "label_comp_id": "LLK",
+        "atom_names": [
+          "O1"
+        ]
+      }
+    ],
+    "distance_pairs": [
+      {
+        "pair_id": "lys83-nz-to-ligand-c13",
+        "left_selection_id": "lys83-nz",
+        "right_selection_id": "ligand-c13"
+      },
+      {
+        "pair_id": "tyr51-oh-to-ligand-o1",
+        "left_selection_id": "tyr51-oh",
+        "right_selection_id": "ligand-o1"
+      }
+    ]
+  }
+}

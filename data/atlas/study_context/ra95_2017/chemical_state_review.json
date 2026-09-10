@@ -1,0 +1,70 @@
+{
+  "schema_version": "catalytic-earth.source-qualification-review.v1",
+  "assessment_id": "ra95-8f-construct-to-chemical-state-20260910",
+  "decision": "accept_source_annotation",
+  "reviewed_at_utc": "2026-09-10T14:37:30.808871+00:00",
+  "authority": "owner-authorized-computational-development.2026-09-05.v1",
+  "authorized_operation": "source_annotation",
+  "policy_binding": {
+    "path": "data/governance/computational_review_policy.json",
+    "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "reviewed_bindings": {
+    "data/atlas/deposit_context/ra95_5an7/5AN7.cif": "2ec74e2ac07a32c763a9f7ba75b2a0f33d92e5249ed0b2bcc89aa38a17dc9d5f",
+    "data/atlas/deposit_context/ra95_5an7/projection.json": "af6042a9b4c59755d9af6ba260013bbf6182a7c3e50b3c6cae7a415c5f96839c",
+    "data/atlas/deposit_context/ra95_5an7/spec.json": "4c84b3e93e7af09d2194390c08d59ac2d01707e103b151754cf8e2a55a9c2144",
+    "data/atlas/deposit_context/ra95_5aou/5AOU.cif": "f97adeb9ea6b49b76f3cdb83366aa17bdfb56a42c8c168eb9e4d3f6ef121130e",
+    "data/atlas/deposit_context/ra95_5aou/projection.json": "4fdd16492422e4ddfb48ffa28a7f2772d8ae470516bdeaf282b24ccd8faeec9e",
+    "data/atlas/deposit_context/ra95_5aou/spec.json": "ab361294051a683b404104001d5a7320fa71414bd6dbb0dead9995ec733abaae",
+    "data/atlas/study_context/ra95_2017/chemical_state.json": "0304a28cc9676ae9d920b5c4f6c47f102d10320e125cc40cbfddd971ccff695d",
+    "data/atlas/study_context/ra95_2017/chemical_state_acquisition.json": "4b0427a24aab3b1269f25cd80b3b9c90f61c4a99404499d77cf0c16a8b5f2ecb",
+    "docs/ATLAS_RA95_CHEMICAL_STATE.md": "a85ee7c6accdafb0f2fb63a1a658413e07788cee4a5f9f7879dce726c6707c01",
+    "CLAIMS.md": "aad29d5f45bd67ed549680a2dc48c46e769b1cbc813408dc1e3f154de308f67b",
+    "data/atlas/perturbations/projection.json": "35c90e8f6cb7778e75798d6d1f65a67767abb90fed72390a91ce438799b8eaf0",
+    "data/governance/claim_ledger.json": "39bb4376158531878d514fe19d96036dd6639cce51473275f024b7478fe49e58",
+    "docs/ATLAS_PERTURBATION_RELATION.md": "920c9c533700d9a8f09f52c29daa396e103e86527ee3b2048d0d369a04122ca7",
+    "docs/CURRENT_DECISIONS.md": "2e500907f90daab784855c2f14bb18777f757c02d045cc367049bdfaec81ef1c",
+    "docs/CURRENT_STATE.md": "a143eb6d0bc50f698999a605ac42cda2937d009b580ef336df69548305561430",
+    "scripts/query_atlas_perturbations.py": "37fd192d4be8cab2f21b3d24b3165b9494a0ae2e3d4aab3d06305bec74c8c5c4",
+    "src/catalytic_earth/atlas_perturbations.py": "ecbb31b654c47ef62187b3b7acd90fa1bab4b0ae43b51704bc8f42d2f0ea7795",
+    "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
+    "tests/core/test_atlas_perturbations.py": "1b8f467dd2a9193cc4c6402e0065e7d0ee155fa28a0f21d7edccc56907f88b93"
+  },
+  "review_process": [
+    {
+      "role": "source",
+      "task": "ra95_source",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_manifest"
+    },
+    {
+      "role": "representation",
+      "task": "ra95_representation",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_manifest"
+    },
+    {
+      "role": "adversarial",
+      "task": "ra95_adversarial",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_manifest"
+    }
+  ],
+  "source_objections_adjudicated": [
+    "Preserved pH and unmodeled-residue disagreements; neither source overwritten",
+    "Kept source Schiff-base description separate from incompleteLLK/protein graph and H-name disagreement",
+    "Preserved MHO237 oxygen occupancy, matureMet and different source/deposit tag scopes",
+    "Every Tyr/Lys pair is coordinate-only with unestablished joint alternative state",
+    "Exact original functional-row/parameter binding prevents same-construct synthesis transfer"
+  ],
+  "remaining_limits": [
+    "Source Materials cites earlier inhibitor3 preparation, without local synthesis or analytical authentication",
+    "No full adduct graph, exact bond order/protonation, productive geometry, mutant structure or assay/crystal specimen identity"
+  ],
+  "independent_human_validation": false,
+  "experimental_validation": false,
+  "coordination_record": "work/coordination_ra95_chemical_state_20260910.md"
+}

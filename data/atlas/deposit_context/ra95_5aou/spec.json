@@ -1,0 +1,230 @@
+{
+  "schema_version": "catalytic-earth.deposit-context-spec.v1",
+  "packet_id": "ra95.5aou.chemical-state.2026-09-10",
+  "source_binding": {
+    "path": "data/atlas/deposit_context/ra95_5aou/5AOU.cif",
+    "sha256": "f97adeb9ea6b49b76f3cdb83366aa17bdfb56a42c8c168eb9e4d3f6ef121130e"
+  },
+  "row_selections": [
+    {
+      "selection_id": "entry",
+      "category": "_entry",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "title",
+      "category": "_struct",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "citation",
+      "category": "_citation",
+      "match": {
+        "id": "primary"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "protein-entity",
+      "category": "_entity",
+      "match": {
+        "id": "1"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "polymer-sequence",
+      "category": "_entity_poly",
+      "match": {
+        "entity_id": "1"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "residue-numbering",
+      "category": "_pdbx_poly_seq_scheme",
+      "match": {
+        "asym_id": "A"
+      },
+      "expected_row_count": 258
+    },
+    {
+      "selection_id": "chemical-modification",
+      "category": "_pdbx_struct_mod_residue",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "modification-feature",
+      "category": "_pdbx_modification_feature",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "crystal-growth",
+      "category": "_exptl_crystal_grow",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "diffraction",
+      "category": "_diffrn",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "refinement",
+      "category": "_refine",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "unmodeled-residues",
+      "category": "_pdbx_unobs_or_zero_occ_residues",
+      "match": {},
+      "expected_row_count": 16
+    },
+    {
+      "selection_id": "connection-inventory",
+      "category": "_struct_conn",
+      "match": {},
+      "expected_row_count": 2
+    },
+    {
+      "selection_id": "entry-details",
+      "category": "_pdbx_entry_details",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "reference",
+      "category": "_struct_ref",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "reference-alignment",
+      "category": "_struct_ref_seq",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "components",
+      "category": "_chem_comp",
+      "match": {},
+      "expected_row_count": 23
+    },
+    {
+      "selection_id": "reference-differences",
+      "category": "_struct_ref_seq_dif",
+      "match": {},
+      "expected_row_count": 43
+    },
+    {
+      "selection_id": "tyr51-atoms",
+      "category": "_atom_site",
+      "match": {
+        "label_asym_id": "A",
+        "label_seq_id": "51"
+      },
+      "expected_row_count": 12
+    },
+    {
+      "selection_id": "ser81-atoms",
+      "category": "_atom_site",
+      "match": {
+        "label_asym_id": "A",
+        "label_seq_id": "81"
+      },
+      "expected_row_count": 6
+    },
+    {
+      "selection_id": "lys83-atoms",
+      "category": "_atom_site",
+      "match": {
+        "label_asym_id": "A",
+        "label_seq_id": "83"
+      },
+      "expected_row_count": 9
+    },
+    {
+      "selection_id": "asn110-atoms",
+      "category": "_atom_site",
+      "match": {
+        "label_asym_id": "A",
+        "label_seq_id": "110"
+      },
+      "expected_row_count": 8
+    },
+    {
+      "selection_id": "tyr180-atoms",
+      "category": "_atom_site",
+      "match": {
+        "label_asym_id": "A",
+        "label_seq_id": "180"
+      },
+      "expected_row_count": 12
+    },
+    {
+      "selection_id": "mho237-atoms",
+      "category": "_atom_site",
+      "match": {
+        "label_seq_id": "237",
+        "label_comp_id": "MHO"
+      },
+      "expected_row_count": 18
+    }
+  ],
+  "interpretation": {
+    "assertions": [
+      {
+        "assertion_id": "parent-deposit",
+        "status": "deposited_source_assertion",
+        "statement": "5AOU names RA95.5-8F in its title and cites Obexer2017 DOI10.1038/nchem.2596. Canonical sequence is distinguished from MHO237 chemical modification and incomplete observed coordinates.",
+        "supporting_selection_ids": [
+          "title",
+          "citation",
+          "polymer-sequence",
+          "chemical-modification",
+          "unmodeled-residues"
+        ]
+      },
+      {
+        "assertion_id": "numbering-not-offset",
+        "status": "project_interpretation",
+        "statement": "Exact per-residue author numbering is retained; never apply one global offset or equate PDB reference/scaffold annotation to assay identity.",
+        "supporting_selection_ids": [
+          "residue-numbering",
+          "reference",
+          "reference-alignment"
+        ]
+      },
+      {
+        "assertion_id": "conditions",
+        "status": "deposited_source_assertion",
+        "statement": "Deposited crystal pH is 4.6; diffraction temperature is100K and reported high resolution is1.10angstrom. These conditions do not identify a reacting solution or the29C activity assay.",
+        "supporting_selection_ids": [
+          "crystal-growth",
+          "diffraction",
+          "refinement"
+        ]
+      },
+      {
+        "assertion_id": "apo-context",
+        "status": "deposited_source_assertion",
+        "statement": "Source-named apo means without the inhibitor in this comparison; the deposit still contains phosphate, ethylene glycol and water.",
+        "supporting_selection_ids": [
+          "components",
+          "title"
+        ]
+      }
+    ],
+    "not_established": [
+      "No exact physical assay/crystal preparation identity, active fraction, complete mechanism, mutant geometry or productive solution arrangement.",
+      "Canonical sequence equality does not erase MHO237 oxidation or unmodeled residues; occupancy is not a kinetic population.",
+      "Selected functional-group atoms follow SI FiguresS8/S9; no exhaustive apparatus inventory or generic distance catalogue."
+    ]
+  }
+}

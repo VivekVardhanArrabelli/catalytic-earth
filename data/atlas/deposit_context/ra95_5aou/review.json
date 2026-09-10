@@ -1,0 +1,50 @@
+{
+  "schema_version": "catalytic-earth.deposit-context-review.v1",
+  "packet_id": "ra95.5aou.chemical-state.2026-09-10",
+  "decision": "accept_source_scoped_deposit_context",
+  "reviewed_at_utc": "2026-09-10T14:37:30.808871+00:00",
+  "reviewed_sha256": {
+    "spec.json": "ab361294051a683b404104001d5a7320fa71414bd6dbb0dead9995ec733abaae",
+    "projection.json": "4fdd16492422e4ddfb48ffa28a7f2772d8ae470516bdeaf282b24ccd8faeec9e",
+    "source": "f97adeb9ea6b49b76f3cdb83366aa17bdfb56a42c8c168eb9e4d3f6ef121130e"
+  },
+  "authority": "owner-authorized-computational-development.2026-09-05.v1",
+  "authorized_operation": "source_annotation",
+  "blocked_operations": [
+    "source_scoped_mechanism_draft",
+    "exact_reaction_instance"
+  ],
+  "review_kind": "computational_source_challenge_and_parent_adjudication",
+  "independent_human_validation": false,
+  "experimental_validation": false,
+  "review_lanes": [
+    {
+      "role": "source",
+      "task": "ra95_source",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_manifest"
+    },
+    {
+      "role": "representation",
+      "task": "ra95_representation",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_manifest"
+    },
+    {
+      "role": "adversarial",
+      "task": "ra95_adversarial",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_manifest"
+    }
+  ],
+  "coordination_record": "work/coordination_ra95_chemical_state_20260910.md",
+  "scope": "Exact deposited rows and coordinate-only selected pairs; canonical construct association, chemical modifications and unresolved source/graph/model conflicts. No productive or complete covalent state.",
+  "unresolved_scientific_limits": [
+    "Complete typed inhibitor3-derived protein adduct graph and protonation unresolved",
+    "5AN7 pH7.5/4.5 and source/unmodeled62-63 conflicts unresolved",
+    "No physical preparation, joint alternate population, mutant geometry or mechanistic cause"
+  ]
+}
