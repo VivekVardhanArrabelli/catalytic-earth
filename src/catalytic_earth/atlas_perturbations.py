@@ -87,13 +87,14 @@ def compare(rows: dict[str, dict[str, Any]], request: dict[str, Any]) -> dict[st
     values = list(selected.values())
     if any(row["study_id"] != request["study_id"] for row in values):
         reasons.append("request_study_differs_from_observations")
-    equal_fields = ["study_id", "assay_id", "endpoint_kind", "parameter", "unit", "reaction_direction"]
+    equal_fields = ["study_id", "assay_id", "endpoint_kind", "parameter", "unit", "reaction_direction", "reaction_id"]
     if operation != "preference":
         equal_fields.extend(["substrate_id", "background_id"])
     else:
         equal_fields.append("construct_id")
     for field in equal_fields:
-        if values and any(row[field] != values[0][field] for row in values[1:]):
+        field_values = [row.get(field) if field == "reaction_id" else row[field] for row in values]
+        if field_values and any(value != field_values[0] for value in field_values[1:]):
             reasons.append(f"mismatched_{field}")
     for row in values:
         if row["result_kind"] != "numeric":
@@ -215,6 +216,25 @@ def _project_candidate(repo_root: Path, spec: dict[str, Any] | None = None) -> d
         if source_record["assay_id"] != item["source_assay_id"]:
             raise ValueError(f"assay provider identity differs: {key}")
         assays[key] = {**deepcopy(item), "source_record": source_record}
+    reactions = {}
+    for key, item in spec.get("reactions", {}).items():
+        source_record = resolve(item["provider"])
+        if source_record["reaction_id"] != item["source_reaction_id"]:
+            raise ValueError("reaction provider identity differs")
+        participants = source_record["participants"]
+        _unique(participants, "participant_id")
+        if {participant["side"] for participant in participants} != {"reactant", "product"}:
+            raise ValueError("reaction requires distinct reactant and product sides")
+        if any(not participant.get("name") or not participant.get("role") for participant in participants):
+            raise ValueError("reaction participant requires a source name and role")
+        if item["reactant_substrate_id"] not in spec["substrates"]:
+            raise ValueError("unbound reaction reactant substrate")
+        reactant_ids = {participant["participant_id"] for participant in participants
+                        if participant["side"] == "reactant"}
+        input_ids = spec["substrates"][item["reactant_substrate_id"]].get("participant_ids", [])
+        if len(input_ids) != len(set(input_ids)) or set(input_ids) != reactant_ids:
+            raise ValueError("substrate participant IDs differ from source reaction reactants")
+        reactions[key] = {**deepcopy(item), "source_record": source_record}
     observations = []
     for panel in spec["panels"]:
         source = sources[panel["source"]]
@@ -229,6 +249,14 @@ def _project_candidate(repo_root: Path, spec: dict[str, Any] | None = None) -> d
             assay_id = panel["study_id"] + ":" + fields["assay_id"]
             construct, assay = constructs[construct_id], assays[assay_id]
             substrate = spec["substrates"][fields["substrate_id"]]
+            reaction_id = panel.get("reaction_id")
+            reaction = reactions[reaction_id] if reaction_id is not None else None
+            if reaction is not None:
+                if fields["substrate_id"] != reaction["reactant_substrate_id"]:
+                    raise ValueError("reaction reactants differ from observation substrate")
+                if (assay["source_record"].get("reaction_id") != reaction["source_reaction_id"]
+                        or assay["reaction_direction"] != reaction["source_record"]["direction"]):
+                    raise ValueError("reaction differs from source assay identity or direction")
             for parameter in panel["parameters"]:
                 raw_parameter = pointer(source_row, parameter["pointer"])
                 contract = spec["parameter_contracts"][parameter["id"]]
@@ -278,6 +306,7 @@ def _project_candidate(repo_root: Path, spec: dict[str, Any] | None = None) -> d
                     "assay_id": assay_id, "assay_qualified": assay["qualified"],
                     "endpoint_kind": assay["endpoint_kind"],
                     "reaction_direction": assay["reaction_direction"],
+                    "reaction_id": reaction_id, "reaction_context": deepcopy(reaction),
                     "substrate_id": fields["substrate_id"], "substrate": deepcopy(substrate),
                     "parameter": parameter["id"], "result_kind": kind,
                     "value": value, "unit": unit,
@@ -331,6 +360,7 @@ def _project_candidate(repo_root: Path, spec: dict[str, Any] | None = None) -> d
         "review_status": "internal_unreviewed_candidate; eligibility means proposed arithmetic only",
         "scope": deepcopy(spec["scope"]), "sources": deepcopy(spec["sources"]),
         "constructs": constructs, "assays": assays, "substrates": deepcopy(spec["substrates"]),
+        "reactions": reactions,
         "observations": observations, "comparisons": comparisons,
         "evidence_context": {key: [resolve(ref) for ref in refs]
                              for key, refs in spec["evidence_context"].items()},

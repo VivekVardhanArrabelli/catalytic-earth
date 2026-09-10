@@ -1,0 +1,611 @@
+{
+  "schema_version": "catalytic-earth.source-qualification.v1",
+  "assessment_id": "obexer2017-ra95-forward-methodol-outcome",
+  "operation": "source_annotation",
+  "question": "What synthetic product outcome is measured for RA95.5-8F, and can its conditions, yield and stereochemical evidence travel with the existing cleavage/perturbation relation?",
+  "conclusion": "The retainedSI reports forward methodol synthesis with67%conversion and60.1%isolated yield, and author-assigned R-major product99.2:0.8. Source amount and HPLC retention assignments conflict. Product evidence is distinct from cleavage selectivity and single-group perturbation causality.",
+  "counted_objects": {
+    "curated_primary_synthesis_contexts": 1,
+    "retained_precursor_comparator_contexts": 2,
+    "new_project_experiments": 0,
+    "protein_admissions": 0,
+    "new_compiled_mechanisms": 0,
+    "independent_reviews": 0,
+    "evidence_tier_promotions": 0
+  },
+  "sources": [
+    {
+      "source_id": "Obexer2017:SI",
+      "doi": "10.1038/nchem.2596",
+      "pmid": "27995916",
+      "authors": "Obexer R, Godina A, Garrabou X, Mittl PRE, Baker D, Griffiths AD, Hilvert D",
+      "journal": "Nature Chemistry 9, 50-56 (2017)",
+      "online_publication_date": "2016-08-29",
+      "article_title": "Emergence of a catalytic tetrad during evolution of a highly active artificial aldolase",
+      "supplement_title_as_printed": "Emergence of a catalytic tetrad during evolution of a highly efficient artificial aldolase",
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnchem.2596/MediaObjects/41557_2017_BFnchem2596_MOESM342_ESM.pdf",
+      "local_cache_path": "git-common-dir:catalytic-earth-source-cache/2d1ce2aa6d4851996be75e63990ac3498a62ab611630b1529f1cf37c6976160d.pdf",
+      "sha256": "2d1ce2aa6d4851996be75e63990ac3498a62ab611630b1529f1cf37c6976160d",
+      "response_body_bytes": 10373958,
+      "pdf_pages": 35,
+      "identity_binding": "Exact DOI on every supplementary page, matching authors, and exact hyperlink in acquired publisher preview. Preserve active versus efficient title wording; same-source identity does not rely on title equality.",
+      "publisher_link_binding": {
+        "url": "https://www.nature.com/articles/nchem.2596",
+        "local_cache_path": "git-common-dir:catalytic-earth-source-cache/5b9df7244fa46c1888282f55d814c90f8ef47d980ccebafa1a7f10ec13658fd1.html",
+        "sha256": "5b9df7244fa46c1888282f55d814c90f8ef47d980ccebafa1a7f10ec13658fd1",
+        "scope": "abstract, figure headings, references and exact supplementary link; main text remains subscription preview"
+      },
+      "rights": "Copyright 2016 Macmillan Publishers Limited; all rights reserved. Source bodies and rendered figures are reference/cache-only and are not redistributed. This packet is project-authored factual annotation with source attribution.",
+      "inspected_scope": "PDF/printed pp9-11,17,29 for synthesis, equilibrium context, analytical assignment and Figure S12; p23 sequence identity reused from the accepted 2017 source annotation. Other products are not curated in this increment.",
+      "main_article_body_status": "unacquired_unassessed; no paper-wide absence claim"
+    }
+  ],
+  "acquisition_binding": {
+    "path": "data/atlas/study_context/ra95_2017/acquisition_appendix.json",
+    "sha256": "3a679e4628e2e884a703aedc185dbd4cf97f9fc2ece4face4f7004189946d710",
+    "cumulative_batch_id": "designed-retroaldolase-ra95-giger2013",
+    "cumulative_requests": 24,
+    "cumulative_response_body_bytes": 15353338
+  },
+  "source_access": {
+    "new_requests": 0,
+    "new_bytes": 0,
+    "batch": "designed-retroaldolase-ra95-giger2013",
+    "cumulative_requests": 24,
+    "cumulative_bytes": 15353338,
+    "limits": {
+      "requests": 100,
+      "bytes": 31457280
+    },
+    "main_article_body": "unacquired_unassessed",
+    "rotation_reference_literature": "not independently inspected in this increment",
+    "source_bodies_redistributed": false
+  },
+  "selection": "One actual methodol1a synthesis outcome with its source-caption precursor controls. Other aldol products and exhaustive structure/activity relations are outside this bounded increment.",
+  "constructs": [
+    {
+      "construct_id": "RA95.5-8F",
+      "provider_path": "data/atlas/study_context/ra95_2017/source_qualification.json",
+      "provider_sha256": "6a7867da4e141c79ecb0c5542b3c5ab8b9aca20d638554c504612fde3930398d",
+      "json_pointer": "/constructs/0",
+      "sequence_status": "reused_direct_source_string",
+      "assay_specimen_sequence_verified": false
+    },
+    {
+      "construct_id": "RA95.5-8",
+      "provider_path": "data/atlas/study_context/ra95_2013/functional_comparison.json",
+      "provider_sha256": "0e2fe21efce4d805fdef8505770c0cf18557ed774c08a79cfc5e68c1b1fbf94a",
+      "json_pointer": "/constructs/3",
+      "sequence_status": "reused_direct_source_string_after_prior_exact2017_equality",
+      "exact_2017_reuse_witness": {
+        "path": "data/atlas/study_context/ra95_2017/source_qualification.json",
+        "pointer": "/reused_sequence_providers/1"
+      },
+      "assay_specimen_sequence_verified": false
+    }
+  ],
+  "reaction": {
+    "direction": "aldol addition (synthesis)",
+    "source": "Obexer2017:SI:Methods:pp9-11:scheme2a-to1a",
+    "scheme_arrow": "reversible",
+    "observed_direction": "net aldol-adduct formation from aldehyde and acetone",
+    "scope": "Named reactants and product from the source scheme and Methods; not an atom-mapped elementary mechanism or a productive geometry.",
+    "reaction_id": "methodol-aldol-addition",
+    "participants": [
+      {
+        "participant_id": "2a",
+        "side": "reactant",
+        "source_id": "2a",
+        "name": "6-methoxy-2-naphthaldehyde",
+        "role": "aldehyde acceptor",
+        "configuration": "achiral"
+      },
+      {
+        "participant_id": "acetone",
+        "side": "reactant",
+        "source_id": "acetone",
+        "name": "acetone",
+        "role": "ketone donor",
+        "configuration": "achiral"
+      },
+      {
+        "participant_id": "1a",
+        "side": "product",
+        "role": "aldol adduct",
+        "source_product_id": "1a",
+        "name": "4-hydroxy-4-(6-methoxynaphthalen-2-yl)butan-2-one",
+        "common_name": "methodol",
+        "source_reported_major_configuration": null,
+        "configuration_status": "not assigned at shared reaction or conversion scope; see individual product-composition evidence",
+        "canonical_reaction_or_atom_mapping": null
+      }
+    ]
+  },
+  "assays": [
+    {
+      "assay_id": "methodol-synthesis-3h-HPLC",
+      "conditions": {
+        "temperature_C": 29,
+        "buffer": [
+          {
+            "name": "HEPES",
+            "concentration_mM": 25
+          },
+          {
+            "name": "NaCl",
+            "concentration_mM": 100
+          }
+        ],
+        "pH": 7.5,
+        "acetone_M": 2,
+        "aldehyde_reported_mM": 2,
+        "reaction_volume_mL": 50,
+        "aldehyde_reported_amount_umol": 130,
+        "enzyme_reported_uM": 0.1,
+        "time_h": 3,
+        "shaking_rpm": 600,
+        "vessel": "100 mL Erlenmeyer flask",
+        "acetonitrile_added": "not stated for this synthesis; do not inherit cleavage assay 2.7%",
+        "source": "Obexer2017:SI:Methods:pp10-11",
+        "amount_conflict": "50 mL times 2 mM implies100 umol, while the same recipe prints130 umol. No corrected volume, concentration or amount is selected."
+      },
+      "replicates": null,
+      "uncertainty": "No replicate count or statistical error reported for this synthesis outcome; not zero uncertainty.",
+      "readout": "HPLC conversion quantified using purified aldol adduct solutions as external standards",
+      "source": "Obexer2017:SI:Methods:pp10-11;FigureS12:p29",
+      "reaction_id": "methodol-aldol-addition"
+    },
+    {
+      "assay_id": "methodol-synthesis-isolated-yield",
+      "conditions": {
+        "temperature_C": 29,
+        "buffer": [
+          {
+            "name": "HEPES",
+            "concentration_mM": 25
+          },
+          {
+            "name": "NaCl",
+            "concentration_mM": 100
+          }
+        ],
+        "pH": 7.5,
+        "acetone_M": 2,
+        "aldehyde_reported_mM": 2,
+        "reaction_volume_mL": 50,
+        "aldehyde_reported_amount_umol": 130,
+        "enzyme_reported_uM": 0.1,
+        "time_h": 3,
+        "shaking_rpm": 600,
+        "vessel": "100 mL Erlenmeyer flask",
+        "acetonitrile_added": "not stated for this synthesis; do not inherit cleavage assay 2.7%",
+        "source": "Obexer2017:SI:Methods:pp10-11",
+        "amount_conflict": "50 mL times 2 mM implies100 umol, while the same recipe prints130 umol. No corrected volume, concentration or amount is selected."
+      },
+      "replicates": null,
+      "uncertainty": "No replicate count or statistical error reported for this synthesis outcome; not zero uncertainty.",
+      "readout": "Isolated product after salt saturation, EtOAc extraction, sodium-sulfate drying, solvent evaporation and chromatography; 1a purification refers to ref12",
+      "source": "Obexer2017:SI:Methods:pp10-11:1a",
+      "reaction_id": "methodol-aldol-addition"
+    },
+    {
+      "assay_id": "methodol-synthesis-product-chiral",
+      "conditions": {
+        "temperature_C": 29,
+        "buffer": [
+          {
+            "name": "HEPES",
+            "concentration_mM": 25
+          },
+          {
+            "name": "NaCl",
+            "concentration_mM": 100
+          }
+        ],
+        "pH": 7.5,
+        "acetone_M": 2,
+        "aldehyde_reported_mM": 2,
+        "reaction_volume_mL": 50,
+        "aldehyde_reported_amount_umol": 130,
+        "enzyme_reported_uM": 0.1,
+        "time_h": 3,
+        "shaking_rpm": 600,
+        "vessel": "100 mL Erlenmeyer flask",
+        "acetonitrile_added": "not stated for this synthesis; do not inherit cleavage assay 2.7%",
+        "source": "Obexer2017:SI:Methods:pp10-11",
+        "amount_conflict": "50 mL times 2 mM implies100 umol, while the same recipe prints130 umol. No corrected volume, concentration or amount is selected."
+      },
+      "replicates": null,
+      "uncertainty": "No replicate count or statistical error reported for this synthesis outcome; not zero uncertainty.",
+      "readout": "Chiral HPLC of isolated product with chemical standards; source-reported enantiomer ratio",
+      "analytical_conditions": {
+        "column": "Reprosil 100 Chiral-NR",
+        "particle_size_um": 8,
+        "length_mm": 250,
+        "diameter_mm": 4.6,
+        "mobile_phase": "isocratic hexane/EtOAc 3:7",
+        "flow_mL_min": 1.5,
+        "wavelength_nm": 254
+      },
+      "source": "Obexer2017:SI:Methods:pp11,17;FigureS12:p29",
+      "reaction_id": "methodol-aldol-addition"
+    },
+    {
+      "assay_id": "precursor-methodol-synthesis-altered-product-chiral",
+      "conditions": {
+        "time_reported": "1 day",
+        "enzyme_concentration_relative_to_8F": {
+          "qualifier": "approximately",
+          "factor": 50
+        },
+        "absolute_enzyme_concentration_uM": null,
+        "other_conditions": "caption context; not independently itemized for the altered precursor preparation"
+      },
+      "readout": "Source-caption product enantiomer ratio under the longer-time/higher-enzyme comparison; raw precursor chromatogram and precise assay specification unavailable here",
+      "replicates": null,
+      "uncertainty": "Not reported; not zero uncertainty.",
+      "source": "Obexer2017:SI:FigureS12:p29",
+      "reaction_id": "methodol-aldol-addition"
+    }
+  ],
+  "conversion_observations": [
+    {
+      "row_id": "synthesis-8F-conversion",
+      "construct_id": "RA95.5-8F",
+      "assay_id": "methodol-synthesis-3h-HPLC",
+      "conversion": {
+        "result_kind": "numeric",
+        "value": 67,
+        "unit": "percent",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported",
+        "source_value_status": "source_reported_not_recomputed"
+      },
+      "product": {
+        "source_product_id": "1a",
+        "name": "4-hydroxy-4-(6-methoxynaphthalen-2-yl)butan-2-one",
+        "common_name": "methodol",
+        "source_reported_major_configuration": null,
+        "configuration_status": "not assigned at shared reaction or conversion scope; see individual product-composition evidence",
+        "canonical_reaction_or_atom_mapping": null
+      },
+      "source": "Obexer2017:SI:Methods:p11:1a;FigureS12:p29",
+      "scope": "Source-reported maximum conversion at3h; not isolated yield, initial rate or a turnover number.",
+      "generic_perturbation_comparison_eligible": false,
+      "outcome_context_id": "methodol-preparation:8F:3h"
+    },
+    {
+      "row_id": "synthesis-8-conversion",
+      "construct_id": "RA95.5-8",
+      "assay_id": "methodol-synthesis-3h-HPLC",
+      "conversion": {
+        "result_kind": "numeric",
+        "value": 0.7,
+        "unit": "percent",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported",
+        "source_value_status": "source_reported_not_recomputed"
+      },
+      "product": {
+        "source_product_id": "1a",
+        "name": "4-hydroxy-4-(6-methoxynaphthalen-2-yl)butan-2-one",
+        "common_name": "methodol",
+        "source_reported_major_configuration": null,
+        "configuration_status": "not assigned at shared reaction or conversion scope; see individual product-composition evidence",
+        "canonical_reaction_or_atom_mapping": null
+      },
+      "source": "Obexer2017:SI:FigureS12:p29",
+      "scope": "Caption explicitly says same conditions as8F. This is the precursor comparison, not a single-group perturbation. Exact physical preparations and replicate details are not supplied.",
+      "generic_perturbation_comparison_eligible": false,
+      "outcome_context_id": "methodol-preparation:8:same-conditions"
+    }
+  ],
+  "isolation_observations": [
+    {
+      "row_id": "synthesis-8F-isolation",
+      "construct_id": "RA95.5-8F",
+      "assay_id": "methodol-synthesis-isolated-yield",
+      "isolated_yield": {
+        "result_kind": "numeric",
+        "value": 60.1,
+        "unit": "percent",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported",
+        "source_value_status": "source_reported_not_recomputed"
+      },
+      "product_amount": {
+        "result_kind": "numeric",
+        "value": 78.1,
+        "unit": "umol",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported",
+        "source_value_status": "source_reported_not_recomputed"
+      },
+      "product_mass": {
+        "result_kind": "numeric",
+        "value": 19.1,
+        "unit": "mg",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported",
+        "source_value_status": "source_reported_not_recomputed"
+      },
+      "product_form": "white crystalline solid",
+      "product": {
+        "source_product_id": "1a",
+        "name": "4-hydroxy-4-(6-methoxynaphthalen-2-yl)butan-2-one",
+        "common_name": "methodol",
+        "source_reported_major_configuration": null,
+        "configuration_status": "not assigned at shared reaction or conversion scope; see individual product-composition evidence",
+        "canonical_reaction_or_atom_mapping": null
+      },
+      "source": "Obexer2017:SI:Methods:p11:1a",
+      "yield_status": "Retain printed60.1%; 78.1/130 agrees after rounding, but50mL*2mM implies100umol. No corrected yield is chosen.",
+      "source_product_label": "(R)-methodol; source assignment assessed in the separate8F composition record",
+      "generic_perturbation_comparison_eligible": false,
+      "outcome_context_id": "methodol-preparation:8F:3h"
+    }
+  ],
+  "stereochemical_observations": [
+    {
+      "row_id": "synthesis-8F-composition",
+      "construct_id": "RA95.5-8F",
+      "assay_id": "methodol-synthesis-product-chiral",
+      "reported_R_parts": {
+        "result_kind": "numeric",
+        "value": 99.2,
+        "unit": "ratio_parts",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported",
+        "source_value_status": "source_reported_not_recomputed"
+      },
+      "reported_S_parts": {
+        "result_kind": "numeric",
+        "value": 0.8,
+        "unit": "ratio_parts",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported",
+        "source_value_status": "source_reported_not_recomputed"
+      },
+      "ratio_order": [
+        "4R",
+        "4S"
+      ],
+      "ratio_normalization": "source prints99.2:0.8, summing to100parts; these are source-labeled ratio components, not new peak integrations",
+      "ee_report": {
+        "source_comparator": ">",
+        "threshold": 98.4,
+        "unit": "percent",
+        "configuration": "R",
+        "kind": "source_reported_strict_lower_bound",
+        "source": "Obexer2017:SI:FigureS12:p29"
+      },
+      "ee_from_printed_ratio": {
+        "value": 98.4,
+        "unit": "percent",
+        "kind": "project_arithmetic_from_rounded_ratio",
+        "expression": "100*(99.2-0.8)/(99.2+0.8)",
+        "replaces_source_bound": false
+      },
+      "product": {
+        "source_product_id": "1a",
+        "name": "4-hydroxy-4-(6-methoxynaphthalen-2-yl)butan-2-one",
+        "common_name": "methodol",
+        "source_reported_major_configuration": "4R",
+        "configuration_evidence": "SI p11 reports (R)-methodol and optical rotation; p17 says absolute configuration of 1a was assigned by comparing optical rotation with literature refs62-67. Figure S12 p29 separately labels the major product peak R.",
+        "configuration_status": "source_author_assignment_with_reported_optical_rotation_basis; cited literature not independently rechecked",
+        "retention_time_configuration_mapping": "source_conflict_unresolved",
+        "normalized_retention_time_assignment": null,
+        "project_independently_verified_absolute_configuration": false,
+        "canonical_reaction_or_atom_mapping": null
+      },
+      "source": "Obexer2017:SI:Methods:pp11,17;FigureS12:p29",
+      "optical_rotation": {
+        "value": 56.5,
+        "unit": "degree",
+        "temperature_C": 27,
+        "line": "D",
+        "source_concentration_c": 1.47,
+        "solvent": "CHCl3",
+        "literature_assignment_independently_checked": false
+      },
+      "mass_spectrometry": {
+        "method": "HRMS ESI",
+        "ion_formula": "[NaC15H16O3]+",
+        "calculated_m_z": 267.0992,
+        "found_m_z": 267.0988,
+        "scope": "reported identity support, not enantiomer assignment"
+      },
+      "other_identity_support": "S12a/b show1H/13C NMR of enzymatically synthesized methodol; spectra not independently reassigned or purity-quantified.",
+      "generic_perturbation_comparison_eligible": false,
+      "outcome_context_id": "methodol-preparation:8F:3h"
+    },
+    {
+      "row_id": "synthesis-8-altered-composition",
+      "construct_id": "RA95.5-8",
+      "assay_id": "precursor-methodol-synthesis-altered-product-chiral",
+      "reported_R_parts": {
+        "result_kind": "numeric",
+        "value": 72,
+        "unit": "ratio_parts",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported",
+        "source_value_status": "source_reported_not_recomputed"
+      },
+      "reported_S_parts": {
+        "result_kind": "numeric",
+        "value": 28,
+        "unit": "ratio_parts",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported",
+        "source_value_status": "source_reported_not_recomputed"
+      },
+      "ratio_order_in_source": [
+        "S",
+        "R"
+      ],
+      "ratio_in_source": [
+        28,
+        72
+      ],
+      "ee_report": {
+        "source_comparator": "=",
+        "value": 44,
+        "unit": "percent",
+        "configuration": "R",
+        "kind": "source_reported_value",
+        "source": "Obexer2017:SI:FigureS12:p29"
+      },
+      "product": {
+        "source_product_id": "1a",
+        "name": "4-hydroxy-4-(6-methoxynaphthalen-2-yl)butan-2-one",
+        "common_name": "methodol",
+        "source_reported_major_configuration": "R",
+        "configuration_status": "source_caption_assignment_for_altered_precursor_conditions",
+        "canonical_reaction_or_atom_mapping": null,
+        "configuration_evidence": "FigureS12p29 reports28:72S:R and44%ee for precursor product under longer time and higher enzyme. No separately reported optical rotation or raw precursor chromatogram is supplied here.",
+        "project_independently_verified_absolute_configuration": false,
+        "normalized_retention_time_assignment": null
+      },
+      "source": "Obexer2017:SI:FigureS12:p29",
+      "scope": "Separate longer-time/higher-enzyme precursor comparison. Do not attach this ratio or44%ee to the3h0.7%conversion arm; precise assay specification is not supplied.",
+      "generic_perturbation_comparison_eligible": false,
+      "outcome_context_id": "methodol-preparation:8:altered-conditions"
+    }
+  ],
+  "source_conflicts": [
+    {
+      "id": "starting-aldehyde-amount",
+      "source": "Obexer2017:SI:Methods:p11:1a",
+      "printed": {
+        "volume_mL": 50,
+        "concentration_mM": 2,
+        "amount_umol": 130
+      },
+      "project_arithmetic": {
+        "expression": "50 mL * 2 mmol/L",
+        "amount_umol": 100,
+        "kind": "dimensional check of displayed source quantities"
+      },
+      "resolution": "unresolved; preserve all three quantities",
+      "blocked_transfer": [
+        "recomputed isolated yield",
+        "mass-balance closure",
+        "amount-normalized productivity or total-turnover estimates"
+      ]
+    },
+    {
+      "id": "retention-time-enantiomer-assignment",
+      "source": [
+        "Obexer2017:SI:Methods:p11:1a",
+        "Obexer2017:SI:FigureS12:p29",
+        "Obexer2017:SI:ChiralAnalysis:p17"
+      ],
+      "methods_p11_retention_min": {
+        "R": 6.0,
+        "S": 7.9
+      },
+      "figure_S12_retention_min": {
+        "S": 6.0,
+        "R": 7.9
+      },
+      "figure_S12_product_major_peak_min": 7.9,
+      "resolution": "unresolved; no corrected label or chromatogram reassignment. Source-reported R-major product remains an author assignment with a separately declared optical-rotation basis.",
+      "blocked_transfer": [
+        "unambiguous retention-time-to-configuration training label",
+        "independent absolute-configuration verification"
+      ]
+    }
+  ],
+  "equilibrium_context": {
+    "source": "Obexer2017:SI:Methods:pp9-10;FigureS12:p29",
+    "kind": "separate_apparent_equilibrium_measurement_and_source_calculation",
+    "assay": {
+      "volume_uL": 200,
+      "aldehyde_mM": 0.2,
+      "aldehyde_nmol": 40,
+      "acetone_mM_range": [
+        100,
+        1000
+      ],
+      "enzyme_uM": 0.2,
+      "enzyme_pmol": 40,
+      "temperature_C": 29,
+      "pH": 7.5,
+      "HEPES_mM": 25,
+      "NaCl_mM": 100,
+      "shaking_rpm": 600,
+      "time_to_apparent_equilibrium_min_range": [
+        30,
+        160
+      ]
+    },
+    "K_app": {
+      "value": 1.2,
+      "uncertainty": 0.1,
+      "uncertainty_kind": "not specified here",
+      "unit": "M^-1"
+    },
+    "source_theoretical_maximum_yield_percent": 71,
+    "maximum_yield_kind": "author_calculation_using_apparent_equilibrium_constant; not measured isolated yield",
+    "limit": "The equilibrium assay uses different concentrations, enzyme loading and scale from the3h synthesis. No universal thermodynamic constant, mutation contribution, productive geometry or enzyme-dependent equilibrium shift is inferred. The source applies the constant to2M acetone synthesis outside the reported0.1-1.0M acetone measurement range;71% remains a source calculation, not an independently validated ceiling."
+  },
+  "control_scope": {
+    "same_conditions_precursor_conversion": {
+      "construct_id": "RA95.5-8",
+      "value": 0.7,
+      "unit": "percent",
+      "source": "FigureS12:p29",
+      "applies_to": "source-defined same-condition comparison with8F",
+      "product_configuration": null,
+      "configuration_status": "unassessed for this conversion arm; do not borrow8F or altered-precursor product assignment"
+    },
+    "altered_precursor_product": {
+      "construct_id": "RA95.5-8",
+      "time": "1day",
+      "enzyme_loading": "approximately50fold higher",
+      "numeric_conversion": null,
+      "source_described_yield": "comparable",
+      "reported_S_R_ratio": [
+        28,
+        72
+      ],
+      "reported_ee_percent": 44,
+      "source": "FigureS12:p29"
+    },
+    "matched_active_site_mutant_synthesis_control": "not established by this selected source scope; existing TableS1 mutations measure cleavage, not synthesis",
+    "no_enzyme_synthesis_control": "not specified for this product outcome in the inspected Methods/S12 scope; no paper-wide absence claim",
+    "same_condition_relation": {
+      "observation_ids": [
+        "synthesis-8F-conversion",
+        "synthesis-8-conversion"
+      ],
+      "kind": "source_declared_same_condition_precursor_comparison",
+      "source": "FigureS12p29",
+      "supported_description": "67%conversion for8F versus0.7%for precursor under source-stated same conditions",
+      "calculated_effect_ratio": null,
+      "restriction": "Permitted descriptive source contrast; not a matched single-group perturbation, rate constant, statistically estimated effect or amount-normalized yield."
+    }
+  },
+  "design_use": {
+    "supported": "An explicitly observed synthetic-product endpoint accompanies the evolved construct. Researchers can retrieve it by reaction direction and endpoint without deriving synthesis success/selectivity from cleavage kinetics.",
+    "withheld": [
+      "single catalytic-group contribution to synthesis",
+      "cleavage-to-synthesis selectivity transfer",
+      "corrected mass balance or amount-normalized productivity",
+      "unambiguous retention-time-to-configuration label",
+      "causal tetrad mechanism or productive geometry",
+      "prospective design success rate"
+    ]
+  },
+  "reconsideration": {
+    "bespoke_code": "One shared reaction-context/participant primitive was missing from the common relation; it now supplies role-tagged reactants and product and source-assay identity without any enzyme-ID branch. Case-specific facts and mappings remain data. Strict ee bounds remain structured context, not central-value observations.",
+    "reuse": "Reuse the exact8F and precursor sequence providers, source witness and shared direction/assay/parameter relation; no re-entry of sequences or study-ID code branch. A source-level outcome_context_id joins the8F conversion, isolation and composition stages without conflating assays; the two precursor arms have different context IDs.",
+    "integrated_value": "Returns actual synthesis evidence alongside cleavage/perturbation exclusions, with newly exposed amount and retention conflicts; no measured curation speedup or superiority to competent source reading."
+  },
+  "limits": [
+    "Source-author reported observations, not new project experiments or independent validation.",
+    "R-major is an author assignment supported by reported optical rotation comparison; the project did not independently authenticate standards or cited reference values.",
+    "Source-rounded ratio arithmetic is not a precise estimate or replacement of the printed strict ee bound.",
+    "No new acquisition, source body redistribution, protected registry change, frozen kernel change or exposure reset."
+  ]
+}

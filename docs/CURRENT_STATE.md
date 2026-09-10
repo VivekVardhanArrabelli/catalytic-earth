@@ -1,5 +1,22 @@
 # Current State
 
+## 2026-09-10: forward synthesis separates yield and stereochemical assignment
+
+The [methodol synthesis outcome](ATLAS_FORWARD_SYNTHESIS.md) connects
+source-reported 67% conversion and 60.1% isolated yield to RA95.5-8F, its
+aldehyde/acetone input pair and an explicitly source-assigned R-major product.
+CE-032 preserves two source conflicts: 50 mL × 2 mM versus printed 130 micromol,
+and reversed R/S retention assignments in Methods andS12. The source's separate
+optical-rotation assignment is retained without independent reference checking.
+The precursor 0.7% conversion arm does not inherit the altered-condition 44% ee.
+
+The same consumer now carries a generic reaction/participant context with
+seven additional parameter records. All original perturbation comparisons and
+source packets remain unchanged. The strict ee bound stays structured context.
+This adds one published primary synthesis context and its two precursor control
+contexts, not a project experiment, new protein admission or mechanism proof.
+Zero new requests/bytes; cumulative RA95 budget remains 24 / 15,353,338.
+
 ## 2026-09-10: one consumer recovers perturbation effects and exclusions
 
 The [source-bound perturbation relation](ATLAS_PERTURBATION_RELATION.md) now

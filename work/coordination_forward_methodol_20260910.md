@@ -1,0 +1,29 @@
+# Forward methodol outcome coordination - 2026-09-10 UTC
+
+Owner: `01a08a59-c46b-7861-9912-d09904752ce3:e24b6301-e97a-4225-a0eb-39fe2e76c1bc`.
+Base: `b9cf903f661cdd09fbaef94bd82fbaae543a16db`; branch `codex/forward-methodol-outcome-20260910`.
+Parent alone edits repository files and owns Git/lock. Two directly prompted agents and one nested visual/adversarial worker are read-only. They cover separate source, representation and adversarial questions, all using GPT-5.6 Sol/ultra. A third direct spawn was declined by the four-slot limit because the nested worker already occupied it. Their review is computational, not independent human or laboratory evidence.
+
+## Question and selection
+
+The direction priority was completed by merged PR73. Qualify one actual forward methodol synthesis/product outcome from the retained 2017 SI (Methods pp9-11 and S12 p29), then assess whether shared relation mappings carry direction, conditions and product endpoint. Expected gain: reusable product evidence adjacent to the existing cleavage and perturbation results, preventing unsupported transfer of cleavage selectivity. Stop after one useful source-bound outcome or if identity/condition/product joins require source repair. Strongest alternative is another chemical class; defer until the new relation is tested against this materially different endpoint. No unchanged access retry or settled perturbation re-review.
+
+## Source and coordination rules
+
+No new acquisition planned; retained SI SHA256 `2d1ce2aa6d4851996be75e63990ac3498a62ab611630b1529f1cf37c6976160d` in `.git/catalytic-earth-source-cache/`. Cumulative RA95 scope remains 24 requests / 15,353,338 bytes. Preserve all original source packets, witnesses and protected history. Source objections override agreement. Return concise evidence locators and required scope restrictions to the parent; do not edit this board.
+
+## Decisions and review
+
+- Source: `forward_source` and its `pdf_visual_audit` worker visually checked Methods pp9-11,17 and S12p29. The named8F recipe reports67%conversion at3h; isolation reports78.1micromol/19.10mg/60.1%yield. The source says R:S99.2:0.8 and prints>98.4%ee; its p17 absolute-configuration basis is optical-rotation comparison, with cited reference literature not rechecked.
+- Material source objections: preserve50mL×2mM=100micromol versus printed130micromol; preserve MethodsR6.0/S7.9min versus S12S6.0/R7.9min. No repaired recipe, yield or retention assignment.71%is source-calculated from a separate apparent-equilibrium assay at0.1-1.0Macetone, whereas synthesis nominally uses2M.
+- Independent source and representation challenges found a draft evidence transfer: copying the8F product object assigned its rotation/configuration to precursor controls. Corrected before publication. Shared reaction and conversion product identity is neutral; the8F composition row owns the rotation-based author assignment, altered precursor composition is caption-only, and the0.7%conversion arm has no configuration. Its44%ee belongs1day/approximately50fold enzyme.
+- Representation: `forward_representation` identified a real shared gap, explicit reaction participants. One generic source-bound primitive now carries named reactant/product sides and roles. The engine matches source-assay identity/direction and exact reactant participant IDs, including a product-ID swap under an unchanged substrate-bundle ID. Exact reviewed bytes bind chemistry; this is not inferred atom mapping. Duplicate reaction objects were removed; one provider is canonical.
+- The same consumer now projects113parameter records (seven added synthesis records), with all55prior comparison requests and41eligible/14abstained results unchanged. The strict ee bound remains structured source context, never an exact scalar comparison. Source-level outcome_context_id joins the8F conversion/isolation/composition stages while separating both precursor arms.
+- Generic perturbation arithmetic stays blocked for synthesis rows. The explicitly source-declared67%versus0.7%precursor contrast remains structured evidence; no single-group effect, rate ratio or measured curation speedup is inferred.
+- Reconsideration: chemical facts remain data, while one missing general concept justified a small consumer extension. Exact sequence providers, source witnesses and all prior comparisons are reused. The useful integration is product evidence with invalid-transfer exclusions; no superiority to competent source reading or demonstrated design performance is claimed. Next qualify a designed Diels–Alder source/control case to test the relation beyond aldol chemistry; stop at one supported relation or a grounded missing-evidence result, not another easy yield row.
+- Validation: prior31claim objects and all five original source packets/panels/comparisons verified unchanged. Seven retained witnesses verify15,359,106bytes. Source requests/bytes this run:0/0. A local old build-tool version was replaced by an isolated environment using requirements/build.lock; repository build configuration was not changed. Final review bindings, focused/core tests, repository contracts and exact-head CI remain publication gates.
+
+
+Final source, representation and nested visual/adversarial verdicts: accepted at 2026-09-10T08:33:56.881089+00:00. Exact bindings are recorded in the source and common reviews; all source objections resolved at the narrowed scope.
+
+Final local checks:25focused tests,548core tests,repository contracts and current-wheel Atlas3/Atlas10/source/candidate/core verification pass. All three read-only workers completed. Architecture inventory changed only paths_checked17635to17639; all frozen module digests remain unchanged. Public query verifies113records/55requests/41eligible and seven witness files. Exact-head PR/main CI and source/diff review gate merging.

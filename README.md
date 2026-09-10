@@ -50,6 +50,13 @@ a production biological design system.
 
 ## Quick Status — 2026-09-10
 
+The [forward methodol synthesis outcome](docs/ATLAS_FORWARD_SYNTHESIS.md)
+now carries 67% source-reported conversion and 60.1% isolated yield beside
+explicit reactant/product context. Source amount and R/S retention conflicts
+remain visible; precursor and evolved-product assignments stay separate.
+This curates a published outcome without establishing a project experiment
+or prospective design success.
+
 The [source-bound perturbation relation](docs/ATLAS_PERTURBATION_RELATION.md)
 now recovers RA95 and RA61 catalytic-group comparisons and the KE59 matched-control
 abstention through one offline consumer. It preserves construct/background,

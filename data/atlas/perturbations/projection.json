@@ -3,10 +3,10 @@
   "scope": {
     "question": "Which source-defined catalytic-group perturbations retain a measured endpoint, and which apparent comparisons cannot be transferred?",
     "evidence": "Projection of accepted source annotations; not new measurements, an independent evaluation, protein admission or evidence-tier promotion.",
-    "selection": "All rows of the accepted RA95 2013 kinetic and stereoselectivity tables and RA95 2017 kinetic panel; all six RA61 Table4 construct rows; all five KE59 Table2 pH-profile rows and its unassessed E230-control question. The beta-barrel packet is outside this bounded relation.",
+    "selection": "All rows of the accepted RA95 2013 kinetic and stereoselectivity tables and RA95 2017 kinetic panel; all six RA61 Table4 construct rows; all five KE59 Table2 pH-profile rows and its unassessed E230-control question. The beta-barrel packet is outside this bounded relation. One source-reported RA95.5-8F methodol synthesis outcome and its two precursor comparator contexts extend product evidence with separate conversion, isolation and source-assigned composition records.",
     "arithmetic": "Source-rounded central values, same-source assay and background only; reported efficiencies are never replaced by kcat/KM division.",
     "identity": "Exact sequence/provider availability is separate from study-declared construct association and physical assay-specimen identity.",
-    "limitations": "No pooled rates, generic inactivity labels, causal residue assignments, full apparatus claims, microscopic coupling energy or design-success estimates."
+    "limitations": "No pooled rates, generic inactivity labels, causal residue assignments, full apparatus claims, microscopic coupling energy or design-success estimates. Forward product composition retains source-author configuration and unresolved retention mapping; strict ee bounds remain structured source context, not central-value comparisons."
   },
   "sources": {
     "ra95f": {
@@ -28,6 +28,10 @@
     "ke59": {
       "path": "data/atlas/study_context/ke59_2012/source_qualification.json",
       "sha256": "377da7aa8ab0966aef24757c8a00423c336feb46b41682010a10f4957670c558"
+    },
+    "ra95syn": {
+      "path": "data/atlas/study_context/ra95_2017/forward_synthesis.json",
+      "sha256": "2b9fbc1b3dc777956a705f8502c1babc9ce2edb1e1cdb18b334d90d504ad5a14"
     }
   },
   "constructs": {
@@ -733,6 +737,23 @@
       "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
       "perturbation_provider": null,
       "background_provider": null
+    },
+    "ra95_2017:RA95.5-8": {
+      "source_construct_id": "RA95.5-8",
+      "provider": {
+        "source": "ra95syn",
+        "pointer": "/constructs/1"
+      },
+      "sequence_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/3"
+      },
+      "background_id": "ra95_2017:RA95.5-8",
+      "perturbation": [],
+      "perturbation_scope": "source-defined precursor reference; no single-group contrast assigned to the evolved8F relation",
+      "identity_scope": "Exact2017 sequence equality was previously checked; no shared physical preparation implied",
+      "perturbation_provider": null,
+      "background_provider": null
     }
   },
   "assays": {
@@ -812,6 +833,50 @@
       "reaction_direction": "Kemp elimination; pH-profile parameter only",
       "uncertainty_context": "No complete pH-series buffer/temperature/replication/fitting specification in retained main text; cited methods and SI are not acquired. Do not transfer fixed-pH routine kinetics conditions to the varied-pH series.",
       "source_assay_id": "5-nitro-BI_pH-rate-series"
+    },
+    "ra95_2017:methodol-synthesis-3h-HPLC": {
+      "provider": {
+        "source": "ra95syn",
+        "pointer": "/assays/0"
+      },
+      "qualified": true,
+      "endpoint_kind": "source_reported_synthesis_conversion",
+      "reaction_direction": "aldol addition (synthesis)",
+      "uncertainty_context": "No replicate count or statistical error reported for this synthesis outcome; not zero uncertainty.",
+      "source_assay_id": "methodol-synthesis-3h-HPLC"
+    },
+    "ra95_2017:methodol-synthesis-isolated-yield": {
+      "provider": {
+        "source": "ra95syn",
+        "pointer": "/assays/1"
+      },
+      "qualified": true,
+      "endpoint_kind": "source_reported_synthesis_isolated_yield",
+      "reaction_direction": "aldol addition (synthesis)",
+      "uncertainty_context": "No replicate count or statistical error reported for this synthesis outcome; not zero uncertainty.",
+      "source_assay_id": "methodol-synthesis-isolated-yield"
+    },
+    "ra95_2017:methodol-synthesis-product-chiral": {
+      "provider": {
+        "source": "ra95syn",
+        "pointer": "/assays/2"
+      },
+      "qualified": true,
+      "endpoint_kind": "source_reported_synthetic_product_composition",
+      "reaction_direction": "aldol addition (synthesis)",
+      "uncertainty_context": "No replicate count or statistical error reported for this synthesis outcome; not zero uncertainty.",
+      "source_assay_id": "methodol-synthesis-product-chiral"
+    },
+    "ra95_2017:precursor-methodol-synthesis-altered-product-chiral": {
+      "provider": {
+        "source": "ra95syn",
+        "pointer": "/assays/3"
+      },
+      "qualified": false,
+      "endpoint_kind": "source_reported_synthetic_product_composition",
+      "reaction_direction": "aldol addition (synthesis)",
+      "uncertainty_context": "Not reported; not zero uncertainty.",
+      "source_assay_id": "precursor-methodol-synthesis-altered-product-chiral"
     }
   },
   "substrates": {
@@ -860,6 +925,16 @@
         "source": "ke59",
         "pointer": "/assays/0"
       }
+    },
+    "aldol-inputs:acetone+6-methoxy-2-naphthaldehyde": {
+      "name": "acetone plus6-methoxy-2-naphthaldehyde",
+      "state": "two achiral reactants",
+      "source": "Obexer2017:SI:Methods:pp9-11",
+      "limit": "This ID denotes the source-defined reactant combination, not methodol as cleavage substrate or an atom-mapped reaction.",
+      "participant_ids": [
+        "2a",
+        "acetone"
+      ]
     }
   },
   "panels": [
@@ -1441,6 +1516,207 @@
           }
         }
       ]
+    },
+    {
+      "id": "ra95-synthesis-conversion",
+      "study_id": "ra95_2017",
+      "source": "ra95syn",
+      "rows_pointer": "/conversion_observations",
+      "fields": {
+        "row_id": {
+          "pointer": "/row_id"
+        },
+        "construct_id": {
+          "pointer": "/construct_id"
+        },
+        "assay_id": {
+          "pointer": "/assay_id"
+        },
+        "substrate_id": {
+          "literal": "aldol-inputs:acetone+6-methoxy-2-naphthaldehyde"
+        },
+        "source_locator": {
+          "pointer": "/source"
+        }
+      },
+      "row_checks": [
+        {
+          "selector": {
+            "pointer": "/generic_perturbation_comparison_eligible"
+          },
+          "expected": true,
+          "reason": "outside_generic_perturbation_comparisons;source_declared_precursor_contrast_preserved_in_context"
+        }
+      ],
+      "parameters": [
+        {
+          "id": "conversion",
+          "pointer": "/conversion",
+          "kind": {
+            "pointer": "/result_kind"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/uncertainty"
+            },
+            "kind": {
+              "pointer": "/uncertainty_kind"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          }
+        }
+      ],
+      "reaction_id": "ra95_2017:methodol-aldol-addition"
+    },
+    {
+      "id": "ra95-synthesis-isolation",
+      "study_id": "ra95_2017",
+      "source": "ra95syn",
+      "rows_pointer": "/isolation_observations",
+      "fields": {
+        "row_id": {
+          "pointer": "/row_id"
+        },
+        "construct_id": {
+          "pointer": "/construct_id"
+        },
+        "assay_id": {
+          "pointer": "/assay_id"
+        },
+        "substrate_id": {
+          "literal": "aldol-inputs:acetone+6-methoxy-2-naphthaldehyde"
+        },
+        "source_locator": {
+          "pointer": "/source"
+        }
+      },
+      "row_checks": [
+        {
+          "selector": {
+            "pointer": "/generic_perturbation_comparison_eligible"
+          },
+          "expected": true,
+          "reason": "outside_generic_perturbation_comparisons;source_declared_precursor_contrast_preserved_in_context"
+        }
+      ],
+      "parameters": [
+        {
+          "id": "isolated_yield",
+          "pointer": "/isolated_yield",
+          "kind": {
+            "pointer": "/result_kind"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/uncertainty"
+            },
+            "kind": {
+              "pointer": "/uncertainty_kind"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          }
+        }
+      ],
+      "reaction_id": "ra95_2017:methodol-aldol-addition"
+    },
+    {
+      "id": "ra95-synthesis-composition",
+      "study_id": "ra95_2017",
+      "source": "ra95syn",
+      "rows_pointer": "/stereochemical_observations",
+      "fields": {
+        "row_id": {
+          "pointer": "/row_id"
+        },
+        "construct_id": {
+          "pointer": "/construct_id"
+        },
+        "assay_id": {
+          "pointer": "/assay_id"
+        },
+        "substrate_id": {
+          "literal": "aldol-inputs:acetone+6-methoxy-2-naphthaldehyde"
+        },
+        "source_locator": {
+          "pointer": "/source"
+        }
+      },
+      "row_checks": [
+        {
+          "selector": {
+            "pointer": "/generic_perturbation_comparison_eligible"
+          },
+          "expected": true,
+          "reason": "outside_generic_perturbation_comparisons;source_declared_precursor_contrast_preserved_in_context"
+        }
+      ],
+      "parameters": [
+        {
+          "id": "source_reported_R_product_parts",
+          "pointer": "/reported_R_parts",
+          "kind": {
+            "pointer": "/result_kind"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/uncertainty"
+            },
+            "kind": {
+              "pointer": "/uncertainty_kind"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          }
+        },
+        {
+          "id": "source_reported_S_product_parts",
+          "pointer": "/reported_S_parts",
+          "kind": {
+            "pointer": "/result_kind"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/uncertainty"
+            },
+            "kind": {
+              "pointer": "/uncertainty_kind"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          }
+        }
+      ],
+      "reaction_id": "ra95_2017:methodol-aldol-addition"
     }
   ],
   "comparisons": [
@@ -2881,6 +3157,64 @@
         "source": "ke59",
         "pointer": "/evidence_limits"
       }
+    ],
+    "ra95syn": [
+      {
+        "source": "ra95syn",
+        "pointer": "/assessment_id"
+      },
+      {
+        "source": "ra95syn",
+        "pointer": "/operation"
+      },
+      {
+        "source": "ra95syn",
+        "pointer": "/question"
+      },
+      {
+        "source": "ra95syn",
+        "pointer": "/conclusion"
+      },
+      {
+        "source": "ra95syn",
+        "pointer": "/counted_objects"
+      },
+      {
+        "source": "ra95syn",
+        "pointer": "/source_access"
+      },
+      {
+        "source": "ra95syn",
+        "pointer": "/selection"
+      },
+      {
+        "source": "ra95syn",
+        "pointer": "/reaction"
+      },
+      {
+        "source": "ra95syn",
+        "pointer": "/source_conflicts"
+      },
+      {
+        "source": "ra95syn",
+        "pointer": "/equilibrium_context"
+      },
+      {
+        "source": "ra95syn",
+        "pointer": "/control_scope"
+      },
+      {
+        "source": "ra95syn",
+        "pointer": "/design_use"
+      },
+      {
+        "source": "ra95syn",
+        "pointer": "/reconsideration"
+      },
+      {
+        "source": "ra95syn",
+        "pointer": "/limits"
+      }
     ]
   },
   "source_witnesses": [
@@ -2929,6 +3263,10 @@
         {
           "source": "ra95t",
           "pointer": "/sources/0"
+        },
+        {
+          "source": "ra95syn",
+          "pointer": "/sources/0"
         }
       ],
       "redistributed": false,
@@ -2942,6 +3280,10 @@
       "source_bindings": [
         {
           "source": "ra95t",
+          "pointer": "/sources/0/publisher_link_binding"
+        },
+        {
+          "source": "ra95syn",
           "pointer": "/sources/0/publisher_link_binding"
         }
       ],
@@ -3060,6 +3402,48 @@
           "apparent_pKa_from_k_cat_over_K_M_pH_profile"
         ]
       }
+    },
+    "conversion": {
+      "source_fields": [
+        "conversion"
+      ],
+      "units": [
+        "percent"
+      ]
+    },
+    "isolated_yield": {
+      "source_fields": [
+        "isolated_yield"
+      ],
+      "units": [
+        "percent"
+      ]
+    },
+    "source_reported_R_product_parts": {
+      "source_fields": [
+        "reported_R_parts"
+      ],
+      "units": [
+        "ratio_parts"
+      ]
+    },
+    "source_reported_S_product_parts": {
+      "source_fields": [
+        "reported_S_parts"
+      ],
+      "units": [
+        "ratio_parts"
+      ]
+    }
+  },
+  "reactions": {
+    "ra95_2017:methodol-aldol-addition": {
+      "source_reaction_id": "methodol-aldol-addition",
+      "provider": {
+        "source": "ra95syn",
+        "pointer": "/reaction"
+      },
+      "reactant_substrate_id": "aldol-inputs:acetone+6-methoxy-2-naphthaldehyde"
     }
   }
 }

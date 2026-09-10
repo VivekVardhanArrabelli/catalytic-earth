@@ -5,7 +5,7 @@ perturbation comparisons, their exclusions, and KE59's unassessed matched-contro
 question. It answers which source-defined perturbations retain a measured
 endpoint in a particular background, substrate and assay. It does not assign
 generic activity, residue causality, preserved catalytic apparatus or design
-success. Current scientific scope remains [CE-026–CE-031](../CLAIMS.md).
+success. Current scientific scope remains [CE-026–CE-032](../CLAIMS.md).
 
 ## Use the relation
 
@@ -46,7 +46,7 @@ Neither function discovers matched controls by similarity.
 | 2010 RA61 Y78F/S87A / named RA61 parent | 2.6 / 0.49 = 5.3061; source factor 5.3 separately retained | Initial-rate endpoint through aldehyde formation, not later cycle steps; exact sequences are unavailable |
 | 2012 KE59 E230 replacement question | Unassessed matched comparison, with no mutant/control/value fabricated | Acquired main article has no matched E230 assay; unacquired SI remains unassessed; pKa is not residue assignment |
 
-The input scope covers 41 previously curated source table-row contexts,
+The original perturbation input scope covers 41 previously curated source table-row contexts,
 projected into 106 parameter records: 93 numeric, ten unit-conflicted and
 three parameter-unavailable records attached to one nondetection context.
 There are 55 declared comparison requests, of which 41 permit the defined
@@ -54,6 +54,32 @@ descriptive arithmetic and 14 abstain. One abstention is the separate KE59
 assessment, not an experimental observation. These are view/coverage counts,
 not new experiments, biological cases, independent replicates or a success rate.
 No project experiment or independent expert validation was performed.
+
+## Forward product evidence
+
+The [forward methodol synthesis extension](ATLAS_FORWARD_SYNTHESIS.md) adds
+seven parameter records from one primary synthetic-product context and two
+precursor comparator contexts: source-reported conversion, isolated yield and
+enantiomer ratio components. The complete view therefore has 113 parameter
+records; the 55 existing comparison requests and their 41 eligible / 14 abstained
+outcomes are unchanged. These are dataset-view counts, not experiments or
+independent biological cases.
+
+The source reports 67% conversion, 60.1% isolated yield and R-major composition,
+while retaining two unresolved source conflicts: 50 mL × 2 mM versus printed
+130 micromol, and reversed R/S retention assignments in Methods versus S12.
+The author's R assignment also cites optical-rotation comparison. A strict
+greater-than-98.4% ee statement remains structured source context and is not
+coerced into an exact central value. The precursor's 0.7% conversion under the
+same conditions stays separate from its 44% ee under longer time and more enzyme.
+
+Optional `reaction_id` / `reaction_context` fields carry source-bound,
+role-tagged reactants and product. A shared check matches the input participant IDs to the source reaction
+reactants, binds the observation substrate ID and matches source-assay
+identity/direction. Exact reviewed source bytes bind chemical names and roles.
+Product identity is not substituted for cleavage substrate identity; missing
+legacy reaction context stays null. Participants and scope come from reviewed
+data, not an enzyme-specific runtime branch or an inferred atom map.
 
 ## Shared representation and eligibility
 
@@ -109,7 +135,7 @@ construct/control mismatch has not been repaired or silently admitted.
 
 ## Provenance and source retention
 
-Source bindings resolve the five accepted annotation packets. Output preserves
+Source bindings resolve the five original accepted annotation packets and the additive forward-synthesis packet. Output preserves
 study and source-locator context, original source conflicts, missing controls,
 thermal/mass evidence and selection limitations. Original primary bodies are
 not redistributed. Seven already acquired, hash-verified files were copied
@@ -146,9 +172,14 @@ invalid joins, zero-coercion, source conflict, missing controls and provider dri
 The three reconsideration conditions now have a concrete bounded result:
 case-specific layout mappings stay in data; existing sequence and source
 providers are reused unchanged; and a common consumer returns usable exclusions.
-This does not erase the manual effort of defining each panel. Next, qualify
-one actual forward methodol synthesis/product outcome from the retained 2017
-supplement and assess whether this relation can represent its conditions and
-product endpoint without a case-specific runtime branch. Preserve conversion,
-isolated yield, product configuration and the printed volume/amount discrepancy
-separately. Stop if a source-bound outcome requires repairing the source.
+This does not erase the manual effort of defining each panel. Forward methodol
+synthesis now supplies a completed product-evidence extension, with a justified
+shared reaction/participants primitive and source conflicts retained.
+
+The next bounded question should cross a chemical class: qualify one designed
+Diels–Alder source case for a measured product and catalytic-group control in
+the same construct/assay context. Expected gain is a synthesis/perturbation
+relation beyond aldol chemistry. First verify source access and control identity;
+stop after one source-bound usable relation or a supported missing-evidence
+finding. Do not add enzyme-specific code or choose another easy yield row merely
+to grow the annotation count.

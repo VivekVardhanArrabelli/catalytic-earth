@@ -262,6 +262,91 @@ class PerturbationRelationTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, "reviewed binding differs"):
                     project(root)
 
+    def test_forward_synthesis_keeps_reaction_sides_and_distinct_endpoints(self):
+        conversion = self.rows["ra95-synthesis-conversion:synthesis-8F-conversion:conversion"]
+        isolation = self.rows["ra95-synthesis-isolation:synthesis-8F-isolation:isolated_yield"]
+        self.assertEqual(conversion["value"], 67)
+        self.assertEqual(isolation["value"], 60.1)
+        self.assertNotEqual(conversion["endpoint_kind"], isolation["endpoint_kind"])
+        reaction = conversion["reaction_context"]["source_record"]
+        self.assertEqual({p["participant_id"] for p in reaction["participants"] if p["side"] == "reactant"},
+                         {"2a", "acetone"})
+        self.assertEqual({p["participant_id"] for p in reaction["participants"] if p["side"] == "product"}, {"1a"})
+        product = next(p for p in reaction["participants"] if p["side"] == "product")
+        self.assertIsNone(product["source_reported_major_configuration"])
+        cleavage = self.rows["ra95-tetrad:S1:RA95.5-8F:kcat_over_KM"]
+        self.assertIsNone(cleavage["reaction_context"])
+        request = {"id": "invalid-forward-cleavage-transfer", "study_id": "ra95_2017", "operation": "ratio",
+                   "roles": {"numerator": conversion["id"], "denominator": cleavage["id"]}}
+        result = compare(self.rows, request)
+        self.assertFalse(result["eligible"])
+        self.assertIn("mismatched_reaction_direction", result["reasons"])
+        self.assertIn("mismatched_reaction_id", result["reasons"])
+
+    def test_synthesis_amount_and_stereo_conflicts_remain_unrepaired(self):
+        source = json.loads((ROOT / self.spec["sources"]["ra95syn"]["path"]).read_text(encoding="utf-8"))
+        amount, retention = source["source_conflicts"]
+        self.assertEqual(amount["printed"]["amount_umol"], 130)
+        self.assertEqual(amount["project_arithmetic"]["amount_umol"], 100)
+        self.assertEqual(source["isolation_observations"][0]["isolated_yield"]["value"], 60.1)
+        self.assertEqual(retention["methods_p11_retention_min"], {"R": 6.0, "S": 7.9})
+        self.assertEqual(retention["figure_S12_retention_min"], {"S": 6.0, "R": 7.9})
+        stereo = self.rows["ra95-synthesis-composition:synthesis-8F-composition:source_reported_R_product_parts"]["source_record"]
+        self.assertEqual(stereo["ee_report"]["source_comparator"], ">")
+        self.assertEqual(stereo["ee_report"]["threshold"], 98.4)
+        self.assertFalse(stereo["ee_from_printed_ratio"]["replaces_source_bound"])
+        self.assertIsNone(stereo["product"]["normalized_retention_time_assignment"])
+
+    def test_precursor_conversion_cannot_inherit_altered_or_8f_stereo(self):
+        control = self.rows["ra95-synthesis-conversion:synthesis-8-conversion:conversion"]
+        altered = self.rows["ra95-synthesis-composition:synthesis-8-altered-composition:source_reported_R_product_parts"]
+        self.assertEqual(control["value"], 0.7)
+        self.assertIsNone(control["source_record"]["product"]["source_reported_major_configuration"])
+        self.assertNotEqual(control["assay_id"], altered["assay_id"])
+        self.assertFalse(altered["assay_qualified"])
+        self.assertEqual(altered["source_record"]["ee_report"]["value"], 44)
+        self.assertNotIn("optical_rotation", altered["source_record"])
+        self.assertEqual(altered["source_record"]["product"]["configuration_status"],
+                         "source_caption_assignment_for_altered_precursor_conditions")
+
+    def test_reaction_product_as_input_and_wrong_direction_are_rejected(self):
+        spec = deepcopy(self.spec)
+        panel = next(p for p in spec["panels"] if p["source"] == "ra95syn")
+        panel["fields"]["substrate_id"] = {"literal": "methodol:R"}
+        with self.assertRaisesRegex(ValueError, "reaction reactants differ"):
+            _project_candidate(ROOT, spec)
+        spec = deepcopy(self.spec)
+        spec["substrates"]["aldol-inputs:acetone+6-methoxy-2-naphthaldehyde"]["participant_ids"] = ["1a", "acetone"]
+        with self.assertRaisesRegex(ValueError, "substrate participant IDs differ"):
+            _project_candidate(ROOT, spec)
+        spec = deepcopy(self.spec)
+        spec["assays"]["ra95_2017:methodol-synthesis-3h-HPLC"]["reaction_direction"] = "retro-aldol cleavage"
+        with self.assertRaisesRegex(ValueError, "reaction differs from source assay"):
+            _project_candidate(ROOT, spec)
+
+    def test_reaction_requires_both_sides_and_participant_roles(self):
+        for defect in ("missing_product", "missing_role"):
+            with self.subTest(defect=defect), TemporaryDirectory() as directory:
+                root = Path(directory)
+                spec = deepcopy(self.spec)
+                for binding in spec["sources"].values():
+                    target = root / binding["path"]
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copyfile(ROOT / binding["path"], target)
+                binding = spec["sources"]["ra95syn"]
+                path = root / binding["path"]
+                source = json.loads(path.read_text(encoding="utf-8"))
+                participants = source["reaction"]["participants"]
+                if defect == "missing_product":
+                    participants[:] = [p for p in participants if p["side"] != "product"]
+                else:
+                    participants[0].pop("role")
+                raw = (json.dumps(source) + "\n").encode("utf-8")
+                path.write_bytes(raw)
+                binding["sha256"] = hashlib.sha256(raw).hexdigest()
+                with self.assertRaisesRegex(ValueError, "reactant and product sides|source name and role"):
+                    _project_candidate(root, spec)
+
 
 if __name__ == "__main__":
     unittest.main()
