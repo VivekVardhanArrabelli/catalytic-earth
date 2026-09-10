@@ -1,5 +1,25 @@
 # Current State
 
+## 2026-09-10: a matched tyrosine pair has conditional kinetic effects
+
+The [RA95.5-8F annotation](ATLAS_RA95_TETRAD_CONTROLS.md) adds a complete
+Y51F/Y180F paired substitution comparison. The double's displayed turnover,
+KM and efficiency depart from the multiplicative central-value references
+by factors 0.021, approximately 0.423 and approximately 0.050. CE-031 retains
+all three endpoints and their source-rounded basis, without statistical or
+microscopic cooperative-mechanism claims. Two absent Asn double combinations
+block three-way decomposition; the publisher page remains a preview and the
+main body is unacquired.
+
+Seven kinetic, seven thermal and seven mass rows stay separate. One exact
+258-residue final sequence and six derived mutant strings join these outcomes;
+two earlier sequence providers are reused only after direct equality checks.
+The source's E72Y/T94M list conflicts with F72Y/T95M in its own exact strings;
+the final 13 changes into 8F agree. Thermal N.D. means no transition observed,
+not kinetic inactivity. No runtime, protected registry or exposure changes.
+The same RA95 acquisition scope now totals 24 requests / 15,353,338 bytes;
+the immutable prior nine-request receipt is bound by a new appendix.
+
 ## 2026-09-10: de novo beta-barrel control retains a ligand and variant conflict
 
 The [Kipnis source annotation](ATLAS_BETA_BARREL_CONTROLS.md) adds two

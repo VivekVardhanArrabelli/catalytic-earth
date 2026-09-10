@@ -375,6 +375,23 @@ separate from unverified assay-specimen identity. Bound benzoate, alternate
 coordinates, restrained docking and a kinetic pH conflict retain their limits.
 This adds no experiment, productive geometry, full mechanism or evidence tier.
 
+## CE-031 — paired substitutions require parameter-specific interpretation
+
+**Status:** Supported
+
+The [RA95.5-8F paired comparison](docs/ATLAS_RA95_TETRAD_CONTROLS.md) binds
+parent, Y51F, Y180F and double-mutant central values to the same (R)-methodol
+assay. The double is 0.021 times a multiplicative single-mutant reference for
+kcat, approximately 0.423 for KM and approximately 0.050 for printed kcat/KM.
+Y180F alone has near-parent printed efficiency, while the double has 170 versus
+Y51F's 3,400 M^-1 s^-1. This supports descriptive nonmultiplicativity, without
+statistical equivalence/significance, microscopic cooperation or coupling energy.
+Seven kinetic, thermal and mass rows retain separate endpoints; two missing
+Asn combinations block three-way decomposition. Exact and derived sequences,
+source mutation-list conflicts, thermal/structural confounds and unacquired
+main-text scope remain explicit. No full-tetrad interaction, productive geometry, new
+experiment, independent validation or evidence-tier promotion is established.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,

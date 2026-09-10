@@ -387,5 +387,19 @@
       "data/atlas/study_context/beta_barrel_2022/sources/8AH9.cif",
       "docs/ATLAS_BETA_BARREL_CONTROLS.md"
     ]
+  },
+  {
+    "claim_id": "CE-031",
+    "claim_kind": "scientific_result",
+    "status": "Supported",
+    "claim": "In the acquired Obexer2017 supplement, matched RA95.5-8F Y51F/Y180F double-substitution central values depart from a multiplicative reference constructed from parent and single mutants. Observed/reference is 0.021 for kcat, approximately 0.423 for KM and approximately 0.050 for printed kcat/KM.",
+    "current_wording": "Describe parameter-specific nonmultiplicativity of source-reported central values. Y180F has printed efficiency 33600 versus parent 33800 M^-1 s^-1, while the Y51F/Y180F double has 170 versus Y51F 3400. Preserve all seven kinetic, thermal and mass rows separately, exact/derived sequence status and the two source mutation-list discrepancies. Missing Asn double combinations prevent three-way decomposition. No significance, microscopic cooperative mechanism, energetic coupling, active-fraction proof, productive geometry, full-tetrad completeness, new experiment or tier promotion follows. Main article body remains unacquired and unassessed.",
+    "rationale": "A complete same-background paired substitution comparison establishes conditional outcome effects at the declared assay/parameter scope. Near-parent single-mutant efficiency cannot justify independent group dispensability. Lower KM, differing melting points, source mass constraints and incomplete combinations bound mechanistic interpretation.",
+    "evidence": [
+      "data/atlas/study_context/ra95_2017/source_qualification.json",
+      "data/atlas/study_context/ra95_2017/source_review.json",
+      "data/atlas/study_context/ra95_2017/acquisition_appendix.json",
+      "docs/ATLAS_RA95_TETRAD_CONTROLS.md"
+    ]
   }
 ]
