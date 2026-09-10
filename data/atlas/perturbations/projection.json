@@ -3,10 +3,10 @@
   "scope": {
     "question": "Which source-defined catalytic-group perturbations retain a measured endpoint, and which apparent comparisons cannot be transferred?",
     "evidence": "Projection of accepted source annotations; not new measurements, an independent evaluation, protein admission or evidence-tier promotion.",
-    "selection": "All rows of the accepted RA95 2013 kinetic and stereoselectivity tables and RA95 2017 kinetic panel; all six RA61 Table4 construct rows; all five KE59 Table2 pH-profile rows and its unassessed E230-control question. The beta-barrel packet is outside this bounded relation. One source-reported RA95.5-8F methodol synthesis outcome and its two precursor comparator contexts extend product evidence with separate conversion, isolation and source-assigned composition records. A Siegel2010 Diels-Alder extension adds three parent kinetic parameters and two author-reported activity-reduction factors with unqualified assay/metric; product bounds remain separate source contexts. Human TKT 2019 adds all seven X5P/R5P kcat and all seven F6P k_forward entries plus all five existing NMR arms; other kinetic columns remain original source context, not extra common parameter records.",
+    "selection": "All rows of the accepted RA95 2013 kinetic and stereoselectivity tables and RA95 2017 kinetic panel; all six RA61 Table4 construct rows; all five KE59 Table2 pH-profile rows and its unassessed E230-control question. The beta-barrel packet is outside this bounded relation. One source-reported RA95.5-8F methodol synthesis outcome and its two precursor comparator contexts extend product evidence with separate conversion, isolation and source-assigned composition records. A Siegel2010 Diels-Alder extension adds three parent kinetic parameters and two author-reported activity-reduction factors with unqualified assay/metric; product bounds remain separate source contexts. Human TKT 2019 adds all seven X5P/R5P kcat and all seven F6P k_forward entries plus all five existing NMR arms; other kinetic columns remain original source context, not extra common parameter records. POX 2019 adds all six variants for seven selected columns: pyruvate/DCPIP kcat and KM; MAP k_on, k_off and K_D_app; and anaerobic pyruvate/FAD k_app_max and K_0.5. The other three columns remain original source context, not missing data.",
     "arithmetic": "Source-rounded central values, same-source assay and background only; reported efficiencies are never replaced by kcat/KM division.",
     "identity": "Exact sequence/provider availability is separate from study-declared construct association and physical assay-specimen identity.",
-    "limitations": "No pooled rates, generic inactivity labels, causal residue assignments, full apparatus claims, microscopic coupling energy or design-success estimates. Forward product composition retains source-author configuration and unresolved retention mapping; strict ee bounds remain structured source context, not central-value comparisons. Diels-Alder activity-reduction summaries do not identify mutant kcat or product outcomes; strict product bounds and mismatched assays remain in context. TKT reporter-unavailable parameters, NMR qualitative presence / scoped nondetection and positive turnover remain different kinds; no selective partner-only intervention, crystal-to-assay identity or productive F6P full-cycle inference."
+    "limitations": "No pooled rates, generic inactivity labels, causal residue assignments, full apparatus claims, microscopic coupling energy or design-success estimates. Forward product composition retains source-author configuration and unresolved retention mapping; strict ee bounds remain structured source context, not central-value comparisons. Diels-Alder activity-reduction summaries do not identify mutant kcat or product outcomes; strict product bounds and mismatched assays remain in context. TKT reporter-unavailable parameters, NMR qualitative presence / scoped nondetection and positive turnover remain different kinds; no selective partner-only intervention, crystal-to-assay identity or productive F6P full-cycle inference. POX analogue nonbinding differs from TKT reporter absence. MAP apparent equilibrium includes a covalent conjugate; positive pyruvate fitted rates do not establish oxygen turnover, an elementary-step rate or exact construct/preparation identity."
   },
   "sources": {
     "ra95f": {
@@ -48,6 +48,14 @@
     "tkti": {
       "path": "data/atlas/study_context/6ha3/perturbation_context.json",
       "sha256": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0"
+    },
+    "poxf": {
+      "path": "data/atlas/study_context/pox2019/functional_comparison.json",
+      "sha256": "570ffb83d9272d41ed72ff389c2f56fbc1415c7d6d9fbdd6c622476957c2a4b5"
+    },
+    "poxi": {
+      "path": "data/atlas/study_context/pox2019/perturbation_context.json",
+      "sha256": "e29120547dbd982b1fb5b3f2ff1b1228e0fc96a16f540f20c1eaf39d35b93257"
     }
   },
   "constructs": {
@@ -996,6 +1004,146 @@
         "source": "tkti",
         "pointer": "/constructs/6/background_construct_id"
       }
+    },
+    "pox_2019:wild_type": {
+      "source_construct_id": "wild_type",
+      "provider": {
+        "source": "poxi",
+        "pointer": "/constructs/0"
+      },
+      "sequence_provider": {
+        "source": "poxi",
+        "pointer": "/constructs/0"
+      },
+      "background_id": "pox_2019:wild_type",
+      "perturbation": [],
+      "perturbation_scope": "Source-named substitution relative to this study POX wild type; no exact sequence or selective subunit intervention established.",
+      "identity_scope": "Within-study named POX variant; no structure-to-assay sequence or specimen authentication."
+    },
+    "pox_2019:E59Q": {
+      "source_construct_id": "E59Q",
+      "provider": {
+        "source": "poxi",
+        "pointer": "/constructs/1"
+      },
+      "sequence_provider": {
+        "source": "poxi",
+        "pointer": "/constructs/1"
+      },
+      "background_id": "pox_2019:wild_type",
+      "perturbation": [
+        "E59Q"
+      ],
+      "perturbation_scope": "Source-named substitution relative to this study POX wild type; no exact sequence or selective subunit intervention established.",
+      "identity_scope": "Within-study named POX variant; no structure-to-assay sequence or specimen authentication.",
+      "perturbation_provider": {
+        "source": "poxi",
+        "pointer": "/constructs/1/declared_substitutions"
+      },
+      "background_provider": {
+        "source": "poxi",
+        "pointer": "/constructs/1/background_construct_id"
+      }
+    },
+    "pox_2019:H89N": {
+      "source_construct_id": "H89N",
+      "provider": {
+        "source": "poxi",
+        "pointer": "/constructs/2"
+      },
+      "sequence_provider": {
+        "source": "poxi",
+        "pointer": "/constructs/2"
+      },
+      "background_id": "pox_2019:wild_type",
+      "perturbation": [
+        "H89N"
+      ],
+      "perturbation_scope": "Source-named substitution relative to this study POX wild type; no exact sequence or selective subunit intervention established.",
+      "identity_scope": "Within-study named POX variant; no structure-to-assay sequence or specimen authentication.",
+      "perturbation_provider": {
+        "source": "poxi",
+        "pointer": "/constructs/2/declared_substitutions"
+      },
+      "background_provider": {
+        "source": "poxi",
+        "pointer": "/constructs/2/background_construct_id"
+      }
+    },
+    "pox_2019:H89A": {
+      "source_construct_id": "H89A",
+      "provider": {
+        "source": "poxi",
+        "pointer": "/constructs/3"
+      },
+      "sequence_provider": {
+        "source": "poxi",
+        "pointer": "/constructs/3"
+      },
+      "background_id": "pox_2019:wild_type",
+      "perturbation": [
+        "H89A"
+      ],
+      "perturbation_scope": "Source-named substitution relative to this study POX wild type; no exact sequence or selective subunit intervention established.",
+      "identity_scope": "Within-study named POX variant; no structure-to-assay sequence or specimen authentication.",
+      "perturbation_provider": {
+        "source": "poxi",
+        "pointer": "/constructs/3/declared_substitutions"
+      },
+      "background_provider": {
+        "source": "poxi",
+        "pointer": "/constructs/3/background_construct_id"
+      }
+    },
+    "pox_2019:E60Q": {
+      "source_construct_id": "E60Q",
+      "provider": {
+        "source": "poxi",
+        "pointer": "/constructs/4"
+      },
+      "sequence_provider": {
+        "source": "poxi",
+        "pointer": "/constructs/4"
+      },
+      "background_id": "pox_2019:wild_type",
+      "perturbation": [
+        "E60Q"
+      ],
+      "perturbation_scope": "Source-named substitution relative to this study POX wild type; no exact sequence or selective subunit intervention established.",
+      "identity_scope": "Within-study named POX variant; no structure-to-assay sequence or specimen authentication.",
+      "perturbation_provider": {
+        "source": "poxi",
+        "pointer": "/constructs/4/declared_substitutions"
+      },
+      "background_provider": {
+        "source": "poxi",
+        "pointer": "/constructs/4/background_construct_id"
+      }
+    },
+    "pox_2019:E60A": {
+      "source_construct_id": "E60A",
+      "provider": {
+        "source": "poxi",
+        "pointer": "/constructs/5"
+      },
+      "sequence_provider": {
+        "source": "poxi",
+        "pointer": "/constructs/5"
+      },
+      "background_id": "pox_2019:wild_type",
+      "perturbation": [
+        "E60A"
+      ],
+      "perturbation_scope": "Source-named substitution relative to this study POX wild type; no exact sequence or selective subunit intervention established.",
+      "identity_scope": "Within-study named POX variant; no structure-to-assay sequence or specimen authentication.",
+      "perturbation_provider": {
+        "source": "poxi",
+        "pointer": "/constructs/5/declared_substitutions"
+      },
+      "background_provider": {
+        "source": "poxi",
+        "pointer": "/constructs/5/background_construct_id"
+      }
     }
   },
   "assays": {
@@ -1209,6 +1357,126 @@
         "numeric_intermediate_fraction": null,
         "conditions_limit": "Methods describe a typical experiment; exact variant-specific preparations and per-panel acquisition settings remain unresolved."
       }
+    },
+    "pox_2019:pyruvate_dcpip_steady_state": {
+      "provider": {
+        "source": "poxf",
+        "pointer": "/assays/0"
+      },
+      "source_assay_id": "pyruvate_dcpip_steady_state",
+      "qualified": true,
+      "endpoint_kind": "source_reported_pyruvate_dependent_DCPIP_reduction",
+      "reaction_direction": "pyruvate-dependent DCPIP reduction in steady state; no oxygen-turnover rate measured",
+      "uncertainty_context": {
+        "table_statement": "All measurements carried out in triplicate and reported as mean plus/minus SD.",
+        "n_reported": 3,
+        "n_basis": "table-level statement; independent biological preparation count unspecified",
+        "sd_is_not_standard_error": true,
+        "raw_replicates_retained": false,
+        "figure_repeat_statement": "Figure 8 legend says the experiments were independently repeated twice with similar results; this is not recounted as new table rows or n=6.",
+        "missing_sd": "Source ratio columns have no displayed SD. No uncertainty is invented, and source-rounded ratios are not silently replaced by recomputation.",
+        "not_inferred": [
+          "parameter covariance",
+          "statistical significance",
+          "rate equivalence",
+          "uncertainty on central-value ratios",
+          "numeric MAP detection limit"
+        ],
+        "display_policy": "Values and units are normalized numeric transcriptions, not verbatim strings; n.a. and the inconsistent path-length unit remain literal where they matter.",
+        "source_ratio_rounding_example": {
+          "reported_variant": "E60A",
+          "assay_id": "pyruvate_single_turnover",
+          "parameter": "k_app_max/K_0.5",
+          "reported_value": 12.5,
+          "reported_unit": "mM^-1 s^-1",
+          "displayed_inputs": [
+            113,
+            9.0
+          ],
+          "arithmetic_of_displayed_inputs": 12.555555555555555,
+          "interpretation": "The printed quotient differs from arithmetic on displayed central values. Unreported fit precision is not reconstructed; the printed 12.5 remains the annotation value."
+        }
+      }
+    },
+    "pox_2019:map_stopped_flow": {
+      "provider": {
+        "source": "poxf",
+        "pointer": "/assays/1"
+      },
+      "source_assay_id": "map_stopped_flow",
+      "qualified": true,
+      "endpoint_kind": "source_model_reversible_covalent_analogue_binding",
+      "reaction_direction": "reversible MAP-ThDP covalent conjugate formation/dissociation; analogue not further processed",
+      "uncertainty_context": {
+        "table_statement": "All measurements carried out in triplicate and reported as mean plus/minus SD.",
+        "n_reported": 3,
+        "n_basis": "table-level statement; independent biological preparation count unspecified",
+        "sd_is_not_standard_error": true,
+        "raw_replicates_retained": false,
+        "figure_repeat_statement": "Figure 8 legend says the experiments were independently repeated twice with similar results; this is not recounted as new table rows or n=6.",
+        "missing_sd": "Source ratio columns have no displayed SD. No uncertainty is invented, and source-rounded ratios are not silently replaced by recomputation.",
+        "not_inferred": [
+          "parameter covariance",
+          "statistical significance",
+          "rate equivalence",
+          "uncertainty on central-value ratios",
+          "numeric MAP detection limit"
+        ],
+        "display_policy": "Values and units are normalized numeric transcriptions, not verbatim strings; n.a. and the inconsistent path-length unit remain literal where they matter.",
+        "source_ratio_rounding_example": {
+          "reported_variant": "E60A",
+          "assay_id": "pyruvate_single_turnover",
+          "parameter": "k_app_max/K_0.5",
+          "reported_value": 12.5,
+          "reported_unit": "mM^-1 s^-1",
+          "displayed_inputs": [
+            113,
+            9.0
+          ],
+          "arithmetic_of_displayed_inputs": 12.555555555555555,
+          "interpretation": "The printed quotient differs from arithmetic on displayed central values. Unreported fit precision is not reconstructed; the printed 12.5 remains the annotation value."
+        }
+      }
+    },
+    "pox_2019:pyruvate_single_turnover": {
+      "provider": {
+        "source": "poxf",
+        "pointer": "/assays/2"
+      },
+      "source_assay_id": "pyruvate_single_turnover",
+      "qualified": true,
+      "endpoint_kind": "source_reported_anaerobic_pyruvate_processing",
+      "reaction_direction": "anaerobic pyruvate processing coupled to enzyme-bound FAD reduction; apparent saturated rate across multiple microscopic steps",
+      "uncertainty_context": {
+        "table_statement": "All measurements carried out in triplicate and reported as mean plus/minus SD.",
+        "n_reported": 3,
+        "n_basis": "table-level statement; independent biological preparation count unspecified",
+        "sd_is_not_standard_error": true,
+        "raw_replicates_retained": false,
+        "figure_repeat_statement": "Figure 8 legend says the experiments were independently repeated twice with similar results; this is not recounted as new table rows or n=6.",
+        "missing_sd": "Source ratio columns have no displayed SD. No uncertainty is invented, and source-rounded ratios are not silently replaced by recomputation.",
+        "not_inferred": [
+          "parameter covariance",
+          "statistical significance",
+          "rate equivalence",
+          "uncertainty on central-value ratios",
+          "numeric MAP detection limit"
+        ],
+        "display_policy": "Values and units are normalized numeric transcriptions, not verbatim strings; n.a. and the inconsistent path-length unit remain literal where they matter.",
+        "source_ratio_rounding_example": {
+          "reported_variant": "E60A",
+          "assay_id": "pyruvate_single_turnover",
+          "parameter": "k_app_max/K_0.5",
+          "reported_value": 12.5,
+          "reported_unit": "mM^-1 s^-1",
+          "displayed_inputs": [
+            113,
+            9.0
+          ],
+          "arithmetic_of_displayed_inputs": 12.555555555555555,
+          "interpretation": "The printed quotient differs from arithmetic on displayed central values. Unreported fit precision is not reconstructed; the printed 12.5 remains the annotation value."
+        }
+      }
     }
   },
   "substrates": {
@@ -1312,6 +1580,30 @@
       "canonical_reaction_id": null,
       "isomeric_smiles": null,
       "scope": "Cofactor-adduct formation or accumulation depends on assay; not X5P/R5P net turnover."
+    },
+    "pox:pyruvate": {
+      "name": "pyruvate",
+      "stereochemistry": "No stereochemical assignment is supplied or inferred for the source-named substrate.",
+      "role": "authentic substrate; pyruvate/DCPIP and anaerobic pyruvate/FAD assays remain distinct",
+      "source": {
+        "source": "poxf",
+        "pointer": "/assays/0"
+      },
+      "canonical_reaction_id": null,
+      "isomeric_smiles": null,
+      "scope": "No balanced reaction, exact external chemical identifier, protonation state or atom map is assigned."
+    },
+    "pox:MAP": {
+      "name": "methyl acetylphosphonate (MAP)",
+      "stereochemistry": "No stereochemical assignment is supplied or inferred for the source-named analogue.",
+      "role": "pyruvate analogue forming a reversible covalent MAP-ThDP conjugate that is not further processed",
+      "source": {
+        "source": "poxf",
+        "pointer": "/assays/1"
+      },
+      "canonical_reaction_id": null,
+      "isomeric_smiles": null,
+      "scope": "Source-model apparent binding includes the covalent conjugate; no pyruvate affinity or isolated noncovalent docking constant. Source spellings remain in the assay provider."
     }
   },
   "panels": [
@@ -2460,6 +2752,354 @@
           "literal": "normalized_project_annotation_not_verbatim_primary_quote"
         }
       }
+    },
+    {
+      "id": "pox-steady_state",
+      "study_id": "pox_2019",
+      "source": "poxf",
+      "rows_pointer": "/variants",
+      "fields": {
+        "row_id": {
+          "pointer": "/reported_variant"
+        },
+        "construct_id": {
+          "pointer": "/reported_variant"
+        },
+        "assay_id": {
+          "pointer": "/steady_state/assay_id"
+        },
+        "substrate_id": {
+          "literal": "pox:pyruvate"
+        },
+        "source_locator": {
+          "pointer": "/source_locator"
+        }
+      },
+      "parameters": [
+        {
+          "id": "kcat",
+          "pointer": "/steady_state/k_cat",
+          "kind": {
+            "pointer": "/status"
+          },
+          "status_kinds": {
+            "reported_point_estimate": "numeric"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/sd"
+            },
+            "kind": {
+              "literal": "standard_deviation_when_reported"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            },
+            "unit": {
+              "pointer": "/unit"
+            }
+          }
+        },
+        {
+          "id": "KM",
+          "pointer": "/steady_state/substrate_response_constant",
+          "kind": {
+            "pointer": "/status"
+          },
+          "status_kinds": {
+            "reported_point_estimate": "numeric"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/sd"
+            },
+            "kind": {
+              "literal": "standard_deviation_when_reported"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            },
+            "unit": {
+              "pointer": "/unit"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "pox-analogue_binding",
+      "study_id": "pox_2019",
+      "source": "poxf",
+      "rows_pointer": "/variants",
+      "fields": {
+        "row_id": {
+          "pointer": "/reported_variant"
+        },
+        "construct_id": {
+          "pointer": "/reported_variant"
+        },
+        "assay_id": {
+          "pointer": "/analogue_binding/assay_id"
+        },
+        "substrate_id": {
+          "literal": "pox:MAP"
+        },
+        "source_locator": {
+          "pointer": "/source_locator"
+        }
+      },
+      "parameters": [
+        {
+          "id": "k_on",
+          "pointer": "/analogue_binding/k_on",
+          "kind": {
+            "pointer": "/status"
+          },
+          "status_kinds": {
+            "reported_point_estimate": "numeric",
+            "not_applicable_source_reports_no_analogue_binding": "unavailable"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/sd"
+            },
+            "kind": {
+              "literal": "standard_deviation_when_reported"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            },
+            "unit": {
+              "pointer": "/unit"
+            }
+          },
+          "unavailability": {
+            "source_token": {
+              "pointer": "/source_display"
+            },
+            "scope": {
+              "literal": "MAP stopped-flow apparent binding parameter unavailable; source reports no MAP analogue binding by E59Q"
+            },
+            "reason": {
+              "pointer": "/reason"
+            },
+            "is_zero_rate": {
+              "literal": false
+            },
+            "numeric_detection_limit": {
+              "literal": null
+            },
+            "reason_basis": {
+              "literal": "Table 2b E59Q row footnote k applies to the unavailable MAP parameter group; the superscript is printed on k_on, not separately on all three cells."
+            }
+          }
+        },
+        {
+          "id": "k_off",
+          "pointer": "/analogue_binding/k_off",
+          "kind": {
+            "pointer": "/status"
+          },
+          "status_kinds": {
+            "reported_point_estimate": "numeric",
+            "not_applicable_source_reports_no_analogue_binding": "unavailable"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/sd"
+            },
+            "kind": {
+              "literal": "standard_deviation_when_reported"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            },
+            "unit": {
+              "pointer": "/unit"
+            }
+          },
+          "unavailability": {
+            "source_token": {
+              "pointer": "/source_display"
+            },
+            "scope": {
+              "literal": "MAP stopped-flow apparent binding parameter unavailable; source reports no MAP analogue binding by E59Q"
+            },
+            "reason": {
+              "pointer": "/reason"
+            },
+            "is_zero_rate": {
+              "literal": false
+            },
+            "numeric_detection_limit": {
+              "literal": null
+            },
+            "reason_basis": {
+              "literal": "Table 2b E59Q row footnote k applies to the unavailable MAP parameter group; the superscript is printed on k_on, not separately on all three cells."
+            }
+          }
+        },
+        {
+          "id": "K_D_app",
+          "pointer": "/analogue_binding/K_D_app",
+          "kind": {
+            "pointer": "/status"
+          },
+          "status_kinds": {
+            "reported_point_estimate": "numeric",
+            "not_applicable_source_reports_no_analogue_binding": "unavailable"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/sd"
+            },
+            "kind": {
+              "literal": "not_reported"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            },
+            "unit": {
+              "pointer": "/unit"
+            }
+          },
+          "unavailability": {
+            "source_token": {
+              "pointer": "/source_display"
+            },
+            "scope": {
+              "literal": "MAP stopped-flow apparent binding parameter unavailable; source reports no MAP analogue binding by E59Q"
+            },
+            "reason": {
+              "pointer": "/reason"
+            },
+            "is_zero_rate": {
+              "literal": false
+            },
+            "numeric_detection_limit": {
+              "literal": null
+            },
+            "reason_basis": {
+              "literal": "Table 2b E59Q row footnote k applies to the unavailable MAP parameter group; the superscript is printed on k_on, not separately on all three cells."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "pox-single_turnover",
+      "study_id": "pox_2019",
+      "source": "poxf",
+      "rows_pointer": "/variants",
+      "fields": {
+        "row_id": {
+          "pointer": "/reported_variant"
+        },
+        "construct_id": {
+          "pointer": "/reported_variant"
+        },
+        "assay_id": {
+          "pointer": "/single_turnover/assay_id"
+        },
+        "substrate_id": {
+          "literal": "pox:pyruvate"
+        },
+        "source_locator": {
+          "pointer": "/source_locator"
+        }
+      },
+      "parameters": [
+        {
+          "id": "k_app_max",
+          "pointer": "/single_turnover/k_app_max",
+          "kind": {
+            "pointer": "/status"
+          },
+          "status_kinds": {
+            "reported_point_estimate": "numeric"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/sd"
+            },
+            "kind": {
+              "literal": "standard_deviation_when_reported"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            },
+            "unit": {
+              "pointer": "/unit"
+            }
+          }
+        },
+        {
+          "id": "K_0.5",
+          "pointer": "/single_turnover/K_0.5",
+          "kind": {
+            "pointer": "/status"
+          },
+          "status_kinds": {
+            "reported_point_estimate": "numeric"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/sd"
+            },
+            "kind": {
+              "literal": "standard_deviation_when_reported"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            },
+            "unit": {
+              "pointer": "/unit"
+            }
+          }
+        }
+      ]
     }
   ],
   "comparisons": [
@@ -4074,6 +4714,1392 @@
         }
       ],
       "scope": "Declared ratio request abstains: qualitative panel provides no numeric fractions or detection floor. Named WT context remains retained."
+    },
+    {
+      "id": "pox_2019:E59Q:kcat",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-steady_state:E59Q:kcat",
+        "denominator": "pox-steady_state:wild_type:kcat"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:E59Q:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:E59Q:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:E59Q:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:E59Q:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:E59Q:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:E59Q:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/1"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/derived_comparisons/unavailable_is_not_zero"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/cross_context_relations/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:E59Q:KM",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-steady_state:E59Q:KM",
+        "denominator": "pox-steady_state:wild_type:KM"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:E59Q:kcat",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:E59Q:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:E59Q:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:E59Q:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:E59Q:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:E59Q:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/1"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/derived_comparisons/unavailable_is_not_zero"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/cross_context_relations/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:E59Q:k_on",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-analogue_binding:E59Q:k_on",
+        "denominator": "pox-analogue_binding:wild_type:k_on"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:E59Q:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:E59Q:KM",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:E59Q:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:E59Q:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:E59Q:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:E59Q:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/1"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/derived_comparisons/unavailable_is_not_zero"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/cross_context_relations/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:E59Q:k_off",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-analogue_binding:E59Q:k_off",
+        "denominator": "pox-analogue_binding:wild_type:k_off"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:E59Q:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:E59Q:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:E59Q:k_on",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:E59Q:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:E59Q:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:E59Q:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/1"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/derived_comparisons/unavailable_is_not_zero"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/cross_context_relations/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:E59Q:K_D_app",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-analogue_binding:E59Q:K_D_app",
+        "denominator": "pox-analogue_binding:wild_type:K_D_app"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:E59Q:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:E59Q:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:E59Q:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:E59Q:k_off",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:E59Q:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:E59Q:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/1"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/derived_comparisons/unavailable_is_not_zero"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/cross_context_relations/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:E59Q:k_app_max",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-single_turnover:E59Q:k_app_max",
+        "denominator": "pox-single_turnover:wild_type:k_app_max"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:E59Q:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:E59Q:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:E59Q:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:E59Q:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:E59Q:K_D_app",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:E59Q:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/1"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/derived_comparisons/unavailable_is_not_zero"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/cross_context_relations/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:E59Q:K_0.5",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-single_turnover:E59Q:K_0.5",
+        "denominator": "pox-single_turnover:wild_type:K_0.5"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:E59Q:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:E59Q:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:E59Q:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:E59Q:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:E59Q:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:E59Q:k_app_max"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/1"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/derived_comparisons/unavailable_is_not_zero"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/cross_context_relations/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:H89N:kcat",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-steady_state:H89N:kcat",
+        "denominator": "pox-steady_state:wild_type:kcat"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:H89N:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:H89N:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:H89N:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:H89N:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:H89N:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:H89N:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/2"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:H89N:KM",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-steady_state:H89N:KM",
+        "denominator": "pox-steady_state:wild_type:KM"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:H89N:kcat",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:H89N:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:H89N:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:H89N:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:H89N:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:H89N:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/2"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:H89N:k_on",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-analogue_binding:H89N:k_on",
+        "denominator": "pox-analogue_binding:wild_type:k_on"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:H89N:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:H89N:KM",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:H89N:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:H89N:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:H89N:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:H89N:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/2"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:H89N:k_off",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-analogue_binding:H89N:k_off",
+        "denominator": "pox-analogue_binding:wild_type:k_off"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:H89N:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:H89N:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:H89N:k_on",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:H89N:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:H89N:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:H89N:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/2"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:H89N:K_D_app",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-analogue_binding:H89N:K_D_app",
+        "denominator": "pox-analogue_binding:wild_type:K_D_app"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:H89N:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:H89N:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:H89N:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:H89N:k_off",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:H89N:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:H89N:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/2"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:H89N:k_app_max",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-single_turnover:H89N:k_app_max",
+        "denominator": "pox-single_turnover:wild_type:k_app_max"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:H89N:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:H89N:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:H89N:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:H89N:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:H89N:K_D_app",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:H89N:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/2"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:H89N:K_0.5",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-single_turnover:H89N:K_0.5",
+        "denominator": "pox-single_turnover:wild_type:K_0.5"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:H89N:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:H89N:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:H89N:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:H89N:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:H89N:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:H89N:k_app_max"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/2"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:H89A:kcat",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-steady_state:H89A:kcat",
+        "denominator": "pox-steady_state:wild_type:kcat"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:H89A:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:H89A:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:H89A:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:H89A:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:H89A:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:H89A:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/3"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:H89A:KM",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-steady_state:H89A:KM",
+        "denominator": "pox-steady_state:wild_type:KM"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:H89A:kcat",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:H89A:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:H89A:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:H89A:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:H89A:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:H89A:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/3"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:H89A:k_on",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-analogue_binding:H89A:k_on",
+        "denominator": "pox-analogue_binding:wild_type:k_on"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:H89A:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:H89A:KM",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:H89A:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:H89A:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:H89A:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:H89A:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/3"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:H89A:k_off",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-analogue_binding:H89A:k_off",
+        "denominator": "pox-analogue_binding:wild_type:k_off"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:H89A:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:H89A:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:H89A:k_on",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:H89A:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:H89A:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:H89A:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/3"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:H89A:K_D_app",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-analogue_binding:H89A:K_D_app",
+        "denominator": "pox-analogue_binding:wild_type:K_D_app"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:H89A:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:H89A:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:H89A:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:H89A:k_off",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:H89A:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:H89A:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/3"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:H89A:k_app_max",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-single_turnover:H89A:k_app_max",
+        "denominator": "pox-single_turnover:wild_type:k_app_max"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:H89A:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:H89A:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:H89A:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:H89A:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:H89A:K_D_app",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:H89A:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/3"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:H89A:K_0.5",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-single_turnover:H89A:K_0.5",
+        "denominator": "pox-single_turnover:wild_type:K_0.5"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:H89A:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:H89A:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:H89A:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:H89A:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:H89A:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:H89A:k_app_max"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/3"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:E60Q:kcat",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-steady_state:E60Q:kcat",
+        "denominator": "pox-steady_state:wild_type:kcat"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:E60Q:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:E60Q:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:E60Q:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:E60Q:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:E60Q:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:E60Q:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/4"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:E60Q:KM",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-steady_state:E60Q:KM",
+        "denominator": "pox-steady_state:wild_type:KM"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:E60Q:kcat",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:E60Q:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:E60Q:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:E60Q:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:E60Q:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:E60Q:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/4"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:E60Q:k_on",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-analogue_binding:E60Q:k_on",
+        "denominator": "pox-analogue_binding:wild_type:k_on"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:E60Q:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:E60Q:KM",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:E60Q:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:E60Q:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:E60Q:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:E60Q:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/4"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:E60Q:k_off",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-analogue_binding:E60Q:k_off",
+        "denominator": "pox-analogue_binding:wild_type:k_off"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:E60Q:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:E60Q:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:E60Q:k_on",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:E60Q:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:E60Q:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:E60Q:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/4"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:E60Q:K_D_app",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-analogue_binding:E60Q:K_D_app",
+        "denominator": "pox-analogue_binding:wild_type:K_D_app"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:E60Q:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:E60Q:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:E60Q:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:E60Q:k_off",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:E60Q:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:E60Q:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/4"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:E60Q:k_app_max",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-single_turnover:E60Q:k_app_max",
+        "denominator": "pox-single_turnover:wild_type:k_app_max"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:E60Q:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:E60Q:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:E60Q:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:E60Q:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:E60Q:K_D_app",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:E60Q:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/4"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:E60Q:K_0.5",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-single_turnover:E60Q:K_0.5",
+        "denominator": "pox-single_turnover:wild_type:K_0.5"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:E60Q:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:E60Q:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:E60Q:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:E60Q:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:E60Q:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:E60Q:k_app_max"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/4"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:E60A:kcat",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-steady_state:E60A:kcat",
+        "denominator": "pox-steady_state:wild_type:kcat"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:E60A:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:E60A:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:E60A:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:E60A:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:E60A:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:E60A:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/5"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:E60A:KM",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-steady_state:E60A:KM",
+        "denominator": "pox-steady_state:wild_type:KM"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:E60A:kcat",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:E60A:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:E60A:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:E60A:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:E60A:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:E60A:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/5"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:E60A:k_on",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-analogue_binding:E60A:k_on",
+        "denominator": "pox-analogue_binding:wild_type:k_on"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:E60A:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:E60A:KM",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:E60A:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:E60A:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:E60A:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:E60A:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/5"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:E60A:k_off",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-analogue_binding:E60A:k_off",
+        "denominator": "pox-analogue_binding:wild_type:k_off"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:E60A:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:E60A:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:E60A:k_on",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:E60A:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:E60A:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:E60A:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/5"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:E60A:K_D_app",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-analogue_binding:E60A:K_D_app",
+        "denominator": "pox-analogue_binding:wild_type:K_D_app"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:E60A:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:E60A:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:E60A:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:E60A:k_off",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:E60A:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:E60A:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/5"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:E60A:k_app_max",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-single_turnover:E60A:k_app_max",
+        "denominator": "pox-single_turnover:wild_type:k_app_max"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:E60A:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:E60A:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:E60A:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:E60A:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:E60A:K_D_app",
+        "pox-single_turnover:wild_type:K_0.5",
+        "pox-single_turnover:E60A:K_0.5"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/5"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "pox_2019:E60A:K_0.5",
+      "study_id": "pox_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "pox-single_turnover:E60A:K_0.5",
+        "denominator": "pox-single_turnover:wild_type:K_0.5"
+      },
+      "context_observations": [
+        "pox-steady_state:wild_type:kcat",
+        "pox-steady_state:E60A:kcat",
+        "pox-steady_state:wild_type:KM",
+        "pox-steady_state:E60A:KM",
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:E60A:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:E60A:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-analogue_binding:E60A:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:E60A:k_app_max"
+      ],
+      "evidence": [
+        {
+          "source": "poxf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/5"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/variants/0"
+        }
+      ],
+      "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
     }
   ],
   "evidence_context": {
@@ -4556,6 +6582,58 @@
         "source": "tkti",
         "pointer": "/source_access"
       }
+    ],
+    "poxf": [
+      {
+        "source": "poxf",
+        "pointer": "/study"
+      },
+      {
+        "source": "poxf",
+        "pointer": "/selection"
+      },
+      {
+        "source": "poxf",
+        "pointer": "/source_access"
+      },
+      {
+        "source": "poxf",
+        "pointer": "/uncertainty"
+      },
+      {
+        "source": "poxf",
+        "pointer": "/measurement_identity"
+      },
+      {
+        "source": "poxf",
+        "pointer": "/derived_comparisons"
+      },
+      {
+        "source": "poxf",
+        "pointer": "/cross_context_relations"
+      },
+      {
+        "source": "poxf",
+        "pointer": "/interpretation"
+      }
+    ],
+    "poxi": [
+      {
+        "source": "poxi",
+        "pointer": "/scope"
+      },
+      {
+        "source": "poxi",
+        "pointer": "/identity_limits"
+      },
+      {
+        "source": "poxi",
+        "pointer": "/selection"
+      },
+      {
+        "source": "poxi",
+        "pointer": "/source_access"
+      }
     ]
   },
   "source_witnesses": [
@@ -4725,6 +6803,10 @@
         {
           "source": "tktf",
           "pointer": "/sources/0"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/sources/0"
         }
       ],
       "redistributed": false,
@@ -4739,6 +6821,10 @@
       "source_bindings": [
         {
           "source": "tktf",
+          "pointer": "/sources/1"
+        },
+        {
+          "source": "poxf",
           "pointer": "/sources/1"
         }
       ],
@@ -4755,6 +6841,10 @@
         {
           "source": "tktf",
           "pointer": "/sources/2"
+        },
+        {
+          "source": "poxf",
+          "pointer": "/sources/2"
         }
       ],
       "redistributed": false,
@@ -4769,6 +6859,10 @@
       "source_bindings": [
         {
           "source": "tktf",
+          "pointer": "/sources/3"
+        },
+        {
+          "source": "poxf",
           "pointer": "/sources/3"
         }
       ],
@@ -4795,8 +6889,16 @@
       ],
       "units": [
         "uM",
-        "micromolar"
-      ]
+        "micromolar",
+        "mM"
+      ],
+      "source_markers": {
+        "parameter": [
+          null,
+          "K_M"
+        ]
+      },
+      "marker_scope": "Legacy records omit a parameter marker; the POX provider explicitly prints K_M. K_0.5 is a different parameter and is rejected."
     },
     "kcat_over_KM": {
       "source_fields": [
@@ -4931,6 +7033,71 @@
         ""
       ],
       "units": []
+    },
+    "k_on": {
+      "source_fields": [
+        "k_on"
+      ],
+      "units": [
+        "mM^-1 s^-1"
+      ],
+      "source_markers": {
+        "parameter": [
+          "k_on"
+        ]
+      }
+    },
+    "k_off": {
+      "source_fields": [
+        "k_off"
+      ],
+      "units": [
+        "s^-1"
+      ],
+      "source_markers": {
+        "parameter": [
+          "k_off"
+        ]
+      }
+    },
+    "K_D_app": {
+      "source_fields": [
+        "K_D_app"
+      ],
+      "units": [
+        "uM"
+      ],
+      "source_markers": {
+        "parameter": [
+          "K_D_app"
+        ]
+      }
+    },
+    "k_app_max": {
+      "source_fields": [
+        "k_app_max"
+      ],
+      "units": [
+        "s^-1"
+      ],
+      "source_markers": {
+        "parameter": [
+          "k_app_max"
+        ]
+      }
+    },
+    "K_0.5": {
+      "source_fields": [
+        "K_0.5"
+      ],
+      "units": [
+        "mM"
+      ],
+      "source_markers": {
+        "parameter": [
+          "K_0.5"
+        ]
+      }
     }
   },
   "reactions": {

@@ -496,6 +496,130 @@ class PerturbationRelationTests(unittest.TestCase):
         self.assertEqual(view["evidence_context"], self.view["evidence_context"])
         self.assertEqual(view["constructs"], self.view["constructs"])
 
+    def test_pox_nonbinding_keeps_two_positive_pyruvate_endpoints(self):
+        for parameter, expected in [("kcat", 0.49 / 31.8), ("k_app_max", 1.07 / 136)]:
+            result = self.comparisons["pox_2019:E59Q:" + parameter]
+            self.assertTrue(result["eligible"])
+            self.assertAlmostEqual(result["value"], expected)
+            self.assertIsNone(result["uncertainty"])
+        for parameter in ("k_on", "k_off", "K_D_app"):
+            row = self.rows["pox-analogue_binding:E59Q:" + parameter]
+            self.assertEqual(row["result_kind"], "unavailable")
+            self.assertIsNone(row["value"])
+            self.assertIsNone(row["nondetection"])
+            self.assertEqual(row["unavailability"]["source_token"], "n.a.")
+            self.assertIn("does not bind MAP", row["unavailability"]["reason"])
+            self.assertIsNone(row["unavailability"]["numeric_detection_limit"])
+            self.assertFalse(row["unavailability"]["is_zero_rate"])
+            self.assertFalse(self.comparisons["pox_2019:E59Q:" + parameter]["eligible"])
+        # The common field exposes different source-reported missingness causes.
+        reasons = {row["id"]: row["unavailability"]["reason"]
+                   for row in self.view["observations"] if row["result_kind"] == "unavailable"}
+        self.assertIn("325 nm", reasons["tkt-stopped_flow:E366Q:k_forward"])
+        self.assertIn("does not bind MAP", reasons["pox-analogue_binding:E59Q:k_on"])
+
+    def test_pox_same_units_or_publication_do_not_qualify_endpoint_transfer(self):
+        for denominator, reasons in [
+            ("pox-single_turnover:wild_type:k_app_max", ["mismatched_assay_id", "mismatched_endpoint_kind", "mismatched_parameter"]),
+            ("pox-analogue_binding:wild_type:k_off", ["mismatched_substrate_id", "mismatched_endpoint_kind"]),
+            ("tkt-steady_state:wild_type:kcat", ["mismatched_study_id", "mismatched_background_id"]),
+            ("pox-steady_state:H89N:kcat", ["control_is_not_declared_perturbation_background"]),
+        ]:
+            with self.subTest(denominator=denominator):
+                request = deepcopy(self.comparisons["pox_2019:E59Q:kcat"])
+                request["roles"]["denominator"] = denominator
+                result = compare(self.rows, request)
+                self.assertFalse(result["eligible"])
+                self.assertIsNone(result["value"])
+                for reason in reasons:
+                    self.assertIn(reason, result["reasons"])
+
+    def test_pox_source_identity_and_unselected_parameters_remain_bound(self):
+        source = json.loads((ROOT / self.spec["sources"]["poxf"]["path"]).read_text(encoding="utf-8"))
+        adapter = json.loads((ROOT / self.spec["sources"]["poxi"]["path"]).read_text(encoding="utf-8"))
+        providers = {}
+        for binding in adapter["source_bindings"]:
+            raw = (ROOT / binding["path"]).read_bytes().replace(b"\r\n", b"\n")
+            self.assertEqual(hashlib.sha256(raw).hexdigest(), binding["sha256"])
+            providers[binding["path"]] = json.loads(raw)
+        for construct in adapter["constructs"]:
+            ref = construct["source_provider"]
+            row = pointer(providers[ref["path"]], ref["json_pointer"])
+            background_ref = construct["background_source_provider"]
+            background = pointer(providers[background_ref["path"]], background_ref["json_pointer"])
+            self.assertEqual(construct["construct_id"], row[construct["source_identity_field"]])
+            self.assertEqual(construct["source_row_label"], row["source_row_label"])
+            self.assertEqual(construct["background_construct_id"], background["reported_variant"])
+            self.assertEqual(background["source_row_label"], "wild-type")
+            self.assertIsNone(construct["sequence"])
+            self.assertIsNone(construct["sequence_sha256"])
+            self.assertFalse(construct["assay_specimen_sequence_verified"])
+        projected = [r for r in self.view["observations"] if r["study_id"] == "pox_2019"]
+        self.assertEqual({r["source_row_id"] for r in projected},
+                         {r["reported_variant"] for r in source["variants"]})
+        self.assertEqual(len(projected), 42)
+        for row in projected:
+            self.assertEqual(row["source_parameter"], pointer(source, row["parameter_provider"]["pointer"]))
+            self.assertEqual(row["source_record"], pointer(source, row["provider"]["pointer"]))
+            if row["parameter"] == "KM":
+                self.assertEqual(row["source_parameter"]["parameter"], "K_M")
+        e60a = self.rows["pox-single_turnover:E60A:k_app_max"]["source_record"]
+        self.assertEqual(e60a["single_turnover"]["source_reported_efficiency"]["value"], 12.5)
+        self.assertNotEqual(113 / 9.0, 12.5)
+        self.assertEqual(e60a["single_turnover"]["hill_coefficient"]["parameter"], "n_H")
+        kd = self.rows["pox-analogue_binding:wild_type:K_D_app"]
+        self.assertIsNone(kd["uncertainty"]["value"])
+        self.assertEqual(kd["uncertainty"]["kind"], "not_reported")
+        self.assertFalse(kd["source_parameter"]["source_derivation"]["independent_measurement"])
+        map_assay = self.view["assays"]["pox_2019:map_stopped_flow"]["source_record"]
+        fad_assay = self.view["assays"]["pox_2019:pyruvate_single_turnover"]["source_record"]
+        self.assertEqual(map_assay["conditions"]["source_path_length_display"], "10 mM")
+        self.assertIsNone(map_assay["conditions"]["path_length_mm"])
+        self.assertIsNone(fad_assay["conditions"]["pH"])
+
+    def test_pox_apparent_constants_keep_substrate_assay_and_model_identity(self):
+        for numerator_parameter, denominator in [
+            ("K_D_app", "pox-steady_state:wild_type:KM"),
+            ("K_D_app", "pox-single_turnover:wild_type:K_0.5"),
+            ("KM", "pox-single_turnover:wild_type:K_0.5"),
+        ]:
+            request = deepcopy(self.comparisons["pox_2019:H89N:" + numerator_parameter])
+            request["roles"]["denominator"] = denominator
+            result = compare(self.rows, request)
+            self.assertFalse(result["eligible"])
+            self.assertIsNone(result["value"])
+            self.assertIn("mismatched_assay_id", result["reasons"])
+            self.assertIn("mismatched_parameter", result["reasons"])
+            if numerator_parameter == "K_D_app":
+                self.assertIn("mismatched_substrate_id", result["reasons"])
+        km = self.rows["pox-steady_state:E59Q:KM"]
+        k05 = self.rows["pox-single_turnover:E59Q:K_0.5"]
+        self.assertEqual(km["unit"], k05["unit"])
+        self.assertEqual(km["value"], 979)
+        self.assertEqual(k05["value"], 888)
+        spec = deepcopy(self.spec)
+        panel = next(p for p in spec["panels"] if p["id"] == "pox-single_turnover")
+        next(p for p in panel["parameters"] if p["id"] == "K_0.5")["pointer"] = "/steady_state/substrate_response_constant"
+        with self.assertRaisesRegex(ValueError, "parameter source field differs"):
+            _project_candidate(ROOT, spec)
+
+    def test_pox_filtered_relation_keeps_both_arms_of_each_distinct_endpoint(self):
+        completed = subprocess.run([sys.executable, str(ROOT / "scripts/query_atlas_perturbations.py"),
+                                    "--comparison", "pox_2019:E59Q:kcat"],
+                                   capture_output=True, text=True, encoding="utf-8", check=True)
+        view = json.loads(completed.stdout)
+        self.assertEqual(len(view["comparisons"]), 1)
+        comparison = view["comparisons"][0]
+        rows = {row["id"]: row for row in view["observations"]}
+        self.assertEqual(len(rows), 14)
+        self.assertEqual(set(rows), set(comparison["roles"].values()) | set(comparison["context_observations"]))
+        self.assertEqual({rows[r]["parameter"] for r in comparison["roles"].values()}, {"kcat"})
+        for parameter in ("kcat", "KM", "k_on", "k_off", "K_D_app", "k_app_max", "K_0.5"):
+            self.assertEqual({r["source_row_id"] for r in rows.values() if r["parameter"] == parameter},
+                             {"wild_type", "E59Q"})
+        self.assertEqual(sum(r["result_kind"] == "unavailable" for r in rows.values()), 3)
+        self.assertEqual(view["assays"], self.view["assays"])
+
     def test_diels_alder_substrate_markers_and_product_contexts_do_not_transfer(self):
         for parameter, wrong_participant in (("KM_diene", "2"), ("KM_dienophile", "1")):
             spec = deepcopy(self.spec)

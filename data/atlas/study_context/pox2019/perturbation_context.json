@@ -1,0 +1,173 @@
+{
+  "schema_version": "catalytic-earth.perturbation-identity-context.v1",
+  "operation": "source_annotation",
+  "study": {
+    "doi": "10.1038/s41586-019-1581-9",
+    "pmid": "31534226",
+    "title": "Low-barrier hydrogen bonds in enzyme cooperativity",
+    "enzyme_context": "reported L. plantarum pyruvate oxidase wild type and variants",
+    "identity_evidence": "Supplementary Methods printed page 8, POX heading and steady-state paragraph; main Figure 3 title; Extended Data Table 2b and Figure 8.",
+    "exact_sequence_accession": null,
+    "scope": "One published study, a second enzyme context and six Table 2b comparison rows. No biological-case admission, new protein registry record, compiled mechanism or project experiment."
+  },
+  "scope": "Identity adapter for six source-named L. plantarum POX variants. Numeric and unavailable parameters project directly from the unchanged source packet; no exact assay sequence, physical specimen identity, or assay-specimen-to-deposited-structure mapping is established.",
+  "source_bindings": [
+    {
+      "path": "data/atlas/study_context/pox2019/functional_comparison.json",
+      "sha256": "570ffb83d9272d41ed72ff389c2f56fbc1415c7d6d9fbdd6c622476957c2a4b5"
+    }
+  ],
+  "constructs": [
+    {
+      "construct_id": "wild_type",
+      "background_construct_id": "wild_type",
+      "declared_substitutions": [],
+      "source_provider": {
+        "path": "data/atlas/study_context/pox2019/functional_comparison.json",
+        "json_pointer": "/variants/0"
+      },
+      "source_identity_field": "reported_variant",
+      "source_row_label": "wild-type",
+      "background_source_provider": {
+        "path": "data/atlas/study_context/pox2019/functional_comparison.json",
+        "json_pointer": "/variants/0"
+      },
+      "identity_basis": "Reported Table 2b variant relative to the study POX wild-type reference; named substitution only, not a project-derived sequence.",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "exact_assay_construct_sequence_unestablished_in_retained_evidence",
+      "assay_specimen_sequence_verified": false
+    },
+    {
+      "construct_id": "E59Q",
+      "background_construct_id": "wild_type",
+      "declared_substitutions": [
+        "E59Q"
+      ],
+      "source_provider": {
+        "path": "data/atlas/study_context/pox2019/functional_comparison.json",
+        "json_pointer": "/variants/1"
+      },
+      "source_identity_field": "reported_variant",
+      "source_row_label": "E59Q (catalytic)",
+      "background_source_provider": {
+        "path": "data/atlas/study_context/pox2019/functional_comparison.json",
+        "json_pointer": "/variants/0"
+      },
+      "identity_basis": "Reported Table 2b variant relative to the study POX wild-type reference; named substitution only, not a project-derived sequence.",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "exact_assay_construct_sequence_unestablished_in_retained_evidence",
+      "assay_specimen_sequence_verified": false
+    },
+    {
+      "construct_id": "H89N",
+      "background_construct_id": "wild_type",
+      "declared_substitutions": [
+        "H89N"
+      ],
+      "source_provider": {
+        "path": "data/atlas/study_context/pox2019/functional_comparison.json",
+        "json_pointer": "/variants/2"
+      },
+      "source_identity_field": "reported_variant",
+      "source_row_label": "H89N",
+      "background_source_provider": {
+        "path": "data/atlas/study_context/pox2019/functional_comparison.json",
+        "json_pointer": "/variants/0"
+      },
+      "identity_basis": "Reported Table 2b variant relative to the study POX wild-type reference; named substitution only, not a project-derived sequence.",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "exact_assay_construct_sequence_unestablished_in_retained_evidence",
+      "assay_specimen_sequence_verified": false
+    },
+    {
+      "construct_id": "H89A",
+      "background_construct_id": "wild_type",
+      "declared_substitutions": [
+        "H89A"
+      ],
+      "source_provider": {
+        "path": "data/atlas/study_context/pox2019/functional_comparison.json",
+        "json_pointer": "/variants/3"
+      },
+      "source_identity_field": "reported_variant",
+      "source_row_label": "H89A",
+      "background_source_provider": {
+        "path": "data/atlas/study_context/pox2019/functional_comparison.json",
+        "json_pointer": "/variants/0"
+      },
+      "identity_basis": "Reported Table 2b variant relative to the study POX wild-type reference; named substitution only, not a project-derived sequence.",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "exact_assay_construct_sequence_unestablished_in_retained_evidence",
+      "assay_specimen_sequence_verified": false
+    },
+    {
+      "construct_id": "E60Q",
+      "background_construct_id": "wild_type",
+      "declared_substitutions": [
+        "E60Q"
+      ],
+      "source_provider": {
+        "path": "data/atlas/study_context/pox2019/functional_comparison.json",
+        "json_pointer": "/variants/4"
+      },
+      "source_identity_field": "reported_variant",
+      "source_row_label": "E60Q",
+      "background_source_provider": {
+        "path": "data/atlas/study_context/pox2019/functional_comparison.json",
+        "json_pointer": "/variants/0"
+      },
+      "identity_basis": "Reported Table 2b variant relative to the study POX wild-type reference; named substitution only, not a project-derived sequence.",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "exact_assay_construct_sequence_unestablished_in_retained_evidence",
+      "assay_specimen_sequence_verified": false
+    },
+    {
+      "construct_id": "E60A",
+      "background_construct_id": "wild_type",
+      "declared_substitutions": [
+        "E60A"
+      ],
+      "source_provider": {
+        "path": "data/atlas/study_context/pox2019/functional_comparison.json",
+        "json_pointer": "/variants/5"
+      },
+      "source_identity_field": "reported_variant",
+      "source_row_label": "E60A",
+      "background_source_provider": {
+        "path": "data/atlas/study_context/pox2019/functional_comparison.json",
+        "json_pointer": "/variants/0"
+      },
+      "identity_basis": "Reported Table 2b variant relative to the study POX wild-type reference; named substitution only, not a project-derived sequence.",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "exact_assay_construct_sequence_unestablished_in_retained_evidence",
+      "assay_specimen_sequence_verified": false
+    }
+  ],
+  "identity_limits": [
+    "Source-named POX wild type and substitutions support within-study comparisons only.",
+    "No exact assay sequence, accession, sequence hash, physical preparation match or exact assay-specimen-to-deposited-structure mapping is supplied by retained evidence.",
+    "POX and human TKT share a publication DOI but are different enzyme contexts and construct backgrounds."
+  ],
+  "selection": {
+    "included": "All six source rows for pyruvate/DCPIP k_cat and K_M, all three MAP parameters k_on/k_off/K_D_app, and anaerobic pyruvate/FAD k_app_max and K_0.5.",
+    "retained_as_source_context": "The three unselected columns (both source efficiency columns and Hill coefficient) remain in each original source row, with rounding, denominator/model identity and uncertainty. They are not missing data.",
+    "reason": "These seven columns test unavailable analogue versus retained pyruvate responses and make the MAP K_D_app versus pyruvate K_M/K_0.5 transfer restriction executable. Source efficiencies and Hill-coefficient comparisons address different questions."
+  },
+  "source_access": {
+    "batch_id": "human-tkt-e160q-6ha3-geometry-function",
+    "new_requests": 0,
+    "new_response_bytes": 0,
+    "carried_metered_lower_bound_requests": 7,
+    "carried_metered_lower_bound_response_bytes": 3004884,
+    "complete_cumulative_requests": null,
+    "complete_cumulative_response_bytes": null,
+    "remaining_headroom": null,
+    "limit": "Retained local bytes only. Historical unmetered browser discovery remains unresolved; this operation creates no fresh allowance."
+  }
+}

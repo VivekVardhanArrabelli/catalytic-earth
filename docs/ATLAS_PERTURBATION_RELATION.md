@@ -2,10 +2,10 @@
 
 One offline consumer now recovers the accepted RA95 2013/2017 and RA61
 perturbation comparisons, their exclusions, KE59's unassessed matched-control
-question, and the human-transketolase endpoint contrast. It answers which source-defined perturbations retain a measured
+question, the human-transketolase endpoint contrast, and POX analogue nonbinding beside pyruvate responses. It answers which source-defined perturbations retain a measured
 endpoint in a particular background, substrate and assay. It does not assign
 generic activity, residue causality, preserved catalytic apparatus or design
-success. Current scientific scope remains [CE-024 and CE-026–CE-033](../CLAIMS.md).
+success. Current scientific scope remains [CE-024–CE-033](../CLAIMS.md).
 
 ## Use the relation
 
@@ -15,6 +15,7 @@ From the repository root, with Python 3.10 or newer and no added dependencies:
 python scripts/query_atlas_perturbations.py --output /tmp/perturbations.json
 python scripts/query_atlas_perturbations.py --study ra61_2010
 python scripts/query_atlas_perturbations.py --comparison 'tkt_2019:E366Q:kcat'
+python scripts/query_atlas_perturbations.py --comparison 'pox_2019:E59Q:kcat'
 python scripts/query_atlas_perturbations.py --comparison 'ra95_2017:Y51F-Y180F:kcat'
 python scripts/query_atlas_perturbations.py --comparison 'ke59_2012:E230-matched-perturbation'
 python scripts/query_atlas_perturbations.py --verify-witnesses --output /tmp/perturbations-with-local-source-check.json
@@ -119,7 +120,7 @@ All seven variants contribute kcat and kforward entries, and all five inherited
 NMR arms are included. The 19 added view records comprise eleven numeric,
 three unavailable, three qualitative-positive and two nondetection results.
 Six turnover and three forward-rate ratios are eligible; three reporter-rate
-and four NMR-ratio requests abstain. The complete view has 137 records and
+and four NMR-ratio requests abstain. The view after that extension had 137 records and
 72 requests, with 50 eligible and 22 abstaining. These are projections of
 previously curated published endpoints, not new experiments or independent
 replicates. All 118 preceding records and 56 comparison results are unchanged.
@@ -154,6 +155,82 @@ occurred. The TKT batch retains its historical lower bound of 7 requests /
 3,004,884 response-body bytes; complete cumulative usage and headroom remain
 unknown. No source bodies are redistributed.
 
+## Analogue nonbinding does not erase authentic-substrate responses
+
+The [retained POX comparison](ATLAS_STUDY_CONTEXT.md#pox-analogue-binding-does-not-supply-a-generic-activity-label)
+now uses the same consumer and eligibility rules, with no runtime or CLI change.
+`--comparison pox_2019:E59Q:kcat` returns two DCPIP-turnover operands plus
+paired WT/E59Q context for MAP k_on, k_off, K_D_app, pyruvate/DCPIP KM,
+and pyruvate/FAD k_app_max and K0.5. These twelve context records never enter the turnover ratio.
+
+| E59Q source result at 25 °C | Executable result | Restriction |
+| --- | --- | --- |
+| Pyruvate/DCPIP kcat 0.49 ± 0.01 s⁻¹; WT 31.8 ± 0.4 | E59Q/WT = 0.0154088, about 1.54% of the reported central value | DCPIP is an artificial electron acceptor; this is not oxygen-turnover kinetics |
+| MAP k_on, k_off and K_D_app are `n.a.` | All three values stay null with a source-reported MAP-nonbinding reason; all three ratios abstain | No zero rate, infinite affinity constant or numeric detection threshold is inferred |
+| Anaerobic pyruvate/FAD k_app_max 1.07 ± 0.08 s⁻¹; WT 136 ± 1 | E59Q/WT = 0.00786765, about 0.787% of the reported central value | Apparent saturated processing spans multiple microscopic steps; it is not kcat or an elementary-step rate |
+
+Seven columns across all six variants contribute 42 common parameter records:
+39 numeric and three unavailable. Of 35 within-assay mutant/WT requests, 32
+permit descriptive arithmetic and three abstain. The complete view has 179
+records and 107 requests (82 eligible, 25 abstaining); all previous 137 records
+and 72 comparison results remain unchanged. These are projections of retained
+published evidence, not experiment, enzyme-admission or independent-replicate
+counts. The three unselected columns remain in each full source row:
+both source-reported efficiencies and the Hill coefficient.
+Their values are available context, not unmeasured or missing controls.
+
+Pyruvate KM (E59Q 979 ± 67 mM; WT 1.59 ± 0.01 mM) and single-turnover
+K0.5 (888 ± 132 mM; WT 3.4 ± 0.1 mM) are also common records. The consumer
+rejects substituting either for MAP K_D_app, or substituting K0.5 for KM,
+because their assay, parameter and fitted-model scopes differ. This makes the
+constant-transfer restriction executable rather than leaving it only in source
+context. These apparent/model-dependent constants are not collapsed into a
+generic substrate-affinity label.
+
+MAP forms a reversible covalent conjugate with ThDP and is not further processed.
+Its apparent K_D retains the source-model relation k_off/k_on and its reported
+micromolar unit; it is not an isolated noncovalent docking constant or pyruvate
+affinity. No source-rounded quotient is recomputed or counted as a separate
+measurement. The six [source-named constructs](../data/atlas/study_context/pox2019/perturbation_context.json)
+have null exact sequences and digests. POX and TKT share a publication DOI,
+but have separate enzyme, construct/background and assay identifiers. The same
+DOI, kcat parameter name or s⁻¹ unit does not qualify their rate comparison.
+
+The shared unavailable-result filter exposes the different reasons without a
+new source-format parser:
+
+```python
+from pathlib import Path
+from catalytic_earth.atlas_perturbations import project
+
+view = project(Path.cwd())
+for row in view["observations"]:
+    if row["result_kind"] == "unavailable":
+        print(row["id"], row["unavailability"]["reason"])
+```
+
+This returns the TKT reporter-absence reasons and POX analogue-nonbinding
+reasons through the same fields. It does not infer a shared chemical cause or
+pool numerical activity. The exact old cross-context source pointer is also
+retained with the E59Q requests. Runtime comparison contexts remain within
+one enzyme-study scope; cross-context source prose supplies no arithmetic join.
+
+The Table 2b E59Q footnote-k marker is printed on k_on and applies to the
+unavailable MAP group; no separate marker is invented for every cell. The
+source's MAP optical path `10 mM` and unstated single-turnover pH remain
+unresolved. Table triplicates mean displayed mean ± SD, with no authenticated
+independent preparation count. The Figure 8 repeat statement does not turn
+those into six replicates. Parameter uncertainty remains distinct from the
+unestimated uncertainty of the descriptive ratios.
+
+All four POX source witnesses were already retained for TKT and are reused by
+hash without another copy or acquisition: zero requests and bytes. The named
+batch retains its lower bound of 7 requests / 3,004,884 bytes with unknown
+complete usage and headroom. Source bodies remain host-local. This extension
+removes a source-layout join for retrieval and blocks a concrete bad transfer;
+no measured curation-time saving, incumbent superiority, causal role or design
+success is established.
+
 ## Shared representation and eligibility
 
 The [declarative projection](../data/atlas/perturbations/projection.json) is the
@@ -175,7 +252,7 @@ the common value/unit/uncertainty fields. Construct providers retain whether
 a sequence was directly printed or derived, as well as lineage and numbering
 cautions. Sequence hashes are checked separately from perturbation/background
 provider equality. A sequence-bound construct still does not identify the
-physical assay aliquot. Missing RA61/KE59/TKT assay sequences are explicit and cannot
+physical assay aliquot. Missing RA61/KE59/TKT/POX assay sequences are explicit and cannot
 be borrowed from a nearby name or structure.
 The two positive unmarked RA95.0 rows retain their displayed error magnitudes
 with unresolved statistic types. Conflicted KM error magnitudes keep their
@@ -209,7 +286,8 @@ construct/control mismatch has not been repaired or silently admitted.
 ## Provenance and source retention
 
 Source bindings resolve the five original accepted annotation packets, the
-forward-synthesis packet, the Diels–Alder annotation, and the retained TKT packets plus identity adapter. Output preserves
+forward-synthesis packet, the Diels–Alder annotation, the retained TKT packets plus identity adapter, and the POX source packet and
+named-construct adapter. Output preserves
 study and source-locator context, original source conflicts, missing controls,
 thermal/mass evidence and selection limitations. Original primary bodies are
 not redistributed. Seven originally acquired, hash-verified files were copied
@@ -221,7 +299,8 @@ The offline relation needs the committed annotations; primary-source review
 also needs the recorded witnesses or separately authorized reacquisition.
 The default query checks witness bindings and labels local byte availability
 as unchecked. The three Diels–Alder article/figure witnesses brought the set to ten files.
-Four retained TKT witnesses now bring it to fourteen files (16,768,661 bytes). `--verify-witnesses` checks all lengths and
+Four retained TKT witnesses bring it to fourteen files (16,768,661 bytes);
+POX reuses those same four files without duplicate copies. `--verify-witnesses` checks all lengths and
 hashes, and fails if any file is missing or altered; it never fetches a replacement.
 
 The original relation and methodol extension made no new source requests;
@@ -265,9 +344,11 @@ and source review, so no measured curation saving or incumbent superiority is
 claimed. Its useful addition is a queryable refusal to transfer reporter
 absence into loss of catalysis, with the positive endpoint beside it.
 
-Next test whether the same relation distinguishes POX analogue nonbinding from
-TKT reporter unavailability while retaining POX's measured pyruvate endpoints.
-Use the already qualified POX packet and these retained sources. Expected gain
-is one shared cross-enzyme missingness distinction with authentic-substrate
-counterevidence. Stop after that executable relation or a precise shared gap;
-no fresh geometry, source-access retries or new isolated annotation is needed.
+POX now reuses those missingness semantics without another runtime change.
+Adversarial review expanded the initial five-column selection to include KM
+and K0.5, so inappropriate MAP/pyruvate constant transfers are also executable
+abstentions. Source review narrowed the absence of a structure mapping to the
+missing exact assay-specimen mapping; a named deposit is not denied or promoted
+into functional geometry. The [POX coordination record](https://github.com/VivekVardhanArrabelli/catalytic-earth/blob/main/work/coordination_pox_perturbation_20260910.md)
+records this review. The current handoff and direction review select the next
+scientific bottleneck; repeated arithmetic on these settled cases adds no gain.

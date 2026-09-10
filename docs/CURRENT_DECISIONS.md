@@ -1,5 +1,23 @@
 # Current Decisions
 
+## 2026-09-10: reuse unavailable semantics without equating chemical causes
+
+Project the retained POX evidence through the existing shared perturbation
+consumer. Use seven columns across every variant: DCPIP kcat and KM,
+the complete MAP k_on, k_off and K_D_app set, and anaerobic pyruvate/FAD
+k_app_max and K0.5. Keep the
+other source columns as context. No new runtime primitive is required;
+identity adapters map source names and explicitly missing exact sequences.
+
+[Source review](ATLAS_PERTURBATION_RELATION.md) binds the projection, source
+providers and restrictions. MAP nonbinding is source-reported and does not
+mean pyruvate inactivity. Retain the covalent apparent-equilibrium model,
+DCPIP versus oxygen distinction, multiple-step FAD reporter, and method
+omissions. Same-publication TKT and POX identifiers remain separate.
+This is a reusable retrieval/eligibility relation, with no measured curation
+speedup or incumbent-superiority claim. Existing CE-024/CE-025 scope, frozen
+kernels, protected registries, exposure history and source budgets are unchanged.
+
 ## 2026-09-10: distinguish unavailable parameters from observed nondetection
 
 Extend the shared perturbation relation to the retained human-TKT endpoints.
