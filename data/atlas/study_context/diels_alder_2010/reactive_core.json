@@ -1,0 +1,457 @@
+{
+  "schema_version": "catalytic-earth.source-connectivity-replay.v1",
+  "relation_id": "siegel2010:figure1:six-carbon-core",
+  "reaction_binding": {
+    "path": "data/atlas/study_context/diels_alder_2010/source_qualification.json",
+    "sha256": "eac85e8bd87c3587d3f33a150f879a91ffc1426ce24f0cea251df7dbf8ab160f",
+    "reaction_id": "diene1-dienophile2-cycloaddition"
+  },
+  "scope": {
+    "kind": "partial_source_depicted_connectivity",
+    "full_atom_map": false,
+    "balanced_reaction": false,
+    "atom_stereochemistry": false,
+    "double_bond_stereochemistry": false,
+    "complete_hydrogen_inventory": false,
+    "mechanism_path": false,
+    "source_electron_flow": false,
+    "radical_state": false,
+    "full_valence": false,
+    "external_boundary_bonds_in_graph": false,
+    "map_unique_from_core_alone": false,
+    "upstream_atom_map": false,
+    "physical_atom_identity": false,
+    "concerted_mechanism": false
+  },
+  "sources": [
+    {
+      "source_id": "article",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/",
+      "sha256": "3fccfd28aa75fde68708f85f8aea6b7d3b4f79069279afd0b6b65af1a9c9afda",
+      "bytes": 144652,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/3fccfd28aa75fde68708f85f8aea6b7d3b4f79069279afd0b6b65af1a9c9afda.html",
+      "redistributed": false,
+      "role": "primary_article"
+    },
+    {
+      "source_id": "figure1",
+      "url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/5ec3/3241958/1ff24174f717/nihms338810f1.jpg",
+      "sha256": "ad4f01c4fc0409c7f957d6aac4f4cbab4a7f23ee6d36cc69ac4049745c127f81",
+      "bytes": 23286,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/ad4f01c4fc0409c7f957d6aac4f4cbab4a7f23ee6d36cc69ac4049745c127f81.jpg",
+      "redistributed": false,
+      "role": "primary_figure"
+    },
+    {
+      "source_id": "figure4",
+      "url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/5ec3/3241958/9fc01853d7cc/nihms338810f4.jpg",
+      "sha256": "28c8e7c593f2b9f037e6d33224bbfff3ace8a32694deff578cc2a7faff458c7c",
+      "bytes": 35188,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/28c8e7c593f2b9f037e6d33224bbfff3ace8a32694deff578cc2a7faff458c7c.jpg",
+      "redistributed": false,
+      "role": "primary_figure"
+    }
+  ],
+  "panel_correspondence": {
+    "before_graph": {
+      "graph_id": "Figure1:1+2:six-carbon-connectivity",
+      "atom_id_scope": "source_panel_local_locator",
+      "atoms": [
+        {
+          "atom_id": "d1",
+          "element": "C",
+          "formal_charge": 0,
+          "stereochemistry": null
+        },
+        {
+          "atom_id": "d2",
+          "element": "C",
+          "formal_charge": 0,
+          "stereochemistry": null
+        },
+        {
+          "atom_id": "d3",
+          "element": "C",
+          "formal_charge": 0,
+          "stereochemistry": null
+        },
+        {
+          "atom_id": "d4",
+          "element": "C",
+          "formal_charge": 0,
+          "stereochemistry": null
+        },
+        {
+          "atom_id": "a",
+          "element": "C",
+          "formal_charge": 0,
+          "stereochemistry": null
+        },
+        {
+          "atom_id": "b",
+          "element": "C",
+          "formal_charge": 0,
+          "stereochemistry": null
+        }
+      ],
+      "bonds": [
+        {
+          "atom_ids": [
+            "d1",
+            "d2"
+          ],
+          "order": 2
+        },
+        {
+          "atom_ids": [
+            "d2",
+            "d3"
+          ],
+          "order": 1
+        },
+        {
+          "atom_ids": [
+            "d3",
+            "d4"
+          ],
+          "order": 2
+        },
+        {
+          "atom_ids": [
+            "a",
+            "b"
+          ],
+          "order": 2
+        }
+      ]
+    },
+    "after_graph": {
+      "graph_id": "Figure1:4:six-carbon-connectivity",
+      "atom_id_scope": "source_panel_local_locator",
+      "atoms": [
+        {
+          "atom_id": "d1",
+          "element": "C",
+          "formal_charge": 0,
+          "stereochemistry": null
+        },
+        {
+          "atom_id": "d2",
+          "element": "C",
+          "formal_charge": 0,
+          "stereochemistry": null
+        },
+        {
+          "atom_id": "d3",
+          "element": "C",
+          "formal_charge": 0,
+          "stereochemistry": null
+        },
+        {
+          "atom_id": "d4",
+          "element": "C",
+          "formal_charge": 0,
+          "stereochemistry": null
+        },
+        {
+          "atom_id": "a",
+          "element": "C",
+          "formal_charge": 0,
+          "stereochemistry": null
+        },
+        {
+          "atom_id": "b",
+          "element": "C",
+          "formal_charge": 0,
+          "stereochemistry": null
+        }
+      ],
+      "bonds": [
+        {
+          "atom_ids": [
+            "d1",
+            "d2"
+          ],
+          "order": 1
+        },
+        {
+          "atom_ids": [
+            "d2",
+            "d3"
+          ],
+          "order": 2
+        },
+        {
+          "atom_ids": [
+            "d3",
+            "d4"
+          ],
+          "order": 1
+        },
+        {
+          "atom_ids": [
+            "a",
+            "b"
+          ],
+          "order": 1
+        },
+        {
+          "atom_ids": [
+            "d1",
+            "a"
+          ],
+          "order": 1
+        },
+        {
+          "atom_ids": [
+            "d4",
+            "b"
+          ],
+          "order": 1
+        }
+      ]
+    },
+    "graph_edits": [
+      {
+        "edit_id": "e1",
+        "operation": "set_bond_order",
+        "atom_ids": [
+          "d1",
+          "d2"
+        ],
+        "before": 2,
+        "after": 1,
+        "source_flow_id": "project-difference:F1:1+2-to4:not-source-electron-flow"
+      },
+      {
+        "edit_id": "e2",
+        "operation": "set_bond_order",
+        "atom_ids": [
+          "d2",
+          "d3"
+        ],
+        "before": 1,
+        "after": 2,
+        "source_flow_id": "project-difference:F1:1+2-to4:not-source-electron-flow"
+      },
+      {
+        "edit_id": "e3",
+        "operation": "set_bond_order",
+        "atom_ids": [
+          "d3",
+          "d4"
+        ],
+        "before": 2,
+        "after": 1,
+        "source_flow_id": "project-difference:F1:1+2-to4:not-source-electron-flow"
+      },
+      {
+        "edit_id": "e4",
+        "operation": "set_bond_order",
+        "atom_ids": [
+          "a",
+          "b"
+        ],
+        "before": 2,
+        "after": 1,
+        "source_flow_id": "project-difference:F1:1+2-to4:not-source-electron-flow"
+      },
+      {
+        "edit_id": "e5",
+        "operation": "add_bond",
+        "atom_ids": [
+          "d1",
+          "a"
+        ],
+        "before": 0,
+        "after": 1,
+        "source_flow_id": "project-difference:F1:1+2-to4:not-source-electron-flow"
+      },
+      {
+        "edit_id": "e6",
+        "operation": "add_bond",
+        "atom_ids": [
+          "d4",
+          "b"
+        ],
+        "before": 0,
+        "after": 1,
+        "source_flow_id": "project-difference:F1:1+2-to4:not-source-electron-flow"
+      }
+    ],
+    "atom_map": [
+      {
+        "before_atom_id": "d1",
+        "after_atom_id": "d1"
+      },
+      {
+        "before_atom_id": "d2",
+        "after_atom_id": "d2"
+      },
+      {
+        "before_atom_id": "d3",
+        "after_atom_id": "d3"
+      },
+      {
+        "before_atom_id": "d4",
+        "after_atom_id": "d4"
+      },
+      {
+        "before_atom_id": "a",
+        "after_atom_id": "a"
+      },
+      {
+        "before_atom_id": "b",
+        "after_atom_id": "b"
+      }
+    ]
+  },
+  "edit_interpretation": "The six operations are an unordered difference between two source drawings. source_flow_id is a compatibility locator for the existing replay API, not a source electron-flow arrow, temporal sequence, elementary step or proof of concertedness.",
+  "atom_locators": {
+    "before": [
+      {
+        "atom_id": "d1",
+        "participant_id": "1",
+        "source_id": "figure1",
+        "description": "Diene carbon directly bonded to carbamate N; lower NH-adjacent alkene endpoint in Figure1 participant1."
+      },
+      {
+        "atom_id": "d2",
+        "participant_id": "1",
+        "source_id": "figure1",
+        "description": "Next carbon from d1 along the conjugated diene chain; joined to d1 by the NH-adjacent double bond."
+      },
+      {
+        "atom_id": "d3",
+        "participant_id": "1",
+        "source_id": "figure1",
+        "description": "Next carbon from d2 along the conjugated diene chain; joined to d4 by the terminal double bond."
+      },
+      {
+        "atom_id": "d4",
+        "participant_id": "1",
+        "source_id": "figure1",
+        "description": "Free terminal carbon of the diene chain, opposite the carbamate-N anchor."
+      },
+      {
+        "atom_id": "a",
+        "participant_id": "2",
+        "source_id": "figure1",
+        "description": "Dienophile alkene carbon directly bonded to the amide carbonyl carbon in Figure1 participant2."
+      },
+      {
+        "atom_id": "b",
+        "participant_id": "2",
+        "source_id": "figure1",
+        "description": "Other, terminal dienophile alkene carbon, reached from the amide-carbonyl anchor a."
+      }
+    ],
+    "after": [
+      {
+        "atom_id": "d1",
+        "participant_id": "4",
+        "source_id": "figure1",
+        "description": "Product4 ring carbon directly bonded to carbamate N (lower vertex)."
+      },
+      {
+        "atom_id": "d2",
+        "participant_id": "4",
+        "source_id": "figure1",
+        "description": "Adjacent ring carbon reached from the N anchor away from the amide-substituted ring carbon (lower-left double-bond endpoint)."
+      },
+      {
+        "atom_id": "d3",
+        "participant_id": "4",
+        "source_id": "figure1",
+        "description": "Other endpoint of the ring double bond (upper-left vertex)."
+      },
+      {
+        "atom_id": "d4",
+        "participant_id": "4",
+        "source_id": "figure1",
+        "description": "Next ring carbon along the d1-d2-d3 path (upper vertex)."
+      },
+      {
+        "atom_id": "a",
+        "participant_id": "4",
+        "source_id": "figure1",
+        "description": "Product4 ring carbon directly bonded to the amide carbonyl carbon, adjacent to the carbamate-N-bearing carbon (lower-right vertex)."
+      },
+      {
+        "atom_id": "b",
+        "participant_id": "4",
+        "source_id": "figure1",
+        "description": "Next ring carbon along the path from amide-bearing a toward d4 (upper-right vertex)."
+      }
+    ]
+  },
+  "atom_locator_scope": "Every atom ID is project-declared from retained Figure1 and boundary substituent continuity. No source atom numbering, automated image recognition, canonical atom map, physical atom identity or core-only uniqueness is claimed. The drawings omit explicit C/H labels in this skeletal core; zero formal charge is the drawn neutral-carbon convention, not full molecular charge balance.",
+  "boundary_attachments": [
+    {
+      "boundary_id": "carbamate-N-anchor",
+      "before_atom_id": "d1",
+      "after_atom_id": "d1",
+      "external_group_description": "Single bond from d1 to the carbamate N in Figure1 reactant1 and product4; full carbamate/benzyl/carboxyl group omitted.",
+      "order": 1,
+      "source_id": "figure1"
+    },
+    {
+      "boundary_id": "amide-carbonyl-anchor",
+      "before_atom_id": "a",
+      "after_atom_id": "a",
+      "external_group_description": "Single bond from a to the carbonyl carbon of C(=O)N(CH3)2 in Figure1 reactant2 and product4; carbonyl and dimethylamide atoms omitted.",
+      "order": 1,
+      "source_id": "figure1"
+    }
+  ],
+  "source_stereochemistry": {
+    "input": "P2 names a trans diene; the graph API has no E/Z bond field. This known source description is retained here, not converted to an E/Z calculation or omitted from the chemical record.",
+    "product": "P14 author-assigns 3R,4S endo; Figure4 labels Endo-Re to 3R,4S. These are opaque product-level source labels, not assignments to project atom IDs.",
+    "source_product_labels": [
+      {
+        "source_transition_label": "Exo-Re",
+        "source_product_label": "3S,4S"
+      },
+      {
+        "source_transition_label": "Exo-Si",
+        "source_product_label": "3R,4R"
+      },
+      {
+        "source_transition_label": "Endo-Si",
+        "source_product_label": "3S,4R"
+      },
+      {
+        "source_transition_label": "Endo-Re",
+        "source_product_label": "3R,4S"
+      }
+    ],
+    "mapped_atom_configurations": null,
+    "computed_target_selection": null,
+    "source_product_observation_pointer": "/product_context/stereochemical_composition",
+    "scope": "Figure1 product4 has no explicit stereo wedges. Figure4 caption leaves R1/R2 undefined and supplies no atom-locator join to Figure1. The four shown products share the selected constitutional core. No independent CIP, Re/Si, endo/exo computation, stereochemical reference authentication or peak integration; >97% derivation points to unacquired FigureS8.",
+    "source_product_observation_context_id": "P14-product-stereoisomer-distribution"
+  },
+  "source_state_conflict": {
+    "source_id": "figure1",
+    "reactant_distant_group": "para carboxylate CO2-",
+    "product_distant_group": "para carboxylic acid CO2H",
+    "resolution": null,
+    "scope": "Outside the selected six-carbon core. No proton source, proton transfer or balanced full equation is reconstructed."
+  },
+  "limitations": [
+    "This is a source-reviewed project map of a partial constitutional projection, not a complete chemical-state relation or new canonical reaction.",
+    "The six-carbon graph is symmetric without its omitted substituent anchors; replay alone does not identify a unique regioisomer map. Source review supplies the chemically described boundary anchors.",
+    "Atom stereochemistry is intentionally outside the projection; null graph stereo does not mean the source product is achiral or source stereochemistry is unknown everywhere.",
+    "No implicit-H completion, full valence check, observed atomic trajectory, electron-flow mechanism, concertedness, transition-state geometry or productive template follows.",
+    "Named DA_20_10 product association is source-only; no mutant product outcome, matched stereochemical control, assay identity, enzyme mechanism, new experiment or evidence-tier promotion."
+  ],
+  "acquisition": {
+    "new_requests": 0,
+    "new_response_body_bytes": 0,
+    "batch_id": "designed-diels-alder-siegel2010",
+    "cumulative_requests": 14,
+    "cumulative_response_body_bytes": 502726,
+    "source_bodies_redistributed": false
+  },
+  "project_difference_id": "project-difference:F1:1+2-to4:not-source-electron-flow"
+}

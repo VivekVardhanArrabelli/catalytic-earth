@@ -1,5 +1,22 @@
 # Current State
 
+## 2026-09-10: Diels-Alder connectivity replays without selecting a stereoisomer
+
+The [six-carbon drawing relation](ATLAS_DIELS_ALDER_CONTROLS.md#the-reactive-core-replays-stereochemical-selection-remains-source-only)
+now accompanies the existing reaction and product observation in the shared
+perturbation query. Two C-C additions and four bond-order changes reproduce
+Figure 1 under source-reviewed project locators. The retained carbamate-N and
+amide-carbonyl boundary anchors carry the regioisomer interpretation; the bare
+core is symmetric and replay does not establish map uniqueness.
+
+The combined atom-specific 3R,4S question stops: Figure 1 is unwedged and Figure
+4 does not join its generic groups/locants to the mapped atoms. Its four shown
+stereoisomers share the core. Trans-diene and product assignment remain source
+metadata, with no computed CIP/target choice or repaired protonation. CE-033
+is extended at this partial scope; original source packets and measurements
+remain unchanged. No new source requests, canonical reaction or evidence tier.
+
+
 ## 2026-09-10: dictionary stereo correspondence retains distinct ligand environments
 
 The [new comparison operation on the existing deposit projector](ATLAS_MECHANISM_EVIDENCE.md#dictionary-stereochemistry-does-not-transfer-site-context)

@@ -65,6 +65,115 @@ def _unique(items: list[dict[str, Any]], key: str) -> dict[str, dict[str, Any]]:
     return result
 
 
+def _connectivity_relation(annotation: dict[str, Any], reaction: dict[str, Any],
+                           binding: dict[str, Any], source: dict[str, Any]) -> dict[str, Any]:
+    """Replay a reviewed partial drawing projection, without completing its chemistry.
+
+    Locators and omitted chemical context require source review. The existing
+    graph engine checks literal edits, not raster interpretation, valence, CIP,
+    double-bond geometry, physical atom identity or a reaction mechanism.
+    """
+    from .atlas_transformations import replay_graph_edits
+
+    if annotation.get("schema_version") != "catalytic-earth.source-connectivity-replay.v1":
+        raise ValueError("unsupported source connectivity relation")
+    fields = {"schema_version", "relation_id", "reaction_binding", "scope", "sources",
+              "panel_correspondence", "edit_interpretation", "atom_locators", "atom_locator_scope",
+              "boundary_attachments", "source_stereochemistry", "source_state_conflict", "limitations",
+              "acquisition", "project_difference_id"}
+    if set(annotation) != fields:
+        raise ValueError("source connectivity relation fields differ")
+    if not isinstance(annotation["relation_id"], str) or not annotation["relation_id"].strip():
+        raise ValueError("connectivity relation requires an identity")
+    expected = {**binding, "reaction_id": reaction["reaction_id"]}
+    if annotation["reaction_binding"] != expected:
+        raise ValueError("connectivity reaction binding differs")
+    scope = annotation["scope"]
+    withheld = {"full_atom_map", "balanced_reaction", "atom_stereochemistry",
+                "double_bond_stereochemistry", "complete_hydrogen_inventory", "mechanism_path",
+                "source_electron_flow", "radical_state", "full_valence",
+                "external_boundary_bonds_in_graph", "map_unique_from_core_alone",
+                "upstream_atom_map", "physical_atom_identity", "concerted_mechanism"}
+    if (set(scope) != withheld | {"kind"}
+            or scope["kind"] != "partial_source_depicted_connectivity"
+            or any(scope[key] is not False for key in withheld)):
+        raise ValueError("connectivity projection cannot establish complete chemistry or stereochemistry")
+    witnesses = _unique(annotation["sources"], "source_id")
+    available = _unique(source["sources"], "source_id")
+    if not witnesses or any(available.get(key) != value for key, value in witnesses.items()):
+        raise ValueError("connectivity source witnesses differ")
+    stereo = annotation["source_stereochemistry"]
+    if set(stereo) != {"input", "product", "source_product_labels", "mapped_atom_configurations",
+                       "computed_target_selection", "source_product_observation_pointer",
+                       "source_product_observation_context_id", "scope"}:
+        raise ValueError("connectivity source stereochemistry fields differ")
+    if any(key not in stereo or stereo[key] is not None
+           for key in ("mapped_atom_configurations", "computed_target_selection")):
+        raise ValueError("connectivity source context cannot assert mapped stereochemistry or target selection")
+    product_observation = pointer(source, stereo["source_product_observation_pointer"])
+    if (not isinstance(product_observation, dict)
+            or product_observation.get("reaction_id") != reaction["reaction_id"]
+            or not isinstance(stereo["source_product_observation_context_id"], str)
+            or not stereo["source_product_observation_context_id"].strip()
+            or product_observation.get("context_id") != stereo["source_product_observation_context_id"]):
+        raise ValueError("connectivity product observation has a different reaction or context identity")
+    participants = _unique(reaction["participants"], "participant_id")
+    panel = annotation["panel_correspondence"]
+    if set(panel) != {"before_graph", "after_graph", "graph_edits", "atom_map"}:
+        raise ValueError("connectivity panel fields differ")
+    for stage, side in (("before", "reactant"), ("after", "product")):
+        graph = panel[stage + "_graph"]
+        locators = _unique(annotation["atom_locators"][stage], "atom_id")
+        if set(locators) != {atom["atom_id"] for atom in graph["atoms"]}:
+            raise ValueError("connectivity locators must cover the complete selected graph")
+        if {locator["participant_id"] for locator in locators.values()} != {
+                key for key, value in participants.items() if value["side"] == side}:
+            raise ValueError("connectivity locators do not cover the source reaction participants")
+        for locator in locators.values():
+            participant = participants.get(locator["participant_id"])
+            if (participant is None or participant["side"] != side
+                    or locator["source_id"] not in witnesses
+                    or not isinstance(locator["description"], str) or not locator["description"].strip()):
+                raise ValueError("connectivity locator has an unbound participant, side or source")
+        if any(atom["stereochemistry"] is not None for atom in graph["atoms"]):
+            raise ValueError("connectivity-only graph cannot carry atom stereochemistry")
+    edits = panel["graph_edits"]
+    difference_id = annotation["project_difference_id"]
+    if (not isinstance(difference_id, str) or not difference_id.startswith("project-difference:")
+            or any(edit["source_flow_id"] != difference_id for edit in edits)):
+        raise ValueError("connectivity edits require the declared project-difference locator, not source arrows")
+    if any(edit["operation"] not in {"add_bond", "remove_bond", "set_bond_order"} for edit in edits):
+        raise ValueError("connectivity-only replay permits bond edits only")
+    if not replay_graph_edits(panel["before_graph"], edits, panel["after_graph"], panel["atom_map"]):
+        raise ValueError("connectivity edits do not reproduce the declared source product projection")
+    mapping = {row["before_atom_id"]: row["after_atom_id"] for row in panel["atom_map"]}
+    boundaries = _unique(annotation["boundary_attachments"], "boundary_id")
+    if not boundaries:
+        raise ValueError("partial connectivity requires source-reviewed boundary anchors")
+    for boundary in boundaries.values():
+        if (not isinstance(boundary["before_atom_id"], str)
+                or not isinstance(boundary["after_atom_id"], str)
+                or boundary["before_atom_id"] not in mapping
+                or boundary["after_atom_id"] not in mapping.values()
+                or mapping[boundary["before_atom_id"]] != boundary["after_atom_id"]
+                or boundary["source_id"] not in witnesses
+                or not isinstance(boundary["external_group_description"], str)
+                or not boundary["external_group_description"].strip()
+                or type(boundary["order"]) is not int or boundary["order"] not in {1, 2, 3}):
+            raise ValueError("connectivity boundary anchor differs from the mapped source projection")
+    anchored = [boundary["before_atom_id"] for boundary in boundaries.values()]
+    before_locators = _unique(annotation["atom_locators"]["before"], "atom_id")
+    if (len(set(anchored)) != len(anchored)
+            or {before_locators[atom]["participant_id"] for atom in anchored} != {
+                key for key, value in participants.items() if value["side"] == "reactant"}):
+        raise ValueError("connectivity boundary anchors must be distinct and cover each input participant")
+    return {"source_annotation": deepcopy(annotation), "replay_verified": True,
+            "source_product_observation": deepcopy(product_observation),
+            "verification_scope": "Literal selected-graph replay under a source-reviewed project map; no complete chemistry or stereochemical inference.",
+            "computed_atom_stereochemistry": None, "computed_product_stereoisomer": None,
+            "map_uniqueness_established": False}
+
+
 def compare(rows: dict[str, dict[str, Any]], request: dict[str, Any]) -> dict[str, Any]:
     """Return an eligible descriptive comparison or explicit abstention.
 
@@ -235,6 +344,13 @@ def _project_candidate(repo_root: Path, spec: dict[str, Any] | None = None) -> d
         if len(input_ids) != len(set(input_ids)) or set(input_ids) != reactant_ids:
             raise ValueError("substrate participant IDs differ from source reaction reactants")
         reactions[key] = {**deepcopy(item), "source_record": source_record}
+        if item.get("connectivity_providers"):
+            provider = item["provider"]["source"]
+            relations = [_connectivity_relation(resolve(ref), source_record,
+                         spec["sources"][provider], sources[provider])
+                         for ref in item["connectivity_providers"]]
+            _unique([relation["source_annotation"] for relation in relations], "relation_id")
+            reactions[key]["connectivity_relations"] = relations
     observations = []
     for panel in spec["panels"]:
         source = sources[panel["source"]]
@@ -448,8 +564,11 @@ def project(repo_root: Path, spec: dict[str, Any] | None = None) -> dict[str, An
     review = json.loads((repo_root / REVIEW_PATH).read_text(encoding="utf-8"))
     if review.get("status") != "source_reviewed_computational":
         raise ValueError("perturbation projection review is not accepted")
+    accepted = json.loads((repo_root / SPEC_PATH).read_text(encoding="utf-8"))
     required = {SPEC_PATH, "src/catalytic_earth/atlas_perturbations.py",
                 "scripts/query_atlas_perturbations.py"}
+    if any(item.get("connectivity_providers") for item in accepted.get("reactions", {}).values()):
+        required.add("src/catalytic_earth/atlas_transformations.py")
     if not required <= set(review["reviewed_bindings"]):
         raise ValueError("review does not bind projection and public consumers")
     for relative, digest in review["reviewed_bindings"].items():
@@ -459,7 +578,6 @@ def project(repo_root: Path, spec: dict[str, Any] | None = None) -> dict[str, An
         raw = path.read_bytes().replace(b"\r\n", b"\n")
         if hashlib.sha256(raw).hexdigest() != digest:
             raise ValueError(f"reviewed binding differs: {relative}; renewed source review required")
-    accepted = json.loads((repo_root / SPEC_PATH).read_text(encoding="utf-8"))
     if spec is not None and spec != accepted:
         raise ValueError("candidate differs from reviewed projection; use internal development path")
     result = _project_candidate(repo_root, accepted)

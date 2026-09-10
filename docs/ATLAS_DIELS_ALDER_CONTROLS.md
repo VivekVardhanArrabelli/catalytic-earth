@@ -34,8 +34,9 @@ two reported fold assertions, not five experiments or five measured rates.
 The other three printed Table 1 specificity/efficiency columns are intentionally
 outside this bounded projection; this is not full-table coverage. Their values
 are not declared missing and are not recomputed from the selected columns.
-The complete view has 118 parameter records and 56 comparison requests; 41
-permit descriptive arithmetic and 15 abstain. All 113 inherited records and
+At the original source-relation increment, the complete view had 118 parameter
+records and 56 comparison requests; 41 permitted descriptive arithmetic and
+15 abstained. All 113 inherited records and
 55 inherited comparisons retain their values and scope. The new request
 abstains specifically from reconstructing parameter-matched mutant/control
 measurements. Its context retains both reported mutation effects.
@@ -78,6 +79,65 @@ final-construct ligand geometry or a structural explanation for the mutation
 effects. Mutation sensitivity likewise does not isolate hydrogen bonding,
 orbital-energy modulation, desolvation or conformational contributions.
 
+## The reactive core replays; stereochemical selection remains source-only
+
+The [partial drawing relation](../data/atlas/study_context/diels_alder_2010/reactive_core.json)
+connects the existing named reaction to an executable six-carbon constitutional
+projection. The same query shown above returns it under
+`reactions["diels_alder_2010:diene1-dienophile2-cycloaddition"].connectivity_relations`.
+The existing graph-edit engine performs the replay; no separate reaction engine,
+new CLI or enzyme-specific runtime rule is introduced.
+
+All six locators are **project-declared**, supported by Figure 1 and the two
+omitted substituent anchors. `d1` is the diene carbon directly attached to
+carbamate N; `d2`, `d3`, `d4` follow its conjugated chain toward the free terminus.
+`a` is the dienophile alkene carbon attached to the amide carbonyl C, and `b`
+is its other alkene carbon. Product 4 has the ring
+`d1-d2=d3-d4-b-a-d1`.
+
+| Source-drawing edge | Reactants | Product |
+| --- | --- | --- |
+| d1-d2 | Double | Single |
+| d2-d3 | Single | Double |
+| d3-d4 | Double | Single |
+| a-b | Double | Single |
+| d1-a | Absent | Single |
+| d4-b | Absent | Single |
+
+Thus two new C-C bonds and four bond-order changes reproduce the declared
+product core. Omitting any of these six edits fails replay. The bare carbon
+subgraph is symmetric without its boundary groups: replay does not prove map
+uniqueness or recover regioselectivity by itself. The preserved carbamate-N
+and amide-carbonyl anchors and exact source review supply the interpretation.
+A coherently invented wrong after graph can still pass literal replay; it
+cannot enter the reviewed query without changing the source-bound provider.
+
+The combined question of mapping this core to atom-specific `3R,4S` stops at
+the stereochemical boundary. Figure 1 leaves product 4 unwedged. Figure 4
+labels Exo-Re/Exo-Si/Endo-Si/Endo-Re products `3S,4S`/`3R,4R`/`3S,4R`/`3R,4S`,
+but its caption does not define `R1`/`R2` or join source locants to our atom IDs.
+All four shown products share the selected constitutional core. P14's
+`3R,4S endo` assignment and Figure 4's `Endo-Re` label remain opaque source
+product metadata, with no computed target selection or atom-level CIP assignment.
+The known source-named trans diene is retained outside this graph API, which
+does not represent double-bond geometry. Null graph stereo means outside this
+projection, not an achiral product or discarded source information.
+
+This projection omits the carbamate, benzyl/carboxyl and amide substituents and
+all hydrogens. The remote carboxylate/CO2H discrepancy is still unresolved;
+the original reaction's full `atom_map`, balanced equation and proton-transfer
+fields remain null. The replay checks literal bonds, not complete valence,
+radical state, electron-flow arrows, concertedness, stereochemical authentication,
+an observed trajectory or productive geometry. The graph API's `source_flow_id`
+contains an explicit project-difference compatibility token, not an invented
+source arrow. Existing assay, mutant, construct and evidence-tier limits remain.
+
+The bounded reusable gain is a source-bound connectivity relation alongside
+the existing functional and product contexts, with unsupported stereochemical
+selection explicit. It adds no canonical reaction, mechanism admission,
+experiment or validated design capability. Curation and source review still
+require manual effort; no measured speedup or incumbent-superiority claim follows.
+
 ## Acquisition, reuse and the next decision
 
 The distinct `designed-diels-alder-siegel2010` batch consumed 14 requests and
@@ -99,10 +159,16 @@ product/control join remains unavailable. No curation speedup, superiority to
 competent source reading, design success, independent review, project experiment
 or evidence-tier promotion is claimed.
 
-Next test the common relation on the existing transketolase E366Q
-partner-subunit case, where reporter nondetection and retained turnover belong
-different substrates and endpoints. This tests cofactor-dependent reuse and
-prevents a generic inactivity label. Stop after one executable relation or a
-specific shared-representation gap; a new isolated annotation is insufficient.
-Return to the Diels–Alder control-assay join only when a new permitted supplement
-witness becomes available.
+The Diels-Alder stereo question could be reopened by qualifying the analytical
+reference cited in P14 and listed in article R14:
+Cannizzaro et al., JACS 2003, 125:2489, doi:10.1021/ja020879d. Only this citation
+identity and its source-declared method association have been inspected here;
+the cited paper's contents remain unacquired and unassessed. That question is
+whether it supplies exact product structures and an assignment basis that can
+resolve the opaque stereo labels. Stop at one supported identity/method relation
+or an unavailable/conflicting source. A method reference cannot substitute for
+Siegel2010's unacquired Figure S8 sample/integration data or establish matched
+enzyme/background conditions. Such work would continue the same Siegel source
+batch; unchanged blocked supplement routes stay closed. The current program
+priority is the distinct reaction-state/deposit join in the marked handoff,
+where retained chemical evidence can test a stronger cross-object relation.

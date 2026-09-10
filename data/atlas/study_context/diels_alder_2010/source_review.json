@@ -12,7 +12,7 @@
   },
   "reviewed_documentation": {
     "path": "docs/ATLAS_DIELS_ALDER_CONTROLS.md",
-    "sha256": "eb0319636aea183771290ffb0608ace1bc49c80949e0f1bbd4e41bb3c2acbb48"
+    "sha256": "749e81dbcebcceb9022a5b4a5043bb16276c712c43b0c856feb394561830ac19"
   },
   "acquisition_binding": {
     "path": "data/atlas/study_context/diels_alder_2010/acquisition_receipts.json",
@@ -75,7 +75,7 @@
     "parameter-qualified mutant/control kinetic arithmetic",
     "product conversion or stereochemistry transferred to mutants or separate assay arms",
     "exact sequence or assay-specimen authentication",
-    "canonical reaction, balanced protonation, reverse reaction or atom mapping",
+    "canonical reaction, balanced protonation, reverse reaction or full/net atom mapping; the partial project-locator replay is scoped separately in connectivity_followup",
     "productive geometry or microscopic catalytic-group causal attribution",
     "independent review, gold admission, new experiment, tier promotion or design-success estimate"
   ],
@@ -125,5 +125,85 @@
     "source_review_sha256": "0674012c5ab1edb7520802e6c414bc5f912e20dd9ad32b2cafc05c97647ee732",
     "final_sha256": "760c55328925ba4d64673c3a499fed7da34ee1b75e9268883f9212eecc59e39b",
     "change": "Restore inherited CE-022 unicode escape spelling; parsed JSON before/after identical and prior32 claim objects unchanged. No scientific claim change."
+  },
+  "connectivity_followup": {
+    "status": "accepted_exact_source_and_consumer_scope",
+    "reviewed_at_utc": "2026-09-10T21:30:44.936902+00:00",
+    "authorized_operation": "source_annotation",
+    "question": "Does Figure1 support a six-carbon reactive-core map to the author-assigned 3R,4S endo product?",
+    "decision_scope": "Constitution-only correspondence supported; atom-specific stereochemical join stops at the source/representation boundary. Original full reaction atom_map and source observations remain unchanged.",
+    "reviewed_bindings": {
+      "data/atlas/study_context/diels_alder_2010/reactive_core.json": "cbd144d7fa62f09848869da5dee39a0f3c9b76f3f0b34856be8b5a5eac14d1c6",
+      "data/atlas/perturbations/projection.json": "5a0d6f7fda70ec7872db053ddba9197e214be2d66bf9ec94f17a4cb2a47bbb7b",
+      "src/catalytic_earth/atlas_perturbations.py": "a814c22b892b3e734076fa9aead03453c83cb6ebe4c1d1e8cd85f5bbf4f0d778",
+      "src/catalytic_earth/atlas_transformations.py": "24c3a95a3ed82b6add1b8257bdbfb5b6307d0f740f169a2633f2c70a3b1cab08",
+      "tests/core/test_atlas_perturbations.py": "8f358d99fc81563cfb153b25fb296d8562fce016505f26639e48bc07d8c843c0",
+      "docs/ATLAS_DIELS_ALDER_CONTROLS.md": "749e81dbcebcceb9022a5b4a5043bb16276c712c43b0c856feb394561830ac19",
+      "CLAIMS.md": "b8a1ca5e5c513d6ded434cabb41999182d4421c5d82c409d31f6624b6be0c879",
+      "data/governance/claim_ledger.json": "688bd6b3c310098976d3b3aef4fd5f09b6b711d221724d5cacbfdeb250d6d830",
+      "docs/CURRENT_STATE.md": "7bb5cc756565927c0e1b9cb438de70e79a45131daa31da9ab687ad54d7c9752f",
+      "docs/CURRENT_DECISIONS.md": "4680fbdb5e807314e4b648444bd90942fadc79585e30eefe6f189dac4e5e4f25"
+    },
+    "adjudications": [
+      {
+        "objection": "Bare carbon core is symmetric and could imply unique mapping or hide omitted chemistry.",
+        "decision": "Retain chemically defined carbamate-N and amide-carbonyl anchors, complete project-locator bijection, partial-scope flags and map_uniqueness_established=false. Source review chooses the interpretation; graph replay alone does not."
+      },
+      {
+        "objection": "Source trans and P14/F4 product assignment could be flattened or converted into computed atom-level stereo.",
+        "decision": "Retain original source metadata and source product observation separately; reject mapped stereo/target selection in the sidecar and all graph stereo/charge edits. Atom-specific stereo remains unestablished."
+      },
+      {
+        "objection": "Existing graph API requires source_flow_id although Figure1 provides no electron-flow arrows.",
+        "decision": "Use one explicit project-difference compatibility locator and require source_electron_flow=false. Six edits are an unordered constitutional difference, not a source arrow sequence or proof of concertedness."
+      },
+      {
+        "objection": "Malformed boundary with absent before atom and null after atom could pass equality on missing dictionary lookup.",
+        "decision": "Require string IDs with membership in both mapped graph domains before exact mapping equality."
+      },
+      {
+        "objection": "A coherently invented alternative regioisomer can pass literal replay.",
+        "decision": "Demonstrate this limitation and require exact source-reviewed data/provider hashes for the public query; software checks do not adjudicate raster source chemistry."
+      },
+      {
+        "objection": "Same reaction_id allowed the product pointer to select a different endpoint and a missing boundary anchor weakened the declared source interpretation.",
+        "decision": "Bind exact pre-existing product context_id, require distinct mapped boundary endpoints covering each input participant, and preserve partial scope. No source chemistry is inferred from these structural checks."
+      }
+    ],
+    "source_access": {
+      "new_requests": 0,
+      "new_response_body_bytes": 0,
+      "batch_id": "designed-diels-alder-siegel2010",
+      "cumulative_requests": 14,
+      "cumulative_response_body_bytes": 502726
+    },
+    "independent_human_review": false,
+    "new_project_experiments": 0,
+    "coordination_record": ".git/catalytic-earth-runs/c78cdd3c-bece-4e2e-ac11-fcad9c0a5dbb.board.md",
+    "reviews": [
+      {
+        "role": "source",
+        "reviewer_task": "/root/source_review",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra",
+        "status": "accepted_exact_bound_data_code_and_documentation"
+      },
+      {
+        "role": "representation",
+        "reviewer_task": "/root/representation_review",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra",
+        "status": "accepted_exact_bound_data_code_and_documentation"
+      },
+      {
+        "role": "adversarial",
+        "reviewer_task": "/root/adversarial_review",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra",
+        "status": "accepted_exact_bound_data_code_and_documentation"
+      }
+    ],
+    "review_process": "Three separately prompted read-only reviewers; parent alone edits, adjudicates source objections and owns Git/lock. These are correlated computational reviews, not independent human or laboratory validation.",
+    "completion_note": "All three roles accepted the exact listed bindings. Parent will renew the global perturbation review to these same bytes; remaining tests and exact-head CI gate publication."
   }
 }
