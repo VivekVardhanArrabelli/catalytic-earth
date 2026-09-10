@@ -1,0 +1,115 @@
+{
+  "schema_version": "catalytic-earth.functional-comparison-review.v1",
+  "comparison_id": "giger2013-ra95-construct-assay-outcomes",
+  "decision": "accept_source_annotation",
+  "authorized_operation": "source_annotation",
+  "policy_binding": {
+    "path": "data/governance/computational_review_policy.json",
+    "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "reviewed_at_utc": "2026-09-10T00:28:53.851973+00:00",
+  "reviewed_comparison": {
+    "path": "data/atlas/study_context/ra95_2013/functional_comparison.json",
+    "sha256": "0e2fe21efce4d805fdef8505770c0cf18557ed774c08a79cfc5e68c1b1fbf94a"
+  },
+  "retained_input_bindings": [
+    {
+      "path": "data/atlas/study_context/ra95_2013/acquisition_receipts.json",
+      "sha256": "9b6c2c8803773b58ff39ff76e5ad1f772faa788c28b888df965434868d76658e"
+    }
+  ],
+  "reviewed_documentation": {
+    "path": "docs/ATLAS_DESIGNED_ENZYME_OUTCOMES.md",
+    "sha256": "cfa121b429394a55bf43e67794147a26b8ed1a5c8b59f8a34e71e8d1f55459d4"
+  },
+  "source_review": {
+    "reviewer_task": "ra95_source",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "ultra",
+    "status": "accepted at reviewed comparison and documentation hashes",
+    "scope": "Full primary article; visual SI pages2/3/5/9; all15 selected numeric rows, four printed tagged sequences, eight source-defined mutation reconstructions, assay/uncertainty attribution, unit and excluded-row conflicts, source pins and cumulative acquisition accounting."
+  },
+  "representation_review": {
+    "reviewer_task": "ra95_representation",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "ultra",
+    "status": "accepted at reviewed comparison and documentation hashes",
+    "scope": "All12 construct strings/hashes/deltas, source-described design origin versus exact ancestor identity,15 row-to-construct-to-assay joins,12 ratios, missingness, unit abstention and complete acquisition accounting."
+  },
+  "adversarial_review": {
+    "reviewer_task": "ra95_adversarial",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "ultra",
+    "status": "all scientific wording objections addressed in the reviewed comparison and documentation; review-file binding checked separately before publication",
+    "scope": "Selected-outcome bias, designed versus evolved versus engineered-derivative identity, endpoint/background dependence, chemical versus structural mutation effects, site-evidence endpoint at RA95.5-5, double-mutant residuals, incumbent value and next distinct chemical case."
+  },
+  "adjudications": [
+    {
+      "objection": "A same-named variant or concatenated mutation history could identify the wrong sequence.",
+      "evidence": "SI Figure5; SI Table1 footnote d; article Methods/S8 and S11.",
+      "decision": "Four complete tagged strings are directly printed; eight are explicitly derived. Preserve five surface changes relative to earlier RA95.0, S53T versus source E53T wording and S43R reversion. 1LBL plus11 design/5 surface substitutions is source-reported origin only; exact ancestor sequence is unacquired."
+    },
+    {
+      "objection": "Unmarked Table2 rows could inherit fluorescence method, conditions or SD semantics.",
+      "evidence": "SI Table2 page3 first3 RA95.0 rows lack a markers; later8 rows are marked. SI Figure1 separately confirms main-lineage UV-vis.",
+      "decision": "Unmarked rows have a distinct unresolved assay binding, null condition/technique assignment and literal plus-minus magnitude without an asserted SD type. Marked fluorescence and main UV-vis remain separate; no parent values are exchanged."
+    },
+    {
+      "objection": "Source unit and arithmetic inconsistencies could be silently normalized.",
+      "evidence": "Visual SI Table2 KM header M; efficiency arithmetic differs by approximately10^6. Excluded SI Table1 E53A/RA95.5 S/selectivity inconsistencies.",
+      "decision": "Retain literal KM numbers/M unit with normalized value/unit null. Preserve reported efficiency column and same-column ratios without repairing the source. Excluded inconsistent rows support no extra claims."
+    },
+    {
+      "objection": "Fluorescence kinetic parameters could acquire an explicit fitting-model claim absent from the source.",
+      "evidence": "SI Table2 and main fluorescence Methods/S15; explicit Michaelis-Menten equation only in UV-vis Methods/S16.",
+      "decision": "Use source-reported kinetic parameter wording for fluorescence; no raw trace refit or asserted fluorescence equation. UV-vis retains its explicit model."
+    },
+    {
+      "objection": "An engineered double-substitution derivative could be presented as an evolved clone; positive or nd data could receive generic functional labels.",
+      "evidence": "Article Methods/S11 and SI Table2.",
+      "decision": "Distinguish engineered K83M/K210M derivatives of evolved backgrounds. Retain small positive parameter values; RA95.0-K210M nd is null with no numeric detection limit. Neither implies a generic activity status or a third catalytic residue."
+    },
+    {
+      "objection": "Site perturbation could isolate chemical participation or propagate through every displayed lineage member.",
+      "evidence": "The packet has K83/K210 perturbations through RA95.5-5, but only sequence/kinetic context for RA95.5-8. Parent structures are inhibitor-adduct models.",
+      "decision": "Record background/parameter-specific substitution sensitivity. Leave RA95.5-8 site assignment unresolved. No mutant fold-control/structure or elementary-step evidence is retained to isolate chemical participation from structural effects; no coordinate files are acquired or mapped."
+    },
+    {
+      "objection": "Integration might only republish a known result or imply an unbiased design-success cohort.",
+      "evidence": "Study already reports active-site remodeling; retained rows are selected lineage and mechanistic perturbations.",
+      "decision": "Value is reusable eligibility for exact sequence joins and background/parameter-bound labels. No novelty, measured speedup, comparative accuracy or design-success denominator is asserted; no unreported screen clone is classified as a failure."
+    }
+  ],
+  "blocked_operations": [
+    "normalized SI Table2 KM without source resolution",
+    "exact method/condition/SD assignment for unmarked SI Table2 rows",
+    "exact unacquired ancestral sequence join",
+    "independently verified assay-specimen sequence identity",
+    "RA95.5-8 catalytic-site transfer by lineage",
+    "chemical-role attribution isolated from structural mutation effects",
+    "productive or transition-state geometry",
+    "mechanism compilation or protected-registry admission"
+  ],
+  "verification_scope": "Parent and three read-only computational workers checked source/transcription and exact bindings. Parent recomputed XML main-table cells, sequence deltas/hashes, row joins and12 ratios. Repository/CI checks verify integrity/software, not laboratory truth. Source bodies are not redistributed, so exact transcription review requires matching retained sources.",
+  "source_access": {
+    "batch_id": "designed-retroaldolase-ra95-giger2013",
+    "complete_cumulative_requests": 9,
+    "complete_cumulative_response_body_bytes": 4454733,
+    "limits": [
+      100,
+      31457280
+    ],
+    "source_bodies_redistributed": false,
+    "accounting_note": "All discovery, error and challenge bodies counted. One concurrently completed parent request entry was restored from exact tool-returned metadata and retained body after a ledger overwrite; no traffic is omitted. Inherited scopes are unchanged."
+  },
+  "evidence_limits": {
+    "independent_human_review": false,
+    "laboratory_validation_by_project": false,
+    "new_measurements_collected": 0,
+    "evidence_tier_promotion": false,
+    "new_mechanism_compilation": false,
+    "protected_registry_change": false,
+    "frozen_packet_resolution": false,
+    "correlated_agent_errors_possible": true
+  }
+}

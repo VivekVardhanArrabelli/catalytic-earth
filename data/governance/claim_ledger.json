@@ -316,5 +316,19 @@
       "data/atlas/study_context/pox2019/functional_review.json",
       "docs/ATLAS_STUDY_CONTEXT.md"
     ]
+  },
+  {
+    "claim_id": "CE-026",
+    "claim_kind": "scientific_result",
+    "status": "Supported",
+    "claim": "In the retained RA95.5-5 fluorescence comparison, K210M retains displayed kcat/KM 490 M^-1 s^-1 while kcat changes from 0.048 +/- 0.007 to 0.023 +/- 0.001 s^-1; K83M has reported efficiency 2.3 M^-1 s^-1.",
+    "current_wording": "Bind designed-enzyme outcomes to the exact variant background, substrate, assay and parameter. Preserve positive reported parameter values in engineered double-substitution derivatives of evolved backgrounds and RA95.0-K210M nondetection without a numeric detection limit. Four complete sequences are source-printed; eight mutant strings are derived. KM unit conflicts and unmarked-row assay identity remain unresolved; no generic inactivity, exact assay-specimen verification, design success rate, productive geometry or new validation follows.",
+    "rationale": "The primary study, complete tagged sequences, mutation definitions and assay-specific table rows prevent name-only construct joins and endpoint-blind catalytic-role transfer. The primary study already reports remodeling; the atlas adds reusable evidence-qualified associations.",
+    "evidence": [
+      "data/atlas/study_context/ra95_2013/functional_comparison.json",
+      "data/atlas/study_context/ra95_2013/functional_review.json",
+      "data/atlas/study_context/ra95_2013/acquisition_receipts.json",
+      "docs/ATLAS_DESIGNED_ENZYME_OUTCOMES.md"
+    ]
   }
 ]

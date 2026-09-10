@@ -1,5 +1,24 @@
 # Current State
 
+## 2026-09-10: designed-enzyme outcomes bind constructs and parameters
+
+The [RA95 comparison](ATLAS_DESIGNED_ENZYME_OUTCOMES.md) adds one bibliographically distinct
+primary-study source context for designed/evolved enzyme outcomes. In the
+RA95.5-5 fluorescence assay, K210M preserves the displayed efficiency while
+reducing kcat; K83M reduces both. CE-026 prevents a background- or
+parameter-blind catalytic/activity label. Engineered double-substitution derivatives of evolved backgrounds retain low
+positive reported parameter values, while RA95.0-K210M nondetection is not a zero rate.
+
+Four published 258-residue tagged sequences and eight explicitly derived
+mutant strings bind fifteen selected table rows. The 2013 RA95.0 has five
+surface substitutions relative to the earlier same-named construct. Unresolved
+KM units and the first three Supplementary Table 2 rows' unmarked assay
+assignment remain explicit. This is a source annotation, not a protein
+admission, mechanism compilation, experiment or evidence-tier promotion.
+All chemistry and joins fit additive data. The distinct named acquisition
+batch is fully metered at nine requests / 4,454,733 response-body bytes;
+inherited source-accounting gaps and scopes are unchanged.
+
 ## 2026-09-09: POX analogue nonbinding retains separate pyruvate responses
 
 The [six-row POX comparison](ATLAS_STUDY_CONTEXT.md#pox-analogue-binding-does-not-supply-a-generic-activity-label)

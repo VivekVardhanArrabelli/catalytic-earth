@@ -1,5 +1,26 @@
 # Current Decisions
 
+## 2026-09-10: permit a construct-bound RA95 outcome annotation
+
+The [RA95 source review](../data/atlas/study_context/ra95_2013/functional_review.json)
+authorizes `source_annotation` for the exact comparison after source,
+representation and adversarial challenge. Four printed sequence strings and
+eight explicitly derived mutant strings connect the selected published rows
+to their variant backgrounds and assay parameters. The permitted relation is
+background/parameter-specific sensitivity to substitution; it does not isolate
+chemical participation from mutation-induced structural effects.
+
+Normalized Supplementary Table 2 KM values, unmarked-row method/condition/SD
+assignment, exact ancestor or assay-specimen identity, RA95.5-8 site transfer
+and productive geometry remain blocked. Source objections narrow those fields
+without preventing the supported annotation. No frozen kernel, protected
+registry, independent-review status or mechanism-draft permission changes.
+
+The bibliographically distinct `designed-retroaldolase-ra95-giger2013` batch
+was metered from its first request and totals nine requests / 4,454,733
+response-body bytes. Its limits remain cumulative; older accounting gaps are
+unchanged. Case facts remain data, with no new enzyme-specific runtime.
+
 ## 2026-09-09: permit a retained-source deposit annotation for M0081
 
 The [3CSM packet](ATLAS_DEPOSIT_CONTEXT.md) uses the owner-authorized

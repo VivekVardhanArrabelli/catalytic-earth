@@ -1,83 +1,91 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research baton — 2026-09-09
+## Current research baton — 2026-09-10 (UTC)
 
 This block and `docs/HOURLY_RESEARCH.md` govern the hourly task. Historical
 content below the marker is not an execution queue.
 
 - **Identity/base:** owner
-  `01a0886c-241d-7f52-82be-7bba435a9956:ced5b696-bc02-4ef8-b517-f660f54b0d4b`;
-  actual UTC start 2026-09-09T23:06:50Z; clean synchronized base
-  `e9ce146bb519e3489d8d43b7d4eb5162391ddf86`; prior PR #64 confirmed merged,
-  no open PR or recovery work. Branch `codex/pox-functional-comparison-20260909`.
-  Checkpoint 2026-09-09T23:27:41Z (20.9 minutes). Exact final head,
-  publication/CI, runtime and release belong in the Git-local receipt.
-- **Question/result:** can the same functional-comparison concepts preserve
-  POX analogue binding, authentic-substrate processing and steady-state function?
-  All six Table 2b rows fit additive data. E59Q has source-reported MAP
-  nonbinding and unavailable MAP parameters, but positive source-reported fitted
-  pyruvate/DCPIP kcat 0.49 ± 0.01 s^-1 and anaerobic pyruvate/FAD k_app_max
-  1.07 ± 0.08 s^-1 at 25 C. MAP nonbinding therefore cannot supply generic
-  inactivity or authentic-pyruvate nonbinding (CE-025).
-- **Scope/limits:** one study, a second enzyme context and six comparison rows
-  across three distinct assays. No new experiment, admitted biological case,
-  protein registry entry, compiled mechanism or tier promotion. MAP forms a
-  covalent nonprocessed conjugate. Its apparent K_D is not pyruvate affinity.
-  The FAD processing rate spans microscopic steps; DCPIP replaces oxygen.
-  Exact sequence/preparation identity, oxygen turnover, elementary-step rates,
-  structural atom links, geometric causation and independent validation remain
-  unestablished. Source-relative central-value ratios imply no significance
-  or equivalence test; no raw transient is refitted.
-- **Evidence:** `data/atlas/study_context/pox2019/functional_comparison.json`
-  SHA256 `570ffb83d9272d41ed72ff389c2f56fbc1415c7d6d9fbdd6c622476957c2a4b5`;
-  `functional_review.json`; readable result in `docs/ATLAS_STUDY_CONTEXT.md`.
-  Retained table image, footnotes h-k, SI printed pages 4 and 8-9 and Figure 8
-  legend are hash-bound. Exact local bodies: `/private/tmp/ce-6ha3-UOvXho/`.
-  Publisher bodies are not redistributed; transcription review needs matching
-  sources. MAP's literal path-length unit `10 mM`, differing source spellings,
-  unstated single-turnover pH and E60A's printed 12.5 versus 113/9.0 arithmetic
-  remain explicit. All 17 source quotients retain formulas/units and null SD.
-- **Acquisition:** ZERO new scientific-source requests/bytes. Exact batch
-  `human-tkt-e160q-6ha3-geometry-function` remains a **metered lower bound**
-  of 7 captures / 3,004,884 bytes; complete totals/headroom remain null because
-  inherited discovery traffic is unmetered. M0081 panel lower bound remains
-  28 / 1,474,405 with its own gap. No batch was renamed or reset. No other
-  source scope changed; do not reacquire in unresolved scopes.
-- **Reuse/reconsideration:** all chemistry remains data; no runtime branch or
-  new validator. One shared traversal already consumed both TKT/POX comparisons
-  and preserved three TKT reporter-unavailable contexts versus POX E59Q analogue
-  nonbinding, each beside its separate steady-state assay. Exact old-record
-  pointers and quotient provenance prevent duplicate observations. This check
-  is complete; do not repeat it as the next task. No measured curation-time
-  saving or superiority to a competent source reading is claimed. The added
-  value is reusable eligibility for functional labels, not new chemistry.
-  Further same-study table work now adds little; move toward actual designed
-  enzyme outcomes outside this natural-enzyme study.
-- **Verification/review:** source, representation and adversarial workers each
-  accepted the final comparison hash with no remaining objection and have
-  stopped. Parent verified exact body/repository pins, all six rows, source
-  quotient arithmetic at displayed rounding, eight within-assay ratios and
-  exact reuse pointers. Repository contracts pass with 25 claims; all 14
-  truth-governance tests pass after updating the existing claim-count assertion
-  from 24 to 25. This is computational review only. Original TKT/study/assembly
-  packets, frozen kernels, protected registries and exposure history are
-  unchanged. Board: `work/coordination_pox_function_20260909.md`.
-- **Publication/recovery:** accepted local increment ready for commit/push/PR
-  and required CI at this checkpoint. Inspect this branch/PR first if unfinished;
-  Git and the local receipt establish its final publication state. Only owned
-  files are changed; no unrelated work or active editing worker remains.
-- **One next action:** source-qualify one published designed-enzyme variant
-  series for an exact construct–assay–outcome join, including informative weak
-  or failed variants. Expected gain: determine whether this representation
-  supports design-enabling functional data outside one natural ThDP-enzyme
-  study. Establish the exact primary study and permissions before curation;
-  any new source scope must be bibliographically distinct, explicitly named
-  and metered from its first request, not a reset of an inherited batch. Stop
-  if source access, construct/assay identity or useful outcome contrast cannot
-  be established within a bounded batch; retain a supported negative result.
-  No new model, paid compute, outreach or performance benchmark is implied.
-  Do not reopen M0081 trace recovery without a new exact transport locator.
+  `01a088a2-4a23-7d12-862d-3dd39de74224:be3a548b-cef4-4ee2-ab9e-45752444a10d`;
+  actual UTC start 2026-09-10T00:05:43Z. Clean synchronized base
+  `7df2274732f0f52921ba0068bc310d9a0cb6b5ce`; prior PR #65 verified merged,
+  no open PR or recovery work. Branch `codex/ra95-designed-outcomes-20260910`.
+  Checkpoint 2026-09-10T00:31:45Z (26.0 minutes).
+  Exact final commit, publication/CI and release belong in the Git-local receipt.
+- **Question/result:** can a bibliographically distinct designed-enzyme study
+  support construct–assay–outcome joins including weak or nondetected outcomes?
+  Giger 2013 RA95 qualifies for a bounded annotation. In the marked RA95.5-5
+  fluorescence context, K210M preserves displayed efficiency 490 M^-1 s^-1
+  while kcat changes 0.048 ± 0.007 to 0.023 ± 0.001 s^-1. K83M efficiency is
+  2.3 M^-1 s^-1. Substitution sensitivity depends on background and parameter
+  (CE-026); a catalytic-site label cannot propagate by lineage alone.
+- **Scope/limits:** four directly printed 258-aa tagged sequences and eight
+  explicitly reconstructed mutant strings connect fifteen selected table rows
+  to twelve source-defined constructs. These are not fifteen experiments or
+  an unbiased design cohort. Engineered double-substitution derivatives of
+  evolved backgrounds retain low positive reported parameters; RA95.0-K210M
+  `nd` is null with no numeric detection limit. Direct site-perturbation evidence
+  ends at RA95.5-5; RA95.5-8 site assignment remains unresolved. No new protein
+  admission, mechanism compilation, tier promotion or project experiment.
+- **Evidence:** `data/atlas/study_context/ra95_2013/functional_comparison.json`
+  SHA256 `0e2fe21efce4d805fdef8505770c0cf18557ed774c08a79cfc5e68c1b1fbf94a`;
+  `functional_review.json` SHA256
+  `01274207915b1f6b5e76cfee1ef9982ed0046e844cd26a7bea14cd109e7e9d15`;
+  readable result `docs/ATLAS_DESIGNED_ENZYME_OUTCOMES.md`.
+  Article DOI 10.1038/nchembio.1276 / PMID 23748672 / PMC3720730; retained
+  XML, SI PDF and all transport bodies at `/private/tmp/ce-ra95-be3a548b/`.
+  Source bodies are hash-bound and not redistributed.
+- **Source objections preserved:** Table2 KM literally prints M but has a
+  roughly million-fold arithmetic scale inconsistency; normalized KM stays null.
+  The first three RA95.0 rows lack footnote markers: no exact method/condition
+  or SD-type transfer. Fluorescence values remain source-reported parameters,
+  without an explicit fit-equation claim. The 2013 RA95.0 differs from earlier
+  same-named material by five surface substitutions; exact ancestor identity
+  is unacquired. Sequence-derived S53T and S43R reversal are explicit. Parent
+  inhibitor-adduct structures do not isolate chemical versus structural
+  mutation effects; no coordinate files, mutant fold controls or elementary
+  step evidence are retained. Excluded SI1 arithmetic conflicts remain warnings.
+- **Acquisition:** complete new study-specific batch
+  `designed-retroaldolase-ra95-giger2013`: **9 requests / 4,454,733 response-body
+  bytes**, including discovery, errors and challenge pages; 91 requests and
+  27,002,547 bytes remain under the cumulative ceiling. Receipt:
+  `data/atlas/study_context/ra95_2013/acquisition_receipts.json`.
+  One overwritten concurrent parent receipt entry was restored from exact
+  tool metadata and retained bytes; all nine captures are accounted for.
+  No inherited batch is renamed/reset. TKT batch lower bound7/3,004,884 and
+  M0081 panel lower bound28/1,474,405 still have unknown complete headroom;
+  M0187 remains12/440,960 at its sublimit. Other scopes unchanged.
+- **Reuse/reconsideration:** existing assay/parameter/missingness/quotient
+  concepts fit additive data; printed versus mutation-derived sequences add
+  reusable provenance without runtime branches or a new validator. No repeated
+  TKT/POX consumer audit or M0081 recovery scan. The paper already reports
+  remodeling; atlas value is preventing name-only construct joins and
+  parameter-blind labels, not discovery, measured speedup or comparative
+  accuracy. Further same-table curation is not the next bottleneck.
+- **Verification/review:** source, representation and adversarial workers
+  accepted the exact comparison/document/review pins and completed their
+  read-only tasks. Parent checked source/body pins, all main-table XML cells,
+  sequence deltas, target residues for the 16 source-described design-origin
+  substitutions, row/assay joins and twelve same-assay central-value ratios.
+  All14 truth-governance tests pass. Repository contracts and required PR CI
+  remain publication steps at this checkpoint. No remaining source objection;
+  unresolved fields above stay blocked. This is computational review only.
+  Board: `work/coordination_ra95_20260910.md`.
+- **Publication/recovery:** accepted owned increment ready for remaining
+  validation, commit, push and PR. Inspect this branch/PR first if unfinished;
+  local receipt and Git establish final publication state. No unrelated dirty
+  work, source acquisition process or editing worker remains.
+- **One next action:** source-qualify the KE59 Kemp-eliminase study cited in
+  the retained article R8: Khersonsky et al. 2012, DOI
+  10.1073/pnas.1121063109 / PMID 22685214 / PMC3387081. Test whether exact
+  sequences and matched site-perturbation assays support retention of its
+  programmed catalytic apparatus. Gain: a contrasting chemical class and a
+  check against generalizing the RA95 site-change result. Check existing scope
+  accounting first; if this paper has no scope, name a genuinely distinct batch
+  and meter from its first request. Stop if exact construct or matched
+  perturbation-assay contrast is absent; retain a supported negative. Do not
+  infer a design hit rate, build a model, or reopen completed RA95 table checks.
 
 Preserve historical content below this marked block. Git identifies the
 containing increment; no self-hash follow-up commit is required.
