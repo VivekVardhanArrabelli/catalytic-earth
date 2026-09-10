@@ -1,5 +1,15 @@
 # Current Decisions
 
+## 2026-09-10: compare localized source steps without transferring a whole catalytic cycle
+
+Accept a source-annotation relation for the [ThDP reset and qualified
+activation](ATLAS_THDP_CORRESPONDENCE.md) after source challenge. Exact declared
+atom/arrow maps belong in data; one repository consumer checks them using existing
+parsers. Preserve the activation spectator-H difference and all reaction, protein, metal
+and physical-state limits. The provisional/frozen crosswalk is unchanged. A concrete
+cross-case result replaces the unchanged HisF prerequisite queue; no acquisition scope
+or evidence tier changes.
+
 ## 2026-09-10: associate deposited attachment without repairing reacted chemistry
 
 Accept the [bounded RA95.5-5 relation](ATLAS_RA95_4A2R_STATE.md) after source

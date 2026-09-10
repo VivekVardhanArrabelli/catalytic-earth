@@ -457,6 +457,22 @@ and deposit0.2M remain conflicted. No absent Lys210 catalysis, mutant geometry,
 physical preparation identity, microscopic cause, productive solution state,
 new experiment or evidence-tier promotion follows.
 
+## CE-036 — source-step correspondence preserves hydrogen scope
+
+**Status:** Supported
+
+The [ThDP relation](docs/ATLAS_THDP_CORRESPONDENCE.md) maps M0106 proposal-1
+step7 to M0219 proposal-1 step6 through corresponding 34-node selected
+ThDP/Glu covalent graphs and all five directed source-arrow endpoints,
+including both transferred explicit hydrogens. Activation requires a partial
+projection: M0106 has an additional explicit spectator N–H. Equal protonation
+remains unestablished. Two declared phosphate-oxygen maps retain invariant
+reaction endpoints. Source-file order, alternate conjugated-bond paths and
+uncompared metal/stereo context retain their limits. No physical atom map,
+residue homology, after-state replay, whole-cycle equivalence, conserved
+function, reaction/protein/structure transfer, new experiment or evidence-tier
+promotion follows.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,

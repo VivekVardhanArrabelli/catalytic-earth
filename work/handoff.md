@@ -4,93 +4,75 @@
 ## Current research baton — 2026-09-10 (UTC)
 
 This block, `docs/HOURLY_RESEARCH.md` and the current direction review govern
-continuation. Preserve the full computable-atlas and de novo design purpose;
-historical handoffs below are not an execution queue.
+continuation. Historical handoffs below are not an execution queue.
 
-- **Identity/base:** owner `01a08c11-b43e-7433-92b4-078199988bfd:16b34855-a4f7-4202-89d7-889881bad9fe`;
-  actual start `2026-09-10T16:06:19Z`; clean main base
-  `cc399d0abc9e99030c20998c6203baf9fb1b1b74`. PR81 completion and release
-  verified; no open PR or pending recovery; fetch/fast-forward complete.
-  Branch `codex/hisfh-donor-context-20260910`. Parent owns all edits, Git,
-  acquisition and lock. Three Sol/ultra reviewers are read-only.
-- **Direction/question:** RA95 state-link stopping conditions are complete;
-  the newer handoff justifiably moved beyond the direction review's earlier
-  RA95 question. Can a source-declared same HisF background support a
-  free-ammonium versus glutamine/HisH functional comparison? Expected gain:
-  donor/subunit applicability beyond M0753's admitted half-reaction. Stop at
-  one supported relation or the exact missing source/preparation evidence.
-- **Outcome:** requested comparison is **not established from retained
-  evidence**. The 2001 primary abstract reports upstream HisH glutaminase
-  nondetection in isolation and qualitative stimulation with HisF under
-  separate product/analogue contexts. These are not downstream product-rate
-  operands. The indexed article excerpt identifies isolated-HisF Table III
-  and glutamine-dependent complex Table IV, but lacks their quantitative rows
-  and assay Methods. The original study may contain the desired comparison;
-  absence from retained excerpts is not absence from the study.
-- **Excluded transfer:** the 2003 simulation article's secondary donor-
-  preference summary cannot become an exact ratio. Donor concentrations,
-  HisH stoichiometry, row-specific HisF background, product/readout and
-  conditions remain unresolved. An authenticated exact sequence or shared
-  physical vial is not a universal prerequisite for a source-defined
-  within-study contrast; missing provenance must retain its actual scope.
-  M0753/Q9X0C6/2A0N remains HisF/free-ammonium only. No channel transport,
-  occupancy, isolated catalytic cause or complex geometry is established.
-- **Evidence:** `data/atlas/study_context/hisfh_2001/donor_comparison_assessment.json`;
-  `work/coordination_hisfh_20260910.md`. Four exact retained source-text
-  segments (three search renderings and one CLI-parsed structural abstract)
-  from identified original task outputs are cached under the Git common
-  directory, with extraction line/character/hash bindings in the assessment.
-  Together they contain 22,985 local text bytes; they are not complete article/PDF responses or historical network-byte receipts. Private
-  traces and source text are not redistributed. No new fitted parameter,
-  common comparison, registered protein, compiled mechanism or project
-  experiment is added; three abstract contexts are source summaries.
-- **Acquisition:** zero requests/response-body bytes this run. The default
-  four-record M-CSA package records 49/1,109,896 for one entry response and
-  48 linked scheme responses. The inherited panel's 28/1,474,405 remains a metered lower bound. The separate
-  exact HisF-probe trace has two metered response examples (PubMed 14,953
-  bytes/HTTP 200 and CDN 219 bytes/HTTP 400) beside unmetered search/open
-  traffic; these scopes are not added or renamed into a new allowance. Complete cumulative usage and
-  headroom remain unknown. The closed September9 telemetry recovery is not
-  reopened. All earlier complete named batches are unchanged; RA95 remains
-  27/17,298,809. No acquisition until attributable accounting or explicitly
-  revised owner authority permits it.
-- **Reuse/reconsideration:** source-specific facts remain data; no new
-  runtime, identity adapter, common panel or opaque evidence-context wrapper
-  is warranted without source operands. This run demonstrates no new shared
-  consumer capability or curation-time saving. The useful stopping result is
-  the exact source/endpoint gap and prevention of an unsupported transfer.
-  Another cached RA95 table/state annotation lacks a new justified question;
-  no independent high-impact alternative was identified in this bounded
-  inquiry. This is not a claim that all atlas research is impossible.
-  The new bounded source-gap result closes this question; consecutive
-  no-progress runs: **0**. No new reusable atlas relation was demonstrated.
-  Do not turn this source memo into a repeated review queue.
-- **Review/verification:** source, representation and adversarial reviewers each
-  rehashed and accepted assessment SHA
-  `a409f8b1539059e7c6021d9e23c77ec67bfe17fe7b161bc64e331844c7ac1710`
-  after source/accounting corrections; no remaining material objection.
-  Local checks verify all four extracted renderings and four
-  unchanged controls. The unchanged shared query returns 193 parameter
-  records, 111 comparison requests and two state links; its 17 original
-  primary witnesses verify 20,956,262 bytes. All 573 core tests pass.
-  Repository contracts pass after updating only the architecture path
-  count 17,672 to 17,674. At 16:29:09 UTC (22.85 minutes), all
-  reviewers and local checks have completed. Required remote CI remains the
-  publication gate. No protected/frozen/exposure change or unrelated dirty work. Git identifies this handoff's containing commit;
-  final SHA/push/merge/CI/release belongs to the task result and local receipt
-  `.git/catalytic-earth-runs/20260910T160619Z-16b34855-a4f7-4202-89d7-889881bad9fe.json`.
-- **One next action:** check for a newly available complete primary Methods
-  and Table III/IV witness for DOI `10.1074/jbc.M102012200`, or an explicit
-  owner revision of this existing acquisition authority/accounting rule.
-  Gain: obtain source-bound donor/component operands for a genuinely useful
-  comparison. Stop immediately if neither prerequisite changed; no repeat
-  literature probe, telemetry scan or representation wrapper. If unchanged
-  checks yield two consecutive no-progress runs and no distinct evidence-supported
-  action is available, pause the schedule and identify the missing witness
-  or authority. If usable rows arrive, preserve differing inputs/components,
-  establish matched endpoint/conditions and stop at one supported relation
-  or precise mismatch. Resume unfinished publication first if live state
-  differs from the final receipt.
+- **Identity/base:** owner `01a08c7f-1dc5-73f2-aaa5-32c6414622af:d39dc5ce-933c-4f33-b3f8-4a0d05bc7e0d`;
+  actual start `2026-09-10T18:05:53Z`; clean main base
+  `436f5487eb848dde5651ac600ad3cf18c74a68a9`. PR82 and its exact-main CI
+  verified; no open PR or recovery at entry. Branch
+  `codex/thdp-step-correspondence-20260910`. Parent owns edits/Git/lock;
+  Sol/ultra source and adversarial workers are read-only through one Git-local
+  coordination board. At 18:38 UTC, elapsed about32 minutes; publication is
+  the remaining work, not a reason to start another scientific investigation.
+- **Question/outcome:** can M0106/M0219 source depictions establish a useful
+  ThDP step correspondence beyond cofactor labels? Reset (proposal1 steps7/6)
+  has corresponding full selected34-node/34-bond covalent actor graphs and
+  all five directed arrows, including both transferred H. Activation (steps1/1)
+  is only partial: M0106 has extra non-flow spectatorH a65 on N a64; its atom
+  and N-H boundary stay explicit. Two declared diphosphate maps retain the
+  same reaction endpoints. Activation source-file arrow ordering differs.
+- **Evidence/capability:** `data/atlas/source_step_correspondence/thdp.json`,
+  its `review.json`, `scripts/compare_source_steps.py` and
+  `docs/ATLAS_THDP_CORRESPONDENCE.md`. One source-bound repository consumer
+  checks supplied maps with existing parsers, retaining exact source identity,
+  full flow endpoints, electronic tokens, excluded atoms and opaque context.
+  It does not enumerate every graph isomorphism or claim an installed-wheel
+  command. CE-036 records one relation with two source-step pairings.
+- **Limits:** parsed omitted formalCharge defaults to0; no completed proton
+  inventory or exact microstate. Labels/alias text remain source metadata.
+  Glu fragments are not residue homology; metal/stereo context is uncompared.
+  M0106 E2 carrier accession/site/pose and M0219 native metal remain unresolved;
+  no reaction, acceptor, protein, 6HA3 grounding or whole-cycle transfer.
+  Adjacent after-state extension is closed: M0219 step7 omits ThDP/Glu,
+  unlike M0106 step8. Do not turn that absence into a repeated replay queue.
+  These are source-proposed drawings, not new experiments or tier promotion.
+- **Acquisition/prerequisites:** zero new scientific requests/response bytes.
+  Original sources and all cumulative scopes are unchanged. RA95 remains
+  27/17,298,809; default four-record M-CSA49/1,109,896; the inherited panel's
+  28/1,474,405 is only a lower bound, with complete panel/HisF headroom unknown.
+  HisF primary Methods/Table III/IV is still missing; no repeat literature
+  probe or closed telemetry recovery. Other complete named batches retain
+  their prior totals; no scope reset, renaming or unaccounted acquisition.
+- **Reuse/reconsideration:** the unchanged HisF prerequisite initially offered
+  no progress, but a concrete cross-case scientific question justified this
+  pivot. Case-specific selections/maps are data, not enzyme-ID branches.
+  Exact graph/flow correspondence adds capability beyond the existing cofactor
+  label filter. No measured curation-time saving or scientific superiority is
+  claimed. No protected/frozen/exposure change, new registered protein or
+  compiled mechanism. Consecutive no-progress runs: **0**; schedule stays active.
+- **Review/verification:** source and code challenges corrected source-alias
+  acceptance, injected findings, unverified emitted sources, empty relations,
+  attribution and charge wording. Same-model review is not independent human
+  validation. All583 core tests pass, including ten targeted failure-mode and
+  CRLF checks. Existing CE001–035 and perturbation evidence remain unchanged;
+  renewed five affected governance review hashes and claim count35to36 without
+  weakening checks. Architecture changes only path count17,674to17,679.
+  Final repository/archive contracts and required reviewed-head CI remain
+  publication gates. Git identifies this block's containing commit; exact
+  final SHA/push/merge/CI/release belongs in the task result and local receipt
+  `.git/catalytic-earth-runs/20260910T180553Z-d39dc5ce-933c-4f33-b3f8-4a0d05bc7e0d.json`.
+- **One next action:** test whether retained proposal1 step2 PLP transaldimination
+  collapse in M0066, M0186 and M0213 supports a shared directed-arrow/reactive
+  graph correspondence despite different substrate sidechains. Sources and
+  compiled records are under `data/atlas/source_drafts/batches/plp-pyruvoyl/`.
+  This is an untested next question, not a new result. Gain: test reuse across
+  divergent reaction classes with explicit chemical boundaries. Use the same
+  consumer if its semantics suffice. Stop at one qualified relation preserving
+  every flow endpoint and explicit non-flow exclusions/boundaries, or the first
+  irreducible charge/H/bond mismatch. No implicit-H completion, after-state
+  inference, whole-function claim or forced family-specific code. Requires no
+  acquisition. Resume any unfinished publication first if live state differs
+  from the final receipt; do not repeat completed RA95 or HisF wrapping.
 
 Preserve historical content below this marked block. No self-hash follow-up
 commit is required.

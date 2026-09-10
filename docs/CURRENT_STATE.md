@@ -1,5 +1,15 @@
 # Current State
 
+## 2026-09-10: ThDP reset correspondence retains the activation hydrogen difference
+
+The [source-step query](ATLAS_THDP_CORRESPONDENCE.md) associates M0106 and M0219
+proposal-1 reset depictions through full selected covalent graphs and complete arrow
+endpoints, including both transferred hydrogens. Activation is explicitly partial
+because M0106 draws an extra spectator N–H. This is one source-proposed cross-case
+relation with two step pairings, not two observed mechanisms or a conserved complete
+cycle. Original records and source budgets are unchanged; no sources were acquired. HisF
+Methods/Table III/IV remain unavailable in the retained scope.
+
 ## 2026-09-10: exact parent attachment accompanies matched residue sensitivity
 
 The [RA95.5-5/4A2R relation](ATLAS_RA95_4A2R_STATE.md) links the full258-aa

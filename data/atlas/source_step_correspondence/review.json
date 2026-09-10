@@ -1,0 +1,67 @@
+{
+  "schema_version": "catalytic-earth.source-step-correspondence-review.v1",
+  "status": "source_reviewed_computational",
+  "operation": "source_annotation",
+  "reviewed_at_utc": "2026-09-10T18:38:56.499909+00:00",
+  "bindings": {
+    "data/atlas/source_step_correspondence/thdp.json": "3a620126df2585e88f4e1fe9a45c34bd63488557592529cdae1e6b6c2de1187d",
+    "scripts/compare_source_steps.py": "a2e84f0cc511b0b757f1a9984fde66fe9403ce585f81736801edd75c45873601",
+    "docs/ATLAS_THDP_CORRESPONDENCE.md": "7d47a1c2fb1e706aa23277654d69d81fe82e0a9135be44173c8360e9938a0858",
+    "tests/core/test_source_step_correspondence.py": "0f840f834e05ead244168acb0bd86dd44ba0570eec58904cb4f4811c7fc588f5",
+    "CLAIMS.md": "257ec82bc5d23a10b73e675e535d51ffdd1453ec507e45ea883828610c2e0db1",
+    "data/governance/claim_ledger.json": "7e5d1a4bcd922b5464a1e58b65c64a3ceed5b9ce302a91b12adb045e006c5838",
+    "docs/ATLAS_SOURCE_DRAFTS.md": "1b427dada4359f7e040c7008a580f92a46d5067d1488fcbd98f004479555d9a2",
+    "docs/CURRENT_DECISIONS.md": "5988e4f4dee3e3e0acb4b570ea3eb299a3cf9573462e8b1608c4d76e891aefee",
+    "docs/CURRENT_STATE.md": "b8b43e68e5572a04219e1fcdd8e68627c1bf52bbd95792c618712477075c478c",
+    "data/atlas/perturbations/review.json": "c491d68e17132e90747576b610ce864fbc2c704caaa38ba5e96e7f9c22197dbc",
+    "tests/test_truth_guard.py": "e916e10cc696dd7e8168889e21d15ecd2822467d0e6511e2e386273eda09c927"
+  },
+  "question": "Can exact selected source graphs and complete directed arrow endpoints establish a localized ThDP correspondence beyond cofactor labels?",
+  "source_findings": [
+    "Reset full selected covalent actors correspond, including both transferred H atoms and all five source arrows.",
+    "Activation requires explicit exclusion of one non-flow spectator H; do not infer full actor-state or protonation equivalence.",
+    "Two declared phosphate-oxygen maps retain invariant reaction endpoints. Source-file ordering is not chronology; activation flow order differs.",
+    "Parsed formalCharge defaults to zero when absent; no exact electronic/proton microstate follows. Raw source labels and alias text remain metadata, not matched attributes.",
+    "M0219 step7 omits ThDP/Glu; no shared adjacent post-state can be established from these panels."
+  ],
+  "adversarial_corrections": [
+    "Bind displayed source ID to exact snapshot record identity.",
+    "Derive complete/partial finding from verified graph selection; reject injected finding text.",
+    "Emit source attribution and source-specific scope/abstentions.",
+    "Use canonical Git-LF file hashes and test CRLF checkout portability.",
+    "Reject empty relations and omit unused unverified source bindings.",
+    "Label curated limitation strings as declared; require nonempty global limitations.",
+    "Qualify parsed formal-charge defaults and the terminal adjacent-panel witness gap."
+  ],
+  "reviewers": [
+    {
+      "role": "source and chemical representation",
+      "agent": "source_change_check",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra"
+    },
+    {
+      "role": "independent bounded alternative and adversarial code/value challenge",
+      "agent": "distinct_chemistry_action",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra"
+    }
+  ],
+  "independent_human_review": false,
+  "correlated_errors_possible": true,
+  "acquisition": {
+    "new_scientific_source_requests": 0,
+    "new_response_body_bytes": 0,
+    "inherited_batches_unchanged": true,
+    "headroom_recomputed": false
+  },
+  "scope": "Source depiction correspondence only. No frozen kernel/registry/exposure change, mechanism compilation, complete microstate, canonical/physical atom map, adjacent after-state replay, whole-cycle equivalence, new experiment, or evidence-tier promotion.",
+  "remaining_objections": [],
+  "verification": {
+    "core_tests": 583,
+    "focused_source_correspondence_tests": 10,
+    "core_result": "passed",
+    "review_scope": "Source and adversarial reviewers accepted current graph/arrow/H boundaries and code. Parent and source reviewer verified CE001-035, old state/decision sections and underlying perturbation evidence unchanged; only five affected governance/test bindings were renewed.",
+    "remote_ci": "required publication gate, recorded by commit in Git and local run receipt"
+  }
+}
