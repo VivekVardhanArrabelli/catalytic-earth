@@ -330,5 +330,19 @@
       "data/atlas/study_context/ra95_2013/acquisition_receipts.json",
       "docs/ATLAS_DESIGNED_ENZYME_OUTCOMES.md"
     ]
+  },
+  {
+    "claim_id": "CE-027",
+    "claim_kind": "scientific_result",
+    "status": "Supported",
+    "claim": "The retained KE59 main article supplies five apparent-pKa pairs and declared variant substitutions, but no exact-sequence-bound E230 replacement assay. The author assignment of the pH shoulder to E230 is tentative; unacquired supplementary material remains unassessed.",
+    "current_wording": "Keep original KE59, R1 structural proxy and R2 pH proxy distinct. E230 is not a declared substitution in the selected rows, but neither exact sequence retention nor continued catalytic function follows. Preserve Table2 R4 pKa(kcat)=5.5 beside the prose range6.1-6.7. No full-apparatus retention, paper-wide absence, productive geometry, causal E230 assignment, design success rate or independent validation is established.",
+    "rationale": "The source assessment prevents pH-derived parameters, declared substitutions, inhibitor structure interpretations and MD proposals from being collapsed into a categorical catalytic-role label. This is an indirect-evidence contrast to RA95 substitution sensitivity, not a counterclaim that one system retains and the other relocates its catalytic machinery.",
+    "evidence": [
+      "data/atlas/study_context/ke59_2012/source_qualification.json",
+      "data/atlas/study_context/ke59_2012/source_review.json",
+      "data/atlas/study_context/ke59_2012/acquisition_receipts.json",
+      "docs/ATLAS_KE59_BASE_EVIDENCE.md"
+    ]
   }
 ]

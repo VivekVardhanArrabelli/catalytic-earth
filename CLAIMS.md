@@ -312,6 +312,21 @@ remain unresolved. These selected published results do not supply generic
 activity labels, exact assay-specimen verification, design success rates,
 productive geometry, new experiments or independent validation.
 
+## CE-027 — pH-profile evidence does not identify a catalytic residue
+
+**Status:** Supported
+
+The [KE59 source assessment](docs/ATLAS_KE59_BASE_EVIDENCE.md) retains five
+apparent-pKa pairs and declared variant substitutions. The acquired main article
+contains no exact-sequence-bound E230 replacement assay; the author's pH-shoulder
+assignment to E230 is tentative. Unacquired supplementary material remains
+unassessed. Original KE59, the R1 structural proxy and the R2 pH proxy remain
+distinct. Table 2's R4 pKa(kcat) of 5.5 is preserved beside the prose range
+6.1-6.7. Neither an omitted substitution nor a pH shoulder proves continued
+E230 catalysis, preserved apparatus, productive geometry or absence of another
+catalytic contribution. This is no paper-wide absence claim, experiment,
+mechanism compilation, design-success estimate or independent validation.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,

@@ -1,0 +1,527 @@
+{
+  "schema_version": "catalytic-earth.source-qualification.v1",
+  "assessment_id": "khersonsky2012-ke59-programmed-base-evidence",
+  "operation": "source_annotation",
+  "study": {
+    "doi": "10.1073/pnas.1121063109",
+    "pmid": "22685214",
+    "pmcid": "PMC3387081",
+    "title": "Bridging the gaps in design methodologies by evolutionary optimization of the stability and proficiency of designed Kemp eliminase KE59",
+    "enzyme_context": "Designed and evolved KE59 Kemp eliminase",
+    "source_scope": "Full retained main article only. SI, coordinate files, exact sequence strings and original design-source files are not acquired."
+  },
+  "question": "Does this study provide exact construct-matched site-perturbation assays supporting continued use of the programmed catalytic base?",
+  "qualification": {
+    "status": "not_established_from_acquired_source",
+    "matched_E230_perturbation_rows_in_retained_main_article": 0,
+    "matched_E230_perturbation_rows_in_uninspected_SI": null,
+    "exact_sequence_bound_constructs": 0,
+    "permitted_result": "Declared substitution backgrounds and pH-profile parameters are source-linked. The author E230 assignment is indirect and remains separate from an identified causal residue.",
+    "stop_reason": "Main article does not report a matched E230 replacement assay or exact sequence strings; SI access attempts failed. No paper-wide or literature-wide absence claim.",
+    "downstream_catalytic_labels": {
+      "programmed_E230_role_retained": null,
+      "catalytic_site_relocated": null,
+      "full_designed_apparatus_retained": null,
+      "null_semantics": "Unestablished at the acquired evidence scope; null is neither a positive nor negative catalytic-function label. No runtime consumer or enforcement is implemented here."
+    }
+  },
+  "selection": {
+    "included": "All five Table2 pKa pairs; Table1 substitution lists for these five variants plus original design and R1 structural proxy; relevant main-text methods, numbering, structural interpretation and limitations.",
+    "excluded": "No numeric Brønsted, turnover, efficiency, inhibitor-binding or stability comparison is curated; no SI-derived values, raw curve fitting, coordinate or sequence reconstruction.",
+    "counting_unit": "Seven named construct contexts; five printed pKa table rows with ten parameter estimates. These are not seven sequence observations, five independent experiments or a design cohort."
+  },
+  "source_bindings": [
+    {
+      "path": "data/atlas/study_context/ke59_2012/acquisition_receipts.json",
+      "sha256": "d8db70137de39d6407441a7b03ba150dbc08ee785cd007ddd1bb61c00a976895"
+    }
+  ],
+  "sources": [
+    {
+      "artifact_id": "PMC3387081:article-HTML",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3387081/",
+      "sha256": "6e4002b7264da74ff27a889728b536bd2ab26cdfa3d8c9f2489fa75245a445d2",
+      "bytes": 204880,
+      "local_cache_path": "/private/tmp/ce-ke59-fd2b98d2/article.html",
+      "redistributed": false,
+      "inspection": "Full main article, Tables1/2, Figures1-3 captions, Methods and reference17; SI not inspected."
+    }
+  ],
+  "source_access": {
+    "batch_id": "designed-kemp-eliminase-ke59-khersonsky2012",
+    "complete_cumulative_requests": 9,
+    "complete_cumulative_response_body_bytes": 261580,
+    "max_requests": 100,
+    "max_response_body_bytes": 31457280,
+    "remaining_requests": 91,
+    "remaining_response_body_bytes": 31195700,
+    "accounting": "All requests, redirects, error and challenge bodies metered serially. Other inherited scopes unchanged.",
+    "supplement_status": "not_acquired; attempted PDF/ZIP filenames contain HTML/XML/error bodies, not readable supplements"
+  },
+  "numbering": {
+    "source_locator": "article Figure1 caption",
+    "paper_numbering_relation": "This paper uses previous-publication position minus one, attributed to omission of N-terminal methionine.",
+    "prior_publication_E230_correspondence": "E231 by the author-stated offset only",
+    "sequence_or_deposit_mapping_verified": false,
+    "rule": "Keep paper numbering explicit. Do not shift PDB, UniProt or exact sequence positions without a source-bound mapping."
+  },
+  "constructs": [
+    {
+      "construct_id": "KE59 design",
+      "reported_variant": "KE59 design",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "not_acquired; variant name and declared substitutions do not establish exact sequence",
+      "source_locator": "article Table1/T1, KE59 design",
+      "declared_consensus_substitutions": [],
+      "declared_other_substitutions": [],
+      "declared_substitution_basis": "Source Table1 lists substitutions relative to KE59 design; no concatenation across evolution rounds.",
+      "E230_substitution_listed": false,
+      "E230_exact_sequence_identity_verified": false,
+      "study_role": "Original unstable design; distinct from both study proxies."
+    },
+    {
+      "construct_id": "R1-7/10H",
+      "reported_variant": "R1-7/10H",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "not_acquired; variant name and declared substitutions do not establish exact sequence",
+      "source_locator": "article Table1/T1, R1-7/10H",
+      "declared_consensus_substitutions": [
+        "W7A",
+        "F21L",
+        "N33R",
+        "S69A",
+        "T94A",
+        "N163E",
+        "F175I",
+        "F245L"
+      ],
+      "declared_other_substitutions": [],
+      "declared_substitution_basis": "Source Table1 lists substitutions relative to KE59 design; no concatenation across evolution rounds.",
+      "E230_substitution_listed": false,
+      "E230_exact_sequence_identity_verified": false,
+      "study_role": "Eight-consensus-substitution structural proxy, described by authors as stabilizing; not a member of the selected pH series. Individual mutation effects are not isolated."
+    },
+    {
+      "construct_id": "R2-4/3D",
+      "reported_variant": "R2-4/3D",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "not_acquired; variant name and declared substitutions do not establish exact sequence",
+      "source_locator": "article Table1/T1, R2-4/3D",
+      "declared_consensus_substitutions": [
+        "K9E",
+        "L14R",
+        "F21V",
+        "N33K",
+        "S69A",
+        "T94D",
+        "E142K",
+        "N160H"
+      ],
+      "declared_other_substitutions": [
+        "V80A"
+      ],
+      "declared_substitution_basis": "Source Table1 lists substitutions relative to KE59 design; no concatenation across evolution rounds.",
+      "E230_substitution_listed": false,
+      "E230_exact_sequence_identity_verified": false,
+      "study_role": "pH-profile early variant; eight consensus substitutions plus V80A; author uses it to represent design."
+    },
+    {
+      "construct_id": "R4-5/11B",
+      "reported_variant": "R4-5/11B",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "not_acquired; variant name and declared substitutions do not establish exact sequence",
+      "source_locator": "article Table1/T1, R4-5/11B",
+      "declared_consensus_substitutions": [
+        "K9E",
+        "N33K",
+        "S69A",
+        "T94D"
+      ],
+      "declared_other_substitutions": [
+        "V80A",
+        "R181H",
+        "A208V",
+        "R222Y",
+        "L247Q"
+      ],
+      "declared_substitution_basis": "Source Table1 lists substitutions relative to KE59 design; no concatenation across evolution rounds.",
+      "E230_substitution_listed": false,
+      "E230_exact_sequence_identity_verified": false,
+      "study_role": "Evolved variant in the selected pH series; multiple substitutions, not an isolated E230 perturbation."
+    },
+    {
+      "construct_id": "R8-2/7A",
+      "reported_variant": "R8-2/7A",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "not_acquired; variant name and declared substitutions do not establish exact sequence",
+      "source_locator": "article Table1/T1, R8-2/7A",
+      "declared_consensus_substitutions": [
+        "K9E",
+        "F21L",
+        "N33R",
+        "D60N",
+        "S69A",
+        "Y75G",
+        "T94D",
+        "E142K",
+        "L247G"
+      ],
+      "declared_other_substitutions": [
+        "R22H",
+        "I44N",
+        "A76V",
+        "V80A",
+        "L107M",
+        "F111I",
+        "R181H",
+        "I200V",
+        "N203D",
+        "A208V"
+      ],
+      "declared_substitution_basis": "Source Table1 lists substitutions relative to KE59 design; no concatenation across evolution rounds.",
+      "E230_substitution_listed": false,
+      "E230_exact_sequence_identity_verified": false,
+      "study_role": "Evolved variant in the selected pH series; multiple substitutions, not an isolated E230 perturbation."
+    },
+    {
+      "construct_id": "R9-1/4A",
+      "reported_variant": "R9-1/4A",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "not_acquired; variant name and declared substitutions do not establish exact sequence",
+      "source_locator": "article Table1/T1, R9-1/4A",
+      "declared_consensus_substitutions": [
+        "K9E",
+        "L14R",
+        "F21V",
+        "N33K",
+        "S69A",
+        "Y75G",
+        "T94D",
+        "Y151L",
+        "N160H"
+      ],
+      "declared_other_substitutions": [
+        "L16Q",
+        "I48M",
+        "A76V",
+        "V80A",
+        "F111I",
+        "R181H",
+        "A208V",
+        "R222Y",
+        "L247Q"
+      ],
+      "declared_substitution_basis": "Source Table1 lists substitutions relative to KE59 design; no concatenation across evolution rounds.",
+      "E230_substitution_listed": false,
+      "E230_exact_sequence_identity_verified": false,
+      "study_role": "Evolved variant in the selected pH series; multiple substitutions, not an isolated E230 perturbation."
+    },
+    {
+      "construct_id": "R13-3/11H",
+      "reported_variant": "R13-3/11H",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "not_acquired; variant name and declared substitutions do not establish exact sequence",
+      "source_locator": "article Table1/T1, R13-3/11H",
+      "declared_consensus_substitutions": [
+        "K9E",
+        "L14R",
+        "F21V",
+        "N33K",
+        "S69A",
+        "Y75G",
+        "T94D",
+        "Y151L",
+        "N160H"
+      ],
+      "declared_other_substitutions": [
+        "L16Q",
+        "I48M",
+        "A76V",
+        "V80A",
+        "I104V",
+        "F111I",
+        "S179T",
+        "R181H",
+        "K190N",
+        "A208V",
+        "R222Y",
+        "S233T",
+        "L247Q"
+      ],
+      "declared_substitution_basis": "Source Table1 lists substitutions relative to KE59 design; no concatenation across evolution rounds.",
+      "E230_substitution_listed": false,
+      "E230_exact_sequence_identity_verified": false,
+      "study_role": "Evolved variant in the selected pH series; multiple substitutions, not an isolated E230 perturbation."
+    }
+  ],
+  "assays": [
+    {
+      "assay_id": "5-nitro-BI_pH-rate-series",
+      "source_locator": "article sec5 Kinetic Analyses; sec16 Enzymatic Characterization; Table2",
+      "substrate": "5-nitrobenzisoxazole",
+      "reported_pH_range": [
+        5,
+        8.5
+      ],
+      "temperature_celsius": null,
+      "buffer_series": null,
+      "ionic_strength": null,
+      "pH_profile_fitting_equation": null,
+      "replicate_count": null,
+      "missing_conditions_reason": "No complete pH-series buffer/temperature/replication/fitting specification in retained main text; cited methods and SI are not acquired. Do not transfer fixed-pH routine kinetics conditions to the varied-pH series.",
+      "endpoint": "pH dependence of reported kcat and kcat/KM; apparent pKa estimate, not a residue-specific titration experiment",
+      "source_residue_assignment": {
+        "residue": "E230",
+        "namespace": "2012 paper numbering",
+        "status": "author_tentative_interpretation",
+        "source_locator": "article sec5 first paragraph",
+        "independent_residue_assignment": false
+      }
+    }
+  ],
+  "variants": [
+    {
+      "reported_variant": "R2-4/3D",
+      "construct_id": "R2-4/3D",
+      "row_id": "Table2:R2-4/3D",
+      "source_locator": "article Table2/T2, R2-4/3D",
+      "pH_profile": {
+        "assay_id": "5-nitro-BI_pH-rate-series",
+        "pKa_from_k_cat": {
+          "parameter": "apparent_pKa_from_k_cat_pH_profile",
+          "status": "source_reported_point_estimate",
+          "value": 6.1,
+          "reported_text": "6.1",
+          "unit": "dimensionless",
+          "uncertainty": null,
+          "uncertainty_status": "not_printed_in_main_table",
+          "fitted_residue_identity": null
+        },
+        "pKa_from_k_cat_over_K_M": {
+          "parameter": "apparent_pKa_from_k_cat_over_K_M_pH_profile",
+          "status": "source_reported_point_estimate",
+          "value": 6.3,
+          "reported_text": "6.3",
+          "unit": "dimensionless",
+          "uncertainty": null,
+          "uncertainty_status": "not_printed_in_main_table",
+          "fitted_residue_identity": null
+        }
+      }
+    },
+    {
+      "reported_variant": "R4-5/11B",
+      "construct_id": "R4-5/11B",
+      "row_id": "Table2:R4-5/11B",
+      "source_locator": "article Table2/T2, R4-5/11B",
+      "pH_profile": {
+        "assay_id": "5-nitro-BI_pH-rate-series",
+        "pKa_from_k_cat": {
+          "parameter": "apparent_pKa_from_k_cat_pH_profile",
+          "status": "source_reported_point_estimate",
+          "value": 5.5,
+          "reported_text": "5.5",
+          "unit": "dimensionless",
+          "uncertainty": null,
+          "uncertainty_status": "not_printed_in_main_table",
+          "fitted_residue_identity": null
+        },
+        "pKa_from_k_cat_over_K_M": {
+          "parameter": "apparent_pKa_from_k_cat_over_K_M_pH_profile",
+          "status": "source_reported_point_estimate",
+          "value": 6.7,
+          "reported_text": "6.7",
+          "unit": "dimensionless",
+          "uncertainty": null,
+          "uncertainty_status": "not_printed_in_main_table",
+          "fitted_residue_identity": null
+        }
+      }
+    },
+    {
+      "reported_variant": "R8-2/7A",
+      "construct_id": "R8-2/7A",
+      "row_id": "Table2:R8-2/7A",
+      "source_locator": "article Table2/T2, R8-2/7A",
+      "pH_profile": {
+        "assay_id": "5-nitro-BI_pH-rate-series",
+        "pKa_from_k_cat": {
+          "parameter": "apparent_pKa_from_k_cat_pH_profile",
+          "status": "source_reported_point_estimate",
+          "value": 6.2,
+          "reported_text": "6.2",
+          "unit": "dimensionless",
+          "uncertainty": null,
+          "uncertainty_status": "not_printed_in_main_table",
+          "fitted_residue_identity": null
+        },
+        "pKa_from_k_cat_over_K_M": {
+          "parameter": "apparent_pKa_from_k_cat_over_K_M_pH_profile",
+          "status": "source_reported_point_estimate",
+          "value": 6.5,
+          "reported_text": "6.5",
+          "unit": "dimensionless",
+          "uncertainty": null,
+          "uncertainty_status": "not_printed_in_main_table",
+          "fitted_residue_identity": null
+        }
+      }
+    },
+    {
+      "reported_variant": "R9-1/4A",
+      "construct_id": "R9-1/4A",
+      "row_id": "Table2:R9-1/4A",
+      "source_locator": "article Table2/T2, R9-1/4A",
+      "pH_profile": {
+        "assay_id": "5-nitro-BI_pH-rate-series",
+        "pKa_from_k_cat": {
+          "parameter": "apparent_pKa_from_k_cat_pH_profile",
+          "status": "source_reported_point_estimate",
+          "value": 6.5,
+          "reported_text": "6.5",
+          "unit": "dimensionless",
+          "uncertainty": null,
+          "uncertainty_status": "not_printed_in_main_table",
+          "fitted_residue_identity": null
+        },
+        "pKa_from_k_cat_over_K_M": {
+          "parameter": "apparent_pKa_from_k_cat_over_K_M_pH_profile",
+          "status": "source_reported_point_estimate",
+          "value": 6.5,
+          "reported_text": "6.5",
+          "unit": "dimensionless",
+          "uncertainty": null,
+          "uncertainty_status": "not_printed_in_main_table",
+          "fitted_residue_identity": null
+        }
+      }
+    },
+    {
+      "reported_variant": "R13-3/11H",
+      "construct_id": "R13-3/11H",
+      "row_id": "Table2:R13-3/11H",
+      "source_locator": "article Table2/T2, R13-3/11H",
+      "pH_profile": {
+        "assay_id": "5-nitro-BI_pH-rate-series",
+        "pKa_from_k_cat": {
+          "parameter": "apparent_pKa_from_k_cat_pH_profile",
+          "status": "source_reported_point_estimate",
+          "value": 6.7,
+          "reported_text": "6.7",
+          "unit": "dimensionless",
+          "uncertainty": null,
+          "uncertainty_status": "not_printed_in_main_table",
+          "fitted_residue_identity": null
+        },
+        "pKa_from_k_cat_over_K_M": {
+          "parameter": "apparent_pKa_from_k_cat_over_K_M_pH_profile",
+          "status": "source_reported_point_estimate",
+          "value": 6.5,
+          "reported_text": "6.5",
+          "unit": "dimensionless",
+          "uncertainty": null,
+          "uncertainty_status": "not_printed_in_main_table",
+          "fitted_residue_identity": null
+        }
+      }
+    }
+  ],
+  "evidence_layers": [
+    {
+      "evidence_type": "declared_variant_substitutions",
+      "source_locator": "Table1/T1",
+      "supported": "None of the selected substitution lists names E230.",
+      "not_established": "Exact sequence retention or continued catalytic function of E230."
+    },
+    {
+      "evidence_type": "source_reported_pH_parameters",
+      "source_locator": "Table2/T2; sec5",
+      "supported": "Five named backgrounds have separate kcat-derived and kcat/KM-derived apparent pKa values.",
+      "not_established": "A unique microscopic ionization, experimentally identified titrating residue or isolated E230 perturbation effect."
+    },
+    {
+      "evidence_type": "author_structural_interpretation",
+      "source_locator": "sec5 first paragraph; sec6; Figure2 caption",
+      "supported": "Authors compare E230 in the computational design model with crystal structures of mutation-containing proxy/evolved variants, distinguishing apo and inhibitor complexes. R1 is the design-like structural proxy; R2 is the early pH proxy.",
+      "not_established": "Parent project coordinate measurements, exact assay-to-crystal specimen correspondence or productive substrate geometry."
+    },
+    {
+      "evidence_type": "author_inhibitor_pose_warning",
+      "source_locator": "sec6 final paragraph; Figure3",
+      "supported": "Benzotriazole complexes show a binding orientation different from the design; authors allow multiple productive modes and warn inhibitor pose may not be catalytic.",
+      "not_established": "A reacting-substrate or transition-state pose, or a proven change in catalytic mechanism."
+    },
+    {
+      "evidence_type": "simulation_and_causal_interpretation",
+      "source_locator": "sec7 Desolvation and Base Positioning Effects",
+      "supported": "Authors use MD to propose desolvation and alternative E230 conformations, report no kcat-versus-base-position correlation, and do not partition positioning versus medium contributions by kinetics.",
+      "not_established": "Measured solution populations, elementary-step rates, E230 causality or a design-distance tolerance."
+    },
+    {
+      "evidence_type": "apparatus_composition_limit",
+      "source_locator": "intro designed site; sec4; Table1 R13; sec6; Figures2-3",
+      "supported": "R13 includes V80A and S179T; authors also describe altered W109 rotamers and inhibitor orientation.",
+      "not_established": "Preservation of the full designed apparatus merely because E230 is not a declared substitution."
+    }
+  ],
+  "source_conflicts": [
+    {
+      "id": "Table2-pKa-range",
+      "source_locator": "Table2 R4-5/11B; sec5 first paragraph",
+      "observation": "Table2 reports pKa(kcat)=5.5 for R4-5/11B, while the adjacent prose describes a 6.1-6.7 range.",
+      "decision": "Retain table value5.5 and the discrepancy. No correction, averaging, monotonic pKa-evolution claim or source-wide repaired range."
+    }
+  ],
+  "source_limitations": [
+    "Original design was unstable and could not be purified to homogeneity; source warns its activity estimate may include soluble misfolded protein. R1 and R2 are different mutation-containing proxies, not interchangeable original design measurements.",
+    "No exact amino-acid strings are acquired. Substitution lists are source declarations, not reconstructed sequences or individually verified assay specimens.",
+    "Main text contains no isolated E230-replacement assay. Unavailable SI cannot be counted as searched and does not establish absence across the complete study.",
+    "Additional ionizable substitutions cannot be assigned catalytic roles from their presence or approximate pKa. Residue alternatives remain unresolved.",
+    "Table1 distinguishes ND (parameters not determined under solubility limits), below detection limit and not measured. No such entry is converted into zero activity here.",
+    "The article has a questionable benzotriazole charge statement in sec6. This packet makes no resolved ligand charge/protonation claim and does not repair it without additional source evidence.",
+    "Table1 contains selected representative variants, not a complete library or proven construct phylogeny. E230 absence from selected substitution lists does not show that substitutions at E230 were sampled and purged, nor that every lineage intermediate preserved the residue.",
+    "This selected design-seeded directed-evolution case combines a source-reported natural IGPS scaffold, consensus mutations, mutagenesis and screening. It does not isolate the computational-design contribution or estimate prospective de novo-design success."
+  ],
+  "cross_case_comparison": {
+    "purpose": "Prevent substitution-sensitivity, sequence-retention, apparent-pKa and catalytic-role evidence from being collapsed into one downstream design label. No rate or success comparison between chemistries.",
+    "ra95_binding": {
+      "path": "data/atlas/study_context/ra95_2013/functional_comparison.json",
+      "sha256": "0e2fe21efce4d805fdef8505770c0cf18557ed774c08a79cfc5e68c1b1fbf94a"
+    },
+    "RA95": {
+      "acquired_matched_lysine_substitution_assays": true,
+      "sequence_status": "four printed strings and eight explicitly derived strings",
+      "eligible_relation": "background-and-parameter-specific substitution sensitivity through RA95.5-5",
+      "not_established": "chemical participation isolated from structural mutation effects; no RA95.5-8 site transfer"
+    },
+    "KE59": {
+      "acquired_matched_E230_substitution_assays": false,
+      "sequence_status": "exact strings unacquired",
+      "eligible_relation": "author-declared substitution context plus endpoint-specific apparent pKa and indirect E230 interpretation",
+      "not_established": "programmed catalytic-base function retained, full apparatus retained, or relocation excluded"
+    }
+  },
+  "reconsideration": {
+    "bespoke_code": "No runtime or validator added; variant, endpoint, missingness, provenance and evidence-type facts remain data.",
+    "reuse": "Existing assay_id, construct_id, source pointers and unresolved-value concepts carry a new apparent-pKa endpoint. Exact sequence eligibility is intentionally not borrowed from RA95.",
+    "incremental_value": "Records the exclusions needed to avoid design/R1/R2 proxy collapse, pKa-to-residue certainty and propagation of a table/prose discrepancy into design labels. Primary study already describes mechanistic interpretations; no new biological discovery, runtime enforcement or measured curation advantage.",
+    "changed_approach": "Stop catalytic-retention qualification at indirect evidence. Do not spend another run retrying identical SI routes or re-reviewing these tables."
+  },
+  "evidence_limits": {
+    "independent_human_review": false,
+    "laboratory_validation_by_project": false,
+    "new_measurements_collected": 0,
+    "evidence_tier_promotion": false,
+    "new_mechanism_compilation": false,
+    "protected_registry_change": false,
+    "frozen_packet_resolution": false,
+    "correlated_agent_errors_possible": true
+  }
+}

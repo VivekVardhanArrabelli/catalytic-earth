@@ -1,5 +1,24 @@
 # Current State
 
+## 2026-09-10: KE59 retains indirect base evidence and distinct proxies
+
+The [KE59 assessment](ATLAS_KE59_BASE_EVIDENCE.md) preserves five Table2
+apparent-pKa pairs, seven named construct contexts and a source-internal
+range discrepancy: R4 pKa(kcat) is 5.5 while prose says 6.1-6.7. Original
+KE59, R1 structural proxy and R2 pH proxy are different substitution
+backgrounds. Exact sequences and a matched E230-replacement assay are not
+established in the acquired main article; the unavailable SI remains unassessed.
+CE-027 prevents apparent-pKa/lineage context from supplying a causal site label.
+
+Declared substitutions, author structural interpretation, inhibitor-pose
+caveats and MD proposals remain separate evidence types. This adds a
+source-qualified negative to the designed-enzyme path without claiming full
+apparatus retention, site relocation, a new experiment or mechanism admission.
+The distinct KE59 batch totals 9 requests / 261,580 response-body bytes, completely
+metered from the first request. Identical failed SI routes are not a next task.
+Case facts reuse construct/assay/parameter/provenance concepts without runtime
+changes; no measured speedup or comparative design performance is claimed.
+
 ## 2026-09-10: designed-enzyme outcomes bind constructs and parameters
 
 The [RA95 comparison](ATLAS_DESIGNED_ENZYME_OUTCOMES.md) adds one bibliographically distinct
