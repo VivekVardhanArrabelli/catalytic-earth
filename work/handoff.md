@@ -3,106 +3,95 @@
 <!-- current-research-handoff:start -->
 ## Current research baton — 2026-09-10 (UTC)
 
-This block and `docs/HOURLY_RESEARCH.md` govern the hourly task. Historical
-content below the marker is not an execution queue.
+This block, `docs/HOURLY_RESEARCH.md` and the latest direction review govern
+continuation. Historical handoffs below are not an execution queue.
 
 - **Identity/base:** owner
-  `01a089b5-e134-7e33-877a-46be13496db7:aa923b6d-33f3-4d3d-84ce-eae24e87b2f6`;
-  actual UTC start `2026-09-10T05:06:47Z`. Clean synchronized main base
-  `41593f06652c28c11ef4bacce52cfb2b7043688a`; previous PR70 merged/released,
-  no open PR or pending recovery. Branch `codex/ra95-tetrad-controls-20260910`.
-  Scientific checkpoint `2026-09-10T05:29:11.674061+00:00` (22.4 minutes).
-- **Question/result:** do mature RA95 catalytic-group controls support a
-  conditional effect beyond the earlier lysine relocation? Obexer2017 SI
-  TableS1/S11 provides a complete parent/Y51F/Y180F/double comparison in
-  RA95.5-8F with (R)-methodol at29C. Observed double divided by a multiplicative
-  central-value reference is0.021 for kcat, approximately0.423 forKM and
-  approximately0.050 for printed kcat/KM. Y180F alone has printed efficiency
-  33600 versus parent33800 M^-1 s^-1; the double has170 versus Y51F3400.
-  CE-031 records descriptive nonmultiplicativity, not significance, microscopic
-  cooperation, coupling energy, a complete tetrad or a design-success result.
-- **Useful content:** seven kinetic table rows, seven thermal-shift rows and
-  seven intact-mass rows remain separate. All seven kinetic rows have positive
-  reported parameters; triple thermal N.D. means no transition, not inactivity.
-  One directly printed258aa8F string, six derived mutants and two reused2013
-  sequence providers preserve construct identity. Cross-source equality was
-  verified before reuse. InitialMet and LEHHHHHH remain in strings; source
-  mass calculations omit initialMet. No assay-aliquot/site-resolved identity
-  proof follows. E72Y/T94M list labels conflict with F72Y/T95M in the exact
-  RA95.0-to-RA95.5-8 strings; all13final8F changes agree with their strings.
-- **Limits:** missing Y51F/N110S and N110S/Y180F cells block three-way
-  decomposition; K83 combinations are missing from this panel. No paper-wide
-  absence claim: full main body remains unacquired/unassessed. No mutant
-  structure, active-fraction or microscopic-step control is established here.
-  Parent76C versus double67C melting points retain structural confounding;
-  K83M82C constrains gross destabilization without proving a preserved site.
-  Apo5AOU and inhibitor5AN7 descriptions retain differentpH/buffers,100K
-  collection and75%inhibitor occupancy; no coordinates acquired/recomputed.
-- **Evidence:** `data/atlas/study_context/ra95_2017/source_qualification.json` SHA256`6a7867da4e141c79ecb0c5542b3c5ab8b9aca20d638554c504612fde3930398d`;
-  readable `docs/ATLAS_RA95_TETRAD_CONTROLS.md` SHA256`d1dc9320ad595d4b115719f1443fa959706b39adac09d77b1724968d5c0ad8ed`. Review and
-  `acquisition_appendix.json` are in the same data directory.
-  DOI10.1038/nchem.2596 / PMID27995916; exact publisher-linked35page SI at
-  `/private/tmp/ce-ra95-tetrad-aa923b6d/supplement.pdf` SHA256
-  `2d1ce2aa6d4851996be75e63990ac3498a62ab611630b1529f1cf37c6976160d`.
-  Relevant Methodspp4-10, S5-S11pp22-28, TablesS1-S4pp30-33 inspected;
-  source bodies/figures are reference/cache-only, not redistributed.
-- **Acquisition:** same `designed-retroaldolase-ra95-giger2013` scope now
-  **24requests/15,353,338bytes** (15newrequests); remaining76/16,103,942 under
-  100/31,457,280. Appendix binds immutable prior9request/4,454,733byte receipt.
-  Publisher main preview, institutional DOI-only records and DORA shell do
-  not supply main text; failed routes stopped. All source acquisition stopped.
-  Other budgets unchanged: RA61 45/3,236,259; beta-barrel5/8,449,621;
-  KE59 9/261,580; KE70 16/1,102,794 full main/SI access-blocked;
-  TKT lower-bound7/3,004,884 and M0081 lower-bound28/1,474,405 retain unknown
-  complete headroom; M0187 12/440,960 remains at its sublimit. No reset.
-- **Reuse/reconsideration:** source/construct/assay/parameter/null/comparison
-  concepts suffice; no enzyme-specific runtime or new validator. Two exact
-  sequence providers reused after direct equality. Source challenge required
-  all three kinetic parameters and preserved label/sequence disagreement.
-  The parent rejected an inapplicable2013E53T/S53T warning: the2017E53T label
-  is correct for its explicitly namedRA95.0 comparison ancestor. Integrated
-  data prevent independent-dispensability and higher-order mechanism transfer;
-  a competent source reader can reproduce the arithmetic, and no measured
-  curation speedup or incumbent superiority is claimed. No runtime, frozen
-  kernel, protected registry, exposure history or evidence-tier change.
-  New content means consecutive no-progress runs:0.
-- **Verification/review:** three separately prompted read-only roles inspected
-  sources, representation and adverse claims; all three accepted the exact
-  final data/document/input pins with no blocking objection.
-  Parent verified all15newbody hashes/lengths, cumulative ledger, publisher-SI
-  link, all sequences/deltas, three paired parameters, missing cells and old30
-  claim objects. Existing14truth tests pass with required expected claimcount31.
-  Board `work/coordination_ra95_tetrad_20260910.md` records source objections
-  and adjudications. Source objections cannot be waived by model agreement.
-- **Publication/recovery:** parent alone edits, with no unrelated dirty work.
-  Source/diff review, contracts and reviewed-head CI are the publication gates;
-  inspect/resume this branch/PR first if still unfinished. Exact final commit,
-  push/merge/CI and release are recorded in Git and
-  `.git/catalytic-earth-runs/20260910T050647Z-aa923b6d-33f3-4d3d-84ce-eae24e87b2f6.json`.
-  Retain lock through safe checkpointing; join/stop every worker before release.
-  Git identifies this containing increment; no self-hash follow-up commit.
-- **Direction amendment, 2026-09-10:** the twelve-hour oversight review sampled
-  the source claims and audited cross-case reuse at scientific main
-  `db28b67fc41a552b9152bada94c8903e066729cd`. Findings and the three-agent
-  coordination record are in `docs/SCIENTIFIC_DIRECTION.md`. The sampled claims
-  held, but divergent packet layouts and the missing common consumer make
-  scientific reuse the current bottleneck. Prior scientific facts and budgets
-  above are unchanged; the next-action priority below supersedes the earlier
-  standalone forward-synthesis annotation.
-- **One next action:** use retained RA95 2013/2017 and RA61 evidence to produce
-  one executable, source-bound perturbation dataset relation, with KE59 as an
-  unassessed-matched-control countercase. Ask which catalytic-group perturbations
-  retain a measured endpoint in the exact construct/background, substrate and
-  assay, and which comparisons are ineligible. Keep parameter, uncertainty,
-  sequence-provider, control and source identity together. Do not pool studies,
-  treat nulls as inactivity or repair inconsistent source triplets. Gain:
-  recover supported comparisons and exclusions through the same consumer,
-  rather than reconstructing each study's file shape. Stop after the common
-  relation recovers the scoped RA95/RA61 effects and KE59 abstention, or identify
-  the smallest shared missing concept if it cannot. See the current direction
-  review for exact boundaries; no new source acquisition is needed initially.
+  `01a08a23-bfd9-7ef3-893e-0ed4be50da4c:5ac5e8f7-e568-4ed5-9cc7-1ec14a5aab10`;
+  actual start `2026-09-10T07:06:46Z`, clean synchronized main base
+  `a9ed9914806d7df6ea88f14c484da42786616e4d` (direction PR72 merged).
+  No pending PR/recovery or unrelated dirty work at start. Branch
+  `codex/perturbation-relation-20260910`. Scientific checkpoint
+  `2026-09-10T07:33:39.428822+00:00` (26.9 minutes).
+- **Question/result:** which proposed catalytic-group perturbations retain a
+  measured endpoint in their exact source-defined background, substrate and
+  assay, and which apparent comparisons cannot transfer? The current direction
+  priority is completed by one executable source-bound relation for RA95
+  2013/2017, RA61 and KE59. It recovers RA95.5-5 K210M printed efficiency
+  ratio1 while kcat is0.023/0.048; the paired tyrosine double/reference factors
+  0.021 (kcat),0.422857 (KM),0.050298 (printed efficiency); the withheld RA95.5
+  integrated substrate preference; RA61 double/parent2.6/0.49 initial-rate
+  contrast; and the KE59 unassessed E230 matched-control question.
+- **New capability:** `python scripts/query_atlas_perturbations.py` resolves
+  data-only panel mappings through shared eligibility rules. `--study`,
+  `--comparison`, `--output` and `--verify-witnesses` provide reusable views.
+  41 existing source table-row contexts become106 parameter records, not new
+  experiments:93numeric,10unit-conflicted,3parameter-unavailable records for
+  one nondetection context. Of55declared comparison requests,41permit scoped
+  descriptive arithmetic and14abstain; one abstention is a non-measurement
+  KE59 assessment. These counts are not a success rate or biological coverage.
+- **Limits:** no pooled rates, generic inactivity, repaired KM units/triplets,
+  causal residue labels, full apparatus retention, statistical equivalence,
+  microscopic interaction energies, new experiment, independent validation,
+  protein admission or tier promotion. RA61 remains an initial-rate endpoint
+  through aldehyde formation with missing exact sequences. KE59's ten apparent
+  pKa values are indirect context; design/R1/R2 remain distinct, matched E230
+  measurement fields null, main/SI inspection scopes separate. RA95 triple
+  kinetics remain positive despite thermal N.D.; missing combination controls
+  and structural/active-fraction confounds travel with paired effects. The
+  beta-barrel construct/control mismatch remains outside this bounded relation.
+- **Evidence/reuse:** projection `data/atlas/perturbations/projection.json`
+  SHA256`bf83935d74056aa93806f51dd380847499e7f149470eec2650ff5d75d25b7fef`;
+  accepted bindings/review `data/atlas/perturbations/review.json`; explanation
+  `docs/ATLAS_PERTURBATION_RELATION.md`. All five original annotation packets,
+  sequence providers, claim objects and source receipts remain unchanged.
+  Seven existing primary witnesses (15,359,106bytes) were hash-verified and
+  copied under Git-common-directory `catalytic-earth-source-cache/`. Paths,
+  original URLs, hashes and byte counts are in the projection. Bodies are
+  host-local only and not redistributed. Default query verifies metadata;
+  `--verify-witnesses` also verifies actual local bytes without fetching.
+- **Acquisition:** zero new source requests/bytes. Cumulative named scopes
+  remain RA95`24/15,353,338`, RA61`45/3,236,259`, KE59`9/261,580`, beta-barrel
+  `5/8,449,621`, KE70`16/1,102,794` (full main/SI access-blocked). TKT
+  lower-bound`7/3,004,884` andM0081lower-bound`28/1,474,405` retain unknown
+  complete headroom; M0187`12/440,960` remains at its sublimit. No reset.
+- **Review/reconsideration:** three separately prompted read-only GPT-5.6
+  Sol/ultra roles checked sources, representation and adversarial transfers.
+  Board `work/coordination_perturbation_relation_20260910.md` preserves parent
+  adjudications. Review corrected hidden unmarked-row uncertainty magnitudes,
+  ratio-like metadata on an unassessed question and insufficiently bound
+  mapping interpretations. The public query now checks the exact reviewed
+  projection and consumer; changed mappings require renewed source review.
+  An explicitly internal candidate path has no reviewed source authority.
+  Source objections are not waived by agreement. All case facts/mappings stay
+  in data and one consumer now recovers their common relation; no enzyme-ID
+  runtime branch. This demonstrates bounded computational reuse and prevents
+  invalid transfers, not measured curation speedup or superiority to competent
+  source reading. Manual mapping effort remains; no new mechanism ontology,
+  model or application was created. Consecutive no-progress research runs:0.
+- **Verification/publication checkpoint:**543core tests including20focused
+  scientific-transfer/review-gate tests, repository contracts and current-wheel
+  fresh-directory Atlas-10/source/candidate checks pass. All three source and
+  adversarial roles accepted their final scope; exact-head CI remains a merge
+  gate. Parent alone edits/Git; all workers are read-only and now stopped.
+  The original source packets, frozen kernels, registries and exposure history
+  are unchanged. Source/diff review precedes merge. Exact resulting commit,
+  PR/push/merge/CI state and lock release are recorded in Git and the local
+  receipt `.git/catalytic-earth-runs/20260910T070646Z-5ac5e8f7-e568-4ed5-9cc7-1ec14a5aab10.json`.
+  This is the prepublication checkpoint, not a claim that a branch push merged.
+  Resume this branch/PR first if unfinished; do not create competing work.
+- **One next action:** qualify one actual forward methodol synthesis/product
+  outcome in the retained2017SI (Methodspp9-11, S12p29), then assess whether
+  the common relation can carry its reaction direction, conditions and product
+  endpoint without a case-specific runtime branch. Expected gain: connect the
+  perturbation evidence to a design-relevant synthetic outcome while keeping
+  conversion, isolated yield and measured product configuration distinct.
+  Preserve50mL×2mM=100micromol versus printed130micromol; do not repair it by
+  inference. Stop after one source-bound useful outcome or if unavailable
+  identity/conditions/product evidence requires source repair. No unchanged
+  source-access retry or more tetrad arithmetic replaces missing controls.
 
-Preserve historical content below this marked block. Git identifies the
+Preserve historical content below this marked block. Git identifies this
 containing increment; no self-hash follow-up commit is required.
 <!-- current-research-handoff:end -->
 

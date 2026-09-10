@@ -1,5 +1,24 @@
 # Current Decisions
 
+## 2026-09-10: retain a shared perturbation relation at source-defined scope
+
+The [common perturbation query](ATLAS_PERTURBATION_RELATION.md) completes the
+bounded current reuse priority. Keep source-specific layout mappings in data,
+with source-bound construct, background, assay and parameter identities. Use
+explicit comparison roles and shared eligibility checks. Numerical uncertainty,
+unresolved error types, nondetection and unassessed controls remain separate.
+Original source annotations and acquisition receipts are preserved unchanged.
+
+The relation permits within-study named RA61 comparisons despite missing exact
+sequences, while rejecting sequence/preparation transfer. KE59's missing matched
+control remains a non-measurement assessment. Conditional RA95 effects do not
+establish catalytic causality or complete apparatus retention. No protected
+registry, frozen-kernel, exposure-history or evidence-tier decision changes.
+The next evidence-supported step is one actual forward-synthesis outcome using
+the retained 2017 supplement, with conversion/yield/configuration and source
+inconsistencies kept separate. This is a test of useful coverage growth after
+the shared relation, not another review of the settled perturbation arithmetic.
+
 ## 2026-09-10: turn accumulated perturbation evidence into a usable relation
 
 The owner requested a direction check and recurring correction about every

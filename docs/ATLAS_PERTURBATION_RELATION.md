@@ -1,0 +1,154 @@
+# Source-bound perturbation relation
+
+One offline consumer now recovers the accepted RA95 2013/2017 and RA61
+perturbation comparisons, their exclusions, and KE59's unassessed matched-control
+question. It answers which source-defined perturbations retain a measured
+endpoint in a particular background, substrate and assay. It does not assign
+generic activity, residue causality, preserved catalytic apparatus or design
+success. Current scientific scope remains [CE-026–CE-031](../CLAIMS.md).
+
+## Use the relation
+
+From the repository root, with Python 3.10 or newer and no added dependencies:
+
+```sh
+python scripts/query_atlas_perturbations.py --output /tmp/perturbations.json
+python scripts/query_atlas_perturbations.py --study ra61_2010
+python scripts/query_atlas_perturbations.py --comparison 'ra95_2017:Y51F-Y180F:kcat'
+python scripts/query_atlas_perturbations.py --comparison 'ke59_2012:E230-matched-perturbation'
+python scripts/query_atlas_perturbations.py --verify-witnesses --output /tmp/perturbations-with-local-source-check.json
+```
+
+This is a repository dataset query. The frozen Atlas-3/10 release and its
+installed command are unchanged. JSON output includes observations, comparison
+eligibility and reasons, exact construct/sequence providers, assays, substrate
+states, source contexts and witness references. A comparison filter retains its
+control observations; an unassessed question retains the identified contextual
+observations without inventing a measured mutant. Context dictionaries remain
+available when rows are filtered so the exclusions travel with the answer.
+
+The Python entry point is `catalytic_earth.atlas_perturbations.project(repo_root)`;
+`compare(rows_by_id, request)` exposes the same eligibility rules for explicit
+comparison requests over the returned reviewed rows. This helper calculates
+candidate arithmetic; it does not independently authenticate a supplied request.
+Neither function discovers matched controls by similarity.
+
+## What the same consumer recovers
+
+| Source-defined comparison | Returned result | Limit that remains attached |
+| --- | --- | --- |
+| 2013 RA95.5-5 K210M / same-table parent | kcat 0.023 / 0.048 = 0.4792; printed efficiency 490 / 490 = 1 | Parameter-specific central values; no statistical equivalence; printed KM units remain conflicted |
+| 2013 RA95.5-5 K83M / same-table parent | Positive printed efficiency 2.3 / 490 = 0.004694 | Small positive fitted value is different from nondetection |
+| 2013 RA95.0 K210M | Scoped nondetection with null numeric value; ratio ineligible | No numeric detection limit; the unmarked source rows have unresolved technique and conditions |
+| 2017 RA95.5-8F Y51F/Y180F paired square | Double / multiplicative reference: kcat 0.021; KM 0.422857; printed efficiency 0.050298 | Missing Asn double cells, thermal confounding and parent-only structural context remain; no microscopic interaction energy |
+| 2013 RA95.0 and RA95.5-8 R/S comparisons | Cleavage preference changes from S to R at the accepted scope | Printed selectivity factors remain separate from quotients of rounded efficiency columns; no synthesis-selectivity transfer |
+| 2013 RA95.5 R/S comparison | Integrated preference withheld; reported R preference and factor 3.2 retained | Inconsistent S kinetic triplet is not repaired |
+| 2010 RA61 Y78F/S87A / named RA61 parent | 2.6 / 0.49 = 5.3061; source factor 5.3 separately retained | Initial-rate endpoint through aldehyde formation, not later cycle steps; exact sequences are unavailable |
+| 2012 KE59 E230 replacement question | Unassessed matched comparison, with no mutant/control/value fabricated | Acquired main article has no matched E230 assay; unacquired SI remains unassessed; pKa is not residue assignment |
+
+The input scope covers 41 previously curated source table-row contexts,
+projected into 106 parameter records: 93 numeric, ten unit-conflicted and
+three parameter-unavailable records attached to one nondetection context.
+There are 55 declared comparison requests, of which 41 permit the defined
+descriptive arithmetic and 14 abstain. One abstention is the separate KE59
+assessment, not an experimental observation. These are view/coverage counts,
+not new experiments, biological cases, independent replicates or a success rate.
+No project experiment or independent expert validation was performed.
+
+## Shared representation and eligibility
+
+The [declarative projection](../data/atlas/perturbations/projection.json) is the
+only place that maps the different source packet layouts. It supplies source
+hashes, JSON pointers, construct/background identities, chemical states,
+parameter mappings, result-kind mappings and explicitly named controls. The
+consumer contains no enzyme-ID or study-ID branches. Existing source packets
+remain byte-identical; values and uncertainty are read from their providers.
+The [computational source review](../data/atlas/perturbations/review.json) binds
+the exact projection and both public consumer files. The default Python/CLI
+query rejects changed bytes before projecting. This protects curated substrate,
+direction, endpoint, qualification and missingness mappings as well as source
+values; a changed interpretation requires renewed review. Internal candidate
+projection for development is explicitly unreviewed and confers no reviewed
+source eligibility. These hashes bind the review; they do not prove its chemistry.
+
+Every parameter record retains its entire original parameter and row beside
+the common value/unit/uncertainty fields. Construct providers retain whether
+a sequence was directly printed or derived, as well as lineage and numbering
+cautions. Sequence hashes are checked separately from perturbation/background
+provider equality. A sequence-bound construct still does not identify the
+physical assay aliquot. Missing RA61/KE59 sequences are explicit and cannot
+be borrowed from a nearby name or structure.
+The two positive unmarked RA95.0 rows retain their displayed error magnitudes
+with unresolved statistic types. Conflicted KM error magnitudes keep their
+printed unit without implying a normalized KM. Nondetection has common fields
+for its source token, scope, numeric detection limit and nonzero-coercion rule.
+
+Numeric mutation ratios require the same study, assay, substrate, reaction
+direction, endpoint, parameter, unit and declared background, and the specified
+denominator must be the unperturbed background. Unknown assays, conflicting
+units, nondetection and source objections block the comparison. Apparent pKa,
+initial-rate observed efficiency and steady-state parameters remain distinct.
+No unit conversion, rate pooling, raw-trace fitting or triplet reconciliation
+is performed. Source-reported efficiency is not recomputed from kcat and KM.
+
+The four-cell operation additionally requires the parent, two distinct single
+substitutions and their exact double in one background. It computes
+`qAB / (qA * qB / q0)` for the declared parameter. It cannot substitute the
+triple for a missing double. The substrate-preference operation changes only
+the source-bound substrate state within one construct/assay and retains the
+reported factor separately. Source inconsistencies block its integrated label.
+
+KE59's unassessed request has empty comparison roles and null construct,
+sequence, matched-control, assay and measured-value fields. Its five pH-profile
+backgrounds and ten parameter values remain addressable as indirect context.
+Original KE59, the R1 structural proxy and the R2 pH proxy remain distinct.
+RA61's solution-amine and Brønsted-model estimates remain contextual source
+evidence and never become protein-mutation observations in this relation.
+The beta-barrel packet is outside this bounded projection; its unresolved
+construct/control mismatch has not been repaired or silently admitted.
+
+## Provenance and source retention
+
+Source bindings resolve the five accepted annotation packets. Output preserves
+study and source-locator context, original source conflicts, missing controls,
+thermal/mass evidence and selection limitations. Original primary bodies are
+not redistributed. Seven already acquired, hash-verified files were copied
+into `catalytic-earth-source-cache/` under the Git common directory. The
+projection records their exact hashes, byte sizes, original URLs and relative
+cache locations, including the publisher page that binds the 2017 supplement.
+This is durable host-local retention, not a promise of public source availability.
+The offline relation needs the committed annotations; primary-source review
+also needs the recorded witnesses or separately authorized reacquisition.
+The default query checks witness bindings and labels local byte availability
+as unchecked. `--verify-witnesses` additionally checks all retained lengths and
+hashes, and fails if any file is missing or altered; it never fetches a replacement.
+
+No new public-source requests were made. Cumulative usage remains RA95
+24 requests / 15,353,338 bytes, RA61 45 / 3,236,259, and KE59 9 / 261,580.
+Local copies and repeated projections consume no acquisition allowance.
+
+## Value, review and next bottleneck
+
+The added capability is an executable relation across these packet shapes:
+one consumer recovers the comparisons and explicitly refuses wrong assay,
+background, substrate, endpoint and source joins. A competent reader could
+recover the underlying facts from the incumbent articles. No measured curation
+speedup, incumbent superiority or design utility is claimed. This resolves
+the current bounded reuse question; it does not establish a universal atlas.
+
+Source and representation reviewers challenged the retained primary witnesses
+and projected outputs separately, using GPT-5.6 Sol/ultra. These are correlated
+computational checks, not independent human review. The internal
+[coordination record](https://github.com/VivekVardhanArrabelli/catalytic-earth/blob/main/work/coordination_perturbation_relation_20260910.md)
+records objections and parent adjudications. Adversarial tests cover scientifically
+invalid joins, zero-coercion, source conflict, missing controls and provider drift.
+
+The three reconsideration conditions now have a concrete bounded result:
+case-specific layout mappings stay in data; existing sequence and source
+providers are reused unchanged; and a common consumer returns usable exclusions.
+This does not erase the manual effort of defining each panel. Next, qualify
+one actual forward methodol synthesis/product outcome from the retained 2017
+supplement and assess whether this relation can represent its conditions and
+product endpoint without a case-specific runtime branch. Preserve conversion,
+isolated yield, product configuration and the printed volume/amount discrepancy
+separately. Stop if a source-bound outcome requires repairing the source.

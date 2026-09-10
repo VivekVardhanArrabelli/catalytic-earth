@@ -48,7 +48,14 @@ This repository remains a research scaffold. It is not a wet-lab protocol,
 not a claim that computational candidates are validated enzymes, and not yet
 a production biological design system.
 
-## Quick Status — 2026-09-09
+## Quick Status — 2026-09-10
+
+The [source-bound perturbation relation](docs/ATLAS_PERTURBATION_RELATION.md)
+now recovers RA95 and RA61 catalytic-group comparisons and the KE59 matched-control
+abstention through one offline consumer. It preserves construct/background,
+substrate, assay, parameter, uncertainty and source conflicts, and rejects
+unsupported comparisons. This makes selected published evidence reusable;
+it adds no experiment or validated enzyme-design capability.
 
 The [current M0970 source view](docs/ATLAS_POLYMER_CONTEXT.md) corrects a
 growing-polymer donor/acceptor reversal and preserves the nonproductive sugar

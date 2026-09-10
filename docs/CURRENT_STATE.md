@@ -1,5 +1,23 @@
 # Current State
 
+## 2026-09-10: one consumer recovers perturbation effects and exclusions
+
+The [source-bound perturbation relation](ATLAS_PERTURBATION_RELATION.md) now
+projects the accepted RA95 2013/2017, RA61 and KE59 packets through one shared
+consumer. It recovers parameter/background-specific mutation effects, the
+paired tyrosine comparison, the retained substrate-preference conflict, RA61's
+initial-rate contrast and KE59's unassessed matched-control question. Study,
+assay, substrate, endpoint and source conflicts mechanically exclude invalid
+comparisons; missing exact sequences remain explicit.
+
+This completes the bounded reuse priority in the current direction review.
+Source-specific mappings are data; original packets remain unchanged. Seven
+existing primary-source witnesses are retained in a hash-verified Git-local
+cache with no new acquisition. The query adds no measurement, protein admission,
+independent validation, evidence-tier promotion or design-success estimate.
+Next assess one forward-synthesis/product outcome through the same relation,
+preserving its different reaction direction and unresolved source arithmetic.
+
 ## 2026-09-10: a matched tyrosine pair has conditional kinetic effects
 
 The [RA95.5-8F annotation](ATLAS_RA95_TETRAD_CONTROLS.md) adds a complete
