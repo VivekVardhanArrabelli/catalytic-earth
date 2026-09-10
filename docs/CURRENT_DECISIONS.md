@@ -1,5 +1,27 @@
 # Current Decisions
 
+## 2026-09-10: keep designed component support at its measured scope
+
+The [RA61 source review](../data/atlas/study_context/ra61_2010/source_review.json)
+binds a source annotation of water-motif substitutions, substrate contrasts
+and apparent-ionization/model evidence. Within-study named RA61 backgrounds
+permit the declared parent/mutant relation; absent exact sequences block
+sequence-level joins, assay-specimen verification and protein admission.
+Figure 2's Lys176 is a model label, not a directly titrated residue.
+
+Keep the designed pocket around lysine distinct from substrate-surface
+interactions. Do not promote improved net mutation endpoints into absent water
+or an isolated chemical contribution, a substrate double ratio into affinity,
+or transferred Brønsted estimates into a measured lysine perturbation.
+Product rebinding and different fluorescence/NMR solvent contexts remain
+attached to their endpoints. No full-apparatus label follows.
+
+Case facts fit the existing source-qualification data concepts; no case-specific
+runtime or new validator is warranted. Exact references to accepted RA95/KE59
+packets compare evidence types without transferring sites or ranking activities.
+All source requests are serially metered in one new bibliographic scope;
+existing scopes and permissions remain unchanged.
+
 ## 2026-09-10: preserve substrate preference as a separate design endpoint
 
 The [RA95 stereoselectivity review](../data/atlas/study_context/ra95_2013/stereoselectivity_review.json)

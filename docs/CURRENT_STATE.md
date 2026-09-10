@@ -1,5 +1,25 @@
 # Current State
 
+## 2026-09-10: RA61 separates designed motifs from component evidence
+
+The [RA61 component annotation](ATLAS_RA61_COMPONENT_EVIDENCE.md) adds six
+named construct contexts and eleven unique second-order observation contexts
+from the acquired 2010 article and supplement. All five assayed mutant constructs at the
+modeled Tyr78/Ser87 water contacts raise the displayed initial-rate endpoint;
+the double mutant is 2.6 versus parent 0.49 M⁻¹ s⁻¹ (printed ratio 5.3). CE-029
+retains this response without claiming absent water, a microscopic mechanism
+or productive geometry. The repeated parent value is stored once.
+
+The roughly 500-fold substrate-interaction and roughly 10-fold pKa contributions
+remain author/model estimates. Full/minimal substrates have different readouts
+and specified solvent additives; ionization interpretation transfers a solution
+Brønsted relationship. Off-pathway product rebinding bounds the fluorescence
+endpoint. Source-modeled Lys176 is retained, while direct Lys-replacement,
+exact sequence and assay-specimen identity remain unestablished here.
+The distinct named batch is completely metered at 12 requests / 1,100,587 bytes.
+No runtime, old source packet, frozen kernel, protected registry or exposure
+history changes; no new experiment, tier promotion or design-success rate.
+
 ## 2026-09-10: selected RA95 activity gains do not preserve S preference
 
 The [stereochemical endpoint comparison](ATLAS_DESIGN_STEREOSELECTIVITY.md)

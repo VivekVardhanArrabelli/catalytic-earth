@@ -3,13 +3,13 @@
   "bundle_groups": {
     "202605": 95,
     "202606": 1152,
-    "202609": 14,
+    "202609": 15,
     "undated": 80
   },
   "current_storage_state": "Indexed and bundle-buildable. External upload remains blocked until a release destination is approved and rights checks pass.",
-  "git_index_sha256": "41990a827dd48ca0b767f3d1e7cccfd0e7b4760417859c991f106556b8c1d864",
-  "logical_bytes": 10658348,
-  "member_count": 1341,
+  "git_index_sha256": "89e47a3d2c2604de909835101594bce3bb29234648f91d971db68c39b5e2f64e",
+  "logical_bytes": 10664529,
+  "member_count": 1342,
   "members": [
     {
       "bundle_group": "202605",
@@ -1000,6 +1000,12 @@
       "bytes": 3970,
       "git_object_id": "b336726dc13172978cebf2edab0d5d3b1973c090",
       "path": "work/coordination_reaction_geometry_function_20260909.md"
+    },
+    {
+      "bundle_group": "202609",
+      "bytes": 5587,
+      "git_object_id": "f8f584d30cb69621836045442a1e170793d5e8ce",
+      "path": "work/coordination_retroaldolase_components_20260910.md"
     },
     {
       "bundle_group": "undated",
@@ -3973,8 +3979,8 @@
     },
     {
       "bundle_group": "undated",
-      "bytes": 2068779,
-      "git_object_id": "890985d78b979116cfa94ac5c037df74569f7aa6",
+      "bytes": 2069373,
+      "git_object_id": "cceb85d4a010936832b1898f5bbbde64af8006fd",
       "path": "work/handoff.md"
     },
     {
@@ -8058,7 +8064,7 @@
       "path": "work/zinc_lyase_hydratase_under_cap_sourcing_current702_20260613.md"
     }
   ],
-  "membership_sha256": "46ff3590d1be8162b86f9f4a893411493a5fd0d0ae0c1e3e5ca054b2d36632e3",
+  "membership_sha256": "75da52affa06310a43508f047a329f7da06211a655687fa95a680d80e2146547",
   "provenance": "Members are the exact Git-index blobs under work/. The deterministic ZIP is a release asset; Git history remains authoritative and is not rewritten.",
   "schema_version": "catalytic-earth.report-archive-index.v1"
 }
