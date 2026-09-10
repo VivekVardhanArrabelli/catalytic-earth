@@ -1,5 +1,22 @@
 # Current Decisions
 
+## 2026-09-10: preserve assessed qualitative evidence beside an unassessed transfer
+
+Use the shared perturbation relation for the retained beta-barrel case.
+Keep all eight S4 arms qualitative and the 16.2 experiment explicitly assessed.
+The unassessed request is the missing matched ligand control for 16.1/8AH9,
+not the published experiment. Three within-table combined-substitution ratios
+remain descriptive, with the pH conflict and unknown error statistics attached.
+
+The [source-reviewed mapping](ATLAS_PERTURBATION_RELATION.md) keeps original
+values and construct lineage in their providers. Study-scoped substrate context
+prevents borrowing RA95 preparation details. All assay sequences remain null;
+the exact deposited sequence is separate. Existing shared result kinds suffice;
+no numeric chemical-dose operation is justified by this qualitative plot.
+Reassess the scientific bottleneck after this relation instead of continuing
+a table-migration queue. No acquisition, protected-registry or evidence-tier
+permission changes.
+
 ## 2026-09-10: reuse unavailable semantics without equating chemical causes
 
 Project the retained POX evidence through the existing shared perturbation

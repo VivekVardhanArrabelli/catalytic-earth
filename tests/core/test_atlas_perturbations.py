@@ -620,6 +620,137 @@ class PerturbationRelationTests(unittest.TestCase):
         self.assertEqual(sum(r["result_kind"] == "unavailable" for r in rows.values()), 3)
         self.assertEqual(view["assays"], self.view["assays"])
 
+    def test_beta_barrel_combined_perturbation_keeps_parameter_and_error_scope(self):
+        for parameter, expected in (("kcat", 1.6 / 1.5), ("KM", 50 / 230),
+                                    ("kcat_over_KM", 30000 / 6500)):
+            comparison = self.comparisons["beta_barrel_2022:16.2-over-16.1:" + parameter]
+            self.assertTrue(comparison["eligible"])
+            self.assertAlmostEqual(comparison["value"], expected)
+            self.assertIsNone(comparison["uncertainty"])
+            row = self.rows[comparison["roles"]["numerator"]]
+            self.assertEqual(row["perturbation"], ["K49E", "S51H"])
+            self.assertFalse(row["sequence_identity_available"])
+        turnover = self.rows["beta-kinetics:S-methodol-16.2:kcat"]
+        self.assertEqual(turnover["uncertainty"]["value"], 0.1)
+        self.assertEqual(turnover["uncertainty"]["kind"], "unresolved_source_error_statistic")
+        efficiency = self.rows["beta-kinetics:S-methodol-16.2:kcat_over_KM"]
+        self.assertIsNone(efficiency["uncertainty"]["value"])
+        self.assertNotEqual(efficiency["value"], 1.6 / (50e-6))
+        self.assertEqual(efficiency["source_record"]["source_reported_selectivity"]["value"], 500)
+        assay = self.view["assays"][turnover["assay_id"]]["source_record"]
+        self.assertIsNone(assay["pH"])
+        self.assertEqual({p["value"] for p in assay["pH_source_values"]}, {7, 7.5})
+        self.assertIsNone(assay["replicate_n"])
+
+    def test_beta_barrel_all_qualitative_arms_refuse_numeric_dose_ratios(self):
+        arms = [r for r in self.view["observations"] if r["parameter"] == "relative_activity_plot"]
+        by_condition = {(r["source_record"]["preincubation_minutes"],
+                         r["source_record"]["benzoate_mM"]): r for r in arms}
+        self.assertEqual(set(by_condition), {(t, c) for t in (10, 840) for c in (0, 0.25, 2.5, 25)})
+        for (time, concentration), row in by_condition.items():
+            self.assertEqual(row["result_kind"], "qualitative")
+            self.assertIsNone(row["value"])
+            self.assertIsNone(row["uncertainty"]["value"])
+            self.assertFalse(row["assay_qualified"])
+            self.assertEqual(row["qualitative_result"]["preincubation_minutes"], time)
+            self.assertEqual(row["qualitative_result"]["benzoate_mM"], concentration)
+            if concentration in (2.5, 25):
+                self.assertIn("below the same-panel", row["qualitative_result"]["source_token"])
+            else:
+                self.assertNotIn("below the same-panel", row["qualitative_result"]["source_token"])
+            if concentration == 0:
+                continue
+            request = {"id": "attempted-dose-ratio", "study_id": "beta_barrel_2022", "operation": "ratio",
+                       "roles": {"numerator": row["id"], "denominator": by_condition[time, 0]["id"]}}
+            result = compare(self.rows, request)
+            self.assertFalse(result["eligible"])
+            self.assertIsNone(result["value"])
+            self.assertIn("qualitative:" + row["id"], result["reasons"])
+            self.assertIn("unresolved_assay:" + row["id"], result["reasons"])
+        spec = deepcopy(self.spec)
+        parameter = next(p for p in spec["panels"] if p["id"] == "beta-benzoate-lower")["parameters"][0]
+        parameter["status_kinds"]["not_tabulated_not_digitized"] = "numeric"
+        with self.assertRaisesRegex(ValueError, "numeric result requires"):
+            _project_candidate(ROOT, spec)
+
+        # An unreviewed mapping must not relabel benzoate concentration as activity.
+        spec = deepcopy(self.spec)
+        parameter = next(p for p in spec["panels"] if p["id"] == "beta-benzoate-lower")["parameters"][0]
+        parameter["kind"] = {"literal": "numeric"}
+        parameter.pop("status_kinds")
+        parameter["value"] = {"pointer": "/benzoate_mM"}
+        with self.assertRaisesRegex(ValueError, "candidate differs from reviewed projection"):
+            project(ROOT, spec)
+
+    def test_beta_barrel_filtered_transfer_keeps_assessed_arms_and_conflicting_target(self):
+        completed = subprocess.run([sys.executable, str(ROOT / "scripts/query_atlas_perturbations.py"),
+                                    "--comparison", "beta_barrel_2022:benzoate-control-to-8AH9"],
+                                   capture_output=True, text=True, encoding="utf-8", check=True)
+        view = json.loads(completed.stdout)
+        comparison, = view["comparisons"]
+        self.assertFalse(comparison["eligible"])
+        self.assertIsNone(comparison["value"])
+        self.assertTrue(comparison["reported_benzoate_arms_assessed"])
+        self.assertEqual(comparison["roles"], {})
+        self.assertEqual(len(view["observations"]), 14)
+        self.assertEqual({r["id"] for r in view["observations"]}, set(comparison["context_observations"]))
+        self.assertIn("control_construct_differs_from_crystallized_construct", comparison["reasons"])
+        self.assertIn("source_internal_benzoate_prose_plot_conflict", comparison["reasons"])
+        self.assertIn("zero_added_benzoate_is_not_ligand_depleted_protein", comparison["reasons"])
+        conflict = comparison["source_evidence"][0]
+        self.assertIsNone(conflict["author_statement"]["explicit_variant_in_sentence"])
+        self.assertEqual(conflict["counterevidence"]["caption_variant"], "RA-beta-b-16.2")
+        self.assertEqual(comparison["source_evidence"][2]["construct_id"], "RA-beta-b-16.1")
+        self.assertEqual(comparison["target_structure_id"], "8AH9")
+        assay = comparison["source_evidence"][3]
+        self.assertEqual(assay["independently_purified_batches"], 2)
+        for field in ("assay_temperature_C", "assay_pH", "buffer", "enzyme_concentration", "readout", "replicate_n_per_arm", "normalization_definition"):
+            self.assertIsNone(assay[field])
+
+    def test_beta_barrel_assay_identity_does_not_inherit_deposited_sequence(self):
+        source = json.loads((ROOT / self.spec["sources"]["betaf"]["path"]).read_text(encoding="utf-8"))
+        adapter = json.loads((ROOT / self.spec["sources"]["betai"]["path"]).read_text(encoding="utf-8"))
+        for record in adapter["sequences"]:
+            provider = record["source_provider"]
+            original = pointer(source, provider["json_pointer"])
+            self.assertEqual(record["construct_id"], original["construct_id"])
+            self.assertIsNone(original["exact_assay_sequence"])
+            construct = self.view["constructs"]["beta_barrel_2022:" + record["construct_id"]]
+            self.assertIsNone(construct["sequence"])
+            self.assertIsNone(construct["sequence_sha256"])
+            self.assertFalse(construct["assay_specimen_sequence_verified"])
+        deposited = source["deposited_context"]["sequence"]
+        self.assertEqual(len(deposited["sequence"]), 120)
+        self.assertEqual(hashlib.sha256(deposited["sequence"].encode("ascii")).hexdigest(), deposited["sha256"])
+        parent = self.view["constructs"]["beta_barrel_2022:RA-beta-b-16.1"]
+        self.assertIn("V49K", parent["source_record"]["source_substitutions"])
+        spec = deepcopy(self.spec)
+        spec["constructs"]["beta_barrel_2022:RA-beta-b-16.2"]["sequence_provider"] = {"source": "betai", "pointer": "/sequences/0"}
+        with self.assertRaisesRegex(ValueError, "sequence provider construct differs"):
+            _project_candidate(ROOT, spec)
+
+    def test_beta_barrel_array_markers_and_assay_substrate_boundaries_fail_closed(self):
+        for selected, wrong in (("kcat", 1), ("KM", 2), ("kcat_over_KM", 0)):
+            spec = deepcopy(self.spec)
+            panel = next(p for p in spec["panels"] if p["id"] == "beta-kinetics")
+            next(p for p in panel["parameters"] if p["id"] == selected)["pointer"] = f"/parameters/{wrong}"
+            with self.assertRaisesRegex(ValueError, "parameter source field differs|parameter source marker differs"):
+                _project_candidate(ROOT, spec)
+        request = deepcopy(self.comparisons["beta_barrel_2022:16.2-over-16.1:kcat"])
+        for denominator in ("ra95-tetrad:S1:RA95.5-8F:kcat", "beta-benzoate-reference:benzoate-10min-0mM:relative_activity_plot"):
+            request["roles"]["denominator"] = denominator
+            result = compare(self.rows, request)
+            self.assertFalse(result["eligible"])
+            self.assertIsNone(result["value"])
+            self.assertIn("mismatched_assay_id", result["reasons"])
+            self.assertIn("mismatched_substrate_id", result["reasons"])
+        source = json.loads((ROOT / self.spec["sources"]["betaf"]["path"]).read_text(encoding="utf-8"))
+        for row in self.view["observations"]:
+            if row["study_id"] == "beta_barrel_2022":
+                self.assertEqual(row["source_record"], pointer(source, row["provider"]["pointer"]))
+                self.assertEqual(row["source_parameter"], pointer(source, row["parameter_provider"]["pointer"]))
+                self.assertNotIn("preparation_source", row["substrate"])
+
     def test_diels_alder_substrate_markers_and_product_contexts_do_not_transfer(self):
         for parameter, wrong_participant in (("KM_diene", "2"), ("KM_dienophile", "1")):
             spec = deepcopy(self.spec)
