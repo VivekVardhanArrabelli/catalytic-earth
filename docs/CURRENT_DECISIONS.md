@@ -1,5 +1,21 @@
 # Current Decisions
 
+## 2026-09-10: compare complete component dictionaries without transferring their sites
+
+Accept the [bounded RMN/SMN relation](ATLAS_MECHANISM_EVIDENCE.md#dictionary-stereochemistry-does-not-transfer-site-context)
+after source and adversarial challenge. Extend the existing deposit projector
+with an optional comparison query; require a complete dictionary atom map including H, exact mapped
+atom properties and bonds, and explicit R/S changes. Keep coordinate coverage,
+model, site anchors and external connections separate. Source-token matches
+never establish physical site equivalence; distinct records refuse this request.
+The new result extends CE-021 without repeating the earlier title/origin review.
+
+Do not acquire 1L6F against unknown PLP headroom or call the missing D/L pair a
+negative chemical result. The 73-request/5,068,731-byte sum is only a lower bound
+because the contributing receipts exclude other browsing. This evidence-driven
+change of approach yields a reusable, single-deposit chemical relation; it
+does not reopen closed PLP drawings, RA95 or HisF investigations.
+
 ## 2026-09-10: stop the PLP correspondence at its stereochemical boundary
 
 Accept the [source-bound negative comparison](ATLAS_PLP_STEP_BOUNDARY.md).

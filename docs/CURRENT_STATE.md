@@ -1,5 +1,21 @@
 # Current State
 
+## 2026-09-10: dictionary stereo correspondence retains distinct ligand environments
+
+The [new comparison operation on the existing deposit projector](ATLAS_MECHANISM_EVIDENCE.md#dictionary-stereochemistry-does-not-transfer-site-context)
+now checks the full 19-atom/19-bond RMN/SMN correspondence in 1MDL, including
+dictionary H and the sole C7 R/S inversion. It refuses the requested identical
+deposited environment: anchored sites, membership records and external
+connections differ. Only SMN has deposited Mg links. CE-021 retains all earlier
+variant, source, assay and physical-state limits; the installed observation
+query and prior deposit projections are unchanged.
+
+The initial PLP D/L question remains unassessed because 1L6F is missing and
+complete acquisition headroom is unknown. Metered subsets sum to a lower bound
+of 73 requests / 5,068,731 bytes. No request or source-budget reset occurred.
+The shared comparator supports two components in one deposit; it does not yet
+compare separate deposits or establish normalized chemical/physical equivalence.
+
 ## 2026-09-10: PLP arrow similarity reaches a source stereochemistry boundary
 
 The [three-case PLP comparison](ATLAS_PLP_STEP_BOUNDARY.md) finds matching

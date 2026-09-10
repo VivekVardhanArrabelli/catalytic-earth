@@ -1,0 +1,172 @@
+{
+  "schema_version": "catalytic-earth.deposit-context-spec.v1",
+  "packet_id": "mandelate.1mdl.dictionary-stereo.2026-09-10",
+  "source_binding": {
+    "path": "data/atlas/mechanism_evidence/m0187/structure_followup/1MDL.cif.gz",
+    "sha256": "2338be31c681766f10af6f9546baa09f9bf622acfefed6ea068fd088fb6e977b"
+  },
+  "row_selections": [
+    {
+      "selection_id": "entry",
+      "category": "_entry",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "protein-entity",
+      "category": "_entity",
+      "match": {
+        "id": "1"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "reference",
+      "category": "_struct_ref",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "reference-alignment",
+      "category": "_struct_ref_seq",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "reference-differences",
+      "category": "_struct_ref_seq_dif",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "entry-interpretation",
+      "category": "_pdbx_entry_details",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "component-rmn",
+      "category": "_chem_comp",
+      "match": {
+        "id": "RMN"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "component-smn",
+      "category": "_chem_comp",
+      "match": {
+        "id": "SMN"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "rmn-instance",
+      "category": "_pdbx_nonpoly_scheme",
+      "match": {
+        "asym_id": "C",
+        "mon_id": "RMN"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "rmn-site",
+      "category": "_struct_site",
+      "match": {
+        "id": "AC2"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "smn-instance",
+      "category": "_pdbx_nonpoly_scheme",
+      "match": {
+        "asym_id": "D",
+        "mon_id": "SMN"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "smn-site",
+      "category": "_struct_site",
+      "match": {
+        "id": "AC3"
+      },
+      "expected_row_count": 1
+    }
+  ],
+  "component_comparisons": [
+    {
+      "comparison_id": "rmn-smn",
+      "left": {
+        "component_id": "RMN",
+        "label_asym_id": "C",
+        "model_id": "1",
+        "site_id": "AC2"
+      },
+      "right": {
+        "component_id": "SMN",
+        "label_asym_id": "D",
+        "model_id": "1",
+        "site_id": "AC3"
+      },
+      "atom_map": {
+        "C1": "C1",
+        "C2": "C2",
+        "C3": "C3",
+        "C4": "C4",
+        "C5": "C5",
+        "C6": "C6",
+        "C7": "C7",
+        "C10": "C10",
+        "O8": "O8",
+        "O11": "O11",
+        "O12": "O12",
+        "H2": "H2",
+        "H3": "H3",
+        "H4": "H4",
+        "H5": "H5",
+        "H6": "H6",
+        "H7": "H7",
+        "HO8": "HO8",
+        "HO2": "HO2"
+      }
+    }
+  ],
+  "interpretation": {
+    "assertions": [
+      {
+        "assertion_id": "scope-and-construct",
+        "status": "project_interpretation",
+        "statement": "The deposited polymer entity declares K166R; chain A is aligned1-359 to UNP P11444, with ARG166 versus reference LYS166. Assay preparations are not identified.",
+        "supporting_selection_ids": [
+          "protein-entity",
+          "reference",
+          "reference-alignment",
+          "reference-differences"
+        ]
+      },
+      {
+        "assertion_id": "distinct-instance-context",
+        "status": "deposited_source_assertion",
+        "statement": "Entry prose assigns SMN399 to the active site and RMN398 to the approach region.",
+        "supporting_selection_ids": [
+          "entry-interpretation",
+          "rmn-instance",
+          "smn-instance",
+          "rmn-site",
+          "smn-site"
+        ]
+      }
+    ],
+    "not_established": [
+      "A same-site enantiomer control or equivalent catalytic geometry; the site records and deposited connection inventories differ.",
+      "Dictionary stereochemical assignments are not coordinate-derived absolute configurations, and dictionary hydrogens are not measured ligand hydrogen coordinates.",
+      "Bound protonation, enantiopurity or relative solution populations; occupancy1.00 is a deposited model field.",
+      "Physical nonbinding or absent contacts inferred from missing RMN struct_conn rows; this table is not a complete contact inventory.",
+      "Observed racemization, productive geometry, a physical atom trajectory, same assay specimen, or an independently validated enzyme mechanism.",
+      "The missing1L6F companion is not supplied or qualified by this mandelate comparison.",
+      "The prior CE-021 organism/source-origin limits remain unchanged; this comparison does not re-adjudicate them."
+    ]
+  }
+}

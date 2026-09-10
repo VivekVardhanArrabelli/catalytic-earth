@@ -9,6 +9,7 @@ declared row, atom-selection, or distance-pair identifiers.
 from __future__ import annotations
 
 import copy
+import gzip
 import hashlib
 import json
 from pathlib import Path, PurePosixPath, PureWindowsPath
@@ -297,13 +298,160 @@ def _interpretation(value: Any, *, declared_ids: set[str]) -> dict[str, Any]:
     return copy.deepcopy(interpretation)
 
 
+def _component_side(side: dict[str, Any], tables: dict) -> dict:
+    """Resolve a complete dictionary and one explicitly identified instance."""
+    _exact(side, {"component_id", "label_asym_id", "model_id", "site_id"}, "component side")
+    _require(all(isinstance(v, str) and v.strip() and v not in {"?", "."}
+                 for v in side.values()), "component selectors must be nonmissing raw strings")
+    comp, asym = side["component_id"], side["label_asym_id"]
+    atoms = [r for r in tables["_chem_comp_atom"] if r["comp_id"] == comp]
+    bonds = [r for r in tables["_chem_comp_bond"] if r["comp_id"] == comp]
+    by_id = {r["atom_id"]: r for r in atoms}
+    _require(bool(atoms) and len(by_id) == len(atoms), "missing or duplicate component atoms")
+    _require(bool(bonds), "component bond dictionary is missing")
+    _require(all(r.get("pdbx_stereo_config") in {"N", "R", "S"} for r in atoms),
+             "component atom stereochemistry is unspecified or unsupported")
+    _require(all(r.get("type_symbol") not in {None, "?", "."} and
+                 r.get("pdbx_aromatic_flag") in {"Y", "N"} for r in atoms),
+             "component element or aromaticity is unspecified")
+    edges = {}
+    for row in bonds:
+        key = tuple(sorted((row["atom_id_1"], row["atom_id_2"])))
+        _require(key[0] != key[1] and set(key) <= set(by_id) and key not in edges,
+                 "invalid or duplicate component bond")
+        _require(row.get("value_order") in {"sing", "doub", "trip", "arom"} and
+                 row.get("pdbx_stereo_config") in {"N", "E", "Z"} and
+                 row.get("pdbx_aromatic_flag") in {"Y", "N"},
+                 "component bond order or stereochemistry is unsupported")
+        edges[key] = {k: v for k, v in row.items()
+                      if k not in {"comp_id", "atom_id_1", "atom_id_2", "pdbx_ordinal"}}
+    instances = [r for r in tables["_pdbx_nonpoly_scheme"]
+                 if r["asym_id"] == asym and r["mon_id"] == comp]
+    _require(len(instances) == 1, "component instance is missing or ambiguous")
+    instance = instances[0]
+    def insertion(value):
+        return None if value in {"?", "."} else value
+    coords = [r for r in tables["_atom_site"] if r["label_asym_id"] == asym and
+              r["label_comp_id"] == comp and r["pdbx_pdb_model_num"] == side["model_id"]]
+    coordinate_ids = {r["label_atom_id"] for r in coords}
+    _require(bool(coords) and len(coordinate_ids) == len(coords),
+             "missing coordinates or unresolved alternative conformers")
+    _require(all(r["label_alt_id"] == "." for r in coords),
+             "alternative conformer comparison is not implemented")
+    _require(coordinate_ids <= set(by_id), "coordinate atom is absent from dictionary")
+    heavy = {a for a, r in by_id.items() if r["type_symbol"] != "H"}
+    _require(heavy <= coordinate_ids, "coordinate instance lacks dictionary heavy atoms")
+    _require(all(r["type_symbol"] == by_id[r["label_atom_id"]]["type_symbol"] and
+                 r["auth_asym_id"] == instance["pdb_strand_id"] and
+                 r["auth_seq_id"] == instance["pdb_seq_num"] and
+                 r["auth_comp_id"] == instance["pdb_mon_id"] and
+                 insertion(r["pdbx_pdb_ins_code"]) == insertion(instance["pdb_ins_code"]) and
+                 r["label_entity_id"] == instance["entity_id"] for r in coords),
+             "coordinate element or instance numbering differs")
+    sites = [r for r in tables["_struct_site"] if r["id"] == side["site_id"]]
+    _require(len(sites) == 1, "component site is missing or ambiguous")
+    site = sites[0]
+    _require((site["pdbx_auth_asym_id"], site["pdbx_auth_comp_id"], site["pdbx_auth_seq_id"]) ==
+             (instance["pdb_strand_id"], instance["pdb_mon_id"], instance["pdb_seq_num"]) and
+             insertion(site["pdbx_auth_ins_code"]) == insertion(instance["pdb_ins_code"]),
+             "site belongs to another component instance")
+    members = [r for r in tables["_struct_site_gen"] if r["site_id"] == side["site_id"]]
+    _require(len(members) == int(site["pdbx_num_residues"]), "incomplete deposited site membership")
+    connections = []
+    for row in tables["_struct_conn"]:
+        partners = [n for n in (1, 2) if row[f"ptnr{n}_label_asym_id"] == asym and
+                    row[f"ptnr{n}_label_comp_id"] == comp]
+        if partners:
+            _require(len(partners) == 1, "intra-instance connection requires separate treatment")
+            n = partners[0]
+            _require(row[f"ptnr{n}_label_atom_id"] in coordinate_ids,
+                     "connection endpoint lacks selected coordinates")
+            connections.append({"instance_partner": n, "source_row": copy.deepcopy(row)})
+    return {"selector": copy.deepcopy(side), "dictionary_atoms": atoms,
+            "dictionary_bonds": bonds, "instance": instance, "coordinate_atoms": coords,
+            "dictionary_only_atom_ids": sorted(set(by_id) - coordinate_ids),
+            "site": site, "site_members": members, "external_connections": connections,
+            "atoms": by_id, "edges": edges}
+
+
+def _component_comparisons(declarations: Any, tables: dict) -> list[dict]:
+    results = []
+    ids = set()
+    for declaration in _array(declarations, "component_comparisons", nonempty=True):
+        _exact(declaration, {"comparison_id", "left", "right", "atom_map"}, "component comparison")
+        identifier = _identifier(declaration["comparison_id"], "comparison_id")
+        _require(identifier not in ids, "component comparison IDs repeat")
+        ids.add(identifier)
+        left, right = [_component_side(declaration[key], tables) for key in ("left", "right")]
+        _require(left["selector"]["component_id"] != right["selector"]["component_id"],
+                 "stereo comparison requires distinct component dictionaries")
+        mapping = _object(declaration["atom_map"], "atom_map")
+        _require(set(mapping) == set(left["atoms"]) and
+                 len(set(mapping.values())) == len(mapping) and
+                 set(mapping.values()) == set(right["atoms"]),
+                 "atom map must be a complete dictionary bijection including hydrogen")
+        stereo = []
+        for a, b in mapping.items():
+            l, r = left["atoms"][a], right["atoms"][b]
+            ignored = {"comp_id", "atom_id", "pdbx_ordinal", "pdbx_stereo_config"}
+            _require({k: v for k, v in l.items() if k not in ignored} ==
+                     {k: v for k, v in r.items() if k not in ignored},
+                     "mapped component atom properties differ")
+            if l["pdbx_stereo_config"] != r["pdbx_stereo_config"]:
+                _require({l["pdbx_stereo_config"], r["pdbx_stereo_config"]} == {"R", "S"},
+                         "stereochemistry is not an explicit R/S inversion")
+                stereo.append({"left_atom_id": a, "right_atom_id": b,
+                               "left": l["pdbx_stereo_config"], "right": r["pdbx_stereo_config"]})
+        mapped_edges = {tuple(sorted(mapping[a] for a in key)): value
+                        for key, value in left["edges"].items()}
+        _require(mapped_edges == right["edges"], "mapped component bond graphs differ")
+        _require(bool(stereo), "component dictionaries have no explicit stereo inversion")
+        # These are literal deposited record comparisons, not normalized
+        # environments. Preserve all endpoint, distance, alt, insertion and
+        # uncertainty tokens; chemical atom mapping does not map physical sites.
+        same_connections = left["external_connections"] == right["external_connections"]
+        same_site = left["site"]["id"] == right["site"]["id"]
+        same_model = left["selector"]["model_id"] == right["selector"]["model_id"]
+        same_members = left["site_members"] == right["site_members"]
+        reasons = []
+        if not same_site:
+            reasons.append("distinct_deposited_site_records")
+        if not same_connections:
+            reasons.append("different_deposited_external_connection_inventories")
+        if not same_model:
+            reasons.append("distinct_deposited_models")
+        if not same_members:
+            reasons.append("different_deposited_site_membership_records")
+        for side in (left, right):
+            del side["atoms"], side["edges"]
+        results.append({"comparison_id": identifier,
+            "relation_scope": "deposited_component_dictionary_graph_and_stereo_tokens",
+            "atom_map_provenance": "project_declared_and_validated_against_complete_deposited_dictionaries",
+            "complete_dictionary_atom_bijection": True, "mapped_bond_graph_equal": True,
+            "atom_map": copy.deepcopy(mapping), "stereo_inversions": stereo,
+            "unchanged_stereocenters": [a for a, b in mapping.items()
+                if next(r for r in left["dictionary_atoms"] if r["atom_id"] == a)["pdbx_stereo_config"] in {"R", "S"}
+                and a not in {r["left_atom_id"] for r in stereo}],
+            "left": left, "right": right,
+            "same_deposited_environment_comparison": {"status": "refused" if reasons else "not_established",
+                "same_site_record": same_site, "same_external_connection_inventory": same_connections,
+                "same_model": same_model, "physical_site_equivalence": "not_established",
+                "same_site_membership_records": same_members,
+                "refusal_reasons": reasons,
+                "scope": "Exact source-token comparisons in one deposit only; even matching records do not establish physical site, state or geometry equivalence."},
+            "not_established": ["Coordinate-derived absolute stereochemistry or observed ligand hydrogen positions",
+                "Bound protonation, enantiopurity, a physical atom map or an observed reaction trajectory",
+                "Equivalent catalytic geometry, reacting solution state, assay preparation or measured function"]})
+    return results
+
+
 def build_deposit_context(
     spec: dict[str, Any], *, source_path: Path
 ) -> dict[str, Any]:
     """Build one deterministic deposit context from a validated bound source."""
 
     required = set(_SPEC_FIELDS)
-    allowed = required | {"assembly_spec"}
+    allowed = required | {"assembly_spec", "component_comparisons"}
     top = _object(spec, "deposit-context spec")
     _require(
         required <= set(top) <= allowed,
@@ -321,7 +469,9 @@ def build_deposit_context(
         "source binding hash differs",
     )
     try:
-        cif_text = source_path.read_text(encoding="utf-8", errors="strict")
+        cif_text = (gzip.decompress(source_path.read_bytes()).decode("utf-8", errors="strict")
+                    if source_path.suffix == ".gz" else
+                    source_path.read_text(encoding="utf-8", errors="strict"))
     except (OSError, UnicodeError) as exc:
         raise ValueError("deposit source is not readable UTF-8 mmCIF") from exc
     tables = parse_mmcif_categories(cif_text)
@@ -366,6 +516,8 @@ def build_deposit_context(
             ],
         },
     }
+    if "component_comparisons" in top:
+        bundle["component_comparisons"] = _component_comparisons(top["component_comparisons"], tables)
     canonical_json_bytes(bundle)
     return bundle
 

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import copy
+import gzip
 import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -10,12 +11,14 @@ import unittest
 
 from catalytic_earth.atlas_assembly_context import project_assembly
 from catalytic_earth.atlas_deposit_context import (
+    _component_comparisons,
     REVIEW_DECISION,
     REVIEW_SCHEMA_VERSION,
     build_deposit_context,
     canonical_json_bytes,
     check_deposit_context,
 )
+from catalytic_earth.atlas_primary_source_check import parse_mmcif_categories
 from catalytic_earth.canonical_hash import canonical_file_sha256
 
 
@@ -352,6 +355,117 @@ class AtlasDepositContextTests(unittest.TestCase):
         changed["source_binding"]["sha256"] = "0" * 64
         with self.assertRaisesRegex(ValueError, "source binding hash differs"):
             self.build(changed)
+
+
+class ComponentDictionaryComparisonTests(unittest.TestCase):
+    def setUp(self) -> None:
+        root = Path(__file__).resolve().parents[2]
+        self.spec = json.loads((root / "data/atlas/deposit_context/mandelate_1mdl/spec.json").read_text())
+        self.source = root / self.spec["source_binding"]["path"]
+        self.tables = parse_mmcif_categories(gzip.decompress(self.source.read_bytes()).decode())
+        self.declarations = copy.deepcopy(self.spec["component_comparisons"])
+
+    def compare(self):
+        return _component_comparisons(self.declarations, self.tables)[0]
+
+    def test_full_dictionary_stereo_match_does_not_transfer_site_context(self):
+        result = build_deposit_context(self.spec, source_path=self.source)["component_comparisons"][0]
+        self.assertEqual(len(result["atom_map"]), 19)
+        self.assertEqual(result["stereo_inversions"],
+                         [{"left_atom_id": "C7", "right_atom_id": "C7", "left": "R", "right": "S"}])
+        self.assertEqual(result["unchanged_stereocenters"], [])
+        self.assertEqual([len(result[s]["dictionary_bonds"]) for s in ("left", "right")], [19, 19])
+        self.assertEqual([len(result[s]["coordinate_atoms"]) for s in ("left", "right")], [11, 11])
+        self.assertEqual([len(result[s]["dictionary_only_atom_ids"]) for s in ("left", "right")], [8, 8])
+        self.assertEqual([len(result[s]["site_members"]) for s in ("left", "right")], [6, 13])
+        self.assertEqual([len(result[s]["external_connections"]) for s in ("left", "right")], [0, 2])
+        self.assertEqual(result["same_deposited_environment_comparison"]["status"], "refused")
+        self.assertEqual(result["same_deposited_environment_comparison"]["physical_site_equivalence"], "not_established")
+
+    def test_dictionary_hydrogens_cannot_be_dropped_to_force_a_match(self):
+        del self.declarations[0]["atom_map"]["H7"]
+        with self.assertRaisesRegex(ValueError, "complete dictionary bijection"):
+            self.compare()
+
+    def test_wrong_element_or_supplied_charge_cannot_be_hidden(self):
+        atom = next(r for r in self.tables["_chem_comp_atom"] if r["comp_id"] == "RMN" and r["atom_id"] == "C7")
+        for field, value in [("type_symbol", "N"), ("charge", "1")]:
+            changed = copy.deepcopy(atom)
+            atom[field] = value
+            with self.assertRaisesRegex(ValueError, "atom properties differ|coordinate element"):
+                self.compare()
+            atom.clear()
+            atom.update(changed)
+
+    def test_bond_order_difference_is_not_stereochemical_equivalence(self):
+        bond = next(r for r in self.tables["_chem_comp_bond"] if r["comp_id"] == "RMN" and r["value_order"] == "doub")
+        bond["value_order"] = "sing"
+        with self.assertRaisesRegex(ValueError, "bond graphs differ"):
+            self.compare()
+
+    def test_unknown_stereo_and_same_stereo_do_not_pass(self):
+        atom = next(r for r in self.tables["_chem_comp_atom"] if r["comp_id"] == "RMN" and r["atom_id"] == "C7")
+        atom["pdbx_stereo_config"] = "?"
+        with self.assertRaisesRegex(ValueError, "stereochemistry is unspecified"):
+            self.compare()
+        atom["pdbx_stereo_config"] = "S"
+        with self.assertRaisesRegex(ValueError, "no explicit stereo inversion"):
+            self.compare()
+
+    def test_cross_listed_site_member_does_not_make_the_anchor_interchangeable(self):
+        self.assertTrue(any(r["site_id"] == "AC3" and r["label_comp_id"] == "RMN"
+                            for r in self.tables["_struct_site_gen"]))
+        self.declarations[0]["left"]["site_id"] = "AC3"
+        with self.assertRaisesRegex(ValueError, "site belongs to another component"):
+            self.compare()
+
+    def test_coordinate_coverage_and_conformers_fail_explicitly(self):
+        row = next(r for r in self.tables["_atom_site"] if r["label_comp_id"] == "RMN")
+        row["label_alt_id"] = "A"
+        with self.assertRaisesRegex(ValueError, "alternative conformer comparison"):
+            self.compare()
+        row["label_alt_id"] = "."
+        self.tables["_atom_site"].remove(row)
+        with self.assertRaisesRegex(ValueError, "lacks dictionary heavy atoms"):
+            self.compare()
+
+    def test_no_comparison_and_missing_model_are_not_accepted(self):
+        with self.assertRaisesRegex(ValueError, "nonempty"):
+            _component_comparisons([], self.tables)
+        self.declarations[0]["right"]["model_id"] = "?"
+        with self.assertRaisesRegex(ValueError, "nonmissing raw strings"):
+            self.compare()
+
+    def test_self_mapping_is_not_a_distinct_component_pair(self):
+        self.declarations[0]["right"] = copy.deepcopy(self.declarations[0]["left"])
+        with self.assertRaisesRegex(ValueError, "distinct component dictionaries"):
+            self.compare()
+
+    def test_wrong_coordinate_author_component_is_rejected(self):
+        row = next(r for r in self.tables["_atom_site"] if r["label_comp_id"] == "RMN")
+        row["auth_comp_id"] = "SMN"
+        with self.assertRaisesRegex(ValueError, "instance numbering differs"):
+            self.compare()
+
+    def test_unchanged_centers_remain_visible_beside_an_inversion(self):
+        for row in self.tables["_chem_comp_atom"]:
+            if row["comp_id"] in {"RMN", "SMN"} and row["atom_id"] == "C1":
+                row["pdbx_stereo_config"] = "R"
+        result = self.compare()
+        self.assertEqual(result["unchanged_stereocenters"], ["C1"])
+        self.assertEqual(len(result["stereo_inversions"]), 1)
+        self.assertNotIn("enantiomer", result["relation_scope"])
+
+    def test_insertion_codes_cannot_anchor_another_instance(self):
+        coordinate = next(r for r in self.tables["_atom_site"] if r["label_comp_id"] == "RMN")
+        coordinate["pdbx_pdb_ins_code"] = "A"
+        with self.assertRaisesRegex(ValueError, "instance numbering differs"):
+            self.compare()
+        coordinate["pdbx_pdb_ins_code"] = "?"
+        site = next(r for r in self.tables["_struct_site"] if r["id"] == "AC2")
+        site["pdbx_auth_ins_code"] = "A"
+        with self.assertRaisesRegex(ValueError, "site belongs to another component instance"):
+            self.compare()
 
 
 if __name__ == "__main__":

@@ -31,14 +31,14 @@
     "data/atlas/study_context/ra95_2017/chemical_state.json": "0304a28cc9676ae9d920b5c4f6c47f102d10320e125cc40cbfddd971ccff695d",
     "data/atlas/study_context/ra95_2017/chemical_state_acquisition.json": "4b0427a24aab3b1269f25cd80b3b9c90f61c4a99404499d77cf0c16a8b5f2ecb",
     "docs/ATLAS_RA95_CHEMICAL_STATE.md": "a85ee7c6accdafb0f2fb63a1a658413e07788cee4a5f9f7879dce726c6707c01",
-    "CLAIMS.md": "6bbc8b89b2725bdb7f1eb1eba4ff7fa1324717711dcf521afbb7bff490165d99",
-    "data/governance/claim_ledger.json": "017aa50a1a92c5b63a20eda1734a8d266f62e97edfa9f030a65554d0b831eb16",
-    "docs/CURRENT_DECISIONS.md": "013d91ed980dd7b96cfb934109b4d2aeb82ce09c930019dc27d3da32b733fd22",
-    "docs/CURRENT_STATE.md": "d2723232eb0a0835fd275134344281a373424b5f3be1290a9fb659066fed67ad",
+    "CLAIMS.md": "b0b0c2eda1b43e0e11e3b314fde481bc414b285b3b6c8d6ddcf7fc62167b51c8",
+    "data/governance/claim_ledger.json": "6e348e3cc47e487756f708ce674331e1a07200f8c47b7b99f69c74865a4296a8",
+    "docs/CURRENT_DECISIONS.md": "00e739124a414b80942b0c86fb6d05af8104c57c9eb8f2841d4e3df1f52f24de",
+    "docs/CURRENT_STATE.md": "90691397ee9887ff8fb084f705cb7d30cf333a5cc0f4deca2c54d9e1df30cdde",
     "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
-    "src/catalytic_earth/atlas_deposit_context.py": "de95b7b107928b1390ecbbeb71a4949a2c8d9bafd1ef128b78681a0616101a76",
+    "src/catalytic_earth/atlas_deposit_context.py": "9b80d476a4b386ca284cd49baed0d94cd42cf245369a407fee19df965b7be882",
     "src/catalytic_earth/atlas_assembly_context.py": "5d671a761f3ad493661f3c25b50dce693ef2169a48942af9664a65e0b0ae0835",
-    "scripts/build_atlas_deposit_context.py": "f64380b0398fcfb4ec89e99757c18c487050d4079dab4fe8a4e3fc9acce0be34",
+    "scripts/build_atlas_deposit_context.py": "54f5c861f21dfe1011f8897c33506960d4f6d75704ba46ed8927f1399eb2a618",
     "data/atlas/deposit_context/ra95_5aou/review.json": "73b138bf2293cbf4c676cf895b5d9148fc5353e43b1f7a859206a571680880f2",
     "data/atlas/deposit_context/ra95_5an7/review.json": "7dbfe13783c9607150da46c3f9fdc26e8ce39665d7f50148ab5a50d481a0e3dd",
     "data/atlas/study_context/ra95_2017/chemical_state_review.json": "3c57d4b7e584f486d515684aa1fcdb842566d8306f30fedd0172a31e0df1dac9",
@@ -473,6 +473,37 @@
           "after": "9cab652e125d7f03a5d22f761d163dbc6d655e11b950058b9a3e810c38b2933b"
         }
       }
+    },
+    {
+      "reviewed_at_utc": "2026-09-10T20:32:57.952757+00:00",
+      "scope": "CE-021 dictionary correspondence extension and generic optional deposit comparison; prior perturbation science and outputs unchanged. Source, representation and adversarial review accepted.",
+      "changed_bindings": {
+        "CLAIMS.md": {
+          "previous": "6bbc8b89b2725bdb7f1eb1eba4ff7fa1324717711dcf521afbb7bff490165d99",
+          "current": "b0b0c2eda1b43e0e11e3b314fde481bc414b285b3b6c8d6ddcf7fc62167b51c8"
+        },
+        "data/governance/claim_ledger.json": {
+          "previous": "017aa50a1a92c5b63a20eda1734a8d266f62e97edfa9f030a65554d0b831eb16",
+          "current": "6e348e3cc47e487756f708ce674331e1a07200f8c47b7b99f69c74865a4296a8"
+        },
+        "docs/CURRENT_DECISIONS.md": {
+          "previous": "013d91ed980dd7b96cfb934109b4d2aeb82ce09c930019dc27d3da32b733fd22",
+          "current": "00e739124a414b80942b0c86fb6d05af8104c57c9eb8f2841d4e3df1f52f24de"
+        },
+        "docs/CURRENT_STATE.md": {
+          "previous": "d2723232eb0a0835fd275134344281a373424b5f3be1290a9fb659066fed67ad",
+          "current": "90691397ee9887ff8fb084f705cb7d30cf333a5cc0f4deca2c54d9e1df30cdde"
+        },
+        "src/catalytic_earth/atlas_deposit_context.py": {
+          "previous": "de95b7b107928b1390ecbbeb71a4949a2c8d9bafd1ef128b78681a0616101a76",
+          "current": "9b80d476a4b386ca284cd49baed0d94cd42cf245369a407fee19df965b7be882"
+        },
+        "scripts/build_atlas_deposit_context.py": {
+          "previous": "f64380b0398fcfb4ec89e99757c18c487050d4079dab4fe8a4e3fc9acce0be34",
+          "current": "54f5c861f21dfe1011f8897c33506960d4f6d75704ba46ed8927f1399eb2a618"
+        }
+      },
+      "review_record": "data/atlas/deposit_context/mandelate_1mdl/review.json"
     }
   ]
 }

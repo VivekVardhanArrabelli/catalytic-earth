@@ -1,0 +1,81 @@
+{
+  "schema_version": "catalytic-earth.deposit-context-review.v1",
+  "packet_id": "mandelate.1mdl.dictionary-stereo.2026-09-10",
+  "decision": "accept_source_scoped_deposit_context",
+  "reviewed_at_utc": "2026-09-10T20:36:42.290069+00:00",
+  "reviewed_sha256": {
+    "spec.json": "9abbf7f93060d56b54fbd8402e5275b12e9de6f661867c96717fe139287fae35",
+    "projection.json": "1ac370b5972c28d4ba0b595ee21b989f7536c749a3f9c7035acd399955e9be4b",
+    "source": "2338be31c681766f10af6f9546baa09f9bf622acfefed6ea068fd088fb6e977b"
+  },
+  "authority": "owner-authorized-computational-development.2026-09-05.v1",
+  "authorized_operation": "source_annotation",
+  "review_kind": "computational_source_challenge_and_parent_adjudication",
+  "independent_human_validation": false,
+  "experimental_validation": false,
+  "review_lanes": [
+    {
+      "role": "source",
+      "task": "plp_source_audit",
+      "status": "accepted_exact_hashes",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra"
+    },
+    {
+      "role": "representation",
+      "task": "plp_representation_audit",
+      "status": "accepted_exact_hashes",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra"
+    },
+    {
+      "role": "adversarial",
+      "task": "plp_adversarial_audit",
+      "status": "accepted_exact_hashes",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra"
+    }
+  ],
+  "reviewed_supporting_sha256": {
+    "src/catalytic_earth/atlas_deposit_context.py": "9b80d476a4b386ca284cd49baed0d94cd42cf245369a407fee19df965b7be882",
+    "scripts/build_atlas_deposit_context.py": "54f5c861f21dfe1011f8897c33506960d4f6d75704ba46ed8927f1399eb2a618",
+    "tests/core/test_atlas_deposit_context.py": "d0799c2596b6b2a2f53b8ab7d2dbef0ee413c948f31fd32a235bdc7242683ec9",
+    "docs/ATLAS_MECHANISM_EVIDENCE.md": "54aee909f276529102b53e12e3e8066b506750faeab9d814481b6d2ceffd0a7e",
+    "CLAIMS.md": "b0b0c2eda1b43e0e11e3b314fde481bc414b285b3b6c8d6ddcf7fc62167b51c8",
+    "data/governance/claim_ledger.json": "6e348e3cc47e487756f708ce674331e1a07200f8c47b7b99f69c74865a4296a8",
+    "docs/CURRENT_STATE.md": "90691397ee9887ff8fb084f705cb7d30cf333a5cc0f4deca2c54d9e1df30cdde",
+    "docs/CURRENT_DECISIONS.md": "00e739124a414b80942b0c86fb6d05af8104c57c9eb8f2841d4e3df1f52f24de"
+  },
+  "coordination_record": ".git/catalytic-earth-runs/2026-09-10T20-06-50-c95d3e62-164c-4be8-98c6-7ff9301410e6.board.md",
+  "scope": "A project-declared complete dictionary map in one retained deposit, with explicit R/S differences and separate source instance/site/connection records. No coordinate-CIP, microstate, physical atom, site, geometry or function equivalence.",
+  "resolved_objections": [
+    "Kept project-declared cross-component mapping separate from deposited atom and bond definitions.",
+    "Required full dictionary atom bijection including hydrogen and retained unchanged stereocenters instead of labeling every inversion an enantiomer.",
+    "Rejected self-comparisons, wrong coordinate author components, insertion-code mismatches and cross-listed-but-wrong site anchors.",
+    "Retained unknown charge and physical site equivalence, absent coordinate hydrogen, source-only connection absence and software-generated shell scope.",
+    "Removed repeated title/source-origin/organism review; all earlier evidence limits remain.",
+    "Kept single-deposit and no-alternate-conformer scope explicit; missing1L6F is unassessed.",
+    "External connections and site membership compare complete literal source records, including metadata and ordering; equality is not normalized environment equivalence. Site anchors use deposited PDB component names while source-author aliases remain separate."
+  ],
+  "source_access": {
+    "new_requests": 0,
+    "new_response_body_bytes": 0,
+    "plp_cumulative_metered_lower_bound": {
+      "requests": 73,
+      "response_body_bytes": 5068731,
+      "complete_headroom_established": false
+    },
+    "no_scope_reset": true
+  },
+  "open_scientific_source_objections": [],
+  "remaining_publication_gates": [
+    "reviewed-head CI"
+  ],
+  "local_verification": {
+    "focused_checks": 19,
+    "core_checks": 597,
+    "core_seconds": 62.629,
+    "repository_contracts": "passed; 37 claims; frozen golden result matched",
+    "prior_deposit_projections": "all four byte-identical"
+  }
+}

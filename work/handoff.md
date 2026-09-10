@@ -6,89 +6,97 @@
 This block, `docs/HOURLY_RESEARCH.md` and the current direction review govern
 continuation. Historical handoffs below are not an execution queue.
 
-- **Identity/base:** owner `01a08cb6-820f-7e21-ac03-638321c1d619:154edce6-507f-4868-8cea-9b58501daee1`;
-  actual start `2026-09-10T19:06:43.040045+00:00`; clean main base
-  `6be6c988ac19a01aef17779b17777c6a501c4a11`, PR83 integrated and no open
-  PR/recovery. Branch `codex/plp-step-correspondence-20260910`.
-  Parent owns edits/Git/lock; three Sol/ultra read-only reviewers share
-  `.git/catalytic-earth-runs/2026-09-10T19-06-43.040045+00-00-154edce6-507f-4868-8cea-9b58501daee1.board.md`.
-  At 19:24 UTC, about 17 minutes elapsed; the selected question has reached its
-  stopping condition. Verification/publication are the remaining work.
-- **Direction reconciliation:** the review's RA95 chemical-state priority was
-  completed in PR80/81; do not repeat it. PR83 completed the ThDP question and
-  closed its unsupported adjacent after-state replay. The inherited PLP
-  step-2 comparison was a distinct test of reusable chemical scope.
-- **Question/outcome:** M0066/M0186/M0213 proposal-1 step-2 drawings share two
-  local directed-arrow roles and endpoint element/parsed-charge/lonePair
-  tokens, but **no qualified actor-state correspondence is established**.
-  Required substrate N touches raw source stereo: M0066 b18 a18–a19 H,
-  M0186 b31 a17–a21 W, M0213 b20 a17–a20 W. The unchanged consumer rejects
-  all three full actors and all three endpoint-only selections.
-- **Evidence/capability:** `data/atlas/source_step_correspondence/plp_step2_boundary.json`,
-  `plp_step2_review.json`, `docs/ATLAS_PLP_STEP_BOUNDARY.md` and CE-037 retain
-  exact source/record/scheme bindings, local single bonds and arrows, raw
-  labels/aliases, electronic tokens, full-panel H and ordered stereo witnesses.
-  Connected actors contain 31/31, 30/30 and 28/28 atoms/bonds. No accepted
-  correspondence or new runtime capability was added; the useful result is
-  the precise boundary preventing a local arrow match from transferring state.
-- **Limits/source objections:** W/H are raw drawing tokens, not absolute R/S.
-  Cofactor pyridine/oxygen electronic tokens, phosphate/lysine explicit-H
-  depictions and substrate sidechains differ. Missing H is not physical
-  absence; omitted formalCharge parses as zero. Source review corrected
-  misleading bond-formation labels: both N–C bonds already exist, and the
-  recorded objects are directed electron endpoints, not inferred edits.
-  Preserve source “free PLP” prose without classifying a detached cofactor.
-  M0066 D/L, M0213 direction/analogue and M0186 later inferred/extra-enzymatic
-  limits remain. No chemical non-equivalence proof, canonical stereo,
-  after-state replay, protein/function transfer, experiment or tier promotion.
-- **Acquisition:** zero new scientific requests/response bytes; all cumulative
-  batches remain unchanged. The original PLP source package reports 37
-  requests/589,303 bytes, which is not a recomputed total for its later
-  annotations. Do not treat it as complete current headroom. RA95 remains
-  27/17,298,809; default four-record M-CSA 49/1,109,896. The inherited panel
-  28/1,474,405 remains only a lower bound; panel/HisF headroom is unresolved.
-  No scope reset, renaming, repeated HisF probe or reopening of closed
-  telemetry recovery. HisF Methods/Table III/IV remain missing.
-- **Reuse/reconsideration:** unchanged shared consumer and parsers exposed the
-  same stereo rule in three divergent reactions. Case facts remain data;
-  no enzyme-ID branch, stereo deletion or H completion was introduced.
-  The result adds a prevented state transfer beyond matching cofactor/arrow
-  labels, with no measured time saving or incumbent-superiority claim.
-  Further tiny source-drawing projections would not overcome this limitation;
-  change the evidence axis to explicit deposited analogue stereochemistry.
-  Consecutive no-progress runs: **0**; supported negative evidence is progress.
-- **Review/verification:** source and representation reviews accepted after
-  local-bond, label/alias, arrow-wording and signature-scope corrections.
-  Adversarial review added exact-three-case and cross-case signature checks.
-  Same-model review is computational, not independent human validation.
-  All three pinned source-annotation gates pass; focused 12 correspondence
-  checks pass. All 585 core tests and full repository contracts pass with
-  37 claims and the frozen golden result matched. Original sources/compiled
-  records, consumer, CE001–036,
-  perturbation providers and protected/frozen/exposure surfaces are unchanged.
-  Only five affected governance/test bindings are renewed for CE037 and the
-  claim count 36 to 37; prior review followups are preserved. Architecture
-  changed only the path count 17,679 to 17,682. Work was staged before the
-  archive rebuild. Required reviewed-head CI remains the publication gate.
-- **Publication/recovery:** this coherent increment is being prepared on the
-  named branch. No unrelated dirty files or outstanding recovery. If publication
-  remains incomplete, resume this branch/PR before any new research. Git
-  identifies this block's containing commit; final exact SHA, push/merge/CI and
-  same-owner lock release are recorded in the task result and local receipt
-  `.git/catalytic-earth-runs/2026-09-10T19-06-43.040045+00-00-154edce6-507f-4868-8cea-9b58501daee1.json`.
-- **One next action:** test whether M0213's deposited D- and L-alanine analogue
-  states provide a source-grounded stereochemical pair. Retained
-  `data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/observed_state_v3/m0213/1L6G.cif`
-  identifies PDD and explicitly names companion 1L6F. First check retained
-  inputs and cumulative PLP acquisition receipts; acquire a missing companion
-  only if complete batch headroom is established without resetting its scope.
-  Gain: attach explicit ligand stereochemistry to exact construct/site context
-  instead of interpreting W/H tokens as absolute labels. Stop at one qualified
-  analogue-state pair or the first ligand/connectivity/stereo/numbering conflict.
-  Keep reduced/analogue chemistry distinct from native intermediates; do not
-  validate the MRV direction, whole cycle or productive geometry by transfer.
-  If headroom cannot be established, retain the missing companion as a source
-  prerequisite rather than probe unaccounted routes.
+- **Identity/base:** owner `01a08ced-e6e9-7882-84fe-e7a925c54b48:c95d3e62-164c-4be8-98c6-7ff9301410e6`;
+  actual start `2026-09-10T20:06:50+00:00`; clean main base
+  `f33d4f6d2144db62cc0c48bc34abe6c13015c453`, previous PR84 integrated,
+  no open PR or pending recovery. Branch `codex/plp-analogue-pair-20260910`.
+  Parent owns edits/Git/lock; three Sol/ultra read-only reviews share
+  `.git/catalytic-earth-runs/2026-09-10T20-06-50-c95d3e62-164c-4be8-98c6-7ff9301410e6.board.md`.
+  At 20:42 UTC, about 35 minutes elapsed; scientific work has reached its
+  stopping condition and local verification passed. Publication remains.
+- **Direction reconciliation:** RA95 chemical-state priority was completed
+  in PR80/81, ThDP in PR83, and the PLP drawing boundary in PR84. The inherited
+  1L6G/1L6F D/L-analogue pair is unassessed: the companion is absent and complete
+  PLP acquisition headroom cannot be established. No new request was made.
+  Instead of another single-state annotation, test a full retained dictionary
+  correspondence coupled to a concrete instance-context refusal.
+- **Question/outcome:** do the source-named RMN/SMN enantiomers in 1MDL support
+  an exact dictionary relation and an identical deposited environment?
+  The project-declared map covers all 19 atoms, including eight dictionary H,
+  and all 19 bonds. Only C7 R/S differs. Each selected model-1 instance has
+  11 heavy coordinate atoms. The environment request is **refused**: RMN
+  author A398/label C has software site AC2 (six members) and zero deposited
+  struct_conn rows; SMN A399/label D has AC3 (thirteen members) and two Mg rows,
+  O8/O11 at source distances 2.102/2.024 Angstrom. Cross-listed shell membership
+  does not make their distinct anchors interchangeable.
+- **Capability/evidence:** the optional component comparison belongs to the
+  existing deposit projector and `scripts/build_atlas_deposit_context.py`.
+  Query `--packet data/atlas/deposit_context/mandelate_1mdl --comparison rmn-smn`.
+  Its spec/projection/review reuse the unchanged
+  `data/atlas/mechanism_evidence/m0187/structure_followup/1MDL.cif.gz`.
+  `docs/ATLAS_MECHANISM_EVIDENCE.md` and CE-021 carry the scoped extension;
+  claim count stays 37. All four prior deposit packets and the installed
+  six-observation query remain unchanged.
+- **Limits/source objections:** R/S are dictionary tokens, not coordinate-CIP
+  validation; no ligand H coordinates, bound protonation, enantiopurity,
+  physical atom map, trajectory, equivalent functional sites, productive
+  geometry or assay identity is established. Missing RMN connection rows mean
+  only absence from that table. Software shells are not independent functional
+  evidence. The comparator supports distinct component dictionaries in one
+  deposit with complete heavy-atom coverage and no alternate conformers;
+  it cannot compare separate 1L6G/1L6F deposits. Literal membership/connection
+  equality includes raw metadata and order, not normalized environments.
+  All earlier variant, organism, origin and evidence-tier limits remain.
+- **Acquisition:** zero new requests/response bytes. Separately scoped metered
+  PLP subsets sum to **at least 73/5,068,731**, not complete consumption or usable
+  headroom: source manifest 37/589,303; M0049 primary 9/1,351,490; observed probes
+  M0213 6/738,363 and M0186 9/1,122,086; M0213 reaction12/1,267,489.
+  Their receipts/inventory explicitly exclude other browsing. The retained
+  1L6G dictionary PDD has CA=R, N-C4A single and two C4A H, but supplies no
+  opposite-companion graph. No batch was renamed or reset. Other carried
+  batches stay unchanged: RA95 27/17,298,809; RA61 45/3,236,259; KE59 9/261,580;
+  KE70 16/1,102,794; Siegel2010 14/502,726; beta 5/8,449,621. Default M-CSA
+  49/1,109,896; panel 28/1,474,405 remains only a lower bound. HisF/panel and
+  TKT/M0081/M0222/M0187 accounting gaps remain; closed telemetry recovery stays closed.
+- **Reuse/reconsideration:** source-format gzip handling and a generic complete
+  atom/bond/stereo comparator extend the existing projector; no enzyme-ID code,
+  source normalization, implicit H or new subsystem. The value is a machine-
+  checked chemical relation with an explicit transfer refusal, not repeating
+  the old title/source-origin review. Manual mapping/review costs remain;
+  no measured speedup or incumbent-superiority claim. Single-deposit scope is
+  an explicit limitation. Consecutive no-progress runs: **0**.
+- **Review/verification:** source, representation and adversarial reviews
+  accepted exact source/spec/projection and final code after correcting self-
+  comparisons, coordinate author/insertion identity, source-map attribution,
+  shell anchors and full raw connection comparison. Same-model review is
+  computational, not independent human or experimental validation. All 19
+  focused checks and all 597 final core checks pass (62.629 seconds), as do
+  the full repository contracts: 37 claims and the frozen golden result matched.
+  Six affected perturbation review bindings are renewed with prior followups
+  preserved; its science and outputs remain unchanged. Frozen/protected and
+  exposure surfaces remain unchanged. Stage work before rebuilding the archive.
+- **Publication/recovery:** prepare this coherent increment on the named branch;
+  required reviewed-head CI remains the merge gate. No unrelated dirty work.
+  If publication is incomplete, resume this branch/PR before new research.
+  Git identifies this handoff's containing commit. Exact final commit,
+  push/merge/CI and same-owner release are in the task result and local receipt
+  `.git/catalytic-earth-runs/2026-09-10T20-06-50-c95d3e62-164c-4be8-98c6-7ff9301410e6.json`.
+- **One next action:** test a source-drawing reactive-core map for the retained
+  Siegel2010 designed Diels-Alder reaction: can its diene/dienophile be joined
+  to the author-assigned 3R,4S endo product through the two new C-C bonds and
+  required pi-bond-order changes? Start from
+  `data/atlas/study_context/diels_alder_2010/source_qualification.json`,
+  its P2/F1/P14/F4 locators, and Git-common cached Figure 1
+  `ad4f01c4fc0409c7f957d6aac4f4cbab4a7f23ee6d36cc69ac4049745c127f81.jpg`
+  /Figure 4 `28c8e7c593f2b9f037e6d33224bbfff3ace8a32694deff578cc2a7faff458c7c.jpg`.
+  Gain: replace source-named-participants-only with a source-grounded reactive
+  relation using an existing graph/delta validator if suitable. Stop at one
+  supported map or the first ambiguous numbering, connectivity or stereo
+  relation. Keep Figure 1 carboxylate versus product CO2H outside any balanced
+  proton map; >97% analytical authentication, TS geometry and mutant/control
+  causality stay unassessed. No source reacquisition or new chemistry subsystem
+  merely to transcribe the raster. Do not repeat the closed PLP/ThDP, RA95,
+  HisF or 1MDL title/origin questions.
 
 Preserve historical content below this marked block. No self-hash follow-up
 commit is required.

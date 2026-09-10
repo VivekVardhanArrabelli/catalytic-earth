@@ -255,13 +255,16 @@
     "claim_id": "CE-021",
     "claim_kind": "structure_applicability",
     "status": "Supported",
-    "claim": "1MDL cites the exact K166R paper and declares a P11444-referenced Arg166/Lys166 difference. The deposit models distinct R- and S-mandelate instances; its suggested racemization origin for SMN is depositor interpretation.",
-    "current_wording": "Retain the citation-bound deposited variant and separate ligand instances without inferring a new turnover event, exact assay-preparation identity, H297N structure or source-atom correspondence. Conflicting organism metadata remains unresolved; the existing six-observation query is unchanged.",
-    "rationale": "Primary citation, sequence-reference, engineered-difference and ligand rows provide a bounded structural context while depositor language and conflicting gene-source metadata limit transfer.",
+    "claim": "1MDL cites the exact K166R paper and declares a P11444-referenced Arg166/Lys166 difference. The deposit models distinct R- and S-mandelate instances; its suggested racemization origin for SMN is depositor interpretation. The complete deposited RMN/SMN dictionary atom-and-bond map, including H, differs only at C7 R/S; distinct site records and external-connection inventories refuse an identical-deposited-environment comparison.",
+    "current_wording": "Retain the citation-bound deposited variant and separate ligand instances without inferring a new turnover event, exact assay-preparation identity, H297N structure or source-drawing/physical atom correspondence. Conflicting organism metadata remains unresolved; the existing six-observation query is unchanged. The dictionary relation does not establish coordinate-derived chirality, bound protonation, equivalent physical sites or a reaction trajectory.",
+    "rationale": "Primary citation, sequence-reference, engineered-difference and ligand rows provide a bounded structural context while depositor language and conflicting gene-source metadata limit transfer. Full dictionary mapping makes chemical correspondence executable while retaining exact instance/site and deposited Mg-connection differences.",
     "evidence": [
       "data/atlas/mechanism_evidence/m0187/structure_followup/annotation.json",
       "data/atlas/mechanism_evidence/m0187/structure_followup/1MDL.cif.gz",
-      "docs/ATLAS_MECHANISM_EVIDENCE.md"
+      "docs/ATLAS_MECHANISM_EVIDENCE.md",
+      "data/atlas/deposit_context/mandelate_1mdl/spec.json",
+      "data/atlas/deposit_context/mandelate_1mdl/projection.json",
+      "data/atlas/deposit_context/mandelate_1mdl/review.json"
     ]
   },
   {
