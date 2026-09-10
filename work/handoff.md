@@ -6,86 +6,84 @@
 This block, `docs/HOURLY_RESEARCH.md` and the latest direction review govern
 continuation. Historical handoffs below are not an execution queue.
 
-- **Identity/base:** owner `01a08ac8-1853-70f0-8bb5-ccc1e91ffb14:b51dc3e1-26af-48f0-8e7a-21e80a223cad`;
-  first clock `2026-09-10T10:06:17Z`, lock acquired `10:06:56Z`. Clean main
-  base `f1a8f637a495f55c19e45c17a5ca0abb43df717d`; PR75 was merged, no open PR,
-  dirty state or pending recovery. Fetch/fast-forward confirmed synchronization.
-  Branch `codex/tkt-perturbation-relation-20260910`.
-- **Selection/question:** the direction review's original RA95/RA61/KE59 reuse
-  priority is complete. Following the reconciled latest handoff, can the common
-  consumer separate TKT E366Q NMR nondetection, unavailable F6P reporter kinetics
-  and retained X5P/R5P turnover? Gain: executable cofactor-dependent counterevidence.
-  Stop: one source-qualified relation or a precise shared-representation gap.
-- **Finding:** E366Q X5P/R5P kcat `0.012 ± 0.001 s^-1` versus WT
-  `2.79 ± 0.06` at 20 C gives a descriptive central-value ratio `0.0043010753`.
-  F6P kforward at 4 C remains unavailable (`n.a.`; required 325-nm band absent).
-  Separate acid-quench NMR reports no measurable covalent-intermediate accumulation;
-  numeric fraction and detection floor are null. Neither result becomes zero.
-  The reporter explanation is a row-footnote/common-method integration, explicitly
-  including T382Q's marker in the pKa column, not each blue kinetic cell.
-- **Capability:** `python scripts/query_atlas_perturbations.py --comparison tkt_2019:E366Q:kcat`
-  returns the two turnover operands plus four WT/E366Q F6P context records.
-  The latter never enter turnover arithmetic. All seven kcat records, seven
-  kforward slots and five existing NMR arms are included: 19 view records
-  (11 numeric,3 unavailable,3 qualitative,2 nondetection),16 requests(9 eligible,
-  7 abstaining). Complete view137/72 requests/50 eligible; all prior118 records
-  and56 comparison results unchanged. Counts describe projections, not experiments.
-- **Limits:** exact assay sequences remain missing for all seven named variants.
-  6HA3 is E160Q; no E366Q geometry, selective partner-only mutation, crystal-to-assay
-  identity or causal geometric relation. No productive F6P full-cycle claim,
-  propagated uncertainty, statistical equivalence, experiment, admission, evidence
-  tier or design-success estimate. T382E/Q are absent from the NMR panel, not
-  negative; WT-only NMR context was removed. Other table columns retain bounds,
-  cooperative parameter types and source punctuation in original context.
-- **Evidence:** unchanged `data/atlas/study_context/6ha3/functional_comparison.json`
-  (`a8205b4964ac094b41172cdfa9309c70cd004bfa458ee9ea62bbf64785bf6366`) and
-  `data/atlas/assembly_context/6ha3/spec.json` remain source providers. New
-  `perturbation_context.json` adapter hash `3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0`;
-  common projection `df5db22766353112c5cd72d69b3bea77bd256e636c875f3c429dff00d999a9e5`.
-  `data/atlas/perturbations/review.json` binds accepted runtime/data/docs; explanation
-  in `docs/ATLAS_PERTURBATION_RELATION.md`, existing CE-024 scope. Board
-  `work/coordination_tkt_perturbation_20260910.md` records source objections and
-  all three read-only Sol/ultra acceptances. Parent reviewed table/methods/legend;
-  this is correlated computational review, not independent human/lab evidence.
-- **Acquisition:** zero requests/response bytes. Four previously acquired TKT
-  witnesses (1,206,429 bytes) were hash-retained in the Git-common-directory cache;
-  all14 witnesses verify at16,768,661bytes. Bodies remain host-local.
-  TKT lower-bound `7/3,004,884` and M0081 lower-bound `28/1,474,405` retain
-  unknown full headroom. Inherited RA95 `24/15,353,338`, RA61 `45/3,236,259`,
-  KE59 `9/261,580`, beta-barrel `5/8,449,621`, KE70 `16/1,102,794`,
-  Siegel2010 `14/502,726`, M0187 `12/440,960` unchanged. No batch reset.
-- **Reuse/reconsideration:** three source-layout mappings and seven identity entries
-  reuse unchanged numeric/NMR providers. A shared unavailable kind and qualitative
-  payload fix actual common concepts; no enzyme-ID branch. Adapter nested source
-  links are verified by source review and regression, not automatically resolved
-  runtime links. Curation still required manual declarations and review; no measured
-  speedup or incumbent superiority. Common retrieval/exclusion adds bounded value.
-  All three reconsideration rules applied; consecutive no-progress runs:0.
-- **Checkpoint:** 2026-09-10T10:27:57.804517+00:00 (21.68 minutes). 33 focused tests,
-  14 truth tests, source/provider equality, old-output equality, witness verification
-  and fresh-directory Atlas-3/10 wheel checks pass. All556 core tests pass
-  (one skip). Repository contracts pass; exact-head CI remains a publication gate; final verification and publication are recorded in
-  the task result and local receipt. All workers completed; no unrelated changes.
-  Only this marked handoff block changed. This is a scientific prepublication
-  checkpoint, not inferred merge success; resume this branch/PR first if unfinished.
-  Receipt: `.git/catalytic-earth-runs/20260910T100656Z-b51dc3e1-26af-48f0-8e7a-21e80a223cad.json`.
-- **Publication follow-up:** PR76 first head `746236b2a3860dbad43aa7b61829cea2f52cb8b0`
-  passed both Linux jobs; Windows failed the new query test because CP1252
-  stdout was decoded as UTF8. The source-reviewed CLI fix now emits UTF8,
-  and the regression forces CP1252 while checking complete source/construct
-  text equality. All33 focused and556 core tests pass again (one core skip).
-  Scientific data, projection and library semantics are unchanged. Both source
-  and adversarial follow-up workers accepted the exact fix and completed.
-  Updated PR76 CI remains a gate; no failing check is bypassed. Resume PR76
-  before the next action if live merge/CI truth is unfinished.
-- **One next action:** project the already qualified POX analogue-nonbinding and
-  pyruvate functional evidence through the same relation. Starting file
-  `data/atlas/study_context/pox2019/functional_comparison.json`, with retained
-  Table2b/SI source witnesses. Expected gain: distinguish the chemical cause of
-  unavailable MAP parameters from TKT reporter absence while retaining separate
-  pyruvate/DCPIP and pyruvate/FAD responses. Stop after one executable relation
-  or precise shared gap; no new isolated annotation, geometry, acquisition-budget
-  reset or unchanged Diels–Alder/KE70 supplement retry.
+- **Identity/base:** owner `01a08afe-9281-7f71-b2ca-597f221ad483:da096be3-ee15-4459-a4ec-7de647b7e8a7`;
+  start `2026-09-10T11:05:51Z`, lock acquired `11:06:25Z`. Clean main base
+  `d562dce2a4c79158b8219076824aa1c8d6efc5e0`; PR76 merged, no open PR, dirty
+  state or pending recovery. Fetch/fast-forward current. Branch
+  `codex/pox-perturbation-relation-20260910`; parent owns all edits/Git/lock.
+- **Selection/question:** the direction review's original RA95/RA61/KE59
+  relation is complete. Can the same consumer distinguish POX analogue
+  nonbinding from TKT reporter absence and retain two pyruvate responses?
+  Gain: executable rate/constant transfer restrictions at source-defined scope.
+  Stop: one source-qualified relation or the smallest shared representation gap.
+- **Finding:** E59Q pyruvate/DCPIP kcat `0.49 ± 0.01 s^-1` versus WT
+  `31.8 ± 0.4` gives central-value ratio `0.0154088050`. Anaerobic pyruvate/FAD
+  k_app_max `1.07 ± 0.08 s^-1` versus WT `136 ± 1` gives `0.0078676471`.
+  All at 25 C in distinct assays. All three E59Q MAP parameters remain
+  unavailable/null with source-reported analogue-nonbinding reason. They are
+  neither zero nor infinite affinity constants or numeric detection thresholds.
+- **Capability:** `python scripts/query_atlas_perturbations.py --comparison pox_2019:E59Q:kcat`
+  returns two turnover operands and 12 paired context records (14 total).
+  Seven columns across all six variants: kcat and KM; MAP k_on, k_off and
+  K_D_app; and anaerobic k_app_max and K_0.5. The same consumer rejects MAP-to-pyruvate
+  constant swaps and KM-to-K0.5 even with the same substrate and mM unit.
+  POX adds42 records(39 numeric,3 unavailable),35 requests(32 eligible,3 abstained).
+  Complete view179 records/107 requests/82 eligible/25 abstained. All prior137
+  observations and72 comparison results remain unchanged. These are view counts,
+  not experiments, independent replicates or protein/mechanism admissions.
+- **Limits:** two source efficiency quotients and Hill coefficient remain full
+  source-row context, not missing. MAP K_D_app includes the reversible covalent
+  ThDP conjugate; not pyruvate affinity or isolated noncovalent docking. DCPIP
+  replaces oxygen; FAD k_app_max spans several microscopic steps. No causal role,
+  elementary-step rate, oxygen turnover, significance or design-success claim.
+  All six exact assay sequences/digests remain null; retained source names6HAF,
+  but exact assay-specimen-to-deposit mapping and functional geometry are not
+  established. Same publication DOI does not merge POX and TKT contexts.
+- **Evidence/review:** unchanged `data/atlas/study_context/pox2019/functional_comparison.json`
+  hash`570ffb83d9272d41ed72ff389c2f56fbc1415c7d6d9fbdd6c622476957c2a4b5`; new
+  `perturbation_context.json` hash`e29120547dbd982b1fb5b3f2ff1b1228e0fc96a16f540f20c1eaf39d35b93257`.
+  Common projection hash`b2b8a484d339b12a7de82c01599f9ca795e3b4b487143bad2c8cc4c7cc57f310`.
+  `data/atlas/perturbations/review.json` binds the accepted source/data/docs/tests;
+  existing CE-024/CE-025 scope. Board`work/coordination_pox_perturbation_20260910.md`
+  records all three final Sol/ultra acceptances and parent adjudications. Source
+  review checked Table2b/footnotes/SI pp4,8-9; parent viewed table/footnotes and
+  rendered SI pp8-9. These separately prompted checks are correlated computational
+  review, not independent human/lab evidence. No material objection remains.
+- **Acquisition:** zero requests/response bytes or new witness copies. Four
+  POX witnesses reuse already retained TKT publication bytes(1,206,429bytes).
+  All14 host-local witnesses verify(16,768,661bytes); no bodies redistributed.
+  TKT lower-bound7/3,004,884 and M0081 lower-bound28/1,474,405 retain unknown full
+  headroom. Inherited RA95 24/15,353,338; RA61 45/3,236,259; KE59 9/261,580;
+  beta-barrel5/8,449,621; KE70 16/1,102,794; Siegel2010 14/502,726;
+  M0187 12/440,960 unchanged. No batch reset or unchanged access retry.
+- **Reuse/reconsideration:** runtime and CLI unchanged. Case-specific mappings
+  and the six-entry missing-sequence adapter remain data; original values, SDs
+  and witnesses are reused. Adversarial review expanded five to seven columns
+  because constant-transfer refusal otherwise remained prose. Source review
+  narrowed a broad absence statement about structures. Nested adapter links are
+  regression/source-reviewed, not generic runtime joins. Manual declarations
+  still require work; no measured speedup or incumbent superiority. Executable
+  exclusions add bounded value; all three reconsideration rules applied.
+  Consecutive no-progress runs:0. Frozen/protected/exposure records unchanged.
+- **Checkpoint/publication:** 2026-09-10T11:28:51.580524+00:00 (23.01minutes).
+  All38 focused tests, source/provider equality, baseline-output equality,
+  witness verification and fresh-directory Atlas3/10 wheel/source-draft/candidate
+  checks pass. All561 core tests pass (one skip), and14 truth tests pass. Repository
+  contracts pass; required remote CI remains a publication gate.
+  All workers completed; no unrelated changes. Architecture manifest changes only
+  path coverage17646to17648. This is a prepublication checkpoint; exact-head CI
+  and remote merge remain gates, with final commit/push/merge/release recorded
+  in the task result and receipt. Resume this branch/PR first if unfinished.
+  Receipt`.git/catalytic-earth-runs/20260910T110551Z-da096be3-ee15-4459-a4ec-7de647b7e8a7.json`.
+- **One next action:** integrate the retained beta-barrel benzoate control conflict
+  and construct mismatch into this common relation. Start
+  `data/atlas/study_context/beta_barrel_2022/source_qualification.json` and retained
+  witnesses. Expected gain: one query keeps RAβb-16.1/16.2 kinetics, 16.2 benzoate
+  arms, prose/plot conflict and assay-versus-deposit identity separate, refusing
+  16.2-to-16.1/8AH9 or ligand-independence transfer. Stop after that executable
+  relation or a precise shared gap; do not add an enzyme-specific branch or
+  invent missing controls. Reassess relation saturation then; no repeated
+  POX/TKT arithmetic, fresh geometry or unchanged source-access retries.
 
 Preserve historical content below this marked block. Git identifies this
 containing increment; no self-hash follow-up commit is required.

@@ -1,22 +1,24 @@
 {
   "schema_version": "catalytic-earth.perturbation-source-review.v1",
   "status": "source_reviewed_computational",
-  "reviewed_at_utc": "2026-09-10T10:40:07.718165+00:00",
-  "scope": "Existing accepted perturbation/product annotations plus source-bound TKT kcat, k_forward and NMR records. Common unavailable and qualitative-result details preserve reporter absence, scoped nondetection and measured turnover as separate endpoints. Source/identity adapters do not establish exact assay sequences, selective subunit perturbation, causal geometry, new experiments or design success.",
+  "reviewed_at_utc": "2026-09-10T11:26:50.572518+00:00",
+  "scope": "Existing accepted source annotations plus seven POX parameter columns across all six source-named variants. One unchanged consumer preserves unavailable MAP nonbinding, distinct positive pyruvate fitted responses and apparent-constant transfer abstentions. No new measurements, exact assay sequences, causal roles, functional geometry, oxygen-turnover kinetics, independent review or design success.",
   "reviewed_bindings": {
-    "data/atlas/perturbations/projection.json": "df5db22766353112c5cd72d69b3bea77bd256e636c875f3c429dff00d999a9e5",
+    "data/atlas/perturbations/projection.json": "b2b8a484d339b12a7de82c01599f9ca795e3b4b487143bad2c8cc4c7cc57f310",
     "src/catalytic_earth/atlas_perturbations.py": "e154c26947daf76d1c9a13cc1bf8d8415c5aec72baab3e15a708ed69e05f15c6",
     "scripts/query_atlas_perturbations.py": "fa6746be65dd78f6f7a9d9181f1306922837421e021c974168962b00ccd3d2bc",
-    "docs/ATLAS_PERTURBATION_RELATION.md": "e3423e0d361708521835b5893c33668edda3343116f5d9e573438589321a4427",
+    "docs/ATLAS_PERTURBATION_RELATION.md": "7d2854af60c16bccaf943075887d85d9bfeccb754f97f0a0514c117fc7028929",
     "data/atlas/study_context/ra95_2017/forward_synthesis_review.json": "a8025989cb89415ac59267dc0af2da415019af3786ec2db3debd18630de8be9d",
     "docs/ATLAS_FORWARD_SYNTHESIS.md": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84",
     "data/atlas/study_context/diels_alder_2010/source_review.json": "19759f43826c73005f00265144e3debc9805457b0320b18693da7b9bbdd3a01b",
     "docs/ATLAS_DIELS_ALDER_CONTROLS.md": "eb0319636aea183771290ffb0608ace1bc49c80949e0f1bbd4e41bb3c2acbb48",
-    "tests/core/test_atlas_perturbations.py": "2adad6a9c9e32950334d3f9be96e7ec305d6ee65ed74666c854e525db7e45a2e",
+    "tests/core/test_atlas_perturbations.py": "2ed3c10810fec0fb8604696b5f32b53de1bae4d6eeb314095689c4e26d352021",
     "data/atlas/study_context/6ha3/perturbation_context.json": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0",
     "data/atlas/study_context/6ha3/functional_review.json": "9af6d94d77800810d210e032e90e6af6a99ffd22a5548d9d39b5a7f502199200",
     "data/atlas/assembly_context/6ha3/review.json": "434188c22e847de2add0c76cc06076de9347d39ecd259acc051631792fcc7eaa",
-    "docs/ATLAS_STUDY_CONTEXT.md": "b1d077db319352d316499f0e148cec76bb3482a38761b0ef554de7ed6131f3c7"
+    "docs/ATLAS_STUDY_CONTEXT.md": "b1d077db319352d316499f0e148cec76bb3482a38761b0ef554de7ed6131f3c7",
+    "data/atlas/study_context/pox2019/perturbation_context.json": "e29120547dbd982b1fb5b3f2ff1b1228e0fc96a16f540f20c1eaf39d35b93257",
+    "data/atlas/study_context/pox2019/functional_review.json": "63ecd4add9ea393ede14f3f0fb9b8f6592171ae97bd35f3124e87c3cb08bcac9"
   },
   "inherited_source_bindings": {
     "ra95f": {
@@ -46,6 +48,18 @@
     "da2010": {
       "path": "data/atlas/study_context/diels_alder_2010/source_qualification.json",
       "sha256": "eac85e8bd87c3587d3f33a150f879a91ffc1426ce24f0cea251df7dbf8ab160f"
+    },
+    "tktf": {
+      "path": "data/atlas/study_context/6ha3/functional_comparison.json",
+      "sha256": "a8205b4964ac094b41172cdfa9309c70cd004bfa458ee9ea62bbf64785bf6366"
+    },
+    "tkta": {
+      "path": "data/atlas/assembly_context/6ha3/spec.json",
+      "sha256": "b3a6c9306cab59095c4c3943c35ec7b0cbddadbcc1180fced9e284cff8a4b675"
+    },
+    "tkti": {
+      "path": "data/atlas/study_context/6ha3/perturbation_context.json",
+      "sha256": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0"
     }
   },
   "review_process": {
@@ -58,7 +72,12 @@
     ],
     "independent_human_review": false,
     "correlated_errors_possible": true,
-    "parent_adjudication": "Accept exact source, representation and adversarial reviews after narrowing variant-specific evidence and missingness semantics. Parent visually checked the complete table and Supplementary Methods printed pages 5-7, checked the NMR legend and source footnotes, and verified source/identity equality. These are related computational reviews, not independent human or laboratory evidence."
+    "parent_adjudication": "Accept the source and representation reviews at final exact hashes and the adversarial challenge after adding the two pyruvate constants. The final narrowing consistently withholds assay-specimen-to-deposited-structure authentication rather than denying the named deposit. Parent checked Table 2b, footnotes h-k and rendered SI printed pages 8-9; all source values/providers, prior-output equality and invalid transfer abstentions were verified. These separately prompted checks are correlated computational reviews, not independent human or laboratory evidence.",
+    "reviewer_tasks": [
+      "pox_source",
+      "pox_representation",
+      "pox_adversarial"
+    ]
   },
   "resolved_objections": [
     {
@@ -176,6 +195,38 @@
     {
       "issue": "Public JSON stdout inherited Windows CP1252 while an explicit UTF8 consumer decoded it.",
       "resolution": "Force UTF8 on CLI JSON stdout; test under PYTHONIOENCODING=cp1252 with explicit UTF8 decoding and exact parsed evidence_context/construct equality. Keep scientific data and library semantics unchanged; rerun CI at the updated head."
+    },
+    {
+      "issue": "A five-column selection left the K_D_app versus pyruvate K_M/K0.5 transfer restriction only in source context.",
+      "resolution": "Add both pyruvate constants across all six variants. The common consumer rejects MAP-to-pyruvate constant swaps and same-substrate/same-unit K_M-to-K0.5 swaps; reported efficiencies and Hill coefficient remain context."
+    },
+    {
+      "issue": "Missing deposited-structure mapping was broader than the source: retained article names E59Q deposit 6HAF.",
+      "resolution": "Narrow missing identity to exact assay-specimen-to-deposited-structure mapping. Do not deny the named deposit or promote it into matched assay/functional geometry."
+    },
+    {
+      "issue": "Same n.a. token, shared DOI or s^-1 units might erase chemical or enzyme context.",
+      "resolution": "Reuse unavailable kind with literal token, null value and source-reported MAP-nonbinding reason; retain TKT reporter absence separately. Distinct enzyme-study, background, assay, substrate and parameter identities govern eligibility."
+    },
+    {
+      "issue": "Source footnote k could be treated as three printed superscripts or supply a quantitative detection threshold.",
+      "resolution": "State marker printed only on E59Q k_on, applying to the unavailable MAP group. Retain null detection floor and prevent zero/infinite-value inference."
+    },
+    {
+      "issue": "K_D_app could become isolated noncovalent binding, FAD rate an elementary step, or DCPIP kcat an oxygen-turnover rate.",
+      "resolution": "Bind full source assay descriptors: reversible covalent MAP-ThDP conjugate, apparent multistep anaerobic FAD processing, and artificial-electron-acceptor DCPIP steady state. No cross-assay/constant normalization or causal interpretation."
+    },
+    {
+      "issue": "New identity adapter could duplicate or invent assay sequence and source measurements.",
+      "resolution": "Six construct names and WT references resolve the unchanged POX row providers; all exact sequence/digests stay null. Selected values/SDs resolve directly, and unselected efficiency/Hill columns remain source context. Nested adapter links are tested and source-reviewed, not claimed as generic runtime joins."
+    },
+    {
+      "issue": "Source-method typo, unstated conditions, ratio rounding and repeat statements might be silently normalized.",
+      "resolution": "Preserve MAP path-length token 10 mM and unstated single-turnover pH; keep source-derived K_D_app and source efficiency provenance, null SD on quotients, table n=3 distinct from Figure 8 repeats. No inferred preparation match or biological replicate count."
+    },
+    {
+      "issue": "Slash shorthand between separately selected parameter names could be read as the excluded efficiency quotient columns.",
+      "resolution": "Spell out kcat and KM, and k_app_max and K0.5, in selection and handoff prose. Numeric mappings remain unchanged; the source efficiency quotients remain contextual only."
     }
   ],
   "remaining_limits": [
@@ -187,27 +238,28 @@
     "TKT assay sequences/specimen identity are unestablished in retained scope; 6HA3 is E160Q and does not authenticate E366Q geometry or a selective partner-only mutation.",
     "TKT NMR conditions are source-described typical method conditions; no numeric intermediate fraction/detection floor. T382E/Q are not present in that NMR panel.",
     "TKT arithmetic is within-source assay/model/parameter and WT background only. No F6P full-cycle rate, raw-transient equivalence, causal geometry or statistical inference is established.",
-    "Four TKT primary witnesses were retained locally with zero requests. Historical TKT acquisition is only a lower bound of 7 requests/3004884 bytes; complete usage and headroom remain unknown."
+    "Four TKT primary witnesses were retained locally with zero requests. Historical TKT acquisition is only a lower bound of 7 requests/3004884 bytes; complete usage and headroom remain unknown.",
+    "POX named constructs lack exact assay-specimen sequences and sequence/preparation-to-deposit authentication; existing named deposit context is not a productive template.",
+    "Seven selected columns are a bounded relation; two source efficiencies and Hill coefficient remain unmodified source context. Descriptive ratios have no propagated uncertainty.",
+    "POX source witnesses reuse four already retained TKT publication files; no new source acquisition, local witness copy, mechanism admission, experiment or evidence-tier promotion.",
+    "Manual panel/identity declarations and separately prompted source reviews remain necessary; no measured curation-time saving or incumbent-superiority claim."
   ],
-  "coordination_record": "work/coordination_tkt_perturbation_20260910.md",
+  "coordination_record": "work/coordination_pox_perturbation_20260910.md",
   "added_source_bindings": {
-    "tktf": {
-      "path": "data/atlas/study_context/6ha3/functional_comparison.json",
-      "sha256": "a8205b4964ac094b41172cdfa9309c70cd004bfa458ee9ea62bbf64785bf6366"
+    "poxf": {
+      "path": "data/atlas/study_context/pox2019/functional_comparison.json",
+      "sha256": "570ffb83d9272d41ed72ff389c2f56fbc1415c7d6d9fbdd6c622476957c2a4b5"
     },
-    "tkta": {
-      "path": "data/atlas/assembly_context/6ha3/spec.json",
-      "sha256": "b3a6c9306cab59095c4c3943c35ec7b0cbddadbcc1180fced9e284cff8a4b675"
-    },
-    "tkti": {
-      "path": "data/atlas/study_context/6ha3/perturbation_context.json",
-      "sha256": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0"
+    "poxi": {
+      "path": "data/atlas/study_context/pox2019/perturbation_context.json",
+      "sha256": "e29120547dbd982b1fb5b3f2ff1b1228e0fc96a16f540f20c1eaf39d35b93257"
     }
   },
   "prior_review_binding": {
-    "base_commit": "f1a8f637a495f55c19e45c17a5ca0abb43df717d",
+    "base_commit": "d562dce2a4c79158b8219076824aa1c8d6efc5e0",
     "path": "data/atlas/perturbations/review.json",
-    "scope": "All seven preceding packet projections,118 records and56 requests retained unchanged; Git preserves previous review bytes."
+    "sha256": "bac1646241559c47984e1719c01a4dca6f7f3cc13e938f7d0c336d4baa14befb",
+    "scope": "All previous 137 observations and 72 comparison results, and their declarations, remain unchanged; Git preserves previous review bytes."
   },
   "forward_synthesis_limits": [
     "Forward product configuration is source-assigned; R/S retention mappings remain conflicted and no assignment transfers to the0.7%precursor conversion arm.",
@@ -221,8 +273,9 @@
     "carried_metered_lower_bound_response_body_bytes": 3004884,
     "complete_cumulative_usage": null,
     "remaining_headroom": null,
-    "retained_TKT_witnesses": 4,
-    "retained_TKT_bytes": 1206429
+    "reused_witnesses": 4,
+    "reused_witness_bytes": 1206429,
+    "new_local_witness_copies": 0
   },
   "transport_followup_review": {
     "reviewed_at_utc": "2026-09-10T10:40:07.718165+00:00",

@@ -1,5 +1,22 @@
 # Current State
 
+## 2026-09-10: analogue nonbinding and pyruvate responses share one consumer
+
+The [common perturbation relation](ATLAS_PERTURBATION_RELATION.md#analogue-nonbinding-does-not-erase-authentic-substrate-responses)
+now projects POX E59Q MAP nonbinding beside two positive source-reported
+pyruvate endpoints. Within their separate assays, E59Q/WT central-value ratios
+are 0.0154088 for DCPIP kcat and 0.00786765 for anaerobic FAD-processing
+k_app_max; all three MAP parameter ratios abstain. TKT reporter absence and
+POX analogue nonbinding share a result kind while retaining distinct reasons.
+
+All six POX variants contribute the same seven selected columns. Other kinetic
+columns remain source context; no exact assay sequences or preparation match
+are inferred. The existing consumer handles this through data only, and the
+preceding observations/comparisons are unchanged. This adds executable CE-025
+scope, with no new experiment, causal role, oxygen-turnover rate, evidence tier
+or design-success claim. Four source witnesses are reused from the durable
+local cache with zero acquisition; inherited unknown headroom remains unknown.
+
 ## 2026-09-10: reporter absence and retained catalysis share one query
 
 The [common perturbation relation](ATLAS_PERTURBATION_RELATION.md#cofactor-dependent-endpoints-remain-distinct)
