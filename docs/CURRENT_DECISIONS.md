@@ -1,5 +1,21 @@
 # Current Decisions
 
+## 2026-09-10: preserve substrate preference as a separate design endpoint
+
+The [RA95 stereoselectivity review](../data/atlas/study_context/ra95_2013/stereoselectivity_review.json)
+governs a separate source annotation of eight enantiopure rows and four reported
+factors. Source-reported and parameter-integrated preference are distinct:
+retain the author's RA95.5 R statement but withhold its integrated label because
+of conflicting kinetic values. The original-to-final S-to-R comparison does
+not depend on that intermediate. Do not infer synthetic-product selectivity,
+residue causality or the exact earlier design sequence.
+
+Four exact construct providers are reused without duplicating sequence strings
+or changing their accepted annotation. All case facts and source limits are
+data; no runtime, new validator, protected registry or frozen kernel changes.
+The failed KE70 acquisition is recorded without a scientific absence claim.
+Further unchanged KE70 routes are stopped; the full article/SI remain unassessed.
+
 ## 2026-09-10: permit a KE59 annotation at indirect-evidence scope
 
 The [KE59 review](../data/atlas/study_context/ke59_2012/source_review.json)

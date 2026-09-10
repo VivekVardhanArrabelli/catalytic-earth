@@ -1,5 +1,23 @@
 # Current State
 
+## 2026-09-10: selected RA95 activity gains do not preserve S preference
+
+The [stereochemical endpoint comparison](ATLAS_DESIGN_STEREOSELECTIVITY.md)
+adds eight enantiopure kinetic rows and four printed selectivity factors using
+the four existing exact construct providers. The 2013 starting construct
+favors S-methodol; RA95.5-8 favors R-methodol. The study's post-RA95.5 racemic
+screening context remains separate from enantiopure UV-vis characterization. CE-028
+prevents increased activity from becoming a preserved design-preference label.
+RA95.5 retains its author-reported R preference but no reconciled integrated
+label because its printed kinetic columns conflict. No source value is repaired.
+
+The retained RA95 source batch remains 9 requests / 4,454,733 bytes, with zero
+new requests. The separate KE70 inquiry stopped at an access blocker after
+16 attempts / 1,102,794 bytes; only metadata and the author abstract were
+acquired. Full article and SI are uninspected, so dyad perturbation evidence
+is unassessed, not absent. Its [receipt](../data/atlas/study_context/ke70_2011/acquisition_receipts.json)
+preserves complete accounting. No source or budget was renamed or reset.
+
 ## 2026-09-10: KE59 retains indirect base evidence and distinct proxies
 
 The [KE59 assessment](ATLAS_KE59_BASE_EVIDENCE.md) preserves five Table2

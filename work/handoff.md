@@ -7,78 +7,87 @@ This block and `docs/HOURLY_RESEARCH.md` govern the hourly task. Historical
 content below the marker is not an execution queue.
 
 - **Identity/base:** owner
-  `01a088d9-3972-7660-8fda-132fc094806a:fd2b98d2-0717-47c2-aca8-e3b64de1a755`;
-  actual UTC start 2026-09-10T01:05:48Z. Clean synchronized base
-  `ae82f91d62585e6f55a51b46f0aa14746d6ec663`; prior PR #66 verified merged,
-  no open PR or recovery work. Branch `codex/ke59-catalytic-base-20260910`.
-  Checkpoint 2026-09-10T01:26:44Z (20.9 minutes).
-  Exact final commit, push/merge/CI and lock release belong in the local receipt.
-- **Question/result:** can KE59 supply exact construct-matched perturbation
-  evidence for continued function of its programmed catalytic base? Not from
-  the acquired main article. Five apparent-pKa pairs and seven named construct
-  contexts qualify for indirect source annotation (CE-027). The tentative
-  E230 assignment, declared substitutions, author structural interpretation
-  and MD proposals remain distinct. Original design, R1 structural proxy and
-  R2 pH proxy are different proteins. Table 2 R4 pKa(kcat)=5.5 conflicts with
-  prose range 6.1-6.7; both are preserved, without a repaired trend.
-- **Scope/limits:** no full sequence strings or isolated E230 replacement
-  assay in the retained main text. SI is unavailable and uninspected, so no
-  paper-wide absence claim. E230 omission from selected mutation lists is not
-  exact sequence retention, selection/purging at that position or proof of
-  catalytic-role retention. V80A/S179T, W109 rotamers and inhibitor orientation
-  also preclude a generic preserved-apparatus label. Three downstream catalytic
-  labels are null, not false. No runtime consumer, causal mechanism, productive
-  geometry, design-success rate, new experiment or evidence-tier promotion.
-- **Evidence:** `data/atlas/study_context/ke59_2012/source_qualification.json`
-  SHA256 `377da7aa8ab0966aef24757c8a00423c336feb46b41682010a10f4957670c558`;
-  `source_review.json` SHA256 `393686fe4e490243c764451508e9f99dfc0226dc5b61dcd54a3d6723c2ae8bd4`;
-  readable `docs/ATLAS_KE59_BASE_EVIDENCE.md`.
-  Primary DOI 10.1073/pnas.1121063109 / PMID 22685214 / PMC3387081.
-  Full article HTML at `/private/tmp/ce-ke59-fd2b98d2/article.html`, SHA256
-  `6e4002b7264da74ff27a889728b536bd2ab26cdfa3d8c9f2489fa75245a445d2`.
-  Bodies are locally retained and hash-bound, not redistributed. PDF-like
-  filenames in the cache contain transport errors/challenges, not PDFs.
-- **Acquisition:** distinct batch `designed-kemp-eliminase-ke59-khersonsky2012`
-  totals **9 requests / 261,580 response-body bytes**, including empty 404,
-  challenge HTML, not-open-access XML, publisher 403, 404, redirect and two 520s.
-  Complete serial accounting; 91 requests / 31,195,700 bytes remain under
-  cumulative 100/31,457,280 ceiling. Receipt `acquisition_receipts.json` in the
-  same study folder. Stop unchanged SI routes. RA95 remains 9/4,454,733;
-  TKT lower bound 7/3,004,884 and M0081 panel lower bound 28/1,474,405 retain
-  unknown complete headroom; M0187 remains 12/440,960 at its sublimit.
-  No inherited scope or budget was renamed/reset.
-- **Reuse/reconsideration:** construct_id/assay_id/parameter/missingness and
-  source bindings carry a new apparent-pKa endpoint as data. No case-specific
-  runtime or validator. Cross-case eligibility explicitly distinguishes RA95
-  substitution sensitivity from KE59 indirect context; no cross-chemistry rate
-  comparison. Value is preserving proxy, endpoint and source-conflict limits
-  for dataset use; no new biology, measured speedup or runtime enforcement.
-  Stop this qualification at its supported negative instead of another
-  transport or same-table audit. Consecutive no-progress runs: 0; new usable source
-  content and a source discrepancy were acquired.
-- **Verification/review:** all three read-only roles accepted exact final
-  data/document/receipt pins. Source objections corrected two incomplete
-  locators; adversarial review corrected design-model versus crystal wording.
-  Parent checked all 9 captured-body hashes/lengths,7 mutation contexts, 10 pKa
-  estimates, assay joins, source/RA95 bindings and nulls. All 14 truth tests pass.
-  Required repository contracts/PR CI remain publication steps at checkpoint.
-  This is computational review only. Board `work/coordination_ke59_20260910.md`.
-- **Publication/recovery:** accepted owned increment ready for remaining
-  validation, commit, push and PR. Inspect branch/PR first if unfinished; Git
-  and `.git/catalytic-earth-runs/20260910T010548Z-fd2b98d2-0717-47c2-aca8-e3b64de1a755.json`
-  establish exact final publication. No unrelated dirty work, editing worker
-  or live source-acquisition process. Retain lock through safe checkpointing.
-- **One next action:** source-qualify KE70 from this article's Ref 17:
-  DOI 10.1016/j.jmb.2011.01.041 / PMID 21277311 / PMC3889864. It is cited for
-  evolved His-Asp positioning; this does not establish that matched dyad
-  perturbation assays exist. Seek exact sequences and matched single-site
-  perturbation/control assays before any causal label. Gain: test whether a
-  different catalytic acid/base arrangement supports reusable role-specific
-  evidence. Paper not acquired; no matching scope found in data/atlas or
-  data/governance. Recheck accounting, then meter a genuinely new named batch
-  from request 1. Stop after article/SI if exact construct or matched contrast
-  is absent; retain the negative and reconsider selection by explicit
-  perturbation locators rather than another generic catalyst narrative.
+  `01a08910-9df3-7073-a39d-0a77b2d42eb0:fffdd690-2456-44b3-8c1c-63768c161567`;
+  actual UTC start 2026-09-10T02:06:17Z. Clean synchronized base
+  `45ba4e669ef39de824bafa78545d5018b89ca432`; prior PR #67 verified merged,
+  no open PR or recovery work. Current branch
+  `codex/ra95-stereoselectivity-20260910` (renamed from this run's unpublished
+  KE70 branch after the evidence-supported pivot). Checkpoint
+  2026-09-10T02:33:24.886982+00:00 (27.1 minutes).
+- **Question/result:** does selected evolution preserve the intended S-methodol
+  preference? The 2013 RA95.0 construct favors S; RA95.5-8 favors R. Eight
+  previously excluded enantiopure kinetic rows and four source-reported
+  selectivity factors now reuse four exact construct providers (CE-028).
+  Printed R/S factors0.43/3.2/5.4/14 remain separate from displayed-efficiency
+  quotients. RA95.5 S kcat0.17 / KM560uM conflicts with efficiency3.3;
+  preserve author-reported R preference but withhold its integrated label.
+  The starting-to-final result does not depend on this inconsistent intermediate.
+- **Design use/limits:** post-RA95.5 rounds used racemic cell-lysate screening;
+  RA95.5-5/-8 enantiopure UV-vis characterization is a different endpoint.
+  Increased activity cannot label the intended preference as preserved.
+  No screening-cause, single-residue role, monotonic trajectory, reverse-synthesis
+  selectivity/ee, exact assay-specimen identity, prospective design-success rate,
+  new experiment, mechanism compilation or evidence-tier promotion. The 2013
+  starting clone is not the exact earlier same-named design.
+- **Evidence:** `data/atlas/study_context/ra95_2013/stereoselectivity.json`
+  SHA256 `430065ef058082fd59c0fa32fb2a0dcc7009fa325bb589467db708551a5cbd83`;
+  review SHA256 `e0c8339e994e063a0b5ddf617e4d3de1cb497bb1973d35bc6ffe5e484cc4274c`;
+  readable `docs/ATLAS_DESIGN_STEREOSELECTIVITY.md`.
+  Existing `functional_comparison.json` provider and its review remain unchanged.
+  Primary DOI10.1038/nchembio.1276 / PMID23748672 / PMC3720730; retained
+  `/private/tmp/ce-ra95-be3a548b/article.xml` SHA25671d3d579ec5ef65e4279e6affeb95eb7fc39c894019fc4a58de5462933819ab9;
+  SI `NIHMS478755-supplement-1.pdf` in that cache SHA256aaa0e3203b535546a39818d2d05f0a66cd888d5c6c910f4330449f2c48c0e3ee.
+  SI pages2/5/9 and main S2/P7,S3/P12,S4/P17,S5/P20,S8/P29,S12/P34,S16/P38,S19/P41
+  delimit the annotation. Bodies are locally retained, not redistributed.
+- **KE70 access stop:** DOI10.1016/j.jmb.2011.01.041 / PMID21277311 /
+  PMC3889864 / NIHMS282929 has only bibliographic metadata and the author
+  abstract acquired. Full article/SI are uninspected, not evidence of absent
+  dyad perturbations. No KE70 science packet or claim. PMC challenge, XML404,
+  EPMC shell/nonOA-SI/PDF-service error, publisher403 and author-page TLS failures
+  are retained. The final author-copy lookup points back to the failed PDF route;
+  stop unchanged retries. `data/atlas/study_context/ke70_2011/acquisition_receipts.json`
+  SHA256 `531c9fd3a4311578b8ed93f83c3f46191a1da6c6ed7c78082fc267ed3c21a8b5` binds every body in
+  `/private/tmp/ce-ke70-fffdd690/`; PDF-like filenames are errors, not PDFs.
+- **Acquisition:** distinct batch `designed-kemp-eliminase-ke70-khersonsky2011`
+  complete **16 attempts / 1,102,794 response-body bytes**; 84 requests /
+  30,354,486 bytes remain under100/31,457,280. Discovery, redirects, TLS failures
+  and error bodies count. RA95 batch remains **9 / 4,454,733**, zero new requests;
+  KE59 remains9/261,580. TKT lower bound7/3,004,884 and M0081 panel lower bound
+  28/1,474,405 retain unknown complete headroom; M0187 remains12/440,960 at its
+  sublimit. No scope/budget was renamed or reset.
+- **Reuse/reconsideration:** no case-specific runtime or validator. Four exact
+  sequence providers reused by hash/JSON pointer; no duplicate strings or
+  source downloads. New substrate stereochemistry and assay/parameter facts
+  fit data. The useful relation distinguishes selected activity from intended
+  preference and retains a conflicted intermediate. This adds previously absent
+  endpoint coverage, not another review of accepted racemic/mutant rows,
+  new biology, measured speedup or runtime enforcement. KE70's access failure
+  changed the approach. Consecutive no-progress runs:0.
+- **Verification/review:** three read-only roles accepted exact final data,
+  document and KE70 receipt pins. Adversarial source objection narrowed the
+  screening scope; representation objections standardized unit/accounting keys.
+  Parent verified source bytes, all eight row joins/24 quantities, four factors,
+  four sequence providers and all16 transport hashes/lengths. No unresolved
+  source objection within the annotation; RA95.5 reconciliation remains blocked.
+  This is computational review only. Board
+  `work/coordination_design_selectivity_20260910.md`.
+  Required repository contracts and PR CI remain publication steps at checkpoint.
+- **Publication/recovery:** accepted owned increment ready for validation,
+  commit, push and PR. Inspect branch/PR first if unfinished. Git and
+  `.git/catalytic-earth-runs/20260910T020617Z-fffdd690-2456-44b3-8c1c-63768c161567.json`
+  establish exact final publication and release. No unrelated dirty work,
+  editing worker or live source-acquisition process. Retain lock until safe.
+- **One next action:** source-qualify the catalytic-component evidence in
+  Lassila/Baker/Herschlag2010, DOI10.1073/pnas.0913638107 / PMID20194782 /
+  PMC2841948. Exact locator: retained RA95 article P4 and Ref R10 (P4 also
+  cites R11). Seek exact construct-matched catalytic-Lys perturbation/control
+  and apolar-pocket/water evidence, rather than another generic evolution
+  narrative. Gain: test which designed chemical components have discriminating
+  evidence and reusable role-specific constraints. Citation does not prove
+  matched assays exist. No matching acquired scope found; recheck accounting
+  before metering a genuinely new named batch from request1. Stop after
+  article/available SI if exact constructs or matched contrasts are absent;
+  retain the source-scoped negative and do not repair or overinterpret it.
 
 Preserve historical content below this marked block. Git identifies the
 containing increment; no self-hash follow-up commit is required.

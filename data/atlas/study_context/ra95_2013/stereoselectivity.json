@@ -1,0 +1,688 @@
+{
+  "schema_version": "catalytic-earth.functional-comparison.v1",
+  "comparison_id": "giger2013-ra95-enantiopure-selectivity",
+  "operation": "source_annotation",
+  "study": {
+    "doi": "10.1038/nchembio.1276",
+    "pmid": "23748672",
+    "pmcid": "PMC3720730",
+    "question": "Does the selected evolved RA95 series preserve the substrate-enantiomer preference of the design?",
+    "scope": "Eight selected enantiopure kinetic rows and four separately source-reported selectivity factors for four already bound 2013 constructs; no new proteins, independent experiments or mechanism admissions.",
+    "development_exposure": "retained published outcomes, already exposed; not an unseen evaluation or prospective design sample"
+  },
+  "selection": {
+    "included": "All unmodified-condition R/S rows for RA95.0, RA95.5, RA95.5-5 and RA95.5-8 in SI Table1, including the conflicting RA95.5 S row; four printed selectivity factors and defining methods.",
+    "excluded": "Duplicated racemate rows; RA95.0 (S) plus 200 mM malate; E53A rows; antibody comparator; pKa values; fluorescence mutant rows; structural and simulation measurements.",
+    "reason": "Substrate stereochemistry is an essential design endpoint absent from the prior racemic/lysine-perturbation annotation, with a source conflict that must prevent an apparently precise intermediate label."
+  },
+  "source_bindings": [
+    {
+      "path": "data/atlas/study_context/ra95_2013/functional_comparison.json",
+      "sha256": "0e2fe21efce4d805fdef8505770c0cf18557ed774c08a79cfc5e68c1b1fbf94a"
+    },
+    {
+      "path": "data/atlas/study_context/ra95_2013/acquisition_receipts.json",
+      "sha256": "9b6c2c8803773b58ff39ff76e5ad1f772faa788c28b888df965434868d76658e"
+    },
+    {
+      "path": "data/atlas/study_context/ra95_2013/functional_review.json",
+      "sha256": "01274207915b1f6b5e76cfee1ef9982ed0046e844cd26a7bea14cd109e7e9d15"
+    }
+  ],
+  "sources": [
+    {
+      "artifact_id": "PMC3720730:article-XML",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC3720730/fullTextXML",
+      "sha256": "71d3d579ec5ef65e4279e6affeb95eb7fc39c894019fc4a58de5462933819ab9",
+      "bytes": 95645,
+      "local_cache_path": "/private/tmp/ce-ra95-be3a548b/article.xml",
+      "redistributed": false,
+      "inspection": "Current scope: main S2/P7, S3/P12, S4/P17, S5/P20, Methods/S8/P29, S12/P34, S13/P35, S16/P38 and S19/P41; prior source body unchanged."
+    },
+    {
+      "artifact_id": "PMC3720730:SI-PDF",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC3720730/supplementaryFiles",
+      "archive_member": "NIHMS478755-supplement-1.pdf",
+      "archive_sha256": "35703b027091a45f14f5f32cdc5116814dd6709f62f2438d332217ae6413717e",
+      "sha256": "aaa0e3203b535546a39818d2d05f0a66cd888d5c6c910f4330449f2c48c0e3ee",
+      "bytes": 3601999,
+      "local_cache_path": "/private/tmp/ce-ra95-be3a548b/NIHMS478755-supplement-1.pdf",
+      "redistributed": false,
+      "inspection": "Current scope: exact retained PDF visually reviewed page2 Table1 and footnotes; page5 Figure1/caption; page9 sequences reused through the existing reviewed construct provider."
+    }
+  ],
+  "source_access": {
+    "batch_id": "designed-retroaldolase-ra95-giger2013",
+    "new_requests": 0,
+    "new_response_body_bytes": 0,
+    "complete_cumulative_requests": 9,
+    "complete_cumulative_response_body_bytes": 4454733,
+    "remaining_requests": 91,
+    "remaining_response_body_bytes": 27002547,
+    "source_bodies_redistributed": false,
+    "scope_note": "Reuse exact retained article XML and SI PDF; no renamed/reset source batch. Separate KE70 failed-access attempts do not belong to this batch.",
+    "max_requests": 100,
+    "max_response_body_bytes": 31457280
+  },
+  "constructs": [
+    {
+      "construct_id": "RA95.0",
+      "source_binding": {
+        "path": "data/atlas/study_context/ra95_2013/functional_comparison.json",
+        "sha256": "0e2fe21efce4d805fdef8505770c0cf18557ed774c08a79cfc5e68c1b1fbf94a"
+      },
+      "json_pointer": "/constructs/0",
+      "sequence_sha256": "d49f7191b1389febb836a1d4262a9e52af2b87dace6626d582c9f82689adaec5",
+      "sequence_status": "reuse_source_reported_complete_string_without_duplication",
+      "assayed_preparation_identity": "study-reported construct association, not per-assay sequence or specimen verification"
+    },
+    {
+      "construct_id": "RA95.5",
+      "source_binding": {
+        "path": "data/atlas/study_context/ra95_2013/functional_comparison.json",
+        "sha256": "0e2fe21efce4d805fdef8505770c0cf18557ed774c08a79cfc5e68c1b1fbf94a"
+      },
+      "json_pointer": "/constructs/1",
+      "sequence_sha256": "e4150152da236d81d32d1ef3b9caf8f68e312aa92f5210536561d5c3786b9eec",
+      "sequence_status": "reuse_source_reported_complete_string_without_duplication",
+      "assayed_preparation_identity": "study-reported construct association, not per-assay sequence or specimen verification"
+    },
+    {
+      "construct_id": "RA95.5-5",
+      "source_binding": {
+        "path": "data/atlas/study_context/ra95_2013/functional_comparison.json",
+        "sha256": "0e2fe21efce4d805fdef8505770c0cf18557ed774c08a79cfc5e68c1b1fbf94a"
+      },
+      "json_pointer": "/constructs/2",
+      "sequence_sha256": "2555aec775f6848faca6a5f1a43fb1cd4a72ae077c2bcc7aafb3baf2662d76df",
+      "sequence_status": "reuse_source_reported_complete_string_without_duplication",
+      "assayed_preparation_identity": "study-reported construct association, not per-assay sequence or specimen verification"
+    },
+    {
+      "construct_id": "RA95.5-8",
+      "source_binding": {
+        "path": "data/atlas/study_context/ra95_2013/functional_comparison.json",
+        "sha256": "0e2fe21efce4d805fdef8505770c0cf18557ed774c08a79cfc5e68c1b1fbf94a"
+      },
+      "json_pointer": "/constructs/3",
+      "sequence_sha256": "2588539fc53e69001aacb00cac3f535c91cbe51d7a695c63a45c2df847ab8cec",
+      "sequence_status": "reuse_source_reported_complete_string_without_duplication",
+      "assayed_preparation_identity": "study-reported construct association, not per-assay sequence or specimen verification"
+    }
+  ],
+  "substrates": [
+    {
+      "substrate_id": "methodol:R",
+      "source_name": "(R)-methodol",
+      "source_chemical_name": "4-hydroxy-4-(6-methoxy-2-naphthyl)-2-butanone",
+      "source_absolute_configuration": "R",
+      "configuration_status": "source-assigned R/S; not a project-derived stereochemical graph",
+      "external_chemical_id": null,
+      "isomeric_smiles": null,
+      "enantiomeric_excess": null,
+      "preparation_source": "article Methods/S19/P41 (Methodol synthesis); preparative chiral HPLC separation and NMR/optical rotation agreement with cited literature",
+      "preparation_limit": "No row-specific substrate lot, raw chromatogram or exact ee is retained in this annotation."
+    },
+    {
+      "substrate_id": "methodol:S",
+      "source_name": "(S)-methodol",
+      "source_chemical_name": "4-hydroxy-4-(6-methoxy-2-naphthyl)-2-butanone",
+      "source_absolute_configuration": "S",
+      "configuration_status": "source-assigned R/S; not a project-derived stereochemical graph",
+      "external_chemical_id": null,
+      "isomeric_smiles": null,
+      "enantiomeric_excess": null,
+      "preparation_source": "article Methods/S19/P41 (Methodol synthesis); preparative chiral HPLC separation and NMR/optical rotation agreement with cited literature",
+      "preparation_limit": "No row-specific substrate lot, raw chromatogram or exact ee is retained in this annotation."
+    }
+  ],
+  "assays": [
+    {
+      "assay_id": "enantiopure_methodol_uvvis",
+      "endpoint": "background-corrected fitted steady-state cleavage of the separately supplied methodol enantiomer",
+      "technique": "UV-vis spectrophotometry",
+      "conditions": {
+        "temperature_celsius": 29,
+        "pH": 7.5,
+        "buffer": "25 mM HEPES",
+        "NaCl_mM": 100,
+        "acetonitrile_percent": 2.7
+      },
+      "conditions_source": "SI:Table1:page2:footnote_a",
+      "technique_source": "SI:Figure1:page5; article Methods/S16",
+      "wavelength_nm": 350,
+      "reporter": "6-methoxy-2-naphthaldehyde",
+      "source_reported_products": [
+        "6-methoxy-2-naphthaldehyde",
+        "acetone"
+      ],
+      "fit_model": "v0/[E] = kcat*[S]/(KM+[S])",
+      "control": "buffer-catalyzed background measured under the same conditions and subtracted; article Methods/S16",
+      "fit_limit": "Source-reported fits; no raw trace refit, confidence interval or causal elementary-step interpretation.",
+      "uncertainty": "SI Table1 footnote a: SD from measurements with two to three independent protein batches. Exact n per row is not given; a missing error bar is not zero uncertainty.",
+      "parameter_scope": "Substrate-specific kcat, KM and reported kcat/KM remain separate quantities. KM is not asserted to be an equilibrium binding affinity."
+    }
+  ],
+  "variants": [
+    {
+      "row_id": "RA95.0:R",
+      "construct_id": "RA95.0",
+      "assay_id": "enantiopure_methodol_uvvis",
+      "substrate_id": "methodol:R",
+      "source": "SI:Table1:page2:RA95.0:(R)",
+      "parameters": {
+        "k_cat": {
+          "status": "source_reported_numeric",
+          "value": 5e-05,
+          "unit": "s^-1",
+          "source_display": "5.0 x 10^-5",
+          "uncertainty": {
+            "value": null,
+            "kind": null,
+            "status": "not_reported"
+          },
+          "exact_n": null
+        },
+        "K_M": {
+          "status": "source_reported_numeric",
+          "value": 300,
+          "unit": "uM",
+          "source_display": "300",
+          "uncertainty": {
+            "value": null,
+            "kind": null,
+            "status": "not_reported"
+          },
+          "exact_n": null
+        },
+        "k_cat_over_K_M": {
+          "status": "source_reported_numeric",
+          "value": 0.17,
+          "unit": "M^-1 s^-1",
+          "source_display": "0.17",
+          "uncertainty": {
+            "value": null,
+            "kind": null,
+            "status": "not_reported"
+          },
+          "exact_n": null
+        }
+      },
+      "source_consistency": "no_direction_reversing_parameter_conflict_identified",
+      "normalized_kinetic_triplet_eligible": true
+    },
+    {
+      "row_id": "RA95.0:S",
+      "construct_id": "RA95.0",
+      "assay_id": "enantiopure_methodol_uvvis",
+      "substrate_id": "methodol:S",
+      "source": "SI:Table1:page2:RA95.0:(S)",
+      "parameters": {
+        "k_cat": {
+          "status": "source_reported_numeric",
+          "value": 0.00011,
+          "unit": "s^-1",
+          "source_display": "(1.1 +/- 0.2) x 10^-4",
+          "uncertainty": {
+            "value": 2e-05,
+            "kind": "SD",
+            "status": "reported"
+          },
+          "exact_n": null
+        },
+        "K_M": {
+          "status": "source_reported_numeric",
+          "value": 310,
+          "unit": "uM",
+          "source_display": "310 +/- 21",
+          "uncertainty": {
+            "value": 21,
+            "kind": "SD",
+            "status": "reported"
+          },
+          "exact_n": null
+        },
+        "k_cat_over_K_M": {
+          "status": "source_reported_numeric",
+          "value": 0.37,
+          "unit": "M^-1 s^-1",
+          "source_display": "0.37",
+          "uncertainty": {
+            "value": null,
+            "kind": null,
+            "status": "not_reported"
+          },
+          "exact_n": null
+        }
+      },
+      "source_consistency": "no_direction_reversing_parameter_conflict_identified",
+      "normalized_kinetic_triplet_eligible": true
+    },
+    {
+      "row_id": "RA95.5:R",
+      "construct_id": "RA95.5",
+      "assay_id": "enantiopure_methodol_uvvis",
+      "substrate_id": "methodol:R",
+      "source": "SI:Table1:page2:RA95.5:(R)",
+      "parameters": {
+        "k_cat": {
+          "status": "source_reported_numeric",
+          "value": 0.0043,
+          "unit": "s^-1",
+          "source_display": "(4.3 +/- 0.4) x 10^-3",
+          "uncertainty": {
+            "value": 0.0004,
+            "kind": "SD",
+            "status": "reported"
+          },
+          "exact_n": null
+        },
+        "K_M": {
+          "status": "source_reported_numeric",
+          "value": 270,
+          "unit": "uM",
+          "source_display": "270 +/- 21",
+          "uncertainty": {
+            "value": 21,
+            "kind": "SD",
+            "status": "reported"
+          },
+          "exact_n": null
+        },
+        "k_cat_over_K_M": {
+          "status": "source_reported_numeric",
+          "value": 16,
+          "unit": "M^-1 s^-1",
+          "source_display": "16",
+          "uncertainty": {
+            "value": null,
+            "kind": null,
+            "status": "not_reported"
+          },
+          "exact_n": null
+        }
+      },
+      "source_consistency": "no_direction_reversing_parameter_conflict_identified",
+      "normalized_kinetic_triplet_eligible": true
+    },
+    {
+      "row_id": "RA95.5:S",
+      "construct_id": "RA95.5",
+      "assay_id": "enantiopure_methodol_uvvis",
+      "substrate_id": "methodol:S",
+      "source": "SI:Table1:page2:RA95.5:(S)",
+      "parameters": {
+        "k_cat": {
+          "status": "source_reported_numeric",
+          "value": 0.17,
+          "unit": "s^-1",
+          "source_display": "0.17",
+          "uncertainty": {
+            "value": null,
+            "kind": null,
+            "status": "not_reported"
+          },
+          "exact_n": null
+        },
+        "K_M": {
+          "status": "source_reported_numeric",
+          "value": 560,
+          "unit": "uM",
+          "source_display": "560",
+          "uncertainty": {
+            "value": null,
+            "kind": null,
+            "status": "not_reported"
+          },
+          "exact_n": null
+        },
+        "k_cat_over_K_M": {
+          "status": "source_reported_numeric",
+          "value": 3.3,
+          "unit": "M^-1 s^-1",
+          "source_display": "3.3",
+          "uncertainty": {
+            "value": null,
+            "kind": null,
+            "status": "not_reported"
+          },
+          "exact_n": null
+        }
+      },
+      "source_consistency": "unresolved_internal_conflict",
+      "normalized_kinetic_triplet_eligible": false
+    },
+    {
+      "row_id": "RA95.5-5:R",
+      "construct_id": "RA95.5-5",
+      "assay_id": "enantiopure_methodol_uvvis",
+      "substrate_id": "methodol:R",
+      "source": "SI:Table1:page2:RA95.5-5:(R)",
+      "parameters": {
+        "k_cat": {
+          "status": "source_reported_numeric",
+          "value": 0.19,
+          "unit": "s^-1",
+          "source_display": "(1.9 +/- 0.2) x 10^-1",
+          "uncertainty": {
+            "value": 0.02,
+            "kind": "SD",
+            "status": "reported"
+          },
+          "exact_n": null
+        },
+        "K_M": {
+          "status": "source_reported_numeric",
+          "value": 410,
+          "unit": "uM",
+          "source_display": "410 +/- 64",
+          "uncertainty": {
+            "value": 64,
+            "kind": "SD",
+            "status": "reported"
+          },
+          "exact_n": null
+        },
+        "k_cat_over_K_M": {
+          "status": "source_reported_numeric",
+          "value": 470,
+          "unit": "M^-1 s^-1",
+          "source_display": "470",
+          "uncertainty": {
+            "value": null,
+            "kind": null,
+            "status": "not_reported"
+          },
+          "exact_n": null
+        }
+      },
+      "source_consistency": "no_direction_reversing_parameter_conflict_identified",
+      "normalized_kinetic_triplet_eligible": true
+    },
+    {
+      "row_id": "RA95.5-5:S",
+      "construct_id": "RA95.5-5",
+      "assay_id": "enantiopure_methodol_uvvis",
+      "substrate_id": "methodol:S",
+      "source": "SI:Table1:page2:RA95.5-5:(S)",
+      "parameters": {
+        "k_cat": {
+          "status": "source_reported_numeric",
+          "value": 0.019,
+          "unit": "s^-1",
+          "source_display": "(1.9 +/- 0.2) x 10^-2",
+          "uncertainty": {
+            "value": 0.002,
+            "kind": "SD",
+            "status": "reported"
+          },
+          "exact_n": null
+        },
+        "K_M": {
+          "status": "source_reported_numeric",
+          "value": 220,
+          "unit": "uM",
+          "source_display": "220 +/- 28",
+          "uncertainty": {
+            "value": 28,
+            "kind": "SD",
+            "status": "reported"
+          },
+          "exact_n": null
+        },
+        "k_cat_over_K_M": {
+          "status": "source_reported_numeric",
+          "value": 85,
+          "unit": "M^-1 s^-1",
+          "source_display": "85",
+          "uncertainty": {
+            "value": null,
+            "kind": null,
+            "status": "not_reported"
+          },
+          "exact_n": null
+        }
+      },
+      "source_consistency": "no_direction_reversing_parameter_conflict_identified",
+      "normalized_kinetic_triplet_eligible": true
+    },
+    {
+      "row_id": "RA95.5-8:R",
+      "construct_id": "RA95.5-8",
+      "assay_id": "enantiopure_methodol_uvvis",
+      "substrate_id": "methodol:R",
+      "source": "SI:Table1:page2:RA95.5-8:(R)",
+      "parameters": {
+        "k_cat": {
+          "status": "source_reported_numeric",
+          "value": 0.36,
+          "unit": "s^-1",
+          "source_display": "(3.6 +/- 0.2) x 10^-1",
+          "uncertainty": {
+            "value": 0.02,
+            "kind": "SD",
+            "status": "reported"
+          },
+          "exact_n": null
+        },
+        "K_M": {
+          "status": "source_reported_numeric",
+          "value": 230,
+          "unit": "uM",
+          "source_display": "230 +/- 35",
+          "uncertainty": {
+            "value": 35,
+            "kind": "SD",
+            "status": "reported"
+          },
+          "exact_n": null
+        },
+        "k_cat_over_K_M": {
+          "status": "source_reported_numeric",
+          "value": 1600,
+          "unit": "M^-1 s^-1",
+          "source_display": "1,600",
+          "uncertainty": {
+            "value": null,
+            "kind": null,
+            "status": "not_reported"
+          },
+          "exact_n": null
+        }
+      },
+      "source_consistency": "no_direction_reversing_parameter_conflict_identified",
+      "normalized_kinetic_triplet_eligible": true
+    },
+    {
+      "row_id": "RA95.5-8:S",
+      "construct_id": "RA95.5-8",
+      "assay_id": "enantiopure_methodol_uvvis",
+      "substrate_id": "methodol:S",
+      "source": "SI:Table1:page2:RA95.5-8:(S)",
+      "parameters": {
+        "k_cat": {
+          "status": "source_reported_numeric",
+          "value": 0.03,
+          "unit": "s^-1",
+          "source_display": "(3.0 +/- 0.2) x 10^-2",
+          "uncertainty": {
+            "value": 0.002,
+            "kind": "SD",
+            "status": "reported"
+          },
+          "exact_n": null
+        },
+        "K_M": {
+          "status": "source_reported_numeric",
+          "value": 270,
+          "unit": "uM",
+          "source_display": "270 +/- 7",
+          "uncertainty": {
+            "value": 7,
+            "kind": "SD",
+            "status": "reported"
+          },
+          "exact_n": null
+        },
+        "k_cat_over_K_M": {
+          "status": "source_reported_numeric",
+          "value": 110,
+          "unit": "M^-1 s^-1",
+          "source_display": "110",
+          "uncertainty": {
+            "value": null,
+            "kind": null,
+            "status": "not_reported"
+          },
+          "exact_n": null
+        }
+      },
+      "source_consistency": "no_direction_reversing_parameter_conflict_identified",
+      "normalized_kinetic_triplet_eligible": true
+    }
+  ],
+  "selectivity_comparisons": [
+    {
+      "construct_id": "RA95.0",
+      "assay_id": "enantiopure_methodol_uvvis",
+      "definition": "(k_cat/K_M)_R / (k_cat/K_M)_S",
+      "source_reported_factor": 0.43,
+      "source_reported_factor_unit": "dimensionless",
+      "source_locator": "SI:Table1:page2:RA95.0:selectivity_column_and_footnote_b",
+      "source_layout_note": "Factor is printed on the racemic row of the construct block; footnote b defines it using the separate R and S efficiencies. It is not a racemate-specific factor.",
+      "numerator_row_id": "RA95.0:R",
+      "denominator_row_id": "RA95.0:S",
+      "computed_quotient_of_displayed_efficiencies": 0.4594594594594595,
+      "computed_quotient_status": "derived_arithmetic_only_not_corrected_source_factor",
+      "ratio_uncertainty": null,
+      "ratio_exact_n": null,
+      "source_reported_preferred_enantiomer": "S",
+      "eligible_preferred_enantiomer": "S",
+      "eligibility_scope": "direction of reported enantiopure cleavage efficiency under the named assay; not a universal selectivity or synthetic-product label",
+      "exact_reconciled_factor": null,
+      "source_reported_preference_locator": "article S2/P7"
+    },
+    {
+      "construct_id": "RA95.5",
+      "assay_id": "enantiopure_methodol_uvvis",
+      "definition": "(k_cat/K_M)_R / (k_cat/K_M)_S",
+      "source_reported_factor": 3.2,
+      "source_reported_factor_unit": "dimensionless",
+      "source_locator": "SI:Table1:page2:RA95.5:selectivity_column_and_footnote_b",
+      "source_layout_note": "Factor is printed on the racemic row of the construct block; footnote b defines it using the separate R and S efficiencies. It is not a racemate-specific factor.",
+      "numerator_row_id": "RA95.5:R",
+      "denominator_row_id": "RA95.5:S",
+      "computed_quotient_of_displayed_efficiencies": 4.848484848484849,
+      "computed_quotient_status": "derived_arithmetic_only_not_corrected_source_factor",
+      "ratio_uncertainty": null,
+      "ratio_exact_n": null,
+      "source_reported_preferred_enantiomer": "R",
+      "eligible_preferred_enantiomer": null,
+      "eligibility_scope": "withheld: conflicting RA95.5 S kinetic triplet and selectivity values can change the inferred direction",
+      "exact_reconciled_factor": null,
+      "source_reported_preference_locator": "article S3/P12"
+    },
+    {
+      "construct_id": "RA95.5-5",
+      "assay_id": "enantiopure_methodol_uvvis",
+      "definition": "(k_cat/K_M)_R / (k_cat/K_M)_S",
+      "source_reported_factor": 5.4,
+      "source_reported_factor_unit": "dimensionless",
+      "source_locator": "SI:Table1:page2:RA95.5-5:selectivity_column_and_footnote_b",
+      "source_layout_note": "Factor is printed on the racemic row of the construct block; footnote b defines it using the separate R and S efficiencies. It is not a racemate-specific factor.",
+      "numerator_row_id": "RA95.5-5:R",
+      "denominator_row_id": "RA95.5-5:S",
+      "computed_quotient_of_displayed_efficiencies": 5.529411764705882,
+      "computed_quotient_status": "derived_arithmetic_only_not_corrected_source_factor",
+      "ratio_uncertainty": null,
+      "ratio_exact_n": null,
+      "source_reported_preferred_enantiomer": "R",
+      "eligible_preferred_enantiomer": "R",
+      "eligibility_scope": "direction of reported enantiopure cleavage efficiency under the named assay; not a universal selectivity or synthetic-product label",
+      "exact_reconciled_factor": null,
+      "source_reported_preference_locator": "article S4/P17"
+    },
+    {
+      "construct_id": "RA95.5-8",
+      "assay_id": "enantiopure_methodol_uvvis",
+      "definition": "(k_cat/K_M)_R / (k_cat/K_M)_S",
+      "source_reported_factor": 14,
+      "source_reported_factor_unit": "dimensionless",
+      "source_locator": "SI:Table1:page2:RA95.5-8:selectivity_column_and_footnote_b",
+      "source_layout_note": "Factor is printed on the racemic row of the construct block; footnote b defines it using the separate R and S efficiencies. It is not a racemate-specific factor.",
+      "numerator_row_id": "RA95.5-8:R",
+      "denominator_row_id": "RA95.5-8:S",
+      "computed_quotient_of_displayed_efficiencies": 14.545454545454545,
+      "computed_quotient_status": "derived_arithmetic_only_not_corrected_source_factor",
+      "ratio_uncertainty": null,
+      "ratio_exact_n": null,
+      "source_reported_preferred_enantiomer": "R",
+      "eligible_preferred_enantiomer": "R",
+      "eligibility_scope": "direction of reported enantiopure cleavage efficiency under the named assay; not a universal selectivity or synthetic-product label",
+      "exact_reconciled_factor": null,
+      "source_reported_preference_locator": "article S5/P20"
+    }
+  ],
+  "source_conflicts": [
+    {
+      "id": "RA95.5-S-KINETIC-TRIPLET",
+      "source": "SI:Table1:page2:RA95.5:(S)",
+      "reported_kcat_s_inverse": 0.17,
+      "reported_KM_micromolar": 560,
+      "reported_efficiency_M_inverse_s_inverse": 3.3,
+      "derived_kcat_div_KM_M_inverse_s_inverse": 303.5714285714286,
+      "decision": "Preserve every printed value. Withhold a reconciled kinetic triplet and RA95.5 preferred-enantiomer label; no inferred decimal/exponent repair. Using the inconsistent kcat/KM quotient could reverse the preference relative to the source efficiency column."
+    },
+    {
+      "id": "SOURCE-FACTORS-NOT-REPRODUCED-EXACTLY",
+      "source": "SI:Table1:page2:selectivity_column_and_footnote_b",
+      "source_factors": [
+        0.43,
+        3.2,
+        5.4,
+        14
+      ],
+      "displayed_efficiency_quotients": [
+        0.4594594594594595,
+        4.848484848484849,
+        5.529411764705882,
+        14.545454545454545
+      ],
+      "decision": "Store printed factors and computed displayed-value quotients separately for all four constructs. Do not substitute one for the other, attribute discrepancies to rounding without evidence, derive ratio uncertainty, or repair any value. RA95.5 differs materially (3.2 versus 16/3.3); exact reconciled factors stay null."
+    }
+  ],
+  "interpretation": {
+    "design_intent": {
+      "source": "article S2/P7; SI Table1 footnote d; article Methods/S8/P29",
+      "source_reported_target_enantiomer": "S",
+      "scope": "Author design-intent statement; does not identify the exact earlier scaffold/assay specimen. SI Table1 footnote d and the existing construct provider distinguish the five surface substitutions in the 2013 RA95.0 starting clone."
+    },
+    "supported_result": "2013 RA95.0 favors S-methodol and RA95.5-8 favors R-methodol in the named enantiopure cleavage assay. Printed R/S factors are 0.43 and 14; displayed efficiency quotients are approximately 0.459 and 14.545, respectively. The endpoint reversal is source-scoped; the intermediate RA95.5 label remains withheld.",
+    "design_dataset_use": "A higher activity/racemic-efficiency outcome cannot stand in for preservation of the intended enantiomer preference. Bind the substrate configuration, construct, assay and parameter; retain the conflicting intermediate instead of smoothing a trajectory.",
+    "not_established": [
+      "enantiomeric excess, synthetic product yield or reverse aldol-addition selectivity",
+      "mechanistic cause of preference reversal or a single causal substitution",
+      "Lys83 or Lys210 enantioselective role from the separate racemic mutant assays",
+      "a monotonic selectivity trajectory or a repaired RA95.5 ratio",
+      "exact assay specimen identity or exact original pre-2013 design sequence",
+      "prospective design success rate, design-only contribution, independent human review or new project experiment",
+      "productive geometry or a geometric design tolerance"
+    ]
+  },
+  "reconsideration": {
+    "bespoke_chemistry_code": "none; substrate configuration, construct/assay/parameter and source-status facts are data",
+    "observed_reuse": "Four exact construct/sequence providers reused by hash and JSON pointer; no duplicate sequence strings, source downloads or racemate/mutant re-curation. Existing source conflicts remain immutable in the prior comparison.",
+    "incremental_value": "Adds eight previously uncurated stereochemical endpoint rows and blocks transfer of higher racemate activity into intended-substrate preference. This is machine-readable eligibility, not new biology, measured curation speedup or runtime enforcement.",
+    "stop": "The selected eight rows and factor/eligibility relation complete this scope. Do not repair source conflicts or re-audit the same table without new evidence."
+  },
+  "selection_context": {
+    "source": "article Methods/S12/P34",
+    "scope": "Directed-evolution screening rounds described in the 2013 article; not the initial computational design or a reassignment of earlier study methods.",
+    "source_reported_substrate": "racemic (+/-)-methodol",
+    "source_reported_material": "cleared cell lysates",
+    "source_reported_technique": "fluorescence screening",
+    "relation_to_characterization": "The selected RA95.5-5 and RA95.5-8 constructs are separately characterized using enantiopure UV-vis kinetics in SI Table1/Figure1. Screening context is not a purified-enzyme kinetic row.",
+    "selection_caused_preference_reversal": null,
+    "scope_limit": "This relation does not recover unreported clones, per-clone screening traces, a complete library denominator or a prospective success rate."
+  }
+}

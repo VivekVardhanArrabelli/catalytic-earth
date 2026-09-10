@@ -1,0 +1,28 @@
+# KE70 catalytic-dyad source qualification
+
+- Parent owns all edits, acquisition, Git and the cooperative lock.
+- Owner: `01a08910-9df3-7073-a39d-0a77b2d42eb0:fffdd690-2456-44b3-8c1c-63768c161567`.
+- Start: 2026-09-10T02:06:17Z; clean synchronized base `45ba4e669ef39de824bafa78545d5018b89ca432`; prior PR #67 merged, no unfinished PR.
+- Question: does the KE70 primary study provide exact construct-matched evidence for the designed His–Asp catalytic arrangement, and what role-specific constraint could a dataset safely retain?
+- Gain: distinguish matched perturbation sensitivity from pH, structural and simulation context, using reusable construct/assay/parameter relations.
+- Strongest alternative: select a paper from an explicit residue-perturbation locator. KE70 is justified once by the exact KE59 Ref 17 source, not by presumed positive evidence. If it supplies no matched contrast, stop this narrative-led selection path.
+- Stop: inspect main article and available SI; retain a supported negative if exact construct or matched perturbation/control is absent. Stop repeated transport routes. No generic causal role or design-success label.
+- New distinct batch: `designed-kemp-eliminase-ke70-khersonsky2011`, DOI `10.1016/j.jmb.2011.01.041`, PMID `21277311`, PMC `3889864`. Prior exact identifier search found no acquired scope in `data/atlas` or `data/governance`. Meter every parent request and response body from request 1, with redirects counted separately; 100 requests / 31,457,280 bytes cumulative.
+- Workers: three read-only roles (source, representation, adversarial), on `gpt-5.6-sol` / `ultra`; no worker network acquisition, files, Git or lock changes. Same-model computational review is not independent human review.
+- Reconsideration: retain case facts in data; assess reuse and value beyond reading the paper. No bespoke runtime or compulsory artifact count.
+
+## Messages and adjudication
+
+- Startup: source acquisition pending. Worker findings and exact reviewed pins will be recorded here by the parent.
+
+- Access stop: all 16 attempts hash/length verified, 1,102,794 response-body bytes; 84 requests / 30,354,486 bytes remain. Only exact bibliographic metadata and the author abstract were acquired. No paper-wide absence, dyad or construct claim is allowed. Semantic Scholar points to the failed EPMC PDF route. KE70 is unassessed, not a chemical negative.
+- Evidence-supported pivot before further curation: does selected RA95 evolution preserve the designed S-methodol preference? Eight enantiopure rows and four printed selectivity factors were excluded from the prior racemic/mutant comparison. This missing stereochemical endpoint can change a design label, while exact construct providers are already bound. Preserve the known RA95.5 conflicts; do not revisit accepted racemic/mutant rows or repair source values. Stop after the eight rows, source factors, eligibility and matched-source review. No new source request or acquisition reset.
+- Branch renamed to `codex/ra95-stereoselectivity-20260910`. Read-only roles continue on source, representation and adversarial questions for this bounded pivot. Parent retains all writes. Review history remains one board.
+
+- Source result: 2013 RA95.0 favors S-methodol; RA95.5-8 favors R. New scope is eight enantiopure rows, 24 printed parameter values and four source-derived factor summaries. Printed factors0.43/3.2/5.4/14 remain separate from arithmetic quotients. RA95.5 S0.17s^-1/560uM versus efficiency3.3 blocks an integrated preference label; its author's R statement remains explicit.
+- Adversarial objection after initial source acceptance: screening must be scoped to post-RA95.5 rounds, not the earlier design-to-RA95.5 history. Corrected document, CE-028 and current surfaces. This is a relation between racemic screening context and enantiopure characterization, not a causal selection claim or synthesis-ee label.
+- Representation objections: standardized eight K_M unit tokens to established uM, RA95 max_* budget keys and KE70 transport max_*/cumulative_* keys. No scientific values changed. No case-specific runtime, new validator or duplicate sequences.
+- All three read-only roles accepted final pins: data `430065ef058082fd59c0fa32fb2a0dcc7009fa325bb589467db708551a5cbd83`; document `7e934c2801d762333e1e9cb32380337c44cb08fc4e96ec38ed2ca6f917db86d4`; KE70 receipt `531c9fd3a4311578b8ed93f83c3f46191a1da6c6ed7c78082fc267ed3c21a8b5`. Exact source, unit, join, null and accounting objections are resolved at source-annotation scope. Review `e0c8339e994e063a0b5ddf617e4d3de1cb497bb1973d35bc6ffe5e484cc4274c`. No independent human or experimental review.
+- Parent verified eight unique row keys, all four provider/sequence joins, exact source bytes, arithmetic, old claim object equality and byte-unchanged prior RA95 inputs/review. Final source binds primary XML71d3d579... and SI PDFaaa0e320... through the existing record. Historical warnings remain unchanged; the new stereo extension keeps RA95.5 unavailable for integrated use.
+- Evidence-supported next source locator: retained RA95 XML P4 cites R10/R11 for component contributions; R10 is Lassila/Baker/Herschlag2010, DOI10.1073/pnas.0913638107, PMID20194782, PMC2841948. No matching acquired scope found. This motivates a component-perturbation source check; it does not establish that a matched assay exists.
+- Checkpoint 2026-09-10T02:33:24.886982+00:00: source curation stopped; no new scientific task will launch. Required repository validation and publication remain parent-owned steps. Exact publication and lock release are recorded in the Git-local receipt.
