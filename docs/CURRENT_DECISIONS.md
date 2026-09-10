@@ -1,5 +1,16 @@
 # Current Decisions
 
+## 2026-09-10: stop the PLP correspondence at its stereochemical boundary
+
+Accept the [source-bound negative comparison](ATLAS_PLP_STEP_BOUNDARY.md).
+Matching local arrow roles do not justify discarding endpoint-touching stereo
+or normalizing the distinct cofactor electronic and explicit-H tokens. Retain the unchanged
+consumer's rejection and do not add enzyme-specific code to force a match.
+This closes the inherited step-2 question at a precise limitation; no full
+chemical-state equivalence or mechanistic non-equivalence is established.
+The next useful axis needs explicit chemical-state stereochemistry, rather
+than another endpoint-only source-drawing comparison.
+
 ## 2026-09-10: compare localized source steps without transferring a whole catalytic cycle
 
 Accept a source-annotation relation for the [ThDP reset and qualified

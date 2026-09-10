@@ -1,5 +1,17 @@
 # Current State
 
+## 2026-09-10: PLP arrow similarity reaches a source stereochemistry boundary
+
+The [three-case PLP comparison](ATLAS_PLP_STEP_BOUNDARY.md) finds matching
+local directed arrows but no qualified actor-state relation with
+the current consumer. Every required substrate-N endpoint touches source
+stereochemistry, and the larger actors differ in raw charge/explicit-H depictions and sidechains.
+Full and endpoint-only selections both retain the existing rejection.
+
+CE-037 records a prevented state transfer, not absence of common chemistry.
+The consumer and source records are unchanged; exact witnesses and focused
+checks preserve the boundary with zero acquisition or evidence-tier change.
+
 ## 2026-09-10: ThDP reset correspondence retains the activation hydrogen difference
 
 The [source-step query](ATLAS_THDP_CORRESPONDENCE.md) associates M0106 and M0219

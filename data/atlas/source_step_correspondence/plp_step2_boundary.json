@@ -1,0 +1,514 @@
+{
+  "schema_version": "catalytic-earth.source-step-boundary.v1",
+  "id": "plp-proposal1-step2-stereo-and-electronic-boundary",
+  "status": "qualified_graph_relation_not_established",
+  "question": "Can retained M0066, M0186 and M0213 proposal1 step2 depictions support a common covalent-actor and complete directed-arrow correspondence with the current consumer?",
+  "source_bindings": {
+    "M0066": {
+      "snapshot": {
+        "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0066.json",
+        "sha256": "89fa34b9238e224ed7772492165dd331ef455d9bbc32252b98c8148fd2c35770"
+      },
+      "records": {
+        "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/records.json",
+        "sha256": "7f21e56cdb778e6c92008b740aa2dbce9b1b3de5700f730ffe47d4e922c11227"
+      },
+      "record_id": "atlas50-draft:m0066:source-scoped-mechanism-draft"
+    },
+    "M0186": {
+      "snapshot": {
+        "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0186.json",
+        "sha256": "687986c4aaa94ce6bba72c5403bf28a4f04b32891c3493ccb75436defb2a7f38"
+      },
+      "records": {
+        "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/records.json",
+        "sha256": "7f21e56cdb778e6c92008b740aa2dbce9b1b3de5700f730ffe47d4e922c11227"
+      },
+      "record_id": "atlas50-draft:m0186:source-scoped-mechanism-draft"
+    },
+    "M0213": {
+      "snapshot": {
+        "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0213.json",
+        "sha256": "375d66615ee7a38cb3adc817b39ae28308d554590c26c3b4bbb7d08f2a74728d"
+      },
+      "records": {
+        "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/records.json",
+        "sha256": "7f21e56cdb778e6c92008b740aa2dbce9b1b3de5700f730ffe47d4e922c11227"
+      },
+      "record_id": "atlas50-draft:m0213:source-scoped-mechanism-draft"
+    }
+  },
+  "cases": [
+    {
+      "side": {
+        "source_id": "M0066",
+        "mechanism_id": 1,
+        "step_id": 2,
+        "scheme_sha256": "18801865243ab0a393787addd67bd440b82f852b708e701ab1dfaaa3e7722ae5",
+        "component_labels": [
+          "chebi:597326"
+        ],
+        "excluded_atoms": []
+      },
+      "source_step_summary": "The secondary amine that results from the initial attack initiates an elimination of the covalently bound lysine, resulting in free PLP and lysine in a neutral state.",
+      "local_atom_roles": {
+        "substrate_n": "a19",
+        "adduct_c": "a57",
+        "lysine_n": "a40"
+      },
+      "local_flow_roles": {
+        "lysine_adduct_bond_to_lysine_n": "o38",
+        "substrate_n_lone_pair_to_adduct_bond": "o39"
+      },
+      "source_atom_tokens": {
+        "a4": {
+          "elementType": "N",
+          "formalCharge": "1",
+          "lonePair": null,
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": "chebi:597326"
+        },
+        "a10": {
+          "elementType": "O",
+          "formalCharge": null,
+          "lonePair": "2",
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": null
+        },
+        "a12": {
+          "elementType": "O",
+          "formalCharge": "-1",
+          "lonePair": "3",
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": null
+        },
+        "a14": {
+          "elementType": "O",
+          "formalCharge": "-1",
+          "lonePair": "3",
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": null
+        },
+        "a19": {
+          "elementType": "N",
+          "formalCharge": null,
+          "lonePair": "1",
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": "chebi:29986"
+        },
+        "a40": {
+          "elementType": "N",
+          "formalCharge": "1",
+          "lonePair": null,
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": null
+        },
+        "a57": {
+          "elementType": "C",
+          "formalCharge": null,
+          "lonePair": null,
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": null
+        },
+        "a45": {
+          "elementType": "C",
+          "formalCharge": null,
+          "lonePair": null,
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": "Lys145A",
+          "mrvExtraLabel": null
+        }
+      },
+      "source_stereo_bonds": [
+        {
+          "bond_id": "b18",
+          "ordered_atom_refs2": [
+            "a18",
+            "a19"
+          ],
+          "order": "1",
+          "bond_stereo": "H"
+        }
+      ],
+      "explicit_hydrogens_in_entire_panel": [],
+      "expected_consumer_rejection": "compared graph touches uninterpreted source stereochemistry",
+      "local_bond_witnesses": [
+        {
+          "bond_id": "b53",
+          "ordered_atom_refs2": [
+            "a40",
+            "a57"
+          ],
+          "order": "1"
+        },
+        {
+          "bond_id": "b54",
+          "ordered_atom_refs2": [
+            "a19",
+            "a57"
+          ],
+          "order": "1"
+        }
+      ],
+      "full_connected_actor_atom_count": 31,
+      "full_connected_actor_bond_count": 31
+    },
+    {
+      "side": {
+        "source_id": "M0186",
+        "mechanism_id": 1,
+        "step_id": 2,
+        "scheme_sha256": "0b0a10e4fec45ca09006b8fc61afeb7e7c842afd4afea27cf6960caf500cc897",
+        "component_labels": [
+          "chebi:597326"
+        ],
+        "excluded_atoms": []
+      },
+      "source_step_summary": "The secondary amine that results from the initial attack initiates an elimination of the covalently bound lysine, resulting in free PLP and lysine in a neutral state. Final step of the transaldimination reaction.",
+      "local_atom_roles": {
+        "substrate_n": "a21",
+        "adduct_c": "a13",
+        "lysine_n": "a23"
+      },
+      "local_flow_roles": {
+        "lysine_adduct_bond_to_lysine_n": "o27",
+        "substrate_n_lone_pair_to_adduct_bond": "o28"
+      },
+      "source_atom_tokens": {
+        "a4": {
+          "elementType": "N",
+          "formalCharge": null,
+          "lonePair": "1",
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": "chebi:597326"
+        },
+        "a10": {
+          "elementType": "O",
+          "formalCharge": null,
+          "lonePair": "2",
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": null
+        },
+        "a12": {
+          "elementType": "O",
+          "formalCharge": "-1",
+          "lonePair": "3",
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": null
+        },
+        "a15": {
+          "elementType": "O",
+          "formalCharge": null,
+          "lonePair": "2",
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": null
+        },
+        "a21": {
+          "elementType": "N",
+          "formalCharge": null,
+          "lonePair": "1",
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": "chebi:33384"
+        },
+        "a23": {
+          "elementType": "N",
+          "formalCharge": "1",
+          "lonePair": null,
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": "res:Lys41A"
+        },
+        "a13": {
+          "elementType": "C",
+          "formalCharge": null,
+          "lonePair": null,
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": null
+        },
+        "a39": {
+          "elementType": "H",
+          "formalCharge": null,
+          "lonePair": null,
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": null
+        },
+        "a40": {
+          "elementType": "H",
+          "formalCharge": null,
+          "lonePair": null,
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": null
+        },
+        "a28": {
+          "elementType": "C",
+          "formalCharge": null,
+          "lonePair": null,
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": "Lys41A",
+          "mrvExtraLabel": null
+        }
+      },
+      "source_stereo_bonds": [
+        {
+          "bond_id": "b31",
+          "ordered_atom_refs2": [
+            "a17",
+            "a21"
+          ],
+          "order": "1",
+          "bond_stereo": "W"
+        }
+      ],
+      "explicit_hydrogens_in_entire_panel": [
+        {
+          "atom_id": "a39",
+          "attached_atom_ids": [
+            "a15"
+          ]
+        },
+        {
+          "atom_id": "a40",
+          "attached_atom_ids": [
+            "a23"
+          ]
+        }
+      ],
+      "expected_consumer_rejection": "compared graph touches uninterpreted source stereochemistry",
+      "local_bond_witnesses": [
+        {
+          "bond_id": "b29",
+          "ordered_atom_refs2": [
+            "a23",
+            "a13"
+          ],
+          "order": "1"
+        },
+        {
+          "bond_id": "b37",
+          "ordered_atom_refs2": [
+            "a21",
+            "a13"
+          ],
+          "order": "1"
+        }
+      ],
+      "full_connected_actor_atom_count": 30,
+      "full_connected_actor_bond_count": 30
+    },
+    {
+      "side": {
+        "source_id": "M0213",
+        "mechanism_id": 1,
+        "step_id": 2,
+        "scheme_sha256": "586e063b0fcd10eafc5f1367e26688f7873378a0759032e200b647f40e7b3089",
+        "component_labels": [
+          "chebi:597326"
+        ],
+        "excluded_atoms": []
+      },
+      "source_step_summary": "The secondary amine that results from the initial attack initiates an elimination of the covalently bound lysine, resulting in free PLP and lysine in a neutral state.",
+      "local_atom_roles": {
+        "substrate_n": "a20",
+        "adduct_c": "a13",
+        "lysine_n": "a22"
+      },
+      "local_flow_roles": {
+        "lysine_adduct_bond_to_lysine_n": "o37",
+        "substrate_n_lone_pair_to_adduct_bond": "o38"
+      },
+      "source_atom_tokens": {
+        "a4": {
+          "elementType": "N",
+          "formalCharge": null,
+          "lonePair": "1",
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": "chebi:597326"
+        },
+        "a10": {
+          "elementType": "O",
+          "formalCharge": "-1",
+          "lonePair": "3",
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": null
+        },
+        "a12": {
+          "elementType": "O",
+          "formalCharge": "-1",
+          "lonePair": "3",
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": null
+        },
+        "a15": {
+          "elementType": "O",
+          "formalCharge": "-1",
+          "lonePair": "3",
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": null
+        },
+        "a20": {
+          "elementType": "N",
+          "formalCharge": null,
+          "lonePair": "1",
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": "chebi:57972"
+        },
+        "a22": {
+          "elementType": "N",
+          "formalCharge": "1",
+          "lonePair": null,
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": "res:Lys39A"
+        },
+        "a13": {
+          "elementType": "C",
+          "formalCharge": null,
+          "lonePair": null,
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": null
+        },
+        "a68": {
+          "elementType": "H",
+          "formalCharge": null,
+          "lonePair": null,
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": null,
+          "mrvExtraLabel": null
+        },
+        "a27": {
+          "elementType": "C",
+          "formalCharge": null,
+          "lonePair": null,
+          "isotope": null,
+          "rgroupRef": null,
+          "mrvAlias": "Lys39A",
+          "mrvExtraLabel": null
+        }
+      },
+      "source_stereo_bonds": [
+        {
+          "bond_id": "b20",
+          "ordered_atom_refs2": [
+            "a17",
+            "a20"
+          ],
+          "order": "1",
+          "bond_stereo": "W"
+        }
+      ],
+      "explicit_hydrogens_in_entire_panel": [
+        {
+          "atom_id": "a68",
+          "attached_atom_ids": [
+            "a22"
+          ]
+        }
+      ],
+      "expected_consumer_rejection": "compared graph touches uninterpreted source stereochemistry",
+      "local_bond_witnesses": [
+        {
+          "bond_id": "b62",
+          "ordered_atom_refs2": [
+            "a22",
+            "a13"
+          ],
+          "order": "1"
+        },
+        {
+          "bond_id": "b64",
+          "ordered_atom_refs2": [
+            "a20",
+            "a13"
+          ],
+          "order": "1"
+        }
+      ],
+      "full_connected_actor_atom_count": 28,
+      "full_connected_actor_bond_count": 28
+    }
+  ],
+  "adjudication": {
+    "arrow_role_pattern": "The two directed arrows align under the three declared local roles: lysine-adduct bond to lysine N, and substrate-N lone pair to the existing substrate-N/adduct-C bond. This is an endpoint-only pattern, not an inferred bond edit or an accepted stereochemical or actor-state correspondence.",
+    "consumer_boundary": "Every substrate-N endpoint touches a source stereobond. The current consumer refuses this context even if all non-flow atoms are explicitly excluded.",
+    "distinct_actor_context": "The cofactor pyridine and phenolic oxygen charges, phosphate proton depiction, lysine explicit-H inventory and substrate sidechains differ. A full selected actor-state equality is not established.",
+    "outcome": "Retain the rejected correspondence question and its exact source witnesses. Do not relax the stereo guard or normalize charge/H to force a match.",
+    "scientific_non_equivalence_proven": false,
+    "canonical_stereochemistry_assigned": false,
+    "physical_atom_map": false,
+    "after_state_replay": false,
+    "whole_mechanism_equivalence": false,
+    "new_mechanism_records": 0,
+    "new_experimental_observations": 0,
+    "evidence_tier_promotion": false
+  },
+  "limitations": [
+    "Raw wedge/hash tokens are source drawing instructions, not canonical R/S labels or proof of opposite stereochemistry.",
+    "An omitted formalCharge parses as zero; an omitted explicit hydrogen does not establish its physical absence or a complete microstate.",
+    "The source prose says free PLP, but this is not evidence for free unbound PLP; the proposed collapse concerns lysine displacement from the substrate-cofactor adduct. No after-state replay is asserted.",
+    "Keep M0066 D-glutamate identifiers versus Step1 L-glutamate prose, M0213 direction/terminal-label conflicts and analogue context, and M0186 inferred/assumed later roles and extra-enzymatic steps separate.",
+    "Same-source drawings and same-model review do not establish independent chemical or human validation."
+  ],
+  "attribution": {
+    "source": "M-CSA retained snapshots",
+    "license": "CC BY 4.0",
+    "citation": "Ribeiro AJM et al. Nucleic Acids Research 46(D1):D618-D623 (2018), doi:10.1093/nar/gkx1012.",
+    "source_urls": [
+      "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/66/",
+      "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/186/",
+      "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/213/"
+    ],
+    "changes": "Added a source-bound rejected-comparison diagnostic and local role locators; original source snapshots and compiled records are unchanged."
+  },
+  "acquisition": {
+    "new_scientific_source_requests": 0,
+    "new_response_body_bytes": 0,
+    "inherited_cumulative_batches_unchanged": true
+  }
+}

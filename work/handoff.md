@@ -6,73 +6,89 @@
 This block, `docs/HOURLY_RESEARCH.md` and the current direction review govern
 continuation. Historical handoffs below are not an execution queue.
 
-- **Identity/base:** owner `01a08c7f-1dc5-73f2-aaa5-32c6414622af:d39dc5ce-933c-4f33-b3f8-4a0d05bc7e0d`;
-  actual start `2026-09-10T18:05:53Z`; clean main base
-  `436f5487eb848dde5651ac600ad3cf18c74a68a9`. PR82 and its exact-main CI
-  verified; no open PR or recovery at entry. Branch
-  `codex/thdp-step-correspondence-20260910`. Parent owns edits/Git/lock;
-  Sol/ultra source and adversarial workers are read-only through one Git-local
-  coordination board. At 18:38 UTC, elapsed about32 minutes; publication is
-  the remaining work, not a reason to start another scientific investigation.
-- **Question/outcome:** can M0106/M0219 source depictions establish a useful
-  ThDP step correspondence beyond cofactor labels? Reset (proposal1 steps7/6)
-  has corresponding full selected34-node/34-bond covalent actor graphs and
-  all five directed arrows, including both transferred H. Activation (steps1/1)
-  is only partial: M0106 has extra non-flow spectatorH a65 on N a64; its atom
-  and N-H boundary stay explicit. Two declared diphosphate maps retain the
-  same reaction endpoints. Activation source-file arrow ordering differs.
-- **Evidence/capability:** `data/atlas/source_step_correspondence/thdp.json`,
-  its `review.json`, `scripts/compare_source_steps.py` and
-  `docs/ATLAS_THDP_CORRESPONDENCE.md`. One source-bound repository consumer
-  checks supplied maps with existing parsers, retaining exact source identity,
-  full flow endpoints, electronic tokens, excluded atoms and opaque context.
-  It does not enumerate every graph isomorphism or claim an installed-wheel
-  command. CE-036 records one relation with two source-step pairings.
-- **Limits:** parsed omitted formalCharge defaults to0; no completed proton
-  inventory or exact microstate. Labels/alias text remain source metadata.
-  Glu fragments are not residue homology; metal/stereo context is uncompared.
-  M0106 E2 carrier accession/site/pose and M0219 native metal remain unresolved;
-  no reaction, acceptor, protein, 6HA3 grounding or whole-cycle transfer.
-  Adjacent after-state extension is closed: M0219 step7 omits ThDP/Glu,
-  unlike M0106 step8. Do not turn that absence into a repeated replay queue.
-  These are source-proposed drawings, not new experiments or tier promotion.
-- **Acquisition/prerequisites:** zero new scientific requests/response bytes.
-  Original sources and all cumulative scopes are unchanged. RA95 remains
-  27/17,298,809; default four-record M-CSA49/1,109,896; the inherited panel's
-  28/1,474,405 is only a lower bound, with complete panel/HisF headroom unknown.
-  HisF primary Methods/Table III/IV is still missing; no repeat literature
-  probe or closed telemetry recovery. Other complete named batches retain
-  their prior totals; no scope reset, renaming or unaccounted acquisition.
-- **Reuse/reconsideration:** the unchanged HisF prerequisite initially offered
-  no progress, but a concrete cross-case scientific question justified this
-  pivot. Case-specific selections/maps are data, not enzyme-ID branches.
-  Exact graph/flow correspondence adds capability beyond the existing cofactor
-  label filter. No measured curation-time saving or scientific superiority is
-  claimed. No protected/frozen/exposure change, new registered protein or
-  compiled mechanism. Consecutive no-progress runs: **0**; schedule stays active.
-- **Review/verification:** source and code challenges corrected source-alias
-  acceptance, injected findings, unverified emitted sources, empty relations,
-  attribution and charge wording. Same-model review is not independent human
-  validation. All583 core tests pass, including ten targeted failure-mode and
-  CRLF checks. Existing CE001–035 and perturbation evidence remain unchanged;
-  renewed five affected governance review hashes and claim count35to36 without
-  weakening checks. Architecture changes only path count17,674to17,679.
-  Final repository/archive contracts and required reviewed-head CI remain
-  publication gates. Git identifies this block's containing commit; exact
-  final SHA/push/merge/CI/release belongs in the task result and local receipt
-  `.git/catalytic-earth-runs/20260910T180553Z-d39dc5ce-933c-4f33-b3f8-4a0d05bc7e0d.json`.
-- **One next action:** test whether retained proposal1 step2 PLP transaldimination
-  collapse in M0066, M0186 and M0213 supports a shared directed-arrow/reactive
-  graph correspondence despite different substrate sidechains. Sources and
-  compiled records are under `data/atlas/source_drafts/batches/plp-pyruvoyl/`.
-  This is an untested next question, not a new result. Gain: test reuse across
-  divergent reaction classes with explicit chemical boundaries. Use the same
-  consumer if its semantics suffice. Stop at one qualified relation preserving
-  every flow endpoint and explicit non-flow exclusions/boundaries, or the first
-  irreducible charge/H/bond mismatch. No implicit-H completion, after-state
-  inference, whole-function claim or forced family-specific code. Requires no
-  acquisition. Resume any unfinished publication first if live state differs
-  from the final receipt; do not repeat completed RA95 or HisF wrapping.
+- **Identity/base:** owner `01a08cb6-820f-7e21-ac03-638321c1d619:154edce6-507f-4868-8cea-9b58501daee1`;
+  actual start `2026-09-10T19:06:43.040045+00:00`; clean main base
+  `6be6c988ac19a01aef17779b17777c6a501c4a11`, PR83 integrated and no open
+  PR/recovery. Branch `codex/plp-step-correspondence-20260910`.
+  Parent owns edits/Git/lock; three Sol/ultra read-only reviewers share
+  `.git/catalytic-earth-runs/2026-09-10T19-06-43.040045+00-00-154edce6-507f-4868-8cea-9b58501daee1.board.md`.
+  At 19:24 UTC, about 17 minutes elapsed; the selected question has reached its
+  stopping condition. Verification/publication are the remaining work.
+- **Direction reconciliation:** the review's RA95 chemical-state priority was
+  completed in PR80/81; do not repeat it. PR83 completed the ThDP question and
+  closed its unsupported adjacent after-state replay. The inherited PLP
+  step-2 comparison was a distinct test of reusable chemical scope.
+- **Question/outcome:** M0066/M0186/M0213 proposal-1 step-2 drawings share two
+  local directed-arrow roles and endpoint element/parsed-charge/lonePair
+  tokens, but **no qualified actor-state correspondence is established**.
+  Required substrate N touches raw source stereo: M0066 b18 a18–a19 H,
+  M0186 b31 a17–a21 W, M0213 b20 a17–a20 W. The unchanged consumer rejects
+  all three full actors and all three endpoint-only selections.
+- **Evidence/capability:** `data/atlas/source_step_correspondence/plp_step2_boundary.json`,
+  `plp_step2_review.json`, `docs/ATLAS_PLP_STEP_BOUNDARY.md` and CE-037 retain
+  exact source/record/scheme bindings, local single bonds and arrows, raw
+  labels/aliases, electronic tokens, full-panel H and ordered stereo witnesses.
+  Connected actors contain 31/31, 30/30 and 28/28 atoms/bonds. No accepted
+  correspondence or new runtime capability was added; the useful result is
+  the precise boundary preventing a local arrow match from transferring state.
+- **Limits/source objections:** W/H are raw drawing tokens, not absolute R/S.
+  Cofactor pyridine/oxygen electronic tokens, phosphate/lysine explicit-H
+  depictions and substrate sidechains differ. Missing H is not physical
+  absence; omitted formalCharge parses as zero. Source review corrected
+  misleading bond-formation labels: both N–C bonds already exist, and the
+  recorded objects are directed electron endpoints, not inferred edits.
+  Preserve source “free PLP” prose without classifying a detached cofactor.
+  M0066 D/L, M0213 direction/analogue and M0186 later inferred/extra-enzymatic
+  limits remain. No chemical non-equivalence proof, canonical stereo,
+  after-state replay, protein/function transfer, experiment or tier promotion.
+- **Acquisition:** zero new scientific requests/response bytes; all cumulative
+  batches remain unchanged. The original PLP source package reports 37
+  requests/589,303 bytes, which is not a recomputed total for its later
+  annotations. Do not treat it as complete current headroom. RA95 remains
+  27/17,298,809; default four-record M-CSA 49/1,109,896. The inherited panel
+  28/1,474,405 remains only a lower bound; panel/HisF headroom is unresolved.
+  No scope reset, renaming, repeated HisF probe or reopening of closed
+  telemetry recovery. HisF Methods/Table III/IV remain missing.
+- **Reuse/reconsideration:** unchanged shared consumer and parsers exposed the
+  same stereo rule in three divergent reactions. Case facts remain data;
+  no enzyme-ID branch, stereo deletion or H completion was introduced.
+  The result adds a prevented state transfer beyond matching cofactor/arrow
+  labels, with no measured time saving or incumbent-superiority claim.
+  Further tiny source-drawing projections would not overcome this limitation;
+  change the evidence axis to explicit deposited analogue stereochemistry.
+  Consecutive no-progress runs: **0**; supported negative evidence is progress.
+- **Review/verification:** source and representation reviews accepted after
+  local-bond, label/alias, arrow-wording and signature-scope corrections.
+  Adversarial review added exact-three-case and cross-case signature checks.
+  Same-model review is computational, not independent human validation.
+  All three pinned source-annotation gates pass; focused 12 correspondence
+  checks pass. All 585 core tests and full repository contracts pass with
+  37 claims and the frozen golden result matched. Original sources/compiled
+  records, consumer, CE001–036,
+  perturbation providers and protected/frozen/exposure surfaces are unchanged.
+  Only five affected governance/test bindings are renewed for CE037 and the
+  claim count 36 to 37; prior review followups are preserved. Architecture
+  changed only the path count 17,679 to 17,682. Work was staged before the
+  archive rebuild. Required reviewed-head CI remains the publication gate.
+- **Publication/recovery:** this coherent increment is being prepared on the
+  named branch. No unrelated dirty files or outstanding recovery. If publication
+  remains incomplete, resume this branch/PR before any new research. Git
+  identifies this block's containing commit; final exact SHA, push/merge/CI and
+  same-owner lock release are recorded in the task result and local receipt
+  `.git/catalytic-earth-runs/2026-09-10T19-06-43.040045+00-00-154edce6-507f-4868-8cea-9b58501daee1.json`.
+- **One next action:** test whether M0213's deposited D- and L-alanine analogue
+  states provide a source-grounded stereochemical pair. Retained
+  `data/atlas/source_drafts/batches/plp-pyruvoyl/review/primary_sources/observed_state_v3/m0213/1L6G.cif`
+  identifies PDD and explicitly names companion 1L6F. First check retained
+  inputs and cumulative PLP acquisition receipts; acquire a missing companion
+  only if complete batch headroom is established without resetting its scope.
+  Gain: attach explicit ligand stereochemistry to exact construct/site context
+  instead of interpreting W/H tokens as absolute labels. Stop at one qualified
+  analogue-state pair or the first ligand/connectivity/stereo/numbering conflict.
+  Keep reduced/analogue chemistry distinct from native intermediates; do not
+  validate the MRV direction, whole cycle or productive geometry by transfer.
+  If headroom cannot be established, retain the missing companion as a source
+  prerequisite rather than probe unaccounted routes.
 
 Preserve historical content below this marked block. No self-hash follow-up
 commit is required.

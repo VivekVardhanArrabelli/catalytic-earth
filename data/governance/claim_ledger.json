@@ -477,5 +477,20 @@
       "scripts/compare_source_steps.py",
       "docs/ATLAS_THDP_CORRESPONDENCE.md"
     ]
+  },
+  {
+    "claim_id": "CE-037",
+    "claim_kind": "scientific_result",
+    "status": "Supported",
+    "claim": "M0066, M0186 and M0213 proposal1 step2 share a local two-arrow role pattern but do not establish a qualified actor-state relation with the current consumer.",
+    "current_wording": "Every required substrate-N endpoint touches uninterpreted source stereochemistry, so both full and endpoint-only selections are rejected. Larger actor graphs also differ in cofactor electronic tokens, phosphate/lysine explicit-H depictions and substrate sidechains. Raw W/H tokens are not canonical absolute configurations and missing explicit H does not prove absent protons. Retain a prevented unsupported state transfer, not proof of mechanistic non-equivalence. No normalized stereochemistry, after-state replay, physical atom map, whole-function transfer, new mechanism, experiment or evidence-tier promotion follows.",
+    "rationale": "Exact local arrow similarity is checked against retained raw and compiled source witnesses, while the existing shared consumer prevents that match from discarding attached stereochemical context or equating distinct actor states.",
+    "evidence": [
+      "data/atlas/source_step_correspondence/plp_step2_boundary.json",
+      "data/atlas/source_step_correspondence/plp_step2_review.json",
+      "scripts/compare_source_steps.py",
+      "tests/core/test_source_step_correspondence.py",
+      "docs/ATLAS_PLP_STEP_BOUNDARY.md"
+    ]
   }
 ]
