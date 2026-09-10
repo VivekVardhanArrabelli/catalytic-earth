@@ -1,5 +1,27 @@
 # Current Decisions
 
+## 2026-09-10: qualify Diels–Alder effects only at their available source scope
+
+The [Diels–Alder review](../data/atlas/study_context/diels_alder_2010/source_review.json)
+permits source annotation after source, representation and adversarial challenge.
+The requested same-assay product/control relation remains unsupported within
+the acquired article. Preserve the reported Q195E/Y121F activity factors and
+named background while leaving their underlying metric, assay and raw values
+unresolved. Do not use the parent kinetic table as an invented denominator.
+
+The shared reaction/participant consumer handles this chemistry through data
+alone. Separate substrate-specific KM fields retain participant markers; strict
+product bounds remain structured context with no central value. Shared product
+identity is configuration-neutral. Preserve the different product/kinetic
+assays, unmatched stereochemical background and intermediate apo construct.
+No compiler, frozen-kernel, protected-registry or exposure-history change is
+authorized by this annotation. Computational review is not independent review.
+
+Stop unchanged supplement acquisition routes. The distinct Siegel2010 batch
+remains cumulative at 14 requests / 502,726 response-body bytes. A new permitted
+supplement witness would justify reopening this exact control-assay question;
+another main-text endpoint would not resolve it.
+
 ## 2026-09-10: attach product evidence to the exact synthesis context
 
 The [forward source review](../data/atlas/study_context/ra95_2017/forward_synthesis_review.json)

@@ -1,0 +1,495 @@
+{
+  "schema_version": "catalytic-earth.source-qualification.v1",
+  "assessment_id": "siegel2010-diels-alder-product-control",
+  "operation": "source_annotation",
+  "study": {
+    "study_id": "diels_alder_2010",
+    "citation": "Siegel et al., Science329,309-313(2010)",
+    "doi": "10.1126/science.1190239",
+    "pmcid": "PMC3241958",
+    "primary_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/"
+  },
+  "question": "Can measured product endpoints and catalytic-group perturbations join the same construct/assay relation beyond aldol chemistry?",
+  "conclusion": "Named reaction participants, three parent kinetic parameters and two reported activity-reduction factors can share the existing consumer. Main-text product outcomes are supported at distinct bound contexts. Matched parameter-specific mutation inference remains unqualified without the supplement.",
+  "counted_objects": {
+    "new_project_experiments": 0,
+    "new_protein_admissions": 0,
+    "new_canonical_reactions": 0,
+    "new_mechanism_admissions": 0,
+    "source_annotation_packets": 1,
+    "parent_kinetic_row_contexts": 1,
+    "reported_mutation_effect_contexts": 2,
+    "projected_parameter_records": 5
+  },
+  "sources": [
+    {
+      "source_id": "article",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/",
+      "sha256": "3fccfd28aa75fde68708f85f8aea6b7d3b4f79069279afd0b6b65af1a9c9afda",
+      "bytes": 144652,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/3fccfd28aa75fde68708f85f8aea6b7d3b4f79069279afd0b6b65af1a9c9afda.html",
+      "redistributed": false,
+      "role": "primary_article"
+    },
+    {
+      "source_id": "figure1",
+      "url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/5ec3/3241958/1ff24174f717/nihms338810f1.jpg",
+      "sha256": "ad4f01c4fc0409c7f957d6aac4f4cbab4a7f23ee6d36cc69ac4049745c127f81",
+      "bytes": 23286,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/ad4f01c4fc0409c7f957d6aac4f4cbab4a7f23ee6d36cc69ac4049745c127f81.jpg",
+      "redistributed": false,
+      "role": "primary_figure"
+    },
+    {
+      "source_id": "figure4",
+      "url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/5ec3/3241958/9fc01853d7cc/nihms338810f4.jpg",
+      "sha256": "28c8e7c593f2b9f037e6d33224bbfff3ace8a32694deff578cc2a7faff458c7c",
+      "bytes": 35188,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/28c8e7c593f2b9f037e6d33224bbfff3ace8a32694deff578cc2a7faff458c7c.jpg",
+      "redistributed": false,
+      "role": "primary_figure"
+    }
+  ],
+  "source_access": {
+    "receipt_path": "data/atlas/study_context/diels_alder_2010/acquisition_receipts.json",
+    "receipt_sha256": "00638dc6ee16f2dab32e4492c74301dd75748a7e434fe24da2934d28fee7b1b8",
+    "batch_id": "designed-diels-alder-siegel2010",
+    "cumulative_requests": 14,
+    "cumulative_response_body_bytes": 502726,
+    "main_article": "acquired",
+    "supplement": "unacquired_and_unassessed",
+    "publication_rights": "Project-authored factual annotation; article bodies and images stay host-local and are not redistributed."
+  },
+  "selection": "Selected DA_20_10 kcat, KM-diene and KM-dienophile only, its two designed-group substitutions and relevant product/structure context. Three printed Table1 specificity/efficiency columns are intentionally outside this projection; they are not absent, not recomputed and this is not full-table coverage. Other designs, screen outcomes and specificity mutations are outside this bounded unscored source annotation.",
+  "constructs": [
+    {
+      "construct_id": "DA_20_10",
+      "source_name": "DA_20_10",
+      "comparison_background": "DA_20_10",
+      "perturbation": [],
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "not_acquired; main text names construct but exact sequence and supplement are unassessed",
+      "lineage": {
+        "source_parent": "DA_20_00",
+        "source_reported_substitutions": [
+          "A21T",
+          "A74I",
+          "Q149R",
+          "A173C",
+          "S271A",
+          "A272N"
+        ],
+        "source": {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#P7",
+          "html_id": "P7",
+          "source_id": "article"
+        }
+      },
+      "source": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#P7",
+        "html_id": "P7",
+        "source_id": "article"
+      }
+    },
+    {
+      "construct_id": "DA_20_10-Q195E",
+      "source_name": "DA_20_10 Q195E",
+      "comparison_background": "DA_20_10",
+      "perturbation": [
+        "Q195E"
+      ],
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "not_acquired; source-named single substitution, no exact sequence derivation",
+      "source": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#P9",
+        "html_id": "P9",
+        "source_id": "article"
+      }
+    },
+    {
+      "construct_id": "DA_20_10-Y121F",
+      "source_name": "DA_20_10 Y121F",
+      "comparison_background": "DA_20_10",
+      "perturbation": [
+        "Y121F"
+      ],
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "not_acquired; source-named single substitution, no exact sequence derivation",
+      "source": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#P9",
+        "html_id": "P9",
+        "source_id": "article"
+      }
+    }
+  ],
+  "reaction": {
+    "reaction_id": "diene1-dienophile2-cycloaddition",
+    "direction": "forward Diels-Alder cycloaddition",
+    "identity_status": "source_named_participants_only; no canonical reaction or atom map",
+    "participants": [
+      {
+        "participant_id": "1",
+        "side": "reactant",
+        "name": "4-carboxybenzyl trans-1,3-butadiene-1-carbamate",
+        "role": "diene",
+        "stereochemistry": "source-named trans diene",
+        "source": {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#P2",
+          "html_id": "P2",
+          "source_id": "article"
+        }
+      },
+      {
+        "participant_id": "2",
+        "side": "reactant",
+        "name": "N,N-dimethylacrylamide",
+        "role": "dienophile",
+        "source": {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#P2",
+          "html_id": "P2",
+          "source_id": "article"
+        }
+      },
+      {
+        "participant_id": "4",
+        "side": "product",
+        "name": "source Figure1 cyclohexene cycloadduct",
+        "role": "cycloaddition_product",
+        "configuration": null,
+        "configuration_status": "neutral shared participant; assignments belong individual product observations",
+        "source": {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#F1",
+          "html_id": "F1",
+          "source_id": "article"
+        },
+        "identity_scope": "Source product class/entity with observation-specific stereochemistry; not a fully specified canonical molecule."
+      }
+    ],
+    "source": {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#F1",
+      "html_id": "F1",
+      "source_id": "article"
+    },
+    "source_drawing_caution": "Figure1 labels3 as the transition-state/active-site schematic, not product. Reactant1 is drawn with carboxylate while product4 shows CO2H; do not infer balanced protonation or a canonical atom map.",
+    "balanced_equation": null,
+    "atom_map": null,
+    "proton_transfer": null,
+    "direction_scope": "Product formation is observed forward; drawing arrows establish no reversibility, equilibrium constant or reverse rate."
+  },
+  "assays": [
+    {
+      "assay_id": "Table1-bisubstrate-kinetics",
+      "reaction_id": "diene1-dienophile2-cycloaddition",
+      "temperature_K": 298,
+      "pH": null,
+      "buffer": null,
+      "readout": "reaction velocity varied with both substrates; exact acquisition protocol remains in unacquired supplement",
+      "source": [
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#T1",
+          "html_id": "T1",
+          "source_id": "article"
+        },
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#P10",
+          "html_id": "P10",
+          "source_id": "article"
+        },
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#F3",
+          "html_id": "F3",
+          "source_id": "article"
+        }
+      ],
+      "uncertainty": "Table1 caption declares calculated95% confidence intervals for printed plus-minus values",
+      "conditions_scope": "P6 declares LC-MS/MS in PBS pH7.4 at298K for design screening; those screening conditions are not automatically transferred to every later assay. Figure3A provides substrate concentration series."
+    },
+    {
+      "assay_id": "P9-mutant-activity-undefined",
+      "reaction_id": "diene1-dienophile2-cycloaddition",
+      "temperature_K": null,
+      "pH": null,
+      "buffer": null,
+      "readout": null,
+      "measured_parameter": null,
+      "exact_mutant_and_parent_measurements": null,
+      "uncertainty": null,
+      "source": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#P9",
+        "html_id": "P9",
+        "source_id": "article"
+      },
+      "conditions_scope": "Reported activity reductions are assessed as author summaries. Specific metric, conditions, controls, uncertainty, replicate count and any detection floor are unresolved in acquired main text."
+    }
+  ],
+  "kinetic_observations": [
+    {
+      "row_id": "Table1:DA_20_10",
+      "construct_id": "DA_20_10",
+      "assay_id": "Table1-bisubstrate-kinetics",
+      "source": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#T1",
+        "html_id": "T1",
+        "source_id": "article"
+      },
+      "kcat": {
+        "result_kind": "numeric",
+        "value": 2.13,
+        "unit": "hr^-1",
+        "uncertainty": 0.24,
+        "uncertainty_kind": "source_reported_95_percent_confidence_interval"
+      },
+      "KM_diene": {
+        "result_kind": "numeric",
+        "value": 1.3,
+        "unit": "mM",
+        "uncertainty": 0.1,
+        "uncertainty_kind": "source_reported_95_percent_confidence_interval",
+        "participant_id": "1"
+      },
+      "KM_dienophile": {
+        "result_kind": "numeric",
+        "value": 72.8,
+        "unit": "mM",
+        "uncertainty": 5.1,
+        "uncertainty_kind": "source_reported_95_percent_confidence_interval",
+        "participant_id": "2"
+      },
+      "value_origin": "published_fitted_parameters",
+      "limits": "Separate substrate-specific KM columns; no source efficiency recomputation or unit conversion."
+    }
+  ],
+  "reported_perturbation_effects": [
+    {
+      "row_id": "P9:Q195E",
+      "construct_id": "DA_20_10-Q195E",
+      "assay_id": "P9-mutant-activity-undefined",
+      "source": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#P9",
+        "html_id": "P9",
+        "source_id": "article"
+      },
+      "reference_construct_id": "DA_20_10",
+      "activity_reduction_factor": {
+        "result_kind": "numeric",
+        "value": 450,
+        "unit": "fold_reduction",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported",
+        "value_origin": "author_reported_activity_reduction_summary",
+        "orientation": "parent activity relative to mutant, as a source-reported fold decrease; raw values unavailable",
+        "underlying_parameter_status": "Not identified as kcat, either KM, efficiency, conversion, yield or product stereochemistry."
+      },
+      "numeric_parent_value": null,
+      "numeric_mutant_value": null,
+      "qualified_parameter_comparison": false,
+      "limits": "Preserve reported factor without reciprocal reconstruction, cross-mutant ranking, multiplication or treating almost-complete-loss as zero.",
+      "reference_status": "DA_20_10 is the named mutation background; the fold denominator is context-implied, not an explicitly identified control measurement",
+      "source_measurement_unit": null,
+      "measured_parameter": null,
+      "replicates": null,
+      "detection_limit": null
+    },
+    {
+      "row_id": "P9:Y121F",
+      "construct_id": "DA_20_10-Y121F",
+      "assay_id": "P9-mutant-activity-undefined",
+      "source": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#P9",
+        "html_id": "P9",
+        "source_id": "article"
+      },
+      "reference_construct_id": "DA_20_10",
+      "activity_reduction_factor": {
+        "result_kind": "numeric",
+        "value": 27,
+        "unit": "fold_reduction",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported",
+        "value_origin": "author_reported_activity_reduction_summary",
+        "orientation": "parent activity relative to mutant, as a source-reported fold decrease; raw values unavailable",
+        "underlying_parameter_status": "Not identified as kcat, either KM, efficiency, conversion, yield or product stereochemistry."
+      },
+      "numeric_parent_value": null,
+      "numeric_mutant_value": null,
+      "qualified_parameter_comparison": false,
+      "limits": "Preserve reported factor without reciprocal reconstruction, cross-mutant ranking, multiplication or treating almost-complete-loss as zero.",
+      "reference_status": "DA_20_10 is the named mutation background; the fold denominator is context-implied, not an explicitly identified control measurement",
+      "source_measurement_unit": null,
+      "measured_parameter": null,
+      "replicates": null,
+      "detection_limit": null
+    }
+  ],
+  "product_context": {
+    "conversion": {
+      "construct_id": "DA_20_10",
+      "reaction_id": "diene1-dienophile2-cycloaddition",
+      "endpoint": "diene conversion to product",
+      "source_comparator": ">",
+      "threshold": 80,
+      "unit": "percent",
+      "value": null,
+      "isolated_yield": null,
+      "product_configuration": null,
+      "conditions": "high enzyme concentration; full conditions unacquired",
+      "source": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#P11",
+        "html_id": "P11",
+        "source_id": "article"
+      },
+      "supplement_pointer": "FigureS7, unacquired",
+      "matched_catalytic_group_control": null,
+      "context_id": "P11-high-enzyme-conversion",
+      "assay_id": null
+    },
+    "stereochemical_composition": {
+      "construct_id": "DA_20_10",
+      "reaction_id": "diene1-dienophile2-cycloaddition",
+      "endpoint": "source-assigned product stereoisomer share",
+      "source_comparator": ">",
+      "threshold": 97,
+      "unit": "percent",
+      "value": null,
+      "assigned_product": "3R,4S endo",
+      "assignment_status": "source_author_assignment; referenced analytical protocol and supplement unacquired",
+      "ee": null,
+      "dr": null,
+      "isolated_yield": null,
+      "technique": "chiral liquid chromatography-tandem mass spectrometry",
+      "source": [
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#P14",
+          "html_id": "P14",
+          "source_id": "article"
+        },
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#F4",
+          "html_id": "F4",
+          "source_id": "article"
+        }
+      ],
+      "supplement_pointer": "FigureS8, unacquired",
+      "figure4_enzyme_conditions": {
+        "enzyme_uM": 50,
+        "diene_mM": 0.5,
+        "dienophile_mM": 10,
+        "time_h": 48,
+        "temperature_K": 298,
+        "buffer": "PBS",
+        "pH": null
+      },
+      "figure4_background_conditions": {
+        "enzyme_uM": null,
+        "diene_mM": 2,
+        "dienophile_mM": 70,
+        "time_h": 24,
+        "temperature_K": 298,
+        "buffer": "PBS",
+        "pH": null,
+        "protein_condition": "Caption names background reaction and omits protein; no numeric protein amount is assigned."
+      },
+      "matched_comparison_eligible": false,
+      "reason": "Background and enzyme arms have different substrate concentrations and time; no normalized selectivity effect or transfer to conversion/mutant assays.",
+      "context_id": "P14-product-stereoisomer-distribution",
+      "assay_id": null,
+      "figure4_assignment": "Endo-Re maps to3R,4S",
+      "figure4_condition_link_status": "Same-source stereochemical demonstration; >97% calculation points to unacquiredFigureS8. No numeric integrations or exact derivation fromFigure4 are verified.",
+      "fraction_denominator": "Source-reported product mixture; full isomer enumeration, integration and calculation basis remain unverified without supplement."
+    },
+    "turnover": {
+      "construct_id": "DA_20_10",
+      "endpoint": "turnovers under high substrate concentrations",
+      "source_comparator": ">",
+      "threshold": 30,
+      "value": null,
+      "caution": "Some activity lost with time due to aggregation; separate from high-enzyme conversion and stereochemical experiment.",
+      "source": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#P11",
+        "html_id": "P11",
+        "source_id": "article"
+      },
+      "context_id": "P11-high-substrate-turnover"
+    },
+    "uncatalyzed_target_share_context": {
+      "context_id": "P14-uncatalyzed-target-share",
+      "reported_value": 47,
+      "unit": "percent",
+      "assigned_product": "3R,4S endo",
+      "source": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#P14",
+        "html_id": "P14",
+        "source_id": "article"
+      },
+      "conditions": null,
+      "figure4_condition_link_status": "Exact assay/condition and Figure4 integration link not established in acquired scope.",
+      "matched_comparison_eligible": false
+    }
+  },
+  "matched_parameter_assessment": {
+    "question": "Which parameter-specific matched mutant/parent assay supports the already reported Q195E and Y121F activity reductions?",
+    "reported_mutation_effects_assessed": true,
+    "reconstructable_matched_numeric_measurements": false,
+    "measured_parameter": null,
+    "matched_assay": null,
+    "raw_parent_or_mutant_values": null,
+    "supplement_status": "unacquired_and_unassessed",
+    "scope": "A missing assay/parameter qualification, not absent mutation effects or inactive enzyme. Do not replace source-reported folds with invented raw values.",
+    "source_named_control_construct_id": "DA_20_10",
+    "control_identity_status": "Named mutation background; denominator measurement and exact matched assay remain unidentified."
+  },
+  "structural_context": {
+    "pdb_id": "3I1C",
+    "evidence_scope": "article-described apo structure; deposit not acquired or independently inspected",
+    "source_construct": "DA_20_00_A74I",
+    "is_DA_20_10": false,
+    "additional_DA_20_10_substitutions": [
+      "A21T",
+      "Q149R",
+      "A173C",
+      "S271A",
+      "A272N"
+    ],
+    "source": [
+      {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#F2",
+        "html_id": "F2",
+        "source_id": "article"
+      },
+      {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#P7",
+        "html_id": "P7",
+        "source_id": "article"
+      },
+      {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#P13",
+        "html_id": "P13",
+        "source_id": "article"
+      }
+    ],
+    "limits": "No substrate-bound final-construct geometry, direct mutant geometry, observed designed hydrogen bonds or verified assay sequence. A272N, predicted to restrain Tyr conformation, is absent from the article-described crystallized construct."
+  },
+  "mechanistic_scope": {
+    "Q195": "Source proposes amide hydrogen-bond interactions; Q195E activity effect does not isolate hydrogen bonding, HOMO modulation, desolvation or a calculated activation barrier.",
+    "Y121": "Y121F is consistent with loss of a hydroxyl contribution; no isolated LUMO, packing or conformational mechanism is established.",
+    "source": {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3241958/#P9",
+      "html_id": "P9",
+      "source_id": "article"
+    }
+  },
+  "limits": [
+    "No matched product conversion or stereochemical assay for Q195E/Y121F is established here.",
+    "No paper-wide absence claim; the supplement and cited analytical-reference literature are unassessed.",
+    "No exact sequence, assay-specimen identity, balanced atom map, productive geometry, independent validation, design-success rate, new experiment or evidence-tier promotion.",
+    "No equality from > bounds, no ee/dr inference, no product-share-to-conversion or mutant transfer."
+  ],
+  "reconsideration": {
+    "bespoke_code": "No runtime change; two reactants and substrate-specific parameter labels are data.",
+    "reuse": "Same consumer recovers named reaction, existing-style provider joins and explicit noneligibility; no measured time saving.",
+    "integrated_value": "Prevents reported activity fold summaries from becoming kcat/yield effects and prevents structural or stereo transfer to mismatched constructs/assays. No superiority over competent source reading or demonstrated design utility."
+  }
+}

@@ -5,7 +5,7 @@ perturbation comparisons, their exclusions, and KE59's unassessed matched-contro
 question. It answers which source-defined perturbations retain a measured
 endpoint in a particular background, substrate and assay. It does not assign
 generic activity, residue causality, preserved catalytic apparatus or design
-success. Current scientific scope remains [CE-026–CE-032](../CLAIMS.md).
+success. Current scientific scope remains [CE-026–CE-033](../CLAIMS.md).
 
 ## Use the relation
 
@@ -81,6 +81,25 @@ Product identity is not substituted for cleavage substrate identity; missing
 legacy reaction context stays null. Participants and scope come from reviewed
 data, not an enzyme-specific runtime branch or an inferred atom map.
 
+## Diels–Alder source effects with an unresolved matched assay
+
+The [Siegel2010 extension](ATLAS_DIELS_ALDER_CONTROLS.md) reuses the same
+consumer without runtime changes. It adds three parent DA_20_10 fitted
+parameters and two reported mutant activity-reduction factors. Diene and
+dienophile KM values have separate parameter IDs and source participant
+markers. The factors retain an unqualified assay and cannot become mutant
+kinetics, yield or stereoselectivity effects. A new unassessed request preserves
+the reported effects while refusing reconstructed parameter-matched controls.
+
+Use `--study diels_alder_2010` or
+`--comparison diels_alder_2010:qualified-mutant-parameter`. Strict >80%
+conversion and >97% source-assigned stereoisomer-share bounds remain separate
+structured source contexts with null central values. The current complete view
+has 118 parameter records and 56 comparison requests: 41 eligible, 15 abstained.
+The prior 113 records and 55 comparisons are unchanged. Three new host-local
+witnesses bind the article and Figures 1/4; acquisition consumed 14 requests /
+502,726 bytes in a distinct cumulative batch. No source bodies are redistributed.
+
 ## Shared representation and eligibility
 
 The [declarative projection](../data/atlas/perturbations/projection.json) is the
@@ -135,10 +154,11 @@ construct/control mismatch has not been repaired or silently admitted.
 
 ## Provenance and source retention
 
-Source bindings resolve the five original accepted annotation packets and the additive forward-synthesis packet. Output preserves
+Source bindings resolve the five original accepted annotation packets, the
+forward-synthesis packet and the Diels–Alder annotation. Output preserves
 study and source-locator context, original source conflicts, missing controls,
 thermal/mass evidence and selection limitations. Original primary bodies are
-not redistributed. Seven already acquired, hash-verified files were copied
+not redistributed. Seven originally acquired, hash-verified files were copied
 into `catalytic-earth-source-cache/` under the Git common directory. The
 projection records their exact hashes, byte sizes, original URLs and relative
 cache locations, including the publisher page that binds the 2017 supplement.
@@ -146,10 +166,12 @@ This is durable host-local retention, not a promise of public source availabilit
 The offline relation needs the committed annotations; primary-source review
 also needs the recorded witnesses or separately authorized reacquisition.
 The default query checks witness bindings and labels local byte availability
-as unchecked. `--verify-witnesses` additionally checks all retained lengths and
+as unchecked. Three newly acquired Diels–Alder article/figure witnesses bring
+the current retained set to ten files. `--verify-witnesses` checks all lengths and
 hashes, and fails if any file is missing or altered; it never fetches a replacement.
 
-No new public-source requests were made. Cumulative usage remains RA95
+The original relation and methodol extension made no new source requests;
+the Diels–Alder extension's distinct budget is reported above. Inherited cumulative usage remains RA95
 24 requests / 15,353,338 bytes, RA61 45 / 3,236,259, and KE59 9 / 261,580.
 Local copies and repeated projections consume no acquisition allowance.
 
@@ -176,10 +198,14 @@ This does not erase the manual effort of defining each panel. Forward methodol
 synthesis now supplies a completed product-evidence extension, with a justified
 shared reaction/participants primitive and source conflicts retained.
 
-The next bounded question should cross a chemical class: qualify one designed
-Diels–Alder source case for a measured product and catalytic-group control in
-the same construct/assay context. Expected gain is a synthesis/perturbation
-relation beyond aldol chemistry. First verify source access and control identity;
-stop after one source-bound usable relation or a supported missing-evidence
-finding. Do not add enzyme-specific code or choose another easy yield row merely
-to grow the annotation count.
+The Diels–Alder test now preserves a partial cross-chemistry relation and a
+supported control-assay gap. It demonstrates data-only reuse while failing to
+qualify the requested matched product/control inference. Repeating inaccessible
+supplement routes or adding another main-text endpoint cannot close that gap.
+
+Next test the common relation against the existing transketolase partner-subunit
+case: E366Q adduct-reporter nondetection versus retained turnover with different
+substrates. The expected gain is one computable cofactor-dependent perturbation
+relation that refuses reporter-to-catalysis transfer. Stop after that relation
+or an explicit shared-representation gap; do not produce another isolated
+source annotation or acquire more geometry without functional value.

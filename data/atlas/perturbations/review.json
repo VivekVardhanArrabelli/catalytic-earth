@@ -1,15 +1,18 @@
 {
   "schema_version": "catalytic-earth.perturbation-source-review.v1",
   "status": "source_reviewed_computational",
-  "reviewed_at_utc": "2026-09-10T08:33:56.881089+00:00",
-  "scope": "Accepted source annotations projected through one perturbation relation plus additive source-reported forward methodol product evidence and a generic reaction-participant context. No new project measurements, independent validation, registry admission or design-success estimate.",
+  "reviewed_at_utc": "2026-09-10T09:29:37.903127+00:00",
+  "scope": "Existing accepted perturbation and forward-methodol annotations plus a main-article-scoped Diels-Alder source relation. Three parent parameters and two reported activity factors preserve an unresolved matched assay; no new runtime, experiment, independent validation, admission or design-success estimate.",
   "reviewed_bindings": {
-    "data/atlas/perturbations/projection.json": "7edcacf6fad375257b3c806edb9def8b840df4c16707cb555e7213f235b30203",
+    "data/atlas/perturbations/projection.json": "8f76890aa6576def7404962d256f8f736d33b24434d5e8c1491d19407a3c979d",
     "src/catalytic_earth/atlas_perturbations.py": "f0456d2fa9dce9efda390864f523b58666a148942ba31acb65d5e62bd95e89ca",
     "scripts/query_atlas_perturbations.py": "87fd01dcc9f9ec737579d39c46ea007c60c70a50da745a77c6c64591fceaba51",
-    "docs/ATLAS_PERTURBATION_RELATION.md": "10a8dff783d3222f13479d8a3b35156a5a54252e51d3f0f77f5536ecedc2b312",
+    "docs/ATLAS_PERTURBATION_RELATION.md": "2bb9d0322bfb09f82a6e0be33d7db0371c93cd5e001854b222c80781e025d70e",
     "data/atlas/study_context/ra95_2017/forward_synthesis_review.json": "a8025989cb89415ac59267dc0af2da415019af3786ec2db3debd18630de8be9d",
-    "docs/ATLAS_FORWARD_SYNTHESIS.md": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84"
+    "docs/ATLAS_FORWARD_SYNTHESIS.md": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84",
+    "data/atlas/study_context/diels_alder_2010/source_review.json": "19759f43826c73005f00265144e3debc9805457b0320b18693da7b9bbdd3a01b",
+    "docs/ATLAS_DIELS_ALDER_CONTROLS.md": "eb0319636aea183771290ffb0608ace1bc49c80949e0f1bbd4e41bb3c2acbb48",
+    "tests/core/test_atlas_perturbations.py": "c0a1d1f7b4f54e73097829aca2e67cb17877ee849e2b6dde6024a3719933dcf7"
   },
   "inherited_source_bindings": {
     "ra95f": {
@@ -31,19 +34,23 @@
     "ke59": {
       "path": "data/atlas/study_context/ke59_2012/source_qualification.json",
       "sha256": "377da7aa8ab0966aef24757c8a00423c336feb46b41682010a10f4957670c558"
+    },
+    "ra95syn": {
+      "path": "data/atlas/study_context/ra95_2017/forward_synthesis.json",
+      "sha256": "2b9fbc1b3dc777956a705f8502c1babc9ce2edb1e1cdb18b334d90d504ad5a14"
     }
   },
   "review_process": {
     "model": "gpt-5.6-sol",
     "reasoning_effort": "ultra",
     "roles": [
-      "forward_source",
-      "forward_representation",
-      "forward_source/pdf_visual_audit"
+      "diels_source",
+      "diels_representation",
+      "diels_adversarial"
     ],
     "independent_human_review": false,
     "correlated_errors_possible": true,
-    "parent_adjudication": "Accepted source annotation and generic participant relation after source, representation and visual/adversarial challenge. Exact source/code/doc pins bind the common query; model agreement is not independent validation."
+    "parent_adjudication": "Accept the source-scoped partial relation and explicit parameter-control abstention after three independent-in-team read-only challenges. Preserve source objections and corrected nulls. Same-model agreement is not independent evidence."
   },
   "resolved_objections": [
     {
@@ -93,25 +100,66 @@
     {
       "issue": "A generic comparison block could erase the source-declared precursor control.",
       "resolution": "Scope the block to generic perturbation arithmetic; preserve the exact declared descriptive precursor relation and distinct preparation IDs as structured context."
+    },
+    {
+      "issue": "Reported450/27-fold mutation effects do not identify the underlying assay or parameter in acquired main text.",
+      "resolution": "Preserve comparative assertions with unqualified assay, context-implied background and no invented raw values; refuse parameter-matched product/control inference."
+    },
+    {
+      "issue": "Conversion and stereochemical share could collapse into an isolated stereopure yield or borrow conditions.",
+      "resolution": "Separate structured strict bounds with null central values and distinct context IDs. F4 conditions accompany its demonstration; underlyingS8 calculation remains unverified."
+    },
+    {
+      "issue": "A47%background denominator suggests matched selectivity improvement despite different assays.",
+      "resolution": "Preserve unmatched context; no enrichment, ee, dr or mutant-selectivity comparison."
+    },
+    {
+      "issue": "Figure1 schematic and drawings could be misread as a canonical balanced reaction or productive structure.",
+      "resolution": "Participants1/2/4;3is transition-state schematic. Neutral source product entity retains observation-specific stereo; no atom map, protonation balance or reverse-equilibrium inference."
+    },
+    {
+      "issue": "3I1C abstract wording could be transferred to optimizedDA_20_10 or mutants.",
+      "resolution": "Use detailed body apoDA_20_00_A74I identity and five extra changes; no coordinates inspected or final-construct geometry."
+    },
+    {
+      "issue": "Two substrate-specificKM columns could be merged or swapped.",
+      "resolution": "Distinct parameter IDs and source participant markers; existing generic marker check rejects mismatched labels."
+    },
+    {
+      "issue": "Background reaction was converted to numericzero protein although caption gives no amount.",
+      "resolution": "Protein concentration stays null with explicit omitted-amount scope."
+    },
+    {
+      "issue": "P14 reported47% target share was colocated withF4 conditions despite unverified condition/integration identity.",
+      "resolution": "Separate source context; conditions null, no matched-enrichment or figure-integration claim."
+    },
+    {
+      "issue": "Not mutantkinetics wording could imply the unacquired assay was proved nonkinetic; partialTable1 might imply missing specificity fields.",
+      "resolution": "Use not identified as in acquired scope; explicitly exclude the three printed specificity columns from this bounded selection without declaring them missing."
+    },
+    {
+      "issue": "A no-peak-integration statement could be mistaken for absence of source analysis.",
+      "resolution": "State no project peak integration and no independently authenticated stereochemical reference; no absence claim about source methods."
     }
   ],
   "remaining_limits": [
     "Scientific classification in the mapping is computational curation, not a proof from a source hash. Changing it requires renewed review.",
     "Comparisons are source-rounded descriptive arithmetic, not inferential statistics or causal roles.",
-    "Source witness bytes are host-local and not redistributed. No new source requests.",
-    "Full 2017 main body, KE59 supplement and RA61 earlier-study sequence/lysine controls remain unassessed where stated."
+    "Source witness bytes are host-local and not redistributed. Original witnesses reused with zero requests; new Diels-Alder batch consumed14requests/502726bytes.",
+    "Full 2017 main body, KE59 supplement and RA61 earlier-study sequence/lysine controls remain unassessed where stated.",
+    "Diels-Alder supplement, exact sequence, mutant assay/parameter, raw values, product calculation details and analytical reference authentication remain unassessed. Named-source relation does not qualify a same-assay product/control join."
   ],
-  "coordination_record": "work/coordination_forward_methodol_20260910.md",
+  "coordination_record": "work/coordination_diels_alder_20260910.md",
   "added_source_bindings": {
-    "ra95syn": {
-      "path": "data/atlas/study_context/ra95_2017/forward_synthesis.json",
-      "sha256": "2b9fbc1b3dc777956a705f8502c1babc9ce2edb1e1cdb18b334d90d504ad5a14"
+    "da2010": {
+      "path": "data/atlas/study_context/diels_alder_2010/source_qualification.json",
+      "sha256": "eac85e8bd87c3587d3f33a150f879a91ffc1426ce24f0cea251df7dbf8ab160f"
     }
   },
   "prior_review_binding": {
-    "base_commit": "b9cf903f661cdd09fbaef94bd82fbaae543a16db",
+    "base_commit": "7e59b7a381dd2ddce70f5fcd2b71eaa4925b15ca",
     "path": "data/atlas/perturbations/review.json",
-    "scope": "Original five packets, panels and55comparison requests retained unchanged; Git preserves previous review bytes."
+    "scope": "All six prior packets,113 projected records and55comparison requests retained unchanged; Git preserves previous review bytes."
   },
   "forward_synthesis_limits": [
     "Forward product configuration is source-assigned; R/S retention mappings remain conflicted and no assignment transfers to the0.7%precursor conversion arm.",
