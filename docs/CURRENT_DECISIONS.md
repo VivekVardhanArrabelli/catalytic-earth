@@ -1,5 +1,20 @@
 # Current Decisions
 
+## 2026-09-10: close the reuse priority and preserve preparation provenance
+
+The [scheduled direction review](SCIENTIFIC_DIRECTION.md) confirms that the
+original shared-perturbation stopping condition is met. Retain the current
+handoff's next action: bind the measured RA95.5-8F parent to its exact deposited
+chemical states. Further table projection needs a consequential new question.
+
+The review found a narrow preparation-provenance ambiguity in the 2017 tetrad
+output. Its Materials paragraph cites the 2013 method, so procedure reuse is
+supported. Expose that citation chain while retaining NMR/optical-rotation
+agreement as 2013-reported characterization. A separate substrate context
+prevents it from appearing as repeated 2017 characterization or a shared lot.
+The correction is data-only; source measurements, runtime, claims and budgets
+are unchanged. Keep the hourly schedule and model settings unchanged.
+
 ## 2026-09-10: preserve assessed qualitative evidence beside an unassessed transfer
 
 Use the shared perturbation relation for the retained beta-barrel case.

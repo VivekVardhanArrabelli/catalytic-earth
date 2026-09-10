@@ -78,6 +78,20 @@ continuation. Historical handoffs below are not an execution queue.
   review remain gates. Final commit/push/merge/CI/release belong to task result
   and receipt; resume this branch/PR first if unfinished. Receipt
   `.git/catalytic-earth-runs/20260910T120621Z-a593404c-3235-4b69-a791-7ec117bfa635.json`.
+- **Direction review amendment, 2026-09-10 12:57 UTC:** reviewed published
+  `e68f4cf194d5cc054c3e036c0726e0724f27bff2` (PR73–78 after the previous review).
+  The original common relation is complete; the next chemical-state question
+  below is endorsed. `docs/SCIENTIFIC_DIRECTION.md` records the coordinated
+  review. A scoped R-methodol context now exposes the2017-to2013 preparation
+  citation chain while retaining characterization as2013-reported; no shared
+  lot or repeat2017QC is inferred. This corrects provenance ambiguity, not a
+  numerical or demonstrated substrate error. Source providers/runtime and all
+  acquisition budgets above are unchanged. Oversight owns branch
+  `codex/direction-review-preparation-scope-20260910` under owner token
+  `01a07311-aac6-7010-9516-e0b53605d473:126adf5c-08f8-4ae9-9449-1133079281dd`.
+  Publication/release receipt:
+  `.git/catalytic-earth-runs/direction-126adf5c-08f8-4ae9-9449-1133079281dd.json`.
+  Resume this correction first only if its publication remains unfinished.
 - **One next action:** connect the measured parentRA95.5-8F to its source-named
   apo5AOU and inhibitor3-complex5AN7 chemical states, starting the retained
   `ra95_2017/source_qualification.json` chemical-state/control limits and
