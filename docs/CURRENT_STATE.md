@@ -1,5 +1,24 @@
 # Current State
 
+## 2026-09-10: reaction-to-deposit identity stops at the mandelate protonation boundary
+
+The [M0187 reaction-state query](ATLAS_MECHANISM_EVIDENCE.md#the-reaction-to-deposit-join-stops-at-protonation)
+now returns the reviewed input graph beside declared RMN/SMN dictionary
+locators and their separate instances. Source-computed a9 R agrees with RMN
+C7 R and differs from SMN C7 S, but canonical carboxylate −1 does not match
+the dictionary O12–HO2 representation. Dictionary charge is unavailable, not
+zero; bound protonation remains unknown. Exact chemical-state identity and
+productive geometry transfer are refused.
+
+Both phenyl topology maps remain: zero versus six literal ring-order changes.
+The complete depicted component, explicit H, unmatched dictionary H and their
+bonds are returned; omitted/implicit H is not invented or counted as absent.
+One existing deposit consumer performs the join using existing source-graph
+and component helpers, with case facts in data. CE-021 is extended; earlier
+transformation sources, functional observations and the RMN/SMN comparison
+remain unchanged. No source request, experiment or evidence tier is added.
+
+
 ## 2026-09-10: Diels-Alder connectivity replays without selecting a stereoisomer
 
 The [six-carbon drawing relation](ATLAS_DIELS_ALDER_CONTROLS.md#the-reactive-core-replays-stereochemical-selection-remains-source-only)

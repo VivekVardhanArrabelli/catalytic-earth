@@ -2,10 +2,10 @@
   "schema_version": "catalytic-earth.deposit-context-review.v1",
   "packet_id": "mandelate.1mdl.dictionary-stereo.2026-09-10",
   "decision": "accept_source_scoped_deposit_context",
-  "reviewed_at_utc": "2026-09-10T20:36:42.290069+00:00",
+  "reviewed_at_utc": "2026-09-10T22:30:41.341862+00:00",
   "reviewed_sha256": {
-    "spec.json": "9abbf7f93060d56b54fbd8402e5275b12e9de6f661867c96717fe139287fae35",
-    "projection.json": "1ac370b5972c28d4ba0b595ee21b989f7536c749a3f9c7035acd399955e9be4b",
+    "spec.json": "0c0a0e5e37b272df341513675fefb090e83cfdfb29dc36a7d62caa98b97b41ac",
+    "projection.json": "1b08f40e38649458a7d8e1f50d972635604a2c35932feb4e1e9b4347d12f6c6c",
     "source": "2338be31c681766f10af6f9546baa09f9bf622acfefed6ea068fd088fb6e977b"
   },
   "authority": "owner-authorized-computational-development.2026-09-05.v1",
@@ -37,17 +37,17 @@
     }
   ],
   "reviewed_supporting_sha256": {
-    "src/catalytic_earth/atlas_deposit_context.py": "9b80d476a4b386ca284cd49baed0d94cd42cf245369a407fee19df965b7be882",
-    "scripts/build_atlas_deposit_context.py": "54f5c861f21dfe1011f8897c33506960d4f6d75704ba46ed8927f1399eb2a618",
-    "tests/core/test_atlas_deposit_context.py": "d0799c2596b6b2a2f53b8ab7d2dbef0ee413c948f31fd32a235bdc7242683ec9",
-    "docs/ATLAS_MECHANISM_EVIDENCE.md": "54aee909f276529102b53e12e3e8066b506750faeab9d814481b6d2ceffd0a7e",
-    "CLAIMS.md": "b0b0c2eda1b43e0e11e3b314fde481bc414b285b3b6c8d6ddcf7fc62167b51c8",
-    "data/governance/claim_ledger.json": "6e348e3cc47e487756f708ce674331e1a07200f8c47b7b99f69c74865a4296a8",
-    "docs/CURRENT_STATE.md": "90691397ee9887ff8fb084f705cb7d30cf333a5cc0f4deca2c54d9e1df30cdde",
-    "docs/CURRENT_DECISIONS.md": "00e739124a414b80942b0c86fb6d05af8104c57c9eb8f2841d4e3df1f52f24de"
+    "src/catalytic_earth/atlas_deposit_context.py": "adfae408de29e6b5f61fab970d7631f42846a9cdaedea0340d65e6ac95ad2a87",
+    "scripts/build_atlas_deposit_context.py": "a59398d75639c44bde60f5ba26dc07f0b2f26c8ab533e7bccd369c120754bc29",
+    "tests/core/test_atlas_deposit_context.py": "ee5d3aad4ef635b666b793256b962523ea241df5d3478c555d22235cf6e29a36",
+    "docs/ATLAS_MECHANISM_EVIDENCE.md": "ca3ba1017d1668ba9873ab4936dd101c7bdb59cdd5d8ace1b1c9180549359ff0",
+    "CLAIMS.md": "d63791af8ecf77d0d5497e37acaf59d1574a223d9e20c64b34df2d42564ec1dd",
+    "data/governance/claim_ledger.json": "93d5be1fbfab248981e0d1afb032c88b814b43f6c0b7e76542310034ab8d8ac9",
+    "docs/CURRENT_STATE.md": "0b39f8992446b035171ddf2b24fc710dbbf4e85d5179841c9d44089db18bdfb5",
+    "docs/CURRENT_DECISIONS.md": "d4c48f9ddc2b0c3deef27ff88bb0661fb4eb552fe70f9f4babe90dda3a169363"
   },
   "coordination_record": ".git/catalytic-earth-runs/2026-09-10T20-06-50-c95d3e62-164c-4be8-98c6-7ff9301410e6.board.md",
-  "scope": "A project-declared complete dictionary map in one retained deposit, with explicit R/S differences and separate source instance/site/connection records. No coordinate-CIP, microstate, physical atom, site, geometry or function equivalence.",
+  "scope": "A project-declared complete dictionary map in one retained deposit, with explicit R/S differences and separate source instance/site/connection records. No coordinate-CIP, microstate, physical atom, site, geometry or function equivalence. A reviewed reaction-state followup now connects bound source-depiction locators to dictionaries while refusing complete chemical-state and physical applicability identity.",
   "resolved_objections": [
     "Kept project-declared cross-component mapping separate from deposited atom and bond definitions.",
     "Required full dictionary atom bijection including hydrogen and retained unchanged stereocenters instead of labeling every inversion an enantiomer.",
@@ -72,10 +72,83 @@
     "reviewed-head CI"
   ],
   "local_verification": {
-    "focused_checks": 19,
-    "core_checks": 597,
-    "core_seconds": 62.629,
-    "repository_contracts": "passed; 37 claims; frozen golden result matched",
-    "prior_deposit_projections": "all four byte-identical"
+    "focused_checks": 25,
+    "core_checks": 607,
+    "core_seconds": 64.865,
+    "repository_contracts": "passed;37 claims; frozen golden result matched",
+    "prior_deposit_projections": "all four byte-identical",
+    "prior_component_comparison": "identical",
+    "wheel_checks": "Atlas-3 and Atlas-10/source drafts/candidate queries passed from fresh directories offline",
+    "CLI_checks": "legacy component schema and two reaction-state schema/refusal queries passed"
+  },
+  "reaction_state_followup": {
+    "reviewed_at_utc": "2026-09-10T22:30:41.341862+00:00",
+    "prior_review_file_sha256": "3311da1585a9bf693debfc30ce591e8b95e1950092659efb401f23b6b0088110",
+    "decision": "accept_source_scoped_reaction_locator_diagnostic_with_exact_state_refused",
+    "coordination_record": ".git/catalytic-earth-runs/eee3e780-11fd-45d8-bfe3-1a6bb3be3716.board.md",
+    "review_process": [
+      {
+        "role": "source",
+        "task": "source_state_review",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra",
+        "status": "accepted_exact_final_source_code_and_clarification_delta"
+      },
+      {
+        "role": "representation",
+        "task": "representation_review",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra",
+        "status": "accepted_exact_final_source_code_and_clarification_delta"
+      },
+      {
+        "role": "adversarial",
+        "task": "adversarial_state_review",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra",
+        "status": "accepted_exact_final_source_code_and_clarification_delta"
+      }
+    ],
+    "scope": "One reviewed depicted covalent component mapped to each retained dictionary instance, preserving both canonical symmetry alternatives, explicit/unmapped H, unknown charge, raw order differences and source-computed versus dictionary R/S symbols. No normalized or physical state identity.",
+    "resolved_objections": [
+      "Whole depicted covalent component and all explicit source H required; all dictionary heavy atoms covered.",
+      "Dictionary H boundary edges retained; absent charge never becomes zero.",
+      "Non-aromatic oxygen swaps fail; aromatic order differences remain literal.",
+      "Every canonical symmetry alternative preserved by composition, including future explicit canonical H.",
+      "Query schema distinguishes reaction-state and legacy component comparisons.",
+      "Raw chebi:17756 conflict, prior computed CIP provenance, and source Mg coordination exclusion retained.",
+      "Removed unnecessary inferred-H totals; source-defined carboxylate/O-H evidence is sufficient."
+    ],
+    "reviewed_bindings": {
+      "src/catalytic_earth/atlas_deposit_context.py": "adfae408de29e6b5f61fab970d7631f42846a9cdaedea0340d65e6ac95ad2a87",
+      "scripts/build_atlas_deposit_context.py": "a59398d75639c44bde60f5ba26dc07f0b2f26c8ab533e7bccd369c120754bc29",
+      "tests/core/test_atlas_deposit_context.py": "ee5d3aad4ef635b666b793256b962523ea241df5d3478c555d22235cf6e29a36",
+      "docs/ATLAS_MECHANISM_EVIDENCE.md": "ca3ba1017d1668ba9873ab4936dd101c7bdb59cdd5d8ace1b1c9180549359ff0",
+      "CLAIMS.md": "d63791af8ecf77d0d5497e37acaf59d1574a223d9e20c64b34df2d42564ec1dd",
+      "data/governance/claim_ledger.json": "93d5be1fbfab248981e0d1afb032c88b814b43f6c0b7e76542310034ab8d8ac9",
+      "docs/CURRENT_STATE.md": "0b39f8992446b035171ddf2b24fc710dbbf4e85d5179841c9d44089db18bdfb5",
+      "docs/CURRENT_DECISIONS.md": "d4c48f9ddc2b0c3deef27ff88bb0661fb4eb552fe70f9f4babe90dda3a169363",
+      "data/atlas/transformations/m0187/transformations.json": "02135996931cd366945fad1773b1ca067f13cb609a17a56862ebfc91f5d28fa3",
+      "data/atlas/transformations/m0187/retained_graph_audit.json": "1a4e72d97b534d5a3f65246c90ad5cb1bad4214a7d41340f845aa52af39e3658",
+      "data/atlas/transformations/m0187/CHEBI_32382.mol": "4d03fab8cd46d47495f4c2ba407d3ae57c33ed3c671f3e086f44877916c4b21e"
+    },
+    "independent_human_validation": false,
+    "experimental_validation": false,
+    "new_source_requests": 0,
+    "new_source_response_body_bytes": 0,
+    "carried_accounting_gaps_unchanged": true,
+    "verification": {
+      "focused_checks": 25,
+      "core_checks": 607,
+      "core_seconds": 64.865,
+      "repository_contracts": "passed;37 claims; frozen golden result matched",
+      "prior_deposit_projections": "all four byte-identical",
+      "prior_component_comparison": "identical",
+      "wheel_checks": "Atlas-3 and Atlas-10/source drafts/candidate queries passed from fresh directories offline",
+      "CLI_checks": "legacy component schema and two reaction-state schema/refusal queries passed"
+    },
+    "remaining_publication_gates": [
+      "reviewed-head CI"
+    ]
   }
 }

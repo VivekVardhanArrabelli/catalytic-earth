@@ -157,6 +157,26 @@
           "rmn-site",
           "smn-site"
         ]
+      },
+      {
+        "assertion_id": "reaction-state-protonation-boundary",
+        "status": "project_interpretation",
+        "statement": "The reviewed M0187 input corresponds to CHEBI:32382, whose retained MOL encodes formal charge -1 on atom10 (source a11). In contrast, both deposited component definitions state C8 H8 O3 and explicitly bond O12 to HO2; O12 maps to that carboxylate oxygen. Dictionary atom charge fields are absent, so a deposited zero charge is not asserted. This prevents exact canonical reaction-state identity; dictionary H does not determine bound protonation.",
+        "supporting_selection_ids": [
+          "m0187-input-rmn",
+          "m0187-input-smn",
+          "component-rmn",
+          "component-smn"
+        ]
+      },
+      {
+        "assertion_id": "reaction-state-stereo-and-maps",
+        "status": "project_interpretation",
+        "statement": "The two complete depicted-component locator maps retain all11 heavy atoms and explicit alpha H a66. Source-computed a9 R agrees with RMN C7 R and differs from SMN C7 S. One map preserves literal mapped bond orders; the phenyl reflection changes all six ring order tokens. Dictionary aromatic flags are preserved, not used to normalize the source graph. Neither map supplies full hydrogen/stereo state, a physical atom trajectory or a productive reactant pose. The retained source a9-a12 bondStereo W and dictionary C7-O8 bond-stereo N use different conventions and are not compared by this operation; only the reviewed atom R/S symbols are compared.",
+        "supporting_selection_ids": [
+          "m0187-input-rmn",
+          "m0187-input-smn"
+        ]
       }
     ],
     "not_established": [
@@ -166,7 +186,145 @@
       "Physical nonbinding or absent contacts inferred from missing RMN struct_conn rows; this table is not a complete contact inventory.",
       "Observed racemization, productive geometry, a physical atom trajectory, same assay specimen, or an independently validated enzyme mechanism.",
       "The missing1L6F companion is not supplied or qualified by this mandelate comparison.",
-      "The prior CE-021 organism/source-origin limits remain unchanged; this comparison does not re-adjudicate them."
+      "The prior CE-021 organism/source-origin limits remain unchanged; this comparison does not re-adjudicate them.",
+      "Exact identity between the canonical R-mandelate reaction state and either deposited dictionary or coordinate instance; the canonical carboxylate and dictionary O12-HO2 differ, and dictionary/coordinate formal charges are unavailable.",
+      "Source a10-Mg and a11-Mg coordinate bonds are outside the selected covalent graph; no source-to-deposit coordination or pose equality is established."
     ]
-  }
+  },
+  "reaction_state_comparisons": [
+    {
+      "comparison_id": "m0187-input-rmn",
+      "source": {
+        "binding": {
+          "path": "data/atlas/transformations/m0187/transformations.json",
+          "sha256": "02135996931cd366945fad1773b1ca067f13cb609a17a56862ebfc91f5d28fa3"
+        },
+        "transformation_id": "transformation:M0187:mechanism-1:step-1-to-step-2",
+        "state": "before",
+        "atom_ids": [
+          "a10",
+          "a11",
+          "a12",
+          "a2",
+          "a3",
+          "a4",
+          "a5",
+          "a6",
+          "a66",
+          "a7",
+          "a8",
+          "a9"
+        ]
+      },
+      "component": {
+        "component_id": "RMN",
+        "label_asym_id": "C",
+        "model_id": "1",
+        "site_id": "AC2"
+      },
+      "map_alternatives": [
+        {
+          "map_id": "literal-kekule-alignment",
+          "atom_map": {
+            "a10": "O11",
+            "a11": "O12",
+            "a12": "O8",
+            "a2": "C3",
+            "a3": "C4",
+            "a4": "C1",
+            "a5": "C6",
+            "a6": "C5",
+            "a66": "H7",
+            "a7": "C2",
+            "a8": "C10",
+            "a9": "C7"
+          }
+        },
+        {
+          "map_id": "phenyl-reflection-alternative",
+          "atom_map": {
+            "a10": "O11",
+            "a11": "O12",
+            "a12": "O8",
+            "a2": "C5",
+            "a3": "C4",
+            "a4": "C1",
+            "a5": "C2",
+            "a6": "C3",
+            "a66": "H7",
+            "a7": "C6",
+            "a8": "C10",
+            "a9": "C7"
+          }
+        }
+      ]
+    },
+    {
+      "comparison_id": "m0187-input-smn",
+      "source": {
+        "binding": {
+          "path": "data/atlas/transformations/m0187/transformations.json",
+          "sha256": "02135996931cd366945fad1773b1ca067f13cb609a17a56862ebfc91f5d28fa3"
+        },
+        "transformation_id": "transformation:M0187:mechanism-1:step-1-to-step-2",
+        "state": "before",
+        "atom_ids": [
+          "a10",
+          "a11",
+          "a12",
+          "a2",
+          "a3",
+          "a4",
+          "a5",
+          "a6",
+          "a66",
+          "a7",
+          "a8",
+          "a9"
+        ]
+      },
+      "component": {
+        "component_id": "SMN",
+        "label_asym_id": "D",
+        "model_id": "1",
+        "site_id": "AC3"
+      },
+      "map_alternatives": [
+        {
+          "map_id": "literal-kekule-alignment",
+          "atom_map": {
+            "a10": "O11",
+            "a11": "O12",
+            "a12": "O8",
+            "a2": "C3",
+            "a3": "C4",
+            "a4": "C1",
+            "a5": "C6",
+            "a6": "C5",
+            "a66": "H7",
+            "a7": "C2",
+            "a8": "C10",
+            "a9": "C7"
+          }
+        },
+        {
+          "map_id": "phenyl-reflection-alternative",
+          "atom_map": {
+            "a10": "O11",
+            "a11": "O12",
+            "a12": "O8",
+            "a2": "C5",
+            "a3": "C4",
+            "a4": "C1",
+            "a5": "C2",
+            "a6": "C3",
+            "a66": "H7",
+            "a7": "C6",
+            "a8": "C10",
+            "a9": "C7"
+          }
+        }
+      ]
+    }
+  ]
 }

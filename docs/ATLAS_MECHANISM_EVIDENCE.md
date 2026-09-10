@@ -191,6 +191,74 @@ treating the arithmetic remainder as usable headroom. No batch was reset or
 new request issued. This missing counterpart does not weaken the closed PLP
 source-drawing boundary or gain support from the mandelate result.
 
+### The reaction-to-deposit join stops at protonation
+
+The same deposit query now connects the reviewed M0187 input graph to the
+RMN dictionary, with SMN as a separately scoped stereo comparison.
+
+The retained source ligand still carries raw `chebi:17756`. R is the reviewed
+computational graph/stereo correspondence to CHEBI:32382, not an upstream
+relabeling; the query retains this conflict and its no-relabel abstention.
+
+```sh
+python scripts/build_atlas_deposit_context.py --packet data/atlas/deposit_context/mandelate_1mdl --comparison m0187-input-rmn
+python scripts/build_atlas_deposit_context.py --packet data/atlas/deposit_context/mandelate_1mdl --comparison m0187-input-smn
+```
+
+**Exact chemical-state identity is refused.** The retained
+[CHEBI:32382 MOL](../data/atlas/transformations/m0187/CHEBI_32382.mol)
+encodes carboxylate atom 10 with charge −1, corresponding to source a11.
+Both 1MDL dictionaries instead state formula `C8 H8 O3` and explicitly bond
+the corresponding O12 to HO2. This is a canonical-representation
+protonation difference, not evidence for the bound ligand's protonation.
+The mmCIF dictionary omits atom charge fields and coordinate charge tokens are
+unknown; neither is silently converted to a deposited charge of zero.
+
+| Source locator | Dictionary locator | What the join retains |
+| --- | --- | --- |
+| a9 / canonical atom 8 | C7 | Source-computed R matches the RMN R token and differs from SMN S |
+| a8 / canonical atom 7 | C10 | Carboxyl carbon |
+| a10 / canonical atom 9 | O11 | Double-bonded carboxyl oxygen |
+| a11 / canonical atom 10 | O12 | Source −1 charge; dictionary charge unavailable and O12–HO2 explicit |
+| a12 / canonical atom 11 | O8 | Alpha-hydroxyl oxygen |
+| a66 | H7 | Explicit source alpha H; dictionary H has no coordinate |
+
+Each map covers the full 12-node depicted covalent component: 11 heavy atoms
+and a66. Two phenyl topology maps remain. The literal alignment preserves all
+12 mapped bond orders; the reflection changes six ring single/double tokens.
+Dictionary aromatic flags are returned without normalizing the source graph,
+which has no corresponding aromatic fields. Non-aromatic order differences
+are rejected, so swapping the carboxyl oxygens cannot pass as another ring map.
+No unique physical correspondence follows.
+Source Mg coordinate bonds from a10/a11 lie outside this covalent graph join;
+no source-to-deposit coordination or pose equality is established.
+
+The query reports seven unmapped dictionary H and every bond touching them,
+including O12–HO2. Other source H remain implicit; raw node-count inequality
+alone would not establish a protonation difference. Runtime makes no implicit-H inference.
+The chemical interpretation above is separately source-reviewed. Likewise,
+the retained RDKit-2025.03.3 R assignment is computed provenance, whereas C7 R/S
+is a deposited dictionary token. Source wedge conventions and dictionary bond
+stereo tokens are not treated as equivalent representations.
+
+Generic optional `reaction_state_comparisons` reference the unchanged,
+[reviewed transformation](../data/atlas/transformations/m0187/transformations.json)
+by exact file hash, transformation ID and before/after state. The projector
+checks its review digest and all source bindings, requires one complete
+depicted component, and returns canonical correspondence, both locator maps,
+charge/stereo diagnostics and the full separate instance context. Case facts
+remain data; the existing graph validator and component resolver are reused.
+The comparison cannot establish full chemical identity, even if selected
+tokens agree. This avoids a new MOL/stereo engine or a silent neutralization.
+
+This extends CE-021 with a computable refusal that a name-only R-mandelate
+join would miss. RMN's approach-region context cannot supply a reacting
+R-mandelate pose, and SMN's distinct active-site context cannot repair that
+missing identity. The source's product-origin interpretation remains separate.
+No productive geometry, atom trajectory, new observation, assay specimen,
+independent validation or evidence tier is added. Retained inputs and the
+earlier RMN/SMN dictionary comparison are unchanged; no sources were acquired.
+
 ### Boundaries of the original abstract-only query
 
 The sidecar pins the existing Atlas-10 payload, exact M0187 transformation,
