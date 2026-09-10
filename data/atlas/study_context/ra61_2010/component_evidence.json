@@ -1,0 +1,736 @@
+{
+  "schema_version": "catalytic-earth.source-qualification.v1",
+  "assessment_id": "lassila2010-ra61-catalytic-components",
+  "operation": "source_annotation",
+  "study": {
+    "doi": "10.1073/pnas.0913638107",
+    "pmid": "20194782",
+    "pmcid": "PMC2841948",
+    "title": "Origins of catalysis by computationally designed retroaldolase enzymes",
+    "enzyme_context": "RA61 named study construct and five declared variants; two primary-amine comparators",
+    "source_scope": "Complete six-page main article and nine-page author-linked SI. Original design files, exact sequence strings, coordinate files and assay specimens are not acquired.",
+    "development_exposure": "Published outcomes selected for source annotation; not an unseen evaluation or prospective design cohort."
+  },
+  "question": "Which designed catalytic components have discriminating experimental contrasts, and what do those contrasts identify?",
+  "qualification": {
+    "status": "source_construct_scoped_component_evidence",
+    "exact_sequence_bound_constructs": 0,
+    "named_RA61_constructs": 6,
+    "unique_second_order_observation_contexts": 11,
+    "new_matched_catalytic_lysine_replacement_assay_in_acquired_main_and_SI": false,
+    "permitted_result": "Named RA61 substitutions at designed water-contact positions increase the reported initial-rate second-order endpoint. Substrate-interaction and lysine-pKa contributions remain author estimates with explicit comparator and model dependencies.",
+    "scope_limit": "Within-study declared RA61 backgrounds support source annotation despite absent exact sequences. No exact sequence, specimen, protein admission, mechanism compilation or independent validation follows.",
+    "source_defined_water_motif_substitution_contrasts": 5,
+    "downstream_catalytic_labels": {
+      "full_designed_apparatus_retained": null,
+      "null_semantics": "Unestablished, not a negative label; no runtime enforcement is implemented."
+    }
+  },
+  "selection": {
+    "included": "All six Table4 rows and all six Table5 cells, with the repeated RA61 full-substrate value stored once; RA61 pH-rate/pH-binding context and RA61 TableS1 model sensitivity.",
+    "excluded": "Other designs, the full Table3 amine series, raw-curve digitization/refitting, new structural measurements and exact enantiomer rates. Product-binding caveat retained only to bound the initial-rate endpoint.",
+    "counting_rule": "Table4 and Table5 share one RA61/full-substrate context, so twelve printed cells give eleven distinct stored contexts. Table1 repeats RA61 0.49; no extra experiment is counted. Derived ratios and model estimates are not observations.",
+    "rationale": "RA61 is the source-selected most active reported design. Its component contrasts do not estimate typical design behavior or a success rate."
+  },
+  "source_bindings": [
+    {
+      "path": "data/atlas/study_context/ra61_2010/acquisition_receipts.json",
+      "sha256": "3dcccd826beb02a393588c4220c4ac6475d73f9a0ba8832b98c3305e3a18a319"
+    }
+  ],
+  "sources": [
+    {
+      "artifact_id": "PMC2841948:article-PDF",
+      "source_url": "https://europepmc.org/api/getPdf?pmcid=PMC2841948",
+      "sha256": "e9ee944fc748057e4e476b7de8e0ceb704133817bec7f51562de21a502b033a1",
+      "bytes": 273267,
+      "local_cache_path": "/private/tmp/ce-components-08bb7de4/europepmc.pdf",
+      "pages": 6,
+      "redistributed": false,
+      "inspection": "Complete text and visual pages1-6; Tables1/2/4/5, Figures1/2 and endpoint-defining Methods."
+    },
+    {
+      "artifact_id": "PMC2841948:SI-PDF",
+      "source_url": "https://herschlaglab.stanford.edu/s/177SuppMat.pdf",
+      "resolved_url": "https://static1.squarespace.com/static/5646260ce4b08fda5b792c61/t/56bbb52b27d4bd23c4d9df43/1455142187997/%23177SuppMat.pdf",
+      "discovery": "Author publications entry177 pairs exact article title/PMCID with main and supporting-information links; redirect and final body retained.",
+      "sha256": "91e17539e9761fdc7fdb5d70c395fad2f4c7b339732e9282262e6a7940da6df4",
+      "bytes": 435320,
+      "local_cache_path": "/private/tmp/ce-components-08bb7de4/supplement.pdf",
+      "pages": 9,
+      "redistributed": false,
+      "inspection": "Complete text; visual source figures/captions and TableS1, especially pages3/5/6/9. No complete amino-acid sequence is supplied."
+    }
+  ],
+  "source_access": {
+    "batch_id": "designed-retroaldolase-components-lassila2010",
+    "cumulative_request_count": 12,
+    "cumulative_response_body_bytes": 1100587,
+    "max_requests": 100,
+    "max_response_body_bytes": 31457280,
+    "remaining_requests": 88,
+    "remaining_response_body_bytes": 30356693,
+    "complete_cumulative_accounting": true,
+    "source_bodies_redistributed": false,
+    "other_batches": "No new request, reset or renaming of any inherited scope."
+  },
+  "numbering": {
+    "basis": "Residue labels printed in RA61 Table4 and Figure2; study-local numbering.",
+    "sequence_PDB_UniProt_mapping_verified": false,
+    "source_model_lysine_label": "Lys176",
+    "source_model_lysine_locator": "PMC2841948:article-PDF:page2:Figure2B",
+    "experimentally_assigned_residue_number": null
+  },
+  "constructs": [
+    {
+      "construct_id": "RA61",
+      "reported_variant": "Wild type RA61",
+      "declared_parent_id": null,
+      "declared_substitutions": [],
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "not_supplied_in_acquired_main_or_SI",
+      "assayed_preparation_identity": "Study-reported named construct; no specimen-specific sequence verification.",
+      "source_locator": "PMC2841948:article-PDF:page4:Table4; pages5-6:Materials:His6-tag purification and inverse-PCR mutagenesis",
+      "study_role": "Unmutated computational design, called wild type RA61 in Table4; not a natural wild-type enzyme.",
+      "exact_sequence_bound": false
+    },
+    {
+      "construct_id": "RA61-Y78F",
+      "reported_variant": "Tyr78Phe",
+      "declared_parent_id": "RA61",
+      "declared_substitutions": [
+        "Y78F"
+      ],
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "not_supplied_in_acquired_main_or_SI",
+      "assayed_preparation_identity": "Study-reported named construct; no specimen-specific sequence verification.",
+      "source_locator": "PMC2841948:article-PDF:page4:Table4; pages5-6:Materials:His6-tag purification and inverse-PCR mutagenesis",
+      "exact_sequence_bound": false
+    },
+    {
+      "construct_id": "RA61-Y78A",
+      "reported_variant": "Tyr78Ala",
+      "declared_parent_id": "RA61",
+      "declared_substitutions": [
+        "Y78A"
+      ],
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "not_supplied_in_acquired_main_or_SI",
+      "assayed_preparation_identity": "Study-reported named construct; no specimen-specific sequence verification.",
+      "source_locator": "PMC2841948:article-PDF:page4:Table4; pages5-6:Materials:His6-tag purification and inverse-PCR mutagenesis",
+      "exact_sequence_bound": false
+    },
+    {
+      "construct_id": "RA61-S87A",
+      "reported_variant": "Ser87Ala",
+      "declared_parent_id": "RA61",
+      "declared_substitutions": [
+        "S87A"
+      ],
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "not_supplied_in_acquired_main_or_SI",
+      "assayed_preparation_identity": "Study-reported named construct; no specimen-specific sequence verification.",
+      "source_locator": "PMC2841948:article-PDF:page4:Table4; pages5-6:Materials:His6-tag purification and inverse-PCR mutagenesis",
+      "exact_sequence_bound": false
+    },
+    {
+      "construct_id": "RA61-S87G",
+      "reported_variant": "Ser87Gly",
+      "declared_parent_id": "RA61",
+      "declared_substitutions": [
+        "S87G"
+      ],
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "not_supplied_in_acquired_main_or_SI",
+      "assayed_preparation_identity": "Study-reported named construct; no specimen-specific sequence verification.",
+      "source_locator": "PMC2841948:article-PDF:page4:Table4; pages5-6:Materials:His6-tag purification and inverse-PCR mutagenesis",
+      "exact_sequence_bound": false
+    },
+    {
+      "construct_id": "RA61-Y78F-S87A",
+      "reported_variant": "Tyr78Phe/Ser87Ala",
+      "declared_parent_id": "RA61",
+      "declared_substitutions": [
+        "Y78F",
+        "S87A"
+      ],
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "not_supplied_in_acquired_main_or_SI",
+      "assayed_preparation_identity": "Study-reported named construct; no specimen-specific sequence verification.",
+      "source_locator": "PMC2841948:article-PDF:page4:Table4; pages5-6:Materials:His6-tag purification and inverse-PCR mutagenesis",
+      "exact_sequence_bound": false
+    }
+  ],
+  "small_molecule_catalysts": [
+    {
+      "catalyst_id": "propargylamine",
+      "reported_name": "Propargylamine",
+      "source_locator": "PMC2841948:article-PDF:page5:Table5"
+    },
+    {
+      "catalyst_id": "trifluoroethylamine",
+      "reported_name": "Trifluoroethylamine",
+      "source_locator": "PMC2841948:article-PDF:page5:Table5"
+    }
+  ],
+  "substrates": [
+    {
+      "substrate_id": "full_naphthyl",
+      "chemical_name": "4-hydroxy-4-(6-methoxy-2-naphthyl)-2-butanone",
+      "stereochemistry": "Synthesis and SI model use unresolved enantiomers; Table4/5 rates are not separate R or S measurements. No atom-mapped stereochemical object inferred.",
+      "external_chemical_id": null
+    },
+    {
+      "substrate_id": "minimal_aldol",
+      "chemical_name": "4-hydroxy-4-methyl-2-pentanone",
+      "stereochemistry": "The carbinol carbon bears two methyl substituents; not an R/S counterpart of the full substrate.",
+      "external_chemical_id": null
+    }
+  ],
+  "assays": [
+    {
+      "assay_id": "full_substrate_fluorescence",
+      "substrate_id": "full_naphthyl",
+      "endpoint": "Observed second-order initial-rate retroaldol endpoint from naphthaldehyde fluorescence, under subsaturating conditions before the first turnover.",
+      "conditions": {
+        "temperature_celsius": 25,
+        "pH": 7.5,
+        "sodium_phosphate_mM": 50,
+        "NaCl_mM": 300,
+        "DMSO_percent": 5,
+        "D2O_percent": null,
+        "DMSO_status": "reported",
+        "D2O_status": "not_stated"
+      },
+      "technique": "Fluorescence; excitation330nm/emission452nm, calibrated naphthaldehyde standard",
+      "model": "v0 = (kcat/KM)obs * [E] * [S] for enzyme; kobs * [amine] * [S] for solution catalysts",
+      "source_locator": "PMC2841948:article-PDF:pages1-3:Conditions for Kinetic Studies; page6:Kinetic Assays and Nonenzymatic, Amine-Catalyzed Reactions",
+      "limits": "Reports the second-order endpoint through aldehyde formation (source steps1-3), not separate kcat, KM, a single elementary step, steps4-5 or generic full-cycle turnover. Rates were linear in substrate and catalyst over at least tenfold ranges."
+    },
+    {
+      "assay_id": "minimal_substrate_NMR",
+      "substrate_id": "minimal_aldol",
+      "endpoint": "Observed second-order retroaldol rate from acetone appearance measured by proton NMR.",
+      "conditions": {
+        "temperature_celsius": 25,
+        "pH": 7.5,
+        "sodium_phosphate_mM": 50,
+        "NaCl_mM": 300,
+        "DMSO_percent": null,
+        "D2O_percent_range": [
+          5,
+          8
+        ],
+        "DMSO_status": "not_stated",
+        "D2O_status": "reported_range"
+      },
+      "technique": "600MHz proton NMR with water suppression and internal acetone calibration",
+      "model": "First order in enzyme or amine and in substrate.",
+      "source_locator": "PMC2841948:article-PDF:page5:Table5; page6:Kinetic Assays",
+      "limits": "Different reporter and specified solvent additives from full-substrate fluorescence. No matched-solvent correction or microscopic rate equivalence established; DMSO is unstated in this paragraph, not asserted absent."
+    }
+  ],
+  "observations": [
+    {
+      "row_id": "Table4:RA61",
+      "construct_id": "RA61",
+      "catalyst_id": "RA61",
+      "assay_id": "full_substrate_fluorescence",
+      "substrate_id": "full_naphthyl",
+      "source_locator": "PMC2841948:article-PDF:page4:Table4:Wild type RA61",
+      "parameter": "k_cat/K_M",
+      "status": "reported_point_estimate",
+      "value": 0.49,
+      "unit": "M^-1 s^-1",
+      "sd": null,
+      "replicate_count": null,
+      "source_reported_mutant_over_parent": 1,
+      "also_reported_at": [
+        "PMC2841948:article-PDF:page3:Table1:RA61",
+        "PMC2841948:article-PDF:page5:Table5:RA61:full_substrate"
+      ],
+      "source_parameter": "(kcat/KM)obs",
+      "parameter_qualifier": "observed second-order value at assay pH; not separate k_cat or K_M measurements"
+    },
+    {
+      "row_id": "Table4:RA61-Y78F",
+      "construct_id": "RA61-Y78F",
+      "catalyst_id": "RA61-Y78F",
+      "assay_id": "full_substrate_fluorescence",
+      "substrate_id": "full_naphthyl",
+      "source_locator": "PMC2841948:article-PDF:page4:Table4:Tyr78Phe",
+      "parameter": "k_cat/K_M",
+      "status": "reported_point_estimate",
+      "value": 1.56,
+      "unit": "M^-1 s^-1",
+      "sd": null,
+      "replicate_count": null,
+      "source_reported_mutant_over_parent": 3.2,
+      "source_parameter": "(kcat/KM)obs",
+      "parameter_qualifier": "observed second-order value at assay pH; not separate k_cat or K_M measurements"
+    },
+    {
+      "row_id": "Table4:RA61-Y78A",
+      "construct_id": "RA61-Y78A",
+      "catalyst_id": "RA61-Y78A",
+      "assay_id": "full_substrate_fluorescence",
+      "substrate_id": "full_naphthyl",
+      "source_locator": "PMC2841948:article-PDF:page4:Table4:Tyr78Ala",
+      "parameter": "k_cat/K_M",
+      "status": "reported_point_estimate",
+      "value": 0.98,
+      "unit": "M^-1 s^-1",
+      "sd": null,
+      "replicate_count": null,
+      "source_reported_mutant_over_parent": 2.0,
+      "source_parameter": "(kcat/KM)obs",
+      "parameter_qualifier": "observed second-order value at assay pH; not separate k_cat or K_M measurements"
+    },
+    {
+      "row_id": "Table4:RA61-S87A",
+      "construct_id": "RA61-S87A",
+      "catalyst_id": "RA61-S87A",
+      "assay_id": "full_substrate_fluorescence",
+      "substrate_id": "full_naphthyl",
+      "source_locator": "PMC2841948:article-PDF:page4:Table4:Ser87Ala",
+      "parameter": "k_cat/K_M",
+      "status": "reported_point_estimate",
+      "value": 0.79,
+      "unit": "M^-1 s^-1",
+      "sd": null,
+      "replicate_count": null,
+      "source_reported_mutant_over_parent": 1.6,
+      "source_parameter": "(kcat/KM)obs",
+      "parameter_qualifier": "observed second-order value at assay pH; not separate k_cat or K_M measurements"
+    },
+    {
+      "row_id": "Table4:RA61-S87G",
+      "construct_id": "RA61-S87G",
+      "catalyst_id": "RA61-S87G",
+      "assay_id": "full_substrate_fluorescence",
+      "substrate_id": "full_naphthyl",
+      "source_locator": "PMC2841948:article-PDF:page4:Table4:Ser87Gly",
+      "parameter": "k_cat/K_M",
+      "status": "reported_point_estimate",
+      "value": 1.8,
+      "unit": "M^-1 s^-1",
+      "sd": null,
+      "replicate_count": null,
+      "source_reported_mutant_over_parent": 3.7,
+      "source_parameter": "(kcat/KM)obs",
+      "parameter_qualifier": "observed second-order value at assay pH; not separate k_cat or K_M measurements"
+    },
+    {
+      "row_id": "Table4:RA61-Y78F-S87A",
+      "construct_id": "RA61-Y78F-S87A",
+      "catalyst_id": "RA61-Y78F-S87A",
+      "assay_id": "full_substrate_fluorescence",
+      "substrate_id": "full_naphthyl",
+      "source_locator": "PMC2841948:article-PDF:page4:Table4:Tyr78Phe/Ser87Ala",
+      "parameter": "k_cat/K_M",
+      "status": "reported_point_estimate",
+      "value": 2.6,
+      "unit": "M^-1 s^-1",
+      "sd": null,
+      "replicate_count": null,
+      "source_reported_mutant_over_parent": 5.3,
+      "source_parameter": "(kcat/KM)obs",
+      "parameter_qualifier": "observed second-order value at assay pH; not separate k_cat or K_M measurements"
+    },
+    {
+      "row_id": "Table5:propargylamine:full",
+      "construct_id": null,
+      "catalyst_id": "propargylamine",
+      "assay_id": "full_substrate_fluorescence",
+      "substrate_id": "full_naphthyl",
+      "source_locator": "PMC2841948:article-PDF:page5:Table5:propargylamine:full",
+      "parameter": "kobs",
+      "status": "reported_point_estimate",
+      "value": 1.7e-05,
+      "unit": "M^-1 s^-1",
+      "sd": null,
+      "replicate_count": null,
+      "source_parameter": "kobs"
+    },
+    {
+      "row_id": "Table5:propargylamine:minimal",
+      "construct_id": null,
+      "catalyst_id": "propargylamine",
+      "assay_id": "minimal_substrate_NMR",
+      "substrate_id": "minimal_aldol",
+      "source_locator": "PMC2841948:article-PDF:page5:Table5:propargylamine:minimal",
+      "parameter": "kobs",
+      "status": "reported_point_estimate",
+      "value": 3.3e-06,
+      "unit": "M^-1 s^-1",
+      "sd": null,
+      "replicate_count": null,
+      "source_parameter": "kobs"
+    },
+    {
+      "row_id": "Table5:trifluoroethylamine:full",
+      "construct_id": null,
+      "catalyst_id": "trifluoroethylamine",
+      "assay_id": "full_substrate_fluorescence",
+      "substrate_id": "full_naphthyl",
+      "source_locator": "PMC2841948:article-PDF:page5:Table5:trifluoroethylamine:full",
+      "parameter": "kobs",
+      "status": "reported_point_estimate",
+      "value": 7e-06,
+      "unit": "M^-1 s^-1",
+      "sd": null,
+      "replicate_count": null,
+      "source_parameter": "kobs"
+    },
+    {
+      "row_id": "Table5:trifluoroethylamine:minimal",
+      "construct_id": null,
+      "catalyst_id": "trifluoroethylamine",
+      "assay_id": "minimal_substrate_NMR",
+      "substrate_id": "minimal_aldol",
+      "source_locator": "PMC2841948:article-PDF:page5:Table5:trifluoroethylamine:minimal",
+      "parameter": "kobs",
+      "status": "reported_point_estimate",
+      "value": 1.8e-06,
+      "unit": "M^-1 s^-1",
+      "sd": null,
+      "replicate_count": null,
+      "source_parameter": "kobs"
+    },
+    {
+      "row_id": "Table5:RA61:minimal",
+      "construct_id": "RA61",
+      "catalyst_id": "RA61",
+      "assay_id": "minimal_substrate_NMR",
+      "substrate_id": "minimal_aldol",
+      "source_locator": "PMC2841948:article-PDF:page5:Table5:RA61:minimal",
+      "parameter": "k_cat/K_M",
+      "status": "reported_point_estimate",
+      "value": 0.00023,
+      "unit": "M^-1 s^-1",
+      "sd": null,
+      "replicate_count": null,
+      "source_parameter": "kobs",
+      "parameter_qualifier": "observed second-order value at assay pH; not separate k_cat or K_M measurements"
+    }
+  ],
+  "derived_comparisons": [
+    {
+      "comparison_id": "RA61-Y78F:over-parent",
+      "kind": "within_assay_substitution",
+      "numerator_row_id": "Table4:RA61-Y78F",
+      "denominator_row_id": "Table4:RA61",
+      "value": 3.183673469387755,
+      "unit": "dimensionless",
+      "source_reported_ratio": 3.2,
+      "uncertainty": null,
+      "interpretation": "Displayed-value arithmetic only; no precision, confidence interval, significance test, elementary-step cause or fold equivalence inferred.",
+      "status": "derived_arithmetic",
+      "source_reported_ratio_status": "source_reported"
+    },
+    {
+      "comparison_id": "RA61-Y78A:over-parent",
+      "kind": "within_assay_substitution",
+      "numerator_row_id": "Table4:RA61-Y78A",
+      "denominator_row_id": "Table4:RA61",
+      "value": 2.0,
+      "unit": "dimensionless",
+      "source_reported_ratio": 2.0,
+      "uncertainty": null,
+      "interpretation": "Displayed-value arithmetic only; no precision, confidence interval, significance test, elementary-step cause or fold equivalence inferred.",
+      "status": "derived_arithmetic",
+      "source_reported_ratio_status": "source_reported"
+    },
+    {
+      "comparison_id": "RA61-S87A:over-parent",
+      "kind": "within_assay_substitution",
+      "numerator_row_id": "Table4:RA61-S87A",
+      "denominator_row_id": "Table4:RA61",
+      "value": 1.6122448979591837,
+      "unit": "dimensionless",
+      "source_reported_ratio": 1.6,
+      "uncertainty": null,
+      "interpretation": "Displayed-value arithmetic only; no precision, confidence interval, significance test, elementary-step cause or fold equivalence inferred.",
+      "status": "derived_arithmetic",
+      "source_reported_ratio_status": "source_reported"
+    },
+    {
+      "comparison_id": "RA61-S87G:over-parent",
+      "kind": "within_assay_substitution",
+      "numerator_row_id": "Table4:RA61-S87G",
+      "denominator_row_id": "Table4:RA61",
+      "value": 3.673469387755102,
+      "unit": "dimensionless",
+      "source_reported_ratio": 3.7,
+      "uncertainty": null,
+      "interpretation": "Displayed-value arithmetic only; no precision, confidence interval, significance test, elementary-step cause or fold equivalence inferred.",
+      "status": "derived_arithmetic",
+      "source_reported_ratio_status": "source_reported"
+    },
+    {
+      "comparison_id": "RA61-Y78F-S87A:over-parent",
+      "kind": "within_assay_substitution",
+      "numerator_row_id": "Table4:RA61-Y78F-S87A",
+      "denominator_row_id": "Table4:RA61",
+      "value": 5.306122448979592,
+      "unit": "dimensionless",
+      "source_reported_ratio": 5.3,
+      "uncertainty": null,
+      "interpretation": "Displayed-value arithmetic only; no precision, confidence interval, significance test, elementary-step cause or fold equivalence inferred.",
+      "status": "derived_arithmetic",
+      "source_reported_ratio_status": "source_reported"
+    },
+    {
+      "comparison_id": "propargylamine:full-over-minimal",
+      "kind": "cross_substrate_cross_readout",
+      "numerator_row_id": "Table5:propargylamine:full",
+      "denominator_row_id": "Table5:propargylamine:minimal",
+      "value": 5.151515151515151,
+      "unit": "dimensionless",
+      "source_reported_ratio": 5,
+      "uncertainty": null,
+      "interpretation": "Separate source factor and displayed-value quotient. Both assays have pH7.5/25C/phosphate/NaCl context; reporter and specified solvent additives differ. Not a binding constant.",
+      "status": "derived_arithmetic",
+      "source_reported_ratio_status": "source_reported"
+    },
+    {
+      "comparison_id": "trifluoroethylamine:full-over-minimal",
+      "kind": "cross_substrate_cross_readout",
+      "numerator_row_id": "Table5:trifluoroethylamine:full",
+      "denominator_row_id": "Table5:trifluoroethylamine:minimal",
+      "value": 3.888888888888889,
+      "unit": "dimensionless",
+      "source_reported_ratio": 4,
+      "uncertainty": null,
+      "interpretation": "Separate source factor and displayed-value quotient. Both assays have pH7.5/25C/phosphate/NaCl context; reporter and specified solvent additives differ. Not a binding constant.",
+      "status": "derived_arithmetic",
+      "source_reported_ratio_status": "source_reported"
+    },
+    {
+      "comparison_id": "RA61:full-over-minimal",
+      "kind": "cross_substrate_cross_readout",
+      "numerator_row_id": "Table4:RA61",
+      "denominator_row_id": "Table5:RA61:minimal",
+      "value": 2130.4347826086955,
+      "unit": "dimensionless",
+      "source_reported_ratio": 2100,
+      "uncertainty": null,
+      "interpretation": "Separate source factor and displayed-value quotient. Both assays have pH7.5/25C/phosphate/NaCl context; reporter and specified solvent additives differ. Not a binding constant.",
+      "status": "derived_arithmetic",
+      "source_reported_ratio_status": "source_reported"
+    },
+    {
+      "comparison_id": "RA61:substrate-effect-relative-to:propargylamine",
+      "kind": "double_ratio_author_model_context",
+      "numerator_comparison_id": "RA61:full-over-minimal",
+      "denominator_comparison_id": "propargylamine:full-over-minimal",
+      "value": 413.5549872122762,
+      "unit": "dimensionless",
+      "uncertainty": null,
+      "interpretation": "Arithmetic estimate conditioned on solution-amine comparator and cross-assay assumptions; these two values are not a statistical interval or independent measurements.",
+      "status": "derived_arithmetic",
+      "source_reported_ratio_status": null
+    },
+    {
+      "comparison_id": "RA61:substrate-effect-relative-to:trifluoroethylamine",
+      "kind": "double_ratio_author_model_context",
+      "numerator_comparison_id": "RA61:full-over-minimal",
+      "denominator_comparison_id": "trifluoroethylamine:full-over-minimal",
+      "value": 547.8260869565217,
+      "unit": "dimensionless",
+      "uncertainty": null,
+      "interpretation": "Arithmetic estimate conditioned on solution-amine comparator and cross-assay assumptions; these two values are not a statistical interval or independent measurements.",
+      "status": "derived_arithmetic",
+      "source_reported_ratio_status": null
+    }
+  ],
+  "component_evidence": [
+    {
+      "component_id": "designed_water_motif",
+      "source_proposed_groups": [
+        "Tyr78",
+        "Ser87"
+      ],
+      "evidence_kind": "within_named_background_substitution",
+      "observation_refs": [
+        "Table4:RA61",
+        "Table4:RA61-Y78F",
+        "Table4:RA61-Y78A",
+        "Table4:RA61-S87A",
+        "Table4:RA61-S87G",
+        "Table4:RA61-Y78F-S87A"
+      ],
+      "source_locator": "PMC2841948:article-PDF:page2:Figure2B; pages4-5:Designed Water Interactions; Table4",
+      "source_reported_result": "All five mutant constructs have larger displayed (kcat/KM)obs than parent RA61. The author reports no significant pH-rate-profile change for the double mutant, without numeric curve data or a stated statistical test; equivalence is not inferred.",
+      "admissible_interpretation": "The data do not demonstrate a beneficial contribution from the modeled Tyr78/Ser87 motif to the measured initial-rate endpoint; all assayed substitutions increase that endpoint.",
+      "author_alternatives": [
+        "Predicted interactions are not made.",
+        "Predicted interactions do not facilitate the measured reaction.",
+        "Mutations may improve bulk-solvent access; explicitly untested."
+      ],
+      "water_absent": null,
+      "water_unnecessary_for_full_cycle": null,
+      "isolated_chemical_contribution": null
+    },
+    {
+      "component_id": "substrate_interactions",
+      "evidence_kind": "cross_substrate_solution_amine_comparator_estimate",
+      "source_locator": "PMC2841948:article-PDF:page5:Table5 and Hydrophobic Binding Interactions",
+      "comparison_refs": [
+        "RA61:substrate-effect-relative-to:propargylamine",
+        "RA61:substrate-effect-relative-to:trifluoroethylamine"
+      ],
+      "author_reported_contribution": {
+        "value": 500,
+        "qualifier": "around",
+        "unit": "dimensionless",
+        "status": "author_estimate_not_direct_observation",
+        "source_display": "around 500-fold"
+      },
+      "admissible_interpretation": "Relative reactivity supports the author estimate of an extra contribution associated with the full substrate beyond intrinsic amine-catalyzed reactivity. It does not isolate individual pocket contacts, desolvation, affinity, preorganization or transition-state geometry.",
+      "assumptions": [
+        "Solution amines reasonably control the intrinsic reactivity difference.",
+        "Cross-readout and solvent differences do not dominate the contrast.",
+        "The minimal substrate retains a hydroxybutanone scaffold and methyl groups capable of binding; this is not a no-binding baseline.",
+        "Changing substrate also changes size, stereochemistry, products and potentially the limiting transition state; no pure contact-deletion perturbation is supplied."
+      ],
+      "binding_Kd": null,
+      "isolated_apolar_pocket_effect": null,
+      "design_intent": "Interactions with the naphthyl substrate surface (Figure2C), distinct from the pocket intended to lower Lys176 pKa (Figure2A)."
+    },
+    {
+      "component_id": "lysine_ionization",
+      "evidence_kind": "pH_profiles_and_transferred_Bronsted_model",
+      "source_locator": "PMC2841948:article-PDF:page3:Table2/Figure3; page4:Figure4 and pKa section; PMC2841948:SI-PDF:pages5-6:FiguresS6/S7; page9:TableS1",
+      "source_reported_pKa": [
+        {
+          "endpoint": "RA61 pH-rate profile",
+          "value": 6.8,
+          "uncertainty": null,
+          "source_locator": "PMC2841948:article-PDF:page3:Table2/Figure3B"
+        },
+        {
+          "endpoint": "RA61 product pH-binding profile",
+          "value": 6.9,
+          "uncertainty": 0.5,
+          "uncertainty_type": "approximate author error estimate; not a stated SD or CI",
+          "source_locator": "PMC2841948:SI-PDF:page6:FigureS7"
+        }
+      ],
+      "residue_assignment": "The authors attribute the compatible pH-rate and pH-binding profiles most simply to active-site lysine ionization under their mechanism model; no new matched Lys-replacement assay or direct residue-specific titration is provided.",
+      "solution_Bronsted_slope": {
+        "value": 0.54,
+        "standard_error": 0.03,
+        "source_locator": "PMC2841948:article-PDF:page4:Figure4A"
+      },
+      "source_reported_pKa_contribution": {
+        "value": 10,
+        "qualifier": "about",
+        "unit": "dimensionless",
+        "pH": 7.5,
+        "status": "author_model_estimate",
+        "assumption": "Enzymatic and solution-amine Bronsted values are similar.",
+        "source_display": "about 10-fold"
+      },
+      "model_sensitivity": [
+        {
+          "Bronsted_slope": 0.2,
+          "source_reported_fold_effect": 182
+        },
+        {
+          "Bronsted_slope": 0.4,
+          "source_reported_fold_effect": 32
+        },
+        {
+          "Bronsted_slope": 0.54,
+          "source_reported_fold_effect": 10
+        },
+        {
+          "Bronsted_slope": 0.6,
+          "source_reported_fold_effect": 6
+        },
+        {
+          "Bronsted_slope": 0.8,
+          "source_reported_fold_effect": 1
+        }
+      ],
+      "sensitivity_scope": "RA61 row of SI TableS1; alternative model assumptions, not a confidence interval or measured mutation effects.",
+      "matched_lysine_replacement_contrast": null,
+      "source_model_lysine_label": "Lys176",
+      "fitted_residue_identity": null,
+      "hydrophobic_pocket_cause_of_pKa_shift": null,
+      "reference_pKa": {
+        "value": 10.6,
+        "species": "lysine side chain reference represented by primary alkylamine in solution",
+        "source_locator": "PMC2841948:article-PDF:page3:Rate Acceleration Relative to Lysine Side Chain in Solution; PMC2841948:SI-PDF:page9:TableS1 text",
+        "scope": "Source reference/model baseline; not a measured pKa of the RA61 protein or a new free-lysine experiment."
+      },
+      "model_formula": "effect = 10**(beta*(enzyme_pKa-reference_pKa)) * (1+10**(reference_pKa-pH))/(1+10**(enzyme_pKa-pH))",
+      "model_formula_scope": "SI page9 equations expressed as enzyme/reference second-order rate ratio at a common pH. Source-reported approximate fold estimates are retained, not replaced by recalculation or promoted to direct measurements. Displayed inputs do not reproduce every printed TableS1 integer exactly; retain the source estimates without numerical repair, inferred hidden precision or an unverified rounding explanation."
+    }
+  ],
+  "source_limitations": [
+    "The lysine-necessity statement on main page3 cites Jiang2008 Ref7; the acquired 2010 main/SI supplies no new matched catalytic-Lys replacement assay. This does not assert absence in the unacquired 2008 study.",
+    "The RA61 model contains Tyr78/Ser87 water contacts. Main Figure2 explicitly calls it a design model; the experimental RA61 structure lacks bound ligand and does not establish substrate orientation or the designed water position. No coordinate-derived measurement is added.",
+    "Table4 has no row-specific SD, replicate count or detection limit. Table1 says SD less than20% over multiple assays/protein preparations; that statement is not assigned to every Table4/5 row.",
+    "Methods report protein preparation and pH-stability controls but do not provide mutant-specific fold equivalence, active-fraction, structural or matched affinity controls. A substitution effect cannot be isolated to one chemical contribution.",
+    "Main prose summarizes single-mutant increases as2-3fold; Table4 has1.6 for S87A and3.7 for S87G. The numerical table entries are retained without silently narrowing them to the prose range.",
+    "No beneficial motif effect at the observed initial-rate endpoint is not proof that water is absent or unnecessary in every catalytic step. Bulk-solvent access is an untested author explanation, and compensating mutation effects remain possible.",
+    "No design hit-rate denominator, new experimental observation by this project, independent human review, evidence-tier promotion, mechanistic role transfer, or productive-geometry tolerance is supplied."
+  ],
+  "cross_case_comparison": {
+    "relation": "A designed catalytic-component label needs endpoint-specific evidence: substitution sensitivity, apparent ionization, and model-derived substrate effects are different kinds of support.",
+    "providers": [
+      {
+        "path": "data/atlas/study_context/ra95_2013/functional_comparison.json",
+        "sha256": "0e2fe21efce4d805fdef8505770c0cf18557ed774c08a79cfc5e68c1b1fbf94a",
+        "json_pointer": "/variants/13"
+      },
+      {
+        "path": "data/atlas/study_context/ra95_2013/functional_comparison.json",
+        "sha256": "0e2fe21efce4d805fdef8505770c0cf18557ed774c08a79cfc5e68c1b1fbf94a",
+        "json_pointer": "/variants/11"
+      },
+      {
+        "path": "data/atlas/study_context/ke59_2012/source_qualification.json",
+        "sha256": "377da7aa8ab0966aef24757c8a00423c336feb46b41682010a10f4957670c558",
+        "json_pointer": "/qualification"
+      }
+    ],
+    "use": "RA95.5-5 K210M and its parent illustrate parameter-dependent substitution effects; KE59 retains indirect pH evidence. They contextualize RA61 evidence types without claiming equal conditions, homologous sites, common exact constructs or a cross-study activity ranking. Existing packets are unchanged; no sequence strings copied."
+  },
+  "reconsideration": {
+    "bespoke_code": "No new runtime or validator. Component roles, source-local positions, assay identity, missingness, observations and model assumptions fit additive data.",
+    "reuse": "Shared assay/construct/provenance and source-reported-versus-derived ratio concepts reused; RA61 0.49 stored once across repeated table contexts; prior accepted packets linked by exact hash/pointer. No measured speedup claimed.",
+    "incumbent_value": "The authors already identify the component limitations. The reusable relation keeps designed roles separate from observed mutation effects and comparator/model estimates, preventing the roughly500-fold substrate estimate from becoming affinity or a precise geometric constraint. No superiority to a competent literature reader is claimed."
+  },
+  "initial_rate_boundary": {
+    "source_locator": "PMC2841948:article-PDF:pages1-3:Conditions for Kinetic Studies; PMC2841948:SI-PDF:pages2-5:FiguresS1-S5",
+    "source_observation": "Naphthaldehyde fluorescence decreases on incubation with enzyme, and increasing enzyme concentration increases curvature of progress traces.",
+    "author_model": "Off-pathway enzyme-product iminium binding reduces free enzyme and fluorescent free product; apparent burst behavior need not report the later reaction steps.",
+    "product_binding_estimate": {
+      "value": 26,
+      "unit": "uM",
+      "status": "source_fitted_approximate_upper_limit",
+      "source_locator": "PMC2841948:SI-PDF:page3:FigureS3",
+      "assumptions": "Assumes bound product has zero fluorescence; binding saturation was not reached.",
+      "alternative_assumptions": [
+        {
+          "bound_product_fluorescence_percent": 20,
+          "source_estimated_Kd_uM": 17
+        },
+        {
+          "bound_product_fluorescence_percent": 40,
+          "source_estimated_Kd_uM": 10
+        }
+      ]
+    },
+    "admissible_use": "Motivates the initial-rate measurement regime. Product-binding estimates are not substrate KM, a catalytic-intermediate affinity or an elementary-step rate."
+  }
+}

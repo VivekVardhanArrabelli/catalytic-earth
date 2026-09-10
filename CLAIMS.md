@@ -344,6 +344,23 @@ These selected cleavage assays establish no reverse-synthesis selectivity,
 single-residue cause, design success rate, exact assay-specimen identity or
 new experiment. The 2013 starting clone differs from the earlier design.
 
+## CE-029 — designed component labels require endpoint-specific evidence
+
+**Status:** Supported
+
+In the retained RA61 study, the Tyr78Phe/Ser87Ala construct has reported
+(kcat/KM)obs 2.6 M⁻¹ s⁻¹ versus parent 0.49, a printed ratio of 5.3.
+All five assayed water-motif mutant constructs increase the displayed initial-rate
+endpoint. The [component evidence](docs/ATLAS_RA61_COMPONENT_EVIDENCE.md)
+therefore does not demonstrate a net benefit from the modeled motif at that
+endpoint; it does not establish absent water, microscopic causality or the
+later catalytic steps. The roughly 500-fold substrate-interaction estimate
+uses two solution-amine comparators and different assay readouts/solvent
+additives. The roughly 10-fold lysine-pKa contribution is a transferred-model
+estimate, not a matched Lys176 replacement effect. Six named constructs lack
+exact sequence strings. No new experiment, productive geometry, full mechanism,
+design success rate or evidence-tier promotion is established.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,

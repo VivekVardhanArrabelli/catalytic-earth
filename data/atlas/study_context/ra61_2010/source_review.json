@@ -1,0 +1,113 @@
+{
+  "schema_version": "catalytic-earth.source-qualification-review.v1",
+  "assessment_id": "lassila2010-ra61-catalytic-components",
+  "decision": "accept_source_annotation",
+  "authorized_operation": "source_annotation",
+  "policy_binding": {
+    "path": "data/governance/computational_review_policy.json",
+    "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "reviewed_assessment": {
+    "path": "data/atlas/study_context/ra61_2010/component_evidence.json",
+    "sha256": "6b44023c7a4c002f1325f39550744632e245659900f819f373e6a7435482b2bc"
+  },
+  "reviewed_documentation": {
+    "path": "docs/ATLAS_RA61_COMPONENT_EVIDENCE.md",
+    "sha256": "1b2865818542aa112132d32aad6679b467c15d27b86e8897cc68d7953f63a951"
+  },
+  "retained_input_bindings": [
+    {
+      "path": "data/atlas/study_context/ra61_2010/acquisition_receipts.json",
+      "sha256": "3dcccd826beb02a393588c4220c4ac6475d73f9a0ba8832b98c3305e3a18a319"
+    }
+  ],
+  "review_process": "Three separately prompted read-only gpt-5.6-sol/ultra roles reviewed retained primary sources, data, arithmetic and claim boundaries. Parent alone acquired sources, edited files and adjudicated objections. This is computational review with potentially correlated errors, not independent human review or laboratory evidence.",
+  "reviews": [
+    {
+      "role": "source",
+      "reviewer_task": "components_source",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_final_data_documentation_and_receipt_pins",
+      "scope": "Complete primary main/SI; visual Table4/5/Figure2; all12response bodies, quantities, identifiers, qualifiers and claim propagation."
+    },
+    {
+      "role": "representation",
+      "reviewer_task": "components_representation",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_final_data_documentation_and_receipt_pins",
+      "scope": "Construct/catalyst/assay/observation/provider joins; canonical parameters, units, numeric/source ratios, missingness, reference pKa/model identity and compatibility with existing data concepts."
+    },
+    {
+      "role": "adversarial",
+      "reviewer_task": "components_adversarial",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_final_data_documentation_and_receipt_pins",
+      "scope": "Net endpoint versus microscopic contribution, product/readout state, solvent/analogue and conditional model effects, source discrepancy limits, selection, identity and transfer boundaries."
+    }
+  ],
+  "adjudications": [
+    {
+      "objection": "Higher mutant endpoint values could become a claim that water is absent or that no microscopic catalytic contribution exists.",
+      "evidence": "Main Table4 and pages4-5; Figure2 is a design model, ligand-free crystal does not establish its water, and bulk-solvent explanation is untested.",
+      "decision": "Retain all five assayed mutant constructs and their net initial-rate response. Block water absence, isolated component energetics, compensation-free causality, productive geometry and full-cycle conclusions."
+    },
+    {
+      "objection": "The number of mutant constructs could be confused with number of substitutions or experiments.",
+      "evidence": "Table4 includes four single-mutant constructs and one double-mutant construct. WT RA610.49 repeats in Tables1/4/5.",
+      "decision": "Use six named constructs/five mutant contrasts and eleven unique second-order contexts. Store the repeated parent observation once and use references."
+    },
+    {
+      "objection": "Named RA61 could be treated as an exact sequence, natural wild type or experimentally mapped site.",
+      "evidence": "Methods pages5-6 names inverse-PCR mutants/His-tag preparation; main/SI supplies no complete sequence. Figure2B visibly labels Lys176, Tyr78 and Ser87.",
+      "decision": "Preserve source-defined parent/mutant relations and model-local Lys176. Exact sequences, specimen equivalence and fitted residue identity stay null; rename ambiguous matched-contrast key to source_defined."
+    },
+    {
+      "objection": "Two hydrophobic design concepts and the Table5 amine comparators could be conflated.",
+      "evidence": "Figure2A is the lysine pocket, Figure2C is the substrate-interaction surface. Table5 uses propargylamine and trifluoroethylamine; butylamine belongs to Table3.",
+      "decision": "Keep component intent and comparator identities explicit. Retain each printed factor and each displayed-value quotient separately; no pocket-residue knockout or direct binding-constant claim."
+    },
+    {
+      "objection": "A substrate double ratio could be treated as a matched-assay isolated energetic effect.",
+      "evidence": "Main page6 uses fluorescence with5%DMSO for full substrate and acetone NMR with5-8%D2O for minimal substrate; the analogue retains binding groups and changes products/shape/stereochemistry.",
+      "decision": "Keep author roughly500-fold estimate conditional on comparator and assay assumptions. Model estimates use canonical dimensionless units; specified solvent differences and not-stated additives are machine-readable."
+    },
+    {
+      "objection": "Observed pKa or a transferred Brønsted effect could directly identify a residue or prove a hydrophobic-pocket cause.",
+      "evidence": "Main Tables2/3/Figure4; SI pages5-6 profile support and page9 TableS1. No new matched Lys176 replacement assay; the main necessity statement cites Ref7.",
+      "decision": "Retain apparent profile values and author assignment separately. Bind reference pKa10.6 and SI formula, solution slope0.54 with SE0.03, and alternative assumed slopes. Tenfold remains approximate/model-derived; model sensitivity is not a confidence interval. Explicitly state that displayed inputs do not reproduce all TableS1 integers exactly; do not repair the source or claim an established rounding explanation."
+    },
+    {
+      "objection": "A new parameter spelling would hide enzyme rows from existing parameter queries.",
+      "evidence": "Existing RA95/TKT/POX annotations use k_cat/K_M. New source typography differs but represents an observed second-order enzyme parameter.",
+      "decision": "Canonicalize all seven enzyme observations to k_cat/K_M and preserve source_parameter separately. Four small-molecule kobs rows remain distinct; no new runtime or schema was needed."
+    },
+    {
+      "objection": "Product rebinding could masquerade as a kinetic burst or productive intermediate affinity.",
+      "evidence": "Main pages1-3 and SI FiguresS1-S5: fluorescence loss and model-dependent product binding; SI page3 values26/17/10uM.",
+      "decision": "Bind the off-pathway product/readout caveat to the initial-rate endpoint. The26uM fit remains an approximate upper limit under the zero-bound-fluorescence assumption, not substrate KM or later-step kinetics."
+    }
+  ],
+  "blocked_operations": [
+    "exact sequence or assay-specimen joins from source names",
+    "water absence, isolated chemical contribution or full designed apparatus retention",
+    "substrate affinity or microscopic binding energy from Table5",
+    "direct Lys176 pKa titration or matched mutation effect from profile/model estimates",
+    "productive structure, water position, elementary-step rate or distance tolerance",
+    "mechanism compilation, protected registry admission, evidence-tier promotion or independent validation",
+    "cross-study activity ranking or design success rate"
+  ],
+  "parent_verification": "Retained12body hashes/lengths and total; two primary PDF pins; eleven source values, six named construct contexts, ten ratio definitions/calculations, all assay/substrate/catalyst/provider links and explicit nulls. Prior28claim objects and accepted source records unchanged. Repository contracts/CI are publication checks, not scientific validation.",
+  "source_access": {
+    "batch_id": "designed-retroaldolase-components-lassila2010",
+    "cumulative_request_count": 12,
+    "cumulative_response_body_bytes": 1100587,
+    "remaining_requests": 88,
+    "remaining_response_body_bytes": 30356693
+  },
+  "coordination_record": "work/coordination_retroaldolase_components_20260910.md",
+  "reviewed_at_utc": "2026-09-10T03:35:20.769355+00:00",
+  "completion_note": "All three roles accepted the final assessment, documentation and receipt hashes and the adjudications before the parent finalized this decision. Review metadata finalization does not change the reviewed source content."
+}
