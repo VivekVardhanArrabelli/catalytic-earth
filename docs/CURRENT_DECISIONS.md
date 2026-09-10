@@ -1,5 +1,19 @@
 # Current Decisions
 
+## 2026-09-10: associate deposited attachment without repairing reacted chemistry
+
+Accept the [bounded RA95.5-5 relation](ATLAS_RA95_4A2R_STATE.md) after source
+challenge. Reuse exact canonical sequence and source-row binding; retain
+Lys83 attachment endpoints, alternative records and null reacted bond order.
+The generic optional comparison filter keeps exact parent/denominator
+relations and their abstentions without giving mutant observations a parent
+crystal state. Preserve source phosphate0.1M versus deposit0.2M.
+
+This completes the inherited question. No repeated RA95 distance expansion
+or unchanged-source chemical repair is justified. Reassess a distinct
+functional/state bottleneck; scientific permissions and frozen surfaces stay
+unchanged.
+
 ## 2026-09-10: retain the exact construct link and stop at the chemical mapping limit
 
 Use the generic state-link relation after [source challenge](ATLAS_RA95_CHEMICAL_STATE.md).

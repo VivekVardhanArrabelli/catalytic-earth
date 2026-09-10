@@ -1,0 +1,267 @@
+{
+  "schema_version": "catalytic-earth.construct-chemical-state-context.v1",
+  "assessment_id": "ra95-5-5-construct-to-chemical-state-20260910",
+  "operation": "source_annotation",
+  "construct_id": "RA95.5-5",
+  "scientific_question": "Can the RA95.5-5 parent from the matched K83M/K210M fluorescence panel be associated with source-named4A2R without assigning inhibited parent coordinates to mutant turnover?",
+  "result": {
+    "construct_relation": "supported_source_named_parent_and_exact_full_canonical_sequence_equality",
+    "chemical_mapping": "deposited_covalent_attachment_endpoints_supported; complete_reacted_bond_order_and_protonation_graph_unresolved",
+    "stopping_condition_met": "One supported construct/state association and a precise boundary between attachment topology, free-component identity and reacted chemistry.",
+    "missing_evidence": "A complete reacted ligand/protein bond-order and protonation specification; source phosphate concentration resolution; exact physical assay/crystal preparation identity and mutant structural controls."
+  },
+  "source_bindings": {
+    "functional_provider": {
+      "path": "data/atlas/study_context/ra95_2013/functional_comparison.json",
+      "sha256": "0e2fe21efce4d805fdef8505770c0cf18557ed774c08a79cfc5e68c1b1fbf94a"
+    },
+    "acquisition": {
+      "path": "data/atlas/study_context/ra95_2013/chemical_state_acquisition.json",
+      "sha256": "7efd0b0efdb32572d369194fc4e9eedd84b0a184aa8c9f10b7af50766b4c1da9"
+    }
+  },
+  "primary_sources": [
+    {
+      "artifact_id": "PMC3720730:article-XML",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC3720730/fullTextXML",
+      "sha256": "71d3d579ec5ef65e4279e6affeb95eb7fc39c894019fc4a58de5462933819ab9",
+      "bytes": 95645,
+      "local_cache_path": "/private/tmp/ce-ra95-be3a548b/article.xml",
+      "redistributed": false,
+      "inspection": "Article accession assignment and source chemistry inspected: Results/P18-P19; Methods/S17-S21/P39-P43; Figure1/P50 andFigure3/P52.",
+      "scope": "Results/P18-P19; derivatization/crystallography Methods/S17-S18/P39-P40; inhibitor synthesis/identity Methods/S20/P42; accession codes Methods/S21/P43; Figure1/P50 andFigure3/P52."
+    },
+    {
+      "artifact_id": "PMC3720730:SI-PDF",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC3720730/supplementaryFiles",
+      "archive_member": "NIHMS478755-supplement-1.pdf",
+      "archive_sha256": "35703b027091a45f14f5f32cdc5116814dd6709f62f2438d332217ae6413717e",
+      "sha256": "aaa0e3203b535546a39818d2d05f0a66cd888d5c6c910f4330449f2c48c0e3ee",
+      "bytes": 3601999,
+      "local_cache_path": "/private/tmp/ce-ra95-be3a548b/NIHMS478755-supplement-1.pdf",
+      "redistributed": false,
+      "inspection": "Visually inspected complete pages3,4,8,9: Table2 numerical values/unit/footnotes, Table3 component identity/structural data, Figure4 ligand alternatives and Figure5 complete tagged sequences.",
+      "scope": "Supplementary Table2 p3; Table3 p4 including footnotes; Figure4 p8; Figure5 p9."
+    }
+  ],
+  "sequence_correspondence": {
+    "provider_pointer": "/constructs/2",
+    "canonical_sequence_length": 258,
+    "canonical_sequence_sha256": "2555aec775f6848faca6a5f1a43fb1cd4a72ae077c2bcc7aafb3baf2662d76df",
+    "normalization": "Remove only whitespace from deposited canonical one-letter sequence; compare all258 positions without trimming tag or unmodeled residues.",
+    "source_numbering": "one-based full printed tagged sequence; deposited label and modeled author residue numbers agree for Lys83 andLys210",
+    "source_reported_suffix_positions": [
+      251,
+      258
+    ],
+    "source_reported_suffix": "LEHHHHHH",
+    "deposit_expression_tag_positions": [
+      246,
+      258
+    ],
+    "tag_scope_limit": "Deposit calls246-258 expression tag; source packet separately retains the terminal251-258suffix. No universal trimming boundary inferred.",
+    "unmodeled_label_positions": [
+      1,
+      249,
+      250,
+      251,
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258
+    ],
+    "physical_preparation_identity": null,
+    "physical_preparation_identity_status": "not established by source naming or canonical sequence equality",
+    "chemical_difference": "Polymer sequence reports standard residues, but modification-feature and struct_conn records explicitly attach3NK toLys83. nstd_monomer=no and empty struct_mod_residue do not establish chemically unmodified protein."
+  },
+  "functional_context": {
+    "provider": {
+      "path": "data/atlas/study_context/ra95_2013/functional_comparison.json",
+      "sha256": "0e2fe21efce4d805fdef8505770c0cf18557ed774c08a79cfc5e68c1b1fbf94a"
+    },
+    "row_pointer": "/variants/11",
+    "parameter_ids": [
+      "kcat",
+      "KM",
+      "kcat_over_KM"
+    ],
+    "scope": "Exact matched SI Table2 fluorescence parent row only. The separate main-table UV-vis and enantiopure rows cannot replace it. Optional linked comparisons retain their original parameters and source unit conflict; only parent observation IDs are assigned this state relation."
+  },
+  "states": [
+    {
+      "state_id": "ra95-5-5:4A2R:inhibitor-derived",
+      "pdb_id": "4A2R",
+      "deposit_packet_id": "ra95.4a2r.chemical-state.2026-09-10",
+      "kind": "source_linked_inhibitor4_derived_3NK_covalent_instance",
+      "source_assignment": "Article Methods/S21/P43 accession codes assign4A2R toRA95.5-5; deposit title/citation and full canonical sequence agree. SI Table3 identifies3NK and Lys83 subscript for this variant.",
+      "source_chemical_scope": "Article Fig1b describes inhibitor4 as a1,3-diketone that gives an initial Schiff base5 and stable vinylogous amide6. Results/P18 reports exclusive Lys83 modification inRA95.5-5. These are source assertions, not a project-refined chemical model.",
+      "deposited_ligand": {
+        "component_id": "3NK",
+        "label_asym_id": "B",
+        "label_entity_id": "2",
+        "author_chain_id": "A",
+        "author_seq_id": "1083",
+        "model_id": "1",
+        "component_name": "1-(6-METHOXYNAPHTHALEN-2-YL)BUTANE-1,3-DIONE",
+        "component_formula": "C15 H14 O3",
+        "dictionary_atom_count_including_H": 32,
+        "coordinate_atom_count_per_alternative_including_H": 31,
+        "coordinate_heavy_atom_count_per_alternative": 17,
+        "alternatives": [
+          {
+            "id": "A",
+            "occupancy": 0.67
+          },
+          {
+            "id": "B",
+            "occupancy": 0.33
+          }
+        ],
+        "deposited_coordinate_instance_is_intact_free_inhibitor": false,
+        "complete_reacted_graph_established": false,
+        "source_table3_component_assignment_supported": true
+      },
+      "covalent_state_evidence": {
+        "source_report": "Results/P18 andFig3c: inhibitor modification exclusively atLys83 inRA95.5-5.",
+        "deposited_connections": [
+          {
+            "connection_id": "covale1",
+            "type": "covale",
+            "protein": {
+              "label_asym_id": "A",
+              "label_seq_id": "83",
+              "auth_seq_id": "83",
+              "component_id": "LYS",
+              "atom_id": "NZ",
+              "alt_id": "?"
+            },
+            "ligand": {
+              "label_asym_id": "B",
+              "auth_seq_id": "1083",
+              "component_id": "3NK",
+              "atom_id": "C13",
+              "alt_id": "A"
+            },
+            "deposited_distance_angstrom": 1.343,
+            "source_bond_order_token": "?",
+            "bond_order": null,
+            "source_leaving_atom_flag": "one"
+          },
+          {
+            "connection_id": "covale2",
+            "type": "covale",
+            "protein": {
+              "label_asym_id": "A",
+              "label_seq_id": "83",
+              "auth_seq_id": "83",
+              "component_id": "LYS",
+              "atom_id": "NZ",
+              "alt_id": "?"
+            },
+            "ligand": {
+              "label_asym_id": "B",
+              "auth_seq_id": "1083",
+              "component_id": "3NK",
+              "atom_id": "C13",
+              "alt_id": "B"
+            },
+            "deposited_distance_angstrom": 1.346,
+            "source_bond_order_token": "?",
+            "bond_order": null,
+            "source_leaving_atom_flag": "one"
+          }
+        ],
+        "lys210_attachment_in_complete_deposit_connection_inventory": false,
+        "lys210_chemical_participation_absent": null,
+        "source_scheme_to_deposit_atom_map": null,
+        "complete_reacted_bond_order_graph": null,
+        "protonation": null,
+        "scope": "Two alternative records of the same Lys83 attachment, not two sites or simultaneous inhibitor molecules. Unknown bond order is preserved; source prose does not uniquely type the deposited reacted graph.",
+        "source_atom_naming_limit": "Article source chemical-position labelC2 is distinct from deposited3NK atom idC2 in the aromatic ring; no silent atom-name equivalence."
+      },
+      "ligand_dictionary_coordinate_difference": {
+        "dictionary_only_atom_names": [
+          "ONA"
+        ],
+        "coordinate_only_atom_names": [],
+        "dictionary_carbonyl": "C13=ONA",
+        "dictionary_internal_bonds": [
+          "C13-C12 single",
+          "C12-C11 single",
+          "C11=O11 double"
+        ],
+        "retained_coordinate_hydrogens_at_C12": [
+          "H121",
+          "H122"
+        ],
+        "interpretation": "The source-named free inhibitor component is a precursor definition. ONA omission plus a covalent record supports attachment topology, but unchanged precursor bond orders/H inventory do not uniquely specify the source-described reacted vinylogous-amide state. No atom deletion, bond-order repair, tautomer or protonation is inferred.",
+        "leaving_atom_identity_in_connection_record": null
+      },
+      "crystal_pH": {
+        "article": 8.5,
+        "deposit_scalar": null,
+        "deposit_detail": 8.5,
+        "resolved": 8.5,
+        "normalization": "pH read from explicit crystallization detail prose; unknown scalar is preserved."
+      },
+      "phosphate_concentration_M": {
+        "article": 0.1,
+        "deposit_detail": 0.2,
+        "resolved": null,
+        "status": "unresolved_source_conflict"
+      },
+      "diffraction_temperature_K": 100,
+      "source_crystallization_temperature_C": 28,
+      "deposit_crystallization_temperature_K": 301,
+      "source_reported_resolution_angstrom": 1.3,
+      "source_preparation": {
+        "inhibitor": "1-(6-methoxy-2-naphthalenyl)-1,3-butanedione, source4",
+        "protein_to_inhibitor_molar_ratio": "1:50 to1:100; source range, no exactRA95.5-5value",
+        "derivatization": "overnight at30C,400rpm forRA95.5/RA95.5-5; do not transferRA95.0 three-day incubation",
+        "purification": "size-exclusion chromatography after incubation; pooled pure fractions concentrated to approximately12mg/mL",
+        "crystallization": "vapor diffusion, microseeding forRA95.5-5;23%w/vPEG3350",
+        "cryoprotection": "mother liquor with20%w/vglycerol; flash freezing in liquid nitrogen",
+        "same_assay_aliquot_established": false
+      },
+      "assay_conditions_transfer": false,
+      "source_reported_ligand_pose_ratio": {
+        "source": "Article Results/P19",
+        "ratio_parts": [
+          70,
+          30
+        ],
+        "scope": "Source descriptive ratio retained separately from current depositedA/B occupancies0.67/0.33; no source repair or inferred solution population."
+      },
+      "inhibitor_synthesis_and_identity": {
+        "source_locator": "Giger2013:article:Methods/S20/P42",
+        "source_inhibitor_id": "4",
+        "starting_material": "100 mg 4-hydroxy-4-(6-methoxy-2-naphthyl)-2-butanone (methodol); no exact enantiomer specified in this paragraph",
+        "oxidation": "1.2 equivalents Dess-Martin periodinane in chloroform for1hour at room temperature",
+        "purification": "silica gel chromatography with hexanes/ethyl acetate",
+        "source_reported_identity_evidence": {
+          "technique": "matrix-assisted laser desorption ionization mass spectrometry",
+          "ion_label_literal": "[M+H]+",
+          "calculated_value_literal": "242.09",
+          "measured_value_literal": "242.09",
+          "unit_or_assignment_normalization": null,
+          "nmr": "Source reports1H-NMR spectrum identical to literature reference7; reference spectrum not independently authenticated here."
+        },
+        "identity_limit": "Preserve the unusual source mass label/value without correction; this is author-reported characterization, not independent chemical authentication or a complete deposited reacted graph. No original spectra or exact assay/crystal material equivalence are established."
+      }
+    }
+  ],
+  "design_use": {
+    "added_relation": "The exact parent state can accompany all three matched engineered-derivative contrasts with their original eligibility and endpoint distinctions, without copying functional values or assigning mutant geometry.",
+    "functional_interpretation": "K83M reported efficiency2.3 versus parent490; K210M490 versus490 while turnover0.023 versus0.048. The matched double remains a small positive result. These are source-rounded parameter-specific sensitivities, not isolated chemical-role effects or generic inactivity/irrelevance labels.",
+    "reuse": "Existing canonical sequence state-link and declarative deposit row selection reused with no core chemical adapter. Optional generic CLI comparison selection follows exact parent/denominator observation IDs.",
+    "incumbent_boundary": "The article already reports catalytic-site remodeling. The added value is executable exact-construct and endpoint-scoped retrieval plus prevented transfer; no discovery, measured curation speedup or incumbent superiority claimed.",
+    "not_established": [
+      "Mutant fold/structure or equal active-enzyme fractions",
+      "Microscopic catalytic cause, source-scheme atom map, full reacting graph or productive solution state",
+      "Project experiment, new protein admission, mechanism compilation, evidence-tier promotion or design-performance estimate"
+    ]
+  }
+}

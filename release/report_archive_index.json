@@ -3,13 +3,13 @@
   "bundle_groups": {
     "202605": 95,
     "202606": 1152,
-    "202609": 24,
+    "202609": 25,
     "undated": 80
   },
   "current_storage_state": "Indexed and bundle-buildable. External upload remains blocked until a release destination is approved and rights checks pass.",
-  "git_index_sha256": "3b4cb71afa9c9866f75b930a1b56bfc642d0c5bcb49e14b727019f41a3b9c4ae",
-  "logical_bytes": 10719955,
-  "member_count": 1351,
+  "git_index_sha256": "a470707ef09e14e3cdc7be235fa61befe4db9f123cd0ad3201bf99cfd3257a85",
+  "logical_bytes": 10727206,
+  "member_count": 1352,
   "members": [
     {
       "bundle_group": "202605",
@@ -1030,6 +1030,12 @@
       "bytes": 5109,
       "git_object_id": "53f71972b823a8b657fa0abe29a02c24afea867f",
       "path": "work/coordination_ra95_20260910.md"
+    },
+    {
+      "bundle_group": "202609",
+      "bytes": 7168,
+      "git_object_id": "53a0d4dc30d4ddc27b5411ad70705db596193bdd",
+      "path": "work/coordination_ra95_4a2r_20260910.md"
     },
     {
       "bundle_group": "202609",
@@ -4033,8 +4039,8 @@
     },
     {
       "bundle_group": "undated",
-      "bytes": 2069356,
-      "git_object_id": "e55abd82cf9d760b871c282d839fbc805ecb902e",
+      "bytes": 2069439,
+      "git_object_id": "95a8147992262408c87328e13688114a0c302293",
       "path": "work/handoff.md"
     },
     {
@@ -8118,7 +8124,7 @@
       "path": "work/zinc_lyase_hydratase_under_cap_sourcing_current702_20260613.md"
     }
   ],
-  "membership_sha256": "51e3e1c6ab6b884a760843288a1af234a577a90be32cb84403cb6987a71e550a",
+  "membership_sha256": "089acdc60fe066163a5fb6547b48c8d76fd857dbdeca73bc758b36b28abad5c0",
   "provenance": "Members are the exact Git-index blobs under work/. The deterministic ZIP is a release asset; Git history remains authoritative and is not rewritten.",
   "schema_version": "catalytic-earth.report-archive-index.v1"
 }

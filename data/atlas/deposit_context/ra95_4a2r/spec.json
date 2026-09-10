@@ -1,0 +1,238 @@
+{
+  "schema_version": "catalytic-earth.deposit-context-spec.v1",
+  "packet_id": "ra95.4a2r.chemical-state.2026-09-10",
+  "source_binding": {
+    "path": "data/atlas/deposit_context/ra95_4a2r/4A2R.cif",
+    "sha256": "c97bdf2cd975779e50e9e57cbe66da80aa37c2e1ac43077ab6e1076ec3b0d19f"
+  },
+  "row_selections": [
+    {
+      "selection_id": "entry",
+      "category": "_entry",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "title",
+      "category": "_struct",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "citation",
+      "category": "_citation",
+      "match": {
+        "id": "primary"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "protein-entity",
+      "category": "_entity",
+      "match": {
+        "id": "1"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "polymer-sequence",
+      "category": "_entity_poly",
+      "match": {
+        "entity_id": "1"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "residue-numbering",
+      "category": "_pdbx_poly_seq_scheme",
+      "match": {
+        "asym_id": "A"
+      },
+      "expected_row_count": 258
+    },
+    {
+      "selection_id": "reference",
+      "category": "_struct_ref",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "reference-alignment",
+      "category": "_struct_ref_seq",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "reference-differences",
+      "category": "_struct_ref_seq_dif",
+      "match": {},
+      "expected_row_count": 33
+    },
+    {
+      "selection_id": "modification-feature",
+      "category": "_pdbx_modification_feature",
+      "match": {},
+      "expected_row_count": 2
+    },
+    {
+      "selection_id": "unmodeled-residues",
+      "category": "_pdbx_unobs_or_zero_occ_residues",
+      "match": {},
+      "expected_row_count": 11
+    },
+    {
+      "selection_id": "crystal-growth",
+      "category": "_exptl_crystal_grow",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "diffraction",
+      "category": "_diffrn",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "refinement",
+      "category": "_refine",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "connection-inventory",
+      "category": "_struct_conn",
+      "match": {},
+      "expected_row_count": 2
+    },
+    {
+      "selection_id": "entry-details",
+      "category": "_pdbx_entry_details",
+      "match": {},
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "ligand-component",
+      "category": "_chem_comp",
+      "match": {
+        "id": "3NK"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "ligand-instance",
+      "category": "_pdbx_nonpoly_scheme",
+      "match": {
+        "mon_id": "3NK"
+      },
+      "expected_row_count": 1
+    },
+    {
+      "selection_id": "ligand-definition-atoms",
+      "category": "_chem_comp_atom",
+      "match": {
+        "comp_id": "3NK"
+      },
+      "expected_row_count": 32
+    },
+    {
+      "selection_id": "ligand-definition-bonds",
+      "category": "_chem_comp_bond",
+      "match": {
+        "comp_id": "3NK"
+      },
+      "expected_row_count": 33
+    },
+    {
+      "selection_id": "ligand-atoms",
+      "category": "_atom_site",
+      "match": {
+        "label_comp_id": "3NK"
+      },
+      "expected_row_count": 62
+    },
+    {
+      "selection_id": "lys83-atoms",
+      "category": "_atom_site",
+      "match": {
+        "label_asym_id": "A",
+        "label_seq_id": "83"
+      },
+      "expected_row_count": 19
+    },
+    {
+      "selection_id": "lys210-atoms",
+      "category": "_atom_site",
+      "match": {
+        "label_asym_id": "A",
+        "label_seq_id": "210"
+      },
+      "expected_row_count": 22
+    }
+  ],
+  "interpretation": {
+    "assertions": [
+      {
+        "assertion_id": "construct",
+        "status": "deposited_source_assertion",
+        "statement": "4A2R names RA95.5-5 and cites Giger2013 DOI10.1038/nchembio.1276. Its full 258-residue canonical sequence is distinct from coordinate coverage and reference/scaffold annotation.",
+        "supporting_selection_ids": [
+          "title",
+          "citation",
+          "polymer-sequence",
+          "residue-numbering",
+          "reference",
+          "reference-differences",
+          "unmodeled-residues"
+        ]
+      },
+      {
+        "assertion_id": "attachment",
+        "status": "deposited_source_assertion",
+        "statement": "Both covale records attach Lys83 NZ to 3NK C13, separately for ligand A/B. Both have unknown pdbx_value_order and leaving flag one. The complete connection inventory contains no Lys210 ligand attachment; this is not a general absence of Lys210 chemistry.",
+        "supporting_selection_ids": [
+          "connection-inventory",
+          "modification-feature",
+          "lys83-atoms",
+          "lys210-atoms"
+        ]
+      },
+      {
+        "assertion_id": "component-is-not-reacted-graph",
+        "status": "project_interpretation",
+        "statement": "3NK names the free 1,3-diketone with formula C15 H14 O3; its dictionary has C13=ONA while coordinate alternatives both omit ONA. Retain the typed attachment endpoints and source-described vinylogous amide separately from an unresolved complete reacted bond-order/protonation graph. Do not complete that graph by dropping ONA and joining unchanged component dictionaries.",
+        "supporting_selection_ids": [
+          "ligand-component",
+          "ligand-definition-atoms",
+          "ligand-definition-bonds",
+          "ligand-atoms",
+          "connection-inventory"
+        ]
+      },
+      {
+        "assertion_id": "alternative-state",
+        "status": "deposited_source_assertion",
+        "statement": "3NK has two alternatives A/B at occupancy0.67/0.33; each has31 coordinate atoms including17heavy atoms. Lys83 and Lys210 NZ are nonalternate at occupancy1.00. These occupancies do not supply solution populations or activity fractions.",
+        "supporting_selection_ids": [
+          "ligand-atoms",
+          "lys83-atoms",
+          "lys210-atoms"
+        ]
+      },
+      {
+        "assertion_id": "crystallization",
+        "status": "deposited_source_assertion",
+        "statement": "Crystallization details state0.1MTris pH8.5,0.2MNa2HPO4,23%PEG3350 at28C; scalar ph is unknown and temp is301K. Diffraction is100K; resolution is1.30angstrom. Source article phosphate concentration differs and is retained in study context.",
+        "supporting_selection_ids": [
+          "crystal-growth",
+          "diffraction",
+          "refinement"
+        ]
+      }
+    ],
+    "not_established": [
+      "No exact assay/crystal physical preparation identity, mutant structure or productive solution geometry.",
+      "Typed covalent endpoints and a leaving-atom flag do not resolve reacted bond orders, tautomer, protonation or source-scheme atom numbering.",
+      "No missing atom repair, occupancy averaging, solution population, rate cause or kinetic activity fraction."
+    ]
+  }
+}

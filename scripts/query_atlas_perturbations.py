@@ -19,12 +19,15 @@ def main() -> int:
     parser.add_argument("--study", help="Source study ID; retains evidence and comparison exclusions")
     parser.add_argument("--comparison", help="Exact comparison ID; retains all its control observations")
     parser.add_argument("--state-link", help="Exact construct-to-state link; retains its functional observations")
+    parser.add_argument("--with-comparisons", action="store_true", help="With --state-link, include ratio and multiplicative comparisons using its observations as controls, including abstentions; states remain parent-only")
     parser.add_argument("--output", type=Path, help="Write JSON here instead of stdout")
     parser.add_argument("--verify-witnesses", action="store_true", help="Also hash-check retained primary files in the Git common directory; never fetch")
     parser.add_argument("--check", action="store_true", help="Resolve the relation and report compact integrity/coverage counts")
     args = parser.parse_args()
     if args.state_link and args.comparison:
         parser.error("--state-link and --comparison select different relations")
+    if args.with_comparisons and not args.state_link:
+        parser.error("--with-comparisons requires --state-link")
     result = project(ROOT)
     if args.verify_witnesses:
         common = subprocess.check_output(["git", "rev-parse", "--git-common-dir"], cwd=ROOT, text=True).strip()
@@ -47,8 +50,15 @@ def main() -> int:
         if not result["state_links"]:
             parser.error("unknown state link within selected scope")
         ids = {ref for link in result["state_links"] for ref in link["observation_ids"]}
+        result["comparisons"] = [
+            row for row in result["comparisons"]
+            if args.with_comparisons
+            and row["operation"] in {"ratio", "multiplicative"}
+            and row["roles"].get("denominator", row["roles"].get("parent")) in ids
+        ]
+        ids.update(ref for row in result["comparisons"] for ref in row["roles"].values())
+        ids.update(ref for row in result["comparisons"] for ref in row.get("context_observations", []))
         result["observations"] = [row for row in result["observations"] if row["id"] in ids]
-        result["comparisons"] = []
     selected_ids = {row["id"] for row in result["observations"]}
     result["state_links"] = [link for link in result["state_links"]
                              if set(link["observation_ids"]) <= selected_ids]

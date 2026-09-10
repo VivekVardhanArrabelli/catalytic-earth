@@ -447,5 +447,21 @@
       "data/atlas/perturbations/projection.json",
       "docs/ATLAS_RA95_CHEMICAL_STATE.md"
     ]
+  },
+  {
+    "claim_id": "CE-035",
+    "claim_kind": "scientific_result",
+    "status": "Supported",
+    "claim": "Exact RA95.5-5 parent sequence and deposited Lys83 attachment can accompany matched residue sensitivities without completing reacted chemistry or assigning mutant geometry.",
+    "current_wording": "The4A2R full258-aa canonical sequence matches the retainedRA95.5-5 parent. Two alternativeLys83NZ–3NKC13 covalent records retain unknown bond order; dictionaryONA is absent in coordinates and full reacted chemistry remains unresolved. ExistingK83M/K210M/double comparisons retain endpoint-specific effects and threeKM abstentions. Source phosphate0.1M and deposit0.2M remain conflicted. No absentLys210 chemistry, physical preparation identity, mutant structure, microscopic cause, productive solution state, new experiment or evidence-tier promotion follows.",
+    "rationale": "Reusable exact source-row and sequence joins connect a defined parent state to the original functional comparisons while refusing unsupported chemical and mutant-state transfers.",
+    "evidence": [
+      "data/atlas/study_context/ra95_2013/chemical_state.json",
+      "data/atlas/study_context/ra95_2013/chemical_state_review.json",
+      "data/atlas/study_context/ra95_2013/chemical_state_acquisition.json",
+      "data/atlas/deposit_context/ra95_4a2r/projection.json",
+      "data/atlas/perturbations/projection.json",
+      "docs/ATLAS_RA95_4A2R_STATE.md"
+    ]
   }
 ]

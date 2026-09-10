@@ -80,6 +80,14 @@
     "ra95inhib": {
       "path": "data/atlas/deposit_context/ra95_5an7/projection.json",
       "sha256": "af6042a9b4c59755d9af6ba260013bbf6182a7c3e50b3c6cae7a415c5f96839c"
+    },
+    "ra95_4a2r": {
+      "path": "data/atlas/deposit_context/ra95_4a2r/projection.json",
+      "sha256": "ea3117cea3d83e156534abcc1efd62f10ed056a1965ba7e99a0974ac915b3461"
+    },
+    "ra95_2013_state": {
+      "path": "data/atlas/study_context/ra95_2013/chemical_state.json",
+      "sha256": "a9b7df48d5684fc014ced487477364eb8d9b2072817e3be4c64837a364df0670"
     }
   },
   "constructs": {
@@ -7924,6 +7932,31 @@
           "packet_id": "ra95.5an7.chemical-state.2026-09-10",
           "provider": {
             "source": "ra95inhib",
+            "pointer": ""
+          },
+          "polymer_selection_id": "polymer-sequence"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.5-5-states",
+      "study_id": "ra95_2013",
+      "construct_id": "ra95_2013:RA95.5-5",
+      "observation_ids": [
+        "ra95-kinetics:si-table2:RA95.5-5:kcat",
+        "ra95-kinetics:si-table2:RA95.5-5:KM",
+        "ra95-kinetics:si-table2:RA95.5-5:kcat_over_KM"
+      ],
+      "context_provider": {
+        "source": "ra95_2013_state",
+        "pointer": ""
+      },
+      "states": [
+        {
+          "state_id": "ra95-5-5:4A2R:inhibitor-derived",
+          "packet_id": "ra95.4a2r.chemical-state.2026-09-10",
+          "provider": {
+            "source": "ra95_4a2r",
             "pointer": ""
           },
           "polymer_selection_id": "polymer-sequence"

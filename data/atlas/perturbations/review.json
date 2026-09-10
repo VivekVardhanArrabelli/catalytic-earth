@@ -1,18 +1,18 @@
 {
   "schema_version": "catalytic-earth.perturbation-source-review.v1",
   "status": "source_reviewed_computational",
-  "reviewed_at_utc": "2026-09-10T14:37:30.808871+00:00",
-  "scope": "Exact parent functional-row to canonical-sequence/deposited-state association; retain incomplete adduct graph and source conflicts. All previous193observations and111comparisons unchanged.",
+  "reviewed_at_utc": "2026-09-10T15:33:43.109365+00:00",
+  "scope": "Cumulative source-reviewed projection; this increment reviews RA95.5-5 exact parent-to4A2R attachment association and generic optional matched-comparison retrieval. Previous scientific objects are unchanged and retain prior source reviews.",
   "reviewed_bindings": {
-    "data/atlas/perturbations/projection.json": "35c90e8f6cb7778e75798d6d1f65a67767abb90fed72390a91ce438799b8eaf0",
+    "data/atlas/perturbations/projection.json": "1687a8224049fc2eb3b7130a3a1459592e724df960a801320f039d1eef1bf409",
     "src/catalytic_earth/atlas_perturbations.py": "ecbb31b654c47ef62187b3b7acd90fa1bab4b0ae43b51704bc8f42d2f0ea7795",
-    "scripts/query_atlas_perturbations.py": "37fd192d4be8cab2f21b3d24b3165b9494a0ae2e3d4aab3d06305bec74c8c5c4",
-    "docs/ATLAS_PERTURBATION_RELATION.md": "920c9c533700d9a8f09f52c29daa396e103e86527ee3b2048d0d369a04122ca7",
+    "scripts/query_atlas_perturbations.py": "a13b3176952c44df5e8b053ee3a7907d5020ae00e66d75b248790f7aa20656e2",
+    "docs/ATLAS_PERTURBATION_RELATION.md": "68492976ab29022db85e86d1dcd19eae25f501b7b3e22660559db2e7a109735f",
     "data/atlas/study_context/ra95_2017/forward_synthesis_review.json": "a8025989cb89415ac59267dc0af2da415019af3786ec2db3debd18630de8be9d",
     "docs/ATLAS_FORWARD_SYNTHESIS.md": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84",
     "data/atlas/study_context/diels_alder_2010/source_review.json": "19759f43826c73005f00265144e3debc9805457b0320b18693da7b9bbdd3a01b",
     "docs/ATLAS_DIELS_ALDER_CONTROLS.md": "eb0319636aea183771290ffb0608ace1bc49c80949e0f1bbd4e41bb3c2acbb48",
-    "tests/core/test_atlas_perturbations.py": "1b8f467dd2a9193cc4c6402e0065e7d0ee155fa28a0f21d7edccc56907f88b93",
+    "tests/core/test_atlas_perturbations.py": "c3c494a718ffc369ef267eee4955b1c4f215259463956668adffd7ff042ab8ef",
     "data/atlas/study_context/6ha3/perturbation_context.json": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0",
     "data/atlas/study_context/6ha3/functional_review.json": "9af6d94d77800810d210e032e90e6af6a99ffd22a5548d9d39b5a7f502199200",
     "data/atlas/assembly_context/6ha3/review.json": "434188c22e847de2add0c76cc06076de9347d39ecd259acc051631792fcc7eaa",
@@ -31,17 +31,26 @@
     "data/atlas/study_context/ra95_2017/chemical_state.json": "0304a28cc9676ae9d920b5c4f6c47f102d10320e125cc40cbfddd971ccff695d",
     "data/atlas/study_context/ra95_2017/chemical_state_acquisition.json": "4b0427a24aab3b1269f25cd80b3b9c90f61c4a99404499d77cf0c16a8b5f2ecb",
     "docs/ATLAS_RA95_CHEMICAL_STATE.md": "a85ee7c6accdafb0f2fb63a1a658413e07788cee4a5f9f7879dce726c6707c01",
-    "CLAIMS.md": "aad29d5f45bd67ed549680a2dc48c46e769b1cbc813408dc1e3f154de308f67b",
-    "data/governance/claim_ledger.json": "39bb4376158531878d514fe19d96036dd6639cce51473275f024b7478fe49e58",
-    "docs/CURRENT_DECISIONS.md": "2e500907f90daab784855c2f14bb18777f757c02d045cc367049bdfaec81ef1c",
-    "docs/CURRENT_STATE.md": "a143eb6d0bc50f698999a605ac42cda2937d009b580ef336df69548305561430",
+    "CLAIMS.md": "7ec9b8e8b44ee1c74aa12c81410363bfe7170f88ccc2d4a93d6cf739e77f5c79",
+    "data/governance/claim_ledger.json": "526693e84640594400cf94adda25c4c2fababa78b95e449cb37d41db27ae43ab",
+    "docs/CURRENT_DECISIONS.md": "f4ee610ef9404367669c4b3ef26f3f0611d0ac55068024093dc4509ad6d7e7dd",
+    "docs/CURRENT_STATE.md": "10da9d9fbcb67cf5616ec49acdba533c91836e40bf2793731ad1a6fd37e2b840",
     "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
     "src/catalytic_earth/atlas_deposit_context.py": "de95b7b107928b1390ecbbeb71a4949a2c8d9bafd1ef128b78681a0616101a76",
     "src/catalytic_earth/atlas_assembly_context.py": "5d671a761f3ad493661f3c25b50dce693ef2169a48942af9664a65e0b0ae0835",
     "scripts/build_atlas_deposit_context.py": "f64380b0398fcfb4ec89e99757c18c487050d4079dab4fe8a4e3fc9acce0be34",
     "data/atlas/deposit_context/ra95_5aou/review.json": "73b138bf2293cbf4c676cf895b5d9148fc5353e43b1f7a859206a571680880f2",
     "data/atlas/deposit_context/ra95_5an7/review.json": "7dbfe13783c9607150da46c3f9fdc26e8ce39665d7f50148ab5a50d481a0e3dd",
-    "data/atlas/study_context/ra95_2017/chemical_state_review.json": "3c57d4b7e584f486d515684aa1fcdb842566d8306f30fedd0172a31e0df1dac9"
+    "data/atlas/study_context/ra95_2017/chemical_state_review.json": "3c57d4b7e584f486d515684aa1fcdb842566d8306f30fedd0172a31e0df1dac9",
+    "data/atlas/deposit_context/ra95_4a2r/4A2R.cif": "c97bdf2cd975779e50e9e57cbe66da80aa37c2e1ac43077ab6e1076ec3b0d19f",
+    "data/atlas/deposit_context/ra95_4a2r/spec.json": "15c52054869935ff6c0c5034044d287ade531e6bd353e47b74c62c02d21f87f8",
+    "data/atlas/deposit_context/ra95_4a2r/projection.json": "ea3117cea3d83e156534abcc1efd62f10ed056a1965ba7e99a0974ac915b3461",
+    "data/atlas/study_context/ra95_2013/chemical_state.json": "a9b7df48d5684fc014ced487477364eb8d9b2072817e3be4c64837a364df0670",
+    "data/atlas/study_context/ra95_2013/chemical_state_acquisition.json": "7efd0b0efdb32572d369194fc4e9eedd84b0a184aa8c9f10b7af50766b4c1da9",
+    "tests/test_truth_guard.py": "3a5c7f86f417bcb6b2ccd2eb95e1682a090e1c948d7b90f9a488709553d2c067",
+    "docs/ATLAS_RA95_4A2R_STATE.md": "3e232b1bf17f5c316d126c2476c1b87dbf120a8584bcd1db00aa51db9df5a1f9",
+    "data/atlas/study_context/ra95_2013/chemical_state_review.json": "12864f833532eff632016804fbf322e1828c33c3cabf840b2cd08b8f0ea99ebf",
+    "data/atlas/deposit_context/ra95_4a2r/review.json": "dc017d8ed45a52dade5c04a77c42d734fa34926b67cefa043a35f0d9bb605a20"
   },
   "inherited_source_bindings": {
     "ra95f": {
@@ -96,21 +105,21 @@
   "review_process": [
     {
       "role": "source",
-      "task": "ra95_source",
+      "task": "ra95_4a2r_source",
       "model": "gpt-5.6-sol",
       "reasoning_effort": "ultra",
       "status": "accepted_exact_manifest"
     },
     {
       "role": "representation",
-      "task": "ra95_representation",
+      "task": "ra95_4a2r_representation",
       "model": "gpt-5.6-sol",
       "reasoning_effort": "ultra",
       "status": "accepted_exact_manifest"
     },
     {
       "role": "adversarial",
-      "task": "ra95_adversarial",
+      "task": "ra95_4a2r_adversarial",
       "model": "gpt-5.6-sol",
       "reasoning_effort": "ultra",
       "status": "accepted_exact_manifest"
@@ -296,6 +305,34 @@
     {
       "objection": "Exact sequence matching could silently imply complete chemistry, identical material, or any same-construct functional endpoint.",
       "decision": "Typed state link binds exact source row/parameters and canonical sequence only; source conflicts and incomplete adduct graph remain in data; public projection rebuilds reviewed deposits."
+    },
+    {
+      "objection": "Source challenge required inhibitor synthesis/identity provenance; exactP42 recipe and unusual source[M+H]+242.09 values are now retained with author-onlyNMR and no spectral or material authentication.",
+      "decision": "Source-scoped data and query constraints preserve the boundary; exact15-file manifest accepted by all three current roles."
+    },
+    {
+      "objection": "Exact258-aa source/deposit correspondence does not identify physical assay/crystal material or mutant state.",
+      "decision": "Source-scoped data and query constraints preserve the boundary; exact15-file manifest accepted by all three current roles."
+    },
+    {
+      "objection": "Source4/3NK precursor assignment is retained separately from reacted graph; ONA omitted, unknown interfragment order, retainedC12hydrogens and sourceC2/depositC13 nomenclature do not justify repair.",
+      "decision": "Source-scoped data and query constraints preserve the boundary; exact15-file manifest accepted by all three current roles."
+    },
+    {
+      "objection": "Source phosphate0.1M and deposited0.2M remain unresolved; source70:30 poses and current0.67/0.33 occupancies remain distinct.",
+      "decision": "Source-scoped data and query constraints preserve the boundary; exact15-file manifest accepted by all three current roles."
+    },
+    {
+      "objection": "All nine comparison requests remain visible, including threeKM abstentions and small positive double-mutant parameters.",
+      "decision": "Source-scoped data and query constraints preserve the boundary; exact15-file manifest accepted by all three current roles."
+    },
+    {
+      "objection": "Optional CLI filter admits ratio/multiplicative operations only; exact parent/denominator observations anchor retrieval, without making mutant state links.",
+      "decision": "Source-scoped data and query constraints preserve the boundary; exact15-file manifest accepted by all three current roles."
+    },
+    {
+      "objection": "Existing193observations/111comparisons/sourcecontexts/witnesses/8Fstate remain object-equal to base; row-only deposit avoids redundant geometry expansion.",
+      "decision": "Source-scoped data and query constraints preserve the boundary; exact15-file manifest accepted by all three current roles."
     }
   ],
   "remaining_limits": [
@@ -319,26 +356,22 @@
     "This completes a distinct source-conflict relation; repeated migration of cached tables alone is not a justified next scientific task.",
     "The 2017 prior-method citation does not authenticate an exact assay-substrate lot or repeat the 2013 characterization; no substrate mismatch or numerical error was demonstrated by this correction."
   ],
-  "coordination_record": "work/coordination_ra95_chemical_state_20260910.md",
+  "coordination_record": "work/coordination_ra95_4a2r_20260910.md",
   "added_source_bindings": {
-    "betaf": {
-      "path": "data/atlas/study_context/beta_barrel_2022/source_qualification.json",
-      "sha256": "9b1a98b0be873f361c75f6431684a92c2c769a77bc3450988537669860533d7a"
+    "ra95_4a2r": {
+      "path": "data/atlas/deposit_context/ra95_4a2r/projection.json",
+      "sha256": "ea3117cea3d83e156534abcc1efd62f10ed056a1965ba7e99a0974ac915b3461"
     },
-    "betai": {
-      "path": "data/atlas/study_context/beta_barrel_2022/perturbation_context.json",
-      "sha256": "1fc756ce8005249c6f586685c0bced3de938fe14926f1a5fee96abffe427bc1a"
-    },
-    "betar": {
-      "path": "data/atlas/study_context/beta_barrel_2022/acquisition_receipts.json",
-      "sha256": "415daa1a2b8baad6d7368f9623b943442e4be16910c59d45903e44d2efa873e5"
+    "ra95_2013_state": {
+      "path": "data/atlas/study_context/ra95_2013/chemical_state.json",
+      "sha256": "a9b7df48d5684fc014ced487477364eb8d9b2072817e3be4c64837a364df0670"
     }
   },
   "prior_review_binding": {
-    "base_commit": "df81264b3a33efdfe8e0faf53c32ad4e9a069084",
+    "base_commit": "6133d2722b88d04018ded0e5be419a756ddd7901",
     "path": "data/atlas/perturbations/review.json",
-    "sha256": "cae07331f063a16471f256aa4d4cf8c5550789dc83d6ce4b47b5f0c40fa392a2",
-    "scope": "Previous observations, comparisons, constructs, assays, substrates, reactions, evidence_context and17source witnesses unchanged."
+    "sha256": "5f44c9d339b5573a7c2fc75b4d0d2b5525d1b2de29feb2f08c7485c45ee05885",
+    "scope": "All prior observations,comparisons,constructs,assays,substrates,reactions,evidence_context,17witnesses and8Fstate unchanged; only a new4A2Rstate link and optional retrieval added."
   },
   "forward_synthesis_limits": [
     "Forward product configuration is source-assigned; R/S retention mappings remain conflicted and no assignment transfers to the0.7%precursor conversion arm.",
@@ -346,11 +379,11 @@
   ],
   "this_run_source_access": {
     "batch_id": "designed-retroaldolase-ra95-giger2013",
-    "new_requests": 2,
-    "new_response_body_bytes": 1237896,
-    "cumulative_requests": 26,
-    "cumulative_response_body_bytes": 16591234,
-    "source_accounting": "complete; acquisition stopped; two public RCSB mmCIFs retained; previous17primary witnesses unchanged"
+    "new_requests": 1,
+    "new_response_body_bytes": 707575,
+    "cumulative_requests": 27,
+    "cumulative_response_body_bytes": 17298809,
+    "source_accounting": "complete; acquisition stopped; public4A2R CIF retained and17primary witnesses unchanged"
   },
   "transport_followup_review": {
     "reviewed_at_utc": "2026-09-10T10:40:07.718165+00:00",
@@ -379,8 +412,8 @@
     }
   ],
   "verification_followup": {
-    "change": "tests/test_truth_guard.py claim-count assertion33to34 for newCE034",
-    "review": "parent diff check; no weakening of chemistry, gating or prior claim assertions",
+    "change": "tests/test_truth_guard.py claim-count assertion34to35 forCE035",
+    "review": "included in accepted15-file manifest; no gate weakened",
     "not_scientific_data_change": true
   }
 }

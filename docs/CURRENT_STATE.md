@@ -1,5 +1,15 @@
 # Current State
 
+## 2026-09-10: exact parent attachment accompanies matched residue sensitivity
+
+The [RA95.5-5/4A2R relation](ATLAS_RA95_4A2R_STATE.md) links the full258-aa
+parent to two alternative Lys83–3NK attachment records. It retains unknown
+reacted bond order/protonation, the missing precursor oxygen and the source
+phosphate conflict. The shared query can include all nine matched mutant
+comparison requests, including threeKM abstentions, while states stay
+parent-only. CE-035 adds no observation, causal geometry or evidence tier.
+One publicCIF request brings the cumulativeRA95 batch to27/17,298,809.
+
 ## 2026-09-10: RA95 parent function connects to chemically limited deposits
 
 The [construct-to-state query](ATLAS_RA95_CHEMICAL_STATE.md) resolves the existing
