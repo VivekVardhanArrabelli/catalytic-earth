@@ -1,0 +1,75 @@
+{
+  "schema_version": "catalytic-earth.perturbation-source-review.v1",
+  "status": "source_reviewed_computational",
+  "reviewed_at_utc": "2026-09-10T07:31:10.675528+00:00",
+  "scope": "Accepted source annotations projected into one perturbation relation; no new measurements, biological claims, independent validation or registry admission.",
+  "reviewed_bindings": {
+    "data/atlas/perturbations/projection.json": "bf83935d74056aa93806f51dd380847499e7f149470eec2650ff5d75d25b7fef",
+    "src/catalytic_earth/atlas_perturbations.py": "1350800d1942ad5b7bf2e826a0bf2f1480d53a8bc098b1b55e81ff1c5d723fb3",
+    "scripts/query_atlas_perturbations.py": "87fd01dcc9f9ec737579d39c46ea007c60c70a50da745a77c6c64591fceaba51",
+    "docs/ATLAS_PERTURBATION_RELATION.md": "022b19b9140379c775551e275eb5dd2acc1ef4af0ffff07ac28266e66f061e1a"
+  },
+  "inherited_source_bindings": {
+    "ra95f": {
+      "path": "data/atlas/study_context/ra95_2013/functional_comparison.json",
+      "sha256": "0e2fe21efce4d805fdef8505770c0cf18557ed774c08a79cfc5e68c1b1fbf94a"
+    },
+    "ra95s": {
+      "path": "data/atlas/study_context/ra95_2013/stereoselectivity.json",
+      "sha256": "430065ef058082fd59c0fa32fb2a0dcc7009fa325bb589467db708551a5cbd83"
+    },
+    "ra95t": {
+      "path": "data/atlas/study_context/ra95_2017/source_qualification.json",
+      "sha256": "6a7867da4e141c79ecb0c5542b3c5ab8b9aca20d638554c504612fde3930398d"
+    },
+    "ra61": {
+      "path": "data/atlas/study_context/ra61_2010/component_evidence.json",
+      "sha256": "6b44023c7a4c002f1325f39550744632e245659900f819f373e6a7435482b2bc"
+    },
+    "ke59": {
+      "path": "data/atlas/study_context/ke59_2012/source_qualification.json",
+      "sha256": "377da7aa8ab0966aef24757c8a00423c336feb46b41682010a10f4957670c558"
+    }
+  },
+  "review_process": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "ultra",
+    "roles": [
+      "ra95_source",
+      "ra61_ke59_source",
+      "relation_challenge"
+    ],
+    "independent_human_review": false,
+    "correlated_errors_possible": true,
+    "parent_adjudication": "Source-scoped content accepted. Public query requires exact reviewed mappings and consumer bytes; candidate projector is internal and explicitly unreviewed. Source objections are binding; publication also requires final diff and head-specific CI."
+  },
+  "resolved_objections": [
+    {
+      "issue": "Unmarked RA95 rows hid source-reported plus-minus magnitudes in the common uncertainty field.",
+      "resolution": "Generic data selectors preserve magnitude and unresolved statistic type; conflicted KM error units remain as printed."
+    },
+    {
+      "issue": "Unassessed KE59 question inherited dimensionless arithmetic metadata.",
+      "resolution": "Unit remains null; abstention-specific interpretation and no matched control/measurement."
+    },
+    {
+      "issue": "Altered assay/parameter/provider mappings could produce eligible mismatched relations.",
+      "resolution": "Validate source IDs, perturbation/background providers, parameter fields/units/markers, evidence/context refs and typed uncertainties. A mandatory exact review gate additionally binds curated interpretation mappings and all source references."
+    },
+    {
+      "issue": "Nondetection and inconsistent stereochemical triplet needed common semantics.",
+      "resolution": "Normalize token/scope/detection limit without zero coercion; generic row checks read the source eligibility flag."
+    },
+    {
+      "issue": "A cache claim without retained-byte verification could be mistaken for durable primary evidence.",
+      "resolution": "Validate witness metadata bindings; separately verify local bytes with --verify-witnesses. Public default explicitly labels cache availability unchecked."
+    }
+  ],
+  "remaining_limits": [
+    "Scientific classification in the mapping is computational curation, not a proof from a source hash. Changing it requires renewed review.",
+    "Comparisons are source-rounded descriptive arithmetic, not inferential statistics or causal roles.",
+    "Source witness bytes are host-local and not redistributed. No new source requests.",
+    "Full 2017 main body, KE59 supplement and RA61 earlier-study sequence/lysine controls remain unassessed where stated."
+  ],
+  "coordination_record": "work/coordination_perturbation_relation_20260910.md"
+}

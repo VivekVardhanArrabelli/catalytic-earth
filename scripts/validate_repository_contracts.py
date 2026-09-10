@@ -447,6 +447,7 @@ def main() -> int:
     _run("scripts/build_atlas_mechanism_evidence.py", "--check")
     _run("scripts/build_atlas_structural_context.py", "--check")
     _run("scripts/validate_atlas_study_context.py")
+    _run("scripts/query_atlas_perturbations.py", "--check")
     _run("scripts/build_atlas_assembly_context.py", "--check")
     for spec_path in sorted((ROOT / "data/atlas/deposit_context").glob("*/spec.json")):
         _run("scripts/build_atlas_deposit_context.py", "--packet",

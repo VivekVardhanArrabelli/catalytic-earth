@@ -1,0 +1,3065 @@
+{
+  "schema_version": "catalytic-earth.perturbation-projection.v1",
+  "scope": {
+    "question": "Which source-defined catalytic-group perturbations retain a measured endpoint, and which apparent comparisons cannot be transferred?",
+    "evidence": "Projection of accepted source annotations; not new measurements, an independent evaluation, protein admission or evidence-tier promotion.",
+    "selection": "All rows of the accepted RA95 2013 kinetic and stereoselectivity tables and RA95 2017 kinetic panel; all six RA61 Table4 construct rows; all five KE59 Table2 pH-profile rows and its unassessed E230-control question. The beta-barrel packet is outside this bounded relation.",
+    "arithmetic": "Source-rounded central values, same-source assay and background only; reported efficiencies are never replaced by kcat/KM division.",
+    "identity": "Exact sequence/provider availability is separate from study-declared construct association and physical assay-specimen identity.",
+    "limitations": "No pooled rates, generic inactivity labels, causal residue assignments, full apparatus claims, microscopic coupling energy or design-success estimates."
+  },
+  "sources": {
+    "ra95f": {
+      "path": "data/atlas/study_context/ra95_2013/functional_comparison.json",
+      "sha256": "0e2fe21efce4d805fdef8505770c0cf18557ed774c08a79cfc5e68c1b1fbf94a"
+    },
+    "ra95s": {
+      "path": "data/atlas/study_context/ra95_2013/stereoselectivity.json",
+      "sha256": "430065ef058082fd59c0fa32fb2a0dcc7009fa325bb589467db708551a5cbd83"
+    },
+    "ra95t": {
+      "path": "data/atlas/study_context/ra95_2017/source_qualification.json",
+      "sha256": "6a7867da4e141c79ecb0c5542b3c5ab8b9aca20d638554c504612fde3930398d"
+    },
+    "ra61": {
+      "path": "data/atlas/study_context/ra61_2010/component_evidence.json",
+      "sha256": "6b44023c7a4c002f1325f39550744632e245659900f819f373e6a7435482b2bc"
+    },
+    "ke59": {
+      "path": "data/atlas/study_context/ke59_2012/source_qualification.json",
+      "sha256": "377da7aa8ab0966aef24757c8a00423c336feb46b41682010a10f4957670c558"
+    }
+  },
+  "constructs": {
+    "ra95_2013:RA95.0": {
+      "source_construct_id": "RA95.0",
+      "provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/0"
+      },
+      "sequence_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/0"
+      },
+      "background_id": "ra95_2013:RA95.0",
+      "perturbation": [],
+      "perturbation_scope": "source-defined reference/background; source lineage changes remain separate in provider",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": null,
+      "background_provider": null
+    },
+    "ra95_2013:RA95.5": {
+      "source_construct_id": "RA95.5",
+      "provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/1"
+      },
+      "sequence_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/1"
+      },
+      "background_id": "ra95_2013:RA95.5",
+      "perturbation": [],
+      "perturbation_scope": "source-defined reference/background; source lineage changes remain separate in provider",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": null,
+      "background_provider": null
+    },
+    "ra95_2013:RA95.5-5": {
+      "source_construct_id": "RA95.5-5",
+      "provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/2"
+      },
+      "sequence_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/2"
+      },
+      "background_id": "ra95_2013:RA95.5-5",
+      "perturbation": [],
+      "perturbation_scope": "source-defined reference/background; source lineage changes remain separate in provider",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": null,
+      "background_provider": null
+    },
+    "ra95_2013:RA95.5-8": {
+      "source_construct_id": "RA95.5-8",
+      "provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/3"
+      },
+      "sequence_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/3"
+      },
+      "background_id": "ra95_2013:RA95.5-8",
+      "perturbation": [],
+      "perturbation_scope": "source-defined reference/background; source lineage changes remain separate in provider",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": null,
+      "background_provider": null
+    },
+    "ra95_2013:RA95.0-K210M": {
+      "source_construct_id": "RA95.0-K210M",
+      "provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/4"
+      },
+      "sequence_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/4"
+      },
+      "background_id": "ra95_2013:RA95.0",
+      "perturbation": [
+        "K210M"
+      ],
+      "perturbation_scope": "source-declared substitutions in the named comparison background",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/4/sequence_delta_from_parent"
+      },
+      "background_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/4/sequence_parent_id"
+      }
+    },
+    "ra95_2013:RA95.0-T83K/K210M": {
+      "source_construct_id": "RA95.0-T83K/K210M",
+      "provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/5"
+      },
+      "sequence_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/5"
+      },
+      "background_id": "ra95_2013:RA95.0",
+      "perturbation": [
+        "T83K",
+        "K210M"
+      ],
+      "perturbation_scope": "source-declared substitutions in the named comparison background",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/5/sequence_delta_from_parent"
+      },
+      "background_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/5/sequence_parent_id"
+      }
+    },
+    "ra95_2013:RA95.5-K83M": {
+      "source_construct_id": "RA95.5-K83M",
+      "provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/6"
+      },
+      "sequence_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/6"
+      },
+      "background_id": "ra95_2013:RA95.5",
+      "perturbation": [
+        "K83M"
+      ],
+      "perturbation_scope": "source-declared substitutions in the named comparison background",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/6/sequence_delta_from_parent"
+      },
+      "background_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/6/sequence_parent_id"
+      }
+    },
+    "ra95_2013:RA95.5-K210M": {
+      "source_construct_id": "RA95.5-K210M",
+      "provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/7"
+      },
+      "sequence_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/7"
+      },
+      "background_id": "ra95_2013:RA95.5",
+      "perturbation": [
+        "K210M"
+      ],
+      "perturbation_scope": "source-declared substitutions in the named comparison background",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/7/sequence_delta_from_parent"
+      },
+      "background_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/7/sequence_parent_id"
+      }
+    },
+    "ra95_2013:RA95.5-K83M/K210M": {
+      "source_construct_id": "RA95.5-K83M/K210M",
+      "provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/8"
+      },
+      "sequence_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/8"
+      },
+      "background_id": "ra95_2013:RA95.5",
+      "perturbation": [
+        "K83M",
+        "K210M"
+      ],
+      "perturbation_scope": "source-declared substitutions in the named comparison background",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/8/sequence_delta_from_parent"
+      },
+      "background_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/8/sequence_parent_id"
+      }
+    },
+    "ra95_2013:RA95.5-5-K83M": {
+      "source_construct_id": "RA95.5-5-K83M",
+      "provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/9"
+      },
+      "sequence_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/9"
+      },
+      "background_id": "ra95_2013:RA95.5-5",
+      "perturbation": [
+        "K83M"
+      ],
+      "perturbation_scope": "source-declared substitutions in the named comparison background",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/9/sequence_delta_from_parent"
+      },
+      "background_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/9/sequence_parent_id"
+      }
+    },
+    "ra95_2013:RA95.5-5-K210M": {
+      "source_construct_id": "RA95.5-5-K210M",
+      "provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/10"
+      },
+      "sequence_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/10"
+      },
+      "background_id": "ra95_2013:RA95.5-5",
+      "perturbation": [
+        "K210M"
+      ],
+      "perturbation_scope": "source-declared substitutions in the named comparison background",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/10/sequence_delta_from_parent"
+      },
+      "background_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/10/sequence_parent_id"
+      }
+    },
+    "ra95_2013:RA95.5-5-K83M/K210M": {
+      "source_construct_id": "RA95.5-5-K83M/K210M",
+      "provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/11"
+      },
+      "sequence_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/11"
+      },
+      "background_id": "ra95_2013:RA95.5-5",
+      "perturbation": [
+        "K83M",
+        "K210M"
+      ],
+      "perturbation_scope": "source-declared substitutions in the named comparison background",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/11/sequence_delta_from_parent"
+      },
+      "background_provider": {
+        "source": "ra95f",
+        "pointer": "/constructs/11/sequence_parent_id"
+      }
+    },
+    "ra95_2017:RA95.5-8F": {
+      "source_construct_id": "RA95.5-8F",
+      "provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/0"
+      },
+      "sequence_provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/0"
+      },
+      "background_id": "ra95_2017:RA95.5-8F",
+      "perturbation": [],
+      "perturbation_scope": "source-defined reference/background; source lineage changes remain separate in provider",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": null,
+      "background_provider": null
+    },
+    "ra95_2017:RA95.5-8F:K83M": {
+      "source_construct_id": "RA95.5-8F:K83M",
+      "provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/1"
+      },
+      "sequence_provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/1"
+      },
+      "background_id": "ra95_2017:RA95.5-8F",
+      "perturbation": [
+        "K83M"
+      ],
+      "perturbation_scope": "source-declared substitutions in the named comparison background",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/1/declared_substitutions"
+      },
+      "background_provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/1/parent_construct_id"
+      }
+    },
+    "ra95_2017:RA95.5-8F:Y51F": {
+      "source_construct_id": "RA95.5-8F:Y51F",
+      "provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/2"
+      },
+      "sequence_provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/2"
+      },
+      "background_id": "ra95_2017:RA95.5-8F",
+      "perturbation": [
+        "Y51F"
+      ],
+      "perturbation_scope": "source-declared substitutions in the named comparison background",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/2/declared_substitutions"
+      },
+      "background_provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/2/parent_construct_id"
+      }
+    },
+    "ra95_2017:RA95.5-8F:N110S": {
+      "source_construct_id": "RA95.5-8F:N110S",
+      "provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/3"
+      },
+      "sequence_provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/3"
+      },
+      "background_id": "ra95_2017:RA95.5-8F",
+      "perturbation": [
+        "N110S"
+      ],
+      "perturbation_scope": "source-declared substitutions in the named comparison background",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/3/declared_substitutions"
+      },
+      "background_provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/3/parent_construct_id"
+      }
+    },
+    "ra95_2017:RA95.5-8F:Y180F": {
+      "source_construct_id": "RA95.5-8F:Y180F",
+      "provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/4"
+      },
+      "sequence_provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/4"
+      },
+      "background_id": "ra95_2017:RA95.5-8F",
+      "perturbation": [
+        "Y180F"
+      ],
+      "perturbation_scope": "source-declared substitutions in the named comparison background",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/4/declared_substitutions"
+      },
+      "background_provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/4/parent_construct_id"
+      }
+    },
+    "ra95_2017:RA95.5-8F:Y51F/Y180F": {
+      "source_construct_id": "RA95.5-8F:Y51F/Y180F",
+      "provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/5"
+      },
+      "sequence_provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/5"
+      },
+      "background_id": "ra95_2017:RA95.5-8F",
+      "perturbation": [
+        "Y51F",
+        "Y180F"
+      ],
+      "perturbation_scope": "source-declared substitutions in the named comparison background",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/5/declared_substitutions"
+      },
+      "background_provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/5/parent_construct_id"
+      }
+    },
+    "ra95_2017:RA95.5-8F:Y51F/N110S/Y180F": {
+      "source_construct_id": "RA95.5-8F:Y51F/N110S/Y180F",
+      "provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/6"
+      },
+      "sequence_provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/6"
+      },
+      "background_id": "ra95_2017:RA95.5-8F",
+      "perturbation": [
+        "Y51F",
+        "N110S",
+        "Y180F"
+      ],
+      "perturbation_scope": "source-declared substitutions in the named comparison background",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/6/declared_substitutions"
+      },
+      "background_provider": {
+        "source": "ra95t",
+        "pointer": "/constructs/6/parent_construct_id"
+      }
+    },
+    "ra61_2010:RA61": {
+      "source_construct_id": "RA61",
+      "provider": {
+        "source": "ra61",
+        "pointer": "/constructs/0"
+      },
+      "sequence_provider": {
+        "source": "ra61",
+        "pointer": "/constructs/0"
+      },
+      "background_id": "ra61_2010:RA61",
+      "perturbation": [],
+      "perturbation_scope": "source-defined reference/background; source lineage changes remain separate in provider",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": null,
+      "background_provider": null
+    },
+    "ra61_2010:RA61-Y78F": {
+      "source_construct_id": "RA61-Y78F",
+      "provider": {
+        "source": "ra61",
+        "pointer": "/constructs/1"
+      },
+      "sequence_provider": {
+        "source": "ra61",
+        "pointer": "/constructs/1"
+      },
+      "background_id": "ra61_2010:RA61",
+      "perturbation": [
+        "Y78F"
+      ],
+      "perturbation_scope": "source-declared substitutions in the named comparison background",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": {
+        "source": "ra61",
+        "pointer": "/constructs/1/declared_substitutions"
+      },
+      "background_provider": {
+        "source": "ra61",
+        "pointer": "/constructs/1/declared_parent_id"
+      }
+    },
+    "ra61_2010:RA61-Y78A": {
+      "source_construct_id": "RA61-Y78A",
+      "provider": {
+        "source": "ra61",
+        "pointer": "/constructs/2"
+      },
+      "sequence_provider": {
+        "source": "ra61",
+        "pointer": "/constructs/2"
+      },
+      "background_id": "ra61_2010:RA61",
+      "perturbation": [
+        "Y78A"
+      ],
+      "perturbation_scope": "source-declared substitutions in the named comparison background",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": {
+        "source": "ra61",
+        "pointer": "/constructs/2/declared_substitutions"
+      },
+      "background_provider": {
+        "source": "ra61",
+        "pointer": "/constructs/2/declared_parent_id"
+      }
+    },
+    "ra61_2010:RA61-S87A": {
+      "source_construct_id": "RA61-S87A",
+      "provider": {
+        "source": "ra61",
+        "pointer": "/constructs/3"
+      },
+      "sequence_provider": {
+        "source": "ra61",
+        "pointer": "/constructs/3"
+      },
+      "background_id": "ra61_2010:RA61",
+      "perturbation": [
+        "S87A"
+      ],
+      "perturbation_scope": "source-declared substitutions in the named comparison background",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": {
+        "source": "ra61",
+        "pointer": "/constructs/3/declared_substitutions"
+      },
+      "background_provider": {
+        "source": "ra61",
+        "pointer": "/constructs/3/declared_parent_id"
+      }
+    },
+    "ra61_2010:RA61-S87G": {
+      "source_construct_id": "RA61-S87G",
+      "provider": {
+        "source": "ra61",
+        "pointer": "/constructs/4"
+      },
+      "sequence_provider": {
+        "source": "ra61",
+        "pointer": "/constructs/4"
+      },
+      "background_id": "ra61_2010:RA61",
+      "perturbation": [
+        "S87G"
+      ],
+      "perturbation_scope": "source-declared substitutions in the named comparison background",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": {
+        "source": "ra61",
+        "pointer": "/constructs/4/declared_substitutions"
+      },
+      "background_provider": {
+        "source": "ra61",
+        "pointer": "/constructs/4/declared_parent_id"
+      }
+    },
+    "ra61_2010:RA61-Y78F-S87A": {
+      "source_construct_id": "RA61-Y78F-S87A",
+      "provider": {
+        "source": "ra61",
+        "pointer": "/constructs/5"
+      },
+      "sequence_provider": {
+        "source": "ra61",
+        "pointer": "/constructs/5"
+      },
+      "background_id": "ra61_2010:RA61",
+      "perturbation": [
+        "Y78F",
+        "S87A"
+      ],
+      "perturbation_scope": "source-declared substitutions in the named comparison background",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": {
+        "source": "ra61",
+        "pointer": "/constructs/5/declared_substitutions"
+      },
+      "background_provider": {
+        "source": "ra61",
+        "pointer": "/constructs/5/declared_parent_id"
+      }
+    },
+    "ke59_2012:KE59 design": {
+      "source_construct_id": "KE59 design",
+      "provider": {
+        "source": "ke59",
+        "pointer": "/constructs/0"
+      },
+      "sequence_provider": {
+        "source": "ke59",
+        "pointer": "/constructs/0"
+      },
+      "background_id": "ke59_2012:KE59 design",
+      "perturbation": [],
+      "perturbation_scope": "source-defined reference/background; source lineage changes remain separate in provider",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": null,
+      "background_provider": null
+    },
+    "ke59_2012:R1-7/10H": {
+      "source_construct_id": "R1-7/10H",
+      "provider": {
+        "source": "ke59",
+        "pointer": "/constructs/1"
+      },
+      "sequence_provider": {
+        "source": "ke59",
+        "pointer": "/constructs/1"
+      },
+      "background_id": "ke59_2012:R1-7/10H",
+      "perturbation": [],
+      "perturbation_scope": "source-defined reference/background; source lineage changes remain separate in provider",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": null,
+      "background_provider": null
+    },
+    "ke59_2012:R2-4/3D": {
+      "source_construct_id": "R2-4/3D",
+      "provider": {
+        "source": "ke59",
+        "pointer": "/constructs/2"
+      },
+      "sequence_provider": {
+        "source": "ke59",
+        "pointer": "/constructs/2"
+      },
+      "background_id": "ke59_2012:R2-4/3D",
+      "perturbation": [],
+      "perturbation_scope": "source-defined reference/background; source lineage changes remain separate in provider",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": null,
+      "background_provider": null
+    },
+    "ke59_2012:R4-5/11B": {
+      "source_construct_id": "R4-5/11B",
+      "provider": {
+        "source": "ke59",
+        "pointer": "/constructs/3"
+      },
+      "sequence_provider": {
+        "source": "ke59",
+        "pointer": "/constructs/3"
+      },
+      "background_id": "ke59_2012:R4-5/11B",
+      "perturbation": [],
+      "perturbation_scope": "source-defined reference/background; source lineage changes remain separate in provider",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": null,
+      "background_provider": null
+    },
+    "ke59_2012:R8-2/7A": {
+      "source_construct_id": "R8-2/7A",
+      "provider": {
+        "source": "ke59",
+        "pointer": "/constructs/4"
+      },
+      "sequence_provider": {
+        "source": "ke59",
+        "pointer": "/constructs/4"
+      },
+      "background_id": "ke59_2012:R8-2/7A",
+      "perturbation": [],
+      "perturbation_scope": "source-defined reference/background; source lineage changes remain separate in provider",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": null,
+      "background_provider": null
+    },
+    "ke59_2012:R9-1/4A": {
+      "source_construct_id": "R9-1/4A",
+      "provider": {
+        "source": "ke59",
+        "pointer": "/constructs/5"
+      },
+      "sequence_provider": {
+        "source": "ke59",
+        "pointer": "/constructs/5"
+      },
+      "background_id": "ke59_2012:R9-1/4A",
+      "perturbation": [],
+      "perturbation_scope": "source-defined reference/background; source lineage changes remain separate in provider",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": null,
+      "background_provider": null
+    },
+    "ke59_2012:R13-3/11H": {
+      "source_construct_id": "R13-3/11H",
+      "provider": {
+        "source": "ke59",
+        "pointer": "/constructs/6"
+      },
+      "sequence_provider": {
+        "source": "ke59",
+        "pointer": "/constructs/6"
+      },
+      "background_id": "ke59_2012:R13-3/11H",
+      "perturbation": [],
+      "perturbation_scope": "source-defined reference/background; source lineage changes remain separate in provider",
+      "identity_scope": "within-study named construct; sequence presence is not assay-specimen authentication",
+      "perturbation_provider": null,
+      "background_provider": null
+    }
+  },
+  "assays": {
+    "ra95_2013:racemic_methodol_uvvis": {
+      "provider": {
+        "source": "ra95f",
+        "pointer": "/assays/0"
+      },
+      "qualified": true,
+      "endpoint_kind": "source_reported_steady_state_cleavage",
+      "reaction_direction": "retro-aldol cleavage",
+      "uncertainty_context": "Main Table1 states SD of two to three independent measurements; SI Table1 footnote a specifies two to three independent protein batches. Do not sum these descriptions or infer an exact n per row.",
+      "source_assay_id": "racemic_methodol_uvvis"
+    },
+    "ra95_2013:racemic_methodol_fluorescence": {
+      "provider": {
+        "source": "ra95f",
+        "pointer": "/assays/1"
+      },
+      "qualified": true,
+      "endpoint_kind": "source_reported_steady_state_cleavage",
+      "reaction_direction": "retro-aldol cleavage",
+      "uncertainty_context": "SD from two independent measurements; independent protein-batch count for this table is not stated.",
+      "source_assay_id": "racemic_methodol_fluorescence"
+    },
+    "ra95_2013:si_table2_unmarked_technique_unresolved": {
+      "provider": {
+        "source": "ra95f",
+        "pointer": "/assays/2"
+      },
+      "qualified": false,
+      "endpoint_kind": "source_reported_steady_state_cleavage",
+      "reaction_direction": "retro-aldol cleavage",
+      "uncertainty_context": "unresolved for the unmarked source rows",
+      "source_assay_id": "si_table2_unmarked_technique_unresolved"
+    },
+    "ra95_2013:enantiopure_methodol_uvvis": {
+      "provider": {
+        "source": "ra95s",
+        "pointer": "/assays/0"
+      },
+      "qualified": true,
+      "endpoint_kind": "source_reported_steady_state_cleavage",
+      "reaction_direction": "retro-aldol cleavage",
+      "uncertainty_context": "SI Table1 footnote a: SD from measurements with two to three independent protein batches. Exact n per row is not given; a missing error bar is not zero uncertainty.",
+      "source_assay_id": "enantiopure_methodol_uvvis"
+    },
+    "ra95_2017:R-methodol-cleavage-UVVis29C": {
+      "provider": {
+        "source": "ra95t",
+        "pointer": "/assays/0"
+      },
+      "qualified": true,
+      "endpoint_kind": "source_reported_steady_state_cleavage",
+      "reaction_direction": "retro-aldol cleavage",
+      "uncertainty_context": "TableS1 SD of two to three independent measurements; exact n per row and efficiency SD unavailable.",
+      "source_assay_id": "R-methodol-cleavage-UVVis29C"
+    },
+    "ra61_2010:full_substrate_fluorescence": {
+      "provider": {
+        "source": "ra61",
+        "pointer": "/assays/0"
+      },
+      "qualified": true,
+      "endpoint_kind": "initial_rate_through_aldehyde_formation",
+      "reaction_direction": "retro-aldol cleavage through aldehyde formation; later cycle steps not measured",
+      "uncertainty_context": "No printed uncertainty for selected Table4 rates.",
+      "source_assay_id": "full_substrate_fluorescence"
+    },
+    "ke59_2012:5-nitro-BI_pH-rate-series": {
+      "provider": {
+        "source": "ke59",
+        "pointer": "/assays/0"
+      },
+      "qualified": false,
+      "endpoint_kind": "apparent_pKa_from_pH_profile",
+      "reaction_direction": "Kemp elimination; pH-profile parameter only",
+      "uncertainty_context": "No complete pH-series buffer/temperature/replication/fitting specification in retained main text; cited methods and SI are not acquired. Do not transfer fixed-pH routine kinetics conditions to the varied-pH series.",
+      "source_assay_id": "5-nitro-BI_pH-rate-series"
+    }
+  },
+  "substrates": {
+    "methodol:racemic": {
+      "name": "methodol",
+      "stereochemistry": "racemic; not a separately assayed enantiomer",
+      "source": {
+        "source": "ra95f",
+        "pointer": "/assays/0/conditions"
+      }
+    },
+    "methodol:R": {
+      "substrate_id": "methodol:R",
+      "source_name": "(R)-methodol",
+      "source_chemical_name": "4-hydroxy-4-(6-methoxy-2-naphthyl)-2-butanone",
+      "source_absolute_configuration": "R",
+      "configuration_status": "source-assigned R/S; not a project-derived stereochemical graph",
+      "external_chemical_id": null,
+      "isomeric_smiles": null,
+      "enantiomeric_excess": null,
+      "preparation_source": "article Methods/S19/P41 (Methodol synthesis); preparative chiral HPLC separation and NMR/optical rotation agreement with cited literature",
+      "preparation_limit": "No row-specific substrate lot, raw chromatogram or exact ee is retained in this annotation."
+    },
+    "methodol:S": {
+      "substrate_id": "methodol:S",
+      "source_name": "(S)-methodol",
+      "source_chemical_name": "4-hydroxy-4-(6-methoxy-2-naphthyl)-2-butanone",
+      "source_absolute_configuration": "S",
+      "configuration_status": "source-assigned R/S; not a project-derived stereochemical graph",
+      "external_chemical_id": null,
+      "isomeric_smiles": null,
+      "enantiomeric_excess": null,
+      "preparation_source": "article Methods/S19/P41 (Methodol synthesis); preparative chiral HPLC separation and NMR/optical rotation agreement with cited literature",
+      "preparation_limit": "No row-specific substrate lot, raw chromatogram or exact ee is retained in this annotation."
+    },
+    "full_naphthyl": {
+      "substrate_id": "full_naphthyl",
+      "chemical_name": "4-hydroxy-4-(6-methoxy-2-naphthyl)-2-butanone",
+      "stereochemistry": "Synthesis and SI model use unresolved enantiomers; Table4/5 rates are not separate R or S measurements. No atom-mapped stereochemical object inferred.",
+      "external_chemical_id": null
+    },
+    "5-nitro-BI": {
+      "name": "5-nitrobenzisoxazole",
+      "stereochemistry": "not assigned in this annotation",
+      "source": {
+        "source": "ke59",
+        "pointer": "/assays/0"
+      }
+    }
+  },
+  "panels": [
+    {
+      "id": "ra95-kinetics",
+      "study_id": "ra95_2013",
+      "source": "ra95f",
+      "rows_pointer": "/variants",
+      "fields": {
+        "row_id": {
+          "pointer": "/row_id"
+        },
+        "construct_id": {
+          "pointer": "/construct_id"
+        },
+        "assay_id": {
+          "pointer": "/steady_state/assay_id"
+        },
+        "substrate_id": {
+          "literal": "methodol:racemic"
+        },
+        "source_locator": {
+          "pointer": "/source_locator"
+        }
+      },
+      "parameters": [
+        {
+          "id": "kcat",
+          "pointer": "/steady_state/k_cat",
+          "kind": {
+            "pointer": "/status"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "first_present": [
+                {
+                  "pointer": "/source_reported_plus_minus"
+                },
+                {
+                  "pointer": "/sd"
+                }
+              ]
+            },
+            "kind": {
+              "first_present": [
+                {
+                  "pointer": "/source_uncertainty_type"
+                },
+                {
+                  "literal": "standard_deviation_when_reported"
+                }
+              ]
+            },
+            "unreported_is_zero": {
+              "literal": false
+            },
+            "unit": {
+              "first_present": [
+                {
+                  "pointer": "/source_reported_unit"
+                },
+                {
+                  "pointer": "/unit"
+                }
+              ]
+            }
+          },
+          "status_kinds": {
+            "reported_point_estimate": "numeric",
+            "source_reported_numeric": "numeric",
+            "source_reported_point_estimate": "numeric",
+            "source_unit_conflict": "source_conflict",
+            "unavailable_no_activity_above_background_detected": "nondetection"
+          }
+        },
+        {
+          "id": "KM",
+          "pointer": "/steady_state/substrate_response_constant",
+          "kind": {
+            "pointer": "/status"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "first_present": [
+                {
+                  "pointer": "/source_reported_plus_minus"
+                },
+                {
+                  "pointer": "/sd"
+                }
+              ]
+            },
+            "kind": {
+              "first_present": [
+                {
+                  "pointer": "/source_uncertainty_type"
+                },
+                {
+                  "literal": "standard_deviation_when_reported"
+                }
+              ]
+            },
+            "unreported_is_zero": {
+              "literal": false
+            },
+            "unit": {
+              "first_present": [
+                {
+                  "pointer": "/source_reported_unit"
+                },
+                {
+                  "pointer": "/unit"
+                }
+              ]
+            }
+          },
+          "status_kinds": {
+            "reported_point_estimate": "numeric",
+            "source_reported_numeric": "numeric",
+            "source_reported_point_estimate": "numeric",
+            "source_unit_conflict": "source_conflict",
+            "unavailable_no_activity_above_background_detected": "nondetection"
+          }
+        },
+        {
+          "id": "kcat_over_KM",
+          "pointer": "/steady_state/source_reported_efficiency",
+          "kind": {
+            "pointer": "/status"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "first_present": [
+                {
+                  "pointer": "/source_reported_plus_minus"
+                },
+                {
+                  "pointer": "/sd"
+                }
+              ]
+            },
+            "kind": {
+              "first_present": [
+                {
+                  "pointer": "/source_uncertainty_type"
+                },
+                {
+                  "literal": "standard_deviation_when_reported"
+                }
+              ]
+            },
+            "unreported_is_zero": {
+              "literal": false
+            },
+            "unit": {
+              "first_present": [
+                {
+                  "pointer": "/source_reported_unit"
+                },
+                {
+                  "pointer": "/unit"
+                }
+              ]
+            }
+          },
+          "status_kinds": {
+            "reported_point_estimate": "numeric",
+            "source_reported_numeric": "numeric",
+            "source_reported_point_estimate": "numeric",
+            "source_unit_conflict": "source_conflict",
+            "unavailable_no_activity_above_background_detected": "nondetection"
+          }
+        }
+      ],
+      "nondetection": {
+        "source_token": {
+          "pointer": "/unavailable_reason/source_token"
+        },
+        "scope": {
+          "pointer": "/unavailable_reason/scope"
+        },
+        "numeric_detection_limit": {
+          "pointer": "/unavailable_reason/numeric_detection_limit"
+        },
+        "is_zero_rate": {
+          "pointer": "/unavailable_reason/is_zero_rate"
+        }
+      }
+    },
+    {
+      "id": "ra95-stereo",
+      "study_id": "ra95_2013",
+      "source": "ra95s",
+      "rows_pointer": "/variants",
+      "fields": {
+        "row_id": {
+          "pointer": "/row_id"
+        },
+        "construct_id": {
+          "pointer": "/construct_id"
+        },
+        "assay_id": {
+          "pointer": "/assay_id"
+        },
+        "substrate_id": {
+          "pointer": "/substrate_id"
+        },
+        "source_locator": {
+          "pointer": "/source"
+        }
+      },
+      "parameters": [
+        {
+          "id": "kcat",
+          "pointer": "/parameters/k_cat",
+          "kind": {
+            "pointer": "/status"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/uncertainty/value"
+            },
+            "kind": {
+              "pointer": "/uncertainty/kind"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          },
+          "status_kinds": {
+            "reported_point_estimate": "numeric",
+            "source_reported_numeric": "numeric",
+            "source_reported_point_estimate": "numeric",
+            "source_unit_conflict": "source_conflict",
+            "unavailable_no_activity_above_background_detected": "nondetection"
+          }
+        },
+        {
+          "id": "KM",
+          "pointer": "/parameters/K_M",
+          "kind": {
+            "pointer": "/status"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/uncertainty/value"
+            },
+            "kind": {
+              "pointer": "/uncertainty/kind"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          },
+          "status_kinds": {
+            "reported_point_estimate": "numeric",
+            "source_reported_numeric": "numeric",
+            "source_reported_point_estimate": "numeric",
+            "source_unit_conflict": "source_conflict",
+            "unavailable_no_activity_above_background_detected": "nondetection"
+          }
+        },
+        {
+          "id": "kcat_over_KM",
+          "pointer": "/parameters/k_cat_over_K_M",
+          "kind": {
+            "pointer": "/status"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/uncertainty/value"
+            },
+            "kind": {
+              "pointer": "/uncertainty/kind"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          },
+          "status_kinds": {
+            "reported_point_estimate": "numeric",
+            "source_reported_numeric": "numeric",
+            "source_reported_point_estimate": "numeric",
+            "source_unit_conflict": "source_conflict",
+            "unavailable_no_activity_above_background_detected": "nondetection"
+          }
+        }
+      ],
+      "row_checks": [
+        {
+          "selector": {
+            "pointer": "/normalized_kinetic_triplet_eligible"
+          },
+          "expected": true,
+          "reason": "source_inconsistent_kinetic_triplet_no_reconciled_preference"
+        }
+      ]
+    },
+    {
+      "id": "ra95-tetrad",
+      "study_id": "ra95_2017",
+      "source": "ra95t",
+      "rows_pointer": "/kinetic_observations",
+      "fields": {
+        "row_id": {
+          "pointer": "/row_id"
+        },
+        "construct_id": {
+          "pointer": "/construct_id"
+        },
+        "assay_id": {
+          "pointer": "/assay_id"
+        },
+        "substrate_id": {
+          "literal": "methodol:R"
+        },
+        "source_locator": {
+          "pointer": "/source"
+        }
+      },
+      "parameters": [
+        {
+          "id": "kcat",
+          "pointer": "/kcat",
+          "kind": {
+            "literal": "numeric"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/sd"
+            },
+            "kind": {
+              "literal": "standard_deviation_when_reported"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          }
+        },
+        {
+          "id": "KM",
+          "pointer": "/KM",
+          "kind": {
+            "literal": "numeric"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/sd"
+            },
+            "kind": {
+              "literal": "standard_deviation_when_reported"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          }
+        },
+        {
+          "id": "kcat_over_KM",
+          "pointer": "/kcat_over_KM",
+          "kind": {
+            "literal": "numeric"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/sd"
+            },
+            "kind": {
+              "literal": "standard_deviation_when_reported"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ra61-water",
+      "study_id": "ra61_2010",
+      "source": "ra61",
+      "rows_pointer": "/observations",
+      "fields": {
+        "row_id": {
+          "pointer": "/row_id"
+        },
+        "construct_id": {
+          "pointer": "/construct_id"
+        },
+        "assay_id": {
+          "pointer": "/assay_id"
+        },
+        "substrate_id": {
+          "pointer": "/substrate_id"
+        },
+        "source_locator": {
+          "pointer": "/source_locator"
+        }
+      },
+      "parameters": [
+        {
+          "id": "kcat_over_KM_obs",
+          "pointer": "",
+          "kind": {
+            "pointer": "/status"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/sd"
+            },
+            "kind": {
+              "literal": "not_reported"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          },
+          "status_kinds": {
+            "reported_point_estimate": "numeric",
+            "source_reported_numeric": "numeric",
+            "source_reported_point_estimate": "numeric",
+            "source_unit_conflict": "source_conflict",
+            "unavailable_no_activity_above_background_detected": "nondetection"
+          }
+        }
+      ],
+      "row_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "ke59-pH",
+      "study_id": "ke59_2012",
+      "source": "ke59",
+      "rows_pointer": "/variants",
+      "fields": {
+        "row_id": {
+          "pointer": "/row_id"
+        },
+        "construct_id": {
+          "pointer": "/construct_id"
+        },
+        "assay_id": {
+          "pointer": "/pH_profile/assay_id"
+        },
+        "substrate_id": {
+          "literal": "5-nitro-BI"
+        },
+        "source_locator": {
+          "pointer": "/source_locator"
+        }
+      },
+      "parameters": [
+        {
+          "id": "apparent_pKa_from_kcat",
+          "pointer": "/pH_profile/pKa_from_k_cat",
+          "kind": {
+            "pointer": "/status"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "literal": null
+            },
+            "kind": {
+              "literal": "not_reported"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          },
+          "status_kinds": {
+            "reported_point_estimate": "numeric",
+            "source_reported_numeric": "numeric",
+            "source_reported_point_estimate": "numeric",
+            "source_unit_conflict": "source_conflict",
+            "unavailable_no_activity_above_background_detected": "nondetection"
+          }
+        },
+        {
+          "id": "apparent_pKa_from_kcat_over_KM",
+          "pointer": "/pH_profile/pKa_from_k_cat_over_K_M",
+          "kind": {
+            "pointer": "/status"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "literal": null
+            },
+            "kind": {
+              "literal": "not_reported"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          },
+          "status_kinds": {
+            "reported_point_estimate": "numeric",
+            "source_reported_numeric": "numeric",
+            "source_reported_point_estimate": "numeric",
+            "source_unit_conflict": "source_conflict",
+            "unavailable_no_activity_above_background_detected": "nondetection"
+          }
+        }
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "id": "ra95_2013:RA95.0-K210M:kcat",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.0-K210M:kcat",
+        "denominator": "ra95-kinetics:si-table2:RA95.0:kcat"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.0-K210M:KM",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.0-K210M:KM",
+        "denominator": "ra95-kinetics:si-table2:RA95.0:KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.0-K210M:kcat_over_KM",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.0-K210M:kcat_over_KM",
+        "denominator": "ra95-kinetics:si-table2:RA95.0:kcat_over_KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.0-T83K/K210M:kcat",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.0-T83K/K210M:kcat",
+        "denominator": "ra95-kinetics:si-table2:RA95.0:kcat"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.0-T83K/K210M:KM",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.0-T83K/K210M:KM",
+        "denominator": "ra95-kinetics:si-table2:RA95.0:KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.0-T83K/K210M:kcat_over_KM",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.0-T83K/K210M:kcat_over_KM",
+        "denominator": "ra95-kinetics:si-table2:RA95.0:kcat_over_KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.5-K83M:kcat",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.5-K83M:kcat",
+        "denominator": "ra95-kinetics:si-table2:RA95.5:kcat"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.5-K83M:KM",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.5-K83M:KM",
+        "denominator": "ra95-kinetics:si-table2:RA95.5:KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.5-K83M:kcat_over_KM",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.5-K83M:kcat_over_KM",
+        "denominator": "ra95-kinetics:si-table2:RA95.5:kcat_over_KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.5-K210M:kcat",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.5-K210M:kcat",
+        "denominator": "ra95-kinetics:si-table2:RA95.5:kcat"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.5-K210M:KM",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.5-K210M:KM",
+        "denominator": "ra95-kinetics:si-table2:RA95.5:KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.5-K210M:kcat_over_KM",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.5-K210M:kcat_over_KM",
+        "denominator": "ra95-kinetics:si-table2:RA95.5:kcat_over_KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.5-K83M/K210M:kcat",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.5-K83M/K210M:kcat",
+        "denominator": "ra95-kinetics:si-table2:RA95.5:kcat"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.5-K83M/K210M:KM",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.5-K83M/K210M:KM",
+        "denominator": "ra95-kinetics:si-table2:RA95.5:KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.5-K83M/K210M:kcat_over_KM",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.5-K83M/K210M:kcat_over_KM",
+        "denominator": "ra95-kinetics:si-table2:RA95.5:kcat_over_KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.5-5-K83M:kcat",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.5-5-K83M:kcat",
+        "denominator": "ra95-kinetics:si-table2:RA95.5-5:kcat"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.5-5-K83M:KM",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.5-5-K83M:KM",
+        "denominator": "ra95-kinetics:si-table2:RA95.5-5:KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.5-5-K83M:kcat_over_KM",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.5-5-K83M:kcat_over_KM",
+        "denominator": "ra95-kinetics:si-table2:RA95.5-5:kcat_over_KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.5-5-K210M:kcat",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.5-5-K210M:kcat",
+        "denominator": "ra95-kinetics:si-table2:RA95.5-5:kcat"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.5-5-K210M:KM",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.5-5-K210M:KM",
+        "denominator": "ra95-kinetics:si-table2:RA95.5-5:KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.5-5-K210M:kcat_over_KM",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.5-5-K210M:kcat_over_KM",
+        "denominator": "ra95-kinetics:si-table2:RA95.5-5:kcat_over_KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.5-5-K83M/K210M:kcat",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.5-5-K83M/K210M:kcat",
+        "denominator": "ra95-kinetics:si-table2:RA95.5-5:kcat"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.5-5-K83M/K210M:KM",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.5-5-K83M/K210M:KM",
+        "denominator": "ra95-kinetics:si-table2:RA95.5-5:KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.5-5-K83M/K210M:kcat_over_KM",
+      "study_id": "ra95_2013",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-kinetics:si-table2:RA95.5-5-K83M/K210M:kcat_over_KM",
+        "denominator": "ra95-kinetics:si-table2:RA95.5-5:kcat_over_KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95f",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "ra95f",
+          "pointer": "/source_conflicts"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2017:RA95.5-8F:K83M:kcat",
+      "study_id": "ra95_2017",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-tetrad:S1:K83M:kcat",
+        "denominator": "ra95-tetrad:S1:RA95.5-8F:kcat"
+      },
+      "evidence": [
+        {
+          "source": "ra95t",
+          "pointer": "/chemical_state_and_control_limits"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/source_cautions"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2017:RA95.5-8F:K83M:KM",
+      "study_id": "ra95_2017",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-tetrad:S1:K83M:KM",
+        "denominator": "ra95-tetrad:S1:RA95.5-8F:KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95t",
+          "pointer": "/chemical_state_and_control_limits"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/source_cautions"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2017:RA95.5-8F:K83M:kcat_over_KM",
+      "study_id": "ra95_2017",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-tetrad:S1:K83M:kcat_over_KM",
+        "denominator": "ra95-tetrad:S1:RA95.5-8F:kcat_over_KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95t",
+          "pointer": "/chemical_state_and_control_limits"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/source_cautions"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2017:RA95.5-8F:Y51F:kcat",
+      "study_id": "ra95_2017",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-tetrad:S1:Y51F:kcat",
+        "denominator": "ra95-tetrad:S1:RA95.5-8F:kcat"
+      },
+      "evidence": [
+        {
+          "source": "ra95t",
+          "pointer": "/chemical_state_and_control_limits"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/source_cautions"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2017:RA95.5-8F:Y51F:KM",
+      "study_id": "ra95_2017",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-tetrad:S1:Y51F:KM",
+        "denominator": "ra95-tetrad:S1:RA95.5-8F:KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95t",
+          "pointer": "/chemical_state_and_control_limits"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/source_cautions"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2017:RA95.5-8F:Y51F:kcat_over_KM",
+      "study_id": "ra95_2017",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-tetrad:S1:Y51F:kcat_over_KM",
+        "denominator": "ra95-tetrad:S1:RA95.5-8F:kcat_over_KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95t",
+          "pointer": "/chemical_state_and_control_limits"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/source_cautions"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2017:RA95.5-8F:N110S:kcat",
+      "study_id": "ra95_2017",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-tetrad:S1:N110S:kcat",
+        "denominator": "ra95-tetrad:S1:RA95.5-8F:kcat"
+      },
+      "evidence": [
+        {
+          "source": "ra95t",
+          "pointer": "/chemical_state_and_control_limits"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/source_cautions"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2017:RA95.5-8F:N110S:KM",
+      "study_id": "ra95_2017",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-tetrad:S1:N110S:KM",
+        "denominator": "ra95-tetrad:S1:RA95.5-8F:KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95t",
+          "pointer": "/chemical_state_and_control_limits"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/source_cautions"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2017:RA95.5-8F:N110S:kcat_over_KM",
+      "study_id": "ra95_2017",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-tetrad:S1:N110S:kcat_over_KM",
+        "denominator": "ra95-tetrad:S1:RA95.5-8F:kcat_over_KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95t",
+          "pointer": "/chemical_state_and_control_limits"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/source_cautions"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2017:RA95.5-8F:Y180F:kcat",
+      "study_id": "ra95_2017",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-tetrad:S1:Y180F:kcat",
+        "denominator": "ra95-tetrad:S1:RA95.5-8F:kcat"
+      },
+      "evidence": [
+        {
+          "source": "ra95t",
+          "pointer": "/chemical_state_and_control_limits"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/source_cautions"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2017:RA95.5-8F:Y180F:KM",
+      "study_id": "ra95_2017",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-tetrad:S1:Y180F:KM",
+        "denominator": "ra95-tetrad:S1:RA95.5-8F:KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95t",
+          "pointer": "/chemical_state_and_control_limits"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/source_cautions"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2017:RA95.5-8F:Y180F:kcat_over_KM",
+      "study_id": "ra95_2017",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-tetrad:S1:Y180F:kcat_over_KM",
+        "denominator": "ra95-tetrad:S1:RA95.5-8F:kcat_over_KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95t",
+          "pointer": "/chemical_state_and_control_limits"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/source_cautions"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2017:RA95.5-8F:Y51F/Y180F:kcat",
+      "study_id": "ra95_2017",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-tetrad:S1:Y51F/Y180F:kcat",
+        "denominator": "ra95-tetrad:S1:RA95.5-8F:kcat"
+      },
+      "evidence": [
+        {
+          "source": "ra95t",
+          "pointer": "/chemical_state_and_control_limits"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/source_cautions"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2017:RA95.5-8F:Y51F/Y180F:KM",
+      "study_id": "ra95_2017",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-tetrad:S1:Y51F/Y180F:KM",
+        "denominator": "ra95-tetrad:S1:RA95.5-8F:KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95t",
+          "pointer": "/chemical_state_and_control_limits"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/source_cautions"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2017:RA95.5-8F:Y51F/Y180F:kcat_over_KM",
+      "study_id": "ra95_2017",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-tetrad:S1:Y51F/Y180F:kcat_over_KM",
+        "denominator": "ra95-tetrad:S1:RA95.5-8F:kcat_over_KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95t",
+          "pointer": "/chemical_state_and_control_limits"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/source_cautions"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2017:RA95.5-8F:Y51F/N110S/Y180F:kcat",
+      "study_id": "ra95_2017",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-tetrad:S1:Y51F/N110S/Y180F:kcat",
+        "denominator": "ra95-tetrad:S1:RA95.5-8F:kcat"
+      },
+      "evidence": [
+        {
+          "source": "ra95t",
+          "pointer": "/chemical_state_and_control_limits"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/source_cautions"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2017:RA95.5-8F:Y51F/N110S/Y180F:KM",
+      "study_id": "ra95_2017",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-tetrad:S1:Y51F/N110S/Y180F:KM",
+        "denominator": "ra95-tetrad:S1:RA95.5-8F:KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95t",
+          "pointer": "/chemical_state_and_control_limits"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/source_cautions"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2017:RA95.5-8F:Y51F/N110S/Y180F:kcat_over_KM",
+      "study_id": "ra95_2017",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra95-tetrad:S1:Y51F/N110S/Y180F:kcat_over_KM",
+        "denominator": "ra95-tetrad:S1:RA95.5-8F:kcat_over_KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95t",
+          "pointer": "/chemical_state_and_control_limits"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/source_cautions"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2017:Y51F-Y180F:kcat",
+      "study_id": "ra95_2017",
+      "operation": "multiplicative",
+      "roles": {
+        "parent": "ra95-tetrad:S1:RA95.5-8F:kcat",
+        "A": "ra95-tetrad:S1:Y51F:kcat",
+        "B": "ra95-tetrad:S1:Y180F:kcat",
+        "double": "ra95-tetrad:S1:Y51F/Y180F:kcat"
+      },
+      "evidence": [
+        {
+          "source": "ra95t",
+          "pointer": "/paired_substitution_comparisons/0"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/combination_coverage"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/chemical_state_and_control_limits"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2017:Y51F-Y180F:KM",
+      "study_id": "ra95_2017",
+      "operation": "multiplicative",
+      "roles": {
+        "parent": "ra95-tetrad:S1:RA95.5-8F:KM",
+        "A": "ra95-tetrad:S1:Y51F:KM",
+        "B": "ra95-tetrad:S1:Y180F:KM",
+        "double": "ra95-tetrad:S1:Y51F/Y180F:KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95t",
+          "pointer": "/paired_substitution_comparisons/1"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/combination_coverage"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/chemical_state_and_control_limits"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2017:Y51F-Y180F:kcat_over_KM",
+      "study_id": "ra95_2017",
+      "operation": "multiplicative",
+      "roles": {
+        "parent": "ra95-tetrad:S1:RA95.5-8F:kcat_over_KM",
+        "A": "ra95-tetrad:S1:Y51F:kcat_over_KM",
+        "B": "ra95-tetrad:S1:Y180F:kcat_over_KM",
+        "double": "ra95-tetrad:S1:Y51F/Y180F:kcat_over_KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95t",
+          "pointer": "/paired_substitution_comparisons/2"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/combination_coverage"
+        },
+        {
+          "source": "ra95t",
+          "pointer": "/chemical_state_and_control_limits"
+        }
+      ]
+    },
+    {
+      "id": "ra95_2013:RA95.0:R-over-S",
+      "study_id": "ra95_2013",
+      "operation": "preference",
+      "roles": {
+        "numerator": "ra95-stereo:RA95.0:R:kcat_over_KM",
+        "denominator": "ra95-stereo:RA95.0:S:kcat_over_KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95s",
+          "pointer": "/selectivity_comparisons/0"
+        },
+        {
+          "source": "ra95s",
+          "pointer": "/source_conflicts"
+        },
+        {
+          "source": "ra95s",
+          "pointer": "/selection_context"
+        }
+      ],
+      "substrate_pair_source": {
+        "source": "ra95s",
+        "pointer": "/substrates"
+      },
+      "source_reported_factor": 0.43,
+      "source_reported_preference": "S"
+    },
+    {
+      "id": "ra95_2013:RA95.5:R-over-S",
+      "study_id": "ra95_2013",
+      "operation": "preference",
+      "roles": {
+        "numerator": "ra95-stereo:RA95.5:R:kcat_over_KM",
+        "denominator": "ra95-stereo:RA95.5:S:kcat_over_KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95s",
+          "pointer": "/selectivity_comparisons/1"
+        },
+        {
+          "source": "ra95s",
+          "pointer": "/source_conflicts"
+        },
+        {
+          "source": "ra95s",
+          "pointer": "/selection_context"
+        }
+      ],
+      "substrate_pair_source": {
+        "source": "ra95s",
+        "pointer": "/substrates"
+      },
+      "source_reported_factor": 3.2,
+      "source_reported_preference": "R"
+    },
+    {
+      "id": "ra95_2013:RA95.5-5:R-over-S",
+      "study_id": "ra95_2013",
+      "operation": "preference",
+      "roles": {
+        "numerator": "ra95-stereo:RA95.5-5:R:kcat_over_KM",
+        "denominator": "ra95-stereo:RA95.5-5:S:kcat_over_KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95s",
+          "pointer": "/selectivity_comparisons/2"
+        },
+        {
+          "source": "ra95s",
+          "pointer": "/source_conflicts"
+        },
+        {
+          "source": "ra95s",
+          "pointer": "/selection_context"
+        }
+      ],
+      "substrate_pair_source": {
+        "source": "ra95s",
+        "pointer": "/substrates"
+      },
+      "source_reported_factor": 5.4,
+      "source_reported_preference": "R"
+    },
+    {
+      "id": "ra95_2013:RA95.5-8:R-over-S",
+      "study_id": "ra95_2013",
+      "operation": "preference",
+      "roles": {
+        "numerator": "ra95-stereo:RA95.5-8:R:kcat_over_KM",
+        "denominator": "ra95-stereo:RA95.5-8:S:kcat_over_KM"
+      },
+      "evidence": [
+        {
+          "source": "ra95s",
+          "pointer": "/selectivity_comparisons/3"
+        },
+        {
+          "source": "ra95s",
+          "pointer": "/source_conflicts"
+        },
+        {
+          "source": "ra95s",
+          "pointer": "/selection_context"
+        }
+      ],
+      "substrate_pair_source": {
+        "source": "ra95s",
+        "pointer": "/substrates"
+      },
+      "source_reported_factor": 14,
+      "source_reported_preference": "R"
+    },
+    {
+      "id": "ra61_2010:RA61-Y78F:kcat_over_KM_obs",
+      "study_id": "ra61_2010",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra61-water:Table4:RA61-Y78F:kcat_over_KM_obs",
+        "denominator": "ra61-water:Table4:RA61:kcat_over_KM_obs"
+      },
+      "evidence": [
+        {
+          "source": "ra61",
+          "pointer": "/derived_comparisons/0"
+        },
+        {
+          "source": "ra61",
+          "pointer": "/component_evidence/0"
+        },
+        {
+          "source": "ra61",
+          "pointer": "/initial_rate_boundary"
+        }
+      ],
+      "source_reported_factor": 3.2
+    },
+    {
+      "id": "ra61_2010:RA61-Y78A:kcat_over_KM_obs",
+      "study_id": "ra61_2010",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra61-water:Table4:RA61-Y78A:kcat_over_KM_obs",
+        "denominator": "ra61-water:Table4:RA61:kcat_over_KM_obs"
+      },
+      "evidence": [
+        {
+          "source": "ra61",
+          "pointer": "/derived_comparisons/1"
+        },
+        {
+          "source": "ra61",
+          "pointer": "/component_evidence/0"
+        },
+        {
+          "source": "ra61",
+          "pointer": "/initial_rate_boundary"
+        }
+      ],
+      "source_reported_factor": 2.0
+    },
+    {
+      "id": "ra61_2010:RA61-S87A:kcat_over_KM_obs",
+      "study_id": "ra61_2010",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra61-water:Table4:RA61-S87A:kcat_over_KM_obs",
+        "denominator": "ra61-water:Table4:RA61:kcat_over_KM_obs"
+      },
+      "evidence": [
+        {
+          "source": "ra61",
+          "pointer": "/derived_comparisons/2"
+        },
+        {
+          "source": "ra61",
+          "pointer": "/component_evidence/0"
+        },
+        {
+          "source": "ra61",
+          "pointer": "/initial_rate_boundary"
+        }
+      ],
+      "source_reported_factor": 1.6
+    },
+    {
+      "id": "ra61_2010:RA61-S87G:kcat_over_KM_obs",
+      "study_id": "ra61_2010",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra61-water:Table4:RA61-S87G:kcat_over_KM_obs",
+        "denominator": "ra61-water:Table4:RA61:kcat_over_KM_obs"
+      },
+      "evidence": [
+        {
+          "source": "ra61",
+          "pointer": "/derived_comparisons/3"
+        },
+        {
+          "source": "ra61",
+          "pointer": "/component_evidence/0"
+        },
+        {
+          "source": "ra61",
+          "pointer": "/initial_rate_boundary"
+        }
+      ],
+      "source_reported_factor": 3.7
+    },
+    {
+      "id": "ra61_2010:RA61-Y78F-S87A:kcat_over_KM_obs",
+      "study_id": "ra61_2010",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "ra61-water:Table4:RA61-Y78F-S87A:kcat_over_KM_obs",
+        "denominator": "ra61-water:Table4:RA61:kcat_over_KM_obs"
+      },
+      "evidence": [
+        {
+          "source": "ra61",
+          "pointer": "/derived_comparisons/4"
+        },
+        {
+          "source": "ra61",
+          "pointer": "/component_evidence/0"
+        },
+        {
+          "source": "ra61",
+          "pointer": "/initial_rate_boundary"
+        }
+      ],
+      "source_reported_factor": 5.3
+    },
+    {
+      "id": "ke59_2012:E230-matched-perturbation",
+      "study_id": "ke59_2012",
+      "operation": "unassessed",
+      "roles": {},
+      "evidence": [
+        {
+          "source": "ke59",
+          "pointer": "/qualification"
+        },
+        {
+          "source": "ke59",
+          "pointer": "/source_limitations"
+        },
+        {
+          "source": "ke59",
+          "pointer": "/assays/0"
+        },
+        {
+          "source": "ke59",
+          "pointer": "/constructs"
+        }
+      ],
+      "result_kind": "unassessed",
+      "requested_perturbation": "Matched replacement of proposed E230 catalytic base; no replacement construct is established in acquired main article.",
+      "matched_control": null,
+      "construct_id": null,
+      "sequence_identity": {
+        "status": "exact_sequence_unacquired",
+        "sequence_sha256": null,
+        "provider": null
+      },
+      "assay_id": null,
+      "parameter": null,
+      "observed_value": null,
+      "source_blocks": [
+        "no_matched_E230_replacement_assay_in_acquired_main",
+        "supplement_unacquired_and_unassessed",
+        "pH_profile_is_not_a_residue_specific_perturbation"
+      ],
+      "context_observations": [
+        "ke59-pH:Table2:R2-4/3D:apparent_pKa_from_kcat",
+        "ke59-pH:Table2:R2-4/3D:apparent_pKa_from_kcat_over_KM",
+        "ke59-pH:Table2:R4-5/11B:apparent_pKa_from_kcat",
+        "ke59-pH:Table2:R4-5/11B:apparent_pKa_from_kcat_over_KM",
+        "ke59-pH:Table2:R8-2/7A:apparent_pKa_from_kcat",
+        "ke59-pH:Table2:R8-2/7A:apparent_pKa_from_kcat_over_KM",
+        "ke59-pH:Table2:R9-1/4A:apparent_pKa_from_kcat",
+        "ke59-pH:Table2:R9-1/4A:apparent_pKa_from_kcat_over_KM",
+        "ke59-pH:Table2:R13-3/11H:apparent_pKa_from_kcat",
+        "ke59-pH:Table2:R13-3/11H:apparent_pKa_from_kcat_over_KM"
+      ]
+    }
+  ],
+  "evidence_context": {
+    "ra95f": [
+      {
+        "source": "ra95f",
+        "pointer": "/comparison_id"
+      },
+      {
+        "source": "ra95f",
+        "pointer": "/operation"
+      },
+      {
+        "source": "ra95f",
+        "pointer": "/study"
+      },
+      {
+        "source": "ra95f",
+        "pointer": "/selection"
+      },
+      {
+        "source": "ra95f",
+        "pointer": "/source_access"
+      },
+      {
+        "source": "ra95f",
+        "pointer": "/measurement_identity"
+      },
+      {
+        "source": "ra95f",
+        "pointer": "/derived_comparisons"
+      },
+      {
+        "source": "ra95f",
+        "pointer": "/interpretation"
+      },
+      {
+        "source": "ra95f",
+        "pointer": "/source_conflicts"
+      },
+      {
+        "source": "ra95f",
+        "pointer": "/reconsideration"
+      }
+    ],
+    "ra95s": [
+      {
+        "source": "ra95s",
+        "pointer": "/comparison_id"
+      },
+      {
+        "source": "ra95s",
+        "pointer": "/operation"
+      },
+      {
+        "source": "ra95s",
+        "pointer": "/study"
+      },
+      {
+        "source": "ra95s",
+        "pointer": "/selection"
+      },
+      {
+        "source": "ra95s",
+        "pointer": "/source_access"
+      },
+      {
+        "source": "ra95s",
+        "pointer": "/substrates"
+      },
+      {
+        "source": "ra95s",
+        "pointer": "/selectivity_comparisons"
+      },
+      {
+        "source": "ra95s",
+        "pointer": "/source_conflicts"
+      },
+      {
+        "source": "ra95s",
+        "pointer": "/interpretation"
+      },
+      {
+        "source": "ra95s",
+        "pointer": "/reconsideration"
+      },
+      {
+        "source": "ra95s",
+        "pointer": "/selection_context"
+      }
+    ],
+    "ra95t": [
+      {
+        "source": "ra95t",
+        "pointer": "/assessment_id"
+      },
+      {
+        "source": "ra95t",
+        "pointer": "/operation"
+      },
+      {
+        "source": "ra95t",
+        "pointer": "/scientific_question"
+      },
+      {
+        "source": "ra95t",
+        "pointer": "/conclusion"
+      },
+      {
+        "source": "ra95t",
+        "pointer": "/counted_objects"
+      },
+      {
+        "source": "ra95t",
+        "pointer": "/acquisition_binding"
+      },
+      {
+        "source": "ra95t",
+        "pointer": "/selection"
+      },
+      {
+        "source": "ra95t",
+        "pointer": "/thermal_shift_observations"
+      },
+      {
+        "source": "ra95t",
+        "pointer": "/mass_observations"
+      },
+      {
+        "source": "ra95t",
+        "pointer": "/paired_substitution_comparisons"
+      },
+      {
+        "source": "ra95t",
+        "pointer": "/combination_coverage"
+      },
+      {
+        "source": "ra95t",
+        "pointer": "/chemical_state_and_control_limits"
+      },
+      {
+        "source": "ra95t",
+        "pointer": "/source_cautions"
+      },
+      {
+        "source": "ra95t",
+        "pointer": "/design_use"
+      },
+      {
+        "source": "ra95t",
+        "pointer": "/global_limits"
+      }
+    ],
+    "ra61": [
+      {
+        "source": "ra61",
+        "pointer": "/assessment_id"
+      },
+      {
+        "source": "ra61",
+        "pointer": "/operation"
+      },
+      {
+        "source": "ra61",
+        "pointer": "/study"
+      },
+      {
+        "source": "ra61",
+        "pointer": "/question"
+      },
+      {
+        "source": "ra61",
+        "pointer": "/qualification"
+      },
+      {
+        "source": "ra61",
+        "pointer": "/selection"
+      },
+      {
+        "source": "ra61",
+        "pointer": "/source_access"
+      },
+      {
+        "source": "ra61",
+        "pointer": "/numbering"
+      },
+      {
+        "source": "ra61",
+        "pointer": "/small_molecule_catalysts"
+      },
+      {
+        "source": "ra61",
+        "pointer": "/substrates"
+      },
+      {
+        "source": "ra61",
+        "pointer": "/derived_comparisons"
+      },
+      {
+        "source": "ra61",
+        "pointer": "/component_evidence"
+      },
+      {
+        "source": "ra61",
+        "pointer": "/source_limitations"
+      },
+      {
+        "source": "ra61",
+        "pointer": "/cross_case_comparison"
+      },
+      {
+        "source": "ra61",
+        "pointer": "/reconsideration"
+      },
+      {
+        "source": "ra61",
+        "pointer": "/initial_rate_boundary"
+      }
+    ],
+    "ke59": [
+      {
+        "source": "ke59",
+        "pointer": "/assessment_id"
+      },
+      {
+        "source": "ke59",
+        "pointer": "/operation"
+      },
+      {
+        "source": "ke59",
+        "pointer": "/study"
+      },
+      {
+        "source": "ke59",
+        "pointer": "/question"
+      },
+      {
+        "source": "ke59",
+        "pointer": "/qualification"
+      },
+      {
+        "source": "ke59",
+        "pointer": "/selection"
+      },
+      {
+        "source": "ke59",
+        "pointer": "/source_access"
+      },
+      {
+        "source": "ke59",
+        "pointer": "/numbering"
+      },
+      {
+        "source": "ke59",
+        "pointer": "/evidence_layers"
+      },
+      {
+        "source": "ke59",
+        "pointer": "/source_conflicts"
+      },
+      {
+        "source": "ke59",
+        "pointer": "/source_limitations"
+      },
+      {
+        "source": "ke59",
+        "pointer": "/cross_case_comparison"
+      },
+      {
+        "source": "ke59",
+        "pointer": "/reconsideration"
+      },
+      {
+        "source": "ke59",
+        "pointer": "/evidence_limits"
+      }
+    ]
+  },
+  "source_witnesses": [
+    {
+      "sha256": "71d3d579ec5ef65e4279e6affeb95eb7fc39c894019fc4a58de5462933819ab9",
+      "bytes": 95645,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/71d3d579ec5ef65e4279e6affeb95eb7fc39c894019fc4a58de5462933819ab9.xml",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC3720730/fullTextXML",
+      "source_bindings": [
+        {
+          "source": "ra95f",
+          "pointer": "/sources/0"
+        },
+        {
+          "source": "ra95s",
+          "pointer": "/sources/0"
+        }
+      ],
+      "redistributed": false,
+      "retention": "Existing acquired bytes copied to host-local Git-common-directory cache; zero new source requests."
+    },
+    {
+      "sha256": "aaa0e3203b535546a39818d2d05f0a66cd888d5c6c910f4330449f2c48c0e3ee",
+      "bytes": 3601999,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/aaa0e3203b535546a39818d2d05f0a66cd888d5c6c910f4330449f2c48c0e3ee.pdf",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC3720730/supplementaryFiles",
+      "source_bindings": [
+        {
+          "source": "ra95f",
+          "pointer": "/sources/1"
+        },
+        {
+          "source": "ra95s",
+          "pointer": "/sources/1"
+        }
+      ],
+      "redistributed": false,
+      "retention": "Existing acquired bytes copied to host-local Git-common-directory cache; zero new source requests."
+    },
+    {
+      "sha256": "2d1ce2aa6d4851996be75e63990ac3498a62ab611630b1529f1cf37c6976160d",
+      "bytes": 10373958,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/2d1ce2aa6d4851996be75e63990ac3498a62ab611630b1529f1cf37c6976160d.pdf",
+      "source_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnchem.2596/MediaObjects/41557_2017_BFnchem2596_MOESM342_ESM.pdf",
+      "source_bindings": [
+        {
+          "source": "ra95t",
+          "pointer": "/sources/0"
+        }
+      ],
+      "redistributed": false,
+      "retention": "Existing acquired bytes copied to host-local Git-common-directory cache; zero new source requests."
+    },
+    {
+      "sha256": "5b9df7244fa46c1888282f55d814c90f8ef47d980ccebafa1a7f10ec13658fd1",
+      "bytes": 374037,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/5b9df7244fa46c1888282f55d814c90f8ef47d980ccebafa1a7f10ec13658fd1.html",
+      "source_url": "https://www.nature.com/articles/nchem.2596",
+      "source_bindings": [
+        {
+          "source": "ra95t",
+          "pointer": "/sources/0/publisher_link_binding"
+        }
+      ],
+      "redistributed": false,
+      "retention": "Existing acquired bytes copied to host-local Git-common-directory cache; zero new source requests."
+    },
+    {
+      "sha256": "e9ee944fc748057e4e476b7de8e0ceb704133817bec7f51562de21a502b033a1",
+      "bytes": 273267,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/e9ee944fc748057e4e476b7de8e0ceb704133817bec7f51562de21a502b033a1.pdf",
+      "source_url": "https://europepmc.org/api/getPdf?pmcid=PMC2841948",
+      "source_bindings": [
+        {
+          "source": "ra61",
+          "pointer": "/sources/0"
+        }
+      ],
+      "redistributed": false,
+      "retention": "Existing acquired bytes copied to host-local Git-common-directory cache; zero new source requests."
+    },
+    {
+      "sha256": "91e17539e9761fdc7fdb5d70c395fad2f4c7b339732e9282262e6a7940da6df4",
+      "bytes": 435320,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/91e17539e9761fdc7fdb5d70c395fad2f4c7b339732e9282262e6a7940da6df4.pdf",
+      "source_url": "https://herschlaglab.stanford.edu/s/177SuppMat.pdf",
+      "source_bindings": [
+        {
+          "source": "ra61",
+          "pointer": "/sources/1"
+        }
+      ],
+      "redistributed": false,
+      "retention": "Existing acquired bytes copied to host-local Git-common-directory cache; zero new source requests."
+    },
+    {
+      "sha256": "6e4002b7264da74ff27a889728b536bd2ab26cdfa3d8c9f2489fa75245a445d2",
+      "bytes": 204880,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/6e4002b7264da74ff27a889728b536bd2ab26cdfa3d8c9f2489fa75245a445d2.html",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3387081/",
+      "source_bindings": [
+        {
+          "source": "ke59",
+          "pointer": "/sources/0"
+        }
+      ],
+      "redistributed": false,
+      "retention": "Existing acquired bytes copied to host-local Git-common-directory cache; zero new source requests."
+    }
+  ],
+  "parameter_contracts": {
+    "kcat": {
+      "source_fields": [
+        "k_cat",
+        "kcat"
+      ],
+      "units": [
+        "s^-1"
+      ]
+    },
+    "KM": {
+      "source_fields": [
+        "substrate_response_constant",
+        "K_M",
+        "KM"
+      ],
+      "units": [
+        "uM",
+        "micromolar"
+      ]
+    },
+    "kcat_over_KM": {
+      "source_fields": [
+        "source_reported_efficiency",
+        "k_cat_over_K_M",
+        "kcat_over_KM"
+      ],
+      "units": [
+        "M^-1 s^-1"
+      ]
+    },
+    "kcat_over_KM_obs": {
+      "source_fields": [
+        ""
+      ],
+      "units": [
+        "M^-1 s^-1"
+      ],
+      "source_markers": {
+        "source_parameter": [
+          "(kcat/KM)obs"
+        ]
+      }
+    },
+    "apparent_pKa_from_kcat": {
+      "source_fields": [
+        "pKa_from_k_cat"
+      ],
+      "units": [
+        "dimensionless"
+      ],
+      "source_markers": {
+        "parameter": [
+          "apparent_pKa_from_k_cat_pH_profile"
+        ]
+      }
+    },
+    "apparent_pKa_from_kcat_over_KM": {
+      "source_fields": [
+        "pKa_from_k_cat_over_K_M"
+      ],
+      "units": [
+        "dimensionless"
+      ],
+      "source_markers": {
+        "parameter": [
+          "apparent_pKa_from_k_cat_over_K_M_pH_profile"
+        ]
+      }
+    }
+  }
+}
