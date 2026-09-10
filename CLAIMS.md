@@ -361,6 +361,20 @@ estimate, not a matched Lys176 replacement effect. Six named constructs lack
 exact sequence strings. No new experiment, productive geometry, full mechanism,
 design success rate or evidence-tier promotion is established.
 
+## CE-030 — a benzoate control does not establish ligand-independent design geometry
+
+**Status:** Supported
+
+The [de novo beta-barrel source annotation](docs/ATLAS_BETA_BARREL_CONTROLS.md)
+preserves an internal conflict: main-text noninhibition up to 2.5 mM benzoate
+is not supported by the visibly lower 2.5 mM bars in Figure S4. That caption
+names RAβb-16.2, whereas the crystal is RAβb-16.1. No numeric inhibition
+effect, significance or ligand-independence claim follows. The exact
+120-residue 8AH9 deposited sequence and two named-variant kinetic rows remain
+separate from unverified assay-specimen identity. Bound benzoate, alternate
+coordinates, restrained docking and a kinetic pH conflict retain their limits.
+This adds no experiment, productive geometry, full mechanism or evidence tier.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,

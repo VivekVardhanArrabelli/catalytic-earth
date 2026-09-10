@@ -1,0 +1,107 @@
+{
+  "schema_version": "catalytic-earth.source-qualification-review.v1",
+  "assessment_id": "kipnis2022-beta-barrel-benzoate-control",
+  "decision": "accept_source_annotation",
+  "authorized_operation": "source_annotation",
+  "policy_binding": {
+    "path": "data/governance/computational_review_policy.json",
+    "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "reviewed_assessment": {
+    "path": "data/atlas/study_context/beta_barrel_2022/source_qualification.json",
+    "sha256": "9b1a98b0be873f361c75f6431684a92c2c769a77bc3450988537669860533d7a"
+  },
+  "reviewed_documentation": {
+    "path": "docs/ATLAS_BETA_BARREL_CONTROLS.md",
+    "sha256": "6dc8bc3a8b5e64a9af9941dff063e5387f7692874144ca8855d49a4997fe3def"
+  },
+  "retained_input_bindings": [
+    {
+      "path": "data/atlas/study_context/beta_barrel_2022/acquisition_receipts.json",
+      "sha256": "415daa1a2b8baad6d7368f9623b943442e4be16910c59d45903e44d2efa873e5"
+    },
+    {
+      "path": "data/atlas/study_context/beta_barrel_2022/sources/8AH9.cif",
+      "sha256": "e6279016ff65e3b18d2f2263b86165725d7ed09784607050b2fc38669347b3b5"
+    },
+    {
+      "path": "data/atlas/study_context/ra61_2010/jiang2008_acquisition_appendix.json",
+      "sha256": "286e99067837121f3cbb08c2db0e0c9f4843172abeb18314898965587f8e234b"
+    }
+  ],
+  "review_process": "Three separately prompted read-only gpt-5.6-sol/ultra roles reviewed primary-source content, representation and adversarial claims; parent alone acquired, edited and adjudicated. Potentially correlated computational review, not independent human review or laboratory evidence.",
+  "reviews": [
+    {
+      "role": "source",
+      "reviewer_task": "ra61_source",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_final_data_documentation_and_receipt_pins",
+      "scope": "Complete main article, all six SI groups, exact caption/media binding, current deposit, quantities, source conflicts, cumulative receipts and claim propagation."
+    },
+    {
+      "role": "representation",
+      "reviewer_task": "ra61_representation",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_final_data_documentation_and_receipt_pins",
+      "scope": "Construct, assay and endpoint joins; exact 120-residue deposited sequence, 11 numbering maps, five atom pairs, three ligands, two kinetic rows, eight arms and explicit unknowns."
+    },
+    {
+      "role": "adversarial",
+      "reviewer_task": "ra61_adversarial",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_final_data_documentation_and_receipt_pins",
+      "scope": "Control versus structural variant, deposited versus assay identity, benzoate prose/plot conflict, qualitative knockout and pKa limits, restrained docking and unsupported design transfer."
+    }
+  ],
+  "adjudications": [
+    {
+      "objection": "No inhibition prose conflicts with the S4 central bars and control variant differs from crystal variant.",
+      "evidence": "Main Section2.4 p9 and exact XML S4 caption/media member.",
+      "decision": "Preserve both sources and variant mismatch; only visual ordering/retained signal, no invented rates, significance, Ki, no-effect threshold, ligand independence or16.1 effect."
+    },
+    {
+      "objection": "Two independent batches and percent-max axes could be misread as per-arm n, defined normalization or raw-rate measurements.",
+      "evidence": "S4 caption and graph label eight conditions without those definitions.",
+      "decision": "Keep batch count2, numeric arm values/nulls, unknown error/normalization/readout/assay conditions; 0mM added does not prove ligand-depleted protein."
+    },
+    {
+      "objection": "Complete deposited sequence could be propagated to assayed16.1/16.2 constructs or repaired to a conventional tag.",
+      "evidence": "8AH9 entity1 exact paper citation and120aa string; five unmodeled His plus modeled author0Ala; explicit16.2K49E/S51H parent relation.",
+      "decision": "Keep deposited string and source residue maps, exact assay sequence null,16.2 sequence null; no tag repair or mutation projection masquerading as an observation."
+    },
+    {
+      "objection": "Graphical K77M control could become a K53 knockout, or free-Lys comparison a mutant effect.",
+      "evidence": "Main Figure3f isRAβb-8K77M; Lys53/Tyr17 prose has unspecified perturbations; Table2 free-lysine comparison differs.",
+      "decision": "Keep Figure3 qualitative evidence and optimized-lineage qualitative author assertions separate; no exact mutant, numeric zero, pKa measurement or microscopic mechanism inferred."
+    },
+    {
+      "objection": "The kinetic assay pH conflicts internally and printed efficiencies may be replaced by arithmetic.",
+      "evidence": "Figure6pH7 versus Methods4.7pH7.5; Table2 two originalbeta-barrel rows.",
+      "decision": "Keep both pH values with null integrated pH, printed efficiencies and selectivity factors, unknown error statistic/n, no inverted R rates."
+    },
+    {
+      "objection": "Published docking and current coordinate distances could be taken as productive geometry or independent support for author H-bond statements.",
+      "evidence": "Main Methods4.9 uses Lys53 restraints and mutation-guided pose selection; current8AH9 has threeBEZ, Ser77A/B alternatives and version1.3.",
+      "decision": "Retain exact specimen/atom identities and distances separately from paper interpretation; no H-bond, solution protonation, catalytic role, experimental geometry tolerance or paper-time coordinate equivalence."
+    },
+    {
+      "objection": "A failed original-RA61 source lookup could become a scientific absence or budget reset.",
+      "evidence": "Cumulative RA61 appendix45requests/3,236,259bytes with prior12requestreceipt binding; only metadata/author summary acquired.",
+      "decision": "Record access blocker only, stop failedroutes and preserve old accepted packets. NewKipnis bibliographic scope totals5requests/8,449,621bytes; reused authorindex charged once."
+    }
+  ],
+  "blocked_operations": [
+    "ligand-independent or no-inhibition template transfer",
+    "quantitative inhibition or K53/Tyr17 mutation inference without reported controls",
+    "assay-specimen sequence identity or cross-variant sequence/geometry transfer",
+    "new mechanism compilation, protein admission, evidence-tier promotion or independent validation",
+    "global design success or comparative fold-evolvability claim"
+  ],
+  "coordination_record": "work/coordination_beta_barrel_controls_20260910.md",
+  "parent_verification": "All 38 new response-body hashes and lengths; both cumulative budgets and prior receipt binding; exact S4 XML/media/archive join; deposited sequence and 11 residue maps, five distances and three ligand identities; two kinetic rows, eight condition arms and explicit nulls; prior 29 claim objects and historical handoff suffix. All 14 existing truth tests pass. Repository contracts and CI check publication integrity, not scientific validity.",
+  "reviewed_at_utc": "2026-09-10T04:40:40.914329+00:00",
+  "completion_note": "All three separately prompted roles accepted the exact assessment, documentation, retained inputs and adjudications without blocking objections before parent decision finalization. Metadata finalization does not change reviewed source content."
+}

@@ -372,5 +372,20 @@
       "data/atlas/study_context/ra61_2010/acquisition_receipts.json",
       "docs/ATLAS_RA61_COMPONENT_EVIDENCE.md"
     ]
+  },
+  {
+    "claim_id": "CE-030",
+    "claim_kind": "scientific_result",
+    "status": "Supported",
+    "claim": "Main-text benzoate noninhibition up to 2.5 mM conflicts with visibly lower S4 bars at 2.5 mM. The S4 caption names RAβb-16.2 while the crystal is RAβb-16.1; no ligand-independent template follows.",
+    "current_wording": "Retain positive named-variant cleavage parameters, exact 120-residue deposited 8AH9 sequence and explicit residue/ligand/alternate coordinates, while assay-specimen identity remains unverified. Preserve the benzoate prose/plot and variant mismatch, kinetic pH 7/7.5 conflict and mutation-informed docking limits. No numeric inhibition effect, statistical significance, K53 knockout rate, productive geometry, full mechanism, new experiment or evidence-tier promotion is established.",
+    "rationale": "The atlas joins the precise control variant, source figure and structural specimen to prevent transfer of a blanket ligand-independent catalytic-arrangement label that the published evidence does not support.",
+    "evidence": [
+      "data/atlas/study_context/beta_barrel_2022/source_qualification.json",
+      "data/atlas/study_context/beta_barrel_2022/source_review.json",
+      "data/atlas/study_context/beta_barrel_2022/acquisition_receipts.json",
+      "data/atlas/study_context/beta_barrel_2022/sources/8AH9.cif",
+      "docs/ATLAS_BETA_BARREL_CONTROLS.md"
+    ]
   }
 ]

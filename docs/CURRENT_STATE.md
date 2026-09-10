@@ -1,5 +1,28 @@
 # Current State
 
+## 2026-09-10: de novo beta-barrel control retains a ligand and variant conflict
+
+The [Kipnis source annotation](ATLAS_BETA_BARREL_CONTROLS.md) adds two
+published kinetic table rows, eight benzoate condition arms and one exact
+120-residue deposited sequence. Main-text noninhibition up to 2.5 mM conflicts
+with the visually lower S4 bars at that concentration. S4 names RAβb-16.2;
+the crystal is RAβb-16.1. CE-030 blocks a ligand-independent template claim
+without inventing inhibition parameters, statistical significance or a corrected
+source. The fitted kinetics also retain a pH 7 versus 7.5 source conflict.
+
+Current 8AH9 binds the exact study and deposited variant, with three distinct
+BEZ instances, explicit residue numbering and Ser77 alternatives. The deposited
+sequence does not verify assay specimens or supply RAβb-16.2's exact string.
+The visible K77M control belongs to RAβb-8; optimized-lineage Lys53/Tyr17
+assertions lack specified quantitative matched controls in the acquired main/SI.
+No runtime, protected registry, frozen kernel or exposure history changes.
+
+The distinct Kipnis batch totals 5 requests / 8,449,621 bytes. The original
+RA61 batch now totals 45 / 3,236,259, including the stopped Jiang2008 inquiry:
+main/SI remain inaccessible and unassessed. Its old accepted evidence is
+unchanged. An author-index PDF link supplied the evidence-supported pivot;
+no budget was reset or discovery request counted twice.
+
 ## 2026-09-10: RA61 separates designed motifs from component evidence
 
 The [RA61 component annotation](ATLAS_RA61_COMPONENT_EVIDENCE.md) adds six

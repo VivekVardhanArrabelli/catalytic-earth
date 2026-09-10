@@ -1,0 +1,759 @@
+{
+  "schema_version": "catalytic-earth.source-qualification.v1",
+  "assessment_id": "kipnis2022-beta-barrel-benzoate-control",
+  "operation": "source_annotation",
+  "scientific_question": "Does the benzoate experiment establish that the crystallized de novo beta-barrel catalyst functions independently of its bound ligand, and can catalytic controls be bound to exact constructs?",
+  "conclusion": "No ligand-independent template claim is supported. Main noninhibition prose conflicts with the S4 plot, whose caption names a different variant. Preserve positive named-variant cleavage parameters, deposit identity, qualitative control evidence and unresolved mechanism separately.",
+  "counted_objects": {
+    "new_primary_study_contexts": 1,
+    "named_lineage_construct_contexts": 3,
+    "retained_quantitative_kinetic_table_rows": 2,
+    "benzoate_condition_arms": 8,
+    "deposited_sequence_records": 1,
+    "new_protein_registry_records": 0,
+    "new_compiled_mechanisms": 0,
+    "project_run_experiments": 0
+  },
+  "sources": [
+    {
+      "source_id": "kipnis2022-main",
+      "doi": "10.1002/pro.4405",
+      "pmid": "36305767",
+      "pmcid": "PMC9601869",
+      "title": "Design and optimization of enzymatic activity in a de novo beta-barrel scaffold",
+      "pdf_local_path": "/private/tmp/ce-kipnis2022-3774c9aa/article.pdf",
+      "pdf_sha256": "dae5d00d05efc6386e2002be9eb5f18c3c3224596c5e5df0fc7ad107cfe8357d",
+      "pdf_pages": 15,
+      "xml_local_path": "/private/tmp/ce-kipnis2022-3774c9aa/article.xml",
+      "xml_sha256": "04db836dd2775e9f77d264220b8d852146dd1561a32cca7965c0c518eaae6eab",
+      "url": "https://doi.org/10.1002/pro.4405"
+    },
+    {
+      "source_id": "kipnis2022-S4",
+      "parent_source_id": "kipnis2022-main",
+      "xml_id": "pro4405-supitem-0004",
+      "archive_sha256": "1d537635bfa0c017fed96fda9b1fcafa4302a26d7c630651cdf265bd8cdf0a99",
+      "archive_member": "PRO-31-e4405-s006.tiff",
+      "local_path": "/private/tmp/ce-kipnis2022-3774c9aa/supplement/PRO-31-e4405-s006.tiff",
+      "sha256": "391b56134d77e23c52ff2f80c58672fabdfa07640a134e26b6d8f3e36d83ada6",
+      "scope": "Caption and plotted figure, not raw measurements. Full supplement has six figure groups, including a nested S1 archive."
+    },
+    {
+      "source_id": "8AH9-v1.3",
+      "pdb_id": "8AH9",
+      "version": "1.3",
+      "revision_date": "2026-03-04",
+      "path": "data/atlas/study_context/beta_barrel_2022/sources/8AH9.cif",
+      "sha256": "e6279016ff65e3b18d2f2263b86165725d7ed09784607050b2fc38669347b3b5",
+      "url": "https://files.rcsb.org/download/8AH9.cif",
+      "study_join": "Main Methods4.8 explicitly deposits RAβb-16.1 as8AH9; deposit entity1 names RAbetaB-16.1 and exact primary DOI/PMID match."
+    }
+  ],
+  "constructs": [
+    {
+      "construct_id": "RA-beta-b-16",
+      "source_label": "RAβb-16",
+      "source": "main Sections2.3-2.4",
+      "parent_construct_id": null,
+      "exact_assay_sequence": null,
+      "identity_status": "named_original_design; no full sequence in acquired article/SI"
+    },
+    {
+      "construct_id": "RA-beta-b-16.1",
+      "source_label": "RAβb-16.1",
+      "parent_construct_id": "RA-beta-b-16",
+      "source_substitutions": [
+        "A21E",
+        "L45D",
+        "V49K",
+        "A69V",
+        "Y75E",
+        "V95T",
+        "A104Y"
+      ],
+      "source": "main Section2.3 p6",
+      "deposited_sequence_ref": "#/deposited_context/sequence",
+      "exact_assay_sequence": null,
+      "identity_status": "explicit same-study deposit association; specimen and assay sequence identity unverified"
+    },
+    {
+      "construct_id": "RA-beta-b-16.2",
+      "source_label": "RAβb-16.2",
+      "parent_construct_id": "RA-beta-b-16.1",
+      "source_substitutions": [
+        "K49E",
+        "S51H"
+      ],
+      "source": "main Section2.5 p9",
+      "exact_assay_sequence": null,
+      "identity_status": "declared two-substitution derivative; no assay or deposit sequence copied from16.1"
+    }
+  ],
+  "deposited_context": {
+    "source_id": "8AH9-v1.3",
+    "construct_id": "RA-beta-b-16.1",
+    "sequence": {
+      "sequence": "HHHHHAPCAADVLPGTWRIDAKYSNGERFEGRLEVRPETPTKFRIRIEGKDSNGKPSHKEGWMEVRTCTKVEVRVKASTGEESRGYMELKSPYKLRLEAKTYDRTGHPVYKVEGHLERIA",
+      "length": 120,
+      "sha256": "b14955ab41d4c92c53697d5ec4fe97e92e7ef0c0cf1ad0211127ca5c69fd703d",
+      "status": "deposited_entity_poly_canonical_sequence",
+      "source_field": "_entity_poly.pdbx_seq_one_letter_code_can entity1",
+      "normalization": "Whitespace only removed; all five initial histidines retained; no inferred missing methionine or tag repair.",
+      "modeled_residue_count": 115,
+      "unmodeled_sequence_indices_1based": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "assay_specimen_verified": false
+    },
+    "residue_mappings": [
+      {
+        "source_paper_position": 17,
+        "pdb_author_chain": "A",
+        "pdb_author_position": 17,
+        "label_asym_id": "A",
+        "label_seq_id": 23,
+        "residue": "TYR",
+        "one_letter": "Y",
+        "sequence_index_1based": 23,
+        "binding": "Exact paper-deposit citation/name and deposited residue scheme; not assay-specimen verification."
+      },
+      {
+        "source_paper_position": 21,
+        "pdb_author_chain": "A",
+        "pdb_author_position": 21,
+        "label_asym_id": "A",
+        "label_seq_id": 27,
+        "residue": "GLU",
+        "one_letter": "E",
+        "sequence_index_1based": 27,
+        "binding": "Exact paper-deposit citation/name and deposited residue scheme; not assay-specimen verification."
+      },
+      {
+        "source_paper_position": 45,
+        "pdb_author_chain": "A",
+        "pdb_author_position": 45,
+        "label_asym_id": "A",
+        "label_seq_id": 51,
+        "residue": "ASP",
+        "one_letter": "D",
+        "sequence_index_1based": 51,
+        "binding": "Exact paper-deposit citation/name and deposited residue scheme; not assay-specimen verification."
+      },
+      {
+        "source_paper_position": 49,
+        "pdb_author_chain": "A",
+        "pdb_author_position": 49,
+        "label_asym_id": "A",
+        "label_seq_id": 55,
+        "residue": "LYS",
+        "one_letter": "K",
+        "sequence_index_1based": 55,
+        "binding": "Exact paper-deposit citation/name and deposited residue scheme; not assay-specimen verification."
+      },
+      {
+        "source_paper_position": 51,
+        "pdb_author_chain": "A",
+        "pdb_author_position": 51,
+        "label_asym_id": "A",
+        "label_seq_id": 57,
+        "residue": "SER",
+        "one_letter": "S",
+        "sequence_index_1based": 57,
+        "binding": "Exact paper-deposit citation/name and deposited residue scheme; not assay-specimen verification."
+      },
+      {
+        "source_paper_position": 53,
+        "pdb_author_chain": "A",
+        "pdb_author_position": 53,
+        "label_asym_id": "A",
+        "label_seq_id": 59,
+        "residue": "LYS",
+        "one_letter": "K",
+        "sequence_index_1based": 59,
+        "binding": "Exact paper-deposit citation/name and deposited residue scheme; not assay-specimen verification."
+      },
+      {
+        "source_paper_position": 69,
+        "pdb_author_chain": "A",
+        "pdb_author_position": 69,
+        "label_asym_id": "A",
+        "label_seq_id": 75,
+        "residue": "VAL",
+        "one_letter": "V",
+        "sequence_index_1based": 75,
+        "binding": "Exact paper-deposit citation/name and deposited residue scheme; not assay-specimen verification."
+      },
+      {
+        "source_paper_position": 75,
+        "pdb_author_chain": "A",
+        "pdb_author_position": 75,
+        "label_asym_id": "A",
+        "label_seq_id": 81,
+        "residue": "GLU",
+        "one_letter": "E",
+        "sequence_index_1based": 81,
+        "binding": "Exact paper-deposit citation/name and deposited residue scheme; not assay-specimen verification."
+      },
+      {
+        "source_paper_position": 77,
+        "pdb_author_chain": "A",
+        "pdb_author_position": 77,
+        "label_asym_id": "A",
+        "label_seq_id": 83,
+        "residue": "SER",
+        "one_letter": "S",
+        "sequence_index_1based": 83,
+        "binding": "Exact paper-deposit citation/name and deposited residue scheme; not assay-specimen verification."
+      },
+      {
+        "source_paper_position": 95,
+        "pdb_author_chain": "A",
+        "pdb_author_position": 95,
+        "label_asym_id": "A",
+        "label_seq_id": 101,
+        "residue": "THR",
+        "one_letter": "T",
+        "sequence_index_1based": 101,
+        "binding": "Exact paper-deposit citation/name and deposited residue scheme; not assay-specimen verification."
+      },
+      {
+        "source_paper_position": 104,
+        "pdb_author_chain": "A",
+        "pdb_author_position": 104,
+        "label_asym_id": "A",
+        "label_seq_id": 110,
+        "residue": "TYR",
+        "one_letter": "Y",
+        "sequence_index_1based": 110,
+        "binding": "Exact paper-deposit citation/name and deposited residue scheme; not assay-specimen verification."
+      }
+    ],
+    "ligand_instances": [
+      {
+        "comp_id": "BEZ",
+        "label_asym_id": "B",
+        "atom_site_auth_asym_id": "A",
+        "atom_site_auth_seq_id": 201,
+        "nonpoly_scheme_auth_seq_num": 1
+      },
+      {
+        "comp_id": "BEZ",
+        "label_asym_id": "C",
+        "atom_site_auth_asym_id": "A",
+        "atom_site_auth_seq_id": 202,
+        "nonpoly_scheme_auth_seq_num": 2
+      },
+      {
+        "comp_id": "BEZ",
+        "label_asym_id": "D",
+        "atom_site_auth_asym_id": "A",
+        "atom_site_auth_seq_id": 203,
+        "nonpoly_scheme_auth_seq_num": 3
+      }
+    ],
+    "network_adjacent_ligand": "BEZ label_asym C, atom_site author A202; geometrically nearest of the three to the selected polar groups.",
+    "selected_atom_pairs": [
+      {
+        "protein_atom": {
+          "atom_site_id": "142",
+          "model": "1",
+          "label_asym_id": "A",
+          "label_seq_id": "23",
+          "label_comp_id": "TYR",
+          "label_atom_id": "OH",
+          "label_alt_id": ".",
+          "auth_asym_id": "A",
+          "auth_seq_id": "17",
+          "occupancy": 1.0,
+          "xyz_A": [
+            17.261,
+            29.707,
+            21.108
+          ]
+        },
+        "ligand_atom": {
+          "atom_site_id": "975",
+          "model": "1",
+          "label_asym_id": "C",
+          "label_seq_id": ".",
+          "label_comp_id": "BEZ",
+          "label_atom_id": "O2",
+          "label_alt_id": ".",
+          "auth_asym_id": "A",
+          "auth_seq_id": "202",
+          "occupancy": 1.0,
+          "xyz_A": [
+            17.153,
+            28.398,
+            23.603
+          ]
+        },
+        "distance_A": 2.8196045822065208,
+        "method": "Euclidean distance in deposited model1, identity assembly operator1; no H-bond/chemical-state/causality inference."
+      },
+      {
+        "protein_atom": {
+          "atom_site_id": "434",
+          "model": "1",
+          "label_asym_id": "A",
+          "label_seq_id": "59",
+          "label_comp_id": "LYS",
+          "label_atom_id": "NZ",
+          "label_alt_id": ".",
+          "auth_asym_id": "A",
+          "auth_seq_id": "53",
+          "occupancy": 1.0,
+          "xyz_A": [
+            14.257,
+            32.591,
+            24.556
+          ]
+        },
+        "ligand_atom": {
+          "atom_site_id": "974",
+          "model": "1",
+          "label_asym_id": "C",
+          "label_seq_id": ".",
+          "label_comp_id": "BEZ",
+          "label_atom_id": "O1",
+          "label_alt_id": ".",
+          "auth_asym_id": "A",
+          "auth_seq_id": "202",
+          "occupancy": 1.0,
+          "xyz_A": [
+            14.948,
+            28.527,
+            23.536
+          ]
+        },
+        "distance_A": 4.246643027145089,
+        "method": "Euclidean distance in deposited model1, identity assembly operator1; no H-bond/chemical-state/causality inference."
+      },
+      {
+        "protein_atom": {
+          "atom_site_id": "632",
+          "model": "1",
+          "label_asym_id": "A",
+          "label_seq_id": "83",
+          "label_comp_id": "SER",
+          "label_atom_id": "OG",
+          "label_alt_id": "A",
+          "auth_asym_id": "A",
+          "auth_seq_id": "77",
+          "occupancy": 0.5,
+          "xyz_A": [
+            11.66,
+            29.139,
+            25.319
+          ]
+        },
+        "ligand_atom": {
+          "atom_site_id": "974",
+          "model": "1",
+          "label_asym_id": "C",
+          "label_seq_id": ".",
+          "label_comp_id": "BEZ",
+          "label_atom_id": "O1",
+          "label_alt_id": ".",
+          "auth_asym_id": "A",
+          "auth_seq_id": "202",
+          "occupancy": 1.0,
+          "xyz_A": [
+            14.948,
+            28.527,
+            23.536
+          ]
+        },
+        "distance_A": 3.7900629282374707,
+        "method": "Euclidean distance in deposited model1, identity assembly operator1; no H-bond/chemical-state/causality inference."
+      },
+      {
+        "protein_atom": {
+          "atom_site_id": "633",
+          "model": "1",
+          "label_asym_id": "A",
+          "label_seq_id": "83",
+          "label_comp_id": "SER",
+          "label_atom_id": "OG",
+          "label_alt_id": "B",
+          "auth_asym_id": "A",
+          "auth_seq_id": "77",
+          "occupancy": 0.5,
+          "xyz_A": [
+            11.549,
+            27.142,
+            25.091
+          ]
+        },
+        "ligand_atom": {
+          "atom_site_id": "974",
+          "model": "1",
+          "label_asym_id": "C",
+          "label_seq_id": ".",
+          "label_comp_id": "BEZ",
+          "label_atom_id": "O1",
+          "label_alt_id": ".",
+          "auth_asym_id": "A",
+          "auth_seq_id": "202",
+          "occupancy": 1.0,
+          "xyz_A": [
+            14.948,
+            28.527,
+            23.536
+          ]
+        },
+        "distance_A": 3.9861574228823438,
+        "method": "Euclidean distance in deposited model1, identity assembly operator1; no H-bond/chemical-state/causality inference."
+      },
+      {
+        "protein_atom": {
+          "atom_site_id": "872",
+          "model": "1",
+          "label_asym_id": "A",
+          "label_seq_id": "110",
+          "label_comp_id": "TYR",
+          "label_atom_id": "OH",
+          "label_alt_id": ".",
+          "auth_asym_id": "A",
+          "auth_seq_id": "104",
+          "occupancy": 1.0,
+          "xyz_A": [
+            13.413,
+            30.871,
+            20.468
+          ]
+        },
+        "ligand_atom": {
+          "atom_site_id": "974",
+          "model": "1",
+          "label_asym_id": "C",
+          "label_seq_id": ".",
+          "label_comp_id": "BEZ",
+          "label_atom_id": "O1",
+          "label_alt_id": ".",
+          "auth_asym_id": "A",
+          "auth_seq_id": "202",
+          "occupancy": 1.0,
+          "xyz_A": [
+            14.948,
+            28.527,
+            23.536
+          ]
+        },
+        "distance_A": 4.154898915737903,
+        "method": "Euclidean distance in deposited model1, identity assembly operator1; no H-bond/chemical-state/causality inference."
+      }
+    ],
+    "ser77_alternates": "OG A and B each deposited occupancy0.5; do not average coordinates or infer solution population/correlation.",
+    "disulfide": "Deposited struct_conn disulf1 links author Cys2/Cys62, label8/68, SG altA in both partners; no solution-state proof.",
+    "source_interpretation": "Main Figure5/Section2.4 identifies adventitious benzoate of uncertain copurification/crystallization origin. Original carbinolamine pose clashes in author modeling; alternate methodol pose is restrained, mutation-informed docking.",
+    "limits": [
+      "Deposited BEZ chemical-component name/formal-charge fields do not determine solution protonation.",
+      "Distances describe current deposited atoms, not H-bonds, reaction geometry, measured catalytic tolerances or an isolated energetic contribution.",
+      "No bound methodol, observed catalytic intermediate, exact assay specimen or variant16.2 structure established.",
+      "Author molecular origin and catalytic role of benzoate remain unresolved."
+    ]
+  },
+  "assays": [
+    {
+      "assay_id": "purified-enantiopure-steady-state",
+      "endpoint": "initial product-formation rates fitted to Michaelis-Menten parameters",
+      "temperature_C": 25,
+      "buffer": "25 mM HEPES,100 mM NaCl",
+      "pH": null,
+      "pH_status": "source_conflict",
+      "pH_source_values": [
+        {
+          "value": 7,
+          "source": "Figure6 caption p9"
+        },
+        {
+          "value": 7.5,
+          "source": "Methods4.7 p12"
+        }
+      ],
+      "acetonitrile_percent_v_v": 2.7,
+      "acetonitrile_source": "Methods4.7",
+      "enzyme_uM": 5,
+      "enzyme_concentration_source": "Figure6 caption",
+      "readout": "Methods4.7 absorbance350nm of aldehyde product; corrected for enzyme concentration and uncatalyzed background",
+      "error_kind": null,
+      "replicate_n": null
+    },
+    {
+      "assay_id": "S4-benzoate",
+      "source_id": "kipnis2022-S4",
+      "construct_id": "RA-beta-b-16.2",
+      "substrate": "racemic methodol",
+      "substrate_uM": 250,
+      "independently_purified_batches": 2,
+      "preincubation_temperature": "room temperature",
+      "assay_temperature_C": null,
+      "assay_pH": null,
+      "buffer": null,
+      "enzyme_concentration": null,
+      "cosolvent": null,
+      "readout": null,
+      "condition_status": "Only S4-caption-specific conditions assigned; main Methods protocols are not silently propagated.",
+      "raw_rates": null,
+      "error_bar_statistic": null,
+      "replicate_n_per_arm": null,
+      "normalization_definition": null
+    }
+  ],
+  "kinetic_observations": [
+    {
+      "observation_id": "S-methodol-16.1",
+      "construct_id": "RA-beta-b-16.1",
+      "assay_id": "purified-enantiopure-steady-state",
+      "source_locator": "Main Table2 p8, first two S-methodol rows; Figure6 p9",
+      "substrate": "(S)-methodol",
+      "parameters": [
+        {
+          "parameter": "k_cat",
+          "value": 1.5,
+          "unit": "min^-1",
+          "reported_plus_minus": 0.1,
+          "error_kind": null
+        },
+        {
+          "parameter": "K_M",
+          "value": 230,
+          "unit": "uM",
+          "reported_plus_minus": 40,
+          "error_kind": null
+        },
+        {
+          "parameter": "k_cat/K_M",
+          "value": 6500,
+          "unit": "M^-1 min^-1",
+          "reported_plus_minus": null
+        }
+      ],
+      "source_reported_selectivity": {
+        "value": 36,
+        "unit": "dimensionless",
+        "definition": "(k_cat/K_M)_S / (k_cat/K_M)_R",
+        "R_parameter_values": null,
+        "note": "Printed source factor; no R parameter inferred by inversion."
+      },
+      "replicate_n": null,
+      "scope": "Published fitted endpoint parameters; no new experiment, elementary-step assignment or independent validation. Printed efficiencies remain distinct from quotients of rounded kcat/KM inputs."
+    },
+    {
+      "observation_id": "S-methodol-16.2",
+      "construct_id": "RA-beta-b-16.2",
+      "assay_id": "purified-enantiopure-steady-state",
+      "source_locator": "Main Table2 p8, first two S-methodol rows; Figure6 p9",
+      "substrate": "(S)-methodol",
+      "parameters": [
+        {
+          "parameter": "k_cat",
+          "value": 1.6,
+          "unit": "min^-1",
+          "reported_plus_minus": 0.1,
+          "error_kind": null
+        },
+        {
+          "parameter": "K_M",
+          "value": 50,
+          "unit": "uM",
+          "reported_plus_minus": 10,
+          "error_kind": null
+        },
+        {
+          "parameter": "k_cat/K_M",
+          "value": 30000,
+          "unit": "M^-1 min^-1",
+          "reported_plus_minus": null
+        }
+      ],
+      "source_reported_selectivity": {
+        "value": 500,
+        "unit": "dimensionless",
+        "definition": "(k_cat/K_M)_S / (k_cat/K_M)_R",
+        "R_parameter_values": null,
+        "note": "Printed source factor; no R parameter inferred by inversion."
+      },
+      "replicate_n": null,
+      "scope": "Published fitted endpoint parameters; no new experiment, elementary-step assignment or independent validation. Printed efficiencies remain distinct from quotients of rounded kcat/KM inputs."
+    }
+  ],
+  "benzoate_condition_arms": [
+    {
+      "arm_id": "benzoate-10min-0mM",
+      "construct_id": "RA-beta-b-16.2",
+      "assay_id": "S4-benzoate",
+      "preincubation_minutes": 10,
+      "panel_label": "10 min",
+      "benzoate_mM": 0,
+      "activity_value": null,
+      "activity_unit": "percent_of_max",
+      "source_y_axis": "activity, %max",
+      "numeric_status": "not_tabulated_not_digitized",
+      "error_value": null
+    },
+    {
+      "arm_id": "benzoate-10min-0.25mM",
+      "construct_id": "RA-beta-b-16.2",
+      "assay_id": "S4-benzoate",
+      "preincubation_minutes": 10,
+      "panel_label": "10 min",
+      "benzoate_mM": 0.25,
+      "activity_value": null,
+      "activity_unit": "percent_of_max",
+      "source_y_axis": "activity, %max",
+      "numeric_status": "not_tabulated_not_digitized",
+      "error_value": null
+    },
+    {
+      "arm_id": "benzoate-10min-2.5mM",
+      "construct_id": "RA-beta-b-16.2",
+      "assay_id": "S4-benzoate",
+      "preincubation_minutes": 10,
+      "panel_label": "10 min",
+      "benzoate_mM": 2.5,
+      "activity_value": null,
+      "activity_unit": "percent_of_max",
+      "source_y_axis": "activity, %max",
+      "numeric_status": "not_tabulated_not_digitized",
+      "error_value": null
+    },
+    {
+      "arm_id": "benzoate-10min-25mM",
+      "construct_id": "RA-beta-b-16.2",
+      "assay_id": "S4-benzoate",
+      "preincubation_minutes": 10,
+      "panel_label": "10 min",
+      "benzoate_mM": 25,
+      "activity_value": null,
+      "activity_unit": "percent_of_max",
+      "source_y_axis": "activity, %max",
+      "numeric_status": "not_tabulated_not_digitized",
+      "error_value": null
+    },
+    {
+      "arm_id": "benzoate-840min-0mM",
+      "construct_id": "RA-beta-b-16.2",
+      "assay_id": "S4-benzoate",
+      "preincubation_minutes": 840,
+      "panel_label": "ON",
+      "benzoate_mM": 0,
+      "activity_value": null,
+      "activity_unit": "percent_of_max",
+      "source_y_axis": "activity, %max",
+      "numeric_status": "not_tabulated_not_digitized",
+      "error_value": null
+    },
+    {
+      "arm_id": "benzoate-840min-0.25mM",
+      "construct_id": "RA-beta-b-16.2",
+      "assay_id": "S4-benzoate",
+      "preincubation_minutes": 840,
+      "panel_label": "ON",
+      "benzoate_mM": 0.25,
+      "activity_value": null,
+      "activity_unit": "percent_of_max",
+      "source_y_axis": "activity, %max",
+      "numeric_status": "not_tabulated_not_digitized",
+      "error_value": null
+    },
+    {
+      "arm_id": "benzoate-840min-2.5mM",
+      "construct_id": "RA-beta-b-16.2",
+      "assay_id": "S4-benzoate",
+      "preincubation_minutes": 840,
+      "panel_label": "ON",
+      "benzoate_mM": 2.5,
+      "activity_value": null,
+      "activity_unit": "percent_of_max",
+      "source_y_axis": "activity, %max",
+      "numeric_status": "not_tabulated_not_digitized",
+      "error_value": null
+    },
+    {
+      "arm_id": "benzoate-840min-25mM",
+      "construct_id": "RA-beta-b-16.2",
+      "assay_id": "S4-benzoate",
+      "preincubation_minutes": 840,
+      "panel_label": "ON",
+      "benzoate_mM": 25,
+      "activity_value": null,
+      "activity_unit": "percent_of_max",
+      "source_y_axis": "activity, %max",
+      "numeric_status": "not_tabulated_not_digitized",
+      "error_value": null
+    }
+  ],
+  "source_conflicts": [
+    {
+      "conflict_id": "benzoate-no-inhibition",
+      "author_statement": {
+        "source": "main Section2.4 p9",
+        "summary": "Authors report no inhibition by benzoate up to2.5mM and cite FigureS4.",
+        "explicit_variant_in_sentence": null,
+        "section_crystal_variant": "RA-beta-b-16.1"
+      },
+      "counterevidence": {
+        "source": "S4 caption and visual figure",
+        "caption_variant": "RA-beta-b-16.2",
+        "visual_transcription": "At2.5mM and25mM the bars are visibly below the same-panel0mM bar in both10min and14h panels. Activity remains visibly positive. No numeric rate, ratio, significance or error statistic is extracted."
+      },
+      "status": "unresolved_source_internal_prose_figure_conflict_and_construct_mismatch",
+      "permitted_conclusion": "The graph does not support a blanket no-effect claim at2.5mM; retained activity in16.2 does not establish ligand independence or uninhibited16.1.",
+      "blocked_inferences": [
+        "a no-inhibition threshold",
+        "Ki or inhibition mechanism",
+        "statistically established effect magnitude",
+        "apo or benzoate-depleted activity",
+        "same ligand occupancy in crystal and assay",
+        "productive alternate docking pose"
+      ]
+    },
+    {
+      "conflict_id": "steady-state-pH",
+      "source": "Figure6 caption p9 versus Methods4.7 p12",
+      "status": "unresolved",
+      "decision": "Retain7 and7.5 with separate locators; integrated pH stays null."
+    }
+  ],
+  "catalytic_control_boundaries": [
+    {
+      "source": "Main Figure3f p5",
+      "construct": "RAβb-8-K77M versus RAβb-8",
+      "endpoint": "product-linked fluorescence time course",
+      "result_kind": "qualitative_visual_trace",
+      "result": "K77M trace is near-flat relative to parent in the plotted condition.",
+      "rate": null,
+      "detection_limit": null,
+      "fold_or_active_fraction_control": null,
+      "limit": "No zero-activity call, no K53 experiment, and no transfer to16.1/16.2."
+    },
+    {
+      "source": "Main pp7-8 knockout sentence and p9 Tyr17 sentence",
+      "construct": "RAβb-16.1 discussion",
+      "result_kind": "author_qualitative_assertions",
+      "result": "Lys53 is described as crucial; Tyr17 substitutions as reducing efficiency. Exact substitutions, measurements and matched controls are not supplied in the acquired main/six SI groups.",
+      "mutation_identity": null,
+      "quantitative_effect": null,
+      "limit": "Do not invent K53M/Y17F or treat the statements as sequence-bound quantitative controls or proof of a microscopic acid/base role."
+    },
+    {
+      "source": "Main Sections2.1-2.2/Figure2 and Discussion",
+      "result_kind": "design_premise_and_partial_labeling",
+      "result": "Lysine activation is supported qualitatively by partial intact-mass adduct labeling inRAβb-8; buried-lysine pKa lowering is a design premise, with no pKa measurement in the acquired main/SI.",
+      "limit": "No atom-localized lysine identity or direct pKa titration follows from intact mass alone."
+    }
+  ],
+  "design_use": "A de novo scaffold has selected named-variant functional endpoints, but consumers must retain construct, ligand state, source conflicts and model dependence before using its coordinates or catalytic roles as design constraints. Shared mutation labels and activity are insufficient to transfer the S4 control to the crystal.",
+  "global_limits": [
+    "Source annotation only, not independent human review, new experiment, evidence-tier promotion or protein/mechanism admission.",
+    "No global design-success rate, comparative fold-evolvability law, reverse-synthesis selectivity or generalized catalytic apparatus claim.",
+    "The120-residue deposited sequence is not a complete assayed-construct verification and is not copied to16.2.",
+    "Source main/SI lacks full construct strings and fully specified K53/Tyr17 quantitative controls; this is limited to the acquired files, not all possible author data."
+  ]
+}
