@@ -463,5 +463,19 @@
       "data/atlas/perturbations/projection.json",
       "docs/ATLAS_RA95_4A2R_STATE.md"
     ]
+  },
+  {
+    "claim_id": "CE-036",
+    "claim_kind": "scientific_result",
+    "status": "Supported",
+    "claim": "Retained M0106 proposal1 step7 and M0219 proposal1 step6 have corresponding selected ThDP/Glu covalent graphs and all five directed source-arrow endpoint pairs, including both transferred explicit hydrogens. The activation pair requires an explicit spectator-H exclusion.",
+    "current_wording": "Describe a source-proposed localized reset correspondence and a partial activation correspondence. M0106 activation includes an extra explicit aminopyrimidine N-H absent from the M0219 drawing; do not infer equal protonation or silently complete hydrogens. Both declared phosphate-oxygen maps preserve the same reaction endpoints. Retain raw electronic tokens, source-file order differences, alternative conjugated-bond paths and uncompared metal/stereo context. No physical atom or homologous-residue map, adjacent after-state replay, whole-cycle equivalence, conserved function, reaction/acceptor/protein/structure transfer, new experiment or evidence-tier promotion follows.",
+    "rationale": "A single source-bound consumer checks explicit atom and complete arrow-endpoint correspondences beyond shared cofactor labels, while retaining the exact boundary that prevents whole-state and whole-mechanism transfer.",
+    "evidence": [
+      "data/atlas/source_step_correspondence/thdp.json",
+      "data/atlas/source_step_correspondence/review.json",
+      "scripts/compare_source_steps.py",
+      "docs/ATLAS_THDP_CORRESPONDENCE.md"
+    ]
   }
 ]

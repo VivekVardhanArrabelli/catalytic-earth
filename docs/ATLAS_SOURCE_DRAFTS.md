@@ -238,6 +238,13 @@ unmapped rows.
 
 ## Evidence for individual source steps
 
+The [ThDP source-step correspondence](ATLAS_THDP_CORRESPONDENCE.md) separately
+checks cross-record reset and qualified activation mappings between M0106 and
+M0219 proposal 1. It preserves both transferred hydrogens and all source-arrow
+endpoints, while exposing an extra explicit spectator H in one activation
+drawing. This source-proposal relation does not change the label-query scope,
+original records, reaction contexts or evidence tiers.
+
 The PLP/pyruvoyl batch has an optional, reviewed context sidecar for all 32
 nonterminal source steps. It binds each annotation to the exact record,
 proposal, step and captured scheme hash. The original source bundles remain

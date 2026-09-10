@@ -1,0 +1,296 @@
+{
+  "schema_version": "catalytic-earth.source-step-correspondences.v1",
+  "id": "thdp-proposal1-activation-reset",
+  "sources": {
+    "M0106": {
+      "snapshot": {
+        "path": "data/atlas/source_drafts/sources/M0106.json",
+        "sha256": "2282979dfb6906d46601f6d812726eead8fb985d014587f6ff4e81e77e2a46e9"
+      },
+      "records": {
+        "path": "data/atlas/source_drafts/records.json",
+        "sha256": "570f55a05d539e345dafa0d4c3f0e74ba2a721ad1085bddec96c98d3b41dbd9f"
+      },
+      "record_id": "atlas50-draft:m0106:source-scoped-mechanism-draft"
+    },
+    "M0219": {
+      "snapshot": {
+        "path": "data/atlas/source_drafts/batches/aldolase-transketolase/sources/M0219.json",
+        "sha256": "054f1c3bee9ff38938b59e81b6b4065fe4d4204cb899171f4f68c284bad7d01c"
+      },
+      "records": {
+        "path": "data/atlas/source_drafts/batches/aldolase-transketolase/records.json",
+        "sha256": "cab1532323e28ccffbeb01946608bc7405c746eec34dcf977aed974f82369720"
+      },
+      "record_id": "atlas50-draft:m0219:source-scoped-mechanism-draft"
+    }
+  },
+  "relations": [
+    {
+      "id": "activation",
+      "left": {
+        "source_id": "M0106",
+        "mechanism_id": 1,
+        "step_id": 1,
+        "scheme_sha256": "b1a18541493f80cbb27d763bc0c1ba01b68f99cc09727844be8f9e1b2814896d",
+        "component_labels": [
+          "chebi:58937",
+          "res:Glu59B"
+        ],
+        "excluded_atoms": [
+          {
+            "atom_id": "a65",
+            "reason": "M0106 explicitly draws an additional non-flow H on aminopyrimidine N a64; M0219 omits its counterpart. Exclude only this displayed spectator from the partial comparison, retain its boundary N-H bond, and withhold complete actor/protonation equivalence."
+          }
+        ]
+      },
+      "right": {
+        "source_id": "M0219",
+        "mechanism_id": 1,
+        "step_id": 1,
+        "scheme_sha256": "48563617ec853d43d5869852bd45fb1c9ec08ab5c0de107ee252b2f81e4b5554",
+        "component_labels": [
+          "chebi:58937",
+          "res:Glu418B"
+        ],
+        "excluded_atoms": []
+      },
+      "mappings": [
+        {
+          "atom_map": {
+            "a10": "a11",
+            "a11": "a12",
+            "a12": "a13",
+            "a13": "a14",
+            "a14": "a15",
+            "a15": "a16",
+            "a16": "a17",
+            "a17": "a18",
+            "a18": "a19",
+            "a19": "a20",
+            "a2": "a2",
+            "a20": "a21",
+            "a21": "a22",
+            "a22": "a23",
+            "a23": "a24",
+            "a24": "a25",
+            "a25": "a26",
+            "a26": "a27",
+            "a27": "a41",
+            "a28": "a42",
+            "a29": "a43",
+            "a3": "a4",
+            "a30": "a44",
+            "a31": "a45",
+            "a32": "a46",
+            "a4": "a3",
+            "a5": "a7",
+            "a6": "a5",
+            "a64": "a6",
+            "a66": "a54",
+            "a67": "a55",
+            "a7": "a8",
+            "a8": "a9",
+            "a9": "a10"
+          },
+          "flow_map": {
+            "o35": "o33",
+            "o36": "o34",
+            "o37": "o36",
+            "o38": "o35",
+            "o39": "o37"
+          }
+        },
+        {
+          "atom_map": {
+            "a10": "a11",
+            "a11": "a12",
+            "a12": "a13",
+            "a13": "a14",
+            "a14": "a15",
+            "a15": "a16",
+            "a16": "a17",
+            "a17": "a18",
+            "a18": "a19",
+            "a19": "a20",
+            "a2": "a2",
+            "a20": "a22",
+            "a21": "a21",
+            "a22": "a23",
+            "a23": "a24",
+            "a24": "a25",
+            "a25": "a26",
+            "a26": "a27",
+            "a27": "a41",
+            "a28": "a42",
+            "a29": "a43",
+            "a3": "a4",
+            "a30": "a44",
+            "a31": "a45",
+            "a32": "a46",
+            "a4": "a3",
+            "a5": "a7",
+            "a6": "a5",
+            "a64": "a6",
+            "a66": "a54",
+            "a67": "a55",
+            "a7": "a8",
+            "a8": "a9",
+            "a9": "a10"
+          },
+          "flow_map": {
+            "o35": "o33",
+            "o36": "o34",
+            "o37": "o36",
+            "o38": "o35",
+            "o39": "o37"
+          }
+        }
+      ],
+      "limitations": [
+        "M0106 selected actors have 35 nodes, M0219 34; the compared projections each have 34. The explicit-H difference is not silently normalized.",
+        "M0219 states that the conjugated bonds can rearrange anticlockwise instead of the depicted route. This correspondence covers one drawn alternative only.",
+        "M0106 flows o37/o38 map to M0219 o36/o35, so the set of directed arrows corresponds without identical source-file order."
+      ]
+    },
+    {
+      "id": "reset",
+      "left": {
+        "source_id": "M0106",
+        "mechanism_id": 1,
+        "step_id": 7,
+        "scheme_sha256": "0c7571e4ec163abb292c16cc5eba6366b3f1617f6a48cfa709d1099ba097b085",
+        "component_labels": [
+          "chebi:58937",
+          "res:Glu59B"
+        ],
+        "excluded_atoms": []
+      },
+      "right": {
+        "source_id": "M0219",
+        "mechanism_id": 1,
+        "step_id": 6,
+        "scheme_sha256": "de2d063c0321d67c43896f63e5fe621c4a9d59e0e19c02a43ac7e75c551e9fd2",
+        "component_labels": [
+          "chebi:58937",
+          "res:Glu418B"
+        ],
+        "excluded_atoms": []
+      },
+      "mappings": [
+        {
+          "atom_map": {
+            "a10": "a11",
+            "a11": "a12",
+            "a12": "a13",
+            "a13": "a14",
+            "a14": "a15",
+            "a15": "a16",
+            "a16": "a17",
+            "a17": "a18",
+            "a18": "a19",
+            "a19": "a20",
+            "a2": "a2",
+            "a20": "a21",
+            "a21": "a22",
+            "a22": "a23",
+            "a23": "a24",
+            "a24": "a25",
+            "a25": "a26",
+            "a26": "a27",
+            "a27": "a55",
+            "a28": "a56",
+            "a29": "a57",
+            "a3": "a4",
+            "a30": "a58",
+            "a31": "a59",
+            "a32": "a60",
+            "a4": "a3",
+            "a5": "a7",
+            "a6": "a5",
+            "a64": "a6",
+            "a65": "a68",
+            "a66": "a69",
+            "a7": "a8",
+            "a8": "a9",
+            "a9": "a10"
+          },
+          "flow_map": {
+            "o35": "o51",
+            "o36": "o52",
+            "o37": "o53",
+            "o38": "o54",
+            "o39": "o55"
+          }
+        },
+        {
+          "atom_map": {
+            "a10": "a11",
+            "a11": "a12",
+            "a12": "a13",
+            "a13": "a14",
+            "a14": "a15",
+            "a15": "a16",
+            "a16": "a17",
+            "a17": "a18",
+            "a18": "a19",
+            "a19": "a20",
+            "a2": "a2",
+            "a20": "a22",
+            "a21": "a21",
+            "a22": "a23",
+            "a23": "a24",
+            "a24": "a25",
+            "a25": "a26",
+            "a26": "a27",
+            "a27": "a55",
+            "a28": "a56",
+            "a29": "a57",
+            "a3": "a4",
+            "a30": "a58",
+            "a31": "a59",
+            "a32": "a60",
+            "a4": "a3",
+            "a5": "a7",
+            "a6": "a5",
+            "a64": "a6",
+            "a65": "a68",
+            "a66": "a69",
+            "a7": "a8",
+            "a8": "a9",
+            "a9": "a10"
+          },
+          "flow_map": {
+            "o35": "o51",
+            "o36": "o52",
+            "o37": "o53",
+            "o38": "o54",
+            "o39": "o55"
+          }
+        }
+      ],
+      "limitations": []
+    }
+  ],
+  "limitations": [
+    "This compares retained M-CSA proposal-1 drawings, not independently observed elementary steps or physical atom identities.",
+    "All source electron-flow endpoints, including both explicit transferred H atoms and the Glu fragment, are preserved. Flow correspondence preserves direction and endpoint kinds; source-file order is not mechanistic chronology.",
+    "The covalent projection preserves displayed elements, formal-charge defaults, raw lone-pair/isotope/R-group tokens and alias presence. It does not complete implicit hydrogens, valence, electronic microstates, or proton balance.",
+    "Mg coordination bonds are retained as uncompared context. No native-metal identity or coordination/geometry transfer follows; M0219 native Mg/Ca identity remains unresolved.",
+    "Glu fragment correspondence is not residue homology, sequence/structure mapping, or a shared physical protein state. Source placeholder carbons and residue numbering remain explicit metadata.",
+    "M0106 pyruvate/decarboxylation and the E2-owned lipoyl carrier remain distinct from M0219 sugar transfer. Do not transfer acceptor identity, multienzyme context, carrier accession/site/pose, or the separate inferred enzyme-reset/cyclization steps.",
+    "M0219 proposal 2 and its different protein/reaction context are excluded. The 6HA3 E160Q/F6P-ThDP study does not ground either compared proposal.",
+    "No adjacent after-state replay, complete catalytic cycle, conserved enzyme function, canonical reaction map, productive geometry, evidence-tier promotion, or project experiment is established.",
+    "The query verifies the declared maps and does not enumerate all graph isomorphisms. The two supplied maps differ only in nonreacting diphosphate oxygen locators; their reaction-endpoint assignments are invariant."
+  ],
+  "attribution": {
+    "source": "Mechanism and Catalytic Site Atlas (M-CSA)",
+    "license": "CC BY 4.0",
+    "citation": "Ribeiro et al., Nucleic Acids Research 46(D1), D618-D623 (2018), doi:10.1093/nar/gkx1012",
+    "source_urls": [
+      "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/106/",
+      "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/219/"
+    ],
+    "changes": "Source-derived component selections and explicit cross-record depiction-locator/flow maps; retained source snapshots are unchanged."
+  }
+}
