@@ -4,15 +4,15 @@
   "reviewed_at_utc": "2026-09-10T15:33:43.109365+00:00",
   "scope": "Cumulative source-reviewed projection; this increment reviews RA95.5-5 exact parent-to4A2R attachment association and generic optional matched-comparison retrieval. Previous scientific objects are unchanged and retain prior source reviews.",
   "reviewed_bindings": {
-    "data/atlas/perturbations/projection.json": "1687a8224049fc2eb3b7130a3a1459592e724df960a801320f039d1eef1bf409",
-    "src/catalytic_earth/atlas_perturbations.py": "ecbb31b654c47ef62187b3b7acd90fa1bab4b0ae43b51704bc8f42d2f0ea7795",
+    "data/atlas/perturbations/projection.json": "5a0d6f7fda70ec7872db053ddba9197e214be2d66bf9ec94f17a4cb2a47bbb7b",
+    "src/catalytic_earth/atlas_perturbations.py": "a814c22b892b3e734076fa9aead03453c83cb6ebe4c1d1e8cd85f5bbf4f0d778",
     "scripts/query_atlas_perturbations.py": "a13b3176952c44df5e8b053ee3a7907d5020ae00e66d75b248790f7aa20656e2",
     "docs/ATLAS_PERTURBATION_RELATION.md": "68492976ab29022db85e86d1dcd19eae25f501b7b3e22660559db2e7a109735f",
     "data/atlas/study_context/ra95_2017/forward_synthesis_review.json": "a8025989cb89415ac59267dc0af2da415019af3786ec2db3debd18630de8be9d",
     "docs/ATLAS_FORWARD_SYNTHESIS.md": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84",
-    "data/atlas/study_context/diels_alder_2010/source_review.json": "19759f43826c73005f00265144e3debc9805457b0320b18693da7b9bbdd3a01b",
-    "docs/ATLAS_DIELS_ALDER_CONTROLS.md": "eb0319636aea183771290ffb0608ace1bc49c80949e0f1bbd4e41bb3c2acbb48",
-    "tests/core/test_atlas_perturbations.py": "c3c494a718ffc369ef267eee4955b1c4f215259463956668adffd7ff042ab8ef",
+    "data/atlas/study_context/diels_alder_2010/source_review.json": "bd97ed99812a3188ef47c090f61c87b0891bbc470222c49ee7698455680bf865",
+    "docs/ATLAS_DIELS_ALDER_CONTROLS.md": "749e81dbcebcceb9022a5b4a5043bb16276c712c43b0c856feb394561830ac19",
+    "tests/core/test_atlas_perturbations.py": "8f358d99fc81563cfb153b25fb296d8562fce016505f26639e48bc07d8c843c0",
     "data/atlas/study_context/6ha3/perturbation_context.json": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0",
     "data/atlas/study_context/6ha3/functional_review.json": "9af6d94d77800810d210e032e90e6af6a99ffd22a5548d9d39b5a7f502199200",
     "data/atlas/assembly_context/6ha3/review.json": "434188c22e847de2add0c76cc06076de9347d39ecd259acc051631792fcc7eaa",
@@ -31,10 +31,10 @@
     "data/atlas/study_context/ra95_2017/chemical_state.json": "0304a28cc9676ae9d920b5c4f6c47f102d10320e125cc40cbfddd971ccff695d",
     "data/atlas/study_context/ra95_2017/chemical_state_acquisition.json": "4b0427a24aab3b1269f25cd80b3b9c90f61c4a99404499d77cf0c16a8b5f2ecb",
     "docs/ATLAS_RA95_CHEMICAL_STATE.md": "a85ee7c6accdafb0f2fb63a1a658413e07788cee4a5f9f7879dce726c6707c01",
-    "CLAIMS.md": "b0b0c2eda1b43e0e11e3b314fde481bc414b285b3b6c8d6ddcf7fc62167b51c8",
-    "data/governance/claim_ledger.json": "6e348e3cc47e487756f708ce674331e1a07200f8c47b7b99f69c74865a4296a8",
-    "docs/CURRENT_DECISIONS.md": "00e739124a414b80942b0c86fb6d05af8104c57c9eb8f2841d4e3df1f52f24de",
-    "docs/CURRENT_STATE.md": "90691397ee9887ff8fb084f705cb7d30cf333a5cc0f4deca2c54d9e1df30cdde",
+    "CLAIMS.md": "b8a1ca5e5c513d6ded434cabb41999182d4421c5d82c409d31f6624b6be0c879",
+    "data/governance/claim_ledger.json": "688bd6b3c310098976d3b3aef4fd5f09b6b711d221724d5cacbfdeb250d6d830",
+    "docs/CURRENT_DECISIONS.md": "4680fbdb5e807314e4b648444bd90942fadc79585e30eefe6f189dac4e5e4f25",
+    "docs/CURRENT_STATE.md": "7bb5cc756565927c0e1b9cb438de70e79a45131daa31da9ab687ad54d7c9752f",
     "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
     "src/catalytic_earth/atlas_deposit_context.py": "9b80d476a4b386ca284cd49baed0d94cd42cf245369a407fee19df965b7be882",
     "src/catalytic_earth/atlas_assembly_context.py": "5d671a761f3ad493661f3c25b50dce693ef2169a48942af9664a65e0b0ae0835",
@@ -50,7 +50,9 @@
     "tests/test_truth_guard.py": "9cab652e125d7f03a5d22f761d163dbc6d655e11b950058b9a3e810c38b2933b",
     "docs/ATLAS_RA95_4A2R_STATE.md": "3e232b1bf17f5c316d126c2476c1b87dbf120a8584bcd1db00aa51db9df5a1f9",
     "data/atlas/study_context/ra95_2013/chemical_state_review.json": "12864f833532eff632016804fbf322e1828c33c3cabf840b2cd08b8f0ea99ebf",
-    "data/atlas/deposit_context/ra95_4a2r/review.json": "dc017d8ed45a52dade5c04a77c42d734fa34926b67cefa043a35f0d9bb605a20"
+    "data/atlas/deposit_context/ra95_4a2r/review.json": "dc017d8ed45a52dade5c04a77c42d734fa34926b67cefa043a35f0d9bb605a20",
+    "data/atlas/study_context/diels_alder_2010/reactive_core.json": "cbd144d7fa62f09848869da5dee39a0f3c9b76f3f0b34856be8b5a5eac14d1c6",
+    "src/catalytic_earth/atlas_transformations.py": "24c3a95a3ed82b6add1b8257bdbfb5b6307d0f740f169a2633f2c70a3b1cab08"
   },
   "inherited_source_bindings": {
     "ra95f": {
@@ -365,6 +367,10 @@
     "ra95_2013_state": {
       "path": "data/atlas/study_context/ra95_2013/chemical_state.json",
       "sha256": "a9b7df48d5684fc014ced487477364eb8d9b2072817e3be4c64837a364df0670"
+    },
+    "da2010_core": {
+      "path": "data/atlas/study_context/diels_alder_2010/reactive_core.json",
+      "sha256": "cbd144d7fa62f09848869da5dee39a0f3c9b76f3f0b34856be8b5a5eac14d1c6"
     }
   },
   "prior_review_binding": {
@@ -505,5 +511,37 @@
       },
       "review_record": "data/atlas/deposit_context/mandelate_1mdl/review.json"
     }
-  ]
+  ],
+  "connectivity_followup": {
+    "reviewed_at_utc": "2026-09-10T21:30:44.936902+00:00",
+    "status": "source_reviewed_computational",
+    "source_review": {
+      "path": "data/atlas/study_context/diels_alder_2010/source_review.json",
+      "sha256": "bd97ed99812a3188ef47c090f61c87b0891bbc470222c49ee7698455680bf865"
+    },
+    "prior_review_sha256": "e4af52dc1307675630a9367faddaae85e7a0328dfa8741e53a9a1cb20a3c0c36",
+    "renewed_existing_bindings": [
+      "CLAIMS.md",
+      "data/atlas/perturbations/projection.json",
+      "data/atlas/study_context/diels_alder_2010/source_review.json",
+      "data/governance/claim_ledger.json",
+      "docs/ATLAS_DIELS_ALDER_CONTROLS.md",
+      "docs/CURRENT_DECISIONS.md",
+      "docs/CURRENT_STATE.md",
+      "src/catalytic_earth/atlas_perturbations.py",
+      "tests/core/test_atlas_perturbations.py"
+    ],
+    "new_bindings": [
+      "data/atlas/study_context/diels_alder_2010/reactive_core.json",
+      "src/catalytic_earth/atlas_transformations.py"
+    ],
+    "scope": "Generic optional reaction connectivity providers replay a source-reviewed partial six-carbon graph and resolve its exact source product context. Original193 observations/111 comparisons, source packets, numerical values and prior state relations retain their scope; new connectivity fields are additive. No computed stereochemistry, map uniqueness, full chemistry, source electron flows, experiment or tier promotion.",
+    "reviewer_tasks": [
+      "/root/source_review",
+      "/root/representation_review",
+      "/root/adversarial_review"
+    ],
+    "new_source_requests": 0,
+    "new_source_response_body_bytes": 0
+  }
 }

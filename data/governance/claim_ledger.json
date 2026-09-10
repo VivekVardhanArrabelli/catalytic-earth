@@ -424,14 +424,15 @@
     "claim_kind": "scientific_result",
     "status": "Supported",
     "claim": "The acquired Siegel 2010 main article reports DA_20_10 Q195E 450-fold and Y121F 27-fold activity reductions without identifying their underlying matched assay or kinetic parameter in the acquired scope.",
-    "current_wording": "Preserve these author-reported factors separately from parent kinetic parameters, >80% diene conversion and >97% source-assigned 3R,4S endo product share. The stereochemical background uses different conditions. Source-described apo 3I1C is DA_20_00_A74I, not DA_20_10. The unacquired supplement remains unassessed. No matched product/control assay, reconstructed mutant kcat, generic inactivity, isolated yield, ee/dr, productive geometry, canonical atom map, causal catalytic contribution, project experiment, independent validation, tier promotion or design-success estimate is established.",
+    "current_wording": "Preserve these author-reported factors separately from parent kinetic parameters, >80% diene conversion and >97% source-assigned 3R,4S endo product share. The stereochemical background uses different conditions. Source-described apo 3I1C is DA_20_00_A74I, not DA_20_10. The unacquired supplement remains unassessed. No matched product/control assay, reconstructed mutant kcat, generic inactivity, isolated yield, ee/dr, productive geometry, canonical atom map, causal catalytic contribution, project experiment, independent validation, tier promotion or design-success estimate is established. The partial Figure1 six-carbon drawing correspondence replays two new C-C bonds and four bond-order changes under project-declared source anchors. It does not establish map uniqueness, full chemical-state identity, balanced protonation or atom-level stereochemistry; the four Figure4 product configurations share its constitutional core and the query computes no target stereoisomer.",
     "rationale": "Source-bound reaction/construct association can be reused across chemistry while missing metric/assay identity prevents unsupported numeric control and product transfers. Reported mutation effects are retained, not relabeled absent.",
     "evidence": [
       "data/atlas/study_context/diels_alder_2010/source_qualification.json",
       "data/atlas/study_context/diels_alder_2010/source_review.json",
       "data/atlas/study_context/diels_alder_2010/acquisition_receipts.json",
       "data/atlas/perturbations/projection.json",
-      "docs/ATLAS_DIELS_ALDER_CONTROLS.md"
+      "docs/ATLAS_DIELS_ALDER_CONTROLS.md",
+      "data/atlas/study_context/diels_alder_2010/reactive_core.json"
     ]
   },
   {

@@ -88,6 +88,10 @@
     "ra95_2013_state": {
       "path": "data/atlas/study_context/ra95_2013/chemical_state.json",
       "sha256": "a9b7df48d5684fc014ced487477364eb8d9b2072817e3be4c64837a364df0670"
+    },
+    "da2010_core": {
+      "path": "data/atlas/study_context/diels_alder_2010/reactive_core.json",
+      "sha256": "cbd144d7fa62f09848869da5dee39a0f3c9b76f3f0b34856be8b5a5eac14d1c6"
     }
   },
   "constructs": {
@@ -7900,7 +7904,13 @@
         "source": "da2010",
         "pointer": "/reaction"
       },
-      "reactant_substrate_id": "diels-alder-inputs:1+2"
+      "reactant_substrate_id": "diels-alder-inputs:1+2",
+      "connectivity_providers": [
+        {
+          "source": "da2010_core",
+          "pointer": ""
+        }
+      ]
     }
   },
   "state_links": [

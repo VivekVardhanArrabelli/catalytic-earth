@@ -1,5 +1,31 @@
 # Current Decisions
 
+## 2026-09-10: replay a partial constitution while stopping the stereo join
+
+Accept the [Diels-Alder core extension](ATLAS_DIELS_ALDER_CONTROLS.md#the-reactive-core-replays-stereochemical-selection-remains-source-only)
+as a source annotation after challenge. Reuse the existing graph-edit API
+through generic optional reaction providers; source-specific anchors, drawings,
+graph changes and exclusions belong in data. Preserve the source's trans-diene
+and product stereo labels outside the deliberately limited projection.
+Neither the bare graph nor matching edit counts selects a product isomer.
+
+This completes the constitutional question and stops the atom-specific stereo
+question at a source boundary. Do not expand into another hand-written stereo
+engine or silently complete omitted groups/protons. Prefer the next retained
+M0187 reaction-state to 1MDL component join over another isolated drawing review:
+can the reviewed R-mandelate graph map to RMN while discriminating SMN, without
+normalizing any hydrogen, charge or aromatic-bond difference? Retain both
+phenyl-symmetry maps and distinct deposited instances; stop at the first
+unsupported chemical-state equality. No source acquisition is needed to test
+this prerequisite. It would add a reaction-to-deposit connection beyond the
+previous dictionary-pair comparison and source-title review.
+
+Cannizzaro2003 doi:10.1021/ja020879d remains a possible future Diels-Alder
+analytical-source question, with contents unacquired. Its method association
+cannot substitute for Figure S8 sample/integration data or unmatched assays.
+Do not retry the unchanged blocked supplement routes.
+
+
 ## 2026-09-10: compare complete component dictionaries without transferring their sites
 
 Accept the [bounded RMN/SMN relation](ATLAS_MECHANISM_EVIDENCE.md#dictionary-stereochemistry-does-not-transfer-site-context)

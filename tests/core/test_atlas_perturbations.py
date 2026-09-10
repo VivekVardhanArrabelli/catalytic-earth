@@ -12,7 +12,7 @@ from tempfile import TemporaryDirectory
 import unittest
 
 from catalytic_earth.atlas_perturbations import (
-    SPEC_PATH, REVIEW_PATH, _project_candidate, compare, pointer, project, verify_witnesses,
+    SPEC_PATH, REVIEW_PATH, _connectivity_relation, _project_candidate, compare, pointer, project, verify_witnesses,
 )
 
 
@@ -20,6 +20,107 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 class PerturbationRelationTests(unittest.TestCase):
+    def core_relation(self, annotation=None):
+        binding = self.spec["sources"]["da2010"]
+        source = json.loads((ROOT / binding["path"]).read_text(encoding="utf-8"))
+        if annotation is None:
+            annotation = json.loads((ROOT / self.spec["sources"]["da2010_core"]["path"]).read_text(encoding="utf-8"))
+        return _connectivity_relation(annotation, source["reaction"], binding, source)
+
+    def test_source_core_replay_requires_all_six_changes_and_preserves_stereo_boundary(self):
+        relation = self.view["reactions"]["diels_alder_2010:diene1-dienophile2-cycloaddition"]["connectivity_relations"][0]
+        annotation = relation["source_annotation"]
+        self.assertTrue(relation["replay_verified"])
+        self.assertIsNone(relation["computed_atom_stereochemistry"])
+        self.assertIsNone(relation["computed_product_stereoisomer"])
+        self.assertFalse(relation["map_uniqueness_established"])
+        edits = annotation["panel_correspondence"]["graph_edits"]
+        self.assertEqual(sum(edit["operation"] == "add_bond" for edit in edits), 2)
+        self.assertEqual(sum(edit["operation"] == "set_bond_order" for edit in edits), 4)
+        for index in range(len(edits)):
+            changed = deepcopy(annotation)
+            del changed["panel_correspondence"]["graph_edits"][index]
+            with self.assertRaisesRegex(ValueError, "do not reproduce"):
+                self.core_relation(changed)
+        self.assertEqual([column["source_product_label"] for column in annotation["source_stereochemistry"]["source_product_labels"]],
+                         ["3S,4S", "3R,4R", "3S,4R", "3R,4S"])
+
+    def test_source_core_rejects_incomplete_maps_wrong_participants_and_boundary_loss(self):
+        annotation = self.core_relation()["source_annotation"]
+        changes = [
+            (lambda value: value["panel_correspondence"]["atom_map"].pop(), "complete bijection"),
+            (lambda value: value["atom_locators"]["before"][0].update(participant_id="4"), "source reaction participants"),
+            (lambda value: value["atom_locators"]["after"].pop(), "cover the complete selected graph"),
+            (lambda value: value.update(boundary_attachments=[]), "boundary anchors"),
+            (lambda value: value["boundary_attachments"].pop(), "cover each input participant"),
+            (lambda value: value["boundary_attachments"][0].update(after_atom_id="a"), "boundary anchor differs"),
+            (lambda value: value["boundary_attachments"][0].update(before_atom_id="ZZ", after_atom_id=None), "boundary anchor differs"),
+            (lambda value: value["reaction_binding"].update(reaction_id="other-reaction"), "reaction binding differs"),
+            (lambda value: value["source_stereochemistry"].update(source_product_observation_pointer="/structural_context"), "different reaction or context identity"),
+            (lambda value: value["source_stereochemistry"].update(source_product_observation_pointer="/product_context/conversion"), "different reaction or context identity"),
+            (lambda value: value.update(relation_id=None), "requires an identity"),
+            (lambda value: value["panel_correspondence"]["graph_edits"][0].update(source_flow_id="o1"), "not source arrows"),
+        ]
+        for mutate, message in changes:
+            changed = deepcopy(annotation)
+            mutate(changed)
+            with self.assertRaisesRegex(ValueError, message):
+                self.core_relation(changed)
+
+    def test_connectivity_replay_cannot_be_promoted_to_stereo_or_full_chemistry(self):
+        annotation = self.core_relation()["source_annotation"]
+        for key in (key for key in annotation["scope"] if key != "kind"):
+            changed = deepcopy(annotation)
+            changed["scope"][key] = True
+            with self.assertRaisesRegex(ValueError, "complete chemistry or stereochemistry"):
+                self.core_relation(changed)
+        changed = deepcopy(annotation)
+        changed["panel_correspondence"]["computed_stereochemistry"] = "3R,4S"
+        with self.assertRaisesRegex(ValueError, "panel fields differ"):
+            self.core_relation(changed)
+        changed = deepcopy(annotation)
+        changed["physical_atom_identity"] = True
+        with self.assertRaisesRegex(ValueError, "relation fields differ"):
+            self.core_relation(changed)
+        changed = deepcopy(annotation)
+        changed["source_stereochemistry"]["computed_mechanism"] = "concerted"
+        with self.assertRaisesRegex(ValueError, "stereochemistry fields differ"):
+            self.core_relation(changed)
+        changed = deepcopy(annotation)
+        changed["panel_correspondence"]["after_graph"]["atoms"][0]["stereochemistry"] = "R"
+        with self.assertRaisesRegex(ValueError, "cannot carry atom stereochemistry"):
+            self.core_relation(changed)
+        for key in ("mapped_atom_configurations", "computed_target_selection"):
+            changed = deepcopy(annotation)
+            changed["source_stereochemistry"][key] = {"d1": "R", "a": "S"}
+            with self.assertRaisesRegex(ValueError, "cannot assert mapped stereochemistry"):
+                self.core_relation(changed)
+        for operation, after in (("set_stereochemistry", "R"), ("set_formal_charge", 1)):
+            changed = deepcopy(annotation)
+            changed["panel_correspondence"]["graph_edits"].append(
+                {"edit_id": "unsupported", "operation": operation, "atom_ids": ["d1"],
+                 "before": None if operation == "set_stereochemistry" else 0,
+                 "after": after, "source_flow_id": annotation["project_difference_id"]})
+            with self.assertRaisesRegex(ValueError, "bond edits only"):
+                self.core_relation(changed)
+
+    def test_coherent_wrong_regiochemistry_needs_source_review_not_just_replay(self):
+        changed = deepcopy(self.core_relation()["source_annotation"])
+        panel = changed["panel_correspondence"]
+        for edit in panel["graph_edits"]:
+            if edit["operation"] == "add_bond":
+                edit["atom_ids"] = ["b" if atom == "a" else "a" if atom == "b" else atom for atom in edit["atom_ids"]]
+        for bond in panel["after_graph"]["bonds"]:
+            if set(bond["atom_ids"]) in ({"d1", "a"}, {"d4", "b"}):
+                bond["atom_ids"] = ["b" if atom == "a" else "a" if atom == "b" else atom for atom in bond["atom_ids"]]
+        # A consistent invented after graph can pass literal replay. Only the
+        # exact source-reviewed provider can enter the public reaction query.
+        self.assertTrue(self.core_relation(changed)["replay_verified"])
+        spec = deepcopy(self.spec)
+        spec["sources"]["da2010_core"]["sha256"] = hashlib.sha256(json.dumps(changed).encode()).hexdigest()
+        with self.assertRaisesRegex(ValueError, "candidate differs from reviewed"):
+            project(ROOT, spec)
+
     def test_earlier_parent_state_keeps_attachment_and_reacted_graph_distinct(self):
         link = next(row for row in self.view["state_links"]
                     if row["id"] == "ra95_2013:RA95.5-5-states")

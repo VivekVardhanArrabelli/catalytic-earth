@@ -432,6 +432,16 @@ supplement details remain unassessed. No same-assay product/control relation,
 canonical atom map, productive geometry, causal group contribution, project
 experiment, independent validation or design-success estimate follows.
 
+The [partial reactive-core replay](docs/ATLAS_DIELS_ALDER_CONTROLS.md#the-reactive-core-replays-stereochemical-selection-remains-source-only)
+adds a project-declared six-carbon drawing correspondence: two new C-C bonds
+and four bond-order changes reproduce Figure 1's constitutional core. Omitted
+substituent anchors supply the source interpretation; replay alone does not
+establish a unique atom map. Figure 4's four shown stereoisomers share this
+core, so the query retains the author-assigned product observation but computes
+no stereochemical selection or atom-level CIP. The source trans-diene description
+and remote carboxylate/CO2H mismatch remain outside this partial graph; no full
+chemical-state or balanced-reaction claim is added.
+
 ## CE-034 — canonical sequence does not complete a deposited covalent state
 
 **Status:** Supported
