@@ -1,0 +1,361 @@
+{
+  "schema_version": "catalytic-earth.source-comparison-assessment.v1",
+  "assessment_id": "hisfh-2001.donor-subunit-retained-source.2026-09-10",
+  "question": "Can retained primary evidence support a same-HisF-background comparison of free-ammonium activity with glutamine-dependent HisH/HisF activity?",
+  "decision": "requested_comparison_not_established_from_retained_evidence",
+  "decision_scope": "The retained witnesses lack the quantitative table rows and assay methods required for this comparison. This is not a claim that the original study did not measure it.",
+  "primary_study": {
+    "authors": "Beismann-Driemeyer and Sterner",
+    "year": 2001,
+    "doi": "10.1074/jbc.M102012200",
+    "pubmed_id": "11264293",
+    "organism": "Thermotoga maritima",
+    "source_named_components": [
+      "tHisF",
+      "tHisH"
+    ],
+    "accession_to_assay_construct_mapping": null,
+    "exact_assay_sequences": null,
+    "physical_preparation_identity": null
+  },
+  "available_source_contexts": [
+    {
+      "id": "isolated-hish",
+      "witness_id": "primary_abstract",
+      "locator": "Abstract, isolated tHisH sentence",
+      "subject_component": "source-named tHisH",
+      "endpoint": "upstream_glutaminase_activity",
+      "partner_context": "isolated tHisH",
+      "reported_outcome": "activity_not_detected",
+      "value": null,
+      "detection_limit": null,
+      "assay_conditions": null,
+      "scope": "Abstract-level nondetection; no zero rate, detection floor or downstream product measurement is inferred."
+    },
+    {
+      "id": "hish-hisf-product",
+      "witness_id": "primary_abstract",
+      "locator": "Abstract, ligand-dependent stimulation sentence",
+      "subject_component": "source-named tHisH",
+      "endpoint": "upstream_glutaminase_activity",
+      "partner_context": "complex with source-named tHisF and product ImGP",
+      "reported_outcome": "qualitative_stimulation",
+      "value": null,
+      "assay_conditions": null,
+      "scope": "No stimulation factor, partner stoichiometry or exact ligand-bound molecular state is supplied by the retained abstract."
+    },
+    {
+      "id": "hish-hisf-analogue",
+      "witness_id": "primary_abstract",
+      "locator": "Abstract, alternative substrate-analogue context in stimulation sentence",
+      "subject_component": "source-named tHisH",
+      "endpoint": "upstream_glutaminase_activity",
+      "partner_context": "complex with source-named tHisF and a substrate analogue",
+      "analogue_identity": null,
+      "reported_outcome": "qualitative_stimulation",
+      "value": null,
+      "assay_conditions": null,
+      "scope": "Kept separate from the product context; the abstract does not identify the analogue."
+    }
+  ],
+  "requested_functional_arms": [
+    {
+      "arm": "free_ammonium",
+      "source_named_system": "isolated tHisF",
+      "primary_locator_lead": "Table III",
+      "witness_id": "indexed_primary_excerpt",
+      "donor_role": "external nitrogen source in the requested contrast; exact supplied species unestablished",
+      "donor_concentration": null,
+      "partner_stoichiometry": null,
+      "hisf_background_row": null,
+      "product_readout": null,
+      "conditions": null,
+      "parameter_record": null,
+      "arm_label_scope": "Requested comparison arm, not a fully reconstructed assay.",
+      "source_reported_donor_label": "ammonia-dependent",
+      "exact_supplied_species": null,
+      "protonation_state": null,
+      "source_endpoint_family": "steady-state ImGP synthase reaction parameters",
+      "exact_matched_endpoint": null
+    },
+    {
+      "arm": "glutamine_coupled",
+      "source_named_system": "tHisH-tHisF complex",
+      "primary_locator_lead": "Table IV",
+      "witness_id": "indexed_primary_excerpt",
+      "donor_role": "glutamine supplying nitrogen through the glutaminase component",
+      "donor_concentration": null,
+      "partner_stoichiometry": null,
+      "hisf_background_row": null,
+      "product_readout": null,
+      "conditions": null,
+      "parameter_record": null,
+      "arm_label_scope": "Requested comparison arm, not a fully reconstructed assay.",
+      "source_reported_donor_label": "glutamine-dependent",
+      "exact_supplied_species": null,
+      "protonation_state": null,
+      "source_endpoint_family": "steady-state ImGP synthase reaction parameters",
+      "exact_matched_endpoint": null
+    }
+  ],
+  "comparison": {
+    "eligible": false,
+    "operation": null,
+    "value": null,
+    "unit": null,
+    "missing_evidence": [
+      "Complete corresponding Table III and IV rows for a source-declared common HisF background, including parameter definitions, values, units and uncertainty.",
+      "Assay Methods establishing donor and PRFAR concentrations, protein composition/stoichiometry, measured product/readout, buffer, pH and temperature.",
+      "Source-declared mapping of compared rows to the same named HisF background and intended HisH partner."
+    ],
+    "matching_rule": "A same-study, source-declared named HisF background can support a scoped comparison without an authenticated exact sequence or shared physical vial. Differences in component set and nitrogen input remain explicit; unmatched endpoints or conditions block arithmetic.",
+    "nonblocking_provenance_limits": [
+      "Exact amino-acid sequences and physical aliquot identity are not established by the retained excerpts; these unknowns alone do not bar a source-declared within-study named-background contrast."
+    ]
+  },
+  "excluded_evidence_transfers": [
+    {
+      "witness_id": "secondary_kinetic_summary",
+      "source_doi": "10.1073/pnas.1331150100",
+      "source_pmcid": "PMC164632",
+      "locator": "Introductory kinetic summary citing references 8 and 15",
+      "finding": "This simulation article summarizes an orders-of-magnitude donor preference from other studies. Its retained excerpt supplies neither kinetic operands nor the required matched assay conditions.",
+      "decision": "Do not convert the summary to an exact numeric observation, donor-preference ratio or channel-transport measurement."
+    },
+    {
+      "witness_id": "primary_abstract",
+      "finding": "HisH glutaminase activation concerns an upstream endpoint. It cannot replace the requested downstream HisF product comparison."
+    },
+    {
+      "source_record": "M0753/Q9X0C6/2A0N",
+      "finding": "The existing selected handle is the HisF/free-ammonium half-reaction. A citation link or shared organism does not authenticate the assay construct or extend isolated 2A0N to a coupled complex."
+    },
+    {
+      "witness_id": "structural_primary_abstract",
+      "source_doi": "10.1021/bi034320h",
+      "source_pubmed_id": "12795595",
+      "locator": "Retained PubMed abstract printed by the original XML parser",
+      "finding": "The abstract discusses free, ternary and binary analogue crystal contexts and a proposed interdomain signaling interpretation. It provides no matched donor-kinetic pair or assay conditions.",
+      "decision": "Do not use structural signaling language as kinetic operands or transfer organism/construct applicability to the 2001 tHisF/tHisH assays."
+    }
+  ],
+  "representation_decision": "No new consumer, chemical primitive, observation panel, comparison request or evidence_context is justified without usable source operands. Representation adequacy for an actual donor/component pair remains untested.",
+  "counting_boundary": {
+    "new_source_comparison_assessments": 1,
+    "new_common_parameter_records": 0,
+    "new_common_comparison_requests": 0,
+    "new_atlas_protein_records": 0,
+    "new_compiled_mechanisms": 0,
+    "project_experiments": 0,
+    "independent_review": false,
+    "evidence_tier_promotion": false,
+    "note": "The three abstract contexts are source-summary statements, not three newly registered experiments or fitted parameter records."
+  },
+  "preserved_controls": [
+    {
+      "path": "data/atlas/source_drafts/sources/M0753.json",
+      "sha256": "5207c0d529c7f9945ece22c0f372de52a64aa47419c8ace86901cbf26165a2c3"
+    },
+    {
+      "path": "data/atlas/atlas50/development_gate/status.json",
+      "sha256": "d62b6dcd1c7a4ce7166c5918f02dd2fe764ae90af9d58d377b4788a76e19e3a5"
+    },
+    {
+      "path": "data/atlas/perturbations/projection.json",
+      "sha256": "1687a8224049fc2eb3b7130a3a1459592e724df960a801320f039d1eef1bf409"
+    },
+    {
+      "path": "data/governance/acquisition_audits/atlas50_panel_20260909.json",
+      "sha256": "b767ddf4f9b8902f36659e16e75d7e1f610172498db800a4580e378511f1a57d"
+    }
+  ],
+  "retained_witnesses": [
+    {
+      "id": "primary_abstract",
+      "source_title_line": "Imidazole glycerol phosphate synthase from Thermotoga maritima. Quaternary structure, steady-state kinetics, and reaction mechanism of the bienzyme complex - PubMed (https://pubmed.ncbi.nlm.nih.gov/11264293/)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/11264293/",
+      "captured_at_utc": "2026-09-06T02:48:05.028Z",
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/e968f4f6ffe88502d6c2378f13d54545c60afafc6d05d4aee8f6d00a80e336d4.rendered.txt",
+      "rendered_text_bytes": 4078,
+      "rendered_text_sha256": "e968f4f6ffe88502d6c2378f13d54545c60afafc6d05d4aee8f6d00a80e336d4",
+      "witness_type": "retained_search_tool_rendering_not_full_primary_response",
+      "redistributed": false,
+      "trace_task_id": "01a07385-fc6c-7c10-b40d-b3845ae1294e",
+      "trace_line": 3106,
+      "trace_line_sha256": "054d1a3309d5a6c270dd678eb5cba43336c08b3fc85e36d35ac5aa478a471ab9",
+      "trace_call_id": "call_vNyNgPwtX4w6AHlSjOsqsAWL",
+      "output_block_index": 1,
+      "block_character_start": 0,
+      "block_character_end": 4059,
+      "extraction": "Exact text segment between source separators; surrounding whitespace stripped; no scientific text altered.",
+      "http_response_bytes": null,
+      "http_response_sha256": null
+    },
+    {
+      "id": "indexed_primary_excerpt",
+      "source_title_line": "(PDF) Imidazole glycerol phosphate synthase from Thermotoga maritima - Quaternary structure, steady-state kinetics, and reaction mechanism of the bienzyme complex (https://www.researchgate.net/publication/12069198_Imidazole_glycerol_phosphate_synthase_from_Thermotoga_maritima_-_Quaternary_structure_steady-state_kinetics_and_reaction_mechanism_of_the_bienzyme_complex)",
+      "source_url": "https://www.researchgate.net/publication/12069198_Imidazole_glycerol_phosphate_synthase_from_Thermotoga_maritima_-_Quaternary_structure_steady-state_kinetics_and_reaction_mechanism_of_the_bienzyme_complex",
+      "captured_at_utc": "2026-09-06T02:48:05.028Z",
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/d1b5d2fd356c29cbb2902522b79aeccb0a4e9d4b3b7a212deff1e4b875be3417.rendered.txt",
+      "rendered_text_bytes": 10108,
+      "rendered_text_sha256": "d1b5d2fd356c29cbb2902522b79aeccb0a4e9d4b3b7a212deff1e4b875be3417",
+      "witness_type": "retained_search_tool_rendering_not_full_primary_response",
+      "redistributed": false,
+      "trace_task_id": "01a07385-fc6c-7c10-b40d-b3845ae1294e",
+      "trace_line": 3106,
+      "trace_line_sha256": "054d1a3309d5a6c270dd678eb5cba43336c08b3fc85e36d35ac5aa478a471ab9",
+      "trace_call_id": "call_vNyNgPwtX4w6AHlSjOsqsAWL",
+      "output_block_index": 1,
+      "block_character_start": 6956,
+      "block_character_end": 16970,
+      "extraction": "Exact text segment between source separators; surrounding whitespace stripped; no scientific text altered.",
+      "http_response_bytes": null,
+      "http_response_sha256": null
+    },
+    {
+      "id": "secondary_kinetic_summary",
+      "source_title_line": "Developing an energy landscape for the novel function of a (β/α)8 barrel: Ammonia conduction through HisF - PMC (https://pmc.ncbi.nlm.nih.gov/articles/PMC164632/)",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC164632/",
+      "captured_at_utc": "2026-09-05T20:43:08.442Z",
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/6305431eabc10ba44672a250b80765f26ad0f79850e84d7188dae798f443554d.rendered.txt",
+      "rendered_text_bytes": 6912,
+      "rendered_text_sha256": "6305431eabc10ba44672a250b80765f26ad0f79850e84d7188dae798f443554d",
+      "witness_type": "retained_search_tool_rendering_not_full_primary_response",
+      "redistributed": false,
+      "trace_task_id": "01a07313-96d7-7963-9250-71933abb30e8",
+      "trace_line": 1044,
+      "trace_line_sha256": "c44626acd5293b8adf5c3601224982fbfa48dc3ab54edc0e2ca45c2228972340",
+      "trace_call_id": "call_q8LvbMEEhd0PGY5F4z5diTB1",
+      "output_block_index": 1,
+      "block_character_start": 7843,
+      "block_character_end": 14700,
+      "extraction": "Exact text segment between source separators; surrounding whitespace stripped; no scientific text altered.",
+      "http_response_bytes": null,
+      "http_response_sha256": null
+    },
+    {
+      "id": "structural_primary_abstract",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/12795595/",
+      "captured_at_utc": "2026-09-06T02:47:46.697Z",
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/e37f4ed779ea5b3fa58a782e37651751c0f8b3b3792d59e282431a5d964622b1.rendered.txt",
+      "rendered_text_bytes": 1887,
+      "rendered_text_sha256": "e37f4ed779ea5b3fa58a782e37651751c0f8b3b3792d59e282431a5d964622b1",
+      "witness_type": "retained_cli_parsed_pubmed_abstract_not_full_xml_response",
+      "redistributed": false,
+      "trace_task_id": "01a07385-fc6c-7c10-b40d-b3845ae1294e",
+      "trace_line": 3092,
+      "trace_line_sha256": "b8c7ff0198a6623f331b0c5bfcb7534100211bfc9e56df0a32b6dbbff2818a3c",
+      "trace_call_id": "call_fm8TIJ4n9uDzaOHQSFSbPg27",
+      "output_block_index": 1,
+      "block_character_start": 2189,
+      "block_character_end": 4076,
+      "extraction": "Exact PMID/title/abstract text segment printed by the original XML parser, with surrounding whitespace stripped. It is not the original XML response.",
+      "http_response_bytes": null,
+      "http_response_sha256": null,
+      "parent_response_receipt": {
+        "response_bytes": 14953,
+        "response_sha256": "ea7a28fc15625b2f05294ece3deb585378e6476b3611ed8fea3a27efdb5bb0db",
+        "http_status": 200,
+        "scope": "Historical receipt for a response containing both PMID11264293 and PMID12795595; not the size/hash of this derived abstract segment."
+      }
+    }
+  ],
+  "witness_limits": "These are exact retained source-text segments copied locally from identified task outputs: three search-tool renderings and one CLI-parsed PubMed abstract. They are not complete original article/PDF/XML responses or independent authentication. Original task traces and rendered text are not redistributed; source URLs and extraction hashes are retained. Local text size is not historical network traffic.",
+  "acquisition": {
+    "new_requests": 0,
+    "new_response_body_bytes": 0,
+    "cumulative_historical_requests": null,
+    "cumulative_historical_response_body_bytes": null,
+    "remaining_budget": null,
+    "decision": "no_further_acquisition_with_unknown_cumulative_accounting",
+    "existing_default_source_package": {
+      "manifest_path": "data/atlas/source_drafts/source_manifest.json",
+      "recorded_requests": 49,
+      "recorded_response_body_bytes": 1109896,
+      "scope": "Retained four-record M-CSA source-draft package: one entry-batch response plus 48 linked step-scheme responses, including seven M0753 schemes; not a primary-literature ledger."
+    },
+    "inherited_panel_lower_bound": {
+      "batch_id": "atlas50.computational-panel-review.2026-09-05",
+      "requests": 28,
+      "response_body_bytes": 1474405,
+      "qualification": "Metered lower bound in the closed September9 recovery; not added to the default package or assigned wholesale to this primary study."
+    },
+    "hisf_probe_lineage": {
+      "task_id": "01a07385-fc6c-7c10-b40d-b3845ae1294e",
+      "relevant_output_lines": [
+        3092,
+        3106,
+        3113,
+        3124,
+        3133
+      ],
+      "qualification": "Mixed metering: two direct response receipts below and search/open outputs without complete HTTP-attempt or body accounting. The conservative probe request_index labels are not a recovered transport census. Batch allocation and overlap with other scopes are unresolved; no additive cumulative total or remaining allowance follows.",
+      "call_output_pairs": [
+        [
+          3089,
+          3092
+        ],
+        [
+          3103,
+          3106
+        ],
+        [
+          3110,
+          3113
+        ],
+        [
+          3121,
+          3124
+        ],
+        [
+          3130,
+          3133
+        ]
+      ],
+      "metered_response_examples": [
+        {
+          "request_index_label": 1,
+          "output_line": 3092,
+          "http_status": 200,
+          "response_body_bytes": 14953,
+          "response_body_sha256": "ea7a28fc15625b2f05294ece3deb585378e6476b3611ed8fea3a27efdb5bb0db",
+          "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11264293,12795595&retmode=xml",
+          "scope": "Receipt for both named PubMed records; full XML body not recovered here."
+        },
+        {
+          "request_index_label": 6,
+          "output_line": 3133,
+          "http_status": 400,
+          "response_body_bytes": 219,
+          "response_body_sha256": "49425dc0ea547dc39d219dfee3a4c14132eb7026d027f3bf0453f76814ff2029",
+          "source_url": "https://ars.els-cdn.com/content/image/1-s2.0-S0021925819404870-main.pdf",
+          "scope": "Failed CDN response, not a primary PDF witness."
+        }
+      ]
+    },
+    "no_batch_reset_or_rename": true
+  },
+  "stopping_condition": "No source-matched quantitative pair can be established from the retained witnesses. Stop this source inquiry at the missing Table III/IV rows and Methods; do not repeat unchanged acquisition routes or the closed telemetry recovery.",
+  "reopen_condition": "A complete attributable primary full-text/table witness for the named 2001 study becomes locally available, or the owner explicitly revises the existing acquisition authority/accounting rule. Reassess the sources before any new computation.",
+  "review": {
+    "status": "source_reviewed_computational_after_corrections",
+    "process": "Informed read-only source, representation and adversarial challenge with parent adjudication",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "ultra",
+    "reviewed_at_utc": "2026-09-10T16:24:42.177636+00:00",
+    "independent_human_review": false,
+    "correlated_errors_possible": true,
+    "source_objections": [
+      "Separate source ammonia-dependent wording from the requested free-ammonium arm; exact supplied species remains null.",
+      "Preserve the known broad synthase endpoint family while leaving exact readout and method matching unresolved.",
+      "Include the retained 2003 structural abstract and forbid its transfer to matched donor kinetics.",
+      "Keep exact sequence and physical-aliquot unknowns as nonblocking provenance limitations."
+    ],
+    "accounting_objections": [
+      "The 49 responses include one entry batch and 48 step schemes, not solely an entry snapshot.",
+      "Retain the two metered HisF-probe responses beside unmetered web operations without addition or inferred headroom."
+    ],
+    "parent_adjudication": "Accepted all source/accounting corrections. Preserve the supported source gap and qualitative upstream scope. No numerical relation, general consumer validation, source-gate expansion or evidence-tier promotion is supported.",
+    "remaining_material_objections": []
+  }
+}
