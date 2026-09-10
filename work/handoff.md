@@ -6,93 +6,93 @@
 This block, `docs/HOURLY_RESEARCH.md` and the current direction review govern
 continuation. Historical handoffs below are not an execution queue.
 
-- **Identity/base:** owner `01a08d5b-503b-73f1-8c87-7f755b29acec:eee3e780-11fd-45d8-bfe3-1a6bb3be3716`;
-  actual UTC start `2026-09-10T22:06:24Z`; clean main base
-  `7c54b26fc5b760f272a41ff03ba438fcbe3cb8e2`. Prior PR86 is merged, its
-  reviewed-head and exact-main CI passed, and no PR/recovery was pending.
-  Branch `codex/mandelate-reaction-state-boundary-20260910`. Parent owns
-  Git/edits/lock; three Sol/ultra read-only reviewers share Git-local board
-  `.git/catalytic-earth-runs/eee3e780-11fd-45d8-bfe3-1a6bb3be3716.board.md`.
-  At `22:28:22 UTC`, 22.0 minutes elapsed; scientific work has reached its stop.
-- **Direction reconciliation:** RA95 state priority was completed in PR80/81.
-  PR85 compared the two 1MDL dictionaries; PR86 added a Diels–Alder core.
-  This increment tests the newer handoff's actual reaction-to-deposit join,
-  rather than repeating an independent annotation or the closed PLP/HisF routes.
-- **Question/outcome:** can reviewed M0187 R-mandelate match RMN while excluding
-  SMN? **Partial locator correspondence survives; exact state identity is refused.**
-  Source-computed a9 R agrees with RMN C7 R and differs from SMN C7 S.
-  Canonical carboxylate a11/atom10 is −1, but both deposited dictionaries
-  explicitly contain O12–HO2 and formula C8 H8 O3. Dictionary atom charge
-  fields are absent; coordinate charge is unknown. Neither becomes zero.
-  Bound protonation and a productive reactant pose remain unestablished.
-- **Reusable capability/evidence:** generic optional `reaction_state_comparisons`
-  in the existing deposit projector bind the unchanged transformation file,
-  exact transformation ID and before/after state. Existing graph/dictionary
-  helpers validate one complete depicted covalent component and both reviewed
-  canonical symmetry alternatives. Each map keeps all11 heavy atoms and a66 H;
-  the literal alignment has0 mapped order differences and the reflection6,
-  all aromatic-flagged ring bonds. Non-aromatic order differences are rejected.
-  The query retains unknown charge, seven unmapped dictionary H and every bond
-  touching them; omitted source H is not counted as physically absent.
-  `python scripts/build_atlas_deposit_context.py --packet data/atlas/deposit_context/mandelate_1mdl --comparison m0187-input-rmn`
-  returns the reaction/dictionary/instance connection; `m0187-input-smn` keeps
-  its distinct stereo/site context. Original `rmn-smn` comparison is unchanged.
-  See that packet's spec/projection/review, `docs/ATLAS_MECHANISM_EVIDENCE.md`,
-  `data/atlas/transformations/m0187/transformations.json`, retained MOL and audit.
-- **Limits/source objections:** no full H, aromaticity or stereo normalization;
-  source W and dictionary N bond-stereo conventions are not compared. Retained
-  RDKit-2025.03.3 CIP is prior computational evidence, not a newly rerun audit
-  or literal source assignment. Chemical interpretation, exact source review
-  and pins govern the result; graph checks do not establish chemistry alone.
-  No coordinate-derived chirality, physical atom trajectory, bound microstate,
-  assay-specimen identity, productive geometry, mutant transfer, new observation,
-  complete mechanism, independent human validation or evidence-tier promotion.
-  CE-021 is extended; claim count remains37.
-- **Acquisition:** zero new scientific-source requests/response bytes. Retained
-  source bodies, transformations and earlier observations are unchanged.
-  Carried totals: Siegel2010 **14/502,726**; RA95 27/17,298,809;
-  RA61 45/3,236,259; KE59 9/261,580; KE70 16/1,102,794;
-  beta5/8,449,621; default M-CSA49/1,109,896. PLP73/5,068,731 and
-  panel28/1,474,405 are lower bounds, not headroom. M0187's12/440,960
-  followup subledger does not resolve its broader accounting gap. HisF/panel
-  and TKT/M0081/M0222/M0187 gaps stay open; no reset or renamed batch.
-- **Reuse/reconsideration:** case chemistry and locator maps remain data; a
-  generic adapter reuses existing graph validation and deposited component
-  resolution. No enzyme-ID branch or new chemistry engine. The same consumer
-  now exposes a reaction-state refusal beside exact dictionary/instance context.
-  Manual interpretation remains; no measured time saving or incumbent superiority.
-  This adds a prevented name-only state transfer, not design readiness. The next
-  question seeks missing evidence instead of another mandelate annotation.
-  Consecutive no-progress runs: **0**.
-- **Review/verification:** all three source/representation/adversarial roles
-  accepted the exact scientific files and final raw-label/Mg clarification.
-  All workers completed. Source and review pins verify;25 focused deposit
-  checks,12 transformation checks and all607 core tests pass (64.865 seconds).
-  Full repository contracts pass with37 claims and frozen golden result matched.
-  Atlas-3/10 wheels pass fresh-directory/offline query checks. Legacy and new
-  comparison CLI schemas both verify. Review caught dropped symmetry maps,
-  non-aromatic oxygen swaps and a misleading query schema; these are corrected.
-  Four unrelated deposit projections and original RMN/SMN comparison are
-  identical. The193-observation/111-comparison perturbation specification,
-  source bytes and protected/frozen/exposure records are unchanged.
-  Reviewed-head CI remains the merge gate; computational review is not
-  independent human or experimental validation.
-- **Publication/recovery:** coherent owned changes are being prepared on the
-  named branch, with no unrelated dirty work. Resume this branch/PR first if
+- **Identity/base:** owner `01a08d92-b4a8-7563-873e-d192dc1f847a:ca8df374-e020-4023-b2ec-ee6f85fa2932`;
+  actual UTC start `2026-09-10T23:06:56Z`; clean main base
+  `a3963b06f534a26a1535887d6c3f94e0fa46f6f6`. PR87 is merged and its
+  reviewed-head/exact-main CI passed; no pending PR, recovery or unrelated dirty
+  work. Branch `codex/diels-alder-source-access-boundary-20260910`. Parent alone
+  owns Git/edits/acquisition/lock. Three Sol/ultra read-only roles share board
+  `.git/catalytic-earth-runs/ca8df374-e020-4023-b2ec-ee6f85fa2932.board.md`.
+  Acquisition stopped at `23:13:47 UTC`, 6.9 minutes after start; checkpoint
+  early because neither primary paper supplied the required body and further
+  local mapping would invent the missing premise. Final elapsed time is in the
+  Git-local receipt/task result.
+- **Direction reconciliation:** the older RA95 state priority was completed
+  in PR80/81. PR86 supplied the partial Diels-Alder core and PR87 stopped the
+  M0187 state join at protonation. This run tested the newer handoff's missing
+  analytical-source premise. It did not reopen closed RA95/PLP/HisF questions.
+- **Question/outcome:** can Cannizzaro2003 connect Siegel2010 product constitution
+  and numbering to the source-assigned `3R,4S` product? **Unresolved at source
+  access, with no new chemical relation or computable capability.** PubMed
+  returned a cookie challenge; the DOI redirected to ACS, whose host failed DNS
+  resolution. No Cannizzaro paper contents were acquired. Its method citation
+  in retained Siegel P14/R14 is exact but does not supply Siegel sample/integration
+  evidence. Source titles from a retained author listing remain metadata only.
+- **Evidence-supported pivot:** source challenge identified Gouverneur1993,
+  doi:10.1126/science.8211138, as a distinct stronger identity lead: Siegel P10
+  associates antibody7D4 with the same reaction and P14 cites R11 for four
+  solution-observed isomers. One bounded attempt obtained the exact indexed abstract
+  and metadata; the DOI-resolved publisher returned403. The indexed abstract provides
+  no atom-numbered product drawing, C3/C4 locant mapping, locant-specific
+  absolute R/S identity or absolute-configuration assignment basis.
+  This also stops before an atom-specific relation. Neither result establishes
+  missing chemistry in either full paper, or invalidates their reported results.
+- **Limits/preserved science:** the reviewed six-carbon core stays partial and
+  constitution-only; mapped configurations and computed target selection stay
+  null. No C3/C4-to-project-locator assignment, independently computed CIP,
+  authenticated peak/retention order, S8 sample/integration, `>97%` derivation,
+  matched assay, mutant/construct transfer or productive geometry follows.
+  Source graphs, original packets/reviews, observations,37 claims and evidence
+  tiers are unchanged. These are correlated computational reviews, not
+  independent human review or laboratory validation.
+- **Evidence/acquisition:** new
+  `data/atlas/study_context/diels_alder_2010/analytical_references_acquisition_appendix.json`
+  binds the unchanged original14-request receipt and records requests15–20,
+  response hashes, local-cache paths, dispositions and both stopping conditions.
+  New consumption is **6 requests / 16,972 response-body bytes**; cumulative
+  `designed-diels-alder-siegel2010` is now **20 / 519,698**, not14/502,726.
+  Its remaining cap is80 requests/30,937,582 bytes, not a renamed batch.
+  Existing source packet's14-request binding is historical; append the new
+  receipt when continuing. No source body is redistributed. Zero-request reuse
+  of Siegel article P10/P14/R11/R14 and prior Houk listing is explicitly bound.
+  Other carried totals stay RA95 27/17,298,809; RA61 45/3,236,259;
+  KE59 9/261,580; KE70 16/1,102,794; beta5/8,449,621;
+  default M-CSA49/1,109,896. PLP73/5,068,731 and panel28/1,474,405
+  remain lower bounds, not headroom. M0187 followup12/440,960 remains a
+  subledger; broader M0187, TKT/M0081/M0222 and HisF/panel gaps stay open.
+- **Reuse/reconsideration:** no new chemical code or schema was justified.
+  Retained provenance located the method and solution-isomer citations and
+  reused a prior author-listing download, avoiding its reacquisition; no measured
+  curation-time saving. Metadata alone would add no useful atom-level answer
+  beyond competent source reading, so no atlas relation was manufactured.
+  **Consecutive no-progress runs:1**, conservatively counting the lack of new
+  usable scientific content. The schedule is unchanged. A second such run must
+  change to a distinct evidence-supported question, or pause if none remains.
+- **Review/verification:** source/representation/adversarial roles challenged
+  access versus content, the local ledger's initially stale totals, the R11
+  pivot, and atom/assay transfer limits. Totals are corrected. Receipt arithmetic
+  and all five new cached-body hashes verify; the Diels query and historical
+  handoff suffix are identical. Full repository contracts pass with37 claims
+  and frozen golden result matched. The initial check required architecture
+  paths_checked17686→17687 for the single new receipt; every other architecture
+  field/hash is identical. No runtime or scientific-data change justified
+  additional local tests. Reviewed-head CI remains the merge gate; exact final
+  review/CI/release outcomes and SHA are retained in the Git-local receipt/task.
+- **Publication/recovery:** only the acquisition appendix, this marked block,
+  its report-archive index and the architecture path-count refresh are owned changes. They record access
+  and continuation, not a chemical discovery. Resume this branch/PR first if
   publication is incomplete. Git identifies the containing handoff commit;
-  exact final commit, push/merge/CI and release go in the local receipt/task
-  result, without a self-hash follow-up commit.
-- **One next action:** inspect the primary Cannizzaro2003 analytical source
-  (Siegel2010 reference14, doi:10.1021/ja020879d) for an explicit connection
-  between product constitution/atom numbering and the reported stereochemical
-  assignment. The retained Siegel text directly cites it for the chiral LC–MS/MS
-  assay; its contents remain unacquired. Gain: determine whether source evidence
-  can join the existing six-carbon core to an atom-specific product assignment.
-  Continue the same Siegel batch and meter every request/body byte; do not reset
-  its14/502,726 consumption. Stop at one supported numbering/assignment relation
-  or the first unsupported exact product identity/access boundary. This source
-  cannot substitute for unavailable S8 sample/integration or mutant-control data;
-  do not retry unchanged supplement routes or infer experimental selectivity.
+  exact final SHA, push/merge/CI and release go in the receipt/task result.
+- **One next action/dependency:** inspect newly accessible primary full text,
+  figures/SI or an authenticated analytical-standard record for either named
+  paper that explicitly joins the exact product constitution, C3/C4 locants and
+  absolute assignment basis. Expected gain: resolve the missing source-to-atom
+  relation while keeping Siegel assay evidence separate. Stop after one supported
+  identity/numbering/assignment relation or the first unavailable/mismatched or
+  unsupported premise. Current access must change; do not retry the recorded
+  routes, open a third bibliography route, repair missing atom identities, or
+  substitute abstracts for structures. If no new evidence is available, use the
+  no-progress rule above rather than repeating this investigation.
 
 Preserve historical content below this marked block. No self-hash follow-up
 commit is required.
