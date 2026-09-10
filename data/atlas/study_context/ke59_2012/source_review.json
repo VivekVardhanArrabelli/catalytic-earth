@@ -1,0 +1,125 @@
+{
+  "schema_version": "catalytic-earth.source-qualification-review.v1",
+  "assessment_id": "khersonsky2012-ke59-programmed-base-evidence",
+  "decision": "accept_source_annotation",
+  "authorized_operation": "source_annotation",
+  "policy_binding": {
+    "path": "data/governance/computational_review_policy.json",
+    "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "reviewed_assessment": {
+    "path": "data/atlas/study_context/ke59_2012/source_qualification.json",
+    "sha256": "377da7aa8ab0966aef24757c8a00423c336feb46b41682010a10f4957670c558"
+  },
+  "reviewed_documentation": {
+    "path": "docs/ATLAS_KE59_BASE_EVIDENCE.md",
+    "sha256": "ba49d2a63635380b85617bce5af5ae9bcf48daaecf4b0b95b8ce1e4458f7bbe3"
+  },
+  "retained_input_bindings": [
+    {
+      "path": "data/atlas/study_context/ke59_2012/acquisition_receipts.json",
+      "sha256": "d8db70137de39d6407441a7b03ba150dbc08ee785cd007ddd1bb61c00a976895"
+    }
+  ],
+  "source_review": {
+    "reviewer_task": "ke59_representation/schema_audit",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "ultra",
+    "status": "accepted at exact assessment/documentation pins after two source-locator corrections",
+    "scope": "Full retained primary HTML, Table1 declared substitutions, Table2 pKa pairs, construct proxies, methods/numbering, interpretation limits and cumulative acquisition accounting; SI not acquired."
+  },
+  "representation_review": {
+    "reviewer_task": "ke59_representation",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "ultra",
+    "status": "accepted at exact assessment/documentation pins",
+    "scope": "Seven named construct contexts, all declared mutation arrays, five rows/ten pKa estimates, unique construct/assay joins, null sequence and catalytic labels, source/RA95 pins and9capture totals."
+  },
+  "adversarial_review": {
+    "reviewer_task": "ke59_adversarial",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "ultra",
+    "status": "accepted at exact assessment/documentation pins",
+    "scope": "Source-scope absence, pKa-to-residue certainty, model-versus-crystal distinction, proxy identities, apparatus/lineage overgeneralization, selected-sampling and design-contribution limits."
+  },
+  "adjudications": [
+    {
+      "objection": "A declared E230 identity or approximate pKa could be promoted into a proved catalytic-base label.",
+      "evidence": "Main sec5 tentatively assigns the pH shoulder; Table2 separates endpoints; no E230 replacement assay in acquired main text.",
+      "decision": "Keep source interpretation distinct from reported apparent-pKa parameters. Residue assignment and all three downstream catalytic labels remain null/unestablished."
+    },
+    {
+      "objection": "Original design, R1 structure and R2 pH data could collapse into one construct.",
+      "evidence": "Table1 mutation lists, sec5 and sec6 distinguish original design/R1/R2; Figure1 warns about omitted methionine numbering.",
+      "decision": "Retain separate named contexts and declared substitutions, not reconstructed strings. Exact sequence, assay-specimen and PDB/UniProt mappings are unresolved."
+    },
+    {
+      "objection": "The original computational design model could be called a measured crystal structure.",
+      "evidence": "Sec6 and Figure2 explicitly compare model and mutation-containing proxy/evolved crystal structures.",
+      "decision": "Corrected the ambiguous initial structural phrase. The record only attributes structural conclusions to authors; no coordinate measurement was made here."
+    },
+    {
+      "objection": "The Table2 R4 pKa discrepancy might be repaired or an improvement trend imposed.",
+      "evidence": "R4 pKa(kcat)=5.5 in Table2; adjacent sec5 prose gives range6.1-6.7.",
+      "decision": "Preserve both and the unresolved conflict. No repaired value, monotonic trajectory, statistical comparison or unique titrating-residue claim."
+    },
+    {
+      "objection": "Acquisition failure could become proof that SI contains no mutation or sequence.",
+      "evidence": "Only main HTML is substantive content. Exact SI URLs return challenge/errors; EPMC API states not open access; two backend520 responses.",
+      "decision": "SI status and potential matched-perturbation count remain null/uninspected. Negative is bounded to acquired main text, not whole paper/literature. Stop identical routes."
+    },
+    {
+      "objection": "No E230 substitution in representative rows could establish full apparatus retention, complete lineage history or selection against E230 mutations.",
+      "evidence": "Table1 is selected representative variants; R13 includes V80A/S179T; sec6 describes altered W109/inhibitor configurations.",
+      "decision": "No E230 sequence-retention proof, sampling/purging inference or full-apparatus label. Source-declared consensus categories do not isolate individual stabilizing effects."
+    },
+    {
+      "objection": "Inhibitor pose or MD correlations could identify productive geometry or explain evolved rate gains causally.",
+      "evidence": "Sec6 warns inhibitor poses may not be catalytic; sec7 reports no kcat-position correlation and limits kinetic separation of medium/position effects.",
+      "decision": "Keep empirical author interpretation, computational model and simulation proposals separate; no productive pose, trajectory, rate causality or geometric design tolerance."
+    },
+    {
+      "objection": "The curated study could be presented as de novo-design success or a direct causal counterpart to RA95.",
+      "evidence": "Selected design-seeded evolution combines IGPS scaffold, consensus mutations, mutagenesis and screening; RA95 has acquired matched lysine perturbations and sequence evidence.",
+      "decision": "Record differing evidence eligibility only. No cross-chemistry rate comparison, isolated design contribution, cohort/hit rate, measured efficiency gain or independent validation."
+    },
+    {
+      "objection": "Two narrative evidence records lacked every source location supporting their combined statements.",
+      "evidence": "R2 pH proxy is in sec5; W109 rotamer/inhibitor orientation changes are in sec6 and Figures2-3.",
+      "decision": "Added those exact source locators. Source, representation and adversarial reviewers accepted the final assessment hash after this locator-only delta."
+    }
+  ],
+  "blocked_operations": [
+    "exact-sequence or assay-specimen identity from names/substitution lists",
+    "causal E230 assignment or retained/relocated site labels",
+    "full apparatus retention",
+    "absence claim about uninspected supplementary material",
+    "productive substrate or transition-state geometry",
+    "mechanism compilation and protected-registry admission"
+  ],
+  "verification_scope": "Parent checked all9transport hashes/lengths,5pKa pairs,7context joins,source/RA95 bindings and nulls. Existing truth tests14pass. Repository contracts and required CI remain publication checks, not chemical validation.",
+  "source_access": {
+    "batch_id": "designed-kemp-eliminase-ke59-khersonsky2012",
+    "complete_cumulative_requests": 9,
+    "complete_cumulative_response_body_bytes": 261580,
+    "limits": [
+      100,
+      31457280
+    ],
+    "remaining_requests": 91,
+    "remaining_response_body_bytes": 31195700,
+    "source_bodies_redistributed": false,
+    "other_batches": "Unchanged; no inherited accounting gap or budget reset."
+  },
+  "evidence_limits": {
+    "independent_human_review": false,
+    "laboratory_validation_by_project": false,
+    "new_measurements_collected": 0,
+    "evidence_tier_promotion": false,
+    "new_mechanism_compilation": false,
+    "protected_registry_change": false,
+    "frozen_packet_resolution": false,
+    "correlated_agent_errors_possible": true
+  },
+  "reviewed_at_utc": "2026-09-10T01:26:44.621406+00:00"
+}

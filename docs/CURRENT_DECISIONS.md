@@ -1,5 +1,26 @@
 # Current Decisions
 
+## 2026-09-10: permit a KE59 annotation at indirect-evidence scope
+
+The [KE59 review](../data/atlas/study_context/ke59_2012/source_review.json)
+authorizes source_annotation for the exact accepted assessment. Five pKa
+pairs and seven named construct contexts are source-linked, with explicit
+nulls for sequence identity and downstream retained/relocated catalytic labels.
+Original design, R1 structural proxy and R2 pH proxy remain distinct. The
+author E230 assignment stays tentative; unavailable SI remains uninspected.
+
+Source challenge corrected incomplete evidence locators even after other
+reviewers had accepted the text. The final data retain the Table2/prose pKa
+conflict and distinguish the computational design model from proxy/evolved
+crystal structures, inhibitor context and MD proposals. No source objection
+remains within this narrowed annotation; stronger causal, geometric and
+mechanism-admission operations stay blocked.
+
+The distinct KE59 source batch is fully metered at nine requests
+and 261,580 response-body bytes. Repeated failed SI routes are stopped; no
+older allowance is reset. All case-specific facts remain data. No runtime,
+frozen kernel, protected registry or evidence-tier rule changes.
+
 ## 2026-09-10: permit a construct-bound RA95 outcome annotation
 
 The [RA95 source review](../data/atlas/study_context/ra95_2013/functional_review.json)
