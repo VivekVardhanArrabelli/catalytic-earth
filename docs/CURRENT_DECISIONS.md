@@ -1,5 +1,26 @@
 # Current Decisions
 
+## 2026-09-10: attach product evidence to the exact synthesis context
+
+The [forward source review](../data/atlas/study_context/ra95_2017/forward_synthesis_review.json)
+authorizes one methodol source annotation after challenge. Keep conversion,
+isolated yield, source-assigned composition and the strict ee bound separate.
+Neither an inconsistent amount tuple nor reversed chromatographic labels may
+be silently repaired. The source's optical-rotation assignment supports an
+author-reported R product, not independently authenticated configuration.
+
+Source review found and removed an 8F-to-precursor assignment transfer in the
+draft. Shared reaction/product identity is now configuration-neutral; each
+composition row carries only its own evidence. The 0.7% precursor conversion
+has no borrowed configuration; its 44% ee belongs altered conditions. Preserve
+the source-declared 67% versus 0.7% contrast without inventing a single-group effect.
+
+One generic reaction/participants primitive addresses a real common-relation
+gap. Chemical identities, assay mappings and controls remain data; no study-ID
+runtime branch or new bound arithmetic is justified. Original packets, kernels,
+protected registries and exposure history remain unchanged. Computational
+review is not independent human or laboratory validation.
+
 ## 2026-09-10: retain a shared perturbation relation at source-defined scope
 
 The [common perturbation query](ATLAS_PERTURBATION_RELATION.md) completes the

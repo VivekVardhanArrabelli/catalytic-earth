@@ -401,5 +401,19 @@
       "data/atlas/study_context/ra95_2017/acquisition_appendix.json",
       "docs/ATLAS_RA95_TETRAD_CONTROLS.md"
     ]
+  },
+  {
+    "claim_id": "CE-032",
+    "claim_kind": "scientific_result",
+    "status": "Supported",
+    "claim": "The retained Obexer2017 supplement reports RA95.5-8F synthesizing methodol from acetone and 6-methoxy-2-naphthaldehyde with 67% conversion at 3 h and 60.1% isolated yield. Starting amount and R/S HPLC retention assignments conflict within the source.",
+    "current_wording": "Preserve 67% conversion, 78.1 micromol / 19.10 mg product and 60.1% isolated yield as distinct source-reported endpoints. The 50 mL, 2 mM, 130 micromol recipe is inconsistent; do not choose a repaired quantity or yield. The 8F product is source-assigned R-major with 99.2:0.8 R:S and printed >98.4% ee; p17 gives an optical-rotation/literature basis while Methods and S12 reverse the R/S retention labels. Keep normalized retention assignment unresolved. Precursor 0.7% conversion is a source-declared same-condition contrast; precursor 44% ee belongs 1 day / approximately 50-fold-enzyme conditions, with no configuration assigned to its 0.7% arm. No cleavage-to-synthesis selectivity transfer, matched single-group synthetic effect, productive geometry, new project experiment, independent validation or design-success estimate follows.",
+    "rationale": "Reaction-direction, product, assay and analytical-assignment context allow reuse of an actual synthetic outcome while preventing yield repair and transfer of stereochemical evidence across experimental arms.",
+    "evidence": [
+      "data/atlas/study_context/ra95_2017/forward_synthesis.json",
+      "data/atlas/study_context/ra95_2017/forward_synthesis_review.json",
+      "data/atlas/perturbations/projection.json",
+      "docs/ATLAS_FORWARD_SYNTHESIS.md"
+    ]
   }
 ]

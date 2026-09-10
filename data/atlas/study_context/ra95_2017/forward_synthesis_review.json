@@ -1,0 +1,121 @@
+{
+  "schema_version": "catalytic-earth.source-qualification-review.v1",
+  "assessment_id": "obexer2017-ra95-forward-methodol-outcome",
+  "decision": "accept_source_annotation",
+  "authorized_operation": "source_annotation",
+  "policy_binding": {
+    "path": "data/governance/computational_review_policy.json",
+    "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "reviewed_assessment": {
+    "path": "data/atlas/study_context/ra95_2017/forward_synthesis.json",
+    "sha256": "2b9fbc1b3dc777956a705f8502c1babc9ce2edb1e1cdb18b334d90d504ad5a14"
+  },
+  "reviewed_documentation": {
+    "path": "docs/ATLAS_FORWARD_SYNTHESIS.md",
+    "sha256": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84"
+  },
+  "retained_input_bindings": [
+    {
+      "path": "data/atlas/study_context/ra95_2017/source_qualification.json",
+      "sha256": "6a7867da4e141c79ecb0c5542b3c5ab8b9aca20d638554c504612fde3930398d"
+    },
+    {
+      "path": "data/atlas/study_context/ra95_2017/source_review.json",
+      "sha256": "75713129143ab0de723c529713acd96657b5ce9174561d217b2e454510ec1093"
+    },
+    {
+      "path": "data/atlas/study_context/ra95_2017/acquisition_appendix.json",
+      "sha256": "3a679e4628e2e884a703aedc185dbd4cf97f9fc2ece4face4f7004189946d710"
+    },
+    {
+      "path": "data/atlas/study_context/ra95_2013/functional_comparison.json",
+      "sha256": "0e2fe21efce4d805fdef8505770c0cf18557ed774c08a79cfc5e68c1b1fbf94a"
+    }
+  ],
+  "review_process": "Separate read-only source, representation and nested visual/adversarial roles use gpt-5.6-sol/ultra. Parent alone edits and owns Git/lock. Model review is not independent human or laboratory evidence.",
+  "adjudications": [
+    {
+      "objection": "The50mL/2mM/130micromol tuple is inconsistent; isolated-yield arithmetic could silently select one quantity.",
+      "evidence": "SIp11:1a",
+      "decision": "Retain all quantities, the100micromol dimensional check, and printed60.1%yield; block amount-normalized or repaired-yield inference."
+    },
+    {
+      "objection": "Methods andS12 reverse R/S retention assignments; discarding the sourceR label would also discard its separately stated optical-rotation basis.",
+      "evidence": "SIpp11,17,29",
+      "decision": "Keep both retention maps and null normalized mapping. Retain source-assigned R-major with reported rotation/literature basis; no independent standard/reference validation."
+    },
+    {
+      "objection": "Draft copied8F configuration and rotation evidence onto precursor control arms.",
+      "evidence": "SIp11 andS12p29; separate and independently raised source/representation/visual objections.",
+      "decision": "Make shared reaction and conversion product neutral. Keep8F assignment only on its composition row; altered precursor gets caption-only assignment;0.7%arm has no configuration."
+    },
+    {
+      "objection": "Strict source ee bound could become exact arithmetic, or precursor44%ee could become matched3h selectivity.",
+      "evidence": "SIp29",
+      "decision": "Retain>98.4%and exact displayed-ratio arithmetic separately. Keep44%on1day/approximately50fold-enzyme arm; no exact altered yield or full assay reconstructed."
+    },
+    {
+      "objection": "Theoretical71%yield might be treated as measured isolation or a universal equilibrium ceiling.",
+      "evidence": "SIpp9-11,29",
+      "decision": "Keep source calculation beside separate apparent-equilibrium assay; note measured0.1-1.0Macetone versus nominal2Msynthesis without refitting or extrapolation validation."
+    },
+    {
+      "objection": "Old common relation had no first-class reaction participants, and repeated whole reaction objects invite scope drift.",
+      "evidence": "Shared consumer and projection diff",
+      "decision": "Add a generic source-bound reaction/participant primitive; one canonical reaction provider, assay reaction IDs, named sides/roles. All case chemistry stays in data; old missing contexts remain null."
+    },
+    {
+      "objection": "A generic comparison block could erase the source-declared precursor control.",
+      "evidence": "S12p29 states same-condition67%versus0.7%conversion",
+      "decision": "Scope the block to generic perturbation arithmetic; preserve the exact declared descriptive precursor relation and distinct preparation IDs as structured context."
+    }
+  ],
+  "blocked_operations": [
+    "repaired source quantity or yield",
+    "independently verified absolute configuration or unambiguous retention label",
+    "same-condition precursor ee transfer from altered conditions",
+    "single-group synthetic effect from cleavage mutations",
+    "rate pooling or cleavage-to-synthesis selectivity transfer",
+    "productive geometry, full mechanism, design-success rate or evidence-tier promotion"
+  ],
+  "coordination_record": "work/coordination_forward_methodol_20260910.md",
+  "independent_human_review": false,
+  "new_project_experiments": 0,
+  "reviews": [
+    {
+      "role": "source",
+      "reviewer_task": "/root/forward_source",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_assessment_documentation_and_claim_bindings",
+      "scope": "RetainedSI Methodspp9-11,17 andFigureS12p29; quantities, stereochemical assignments, controls and source conflicts."
+    },
+    {
+      "role": "visual_adversarial",
+      "reviewer_task": "/root/forward_source/pdf_visual_audit",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_assessment_and_candidate_scope",
+      "scope": "Independent-in-team visual source reading and adversarial checks of product/control/direction and equilibrium transfer limits; no independent human review."
+    },
+    {
+      "role": "representation",
+      "reviewer_task": "/root/forward_representation",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_source_projection_consumer_and_tests",
+      "scope": "Canonical participant sides/roles, exact reactant ID set, source-assay direction, isolated product assignments and source-bound context checks."
+    }
+  ],
+  "reviewed_bindings": {
+    "data/atlas/perturbations/projection.json": "7edcacf6fad375257b3c806edb9def8b840df4c16707cb555e7213f235b30203",
+    "src/catalytic_earth/atlas_perturbations.py": "f0456d2fa9dce9efda390864f523b58666a148942ba31acb65d5e62bd95e89ca",
+    "scripts/query_atlas_perturbations.py": "87fd01dcc9f9ec737579d39c46ea007c60c70a50da745a77c6c64591fceaba51",
+    "docs/ATLAS_PERTURBATION_RELATION.md": "10a8dff783d3222f13479d8a3b35156a5a54252e51d3f0f77f5536ecedc2b312",
+    "CLAIMS.md": "034bbcbd8be353e851814017fca971ceb921fac90e2a1ec5ee101e19ea4935c5",
+    "data/governance/claim_ledger.json": "8affb5ad83feaefe96577fedc1a461f7f460665a2ba0f9e85563fedc7ad4a7a6"
+  },
+  "reviewed_at_utc": "2026-09-10T08:33:25.943781+00:00",
+  "completion_note": "All three separately prompted or nested read-only roles accepted their exact current scientific scope after source objections were corrected. Parent finalizes only review metadata after those acceptances; required tests and exact-head CI remain publication gates."
+}

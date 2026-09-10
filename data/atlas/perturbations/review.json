@@ -1,13 +1,15 @@
 {
   "schema_version": "catalytic-earth.perturbation-source-review.v1",
   "status": "source_reviewed_computational",
-  "reviewed_at_utc": "2026-09-10T07:31:10.675528+00:00",
-  "scope": "Accepted source annotations projected into one perturbation relation; no new measurements, biological claims, independent validation or registry admission.",
+  "reviewed_at_utc": "2026-09-10T08:33:56.881089+00:00",
+  "scope": "Accepted source annotations projected through one perturbation relation plus additive source-reported forward methodol product evidence and a generic reaction-participant context. No new project measurements, independent validation, registry admission or design-success estimate.",
   "reviewed_bindings": {
-    "data/atlas/perturbations/projection.json": "bf83935d74056aa93806f51dd380847499e7f149470eec2650ff5d75d25b7fef",
-    "src/catalytic_earth/atlas_perturbations.py": "1350800d1942ad5b7bf2e826a0bf2f1480d53a8bc098b1b55e81ff1c5d723fb3",
+    "data/atlas/perturbations/projection.json": "7edcacf6fad375257b3c806edb9def8b840df4c16707cb555e7213f235b30203",
+    "src/catalytic_earth/atlas_perturbations.py": "f0456d2fa9dce9efda390864f523b58666a148942ba31acb65d5e62bd95e89ca",
     "scripts/query_atlas_perturbations.py": "87fd01dcc9f9ec737579d39c46ea007c60c70a50da745a77c6c64591fceaba51",
-    "docs/ATLAS_PERTURBATION_RELATION.md": "022b19b9140379c775551e275eb5dd2acc1ef4af0ffff07ac28266e66f061e1a"
+    "docs/ATLAS_PERTURBATION_RELATION.md": "10a8dff783d3222f13479d8a3b35156a5a54252e51d3f0f77f5536ecedc2b312",
+    "data/atlas/study_context/ra95_2017/forward_synthesis_review.json": "a8025989cb89415ac59267dc0af2da415019af3786ec2db3debd18630de8be9d",
+    "docs/ATLAS_FORWARD_SYNTHESIS.md": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84"
   },
   "inherited_source_bindings": {
     "ra95f": {
@@ -35,13 +37,13 @@
     "model": "gpt-5.6-sol",
     "reasoning_effort": "ultra",
     "roles": [
-      "ra95_source",
-      "ra61_ke59_source",
-      "relation_challenge"
+      "forward_source",
+      "forward_representation",
+      "forward_source/pdf_visual_audit"
     ],
     "independent_human_review": false,
     "correlated_errors_possible": true,
-    "parent_adjudication": "Source-scoped content accepted. Public query requires exact reviewed mappings and consumer bytes; candidate projector is internal and explicitly unreviewed. Source objections are binding; publication also requires final diff and head-specific CI."
+    "parent_adjudication": "Accepted source annotation and generic participant relation after source, representation and visual/adversarial challenge. Exact source/code/doc pins bind the common query; model agreement is not independent validation."
   },
   "resolved_objections": [
     {
@@ -63,6 +65,34 @@
     {
       "issue": "A cache claim without retained-byte verification could be mistaken for durable primary evidence.",
       "resolution": "Validate witness metadata bindings; separately verify local bytes with --verify-witnesses. Public default explicitly labels cache availability unchecked."
+    },
+    {
+      "issue": "The50mL/2mM/130micromol tuple is inconsistent; isolated-yield arithmetic could silently select one quantity.",
+      "resolution": "Retain all quantities, the100micromol dimensional check, and printed60.1%yield; block amount-normalized or repaired-yield inference."
+    },
+    {
+      "issue": "Methods andS12 reverse R/S retention assignments; discarding the sourceR label would also discard its separately stated optical-rotation basis.",
+      "resolution": "Keep both retention maps and null normalized mapping. Retain source-assigned R-major with reported rotation/literature basis; no independent standard/reference validation."
+    },
+    {
+      "issue": "Draft copied8F configuration and rotation evidence onto precursor control arms.",
+      "resolution": "Make shared reaction and conversion product neutral. Keep8F assignment only on its composition row; altered precursor gets caption-only assignment;0.7%arm has no configuration."
+    },
+    {
+      "issue": "Strict source ee bound could become exact arithmetic, or precursor44%ee could become matched3h selectivity.",
+      "resolution": "Retain>98.4%and exact displayed-ratio arithmetic separately. Keep44%on1day/approximately50fold-enzyme arm; no exact altered yield or full assay reconstructed."
+    },
+    {
+      "issue": "Theoretical71%yield might be treated as measured isolation or a universal equilibrium ceiling.",
+      "resolution": "Keep source calculation beside separate apparent-equilibrium assay; note measured0.1-1.0Macetone versus nominal2Msynthesis without refitting or extrapolation validation."
+    },
+    {
+      "issue": "Old common relation had no first-class reaction participants, and repeated whole reaction objects invite scope drift.",
+      "resolution": "Add a generic source-bound reaction/participant primitive; one canonical reaction provider, assay reaction IDs, named sides/roles. All case chemistry stays in data; old missing contexts remain null."
+    },
+    {
+      "issue": "A generic comparison block could erase the source-declared precursor control.",
+      "resolution": "Scope the block to generic perturbation arithmetic; preserve the exact declared descriptive precursor relation and distinct preparation IDs as structured context."
     }
   ],
   "remaining_limits": [
@@ -71,5 +101,20 @@
     "Source witness bytes are host-local and not redistributed. No new source requests.",
     "Full 2017 main body, KE59 supplement and RA61 earlier-study sequence/lysine controls remain unassessed where stated."
   ],
-  "coordination_record": "work/coordination_perturbation_relation_20260910.md"
+  "coordination_record": "work/coordination_forward_methodol_20260910.md",
+  "added_source_bindings": {
+    "ra95syn": {
+      "path": "data/atlas/study_context/ra95_2017/forward_synthesis.json",
+      "sha256": "2b9fbc1b3dc777956a705f8502c1babc9ce2edb1e1cdb18b334d90d504ad5a14"
+    }
+  },
+  "prior_review_binding": {
+    "base_commit": "b9cf903f661cdd09fbaef94bd82fbaae543a16db",
+    "path": "data/atlas/perturbations/review.json",
+    "scope": "Original five packets, panels and55comparison requests retained unchanged; Git preserves previous review bytes."
+  },
+  "forward_synthesis_limits": [
+    "Forward product configuration is source-assigned; R/S retention mappings remain conflicted and no assignment transfers to the0.7%precursor conversion arm.",
+    "The strict>98.4%ee remains structured source context, not a numeric central-value comparison. No repaired yield or quantity is computed."
+  ]
 }

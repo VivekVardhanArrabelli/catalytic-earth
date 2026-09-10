@@ -392,6 +392,23 @@ source mutation-list conflicts, thermal/structural confounds and unacquired
 main-text scope remain explicit. No full-tetrad interaction, productive geometry, new
 experiment, independent validation or evidence-tier promotion is established.
 
+## CE-032 — synthetic product outcomes retain yield and assignment conflicts
+
+**Status:** Supported
+
+The [forward methodol outcome](docs/ATLAS_FORWARD_SYNTHESIS.md) reports
+RA95.5-8F aldol addition with 67% conversion at 3 h and 60.1% isolated yield
+(78.1 micromol, 19.10 mg). The recipe's 50 mL, 2 mM and 130 micromol are
+inconsistent. Methods and S12 reverse the R/S HPLC retention assignments,
+while both report R-major product and p17 declares an optical-rotation basis.
+Keep the source's 99.2:0.8 R:S and greater-than-98.4% ee separate from exact
+arithmetic on printed ratio parts. Precursor 0.7% conversion is a source-declared
+same-condition contrast; its 44% ee belongs a longer-time/higher-enzyme arm,
+with no configuration assigned to the 0.7% arm. No repaired yield, unambiguous
+retention-to-configuration label, cleavage-to-synthesis selectivity transfer,
+matched single-group synthesis effect, productive geometry, new project
+experiment, independent validation or design-success estimate follows.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,
