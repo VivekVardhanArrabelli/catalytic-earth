@@ -1,5 +1,23 @@
 # Current Decisions
 
+## 2026-09-10: preserve source disagreement before transferring a design template
+
+The [beta-barrel review](../data/atlas/study_context/beta_barrel_2022/source_review.json)
+governs a source annotation joining the article, exact S4 caption/image and
+current 8AH9 deposit. Noninhibition prose is not a transfer permission when
+the graph differs and the control names a different variant. Retain graph
+ordering without invented digitized values, statistics or a repaired conclusion.
+Keep deposited sequence identity, source mutation lineage and assayed-specimen
+identity as distinct relations. No ligand-independent or productive-pose label
+is justified by retained activity or mutation-informed docking.
+
+Case facts fit data and the existing strict mmCIF parser; no enzyme-specific
+runtime or new validator is needed. The original RA61 source-access blocker
+prompted a concrete change of source, whose complete article/SI exposed a new
+scientific conflict. Both batches retain cumulative accounting. The useful
+integration prevents a wrong control-to-structure transfer; no measured
+throughput advantage, new experiment, protein admission or tier change is claimed.
+
 ## 2026-09-10: keep designed component support at its measured scope
 
 The [RA61 source review](../data/atlas/study_context/ra61_2010/source_review.json)

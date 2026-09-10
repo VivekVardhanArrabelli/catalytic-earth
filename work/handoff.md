@@ -7,98 +7,92 @@ This block and `docs/HOURLY_RESEARCH.md` govern the hourly task. Historical
 content below the marker is not an execution queue.
 
 - **Identity/base:** owner
-  `01a08947-180a-7043-b264-63b4d68e0fab:08bb7de4-dc65-414b-9493-6304f7da07fd`;
-  actual UTC start `2026-09-10T03:06:15.153069+00:00`. Clean synchronized base
-  `320ad63e70bd5b29ca426e71970b125245e86d24`; prior PR68 merged/released,
-  no open PR or recovery work. Branch
-  `codex/retroaldolase-components-20260910`; checkpoint
-  `2026-09-10T03:30:38.624784+00:00` (24.4 minutes).
-- **Question/result:** which designed catalytic components have discriminating
-  experimental support? RA61 supplies five source-defined water-motif mutant
-  contrasts: all displayed initial-rate second-order values exceed the parent.
-  Y78F/S87A is 2.6 versus 0.49 M^-1 s^-1, printed ratio 5.3 (CE-029).
-  Six named constructs and eleven unique second-order observation contexts
-  are retained, with the repeated parent value stored once.
-- **Design use/limits:** the modeled Tyr78/Ser87 motif has no demonstrated net
-  benefit at the composite initial-rate endpoint through aldehyde formation.
-  Do not infer absent water, microscopic cause, compensation-free effects,
-  later catalytic steps or a functioning full designed apparatus. All six
-  exact sequences and assay-specimen identities remain unresolved. Figure2's
-  Lys176 is source/model numbering, not an experimentally titrated residue.
-- **Other component evidence:** the author's roughly 500-fold substrate effect
-  compares RA61 full/minimal reactivity with propargylamine/trifluoroethylamine.
-  Fluorescence/5%DMSO and acetone-NMR/5–8%D2O are different contexts, not a pure
-  binding-contact deletion. Displayed-value double ratios 413.555/547.826 are
-  comparator-conditioned arithmetic, not a confidence interval or affinity.
-  Roughly 10-fold pKa benefit uses reference10.6 and an assumed transferable
-  solution Brønsted relation; apparent pKa6.8/6.9 and SI model sensitivities
-  remain distinct from direct Lys176 perturbation. Displayed formula inputs
-  do not exactly reproduce all printed model estimates; no repair or inferred
-  rounding explanation is allowed. No new Lys replacement
-  assay appears in the acquired main/SI; the necessity assertion cites Ref7.
-- **Assay limitation:** off-pathway naphthaldehyde rebinding can reduce both
-  free enzyme and fluorescence and create an apparent burst. Product Kd26uM
-  is an approximate upper limit under zero bound-product fluorescence;
-  alternatives17/10uM are assumption-dependent. It supplies neither substrate
-  KM nor later-step kinetic evidence. The crystal lacks bound ligand.
-- **Evidence:** `data/atlas/study_context/ra61_2010/component_evidence.json`
-  SHA256`6b44023c7a4c002f1325f39550744632e245659900f819f373e6a7435482b2bc`;
-  readable `docs/ATLAS_RA61_COMPONENT_EVIDENCE.md`
-  SHA256`1b2865818542aa112132d32aad6679b467c15d27b86e8897cc68d7953f63a951`;
-  `source_review.json` in that directory SHA256`05094a4fb1529685e119b12deca82c874da61985f56211b478c09a69eb15406e`
-  records accepted adjudication and exact pins.
-  Main DOI10.1073/pnas.0913638107 / PMID20194782 / PMC2841948;
-  `/private/tmp/ce-components-08bb7de4/europepmc.pdf`
-  SHA256`e9ee944fc748057e4e476b7de8e0ceb704133817bec7f51562de21a502b033a1`;
-  `supplement.pdf` in that cache
-  SHA256`91e17539e9761fdc7fdb5d70c395fad2f4c7b339732e9282262e6a7940da6df4`.
-  Full main6/SI9 pages inspected; numerical anchors main Tables4/5, SI p3/6/9.
-  Source bodies remain local, not redistributed.
-- **Acquisition:** batch `designed-retroaldolase-components-lassila2010` is
-  complete at **12 requests / 1,100,587 response-body bytes**; 88 requests /
-  30,356,693 bytes remain under100/31,457,280. Exact receipt
-  `data/atlas/study_context/ra61_2010/acquisition_receipts.json`
-  SHA256`3dcccd826beb02a393588c4220c4ac6475d73f9a0ba8832b98c3305e3a18a319`.
-  Author publications entry177 explicitly links the supplement; redirects,
-  challenges, errors and discovery count. No active acquisition process.
-  Other scopes unchanged: RA95 9/4,454,733; KE59 9/261,580; KE70 16/1,102,794
-  (full article/SI access-blocked, unassessed). TKT lower bound7/3,004,884 and
-  M0081 panel lower bound28/1,474,405 retain unknown complete headroom;
-  M0187 remains12/440,960 at its sublimit. No renamed/reset scope.
-- **Reuse/reconsideration:** no runtime or new validator. Shared parameter
-  k_cat/K_M and dimensionless units prevent a spelling-only query mismatch;
-  source typography and model assumptions remain explicit. RA95/KE59 accepted
-  packets are reused by exact hash/JSON pointer, without copied sequences.
-  The useful relation distinguishes design intent, substitution response,
-  substrate discrimination and model estimates; no measured superiority over
-  a competent reader or speedup is claimed. This is new source content, not
-  a repeated review, new biology, protein admission, mechanism or tier change.
-  Consecutive no-progress runs:0.
-- **Verification/review:** all three roles accepted final data/doc/receipt pins
-  and the adjudications; parent finalized the accepted source_annotation review.
-  All three roles challenged substantive source claims. Source corrections
-  included model-only Lys176, five mutant constructs and two distinct pockets.
-  Parent checked all12body hashes/lengths,11numeric rows,10derived comparisons,
-  canonical parameters, solvent missingness, source/provider joins and old
-  claim preservation. All14truth tests pass. Required contracts/CI remain
-  publication steps. Board `work/coordination_retroaldolase_components_20260910.md`.
-- **Publication/recovery:** accepted owned source increment ready for required
-  contracts, commit/push/PR and reviewed-head checks. Inspect
-  this branch/PR first if unfinished. Exact final commit, CI, merge and release
-  belong in Git and `.git/catalytic-earth-runs/20260910T030615Z-08bb7de4-dc65-414b-9493-6304f7da07fd.json`.
-  Parent alone edits; no unrelated dirty work. Retain the lock through safe
-  checkpointing and stop/join all workers before release.
-- **One next action:** source-qualify exact RA61 construct and Lys176-control
-  evidence in the original design paper: Jiang2008, *De novo computational
-  design of retro-aldol enzymes*, DOI10.1126/science.1152692 / PMID18323453 /
-  PMC3431203. Source locator: this study Ref7; exact identifiers also occur in
-  retained RA95 article R2. The present main/SI do not supply sequences or
-  that direct control. Gain: determine whether the named component contrasts
-  can acquire a defensible sequence-level anchor and Lys perturbation control.
-  Recheck historical source scopes first; keep RA61 followup consumption in
-  the existing cumulative batch, never reset it. Stop after main/available SI
-  if sequence provenance, numbering or equivalence to the2010 construct is
-  missing. Do not join by name/scaffold PDB or infer an unreported negative.
+  `01a0897e-f211-7f72-9371-591f0637cbb6:3774c9aa-a624-418a-8766-d10f06a3c7b5`;
+  actual UTC start `2026-09-10T04:06:47Z`. Clean synchronized base
+  `b00587b7ad761ebdc1b01d02dcdb4bc312f22bec`; prior PR69 merged/released,
+  no open PR or recovery. Final branch `codex/beta-barrel-controls-20260910`
+  (renamed from the initial RA61 branch). Scientific checkpoint
+  `2026-09-10T04:35:29.780919+00:00` (28.7 minutes).
+- **Question/result:** can a designed-enzyme control establish ligand-independent
+  catalytic geometry and exact construct support? Kipnis2022 main prose reports
+  no benzoate inhibition up to2.5mM, but S4 has visibly lower2.5mM bars in both
+  10min/14h panels. S4 names RAβb-16.2; the crystal is RAβb-16.1. CE-030
+  preserves both the source conflict and wrong-variant transfer risk. No numeric
+  inhibition effect, significance, Ki or ligand-independence claim follows.
+- **Useful content:** one primary-study context, three named lineage contexts,
+  two S-methodol kinetic table rows, eight benzoate condition arms and one
+  exact120-residue deposited sequence. Table2 retains16.1/16.2 kcat1.5/1.6min^-1,
+  KM230/50uM, printed efficiency6500/30000M^-1min^-1 and S/R factors36/500.
+  Printed values are not repaired; pH7(Fig6) versus7.5(Methods4.7) stays
+  unresolved. No inverted R parameters, raw S4 rates, bar statistics or assay
+  conditions copied from unrelated protocols.
+- **Design limits:** current8AH9 entity1 explicitly names the study's16.1 and
+  binds its DOI/PMID. Full120aa string retains five unmodeled initialHis and
+  modeled author0Ala; author numbering maps to entity/label index+6. ThreeBEZ
+  instances remain distinct; C/A202 is adjacent to the selected polar groups.
+  Five exact atom-pair distances and Ser77OG A/B alternatives0.5/0.5 do not
+  imply H-bonds, solution populations or productive geometry. The deposit is
+  version1.3(2026-03-04), not asserted paper-time bytes. Assay-specimen identity
+  and16.2exactsequence remain unresolved; mutation-informed restrained docking
+  is not independent evidence. K77M's visible trace isRAβb-8, not16.1Lys53;
+  optimized-lineage Lys53/Tyr17 effects remain underspecified author assertions.
+- **Evidence:** `data/atlas/study_context/beta_barrel_2022/source_qualification.json`
+  SHA256`9b1a98b0be873f361c75f6431684a92c2c769a77bc3450988537669860533d7a`;
+  readable `docs/ATLAS_BETA_BARREL_CONTROLS.md`
+  SHA256`6dc8bc3a8b5e64a9af9941dff063e5387f7692874144ca8855d49a4997fe3def`.
+  Review and acquisition receipt are in that data directory; retained
+  `sources/8AH9.cif` SHA256`e6279016ff65e3b18d2f2263b86165725d7ed09784607050b2fc38669347b3b5`.
+  Main DOI10.1002/pro.4405 / PMID36305767 / PMC9601869;
+  `/private/tmp/ce-kipnis2022-3774c9aa/article.pdf`
+  SHA256`dae5d00d05efc6386e2002be9eb5f18c3c3224596c5e5df0fc7ad107cfe8357d`.
+  Complete15-page main and all6SI figure groups inspected. Exact S4 caption is
+  XML `pro4405-supitem-0004`, media `PRO-31-e4405-s006.tiff`, SHA256
+  `391b56134d77e23c52ff2f80c58672fabdfa07640a134e26b6d8f3e36d83ada6`.
+- **Acquisition/pivot:** original RA61 followup on Jiang2008 stopped after
+ 33newrequests; main/SI remain inaccessible/unassessed, not scientifically
+  absent. Cumulative `designed-retroaldolase-components-lassila2010` now
+  **45requests/3,236,259bytes**; remaining55/28,221,021 under100/31,457,280.
+  Exact appendix `data/atlas/study_context/ra61_2010/jiang2008_acquisition_appendix.json`
+  SHA256`286e99067837121f3cbb08c2db0e0c9f4843172abeb18314898965587f8e234b`
+  binds the immutable prior12requestreceipt. A concrete author-index PDF link
+  supplied the alternative source. Distinct `designed-retroaldolase-beta-barrel-kipnis2022`
+  totals **5requests/8,449,621bytes**, remaining95/23,007,659. The discovery
+  body was already charged toRA61 and reused without another request.
+  All acquisition stopped; no worker network. Other budgets unchanged:
+  RA95 9/4,454,733; KE59 9/261,580; KE70 16/1,102,794 fullarticle/SI accessblocked;
+  TKT lowerbound7/3,004,884 and M0081 lowerbound28/1,474,405 retain unknown complete
+  headroom; M0187 remains12/440,960 at its sublimit. No renamed/reset scope.
+- **Reuse/reconsideration:** case facts stay in data; existing strict mmCIF
+  parser supplies atom/residue/ligand tables without runtime or newvalidator.
+  Reused source/construct/assay/parameter/null concepts and a metered discovery
+  response. Stopped repetitive access failures and changed to a concretely
+  available primary source. Integrated caption/variant/coordinate evidence
+  prevents an unsupported control-to-template transfer that prose alone hides.
+  No measured curation-speedup or advantage over competent source reading;
+  no global fold-evolvability or design-success claim. New content and a
+  supported scientific limitation mean consecutive no-progress runs:0.
+- **Verification/review:** all three roles accepted the exact final source/data/document pins without blocking objections.
+  Parent verified all38newresponse bodies and both cumulative ledgers, exact
+  S4caption/archive member,120aa hash,11residue maps,5atom pairs,2table rows,
+ 8conditionarms, explicit nulls, old29claim objects and historical handoff suffix.
+  All14truth tests pass. Required contracts/CI remain publication steps.
+  Board `work/coordination_beta_barrel_controls_20260910.md` records all three
+  read-only role challenges. No source objection can be waived by agreement.
+- **Publication/recovery:** source annotation accepted for publication; contracts, commit/push/PR and reviewed-head checks remain the publication gate. Inspect
+  this branch/PR first if unfinished. Exact final commit/CI/merge/release live in
+  Git and `.git/catalytic-earth-runs/20260910T040647Z-3774c9aa-a624-418a-8766-d10f06a3c7b5.json`.
+  Parent alone edits; no unrelated dirty work. Retain lock through checkpoint;
+  join/stop all workers before release. No self-hash follow-up commit.
+- **One next action:** source-qualify catalytic-group perturbations in
+  Obexer2017, *Emergence of a catalytic tetrad during evolution of a highly
+  active artificial aldolase*, DOI10.1038/nchem.2596 / PMID27995916, cited in
+  acquired Kipnis XML reference17. Gain: determine whether a mature apparatus
+  has exact-background single/multiple-component controls that constrain
+  cooperative catalytic roles beyond the earlier RA95 lysine relocation.
+  Recheck existing acquisition history first; carry related RA95 followup usage
+  in its cumulative9request/4,454,733byte scope rather than resetting it.
+  Stop after main/availableSI if exact constructs or matched controls are absent;
+  no epistasis, complete apparatus, sequence transfer or source repair by inference.
 
 Preserve historical content below this marked block. Git identifies the
 containing increment; no self-hash follow-up commit is required.
