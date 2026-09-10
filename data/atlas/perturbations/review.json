@@ -31,10 +31,10 @@
     "data/atlas/study_context/ra95_2017/chemical_state.json": "0304a28cc9676ae9d920b5c4f6c47f102d10320e125cc40cbfddd971ccff695d",
     "data/atlas/study_context/ra95_2017/chemical_state_acquisition.json": "4b0427a24aab3b1269f25cd80b3b9c90f61c4a99404499d77cf0c16a8b5f2ecb",
     "docs/ATLAS_RA95_CHEMICAL_STATE.md": "a85ee7c6accdafb0f2fb63a1a658413e07788cee4a5f9f7879dce726c6707c01",
-    "CLAIMS.md": "257ec82bc5d23a10b73e675e535d51ffdd1453ec507e45ea883828610c2e0db1",
-    "data/governance/claim_ledger.json": "7e5d1a4bcd922b5464a1e58b65c64a3ceed5b9ce302a91b12adb045e006c5838",
-    "docs/CURRENT_DECISIONS.md": "5988e4f4dee3e3e0acb4b570ea3eb299a3cf9573462e8b1608c4d76e891aefee",
-    "docs/CURRENT_STATE.md": "b8b43e68e5572a04219e1fcdd8e68627c1bf52bbd95792c618712477075c478c",
+    "CLAIMS.md": "6bbc8b89b2725bdb7f1eb1eba4ff7fa1324717711dcf521afbb7bff490165d99",
+    "data/governance/claim_ledger.json": "017aa50a1a92c5b63a20eda1734a8d266f62e97edfa9f030a65554d0b831eb16",
+    "docs/CURRENT_DECISIONS.md": "013d91ed980dd7b96cfb934109b4d2aeb82ce09c930019dc27d3da32b733fd22",
+    "docs/CURRENT_STATE.md": "d2723232eb0a0835fd275134344281a373424b5f3be1290a9fb659066fed67ad",
     "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
     "src/catalytic_earth/atlas_deposit_context.py": "de95b7b107928b1390ecbbeb71a4949a2c8d9bafd1ef128b78681a0616101a76",
     "src/catalytic_earth/atlas_assembly_context.py": "5d671a761f3ad493661f3c25b50dce693ef2169a48942af9664a65e0b0ae0835",
@@ -47,7 +47,7 @@
     "data/atlas/deposit_context/ra95_4a2r/projection.json": "ea3117cea3d83e156534abcc1efd62f10ed056a1965ba7e99a0974ac915b3461",
     "data/atlas/study_context/ra95_2013/chemical_state.json": "a9b7df48d5684fc014ced487477364eb8d9b2072817e3be4c64837a364df0670",
     "data/atlas/study_context/ra95_2013/chemical_state_acquisition.json": "7efd0b0efdb32572d369194fc4e9eedd84b0a184aa8c9f10b7af50766b4c1da9",
-    "tests/test_truth_guard.py": "e916e10cc696dd7e8168889e21d15ecd2822467d0e6511e2e386273eda09c927",
+    "tests/test_truth_guard.py": "9cab652e125d7f03a5d22f761d163dbc6d655e11b950058b9a3e810c38b2933b",
     "docs/ATLAS_RA95_4A2R_STATE.md": "3e232b1bf17f5c316d126c2476c1b87dbf120a8584bcd1db00aa51db9df5a1f9",
     "data/atlas/study_context/ra95_2013/chemical_state_review.json": "12864f833532eff632016804fbf322e1828c33c3cabf840b2cd08b8f0ea99ebf",
     "data/atlas/deposit_context/ra95_4a2r/review.json": "dc017d8ed45a52dade5c04a77c42d734fa34926b67cefa043a35f0d9bb605a20"
@@ -443,5 +443,36 @@
         "after": "e916e10cc696dd7e8168889e21d15ecd2822467d0e6511e2e386273eda09c927"
       }
     }
-  }
+  },
+  "additional_claim_surface_followups": [
+    {
+      "base_commit": "6be6c988ac19a01aef17779b17777c6a501c4a11",
+      "reviewed_at_utc": "2026-09-10T19:19:50.965334+00:00",
+      "change": "Append CE-037 rejected PLP source-step comparison and matching current-state notes; claim count36to37.",
+      "prior_claims_and_perturbation_evidence_unchanged": true,
+      "review_scope": "Renew exactly five changed governance/test bindings after source and diff review. Original projection, source providers, runtime and scientific review are unchanged. Prior followups remain historical.",
+      "binding_changes": {
+        "CLAIMS.md": {
+          "before": "257ec82bc5d23a10b73e675e535d51ffdd1453ec507e45ea883828610c2e0db1",
+          "after": "6bbc8b89b2725bdb7f1eb1eba4ff7fa1324717711dcf521afbb7bff490165d99"
+        },
+        "data/governance/claim_ledger.json": {
+          "before": "7e5d1a4bcd922b5464a1e58b65c64a3ceed5b9ce302a91b12adb045e006c5838",
+          "after": "017aa50a1a92c5b63a20eda1734a8d266f62e97edfa9f030a65554d0b831eb16"
+        },
+        "docs/CURRENT_DECISIONS.md": {
+          "before": "5988e4f4dee3e3e0acb4b570ea3eb299a3cf9573462e8b1608c4d76e891aefee",
+          "after": "013d91ed980dd7b96cfb934109b4d2aeb82ce09c930019dc27d3da32b733fd22"
+        },
+        "docs/CURRENT_STATE.md": {
+          "before": "b8b43e68e5572a04219e1fcdd8e68627c1bf52bbd95792c618712477075c478c",
+          "after": "d2723232eb0a0835fd275134344281a373424b5f3be1290a9fb659066fed67ad"
+        },
+        "tests/test_truth_guard.py": {
+          "before": "e916e10cc696dd7e8168889e21d15ecd2822467d0e6511e2e386273eda09c927",
+          "after": "9cab652e125d7f03a5d22f761d163dbc6d655e11b950058b9a3e810c38b2933b"
+        }
+      }
+    }
+  ]
 }

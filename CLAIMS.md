@@ -473,6 +473,22 @@ residue homology, after-state replay, whole-cycle equivalence, conserved
 function, reaction/protein/structure transfer, new experiment or evidence-tier
 promotion follows.
 
+## CE-037 — matching PLP arrows do not establish a shared chemical state
+
+**Status:** Supported
+
+The [PLP step-2 boundary](docs/ATLAS_PLP_STEP_BOUNDARY.md) preserves matching
+two-arrow local roles in M0066, M0186 and M0213 while withholding a qualified
+actor-state correspondence. Each required substrate-N endpoint touches source
+stereochemistry that the current consumer cannot interpret; full and
+endpoint-only selections both fail its existing guard. Cofactor electronic
+tokens, phosphate/lysine explicit-H depictions and substrate sidechains also
+differ. Raw W/H tokens are not canonical absolute configurations, and missing
+explicit H does not prove absent protons. This is a prevented unsupported
+state transfer, not proof of mechanistic non-equivalence. No normalized
+stereochemistry, after-state replay, physical atom map, whole-function transfer,
+new mechanism, experiment or evidence-tier promotion follows.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,

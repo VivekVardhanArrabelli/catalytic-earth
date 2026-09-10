@@ -1,0 +1,89 @@
+{
+  "schema_version": "catalytic-earth.source-step-boundary-review.v1",
+  "status": "source_reviewed_computational",
+  "operation": "source_annotation",
+  "reviewed_at_utc": "2026-09-10T19:19:50.965334+00:00",
+  "base_commit": "6be6c988ac19a01aef17779b17777c6a501c4a11",
+  "question": "Does PLP proposal1 step2 in M0066/M0186/M0213 support a qualified graph and arrow correspondence under the current consumer?",
+  "bindings": {
+    "data/atlas/source_step_correspondence/plp_step2_boundary.json": "0698ec05d444b3ba701e9e96aecabd1999df5bab4e0d5a8b31403adcdc4d71ac",
+    "scripts/compare_source_steps.py": "a2e84f0cc511b0b757f1a9984fde66fe9403ce585f81736801edd75c45873601",
+    "tests/core/test_source_step_correspondence.py": "46dfcb40ee4d6590066b70eace27c8139c6461393b463f02392a3fb694054716",
+    "docs/ATLAS_PLP_STEP_BOUNDARY.md": "82fb7316545f18484bb71f75b55e5183a3947a3bc28b355603ac2d84fa268bee",
+    "CLAIMS.md": "6bbc8b89b2725bdb7f1eb1eba4ff7fa1324717711dcf521afbb7bff490165d99",
+    "data/governance/claim_ledger.json": "017aa50a1a92c5b63a20eda1734a8d266f62e97edfa9f030a65554d0b831eb16",
+    "docs/CURRENT_DECISIONS.md": "013d91ed980dd7b96cfb934109b4d2aeb82ce09c930019dc27d3da32b733fd22",
+    "docs/CURRENT_STATE.md": "d2723232eb0a0835fd275134344281a373424b5f3be1290a9fb659066fed67ad",
+    "tests/test_truth_guard.py": "9cab652e125d7f03a5d22f761d163dbc6d655e11b950058b9a3e810c38b2933b"
+  },
+  "source_findings": [
+    "Two directed local arrow-role patterns and endpoint element/parsed-charge/raw-lonePair tokens match; both local bonds already exist as single bonds. No bond edits or after-state are inferred.",
+    "Every required substrate-N endpoint touches raw source stereochemistry. Full and endpoint-only projections both reject under the unchanged consumer. Excluding the N instead violates endpoint preservation.",
+    "Connected actors contain 31/31, 30/30 and 28/28 atoms/bonds retain different cofactor electronic tokens, explicit-H depictions and substrate sidechains. W/H tokens alone do not assign absolute configuration.",
+    "No qualified shared actor-state relation is established; this is not proof of mechanistic non-equivalence. Source-specific unresolved scopes remain attached."
+  ],
+  "adjudicated_challenges": [
+    {
+      "objection": "Arrow formation/elimination labels can overstate inferred edits, because both N-C bonds already exist.",
+      "resolution": "Use endpoint-descriptive role names and retain exact existing bond IDs/orders. No source or compiled state is changed."
+    },
+    {
+      "objection": "Matching local signatures could imply equal labels, residue identity or explicit-H neighborhoods.",
+      "resolution": "Limit match to endpoint element, parsed charge and raw electronic tokens; retain mrvExtraLabel and distal Lys alias witnesses, explicit H and exact boundary stereobonds."
+    },
+    {
+      "objection": "A partial graph could hide a stereo bond by excluding its non-flow endpoint.",
+      "resolution": "Require existing consumer rejection for all three full actors and all three endpoint-only selections; no guard relaxation or family-specific runtime."
+    },
+    {
+      "objection": "Matching flows alone does not check matching local electronic signatures.",
+      "resolution": "Add direct cross-case comparison of consumer-relevant endpoint signatures while excluding semantic labels from equivalence."
+    },
+    {
+      "objection": "A vacuous or single-case diagnostic must not support a three-case comparison.",
+      "resolution": "Require exactly the three named cases and exact source-binding keys before cross-case comparisons."
+    }
+  ],
+  "reviewers": [
+    {
+      "agent": "source_plp",
+      "role": "raw source chemistry and provenance",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra"
+    },
+    {
+      "agent": "representation_plp",
+      "role": "unchanged consumer feasibility and boundary",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra"
+    },
+    {
+      "agent": "adversarial_plp",
+      "role": "independent bounded scope/value and regression challenge",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra"
+    }
+  ],
+  "independent_human_review": false,
+  "correlated_errors_possible": true,
+  "remaining_objections": [],
+  "scope": "Rejected source-depiction comparison and local endpoint-only observation. No new mechanism record, canonical stereo, exact microstate, physical atom map, after-state replay, whole-function transfer, new experiment, evidence-tier promotion or protected/frozen/exposure change.",
+  "acquisition": {
+    "new_scientific_source_requests": 0,
+    "new_response_body_bytes": 0,
+    "inherited_batches_unchanged": true,
+    "headroom_recomputed": false
+  },
+  "verification": {
+    "focused_correspondence_tests": 12,
+    "focused_result": "passed",
+    "shared_consumer_unchanged": true,
+    "original_source_records_unchanged": true,
+    "prior_ce001_to_ce036_unchanged": true,
+    "core_tests": 585,
+    "core_result": "passed",
+    "repository_contracts": "passed; 37 claims, frozen golden result matched",
+    "all_three_pinned_source_annotation_gates": "passed",
+    "remote_ci": "Required reviewed-head publication gate; exact outcome recorded in run receipt and task result"
+  }
+}
