@@ -240,6 +240,14 @@ assay-preparation identity, assay condition, source-atom map or new functional
 measurement is established. This is a supplemental annotation; the existing
 six-observation query and its endpoint-specific conclusion remain unchanged.
 
+The [deposited dictionary comparison](docs/ATLAS_MECHANISM_EVIDENCE.md#dictionary-stereochemistry-does-not-transfer-site-context)
+checks a complete 19-atom/19-bond RMN-to-SMN map, including dictionary H,
+with only C7 R/S inverted. The query keeps the 11-heavy-atom instances separate
+and refuses a same-deposited-environment comparison: their anchored site
+records and external connections differ, with deposited `struct_conn` Mg links only for
+SMN. This does not establish coordinate-derived chirality, bound protonation,
+equivalent physical sites, physical atom identity or a reaction trajectory.
+
 ## CE-022 — an intermediate label does not identify a mobile-catalyst pose
 
 **Status:** Supported

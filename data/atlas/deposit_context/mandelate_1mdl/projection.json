@@ -1,0 +1,1992 @@
+{
+  "assembly_projection": null,
+  "claim_boundary": {
+    "coordinate_geometry": "not projected",
+    "does_not_establish": [
+      "chemical normalization or ligand equivalence",
+      "reaction, mechanism, source-step, or catalytic-role applicability",
+      "productive geometry, solution population, rate, or design competence"
+    ],
+    "interpretation": "explicitly supplied project statements requiring source review; not semantically validated or inferred by runtime",
+    "source_rows": "parsed values from hash-bound mmCIF rows selected by declared string equality and count"
+  },
+  "component_comparisons": [
+    {
+      "atom_map": {
+        "C1": "C1",
+        "C10": "C10",
+        "C2": "C2",
+        "C3": "C3",
+        "C4": "C4",
+        "C5": "C5",
+        "C6": "C6",
+        "C7": "C7",
+        "H2": "H2",
+        "H3": "H3",
+        "H4": "H4",
+        "H5": "H5",
+        "H6": "H6",
+        "H7": "H7",
+        "HO2": "HO2",
+        "HO8": "HO8",
+        "O11": "O11",
+        "O12": "O12",
+        "O8": "O8"
+      },
+      "atom_map_provenance": "project_declared_and_validated_against_complete_deposited_dictionaries",
+      "comparison_id": "rmn-smn",
+      "complete_dictionary_atom_bijection": true,
+      "left": {
+        "coordinate_atoms": [
+          {
+            "auth_asym_id": "A",
+            "auth_atom_id": "C1",
+            "auth_comp_id": "RMN",
+            "auth_seq_id": "398",
+            "b_iso_or_equiv": "46.87",
+            "cartn_x": "36.715",
+            "cartn_y": "2.157",
+            "cartn_z": "17.659",
+            "group_pdb": "HETATM",
+            "id": "2702",
+            "label_alt_id": ".",
+            "label_asym_id": "C",
+            "label_atom_id": "C1",
+            "label_comp_id": "RMN",
+            "label_entity_id": "3",
+            "label_seq_id": ".",
+            "occupancy": "1.00",
+            "pdbx_formal_charge": "?",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "type_symbol": "C"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_atom_id": "C2",
+            "auth_comp_id": "RMN",
+            "auth_seq_id": "398",
+            "b_iso_or_equiv": "42.66",
+            "cartn_x": "38.053",
+            "cartn_y": "1.974",
+            "cartn_z": "17.343",
+            "group_pdb": "HETATM",
+            "id": "2703",
+            "label_alt_id": ".",
+            "label_asym_id": "C",
+            "label_atom_id": "C2",
+            "label_comp_id": "RMN",
+            "label_entity_id": "3",
+            "label_seq_id": ".",
+            "occupancy": "1.00",
+            "pdbx_formal_charge": "?",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "type_symbol": "C"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_atom_id": "C3",
+            "auth_comp_id": "RMN",
+            "auth_seq_id": "398",
+            "b_iso_or_equiv": "39.63",
+            "cartn_x": "38.954",
+            "cartn_y": "2.995",
+            "cartn_z": "17.556",
+            "group_pdb": "HETATM",
+            "id": "2704",
+            "label_alt_id": ".",
+            "label_asym_id": "C",
+            "label_atom_id": "C3",
+            "label_comp_id": "RMN",
+            "label_entity_id": "3",
+            "label_seq_id": ".",
+            "occupancy": "1.00",
+            "pdbx_formal_charge": "?",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "type_symbol": "C"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_atom_id": "C4",
+            "auth_comp_id": "RMN",
+            "auth_seq_id": "398",
+            "b_iso_or_equiv": "39.65",
+            "cartn_x": "38.529",
+            "cartn_y": "4.209",
+            "cartn_z": "18.075",
+            "group_pdb": "HETATM",
+            "id": "2705",
+            "label_alt_id": ".",
+            "label_asym_id": "C",
+            "label_atom_id": "C4",
+            "label_comp_id": "RMN",
+            "label_entity_id": "3",
+            "label_seq_id": ".",
+            "occupancy": "1.00",
+            "pdbx_formal_charge": "?",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "type_symbol": "C"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_atom_id": "C5",
+            "auth_comp_id": "RMN",
+            "auth_seq_id": "398",
+            "b_iso_or_equiv": "41.49",
+            "cartn_x": "37.202",
+            "cartn_y": "4.408",
+            "cartn_z": "18.410",
+            "group_pdb": "HETATM",
+            "id": "2706",
+            "label_alt_id": ".",
+            "label_asym_id": "C",
+            "label_atom_id": "C5",
+            "label_comp_id": "RMN",
+            "label_entity_id": "3",
+            "label_seq_id": ".",
+            "occupancy": "1.00",
+            "pdbx_formal_charge": "?",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "type_symbol": "C"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_atom_id": "C6",
+            "auth_comp_id": "RMN",
+            "auth_seq_id": "398",
+            "b_iso_or_equiv": "44.76",
+            "cartn_x": "36.302",
+            "cartn_y": "3.379",
+            "cartn_z": "18.201",
+            "group_pdb": "HETATM",
+            "id": "2707",
+            "label_alt_id": ".",
+            "label_asym_id": "C",
+            "label_atom_id": "C6",
+            "label_comp_id": "RMN",
+            "label_entity_id": "3",
+            "label_seq_id": ".",
+            "occupancy": "1.00",
+            "pdbx_formal_charge": "?",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "type_symbol": "C"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_atom_id": "C7",
+            "auth_comp_id": "RMN",
+            "auth_seq_id": "398",
+            "b_iso_or_equiv": "52.08",
+            "cartn_x": "35.667",
+            "cartn_y": "1.034",
+            "cartn_z": "17.416",
+            "group_pdb": "HETATM",
+            "id": "2708",
+            "label_alt_id": ".",
+            "label_asym_id": "C",
+            "label_atom_id": "C7",
+            "label_comp_id": "RMN",
+            "label_entity_id": "3",
+            "label_seq_id": ".",
+            "occupancy": "1.00",
+            "pdbx_formal_charge": "?",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "type_symbol": "C"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_atom_id": "C10",
+            "auth_comp_id": "RMN",
+            "auth_seq_id": "398",
+            "b_iso_or_equiv": "55.62",
+            "cartn_x": "34.686",
+            "cartn_y": "0.955",
+            "cartn_z": "18.579",
+            "group_pdb": "HETATM",
+            "id": "2709",
+            "label_alt_id": ".",
+            "label_asym_id": "C",
+            "label_atom_id": "C10",
+            "label_comp_id": "RMN",
+            "label_entity_id": "3",
+            "label_seq_id": ".",
+            "occupancy": "1.00",
+            "pdbx_formal_charge": "?",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "type_symbol": "C"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_atom_id": "O8",
+            "auth_comp_id": "RMN",
+            "auth_seq_id": "398",
+            "b_iso_or_equiv": "52.32",
+            "cartn_x": "36.260",
+            "cartn_y": "-0.264",
+            "cartn_z": "17.094",
+            "group_pdb": "HETATM",
+            "id": "2710",
+            "label_alt_id": ".",
+            "label_asym_id": "C",
+            "label_atom_id": "O8",
+            "label_comp_id": "RMN",
+            "label_entity_id": "3",
+            "label_seq_id": ".",
+            "occupancy": "1.00",
+            "pdbx_formal_charge": "?",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "type_symbol": "O"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_atom_id": "O11",
+            "auth_comp_id": "RMN",
+            "auth_seq_id": "398",
+            "b_iso_or_equiv": "55.52",
+            "cartn_x": "34.022",
+            "cartn_y": "1.948",
+            "cartn_z": "18.730",
+            "group_pdb": "HETATM",
+            "id": "2711",
+            "label_alt_id": ".",
+            "label_asym_id": "C",
+            "label_atom_id": "O11",
+            "label_comp_id": "RMN",
+            "label_entity_id": "3",
+            "label_seq_id": ".",
+            "occupancy": "1.00",
+            "pdbx_formal_charge": "?",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "type_symbol": "O"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_atom_id": "O12",
+            "auth_comp_id": "RMN",
+            "auth_seq_id": "398",
+            "b_iso_or_equiv": "58.13",
+            "cartn_x": "34.642",
+            "cartn_y": "-0.032",
+            "cartn_z": "19.285",
+            "group_pdb": "HETATM",
+            "id": "2712",
+            "label_alt_id": ".",
+            "label_asym_id": "C",
+            "label_atom_id": "O12",
+            "label_comp_id": "RMN",
+            "label_entity_id": "3",
+            "label_seq_id": ".",
+            "occupancy": "1.00",
+            "pdbx_formal_charge": "?",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "type_symbol": "O"
+          }
+        ],
+        "dictionary_atoms": [
+          {
+            "atom_id": "C1",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "291",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "C"
+          },
+          {
+            "atom_id": "C2",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "292",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "C"
+          },
+          {
+            "atom_id": "C3",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "293",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "C"
+          },
+          {
+            "atom_id": "C4",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "294",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "C"
+          },
+          {
+            "atom_id": "C5",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "295",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "C"
+          },
+          {
+            "atom_id": "C6",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "296",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "C"
+          },
+          {
+            "atom_id": "C7",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "297",
+            "pdbx_stereo_config": "R",
+            "type_symbol": "C"
+          },
+          {
+            "atom_id": "C10",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "298",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "C"
+          },
+          {
+            "atom_id": "O8",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "299",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "O"
+          },
+          {
+            "atom_id": "O11",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "300",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "O"
+          },
+          {
+            "atom_id": "O12",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "301",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "O"
+          },
+          {
+            "atom_id": "H2",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "302",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "H"
+          },
+          {
+            "atom_id": "H3",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "303",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "H"
+          },
+          {
+            "atom_id": "H4",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "304",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "H"
+          },
+          {
+            "atom_id": "H5",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "305",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "H"
+          },
+          {
+            "atom_id": "H6",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "306",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "H"
+          },
+          {
+            "atom_id": "H7",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "307",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "H"
+          },
+          {
+            "atom_id": "HO8",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "308",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "H"
+          },
+          {
+            "atom_id": "HO2",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "309",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "H"
+          }
+        ],
+        "dictionary_bonds": [
+          {
+            "atom_id_1": "C1",
+            "atom_id_2": "C2",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "277",
+            "pdbx_stereo_config": "N",
+            "value_order": "doub"
+          },
+          {
+            "atom_id_1": "C1",
+            "atom_id_2": "C6",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "278",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C1",
+            "atom_id_2": "C7",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "279",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C2",
+            "atom_id_2": "C3",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "280",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C2",
+            "atom_id_2": "H2",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "281",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C3",
+            "atom_id_2": "C4",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "282",
+            "pdbx_stereo_config": "N",
+            "value_order": "doub"
+          },
+          {
+            "atom_id_1": "C3",
+            "atom_id_2": "H3",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "283",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C4",
+            "atom_id_2": "C5",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "284",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C4",
+            "atom_id_2": "H4",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "285",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C5",
+            "atom_id_2": "C6",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "286",
+            "pdbx_stereo_config": "N",
+            "value_order": "doub"
+          },
+          {
+            "atom_id_1": "C5",
+            "atom_id_2": "H5",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "287",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C6",
+            "atom_id_2": "H6",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "288",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C7",
+            "atom_id_2": "C10",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "289",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C7",
+            "atom_id_2": "O8",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "290",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C7",
+            "atom_id_2": "H7",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "291",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C10",
+            "atom_id_2": "O11",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "292",
+            "pdbx_stereo_config": "N",
+            "value_order": "doub"
+          },
+          {
+            "atom_id_1": "C10",
+            "atom_id_2": "O12",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "293",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "O8",
+            "atom_id_2": "HO8",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "294",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "O12",
+            "atom_id_2": "HO2",
+            "comp_id": "RMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "295",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          }
+        ],
+        "dictionary_only_atom_ids": [
+          "H2",
+          "H3",
+          "H4",
+          "H5",
+          "H6",
+          "H7",
+          "HO2",
+          "HO8"
+        ],
+        "external_connections": [],
+        "instance": {
+          "asym_id": "C",
+          "auth_mon_id": "RMN",
+          "auth_seq_num": "398",
+          "entity_id": "3",
+          "mon_id": "RMN",
+          "ndb_seq_num": "1",
+          "pdb_ins_code": ".",
+          "pdb_mon_id": "RMN",
+          "pdb_seq_num": "398",
+          "pdb_strand_id": "A"
+        },
+        "selector": {
+          "component_id": "RMN",
+          "label_asym_id": "C",
+          "model_id": "1",
+          "site_id": "AC2"
+        },
+        "site": {
+          "details": "BINDING SITE FOR RESIDUE RMN A 398",
+          "id": "AC2",
+          "pdbx_auth_asym_id": "A",
+          "pdbx_auth_comp_id": "RMN",
+          "pdbx_auth_ins_code": "?",
+          "pdbx_auth_seq_id": "398",
+          "pdbx_evidence_code": "Software",
+          "pdbx_num_residues": "6"
+        },
+        "site_members": [
+          {
+            "auth_asym_id": "A",
+            "auth_comp_id": "THR",
+            "auth_seq_id": "24",
+            "details": "?",
+            "id": "13",
+            "label_alt_id": "?",
+            "label_asym_id": "A",
+            "label_atom_id": ".",
+            "label_comp_id": "THR",
+            "label_seq_id": "24",
+            "pdbx_auth_ins_code": "?",
+            "pdbx_num_res": "6",
+            "site_id": "AC2",
+            "symmetry": "1_555"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_comp_id": "VAL",
+            "auth_seq_id": "29",
+            "details": "?",
+            "id": "14",
+            "label_alt_id": "?",
+            "label_asym_id": "A",
+            "label_atom_id": ".",
+            "label_comp_id": "VAL",
+            "label_seq_id": "29",
+            "pdbx_auth_ins_code": "?",
+            "pdbx_num_res": "6",
+            "site_id": "AC2",
+            "symmetry": "1_555"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_comp_id": "PHE",
+            "auth_seq_id": "52",
+            "details": "?",
+            "id": "15",
+            "label_alt_id": "?",
+            "label_asym_id": "A",
+            "label_atom_id": ".",
+            "label_comp_id": "PHE",
+            "label_seq_id": "52",
+            "pdbx_auth_ins_code": "?",
+            "pdbx_num_res": "6",
+            "site_id": "AC2",
+            "symmetry": "1_555"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_comp_id": "LEU",
+            "auth_seq_id": "93",
+            "details": "?",
+            "id": "16",
+            "label_alt_id": "?",
+            "label_asym_id": "A",
+            "label_atom_id": ".",
+            "label_comp_id": "LEU",
+            "label_seq_id": "93",
+            "pdbx_auth_ins_code": "?",
+            "pdbx_num_res": "6",
+            "site_id": "AC2",
+            "symmetry": "6_555"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_comp_id": "ARG",
+            "auth_seq_id": "166",
+            "details": "?",
+            "id": "17",
+            "label_alt_id": "?",
+            "label_asym_id": "A",
+            "label_atom_id": ".",
+            "label_comp_id": "ARG",
+            "label_seq_id": "166",
+            "pdbx_auth_ins_code": "?",
+            "pdbx_num_res": "6",
+            "site_id": "AC2",
+            "symmetry": "1_555"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_comp_id": "SMN",
+            "auth_seq_id": "399",
+            "details": "?",
+            "id": "18",
+            "label_alt_id": "?",
+            "label_asym_id": "D",
+            "label_atom_id": ".",
+            "label_comp_id": "SMN",
+            "label_seq_id": ".",
+            "pdbx_auth_ins_code": "?",
+            "pdbx_num_res": "6",
+            "site_id": "AC2",
+            "symmetry": "1_555"
+          }
+        ]
+      },
+      "mapped_bond_graph_equal": true,
+      "not_established": [
+        "Coordinate-derived absolute stereochemistry or observed ligand hydrogen positions",
+        "Bound protonation, enantiopurity, a physical atom map or an observed reaction trajectory",
+        "Equivalent catalytic geometry, reacting solution state, assay preparation or measured function"
+      ],
+      "relation_scope": "deposited_component_dictionary_graph_and_stereo_tokens",
+      "right": {
+        "coordinate_atoms": [
+          {
+            "auth_asym_id": "A",
+            "auth_atom_id": "C1",
+            "auth_comp_id": "SMN",
+            "auth_seq_id": "399",
+            "b_iso_or_equiv": "11.44",
+            "cartn_x": "30.990",
+            "cartn_y": "4.412",
+            "cartn_z": "17.163",
+            "group_pdb": "HETATM",
+            "id": "2713",
+            "label_alt_id": ".",
+            "label_asym_id": "D",
+            "label_atom_id": "C1",
+            "label_comp_id": "SMN",
+            "label_entity_id": "4",
+            "label_seq_id": ".",
+            "occupancy": "1.00",
+            "pdbx_formal_charge": "?",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "type_symbol": "C"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_atom_id": "C2",
+            "auth_comp_id": "SMN",
+            "auth_seq_id": "399",
+            "b_iso_or_equiv": "13.27",
+            "cartn_x": "32.108",
+            "cartn_y": "5.046",
+            "cartn_z": "17.714",
+            "group_pdb": "HETATM",
+            "id": "2714",
+            "label_alt_id": ".",
+            "label_asym_id": "D",
+            "label_atom_id": "C2",
+            "label_comp_id": "SMN",
+            "label_entity_id": "4",
+            "label_seq_id": ".",
+            "occupancy": "1.00",
+            "pdbx_formal_charge": "?",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "type_symbol": "C"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_atom_id": "C3",
+            "auth_comp_id": "SMN",
+            "auth_seq_id": "399",
+            "b_iso_or_equiv": "12.23",
+            "cartn_x": "33.379",
+            "cartn_y": "4.904",
+            "cartn_z": "17.177",
+            "group_pdb": "HETATM",
+            "id": "2715",
+            "label_alt_id": ".",
+            "label_asym_id": "D",
+            "label_atom_id": "C3",
+            "label_comp_id": "SMN",
+            "label_entity_id": "4",
+            "label_seq_id": ".",
+            "occupancy": "1.00",
+            "pdbx_formal_charge": "?",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "type_symbol": "C"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_atom_id": "C4",
+            "auth_comp_id": "SMN",
+            "auth_seq_id": "399",
+            "b_iso_or_equiv": "16.74",
+            "cartn_x": "33.524",
+            "cartn_y": "4.196",
+            "cartn_z": "16.011",
+            "group_pdb": "HETATM",
+            "id": "2716",
+            "label_alt_id": ".",
+            "label_asym_id": "D",
+            "label_atom_id": "C4",
+            "label_comp_id": "SMN",
+            "label_entity_id": "4",
+            "label_seq_id": ".",
+            "occupancy": "1.00",
+            "pdbx_formal_charge": "?",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "type_symbol": "C"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_atom_id": "C5",
+            "auth_comp_id": "SMN",
+            "auth_seq_id": "399",
+            "b_iso_or_equiv": "20.62",
+            "cartn_x": "32.433",
+            "cartn_y": "3.557",
+            "cartn_z": "15.451",
+            "group_pdb": "HETATM",
+            "id": "2717",
+            "label_alt_id": ".",
+            "label_asym_id": "D",
+            "label_atom_id": "C5",
+            "label_comp_id": "SMN",
+            "label_entity_id": "4",
+            "label_seq_id": ".",
+            "occupancy": "1.00",
+            "pdbx_formal_charge": "?",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "type_symbol": "C"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_atom_id": "C6",
+            "auth_comp_id": "SMN",
+            "auth_seq_id": "399",
+            "b_iso_or_equiv": "16.45",
+            "cartn_x": "31.157",
+            "cartn_y": "3.634",
+            "cartn_z": "16.046",
+            "group_pdb": "HETATM",
+            "id": "2718",
+            "label_alt_id": ".",
+            "label_asym_id": "D",
+            "label_atom_id": "C6",
+            "label_comp_id": "SMN",
+            "label_entity_id": "4",
+            "label_seq_id": ".",
+            "occupancy": "1.00",
+            "pdbx_formal_charge": "?",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "type_symbol": "C"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_atom_id": "C7",
+            "auth_comp_id": "SMN",
+            "auth_seq_id": "399",
+            "b_iso_or_equiv": "12.27",
+            "cartn_x": "29.599",
+            "cartn_y": "4.487",
+            "cartn_z": "17.854",
+            "group_pdb": "HETATM",
+            "id": "2719",
+            "label_alt_id": ".",
+            "label_asym_id": "D",
+            "label_atom_id": "C7",
+            "label_comp_id": "SMN",
+            "label_entity_id": "4",
+            "label_seq_id": ".",
+            "occupancy": "1.00",
+            "pdbx_formal_charge": "?",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "type_symbol": "C"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_atom_id": "C10",
+            "auth_comp_id": "SMN",
+            "auth_seq_id": "399",
+            "b_iso_or_equiv": "17.64",
+            "cartn_x": "29.073",
+            "cartn_y": "5.934",
+            "cartn_z": "18.033",
+            "group_pdb": "HETATM",
+            "id": "2720",
+            "label_alt_id": ".",
+            "label_asym_id": "D",
+            "label_atom_id": "C10",
+            "label_comp_id": "SMN",
+            "label_entity_id": "4",
+            "label_seq_id": ".",
+            "occupancy": "1.00",
+            "pdbx_formal_charge": "?",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "type_symbol": "C"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_atom_id": "O8",
+            "auth_comp_id": "SMN",
+            "auth_seq_id": "399",
+            "b_iso_or_equiv": "15.43",
+            "cartn_x": "28.671",
+            "cartn_y": "3.685",
+            "cartn_z": "17.086",
+            "group_pdb": "HETATM",
+            "id": "2721",
+            "label_alt_id": ".",
+            "label_asym_id": "D",
+            "label_atom_id": "O8",
+            "label_comp_id": "SMN",
+            "label_entity_id": "4",
+            "label_seq_id": ".",
+            "occupancy": "1.00",
+            "pdbx_formal_charge": "?",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "type_symbol": "O"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_atom_id": "O11",
+            "auth_comp_id": "SMN",
+            "auth_seq_id": "399",
+            "b_iso_or_equiv": "17.15",
+            "cartn_x": "27.945",
+            "cartn_y": "6.188",
+            "cartn_z": "17.655",
+            "group_pdb": "HETATM",
+            "id": "2722",
+            "label_alt_id": ".",
+            "label_asym_id": "D",
+            "label_atom_id": "O11",
+            "label_comp_id": "SMN",
+            "label_entity_id": "4",
+            "label_seq_id": ".",
+            "occupancy": "1.00",
+            "pdbx_formal_charge": "?",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "type_symbol": "O"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_atom_id": "O12",
+            "auth_comp_id": "SMN",
+            "auth_seq_id": "399",
+            "b_iso_or_equiv": "17.43",
+            "cartn_x": "29.757",
+            "cartn_y": "6.803",
+            "cartn_z": "18.555",
+            "group_pdb": "HETATM",
+            "id": "2723",
+            "label_alt_id": ".",
+            "label_asym_id": "D",
+            "label_atom_id": "O12",
+            "label_comp_id": "SMN",
+            "label_entity_id": "4",
+            "label_seq_id": ".",
+            "occupancy": "1.00",
+            "pdbx_formal_charge": "?",
+            "pdbx_pdb_ins_code": "?",
+            "pdbx_pdb_model_num": "1",
+            "type_symbol": "O"
+          }
+        ],
+        "dictionary_atoms": [
+          {
+            "atom_id": "C1",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "324",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "C"
+          },
+          {
+            "atom_id": "C2",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "325",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "C"
+          },
+          {
+            "atom_id": "C3",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "326",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "C"
+          },
+          {
+            "atom_id": "C4",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "327",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "C"
+          },
+          {
+            "atom_id": "C5",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "328",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "C"
+          },
+          {
+            "atom_id": "C6",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "329",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "C"
+          },
+          {
+            "atom_id": "C7",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "330",
+            "pdbx_stereo_config": "S",
+            "type_symbol": "C"
+          },
+          {
+            "atom_id": "C10",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "331",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "C"
+          },
+          {
+            "atom_id": "O8",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "332",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "O"
+          },
+          {
+            "atom_id": "O11",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "333",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "O"
+          },
+          {
+            "atom_id": "O12",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "334",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "O"
+          },
+          {
+            "atom_id": "H2",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "335",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "H"
+          },
+          {
+            "atom_id": "H3",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "336",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "H"
+          },
+          {
+            "atom_id": "H4",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "337",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "H"
+          },
+          {
+            "atom_id": "H5",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "338",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "H"
+          },
+          {
+            "atom_id": "H6",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "339",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "H"
+          },
+          {
+            "atom_id": "H7",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "340",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "H"
+          },
+          {
+            "atom_id": "HO8",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "341",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "H"
+          },
+          {
+            "atom_id": "HO2",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "342",
+            "pdbx_stereo_config": "N",
+            "type_symbol": "H"
+          }
+        ],
+        "dictionary_bonds": [
+          {
+            "atom_id_1": "C1",
+            "atom_id_2": "C2",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "309",
+            "pdbx_stereo_config": "N",
+            "value_order": "doub"
+          },
+          {
+            "atom_id_1": "C1",
+            "atom_id_2": "C6",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "310",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C1",
+            "atom_id_2": "C7",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "311",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C2",
+            "atom_id_2": "C3",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "312",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C2",
+            "atom_id_2": "H2",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "313",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C3",
+            "atom_id_2": "C4",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "314",
+            "pdbx_stereo_config": "N",
+            "value_order": "doub"
+          },
+          {
+            "atom_id_1": "C3",
+            "atom_id_2": "H3",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "315",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C4",
+            "atom_id_2": "C5",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "316",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C4",
+            "atom_id_2": "H4",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "317",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C5",
+            "atom_id_2": "C6",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "Y",
+            "pdbx_ordinal": "318",
+            "pdbx_stereo_config": "N",
+            "value_order": "doub"
+          },
+          {
+            "atom_id_1": "C5",
+            "atom_id_2": "H5",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "319",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C6",
+            "atom_id_2": "H6",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "320",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C7",
+            "atom_id_2": "C10",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "321",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C7",
+            "atom_id_2": "O8",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "322",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C7",
+            "atom_id_2": "H7",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "323",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "C10",
+            "atom_id_2": "O11",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "324",
+            "pdbx_stereo_config": "N",
+            "value_order": "doub"
+          },
+          {
+            "atom_id_1": "C10",
+            "atom_id_2": "O12",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "325",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "O8",
+            "atom_id_2": "HO8",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "326",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          },
+          {
+            "atom_id_1": "O12",
+            "atom_id_2": "HO2",
+            "comp_id": "SMN",
+            "pdbx_aromatic_flag": "N",
+            "pdbx_ordinal": "327",
+            "pdbx_stereo_config": "N",
+            "value_order": "sing"
+          }
+        ],
+        "dictionary_only_atom_ids": [
+          "H2",
+          "H3",
+          "H4",
+          "H5",
+          "H6",
+          "H7",
+          "HO2",
+          "HO8"
+        ],
+        "external_connections": [
+          {
+            "instance_partner": 2,
+            "source_row": {
+              "conn_type_id": "metalc",
+              "details": "?",
+              "id": "metalc5",
+              "pdbx_dist_value": "2.102",
+              "pdbx_leaving_atom_flag": "?",
+              "pdbx_pdb_id": "?",
+              "pdbx_ptnr1_label_alt_id": "?",
+              "pdbx_ptnr1_pdb_ins_code": "?",
+              "pdbx_ptnr1_standard_comp_id": "?",
+              "pdbx_ptnr2_label_alt_id": "?",
+              "pdbx_ptnr2_pdb_ins_code": "?",
+              "pdbx_ptnr3_label_alt_id": "?",
+              "pdbx_ptnr3_label_asym_id": "?",
+              "pdbx_ptnr3_label_atom_id": "?",
+              "pdbx_ptnr3_label_comp_id": "?",
+              "pdbx_ptnr3_label_seq_id": "?",
+              "pdbx_ptnr3_pdb_ins_code": "?",
+              "pdbx_role": "?",
+              "pdbx_value_order": "?",
+              "ptnr1_auth_asym_id": "A",
+              "ptnr1_auth_comp_id": "MG",
+              "ptnr1_auth_seq_id": "360",
+              "ptnr1_label_asym_id": "B",
+              "ptnr1_label_atom_id": "MG",
+              "ptnr1_label_comp_id": "MG",
+              "ptnr1_label_seq_id": ".",
+              "ptnr1_symmetry": "1_555",
+              "ptnr2_auth_asym_id": "A",
+              "ptnr2_auth_comp_id": "SMN",
+              "ptnr2_auth_seq_id": "399",
+              "ptnr2_label_asym_id": "D",
+              "ptnr2_label_atom_id": "O8",
+              "ptnr2_label_comp_id": "SMN",
+              "ptnr2_label_seq_id": ".",
+              "ptnr2_symmetry": "1_555"
+            }
+          },
+          {
+            "instance_partner": 2,
+            "source_row": {
+              "conn_type_id": "metalc",
+              "details": "?",
+              "id": "metalc6",
+              "pdbx_dist_value": "2.024",
+              "pdbx_leaving_atom_flag": "?",
+              "pdbx_pdb_id": "?",
+              "pdbx_ptnr1_label_alt_id": "?",
+              "pdbx_ptnr1_pdb_ins_code": "?",
+              "pdbx_ptnr1_standard_comp_id": "?",
+              "pdbx_ptnr2_label_alt_id": "?",
+              "pdbx_ptnr2_pdb_ins_code": "?",
+              "pdbx_ptnr3_label_alt_id": "?",
+              "pdbx_ptnr3_label_asym_id": "?",
+              "pdbx_ptnr3_label_atom_id": "?",
+              "pdbx_ptnr3_label_comp_id": "?",
+              "pdbx_ptnr3_label_seq_id": "?",
+              "pdbx_ptnr3_pdb_ins_code": "?",
+              "pdbx_role": "?",
+              "pdbx_value_order": "?",
+              "ptnr1_auth_asym_id": "A",
+              "ptnr1_auth_comp_id": "MG",
+              "ptnr1_auth_seq_id": "360",
+              "ptnr1_label_asym_id": "B",
+              "ptnr1_label_atom_id": "MG",
+              "ptnr1_label_comp_id": "MG",
+              "ptnr1_label_seq_id": ".",
+              "ptnr1_symmetry": "1_555",
+              "ptnr2_auth_asym_id": "A",
+              "ptnr2_auth_comp_id": "SMN",
+              "ptnr2_auth_seq_id": "399",
+              "ptnr2_label_asym_id": "D",
+              "ptnr2_label_atom_id": "O11",
+              "ptnr2_label_comp_id": "SMN",
+              "ptnr2_label_seq_id": ".",
+              "ptnr2_symmetry": "1_555"
+            }
+          }
+        ],
+        "instance": {
+          "asym_id": "D",
+          "auth_mon_id": "SMN",
+          "auth_seq_num": "399",
+          "entity_id": "4",
+          "mon_id": "SMN",
+          "ndb_seq_num": "1",
+          "pdb_ins_code": ".",
+          "pdb_mon_id": "SMN",
+          "pdb_seq_num": "399",
+          "pdb_strand_id": "A"
+        },
+        "selector": {
+          "component_id": "SMN",
+          "label_asym_id": "D",
+          "model_id": "1",
+          "site_id": "AC3"
+        },
+        "site": {
+          "details": "BINDING SITE FOR RESIDUE SMN A 399",
+          "id": "AC3",
+          "pdbx_auth_asym_id": "A",
+          "pdbx_auth_comp_id": "SMN",
+          "pdbx_auth_ins_code": "?",
+          "pdbx_auth_seq_id": "399",
+          "pdbx_evidence_code": "Software",
+          "pdbx_num_residues": "13"
+        },
+        "site_members": [
+          {
+            "auth_asym_id": "A",
+            "auth_comp_id": "PHE",
+            "auth_seq_id": "52",
+            "details": "?",
+            "id": "19",
+            "label_alt_id": "?",
+            "label_asym_id": "A",
+            "label_atom_id": ".",
+            "label_comp_id": "PHE",
+            "label_seq_id": "52",
+            "pdbx_auth_ins_code": "?",
+            "pdbx_num_res": "13",
+            "site_id": "AC3",
+            "symmetry": "1_555"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_comp_id": "LYS",
+            "auth_seq_id": "164",
+            "details": "?",
+            "id": "20",
+            "label_alt_id": "?",
+            "label_asym_id": "A",
+            "label_atom_id": ".",
+            "label_comp_id": "LYS",
+            "label_seq_id": "164",
+            "pdbx_auth_ins_code": "?",
+            "pdbx_num_res": "13",
+            "site_id": "AC3",
+            "symmetry": "1_555"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_comp_id": "ARG",
+            "auth_seq_id": "166",
+            "details": "?",
+            "id": "21",
+            "label_alt_id": "?",
+            "label_asym_id": "A",
+            "label_atom_id": ".",
+            "label_comp_id": "ARG",
+            "label_seq_id": "166",
+            "pdbx_auth_ins_code": "?",
+            "pdbx_num_res": "13",
+            "site_id": "AC3",
+            "symmetry": "1_555"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_comp_id": "ASP",
+            "auth_seq_id": "195",
+            "details": "?",
+            "id": "22",
+            "label_alt_id": "?",
+            "label_asym_id": "A",
+            "label_atom_id": ".",
+            "label_comp_id": "ASP",
+            "label_seq_id": "195",
+            "pdbx_auth_ins_code": "?",
+            "pdbx_num_res": "13",
+            "site_id": "AC3",
+            "symmetry": "1_555"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_comp_id": "ASN",
+            "auth_seq_id": "197",
+            "details": "?",
+            "id": "23",
+            "label_alt_id": "?",
+            "label_asym_id": "A",
+            "label_atom_id": ".",
+            "label_comp_id": "ASN",
+            "label_seq_id": "197",
+            "pdbx_auth_ins_code": "?",
+            "pdbx_num_res": "13",
+            "site_id": "AC3",
+            "symmetry": "1_555"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_comp_id": "GLU",
+            "auth_seq_id": "221",
+            "details": "?",
+            "id": "24",
+            "label_alt_id": "?",
+            "label_asym_id": "A",
+            "label_atom_id": ".",
+            "label_comp_id": "GLU",
+            "label_seq_id": "221",
+            "pdbx_auth_ins_code": "?",
+            "pdbx_num_res": "13",
+            "site_id": "AC3",
+            "symmetry": "1_555"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_comp_id": "GLU",
+            "auth_seq_id": "247",
+            "details": "?",
+            "id": "25",
+            "label_alt_id": "?",
+            "label_asym_id": "A",
+            "label_atom_id": ".",
+            "label_comp_id": "GLU",
+            "label_seq_id": "247",
+            "pdbx_auth_ins_code": "?",
+            "pdbx_num_res": "13",
+            "site_id": "AC3",
+            "symmetry": "1_555"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_comp_id": "HIS",
+            "auth_seq_id": "297",
+            "details": "?",
+            "id": "26",
+            "label_alt_id": "?",
+            "label_asym_id": "A",
+            "label_atom_id": ".",
+            "label_comp_id": "HIS",
+            "label_seq_id": "297",
+            "pdbx_auth_ins_code": "?",
+            "pdbx_num_res": "13",
+            "site_id": "AC3",
+            "symmetry": "1_555"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_comp_id": "GLU",
+            "auth_seq_id": "317",
+            "details": "?",
+            "id": "27",
+            "label_alt_id": "?",
+            "label_asym_id": "A",
+            "label_atom_id": ".",
+            "label_comp_id": "GLU",
+            "label_seq_id": "317",
+            "pdbx_auth_ins_code": "?",
+            "pdbx_num_res": "13",
+            "site_id": "AC3",
+            "symmetry": "1_555"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_comp_id": "MG",
+            "auth_seq_id": "360",
+            "details": "?",
+            "id": "28",
+            "label_alt_id": "?",
+            "label_asym_id": "B",
+            "label_atom_id": ".",
+            "label_comp_id": "MG",
+            "label_seq_id": ".",
+            "pdbx_auth_ins_code": "?",
+            "pdbx_num_res": "13",
+            "site_id": "AC3",
+            "symmetry": "1_555"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_comp_id": "RMN",
+            "auth_seq_id": "398",
+            "details": "?",
+            "id": "29",
+            "label_alt_id": "?",
+            "label_asym_id": "C",
+            "label_atom_id": ".",
+            "label_comp_id": "RMN",
+            "label_seq_id": ".",
+            "pdbx_auth_ins_code": "?",
+            "pdbx_num_res": "13",
+            "site_id": "AC3",
+            "symmetry": "1_555"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_comp_id": "HOH",
+            "auth_seq_id": "465",
+            "details": "?",
+            "id": "30",
+            "label_alt_id": "?",
+            "label_asym_id": "E",
+            "label_atom_id": ".",
+            "label_comp_id": "HOH",
+            "label_seq_id": ".",
+            "pdbx_auth_ins_code": "?",
+            "pdbx_num_res": "13",
+            "site_id": "AC3",
+            "symmetry": "1_555"
+          },
+          {
+            "auth_asym_id": "A",
+            "auth_comp_id": "HOH",
+            "auth_seq_id": "480",
+            "details": "?",
+            "id": "31",
+            "label_alt_id": "?",
+            "label_asym_id": "E",
+            "label_atom_id": ".",
+            "label_comp_id": "HOH",
+            "label_seq_id": ".",
+            "pdbx_auth_ins_code": "?",
+            "pdbx_num_res": "13",
+            "site_id": "AC3",
+            "symmetry": "1_555"
+          }
+        ]
+      },
+      "same_deposited_environment_comparison": {
+        "physical_site_equivalence": "not_established",
+        "refusal_reasons": [
+          "distinct_deposited_site_records",
+          "different_deposited_external_connection_inventories",
+          "different_deposited_site_membership_records"
+        ],
+        "same_external_connection_inventory": false,
+        "same_model": true,
+        "same_site_membership_records": false,
+        "same_site_record": false,
+        "scope": "Exact source-token comparisons in one deposit only; even matching records do not establish physical site, state or geometry equivalence.",
+        "status": "refused"
+      },
+      "stereo_inversions": [
+        {
+          "left": "R",
+          "left_atom_id": "C7",
+          "right": "S",
+          "right_atom_id": "C7"
+        }
+      ],
+      "unchanged_stereocenters": []
+    }
+  ],
+  "interpretation": {
+    "assertions": [
+      {
+        "assertion_id": "scope-and-construct",
+        "statement": "The deposited polymer entity declares K166R; chain A is aligned1-359 to UNP P11444, with ARG166 versus reference LYS166. Assay preparations are not identified.",
+        "status": "project_interpretation",
+        "supporting_selection_ids": [
+          "protein-entity",
+          "reference",
+          "reference-alignment",
+          "reference-differences"
+        ]
+      },
+      {
+        "assertion_id": "distinct-instance-context",
+        "statement": "Entry prose assigns SMN399 to the active site and RMN398 to the approach region.",
+        "status": "deposited_source_assertion",
+        "supporting_selection_ids": [
+          "entry-interpretation",
+          "rmn-instance",
+          "smn-instance",
+          "rmn-site",
+          "smn-site"
+        ]
+      }
+    ],
+    "not_established": [
+      "A same-site enantiomer control or equivalent catalytic geometry; the site records and deposited connection inventories differ.",
+      "Dictionary stereochemical assignments are not coordinate-derived absolute configurations, and dictionary hydrogens are not measured ligand hydrogen coordinates.",
+      "Bound protonation, enantiopurity or relative solution populations; occupancy1.00 is a deposited model field.",
+      "Physical nonbinding or absent contacts inferred from missing RMN struct_conn rows; this table is not a complete contact inventory.",
+      "Observed racemization, productive geometry, a physical atom trajectory, same assay specimen, or an independently validated enzyme mechanism.",
+      "The missing1L6F companion is not supplied or qualified by this mandelate comparison.",
+      "The prior CE-021 organism/source-origin limits remain unchanged; this comparison does not re-adjudicate them."
+    ]
+  },
+  "packet_id": "mandelate.1mdl.dictionary-stereo.2026-09-10",
+  "row_selection_count": 12,
+  "row_selections": [
+    {
+      "category": "_entry",
+      "expected_row_count": 1,
+      "match": {},
+      "rows": [
+        {
+          "id": "1MDL"
+        }
+      ],
+      "selection_id": "entry"
+    },
+    {
+      "category": "_entity",
+      "expected_row_count": 1,
+      "match": {
+        "id": "1"
+      },
+      "rows": [
+        {
+          "details": "?",
+          "formula_weight": "38630.609",
+          "id": "1",
+          "pdbx_description": "MANDELATE RACEMASE",
+          "pdbx_ec": "5.1.2.2",
+          "pdbx_fragment": "?",
+          "pdbx_mutation": "K166R",
+          "pdbx_number_of_molecules": "1",
+          "src_method": "man",
+          "type": "polymer"
+        }
+      ],
+      "selection_id": "protein-entity"
+    },
+    {
+      "category": "_struct_ref",
+      "expected_row_count": 1,
+      "match": {},
+      "rows": [
+        {
+          "db_code": "MANR_PSEPU",
+          "db_name": "UNP",
+          "entity_id": "1",
+          "id": "1",
+          "pdbx_align_begin": "1",
+          "pdbx_db_accession": "P11444",
+          "pdbx_db_isoform": "?",
+          "pdbx_seq_one_letter_code": "MSEVLITGLRTRAVNVPLAYPVHTAVGTVGTAPLVLIDLATSAGVVGHSYLFAYTPVALKSLKQLLDDMAAMIVNEPLAP\nVSLEAMLAKRFCLAGYTGLIRMAAAGIDMAAWDALGKVHETPLVKLLGANARPVQAYDSHSLDGVKLATERAVTAAELGF\nRAVKTKIGYPALDQDLAVVRSIRQAVGDDFGIMVDYNQSLDVPAAIKRSQALQQEGVTWIEEPTLQHDYEGHQRIQSKLN\nVPVQMGENWLGPEEMFKALSIGACRLAMPDAMKIGGVTGWIRASALAQQFGIPMSSHLFQEISAHLLAATPTAHWLERLD\nLAGSVIEPTLTFEGGNAVIPDLPGVGIIWREKEIGKYLV"
+        }
+      ],
+      "selection_id": "reference"
+    },
+    {
+      "category": "_struct_ref_seq",
+      "expected_row_count": 1,
+      "match": {},
+      "rows": [
+        {
+          "align_id": "1",
+          "db_align_beg": "1",
+          "db_align_end": "359",
+          "pdbx_auth_seq_align_beg": "1",
+          "pdbx_auth_seq_align_end": "359",
+          "pdbx_db_accession": "P11444",
+          "pdbx_db_align_beg_ins_code": "?",
+          "pdbx_db_align_end_ins_code": "?",
+          "pdbx_pdb_id_code": "1MDL",
+          "pdbx_seq_align_beg_ins_code": "?",
+          "pdbx_seq_align_end_ins_code": "?",
+          "pdbx_strand_id": "A",
+          "ref_id": "1",
+          "seq_align_beg": "1",
+          "seq_align_end": "359"
+        }
+      ],
+      "selection_id": "reference-alignment"
+    },
+    {
+      "category": "_struct_ref_seq_dif",
+      "expected_row_count": 1,
+      "match": {},
+      "rows": [
+        {
+          "align_id": "1",
+          "db_mon_id": "LYS",
+          "details": "engineered mutation",
+          "mon_id": "ARG",
+          "pdbx_auth_seq_num": "166",
+          "pdbx_ordinal": "1",
+          "pdbx_pdb_id_code": "1MDL",
+          "pdbx_pdb_ins_code": "?",
+          "pdbx_pdb_strand_id": "A",
+          "pdbx_seq_db_accession_code": "P11444",
+          "pdbx_seq_db_name": "UNP",
+          "pdbx_seq_db_seq_num": "166",
+          "seq_num": "166"
+        }
+      ],
+      "selection_id": "reference-differences"
+    },
+    {
+      "category": "_pdbx_entry_details",
+      "expected_row_count": 1,
+      "match": {},
+      "rows": [
+        {
+          "compound_details": "THIS IS THE STRUCTURE OF THE MANDELATE RACEMASE MUTANT\nLYSINE 166 -> ARGININE CO-CRYSTALLIZED WITH THE SUBSTRATE\n(R)-MANDELIC ACID.  THE SUBSTRATE THAT IS BOUND AT THE\nACTIVE SITE IS RESIDUE 399 FOR CONSISTENCY WITH THE\nNOMENCLATURE OF PREVIOUS MANDELATE RACEMASE STRUCTURES.\nIT HAS THE RESIDUE NAME SMN BECAUSE IT IS THE (S)-ISOMER.\nTHE (S)-ENANTIOMER PRESUMABLY AROSE FROM THE SLOW\nRACEMIZATION OF (R)-MANDELATE.  THERE IS A SECOND SUBSTRATE\nMOLECULE IN THE STRUCTURE; IT IS LOCATED IN THE REGION\nLEADING TO THE ACTIVE SITE.  THIS MOLECULE IS THE\n(R)-STEREOISOMER.  IT IS RESIDUE 398 AND, BY ANALOGY, HAS\nTHE RESIDUE NAME RMN.",
+          "entry_id": "1MDL",
+          "has_ligand_of_interest": "?",
+          "nonpolymer_details": "?",
+          "sequence_details": "?",
+          "source_details": "?"
+        }
+      ],
+      "selection_id": "entry-interpretation"
+    },
+    {
+      "category": "_chem_comp",
+      "expected_row_count": 1,
+      "match": {
+        "id": "RMN"
+      },
+      "rows": [
+        {
+          "formula": "C8 H8 O3",
+          "formula_weight": "152.147",
+          "id": "RMN",
+          "mon_nstd_flag": ".",
+          "name": "(R)-MANDELIC ACID",
+          "pdbx_synonyms": "?",
+          "type": "non-polymer"
+        }
+      ],
+      "selection_id": "component-rmn"
+    },
+    {
+      "category": "_chem_comp",
+      "expected_row_count": 1,
+      "match": {
+        "id": "SMN"
+      },
+      "rows": [
+        {
+          "formula": "C8 H8 O3",
+          "formula_weight": "152.147",
+          "id": "SMN",
+          "mon_nstd_flag": ".",
+          "name": "(S)-MANDELIC ACID",
+          "pdbx_synonyms": "?",
+          "type": "non-polymer"
+        }
+      ],
+      "selection_id": "component-smn"
+    },
+    {
+      "category": "_pdbx_nonpoly_scheme",
+      "expected_row_count": 1,
+      "match": {
+        "asym_id": "C",
+        "mon_id": "RMN"
+      },
+      "rows": [
+        {
+          "asym_id": "C",
+          "auth_mon_id": "RMN",
+          "auth_seq_num": "398",
+          "entity_id": "3",
+          "mon_id": "RMN",
+          "ndb_seq_num": "1",
+          "pdb_ins_code": ".",
+          "pdb_mon_id": "RMN",
+          "pdb_seq_num": "398",
+          "pdb_strand_id": "A"
+        }
+      ],
+      "selection_id": "rmn-instance"
+    },
+    {
+      "category": "_struct_site",
+      "expected_row_count": 1,
+      "match": {
+        "id": "AC2"
+      },
+      "rows": [
+        {
+          "details": "BINDING SITE FOR RESIDUE RMN A 398",
+          "id": "AC2",
+          "pdbx_auth_asym_id": "A",
+          "pdbx_auth_comp_id": "RMN",
+          "pdbx_auth_ins_code": "?",
+          "pdbx_auth_seq_id": "398",
+          "pdbx_evidence_code": "Software",
+          "pdbx_num_residues": "6"
+        }
+      ],
+      "selection_id": "rmn-site"
+    },
+    {
+      "category": "_pdbx_nonpoly_scheme",
+      "expected_row_count": 1,
+      "match": {
+        "asym_id": "D",
+        "mon_id": "SMN"
+      },
+      "rows": [
+        {
+          "asym_id": "D",
+          "auth_mon_id": "SMN",
+          "auth_seq_num": "399",
+          "entity_id": "4",
+          "mon_id": "SMN",
+          "ndb_seq_num": "1",
+          "pdb_ins_code": ".",
+          "pdb_mon_id": "SMN",
+          "pdb_seq_num": "399",
+          "pdb_strand_id": "A"
+        }
+      ],
+      "selection_id": "smn-instance"
+    },
+    {
+      "category": "_struct_site",
+      "expected_row_count": 1,
+      "match": {
+        "id": "AC3"
+      },
+      "rows": [
+        {
+          "details": "BINDING SITE FOR RESIDUE SMN A 399",
+          "id": "AC3",
+          "pdbx_auth_asym_id": "A",
+          "pdbx_auth_comp_id": "SMN",
+          "pdbx_auth_ins_code": "?",
+          "pdbx_auth_seq_id": "399",
+          "pdbx_evidence_code": "Software",
+          "pdbx_num_residues": "13"
+        }
+      ],
+      "selection_id": "smn-site"
+    }
+  ],
+  "schema_version": "catalytic-earth.deposit-context.v1",
+  "selected_row_count": 12,
+  "source_binding": {
+    "path": "data/atlas/mechanism_evidence/m0187/structure_followup/1MDL.cif.gz",
+    "sha256": "2338be31c681766f10af6f9546baa09f9bf622acfefed6ea068fd088fb6e977b"
+  },
+  "spec_payload_sha256": "f8cf4d096ba62bfbf9489e7d6dc5d65e28b785be43773c000398e579e2be062a"
+}

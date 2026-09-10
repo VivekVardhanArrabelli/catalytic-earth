@@ -52,8 +52,24 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--packet", required=True, type=_repo_relative_packet)
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--comparison", help="Query one reviewed component-dictionary comparison and its separate instance contexts")
     args = parser.parse_args()
-    if args.check:
+    if args.check and args.comparison:
+        parser.error("--check and --comparison are separate operations")
+    if args.comparison:
+        result = check(args.packet)
+        comparisons = [r for r in result.get("component_comparisons", [])
+                       if r["comparison_id"] == args.comparison]
+        if len(comparisons) != 1:
+            parser.error("unknown component comparison")
+        sys.stdout.reconfigure(encoding="utf-8")
+        print(canonical_json_bytes({"schema_version": "catalytic-earth.deposit-component-comparison-query.v1",
+            "packet_id": result["packet_id"],
+            "source_binding": result["source_binding"], "comparison": comparisons[0],
+            "source_context": result["row_selections"],
+            "interpretation": result["interpretation"],
+            "claim_boundary": result["claim_boundary"]}).decode("utf-8"), end="")
+    elif args.check:
         result = check(args.packet)
         print(
             "Deposit context and source-review pins are current: "

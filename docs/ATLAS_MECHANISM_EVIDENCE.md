@@ -132,6 +132,65 @@ deposit or inferred product origin from becoming H297N or turnover evidence.
 No measured curation-time reduction or comparative biological accuracy is
 claimed.
 
+### Dictionary stereochemistry does not transfer site context
+
+A new optional comparison operation on the existing deposit projector checks
+an explicit component-dictionary atom map and returns both instance contexts:
+
+```sh
+python scripts/build_atlas_deposit_context.py --packet data/atlas/deposit_context/mandelate_1mdl --comparison rmn-smn
+```
+
+For the source-named RMN/SMN enantiomers in 1MDL, the map covers all 19 dictionary
+atoms, including eight hydrogens. Element/aromatic tokens and all 19 bond
+endpoint/order/aromatic/stereo records match. The sole atom stereochemistry
+change is C7 `R` to `S`; there are no unchanged assigned stereocenters. This is
+a relation between deposited dictionary definitions, not a new assignment of
+absolute configuration from coordinates or a normalized bound microstate.
+
+| Separately retained instance | Modeled ligand atoms | Deposited site context | External connections in `struct_conn` |
+| --- | --- | --- | --- |
+| RMN, author A398 / label C | 11 heavy atoms; eight dictionary H lack coordinates | Software AC2, six members; depositor calls this the approach region | No RMN rows |
+| SMN, author A399 / label D | 11 heavy atoms; eight dictionary H lack coordinates | Software AC3, thirteen members; depositor calls this the active site | Mg connections to O8 and O11, source distances 2.102 and 2.024 Å |
+
+The query **refuses the same-deposited-environment request**: the anchored site
+records, membership records and external-connection inventories differ. The
+software shells cross-list the other ligand, which does not make their anchors
+interchangeable. Missing RMN connection rows do not prove nonbinding or no
+physical contacts; `struct_conn` is not a complete contact inventory. Model 1,
+occupancy 1.00 and no alternate identifier remain raw model fields. Neither
+equal ligand populations nor enantiopurity follows, and bound protonation stays unknown.
+
+This extends CE-021 without revisiting its earlier title, source-origin or
+organism review. The [packet](../data/atlas/deposit_context/mandelate_1mdl/spec.json)
+and its [computational source review](../data/atlas/deposit_context/mandelate_1mdl/review.json)
+reuse the retained gzip source and existing parser. The optional comparator
+belongs to the existing deposit projector; chemistry and selectors remain in
+data. It checks full declared maps without deleting H, normalizing stereo, or
+introducing an enzyme-specific branch. It reports arbitrary explicit R/S
+inversions and unchanged centers; it does not label every inversion an
+enantiomer relation. Current scope is two components in **one deposit** with
+complete heavy-atom coordinates and no alternate conformers. Comparisons
+across deposits require a further source-bound relation. Membership and connection
+equality compare literal deposited records, including order and metadata, not
+normalized biological environments. The original installed six-observation query and all prior
+deposit projections are unchanged.
+
+The new value is executable graph correspondence coupled to a refusal of
+instance-context transfer. No measured curation-time saving, superiority over
+competent use of PDB, productive geometry or enzyme-design performance is
+claimed. No new sources, experiments or evidence tiers are added.
+
+The initially selected M0213 D/L-analogue comparison remains **unassessed**:
+1L6F is not retained, and complete PLP acquisition headroom is unknown. The
+retained 1L6G dictionary has PDD CA=`R`, N–C4A single bonding and two dictionary
+H on C4A, but that does not supply the missing L-analogue graph or validate a
+native imine intermediate. Separately scoped metered PLP subsets total at least 73
+requests / 5,068,731 bytes; their explicit exclusions of other browsing prevent
+treating the arithmetic remainder as usable headroom. No batch was reset or
+new request issued. This missing counterpart does not weaken the closed PLP
+source-drawing boundary or gain support from the mandelate result.
+
 ### Boundaries of the original abstract-only query
 
 The sidecar pins the existing Atlas-10 payload, exact M0187 transformation,
