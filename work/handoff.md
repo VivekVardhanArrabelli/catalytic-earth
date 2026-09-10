@@ -81,15 +81,26 @@ content below the marker is not an execution queue.
   `.git/catalytic-earth-runs/20260910T050647Z-aa923b6d-33f3-4d3d-84ce-eae24e87b2f6.json`.
   Retain lock through safe checkpointing; join/stop every worker before release.
   Git identifies this containing increment; no self-hash follow-up commit.
-- **One next action:** source-qualify an actual forward methodol-synthesis
-  outcome in the same2017SI (Methodspp9-11 and S12p29), separating conversion,
-  isolated yield and measured product configuration from retro-aldol selectivity.
-  Gain: one directly supported design-use product outcome rather than inferring
-  synthetic performance from cleavage. Reconcile the printed volume/moles/
-  concentration before normalizing; retain unresolved conflicts. Reuse exact
-  8F sequence/source providers and cumulative RA95 budget. Stop if a matched
-  reaction/condition/product record cannot be bound without repairing source
-  values, or after one useful qualified record; do not reopen failed main routes.
+- **Direction amendment, 2026-09-10:** the twelve-hour oversight review sampled
+  the source claims and audited cross-case reuse at scientific main
+  `db28b67fc41a552b9152bada94c8903e066729cd`. Findings and the three-agent
+  coordination record are in `docs/SCIENTIFIC_DIRECTION.md`. The sampled claims
+  held, but divergent packet layouts and the missing common consumer make
+  scientific reuse the current bottleneck. Prior scientific facts and budgets
+  above are unchanged; the next-action priority below supersedes the earlier
+  standalone forward-synthesis annotation.
+- **One next action:** use retained RA95 2013/2017 and RA61 evidence to produce
+  one executable, source-bound perturbation dataset relation, with KE59 as an
+  unassessed-matched-control countercase. Ask which catalytic-group perturbations
+  retain a measured endpoint in the exact construct/background, substrate and
+  assay, and which comparisons are ineligible. Keep parameter, uncertainty,
+  sequence-provider, control and source identity together. Do not pool studies,
+  treat nulls as inactivity or repair inconsistent source triplets. Gain:
+  recover supported comparisons and exclusions through the same consumer,
+  rather than reconstructing each study's file shape. Stop after the common
+  relation recovers the scoped RA95/RA61 effects and KE59 abstention, or identify
+  the smallest shared missing concept if it cannot. See the current direction
+  review for exact boundaries; no new source acquisition is needed initially.
 
 Preserve historical content below this marked block. Git identifies the
 containing increment; no self-hash follow-up commit is required.

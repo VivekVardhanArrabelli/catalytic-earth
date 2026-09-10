@@ -1,5 +1,29 @@
 # Current Decisions
 
+## 2026-09-10: turn accumulated perturbation evidence into a usable relation
+
+The owner requested a direction check and recurring correction about every
+twelve hours. The [review and coordination record](SCIENTIFIC_DIRECTION.md)
+finds useful source corrections and design-relevant outcome restrictions, with
+no material defect in two sampled RA95 claims. Exact source/sequence reuse is
+real, but the recent study packets have divergent observation layouts under
+shared schema labels and no common consumer. Avoiding new runtime code alone
+does not demonstrate reusable curation or integrated scientific value.
+
+Prioritize one executable, source-bound perturbation relation over the inherited
+next standalone forward-synthesis annotation. Reuse acquired RA95 and RA61
+evidence and a KE59 unassessed-control countercase; preserve construct, substrate,
+assay, parameter, uncertainty and provenance boundaries. Keep nondetection,
+qualitative evidence and unassessed controls distinct. The question and stopping
+condition are in the review; reassess after this bounded result instead of making
+it a permanent gate against new chemistry or coverage.
+
+Repurpose the paused oversight heartbeat for 07:55 and 19:55 America/Chicago
+in the current GPT-6 Astra/max task. It may correct direction within existing
+authorization, using the shared lock for repository changes and preserving the
+hourly worker's model, cadence and source budgets. This operational direction
+change adds no scientific observations, claim entries, runtime or new tests.
+
 ## 2026-09-10: preserve complete paired comparisons without inferring a full apparatus
 
 The [RA95 tetrad source review](../data/atlas/study_context/ra95_2017/source_review.json)
