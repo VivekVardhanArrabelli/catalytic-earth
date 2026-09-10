@@ -6,95 +6,95 @@
 This block, `docs/HOURLY_RESEARCH.md` and the latest direction review govern
 continuation. Historical handoffs below are not an execution queue.
 
-- **Identity/base:** owner `01a08ba4-bffe-79a3-8b6d-6dbe884d42bd:969071d2-d6a9-473d-920d-c9edb67ec79e`;
-  start/lock `2026-09-10T14:07:40Z`, clean main base
-  `df81264b3a33efdfe8e0faf53c32ad4e9a069084`. PR79 completion verified; no open
-  PR or pending recovery. Fetch/fast-forward complete. Branch
-  `codex/ra95-chemical-state-20260910`; all repository edits, acquisition, Git
-  and lock parent-owned. Reviewers were read-only.
-- **Direction/question:** the latest review closed the common-perturbation
-  priority and endorsed this new chemical-state axis. Can the measured
-  RA95.5-8F parent connect to source-named apo5AOU and inhibitor3-complex5AN7
-  with exact construct and chemical identity? Gain: an executable functional
-  to deposited-state relation; stop at support or a precise mapping failure.
-- **Outcome:** `python scripts/query_atlas_perturbations.py --state-link ra95_2017:RA95.5-8F-states`
-  returns the existing three parent cleavage parameters and two deposit
-  projections. Full258-aa canonical sequences match the printed parent.
-  ActualMHO237 oxidation, unmodeled initiatorMet, source251-258 suffix versus
-  5AOU246-258 expression-tag scope, and piecewise5AOU author numbering stay
-  explicit. Canonical identity does not authenticate chemical or physical
-  assay/crystal identity; no new measurement or protein admission follows.
-- **Chemical mapping limit:** SI assigns the inhibitor3 complex to5AN7;
-  source-reported Schiff-base derivatization supports a preparation-origin
-  association. LLK is an enone component, not intact free3 or a complete
-  protein-adduct graph. Deposit prose namesCC1/Lys2083 while current atoms use
-  LLK/Lys1083. The two struct_conn rows areMHO peptide links, notLLK attachment;
-  dictionary/coordinate H names also disagree. Bond order/protonation and full
-  interfragment graph remain null; this does not prove absent adduct.
-- **Source conflicts/arrangement:** complex crystallizationpH7.5(SI) versus
-  4.5(CIF) remains unresolved; current5AN7 models62-63 despite source58-63
-  unmodeled wording.100K crystal data do not identify the29C reacting assay.
-  OnlyK83NZ–LLKC13 andY51OH–LLKO1 are projected, with both protein alternatives
-  and original occupancies. The1.776955angstromTyr51B pair is not labeled a
-  coexistent contact/Hbond. No averaging, joint population, productive pose,
-  mutant geometry, microscopic causality or evidence-tier promotion.
-- **Evidence/review:** `docs/ATLAS_RA95_CHEMICAL_STATE.md` and
-  `data/atlas/study_context/ra95_2017/chemical_state.json` (SHA
-  `0304a28cc9676ae9d920b5c4f6c47f102d10320e125cc40cbfddd971ccff695d`).
-  RawCIF/spec/projection/review packets are `data/atlas/deposit_context/ra95_5aou`
-  and `ra95_5an7`; source/consumer pins inchemical_state_review.json and the
-  common perturbation review. Board `work/coordination_ra95_chemical_state_20260910.md`.
-  Source, representation and adversarial roles each rehashed and accepted the
-  exact19-file manifest after objections were incorporated. All were
-  GPT-5.6-Sol/ultra, separately prompted and sharing findings; these are
-  correlated computational reviews, not independent human/laboratory evidence.
-- **Acquisition:** two parent requests/1,237,896 response-body bytes, no retries
-  or automatic redirects. Existing RA95 batch
-  `designed-retroaldolase-ra95-giger2013` is now26/16,591,234 cumulative;
-  remaining74/14,866,046 under100/31,457,280. Full receipt:
-  `ra95_2017/chemical_state_acquisition.json`. Both publicRCSBCIFs retained;
-  publisherSI reused from Git-common cache, not redistributed. Previous17
-  witnesses verify20,956,262bytes. Original source packets/receipts unchanged.
-  Other last-reported ledgers remain RA61 45/3,236,259; KE59 9/261,580;
-  KE70 16/1,102,794; Siegel2010 14/502,726; beta5/8,449,621.
-  TKT/M0081/M0222 headroom remains unknown where recorded. M0187's12/440,960
-  ledger explicitly excludes earlier discovery, so it is not proof of complete
-  headroom. Do not reset or rename any scope.
-- **Reuse/reconsideration:** generic deposit/assembly consumers reused, with
-  three standardCIF categories and one generic exact-sequence state-link
-  operation; no enzyme-ID branch. Functional values remain in their original
-  provider. A concrete challenge revealed same-construct synthesis could enter
-  a cleavage link; exact source-row/parameter binding now rejects it. All prior
-  193observations/111comparisons and prior common contexts are unchanged.
-  Added value is the association plus prevented unsupported transfers; manual
-  mapping/review remain costs, without measured speedup/incumbent superiority.
-  All three reconsideration rules applied. Stop table migration, unchangedLLK
-  access attempts and generic distance expansion. Consecutive no-progress runs:0.
-- **Verification/checkpoint:** 2026-09-10T14:40:33.126693+00:00 (32.88minutes).
-  Final local verification 2026-09-10T14:42:31.962130+00:00 (34.86minutes).
-  33parser/deposit/assembly,48focused public,14truth and571core tests pass;
-  both deposit reconstructions, all17witnesses and baseline object equality pass.
-  Fresh-directory Atlas3/10 wheel/draft/candidate checks pass. Initialcore
-  failure was the existing claim-count assertion33; CE034 requires34 and the
-  corrected complete rerun passes. No gate weakened. Repository contracts
-  and parent source/diff review pass. Architecture manifest changes only path
-  coverage17650to17663. All reviewers and local checks have finished. Exact-head
-  remoteCI/publication remain final gates at this checkpoint. No unrelated dirty work, new experiment, protected registry,
-  frozen kernel or exposure-history change. Git identifies the containing
-  commit; final commit/push/merge/CI/release belong to receipt and task result.
-  Receipt `.git/catalytic-earth-runs/20260910T140740Z-969071d2-d6a9-473d-920d-c9edb67ec79e.json`.
-- **One next action:** test whether the earlierRA95.5-5 inhibitor structure4A2R
-  can connect to its existingK83M/K210M endpoint-specific functional contrast
-  and distinguish source-supported attachment from an incomplete adduct graph.
-  Start retained2013 sources/construct strings and confirm4A2R assignment,
-  prior receipts/cache and exact sequence before any coordinate interpretation.
-  Continue the existingRA95 batch26/16,591,234 for any necessary acquisition.
-  Gain: reuse the state relation across an earlier catalytic architecture while
-  preserving conditional residue effects. Stop at one supported relation or
-  explicit construct/chemical-graph mismatch; no geometry-to-rate causal or
-  productive-template claim. Resume this branch/PR first if publication remains
-  unfinished. A proposed newM0222/2QUT batch was rejected because its current
-  acquisition recovery explicitly forbids new requests with unknown balance.
+- **Identity/base:** owner `01a08bda-c4cb-7433-9e0b-705fdb390ab8:de55ba12-cb8d-4fde-b0a5-baffbacee59c`;
+  actual start `2026-09-10T15:06:21Z`; clean main base
+  `6133d2722b88d04018ded0e5be419a756ddd7901`. Prior PR80 completion verified,
+  no open PR or pending recovery; fetch/fast-forward complete. Branch
+  `codex/ra95-4a2r-functional-state-20260910`. Parent owns files, Git, source
+  acquisition and lock; all three reviewers are read-only.
+- **Direction/question:** the direction review closed perturbation-table reuse;
+  PR80 answered the 8F construct question at a qualified scope. Its successor
+  handoff asked whether earlier RA95.5-5/4A2R could connect to matched K83M/K210M
+  functional evidence. Gain: reuse a functional/state relation across the earlier
+  architecture. Stop at a supported association or exact mapping failure.
+- **Outcome:** `python scripts/query_atlas_perturbations.py --state-link ra95_2013:RA95.5-5-states --with-comparisons`
+  connects the exact 258-aa source-associated parent to4A2R and returns all nine
+  matched comparison requests over12 existing parameter records: six eligible
+  ratios and threeKM abstentions. Only the three parent observation IDs belong
+  to the state link. K210M efficiency ratio1.0 accompanies turnover ratio0.479;
+  K83M efficiency0.00469 and turnover0.0142 stay distinct. No mutant state,
+  generic activity label, statistical significance or isolated chemical cause.
+- **Chemical state:** two covale/modification-feature records identify Lys83NZ
+  to3NKC13 for ligand alternativesA/B. Bond order is unknown, leaving flag is
+  one, and free-component dictionary oxygenONA is absent from coordinates.
+  Full reacted bond orders/protonation and source-C2/deposit-C13 atom mapping
+  remain null. The source describes inhibitor4/vinylogous-amide trapping; no
+  complete adduct graph is fabricated. No Lys210 attachment is deposited,
+  without establishing absent Lys210 turnover chemistry.
+- **Source limits:** source70:30 ligand poses and current occupancies0.67/0.33
+  remain separate; Lys83 has one modeled side-chain state. Canonical sequence
+  includes unmodeled Met1 and249–258 and does not establish material identity.
+  Source251–258 suffix and deposit246–258 tag scope stay distinct. Source
+  phosphate0.1M versus deposit0.2M is unresolved; pH8.5 comes from deposit
+  detail text, not its unknown scalar. Inhibited crystals/100K data differ from
+ 29C/pH7.5 racemic-methodol fluorescence assays. Source challenge added the
+  inhibitor synthesis/identity chain, preserving literal unusual MALDI
+  `[M+H]+`242.09 calculated/measured and author-reported NMR without repair
+  or independent spectral authentication.
+- **Evidence/review:** `docs/ATLAS_RA95_4A2R_STATE.md`;
+  `data/atlas/study_context/ra95_2013/chemical_state.json`,
+  `chemical_state_acquisition.json`, `chemical_state_review.json`;
+  `data/atlas/deposit_context/ra95_4a2r/{4A2R.cif,spec.json,projection.json,review.json}`;
+  `work/coordination_ra95_4a2r_20260910.md`. Source, representation and
+  adversarial Sol/ultra roles each rehashed and accepted the revised15-file
+  scientific manifest SHA `82b7e7cc06ff375cc3feec81b16b4a00021c81ecaa8d717f86955670e02541f8`.
+  Source objections overrode earlier acceptance. This is correlated
+  computational review, not independent human or laboratory evidence.
+- **Acquisition:** one request/707,575 response-body bytes; RCSB4A2R SHA
+  `c97bdf2cd975779e50e9e57cbe66da80aa37c2e1ac43077ab6e1076ec3b0d19f`.
+  Existing `designed-retroaldolase-ra95-giger2013` batch is now27/17,298,809
+  cumulative, with73/14,158,471 remaining under100/31,457,280. Acquisition
+  stopped; no redirects/retries or worker requests. Cached article/SI reused,
+  not redistributed. Prior17 witnesses verify20,956,262 bytes. Other last-known
+  complete batches unchanged: RA61 45/3,236,259; KE59 9/261,580; KE70
+ 16/1,102,794; Siegel2010 14/502,726; beta-barrel5/8,449,621. Incomplete
+  TKT/M0081/M0222/M0187 historical accounting is not headroom; no reset/rename.
+- **Reuse/reconsideration:** existing exact state link and declarative deposit
+  row projection need no chemical-runtime change or enzyme branch. Optional
+  comparison retrieval uses exact denominator/parent IDs for ratio/multiplicative
+  operations and retains abstentions. Its8F reuse returns21 records/comparisons
+  including paired substitutions. All prior193 observations/111 comparisons,
+  contexts, witnesses and8Fstate remain object-equal to base. Source facts stay
+  in data; manual curation remains a cost with no measured speedup/incumbent
+  superiority. Added value is the executable association and prevented transfer.
+  A further RA61 product-release caveat was rejected because its existing
+  common evidence context already includes the relevant initial-rate boundary.
+  No table migration or generic distance queue. Consecutive no-progress runs:0.
+- **Verification/checkpoint:** at `2026-09-10T15:35:02Z` (28.68 minutes),
+ 64 focused/truth,18 deposit/assembly and573 core tests pass. Source/deposit
+  reconstruction, witness verification and original-object equality pass.
+  Fresh-directory Atlas3/10 wheel/draft/candidate checks pass with network
+  blocked. Existing build venv resolves default Python's missing build module.
+  Claim-count assertion34to35 is included in reviewed tests; no gate weakened.
+  Repository contracts/archive now pass; remote CI remains the final
+  publication gate. All review workers and local checks have completed.
+  No unrelated dirty work, protected/frozen registry, kernel or exposure change.
+  Git identifies this handoff's containing commit; final SHA/push/merge/CI/lock
+  outcome belong to task result and local receipt, not a self-hash commit.
+  Receipt `.git/catalytic-earth-runs/20260910T150621Z-de55ba12-cb8d-4fde-b0a5-baffbacee59c.json`.
+- **One next action:** seek a source-matched free-ammonium versus
+  glutamine-coupled functional comparison for M0753 HisF/HisH. Start the retained
+  M0753 source/draft, current development gate, named primary references and
+  all existing receipts/cache; establish species, construct, donor, partner
+  state and matched product endpoint/conditions before interpreting a coupled
+  apparatus. Explicit HisH identity and the same HisF background are required. Gain:
+  a distinct donor/subunit applicability relation beyond the currently admitted
+  free-ammonium HisF half-reaction. Stop at one supported matched relation or
+  a precise source/preparation mismatch. New acquisition requires complete
+  accounting for the existing named scope; never rename incomplete headroom.
+  Coupled turnover mixes HisH chemistry, interface activation, nitrogen transfer
+  and HisF cyclization. No channel transport/occupancy, subunit-specific cause
+  or isolated-structure-to-coupled-assay transfer. Resume this publication first if its branch/PR is unfinished.
 
 Preserve historical content below this marked block. No self-hash follow-up
 commit is required.

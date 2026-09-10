@@ -1,0 +1,69 @@
+{
+  "schema_version": "catalytic-earth.source-qualification-review.v1",
+  "assessment_id": "ra95-5-5-construct-to-chemical-state-20260910",
+  "decision": "accept_source_annotation",
+  "reviewed_at_utc": "2026-09-10T15:33:43.109365+00:00",
+  "authority": "owner-authorized-computational-development.2026-09-05.v1",
+  "authorized_operation": "source_annotation",
+  "policy_binding": {
+    "path": "data/governance/computational_review_policy.json",
+    "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "reviewed_bindings": {
+    "data/atlas/deposit_context/ra95_4a2r/4A2R.cif": "c97bdf2cd975779e50e9e57cbe66da80aa37c2e1ac43077ab6e1076ec3b0d19f",
+    "data/atlas/deposit_context/ra95_4a2r/spec.json": "15c52054869935ff6c0c5034044d287ade531e6bd353e47b74c62c02d21f87f8",
+    "data/atlas/deposit_context/ra95_4a2r/projection.json": "ea3117cea3d83e156534abcc1efd62f10ed056a1965ba7e99a0974ac915b3461",
+    "data/atlas/study_context/ra95_2013/chemical_state.json": "a9b7df48d5684fc014ced487477364eb8d9b2072817e3be4c64837a364df0670",
+    "data/atlas/study_context/ra95_2013/chemical_state_acquisition.json": "7efd0b0efdb32572d369194fc4e9eedd84b0a184aa8c9f10b7af50766b4c1da9",
+    "data/atlas/perturbations/projection.json": "1687a8224049fc2eb3b7130a3a1459592e724df960a801320f039d1eef1bf409",
+    "scripts/query_atlas_perturbations.py": "a13b3176952c44df5e8b053ee3a7907d5020ae00e66d75b248790f7aa20656e2",
+    "tests/core/test_atlas_perturbations.py": "c3c494a718ffc369ef267eee4955b1c4f215259463956668adffd7ff042ab8ef",
+    "tests/test_truth_guard.py": "3a5c7f86f417bcb6b2ccd2eb95e1682a090e1c948d7b90f9a488709553d2c067",
+    "docs/ATLAS_RA95_4A2R_STATE.md": "3e232b1bf17f5c316d126c2476c1b87dbf120a8584bcd1db00aa51db9df5a1f9",
+    "docs/ATLAS_PERTURBATION_RELATION.md": "68492976ab29022db85e86d1dcd19eae25f501b7b3e22660559db2e7a109735f",
+    "CLAIMS.md": "7ec9b8e8b44ee1c74aa12c81410363bfe7170f88ccc2d4a93d6cf739e77f5c79",
+    "data/governance/claim_ledger.json": "526693e84640594400cf94adda25c4c2fababa78b95e449cb37d41db27ae43ab",
+    "docs/CURRENT_DECISIONS.md": "f4ee610ef9404367669c4b3ef26f3f0611d0ac55068024093dc4509ad6d7e7dd",
+    "docs/CURRENT_STATE.md": "10da9d9fbcb67cf5616ec49acdba533c91836e40bf2793731ad1a6fd37e2b840"
+  },
+  "review_process": [
+    {
+      "role": "source",
+      "task": "ra95_4a2r_source",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_manifest"
+    },
+    {
+      "role": "representation",
+      "task": "ra95_4a2r_representation",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_manifest"
+    },
+    {
+      "role": "adversarial",
+      "task": "ra95_4a2r_adversarial",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_manifest"
+    }
+  ],
+  "source_objections_adjudicated": [
+    "Source challenge required inhibitor synthesis/identity provenance; exactP42 recipe and unusual source[M+H]+242.09 values are now retained with author-onlyNMR and no spectral or material authentication.",
+    "Exact258-aa source/deposit correspondence does not identify physical assay/crystal material or mutant state.",
+    "Source4/3NK precursor assignment is retained separately from reacted graph; ONA omitted, unknown interfragment order, retainedC12hydrogens and sourceC2/depositC13 nomenclature do not justify repair.",
+    "Source phosphate0.1M and deposited0.2M remain unresolved; source70:30 poses and current0.67/0.33 occupancies remain distinct.",
+    "All nine comparison requests remain visible, including threeKM abstentions and small positive double-mutant parameters.",
+    "Optional CLI filter admits ratio/multiplicative operations only; exact parent/denominator observations anchor retrieval, without making mutant state links.",
+    "Existing193observations/111comparisons/sourcecontexts/witnesses/8Fstate remain object-equal to base; row-only deposit avoids redundant geometry expansion."
+  ],
+  "remaining_limits": [
+    "No exact reacted bond-order/protonation graph or source-scheme atom map.",
+    "No mutant structural/folding/active-fraction control or chemical-role isolation.",
+    "Manual curation/review remains necessary; no measured speedup or incumbent superiority."
+  ],
+  "independent_human_validation": false,
+  "experimental_validation": false,
+  "coordination_record": "work/coordination_ra95_4a2r_20260910.md"
+}

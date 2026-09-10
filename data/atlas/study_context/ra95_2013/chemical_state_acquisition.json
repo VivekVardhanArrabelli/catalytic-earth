@@ -1,0 +1,38 @@
+{
+  "schema_version": "catalytic-earth.primary-source-acquisition-appendix.v1",
+  "batch_id": "designed-retroaldolase-ra95-giger2013",
+  "prior_receipt": {
+    "path": "data/atlas/study_context/ra95_2017/chemical_state_acquisition.json",
+    "sha256": "4b0427a24aab3b1269f25cd80b3b9c90f61c4a99404499d77cf0c16a8b5f2ecb"
+  },
+  "prior_requests": 26,
+  "prior_response_body_bytes": 16591234,
+  "requests": [
+    {
+      "request_id": 27,
+      "url": "https://files.rcsb.org/download/4A2R.cif",
+      "started_at_utc": "2026-09-10T15:09:39.584323+00:00",
+      "state": "captured",
+      "response_body_bytes": 707575,
+      "status": 200,
+      "content_type": "chemical/x-cif",
+      "content_encoding": null,
+      "location": null,
+      "sha256": "c97bdf2cd975779e50e9e57cbe66da80aa37c2e1ac43077ab6e1076ec3b0d19f",
+      "local_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/catalytic-earth-runs/de55ba12-sources/4A2R.cif",
+      "finished_at_utc": "2026-09-10T15:09:40.150799+00:00",
+      "retained_path": "data/atlas/deposit_context/ra95_4a2r/4A2R.cif"
+    }
+  ],
+  "max_requests": 100,
+  "max_response_body_bytes": 31457280,
+  "accounting": "Serial parent transport; no automatic redirects or retries; Accept-Encoding identity; every request and received response-body byte including errors counted.",
+  "cumulative_request_count": 27,
+  "cumulative_response_body_bytes": 17298809,
+  "remaining_requests": 73,
+  "remaining_response_body_bytes": 14158471,
+  "complete_cumulative_accounting": true,
+  "acquisition_stopped": true,
+  "source_bodies_redistributed": "Only the public RCSB mmCIF deposit is retained; publisher sources remain cache-only.",
+  "finalized_at_utc": "2026-09-10T15:09:40.150799+00:00"
+}

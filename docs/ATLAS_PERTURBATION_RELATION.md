@@ -460,3 +460,14 @@ through complete canonical sequence equality. Use
 observation and deposit identities while retaining actual chemical modifications,
 source conflicts and incomplete covalent mapping. State identity is not inferred
 from sequence equality; no parent-to-mutant or crystal-to-assay transfer follows.
+
+## Parent states beside matched perturbations
+
+The [RA95.5-5/4A2R association](ATLAS_RA95_4A2R_STATE.md) reuses the existing
+state relation for an exact258-aa parent and explicit Lys83 attachment.
+`--state-link ra95_2013:RA95.5-5-states --with-comparisons` includes all nine
+matched comparison requests and their12parameter records, including threeKM
+abstentions. The optional ratio/multiplicative filter uses exact denominator/parent observation
+IDs; the state link itself remains parent-only. The same option applies to
+the8F relation without changing its default query. No new observations or
+comparison arithmetic are introduced.

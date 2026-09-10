@@ -20,6 +20,73 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 class PerturbationRelationTests(unittest.TestCase):
+    def test_earlier_parent_state_keeps_attachment_and_reacted_graph_distinct(self):
+        link = next(row for row in self.view["state_links"]
+                    if row["id"] == "ra95_2013:RA95.5-5-states")
+        state = link["source_context"]["states"][0]
+        connections = state["covalent_state_evidence"]["deposited_connections"]
+        self.assertEqual({row["protein"]["label_seq_id"] for row in connections}, {"83"})
+        self.assertEqual({row["ligand"]["alt_id"] for row in connections}, {"A", "B"})
+        self.assertTrue(all(row["bond_order"] is None for row in connections))
+        self.assertEqual(state["ligand_dictionary_coordinate_difference"]["dictionary_only_atom_names"], ["ONA"])
+        self.assertIsNone(state["covalent_state_evidence"]["complete_reacted_bond_order_graph"])
+        self.assertIsNone(state["phosphate_concentration_M"]["resolved"])
+        spec = deepcopy(self.spec)
+        spec["state_links"][1]["observation_ids"] = [
+            "ra95-kinetics:main-table1:RA95.5-5:" + parameter
+            for parameter in ("kcat", "KM", "kcat_over_KM")
+        ]
+        with self.assertRaisesRegex(ValueError, "functional source row differs"):
+            _project_candidate(ROOT, spec)
+
+    def test_state_comparisons_preserve_abstentions_without_assigning_mutant_geometry(self):
+        invalid = subprocess.run(
+            [sys.executable, str(ROOT / "scripts/query_atlas_perturbations.py"), "--with-comparisons"],
+            capture_output=True, text=True, encoding="utf-8",
+        )
+        self.assertEqual(invalid.returncode, 2)
+        self.assertIn("requires --state-link", invalid.stderr)
+        for link_id, row_count, comparison_count in (
+            ("ra95_2013:RA95.5-5-states", 12, 9),
+            ("ra95_2017:RA95.5-8F-states", 21, 21),
+        ):
+            with self.subTest(link=link_id):
+                result = subprocess.run(
+                    [sys.executable, str(ROOT / "scripts/query_atlas_perturbations.py"),
+                     "--state-link", link_id, "--with-comparisons"],
+                    check=True, capture_output=True, text=True, encoding="utf-8",
+                )
+                view = json.loads(result.stdout)
+                self.assertEqual(len(view["observations"]), row_count)
+                self.assertEqual(len(view["comparisons"]), comparison_count)
+                self.assertEqual(len(view["state_links"]), 1)
+                link = view["state_links"][0]
+                linked = [row for row in view["observations"] if row["id"] in link["observation_ids"]]
+                self.assertEqual(len(linked), 3)
+                self.assertEqual({row["construct_id"] for row in linked}, {link["construct_id"]})
+                self.assertFalse(link["physical_preparation_identity_established"])
+                ids = {row["id"] for row in view["observations"]}
+                for comparison in view["comparisons"]:
+                    self.assertTrue(set(comparison["roles"].values()) <= ids)
+                if link_id.startswith("ra95_2013"):
+                    self.assertEqual(sum(row["eligible"] for row in view["comparisons"]), 6)
+                    self.assertTrue(all(not row["eligible"] and row["value"] is None
+                                        for row in view["comparisons"] if row["id"].endswith(":KM")))
+                    self.assertTrue(all(row["source_row_id"].startswith("si-table2:") for row in view["observations"]))
+                    default = subprocess.run(
+                        [sys.executable, str(ROOT / "scripts/query_atlas_perturbations.py"),
+                         "--state-link", link_id],
+                        check=True, capture_output=True, text=True, encoding="utf-8",
+                    )
+                    parent_view = json.loads(default.stdout)
+                    self.assertEqual(len(parent_view["observations"]), 3)
+                    self.assertEqual(parent_view["comparisons"], [])
+                else:
+                    paired = next(row for row in view["comparisons"]
+                                  if row["id"] == "ra95_2017:Y51F-Y180F:kcat")
+                    self.assertEqual(paired["operation"], "multiplicative")
+                    self.assertAlmostEqual(paired["value"], 0.021, places=3)
+
     def test_parent_state_link_retains_chemical_and_model_conflicts(self):
         link = self.view["state_links"][0]
         self.assertEqual(len(link["observation_ids"]), 3)

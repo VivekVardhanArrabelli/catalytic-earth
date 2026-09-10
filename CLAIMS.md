@@ -441,6 +441,22 @@ these source/model boundaries and alternative occupancies. No physical
 assay/crystal identity, productive solution geometry, mutant structure,
 microscopic role, new experiment or evidence-tier promotion follows.
 
+## CE-035 — deposited attachment and matched sensitivity remain distinct
+
+**Status:** Supported
+
+The [RA95.5-5 state relation](docs/ATLAS_RA95_4A2R_STATE.md) binds the exact
+258-residue parent to4A2R and its Lys83 NZ–3NK C13 covalent records for ligand
+alternativesA/B. Bond order is unknown; the free-diketone dictionary includes
+ONA absent from coordinates. The complete reacted graph remains unresolved.
+The parent state accompanies the existing K83M/K210M/double-substitution
+fluorescence comparisons, retaining all threeKM abstentions. In particular,
+K210M preserves printed efficiency while its turnover ratio is0.479; K83M's
+efficiency and turnover ratios are0.00469 and0.0142. Source phosphate0.1M
+and deposit0.2M remain conflicted. No absent Lys210 catalysis, mutant geometry,
+physical preparation identity, microscopic cause, productive solution state,
+new experiment or evidence-tier promotion follows.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,
