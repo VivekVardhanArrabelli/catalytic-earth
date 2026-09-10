@@ -369,6 +369,129 @@ class PerturbationRelationTests(unittest.TestCase):
                 self.assertIn(f"unresolved_assay:{factor_id}", result["reasons"])
                 self.assertIsNone(result["value"])
 
+    def test_tkt_reporter_unavailability_nmr_nondetection_and_turnover_differ(self):
+        result = self.comparisons["tkt_2019:E366Q:kcat"]
+        self.assertTrue(result["eligible"])
+        self.assertAlmostEqual(result["value"], 0.012 / 2.79)
+        self.assertIsNone(result["uncertainty"])
+        rate = self.rows["tkt-steady_state:E366Q:kcat"]
+        reporter = self.rows["tkt-stopped_flow:E366Q:k_forward"]
+        nmr = self.rows["tkt-nmr:E366Q:covalent_intermediate_accumulation"]
+        reference = self.rows["tkt-nmr:wild_type:covalent_intermediate_accumulation"]
+        self.assertEqual(rate["uncertainty"]["value"], 0.001)
+        self.assertEqual(reporter["result_kind"], "unavailable")
+        self.assertIsNone(reporter["value"])
+        self.assertIsNone(reporter["nondetection"])
+        self.assertEqual(reporter["unavailability"]["source_token"], "n.a.")
+        self.assertIn("325 nm", reporter["unavailability"]["reason"])
+        self.assertFalse(reporter["unavailability"]["is_zero_rate"])
+        self.assertEqual(nmr["result_kind"], "nondetection")
+        self.assertIsNone(nmr["nondetection"]["numeric_detection_limit"])
+        self.assertFalse(nmr["nondetection"]["is_zero_rate"])
+        self.assertEqual(reference["result_kind"], "qualitative")
+        self.assertEqual(reference["qualitative_result"]["source_token"], "F6P-ThDP accumulated")
+        self.assertIn("not_verbatim", reference["qualitative_result"]["wording_basis"])
+        self.assertIsNone(reference["value"])
+        self.assertFalse(self.comparisons["tkt_2019:E366Q:k_forward"]["eligible"])
+        self.assertFalse(self.comparisons["tkt_2019:E366Q:NMR-accumulation-ratio"]["eligible"])
+        self.assertEqual(self.view["assays"][rate["assay_id"]]["source_record"]["conditions"]["temperature_celsius"], 20)
+        self.assertEqual(self.view["assays"][reporter["assay_id"]]["source_record"]["conditions"]["temperature_celsius"], 4)
+        self.assertNotEqual(rate["substrate_id"], reporter["substrate_id"])
+        construct = self.view["constructs"][rate["construct_id"]]
+        self.assertIsNone(construct["sequence"])
+        self.assertFalse(construct["assay_specimen_sequence_verified"])
+
+    def test_tkt_cross_endpoint_and_wrong_mutant_control_ratios_abstain(self):
+        for denominator, reasons in [
+            ("tkt-stopped_flow:wild_type:k_forward", ["mismatched_assay_id", "mismatched_substrate_id", "mismatched_parameter", "mismatched_endpoint_kind"]),
+            ("tkt-nmr:wild_type:covalent_intermediate_accumulation", ["mismatched_assay_id", "mismatched_parameter"]),
+            ("tkt-steady_state:E160Q:kcat", ["control_is_not_declared_perturbation_background"]),
+        ]:
+            with self.subTest(denominator=denominator):
+                request = deepcopy(self.comparisons["tkt_2019:E366Q:kcat"])
+                request["roles"]["denominator"] = denominator
+                result = compare(self.rows, request)
+                self.assertFalse(result["eligible"])
+                self.assertIsNone(result["value"])
+                for reason in reasons:
+                    self.assertIn(reason, result["reasons"])
+
+    def test_tkt_missing_reporter_cannot_be_coerced_to_zero_or_lose_reason(self):
+        for defect in ("numeric", "zero_semantics", "missing_reason"):
+            spec = deepcopy(self.spec)
+            parameter = next(p for p in spec["panels"] if p["id"] == "tkt-stopped_flow")["parameters"][0]
+            if defect == "numeric":
+                parameter["status_kinds"]["not_applicable_reporter_absent"] = "numeric"
+                expected = "numeric result requires"
+            elif defect == "zero_semantics":
+                parameter["unavailability"]["is_zero_rate"] = {"literal": True}
+                expected = "unavailable result is not a zero rate"
+            else:
+                parameter["unavailability"]["reason"] = {"literal": None}
+                expected = "unavailable result requires"
+            with self.subTest(defect=defect), self.assertRaisesRegex(ValueError, expected):
+                _project_candidate(ROOT, spec)
+        spec = deepcopy(self.spec)
+        parameter = next(p for p in spec["panels"] if p["id"] == "tkt-stopped_flow")["parameters"][0]
+        parameter["pointer"] = "/stopped_flow/k_max_ES"
+        with self.assertRaisesRegex(ValueError, "parameter source field differs"):
+            _project_candidate(ROOT, spec)
+
+    def test_tkt_unselected_bounds_and_missing_panel_arms_remain_context(self):
+        source = self.rows["tkt-stopped_flow:wild_type:k_forward"]["source_record"]
+        self.assertEqual(source["stopped_flow"]["k_max_ES"]["status"], "lower_bound")
+        self.assertEqual(source["stopped_flow"]["k_max_ES"]["comparator"], ">")
+        for variant in ("T382E", "T382Q"):
+            self.assertNotIn(f"tkt-nmr:{variant}:covalent_intermediate_accumulation", self.rows)
+            result = self.comparisons[f"tkt_2019:{variant}:kcat"]
+            self.assertFalse(any(r.startswith("tkt-nmr:") for r in result["context_observations"]))
+            self.assertIn({"source": "tktf", "pointer": "/reused_accumulation_context/T382E_T382Q_status"}, result["evidence"])
+        t382q = self.rows["tkt-stopped_flow:T382Q:k_forward"]
+        self.assertIn("pKa cell", t382q["unavailability"]["reason_basis"])
+        nmr_rows = [r for r in self.view["observations"] if r["id"].startswith("tkt-nmr:")]
+        self.assertEqual({r["source_row_id"] for r in nmr_rows},
+                         {"wild_type", "E160Q", "E160A", "E366Q", "E165Q"})
+        for result in self.view["comparisons"]:
+            if result["study_id"] == "tkt_2019" and ":E366Q:" not in result["id"]:
+                self.assertNotIn({"source": "tkta", "pointer": "/source_reviewed_context/relation"}, result["evidence"])
+
+    def test_tkt_legacy_identity_adapter_resolves_original_source_records(self):
+        adapter = json.loads((ROOT / self.spec["sources"]["tkti"]["path"]).read_text(encoding="utf-8"))
+        providers = {}
+        for binding in adapter["source_bindings"]:
+            raw = (ROOT / binding["path"]).read_bytes().replace(b"\r\n", b"\n")
+            self.assertEqual(hashlib.sha256(raw).hexdigest(), binding["sha256"])
+            providers[binding["path"]] = json.loads(raw)
+        for construct in adapter["constructs"]:
+            ref = construct["source_provider"]
+            document = providers[ref["path"]]
+            row = pointer(document, ref["json_pointer"])
+            self.assertEqual(construct["construct_id"], row[construct["source_identity_field"]])
+            self.assertEqual(construct["source_row_label"], row["source_row_label"])
+            self.assertEqual(construct["background_construct_id"], document["derived_comparisons"]["reference_variant"])
+            self.assertIsNone(construct["sequence"])
+            self.assertIsNone(construct["sequence_sha256"])
+            self.assertFalse(construct["assay_specimen_sequence_verified"])
+        assay = adapter["assays"][0]
+        ref = assay["source_provider"]
+        original = pointer(providers[ref["path"]], ref["json_pointer"])
+        for field in ("method", "endpoint", "typical_method_conditions", "conditions_limit", "replication"):
+            self.assertEqual(assay[field], original[field])
+
+    def test_tkt_filtered_turnover_relation_keeps_separate_contexts(self):
+        completed = subprocess.run([sys.executable, str(ROOT / "scripts/query_atlas_perturbations.py"),
+                                    "--comparison", "tkt_2019:E366Q:kcat"],
+                                   capture_output=True, text=True, encoding="utf-8", check=True)
+        view = json.loads(completed.stdout)
+        self.assertEqual(len(view["comparisons"]), 1)
+        comparison = view["comparisons"][0]
+        rows = {r["id"]: r for r in view["observations"]}
+        self.assertEqual(set(rows), set(comparison["roles"].values()) | set(comparison["context_observations"]))
+        self.assertEqual(len(rows), 6)
+        self.assertEqual({rows[r]["parameter"] for r in comparison["roles"].values()}, {"kcat"})
+        self.assertEqual({rows[r]["result_kind"] for r in comparison["context_observations"]},
+                         {"numeric", "unavailable", "qualitative", "nondetection"})
+
     def test_diels_alder_substrate_markers_and_product_contexts_do_not_transfer(self):
         for parameter, wrong_participant in (("KM_diene", "2"), ("KM_dienophile", "1")):
             spec = deepcopy(self.spec)

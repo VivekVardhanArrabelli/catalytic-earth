@@ -50,6 +50,12 @@ a production biological design system.
 
 ## Quick Status — 2026-09-10
 
+The [transketolase perturbation query](docs/ATLAS_PERTURBATION_RELATION.md#cofactor-dependent-endpoints-remain-distinct)
+now keeps measured turnover, undetected intermediate accumulation and an
+unavailable optical reporter distinct. It returns the WT control and separate
+F6P contexts with the E366Q turnover comparison, preserving the source evidence
+that prevents a blanket inactivity label.
+
 The [Diels–Alder source relation](docs/ATLAS_DIELS_ALDER_CONTROLS.md) extends
 the same consumer to a different reaction class. It preserves reported mutant
 activity factors and separate product outcomes, while refusing to invent a

@@ -3,10 +3,10 @@
   "scope": {
     "question": "Which source-defined catalytic-group perturbations retain a measured endpoint, and which apparent comparisons cannot be transferred?",
     "evidence": "Projection of accepted source annotations; not new measurements, an independent evaluation, protein admission or evidence-tier promotion.",
-    "selection": "All rows of the accepted RA95 2013 kinetic and stereoselectivity tables and RA95 2017 kinetic panel; all six RA61 Table4 construct rows; all five KE59 Table2 pH-profile rows and its unassessed E230-control question. The beta-barrel packet is outside this bounded relation. One source-reported RA95.5-8F methodol synthesis outcome and its two precursor comparator contexts extend product evidence with separate conversion, isolation and source-assigned composition records. A Siegel2010 Diels-Alder extension adds three parent kinetic parameters and two author-reported activity-reduction factors with unqualified assay/metric; product bounds remain separate source contexts.",
+    "selection": "All rows of the accepted RA95 2013 kinetic and stereoselectivity tables and RA95 2017 kinetic panel; all six RA61 Table4 construct rows; all five KE59 Table2 pH-profile rows and its unassessed E230-control question. The beta-barrel packet is outside this bounded relation. One source-reported RA95.5-8F methodol synthesis outcome and its two precursor comparator contexts extend product evidence with separate conversion, isolation and source-assigned composition records. A Siegel2010 Diels-Alder extension adds three parent kinetic parameters and two author-reported activity-reduction factors with unqualified assay/metric; product bounds remain separate source contexts. Human TKT 2019 adds all seven X5P/R5P kcat and all seven F6P k_forward entries plus all five existing NMR arms; other kinetic columns remain original source context, not extra common parameter records.",
     "arithmetic": "Source-rounded central values, same-source assay and background only; reported efficiencies are never replaced by kcat/KM division.",
     "identity": "Exact sequence/provider availability is separate from study-declared construct association and physical assay-specimen identity.",
-    "limitations": "No pooled rates, generic inactivity labels, causal residue assignments, full apparatus claims, microscopic coupling energy or design-success estimates. Forward product composition retains source-author configuration and unresolved retention mapping; strict ee bounds remain structured source context, not central-value comparisons. Diels-Alder activity-reduction summaries do not identify mutant kcat or product outcomes; strict product bounds and mismatched assays remain in context."
+    "limitations": "No pooled rates, generic inactivity labels, causal residue assignments, full apparatus claims, microscopic coupling energy or design-success estimates. Forward product composition retains source-author configuration and unresolved retention mapping; strict ee bounds remain structured source context, not central-value comparisons. Diels-Alder activity-reduction summaries do not identify mutant kcat or product outcomes; strict product bounds and mismatched assays remain in context. TKT reporter-unavailable parameters, NMR qualitative presence / scoped nondetection and positive turnover remain different kinds; no selective partner-only intervention, crystal-to-assay identity or productive F6P full-cycle inference."
   },
   "sources": {
     "ra95f": {
@@ -36,6 +36,18 @@
     "da2010": {
       "path": "data/atlas/study_context/diels_alder_2010/source_qualification.json",
       "sha256": "eac85e8bd87c3587d3f33a150f879a91ffc1426ce24f0cea251df7dbf8ab160f"
+    },
+    "tktf": {
+      "path": "data/atlas/study_context/6ha3/functional_comparison.json",
+      "sha256": "a8205b4964ac094b41172cdfa9309c70cd004bfa458ee9ea62bbf64785bf6366"
+    },
+    "tkta": {
+      "path": "data/atlas/assembly_context/6ha3/spec.json",
+      "sha256": "b3a6c9306cab59095c4c3943c35ec7b0cbddadbcc1180fced9e284cff8a4b675"
+    },
+    "tkti": {
+      "path": "data/atlas/study_context/6ha3/perturbation_context.json",
+      "sha256": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0"
     }
   },
   "constructs": {
@@ -817,6 +829,173 @@
         "source": "da2010",
         "pointer": "/constructs/2/comparison_background"
       }
+    },
+    "tkt_2019:wild_type": {
+      "source_construct_id": "wild_type",
+      "provider": {
+        "source": "tkti",
+        "pointer": "/constructs/0"
+      },
+      "sequence_provider": {
+        "source": "tkti",
+        "pointer": "/constructs/0"
+      },
+      "background_id": "tkt_2019:wild_type",
+      "perturbation": [],
+      "perturbation_scope": "Source-named substitution relative to this study wild type; no exact sequence or selective subunit intervention established.",
+      "identity_scope": "Within-study named variant; no crystal-to-assay sequence or specimen authentication.",
+      "perturbation_provider": null,
+      "background_provider": null
+    },
+    "tkt_2019:E366Q": {
+      "source_construct_id": "E366Q",
+      "provider": {
+        "source": "tkti",
+        "pointer": "/constructs/1"
+      },
+      "sequence_provider": {
+        "source": "tkti",
+        "pointer": "/constructs/1"
+      },
+      "background_id": "tkt_2019:wild_type",
+      "perturbation": [
+        "E366Q"
+      ],
+      "perturbation_scope": "Source-named substitution relative to this study wild type; no exact sequence or selective subunit intervention established.",
+      "identity_scope": "Within-study named variant; no crystal-to-assay sequence or specimen authentication.",
+      "perturbation_provider": {
+        "source": "tkti",
+        "pointer": "/constructs/1/declared_substitutions"
+      },
+      "background_provider": {
+        "source": "tkti",
+        "pointer": "/constructs/1/background_construct_id"
+      }
+    },
+    "tkt_2019:E160Q": {
+      "source_construct_id": "E160Q",
+      "provider": {
+        "source": "tkti",
+        "pointer": "/constructs/2"
+      },
+      "sequence_provider": {
+        "source": "tkti",
+        "pointer": "/constructs/2"
+      },
+      "background_id": "tkt_2019:wild_type",
+      "perturbation": [
+        "E160Q"
+      ],
+      "perturbation_scope": "Source-named substitution relative to this study wild type; no exact sequence or selective subunit intervention established.",
+      "identity_scope": "Within-study named variant; no crystal-to-assay sequence or specimen authentication.",
+      "perturbation_provider": {
+        "source": "tkti",
+        "pointer": "/constructs/2/declared_substitutions"
+      },
+      "background_provider": {
+        "source": "tkti",
+        "pointer": "/constructs/2/background_construct_id"
+      }
+    },
+    "tkt_2019:E160A": {
+      "source_construct_id": "E160A",
+      "provider": {
+        "source": "tkti",
+        "pointer": "/constructs/3"
+      },
+      "sequence_provider": {
+        "source": "tkti",
+        "pointer": "/constructs/3"
+      },
+      "background_id": "tkt_2019:wild_type",
+      "perturbation": [
+        "E160A"
+      ],
+      "perturbation_scope": "Source-named substitution relative to this study wild type; no exact sequence or selective subunit intervention established.",
+      "identity_scope": "Within-study named variant; no crystal-to-assay sequence or specimen authentication.",
+      "perturbation_provider": {
+        "source": "tkti",
+        "pointer": "/constructs/3/declared_substitutions"
+      },
+      "background_provider": {
+        "source": "tkti",
+        "pointer": "/constructs/3/background_construct_id"
+      }
+    },
+    "tkt_2019:E165Q": {
+      "source_construct_id": "E165Q",
+      "provider": {
+        "source": "tkti",
+        "pointer": "/constructs/4"
+      },
+      "sequence_provider": {
+        "source": "tkti",
+        "pointer": "/constructs/4"
+      },
+      "background_id": "tkt_2019:wild_type",
+      "perturbation": [
+        "E165Q"
+      ],
+      "perturbation_scope": "Source-named substitution relative to this study wild type; no exact sequence or selective subunit intervention established.",
+      "identity_scope": "Within-study named variant; no crystal-to-assay sequence or specimen authentication.",
+      "perturbation_provider": {
+        "source": "tkti",
+        "pointer": "/constructs/4/declared_substitutions"
+      },
+      "background_provider": {
+        "source": "tkti",
+        "pointer": "/constructs/4/background_construct_id"
+      }
+    },
+    "tkt_2019:T382E": {
+      "source_construct_id": "T382E",
+      "provider": {
+        "source": "tkti",
+        "pointer": "/constructs/5"
+      },
+      "sequence_provider": {
+        "source": "tkti",
+        "pointer": "/constructs/5"
+      },
+      "background_id": "tkt_2019:wild_type",
+      "perturbation": [
+        "T382E"
+      ],
+      "perturbation_scope": "Source-named substitution relative to this study wild type; no exact sequence or selective subunit intervention established.",
+      "identity_scope": "Within-study named variant; no crystal-to-assay sequence or specimen authentication.",
+      "perturbation_provider": {
+        "source": "tkti",
+        "pointer": "/constructs/5/declared_substitutions"
+      },
+      "background_provider": {
+        "source": "tkti",
+        "pointer": "/constructs/5/background_construct_id"
+      }
+    },
+    "tkt_2019:T382Q": {
+      "source_construct_id": "T382Q",
+      "provider": {
+        "source": "tkti",
+        "pointer": "/constructs/6"
+      },
+      "sequence_provider": {
+        "source": "tkti",
+        "pointer": "/constructs/6"
+      },
+      "background_id": "tkt_2019:wild_type",
+      "perturbation": [
+        "T382Q"
+      ],
+      "perturbation_scope": "Source-named substitution relative to this study wild type; no exact sequence or selective subunit intervention established.",
+      "identity_scope": "Within-study named variant; no crystal-to-assay sequence or specimen authentication.",
+      "perturbation_provider": {
+        "source": "tkti",
+        "pointer": "/constructs/6/declared_substitutions"
+      },
+      "background_provider": {
+        "source": "tkti",
+        "pointer": "/constructs/6/background_construct_id"
+      }
     }
   },
   "assays": {
@@ -964,6 +1143,72 @@
       "reaction_direction": "forward Diels-Alder cycloaddition",
       "uncertainty_context": null,
       "qualification_scope": "Source mutation-effect assertion only; not parameter-qualified for comparisons."
+    },
+    "tkt_2019:x5p_r5p_steady_state": {
+      "provider": {
+        "source": "tktf",
+        "pointer": "/assays/0"
+      },
+      "source_assay_id": "x5p_r5p_steady_state",
+      "qualified": true,
+      "endpoint_kind": "source_reported_steady_state_two_carbon_transfer",
+      "reaction_direction": "X5P + R5P to S7P + G3P; measured forward turnover only",
+      "uncertainty_context": {
+        "table_statement": "Measurements were performed in triplicate and displayed with mean and standard deviation.",
+        "n_reported": 3,
+        "n_basis": "table-level statement; independent biological preparation count is not specified",
+        "sd_is_not_standard_error": true,
+        "raw_replicates_retained": false,
+        "missing_sd": "No uncertainty is invented for source ratio columns or censored/unavailable entries.",
+        "not_inferred": [
+          "parameter covariance",
+          "statistical significance",
+          "equivalence of rates",
+          "uncertainty on ratios of central values"
+        ],
+        "display_policy": "Numeric point-estimate displays normalize decimal formatting and the plus/minus symbol; they are not verbatim image strings. The ambiguous efficiency token is retained literally. Footnotes identify applicable explanations, not a claim that every cell prints that superscript."
+      }
+    },
+    "tkt_2019:f6p_stopped_flow": {
+      "provider": {
+        "source": "tktf",
+        "pointer": "/assays/1"
+      },
+      "source_assay_id": "f6p_stopped_flow",
+      "qualified": true,
+      "endpoint_kind": "source_model_covalent_adduct_formation",
+      "reaction_direction": "forward covalent F6P-ThDP formation within reversible donor half-reaction; not full-cycle turnover",
+      "uncertainty_context": {
+        "table_statement": "Measurements were performed in triplicate and displayed with mean and standard deviation.",
+        "n_reported": 3,
+        "n_basis": "table-level statement; independent biological preparation count is not specified",
+        "sd_is_not_standard_error": true,
+        "raw_replicates_retained": false,
+        "missing_sd": "No uncertainty is invented for source ratio columns or censored/unavailable entries.",
+        "not_inferred": [
+          "parameter covariance",
+          "statistical significance",
+          "equivalence of rates",
+          "uncertainty on ratios of central values"
+        ],
+        "display_policy": "Numeric point-estimate displays normalize decimal formatting and the plus/minus symbol; they are not verbatim image strings. The ambiguous efficiency token is retained literally. Footnotes identify applicable explanations, not a claim that every cell prints that superscript."
+      }
+    },
+    "tkt_2019:f6p_acid_quench_nmr": {
+      "provider": {
+        "source": "tkti",
+        "pointer": "/assays/0"
+      },
+      "source_assay_id": "f6p_acid_quench_nmr",
+      "qualified": true,
+      "endpoint_kind": "qualitative_covalent_intermediate_accumulation",
+      "reaction_direction": "F6P donor half-reaction intermediate accumulation; not a kinetic rate or full-cycle turnover",
+      "uncertainty_context": {
+        "replication": "source reports two independent repeats with similar results",
+        "numeric_detection_floor": null,
+        "numeric_intermediate_fraction": null,
+        "conditions_limit": "Methods describe a typical experiment; exact variant-specific preparations and per-panel acquisition settings remain unresolved."
+      }
     }
   },
   "substrates": {
@@ -1034,6 +1279,39 @@
         "source": "da2010",
         "pointer": "/reaction"
       }
+    },
+    "tkt:D-X5P+D-R5P": {
+      "name": "D-xylulose-5-phosphate and D-ribose-5-phosphate",
+      "stereochemistry": "D substrates as source named; no project-derived stereochemical graph or anomer assignment",
+      "roles": [
+        {
+          "name": "D-xylulose-5-phosphate",
+          "role": "two-carbon donor, concentration varied"
+        },
+        {
+          "name": "D-ribose-5-phosphate",
+          "role": "acceptor, 2 mM"
+        }
+      ],
+      "source": {
+        "source": "tktf",
+        "pointer": "/assays/0"
+      },
+      "canonical_reaction_id": null,
+      "isomeric_smiles": null,
+      "scope": "Measured net turnover to source-named S7P/G3P; no atom map or reverse-rate inference."
+    },
+    "tkt:D-F6P": {
+      "name": "D-fructose-6-phosphate",
+      "stereochemistry": "D substrate as source named; no project-derived stereochemical graph or anomer assignment",
+      "role": "donor half-reaction substrate; no acceptor supplied in these F6P assays",
+      "source": {
+        "source": "tktf",
+        "pointer": "/assays/1"
+      },
+      "canonical_reaction_id": null,
+      "isomeric_smiles": null,
+      "scope": "Cofactor-adduct formation or accumulation depends on assay; not X5P/R5P net turnover."
     }
   },
   "panels": [
@@ -1973,6 +2251,215 @@
           "reason": "reported_activity_reduction_not_a_parameter_qualified_mutant_measurement"
         }
       ]
+    },
+    {
+      "id": "tkt-steady_state",
+      "study_id": "tkt_2019",
+      "source": "tktf",
+      "rows_pointer": "/variants",
+      "fields": {
+        "row_id": {
+          "pointer": "/reported_variant"
+        },
+        "construct_id": {
+          "pointer": "/reported_variant"
+        },
+        "assay_id": {
+          "pointer": "/steady_state/assay_id"
+        },
+        "substrate_id": {
+          "literal": "tkt:D-X5P+D-R5P"
+        },
+        "source_locator": {
+          "pointer": "/source_locator"
+        }
+      },
+      "parameters": [
+        {
+          "id": "kcat",
+          "pointer": "/steady_state/k_cat",
+          "kind": {
+            "pointer": "/status"
+          },
+          "status_kinds": {
+            "reported_point_estimate": "numeric"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/sd"
+            },
+            "kind": {
+              "literal": "standard_deviation_when_reported"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            },
+            "unit": {
+              "pointer": "/unit"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "tkt-stopped_flow",
+      "study_id": "tkt_2019",
+      "source": "tktf",
+      "rows_pointer": "/variants",
+      "fields": {
+        "row_id": {
+          "pointer": "/reported_variant"
+        },
+        "construct_id": {
+          "pointer": "/reported_variant"
+        },
+        "assay_id": {
+          "pointer": "/stopped_flow/assay_id"
+        },
+        "substrate_id": {
+          "literal": "tkt:D-F6P"
+        },
+        "source_locator": {
+          "pointer": "/source_locator"
+        }
+      },
+      "parameters": [
+        {
+          "id": "k_forward",
+          "pointer": "/stopped_flow/k_forward",
+          "kind": {
+            "pointer": "/status"
+          },
+          "status_kinds": {
+            "reported_point_estimate": "numeric",
+            "not_applicable_reporter_absent": "unavailable"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/sd"
+            },
+            "kind": {
+              "literal": "standard_deviation_when_reported"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            },
+            "unit": {
+              "pointer": "/unit"
+            }
+          },
+          "unavailability": {
+            "source_token": {
+              "pointer": "/source_display"
+            },
+            "scope": {
+              "literal": "F6P stopped-flow covalent-adduct formation parameter unavailable with the required cofactor reporter"
+            },
+            "reason": {
+              "pointer": "/reason"
+            },
+            "is_zero_rate": {
+              "literal": false
+            },
+            "reason_basis": {
+              "literal": "Integration of source row-level footnote e with the common stopped-flow reporter method; not a separate footnote printed on each kinetic cell. T382Q marker is in the pKa cell."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "tkt-nmr",
+      "study_id": "tkt_2019",
+      "source": "tktf",
+      "rows_pointer": "/reused_accumulation_context/variant_results",
+      "fields": {
+        "row_id": {
+          "pointer": "/reported_variant"
+        },
+        "construct_id": {
+          "pointer": "/reported_variant"
+        },
+        "assay_id": {
+          "literal": "f6p_acid_quench_nmr"
+        },
+        "substrate_id": {
+          "literal": "tkt:D-F6P"
+        },
+        "source_locator": {
+          "pointer": "/source_observation_key"
+        }
+      },
+      "parameters": [
+        {
+          "id": "covalent_intermediate_accumulation",
+          "pointer": "",
+          "kind": {
+            "pointer": "/reported_result"
+          },
+          "status_kinds": {
+            "F6P-ThDP accumulated": "qualitative",
+            "no measurable covalent-intermediate accumulation": "nondetection"
+          },
+          "value": {
+            "pointer": "/numeric_intermediate_fraction"
+          },
+          "unit": {
+            "literal": null
+          },
+          "uncertainty": {
+            "value": {
+              "literal": null
+            },
+            "kind": {
+              "literal": "not_reported"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          },
+          "qualitative_result": {
+            "source_token": {
+              "pointer": "/reported_result"
+            },
+            "scope": {
+              "literal": "F6P acid-quench NMR covalent-intermediate accumulation; qualitative presence with no numeric fraction"
+            },
+            "wording_basis": {
+              "literal": "normalized_project_annotation_not_verbatim_primary_quote"
+            }
+          }
+        }
+      ],
+      "nondetection": {
+        "source_token": {
+          "pointer": "/reported_result"
+        },
+        "scope": {
+          "literal": "F6P acid-quench NMR covalent-intermediate accumulation; not a binding, formation or turnover rate"
+        },
+        "numeric_detection_limit": {
+          "pointer": "/numeric_detection_floor"
+        },
+        "is_zero_rate": {
+          "literal": false
+        },
+        "wording_basis": {
+          "literal": "normalized_project_annotation_not_verbatim_primary_quote"
+        }
+      }
     }
   ],
   "comparisons": [
@@ -3177,6 +3664,416 @@
         "da-reported-effects:P9:Q195E:source_reported_activity_reduction_factor",
         "da-reported-effects:P9:Y121F:source_reported_activity_reduction_factor"
       ]
+    },
+    {
+      "id": "tkt_2019:E366Q:kcat",
+      "study_id": "tkt_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "tkt-steady_state:E366Q:kcat",
+        "denominator": "tkt-steady_state:wild_type:kcat"
+      },
+      "context_observations": [
+        "tkt-stopped_flow:wild_type:k_forward",
+        "tkt-stopped_flow:E366Q:k_forward",
+        "tkt-nmr:wild_type:covalent_intermediate_accumulation",
+        "tkt-nmr:E366Q:covalent_intermediate_accumulation"
+      ],
+      "evidence": [
+        {
+          "source": "tktf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "tktf",
+          "pointer": "/derived_comparisons"
+        },
+        {
+          "source": "tktf",
+          "pointer": "/source_footnote_e_scope"
+        },
+        {
+          "source": "tkta",
+          "pointer": "/source_reviewed_context/relation"
+        }
+      ],
+      "scope": "Within-study named mutant / wild type for this parameter and assay. Context rows are separate endpoints and never arithmetic operands."
+    },
+    {
+      "id": "tkt_2019:E366Q:k_forward",
+      "study_id": "tkt_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "tkt-stopped_flow:E366Q:k_forward",
+        "denominator": "tkt-stopped_flow:wild_type:k_forward"
+      },
+      "context_observations": [],
+      "evidence": [
+        {
+          "source": "tktf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "tktf",
+          "pointer": "/derived_comparisons"
+        },
+        {
+          "source": "tktf",
+          "pointer": "/source_footnote_e_scope"
+        },
+        {
+          "source": "tkta",
+          "pointer": "/source_reviewed_context/relation"
+        }
+      ],
+      "scope": "Within-study named mutant / wild type for this parameter and assay. Context rows are separate endpoints and never arithmetic operands."
+    },
+    {
+      "id": "tkt_2019:E160Q:kcat",
+      "study_id": "tkt_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "tkt-steady_state:E160Q:kcat",
+        "denominator": "tkt-steady_state:wild_type:kcat"
+      },
+      "context_observations": [
+        "tkt-stopped_flow:wild_type:k_forward",
+        "tkt-stopped_flow:E160Q:k_forward",
+        "tkt-nmr:wild_type:covalent_intermediate_accumulation",
+        "tkt-nmr:E160Q:covalent_intermediate_accumulation"
+      ],
+      "evidence": [
+        {
+          "source": "tktf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "tktf",
+          "pointer": "/derived_comparisons"
+        }
+      ],
+      "scope": "Within-study named mutant / wild type for this parameter and assay. Context rows are separate endpoints and never arithmetic operands."
+    },
+    {
+      "id": "tkt_2019:E160Q:k_forward",
+      "study_id": "tkt_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "tkt-stopped_flow:E160Q:k_forward",
+        "denominator": "tkt-stopped_flow:wild_type:k_forward"
+      },
+      "context_observations": [],
+      "evidence": [
+        {
+          "source": "tktf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "tktf",
+          "pointer": "/derived_comparisons"
+        }
+      ],
+      "scope": "Within-study named mutant / wild type for this parameter and assay. Context rows are separate endpoints and never arithmetic operands."
+    },
+    {
+      "id": "tkt_2019:E160A:kcat",
+      "study_id": "tkt_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "tkt-steady_state:E160A:kcat",
+        "denominator": "tkt-steady_state:wild_type:kcat"
+      },
+      "context_observations": [
+        "tkt-stopped_flow:wild_type:k_forward",
+        "tkt-stopped_flow:E160A:k_forward",
+        "tkt-nmr:wild_type:covalent_intermediate_accumulation",
+        "tkt-nmr:E160A:covalent_intermediate_accumulation"
+      ],
+      "evidence": [
+        {
+          "source": "tktf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "tktf",
+          "pointer": "/derived_comparisons"
+        }
+      ],
+      "scope": "Within-study named mutant / wild type for this parameter and assay. Context rows are separate endpoints and never arithmetic operands."
+    },
+    {
+      "id": "tkt_2019:E160A:k_forward",
+      "study_id": "tkt_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "tkt-stopped_flow:E160A:k_forward",
+        "denominator": "tkt-stopped_flow:wild_type:k_forward"
+      },
+      "context_observations": [],
+      "evidence": [
+        {
+          "source": "tktf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "tktf",
+          "pointer": "/derived_comparisons"
+        }
+      ],
+      "scope": "Within-study named mutant / wild type for this parameter and assay. Context rows are separate endpoints and never arithmetic operands."
+    },
+    {
+      "id": "tkt_2019:E165Q:kcat",
+      "study_id": "tkt_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "tkt-steady_state:E165Q:kcat",
+        "denominator": "tkt-steady_state:wild_type:kcat"
+      },
+      "context_observations": [
+        "tkt-stopped_flow:wild_type:k_forward",
+        "tkt-stopped_flow:E165Q:k_forward",
+        "tkt-nmr:wild_type:covalent_intermediate_accumulation",
+        "tkt-nmr:E165Q:covalent_intermediate_accumulation"
+      ],
+      "evidence": [
+        {
+          "source": "tktf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "tktf",
+          "pointer": "/derived_comparisons"
+        },
+        {
+          "source": "tktf",
+          "pointer": "/source_footnote_e_scope"
+        }
+      ],
+      "scope": "Within-study named mutant / wild type for this parameter and assay. Context rows are separate endpoints and never arithmetic operands."
+    },
+    {
+      "id": "tkt_2019:E165Q:k_forward",
+      "study_id": "tkt_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "tkt-stopped_flow:E165Q:k_forward",
+        "denominator": "tkt-stopped_flow:wild_type:k_forward"
+      },
+      "context_observations": [],
+      "evidence": [
+        {
+          "source": "tktf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "tktf",
+          "pointer": "/derived_comparisons"
+        },
+        {
+          "source": "tktf",
+          "pointer": "/source_footnote_e_scope"
+        }
+      ],
+      "scope": "Within-study named mutant / wild type for this parameter and assay. Context rows are separate endpoints and never arithmetic operands."
+    },
+    {
+      "id": "tkt_2019:T382E:kcat",
+      "study_id": "tkt_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "tkt-steady_state:T382E:kcat",
+        "denominator": "tkt-steady_state:wild_type:kcat"
+      },
+      "context_observations": [
+        "tkt-stopped_flow:wild_type:k_forward",
+        "tkt-stopped_flow:T382E:k_forward"
+      ],
+      "evidence": [
+        {
+          "source": "tktf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "tktf",
+          "pointer": "/derived_comparisons"
+        },
+        {
+          "source": "tktf",
+          "pointer": "/reused_accumulation_context/T382E_T382Q_status"
+        }
+      ],
+      "scope": "Within-study named mutant / wild type for this parameter and assay. Context rows are separate endpoints and never arithmetic operands."
+    },
+    {
+      "id": "tkt_2019:T382E:k_forward",
+      "study_id": "tkt_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "tkt-stopped_flow:T382E:k_forward",
+        "denominator": "tkt-stopped_flow:wild_type:k_forward"
+      },
+      "context_observations": [],
+      "evidence": [
+        {
+          "source": "tktf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "tktf",
+          "pointer": "/derived_comparisons"
+        },
+        {
+          "source": "tktf",
+          "pointer": "/reused_accumulation_context/T382E_T382Q_status"
+        }
+      ],
+      "scope": "Within-study named mutant / wild type for this parameter and assay. Context rows are separate endpoints and never arithmetic operands."
+    },
+    {
+      "id": "tkt_2019:T382Q:kcat",
+      "study_id": "tkt_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "tkt-steady_state:T382Q:kcat",
+        "denominator": "tkt-steady_state:wild_type:kcat"
+      },
+      "context_observations": [
+        "tkt-stopped_flow:wild_type:k_forward",
+        "tkt-stopped_flow:T382Q:k_forward"
+      ],
+      "evidence": [
+        {
+          "source": "tktf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "tktf",
+          "pointer": "/derived_comparisons"
+        },
+        {
+          "source": "tktf",
+          "pointer": "/source_footnote_e_scope"
+        },
+        {
+          "source": "tktf",
+          "pointer": "/reused_accumulation_context/T382E_T382Q_status"
+        }
+      ],
+      "scope": "Within-study named mutant / wild type for this parameter and assay. Context rows are separate endpoints and never arithmetic operands."
+    },
+    {
+      "id": "tkt_2019:T382Q:k_forward",
+      "study_id": "tkt_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "tkt-stopped_flow:T382Q:k_forward",
+        "denominator": "tkt-stopped_flow:wild_type:k_forward"
+      },
+      "context_observations": [],
+      "evidence": [
+        {
+          "source": "tktf",
+          "pointer": "/measurement_identity"
+        },
+        {
+          "source": "tktf",
+          "pointer": "/derived_comparisons"
+        },
+        {
+          "source": "tktf",
+          "pointer": "/source_footnote_e_scope"
+        },
+        {
+          "source": "tktf",
+          "pointer": "/reused_accumulation_context/T382E_T382Q_status"
+        }
+      ],
+      "scope": "Within-study named mutant / wild type for this parameter and assay. Context rows are separate endpoints and never arithmetic operands."
+    },
+    {
+      "id": "tkt_2019:E160Q:NMR-accumulation-ratio",
+      "study_id": "tkt_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "tkt-nmr:E160Q:covalent_intermediate_accumulation",
+        "denominator": "tkt-nmr:wild_type:covalent_intermediate_accumulation"
+      },
+      "context_observations": [],
+      "evidence": [
+        {
+          "source": "tktf",
+          "pointer": "/reused_accumulation_context"
+        },
+        {
+          "source": "tkta",
+          "pointer": "/source_reviewed_context/functional_panel"
+        }
+      ],
+      "scope": "Declared ratio request abstains: qualitative panel provides no numeric fractions or detection floor. Named WT context remains retained."
+    },
+    {
+      "id": "tkt_2019:E160A:NMR-accumulation-ratio",
+      "study_id": "tkt_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "tkt-nmr:E160A:covalent_intermediate_accumulation",
+        "denominator": "tkt-nmr:wild_type:covalent_intermediate_accumulation"
+      },
+      "context_observations": [],
+      "evidence": [
+        {
+          "source": "tktf",
+          "pointer": "/reused_accumulation_context"
+        },
+        {
+          "source": "tkta",
+          "pointer": "/source_reviewed_context/functional_panel"
+        }
+      ],
+      "scope": "Declared ratio request abstains: qualitative panel provides no numeric fractions or detection floor. Named WT context remains retained."
+    },
+    {
+      "id": "tkt_2019:E366Q:NMR-accumulation-ratio",
+      "study_id": "tkt_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "tkt-nmr:E366Q:covalent_intermediate_accumulation",
+        "denominator": "tkt-nmr:wild_type:covalent_intermediate_accumulation"
+      },
+      "context_observations": [],
+      "evidence": [
+        {
+          "source": "tktf",
+          "pointer": "/reused_accumulation_context"
+        },
+        {
+          "source": "tkta",
+          "pointer": "/source_reviewed_context/functional_panel"
+        }
+      ],
+      "scope": "Declared ratio request abstains: qualitative panel provides no numeric fractions or detection floor. Named WT context remains retained."
+    },
+    {
+      "id": "tkt_2019:E165Q:NMR-accumulation-ratio",
+      "study_id": "tkt_2019",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "tkt-nmr:E165Q:covalent_intermediate_accumulation",
+        "denominator": "tkt-nmr:wild_type:covalent_intermediate_accumulation"
+      },
+      "context_observations": [],
+      "evidence": [
+        {
+          "source": "tktf",
+          "pointer": "/reused_accumulation_context"
+        },
+        {
+          "source": "tkta",
+          "pointer": "/source_reviewed_context/functional_panel"
+        }
+      ],
+      "scope": "Declared ratio request abstains: qualitative panel provides no numeric fractions or detection floor. Named WT context remains retained."
     }
   ],
   "evidence_context": {
@@ -3569,6 +4466,96 @@
         "source": "da2010",
         "pointer": "/reconsideration"
       }
+    ],
+    "tktf": [
+      {
+        "source": "tktf",
+        "pointer": "/study"
+      },
+      {
+        "source": "tktf",
+        "pointer": "/selection"
+      },
+      {
+        "source": "tktf",
+        "pointer": "/source_access"
+      },
+      {
+        "source": "tktf",
+        "pointer": "/uncertainty"
+      },
+      {
+        "source": "tktf",
+        "pointer": "/reused_accumulation_context"
+      },
+      {
+        "source": "tktf",
+        "pointer": "/derived_comparisons"
+      },
+      {
+        "source": "tktf",
+        "pointer": "/interpretation"
+      },
+      {
+        "source": "tktf",
+        "pointer": "/source_footnote_e_scope"
+      },
+      {
+        "source": "tktf",
+        "pointer": "/reused_measurement_bindings"
+      },
+      {
+        "source": "tktf",
+        "pointer": "/measurement_identity"
+      }
+    ],
+    "tkta": [
+      {
+        "source": "tkta",
+        "pointer": "/source_reviewed_context/functional_panel"
+      },
+      {
+        "source": "tkta",
+        "pointer": "/source_reviewed_context/kinetic_reporter_limit"
+      },
+      {
+        "source": "tkta",
+        "pointer": "/source_reviewed_context/not_established"
+      },
+      {
+        "source": "tkta",
+        "pointer": "/source_reviewed_context/relation"
+      },
+      {
+        "source": "tkta",
+        "pointer": "/source_reviewed_context/reuse_constraint"
+      },
+      {
+        "source": "tkta",
+        "pointer": "/source_reviewed_context/source_role"
+      },
+      {
+        "source": "tkta",
+        "pointer": "/source_reviewed_context/structure_subject"
+      }
+    ],
+    "tkti": [
+      {
+        "source": "tkti",
+        "pointer": "/scope"
+      },
+      {
+        "source": "tkti",
+        "pointer": "/identity_limits"
+      },
+      {
+        "source": "tkti",
+        "pointer": "/selection"
+      },
+      {
+        "source": "tkti",
+        "pointer": "/source_access"
+      }
     ]
   },
   "source_witnesses": [
@@ -3727,6 +4714,66 @@
         }
       ],
       "retention": "New metered public capture retained under its hash in Git common directory; bodies are not redistributed."
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:EDTable2-JPEG",
+      "sha256": "51ca21f005b8b5d9dd152e097940656a76821e3e379b7697da219d5522652b8c",
+      "bytes": 146137,
+      "source_url": "https://media.springernature.com/lw749/springer-static/esm/art%3A10.1038%2Fs41586-019-1581-9/MediaObjects/41586_2019_1581_Tab2_ESM.jpg",
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/51ca21f005b8b5d9dd152e097940656a76821e3e379b7697da219d5522652b8c.jpg",
+      "source_bindings": [
+        {
+          "source": "tktf",
+          "pointer": "/sources/0"
+        }
+      ],
+      "redistributed": false,
+      "retention": "Previously acquired hash-matched bytes copied from temporary cache; no new requests. TKT complete cumulative accounting and headroom remain unknown."
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:EDTable2-HTML",
+      "sha256": "58012ff70ac04784193dd2c76863c008fd6b10018c3ff4b629d6634b1ba7866e",
+      "bytes": 178782,
+      "source_url": "https://www.nature.com/articles/s41586-019-1581-9/tables/2",
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/58012ff70ac04784193dd2c76863c008fd6b10018c3ff4b629d6634b1ba7866e.html",
+      "source_bindings": [
+        {
+          "source": "tktf",
+          "pointer": "/sources/1"
+        }
+      ],
+      "redistributed": false,
+      "retention": "Previously acquired hash-matched bytes copied from temporary cache; no new requests. TKT complete cumulative accounting and headroom remain unknown."
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:SI-PDF",
+      "sha256": "9e4db71f5e59ee1184991376419894ac4c311b403f74028f9c543337e4d1733c",
+      "bytes": 436294,
+      "source_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-019-1581-9/MediaObjects/41586_2019_1581_MOESM1_ESM.pdf",
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/9e4db71f5e59ee1184991376419894ac4c311b403f74028f9c543337e4d1733c.pdf",
+      "source_bindings": [
+        {
+          "source": "tktf",
+          "pointer": "/sources/2"
+        }
+      ],
+      "redistributed": false,
+      "retention": "Previously acquired hash-matched bytes copied from temporary cache; no new requests. TKT complete cumulative accounting and headroom remain unknown."
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:landing-HTML",
+      "sha256": "e9d239f6e97bf1a563641d2b1e0a335411b6a07125ad7f250cee2e3fc0c17a59",
+      "bytes": 445216,
+      "source_url": "https://www.nature.com/articles/s41586-019-1581-9",
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/e9d239f6e97bf1a563641d2b1e0a335411b6a07125ad7f250cee2e3fc0c17a59.html",
+      "source_bindings": [
+        {
+          "source": "tktf",
+          "pointer": "/sources/3"
+        }
+      ],
+      "redistributed": false,
+      "retention": "Previously acquired hash-matched bytes copied from temporary cache; no new requests. TKT complete cumulative accounting and headroom remain unknown."
     }
   ],
   "parameter_contracts": {
@@ -3870,6 +4917,20 @@
           "author_reported_activity_reduction_summary"
         ]
       }
+    },
+    "k_forward": {
+      "source_fields": [
+        "k_forward"
+      ],
+      "units": [
+        "s^-1"
+      ]
+    },
+    "covalent_intermediate_accumulation": {
+      "source_fields": [
+        ""
+      ],
+      "units": []
     }
   },
   "reactions": {

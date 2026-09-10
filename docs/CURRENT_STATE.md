@@ -1,5 +1,23 @@
 # Current State
 
+## 2026-09-10: reporter absence and retained catalysis share one query
+
+The [common perturbation relation](ATLAS_PERTURBATION_RELATION.md#cofactor-dependent-endpoints-remain-distinct)
+now makes the retained TKT endpoint distinction executable. E366Q X5P/R5P
+kcat is 0.012 ± 0.001 s⁻¹ versus WT 2.79 ± 0.06; its F6P optical reporter
+is unavailable, while acid-quench NMR shows no measurable covalent-intermediate
+accumulation. These are three distinct results, not a generic inactivity label.
+CE-024's assay/parameter limits and the source's construct/assembly limits apply.
+
+All seven kcat records, all seven kforward records and all five NMR arms are projected through the
+same consumer. A shared unavailable kind and qualitative payload preserve
+missingness without source-specific runtime. Numeric source data remain in
+unchanged providers; seven exact assay sequences remain unestablished. Four
+primary witnesses are durably retained locally with zero requests. TKT's
+historical accounting gap is unchanged. No new experiment, admission, evidence
+tier, causal geometry or design-success estimate is added.
+
+
 ## 2026-09-10: Diels–Alder evidence retains an unresolved matched-control assay
 
 The [Diels–Alder relation](ATLAS_DIELS_ALDER_CONTROLS.md) connects the named

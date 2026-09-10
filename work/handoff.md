@@ -6,89 +6,77 @@
 This block, `docs/HOURLY_RESEARCH.md` and the latest direction review govern
 continuation. Historical handoffs below are not an execution queue.
 
-- **Identity/base:** owner `01a08a92-135d-7c83-ad02-56c77e030b23:cd88d6f2-dbac-4097-a28a-d659117d7898`;
-  first clock `2026-09-10T09:07:20Z`, lock acquired `09:07:43Z`. Clean main
-  base `7e59b7a381dd2ddce70f5fcd2b71eaa4925b15ca`; prior PR74 verified merged,
-  no open PR or recovery; fetch/fast-forward confirmed synchronization.
-  Branch `codex/diels-alder-control-relation-20260910`.
-- **Selection/question:** current direction's common perturbation priority and
-  inherited forward-product extension are complete. Can a different reaction
-  class support a measured product plus catalytic-group control in the same
-  assay? Expected gain was reuse beyond aldol chemistry; stop at one qualified
-  relation or a source-scoped gap, with no bespoke runtime or repeated access loop.
-- **Finding:** Siegel2010 main article binds the diene1/dienophile2 reaction to
-  DA_20_10 parent kinetics and Q195E450/Y121F27-fold activity-reduction summaries.
-  The underlying mutant assay, parameter, raw values and exact sequences remain
-  unqualified without the supplement. The source-scoped same-assay product/control
-  target is therefore not established. The reported effects are retained,
-  not declared absent or proved nonkinetic.
-- **Product/chemical limits:** >80% diene conversion, >97% source-assigned
-  3R,4S endo product share and >30 turnovers are separate contexts. Bounds
-  have null central values; no isolated yield, ee/dr or product-to-mutant
-  transfer. Figure4 enzyme/background concentrations and times differ. Review
-  removed an inferred zero background protein amount and separated P14's47%
-  share from unverified Figure4 conditions/integration. Figure1 labels3 as
-  transition-state schematic,4 as product; its protonation drawing yields no
-  canonical atom map or balanced proton transfer. Shared product is a source
-  entity with observation-specific stereochemistry. No reverse-rate inference.
-- **Construct/geometry limits:** source-described apo3I1C is DA_20_00_A74I,
-  not DA_20_10 or either mutant; five further changes include A272N. No
-  coordinates or exact sequences were acquired. No productive geometry,
-  microscopic group causality, assay-specimen authentication, experiment,
-  independent validation, admission, tier promotion or design-success rate.
-- **Capability/reuse:** unchanged `scripts/query_atlas_perturbations.py` returns
-  three selected parent kinetic parameters and two unqualified reported factors
-  using declarative source/participant/assay mappings. Distinct KM columns keep
-  reactant markers. Product bounds remain structured source context. New
-  `diels_alder_2010:qualified-mutant-parameter` request abstains; all113 inherited
-  records and55 comparisons remain unchanged. Current118 records/56 requests,
-  41 eligible/15 abstained are view counts, not experiments. Three unselected
-  printed specificity columns are outside scope, not missing evidence.
-- **Evidence:** `data/atlas/study_context/diels_alder_2010/source_qualification.json`
-  SHA256 `eac85e8bd87c3587d3f33a150f879a91ffc1426ce24f0cea251df7dbf8ab160f`;
-  `source_review.json`, `acquisition_receipts.json` and the common projection/review
-  bind accepted scope. Explanation `docs/ATLAS_DIELS_ALDER_CONTROLS.md`; CE-033.
-  Main article PMC3241958 hash `3fccfd28aa75fde68708f85f8aea6b7d3b4f79069279afd0b6b65af1a9c9afda`
-  and Figures1/4 are in the Git-common-directory source cache. Supplement and
-  cited analytical references are unacquired/unassessed; no project integration
-  or independent stereochemical authentication. Bodies/images not redistributed.
-- **Acquisition:** new distinct `designed-diels-alder-siegel2010` batch totals
-  14 requests/502,726 response-body bytes, including discovery/errors/redirects.
-  Checked public supplement routes returned challenge/403/not-OA/520; the author
-  page supplied no supplement link. Stop unchanged routes. Existing author-index
-  bytes were reused without duplicate charge. Prior cumulative RA95 remains
-  `24/15,353,338`; RA61 `45/3,236,259`; KE59 `9/261,580`; beta-barrel
-  `5/8,449,621`; KE70 `16/1,102,794` with main/SI access-blocked. TKT lower-bound
-  `7/3,004,884` and M0081 lower-bound `28/1,474,405` retain unknown full headroom;
-  M0187 `12/440,960` stays at its sublimit. No reset.
-- **Review/reconsideration:** all three read-only GPT-5.6 Sol/ultra source,
-  representation and adversarial roles accepted exact scientific scope and
-  completed. Source objections narrowed the output; board
-  `work/coordination_diels_alder_20260910.md` retains adjudication. No runtime
-  change or enzyme-ID branch; two manual source-panel mappings remain curation
-  work, with no measured speedup. Same-consumer exclusions demonstrate partial
-  reuse; the stronger matched-product goal is unqualified, with no incumbent
-  superiority or design utility claimed. Consecutive no-progress runs:0.
-- **Scientific checkpoint:** 2026-09-10T09:30:48.942726+00:00 (23.48 minutes).
-- **Verification/publication checkpoint:**27 focused tests pass; six invalid
-  factor/parent-parameter transfers abstain; swapped KM markers fail;10 retained
-  witnesses verify at15,562,232bytes. Prior32 claim objects and inherited
-  projection outputs remain unchanged. All 550 core tests, 14 truth tests and repository contracts pass. Exact-head CI
-  remains a publication gate. Only the marked current handoff block changed. Parent
-  alone owns all work; no unrelated changes or editing workers.
-  Exact commit, push/PR/merge/CI and release outcome belong in the task result and
-  local receipt `.git/catalytic-earth-runs/20260910T090743Z-cd88d6f2-dbac-4097-a28a-d659117d7898.json`.
-  This is a prepublication checkpoint, not inferred merge success. If publication
-  is unfinished, resume this branch/PR before creating competing work.
-- **One next action:** test the existing common consumer on the source-qualified
-  human-transketolase E366Q partner-subunit case: F6P adduct-reporter nondetection
-  versus retained X5P/R5P turnover. Expected gain is a computable cofactor-dependent
-  perturbation relation preventing reporter-to-catalysis transfer, not another
-  isolated annotation. Reuse existing evidence and its unresolved source-accounting
-  limits. Stop after one executable relation or a precise shared-representation
-  gap; no case-specific runtime, geometry-only work or unchanged Diels–Alder
-  supplement retries. New permitted supplement evidence is required to reopen
-  this exact Diels–Alder control-assay question.
+- **Identity/base:** owner `01a08ac8-1853-70f0-8bb5-ccc1e91ffb14:b51dc3e1-26af-48f0-8e7a-21e80a223cad`;
+  first clock `2026-09-10T10:06:17Z`, lock acquired `10:06:56Z`. Clean main
+  base `f1a8f637a495f55c19e45c17a5ca0abb43df717d`; PR75 was merged, no open PR,
+  dirty state or pending recovery. Fetch/fast-forward confirmed synchronization.
+  Branch `codex/tkt-perturbation-relation-20260910`.
+- **Selection/question:** the direction review's original RA95/RA61/KE59 reuse
+  priority is complete. Following the reconciled latest handoff, can the common
+  consumer separate TKT E366Q NMR nondetection, unavailable F6P reporter kinetics
+  and retained X5P/R5P turnover? Gain: executable cofactor-dependent counterevidence.
+  Stop: one source-qualified relation or a precise shared-representation gap.
+- **Finding:** E366Q X5P/R5P kcat `0.012 ± 0.001 s^-1` versus WT
+  `2.79 ± 0.06` at 20 C gives a descriptive central-value ratio `0.0043010753`.
+  F6P kforward at 4 C remains unavailable (`n.a.`; required 325-nm band absent).
+  Separate acid-quench NMR reports no measurable covalent-intermediate accumulation;
+  numeric fraction and detection floor are null. Neither result becomes zero.
+  The reporter explanation is a row-footnote/common-method integration, explicitly
+  including T382Q's marker in the pKa column, not each blue kinetic cell.
+- **Capability:** `python scripts/query_atlas_perturbations.py --comparison tkt_2019:E366Q:kcat`
+  returns the two turnover operands plus four WT/E366Q F6P context records.
+  The latter never enter turnover arithmetic. All seven kcat records, seven
+  kforward slots and five existing NMR arms are included: 19 view records
+  (11 numeric,3 unavailable,3 qualitative,2 nondetection),16 requests(9 eligible,
+  7 abstaining). Complete view137/72 requests/50 eligible; all prior118 records
+  and56 comparison results unchanged. Counts describe projections, not experiments.
+- **Limits:** exact assay sequences remain missing for all seven named variants.
+  6HA3 is E160Q; no E366Q geometry, selective partner-only mutation, crystal-to-assay
+  identity or causal geometric relation. No productive F6P full-cycle claim,
+  propagated uncertainty, statistical equivalence, experiment, admission, evidence
+  tier or design-success estimate. T382E/Q are absent from the NMR panel, not
+  negative; WT-only NMR context was removed. Other table columns retain bounds,
+  cooperative parameter types and source punctuation in original context.
+- **Evidence:** unchanged `data/atlas/study_context/6ha3/functional_comparison.json`
+  (`a8205b4964ac094b41172cdfa9309c70cd004bfa458ee9ea62bbf64785bf6366`) and
+  `data/atlas/assembly_context/6ha3/spec.json` remain source providers. New
+  `perturbation_context.json` adapter hash `3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0`;
+  common projection `df5db22766353112c5cd72d69b3bea77bd256e636c875f3c429dff00d999a9e5`.
+  `data/atlas/perturbations/review.json` binds accepted runtime/data/docs; explanation
+  in `docs/ATLAS_PERTURBATION_RELATION.md`, existing CE-024 scope. Board
+  `work/coordination_tkt_perturbation_20260910.md` records source objections and
+  all three read-only Sol/ultra acceptances. Parent reviewed table/methods/legend;
+  this is correlated computational review, not independent human/lab evidence.
+- **Acquisition:** zero requests/response bytes. Four previously acquired TKT
+  witnesses (1,206,429 bytes) were hash-retained in the Git-common-directory cache;
+  all14 witnesses verify at16,768,661bytes. Bodies remain host-local.
+  TKT lower-bound `7/3,004,884` and M0081 lower-bound `28/1,474,405` retain
+  unknown full headroom. Inherited RA95 `24/15,353,338`, RA61 `45/3,236,259`,
+  KE59 `9/261,580`, beta-barrel `5/8,449,621`, KE70 `16/1,102,794`,
+  Siegel2010 `14/502,726`, M0187 `12/440,960` unchanged. No batch reset.
+- **Reuse/reconsideration:** three source-layout mappings and seven identity entries
+  reuse unchanged numeric/NMR providers. A shared unavailable kind and qualitative
+  payload fix actual common concepts; no enzyme-ID branch. Adapter nested source
+  links are verified by source review and regression, not automatically resolved
+  runtime links. Curation still required manual declarations and review; no measured
+  speedup or incumbent superiority. Common retrieval/exclusion adds bounded value.
+  All three reconsideration rules applied; consecutive no-progress runs:0.
+- **Checkpoint:** 2026-09-10T10:27:57.804517+00:00 (21.68 minutes). 33 focused tests,
+  14 truth tests, source/provider equality, old-output equality, witness verification
+  and fresh-directory Atlas-3/10 wheel checks pass. All556 core tests pass
+  (one skip). Repository contracts pass; exact-head CI remains a publication gate; final verification and publication are recorded in
+  the task result and local receipt. All workers completed; no unrelated changes.
+  Only this marked handoff block changed. This is a scientific prepublication
+  checkpoint, not inferred merge success; resume this branch/PR first if unfinished.
+  Receipt: `.git/catalytic-earth-runs/20260910T100656Z-b51dc3e1-26af-48f0-8e7a-21e80a223cad.json`.
+- **One next action:** project the already qualified POX analogue-nonbinding and
+  pyruvate functional evidence through the same relation. Starting file
+  `data/atlas/study_context/pox2019/functional_comparison.json`, with retained
+  Table2b/SI source witnesses. Expected gain: distinguish the chemical cause of
+  unavailable MAP parameters from TKT reporter absence while retaining separate
+  pyruvate/DCPIP and pyruvate/FAD responses. Stop after one executable relation
+  or precise shared gap; no new isolated annotation, geometry, acquisition-budget
+  reset or unchanged Diels–Alder/KE70 supplement retry.
 
 Preserve historical content below this marked block. Git identifies this
 containing increment; no self-hash follow-up commit is required.
