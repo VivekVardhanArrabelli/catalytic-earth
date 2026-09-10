@@ -327,6 +327,23 @@ E230 catalysis, preserved apparatus, productive geometry or absence of another
 catalytic contribution. This is no paper-wide absence claim, experiment,
 mechanism compilation, design-success estimate or independent validation.
 
+## CE-028 — increased activity does not establish preserved substrate preference
+
+**Status:** Supported
+
+The [RA95 enantiopure comparison](docs/ATLAS_DESIGN_STEREOSELECTIVITY.md)
+preserves eight R/S kinetic rows and four source-reported selectivity factors.
+The 2013 RA95.0 starting construct favors S-methodol, while RA95.5-8 favors
+R-methodol; their printed R/S efficiency factors are 0.43 and 14. The study's
+post-RA95.5 evolution screen used racemic substrate, which does not establish preserved
+S preference in a selected descendant or explain the reversal causally.
+RA95.5's S kinetic triplet is inconsistent; its reported R preference remains
+source interpretation while an integrated preference label is withheld.
+Printed factors remain distinct from quotients of displayed efficiencies.
+These selected cleavage assays establish no reverse-synthesis selectivity,
+single-residue cause, design success rate, exact assay-specimen identity or
+new experiment. The 2013 starting clone differs from the earlier design.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,

@@ -1,0 +1,138 @@
+{
+  "schema_version": "catalytic-earth.source-qualification-review.v1",
+  "assessment_id": "giger2013-ra95-enantiopure-selectivity",
+  "decision": "accept_source_annotation",
+  "authorized_operation": "source_annotation",
+  "policy_binding": {
+    "path": "data/governance/computational_review_policy.json",
+    "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "reviewed_assessment": {
+    "path": "data/atlas/study_context/ra95_2013/stereoselectivity.json",
+    "sha256": "430065ef058082fd59c0fa32fb2a0dcc7009fa325bb589467db708551a5cbd83"
+  },
+  "reviewed_documentation": {
+    "path": "docs/ATLAS_DESIGN_STEREOSELECTIVITY.md",
+    "sha256": "7e934c2801d762333e1e9cb32380337c44cb08fc4e96ec38ed2ca6f917db86d4"
+  },
+  "retained_input_bindings": [
+    {
+      "path": "data/atlas/study_context/ra95_2013/functional_comparison.json",
+      "sha256": "0e2fe21efce4d805fdef8505770c0cf18557ed774c08a79cfc5e68c1b1fbf94a"
+    },
+    {
+      "path": "data/atlas/study_context/ra95_2013/functional_review.json",
+      "sha256": "01274207915b1f6b5e76cfee1ef9982ed0046e844cd26a7bea14cd109e7e9d15"
+    },
+    {
+      "path": "data/atlas/study_context/ra95_2013/acquisition_receipts.json",
+      "sha256": "9b6c2c8803773b58ff39ff76e5ad1f772faa788c28b888df965434868d76658e"
+    }
+  ],
+  "review_process": "Three separately prompted, read-only gpt-5.6-sol/ultra roles, with shared context and parent adjudication. Worker names retain the initial KE70 inquiry after the evidence-supported pivot. No independent human review, calibrated reviewer equivalence or laboratory evidence is implied.",
+  "reviews": [
+    {
+      "role": "source",
+      "reviewer_task": "ke70_source",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_final_data_documentation_and_ke70_receipt_pins",
+      "scope": "Exact retained primary XML and visual SI pages2/5/9, all eight R/S rows, 24 parameter values, four factors, methods and source locators; unit-key delta checked."
+    },
+    {
+      "role": "representation",
+      "reviewer_task": "ke70_representation",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_final_data_documentation_and_ke70_receipt_pins",
+      "scope": "Four construct-provider JSON pointers and sequence hashes; all source/provider/review pins; eight construct/assay/substrate joins, unit vocabulary, quantities, nulls, factors and both acquisition totals."
+    },
+    {
+      "role": "adversarial",
+      "reviewer_task": "ke70_adversarial",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_final_data_documentation_and_ke70_receipt_pins",
+      "scope": "Post-RA95.5 screening scope, source-reported versus integrated preference, conflicting kinetics, selection-versus-characterization, exact earlier-design/specimen limits, cleavage-versus-synthesis and causal/benchmark boundaries."
+    }
+  ],
+  "adjudications": [
+    {
+      "objection": "A source-reported RA95.5 R preference could either be erased by a null or promoted into a reconciled kinetic label.",
+      "evidence": "SI Table1 page2 RA95.5 S kcat0.17 / KM560uM conflicts with efficiency3.3; factor3.2 differs from16/3.3. Main S3/P12 explicitly reports R preference.",
+      "decision": "Preserve the author-reported direction and all literal quantities; withhold normalized triplet eligibility and integrated direction. Original-to-final reversal does not depend on this intermediate."
+    },
+    {
+      "objection": "Printed selectivity factors could be silently replaced by quotients of rounded displayed efficiencies.",
+      "evidence": "All four source factors differ from the displayed-value quotients; footnote b defines R/S efficiency ratio.",
+      "decision": "Retain both as distinct fields; no rounding explanation, exact repaired factor or ratio uncertainty is inferred. The derived quotients are arithmetic, not independent measurements."
+    },
+    {
+      "objection": "The documented screening method could be transferred to the earlier design-to-RA95.5 history.",
+      "evidence": "Main Methods/S8/P29 distinguishes the inherited RA95.5; S12/P34 describes the subsequent evolution rounds.",
+      "decision": "After initial source acceptance, adversarial source challenge narrowed the document and current claims to post-RA95.5 rounds and named RA95.5-5/RA95.5-8 characterization. Source objections controlled the final wording."
+    },
+    {
+      "objection": "Activity gains or racemic screening could imply preserved S design preference, a causal selection effect, or synthetic product selectivity.",
+      "evidence": "Main S2/P7 reports intended/S-preferred starting context; S5/P20 and SI Table1 report final R preference; S12/P34 is racemic lysate screening, distinct from SI Figure1/main S16 purified enantiopure UV-vis.",
+      "decision": "Permit the construct- and assay-specific preference relation only. No cause, single-residue role, monotonic trajectory, reverse-synthesis selectivity/ee or prospective success rate."
+    },
+    {
+      "objection": "Names could transfer the exact earlier design or individual assay specimen identity.",
+      "evidence": "SI Table1 footnote d and existing provider distinguish five surface substitutions in 2013 RA95.0; four source-printed sequence strings bind named study constructs only.",
+      "decision": "Reuse exact provider JSON pointers and hashes without copying strings; leave earlier design and per-assay specimen equivalence unresolved."
+    },
+    {
+      "objection": "New chemistry might introduce gratuitous representation variants.",
+      "evidence": "Initial draft used micromolar instead of the established uM token, and new receipt limit/count keys differed from its declared transport version.",
+      "decision": "Standardized eight K_M unit tokens and budget/receipt keys; values unchanged. All three roles accepted the exact resulting pins. No runtime or new validator was added."
+    },
+    {
+      "objection": "Failed KE70 full-text routes could become evidence that matched dyad perturbations are absent.",
+      "evidence": "Only exact bibliographic metadata and an author abstract were acquired; all article/SI bodies are errors, challenges or shells.",
+      "decision": "Keep KE70 at access-only accounting, with scientific_result null and dyad evidence unassessed_not_absent. No KE70 science packet or claim entry; stop unchanged failed routes."
+    }
+  ],
+  "ke70_access_only_record": {
+    "path": "data/atlas/study_context/ke70_2011/acquisition_receipts.json",
+    "sha256": "531c9fd3a4311578b8ed93f83c3f46191a1da6c6ed7c78082fc267ed3c21a8b5"
+  },
+  "blocked_operations": [
+    "repairing source kinetic values or reconciling the exact four factors",
+    "integrated RA95.5 preference or clean kinetic-triplet labels",
+    "transferring racemic lysine-mutant sensitivity to enantiopure roles",
+    "reverse-synthesis selectivity, yield or product ee",
+    "single-site causal or screening-caused reversal claims",
+    "earlier design or assay-specimen identity inferred from names",
+    "mechanism compilation, protected registry admission, tier upgrade or independent validation",
+    "KE70 full-paper absence or dyad qualification from abstract/metadata"
+  ],
+  "parent_verification": "Visual retained SI Table1, main exact paragraph locators, all eight unique row/substrate/construct joins, 24 quantities, four source factors/derived quotients, provider/sequence/source hashes, missingness and all 16 KE70 body hashes/lengths checked. Existing RA95/KE59 source annotations and old claim objects remain unchanged. Repository contracts and CI are publication checks, not scientific validation.",
+  "source_access": {
+    "ra95": {
+      "batch_id": "designed-retroaldolase-ra95-giger2013",
+      "new_requests": 0,
+      "new_response_body_bytes": 0,
+      "cumulative_requests": 9,
+      "cumulative_response_body_bytes": 4454733
+    },
+    "ke70": {
+      "batch_id": "designed-kemp-eliminase-ke70-khersonsky2011",
+      "cumulative_requests": 16,
+      "cumulative_response_body_bytes": 1102794,
+      "status": "full_article_and_SI_uninspected_access_blocked"
+    },
+    "other_batches": "Unchanged. No renamed/reset batch or additional unmetered source acquisition."
+  },
+  "evidence_limits": {
+    "independent_human_review": false,
+    "laboratory_validation_by_project": false,
+    "new_measurements_collected": 0,
+    "evidence_tier_promotion": false,
+    "new_mechanism_compilation": false,
+    "protected_registry_change": false,
+    "frozen_packet_resolution": false,
+    "correlated_agent_errors_possible": true
+  },
+  "reviewed_at_utc": "2026-09-10T02:33:24.886982+00:00"
+}

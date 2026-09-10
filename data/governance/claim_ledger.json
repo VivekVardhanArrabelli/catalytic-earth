@@ -344,5 +344,19 @@
       "data/atlas/study_context/ke59_2012/acquisition_receipts.json",
       "docs/ATLAS_KE59_BASE_EVIDENCE.md"
     ]
+  },
+  {
+    "claim_id": "CE-028",
+    "claim_kind": "scientific_result",
+    "status": "Supported",
+    "claim": "The 2013 RA95.0 construct favors S-methodol cleavage while RA95.5-8 favors R-methodol. Their source-reported R/S efficiency factors are 0.43 and 14; higher activity does not establish preservation of the intended substrate preference.",
+    "current_wording": "Keep the post-RA95.5 racemic cell-lysate screening separate from enantiopure UV-vis characterization. Eight R/S rows and four printed factors reuse four exact construct providers. RA95.5 retains its author-reported R preference but its inconsistent S kinetic triplet blocks an integrated preference label. Printed factors and displayed-efficiency quotients remain distinct; no repaired kinetics, reverse-synthesis selectivity, single-residue cause, exact assay specimen, prospective design success or new experiment is established. The 2013 starting clone differs from the earlier same-named design.",
+    "rationale": "Substrate stereochemistry, construct identity, assay context, parameter identity and source consistency determine whether a published activity outcome can support a design-preference label. A selected trajectory does not establish that the selection substrate caused the reversal.",
+    "evidence": [
+      "data/atlas/study_context/ra95_2013/stereoselectivity.json",
+      "data/atlas/study_context/ra95_2013/stereoselectivity_review.json",
+      "data/atlas/study_context/ra95_2013/functional_comparison.json",
+      "docs/ATLAS_DESIGN_STEREOSELECTIVITY.md"
+    ]
   }
 ]
