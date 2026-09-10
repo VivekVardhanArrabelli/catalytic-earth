@@ -268,7 +268,7 @@
     "claim_id": "CE-022",
     "claim_kind": "structure_applicability",
     "status": "Supported",
-    "claim": "Retained 2QUT has author Tyr363 OH over 24 angstrom from same-chain deposited 13P C1/C3 in A/B/C and no modeled Tyr363 in D, while all four chains retain Lys229\u201313P covalent connections. Declared assembly 1 uses identity operator 1.",
+    "claim": "Retained 2QUT has author Tyr363 OH over 24 angstrom from same-chain deposited 13P C1/C3 in A/B/C and no modeled Tyr363 in D, while all four chains retain Lys229–13P covalent connections. Declared assembly 1 uses identity operator 1.",
     "current_wording": "The deposited enamine does not furnish the source-proposed mobile Tyr proton-transfer pose. Preserve atom and chain identity without inferring absent catalysis, dynamics, populations, a reacting-atom map, kinetics or a design-distance threshold. Existing annotation counts and evidence tiers are unchanged.",
     "rationale": "Recomputed distances and atom-row coverage separate covalent intermediate identity from the source-proposed catalytic arrangement. All selected cross-chain terminal-carbon distances in the declared assembly are also remote; unmodeled coordinates are not physical residue deletion.",
     "evidence": [
@@ -429,6 +429,23 @@
       "data/atlas/study_context/diels_alder_2010/acquisition_receipts.json",
       "data/atlas/perturbations/projection.json",
       "docs/ATLAS_DIELS_ALDER_CONTROLS.md"
+    ]
+  },
+  {
+    "claim_id": "CE-034",
+    "claim_kind": "scientific_result",
+    "status": "Supported",
+    "claim": "Measured RA95.5-8F has exact full canonical sequence correspondence to source-named5AOU and5AN7, while actual MHO237 chemical state and incomplete inhibitor-adduct mapping remain distinct.",
+    "current_wording": "The source describes inhibitor3 derivatization and a Schiff-base complex; the5AN7 LLK enone component, short Lys83 contacts and CC1/Lys2083 entry prose do not provide a complete typed protein-adduct graph. Current Lys83 is author1083 and no LLK/Lys83 struct_conn row is deposited; absent structured connectivity does not prove absent adduct. Complex crystal pH is source-conflicted7.5 versus4.5 and current5AN7 models62-63 despite the supplement unmodeled58-63 statement. Preserve all alternatives, occupancies, source claims and model boundaries. Canonical identity does not establish identical physical materials, productive solution geometry, mutant structure, microscopic chemical roles, new experiments or higher evidence tier.",
+    "rationale": "A generic state link connects existing functional endpoints to the exact canonical construct and preserves chemical mapping failures instead of treating a PDB title or sequence as a complete productive template.",
+    "evidence": [
+      "data/atlas/study_context/ra95_2017/chemical_state.json",
+      "data/atlas/study_context/ra95_2017/chemical_state_review.json",
+      "data/atlas/study_context/ra95_2017/chemical_state_acquisition.json",
+      "data/atlas/deposit_context/ra95_5aou/projection.json",
+      "data/atlas/deposit_context/ra95_5an7/projection.json",
+      "data/atlas/perturbations/projection.json",
+      "docs/ATLAS_RA95_CHEMICAL_STATE.md"
     ]
   }
 ]

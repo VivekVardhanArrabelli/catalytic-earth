@@ -18,10 +18,13 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--study", help="Source study ID; retains evidence and comparison exclusions")
     parser.add_argument("--comparison", help="Exact comparison ID; retains all its control observations")
+    parser.add_argument("--state-link", help="Exact construct-to-state link; retains its functional observations")
     parser.add_argument("--output", type=Path, help="Write JSON here instead of stdout")
     parser.add_argument("--verify-witnesses", action="store_true", help="Also hash-check retained primary files in the Git common directory; never fetch")
     parser.add_argument("--check", action="store_true", help="Resolve the relation and report compact integrity/coverage counts")
     args = parser.parse_args()
+    if args.state_link and args.comparison:
+        parser.error("--state-link and --comparison select different relations")
     result = project(ROOT)
     if args.verify_witnesses:
         common = subprocess.check_output(["git", "rev-parse", "--git-common-dir"], cwd=ROOT, text=True).strip()
@@ -31,6 +34,7 @@ def main() -> int:
             parser.error("unknown study ID")
         result["observations"] = [row for row in result["observations"] if row["study_id"] == args.study]
         result["comparisons"] = [row for row in result["comparisons"] if row["study_id"] == args.study]
+        result["state_links"] = [row for row in result["state_links"] if row["study_id"] == args.study]
     if args.comparison:
         result["comparisons"] = [row for row in result["comparisons"] if row["id"] == args.comparison]
         if not result["comparisons"]:
@@ -38,6 +42,16 @@ def main() -> int:
         ids = {ref for row in result["comparisons"] for ref in row["roles"].values()}
         ids.update(ref for row in result["comparisons"] for ref in row.get("context_observations", []))
         result["observations"] = [row for row in result["observations"] if row["id"] in ids]
+    if args.state_link:
+        result["state_links"] = [row for row in result["state_links"] if row["id"] == args.state_link]
+        if not result["state_links"]:
+            parser.error("unknown state link within selected scope")
+        ids = {ref for link in result["state_links"] for ref in link["observation_ids"]}
+        result["observations"] = [row for row in result["observations"] if row["id"] in ids]
+        result["comparisons"] = []
+    selected_ids = {row["id"] for row in result["observations"]}
+    result["state_links"] = [link for link in result["state_links"]
+                             if set(link["observation_ids"]) <= selected_ids]
     comparison_ids = {item["id"] for item in result["comparisons"]}
     for row in result["observations"]:
         row["comparison_memberships"] = [item for item in row["comparison_memberships"]
@@ -45,6 +59,7 @@ def main() -> int:
     if args.check:
         print(json.dumps({"status": "source_projection_verified", "parameter_records": len(result["observations"]),
                           "comparison_requests": len(result["comparisons"]),
+                          "state_links": len(result["state_links"]),
                           "eligible_descriptive_comparisons": sum(item["eligible"] for item in result["comparisons"]),
                           "primary_witness_cache": result["source_witness_cache_status"]}))
         return 0

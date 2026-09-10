@@ -450,3 +450,13 @@ missing exact assay-specimen mapping; a named deposit is not denied or promoted
 into functional geometry. The [POX coordination record](https://github.com/VivekVardhanArrabelli/catalytic-earth/blob/main/work/coordination_pox_perturbation_20260910.md)
 records this review. The current handoff and direction review select the next
 scientific bottleneck; repeated arithmetic on these settled cases adds no gain.
+
+## Exact construct to deposited state
+
+The [RA95 chemical-state relation](ATLAS_RA95_CHEMICAL_STATE.md) joins the
+existing three parent kinetic parameters to two hash-bound deposit projections
+through complete canonical sequence equality. Use
+`--state-link ra95_2017:RA95.5-8F-states`. The generic link checks construct,
+observation and deposit identities while retaining actual chemical modifications,
+source conflicts and incomplete covalent mapping. State identity is not inferred
+from sequence equality; no parent-to-mutant or crystal-to-assay transfer follows.

@@ -1,18 +1,18 @@
 {
   "schema_version": "catalytic-earth.perturbation-source-review.v1",
   "status": "source_reviewed_computational",
-  "reviewed_at_utc": "2026-09-10T13:10:10.084491+00:00",
-  "scope": "Existing shared relation with explicit 2017-to-2013 methodol preparation provenance. Exactly 21 tetrad parameter records change only substrate context/id; all 193 observation IDs and all 111 comparison objects are preserved. No new measurement, runtime primitive, source acquisition, substrate-lot identity or repeated 2017 characterization is established.",
+  "reviewed_at_utc": "2026-09-10T14:37:30.808871+00:00",
+  "scope": "Exact parent functional-row to canonical-sequence/deposited-state association; retain incomplete adduct graph and source conflicts. All previous193observations and111comparisons unchanged.",
   "reviewed_bindings": {
-    "data/atlas/perturbations/projection.json": "44853d42ad6ee16c34f83bd0c076196d12f992a0a62e5a099199ea72a1f992b7",
-    "src/catalytic_earth/atlas_perturbations.py": "e154c26947daf76d1c9a13cc1bf8d8415c5aec72baab3e15a708ed69e05f15c6",
-    "scripts/query_atlas_perturbations.py": "fa6746be65dd78f6f7a9d9181f1306922837421e021c974168962b00ccd3d2bc",
-    "docs/ATLAS_PERTURBATION_RELATION.md": "62b417055c20eaa6ffdc2aaeff2dd7aa1f2d7047e93c977b34862c38fc70b2ad",
+    "data/atlas/perturbations/projection.json": "35c90e8f6cb7778e75798d6d1f65a67767abb90fed72390a91ce438799b8eaf0",
+    "src/catalytic_earth/atlas_perturbations.py": "ecbb31b654c47ef62187b3b7acd90fa1bab4b0ae43b51704bc8f42d2f0ea7795",
+    "scripts/query_atlas_perturbations.py": "37fd192d4be8cab2f21b3d24b3165b9494a0ae2e3d4aab3d06305bec74c8c5c4",
+    "docs/ATLAS_PERTURBATION_RELATION.md": "920c9c533700d9a8f09f52c29daa396e103e86527ee3b2048d0d369a04122ca7",
     "data/atlas/study_context/ra95_2017/forward_synthesis_review.json": "a8025989cb89415ac59267dc0af2da415019af3786ec2db3debd18630de8be9d",
     "docs/ATLAS_FORWARD_SYNTHESIS.md": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84",
     "data/atlas/study_context/diels_alder_2010/source_review.json": "19759f43826c73005f00265144e3debc9805457b0320b18693da7b9bbdd3a01b",
     "docs/ATLAS_DIELS_ALDER_CONTROLS.md": "eb0319636aea183771290ffb0608ace1bc49c80949e0f1bbd4e41bb3c2acbb48",
-    "tests/core/test_atlas_perturbations.py": "239decd16ecc387a3064eba226ac9bc0a8aec88cd4b00a547fa9b456d73b089a",
+    "tests/core/test_atlas_perturbations.py": "1b8f467dd2a9193cc4c6402e0065e7d0ee155fa28a0f21d7edccc56907f88b93",
     "data/atlas/study_context/6ha3/perturbation_context.json": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0",
     "data/atlas/study_context/6ha3/functional_review.json": "9af6d94d77800810d210e032e90e6af6a99ffd22a5548d9d39b5a7f502199200",
     "data/atlas/assembly_context/6ha3/review.json": "434188c22e847de2add0c76cc06076de9347d39ecd259acc051631792fcc7eaa",
@@ -21,7 +21,27 @@
     "data/atlas/study_context/pox2019/functional_review.json": "63ecd4add9ea393ede14f3f0fb9b8f6592171ae97bd35f3124e87c3cb08bcac9",
     "data/atlas/study_context/beta_barrel_2022/perturbation_context.json": "1fc756ce8005249c6f586685c0bced3de938fe14926f1a5fee96abffe427bc1a",
     "data/atlas/study_context/beta_barrel_2022/source_review.json": "0845d94bf15f2e12958cdec3cdc8a58ad49ceb6597791c2fc20a4dcc5df822be",
-    "docs/ATLAS_BETA_BARREL_CONTROLS.md": "6dc8bc3a8b5e64a9af9941dff063e5387f7692874144ca8855d49a4997fe3def"
+    "docs/ATLAS_BETA_BARREL_CONTROLS.md": "6dc8bc3a8b5e64a9af9941dff063e5387f7692874144ca8855d49a4997fe3def",
+    "data/atlas/deposit_context/ra95_5an7/5AN7.cif": "2ec74e2ac07a32c763a9f7ba75b2a0f33d92e5249ed0b2bcc89aa38a17dc9d5f",
+    "data/atlas/deposit_context/ra95_5an7/projection.json": "af6042a9b4c59755d9af6ba260013bbf6182a7c3e50b3c6cae7a415c5f96839c",
+    "data/atlas/deposit_context/ra95_5an7/spec.json": "4c84b3e93e7af09d2194390c08d59ac2d01707e103b151754cf8e2a55a9c2144",
+    "data/atlas/deposit_context/ra95_5aou/5AOU.cif": "f97adeb9ea6b49b76f3cdb83366aa17bdfb56a42c8c168eb9e4d3f6ef121130e",
+    "data/atlas/deposit_context/ra95_5aou/projection.json": "4fdd16492422e4ddfb48ffa28a7f2772d8ae470516bdeaf282b24ccd8faeec9e",
+    "data/atlas/deposit_context/ra95_5aou/spec.json": "ab361294051a683b404104001d5a7320fa71414bd6dbb0dead9995ec733abaae",
+    "data/atlas/study_context/ra95_2017/chemical_state.json": "0304a28cc9676ae9d920b5c4f6c47f102d10320e125cc40cbfddd971ccff695d",
+    "data/atlas/study_context/ra95_2017/chemical_state_acquisition.json": "4b0427a24aab3b1269f25cd80b3b9c90f61c4a99404499d77cf0c16a8b5f2ecb",
+    "docs/ATLAS_RA95_CHEMICAL_STATE.md": "a85ee7c6accdafb0f2fb63a1a658413e07788cee4a5f9f7879dce726c6707c01",
+    "CLAIMS.md": "aad29d5f45bd67ed549680a2dc48c46e769b1cbc813408dc1e3f154de308f67b",
+    "data/governance/claim_ledger.json": "39bb4376158531878d514fe19d96036dd6639cce51473275f024b7478fe49e58",
+    "docs/CURRENT_DECISIONS.md": "2e500907f90daab784855c2f14bb18777f757c02d045cc367049bdfaec81ef1c",
+    "docs/CURRENT_STATE.md": "a143eb6d0bc50f698999a605ac42cda2937d009b580ef336df69548305561430",
+    "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
+    "src/catalytic_earth/atlas_deposit_context.py": "de95b7b107928b1390ecbbeb71a4949a2c8d9bafd1ef128b78681a0616101a76",
+    "src/catalytic_earth/atlas_assembly_context.py": "5d671a761f3ad493661f3c25b50dce693ef2169a48942af9664a65e0b0ae0835",
+    "scripts/build_atlas_deposit_context.py": "f64380b0398fcfb4ec89e99757c18c487050d4079dab4fe8a4e3fc9acce0be34",
+    "data/atlas/deposit_context/ra95_5aou/review.json": "73b138bf2293cbf4c676cf895b5d9148fc5353e43b1f7a859206a571680880f2",
+    "data/atlas/deposit_context/ra95_5an7/review.json": "7dbfe13783c9607150da46c3f9fdc26e8ce39665d7f50148ab5a50d481a0e3dd",
+    "data/atlas/study_context/ra95_2017/chemical_state_review.json": "3c57d4b7e584f486d515684aa1fcdb842566d8306f30fedd0172a31e0df1dac9"
   },
   "inherited_source_bindings": {
     "ra95f": {
@@ -73,24 +93,29 @@
       "sha256": "e29120547dbd982b1fb5b3f2ff1b1228e0fc96a16f540f20c1eaf39d35b93257"
     }
   },
-  "review_process": {
-    "model": "gpt-6-astra",
-    "reasoning_effort": "max",
-    "roles": [
-      "source",
-      "representation/reuse",
-      "direction"
-    ],
-    "reviewer_tasks": [
-      "evidence_review_12h",
-      "reuse_review_12h",
-      "direction_review_12h"
-    ],
-    "independent_human_review": false,
-    "correlated_errors_possible": true,
-    "role_dependence": "Separate questions in existing review tasks; earlier task context is retained. These are related-model computational reviews, not independent human or statistical evidence.",
-    "parent_adjudication": "Source reviewer accepted the exact projection and relation-document hashes against retained 2017 Materials p2, publisher reference 12 and 2013 Methods/P41. The prior-procedure citation is supported; historical NMR/rotation remains 2013-reported. Reuse reviewer accepted identical hashes and the regression after verifying only 21 substrate contexts change, all 111 comparison objects are identical, and the regression passes against the candidate and fails against the prior output. Parent confirmed the same invariance with the public query, all 17 retained witnesses, unchanged source providers/runtime and the focused suite. Required repository/CI checks remain publication gates."
-  },
+  "review_process": [
+    {
+      "role": "source",
+      "task": "ra95_source",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_manifest"
+    },
+    {
+      "role": "representation",
+      "task": "ra95_representation",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_manifest"
+    },
+    {
+      "role": "adversarial",
+      "task": "ra95_adversarial",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_manifest"
+    }
+  ],
   "resolved_objections": [
     {
       "issue": "Unmarked RA95 rows hid source-reported plus-minus magnitudes in the common uncertainty field.",
@@ -267,6 +292,10 @@
     {
       "issue": "The 2017 tetrad reused an unscoped 2013 substrate-preparation field, potentially presenting historical NMR/rotation agreement as repeated 2017 characterization.",
       "resolution": "Use a scoped 2017 R-methodol context with the Materials p2-to-reference 12-to-Giger2013 preparation chain. Procedure adoption is supported; historical characterization remains 2013-reported, with shared lot, exact 2017 ee and repeated 2017 characterization unestablished. Measurements and comparisons are unchanged."
+    },
+    {
+      "objection": "Exact sequence matching could silently imply complete chemistry, identical material, or any same-construct functional endpoint.",
+      "decision": "Typed state link binds exact source row/parameters and canonical sequence only; source conflicts and incomplete adduct graph remain in data; public projection rebuilds reviewed deposits."
     }
   ],
   "remaining_limits": [
@@ -290,7 +319,7 @@
     "This completes a distinct source-conflict relation; repeated migration of cached tables alone is not a justified next scientific task.",
     "The 2017 prior-method citation does not authenticate an exact assay-substrate lot or repeat the 2013 characterization; no substrate mismatch or numerical error was demonstrated by this correction."
   ],
-  "coordination_record": "docs/SCIENTIFIC_DIRECTION.md",
+  "coordination_record": "work/coordination_ra95_chemical_state_20260910.md",
   "added_source_bindings": {
     "betaf": {
       "path": "data/atlas/study_context/beta_barrel_2022/source_qualification.json",
@@ -306,10 +335,10 @@
     }
   },
   "prior_review_binding": {
-    "base_commit": "e68f4cf194d5cc054c3e036c0726e0724f27bff2",
+    "base_commit": "df81264b3a33efdfe8e0faf53c32ad4e9a069084",
     "path": "data/atlas/perturbations/review.json",
-    "sha256": "c920806a4c63364687edf14680fea77532877df25d7237a658c6c97738af5bbe",
-    "scope": "All 193 observation IDs and 111 comparison objects are unchanged; exactly 21 tetrad rows change only substrate_id and substrate provenance. Git preserves the earlier review, original contexts and bindings."
+    "sha256": "cae07331f063a16471f256aa4d4cf8c5550789dc83d6ce4b47b5f0c40fa392a2",
+    "scope": "Previous observations, comparisons, constructs, assays, substrates, reactions, evidence_context and17source witnesses unchanged."
   },
   "forward_synthesis_limits": [
     "Forward product configuration is source-assigned; R/S retention mappings remain conflicted and no assignment transfers to the0.7%precursor conversion arm.",
@@ -317,15 +346,11 @@
   ],
   "this_run_source_access": {
     "batch_id": "designed-retroaldolase-ra95-giger2013",
-    "new_requests": 0,
-    "new_response_body_bytes": 0,
-    "cumulative_requests": 24,
-    "cumulative_response_body_bytes": 15353338,
-    "new_local_witness_copies": 0,
-    "new_local_witness_bytes": 0,
-    "verification_scope": "Three existing RA95 witnesses hash-verified by source reviewer; all source providers and witness metadata unchanged.",
-    "verified_local_witness_files": 17,
-    "verified_local_witness_bytes": 20956262
+    "new_requests": 2,
+    "new_response_body_bytes": 1237896,
+    "cumulative_requests": 26,
+    "cumulative_response_body_bytes": 16591234,
+    "source_accounting": "complete; acquisition stopped; two public RCSB mmCIFs retained; previous17primary witnesses unchanged"
   },
   "transport_followup_review": {
     "reviewed_at_utc": "2026-09-10T10:40:07.718165+00:00",
@@ -352,5 +377,10 @@
       "pointer": "/sources/0",
       "primary_locator": "Giger2013:article:Methods/S19/P41, Methodol synthesis"
     }
-  ]
+  ],
+  "verification_followup": {
+    "change": "tests/test_truth_guard.py claim-count assertion33to34 for newCE034",
+    "review": "parent diff check; no weakening of chemistry, gating or prior claim assertions",
+    "not_scientific_data_change": true
+  }
 }

@@ -68,6 +68,18 @@
     "betar": {
       "path": "data/atlas/study_context/beta_barrel_2022/acquisition_receipts.json",
       "sha256": "415daa1a2b8baad6d7368f9623b943442e4be16910c59d45903e44d2efa873e5"
+    },
+    "ra95state": {
+      "path": "data/atlas/study_context/ra95_2017/chemical_state.json",
+      "sha256": "0304a28cc9676ae9d920b5c4f6c47f102d10320e125cc40cbfddd971ccff695d"
+    },
+    "ra95apo": {
+      "path": "data/atlas/deposit_context/ra95_5aou/projection.json",
+      "sha256": "4fdd16492422e4ddfb48ffa28a7f2772d8ae470516bdeaf282b24ccd8faeec9e"
+    },
+    "ra95inhib": {
+      "path": "data/atlas/deposit_context/ra95_5an7/projection.json",
+      "sha256": "af6042a9b4c59755d9af6ba260013bbf6182a7c3e50b3c6cae7a415c5f96839c"
     }
   },
   "constructs": {
@@ -1608,17 +1620,26 @@
         "procedure_reference_doi": "10.1038/nchembio.1276",
         "evidence_chain": [
           {
-            "provider": {"source": "ra95t", "pointer": "/sources/0"},
+            "provider": {
+              "source": "ra95t",
+              "pointer": "/sources/0"
+            },
             "primary_locator": "Obexer2017:SI:Materials:p2, first paragraph, methodol1a superscript12",
             "relation": "Methodol preparation is reported by reference to a previous procedure."
           },
           {
-            "provider": {"source": "ra95t", "pointer": "/sources/0/publisher_link_binding"},
+            "provider": {
+              "source": "ra95t",
+              "pointer": "/sources/0/publisher_link_binding"
+            },
             "primary_locator": "Publisher preview li[data-counter=12], p#ref-CR12 and Article-reference-12 DOI link",
             "relation": "Reference12 identifies Giger2013, DOI10.1038/nchembio.1276."
           },
           {
-            "provider": {"source": "ra95s", "pointer": "/sources/0"},
+            "provider": {
+              "source": "ra95s",
+              "pointer": "/sources/0"
+            },
             "primary_locator": "Giger2013:article:Methods/S19/P41, Methodol synthesis",
             "relation": "The cited procedure separates the racemate into enantiomers by preparative chiral HPLC."
           }
@@ -1626,7 +1647,10 @@
         "prior_study_characterization": {
           "reporting_study_id": "ra95_2013",
           "statement": "The earlier article reports proton NMR and optical-rotation agreement with cited literature.",
-          "provider": {"source": "ra95s", "pointer": "/substrates/0"},
+          "provider": {
+            "source": "ra95s",
+            "pointer": "/substrates/0"
+          },
           "primary_locator": "Giger2013:article:Methods/S19/P41",
           "repeat_for_2017_assay_substrate": "not_established_in_inspected_scope"
         },
@@ -7870,5 +7894,41 @@
       },
       "reactant_substrate_id": "diels-alder-inputs:1+2"
     }
-  }
+  },
+  "state_links": [
+    {
+      "id": "ra95_2017:RA95.5-8F-states",
+      "study_id": "ra95_2017",
+      "construct_id": "ra95_2017:RA95.5-8F",
+      "observation_ids": [
+        "ra95-tetrad:S1:RA95.5-8F:kcat",
+        "ra95-tetrad:S1:RA95.5-8F:KM",
+        "ra95-tetrad:S1:RA95.5-8F:kcat_over_KM"
+      ],
+      "context_provider": {
+        "source": "ra95state",
+        "pointer": ""
+      },
+      "states": [
+        {
+          "state_id": "ra95-8f:5AOU:apo",
+          "packet_id": "ra95.5aou.chemical-state.2026-09-10",
+          "provider": {
+            "source": "ra95apo",
+            "pointer": ""
+          },
+          "polymer_selection_id": "polymer-sequence"
+        },
+        {
+          "state_id": "ra95-8f:5AN7:inhibitor-derived",
+          "packet_id": "ra95.5an7.chemical-state.2026-09-10",
+          "provider": {
+            "source": "ra95inhib",
+            "pointer": ""
+          },
+          "polymer_selection_id": "polymer-sequence"
+        }
+      ]
+    }
+  ]
 }

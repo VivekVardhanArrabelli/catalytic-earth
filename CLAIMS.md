@@ -424,6 +424,23 @@ supplement details remain unassessed. No same-assay product/control relation,
 canonical atom map, productive geometry, causal group contribution, project
 experiment, independent validation or design-success estimate follows.
 
+## CE-034 — canonical sequence does not complete a deposited covalent state
+
+**Status:** Supported
+
+The [RA95 construct-to-state relation](docs/ATLAS_RA95_CHEMICAL_STATE.md)
+links the measured RA95.5-8F parent to5AOU and5AN7 by exact full canonical
+sequence equality while retaining MHO237 oxidation. In5AN7, source-described
+inhibitor3 derivatization, deposited LLK and short Lys83 contacts remain distinct
+from an unresolved complete typed covalent graph. The deposit prose calls
+CC1/Lys2083, but current coordinates use LLK/Lys1083 and contain no corresponding
+`_struct_conn` row. This does not establish absent adduct. Complex crystallization
+pH conflicts between supplement7.5 and deposit4.5; the supplement's unmodeled
+58–63 statement also differs from current5AN7 coordinates at62–63. Preserve
+these source/model boundaries and alternative occupancies. No physical
+assay/crystal identity, productive solution geometry, mutant structure,
+microscopic role, new experiment or evidence-tier promotion follows.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,

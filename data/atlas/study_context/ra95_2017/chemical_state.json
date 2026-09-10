@@ -1,0 +1,257 @@
+{
+  "schema_version": "catalytic-earth.construct-chemical-state-context.v1",
+  "assessment_id": "ra95-8f-construct-to-chemical-state-20260910",
+  "operation": "source_annotation",
+  "construct_id": "RA95.5-8F",
+  "scientific_question": "Can the measured parent be related to source-named apo and inhibitor-derived deposited states without assuming exact chemical or physical preparation identity?",
+  "result": {
+    "construct_relation": "supported_source_named_parent_and_exact_full_canonical_sequence_equality",
+    "chemical_mapping": "partial_source_linked_inhibitor_derived_instance; exact_complete_covalent_graph_unresolved",
+    "missing_evidence": "An unambiguous atom/bond/protonation mapping between inhibitor3, the source-described Schiff-base/vinylogous-amide state and the deposited protein-plus-LLK graph; resolution of complex crystallization pH4.5 versus7.5.",
+    "stopping_condition_met": "A supported construct-level relation plus a specific chemical-state mapping limitation; no need for a generic distance catalogue."
+  },
+  "source_bindings": {
+    "functional_provider": {
+      "path": "data/atlas/study_context/ra95_2017/source_qualification.json",
+      "sha256": "6a7867da4e141c79ecb0c5542b3c5ab8b9aca20d638554c504612fde3930398d"
+    },
+    "acquisition": {
+      "path": "data/atlas/study_context/ra95_2017/chemical_state_acquisition.json",
+      "sha256": "4b0427a24aab3b1269f25cd80b3b9c90f61c4a99404499d77cf0c16a8b5f2ecb"
+    }
+  },
+  "primary_source": {
+    "source_id": "Obexer2017:SI",
+    "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnchem.2596/MediaObjects/41557_2017_BFnchem2596_MOESM342_ESM.pdf",
+    "sha256": "2d1ce2aa6d4851996be75e63990ac3498a62ab611630b1529f1cf37c6976160d",
+    "response_body_bytes": 10373958,
+    "scope": "Materials p2; crystallization/refinement p10; sequence FigureS6a p23; FiguresS8/S9 pp25-26; TableS2 p31. Main article body remains unacquired and unassessed."
+  },
+  "sequence_correspondence": {
+    "provider_pointer": "/constructs/0",
+    "canonical_sequence_length": 258,
+    "canonical_sequence_sha256": "b842c993f9e9e3e80cffb546e6c8b5142541953e89b0bf4ddcfdfcb6aae0297b",
+    "normalization": "Remove only whitespace from deposited canonical one-letter sequence. Both full strings equal the printed parent including starting Met and LEHHHHHH; no trimming or residue renumbering.",
+    "source_numbering": "one-based printed sequence",
+    "chemical_difference": "Both deposits encode MHO at label237, parentMET; canonicalM is a parent-residue mapping, not chemical identity.",
+    "coordinate_coverage": "A full deposited polymer sequence is not a full coordinate model; exact missing-residue rows are retained. No globally constant author-number offset is assumed.",
+    "physical_preparation_identity": null,
+    "physical_preparation_identity_status": "not established by source naming or canonical sequence equality",
+    "source_deposit_model_conflict": {
+      "source": "SI Methods p10 says residues58-63 could not be modeled in both structures.",
+      "deposits": {
+        "5AOU_unmodeled_label_positions": [
+          1,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          250,
+          251,
+          252,
+          253,
+          254,
+          255,
+          256,
+          257,
+          258
+        ],
+        "5AN7_unmodeled_label_positions": [
+          1,
+          58,
+          59,
+          60,
+          61,
+          250,
+          251,
+          252,
+          253,
+          254,
+          255,
+          256,
+          257,
+          258
+        ],
+        "5AN7_modeled_despite_source_statement": [
+          62,
+          63
+        ]
+      },
+      "decision": "Preserve source statement and current deposited model separately; no coordinate deletion, inferred revision cause or sequence mismatch."
+    },
+    "source_reported_suffix_positions": [
+      251,
+      258
+    ],
+    "source_reported_suffix": "LEHHHHHH",
+    "deposit_tag_scope": {
+      "5AOU_expression_tag_positions": [
+        246,
+        258
+      ],
+      "source": "5AOU _struct_ref_seq_dif annotates246-258 as expression tag; source packet separately retains the explicit terminal251-258LEHHHHHH suffix.",
+      "decision": "Retain both scopes; no asserted universal tag boundary or trimming."
+    },
+    "initiator_methionine_limit": "The printed and deposited canonical strings include Met1, unmodeled in both crystals. SI TableS4 calculates intact mass without initialMet. No exact mature N-terminus or specimen sequence is inferred.",
+    "mho_oxygen_occupancy": {
+      "atom": "OD1",
+      "5AOU": 0.71,
+      "5AN7": 0.74,
+      "scope": "Only the named extra oxygen is partial occupancy in theseMHO rows; no inferred unoxidized population or functional effect."
+    }
+  },
+  "states": [
+    {
+      "state_id": "ra95-8f:5AOU:apo",
+      "pdb_id": "5AOU",
+      "deposit_packet_id": "ra95.5aou.chemical-state.2026-09-10",
+      "kind": "source_named_apo_without_inhibitor",
+      "source_assignment": "SI TableS2 maps apoRA95.5-8F to5AOU; primary citation and deposit title agree.",
+      "chemical_scope": "No inhibitor in this source comparison; phosphate, ethylene glycol, water and MHO237 remain present. Apo does not mean chemically empty.",
+      "crystal_pH": {
+        "supplement": 4.6,
+        "deposit": 4.6,
+        "resolved": 4.6
+      },
+      "diffraction_temperature_K": 100,
+      "source_crystallization_temperature_C": 20,
+      "author_site_numbers": {
+        "Y51": "1051",
+        "S81": "2081",
+        "K83": "2083",
+        "N110": "2110",
+        "Y180": "2180"
+      },
+      "assay_conditions_transfer": false
+    },
+    {
+      "state_id": "ra95-8f:5AN7:inhibitor-derived",
+      "pdb_id": "5AN7",
+      "deposit_packet_id": "ra95.5an7.chemical-state.2026-09-10",
+      "kind": "source_linked_inhibitor3_derived_LLK_instance",
+      "source_assignment": "SI TableS2 maps RA95.5-8F/inhibitor3 complex to5AN7. Materials names3 as1-(6-methoxynaphthalen-2-yl)butane-1,3-dione. The source describes a Schiff-base complex and compares its twisted geometry with the planar configuration expected for vinylogous amide4; this does not identify the isolated deposited LLK definition as intact3.",
+      "deposited_ligand": {
+        "component_id": "LLK",
+        "label_asym_id": "D",
+        "label_entity_id": "3",
+        "author_chain_id": "A",
+        "author_seq_id": "5001",
+        "model_id": "1",
+        "name": "(2E)-1-(6-methoxynaphthalen-2-yl)but-2-en-1-one",
+        "formula": "C15 H14 O2",
+        "atom_row_count_including_H": 31,
+        "heavy_atom_count": 17,
+        "occupancy": 0.75,
+        "canonical_equivalent_to_free_inhibitor3": false,
+        "complete_protein_adduct_graph_established": false
+      },
+      "crystal_pH": {
+        "supplement": 7.5,
+        "deposit": 4.5,
+        "resolved": null,
+        "status": "unresolved_source_conflict"
+      },
+      "diffraction_temperature_K": 100,
+      "source_crystallization_temperature_C": 20,
+      "author_site_numbers": {
+        "Y51": "1051",
+        "S81": "1081",
+        "K83": "1083",
+        "N110": "1110",
+        "Y180": "1180"
+      },
+      "source_preparation": {
+        "inhibitor_excess_fold": 5,
+        "derivatization_hours": 2,
+        "acetonitrile_percent": 2.7,
+        "post_derivatization": "gel filtration before crystallization",
+        "identity_limit": "This preparation differs from the29C substrate-cleavage assay; no shared aliquot or active fraction established.",
+        "cryoprotection": "Mother liquor supplemented with25%(v/v)ethylene glycol; flash frozen in liquid nitrogen."
+      },
+      "covalent_state_evidence": {
+        "source_report": "SI FiguresS8/S9 describe a Schiff-base complex of the1,3-diketone inhibitor.",
+        "deposit_prose": "_pdbx_entry_details.nonpolymer_details calls CC1 covalently bonded to lysine2083.",
+        "numbering_conflict": "5AN7 polymer lysine83 is author1083, not2083. No silently repaired source token; apo5AOU uses2083.",
+        "typed_connection_inventory": "Both _struct_conn rows connect the MHO237 peptide backbone; none names LLK or Lys83.",
+        "coordinate_context": "Lys83NZ-to-LLKC13 distancesA1.274005/B1.291032angstrom are close contacts compatible with the source-reported attachment, but do not create a typed bond or select a tautomer.",
+        "normalized_interfragment_bond": null,
+        "bond_order": null,
+        "protonation": null,
+        "absence_of_adduct_established": false
+      },
+      "selected_carbonyl_context": {
+        "deposit_group": "LLKO1=C11 from deposited chem_comp_bond",
+        "protein_group": "Tyr51OH alternativesA/B",
+        "distances_angstrom": {
+          "A": 2.435342,
+          "B": 1.776955
+        },
+        "source_relation": "FigureS8 describes contact of the remaining ligand carbonyl withTyr51.",
+        "interpretation": "Separate coordinate-only alternatives against the sole ligand instance, not jointly observed ligand geometries. TheB distance1.776955angstrom must not be labeled a coexistent contact or hydrogen bond. No averaging or inferred proton position.",
+        "joint_alternate_population": null
+      },
+      "occupancy_context": {
+        "LLK": 0.75,
+        "K83_NZ": {
+          "A": 0.57,
+          "B": 0.43
+        },
+        "Y51_OH": {
+          "A": 0.75,
+          "B": 0.25
+        },
+        "joint_occupancy_established": false
+      },
+      "assay_conditions_transfer": false,
+      "ligand_dictionary_coordinate_conflict": {
+        "source_categories": [
+          "_chem_comp_atom",
+          "_chem_comp_bond",
+          "_atom_site"
+        ],
+        "dictionary_only_atom_names": [
+          "H13",
+          "H31A",
+          "H31B"
+        ],
+        "coordinate_only_atom_names": [
+          "H112",
+          "H1B",
+          "H1C"
+        ],
+        "dictionary_C12_C13_bond_order": "doub",
+        "dictionary_C13_has_H13": true,
+        "coordinate_H13_present": false,
+        "decision": "Do not repair names, valence, bond order or tautomer; component dictionary and coordinate atom inventories are not an unambiguous complete adduct graph. Hydrogen coordinates or alternate naming do not independently establish protonation."
+      }
+    }
+  ],
+  "design_use": {
+    "added_relation": "The exact parent functional endpoints and both deposit contexts are retrievable together, with partial chemical identity and source conflicts made explicit. This prevents attaching a clean productive-template label from a PDB name or canonical sequence.",
+    "not_established": [
+      "Microscopic catalytic step, proton-transfer sequence or solution geometry",
+      "Mutant structural effects or isolated role of any catalytic group",
+      "Functional meaning of MHO237 oxidation",
+      "Exact graph of the inhibitor-protein adduct, unique protonation or bond order",
+      "Independent human review, project experiment, evidence-tier promotion or design performance"
+    ],
+    "reuse": "One generic exact-canonical-sequence state link joins existing observations and generic deposit projections; source chemistry stays in data. Three generic CIF category selections added.",
+    "incumbent_boundary": "A competent reader can assemble these sources manually; no measured time saving or incumbent superiority. The added result is an executable association with prevented unsupported transfer."
+  },
+  "source_scope_note": "Only Y51 carbonyl and K83 attachment coordinate pairs are projected. FigureS9 also names Ser81/ordered waters and Met182 sulfur-pi packing; no claim of complete contact inventory or elementary causal roles.",
+  "functional_context": {
+    "provider": {
+      "path": "data/atlas/study_context/ra95_2017/source_qualification.json",
+      "sha256": "6a7867da4e141c79ecb0c5542b3c5ab8b9aca20d638554c504612fde3930398d"
+    },
+    "row_pointer": "/kinetic_observations/0",
+    "parameter_ids": [
+      "kcat",
+      "KM",
+      "kcat_over_KM"
+    ],
+    "scope": "Parent steady-state cleavage parameter row only; same construct identity does not transfer synthesis or thermal endpoints into this declared relation."
+  }
+}

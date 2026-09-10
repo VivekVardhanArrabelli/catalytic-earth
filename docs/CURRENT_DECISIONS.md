@@ -1,5 +1,15 @@
 # Current Decisions
 
+## 2026-09-10: retain the exact construct link and stop at the chemical mapping limit
+
+Use the generic state-link relation after [source challenge](ATLAS_RA95_CHEMICAL_STATE.md).
+Full canonical sequence equality supports the parent construct association; it
+does not normalizeMHO237 or the incompleteLLK/protein covalent graph. Preserve
+source pH7.5 versus deposit4.5 and source-unmodeled versus deposited62-63.
+The bounded chemical-state question is answered at this qualified scope. Do not
+repeat unchanged acquisition or repair deposited chemistry by inference.
+Source cases remain annotations; all protected/frozen/exposure surfaces are unchanged.
+
 ## 2026-09-10: close the reuse priority and preserve preparation provenance
 
 The [scheduled direction review](SCIENTIFIC_DIRECTION.md) confirms that the

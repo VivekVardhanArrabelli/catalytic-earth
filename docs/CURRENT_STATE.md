@@ -1,5 +1,15 @@
 # Current State
 
+## 2026-09-10: RA95 parent function connects to chemically limited deposits
+
+The [construct-to-state query](ATLAS_RA95_CHEMICAL_STATE.md) resolves the existing
+three parent kinetic parameters alongside5AOU/5AN7 through exact full canonical
+sequence equality. ActualMHO237 oxidation, incomplete typed inhibitor-adduct
+connectivity, complex-pH conflict and source/deposit coordinate-coverage
+disagreement remain explicit. Source-reported covalency is retained; it is not
+negated by missing structured connectivity. No productive template, mutant
+geometry, physical specimen identity or evidence-tier promotion is established.
+
 ## 2026-09-10: beta-barrel control conflict is queryable without construct transfer
 
 The [common relation](ATLAS_PERTURBATION_RELATION.md#a-qualitative-control-conflict-stays-attached-to-its-construct)
