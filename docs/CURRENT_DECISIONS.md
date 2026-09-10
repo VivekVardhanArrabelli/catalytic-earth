@@ -1,5 +1,22 @@
 # Current Decisions
 
+## 2026-09-10: preserve complete paired comparisons without inferring a full apparatus
+
+The [RA95 tetrad source review](../data/atlas/study_context/ra95_2017/source_review.json)
+governs one supplement-scoped source annotation. A matched four-cell tyrosine
+comparison permits descriptive nonmultiplicativity for each reported kinetic
+parameter. The two missing Asn double cells and all missing Lys combination
+cells prevent higher-order tetrad decomposition. Preserve thermal and intact-mass
+support while retaining active-fraction, structural and microscopic uncertainty.
+Near-parent efficiency does not establish a dispensable catalytic group.
+
+Source checks required all three parameters in the comparison and separated
+printed substitution labels from exact sequence deltas. Reuse earlier sequence
+providers only after exact cross-source equality; preserve the initiator Met
+in the string despite the source's mature-mass calculation. All facts fit
+existing data concepts; no case-specific runtime or new validator is needed.
+The main body is unavailable, so no paper-wide absence claim is authorized.
+
 ## 2026-09-10: preserve source disagreement before transferring a design template
 
 The [beta-barrel review](../data/atlas/study_context/beta_barrel_2022/source_review.json)

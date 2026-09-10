@@ -1,0 +1,900 @@
+{
+  "schema_version": "catalytic-earth.source-qualification.v1",
+  "assessment_id": "obexer2017-ra95-tyrosine-pair-perturbations",
+  "operation": "source_annotation",
+  "scientific_question": "Do matched final-background single/multiple catalytic-group perturbations constrain conditional component effects beyond earlier RA95 lysine relocation?",
+  "conclusion": {
+    "supported": "The Y51F/Y180F double has more loss than a multiplicative reference made from the two single-mutant central values in the same RA95.5-8F R-methodol assay. Y180F alone has printed efficiency33600 versus33800 M^-1 s^-1, but the engineered Y51F/Y180F background gives170 versus3400. Its kcat effect also differs by background.",
+    "bounded_relation": "Descriptive parameter-specific nonmultiplicativity of reported outcomes; this is a four-cell paired substitution comparison, not a measured microscopic cooperative mechanism or interaction energy.",
+    "not_established": [
+      "full-tetrad or three-way epistasis",
+      "statistical significance or propagated interaction uncertainty",
+      "isolated chemical role versus local structural/active-fraction effects",
+      "productive geometry, proton-transfer sequence or elementary-step rate",
+      "independent human validation, new project experiment or design-success rate",
+      "equivalence of near-equal printed single-mutant efficiencies"
+    ]
+  },
+  "counted_objects": {
+    "new_primary_study_contexts": 1,
+    "kinetic_table_rows": 7,
+    "thermal_shift_table_rows": 7,
+    "intact_mass_table_rows": 7,
+    "new_directly_printed_sequence_strings": 1,
+    "reused_prior_sequence_providers_checked_against_2017": 2,
+    "derived_mutant_sequence_strings": 6,
+    "complete_two_substitution_comparisons": 1,
+    "new_protein_registry_records": 0,
+    "new_compiled_mechanisms": 0,
+    "project_run_experiments": 0,
+    "evidence_tier_change": false
+  },
+  "sources": [
+    {
+      "source_id": "Obexer2017:SI",
+      "doi": "10.1038/nchem.2596",
+      "pmid": "27995916",
+      "authors": "Obexer R, Godina A, Garrabou X, Mittl PRE, Baker D, Griffiths AD, Hilvert D",
+      "journal": "Nature Chemistry 9, 50-56 (2017)",
+      "online_publication_date": "2016-08-29",
+      "article_title": "Emergence of a catalytic tetrad during evolution of a highly active artificial aldolase",
+      "supplement_title_as_printed": "Emergence of a catalytic tetrad during evolution of a highly efficient artificial aldolase",
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnchem.2596/MediaObjects/41557_2017_BFnchem2596_MOESM342_ESM.pdf",
+      "local_cache_path": "/private/tmp/ce-ra95-tetrad-aa923b6d/supplement.pdf",
+      "sha256": "2d1ce2aa6d4851996be75e63990ac3498a62ab611630b1529f1cf37c6976160d",
+      "response_body_bytes": 10373958,
+      "pdf_pages": 35,
+      "identity_binding": "Exact DOI on every supplementary page, matching authors, and exact hyperlink in acquired publisher preview. Preserve active versus efficient title wording; same-source identity does not rely on title equality.",
+      "publisher_link_binding": {
+        "url": "https://www.nature.com/articles/nchem.2596",
+        "local_cache_path": "/private/tmp/ce-ra95-tetrad-aa923b6d/publisher-final.html",
+        "sha256": "5b9df7244fa46c1888282f55d814c90f8ef47d980ccebafa1a7f10ec13658fd1",
+        "scope": "abstract, figure headings, references and exact supplementary link; main text remains subscription preview"
+      },
+      "rights": "Copyright 2016 Macmillan Publishers Limited; all rights reserved. Source bodies and rendered figures are reference/cache-only and are not redistributed. This packet is project-authored factual annotation with source attribution.",
+      "inspected_scope": "Supplementary Methods pp4-10, FiguresS5-S11 pp22-28, TablesS1-S4 pp30-33; other supplement sections inspected only for acquisition/selection context, not curated as kinetic or synthesis records.",
+      "main_article_body_status": "unacquired_unassessed; no paper-wide absence claim"
+    }
+  ],
+  "acquisition_binding": {
+    "path": "data/atlas/study_context/ra95_2017/acquisition_appendix.json",
+    "sha256": "3a679e4628e2e884a703aedc185dbd4cf97f9fc2ece4face4f7004189946d710",
+    "cumulative_batch_id": "designed-retroaldolase-ra95-giger2013",
+    "cumulative_requests": 24,
+    "cumulative_response_body_bytes": 15353338
+  },
+  "selection": {
+    "included": "Every TableS1 variant row, with its thermal-shift endpoint and TableS4 intact-mass counterpart. The Y51/Y180 pair is the complete two-site square in this selected panel.",
+    "not_a_fresh_evaluation": "Retrospective source annotation of selected evolved/engineered constructs; no benchmark outcome, model/threshold/family tuning or held-out read. Existing exposure ledger unchanged.",
+    "excluded": "S7 S-enantiomer/pH/progress curves, forward-synthesis scope, screen enrichment and relative-to-solution rate-enhancement columns are not curated as comparable mutation endpoints."
+  },
+  "constructs": [
+    {
+      "construct_id": "RA95.5-8F",
+      "sequence": "MPRYLKGWLEDVVQLSLRRPSVHASRQRPIISLNERILEFNKRNITAIIAYYLRKSPSGLDVERDPIEYAKYMEPYAVGLSIKTEEKYFDGSYEMLRKIASSVSIPILMNDFIVKESQIDDAYNLGADTVLLIVEILTERELESLLEYARGYGMEPLILINDENDLDIALRIGARFITIYSMNFETGEINKENQRKLISMIPSNVVKVPLLDFFEPNEIEELRKLGVNAFMISSSLMRNPEKIKELIEGSLEHHHHHH",
+      "sequence_length": 258,
+      "sequence_sha256": "b842c993f9e9e3e80cffb546e6c8b5142541953e89b0bf4ddcfdfcb6aae0297b",
+      "sequence_status": "directly_printed_258_residue_string",
+      "source": "Obexer2017:SI:FigureS6a:p23",
+      "reported_c_terminal_suffix": "LEHHHHHH",
+      "numbering": "one-based displayed string, including starting methionine; no inferred UniProt or PDB mapping",
+      "parent_context": "RA95.5-8",
+      "parent_relation": "source-reported comparison ancestor; no claim that this was the immediate final-round library parent",
+      "declared_substitutions": [
+        "T53L",
+        "R75P",
+        "N90D",
+        "N135E",
+        "S151G",
+        "V178T",
+        "F180Y",
+        "A209P",
+        "K210L",
+        "I213F",
+        "S214F",
+        "R216P",
+        "L231M"
+      ],
+      "sequence_delta_verified_against_parent": true,
+      "assay_specimen_sequence_verification": null,
+      "identity_support": "SI p9 reports protein identity reconfirmation by high-resolution MS; TableS4 is intact molecular-weight consistency, not residue-level sequence or per-assay specimen authentication."
+    },
+    {
+      "construct_id": "RA95.5-8F:K83M",
+      "reported_table_label": "K83M",
+      "parent_construct_id": "RA95.5-8F",
+      "declared_substitutions": [
+        "K83M"
+      ],
+      "mutation_order": 1,
+      "sequence": "MPRYLKGWLEDVVQLSLRRPSVHASRQRPIISLNERILEFNKRNITAIIAYYLRKSPSGLDVERDPIEYAKYMEPYAVGLSIMTEEKYFDGSYEMLRKIASSVSIPILMNDFIVKESQIDDAYNLGADTVLLIVEILTERELESLLEYARGYGMEPLILINDENDLDIALRIGARFITIYSMNFETGEINKENQRKLISMIPSNVVKVPLLDFFEPNEIEELRKLGVNAFMISSSLMRNPEKIKELIEGSLEHHHHHH",
+      "sequence_length": 258,
+      "sequence_sha256": "889f84528d042706615c96508a77e5a252e2c52161f29f27d50bc39b2cc91a8a",
+      "sequence_status": "derived_from_directly_printed_parent_and_source_declared_substitutions; not a separately observed full mutant string",
+      "source": "Obexer2017:SI:TableS1:p30; FigureS11:p28; Methods:p4; TableS4:p33",
+      "numbering": "one-based displayed parent string; starting methionine retained in sequence representation",
+      "assay_specimen_sequence_verification": null,
+      "identity_support": "Named intact-mass result in TableS4; not site-resolved sequence authentication."
+    },
+    {
+      "construct_id": "RA95.5-8F:Y51F",
+      "reported_table_label": "Y51F",
+      "parent_construct_id": "RA95.5-8F",
+      "declared_substitutions": [
+        "Y51F"
+      ],
+      "mutation_order": 1,
+      "sequence": "MPRYLKGWLEDVVQLSLRRPSVHASRQRPIISLNERILEFNKRNITAIIAFYLRKSPSGLDVERDPIEYAKYMEPYAVGLSIKTEEKYFDGSYEMLRKIASSVSIPILMNDFIVKESQIDDAYNLGADTVLLIVEILTERELESLLEYARGYGMEPLILINDENDLDIALRIGARFITIYSMNFETGEINKENQRKLISMIPSNVVKVPLLDFFEPNEIEELRKLGVNAFMISSSLMRNPEKIKELIEGSLEHHHHHH",
+      "sequence_length": 258,
+      "sequence_sha256": "53cb9fd78d209040607c7816b2bd16176db89b44e34684c2f5fb1a797dbd406b",
+      "sequence_status": "derived_from_directly_printed_parent_and_source_declared_substitutions; not a separately observed full mutant string",
+      "source": "Obexer2017:SI:TableS1:p30; FigureS11:p28; Methods:p4; TableS4:p33",
+      "numbering": "one-based displayed parent string; starting methionine retained in sequence representation",
+      "assay_specimen_sequence_verification": null,
+      "identity_support": "Named intact-mass result in TableS4; not site-resolved sequence authentication."
+    },
+    {
+      "construct_id": "RA95.5-8F:N110S",
+      "reported_table_label": "N110S",
+      "parent_construct_id": "RA95.5-8F",
+      "declared_substitutions": [
+        "N110S"
+      ],
+      "mutation_order": 1,
+      "sequence": "MPRYLKGWLEDVVQLSLRRPSVHASRQRPIISLNERILEFNKRNITAIIAYYLRKSPSGLDVERDPIEYAKYMEPYAVGLSIKTEEKYFDGSYEMLRKIASSVSIPILMSDFIVKESQIDDAYNLGADTVLLIVEILTERELESLLEYARGYGMEPLILINDENDLDIALRIGARFITIYSMNFETGEINKENQRKLISMIPSNVVKVPLLDFFEPNEIEELRKLGVNAFMISSSLMRNPEKIKELIEGSLEHHHHHH",
+      "sequence_length": 258,
+      "sequence_sha256": "bbe75c679a0ce74cce5ded1556888b58b60005548d99fea89027894dd7487e22",
+      "sequence_status": "derived_from_directly_printed_parent_and_source_declared_substitutions; not a separately observed full mutant string",
+      "source": "Obexer2017:SI:TableS1:p30; FigureS11:p28; Methods:p4; TableS4:p33",
+      "numbering": "one-based displayed parent string; starting methionine retained in sequence representation",
+      "assay_specimen_sequence_verification": null,
+      "identity_support": "Named intact-mass result in TableS4; not site-resolved sequence authentication."
+    },
+    {
+      "construct_id": "RA95.5-8F:Y180F",
+      "reported_table_label": "Y180F",
+      "parent_construct_id": "RA95.5-8F",
+      "declared_substitutions": [
+        "Y180F"
+      ],
+      "mutation_order": 1,
+      "sequence": "MPRYLKGWLEDVVQLSLRRPSVHASRQRPIISLNERILEFNKRNITAIIAYYLRKSPSGLDVERDPIEYAKYMEPYAVGLSIKTEEKYFDGSYEMLRKIASSVSIPILMNDFIVKESQIDDAYNLGADTVLLIVEILTERELESLLEYARGYGMEPLILINDENDLDIALRIGARFITIFSMNFETGEINKENQRKLISMIPSNVVKVPLLDFFEPNEIEELRKLGVNAFMISSSLMRNPEKIKELIEGSLEHHHHHH",
+      "sequence_length": 258,
+      "sequence_sha256": "2dbc2ae977b61a75ff3f19b5c09b1a72c0414286134affee30780f4bd1d0988f",
+      "sequence_status": "derived_from_directly_printed_parent_and_source_declared_substitutions; not a separately observed full mutant string",
+      "source": "Obexer2017:SI:TableS1:p30; FigureS11:p28; Methods:p4; TableS4:p33",
+      "numbering": "one-based displayed parent string; starting methionine retained in sequence representation",
+      "assay_specimen_sequence_verification": null,
+      "identity_support": "Named intact-mass result in TableS4; not site-resolved sequence authentication."
+    },
+    {
+      "construct_id": "RA95.5-8F:Y51F/Y180F",
+      "reported_table_label": "Y51F/Y180F",
+      "parent_construct_id": "RA95.5-8F",
+      "declared_substitutions": [
+        "Y51F",
+        "Y180F"
+      ],
+      "mutation_order": 2,
+      "sequence": "MPRYLKGWLEDVVQLSLRRPSVHASRQRPIISLNERILEFNKRNITAIIAFYLRKSPSGLDVERDPIEYAKYMEPYAVGLSIKTEEKYFDGSYEMLRKIASSVSIPILMNDFIVKESQIDDAYNLGADTVLLIVEILTERELESLLEYARGYGMEPLILINDENDLDIALRIGARFITIFSMNFETGEINKENQRKLISMIPSNVVKVPLLDFFEPNEIEELRKLGVNAFMISSSLMRNPEKIKELIEGSLEHHHHHH",
+      "sequence_length": 258,
+      "sequence_sha256": "04e611929157f9129f173c8cd2260a8c5c214d7ec6cc43e61d8fe4ec8f4344c3",
+      "sequence_status": "derived_from_directly_printed_parent_and_source_declared_substitutions; not a separately observed full mutant string",
+      "source": "Obexer2017:SI:TableS1:p30; FigureS11:p28; Methods:p4; TableS4:p33",
+      "numbering": "one-based displayed parent string; starting methionine retained in sequence representation",
+      "assay_specimen_sequence_verification": null,
+      "identity_support": "Named intact-mass result in TableS4; not site-resolved sequence authentication."
+    },
+    {
+      "construct_id": "RA95.5-8F:Y51F/N110S/Y180F",
+      "reported_table_label": "Y51F/N110S/Y180F",
+      "parent_construct_id": "RA95.5-8F",
+      "declared_substitutions": [
+        "Y51F",
+        "N110S",
+        "Y180F"
+      ],
+      "mutation_order": 3,
+      "sequence": "MPRYLKGWLEDVVQLSLRRPSVHASRQRPIISLNERILEFNKRNITAIIAFYLRKSPSGLDVERDPIEYAKYMEPYAVGLSIKTEEKYFDGSYEMLRKIASSVSIPILMSDFIVKESQIDDAYNLGADTVLLIVEILTERELESLLEYARGYGMEPLILINDENDLDIALRIGARFITIFSMNFETGEINKENQRKLISMIPSNVVKVPLLDFFEPNEIEELRKLGVNAFMISSSLMRNPEKIKELIEGSLEHHHHHH",
+      "sequence_length": 258,
+      "sequence_sha256": "0421687a1c0b9b5abe01d4956fe983b9df0e5afd658f5f9550313cf63ba2043a",
+      "sequence_status": "derived_from_directly_printed_parent_and_source_declared_substitutions; not a separately observed full mutant string",
+      "source": "Obexer2017:SI:TableS1:p30; FigureS11:p28; Methods:p4; TableS4:p33",
+      "numbering": "one-based displayed parent string; starting methionine retained in sequence representation",
+      "assay_specimen_sequence_verification": null,
+      "identity_support": "Named intact-mass result in TableS4; not site-resolved sequence authentication."
+    }
+  ],
+  "reused_sequence_providers": [
+    {
+      "construct_label_in_2017": "RA95.0",
+      "source": "Obexer2017:SI:FigureS6a:p23",
+      "provider_path": "data/atlas/study_context/ra95_2013/functional_comparison.json",
+      "provider_sha256": "0e2fe21efce4d805fdef8505770c0cf18557ed774c08a79cfc5e68c1b1fbf94a",
+      "json_pointer": "/constructs/0",
+      "sequence_sha256": "d49f7191b1389febb836a1d4262a9e52af2b87dace6626d582c9f82689adaec5",
+      "sequence_length": 258,
+      "comparison": "Exact displayed 2017 and 2013 sequence strings are equal, including LEHHHHHH; this is a checked sequence relation, not merely matching names.",
+      "not_established": "Identity of physical assay preparations across studies; original 2008 design identity or common assay conditions."
+    },
+    {
+      "construct_label_in_2017": "RA95.5-8",
+      "source": "Obexer2017:SI:FigureS6a:p23",
+      "provider_path": "data/atlas/study_context/ra95_2013/functional_comparison.json",
+      "provider_sha256": "0e2fe21efce4d805fdef8505770c0cf18557ed774c08a79cfc5e68c1b1fbf94a",
+      "json_pointer": "/constructs/3",
+      "sequence_sha256": "2588539fc53e69001aacb00cac3f535c91cbe51d7a695c63a45c2df847ab8cec",
+      "sequence_length": 258,
+      "comparison": "Exact displayed 2017 and 2013 sequence strings are equal, including LEHHHHHH; this is a checked sequence relation, not merely matching names.",
+      "not_established": "Identity of physical assay preparations across studies; original 2008 design identity or common assay conditions.",
+      "comparison_ancestor": "RA95.0",
+      "source_listed_substitutions": [
+        "R23H",
+        "V51Y",
+        "E53T",
+        "E72Y",
+        "T83K",
+        "T94M",
+        "S110N",
+        "K135N",
+        "G178V",
+        "M180F",
+        "R182M",
+        "D183N",
+        "G212D"
+      ],
+      "sequence_derived_deltas": [
+        "R23H",
+        "V51Y",
+        "E53T",
+        "F72Y",
+        "T83K",
+        "T95M",
+        "S110N",
+        "K135N",
+        "G178V",
+        "M180F",
+        "R182M",
+        "D183N",
+        "G212D"
+      ],
+      "source_list_matches_exact_sequence_deltas": false,
+      "list_conflicts": [
+        {
+          "listed": "E72Y",
+          "sequence_derived": "F72Y"
+        },
+        {
+          "listed": "T94M",
+          "sequence_derived": "T95M"
+        }
+      ]
+    }
+  ],
+  "assays": [
+    {
+      "assay_id": "R-methodol-cleavage-UVVis29C",
+      "reaction_direction": "retro-aldol cleavage",
+      "substrate": "(R)-4-hydroxy-4-(6-methoxynaphthalen-2-yl)butan-2-one, source1a, (R)-methodol",
+      "stereochemistry": "R; not racemic screen substrate1b or reverse aldol synthesis",
+      "readout": "Formation of6-methoxy-2-naphthaldehyde at350nm",
+      "extinction_coefficient": {
+        "value": 5970,
+        "unit": "M^-1 cm^-1"
+      },
+      "temperature_C": 29,
+      "pH": 7.5,
+      "buffer": {
+        "HEPES_mM": 25,
+        "NaCl_mM": 100,
+        "acetonitrile_percent": 2.7,
+        "acetonitrile_percent_basis": null
+      },
+      "source": "Obexer2017:SI:Methods:p9; TableS1 footnotea:p30; FigureS11:p28",
+      "protein_context": "Proteins produced in E.coli BL21 gold(DE3); concentration by absorbance with calculated ProtParam extinction coefficients. Purification procedure references earlier study.",
+      "active_fraction_calibration": null,
+      "per_row_enzyme_concentration": null
+    },
+    {
+      "assay_id": "thermal-shift",
+      "readout": "Protein Thermal Shift Dye Kit; StepOnePlus Real-Time PCR cycler",
+      "buffer": {
+        "HEPES_mM": 25,
+        "NaCl_mM": 100,
+        "pH": 7.5,
+        "acetonitrile": null
+      },
+      "source": "Obexer2017:SI:TableS1 footnotesb,c:p30",
+      "limits": "Tm is a distinct assay endpoint; no-transition does not mean no catalytic activity or prove complete unfolding. No scan curve, active fraction at29C, local catalytic geometry or mutant structure is supplied here."
+    },
+    {
+      "assay_id": "intact-ESI-MS",
+      "readout": "Source-reported calculated and measured intact molecular weight",
+      "source": "Obexer2017:SI:Methods:p9; TableS4:p33",
+      "limits": "Supports named protein preparation mass consistency; no residue-level mutant verification or identity of each kinetic aliquot."
+    }
+  ],
+  "kinetic_observations": [
+    {
+      "row_id": "S1:RA95.5-8F",
+      "construct_id": "RA95.5-8F",
+      "assay_id": "R-methodol-cleavage-UVVis29C",
+      "source": "Obexer2017:SI:TableS1:p30:row:RA95.5-8F",
+      "status": "positive_reported_fitted_parameters",
+      "kcat": {
+        "reported": "10.8 ± 0.6",
+        "value": 10.8,
+        "sd": 0.6,
+        "unit": "s^-1"
+      },
+      "KM": {
+        "value": 320,
+        "sd": 36,
+        "unit": "micromolar"
+      },
+      "kcat_over_KM": {
+        "value": 33800,
+        "unit": "M^-1 s^-1",
+        "status": "source_printed_efficiency; not replaced by division of rounded kcat and KM",
+        "sd": null
+      },
+      "replicate_count": {
+        "minimum": 2,
+        "maximum": 3,
+        "exact_for_row": null
+      },
+      "reported_error_statistic": "standard deviation of two to three independent measurements, TableS1 footnote a",
+      "active_enzyme_concentration": null,
+      "raw_fit_data": null
+    },
+    {
+      "row_id": "S1:K83M",
+      "construct_id": "RA95.5-8F:K83M",
+      "assay_id": "R-methodol-cleavage-UVVis29C",
+      "source": "Obexer2017:SI:TableS1:p30:row:K83M",
+      "status": "positive_reported_fitted_parameters",
+      "kcat": {
+        "reported": "(4.8 ± 0.5) x 10^-5",
+        "value": 4.8e-05,
+        "sd": 5e-06,
+        "unit": "s^-1"
+      },
+      "KM": {
+        "value": 120,
+        "sd": 11,
+        "unit": "micromolar"
+      },
+      "kcat_over_KM": {
+        "value": 0.4,
+        "unit": "M^-1 s^-1",
+        "status": "source_printed_efficiency; not replaced by division of rounded kcat and KM",
+        "sd": null
+      },
+      "replicate_count": {
+        "minimum": 2,
+        "maximum": 3,
+        "exact_for_row": null
+      },
+      "reported_error_statistic": "standard deviation of two to three independent measurements, TableS1 footnote a",
+      "active_enzyme_concentration": null,
+      "raw_fit_data": null
+    },
+    {
+      "row_id": "S1:Y51F",
+      "construct_id": "RA95.5-8F:Y51F",
+      "assay_id": "R-methodol-cleavage-UVVis29C",
+      "source": "Obexer2017:SI:TableS1:p30:row:Y51F",
+      "status": "positive_reported_fitted_parameters",
+      "kcat": {
+        "reported": "0.12 ± 0.01",
+        "value": 0.12,
+        "sd": 0.01,
+        "unit": "s^-1"
+      },
+      "KM": {
+        "value": 35,
+        "sd": 7,
+        "unit": "micromolar"
+      },
+      "kcat_over_KM": {
+        "value": 3400,
+        "unit": "M^-1 s^-1",
+        "status": "source_printed_efficiency; not replaced by division of rounded kcat and KM",
+        "sd": null
+      },
+      "replicate_count": {
+        "minimum": 2,
+        "maximum": 3,
+        "exact_for_row": null
+      },
+      "reported_error_statistic": "standard deviation of two to three independent measurements, TableS1 footnote a",
+      "active_enzyme_concentration": null,
+      "raw_fit_data": null
+    },
+    {
+      "row_id": "S1:N110S",
+      "construct_id": "RA95.5-8F:N110S",
+      "assay_id": "R-methodol-cleavage-UVVis29C",
+      "source": "Obexer2017:SI:TableS1:p30:row:N110S",
+      "status": "positive_reported_fitted_parameters",
+      "kcat": {
+        "reported": "0.41 ± 0.04",
+        "value": 0.41,
+        "sd": 0.04,
+        "unit": "s^-1"
+      },
+      "KM": {
+        "value": 25,
+        "sd": 5,
+        "unit": "micromolar"
+      },
+      "kcat_over_KM": {
+        "value": 16300,
+        "unit": "M^-1 s^-1",
+        "status": "source_printed_efficiency; not replaced by division of rounded kcat and KM",
+        "sd": null
+      },
+      "replicate_count": {
+        "minimum": 2,
+        "maximum": 3,
+        "exact_for_row": null
+      },
+      "reported_error_statistic": "standard deviation of two to three independent measurements, TableS1 footnote a",
+      "active_enzyme_concentration": null,
+      "raw_fit_data": null
+    },
+    {
+      "row_id": "S1:Y180F",
+      "construct_id": "RA95.5-8F:Y180F",
+      "assay_id": "R-methodol-cleavage-UVVis29C",
+      "source": "Obexer2017:SI:TableS1:p30:row:Y180F",
+      "status": "positive_reported_fitted_parameters",
+      "kcat": {
+        "reported": "2.7 ± 0.1",
+        "value": 2.7,
+        "sd": 0.1,
+        "unit": "s^-1"
+      },
+      "KM": {
+        "value": 80,
+        "sd": 11,
+        "unit": "micromolar"
+      },
+      "kcat_over_KM": {
+        "value": 33600,
+        "unit": "M^-1 s^-1",
+        "status": "source_printed_efficiency; not replaced by division of rounded kcat and KM",
+        "sd": null
+      },
+      "replicate_count": {
+        "minimum": 2,
+        "maximum": 3,
+        "exact_for_row": null
+      },
+      "reported_error_statistic": "standard deviation of two to three independent measurements, TableS1 footnote a",
+      "active_enzyme_concentration": null,
+      "raw_fit_data": null
+    },
+    {
+      "row_id": "S1:Y51F/Y180F",
+      "construct_id": "RA95.5-8F:Y51F/Y180F",
+      "assay_id": "R-methodol-cleavage-UVVis29C",
+      "source": "Obexer2017:SI:TableS1:p30:row:Y51F/Y180F",
+      "status": "positive_reported_fitted_parameters",
+      "kcat": {
+        "reported": "(6.3 ± 0.03) x 10^-4",
+        "value": 0.00063,
+        "sd": 3e-06,
+        "unit": "s^-1"
+      },
+      "KM": {
+        "value": 3.7,
+        "sd": 0.1,
+        "unit": "micromolar"
+      },
+      "kcat_over_KM": {
+        "value": 170,
+        "unit": "M^-1 s^-1",
+        "status": "source_printed_efficiency; not replaced by division of rounded kcat and KM",
+        "sd": null
+      },
+      "replicate_count": {
+        "minimum": 2,
+        "maximum": 3,
+        "exact_for_row": null
+      },
+      "reported_error_statistic": "standard deviation of two to three independent measurements, TableS1 footnote a",
+      "active_enzyme_concentration": null,
+      "raw_fit_data": null
+    },
+    {
+      "row_id": "S1:Y51F/N110S/Y180F",
+      "construct_id": "RA95.5-8F:Y51F/N110S/Y180F",
+      "assay_id": "R-methodol-cleavage-UVVis29C",
+      "source": "Obexer2017:SI:TableS1:p30:row:Y51F/N110S/Y180F",
+      "status": "positive_reported_fitted_parameters",
+      "kcat": {
+        "reported": "(1.3 ± 0.17) x 10^-5",
+        "value": 1.3e-05,
+        "sd": 1.7e-06,
+        "unit": "s^-1"
+      },
+      "KM": {
+        "value": 2.2,
+        "sd": 0.6,
+        "unit": "micromolar"
+      },
+      "kcat_over_KM": {
+        "value": 6,
+        "unit": "M^-1 s^-1",
+        "status": "source_printed_efficiency; not replaced by division of rounded kcat and KM",
+        "sd": null
+      },
+      "replicate_count": {
+        "minimum": 2,
+        "maximum": 3,
+        "exact_for_row": null
+      },
+      "reported_error_statistic": "standard deviation of two to three independent measurements, TableS1 footnote a",
+      "active_enzyme_concentration": null,
+      "raw_fit_data": null
+    }
+  ],
+  "thermal_shift_observations": [
+    {
+      "row_id": "S1:Tm:RA95.5-8F",
+      "construct_id": "RA95.5-8F",
+      "assay_id": "thermal-shift",
+      "reported": "76",
+      "value": 76,
+      "unit": "degree_Celsius",
+      "status": "reported",
+      "sd": null,
+      "source": "Obexer2017:SI:TableS1:p30:Tm column and footnotes b,c"
+    },
+    {
+      "row_id": "S1:Tm:K83M",
+      "construct_id": "RA95.5-8F:K83M",
+      "assay_id": "thermal-shift",
+      "reported": "82",
+      "value": 82,
+      "unit": "degree_Celsius",
+      "status": "reported",
+      "sd": null,
+      "source": "Obexer2017:SI:TableS1:p30:Tm column and footnotes b,c"
+    },
+    {
+      "row_id": "S1:Tm:Y51F",
+      "construct_id": "RA95.5-8F:Y51F",
+      "assay_id": "thermal-shift",
+      "reported": "71",
+      "value": 71,
+      "unit": "degree_Celsius",
+      "status": "reported",
+      "sd": null,
+      "source": "Obexer2017:SI:TableS1:p30:Tm column and footnotes b,c"
+    },
+    {
+      "row_id": "S1:Tm:N110S",
+      "construct_id": "RA95.5-8F:N110S",
+      "assay_id": "thermal-shift",
+      "reported": "ca. 79",
+      "value": 79,
+      "unit": "degree_Celsius",
+      "status": "approximate",
+      "sd": null,
+      "source": "Obexer2017:SI:TableS1:p30:Tm column and footnotes b,c"
+    },
+    {
+      "row_id": "S1:Tm:Y180F",
+      "construct_id": "RA95.5-8F:Y180F",
+      "assay_id": "thermal-shift",
+      "reported": "74",
+      "value": 74,
+      "unit": "degree_Celsius",
+      "status": "reported",
+      "sd": null,
+      "source": "Obexer2017:SI:TableS1:p30:Tm column and footnotes b,c"
+    },
+    {
+      "row_id": "S1:Tm:Y51F/Y180F",
+      "construct_id": "RA95.5-8F:Y51F/Y180F",
+      "assay_id": "thermal-shift",
+      "reported": "67",
+      "value": 67,
+      "unit": "degree_Celsius",
+      "status": "reported",
+      "sd": null,
+      "source": "Obexer2017:SI:TableS1:p30:Tm column and footnotes b,c"
+    },
+    {
+      "row_id": "S1:Tm:Y51F/N110S/Y180F",
+      "construct_id": "RA95.5-8F:Y51F/N110S/Y180F",
+      "assay_id": "thermal-shift",
+      "reported": "N.D.",
+      "value": null,
+      "unit": "degree_Celsius",
+      "status": "not_determinable_no_transition_observed",
+      "sd": null,
+      "source": "Obexer2017:SI:TableS1:p30:Tm column and footnotes b,c"
+    }
+  ],
+  "mass_observations": [
+    {
+      "row_id": "S4:RA95.5-8F",
+      "construct_id": "RA95.5-8F",
+      "assay_id": "intact-ESI-MS",
+      "source": "Obexer2017:SI:TableS4:p33:row:RA95.5-8F",
+      "calculated_molecular_weight": 29751.2,
+      "measured_molecular_weight": 29751.8,
+      "reported_difference": 0.6,
+      "unit_as_printed": null,
+      "unit_note": "Table headers say molecular weight without a printed unit; no charge-state or m/z conversion is inferred.",
+      "calculation_context": "Source ProtParam calculation excludes starting methionine; displayed source sequence retains it.",
+      "residue_level_sequence_verified": false
+    },
+    {
+      "row_id": "S4:K83M",
+      "construct_id": "RA95.5-8F:K83M",
+      "assay_id": "intact-ESI-MS",
+      "source": "Obexer2017:SI:TableS4:p33:row:K83M",
+      "calculated_molecular_weight": 29754.2,
+      "measured_molecular_weight": 29754.3,
+      "reported_difference": 0.1,
+      "unit_as_printed": null,
+      "unit_note": "Table headers say molecular weight without a printed unit; no charge-state or m/z conversion is inferred.",
+      "calculation_context": "Source ProtParam calculation excludes starting methionine; displayed source sequence retains it.",
+      "residue_level_sequence_verified": false
+    },
+    {
+      "row_id": "S4:Y51F",
+      "construct_id": "RA95.5-8F:Y51F",
+      "assay_id": "intact-ESI-MS",
+      "source": "Obexer2017:SI:TableS4:p33:row:Y51F",
+      "calculated_molecular_weight": 29735.2,
+      "measured_molecular_weight": 29736.4,
+      "reported_difference": 1.2,
+      "unit_as_printed": null,
+      "unit_note": "Table headers say molecular weight without a printed unit; no charge-state or m/z conversion is inferred.",
+      "calculation_context": "Source ProtParam calculation excludes starting methionine; displayed source sequence retains it.",
+      "residue_level_sequence_verified": false
+    },
+    {
+      "row_id": "S4:N110S",
+      "construct_id": "RA95.5-8F:N110S",
+      "assay_id": "intact-ESI-MS",
+      "source": "Obexer2017:SI:TableS4:p33:row:N110S",
+      "calculated_molecular_weight": 29724.2,
+      "measured_molecular_weight": 29724.0,
+      "reported_difference": 0.2,
+      "unit_as_printed": null,
+      "unit_note": "Table headers say molecular weight without a printed unit; no charge-state or m/z conversion is inferred.",
+      "calculation_context": "Source ProtParam calculation excludes starting methionine; displayed source sequence retains it.",
+      "residue_level_sequence_verified": false
+    },
+    {
+      "row_id": "S4:Y180F",
+      "construct_id": "RA95.5-8F:Y180F",
+      "assay_id": "intact-ESI-MS",
+      "source": "Obexer2017:SI:TableS4:p33:row:Y180F",
+      "calculated_molecular_weight": 29735.2,
+      "measured_molecular_weight": 29735.2,
+      "reported_difference": 0,
+      "unit_as_printed": null,
+      "unit_note": "Table headers say molecular weight without a printed unit; no charge-state or m/z conversion is inferred.",
+      "calculation_context": "Source ProtParam calculation excludes starting methionine; displayed source sequence retains it.",
+      "residue_level_sequence_verified": false
+    },
+    {
+      "row_id": "S4:Y51F/Y180F",
+      "construct_id": "RA95.5-8F:Y51F/Y180F",
+      "assay_id": "intact-ESI-MS",
+      "source": "Obexer2017:SI:TableS4:p33:row:Y51F/Y180F",
+      "calculated_molecular_weight": 29719.2,
+      "measured_molecular_weight": 29719.9,
+      "reported_difference": 0.7,
+      "unit_as_printed": null,
+      "unit_note": "Table headers say molecular weight without a printed unit; no charge-state or m/z conversion is inferred.",
+      "calculation_context": "Source ProtParam calculation excludes starting methionine; displayed source sequence retains it.",
+      "residue_level_sequence_verified": false
+    },
+    {
+      "row_id": "S4:Y51F/N110S/Y180F",
+      "construct_id": "RA95.5-8F:Y51F/N110S/Y180F",
+      "assay_id": "intact-ESI-MS",
+      "source": "Obexer2017:SI:TableS4:p33:row:Y51F/N110S/Y180F",
+      "calculated_molecular_weight": 29692.2,
+      "measured_molecular_weight": 29692.4,
+      "reported_difference": 0.2,
+      "unit_as_printed": null,
+      "unit_note": "Table headers say molecular weight without a printed unit; no charge-state or m/z conversion is inferred.",
+      "calculation_context": "Source ProtParam calculation excludes starting methionine; displayed source sequence retains it.",
+      "residue_level_sequence_verified": false
+    }
+  ],
+  "paired_substitution_comparisons": [
+    {
+      "comparison_id": "Y51F-Y180F:kcat",
+      "assay_id": "R-methodol-cleavage-UVVis29C",
+      "parameter": "kcat",
+      "source_row_ids": [
+        "S1:RA95.5-8F",
+        "S1:Y51F",
+        "S1:Y180F",
+        "S1:Y51F/Y180F"
+      ],
+      "definition": "A=Y51F; B=Y180F; q0=parent; qA=A; qB=B; qAB=double. Multiplicative reference q_expected=qA*qB/q0; descriptive ratio=qAB*q0/(qA*qB).",
+      "parent_value": 10.8,
+      "A_value": 0.12,
+      "B_value": 2.7,
+      "AB_value": 0.00063,
+      "A_over_parent": 0.01111111111111111,
+      "B_over_parent": 0.25,
+      "AB_over_A": 0.00525,
+      "expected_double_under_multiplicative_reference": 0.03,
+      "observed_over_multiplicative_reference": 0.021,
+      "multiplicative_reference_over_observed": 47.61904761904761,
+      "unit": "s^-1",
+      "status": "posthoc_source_derived_arithmetic_on_displayed_central_values",
+      "uncertainty": null,
+      "uncertainty_reason": "No raw replicate/fitting covariance or printed efficiency uncertainty acquired; no propagated interval or significance test.",
+      "mechanistic_coupling_energy": null,
+      "ratio_unit": "dimensionless"
+    },
+    {
+      "comparison_id": "Y51F-Y180F:KM",
+      "assay_id": "R-methodol-cleavage-UVVis29C",
+      "parameter": "KM",
+      "source_row_ids": [
+        "S1:RA95.5-8F",
+        "S1:Y51F",
+        "S1:Y180F",
+        "S1:Y51F/Y180F"
+      ],
+      "definition": "A=Y51F; B=Y180F; q0=parent; qA=A; qB=B; qAB=double. Multiplicative reference q_expected=qA*qB/q0; descriptive ratio=qAB*q0/(qA*qB).",
+      "parent_value": 320,
+      "A_value": 35,
+      "B_value": 80,
+      "AB_value": 3.7,
+      "A_over_parent": 0.109375,
+      "B_over_parent": 0.25,
+      "AB_over_A": 0.10571428571428572,
+      "expected_double_under_multiplicative_reference": 8.75,
+      "observed_over_multiplicative_reference": 0.4228571428571429,
+      "multiplicative_reference_over_observed": 2.364864864864865,
+      "unit": "micromolar",
+      "status": "posthoc_source_derived_arithmetic_on_displayed_central_values",
+      "uncertainty": null,
+      "uncertainty_reason": "No raw replicate/fitting covariance or printed efficiency uncertainty acquired; no propagated interval or significance test.",
+      "mechanistic_coupling_energy": null,
+      "interpretation": "Fitted Michaelis constant, not isolated substrate affinity. Its departure partly offsets the kcat departure in the efficiency endpoint.",
+      "ratio_unit": "dimensionless"
+    },
+    {
+      "comparison_id": "Y51F-Y180F:kcat_over_KM",
+      "assay_id": "R-methodol-cleavage-UVVis29C",
+      "parameter": "kcat_over_KM",
+      "source_row_ids": [
+        "S1:RA95.5-8F",
+        "S1:Y51F",
+        "S1:Y180F",
+        "S1:Y51F/Y180F"
+      ],
+      "definition": "A=Y51F; B=Y180F; q0=parent; qA=A; qB=B; qAB=double. Multiplicative reference q_expected=qA*qB/q0; descriptive ratio=qAB*q0/(qA*qB).",
+      "parent_value": 33800,
+      "A_value": 3400,
+      "B_value": 33600,
+      "AB_value": 170,
+      "A_over_parent": 0.10059171597633136,
+      "B_over_parent": 0.9940828402366864,
+      "AB_over_A": 0.05,
+      "expected_double_under_multiplicative_reference": 3379.8816568047337,
+      "observed_over_multiplicative_reference": 0.05029761904761905,
+      "multiplicative_reference_over_observed": 19.881656804733726,
+      "unit": "M^-1 s^-1",
+      "status": "posthoc_source_derived_arithmetic_on_displayed_central_values",
+      "uncertainty": null,
+      "uncertainty_reason": "No raw replicate/fitting covariance or printed efficiency uncertainty acquired; no propagated interval or significance test.",
+      "mechanistic_coupling_energy": null,
+      "ratio_unit": "dimensionless"
+    }
+  ],
+  "combination_coverage": {
+    "substitutions": [
+      "Y51F",
+      "N110S",
+      "Y180F"
+    ],
+    "included_cells": [
+      [],
+      [
+        "Y51F"
+      ],
+      [
+        "N110S"
+      ],
+      [
+        "Y180F"
+      ],
+      [
+        "Y51F",
+        "Y180F"
+      ],
+      [
+        "Y51F",
+        "N110S",
+        "Y180F"
+      ]
+    ],
+    "missing_cells": [
+      [
+        "Y51F",
+        "N110S"
+      ],
+      [
+        "N110S",
+        "Y180F"
+      ]
+    ],
+    "missing_status": "not reported in the acquired TableS1/S11 panel; not a paper-wide or literature-wide absence assertion",
+    "lysine_control": "K83M is a separate single substitution; no K83-containing combination square is supplied in this panel.",
+    "three_way_interaction": null,
+    "full_tetrad_interaction": null
+  },
+  "chemical_state_and_control_limits": [
+    {
+      "source": "Obexer2017:SI:Methods:p10; FiguresS8/S9:pp25-26; TableS2:p31",
+      "reported": "Apo5AOU and inhibitor3-complex5AN7 are parentRA95.5-8F structures at1.10angstrom reported resolution. Complex preparation used fivefold inhibitor for2h with2.7%acetonitrile; reported refined inhibitor occupancy75%. Apo crystallization pH4.6 and complex pH7.5 differ. Diffraction data were collected at100K; apo mother liquor contained ammonium sulfate and acetate, while complex mother liquor contained sodium/potassium phosphate andHEPES.",
+      "inference_limit": "No deposited coordinates acquired or recalculated in this increment. Parent crystal comparison, inhibitory Schiff-base state and author preorganization/network descriptions do not isolate mutant chemical roles or establish a reacting geometry in solution. Composite steady-state parameters may change their rate-limiting step across mutants; no microscopic coupling energy or binding-affinity interpretation ofKM follows."
+    },
+    {
+      "source": "Obexer2017:SI:FigureS9:p26",
+      "reported": "The author describes catalytic-tetrad secondary support from Ser81 and ordered waters; most parent active-site residues overlap between apo/inhibitor models exceptLys83.",
+      "inference_limit": "Tetrad is not a demonstrated exhaustive catalytic-apparatus inventory; water/Ser81 contributions, local dynamics and proton assignments remain unresolved."
+    },
+    {
+      "source": "Obexer2017:SI:TableS1:p30",
+      "reported": "ParentTm76C, Y51F71C, Y180F74C, double67C; triple thermal transition not determinable. All seven kinetic rows nevertheless have small or large positive fitted values.",
+      "inference_limit": "Thermal support constrains but does not eliminate structural/active-fraction confounding. Do not transfer thermal N.D. to an inactive kinetic label. The double has a9C lower reportedTm than parent; mass consistency and high melting points do not establish purity, active fraction or local mutant structure. K83M has reportedTm82C versus parent76C, constraining gross thermal destabilization without proving an unchanged active site. Thermal rows have no reported uncertainties or exactn."
+    }
+  ],
+  "source_cautions": [
+    {
+      "source": "Obexer2017:SI:TableS1:p30",
+      "issue": "Printed efficiencies have rounding differences from the quotient of printed kcat and KM.",
+      "decision": "Preserve all displayed values independently; compute the efficiency comparison from the printed efficiency column, not repaired triplets."
+    },
+    {
+      "source": "Obexer2017:SI:TableS1 footnotea:p30",
+      "issue": "Solution comparator constants are cited at25C whereas enzyme mutant assay is29C.",
+      "decision": "Do not treat enhancement columns as same-condition enzyme/mutant measures; no new enhancement estimate."
+    },
+    {
+      "source": "Obexer2017:SI:TableS4:p33",
+      "issue": "The positive difference forN110S is0.2 although measured-minus-calculated is-0.2. Header does not define a signed difference.",
+      "decision": "Keep printed difference; no signed subtraction label or inferred mass unit."
+    },
+    {
+      "source": "Obexer2017:SI:FigureS6a:p23; TableS4 footnotea:p33",
+      "issue": "Sequence includes starting methionine while mass calculation excludes it.",
+      "decision": "Keep both representations and source context; do not silently delete sequence residue1 or shift mutation numbering."
+    },
+    {
+      "source": "Obexer2017:SI:FigureS6a:p23:RA95.0-to-RA95.5-8 comparison",
+      "issue": "The displayed list saysE72Y andT94M, whereas the exact displayed endpoint strings giveF72Y andT95M. E53T is correct for this RA95.0-to-RA95.5-8 comparison; the2013 immediate-parentS53T warning is a different relation.",
+      "decision": "Keep source list and sequence-derived deltas separately, preserving the discrepancy. The13listedRA95.5-8-to-8F deltas do match their exact strings. No inferred original-scaffold sequence or lineage repair."
+    }
+  ],
+  "design_use": {
+    "usable_constraint": "A small single-substitution efficiency response in one evolved background does not justify deleting that group or treating its contribution as independent of the partner residue. HereY180F response is conditional onY51 and on whether the endpoint iskcat or printedkcat/KM.",
+    "specific_added_relation": "Four source-bound cells yield an explicit parameter-specific comparison, while the missing Asn cells block a higher-order conclusion; exact source-sequence equality avoids same-name lineage transfer.",
+    "reuse": "Existing source/construct/assay/parameter/status/derived-comparison concepts suffice. Two exact sequence providers reused after direct2017 equality checks; no enzyme-specific runtime/schema/validator.",
+    "incumbent_boundary": "A competent reader can reproduce the arithmetic from the supplement. Added value is the explicit matched relation and transfer restrictions; no measured curation speedup or superiority over incumbent resources.",
+    "reconsideration": "New chemistry did not need bespoke code; factual source curation reused shared concepts. Focus moved from blanket tetrad/cooperation wording to one complete paired comparison and explicit missing combinations. No cross-study activity ranking."
+  },
+  "global_limits": [
+    "Full main article remains unacquired and unassessed; all substantive outcomes here are scoped to the acquired supplement.",
+    "Published experiments are not project-run experiments; computed review is not independent human validation.",
+    "No frozen kernel, protected registry, existing source packet or exposure history was modified."
+  ]
+}

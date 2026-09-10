@@ -1,0 +1,107 @@
+{
+  "schema_version": "catalytic-earth.source-qualification-review.v1",
+  "assessment_id": "obexer2017-ra95-tyrosine-pair-perturbations",
+  "decision": "accept_source_annotation",
+  "authorized_operation": "source_annotation",
+  "policy_binding": {
+    "path": "data/governance/computational_review_policy.json",
+    "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "reviewed_assessment": {
+    "path": "data/atlas/study_context/ra95_2017/source_qualification.json",
+    "sha256": "6a7867da4e141c79ecb0c5542b3c5ab8b9aca20d638554c504612fde3930398d"
+  },
+  "reviewed_documentation": {
+    "path": "docs/ATLAS_RA95_TETRAD_CONTROLS.md",
+    "sha256": "d1dc9320ad595d4b115719f1443fa959706b39adac09d77b1724968d5c0ad8ed"
+  },
+  "retained_input_bindings": [
+    {
+      "path": "data/atlas/study_context/ra95_2017/acquisition_appendix.json",
+      "sha256": "3a679e4628e2e884a703aedc185dbd4cf97f9fc2ece4face4f7004189946d710"
+    },
+    {
+      "path": "data/atlas/study_context/ra95_2013/functional_comparison.json",
+      "sha256": "0e2fe21efce4d805fdef8505770c0cf18557ed774c08a79cfc5e68c1b1fbf94a"
+    },
+    {
+      "path": "data/atlas/study_context/ra95_2013/acquisition_receipts.json",
+      "sha256": "9b6c2c8803773b58ff39ff76e5ad1f772faa788c28b888df965434868d76658e"
+    }
+  ],
+  "review_process": "Three separately prompted read-only gpt-5.6-sol/ultra roles challenged source identity/controls, chemical/construct representation and scientific usefulness. Parent alone acquired sources, edited repository and adjudicated. Potentially correlated model review is not independent human review or laboratory evidence.",
+  "reviews": [
+    {
+      "role": "source",
+      "reviewer_task": "tetrad_source",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_final_data_documentation_and_input_pins",
+      "scope": "Primary SI table/figure/method identity; all seven kinetic/thermal/mass rows; source conflicts and access limits; exact final current claim wording."
+    },
+    {
+      "role": "representation",
+      "reviewer_task": "tetrad_representation",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_final_data_documentation_and_input_pins",
+      "scope": "Exact and derived construct strings, reused sequence providers, numbering, typed endpoints/nulls and all three parameter comparisons."
+    },
+    {
+      "role": "adversarial",
+      "reviewer_task": "tetrad_adversarial",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_final_data_documentation_and_input_pins",
+      "scope": "Complete and missing comparison cells, endpoint selection, thermal/mass/active-fraction confounds, chemical-state and microscopic/full-tetrad inference boundaries."
+    }
+  ],
+  "adjudications": [
+    {
+      "objection": "Single mutants plus a multi-mutant cannot by themselves prove complete tetrad cooperation.",
+      "evidence": "SI TableS1 and FigureS11 provide one complete Y51F/Y180F square but omit two Asn doubles and every K83 combination.",
+      "decision": "Permit descriptive paired central-value comparison; keep all missing cells explicit and block three-way/full-tetrad decomposition, significance and microscopic energy/role claims."
+    },
+    {
+      "objection": "Reporting only turnover and efficiency would omit a third fitted parameter and obscure their differing responses.",
+      "evidence": "Same TableS1 cells haveKM320,35,80,3.7micromolar.",
+      "decision": "Include all three parameters, includingKM factor0.423. Preserve rounded printed efficiencies; no repaired triplets, binding-affinity inference or uncertainty/significance calculation."
+    },
+    {
+      "objection": "Thermal N.D. might become kinetic inactivity or all stability data might be dismissed.",
+      "evidence": "TableS1 reports positive kinetic parameters for every row, tripleTm not determinable/no transition, parent76C/double67C/K83M82C. Thermal buffer omits statedacetonitrile.",
+      "decision": "Keep seven thermal endpoints separate; retain asymmetrical stability support and confounds, with no local-structure/active-fraction proof."
+    },
+    {
+      "objection": "Intact mass could authenticate full mutant sequences or silently remove startMet from numbering.",
+      "evidence": "FigureS6 prints258aa including initialMet/LEHHHHHH; TableS4 calculated masses exclude initialMet.",
+      "decision": "Keep one direct8F string, six explicitly derived mutants and separately typed seven mass rows. Reuse two old providers only after exact2017 sequence equality. No aliquot/site-resolved sequence authentication."
+    },
+    {
+      "objection": "Lineage lists and same-name ancestors could overwrite exact source sequences.",
+      "evidence": "S6 listsE72Y/T94M forRA95.0-to-RA95.5-8, but exact displayed strings giveF72Y/T95M. The13RA95.5-8-to-8F deltas agree.",
+      "decision": "Keep literal lists and exact-string deltas distinct. Do not propagate the different2013 immediate-parentS53T conflict:2017E53T is correct foritsRA95.0 ancestor. Do not infer the original2008 design or immediate final-round clone."
+    },
+    {
+      "objection": "Parent high-resolution apo/inhibitor structures might become mutant or reacting-state evidence.",
+      "evidence": "SI pp10,25-27,31 describes5AOU/5AN7 parent structures with differentpH/buffers,100K data collection,75%inhibitor occupancy and waters/secondary groups.",
+      "decision": "Retain source-state descriptions without new coordinate acquisition, reacting geometry, exhaustive tetrad or microscopic cooperation claims."
+    },
+    {
+      "objection": "Main-article access failure might become source absence or another acquisition allowance.",
+      "evidence": "Publisher preview plus institutional metadata; exact35pageSI acquired. Appendix binds unchanged prior9requests/4,454,733bytes.",
+      "decision": "Scope findings toSI and retain main unassessed; sameRA95scope cumulative24requests/15,353,338bytes, acquisition stopped."
+    }
+  ],
+  "blocked_operations": [
+    "microscopic cooperation or coupling-energy claim",
+    "three-way/full-tetrad epistasis or exhaustive apparatus",
+    "statistical equivalence/significance or unseen raw-data inference",
+    "independent human validation, new experiment, protein admission or evidence-tier promotion",
+    "productive or mutant-geometry transfer from parent inhibitor/apo structures"
+  ],
+  "coordination_record": "work/coordination_ra95_tetrad_20260910.md",
+  "parent_verification": "15newresponse hashes/lengths, exact priorreceipt/cumulative budget and publisher-SI link; sevenconstruct sequences andtwoexactreusedproviders;13finalsubstitutions; sevenkinetic/seventhermal/sevenmass rows; allthreepairedparameters; missingcombinationcells;30priorclaim objects preserved.",
+  "reviewed_at_utc": "2026-09-10T05:31:18.706698+00:00",
+  "completion_note": "All three separately prompted roles accepted the exact data/document/input pins without blocking source objections. Parent retained their objections and narrowed claims; subsequent review metadata finalization does not alter accepted scientific content. Existing14truth tests passed after the expected claimcount update30to31."
+}
