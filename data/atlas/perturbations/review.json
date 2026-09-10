@@ -1,18 +1,18 @@
 {
   "schema_version": "catalytic-earth.perturbation-source-review.v1",
   "status": "source_reviewed_computational",
-  "reviewed_at_utc": "2026-09-10T12:31:00.071019+00:00",
-  "scope": "Previously accepted relation plus three selected beta-barrel kinetic columns across two rows and eight qualitative S4 arms. Three descriptive combined-substitution ratios coexist with an explicit unassessed 16.1/8AH9 matched ligand-control transfer. No numeric plot digitization, single-residue effect, ligand-independent geometry, exact assay sequence, new experiment or evidence-tier promotion.",
+  "reviewed_at_utc": "2026-09-10T13:10:10.084491+00:00",
+  "scope": "Existing shared relation with explicit 2017-to-2013 methodol preparation provenance. Exactly 21 tetrad parameter records change only substrate context/id; all 193 observation IDs and all 111 comparison objects are preserved. No new measurement, runtime primitive, source acquisition, substrate-lot identity or repeated 2017 characterization is established.",
   "reviewed_bindings": {
-    "data/atlas/perturbations/projection.json": "3aa0b9d17b784581db89697b9160ff7b62765decfb4d85f362eea40b3acfa5a4",
+    "data/atlas/perturbations/projection.json": "44853d42ad6ee16c34f83bd0c076196d12f992a0a62e5a099199ea72a1f992b7",
     "src/catalytic_earth/atlas_perturbations.py": "e154c26947daf76d1c9a13cc1bf8d8415c5aec72baab3e15a708ed69e05f15c6",
     "scripts/query_atlas_perturbations.py": "fa6746be65dd78f6f7a9d9181f1306922837421e021c974168962b00ccd3d2bc",
-    "docs/ATLAS_PERTURBATION_RELATION.md": "77b3277a1a952776a9069e37ec758c1ca267cec11471699c2f36eec93bf143bc",
+    "docs/ATLAS_PERTURBATION_RELATION.md": "62b417055c20eaa6ffdc2aaeff2dd7aa1f2d7047e93c977b34862c38fc70b2ad",
     "data/atlas/study_context/ra95_2017/forward_synthesis_review.json": "a8025989cb89415ac59267dc0af2da415019af3786ec2db3debd18630de8be9d",
     "docs/ATLAS_FORWARD_SYNTHESIS.md": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84",
     "data/atlas/study_context/diels_alder_2010/source_review.json": "19759f43826c73005f00265144e3debc9805457b0320b18693da7b9bbdd3a01b",
     "docs/ATLAS_DIELS_ALDER_CONTROLS.md": "eb0319636aea183771290ffb0608ace1bc49c80949e0f1bbd4e41bb3c2acbb48",
-    "tests/core/test_atlas_perturbations.py": "21646c84d69fedf65c6e2449dee7f927491d62106a1c0426437ef912a4c63c36",
+    "tests/core/test_atlas_perturbations.py": "239decd16ecc387a3064eba226ac9bc0a8aec88cd4b00a547fa9b456d73b089a",
     "data/atlas/study_context/6ha3/perturbation_context.json": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0",
     "data/atlas/study_context/6ha3/functional_review.json": "9af6d94d77800810d210e032e90e6af6a99ffd22a5548d9d39b5a7f502199200",
     "data/atlas/assembly_context/6ha3/review.json": "434188c22e847de2add0c76cc06076de9347d39ecd259acc051631792fcc7eaa",
@@ -74,22 +74,22 @@
     }
   },
   "review_process": {
-    "model": "gpt-5.6-sol",
-    "reasoning_effort": "ultra",
+    "model": "gpt-6-astra",
+    "reasoning_effort": "max",
     "roles": [
       "source",
-      "representation",
-      "adversarial"
+      "representation/reuse",
+      "direction"
+    ],
+    "reviewer_tasks": [
+      "evidence_review_12h",
+      "reuse_review_12h",
+      "direction_review_12h"
     ],
     "independent_human_review": false,
     "correlated_errors_possible": true,
-    "reviewer_tasks": [
-      "source",
-      "representation",
-      "source/witness_audit"
-    ],
-    "role_dependence": "Adversarial question reused the completed source witness worker and retains that source-review context; roles are not statistically or epistemically independent.",
-    "parent_adjudication": "Accept source, representation and adversarial reviews at the final exact hashes. Source objections overrode earlier acceptance of stale documentation. Parent inspected original Table2/Methods/S4-caption/lineage XML and exact TIFF, verified source/witness/provider equality and old output equality. Source-status mapping replaces a literal while leaving every projected object unchanged. Internal candidate maps have no review authority; the public gate rejects changed dose-as-activity semantics. No remaining scientific objection."
+    "role_dependence": "Separate questions in existing review tasks; earlier task context is retained. These are related-model computational reviews, not independent human or statistical evidence.",
+    "parent_adjudication": "Source reviewer accepted the exact projection and relation-document hashes against retained 2017 Materials p2, publisher reference 12 and 2013 Methods/P41. The prior-procedure citation is supported; historical NMR/rotation remains 2013-reported. Reuse reviewer accepted identical hashes and the regression after verifying only 21 substrate contexts change, all 111 comparison objects are identical, and the regression passes against the candidate and fails against the prior output. Parent confirmed the same invariance with the public query, all 17 retained witnesses, unchanged source providers/runtime and the focused suite. Required repository/CI checks remain publication gates."
   },
   "resolved_objections": [
     {
@@ -263,6 +263,10 @@
     {
       "issue": "Internal candidate maps can be deliberately changed to report benzoate dose as activity.",
       "resolution": "Candidate projections confer no source authority. Public project rejects the changed specification. Source-status-to-kind mapping is explicit; a regression check targets the two-selector attack without claiming the internal candidate authenticates arbitrary semantics."
+    },
+    {
+      "issue": "The 2017 tetrad reused an unscoped 2013 substrate-preparation field, potentially presenting historical NMR/rotation agreement as repeated 2017 characterization.",
+      "resolution": "Use a scoped 2017 R-methodol context with the Materials p2-to-reference 12-to-Giger2013 preparation chain. Procedure adoption is supported; historical characterization remains 2013-reported, with shared lot, exact 2017 ee and repeated 2017 characterization unestablished. Measurements and comparisons are unchanged."
     }
   ],
   "remaining_limits": [
@@ -283,9 +287,10 @@
     "The S4 construct is16.2; the deposit is16.1. No ligand depletion, ligand independence, productive pose, exact assay-specimen sequence, Ki or statistical inhibition claim is established.",
     "S4 rows retain the construct K49E/S51H background tags; dose is a condition field, not a genetic perturbation. No generic numeric chemical-dose comparison operation is implemented.",
     "Original beta source-review ra61_* task labels are inherited metadata; actual current reviewers and correlated role history are recorded here and on the coordination board.",
-    "This completes a distinct source-conflict relation; repeated migration of cached tables alone is not a justified next scientific task."
+    "This completes a distinct source-conflict relation; repeated migration of cached tables alone is not a justified next scientific task.",
+    "The 2017 prior-method citation does not authenticate an exact assay-substrate lot or repeat the 2013 characterization; no substrate mismatch or numerical error was demonstrated by this correction."
   ],
-  "coordination_record": "work/coordination_beta_barrel_perturbation_20260910.md",
+  "coordination_record": "docs/SCIENTIFIC_DIRECTION.md",
   "added_source_bindings": {
     "betaf": {
       "path": "data/atlas/study_context/beta_barrel_2022/source_qualification.json",
@@ -301,23 +306,24 @@
     }
   },
   "prior_review_binding": {
-    "base_commit": "42b9f0f675bf65028fb7cbc879eac12438399737",
+    "base_commit": "e68f4cf194d5cc054c3e036c0726e0724f27bff2",
     "path": "data/atlas/perturbations/review.json",
-    "sha256": "6170534b6e84772d46a00b3eb75d74600c64c69f3a438a8e1cb5d435d72c665f",
-    "scope": "All previous 179 observation objects and 107 comparison objects are unchanged; Git preserves prior review and source bindings."
+    "sha256": "c920806a4c63364687edf14680fea77532877df25d7237a658c6c97738af5bbe",
+    "scope": "All 193 observation IDs and 111 comparison objects are unchanged; exactly 21 tetrad rows change only substrate_id and substrate provenance. Git preserves the earlier review, original contexts and bindings."
   },
   "forward_synthesis_limits": [
     "Forward product configuration is source-assigned; R/S retention mappings remain conflicted and no assignment transfers to the0.7%precursor conversion arm.",
     "The strict>98.4%ee remains structured source context, not a numeric central-value comparison. No repaired yield or quantity is computed."
   ],
   "this_run_source_access": {
-    "batch_id": "designed-retroaldolase-beta-barrel-kipnis2022",
+    "batch_id": "designed-retroaldolase-ra95-giger2013",
     "new_requests": 0,
     "new_response_body_bytes": 0,
-    "cumulative_requests": 5,
-    "cumulative_response_body_bytes": 8449621,
-    "new_local_witness_copies": 3,
-    "new_local_witness_bytes": 4187601,
+    "cumulative_requests": 24,
+    "cumulative_response_body_bytes": 15353338,
+    "new_local_witness_copies": 0,
+    "new_local_witness_bytes": 0,
+    "verification_scope": "Three existing RA95 witnesses hash-verified by source reviewer; all source providers and witness metadata unchanged.",
     "verified_local_witness_files": 17,
     "verified_local_witness_bytes": 20956262
   },
@@ -329,5 +335,22 @@
     "adversarial_review": "adversarial task accepted exact CLI and tests hashes; CP1252 environment forces actual symbol transport; parsed source/construct context equality checked",
     "source_interpretation_changed": false,
     "no_failed_check_bypass": true
-  }
+  },
+  "additional_checked_primary_scope": [
+    {
+      "source": "ra95t",
+      "pointer": "/sources/0",
+      "primary_locator": "Obexer2017:SI:Materials:p2, first paragraph, methodol1a preparation reference12"
+    },
+    {
+      "source": "ra95t",
+      "pointer": "/sources/0/publisher_link_binding",
+      "primary_locator": "li[data-counter=12], p#ref-CR12, DOI10.1038/nchembio.1276"
+    },
+    {
+      "source": "ra95s",
+      "pointer": "/sources/0",
+      "primary_locator": "Giger2013:article:Methods/S19/P41, Methodol synthesis"
+    }
+  ]
 }

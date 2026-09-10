@@ -367,6 +367,18 @@ matched 16.1/8AH9 measurement.
 
 ## Provenance and source retention
 
+The 2017 RA95 tetrad uses its own R-methodol evidence context. The Materials
+paragraph on supplement p2 cites preparation reference12; the retained
+publisher reference entry identifies Giger2013, whose Methods/S19/P41 describes
+the preparative chiral-HPLC procedure. The shared query now exposes this
+three-part citation chain. Giger's NMR/optical-rotation agreement is explicitly
+a 2013-reported characterization, not an additional observation on the 2017
+assay substrate. Procedure adoption is supported; a shared lot, exact 2017
+substrate ee and repeated characterization remain unestablished in this scope.
+The [direction review](SCIENTIFIC_DIRECTION.md) corrected this ambiguity in
+the earlier unscoped preparation field. It changes the substrate context of
+the 21 tetrad parameter records without changing their measurements or rates.
+
 Source bindings resolve the five original accepted annotation packets, the
 forward-synthesis packet, the Diels–Alder annotation, the retained TKT packets
 plus identity adapter, the POX source packet and named-construct adapter, and

@@ -1589,6 +1589,52 @@
       "preparation_source": "article Methods/S19/P41 (Methodol synthesis); preparative chiral HPLC separation and NMR/optical rotation agreement with cited literature",
       "preparation_limit": "No row-specific substrate lot, raw chromatogram or exact ee is retained in this annotation."
     },
+    "ra95_2017:methodol:R": {
+      "name": "(R)-methodol",
+      "stereochemistry": "source-named R enantiomer; no exact substrate ee or lot authentication",
+      "source": {
+        "source": "ra95t",
+        "pointer": "/assays/0"
+      },
+      "source_named_chemical_entity_relation": {
+        "related_substrate_id": "methodol:R",
+        "relation": "same source-named molecule and configuration",
+        "scope": "Chemical identity association only; preparation evidence is separately scoped below."
+      },
+      "preparation": {
+        "status": "source_reported_use_of_prior_method",
+        "reporting_study_id": "ra95_2017",
+        "procedure_reference_study_id": "ra95_2013",
+        "procedure_reference_doi": "10.1038/nchembio.1276",
+        "evidence_chain": [
+          {
+            "provider": {"source": "ra95t", "pointer": "/sources/0"},
+            "primary_locator": "Obexer2017:SI:Materials:p2, first paragraph, methodol1a superscript12",
+            "relation": "Methodol preparation is reported by reference to a previous procedure."
+          },
+          {
+            "provider": {"source": "ra95t", "pointer": "/sources/0/publisher_link_binding"},
+            "primary_locator": "Publisher preview li[data-counter=12], p#ref-CR12 and Article-reference-12 DOI link",
+            "relation": "Reference12 identifies Giger2013, DOI10.1038/nchembio.1276."
+          },
+          {
+            "provider": {"source": "ra95s", "pointer": "/sources/0"},
+            "primary_locator": "Giger2013:article:Methods/S19/P41, Methodol synthesis",
+            "relation": "The cited procedure separates the racemate into enantiomers by preparative chiral HPLC."
+          }
+        ],
+        "prior_study_characterization": {
+          "reporting_study_id": "ra95_2013",
+          "statement": "The earlier article reports proton NMR and optical-rotation agreement with cited literature.",
+          "provider": {"source": "ra95s", "pointer": "/substrates/0"},
+          "primary_locator": "Giger2013:article:Methods/S19/P41",
+          "repeat_for_2017_assay_substrate": "not_established_in_inspected_scope"
+        },
+        "same_substrate_lot_established": false,
+        "exact_2017_substrate_ee": null,
+        "scope": "Newly checked 2017 Materials p2 and reference12 establish a procedural citation. They do not establish shared material or repeat the 2013 characterization as a 2017 observation."
+      }
+    },
     "methodol:S": {
       "substrate_id": "methodol:S",
       "source_name": "(S)-methodol",
@@ -2069,7 +2115,7 @@
           "pointer": "/assay_id"
         },
         "substrate_id": {
-          "literal": "methodol:R"
+          "literal": "ra95_2017:methodol:R"
         },
         "source_locator": {
           "pointer": "/source"

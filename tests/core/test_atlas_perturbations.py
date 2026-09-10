@@ -81,6 +81,31 @@ class PerturbationRelationTests(unittest.TestCase):
         triple = self.rows["ra95-tetrad:S1:Y51F/N110S/Y180F:kcat"]
         self.assertGreater(triple["value"], 0)
 
+    def test_cited_preparation_does_not_repeat_prior_study_characterization(self):
+        rows = [row for row in self.view["observations"] if row["id"].startswith("ra95-tetrad:")]
+        self.assertEqual(len(rows), 21)
+        for row in rows:
+            substrate = row["substrate"]
+            self.assertNotIn("preparation_source", substrate)
+            self.assertEqual(substrate["source"]["source"], "ra95t")
+            preparation = substrate["preparation"]
+            self.assertEqual(preparation["reporting_study_id"], row["study_id"])
+            self.assertEqual(preparation["procedure_reference_study_id"], "ra95_2013")
+            prior = preparation["prior_study_characterization"]
+            self.assertEqual(prior["reporting_study_id"], "ra95_2013")
+            self.assertEqual(prior["repeat_for_2017_assay_substrate"], "not_established_in_inspected_scope")
+            self.assertFalse(preparation["same_substrate_lot_established"])
+            self.assertIsNone(preparation["exact_2017_substrate_ee"])
+            chain = preparation["evidence_chain"]
+            self.assertEqual(len(chain), 3)
+            for link in chain:
+                ref = link["provider"]
+                source = json.loads((ROOT / self.spec["sources"][ref["source"]]["path"]).read_text(encoding="utf-8"))
+                witness = pointer(source, ref["pointer"])
+                self.assertTrue(any(item["sha256"] == witness["sha256"] for item in self.view["source_witnesses"]))
+        self.assertIn("preparation_source", self.view["substrates"]["methodol:R"])
+        self.assertAlmostEqual(self.comparisons["ra95_2017:Y51F-Y180F:kcat"]["value"], 0.021)
+
     def test_ra61_named_background_without_sequence_or_full_cycle_transfer(self):
         result = self.comparisons["ra61_2010:RA61-Y78F-S87A:kcat_over_KM_obs"]
         self.assertTrue(result["eligible"])
