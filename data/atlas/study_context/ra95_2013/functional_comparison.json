@@ -1,0 +1,1285 @@
+{
+  "schema_version": "catalytic-earth.functional-comparison.v1",
+  "comparison_id": "giger2013-ra95-construct-assay-outcomes",
+  "operation": "source_annotation",
+  "study": {
+    "doi": "10.1038/nchembio.1276",
+    "pmid": "23748672",
+    "pmcid": "PMC3720730",
+    "title": "Evolution of a designed retro-aldolase leads to complete active site remodeling",
+    "enzyme_context": "2013 RA95 designed/evolved retro-aldolase series and source-defined lysine perturbations",
+    "scope": "One published study; 12 source-defined constructs, four directly printed complete sequence strings plus eight derived mutant strings; 15 selected table rows, not 15 independent experiments. No biological registry admission, mechanism compilation, evidence-tier promotion or project experiment.",
+    "development_exposure": "literature outcomes inspected for source annotation; not a frozen/unseen evaluation or design-success-rate sample"
+  },
+  "selection": {
+    "included": "All four RA95 main Table1 racemic rows and all eleven Supplementary Table2 rows, three kinetic columns each; all four Supplementary Figure5 sequences; table footnotes and endpoint-defining methods.",
+    "excluded": "Antibody comparator, enantiopure kinetics, E53A/malate arms, pKa, rate-acceleration columns, library-screening clones, structural coordinates and design success rates. No unreported clone is labeled negative.",
+    "rationale": "Resolve construct identity and background/endpoint-specific lysine perturbations, including weak residual and nondetected outcomes. Main Table1/SI Table1 duplicates are one source observation context, not replicated evidence."
+  },
+  "source_bindings": [
+    {
+      "path": "data/atlas/study_context/ra95_2013/acquisition_receipts.json",
+      "sha256": "9b6c2c8803773b58ff39ff76e5ad1f772faa788c28b888df965434868d76658e"
+    }
+  ],
+  "sources": [
+    {
+      "artifact_id": "PMC3720730:article-XML",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC3720730/fullTextXML",
+      "sha256": "71d3d579ec5ef65e4279e6affeb95eb7fc39c894019fc4a58de5462933819ab9",
+      "bytes": 95645,
+      "local_cache_path": "/private/tmp/ce-ra95-be3a548b/article.xml",
+      "redistributed": false,
+      "inspection": "Full main article; Table1; Methods/S8, S11, S13, S15, S16; source discussion and inhibitor limitations."
+    },
+    {
+      "artifact_id": "PMC3720730:SI-PDF",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC3720730/supplementaryFiles",
+      "archive_member": "NIHMS478755-supplement-1.pdf",
+      "archive_sha256": "35703b027091a45f14f5f32cdc5116814dd6709f62f2438d332217ae6413717e",
+      "sha256": "aaa0e3203b535546a39818d2d05f0a66cd888d5c6c910f4330449f2c48c0e3ee",
+      "bytes": 3601999,
+      "local_cache_path": "/private/tmp/ce-ra95-be3a548b/NIHMS478755-supplement-1.pdf",
+      "redistributed": false,
+      "inspection": "All nine pages text-extracted; full pages2,3,5,9 visually inspected; table units, footnotes and complete sequences checked."
+    }
+  ],
+  "source_access": {
+    "batch_id": "designed-retroaldolase-ra95-giger2013",
+    "new_requests": 9,
+    "new_response_body_bytes": 4454733,
+    "complete_cumulative_requests": 9,
+    "complete_cumulative_response_body_bytes": 4454733,
+    "max_requests": 100,
+    "max_response_body_bytes": 31457280,
+    "remaining_requests": 91,
+    "remaining_response_body_bytes": 27002547,
+    "permissions": "Article permissions allow academic-research viewing/download/text and data mining subject to publisher terms. Source bodies are retained locally, not redistributed. Study-scoped annotation is adjudicated under owner-authorized computational-development policy.",
+    "accounting_limit": "Complete for the named scope from its first discovery request; counts actual downloaded bodies, including failed/error/challenge pages, not extracted ZIP member sizes. Unrelated inherited accounting gaps remain unchanged."
+  },
+  "constructs": [
+    {
+      "construct_id": "RA95.0",
+      "sequence": "MPRYLKGWLEDVVQLSLRRPSVRASRQRPIISLNERILEFNKRNITAIIAVYERKSPSGLDVERDPIEYAKFMERYAVGLSITTEEKYFNGSYETLRKIASSVSIPILMSDFIVKESQIDDAYNLGADTVLLIVKILTERELESLLEYARSYGMEPLILINDENDLDIALRIGARFIGIMSRDFETGEINKENQRKLISMIPSNVVKVAKLGISERNEIEELRKLGVNAFLISSSLMRNPEKIKELIEGSLEHHHHHH",
+      "sequence_length": 258,
+      "sequence_sha256": "d49f7191b1389febb836a1d4262a9e52af2b87dace6626d582c9f82689adaec5",
+      "sequence_status": "source_reported_complete_amino_acid_string",
+      "sequence_source": "SI:Figure5:page9",
+      "numbering": "one-based position in the displayed 258-residue string; not an inferred UniProt or PDB mapping",
+      "reported_c_terminal_suffix": "LEHHHHHH",
+      "sequence_parent_id": null,
+      "sequence_parent_relation": "comparison ancestor among the four displayed variants; not a claim about the immediately preceding screened clone",
+      "sequence_delta_from_parent": [],
+      "assayed_preparation_identity": "study-reported variant association; no per-assay sequence trace, raw sequencing or individual preparation identifier supplied",
+      "design_origin": {
+        "source_reported_scaffold": "indole-3-glycerol phosphate synthase",
+        "source_reported_pdb_id": "1LBL",
+        "source": "article Methods/S8, Starting point for in vitro evolution",
+        "source_reported_design_active_site_substitutions": [
+          "E51V",
+          "K53E",
+          "L83T",
+          "K110S",
+          "E159L",
+          "N180M",
+          "L184F",
+          "L187G",
+          "E210K",
+          "S211L",
+          "G233S"
+        ],
+        "source_reported_production_surface_substitutions": [
+          "K10E",
+          "F22V",
+          "S70A",
+          "F246L",
+          "L248E"
+        ],
+        "exact_ancestor_sequence_acquired": false,
+        "delta_not_independently_recomputed": true,
+        "source_reported_design_software": [
+          "RosettaMatch",
+          "RosettaDesign"
+        ],
+        "scope": "Bibliographic design-origin statement, not another construct, an exact scaffold sequence join or a measured effect of each substitution."
+      }
+    },
+    {
+      "construct_id": "RA95.5",
+      "sequence": "MPRYLKGWLEDVVQLSLRRPSVRASRQRPIISLNERILEFNKRNITAIIAYYSRKSPSGLDVERDPIEYAKFMERYAVGLSIKTEEKYFNGSYETLRKIASSVSIPILMSDFIVKESQIDDAYNLGADTVLLIVKILTERELESLLEYARSYGMEPLILINDENDLDIALRIGARFIGIFSMNFETGEINKENQRKLISMIPSNVVKVAKLGISERNEIEELRKLGVNAFLISSSLMRNPEKIKELIEGSLEHHHHHH",
+      "sequence_length": 258,
+      "sequence_sha256": "e4150152da236d81d32d1ef3b9caf8f68e312aa92f5210536561d5c3786b9eec",
+      "sequence_status": "source_reported_complete_amino_acid_string",
+      "sequence_source": "SI:Figure5:page9",
+      "numbering": "one-based position in the displayed 258-residue string; not an inferred UniProt or PDB mapping",
+      "reported_c_terminal_suffix": "LEHHHHHH",
+      "sequence_parent_id": "RA95.0",
+      "sequence_parent_relation": "comparison ancestor among the four displayed variants; not a claim about the immediately preceding screened clone",
+      "sequence_delta_from_parent": [
+        "V51Y",
+        "E53S",
+        "T83K",
+        "M180F",
+        "R182M",
+        "D183N"
+      ],
+      "assayed_preparation_identity": "study-reported variant association; no per-assay sequence trace, raw sequencing or individual preparation identifier supplied"
+    },
+    {
+      "construct_id": "RA95.5-5",
+      "sequence": "MPRYLKGWLEDVVQLSLRRPSVHASRQRPIISLNERILEFNKSNITAIIAYYTRKSPSGLDVERDPIEYAKFMERYAVGLSIKTEEKYFNGSYEMLRKIASSVSIPILMNDFIVKESQIDDAYNLGADTVLLIVKILTERELESLLEYARSYGMEPLILINDENDLDIALRIGARFISIFSMNFETGEINKENQRKLISMIPSNVVKVAKLGISERNEIEELRKLGVNAFLISSSLMRNPEKIKELIEGSLEHHHHHH",
+      "sequence_length": 258,
+      "sequence_sha256": "2555aec775f6848faca6a5f1a43fb1cd4a72ae077c2bcc7aafb3baf2662d76df",
+      "sequence_status": "source_reported_complete_amino_acid_string",
+      "sequence_source": "SI:Figure5:page9",
+      "numbering": "one-based position in the displayed 258-residue string; not an inferred UniProt or PDB mapping",
+      "reported_c_terminal_suffix": "LEHHHHHH",
+      "sequence_parent_id": "RA95.5",
+      "sequence_parent_relation": "comparison ancestor among the four displayed variants; not a claim about the immediately preceding screened clone",
+      "sequence_delta_from_parent": [
+        "R23H",
+        "R43S",
+        "S53T",
+        "T95M",
+        "S110N",
+        "G178S"
+      ],
+      "assayed_preparation_identity": "study-reported variant association; no per-assay sequence trace, raw sequencing or individual preparation identifier supplied",
+      "source_described_change": {
+        "literal": "E53T",
+        "source": "article Results, mechanistic-promiscuity subsection",
+        "consecutive_sequence_delta": "S53T",
+        "status": "not_a_literal_parent_relative_substitution; RA95.5 has Ser53 and earlier RA95.0 has Glu53"
+      }
+    },
+    {
+      "construct_id": "RA95.5-8",
+      "sequence": "MPRYLKGWLEDVVQLSLRRPSVHASRQRPIISLNERILEFNKRNITAIIAYYTRKSPSGLDVERDPIEYAKYMERYAVGLSIKTEEKYFNGSYEMLRKIASSVSIPILMNDFIVKESQIDDAYNLGADTVLLIVNILTERELESLLEYARSYGMEPLILINDENDLDIALRIGARFIVIFSMNFETGEINKENQRKLISMIPSNVVKVAKLDISERNEIEELRKLGVNAFLISSSLMRNPEKIKELIEGSLEHHHHHH",
+      "sequence_length": 258,
+      "sequence_sha256": "2588539fc53e69001aacb00cac3f535c91cbe51d7a695c63a45c2df847ab8cec",
+      "sequence_status": "source_reported_complete_amino_acid_string",
+      "sequence_source": "SI:Figure5:page9",
+      "numbering": "one-based position in the displayed 258-residue string; not an inferred UniProt or PDB mapping",
+      "reported_c_terminal_suffix": "LEHHHHHH",
+      "sequence_parent_id": "RA95.5-5",
+      "sequence_parent_relation": "comparison ancestor among the four displayed variants; not a claim about the immediately preceding screened clone",
+      "sequence_delta_from_parent": [
+        "S43R",
+        "F72Y",
+        "K135N",
+        "S178V",
+        "G212D"
+      ],
+      "assayed_preparation_identity": "study-reported variant association; no per-assay sequence trace, raw sequencing or individual preparation identifier supplied"
+    },
+    {
+      "construct_id": "RA95.0-K210M",
+      "sequence": "MPRYLKGWLEDVVQLSLRRPSVRASRQRPIISLNERILEFNKRNITAIIAVYERKSPSGLDVERDPIEYAKFMERYAVGLSITTEEKYFNGSYETLRKIASSVSIPILMSDFIVKESQIDDAYNLGADTVLLIVKILTERELESLLEYARSYGMEPLILINDENDLDIALRIGARFIGIMSRDFETGEINKENQRKLISMIPSNVVKVAMLGISERNEIEELRKLGVNAFLISSSLMRNPEKIKELIEGSLEHHHHHH",
+      "sequence_length": 258,
+      "sequence_sha256": "643e984da91c1e4edb75896ab603c3aca6b6f4c2a9a21d2510ef4c5dd576574f",
+      "sequence_status": "derived_from_source_reported_parent_and_named_substitutions",
+      "sequence_source": "SI:Table2:page3; article Methods/S11 site-directed mutagenesis; parent SI:Figure5:page9",
+      "numbering": "one-based parent sequence positions checked before substitution",
+      "reported_c_terminal_suffix": "LEHHHHHH inherited from displayed parent; mutant full string is not separately printed",
+      "sequence_parent_id": "RA95.0",
+      "sequence_parent_relation": "source-declared perturbation background",
+      "sequence_delta_from_parent": [
+        "K210M"
+      ],
+      "assayed_preparation_identity": "source-defined mutant; full string reconstructed, not independently sequence-verified or a deposited assay specimen"
+    },
+    {
+      "construct_id": "RA95.0-T83K/K210M",
+      "sequence": "MPRYLKGWLEDVVQLSLRRPSVRASRQRPIISLNERILEFNKRNITAIIAVYERKSPSGLDVERDPIEYAKFMERYAVGLSIKTEEKYFNGSYETLRKIASSVSIPILMSDFIVKESQIDDAYNLGADTVLLIVKILTERELESLLEYARSYGMEPLILINDENDLDIALRIGARFIGIMSRDFETGEINKENQRKLISMIPSNVVKVAMLGISERNEIEELRKLGVNAFLISSSLMRNPEKIKELIEGSLEHHHHHH",
+      "sequence_length": 258,
+      "sequence_sha256": "61e51a5ec5a16a9f95d330a9f41515db4cbaed906989edbf307641a4ff24dd28",
+      "sequence_status": "derived_from_source_reported_parent_and_named_substitutions",
+      "sequence_source": "SI:Table2:page3; article Methods/S11 site-directed mutagenesis; parent SI:Figure5:page9",
+      "numbering": "one-based parent sequence positions checked before substitution",
+      "reported_c_terminal_suffix": "LEHHHHHH inherited from displayed parent; mutant full string is not separately printed",
+      "sequence_parent_id": "RA95.0",
+      "sequence_parent_relation": "source-declared perturbation background",
+      "sequence_delta_from_parent": [
+        "T83K",
+        "K210M"
+      ],
+      "assayed_preparation_identity": "source-defined mutant; full string reconstructed, not independently sequence-verified or a deposited assay specimen",
+      "experimental_construction_parent_id": "RA95.0-K210M",
+      "experimental_construction_change": "T83K",
+      "construction_source": "article Methods/S11"
+    },
+    {
+      "construct_id": "RA95.5-K83M",
+      "sequence": "MPRYLKGWLEDVVQLSLRRPSVRASRQRPIISLNERILEFNKRNITAIIAYYSRKSPSGLDVERDPIEYAKFMERYAVGLSIMTEEKYFNGSYETLRKIASSVSIPILMSDFIVKESQIDDAYNLGADTVLLIVKILTERELESLLEYARSYGMEPLILINDENDLDIALRIGARFIGIFSMNFETGEINKENQRKLISMIPSNVVKVAKLGISERNEIEELRKLGVNAFLISSSLMRNPEKIKELIEGSLEHHHHHH",
+      "sequence_length": 258,
+      "sequence_sha256": "17fa08fc7111ae2af1b33d5819b0c1644878e92f21b5ece65c642362a952ddb7",
+      "sequence_status": "derived_from_source_reported_parent_and_named_substitutions",
+      "sequence_source": "SI:Table2:page3; article Methods/S11 site-directed mutagenesis; parent SI:Figure5:page9",
+      "numbering": "one-based parent sequence positions checked before substitution",
+      "reported_c_terminal_suffix": "LEHHHHHH inherited from displayed parent; mutant full string is not separately printed",
+      "sequence_parent_id": "RA95.5",
+      "sequence_parent_relation": "source-declared perturbation background",
+      "sequence_delta_from_parent": [
+        "K83M"
+      ],
+      "assayed_preparation_identity": "source-defined mutant; full string reconstructed, not independently sequence-verified or a deposited assay specimen"
+    },
+    {
+      "construct_id": "RA95.5-K210M",
+      "sequence": "MPRYLKGWLEDVVQLSLRRPSVRASRQRPIISLNERILEFNKRNITAIIAYYSRKSPSGLDVERDPIEYAKFMERYAVGLSIKTEEKYFNGSYETLRKIASSVSIPILMSDFIVKESQIDDAYNLGADTVLLIVKILTERELESLLEYARSYGMEPLILINDENDLDIALRIGARFIGIFSMNFETGEINKENQRKLISMIPSNVVKVAMLGISERNEIEELRKLGVNAFLISSSLMRNPEKIKELIEGSLEHHHHHH",
+      "sequence_length": 258,
+      "sequence_sha256": "f1c434bb07ed728a5078b3129b0a9b3c23b40e02d1d7bf5468e1e72d2fa1cf57",
+      "sequence_status": "derived_from_source_reported_parent_and_named_substitutions",
+      "sequence_source": "SI:Table2:page3; article Methods/S11 site-directed mutagenesis; parent SI:Figure5:page9",
+      "numbering": "one-based parent sequence positions checked before substitution",
+      "reported_c_terminal_suffix": "LEHHHHHH inherited from displayed parent; mutant full string is not separately printed",
+      "sequence_parent_id": "RA95.5",
+      "sequence_parent_relation": "source-declared perturbation background",
+      "sequence_delta_from_parent": [
+        "K210M"
+      ],
+      "assayed_preparation_identity": "source-defined mutant; full string reconstructed, not independently sequence-verified or a deposited assay specimen"
+    },
+    {
+      "construct_id": "RA95.5-K83M/K210M",
+      "sequence": "MPRYLKGWLEDVVQLSLRRPSVRASRQRPIISLNERILEFNKRNITAIIAYYSRKSPSGLDVERDPIEYAKFMERYAVGLSIMTEEKYFNGSYETLRKIASSVSIPILMSDFIVKESQIDDAYNLGADTVLLIVKILTERELESLLEYARSYGMEPLILINDENDLDIALRIGARFIGIFSMNFETGEINKENQRKLISMIPSNVVKVAMLGISERNEIEELRKLGVNAFLISSSLMRNPEKIKELIEGSLEHHHHHH",
+      "sequence_length": 258,
+      "sequence_sha256": "530f099c01b996b374f1f3aca56dbfc29a66a8d6913ad0c5291f962991a5b10d",
+      "sequence_status": "derived_from_source_reported_parent_and_named_substitutions",
+      "sequence_source": "SI:Table2:page3; article Methods/S11 site-directed mutagenesis; parent SI:Figure5:page9",
+      "numbering": "one-based parent sequence positions checked before substitution",
+      "reported_c_terminal_suffix": "LEHHHHHH inherited from displayed parent; mutant full string is not separately printed",
+      "sequence_parent_id": "RA95.5",
+      "sequence_parent_relation": "source-declared perturbation background",
+      "sequence_delta_from_parent": [
+        "K83M",
+        "K210M"
+      ],
+      "assayed_preparation_identity": "source-defined mutant; full string reconstructed, not independently sequence-verified or a deposited assay specimen"
+    },
+    {
+      "construct_id": "RA95.5-5-K83M",
+      "sequence": "MPRYLKGWLEDVVQLSLRRPSVHASRQRPIISLNERILEFNKSNITAIIAYYTRKSPSGLDVERDPIEYAKFMERYAVGLSIMTEEKYFNGSYEMLRKIASSVSIPILMNDFIVKESQIDDAYNLGADTVLLIVKILTERELESLLEYARSYGMEPLILINDENDLDIALRIGARFISIFSMNFETGEINKENQRKLISMIPSNVVKVAKLGISERNEIEELRKLGVNAFLISSSLMRNPEKIKELIEGSLEHHHHHH",
+      "sequence_length": 258,
+      "sequence_sha256": "3cc49a0748579b85a168d52be8fa337d96da7b2b3d7dcf1ea402eeec3ad545bb",
+      "sequence_status": "derived_from_source_reported_parent_and_named_substitutions",
+      "sequence_source": "SI:Table2:page3; article Methods/S11 site-directed mutagenesis; parent SI:Figure5:page9",
+      "numbering": "one-based parent sequence positions checked before substitution",
+      "reported_c_terminal_suffix": "LEHHHHHH inherited from displayed parent; mutant full string is not separately printed",
+      "sequence_parent_id": "RA95.5-5",
+      "sequence_parent_relation": "source-declared perturbation background",
+      "sequence_delta_from_parent": [
+        "K83M"
+      ],
+      "assayed_preparation_identity": "source-defined mutant; full string reconstructed, not independently sequence-verified or a deposited assay specimen"
+    },
+    {
+      "construct_id": "RA95.5-5-K210M",
+      "sequence": "MPRYLKGWLEDVVQLSLRRPSVHASRQRPIISLNERILEFNKSNITAIIAYYTRKSPSGLDVERDPIEYAKFMERYAVGLSIKTEEKYFNGSYEMLRKIASSVSIPILMNDFIVKESQIDDAYNLGADTVLLIVKILTERELESLLEYARSYGMEPLILINDENDLDIALRIGARFISIFSMNFETGEINKENQRKLISMIPSNVVKVAMLGISERNEIEELRKLGVNAFLISSSLMRNPEKIKELIEGSLEHHHHHH",
+      "sequence_length": 258,
+      "sequence_sha256": "88d281812fcf51b082397df12269faf49da52fbf11ce0ef0f7a2d09b5c09b32e",
+      "sequence_status": "derived_from_source_reported_parent_and_named_substitutions",
+      "sequence_source": "SI:Table2:page3; article Methods/S11 site-directed mutagenesis; parent SI:Figure5:page9",
+      "numbering": "one-based parent sequence positions checked before substitution",
+      "reported_c_terminal_suffix": "LEHHHHHH inherited from displayed parent; mutant full string is not separately printed",
+      "sequence_parent_id": "RA95.5-5",
+      "sequence_parent_relation": "source-declared perturbation background",
+      "sequence_delta_from_parent": [
+        "K210M"
+      ],
+      "assayed_preparation_identity": "source-defined mutant; full string reconstructed, not independently sequence-verified or a deposited assay specimen"
+    },
+    {
+      "construct_id": "RA95.5-5-K83M/K210M",
+      "sequence": "MPRYLKGWLEDVVQLSLRRPSVHASRQRPIISLNERILEFNKSNITAIIAYYTRKSPSGLDVERDPIEYAKFMERYAVGLSIMTEEKYFNGSYEMLRKIASSVSIPILMNDFIVKESQIDDAYNLGADTVLLIVKILTERELESLLEYARSYGMEPLILINDENDLDIALRIGARFISIFSMNFETGEINKENQRKLISMIPSNVVKVAMLGISERNEIEELRKLGVNAFLISSSLMRNPEKIKELIEGSLEHHHHHH",
+      "sequence_length": 258,
+      "sequence_sha256": "4dc32a3bd4a0265a32336ffdcb41aa6ab4c358544a7dd8e03c7dea47a513ae33",
+      "sequence_status": "derived_from_source_reported_parent_and_named_substitutions",
+      "sequence_source": "SI:Table2:page3; article Methods/S11 site-directed mutagenesis; parent SI:Figure5:page9",
+      "numbering": "one-based parent sequence positions checked before substitution",
+      "reported_c_terminal_suffix": "LEHHHHHH inherited from displayed parent; mutant full string is not separately printed",
+      "sequence_parent_id": "RA95.5-5",
+      "sequence_parent_relation": "source-declared perturbation background",
+      "sequence_delta_from_parent": [
+        "K83M",
+        "K210M"
+      ],
+      "assayed_preparation_identity": "source-defined mutant; full string reconstructed, not independently sequence-verified or a deposited assay specimen"
+    }
+  ],
+  "assays": [
+    {
+      "assay_id": "racemic_methodol_uvvis",
+      "endpoint": "background-corrected fitted steady-state cleavage of racemic methodol",
+      "conditions": {
+        "temperature_celsius": 29,
+        "pH": 7.5,
+        "buffer": "25 mM HEPES",
+        "NaCl_mM": 100,
+        "acetonitrile_percent": 2.7,
+        "substrate": "racemic (±)-methodol",
+        "substrate_chemical_name": "4-hydroxy-4-(6-methoxy-2-naphthyl)-2-butanone",
+        "external_chemical_id": null,
+        "product_reporter": "6-methoxy-2-naphthaldehyde",
+        "net_products_source_reported": [
+          "6-methoxy-2-naphthaldehyde",
+          "acetone"
+        ],
+        "source_substrate_stereochemistry": "racemic; not transferable to the separately assayed R or S enantiomers"
+      },
+      "technique": "UV-vis spectrophotometry",
+      "technique_source": "SI Figure1 page5 identifies UV-vis for all four lineage variants; main Methods/S16 gives detection at350nm and Michaelis-Menten model",
+      "wavelength_nm": 350,
+      "model": "v0/[E] = k_cat*[S]/(K_M+[S])",
+      "sample_context": "purified C-terminally His-tagged variants; main Methods/S13",
+      "uncertainty": "Main Table1 states SD of two to three independent measurements; SI Table1 footnote a specifies two to three independent protein batches. Do not sum these descriptions or infer an exact n per row."
+    },
+    {
+      "assay_id": "racemic_methodol_fluorescence",
+      "endpoint": "background-corrected source-reported steady-state parameters for cleavage of racemic methodol",
+      "conditions": {
+        "temperature_celsius": 29,
+        "pH": 7.5,
+        "buffer": "25 mM HEPES",
+        "NaCl_mM": 100,
+        "acetonitrile_percent": 2.7,
+        "substrate": "racemic (±)-methodol",
+        "substrate_chemical_name": "4-hydroxy-4-(6-methoxy-2-naphthyl)-2-butanone",
+        "external_chemical_id": null,
+        "product_reporter": "6-methoxy-2-naphthaldehyde",
+        "net_products_source_reported": [
+          "6-methoxy-2-naphthaldehyde",
+          "acetone"
+        ],
+        "source_substrate_stereochemistry": "racemic; not transferable to the separately assayed R or S enantiomers"
+      },
+      "technique": "fluorescence spectroscopy",
+      "technique_source": "SI Table2 page3 footnote a explicitly marks the eight RA95.5 and RA95.5-5 rows; main Methods/S15 describes the fluorescence reporter",
+      "excitation_nm": 330,
+      "emission_nm": 452,
+      "model": "source reports k_cat, K_M and k_cat/K_M but no explicit fluorescence fitting equation; no raw trace refit",
+      "technique_limit": "Source calls this assay less robust and warns of photobleaching and side reactions. Its parent values differ from main Table1; comparisons use only matching SI Table2 parents.",
+      "uncertainty": "SD from two independent measurements; independent protein-batch count for this table is not stated."
+    },
+    {
+      "assay_id": "si_table2_unmarked_technique_unresolved",
+      "endpoint": "reported racemic-methodol kinetic/nondetection context in SI Table2",
+      "conditions": null,
+      "technique": null,
+      "source_locator": "SI Table2 first three RA95.0 rows lack footnote a markers",
+      "applicability_limit": "The table footnote describes fluorescence and conditions, but is explicitly marked only on the later eight rows. Do not assert an exact technique/condition/replicate assignment for these unmarked rows or pool them with Table1. Racemic substrate is supported by the article active-site-optimization discussion and Table2 context.",
+      "table_note_conditions_context_only": {
+        "temperature_celsius": 29,
+        "pH": 7.5,
+        "buffer": "25 mM HEPES",
+        "NaCl_mM": 100,
+        "acetonitrile_percent": 2.7,
+        "substrate": "racemic (±)-methodol",
+        "substrate_chemical_name": "4-hydroxy-4-(6-methoxy-2-naphthyl)-2-butanone",
+        "external_chemical_id": null,
+        "product_reporter": "6-methoxy-2-naphthaldehyde",
+        "net_products_source_reported": [
+          "6-methoxy-2-naphthaldehyde",
+          "acetone"
+        ],
+        "source_substrate_stereochemistry": "racemic; not transferable to the separately assayed R or S enantiomers"
+      }
+    }
+  ],
+  "variants": [
+    {
+      "reported_variant": "RA95.0",
+      "construct_id": "RA95.0",
+      "row_id": "main-table1:RA95.0",
+      "source_locator": "article Table1/T1; duplicated racemic row SI:Table1:page2; UV-vis assignment SI:Figure1:page5",
+      "steady_state": {
+        "assay_id": "racemic_methodol_uvvis",
+        "k_cat": {
+          "parameter": "k_cat",
+          "status": "reported_point_estimate",
+          "value": 0.0001,
+          "sd": 2e-05,
+          "unit": "s^-1",
+          "source_display": "0.10 ± 0.02",
+          "source_column": "10^3 × k_cat (s^-1)",
+          "conversion_to_s_inverse": 0.001
+        },
+        "substrate_response_constant": {
+          "parameter": "K_M",
+          "status": "reported_point_estimate",
+          "value": 530,
+          "sd": 85,
+          "unit": "uM"
+        },
+        "source_reported_efficiency": {
+          "parameter": "k_cat/K_M",
+          "status": "reported_point_estimate",
+          "value": 0.19,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "source_derivation": {
+            "formula": "k_cat/K_M",
+            "denominator_parameter": "K_M",
+            "input_unit": "uM",
+            "unit_conversion_factor": 1000000.0,
+            "independent_measurement": false,
+            "recomputed_from_displayed_values": false
+          }
+        }
+      }
+    },
+    {
+      "reported_variant": "RA95.5",
+      "construct_id": "RA95.5",
+      "row_id": "main-table1:RA95.5",
+      "source_locator": "article Table1/T1; duplicated racemic row SI:Table1:page2; UV-vis assignment SI:Figure1:page5",
+      "steady_state": {
+        "assay_id": "racemic_methodol_uvvis",
+        "k_cat": {
+          "parameter": "k_cat",
+          "status": "reported_point_estimate",
+          "value": 0.003,
+          "sd": 0.0005,
+          "unit": "s^-1",
+          "source_display": "3.0 ± 0.5",
+          "source_column": "10^3 × k_cat (s^-1)",
+          "conversion_to_s_inverse": 0.001
+        },
+        "substrate_response_constant": {
+          "parameter": "K_M",
+          "status": "reported_point_estimate",
+          "value": 210,
+          "sd": 12,
+          "unit": "uM"
+        },
+        "source_reported_efficiency": {
+          "parameter": "k_cat/K_M",
+          "status": "reported_point_estimate",
+          "value": 14,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "source_derivation": {
+            "formula": "k_cat/K_M",
+            "denominator_parameter": "K_M",
+            "input_unit": "uM",
+            "unit_conversion_factor": 1000000.0,
+            "independent_measurement": false,
+            "recomputed_from_displayed_values": false
+          }
+        }
+      }
+    },
+    {
+      "reported_variant": "RA95.5-5",
+      "construct_id": "RA95.5-5",
+      "row_id": "main-table1:RA95.5-5",
+      "source_locator": "article Table1/T1; duplicated racemic row SI:Table1:page2; UV-vis assignment SI:Figure1:page5",
+      "steady_state": {
+        "assay_id": "racemic_methodol_uvvis",
+        "k_cat": {
+          "parameter": "k_cat",
+          "status": "reported_point_estimate",
+          "value": 0.073,
+          "sd": 0.004,
+          "unit": "s^-1",
+          "source_display": "73 ± 4",
+          "source_column": "10^3 × k_cat (s^-1)",
+          "conversion_to_s_inverse": 0.001
+        },
+        "substrate_response_constant": {
+          "parameter": "K_M",
+          "status": "reported_point_estimate",
+          "value": 230,
+          "sd": 27,
+          "unit": "uM"
+        },
+        "source_reported_efficiency": {
+          "parameter": "k_cat/K_M",
+          "status": "reported_point_estimate",
+          "value": 320,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "source_derivation": {
+            "formula": "k_cat/K_M",
+            "denominator_parameter": "K_M",
+            "input_unit": "uM",
+            "unit_conversion_factor": 1000000.0,
+            "independent_measurement": false,
+            "recomputed_from_displayed_values": false
+          }
+        }
+      }
+    },
+    {
+      "reported_variant": "RA95.5-8",
+      "construct_id": "RA95.5-8",
+      "row_id": "main-table1:RA95.5-8",
+      "source_locator": "article Table1/T1; duplicated racemic row SI:Table1:page2; UV-vis assignment SI:Figure1:page5",
+      "steady_state": {
+        "assay_id": "racemic_methodol_uvvis",
+        "k_cat": {
+          "parameter": "k_cat",
+          "status": "reported_point_estimate",
+          "value": 0.17,
+          "sd": 0.02,
+          "unit": "s^-1",
+          "source_display": "170 ± 20",
+          "source_column": "10^3 × k_cat (s^-1)",
+          "conversion_to_s_inverse": 0.001
+        },
+        "substrate_response_constant": {
+          "parameter": "K_M",
+          "status": "reported_point_estimate",
+          "value": 200,
+          "sd": 50,
+          "unit": "uM"
+        },
+        "source_reported_efficiency": {
+          "parameter": "k_cat/K_M",
+          "status": "reported_point_estimate",
+          "value": 850,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "source_derivation": {
+            "formula": "k_cat/K_M",
+            "denominator_parameter": "K_M",
+            "input_unit": "uM",
+            "unit_conversion_factor": 1000000.0,
+            "independent_measurement": false,
+            "recomputed_from_displayed_values": false
+          }
+        }
+      }
+    },
+    {
+      "reported_variant": "RA95.0",
+      "construct_id": "RA95.0",
+      "row_id": "si-table2:RA95.0",
+      "source_locator": "SI:Table2:page3, exact named row",
+      "footnote_a_marker_present": false,
+      "steady_state": {
+        "assay_id": "si_table2_unmarked_technique_unresolved",
+        "k_cat": {
+          "parameter": "k_cat",
+          "status": "reported_point_estimate",
+          "value": 0.00011,
+          "sd": null,
+          "unit": "s^-1",
+          "source_reported_plus_minus": 3e-05,
+          "source_uncertainty_type": "unresolved_for_unmarked_row"
+        },
+        "substrate_response_constant": {
+          "parameter": "K_M",
+          "status": "source_unit_conflict",
+          "value": null,
+          "sd": null,
+          "unit": null,
+          "source_reported_numeric_value": 430,
+          "source_reported_unit": "M",
+          "normalized_value": null,
+          "normalized_unit": null,
+          "conflict": "Printed M header and reported efficiency arithmetic differ by approximately 10^6; a missing micro prefix is plausible but is not silently adopted.",
+          "source_reported_plus_minus": 120,
+          "source_uncertainty_type": "unresolved_for_unmarked_row"
+        },
+        "source_reported_efficiency": {
+          "parameter": "k_cat/K_M",
+          "status": "reported_point_estimate",
+          "value": 0.27,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "source_derivation": {
+            "formula": "k_cat/K_M",
+            "denominator_parameter": "K_M",
+            "input_unit_as_printed": "M",
+            "unit_conversion_factor": null,
+            "independent_measurement": false,
+            "recomputed_from_displayed_values": false,
+            "numeric_quotient_validation": "blocked by source KM unit conflict; preserve reported efficiency column"
+          }
+        }
+      },
+      "unavailable_reason": null
+    },
+    {
+      "reported_variant": "RA95.0-K210M",
+      "construct_id": "RA95.0-K210M",
+      "row_id": "si-table2:RA95.0-K210M",
+      "source_locator": "SI:Table2:page3, exact named row",
+      "footnote_a_marker_present": false,
+      "steady_state": {
+        "assay_id": "si_table2_unmarked_technique_unresolved",
+        "k_cat": {
+          "parameter": "k_cat",
+          "status": "unavailable_no_activity_above_background_detected",
+          "value": null,
+          "sd": null,
+          "unit": "s^-1",
+          "source_reported_plus_minus": null,
+          "source_uncertainty_type": "unresolved_for_unmarked_row"
+        },
+        "substrate_response_constant": {
+          "parameter": "K_M",
+          "status": "unavailable_no_activity_above_background_detected",
+          "value": null,
+          "sd": null,
+          "unit": null,
+          "source_reported_numeric_value": null,
+          "source_reported_unit": "M",
+          "normalized_value": null,
+          "normalized_unit": null,
+          "conflict": null,
+          "source_reported_plus_minus": null,
+          "source_uncertainty_type": "unresolved_for_unmarked_row"
+        },
+        "source_reported_efficiency": {
+          "parameter": "k_cat/K_M",
+          "status": "unavailable_no_activity_above_background_detected",
+          "value": null,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "source_derivation": {
+            "formula": "k_cat/K_M",
+            "denominator_parameter": "K_M",
+            "input_unit_as_printed": "M",
+            "unit_conversion_factor": null,
+            "independent_measurement": false,
+            "recomputed_from_displayed_values": false,
+            "numeric_quotient_validation": "blocked by source KM unit conflict; preserve reported efficiency column"
+          }
+        }
+      },
+      "unavailable_reason": {
+        "source_token": "nd",
+        "meaning": "no activity above background was detected",
+        "numeric_detection_limit": null,
+        "is_zero_rate": false,
+        "scope": "this table measurement; general inactivity is not established"
+      }
+    },
+    {
+      "reported_variant": "RA95.0-T83K/K210M",
+      "construct_id": "RA95.0-T83K/K210M",
+      "row_id": "si-table2:RA95.0-T83K/K210M",
+      "source_locator": "SI:Table2:page3, exact named row",
+      "footnote_a_marker_present": false,
+      "steady_state": {
+        "assay_id": "si_table2_unmarked_technique_unresolved",
+        "k_cat": {
+          "parameter": "k_cat",
+          "status": "reported_point_estimate",
+          "value": 0.00091,
+          "sd": null,
+          "unit": "s^-1",
+          "source_reported_plus_minus": 6e-05,
+          "source_uncertainty_type": "unresolved_for_unmarked_row"
+        },
+        "substrate_response_constant": {
+          "parameter": "K_M",
+          "status": "source_unit_conflict",
+          "value": null,
+          "sd": null,
+          "unit": null,
+          "source_reported_numeric_value": 740,
+          "source_reported_unit": "M",
+          "normalized_value": null,
+          "normalized_unit": null,
+          "conflict": "Printed M header and reported efficiency arithmetic differ by approximately 10^6; a missing micro prefix is plausible but is not silently adopted.",
+          "source_reported_plus_minus": 70,
+          "source_uncertainty_type": "unresolved_for_unmarked_row"
+        },
+        "source_reported_efficiency": {
+          "parameter": "k_cat/K_M",
+          "status": "reported_point_estimate",
+          "value": 1.2,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "source_derivation": {
+            "formula": "k_cat/K_M",
+            "denominator_parameter": "K_M",
+            "input_unit_as_printed": "M",
+            "unit_conversion_factor": null,
+            "independent_measurement": false,
+            "recomputed_from_displayed_values": false,
+            "numeric_quotient_validation": "blocked by source KM unit conflict; preserve reported efficiency column"
+          }
+        }
+      },
+      "unavailable_reason": null
+    },
+    {
+      "reported_variant": "RA95.5",
+      "construct_id": "RA95.5",
+      "row_id": "si-table2:RA95.5",
+      "source_locator": "SI:Table2:page3, exact named row",
+      "footnote_a_marker_present": true,
+      "steady_state": {
+        "assay_id": "racemic_methodol_fluorescence",
+        "k_cat": {
+          "parameter": "k_cat",
+          "status": "reported_point_estimate",
+          "value": 0.003,
+          "sd": 0.0004,
+          "unit": "s^-1"
+        },
+        "substrate_response_constant": {
+          "parameter": "K_M",
+          "status": "source_unit_conflict",
+          "value": null,
+          "sd": null,
+          "unit": null,
+          "source_reported_numeric_value": 150,
+          "source_reported_unit": "M",
+          "normalized_value": null,
+          "normalized_unit": null,
+          "conflict": "Printed M header and reported efficiency arithmetic differ by approximately 10^6; a missing micro prefix is plausible but is not silently adopted.",
+          "source_reported_plus_minus": 11,
+          "source_uncertainty_type": "standard_deviation"
+        },
+        "source_reported_efficiency": {
+          "parameter": "k_cat/K_M",
+          "status": "reported_point_estimate",
+          "value": 20,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "source_derivation": {
+            "formula": "k_cat/K_M",
+            "denominator_parameter": "K_M",
+            "input_unit_as_printed": "M",
+            "unit_conversion_factor": null,
+            "independent_measurement": false,
+            "recomputed_from_displayed_values": false,
+            "numeric_quotient_validation": "blocked by source KM unit conflict; preserve reported efficiency column"
+          }
+        }
+      },
+      "unavailable_reason": null
+    },
+    {
+      "reported_variant": "RA95.5-K83M",
+      "construct_id": "RA95.5-K83M",
+      "row_id": "si-table2:RA95.5-K83M",
+      "source_locator": "SI:Table2:page3, exact named row",
+      "footnote_a_marker_present": true,
+      "steady_state": {
+        "assay_id": "racemic_methodol_fluorescence",
+        "k_cat": {
+          "parameter": "k_cat",
+          "status": "reported_point_estimate",
+          "value": 0.00092,
+          "sd": 4e-05,
+          "unit": "s^-1"
+        },
+        "substrate_response_constant": {
+          "parameter": "K_M",
+          "status": "source_unit_conflict",
+          "value": null,
+          "sd": null,
+          "unit": null,
+          "source_reported_numeric_value": 660,
+          "source_reported_unit": "M",
+          "normalized_value": null,
+          "normalized_unit": null,
+          "conflict": "Printed M header and reported efficiency arithmetic differ by approximately 10^6; a missing micro prefix is plausible but is not silently adopted.",
+          "source_reported_plus_minus": 50,
+          "source_uncertainty_type": "standard_deviation"
+        },
+        "source_reported_efficiency": {
+          "parameter": "k_cat/K_M",
+          "status": "reported_point_estimate",
+          "value": 1.4,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "source_derivation": {
+            "formula": "k_cat/K_M",
+            "denominator_parameter": "K_M",
+            "input_unit_as_printed": "M",
+            "unit_conversion_factor": null,
+            "independent_measurement": false,
+            "recomputed_from_displayed_values": false,
+            "numeric_quotient_validation": "blocked by source KM unit conflict; preserve reported efficiency column"
+          }
+        }
+      },
+      "unavailable_reason": null
+    },
+    {
+      "reported_variant": "RA95.5-K210M",
+      "construct_id": "RA95.5-K210M",
+      "row_id": "si-table2:RA95.5-K210M",
+      "source_locator": "SI:Table2:page3, exact named row",
+      "footnote_a_marker_present": true,
+      "steady_state": {
+        "assay_id": "racemic_methodol_fluorescence",
+        "k_cat": {
+          "parameter": "k_cat",
+          "status": "reported_point_estimate",
+          "value": 0.0033,
+          "sd": 0.0002,
+          "unit": "s^-1"
+        },
+        "substrate_response_constant": {
+          "parameter": "K_M",
+          "status": "source_unit_conflict",
+          "value": null,
+          "sd": null,
+          "unit": null,
+          "source_reported_numeric_value": 87,
+          "source_reported_unit": "M",
+          "normalized_value": null,
+          "normalized_unit": null,
+          "conflict": "Printed M header and reported efficiency arithmetic differ by approximately 10^6; a missing micro prefix is plausible but is not silently adopted.",
+          "source_reported_plus_minus": 4,
+          "source_uncertainty_type": "standard_deviation"
+        },
+        "source_reported_efficiency": {
+          "parameter": "k_cat/K_M",
+          "status": "reported_point_estimate",
+          "value": 38,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "source_derivation": {
+            "formula": "k_cat/K_M",
+            "denominator_parameter": "K_M",
+            "input_unit_as_printed": "M",
+            "unit_conversion_factor": null,
+            "independent_measurement": false,
+            "recomputed_from_displayed_values": false,
+            "numeric_quotient_validation": "blocked by source KM unit conflict; preserve reported efficiency column"
+          }
+        }
+      },
+      "unavailable_reason": null
+    },
+    {
+      "reported_variant": "RA95.5-K83M/K210M",
+      "construct_id": "RA95.5-K83M/K210M",
+      "row_id": "si-table2:RA95.5-K83M/K210M",
+      "source_locator": "SI:Table2:page3, exact named row",
+      "footnote_a_marker_present": true,
+      "steady_state": {
+        "assay_id": "racemic_methodol_fluorescence",
+        "k_cat": {
+          "parameter": "k_cat",
+          "status": "reported_point_estimate",
+          "value": 5e-06,
+          "sd": 1e-06,
+          "unit": "s^-1"
+        },
+        "substrate_response_constant": {
+          "parameter": "K_M",
+          "status": "source_unit_conflict",
+          "value": null,
+          "sd": null,
+          "unit": null,
+          "source_reported_numeric_value": 710,
+          "source_reported_unit": "M",
+          "normalized_value": null,
+          "normalized_unit": null,
+          "conflict": "Printed M header and reported efficiency arithmetic differ by approximately 10^6; a missing micro prefix is plausible but is not silently adopted.",
+          "source_reported_plus_minus": 170,
+          "source_uncertainty_type": "standard_deviation"
+        },
+        "source_reported_efficiency": {
+          "parameter": "k_cat/K_M",
+          "status": "reported_point_estimate",
+          "value": 0.007,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "source_derivation": {
+            "formula": "k_cat/K_M",
+            "denominator_parameter": "K_M",
+            "input_unit_as_printed": "M",
+            "unit_conversion_factor": null,
+            "independent_measurement": false,
+            "recomputed_from_displayed_values": false,
+            "numeric_quotient_validation": "blocked by source KM unit conflict; preserve reported efficiency column"
+          }
+        }
+      },
+      "unavailable_reason": null
+    },
+    {
+      "reported_variant": "RA95.5-5",
+      "construct_id": "RA95.5-5",
+      "row_id": "si-table2:RA95.5-5",
+      "source_locator": "SI:Table2:page3, exact named row",
+      "footnote_a_marker_present": true,
+      "steady_state": {
+        "assay_id": "racemic_methodol_fluorescence",
+        "k_cat": {
+          "parameter": "k_cat",
+          "status": "reported_point_estimate",
+          "value": 0.048,
+          "sd": 0.007,
+          "unit": "s^-1"
+        },
+        "substrate_response_constant": {
+          "parameter": "K_M",
+          "status": "source_unit_conflict",
+          "value": null,
+          "sd": null,
+          "unit": null,
+          "source_reported_numeric_value": 99,
+          "source_reported_unit": "M",
+          "normalized_value": null,
+          "normalized_unit": null,
+          "conflict": "Printed M header and reported efficiency arithmetic differ by approximately 10^6; a missing micro prefix is plausible but is not silently adopted.",
+          "source_reported_plus_minus": 6,
+          "source_uncertainty_type": "standard_deviation"
+        },
+        "source_reported_efficiency": {
+          "parameter": "k_cat/K_M",
+          "status": "reported_point_estimate",
+          "value": 490,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "source_derivation": {
+            "formula": "k_cat/K_M",
+            "denominator_parameter": "K_M",
+            "input_unit_as_printed": "M",
+            "unit_conversion_factor": null,
+            "independent_measurement": false,
+            "recomputed_from_displayed_values": false,
+            "numeric_quotient_validation": "blocked by source KM unit conflict; preserve reported efficiency column"
+          }
+        }
+      },
+      "unavailable_reason": null
+    },
+    {
+      "reported_variant": "RA95.5-5-K83M",
+      "construct_id": "RA95.5-5-K83M",
+      "row_id": "si-table2:RA95.5-5-K83M",
+      "source_locator": "SI:Table2:page3, exact named row",
+      "footnote_a_marker_present": true,
+      "steady_state": {
+        "assay_id": "racemic_methodol_fluorescence",
+        "k_cat": {
+          "parameter": "k_cat",
+          "status": "reported_point_estimate",
+          "value": 0.00068,
+          "sd": 2e-05,
+          "unit": "s^-1"
+        },
+        "substrate_response_constant": {
+          "parameter": "K_M",
+          "status": "source_unit_conflict",
+          "value": null,
+          "sd": null,
+          "unit": null,
+          "source_reported_numeric_value": 300,
+          "source_reported_unit": "M",
+          "normalized_value": null,
+          "normalized_unit": null,
+          "conflict": "Printed M header and reported efficiency arithmetic differ by approximately 10^6; a missing micro prefix is plausible but is not silently adopted.",
+          "source_reported_plus_minus": 15,
+          "source_uncertainty_type": "standard_deviation"
+        },
+        "source_reported_efficiency": {
+          "parameter": "k_cat/K_M",
+          "status": "reported_point_estimate",
+          "value": 2.3,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "source_derivation": {
+            "formula": "k_cat/K_M",
+            "denominator_parameter": "K_M",
+            "input_unit_as_printed": "M",
+            "unit_conversion_factor": null,
+            "independent_measurement": false,
+            "recomputed_from_displayed_values": false,
+            "numeric_quotient_validation": "blocked by source KM unit conflict; preserve reported efficiency column"
+          }
+        }
+      },
+      "unavailable_reason": null
+    },
+    {
+      "reported_variant": "RA95.5-5-K210M",
+      "construct_id": "RA95.5-5-K210M",
+      "row_id": "si-table2:RA95.5-5-K210M",
+      "source_locator": "SI:Table2:page3, exact named row",
+      "footnote_a_marker_present": true,
+      "steady_state": {
+        "assay_id": "racemic_methodol_fluorescence",
+        "k_cat": {
+          "parameter": "k_cat",
+          "status": "reported_point_estimate",
+          "value": 0.023,
+          "sd": 0.001,
+          "unit": "s^-1"
+        },
+        "substrate_response_constant": {
+          "parameter": "K_M",
+          "status": "source_unit_conflict",
+          "value": null,
+          "sd": null,
+          "unit": null,
+          "source_reported_numeric_value": 48,
+          "source_reported_unit": "M",
+          "normalized_value": null,
+          "normalized_unit": null,
+          "conflict": "Printed M header and reported efficiency arithmetic differ by approximately 10^6; a missing micro prefix is plausible but is not silently adopted.",
+          "source_reported_plus_minus": 3,
+          "source_uncertainty_type": "standard_deviation"
+        },
+        "source_reported_efficiency": {
+          "parameter": "k_cat/K_M",
+          "status": "reported_point_estimate",
+          "value": 490,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "source_derivation": {
+            "formula": "k_cat/K_M",
+            "denominator_parameter": "K_M",
+            "input_unit_as_printed": "M",
+            "unit_conversion_factor": null,
+            "independent_measurement": false,
+            "recomputed_from_displayed_values": false,
+            "numeric_quotient_validation": "blocked by source KM unit conflict; preserve reported efficiency column"
+          }
+        }
+      },
+      "unavailable_reason": null
+    },
+    {
+      "reported_variant": "RA95.5-5-K83M/K210M",
+      "construct_id": "RA95.5-5-K83M/K210M",
+      "row_id": "si-table2:RA95.5-5-K83M/K210M",
+      "source_locator": "SI:Table2:page3, exact named row",
+      "footnote_a_marker_present": true,
+      "steady_state": {
+        "assay_id": "racemic_methodol_fluorescence",
+        "k_cat": {
+          "parameter": "k_cat",
+          "status": "reported_point_estimate",
+          "value": 4.7e-05,
+          "sd": 4e-06,
+          "unit": "s^-1"
+        },
+        "substrate_response_constant": {
+          "parameter": "K_M",
+          "status": "source_unit_conflict",
+          "value": null,
+          "sd": null,
+          "unit": null,
+          "source_reported_numeric_value": 550,
+          "source_reported_unit": "M",
+          "normalized_value": null,
+          "normalized_unit": null,
+          "conflict": "Printed M header and reported efficiency arithmetic differ by approximately 10^6; a missing micro prefix is plausible but is not silently adopted.",
+          "source_reported_plus_minus": 64,
+          "source_uncertainty_type": "standard_deviation"
+        },
+        "source_reported_efficiency": {
+          "parameter": "k_cat/K_M",
+          "status": "reported_point_estimate",
+          "value": 0.085,
+          "sd": null,
+          "unit": "M^-1 s^-1",
+          "source_derivation": {
+            "formula": "k_cat/K_M",
+            "denominator_parameter": "K_M",
+            "input_unit_as_printed": "M",
+            "unit_conversion_factor": null,
+            "independent_measurement": false,
+            "recomputed_from_displayed_values": false,
+            "numeric_quotient_validation": "blocked by source KM unit conflict; preserve reported efficiency column"
+          }
+        }
+      },
+      "unavailable_reason": null
+    }
+  ],
+  "measurement_identity": {
+    "main_table1_duplicate_of": "SI Table1 four racemic RA95 rows; not separate experiments",
+    "si_table2_parent_values": "retained separately from main Table1 with distinct assay/source-row IDs",
+    "sequence_observations": "four directly printed complete strings; eight mutation-derived strings are not additional sequence measurements",
+    "library_screen": "selected lineage and mechanistic perturbations, not an unbiased design cohort; no design hit-rate denominator"
+  },
+  "derived_comparisons": [
+    {
+      "numerator_row_id": "si-table2:RA95.5-K83M",
+      "denominator_row_id": "si-table2:RA95.5",
+      "parameter_key": "k_cat",
+      "assay_id": "racemic_methodol_fluorescence",
+      "numerator": 0.00092,
+      "denominator": 0.003,
+      "mutant_over_parent": 0.30666666666666664,
+      "unit": "dimensionless",
+      "uncertainty": null,
+      "interpretation": "central-value arithmetic only; no propagated uncertainty, significance or equivalence test; efficiency uses the source-reported column without resolving KM units"
+    },
+    {
+      "numerator_row_id": "si-table2:RA95.5-K83M",
+      "denominator_row_id": "si-table2:RA95.5",
+      "parameter_key": "source_reported_efficiency",
+      "assay_id": "racemic_methodol_fluorescence",
+      "numerator": 1.4,
+      "denominator": 20,
+      "mutant_over_parent": 0.06999999999999999,
+      "unit": "dimensionless",
+      "uncertainty": null,
+      "interpretation": "central-value arithmetic only; no propagated uncertainty, significance or equivalence test; efficiency uses the source-reported column without resolving KM units"
+    },
+    {
+      "numerator_row_id": "si-table2:RA95.5-K210M",
+      "denominator_row_id": "si-table2:RA95.5",
+      "parameter_key": "k_cat",
+      "assay_id": "racemic_methodol_fluorescence",
+      "numerator": 0.0033,
+      "denominator": 0.003,
+      "mutant_over_parent": 1.0999999999999999,
+      "unit": "dimensionless",
+      "uncertainty": null,
+      "interpretation": "central-value arithmetic only; no propagated uncertainty, significance or equivalence test; efficiency uses the source-reported column without resolving KM units"
+    },
+    {
+      "numerator_row_id": "si-table2:RA95.5-K210M",
+      "denominator_row_id": "si-table2:RA95.5",
+      "parameter_key": "source_reported_efficiency",
+      "assay_id": "racemic_methodol_fluorescence",
+      "numerator": 38,
+      "denominator": 20,
+      "mutant_over_parent": 1.9,
+      "unit": "dimensionless",
+      "uncertainty": null,
+      "interpretation": "central-value arithmetic only; no propagated uncertainty, significance or equivalence test; efficiency uses the source-reported column without resolving KM units"
+    },
+    {
+      "numerator_row_id": "si-table2:RA95.5-K83M/K210M",
+      "denominator_row_id": "si-table2:RA95.5",
+      "parameter_key": "k_cat",
+      "assay_id": "racemic_methodol_fluorescence",
+      "numerator": 5e-06,
+      "denominator": 0.003,
+      "mutant_over_parent": 0.0016666666666666668,
+      "unit": "dimensionless",
+      "uncertainty": null,
+      "interpretation": "central-value arithmetic only; no propagated uncertainty, significance or equivalence test; efficiency uses the source-reported column without resolving KM units"
+    },
+    {
+      "numerator_row_id": "si-table2:RA95.5-K83M/K210M",
+      "denominator_row_id": "si-table2:RA95.5",
+      "parameter_key": "source_reported_efficiency",
+      "assay_id": "racemic_methodol_fluorescence",
+      "numerator": 0.007,
+      "denominator": 20,
+      "mutant_over_parent": 0.00035,
+      "unit": "dimensionless",
+      "uncertainty": null,
+      "interpretation": "central-value arithmetic only; no propagated uncertainty, significance or equivalence test; efficiency uses the source-reported column without resolving KM units"
+    },
+    {
+      "numerator_row_id": "si-table2:RA95.5-5-K83M",
+      "denominator_row_id": "si-table2:RA95.5-5",
+      "parameter_key": "k_cat",
+      "assay_id": "racemic_methodol_fluorescence",
+      "numerator": 0.00068,
+      "denominator": 0.048,
+      "mutant_over_parent": 0.014166666666666668,
+      "unit": "dimensionless",
+      "uncertainty": null,
+      "interpretation": "central-value arithmetic only; no propagated uncertainty, significance or equivalence test; efficiency uses the source-reported column without resolving KM units"
+    },
+    {
+      "numerator_row_id": "si-table2:RA95.5-5-K83M",
+      "denominator_row_id": "si-table2:RA95.5-5",
+      "parameter_key": "source_reported_efficiency",
+      "assay_id": "racemic_methodol_fluorescence",
+      "numerator": 2.3,
+      "denominator": 490,
+      "mutant_over_parent": 0.004693877551020408,
+      "unit": "dimensionless",
+      "uncertainty": null,
+      "interpretation": "central-value arithmetic only; no propagated uncertainty, significance or equivalence test; efficiency uses the source-reported column without resolving KM units"
+    },
+    {
+      "numerator_row_id": "si-table2:RA95.5-5-K210M",
+      "denominator_row_id": "si-table2:RA95.5-5",
+      "parameter_key": "k_cat",
+      "assay_id": "racemic_methodol_fluorescence",
+      "numerator": 0.023,
+      "denominator": 0.048,
+      "mutant_over_parent": 0.47916666666666663,
+      "unit": "dimensionless",
+      "uncertainty": null,
+      "interpretation": "central-value arithmetic only; no propagated uncertainty, significance or equivalence test; efficiency uses the source-reported column without resolving KM units"
+    },
+    {
+      "numerator_row_id": "si-table2:RA95.5-5-K210M",
+      "denominator_row_id": "si-table2:RA95.5-5",
+      "parameter_key": "source_reported_efficiency",
+      "assay_id": "racemic_methodol_fluorescence",
+      "numerator": 490,
+      "denominator": 490,
+      "mutant_over_parent": 1.0,
+      "unit": "dimensionless",
+      "uncertainty": null,
+      "interpretation": "central-value arithmetic only; no propagated uncertainty, significance or equivalence test; efficiency uses the source-reported column without resolving KM units"
+    },
+    {
+      "numerator_row_id": "si-table2:RA95.5-5-K83M/K210M",
+      "denominator_row_id": "si-table2:RA95.5-5",
+      "parameter_key": "k_cat",
+      "assay_id": "racemic_methodol_fluorescence",
+      "numerator": 4.7e-05,
+      "denominator": 0.048,
+      "mutant_over_parent": 0.0009791666666666666,
+      "unit": "dimensionless",
+      "uncertainty": null,
+      "interpretation": "central-value arithmetic only; no propagated uncertainty, significance or equivalence test; efficiency uses the source-reported column without resolving KM units"
+    },
+    {
+      "numerator_row_id": "si-table2:RA95.5-5-K83M/K210M",
+      "denominator_row_id": "si-table2:RA95.5-5",
+      "parameter_key": "source_reported_efficiency",
+      "assay_id": "racemic_methodol_fluorescence",
+      "numerator": 0.085,
+      "denominator": 490,
+      "mutant_over_parent": 0.00017346938775510205,
+      "unit": "dimensionless",
+      "uncertainty": null,
+      "interpretation": "central-value arithmetic only; no propagated uncertainty, significance or equivalence test; efficiency uses the source-reported column without resolving KM units"
+    }
+  ],
+  "interpretation": {
+    "permitted": "In the explicitly fluorescence-marked RA95.5-5 background, K83M sharply reduces the reported efficiency column; K210M preserves its displayed efficiency but reduces k_cat. Engineered K83M/K210M derivatives of the evolved RA95.5 and RA95.5-5 backgrounds retain positive source-reported kinetic parameter values. RA95.0-K210M is reported nd in an unmarked table context, not a literal zero.",
+    "design_relevance": "Sensitivity to K83M/K210M substitution depends on the exact background and parameter. A catalytic-site label cannot be propagated by lineage alone: direct perturbation evidence here extends through RA95.5-5; RA95.5-8 has sequence/kinetic context but its site assignment is unresolved in this packet.",
+    "sequence_identity_warning": "SI Table1 footnote d states the 2013 RA95.0 differs from the earlier same-named construct by five surface-optimization mutations. Exact prior sequence was not acquired; do not merge by label.",
+    "sequence_lineage_warning": "Main text calls one RA95.5-5 change E53T; exact consecutive displayed sequences give S53T from RA95.5. RA95.5-8 reverses S43R and changes S178V. Preserve source wording and sequence-derived deltas separately.",
+    "structure_limit": "The paper reports deposited structures with a covalent mechanism-based diketone inhibitor, not reacting methodol or a transition state. This comparison acquires/maps no coordinate files and makes no productive-template or geometry-to-rate claim.",
+    "excluded_claims": [
+      "newly discovered chemistry",
+      "independent human validation",
+      "project-run laboratory measurements",
+      "new designed-enzyme success rate",
+      "quantitative design tolerance",
+      "exact assayed specimen sequence verification",
+      "generic inactivity",
+      "unchanged function from unchanged efficiency",
+      "positive double-mutant parameter values establish a third catalytic residue or an alternative mechanism"
+    ],
+    "mutation_causality_limit": "Purified-mutant activity and parent inhibitor-adduct observations do not isolate chemical participation from mutation-induced structural effects. No mutant fold-control, mutant structure or elementary-step measurement is retained here."
+  },
+  "source_conflicts": [
+    {
+      "id": "KM-SI2",
+      "source": "SI Table2 page3",
+      "observation": "KM column literally prints M while numeric kcat/KM relations imply a factor near 10^6 relative to reported efficiencies.",
+      "decision": "Retain literal numeric values and M unit, leave normalized KM null, and do not repair efficiency by calculation."
+    },
+    {
+      "id": "SI1-EXCLUDED-ARITHMETIC",
+      "source": "SI Table1 page2 E53A racemic/S rows and RA95.5 S row",
+      "observation": "Displayed kcat, KM and efficiency do not agree arithmetically for the excluded E53A racemic/S rows and RA95.5 S row. The RA95.5 selectivity value 3.2 also differs from the displayed efficiency quotient 16/3.3 (approximately4.85).",
+      "decision": "Do not rely on these rows for E53A no-effect, enantioselectivity or comparative claims. They remain a source warning for future curation, not silent corrected data."
+    }
+  ],
+  "reconsideration": {
+    "bespoke_code": "No runtime or validator added. Case-specific sequence strings, mutation deltas, unit conflicts and assay eligibility are data.",
+    "reuse": "Existing assay_id, parameter identity, missingness and source-reported quotient concepts are reused. New sequence provenance explicitly separates printed and reconstructed constructs. No repeat of the completed TKT/POX consumer test.",
+    "incumbent_value": "The article already reports catalytic remodeling. Added value is a machine-readable constraint on name-only sequence joins and background/parameter-blind activity labels, with source conflicts retained. No measured curation-speed or comparative-accuracy advantage."
+  }
+}

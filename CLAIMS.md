@@ -296,6 +296,22 @@ The FAD rate includes multiple microscopic steps, and DCPIP replaces oxygen.
 These data establish neither generic inactivity, oxygen-turnover kinetics,
 an elementary-step rate, geometric causation nor new experimental validation.
 
+## CE-026 — designed-enzyme perturbations depend on background and endpoint
+
+**Status:** Supported
+
+In the retained RA95.5-5 fluorescence comparison, K210M retains the displayed
+kcat/KM of 490 M⁻¹ s⁻¹ while kcat changes from 0.048 ± 0.007 to
+0.023 ± 0.001 s⁻¹. K83M instead has reported efficiency 2.3 M⁻¹ s⁻¹.
+The [construct-bound comparison](docs/ATLAS_DESIGNED_ENZYME_OUTCOMES.md)
+preserves these endpoint-specific effects, small positive reported parameter values for
+engineered double-substitution derivatives of evolved backgrounds, and separate RA95.0-K210M nondetection without a
+numeric detection limit. Four sequences are directly printed; eight mutant
+strings are derived. The source's KM unit conflict and unmarked-row method
+remain unresolved. These selected published results do not supply generic
+activity labels, exact assay-specimen verification, design success rates,
+productive geometry, new experiments or independent validation.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,
