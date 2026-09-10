@@ -255,16 +255,19 @@
     "claim_id": "CE-021",
     "claim_kind": "structure_applicability",
     "status": "Supported",
-    "claim": "1MDL cites the exact K166R paper and declares a P11444-referenced Arg166/Lys166 difference. The deposit models distinct R- and S-mandelate instances; its suggested racemization origin for SMN is depositor interpretation. The complete deposited RMN/SMN dictionary atom-and-bond map, including H, differs only at C7 R/S; distinct site records and external-connection inventories refuse an identical-deposited-environment comparison.",
-    "current_wording": "Retain the citation-bound deposited variant and separate ligand instances without inferring a new turnover event, exact assay-preparation identity, H297N structure or source-drawing/physical atom correspondence. Conflicting organism metadata remains unresolved; the existing six-observation query is unchanged. The dictionary relation does not establish coordinate-derived chirality, bound protonation, equivalent physical sites or a reaction trajectory.",
-    "rationale": "Primary citation, sequence-reference, engineered-difference and ligand rows provide a bounded structural context while depositor language and conflicting gene-source metadata limit transfer. Full dictionary mapping makes chemical correspondence executable while retaining exact instance/site and deposited Mg-connection differences.",
+    "claim": "1MDL cites the exact K166R paper and declares a P11444-referenced Arg166/Lys166 difference. The deposit models distinct R- and S-mandelate instances; its suggested racemization origin for SMN is depositor interpretation. The complete deposited RMN/SMN dictionary atom-and-bond map, including H, differs only at C7 R/S; distinct site records and external-connection inventories refuse an identical-deposited-environment comparison. The reviewed M0187 input can be linked by two declared depiction-to-dictionary locator maps, but exact chemical-state identity is refused: canonical carboxylate -1 versus explicit dictionary O12-HO2 with unavailable atom charge.",
+    "current_wording": "Retain the citation-bound deposited variant and separate ligand instances without inferring a new turnover event, exact assay-preparation identity, H297N structure or physical atom correspondence. Conflicting organism metadata remains unresolved; the existing six-observation query is unchanged. The dictionary relation does not establish coordinate-derived chirality, bound protonation, equivalent physical sites or a reaction trajectory. Distinguish computed source R from deposited R/S tokens; retain both phenyl topology maps with zero versus six literal ring-order differences. This partial source-drawing locator relation neither normalizes implicit H/aromaticity/stereo nor transfers productive geometry. The raw chebi:17756 label is preserved; CHEBI:32382 is the reviewed computed correspondence, not an upstream relabeling.",
+    "rationale": "Primary citation, sequence-reference, engineered-difference and ligand rows provide a bounded structural context while depositor language and conflicting gene-source metadata limit transfer. Full dictionary mapping makes chemical correspondence executable while retaining exact instance/site and deposited Mg-connection differences. The reaction-to-deposit diagnostic prevents name-only R-mandelate identity from hiding the source protonation boundary and unknown charge.",
     "evidence": [
       "data/atlas/mechanism_evidence/m0187/structure_followup/annotation.json",
       "data/atlas/mechanism_evidence/m0187/structure_followup/1MDL.cif.gz",
       "docs/ATLAS_MECHANISM_EVIDENCE.md",
       "data/atlas/deposit_context/mandelate_1mdl/spec.json",
       "data/atlas/deposit_context/mandelate_1mdl/projection.json",
-      "data/atlas/deposit_context/mandelate_1mdl/review.json"
+      "data/atlas/deposit_context/mandelate_1mdl/review.json",
+      "data/atlas/transformations/m0187/transformations.json",
+      "data/atlas/transformations/m0187/CHEBI_32382.mol",
+      "data/atlas/transformations/m0187/retained_graph_audit.json"
     ]
   },
   {

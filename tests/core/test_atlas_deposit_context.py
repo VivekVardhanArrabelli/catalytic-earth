@@ -12,6 +12,7 @@ import unittest
 from catalytic_earth.atlas_assembly_context import project_assembly
 from catalytic_earth.atlas_deposit_context import (
     _component_comparisons,
+    _reaction_state_comparisons,
     REVIEW_DECISION,
     REVIEW_SCHEMA_VERSION,
     build_deposit_context,
@@ -369,7 +370,8 @@ class ComponentDictionaryComparisonTests(unittest.TestCase):
         return _component_comparisons(self.declarations, self.tables)[0]
 
     def test_full_dictionary_stereo_match_does_not_transfer_site_context(self):
-        result = build_deposit_context(self.spec, source_path=self.source)["component_comparisons"][0]
+        result = build_deposit_context(self.spec, source_path=self.source,
+            repo_root=Path(__file__).resolve().parents[2])["component_comparisons"][0]
         self.assertEqual(len(result["atom_map"]), 19)
         self.assertEqual(result["stereo_inversions"],
                          [{"left_atom_id": "C7", "right_atom_id": "C7", "left": "R", "right": "S"}])
@@ -466,6 +468,99 @@ class ComponentDictionaryComparisonTests(unittest.TestCase):
         site["pdbx_auth_ins_code"] = "A"
         with self.assertRaisesRegex(ValueError, "site belongs to another component instance"):
             self.compare()
+
+
+class ReactionStateComparisonTests(unittest.TestCase):
+    def setUp(self):
+        self.root = Path(__file__).resolve().parents[2]
+        self.spec = json.loads((self.root / "data/atlas/deposit_context/mandelate_1mdl/spec.json").read_text())
+        self.source = self.root / self.spec["source_binding"]["path"]
+        self.tables = parse_mmcif_categories(gzip.decompress(self.source.read_bytes()).decode())
+        self.declarations = copy.deepcopy(self.spec["reaction_state_comparisons"])
+
+    def compare(self):
+        return _reaction_state_comparisons(self.declarations, self.tables, self.root)
+
+    def test_reaction_locators_preserve_stereo_order_and_unknown_state(self):
+        rmn, smn = self.compare()
+        for result in (rmn, smn):
+            self.assertEqual(result["identity_request"]["status"], "refused")
+            self.assertEqual(result["identity_request"]["chemical_state_identity"], "not_established")
+            self.assertTrue(result["canonical_symmetry_alternatives_preserved"])
+            self.assertFalse(result["identity_request"]["productive_geometry_transfer"])
+            self.assertEqual(len(result["source"]["canonical_input_correspondence"]["map_alternatives"]), 2)
+            self.assertEqual([len(a["bond_order_differences"]) for a in result["map_alternatives"]], [0, 6])
+            for alternative in result["map_alternatives"]:
+                self.assertEqual(len(alternative["atom_map"]), 12)
+                self.assertFalse(alternative["complete_dictionary_atom_bijection"])
+                self.assertEqual(alternative["atom_map"]["a66"], "H7")
+                self.assertEqual(len(alternative["unmapped_dictionary_atom_ids"]), 7)
+                self.assertIn("HO2", alternative["unmapped_dictionary_atom_ids"])
+                carboxylate = next(a for a in alternative["atom_property_comparisons"]
+                                   if a["source_atom_id"] == "a11")
+                self.assertEqual(carboxylate["source_formal_charge"], -1)
+                self.assertIsNone(carboxylate["dictionary_charge_token"])
+                self.assertIsNone(carboxylate["formal_charge_equal"])
+        for result, expected in ((rmn, True), (smn, False)):
+            alpha = next(a for a in result["map_alternatives"][0]["atom_property_comparisons"]
+                         if a["source_atom_id"] == "a9")
+            self.assertIs(alpha["assigned_stereochemistry_token_equal"], expected)
+        self.assertEqual(rmn["component"]["selector"]["site_id"], "AC2")
+        self.assertEqual(smn["component"]["selector"]["site_id"], "AC3")
+
+    def test_explicit_hydrogen_cannot_be_cropped_or_omitted(self):
+        self.declarations[0]["source"]["atom_ids"].remove("a66")
+        with self.assertRaisesRegex(ValueError, "complete covalent component"):
+            self.compare()
+        self.declarations = copy.deepcopy(self.spec["reaction_state_comparisons"])
+        del self.declarations[0]["map_alternatives"][0]["atom_map"]["a66"]
+        with self.assertRaisesRegex(ValueError, "every selected source node"):
+            self.compare()
+
+    def test_wrong_oxygen_topology_and_duplicate_maps_fail(self):
+        mapping = self.declarations[0]["map_alternatives"][0]["atom_map"]
+        mapping["a12"], mapping["a11"] = mapping["a11"], mapping["a12"]
+        with self.assertRaisesRegex(ValueError, "topology differs"):
+            self.compare()
+        self.declarations = copy.deepcopy(self.spec["reaction_state_comparisons"])
+        mapping = self.declarations[0]["map_alternatives"][0]["atom_map"]
+        mapping["a10"], mapping["a11"] = mapping["a11"], mapping["a10"]
+        with self.assertRaisesRegex(ValueError, "non-aromatic bond orders differ"):
+            self.compare()
+        self.declarations = copy.deepcopy(self.spec["reaction_state_comparisons"])
+        self.declarations[0]["map_alternatives"][1]["atom_map"] = copy.deepcopy(
+            self.declarations[0]["map_alternatives"][0]["atom_map"])
+        with self.assertRaisesRegex(ValueError, "maps repeat"):
+            self.compare()
+
+    def test_source_identity_and_before_after_cannot_be_repointed(self):
+        for key, value, message in (("transformation_id", "wrong", "missing or ambiguous"),
+                                    ("state", "after", "complete covalent component")):
+            self.declarations = copy.deepcopy(self.spec["reaction_state_comparisons"])
+            self.declarations[0]["source"][key] = value
+            with self.assertRaisesRegex(ValueError, message):
+                self.compare()
+        self.declarations = copy.deepcopy(self.spec["reaction_state_comparisons"])
+        self.declarations[0]["source"]["binding"]["sha256"] = "0" * 64
+        with self.assertRaisesRegex(ValueError, "source binding hash differs"):
+            self.compare()
+
+    def test_reviewed_symmetry_alternative_cannot_be_dropped(self):
+        for declaration in self.declarations:
+            declaration["map_alternatives"].pop()
+        with self.assertRaisesRegex(ValueError, "every reviewed canonical symmetry alternative"):
+            self.compare()
+
+    def test_supplied_charge_is_compared_and_missing_charge_is_not_zero(self):
+        atom = next(a for a in self.tables["_chem_comp_atom"]
+                    if a["comp_id"] == "RMN" and a["atom_id"] == "O12")
+        for token, expected in (("?", None), ("0", False), ("-1", True)):
+            atom["charge"] = token
+            result = self.compare()[0]
+            comparison = next(a for a in result["map_alternatives"][0]["atom_property_comparisons"]
+                              if a["source_atom_id"] == "a11")
+            self.assertIs(comparison["formal_charge_equal"], expected)
+            self.assertEqual(result["identity_request"]["status"], "refused")
 
 
 if __name__ == "__main__":

@@ -236,7 +236,7 @@ Arg166/Lys166 difference. The model contains distinct R- and S-mandelate
 instances despite its R-mandelate title. The depositor's proposed slow
 racemization origin for SMN is interpretation, not a measured turnover event.
 Conflicting organism metadata remains unresolved. No H297N structure, exact
-assay-preparation identity, assay condition, source-atom map or new functional
+assay-preparation identity, assay condition, physical atom map or new functional
 measurement is established. This is a supplemental annotation; the existing
 six-observation query and its endpoint-specific conclusion remain unchanged.
 
@@ -247,6 +247,17 @@ and refuses a same-deposited-environment comparison: their anchored site
 records and external connections differ, with deposited `struct_conn` Mg links only for
 SMN. This does not establish coordinate-derived chirality, bound protonation,
 equivalent physical sites, physical atom identity or a reaction trajectory.
+
+The [reaction-state comparison](docs/ATLAS_MECHANISM_EVIDENCE.md#the-reaction-to-deposit-join-stops-at-protonation)
+binds the reviewed M0187 R-mandelate input to two declared dictionary-locator
+maps. Its computed a9 R agrees with RMN C7 R and differs from SMN C7 S, but
+canonical carboxylate a11/atom10 has charge −1 while both dictionaries include
+O12–HO2 and omit atom charge fields. Full state identity is refused. One map
+preserves literal mapped bond orders; the phenyl reflection retains six ring
+order differences. Explicit/implicit H and source/dictionary stereo conventions
+are not normalized, and no reacting-ligand or productive-geometry transfer follows.
+The raw source label remains `chebi:17756`; R comes from the reviewed
+computational correspondence to CHEBI:32382, without relabeling upstream evidence.
 
 ## CE-022 — an intermediate label does not identify a mobile-catalyst pose
 

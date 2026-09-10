@@ -52,18 +52,22 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--packet", required=True, type=_repo_relative_packet)
     parser.add_argument("--check", action="store_true")
-    parser.add_argument("--comparison", help="Query one reviewed component-dictionary comparison and its separate instance contexts")
+    parser.add_argument("--comparison", help="Query one reviewed dictionary or reaction-state comparison and its instance context")
     args = parser.parse_args()
     if args.check and args.comparison:
         parser.error("--check and --comparison are separate operations")
     if args.comparison:
         result = check(args.packet)
-        comparisons = [r for r in result.get("component_comparisons", [])
+        comparisons = [r for r in result.get("component_comparisons", []) + result.get("reaction_state_comparisons", [])
                        if r["comparison_id"] == args.comparison]
         if len(comparisons) != 1:
-            parser.error("unknown component comparison")
+            parser.error("unknown comparison")
+        reaction_ids = {r["comparison_id"] for r in result.get("reaction_state_comparisons", [])}
+        schema = ("catalytic-earth.deposit-reaction-state-comparison-query.v1"
+                  if args.comparison in reaction_ids else
+                  "catalytic-earth.deposit-component-comparison-query.v1")
         sys.stdout.reconfigure(encoding="utf-8")
-        print(canonical_json_bytes({"schema_version": "catalytic-earth.deposit-component-comparison-query.v1",
+        print(canonical_json_bytes({"schema_version": schema,
             "packet_id": result["packet_id"],
             "source_binding": result["source_binding"], "comparison": comparisons[0],
             "source_context": result["row_selections"],

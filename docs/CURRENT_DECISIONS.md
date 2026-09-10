@@ -1,5 +1,24 @@
 # Current Decisions
 
+## 2026-09-10: retain reaction locators while refusing exact mandelate state identity
+
+Accept the [M0187 input-to-dictionary diagnostic](ATLAS_MECHANISM_EVIDENCE.md#the-reaction-to-deposit-join-stops-at-protonation)
+after source challenge. The stop is chemical: the canonical carboxylate and
+dictionary O12–HO2 differ, while deposited charge and bound protonation remain
+unavailable. A matching R token cannot override that boundary. Preserve both
+phenyl maps and raw order differences; do not neutralize the input, delete
+dictionary H, infer a bound microstate or transfer a productive pose.
+
+A generic optional relation in the existing deposit projector binds exact
+reviewed transformation/state identities, requires a complete depicted
+covalent component and retains all mapped/unmapped H evidence. This makes
+the stopped join reusable without a new chemistry engine or enzyme-specific
+branch. Manual source interpretation remains necessary; no measured curation
+speedup or incumbent superiority is established. The useful addition is a
+computable refusal of a tempting name-only reaction/structure join. Do not
+repeat this closed formula/site question without new state evidence.
+
+
 ## 2026-09-10: replay a partial constitution while stopping the stereo join
 
 Accept the [Diels-Alder core extension](ATLAS_DIELS_ALDER_CONTROLS.md#the-reactive-core-replays-stereochemical-selection-remains-source-only)
