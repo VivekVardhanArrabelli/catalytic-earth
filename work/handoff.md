@@ -6,84 +6,91 @@
 This block, `docs/HOURLY_RESEARCH.md` and the latest direction review govern
 continuation. Historical handoffs below are not an execution queue.
 
-- **Identity/base:** owner `01a08afe-9281-7f71-b2ca-597f221ad483:da096be3-ee15-4459-a4ec-7de647b7e8a7`;
-  start `2026-09-10T11:05:51Z`, lock acquired `11:06:25Z`. Clean main base
-  `d562dce2a4c79158b8219076824aa1c8d6efc5e0`; PR76 merged, no open PR, dirty
-  state or pending recovery. Fetch/fast-forward current. Branch
-  `codex/pox-perturbation-relation-20260910`; parent owns all edits/Git/lock.
+- **Identity/base:** owner `01a08b35-f735-7e80-b372-4b8bb8bd591a:a593404c-3235-4b69-a791-7ec117bfa635`;
+  start `2026-09-10T12:06:21Z`, lock acquired `12:06:54Z`. Clean main base
+  `42b9f0f675bf65028fb7cbc879eac12438399737`; PR77 merged, no open PR,
+  unexplained dirty work or pending recovery. Fetch/fast-forward current.
+  Branch `codex/beta-barrel-perturbation-relation-20260910`; parent alone
+  owns repository edits, Git and lock.
 - **Selection/question:** the direction review's original RA95/RA61/KE59
-  relation is complete. Can the same consumer distinguish POX analogue
-  nonbinding from TKT reporter absence and retain two pyruvate responses?
-  Gain: executable rate/constant transfer restrictions at source-defined scope.
-  Stop: one source-qualified relation or the smallest shared representation gap.
-- **Finding:** E59Q pyruvate/DCPIP kcat `0.49 ± 0.01 s^-1` versus WT
-  `31.8 ± 0.4` gives central-value ratio `0.0154088050`. Anaerobic pyruvate/FAD
-  k_app_max `1.07 ± 0.08 s^-1` versus WT `136 ± 1` gives `0.0078676471`.
-  All at 25 C in distinct assays. All three E59Q MAP parameters remain
-  unavailable/null with source-reported analogue-nonbinding reason. They are
-  neither zero nor infinite affinity constants or numeric detection thresholds.
-- **Capability:** `python scripts/query_atlas_perturbations.py --comparison pox_2019:E59Q:kcat`
-  returns two turnover operands and 12 paired context records (14 total).
-  Seven columns across all six variants: kcat and KM; MAP k_on, k_off and
-  K_D_app; and anaerobic k_app_max and K_0.5. The same consumer rejects MAP-to-pyruvate
-  constant swaps and KM-to-K0.5 even with the same substrate and mM unit.
-  POX adds42 records(39 numeric,3 unavailable),35 requests(32 eligible,3 abstained).
-  Complete view179 records/107 requests/82 eligible/25 abstained. All prior137
-  observations and72 comparison results remain unchanged. These are view counts,
-  not experiments, independent replicates or protein/mechanism admissions.
-- **Limits:** two source efficiency quotients and Hill coefficient remain full
-  source-row context, not missing. MAP K_D_app includes the reversible covalent
-  ThDP conjugate; not pyruvate affinity or isolated noncovalent docking. DCPIP
-  replaces oxygen; FAD k_app_max spans several microscopic steps. No causal role,
-  elementary-step rate, oxygen turnover, significance or design-success claim.
-  All six exact assay sequences/digests remain null; retained source names6HAF,
-  but exact assay-specimen-to-deposit mapping and functional geometry are not
-  established. Same publication DOI does not merge POX and TKT contexts.
-- **Evidence/review:** unchanged `data/atlas/study_context/pox2019/functional_comparison.json`
-  hash`570ffb83d9272d41ed72ff389c2f56fbc1415c7d6d9fbdd6c622476957c2a4b5`; new
-  `perturbation_context.json` hash`e29120547dbd982b1fb5b3f2ff1b1228e0fc96a16f540f20c1eaf39d35b93257`.
-  Common projection hash`b2b8a484d339b12a7de82c01599f9ca795e3b4b487143bad2c8cc4c7cc57f310`.
-  `data/atlas/perturbations/review.json` binds the accepted source/data/docs/tests;
-  existing CE-024/CE-025 scope. Board`work/coordination_pox_perturbation_20260910.md`
-  records all three final Sol/ultra acceptances and parent adjudications. Source
-  review checked Table2b/footnotes/SI pp4,8-9; parent viewed table/footnotes and
-  rendered SI pp8-9. These separately prompted checks are correlated computational
-  review, not independent human/lab evidence. No material objection remains.
-- **Acquisition:** zero requests/response bytes or new witness copies. Four
-  POX witnesses reuse already retained TKT publication bytes(1,206,429bytes).
-  All14 host-local witnesses verify(16,768,661bytes); no bodies redistributed.
-  TKT lower-bound7/3,004,884 and M0081 lower-bound28/1,474,405 retain unknown full
-  headroom. Inherited RA95 24/15,353,338; RA61 45/3,236,259; KE59 9/261,580;
-  beta-barrel5/8,449,621; KE70 16/1,102,794; Siegel2010 14/502,726;
-  M0187 12/440,960 unchanged. No batch reset or unchanged access retry.
-- **Reuse/reconsideration:** runtime and CLI unchanged. Case-specific mappings
-  and the six-entry missing-sequence adapter remain data; original values, SDs
-  and witnesses are reused. Adversarial review expanded five to seven columns
-  because constant-transfer refusal otherwise remained prose. Source review
-  narrowed a broad absence statement about structures. Nested adapter links are
-  regression/source-reviewed, not generic runtime joins. Manual declarations
-  still require work; no measured speedup or incumbent superiority. Executable
-  exclusions add bounded value; all three reconsideration rules applied.
+  relation is complete. This distinct beta-barrel conflict was explicitly named
+  by that review: can the same consumer retain assessed qualitative S4 arms
+  beside measured kinetics while refusing their transfer to another construct?
+  Gain: an executable construct/control boundary, with source conflict intact.
+  Stop: one relation or a precise missing shared concept; no enzyme-ID branch.
+- **Finding/capability:** `python scripts/query_atlas_perturbations.py --comparison beta_barrel_2022:benzoate-control-to-8AH9`
+  returns all fourteen relevant records and the source/deposit evidence. S4 is
+  assessed and names16.2; the requested matched16.1/8AH9 ligand control stays
+  unassessed. The query preserves main noninhibition prose versus visibly lower
+  2.5/25mM bars, and refuses the construct and ligand-independence transfer.
+  Zero-added benzoate does not establish depleted protein.
+- **Measured contrast:** three selected Table2 columns across both variants.
+  Combined K49E/S51H16.2 over16.1 ratios are1.0666667 for kcat(1.6/1.5min^-1),
+  0.2173913 for KM(50/230uM), and4.6153846 for printed efficiency(30000/6500
+  M^-1min^-1). These are source-rounded descriptive values, without isolated
+  residue effects, statistical equivalence or propagated error. Kinetic pH
+  stays null(conflicting7/7.5); error statistic and per-row n remain unknown.
+- **Qualitative/identity limits:** all eight S4 arms retain null activity/error,
+  dose and preincubation time. Only four2.5/25mM arms receive same-panel-lower
+  wording;0/0.25 arms have no relative ordering. No digitization, numeric dose
+  ratio, Ki or inferred normalization. Two preparations are not per-arm n.
+  Exact assay sequences remain null; the original120-residue8AH9 deposit is
+  separate16.1 context. Position49 lineage V-to-K-to-E and the paired mutations
+  remain explicit. Study-scoped methodol avoids RA95 preparation transfer.
+  No K53M/Y17F control, productive pose, new experiment, protein admission,
+  evidence tier or design-success claim is introduced.
+- **Evidence:** unchanged `data/atlas/study_context/beta_barrel_2022/source_qualification.json`
+  SHA`9b1a98b0be873f361c75f6431684a92c2c769a77bc3450988537669860533d7a`;
+  new `perturbation_context.json` SHA`1fc756ce8005249c6f586685c0bced3de938fe14926f1a5fee96abffe427bc1a`.
+  Projection SHA`3aa0b9d17b784581db89697b9160ff7b62765decfb4d85f362eea40b3acfa5a4`.
+  `data/atlas/perturbations/review.json` binds accepted source/data/docs/tests.
+  Board `work/coordination_beta_barrel_perturbation_20260910.md` records exact
+  reviews and adjudications. Source objections corrected two stale exclusions
+  after an earlier representation acceptance. Adversarial review prompted a
+  source-status mapping and public dose-as-activity rejection check; output
+  stayed unchanged. Its worker reused source-witness history, so reviews are
+  correlated computational checks, not independent human/laboratory evidence.
+- **Acquisition:** zero requests/response bytes. Three existing witnesses were
+  copied to Git-common source cache: articlePDF3,893,861bytes, XML139,672,
+  exactS4TIFF154,068(total4,187,601). Direct URLs and exact ZIP/member scope
+  remain distinct. All17 witnesses verify20,956,262bytes; no publisher bodies
+  redistributed. Beta batch remains5/8,449,621 cumulative. Other budgets remain
+  RA95 24/15,353,338; RA61 45/3,236,259; KE59 9/261,580; KE70 16/1,102,794;
+  Siegel2010 14/502,726; M0187 12/440,960. TKT lower-bound7/3,004,884 and
+  M0081 lower-bound28/1,474,405 keep unknown complete headroom. No batch reset.
+- **Reuse/reconsideration:** unchanged runtime/CLI; original values/arms/lineage
+  resolve directly. Two explicit missing-sequence declarations and source-map
+  review remain manual cost. New14 view records(6numeric,8qualitative) and4
+  requests(3eligible,1abstained) make total193/111(85eligible,26abstained).
+  All previous179 observation objects and107 comparison objects are unchanged.
+  These are view counts, not scientific progress measures. Useful result is a
+  valid source contrast alongside an explicit refused transfer. No measured
+  speedup or incumbent superiority. All three reconsideration rules applied;
+  stop cached-table migration absent a new evidence axis or decision.
   Consecutive no-progress runs:0. Frozen/protected/exposure records unchanged.
-- **Checkpoint/publication:** 2026-09-10T11:28:51.580524+00:00 (23.01minutes).
-  All38 focused tests, source/provider equality, baseline-output equality,
-  witness verification and fresh-directory Atlas3/10 wheel/source-draft/candidate
-  checks pass. All561 core tests pass (one skip), and14 truth tests pass. Repository
-  contracts pass; required remote CI remains a publication gate.
-  All workers completed; no unrelated changes. Architecture manifest changes only
-  path coverage17646to17648. This is a prepublication checkpoint; exact-head CI
-  and remote merge remain gates, with final commit/push/merge/release recorded
-  in the task result and receipt. Resume this branch/PR first if unfinished.
-  Receipt`.git/catalytic-earth-runs/20260910T110551Z-da096be3-ee15-4459-a4ec-7de647b7e8a7.json`.
-- **One next action:** integrate the retained beta-barrel benzoate control conflict
-  and construct mismatch into this common relation. Start
-  `data/atlas/study_context/beta_barrel_2022/source_qualification.json` and retained
-  witnesses. Expected gain: one query keeps RAβb-16.1/16.2 kinetics, 16.2 benzoate
-  arms, prose/plot conflict and assay-versus-deposit identity separate, refusing
-  16.2-to-16.1/8AH9 or ligand-independence transfer. Stop after that executable
-  relation or a precise shared gap; do not add an enzyme-specific branch or
-  invent missing controls. Reassess relation saturation then; no repeated
-  POX/TKT arithmetic, fresh geometry or unchanged source-access retries.
+- **Checkpoint/publication:** 2026-09-10T12:33:31.087479+00:00 (27.17minutes).
+  Public43 focused tests,14 truth tests, baseline output equality, witness
+  checks and fresh-directory Atlas3/10 wheel/draft/candidate queries pass.
+  All566 core tests and repository contracts pass. All workers completed.
+  Architecture manifest changes only path coverage17648to17650.
+  All repository edits are parent-owned; no unrelated work. This is the
+  prepublication checkpoint: required exact-head remote CI and source/diff
+  review remain gates. Final commit/push/merge/CI/release belong to task result
+  and receipt; resume this branch/PR first if unfinished. Receipt
+  `.git/catalytic-earth-runs/20260910T120621Z-a593404c-3235-4b69-a791-7ec117bfa635.json`.
+- **One next action:** connect the measured parentRA95.5-8F to its source-named
+  apo5AOU and inhibitor3-complex5AN7 chemical states, starting the retained
+  `ra95_2017/source_qualification.json` chemical-state/control limits and
+  supplement Methods p10/FiguresS8-S9/TableS2. First verify exact deposited
+  construct/sequence and inhibitor3-to-deposited-ligand/covalent-state identity;
+  then retain only source-relevant functional-group arrangements. Expected gain:
+  a construct-bound functional-to-chemical-state relation rather than another
+  table projection. Any acquisition continues the existing RA95 batch24requests/
+  15,353,338bytes; do not reset its name. Stop at one supported relation or an
+  explicit mapping failure. Preserve distinct crystallization pH/100K conditions,
+  inhibitor occupancy and model boundaries; no generic distance catalogue,
+  reacting-solution geometry, mutant-structure transfer or productive-template
+  claim. Reconcile with any newer direction review before acquisition.
 
 Preserve historical content below this marked block. Git identifies this
 containing increment; no self-hash follow-up commit is required.

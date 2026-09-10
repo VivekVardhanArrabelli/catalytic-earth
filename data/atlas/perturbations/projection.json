@@ -3,10 +3,10 @@
   "scope": {
     "question": "Which source-defined catalytic-group perturbations retain a measured endpoint, and which apparent comparisons cannot be transferred?",
     "evidence": "Projection of accepted source annotations; not new measurements, an independent evaluation, protein admission or evidence-tier promotion.",
-    "selection": "All rows of the accepted RA95 2013 kinetic and stereoselectivity tables and RA95 2017 kinetic panel; all six RA61 Table4 construct rows; all five KE59 Table2 pH-profile rows and its unassessed E230-control question. The beta-barrel packet is outside this bounded relation. One source-reported RA95.5-8F methodol synthesis outcome and its two precursor comparator contexts extend product evidence with separate conversion, isolation and source-assigned composition records. A Siegel2010 Diels-Alder extension adds three parent kinetic parameters and two author-reported activity-reduction factors with unqualified assay/metric; product bounds remain separate source contexts. Human TKT 2019 adds all seven X5P/R5P kcat and all seven F6P k_forward entries plus all five existing NMR arms; other kinetic columns remain original source context, not extra common parameter records. POX 2019 adds all six variants for seven selected columns: pyruvate/DCPIP kcat and KM; MAP k_on, k_off and K_D_app; and anaerobic pyruvate/FAD k_app_max and K_0.5. The other three columns remain original source context, not missing data.",
+    "selection": "All rows of the accepted RA95 2013 kinetic and stereoselectivity tables and RA95 2017 kinetic panel; all six RA61 Table4 construct rows; all five KE59 Table2 pH-profile rows and its unassessed E230-control question. The beta-barrel extension includes three selected kinetic columns across two rows and all eight qualitative S4 arms, with three within-table ratios and one unassessed 16.1/8AH9 control-transfer request. Table 2 acceleration columns remain outside the selected packet; printed S/R factors remain source context. One source-reported RA95.5-8F methodol synthesis outcome and its two precursor comparator contexts extend product evidence with separate conversion, isolation and source-assigned composition records. A Siegel2010 Diels-Alder extension adds three parent kinetic parameters and two author-reported activity-reduction factors with unqualified assay/metric; product bounds remain separate source contexts. Human TKT 2019 adds all seven X5P/R5P kcat and all seven F6P k_forward entries plus all five existing NMR arms; other kinetic columns remain original source context, not extra common parameter records. POX 2019 adds all six variants for seven selected columns: pyruvate/DCPIP kcat and KM; MAP k_on, k_off and K_D_app; and anaerobic pyruvate/FAD k_app_max and K_0.5. The other three columns remain original source context, not missing data.",
     "arithmetic": "Source-rounded central values, same-source assay and background only; reported efficiencies are never replaced by kcat/KM division.",
     "identity": "Exact sequence/provider availability is separate from study-declared construct association and physical assay-specimen identity.",
-    "limitations": "No pooled rates, generic inactivity labels, causal residue assignments, full apparatus claims, microscopic coupling energy or design-success estimates. Forward product composition retains source-author configuration and unresolved retention mapping; strict ee bounds remain structured source context, not central-value comparisons. Diels-Alder activity-reduction summaries do not identify mutant kcat or product outcomes; strict product bounds and mismatched assays remain in context. TKT reporter-unavailable parameters, NMR qualitative presence / scoped nondetection and positive turnover remain different kinds; no selective partner-only intervention, crystal-to-assay identity or productive F6P full-cycle inference. POX analogue nonbinding differs from TKT reporter absence. MAP apparent equilibrium includes a covalent conjugate; positive pyruvate fitted rates do not establish oxygen turnover, an elementary-step rate or exact construct/preparation identity."
+    "limitations": "No pooled rates, generic inactivity labels, causal residue assignments, full apparatus claims, microscopic coupling energy or design-success estimates. Forward product composition retains source-author configuration and unresolved retention mapping; strict ee bounds remain structured source context, not central-value comparisons. Diels-Alder activity-reduction summaries do not identify mutant kcat or product outcomes; strict product bounds and mismatched assays remain in context. TKT reporter-unavailable parameters, NMR qualitative presence / scoped nondetection and positive turnover remain different kinds; no selective partner-only intervention, crystal-to-assay identity or productive F6P full-cycle inference. POX analogue nonbinding differs from TKT reporter absence. MAP apparent equilibrium includes a covalent conjugate; positive pyruvate fitted rates do not establish oxygen turnover, an elementary-step rate or exact construct/preparation identity. Beta-barrel S4 arms are qualitative and belong to 16.2; main noninhibition prose conflicts with the plot and does not establish ligand-independent 16.1/8AH9. Exact deposited identity does not establish assay identity."
   },
   "sources": {
     "ra95f": {
@@ -56,6 +56,18 @@
     "poxi": {
       "path": "data/atlas/study_context/pox2019/perturbation_context.json",
       "sha256": "e29120547dbd982b1fb5b3f2ff1b1228e0fc96a16f540f20c1eaf39d35b93257"
+    },
+    "betaf": {
+      "path": "data/atlas/study_context/beta_barrel_2022/source_qualification.json",
+      "sha256": "9b1a98b0be873f361c75f6431684a92c2c769a77bc3450988537669860533d7a"
+    },
+    "betai": {
+      "path": "data/atlas/study_context/beta_barrel_2022/perturbation_context.json",
+      "sha256": "1fc756ce8005249c6f586685c0bced3de938fe14926f1a5fee96abffe427bc1a"
+    },
+    "betar": {
+      "path": "data/atlas/study_context/beta_barrel_2022/acquisition_receipts.json",
+      "sha256": "415daa1a2b8baad6d7368f9623b943442e4be16910c59d45903e44d2efa873e5"
     }
   },
   "constructs": {
@@ -1144,6 +1156,47 @@
         "source": "poxi",
         "pointer": "/constructs/5/background_construct_id"
       }
+    },
+    "beta_barrel_2022:RA-beta-b-16.1": {
+      "source_construct_id": "RA-beta-b-16.1",
+      "provider": {
+        "source": "betaf",
+        "pointer": "/constructs/1"
+      },
+      "sequence_provider": {
+        "source": "betai",
+        "pointer": "/sequences/0"
+      },
+      "background_id": "beta_barrel_2022:RA-beta-b-16.1",
+      "perturbation": [],
+      "perturbation_scope": "Relative to the named 16.1 reference for this comparison; earlier lineage changes remain in source_record. Combined 16.2 substitutions do not identify a single-residue cause.",
+      "identity_scope": "Named study construct; exact assay sequence and physical specimen identity unverified. 8AH9 deposited identity belongs separately to 16.1."
+    },
+    "beta_barrel_2022:RA-beta-b-16.2": {
+      "source_construct_id": "RA-beta-b-16.2",
+      "provider": {
+        "source": "betaf",
+        "pointer": "/constructs/2"
+      },
+      "sequence_provider": {
+        "source": "betai",
+        "pointer": "/sequences/1"
+      },
+      "background_id": "beta_barrel_2022:RA-beta-b-16.1",
+      "perturbation": [
+        "K49E",
+        "S51H"
+      ],
+      "perturbation_scope": "Relative to the named 16.1 reference for this comparison; earlier lineage changes remain in source_record. Combined 16.2 substitutions do not identify a single-residue cause.",
+      "identity_scope": "Named study construct; exact assay sequence and physical specimen identity unverified. 8AH9 deposited identity belongs separately to 16.1.",
+      "perturbation_provider": {
+        "source": "betaf",
+        "pointer": "/constructs/2/source_substitutions"
+      },
+      "background_provider": {
+        "source": "betaf",
+        "pointer": "/constructs/2/parent_construct_id"
+      }
     }
   },
   "assays": {
@@ -1477,6 +1530,42 @@
           "interpretation": "The printed quotient differs from arithmetic on displayed central values. Unreported fit precision is not reconstructed; the printed 12.5 remains the annotation value."
         }
       }
+    },
+    "beta_barrel_2022:purified-enantiopure-steady-state": {
+      "provider": {
+        "source": "betaf",
+        "pointer": "/assays/0"
+      },
+      "source_assay_id": "purified-enantiopure-steady-state",
+      "qualified": true,
+      "qualification_scope": "Source-defined within-table descriptive parameter contrast despite unresolved pH 7 versus 7.5; no exact-condition transfer.",
+      "endpoint_kind": "purified_enantiopure_initial_rates_fitted_Michaelis_Menten",
+      "reaction_direction": "methodol retro-aldol cleavage; no forward-synthesis inference",
+      "uncertainty_context": {
+        "reported_plus_minus_kind": null,
+        "replicate_n": null,
+        "independently_purified_batches": null,
+        "raw_rates": null,
+        "scope": "Printed kinetic errors have unknown statistic; no propagated ratio uncertainty."
+      }
+    },
+    "beta_barrel_2022:S4-benzoate": {
+      "provider": {
+        "source": "betaf",
+        "pointer": "/assays/1"
+      },
+      "source_assay_id": "S4-benzoate",
+      "qualified": false,
+      "qualification_scope": "Qualitative S4 caption/image only; exact rate readout and assay conditions are not established.",
+      "endpoint_kind": "qualitative_published_relative_activity_plot",
+      "reaction_direction": "methodol retro-aldol cleavage; no forward-synthesis inference",
+      "uncertainty_context": {
+        "reported_plus_minus_kind": null,
+        "replicate_n": null,
+        "independently_purified_batches": 2,
+        "raw_rates": null,
+        "scope": "Two preparations do not establish per-arm n or error-bar statistic; no digitized values, normalization definition or inferred conditions."
+      }
     }
   },
   "substrates": {
@@ -1604,6 +1693,32 @@
       "canonical_reaction_id": null,
       "isomeric_smiles": null,
       "scope": "Source-model apparent binding includes the covalent conjugate; no pyruvate affinity or isolated noncovalent docking constant. Source spellings remain in the assay provider."
+    },
+    "beta_barrel:methodol:S": {
+      "name": "(S)-methodol",
+      "stereochemistry": "source-named S enantiomer; no exact ee or substrate-lot authentication",
+      "source": {
+        "source": "betaf",
+        "pointer": "/kinetic_observations/0"
+      },
+      "source_named_chemical_entity_relation": {
+        "related_substrate_id": "methodol:S",
+        "relation": "same source-named molecule and configuration",
+        "scope": "Name/configuration association only. No RA95 preparation, assay or rate transfer; these identifiers denote scoped evidence contexts, not distinct molecular identities."
+      }
+    },
+    "beta_barrel:methodol:racemic": {
+      "name": "racemic methodol",
+      "stereochemistry": "racemic as specified by S4 caption; no enantiopure rate inference",
+      "source": {
+        "source": "betaf",
+        "pointer": "/assays/1"
+      },
+      "source_named_chemical_entity_relation": {
+        "related_substrate_id": "methodol:racemic",
+        "relation": "same source-named racemic substrate",
+        "scope": "Name-level association only; no shared lot, assay conditions or normalization inferred."
+      }
     }
   },
   "panels": [
@@ -3097,6 +3212,280 @@
             "unit": {
               "pointer": "/unit"
             }
+          }
+        }
+      ]
+    },
+    {
+      "id": "beta-kinetics",
+      "study_id": "beta_barrel_2022",
+      "source": "betaf",
+      "rows_pointer": "/kinetic_observations",
+      "fields": {
+        "row_id": {
+          "pointer": "/observation_id"
+        },
+        "construct_id": {
+          "pointer": "/construct_id"
+        },
+        "assay_id": {
+          "pointer": "/assay_id"
+        },
+        "substrate_id": {
+          "literal": "beta_barrel:methodol:S"
+        },
+        "source_locator": {
+          "pointer": "/source_locator"
+        }
+      },
+      "parameters": [
+        {
+          "id": "kcat",
+          "pointer": "/parameters/0",
+          "kind": {
+            "literal": "numeric"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/reported_plus_minus"
+            },
+            "kind": {
+              "literal": "unresolved_source_error_statistic"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            },
+            "unit": {
+              "pointer": "/unit"
+            }
+          }
+        },
+        {
+          "id": "KM",
+          "pointer": "/parameters/1",
+          "kind": {
+            "literal": "numeric"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/reported_plus_minus"
+            },
+            "kind": {
+              "literal": "unresolved_source_error_statistic"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            },
+            "unit": {
+              "pointer": "/unit"
+            }
+          }
+        },
+        {
+          "id": "kcat_over_KM",
+          "pointer": "/parameters/2",
+          "kind": {
+            "literal": "numeric"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/reported_plus_minus"
+            },
+            "kind": {
+              "literal": "not_reported"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            },
+            "unit": {
+              "pointer": "/unit"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "beta-benzoate-reference",
+      "study_id": "beta_barrel_2022",
+      "source": "betaf",
+      "rows_pointer": "/benzoate_condition_arms",
+      "row_indices": [
+        0,
+        1,
+        4,
+        5
+      ],
+      "fields": {
+        "row_id": {
+          "pointer": "/arm_id"
+        },
+        "construct_id": {
+          "pointer": "/construct_id"
+        },
+        "assay_id": {
+          "pointer": "/assay_id"
+        },
+        "substrate_id": {
+          "literal": "beta_barrel:methodol:racemic"
+        },
+        "source_locator": {
+          "literal": "Figure S4, XML pro4405-supitem-0004 caption and archive member PRO-31-e4405-s006.tiff"
+        }
+      },
+      "parameters": [
+        {
+          "id": "relative_activity_plot",
+          "pointer": "",
+          "kind": {
+            "pointer": "/numeric_status"
+          },
+          "value": {
+            "pointer": "/activity_value"
+          },
+          "unit": {
+            "pointer": "/activity_unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/error_value"
+            },
+            "kind": {
+              "literal": "unresolved_source_error_statistic"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          },
+          "qualitative_result": {
+            "source_token": {
+              "literal": "Visibly positive plotted activity; no relative-effect ordering is assigned to these zero-addition and 0.25 mM arms."
+            },
+            "scope": {
+              "literal": "Published S4 RAβb-16.2 racemic-methodol activity; chemical-addition arms, not new protein constructs or quantitative inhibition controls."
+            },
+            "wording_basis": {
+              "literal": "normalized_project_visual_annotation_not_verbatim_primary_quote"
+            },
+            "benzoate_mM": {
+              "pointer": "/benzoate_mM"
+            },
+            "preincubation_minutes": {
+              "pointer": "/preincubation_minutes"
+            },
+            "source_panel_label": {
+              "pointer": "/panel_label"
+            },
+            "source_y_axis": {
+              "pointer": "/source_y_axis"
+            },
+            "numeric_status": {
+              "pointer": "/numeric_status"
+            }
+          },
+          "status_kinds": {
+            "not_tabulated_not_digitized": "qualitative"
+          }
+        }
+      ]
+    },
+    {
+      "id": "beta-benzoate-lower",
+      "study_id": "beta_barrel_2022",
+      "source": "betaf",
+      "rows_pointer": "/benzoate_condition_arms",
+      "row_indices": [
+        2,
+        3,
+        6,
+        7
+      ],
+      "fields": {
+        "row_id": {
+          "pointer": "/arm_id"
+        },
+        "construct_id": {
+          "pointer": "/construct_id"
+        },
+        "assay_id": {
+          "pointer": "/assay_id"
+        },
+        "substrate_id": {
+          "literal": "beta_barrel:methodol:racemic"
+        },
+        "source_locator": {
+          "literal": "Figure S4, XML pro4405-supitem-0004 caption and archive member PRO-31-e4405-s006.tiff"
+        }
+      },
+      "parameters": [
+        {
+          "id": "relative_activity_plot",
+          "pointer": "",
+          "kind": {
+            "pointer": "/numeric_status"
+          },
+          "value": {
+            "pointer": "/activity_value"
+          },
+          "unit": {
+            "pointer": "/activity_unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/error_value"
+            },
+            "kind": {
+              "literal": "unresolved_source_error_statistic"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          },
+          "qualitative_result": {
+            "source_token": {
+              "literal": "Visibly positive plotted activity below the same-panel zero-added-benzoate bar; no numeric effect or statistical significance is assigned."
+            },
+            "scope": {
+              "literal": "Published S4 RAβb-16.2 racemic-methodol activity; chemical-addition arms, not new protein constructs or quantitative inhibition controls."
+            },
+            "wording_basis": {
+              "literal": "normalized_project_visual_annotation_not_verbatim_primary_quote"
+            },
+            "benzoate_mM": {
+              "pointer": "/benzoate_mM"
+            },
+            "preincubation_minutes": {
+              "pointer": "/preincubation_minutes"
+            },
+            "source_panel_label": {
+              "pointer": "/panel_label"
+            },
+            "source_y_axis": {
+              "pointer": "/source_y_axis"
+            },
+            "numeric_status": {
+              "pointer": "/numeric_status"
+            }
+          },
+          "status_kinds": {
+            "not_tabulated_not_digitized": "qualitative"
           }
         }
       ]
@@ -6100,6 +6489,194 @@
         }
       ],
       "scope": "Within-study named POX mutant / wild type for this parameter and assay. Other paired endpoints are contextual and never enter the arithmetic; MAP nonbinding is not pyruvate inactivity."
+    },
+    {
+      "id": "beta_barrel_2022:16.2-over-16.1:kcat",
+      "study_id": "beta_barrel_2022",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "beta-kinetics:S-methodol-16.2:kcat",
+        "denominator": "beta-kinetics:S-methodol-16.1:kcat"
+      },
+      "context_observations": [
+        "beta-kinetics:S-methodol-16.1:KM",
+        "beta-kinetics:S-methodol-16.1:kcat_over_KM",
+        "beta-kinetics:S-methodol-16.2:KM",
+        "beta-kinetics:S-methodol-16.2:kcat_over_KM",
+        "beta-benzoate-reference:benzoate-10min-0mM:relative_activity_plot",
+        "beta-benzoate-reference:benzoate-10min-0.25mM:relative_activity_plot",
+        "beta-benzoate-reference:benzoate-840min-0mM:relative_activity_plot",
+        "beta-benzoate-reference:benzoate-840min-0.25mM:relative_activity_plot",
+        "beta-benzoate-lower:benzoate-10min-2.5mM:relative_activity_plot",
+        "beta-benzoate-lower:benzoate-10min-25mM:relative_activity_plot",
+        "beta-benzoate-lower:benzoate-840min-2.5mM:relative_activity_plot",
+        "beta-benzoate-lower:benzoate-840min-25mM:relative_activity_plot"
+      ],
+      "evidence": [
+        {
+          "source": "betaf",
+          "pointer": "/kinetic_observations"
+        },
+        {
+          "source": "betaf",
+          "pointer": "/constructs"
+        },
+        {
+          "source": "betaf",
+          "pointer": "/source_conflicts"
+        },
+        {
+          "source": "betaf",
+          "pointer": "/assays"
+        }
+      ],
+      "scope": "Descriptive 16.2/16.1 source-table ratio for the combined K49E/S51H perturbation. All benzoate arms are contextual only. No statistical equivalence, single-residue contribution, ligand-independent geometry or forward selectivity follows."
+    },
+    {
+      "id": "beta_barrel_2022:16.2-over-16.1:KM",
+      "study_id": "beta_barrel_2022",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "beta-kinetics:S-methodol-16.2:KM",
+        "denominator": "beta-kinetics:S-methodol-16.1:KM"
+      },
+      "context_observations": [
+        "beta-kinetics:S-methodol-16.1:kcat",
+        "beta-kinetics:S-methodol-16.1:kcat_over_KM",
+        "beta-kinetics:S-methodol-16.2:kcat",
+        "beta-kinetics:S-methodol-16.2:kcat_over_KM",
+        "beta-benzoate-reference:benzoate-10min-0mM:relative_activity_plot",
+        "beta-benzoate-reference:benzoate-10min-0.25mM:relative_activity_plot",
+        "beta-benzoate-reference:benzoate-840min-0mM:relative_activity_plot",
+        "beta-benzoate-reference:benzoate-840min-0.25mM:relative_activity_plot",
+        "beta-benzoate-lower:benzoate-10min-2.5mM:relative_activity_plot",
+        "beta-benzoate-lower:benzoate-10min-25mM:relative_activity_plot",
+        "beta-benzoate-lower:benzoate-840min-2.5mM:relative_activity_plot",
+        "beta-benzoate-lower:benzoate-840min-25mM:relative_activity_plot"
+      ],
+      "evidence": [
+        {
+          "source": "betaf",
+          "pointer": "/kinetic_observations"
+        },
+        {
+          "source": "betaf",
+          "pointer": "/constructs"
+        },
+        {
+          "source": "betaf",
+          "pointer": "/source_conflicts"
+        },
+        {
+          "source": "betaf",
+          "pointer": "/assays"
+        }
+      ],
+      "scope": "Descriptive 16.2/16.1 source-table ratio for the combined K49E/S51H perturbation. All benzoate arms are contextual only. No statistical equivalence, single-residue contribution, ligand-independent geometry or forward selectivity follows."
+    },
+    {
+      "id": "beta_barrel_2022:16.2-over-16.1:kcat_over_KM",
+      "study_id": "beta_barrel_2022",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "beta-kinetics:S-methodol-16.2:kcat_over_KM",
+        "denominator": "beta-kinetics:S-methodol-16.1:kcat_over_KM"
+      },
+      "context_observations": [
+        "beta-kinetics:S-methodol-16.1:kcat",
+        "beta-kinetics:S-methodol-16.1:KM",
+        "beta-kinetics:S-methodol-16.2:kcat",
+        "beta-kinetics:S-methodol-16.2:KM",
+        "beta-benzoate-reference:benzoate-10min-0mM:relative_activity_plot",
+        "beta-benzoate-reference:benzoate-10min-0.25mM:relative_activity_plot",
+        "beta-benzoate-reference:benzoate-840min-0mM:relative_activity_plot",
+        "beta-benzoate-reference:benzoate-840min-0.25mM:relative_activity_plot",
+        "beta-benzoate-lower:benzoate-10min-2.5mM:relative_activity_plot",
+        "beta-benzoate-lower:benzoate-10min-25mM:relative_activity_plot",
+        "beta-benzoate-lower:benzoate-840min-2.5mM:relative_activity_plot",
+        "beta-benzoate-lower:benzoate-840min-25mM:relative_activity_plot"
+      ],
+      "evidence": [
+        {
+          "source": "betaf",
+          "pointer": "/kinetic_observations"
+        },
+        {
+          "source": "betaf",
+          "pointer": "/constructs"
+        },
+        {
+          "source": "betaf",
+          "pointer": "/source_conflicts"
+        },
+        {
+          "source": "betaf",
+          "pointer": "/assays"
+        }
+      ],
+      "scope": "Descriptive 16.2/16.1 source-table ratio for the combined K49E/S51H perturbation. All benzoate arms are contextual only. No statistical equivalence, single-residue contribution, ligand-independent geometry or forward selectivity follows."
+    },
+    {
+      "id": "beta_barrel_2022:benzoate-control-to-8AH9",
+      "study_id": "beta_barrel_2022",
+      "operation": "unassessed",
+      "roles": {},
+      "result_kind": "unassessed",
+      "requested_perturbation": "Matched ligand-depletion or benzoate-effect evidence for RAβb-16.1 / deposited 8AH9",
+      "reported_benzoate_arms_assessed": true,
+      "source_control_construct_id": "beta_barrel_2022:RA-beta-b-16.2",
+      "requested_target_construct_id": "beta_barrel_2022:RA-beta-b-16.1",
+      "target_structure_id": "8AH9",
+      "matched_control_measurement": null,
+      "assay_id": null,
+      "parameter": null,
+      "observed_value": null,
+      "source_blocks": [
+        "control_construct_differs_from_crystallized_construct",
+        "exact_assay_specimen_to_deposit_identity_unestablished",
+        "source_internal_benzoate_prose_plot_conflict",
+        "zero_added_benzoate_is_not_ligand_depleted_protein",
+        "qualitative_activity_does_not_establish_ligand_independence"
+      ],
+      "context_observations": [
+        "beta-kinetics:S-methodol-16.1:kcat",
+        "beta-kinetics:S-methodol-16.1:KM",
+        "beta-kinetics:S-methodol-16.1:kcat_over_KM",
+        "beta-kinetics:S-methodol-16.2:kcat",
+        "beta-kinetics:S-methodol-16.2:KM",
+        "beta-kinetics:S-methodol-16.2:kcat_over_KM",
+        "beta-benzoate-reference:benzoate-10min-0mM:relative_activity_plot",
+        "beta-benzoate-reference:benzoate-10min-0.25mM:relative_activity_plot",
+        "beta-benzoate-reference:benzoate-840min-0mM:relative_activity_plot",
+        "beta-benzoate-reference:benzoate-840min-0.25mM:relative_activity_plot",
+        "beta-benzoate-lower:benzoate-10min-2.5mM:relative_activity_plot",
+        "beta-benzoate-lower:benzoate-10min-25mM:relative_activity_plot",
+        "beta-benzoate-lower:benzoate-840min-2.5mM:relative_activity_plot",
+        "beta-benzoate-lower:benzoate-840min-25mM:relative_activity_plot"
+      ],
+      "evidence": [
+        {
+          "source": "betaf",
+          "pointer": "/source_conflicts/0"
+        },
+        {
+          "source": "betaf",
+          "pointer": "/constructs"
+        },
+        {
+          "source": "betaf",
+          "pointer": "/deposited_context"
+        },
+        {
+          "source": "betaf",
+          "pointer": "/assays/1"
+        },
+        {
+          "source": "betaf",
+          "pointer": "/catalytic_control_boundaries"
+        }
+      ],
+      "scope": "The 16.2 S4 experiment is assessed qualitatively. The target-specific 16.1/8AH9 matched control is not established; this abstention does not mean that S4 was uninspected or that no activity was observed."
     }
   ],
   "evidence_context": {
@@ -6634,6 +7211,54 @@
         "source": "poxi",
         "pointer": "/source_access"
       }
+    ],
+    "betaf": [
+      {
+        "source": "betaf",
+        "pointer": "/sources"
+      },
+      {
+        "source": "betaf",
+        "pointer": "/constructs"
+      },
+      {
+        "source": "betaf",
+        "pointer": "/deposited_context"
+      },
+      {
+        "source": "betaf",
+        "pointer": "/source_conflicts"
+      },
+      {
+        "source": "betaf",
+        "pointer": "/catalytic_control_boundaries"
+      },
+      {
+        "source": "betaf",
+        "pointer": "/design_use"
+      },
+      {
+        "source": "betaf",
+        "pointer": "/global_limits"
+      }
+    ],
+    "betai": [
+      {
+        "source": "betai",
+        "pointer": "/scope"
+      },
+      {
+        "source": "betai",
+        "pointer": "/identity_limits"
+      },
+      {
+        "source": "betai",
+        "pointer": "/selection"
+      },
+      {
+        "source": "betai",
+        "pointer": "/source_access"
+      }
     ]
   },
   "source_witnesses": [
@@ -6868,24 +7493,83 @@
       ],
       "redistributed": false,
       "retention": "Previously acquired hash-matched bytes copied from temporary cache; no new requests. TKT complete cumulative accounting and headroom remain unknown."
+    },
+    {
+      "id": "beta-barrel-main",
+      "sha256": "dae5d00d05efc6386e2002be9eb5f18c3c3224596c5e5df0fc7ad107cfe8357d",
+      "bytes": 3893861,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/dae5d00d05efc6386e2002be9eb5f18c3c3224596c5e5df0fc7ad107cfe8357d.pdf",
+      "source_bindings": [
+        {
+          "source": "betar",
+          "pointer": "/requests/0"
+        }
+      ],
+      "redistributed": false,
+      "retention": "Previously acquired hash-verified witness copied to durable Git-common-directory local cache; zero requests or new response bytes.",
+      "source_url": "https://www.ipd.uw.edu/publication-pdfs/276/618404b806edbdad230869c90cd7ec87/Protein%20Science%20-%202022%20-%20Kipnis%20-%20Design%20and%20optimization%20of%20enzymatic%20activity%20in%20a%20de%20novo%20%E2%80%90barrel%20scaffold.pdf"
+    },
+    {
+      "id": "beta-barrel-xml",
+      "sha256": "04db836dd2775e9f77d264220b8d852146dd1561a32cca7965c0c518eaae6eab",
+      "bytes": 139672,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/04db836dd2775e9f77d264220b8d852146dd1561a32cca7965c0c518eaae6eab.xml",
+      "source_bindings": [
+        {
+          "source": "betar",
+          "pointer": "/requests/2"
+        }
+      ],
+      "redistributed": false,
+      "retention": "Previously acquired hash-verified witness copied to durable Git-common-directory local cache; zero requests or new response bytes.",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9601869/fullTextXML"
+    },
+    {
+      "id": "beta-barrel-S4",
+      "sha256": "391b56134d77e23c52ff2f80c58672fabdfa07640a134e26b6d8f3e36d83ada6",
+      "bytes": 154068,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/391b56134d77e23c52ff2f80c58672fabdfa07640a134e26b6d8f3e36d83ada6.tiff",
+      "source_bindings": [
+        {
+          "source": "betaf",
+          "pointer": "/sources/1"
+        }
+      ],
+      "redistributed": false,
+      "retention": "Previously acquired hash-verified witness copied to durable Git-common-directory local cache; zero requests or new response bytes.",
+      "source_url": null,
+      "source_container_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9601869/supplementaryFiles",
+      "source_container_sha256": "1d537635bfa0c017fed96fda9b1fcafa4302a26d7c630651cdf265bd8cdf0a99",
+      "archive_member": "PRO-31-e4405-s006.tiff",
+      "url_scope": "TIFF extracted from this hash-bound ZIP member; no direct TIFF URL is asserted."
     }
   ],
   "parameter_contracts": {
     "kcat": {
       "source_fields": [
         "k_cat",
-        "kcat"
+        "kcat",
+        "0"
       ],
       "units": [
         "s^-1",
-        "hr^-1"
-      ]
+        "hr^-1",
+        "min^-1"
+      ],
+      "source_markers": {
+        "parameter": [
+          null,
+          "k_cat"
+        ]
+      },
+      "marker_scope": "Legacy object-key providers may omit parameter markers. Array-index providers retain their exact printed parameter marker; index or unit alone is insufficient."
     },
     "KM": {
       "source_fields": [
         "substrate_response_constant",
         "K_M",
-        "KM"
+        "KM",
+        "1"
       ],
       "units": [
         "uM",
@@ -6898,17 +7582,26 @@
           "K_M"
         ]
       },
-      "marker_scope": "Legacy records omit a parameter marker; the POX provider explicitly prints K_M. K_0.5 is a different parameter and is rejected."
+      "marker_scope": "Legacy object-key providers may omit parameter markers. Array-index providers retain their exact printed parameter marker; index or unit alone is insufficient."
     },
     "kcat_over_KM": {
       "source_fields": [
         "source_reported_efficiency",
         "k_cat_over_K_M",
-        "kcat_over_KM"
+        "kcat_over_KM",
+        "2"
       ],
       "units": [
-        "M^-1 s^-1"
-      ]
+        "M^-1 s^-1",
+        "M^-1 min^-1"
+      ],
+      "source_markers": {
+        "parameter": [
+          null,
+          "k_cat/K_M"
+        ]
+      },
+      "marker_scope": "Legacy object-key providers may omit parameter markers. Array-index providers retain their exact printed parameter marker; index or unit alone is insufficient."
     },
     "kcat_over_KM_obs": {
       "source_fields": [
@@ -7098,6 +7791,20 @@
           "K_0.5"
         ]
       }
+    },
+    "relative_activity_plot": {
+      "source_fields": [
+        ""
+      ],
+      "units": [
+        "percent_of_max"
+      ],
+      "source_markers": {
+        "numeric_status": [
+          "not_tabulated_not_digitized"
+        ]
+      },
+      "scope": "Published qualitative activity plot; percent_of_max is the source axis label, not a numeric normalization reconstructed by the project."
     }
   },
   "reactions": {

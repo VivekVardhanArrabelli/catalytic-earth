@@ -1,5 +1,19 @@
 # Current State
 
+## 2026-09-10: beta-barrel control conflict is queryable without construct transfer
+
+The [common relation](ATLAS_PERTURBATION_RELATION.md#a-qualitative-control-conflict-stays-attached-to-its-construct)
+retains three parameter-specific 16.2/16.1 kinetic ratios beside all eight
+qualitative benzoate arms. The 16.1/8AH9 ligand-control request abstains with
+the internal prose/plot conflict and different control construct explicit.
+Zero-added ligand remains distinct from ligand-depleted protein. Exact assay
+sequences and the source-conflicted kinetic pH remain unresolved.
+
+This makes existing CE-030 restrictions executable through the unchanged
+consumer. Original source packets, frozen kernels and protected records are
+unchanged; no new experiment, causal role, productive geometry or evidence tier
+is established. Three primary witnesses were retained durably with zero requests.
+
 ## 2026-09-10: analogue nonbinding and pyruvate responses share one consumer
 
 The [common perturbation relation](ATLAS_PERTURBATION_RELATION.md#analogue-nonbinding-does-not-erase-authentic-substrate-responses)

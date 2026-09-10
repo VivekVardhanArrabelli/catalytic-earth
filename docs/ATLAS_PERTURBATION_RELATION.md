@@ -2,7 +2,7 @@
 
 One offline consumer now recovers the accepted RA95 2013/2017 and RA61
 perturbation comparisons, their exclusions, KE59's unassessed matched-control
-question, the human-transketolase endpoint contrast, and POX analogue nonbinding beside pyruvate responses. It answers which source-defined perturbations retain a measured
+question, the human-transketolase endpoint contrast, POX analogue nonbinding beside pyruvate responses, and the beta-barrel benzoate-control conflict. It answers which source-defined perturbations retain a measured
 endpoint in a particular background, substrate and assay. It does not assign
 generic activity, residue causality, preserved catalytic apparatus or design
 success. Current scientific scope remains [CE-024–CE-033](../CLAIMS.md).
@@ -16,6 +16,7 @@ python scripts/query_atlas_perturbations.py --output /tmp/perturbations.json
 python scripts/query_atlas_perturbations.py --study ra61_2010
 python scripts/query_atlas_perturbations.py --comparison 'tkt_2019:E366Q:kcat'
 python scripts/query_atlas_perturbations.py --comparison 'pox_2019:E59Q:kcat'
+python scripts/query_atlas_perturbations.py --comparison 'beta_barrel_2022:benzoate-control-to-8AH9'
 python scripts/query_atlas_perturbations.py --comparison 'ra95_2017:Y51F-Y180F:kcat'
 python scripts/query_atlas_perturbations.py --comparison 'ke59_2012:E230-matched-perturbation'
 python scripts/query_atlas_perturbations.py --verify-witnesses --output /tmp/perturbations-with-local-source-check.json
@@ -171,7 +172,7 @@ and pyruvate/FAD k_app_max and K0.5. These twelve context records never enter th
 
 Seven columns across all six variants contribute 42 common parameter records:
 39 numeric and three unavailable. Of 35 within-assay mutant/WT requests, 32
-permit descriptive arithmetic and three abstain. The complete view has 179
+permit descriptive arithmetic and three abstain. The view after that extension had 179
 records and 107 requests (82 eligible, 25 abstaining); all previous 137 records
 and 72 comparison results remain unchanged. These are projections of retained
 published evidence, not experiment, enzyme-admission or independent-replicate
@@ -231,6 +232,86 @@ removes a source-layout join for retrieval and blocks a concrete bad transfer;
 no measured curation-time saving, incumbent superiority, causal role or design
 success is established.
 
+## A qualitative control conflict stays attached to its construct
+
+The [retained beta-barrel evidence](ATLAS_BETA_BARREL_CONTROLS.md) now uses
+the same consumer without runtime or CLI changes. The query
+`--comparison beta_barrel_2022:benzoate-control-to-8AH9` returns the six selected
+kinetic parameter records, all eight S4 condition arms, the conflicting source
+statements and the separate deposited identity. Its explicit target is a
+matched ligand-control measurement for RAβb-16.1 / 8AH9. That target remains
+unassessed; the published RAβb-16.2 S4 experiment has been assessed qualitatively.
+
+Three source-table ratios for the paired K49E/S51H 16.2 construct relative to
+16.1 remain eligible at their own endpoint:
+
+| Parameter | 16.2 / 16.1 central values | Descriptive ratio |
+| --- | --- | ---: |
+| kcat, min^-1 | 1.6 / 1.5 | 1.0667 |
+| KM, uM | 50 / 230 | 0.21739 |
+| Printed kcat/KM, M^-1 min^-1 | 30,000 / 6,500 | 4.61538 |
+
+Use `--comparison beta_barrel_2022:16.2-over-16.1:kcat` for one such ratio
+with all fourteen records retained as operands or context. This is a combined
+substitution contrast, with no isolated K49E or S51H effect. Reported errors
+(0.1 for both kcat values; 10 and 40 uM for KM) keep their unknown statistic.
+No error is invented for printed efficiencies. Figure 6 says pH 7 and Methods
+4.7 says pH 7.5: the shared within-table contrast remains usable, while the
+integrated pH stays null and cannot qualify an exact-condition transfer.
+Printed S/R factors 36 and 500 remain source context; no R kinetic value,
+selectivity ratio or forward-synthesis outcome is reconstructed.
+
+All S4 records are **qualitative**, with null activity and error values. Their
+common qualitative payload carries the benzoate dose, preincubation time,
+source panel label and axis label. All eight plotted bars are visibly positive.
+Only the four 2.5/25 mM arms carry the reviewed observation that they are below
+their own panel's zero-addition bar. The zero and 0.25 mM arms carry no
+relative-effect ordering. These annotations do not digitize the plot or infer
+a normalization, numeric dose ratio, inhibition mechanism, Ki or significance.
+The caption's two purified batches are not a per-arm replicate count.
+
+The transfer request preserves both limitations: main-text noninhibition prose
+conflicts with the S4 plot, and the caption names 16.2 while 8AH9 names 16.1.
+Zero **added** benzoate does not establish ligand-depleted protein. Neither
+retained activity nor mutation-informed docking qualifies ligand-independent
+catalysis or productive geometry. RAβb-8 K77M and the unspecified Lys53/Tyr17
+author assertions remain context; no K53M/Y17F control is invented.
+
+Both exact assay sequences remain null in a small
+[sequence-identity adapter](../data/atlas/study_context/beta_barrel_2022/perturbation_context.json).
+The original construct providers retain the seven earlier 16-to-16.1 changes,
+including the V49K step before K49E. The exact 120-residue deposited sequence
+and its digest remain in source context, without being copied into either
+assay sequence. Study-scoped methodol identifiers prevent the existing RA95
+preparation metadata from being borrowed. Their descriptive name/configuration
+relation is not an operational assay or rate equivalence.
+
+This adds fourteen view records (six numeric, eight qualitative) and four
+requests (three eligible, one abstaining). The complete view has 193 records
+and 111 requests: 85 eligible and 26 abstaining. All preceding 179 observation
+objects and 107 comparison objects remain unchanged. These are dataset-view
+counts, not experiments, independent replicates, protein admissions or success
+rates. The array-index field mappings retain exact parameter markers so a
+swapped KM/kcat/efficiency provider fails rather than inheriting meaning from
+an index or unit alone.
+
+Three hash-verified witnesses (article PDF/XML and the exact S4 TIFF) were
+copied to the durable local source cache: 4,187,601 bytes and zero acquisition
+requests. The S4 witness names its ZIP container URL, hash and exact member;
+that URL is not represented as a direct TIFF download. All seventeen local witnesses verify at 20,956,262 bytes. The named
+Kipnis batch remains cumulative at five requests / 8,449,621 response-body bytes.
+The public mmCIF stays in its original tracked path; publisher bodies are not
+redistributed by this increment.
+
+This completes the distinct construct/control-conflict question with the
+existing qualitative and unassessed concepts. A generic numeric chemical-dose
+comparison is not implemented: there are no transcribed numeric S4 operands,
+and the existing ratio operation is a genetic-background comparison. Tests
+explicitly refuse attempted dose ratios. Another migration of a cached table
+would not by itself justify a new run; the next work should resolve a different
+scientific bottleneck or demonstrate a useful relation across the assembled
+sources.
+
 ## Shared representation and eligibility
 
 The [declarative projection](../data/atlas/perturbations/projection.json) is the
@@ -252,7 +333,7 @@ the common value/unit/uncertainty fields. Construct providers retain whether
 a sequence was directly printed or derived, as well as lineage and numbering
 cautions. Sequence hashes are checked separately from perturbation/background
 provider equality. A sequence-bound construct still does not identify the
-physical assay aliquot. Missing RA61/KE59/TKT/POX assay sequences are explicit and cannot
+physical assay aliquot. Missing RA61/KE59/TKT/POX/beta-barrel assay sequences are explicit and cannot
 be borrowed from a nearby name or structure.
 The two positive unmarked RA95.0 rows retain their displayed error magnitudes
 with unresolved statistic types. Conflicted KM error magnitudes keep their
@@ -280,14 +361,17 @@ backgrounds and ten parameter values remain addressable as indirect context.
 Original KE59, the R1 structural proxy and the R2 pH proxy remain distinct.
 RA61's solution-amine and Brønsted-model estimates remain contextual source
 evidence and never become protein-mutation observations in this relation.
-The beta-barrel packet is outside this bounded projection; its unresolved
-construct/control mismatch has not been repaired or silently admitted.
+The beta-barrel packet is included with its construct/control mismatch
+explicitly unresolved. Its eight assessed qualitative arms do not become a
+matched 16.1/8AH9 measurement.
 
 ## Provenance and source retention
 
 Source bindings resolve the five original accepted annotation packets, the
-forward-synthesis packet, the Diels–Alder annotation, the retained TKT packets plus identity adapter, and the POX source packet and
-named-construct adapter. Output preserves
+forward-synthesis packet, the Diels–Alder annotation, the retained TKT packets
+plus identity adapter, the POX source packet and named-construct adapter, and
+the beta-barrel source packet, sequence adapter and acquisition receipt.
+Output preserves
 study and source-locator context, original source conflicts, missing controls,
 thermal/mass evidence and selection limitations. Original primary bodies are
 not redistributed. Seven originally acquired, hash-verified files were copied
@@ -299,8 +383,10 @@ The offline relation needs the committed annotations; primary-source review
 also needs the recorded witnesses or separately authorized reacquisition.
 The default query checks witness bindings and labels local byte availability
 as unchecked. The three Diels–Alder article/figure witnesses brought the set to ten files.
-Four retained TKT witnesses bring it to fourteen files (16,768,661 bytes);
-POX reuses those same four files without duplicate copies. `--verify-witnesses` checks all lengths and
+Four retained TKT witnesses brought it to fourteen files (16,768,661 bytes);
+POX reuses those same four files without duplicate copies. The beta-barrel
+article PDF/XML and S4 TIFF bring the current set to seventeen files
+(20,956,262 bytes). `--verify-witnesses` checks all lengths and
 hashes, and fails if any file is missing or altered; it never fetches a replacement.
 
 The original relation and methodol extension made no new source requests;

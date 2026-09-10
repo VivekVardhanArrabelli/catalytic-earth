@@ -1,0 +1,55 @@
+{
+  "schema_version": "catalytic-earth.perturbation-identity-context.v1",
+  "operation": "source_annotation",
+  "scope": "Two source-named beta-barrel assay constructs have no authenticated exact assay sequence. The separately retained 8AH9 deposited sequence is associated with 16.1 and is not substituted for either assay sequence.",
+  "source_bindings": [
+    {
+      "path": "data/atlas/study_context/beta_barrel_2022/source_qualification.json",
+      "sha256": "9b1a98b0be873f361c75f6431684a92c2c769a77bc3450988537669860533d7a"
+    }
+  ],
+  "sequences": [
+    {
+      "construct_id": "RA-beta-b-16.1",
+      "source_provider": {
+        "path": "data/atlas/study_context/beta_barrel_2022/source_qualification.json",
+        "json_pointer": "/constructs/1"
+      },
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "exact_assay_construct_sequence_unestablished_in_retained_evidence",
+      "assay_specimen_sequence_verified": false
+    },
+    {
+      "construct_id": "RA-beta-b-16.2",
+      "source_provider": {
+        "path": "data/atlas/study_context/beta_barrel_2022/source_qualification.json",
+        "json_pointer": "/constructs/2"
+      },
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "exact_assay_construct_sequence_unestablished_in_retained_evidence",
+      "assay_specimen_sequence_verified": false
+    }
+  ],
+  "identity_limits": [
+    "The 16.1 reference is unperturbed only relative to the selected 16.2/16.1 contrast; its seven earlier substitutions remain in the original construct provider.",
+    "16.2 carries both source-declared K49E and S51H; no single-substitution effect is isolated. Position 49 lineage remains V to K to E.",
+    "The exact 120-residue deposited 8AH9 sequence and its hash remain available through original source context; no sequence is derived or copied to an assay construct."
+  ],
+  "selection": {
+    "numeric": "All three selected kinetic parameters for both named variants project directly from the original two-row packet. Printed S/R factors remain source context; no R kinetic parameters are reconstructed.",
+    "qualitative": "All eight S4 benzoate arms project directly from the original packet with null activity/error values. Four high-dose arms retain visibly lower activity than their same-panel zero-addition arms; all eight retain visibly positive activity. No plot digitization, numeric ratio or significance test.",
+    "transfer": "The requested 16.1/8AH9 matched ligand-control relation is unassessed at that target; the existing 16.2 qualitative experiment and its source conflict are explicitly assessed and retained."
+  },
+  "source_access": {
+    "batch_id": "designed-retroaldolase-beta-barrel-kipnis2022",
+    "new_requests": 0,
+    "new_response_body_bytes": 0,
+    "cumulative_requests": 5,
+    "cumulative_response_body_bytes": 8449621,
+    "new_local_witness_copies": 3,
+    "new_local_witness_bytes": 4187601,
+    "source_bodies_redistributed": false
+  }
+}
