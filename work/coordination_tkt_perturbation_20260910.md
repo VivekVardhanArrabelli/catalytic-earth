@@ -38,3 +38,7 @@ Scientific checkpoint: 2026-09-10T10:27:57.804517+00:00 (21.68 minutes). All thr
 Core verification completed: 556 tests pass (one skip), including the 33 focused and 14 truth tests. All three reviewer tasks are completed.
 
 Repository contracts passed, including source review pins, archive index, path/freeze, claims and exposure guards. Staged diff reviewed; no frozen scientific or protected registry changes. Exact-head GitHub CI and merged-main synchronization remain required before release.
+
+## Windows publication correction — 2026-09-10T10:41:49.075839+00:00
+
+PR76 initial head 746236b2a3860dbad43aa7b61829cea2f52cb8b0 passed Linux but failed Windows only at the filtered-query decoder: stdout inherited CP1252, including byte0xb1 for ±, while the reader required UTF8. The public CLI now reconfigures JSON stdout as UTF8; file output was already UTF8. Its hash is fa6746be65dd78f6f7a9d9181f1306922837421e021c974168962b00ccd3d2bc; tests2adad6a9c9e32950334d3f9be96e7ec305d6ee65ed74666c854e525db7e45a2e force CP1252 and compare complete parsed source/construct context. Source and adversarial follow-ups accepted these exact hashes; no scientific data, source mapping or library semantics changed. All33 focused and556 core tests pass again (one core skip). Follow-up workers are completed. Updated-head CI is required; the failed check is preserved and never bypassed.

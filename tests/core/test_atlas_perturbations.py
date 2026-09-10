@@ -2,6 +2,7 @@
 
 from copy import deepcopy
 import json
+import os
 from pathlib import Path
 import hashlib
 import subprocess
@@ -218,7 +219,7 @@ class PerturbationRelationTests(unittest.TestCase):
     def test_filtered_query_keeps_controls_and_only_returned_memberships(self):
         completed = subprocess.run([sys.executable, str(ROOT / "scripts/query_atlas_perturbations.py"),
                                     "--comparison", "ra95_2017:Y51F-Y180F:kcat"],
-                                   cwd=ROOT, check=True, capture_output=True, text=True)
+                                   cwd=ROOT, check=True, capture_output=True, text=True, encoding="utf-8")
         view = json.loads(completed.stdout)
         comparison = view["comparisons"][0]
         self.assertEqual({row["id"] for row in view["observations"]}, set(comparison["roles"].values()))
@@ -481,7 +482,8 @@ class PerturbationRelationTests(unittest.TestCase):
     def test_tkt_filtered_turnover_relation_keeps_separate_contexts(self):
         completed = subprocess.run([sys.executable, str(ROOT / "scripts/query_atlas_perturbations.py"),
                                     "--comparison", "tkt_2019:E366Q:kcat"],
-                                   capture_output=True, text=True, encoding="utf-8", check=True)
+                                   capture_output=True, text=True, encoding="utf-8", check=True,
+                                   env={**os.environ, "PYTHONIOENCODING": "cp1252"})
         view = json.loads(completed.stdout)
         self.assertEqual(len(view["comparisons"]), 1)
         comparison = view["comparisons"][0]
@@ -491,6 +493,8 @@ class PerturbationRelationTests(unittest.TestCase):
         self.assertEqual({rows[r]["parameter"] for r in comparison["roles"].values()}, {"kcat"})
         self.assertEqual({rows[r]["result_kind"] for r in comparison["context_observations"]},
                          {"numeric", "unavailable", "qualitative", "nondetection"})
+        self.assertEqual(view["evidence_context"], self.view["evidence_context"])
+        self.assertEqual(view["constructs"], self.view["constructs"])
 
     def test_diels_alder_substrate_markers_and_product_contexts_do_not_transfer(self):
         for parameter, wrong_participant in (("KM_diene", "2"), ("KM_dienophile", "1")):

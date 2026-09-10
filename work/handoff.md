@@ -69,6 +69,15 @@ continuation. Historical handoffs below are not an execution queue.
   Only this marked handoff block changed. This is a scientific prepublication
   checkpoint, not inferred merge success; resume this branch/PR first if unfinished.
   Receipt: `.git/catalytic-earth-runs/20260910T100656Z-b51dc3e1-26af-48f0-8e7a-21e80a223cad.json`.
+- **Publication follow-up:** PR76 first head `746236b2a3860dbad43aa7b61829cea2f52cb8b0`
+  passed both Linux jobs; Windows failed the new query test because CP1252
+  stdout was decoded as UTF8. The source-reviewed CLI fix now emits UTF8,
+  and the regression forces CP1252 while checking complete source/construct
+  text equality. All33 focused and556 core tests pass again (one core skip).
+  Scientific data, projection and library semantics are unchanged. Both source
+  and adversarial follow-up workers accepted the exact fix and completed.
+  Updated PR76 CI remains a gate; no failing check is bypassed. Resume PR76
+  before the next action if live merge/CI truth is unfinished.
 - **One next action:** project the already qualified POX analogue-nonbinding and
   pyruvate functional evidence through the same relation. Starting file
   `data/atlas/study_context/pox2019/functional_comparison.json`, with retained

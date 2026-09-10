@@ -1,18 +1,18 @@
 {
   "schema_version": "catalytic-earth.perturbation-source-review.v1",
   "status": "source_reviewed_computational",
-  "reviewed_at_utc": "2026-09-10T10:25:37.358436+00:00",
+  "reviewed_at_utc": "2026-09-10T10:40:07.718165+00:00",
   "scope": "Existing accepted perturbation/product annotations plus source-bound TKT kcat, k_forward and NMR records. Common unavailable and qualitative-result details preserve reporter absence, scoped nondetection and measured turnover as separate endpoints. Source/identity adapters do not establish exact assay sequences, selective subunit perturbation, causal geometry, new experiments or design success.",
   "reviewed_bindings": {
     "data/atlas/perturbations/projection.json": "df5db22766353112c5cd72d69b3bea77bd256e636c875f3c429dff00d999a9e5",
     "src/catalytic_earth/atlas_perturbations.py": "e154c26947daf76d1c9a13cc1bf8d8415c5aec72baab3e15a708ed69e05f15c6",
-    "scripts/query_atlas_perturbations.py": "87fd01dcc9f9ec737579d39c46ea007c60c70a50da745a77c6c64591fceaba51",
+    "scripts/query_atlas_perturbations.py": "fa6746be65dd78f6f7a9d9181f1306922837421e021c974168962b00ccd3d2bc",
     "docs/ATLAS_PERTURBATION_RELATION.md": "e3423e0d361708521835b5893c33668edda3343116f5d9e573438589321a4427",
     "data/atlas/study_context/ra95_2017/forward_synthesis_review.json": "a8025989cb89415ac59267dc0af2da415019af3786ec2db3debd18630de8be9d",
     "docs/ATLAS_FORWARD_SYNTHESIS.md": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84",
     "data/atlas/study_context/diels_alder_2010/source_review.json": "19759f43826c73005f00265144e3debc9805457b0320b18693da7b9bbdd3a01b",
     "docs/ATLAS_DIELS_ALDER_CONTROLS.md": "eb0319636aea183771290ffb0608ace1bc49c80949e0f1bbd4e41bb3c2acbb48",
-    "tests/core/test_atlas_perturbations.py": "1f371e2a6f7658e76e2d393ba20fb6562a91ac58362f82aecd2478a64d071b3f",
+    "tests/core/test_atlas_perturbations.py": "2adad6a9c9e32950334d3f9be96e7ec305d6ee65ed74666c854e525db7e45a2e",
     "data/atlas/study_context/6ha3/perturbation_context.json": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0",
     "data/atlas/study_context/6ha3/functional_review.json": "9af6d94d77800810d210e032e90e6af6a99ffd22a5548d9d39b5a7f502199200",
     "data/atlas/assembly_context/6ha3/review.json": "434188c22e847de2add0c76cc06076de9347d39ecd259acc051631792fcc7eaa",
@@ -172,6 +172,10 @@
     {
       "issue": "Selected parameter columns or unqualified pairs could imply all entries were measured or hide excluded bounds.",
       "resolution": "Name all seven parameter records per kinetic endpoint, including three unavailable k_forward slots. Retain entire source rows: unselected instrument bounds, cooperative parameter semantics and ambiguous source punctuation remain contextual, not common numeric records."
+    },
+    {
+      "issue": "Public JSON stdout inherited Windows CP1252 while an explicit UTF8 consumer decoded it.",
+      "resolution": "Force UTF8 on CLI JSON stdout; test under PYTHONIOENCODING=cp1252 with explicit UTF8 decoding and exact parsed evidence_context/construct equality. Keep scientific data and library semantics unchanged; rerun CI at the updated head."
     }
   ],
   "remaining_limits": [
@@ -219,5 +223,14 @@
     "remaining_headroom": null,
     "retained_TKT_witnesses": 4,
     "retained_TKT_bytes": 1206429
+  },
+  "transport_followup_review": {
+    "reviewed_at_utc": "2026-09-10T10:40:07.718165+00:00",
+    "cause": "PR76 first CI head746236b2 failed only Windows filtered-query decoding: CP1252 stdout byte0xb1 was decoded as UTF8. Scientific comparisons passed.",
+    "fix": "Explicit UTF8 stdout on the public JSON path; no change to file output or source projection.",
+    "source_review": "source task accepted exact new CLI hash; all scientific bytes unchanged",
+    "adversarial_review": "adversarial task accepted exact CLI and tests hashes; CP1252 environment forces actual symbol transport; parsed source/construct context equality checked",
+    "source_interpretation_changed": false,
+    "no_failed_check_bypass": true
   }
 }
