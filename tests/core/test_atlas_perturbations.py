@@ -432,6 +432,112 @@ class PerturbationRelationTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     self.ahas_model_relation(context)
 
+    def test_ahas_mixed_acceptor_context_preserves_aggregate_and_branch_evidence(self):
+        completed = subprocess.run(
+            [sys.executable, str(ROOT / "scripts/query_atlas_perturbations.py"),
+             "--comparison", "ahas_2005:Trp464Leu:mixed-acceptor-context"],
+            cwd=ROOT, check=True, capture_output=True, text=True, encoding="utf-8",
+        )
+        view = json.loads(completed.stdout)
+        relation, = view["comparisons"]
+        branch_relation = next(item for item in relation["source_evidence"]
+                               if item.get("relation_id") ==
+                               "Trp464Leu:mixed:total-versus-alternative-products")
+        groups = branch_relation["observation_groups"]
+        grouped_ids = {row_id for group in groups.values() for row_id in group}
+        rows = {row["id"]: row for row in view["observations"]}
+        self.assertEqual(set(rows), grouped_ids)
+        self.assertEqual(set(relation["context_observations"]), grouped_ids)
+
+        aggregate = [rows[row_id] for row_id in groups["aggregate"]]
+        self.assertEqual(
+            {row["source_parameter"]["parameter"]:
+             (row["value"], row["uncertainty"]["value"]) for row in aggregate},
+            {"k_cat": (13, 0.1), "k_prime_2": (16.2, 1.2),
+             "k_prime_3": (208, 49), "k_prime_4": (310, 81),
+             "k_prime_5": (180, 47)},
+        )
+        self.assertTrue(all(row["result_kind"] == "numeric" and row["unit"] == "s^-1"
+                            for row in aggregate))
+
+        expected_tokens = {
+            groups["AHB"][0]: "≈360 s^-1",
+            groups["AHB"][1]: "≈210 s^-1",
+            groups["AL"][0]: "≈120 s^-1",
+            groups["AL"][1]: "≈140 s^-1",
+        }
+        branch_rows = [rows[row_id] for row_id in expected_tokens]
+        self.assertEqual(
+            {row["id"]: row["qualitative_result"]["source_token"] for row in branch_rows},
+            expected_tokens,
+        )
+        for row in branch_rows:
+            self.assertEqual(row["result_kind"], "qualitative")
+            self.assertIsNone(row["value"])
+            self.assertIsNone(row["unit"])
+            self.assertIsNone(row["uncertainty"]["value"])
+            self.assertEqual(
+                row["source_parameter"]["value_origin"],
+                "source_reported_approximate_branch_forward_net_estimate",
+            )
+            self.assertFalse(row["qualitative_result"]["branch_derivation_available"])
+            self.assertFalse(row["qualitative_result"]["arithmetic_qualified"])
+
+        self.assertFalse(relation["eligible"])
+        self.assertIsNone(relation["value"])
+        self.assertIn("arithmetic_not_requested", relation["reasons"])
+        self.assertFalse(branch_relation["aggregate_is_one_net_reaction"])
+        self.assertFalse(branch_relation["aggregate_decomposition_formula_available"])
+        self.assertFalse(branch_relation["branch_kcat_available"])
+        self.assertFalse(branch_relation["raw_branch_populations_available"])
+        self.assertFalse(branch_relation["branch_uncertainties_available"])
+        self.assertFalse(branch_relation["arithmetic_authorized"])
+        self.assertFalse(branch_relation["source_model_fit_established"])
+        self.assertEqual(
+            [(item["parameter"], item["larger_product"], item["smaller_product"])
+             for item in branch_relation["source_estimated_ordering"]],
+            [("k_prime_4", "AHB", "AL"), ("k_prime_5", "AHB", "AL")],
+        )
+
+    def test_ahas_mixed_branch_estimates_refuse_arithmetic_and_model_binding(self):
+        ahb = "ahas2005-mixed-AHB:Trp464Leu:mixed:AHB:stage4:forward_net_rate"
+        al = "ahas2005-mixed-AL:Trp464Leu:mixed:AL:stage4:forward_net_rate"
+        forced = compare(self.rows, {
+            "id": "unsupported-branch-preference",
+            "study_id": "ahas_2005",
+            "operation": "preference",
+            "roles": {"numerator": ahb, "denominator": al},
+            "substrate_pair_source": {"source": "ahas2005branch", "pointer": "/condition"},
+        })
+        self.assertFalse(forced["eligible"])
+        self.assertIsNone(forced["value"])
+        self.assertEqual(
+            {reason for reason in forced["reasons"] if reason.startswith("qualitative:")},
+            {f"qualitative:{ahb}", f"qualitative:{al}"},
+        )
+        self.assertIn("mismatched_assay_id", forced["reasons"])
+        self.assertEqual(
+            [(link["id"], link["construct_id"]) for link in self.view["model_links"]
+             if link["study_id"] == "ahas_2005"],
+            [("ahas_2005:Met250Ala:pyruvate_net_transit", "ahas_2005:Met250Ala")],
+        )
+
+        sources = {key: json.loads((ROOT / binding["path"]).read_text())
+                   for key, binding in self.spec["sources"].items()}
+        sources["ahas2005"]["branch_probe"] = deepcopy(
+            sources["ahas2005branch"]["branch_estimates"][0]["forward_net_rate"])
+        context = deepcopy(self.ahas_model_relation()["source_context"])
+        context["source_model"]["fit_models"][0]["parameter_bindings"]["k_prime_4"][
+            "binding"] = {"provider": "qualification", "pointer": "/branch_probe"}
+        link = deepcopy(next(item for item in self.spec["model_links"]
+                             if item["id"] == "ahas_2005:Met250Ala:pyruvate_net_transit"))
+        with self.assertRaisesRegex(ValueError, "matching unit"):
+            _model_link(
+                context, link, self.view["constructs"], self.rows, self.view["assays"],
+                self.spec["sources"],
+                lambda ref: pointer(sources[ref["source"]], ref["pointer"]),
+            )
+
     def model_relation(self, context=None, link=None):
         sources = {key: json.loads((ROOT / binding["path"]).read_text())
                    for key, binding in self.spec["sources"].items()}

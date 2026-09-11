@@ -1,0 +1,89 @@
+{
+  "schema_version": "catalytic-earth.primary-source-review.v1",
+  "status": "source_reviewed_computational",
+  "reviewed_at_utc": "2026-09-11T20:24:15.111945+00:00",
+  "base_commit": "69be3151803a2cf6faf293c17067d2892060c91b",
+  "scope": "Trp464Leu mixed-acceptor total-versus-product context. Five numeric total-product parameters and four qualitative approximate branch tokens retain the source ordering; no scalar branch arithmetic or branched kinetic fit. Existing Met250Ala source/model and runtime remain unchanged.",
+  "reviewed_bindings": {
+    "data/atlas/study_context/ahas_2005/branch_evidence.json": "6f6ee4b9653e18a4a636009001e49343b23a3eed4f5c6bc4a79fa1ea7cf2d4cb",
+    "data/atlas/study_context/ahas_2005/source_qualification.json": "48a47309b1a3285ce11c39470c7964644e50888af7f2652689aafdce9cd97ab9",
+    "data/atlas/study_context/ahas_2005/model_context.json": "787e29592ab78c16c0027d902e8c3e93479bb6ab6bf29eaec43e77a5c0e3a85f",
+    "data/atlas/study_context/ahas_2005/acquisition_appendix.json": "60d13aefc5e34bc1edb7f7e1bf6bc91699b97580050d0c05f9fc66d839f0a41a",
+    "data/atlas/perturbations/projection.json": "6717234d579b88747986c477e9412a0baf80c228b6997d4ad1d71ebac96b66ef",
+    "src/catalytic_earth/atlas_perturbations.py": "9dbbf2929c960309da85213991192cec5b97914122a2e1289ea9b2277f6f6242",
+    "scripts/query_atlas_perturbations.py": "7fb2bd66ae9e6ff5247738187adb328779d597dc0634b9d7b3c316b4765e2469",
+    "tests/core/test_atlas_perturbations.py": "084a378f83153a2eadb5f8b5c6c9decf6eb4dae73d488864b19a5f3c3f8baadf",
+    "docs/ATLAS_AHAS_NET_RATES.md": "5e4f0104a534bb0fdda6617c61cf1da2b1f1d4261e1a03cc2e0666808c2729c6",
+    "CLAIMS.md": "6d7c914bd57eb5768592b09ed87a73da099ca611ffa4471ea052d9083111ce66",
+    "data/governance/claim_ledger.json": "27813789fead588581f11331a18728bf4c8a5d12c06401c0f294b4491726518f",
+    "docs/CURRENT_STATE.md": "5199149517f68aaeb5e6f61cf141101b576ff88e9b30c9c0235dff9d840a2257",
+    "docs/CURRENT_DECISIONS.md": "18f1a62a69b2ba154d46a5d07133755aaced2ac0494c161248e1244e16e77aff"
+  },
+  "review_process": [
+    {
+      "task": "source_branch",
+      "role": "primary_source",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "Source/representation/adversarial challenge adjudicated; exact final reviewed file hashes and publication head recorded in Git-local run receipt."
+    },
+    {
+      "task": "representation_branch",
+      "role": "representation",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "Source/representation/adversarial challenge adjudicated; exact final reviewed file hashes and publication head recorded in Git-local run receipt."
+    },
+    {
+      "task": "adversarial_branch",
+      "role": "adversarial",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "Source/representation/adversarial challenge adjudicated; exact final reviewed file hashes and publication head recorded in Git-local run receipt."
+    }
+  ],
+  "coordination_board": ".git/catalytic-earth-runs/0fa61d0b.board.md",
+  "independent_human_validation": false,
+  "experimental_validation": false,
+  "resolved_objections": [
+    {
+      "issue": "Mixed-condition AL row could inherit the pyruvate-only assay.",
+      "resolution": "The dagger-footnote 50 mM / 50 mM condition binds all selected rows. Three endpoint wrappers share one source inference context."
+    },
+    {
+      "issue": "Aggregate AHA and individual product constants could be conflated.",
+      "resolution": "Five numeric records are explicitly total-product scope; four branch tokens have null scalar and unit. One assessed/no-arithmetic relation binds an exact aggregate/AHB/AL observation grouping."
+    },
+    {
+      "issue": "Serial model contract cannot reconstruct an undocumented branch derivation.",
+      "resolution": "No model_link or runtime extension. The inspected source lacks branch equations, denominators, numerical NMR integrals, branch kcat and errors. Conditional common-pool center arithmetic limits an extra transfer assumption without diagnosing source error."
+    },
+    {
+      "issue": "Approximate branch estimates could be treated as numeric microscopic rates.",
+      "resolution": "Printed approximate values and units remain only in qualitative tokens; forced arithmetic and attempted fit binding are rejected by existing contracts. Source-estimated ordering is retained without ratio/significance."
+    },
+    {
+      "issue": "Assay labels, witness coverage and preparation values could create unsupported joins.",
+      "resolution": "Aggregate assay qualifier corrected to Aggregate view. Existing PDF witness also binds the new packet declaration. Preparation versus final NMR concentrations, distinct turnover/NMR methods, unknown shared batch and separate Table1 competition series are explicit."
+    }
+  ],
+  "remaining_limits": [
+    "The source estimates remain unreplicated by the project and cannot be independently reconstructed from the inspected paper.",
+    "The conditional common-pool check uses rounded/approximate source centers; unknown errors and denominator definitions prevent a source-error or statistical conclusion.",
+    "The functional net relation does not establish an elementary mechanism, physical mutant geometry, residue energy or design-performance result.",
+    "Computational workers are correlated with the parent. Primary source objections, not agreement or file hashes, control scientific scope."
+  ],
+  "acquisition": {
+    "batch_id": "two-substrate-lineages-2024-51831",
+    "cumulative_requests": 33,
+    "cumulative_response_body_bytes": 22997768,
+    "new_requests": 0,
+    "new_response_body_bytes": 0,
+    "source_bodies_redistributed": false
+  },
+  "reconsideration": {
+    "bespoke_chemistry_code": "None: source facts and grouping are data. Missing branch evidence is not grounds for inventing a runtime concept.",
+    "reusable_curation": "One existing consumer returns the exact nine-record total/product relation, with prior observations and model results invariant. Retained source bytes and existing WT reference are reused. Manual interpretation remains; no measured time saving.",
+    "integrated_value": "Prevents a specific mixed-assay and aggregate-to-product parameter transfer. No advantage over a competent source reader is demonstrated beyond reusable retrieval and guarded reuse; no executable branch/design consumer. The inquiry stops here rather than extending the same table."
+  }
+}

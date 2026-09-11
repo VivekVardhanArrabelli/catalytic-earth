@@ -1,0 +1,536 @@
+{
+  "schema_version": "catalytic-earth.source-qualification.v1",
+  "assessment_id": "tittmann2005-Trp464Leu-mixed-acceptor-branch-boundary",
+  "operation": "source_annotation",
+  "study": {
+    "study_id": "ahas_2005",
+    "doi": "10.1073/pnas.0408210101",
+    "pmid": "15640355",
+    "pmcid": "PMC545553",
+    "title": "The carboligation reaction of acetohydroxyacid synthase II: Steady-state intermediate distributions in wild type and mutants by NMR",
+    "enzyme_context": "E.coli acetohydroxyacid synthase isozyme II"
+  },
+  "question": "Does Table2 total AHA population/turnover inference and Fig4 support reconstructible product-specific net constants in the Trp464Leu mixed-acceptor arm?",
+  "conclusion": "Retain the source total-product parameters and its four explicitly approximate product-specific estimates. The source estimates order AHB above AL at both later stages, but the inspected primary does not supply the branch derivation. No computable branched kinetic fit is established.",
+  "sources": [
+    {
+      "artifact_id": "PMC545553:article-PDF",
+      "source_url": "https://europepmc.org/api/getPdf?pmcid=PMC545553",
+      "sha256": "4dbd8699f790ed8712c314fb5188785ced7083108cb661f13e93b999d37d739d",
+      "bytes": 352929,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/4dbd8699f790ed8712c314fb5188785ced7083108cb661f13e93b999d37d739d.pdf",
+      "redistributed": false,
+      "inspection": "Complete relevant PDF pages 2-6 visually inspected: Methods, Fig2/Eqs2-9/Table1, Table2 and both footnotes, Fig4 and its caption, Discussion/Eq10. Fig4B has distinct ALThDP/AHBThDP labels; no numerical peak integrals are printed."
+    }
+  ],
+  "inherited_context": {
+    "path": "data/atlas/study_context/ahas_2005/source_qualification.json",
+    "sha256": "48a47309b1a3285ce11c39470c7964644e50888af7f2652689aafdce9cd97ab9",
+    "scope": "Reuses source identity and general preparation/method context only; Met250Ala parameters and reaction conditions do not transfer."
+  },
+  "constructs": [
+    {
+      "construct_id": "Trp464Leu",
+      "comparison_background": "WT",
+      "perturbation": [
+        "W464L"
+      ],
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source_named_construct_exact_sequence_unacquired",
+      "source": "Tittmann2005:PDFpp2-3:ExperimentalProcedures;Table1",
+      "identity": "Source-named E.coli AHAS isozymeII, ilvG2096-derived sequence with pRSET N-terminal hexahistidine fusion on the large catalytic subunit; source pRSET-GM or pQEV-GM expression and Ni-NTA purification as holoenzyme. Exact plasmid choice for this row and complete assay sequence are not supplied.",
+      "assayed_preparation_identity": null,
+      "scope": "Source-named hexahistidine-fused study construct; no exact assayed sequence, batch identity, WT parameter transfer or mutant structure."
+    }
+  ],
+  "condition": {
+    "condition_id": "Trp464Leu:50mM-Pyr+50mM-2KB",
+    "temperature_celsius": 37,
+    "buffer": "0.1 M potassium phosphate (KPi)",
+    "pH": 7.6,
+    "substrates": [
+      {
+        "name": "pyruvate",
+        "concentration_mM": 50,
+        "source_roles": [
+          "donor",
+          "alternative acceptor"
+        ]
+      },
+      {
+        "name": "2-ketobutyrate",
+        "concentration_mM": 50,
+        "source_roles": [
+          "alternative acceptor"
+        ]
+      }
+    ],
+    "source": "Tittmann2005:PDFp4/printedp556:Table2:dagger-footnote;PDFp5/printedp557:Fig4B",
+    "scope": "One mixed-substrate condition. The AL branch row labeled (Pyr+Pyr) to AL remains in this 50/50 mM mixture; it is not the separate 100 mM pyruvate-only row.",
+    "full_saturation_established": false,
+    "saturation_handling": "Source Eqs2-9 assume substrate saturation; Methods corrects unsubstituted ThDP for pyruvate nonsaturation using Michaelis-Menten. Do not infer full saturation from the nominal concentration."
+  },
+  "measurement_context": {
+    "turnover": {
+      "source": "PDFp2 general enzyme assays;PDFp3 Table1 footnotes;PDFp4 Table2 and dagger-footnote",
+      "endpoint": "Table2 total acetohydroxyacid formation, AHA = AL + AHB.",
+      "method_scope": "General enzyme assays refer to earlier methods. Table1 distinguishes acetoin-colorimetric kinetic measurements from simultaneous AHB/AL competition measurements. The exact total-product analytical combination used for this Table2 mixed row is not specified separately.",
+      "normalization": "Source per-site turnover convention, assuming two sites in a 138-kDa heterotetramer; no tetramer-total conversion.",
+      "recipe": "General enzyme assay: 0.1 M KPi pH7.6, 10 mM MgCl2, 0.1 mM ThDP and 75 uM FAD, with the Table2 mixed-substrate exception.",
+      "separate_branch_turnover_numbers": null,
+      "same_NMR_aliquot_product_flux": null
+    },
+    "NMR": {
+      "source": "PDFp2 Methods;PDFp4 Fig3 caption;PDFp5 Fig4 caption and panel B",
+      "method": "Rapid mixing, acid quench, denatured-protein removal, then 1H NMR of protein-free solution. Covalent derivatives use C6-prime-H integrals; ThDP uses C2-H.",
+      "pre_mixing_reconstitution": "15 mg/mL hexahistidine-fused enzyme, 250 uM FAD, 10 mM Mg2+ and active-site-equimolar ThDP in 0.1 M KPi pH7.6.",
+      "final_enzyme_FAD_Mg_ThDP_concentrations": null,
+      "quench": "Equal volume of 12.5% (w/v) trichloroacetic acid / 1 M DCl in D2O. Methods use 0.1-10 s to assess steady state; Fig4 follows Fig3, whose caption specifies 300 ms.",
+      "displayed_species_in_Fig4B": [
+        "ThDP",
+        "LThDP",
+        "HEThDP",
+        "ALThDP",
+        "AHBThDP"
+      ],
+      "peak_integrals": null,
+      "normalized_population_fractions": null,
+      "display_scope": "Qualitative source peak assignments only. Fig4A and B fingerprint regions have different 5-fold and 8-fold zoom; peak heights are not numerical populations or product fluxes."
+    },
+    "same_physical_mixture": false,
+    "same_purified_protein_batch": null
+  },
+  "assays": [
+    {
+      "assay_id": "Trp464Leu-mixed-AHA-inference",
+      "reaction_id": null,
+      "condition_id": "Trp464Leu:50mM-Pyr+50mM-2KB",
+      "condition_pointer": "/condition",
+      "endpoint": "total AHA turnover and population-inferred net parameters",
+      "product_scope": "AHA",
+      "reaction_direction": "total source acetohydroxyacid formation through alternative AL and AHB product channels",
+      "measurement_context_id": "Trp464Leu:Table2-mixed-inference",
+      "measurement_context_pointer": "/measurement_context",
+      "uncertainty": "Aggregate printed plus-minus magnitudes have no assigned SD/SEM or replicate n. Methods attributes net-rate errors to NMR integration; the separate kcat error basis remains unresolved. Approximate branch entries carry no error bars; aggregate errors and Table1 generic errors cannot be transferred to them.",
+      "source": "Tittmann2005:PDFp4/printedp556:Table2:Trp464Leu:dagger-rows;PDFp5:Fig4",
+      "scope": "Aggregate view of one source composite inference, not an independently performed branch assay. The aggregate view includes alternative products and is not one balanced net reaction."
+    },
+    {
+      "assay_id": "Trp464Leu-mixed-AHB-inference",
+      "reaction_id": "Pyr-mixed-to-AHB",
+      "condition_id": "Trp464Leu:50mM-Pyr+50mM-2KB",
+      "condition_pointer": "/condition",
+      "endpoint": "source-estimated AHB net carboligation and product-liberation constants",
+      "product_scope": "AHB",
+      "reaction_direction": "source-depicted decarboxylative carboligation of donor pyruvate with acceptor 2-ketobutyrate",
+      "measurement_context_id": "Trp464Leu:Table2-mixed-inference",
+      "measurement_context_pointer": "/measurement_context",
+      "uncertainty": "Aggregate printed plus-minus magnitudes have no assigned SD/SEM or replicate n. Methods attributes net-rate errors to NMR integration; the separate kcat error basis remains unresolved. Approximate branch entries carry no error bars; aggregate errors and Table1 generic errors cannot be transferred to them.",
+      "source": "Tittmann2005:PDFp4/printedp556:Table2:Trp464Leu:dagger-rows;PDFp5:Fig4",
+      "scope": "Product-specific view of one source composite inference, not an independently performed branch assay. The aggregate view includes alternative products and is not one balanced net reaction."
+    },
+    {
+      "assay_id": "Trp464Leu-mixed-AL-inference",
+      "reaction_id": "Pyr-mixed-to-AL",
+      "condition_id": "Trp464Leu:50mM-Pyr+50mM-2KB",
+      "condition_pointer": "/condition",
+      "endpoint": "source-estimated AL net carboligation and product-liberation constants",
+      "product_scope": "AL",
+      "reaction_direction": "source-depicted decarboxylative carboligation of donor pyruvate with acceptor pyruvate",
+      "measurement_context_id": "Trp464Leu:Table2-mixed-inference",
+      "measurement_context_pointer": "/measurement_context",
+      "uncertainty": "Aggregate printed plus-minus magnitudes have no assigned SD/SEM or replicate n. Methods attributes net-rate errors to NMR integration; the separate kcat error basis remains unresolved. Approximate branch entries carry no error bars; aggregate errors and Table1 generic errors cannot be transferred to them.",
+      "source": "Tittmann2005:PDFp4/printedp556:Table2:Trp464Leu:dagger-rows;PDFp5:Fig4",
+      "scope": "Product-specific view of one source composite inference, not an independently performed branch assay. The aggregate view includes alternative products and is not one balanced net reaction."
+    }
+  ],
+  "reactions": [
+    {
+      "reaction_id": "Pyr-mixed-to-AHB",
+      "name": "pyruvate donor to AHB in the mixed-acceptor condition",
+      "direction": "source-depicted decarboxylative carboligation of donor pyruvate with acceptor 2-ketobutyrate",
+      "participants": [
+        {
+          "participant_id": "pyruvate",
+          "side": "reactant",
+          "name": "pyruvate",
+          "role": "donor",
+          "stoichiometry": 1
+        },
+        {
+          "participant_id": "2-ketobutyrate",
+          "side": "reactant",
+          "name": "2-ketobutyrate",
+          "role": "acceptor",
+          "stoichiometry": 1
+        },
+        {
+          "participant_id": "AHB",
+          "side": "product",
+          "name": "acetohydroxybutyrate",
+          "role": "alternative carboligation product",
+          "stoichiometry": 1
+        },
+        {
+          "participant_id": "CO2",
+          "side": "product",
+          "name": "carbon dioxide",
+          "role": "source-depicted donor decarboxylation coproduct",
+          "stoichiometry": 1
+        }
+      ],
+      "source": "Tittmann2005:Fig1/Fig2;Table2:dagger-footnote",
+      "scope": "Source reaction lineage, not a complete balanced proton/charge reaction, isotope map, stereochemical assignment or experimentally validated elementary graph. Both alternatives occur under the shared mixed condition; the nonreacting competitor is retained in assay context."
+    },
+    {
+      "reaction_id": "Pyr-mixed-to-AL",
+      "name": "pyruvate donor to AL in the mixed-acceptor condition",
+      "direction": "source-depicted decarboxylative carboligation of donor pyruvate with acceptor pyruvate",
+      "participants": [
+        {
+          "participant_id": "pyruvate",
+          "side": "reactant",
+          "name": "pyruvate",
+          "role": "donor and acceptor instances",
+          "stoichiometry": 2
+        },
+        {
+          "participant_id": "AL",
+          "side": "product",
+          "name": "acetolactate",
+          "role": "alternative carboligation product",
+          "stoichiometry": 1
+        },
+        {
+          "participant_id": "CO2",
+          "side": "product",
+          "name": "carbon dioxide",
+          "role": "source-depicted donor decarboxylation coproduct",
+          "stoichiometry": 1
+        }
+      ],
+      "source": "Tittmann2005:Fig1/Fig2;Table2:dagger-footnote",
+      "scope": "Source reaction lineage, not a complete balanced proton/charge reaction, isotope map, stereochemical assignment or experimentally validated elementary graph. Both alternatives occur under the shared mixed condition; the nonreacting competitor is retained in assay context."
+    }
+  ],
+  "turnover_parameters": [
+    {
+      "row_id": "Trp464Leu:mixed:AHA",
+      "construct_id": "Trp464Leu",
+      "assay_id": "Trp464Leu-mixed-AHA-inference",
+      "source_locator": "Tittmann2005:PDFp4:Table2:Trp464Leu:AHA",
+      "kcat": {
+        "parameter": "k_cat",
+        "result_kind": "numeric",
+        "value": 13,
+        "unit": "s^-1",
+        "uncertainty": 0.1,
+        "uncertainty_kind": "source_reported_error_statistic_unresolved",
+        "value_origin": "source_reported_turnover",
+        "source_locator": "Tittmann2005:PDFp4/printedp556:Table2:Trp464Leu:(Pyr+2KB)->AHA",
+        "endpoint_scope": "total AHA = AL + AHB, never either product separately"
+      }
+    }
+  ],
+  "net_parameters": [
+    {
+      "row_id": "Trp464Leu:mixed:AHA:stage2",
+      "construct_id": "Trp464Leu",
+      "assay_id": "Trp464Leu-mixed-AHA-inference",
+      "source_locator": "Tittmann2005:PDFp4:Table2:Trp464Leu:AHA",
+      "stage_id": "donor_adduct_formation",
+      "forward_net_rate": {
+        "parameter": "k_prime_2",
+        "result_kind": "numeric",
+        "value": 16.2,
+        "unit": "s^-1",
+        "uncertainty": 1.2,
+        "uncertainty_kind": "source_reported_error_statistic_unresolved",
+        "value_origin": "source_derived_steady_state_population_net_constant",
+        "source_locator": "Tittmann2005:PDFp4/printedp556:Table2:Trp464Leu:(Pyr+2KB)->AHA",
+        "endpoint_scope": "total AHA = AL + AHB, never either product separately"
+      }
+    },
+    {
+      "row_id": "Trp464Leu:mixed:AHA:stage3",
+      "construct_id": "Trp464Leu",
+      "assay_id": "Trp464Leu-mixed-AHA-inference",
+      "source_locator": "Tittmann2005:PDFp4:Table2:Trp464Leu:AHA",
+      "stage_id": "decarboxylation",
+      "forward_net_rate": {
+        "parameter": "k_prime_3",
+        "result_kind": "numeric",
+        "value": 208,
+        "unit": "s^-1",
+        "uncertainty": 49,
+        "uncertainty_kind": "source_reported_error_statistic_unresolved",
+        "value_origin": "source_derived_steady_state_population_net_constant",
+        "source_locator": "Tittmann2005:PDFp4/printedp556:Table2:Trp464Leu:(Pyr+2KB)->AHA",
+        "endpoint_scope": "total AHA = AL + AHB, never either product separately"
+      }
+    },
+    {
+      "row_id": "Trp464Leu:mixed:AHA:stage4",
+      "construct_id": "Trp464Leu",
+      "assay_id": "Trp464Leu-mixed-AHA-inference",
+      "source_locator": "Tittmann2005:PDFp4:Table2:Trp464Leu:AHA",
+      "stage_id": "carboligation",
+      "forward_net_rate": {
+        "parameter": "k_prime_4",
+        "result_kind": "numeric",
+        "value": 310,
+        "unit": "s^-1",
+        "uncertainty": 81,
+        "uncertainty_kind": "source_reported_error_statistic_unresolved",
+        "value_origin": "source_derived_steady_state_population_net_constant",
+        "source_locator": "Tittmann2005:PDFp4/printedp556:Table2:Trp464Leu:(Pyr+2KB)->AHA",
+        "endpoint_scope": "total AHA = AL + AHB, never either product separately"
+      }
+    },
+    {
+      "row_id": "Trp464Leu:mixed:AHA:stage5",
+      "construct_id": "Trp464Leu",
+      "assay_id": "Trp464Leu-mixed-AHA-inference",
+      "source_locator": "Tittmann2005:PDFp4:Table2:Trp464Leu:AHA",
+      "stage_id": "product_liberation",
+      "forward_net_rate": {
+        "parameter": "k_prime_5",
+        "result_kind": "numeric",
+        "value": 180,
+        "unit": "s^-1",
+        "uncertainty": 47,
+        "uncertainty_kind": "source_reported_error_statistic_unresolved",
+        "value_origin": "source_derived_steady_state_population_net_constant",
+        "source_locator": "Tittmann2005:PDFp4/printedp556:Table2:Trp464Leu:(Pyr+2KB)->AHA",
+        "endpoint_scope": "total AHA = AL + AHB, never either product separately"
+      }
+    }
+  ],
+  "branch_estimates": [
+    {
+      "row_id": "Trp464Leu:mixed:AHB:stage4",
+      "construct_id": "Trp464Leu",
+      "assay_id": "Trp464Leu-mixed-AHB-inference",
+      "product_scope": "AHB",
+      "source_locator": "Tittmann2005:PDFp4/printedp556:Table2:Trp464Leu:AHB:dagger-row",
+      "stage_id": "carboligation",
+      "forward_net_rate": {
+        "parameter": "k_prime_4",
+        "result_kind": "qualitative",
+        "value": null,
+        "unit": null,
+        "source_token": "≈360 s^-1",
+        "source_estimate_status": "approximate_numeric_source_token_without_reconstructible_derivation",
+        "value_origin": "source_reported_approximate_branch_forward_net_estimate",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported",
+        "scope": "Source approximate AHB k-prime-4 estimate in the same 50 mM pyruvate / 50 mM 2-ketobutyrate condition. Qualitative transport retains the printed token; null scalar is neither zero nor nondetection. It prevents unqualified numeric reuse while the branching derivation and normalization remain unavailable.",
+        "net_rate": true,
+        "direct_microscopic_rate": false,
+        "branch_derivation_available": false,
+        "arithmetic_qualified": false
+      }
+    },
+    {
+      "row_id": "Trp464Leu:mixed:AHB:stage5",
+      "construct_id": "Trp464Leu",
+      "assay_id": "Trp464Leu-mixed-AHB-inference",
+      "product_scope": "AHB",
+      "source_locator": "Tittmann2005:PDFp4/printedp556:Table2:Trp464Leu:AHB:dagger-row",
+      "stage_id": "product_liberation",
+      "forward_net_rate": {
+        "parameter": "k_prime_5",
+        "result_kind": "qualitative",
+        "value": null,
+        "unit": null,
+        "source_token": "≈210 s^-1",
+        "source_estimate_status": "approximate_numeric_source_token_without_reconstructible_derivation",
+        "value_origin": "source_reported_approximate_branch_forward_net_estimate",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported",
+        "scope": "Source approximate AHB k-prime-5 estimate in the same 50 mM pyruvate / 50 mM 2-ketobutyrate condition. Qualitative transport retains the printed token; null scalar is neither zero nor nondetection. It prevents unqualified numeric reuse while the branching derivation and normalization remain unavailable.",
+        "net_rate": true,
+        "direct_microscopic_rate": false,
+        "branch_derivation_available": false,
+        "arithmetic_qualified": false
+      }
+    },
+    {
+      "row_id": "Trp464Leu:mixed:AL:stage4",
+      "construct_id": "Trp464Leu",
+      "assay_id": "Trp464Leu-mixed-AL-inference",
+      "product_scope": "AL",
+      "source_locator": "Tittmann2005:PDFp4/printedp556:Table2:Trp464Leu:AL:dagger-row",
+      "stage_id": "carboligation",
+      "forward_net_rate": {
+        "parameter": "k_prime_4",
+        "result_kind": "qualitative",
+        "value": null,
+        "unit": null,
+        "source_token": "≈120 s^-1",
+        "source_estimate_status": "approximate_numeric_source_token_without_reconstructible_derivation",
+        "value_origin": "source_reported_approximate_branch_forward_net_estimate",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported",
+        "scope": "Source approximate AL k-prime-4 estimate in the same 50 mM pyruvate / 50 mM 2-ketobutyrate condition. Qualitative transport retains the printed token; null scalar is neither zero nor nondetection. It prevents unqualified numeric reuse while the branching derivation and normalization remain unavailable.",
+        "net_rate": true,
+        "direct_microscopic_rate": false,
+        "branch_derivation_available": false,
+        "arithmetic_qualified": false
+      }
+    },
+    {
+      "row_id": "Trp464Leu:mixed:AL:stage5",
+      "construct_id": "Trp464Leu",
+      "assay_id": "Trp464Leu-mixed-AL-inference",
+      "product_scope": "AL",
+      "source_locator": "Tittmann2005:PDFp4/printedp556:Table2:Trp464Leu:AL:dagger-row",
+      "stage_id": "product_liberation",
+      "forward_net_rate": {
+        "parameter": "k_prime_5",
+        "result_kind": "qualitative",
+        "value": null,
+        "unit": null,
+        "source_token": "≈140 s^-1",
+        "source_estimate_status": "approximate_numeric_source_token_without_reconstructible_derivation",
+        "value_origin": "source_reported_approximate_branch_forward_net_estimate",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported",
+        "scope": "Source approximate AL k-prime-5 estimate in the same 50 mM pyruvate / 50 mM 2-ketobutyrate condition. Qualitative transport retains the printed token; null scalar is neither zero nor nondetection. It prevents unqualified numeric reuse while the branching derivation and normalization remain unavailable.",
+        "net_rate": true,
+        "direct_microscopic_rate": false,
+        "branch_derivation_available": false,
+        "arithmetic_qualified": false
+      }
+    }
+  ],
+  "branch_relation": {
+    "relation_id": "Trp464Leu:mixed:total-versus-alternative-products",
+    "relation_kind": "source_reported_alternative_product_estimates",
+    "common_source_intermediate": "HEThDP source anion/enamine class",
+    "condition_id": "Trp464Leu:50mM-Pyr+50mM-2KB",
+    "aggregate_product_scope": [
+      "AL",
+      "AHB"
+    ],
+    "aggregate_operation": "sum_of_product_formation_fluxes",
+    "aggregate_is_one_net_reaction": false,
+    "products": [
+      {
+        "product_id": "AHB",
+        "acceptor": "2-ketobutyrate",
+        "reaction_id": "Pyr-mixed-to-AHB",
+        "source_estimate_pointers": [
+          "/branch_estimates/0/forward_net_rate",
+          "/branch_estimates/1/forward_net_rate"
+        ]
+      },
+      {
+        "product_id": "AL",
+        "acceptor": "pyruvate",
+        "reaction_id": "Pyr-mixed-to-AL",
+        "source_estimate_pointers": [
+          "/branch_estimates/2/forward_net_rate",
+          "/branch_estimates/3/forward_net_rate"
+        ]
+      }
+    ],
+    "source_estimated_ordering": [
+      {
+        "parameter": "k_prime_4",
+        "larger_product": "AHB",
+        "smaller_product": "AL",
+        "basis": "source approximate entries only; no computed ratio or significance"
+      },
+      {
+        "parameter": "k_prime_5",
+        "larger_product": "AHB",
+        "smaller_product": "AL",
+        "basis": "source approximate entries only; no computed ratio or significance"
+      }
+    ],
+    "branch_specific_kcat": null,
+    "branch_flux_fractions": null,
+    "shared_source_inference_condition": true,
+    "aggregate_decomposition_formula_available": false,
+    "branch_kcat_available": false,
+    "raw_branch_populations_available": false,
+    "branch_uncertainties_available": false,
+    "arithmetic_authorized": false,
+    "branch_derivation_status": "not_supplied_in_inspected_primary",
+    "source_locator": "PDFp4 Table2 dagger-footnote;PDFp5 Trp464Leu Results continuation and Fig4B",
+    "source_model_fit_established": false,
+    "independent_experimental_confirmation": false,
+    "observation_groups": {
+      "aggregate": [
+        "ahas2005-mixed-turnover:Trp464Leu:mixed:AHA:kcat",
+        "ahas2005-mixed-net:Trp464Leu:mixed:AHA:stage2:forward_net_rate",
+        "ahas2005-mixed-net:Trp464Leu:mixed:AHA:stage3:forward_net_rate",
+        "ahas2005-mixed-net:Trp464Leu:mixed:AHA:stage4:forward_net_rate",
+        "ahas2005-mixed-net:Trp464Leu:mixed:AHA:stage5:forward_net_rate"
+      ],
+      "AHB": [
+        "ahas2005-mixed-AHB:Trp464Leu:mixed:AHB:stage4:forward_net_rate",
+        "ahas2005-mixed-AHB:Trp464Leu:mixed:AHB:stage5:forward_net_rate"
+      ],
+      "AL": [
+        "ahas2005-mixed-AL:Trp464Leu:mixed:AL:stage4:forward_net_rate",
+        "ahas2005-mixed-AL:Trp464Leu:mixed:AL:stage5:forward_net_rate"
+      ]
+    }
+  },
+  "derivation_boundary": {
+    "serial_equations": "PDFpp2-3 Eqs2-9 provide the minimal serial transit-time and intermediate-ratio inference. The source says the branch calculation is more complex but does not display it.",
+    "missing": [
+      "branch balance equations and normalization/denominator definitions",
+      "numerical Fig4 peak integrals and corrected population fractions",
+      "separate product fluxes from the exact NMR specimen",
+      "branch parameter uncertainties and covariance"
+    ],
+    "table1_R": "Table1 R=3.0±0.2 comes from simultaneous-product competition with varied 2-ketobutyrate at fixed 50 mM pyruvate. It is not a directly tabulated product split from the Table2 NMR aliquot. No inferred 3:1 split or branch kcat is projected.",
+    "forbidden_transfers": [
+      "aggregate kcat to either branch",
+      "aggregate error bars to branch estimates",
+      "100 mM pyruvate-only assay to mixed-condition AL row",
+      "WT/Met250Ala/Arg276Lys less-than-2-percent AL qualification to Trp464Leu",
+      "approximate estimates to lower bounds or exact microscopic rates"
+    ],
+    "conditional_model_check": {
+      "kind": "project_check_of_an_extra_assumption_not_source_reanalysis",
+      "assumption": "If both branch k-prime-4 entries were net pseudo-first-order hazards from the same measured HEThDP pool at this mixture, J_i=k_i*[HEThDP] would require k_total=k_AL+k_AHB.",
+      "rounded_center_check": "The source centers would give 310 versus approximately 120+360=480 s^-1.",
+      "conclusion": "These printed centers cannot be reused unchanged as that exact common-pool model. The missing branch normalization and approximate errors prevent a source-error or statistical-inconsistency conclusion.",
+      "alternative_denominator_status": "Unresolved; do not invent conditional/pathway-specific populations or rescale constants to close the equation."
+    }
+  },
+  "limits": [
+    "Forward-net constants combine true forward rates and commitment to product rather than reversal; they are dependent source inferences, not independent measurements of elementary arrows.",
+    "Acid-quench species can pool forms with and without noncovalently associated substrates/products. Fig4 is not a microscopic state inventory or product-flux measurement.",
+    "Fig2 has a single generic acceptor/product route; it is not an explicit branched diagram. Fig4 and Table2 support alternative products without supplying a full kinetic branch model.",
+    "Source Discussion and Eq10 keep reversible carboligation and liberation, with acceptor binding and product diffusion unresolved. No residue energy, single selectivity-determining step or numerical design target follows.",
+    "Source cumulative-specificity/kinetic-proofreading explanation is speculation, not established by these estimates. Fig5 is yeast-based hypothetical geometry; Fig6 concerns WT, not a Trp464Leu observed arrangement.",
+    "No assayed sequence authentication, isotope mapping, exact product stereochemistry, project experiment, independent human review, protected registry admission or design-performance claim."
+  ],
+  "counted_objects": {
+    "selected_source_table_rows": 3,
+    "aggregate_parameter_records": 5,
+    "qualitative_source_estimate_records": 4,
+    "new_model_fits": 0,
+    "new_project_experiments": 0,
+    "new_protein_admissions": 0,
+    "new_mechanism_admissions": 0
+  },
+  "acquisition": {
+    "batch_id": "two-substrate-lineages-2024-51831",
+    "new_requests": 0,
+    "new_response_body_bytes": 0,
+    "cumulative_requests": 33,
+    "cumulative_response_body_bytes": 22997768,
+    "inherited_appendix": {
+      "path": "data/atlas/study_context/ahas_2005/acquisition_appendix.json",
+      "sha256": "60d13aefc5e34bc1edb7f7e1bf6bc91699b97580050d0c05f9fc66d839f0a41a"
+    },
+    "source_bodies_redistributed": false
+  }
+}

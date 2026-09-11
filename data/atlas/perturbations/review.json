@@ -4,7 +4,7 @@
   "reviewed_at_utc": "2026-09-11T09:30:44.367226+00:00",
   "scope": "Cumulative source-reviewed projection; this increment adds a separate source-system control operation for the Schmidt2013 bulk-normalized BuAm CTAC contrast and reuses existing calmodulin chemical-treatment rows. Prior source observations, genetic comparisons, state/model links and protected evidence are unchanged.",
   "reviewed_bindings": {
-    "data/atlas/perturbations/projection.json": "bb19a6c45e4630dc08cd38d9131ffcfef85c21d87d484542d2d392e9fae706f9",
+    "data/atlas/perturbations/projection.json": "6717234d579b88747986c477e9412a0baf80c228b6997d4ad1d71ebac96b66ef",
     "src/catalytic_earth/atlas_perturbations.py": "9dbbf2929c960309da85213991192cec5b97914122a2e1289ea9b2277f6f6242",
     "scripts/query_atlas_perturbations.py": "7fb2bd66ae9e6ff5247738187adb328779d597dc0634b9d7b3c316b4765e2469",
     "docs/ATLAS_PERTURBATION_RELATION.md": "d9c598b26a3fc7a08852ff672adb4e21fca2b7deac6b86ef5d6aca526ccf98aa",
@@ -12,7 +12,7 @@
     "docs/ATLAS_FORWARD_SYNTHESIS.md": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84",
     "data/atlas/study_context/diels_alder_2010/source_review.json": "bd97ed99812a3188ef47c090f61c87b0891bbc470222c49ee7698455680bf865",
     "docs/ATLAS_DIELS_ALDER_CONTROLS.md": "749e81dbcebcceb9022a5b4a5043bb16276c712c43b0c856feb394561830ac19",
-    "tests/core/test_atlas_perturbations.py": "bebd2ac881f30d0a5b51769cb7140fb80e541cae62cd5428ffc469426a96f86a",
+    "tests/core/test_atlas_perturbations.py": "084a378f83153a2eadb5f8b5c6c9decf6eb4dae73d488864b19a5f3c3f8baadf",
     "data/atlas/study_context/6ha3/perturbation_context.json": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0",
     "data/atlas/study_context/6ha3/functional_review.json": "9af6d94d77800810d210e032e90e6af6a99ffd22a5548d9d39b5a7f502199200",
     "data/atlas/assembly_context/6ha3/review.json": "434188c22e847de2add0c76cc06076de9347d39ecd259acc051631792fcc7eaa",
@@ -31,10 +31,10 @@
     "data/atlas/study_context/ra95_2017/chemical_state.json": "0304a28cc9676ae9d920b5c4f6c47f102d10320e125cc40cbfddd971ccff695d",
     "data/atlas/study_context/ra95_2017/chemical_state_acquisition.json": "4b0427a24aab3b1269f25cd80b3b9c90f61c4a99404499d77cf0c16a8b5f2ecb",
     "docs/ATLAS_RA95_CHEMICAL_STATE.md": "a85ee7c6accdafb0f2fb63a1a658413e07788cee4a5f9f7879dce726c6707c01",
-    "CLAIMS.md": "b50fc49329f634bc94591a8ebe6ba8f26ce25bbd7a9a7d067b2d507c6b4f88bf",
-    "data/governance/claim_ledger.json": "58e13f1e533e77d528293f62c205cc01c89d8a323f6fe707ddb4a917e726e17c",
-    "docs/CURRENT_DECISIONS.md": "e23ddc400b60471c32d22b56d65cd7ceb8e2278c7ab08e1c7eec7aae8e3b64fb",
-    "docs/CURRENT_STATE.md": "0f7faf702f1c9d72c5fb30487f60bb78df428365f99afb5ed26a11a1c8a37ef6",
+    "CLAIMS.md": "6d7c914bd57eb5768592b09ed87a73da099ca611ffa4471ea052d9083111ce66",
+    "data/governance/claim_ledger.json": "27813789fead588581f11331a18728bf4c8a5d12c06401c0f294b4491726518f",
+    "docs/CURRENT_DECISIONS.md": "18f1a62a69b2ba154d46a5d07133755aaced2ac0494c161248e1244e16e77aff",
+    "docs/CURRENT_STATE.md": "5199149517f68aaeb5e6f61cf141101b576ff88e9b30c9c0235dff9d840a2257",
     "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
     "src/catalytic_earth/atlas_deposit_context.py": "adfae408de29e6b5f61fab970d7631f42846a9cdaedea0340d65e6ac95ad2a87",
     "src/catalytic_earth/atlas_assembly_context.py": "5d671a761f3ad493661f3c25b50dce693ef2169a48942af9664a65e0b0ae0835",
@@ -98,8 +98,10 @@
     "data/atlas/study_context/ahas_2005/source_qualification.json": "48a47309b1a3285ce11c39470c7964644e50888af7f2652689aafdce9cd97ab9",
     "data/atlas/study_context/ahas_2005/model_context.json": "787e29592ab78c16c0027d902e8c3e93479bb6ab6bf29eaec43e77a5c0e3a85f",
     "data/atlas/study_context/ahas_2005/acquisition_appendix.json": "60d13aefc5e34bc1edb7f7e1bf6bc91699b97580050d0c05f9fc66d839f0a41a",
-    "docs/ATLAS_AHAS_NET_RATES.md": "c125f541374e54e194b51859263fc50fccaea152de18fa132f46a533393f5fed",
-    "data/atlas/study_context/ahas_2005/source_review.json": "8aa951b907c79e71e922e2943f3bfc3d401bb9b9795cf1f41e779f01f798cd02"
+    "docs/ATLAS_AHAS_NET_RATES.md": "5e4f0104a534bb0fdda6617c61cf1da2b1f1d4261e1a03cc2e0666808c2729c6",
+    "data/atlas/study_context/ahas_2005/source_review.json": "8aa951b907c79e71e922e2943f3bfc3d401bb9b9795cf1f41e779f01f798cd02",
+    "data/atlas/study_context/ahas_2005/branch_evidence.json": "6f6ee4b9653e18a4a636009001e49343b23a3eed4f5c6bc4a79fa1ea7cf2d4cb",
+    "data/atlas/study_context/ahas_2005/branch_review.json": "9cbf0555fa202b92f8fa5f37eddbd9211d1215d291b25f7394f7a99cbdd21d2c"
   },
   "inherited_source_bindings": {
     "ra95f": {
@@ -1225,6 +1227,50 @@
       "data/atlas/study_context/ahas_2005/source_review.json": "8aa951b907c79e71e922e2943f3bfc3d401bb9b9795cf1f41e779f01f798cd02"
     },
     "source_review": "data/atlas/study_context/ahas_2005/source_review.json",
+    "independent_human_validation": false,
+    "experimental_validation": false
+  },
+  "ahas_branch_followup": {
+    "reviewed_at_utc": "2026-09-11T20:24:15.111945+00:00",
+    "base_commit": "69be3151803a2cf6faf293c17067d2892060c91b",
+    "prior_review_sha256": "a9f5982b47923c928f97864509896739ccdc963b33a81dbb2b52b701b92c82b3",
+    "status": "source_reviewed_computational",
+    "scope": "Trp464Leu mixed-acceptor total-versus-product context. Five numeric total-product parameters and four qualitative approximate branch tokens retain the source ordering; no scalar branch arithmetic or branched kinetic fit. Existing Met250Ala source/model and runtime remain unchanged.",
+    "renewed_bindings": {
+      "data/atlas/perturbations/projection.json": {
+        "before": "bb19a6c45e4630dc08cd38d9131ffcfef85c21d87d484542d2d392e9fae706f9",
+        "after": "6717234d579b88747986c477e9412a0baf80c228b6997d4ad1d71ebac96b66ef"
+      },
+      "tests/core/test_atlas_perturbations.py": {
+        "before": "bebd2ac881f30d0a5b51769cb7140fb80e541cae62cd5428ffc469426a96f86a",
+        "after": "084a378f83153a2eadb5f8b5c6c9decf6eb4dae73d488864b19a5f3c3f8baadf"
+      },
+      "docs/ATLAS_AHAS_NET_RATES.md": {
+        "before": "c125f541374e54e194b51859263fc50fccaea152de18fa132f46a533393f5fed",
+        "after": "5e4f0104a534bb0fdda6617c61cf1da2b1f1d4261e1a03cc2e0666808c2729c6"
+      },
+      "CLAIMS.md": {
+        "before": "b50fc49329f634bc94591a8ebe6ba8f26ce25bbd7a9a7d067b2d507c6b4f88bf",
+        "after": "6d7c914bd57eb5768592b09ed87a73da099ca611ffa4471ea052d9083111ce66"
+      },
+      "data/governance/claim_ledger.json": {
+        "before": "58e13f1e533e77d528293f62c205cc01c89d8a323f6fe707ddb4a917e726e17c",
+        "after": "27813789fead588581f11331a18728bf4c8a5d12c06401c0f294b4491726518f"
+      },
+      "docs/CURRENT_STATE.md": {
+        "before": "0f7faf702f1c9d72c5fb30487f60bb78df428365f99afb5ed26a11a1c8a37ef6",
+        "after": "5199149517f68aaeb5e6f61cf141101b576ff88e9b30c9c0235dff9d840a2257"
+      },
+      "docs/CURRENT_DECISIONS.md": {
+        "before": "e23ddc400b60471c32d22b56d65cd7ceb8e2278c7ab08e1c7eec7aae8e3b64fb",
+        "after": "18f1a62a69b2ba154d46a5d07133755aaced2ac0494c161248e1244e16e77aff"
+      }
+    },
+    "added_bindings": {
+      "data/atlas/study_context/ahas_2005/branch_evidence.json": "6f6ee4b9653e18a4a636009001e49343b23a3eed4f5c6bc4a79fa1ea7cf2d4cb",
+      "data/atlas/study_context/ahas_2005/branch_review.json": "9cbf0555fa202b92f8fa5f37eddbd9211d1215d291b25f7394f7a99cbdd21d2c"
+    },
+    "source_review": "data/atlas/study_context/ahas_2005/branch_review.json",
     "independent_human_validation": false,
     "experimental_validation": false
   }

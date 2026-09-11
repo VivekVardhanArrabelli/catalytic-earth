@@ -1,5 +1,22 @@
 # Current State
 
+## 2026-09-11: mixed AHAS products retain source estimates without a branch fit
+
+The [Trp464Leu mixed-acceptor relation](ATLAS_AHAS_NET_RATES.md#mixed-acceptors-total-aha-and-approximate-branch-estimates)
+separates Table 2 total AHA = AL + AHB parameters from four approximate
+product-specific estimates in one 50 mM pyruvate / 50 mM 2-ketobutyrate
+condition. The shared query returns five numeric aggregate records and four
+qualitative source tokens, retaining the authors' AHB-above-AL ordering at
+both later net stages. No scalar branch comparison or branched fit is added.
+
+The inspected primary lacks the branch derivation, numerical NMR integrals,
+branch kcat and errors. This closes the bounded inquiry at that missing
+derivation. Aggregate constants cannot populate either individual product
+channel, and the mixed-condition AL row is not the pyruvate-only experiment.
+Existing AHAS model/source records and runtime remain unchanged. Zero new
+requests; the named batch remains at 33 requests / 22,997,768 response-body
+bytes. No experiment, independent review, protected admission or design claim.
+
 ## 2026-09-11: AHAS II net stages remain distinct from microscopic forward rates
 
 The [Met250Ala/Pyr + Pyr relation](ATLAS_AHAS_NET_RATES.md) binds one source

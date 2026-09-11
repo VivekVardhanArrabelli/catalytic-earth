@@ -92,6 +92,81 @@ unassigned. A generic population-inference contract enforces this distinction
 and retains the existing TKT, POX and RA61 model outputs. It does not fit new
 rates, recover hidden populations or validate the source's kinetic assumptions.
 
+## Mixed acceptors: total AHA and approximate branch estimates
+
+The same paper provides a useful boundary for a source-named Trp464Leu
+construct. Table 2's dagger-marked rows describe **one condition with 50 mM
+pyruvate and 50 mM 2-ketobutyrate**, at 37 °C in 0.1 M KPi, pH 7.6.
+The `(Pyr + Pyr) → AL` row is the AL branch of this mixed condition. It is
+separate from the table's 100 mM pyruvate-only experiment.
+
+```sh
+python scripts/query_atlas_perturbations.py --comparison ahas_2005:Trp464Leu:mixed-acceptor-context
+```
+
+| Source scope | kcat, s^-1 | k′2, s^-1 | k′3, s^-1 | k′4, s^-1 | k′5, s^-1 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Total AHA = AL + AHB | 13 ± 0.1 | 16.2 ± 1.2 | 208 ± 49 | 310 ± 81 | 180 ± 47 |
+| AHB branch, source estimates | not given | not given | not given | ≈360 | ≈210 |
+| AL branch, source estimates | not given | not given | not given | ≈120 | ≈140 |
+
+These are three source table rows. The five aggregate parameters are numeric
+records; the four approximate branch entries are qualitative records with their
+printed values and units preserved in source tokens. Their scalar values and
+units are null, so they cannot enter the existing numerical comparison or
+model-fit contract. Null means no qualified scalar projection, not zero,
+nondetection or absence of a source estimate. One source-assessed context
+relation retrieves all nine records and the total-versus-product grouping,
+without requesting scalar arithmetic. No Trp464Leu model fit is added.
+
+Figure 4B (printed p557) labels HEThDP, ALThDP and AHBThDP alongside the other
+ThDP species. It supports the source's coexistence assignments, with no printed
+peak integrals, corrected fractions or product fluxes from that NMR specimen.
+The two panels use different fingerprint-region zoom factors, 5 and 8; their
+peak heights cannot be read as numerical population comparisons. The NMR
+reconstitution concentrations remain preparation values, with final enzyme and
+cofactor concentrations unspecified. The Table 2 total-product assay is kept
+distinct from the NMR measurement; its exact analytical combination is not
+specified separately from the source's general and cited methods.
+
+The source estimates place AHB above AL for both net carboligation and
+liberation. This is an attributed ordering, without an exact ratio,
+uncertainty or significance claim. Table 2 calls these branch values estimates;
+the Results continuation on p557 says their extraction requires a more complex
+calculation. Equations 2–9 give the serial minimal-cycle derivation, but the
+inspected paper supplies no branch extension, branch-specific kcat, raw
+integrals, allocation denominators or branch errors. This is the stopping
+condition: the estimates can be retained, but their derivation cannot be
+reconstructed from the retained primary evidence.
+
+A conditional arithmetic check makes the transfer risk concrete. If the two
+k′4 estimates were treated as net pseudo-first-order hazards from the same
+measured HEThDP pool at this mixture, flux conservation would require
+`k′4,total = k′4,AL + k′4,AHB`. The printed centers give 310 versus
+approximately 120 + 360 = 480 s^-1. These centers cannot be reused unchanged
+as that exact common-pool model. This is **not a source-error or statistical
+inconsistency finding**: the aggregate has a printed error, branch errors and
+normalization are unspecified, and the quenched pool can combine forms with
+and without noncovalently bound acceptor. No alternative denominator or
+rescaling is invented to make the model close.
+
+Table 1's R = 3.0 ± 0.2 belongs to a separate simultaneous-product competition
+series with varying 2-ketobutyrate at fixed 50 mM pyruvate. It is not an
+observed split from the exact NMR aliquot; no 3:1 split or branch kcat is
+projected. The less-than-2-percent AL footnote names WT, Met250Ala and
+Arg276Lys, and does not apply to Trp464Leu. Aggregate errors, pyruvate-only
+values and other constructs' parameters do not transfer to these branches.
+
+The [branch packet](../data/atlas/study_context/ahas_2005/branch_evidence.json)
+and [computational source review](../data/atlas/study_context/ahas_2005/branch_review.json)
+reuse the retained primary bytes and existing observation/context consumer.
+Case facts stay in data. The missing derivation does not justify changing the
+serial runtime to accept a branch. This increment prevents a specific
+aggregate-to-product transfer; it does not provide an executable branch model,
+isolated selectivity energy or demonstrated design constraint. Manual source
+interpretation remains, with no measured curation-time saving or demonstrated
+advantage over a competent reader beyond reusable retrieval and guarded reuse.
+
 ## Acquisition boundary and reusable value
 
 The inherited Steinmetz2010 inquiry stops at the inspected primary abstract:
