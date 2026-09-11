@@ -1,10 +1,10 @@
 {
   "schema_version": "catalytic-earth.perturbation-source-review.v1",
   "status": "source_reviewed_computational",
-  "reviewed_at_utc": "2026-09-10T15:33:43.109365+00:00",
-  "scope": "Cumulative source-reviewed projection; this increment reviews RA95.5-5 exact parent-to4A2R attachment association and generic optional matched-comparison retrieval. Previous scientific objects are unchanged and retain prior source reviews.",
+  "reviewed_at_utc": "2026-09-11T03:25:51.202047+00:00",
+  "scope": "Cumulative source-reviewed projection; this increment adds KimChoi1995 primary kcat/KM comparisons and a source-scoped compilation-provenance boundary. Earlier numeric results and eligibility remain unchanged; only the compiled acquisition-status clause is narrowed. Original source reviews remain historical.",
   "reviewed_bindings": {
-    "data/atlas/perturbations/projection.json": "ac3a579706ce57452f566be04c1bf7b07d56f61549ecfbe4d2b70f0c8fe3d148",
+    "data/atlas/perturbations/projection.json": "a19e2d9491dcbc5df5491147ed233df7ba20988befd718d97ccebd8f71dbccd1",
     "src/catalytic_earth/atlas_perturbations.py": "a814c22b892b3e734076fa9aead03453c83cb6ebe4c1d1e8cd85f5bbf4f0d778",
     "scripts/query_atlas_perturbations.py": "a13b3176952c44df5e8b053ee3a7907d5020ae00e66d75b248790f7aa20656e2",
     "docs/ATLAS_PERTURBATION_RELATION.md": "04bcda88bf03332d9203599d82e2fa28d382954a138555265caaf9404b043b6e",
@@ -12,7 +12,7 @@
     "docs/ATLAS_FORWARD_SYNTHESIS.md": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84",
     "data/atlas/study_context/diels_alder_2010/source_review.json": "bd97ed99812a3188ef47c090f61c87b0891bbc470222c49ee7698455680bf865",
     "docs/ATLAS_DIELS_ALDER_CONTROLS.md": "749e81dbcebcceb9022a5b4a5043bb16276c712c43b0c856feb394561830ac19",
-    "tests/core/test_atlas_perturbations.py": "21170f04a2faa47dbe7e7f4b3543c4b77452518f0c3f67543b06bf6ba9a2fe96",
+    "tests/core/test_atlas_perturbations.py": "338285ccb90921f5ca891f563974fd99b50f2e7dfe154d22e42fede0a19bbed9",
     "data/atlas/study_context/6ha3/perturbation_context.json": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0",
     "data/atlas/study_context/6ha3/functional_review.json": "9af6d94d77800810d210e032e90e6af6a99ffd22a5548d9d39b5a7f502199200",
     "data/atlas/assembly_context/6ha3/review.json": "434188c22e847de2add0c76cc06076de9347d39ecd259acc051631792fcc7eaa",
@@ -31,10 +31,10 @@
     "data/atlas/study_context/ra95_2017/chemical_state.json": "0304a28cc9676ae9d920b5c4f6c47f102d10320e125cc40cbfddd971ccff695d",
     "data/atlas/study_context/ra95_2017/chemical_state_acquisition.json": "4b0427a24aab3b1269f25cd80b3b9c90f61c4a99404499d77cf0c16a8b5f2ecb",
     "docs/ATLAS_RA95_CHEMICAL_STATE.md": "a85ee7c6accdafb0f2fb63a1a658413e07788cee4a5f9f7879dce726c6707c01",
-    "CLAIMS.md": "014db4bf269b57f7cf174f34988e001fc09185ea43eb4062b86233d0030f42a5",
-    "data/governance/claim_ledger.json": "173afaaded62f58ad43eb621c43d610a04142393b2fb68e427116e840035e8e2",
-    "docs/CURRENT_DECISIONS.md": "7f3e9d4e9ec54d5869735bbd74089dbd2fc6e51608ee85332ee1a68ddc1b24cc",
-    "docs/CURRENT_STATE.md": "d7cd3c45c473dd2210f9e04c15002e0baaa10c1ff0169beda879a7054fa4639b",
+    "CLAIMS.md": "c58794d6dce0d24a55827f89b9d0ff4cfd19add766e4d20ea438c3b37beb2749",
+    "data/governance/claim_ledger.json": "c4344b027235e3b3357d692790dde514af54690aefe55ee421ead0d7c0f9b1ac",
+    "docs/CURRENT_DECISIONS.md": "d9c61237f7c97338aa812b916f7e84d117ccab091a8566fd52957c39df1c8f66",
+    "docs/CURRENT_STATE.md": "fbed3c2dc57a3a81deb3104a1c4a3efb6b28170a1de2f5b6b97ff72217f115f6",
     "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
     "src/catalytic_earth/atlas_deposit_context.py": "adfae408de29e6b5f61fab970d7631f42846a9cdaedea0340d65e6ac95ad2a87",
     "src/catalytic_earth/atlas_assembly_context.py": "5d671a761f3ad493661f3c25b50dce693ef2169a48942af9664a65e0b0ae0835",
@@ -47,17 +47,20 @@
     "data/atlas/deposit_context/ra95_4a2r/projection.json": "ea3117cea3d83e156534abcc1efd62f10ed056a1965ba7e99a0974ac915b3461",
     "data/atlas/study_context/ra95_2013/chemical_state.json": "a9b7df48d5684fc014ced487477364eb8d9b2072817e3be4c64837a364df0670",
     "data/atlas/study_context/ra95_2013/chemical_state_acquisition.json": "7efd0b0efdb32572d369194fc4e9eedd84b0a184aa8c9f10b7af50766b4c1da9",
-    "tests/test_truth_guard.py": "d83eaf4eb86cc2d543cf990c52274fb16571f16b787defeff032795938d2e4f8",
+    "tests/test_truth_guard.py": "d9f926891060c038303f34a412a6c7745da406229a7fa4c8268a2c4233002d7e",
     "docs/ATLAS_RA95_4A2R_STATE.md": "8089d97dd393b0f3c2576197481c9551f3bdf2d1ff20a64dd15323ad7a6011ef",
     "data/atlas/study_context/ra95_2013/chemical_state_review.json": "12864f833532eff632016804fbf322e1828c33c3cabf840b2cd08b8f0ea99ebf",
     "data/atlas/deposit_context/ra95_4a2r/review.json": "dc017d8ed45a52dade5c04a77c42d734fa34926b67cefa043a35f0d9bb605a20",
     "data/atlas/study_context/diels_alder_2010/reactive_core.json": "cbd144d7fa62f09848869da5dee39a0f3c9b76f3f0b34856be8b5a5eac14d1c6",
     "src/catalytic_earth/atlas_transformations.py": "24c3a95a3ed82b6add1b8257bdbfb5b6307d0f740f169a2633f2c70a3b1cab08",
-    "data/atlas/study_context/ksi_2014/field_function.json": "ad8634b626d232daa24632c11d7606c2e1e7f174a3e2c3e23b54a6092b411095",
+    "data/atlas/study_context/ksi_2014/field_function.json": "1e783d88486e8a68dde5099a92eadf3651a003b7e9ebe3f1dbc6de9e3e9cfb0c",
     "data/atlas/study_context/ksi_2014/acquisition_receipts.json": "9a0722832af986f2d1b5fae8af33b69dcfb22571076d83f02d737b1b3a545865",
     "data/atlas/study_context/ra95_2013/dera_acquisition_appendix.json": "403ba72586901956fadd2d5af67bd4a35552aeb24158226697b051a4577cc645",
-    "docs/ATLAS_KSI_FIELD_FUNCTION.md": "c8906e68fed853ee241a78184b149cda1eab53d8490d3ba629514a475dfe06de",
-    "data/atlas/study_context/ksi_2014/source_review.json": "b3ff545ff03a316ee27efce9a5e5e3ddd97f138d1ae46dcf9c51d029189d1532"
+    "docs/ATLAS_KSI_FIELD_FUNCTION.md": "a06e09e624f82ab75105f448b9e75709ba875541b236bea0f044b3593e2c87e5",
+    "data/atlas/study_context/ksi_2014/source_review.json": "b3ff545ff03a316ee27efce9a5e5e3ddd97f138d1ae46dcf9c51d029189d1532",
+    "data/atlas/study_context/ksi_1995/primary_kinetics.json": "c4b4e89ae32bb4389be89cddc61120b3a9f7ef7f01fad4bba485e7aa5896d11a",
+    "data/atlas/study_context/ksi_1995/acquisition_receipts.json": "dd625bb6d059add2813674f8314c9ea3a3af0c8bf46a7bde4a2db3c08494b4f0",
+    "data/atlas/study_context/ksi_1995/source_review.json": "283963a1bb769acd02b9e62be8cb38fb72f842c74eb95e16e5f6ae8723b93428"
   },
   "inherited_source_bindings": {
     "ra95f": {
@@ -112,24 +115,24 @@
   "review_process": [
     {
       "role": "source",
-      "task": "ra95_4a2r_source",
+      "task": "kinetic_source_review",
       "model": "gpt-5.6-sol",
       "reasoning_effort": "ultra",
-      "status": "accepted_exact_manifest"
+      "status": "source_content_accepted_after_narrowing; final_publication_review_separate"
     },
     {
       "role": "representation",
-      "task": "ra95_4a2r_representation",
+      "task": "kinetic_representation",
       "model": "gpt-5.6-sol",
       "reasoning_effort": "ultra",
-      "status": "accepted_exact_manifest"
+      "status": "source_content_accepted_after_narrowing; final_publication_review_separate"
     },
     {
       "role": "adversarial",
-      "task": "ra95_4a2r_adversarial",
+      "task": "kinetic_adversarial",
       "model": "gpt-5.6-sol",
       "reasoning_effort": "ultra",
-      "status": "accepted_exact_manifest"
+      "status": "source_content_accepted_after_narrowing; final_publication_review_separate"
     }
   ],
   "resolved_objections": [
@@ -363,7 +366,7 @@
     "This completes a distinct source-conflict relation; repeated migration of cached tables alone is not a justified next scientific task.",
     "The 2017 prior-method citation does not authenticate an exact assay-substrate lot or repeat the 2013 characterization; no substrate mismatch or numerical error was demonstrated by this correction."
   ],
-  "coordination_record": "work/coordination_ra95_4a2r_20260910.md",
+  "coordination_record": ".git/catalytic-earth-runs/a21b043b.board.md",
   "added_source_bindings": {
     "ra95_4a2r": {
       "path": "data/atlas/deposit_context/ra95_4a2r/projection.json",
@@ -692,5 +695,50 @@
     "review_process": "Three read-only Sol/ultra roles plus parent source review; correlated computational checks.",
     "source_requests": 12,
     "source_bytes": 5179007
+  },
+  "ksi_primary_kinetics_followup": {
+    "reviewed_at_utc": "2026-09-11T03:22:09.710420+00:00",
+    "base_commit": "9f40d64a3f5f9eceb9b5cfb5dd1a2b5d522365c8",
+    "prior_review_sha256": "aaaa4b40058f22ea0cfcee4c0339ed0979cb4e22609a9ca8d4344224c9f63018",
+    "review": {
+      "path": "data/atlas/study_context/ksi_1995/source_review.json",
+      "sha256": "283963a1bb769acd02b9e62be8cb38fb72f842c74eb95e16e5f6ae8723b93428"
+    },
+    "scope": "Add six primary kinetic parameters and four within-study ratios. Preserve all prior values/results; only2014compiled-assay acquisition-status wording is narrowed. No runtime/schema change.",
+    "question": "Does reference16 qualify the original compiled kinetic rows?",
+    "decision": "Primary panel supports its own matched comparisons; WT/Y16F mismatches stop wholesale transfer. D40N candidate lineage remains unqualified for compilation arithmetic.",
+    "reuse": "Existing source/construct/assay/reaction/parameter/ratio contracts suffice. Source-format interpretation remains manual; no measured throughput or design claim.",
+    "source_requests_added": 6,
+    "response_body_bytes_added": 262727,
+    "same_batch_cumulative_requests": 18,
+    "same_batch_cumulative_response_body_bytes": 5441734,
+    "previous_top_level_review_metadata": {
+      "reviewed_at_utc": "2026-09-10T15:33:43.109365+00:00",
+      "scope": "Cumulative source-reviewed projection; this increment reviews RA95.5-5 exact parent-to4A2R attachment association and generic optional matched-comparison retrieval. Previous scientific objects are unchanged and retain prior source reviews.",
+      "review_process": [
+        {
+          "role": "source",
+          "task": "ra95_4a2r_source",
+          "model": "gpt-5.6-sol",
+          "reasoning_effort": "ultra",
+          "status": "accepted_exact_manifest"
+        },
+        {
+          "role": "representation",
+          "task": "ra95_4a2r_representation",
+          "model": "gpt-5.6-sol",
+          "reasoning_effort": "ultra",
+          "status": "accepted_exact_manifest"
+        },
+        {
+          "role": "adversarial",
+          "task": "ra95_4a2r_adversarial",
+          "model": "gpt-5.6-sol",
+          "reasoning_effort": "ultra",
+          "status": "accepted_exact_manifest"
+        }
+      ],
+      "coordination_record": "work/coordination_ra95_4a2r_20260910.md"
+    }
   }
 }

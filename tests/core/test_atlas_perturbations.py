@@ -307,6 +307,52 @@ class PerturbationRelationTests(unittest.TestCase):
         self.assertAlmostEqual(reduced["value"], 2.3 / 490)
         self.assertIsNone(efficiency["uncertainty"])
 
+    def test_primary_ksi_assay_does_not_qualify_later_compiled_rates(self):
+        primary = [row for row in self.rows.values() if row["study_id"] == "ksi_1995"]
+        self.assertEqual(len(primary), 6)
+        for row in primary:
+            self.assertTrue(row["assay_qualified"])
+            self.assertEqual(row["uncertainty"]["kind"], "two_standard_deviations")
+            self.assertEqual(row["source_parameter"]["uncertainty"]["determinations"], 5)
+            self.assertEqual(row["reaction_id"], "ksi_1995:steroid-double-bond-isomerization")
+            self.assertEqual(row["reaction_context"]["source_record"]["participants"][0]["name"],
+                             "5-androstene-3,17-dione")
+        for construct, kcat, km in (("Y16F", 13.3, 17.1), ("D40N", 0.018, 13.3)):
+            for parameter, numerator, denominator in (("kcat", kcat, 26722), ("KM", km, 59.3)):
+                ratio = self.comparisons[f"ksi_1995:{construct}:{parameter}"]
+                self.assertTrue(ratio["eligible"])
+                self.assertAlmostEqual(ratio["value"], numerator / denominator)
+                self.assertIsNone(ratio["uncertainty"])
+        compiled = [row for row in self.rows.values() if row["id"].startswith("ksi-rates:")]
+        self.assertEqual(len(compiled), 6)
+        self.assertTrue(all(not row["assay_qualified"] for row in compiled))
+        self.assertTrue(all(row["uncertainty"]["kind"] == "source_plus_minus_statistic_unresolved"
+                            for row in compiled))
+        relation = self.view["evidence_context"]["ksi_primary_provenance"][0]
+        self.assertEqual([pair["central_value_equal"] for pair in relation["pairs"]],
+                         [False, False, True])
+        self.assertFalse(relation["whole_table_condition_transfer_allowed"])
+        self.assertFalse(relation["whole_table_error_statistic_transfer_allowed"])
+        for pair in relation["pairs"]:
+            source = self.rows[pair["primary_observation_id"]]
+            compiled_row = self.rows[pair["compiled_observation_id"]]
+            self.assertEqual(pair["central_value_equal"], source["value"] == compiled_row["value"])
+            self.assertEqual(pair["printed_uncertainty_magnitude_equal"],
+                             source["uncertainty"]["value"] == compiled_row["uncertainty"]["value"])
+            self.assertFalse(pair["error_statistic_equivalence_established"])
+            self.assertFalse(pair["method_transfer_to_compiled_row_qualified"])
+        # Matching D40N values cannot authorize a mixed-source control or a
+        # transferred assay, even if a caller forces the old qualification flag.
+        rows = deepcopy(self.rows)
+        rows["ksi-rates:D40N:kcat"]["assay_qualified"] = True
+        mixed = compare(rows, {"id": "unsupported-mixed-ksi", "study_id": "ksi_1995",
+                               "operation": "ratio", "roles": {
+                                   "numerator": "ksi-rates:D40N:kcat",
+                                   "denominator": "ksi1995-kinetics:WT:kcat"}})
+        self.assertFalse(mixed["eligible"])
+        self.assertIn("mismatched_study_id", mixed["reasons"])
+        self.assertIn("mismatched_assay_id", mixed["reasons"])
+
     def test_nondetection_is_not_zero_or_a_ratio(self):
         row = self.rows["ra95-kinetics:si-table2:RA95.0-K210M:kcat"]
         self.assertEqual(row["result_kind"], "nondetection")

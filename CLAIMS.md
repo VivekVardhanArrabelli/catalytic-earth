@@ -545,6 +545,24 @@ Signed fields remain author-derived context; the disputed electrostatic
 fraction is not adopted. No universal activity predictor, productive geometry,
 new experiment, independent validation or design-performance claim follows.
 
+## CE-039 — primary kinetic controls do not qualify a later compilation wholesale
+
+**Status:** Supported
+
+The [KSI primary comparison](docs/ATLAS_KSI_FIELD_FUNCTION.md#primary-kinetics-resolve-one-comparison-not-the-whole-compilation)
+retains KimChoi1995 WT/Y16F/D40N kcat values of 26,722/13.3/0.018 s⁻¹
+and KM values of 59.3/17.1/13.3 µM under the paper's common 30 °C,
+pH-7 assay. Its kinetic errors are twice SD from five determinations.
+Both mutants have sharply lower turnover and lower apparent KM; this does
+not identify equilibrium affinity or the affected microscopic step.
+The WT/Y16F entries differ from Fried2014's compiled values and errors.
+The matching D40N pair plus citation supports candidate provenance, not a
+second independent measurement or wholesale transfer of assay conditions.
+Source-declared Asp40/Asp38 and Tyr16/Tyr14 homolog correspondence does not
+establish the D40N hydroxide/reketonization mechanism. The unchanged consumer
+adds six parameter records and four descriptive ratios; no new experiment,
+independent validation, productive geometry or design-performance claim follows.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,

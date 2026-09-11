@@ -1,5 +1,27 @@
 # Current State
 
+## 2026-09-11: primary KSI kinetics qualify a bounded mutant comparison
+
+The [primary kinetic relation](ATLAS_KSI_FIELD_FUNCTION.md#primary-kinetics-resolve-one-comparison-not-the-whole-compilation)
+adds KimChoi1995 WT/Y16F/D40N measurements under a common 30 °C, pH-7
+assay. Both mutant apparent KM values decline alongside large turnover
+losses; this is neither a binding-affinity measurement nor a microscopic-step
+assignment. Six primary parameters and four descriptive ratios use the
+unchanged consumer, with twice-SD errors and source-defined construct scope.
+
+The exact WT/Y16F values and errors differ from Fried2014 Table S2, so
+the 1995 conditions do not qualify the later compilation wholesale. D40N's
+matching pair and citation support candidate provenance, not an independent
+replicate. All prior measured values, eligibility decisions and derived comparison
+values remain unchanged. Six compiled-row uncertainty contexts and one
+comparison’s embedded evidence narrow only the stale acquisition sentence.
+CE-039 records the new relation, with no protected protein admission, experiment
+or evidence-tier promotion.
+
+The same KSI batch is now 18 requests / 5,441,734 bytes. A bounded Xue1991
+D38N inquiry reached metadata and a publisher denial, so primary-body
+mechanistic premises remain unassessed. No unchanged route is retried.
+
 ## 2026-09-11: KSI probe and turnover evidence preserve a mechanistic exception
 
 The [KSI relation](ATLAS_KSI_FIELD_FUNCTION.md) connects six measured

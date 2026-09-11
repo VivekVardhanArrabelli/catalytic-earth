@@ -161,7 +161,7 @@
       ],
       "per_row_primary_reference": null,
       "source_assay_equivalence_established": false,
-      "uncertainty": "Printed plus/minus retained; Table S2 does not specify the rate error statistic or replicate count. Original kinetic methods not acquired."
+      "uncertainty": "Printed plus/minus retained; Table S2 does not specify the rate error statistic or replicate count. Original kinetic methods are not resolved for individual compiled rows."
     }
   ],
   "rows": [

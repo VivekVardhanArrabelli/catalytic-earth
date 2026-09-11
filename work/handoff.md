@@ -1,86 +1,86 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research baton — 2026-09-11 KSI field/function evidence
+## Current research baton — 2026-09-11 primary KSI kinetic provenance
 
-- **Identity/base:** actual start2026-09-11T02:07:23Z; owner
-  `01a08e37-f80d-75c0-9654-d329c03d9412:2e3e02ec-a88a-474c-84a3-b9155bf9408f`;
-  lock acquired02:13:14Z. Clean main base
-  `dbcff2541baf00d378d13c6e676c34419a9cfb35` (PR90), fetched/fast-forwarded;
-  no pending PR, dirty work or recovery. Branch
-  `codex/ksi-electric-field-evidence-20260911`. Handoff checkpointed around minute31;
-  exact finish, publication and release go in the Git-local receipt.
-- **Direction reconciliation/question:** RA95 state priority is complete.
-  DERA primary body and flagged erratum remained inaccessible after one bounded
-  six-request attempt. No chemical negative is inferred and no unchanged route
-  is retried. Pivoted to KSI: does the source's inhibitor-carbonyl field relation
-  apply to its D40N general-base mutant? Gain: a physical probe/function relation
-  with an explicit mechanism-dependent applicability boundary. Stop at one
-  supported source compilation, not a new general electrostatic design rule.
-- **Grounded finding:** TableS2 supplies six natural-abundance carbonyl
-  frequencies and six literature-compiled kcat parameters. WT/Y16F/D40N
-  frequencies1588.3/1647.5/1594.4cm^-1 accompany24300/12/0.018s^-1.
-  Protein spectra use19-nortestosterone sulfate inD2O atpD7.4; turnover uses
-  5-androstene-3,17-dione from prior publications. Fried2014 excludesD40N from
-  its field-rate model using a mechanism-change rationale. Its cited ref67
-  title saysD38N; direct homolog/construct transfer is unverified. Original
-  and technical-comment electrostatic fractions remain disputed interpretations.
-- **Capability/limits:** the unchanged shared perturbation consumer returns
-  all12 parameter records and a complete six-construct context. Kinetics are
-  unqualified for matched-assay arithmetic; signed fields remain derived source
-  context. No new experiment, protected protein admission, complete mechanism,
-  same physical sample, direct transition-state field, causal fraction or
-  design-performance claim. Six named constructs are not six new proteins.
-- **Evidence:** `data/atlas/study_context/ksi_2014/field_function.json`,
-  `source_review.json`, `acquisition_receipts.json` and
-  `docs/ATLAS_KSI_FIELD_FUNCTION.md`; primary author manuscript, technical
-  comment and author-hosted58-page article/SI are locally hash-retained in
-  `.git/catalytic-earth-runs/2e3e02ec-primary/`. CompleteTableS2 inspected at
-  PDF51/printedSI44; Methods2-5, TextS3 pages23-24 and mainFig3/prose checked.
-  Source bodies are not redistributed. Author response remains unreviewed.
-- **Acquisition:** new, distinct KSI batch
-  `ketosteroid-isomerase-electric-field-fried2014`:12requests/5,179,007bytes.
-  SAME RA95 batch now33/17,556,517, including
-  `ra95_2013/dera_acquisition_appendix.json`; prior27-request receipt historical.
-  Diels20/519,698; RA61 45/3,236,259; KE59 9/261,580;
-  KE70 16/1,102,794; beta5/8,449,621; defaultM-CSA49/1,109,896 unchanged.
-  PLP73/5,068,731 and panel28/1,474,405 remain lower bounds, not headroom.
-  M0187followup12/440,960 is only a subledger; broaderM0187, TKT/POX,
-  M0081/M0222 and HisF/panel gaps remain. No telemetry recovery reopened.
-- **Reuse/reconsideration:** two data panels use existing source/construct/
-  observation/context logic; no new runtime, schema or enzyme-ID branch.
-  Author-compiled kinetics remain distinguishable from newly reported spectra.
-  New physical evidence broadens the usable chemical axis; contextual retrieval
-  links it to mechanism applicability. No measured curation-time saving or
-  superiority to a competent paper/kinetics workflow is claimed. Rejected
-  another RA95 arithmetic/settled-state queue and an access-only hour. The
-  integrated atlas still lacks a demonstrated complete design-enabling chain.
-- **Coordination/review:** parent owns all edits/Git/lock. Read-only Sol/ultra
-  roles `source_challenge`, `representation_challenge`, `adversarial_challenge`
-  checked source, chemistry and scientific value through
-  `.git/catalytic-earth-runs/2e3e02ec.board.md`. Objections narrowed the sulfate
-  identity, kinetic error/provenance, D38N citation, D40N scope and disputed
-  fraction. These are correlated computational reviews, not human validation.
-- **Verification/publication:** all20 retained primary witnesses hash-verified;
-  prior193 observations,117 comparisons,2 state links and37 claim objects
-  unchanged.70 focused tests and complete repository contracts passed.
-  New source paths required only the architecture path count17687->17692;
-  frozen module digests stayed unchanged. All three final source/diff reviews
-  accepted. This block is staged before report-index regeneration. All changes
-  are owned. At handoff preparation branch changes are uncommitted and no PR
-  has been opened; parent will commit/push and merge only at the reviewed head
-  after required checks. Exact final SHA/PR/CI/push/merge and guarded release
-  are recorded in `.git/catalytic-earth-runs/hourly-20260911T020723Z-2e3e02ec.json`
-  and the task result. If unfinished, resume this branch/PR first.
-- **One next scientific action:** inspect KSI reference16,
-  DOI10.1128/jb.177.9.2602-2605.1995, to establish exact source-row provenance
-  and kinetic conditions for the WT/Y16F/D40N compilation and clarify the
-  prose/table factor scope. Expected gain: a qualified within-kinetics
-  comparison, never same-sample spectroscopy/turnover identity. Continue the
-  SAME KSI batch at12/5,179,007; acquire one exact primary identifier chain.
-  Stop at one supported row/condition relation or the first unmatched premise;
-  if inaccessible, stop that route and reassess, without enlarging an access
-  record. Ref67 D38N-to-D40N mechanism applicability remains separate and open.
+- **Identity/base:** actual start 2026-09-11T03:06:25Z; owner
+  `01a08e6d-fd19-78c2-9f85-8cbf41b450e5:a21b043b-df8b-479e-ba67-022e32ee5eee`;
+  lock acquired03:06:53Z. Clean synchronized main base
+  `9f40d64a3f5f9eceb9b5cfb5dd1a2b5d522365c8` (PR91). Prior ownership,
+  workers and release reconciled; no recovery or open PR. Current branch
+  `codex/ksi-primary-kinetic-provenance-20260911`. Handoff checkpoint at
+  03:25:01Z / minute18.6; exact finish/publication in local receipt.
+- **Direction/question:** RA95 construct-state and bounded DERA priorities stay
+  closed. Inherited KSI reference16 question is answered: KimChoi1995 provides
+  a qualified primary assay, but WT/Y16F values and errors differ from the
+  Fried2014 compilation. The first mismatch stops wholesale method transfer.
+  A bounded subsequent ref67/D38N primary-body inquiry reached only metadata
+  and publisher403; no microscopic evidence or chemical negative was added.
+- **Grounded result:** Kim1995Table1 WT/Y16F/D40N kcat is26722/13.3/0.018s^-1;
+  apparentKM is59.3/17.1/13.3uM. Common30C/pH7,34mM potassium phosphate,
+  2.5mM EDTA,3.3%v/v methanol and11.6-116.4uM steroid support within-study
+  contrasts. Kinetic errors are twiceSD from five determinations; Fig4 and
+  specific-activity triplicates remain separate. Both mutant apparentKM values
+  decline while turnover falls sharply, without establishingKd or a microscopic
+  step. D40N's displayed pair and citation support candidate provenance only.
+- **Capability/limits:** unchanged consumer adds six primary parameters and
+  four qualified descriptive ratios, with source reaction and assay bindings.
+  Source-declared homologAsp40/Asp38 andTyr16/Tyr14 correspondence does not
+  establish the laterD40N hydroxide/reketonization mechanism. Compiled rates
+  remain unqualified; all prior numerical values and comparison results stay
+  unchanged. Six old compiled observation contexts and one mirrored context
+  correct only the stale methods-not-acquired sentence. No physical sample
+  identity, independent replicate, affinity, complete mechanism, productive
+  geometry, experiment, protected admission or design-performance claim.
+- **Evidence:** `data/atlas/study_context/ksi_1995/primary_kinetics.json`,
+  `acquisition_receipts.json`, `source_review.json`; current
+  `docs/ATLAS_KSI_FIELD_FUNCTION.md` and shared perturbation projection/review.
+  All four Kim1995 pages visually inspected; exact245495-byte scan retained
+  at `.git/catalytic-earth-runs/a21b043b-primary/kim1995-scan.pdf`, SHA256
+  `c811212ed1f5d63a3417001957353578d5c00e60b0b0944f86cc2608d93a7da5`.
+  Primary bodies are not redistributed. Existing2014 source review is historical;
+  the new review binds the narrow acquisition-scope renewal.
+- **Acquisition:** SAME `ketosteroid-isomerase-electric-field-fried2014`
+  batch now18requests/5,441,734bytes (new6/262,727); predecessor12/5,179,007
+  receipt remains intact. Kim primary chain3requests/251,323bytes; Xue chain
+  3/11,404, with no primary body. No other batch used: RA95 remains33/17,556,517;
+  Diels20/519,698; RA61 45/3,236,259; KE59 9/261,580; KE70 16/1,102,794;
+  beta5/8,449,621; defaultM-CSA49/1,109,896. PLP73/5,068,731 and
+  panel28/1,474,405 are lower bounds, not headroom. M0187followup12/440,960
+  remains a subledger; inherited broader accounting gaps are not reopened.
+- **Reuse/reconsideration:** all case facts live in data; existing source,
+  construct, assay, reaction, uncertainty and ratio paths suffice. Review caught
+  an initially unbound reaction context, fixed through existing contracts.
+  Printed-error magnitude equality remains distinct from error-statistic
+  equivalence. Curation still needs manual source interpretation, and no
+  measured time saving is claimed. Added value is one usable matched relation
+  and a consequential prevented method transfer. Do not make another table-only
+  migration or repeated access stop the next task; no complete design chain yet.
+- **Coordination/verification:** parent alone owns edits/Git/lock. Read-only
+  Sol/ultra roles `kinetic_source_review`, `kinetic_representation` and
+  `kinetic_adversarial` challenge the shared
+  `.git/catalytic-earth-runs/a21b043b.board.md`; correlated computational review,
+  not independent human validation. First71 focused tests passed; a later
+  precision amendment is included in final validation. All21 retained primary
+  witnesses hash-verified. All38 prior claim objects, frozen/runtime/protected
+  surfaces and the historical handoff suffix are unchanged. Exact final review
+  and proportionate repository/CI verification are required before merge.
+- **Publication/recovery:** all changes are owned. At this handoff checkpoint
+  changes are uncommitted; parent will stage only owned files, rebuild the report
+  index after staging this block, commit/push and merge only after source/diff
+  review and required checks at the reviewed head. Exact resulting SHA/PR,
+  push/merge/CI and guarded release are recorded in
+  `.git/catalytic-earth-runs/hourly-20260911T030625Z-a21b043b.json` and task result.
+  If publication is unfinished, resume this branch/PR first. No unrelated dirty work.
+- **One next scientific action:** inspect Fried2014 reference18,
+  DOI10.1073/pnas.0911168107, for the experimental substrate/solvent or
+  structural discriminant behind differentTyr16 substitution effects. Expected
+  gain: an evidence relation explaining why removal of a named hydrogen bond
+  has no single transferable energetic effect, beyond another kinetic table.
+  Continue SAME KSI batch18/5,441,734. Stop at one supported discriminating
+  relation or first unmatched construct/assay premise; if inaccessible or only
+  more rate rows, stop that route and reassess. Do not retry blockedXue/DERA
+  routes or transfer their mechanism by analogy.
 
 Preserve historical content below this marked block. Git identifies the
 containing commit; no self-hash follow-up commit is needed.

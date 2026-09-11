@@ -1,0 +1,340 @@
+{
+  "schema_version": "catalytic-earth.source-qualification.v1",
+  "assessment_id": "ksi_1995_primary_kinetics",
+  "authorized_operation": "source_annotation",
+  "scientific_scope": "Primary kinetic conditions and endpoint-specific mutant effects; partial provenance connection to a later field/function compilation.",
+  "counted_objects": {
+    "source_named_construct_contexts": 3,
+    "projected_kinetic_parameters": 6,
+    "new_project_experiments": 0,
+    "protected_protein_admissions": 0,
+    "eligible_descriptive_comparisons": 4
+  },
+  "sources": [
+    {
+      "source_id": "ksi-kinetics-source-15",
+      "source_url": "https://europepmc.org/api/getPdf?pmcid=PMC176927",
+      "doi": "10.1128/jb.177.9.2602-2605.1995",
+      "pmid": "7730300",
+      "version": "Journal-formatted article scan retrieved from Europe PMC, J Bacteriol177:2602-2605 (1995)",
+      "sha256": "c811212ed1f5d63a3417001957353578d5c00e60b0b0944f86cc2608d93a7da5",
+      "bytes": 245495,
+      "redistributed": false,
+      "git_common_dir_relative_path": "catalytic-earth-runs/a21b043b-primary/kim1995-scan.pdf",
+      "title": "Identification of Active Site Residues by Site-Directed Mutagenesis of delta5-3-Ketosteroid Isomerase from Pseudomonas putida Biotype B",
+      "authors": [
+        "Suhng Wook Kim",
+        "Kwan Yong Choi"
+      ],
+      "publication_year": 1995
+    }
+  ],
+  "constructs": [
+    {
+      "construct_id": "WT",
+      "background_id": "WT",
+      "substitutions": [],
+      "organism": "Pseudomonas putida biotype B",
+      "numbering": "KimChoi1995 paper-local numbering",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source_named_construct; complete sequence not transcribed into this packet",
+      "identity_scope": "Source-defined within-study constructs. The authors report sequencing both entire mutant genes and only the intended codon change. Figure5 prints a reference alignment, not verification of the physical assay specimen by this project. No identity with Fried2014 preparations is inferred.",
+      "source_locator": "PDF1-2 / pp2602-2603 site-directed mutagenesis and purification; PDF4 / p2605 Fig5"
+    },
+    {
+      "construct_id": "Y16F",
+      "background_id": "WT",
+      "substitutions": [
+        "Y16F"
+      ],
+      "organism": "Pseudomonas putida biotype B",
+      "numbering": "KimChoi1995 paper-local numbering",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source_named_construct; complete sequence not transcribed into this packet",
+      "identity_scope": "Source-defined within-study constructs. The authors report sequencing both entire mutant genes and only the intended codon change. Figure5 prints a reference alignment, not verification of the physical assay specimen by this project. No identity with Fried2014 preparations is inferred.",
+      "source_locator": "PDF1-2 / pp2602-2603 site-directed mutagenesis and purification; PDF4 / p2605 Fig5"
+    },
+    {
+      "construct_id": "D40N",
+      "background_id": "WT",
+      "substitutions": [
+        "D40N"
+      ],
+      "organism": "Pseudomonas putida biotype B",
+      "numbering": "KimChoi1995 paper-local numbering",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source_named_construct; complete sequence not transcribed into this packet",
+      "identity_scope": "Source-defined within-study constructs. The authors report sequencing both entire mutant genes and only the intended codon change. Figure5 prints a reference alignment, not verification of the physical assay specimen by this project. No identity with Fried2014 preparations is inferred.",
+      "source_locator": "PDF1-2 / pp2602-2603 site-directed mutagenesis and purification; PDF4 / p2605 Fig5"
+    }
+  ],
+  "assays": [
+    {
+      "assay_id": "table1-steroid-isomerization",
+      "endpoint": "Steady-state product formation from 5-androstene-3,17-dione",
+      "method": "Product readout citing ref24; Fig4 reports delta absorbance at248nm per minute. Lineweaver-Burk regression supplies Vmax and KM; kcat derived from Vmax. Raw fits and complete earlier readout method are not retained.",
+      "conditions": {
+        "temperature_celsius": 30,
+        "buffer": "34 mM potassium phosphate",
+        "pH": 7.0,
+        "EDTA_mM": 2.5,
+        "methanol_percent_v_v": 3.3,
+        "substrate_uM": [
+          11.6,
+          34.9,
+          58.2,
+          81.5,
+          116.4
+        ],
+        "enzyme_concentration": null
+      },
+      "qualification_scope": "The paper explicitly applies these conditions to wild type and both mutants. Qualification permits descriptive within-Table1 comparisons, not complete assay reconstruction or transfer to another study.",
+      "uncertainty": "kcat and KM are means plus/minus TWO standard deviations from five separate determinations. Figure4 points are means of three measurements per substrate concentration; specific-activity footnote a has a separate triplicate scope. None establishes five independent protein preparations.",
+      "source_locator": "PDF3 / p2604 Kinetic properties, Fig4 and Table1 footnote b",
+      "reaction_id": "steroid-double-bond-isomerization"
+    }
+  ],
+  "reaction": {
+    "reaction_id": "steroid-double-bond-isomerization",
+    "source_locator": "PDF2 / p2603 Fig1 and caption",
+    "status": "source-described reaction context; not a canonical atom map or new stereochemical experiment",
+    "participants": [
+      {
+        "participant_id": "A",
+        "name": "5-androstene-3,17-dione",
+        "side": "reactant",
+        "role": "turnover substrate"
+      },
+      {
+        "participant_id": "B",
+        "name": "4-androstene-3,17-dione",
+        "side": "product",
+        "role": "isomerization product"
+      }
+    ],
+    "source_stereochemistry": "Caption describes transfer of the C4 beta proton to C6 beta during A-to-B isomerization; this mutation study does not independently establish that trajectory for each mutant.",
+    "atom_mapping": null,
+    "direction": "steroid double-bond isomerization"
+  },
+  "rows": [
+    {
+      "row_id": "WT",
+      "construct_id": "WT",
+      "source_locator": "KimChoi1995 PDF3 / p2604 Table1, WT row; kcat and KM columns, footnote b",
+      "kcat": {
+        "parameter": "k_cat",
+        "status": "numeric",
+        "value": 26722,
+        "unit": "s^-1",
+        "uncertainty": {
+          "value": 231,
+          "kind": "two_standard_deviations",
+          "determinations": 5
+        },
+        "evidence_origin": "source_reported_KimChoi1995_Table1"
+      },
+      "KM": {
+        "parameter": "K_M",
+        "status": "numeric",
+        "value": 59.3,
+        "unit": "uM",
+        "uncertainty": {
+          "value": 1.7,
+          "kind": "two_standard_deviations",
+          "determinations": 5
+        },
+        "evidence_origin": "source_reported_KimChoi1995_Table1"
+      },
+      "printed_table_context": {
+        "specific_activity": {
+          "value": 55144,
+          "plus_minus": 649,
+          "unit": "umol min^-1 mg^-1",
+          "error_scope": "mean plus/minus2SD; assays in triplicate; footnote a"
+        },
+        "kcat_over_KM": {
+          "value": 451000000.0,
+          "unit": "M^-1 s^-1",
+          "uncertainty": null,
+          "scope": "Printed derived column; not an independent measurement or a recalculated quotient."
+        },
+        "relative_kcat_token": "1.00",
+        "relative_KM_token": "1.00"
+      }
+    },
+    {
+      "row_id": "Y16F",
+      "construct_id": "Y16F",
+      "source_locator": "KimChoi1995 PDF3 / p2604 Table1, Y16F row; kcat and KM columns, footnote b",
+      "kcat": {
+        "parameter": "k_cat",
+        "status": "numeric",
+        "value": 13.3,
+        "unit": "s^-1",
+        "uncertainty": {
+          "value": 0.6,
+          "kind": "two_standard_deviations",
+          "determinations": 5
+        },
+        "evidence_origin": "source_reported_KimChoi1995_Table1"
+      },
+      "KM": {
+        "parameter": "K_M",
+        "status": "numeric",
+        "value": 17.1,
+        "unit": "uM",
+        "uncertainty": {
+          "value": 3.1,
+          "kind": "two_standard_deviations",
+          "determinations": 5
+        },
+        "evidence_origin": "source_reported_KimChoi1995_Table1"
+      },
+      "printed_table_context": {
+        "specific_activity": {
+          "value": 43.6,
+          "plus_minus": 1.7,
+          "unit": "umol min^-1 mg^-1",
+          "error_scope": "mean plus/minus2SD; assays in triplicate; footnote a"
+        },
+        "kcat_over_KM": {
+          "value": 778000.0,
+          "unit": "M^-1 s^-1",
+          "uncertainty": null,
+          "scope": "Printed derived column; not an independent measurement or a recalculated quotient."
+        },
+        "relative_kcat_token": "10^-3.3",
+        "relative_KM_token": "0.29"
+      }
+    },
+    {
+      "row_id": "D40N",
+      "construct_id": "D40N",
+      "source_locator": "KimChoi1995 PDF3 / p2604 Table1, D40N row; kcat and KM columns, footnote b",
+      "kcat": {
+        "parameter": "k_cat",
+        "status": "numeric",
+        "value": 0.018,
+        "unit": "s^-1",
+        "uncertainty": {
+          "value": 0.001,
+          "kind": "two_standard_deviations",
+          "determinations": 5
+        },
+        "evidence_origin": "source_reported_KimChoi1995_Table1"
+      },
+      "KM": {
+        "parameter": "K_M",
+        "status": "numeric",
+        "value": 13.3,
+        "unit": "uM",
+        "uncertainty": {
+          "value": 3.7,
+          "kind": "two_standard_deviations",
+          "determinations": 5
+        },
+        "evidence_origin": "source_reported_KimChoi1995_Table1"
+      },
+      "printed_table_context": {
+        "specific_activity": {
+          "value": 0.056,
+          "plus_minus": 0.002,
+          "unit": "umol min^-1 mg^-1",
+          "error_scope": "mean plus/minus2SD; assays in triplicate; footnote a"
+        },
+        "kcat_over_KM": {
+          "value": 1350.0,
+          "unit": "M^-1 s^-1",
+          "uncertainty": null,
+          "scope": "Printed derived column; not an independent measurement or a recalculated quotient."
+        },
+        "relative_kcat_token": "10^-6.2",
+        "relative_KM_token": "0.22"
+      }
+    }
+  ],
+  "compilation_relation": {
+    "question": "Can the 1995 reference qualify exact Fried2014 compiled WT/Y16F/D40N rows?",
+    "citation_chain": "Fried2014 TableS2 cites refs16/18/19 collectively; reference16 is KimChoi1995. Fried main D40N impairment prose also cites16.",
+    "status": "assessed_partial_correspondence; wholesale_transfer_refused",
+    "pairs": [
+      {
+        "source_construct_label": "WT",
+        "primary_observation_id": "ksi1995-kinetics:WT:kcat",
+        "compiled_observation_id": "ksi-rates:WT:kcat",
+        "primary_provider_pointer": "/rows/0/kcat",
+        "compiled_provider": {
+          "source": "ksi",
+          "pointer": "/rows/0/kcat"
+        },
+        "lineage_status": "different_printed_value_and_error",
+        "method_transfer_to_compiled_row_qualified": false,
+        "central_value_equal": false,
+        "printed_uncertainty_magnitude_equal": false,
+        "error_statistic_equivalence_established": false
+      },
+      {
+        "source_construct_label": "Y16F",
+        "primary_observation_id": "ksi1995-kinetics:Y16F:kcat",
+        "compiled_observation_id": "ksi-rates:Y16F:kcat",
+        "primary_provider_pointer": "/rows/1/kcat",
+        "compiled_provider": {
+          "source": "ksi",
+          "pointer": "/rows/1/kcat"
+        },
+        "lineage_status": "different_printed_value_and_error",
+        "method_transfer_to_compiled_row_qualified": false,
+        "central_value_equal": false,
+        "printed_uncertainty_magnitude_equal": false,
+        "error_statistic_equivalence_established": false
+      },
+      {
+        "source_construct_label": "D40N",
+        "primary_observation_id": "ksi1995-kinetics:D40N:kcat",
+        "compiled_observation_id": "ksi-rates:D40N:kcat",
+        "primary_provider_pointer": "/rows/2/kcat",
+        "compiled_provider": {
+          "source": "ksi",
+          "pointer": "/rows/5/kcat"
+        },
+        "lineage_status": "candidate_same_reported_result; not independent replication",
+        "method_transfer_to_compiled_row_qualified": false,
+        "central_value_equal": true,
+        "printed_uncertainty_magnitude_equal": true,
+        "error_statistic_equivalence_established": false
+      }
+    ],
+    "per_row_citation_explicit_in_compilation": false,
+    "whole_table_condition_transfer_allowed": false,
+    "whole_table_error_statistic_transfer_allowed": false,
+    "physical_sample_identity_established": false,
+    "interpretation": "WT and Y16F differ in both central value and printed error, so reference16 is not an exact source for those TableS2 pairs. D40N has identical displayed central value and plus/minus magnitude plus a supporting main-text citation, making it a supported candidate lineage; the compilation does not explicitly identify a per-row source. Preserve its compiled status and unknown error model rather than relabeling it as a fresh measurement.",
+    "prose_factor_scope": "Kim1995 reports approximately10^3.3 Y16F impairment and its central-value quotient is about2009. Fried2014 TableS2 quotient is2025; neither exact pair yields its approximately10^4 main-text statement (refs11/16). The source reason for that prose scope remains unresolved."
+  },
+  "homolog_correspondence": {
+    "status": "source_declared_residue_correspondence",
+    "source_locator": "PDF1 / p2602 text; PDF4 / p2605 Fig5",
+    "pairs": [
+      {
+        "P_putida_residue": "Asp40",
+        "C_testosteroni_residue": "Asp38"
+      },
+      {
+        "P_putida_residue": "Tyr16",
+        "C_testosteroni_residue": "Tyr14"
+      }
+    ],
+    "scope": "Homolog correspondence only; neither construct identity nor transfer of D38N microscopic mechanism is established."
+  },
+  "limitations": [
+    "Matched named constructs support within-study parameter comparisons even without project-transcribed exact sequences; physical specimen identity and cross-study equivalence are not established.",
+    "The kcat and KM declines are endpoint-specific. Lower apparent KM is not an equilibrium Kd measurement or proof of tighter binding. The paper makes a binding interpretation; this packet does not adopt it as established affinity.",
+    "Rates are source-reported steady-state parameters, not identified microscopic step constants or proof that residual activity arises from a particular mutant mechanism.",
+    "Figure4 triplicates, Table1 kinetic five determinations and specific-activity triplicates have distinct scopes. No propagated ratio error, statistical significance or independent preparation count is inferred.",
+    "Kim1995 explicitly maps P. putida Asp40/Tyr16 to C. testosteroni Asp38/Tyr14. Its alignment and similar-mechanism interpretation do not demonstrate solution hydroxide as D40N base, reketonization limitation or identical protein states.",
+    "Probe spectroscopy remains a separate Fried2014 experiment using19-nortestosterone sulfate inD2O atpD7.4. No field-only cause, direct transition-state field, productive geometry, new experiment or design-performance claim follows."
+  ]
+}
