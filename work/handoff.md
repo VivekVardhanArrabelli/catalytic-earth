@@ -1,94 +1,87 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research baton — 2026-09-11 micellar system controls
+## Current research baton — 2026-09-11 M0186 hydrogen continuity
 
-- **Identity/base:** actual start2026-09-11T09:07:23Z; owner
-  `01a08fb8-8399-7123-955f-32e2d631ac49:4db1d0f0-8d7e-4df1-b17c-49493a3ca556`;
-  acquired09:07:47Z. Clean main base
-  `ad0b7b0d07006e4390700244756fa1af20c1be98`(PR97); prior run complete,
-  no open PR/recovery. Branch `codex/micellar-condition-controls-20260911`.
-  Checkpoint 2026-09-11T09:34:03.311763+00:00 / minute26.7; exact final
-  publication/release belongs in the local receipt and task result.
-- **Question/direction:** the RA95/DERA and RA61 R/S priorities remain closed.
-  Reconciled the older direction review with the later handoff: Schmidt2013
-  could test whether hydrophobic-environment and amine contributions separate.
-  One supported BuAm environment relation and the first missing factorial
-  premise complete the bounded question. No repeated access or pKa-factor review.
-- **Scientific result:** Schmidt Table2 BuAm k2 is2.1e-6 without detergent and
-  2.5e-4M^-1s^-1 with1mMCTAC; source-rounded ratio120, central quotient119.0476.
-  This is nominal bulk-amine/substrate normalization in buffered5%DMSO,
-  not intrinsic micellar-site chemistry or isolated hydrophobic energy. The
-  source could not measure OcAm/DoAm without micelles because of solubility;
-  710/9500 use no-detergent BuAm, not their own matched amine. No complete
-  environment-by-amine square, synergy or component multiplication is identified.
-  T1 fixed-condition factor33 is a distinct endpoint; imported RA61 conditions
-  differ in temperature/salt. Preserve source interpretation versus observation.
-- **Output/limits:** CE-042, `docs/ATLAS_MICELLAR_CONTROLS.md`,
-  `data/atlas/study_context/schmidt_2013/micellar_controls.json` and source review.
-  Query `python scripts/query_atlas_perturbations.py --study schmidt_2013`
-  returns the source-system relation with original arms. The new generic
-  `system_ratio` path also resolves the unchanged CaMWN/Ac-CaMWN rows as0.8
-  via `--control-relation calmodulin_2015:Ac-CaMWN:over-CaMWN-preparation`.
-  That is chemical-preparation reuse, not a new measurement, genetic ratio,
-  equivalence, verified occupancy or isolated terminal-amine effect. Numeric
-  Table3 ionization controls remain outside this selected projection. No exact
-  reacted state, productive geometry, project experiment or design claim.
-- **Evidence/acquisition:** primary PMC3919508 author manuscript / NIHMS538046,
-  DOI10.1039/c3ob41898g, T1/T2/P10-P22/P29/P32. Retained HTML176,214bytes,
-  SHA256d1f8294f88395b35948e17a36a8fc41f33f3e0e3fdfae410c0ce73b04e8a6c3e,
-  Git-common `catalytic-earth-runs/4db1d0f0-primary/schmidt-pmc.html`.
-  PDF500/XML404/publisher403 and SI HTML are access receipts, not primary
-  PDFs; raw fits/replicates/errors remain unavailable. Six-request cap spent:
-  same RA61 batch58requests/4,697,605bytes, added6/201,684; appendix
-  `data/atlas/study_context/ra61_2010/micellar_acquisition_appendix.json`.
-  All26primary witnesses/26,142,059bytes verify; no source bodies redistributed.
-  Other totals unchanged: KSI26/5,739,717; RA9533/17,556,517;
-  Diels20/519,698; KE599/261,580; KE7016/1,102,794; beta5/8,449,621;
-  defaultM-CSA49/1,109,896. TKT/POX7/3,004,884, PLP73/5,068,731 and
-  panel28/1,474,405 remain lower bounds with unknown complete headroom;
-  M0187followup12/440,960 is a subledger. Do not reopen closed failed routes
-  or an accounting-gap investigation merely to enable another acquisition.
-- **Review/reconsideration:** read-only source_schmidt, chemistry_schmidt,
-  adversarial_schmidt on Sol/ultra; parent alone edits/Git/lock. Shared board
-  `.git/catalytic-earth-runs/4db1d0f0.board.md`. Source objections retain
-  denominator, endpoint, phase-normalization and cross-study limits. Review
-  exposed a repeated representation gap: nonprotein catalysts and terminal
-  treatments were outside genetic arithmetic. Shared system controls address
-  it without case-ID code, derive condition fields from original system data
-  and bind source protocol/substrate/normalization evidence. Semantic mappings
-  remain source-reviewed judgments, not runtime-authenticated chemistry.
-  Two contexts now reuse one consumer; no measured curation savings or incumbent
-  superiority. Useful contribution is the specific denominator/transfer boundary,
-  not complete mechanistic or design capability. Reviews are correlated computation.
-- **Verification/publication:** focused75, truth14 and core628 tests pass.
-  All221prior observations,126comparisons,73constructs,26assays,19substrates,
-  5reactions,2state links,3model links,18evidence groups,29source bindings and
-  41claims remain exact unchanged. Protected/frozen/exposure files unchanged.
-  Repository contracts pass after path-manifest renewal; only the path inventory
-  changed. Reviewed-head CI and final publication continue. Stage this handoff before
-  rebuilding the report archive. No unrelated dirty work. If publication is
-  unfinished, resume this branch/PR first. Exact SHA/push/merge/CI/release goes in
-  `.git/catalytic-earth-runs/2026-09-11T0907-4db1d0f0-8d7e-4df1-b17c-49493a3ca556.json`;
-  Git identifies this handoff's containing commit without a self-hash follow-up.
-- **One next action:** test one retained M0186 proposal1 step2-arrow to
-  step3-start covalent-graph replay. Expected gain is a source-scoped
-  post-transaldimination state relation, not another local W/H readout.
-  `data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0186.json`
-  `/step_schemes/1` and `/step_schemes/2` have scheme hashes
-  `0b0a10e4fec45ca09006b8fc61afeb7e7c842afd4afea27cf6960caf500cc897` and
+- **Identity/base:** actual start2026-09-11T10:05:54Z; owner
+  `01a08fee-1359-7be3-a86a-60561f362215:2ddc282f-de4f-45a2-9086-18a38de31274`;
+  acquired10:06:22Z. Clean main base
+  `edef3d5c9b105b9fc7128487a25d9584b0a736ac`(PR98); prior run fully merged,
+  no open PR/recovery. Branch `codex/m0186-hydrogen-continuity-20260911`.
+  Checkpoint 2026-09-11T10:20:05.000256+00:00 / minute14.2. Final commit,
+  push/merge/CI/release belongs in the local receipt and task result.
+- **Question/direction:** the later handoff closed RA95/DERA and RA61 priorities
+  after the older direction review. One retained M0186 proposal1 step2 to
+  step3-start inquiry tested a missing chemical-state connection; another
+  functional ratio was the weaker immediate alternative. Stop at the first
+  unaccounted bond/charge/H/stereo or map premise, without acquisition.
+- **Scientific result:** o27/o28 account for heavy-atom changes: Lys a23-PLP
+  a13 detachment/a23 neutralization and substrate a21-a13 single-to-double/
+  a21+1. Raw lone-pair changes agree. Step3 retains substrate-PLP adduct
+  topology, not free unbound PLP. The full explicit-H replay fails: H neighbors
+  remain N,O after the arrows but are C,O at next start. This graph invariant
+  excludes every element-preserving bijection; neither H permutation repairs
+  it. Reused a40 is a panel-local locator, not a physical proton ID. Selective
+  H depiction is possible but not proved; no implicit-H completion or source
+  chemistry falsification. Raw ordered a17-a21 W is retained without R/S or
+  stereochemical-continuity claims.
+- **Output/scope:** `data/atlas/source_step_correspondence/m0186_continuity.json`
+  plus bound supplemental review and `docs/ATLAS_PLP_STEP_BOUNDARY.md` section.
+  Selected actor30atoms (28heavy+2H) before/after; all full source panels remain
+  retained. New capability: source-specific explicit-state continuity boundary,
+  not a new runtime relation, claim, mechanism or observation. All prior
+  source/compiled records, CE001-CE042, runtime and older cross-entry audit
+  remain unchanged. Existing graph operations are diagnostic only; strict
+  source-step/context-candidate guards still refuse admission.
+- **Evidence/acquisition:** M0186 snapshot
+  `data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0186.json`, SHA256
+  `687986c4aaa94ce6bba72c5403bf28a4f04b32891c3493ccb75436defb2a7f38`;
+  `/step_schemes/1` hash
+  `0b0a10e4fec45ca09006b8fc61afeb7e7c842afd4afea27cf6960caf500cc897`;
+  `/step_schemes/2` hash
   `7edb1e4fd049124b20e156f8b19ec648b63d66e5a36f84d7a999cce7733090fc`.
-  Start with these retained witnesses and arrows o27/o28 from the PLP boundary.
-  Reuse existing W/H-format attribution and RDKit2025.03.3 diagnostic under
-  `data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/`
-  only if needed; M0213 itself already has a step2-R/step3-S depiction conflict.
-  Stop after one qualified full selected replay or first non-bijective atom map,
-  unaccounted bond/charge/H/stereo change, source-format ambiguity or arrow/edit
-  mismatch. Matching wedge tokens alone are insufficient. No implicit-H
-  completion, absolute R/S claim, observed trajectory, cross-enzyme equivalence
-  or relaxed prior guard. No acquisition from the incompletely accounted PLP
-  batch. Require this chemical-state payoff before adding runtime/claim changes.
-
+  Added0requests/0response bytes. Cumulative budgets unchanged: RA61 batch
+  `designed-retroaldolase-components-lassila2010`58/4,697,605;KSI26/5,739,717;
+  RA9533/17,556,517;Diels20/519,698;KE599/261,580;KE7016/1,102,794;
+  beta5/8,449,621;defaultM-CSA49/1,109,896. TKT/POX7/3,004,884,
+  PLP73/5,068,731 and panel28/1,474,405 are lower bounds with incomplete
+  headroom; M0187followup12/440,960 is a subledger. No new acquisition is
+  authorized by relabeling batches or closing this question. Closed failed
+  routes, RA61 R/S/S8 and M0213 parity questions stay closed.
+- **Review/reconsideration:** source_m0186, representation_m0186 and
+  adversarial_m0186 on Sol/ultra, read-only; parent owns edits/Git/lock.
+  Board `.git/catalytic-earth-runs/2ddc282f.board.md`. Source objections control.
+  New chemistry did not require runtime code; case facts are data. Existing
+  graph operations and rejection guards were reused, but no curation saving
+  is measured. Integrated value is a precise obstruction to a manufactured
+  state chain, not design capability or incumbent superiority. This is the
+  first adjudication of the within-entry H invariant, distinct from the prior
+  cross-entry W/H boundary; repeated panel refusals would not be progress.
+  Reviews remain correlated computation, not human or laboratory validation.
+- **Verification/publication:** focused13, truth14 and core629 pass; repository
+  contracts pass. Final diff review and reviewed-head CI publication continue. Pinned M0186 source_annotation permission passes.
+  Source/compiled/frozen/protected/exposure/runtime/claim bytes unchanged.
+  Renewed only2 current-document bindings in the existing perturbation review;
+  all prior scientific review content remains exact. Architecture change is
+  path inventory only.
+  Stage this handoff before rebuilding report archive. No unrelated dirty work.
+  If publication is unfinished, resume this branch/PR first. Exact resulting
+  SHA and remote/release outcomes go in
+  `.git/catalytic-earth-runs/2026-09-11T1005-2ddc282f-de4f-45a2-9086-18a38de31274.json`.
+- **One next action:** test a source-fragment His297 anchor for M0187 step1
+  arrow endpoint a58, then retain any existing H297N functional relation only
+  at its supported reference-site context. Witnesses are retained M0187
+  `data/atlas/atlas10/sources/mcsa/M0187.json` (a52 aliasHis297A in the a58
+  connected fragment), `data/atlas/transformations/m0187/transformations.json`
+  and `data/atlas/mechanism_evidence/m0187/evidence.json`. Expected gain:
+  source atom-to-named-site resolution alongside enantiomer-specific function,
+  rather than another panel refusal. Stop at the first ambiguous fragment,
+  role/numbering join or unsupported transfer. Existing lack of exact assayed
+  sequence remains a stated limit, not an invented new gate for a source-site
+  relation. No PDB atom identity, mutant geometry, zero-from-nondetection,
+  exchange-to-racemization or experimentally validated source step may follow.
+  Use zero acquisition; evaluate any required representation change before
+  implementation. Do not rerun the closed M0186 H or M0213 W/H inquiries.
 
 Preserve historical content below this marked block. Git identifies the
 containing commit; no self-hash follow-up commit is needed.

@@ -1,6 +1,9 @@
 """Failure modes for cross-record depiction correspondence and proton scope."""
 
 import copy
+from collections import Counter
+import hashlib
+from itertools import permutations
 import json
 from pathlib import Path
 import unittest
@@ -8,8 +11,11 @@ import tempfile
 import xml.etree.ElementTree as ET
 
 from scripts.compare_source_steps import (
-    _flow_signature, _panel, _read_bound, compare, parse_mcsa_scheme_flows,
+    _flow_signature, _panel, _parse_panel, _raw_panel, _read_bound, compare,
+    parse_mcsa_scheme_flows,
 )
+from catalytic_earth.atlas_context_candidates import extract_context_panel_candidate
+from catalytic_earth.atlas_transformations import apply_graph_edits
 
 ROOT = Path(__file__).resolve().parents[2]
 SPEC = ROOT / "data/atlas/source_step_correspondence/thdp.json"
@@ -35,6 +41,143 @@ class SourceStepCorrespondenceTests(unittest.TestCase):
             self.assertTrue(row["all_source_flow_endpoints_preserved"])
             self.assertTrue(row["reaction_endpoint_map_invariant_across_declared_maps"])
             self.assertEqual(row["declared_maps_checked"], 2)
+
+    def test_m0186_next_panel_cannot_be_repaired_by_relabeling_explicit_h(self):
+        audit = json.loads((ROOT / "data/atlas/source_step_correspondence/m0186_continuity.json").read_text())
+        self.assertEqual(audit["schema_version"], "catalytic-earth.source-panel-continuity-audit.v1")
+        self.assertEqual(audit["operation"], "source_annotation")
+        self.assertEqual(audit["status"], "full_explicit_depiction_replay_blocked")
+        source = _read_bound(ROOT, audit["source_binding"]["snapshot"])
+        records = _read_bound(ROOT, audit["source_binding"]["records"])["records"]
+        record = next(r for r in records if r["record_id"] == audit["source_binding"]["record_id"])
+        self.assertEqual(record["source"]["snapshot_sha256"], audit["source_binding"]["snapshot"]["sha256"])
+        graphs, raw_atoms, schemes = {}, {}, {}
+        for name, witness in audit["panels"].items():
+            scheme = next(s for s in source["step_schemes"] if
+                          s["mechanism_id"] == witness["source_mechanism_id"] and
+                          s["step_id"] == witness["source_step_id"])
+            schemes[name] = scheme
+            self.assertEqual(hashlib.sha256(scheme["content_utf8"].encode()).hexdigest(), witness["scheme_sha256"])
+            context, projection = _parse_panel(scheme["content_utf8"], witness["scheme_sha256"], name)
+            # This is a diagnostic projection only; the strict consumer still refuses below.
+            graphs[name], _ = _raw_panel(projection, name)
+            self.assertEqual(len(graphs[name]["atoms"]), witness["whole_panel_atom_count"])
+            self.assertEqual(len(graphs[name]["bonds"]), witness["whole_panel_bond_count"])
+            raw = ET.fromstring(scheme["content_utf8"])
+            raw_atoms[name] = {a.get("id"): {k: v for k, v in a.attrib.items()
+                                           if k not in {"id", "x2", "y2"}} for a in raw.iter("atom")}
+            self.assertEqual([{"bond_id": b.get("id"), "atom_refs2": b.get("atomRefs2").split(),
+                               "order": b.get("order"), "raw_token": b.findtext("bondStereo")}
+                              for b in raw.iter("bond") if b.find("bondStereo") is not None],
+                             witness["ordered_stereo_witnesses"])
+            self.assertEqual([{"atom_id": a.get("id"), "neighbor_atom_ids": [
+                next(n for n in b.get("atomRefs2").split() if n != a.get("id"))
+                for b in raw.iter("bond") if a.get("id") in b.get("atomRefs2").split()]}
+                for a in raw.iter("atom") if a.get("elementType") == "H"], witness["explicit_hydrogens"])
+            side = {"source_id": "M0186", "mechanism_id": 1, "step_id": witness["source_step_id"],
+                    "scheme_sha256": witness["scheme_sha256"],
+                    "component_labels": ["chebi:597326", "res:Lys41A"],
+                    "excluded_atoms": []}
+            with self.assertRaisesRegex(ValueError, "uninterpreted source stereochemistry"):
+                _panel(ROOT, {"M0186": audit["source_binding"]}, side)
+        flows = parse_mcsa_scheme_flows(schemes["before"])["electron_flows"]
+        declared_flows = [{"flow_id": f["flow_id"],
+                           **{f"{p}_point_kind": f[f"{p}_point"]["point_kind"] for p in ("source", "target")},
+                           **{f"{p}_atom_ids": [a["source_atom_ref"].rsplit(".", 1)[-1]
+                                                for a in f[f"{p}_point"]["atoms"]] for p in ("source", "target")}}
+                          for f in flows]
+        self.assertEqual(declared_flows, audit["source_step2_flows"])
+        flow_endpoints = {f["flow_id"]: set(f["source_atom_ids"] + f["target_atom_ids"])
+                          for f in declared_flows}
+        self.assertEqual(len(audit["reviewed_bond_charge_edits"]), 4)
+        for edit in audit["reviewed_bond_charge_edits"]:
+            self.assertIn(edit["source_flow_id"], flow_endpoints)
+            self.assertTrue(set(edit["atom_ids"]) <= flow_endpoints[edit["source_flow_id"]])
+        token_changes = audit["reviewed_raw_atom_token_changes"]
+        self.assertEqual(len(token_changes), 4)
+        self.assertEqual(len({(c["atom_id"], c["attribute"]) for c in token_changes}), 4)
+        self.assertTrue(all(c["attribute"] in {"formalCharge", "lonePair"} for c in token_changes))
+        for change in token_changes:
+            self.assertIn(change["atom_id"], flow_endpoints[change["source_flow_id"]])
+            atom = raw_atoms["before"][change["atom_id"]]
+            self.assertEqual(atom.get(change["attribute"]), change["before"])
+            if change["after"] is None:
+                atom.pop(change["attribute"])
+            else:
+                atom[change["attribute"]] = change["after"]
+        self.assertEqual(raw_atoms["before"], raw_atoms["next_start"])
+        replayed = apply_graph_edits(graphs["before"], audit["reviewed_bond_charge_edits"])
+        self.assertEqual(replayed["atoms"], graphs["next_start"]["atoms"])
+        atom_index = {a["atom_id"]: a for a in replayed["atoms"]}
+        hydrogens = {a for a, row in atom_index.items() if row["element"] == "H"}
+        self.assertTrue(all(not hydrogens.intersection(f[key]) for f in declared_flows
+                            for key in ("source_atom_ids", "target_atom_ids")))
+        selected = set(audit["selected_actor"]["before_atom_ids"])
+        self.assertEqual(selected, set(audit["selected_actor"]["next_start_atom_ids"]))
+        neighbors = {a["atom_id"]: set() for a in graphs["before"]["atoms"]}
+        for bond in graphs["before"]["bonds"]:
+            a, b = bond["atom_ids"]
+            neighbors[a].add(b)
+            neighbors[b].add(a)
+        component, pending = set(), [next(iter(selected))]
+        while pending:
+            atom = pending.pop()
+            if atom not in component:
+                component.add(atom)
+                pending.extend(neighbors[atom] - component)
+        self.assertEqual(component, selected)
+        def bonds(graph):
+            return {tuple(sorted(b["atom_ids"])): b["order"] for b in graph["bonds"]
+                    if set(b["atom_ids"]) <= selected}
+        predicted, target = bonds(replayed), bonds(graphs["next_start"])
+        actor = audit["selected_actor"]
+        self.assertEqual(len(selected), actor["before_atom_count"])
+        self.assertEqual(len(selected), actor["next_start_atom_count"])
+        self.assertEqual(len(bonds(graphs["before"])), actor["before_bond_count"])
+        self.assertEqual(len(target), actor["next_start_bond_count"])
+        heavy_map = audit["selected_actor"]["proposed_heavy_atom_locator_map"]
+        self.assertEqual(set(heavy_map), selected - hydrogens)
+        self.assertEqual(set(heavy_map.values()), selected - hydrogens)
+        self.assertEqual(len(heavy_map), actor["heavy_atom_count"])
+        for left, right in heavy_map.items():
+            self.assertEqual(raw_atoms["before"][left], raw_atoms["next_start"][right])
+        mapped_heavy = {tuple(sorted(heavy_map[a] for a in pair)): order
+                        for pair, order in predicted.items() if not set(pair) & hydrogens}
+        self.assertEqual(mapped_heavy, {pair: order for pair, order in target.items() if not set(pair) & hydrogens})
+        self.assertEqual(len(mapped_heavy), actor["heavy_bond_count_next_start"])
+        self.assertEqual(sum(not set(pair) & hydrogens for pair in bonds(graphs["before"])),
+                         actor["heavy_bond_count_before"])
+        def h_neighbors(edges):
+            return sorted(atom_index[next(a for a in pair if a not in hydrogens)]["element"]
+                          for pair in edges if len(set(pair) & hydrogens) == 1)
+        finding = audit["finding"]
+        self.assertEqual(h_neighbors(predicted), finding["explicit_h_neighbor_elements_after_reviewed_edits"])
+        self.assertEqual(h_neighbors(target), finding["explicit_h_neighbor_elements_at_next_start"])
+        self.assertNotEqual(Counter(h_neighbors(predicted)), Counter(h_neighbors(target)))
+        h_permutations = list(permutations(sorted(hydrogens)))
+        self.assertEqual(len(h_permutations), finding["hydrogen_id_permutations_checked"])
+        matching_h_permutations = 0
+        for permutation in h_permutations:
+            mapping = {**heavy_map, **dict(zip(sorted(hydrogens), permutation))}
+            mapped = {tuple(sorted(mapping[a] for a in pair)): order for pair, order in predicted.items()}
+            matching_h_permutations += mapped == target
+        self.assertEqual(matching_h_permutations, 0)
+        self.assertEqual(matching_h_permutations, finding["hydrogen_id_permutations_matching"])
+        self.assertEqual(set(predicted.items()) - set(target.items()),
+                         {(tuple(sorted(finding["same_locator_residual_before_bond"])), finding["residual_bond_order"])})
+        self.assertEqual(set(target.items()) - set(predicted.items()),
+                         {(tuple(sorted(finding["same_locator_residual_next_start_bond"])), finding["residual_bond_order"])})
+        self.assertFalse(finding["full_selected_actor_replay"])
+        self.assertFalse(finding["qualified_chemical_state_relation"])
+        self.assertTrue(finding["heavy_atom_bond_and_raw_attribute_changes_accounted"])
+        self.assertFalse(finding["full_element_preserving_bijection_possible"])
+        self.assertFalse(finding["stereochemical_continuity_established"])
+        self.assertFalse(finding["physical_proton_transfer_established"])
+        candidate = extract_context_panel_candidate(
+            (ROOT / audit["source_binding"]["snapshot"]["path"]).read_bytes(),
+            mechanism_id=1, before_step_id=2)
+        self.assertEqual(candidate["extraction_status"], "needs_review")
+        self.assertEqual(candidate["diagnostics"][0]["code"], "opaque_context_unmapped")
 
     def test_cannot_remove_the_activation_hydrogen_qualification(self):
         self.data["relations"][0]["left"]["excluded_atoms"] = []

@@ -53,6 +53,44 @@ calls the result “free PLP,” but the proposed event displaces lysine from a
 substrate–cofactor adduct. That phrase cannot supply an unbound-cofactor state.
 No after-state replay or corrected source trajectory is claimed here.
 
+## Within M0186, the next state stops at explicit hydrogen continuity
+
+The [step-2 to step-3 audit](../data/atlas/source_step_correspondence/m0186_continuity.json)
+asks a different question from the cross-entry comparison above: do M0186's
+two arrows account for its next depicted state? They account for the selected
+heavy-atom bond and electronic changes under the reviewed source-locator map:
+
+| Step-2 arrow | Change supported by step-3 start |
+| --- | --- |
+| o27, Lys N–PLP C bond to Lys N | Remove a23–a13; a23 changes from +1 to neutral with a drawn lone pair. |
+| o28, substrate N lone pair to substrate N–PLP C bond | Change a21–a13 from single to double; a21 becomes +1 and loses the drawn lone-pair token. |
+
+Step 3 retains the covalently bound substrate–PLP adduct. Thus the step-2
+phrase “free PLP” cannot supply an unbound-cofactor state. This is compatible
+heavy-atom topology, not an accepted complete chemical-state replay.
+
+The complete selected actor has 30 drawn atoms in each panel: 28 heavy atoms
+and two explicit H atoms. After the two reviewed arrows, the H neighbors are
+oxygen and nitrogen; at step-3 start they are oxygen and carbon. This multiset
+is invariant under any element-preserving graph bijection. Neither of the two
+possible H permutations can repair it. The same-locator residual is Lys
+N a23–H a40 versus substrate alpha-C a17–H a40; neither step-2 arrow touches H.
+The result therefore goes beyond finding a different bond at the same raw ID.
+
+The source may draw different hydrogens when they become relevant to a step.
+Step 3's own o27/o30 arrows use its alpha-C-bound H. That possible explanation
+does not identify the H across panels or establish a physical proton transfer
+during step 2. Missing implicit H is not completed to force a match. The
+ordered a17–a21 stereobond remains raw `W` in both drawings; neither its token
+nor the heavy-atom match establishes stereochemical continuity or R/S.
+
+The bounded inquiry closes at this first unaccounted explicit-H change. The
+source chemistry is not disproved. No new runtime relation or claim is added,
+and the original cross-entry diagnostic and strict consumer guards are
+unchanged. The [supplemental review](../data/atlas/source_step_correspondence/m0186_continuity_review.json)
+records the source objection and its computational adjudication. Source and
+compiled-record hashes bind the audit; no new source request was made.
+
 ## Reproduce and reuse the finding
 
 The [bound diagnostic](../data/atlas/source_step_correspondence/plp_step2_boundary.json)

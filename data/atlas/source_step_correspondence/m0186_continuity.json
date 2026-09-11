@@ -1,0 +1,354 @@
+{
+  "schema_version": "catalytic-earth.source-panel-continuity-audit.v1",
+  "audit_id": "m0186:proposal1:step2-to-step3-start",
+  "operation": "source_annotation",
+  "status": "full_explicit_depiction_replay_blocked",
+  "question": "Do proposal1 step2 arrows account for the selected PLP-serine-lysine actor at step3 start?",
+  "source_binding": {
+    "snapshot": {
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0186.json",
+      "sha256": "687986c4aaa94ce6bba72c5403bf28a4f04b32891c3493ccb75436defb2a7f38"
+    },
+    "records": {
+      "path": "data/atlas/source_drafts/batches/plp-pyruvoyl/records.json",
+      "sha256": "7f21e56cdb778e6c92008b740aa2dbce9b1b3de5700f730ffe47d4e922c11227"
+    },
+    "record_id": "atlas50-draft:m0186:source-scoped-mechanism-draft"
+  },
+  "panels": {
+    "before": {
+      "json_pointer": "/step_schemes/1",
+      "source_mechanism_id": 1,
+      "source_step_id": 2,
+      "scheme_sha256": "0b0a10e4fec45ca09006b8fc61afeb7e7c842afd4afea27cf6960caf500cc897",
+      "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_186_mechanism_1_step_2_pjwMaod.mrv",
+      "whole_panel_atom_count": 40,
+      "whole_panel_bond_count": 38,
+      "explicit_hydrogens": [
+        {
+          "atom_id": "a39",
+          "neighbor_atom_ids": [
+            "a15"
+          ]
+        },
+        {
+          "atom_id": "a40",
+          "neighbor_atom_ids": [
+            "a23"
+          ]
+        }
+      ],
+      "ordered_stereo_witnesses": [
+        {
+          "bond_id": "b31",
+          "atom_refs2": [
+            "a17",
+            "a21"
+          ],
+          "order": "1",
+          "raw_token": "W"
+        }
+      ]
+    },
+    "next_start": {
+      "json_pointer": "/step_schemes/2",
+      "source_mechanism_id": 1,
+      "source_step_id": 3,
+      "scheme_sha256": "7edb1e4fd049124b20e156f8b19ec648b63d66e5a36f84d7a999cce7733090fc",
+      "source_url": "https://www.ebi.ac.uk/thornton-srv/m-csa/media/schemes/MACiE__entry_186_mechanism_1_step_3.mrv",
+      "whole_panel_atom_count": 40,
+      "whole_panel_bond_count": 37,
+      "explicit_hydrogens": [
+        {
+          "atom_id": "a39",
+          "neighbor_atom_ids": [
+            "a15"
+          ]
+        },
+        {
+          "atom_id": "a40",
+          "neighbor_atom_ids": [
+            "a17"
+          ]
+        }
+      ],
+      "ordered_stereo_witnesses": [
+        {
+          "bond_id": "b30",
+          "atom_refs2": [
+            "a17",
+            "a21"
+          ],
+          "order": "1",
+          "raw_token": "W"
+        }
+      ]
+    }
+  },
+  "selected_actor": {
+    "selection_basis": "Complete connected PLP-serine-Lys actor in step2; retain the corresponding substrate-cofactor and detached Lys fragments at step3 start. Ala222/Cys303 spectator fragments are outside this selection.",
+    "before_atom_ids": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5",
+      "a6",
+      "a7",
+      "a8",
+      "a9",
+      "a10",
+      "a11",
+      "a12",
+      "a13",
+      "a14",
+      "a15",
+      "a16",
+      "a17",
+      "a18",
+      "a19",
+      "a20",
+      "a21",
+      "a22",
+      "a23",
+      "a24",
+      "a25",
+      "a26",
+      "a27",
+      "a28",
+      "a39",
+      "a40"
+    ],
+    "next_start_atom_ids": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5",
+      "a6",
+      "a7",
+      "a8",
+      "a9",
+      "a10",
+      "a11",
+      "a12",
+      "a13",
+      "a14",
+      "a15",
+      "a16",
+      "a17",
+      "a18",
+      "a19",
+      "a20",
+      "a21",
+      "a22",
+      "a23",
+      "a24",
+      "a25",
+      "a26",
+      "a27",
+      "a28",
+      "a39",
+      "a40"
+    ],
+    "proposed_heavy_atom_locator_map": {
+      "a1": "a1",
+      "a2": "a2",
+      "a3": "a3",
+      "a4": "a4",
+      "a5": "a5",
+      "a6": "a6",
+      "a7": "a7",
+      "a8": "a8",
+      "a9": "a9",
+      "a10": "a10",
+      "a11": "a11",
+      "a12": "a12",
+      "a13": "a13",
+      "a14": "a14",
+      "a15": "a15",
+      "a16": "a16",
+      "a17": "a17",
+      "a18": "a18",
+      "a19": "a19",
+      "a20": "a20",
+      "a21": "a21",
+      "a22": "a22",
+      "a23": "a23",
+      "a24": "a24",
+      "a25": "a25",
+      "a26": "a26",
+      "a27": "a27",
+      "a28": "a28"
+    },
+    "before_atom_count": 30,
+    "next_start_atom_count": 30,
+    "before_bond_count": 30,
+    "next_start_bond_count": 29,
+    "heavy_atom_count": 28,
+    "heavy_bond_count_before": 28,
+    "heavy_bond_count_next_start": 27,
+    "map_scope": "A source-depiction locator proposal checked against elements, raw electronic/label attributes and bonds; shared atom IDs alone are not identity evidence. No physical atom correspondence is asserted."
+  },
+  "source_step2_flows": [
+    {
+      "flow_id": "o27",
+      "source_point_kind": "atom_set",
+      "source_atom_ids": [
+        "a23",
+        "a13"
+      ],
+      "target_point_kind": "atom_set",
+      "target_atom_ids": [
+        "a23"
+      ]
+    },
+    {
+      "flow_id": "o28",
+      "source_point_kind": "electron_base_atom",
+      "source_atom_ids": [
+        "a21"
+      ],
+      "target_point_kind": "atom_set",
+      "target_atom_ids": [
+        "a21",
+        "a13"
+      ]
+    }
+  ],
+  "reviewed_bond_charge_edits": [
+    {
+      "edit_id": "lysine_adduct_cleavage",
+      "operation": "remove_bond",
+      "atom_ids": [
+        "a23",
+        "a13"
+      ],
+      "before": 1,
+      "after": 0,
+      "source_flow_id": "o27"
+    },
+    {
+      "edit_id": "lysine_neutralization",
+      "operation": "set_formal_charge",
+      "atom_ids": [
+        "a23"
+      ],
+      "before": 1,
+      "after": 0,
+      "source_flow_id": "o27"
+    },
+    {
+      "edit_id": "substrate_iminium_bond",
+      "operation": "set_bond_order",
+      "atom_ids": [
+        "a21",
+        "a13"
+      ],
+      "before": 1,
+      "after": 2,
+      "source_flow_id": "o28"
+    },
+    {
+      "edit_id": "substrate_n_charge",
+      "operation": "set_formal_charge",
+      "atom_ids": [
+        "a21"
+      ],
+      "before": 0,
+      "after": 1,
+      "source_flow_id": "o28"
+    }
+  ],
+  "reviewed_raw_atom_token_changes": [
+    {
+      "atom_id": "a23",
+      "attribute": "formalCharge",
+      "before": "1",
+      "after": null,
+      "source_flow_id": "o27"
+    },
+    {
+      "atom_id": "a23",
+      "attribute": "lonePair",
+      "before": null,
+      "after": "1",
+      "source_flow_id": "o27"
+    },
+    {
+      "atom_id": "a21",
+      "attribute": "formalCharge",
+      "before": null,
+      "after": "1",
+      "source_flow_id": "o28"
+    },
+    {
+      "atom_id": "a21",
+      "attribute": "lonePair",
+      "before": "1",
+      "after": null,
+      "source_flow_id": "o28"
+    }
+  ],
+  "finding": {
+    "heavy_atom_bond_and_raw_attribute_changes_accounted": true,
+    "heavy_comparison_scope": "Named locator map, bond orders and noncoordinate raw atom attributes after the reviewed changes. Source stereo is retained as ordered raw W only, not interpreted.",
+    "explicit_h_neighbor_elements_after_reviewed_edits": [
+      "N",
+      "O"
+    ],
+    "explicit_h_neighbor_elements_at_next_start": [
+      "C",
+      "O"
+    ],
+    "full_element_preserving_bijection_possible": false,
+    "invariant_reason": "Step2 arrows touch no explicit H. Every element-preserving graph bijection preserves the multiset of explicit-H neighbor elements. N,O differs from C,O, so no relabeling can complete this replay.",
+    "same_locator_residual_before_bond": [
+      "a23",
+      "a40"
+    ],
+    "same_locator_residual_next_start_bond": [
+      "a17",
+      "a40"
+    ],
+    "residual_bond_order": 1,
+    "hydrogen_id_permutations_checked": 2,
+    "hydrogen_id_permutations_matching": 0,
+    "full_selected_actor_replay": false,
+    "qualified_chemical_state_relation": false,
+    "stereochemical_continuity_established": false,
+    "physical_proton_transfer_established": false
+  },
+  "source_interpretation": {
+    "step2_prose_pointer": "/entry/reaction/mechanisms/0/steps/1/description",
+    "step3_prose_pointer": "/entry/reaction/mechanisms/0/steps/2/description",
+    "lysine_displacement": "Step2 describes elimination of the covalently bound lysine into a neutral state. Step3 describes covalently bound L-serine and depicts substrate-N/PLP-C double bonding. The step2 phrase free PLP does not establish free unbound cofactor.",
+    "next_step_h_scope": "Step3 o27 begins at a17-a40 and o30 targets a23-a40. They use the alpha-C-bound explicit H within step3, not a physical H identity carried from step2.",
+    "hydrogen_redrawing": "Selective depiction of hydrogens needed for each step is a possible explanation, not an established atom map or corrected source trajectory."
+  },
+  "limitations": [
+    "The mismatch proves a limit of full explicit-depiction replay under these arrows, not incorrect chemistry or absence of transaldimination.",
+    "No missing/implicit hydrogen is completed, removed from the source, or identified with another panel-local atom.",
+    "Omitted formalCharge is read as zero for bond/charge comparison; raw omission and lonePair tokens remain explicitly witnessed.",
+    "Equal ordered W tokens do not establish absolute configuration or stereochemical continuity. Existing consumer guards remain unchanged.",
+    "This audit does not admit a mechanism, exact reaction instance, complete microstate, observed intermediate trajectory, function transfer, new experimental observation, or evidence-tier promotion.",
+    "The earlier cross-entry PLP boundary and its review remain unchanged. This supplement addresses only the within-M0186 step2-to-step3 transition."
+  ],
+  "attribution": {
+    "source": "Retained M-CSA M0186 snapshot",
+    "license": "CC BY 4.0",
+    "citation": "Ribeiro AJM et al. Nucleic Acids Research 46(D1):D618-D623 (2018), doi:10.1093/nar/gkx1012.",
+    "source_urls": [
+      "https://www.ebi.ac.uk/thornton-srv/m-csa/entry/186/"
+    ],
+    "changes": "Added a project-authored source-panel continuity audit; original source snapshot and compiled records are unchanged."
+  },
+  "acquisition": {
+    "new_scientific_source_requests": 0,
+    "new_response_body_bytes": 0,
+    "inherited_batch_usage_unchanged": true,
+    "plp_batch_requests_lower_bound": 73,
+    "plp_batch_response_bytes_lower_bound": 5068731,
+    "complete_plp_headroom_known": false
+  }
+}

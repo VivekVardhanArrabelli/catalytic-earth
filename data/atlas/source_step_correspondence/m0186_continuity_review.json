@@ -1,0 +1,99 @@
+{
+  "schema_version": "catalytic-earth.source-panel-continuity-review.v1",
+  "status": "source_reviewed_computational",
+  "operation": "source_annotation",
+  "base_commit": "edef3d5c9b105b9fc7128487a25d9584b0a736ac",
+  "question": "Can retained M0186 proposal1 step2 arrows supply the full explicit chemical state at step3 start?",
+  "bindings": {
+    "data/atlas/source_step_correspondence/m0186_continuity.json": "801c3e7a8bd23d4b8e38ce1ae4410f1cc696b0b552deeb0fe8ab96d5a3ab7217",
+    "docs/ATLAS_PLP_STEP_BOUNDARY.md": "34d4b48d3c332315885079cfacb005615a534a400e5899570c3960bdc64b884f",
+    "docs/CURRENT_STATE.md": "cb1070a46e0ec54a77c567482531ef3c94232c9bf0406dc54c1c38da617a9c5d",
+    "docs/CURRENT_DECISIONS.md": "dc863ed8d29f7424f16f869488160a138b55f96ebcc068a984d02b39ec731dfe",
+    "tests/core/test_source_step_correspondence.py": "b8ab1cc03b5d78171a9b458f0e50ff58c3f75446595bbb9a49ecf6feae0bc31b",
+    "data/atlas/perturbations/review.json": "4b3aeed5f9d42857735809d4f610b5ce46bf8d5414f22184b5955fb1991f9028"
+  },
+  "source_findings": [
+    "The two source arrows account for the heavy-atom bond, formal-charge and raw lone-pair changes under the declared locator map. Step3 retains substrate-PLP covalent adduct topology.",
+    "The full selected actor has the same 30 atoms in each panel but different explicit-H neighbor elements: N,O after the two arrows versus C,O at next start. Any element-preserving bijection preserves this multiset, so no H relabeling repairs it.",
+    "Neither step2 arrow touches H. Step3 own arrows use the alpha-C-bound H within that panel; this does not establish physical H identity across panels.",
+    "Raw ordered W is retained; no canonical stereochemistry or full state relation is admitted. Existing strict source-step and context-candidate guards still refuse."
+  ],
+  "adjudicated_challenges": [
+    {
+      "objection": "A raw same-ID bond diff could mistake panel-local H relabeling for an actual proton transfer.",
+      "resolution": "Use the H-neighbor-element invariant, which excludes every element-preserving full bijection independently of IDs, and explicitly retain physical-proton uncertainty."
+    },
+    {
+      "objection": "Dropping H or relying on equal W could manufacture a successful chemical-state replay.",
+      "resolution": "Keep complete selected explicit-H inventories, both H permutations and the residual edges. Heavy compatibility is only a diagnostic; full replay and stereo continuity remain false."
+    },
+    {
+      "objection": "Step2 free PLP wording could imply an unbound cofactor or completed cofactor regeneration.",
+      "resolution": "Preserve the wording as source prose; step3 covalently bound substrate and iminium topology do not support that interpretation."
+    },
+    {
+      "objection": "Another source-drawing refusal may repeat settled work without useful information.",
+      "resolution": "This establishes a previously unadjudicated within-entry H-continuity obstruction beyond the earlier cross-entry stereo guard. Close this exact question; do not turn it into a series of panel refusals or new runtime."
+    },
+    {
+      "objection": "Bond topology alone admits a phosphate-oxygen swap with unequal charge/lonePair states; arbitrary flow IDs or reversible extra token edits could survive an endpoint-only check.",
+      "resolution": "Verify every mapped raw atom signature, source-flow endpoint membership, and exactly four unique charge/lonePair token changes. Preserve full-state abstention and source-derived H/count facts."
+    },
+    {
+      "objection": "Current-state documentation is also bound by the existing perturbation query; changing its hash blocks unrelated scientific queries.",
+      "resolution": "Renew exactly those two reviewed document bindings with a scoped followup; retain all original scientific review content and prove the perturbation specification/providers/runtime remain unchanged."
+    }
+  ],
+  "reviewers": [
+    {
+      "agent": "source_m0186",
+      "role": "raw source chemistry and provenance",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra"
+    },
+    {
+      "agent": "representation_m0186",
+      "role": "element-preserving graph mapping and hydrogen accounting",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra"
+    },
+    {
+      "agent": "adversarial_m0186",
+      "role": "inference scope, novelty and next question",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra"
+    }
+  ],
+  "independent_human_review": false,
+  "correlated_errors_possible": true,
+  "scope": "Supplementary source annotation only. It adds no runtime or claim change and accepts no chemical-state relation, physical atom map, full trajectory, new mechanism, experiment, or evidence-tier promotion. Prior source records and cross-entry audit remain unchanged.",
+  "remaining_scientific_limitations": [
+    "Full explicit-depiction continuity and stereochemical continuity remain unsupported; these block full-state replay.",
+    "Selective hydrogen depiction is a possible explanation, not a completed hydrogen model."
+  ],
+  "verification": {
+    "focused_source_correspondence_tests": 13,
+    "focused_result": "passed",
+    "truth_tests": 14,
+    "truth_result": "passed",
+    "source_annotation_permission": "M0186 pinned permission passed",
+    "core_unit": "629 tests passed",
+    "repository_contracts": "passed after staged handoff archive and path inventory renewal",
+    "remote_ci": "Required at the exact reviewed head before merge; final result belongs in run receipt and task result.",
+    "independent_mutation_checks": {
+      "unmodified_candidate": "accepted",
+      "phosphate_oxygen_attribute_swap": "rejected",
+      "reversed_arrow_bindings": "rejected",
+      "unknown_arrow_binding": "rejected",
+      "extra_reversible_raw_token_cycle": "rejected"
+    }
+  },
+  "acquisition": {
+    "new_scientific_source_requests": 0,
+    "new_response_body_bytes": 0,
+    "inherited_cumulative_batches_unchanged": true,
+    "plp_headroom_recomputed": false
+  },
+  "reviewed_at_utc": "2026-09-11T10:26:10.740258+00:00",
+  "remaining_review_objections": []
+}
