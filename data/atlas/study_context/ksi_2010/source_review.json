@@ -1,0 +1,77 @@
+{
+  "schema_version": "catalytic-earth.source-qualification-review.v1",
+  "assessment_id": "ksi_2010_donor_solvation_discriminant",
+  "decision": "accept_source_annotation",
+  "authorized_operation": "source_annotation",
+  "policy_binding": {
+    "path": "data/governance/computational_review_policy.json",
+    "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "reviewed_bindings": {
+    "data/atlas/study_context/ksi_2010/donor_solvation.json": "91987df11328679b5b01e54ef40c2bda9772386377c27b1457b63f8ef7d6c2e4",
+    "data/atlas/study_context/ksi_2010/acquisition_receipts.json": "727edc8cff0496db5640743a0a00e9f34be364129c747e1df07a5892d1d5a82e",
+    "data/atlas/perturbations/projection.json": "64fe8961455226af39aa32389fcac24ef821ffe01b45917e351757c1e1d717f6",
+    "docs/ATLAS_KSI_FIELD_FUNCTION.md": "8a5ebae4b926c86aced7a4c379ea5d41c200e67734e1ab033fa6e64877accade",
+    "CLAIMS.md": "713d888e34432b57b1f51748aed1e72dc0c8826e3d5231693fcaf947170a3a47",
+    "data/governance/claim_ledger.json": "287078b428ab250700f2e886264bd588f68423d2e968ea04fde7736378fc7d34",
+    "docs/CURRENT_STATE.md": "791bdea440aa7a219d8e7b9c82b5eabe858e95ecec8cac7acf37d2bac3cf7455",
+    "docs/CURRENT_DECISIONS.md": "cb9ab8253d0489d0fe14500190d14acd75d7ecb97f0b035a197466d50dd6fcb1",
+    "tests/core/test_atlas_perturbations.py": "34f7bd4be8d98df6c14df4097dd94e03516380eb1275c094a010a061f18f3030",
+    "tests/test_truth_guard.py": "32666058fc104e977199593d13d0041eaa648133e1c9f6b585a68f73562fab1d"
+  },
+  "source_inspection": "Parent and source reviewer read retained primary body/captions and visually inspected Figures1/3. DOI/ref18 checked in retained Fried2014 article. SI challenge/error responses are not primary scientific content.",
+  "review_process": "Parent source/diff review and separately prompted read-only source, representation and adversarial agents on gpt-5.6-sol/ultra. Correlated computational checks, not independent human or experimental validation. Final immutable publication review is recorded separately.",
+  "reviewer_tasks": [
+    "source_discriminant",
+    "representation_discriminant",
+    "adversarial_discriminant"
+  ],
+  "adjudications": [
+    {
+      "objection": "A modest Y16S effect might be attributed to retention of its hydroxyl hydrogen bond.",
+      "decision": "Hydroxyl-absent Ala/Gly retain similar moderate turnover. Encode that donor-control discrimination, without equal-mechanism or significance claims.",
+      "evidence": "Kraut2010 Results Rate Effects and Fig2."
+    },
+    {
+      "objection": "The analogue structure or water evidence could be transferred to the kinetic single mutants.",
+      "decision": "3IPT is Y16S/D40N plus equilenin; 19F uses double mutants plus fluoronitrophenolate. No same-construct/ligand or direct turnover-water relation. Source water model stays inferred; unresolved density is not discrete water sites.",
+      "evidence": "Figs3-4, Results X-Ray Structure and 19F NMR, Methods and D40N footnote."
+    },
+    {
+      "objection": "Reported reductions could be relabeled as absolute kcat or kcat/KM, or inherit Fig2 SD.",
+      "decision": "Reuse the existing source-reported reduction-factor contract with approximate values and unavailable factor errors. Qualify the reported pattern, not new exact arithmetic. SI remains unacquired.",
+      "evidence": "Main Results and Fig2 caption; acquisition appendix."
+    },
+    {
+      "objection": "Signed NMR measurements would be corrupted by the unsigned scalar contract.",
+      "decision": "Keep -136.4 and -134.7ppm as signed structured source evidence. Do not relabel them qualitative, take absolute values, or add a case-specific runtime exception.",
+      "evidence": "Fig4B and 19F Results; existing nonnegative observation contract."
+    },
+    {
+      "objection": "The product name and sequencing statement could exceed the acquired source wording.",
+      "decision": "Label product nomenclature as project reading of Fig1A. Restrict DNA confirmation to the source statement about Tyr16-mutant plasmids; no WT/D40N/full-specimen sequence verification.",
+      "evidence": "Visually inspected Fig1A; exact main Methods sentence."
+    },
+    {
+      "objection": "The inherited reference18 connection would remain a manual DOI join.",
+      "decision": "Add a structured Fried2014 reference18 relation and bind the existing compiled context. Different5(10)-EST versus5-AND substrates block exact factor/condition/row-lineage transfer.",
+      "evidence": "Retained Fried2014 article ref18/SI TableS2; Kraut2010 Results Rate Effects."
+    },
+    {
+      "objection": "The draft treated all transfer axes as experimentally disproved and its projection scope omitted the new selection.",
+      "decision": "Only sidechain nonuniformity is demonstrated. Substrate, analogue and background transfers remain unqualified. Narrow CE-040 to the named panel and include its positive discrimination/model limit in the public projection scope.",
+      "evidence": "Kraut2010 control panel and unmatched experimental contexts; adversarial exact-draft review."
+    }
+  ],
+  "blocked_operations": [
+    "isolated_or_universal_hydrogen_bond_energy",
+    "single_mutant_reacting_geometry_from_double_mutant_analogue",
+    "water_causal_effect_or_exact_site_occupancy",
+    "absolute_kinetics_or_factor_error_reconstruction_withoutSI",
+    "5-10-EST_to5-AND_compilation_transfer",
+    "protected_registry_or_evidence_tier_promotion"
+  ],
+  "coordination_record": ".git/catalytic-earth-runs/fad1ae04.board.md",
+  "reviewed_at_utc": "2026-09-11T04:24:41.462866+00:00",
+  "historical_review_scope": "Prior2014/1995 source reviews and their source files remain byte-identical. This review appends the2010 discrimination and updates only current cumulative projection/document pins."
+}

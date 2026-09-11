@@ -1,10 +1,10 @@
 {
   "schema_version": "catalytic-earth.perturbation-source-review.v1",
   "status": "source_reviewed_computational",
-  "reviewed_at_utc": "2026-09-11T03:25:51.202047+00:00",
-  "scope": "Cumulative source-reviewed projection; this increment adds KimChoi1995 primary kcat/KM comparisons and a source-scoped compilation-provenance boundary. Earlier numeric results and eligibility remain unchanged; only the compiled acquisition-status clause is narrowed. Original source reviews remain historical.",
+  "reviewed_at_utc": "2026-09-11T04:24:41.462866+00:00",
+  "scope": "Cumulative source-reviewed projection; this increment adds Kraut2010 donor-control discrimination and separately scoped analogue solvation evidence. Prior parameter/comparison/state-link objects and source providers are unchanged. No runtime change.",
   "reviewed_bindings": {
-    "data/atlas/perturbations/projection.json": "a19e2d9491dcbc5df5491147ed233df7ba20988befd718d97ccebd8f71dbccd1",
+    "data/atlas/perturbations/projection.json": "64fe8961455226af39aa32389fcac24ef821ffe01b45917e351757c1e1d717f6",
     "src/catalytic_earth/atlas_perturbations.py": "a814c22b892b3e734076fa9aead03453c83cb6ebe4c1d1e8cd85f5bbf4f0d778",
     "scripts/query_atlas_perturbations.py": "a13b3176952c44df5e8b053ee3a7907d5020ae00e66d75b248790f7aa20656e2",
     "docs/ATLAS_PERTURBATION_RELATION.md": "04bcda88bf03332d9203599d82e2fa28d382954a138555265caaf9404b043b6e",
@@ -12,7 +12,7 @@
     "docs/ATLAS_FORWARD_SYNTHESIS.md": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84",
     "data/atlas/study_context/diels_alder_2010/source_review.json": "bd97ed99812a3188ef47c090f61c87b0891bbc470222c49ee7698455680bf865",
     "docs/ATLAS_DIELS_ALDER_CONTROLS.md": "749e81dbcebcceb9022a5b4a5043bb16276c712c43b0c856feb394561830ac19",
-    "tests/core/test_atlas_perturbations.py": "338285ccb90921f5ca891f563974fd99b50f2e7dfe154d22e42fede0a19bbed9",
+    "tests/core/test_atlas_perturbations.py": "34f7bd4be8d98df6c14df4097dd94e03516380eb1275c094a010a061f18f3030",
     "data/atlas/study_context/6ha3/perturbation_context.json": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0",
     "data/atlas/study_context/6ha3/functional_review.json": "9af6d94d77800810d210e032e90e6af6a99ffd22a5548d9d39b5a7f502199200",
     "data/atlas/assembly_context/6ha3/review.json": "434188c22e847de2add0c76cc06076de9347d39ecd259acc051631792fcc7eaa",
@@ -31,10 +31,10 @@
     "data/atlas/study_context/ra95_2017/chemical_state.json": "0304a28cc9676ae9d920b5c4f6c47f102d10320e125cc40cbfddd971ccff695d",
     "data/atlas/study_context/ra95_2017/chemical_state_acquisition.json": "4b0427a24aab3b1269f25cd80b3b9c90f61c4a99404499d77cf0c16a8b5f2ecb",
     "docs/ATLAS_RA95_CHEMICAL_STATE.md": "a85ee7c6accdafb0f2fb63a1a658413e07788cee4a5f9f7879dce726c6707c01",
-    "CLAIMS.md": "c58794d6dce0d24a55827f89b9d0ff4cfd19add766e4d20ea438c3b37beb2749",
-    "data/governance/claim_ledger.json": "c4344b027235e3b3357d692790dde514af54690aefe55ee421ead0d7c0f9b1ac",
-    "docs/CURRENT_DECISIONS.md": "d9c61237f7c97338aa812b916f7e84d117ccab091a8566fd52957c39df1c8f66",
-    "docs/CURRENT_STATE.md": "fbed3c2dc57a3a81deb3104a1c4a3efb6b28170a1de2f5b6b97ff72217f115f6",
+    "CLAIMS.md": "713d888e34432b57b1f51748aed1e72dc0c8826e3d5231693fcaf947170a3a47",
+    "data/governance/claim_ledger.json": "287078b428ab250700f2e886264bd588f68423d2e968ea04fde7736378fc7d34",
+    "docs/CURRENT_DECISIONS.md": "cb9ab8253d0489d0fe14500190d14acd75d7ecb97f0b035a197466d50dd6fcb1",
+    "docs/CURRENT_STATE.md": "791bdea440aa7a219d8e7b9c82b5eabe858e95ecec8cac7acf37d2bac3cf7455",
     "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
     "src/catalytic_earth/atlas_deposit_context.py": "adfae408de29e6b5f61fab970d7631f42846a9cdaedea0340d65e6ac95ad2a87",
     "src/catalytic_earth/atlas_assembly_context.py": "5d671a761f3ad493661f3c25b50dce693ef2169a48942af9664a65e0b0ae0835",
@@ -47,7 +47,7 @@
     "data/atlas/deposit_context/ra95_4a2r/projection.json": "ea3117cea3d83e156534abcc1efd62f10ed056a1965ba7e99a0974ac915b3461",
     "data/atlas/study_context/ra95_2013/chemical_state.json": "a9b7df48d5684fc014ced487477364eb8d9b2072817e3be4c64837a364df0670",
     "data/atlas/study_context/ra95_2013/chemical_state_acquisition.json": "7efd0b0efdb32572d369194fc4e9eedd84b0a184aa8c9f10b7af50766b4c1da9",
-    "tests/test_truth_guard.py": "d9f926891060c038303f34a412a6c7745da406229a7fa4c8268a2c4233002d7e",
+    "tests/test_truth_guard.py": "32666058fc104e977199593d13d0041eaa648133e1c9f6b585a68f73562fab1d",
     "docs/ATLAS_RA95_4A2R_STATE.md": "8089d97dd393b0f3c2576197481c9551f3bdf2d1ff20a64dd15323ad7a6011ef",
     "data/atlas/study_context/ra95_2013/chemical_state_review.json": "12864f833532eff632016804fbf322e1828c33c3cabf840b2cd08b8f0ea99ebf",
     "data/atlas/deposit_context/ra95_4a2r/review.json": "dc017d8ed45a52dade5c04a77c42d734fa34926b67cefa043a35f0d9bb605a20",
@@ -56,11 +56,14 @@
     "data/atlas/study_context/ksi_2014/field_function.json": "1e783d88486e8a68dde5099a92eadf3651a003b7e9ebe3f1dbc6de9e3e9cfb0c",
     "data/atlas/study_context/ksi_2014/acquisition_receipts.json": "9a0722832af986f2d1b5fae8af33b69dcfb22571076d83f02d737b1b3a545865",
     "data/atlas/study_context/ra95_2013/dera_acquisition_appendix.json": "403ba72586901956fadd2d5af67bd4a35552aeb24158226697b051a4577cc645",
-    "docs/ATLAS_KSI_FIELD_FUNCTION.md": "a06e09e624f82ab75105f448b9e75709ba875541b236bea0f044b3593e2c87e5",
+    "docs/ATLAS_KSI_FIELD_FUNCTION.md": "8a5ebae4b926c86aced7a4c379ea5d41c200e67734e1ab033fa6e64877accade",
     "data/atlas/study_context/ksi_2014/source_review.json": "b3ff545ff03a316ee27efce9a5e5e3ddd97f138d1ae46dcf9c51d029189d1532",
     "data/atlas/study_context/ksi_1995/primary_kinetics.json": "c4b4e89ae32bb4389be89cddc61120b3a9f7ef7f01fad4bba485e7aa5896d11a",
     "data/atlas/study_context/ksi_1995/acquisition_receipts.json": "dd625bb6d059add2813674f8314c9ea3a3af0c8bf46a7bde4a2db3c08494b4f0",
-    "data/atlas/study_context/ksi_1995/source_review.json": "283963a1bb769acd02b9e62be8cb38fb72f842c74eb95e16e5f6ae8723b93428"
+    "data/atlas/study_context/ksi_1995/source_review.json": "283963a1bb769acd02b9e62be8cb38fb72f842c74eb95e16e5f6ae8723b93428",
+    "data/atlas/study_context/ksi_2010/acquisition_receipts.json": "727edc8cff0496db5640743a0a00e9f34be364129c747e1df07a5892d1d5a82e",
+    "data/atlas/study_context/ksi_2010/donor_solvation.json": "91987df11328679b5b01e54ef40c2bda9772386377c27b1457b63f8ef7d6c2e4",
+    "data/atlas/study_context/ksi_2010/source_review.json": "eda3695c508766c3aa7c181c40b43c316d4f4f1e959d2a998ebe65b31423b53b"
   },
   "inherited_source_bindings": {
     "ra95f": {
@@ -115,21 +118,21 @@
   "review_process": [
     {
       "role": "source",
-      "task": "kinetic_source_review",
+      "task": "source_discriminant",
       "model": "gpt-5.6-sol",
       "reasoning_effort": "ultra",
       "status": "source_content_accepted_after_narrowing; final_publication_review_separate"
     },
     {
       "role": "representation",
-      "task": "kinetic_representation",
+      "task": "representation_discriminant",
       "model": "gpt-5.6-sol",
       "reasoning_effort": "ultra",
       "status": "source_content_accepted_after_narrowing; final_publication_review_separate"
     },
     {
       "role": "adversarial",
-      "task": "kinetic_adversarial",
+      "task": "adversarial_discriminant",
       "model": "gpt-5.6-sol",
       "reasoning_effort": "ultra",
       "status": "source_content_accepted_after_narrowing; final_publication_review_separate"
@@ -343,6 +346,30 @@
     {
       "objection": "Existing193observations/111comparisons/sourcecontexts/witnesses/8Fstate remain object-equal to base; row-only deposit avoids redundant geometry expansion.",
       "decision": "Source-scoped data and query constraints preserve the boundary; exact15-file manifest accepted by all three current roles."
+    },
+    {
+      "issue": "A modest Y16S effect might be attributed to retention of its hydroxyl hydrogen bond.",
+      "resolution": "Hydroxyl-absent Ala/Gly retain similar moderate turnover. Encode that donor-control discrimination, without equal-mechanism or significance claims."
+    },
+    {
+      "issue": "The analogue structure or water evidence could be transferred to the kinetic single mutants.",
+      "resolution": "3IPT is Y16S/D40N plus equilenin; 19F uses double mutants plus fluoronitrophenolate. No same-construct/ligand or direct turnover-water relation. Source water model stays inferred; unresolved density is not discrete water sites."
+    },
+    {
+      "issue": "Reported reductions could be relabeled as absolute kcat or kcat/KM, or inherit Fig2 SD.",
+      "resolution": "Reuse the existing source-reported reduction-factor contract with approximate values and unavailable factor errors. Qualify the reported pattern, not new exact arithmetic. SI remains unacquired."
+    },
+    {
+      "issue": "Signed NMR measurements would be corrupted by the unsigned scalar contract.",
+      "resolution": "Keep -136.4 and -134.7ppm as signed structured source evidence. Do not relabel them qualitative, take absolute values, or add a case-specific runtime exception."
+    },
+    {
+      "issue": "The product name and sequencing statement could exceed the acquired source wording.",
+      "resolution": "Label product nomenclature as project reading of Fig1A. Restrict DNA confirmation to the source statement about Tyr16-mutant plasmids; no WT/D40N/full-specimen sequence verification."
+    },
+    {
+      "issue": "The inherited reference18 connection would remain a manual DOI join.",
+      "resolution": "Add a structured Fried2014 reference18 relation and bind the existing compiled context. Different5(10)-EST versus5-AND substrates block exact factor/condition/row-lineage transfer."
     }
   ],
   "remaining_limits": [
@@ -740,5 +767,12 @@
       ],
       "coordination_record": "work/coordination_ra95_4a2r_20260910.md"
     }
+  },
+  "ksi_donor_solvation_followup": {
+    "review": {
+      "path": "data/atlas/study_context/ksi_2010/source_review.json",
+      "sha256": "eda3695c508766c3aa7c181c40b43c316d4f4f1e959d2a998ebe65b31423b53b"
+    },
+    "scope": "Five rounded reported kcat-reduction factors plus assessed donor-control context; no arithmetic or analogue-state transfer."
   }
 }

@@ -190,3 +190,67 @@ including the redirects and failed mechanism-paper route. The useful addition
 is a qualified primary kinetic relation plus a prevented cross-study method
 transfer. Source selection and interpretation remain manual; no measured
 curation-time saving, complete mechanistic chain or design performance follows.
+
+## Donor controls distinguish mutation effects from a single hydrogen-bond energy
+
+Kraut et al.'s [2010 primary study](https://pmc.ncbi.nlm.nih.gov/articles/PMC2836627/)
+is Fried2014 reference 18. Its single-mutant pKSI experiments use
+**5(10)-estrene-3,17-dione**, a different substrate from the earlier
+5-androstene-3,17-dione comparisons. The authors selected it to isolate
+chemical-step effects, citing earlier kinetic work; that microscopic premise
+is source-attributed, not newly tested here.
+
+The main text reports roughly 20,000-fold kcat loss for Y16F, 300-fold for
+Y16S, and 200-fold for each of Y16T, Y16A and Y16G. Ser and Thr retain a
+sidechain hydroxyl; Ala and Gly do not. Their similar moderate losses show
+that **a residue-16 hydroxyl is not required for the moderate residual
+turnover in this panel**. Donor presence alone therefore does not explain
+the much larger Phe effect. Similar rounded endpoints do not establish
+statistical equivalence or identical microscopic mechanisms.
+
+The [source packet](../data/atlas/study_context/ksi_2010/donor_solvation.json)
+exposes this control relation through the existing consumer:
+
+```sh
+python scripts/query_atlas_perturbations.py --study ksi_2010
+python scripts/query_atlas_perturbations.py --comparison ksi_2010:donor_solvation_context
+```
+
+The query returns five **source-reported reduction factors**, with no invented
+WT value, absolute kcat or recomputed ratio. The context marks the source
+discrimination as assessed and arithmetic as unrequested; its `unassessed`
+operation concerns arithmetic eligibility, not the scientific conclusion.
+Figure 2 describes underlying means and SD from at least three measurements
+at different enzyme concentrations. The rounded prose factors have no
+transcribed numerical errors. SI Table S2 and the full protocol remain
+unacquired after a bounded access stop.
+
+The physical evidence has different experimental scope:
+
+| Evidence | Source-defined state | Supported observation and limit |
+| --- | --- | --- |
+| X-ray structure, Fig. 3 | pKSI Y16S/D40N with equilenin, 3IPT, 100 K | Ser16 O is 6.4 Å from analogue O; no direct contact in this model. Diffuse cavity density is assigned to disordered water, without discrete refined water sites. |
+| 19F NMR, Fig. 4 | pKSI Y16S/D40N and Y16F/D40N with 2-fluoro-4-nitrophenolate | Signed peaks are −136.4 and −134.7 ppm. Free-probe water/THF comparisons support differing local environments, not a water fraction or catalytic energy. |
+
+The authors propose that small substitutions allow water-mediated solvation,
+whereas Phe creates a hydrophobic, desolvating environment. That explanation
+remains a **source model supported by analogue evidence**. The crystal does
+not measure water during single-mutant turnover, nor establish hydration of
+Thr/Ala/Gly. Productive Phe geometry is a structural superposition; the cited
+Y16F/D40N equilenin deposit has a backward analogue pose. These are not
+interchangeable states or a unique observed catalytic trajectory.
+
+This adds a recoverable experimental discriminator to the atlas: mutation
+effects can include changes in the replacement environment, so deleting one
+named donor does not measure one transferable hydrogen-bond energy. It does
+not qualify Fried2014's compiled rates, establish a universal energy value,
+or demonstrate enzyme-design performance. All prior parameter records and
+comparison results remain unchanged. The existing Diels–Alder reduction-factor
+contract and consumer suffice; no new runtime or geometry transfer is needed.
+
+The [computational source review](../data/atlas/study_context/ksi_2010/source_review.json)
+binds this annotation and its limits. The
+[acquisition appendix](../data/atlas/study_context/ksi_2010/acquisition_receipts.json)
+continues the same KSI batch to **26 requests / 5,739,717 response-body bytes**.
+Main HTML and article-linked Figures 1 and 3 are retained locally by hash,
+without redistribution. SI challenges and errors supplied no scientific evidence.

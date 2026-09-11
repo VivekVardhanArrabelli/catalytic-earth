@@ -297,6 +297,39 @@ class PerturbationRelationTests(unittest.TestCase):
         self.assertEqual(self.rows["ksi-ir:D40N:carbonyl_frequency"]["value"], 1594.4)
         self.assertEqual(self.rows["ksi-rates:D40N:kcat"]["value"], 0.018)
 
+    def test_ksi_donor_discrimination_does_not_transfer_analogue_states_or_rate_types(self):
+        request = self.comparisons["ksi_2010:donor_solvation_context"]
+        self.assertTrue(request["source_discriminant_assessed"])
+        self.assertFalse(request["arithmetic_requested"])
+        self.assertFalse(request["eligible"])
+        self.assertIsNone(request["value"])
+        rows = [self.rows[key] for key in request["context_observations"]]
+        self.assertEqual([row["value"] for row in rows], [20000, 300, 200, 200, 200])
+        self.assertTrue(all(row["source_parameter"]["approximate"] for row in rows))
+        self.assertTrue(all(row["uncertainty"]["value"] is None for row in rows))
+        self.assertEqual({row["parameter"] for row in rows}, {"source_reported_activity_reduction_factor"})
+        self.assertEqual({row["substrate_id"] for row in rows}, {"ksi_2010:5-10-EST"})
+        evidence = request["source_evidence"]
+        self.assertFalse(evidence[0]["donor_control"]["residue16_hydroxyl_required_for_moderate_residual_turnover"])
+        for relation in evidence[0]["context_relations"]:
+            self.assertFalse(relation["same_construct_as_single_mutant_turnover"])
+            self.assertFalse(relation["same_ligand_as_turnover"])
+        self.assertEqual(evidence[1]["construct_id"], "Y16S/D40N")
+        self.assertEqual(evidence[1]["ligand"], "equilenin")
+        self.assertFalse(evidence[1]["water_evidence"]["discrete_water_sites_refined"])
+        self.assertEqual([row["chemical_shift_ppm"] for row in evidence[2]["observations"]],
+                         [-136.4, -134.7])
+        self.assertEqual(evidence[-1], {"reference": 18, "doi": "10.1073/pnas.0911168107"})
+        self.assertEqual(evidence[6]["doi"], evidence[-1]["doi"])
+        self.assertFalse(evidence[6]["condition_or_factor_transfer_allowed"])
+        self.assertFalse(evidence[6]["exact_compiled_row_lineage_established"])
+        # A reported fold reduction cannot be silently relabeled as an absolute rate.
+        candidate = deepcopy(self.spec)
+        panel = next(p for p in candidate["panels"] if p["id"] == "ksi2010-reported-effects")
+        panel["parameters"][0]["id"] = "kcat"
+        with self.assertRaisesRegex(ValueError, "parameter source field differs"):
+            _project_candidate(ROOT, candidate)
+
     def test_background_and_parameter_specific_retention(self):
         turnover = self.comparisons["ra95_2013:RA95.5-5-K210M:kcat"]
         efficiency = self.comparisons["ra95_2013:RA95.5-5-K210M:kcat_over_KM"]
