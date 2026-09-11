@@ -4,15 +4,15 @@
   "reviewed_at_utc": "2026-09-10T15:33:43.109365+00:00",
   "scope": "Cumulative source-reviewed projection; this increment reviews RA95.5-5 exact parent-to4A2R attachment association and generic optional matched-comparison retrieval. Previous scientific objects are unchanged and retain prior source reviews.",
   "reviewed_bindings": {
-    "data/atlas/perturbations/projection.json": "5a0d6f7fda70ec7872db053ddba9197e214be2d66bf9ec94f17a4cb2a47bbb7b",
+    "data/atlas/perturbations/projection.json": "cc35db117836653e0ab2a1d80943f29199249a8dfa55460d4b06711d8a7eef4b",
     "src/catalytic_earth/atlas_perturbations.py": "a814c22b892b3e734076fa9aead03453c83cb6ebe4c1d1e8cd85f5bbf4f0d778",
     "scripts/query_atlas_perturbations.py": "a13b3176952c44df5e8b053ee3a7907d5020ae00e66d75b248790f7aa20656e2",
-    "docs/ATLAS_PERTURBATION_RELATION.md": "68492976ab29022db85e86d1dcd19eae25f501b7b3e22660559db2e7a109735f",
+    "docs/ATLAS_PERTURBATION_RELATION.md": "04bcda88bf03332d9203599d82e2fa28d382954a138555265caaf9404b043b6e",
     "data/atlas/study_context/ra95_2017/forward_synthesis_review.json": "a8025989cb89415ac59267dc0af2da415019af3786ec2db3debd18630de8be9d",
     "docs/ATLAS_FORWARD_SYNTHESIS.md": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84",
     "data/atlas/study_context/diels_alder_2010/source_review.json": "bd97ed99812a3188ef47c090f61c87b0891bbc470222c49ee7698455680bf865",
     "docs/ATLAS_DIELS_ALDER_CONTROLS.md": "749e81dbcebcceb9022a5b4a5043bb16276c712c43b0c856feb394561830ac19",
-    "tests/core/test_atlas_perturbations.py": "8f358d99fc81563cfb153b25fb296d8562fce016505f26639e48bc07d8c843c0",
+    "tests/core/test_atlas_perturbations.py": "c76b6b2d922f43647948d3084d95c856b160e4c16decaa4e94c2c41e3a866bc2",
     "data/atlas/study_context/6ha3/perturbation_context.json": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0",
     "data/atlas/study_context/6ha3/functional_review.json": "9af6d94d77800810d210e032e90e6af6a99ffd22a5548d9d39b5a7f502199200",
     "data/atlas/assembly_context/6ha3/review.json": "434188c22e847de2add0c76cc06076de9347d39ecd259acc051631792fcc7eaa",
@@ -31,10 +31,10 @@
     "data/atlas/study_context/ra95_2017/chemical_state.json": "0304a28cc9676ae9d920b5c4f6c47f102d10320e125cc40cbfddd971ccff695d",
     "data/atlas/study_context/ra95_2017/chemical_state_acquisition.json": "4b0427a24aab3b1269f25cd80b3b9c90f61c4a99404499d77cf0c16a8b5f2ecb",
     "docs/ATLAS_RA95_CHEMICAL_STATE.md": "a85ee7c6accdafb0f2fb63a1a658413e07788cee4a5f9f7879dce726c6707c01",
-    "CLAIMS.md": "d63791af8ecf77d0d5497e37acaf59d1574a223d9e20c64b34df2d42564ec1dd",
-    "data/governance/claim_ledger.json": "93d5be1fbfab248981e0d1afb032c88b814b43f6c0b7e76542310034ab8d8ac9",
-    "docs/CURRENT_DECISIONS.md": "d4c48f9ddc2b0c3deef27ff88bb0661fb4eb552fe70f9f4babe90dda3a169363",
-    "docs/CURRENT_STATE.md": "0b39f8992446b035171ddf2b24fc710dbbf4e85d5179841c9d44089db18bdfb5",
+    "CLAIMS.md": "ea8386f8e94cd3ca06a7d484865daf4dbeada59a07ce31cf1ca3bc661428b5d0",
+    "data/governance/claim_ledger.json": "d99cab88411b33facb20378e048331fc36958655ab828190caf476e338b7d1de",
+    "docs/CURRENT_DECISIONS.md": "88b4ad6306d2f243caf2391bab683203805d670f944faa03304ecc2ad2781bf5",
+    "docs/CURRENT_STATE.md": "c5c19f98fa4811240438348b2f43699a22b24c9714c0d4e43e0760763f326930",
     "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
     "src/catalytic_earth/atlas_deposit_context.py": "adfae408de29e6b5f61fab970d7631f42846a9cdaedea0340d65e6ac95ad2a87",
     "src/catalytic_earth/atlas_assembly_context.py": "5d671a761f3ad493661f3c25b50dce693ef2169a48942af9664a65e0b0ae0835",
@@ -560,5 +560,91 @@
     ],
     "new_source_requests": 0,
     "new_source_response_body_bytes": 0
+  },
+  "lysine_pair_followup": {
+    "reviewed_at_utc": "2026-09-11T00:21:08.643413+00:00",
+    "status": "source_reviewed_computational",
+    "base_commit": "d51370afc0523429777c8306718baca4209f97b6",
+    "prior_review_sha256": "61436e6cee3cb51383a3455147c3379480b459c95f0f4a14a2cfe092c0d97b8d",
+    "scope": "Two retained 2013 RA95 K83M/K210M four-cell panels reuse the existing multiplicative operation through six data-only requests. Four source-rounded contrasts qualify; two KM comparisons abstain. All193 observations and111 earlier comparison objects retain their scientific content, with new memberships only. No new runtime, source evidence, experiment, source access or evidence tier.",
+    "renewed_existing_bindings": [
+      "data/atlas/perturbations/projection.json",
+      "docs/ATLAS_PERTURBATION_RELATION.md",
+      "CLAIMS.md",
+      "data/governance/claim_ledger.json",
+      "docs/CURRENT_DECISIONS.md",
+      "docs/CURRENT_STATE.md",
+      "tests/core/test_atlas_perturbations.py"
+    ],
+    "review_process": [
+      {
+        "role": "source",
+        "task": "/root/source_question",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra",
+        "status": "accepted_exact_science_manifest"
+      },
+      {
+        "role": "representation",
+        "task": "/root/representation_question",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra",
+        "status": "accepted_exact_science_manifest"
+      },
+      {
+        "role": "adversarial",
+        "task": "/root/adversarial_question",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra",
+        "status": "accepted_exact_science_manifest"
+      }
+    ],
+    "primary_source_scope": [
+      "Retained SI PDF page3, Table2 and footnote a: all8 marked rows, numeric values, two-measurement SD, racemic fluorescence conditions and printedKM conflict.",
+      "Retained main XML MethodsS11: named singles and doubles; MethodsS13/S15: purified protein context, fluorescence readout, same-condition buffer correction, photobleaching and side-reaction limitations.",
+      "Declared K83M/K210M substitutions independently checked against source-printed parent and derived mutant sequences; no physical assay-specimen verification."
+    ],
+    "resolved_objections": [
+      {
+        "issue": "A repeated RA95 investigation might reopen completed source/state work without gain.",
+        "resolution": "This distinct conditional-effect question changes the existing individual-ratio conclusion; the completed chemical-state and source-access questions remain closed."
+      },
+      {
+        "issue": "Full mutant strings were described as source-declared.",
+        "resolution": "Use derived mutant strings from source-printed parents and source-declared substitutions; runtime checks declaration topology, while exact sequence deltas were separately checked."
+      },
+      {
+        "issue": "Unqualified nonmultiplicativity wording might imply a mechanistic null, interaction or evolutionary trend.",
+        "resolution": "State source-reported endpoints and analyst-selected descriptive reference; no significance, coupling energy, physical cooperation, preserved rate-limiting step or trend."
+      },
+      {
+        "issue": "New declarations need source-cell and exclusion verification, not only count changes.",
+        "resolution": "One focused regression checks four-cell source/footnote identity, fourC/reference values, bothKM reason sets and wrong-assay parent rejection; existing generic transfer tests retained."
+      }
+    ],
+    "remaining_limits": [
+      "Racemic fluorescence endpoints do not separate enantiomers; assay is source-described less robust.",
+      "Two-measurement SD without raw curves/covariance or quantitative detection floor does not support propagated uncertainty or an interaction significance test.",
+      "No active-fraction, fold, mutant-geometry or microscopic-rate controls establish the cause of a conditional effect.",
+      "Printed efficiency is source-reported derived arithmetic; it neither repairsKM nor independently confirms turnover.",
+      "No cross-study parameter pooling or comparison of magnitudes as an evolutionary trend."
+    ],
+    "source_access": {
+      "new_requests": 0,
+      "new_response_body_bytes": 0,
+      "batch_id": "designed-retroaldolase-ra95-giger2013",
+      "cumulative_requests": 27,
+      "cumulative_response_body_bytes": 17298809,
+      "accounting": "Carried current total; original provider9-request receipt remains historical."
+    },
+    "coordination_record": ".git/catalytic-earth-runs/12920f52.board.md",
+    "review_independence": "Correlated computational source/diff review; not independent human or experimental validation.",
+    "verification_followup": {
+      "reviewed_at_utc": "2026-09-11T00:24:15.941621+00:00",
+      "initial_focused_result": "54 passed;1 inherited positional-test error: new final comparison lacked context_observations.",
+      "correction": "Negative context/evidence test selects the same beta-barrel assessment by exactID instead of list position; rejection assertions unchanged.",
+      "test_sha256": "c76b6b2d922f43647948d3084d95c856b160e4c16decaa4e94c2c41e3a866bc2",
+      "review_status": "source_representation_adversarial_exact_test_hash_accepted"
+    }
   }
 }

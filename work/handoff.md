@@ -1,98 +1,104 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research baton — 2026-09-10 (UTC)
+## Current research baton — 2026-09-11 (UTC)
 
 This block, `docs/HOURLY_RESEARCH.md` and the current direction review govern
 continuation. Historical handoffs below are not an execution queue.
 
-- **Identity/base:** owner `01a08d92-b4a8-7563-873e-d192dc1f847a:ca8df374-e020-4023-b2ec-ee6f85fa2932`;
-  actual UTC start `2026-09-10T23:06:56Z`; clean main base
-  `a3963b06f534a26a1535887d6c3f94e0fa46f6f6`. PR87 is merged and its
-  reviewed-head/exact-main CI passed; no pending PR, recovery or unrelated dirty
-  work. Branch `codex/diels-alder-source-access-boundary-20260910`. Parent alone
-  owns Git/edits/acquisition/lock. Three Sol/ultra read-only roles share board
-  `.git/catalytic-earth-runs/ca8df374-e020-4023-b2ec-ee6f85fa2932.board.md`.
-  Acquisition stopped at `23:13:47 UTC`, 6.9 minutes after start; checkpoint
-  early because neither primary paper supplied the required body and further
-  local mapping would invent the missing premise. Final elapsed time is in the
-  Git-local receipt/task result.
-- **Direction reconciliation:** the older RA95 state priority was completed
-  in PR80/81. PR86 supplied the partial Diels-Alder core and PR87 stopped the
-  M0187 state join at protonation. This run tested the newer handoff's missing
-  analytical-source premise. It did not reopen closed RA95/PLP/HisF questions.
-- **Question/outcome:** can Cannizzaro2003 connect Siegel2010 product constitution
-  and numbering to the source-assigned `3R,4S` product? **Unresolved at source
-  access, with no new chemical relation or computable capability.** PubMed
-  returned a cookie challenge; the DOI redirected to ACS, whose host failed DNS
-  resolution. No Cannizzaro paper contents were acquired. Its method citation
-  in retained Siegel P14/R14 is exact but does not supply Siegel sample/integration
-  evidence. Source titles from a retained author listing remain metadata only.
-- **Evidence-supported pivot:** source challenge identified Gouverneur1993,
-  doi:10.1126/science.8211138, as a distinct stronger identity lead: Siegel P10
-  associates antibody7D4 with the same reaction and P14 cites R11 for four
-  solution-observed isomers. One bounded attempt obtained the exact indexed abstract
-  and metadata; the DOI-resolved publisher returned403. The indexed abstract provides
-  no atom-numbered product drawing, C3/C4 locant mapping, locant-specific
-  absolute R/S identity or absolute-configuration assignment basis.
-  This also stops before an atom-specific relation. Neither result establishes
-  missing chemistry in either full paper, or invalidates their reported results.
-- **Limits/preserved science:** the reviewed six-carbon core stays partial and
-  constitution-only; mapped configurations and computed target selection stay
-  null. No C3/C4-to-project-locator assignment, independently computed CIP,
-  authenticated peak/retention order, S8 sample/integration, `>97%` derivation,
-  matched assay, mutant/construct transfer or productive geometry follows.
-  Source graphs, original packets/reviews, observations,37 claims and evidence
-  tiers are unchanged. These are correlated computational reviews, not
-  independent human review or laboratory validation.
-- **Evidence/acquisition:** new
-  `data/atlas/study_context/diels_alder_2010/analytical_references_acquisition_appendix.json`
-  binds the unchanged original14-request receipt and records requests15–20,
-  response hashes, local-cache paths, dispositions and both stopping conditions.
-  New consumption is **6 requests / 16,972 response-body bytes**; cumulative
-  `designed-diels-alder-siegel2010` is now **20 / 519,698**, not14/502,726.
-  Its remaining cap is80 requests/30,937,582 bytes, not a renamed batch.
-  Existing source packet's14-request binding is historical; append the new
-  receipt when continuing. No source body is redistributed. Zero-request reuse
-  of Siegel article P10/P14/R11/R14 and prior Houk listing is explicitly bound.
-  Other carried totals stay RA95 27/17,298,809; RA61 45/3,236,259;
-  KE59 9/261,580; KE70 16/1,102,794; beta5/8,449,621;
-  default M-CSA49/1,109,896. PLP73/5,068,731 and panel28/1,474,405
-  remain lower bounds, not headroom. M0187 followup12/440,960 remains a
-  subledger; broader M0187, TKT/M0081/M0222 and HisF/panel gaps stay open.
-- **Reuse/reconsideration:** no new chemical code or schema was justified.
-  Retained provenance located the method and solution-isomer citations and
-  reused a prior author-listing download, avoiding its reacquisition; no measured
-  curation-time saving. Metadata alone would add no useful atom-level answer
-  beyond competent source reading, so no atlas relation was manufactured.
-  **Consecutive no-progress runs:1**, conservatively counting the lack of new
-  usable scientific content. The schedule is unchanged. A second such run must
-  change to a distinct evidence-supported question, or pause if none remains.
-- **Review/verification:** source/representation/adversarial roles challenged
-  access versus content, the local ledger's initially stale totals, the R11
-  pivot, and atom/assay transfer limits. Totals are corrected. Receipt arithmetic
-  and all five new cached-body hashes verify; the Diels query and historical
-  handoff suffix are identical. Full repository contracts pass with37 claims
-  and frozen golden result matched. The initial check required architecture
-  paths_checked17686→17687 for the single new receipt; every other architecture
-  field/hash is identical. No runtime or scientific-data change justified
-  additional local tests. Reviewed-head CI remains the merge gate; exact final
-  review/CI/release outcomes and SHA are retained in the Git-local receipt/task.
-- **Publication/recovery:** only the acquisition appendix, this marked block,
-  its report-archive index and the architecture path-count refresh are owned changes. They record access
-  and continuation, not a chemical discovery. Resume this branch/PR first if
-  publication is incomplete. Git identifies the containing handoff commit;
-  exact final SHA, push/merge/CI and release go in the receipt/task result.
-- **One next action/dependency:** inspect newly accessible primary full text,
-  figures/SI or an authenticated analytical-standard record for either named
-  paper that explicitly joins the exact product constitution, C3/C4 locants and
-  absolute assignment basis. Expected gain: resolve the missing source-to-atom
-  relation while keeping Siegel assay evidence separate. Stop after one supported
-  identity/numbering/assignment relation or the first unavailable/mismatched or
-  unsupported premise. Current access must change; do not retry the recorded
-  routes, open a third bibliography route, repair missing atom identities, or
-  substitute abstracts for structures. If no new evidence is available, use the
-  no-progress rule above rather than repeating this investigation.
+- **Identity/base:** owner `01a08dca-1951-7101-a2af-f591ae8c6955:12920f52-1040-4d06-b3d9-2c2f55cd0ec2`;
+  actual UTC start `2026-09-11T00:07:44.262005+00:00`; clean synced main base
+  `d51370afc0523429777c8306718baca4209f97b6`. PR88 was merged; no pending
+  PR/recovery or unrelated dirty work. Branch
+  `codex/ra95-lysine-conditional-effects-20260911`. Parent alone owns all edits,
+  Git, acquisition and lock. Three Sol/ultra read-only source, representation
+  and adversarial roles share `.git/catalytic-earth-runs/12920f52.board.md`.
+  Final elapsed time and resulting SHA are in the Git-local receipt/task result.
+- **Direction reconciliation/question:** the older RA95 state priority was
+  completed in PR80/81; the Diels-Alder source-access stop in PR88 remains
+  closed. A distinct retained-source reanalysis asks whether K83M/K210M
+  single-substitution effects compose multiplicatively within each complete
+  RA95.5 and RA95.5-5 fluorescence panel. Expected gain: a conditional-effect
+  relation that prevents transferring a near-parent single-mutant factor into
+  the double background. Stop after two supported four-cell panels or the first
+  assay/construct/parameter mismatch. This stopping condition is met.
+- **Scientific result:** source-rounded double / multiplicative-reference
+  contrasts are **0.004940711 and 0.144245524 for kcat**, respectively;
+  printed-efficiency contrasts are **0.002631579 and 0.036956522**. Both KM
+  requests abstain at the existing unit conflict. These are four new derived
+  contrasts from existing observations, not new primary evidence. For example,
+  RA95.5-5 K210M's printed efficiency equals its parent's, but the double's
+  0.085 differs from K83M's2.3; that single-mutant factor is not transferable.
+- **Evidence and limits:** `data/atlas/perturbations/projection.json` binds all
+  four rows per request to unchanged `ra95_2013/functional_comparison.json`
+  variants7–10 and11–14, assay1, source conflicts and interpretation. The
+  retained primary SI page3/Table2/footnote a and XML MethodsS11/S13/S15 were
+  checked directly. All8 rows share racemic-methodol fluorescence conditions;
+  errors are SD from2 measurements. No raw fits/covariance, quantitative
+  detection floor, active-fraction/fold or mutant-structure control is supplied
+  in the retained scope. Derived mutant strings match source-declared singles
+  and doubles but do not authenticate physical specimens. The analyst-selected
+  multiplicative reference is not a mechanistic null. No significance,
+  microscopic coupling energy, physical interaction, same-turnover mechanism,
+  preserved rate-limiting step or evolutionary trend follows. Printed efficiency
+  is source-derived arithmetic, not independent corroboration or repaired KM.
+- **Reuse/reconsideration:** the unchanged generic operation already used for
+  the2017 tyrosine pair handles all6 new requests with case facts in data.
+  All193 observation payloads and111 earlier comparisons remain unchanged
+  apart from new memberships; the view has117 requests,89 eligible/28 abstaining.
+  No new runtime, schema, source packet, source acquisition or evidence tier.
+  This adds guarded conditional comparisons beyond individual ratios; a competent
+  reader can calculate them manually. No novelty, measured curation-time saving
+  or incumbent-superiority claim. It satisfies the direction rule requiring a
+  consequential new question before reusing a cached table. **Consecutive
+  no-progress runs:0** because the run adds usable derived relations. Schedule
+  remains active; repeated four-cell calculations are not a new task queue.
+- **Acquisition:** new **0 requests / 0 bytes**. RA95 remains cumulatively
+  **27 / 17,298,809**; its provider9-request receipt is historical only.
+  Diels remains20/519,698, including its analytical-reference appendix;
+  RA61 45/3,236,259; KE59 9/261,580; KE70 16/1,102,794;
+  beta 5/8,449,621; default M-CSA 49/1,109,896.
+  PLP 73/5,068,731 and panel 28/1,474,405 remain lower bounds, not headroom.
+  M0187 followup 12/440,960 is only a subledger. Broader M0187, TKT/POX,
+  M0081/M0222 and HisF/panel accounting gaps stay open; closed telemetry recovery
+  is not reopened. All17 common primary witnesses verify locally; none is
+  reacquired or redistributed.
+- **Review/verification:** all3 computational roles accepted the exact science
+  manifest after derived-sequence and interpretation wording corrections.
+  Existing source/declaration/sequence checks, original-output equality,
+  wrong-background/overlapping-role attacks and KM refusals pass. Full repository
+  contracts passed with37 claims and frozen golden matched. A focused test adds
+  source-cell/footnote,4C/reference,KM and wrong-assay checks. Initial focused
+  execution found an inherited last-row assumption in an unrelated context test;
+  it now selects the same beta-barrel assessment by exactID without changing its
+  rejection assertions. All55 focused tests and the final repository contracts
+  pass; required CI remains the publication gate and is recorded in the receipt. Source review is computational and
+  potentially correlated, not independent human review or a project experiment.
+- **Publication/recovery:** owned changes are the six-request projection,
+  cumulative source review, CE-026 readable/JSON extension, relation/current
+  state/decision docs, focused regression, this marked block and staged report
+  index. Runtime, scientific source packets, other claims, frozen/protected
+  surfaces and exposure history remain unchanged. Publish this branch and resume
+  its PR first if unfinished. Merge only at the reviewed head after required CI;
+  exact pushed head, PR, merged main, CI and guarded release go in the receipt
+  and final task result. Git identifies this handoff's containing commit.
+- **One next action:** challenge the distinct natural-enzyme precedent cited by
+  retained Giger2013 XMLP16/R18: Heine etal., *Science*294:369–374 (2001),
+  PMID11598300, doi:10.1126/science.1063601. Does its primary body directly join
+  a DERA catalytic-Lys→Arg construct, a named alternate lysine carrying a
+  covalent intermediate, and matched activity retention in that exact construct?
+  Expected gain: qualify the natural alternate-nucleophile precedent invoked
+  for designed RA95, without transferring it to RA95. Full primary contents are
+  not retained; the citation/title are not findings. Continue the SAME
+  RA95 bibliographic batch at27/17,298,809 after checking prior receipts;
+  permit one direct primary identifier/publisher chain, not a mirror or
+  bibliography search. Do not rename the batch for this cited-reference follow-up. Stop at
+  inaccessible full text or the first missing/unmatched construct, residue,
+  covalent-state or functional premise; otherwise stop at one supported relation.
+  Metadata/abstracts cannot substitute for those premises. Do not infer shared
+  microscopic roles, physical assay/crystal identity, evolutionary generality
+  or same-turnover participation. POX6HAF is an alternative only if the existing
+  batch's complete acquisition headroom is established; it is currently blocked.
 
 Preserve historical content below this marked block. No self-hash follow-up
 commit is required.

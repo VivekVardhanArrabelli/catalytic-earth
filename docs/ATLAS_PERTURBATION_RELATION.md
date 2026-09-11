@@ -18,6 +18,8 @@ python scripts/query_atlas_perturbations.py --comparison 'tkt_2019:E366Q:kcat'
 python scripts/query_atlas_perturbations.py --comparison 'pox_2019:E59Q:kcat'
 python scripts/query_atlas_perturbations.py --comparison 'beta_barrel_2022:benzoate-control-to-8AH9'
 python scripts/query_atlas_perturbations.py --comparison 'ra95_2017:Y51F-Y180F:kcat'
+python scripts/query_atlas_perturbations.py --comparison 'ra95_2013:RA95.5:K83M-K210M:kcat'
+python scripts/query_atlas_perturbations.py --comparison 'ra95_2013:RA95.5-5:K83M-K210M:kcat_over_KM'
 python scripts/query_atlas_perturbations.py --comparison 'ke59_2012:E230-matched-perturbation'
 python scripts/query_atlas_perturbations.py --verify-witnesses --output /tmp/perturbations-with-local-source-check.json
 ```
@@ -57,6 +59,58 @@ descriptive arithmetic and 14 abstain. One abstention is the separate KE59
 assessment, not an experimental observation. These are view/coverage counts,
 not new experiments, biological cases, independent replicates or a success rate.
 No project experiment or independent expert validation was performed.
+
+## Reported lysine endpoints depart from a multiplicative reference
+
+The two complete 2013 K83M/K210M panels support a new retained-source
+reanalysis through the same four-cell operation used for the 2017 tyrosine
+pair. For each background and parameter, the descriptive reference is
+`qA * qB / q0`, and the returned contrast is `C = qAB / reference`.
+This reference is an analyst-selected arithmetic comparison, not a fitted
+mechanistic null or an independently measured double-mutant prediction.
+
+| Background | Parameter | Multiplicative reference | Reported double | C |
+| --- | --- | ---: | ---: | ---: |
+| RA95.5 | kcat (s⁻¹) | 0.001012 | 0.000005 | 0.004941 |
+| RA95.5-5 | kcat (s⁻¹) | 0.000325833 | 0.000047 | 0.144246 |
+| RA95.5 | Printed kcat/KM (M⁻¹ s⁻¹) | 2.66 | 0.007 | 0.002632 |
+| RA95.5-5 | Printed kcat/KM (M⁻¹ s⁻¹) | 2.3 | 0.085 | 0.036957 |
+
+The source-rounded double values lie below the multiplicative references in
+both backgrounds. For example, RA95.5-5 K210M has the same printed efficiency
+as its parent, but the double has 0.085 versus K83M's 2.3 M⁻¹ s⁻¹. Thus the
+single-mutant factor does not transfer unchanged to the other substitution
+background. This adds an explicit conditional-effect relation to the existing
+individual ratios; it does not establish a physical interaction between the
+lysines, simultaneous participation in one turnover, or a third catalytic site.
+
+All eight rows carry Supplementary Table 2 footnote a: racemic methodol,
+fluorescence, 29 °C, 25 mM HEPES, 100 mM NaCl, pH 7.5 and 2.7% acetonitrile.
+The table gives SD from two independent measurements. Methods S15 warns of
+photobleaching and side reactions and describes same-condition buffer
+correction. No raw fits, covariance, quantitative detection floor, active-fraction
+or mutant-fold controls are available in this retained scope. The racemic
+endpoint does not separate enantiomer-specific effects. The contrasts have no
+propagated uncertainty, significance, microscopic coupling energy, preserved
+rate-limiting step or evolutionary-trend interpretation. The efficiency column
+is source-reported derived arithmetic, not independent confirmation of turnover.
+[Giger et al., 2013](https://pmc.ncbi.nlm.nih.gov/articles/PMC3720730/).
+
+Both KM requests abstain: the printed-M conflict still leaves normalized values
+and units null. Dimensionless cancellation is not used to bypass that decision,
+and efficiencies are not recomputed. The derived mutant strings differ from
+their source-printed parents by exactly K83M, K210M or their union, but do not verify
+physical assay specimens. RA95.0 has an incomplete, assay-unqualified panel and
+supplies no additional square.
+
+The six new declarations add four eligible contrasts and two abstentions, with
+all 193 observations and the earlier 111 comparisons unchanged apart from new
+comparison memberships. The complete view has 117 requests, 89 eligible and 28
+abstaining. The existing consumer, source packets and primary witness bytes are
+unchanged; no new runtime, source acquisition, experiment or evidence tier is
+added. A competent reader can calculate these contrasts from the table. The
+atlas adds a reusable, source-bound calculation and exclusions, without a claim
+of scientific novelty, measured time saving or superiority over that reader.
 
 ## Forward product evidence
 
@@ -465,9 +519,10 @@ from sequence equality; no parent-to-mutant or crystal-to-assay transfer follows
 
 The [RA95.5-5/4A2R association](ATLAS_RA95_4A2R_STATE.md) reuses the existing
 state relation for an exact258-aa parent and explicit Lys83 attachment.
-`--state-link ra95_2013:RA95.5-5-states --with-comparisons` includes all nine
-matched comparison requests and their12parameter records, including threeKM
+`--state-link ra95_2013:RA95.5-5-states --with-comparisons` now includes twelve
+matched comparison requests and their twelve parameter records, including four KM
 abstentions. The optional ratio/multiplicative filter uses exact denominator/parent observation
 IDs; the state link itself remains parent-only. The same option applies to
-the8F relation without changing its default query. No new observations or
-comparison arithmetic are introduced.
+the8F relation without changing its default query. The three added lysine-square
+requests reuse the existing arithmetic; no new observations or mutant geometry
+are introduced.

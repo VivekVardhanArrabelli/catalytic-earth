@@ -1,5 +1,24 @@
 # Current State
 
+## 2026-09-11: reported lysine endpoints depart from a multiplicative reference
+
+The [shared four-cell query](ATLAS_PERTURBATION_RELATION.md#reported-lysine-endpoints-depart-from-a-multiplicative-reference)
+now returns both complete RA95.5 and RA95.5-5 K83M/K210M panels. Their double
+turnover values are respectively 0.004941 and 0.144246 of the source-rounded
+multiplicative references; printed-efficiency contrasts are 0.002632 and
+0.036957. These are conditional central-value effects under the source-marked
+racemic fluorescence assay, without significance or mechanistic-coupling claims.
+Both KM requests retain the printed-unit conflict and abstain.
+
+Six declarations reuse the unchanged consumer: four eligible contrasts and two
+abstentions. The previous 193 observations and 111 comparisons keep their
+scientific content, with new memberships only; the complete view has 117
+comparisons, 89 eligible and 28 abstaining. CE-026 is extended at this exact
+scope. Source packets, primary witnesses, other claims, protected registries,
+frozen kernels and exposure history are unchanged. Zero requests were made;
+RA95 remains cumulatively 27 requests / 17,298,809 response-body bytes.
+
+
 ## 2026-09-10: reaction-to-deposit identity stops at the mandelate protonation boundary
 
 The [M0187 reaction-state query](ATLAS_MECHANISM_EVIDENCE.md#the-reaction-to-deposit-join-stops-at-protonation)
