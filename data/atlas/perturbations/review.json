@@ -4,19 +4,19 @@
   "reviewed_at_utc": "2026-09-11T09:30:44.367226+00:00",
   "scope": "Cumulative source-reviewed projection; this increment adds a separate source-system control operation for the Schmidt2013 bulk-normalized BuAm CTAC contrast and reuses existing calmodulin chemical-treatment rows. Prior source observations, genetic comparisons, state/model links and protected evidence are unchanged.",
   "reviewed_bindings": {
-    "data/atlas/perturbations/projection.json": "b0e841a90e977e395b62f19f3b3320b3aedd8be4e96dd106c56ff46f2c56813d",
-    "src/catalytic_earth/atlas_perturbations.py": "068059aa7383744938851fdc26d3fd661daa1e3304d0d8be8baa58cabf5843ef",
+    "data/atlas/perturbations/projection.json": "bb19a6c45e4630dc08cd38d9131ffcfef85c21d87d484542d2d392e9fae706f9",
+    "src/catalytic_earth/atlas_perturbations.py": "9dbbf2929c960309da85213991192cec5b97914122a2e1289ea9b2277f6f6242",
     "scripts/query_atlas_perturbations.py": "7fb2bd66ae9e6ff5247738187adb328779d597dc0634b9d7b3c316b4765e2469",
     "docs/ATLAS_PERTURBATION_RELATION.md": "d9c598b26a3fc7a08852ff672adb4e21fca2b7deac6b86ef5d6aca526ccf98aa",
     "data/atlas/study_context/ra95_2017/forward_synthesis_review.json": "a8025989cb89415ac59267dc0af2da415019af3786ec2db3debd18630de8be9d",
     "docs/ATLAS_FORWARD_SYNTHESIS.md": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84",
     "data/atlas/study_context/diels_alder_2010/source_review.json": "bd97ed99812a3188ef47c090f61c87b0891bbc470222c49ee7698455680bf865",
     "docs/ATLAS_DIELS_ALDER_CONTROLS.md": "749e81dbcebcceb9022a5b4a5043bb16276c712c43b0c856feb394561830ac19",
-    "tests/core/test_atlas_perturbations.py": "e9b63f73ba29d2030fc710e62c67843a4929c3c51e8a1a394db4da8a220b8af7",
+    "tests/core/test_atlas_perturbations.py": "bebd2ac881f30d0a5b51769cb7140fb80e541cae62cd5428ffc469426a96f86a",
     "data/atlas/study_context/6ha3/perturbation_context.json": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0",
     "data/atlas/study_context/6ha3/functional_review.json": "9af6d94d77800810d210e032e90e6af6a99ffd22a5548d9d39b5a7f502199200",
     "data/atlas/assembly_context/6ha3/review.json": "434188c22e847de2add0c76cc06076de9347d39ecd259acc051631792fcc7eaa",
-    "docs/ATLAS_STUDY_CONTEXT.md": "df4a7b6ab899c63b03610442728884164aff8f268fc9dd8904a4a90450d99d3e",
+    "docs/ATLAS_STUDY_CONTEXT.md": "56cc7026e5584daf0336afcf2db47bc97a88be6cf72d977ac07d13c52a5e9c1e",
     "data/atlas/study_context/pox2019/perturbation_context.json": "e29120547dbd982b1fb5b3f2ff1b1228e0fc96a16f540f20c1eaf39d35b93257",
     "data/atlas/study_context/pox2019/functional_review.json": "63ecd4add9ea393ede14f3f0fb9b8f6592171ae97bd35f3124e87c3cb08bcac9",
     "data/atlas/study_context/beta_barrel_2022/perturbation_context.json": "1fc756ce8005249c6f586685c0bced3de938fe14926f1a5fee96abffe427bc1a",
@@ -31,10 +31,10 @@
     "data/atlas/study_context/ra95_2017/chemical_state.json": "0304a28cc9676ae9d920b5c4f6c47f102d10320e125cc40cbfddd971ccff695d",
     "data/atlas/study_context/ra95_2017/chemical_state_acquisition.json": "4b0427a24aab3b1269f25cd80b3b9c90f61c4a99404499d77cf0c16a8b5f2ecb",
     "docs/ATLAS_RA95_CHEMICAL_STATE.md": "a85ee7c6accdafb0f2fb63a1a658413e07788cee4a5f9f7879dce726c6707c01",
-    "CLAIMS.md": "34a04e46e6fc28b6e6e11f0b7e7ddda26b04d36226da205081d56b04b3c0f9fa",
-    "data/governance/claim_ledger.json": "e2b0e7bcb13bb94122f3e0a24cb75d0b000ac98f2315fae842ebf769d89425e5",
-    "docs/CURRENT_DECISIONS.md": "f7a52fc9be8eda22df34ef426d92e7426cc719add2c1cc294a9f9a3e18f6dd90",
-    "docs/CURRENT_STATE.md": "b1648982cdb666e6c99005a7af831a7527ee0b4fbd1dc7b0c096cdb5631685e4",
+    "CLAIMS.md": "b50fc49329f634bc94591a8ebe6ba8f26ce25bbd7a9a7d067b2d507c6b4f88bf",
+    "data/governance/claim_ledger.json": "58e13f1e533e77d528293f62c205cc01c89d8a323f6fe707ddb4a917e726e17c",
+    "docs/CURRENT_DECISIONS.md": "e23ddc400b60471c32d22b56d65cd7ceb8e2278c7ab08e1c7eec7aae8e3b64fb",
+    "docs/CURRENT_STATE.md": "0f7faf702f1c9d72c5fb30487f60bb78df428365f99afb5ed26a11a1c8a37ef6",
     "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
     "src/catalytic_earth/atlas_deposit_context.py": "adfae408de29e6b5f61fab970d7631f42846a9cdaedea0340d65e6ac95ad2a87",
     "src/catalytic_earth/atlas_assembly_context.py": "5d671a761f3ad493661f3c25b50dce693ef2169a48942af9664a65e0b0ae0835",
@@ -47,7 +47,7 @@
     "data/atlas/deposit_context/ra95_4a2r/projection.json": "ea3117cea3d83e156534abcc1efd62f10ed056a1965ba7e99a0974ac915b3461",
     "data/atlas/study_context/ra95_2013/chemical_state.json": "a9b7df48d5684fc014ced487477364eb8d9b2072817e3be4c64837a364df0670",
     "data/atlas/study_context/ra95_2013/chemical_state_acquisition.json": "7efd0b0efdb32572d369194fc4e9eedd84b0a184aa8c9f10b7af50766b4c1da9",
-    "tests/test_truth_guard.py": "dbd843f233fdd3dfa3f83102c486701742dbe7b21cbb7064d753e2ea79eb7f16",
+    "tests/test_truth_guard.py": "dfb5da45b216073c04811d2f79f4474c29683ad3d99ec66644f3b036b03bf14f",
     "docs/ATLAS_RA95_4A2R_STATE.md": "8089d97dd393b0f3c2576197481c9551f3bdf2d1ff20a64dd15323ad7a6011ef",
     "data/atlas/study_context/ra95_2013/chemical_state_review.json": "12864f833532eff632016804fbf322e1828c33c3cabf840b2cd08b8f0ea99ebf",
     "data/atlas/deposit_context/ra95_4a2r/review.json": "dc017d8ed45a52dade5c04a77c42d734fa34926b67cefa043a35f0d9bb605a20",
@@ -94,7 +94,12 @@
     "data/atlas/study_context/tk_2020/source_qualification.json": "ab891a28685a11886fc32a502916813b912be10692f8d473529e7916f838278e",
     "data/atlas/study_context/tk_2020/acquisition_appendix.json": "f408989e8e9a33539c997804b6b697bca24653d8ea2527f499467ac92ba1784f",
     "data/atlas/study_context/tk_2020/source_review.json": "60c4ecd855402e99ed245fc6811e3110ebeaa4a00a29e30d3a0c734ea915ab7d",
-    "docs/ATLAS_TK_PRODUCT_PROFILE.md": "d9db2703a0eff4361964b4c02fe7779961a4c3ff10d532d279f39f9b69920df3"
+    "docs/ATLAS_TK_PRODUCT_PROFILE.md": "d9db2703a0eff4361964b4c02fe7779961a4c3ff10d532d279f39f9b69920df3",
+    "data/atlas/study_context/ahas_2005/source_qualification.json": "48a47309b1a3285ce11c39470c7964644e50888af7f2652689aafdce9cd97ab9",
+    "data/atlas/study_context/ahas_2005/model_context.json": "787e29592ab78c16c0027d902e8c3e93479bb6ab6bf29eaec43e77a5c0e3a85f",
+    "data/atlas/study_context/ahas_2005/acquisition_appendix.json": "60d13aefc5e34bc1edb7f7e1bf6bc91699b97580050d0c05f9fc66d839f0a41a",
+    "docs/ATLAS_AHAS_NET_RATES.md": "c125f541374e54e194b51859263fc50fccaea152de18fa132f46a533393f5fed",
+    "data/atlas/study_context/ahas_2005/source_review.json": "8aa951b907c79e71e922e2943f3bfc3d401bb9b9795cf1f41e779f01f798cd02"
   },
   "inherited_source_bindings": {
     "ra95f": {
@@ -1167,5 +1172,60 @@
     "independent_human_validation": false,
     "experimental_validation": false,
     "verification_dependency_followup": "Truth-test claim count advances only44to45. Current-document M0187 review pins renew without changing its source/chemical/functional content."
+  },
+  "ahas_net_rate_followup": {
+    "reviewed_at_utc": "2026-09-11T19:29:38.036422+00:00",
+    "base_commit": "dbaae313cd97c900913ce901a98cad9606f32a98",
+    "prior_review_sha256": "d3bcfc6d713f0b248050fea07d533a66b7eaef453015d43be0357606bf66331b",
+    "status": "source_reviewed_computational",
+    "scope": "One Tittmann2005 Met250Ala/Pyr+Pyr turnover-and-population inference, with four net-stage parameters and no individual forward/reverse rate assignment. Steinmetz2010 abstract is prior inquiry context only. No WT/2010 parameter transfer, raw population reconstruction or measured elementary rate.",
+    "renewed_bindings": {
+      "data/atlas/perturbations/projection.json": {
+        "before": "b0e841a90e977e395b62f19f3b3320b3aedd8be4e96dd106c56ff46f2c56813d",
+        "after": "bb19a6c45e4630dc08cd38d9131ffcfef85c21d87d484542d2d392e9fae706f9"
+      },
+      "src/catalytic_earth/atlas_perturbations.py": {
+        "before": "068059aa7383744938851fdc26d3fd661daa1e3304d0d8be8baa58cabf5843ef",
+        "after": "9dbbf2929c960309da85213991192cec5b97914122a2e1289ea9b2277f6f6242"
+      },
+      "tests/core/test_atlas_perturbations.py": {
+        "before": "e9b63f73ba29d2030fc710e62c67843a4929c3c51e8a1a394db4da8a220b8af7",
+        "after": "bebd2ac881f30d0a5b51769cb7140fb80e541cae62cd5428ffc469426a96f86a"
+      },
+      "docs/ATLAS_STUDY_CONTEXT.md": {
+        "before": "df4a7b6ab899c63b03610442728884164aff8f268fc9dd8904a4a90450d99d3e",
+        "after": "56cc7026e5584daf0336afcf2db47bc97a88be6cf72d977ac07d13c52a5e9c1e"
+      },
+      "CLAIMS.md": {
+        "before": "34a04e46e6fc28b6e6e11f0b7e7ddda26b04d36226da205081d56b04b3c0f9fa",
+        "after": "b50fc49329f634bc94591a8ebe6ba8f26ce25bbd7a9a7d067b2d507c6b4f88bf"
+      },
+      "data/governance/claim_ledger.json": {
+        "before": "e2b0e7bcb13bb94122f3e0a24cb75d0b000ac98f2315fae842ebf769d89425e5",
+        "after": "58e13f1e533e77d528293f62c205cc01c89d8a323f6fe707ddb4a917e726e17c"
+      },
+      "docs/CURRENT_DECISIONS.md": {
+        "before": "f7a52fc9be8eda22df34ef426d92e7426cc719add2c1cc294a9f9a3e18f6dd90",
+        "after": "e23ddc400b60471c32d22b56d65cd7ceb8e2278c7ab08e1c7eec7aae8e3b64fb"
+      },
+      "docs/CURRENT_STATE.md": {
+        "before": "b1648982cdb666e6c99005a7af831a7527ee0b4fbd1dc7b0c096cdb5631685e4",
+        "after": "0f7faf702f1c9d72c5fb30487f60bb78df428365f99afb5ed26a11a1c8a37ef6"
+      },
+      "tests/test_truth_guard.py": {
+        "before": "dbd843f233fdd3dfa3f83102c486701742dbe7b21cbb7064d753e2ea79eb7f16",
+        "after": "dfb5da45b216073c04811d2f79f4474c29683ad3d99ec66644f3b036b03bf14f"
+      }
+    },
+    "added_bindings": {
+      "data/atlas/study_context/ahas_2005/source_qualification.json": "48a47309b1a3285ce11c39470c7964644e50888af7f2652689aafdce9cd97ab9",
+      "data/atlas/study_context/ahas_2005/model_context.json": "787e29592ab78c16c0027d902e8c3e93479bb6ab6bf29eaec43e77a5c0e3a85f",
+      "data/atlas/study_context/ahas_2005/acquisition_appendix.json": "60d13aefc5e34bc1edb7f7e1bf6bc91699b97580050d0c05f9fc66d839f0a41a",
+      "docs/ATLAS_AHAS_NET_RATES.md": "c125f541374e54e194b51859263fc50fccaea152de18fa132f46a533393f5fed",
+      "data/atlas/study_context/ahas_2005/source_review.json": "8aa951b907c79e71e922e2943f3bfc3d401bb9b9795cf1f41e779f01f798cd02"
+    },
+    "source_review": "data/atlas/study_context/ahas_2005/source_review.json",
+    "independent_human_validation": false,
+    "experimental_validation": false
   }
 }

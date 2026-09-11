@@ -614,5 +614,19 @@
       "data/atlas/study_context/tk_2020/source_review.json",
       "docs/ATLAS_TK_PRODUCT_PROFILE.md"
     ]
+  },
+  {
+    "claim_id": "CE-046",
+    "claim_kind": "source_annotation",
+    "status": "Supported",
+    "claim": "Tittmann2005 Table2 Met250Ala/Pyr+Pyr reports kcat3±0.1s^-1 and four source-inferred forward-net constants28±7,35±7,11.1±1.3,5.6±0.3s^-1 for donor adduct, decarboxylation, carboligation and product liberation.",
+    "current_wording": "One turnover input and four dependent net-stage records are bound to the authors steady-state NMR-population/transit-time model. Individual directional rates remain unassigned. Preserve saturation correction, missing raw fractions, commitment/reversal, distinct methods and unresolved uncertainty statistic. No native bindingKD, occupancy reconstruction, WT ratio, elementary forward rate, exact specimen/geometry, project experiment or design-performance claim.",
+    "rationale": "Source-defined stages retain chemical distinctions without promoting population-derived net rates into independent elementary measurements. A shared inference contract prevents that consequential transfer and keeps earlier consumers unchanged.",
+    "evidence": [
+      "data/atlas/study_context/ahas_2005/source_qualification.json",
+      "data/atlas/study_context/ahas_2005/model_context.json",
+      "data/atlas/study_context/ahas_2005/source_review.json",
+      "docs/ATLAS_AHAS_NET_RATES.md"
+    ]
   }
 ]

@@ -1,0 +1,283 @@
+{
+  "schema_version": "catalytic-earth.source-qualification.v1",
+  "assessment_id": "tittmann2005-Met250Ala-pyruvate-transit-inference",
+  "operation": "source_annotation",
+  "study": {
+    "study_id": "ahas_2005",
+    "doi": "10.1073/pnas.0408210101",
+    "pmid": "15640355",
+    "pmcid": "PMC545553",
+    "title": "The carboligation reaction of acetohydroxyacid synthase II: Steady-state intermediate distributions in wild type and mutants by NMR",
+    "enzyme_context": "E.coli acetohydroxyacid synthase isozyme II"
+  },
+  "question": "Can a named AHASII construct connect donor-stage chemistry to overall turnover through a source-qualified intermediate-population model?",
+  "conclusion": "One Met250Ala/Pyr+Pyr Table2 row connects per-site turnover to four distinct source-derived forward-net stages. The distinction between inferred net constants and microscopic forward rates remains explicit.",
+  "sources": [
+    {
+      "artifact_id": "PMC545553:article-PDF",
+      "source_url": "https://europepmc.org/api/getPdf?pmcid=PMC545553",
+      "sha256": "4dbd8699f790ed8712c314fb5188785ced7083108cb661f13e93b999d37d739d",
+      "bytes": 352929,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/4dbd8699f790ed8712c314fb5188785ced7083108cb661f13e93b999d37d739d.pdf",
+      "redistributed": false,
+      "inspection": "All six pages text; visual pages2-6 including Fig2, Table2, Eqs2-10, Methods and Discussion. Selected Met250Ala/Pyr+Pyr row only."
+    },
+    {
+      "artifact_id": "Steinmetz2010:MED20504042:abstract",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:20504042&format=json&resultType=core",
+      "sha256": "df5841b2ad2d7dd50b9c3af55b8911a4abe3840d5a80e735b9abea96bd7b4e17",
+      "bytes": 7061,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/df5841b2ad2d7dd50b9c3af55b8911a4abe3840d5a80e735b9abea96bd7b4e17.json",
+      "redistributed": false,
+      "inspection": "Primary bibliographic abstract only at /resultList/result/0/abstractText; no2010 main-text/figure/table/assay qualification."
+    },
+    {
+      "artifact_id": "Steinmetz2010:Crossref:citation",
+      "source_url": "https://api.crossref.org/works?query.bibliographic=Valine%20375%20phenylalanine%20109%20Steinmetz%202010&rows=1",
+      "sha256": "2969c8250fb13786a2e0973469307dc9af8c69b145526877d416da1f9ed223e3",
+      "bytes": 12437,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/2969c8250fb13786a2e0973469307dc9af8c69b145526877d416da1f9ed223e3.json",
+      "redistributed": false,
+      "inspection": "Bibliographic identity and reference8 DOI10.1073/pnas.0408210101 only; not primary experimental evidence."
+    }
+  ],
+  "acquisition_binding": {
+    "path": "data/atlas/study_context/ahas_2005/acquisition_appendix.json",
+    "sha256": "60d13aefc5e34bc1edb7f7e1bf6bc91699b97580050d0c05f9fc66d839f0a41a"
+  },
+  "counted_objects": {
+    "selected_source_table_rows": 1,
+    "turnover_parameter_records": 1,
+    "source_inferred_net_parameter_records": 4,
+    "new_project_experiments": 0,
+    "new_protein_admissions": 0,
+    "new_mechanism_admissions": 0
+  },
+  "constructs": [
+    {
+      "construct_id": "WT",
+      "comparison_background": "WT",
+      "perturbation": [],
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source_named_construct_exact_sequence_unacquired",
+      "source": "Tittmann2005:PDFpp2-3:ExperimentalProcedures;Table1",
+      "identity": "Source-named E.coli AHAS isozymeII, ilvG2096-derived sequence with pRSET N-terminal hexahistidine fusion on the large catalytic subunit; source pRSET-GM or pQEV-GM expression and Ni-NTA purification as holoenzyme. Exact plasmid choice for this row and complete assay sequence are not supplied.",
+      "assayed_preparation_identity": null,
+      "scope": "Named study construct only. WT supplies the source reference identity, with no WT parameter or mutant/WT ratio projected."
+    },
+    {
+      "construct_id": "Met250Ala",
+      "comparison_background": "WT",
+      "perturbation": [
+        "M250A"
+      ],
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source_named_construct_exact_sequence_unacquired",
+      "source": "Tittmann2005:PDFpp2-3:ExperimentalProcedures;Table1",
+      "identity": "Source-named E.coli AHAS isozymeII, ilvG2096-derived sequence with pRSET N-terminal hexahistidine fusion on the large catalytic subunit; source pRSET-GM or pQEV-GM expression and Ni-NTA purification as holoenzyme. Exact plasmid choice for this row and complete assay sequence are not supplied.",
+      "assayed_preparation_identity": null,
+      "scope": "Named study construct only. WT supplies the source reference identity, with no WT parameter or mutant/WT ratio projected."
+    }
+  ],
+  "reaction": {
+    "reaction_id": "Pyr+Pyr-to-AL",
+    "name": "pyruvate plus pyruvate to acetolactate and carbon dioxide",
+    "direction": "source-depicted decarboxylative carboligation of donor pyruvate with acceptor pyruvate",
+    "participants": [
+      {
+        "participant_id": "pyruvate",
+        "side": "reactant",
+        "name": "pyruvate",
+        "role": "two source-model substrate instances: first donor and second acceptor",
+        "stoichiometry": 2
+      },
+      {
+        "participant_id": "acetolactate",
+        "side": "product",
+        "name": "acetolactate",
+        "role": "carboligation product",
+        "stoichiometry": 1
+      },
+      {
+        "participant_id": "CO2",
+        "side": "product",
+        "name": "carbon dioxide",
+        "role": "source-depicted donor decarboxylation coproduct",
+        "stoichiometry": 1
+      }
+    ],
+    "source": "Tittmann2005:Fig1/Fig2;Table2 footnote*",
+    "scope": "Source-named reaction lineage only, not a fully proton/charge-balanced canonical reaction, isotope atom map or complete elementary mechanism. Both substrate roles refer to pyruvate from the same100mM pool;100mM is not supplied separately for each role."
+  },
+  "assays": [
+    {
+      "assay_id": "Met250Ala-Pyr+Pyr-transit-inference",
+      "reaction_id": "Pyr+Pyr-to-AL",
+      "endpoint": "Table2 per-site turnover input and forward-net constants inferred jointly from turnover and acid-quench NMR distributions",
+      "temperature_celsius": 37,
+      "buffer": "0.1M potassium phosphate (KPi)",
+      "pH": 7.6,
+      "substrate": "100mM pyruvate as sole substrate",
+      "source": "Tittmann2005:PDFpp2-4:ExperimentalProcedures,Eqs2-9,Table2",
+      "same_physical_mixture": false,
+      "same_physical_protein_preparation": null,
+      "measurement_components": {
+        "turnover": {
+          "method": "Steady-state colorimetric assay for acetoin, as described by the source and its cited methods; Table2 turnover number, not a donor-only trace.",
+          "recipe": "100mM pyruvate except reactant variation;0.1M KPi pH7.6,10mM MgCl2,0.1mM ThDP,75uM FAD.",
+          "normalization": "Turnover per site; source assumes two sites in a138kDa heterotetramer (Table1footnote).",
+          "source": "PDFp2 general enzyme assays;PDFp3 Table1footnotes;PDFp4 Table2 and results",
+          "table_boundary": "Table1 reports3.03s^-1 for His-Met250Ala; selected Table2 reports3±0.1. Do not silently merge the two."
+        },
+        "NMR": {
+          "method": "Rapid mixing, acid quench, denatured-protein removal, then1H-NMR of protein-free solution. C6-prime-H integrated areas give relative covalent derivatives; ThDP uses C2-H because its C6-prime-H signal is obscured by FAD.",
+          "pre_mixing_reconstitution": "15mg/mL hexahistidine-fused enzyme,250uM FAD,10mM Mg2+,equimolar active-site ThDP in0.1M KPi pH7.6.",
+          "post_mixing_enzyme_FAD_Mg_ThDP_concentrations": null,
+          "post_mixing_scope": "Do not infer final concentrations from the reconstitution solution without specified mixing volumes. Selected100mM pyruvate is separately stated by Table2/Results.",
+          "quench": "Equal volume of12.5%(w/v) trichloroacetic acid/1M DCl inD2O; protocol quenches0.1-10s to check steady state. No exact selected Met250Ala quench time assigned.",
+          "raw_spectra_or_peak_fractions_for_selected_row": "data not shown",
+          "source": "PDFp2 Methods;PDFp4 Met250Ala Results;Table2footnote"
+        }
+      },
+      "uncertainty": "Source-reported plus-minus magnitudes are retained without an SD/SEM assignment. Methods attributes the derived net-rate errors to NMR integration; the separate Table2 kcat error basis/statistic is unresolved. Replicate counts, raw fractions and covariance are unavailable.",
+      "scope": "Composite inference-procedure wrapper preserving the separate turnover and NMR components; not one physical assay or proof of identical preparations."
+    }
+  ],
+  "turnover_parameters": [
+    {
+      "row_id": "Met250Ala:Pyr+Pyr",
+      "construct_id": "Met250Ala",
+      "assay_id": "Met250Ala-Pyr+Pyr-transit-inference",
+      "source_locator": "Tittmann2005:PDFp4/printedp556:Table2:Met250Ala:Pyr+Pyr",
+      "kcat": {
+        "parameter": "k_cat",
+        "result_kind": "numeric",
+        "value": 3,
+        "unit": "s^-1",
+        "uncertainty": 0.1,
+        "uncertainty_kind": "source_reported_error_statistic_unresolved",
+        "uncertainty_context": "Printed Table2 plus-minus0.1 is retained with statistic and basis unresolved. kcat is a separate turnover input. The general Methods integration-error statement is not assigned as the origin of this kcat uncertainty; Table1 has a separate5-10% uncertainty description.",
+        "value_origin": "source_reported_turnover_input_to_population_inference",
+        "source_locator": "Tittmann2005:PDFp4/printedp556:Table2:Met250Ala:Pyr+Pyr"
+      }
+    }
+  ],
+  "net_parameters": [
+    {
+      "row_id": "Met250Ala:Pyr+Pyr:stage2",
+      "construct_id": "Met250Ala",
+      "assay_id": "Met250Ala-Pyr+Pyr-transit-inference",
+      "source_locator": "Tittmann2005:PDFp4/printedp556:Table2:Met250Ala:Pyr+Pyr",
+      "stage_id": "donor_adduct_formation",
+      "source_stage_label": "Formation of lactyl-ThDP from bound donor pyruvate",
+      "forward_net_rate": {
+        "parameter": "k_prime_2",
+        "result_kind": "numeric",
+        "value": 28,
+        "unit": "s^-1",
+        "uncertainty": 7,
+        "uncertainty_kind": "source_reported_error_statistic_unresolved",
+        "uncertainty_context": "Source-reported plus-minus magnitude; statistic type is not specified. Methods says indicated rate-constant errors derive from intermediate-peak integration. Number of repeats, raw fractions, covariance and preparation-specific uncertainty are unavailable; do not assign SD or SEM.",
+        "value_origin": "source_derived_steady_state_population_net_constant",
+        "source_locator": "Tittmann2005:PDFp4/printedp556:Table2:Met250Ala:Pyr+Pyr"
+      }
+    },
+    {
+      "row_id": "Met250Ala:Pyr+Pyr:stage3",
+      "construct_id": "Met250Ala",
+      "assay_id": "Met250Ala-Pyr+Pyr-transit-inference",
+      "source_locator": "Tittmann2005:PDFp4/printedp556:Table2:Met250Ala:Pyr+Pyr",
+      "stage_id": "decarboxylation",
+      "source_stage_label": "Decarboxylation of lactyl-ThDP to the source HEThDP state",
+      "forward_net_rate": {
+        "parameter": "k_prime_3",
+        "result_kind": "numeric",
+        "value": 35,
+        "unit": "s^-1",
+        "uncertainty": 7,
+        "uncertainty_kind": "source_reported_error_statistic_unresolved",
+        "uncertainty_context": "Source-reported plus-minus magnitude; statistic type is not specified. Methods says indicated rate-constant errors derive from intermediate-peak integration. Number of repeats, raw fractions, covariance and preparation-specific uncertainty are unavailable; do not assign SD or SEM.",
+        "value_origin": "source_derived_steady_state_population_net_constant",
+        "source_locator": "Tittmann2005:PDFp4/printedp556:Table2:Met250Ala:Pyr+Pyr"
+      }
+    },
+    {
+      "row_id": "Met250Ala:Pyr+Pyr:stage4",
+      "construct_id": "Met250Ala",
+      "assay_id": "Met250Ala-Pyr+Pyr-transit-inference",
+      "source_locator": "Tittmann2005:PDFp4/printedp556:Table2:Met250Ala:Pyr+Pyr",
+      "stage_id": "carboligation",
+      "source_stage_label": "Ligation of the second pyruvate with the source HEThDP state",
+      "forward_net_rate": {
+        "parameter": "k_prime_4",
+        "result_kind": "numeric",
+        "value": 11.1,
+        "unit": "s^-1",
+        "uncertainty": 1.3,
+        "uncertainty_kind": "source_reported_error_statistic_unresolved",
+        "uncertainty_context": "Source-reported plus-minus magnitude; statistic type is not specified. Methods says indicated rate-constant errors derive from intermediate-peak integration. Number of repeats, raw fractions, covariance and preparation-specific uncertainty are unavailable; do not assign SD or SEM.",
+        "value_origin": "source_derived_steady_state_population_net_constant",
+        "source_locator": "Tittmann2005:PDFp4/printedp556:Table2:Met250Ala:Pyr+Pyr"
+      }
+    },
+    {
+      "row_id": "Met250Ala:Pyr+Pyr:stage5",
+      "construct_id": "Met250Ala",
+      "assay_id": "Met250Ala-Pyr+Pyr-transit-inference",
+      "source_locator": "Tittmann2005:PDFp4/printedp556:Table2:Met250Ala:Pyr+Pyr",
+      "stage_id": "product_liberation",
+      "source_stage_label": "Acetolactate liberation from the source ALThDP state",
+      "forward_net_rate": {
+        "parameter": "k_prime_5",
+        "result_kind": "numeric",
+        "value": 5.6,
+        "unit": "s^-1",
+        "uncertainty": 0.3,
+        "uncertainty_kind": "source_reported_error_statistic_unresolved",
+        "uncertainty_context": "Source-reported plus-minus magnitude; statistic type is not specified. Methods says indicated rate-constant errors derive from intermediate-peak integration. Number of repeats, raw fractions, covariance and preparation-specific uncertainty are unavailable; do not assign SD or SEM.",
+        "value_origin": "source_derived_steady_state_population_net_constant",
+        "source_locator": "Tittmann2005:PDFp4/printedp556:Table2:Met250Ala:Pyr+Pyr"
+      }
+    }
+  ],
+  "inference_context": {
+    "evidence_id": "transit_time_inference_boundary",
+    "source": "PDFpp2-3 Eqs2-9;PDFp5 Discussion;PDFp6 Eq10",
+    "observed_inputs": "Separate source turnover number and relative acid-quench1H-NMR species populations under steady-state conditions.",
+    "source_model": "Cleland transit times:1/kcat=1/k_prime_2+1/k_prime_3+1/k_prime_4+1/k_prime_5. Source Eqs3-5 relate successive species ratios to net-rate ratios;Eqs6-9 derive net rates.",
+    "substrate_regime": "Equations assume steady state and substrate saturation. The source corrects the unsubstituted ThDP fraction for pyruvate nonsaturation using Michaelis-Menten.100mM pyruvate must not be relabeled experimentally fully saturating;Table1 His-Met250Ala apparentKM is36mM. Raw correction inputs/fractions are unavailable for reconstruction.",
+    "net_definition": "A true forward rate multiplied by the fraction of the resulting enzyme form committed to products rather than reversal (source Discussion).",
+    "most_populated_species": {
+      "source_name": "ALThDP",
+      "reported_context": "Met250Ala with pyruvate as sole substrate",
+      "source": "PDFp4 Results Met250Ala paragraph",
+      "raw_data_status": "data not shown",
+      "population_fraction": null,
+      "interpretation": "Authors identify the covalent product adduct as most populated and infer that liberation is partly rate determining. No project occupancy fraction or isolated liberation mechanism is assigned."
+    },
+    "arithmetic_scope": "A harmonic-sum check of the source-rounded constants is a dependent transcription/model-consistency check, not new evidence. No inverse reconstruction of unreported NMR fractions.",
+    "parameter_covariance": null,
+    "same_physical_protein_preparation": null,
+    "source_ambiguity": "The main text alternates Arg276 and Arg264 in its separate residue mechanism proposal. No Arg atom/site correspondence is used in this selected Met250Ala relation."
+  },
+  "inherited_inquiry": {
+    "evidence_id": "Steinmetz2010_abstract_boundary",
+    "doi": "10.1021/bi100555q",
+    "primary_locator": "MED20504042:/resultList/result/0/abstractText",
+    "inspection_scope": "abstract only; main text unacquired and unassessed",
+    "supported": "Source reports separate CD/stopped-flow acylphosphonate donor-analogue binding and unchanged acceptor specificity in the named V375A/V375I/F109M panel. V375A reportedly favors the2-KB analogue over the pyruvate analogue.",
+    "native_donor_phase_status": "unassessed at full-text level, not experimentally absent",
+    "limits": "No exact analogue identities, variant-specific constants, fit equations, assay conditions or intermediate fractions are supplied by the abstract. Do not transfer2005 constructs, parameters or methods to2010. No abstract numeric observations projected.",
+    "acquisition_stop": "No repeated access campaign; citation-guided pivot to Tittmann2005 answers a different, supported source-model question."
+  },
+  "limits": [
+    "Source-reported model inference, not a direct binding/transient measurement or experimentally established elementary arrow sequence. No native-pyruvate KD is supplied.",
+    "The four net parameters share turnover and NMR inputs and are not four independent experimental confirmations. No numerical population fractions are reconstructed from their rounded values.",
+    "Each acid-quenched covalent species can pool forms with and without noncovalently associated substrate or product; quench state is not a full enzymatic microstate.",
+    "Source net constants include commitment to product rather than reversal. Lower k_prime_4 can arise from bond making or later k_prime_5; k_prime_5 can include covalent cleavage and product diffusion. No microscopic causal rate or residue energy follows.",
+    "Fig5 is a hypothetical E.coli active-site model based on yeast1N0H; Fig6 proposes WT/2-ketobutyrate transition-state interactions. Neither is a Met250Ala/Pyr+Pyr observed arrangement.",
+    "No full sequence/specimen authentication, isotope provenance, proton/tautomer graph, project experiment, independent human review, protected protein/mechanism admission or demonstrated design performance."
+  ]
+}

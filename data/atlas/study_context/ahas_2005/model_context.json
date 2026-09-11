@@ -1,0 +1,450 @@
+{
+  "schema_version": "catalytic-earth.source-model-context.v1",
+  "context_id": "ahas_2005:Met250Ala:Pyr+Pyr:net_transit_model",
+  "operation": "source_annotation",
+  "study": {
+    "doi": "10.1073/pnas.0408210101",
+    "reported_enzyme": "E.coli acetohydroxyacid synthase isozyme II",
+    "reported_variant": "Met250Ala"
+  },
+  "source_bindings": {
+    "qualification": {
+      "path": "data/atlas/study_context/ahas_2005/source_qualification.json",
+      "sha256": "48a47309b1a3285ce11c39470c7964644e50888af7f2652689aafdce9cd97ab9"
+    }
+  },
+  "identity_bindings": [
+    {
+      "provider": "qualification",
+      "pointer": "/constructs/1/construct_id",
+      "identity_kind": "construct"
+    },
+    {
+      "provider": "qualification",
+      "pointer": "/study/doi",
+      "identity_kind": "study"
+    }
+  ],
+  "enzyme_identity_binding": {
+    "provider": "qualification",
+    "pointer": "/study/enzyme_context"
+  },
+  "reaction_branch_bindings": {
+    "ahas_2005:Pyr+Pyr": {
+      "binding": {
+        "provider": "qualification",
+        "pointer": "/reaction/name"
+      },
+      "source_name": "pyruvate plus pyruvate to acetolactate and carbon dioxide"
+    }
+  },
+  "reaction_branch_scope": "Two pyruvate instances in one source reaction lineage, not isotope-mapped physical molecules or constant ligand identity across intermediates.",
+  "source_model": {
+    "states": [
+      {
+        "state_id": "E_ThDP",
+        "source_name": "Source enzyme-ThDP pool before donor binding",
+        "reaction_branch_id": "ahas_2005:Pyr+Pyr",
+        "scope": "Source-model species class only; no atom-resolved graph, protonation, conformer or homogeneous experimental microstate."
+      },
+      {
+        "state_id": "donor_bound",
+        "source_name": "Source noncovalent donor-pyruvate complex implied byK1 beforek_prime_2",
+        "reaction_branch_id": "ahas_2005:Pyr+Pyr",
+        "scope": "Source-model species class only; no atom-resolved graph, protonation, conformer or homogeneous experimental microstate."
+      },
+      {
+        "state_id": "LThDP",
+        "source_name": "Source enzyme-lactyl-ThDP covalent derivative",
+        "reaction_branch_id": "ahas_2005:Pyr+Pyr",
+        "scope": "Source-model species class only; no atom-resolved graph, protonation, conformer or homogeneous experimental microstate."
+      },
+      {
+        "state_id": "HEThDP",
+        "source_name": "Source hydroxyethyl-ThDP anion/enamine state; acid-quench derivative is not its full enzyme microstate",
+        "reaction_branch_id": "ahas_2005:Pyr+Pyr",
+        "scope": "Source-model species class only; no atom-resolved graph, protonation, conformer or homogeneous experimental microstate."
+      },
+      {
+        "state_id": "ALThDP",
+        "source_name": "Source covalent acetolactate-ThDP product adduct",
+        "reaction_branch_id": "ahas_2005:Pyr+Pyr",
+        "scope": "Source-model species class only; no atom-resolved graph, protonation, conformer or homogeneous experimental microstate."
+      }
+    ],
+    "transitions": [
+      {
+        "transition_id": "donor_binding",
+        "from_state": "E_ThDP",
+        "to_state": "donor_bound",
+        "reversible_in_source": true,
+        "reaction_branch_id": "ahas_2005:Pyr+Pyr",
+        "assay_binding": {
+          "provider": "qualification",
+          "pointer": "/assays/0"
+        },
+        "source_locators": [
+          "Tittmann2005:PDFp3:Fig2"
+        ],
+        "parameter_slots": {
+          "forward": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "Individual directional microscopic rate unassigned. Source k-prime values belong to the joint steady-state population inference and include forward commitment; bindingK1 is not projected as a rate."
+          },
+          "reverse": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "Individual directional microscopic rate unassigned. Source k-prime values belong to the joint steady-state population inference and include forward commitment; bindingK1 is not projected as a rate."
+          }
+        },
+        "bond_annotations": [],
+        "reversibility_scope": "Source Fig2 explicitly represents K1 as an equilibrium. No K1 or directional binding rate is projected."
+      },
+      {
+        "transition_id": "donor_adduct_formation",
+        "from_state": "donor_bound",
+        "to_state": "LThDP",
+        "reversible_in_source": null,
+        "reaction_branch_id": "ahas_2005:Pyr+Pyr",
+        "assay_binding": {
+          "provider": "qualification",
+          "pointer": "/assays/0"
+        },
+        "source_locators": [
+          "Tittmann2005:PDFp3:Fig2",
+          "Tittmann2005:PDFp4:Table2",
+          "Tittmann2005:PDFp5:Discussion net-rate definition"
+        ],
+        "parameter_slots": {
+          "forward": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "Individual directional microscopic rate unassigned. Source k-prime values belong to the joint steady-state population inference and include forward commitment; bindingK1 is not projected as a rate."
+          },
+          "reverse": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "Individual directional microscopic rate unassigned. Source k-prime values belong to the joint steady-state population inference and include forward commitment; bindingK1 is not projected as a rate."
+          }
+        },
+        "bond_annotations": [],
+        "reversibility_scope": "Source k_prime_2 is a forward-net stage constant. The selected source does not separately establish its reverse rate or explicit donor-adduct reversibility; null preserves that source uncertainty."
+      },
+      {
+        "transition_id": "decarboxylation",
+        "from_state": "LThDP",
+        "to_state": "HEThDP",
+        "reversible_in_source": false,
+        "reaction_branch_id": "ahas_2005:Pyr+Pyr",
+        "assay_binding": {
+          "provider": "qualification",
+          "pointer": "/assays/0"
+        },
+        "source_locators": [
+          "Tittmann2005:PDFp3:Fig2",
+          "Tittmann2005:PDFp4:Table2",
+          "Tittmann2005:PDFp5:Discussion net-rate definition"
+        ],
+        "parameter_slots": {
+          "forward": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "Individual directional microscopic rate unassigned. Source k-prime values belong to the joint steady-state population inference and include forward commitment; bindingK1 is not projected as a rate."
+          },
+          "reverse": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "Individual directional microscopic rate unassigned. Source k-prime values belong to the joint steady-state population inference and include forward commitment; bindingK1 is not projected as a rate."
+          }
+        },
+        "bond_annotations": [],
+        "reversibility_scope": "Source Discussion describes decarboxylation as presumably irreversible. False records that source-model presumption, not demonstrated chemical irreversibility."
+      },
+      {
+        "transition_id": "carboligation",
+        "from_state": "HEThDP",
+        "to_state": "ALThDP",
+        "reversible_in_source": true,
+        "reaction_branch_id": "ahas_2005:Pyr+Pyr",
+        "assay_binding": {
+          "provider": "qualification",
+          "pointer": "/assays/0"
+        },
+        "source_locators": [
+          "Tittmann2005:PDFp3:Fig2",
+          "Tittmann2005:PDFp4:Table2",
+          "Tittmann2005:PDFp5:Discussion net-rate definition",
+          "Tittmann2005:PDFp6:Eq10 and following paragraph"
+        ],
+        "parameter_slots": {
+          "forward": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "Individual directional microscopic rate unassigned. Source k-prime values belong to the joint steady-state population inference and include forward commitment; bindingK1 is not projected as a rate."
+          },
+          "reverse": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "Individual directional microscopic rate unassigned. Source k-prime values belong to the joint steady-state population inference and include forward commitment; bindingK1 is not projected as a rate."
+          }
+        },
+        "bond_annotations": [],
+        "reversibility_scope": "Source Discussion explicitly states that underlying steps4 and5 are reversible. Their net constants include commitment; no individual reverse rate is supplied.",
+        "scope": "The minimalFig2 stage collapses acceptor-pyruvate association. Discussion/Eq10 assumes reversible noncovalent acceptor binding before covalent carboligation. No separate acceptor-binding parameter/state is inferred; k_prime_4 is neither an acceptor-binding rate nor a bare-state elementary C-C rate."
+      },
+      {
+        "transition_id": "product_liberation",
+        "from_state": "ALThDP",
+        "to_state": "E_ThDP",
+        "reversible_in_source": true,
+        "reaction_branch_id": "ahas_2005:Pyr+Pyr",
+        "assay_binding": {
+          "provider": "qualification",
+          "pointer": "/assays/0"
+        },
+        "source_locators": [
+          "Tittmann2005:PDFp3:Fig2",
+          "Tittmann2005:PDFp4:Table2",
+          "Tittmann2005:PDFp5:Discussion net-rate definition",
+          "Tittmann2005:PDFp6:Eq10 and following paragraph"
+        ],
+        "parameter_slots": {
+          "forward": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "Individual directional microscopic rate unassigned. Source k-prime values belong to the joint steady-state population inference and include forward commitment; bindingK1 is not projected as a rate."
+          },
+          "reverse": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "Individual directional microscopic rate unassigned. Source k-prime values belong to the joint steady-state population inference and include forward commitment; bindingK1 is not projected as a rate."
+          }
+        },
+        "bond_annotations": [],
+        "reversibility_scope": "Source Discussion explicitly states that underlying steps4 and5 are reversible. Their net constants include commitment; no individual reverse rate is supplied."
+      }
+    ],
+    "fit_models": [
+      {
+        "fit_id": "steady_state_transit_times",
+        "kind": "steady_state_population_inference",
+        "assay_binding": {
+          "provider": "qualification",
+          "pointer": "/assays/0"
+        },
+        "reaction_branch_id": "ahas_2005:Pyr+Pyr",
+        "transition_ids": [
+          "donor_adduct_formation",
+          "decarboxylation",
+          "carboligation",
+          "product_liberation"
+        ],
+        "phase_transition_ids": [
+          "donor_adduct_formation",
+          "decarboxylation",
+          "carboligation",
+          "product_liberation"
+        ],
+        "parameter_bindings": {
+          "k_cat": {
+            "binding": {
+              "provider": "qualification",
+              "pointer": "/turnover_parameters/0/kcat"
+            },
+            "role": "steady_state_turnover_rate",
+            "unit": "s^-1",
+            "affected_transition_ids": [
+              "donor_adduct_formation",
+              "decarboxylation",
+              "carboligation",
+              "product_liberation"
+            ]
+          },
+          "k_prime_2": {
+            "binding": {
+              "provider": "qualification",
+              "pointer": "/net_parameters/0/forward_net_rate"
+            },
+            "role": "forward_net_rate",
+            "unit": "s^-1",
+            "affected_transition_ids": [
+              "donor_adduct_formation"
+            ]
+          },
+          "k_prime_3": {
+            "binding": {
+              "provider": "qualification",
+              "pointer": "/net_parameters/1/forward_net_rate"
+            },
+            "role": "forward_net_rate",
+            "unit": "s^-1",
+            "affected_transition_ids": [
+              "decarboxylation"
+            ]
+          },
+          "k_prime_4": {
+            "binding": {
+              "provider": "qualification",
+              "pointer": "/net_parameters/2/forward_net_rate"
+            },
+            "role": "forward_net_rate",
+            "unit": "s^-1",
+            "affected_transition_ids": [
+              "carboligation"
+            ]
+          },
+          "k_prime_5": {
+            "binding": {
+              "provider": "qualification",
+              "pointer": "/net_parameters/3/forward_net_rate"
+            },
+            "role": "forward_net_rate",
+            "unit": "s^-1",
+            "affected_transition_ids": [
+              "product_liberation"
+            ]
+          }
+        },
+        "source_locators": [
+          "Tittmann2005:PDFpp2-3:Eqs2-9",
+          "Tittmann2005:PDFp4:Table2"
+        ],
+        "inference_basis": {
+          "steady_state": true,
+          "substrate_regime": "Equations assume steady state and substrate saturation. The source corrects the unsubstituted ThDP fraction for pyruvate nonsaturation using Michaelis-Menten.100mM pyruvate must not be relabeled experimentally fully saturating;Table1 His-Met250Ala apparentKM is36mM. Raw correction inputs/fractions are unavailable for reconstruction.",
+          "turnover_and_population_inputs": true,
+          "source_equations": [
+            "Eq2:1/kcat=sum(1/k_prime_i),i=2..5",
+            "Eqs3-5:relative intermediate concentrations relate consecutive net rates",
+            "Eqs6-9:derive net rates from turnover and intermediate ratios"
+          ],
+          "raw_population_fractions_available": false,
+          "forward_net_rate_definition": "A true forward rate multiplied by the fraction of the resulting enzyme form committed to products rather than reversal (source Discussion).",
+          "direct_microscopic_rates_established": false
+        },
+        "scope": "Joint algebraic source inference, not a newly fitted model or direct kinetic trace. Donor binding is an unparameterized model transition outside the four-stage transit-time relation. No raw fractions, independent elementary rates or causal atom roles are reconstructed."
+      }
+    ],
+    "elementary_step_sequence_established": false,
+    "complete_reacted_graph_established": false,
+    "equilibrium_constant_transfer_between_assays_established": false,
+    "graph_replay_verified": false,
+    "before_state_atom_map": null
+  },
+  "deposit_association": null,
+  "deposit_absence_reason": "No source-named Met250Ala/Pyr+Pyr arrangement is bound. The paper hypothetical yeast-basedFig5 and WT/2-KB proposalFig6 do not establish one.",
+  "endpoint_relations": [
+    {
+      "relation_id": "Met250Ala:transit:k_cat",
+      "kind": "fit_parameter",
+      "observation_id": "ahas2005-turnover:Met250Ala:Pyr+Pyr:kcat",
+      "provider": "qualification",
+      "parameter_pointer": "/turnover_parameters/0/kcat",
+      "assay_pointer": "/assays/0",
+      "projected_parameter": {
+        "provider": "qualification",
+        "pointer": "/turnover_parameters/0/kcat"
+      },
+      "fit_id": "steady_state_transit_times",
+      "parameter_key": "k_cat",
+      "evidence_kind": "source_reported_turnover_input"
+    },
+    {
+      "relation_id": "Met250Ala:transit:k_prime_2",
+      "kind": "fit_parameter",
+      "observation_id": "ahas2005-net:Met250Ala:Pyr+Pyr:stage2:forward_net_rate",
+      "provider": "qualification",
+      "parameter_pointer": "/net_parameters/0/forward_net_rate",
+      "assay_pointer": "/assays/0",
+      "projected_parameter": {
+        "provider": "qualification",
+        "pointer": "/net_parameters/0/forward_net_rate"
+      },
+      "fit_id": "steady_state_transit_times",
+      "parameter_key": "k_prime_2",
+      "evidence_kind": "source_inferred_forward_net_constant"
+    },
+    {
+      "relation_id": "Met250Ala:transit:k_prime_3",
+      "kind": "fit_parameter",
+      "observation_id": "ahas2005-net:Met250Ala:Pyr+Pyr:stage3:forward_net_rate",
+      "provider": "qualification",
+      "parameter_pointer": "/net_parameters/1/forward_net_rate",
+      "assay_pointer": "/assays/0",
+      "projected_parameter": {
+        "provider": "qualification",
+        "pointer": "/net_parameters/1/forward_net_rate"
+      },
+      "fit_id": "steady_state_transit_times",
+      "parameter_key": "k_prime_3",
+      "evidence_kind": "source_inferred_forward_net_constant"
+    },
+    {
+      "relation_id": "Met250Ala:transit:k_prime_4",
+      "kind": "fit_parameter",
+      "observation_id": "ahas2005-net:Met250Ala:Pyr+Pyr:stage4:forward_net_rate",
+      "provider": "qualification",
+      "parameter_pointer": "/net_parameters/2/forward_net_rate",
+      "assay_pointer": "/assays/0",
+      "projected_parameter": {
+        "provider": "qualification",
+        "pointer": "/net_parameters/2/forward_net_rate"
+      },
+      "fit_id": "steady_state_transit_times",
+      "parameter_key": "k_prime_4",
+      "evidence_kind": "source_inferred_forward_net_constant"
+    },
+    {
+      "relation_id": "Met250Ala:transit:k_prime_5",
+      "kind": "fit_parameter",
+      "observation_id": "ahas2005-net:Met250Ala:Pyr+Pyr:stage5:forward_net_rate",
+      "provider": "qualification",
+      "parameter_pointer": "/net_parameters/3/forward_net_rate",
+      "assay_pointer": "/assays/0",
+      "projected_parameter": {
+        "provider": "qualification",
+        "pointer": "/net_parameters/3/forward_net_rate"
+      },
+      "fit_id": "steady_state_transit_times",
+      "parameter_key": "k_prime_5",
+      "evidence_kind": "source_inferred_forward_net_constant"
+    }
+  ],
+  "context_evidence_bindings": [
+    {
+      "evidence_id": "transit_time_inference_boundary",
+      "binding": {
+        "provider": "qualification",
+        "pointer": "/inference_context"
+      },
+      "transition_ids": [
+        "donor_adduct_formation",
+        "decarboxylation",
+        "carboligation",
+        "product_liberation"
+      ],
+      "fit_ids": [
+        "steady_state_transit_times"
+      ]
+    }
+  ],
+  "limitations": [
+    "Source-reported model inference, not a direct binding/transient measurement or experimentally established elementary arrow sequence. No native-pyruvate KD is supplied.",
+    "The four net parameters share turnover and NMR inputs and are not four independent experimental confirmations. No numerical population fractions are reconstructed from their rounded values.",
+    "Each acid-quenched covalent species can pool forms with and without noncovalently associated substrate or product; quench state is not a full enzymatic microstate.",
+    "Source net constants include commitment to product rather than reversal. Lower k_prime_4 can arise from bond making or later k_prime_5; k_prime_5 can include covalent cleavage and product diffusion. No microscopic causal rate or residue energy follows.",
+    "Fig5 is a hypothetical E.coli active-site model based on yeast1N0H; Fig6 proposes WT/2-ketobutyrate transition-state interactions. Neither is a Met250Ala/Pyr+Pyr observed arrangement.",
+    "No full sequence/specimen authentication, isotope provenance, proton/tautomer graph, project experiment, independent human review, protected protein/mechanism admission or demonstrated design performance."
+  ]
+}

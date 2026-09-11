@@ -372,6 +372,66 @@ class PerturbationRelationTests(unittest.TestCase):
         self.assertTrue(all(row == {**self.rows[row["id"]], "comparison_memberships": []}
                             for row in view["observations"]))
 
+    def ahas_model_relation(self, context=None):
+        link = deepcopy(next(item for item in self.spec["model_links"]
+                             if item["id"] == "ahas_2005:Met250Ala:pyruvate_net_transit"))
+        return self.model_relation(context, link)
+
+    def test_ahas_population_fit_keeps_source_net_constants_off_directional_arrows(self):
+        result = self.ahas_model_relation()
+        fit, = result["fit_models"]
+        phase = ["donor_adduct_formation", "decarboxylation",
+                 "carboligation", "product_liberation"]
+        self.assertEqual(fit["kind"], "steady_state_population_inference")
+        self.assertEqual(fit["transition_ids"], phase)
+        self.assertEqual(fit["phase_transition_ids"], phase)
+        self.assertEqual({key: value["value"] for key, value in fit["resolved_parameters"].items()},
+                         {"k_cat": 3, "k_prime_2": 28, "k_prime_3": 35,
+                          "k_prime_4": 11.1, "k_prime_5": 5.6})
+        bindings = fit["parameter_bindings"]
+        self.assertEqual(bindings["k_cat"]["affected_transition_ids"], phase)
+        self.assertEqual(
+            {item["affected_transition_ids"][0] for item in bindings.values()
+             if item["role"] == "forward_net_rate"}, set(phase))
+        self.assertFalse(fit["inference_basis"]["raw_population_fractions_available"])
+        self.assertFalse(fit["inference_basis"]["direct_microscopic_rates_established"])
+        self.assertNotIn("donor_binding", phase)
+        self.assertTrue(all(transition["resolved_parameters"] == {"forward": None, "reverse": None}
+                            for transition in result["transitions"]))
+        self.assertIsNone(result["arrangement"])
+
+    def test_ahas_population_fit_rejects_microscopic_and_incomplete_net_rate_mappings(self):
+        original = self.ahas_model_relation()["source_context"]
+        cases = [
+            ("directional-rate", lambda c: c["source_model"]["transitions"][1]["parameter_slots"].update(
+                forward={"status": "bound_source_parameter", "is_zero": False,
+                         "binding": deepcopy(c["source_model"]["fit_models"][0]
+                                             ["parameter_bindings"]["k_prime_2"]["binding"])})),
+            ("phase-mismatch", lambda c: c["source_model"]["fit_models"][0]
+             ["transition_ids"].reverse()),
+            ("microscopic-claim", lambda c: c["source_model"]["fit_models"][0]
+             ["inference_basis"].update(direct_microscopic_rates_established=True)),
+            ("missing-equations", lambda c: c["source_model"]["fit_models"][0]
+             ["inference_basis"].update(source_equations=[])),
+            ("unknown-population-status", lambda c: c["source_model"]["fit_models"][0]
+             ["inference_basis"].update(raw_population_fractions_available=None)),
+            ("turnover-substage", lambda c: c["source_model"]["fit_models"][0]
+             ["parameter_bindings"]["k_cat"].update(
+                 affected_transition_ids=["donor_adduct_formation"])),
+            ("net-rate-spans-stages", lambda c: c["source_model"]["fit_models"][0]
+             ["parameter_bindings"]["k_prime_2"].update(
+                 affected_transition_ids=["donor_adduct_formation", "decarboxylation"])),
+            ("duplicate-stage-rate", lambda c: c["source_model"]["fit_models"][0]
+             ["parameter_bindings"]["k_prime_3"].update(
+                 affected_transition_ids=["donor_adduct_formation"])),
+        ]
+        for name, mutate in cases:
+            with self.subTest(name=name):
+                context = deepcopy(original)
+                mutate(context)
+                with self.assertRaises(ValueError):
+                    self.ahas_model_relation(context)
+
     def model_relation(self, context=None, link=None):
         sources = {key: json.loads((ROOT / binding["path"]).read_text())
                    for key, binding in self.spec["sources"].items()}

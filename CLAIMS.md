@@ -699,6 +699,22 @@ unknown numeric SDs, final purified-assay cofactor concentrations and exact
 assayed sequence remain explicit. No microscopic cause, new project experiment,
 independent validation, protein admission or design-performance claim.
 
+## CE-046 — AHAS II source net stages are distinct from overall turnover
+
+**Status:** Supported
+
+The [Tittmann2005 Met250Ala/Pyr + Pyr relation](docs/ATLAS_AHAS_NET_RATES.md)
+retains Table 2 kcat 3 ± 0.1 s^-1 and four source-derived forward-net constants:
+28 ± 7, 35 ± 7, 11.1 ± 1.3 and 5.6 ± 0.3 s^-1. These connect the donor-adduct,
+decarboxylation, carboligation and product-liberation stages under the authors'
+steady-state population/turnover model. The inferred net parameters include
+commitment and reversal effects; they are not directly measured elementary
+forward rates. Saturation correction, unknown raw Met250Ala populations,
+source-reported errors and separate turnover/NMR procedures remain explicit.
+One generic inference contract serves this source-named construct without a
+native binding constant, WT ratio, occupancy reconstruction, deposited geometry,
+project experiment, independent validation or design-performance claim.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,
