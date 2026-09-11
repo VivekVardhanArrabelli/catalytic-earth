@@ -1,5 +1,21 @@
 # Current State
 
+## 2026-09-11: calmodulin controls separate residual activity from a lysine-route inference
+
+The [Raymond2015 relation](ATLAS_CALMODULIN_CONTROLS.md) adds five source
+methodol initial-rate records. C-terminal CaMWN and Ac-CaMWN retain reported
+activity after named Lys/His and terminal-amine controls. Full-length L105K
+has a larger endpoint than CaM and a separate diketone spectral response.
+Residual activity alone does not identify a lysine-covalent mechanism; the
+controls do not prove hydrophobic causality or an exact alternative pathway.
+
+Two descriptive genetic-background ratios use separate full-length and C-terminal references.
+Calcium dependence remains an allosteric/assay context. Source protocol and
+imine/iminium/enamine naming conflicts, undefined ± statistics and unacquired
+SI sequences remain explicit. The existing consumer resolves the controls and
+prior RA61 component context without runtime changes or cross-study arithmetic.
+CE-041 records the scope. No new project experiment or design validation.
+
 ## 2026-09-11: RA61 initial-rate evidence has a defined source-path boundary
 
 The [RA61 model query](ATLAS_PERTURBATION_RELATION.md#ra61-initial-rate-boundary-ends-before-enzyme-regeneration-and-product-trapping)

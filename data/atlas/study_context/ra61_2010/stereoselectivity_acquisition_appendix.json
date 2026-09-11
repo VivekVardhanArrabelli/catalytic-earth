@@ -1,0 +1,131 @@
+{
+  "batch_id": "designed-retroaldolase-components-lassila2010",
+  "inherited_request_count": 45,
+  "inherited_response_body_bytes": 3236259,
+  "requests": [
+    {
+      "request_id": 46,
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=RA61&format=json&resultType=core&pageSize=30",
+      "started_at_utc": "2026-09-11T08:08:56.495041+00:00",
+      "finished_at_utc": "2026-09-11T08:08:58.897138+00:00",
+      "local_path": "/private/tmp/ce-ra61-stereo-af9afdd4/search-ra61.json",
+      "response_body_bytes": 222771,
+      "sha256": "3008adc172e27a2e533128f362cb56d65a515c15404c8cddab99c64cbb54e202",
+      "curl_exit": 0,
+      "http_status_and_content_type": "200 application/json;charset=UTF-8",
+      "transport": "system_curl_TLS_verified_no_redirect_no_retry_identity_encoding",
+      "source_disposition": "metadata_discovery_not_primary_body"
+    },
+    {
+      "request_id": 47,
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=RA61%20AND%20%28retroaldolase%20OR%20retro-aldol%20OR%20methodol%29&format=json&resultType=core&pageSize=30",
+      "started_at_utc": "2026-09-11T08:09:13.764422+00:00",
+      "finished_at_utc": "2026-09-11T08:09:14.792059+00:00",
+      "local_path": "/private/tmp/ce-ra61-stereo-af9afdd4/search-ra61-chemistry.json",
+      "response_body_bytes": 37059,
+      "sha256": "6f7e6893666c75bd09e4c559bff09d435c6adf3fd0c40cea90c516f015bdb483",
+      "curl_exit": 0,
+      "http_status_and_content_type": "200 application/json;charset=UTF-8",
+      "transport": "system_curl_TLS_verified_no_redirect_no_retry_identity_encoding",
+      "source_disposition": "metadata_discovery_not_primary_body"
+    },
+    {
+      "request_id": 48,
+      "url": "https://europepmc.org/api/getPdf?pmcid=PMC3440004",
+      "started_at_utc": "2026-09-11T08:09:28.834953+00:00",
+      "finished_at_utc": "2026-09-11T08:09:29.159915+00:00",
+      "local_path": "/private/tmp/ce-ra61-stereo-af9afdd4/wang2012.pdf",
+      "response_body_bytes": 57,
+      "sha256": "b3a2d86b7b4c3b5645d00ffb21a5aeec9dfffd1e689c4cf6d950e692c5817ebe",
+      "curl_exit": 0,
+      "http_status_and_content_type": "500 application/json;charset=UTF-8",
+      "transport": "system_curl_TLS_verified_no_redirect_no_retry_identity_encoding",
+      "source_disposition": "HTTP_error_not_article"
+    },
+    {
+      "request_id": 49,
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC3440004/fullTextXML",
+      "started_at_utc": "2026-09-11T08:09:41.073665+00:00",
+      "finished_at_utc": "2026-09-11T08:09:41.899852+00:00",
+      "local_path": "/private/tmp/ce-ra61-stereo-af9afdd4/wang2012.xml",
+      "response_body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "curl_exit": 0,
+      "http_status_and_content_type": "404 ",
+      "transport": "system_curl_TLS_verified_no_redirect_no_retry_identity_encoding",
+      "source_disposition": "HTTP_error_not_article"
+    },
+    {
+      "request_id": 50,
+      "url": "https://www.bakerlab.org/?s=Structural+analyses+covalent",
+      "started_at_utc": "2026-09-11T08:10:32.493758+00:00",
+      "finished_at_utc": "2026-09-11T08:10:33.453050+00:00",
+      "local_path": "/private/tmp/ce-ra61-stereo-af9afdd4/wang-author-discovery.html",
+      "response_body_bytes": 108410,
+      "sha256": "fb3cc369aaa593f3f58c3db61bc6d4418c59a270dc23e140558de98ae7696712",
+      "curl_exit": 0,
+      "http_status_and_content_type": "200 text/html; charset=UTF-8",
+      "transport": "system_curl_TLS_verified_no_redirect_no_retry_identity_encoding",
+      "source_disposition": "author_search_no_primary_body"
+    },
+    {
+      "request_id": 51,
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28retroaldolase%20OR%20retro-aldol%29%20AND%20%28enantioselectivity%20OR%20enantiopure%29&format=json&resultType=core&pageSize=30",
+      "started_at_utc": "2026-09-11T08:10:49.601637+00:00",
+      "finished_at_utc": "2026-09-11T08:10:56.224050+00:00",
+      "local_path": "/private/tmp/ce-ra61-stereo-af9afdd4/search-stereoselectivity.json",
+      "response_body_bytes": 177598,
+      "sha256": "c7312eb5508d4cf8929b8a83340820588bf3347aeffb8dfd73cf2d0beb3f3789",
+      "curl_exit": 0,
+      "http_status_and_content_type": "200 application/json;charset=UTF-8",
+      "transport": "system_curl_TLS_verified_no_redirect_no_retry_identity_encoding",
+      "source_disposition": "metadata_discovery_not_primary_body"
+    },
+    {
+      "request_id": 52,
+      "url": "https://europepmc.org/api/getPdf?pmcid=PMC4380986",
+      "started_at_utc": "2026-09-11T08:11:09.039886+00:00",
+      "finished_at_utc": "2026-09-11T08:11:09.980174+00:00",
+      "local_path": "/private/tmp/ce-ra61-stereo-af9afdd4/raymond2015.pdf",
+      "response_body_bytes": 713767,
+      "sha256": "85d1260fc986d22f46c422f31495d0b031dafc830525034d24574b38b1b47c5a",
+      "curl_exit": 0,
+      "http_status_and_content_type": "200 application/pdf",
+      "transport": "system_curl_TLS_verified_no_redirect_no_retry_identity_encoding",
+      "source_disposition": "primary_article_acquired"
+    }
+  ],
+  "cumulative_request_count": 52,
+  "cumulative_response_body_bytes": 4495921,
+  "complete_cumulative_accounting": true,
+  "schema_version": "catalytic-earth.primary-source-transport.v1",
+  "max_requests": 100,
+  "max_response_body_bytes": 31457280,
+  "inherited_accounting": {
+    "base_receipt": "data/atlas/study_context/ra61_2010/acquisition_receipts.json",
+    "appendix": "data/atlas/study_context/ra61_2010/jiang2008_acquisition_appendix.json",
+    "request_count": 45,
+    "response_body_bytes": 3236259
+  },
+  "remaining_requests": 48,
+  "remaining_response_body_bytes": 26961359,
+  "source_bodies_redistributed": false,
+  "scout_result": {
+    "question": "Primary separately supplied R/S-methodol kinetics for source-named RA61",
+    "primary_candidates_considered": [
+      {
+        "doi": "10.1016/j.jmb.2011.10.043",
+        "result": "Wang2012 primary body not acquired through PDF/XML; author search yielded no body. No body-level absence claim."
+      },
+      {
+        "doi": "10.1002/pro.2622",
+        "result": "Raymond2015 main acquired; CaM constructs are not RA61; R/S statement belongs to docking, not separate kinetic measurements."
+      }
+    ],
+    "stop": "First source-established construct mismatch, after7requests; no third candidate or renewed closed Jiang/DERA/Xue route. This is a bounded scout, not exhaustive literature absence.",
+    "retained_S8_boundary": "Lassila2010 SI pp7-8 supplies two qualitative racemate-model envelopes, no preferred R/S configuration or independent enantiomer rates.",
+    "substantive_pivot": "Same acquired Raymond2015 primary supports a different nucleophile-control question; all acquisition stays in this batch."
+  },
+  "accounting": "Parent serial curl only; TLS verified, no redirects/retries, identity encoding; actual captured response-body bytes include errors and metadata. Complete inherited+current count, not a new or renamed batch.",
+  "finished_at_utc": "2026-09-11T08:18:26.519687+00:00"
+}

@@ -20,6 +20,48 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 class PerturbationRelationTests(unittest.TestCase):
+    def test_calmodulin_controls_keep_domain_treatment_and_analogue_boundaries(self):
+        rows = {row["source_row_id"]: row for row in self.view["observations"]
+                if row["study_id"] == "calmodulin_2015"}
+        self.assertEqual(set(rows), {"CaM", "cCaM", "CaMWN", "Ac-CaMWN", "CaM-L105K"})
+        for name, value, error in (("CaM", .006, .001), ("cCaM", .007, .002),
+                                   ("CaMWN", .005, .001), ("Ac-CaMWN", .004, .002),
+                                   ("CaM-L105K", .038, .002)):
+            with self.subTest(construct=name):
+                self.assertEqual((rows[name]["value"], rows[name]["uncertainty"]["value"]),
+                                 (value, error))
+                self.assertEqual(rows[name]["uncertainty"]["kind"],
+                                 "source_reported_plus_minus_statistic_unspecified")
+        controls = next(c for c in self.spec["comparisons"]
+                        if c["id"] == "calmodulin_2015:CaMWN:over-cCaM")
+        self.assertAlmostEqual(compare(self.rows, controls)["value"], .005 / .007)
+        wrong = deepcopy(controls)
+        wrong["roles"]["denominator"] = rows["CaM"]["id"]
+        result = compare(self.rows, wrong)
+        self.assertFalse(result["eligible"])
+        self.assertIn("mismatched_background_id", result["reasons"])
+        # The terminal chemical treatment is observed, but is not a genetic ratio.
+        self.assertFalse(any(rows["Ac-CaMWN"]["id"] in c["roles"].values()
+                             for c in self.spec["comparisons"]))
+        acetylated = self.view["constructs"]["calmodulin_2015:Ac-CaMWN"]["source_record"]
+        self.assertNotIn("N-terminal acetylation", acetylated["substitutions"])
+        self.assertIn("N-terminal acetylation", acetylated["perturbations"])
+        self.assertEqual(acetylated["preparation_parent"], "CaMWN")
+        self.assertEqual(acetylated["domain_scope"], "C-terminal domain")
+        request = next(c for c in self.view["comparisons"]
+                       if c["id"] == "calmodulin_2015:nucleophile-control-context")
+        self.assertIn(rows["Ac-CaMWN"]["id"], request["context_observations"])
+        evidence = request["source_evidence"]
+        spectral = next(e for e in evidence if isinstance(e, dict) and
+                        e.get("context_id") == "calmodulin_2015:diketone-spectral-control")
+        calcium = next(e for e in evidence if isinstance(e, dict) and
+                       e.get("context_id") == "calmodulin_2015:calcium-dependence")
+        self.assertEqual(spectral["construct_ids"], ["CaM", "CaM-L105K"])
+        self.assertIsNone(spectral["bond_order"])
+        self.assertFalse(spectral["direct_covalent_attachment_observed"])
+        self.assertIsNone(calcium["calcium_free_rate"])
+        self.assertFalse(calcium["direct_catalytic_metal_role_established"])
+
     def ra61_model_relation(self, context=None, link=None):
         if link is None:
             link = deepcopy(next(item for item in self.spec["model_links"]

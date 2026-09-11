@@ -548,5 +548,18 @@
       "data/atlas/study_context/ksi_2010/source_review.json",
       "docs/ATLAS_KSI_FIELD_FUNCTION.md"
     ]
+  },
+  {
+    "claim_id": "CE-041",
+    "claim_kind": "source_annotation",
+    "status": "Supported",
+    "claim": "Raymond2015 TableI methodol activity persists in source-defined C-terminal calmodulin after K77A/K94R/H107I/K115N/K148L and after additional N-terminal acetylation. Residual activity in this series is not unique evidence for a lysine-covalent route. Full-length L105K has higher activity than CaM and a distinct non-turnover diketone response. These observations do not identify an exact chemical pathway or prove hydrophobic association as the sole cause.",
+    "current_wording": "Five kinetic parameter records, two genetic-background descriptive ratios and one qualified mechanistic control relation. Calcium and analogue evidence retain their own scopes; source assay and state-naming conflicts, undefined printed-error statistic and unverified sequences remain explicit. No new project experiment, complete mechanism, evidence-tier promotion or design performance.",
+    "rationale": "The source-defined nucleophile-removal controls provide positive residual activity, while analogue and calcium controls qualify the authors' designed-lysine interpretation. Linking the distinct RA61 component context prevents transfer of model components across unmatched studies.",
+    "evidence": [
+      "data/atlas/study_context/calmodulin_2015/nucleophile_controls.json",
+      "data/atlas/study_context/calmodulin_2015/source_review.json",
+      "docs/ATLAS_CALMODULIN_CONTROLS.md"
+    ]
   }
 ]

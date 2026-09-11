@@ -1,0 +1,76 @@
+{
+  "schema_version": "catalytic-earth.source-qualification-review.v1",
+  "assessment_id": "calmodulin_2015_nucleophile_controls",
+  "decision": "accept_source_annotation",
+  "authorized_operation": "source_annotation",
+  "policy_binding": {
+    "path": "data/governance/computational_review_policy.json",
+    "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "reviewed_bindings": {
+    "data/atlas/study_context/calmodulin_2015/nucleophile_controls.json": "5589b64ce36569195b2efc4b21372ea8a43f311ebd2d4ea4a42af03689d41f61",
+    "data/atlas/study_context/ra61_2010/stereoselectivity_acquisition_appendix.json": "2e16aa528f5e5c3a2d4798ba821e79029af86d57fff3e19f424624882c8e5880",
+    "data/atlas/perturbations/projection.json": "ef57420b1c17689a409454e705205af8fbaeb116e01002c32645a90d4baec2ef",
+    "docs/ATLAS_CALMODULIN_CONTROLS.md": "9b863460d8ab5e4b532bbf271693e8b3cfe3d2aab19d77c959c8036383cedfda",
+    "CLAIMS.md": "321d8d9b33985d454313ae6efb680b38b3ec0fa8aa6654f8ecc89339433784d1",
+    "data/governance/claim_ledger.json": "f434c94f01a17bad5f0857bd2c4e09b8b5bf3f1e26459c11b0177a03ad2df3c9",
+    "docs/CURRENT_STATE.md": "c75ebe76cda611726bce4eadd9c98e6dbe8067bc8b4f2237d1794a743b42e5a2",
+    "docs/CURRENT_DECISIONS.md": "df36b8cfbd4026dd3c35e432787a2bb0d6047ccc6d05f57db86282aa62d28b23",
+    "tests/core/test_atlas_perturbations.py": "e00863fa5cd74dff62be571bbb54f4a702365bad80cd0b4e5b6a40354d3e51bc",
+    "tests/test_truth_guard.py": "331043476681796e57b80b7965c5f60bf2d76e02c1d4ab798fd911625796534e"
+  },
+  "source_inspection": "Parent and source/adversarial reviewers inspected primary main pp2-4,6-9 and the relevant TableI/Figures1,5,7,8 pages. RA61 SI pp7-8 bounds the closed scout. Raw SI, experimental traces, sequences and acetylation spectra remain unacquired.",
+  "review_process": "Parent owns acquisition/edits/Git/lock; separately prompted source_ra61, representation_ra61 and adversarial_ra61 on gpt-5.6-sol/ultra challenge source scope and data-only reuse. Exact final-head acceptance and publication state are recorded in the Git-local receipt. These reviews are correlated computation, not independent human or laboratory validation.",
+  "adjudications": [
+    {
+      "objection": "Methodol activity could be treated as sufficient evidence of a lysine-covalent pathway or isolated hydrophobic causality.",
+      "evidence": "Raymond2015 p564 controls, TableI; Figure8 non-turnover analogue.",
+      "decision": "Preserve positive C-terminal control activity and separate L105K analogue response. Residual activity is non-unique evidence; exact pathway, all-nucleophile absence and sole hydrophobic cause are not established."
+    },
+    {
+      "objection": "C-terminal controls could inherit full-length identity or chemical acetylation could become a genetic mutation ratio.",
+      "evidence": "p564 cCaM lineage, p568 acetylation; Figure5 aliases.",
+      "decision": "Separate CaM/cCaM reference backgrounds; retain Ac-CaMWN chemical treatment and immediate preparation parent in source data. Request only CaMWN/cCaM and L105K/CaM genetic ratios; Ac endpoint remains in mechanistic context."
+    },
+    {
+      "objection": "Figure5 conditions and triplicate measurements could fabricate exact protocol identity or an SD.",
+      "evidence": "TableI title and Methods p569 disagree with Figure5 caption on pH/buffer/range; plus/minus statistic unspecified.",
+      "decision": "Qualify only TableI/Methods within-table comparison; preserve conflict, unspecified temperature/error kind, and no propagated uncertainty."
+    },
+    {
+      "objection": "Spectra or calcium dependence could establish a productive iminium state, exact zero activity or direct metal catalysis.",
+      "evidence": "Figure1 enamine vs p564 imine/iminium; Figure7 caption/prose mismatch; Figure8 blue trace omitted from caption; EDTA in no-calcium arm.",
+      "decision": "Keep full-length L105K panelA and CaM/L105K analogue pair separately scoped; preserve source labels, null rates/bond order and no direct catalytic metal claim."
+    },
+    {
+      "objection": "HPLC wording claimed calibrated integration without the source describing calibration.",
+      "evidence": "p569 HPLC Methods says integrated absorbance corrected for different extinction coefficients.",
+      "decision": "Use that exact procedural scope; no independently reprocessed or calibrated chromatograms are claimed."
+    },
+    {
+      "objection": "A bounded RA61 scout could imply exhaustive absence or restart a closed acquisition batch.",
+      "evidence": "Same batch requests46-52; Raymond primary is CaM, not RA61; R/S onp568 is docking.",
+      "decision": "Stop at first primary identity mismatch, retain compact bounded unavailable result, then use the newly acquired source for a different control question. No renamed budget or repeated Jiang/DERA/Xue routes."
+    }
+  ],
+  "blocked_operations": [
+    "exact_enantiomer_rates_or_R_S_preference_for_RA61",
+    "chemical_treatment_as_genetic_ratio",
+    "full_length_to_domain_assay_transfer",
+    "isolated_hydrophobic_or_catalytic_group_energetics",
+    "complete_covalent_state_or_catalytic_geometry",
+    "zero_rate_from_nondetection_or_direct_calcium_chemistry",
+    "independent_validation_or_evidence_tier_promotion"
+  ],
+  "reuse": "Existing provider, background, parameter, ratio and context consumers recover the new control chain and the original RA61 component evidence. No runtime/schema change. Chemical-intervention arithmetic is deliberately not generalized from this case; source representation/curation remains manual and no time-saving/design-performance result is measured.",
+  "coordination_record": ".git/catalytic-earth-runs/af9afdd4.board.md",
+  "source_access": {
+    "batch_id": "designed-retroaldolase-components-lassila2010",
+    "new_requests": 7,
+    "new_response_body_bytes": 1259662,
+    "cumulative_request_count": 52,
+    "cumulative_response_body_bytes": 4495921
+  },
+  "reviewed_at_utc": "2026-09-11T08:26:27.467330+00:00",
+  "closing_review_status": "All three roles accepted the scientific packet, data mappings, documentation, tests and review bindings. Final staged-file and Git-head checks are recorded in the Git-local run receipt."
+}

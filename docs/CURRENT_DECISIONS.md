@@ -1,5 +1,24 @@
 # Current Decisions
 
+## 2026-09-11: use positive nucleophile-control activity to qualify mechanism inference
+
+Close the bounded RA61 R/S scout at the acquired Raymond2015 construct
+mismatch: its experiments concern calmodulin, while R/S methodol appears in
+docking. This does not establish literature-wide absence. Keep the existing
+racemate-model limits and closed failed routes; do not encode another S8 model.
+
+Use the acquired primary to answer the different
+[calmodulin control question](ATLAS_CALMODULIN_CONTROLS.md). Preserve the
+C-terminal Lys/His-removal and terminal-acetylation controls, their positive
+reported activity, and separate full-length L105K analogue/calcium evidence.
+Put source facts and chemical modifications in data. Existing source-defined
+references, ratio and evidence-context operations suffice; no new runtime is
+justified. The acetylated endpoint stays in the control context; the genetic-background
+ratio operation is not used for chemical treatment. No ratio proves a
+microscopic mechanism. No human-review, protected-registry, frozen-kernel or
+source-budget policy changes. Stop after this supported relation; do not expand
+into a design-success comparison or exact state assignment without new evidence.
+
 ## 2026-09-11: separate a reporter boundary from later chemistry and product trapping
 
 Accept the [RA61 relation](ATLAS_PERTURBATION_RELATION.md#ra61-initial-rate-boundary-ends-before-enzyme-regeneration-and-product-trapping)
