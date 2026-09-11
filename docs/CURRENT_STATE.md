@@ -1,5 +1,23 @@
 # Current State
 
+## 2026-09-11: a micellar coefficient needs its amine denominator
+
+The [Schmidt2013 control](ATLAS_MICELLAR_CONTROLS.md) supplies a119.05
+central-value CTAC/no-detergent ratio for butylamine(methodol Table2; source120).
+It is an apparent nominal bulk-normalized system coefficient, not an intrinsic
+micellar-site rate or isolated hydrophobic energy. Long-chain no-detergent
+controls were unmeasured;9500 uses a butylamine denominator, so no component
+factorial contrast is identified. Table1's factor33 and imported RA61 conditions
+remain distinct. The bounded main-text inquiry is complete; SI was not acquired.
+
+The shared consumer now resolves chemical-mixture and protein-preparation
+control pairs without fake genetic backgrounds. Two new butylamine arm records
+and one reused calmodulin acetylation pair demonstrate the same two-arm operation;
+the latter gives0.8 without any new measurement or equivalence claim. All prior
+observations/genetic comparisons remain unchanged. CE-042 defines the scope;
+no physical experiment or design validation is added.
+
+
 ## 2026-09-11: calmodulin controls separate residual activity from a lysine-route inference
 
 The [Raymond2015 relation](ATLAS_CALMODULIN_CONTROLS.md) adds five source

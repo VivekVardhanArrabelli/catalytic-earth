@@ -12,7 +12,7 @@ from tempfile import TemporaryDirectory
 import unittest
 
 from catalytic_earth.atlas_perturbations import (
-    SPEC_PATH, REVIEW_PATH, _connectivity_relation, _model_link, _project_candidate, compare, pointer, project, verify_witnesses,
+    SPEC_PATH, REVIEW_PATH, _connectivity_relation, _model_link, _project_candidate, compare, control_relation, pointer, project, verify_witnesses,
 )
 
 
@@ -20,6 +20,111 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 class PerturbationRelationTests(unittest.TestCase):
+    def system_relation(self, context=None, documents=None):
+        if context is None:
+            context = next(item for item in self.view["control_relations"]
+                           if item["study_id"] == "schmidt_2013")
+        documents = documents or {key: json.loads((ROOT / value["path"]).read_text())
+                                  for key, value in self.spec["sources"].items()}
+        return control_relation(context, lambda ref: deepcopy(pointer(documents[ref["source"]], ref["pointer"])))
+
+    def test_system_contrast_preserves_denominator_and_missing_factorial_corners(self):
+        result = self.system_relation()
+        self.assertAlmostEqual(result["value"], 2.5e-4 / 2.1e-6)
+        self.assertEqual(result["source_reported_ratio"], 120)
+        self.assertNotEqual(result["value"], result["source_reported_ratio"])
+        self.assertFalse(result["causal_component_established"])
+        self.assertIsNone(result["uncertainty"])
+        boundary = result["source_evidence"][0]
+        self.assertFalse(boundary["source_table2_context"]["denominator_same_amine"])
+        self.assertIsNone(boundary["factorial_contrast"])
+        self.assertTrue(all(row["k2"] is None for row in boundary["unmeasured_controls"]))
+        self.assertFalse(any(row["study_id"] == "schmidt_2013" for row in self.view["observations"]))
+        self.assertFalse(any(key.startswith("schmidt_2013:") for key in self.view["constructs"]))
+
+    def test_system_contrast_detects_changed_source_condition_and_identity(self):
+        context = deepcopy(next(item for item in self.view["control_relations"]
+                                if item["study_id"] == "schmidt_2013"))
+        documents = {key: json.loads((ROOT / value["path"]).read_text())
+                     for key, value in self.spec["sources"].items()}
+        documents["schmidt2013"]["systems"][1]["components"][0]["name"] = "dodecylamine"
+        result = self.system_relation(context, documents)
+        self.assertFalse(result["eligible"])
+        self.assertIn("declared_condition_changes_differ", result["reasons"])
+        documents["schmidt2013"]["rows"][1]["system_id"] = "another-mixture"
+        with self.assertRaisesRegex(ValueError, "identity differs"):
+            self.system_relation(context, documents)
+
+    def test_system_contrast_refuses_missing_mismatched_and_unqualified_parameters(self):
+        original = next(item for item in self.view["control_relations"]
+                        if item["study_id"] == "schmidt_2013")
+        for change in ("missing", "zero-denominator", "unit", "normalization", "study", "assay", "unqualified"):
+            with self.subTest(change=change):
+                context = deepcopy(original)
+                documents = {key: json.loads((ROOT / value["path"]).read_text())
+                             for key, value in self.spec["sources"].items()}
+                param = documents["schmidt2013"]["rows"][0]["k2"]
+                if change == "missing":
+                    param.update(status="unavailable", value=None)
+                elif change == "zero-denominator":
+                    param["value"] = 0
+                elif change == "unit":
+                    param["unit"] = "uM/s"
+                elif change == "normalization":
+                    context["arms"]["numerator"]["reviewed_invariants"]["normalization"] = {"basis": "per_micelle"}
+                elif change == "study":
+                    context["arms"]["numerator"]["reviewed_invariants"]["study_id"] = "another-study"
+                elif change == "assay":
+                    context["arms"]["numerator"]["assay_qualified"] = False
+                else:
+                    context["source_qualified"] = False
+                result = self.system_relation(context, documents)
+                self.assertFalse(result["eligible"])
+                self.assertIsNone(result["value"])
+        context = deepcopy(original)
+        context["operation"] = "multiplicative"
+        with self.assertRaisesRegex(ValueError, "unsupported"):
+            self.system_relation(context)
+        context = deepcopy(original)
+        context["arms"]["numerator"]["condition_fields"]["CTAC_mM"]["pointer"] = "/system/components/0/nominal_concentration_range_mM"
+        result = self.system_relation(context)
+        self.assertFalse(result["eligible"])
+        self.assertIn("mismatched_condition_fields", result["reasons"])
+        context = deepcopy(original)
+        for arm in context["arms"].values():
+            arm["condition_fields"]["CTAC_mM"] = {"pointer": "/parameter/value"}
+        with self.assertRaisesRegex(ValueError, "source system pointer"):
+            self.system_relation(context)
+        context = deepcopy(original)
+        context["source_reported_ratio"] = "9500"
+        with self.assertRaisesRegex(ValueError, "source-reported ratio"):
+            self.system_relation(context)
+
+    def test_chemical_preparation_reuses_original_rows_without_genetic_semantics(self):
+        context = next(item for item in self.view["control_relations"]
+                       if item["study_id"] == "calmodulin_2015")
+        result = self.system_relation(context)
+        self.assertEqual(result["value"], 0.8)
+        self.assertEqual(result["arms"]["numerator"]["source_system"]["preparation_parent"], "CaMWN")
+        self.assertEqual(result["arms"]["numerator"]["source_parameter"],
+                         self.rows["calmodulin2015-table1:Ac-CaMWN:kcat_over_KM"]["source_parameter"])
+        self.assertEqual(result["arms"]["denominator"]["source_parameter"],
+                         self.rows["calmodulin2015-table1:CaMWN:kcat_over_KM"]["source_parameter"])
+        self.assertIsNone(result["uncertainty"])
+        self.assertFalse(result["causal_component_established"])
+
+    def test_system_control_query_retains_both_source_arms(self):
+        for study in ("schmidt_2013", "calmodulin_2015"):
+            relation = next(item for item in self.view["control_relations"] if item["study_id"] == study)
+            completed = subprocess.run([sys.executable, str(ROOT / "scripts/query_atlas_perturbations.py"),
+                                        "--study", study, "--control-relation", relation["id"]],
+                                       capture_output=True, text=True, check=True)
+            result = json.loads(completed.stdout)
+            self.assertEqual(len(result["control_relations"]), 1)
+            self.assertEqual(set(result["control_relations"][0]["arms"]), {"numerator", "denominator"})
+            self.assertEqual(result["observations"], [])
+            self.assertEqual(result["comparisons"], [])
+
     def test_calmodulin_controls_keep_domain_treatment_and_analogue_boundaries(self):
         rows = {row["source_row_id"]: row for row in self.view["observations"]
                 if row["study_id"] == "calmodulin_2015"}

@@ -20,13 +20,14 @@ def main() -> int:
     parser.add_argument("--comparison", help="Exact comparison ID; retains all its control observations")
     parser.add_argument("--state-link", help="Exact construct-to-state link; retains its functional observations")
     parser.add_argument("--model-link", help="Exact source-model transition link; retains its existing endpoint observations")
+    parser.add_argument("--control-relation", help="Exact two-system source contrast; retains original arm rows, systems and normalization")
     parser.add_argument("--with-comparisons", action="store_true", help="With --state-link, include ratio and multiplicative comparisons using its observations as controls, including abstentions; states remain parent-only")
     parser.add_argument("--output", type=Path, help="Write JSON here instead of stdout")
     parser.add_argument("--verify-witnesses", action="store_true", help="Also hash-check retained primary files in the Git common directory; never fetch")
     parser.add_argument("--check", action="store_true", help="Resolve the relation and report compact integrity/coverage counts")
     args = parser.parse_args()
-    if sum(bool(value) for value in (args.state_link, args.comparison, args.model_link)) > 1:
-        parser.error("--state-link, --model-link and --comparison select different relations")
+    if sum(bool(value) for value in (args.state_link, args.comparison, args.model_link, args.control_relation)) > 1:
+        parser.error("--state-link, --model-link, --comparison and --control-relation select different relations")
     if args.with_comparisons and not args.state_link:
         parser.error("--with-comparisons requires --state-link")
     result = project(ROOT)
@@ -34,12 +35,24 @@ def main() -> int:
         common = subprocess.check_output(["git", "rev-parse", "--git-common-dir"], cwd=ROOT, text=True).strip()
         result["source_witness_cache_status"] = verify_witnesses(ROOT / common, result)
     if args.study:
-        if args.study not in {row["study_id"] for row in result["observations"]}:
+        studies = {row["study_id"] for row in result["observations"] + result["control_relations"]}
+        if args.study not in studies:
             parser.error("unknown study ID")
         result["observations"] = [row for row in result["observations"] if row["study_id"] == args.study]
         result["comparisons"] = [row for row in result["comparisons"] if row["study_id"] == args.study]
         result["state_links"] = [row for row in result["state_links"] if row["study_id"] == args.study]
         result["model_links"] = [row for row in result["model_links"] if row["study_id"] == args.study]
+        result["control_relations"] = [row for row in result["control_relations"] if row["study_id"] == args.study]
+    if args.control_relation:
+        result["control_relations"] = [row for row in result["control_relations"] if row["id"] == args.control_relation]
+        if not result["control_relations"]:
+            parser.error("unknown control relation within selected scope")
+        result["observations"] = []
+        result["comparisons"] = []
+        result["state_links"] = []
+        result["model_links"] = []
+    elif args.comparison or args.state_link or args.model_link:
+        result["control_relations"] = []
     if args.comparison:
         result["comparisons"] = [row for row in result["comparisons"] if row["id"] == args.comparison]
         if not result["comparisons"]:
@@ -82,6 +95,8 @@ def main() -> int:
                           "comparison_requests": len(result["comparisons"]),
                           "state_links": len(result["state_links"]),
                           "model_links": len(result["model_links"]),
+                          "system_control_relations": len(result["control_relations"]),
+                          "eligible_system_ratios": sum(item["eligible"] for item in result["control_relations"]),
                           "eligible_descriptive_comparisons": sum(item["eligible"] for item in result["comparisons"]),
                           "primary_witness_cache": result["source_witness_cache_status"]}))
         return 0

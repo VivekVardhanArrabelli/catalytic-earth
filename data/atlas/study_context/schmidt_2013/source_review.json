@@ -1,0 +1,79 @@
+{
+  "schema_version": "catalytic-earth.source-qualification-review.v1",
+  "assessment_id": "schmidt_2013_micellar_controls",
+  "decision": "accept_source_annotation",
+  "authorized_operation": "source_annotation",
+  "policy_binding": {
+    "path": "data/governance/computational_review_policy.json",
+    "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "reviewed_bindings": {
+    "data/atlas/study_context/schmidt_2013/micellar_controls.json": "66965a28c3d1556209d429180b529440f0d2151e5a31b165165df981341dcc76",
+    "data/atlas/study_context/ra61_2010/micellar_acquisition_appendix.json": "823b2b1fe7930ffb6d393e1813b0af706d64cb7d897d7fd273f62ec3243bc22a",
+    "data/atlas/study_context/calmodulin_2015/treatment_contrast.json": "6684b9280afa803047e086275a3c48835515b607d9da9fc7d19109e7f858d15f",
+    "data/atlas/perturbations/projection.json": "df65d63a26a5d66a641c419ba359ea519b13d5b59fa61650ae75e31c71188c5a",
+    "src/catalytic_earth/atlas_perturbations.py": "02ad4069f1b9dc7fa4648a5344b214b67120c8dba6653df51e035ec0609273e9",
+    "scripts/query_atlas_perturbations.py": "7fb2bd66ae9e6ff5247738187adb328779d597dc0634b9d7b3c316b4765e2469",
+    "tests/core/test_atlas_perturbations.py": "007bff7e7febf35d786994ddda292a5dbd8ec72a765d64a11e05f7cdcfa2c35f",
+    "tests/test_truth_guard.py": "e1d04b6a2663419b237b20a32bc6a5494a6979af5bfa92b19a3885cba26f9461",
+    "docs/ATLAS_MICELLAR_CONTROLS.md": "fb9b201eb51e3752cd9f267040d809aaba962ea1d6b2695963a1d9cfadf6aafc",
+    "CLAIMS.md": "cd019bd891fe37b99c797cff9d872358b4b565a7d7495e115e10291aee5a9cca",
+    "data/governance/claim_ledger.json": "f59e3f6aa67c57b73e9c32a6f9627160d8e06cb41b79d71efd1ec77afe1da2f6",
+    "docs/CURRENT_STATE.md": "706f03c7bcd8d3d9d945c7e27e8f249b8ea59d8504904c2df040c03a7fd44646",
+    "docs/CURRENT_DECISIONS.md": "f549474169b632d1f8fadf7a44dd5d177c1187a93c89585f94df0147d7025d71"
+  },
+  "source_inspection": "Parent and source/chemistry/adversarial roles read the retained full PMC author manuscript, including T1/T2 and P10-P22/P29/P32. T3 is unprojected contextual evidence. Original Raymond TableI/Methods and existing reviewed source rows bind preparation reuse. Main/SI PDF requests did not yield PDFs; no figure-pixel or raw-fit review is claimed.",
+  "review_process": "Parent owns edits/acquisition/Git/lock. Separately prompted source_schmidt, chemistry_schmidt and adversarial_schmidt on gpt-5.6-sol/ultra challenge source scope and shared operations. Correlated computation, not independent human or laboratory validation. Exact final-file/head review lives in the Git-local receipt.",
+  "adjudications": [
+    {
+      "objection": "9500 could be mistaken for DoAm-specific micellar acceleration or a component decomposition.",
+      "evidence": "Schmidt T2/P15: long-chain no-detergent controls unmeasured; BuAm denominator.",
+      "decision": "Compute only BuAm+/-CTAC119.05(source120); keep710/9500 with explicit BuAm denominator and missing controls. No factorial operation, pKa factor transfer or zero filling."
+    },
+    {
+      "objection": "Common units could hide different phase normalization, endpoints or cross-study assays.",
+      "evidence": "P11 uses total bulk amine, T1 fixed-rate33 differs from T2k2factor120; T2 imports RA61 ref8; Schmidt22C versus Lassila25C/300mMNaCl.",
+      "decision": "Keep an apparent source-system coefficient contrast, exact source assay/substrate/normalization evidence and distinct endpoint/source limitations. No hydrophobic energy, local-site rate or design ranking."
+    },
+    {
+      "objection": "Chemical mixtures or acetylation could be falsely encoded as genetic mutants.",
+      "evidence": "Existing genetic compare contract; Raymond TableI and terminal-acetylation Methods.",
+      "decision": "Use parallel system_ratio resolving source rows/parameters/systems/assays; old genetic observations/comparisons unchanged. Existing Ac/CaMWN0.8 is descriptive preparation reuse, no extra observation or equivalence/occupancy/isolated amine claim."
+    },
+    {
+      "objection": "Declared condition changes could be invented from an outcome value or unequal source selectors.",
+      "evidence": "Source-system and parameter-provider review.",
+      "decision": "Derive vectors from source-system-only pointers, require identical selector maps/parameter pointers/system-ID fields across arms, validate source identities and same-source invariant evidence. Response variables cannot supply condition axes. Unknown inputs and changed held fields refuse arithmetic."
+    },
+    {
+      "objection": "Runtime equality might be presented as authentication of chemical semantics.",
+      "evidence": "The source provides prose conditions; curated reviewed_invariants map those meanings.",
+      "decision": "Source review authorizes mappings; runtime checks exact declarations/providers and arithmetic, not all physical conditions, causality, chemical mechanism or independence."
+    },
+    {
+      "objection": "Batch headroom could be mistaken for permission to continue this six-request operation.",
+      "evidence": "Same RA61 request53-58 receipt.",
+      "decision": "Record operation cap/used/remaining6/6/0 alongside cumulative58/4,697,605. Primary HTML retained; errors and SI HTML are access receipts only."
+    }
+  ],
+  "blocked_operations": [
+    "environment_by_amine_factorial_or_synergy",
+    "intrinsic_micellar_site_rate",
+    "isolated_hydrophobic_or_amine_component_energy",
+    "cross_study_RA61_CaM_BSA_rate_ranking",
+    "missing_measurement_as_zero",
+    "chemical_treatment_as_genetic_ratio",
+    "independent_validation_or_design_performance"
+  ],
+  "reuse": "One generic two-system resolver serves a small-molecule/environment contrast and an existing protein chemical-preparation contrast. Numeric CaM rows are referenced, not retranscribed. New case facts stay in source data; source mapping and normalization interpretation remain manual. No measured curation savings or incumbent superiority.",
+  "coordination_record": ".git/catalytic-earth-runs/4db1d0f0.board.md",
+  "source_access": {
+    "batch_id": "designed-retroaldolase-components-lassila2010",
+    "new_requests": 6,
+    "new_response_body_bytes": 201684,
+    "cumulative_request_count": 58,
+    "cumulative_response_body_bytes": 4697605
+  },
+  "reviewed_at_utc": "2026-09-11T09:30:44.367226+00:00",
+  "closing_review_status": "Source and semantic objections adjudicated; final exact-file/head confirmation and publication state recorded separately in Git-local receipt."
+}

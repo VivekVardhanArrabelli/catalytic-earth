@@ -1,5 +1,24 @@
 # Current Decisions
 
+## 2026-09-11: compare source systems without assigning genetic or causal roles
+
+Close the Schmidt2013 inquiry at one supported BuAm CTAC/no-detergent apparent
+coefficient contrast and the explicit missing long-chain controls. Preserve
+the9500 denominator, nominal bulk normalization and distinct fixed-rate endpoint.
+Do not compute an environment-by-amine factorial contrast or transfer these
+coefficients into RA61/calmodulin component energies.
+
+The chemistry exposes a concrete consumer limitation: chemical mixtures and
+chemical treatments are not genetic mutants. Add a parallel source-bound
+`system_ratio` path, retaining strict genetic operations. Derive condition fields
+from original source objects and bind protocol/substrate/normalization evidence.
+Demonstrate reuse on the already-curated CaMWN/Ac-CaMWN preparation pair without
+duplicating kinetic rows or claiming isolated treatment causality. Source review
+supplies semantic applicability; matching declarations do not prove physical
+condition identity. No protected registry, frozen kernel, exposure or source-
+budget policy changes. Further work follows the marked current handoff.
+
+
 ## 2026-09-11: use positive nucleophile-control activity to qualify mechanism inference
 
 Close the bounded RA61 R/S scout at the acquired Raymond2015 construct
