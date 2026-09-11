@@ -1,5 +1,24 @@
 # Current State
 
+## 2026-09-11: RA61 initial-rate evidence has a defined source-path boundary
+
+The [RA61 model query](ATLAS_PERTURBATION_RELATION.md#ra61-initial-rate-boundary-ends-before-enzyme-regeneration-and-product-trapping)
+connects its existing parent second-order coefficient to source steps 1–3,
+ending at aldehyde formation. Steps 4–5 and the source-proposed product
+Schiff-base branch remain outside the fit. The latter uses free enzyme and
+aldehyde, not the catalytic substrate-iminium state. It does not require
+that the same enzyme molecule first complete a turnover.
+
+The consumer resolves the complete existing reporter-boundary evidence,
+including the conditional product Kd and alternative fluorescence assumptions.
+Optical observations do not directly establish covalent occupancy or Lys176
+attachment. Every arrow rate is unassigned; no new observation is transcribed.
+CE-029 adds this queryable topology to retained facts. The generic initial-rate
+role, measurement boundary, explicit reaction-lineage identity and contextual
+object resolver preserve the two prior model outputs and all existing
+observations/comparisons. Reuse spans three enzyme contexts in two publications;
+curation-time savings and design utility remain unproved. No new acquisition.
+
 ## 2026-09-11: POX reuse separates directional rates from an observed phase
 
 The shared [POX source-model query](ATLAS_STUDY_CONTEXT.md#pox-binding-and-a-multistep-reporter-require-different-model-relations)

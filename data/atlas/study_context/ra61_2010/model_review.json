@@ -1,0 +1,81 @@
+{
+  "schema_version": "catalytic-earth.source-qualification-review.v1",
+  "assessment_id": "Lassila2010:RA61:aldehyde-reporter-model",
+  "decision": "accept_source_annotation",
+  "authorized_operation": "source_annotation",
+  "policy_binding": {
+    "path": "data/governance/computational_review_policy.json",
+    "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "reviewed_at_utc": "2026-09-11T07:28:11.331287+00:00",
+  "reviewed_bindings": {
+    "data/atlas/study_context/ra61_2010/model_context.json": "f03f56df41b77dea8400b9244688d60aed10f0e1cdaef9d81585b4e3b42a6b1f",
+    "data/atlas/study_context/ra61_2010/component_evidence.json": "6b44023c7a4c002f1325f39550744632e245659900f819f373e6a7435482b2bc",
+    "data/atlas/perturbations/projection.json": "4a0848957298eb38c07e4b4210f4182268ddf77027eb4c1472a99782d5c2eeea",
+    "src/catalytic_earth/atlas_perturbations.py": "e1cd7238f3c5c8cbd708986a69e602124951f72c46c789ddcd74bb6b4b83722a",
+    "scripts/query_atlas_perturbations.py": "85fb364ead64f944d8fe9e22985b1264521e37061c8ea7918d945d0fe0243da4",
+    "tests/core/test_atlas_perturbations.py": "da5ac9f888b6ccdc9cdfcdc11b0b45b06bb3d652d3255b3fe3a35f12fb9f221d",
+    "docs/ATLAS_PERTURBATION_RELATION.md": "9eea0cef6ff9ef3fbfe4c6cdd8156e00ded88638beec3068bb08f10eb64f584f",
+    "CLAIMS.md": "f969807c7eded617003c079abfec109cd1ab00d2328807a3cafd1b25ca57b6de",
+    "data/governance/claim_ledger.json": "f6e9ee20a1b6de4a13204037c67d77080e46bd69d597123666fc6f2f18a1078a",
+    "docs/CURRENT_STATE.md": "1b2876e79bc19cdd91a5a1c0c3df59ac55186c5cf0878b136b9b277771290347",
+    "docs/CURRENT_DECISIONS.md": "4caeaac303f6dd324e160e4cfa42533b6fb5e2c347d1273049bfdf058b919240"
+  },
+  "review_process": "Parent source/diff adjudication with separately prompted read-only gpt-5.6-sol/ultra source_ra61_sol, representation_ra61 and adversarial_ra61. Correlated computational review, not independent human or laboratory validation. Exact final head review is recorded in the Git-local run receipt.",
+  "source_inspection": "Retained six-page main and nine-page SI; primary body text and visual main Figure1/Figure2 and SI FiguresS1-S3, with S4/S5 captions and main assay conditions. Retained witness hashes and byte lengths checked. No new acquisition.",
+  "adjudications": [
+    {
+      "objection": "A single initial-rate coefficient could become a microscopic arrow rate or include later enzyme regeneration.",
+      "evidence": "Main pp1-3 Conditions for Kinetic Studies and Figure1; Figure1 caption omits proton transfers, binding events and intermediates.",
+      "decision": "Bind the existing parent coefficient once to source steps1-3 and their measured boundary. Add a generic initial-second-order role with one parameter; retain every directional slot as unassigned. Exclude source steps4-5 and product sequestration from the fit."
+    },
+    {
+      "objection": "The catalytic substrate iminium and the off-path aldehyde-product Schiff base could be collapsed into one covalent state.",
+      "evidence": "Main Figure1 step2; SI p2 FigureS1 and free-lysine explanation.",
+      "decision": "Keep separate states. Product sequestration uses the free-enzyme/aldehyde pool, not the enamine-bound lysine after step3. Free enzyme can already be present or arise after steps4-5; do not require the same enzyme molecule to produce aldehyde or complete a turnover."
+    },
+    {
+      "objection": "Observed fluorescence loss could authenticate covalent occupancy or the designed Lys176 site.",
+      "evidence": "Main p2 product discussion/Figure2B; SI pp2-3 S1-S3 and pp5-6 pH assignment.",
+      "decision": "Optical change is observed; product-iminium identity is the authors model. Keep active-site lysine unnumbered and bind Lys176 only as the design-model label. Signal loss is not a measurement of total product loss or yield."
+    },
+    {
+      "objection": "The conditional product Kd could lose its assumptions or become a new kinetic parameter.",
+      "evidence": "SI p3 equation/FigureS3, lack of binding saturation, zero/20%/40% bound-fluorescence assumptions.",
+      "decision": "Resolve the entire existing initial_rate_boundary object onto the fit and off-path transition; reject bare scalars and invalid graph/fit references. Keep 26/17/10uM estimates contextual, not new common observations, an uncertainty interval, substrate KM or microscopic iminium affinity/rates."
+    },
+    {
+      "objection": "Using a substrate ligand identity on chemically transformed product states would be ambiguous.",
+      "evidence": "Main Figure1 and SI FigureS1 transform the input substrate; previous POX grouped related states by the input ligand.",
+      "decision": "Introduce explicit source-bound reaction_branch_id semantics, mutually exclusive with the legacy ligand declaration. It records input lineage only, not present ligand identity, chemical participant balance or atom mapping. Preserve all prior model output objects."
+    },
+    {
+      "objection": "The same-unit initial-rate or reporter interpretation could transfer from the parent to a mutant.",
+      "evidence": "Original RA61 provider binds its Table4 parent independently of five mutant rows; SI S3 is the parent binding fit.",
+      "decision": "Use the exact existing parent observation, construct, assay and parameter references; reject substitution of a mutant endpoint. The fit has one initial coefficient, excluding hybrid saturated or response-midpoint models."
+    },
+    {
+      "objection": "A coherent wholesale semantic rewrite can remain internally consistent.",
+      "evidence": "Source-declared state meanings, measurement boundary and contextual pointer semantics require primary-body interpretation.",
+      "decision": "The public source-review manifest binds exact context and consumer bytes. Generic checks enforce consistency and known failure modes; they do not authenticate chemical truth or confer independent validation."
+    }
+  ],
+  "blocked_operations": [
+    "microscopic_arrow_rate_or_late_step_rate_from_initial_coefficient",
+    "product_binding_scalar_or_substrate_KM_transfer",
+    "substrate_iminium_product_Schiff_base_identity",
+    "direct_covalent_occupancy_or_numbered_Lys176_attachment",
+    "same_molecule_or_completed_turnover_requirement_for_product_binding",
+    "atomic_mechanism_or_productive_geometry",
+    "protected_registry_expansion_or_evidence_promotion"
+  ],
+  "coordination_record": ".git/catalytic-earth-runs/4be184df.board.md",
+  "source_access": {
+    "batch_id": "designed-retroaldolase-components-lassila2010",
+    "new_requests": 0,
+    "new_response_body_bytes": 0,
+    "cumulative_request_count": 45,
+    "cumulative_response_body_bytes": 3236259
+  },
+  "completion_note": "All three source, representation and adversarial roles accepted the exact11 substantive file blobs and this review-record content before status/date finalization. Final publication-head verification is recorded separately in the Git-local receipt."
+}

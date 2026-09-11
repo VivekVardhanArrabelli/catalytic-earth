@@ -1,0 +1,454 @@
+{
+  "schema_version": "catalytic-earth.source-model-context.v1",
+  "context_id": "ra61_2010:RA61:aldehyde-reporter-and-product-sequestration",
+  "operation": "source_annotation",
+  "study": {
+    "doi": "10.1073/pnas.0913638107",
+    "reported_enzyme": "RA61",
+    "reported_variant": "RA61"
+  },
+  "question": "Which source-model path does the observed initial-rate coefficient cover, and why does the product-associated fluorescence loss not identify later catalytic rates?",
+  "selection": "Reuse the existing named parent RA61 observation, not another table or a mutant-kinetics projection. This relation structures previously retained source facts and adds no new experimental observation.",
+  "source_bindings": {
+    "component_evidence": {
+      "path": "data/atlas/study_context/ra61_2010/component_evidence.json",
+      "sha256": "6b44023c7a4c002f1325f39550744632e245659900f819f373e6a7435482b2bc"
+    }
+  },
+  "sources": [
+    {
+      "artifact_id": "PMC2841948:article-PDF",
+      "source_url": "https://europepmc.org/api/getPdf?pmcid=PMC2841948",
+      "sha256": "e9ee944fc748057e4e476b7de8e0ceb704133817bec7f51562de21a502b033a1",
+      "bytes": 273267,
+      "local_cache_path": "/private/tmp/ce-components-08bb7de4/europepmc.pdf",
+      "pages": 6,
+      "redistributed": false,
+      "inspection": "Complete text and visual pages1-6; Tables1/2/4/5, Figures1/2 and endpoint-defining Methods."
+    },
+    {
+      "artifact_id": "PMC2841948:SI-PDF",
+      "source_url": "https://herschlaglab.stanford.edu/s/177SuppMat.pdf",
+      "resolved_url": "https://static1.squarespace.com/static/5646260ce4b08fda5b792c61/t/56bbb52b27d4bd23c4d9df43/1455142187997/%23177SuppMat.pdf",
+      "discovery": "Author publications entry177 pairs exact article title/PMCID with main and supporting-information links; redirect and final body retained.",
+      "sha256": "91e17539e9761fdc7fdb5d70c395fad2f4c7b339732e9282262e6a7940da6df4",
+      "bytes": 435320,
+      "local_cache_path": "/private/tmp/ce-components-08bb7de4/supplement.pdf",
+      "pages": 9,
+      "redistributed": false,
+      "inspection": "Complete text; visual source figures/captions and TableS1, especially pages3/5/6/9. No complete amino-acid sequence is supplied."
+    }
+  ],
+  "identity_bindings": [
+    {
+      "provider": "component_evidence",
+      "pointer": "/constructs/0/construct_id",
+      "identity_kind": "construct"
+    },
+    {
+      "provider": "component_evidence",
+      "pointer": "/study/doi",
+      "identity_kind": "study"
+    }
+  ],
+  "enzyme_identity_binding": {
+    "provider": "component_evidence",
+    "pointer": "/constructs/0/construct_id"
+  },
+  "source_model": {
+    "model_id": "Lassila2010:RA61:initial-reporter-path-and-product-trap",
+    "source_locators": [
+      "PMC2841948:article-PDF:page2:Figure1",
+      "PMC2841948:SI-PDF:page2:FigureS1",
+      "PMC2841948:article-PDF:pages1-3:Conditions for Kinetic Studies"
+    ],
+    "states": [
+      {
+        "state_id": "free_enzyme_and_substrate",
+        "kind": "source_depicted_species_set",
+        "source_labels": [
+          {
+            "source_locator": "PMC2841948:article-PDF:page2:Figure1",
+            "label": "Free active-site lysine and full naphthyl substrate"
+          }
+        ],
+        "lysine_state": "free_active_site_lysine",
+        "reaction_branch_id": "full_naphthyl"
+      },
+      {
+        "state_id": "substrate_carbinolamine",
+        "kind": "source_depicted_species_set",
+        "source_labels": [
+          {
+            "source_locator": "PMC2841948:article-PDF:page2:Figure1",
+            "label": "Source-drawn lysine-substrate carbinolamine after step1"
+          }
+        ],
+        "lysine_state": "substrate_covalent",
+        "reaction_branch_id": "full_naphthyl"
+      },
+      {
+        "state_id": "substrate_iminium",
+        "kind": "source_depicted_species_set",
+        "source_labels": [
+          {
+            "source_locator": "PMC2841948:article-PDF:page2:Figure1",
+            "label": "Source-drawn substrate-derived iminium before cleavage"
+          }
+        ],
+        "lysine_state": "substrate_covalent",
+        "reaction_branch_id": "full_naphthyl"
+      },
+      {
+        "state_id": "enamine_and_aldehyde",
+        "kind": "source_depicted_species_set",
+        "source_labels": [
+          {
+            "source_locator": "PMC2841948:article-PDF:page2:Figure1",
+            "label": "Source-drawn enzyme-bound enamine plus free 6-methoxy-2-naphthaldehyde after step3"
+          }
+        ],
+        "lysine_state": "acetone_precursor_covalent",
+        "reaction_branch_id": "full_naphthyl"
+      },
+      {
+        "state_id": "imine_and_aldehyde",
+        "kind": "source_depicted_species_set",
+        "source_labels": [
+          {
+            "source_locator": "PMC2841948:article-PDF:page2:Figure1",
+            "label": "Source-drawn acetone-derived lysine imine plus free aldehyde after step4"
+          }
+        ],
+        "lysine_state": "acetone_precursor_covalent",
+        "reaction_branch_id": "full_naphthyl"
+      },
+      {
+        "state_id": "free_enzyme_and_products",
+        "kind": "source_depicted_species_set",
+        "source_labels": [
+          {
+            "source_locator": "PMC2841948:SI-PDF:page2:FigureS1",
+            "label": "Free active-site lysine plus free aldehyde; acetone is shown separately in FigureS1"
+          }
+        ],
+        "lysine_state": "free_active_site_lysine",
+        "pool_scope": "Free enzyme and aldehyde may be supplied directly, already present, or produced through the depicted catalytic path. The enzyme need not be the molecule that produced this aldehyde or have completed a turnover. Acetone is shown separately and no role in the product-rebinding arrow is assigned. This is a source-model species pool, not a temporal requirement.",
+        "reaction_branch_id": "full_naphthyl"
+      },
+      {
+        "state_id": "product_schiff_base",
+        "kind": "source_depicted_species_set",
+        "source_labels": [
+          {
+            "source_locator": "PMC2841948:SI-PDF:page2:FigureS1",
+            "label": "Source-proposed aldehyde-product iminium/Schiff-base enzyme species; acetone shown separately"
+          }
+        ],
+        "lysine_state": "product_covalent_source_model",
+        "evidence_status": "Covalent identity is assigned by the authors model, not directly established by the fluorescence observation.",
+        "reaction_branch_id": "full_naphthyl"
+      }
+    ],
+    "transitions": [
+      {
+        "transition_id": "source_step1",
+        "from_state": "free_enzyme_and_substrate",
+        "to_state": "substrate_carbinolamine",
+        "reversible_in_source": true,
+        "source_locators": [
+          "PMC2841948:article-PDF:page2:Figure1"
+        ],
+        "pathway_membership": "source_catalytic_path",
+        "parameter_slots": {
+          "forward": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "No individual directional rate is assigned by this source relation. The initial-rate coefficient and conditional product-binding estimate are not microscopic arrow rates."
+          },
+          "reverse": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "No individual directional rate is assigned by this source relation. The initial-rate coefficient and conditional product-binding estimate are not microscopic arrow rates."
+          }
+        },
+        "bond_annotations": [],
+        "assay_binding": {
+          "provider": "component_evidence",
+          "pointer": "/assays/0"
+        },
+        "reaction_branch_id": "full_naphthyl"
+      },
+      {
+        "transition_id": "source_step2",
+        "from_state": "substrate_carbinolamine",
+        "to_state": "substrate_iminium",
+        "reversible_in_source": true,
+        "source_locators": [
+          "PMC2841948:article-PDF:page2:Figure1"
+        ],
+        "pathway_membership": "source_catalytic_path",
+        "parameter_slots": {
+          "forward": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "No individual directional rate is assigned by this source relation. The initial-rate coefficient and conditional product-binding estimate are not microscopic arrow rates."
+          },
+          "reverse": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "No individual directional rate is assigned by this source relation. The initial-rate coefficient and conditional product-binding estimate are not microscopic arrow rates."
+          }
+        },
+        "bond_annotations": [],
+        "assay_binding": {
+          "provider": "component_evidence",
+          "pointer": "/assays/0"
+        },
+        "reaction_branch_id": "full_naphthyl"
+      },
+      {
+        "transition_id": "source_step3",
+        "from_state": "substrate_iminium",
+        "to_state": "enamine_and_aldehyde",
+        "reversible_in_source": true,
+        "source_locators": [
+          "PMC2841948:article-PDF:page2:Figure1"
+        ],
+        "pathway_membership": "source_catalytic_path",
+        "parameter_slots": {
+          "forward": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "No individual directional rate is assigned by this source relation. The initial-rate coefficient and conditional product-binding estimate are not microscopic arrow rates."
+          },
+          "reverse": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "No individual directional rate is assigned by this source relation. The initial-rate coefficient and conditional product-binding estimate are not microscopic arrow rates."
+          }
+        },
+        "bond_annotations": [],
+        "assay_binding": {
+          "provider": "component_evidence",
+          "pointer": "/assays/0"
+        },
+        "reaction_branch_id": "full_naphthyl"
+      },
+      {
+        "transition_id": "source_step4",
+        "from_state": "enamine_and_aldehyde",
+        "to_state": "imine_and_aldehyde",
+        "reversible_in_source": true,
+        "source_locators": [
+          "PMC2841948:article-PDF:page2:Figure1"
+        ],
+        "pathway_membership": "source_catalytic_path",
+        "parameter_slots": {
+          "forward": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "No individual directional rate is assigned by this source relation. The initial-rate coefficient and conditional product-binding estimate are not microscopic arrow rates."
+          },
+          "reverse": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "No individual directional rate is assigned by this source relation. The initial-rate coefficient and conditional product-binding estimate are not microscopic arrow rates."
+          }
+        },
+        "bond_annotations": [],
+        "reaction_branch_id": "full_naphthyl"
+      },
+      {
+        "transition_id": "source_step5",
+        "from_state": "imine_and_aldehyde",
+        "to_state": "free_enzyme_and_products",
+        "reversible_in_source": true,
+        "source_locators": [
+          "PMC2841948:article-PDF:page2:Figure1"
+        ],
+        "pathway_membership": "source_catalytic_path",
+        "parameter_slots": {
+          "forward": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "No individual directional rate is assigned by this source relation. The initial-rate coefficient and conditional product-binding estimate are not microscopic arrow rates."
+          },
+          "reverse": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "No individual directional rate is assigned by this source relation. The initial-rate coefficient and conditional product-binding estimate are not microscopic arrow rates."
+          }
+        },
+        "bond_annotations": [],
+        "reaction_branch_id": "full_naphthyl"
+      },
+      {
+        "transition_id": "product_sequestration",
+        "from_state": "free_enzyme_and_products",
+        "to_state": "product_schiff_base",
+        "reversible_in_source": true,
+        "source_locators": [
+          "PMC2841948:SI-PDF:page2:FigureS1",
+          "PMC2841948:article-PDF:page2:product-rebinding discussion"
+        ],
+        "pathway_membership": "source_proposed_off_pathway",
+        "parameter_slots": {
+          "forward": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "No individual directional rate is assigned by this source relation. The initial-rate coefficient and conditional product-binding estimate are not microscopic arrow rates."
+          },
+          "reverse": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "No individual directional rate is assigned by this source relation. The initial-rate coefficient and conditional product-binding estimate are not microscopic arrow rates."
+          }
+        },
+        "bond_annotations": [],
+        "scope": "Requires free active-site lysine, not the enamine-bound lysine after step3. Enzyme-dependent fluorescence loss is observed and interpreted by the authors using their product-iminium model; neither covalent occupancy nor individual formation/dissociation rates are measured here. Product-only incubation has its own source conditions in the contextual evidence.",
+        "reaction_branch_id": "full_naphthyl"
+      }
+    ],
+    "fit_models": [
+      {
+        "fit_id": "initial_aldehyde_response",
+        "kind": "multistep_reporter_response",
+        "assay_binding": {
+          "provider": "component_evidence",
+          "pointer": "/assays/0"
+        },
+        "transition_ids": [
+          "source_step1",
+          "source_step2",
+          "source_step3"
+        ],
+        "phase_transition_ids": [
+          "source_step1",
+          "source_step2",
+          "source_step3"
+        ],
+        "measurement_boundary": {
+          "from_state": "free_enzyme_and_substrate",
+          "to_state": "enamine_and_aldehyde"
+        },
+        "source_locators": [
+          "PMC2841948:article-PDF:pages1-3:Conditions for Kinetic Studies",
+          "PMC2841948:article-PDF:page4:Table4:Wild type RA61"
+        ],
+        "equation": "v0 = (kcat/KM)obs * [E] * [S]",
+        "parameter_bindings": {
+          "k_cat/K_M": {
+            "binding": {
+              "provider": "component_evidence",
+              "pointer": "/observations/0"
+            },
+            "role": "observed_second_order_initial_rate",
+            "unit": "M^-1 s^-1"
+          }
+        },
+        "regime": "Soluble subsaturating substrate, initial fluorescence slope before the first turnover, little accumulated product and enzyme concentrations below the product-rebinding Kd in the source assay.",
+        "scope": "A composite second-order coefficient through the reporter-product boundary (source steps1-3). The source describes the limiting transition state within this path, not an observed time-resolved trajectory or any individual arrow rate. It does not identify separate kcat, substrate KM, steps4-5, full-cycle turnover, or product-sequestration rates.",
+        "reaction_branch_id": "full_naphthyl"
+      }
+    ],
+    "elementary_step_sequence_established": false,
+    "complete_reacted_graph_established": false,
+    "equilibrium_constant_transfer_between_assays_established": false,
+    "graph_replay_verified": false,
+    "before_state_atom_map": null,
+    "source_abstraction": "Figure1 names major steps and explicitly omits proton transfers, binding events and some intermediates. Its reversible arrows are source-model directions, not experimental measurements of each microscopic process."
+  },
+  "deposit_association": null,
+  "deposit_absence_reason": "No retained RA61 ligand/coordinate arrangement is bound. Main Figure2 is a design model; its caption says the experimental structure lacked ligand and the substrate orientation is unknown.",
+  "endpoint_relations": [
+    {
+      "relation_id": "RA61:initial_aldehyde_response:kcat_over_KM_obs",
+      "kind": "fit_parameter",
+      "observation_id": "ra61-water:Table4:RA61:kcat_over_KM_obs",
+      "provider": "component_evidence",
+      "parameter_pointer": "/observations/0",
+      "assay_pointer": "/assays/0",
+      "projected_parameter": {
+        "provider": "component_evidence",
+        "pointer": "/observations/0"
+      },
+      "evidence_kind": "existing_source_reported_initial_rate_parameter",
+      "fit_id": "initial_aldehyde_response",
+      "parameter_key": "k_cat/K_M"
+    }
+  ],
+  "reporter_context": {
+    "observed": "Enzyme-dependent fluorescence loss upon incubation with added product; RA61 shows minor progress-curve curvature at low enzyme concentration and greater curvature at higher concentration. RA34 has the pronounced burst-like example.",
+    "author_model": "Product sequestration reduces free enzyme available for catalysis and reduces the fluorescence assigned to free aldehyde. Signal loss is not a measurement of total product loss or reaction yield; the authors attribute it to reversible product association/iminium formation.",
+    "initial_window_assumption": "The early calibrated fluorescence signal reports aldehyde formation with negligible product-rebinding interference under the source low-product conditions; this is not an orthogonal verification or a mathematical guarantee.",
+    "product_binding_scope": "The source conditional apparent Kd is an approximate upper limit under an assumed bound-product fluorescence, not a microscopic iminium equilibrium/rate, substrate KM, or on-path intermediate affinity. Preserve the original 26/17/10 uM alternatives and their assumptions together; do not turn them into an uncertainty interval or a new common scalar fit.",
+    "burst_inference": "Product-related curvature does not supply rates for source steps4-5. The free-enzyme pool can bind product before a whole turnover when enzyme is in excess; steps4-5 in the source path regenerate that pool, but are not a universal temporal prerequisite for rebinding.",
+    "evidence_id": "product_reporter_boundary"
+  },
+  "residue_scope": {
+    "source_role": "active-site lysine",
+    "numbered_product_attachment_site": null,
+    "design_model_label_binding": {
+      "provider": "component_evidence",
+      "pointer": "/component_evidence/2/source_model_lysine_label"
+    },
+    "scope": "Lys176 belongs to the Figure2 design model. The retained fluorescence and pH evidence do not directly map the product attachment to that residue; no sequence, MS or coordinate match is inferred."
+  },
+  "limitations": [
+    "The observed optical behavior and source-proposed covalent chemistry have distinct evidence status.",
+    "The substrate-derived on-path iminium and aldehyde-derived off-path Schiff-base species are different; neither label establishes complete protonation or reacted atom identity.",
+    "Chemical participants, proton balance, exact conformers and microscopic rates are not validated by this symbolic source-model relation.",
+    "No exact protein sequence or physical assay-preparation identity, new experiment, independently reviewed mechanism, registry admission or enzyme-design performance is established."
+  ],
+  "acquisition": {
+    "batch_id": "designed-retroaldolase-components-lassila2010",
+    "new_requests": 0,
+    "new_response_body_bytes": 0,
+    "cumulative_requests": 45,
+    "cumulative_response_body_bytes": 3236259,
+    "scope": "Retained main/SI reused offline. Acquisition receipt and Jiang2008 appendix retain cumulative consumption; no source bodies redistributed."
+  },
+  "reconsideration": {
+    "bespoke_code": "Generic initial second-order fit role and measurement boundary, explicit input-reaction lineage distinct from bound ligand identity, and a resolver for contextual evidence objects; no enzyme-ID branch or atom-specific adapter.",
+    "reuse": "Existing observations, assay, source witnesses and complete reporter-boundary object reused. This is a third enzyme context and second publication for the source-model consumer; no measured curation-time saving.",
+    "incremental_value": "Previously retained prose becomes source-bound path/endpoint topology distinguishing substrate iminium from product sequestration. No new biological conclusion or superiority to competent source reading is claimed."
+  },
+  "reaction_branch_bindings": {
+    "full_naphthyl": {
+      "binding": {
+        "provider": "component_evidence",
+        "pointer": "/substrates/0/chemical_name"
+      },
+      "source_name": "4-hydroxy-4-(6-methoxy-2-naphthyl)-2-butanone"
+    }
+  },
+  "reaction_branch_scope": "The reaction_branch_id indexes the source substrate reaction lineage, including its products. It does not assert unchanged chemical identity, bound occupancy or validated molecular participant balance in each source-drawn species set.",
+  "context_evidence_bindings": [
+    {
+      "evidence_id": "product_reporter_boundary",
+      "binding": {
+        "provider": "component_evidence",
+        "pointer": "/initial_rate_boundary"
+      },
+      "transition_ids": [
+        "product_sequestration"
+      ],
+      "fit_ids": [
+        "initial_aldehyde_response"
+      ]
+    }
+  ]
+}

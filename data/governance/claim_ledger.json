@@ -377,13 +377,16 @@
     "claim_kind": "scientific_result",
     "status": "Supported",
     "claim": "In the retained RA61 Table 4, all five assayed designed-water-motif mutant constructs increase displayed initial-rate (kcat/KM)obs. Tyr78Phe/Ser87Ala is 2.6 versus parent 0.49 M^-1 s^-1, with printed mutant/parent ratio 5.3.",
-    "current_wording": "Retain the response at the named-background composite initial-rate endpoint, with no demonstrated net benefit from the modeled motif. Do not infer absent water, an isolated microscopic contribution, productive geometry or later catalytic-step behavior. The roughly 500-fold substrate-interaction contribution is a cross-substrate/two-amine estimate with readout/solvent differences; the roughly 10-fold pKa contribution assumes a transferred solution Brønsted model. Six named RA61 constructs have no acquired exact sequence. No new experiment, full mechanism, design-success estimate or tier promotion follows.",
+    "current_wording": "Retain the response at the named-background composite initial-rate endpoint, with no demonstrated net benefit from the modeled motif. Do not infer absent water, an isolated microscopic contribution, productive geometry or later catalytic-step behavior. The roughly 500-fold substrate-interaction contribution is a cross-substrate/two-amine estimate with readout/solvent differences; the roughly 10-fold pKa contribution assumes a transferred solution Brønsted model. Six named RA61 constructs have no acquired exact sequence. No new experiment, full mechanism, design-success estimate or tier promotion follows. The shared RA61 source-model relation binds the existing parent coefficient to steps1-3 through aldehyde formation. Later enzyme regeneration and source-proposed product Schiff-base sequestration are outside that measured path; all individual directional rates remain unassigned. Observed fluorescence behavior, conditional product-binding estimates and source-assigned covalent chemistry remain distinct, with no numbered product attachment. This adds queryable relations among retained facts, not a new biological conclusion or measurement.",
     "rationale": "Design intent, same-background perturbation, substrate discrimination and apparent-ionization/model evidence support different claims. The source packet preserves those distinctions and the off-pathway product-fluorescence limitation, rather than assigning a functioning designed apparatus from activity alone.",
     "evidence": [
       "data/atlas/study_context/ra61_2010/component_evidence.json",
       "data/atlas/study_context/ra61_2010/source_review.json",
       "data/atlas/study_context/ra61_2010/acquisition_receipts.json",
-      "docs/ATLAS_RA61_COMPONENT_EVIDENCE.md"
+      "docs/ATLAS_RA61_COMPONENT_EVIDENCE.md",
+      "data/atlas/study_context/ra61_2010/model_context.json",
+      "data/atlas/study_context/ra61_2010/model_review.json",
+      "docs/ATLAS_PERTURBATION_RELATION.md"
     ]
   },
   {

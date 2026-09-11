@@ -408,6 +408,16 @@ estimate, not a matched Lys176 replacement effect. Six named constructs lack
 exact sequence strings. No new experiment, productive geometry, full mechanism,
 design success rate or evidence-tier promotion is established.
 
+The [RA61 source-model relation](docs/ATLAS_PERTURBATION_RELATION.md#ra61-initial-rate-boundary-ends-before-enzyme-regeneration-and-product-trapping)
+associates the existing parent coefficient with source steps 1–3 through
+aldehyde formation. Later enzyme regeneration and source-proposed product
+Schiff-base sequestration remain outside that measured path, with every
+individual directional rate unassigned. The observed fluorescence behavior
+and conditional product-binding estimate remain distinct from the authors'
+covalent-state assignment. No numbered product attachment or microscopic
+rate follows from that model. This structures retained evidence without
+adding a biological conclusion or measurement.
+
 ## CE-030 — a benzoate control does not establish ligand-independent design geometry
 
 **Status:** Supported

@@ -116,6 +116,10 @@
     "poxmodel": {
       "path": "data/atlas/study_context/pox2019/model_context.json",
       "sha256": "2e9be65db3bc470f35a11ac63cdac15ff954357780d4b3c1eb9ada694eb53fde"
+    },
+    "ra61model": {
+      "path": "data/atlas/study_context/ra61_2010/model_context.json",
+      "sha256": "f03f56df41b77dea8400b9244688d60aed10f0e1cdaef9d81585b4e3b42a6b1f"
     }
   },
   "constructs": {
@@ -9453,6 +9457,18 @@
         "pox-analogue_binding:wild_type:K_D_app",
         "pox-single_turnover:wild_type:k_app_max",
         "pox-single_turnover:wild_type:K_0.5"
+      ]
+    },
+    {
+      "id": "ra61_2010:RA61:aldehyde_reporter_path",
+      "study_id": "ra61_2010",
+      "construct_id": "ra61_2010:RA61",
+      "context_provider": {
+        "source": "ra61model",
+        "pointer": ""
+      },
+      "observation_ids": [
+        "ra61-water:Table4:RA61:kcat_over_KM_obs"
       ]
     }
   ]

@@ -304,17 +304,26 @@ def _model_link(context, link, constructs, rows, assays, source_bindings, resolv
         raise ValueError("source-model links cannot establish elementary chemistry or replay")
     states = _unique(model["states"], "state_id")
     transitions = _unique(model["transitions"], "transition_id")
-    ligands = context.get("ligand_bindings", {})
+    # A reaction branch follows an input into chemically different products;
+    # its identity is not the identity of the ligand present in each state.
+    reaction_branch = "reaction_branch_bindings" in context
+    if reaction_branch and "ligand_bindings" in context:
+        raise ValueError("model cannot mix ligand and reaction-branch identity declarations")
+    branch_key = "reaction_branch_id" if reaction_branch else "ligand_id"
+    other_key = "ligand_id" if reaction_branch else "reaction_branch_id"
+    ligands = context.get("reaction_branch_bindings" if reaction_branch else "ligand_bindings", {})
     for item in ligands.values():
         if get(item["binding"]) != item["source_name"]:
             raise ValueError("model ligand differs from its source identity")
-    if ligands and any(state.get("ligand_id") not in ligands for state in states.values()):
+    if ligands and any(state.get(branch_key) not in ligands for state in states.values()):
         raise ValueError("model states require bound ligand identities")
     fits = _unique(model.get("fit_models", []), "fit_id")
+    if any(other_key in item for item in [*states.values(), *transitions.values(), *fits.values()]):
+        raise ValueError("model cannot mix ligand and reaction-branch state identities")
     if fits and (not context.get("enzyme_identity_binding")
                  or get(context["enzyme_identity_binding"]) != context["study"]["reported_enzyme"]):
         raise ValueError("model enzyme differs from its source identity")
-    if not ligands and (fits or any("ligand_id" in item for item in [*states.values(), *transitions.values()])):
+    if not ligands and (fits or any(branch_key in item for item in [*states.values(), *transitions.values()])):
         raise ValueError("model ligand declarations require source bindings")
     resolved_fits = []
     for fit in fits.values():
@@ -335,12 +344,13 @@ def _model_link(context, link, constructs, rows, assays, source_bindings, resolv
         assay_ref = ref(fit["assay_binding"])
         if any(ref(transitions[key]["assay_binding"]) != assay_ref for key in covered):
             raise ValueError("model fit cannot combine transitions from different assays")
-        if ligands and any(transitions[key].get("ligand_id") != fit["ligand_id"] for key in covered):
+        if ligands and any(transitions[key].get(branch_key) != fit[branch_key] for key in covered):
             raise ValueError("model fit cannot combine different ligand branches")
         parameters = {}
         roles = ({"apparent_equilibrium_constant": {"M", "mM", "uM"}}
                  if fit["kind"] == "two_state_equilibrium" else {
                      "saturated_multistep_rate": {"s^-1"},
+                     "observed_second_order_initial_rate": {"M^-1 s^-1"},
                      "cooperative_response_midpoint": {"M", "mM", "uM"},
                      "hill_coefficient": {"dimensionless"}})
         for key, item in fit["parameter_bindings"].items():
@@ -351,6 +361,14 @@ def _model_link(context, link, constructs, rows, assays, source_bindings, resolv
             parameters[key] = value
         if not parameters:
             raise ValueError("model fit requires bound source parameters")
+        if any(item["role"] == "observed_second_order_initial_rate"
+               for item in fit["parameter_bindings"].values()):
+            boundary = fit.get("measurement_boundary", {})
+            if (len(parameters) != 1
+                    or set(boundary) != {"from_state", "to_state"} or covered != phase
+                    or boundary["from_state"] != transitions[phase[0]]["from_state"]
+                    or boundary["to_state"] != transitions[phase[-1]]["to_state"]):
+                raise ValueError("initial-rate fit must cover exactly its declared measurement boundary")
         resolved_fits.append({**deepcopy(fit), "resolved_parameters": parameters,
                               "assay": resolve(assay_ref)})
     resolved_transitions = []
@@ -358,8 +376,8 @@ def _model_link(context, link, constructs, rows, assays, source_bindings, resolv
         if (transition["from_state"] not in states or transition["to_state"] not in states
                 or transition["from_state"] == transition["to_state"]):
             raise ValueError("model transition requires distinct declared states")
-        if ligands and (transition.get("ligand_id") not in ligands or any(
-                states[transition[key]]["ligand_id"] != transition["ligand_id"]
+        if ligands and (transition.get(branch_key) not in ligands or any(
+                states[transition[key]][branch_key] != transition[branch_key]
                 for key in ("from_state", "to_state"))):
             raise ValueError("model transition cannot cross ligand branches")
         slots = transition["parameter_slots"]
@@ -478,7 +496,7 @@ def _model_link(context, link, constructs, rows, assays, source_bindings, resolv
                 raise ValueError("model assay differs from the existing parameter observation")
             target = (transitions[endpoint["transition_id"]] if "transition_id" in endpoint
                       else fits[endpoint["fit_id"]] if "fit_id" in endpoint else states[endpoint["state_id"]])
-            if ligands and target["ligand_id"] != rows[row_id]["substrate_id"]:
+            if ligands and target[branch_key] != rows[row_id]["substrate_id"]:
                 raise ValueError("model ligand differs from the existing observation")
         resolved_endpoints.append({**deepcopy(endpoint), **resolved})
     bound_slots = {(key, direction, slot["binding"]["provider"], slot["binding"]["pointer"])
@@ -496,6 +514,23 @@ def _model_link(context, link, constructs, rows, assays, source_bindings, resolv
                      and item["observation_id"] is not None]
     if set(fit_endpoints) != fit_slots or len(fit_endpoints) != len(fit_slots):
         raise ValueError("every fit parameter requires exactly one existing projected endpoint")
+    contextual_output = {}
+    if "context_evidence_bindings" in context:
+        contextual = _unique(context["context_evidence_bindings"], "evidence_id")
+        resolved_context = []
+        for item in contextual.values():
+            if (not isinstance(item["evidence_id"], str) or not item["evidence_id"].strip()
+                    or not item["transition_ids"] and not item["fit_ids"]
+                    or len(item["transition_ids"]) != len(set(item["transition_ids"]))
+                    or len(item["fit_ids"]) != len(set(item["fit_ids"]))
+                    or not set(item["transition_ids"]) <= set(transitions)
+                    or not set(item["fit_ids"]) <= set(fits)):
+                raise ValueError("model contextual evidence requires declared transition or fit references")
+            evidence = get(item["binding"])
+            if not isinstance(evidence, dict) or not evidence:
+                raise ValueError("model contextual evidence requires a source object, not a bare scalar")
+            resolved_context.append({**deepcopy(item), "evidence": evidence})
+        contextual_output["context_evidence"] = resolved_context
     association = context["deposit_association"]
     if association is None:
         absence_reason = context.get("deposit_absence_reason")
@@ -503,7 +538,7 @@ def _model_link(context, link, constructs, rows, assays, source_bindings, resolv
                 or any(state.get("arrangement_bindings") for state in states.values())
                 or any(transition["bond_annotations"] for transition in transitions.values())):
             raise ValueError("absent model arrangement requires a reason and no deposited atom bindings")
-        return {**deepcopy(link), "source_context": deepcopy(context),
+        return {**deepcopy(link), **contextual_output, "source_context": deepcopy(context),
                 "transitions": resolved_transitions, "endpoints": resolved_endpoints,
                 "fit_models": resolved_fits, "arrangement": None,
                 "existing_state_observation_relations": [],
@@ -540,7 +575,7 @@ def _model_link(context, link, constructs, rows, assays, source_bindings, resolv
             != {item["original_observation_id"] for item in endpoints.values()}
             or any(item["arrangement_id"] != association["arrangement_id"] for item in relations)):
         raise ValueError("model differs from original arrangement/observation relations")
-    return {**deepcopy(link), "source_context": deepcopy(context),
+    return {**deepcopy(link), **contextual_output, "source_context": deepcopy(context),
             "transitions": resolved_transitions, "endpoints": resolved_endpoints,
             **({"fit_models": resolved_fits} if fits else {}),
             "arrangement": arrangement,
