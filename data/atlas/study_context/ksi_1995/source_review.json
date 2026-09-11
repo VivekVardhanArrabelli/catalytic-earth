@@ -1,0 +1,83 @@
+{
+  "schema_version": "catalytic-earth.source-qualification-review.v1",
+  "assessment_id": "ksi_1995_primary_kinetics",
+  "decision": "accept_source_annotation",
+  "authorized_operation": "source_annotation",
+  "policy_binding": {
+    "path": "data/governance/computational_review_policy.json",
+    "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "reviewed_bindings": {
+    "data/atlas/study_context/ksi_1995/primary_kinetics.json": "c4b4e89ae32bb4389be89cddc61120b3a9f7ef7f01fad4bba485e7aa5896d11a",
+    "data/atlas/study_context/ksi_1995/acquisition_receipts.json": "dd625bb6d059add2813674f8314c9ea3a3af0c8bf46a7bde4a2db3c08494b4f0",
+    "data/atlas/study_context/ksi_2014/field_function.json": "1e783d88486e8a68dde5099a92eadf3651a003b7e9ebe3f1dbc6de9e3e9cfb0c",
+    "data/atlas/perturbations/projection.json": "a19e2d9491dcbc5df5491147ed233df7ba20988befd718d97ccebd8f71dbccd1",
+    "docs/ATLAS_KSI_FIELD_FUNCTION.md": "a06e09e624f82ab75105f448b9e75709ba875541b236bea0f044b3593e2c87e5",
+    "CLAIMS.md": "c58794d6dce0d24a55827f89b9d0ff4cfd19add766e4d20ea438c3b37beb2749",
+    "data/governance/claim_ledger.json": "c4344b027235e3b3357d692790dde514af54690aefe55ee421ead0d7c0f9b1ac",
+    "docs/CURRENT_STATE.md": "fbed3c2dc57a3a81deb3104a1c4a3efb6b28170a1de2f5b6b97ff72217f115f6",
+    "docs/CURRENT_DECISIONS.md": "d9c61237f7c97338aa812b916f7e84d117ccab091a8566fd52957c39df1c8f66",
+    "tests/core/test_atlas_perturbations.py": "338285ccb90921f5ca891f563974fd99b50f2e7dfe154d22e42fede0a19bbed9",
+    "tests/test_truth_guard.py": "d9f926891060c038303f34a412a6c7745da406229a7fa4c8268a2c4233002d7e"
+  },
+  "source_inspection": "Parent and source reviewer visually inspected all4KimChoi1995 scan pages including completeTable1/footnotes, Figure4/methods, mutagenesis and Figure5. Retained Fried2014 TableS2/footnotes and exact reference16 checked. Xue1991 metadata/denial do not count as primary-body mechanism evidence.",
+  "review_process": "Parent source/diff review plus three separately prompted read-only gpt-5.6-sol/ultra roles. Source content checked and narrowed; exact final diff/head checks govern publication. Correlated computational review, not independent human or experimental validation.",
+  "reviewer_tasks": [
+    "kinetic_source_review",
+    "kinetic_representation",
+    "kinetic_adversarial"
+  ],
+  "adjudications": [
+    {
+      "objection": "MatchingD40N and similar fold losses could qualify the entire2014 table.",
+      "decision": "Separate ksi_1995 panel. WT/Y16F values/errors differ; D40N is candidate lineage. No copied conditions/error model or independent replication.",
+      "evidence": "Kim1995Table1; Fried2014TableS2 and main ref16."
+    },
+    {
+      "objection": "Error magnitude could be mislabeledSD,SEM or15 independent replicates.",
+      "decision": "Retain mean plus/minus2SD/five kinetic determinations, Fig4triplicates and specific-activity triplicates as separate scopes; no propagated ratio error.",
+      "evidence": "Kim1995p2604Table1footnotes andFig4caption."
+    },
+    {
+      "objection": "LowerKM could be interpreted as stronger affinity or the same catalytic mechanism.",
+      "decision": "Only lower apparentKM and turnover are supported. NoKd, unchangedfold, microscopic step or residual-activity cause.",
+      "evidence": "Kim1995methods/Table1 and scope of direct evidence."
+    },
+    {
+      "objection": "A named reaction was declared but initial panel did not bind it, leaving six reaction_context fieldsnull.",
+      "decision": "Bind source assay/reaction/direction and panel reaction_id using existing generic contracts; regression checks all six observed contexts. No runtime change.",
+      "evidence": "Existing atlas_perturbations consumer and sourceFig1."
+    },
+    {
+      "objection": "WT reference was described as a single-substitution construct.",
+      "decision": "WT perturbation scope explicitly states unperturbed reference; only mutant records carry substitutions.",
+      "evidence": "Kim1995Table1 and sequencing description."
+    },
+    {
+      "objection": "HomologAsp38/Asp40 numbering could appear to prove the laterD40N hydroxide mechanism.",
+      "decision": "Keep source-declared residue correspondence; microscopic transfer remains unqualified. Xue1991 primary body unacquired after bounded route, without chemical negative.",
+      "evidence": "Kim1995p2602/Fig5; Fried2014SI23-24; acquisition appendix."
+    },
+    {
+      "objection": "Historical methods-not-acquired text would be stale after this acquisition.",
+      "decision": "Change only the current compiled-assay clause to unresolved individual-row methods. Original2014 numerical/eligibility evidence and dated review remain preserved.",
+      "evidence": "New reference16 body and still-collective references16/18/19 footnote."
+    },
+    {
+      "objection": "Equal displayed D40N plus/minus magnitudes could imply equal error statistics; a slash in a row locator could misapply footnote b to efficiency.",
+      "decision": "Separate central-value equality, printed-magnitude equality and unestablished error-statistic equivalence. Locators explicitly say kcat and KM columns; source name uses repository provenance.",
+      "evidence": "Kim1995Table1footnote b versus Fried2014TableS2 footnote scope."
+    }
+  ],
+  "blocked_operations": [
+    "wholesale1995conditions_or_error_transfer_to2014compiled_rows",
+    "independent_replication_frommatching_D40N_display",
+    "KM_to_equilibrium_affinity_or_unchanged_structure",
+    "directD40Nmicroscopic_assignment_fromhomolog_correspondence_orabstract",
+    "probe_to_turnover_physical_sample_or_field_causality",
+    "protected_registry_admission_or_evidence_tier_promotion"
+  ],
+  "coordination_record": ".git/catalytic-earth-runs/a21b043b.board.md",
+  "reviewed_at_utc": "2026-09-11T03:22:09.710420+00:00",
+  "historical_review_scope": "ksi_2014/source_review.json remains the dated initial annotation. This review supersedes only its now-stale acquisition-status clause and binds current changed surfaces."
+}

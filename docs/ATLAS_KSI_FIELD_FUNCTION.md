@@ -51,6 +51,8 @@ mapping or full kinetic conditions in this table. The current packet therefore
 keeps the kinetic compilation unqualified for a matched-assay comparison.
 Source-named variants join the two columns; exact sequences, identical
 specimens and cross-study assay equivalence are not established.
+The primary-source followup below now resolves reference 16's own assay,
+while preserving the compilation's unresolved individual row provenance.
 
 SI pages 23–24 state that D40N uses solution hydroxide as base and becomes
 limited by reketonization, citing an earlier mechanistic study that this run
@@ -102,17 +104,89 @@ probe chemistry, a functional compilation and an explicit mechanism-dependent
 model exclusion. This is grounded curation, not a novel experimental finding
 or measured superiority over a competent literature workflow.
 
-The [review](../data/atlas/study_context/ksi_2014/source_review.json) binds
-source objections and exact accepted files. All three reviewers are correlated
+The [original review](../data/atlas/study_context/ksi_2014/source_review.json) binds
+the initial annotation; the [primary followup review](../data/atlas/study_context/ksi_1995/source_review.json)
+renews the current files and the narrowly corrected acquisition-status wording.
+All three reviewers are correlated
 computational agents; they do not provide independent human validation.
 No protected protein admission, new experiment, complete mechanism, productive
 geometry, evidence-tier promotion or prospective enzyme-design performance
 is established.
 
-The KSI batch uses **12 requests / 5,179,007 response-body bytes**, including
+The initial KSI packet used **12 requests / 5,179,007 response-body bytes**, including
 failed routes. Three primary witnesses are retained locally by hash; source
 bodies are not redistributed. The prior DERA inquiry remains unassessed after
 its bounded access stop: the same RA95 batch is now **33 / 17,556,517**, with
 the [appendix](../data/atlas/study_context/ra95_2013/dera_acquisition_appendix.json)
 preserving its six requests and the unreviewed erratum flag. No mechanism
 conclusion follows from inaccessible DERA text.
+
+## Primary kinetics resolve one comparison, not the whole compilation
+
+Kim and Choi's [1995 primary paper](https://europepmc.org/articles/PMC176927)
+is Fried2014 reference 16. Its Table 1 and adjacent methods support a
+within-study comparison of *P. putida* biotype B WT, Y16F and D40N. The
+[primary packet](../data/atlas/study_context/ksi_1995/primary_kinetics.json)
+retains this separately from the 2014 compilation:
+
+```sh
+python scripts/query_atlas_perturbations.py --study ksi_1995
+python scripts/query_atlas_perturbations.py --comparison ksi_1995:D40N:kcat
+```
+
+The study query returns six kinetic parameter records and four descriptive
+mutant/WT ratios through the unchanged consumer. Each record carries its
+source reaction, assay and uncertainty. The query retains compilation-provenance
+limits in shared evidence context and beside each comparison.
+
+| Construct | Primary kcat, s⁻¹ | Primary KM, µM | Derived kcat / WT | Derived KM / WT |
+| --- | ---: | ---: | ---: | ---: |
+| WT | 26,722 ± 231 | 59.3 ± 1.7 | reference | reference |
+| Y16F | 13.3 ± 0.6 | 17.1 ± 3.1 | 0.000497717 | 0.288364 |
+| D40N | 0.018 ± 0.001 | 13.3 ± 3.7 | 0.000000673602 | 0.224283 |
+
+Table 1 footnote b defines the printed errors as **twice the standard
+deviation from five separate determinations**. Figure 4's points instead
+average three activity measurements per substrate concentration; these are
+not fifteen independent replicates or five protein preparations. The source's
+rounded relative-kcat entries, 10⁻³·³ and 10⁻⁶·², remain distinct from the
+consumer's central-value quotients. No ratio error or significance is inferred.
+
+All three constructs were assayed at 30 °C in 34 mM potassium phosphate,
+pH 7.0, with 2.5 mM EDTA and 3.3% methanol by volume. The substrate series
+was 11.6, 34.9, 58.2, 81.5 and 116.4 µM. Product formation and
+Lineweaver–Burk regression supplied the kinetic parameters; Figure 4 reports
+absorbance change at 248 nm. Some readout details are delegated to the paper's
+reference 24, so this is a qualified within-table comparison, not a complete
+reconstruction of the assay. The authors report full-gene sequencing of both
+mutants with only their intended substitutions. This supports their named
+constructs without asserting project-verified physical specimen sequences.
+
+Both mutant **apparent KM values decrease while turnover falls sharply**.
+That endpoint pattern does not identify equilibrium affinity, an unchanged
+fold, the rate-limiting step or the mechanism of residual activity. The source
+authors' tighter-binding interpretation is not adopted as a Kd measurement.
+Its Figure 1 reaction context is source-described; it does not newly measure
+the stereochemical proton trajectory of each mutant.
+
+The provenance join stops at a concrete mismatch: primary WT/Y16F values
+and errors differ from the 2014 entries, 24,300 ± 3,400 and 12 ± 2.
+D40N matches the displayed 0.018 ± 0.001 pair, and the 2014 main prose cites
+reference 16 for its impairment. This supports a candidate lineage, without
+an explicit row-level attribution or a second independent measurement.
+It does not justify copying 1995 conditions or the two-SD error model onto
+the compiled rows. Both tables imply about 2,000-fold Y16F turnover loss;
+the scope of Fried2014's approximate 10⁴ prose remains unresolved.
+
+Kim1995 explicitly relates *P. putida* Asp40/Tyr16 to *C. testosteroni*
+Asp38/Tyr14. Homolog correspondence does not establish D40N solution-hydroxide
+catalysis or reketonization limitation. The exact Xue1991 reference cited for
+that mechanism remained unavailable at primary-body depth after a bounded
+identifier check; its truncated abstract is not used to fill those premises.
+
+The [same-batch acquisition appendix](../data/atlas/study_context/ksi_1995/acquisition_receipts.json)
+continues the KSI total to **18 requests / 5,441,734 response-body bytes**,
+including the redirects and failed mechanism-paper route. The useful addition
+is a qualified primary kinetic relation plus a prevented cross-study method
+transfer. Source selection and interpretation remain manual; no measured
+curation-time saving, complete mechanistic chain or design performance follows.

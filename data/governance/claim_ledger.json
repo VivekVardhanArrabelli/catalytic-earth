@@ -515,5 +515,18 @@
       "data/atlas/study_context/ksi_2014/source_review.json",
       "docs/ATLAS_KSI_FIELD_FUNCTION.md"
     ]
+  },
+  {
+    "claim_id": "CE-039",
+    "claim_kind": "source_annotation",
+    "status": "Supported",
+    "claim": "KimChoi1995 reports WT/Y16F/D40N kcat26722/13.3/0.018s^-1 and KM59.3/17.1/13.3uM under a common30C/pH7 assay, with kinetic errors twiceSD from five determinations. Both mutant apparentKM values decline while turnover falls sharply; this does not identify equilibrium affinity or a microscopic step. PrimaryWT/Y16F values and errors differ from Fried2014TableS2. The matchingD40N pair and citation support candidate provenance, not independent replication or whole-table method transfer. Source-declaredAsp40/Asp38 andTyr16/Tyr14 correspondence does not establish aD40N hydroxide/reketonization mechanism.",
+    "current_wording": "Six primary kinetic parameter records and four descriptive same-study ratios; retain compiled-rate provenance and cross-homolog mechanism limits. No new experiment, independent validation, productive geometry or design-performance claim.",
+    "rationale": "PrimaryTable1, methods and mutant sequencing support a bounded same-study relation. Comparing exact primary and compiled values prevents wholesale transfer of conditions/error models.",
+    "evidence": [
+      "data/atlas/study_context/ksi_1995/primary_kinetics.json",
+      "data/atlas/study_context/ksi_1995/source_review.json",
+      "docs/ATLAS_KSI_FIELD_FUNCTION.md"
+    ]
   }
 ]

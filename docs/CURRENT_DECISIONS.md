@@ -1,5 +1,36 @@
 # Current Decisions
 
+## 2026-09-11: separate primary kinetic controls from compiled provenance
+
+Accept the [KimChoi1995 comparison](ATLAS_KSI_FIELD_FUNCTION.md#primary-kinetics-resolve-one-comparison-not-the-whole-compilation)
+at within-study named-construct scope. Its stated common assay supports
+WT-relative kcat and KM comparisons for Y16F/D40N. Keep twice-SD/five
+kinetic determinations separate from Figure 4 and specific-activity triplicates.
+Neither lower apparent KM nor chromatography/purity observations establish
+equilibrium affinity, unchanged structure or a microscopic catalytic role.
+
+Close the inherited reference-16 question: it supplies a qualified primary
+panel but cannot qualify Fried2014 WT/Y16F values, which differ. Retain D40N
+as candidate source lineage and preserve all compiled numeric values and
+unqualified flags. Correct only the now-stale claim that original methods
+were unacquired. No runtime or schema extension is needed.
+
+The separately bounded Xue1991 D38N primary-body inquiry stopped after
+metadata and a publisher denial. Do not retry unchanged routes or use its
+truncated abstract to establish the hydroxide/reketonization premise. Kim's
+explicit homolog numbering correspondence does not bridge that experimental
+gap. No chemical negative follows from the access stop.
+
+Next, assess the exact primary Fried2014 reference 18,
+DOI10.1073/pnas.0911168107, for the experimental basis of the different
+effects of Tyr16 substitutions. Expected gain: a substrate/solvent or
+structural discriminant that could explain why removing a named hydrogen
+bond does not have a single transferable energetic effect, beyond another
+kinetic-table projection. Continue the same KSI batch at 18 / 5,441,734.
+Stop at one source-supported discriminating relation or the first unmatched
+construct/assay premise; if primary text is inaccessible, stop that route
+and reassess instead of producing another access-only run.
+
 ## 2026-09-11: add a physical evidence axis after the DERA access stop
 
 The bounded DERA attempt did not recover primary text or its flagged erratum.
