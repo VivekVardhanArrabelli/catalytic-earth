@@ -28,6 +28,42 @@ class PerturbationRelationTests(unittest.TestCase):
                                   for key, value in self.spec["sources"].items()}
         return control_relation(context, lambda ref: deepcopy(pointer(documents[ref["source"]], ref["pointer"])))
 
+    def system_assessment_fixture(self, study="schmidt_2013"):
+        documents = {key: json.loads((ROOT / value["path"]).read_text())
+                     for key, value in self.spec["sources"].items()}
+        link = next(item for item in self.spec["control_relations"] if item["study_id"] == study)
+        original = deepcopy(pointer(documents[link["provider"]["source"]],
+                                    link["provider"]["pointer"]))
+        arm_fields = {"source_row_id", "observation_provider", "system_provider",
+                      "system_identity_field", "assay_provider", "assay_qualified",
+                      "parameter_pointer", "parameter"}
+        arms = {role: {key: deepcopy(value) for key, value in arm.items()
+                       if key in arm_fields}
+                for role, arm in original["arms"].items()}
+        source_id = next(iter({arm["observation_provider"]["source"]
+                               for arm in arms.values()}))
+        documents[source_id]["study_id"] = study
+        documents[source_id]["_assessment_test"] = {
+            "supported": "source observations retained without arithmetic",
+        }
+        assessment = {
+            "schema_version": "catalytic-earth.system-control-relation.v1",
+            "id": study + ":assessment-test",
+            "study_id": study,
+            "operation": "system_assessment",
+            "source_discriminant_assessed": True,
+            "arithmetic_requested": False,
+            "assessment_provider": {"source": source_id, "pointer": "/_assessment_test"},
+            "source_blocks": ["comparison_not_requested"],
+            "arms": arms,
+            "evidence": deepcopy(original["evidence"]),
+            "interpretation_limit": original["interpretation_limit"],
+        }
+        def resolve(ref):
+            return deepcopy(pointer(documents[ref["source"]], ref["pointer"]))
+
+        return assessment, documents, resolve
+
     def test_system_contrast_preserves_denominator_and_missing_factorial_corners(self):
         result = self.system_relation()
         self.assertAlmostEqual(result["value"], 2.5e-4 / 2.1e-6)
@@ -124,6 +160,154 @@ class PerturbationRelationTests(unittest.TestCase):
             self.assertEqual(set(result["control_relations"][0]["arms"]), {"numerator", "denominator"})
             self.assertEqual(result["observations"], [])
             self.assertEqual(result["comparisons"], [])
+
+    def test_system_assessment_reuses_chemical_arms_without_arithmetic(self):
+        expected_ratios = {"schmidt_2013": 2.5e-4 / 2.1e-6,
+                           "calmodulin_2015": 0.8}
+        for study, expected_ratio in expected_ratios.items():
+            with self.subTest(study=study):
+                assessment, documents, resolve = self.system_assessment_fixture(study)
+                result = control_relation(assessment, resolve)
+                self.assertFalse(result["eligible"])
+                self.assertIsNone(result["value"])
+                self.assertIsNone(result["unit"])
+                self.assertIsNone(result["uncertainty"])
+                self.assertIn("arithmetic_not_requested", result["reasons"])
+                self.assertEqual(result["source_assessment"],
+                                 documents[assessment["assessment_provider"]["source"]]["_assessment_test"])
+                self.assertEqual(set(result["arms"]), {"numerator", "denominator"})
+                for arm in result["arms"].values():
+                    if study == "schmidt_2013":
+                        self.assertEqual(arm["source_parameter"]["uncertainty"]["kind"],
+                                         "not_reported")
+                    self.assertFalse(arm["source_parameter"]["uncertainty"]["unreported_is_zero"])
+                original = next(item for item in self.view["control_relations"]
+                                if item["study_id"] == study)
+                self.assertAlmostEqual(self.system_relation(original)["value"], expected_ratio)
+
+    def test_codh_system_assessment_retains_distinct_endpoints_and_source_limits(self):
+        result = next(item for item in self.view["control_relations"]
+                      if item["study_id"] == "codh_2011")
+        self.assertEqual(result["operation"], "system_assessment")
+        self.assertFalse(result["eligible"])
+        self.assertIsNone(result["value"])
+        self.assertIsNone(result["unit"])
+        self.assertEqual(set(result["arms"]),
+                         {"Ag_reduction", "WT_reduction", "Ag_kcat", "Ag_KM"})
+        parameters = {role: (arm["source_parameter"]["parameter"],
+                             arm["source_parameter"]["value"],
+                             arm["source_parameter"]["unit"])
+                      for role, arm in result["arms"].items()}
+        self.assertEqual(parameters, {
+            "Ag_reduction": ("k_obs_lim", 8.1, "s^-1"),
+            "WT_reduction": ("k_obs_lim", 51, "s^-1"),
+            "Ag_kcat": ("kcat", 8.2, "s^-1"),
+            "Ag_KM": ("KM", 2.95, "uM"),
+        })
+        self.assertTrue(all(not arm["assay_qualified"] for arm in result["arms"].values()))
+        self.assertTrue(all(arm["source_parameter"]["uncertainty"]["value"] is None
+                            for arm in result["arms"].values()))
+        self.assertIn("arithmetic_not_requested", result["reasons"])
+        self.assertFalse(result["source_assessment"]["exclusive_Ag_turnover_established"])
+        self.assertFalse(result["source_assessment"]["M0107_proposal_adjudicated"])
+        spectroscopy = next(item for item in result["source_evidence"]
+                            if isinstance(item, dict) and item.get("technique") == "EPR")
+        self.assertIn("no occupancy", spectroscopy["inference_scope"])
+        self.assertIsNone(result["arms"]["Ag_reduction"]["source_system"]["metal_stoichiometry"])
+        self.assertFalse(result["causal_component_established"])
+        self.assertFalse(result["physical_condition_equality_established"])
+
+    def test_codh_system_assessment_query_isolated_from_genetic_observations(self):
+        completed = subprocess.run([
+            sys.executable, str(ROOT / "scripts/query_atlas_perturbations.py"),
+            "--study", "codh_2011", "--control-relation",
+            "codh_2011:Ag-substitution:source-assessment",
+        ], capture_output=True, text=True, encoding="utf-8", check=True)
+        result = json.loads(completed.stdout)
+        relation, = result["control_relations"]
+        self.assertEqual(relation["operation"], "system_assessment")
+        self.assertEqual(set(relation["arms"]),
+                         {"Ag_reduction", "WT_reduction", "Ag_kcat", "Ag_KM"})
+        self.assertEqual(result["observations"], [])
+        self.assertEqual(result["comparisons"], [])
+
+    def test_system_assessment_rejects_malformed_identity_parameter_and_uncertainty(self):
+        assessment, documents, resolve = self.system_assessment_fixture()
+        for field, value in (("source_discriminant_assessed", False),
+                             ("arithmetic_requested", True),
+                             ("study_id", ""), ("arms", {})):
+            with self.subTest(field=field):
+                malformed = deepcopy(assessment)
+                malformed[field] = value
+                with self.assertRaisesRegex(ValueError, "malformed system assessment declaration"):
+                    control_relation(malformed, resolve)
+        malformed = deepcopy(assessment)
+        malformed["arms"]["numerator"]["reviewed_invariants"] = {}
+        with self.assertRaisesRegex(ValueError, "malformed system assessment arm"):
+            control_relation(malformed, resolve)
+        wrong_identity = deepcopy(assessment)
+        wrong_identity["arms"]["numerator"]["source_row_id"] = "another-row"
+        with self.assertRaisesRegex(ValueError, "identity differs"):
+            control_relation(wrong_identity, resolve)
+        wrong_parameter = deepcopy(assessment)
+        wrong_parameter["arms"]["numerator"]["parameter"] = "another-parameter"
+        with self.assertRaisesRegex(ValueError, "parameter identity differs"):
+            control_relation(wrong_parameter, resolve)
+        wrong_study = deepcopy(assessment)
+        wrong_study["study_id"] = "another-study"
+        with self.assertRaisesRegex(ValueError, "source study identity differs"):
+            control_relation(wrong_study, resolve)
+        missing_study_documents = deepcopy(documents)
+        source_id = assessment["assessment_provider"]["source"]
+        missing_study_documents[source_id].pop("study_id")
+        def missing_study_resolve(ref):
+            return deepcopy(pointer(missing_study_documents[ref["source"]], ref["pointer"]))
+
+        with self.assertRaisesRegex(ValueError, "source study identity differs"):
+            control_relation(assessment, missing_study_resolve)
+        foreign, _, _ = self.system_assessment_fixture("calmodulin_2015")
+        mixed_source = deepcopy(assessment)
+        mixed_source["arms"]["foreign"] = foreign["arms"]["numerator"]
+        with self.assertRaisesRegex(ValueError, "arms must use one source"):
+            control_relation(mixed_source, resolve)
+        foreign_source = foreign["arms"]["numerator"]["observation_provider"]["source"]
+        foreign_evidence = deepcopy(assessment)
+        foreign_evidence["evidence"][0] = {"source": foreign_source, "pointer": ""}
+        with self.assertRaisesRegex(ValueError, "evidence must use the arm source"):
+            control_relation(foreign_evidence, resolve)
+        foreign_assessment = deepcopy(assessment)
+        foreign_assessment["assessment_provider"] = {"source": foreign_source, "pointer": ""}
+        with self.assertRaisesRegex(ValueError, "provider must use the arm source"):
+            control_relation(foreign_assessment, resolve)
+        metadata_assessment = deepcopy(assessment)
+        documents[source_id]["source"] = {"title": "metadata is not an assessment"}
+        metadata_assessment["assessment_provider"] = {"source": source_id, "pointer": "/source"}
+        with self.assertRaisesRegex(ValueError, "bound source assessment"):
+            control_relation(metadata_assessment, resolve)
+        duplicate = deepcopy(assessment)
+        duplicate["arms"]["denominator"] = deepcopy(duplicate["arms"]["numerator"])
+        with self.assertRaisesRegex(ValueError, "distinct source measurements"):
+            control_relation(duplicate, resolve)
+        qualification_documents = deepcopy(documents)
+        arm = assessment["arms"]["numerator"]
+        assay = pointer(qualification_documents[arm["assay_provider"]["source"]],
+                        arm["assay_provider"]["pointer"])
+        assay["qualified_for_cross_system_arithmetic"] = not arm["assay_qualified"]
+        def qualification_resolve(ref):
+            return deepcopy(pointer(qualification_documents[ref["source"]], ref["pointer"]))
+
+        with self.assertRaisesRegex(ValueError, "assay qualification differs"):
+            control_relation(assessment, qualification_resolve)
+        bad_documents = deepcopy(documents)
+        arm = assessment["arms"]["numerator"]
+        row = pointer(bad_documents[arm["observation_provider"]["source"]],
+                      arm["observation_provider"]["pointer"])
+        pointer(row, arm["parameter_pointer"])["uncertainty"].update(value=1, kind="not_reported")
+        def bad_resolve(ref):
+            return deepcopy(pointer(bad_documents[ref["source"]], ref["pointer"]))
+
+        with self.assertRaisesRegex(ValueError, "invalid system control uncertainty"):
+            control_relation(assessment, bad_resolve)
 
     def test_calmodulin_controls_keep_domain_treatment_and_analogue_boundaries(self):
         rows = {row["source_row_id"]: row for row in self.view["observations"]

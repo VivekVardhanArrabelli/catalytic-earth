@@ -1,0 +1,70 @@
+{
+  "batch_id": "codh-2011-silver-substitution",
+  "requests": [
+    {
+      "request_id": 1,
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:21774528&format=json&resultType=core",
+      "started_at_utc": "2026-09-11T21:14:00.345890+00:00",
+      "response_body_bytes": 5148,
+      "state": "captured",
+      "status": 200,
+      "content_type": "application/json;charset=UTF-8",
+      "content_encoding": null,
+      "location": null,
+      "sha256": "62e515cfe61a424cc23620a6f83300cf08c51339637e6b4af3167cd2aaf0e16a",
+      "finished_at_utc": "2026-09-11T21:14:01.019579+00:00",
+      "local_path": ".git/catalytic-earth-runs/51c3eb8d-codh-sources/silver-europepmc.json"
+    },
+    {
+      "request_id": 2,
+      "url": "https://api.openalex.org/works/https://doi.org/10.1021/ja205073j",
+      "started_at_utc": "2026-09-11T21:14:09.896443+00:00",
+      "response_body_bytes": 19458,
+      "state": "captured",
+      "status": 200,
+      "content_type": "application/json",
+      "content_encoding": null,
+      "location": null,
+      "sha256": "933a1888d6750227870e2bb05b982a7c90e2fdee1749a98b1e78e105646c9aaa",
+      "finished_at_utc": "2026-09-11T21:14:10.217879+00:00",
+      "local_path": ".git/catalytic-earth-runs/51c3eb8d-codh-sources/silver-openalex.json"
+    },
+    {
+      "request_id": 3,
+      "url": "https://pubs.acs.org/doi/pdf/10.1021/ja205073j",
+      "started_at_utc": "2026-09-11T21:14:19.056753+00:00",
+      "response_body_bytes": 5606,
+      "state": "captured",
+      "status": 403,
+      "content_type": "text/html; charset=UTF-8",
+      "content_encoding": null,
+      "location": null,
+      "sha256": "1e80c0c358b29053e68b0fe7f3dae4325fbb857c34fc2e8b915214a552182cec",
+      "finished_at_utc": "2026-09-11T21:14:19.143251+00:00",
+      "local_path": ".git/catalytic-earth-runs/51c3eb8d-codh-sources/silver-publisher-response.bin"
+    },
+    {
+      "request_id": 4,
+      "url": "https://api.figshare.com/v2/articles?resource_doi=10.1021%2Fja205073j",
+      "started_at_utc": "2026-09-11T21:14:19.209118+00:00",
+      "response_body_bytes": 2,
+      "state": "captured",
+      "status": 200,
+      "content_type": "application/json",
+      "content_encoding": null,
+      "location": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "finished_at_utc": "2026-09-11T21:14:19.864316+00:00",
+      "local_path": ".git/catalytic-earth-runs/51c3eb8d-codh-sources/silver-figshare.json"
+    }
+  ],
+  "max_requests": 100,
+  "max_response_body_bytes": 31457280,
+  "accounting": "All requests issued by this single parent transport including discovery, redirects and errors. Accept-Encoding identity; bytes are downloaded response-body bytes, excluding HTTP headers and TLS overhead.",
+  "cumulative_request_count": 4,
+  "cumulative_response_body_bytes": 30214,
+  "complete_cumulative_accounting": true,
+  "source_bodies_redistributed": false,
+  "batch_scope": "New 2011 Ag-substitution primary study cited by M0107. Exact DOI search found only original M0107 citation metadata, not an earlier primary acquisition receipt. This distinct batch does not rename, reset or inherit the AHAS/two-substrate or historical panel allowances.",
+  "acquisition_stopped": "Primary abstract acquired; public publisher PDF returned403 and Figshare lookup returned no entry. Main text and SI remain unacquired; no inference of literature-wide absence."
+}

@@ -172,6 +172,14 @@
     "ahas2005branch": {
       "path": "data/atlas/study_context/ahas_2005/branch_evidence.json",
       "sha256": "6f6ee4b9653e18a4a636009001e49343b23a3eed4f5c6bc4a79fa1ea7cf2d4cb"
+    },
+    "codh2011": {
+      "path": "data/atlas/study_context/codh_2011/source_qualification.json",
+      "sha256": "8fe9423653a088baf643a8f44356dbc693addc2bec25fb7ef6eab605ec409057"
+    },
+    "codh2011assessment": {
+      "path": "data/atlas/study_context/codh_2011/system_assessment.json",
+      "sha256": "ae52c065611a7266530e9c6303b3730a06d3d22305b0bb81ca4d663117591079"
     }
   },
   "constructs": {
@@ -10574,6 +10582,20 @@
         "source": "ahas2005branch",
         "pointer": ""
       }
+    ],
+    "codh_2011": [
+      {
+        "source": "codh2011",
+        "pointer": "/source_assessment"
+      },
+      {
+        "source": "codh2011",
+        "pointer": "/spectroscopy"
+      },
+      {
+        "source": "codh2011",
+        "pointer": "/limitations"
+      }
     ]
   },
   "source_witnesses": [
@@ -11158,6 +11180,21 @@
         }
       ],
       "retention": "Exact primary/source-identity bytes retained only in Git-common source cache; no bodies redistributed."
+    },
+    {
+      "sha256": "62e515cfe61a424cc23620a6f83300cf08c51339637e6b4af3167cd2aaf0e16a",
+      "bytes": 5148,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/62e515cfe61a424cc23620a6f83300cf08c51339637e6b4af3167cd2aaf0e16a.json",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:21774528&format=json&resultType=core",
+      "redistributed": false,
+      "id": "codh2011-primary-abstract",
+      "source_bindings": [
+        {
+          "source": "codh2011",
+          "pointer": "/source/witness"
+        }
+      ],
+      "retention": "Exact public metadata/primary abstract response retained in Git-common cache only; full text is unavailable and bodies are not redistributed."
     }
   ],
   "parameter_contracts": {
@@ -11713,6 +11750,14 @@
       "study_id": "calmodulin_2015",
       "provider": {
         "source": "cam_treatment",
+        "pointer": ""
+      }
+    },
+    {
+      "id": "codh_2011:Ag-substitution:source-assessment",
+      "study_id": "codh_2011",
+      "provider": {
+        "source": "codh2011assessment",
         "pointer": ""
       }
     }

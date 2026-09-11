@@ -1,5 +1,21 @@
 # Current Decisions
 
+## 2026-09-11: preserve a metal-substitution assessment without forcing a ratio
+
+Accept the [CODH Ag-substitution relation](ATLAS_CODH_METAL_SUBSTITUTION.md)
+as primary-abstract source annotation under CE-047. A shared `system_assessment`
+operation resolves chemical systems, assay wrappers and distinct parameter
+records, retaining an explicit positive source assessment without arithmetic.
+Reuse the existing source-binding logic; preserve all quantitative system-ratio
+rules and previous outputs. Case chemistry stays in data.
+
+Do not infer residual-Cu-free activity, full Ag occupancy, a limiting chemical
+step, matched WT steady-state kinetics or M0107 Cu-specific mechanism validity.
+Close Ibdah access at its unnamed-replacement/absolute-endpoint gap and stop
+CODH at abstract scope. No new access campaign is selected; further work must
+resolve a different consequential chemical relation. Frozen/protected sources
+and exposure history remain intact.
+
 ## 2026-09-11: stop AHAS branch fitting at the missing source derivation
 
 Accept the [Trp464Leu total-versus-product context](ATLAS_AHAS_NET_RATES.md#mixed-acceptors-total-aha-and-approximate-branch-estimates)
