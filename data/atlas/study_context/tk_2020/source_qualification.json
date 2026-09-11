@@ -1,0 +1,275 @@
+{
+  "schema_version": "catalytic-earth.source-qualification.v1",
+  "assessment_id": "tk2020-h473n-product-profile",
+  "operation": "source_annotation",
+  "question": "Does the source H473N product profile distinguish target accumulation from nondetection of a competing donor-route product, without isolating donor-half chemistry?",
+  "conclusion": "In the same glycolaldehyde/pyruvate mixture, purified H473N accumulates less source-reported DHB than WT, while erythrulose is undetected. This is a product-specific endpoint contrast; it does not identify an elementary cause or a microscopic donor-specificity constant.",
+  "sources": [
+    {
+      "source_id": "Yu2020:accepted",
+      "doi": "10.1111/febs.15108",
+      "article_title": "Engineering transketolase to accept both unnatural donor and acceptor substrates and produce α-hydroxyketones",
+      "authors": "Haoran Yu and coauthors",
+      "journal": "The FEBS Journal 287(9), 1758-1776 (2020)",
+      "version": "Author accepted manuscript, accepted23October2019; repository record identifies final2020bibliography. Publisher version was inaccessible and not compared.",
+      "url": "https://discovery.ucl.ac.uk/id/eprint/10084395/1/Yu%20FEBSJ%202019%20Accepted%20online%20version.pdf",
+      "sha256": "c33dcf62e1e65f665361da8daf391c462a887d998d96086f21d7f769c8e4a5a4",
+      "response_body_bytes": 21544876,
+      "local_cache_path": "git-common-dir:catalytic-earth-source-cache/c33dcf62e1e65f665361da8daf391c462a887d998d96086f21d7f769c8e4a5a4.pdf",
+      "inspected_scope": "PDF pp5-28 results/methods,pp35-39 tables/captions,p41 supplementary index,full Fig2/3 images pp43-44. Main manuscript and figures inspected; supplementary file not acquired. Page locators are PDF1-based, not final journal pagination.",
+      "rights": "Accepted manuscript states copyright reserved. Primary body retained locally only; project-authored factual annotations redistributed."
+    },
+    {
+      "source_id": "UCL:10084395",
+      "url": "https://discovery.ucl.ac.uk/id/eprint/10084395/",
+      "sha256": "c5216f1fa7e864e911beabc8c64d02a9176b18252584f025c06ba786410b9c91",
+      "response_body_bytes": 48826,
+      "local_cache_path": "git-common-dir:catalytic-earth-source-cache/c5216f1fa7e864e911beabc8c64d02a9176b18252584f025c06ba786410b9c91.html",
+      "inspected_scope": "Institutional title/DOI/authors and exact accepted-manuscript link; metadata is identity evidence, not a mechanism observation."
+    }
+  ],
+  "acquisition_binding": {
+    "path": "data/atlas/study_context/tk_2020/acquisition_appendix.json",
+    "sha256": "f408989e8e9a33539c997804b6b697bca24653d8ea2527f499467ac92ba1784f",
+    "cumulative_batch_id": "two-substrate-lineages-2024-51831",
+    "cumulative_requests": 17,
+    "cumulative_response_body_bytes": 22374147
+  },
+  "constructs": [
+    {
+      "construct_id": "WT",
+      "source_name": "WT",
+      "organism": "Escherichia coli",
+      "protein": "transketolase",
+      "comparison_background": "WT",
+      "perturbation": [],
+      "substitutions_relative_to_source_WT": [],
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "Source-named construct; exact assayed sequence and physical specimen identity not established.",
+      "source": "Yu2020:accepted:PDFpp9-11;Fig3C; selected single mutants are distinct from4Mlibrary combinations"
+    },
+    {
+      "construct_id": "H473N",
+      "source_name": "H473N",
+      "organism": "Escherichia coli",
+      "protein": "transketolase",
+      "comparison_background": "WT",
+      "perturbation": [
+        "H473N"
+      ],
+      "substitutions_relative_to_source_WT": [
+        "H473N"
+      ],
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "Source-named construct; exact assayed sequence and physical specimen identity not established.",
+      "source": "Yu2020:accepted:PDFpp9-11;Fig3C; selected single mutants are distinct from4Mlibrary combinations"
+    }
+  ],
+  "assays": [
+    {
+      "assay_id": "DHB-24h",
+      "endpoint": "HPLC calibrated 3,4-dihydroxy-2-butanone concentration after24h",
+      "reaction_id": "GA-pyruvate-to-DHB",
+      "conditions": {
+        "glycolaldehyde_mM": 50,
+        "sodium_pyruvate_mM": 50,
+        "Tris_HCl_mM": 50,
+        "pH": 7.0,
+        "purified_enzyme_mg_per_mL": 0.13,
+        "temperature_degC": 30,
+        "reaction_time_h": 24,
+        "final_ThDP_mM": null,
+        "final_MgCl2_mM": null
+      },
+      "cofactor_scope": "PDFp22 describes lysate cofactor preparation2.4mMThDP/9mMMgCl2 before assay mixing; final concentrations for the selected purified Fig3C reaction are not established by the inspected passage and are not inferred.",
+      "replicates": 3,
+      "uncertainty_kind": "SD_graphical_not_digitized",
+      "measurement_method": "HPLC quantitation against a standard curve; reported retention11.4minERY and13.7minDHB. Raw calibration and numeric SD uninspected.",
+      "source": "Yu2020:accepted:PDFp23Enzyme reactions;Fig3legendp37;Fig3Cp44",
+      "qualification_scope": "Same source assay within purified single-mutant panel. Accumulated product concentration,not initial specific activity,kcat,conversion fraction or donor-half rate.",
+      "experiment_id": "purified-GA-pyruvate-product-profile-24h",
+      "experiment_scope": "Two product-specific endpoint wrappers from the same triplicate reaction profile, not two independent experiments. Separate net-route annotations preserve the source competing products.",
+      "replicate_scope": "Triplicate reaction vials; independent enzyme preparations are not established."
+    },
+    {
+      "assay_id": "ERY-24h",
+      "endpoint": "HPLC calibrated erythrulose concentration after24h",
+      "reaction_id": "two-GA-to-ERY",
+      "conditions": {
+        "glycolaldehyde_mM": 50,
+        "sodium_pyruvate_mM": 50,
+        "Tris_HCl_mM": 50,
+        "pH": 7.0,
+        "purified_enzyme_mg_per_mL": 0.13,
+        "temperature_degC": 30,
+        "reaction_time_h": 24,
+        "final_ThDP_mM": null,
+        "final_MgCl2_mM": null
+      },
+      "cofactor_scope": "PDFp22 describes lysate cofactor preparation2.4mMThDP/9mMMgCl2 before assay mixing; final concentrations for the selected purified Fig3C reaction are not established by the inspected passage and are not inferred.",
+      "replicates": 3,
+      "uncertainty_kind": "SD_graphical_not_digitized",
+      "measurement_method": "HPLC quantitation against a standard curve; reported retention11.4minERY and13.7minDHB. Raw calibration and numeric SD uninspected.",
+      "source": "Yu2020:accepted:PDFp23Enzyme reactions;Fig3legendp37;Fig3Cp44",
+      "qualification_scope": "Same source assay within purified single-mutant panel. Accumulated product concentration,not initial specific activity,kcat,conversion fraction or donor-half rate.",
+      "experiment_id": "purified-GA-pyruvate-product-profile-24h",
+      "experiment_scope": "Two product-specific endpoint wrappers from the same triplicate reaction profile, not two independent experiments. Separate net-route annotations preserve the source competing products.",
+      "replicate_scope": "Triplicate reaction vials; independent enzyme preparations are not established."
+    }
+  ],
+  "reactions": [
+    {
+      "reaction_id": "GA-pyruvate-to-DHB",
+      "direction": "source-depicted C-C coupling of glycolaldehyde and pyruvate with CO2 loss",
+      "participants": [
+        {
+          "participant_id": "GA",
+          "side": "reactant",
+          "name": "glycolaldehyde",
+          "role": "acceptor",
+          "stoichiometry": 1
+        },
+        {
+          "participant_id": "pyruvate",
+          "side": "reactant",
+          "name": "pyruvate",
+          "role": "donor",
+          "stoichiometry": 1
+        },
+        {
+          "participant_id": "DHB",
+          "side": "product",
+          "name": "3,4-dihydroxy-2-butanone",
+          "role": "target coupled product",
+          "stoichiometry": 1
+        },
+        {
+          "participant_id": "CO2",
+          "side": "product",
+          "name": "carbon dioxide",
+          "role": "depicted coproduct; not measured in this assay",
+          "stoichiometry": 1
+        }
+      ],
+      "source": "Yu2020:accepted:Fig2Scheme1,PDFp43;Resultspp9-11",
+      "scope": "Source-named net-route annotation,not a charge/proton-balanced canonical reaction,atom map,stereochemical assignment or elementary mechanism."
+    },
+    {
+      "reaction_id": "two-GA-to-ERY",
+      "direction": "source-depicted C-C coupling of two glycolaldehyde molecules",
+      "participants": [
+        {
+          "participant_id": "GA",
+          "side": "reactant",
+          "name": "glycolaldehyde",
+          "role": "one donor and one acceptor molecule",
+          "stoichiometry": 2
+        },
+        {
+          "participant_id": "ERY",
+          "side": "product",
+          "name": "erythrulose",
+          "role": "competing coupled product",
+          "stoichiometry": 1
+        }
+      ],
+      "source": "Yu2020:accepted:Fig2Scheme1,PDFp43;Resultspp9-11",
+      "scope": "Measured in a mixture also containing pyruvate. Pyruvate is not assigned as a consumed reactant in this depicted competing route. No atom map,exact stereochemistry or elementary mechanism."
+    }
+  ],
+  "dhb_observations": [
+    {
+      "row_id": "WT",
+      "construct_id": "WT",
+      "assay_id": "DHB-24h",
+      "product_id": "DHB",
+      "source_locator": "Yu2020:accepted:PDFp10WTcentralvalues;p11H473Ncentralvalueandnondetection;Fig3C/legendpp44/37",
+      "product_concentration": {
+        "parameter": "product_concentration",
+        "result_kind": "reported_numeric",
+        "value": 10.5,
+        "unit": "mM",
+        "uncertainty": null,
+        "uncertainty_kind": "SD_graphical_not_digitized"
+      }
+    },
+    {
+      "row_id": "H473N",
+      "construct_id": "H473N",
+      "assay_id": "DHB-24h",
+      "product_id": "DHB",
+      "source_locator": "Yu2020:accepted:PDFp10WTcentralvalues;p11H473Ncentralvalueandnondetection;Fig3C/legendpp44/37",
+      "product_concentration": {
+        "parameter": "product_concentration",
+        "result_kind": "reported_numeric",
+        "value": 5.5,
+        "unit": "mM",
+        "uncertainty": null,
+        "uncertainty_kind": "SD_graphical_not_digitized"
+      }
+    }
+  ],
+  "ery_observations": [
+    {
+      "row_id": "WT",
+      "construct_id": "WT",
+      "assay_id": "ERY-24h",
+      "product_id": "ERY",
+      "source_locator": "Yu2020:accepted:PDFp10WTcentralvalues;p11H473Ncentralvalueandnondetection;Fig3C/legendpp44/37",
+      "product_concentration": {
+        "parameter": "product_concentration",
+        "result_kind": "reported_numeric",
+        "value": 10.5,
+        "unit": "mM",
+        "uncertainty": null,
+        "uncertainty_kind": "SD_graphical_not_digitized"
+      }
+    },
+    {
+      "row_id": "H473N",
+      "construct_id": "H473N",
+      "assay_id": "ERY-24h",
+      "product_id": "ERY",
+      "source_locator": "Yu2020:accepted:PDFp10WTcentralvalues;p11H473Ncentralvalueandnondetection;Fig3C/legendpp44/37",
+      "product_concentration": {
+        "parameter": "product_concentration",
+        "result_kind": "source_nondetection",
+        "value": null,
+        "unit": "mM",
+        "uncertainty": null,
+        "uncertainty_kind": "not_applicable_to_nondetection"
+      },
+      "nondetection": {
+        "source_token": "no byproduct detected",
+        "scope": "Erythrulose after24h in the H473N glycolaldehyde/pyruvate HPLC assay; source detection threshold unavailable",
+        "numeric_detection_limit": null,
+        "is_zero_rate": false
+      }
+    }
+  ],
+  "donor_half_assessment": {
+    "question": "Does Yu2020 directly distinguish pyruvate/cofactor donor-half chemistry from acceptor coupling in the same named construct?",
+    "result": "not_resolved_by_inspected_experimental_endpoints",
+    "evidence": "PDFp15 uses cross-acceptor final-yield correlation for H100L,H100F,H100Y and WT, four points total. PDFpp19-21 andp28 use drawn/MM2-minimized ThDP-enamine, modeled variants and sequential docking; the intermediate is supplied to the calculation.",
+    "scope": "No direct donor-only or donor-first adduct formation/occupancy/cleavage reporter is identified in the inspected main manuscript. Final product yields,apparent pyruvate KM and docking cannot assign a measured donor-half rate. The unacquired supplementary file and literature beyond this paper are not declared absent evidence.",
+    "stopping_condition": "Direct donor-half inquiry closed at its missing distinguishing endpoint; selected product-profile relation below is the supported alternative."
+  },
+  "profile_context": {
+    "source": "Yu2020:accepted:PDFpp9-11,Fig2Scheme1,Fig3C,Fig3legendp37,methodsp23",
+    "assay_pair": "The same supplied50mM glycolaldehyde/50mM sodium pyruvate mixture supports two source-depicted net routes. Glycolaldehyde is the acceptor in the target route and supplies both molecules in the competing erythrulose route.",
+    "source_donor_origin_scope": "Product structures and the source scheme associate DHB with pyruvate-derived transfer and erythrulose with the two-glycolaldehyde route. This is source chemical interpretation, not isotope tracing or a completed atom map. CO2 is depicted for the target route; no CO2 measurement is curated.",
+    "target_contrast": "WT10.5mM versusH473N5.5mM DHB are central values printed in Results. A shared query may compute the descriptive H473N/WT quotient; no second derived scalar is stored.",
+    "competing_product_contrast": "WT10.5mM erythrulose versus H473N source nondetection. No detection/quantitation threshold is stated. Do not compute its mutant/WT ratio or a DHB/erythrulose selectivity ratio.",
+    "mechanistic_limit": "A24h accumulated-product profile integrates both reaction halves,competition and possible reversibility/product release. It does not isolate pyruvate binding,decarboxylation,cofactor-adduct formation or a specificity constant. Equal accumulated concentrations do not determine microscopic fluxes or remaining substrate concentrations. The erythrulose route consumes two glycolaldehyde molecules per product; DHB uses one glycolaldehyde and one pyruvate.",
+    "uncertainty_limit": "Fig3C displays SD error bars from triplicates. Exact numeric SDs and underlying chromatographic/calibration data are unavailable in the inspected text and were not digitized; Fig3A itself is a displayed chromatogram. No propagated uncertainty,significance or equivalence claim.",
+    "lysate_boundary": "Fig3B is24h yield normalized by lysate TK densitometry, labeled specific activity by the source; it is not an initial rate and is not pooled with the purified Fig3C concentrations.",
+    "source_naming_caution": "The selected Results and Fig3C identify single H473N. Separate library methods print D473N/D473S and one propanal sentence prints H474S; those inconsistent strings do not redefine this selected single-mutant record. No exact sequence or broader library mapping is inferred."
+  },
+  "limits": [
+    "Named within-study WT/H473N constructs only; no exact assayed sequence,physical specimen,accession,PDB atom or mutant geometry.",
+    "The source reports net product identities and a product-specific endpoint,not a validated elementary mechanism or causal residue assignment.",
+    "No transfer to the2024TK-1/TK-2 assay,humanTKT,other TKorthologs or MAL. No measured project experiment,independent human validation or design performance."
+  ]
+}

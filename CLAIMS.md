@@ -680,6 +680,25 @@ Four parameter records and one descriptive ratio reuse the shared consumer;
 no MAL or human-TKT transfer, exact assayed sequence, absolute product
 configuration, project experiment, independent validation or design claim.
 
+## CE-045 — competing-product nondetection does not imply improved target accumulation
+
+**Status:** Supported
+
+The [Yu2020 transketolase profile](docs/ATLAS_TK_PRODUCT_PROFILE.md) reports
+10.5 mM each DHB and erythrulose for purified WT after 24 hours with
+50 mM each glycolaldehyde and pyruvate. H473N gives 5.5 mM DHB and undetected
+erythrulose, with no stated detection threshold. The descriptive central
+H473N/WT DHB quotient is 0.52381. The source scheme assigns DHB to pyruvate-derived
+coupling and erythrulose to two glycolaldehyde molecules, without an isotope
+atom map. Reduced competing product does not establish greater target
+accumulation, zero side-product formation or infinite donor specificity.
+The main manuscript supplies final-yield correlations and a preconstructed
+enamine docking model, not a directly measured donor-half endpoint.
+Three numeric concentrations and one nondetection reuse the shared consumer;
+unknown numeric SDs, final purified-assay cofactor concentrations and exact
+assayed sequence remain explicit. No microscopic cause, new project experiment,
+independent validation, protein admission or design-performance claim.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,

@@ -1,5 +1,21 @@
 # Current Decisions
 
+## 2026-09-11: retain competing-product outcomes without assigning a donor-half cause
+
+Accept the [Yu2020 WT/H473N profile](ATLAS_TK_PRODUCT_PROFILE.md) at named
+single-mutant, purified-assay and product scope. The shared data-only relation
+retains lower target DHB accumulation alongside erythrulose nondetection.
+Keep the two product-specific assay wrappers tied to one experimental profile;
+use a generic product-concentration parameter, not a source-specific runtime.
+
+Close the inherited donor-half inquiry at the missing distinguishing endpoint
+in the inspected main manuscript. Product yields, a four-point cross-acceptor
+correlation, pyruvate KM and docking of a supplied enamine do not establish a
+measured donor-half step. Preserve the undetermined detection threshold,
+graphical SDs and final cofactor concentrations. No infinite specificity, donor
+binding cause, exact assayed sequence or cross-study transfer is authorized.
+The current handoff selects one next consequential question.
+
 ## 2026-09-11: preserve the measured endpoint in a TK mutation contrast
 
 Accept the [TK-1/TK-2 relation](ATLAS_TK_ENDPOINT_CONTEXT.md) at named

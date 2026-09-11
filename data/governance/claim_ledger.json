@@ -601,5 +601,18 @@
       "data/atlas/study_context/tk_2024/source_review.json",
       "docs/ATLAS_TK_ENDPOINT_CONTEXT.md"
     ]
+  },
+  {
+    "claim_id": "CE-045",
+    "claim_kind": "source_annotation",
+    "status": "Supported",
+    "claim": "Yu2020 reports purified E. coli transketolase WT with 10.5 mM each DHB and erythrulose after 24 hours in a glycolaldehyde/pyruvate mixture; H473N gives 5.5 mM DHB with erythrulose undetected at an unspecified threshold.",
+    "current_wording": "Three numeric product concentrations and one nondetection share the source experimental profile. The descriptive H473N/WT DHB quotient is 0.52381; nondetection of competing erythrulose does not imply improved target accumulation, zero side-product formation or infinite donor specificity. The source scheme distinguishes pyruvate-derived DHB from the two-glycolaldehyde erythrulose route. Exact SDs, final purified-assay cofactor concentrations, assayed sequence and microscopic donor-half cause remain unestablished. No project experiment, independent validation, protein admission or design-performance claim.",
+    "rationale": "Source-assigned HPLC product identities and standard-curve concentrations preserve a consequential source-assigned donor-origin-to-product relation. Final-yield correlations and docking of a supplied enamine cannot replace direct donor-half measurements. Existing shared consumers retain both outcomes without enzyme-specific code.",
+    "evidence": [
+      "data/atlas/study_context/tk_2020/source_qualification.json",
+      "data/atlas/study_context/tk_2020/source_review.json",
+      "docs/ATLAS_TK_PRODUCT_PROFILE.md"
+    ]
   }
 ]

@@ -1,0 +1,87 @@
+{
+  "schema_version": "catalytic-earth.source-qualification-review.v1",
+  "assessment_id": "tk2020-h473n-product-profile",
+  "decision": "source_annotation_accepted_at_named_construct_and_product_endpoint_scope",
+  "authorized_operation": "source_annotation",
+  "reviewed_at_utc": "2026-09-11T18:24:41.785674+00:00",
+  "policy_binding": {
+    "path": "data/governance/computational_review_policy.json",
+    "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "reviewed_bindings": {
+    "data/atlas/study_context/tk_2020/source_qualification.json": "ab891a28685a11886fc32a502916813b912be10692f8d473529e7916f838278e",
+    "data/atlas/study_context/tk_2020/acquisition_appendix.json": "f408989e8e9a33539c997804b6b697bca24653d8ea2527f499467ac92ba1784f",
+    "docs/ATLAS_TK_PRODUCT_PROFILE.md": "d9db2703a0eff4361964b4c02fe7779961a4c3ff10d532d279f39f9b69920df3"
+  },
+  "review_process": {
+    "parent": "Codex parent; acquisition, direct source and visual figure inspection, integration and final source/diff review",
+    "agents": [
+      {
+        "role": "primary_source",
+        "task": "source_yu2020",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra"
+      },
+      {
+        "role": "chemical_representation",
+        "task": "representation_yu2020",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra"
+      },
+      {
+        "role": "adversarial_source_and_accounting",
+        "task": "adversarial_yu2020",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra"
+      }
+    ],
+    "independence": "Correlated computational reviews using shared sources and context; no independent human or laboratory validation. Source objections override agreement."
+  },
+  "adjudications": [
+    {
+      "objection": "Product-yield correlation and docking may be mistaken for direct donor-half measurements.",
+      "resolution": "Close that question at the missing experimental discriminant in the inspected main manuscript. Preserve the four-point correlation and preconstructed enamine as source interpretation; no pseudo-observation or model link."
+    },
+    {
+      "objection": "A competing-product nondetection could imply improved target activity, zero side-product formation or infinite specificity.",
+      "resolution": "Retain WT 10.5 mM DHB/10.5 mM erythrulose and H473N 5.5 mM DHB with erythrulose nondetection. Only the target H473N/WT quotient is computed. Unknown detection threshold remains null; product routes and compound identities remain distinct."
+    },
+    {
+      "objection": "The source gives lysate cofactor preparation concentrations, not final concentrations for the purified assay.",
+      "resolution": "Keep final purified-assay ThDP and MgCl2 null. Bind only the supported mixture, purified protein, temperature, duration, HPLC and triplicate conditions; preserve preparation values as separate context."
+    },
+    {
+      "objection": "Two endpoint wrappers could be mistaken for independent experiments or microscopic fluxes.",
+      "resolution": "Both carry the same experiment identifier and triplicate-profile scope. The source net routes consume different compounds; no isotope mapping, microscopic flux, remaining-substrate calculation or elementary cause is inferred."
+    },
+    {
+      "objection": "Error bars and source naming inconsistencies can invite invented precision or construct mapping.",
+      "resolution": "Keep graphical SD untranscribed and no propagated uncertainty/significance. Selected Results and Figure 3C establish source-named WT/H473N; exact sequence/preparation and unrelated library names are not resolved."
+    },
+    {
+      "objection": "Yu2020 is a cited-reference followup, so a fresh batch label would discard inherited consumption.",
+      "resolution": "Continue two-substrate-lineages-2024-51831 with all prior 12 requests/741711 bytes and five new transports. Provisional label corrected before further acquisition; cumulative 17/22374147 stays within the original cap. Legacy human-TKT/POX accounting remains unchanged and incomplete."
+    },
+    {
+      "objection": "Initial author and causal wording were inaccurate.",
+      "resolution": "Correct Haoran Yu identity; use nondetection instead of disappearance/suppression, distinguish source-assigned identities from standard-curve concentrations, and retain source-manuscript version."
+    }
+  ],
+  "blocked_operations": [
+    "Measured pyruvate donor-half binding, adduct formation, decarboxylation or cleavage rate",
+    "Erythrulose ratio or infinite within-profile donor specificity from nondetection",
+    "Zero concentration/flux, statistical significance, equivalence or propagated uncertainty",
+    "Exact assayed sequence, mutant geometry or causal residue assignment",
+    "Transfer to 2024 TK variants, human TKT, other orthologs or MAL",
+    "Frozen-kernel/registry changes, independent validation or design-performance claim"
+  ],
+  "new_source_requests": 5,
+  "new_source_response_body_bytes": 21632436,
+  "cumulative_batch_id": "two-substrate-lineages-2024-51831",
+  "cumulative_source_requests": 17,
+  "cumulative_source_response_body_bytes": 22374147,
+  "coordination_record": ".git/catalytic-earth-runs/ab51780c.board.md",
+  "independent_human_review": false,
+  "new_project_experiments": 0,
+  "remaining_limits": "Accepted main manuscript and selected complete figures inspected. Publisher version, supplementary file, raw calibration/kinetics and independent enzyme preparations uninspected. Final publication-head review goes in the Git-local receipt."
+}

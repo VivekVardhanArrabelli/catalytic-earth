@@ -1,5 +1,22 @@
 # Current State
 
+## 2026-09-11: H473N separates target accumulation from competing-product nondetection
+
+The [Yu2020 product profile](ATLAS_TK_PRODUCT_PROFILE.md) reports WT with
+10.5 mM each DHB and erythrulose after 24 hours, versus H473N with 5.5 mM DHB
+and undetected erythrulose. One descriptive target-product ratio is 0.52381;
+no side-product zero or infinite selectivity is inferred. The source scheme
+connects pyruvate-derived coupling to DHB and two-glycolaldehyde coupling to
+erythrulose. Four observations reuse the existing consumer with distinct
+reaction endpoints over the same experimental profile.
+
+The inspected main manuscript does not directly isolate donor-half chemistry;
+its yield correlations and docking model retain that limit. Numeric SDs and
+final purified-assay cofactor concentrations remain unspecified. No new project
+experiment, protein admission, microscopic mechanism or design claim follows.
+The cited-reference acquisition carries the existing 2024 batch forward to
+17 requests / 22,374,147 response-body bytes; no batch reset.
+
 ## 2026-09-11: TK R520Q has different rate and accumulated-product endpoints
 
 The [E. coli transketolase relation](ATLAS_TK_ENDPOINT_CONTEXT.md) binds
