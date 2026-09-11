@@ -563,6 +563,25 @@ establish the D40N hydroxide/reketonization mechanism. The unchanged consumer
 adds six parameter records and four descriptive ratios; no new experiment,
 independent validation, productive geometry or design-performance claim follows.
 
+## CE-040 — moderate residual turnover in Kraut2010 does not require a residue-16 hydroxyl
+
+**Status:** Supported
+
+The [KSI donor-control relation](docs/ATLAS_KSI_FIELD_FUNCTION.md#donor-controls-distinguish-mutation-effects-from-a-single-hydrogen-bond-energy)
+retains Kraut2010's rounded pKSI kcat losses on 5(10)-EST: approximately
+20,000-fold for Y16F, 300-fold for Y16S and 200-fold for Y16T/Y16A/Y16G.
+Hydroxyl-bearing Ser/Thr and hydroxyl-absent Ala/Gly share the moderate-loss
+pattern, so a residue-16 hydroxyl is not required for that residual turnover.
+This does not establish equal microscopic mechanisms or statistical equivalence.
+The separate Y16S/D40N–equilenin crystal excludes a direct Ser16–analogue
+contact; its diffuse density and double-mutant phenolate NMR support the
+authors' solvation model without observing water during single-mutant turnover.
+Neither the Phe mutation nor the moderate-loss group supplies a universal
+hydrogen-bond energy. Exact rates, full SI conditions, single-mutant reacting
+geometry, causal water occupancy and design performance are not established.
+Five source-reported factors reuse the existing consumer; prior results and
+protected registries remain unchanged, with no new project experiment.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,

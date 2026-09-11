@@ -1,5 +1,23 @@
 # Current Decisions
 
+## 2026-09-11: accept the Tyr16 donor-control discriminant at its experimental scope
+
+Close the inherited reference-18 question with the
+[Kraut2010 control relation](ATLAS_KSI_FIELD_FUNCTION.md#donor-controls-distinguish-mutation-effects-from-a-single-hydrogen-bond-energy).
+The source-reported 5(10)-EST kcat pattern rejects a simple assignment of
+moderate residual turnover to retention of a residue-16 hydroxyl. Preserve
+the water-solvation explanation as the authors' model, supported by
+double-mutant analogue evidence rather than observed single-mutant catalysis.
+
+Reuse the existing reported-reduction contract and context request. Qualify
+the source-reported pattern without reconstructing absolute rates or assigning
+Figure 2 errors to rounded prose factors. Keep signed NMR measurements in
+structured evidence context; do not coerce them to unsigned observations.
+No new runtime, geometry link, registry admission or evidence-tier promotion
+is needed. Stop the failed SI routes; no further access work is required to
+support this bounded discriminant. The next scientific action is recorded in
+the marked current handoff after final source/diff review.
+
 ## 2026-09-11: separate primary kinetic controls from compiled provenance
 
 Accept the [KimChoi1995 comparison](ATLAS_KSI_FIELD_FUNCTION.md#primary-kinetics-resolve-one-comparison-not-the-whole-compilation)

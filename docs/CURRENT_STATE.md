@@ -1,5 +1,25 @@
 # Current State
 
+## 2026-09-11: donor controls constrain interpretation of KSI mutation energies
+
+The [Kraut2010 relation](ATLAS_KSI_FIELD_FUNCTION.md#donor-controls-distinguish-mutation-effects-from-a-single-hydrogen-bond-energy)
+joins five rounded source kcat reductions to an explicit donor-presence test.
+On 5(10)-EST, hydroxyl-bearing Ser/Thr and hydroxyl-absent Ala/Gly have
+roughly 200–300-fold losses, versus 20,000-fold for Phe. A residue-16 hydroxyl
+is therefore not required for the moderate residual turnover in this panel.
+
+Separate double-mutant analogue structure and NMR contexts support the
+authors' proposed solvation explanation. The query preserves their construct,
+ligand and model boundaries; it does not observe water during single-mutant
+turnover or assign a universal hydrogen-bond energy. SI numerical errors and
+full methods remain unacquired. The same KSI batch totals 26 requests /
+5,739,717 bytes, including article-linked figure checks and failed SI routes.
+
+CE-040 records this source annotation. Existing reduction-factor and context
+paths suffice without runtime changes. Prior observations, comparisons,
+state links, claims and protected records retain their content. This is a
+usable discrimination, not a new experiment or validated design constraint.
+
 ## 2026-09-11: primary KSI kinetics qualify a bounded mutant comparison
 
 The [primary kinetic relation](ATLAS_KSI_FIELD_FUNCTION.md#primary-kinetics-resolve-one-comparison-not-the-whole-compilation)

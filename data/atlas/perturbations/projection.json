@@ -3,10 +3,10 @@
   "scope": {
     "question": "Which source-defined catalytic-group perturbations retain a measured endpoint, and which apparent comparisons cannot be transferred?",
     "evidence": "Projection of accepted source annotations; not new measurements, an independent evaluation, protein admission or evidence-tier promotion.",
-    "selection": "All rows of the accepted RA95 2013 kinetic and stereoselectivity tables and RA95 2017 kinetic panel; all six RA61 Table4 construct rows; all five KE59 Table2 pH-profile rows and its unassessed E230-control question. The beta-barrel extension includes three selected kinetic columns across two rows and all eight qualitative S4 arms, with three within-table ratios and one unassessed 16.1/8AH9 control-transfer request. Table 2 acceleration columns remain outside the selected packet; printed S/R factors remain source context. One source-reported RA95.5-8F methodol synthesis outcome and its two precursor comparator contexts extend product evidence with separate conversion, isolation and source-assigned composition records. A Siegel2010 Diels-Alder extension adds three parent kinetic parameters and two author-reported activity-reduction factors with unqualified assay/metric; product bounds remain separate source contexts. Human TKT 2019 adds all seven X5P/R5P kcat and all seven F6P k_forward entries plus all five existing NMR arms; other kinetic columns remain original source context, not extra common parameter records. POX 2019 adds all six variants for seven selected columns: pyruvate/DCPIP kcat and KM; MAP k_on, k_off and K_D_app; and anaerobic pyruvate/FAD k_app_max and K_0.5. The other three columns remain original source context, not missing data. Two complete 2013 RA95.5 and RA95.5-5 K83M/K210M four-cell panels also request multiplicative contrasts for kcat, printed kcat/KM and conflicted KM; the incomplete/unqualified RA95.0 panel supplies no square. KSI2014 preserves six probe-frequency and six compiled-turnover entries with one unassessed field/function context. Separate KimChoi1995 primary kinetics supplies all three Table1 constructs for kcat and KM, with four within-study ratios; other Table1 columns stay explicit source context.",
+    "selection": "All rows of the accepted RA95 2013 kinetic and stereoselectivity tables and RA95 2017 kinetic panel; all six RA61 Table4 construct rows; all five KE59 Table2 pH-profile rows and its unassessed E230-control question. The beta-barrel extension includes three selected kinetic columns across two rows and all eight qualitative S4 arms, with three within-table ratios and one unassessed 16.1/8AH9 control-transfer request. Table 2 acceleration columns remain outside the selected packet; printed S/R factors remain source context. One source-reported RA95.5-8F methodol synthesis outcome and its two precursor comparator contexts extend product evidence with separate conversion, isolation and source-assigned composition records. A Siegel2010 Diels-Alder extension adds three parent kinetic parameters and two author-reported activity-reduction factors with unqualified assay/metric; product bounds remain separate source contexts. Human TKT 2019 adds all seven X5P/R5P kcat and all seven F6P k_forward entries plus all five existing NMR arms; other kinetic columns remain original source context, not extra common parameter records. POX 2019 adds all six variants for seven selected columns: pyruvate/DCPIP kcat and KM; MAP k_on, k_off and K_D_app; and anaerobic pyruvate/FAD k_app_max and K_0.5. The other three columns remain original source context, not missing data. Two complete 2013 RA95.5 and RA95.5-5 K83M/K210M four-cell panels also request multiplicative contrasts for kcat, printed kcat/KM and conflicted KM; the incomplete/unqualified RA95.0 panel supplies no square. KSI2014 preserves six probe-frequency and six compiled-turnover entries with one unassessed field/function context. Separate KimChoi1995 primary kinetics supplies all three Table1 constructs for kcat and KM, with four within-study ratios; other Table1 columns stay explicit source context. Kraut2010 adds all five rounded main-text kcat reduction factors for the pKSI Tyr16 mutant panel on5(10)-EST, with one assessed donor-control relation and unrequested arithmetic.",
     "arithmetic": "Source-rounded central values, same-source assay and background only; reported efficiencies are never replaced by kcat/KM division.",
     "identity": "Exact sequence/provider availability is separate from study-declared construct association and physical assay-specimen identity.",
-    "limitations": "No pooled rates, generic inactivity labels, causal residue assignments, full apparatus claims, microscopic coupling energy or design-success estimates. Forward product composition retains source-author configuration and unresolved retention mapping; strict ee bounds remain structured source context, not central-value comparisons. Diels-Alder activity-reduction summaries do not identify mutant kcat or product outcomes; strict product bounds and mismatched assays remain in context. TKT reporter-unavailable parameters, NMR qualitative presence / scoped nondetection and positive turnover remain different kinds; no selective partner-only intervention, crystal-to-assay identity or productive F6P full-cycle inference. POX analogue nonbinding differs from TKT reporter absence. MAP apparent equilibrium includes a covalent conjugate; positive pyruvate fitted rates do not establish oxygen turnover, an elementary-step rate or exact construct/preparation identity. Beta-barrel S4 arms are qualitative and belong to 16.2; main noninhibition prose conflicts with the plot and does not establish ligand-independent 16.1/8AH9. Exact deposited identity does not establish assay identity."
+    "limitations": "No pooled rates, generic inactivity labels, causal residue assignments, full apparatus claims, microscopic coupling energy or design-success estimates. Forward product composition retains source-author configuration and unresolved retention mapping; strict ee bounds remain structured source context, not central-value comparisons. Diels-Alder activity-reduction summaries do not identify mutant kcat or product outcomes; strict product bounds and mismatched assays remain in context. TKT reporter-unavailable parameters, NMR qualitative presence / scoped nondetection and positive turnover remain different kinds; no selective partner-only intervention, crystal-to-assay identity or productive F6P full-cycle inference. POX analogue nonbinding differs from TKT reporter absence. MAP apparent equilibrium includes a covalent conjugate; positive pyruvate fitted rates do not establish oxygen turnover, an elementary-step rate or exact construct/preparation identity. Beta-barrel S4 arms are qualitative and belong to 16.2; main noninhibition prose conflicts with the plot and does not establish ligand-independent 16.1/8AH9. Exact deposited identity does not establish assay identity. KSI donor-control discrimination is limited to the named5(10)-EST panel. Double-mutant equilenin/phenolate structure and NMR are separate analogue contexts; cavity hydration/desolvation is source interpretation, not observed single-mutant turnover or a universal hydrogen-bond energy."
   },
   "sources": {
     "ra95f": {
@@ -100,6 +100,10 @@
     "ksi1995": {
       "path": "data/atlas/study_context/ksi_1995/primary_kinetics.json",
       "sha256": "c4b4e89ae32bb4389be89cddc61120b3a9f7ef7f01fad4bba485e7aa5896d11a"
+    },
+    "ksi2010": {
+      "path": "data/atlas/study_context/ksi_2010/donor_solvation.json",
+      "sha256": "91987df11328679b5b01e54ef40c2bda9772386377c27b1457b63f8ef7d6c2e4"
     }
   },
   "constructs": {
@@ -1438,6 +1442,200 @@
         "source": "ksi1995",
         "pointer": "/constructs/2/background_id"
       }
+    },
+    "ksi_2010:WT": {
+      "source_construct_id": "WT",
+      "provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/0"
+      },
+      "sequence_provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/0"
+      },
+      "background_id": "ksi_2010:WT",
+      "perturbation": [],
+      "perturbation_scope": "Unperturbed reference",
+      "identity_scope": "Source-named pKSI constructs. Main Methods reports DNA-sequence confirmation of plasmids encoding Tyr16 mutants; it does not explicitly establish WT or D40N-background sequencing or full-gene/specimen sequences. Single-mutant turnover and double-mutant analogue measurements are distinct constructs and physical preparations are not equated.",
+      "perturbation_provider": null,
+      "background_provider": null
+    },
+    "ksi_2010:Y16F": {
+      "source_construct_id": "Y16F",
+      "provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/1"
+      },
+      "sequence_provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/1"
+      },
+      "background_id": "ksi_2010:WT",
+      "perturbation": [
+        "Y16F"
+      ],
+      "perturbation_scope": "Source-named substitutions; double-mutant analogue context is not single-mutant turnover.",
+      "identity_scope": "Source-named pKSI constructs. Main Methods reports DNA-sequence confirmation of plasmids encoding Tyr16 mutants; it does not explicitly establish WT or D40N-background sequencing or full-gene/specimen sequences. Single-mutant turnover and double-mutant analogue measurements are distinct constructs and physical preparations are not equated.",
+      "perturbation_provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/1/substitutions"
+      },
+      "background_provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/1/background_id"
+      }
+    },
+    "ksi_2010:Y16S": {
+      "source_construct_id": "Y16S",
+      "provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/2"
+      },
+      "sequence_provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/2"
+      },
+      "background_id": "ksi_2010:WT",
+      "perturbation": [
+        "Y16S"
+      ],
+      "perturbation_scope": "Source-named substitutions; double-mutant analogue context is not single-mutant turnover.",
+      "identity_scope": "Source-named pKSI constructs. Main Methods reports DNA-sequence confirmation of plasmids encoding Tyr16 mutants; it does not explicitly establish WT or D40N-background sequencing or full-gene/specimen sequences. Single-mutant turnover and double-mutant analogue measurements are distinct constructs and physical preparations are not equated.",
+      "perturbation_provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/2/substitutions"
+      },
+      "background_provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/2/background_id"
+      }
+    },
+    "ksi_2010:Y16T": {
+      "source_construct_id": "Y16T",
+      "provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/3"
+      },
+      "sequence_provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/3"
+      },
+      "background_id": "ksi_2010:WT",
+      "perturbation": [
+        "Y16T"
+      ],
+      "perturbation_scope": "Source-named substitutions; double-mutant analogue context is not single-mutant turnover.",
+      "identity_scope": "Source-named pKSI constructs. Main Methods reports DNA-sequence confirmation of plasmids encoding Tyr16 mutants; it does not explicitly establish WT or D40N-background sequencing or full-gene/specimen sequences. Single-mutant turnover and double-mutant analogue measurements are distinct constructs and physical preparations are not equated.",
+      "perturbation_provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/3/substitutions"
+      },
+      "background_provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/3/background_id"
+      }
+    },
+    "ksi_2010:Y16A": {
+      "source_construct_id": "Y16A",
+      "provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/4"
+      },
+      "sequence_provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/4"
+      },
+      "background_id": "ksi_2010:WT",
+      "perturbation": [
+        "Y16A"
+      ],
+      "perturbation_scope": "Source-named substitutions; double-mutant analogue context is not single-mutant turnover.",
+      "identity_scope": "Source-named pKSI constructs. Main Methods reports DNA-sequence confirmation of plasmids encoding Tyr16 mutants; it does not explicitly establish WT or D40N-background sequencing or full-gene/specimen sequences. Single-mutant turnover and double-mutant analogue measurements are distinct constructs and physical preparations are not equated.",
+      "perturbation_provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/4/substitutions"
+      },
+      "background_provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/4/background_id"
+      }
+    },
+    "ksi_2010:Y16G": {
+      "source_construct_id": "Y16G",
+      "provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/5"
+      },
+      "sequence_provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/5"
+      },
+      "background_id": "ksi_2010:WT",
+      "perturbation": [
+        "Y16G"
+      ],
+      "perturbation_scope": "Source-named substitutions; double-mutant analogue context is not single-mutant turnover.",
+      "identity_scope": "Source-named pKSI constructs. Main Methods reports DNA-sequence confirmation of plasmids encoding Tyr16 mutants; it does not explicitly establish WT or D40N-background sequencing or full-gene/specimen sequences. Single-mutant turnover and double-mutant analogue measurements are distinct constructs and physical preparations are not equated.",
+      "perturbation_provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/5/substitutions"
+      },
+      "background_provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/5/background_id"
+      }
+    },
+    "ksi_2010:Y16S/D40N": {
+      "source_construct_id": "Y16S/D40N",
+      "provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/6"
+      },
+      "sequence_provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/6"
+      },
+      "background_id": "ksi_2010:WT",
+      "perturbation": [
+        "Y16S",
+        "D40N"
+      ],
+      "perturbation_scope": "Source-named substitutions; double-mutant analogue context is not single-mutant turnover.",
+      "identity_scope": "Source-named pKSI constructs. Main Methods reports DNA-sequence confirmation of plasmids encoding Tyr16 mutants; it does not explicitly establish WT or D40N-background sequencing or full-gene/specimen sequences. Single-mutant turnover and double-mutant analogue measurements are distinct constructs and physical preparations are not equated.",
+      "perturbation_provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/6/substitutions"
+      },
+      "background_provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/6/background_id"
+      }
+    },
+    "ksi_2010:Y16F/D40N": {
+      "source_construct_id": "Y16F/D40N",
+      "provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/7"
+      },
+      "sequence_provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/7"
+      },
+      "background_id": "ksi_2010:WT",
+      "perturbation": [
+        "Y16F",
+        "D40N"
+      ],
+      "perturbation_scope": "Source-named substitutions; double-mutant analogue context is not single-mutant turnover.",
+      "identity_scope": "Source-named pKSI constructs. Main Methods reports DNA-sequence confirmation of plasmids encoding Tyr16 mutants; it does not explicitly establish WT or D40N-background sequencing or full-gene/specimen sequences. Single-mutant turnover and double-mutant analogue measurements are distinct constructs and physical preparations are not equated.",
+      "perturbation_provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/7/substitutions"
+      },
+      "background_provider": {
+        "source": "ksi2010",
+        "pointer": "/constructs/7/background_id"
+      }
     }
   },
   "assays": {
@@ -1841,6 +2039,19 @@
       "reaction_direction": "steroid double-bond isomerization",
       "uncertainty_context": "kcat and KM are means plus/minus TWO standard deviations from five separate determinations. Figure4 points are means of three measurements per substrate concentration; specific-activity footnote a has a separate triplicate scope. None establishes five independent protein preparations.",
       "qualification_scope": "The paper explicitly applies these conditions to wild type and both mutants. Qualification permits descriptive within-Table1 comparisons, not complete assay reconstruction or transfer to another study."
+    },
+    "ksi_2010:single-mutant-5-10-EST-turnover": {
+      "provider": {
+        "source": "ksi2010",
+        "pointer": "/assays/0"
+      },
+      "source_assay_id": "single-mutant-5-10-EST-turnover",
+      "qualified": true,
+      "endpoint_kind": "source_reported_rounded_kcat_reduction",
+      "reaction_id": "ksi_2010:5-10-EST-isomerization",
+      "reaction_direction": "steroid double-bond isomerization",
+      "uncertainty_context": "Fig2 says means and SD from at least three independent measurements at different enzyme concentrations. Numeric errors for the rounded prose factors are not provided here; no propagated error, exact replicate count or independent preparation count is inferred.",
+      "qualification_scope": "Qualified for the source-reported within-study kcat reduction pattern. Exact kcat/KM values, numerical errors and full kinetic protocol remain unacquired; factor rows do not authorize new matched parameter arithmetic."
     }
   },
   "substrates": {
@@ -2082,6 +2293,18 @@
       "participant_ids": [
         "A"
       ]
+    },
+    "ksi_2010:5-10-EST": {
+      "name": "5(10)-estrene-3,17-dione",
+      "chemical_role": "turnover substrate",
+      "source": {
+        "source": "ksi2010",
+        "pointer": "/reaction"
+      },
+      "participant_ids": [
+        "5-10-EST"
+      ],
+      "stereochemistry": "Source-named steroid; no project atom map or stereochemical trajectory."
     }
   },
   "panels": [
@@ -4024,6 +4247,65 @@
         }
       ],
       "reaction_id": "ksi_1995:steroid-double-bond-isomerization"
+    },
+    {
+      "id": "ksi2010-reported-effects",
+      "study_id": "ksi_2010",
+      "source": "ksi2010",
+      "rows_pointer": "/reported_perturbation_effects",
+      "fields": {
+        "row_id": {
+          "pointer": "/row_id"
+        },
+        "construct_id": {
+          "pointer": "/construct_id"
+        },
+        "assay_id": {
+          "pointer": "/assay_id"
+        },
+        "substrate_id": {
+          "literal": "ksi_2010:5-10-EST"
+        },
+        "source_locator": {
+          "pointer": "/source"
+        }
+      },
+      "parameters": [
+        {
+          "id": "source_reported_activity_reduction_factor",
+          "pointer": "/activity_reduction_factor",
+          "kind": {
+            "pointer": "/result_kind"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/uncertainty"
+            },
+            "kind": {
+              "pointer": "/uncertainty_kind"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          }
+        }
+      ],
+      "reaction_id": "ksi_2010:5-10-EST-isomerization",
+      "row_checks": [
+        {
+          "selector": {
+            "pointer": "/qualified_parameter_comparison"
+          },
+          "expected": true,
+          "reason": "rounded_author_reported_reduction_without_exact_rate_error_or_full_assay_for_new_arithmetic"
+        }
+      ]
     }
   ],
   "comparisons": [
@@ -7630,6 +7912,64 @@
         }
       ],
       "scope": "Within-Table1 mutant/WT central-value ratio. No propagated uncertainty, Kd/affinity, microscopic mechanism or cross-study transfer."
+    },
+    {
+      "id": "ksi_2010:donor_solvation_context",
+      "study_id": "ksi_2010",
+      "operation": "unassessed",
+      "roles": {},
+      "context_observations": [
+        "ksi2010-reported-effects:Y16F:source_reported_activity_reduction_factor",
+        "ksi2010-reported-effects:Y16S:source_reported_activity_reduction_factor",
+        "ksi2010-reported-effects:Y16T:source_reported_activity_reduction_factor",
+        "ksi2010-reported-effects:Y16A:source_reported_activity_reduction_factor",
+        "ksi2010-reported-effects:Y16G:source_reported_activity_reduction_factor"
+      ],
+      "source_blocks": [
+        "no_new_matched_parameter_arithmetic_requested",
+        "analogue_double_mutants_are_not_single_mutant_turnover_states"
+      ],
+      "evidence": [
+        {
+          "source": "ksi2010",
+          "pointer": "/discriminant"
+        },
+        {
+          "source": "ksi2010",
+          "pointer": "/structural_context"
+        },
+        {
+          "source": "ksi2010",
+          "pointer": "/spectroscopy_context"
+        },
+        {
+          "source": "ksi2010",
+          "pointer": "/assays/0"
+        },
+        {
+          "source": "ksi2010",
+          "pointer": "/reaction"
+        },
+        {
+          "source": "ksi2010",
+          "pointer": "/limitations"
+        },
+        {
+          "source": "ksi2010",
+          "pointer": "/fried2014_relation"
+        },
+        {
+          "source": "ksi",
+          "pointer": "/field_function_relation"
+        },
+        {
+          "source": "ksi",
+          "pointer": "/assays/1/underlying_sources/1"
+        }
+      ],
+      "scope": "Retrieve the supported donor-control discrimination and separately scoped analogue evidence. Operation unassessed denotes no recomputed arithmetic, not an unassessed source conclusion.",
+      "source_discriminant_assessed": true,
+      "arithmetic_requested": false
     }
   ],
   "evidence_context": {
@@ -8256,6 +8596,44 @@
         "source": "ksi",
         "pointer": "/rows/5/kcat"
       }
+    ],
+    "ksi_donor_solvation": [
+      {
+        "source": "ksi2010",
+        "pointer": "/discriminant"
+      },
+      {
+        "source": "ksi2010",
+        "pointer": "/structural_context"
+      },
+      {
+        "source": "ksi2010",
+        "pointer": "/spectroscopy_context"
+      },
+      {
+        "source": "ksi2010",
+        "pointer": "/assays/0"
+      },
+      {
+        "source": "ksi2010",
+        "pointer": "/reaction"
+      },
+      {
+        "source": "ksi2010",
+        "pointer": "/limitations"
+      },
+      {
+        "source": "ksi2010",
+        "pointer": "/fried2014_relation"
+      },
+      {
+        "source": "ksi",
+        "pointer": "/field_function_relation"
+      },
+      {
+        "source": "ksi",
+        "pointer": "/assays/1/underlying_sources/1"
+      }
     ]
   },
   "source_witnesses": [
@@ -8599,6 +8977,51 @@
         }
       ],
       "retention": "Exact primary scan retained locally in Git common directory; not redistributed."
+    },
+    {
+      "sha256": "c6200ace2173aa601dd8d2e25fdb1ead6768fd94562b07c79cfdacac90b84387",
+      "bytes": 180132,
+      "git_common_dir_relative_path": "catalytic-earth-runs/fad1ae04-primary/kraut2010.html",
+      "redistributed": false,
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2836627/",
+      "id": "ksi2010-primary-body",
+      "source_bindings": [
+        {
+          "source": "ksi2010",
+          "pointer": "/sources/0"
+        }
+      ],
+      "retention": "Exact primary article HTML retained locally in Git common directory; not redistributed."
+    },
+    {
+      "sha256": "09187d757ef798d83f05b6f34a89d9875929a9aade93ef118ab3ce09749e76ac",
+      "bytes": 35475,
+      "git_common_dir_relative_path": "catalytic-earth-runs/fad1ae04-primary/kraut2010-figure1.jpg",
+      "redistributed": false,
+      "source_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/834f/2836627/1fa2083d4e7d/pnas.0911168107fig1.jpg",
+      "id": "ksi2010-figure1",
+      "source_bindings": [
+        {
+          "source": "ksi2010",
+          "pointer": "/sources/1"
+        }
+      ],
+      "retention": "Exact article-linked primary figure retained locally; not redistributed."
+    },
+    {
+      "sha256": "697caa72d6147ecba1219ccfc0a3a8f988ace5058a955090728046f15bc38625",
+      "bytes": 59176,
+      "git_common_dir_relative_path": "catalytic-earth-runs/fad1ae04-primary/kraut2010-figure3.jpg",
+      "redistributed": false,
+      "source_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/834f/2836627/eaad1540dd3c/pnas.0911168107fig3.jpg",
+      "id": "ksi2010-figure3",
+      "source_bindings": [
+        {
+          "source": "ksi2010",
+          "pointer": "/sources/2"
+        }
+      ],
+      "retention": "Exact article-linked primary figure retained locally; not redistributed."
     }
   ],
   "parameter_contracts": {
@@ -8903,6 +9326,14 @@
         "pointer": "/reaction"
       },
       "reactant_substrate_id": "ksi_1995:5-androstene-3,17-dione"
+    },
+    "ksi_2010:5-10-EST-isomerization": {
+      "source_reaction_id": "5-10-EST-isomerization",
+      "provider": {
+        "source": "ksi2010",
+        "pointer": "/reaction"
+      },
+      "reactant_substrate_id": "ksi_2010:5-10-EST"
     }
   },
   "state_links": [

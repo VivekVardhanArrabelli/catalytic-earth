@@ -1,0 +1,479 @@
+{
+  "schema_version": "catalytic-earth.source-qualification.v1",
+  "assessment_id": "ksi_2010_donor_solvation_discriminant",
+  "authorized_operation": "source_annotation",
+  "sources": [
+    {
+      "source_id": "ksi2010-primary-body",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2836627/",
+      "doi": "10.1073/pnas.0911168107",
+      "pmid": "20080683",
+      "title": "Dissecting the paradoxical effects of hydrogen bond mutations in the ketosteroid isomerase oxyanion hole",
+      "authors": [
+        "Daniel A Kraut",
+        "Paul A Sigala",
+        "Timothy D Fenn",
+        "Daniel Herschlag"
+      ],
+      "publication_year": 2010,
+      "version": "PMC-hosted primary article HTML, PNAS 107:1960-1965; main body and captions, not acquired SI",
+      "sha256": "c6200ace2173aa601dd8d2e25fdb1ead6768fd94562b07c79cfdacac90b84387",
+      "bytes": 180132,
+      "git_common_dir_relative_path": "catalytic-earth-runs/fad1ae04-primary/kraut2010.html",
+      "redistributed": false
+    },
+    {
+      "source_id": "ksi2010-figure1",
+      "source_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/834f/2836627/1fa2083d4e7d/pnas.0911168107fig1.jpg",
+      "doi": "10.1073/pnas.0911168107",
+      "version": "PMC-hosted primary Figure1 image linked by acquired main article",
+      "sha256": "09187d757ef798d83f05b6f34a89d9875929a9aade93ef118ab3ce09749e76ac",
+      "bytes": 35475,
+      "git_common_dir_relative_path": "catalytic-earth-runs/fad1ae04-primary/kraut2010-figure1.jpg",
+      "redistributed": false
+    },
+    {
+      "source_id": "ksi2010-figure3",
+      "source_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/834f/2836627/eaad1540dd3c/pnas.0911168107fig3.jpg",
+      "doi": "10.1073/pnas.0911168107",
+      "version": "PMC-hosted primary Figure3 image linked by acquired main article",
+      "sha256": "697caa72d6147ecba1219ccfc0a3a8f988ace5058a955090728046f15bc38625",
+      "bytes": 59176,
+      "git_common_dir_relative_path": "catalytic-earth-runs/fad1ae04-primary/kraut2010-figure3.jpg",
+      "redistributed": false
+    }
+  ],
+  "scientific_scope": "Donor-control discrimination with separately scoped analogue structural/spectral evidence and source-proposed solvation model.",
+  "counted_objects": {
+    "projected_source_reported_reduction_factors": 5,
+    "new_project_experiments": 0,
+    "protected_protein_admissions": 0,
+    "new_canonical_reactions": 0
+  },
+  "constructs": [
+    {
+      "construct_id": "WT",
+      "background_id": "WT",
+      "substitutions": [],
+      "organism": "Pseudomonas putida",
+      "numbering": "Kraut2010 pKSI numbering",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source_named_construct; full specimen sequence unverified",
+      "identity_scope": "Source-named pKSI constructs. Main Methods reports DNA-sequence confirmation of plasmids encoding Tyr16 mutants; it does not explicitly establish WT or D40N-background sequencing or full-gene/specimen sequences. Single-mutant turnover and double-mutant analogue measurements are distinct constructs and physical preparations are not equated.",
+      "source_locator": "Main Methods; Results Rate Effects; X-Ray Structure; 19F NMR; Figs2-4"
+    },
+    {
+      "construct_id": "Y16F",
+      "background_id": "WT",
+      "substitutions": [
+        "Y16F"
+      ],
+      "organism": "Pseudomonas putida",
+      "numbering": "Kraut2010 pKSI numbering",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source_named_construct; full specimen sequence unverified",
+      "identity_scope": "Source-named pKSI constructs. Main Methods reports DNA-sequence confirmation of plasmids encoding Tyr16 mutants; it does not explicitly establish WT or D40N-background sequencing or full-gene/specimen sequences. Single-mutant turnover and double-mutant analogue measurements are distinct constructs and physical preparations are not equated.",
+      "source_locator": "Main Methods; Results Rate Effects; X-Ray Structure; 19F NMR; Figs2-4"
+    },
+    {
+      "construct_id": "Y16S",
+      "background_id": "WT",
+      "substitutions": [
+        "Y16S"
+      ],
+      "organism": "Pseudomonas putida",
+      "numbering": "Kraut2010 pKSI numbering",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source_named_construct; full specimen sequence unverified",
+      "identity_scope": "Source-named pKSI constructs. Main Methods reports DNA-sequence confirmation of plasmids encoding Tyr16 mutants; it does not explicitly establish WT or D40N-background sequencing or full-gene/specimen sequences. Single-mutant turnover and double-mutant analogue measurements are distinct constructs and physical preparations are not equated.",
+      "source_locator": "Main Methods; Results Rate Effects; X-Ray Structure; 19F NMR; Figs2-4"
+    },
+    {
+      "construct_id": "Y16T",
+      "background_id": "WT",
+      "substitutions": [
+        "Y16T"
+      ],
+      "organism": "Pseudomonas putida",
+      "numbering": "Kraut2010 pKSI numbering",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source_named_construct; full specimen sequence unverified",
+      "identity_scope": "Source-named pKSI constructs. Main Methods reports DNA-sequence confirmation of plasmids encoding Tyr16 mutants; it does not explicitly establish WT or D40N-background sequencing or full-gene/specimen sequences. Single-mutant turnover and double-mutant analogue measurements are distinct constructs and physical preparations are not equated.",
+      "source_locator": "Main Methods; Results Rate Effects; X-Ray Structure; 19F NMR; Figs2-4"
+    },
+    {
+      "construct_id": "Y16A",
+      "background_id": "WT",
+      "substitutions": [
+        "Y16A"
+      ],
+      "organism": "Pseudomonas putida",
+      "numbering": "Kraut2010 pKSI numbering",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source_named_construct; full specimen sequence unverified",
+      "identity_scope": "Source-named pKSI constructs. Main Methods reports DNA-sequence confirmation of plasmids encoding Tyr16 mutants; it does not explicitly establish WT or D40N-background sequencing or full-gene/specimen sequences. Single-mutant turnover and double-mutant analogue measurements are distinct constructs and physical preparations are not equated.",
+      "source_locator": "Main Methods; Results Rate Effects; X-Ray Structure; 19F NMR; Figs2-4"
+    },
+    {
+      "construct_id": "Y16G",
+      "background_id": "WT",
+      "substitutions": [
+        "Y16G"
+      ],
+      "organism": "Pseudomonas putida",
+      "numbering": "Kraut2010 pKSI numbering",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source_named_construct; full specimen sequence unverified",
+      "identity_scope": "Source-named pKSI constructs. Main Methods reports DNA-sequence confirmation of plasmids encoding Tyr16 mutants; it does not explicitly establish WT or D40N-background sequencing or full-gene/specimen sequences. Single-mutant turnover and double-mutant analogue measurements are distinct constructs and physical preparations are not equated.",
+      "source_locator": "Main Methods; Results Rate Effects; X-Ray Structure; 19F NMR; Figs2-4"
+    },
+    {
+      "construct_id": "Y16S/D40N",
+      "background_id": "WT",
+      "substitutions": [
+        "Y16S",
+        "D40N"
+      ],
+      "organism": "Pseudomonas putida",
+      "numbering": "Kraut2010 pKSI numbering",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source_named_construct; full specimen sequence unverified",
+      "identity_scope": "Source-named pKSI constructs. Main Methods reports DNA-sequence confirmation of plasmids encoding Tyr16 mutants; it does not explicitly establish WT or D40N-background sequencing or full-gene/specimen sequences. Single-mutant turnover and double-mutant analogue measurements are distinct constructs and physical preparations are not equated.",
+      "source_locator": "Main Methods; Results Rate Effects; X-Ray Structure; 19F NMR; Figs2-4"
+    },
+    {
+      "construct_id": "Y16F/D40N",
+      "background_id": "WT",
+      "substitutions": [
+        "Y16F",
+        "D40N"
+      ],
+      "organism": "Pseudomonas putida",
+      "numbering": "Kraut2010 pKSI numbering",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source_named_construct; full specimen sequence unverified",
+      "identity_scope": "Source-named pKSI constructs. Main Methods reports DNA-sequence confirmation of plasmids encoding Tyr16 mutants; it does not explicitly establish WT or D40N-background sequencing or full-gene/specimen sequences. Single-mutant turnover and double-mutant analogue measurements are distinct constructs and physical preparations are not equated.",
+      "source_locator": "Main Methods; Results Rate Effects; X-Ray Structure; 19F NMR; Figs2-4"
+    }
+  ],
+  "assays": [
+    {
+      "assay_id": "single-mutant-5-10-EST-turnover",
+      "endpoint": "Source-reported rounded WT/mutant kcat reduction for 5(10)-EST isomerization",
+      "method": "Main Methods delegates kinetic protocol to reference16 and SI; neither supplies acquired full conditions here.",
+      "conditions": {
+        "temperature_celsius": null,
+        "pH": null,
+        "buffer": null,
+        "substrate_concentrations": null
+      },
+      "reaction_id": "5-10-EST-isomerization",
+      "qualification_scope": "Qualified for the source-reported within-study kcat reduction pattern. Exact kcat/KM values, numerical errors and full kinetic protocol remain unacquired; factor rows do not authorize new matched parameter arithmetic.",
+      "uncertainty": "Fig2 says means and SD from at least three independent measurements at different enzyme concentrations. Numeric errors for the rounded prose factors are not provided here; no propagated error, exact replicate count or independent preparation count is inferred.",
+      "source_locator": "Results Rate Effects, paragraphs1-4; Fig2 caption; main Methods"
+    }
+  ],
+  "reaction": {
+    "reaction_id": "5-10-EST-isomerization",
+    "direction": "steroid double-bond isomerization",
+    "participants": [
+      {
+        "participant_id": "5-10-EST",
+        "name": "5(10)-estrene-3,17-dione",
+        "side": "reactant",
+        "role": "turnover substrate"
+      },
+      {
+        "participant_id": "4-EST",
+        "name": "4-estrene-3,17-dione",
+        "side": "product",
+        "role": "isomerization product depicted in Figure1A",
+        "name_origin": "project_name_from_source_depicted_Delta4_product_graph; figure labels it only Product"
+      }
+    ],
+    "source_locator": "Figure1A and Results Rate Effects",
+    "atom_mapping": null,
+    "scope": "Source-described substrate and visually inspected Figure1A product graph. Product name is project interpretation of that drawing, not source-printed nomenclature. No canonical atom map or newly validated microscopic sequence.",
+    "chemical_step_scope": "Authors choose 5(10)-EST because chemical steps are cleanly rate-limiting, citing reference15. The cited underlying study is not acquired in this run. They distinguish earlier 5-AND experiments, whose chemistry is not cleanly rate-limiting."
+  },
+  "reported_perturbation_effects": [
+    {
+      "row_id": "Y16F",
+      "construct_id": "Y16F",
+      "assay_id": "single-mutant-5-10-EST-turnover",
+      "source": "Results Rate Effects, paragraphs2-4 and Fig2; rounded main-text summary, not SI TableS2 transcription",
+      "residue16_sidechain_hydroxyl_present": false,
+      "qualified_parameter_comparison": false,
+      "activity_reduction_factor": {
+        "value_origin": "author_reported_activity_reduction_summary",
+        "result_kind": "numeric",
+        "value": 20000,
+        "unit": "fold_reduction",
+        "approximate": true,
+        "numerator_scope": "WT kcat",
+        "denominator_scope": "Y16F kcat",
+        "source_parameter": "kcat",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported_for_rounded_main_text_factor",
+        "scope": "Author-reported reduction, not an absolute rate, project-recomputed ratio, exact equality, significance test or isolated interaction energy.",
+        "value_qualifier": "approximately",
+        "source_token": "20000-fold"
+      }
+    },
+    {
+      "row_id": "Y16S",
+      "construct_id": "Y16S",
+      "assay_id": "single-mutant-5-10-EST-turnover",
+      "source": "Results Rate Effects, paragraphs2-4 and Fig2; rounded main-text summary, not SI TableS2 transcription",
+      "residue16_sidechain_hydroxyl_present": true,
+      "qualified_parameter_comparison": false,
+      "activity_reduction_factor": {
+        "value_origin": "author_reported_activity_reduction_summary",
+        "result_kind": "numeric",
+        "value": 300,
+        "unit": "fold_reduction",
+        "approximate": true,
+        "numerator_scope": "WT kcat",
+        "denominator_scope": "Y16S kcat",
+        "source_parameter": "kcat",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported_for_rounded_main_text_factor",
+        "scope": "Author-reported reduction, not an absolute rate, project-recomputed ratio, exact equality, significance test or isolated interaction energy.",
+        "value_qualifier": "approximately",
+        "source_token": "300-fold"
+      }
+    },
+    {
+      "row_id": "Y16T",
+      "construct_id": "Y16T",
+      "assay_id": "single-mutant-5-10-EST-turnover",
+      "source": "Results Rate Effects, paragraphs2-4 and Fig2; rounded main-text summary, not SI TableS2 transcription",
+      "residue16_sidechain_hydroxyl_present": true,
+      "qualified_parameter_comparison": false,
+      "activity_reduction_factor": {
+        "value_origin": "author_reported_activity_reduction_summary",
+        "result_kind": "numeric",
+        "value": 200,
+        "unit": "fold_reduction",
+        "approximate": true,
+        "numerator_scope": "WT kcat",
+        "denominator_scope": "Y16T kcat",
+        "source_parameter": "kcat",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported_for_rounded_main_text_factor",
+        "scope": "Author-reported reduction, not an absolute rate, project-recomputed ratio, exact equality, significance test or isolated interaction energy.",
+        "value_qualifier": "approximately",
+        "source_token": "200-fold"
+      }
+    },
+    {
+      "row_id": "Y16A",
+      "construct_id": "Y16A",
+      "assay_id": "single-mutant-5-10-EST-turnover",
+      "source": "Results Rate Effects, paragraphs2-4 and Fig2; rounded main-text summary, not SI TableS2 transcription",
+      "residue16_sidechain_hydroxyl_present": false,
+      "qualified_parameter_comparison": false,
+      "activity_reduction_factor": {
+        "value_origin": "author_reported_activity_reduction_summary",
+        "result_kind": "numeric",
+        "value": 200,
+        "unit": "fold_reduction",
+        "approximate": true,
+        "numerator_scope": "WT kcat",
+        "denominator_scope": "Y16A kcat",
+        "source_parameter": "kcat",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported_for_rounded_main_text_factor",
+        "scope": "Author-reported reduction, not an absolute rate, project-recomputed ratio, exact equality, significance test or isolated interaction energy.",
+        "value_qualifier": "approximately",
+        "source_token": "200-fold"
+      }
+    },
+    {
+      "row_id": "Y16G",
+      "construct_id": "Y16G",
+      "assay_id": "single-mutant-5-10-EST-turnover",
+      "source": "Results Rate Effects, paragraphs2-4 and Fig2; rounded main-text summary, not SI TableS2 transcription",
+      "residue16_sidechain_hydroxyl_present": false,
+      "qualified_parameter_comparison": false,
+      "activity_reduction_factor": {
+        "value_origin": "author_reported_activity_reduction_summary",
+        "result_kind": "numeric",
+        "value": 200,
+        "unit": "fold_reduction",
+        "approximate": true,
+        "numerator_scope": "WT kcat",
+        "denominator_scope": "Y16G kcat",
+        "source_parameter": "kcat",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported_for_rounded_main_text_factor",
+        "scope": "Author-reported reduction, not an absolute rate, project-recomputed ratio, exact equality, significance test or isolated interaction energy.",
+        "value_qualifier": "approximately",
+        "source_token": "200-fold"
+      }
+    }
+  ],
+  "discriminant": {
+    "relation_id": "residue16-donor-versus-solvation",
+    "question": "Does a residue16 hydroxyl explain the moderate residual turnover of Tyr16Ser?",
+    "status": "supported_source_scoped_control_discrimination",
+    "turnover_observation_ids": [
+      "ksi2010-reported-effects:Y16F:source_reported_activity_reduction_factor",
+      "ksi2010-reported-effects:Y16S:source_reported_activity_reduction_factor",
+      "ksi2010-reported-effects:Y16T:source_reported_activity_reduction_factor",
+      "ksi2010-reported-effects:Y16A:source_reported_activity_reduction_factor",
+      "ksi2010-reported-effects:Y16G:source_reported_activity_reduction_factor"
+    ],
+    "donor_control": {
+      "hydroxyl_present_mutants": [
+        "Y16S",
+        "Y16T"
+      ],
+      "hydroxyl_absent_mutants": [
+        "Y16A",
+        "Y16G",
+        "Y16F"
+      ],
+      "moderate_loss_mutants": [
+        "Y16S",
+        "Y16T",
+        "Y16A",
+        "Y16G"
+      ],
+      "much_larger_loss_mutant": "Y16F",
+      "residue16_hydroxyl_required_for_moderate_residual_turnover": false,
+      "scope": "Named pKSI single-mutant panel on5(10)-EST; side-chain hydroxyl presence alone is insufficient to explain the pattern. Not general proof that hydroxyl groups never help catalysis."
+    },
+    "context_relations": [
+      {
+        "context_id": "Y16S-D40N-equilenin-crystal",
+        "relation": "analogue_structure_supports_absent_Ser16_contact",
+        "same_construct_as_single_mutant_turnover": false,
+        "same_ligand_as_turnover": false,
+        "same_physical_sample_established": false,
+        "direct_turnover_water_observation": false
+      },
+      {
+        "context_id": "double-mutant-phenolate-19F",
+        "relation": "analogue_spectra_support_source_local_solvation_model",
+        "same_construct_as_single_mutant_turnover": false,
+        "same_ligand_as_turnover": false,
+        "same_physical_sample_established": false,
+        "direct_turnover_water_observation": false
+      }
+    ],
+    "source_model": {
+      "status": "author_proposed_explanation_supported_by_analogue_evidence",
+      "description": "Small substitutions may permit cavity water to replace donor solvation, whereas Phe may introduce a hydrophobic desolvating environment beyond loss of the Tyr16 hydrogen bond.",
+      "water_cause_of_turnover_measured": false,
+      "T_A_G_cavity_hydration_observed": false
+    },
+    "prevented_transfer": "A single donor-deletion factor is contradicted across these named sidechains in the5(10)-EST panel; neither it nor an isolated-energy interpretation is qualified for transfer to other substrates, analogue states or catalytic backgrounds.",
+    "source_locator": "Results Rate Effects and Figs2-4; Conclusions/Fig5"
+  },
+  "structural_context": {
+    "context_id": "Y16S-D40N-equilenin-crystal",
+    "construct_id": "Y16S/D40N",
+    "ligand": "equilenin",
+    "chemical_role": "bound reaction-intermediate analogue",
+    "pdb_id": "3IPT",
+    "evidence_origin": "source_reported_xray_model_and_density_interpretation",
+    "resolution_angstrom": 1.6,
+    "diffraction_temperature_kelvin": 100,
+    "crystallization": {
+      "temperature_celsius": 20,
+      "protein_mg_ml": 30,
+      "equilenin_molar_equivalents": 1,
+      "reservoir": "0.9 M ammonium sulfate, 40 mM potassium phosphate, pH7; 2 uL protein plus 2 uL reservoir"
+    },
+    "Ser16_O_to_equilenin_O_angstrom": {
+      "value": 6.4,
+      "standard_deviation": 0.1,
+      "averaging_scope": "Figure3 distances average four independently refined asymmetric-unit monomers; not four experiments"
+    },
+    "direct_Ser16_equilenin_hydrogen_bond_in_this_model": false,
+    "cavity_volume_angstrom_cubed_approximate": 100,
+    "water_evidence": {
+      "observation": "Diffuse triangular electron density in the cavity.",
+      "source_assignment": "Best described as two to three partially disordered waters with split positions.",
+      "discrete_water_sites_refined": false,
+      "exact_water_occupancies": null,
+      "greatest_density_to_equilenin_O_angstrom": 3.0,
+      "scope": "Density and source assignment, not resolved water atom coordinates, solution occupancy or observation of catalytic water during turnover."
+    },
+    "source_locator": "X-Ray Structure, Fig3A-C and text; Conclusions caveat on unrefined water; Methods; D40N footnote",
+    "D40N_premise": "Authors use D40N to mimic protonated Asp40 in the intermediate complex; this is their analogue-state premise, not physical identity with active single-mutant turnover.",
+    "project_coordinate_recalculation": false,
+    "single_mutant_turnover_geometry_established": false
+  },
+  "spectroscopy_context": {
+    "context_id": "double-mutant-phenolate-19F",
+    "ligand": "2-fluoro-4-nitrophenolate",
+    "chemical_role": "reaction-intermediate analogue and local-environment probe",
+    "ionization_status": "Authors report ionized phenolate based on UV-vis FigS1; that supplementary figure is not acquired.",
+    "method": "19F NMR at20C on500MHz Varian instrument; full buffer/concentration details delegated to unavailable SI and prior methods.",
+    "observations": [
+      {
+        "construct_id": "Y16S/D40N",
+        "chemical_shift_ppm": -136.4
+      },
+      {
+        "construct_id": "Y16F/D40N",
+        "chemical_shift_ppm": -134.7
+      }
+    ],
+    "uncertainty": null,
+    "replicate_count": null,
+    "source_difference_description": "Phe peak nearly2ppm downfield of Ser; exact signed displayed peaks are retained without a new arithmetic comparison.",
+    "solvent_reference": {
+      "water": "aqueous pH12",
+      "THF": "THF with excess triethylamine to form phenolate",
+      "source_reported_water_to_THF_downfield_shift_ppm": 2.2,
+      "source_comparison": "Phe peak nearly matches THF; Ser peak within0.5ppm of aqueous probe."
+    },
+    "pose_status": "Mutant probe orientation is expected from structural superpositions and avoidance of Asp103, not directly determined for these two probe complexes.",
+    "source_locator": "19F NMR section, Figure4A-B and Methods",
+    "interpretation_limit": "Signed peak positions are measured source context; no water fraction, polarity scale, hydrogen-bond energy, significance or causal rate effect is inferred."
+  },
+  "limitations": [
+    "Source-named pKSI constructs. Main Methods reports DNA-sequence confirmation of plasmids encoding Tyr16 mutants; it does not explicitly establish WT or D40N-background sequencing or full-gene/specimen sequences. Single-mutant turnover and double-mutant analogue measurements are distinct constructs and physical preparations are not equated.",
+    "5(10)-EST turnover is distinct from 5-AND kinetics in the1995/2014 packets, equilenin crystallography, fluoronitrophenolate NMR and19-nortestosterone-sulfate IR. No conditions, numerical effects or specimen identity transfer across these contexts.",
+    "The direct donor-control inference concerns moderate residual turnover in this named panel. Similar rounded kcat effects do not establish identical microscopic mechanisms or statistical equivalence.",
+    "Aqueous-like Ser cavity and hydrophobic/desolvating Phe are the authors' model. Water density is observed only in the analogue-bound Y16S/D40N crystal; hydration of Thr/Ala/Gly is expected by the source, not observed here.",
+    "Phe productive equilenin geometry is a superposition of unliganded Y16F1EA2 and WT-bound1OH0. The cited Y16F/D40N1OHO structure has backward analogue binding. Absence of modeled water is not proof of absent solution water; no direct single-mutant reacting-state coordinates are supplied.",
+    "The supporting17.4ppm1H resonance is measured in C.testosteroni Y16F/D40N with equilenin, not the P.putida single-mutant turnover construct. It is not projected as direct evidence of that construct's Asp103 contact.",
+    "The source calls the200-fold hydrogen-bond contribution estimate crude and conditional on cavity solvation resembling bulk water and no propagated rearrangement. This packet does not adopt an isolated hydrogen-bond energy or universal design threshold.",
+    "Main-body factors and numerical uncertainty scope are incomplete without SI. No absolute rates, full assay reconstruction, new experiment, independent human review, complete mechanism, protected registry admission or validated enzyme design follows."
+  ],
+  "fried2014_relation": {
+    "citation_identity": "Kraut2010 DOI10.1073/pnas.0911168107 is Fried2014 main reference18.",
+    "source_locator": "Retained Fried2014 primary article reference18 and SI TableS2 collective references16/18/19; Kraut2010 Results Rate Effects",
+    "per_row_citation_explicit_in_compilation": false,
+    "kinetic_substrates_equal": false,
+    "Kraut2010_turnover_substrate": "5(10)-estrene-3,17-dione",
+    "Fried2014_compiled_turnover_substrate": "5-androstene-3,17-dione",
+    "exact_compiled_row_lineage_established": false,
+    "physical_sample_identity_established": false,
+    "condition_or_factor_transfer_allowed": false,
+    "scope": "Citation identity lets the consumer recover the Tyr16 control explanation, without treating these substrate-specific factors as exact2014 rate-row provenance.",
+    "reference_number": 18,
+    "doi": "10.1073/pnas.0911168107",
+    "compiled_context_provider": {
+      "source": "ksi",
+      "pointer": "/field_function_relation"
+    },
+    "kinetic_assay_equivalence_established": false,
+    "compiled_reference_provider": {
+      "source": "ksi",
+      "pointer": "/assays/1/underlying_sources/1"
+    }
+  }
+}

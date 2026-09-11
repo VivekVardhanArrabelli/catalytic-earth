@@ -528,5 +528,18 @@
       "data/atlas/study_context/ksi_1995/source_review.json",
       "docs/ATLAS_KSI_FIELD_FUNCTION.md"
     ]
+  },
+  {
+    "claim_id": "CE-040",
+    "claim_kind": "source_annotation",
+    "status": "Supported",
+    "claim": "Kraut2010 reports rounded pKSI kcat losses on5(10)-EST of approximately20000-fold forY16F,300-fold forY16S and200-fold forY16T/Y16A/Y16G. Hydroxyl-bearingSer/Thr and hydroxyl-absentAla/Gly share the moderate-loss pattern, so a residue16 hydroxyl is not required for that residual turnover. This does not establish statistical equivalence or common microscopic mechanisms. SeparateY16S/D40N-equilenin structure and double-mutant phenolateNMR support the authors' solvation model without observing water during single-mutant turnover.",
+    "current_wording": "Five source-reported rounded reduction factors and a supported donor-control discriminant; analogue states and solvation model retain their distinct scope. No universal hydrogen-bond energy, exact rates/fullSIconditions, single-mutant reacting geometry, causal water occupancy, new experiment or design performance.",
+    "rationale": "Source donor-retaining and donor-absent controls discriminate beyond one mutation factor. Exact primary-body and figure witnesses prevent transferring analogue-state evidence into the kinetic construct or inferring one isolated interaction energy.",
+    "evidence": [
+      "data/atlas/study_context/ksi_2010/donor_solvation.json",
+      "data/atlas/study_context/ksi_2010/source_review.json",
+      "docs/ATLAS_KSI_FIELD_FUNCTION.md"
+    ]
   }
 ]
