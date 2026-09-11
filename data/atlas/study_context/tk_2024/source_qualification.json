@@ -1,0 +1,371 @@
+{
+  "schema_version": "catalytic-earth.source-qualification.v1",
+  "assessment_id": "tk2024-r520q-endpoint-context",
+  "operation": "source_annotation",
+  "question": "Does the source-discussed R520Q addition to TK-1 have a uniform activity effect across fixed-concentration rate, fitted kinetic parameters and24h product conversion?",
+  "conclusion": "Table3 reports a lower central specific activity for TK-2 than TK-1 at50mM3-FBA/50mMpyruvate, while both report61%24h conversion. Fitted kcat and KM carry large SEM and both central KM estimates exceed the tested3-FBA upper bound; do not collapse these endpoints into one activity effect.",
+  "sources": [
+    {
+      "source_id": "Mukhopadhyay2024:article",
+      "doi": "10.1038/s41598-024-51831-z",
+      "article_title": "Two-substrate enzyme engineering using small libraries that combine the substrate preferences from two different variant lineages",
+      "authors": "Arka Mukhopadhyay, Kersti Karu, Paul A. Dalby",
+      "journal": "Scientific Reports 14, 1287 (2024)",
+      "url": "https://www.nature.com/articles/s41598-024-51831-z",
+      "sha256": "0b0a4fdb19d1d271780fc5e2adaa3a44674c7e399abd4dc369b194add5750fc4",
+      "response_body_bytes": 411827,
+      "local_cache_path": "git-common-dir:catalytic-earth-source-cache/0b0a4fdb19d1d271780fc5e2adaa3a44674c7e399abd4dc369b194add5750fc4.html",
+      "inspected_scope": "Introduction/Fig1 lineage; preparation and purification methods; activity and kinetics methods; results; Scheme1 product caption. Docking prose inspected only to separate computational model from measurements.",
+      "identity_binding": "Title, DOI and authors on publisher article; exact article links bind Tables2/3.",
+      "rights": "Article states CC BY4.0. Primary HTML bodies retained locally only; project-authored factual annotations redistributed."
+    },
+    {
+      "source_id": "Mukhopadhyay2024:Table2",
+      "doi": "10.1038/s41598-024-51831-z",
+      "article_title": "Two-substrate enzyme engineering using small libraries that combine the substrate preferences from two different variant lineages",
+      "authors": "Arka Mukhopadhyay, Kersti Karu, Paul A. Dalby",
+      "journal": "Scientific Reports 14, 1287 (2024)",
+      "url": "https://www.nature.com/articles/s41598-024-51831-z/tables/2",
+      "sha256": "d475805f70f5443ba24354e6e8840cbd837125b6376beac6adb82568dd9f1715",
+      "response_body_bytes": 164668,
+      "local_cache_path": "git-common-dir:catalytic-earth-source-cache/d475805f70f5443ba24354e6e8840cbd837125b6376beac6adb82568dd9f1715.html",
+      "inspected_scope": "TK-1/TK-2 mutation and3-FBA conversion cells, common footnote, and6M assay mismatch; other rows not curated.",
+      "identity_binding": "Title, DOI and authors on publisher article; exact article links bind Tables2/3.",
+      "rights": "Article states CC BY4.0. Primary HTML bodies retained locally only; project-authored factual annotations redistributed."
+    },
+    {
+      "source_id": "Mukhopadhyay2024:Table3",
+      "doi": "10.1038/s41598-024-51831-z",
+      "article_title": "Two-substrate enzyme engineering using small libraries that combine the substrate preferences from two different variant lineages",
+      "authors": "Arka Mukhopadhyay, Kersti Karu, Paul A. Dalby",
+      "journal": "Scientific Reports 14, 1287 (2024)",
+      "url": "https://www.nature.com/articles/s41598-024-51831-z/tables/3",
+      "sha256": "b690b3dcaf6e39bf35e12d41fd1c93dafcf7d4b64865b8574193b870031a1c15",
+      "response_body_bytes": 164766,
+      "local_cache_path": "git-common-dir:catalytic-earth-source-cache/b690b3dcaf6e39bf35e12d41fd1c93dafcf7d4b64865b8574193b870031a1c15.html",
+      "inspected_scope": "TK-1/TK-2 specific activity,kcat,KM,24h conversion and SEM footnote;6M varied-substrate/assay footnote.",
+      "identity_binding": "Title, DOI and authors on publisher article; exact article links bind Tables2/3.",
+      "rights": "Article states CC BY4.0. Primary HTML bodies retained locally only; project-authored factual annotations redistributed."
+    }
+  ],
+  "acquisition_binding": {
+    "path": "data/atlas/study_context/tk_2024/acquisition_receipts.json",
+    "sha256": "30c07b9a7435c95000200835bcd3e468ca2afef8605cd748934fffdcd28e5244",
+    "cumulative_batch_id": "two-substrate-lineages-2024-51831",
+    "cumulative_requests": 12,
+    "cumulative_response_body_bytes": 741711
+  },
+  "discovery_adjudication": {
+    "inherited_lead": "Raj2012 C.tetanomorphum MAL Q73A/L384A combination",
+    "result": "different enzyme system: E.coli transketolase",
+    "transfer_permitted": false,
+    "scope": "This paper neither resolves nor contradicts the MAL double-mutant statement. Existing human TKT2019/F6P/X5P/R5P contexts are also different species, reactions and constructs."
+  },
+  "counted_objects": {
+    "selected_named_constructs": 2,
+    "projected_parameter_records": 4,
+    "new_project_experiments": 0,
+    "protein_admissions": 0,
+    "new_compiled_mechanisms": 0,
+    "independent_reviews": 0,
+    "evidence_tier_promotions": 0
+  },
+  "selection": "TK-1/TK-2 source-discussed R520Q contrast. Two specific-activity values and two repeated24h conversion values; apparent kinetics retained as source context only. Other library variants, substrates,thermal transitions and docking pose values are not projected.",
+  "constructs": [
+    {
+      "construct_id": "TK-1",
+      "source_name": "TK-1",
+      "organism": "Escherichia coli",
+      "protein": "transketolase",
+      "source_lineage": "6M+S385Y",
+      "six_mutation_parent": [
+        "H100L",
+        "H192P",
+        "A282P",
+        "I365L",
+        "D469T",
+        "G506A"
+      ],
+      "substitutions_relative_to_source_WT": [
+        "H100L",
+        "H192P",
+        "A282P",
+        "I365L",
+        "D469T",
+        "G506A",
+        "S385Y"
+      ],
+      "comparison_background": "TK-1",
+      "perturbation": [],
+      "comparison_reference_scope": "TK-1 is the source-discussed engineered reference for the TK-2 contrast, not wild type. Full substitutions remain separate from the incremental R520Q perturbation.",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source-named mutation set; no exact assayed gene/protein sequence or physical specimen identity established",
+      "expression_context": "Methods report sequential mutagenesis from6M and a C-terminal His6 tag; materials call the gene plasmid pQR791 while the nnAA method names pQR729. No exact plasmid identity selected. The selected Tyr variants do not require nnAA incorporation.",
+      "source": "Mukhopadhyay2024:Table2; Table3; article Methods and R520Q/TK-1 comparison paragraph"
+    },
+    {
+      "construct_id": "TK-2",
+      "source_name": "TK-2",
+      "organism": "Escherichia coli",
+      "protein": "transketolase",
+      "source_lineage": "6M+R520Q/S385Y",
+      "six_mutation_parent": [
+        "H100L",
+        "H192P",
+        "A282P",
+        "I365L",
+        "D469T",
+        "G506A"
+      ],
+      "substitutions_relative_to_source_WT": [
+        "H100L",
+        "H192P",
+        "A282P",
+        "I365L",
+        "D469T",
+        "G506A",
+        "S385Y",
+        "R520Q"
+      ],
+      "comparison_background": "TK-1",
+      "perturbation": [
+        "R520Q"
+      ],
+      "comparison_reference_scope": "TK-1 is the source-discussed engineered reference for the TK-2 contrast, not wild type. Full substitutions remain separate from the incremental R520Q perturbation.",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source-named mutation set; no exact assayed gene/protein sequence or physical specimen identity established",
+      "expression_context": "Methods report sequential mutagenesis from6M and a C-terminal His6 tag; materials call the gene plasmid pQR791 while the nnAA method names pQR729. No exact plasmid identity selected. The selected Tyr variants do not require nnAA incorporation.",
+      "source": "Mukhopadhyay2024:Table2; Table3; article Methods and R520Q/TK-1 comparison paragraph"
+    }
+  ],
+  "reaction": {
+    "reaction_id": "3FBA-pyruvate-to-PAC-analogue",
+    "direction": "C-C bond formation from aromatic aldehyde and pyruvate",
+    "source": "Mukhopadhyay2024:article:Scheme1 caption and product-analysis result",
+    "scope": "Source-named two-reactant/product relation only; not a balanced canonical reaction, elementary mechanism, full atom map or exact reaction instance.",
+    "participants": [
+      {
+        "participant_id": "3FBA",
+        "side": "reactant",
+        "name": "3-formylbenzoic acid",
+        "role": "aromatic aldehyde acceptor",
+        "isomeric_smiles": null
+      },
+      {
+        "participant_id": "pyruvate",
+        "side": "reactant",
+        "name": "pyruvate",
+        "role": "donor",
+        "material_form": "sodium pyruvate in assay solution",
+        "isomeric_smiles": null
+      },
+      {
+        "participant_id": "PAC-analogue",
+        "side": "product",
+        "name": "3-(1-hydroxy-2-oxopropyl)benzoic acid",
+        "role": "C-C addition product named in Scheme1",
+        "absolute_configuration": null,
+        "enantiomeric_excess": null,
+        "isomeric_smiles": null
+      }
+    ],
+    "product_evidence": {
+      "basis": "Authors report isolation from the3-FBA conversions with each of the four selected TK-1/TK-2/TK-3/TK-5C variants and confirmation by LC-MS and NMR, referring to Supplementary FigsS1-S3.",
+      "direct_inspection": "Article assertion inspected; underlying supplementary spectra and variant-specific assignments not inspected.",
+      "scope": "No independent spectral interpretation, exact configuration, isolated yield or enantioselectivity inferred."
+    }
+  },
+  "assays": [
+    {
+      "assay_id": "specific-activity-50mM",
+      "reaction_id": "3FBA-pyruvate-to-PAC-analogue",
+      "endpoint": "Table3 specific activity at50mM3-FBA",
+      "conditions": {
+        "enzyme_mg_per_mL": 0.1,
+        "Tris_HCl_mM": 50,
+        "pH": 7.0,
+        "ThDP_mM": 2.4,
+        "MgCl2_mM": 9,
+        "sodium_pyruvate_mM": 50,
+        "three_FBA_mM": 50,
+        "temperature_degC": 21
+      },
+      "source": "Mukhopadhyay2024:Table3 specific-activity column/SEM footnote; article Enzyme kinetics methods",
+      "qualification_scope": "Source-reported mass-normalized rate at stated substrate concentration. Assigned to the Table3 kinetics methods; raw slope/fit calculation not available. Do not equate it with saturating turnover, a microscopic rate, equilibrium affinity,24h conversion or isolated yield. The paper does not establish whether this column is independently measured or derived from the same fitted kinetic curve; it is not independent evidence for the fit.",
+      "replicates": 3,
+      "replicate_scope": "Methods report triplicate kinetic reactions; no new fit or statistical test performed.",
+      "uncertainty_kind": "SEM"
+    },
+    {
+      "assay_id": "conversion-24h",
+      "reaction_id": "3FBA-pyruvate-to-PAC-analogue",
+      "endpoint": "RP-HPLC product peak-area fraction at24h",
+      "conditions": {
+        "enzyme_mg_per_mL": 0.1,
+        "Tris_HCl_mM": 50,
+        "pH": 7.0,
+        "ThDP_mM": 2.4,
+        "MgCl2_mM": 9,
+        "sodium_pyruvate_mM": 50,
+        "three_FBA_mM": 50,
+        "temperature_degC": 25,
+        "reaction_time_h": 24
+      },
+      "source": "Mukhopadhyay2024:Table2 footnote and article TK activities with aromatic aldehydes/Results; Table3 copies24h conversion",
+      "normalization": "Product peak area as a fraction of combined substrate and product peak area; response-factor calibration is not established in inspected text.",
+      "replicates": null,
+      "uncertainty_kind": "not_reported",
+      "qualification_scope": "Source-reported integer-displayed HPLC conversion at25C. Separate from21C kinetics and isolated molar yield; equal reported percentages do not establish equivalent time courses or statistical equivalence."
+    }
+  ],
+  "activity_observations": [
+    {
+      "row_id": "TK-1",
+      "construct_id": "TK-1",
+      "assay_id": "specific-activity-50mM",
+      "source_locator": "Mukhopadhyay2024:Table3:TK-1:Specific activity at50mM3-FBA; SEM footnote",
+      "specific_activity": {
+        "result_kind": "reported_numeric",
+        "value": 20.3,
+        "unit": "umol mg^-1 min^-1",
+        "uncertainty": 5,
+        "uncertainty_kind": "SEM",
+        "parameter": "specific_activity"
+      }
+    },
+    {
+      "row_id": "TK-2",
+      "construct_id": "TK-2",
+      "assay_id": "specific-activity-50mM",
+      "source_locator": "Mukhopadhyay2024:Table3:TK-2:Specific activity at50mM3-FBA; SEM footnote",
+      "specific_activity": {
+        "result_kind": "reported_numeric",
+        "value": 8.3,
+        "unit": "umol mg^-1 min^-1",
+        "uncertainty": 0.3,
+        "uncertainty_kind": "SEM",
+        "parameter": "specific_activity"
+      }
+    }
+  ],
+  "conversion_observations": [
+    {
+      "row_id": "TK-1",
+      "construct_id": "TK-1",
+      "assay_id": "conversion-24h",
+      "source_locator": "Mukhopadhyay2024:Table2:TK-1:3-FBA; repeated inTable3",
+      "conversion": {
+        "result_kind": "reported_numeric",
+        "value": 61,
+        "unit": "percent",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported"
+      }
+    },
+    {
+      "row_id": "TK-2",
+      "construct_id": "TK-2",
+      "assay_id": "conversion-24h",
+      "source_locator": "Mukhopadhyay2024:Table2:TK-2:3-FBA; repeated inTable3",
+      "conversion": {
+        "result_kind": "reported_numeric",
+        "value": 61,
+        "unit": "percent",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported"
+      }
+    }
+  ],
+  "comparison_context": {
+    "source": "Mukhopadhyay2024:Table3 and article Kinetic and stability studies discussion",
+    "specific_activity_ratio": {
+      "numerator": "TK-2",
+      "denominator": "TK-1",
+      "origin": "project arithmetic on reported central values",
+      "uncertainty": null,
+      "uncertainty_scope": "Source SEM retained on input values. No covariance or propagated significance/equivalence claim.",
+      "assay_id": "specific-activity-50mM",
+      "comparison_id": "tk_2024:R520Q:specific_activity",
+      "value_location": "Computed once by the shared query from the two activity_observations; no second authoritative derived scalar stored here."
+    },
+    "fit_context": {
+      "endpoint": "Apparent Michaelis-Menten fit with50mMpyruvate and varying3-FBA",
+      "range_mM": {
+        "methods": [
+          25,
+          150
+        ],
+        "results": [
+          0,
+          150
+        ],
+        "scope": "Source descriptions differ at lower bound; both end at150mM."
+      },
+      "parameters": [
+        {
+          "construct_id": "TK-1",
+          "kcat_s_inverse": 134,
+          "kcat_SEM": 85,
+          "KM_3FBA_mM": 220,
+          "KM_SEM": 180
+        },
+        {
+          "construct_id": "TK-2",
+          "kcat_s_inverse": 118,
+          "kcat_SEM": 41,
+          "KM_3FBA_mM": 530,
+          "KM_SEM": 190
+        }
+      ],
+      "scope": "Both central KM estimates exceed the150mM tested acceptor upper bound; authors note large fitting errors. 3-FBA saturation is not established within the sampled range. No identical kinetics, equilibrium affinity or causal binding mechanism inferred. No calculated cross-endpoint ratio or independent two-substrate kinetic model.",
+      "conditions": {
+        "enzyme_mg_per_mL": 0.1,
+        "Tris_HCl_mM": 50,
+        "pH": 7.0,
+        "ThDP_mM": 2.4,
+        "MgCl2_mM": 9,
+        "sodium_pyruvate_mM": 50,
+        "three_FBA_mM": {
+          "methods_range": [
+            25,
+            150
+          ],
+          "results_range": [
+            0,
+            150
+          ]
+        },
+        "temperature_degC": 21
+      },
+      "replicates": 3,
+      "uncertainty_kind": "SEM",
+      "source": "Mukhopadhyay2024:article Enzyme kinetics; Table3 fit cells and SEM footnote"
+    },
+    "source_prose_scope": {
+      "reported_wording": "no adverse impact on activity",
+      "locator": "Article R520Q comparison paragraph after thermal-transition discussion",
+      "adjudication": "This broad prose cannot stand in for the fixed-concentration activity column. Keep its lower reported central value, uncertain apparent kcat and matching integer-displayed conversion as distinct endpoints; do not assign the sentence a more precise intended endpoint than the source supplies."
+    },
+    "six_M_comparator_boundary": {
+      "source": "Table2/3 footnotes and article kinetics discussion",
+      "kinetic_origin": "Previously published6M data; varied pyruvate at50mM3-FBA using0.067mg/mL enzyme",
+      "screen_origin": "Table2 says6M at0.07mg/mL versus current variants0.1mg/mL",
+      "scope": "The article-reported630-fold kcat improvement is a cross-study comparison with the opposite varied substrate and different enzyme concentration. Do not create a matched6M ratio or a complete mutation square from this table."
+    },
+    "mechanism_boundary": "Docking of3-FBA into modeled enamine-ThDP-containing variants is computational interpretation. It does not demonstrate reacting geometry,mutation causality or elementary rates; no docking state is transferred to the measured assay. Apparent kcat at fixed cosubstrate belongs to the overall reporter/turnover measurement and cannot isolate enamine formation,C-C bond formation or product release.",
+    "specific_activity_origin_caution": {
+      "source": "Mukhopadhyay2024:Table3",
+      "source_explicit_method": "Specific activity at50mM3-FBA is tabulated; whether independently determined or derived from the fit is not stated in the inspected methods.",
+      "diagnostic_basis": "Project diagnostic arithmetic uses printed central values in Table3 Vm=11 and9.7mM/min, KM=220 and530mM, and0.1mg/mL enzyme: Vm*50/(KM+50)/0.1 gives20.3704 and8.3621umol mg^-1 min^-1, close to printed20.3 and8.3.",
+      "inference": "Agreement within source display precision is consistent with a shared kinetic fit; it does not establish the calculation history or independence. Do not treat these columns as independent experiments. No raw data refit or source-value replacement."
+    }
+  },
+  "limits": [
+    "Source-defined engineered reference and incremental mutation only; no exact assayed sequence,preparation identity or reference-accession mapping.",
+    "Product assignment is the article authors claim; supplement and raw fits uninspected. No absolute stereochemistry,ee,isolated yield or exact reaction instance.",
+    "One conditioned R520Q contrast is not donor/acceptor preference combinability,complete factorial epistasis or a general design rule.",
+    "No cross-study/scaffold rate pooling or transfer to MAL/human TKT. Correlated computational review is not independent validation."
+  ]
+}

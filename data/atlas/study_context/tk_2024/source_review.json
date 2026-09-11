@@ -1,0 +1,85 @@
+{
+  "schema_version": "catalytic-earth.source-qualification-review.v1",
+  "assessment_id": "tk2024-r520q-endpoint-context",
+  "decision": "source_annotation_accepted_at_named_construct_and_separate_endpoint_scope",
+  "authorized_operation": "source_annotation",
+  "reviewed_at_utc": "2026-09-11T17:21:11.397144+00:00",
+  "policy_binding": {
+    "path": "data/governance/computational_review_policy.json",
+    "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "reviewed_bindings": {
+    "data/atlas/study_context/tk_2024/source_qualification.json": "d32ce847e7124728011eea2adf3b96f90ed8ed938b494add164988d5013b9dd2",
+    "data/atlas/study_context/tk_2024/acquisition_receipts.json": "30c07b9a7435c95000200835bcd3e468ca2afef8605cd748934fffdcd28e5244",
+    "docs/ATLAS_TK_ENDPOINT_CONTEXT.md": "b6d07184a0a10cb98be350ff6ad4bfc8307fa0a31ccc0fd269b2869eaa8aa899"
+  },
+  "review_process": {
+    "parent": "GPT-6 Astra; acquisition, source interpretation, integration and final source/diff review",
+    "agents": [
+      {
+        "role": "primary_source",
+        "task": "source_lineages2024",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra"
+      },
+      {
+        "role": "chemical_representation",
+        "task": "representation_lineages2024",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra"
+      },
+      {
+        "role": "adversarial_source_and_accounting",
+        "task": "adversarial_lineages2024",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra"
+      }
+    ],
+    "independence": "Correlated computational reviews with shared sources/context; not independent human review or laboratory validation. Source objections override agreement."
+  },
+  "adjudications": [
+    {
+      "objection": "The discovery lead does not concern the MAL system.",
+      "resolution": "Close MAL applicability at E.coli TK identity; create a separate source-scoped TK-1/TK-2 relation, with no human-TKT2019 or MAL transfer."
+    },
+    {
+      "objection": "Broad prose says no adverse activity impact while the fixed-concentration column is lower.",
+      "resolution": "Retain the lower reported central specific activity, uncertain apparent kcat and integer-displayed61% conversion as separate endpoints; no inferred intended endpoint, statistical significance or generic benefit label."
+    },
+    {
+      "objection": "Apparent parameters have different substrate/temperature scope from conversion and prior6M.",
+      "resolution": "Bind21C current kinetics and25C24h peak-area conversion separately. kcat and KM retain their own SEM; central KM estimates exceed150mM tested upper bound. Prior6M varied pyruvate rather than3-FBA; no matched cross-study ratio or complete perturbation square."
+    },
+    {
+      "objection": "Fixed-concentration activity may be calculated from the same kinetic curve.",
+      "resolution": "Keep origin/dependence unresolved. Project diagnostic evaluation of the printed central Vm and KM values closely matches the specific-activity column, which is consistent with shared-fit dependence without proving calculation history. No independent corroboration or source-value replacement."
+    },
+    {
+      "objection": "Rounded implies an unreported rounding procedure.",
+      "resolution": "Use integer-displayed/source-reported61%; no conversion uncertainty, equivalence or raw time-course inference."
+    },
+    {
+      "objection": "Exact assayed sequence, plasmid and product stereochemistry are absent or ambiguous.",
+      "resolution": "Retain full source mutation sets and incremental R520Q, His6 context and pQR791/pQR729 discrepancy without accession/sequence substitution. Product identity stays an author claim for four selected variants; underlying SI spectra, exact configuration and ee remain unassessed."
+    },
+    {
+      "objection": "A second stored ratio would duplicate the common arithmetic.",
+      "resolution": "Source context identifies comparison/assay and numerator/denominator; the shared query computes the central ratio once."
+    }
+  ],
+  "blocked_operations": [
+    "MAL or human-TKT source transfer",
+    "Matched6M/current-variant kinetic ratio or factorial epistasis",
+    "Statistical significance, equivalence or propagated ratio uncertainty",
+    "Exact assayed sequence/accession authentication or product stereochemical assignment",
+    "Elementary-step rate, productive docking geometry or isolated residue mechanism",
+    "Protein admission, frozen-kernel mutation, independent validation or design-performance claim"
+  ],
+  "new_source_requests": 12,
+  "new_source_response_body_bytes": 741711,
+  "cumulative_batch_id": "two-substrate-lineages-2024-51831",
+  "coordination_record": ".git/catalytic-earth-runs/74ac02ee.board.md",
+  "independent_human_review": false,
+  "new_project_experiments": 0,
+  "remaining_limits": "Primary article and selected Table2/3 cells inspected; no supplementary spectra, raw fits, independent specimens or previous6M primary. Final publication-head review belongs in Git-local receipt."
+}

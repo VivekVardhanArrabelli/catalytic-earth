@@ -1,5 +1,21 @@
 # Current State
 
+## 2026-09-11: TK R520Q has different rate and accumulated-product endpoints
+
+The [E. coli transketolase relation](ATLAS_TK_ENDPOINT_CONTEXT.md) binds
+TK-2/TK-1 to an added R520Q in the named 6M+S385Y background. Reported
+central specific activities at 50 mM of each reactant are 20.3 and 8.3 µmol
+mg⁻¹ min⁻¹ (TK-2/TK-1 central ratio 0.408867), while both retain integer-displayed 61% 24-hour
+HPLC conversion. Fit uncertainty, substrate range and 21/25 °C assay
+separation travel with the result. No significance or endpoint equivalence
+is established. Four source parameter records reuse one unchanged consumer.
+
+The 2024 lead is a different enzyme system from MAL, closing that transfer.
+Prior 6M kinetics varied the opposite substrate and do not give a matched
+comparison. No exact assayed sequence, stereochemical assignment, physical
+mechanism or design performance is established. The new bibliography batch
+used 12 requests / 741,711 response-body bytes; prior totals are unchanged.
+
 ## 2026-09-11: MAL L384A has a source-qualified preparative product outcome
 
 The [Raj2012 relation](ATLAS_MAL_SYNTHESIS.md) connects named L384A to ammonia

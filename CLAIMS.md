@@ -662,6 +662,24 @@ assay; it does not quantify epistasis or prove a geometry change. Two source
 parameter records reuse the existing consumer without a new kinetic comparison,
 project experiment, protein admission, mechanism validation or design claim.
 
+## CE-044 — the TK R520Q effect depends on the measured endpoint
+
+**Status:** Supported
+
+The [Mukhopadhyay2024 TK-1/TK-2 relation](docs/ATLAS_TK_ENDPOINT_CONTEXT.md)
+retains the source-named E. coli transketolase R520Q contrast in the engineered
+6M+S385Y background. At 50 mM 3-FBA and 50 mM pyruvate, reported specific
+activities are 20.3 (SEM 5) and 8.3 (SEM 0.3) µmol mg⁻¹ min⁻¹, giving a
+central TK-2/TK-1 quotient of 0.408867. Both have the source's integer-displayed 61%
+24-hour HPLC conversion at 25 °C. The separate 21 °C fitted kinetics have
+large SEM and central KM estimates beyond the sampled acceptor range. A
+single activity label would erase these endpoint distinctions; no significance,
+equivalence, kinetic cause or general mutation-combination rule follows.
+The earlier 6M comparator varied the other substrate in a different study.
+Four parameter records and one descriptive ratio reuse the shared consumer;
+no MAL or human-TKT transfer, exact assayed sequence, absolute product
+configuration, project experiment, independent validation or design claim.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,
