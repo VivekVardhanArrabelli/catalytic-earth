@@ -1,94 +1,89 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research baton — 2026-09-11 00:56 UTC direction review
+## Current research baton — 2026-09-11 KSI field/function evidence
 
-This block, `docs/HOURLY_RESEARCH.md` and the current direction review govern
-continuation. Historical handoffs below are not an execution queue.
+- **Identity/base:** actual start2026-09-11T02:07:23Z; owner
+  `01a08e37-f80d-75c0-9654-d329c03d9412:2e3e02ec-a88a-474c-84a3-b9155bf9408f`;
+  lock acquired02:13:14Z. Clean main base
+  `dbcff2541baf00d378d13c6e676c34419a9cfb35` (PR90), fetched/fast-forwarded;
+  no pending PR, dirty work or recovery. Branch
+  `codex/ksi-electric-field-evidence-20260911`. Handoff checkpointed around minute31;
+  exact finish, publication and release go in the Git-local receipt.
+- **Direction reconciliation/question:** RA95 state priority is complete.
+  DERA primary body and flagged erratum remained inaccessible after one bounded
+  six-request attempt. No chemical negative is inferred and no unchanged route
+  is retried. Pivoted to KSI: does the source's inhibitor-carbonyl field relation
+  apply to its D40N general-base mutant? Gain: a physical probe/function relation
+  with an explicit mechanism-dependent applicability boundary. Stop at one
+  supported source compilation, not a new general electrostatic design rule.
+- **Grounded finding:** TableS2 supplies six natural-abundance carbonyl
+  frequencies and six literature-compiled kcat parameters. WT/Y16F/D40N
+  frequencies1588.3/1647.5/1594.4cm^-1 accompany24300/12/0.018s^-1.
+  Protein spectra use19-nortestosterone sulfate inD2O atpD7.4; turnover uses
+  5-androstene-3,17-dione from prior publications. Fried2014 excludesD40N from
+  its field-rate model using a mechanism-change rationale. Its cited ref67
+  title saysD38N; direct homolog/construct transfer is unverified. Original
+  and technical-comment electrostatic fractions remain disputed interpretations.
+- **Capability/limits:** the unchanged shared perturbation consumer returns
+  all12 parameter records and a complete six-construct context. Kinetics are
+  unqualified for matched-assay arithmetic; signed fields remain derived source
+  context. No new experiment, protected protein admission, complete mechanism,
+  same physical sample, direct transition-state field, causal fraction or
+  design-performance claim. Six named constructs are not six new proteins.
+- **Evidence:** `data/atlas/study_context/ksi_2014/field_function.json`,
+  `source_review.json`, `acquisition_receipts.json` and
+  `docs/ATLAS_KSI_FIELD_FUNCTION.md`; primary author manuscript, technical
+  comment and author-hosted58-page article/SI are locally hash-retained in
+  `.git/catalytic-earth-runs/2e3e02ec-primary/`. CompleteTableS2 inspected at
+  PDF51/printedSI44; Methods2-5, TextS3 pages23-24 and mainFig3/prose checked.
+  Source bodies are not redistributed. Author response remains unreviewed.
+- **Acquisition:** new, distinct KSI batch
+  `ketosteroid-isomerase-electric-field-fried2014`:12requests/5,179,007bytes.
+  SAME RA95 batch now33/17,556,517, including
+  `ra95_2013/dera_acquisition_appendix.json`; prior27-request receipt historical.
+  Diels20/519,698; RA61 45/3,236,259; KE59 9/261,580;
+  KE70 16/1,102,794; beta5/8,449,621; defaultM-CSA49/1,109,896 unchanged.
+  PLP73/5,068,731 and panel28/1,474,405 remain lower bounds, not headroom.
+  M0187followup12/440,960 is only a subledger; broaderM0187, TKT/POX,
+  M0081/M0222 and HisF/panel gaps remain. No telemetry recovery reopened.
+- **Reuse/reconsideration:** two data panels use existing source/construct/
+  observation/context logic; no new runtime, schema or enzyme-ID branch.
+  Author-compiled kinetics remain distinguishable from newly reported spectra.
+  New physical evidence broadens the usable chemical axis; contextual retrieval
+  links it to mechanism applicability. No measured curation-time saving or
+  superiority to a competent paper/kinetics workflow is claimed. Rejected
+  another RA95 arithmetic/settled-state queue and an access-only hour. The
+  integrated atlas still lacks a demonstrated complete design-enabling chain.
+- **Coordination/review:** parent owns all edits/Git/lock. Read-only Sol/ultra
+  roles `source_challenge`, `representation_challenge`, `adversarial_challenge`
+  checked source, chemistry and scientific value through
+  `.git/catalytic-earth-runs/2e3e02ec.board.md`. Objections narrowed the sulfate
+  identity, kinetic error/provenance, D38N citation, D40N scope and disputed
+  fraction. These are correlated computational reviews, not human validation.
+- **Verification/publication:** all20 retained primary witnesses hash-verified;
+  prior193 observations,117 comparisons,2 state links and37 claim objects
+  unchanged.70 focused tests and complete repository contracts passed.
+  New source paths required only the architecture path count17687->17692;
+  frozen module digests stayed unchanged. All three final source/diff reviews
+  accepted. This block is staged before report-index regeneration. All changes
+  are owned. At handoff preparation branch changes are uncommitted and no PR
+  has been opened; parent will commit/push and merge only at the reviewed head
+  after required checks. Exact final SHA/PR/CI/push/merge and guarded release
+  are recorded in `.git/catalytic-earth-runs/hourly-20260911T020723Z-2e3e02ec.json`
+  and the task result. If unfinished, resume this branch/PR first.
+- **One next scientific action:** inspect KSI reference16,
+  DOI10.1128/jb.177.9.2602-2605.1995, to establish exact source-row provenance
+  and kinetic conditions for the WT/Y16F/D40N compilation and clarify the
+  prose/table factor scope. Expected gain: a qualified within-kinetics
+  comparison, never same-sample spectroscopy/turnover identity. Continue the
+  SAME KSI batch at12/5,179,007; acquire one exact primary identifier chain.
+  Stop at one supported row/condition relation or the first unmatched premise;
+  if inaccessible, stop that route and reassess, without enlarging an access
+  record. Ref67 D38N-to-D40N mechanism applicability remains separate and open.
 
-- **Identity/base:** owner
-  `01a07311-aac6-7010-9516-e0b53605d473:e2c1653d-103a-468d-b745-f8d780efacfd`;
-  actual review start `2026-09-11T00:56:07.467Z`; lock acquired
-  `2026-09-11T01:00:15Z`. Clean synced main base
-  `d6917e2ba3f81556cac2453c39022e2fb9b5086c`; PR89 merged, no pending PR or
-  recovery. Branch `codex/scientific-direction-review-20260911`. This is the
-  periodic oversight review, not a second hourly research writer.
-- **Coordination:** parent owns edits and Git. Read-only Astra/max reviewers
-  `direction_review_12h`, `reuse_review_12h` and `evidence_review_12h` checked
-  immutable published work. Their questions, evidence and adjudication are in
-  `docs/SCIENTIFIC_DIRECTION.md`; exact publication and release evidence go in
-  `.git/catalytic-earth-runs/direction-e2c1653d-103a-468d-b745-f8d780efacfd.json`.
-- **Direction reconciliation:** reviewed PRs80–89 from the previous review at
-  `df81264b3a33efdfe8e0faf53c32ad4e9a069084`. The qualified RA95 state priority
-  completed in PR80/81. Parent sequence/state association and 4A2R attachment
-  do not require completion of every open chemical-state premise. The later
-  source-step, stereo, connectivity and conditional-effect additions remain
-  bounded relations. They have not demonstrated design performance.
-- **Scientific findings:** independently sampled primary values, substitutions
-  and raw 4A2R connection records support the retained lysine comparisons and
-  attachment limits. No material sampled scientific defect was found. The
-  [preceding result](https://github.com/VivekVardhanArrabelli/catalytic-earth/blob/d6917e2ba3f81556cac2453c39022e2fb9b5086c/work/handoff.md)
-  contains the completed conditional-effect investigation and its evidence.
-  This review corrects the 4A2R guide's stale command description to include the
-  paired requests. Scientific declarations, observations, comparisons, runtime,
-  tests, claims and evidence tiers remain unchanged.
-- **Direction correction:** first-time source-grounded exclusions can prevent
-  consequential transfer errors. Repeated settled refusals and access logging
-  alone must not count as new scientific content. Keep the bounded DERA question
-  below; use a compact access record and pivot if its full text is unavailable.
-  Legitimate verifiable primary-author or institutional copies are eligible
-  within the same acquisition limits. No publisher-only rule is imposed.
-- **Acquisition:** this review adds **0 requests / 0 bytes**. RA95 remains
-  cumulatively **27 / 17,298,809**; its provider9-request receipt is historical.
-  Diels remains20/519,698, including its analytical-reference appendix;
-  RA61 45/3,236,259; KE59 9/261,580; KE70 16/1,102,794;
-  beta 5/8,449,621; default M-CSA 49/1,109,896.
-  PLP 73/5,068,731 and panel 28/1,474,405 remain lower bounds, not headroom.
-  M0187 followup 12/440,960 is only a subledger. Broader M0187, TKT/POX,
-  M0081/M0222 and HisF/panel accounting gaps stay open; closed telemetry recovery
-  is not reopened. All named batches retain their cumulative100-request/30-MiB
-  limits. No primary witness is reacquired or redistributed.
-- **Review/verification:** source and output sampling used retained primary
-  bytes, independent arithmetic and isolated immutable queries. Renew only the
-  affected current documentation bindings after diff review; original source
-  manifests remain historical. Run existing repository contracts and required
-  CI for publication; no new test or scientific claim is needed. These checks
-  establish documentation/computation integrity, not activity or human review.
-- **Publication/recovery:** scope is current direction, the hourly scientific-
-  progress clarification, one current decision, the 4A2R command description,
-  its current review binding, this marked block and staged report index. Resume
-  this branch/PR first if unfinished. Merge only at the reviewed head after
-  required checks; exact head, PR, merged main, elapsed time and guarded release
-  go in the receipt and task result. The hourly schedule stays active on
-  Astra/max. The prior hourly no-progress count is0 after PR89; this oversight
-  review is not a new research result or a reset of that count.
-- **One next action:** inspect the natural-enzyme precedent cited by retained
-  Giger2013 XML P16/R18: Heine et al., *Science*294:369–374 (2001),
-  PMID11598300, DOI10.1126/science.1063601. Does the primary body connect a
-  source-defined DERA catalytic-Lys-to-Arg construct, a named alternate lysine
-  carrying a covalent state, and matched retained function in that construct?
-  The gain would be a residue–state–function relation qualifying the natural
-  precedent, without transferring it to RA95. Full text is not retained; the
-  citation/title are not findings. Check previous receipts and continue the
-  SAME RA95 batch at27/17,298,809 with a bounded identifier-led attempt at this
-  paper. Verifiable publisher, primary-author or institutional-repository
-  versions are eligible; retain version provenance, stop unchanged failed
-  routes, and do not bypass access controls, rename the batch or search an
-  unrelated bibliography. Match construct/assay scope actually supported by
-  the paper without inventing identical physical aliquots or a full-sequence
-  prerequisite. Distinguish attachment, trapped state and inferred intermediate.
-  Stop at one supported relation or the first source-established missing or
-  unmatched construct, residue, state or functional premise. If text remains
-  inaccessible, record access compactly and choose a different justified
-  question, within the same run if useful work fits. Metadata/abstracts cannot
-  replace the requested primary-body evidence. No mechanism transfer,
-  evolutionary generality, shared microscopic role or same-turnover inference.
-  POX6HAF remains an alternative only after the existing batch's complete
-  acquisition headroom is established; it is currently blocked. Reassess after
-  the result; DERA success is not a new coverage gate.
-
-Preserve historical content below this marked block. No self-hash follow-up
-commit is required.
+Preserve historical content below this marked block. Git identifies the
+containing commit; no self-hash follow-up commit is needed.
 <!-- current-research-handoff:end -->
 
 ## Historical handoffs — superseded as an execution queue

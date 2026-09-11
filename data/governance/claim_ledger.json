@@ -502,5 +502,18 @@
       "tests/core/test_source_step_correspondence.py",
       "docs/ATLAS_PLP_STEP_BOUNDARY.md"
     ]
+  },
+  {
+    "claim_id": "CE-038",
+    "claim_kind": "source_annotation",
+    "status": "Supported",
+    "claim": "The KSI source compilation places WT, Y16F and D40N carbonyl-probe frequencies of1588.3,1647.5 and1594.4cm^-1 beside literature kcat values24300,12 and0.018s^-1. The spectroscopy ligand is19-nortestosterone sulfate; turnover uses5-androstene-3,17-dione. Fried2014 excludesD40N from its field-rate model using a cited mechanism-change rationale, whose reference title usesD38N; direct construct/numbering transfer remains unverified. This source-compiled relation does not establish matched assays, direct transition-state fields or a universal field-to-activity rule. The disputed electrostatic fraction remains source interpretation.",
+    "current_wording": "Describe a source-compiled probe/function relation with distinct ligands, qualified spectroscopy and unresolved kinetic matching; D40N is an author-excluded mechanistic exception. No causal fraction, independent validation or design-performance claim.",
+    "rationale": "Primary main/SI supports the spectra and compiled table; SI23-24 controls model applicability, while the primary technical comment disputes reference-state attribution.",
+    "evidence": [
+      "data/atlas/study_context/ksi_2014/field_function.json",
+      "data/atlas/study_context/ksi_2014/source_review.json",
+      "docs/ATLAS_KSI_FIELD_FUNCTION.md"
+    ]
   }
 ]

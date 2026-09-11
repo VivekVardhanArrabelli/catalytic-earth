@@ -268,6 +268,35 @@ class PerturbationRelationTests(unittest.TestCase):
         cls.rows = {row["id"]: row for row in cls.view["observations"]}
         cls.comparisons = {row["id"]: row for row in cls.view["comparisons"]}
 
+    def test_ksi_probe_and_compiled_rates_preserve_mechanism_and_assay_boundaries(self):
+        context = self.view["evidence_context"]["ksi"][0]
+        pairs = context["pairs"]
+        self.assertEqual(len(pairs), 6)
+        for pair in pairs:
+            probe = self.rows[pair["probe_observation_id"]]
+            rate = self.rows[pair["turnover_observation_id"]]
+            self.assertEqual(probe["construct_id"], rate["construct_id"])
+            self.assertNotEqual(probe["substrate_id"], rate["substrate_id"])
+            self.assertTrue(probe["assay_qualified"])
+            self.assertFalse(rate["assay_qualified"])
+            self.assertEqual(probe["uncertainty"]["kind"], "standard_deviation")
+            self.assertEqual(rate["uncertainty"]["kind"], "source_plus_minus_statistic_unresolved")
+        self.assertEqual(context["source_regression"]["excluded_constructs"], ["D40N"])
+        self.assertEqual(context["source_discriminator"]["underlying_mechanistic_reference"]["source_title_mutant"], "D38N")
+        self.assertEqual([item["value"] for item in context["signed_field_context"]], [-144, -60])
+        request = self.comparisons["ksi_2014:field_function_context"]
+        self.assertEqual(len(request["context_observations"]), 12)
+        self.assertFalse(request["eligible"])
+        self.assertIsNone(request["value"])
+        # Reading two numeric compiled rates never authorizes a matched assay.
+        forced = {"id": "unsupported-ksi-ratio", "study_id": "ksi_2014", "operation": "ratio",
+                  "roles": {"numerator": "ksi-rates:D40N:kcat", "denominator": "ksi-rates:WT:kcat"}}
+        refused = compare(self.rows, forced)
+        self.assertFalse(refused["eligible"])
+        self.assertTrue(any(reason.startswith("unresolved_assay:") for reason in refused["reasons"]))
+        self.assertEqual(self.rows["ksi-ir:D40N:carbonyl_frequency"]["value"], 1594.4)
+        self.assertEqual(self.rows["ksi-rates:D40N:kcat"]["value"], 0.018)
+
     def test_background_and_parameter_specific_retention(self):
         turnover = self.comparisons["ra95_2013:RA95.5-5-K210M:kcat"]
         efficiency = self.comparisons["ra95_2013:RA95.5-5-K210M:kcat_over_KM"]

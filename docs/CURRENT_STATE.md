@@ -1,5 +1,23 @@
 # Current State
 
+## 2026-09-11: KSI probe and turnover evidence preserve a mechanistic exception
+
+The [KSI relation](ATLAS_KSI_FIELD_FUNCTION.md) connects six measured
+carbonyl frequencies to six literature-compiled kcat parameters through the
+existing consumer. It keeps the sulfate inhibitor separate from the reacting
+steroid and retains D40N's exclusion from the author's field-rate model.
+Its source-cited mechanism explanation references a D38N study; exact homolog
+and construct transfer is not independently established. The quantitative
+spectra and rates remain available without a matched-assay ratio or causal
+field claim. Signed fields are derived source context; competing electrostatic
+fraction estimates remain unresolved.
+
+CE-038 adds source annotations, no protected protein admission, experiment
+or evidence tier. Runtime is unchanged. The new KSI batch totals12 requests /
+5,179,007bytes. DERA full text remains unassessed after its bounded stop;
+the same cumulative RA95 batch is33 /17,556,517. Neither access status is
+interpreted as a mechanistic negative result.
+
 ## 2026-09-11: reported lysine endpoints depart from a multiplicative reference
 
 The [shared four-cell query](ATLAS_PERTURBATION_RELATION.md#reported-lysine-endpoints-depart-from-a-multiplicative-reference)

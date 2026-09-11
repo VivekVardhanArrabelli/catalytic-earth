@@ -1,5 +1,32 @@
 # Current Decisions
 
+## 2026-09-11: add a physical evidence axis after the DERA access stop
+
+The bounded DERA attempt did not recover primary text or its flagged erratum.
+Stop those unchanged routes and retain an unassessed result. Pivot to the
+[KSI field/function relation](ATLAS_KSI_FIELD_FUNCTION.md): source-reported
+spectra, compiled kinetics and an explicit mechanism-dependent model exclusion
+add information beyond another RA95 contrast or settled structural refusal.
+This does not complete the DERA residue-state-function inquiry.
+
+Accept the six-row KSI source compilation after challenge. Distinguish
+19-nortestosterone sulfate spectroscopy from steroid turnover and keep rate
+conditions unqualified. D40N is excluded from the source field model; its
+hydroxide/reketonization explanation is source-cited, with a D38N reference
+whose direct applicability remains unverified. Keep that objection beside the
+positive data. Do not adopt either disputed electrostatic fraction, relabel
+signed fields as measured magnitudes, or force a same-mechanism model fit.
+
+Next, inspect the exact earlier kinetic source cited as reference16
+(DOI10.1128/jb.177.9.2602-2605.1995) to resolve row provenance and kinetic
+conditions for WT/Y16F/D40N in the compilation. Expected gain is a qualified
+within-kinetics contrast and clarification of the prose/table rate-factor
+scope, without equating spectroscopy and turnover samples. Continue the same
+KSI batch. Stop at one source-supported row/condition relation or the first
+unmatched premise; if inaccessible, stop the route rather than enlarging an
+access record. The D38N-to-D40N mechanistic transfer stays a separate open
+question, not a prerequisite for preserving these observations.
+
 ## 2026-09-11: close the qualified-state priority and seek a mechanistic evidence relation
 
 The [evening direction review](SCIENTIFIC_DIRECTION.md) finds the RA95

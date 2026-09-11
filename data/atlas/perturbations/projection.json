@@ -92,6 +92,10 @@
     "da2010_core": {
       "path": "data/atlas/study_context/diels_alder_2010/reactive_core.json",
       "sha256": "cbd144d7fa62f09848869da5dee39a0f3c9b76f3f0b34856be8b5a5eac14d1c6"
+    },
+    "ksi": {
+      "path": "data/atlas/study_context/ksi_2014/field_function.json",
+      "sha256": "ad8634b626d232daa24632c11d7606c2e1e7f174a3e2c3e23b54a6092b411095"
     }
   },
   "constructs": {
@@ -1221,6 +1225,148 @@
         "source": "betaf",
         "pointer": "/constructs/2/parent_construct_id"
       }
+    },
+    "ksi_2014:WT": {
+      "source_construct_id": "WT",
+      "provider": {
+        "source": "ksi",
+        "pointer": "/constructs/0"
+      },
+      "sequence_provider": {
+        "source": "ksi",
+        "pointer": "/constructs/0"
+      },
+      "background_id": "ksi_2014:WT",
+      "perturbation": [],
+      "perturbation_scope": "source-named substitution; spectroscopy and literature kinetics not assumed same physical preparation",
+      "identity_scope": "SI Methods B reports gene sequencing and protein mass characterization; no complete sequence strings or identical spectroscopy/kinetics specimens established.",
+      "perturbation_provider": null,
+      "background_provider": null
+    },
+    "ksi_2014:Y16F": {
+      "source_construct_id": "Y16F",
+      "provider": {
+        "source": "ksi",
+        "pointer": "/constructs/1"
+      },
+      "sequence_provider": {
+        "source": "ksi",
+        "pointer": "/constructs/1"
+      },
+      "background_id": "ksi_2014:WT",
+      "perturbation": [
+        "Y16F"
+      ],
+      "perturbation_scope": "source-named substitution; spectroscopy and literature kinetics not assumed same physical preparation",
+      "identity_scope": "SI Methods B reports gene sequencing and protein mass characterization; no complete sequence strings or identical spectroscopy/kinetics specimens established.",
+      "perturbation_provider": {
+        "source": "ksi",
+        "pointer": "/constructs/1/substitutions"
+      },
+      "background_provider": {
+        "source": "ksi",
+        "pointer": "/constructs/1/background_id"
+      }
+    },
+    "ksi_2014:Y16S": {
+      "source_construct_id": "Y16S",
+      "provider": {
+        "source": "ksi",
+        "pointer": "/constructs/2"
+      },
+      "sequence_provider": {
+        "source": "ksi",
+        "pointer": "/constructs/2"
+      },
+      "background_id": "ksi_2014:WT",
+      "perturbation": [
+        "Y16S"
+      ],
+      "perturbation_scope": "source-named substitution; spectroscopy and literature kinetics not assumed same physical preparation",
+      "identity_scope": "SI Methods B reports gene sequencing and protein mass characterization; no complete sequence strings or identical spectroscopy/kinetics specimens established.",
+      "perturbation_provider": {
+        "source": "ksi",
+        "pointer": "/constructs/2/substitutions"
+      },
+      "background_provider": {
+        "source": "ksi",
+        "pointer": "/constructs/2/background_id"
+      }
+    },
+    "ksi_2014:D103N": {
+      "source_construct_id": "D103N",
+      "provider": {
+        "source": "ksi",
+        "pointer": "/constructs/3"
+      },
+      "sequence_provider": {
+        "source": "ksi",
+        "pointer": "/constructs/3"
+      },
+      "background_id": "ksi_2014:WT",
+      "perturbation": [
+        "D103N"
+      ],
+      "perturbation_scope": "source-named substitution; spectroscopy and literature kinetics not assumed same physical preparation",
+      "identity_scope": "SI Methods B reports gene sequencing and protein mass characterization; no complete sequence strings or identical spectroscopy/kinetics specimens established.",
+      "perturbation_provider": {
+        "source": "ksi",
+        "pointer": "/constructs/3/substitutions"
+      },
+      "background_provider": {
+        "source": "ksi",
+        "pointer": "/constructs/3/background_id"
+      }
+    },
+    "ksi_2014:D103L": {
+      "source_construct_id": "D103L",
+      "provider": {
+        "source": "ksi",
+        "pointer": "/constructs/4"
+      },
+      "sequence_provider": {
+        "source": "ksi",
+        "pointer": "/constructs/4"
+      },
+      "background_id": "ksi_2014:WT",
+      "perturbation": [
+        "D103L"
+      ],
+      "perturbation_scope": "source-named substitution; spectroscopy and literature kinetics not assumed same physical preparation",
+      "identity_scope": "SI Methods B reports gene sequencing and protein mass characterization; no complete sequence strings or identical spectroscopy/kinetics specimens established.",
+      "perturbation_provider": {
+        "source": "ksi",
+        "pointer": "/constructs/4/substitutions"
+      },
+      "background_provider": {
+        "source": "ksi",
+        "pointer": "/constructs/4/background_id"
+      }
+    },
+    "ksi_2014:D40N": {
+      "source_construct_id": "D40N",
+      "provider": {
+        "source": "ksi",
+        "pointer": "/constructs/5"
+      },
+      "sequence_provider": {
+        "source": "ksi",
+        "pointer": "/constructs/5"
+      },
+      "background_id": "ksi_2014:WT",
+      "perturbation": [
+        "D40N"
+      ],
+      "perturbation_scope": "source-named substitution; spectroscopy and literature kinetics not assumed same physical preparation",
+      "identity_scope": "SI Methods B reports gene sequencing and protein mass characterization; no complete sequence strings or identical spectroscopy/kinetics specimens established.",
+      "perturbation_provider": {
+        "source": "ksi",
+        "pointer": "/constructs/5/substitutions"
+      },
+      "background_provider": {
+        "source": "ksi",
+        "pointer": "/constructs/5/background_id"
+      }
     }
   },
   "assays": {
@@ -1590,6 +1736,28 @@
         "raw_rates": null,
         "scope": "Two preparations do not establish per-arm n or error-bar statistic; no digitized values, normalization definition or inferred conditions."
       }
+    },
+    "ksi_2014:bound_probe_ir": {
+      "provider": {
+        "source": "ksi",
+        "pointer": "/assays/0"
+      },
+      "source_assay_id": "bound_probe_ir",
+      "qualified": true,
+      "endpoint_kind": "bound_inhibitor_vibrational_peak",
+      "reaction_direction": "no reaction; bound probe",
+      "uncertainty_context": "Frequency errors are SD across the table-marked n independent measurements; n is not a count of independently expressed protein batches."
+    },
+    "ksi_2014:compiled_turnover": {
+      "provider": {
+        "source": "ksi",
+        "pointer": "/assays/1"
+      },
+      "source_assay_id": "compiled_turnover",
+      "qualified": false,
+      "endpoint_kind": "source_compiled_turnover",
+      "reaction_direction": "steroid double-bond isomerization",
+      "uncertainty_context": "Printed plus/minus retained; Table S2 does not specify the rate error statistic or replicate count. Original kinetic methods not acquired."
     }
   },
   "substrates": {
@@ -1801,6 +1969,24 @@
         "relation": "same source-named racemic substrate",
         "scope": "Name-level association only; no shared lot, assay conditions or normalization inferred."
       }
+    },
+    "ksi_2014:19NT-sulfate": {
+      "name": "19-nortestosterone sulfate",
+      "chemical_role": "nonreactive product-like inhibitor used as carbonyl probe",
+      "source": {
+        "source": "ksi",
+        "pointer": "/assays/0"
+      },
+      "stereochemistry": "source-named steroid; no project atom map or coordinate state assigned"
+    },
+    "ksi_2014:5-androstene-3,17-dione": {
+      "name": "5-androstene-3,17-dione",
+      "chemical_role": "turnover substrate in compiled kinetic studies",
+      "source": {
+        "source": "ksi",
+        "pointer": "/assays/1"
+      },
+      "stereochemistry": "source-named steroid; not the spectroscopy probe"
     }
   },
   "panels": [
@@ -3568,6 +3754,104 @@
           },
           "status_kinds": {
             "not_tabulated_not_digitized": "qualitative"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ksi-ir",
+      "study_id": "ksi_2014",
+      "source": "ksi",
+      "rows_pointer": "/rows",
+      "fields": {
+        "row_id": {
+          "pointer": "/row_id"
+        },
+        "construct_id": {
+          "pointer": "/construct_id"
+        },
+        "assay_id": {
+          "literal": "bound_probe_ir"
+        },
+        "substrate_id": {
+          "literal": "ksi_2014:19NT-sulfate"
+        },
+        "source_locator": {
+          "pointer": "/source_locator"
+        }
+      },
+      "parameters": [
+        {
+          "id": "carbonyl_frequency",
+          "pointer": "/frequency",
+          "kind": {
+            "pointer": "/status"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/uncertainty/value"
+            },
+            "kind": {
+              "pointer": "/uncertainty/kind"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ksi-rates",
+      "study_id": "ksi_2014",
+      "source": "ksi",
+      "rows_pointer": "/rows",
+      "fields": {
+        "row_id": {
+          "pointer": "/row_id"
+        },
+        "construct_id": {
+          "pointer": "/construct_id"
+        },
+        "assay_id": {
+          "literal": "compiled_turnover"
+        },
+        "substrate_id": {
+          "literal": "ksi_2014:5-androstene-3,17-dione"
+        },
+        "source_locator": {
+          "pointer": "/source_locator"
+        }
+      },
+      "parameters": [
+        {
+          "id": "kcat",
+          "pointer": "/kcat",
+          "kind": {
+            "pointer": "/status"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/uncertainty/value"
+            },
+            "kind": {
+              "pointer": "/uncertainty/kind"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
           }
         }
       ]
@@ -7041,6 +7325,46 @@
       ],
       "question": "Do the two source-defined lysine-substitution effects compose multiplicatively for this endpoint in this background?",
       "interpretation_scope": "Descriptive central-value contrast in one source-marked fluorescence panel. The multiplicative reference is an analyst-selected arithmetic comparison, not a fitted mechanistic null. No significance, microscopic coupling energy, physical interaction, preserved rate-limiting step, mutation cause or cross-background evolutionary trend is established. Printed efficiency remains the uncorrected source-reported derived column; no uncertainty is propagated."
+    },
+    {
+      "id": "ksi_2014:field_function_context",
+      "study_id": "ksi_2014",
+      "operation": "unassessed",
+      "roles": {},
+      "context_observations": [
+        "ksi-ir:WT:carbonyl_frequency",
+        "ksi-rates:WT:kcat",
+        "ksi-ir:Y16F:carbonyl_frequency",
+        "ksi-rates:Y16F:kcat",
+        "ksi-ir:Y16S:carbonyl_frequency",
+        "ksi-rates:Y16S:kcat",
+        "ksi-ir:D103N:carbonyl_frequency",
+        "ksi-rates:D103N:kcat",
+        "ksi-ir:D103L:carbonyl_frequency",
+        "ksi-rates:D103L:kcat",
+        "ksi-ir:D40N:carbonyl_frequency",
+        "ksi-rates:D40N:kcat"
+      ],
+      "source_blocks": [
+        "kinetic_conditions_and_per_row_primary_provenance_unresolved",
+        "probe_and_turnover_substrates_differ",
+        "D40N_excluded_from_source_same_mechanism_field_model"
+      ],
+      "evidence": [
+        {
+          "source": "ksi",
+          "pointer": "/field_function_relation"
+        },
+        {
+          "source": "ksi",
+          "pointer": "/interpretation_dispute"
+        },
+        {
+          "source": "ksi",
+          "pointer": "/assays"
+        }
+      ],
+      "scope": "Retrieve positive source-compiled probe/turnover association; no matched-assay arithmetic or same-mechanism field fit is requested or reconstructed."
     }
   ],
   "evidence_context": {
@@ -7623,6 +7947,24 @@
         "source": "betai",
         "pointer": "/source_access"
       }
+    ],
+    "ksi": [
+      {
+        "source": "ksi",
+        "pointer": "/field_function_relation"
+      },
+      {
+        "source": "ksi",
+        "pointer": "/interpretation_dispute"
+      },
+      {
+        "source": "ksi",
+        "pointer": "/limitations"
+      },
+      {
+        "source": "ksi",
+        "pointer": "/source_conflicts"
+      }
     ]
   },
   "source_witnesses": [
@@ -7906,6 +8248,51 @@
       "source_container_sha256": "1d537635bfa0c017fed96fda9b1fcafa4302a26d7c630651cdf265bd8cdf0a99",
       "archive_member": "PRO-31-e4405-s006.tiff",
       "url_scope": "TIFF extracted from this hash-bound ZIP member; no direct TIFF URL is asserted."
+    },
+    {
+      "id": "ksi-source-3",
+      "sha256": "0d033179aa96848bee18f06fdfb9362d46d54267850eb50d479cc037caf7c01d",
+      "bytes": 152073,
+      "git_common_dir_relative_path": "catalytic-earth-runs/2e3e02ec-primary/article.html",
+      "source_bindings": [
+        {
+          "source": "ksi",
+          "pointer": "/sources/0"
+        }
+      ],
+      "redistributed": false,
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4668018/",
+      "retention": "Exact newly acquired primary bytes retained locally in Git common directory."
+    },
+    {
+      "id": "ksi-source-6",
+      "sha256": "4c6ad62ac7f28277480de29cd262528dcc0f68493b42e6cd41b899df245708db",
+      "bytes": 113425,
+      "git_common_dir_relative_path": "catalytic-earth-runs/2e3e02ec-primary/comment.html",
+      "source_bindings": [
+        {
+          "source": "ksi",
+          "pointer": "/sources/1"
+        }
+      ],
+      "redistributed": false,
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4797066/",
+      "retention": "Exact newly acquired primary bytes retained locally in Git common directory."
+    },
+    {
+      "id": "ksi-source-12",
+      "sha256": "cb7d0f640cd60c43f77da1efc3dc731c2786d4f034ccc3d1709b408107b6d6f2",
+      "bytes": 3510040,
+      "git_common_dir_relative_path": "catalytic-earth-runs/2e3e02ec-primary/author-paper.pdf",
+      "source_bindings": [
+        {
+          "source": "ksi",
+          "pointer": "/sources/2"
+        }
+      ],
+      "redistributed": false,
+      "source_url": "https://www.boxerlab.stanford.edu/_files/ugd/4006c9_711c3c14b0484c06bca62b5cbf707a67.pdf",
+      "retention": "Exact newly acquired primary bytes retained locally in Git common directory."
     }
   ],
   "parameter_contracts": {
@@ -8169,6 +8556,15 @@
         ]
       },
       "scope": "Published qualitative activity plot; percent_of_max is the source axis label, not a numeric normalization reconstructed by the project."
+    },
+    "carbonyl_frequency": {
+      "source_fields": [
+        "frequency"
+      ],
+      "units": [
+        "cm^-1"
+      ],
+      "scope": "Measured natural-abundance C=O vibrational peak; not an electric field or rate."
     }
   },
   "reactions": {
