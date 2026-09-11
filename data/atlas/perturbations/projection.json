@@ -145,6 +145,10 @@
       "path": "data/atlas/study_context/tk_2024/source_qualification.json",
       "sha256": "d32ce847e7124728011eea2adf3b96f90ed8ed938b494add164988d5013b9dd2"
     },
+    "tk2024bg": {
+      "path": "data/atlas/study_context/tk_2024/background_evidence.json",
+      "sha256": "e0572ad1ad993eb62b91be4798fc0745dd0fad0031de4e1c80b62910c6613212"
+    },
     "tk2024r": {
       "path": "data/atlas/study_context/tk_2024/acquisition_receipts.json",
       "sha256": "30c07b9a7435c95000200835bcd3e468ca2afef8605cd748934fffdcd28e5244"
@@ -1913,6 +1917,86 @@
         "pointer": "/constructs/1/comparison_background"
       }
     },
+    "tk_2024:TK-3": {
+      "source_construct_id": "TK-3",
+      "provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/0"
+      },
+      "sequence_provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/0"
+      },
+      "background_id": "tk_2024:TK-3",
+      "perturbation": [],
+      "perturbation_scope": "Engineered S385F comparison reference; the complete source-listed 6M+S385F mutation set remains in the provider. TK-3 is not wild type.",
+      "identity_scope": "Within-study source-named E. coli transketolase construct and mutation set; no exact assayed sequence, reference-accession mapping or physical specimen identity."
+    },
+    "tk_2024:TK-6": {
+      "source_construct_id": "TK-6",
+      "provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/1"
+      },
+      "sequence_provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/1"
+      },
+      "background_id": "tk_2024:TK-3",
+      "perturbation": [
+        "R520Q"
+      ],
+      "perturbation_scope": "Complete set difference from the source-named TK-3 S385F background. The provider retains the full 6M+R520Q/S385F mutation set; no isolated residue cause follows.",
+      "identity_scope": "Within-study source-named E. coli transketolase construct and mutation set; no exact assayed sequence, reference-accession mapping or physical specimen identity.",
+      "perturbation_provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/1/perturbation"
+      },
+      "background_provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/1/comparison_background"
+      }
+    },
+    "tk_2024:TK-4C": {
+      "source_construct_id": "TK-4C",
+      "provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/2"
+      },
+      "sequence_provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/2"
+      },
+      "background_id": "tk_2024:TK-4C",
+      "perturbation": [],
+      "perturbation_scope": "Engineered S385pCNF comparison reference; the complete source-listed 6M+S385pCNF mutation set remains in the provider. TK-4C is not wild type.",
+      "identity_scope": "Within-study source-named E. coli transketolase construct retaining p-Cyano-L-phenylalanine at residue 385 as a source assertion; no exact assayed sequence, reference-accession mapping, physical specimen identity or incorporation homogeneity."
+    },
+    "tk_2024:TK5C": {
+      "source_construct_id": "TK5C",
+      "provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/3"
+      },
+      "sequence_provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/3"
+      },
+      "background_id": "tk_2024:TK-4C",
+      "perturbation": [
+        "R520Q"
+      ],
+      "perturbation_scope": "Complete set difference from the source-named TK-4C S385pCNF background. The provider retains the full 6M+R520Q/S385pCNF mutation set; no isolated residue cause follows.",
+      "identity_scope": "Within-study source-named E. coli transketolase construct retaining p-Cyano-L-phenylalanine at residue 385 as a source assertion; no exact assayed sequence, reference-accession mapping, physical specimen identity or incorporation homogeneity.",
+      "perturbation_provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/3/perturbation"
+      },
+      "background_provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/3/comparison_background"
+      }
+    },
     "tk_2020:WT": {
       "source_construct_id": "WT",
       "provider": {
@@ -2495,6 +2579,18 @@
       "uncertainty_context": "No replicate count or uncertainty is reported for the selected integer-displayed 24-hour conversion values; missing uncertainty is not zero.",
       "qualification_scope": "Source-reported product/(substrate+product) peak-area fraction at 25 degrees C. It remains separate from the 21 degree C fixed-concentration activity and fitted kinetics; equal integer-displayed percentages do not establish equivalent time courses or rates."
     },
+    "tk_2024:conversion-3HBA-24h": {
+      "provider": {
+        "source": "tk2024bg",
+        "pointer": "/assays/0"
+      },
+      "source_assay_id": "conversion-3HBA-24h",
+      "qualified": true,
+      "endpoint_kind": "source_reported_24h_HPLC_peak_area_conversion",
+      "reaction_direction": "Source-described conversion of 3-hydroxybenzaldehyde with pyruvate; molecular product identity is not established in the inspected scope.",
+      "uncertainty_context": "The source reports integer-displayed values without replicate count, uncertainty, response-factor calibration, rounding rule or detection limit. Missing uncertainty is not zero, and printed 0% does not establish exact zero or biochemical inactivity.",
+      "qualification_scope": "Source-reported product/(substrate+product) peak-area fraction for 50 mM 3-hydroxybenzaldehyde plus 50 mM sodium pyruvate at 25 degrees C after 24 hours. No molecular product identity, rate, yield, time course or statistical comparison is transferred."
+    },
     "tk_2020:DHB-24h": {
       "provider": {
         "source": "tk2020",
@@ -2876,6 +2972,32 @@
       ],
       "stereochemistry": "Source-named reactants; no project-derived chemical graph, atom map, substrate-lot identity or product stereochemistry.",
       "scope": "The composite identifier binds both substrate roles and their selected fixed concentrations. It is not 3-FBA with hydroxypyruvate, another aromatic acceptor with pyruvate or a single-substrate preference state."
+    },
+    "tk_2024:3HBA+pyruvate": {
+      "name": "3-hydroxybenzaldehyde plus pyruvate",
+      "chemical_role": "source-named fixed two-substrate assay pair",
+      "roles": [
+        {
+          "name": "3-hydroxybenzaldehyde",
+          "role": "aromatic aldehyde acceptor",
+          "concentration_mM": 50
+        },
+        {
+          "name": "sodium pyruvate",
+          "role": "donor supplied in assay solution",
+          "concentration_mM": 50
+        }
+      ],
+      "source": {
+        "source": "tk2024bg",
+        "pointer": "/assays/0/conditions"
+      },
+      "participant_ids": [
+        "3HBA",
+        "pyruvate"
+      ],
+      "stereochemistry": "Source-named reactants; no project-derived chemical graph, atom map, substrate-lot identity or molecular product identity.",
+      "scope": "The composite identifier binds both substrate roles and their selected fixed concentrations. It is distinct from the 3-FBA assay and does not supply a reaction or product assignment."
     },
     "tk_2020:GA+pyruvate": {
       "name": "glycolaldehyde plus pyruvate",
@@ -5324,6 +5446,61 @@
         }
       ],
       "reaction_id": "tk_2024:3FBA-pyruvate-to-PAC-analogue"
+    },
+    {
+      "id": "tk2024-3hba-background",
+      "study_id": "tk_2024",
+      "source": "tk2024bg",
+      "rows_pointer": "/conversion_observations",
+      "fields": {
+        "row_id": {
+          "pointer": "/row_id"
+        },
+        "construct_id": {
+          "pointer": "/construct_id"
+        },
+        "assay_id": {
+          "pointer": "/assay_id"
+        },
+        "substrate_id": {
+          "literal": "tk_2024:3HBA+pyruvate"
+        },
+        "source_locator": {
+          "pointer": "/source_locator"
+        }
+      },
+      "parameters": [
+        {
+          "id": "conversion",
+          "pointer": "/conversion",
+          "kind": {
+            "pointer": "/result_kind"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/uncertainty"
+            },
+            "kind": {
+              "pointer": "/uncertainty_kind"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            },
+            "unit": {
+              "pointer": "/unit"
+            }
+          },
+          "status_kinds": {
+            "reported_numeric": "numeric"
+          }
+        }
+      ]
     },
     {
       "id": "tk2020-dhb-product",
@@ -9629,6 +9806,53 @@
       "scope": "Descriptive TK-2/TK-1 central-value ratio for source-reported specific activity at 50 mM 3-FBA and 50 mM pyruvate. TK-1 is the complete engineered comparison background and R520Q is the TK-2 set difference. The reported activity column may depend on the same kinetic fit and is not independent fit evidence. The two 61% 24-hour conversions are separate context; no propagated uncertainty, significance, equivalence, isolated residue cause, donor/acceptor preference combinability, 6M comparison or transfer to MAL or human TKT follows."
     },
     {
+      "id": "tk_2024:R520Q:3HBA-background-context",
+      "study_id": "tk_2024",
+      "operation": "unassessed",
+      "roles": {},
+      "context_observations": [
+        "tk2024-3hba-background:TK-3:3-HBA:conversion",
+        "tk2024-3hba-background:TK-6:3-HBA:conversion",
+        "tk2024-3hba-background:TK-4C:3-HBA:conversion",
+        "tk2024-3hba-background:TK5C:3-HBA:conversion"
+      ],
+      "source_blocks": [
+        "no_scalar_background_interaction_requested",
+        "integer_display_and_unreported_detection_limit_do_not_establish_exact_zero",
+        "replicate_count_uncertainty_and_significance_unreported",
+        "molecular_product_identity_not_established"
+      ],
+      "evidence": [
+        {
+          "source": "tk2024bg",
+          "pointer": "/background_relation"
+        },
+        {
+          "source": "tk2024bg",
+          "pointer": "/constructs"
+        },
+        {
+          "source": "tk2024bg",
+          "pointer": "/noncanonical_residue_context"
+        },
+        {
+          "source": "tk2024bg",
+          "pointer": "/assays/0"
+        },
+        {
+          "source": "tk2024bg",
+          "pointer": "/conversion_observations"
+        },
+        {
+          "source": "tk2024bg",
+          "pointer": "/limits"
+        }
+      ],
+      "scope": "Retrieve the source-supported four-cell 24-hour 3-HBA endpoint pattern for R520Q within separate S385F and S385pCNF engineered backgrounds. No scalar ratio, exact zero, statistical interaction, generic epistasis, isolated R520Q cause, molecular product identity or mechanistic conclusion is requested or established.",
+      "source_discriminant_assessed": true,
+      "arithmetic_requested": false
+    },
+    {
       "id": "tk_2020:H473N:DHB_accumulation",
       "study_id": "tk_2020",
       "operation": "ratio",
@@ -11067,6 +11291,10 @@
         {
           "source": "tk2024",
           "pointer": "/sources/0"
+        },
+        {
+          "source": "tk2024bg",
+          "pointer": "/sources/0"
         }
       ],
       "redistributed": false,
@@ -11081,6 +11309,10 @@
       "source_bindings": [
         {
           "source": "tk2024",
+          "pointer": "/sources/1"
+        },
+        {
+          "source": "tk2024bg",
           "pointer": "/sources/1"
         }
       ],

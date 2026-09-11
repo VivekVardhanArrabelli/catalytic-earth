@@ -101,3 +101,55 @@ response-body bytes, including redirects. Prior batches retain their totals.
 Primary bodies remain in the Git-common source cache. Computational source,
 representation and adversarial reviews are correlated; they are not independent
 human review or project-run experiments.
+
+## R520Q across S385F and S385pCNF backgrounds with 3-HBA
+
+The retained [Table 2](https://www.nature.com/articles/s41598-024-51831-z/tables/2)
+supports a separate background-dependent endpoint pattern with
+3-hydroxybenzaldehyde (3-HBA) and pyruvate. All four variants share the 6M
+scaffold above. pCNF is p-Cyano-L-phenylalanine, a noncanonical residue whose
+identity is preserved separately from phenylalanine.
+
+| Source construct | Added substitutions on 6M | Reported 24 h conversion, % |
+| --- | --- | ---: |
+| TK-3 | S385F | 42 |
+| TK-6 | S385F + R520Q | 44 |
+| TK-4C | S385pCNF | 40 |
+| TK5C (article alias TK-5C) | S385pCNF + R520Q | 0 |
+
+The shared screen uses 0.1 mg/mL purified enzyme, 50 mM each 3-HBA and sodium
+pyruvate, 50 mM Tris-HCl pH 7.0, 2.4 mM ThDP and 9 mM MgCl2 at 25 °C for
+24 h. The endpoint is RP-HPLC product peak area divided by combined substrate
+and product peak area. Replicates, uncertainty, response-factor calibration,
+rounding rules and detection limits are unreported for these cells; the
+separate 3-FBA kinetic triplicates do not supply them.
+
+Under this screen, TK5C does not retain the displayed 3-HBA conversion of
+TK-4C, whereas TK-3 and TK-6 both retain displayed conversion. The 44% value
+does not establish superiority to 42%. The printed integer 0% does not
+establish an exact zero or biochemical inactivity. This relation computes
+no scalar, significance, energetic interaction or generic epistasis claim.
+These are separate substrate screens, without competition or selectivity
+measurements, exact assayed sequence, isolated R520Q cause or design validation.
+
+The article reports amber suppression and ESI-MS confirmation of noncanonical
+residue incorporation; the underlying spectra remain uninspected. The plasmid
+naming discrepancy above is retained. The inspected LC-MS/NMR product-confirmation
+sentence concerns 3-FBA conversions. It supplies no molecular product assignment
+for these 3-HBA rows, which have their own assay and substrate without a reaction
+object or transfer of the 3-FBA product.
+
+```sh
+python scripts/query_atlas_perturbations.py --comparison tk_2024:R520Q:3HBA-background-context
+```
+
+The [background packet](../data/atlas/study_context/tk_2024/background_evidence.json)
+and [computational review](../data/atlas/study_context/tk_2024/background_review.json)
+reuse the same consumer and two retained primary witnesses. Four observations,
+two explicit construct pairs and their common endpoint are returned together.
+No runtime change or new acquisition is needed. The original 12-request receipt
+above is historical: the cumulative `two-substrate-lineages-2024-51831` batch
+now remains at 39 requests / 23,268,387 response-body bytes, as bound in the
+[Ibdah acquisition appendix](../data/atlas/study_context/ahas_2005/ibdah_acquisition_appendix.json).
+The relation is source annotation under CE-044, without new project experiments,
+independent human validation or protected admissions.

@@ -1,5 +1,20 @@
 # Current Decisions
 
+## 2026-09-11: preserve the TK 3-HBA background pattern at endpoint scope
+
+Accept the [TK-3/TK-6 and TK-4C/TK5C relation](ATLAS_TK_ENDPOINT_CONTEXT.md#r520q-across-s385f-and-s385pcnf-backgrounds-with-3-hba)
+as an extension of CE-044 using retained primary Table2 and methods. Keep
+S385F and S385pCNF backgrounds separate; pCNF retains its noncanonical chemical
+identity. The existing no-arithmetic comparison returns four 24-hour HPLC
+observations and source limitations. Case facts stay in data; no runtime change.
+
+Preserve printed integer zero without a detection or inactivity inference.
+Do not attach the 3-FBA product, kinetic uncertainty or assay to these 3-HBA
+rows, or infer superiority, generic epistasis, energies, selectivity or isolated
+mutation cause. The bounded four-cell inquiry is complete; do not expand the
+same table to fill another run. Resume pending integration before selecting
+new science under the direction review. No protected source or exposure change.
+
 ## 2026-09-11: preserve a metal-substitution assessment without forcing a ratio
 
 Accept the [CODH Ag-substitution relation](ATLAS_CODH_METAL_SUBSTITUTION.md)

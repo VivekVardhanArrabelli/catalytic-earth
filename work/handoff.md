@@ -1,93 +1,91 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research baton — 2026-09-11 CODH source-assessment recovery
+## Current research baton — 2026-09-11 recovery and TK background endpoint
 
-- **Identity/recovery:** start 2026-09-11T23:07:14Z; owner
+- **Identity/publication:** start 2026-09-11T23:07:14Z; owner
   `01a092b9-5eef-7bf3-8c4d-40efd33cd125:412188dd-6825-4811-a5b3-a4a741ab90e6`.
-  Resumed `codex/codh-silver-context-20260911` at base
-  `1b246c7303ca9ce4ea518b6704341a68d7b272ca`. The old parent and adversarial worker
-  failed; source/representation workers completed. Current task API verified all
-  inactive with no running commands; only the saved worktree exists. Preserved
-  all 21 dirty files in a Git-local recovery snapshot before archiving the old
-  lock and acquiring the default Git-common lock at 23:09:20Z. No unrelated work.
-  Fetched origin; main remains at base, no prior open PR. Checkpoint 2026-09-11T23:24:43.588045+00:00
-  (17.49 minutes); final publication/release belongs in the current receipt.
-- **Question/direction:** finish the interrupted CODH metal-substitution/function
-  relation before a new inquiry. Does the retained primary support the relation,
-  and does its shared consumer preserve study, evidence and endpoint scope?
-  The direction review's M0187 priority was completed by later published work;
-  the newer handoff controls continuity. Stop after source/diff objections are
-  resolved and the coherent increment is verified/published, or at an exact blocker.
-- **Scientific finding:** the primary abstract (DOI 10.1021/ja205073j, PMID 21774528)
-  reports functional Ag-substituted O. carboxidovorans CODH and Ag I=1/2-coupled
-  EPR after CO reduction. Four distinct source parameters remain: Ag/source-WT
-  limiting CO-reduction rates 8.1/51 s^-1, and Ag steady-state kcat 8.2 s^-1 /
-  KM 2.95 uM at pH 7.2. pH applies only to the steady-state pair; KM analyte is
-  contextual CO, not explicitly restated. CE-047 is an abstract-scope source
-  annotation: four parameters and one spectral context, not five experiments.
-  No new source acquisition or project experiment in this recovery run.
-- **Limits:** full Methods/SI, metal loading, residual Cu, apo controls, exact
-  sequences, shared preparation, normalization, acceptor, errors and matching
-  conditions remain unassessed. EPR and bulk kinetic populations need not be
-  identical. No exclusive Ag turnover, 8.1-versus-8.2 limiting-step inference,
-  oxidation state, geometry, physiology/growth, M0107 Cu-proposal validation,
-  protected protein/mechanism admission or design performance is established.
-- **Usable correction:** `--control-relation codh_2011:Ag-substitution:source-assessment`
-  returns source systems, assays, the four parameters and a same-source
-  `assessment_provider` finding without arithmetic. Recovery probes exposed
-  missing-study, foreign-evidence, independent-claim, duplicate-parameter and
-  contradictory-qualification acceptance. These now fail closed. The finding
-  lives once in the source packet; source metadata alone is not an assessment.
-  Source semantics still require review; eligible=false and scalar/unit/error
-  remain null. Existing quantitative system relations retain their behavior.
-- **Evidence/review:** `data/atlas/study_context/codh_2011/` source qualification,
-  relation, source review and acquisition receipt; `docs/ATLAS_CODH_METAL_SUBSTITUTION.md`;
-  shared perturbation projection/review. Primary JSON witness
-  `62e515cfe61a424cc23620a6f83300cf08c51339637e6b4af3167cd2aaf0e16a`, 5,148 bytes,
-  `/resultList/result/0/abstractText`; raw bytes remain only in Git-common cache.
-  M0107 is an exact DOI bibliography link only. Current source_recovery,
-  representation_recovery and adversarial_recovery use Sol/ultra and board
-  `.git/catalytic-earth-runs/412188dd.board.md`. Prior blanket final-acceptance
-  wording was false and is replaced with actual interrupted/current outcomes.
-  These are correlated computational reviews, not independent human/lab evidence.
-- **Acquisition:** this run adds zero requests/bytes. Exact retained bodies verify
-  `codh-2011-silver-substitution` at 4 / 30,214 (remaining 96 / 31,427,066) and
-  `two-substrate-lineages-2024-51831` at 39 / 23,268,387 (remaining 61 / 8,188,893).
-  The hashed tracked `ahas_2005/ibdah_acquisition_appendix.json` controls the latter;
-  old local transport request array agrees but its footer is stale and preserved.
-  Ibdah named-replacement/absolute-endpoint inquiry and CODH access stay closed.
-  Unknown-headroom TKT/POX, PLP, HisF/panel batches, DERA, M0186 H, M0213 stereo,
-  RA61, TK2020 donor and prior AHAS inquiries remain closed; no budget reset.
-- **Reuse/reconsideration:** no enzyme-ID code; shared chemical-system primitives
-  serve metal substitution plus existing micellar/acetylation source-arm fixtures.
-  Removing the duplicated assessment reduces a demonstrated manual-consistency
-  hazard. Prior 245 observations, 129 comparisons, 82 constructs, 36 assays,
-  27 substrates, 12 reactions, 2 state links, 4 model links and both system ratios
-  are invariant against the rebuilt committed baseline. Manual interpretation
-  persists; no measured time saving, incumbent superiority, broad coverage or
-  demonstrated design consumer. No further metal model or access campaign is justified.
-- **Verification/publication checkpoint:** source, representation, adversarial and
-  final bookkeeping reviews accepted. 99 focused tests, 659 core tests, repository
-  contracts, fresh-directory Atlas-3/Atlas-10 wheels and offline M0173/M0219 queries
-  pass. Prior-query invariance and 37 primary witnesses / 51,222,197 bytes pass.
-  Remote CI and publication are pending at this checkpoint. Frozen/protected
-  records, exposure and M0107 remain unchanged; M0187 package changes only current-
-  document review metadata. Historical handoff suffix is preserved. Stage this
-  handoff before building the archive index. Publish this existing branch first;
-  if unfinished, the next run resumes its PR/checks before new work. Exact final
-  SHA, push/merge/CI and same-owner release go in
+  Recovered the inactive prior CODH writer after task/worker/worktree inspection,
+  preserving all21 dirty files before archiving its abandoned lock and acquiring
+  normally at23:09:20Z. PR108 merged at23:34:38Z as
+  `1a5d4d1685d7f69b767fa0e5f0570acbcdf281a8`, all4 PR CI jobs passed; clean main and
+  remote matched and full tree equaled reviewed head `b151efe350fd4696059750fae71be146dd53c684`.
+  Current branch `codex/tk-3hba-background-20260911` starts at that merge.
+  Checkpoint 2026-09-11T23:44:48.438334+00:00 (37.57 minutes); exact final SHA/CI/merge
+  and lock release belong in the Git-local receipt, not a self-hash commit.
+- **Question/finding:** after integrating CODH, does the retained Mukhopadhyay2024
+  Table2 support a different R520Q-associated 3-HBA endpoint pattern across S385F
+  and S385pCNF backgrounds? Yes at source scope: TK-3/TK-6 report42/44%, while
+  TK-4C/TK5C report40/printed0%, using the same24h HPLC screen. Both F constructs
+  retain displayed conversion; TK5C does not retain the displayed conversion of
+  TK-4C. This extends CE-044, without a new claim ID or arithmetic. The bounded
+  four-cell inquiry is complete; do not expand this table to fill another run.
+- **Representation/limits:** four source observations, four named constructs,
+  one distinct3-HBA assay/substrate and one source-assessed context comparison
+  reuse the existing consumer. Keep pair-local backgrounds and noncanonical
+  p-Cyano-L-phenylalanine. Printed0 is not a nondetection or exact inactivity;
+  44 versus42 does not establish superiority. Replicates, errors, rounding,
+  response-factor calibration and detection limits are unreported. Exact assay
+  sequence/specimen and3-HBA molecular product are unresolved. The inspected
+  LC-MS/NMR confirmation concerns3-FBA; no reaction object transfers. No kinetic,
+  selectivity, energetic, generic epistasis, isolatedR520Q cause or design claim.
+- **CODH recovery retained:** the primary abstract reports functional Ag-substituted
+  O.carboxidovorans CODH with Ag-coupled EPR and distinct reduction/turnover
+  parameters. Recovery corrected missing-study, foreign-evidence, unbound-claim,
+  duplicate-arm and qualification guards using a same-source assessment_provider.
+  Prior false blanket review-acceptance metadata was corrected. Full methods,
+  residualCu/metal loading, preparation identity and spectral/kinetic population
+  matching remain unassessed. No exclusiveAg activity, limiting-step inference
+  or M0107 Cu-mechanism validation. That completed inquiry stays closed.
+- **Evidence/review:** `data/atlas/study_context/tk_2024/background_evidence.json`
+  and `background_review.json`; appended `docs/ATLAS_TK_ENDPOINT_CONTEXT.md`;
+  shared perturbation projection/review. Exact retained article witness
+  `0b0a4fdb19d1d271780fc5e2adaa3a44674c7e399abd4dc369b194add5750fc4` (411,827bytes)
+  and Table2 `d475805f70f5443ba24354e6e8840cbd837125b6376beac6adb82568dd9f1715`
+  (164,668bytes) now bind the additional packet; bodies stay Git-common-local.
+  Source, representation and adversarial Sol/ultra roles share
+  `.git/catalytic-earth-runs/412188dd.board.md`; same-model reviews are correlated
+  computational checks, not independent human or project experimental evidence.
+- **Acquisition:** zero new requests/bytes for this run. Cumulative
+  `two-substrate-lineages-2024-51831` remains39/23,268,387; remaining61/8,188,893
+  under100/31,457,280. Its hashed tracked `ahas_2005/ibdah_acquisition_appendix.json`
+  controls accounting; the original TK12-request receipt is historical and the
+  old local transport footer is stale. CODH distinct batch stays4/30,214.
+  Ibdah named-replacement/absolute-endpoint and CODH access remain closed.
+  Unknown-headroom legacy batches retain their restrictions; no allowance reset.
+- **Reuse/reconsideration:** no runtime change for TK. Reuse of two witnesses and
+  one shared consumer makes the named construct/endpoint relation accessible
+  without another acquisition or duplicated source table. Source interpretation
+  remains manual; no measured time saving, incumbent superiority or demonstrated
+  design consumer. Existing source packets, prior query data and CODH relations
+  must stay invariant. Protected/frozen records and exposure history stay intact;
+  M0187 packaged differences are only current-document review metadata.
+- **Verification/checkpoint:** source, representation and adversarial reviews
+  accepted.86 perturbation and660 core tests pass; fresh-directory Atlas3/10
+  wheels and offline M0173/M0219 queries pass. Prior245 observations and129
+  comparisons plus all earlier systems/providers remain identical;37 retained
+  witnesses verify. Current-query/repository/archive checks follow final metadata
+  pinning and staging. Stage this handoff before rebuilding the report archive.
+  Publish the coherent owned branch; merge only after actual
+  diff/source acceptance and all required CI pass. If unfinished, the next run
+  resumes this branch/PR before new science. Final check outcomes, resulting
+  SHA/PR and same-owner release are recorded in
   `.git/catalytic-earth-runs/20260911T230714Z-412188dd-6825-4811-a5b3-a4a741ab90e6.json`.
-  The old run's receipt is incomplete and is not final publication evidence.
-- **One next scientific action after integration:** assess Mukhopadhyay2024 Table 2's
-  four 3-HBA endpoint cells for R520Q with S385F versus S385pCNF backgrounds
-  (TK-3/TK-6/TK-4C/TK5C). Use retained `.git/catalytic-earth-runs/74ac02ee-sources/table2.html`
-  and `article.html`, plus the existing `study_context/tk_2024` packet. Expected
-  gain: one source-supported substrate/background interaction relevant to catalyst
-  choice. Start with zero acquisition; stop after one supported relation or the
-  first assay, noncanonical-residue or endpoint representation gap. Preserve pCNF
-  identity, integer-displayed zero versus inactivity, endpoint and uncertainty;
-  no residue-energy or generic epistasis claim. Do not reopen settled AHAS/CODH work.
+  Historical handoffs below remain untouched; no unrelated work is owned.
+- **One next scientific action after integration:** resolve the opaque E317Q
+  activity annotation already attached to mandelate racemase P11444:E317 against
+  its exact primary PMID7893689 / DOI10.1021/bi00009a006 (Mitra1995, Biochemistry34,
+  2777-2787). The retained UniProt reference6 supplies this citation and the
+  current `docs/ATLAS_MECHANISM_EVIDENCE.md` explicitly leaves primary results
+  uninspected. Expected gain: an endpoint-specific Glu317 functional constraint,
+  separate from the existing H297 PMID1909893 evidence and selected-step role.
+  First reconcile all prior receipts for this DOI/study and reuse retained bytes;
+  do not assume a fresh allowance. If source access is justified and headroom is
+  established, initial ceiling4 requests/1MiB within its cumulative100/30MiB cap.
+  Stop after one source-supported endpoint relation or the first identity/assay
+  gap. No database10000-fold number promoted into a kinetic observation without
+  primary endpoint, denominator and construct evidence; no residue-energy or
+  mutant-geometry inference. Do not reopen settled TK/AHAS/CODH inquiries.
 
 <!-- current-research-handoff:end -->
 

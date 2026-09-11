@@ -662,7 +662,7 @@ assay; it does not quantify epistasis or prove a geometry change. Two source
 parameter records reuse the existing consumer without a new kinetic comparison,
 project experiment, protein admission, mechanism validation or design claim.
 
-## CE-044 — the TK R520Q effect depends on the measured endpoint
+## CE-044 — the TK R520Q effect depends on endpoint and named background
 
 **Status:** Supported
 
@@ -679,6 +679,17 @@ The earlier 6M comparator varied the other substrate in a different study.
 Four parameter records and one descriptive ratio reuse the shared consumer;
 no MAL or human-TKT transfer, exact assayed sequence, absolute product
 configuration, project experiment, independent validation or design claim.
+
+
+The separate Table 2 3-HBA screen reports 42/44% 24-hour conversion for
+TK-3/TK-6 (6M+S385F without/with R520Q) and 40/printed 0% for TK-4C/TK5C
+(6M+S385pCNF without/with R520Q). Four additional source observations retain
+the named backgrounds, noncanonical p-Cyano-L-phenylalanine and their common
+HPLC endpoint through the same consumer, without arithmetic or a 3-HBA product
+assignment. Missing uncertainty and display/detection limits prevent a 44%-over-42%
+superiority claim or interpreting printed zero as biochemical inactivity.
+The source-supported endpoint pattern does not establish generic epistasis,
+energetics, selectivity, isolated R520Q cause or design validation.
 
 ## CE-045 — competing-product nondetection does not imply improved target accumulation
 
