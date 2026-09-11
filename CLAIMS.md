@@ -331,6 +331,16 @@ remain unresolved. These selected published results do not supply generic
 activity labels, exact assay-specimen verification, design success rates,
 productive geometry, new experiments or independent validation.
 
+The [four-cell reanalysis](docs/ATLAS_PERTURBATION_RELATION.md#reported-lysine-endpoints-depart-from-a-multiplicative-reference)
+uses both complete K83M/K210M panels. Double / multiplicative-reference values
+are 0.004941 and 0.144246 for kcat in RA95.5 and RA95.5-5, respectively;
+the corresponding printed-efficiency contrasts are 0.002632 and 0.036957.
+These are source-rounded descriptive conditional effects, not physical
+interaction, statistical significance, microscopic coupling energy or an
+evolutionary trend. The racemic fluorescence assay and its limitations remain;
+both KM contrasts abstain, and printed efficiency is not independent evidence
+or a repaired quotient. No new measurement, runtime or evidence tier is added.
+
 ## CE-027 — pH-profile evidence does not identify a catalytic residue
 
 **Status:** Supported

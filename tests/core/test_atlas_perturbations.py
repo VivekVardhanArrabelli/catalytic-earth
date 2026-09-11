@@ -148,7 +148,7 @@ class PerturbationRelationTests(unittest.TestCase):
         self.assertEqual(invalid.returncode, 2)
         self.assertIn("requires --state-link", invalid.stderr)
         for link_id, row_count, comparison_count in (
-            ("ra95_2013:RA95.5-5-states", 12, 9),
+            ("ra95_2013:RA95.5-5-states", 12, 12),
             ("ra95_2017:RA95.5-8F-states", 21, 21),
         ):
             with self.subTest(link=link_id):
@@ -170,7 +170,7 @@ class PerturbationRelationTests(unittest.TestCase):
                 for comparison in view["comparisons"]:
                     self.assertTrue(set(comparison["roles"].values()) <= ids)
                 if link_id.startswith("ra95_2013"):
-                    self.assertEqual(sum(row["eligible"] for row in view["comparisons"]), 6)
+                    self.assertEqual(sum(row["eligible"] for row in view["comparisons"]), 8)
                     self.assertTrue(all(not row["eligible"] and row["value"] is None
                                         for row in view["comparisons"] if row["id"].endswith(":KM")))
                     self.assertTrue(all(row["source_row_id"].startswith("si-table2:") for row in view["observations"]))
@@ -289,6 +289,40 @@ class PerturbationRelationTests(unittest.TestCase):
         comparison = self.comparisons["ra95_2013:RA95.0-K210M:kcat"]
         self.assertFalse(comparison["eligible"])
         self.assertIsNone(comparison["value"])
+
+    def test_lysine_squares_bind_four_matching_cells_and_preserve_km_refusal(self):
+        for background, expected, references in (
+            ("RA95.5", {"kcat": 0.004940711462450593, "kcat_over_KM": 0.0026315789473684214},
+             {"kcat": 0.001012, "kcat_over_KM": 2.66}),
+            ("RA95.5-5", {"kcat": 0.1442455242966752, "kcat_over_KM": 0.036956521739130443},
+             {"kcat": 0.0003258333333333333, "kcat_over_KM": 2.3}),
+        ):
+            for parameter in ("kcat", "kcat_over_KM", "KM"):
+                request = self.comparisons[f"ra95_2013:{background}:K83M-K210M:{parameter}"]
+                self.assertEqual(request["operation"], "multiplicative")
+                self.assertEqual(len(set(request["roles"].values())), 4)
+                witnesses = request["source_evidence"][:4]
+                self.assertTrue(all(row["footnote_a_marker_present"] for row in witnesses))
+                self.assertEqual({row["row_id"] for row in witnesses},
+                                 {self.rows[key]["source_row_id"] for key in request["roles"].values()})
+                self.assertIsNone(request["uncertainty"])
+                if parameter == "KM":
+                    self.assertFalse(request["eligible"])
+                    self.assertIsNone(request["value"])
+                    self.assertEqual(sum(reason.startswith("source_conflict:")
+                                         for reason in request["reasons"]), 4)
+                    self.assertEqual(sum(reason.startswith("unresolved_unit:")
+                                         for reason in request["reasons"]), 4)
+                    continue
+                self.assertTrue(request["eligible"])
+                self.assertAlmostEqual(request["value"], expected[parameter])
+                self.assertAlmostEqual(request["expected_double"], references[parameter])
+                wrong_parent = deepcopy(request)
+                wrong_parent["roles"]["parent"] = f"ra95-kinetics:main-table1:{background}:{parameter}"
+                rejected = compare(self.rows, wrong_parent)
+                self.assertFalse(rejected["eligible"])
+                self.assertIsNone(rejected["value"])
+                self.assertIn("mismatched_assay_id", rejected["reasons"])
 
     def test_conflicting_unit_is_not_silently_repaired(self):
         row = self.rows["ra95-kinetics:si-table2:RA95.5-5-K210M:KM"]
@@ -443,11 +477,14 @@ class PerturbationRelationTests(unittest.TestCase):
 
     def test_unbound_context_and_evidence_free_assessment_are_rejected(self):
         spec = deepcopy(self.spec)
-        spec["comparisons"][-1]["context_observations"].append("missing-row")
+        assessment_id = "beta_barrel_2022:benzoate-control-to-8AH9"
+        assessment = next(row for row in spec["comparisons"] if row["id"] == assessment_id)
+        assessment["context_observations"].append("missing-row")
         with self.assertRaisesRegex(ValueError, "unbound or cross-study context"):
             _project_candidate(ROOT, spec)
         spec = deepcopy(self.spec)
-        spec["comparisons"][-1]["evidence"] = []
+        assessment = next(row for row in spec["comparisons"] if row["id"] == assessment_id)
+        assessment["evidence"] = []
         with self.assertRaisesRegex(ValueError, "requires bound source evidence"):
             _project_candidate(ROOT, spec)
 

@@ -328,13 +328,16 @@
     "claim_kind": "scientific_result",
     "status": "Supported",
     "claim": "In the retained RA95.5-5 fluorescence comparison, K210M retains displayed kcat/KM 490 M^-1 s^-1 while kcat changes from 0.048 +/- 0.007 to 0.023 +/- 0.001 s^-1; K83M has reported efficiency 2.3 M^-1 s^-1.",
-    "current_wording": "Bind designed-enzyme outcomes to the exact variant background, substrate, assay and parameter. Preserve positive reported parameter values in engineered double-substitution derivatives of evolved backgrounds and RA95.0-K210M nondetection without a numeric detection limit. Four complete sequences are source-printed; eight mutant strings are derived. KM unit conflicts and unmarked-row assay identity remain unresolved; no generic inactivity, exact assay-specimen verification, design success rate, productive geometry or new validation follows.",
-    "rationale": "The primary study, complete tagged sequences, mutation definitions and assay-specific table rows prevent name-only construct joins and endpoint-blind catalytic-role transfer. The primary study already reports remodeling; the atlas adds reusable evidence-qualified associations.",
+    "current_wording": "Bind designed-enzyme outcomes to the exact variant background, substrate, assay and parameter. Preserve positive reported parameter values in engineered double-substitution derivatives of evolved backgrounds and RA95.0-K210M nondetection without a numeric detection limit. Four complete sequences are source-printed; eight mutant strings are derived. KM unit conflicts and unmarked-row assay identity remain unresolved; no generic inactivity, exact assay-specimen verification, design success rate, productive geometry or new validation follows. The two complete source-marked K83M/K210M panels now yield double/multiplicative-reference contrasts of 0.004940711 and 0.144245524 for kcat in RA95.5 and RA95.5-5; printed-efficiency contrasts are 0.002631579 and 0.036956522. These source-rounded conditional effects have no propagated uncertainty, significance, microscopic coupling energy, physical-interaction or evolutionary-trend interpretation. Racemic fluorescence limitations remain; both KM contrasts abstain. Printed efficiency is source-derived context, not independent confirmation or a repaired quotient. No new measurements, runtime or evidence tier.",
+    "rationale": "The primary study, complete tagged sequences, mutation definitions and assay-specific table rows prevent name-only construct joins and endpoint-blind catalytic-role transfer. The primary study already reports remodeling; the atlas adds reusable evidence-qualified associations. Reusing the existing four-cell operation makes the failure of multiplicative composition queryable across two exact backgrounds without transferring a near-parent single-mutant factor into the double background.",
     "evidence": [
       "data/atlas/study_context/ra95_2013/functional_comparison.json",
       "data/atlas/study_context/ra95_2013/functional_review.json",
       "data/atlas/study_context/ra95_2013/acquisition_receipts.json",
-      "docs/ATLAS_DESIGNED_ENZYME_OUTCOMES.md"
+      "docs/ATLAS_DESIGNED_ENZYME_OUTCOMES.md",
+      "data/atlas/perturbations/projection.json",
+      "data/atlas/perturbations/review.json",
+      "docs/ATLAS_PERTURBATION_RELATION.md"
     ]
   },
   {

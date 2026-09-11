@@ -1,5 +1,31 @@
 # Current Decisions
 
+## 2026-09-11: retain conditional lysine effects through the existing four-cell relation
+
+Use the [K83M/K210M reanalysis](ATLAS_PERTURBATION_RELATION.md#reported-lysine-endpoints-depart-from-a-multiplicative-reference)
+to ask a distinct question of the retained RA95.5 and RA95.5-5 panels: whether
+source-reported single-mutant factors compose multiplicatively. Both complete
+fluorescence panels permit descriptive turnover and printed-efficiency
+contrasts; their KM contrasts remain blocked. This qualifies a conditional
+effect instead of treating a near-parent single-mutant factor as transferable
+to the second-substitution background.
+
+The existing multiplicative operation handles the six new data declarations;
+no runtime, schema, source packet or measurement change is warranted. The
+2017 tyrosine operation and all earlier ratios retain their original values.
+Keep the analyst-selected reference, racemic endpoint, less-robust fluorescence,
+two-measurement SD, derived-sequence status and unavailable mechanistic controls
+explicit. No significance, coupling energy, physical interaction, preserved
+rate-limiting step or evolutionary trend follows. Printed efficiency is not an
+independent endpoint confirmation, and unit cancellation does not repair KM.
+
+This is retained-source reanalysis, not new primary evidence or a reopened
+RA95 chemical-state investigation. The Diels-Alder source-access stop remains
+closed; no acquisition or permission change occurred. The useful increment is
+a new computable conditional-effect relation using already reviewed evidence,
+not another copied table or a claim of curation-time savings.
+
+
 ## 2026-09-10: retain reaction locators while refusing exact mandelate state identity
 
 Accept the [M0187 input-to-dictionary diagnostic](ATLAS_MECHANISM_EVIDENCE.md#the-reaction-to-deposit-join-stops-at-protonation)
