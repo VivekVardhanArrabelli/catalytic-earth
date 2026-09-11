@@ -1,5 +1,22 @@
 # Current Decisions
 
+## 2026-09-11: separate source assessment from unrequested arithmetic
+
+Correct the shared KSI2010/calmodulin response status using their existing
+explicit assessment declarations. Do not reinterpret source evidence, compute
+a scalar effect or promote genuine unassessed controls. Require a consistent
+Boolean pair when the optional declarations are supplied; retain the existing
+operation and source-specific limits. Two focused regressions address this
+demonstrated consumer failure, with whole-query invariance for other results.
+
+The [direction review](SCIENTIFIC_DIRECTION.md) accepts the recent scientific
+direction and the newer M0187 source-site-to-function question. DERA's bounded
+access task is closed while its residue–state–function inquiry remains
+unassessed. Do not repeat access-only or panel-refusal work. Preserve the actual
+hourly pause pending the user's response, and retire the queued status-fix
+prompt only after publishing this correction. No new research queue or design
+benchmark is required by this oversight pass.
+
 ## 2026-09-11: close the M0186 replay at hydrogen continuity
 
 Retain the [source continuity audit](ATLAS_PLP_STEP_BOUNDARY.md#within-m0186-the-next-state-stops-at-explicit-hydrogen-continuity)

@@ -1,5 +1,20 @@
 # Current State
 
+## 2026-09-11: preserve assessed source evidence without scalar arithmetic
+
+The [perturbation response](ATLAS_PERTURBATION_RELATION.md) now distinguishes
+KSI2010 and calmodulin's explicitly assessed source-control contexts from a
+genuinely unassessed matched comparison. Their reason is
+`arithmetic_not_requested`; eligibility remains false and value, unit and
+uncertainty remain null. Source evidence, numerical results and KE59's
+unassessed behavior are unchanged. This corrects an ambiguous machine status,
+not a source finding or evidence tier.
+
+The [direction review](SCIENTIFIC_DIRECTION.md) incorporates published PRs
+#91–#99, closes the bounded DERA acquisition priority with its scientific
+question still unassessed, and retains the next M0187 reference-site inquiry.
+The hourly Astra/max schedule is paused; recurring oversight remains active.
+
 ## 2026-09-11: M0186 panel continuity stops at explicit hydrogen
 
 The retained [M0186 step-2 to step-3 audit](ATLAS_PLP_STEP_BOUNDARY.md#within-m0186-the-next-state-stops-at-explicit-hydrogen-continuity)

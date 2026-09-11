@@ -923,6 +923,47 @@ class PerturbationRelationTests(unittest.TestCase):
         self.assertIn("later cycle steps not measured", row["reaction_direction"])
         self.assertEqual(result["source_evidence"][2]["product_binding_estimate"]["value"], 26)
 
+    def test_assessed_source_contexts_do_not_become_unassessed_controls(self):
+        for comparison_id in ("ksi_2010:donor_solvation_context",
+                              "calmodulin_2015:nucleophile-control-context"):
+            with self.subTest(comparison_id=comparison_id):
+                request = next(c for c in self.spec["comparisons"] if c["id"] == comparison_id)
+                result = self.comparisons[comparison_id]
+                self.assertTrue(result["source_discriminant_assessed"])
+                self.assertFalse(result["arithmetic_requested"])
+                self.assertFalse(result["eligible"])
+                for field in ("value", "unit", "uncertainty"):
+                    self.assertIsNone(result[field])
+                self.assertEqual(result["reasons"],
+                                 sorted(set(request["source_blocks"] + ["arithmetic_not_requested"])))
+                self.assertIn("control discrimination was assessed", result["interpretation_limit"])
+                self.assertIn("no scalar comparison", result["interpretation_limit"])
+                for field in ("evidence", "context_observations"):
+                    self.assertEqual(result[field], request[field])
+
+    def test_context_assessment_requires_explicit_consistent_boolean_pair(self):
+        original = next(c for c in self.spec["comparisons"]
+                        if c["id"] == "ke59_2012:E230-matched-perturbation")
+        declared_unassessed = dict(original, source_discriminant_assessed=False,
+                                   arithmetic_requested=False)
+        result = compare(self.rows, declared_unassessed)
+        del result["source_discriminant_assessed"], result["arithmetic_requested"]
+        self.assertEqual(result, compare(self.rows, original))
+        invalid = [
+            {"source_discriminant_assessed": True},
+            {"arithmetic_requested": False},
+            {"source_discriminant_assessed": 1, "arithmetic_requested": False},
+            {"source_discriminant_assessed": True, "arithmetic_requested": 0},
+            {"source_discriminant_assessed": True, "arithmetic_requested": True},
+        ]
+        scalar = next(c for c in self.spec["comparisons"] if c["operation"] == "ratio")
+        requests = [dict(original, **flags) for flags in invalid]
+        requests.append(dict(scalar, source_discriminant_assessed=True, arithmetic_requested=False))
+        for request in requests:
+            with self.subTest(request=request):
+                with self.assertRaisesRegex(ValueError, "context assessment requires"):
+                    compare(self.rows, request)
+
     def test_ke59_unassessed_is_not_a_negative_measurement(self):
         result = self.comparisons["ke59_2012:E230-matched-perturbation"]
         self.assertEqual(result["result_kind"], "unassessed")
@@ -931,6 +972,8 @@ class PerturbationRelationTests(unittest.TestCase):
         self.assertIsNone(result["matched_control"])
         self.assertIsNone(result["observed_value"])
         self.assertIsNone(result["unit"])
+        self.assertIn("matched_perturbation_control_unassessed", result["reasons"])
+        self.assertNotIn("arithmetic_not_requested", result["reasons"])
         self.assertIn("No matched perturbation comparison was evaluated", result["interpretation_limit"])
         self.assertIsNone(result["source_evidence"][0]["matched_E230_perturbation_rows_in_uninspected_SI"])
         self.assertEqual(self.rows["ke59-pH:Table2:R4-5/11B:apparent_pKa_from_kcat"]["value"], 5.5)
