@@ -1,104 +1,91 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research baton — 2026-09-11 (UTC)
+## Current research baton — 2026-09-11 00:56 UTC direction review
 
 This block, `docs/HOURLY_RESEARCH.md` and the current direction review govern
 continuation. Historical handoffs below are not an execution queue.
 
-- **Identity/base:** owner `01a08dca-1951-7101-a2af-f591ae8c6955:12920f52-1040-4d06-b3d9-2c2f55cd0ec2`;
-  actual UTC start `2026-09-11T00:07:44.262005+00:00`; clean synced main base
-  `d51370afc0523429777c8306718baca4209f97b6`. PR88 was merged; no pending
-  PR/recovery or unrelated dirty work. Branch
-  `codex/ra95-lysine-conditional-effects-20260911`. Parent alone owns all edits,
-  Git, acquisition and lock. Three Sol/ultra read-only source, representation
-  and adversarial roles share `.git/catalytic-earth-runs/12920f52.board.md`.
-  Final elapsed time and resulting SHA are in the Git-local receipt/task result.
-- **Direction reconciliation/question:** the older RA95 state priority was
-  completed in PR80/81; the Diels-Alder source-access stop in PR88 remains
-  closed. A distinct retained-source reanalysis asks whether K83M/K210M
-  single-substitution effects compose multiplicatively within each complete
-  RA95.5 and RA95.5-5 fluorescence panel. Expected gain: a conditional-effect
-  relation that prevents transferring a near-parent single-mutant factor into
-  the double background. Stop after two supported four-cell panels or the first
-  assay/construct/parameter mismatch. This stopping condition is met.
-- **Scientific result:** source-rounded double / multiplicative-reference
-  contrasts are **0.004940711 and 0.144245524 for kcat**, respectively;
-  printed-efficiency contrasts are **0.002631579 and 0.036956522**. Both KM
-  requests abstain at the existing unit conflict. These are four new derived
-  contrasts from existing observations, not new primary evidence. For example,
-  RA95.5-5 K210M's printed efficiency equals its parent's, but the double's
-  0.085 differs from K83M's2.3; that single-mutant factor is not transferable.
-- **Evidence and limits:** `data/atlas/perturbations/projection.json` binds all
-  four rows per request to unchanged `ra95_2013/functional_comparison.json`
-  variants7–10 and11–14, assay1, source conflicts and interpretation. The
-  retained primary SI page3/Table2/footnote a and XML MethodsS11/S13/S15 were
-  checked directly. All8 rows share racemic-methodol fluorescence conditions;
-  errors are SD from2 measurements. No raw fits/covariance, quantitative
-  detection floor, active-fraction/fold or mutant-structure control is supplied
-  in the retained scope. Derived mutant strings match source-declared singles
-  and doubles but do not authenticate physical specimens. The analyst-selected
-  multiplicative reference is not a mechanistic null. No significance,
-  microscopic coupling energy, physical interaction, same-turnover mechanism,
-  preserved rate-limiting step or evolutionary trend follows. Printed efficiency
-  is source-derived arithmetic, not independent corroboration or repaired KM.
-- **Reuse/reconsideration:** the unchanged generic operation already used for
-  the2017 tyrosine pair handles all6 new requests with case facts in data.
-  All193 observation payloads and111 earlier comparisons remain unchanged
-  apart from new memberships; the view has117 requests,89 eligible/28 abstaining.
-  No new runtime, schema, source packet, source acquisition or evidence tier.
-  This adds guarded conditional comparisons beyond individual ratios; a competent
-  reader can calculate them manually. No novelty, measured curation-time saving
-  or incumbent-superiority claim. It satisfies the direction rule requiring a
-  consequential new question before reusing a cached table. **Consecutive
-  no-progress runs:0** because the run adds usable derived relations. Schedule
-  remains active; repeated four-cell calculations are not a new task queue.
-- **Acquisition:** new **0 requests / 0 bytes**. RA95 remains cumulatively
-  **27 / 17,298,809**; its provider9-request receipt is historical only.
+- **Identity/base:** owner
+  `01a07311-aac6-7010-9516-e0b53605d473:e2c1653d-103a-468d-b745-f8d780efacfd`;
+  actual review start `2026-09-11T00:56:07.467Z`; lock acquired
+  `2026-09-11T01:00:15Z`. Clean synced main base
+  `d6917e2ba3f81556cac2453c39022e2fb9b5086c`; PR89 merged, no pending PR or
+  recovery. Branch `codex/scientific-direction-review-20260911`. This is the
+  periodic oversight review, not a second hourly research writer.
+- **Coordination:** parent owns edits and Git. Read-only Astra/max reviewers
+  `direction_review_12h`, `reuse_review_12h` and `evidence_review_12h` checked
+  immutable published work. Their questions, evidence and adjudication are in
+  `docs/SCIENTIFIC_DIRECTION.md`; exact publication and release evidence go in
+  `.git/catalytic-earth-runs/direction-e2c1653d-103a-468d-b745-f8d780efacfd.json`.
+- **Direction reconciliation:** reviewed PRs80–89 from the previous review at
+  `df81264b3a33efdfe8e0faf53c32ad4e9a069084`. The qualified RA95 state priority
+  completed in PR80/81. Parent sequence/state association and 4A2R attachment
+  do not require completion of every open chemical-state premise. The later
+  source-step, stereo, connectivity and conditional-effect additions remain
+  bounded relations. They have not demonstrated design performance.
+- **Scientific findings:** independently sampled primary values, substitutions
+  and raw 4A2R connection records support the retained lysine comparisons and
+  attachment limits. No material sampled scientific defect was found. The
+  [preceding result](https://github.com/VivekVardhanArrabelli/catalytic-earth/blob/d6917e2ba3f81556cac2453c39022e2fb9b5086c/work/handoff.md)
+  contains the completed conditional-effect investigation and its evidence.
+  This review corrects the 4A2R guide's stale command description to include the
+  paired requests. Scientific declarations, observations, comparisons, runtime,
+  tests, claims and evidence tiers remain unchanged.
+- **Direction correction:** first-time source-grounded exclusions can prevent
+  consequential transfer errors. Repeated settled refusals and access logging
+  alone must not count as new scientific content. Keep the bounded DERA question
+  below; use a compact access record and pivot if its full text is unavailable.
+  Legitimate verifiable primary-author or institutional copies are eligible
+  within the same acquisition limits. No publisher-only rule is imposed.
+- **Acquisition:** this review adds **0 requests / 0 bytes**. RA95 remains
+  cumulatively **27 / 17,298,809**; its provider9-request receipt is historical.
   Diels remains20/519,698, including its analytical-reference appendix;
   RA61 45/3,236,259; KE59 9/261,580; KE70 16/1,102,794;
   beta 5/8,449,621; default M-CSA 49/1,109,896.
   PLP 73/5,068,731 and panel 28/1,474,405 remain lower bounds, not headroom.
   M0187 followup 12/440,960 is only a subledger. Broader M0187, TKT/POX,
   M0081/M0222 and HisF/panel accounting gaps stay open; closed telemetry recovery
-  is not reopened. All17 common primary witnesses verify locally; none is
-  reacquired or redistributed.
-- **Review/verification:** all3 computational roles accepted the exact science
-  manifest after derived-sequence and interpretation wording corrections.
-  Existing source/declaration/sequence checks, original-output equality,
-  wrong-background/overlapping-role attacks and KM refusals pass. Full repository
-  contracts passed with37 claims and frozen golden matched. A focused test adds
-  source-cell/footnote,4C/reference,KM and wrong-assay checks. Initial focused
-  execution found an inherited last-row assumption in an unrelated context test;
-  it now selects the same beta-barrel assessment by exactID without changing its
-  rejection assertions. All55 focused tests and the final repository contracts
-  pass; required CI remains the publication gate and is recorded in the receipt. Source review is computational and
-  potentially correlated, not independent human review or a project experiment.
-- **Publication/recovery:** owned changes are the six-request projection,
-  cumulative source review, CE-026 readable/JSON extension, relation/current
-  state/decision docs, focused regression, this marked block and staged report
-  index. Runtime, scientific source packets, other claims, frozen/protected
-  surfaces and exposure history remain unchanged. Publish this branch and resume
-  its PR first if unfinished. Merge only at the reviewed head after required CI;
-  exact pushed head, PR, merged main, CI and guarded release go in the receipt
-  and final task result. Git identifies this handoff's containing commit.
-- **One next action:** challenge the distinct natural-enzyme precedent cited by
-  retained Giger2013 XMLP16/R18: Heine etal., *Science*294:369–374 (2001),
-  PMID11598300, doi:10.1126/science.1063601. Does its primary body directly join
-  a DERA catalytic-Lys→Arg construct, a named alternate lysine carrying a
-  covalent intermediate, and matched activity retention in that exact construct?
-  Expected gain: qualify the natural alternate-nucleophile precedent invoked
-  for designed RA95, without transferring it to RA95. Full primary contents are
-  not retained; the citation/title are not findings. Continue the SAME
-  RA95 bibliographic batch at27/17,298,809 after checking prior receipts;
-  permit one direct primary identifier/publisher chain, not a mirror or
-  bibliography search. Do not rename the batch for this cited-reference follow-up. Stop at
-  inaccessible full text or the first missing/unmatched construct, residue,
-  covalent-state or functional premise; otherwise stop at one supported relation.
-  Metadata/abstracts cannot substitute for those premises. Do not infer shared
-  microscopic roles, physical assay/crystal identity, evolutionary generality
-  or same-turnover participation. POX6HAF is an alternative only if the existing
-  batch's complete acquisition headroom is established; it is currently blocked.
+  is not reopened. All named batches retain their cumulative100-request/30-MiB
+  limits. No primary witness is reacquired or redistributed.
+- **Review/verification:** source and output sampling used retained primary
+  bytes, independent arithmetic and isolated immutable queries. Renew only the
+  affected current documentation bindings after diff review; original source
+  manifests remain historical. Run existing repository contracts and required
+  CI for publication; no new test or scientific claim is needed. These checks
+  establish documentation/computation integrity, not activity or human review.
+- **Publication/recovery:** scope is current direction, the hourly scientific-
+  progress clarification, one current decision, the 4A2R command description,
+  its current review binding, this marked block and staged report index. Resume
+  this branch/PR first if unfinished. Merge only at the reviewed head after
+  required checks; exact head, PR, merged main, elapsed time and guarded release
+  go in the receipt and task result. The hourly schedule stays active on
+  Astra/max. The prior hourly no-progress count is0 after PR89; this oversight
+  review is not a new research result or a reset of that count.
+- **One next action:** inspect the natural-enzyme precedent cited by retained
+  Giger2013 XML P16/R18: Heine et al., *Science*294:369–374 (2001),
+  PMID11598300, DOI10.1126/science.1063601. Does the primary body connect a
+  source-defined DERA catalytic-Lys-to-Arg construct, a named alternate lysine
+  carrying a covalent state, and matched retained function in that construct?
+  The gain would be a residue–state–function relation qualifying the natural
+  precedent, without transferring it to RA95. Full text is not retained; the
+  citation/title are not findings. Check previous receipts and continue the
+  SAME RA95 batch at27/17,298,809 with a bounded identifier-led attempt at this
+  paper. Verifiable publisher, primary-author or institutional-repository
+  versions are eligible; retain version provenance, stop unchanged failed
+  routes, and do not bypass access controls, rename the batch or search an
+  unrelated bibliography. Match construct/assay scope actually supported by
+  the paper without inventing identical physical aliquots or a full-sequence
+  prerequisite. Distinguish attachment, trapped state and inferred intermediate.
+  Stop at one supported relation or the first source-established missing or
+  unmatched construct, residue, state or functional premise. If text remains
+  inaccessible, record access compactly and choose a different justified
+  question, within the same run if useful work fits. Metadata/abstracts cannot
+  replace the requested primary-body evidence. No mechanism transfer,
+  evolutionary generality, shared microscopic role or same-turnover inference.
+  POX6HAF remains an alternative only after the existing batch's complete
+  acquisition headroom is established; it is currently blocked. Reassess after
+  the result; DERA success is not a new coverage gate.
 
 Preserve historical content below this marked block. No self-hash follow-up
 commit is required.

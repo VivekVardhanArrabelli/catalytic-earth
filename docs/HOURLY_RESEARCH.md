@@ -68,6 +68,10 @@ when it resolves a decision, not as a ritual before every useful addition.
 These rules guide decisions; they do not require another scoring framework.
 Do not reopen the same blocker, regenerate unchanged reports or add a validator
 to fill the hour. A supported negative result can complete an investigation.
+An exclusion adds scientific value when it changes a consequential inference;
+repeating a settled refusal or logging inaccessible text alone does not count
+as new evidence or usable scientific content. Keep access records compact and
+move to a different justified question after a bounded access stop.
 After two consecutive runs with no new evidence, usable content or necessary
 recovery, require a different evidence-supported action; if none exists, pause
 this schedule and report what would permit useful work to resume.

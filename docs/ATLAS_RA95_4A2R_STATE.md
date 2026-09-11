@@ -13,9 +13,11 @@ python scripts/query_atlas_perturbations.py --state-link ra95_2013:RA95.5-5-stat
 ```
 
 This returns the existing SI Table 2 parent and three engineered derivatives:
-12 parameter records and nine comparison requests. Six ratios are eligible;
-all three KM ratios abstain because the source's printed unit remains
-unresolved. `--with-comparisons` selects existing ratio or multiplicative comparisons whose explicit
+12 parameter records and 12 comparison requests, including the later
+[conditional lysine comparisons](ATLAS_PERTURBATION_RELATION.md#reported-lysine-endpoints-depart-from-a-multiplicative-reference).
+Eight comparisons are eligible; all four KM comparisons abstain because the
+source's printed unit remains unresolved. `--with-comparisons` selects existing
+ratio or multiplicative comparisons whose explicit
 `denominator` or `parent` is one of the linked observation IDs, then includes
 all their role and context observations. Only the three parent observation IDs
 belong to the state link. The option adds retrieval, without assigning a crystal
