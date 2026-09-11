@@ -1,5 +1,24 @@
 # Current Decisions
 
+## 2026-09-11: separate a reporter boundary from later chemistry and product trapping
+
+Accept the [RA61 relation](ATLAS_PERTURBATION_RELATION.md#ra61-initial-rate-boundary-ends-before-enzyme-regeneration-and-product-trapping)
+as reusable source annotation. The existing second-order initial-rate
+coefficient belongs to the source path through aldehyde formation, not an
+individual arrow, enzyme-regeneration rate or off-path product-binding rate.
+Keep the source-proposed product Schiff base separate from the catalytic
+substrate iminium, and source-active-site lysine separate from designed Lys176.
+
+The third context needs a generic initial-rate parameter role and a declared
+measurement boundary. It also exposes ambiguity between an input's reaction
+lineage and the ligand present in a transformed state; name lineage explicitly.
+Resolve the entire existing product-reporter evidence object instead of
+transcribing its conditional Kd into a new scalar. Source semantics remain
+reviewed data. No enzyme-specific adapter, new observation, graph completion
+or evidence promotion is justified. The bounded relation is complete; select
+the next question for additional mechanistic information rather than another
+model demonstration or repeated review of this reporter caveat.
+
 ## 2026-09-11: bind a measured phase to multiple source-model transitions
 
 Accept the [POX reuse test](ATLAS_STUDY_CONTEXT.md#pox-binding-and-a-multistep-reporter-require-different-model-relations)

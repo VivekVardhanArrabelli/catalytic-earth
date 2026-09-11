@@ -1,89 +1,94 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research baton — 2026-09-11 POX model and reporter scope
+## Current research baton — 2026-09-11 RA61 reporter path and product sequestration
 
-- **Identity/base:** actual start 2026-09-11T06:06:22Z; owner
-  `01a08f12-cae4-7501-89d4-ceb3355ad447:9b2f1067-8d8e-485e-8543-c7a2ae70f035`;
-  lock acquired 06:06:49Z. Clean main base
-  `87d5e26441ec9de36ccdef652543cb01dfeb7af0` (PR94); no open PR or recovery.
-  Branch `codex/pox-model-endpoints-20260911`. Checkpoint
-  2026-09-11T06:35:54.967935+00:00 / minute 29.5; final elapsed/publication in receipt.
-- **Question/direction:** the completed RA95 priority and stopped DERA/Xue
-  routes stay closed. Test retained POX MAP binding versus pyruvate processing
-  as the second source-model consumer use. Expected gain: distinguish ligand,
-  kinetic order and a measured phase from an individual chemical transition.
-  The bounded relation is complete; no new source acquisition was needed.
-- **Scientific result:** SI printed pp8–9 (PDF pp9–10), equations9–12 and
-  schemes assign MAP k_on/k_off to its reversible apparent two-state model,
-  including a covalent conjugate. k_on is second order and k_off first order.
-  The pyruvate FAD phase spans reversible Michaelis-to-conjugate formation
-  and subsequent processing. k_app_max belongs to that saturated multistep
-  phase; every individual pyruvate rate slot remains unassigned, not zero.
-  K_D_app and K_0.5 retain different ligand/fit roles. The source equation
-  retains n; its numeric Hill coefficient remains in the original provider.
-- **Output/limits:** `data/atlas/study_context/pox2019/model_context.json`
-  and `model_review.json`, current study/perturbation guides and CE-025.
-  `python scripts/query_atlas_perturbations.py --model-link pox_2019:wild_type:MAP_pyruvate_models`
-  returns five existing WT observations, no arithmetic comparison and one
-  model link. MAP A310 and anaerobic FAD A457 are distinct reporters.
-  The missing arrangement is explicit: 6HAF is E59Q with phosphate; retained
-  4FEG legend names WT carbanion-enamine but no coordinate/arrangement packet
-  or assay-preparation match supports inclusion. No atom-resolved mechanism,
-  microscopic rate, oxygen turnover, productive geometry or exact preparation
-  identity follows. WT MAP state does not transfer to E59Q; its original
-  nonbinding and positive pyruvate observations are unchanged.
-- **Source use:** all four publisher witnesses reused; SI pages visually
-  checked. All 24 retained primary witnesses / 25,252,078 bytes verify.
-  Same TKT/POX batch `human-tkt-e160q-6ha3-geometry-function` remains a
-  lower bound of 7 requests / 3,004,884 bytes, with complete accounting and
-  headroom unknown. Other totals unchanged: KSI 26 / 5,739,717;
-  RA95 33 / 17,556,517; Diels 20 / 519,698; RA61 45 / 3,236,259;
-  KE59 9 / 261,580; KE70 16 / 1,102,794; beta 5 / 8,449,621;
-  default M-CSA 49 / 1,109,896. PLP 73 / 5,068,731 and panel
-  28 / 1,474,405 remain lower bounds; M0187 followup 12 / 440,960
-  is a subledger. No publisher bodies redistributed or source batches renamed.
-- **Review/reconsideration:** read-only Sol/ultra source_pox,
-  representation_pox and adversarial_pox share
-  `.git/catalytic-earth-runs/9b2f1067.board.md`; parent owns edits/Git/lock.
-  The new case exposed genuine missing fit and optional-arrangement concepts,
-  addressed generically with ligand/source facts in data. No enzyme-ID branch.
-  Exact pointers reuse five observations without table transcription. Review
-  found and fixed unreferenced edge rates, removable kinetic roles/units and
-  an unbound enzyme name. A contextual Hill-coefficient transfer was removed
-  instead of adding a new adapter for an unnecessary scalar. Coherent complete
-  semantic rewrites still require source review, not just self-consistency.
-  Reuse is demonstrated across two enzyme contexts in one publication;
-  cross-publication scope, curation-time savings, incumbent superiority and
-  a complete mechanism/design chain remain unproved. These reviews are
-  correlated computation, not independent human or experimental validation.
-- **Verification/publication:** 65 focused tests plus 75 subtests, 618 core
-  tests, original study validation, repository contracts and fresh-directory
-  Atlas-3/10 wheel/source-draft/candidate checks pass. All 216 observations,
-  123 comparisons, 2 state links and prior TKT model output are exact unchanged
-  objects; only CE-025 extends and 39 other claims are unchanged. Original
-  providers, protected registries, frozen kernels and exposure history remain
-  unchanged. Architecture inventory changes only 17,700 to 17,702 paths;
-  staged-handoff report index will be rebuilt before commit. No unrelated work.
-  Containing increment is unpublished at this checkpoint; parent will publish
-  and merge only after exact source/diff review and passing required CI at the
-  reviewed head. Final SHA/PR/push/merge/CI and guarded release belong in
-  `.git/catalytic-earth-runs/2026-09-11T0606-9b2f1067-8d8e-485e-8543-c7a2ae70f035.json`
-  and task result. Resume this branch/PR first if unfinished.
-- **One next action:** test retained Lassila2010 RA61 main/SI for a common
-  source-model relation separating the catalytic path through aldehyde formation
-  from off-pathway product sequestration by a lysine iminium/Schiff-base state.
-  Start with `data/atlas/study_context/ra61_2010/component_evidence.json` and
-  its bound main pp1–2 / SI pp2–4 and Figure S3. Expected gain: a non-ThDP
-  designed-enzyme constraint showing why a covalent state or burst-like loss of
-  free-product fluorescence need not report late catalytic steps. Keep initial
-  (kcat/KM)obs, product binding and fluorescence assumptions distinct; no new
-  table, curve refit, microscopic rate or substrate-KM inference. Use source
-  “active-site lysine” unless its product-adduct link to Lys176 is authenticated.
-  Stop after one supported shared relation or the first consequential source/
-  representation gap; do not build enzyme-specific code to force it. Begin
-  offline, with zero new acquisition; the same fully accounted RA61 batch is
-  45 requests / 3,236,259 bytes. Preserve unknown sequence/preparation scope.
+- **Identity/base:** actual start 2026-09-11T07:05:23Z; owner
+  `01a08f48-d002-73c1-8b50-515416199f93:4be184df-6e04-49c9-88e1-0cc2bba464a0`;
+  lock acquired 07:05:53Z. Clean main base
+  `277c24a43aadab384305a4ed380ef5a6d582a039` (PR95); no open PR or recovery.
+  Branch `codex/ra61-reporter-path-20260911`. Checkpoint
+  2026-09-11T07:31:24.705239+00:00 / minute 26.0; final publication/time in receipt.
+- **Question/direction:** RA95's bounded state priority is complete and
+  DERA/Xue/Jiang2008 failed routes stay closed. Test whether the retained RA61
+  model supports a reusable initial-rate/path relation without assigning
+  product sequestration or fluorescence curvature to later chemistry.
+  The supported relation is complete. It structures retained source facts;
+  it is not a new biological conclusion or experiment.
+- **Scientific result:** the parent observed second-order coefficient spans
+  main Figure1 steps1–3 through aldehyde formation. Steps4–5 and SI FigureS1's
+  product-iminium/Schiff-base branch stay outside the fit. The catalytic
+  substrate iminium and the aldehyde-derived product state are distinct.
+  Product binding uses free active-site lysine, which can already be available
+  or be regenerated by steps4–5; it need not be the enzyme that produced the
+  aldehyde or have completed a turnover. All individual arrow rates are
+  unassigned, not zero. Fluorescence loss/curvature is observed; covalent
+  product identity is the authors' model. Lys176 stays a design-model label,
+  not an authenticated numbered product attachment.
+- **Output/limits:**
+  `data/atlas/study_context/ra61_2010/model_context.json` and `model_review.json`,
+  the RA61 section of `docs/ATLAS_PERTURBATION_RELATION.md`, and CE-029.
+  `python scripts/query_atlas_perturbations.py --model-link ra61_2010:RA61:aldehyde_reporter_path`
+  returns one existing parent observation, one fit, six source-model transitions,
+  and the entire original product-reporter evidence object resolved onto the
+  fit/off-path edge. Conditional Kd26uM and 17/10uM alternative fluorescence
+  assumptions remain contextual; no new scalar or curve fit. No substrateKM,
+  microscopic iminium affinity/rate, complete chemical graph, productive
+  geometry, direct covalent occupancy or exact sequence/preparation identity.
+  Source Figure1 omits proton transfers, binding events and intermediates.
+- **Evidence/acquisition:** retained Lassila2010 main pp1–3/Figure1, p6
+  assay methods, SI pp2–5/FiguresS1–S5; main Figure2 separately labels Lys176.
+  Main/SI SHA-256 are e9ee944fc748057e4e476b7de8e0ceb704133817bec7f51562de21a502b033a1
+  and 91e17539e9761fdc7fdb5d70c395fad2f4c7b339732e9282262e6a7940da6df4.
+  All24 retained witnesses /25,252,078bytes verify. New requests/bytes:0.
+  Same RA61 batch is fully accounted at45requests /3,236,259bytes through
+  `jiang2008_acquisition_appendix.json`; original receipt's12 is historical.
+  Other totals unchanged: KSI26/5,739,717; RA9533/17,556,517;
+  Diels20/519,698; KE599/261,580; KE7016/1,102,794; beta5/8,449,621;
+  defaultM-CSA49/1,109,896. TKT/POX7/3,004,884, PLP73/5,068,731 and
+  panel28/1,474,405 remain lower bounds with unknown complete headroom;
+  M0187followup12/440,960 is a subledger. No renamed batches or redistributed
+  primary bodies; known accounting/access stops were not reopened.
+- **Review/reconsideration:** read-only Sol/ultra source_ra61_sol,
+  representation_ra61 and adversarial_ra61 share
+  `.git/catalytic-earth-runs/4be184df.board.md`; parent alone edits/Git/lock.
+  All three accepted exact source/diff blobs after objections. New chemistry
+  exposed an initial-rate role, input-reaction lineage distinct from present
+  ligand identity, and a need to resolve the complete contextual evidence.
+  These shared additions keep source facts in data without enzyme-ID code.
+  The one existing rate, assay and conditional evidence object are reused;
+  old TKT/POX output is exact unchanged. Reuse spans three enzyme contexts in
+  two publications; no measured time saving or incumbent superiority. The
+  added value is queryable path/endpoint topology, not repeated prose. Coherent
+  replacement of source semantics still requires primary-source review.
+  These reviews are correlated computation, not human or laboratory validation.
+- **Verification/publication:** 69 focused tests plus88subtests,622core tests,
+  repository contracts and fresh-directory Atlas3/10 wheel/source-draft/
+  candidate checks pass. All216observations,123comparisons,2state links,
+  68constructs,25assays,18substrates,4reactions,prior evidence contexts and both
+  prior model outputs are exact unchanged. OnlyCE-029extends;39otherclaim
+  objects unchanged. Architecture inventory changes only17,702→17,704paths.
+  Original providers/reviews, protected registries, frozen kernels and exposure
+  bytes unchanged. No unrelated changes. The staged-handoff archive will be
+  rebuilt and contracts rerun before commit. Containing increment is unpublished
+  at this checkpoint; publish/merge only after final exact-head review and
+  required CI. Exact SHA/PR/push/merge/CI and guarded release belong in
+  `.git/catalytic-earth-runs/2026-09-11T0705-4be184df-6e04-49c9-88e1-0cc2bba464a0.json`
+  and task result. If unfinished, resume this branch/PR first.
+- **One next action:** seek a primary, separately supplied R/S-methodol
+  kinetic comparison for the same source-named RA61 construct. This could determine
+  preference direction and a source ratio without relying on the racemate
+  progress/product-rebinding model. First check retained Lassila2010 SI pp7–8
+  FigureS8 and source bibliography to define the gap: its two simulated models
+  give qualitative envelopes, not separate R/S rates, a preferred configuration,
+  fit uncertainty or a model-independent ceiling. Do not make S8 another model
+  runtime increment or calibrate it numerically from RA95 enantiopure data.
+  A narrow primary citation/citing-source scout may inspect at most3 candidate
+  studies within10 requests in the SAME fully accounted RA61 batch; do not
+  repeat failed Jiang2008 routes. Stop at one qualified direct R/S relation or
+  the first source-established identity/assay mismatch, otherwise at that bounded
+  source limit. If none qualifies, retain a compact unavailable result and
+  choose a different justified chemistry question rather than another access hour.
 
 Preserve historical content below this marked block. Git identifies the
 containing commit; no self-hash follow-up commit is needed.

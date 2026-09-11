@@ -20,6 +20,104 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 class PerturbationRelationTests(unittest.TestCase):
+    def ra61_model_relation(self, context=None, link=None):
+        if link is None:
+            link = deepcopy(next(item for item in self.spec["model_links"]
+                                 if item["id"] == "ra61_2010:RA61:aldehyde_reporter_path"))
+        return self.model_relation(context, link)
+
+    def test_ra61_initial_rate_stops_at_reporter_product_without_arrow_rates(self):
+        result = self.ra61_model_relation()
+        fit = result["fit_models"][0]
+        self.assertEqual(fit["phase_transition_ids"], ["source_step1", "source_step2", "source_step3"])
+        self.assertEqual(fit["measurement_boundary"]["to_state"], "enamine_and_aldehyde")
+        self.assertEqual(fit["resolved_parameters"]["k_cat/K_M"],
+                         self.rows["ra61-water:Table4:RA61:kcat_over_KM_obs"]["source_parameter"])
+        transitions = {item["transition_id"]: item for item in result["transitions"]}
+        self.assertEqual(transitions["product_sequestration"]["from_state"], "free_enzyme_and_products")
+        self.assertNotEqual(transitions["product_sequestration"]["to_state"], "substrate_iminium")
+        self.assertFalse(set(fit["transition_ids"]) & {"source_step4", "source_step5", "product_sequestration"})
+        for transition in transitions.values():
+            self.assertEqual(transition["resolved_parameters"], {"forward": None, "reverse": None})
+        self.assertIsNone(result["arrangement"])
+        self.assertIsNone(result["source_context"]["residue_scope"]["numbered_product_attachment_site"])
+
+    def test_ra61_initial_fit_rejects_late_path_hybrid_and_microscopic_transfers(self):
+        original = self.ra61_model_relation()["source_context"]
+        for name in ("extend-phase", "extra-covered-step", "wrong-boundary", "missing-boundary",
+                     "saturated-role", "hybrid-fit", "arrow-rate"):
+            with self.subTest(name=name):
+                context = deepcopy(original)
+                fit = context["source_model"]["fit_models"][0]
+                if name in {"extend-phase", "extra-covered-step"}:
+                    context["source_model"]["transitions"][3]["assay_binding"] = deepcopy(fit["assay_binding"])
+                    fit["transition_ids"].append("source_step4")
+                    if name == "extend-phase":
+                        fit["phase_transition_ids"].append("source_step4")
+                elif name == "wrong-boundary":
+                    fit["measurement_boundary"]["to_state"] = "product_schiff_base"
+                elif name == "missing-boundary":
+                    fit.pop("measurement_boundary")
+                elif name == "saturated-role":
+                    fit["parameter_bindings"]["k_cat/K_M"]["role"] = "saturated_multistep_rate"
+                elif name == "hybrid-fit":
+                    fit["parameter_bindings"]["kobs"] = {
+                        "binding": {"provider": "component_evidence", "pointer": "/observations/7"},
+                        "role": "observed_second_order_initial_rate", "unit": "M^-1 s^-1"}
+                else:
+                    transition = context["source_model"]["transitions"][2]
+                    transition["parameter_slots"]["forward"] = {
+                        "status": "bound_source_parameter", "is_zero": False,
+                        "binding": deepcopy(fit["parameter_bindings"]["k_cat/K_M"]["binding"])}
+                    transition.update(parameter_units={"forward": "M^-1 s^-1"},
+                                      parameter_roles={"forward": "second_order_association"})
+                with self.assertRaises(ValueError):
+                    self.ra61_model_relation(context)
+
+    def test_ra61_model_query_preserves_conditional_binding_evidence_and_parent_scope(self):
+        view = json.loads(subprocess.check_output([
+            sys.executable, str(ROOT / "scripts/query_atlas_perturbations.py"),
+            "--model-link", "ra61_2010:RA61:aldehyde_reporter_path"], text=True))
+        self.assertEqual([row["id"] for row in view["observations"]],
+                         ["ra61-water:Table4:RA61:kcat_over_KM_obs"])
+        self.assertEqual(view["comparisons"], [])
+        self.assertEqual(view["state_links"], [])
+        self.assertEqual(len(view["model_links"]), 1)
+        source = json.loads((ROOT / self.spec["sources"]["ra61"]["path"]).read_text())
+        self.assertIn(source["initial_rate_boundary"], view["evidence_context"]["ra61"])
+        self.assertEqual(view["model_links"][0]["context_evidence"][0]["evidence"],
+                         source["initial_rate_boundary"])
+        # An existing same-unit mutant endpoint cannot replace the named parent.
+        context = self.ra61_model_relation()["source_context"]
+        link = deepcopy(view["model_links"][0])
+        replacement = "ra61-water:Table4:RA61-Y78F:kcat_over_KM_obs"
+        link["observation_ids"] = [replacement]
+        context["endpoint_relations"][0]["observation_id"] = replacement
+        with self.assertRaisesRegex(ValueError, "construct differs"):
+            self.ra61_model_relation(context, link)
+
+    def test_model_context_requires_resolved_objects_and_explicit_branch_semantics(self):
+        original = self.ra61_model_relation()["source_context"]
+        for name in ("bare-affinity", "unknown-context-transition", "unknown-context-fit",
+                     "duplicate-context", "mixed-branch-declarations", "mixed-state-identity"):
+            with self.subTest(name=name):
+                context = deepcopy(original)
+                binding = context["context_evidence_bindings"][0]
+                if name == "bare-affinity":
+                    binding["binding"]["pointer"] += "/product_binding_estimate/value"
+                elif name == "unknown-context-transition":
+                    binding["transition_ids"] = ["missing"]
+                elif name == "unknown-context-fit":
+                    binding["fit_ids"] = ["missing"]
+                elif name == "duplicate-context":
+                    context["context_evidence_bindings"].append(deepcopy(binding))
+                elif name == "mixed-branch-declarations":
+                    context["ligand_bindings"] = deepcopy(context["reaction_branch_bindings"])
+                else:
+                    context["source_model"]["states"][-1]["ligand_id"] = "full_naphthyl"
+                with self.assertRaises(ValueError):
+                    self.ra61_model_relation(context)
+
     def pox_model_relation(self, context=None, link=None):
         if link is None:
             link = deepcopy(next(item for item in self.spec["model_links"]
