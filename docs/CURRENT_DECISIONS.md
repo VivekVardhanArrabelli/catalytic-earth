@@ -1,5 +1,21 @@
 # Current Decisions
 
+## 2026-09-11: represent source population-derived net rates at inference scope
+
+Accept the [Tittmann2005 Met250Ala relation](ATLAS_AHAS_NET_RATES.md) as one
+source-model annotation. Its five parameter records include one turnover input
+and four dependent forward-net quantities. Add the shared population-inference
+concept because direct association/dissociation or individual-arrow semantics
+would misrepresent the source. Keep binding K1 unassigned, chemical reversibility
+explicit, separate turnover/NMR methods and unknown raw fractions intact.
+
+Do not equate net k′ values with microscopic forward rates, isolated residue
+causes, physical occupancy or complete graph chemistry. A reciprocal-sum check
+is dependent consistency only. Close the2010 access routes without declaring
+its detailed experiments absent or importing2005 values into them. No protected
+registry, frozen kernel, exposure reset or evidence-tier promotion. Follow the
+marked handoff for the next consequential scientific relation.
+
 ## 2026-09-11: retain competing-product outcomes without assigning a donor-half cause
 
 Accept the [Yu2020 WT/H473N profile](ATLAS_TK_PRODUCT_PROFILE.md) at named

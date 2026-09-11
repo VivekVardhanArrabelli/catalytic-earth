@@ -1,97 +1,92 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research baton — 2026-09-11 TK competing-product profile
+## Current research baton — 2026-09-11 AHAS II source net stages
 
-- **Identity/base:** actual UTC start 2026-09-11T18:07:11Z; owner
-  `01a091a6-b122-7280-8a06-6d1a700620de:ab51780c-1fde-4009-801b-2a4163c2305c`;
-  default Git-common lock acquired 18:07:40Z. Clean main base
-  `582b21cbd8d4704b5668a849afd398725fb53288`; prior PR104 merged and released,
-  no open PR or pending recovery. Branch `codex/tk-donor-boundary-20260911`.
-  Checkpoint 2026-09-11T18:31:02.007010+00:00 (23.85 minutes).
-- **Direction/question:** the direction review's M0187 priority is complete;
-  follow the newer TK handoff. Yu2020 was inspected for a measured distinction
-  between pyruvate/cofactor donor-half chemistry and acceptor coupling. Its
-  main manuscript supplies final-yield correlations and docking of a supplied
-  enamine, so that inquiry closes at the missing distinguishing endpoint.
-  The supported alternative is one WT/H473N competing-product profile.
-- **Finding/capability:** at 50 mM each glycolaldehyde and pyruvate, purified
-  WT accumulates 10.5 mM each DHB and erythrulose after 24 h; H473N accumulates
-  5.5 mM DHB while erythrulose is undetected at an unspecified threshold.
-  The descriptive H473N/WT DHB quotient is 0.5238095. Scheme 1 associates DHB
-  with glycolaldehyde/pyruvate coupling and erythrulose with two glycolaldehyde
-  molecules. Three numeric concentrations and one nondetection use the shared
-  consumer, preserving two net routes/endpoints in the same experiment.
-  CE-045 is source annotation, with no new protein admission, compiled mechanism,
-  project experiment or design-performance claim.
-- **Limits/adjudication:** unknown detection threshold is not zero or infinite
-  specificity. Numeric SD is untranscribed; the source reports triplicate vials,
-  not independent preparations. Keep the 30 °C, pH 7, 50 mM Tris, 0.13 mg/mL,
-  24 h HPLC/standard-curve assay distinct from lysate densitometry and the 2024
-  assay. Final purified-assay ThDP/Mg concentrations are unknown; source 2.4/9 mM
-  describes lysate preparation. The H100 yield correlation has four points
-  (L/F/Y plus WT). Source-assigned donor origin is not isotope mapping, CO2
-  measurement, adduct occupancy, microscopic flux or a causal H473N mechanism.
-  Exact assayed sequence and geometry remain unavailable. Accepted manuscript
-  only; publisher version, supplement and raw calibration/kinetic data uninspected.
-- **Evidence:** `data/atlas/study_context/tk_2020/source_qualification.json`,
-  `source_review.json`, `acquisition_appendix.json`;
-  `docs/ATLAS_TK_PRODUCT_PROFILE.md`; shared perturbation projection/review.
-  Primary Results PDF pp9–11, Methods p23, Fig3 legend p37; full Scheme1/Fig3
-  images pp43–44 inspected. PDF SHA256
-  `c33dcf62e1e65f665361da8daf391c462a887d998d96086f21d7f769c8e4a5a4`.
-  UCL record binds DOI10.1111/febs.15108 and the accepted manuscript. Bodies
-  retained only in Git-common source cache; no redistribution.
-- **Acquisition:** carry the existing `two-substrate-lineages-2024-51831`
-  batch forward: inherited 12 requests/741,711 bytes plus 5 new requests/
-  21,632,436 bytes = **17 requests/22,374,147 response-body bytes**. Remaining
-  headroom 83 requests/9,083,133 bytes under 100/31,457,280. Source review rejected
-  a provisional new label because cited-reference followups retain consumption;
-  all transports remain accounted and the original cap was never exceeded.
-  No further acquisition. Prior MAL6/2,374,099; RA6158/4,697,605;
-  KSI26/5,739,717; RA9533/17,556,517; Diels20/519,698; KE599/261,580;
-  KE7016/1,102,794; beta5/8,449,621; default M-CSA49/1,109,896 unchanged.
-  Human-TKT/POX7/3,004,884, PLP73/5,068,731 and panel28/1,474,405 remain
-  incomplete lower bounds with no established headroom; M0187followup12/440,960
-  remains at its inherited sublimit. Closed DERA, M0186 H and M0213 stereo
-  inquiries remain closed without new evidence.
-- **Reuse/reconsideration:** source_yu2020, representation_yu2020 and
-  adversarial_yu2020 used Sol/ultra; board `.git/catalytic-earth-runs/ab51780c.board.md`.
-  All workers completed; only representation edited projection.json. Parent owns
-  Git and the lock. Reviews are correlated computation, not human validation.
-  Existing construct/reaction/endpoint/nondetection/ratio consumers suffice;
-  product_concentration is a generic declaration in data, with no runtime change.
-  Prior TKT/POX and TK2024 outputs remain intact. Source reading and adapter
-  declarations still require manual work; no measured curation-time saving.
-  Integrated value is the source-assigned product-route context accompanying
-  the target comparison, preventing a consequential specificity inference.
-  A complete chemical-state chain and demonstrated design consumer remain missing.
-- **Verification/publication:** public selector returns the four outcomes and
-  only the DHB ratio. All 33 retained witnesses hash-check (50,844,622 bytes).
-  All 227 prior observations, 127 comparisons, 44 claims, state/model/control
-  relations and eight guarded files are invariant. Core/unit passes (651 run,
-  one skip); repository contracts and current Atlas3/10 offline wheel checks pass.
-  Required M0187 package changes are review metadata only; chemistry is unchanged.
-  Claim-count expectation advances 44 to45; architecture count17730 to17734.
-  Stage this handoff before building the report archive index. Publication is
-  pending at this checkpoint; this branch is the continuation until source/diff
-  review and required CI at its reviewed head permit merge. Resume it first if
-  unfinished. Exact final head, PR/push/merge/CI and guarded lock release go in
-  the local receipt `2026-09-11T180711Z-ab51780c-1fde-4009-801b-2a4163c2305c.json`
-  under Git-common `catalytic-earth-runs/` and the task result. No unrelated
-  changes, historical handoff edits or schedule change.
-- **One next action:** inspect Steinmetz et al.2010, *Valine 375 and
-  phenylalanine 109 confer affinity and specificity for pyruvate as donor
-  substrate in acetohydroxy acid synthase isozyme II from Escherichia coli*,
-  Biochemistry49,5188–5199, retained Yu2020 reference36 (PDFp33). Ask whether
-  the same named AHAS II construct has a measured pyruvate binding or donor–ThDP
-  phase distinguished from overall product kinetics. Gain: a source-supported
-  donor-phase relation in a distinct ThDP enzyme, using existing TKT/POX model
-  consumers only if the evidence supports them. Stop at one such relation or
-  absent experimental discrimination; do not add another overall endpoint panel
-  to fill that gap. First reconcile and carry forward the named batch above;
-  no TK H473N/H100L transfer, new batch allowance, invented intermediate or
-  repeated access campaign.
+- **Identity/base:** actual UTC start2026-09-11T19:07:11Z; owner
+  `01a091dd-a111-73a1-b116-a13d0b96c971:e6cc7099-ecfb-4734-9030-fe873dd3891b`;
+  default Git-common lock acquired19:07:42Z. Clean main base
+  `dbaae313cd97c900913ce901a98cad9606f32a98`; prior PR105 merged and released,
+  no open PR or pending recovery. Branch `codex/ahas-donor-phase-20260911`.
+  Pre-publication checkpoint 2026-09-11T19:37:19.562883+00:00.
+- **Direction/question:** newer handoff supersedes completed M0187 priority.
+  Steinmetz2010's primary abstract reports separate donor-acylphosphonate
+  binding and acceptor specificity, but main-text native-donor kinetics remain
+  unassessed, not experimentally absent. Close its bounded access routes.
+  Its cited Tittmann2005 paper supports a distinct question: connect donor and
+  later chemistry to turnover through source NMR-population inference.
+- **Finding/capability:** one Table2 Met250Ala/Pyr+Pyr row at37°C,100mM pyruvate,
+  0.1M KPi pH7.6 reports kcat3±0.1s^-1 and forward-net stage constants
+  28±7,35±7,11.1±1.3,5.6±0.3s^-1 for lactyl-ThDP formation from bound donor,
+  decarboxylation, second-pyruvate carboligation and acetolactate liberation.
+  The shared model query retrieves one turnover input and four dependent
+  inferred parameter records. CE-046 is source annotation, with zero new
+  protein/mechanism admissions, project experiments or design-performance claim.
+- **Source limits/adjudication:** k-prime constants use Cleland transit times,
+  steady-state species ratios and turnover. Source nonsaturation correction
+  remains explicit; no full-saturation assumption from100mM. Met250Ala NMR
+  fractions/spectrum are data-not-shown. ALThDP-most-populated stays qualitative.
+  Separate acetoin-colorimetric turnover and acid-quench NMR methods are kept
+  distinct; NMR recipe is pre-mixing, final cofactor concentrations unknown,
+  same purified-batch identity unknown. Printed errors have no SD/SEM assignment;
+  kcat error basis is unresolved. K1 has no value; donor-addition reversibility
+  is unresolved; decarboxylation is only presumed irreversible; stages4/5 are
+  source-reversible. Eq10 concerns acceptor binding/coupling/liberation only.
+  Net commitment and collapsed acceptor binding prevent isolated forward-rate,
+  causal-residue, bindingKD, occupancy, isotope or geometry conclusions.
+- **Evidence:** `data/atlas/study_context/ahas_2005/source_qualification.json`,
+  `model_context.json`, `source_review.json`, `acquisition_appendix.json`;
+  `docs/ATLAS_AHAS_NET_RATES.md`; shared perturbation projection/review.
+  Tittmann2005 DOI10.1073/pnas.0408210101, primary PDF SHA256
+  `4dbd8699f790ed8712c314fb5188785ced7083108cb661f13e93b999d37d739d`.
+  Methods/Eqs2-9 PDFpp2-3,Table2/Met250Ala Results p4,Discussion/Eq10 pp5-6;
+  all six text pages and relevant complete images inspected. Bodies retained
+  only in Git-common cache. WT Table2 values are from ref9 and unprojected.
+- **Acquisition:** same `two-substrate-lineages-2024-51831` bibliography batch:
+  inherited17 requests/22,374,147 bytes plus16/623,621 = **33 requests/
+  22,997,768 response-body bytes**; remaining67/8,459,512 under100/31,457,280.
+  Citation path Yu2020ref36→Steinmetz2010 Crossref ref8→Tittmann2005 is
+  discovery provenance, not experimental transfer. No further acquisition.
+  Prior MAL6/2,374,099;RA6158/4,697,605;KSI26/5,739,717;RA9533/17,556,517;
+  Diels20/519,698;KE599/261,580;KE7016/1,102,794;beta5/8,449,621;
+  default M-CSA49/1,109,896 unchanged. Human-TKT/POX7/3,004,884,
+  PLP73/5,068,731,panel28/1,474,405 remain incomplete lower bounds with no
+  established headroom;M0187followup12/440,960 remains at its inherited sublimit.
+  DERA,M0186H,M0213stereo,prior RA61 and TK2020 donor inquiries stay closed.
+- **Reuse/reconsideration:** source_ahas,representation_ahas,adversarial_ahas
+  used Sol/ultra; board `.git/catalytic-earth-runs/e6cc7099.board.md`.
+  Only representation worker edited runtime/tests; parent owns Git/lock.
+  Reviews are correlated computation. One new generic population-inference
+  concept keeps net-stage parameters off directional arrows; case facts remain
+  in data. Existing231observations,128comparisons and all prior state/model/control
+  relations are invariant. Shared consumer reuse is concrete; manual source
+  interpretation persists and no measured curation-time saving is established.
+  Integrated value is a donor-to-product source relation with prevented net-rate
+  transfer. Broad chemistry coverage and a demonstrated design consumer remain
+  missing; another isolated table annotation is not sufficient evidence for them.
+- **Verification/publication:** selected query and all36 local witness hashes
+  pass (51,217,049 bytes); source reviewers accepted after the named corrections.
+  All79 focused tests,653 core tests, repository contracts and fresh-directory
+  Atlas-3/10 wheel checks pass, including offline M0173/M0219 extraction. All
+  workers stopped; source/diff review accepted. Prior projection objects,45
+  claims, protected kernels/exposure/M0187 records and historical handoff are
+  unchanged; M0187 package changes contain review metadata only. Publication
+  and required remote CI remain pending at this pre-publication checkpoint.
+  Stage handoff before rebuilding report archive. This branch remains the
+  continuation until source/diff review and required CI at the reviewed head
+  permit merge. Exact final SHA,PR,push/merge/CI and lock release go in local
+  receipt `20260911T190711Z-e6cc7099-ecfb-4734-9030-fe873dd3891b.json` under
+  Git-common `catalytic-earth-runs/` and task result; no self-hash followup commit.
+  No unrelated edits or schedule change. Resume this branch first if unfinished.
+- **One next action:** assess Tittmann2005 Table2 Trp464Leu mixed-acceptor arm
+  and Fig4 for whether the aggregate AHA population/turnover inference supports
+  the separate approximate AL/AHB net-stage assignments. Expected gain: expose
+  where a branching product model differs from the current serial relation,
+  while preserving total-versus-product-specific endpoints and source estimates.
+  Zero new acquisition initially; no transfer from Met250Ala or WT. Stop after
+  one supported scoped branch relation or the first missing branch derivation;
+  never treat aggregate AHA constants as either individual product channel or
+  force a branch into the serial model. No repeat of2010 access-only work.
 
 <!-- current-research-handoff:end -->
 

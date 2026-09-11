@@ -30,6 +30,14 @@ mmCIF with the shared strict parser, recomputes selected atom facts and geometry
 checks component-dictionary bonds separately from deposited connections, and
 requires the review pins to remain current.
 
+## Population-derived net stages
+
+The [AHAS II Met250Ala relation](ATLAS_AHAS_NET_RATES.md) extends the shared
+consumer to source-inferred forward-net constants from NMR populations plus
+turnover. It retains donor binding as unparameterized and prevents net-stage
+values from becoming individual microscopic forward rates. No deposited
+arrangement or raw population reconstruction is added.
+
 ## F6P adduct reversal and donor cleavage are different transitions
 
 The retained Supplementary Methods distinguish two exits from F6P–ThDP.

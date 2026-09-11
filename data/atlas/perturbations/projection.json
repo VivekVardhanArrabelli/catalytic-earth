@@ -156,6 +156,18 @@
     "tk2020r": {
       "path": "data/atlas/study_context/tk_2020/acquisition_appendix.json",
       "sha256": "f408989e8e9a33539c997804b6b697bca24653d8ea2527f499467ac92ba1784f"
+    },
+    "ahas2005": {
+      "path": "data/atlas/study_context/ahas_2005/source_qualification.json",
+      "sha256": "48a47309b1a3285ce11c39470c7964644e50888af7f2652689aafdce9cd97ab9"
+    },
+    "ahas2005model": {
+      "path": "data/atlas/study_context/ahas_2005/model_context.json",
+      "sha256": "787e29592ab78c16c0027d902e8c3e93479bb6ab6bf29eaec43e77a5c0e3a85f"
+    },
+    "ahas2005r": {
+      "path": "data/atlas/study_context/ahas_2005/acquisition_appendix.json",
+      "sha256": "60d13aefc5e34bc1edb7f7e1bf6bc91699b97580050d0c05f9fc66d839f0a41a"
     }
   },
   "constructs": {
@@ -1930,6 +1942,44 @@
         "source": "tk2020",
         "pointer": "/constructs/1/comparison_background"
       }
+    },
+    "ahas_2005:WT": {
+      "source_construct_id": "WT",
+      "provider": {
+        "source": "ahas2005",
+        "pointer": "/constructs/0"
+      },
+      "sequence_provider": {
+        "source": "ahas2005",
+        "pointer": "/constructs/0"
+      },
+      "background_id": "ahas_2005:WT",
+      "perturbation": [],
+      "identity_scope": "Named study construct only. WT supplies the source reference identity, with no WT parameter or mutant/WT ratio projected."
+    },
+    "ahas_2005:Met250Ala": {
+      "source_construct_id": "Met250Ala",
+      "provider": {
+        "source": "ahas2005",
+        "pointer": "/constructs/1"
+      },
+      "sequence_provider": {
+        "source": "ahas2005",
+        "pointer": "/constructs/1"
+      },
+      "background_id": "ahas_2005:WT",
+      "perturbation": [
+        "M250A"
+      ],
+      "identity_scope": "Named study construct only. WT supplies the source reference identity, with no WT parameter or mutant/WT ratio projected.",
+      "perturbation_provider": {
+        "source": "ahas2005",
+        "pointer": "/constructs/1/perturbation"
+      },
+      "background_provider": {
+        "source": "ahas2005",
+        "pointer": "/constructs/1/comparison_background"
+      }
     }
   },
   "assays": {
@@ -2438,6 +2488,18 @@
       "qualification_scope": "Purified source-named WT/H473N comparison after 24 hours at 30 degrees C in the same mixture containing 50 mM glycolaldehyde, 50 mM sodium pyruvate and 0.13 mg/mL enzyme. This accumulated erythrulose endpoint is not an initial rate, selectivity ratio, donor-half rate or specificity constant. Final ThDP and MgCl2 concentrations are unestablished for this selected reaction.",
       "experiment_id": "purified-GA-pyruvate-product-profile-24h",
       "experiment_scope": "Product-specific wrapper over the same source protocol/profile as tk_2020:DHB-24h; not an independent experiment."
+    },
+    "ahas_2005:Met250Ala-Pyr+Pyr-transit-inference": {
+      "provider": {
+        "source": "ahas2005",
+        "pointer": "/assays/0"
+      },
+      "source_assay_id": "Met250Ala-Pyr+Pyr-transit-inference",
+      "qualified": true,
+      "endpoint_kind": "source_reported_turnover_and_model_inferred_forward_net_constants",
+      "reaction_direction": "source-depicted decarboxylative carboligation of donor pyruvate with acceptor pyruvate",
+      "uncertainty_context": "Source-reported plus-minus magnitudes are retained without an SD/SEM assignment. Methods attributes the derived net-rate errors to NMR integration; the separate Table2 kcat error basis/statistic is unresolved. Replicate counts, raw fractions and covariance are unavailable.",
+      "qualification_scope": "Composite inference-procedure wrapper preserving the separate turnover and NMR components; not one physical assay or proof of identical preparations."
     }
   },
   "substrates": {
@@ -2791,6 +2853,20 @@
       ],
       "stereochemistry": "Source-named reactant and product; no project-derived chemical graph, atom map or exact product stereochemistry.",
       "scope": "The erythrulose route is measured in the same mixture that also contains pyruvate. Pyruvate is not assigned as a consumed reactant in this source-depicted competing route, and product nondetection does not establish absent flux."
+    },
+    "ahas_2005:Pyr+Pyr": {
+      "name": "two pyruvate molecules",
+      "participant_ids": [
+        "pyruvate"
+      ],
+      "chemical_role": "one donor and one acceptor instance in the source mechanism",
+      "source": {
+        "source": "ahas2005",
+        "pointer": "/reaction"
+      },
+      "stereochemistry": "No project atom map, product absolute configuration or enzyme-bound microstate assignment",
+      "concentration_mM": 100,
+      "scope": "One100mM pyruvate pool supplies both roles; no isotope-derived lineage."
     }
   },
   "panels": [
@@ -5187,6 +5263,112 @@
         }
       },
       "reaction_id": "tk_2020:two-GA-to-ERY"
+    },
+    {
+      "id": "ahas2005-turnover",
+      "study_id": "ahas_2005",
+      "source": "ahas2005",
+      "rows_pointer": "/turnover_parameters",
+      "fields": {
+        "row_id": {
+          "pointer": "/row_id"
+        },
+        "construct_id": {
+          "pointer": "/construct_id"
+        },
+        "assay_id": {
+          "pointer": "/assay_id"
+        },
+        "source_locator": {
+          "pointer": "/source_locator"
+        },
+        "substrate_id": {
+          "literal": "ahas_2005:Pyr+Pyr"
+        }
+      },
+      "parameters": [
+        {
+          "id": "kcat",
+          "pointer": "/kcat",
+          "kind": {
+            "pointer": "/result_kind"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/uncertainty"
+            },
+            "kind": {
+              "pointer": "/uncertainty_kind"
+            },
+            "unit": {
+              "pointer": "/unit"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          }
+        }
+      ],
+      "reaction_id": "ahas_2005:Pyr+Pyr-to-AL"
+    },
+    {
+      "id": "ahas2005-net",
+      "study_id": "ahas_2005",
+      "source": "ahas2005",
+      "rows_pointer": "/net_parameters",
+      "fields": {
+        "row_id": {
+          "pointer": "/row_id"
+        },
+        "construct_id": {
+          "pointer": "/construct_id"
+        },
+        "assay_id": {
+          "pointer": "/assay_id"
+        },
+        "source_locator": {
+          "pointer": "/source_locator"
+        },
+        "substrate_id": {
+          "literal": "ahas_2005:Pyr+Pyr"
+        }
+      },
+      "parameters": [
+        {
+          "id": "forward_net_rate",
+          "pointer": "/forward_net_rate",
+          "kind": {
+            "pointer": "/result_kind"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/uncertainty"
+            },
+            "kind": {
+              "pointer": "/uncertainty_kind"
+            },
+            "unit": {
+              "pointer": "/unit"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          }
+        }
+      ],
+      "reaction_id": "ahas_2005:Pyr+Pyr-to-AL"
     }
   ],
   "comparisons": [
@@ -9879,6 +10061,32 @@
         "source": "tk2020r",
         "pointer": "/acquisition_stopped"
       }
+    ],
+    "ahas_2005": [
+      {
+        "source": "ahas2005",
+        "pointer": "/question"
+      },
+      {
+        "source": "ahas2005",
+        "pointer": "/conclusion"
+      },
+      {
+        "source": "ahas2005",
+        "pointer": "/counted_objects"
+      },
+      {
+        "source": "ahas2005",
+        "pointer": "/inference_context"
+      },
+      {
+        "source": "ahas2005",
+        "pointer": "/inherited_inquiry"
+      },
+      {
+        "source": "ahas2005",
+        "pointer": "/limits"
+      }
     ]
   },
   "source_witnesses": [
@@ -10414,6 +10622,51 @@
       ],
       "redistributed": false,
       "retention": "Exact UCL institutional record retained in the host-local Git common directory; body not redistributed."
+    },
+    {
+      "sha256": "4dbd8699f790ed8712c314fb5188785ced7083108cb661f13e93b999d37d739d",
+      "bytes": 352929,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/4dbd8699f790ed8712c314fb5188785ced7083108cb661f13e93b999d37d739d.pdf",
+      "source_url": "https://europepmc.org/api/getPdf?pmcid=PMC545553",
+      "redistributed": false,
+      "id": "ahas2005-0",
+      "source_bindings": [
+        {
+          "source": "ahas2005",
+          "pointer": "/sources/0"
+        }
+      ],
+      "retention": "Exact primary/source-identity bytes retained only in Git-common source cache; no bodies redistributed."
+    },
+    {
+      "sha256": "df5841b2ad2d7dd50b9c3af55b8911a4abe3840d5a80e735b9abea96bd7b4e17",
+      "bytes": 7061,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/df5841b2ad2d7dd50b9c3af55b8911a4abe3840d5a80e735b9abea96bd7b4e17.json",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:20504042&format=json&resultType=core",
+      "redistributed": false,
+      "id": "ahas2005-1",
+      "source_bindings": [
+        {
+          "source": "ahas2005",
+          "pointer": "/sources/1"
+        }
+      ],
+      "retention": "Exact primary/source-identity bytes retained only in Git-common source cache; no bodies redistributed."
+    },
+    {
+      "sha256": "2969c8250fb13786a2e0973469307dc9af8c69b145526877d416da1f9ed223e3",
+      "bytes": 12437,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/2969c8250fb13786a2e0973469307dc9af8c69b145526877d416da1f9ed223e3.json",
+      "source_url": "https://api.crossref.org/works?query.bibliographic=Valine%20375%20phenylalanine%20109%20Steinmetz%202010&rows=1",
+      "redistributed": false,
+      "id": "ahas2005-2",
+      "source_bindings": [
+        {
+          "source": "ahas2005",
+          "pointer": "/sources/2"
+        }
+      ],
+      "retention": "Exact primary/source-identity bytes retained only in Git-common source cache; no bodies redistributed."
     }
   ],
   "parameter_contracts": {
@@ -10714,6 +10967,20 @@
         "cm^-1"
       ],
       "scope": "Measured natural-abundance C=O vibrational peak; not an electric field or rate."
+    },
+    "forward_net_rate": {
+      "source_fields": [
+        "forward_net_rate"
+      ],
+      "units": [
+        "s^-1"
+      ],
+      "source_markers": {
+        "value_origin": [
+          "source_derived_steady_state_population_net_constant"
+        ]
+      },
+      "scope": "Source-reported forward-net constant inferred from population and turnover under a stated kinetic model; not a directly measured individual forward microscopic rate."
     }
   },
   "reactions": {
@@ -10794,6 +11061,14 @@
         "pointer": "/reactions/1"
       },
       "reactant_substrate_id": "tk_2020:2GA"
+    },
+    "ahas_2005:Pyr+Pyr-to-AL": {
+      "source_reaction_id": "Pyr+Pyr-to-AL",
+      "provider": {
+        "source": "ahas2005",
+        "pointer": "/reaction"
+      },
+      "reactant_substrate_id": "ahas_2005:Pyr+Pyr"
     }
   },
   "state_links": [
@@ -10897,6 +11172,22 @@
       },
       "observation_ids": [
         "ra61-water:Table4:RA61:kcat_over_KM_obs"
+      ]
+    },
+    {
+      "id": "ahas_2005:Met250Ala:pyruvate_net_transit",
+      "study_id": "ahas_2005",
+      "construct_id": "ahas_2005:Met250Ala",
+      "context_provider": {
+        "source": "ahas2005model",
+        "pointer": ""
+      },
+      "observation_ids": [
+        "ahas2005-turnover:Met250Ala:Pyr+Pyr:kcat",
+        "ahas2005-net:Met250Ala:Pyr+Pyr:stage2:forward_net_rate",
+        "ahas2005-net:Met250Ala:Pyr+Pyr:stage3:forward_net_rate",
+        "ahas2005-net:Met250Ala:Pyr+Pyr:stage4:forward_net_rate",
+        "ahas2005-net:Met250Ala:Pyr+Pyr:stage5:forward_net_rate"
       ]
     }
   ],

@@ -1,0 +1,89 @@
+{
+  "schema_version": "catalytic-earth.primary-source-review.v1",
+  "status": "source_reviewed_computational",
+  "reviewed_at_utc": "2026-09-11T19:29:38.036422+00:00",
+  "base_commit": "dbaae313cd97c900913ce901a98cad9606f32a98",
+  "scope": "One Tittmann2005 Met250Ala/Pyr+Pyr turnover-and-population inference, with four net-stage parameters and no individual forward/reverse rate assignment. Steinmetz2010 abstract is prior inquiry context only. No WT/2010 parameter transfer, raw population reconstruction or measured elementary rate.",
+  "reviewed_bindings": {
+    "data/atlas/study_context/ahas_2005/source_qualification.json": "48a47309b1a3285ce11c39470c7964644e50888af7f2652689aafdce9cd97ab9",
+    "data/atlas/study_context/ahas_2005/model_context.json": "787e29592ab78c16c0027d902e8c3e93479bb6ab6bf29eaec43e77a5c0e3a85f",
+    "data/atlas/study_context/ahas_2005/acquisition_appendix.json": "60d13aefc5e34bc1edb7f7e1bf6bc91699b97580050d0c05f9fc66d839f0a41a",
+    "data/atlas/perturbations/projection.json": "bb19a6c45e4630dc08cd38d9131ffcfef85c21d87d484542d2d392e9fae706f9",
+    "src/catalytic_earth/atlas_perturbations.py": "9dbbf2929c960309da85213991192cec5b97914122a2e1289ea9b2277f6f6242",
+    "tests/core/test_atlas_perturbations.py": "bebd2ac881f30d0a5b51769cb7140fb80e541cae62cd5428ffc469426a96f86a",
+    "docs/ATLAS_AHAS_NET_RATES.md": "c125f541374e54e194b51859263fc50fccaea152de18fa132f46a533393f5fed",
+    "docs/ATLAS_STUDY_CONTEXT.md": "56cc7026e5584daf0336afcf2db47bc97a88be6cf72d977ac07d13c52a5e9c1e",
+    "CLAIMS.md": "b50fc49329f634bc94591a8ebe6ba8f26ce25bbd7a9a7d067b2d507c6b4f88bf",
+    "data/governance/claim_ledger.json": "58e13f1e533e77d528293f62c205cc01c89d8a323f6fe707ddb4a917e726e17c",
+    "docs/CURRENT_DECISIONS.md": "e23ddc400b60471c32d22b56d65cd7ceb8e2278c7ab08e1c7eec7aae8e3b64fb",
+    "docs/CURRENT_STATE.md": "0f7faf702f1c9d72c5fb30487f60bb78df428365f99afb5ed26a11a1c8a37ef6",
+    "tests/test_truth_guard.py": "dfb5da45b216073c04811d2f79f4474c29683ad3d99ec66644f3b036b03bf14f"
+  },
+  "review_process": [
+    {
+      "task": "source_ahas",
+      "role": "primary_source",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "source_content_challenged_and_named_corrections_verified_by_parent; final exact-head review recorded in Git-local receipt"
+    },
+    {
+      "task": "representation_ahas",
+      "role": "representation",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "source_content_challenged_and_named_corrections_verified_by_parent; final exact-head review recorded in Git-local receipt"
+    },
+    {
+      "task": "adversarial_ahas",
+      "role": "adversarial",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "source_content_challenged_and_named_corrections_verified_by_parent; final exact-head review recorded in Git-local receipt"
+    }
+  ],
+  "coordination_board": ".git/catalytic-earth-runs/e6cc7099.board.md",
+  "independent_human_validation": false,
+  "experimental_validation": false,
+  "resolved_objections": [
+    {
+      "issue": "Donor-analogue abstract could be mistaken for native-pyruvate phase evidence.",
+      "resolution": "Close2010 main-text inquiry as unassessed, not absent; do not attach2010 abstract as supporting evidence for2005 fit."
+    },
+    {
+      "issue": "Population-derived net constants could become measured individual arrows.",
+      "resolution": "Generic joint-inference kind binds one turnover input and one net parameter per source stage, with all directional slots unassigned, exact source model assumptions and absent raw fractions."
+    },
+    {
+      "issue": "NMR reconstitution recipes and turnover conditions could be pooled.",
+      "resolution": "Retain separate mixture methods within a named composite inference wrapper, final NMR cofactor concentrations unknown, purified-batch identity unknown."
+    },
+    {
+      "issue": "Saturation and integration uncertainties could be overstated.",
+      "resolution": "Retain source nonsaturation correction, printed errors without SD/SEM, kcat error origin unresolved and data-not-shown Met250Ala fractions."
+    },
+    {
+      "issue": "Uniform Eq10 citations and reversible-addition prose overstated source scope.",
+      "resolution": "Eq10 supports only acceptor/carboligation/liberation expansion; donor addition reversibility null/unestablished, K1 equilibrium retained, decarboxylation presumed, stages4/5 explicitly reversible. Collapsed acceptor binding is explicit."
+    }
+  ],
+  "remaining_limits": [
+    "Source stage meaning is reviewed annotation, not inferred from a matching hash or agent agreement.",
+    "Original Met250Ala spectrum/fractions and complete assay sequences are unavailable; no independent raw-data reanalysis.",
+    "Source net constants share inputs and commitment assumptions; no causal microscopic energy, graph trajectory, physical structure or design performance.",
+    "Three computational workers are correlated with the parent; source objections take precedence."
+  ],
+  "acquisition": {
+    "batch_id": "two-substrate-lineages-2024-51831",
+    "cumulative_requests": 33,
+    "cumulative_response_body_bytes": 22997768,
+    "new_requests": 16,
+    "new_response_body_bytes": 623621,
+    "source_bodies_redistributed": false
+  },
+  "reconsideration": {
+    "bespoke_chemistry_code": "One genuine new inference class, expressed generically; source facts and affected-stage selections live in data, no enzyme-ID code.",
+    "reusable_curation": "Same source/provider/construct/assay/endpoint consumer retrieves a fourth model context, while earlier outputs remain invariant. Manual source interpretation remains; no measured time saving.",
+    "integrated_value": "Retains source-supported donor-to-product stage distinctions and prevents forward-net constants from becoming elementary design targets. Broad coverage and a demonstrated design consumer remain missing."
+  }
+}

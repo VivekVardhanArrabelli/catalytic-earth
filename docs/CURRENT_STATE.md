@@ -1,5 +1,21 @@
 # Current State
 
+## 2026-09-11: AHAS II net stages remain distinct from microscopic forward rates
+
+The [Met250Ala/Pyr + Pyr relation](ATLAS_AHAS_NET_RATES.md) binds one source
+Table 2 turnover input (3 ± 0.1 s^-1) to four forward-net constants inferred
+from steady-state NMR populations: 28 ± 7, 35 ± 7, 11.1 ± 1.3 and
+5.6 ± 0.3 s^-1 for donor adduct, decarboxylation, carboligation and liberation.
+The source's saturation correction, missing raw fractions and commitment/reversal
+limits travel with the query. A generic population-inference model keeps those
+parameters out of individual directional-rate slots. No native binding constant,
+WT ratio, occupancy reconstruction, new project experiment or design claim.
+
+Steinmetz2010 remains assessed only at abstract donor-analogue scope; its
+full-text native-donor phase is unassessed, not experimentally absent. A cited
+Tittmann2005 primary supplies the distinct relation above. The same bibliography
+batch now totals 33 requests / 22,997,768 bytes; source bodies remain local.
+
 ## 2026-09-11: H473N separates target accumulation from competing-product nondetection
 
 The [Yu2020 product profile](ATLAS_TK_PRODUCT_PROFILE.md) reports WT with

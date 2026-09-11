@@ -478,6 +478,38 @@ def _model_link(context, link, constructs, rows, assays, source_bindings, resolv
         elif fit["kind"] == "two_state_equilibrium":
             if len(covered) != 1 or phase or transitions[covered[0]]["reversible_in_source"] is not True:
                 raise ValueError("two-state equilibrium fit requires one reversible transition")
+        elif fit["kind"] == "steady_state_population_inference":
+            if (covered != phase or len(phase) < 2
+                    or any(transitions[left]["to_state"] != transitions[right]["from_state"]
+                           for left, right in zip(phase, phase[1:]))):
+                raise ValueError("steady-state population inference requires one connected ordered phase")
+            basis = fit.get("inference_basis")
+            basis_fields = {
+                "steady_state", "substrate_regime", "turnover_and_population_inputs",
+                "source_equations", "raw_population_fractions_available",
+                "forward_net_rate_definition", "direct_microscopic_rates_established",
+            }
+            equations = basis.get("source_equations") if isinstance(basis, dict) else None
+            if (not isinstance(basis, dict) or set(basis) != basis_fields
+                    or basis["steady_state"] is not True
+                    or basis["turnover_and_population_inputs"] is not True
+                    or basis["direct_microscopic_rates_established"] is not False
+                    or type(basis["raw_population_fractions_available"]) is not bool
+                    or any(not isinstance(basis[field], str) or not basis[field].strip()
+                           for field in ("substrate_regime", "forward_net_rate_definition"))
+                    or not isinstance(equations, list) or not equations
+                    or any(not isinstance(equation, str) or not equation.strip()
+                           for equation in equations)
+                    or len({equation.strip() for equation in equations}) != len(equations)):
+                raise ValueError("steady-state population inference requires its exact source inference basis")
+            for transition_id in covered:
+                transition = transitions[transition_id]
+                slots = transition.get("parameter_slots", {})
+                if (set(slots) != {"forward", "reverse"}
+                        or any(slot.get("status") != "unassigned_in_selected_source_model"
+                               for slot in slots.values())
+                        or transition.get("parameter_roles") or transition.get("parameter_units")):
+                    raise ValueError("steady-state population inference cannot assign directional transition rates")
         else:
             raise ValueError("unsupported source-model fit kind")
         assay_ref = ref(fit["assay_binding"])
@@ -486,20 +518,43 @@ def _model_link(context, link, constructs, rows, assays, source_bindings, resolv
         if ligands and any(transitions[key].get(branch_key) != fit[branch_key] for key in covered):
             raise ValueError("model fit cannot combine different ligand branches")
         parameters = {}
-        roles = ({"apparent_equilibrium_constant": {"M", "mM", "uM"}}
-                 if fit["kind"] == "two_state_equilibrium" else {
-                     "saturated_multistep_rate": {"s^-1"},
+        if fit["kind"] == "two_state_equilibrium":
+            roles = {"apparent_equilibrium_constant": {"M", "mM", "uM"}}
+        elif fit["kind"] == "steady_state_population_inference":
+            roles = {"steady_state_turnover_rate": {"s^-1"}, "forward_net_rate": {"s^-1"}}
+        else:
+            roles = {"saturated_multistep_rate": {"s^-1"},
                      "observed_second_order_initial_rate": {"M^-1 s^-1"},
                      "cooperative_response_midpoint": {"M", "mM", "uM"},
-                     "hill_coefficient": {"dimensionless"}})
+                     "hill_coefficient": {"dimensionless"}}
         for key, item in fit["parameter_bindings"].items():
             value = get(item["binding"])
             if (item["role"] not in roles or item["unit"] not in roles[item["role"]]
                     or value["unit"] != item["unit"] or value["parameter"] != key):
                 raise ValueError("model fit parameter requires source role, name and matching unit")
+            if fit["kind"] == "steady_state_population_inference":
+                affected = item.get("affected_transition_ids")
+                if (set(item) != {"binding", "role", "unit", "affected_transition_ids"}
+                        or not isinstance(affected, list) or not affected
+                        or any(not isinstance(transition_id, str) for transition_id in affected)
+                        or len(affected) != len(set(affected)) or not set(affected) <= set(phase)):
+                    raise ValueError("population-inferred parameter requires distinct affected phase transitions")
             parameters[key] = value
         if not parameters:
             raise ValueError("model fit requires bound source parameters")
+        if fit["kind"] == "steady_state_population_inference":
+            turnover = [item for item in fit["parameter_bindings"].values()
+                        if item["role"] == "steady_state_turnover_rate"]
+            net_rates = [item for item in fit["parameter_bindings"].values()
+                         if item["role"] == "forward_net_rate"]
+            net_transitions = [item["affected_transition_ids"][0] for item in net_rates
+                               if len(item["affected_transition_ids"]) == 1]
+            if (len(turnover) != 1 or turnover[0]["affected_transition_ids"] != phase
+                    or len(net_rates) != len(phase) or len(net_transitions) != len(net_rates)
+                    or len(set(net_transitions)) != len(net_transitions)
+                    or set(net_transitions) != set(phase)):
+                raise ValueError(
+                    "population inference requires one turnover rate and one net rate per phase transition")
         if any(item["role"] == "observed_second_order_initial_rate"
                for item in fit["parameter_bindings"].values()):
             boundary = fit.get("measurement_boundary", {})
