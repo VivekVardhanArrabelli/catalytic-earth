@@ -1,0 +1,95 @@
+{
+  "schema_version": "catalytic-earth.source-qualification-review.v1",
+  "assessment_id": "ksi_2014_field_function",
+  "decision": "accept_source_annotation",
+  "authorized_operation": "source_annotation",
+  "policy_binding": {
+    "path": "data/governance/computational_review_policy.json",
+    "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "reviewed_bindings": {
+    "data/atlas/study_context/ksi_2014/field_function.json": "ad8634b626d232daa24632c11d7606c2e1e7f174a3e2c3e23b54a6092b411095",
+    "data/atlas/study_context/ksi_2014/acquisition_receipts.json": "9a0722832af986f2d1b5fae8af33b69dcfb22571076d83f02d737b1b3a545865",
+    "data/atlas/study_context/ra95_2013/dera_acquisition_appendix.json": "403ba72586901956fadd2d5af67bd4a35552aeb24158226697b051a4577cc645",
+    "docs/ATLAS_KSI_FIELD_FUNCTION.md": "c8906e68fed853ee241a78184b149cda1eab53d8490d3ba629514a475dfe06de",
+    "data/atlas/perturbations/projection.json": "ac3a579706ce57452f566be04c1bf7b07d56f61549ecfbe4d2b70f0c8fe3d148",
+    "tests/core/test_atlas_perturbations.py": "21170f04a2faa47dbe7e7f4b3543c4b77452518f0c3f67543b06bf6ba9a2fe96",
+    "CLAIMS.md": "014db4bf269b57f7cf174f34988e001fc09185ea43eb4062b86233d0030f42a5",
+    "data/governance/claim_ledger.json": "173afaaded62f58ad43eb621c43d610a04142393b2fb68e427116e840035e8e2",
+    "docs/CURRENT_STATE.md": "d7cd3c45c473dd2210f9e04c15002e0baaa10c1ff0169beda879a7054fa4639b",
+    "docs/CURRENT_DECISIONS.md": "7f3e9d4e9ec54d5869735bbd74089dbd2fc6e51608ee85332ee1a68ddc1b24cc",
+    "tests/test_truth_guard.py": "d83eaf4eb86cc2d543cf990c52274fb16571f16b787defeff032795938d2e4f8"
+  },
+  "source_inspection": "Primary manuscript; complete relevant PDF TableS2 including footer visually checked; Methods2-5, SI23-24, mainFig3/prose and full technical comment. Author response challenge is not counted as substantive text. Exact primary version and bytes retained locally.",
+  "review_process": "Parent source/diff review plus three separately prompted read-only gpt-5.6-sol/ultra roles; correlated computational review, not independent human or experimental validation. Parent alone owns edits/acquisition/Git/lock.",
+  "reviews": [
+    {
+      "role": "source",
+      "task": "source_challenge",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "result": "source content accepted after narrowing; final publication requires exact diff and CI checks"
+    },
+    {
+      "role": "representation",
+      "task": "representation_challenge",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "result": "source content accepted after narrowing; final publication requires exact diff and CI checks"
+    },
+    {
+      "role": "adversarial",
+      "task": "adversarial_challenge",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "result": "source content accepted after narrowing; final publication requires exact diff and CI checks"
+    }
+  ],
+  "adjudications": [
+    {
+      "objection": "Main19NT shorthand could erase the actual sulfate probe.",
+      "decision": "Use19-nortestosterone sulfate for protein spectra, retain mixed calibration contexts, keep turnover steroid separate.",
+      "evidence": "SI MethodsD/TableS2."
+    },
+    {
+      "objection": "The table could imply freshly measured matched kinetics or SD for every column.",
+      "decision": "Six kinetic values are author-compiled references16/18/19; assay conditions and error statistic remain unresolved. Spectral n/SD do not transfer to kinetics.",
+      "evidence": "TableS2 two distinct footnotes."
+    },
+    {
+      "objection": "D40N could enter the field fit or become a general claim about all base mutants.",
+      "decision": "Preserve its explicit source exclusion. Exact question isD40N; no extrapolation to unmeasured mutants.",
+      "evidence": "SI23-24 and Figure3B."
+    },
+    {
+      "objection": "Cited mechanism rationale might be treated as directD40N evidence.",
+      "decision": "Preserve reference67 DOI10.1021/bi00234a022 and titleD38N; homolog/numbering transfer unverified.",
+      "evidence": "SI24 and reference67."
+    },
+    {
+      "objection": "Derived fields could become unsigned measured values or causal fractions.",
+      "decision": "Signed fields remain source context with combined model/experimental uncertainty; source magnitude wording versus negative axis is recorded. Competing70percent/31.4percent estimates are not adjudicated; reply unreviewed.",
+      "evidence": "MainFig2D/Fig3B, SITextS2/S3, ChenSavidge2015 comment."
+    },
+    {
+      "objection": "Main approximately10^4 Y16F effect could be attached to the exact compiled rate pair.",
+      "decision": "Keep the prose factor separate from TableS2 kcat; no source repair or matched ratio.",
+      "evidence": "Main Tyr16Phe paragraph and TableS2."
+    },
+    {
+      "objection": "DERA access failure might masquerade as a mechanistic negative or block all useful work.",
+      "decision": "Record compact same-batch appendix and pivot to distinct KSI evidence. DERA and its erratum remain unassessed.",
+      "evidence": "Six bounded serial access receipts; no full primary body."
+    }
+  ],
+  "blocked_operations": [
+    "matched-assay numeric ratios from unqualified compiled rates",
+    "D40N membership in source same-mechanism field model",
+    "directD40N mechanistic attribution from unreviewedD38N citation",
+    "reacting-state field or field-only universal predictor",
+    "causal fraction or global design-performance claim",
+    "protected registry admission or evidence-tier promotion"
+  ],
+  "coordination_record": ".git/catalytic-earth-runs/2e3e02ec.board.md",
+  "reviewed_at_utc": "2026-09-11T02:34:13.906860+00:00"
+}

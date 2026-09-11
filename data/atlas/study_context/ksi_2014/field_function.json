@@ -1,0 +1,547 @@
+{
+  "schema_version": "catalytic-earth.source-qualification.v1",
+  "assessment_id": "ksi_2014_field_function",
+  "authorized_operation": "source_annotation",
+  "scientific_scope": "Source-grounded variant-specific spectroscopy-to-literature-turnover association, preserving the source-interpreted D40N mechanism-change rationale.",
+  "counted_objects": {
+    "source_named_construct_contexts": 6,
+    "new_spectroscopy_parameter_projections": 6,
+    "compiled_turnover_parameter_projections": 6,
+    "new_project_experiments": 0,
+    "protected_protein_admissions": 0
+  },
+  "sources": [
+    {
+      "source_id": "ksi-source-3",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4668018/",
+      "sha256": "0d033179aa96848bee18f06fdfb9362d46d54267850eb50d479cc037caf7c01d",
+      "bytes": 152073,
+      "version": "primary author manuscript",
+      "redistributed": false,
+      "git_common_dir_relative_path": "catalytic-earth-runs/2e3e02ec-primary/article.html"
+    },
+    {
+      "source_id": "ksi-source-6",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4797066/",
+      "sha256": "4c6ad62ac7f28277480de29cd262528dcc0f68493b42e6cd41b899df245708db",
+      "bytes": 113425,
+      "version": "primary technical comment",
+      "redistributed": false,
+      "git_common_dir_relative_path": "catalytic-earth-runs/2e3e02ec-primary/comment.html"
+    },
+    {
+      "source_id": "ksi-source-12",
+      "source_url": "https://www.boxerlab.stanford.edu/_files/ugd/4006c9_711c3c14b0484c06bca62b5cbf707a67.pdf",
+      "sha256": "cb7d0f640cd60c43f77da1efc3dc731c2786d4f034ccc3d1709b408107b6d6f2",
+      "bytes": 3510040,
+      "version": "author-hosted published article and supporting material",
+      "redistributed": false,
+      "git_common_dir_relative_path": "catalytic-earth-runs/2e3e02ec-primary/author-paper.pdf"
+    }
+  ],
+  "constructs": [
+    {
+      "construct_id": "WT",
+      "background_id": "WT",
+      "substitutions": [],
+      "organism": "Pseudomonas putida",
+      "numbering": "Fried2014 paper-local numbering",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source_named_construct_full_sequence_not_retained",
+      "identity_scope": "SI Methods B reports gene sequencing and protein mass characterization; no complete sequence strings or identical spectroscopy/kinetics specimens established.",
+      "source_locator": "author PDF9 / SI2 Methods B; PDF51 / SI44 Table S2"
+    },
+    {
+      "construct_id": "Y16F",
+      "background_id": "WT",
+      "substitutions": [
+        "Y16F"
+      ],
+      "organism": "Pseudomonas putida",
+      "numbering": "Fried2014 paper-local numbering",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source_named_construct_full_sequence_not_retained",
+      "identity_scope": "SI Methods B reports gene sequencing and protein mass characterization; no complete sequence strings or identical spectroscopy/kinetics specimens established.",
+      "source_locator": "author PDF9 / SI2 Methods B; PDF51 / SI44 Table S2"
+    },
+    {
+      "construct_id": "Y16S",
+      "background_id": "WT",
+      "substitutions": [
+        "Y16S"
+      ],
+      "organism": "Pseudomonas putida",
+      "numbering": "Fried2014 paper-local numbering",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source_named_construct_full_sequence_not_retained",
+      "identity_scope": "SI Methods B reports gene sequencing and protein mass characterization; no complete sequence strings or identical spectroscopy/kinetics specimens established.",
+      "source_locator": "author PDF9 / SI2 Methods B; PDF51 / SI44 Table S2"
+    },
+    {
+      "construct_id": "D103N",
+      "background_id": "WT",
+      "substitutions": [
+        "D103N"
+      ],
+      "organism": "Pseudomonas putida",
+      "numbering": "Fried2014 paper-local numbering",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source_named_construct_full_sequence_not_retained",
+      "identity_scope": "SI Methods B reports gene sequencing and protein mass characterization; no complete sequence strings or identical spectroscopy/kinetics specimens established.",
+      "source_locator": "author PDF9 / SI2 Methods B; PDF51 / SI44 Table S2"
+    },
+    {
+      "construct_id": "D103L",
+      "background_id": "WT",
+      "substitutions": [
+        "D103L"
+      ],
+      "organism": "Pseudomonas putida",
+      "numbering": "Fried2014 paper-local numbering",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source_named_construct_full_sequence_not_retained",
+      "identity_scope": "SI Methods B reports gene sequencing and protein mass characterization; no complete sequence strings or identical spectroscopy/kinetics specimens established.",
+      "source_locator": "author PDF9 / SI2 Methods B; PDF51 / SI44 Table S2"
+    },
+    {
+      "construct_id": "D40N",
+      "background_id": "WT",
+      "substitutions": [
+        "D40N"
+      ],
+      "organism": "Pseudomonas putida",
+      "numbering": "Fried2014 paper-local numbering",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source_named_construct_full_sequence_not_retained",
+      "identity_scope": "SI Methods B reports gene sequencing and protein mass characterization; no complete sequence strings or identical spectroscopy/kinetics specimens established.",
+      "source_locator": "author PDF9 / SI2 Methods B; PDF51 / SI44 Table S2"
+    }
+  ],
+  "assays": [
+    {
+      "assay_id": "bound_probe_ir",
+      "endpoint": "Natural-abundance carbonyl vibrational peak of KSI-bound 19-nortestosterone sulfate",
+      "method": "FTIR with ligand or isotope editing; peak-frequency determination (Table S2 labels curve fitting)",
+      "conditions": {
+        "buffer": "40 mM potassium phosphate in D2O",
+        "pD": 7.4,
+        "protein_mM_approx": 4,
+        "probe_mM_approx": 3,
+        "ligand_stock": "80 mM in DMSO; about0.75uL added to15uL protein; no inferred final exact concentration",
+        "temperature_celsius": null
+      },
+      "source_locator": "PDF10-12 / SI3-5 Methods D; PDF51 / SI44 Table S2",
+      "uncertainty": "Frequency errors are SD across the table-marked n independent measurements; n is not a count of independently expressed protein batches."
+    },
+    {
+      "assay_id": "compiled_turnover",
+      "endpoint": "Michaelis-Menten kcat for 5-androstene-3,17-dione isomerization",
+      "method": "Author-assembled literature values in Table S2; not new kinetic measurements by this study",
+      "conditions": null,
+      "source_locator": "PDF51 / SI44 Table S2 footnote double-dagger; references16,18,19",
+      "underlying_sources": [
+        {
+          "reference": 16,
+          "doi": "10.1128/jb.177.9.2602-2605.1995"
+        },
+        {
+          "reference": 18,
+          "doi": "10.1073/pnas.0911168107"
+        },
+        {
+          "reference": 19,
+          "doi": "10.1021/bi002767+"
+        }
+      ],
+      "per_row_primary_reference": null,
+      "source_assay_equivalence_established": false,
+      "uncertainty": "Printed plus/minus retained; Table S2 does not specify the rate error statistic or replicate count. Original kinetic methods not acquired."
+    }
+  ],
+  "rows": [
+    {
+      "row_id": "WT",
+      "construct_id": "WT",
+      "source_locator": "author PDF51 / SI44 Table S2, natural-abundance probe and rightmost kcat column",
+      "spectroscopy_n": 13,
+      "frequency": {
+        "status": "numeric",
+        "value": 1588.3,
+        "unit": "cm^-1",
+        "uncertainty": {
+          "value": 2.4,
+          "kind": "standard_deviation"
+        },
+        "evidence_origin": "measured_in_Fried2014"
+      },
+      "linewidth_context": {
+        "FWHM_cm_inverse": 6.5,
+        "sd_cm_inverse": 2.6
+      },
+      "kcat": {
+        "parameter": "k_cat",
+        "status": "numeric",
+        "value": 24300,
+        "unit": "s^-1",
+        "uncertainty": {
+          "value": 3400,
+          "kind": "source_plus_minus_statistic_unresolved"
+        },
+        "evidence_origin": "compiled_from_references16_18_19_not_newly_measured"
+      },
+      "source_field_model_inclusion": true,
+      "inclusion_basis": "Main Figure3B and SI23-24; D40N excluded for source-interpreted mechanism change, not removed from evidence table."
+    },
+    {
+      "row_id": "Y16F",
+      "construct_id": "Y16F",
+      "source_locator": "author PDF51 / SI44 Table S2, natural-abundance probe and rightmost kcat column",
+      "spectroscopy_n": 7,
+      "frequency": {
+        "status": "numeric",
+        "value": 1647.5,
+        "unit": "cm^-1",
+        "uncertainty": {
+          "value": 1.3,
+          "kind": "standard_deviation"
+        },
+        "evidence_origin": "measured_in_Fried2014"
+      },
+      "linewidth_context": {
+        "FWHM_cm_inverse": 6.3,
+        "sd_cm_inverse": 3.5
+      },
+      "kcat": {
+        "parameter": "k_cat",
+        "status": "numeric",
+        "value": 12,
+        "unit": "s^-1",
+        "uncertainty": {
+          "value": 2,
+          "kind": "source_plus_minus_statistic_unresolved"
+        },
+        "evidence_origin": "compiled_from_references16_18_19_not_newly_measured"
+      },
+      "source_field_model_inclusion": true,
+      "inclusion_basis": "Main Figure3B and SI23-24; D40N excluded for source-interpreted mechanism change, not removed from evidence table."
+    },
+    {
+      "row_id": "Y16S",
+      "construct_id": "Y16S",
+      "source_locator": "author PDF51 / SI44 Table S2, natural-abundance probe and rightmost kcat column",
+      "spectroscopy_n": 8,
+      "frequency": {
+        "status": "numeric",
+        "value": 1621.9,
+        "unit": "cm^-1",
+        "uncertainty": {
+          "value": 1.3,
+          "kind": "standard_deviation"
+        },
+        "evidence_origin": "measured_in_Fried2014"
+      },
+      "linewidth_context": {
+        "FWHM_cm_inverse": 4.3,
+        "sd_cm_inverse": 1.3
+      },
+      "kcat": {
+        "parameter": "k_cat",
+        "status": "numeric",
+        "value": 640,
+        "unit": "s^-1",
+        "uncertainty": {
+          "value": 60,
+          "kind": "source_plus_minus_statistic_unresolved"
+        },
+        "evidence_origin": "compiled_from_references16_18_19_not_newly_measured"
+      },
+      "source_field_model_inclusion": true,
+      "inclusion_basis": "Main Figure3B and SI23-24; D40N excluded for source-interpreted mechanism change, not removed from evidence table."
+    },
+    {
+      "row_id": "D103N",
+      "construct_id": "D103N",
+      "source_locator": "author PDF51 / SI44 Table S2, natural-abundance probe and rightmost kcat column",
+      "spectroscopy_n": 5,
+      "frequency": {
+        "status": "numeric",
+        "value": 1595.1,
+        "unit": "cm^-1",
+        "uncertainty": {
+          "value": 0.6,
+          "kind": "standard_deviation"
+        },
+        "evidence_origin": "measured_in_Fried2014"
+      },
+      "linewidth_context": {
+        "FWHM_cm_inverse": 7.4,
+        "sd_cm_inverse": 2.3
+      },
+      "kcat": {
+        "parameter": "k_cat",
+        "status": "numeric",
+        "value": 5700,
+        "unit": "s^-1",
+        "uncertainty": {
+          "value": 300,
+          "kind": "source_plus_minus_statistic_unresolved"
+        },
+        "evidence_origin": "compiled_from_references16_18_19_not_newly_measured"
+      },
+      "source_field_model_inclusion": true,
+      "inclusion_basis": "Main Figure3B and SI23-24; D40N excluded for source-interpreted mechanism change, not removed from evidence table."
+    },
+    {
+      "row_id": "D103L",
+      "construct_id": "D103L",
+      "source_locator": "author PDF51 / SI44 Table S2, natural-abundance probe and rightmost kcat column",
+      "spectroscopy_n": 7,
+      "frequency": {
+        "status": "numeric",
+        "value": 1624.9,
+        "unit": "cm^-1",
+        "uncertainty": {
+          "value": 1.6,
+          "kind": "standard_deviation"
+        },
+        "evidence_origin": "measured_in_Fried2014"
+      },
+      "linewidth_context": {
+        "FWHM_cm_inverse": 5.1,
+        "sd_cm_inverse": 1
+      },
+      "kcat": {
+        "parameter": "k_cat",
+        "status": "numeric",
+        "value": 220,
+        "unit": "s^-1",
+        "uncertainty": {
+          "value": 10,
+          "kind": "source_plus_minus_statistic_unresolved"
+        },
+        "evidence_origin": "compiled_from_references16_18_19_not_newly_measured"
+      },
+      "source_field_model_inclusion": true,
+      "inclusion_basis": "Main Figure3B and SI23-24; D40N excluded for source-interpreted mechanism change, not removed from evidence table."
+    },
+    {
+      "row_id": "D40N",
+      "construct_id": "D40N",
+      "source_locator": "author PDF51 / SI44 Table S2, natural-abundance probe and rightmost kcat column",
+      "spectroscopy_n": 4,
+      "frequency": {
+        "status": "numeric",
+        "value": 1594.4,
+        "unit": "cm^-1",
+        "uncertainty": {
+          "value": 0.4,
+          "kind": "standard_deviation"
+        },
+        "evidence_origin": "measured_in_Fried2014"
+      },
+      "linewidth_context": {
+        "FWHM_cm_inverse": 2.4,
+        "sd_cm_inverse": 0.5
+      },
+      "kcat": {
+        "parameter": "k_cat",
+        "status": "numeric",
+        "value": 0.018,
+        "unit": "s^-1",
+        "uncertainty": {
+          "value": 0.001,
+          "kind": "source_plus_minus_statistic_unresolved"
+        },
+        "evidence_origin": "compiled_from_references16_18_19_not_newly_measured"
+      },
+      "source_field_model_inclusion": false,
+      "inclusion_basis": "Main Figure3B and SI23-24; D40N excluded for source-interpreted mechanism change, not removed from evidence table."
+    }
+  ],
+  "field_function_relation": {
+    "relation_id": "ksi_2014:probe_field_and_general_base",
+    "question": "Does the source same-mechanism inhibitor-carbonyl field relation apply to the D40N general-base mutant?",
+    "pairs": [
+      {
+        "construct_id": "WT",
+        "probe_observation_id": "ksi-ir:WT:carbonyl_frequency",
+        "turnover_observation_id": "ksi-rates:WT:kcat",
+        "join_basis": "Author-assembled same named variant in Table S2; different ligands and measurements, not physical aliquot or verified same assay.",
+        "source_field_model_inclusion": true
+      },
+      {
+        "construct_id": "Y16F",
+        "probe_observation_id": "ksi-ir:Y16F:carbonyl_frequency",
+        "turnover_observation_id": "ksi-rates:Y16F:kcat",
+        "join_basis": "Author-assembled same named variant in Table S2; different ligands and measurements, not physical aliquot or verified same assay.",
+        "source_field_model_inclusion": true
+      },
+      {
+        "construct_id": "Y16S",
+        "probe_observation_id": "ksi-ir:Y16S:carbonyl_frequency",
+        "turnover_observation_id": "ksi-rates:Y16S:kcat",
+        "join_basis": "Author-assembled same named variant in Table S2; different ligands and measurements, not physical aliquot or verified same assay.",
+        "source_field_model_inclusion": true
+      },
+      {
+        "construct_id": "D103N",
+        "probe_observation_id": "ksi-ir:D103N:carbonyl_frequency",
+        "turnover_observation_id": "ksi-rates:D103N:kcat",
+        "join_basis": "Author-assembled same named variant in Table S2; different ligands and measurements, not physical aliquot or verified same assay.",
+        "source_field_model_inclusion": true
+      },
+      {
+        "construct_id": "D103L",
+        "probe_observation_id": "ksi-ir:D103L:carbonyl_frequency",
+        "turnover_observation_id": "ksi-rates:D103L:kcat",
+        "join_basis": "Author-assembled same named variant in Table S2; different ligands and measurements, not physical aliquot or verified same assay.",
+        "source_field_model_inclusion": true
+      },
+      {
+        "construct_id": "D40N",
+        "probe_observation_id": "ksi-ir:D40N:carbonyl_frequency",
+        "turnover_observation_id": "ksi-rates:D40N:kcat",
+        "join_basis": "Author-assembled same named variant in Table S2; different ligands and measurements, not physical aliquot or verified same assay.",
+        "source_field_model_inclusion": false
+      }
+    ],
+    "source_discriminator": {
+      "construct_id": "D40N",
+      "source_locator": "SI23-24 / PDF30-31; main Asp40Asn paragraph",
+      "source_interpretation": "Asp40Asn changes the base to solution hydroxide and makes reketonization strongly rate-limiting; the authors exclude it from their same-mechanism field-rate model.",
+      "interpretation_origin": "Fried2014 cites reference67; this run has not independently reviewed that underlying mechanistic study.",
+      "underlying_mechanistic_reference": {
+        "reference": 67,
+        "inspection": "not_acquired",
+        "doi": "10.1021/bi00234a022",
+        "source_title_mutant": "D38N",
+        "scope": "SI reference67 title uses D38N, whereas this spectroscopy construct is D40N. Exact homolog/numbering and construct transfer is unverified; source citation is not a direct D40N observation."
+      },
+      "measured_probe_change_scope": "Natural-abundance carbonyl frequency differs by6.1cm^-1 from the printed WT and D40N means; main text rounds to6. No equivalence or unchanged-field claim. Central-value subtraction only; no propagated uncertainty or significance.",
+      "turnover_scope": "TableS2 compiles positive kcat0.018s^-1 forD40N versus24300s^-1 forWT; original assay matching remains unresolved.",
+      "field_only_activity_prediction_supported": false,
+      "same_mechanism_regression_member": false,
+      "field_only_prediction_scope": "D40N in this source-assembled comparison; no prediction of a class of unmeasured base mutants."
+    },
+    "signed_field_context": [
+      {
+        "construct_id": "WT",
+        "value": -144,
+        "plus_minus": 6,
+        "unit": "MV/cm",
+        "kind": "author_derived_ensemble_average_projected_field",
+        "source_locator": "main WT KSI paragraph",
+        "uncertainty_kind": "author_combined_experimental_frequency_and_field_mapping_model_error"
+      },
+      {
+        "construct_id": "Y16F",
+        "value": -60,
+        "plus_minus": 3,
+        "unit": "MV/cm",
+        "kind": "author_derived_ensemble_average_projected_field",
+        "source_locator": "main paragraph after Tyr16/Asp103 mutant discussion",
+        "uncertainty_kind": "author_combined_experimental_frequency_and_field_mapping_model_error"
+      }
+    ],
+    "field_calibration": {
+      "source_locator": "Figure2D, SI TextS1-S2",
+      "frequency_per_field_slope": 0.702,
+      "slope_unit": "cm^-1/(MV/cm)",
+      "intercept_cm_inverse": 1689,
+      "scope": "Solvent frequencies with MD-computed solvent fields; mixed nonsulfated19NT and sulfate-in-water probe contexts. Not direct transition-state field measurements.",
+      "extrapolation": "WT frequency lies beyond the solvent calibration range. SI reports a quadratic estimate-129MV/cm,10.4percent below the linear estimate.",
+      "field_sign": "Signed projection retained as reported; no magnitude normalization or causal field reconstruction."
+    },
+    "source_regression": {
+      "included_constructs": [
+        "WT",
+        "Y16F",
+        "Y16S",
+        "D103N",
+        "D103L"
+      ],
+      "excluded_constructs": [
+        "D40N"
+      ],
+      "reported_R_squared": 0.98,
+      "recomputed": false,
+      "endpoint": "apparent kcat-derived activation free energy, not directly measured elementary-step barrier",
+      "assumptions": [
+        "probe-to-reacting-carbonyl transfer",
+        "same electric field in substrate and transition state",
+        "kcat is a reasonable proxy for enolization in selected variants"
+      ],
+      "limits": "SI23 explicitly allows partially limiting reketonization/product release in WT; microscopic rates are not available across this variant panel.",
+      "reported_slope_debye": 1.05,
+      "reported_intercept_kcal_mol": 18.8,
+      "field_axis_unit": "kcal mol^-1 D^-1; signed projected field",
+      "equation": "apparent_deltaG = 1.05 * signed_projected_field + 18.8"
+    }
+  },
+  "interpretation_dispute": {
+    "status": "unresolved_postpublication_interpretation_dispute",
+    "original": {
+      "doi": "10.1126/science.1259802",
+      "quantity": "electrostatic fraction of total barrier reduction",
+      "source_estimate_percent": 70,
+      "model_barrier_reduction_kcal_mol": 7.3,
+      "basis": "extrapolated zero-field reference and chosen aqueous acetate comparison; author estimate, not observed component energy",
+      "source_estimate_percent_plus_minus": 4,
+      "model_barrier_reduction_plus_minus_kcal_mol": 0.4,
+      "uncertainty_scope": "Author-reported model uncertainties; not uncertainty in a directly measured component energy."
+    },
+    "technical_comment": {
+      "doi": "10.1126/science.aab0095",
+      "source_id": "ksi-source-6",
+      "source_estimate_percent": 31.4,
+      "model_barrier_reduction_kcal_mol": 3.3,
+      "objection": "Water electrostatic stabilization contributes to the aqueous reference; reference-state accounting changes the assigned fraction. Its thermodynamic estimates are also assumptions."
+    },
+    "author_response": {
+      "pmcid": "PMC5289113",
+      "inspection": "unreviewed; attempted PMC response returned a browser challenge, not article body"
+    },
+    "adjudication": "Preserve competing source interpretations. Neither percentage is an atlas-endorsed causal fraction; do not average or select by agent agreement. The observed variant-specific probe frequencies and compiled rates remain usable at their exact scope."
+  },
+  "limitations": [
+    "No same physical sample, exact full sequence or matched kinetic conditions established.",
+    "The protein probe is19-nortestosterone sulfate; turnover substrate is5-androstene-3,17-dione. Main19NT shorthand does not erase sulfate.",
+    "Compiled kcat values are not newly measured kinetics, microscopic enolization rates or directly measured barriers.",
+    "The D40N mechanism explanation is source interpretation with an unreviewed underlying reference.",
+    "No direct reacting-state electric field, global causal partition, prospective design rule, geometry tolerance, new experiment or independent validation."
+  ],
+  "source_access": {
+    "batch_id": "ketosteroid-isomerase-electric-field-fried2014",
+    "cumulative_requests": 12,
+    "cumulative_response_body_bytes": 5179007,
+    "receipt": "data/atlas/study_context/ksi_2014/acquisition_receipts.json"
+  },
+  "source_conflicts": [
+    {
+      "source_locator": "main Tyr16Phe paragraph versus SI TableS2",
+      "scope": "Main approximately10^4 loss is not the quotient of the compiled TableS2 kcat values24300 and12. Do not silently attach the prose factor to those rows or repair either source statement."
+    },
+    {
+      "source_locator": "Main Figure3B caption and signed horizontal axis",
+      "scope": "The prose/caption uses magnitude notation, while the plotted field axis is negative. Retain the signed projected convention used by the reported positive slope; do not silently interpret the model as a positive-magnitude equation."
+    }
+  ],
+  "study": {
+    "doi": "10.1126/science.1259802",
+    "pmcid": "PMC4668018",
+    "pmid": "25525245",
+    "title": "Extreme electric fields power catalysis in the active site of ketosteroid isomerase",
+    "authors": [
+      "Stephen D. Fried",
+      "Sayan Bagchi",
+      "Steven G. Boxer"
+    ],
+    "year": 2014
+  }
+}

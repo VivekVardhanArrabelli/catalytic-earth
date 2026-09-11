@@ -528,6 +528,23 @@ state transfer, not proof of mechanistic non-equivalence. No normalized
 stereochemistry, after-state replay, physical atom map, whole-function transfer,
 new mechanism, experiment or evidence-tier promotion follows.
 
+## CE-038 — KSI D40N lies outside the source field–rate model
+
+**Status:** Supported
+
+The [KSI source relation](docs/ATLAS_KSI_FIELD_FUNCTION.md) retains six
+natural-abundance probe frequencies and six literature-compiled turnover
+parameters. WT/Y16F/D40N frequencies are1588.3/1647.5/1594.4cm⁻¹;
+their compiled kcat values are24300/12/0.018s⁻¹. Protein spectra use
+19-nortestosterone sulfate; kinetics use5-androstene-3,17-dione.
+Fried2014 excludesD40N from the field-rate model using a cited mechanism-change
+rationale. Its underlying reference title namesD38N; exact homolog/numbering
+transfer is unverified. The source-compiled association does not establish
+matched assays, same physical specimens or direct transition-state fields.
+Signed fields remain author-derived context; the disputed electrostatic
+fraction is not adopted. No universal activity predictor, productive geometry,
+new experiment, independent validation or design-performance claim follows.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,

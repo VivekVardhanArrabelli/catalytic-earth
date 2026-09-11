@@ -4,7 +4,7 @@
   "reviewed_at_utc": "2026-09-10T15:33:43.109365+00:00",
   "scope": "Cumulative source-reviewed projection; this increment reviews RA95.5-5 exact parent-to4A2R attachment association and generic optional matched-comparison retrieval. Previous scientific objects are unchanged and retain prior source reviews.",
   "reviewed_bindings": {
-    "data/atlas/perturbations/projection.json": "cc35db117836653e0ab2a1d80943f29199249a8dfa55460d4b06711d8a7eef4b",
+    "data/atlas/perturbations/projection.json": "ac3a579706ce57452f566be04c1bf7b07d56f61549ecfbe4d2b70f0c8fe3d148",
     "src/catalytic_earth/atlas_perturbations.py": "a814c22b892b3e734076fa9aead03453c83cb6ebe4c1d1e8cd85f5bbf4f0d778",
     "scripts/query_atlas_perturbations.py": "a13b3176952c44df5e8b053ee3a7907d5020ae00e66d75b248790f7aa20656e2",
     "docs/ATLAS_PERTURBATION_RELATION.md": "04bcda88bf03332d9203599d82e2fa28d382954a138555265caaf9404b043b6e",
@@ -12,7 +12,7 @@
     "docs/ATLAS_FORWARD_SYNTHESIS.md": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84",
     "data/atlas/study_context/diels_alder_2010/source_review.json": "bd97ed99812a3188ef47c090f61c87b0891bbc470222c49ee7698455680bf865",
     "docs/ATLAS_DIELS_ALDER_CONTROLS.md": "749e81dbcebcceb9022a5b4a5043bb16276c712c43b0c856feb394561830ac19",
-    "tests/core/test_atlas_perturbations.py": "c76b6b2d922f43647948d3084d95c856b160e4c16decaa4e94c2c41e3a866bc2",
+    "tests/core/test_atlas_perturbations.py": "21170f04a2faa47dbe7e7f4b3543c4b77452518f0c3f67543b06bf6ba9a2fe96",
     "data/atlas/study_context/6ha3/perturbation_context.json": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0",
     "data/atlas/study_context/6ha3/functional_review.json": "9af6d94d77800810d210e032e90e6af6a99ffd22a5548d9d39b5a7f502199200",
     "data/atlas/assembly_context/6ha3/review.json": "434188c22e847de2add0c76cc06076de9347d39ecd259acc051631792fcc7eaa",
@@ -31,10 +31,10 @@
     "data/atlas/study_context/ra95_2017/chemical_state.json": "0304a28cc9676ae9d920b5c4f6c47f102d10320e125cc40cbfddd971ccff695d",
     "data/atlas/study_context/ra95_2017/chemical_state_acquisition.json": "4b0427a24aab3b1269f25cd80b3b9c90f61c4a99404499d77cf0c16a8b5f2ecb",
     "docs/ATLAS_RA95_CHEMICAL_STATE.md": "a85ee7c6accdafb0f2fb63a1a658413e07788cee4a5f9f7879dce726c6707c01",
-    "CLAIMS.md": "ea8386f8e94cd3ca06a7d484865daf4dbeada59a07ce31cf1ca3bc661428b5d0",
-    "data/governance/claim_ledger.json": "d99cab88411b33facb20378e048331fc36958655ab828190caf476e338b7d1de",
-    "docs/CURRENT_DECISIONS.md": "aad77670735475b8583e8dd1f0505cf40e794f8cc81415e46373b611019d33fc",
-    "docs/CURRENT_STATE.md": "c5c19f98fa4811240438348b2f43699a22b24c9714c0d4e43e0760763f326930",
+    "CLAIMS.md": "014db4bf269b57f7cf174f34988e001fc09185ea43eb4062b86233d0030f42a5",
+    "data/governance/claim_ledger.json": "173afaaded62f58ad43eb621c43d610a04142393b2fb68e427116e840035e8e2",
+    "docs/CURRENT_DECISIONS.md": "7f3e9d4e9ec54d5869735bbd74089dbd2fc6e51608ee85332ee1a68ddc1b24cc",
+    "docs/CURRENT_STATE.md": "d7cd3c45c473dd2210f9e04c15002e0baaa10c1ff0169beda879a7054fa4639b",
     "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
     "src/catalytic_earth/atlas_deposit_context.py": "adfae408de29e6b5f61fab970d7631f42846a9cdaedea0340d65e6ac95ad2a87",
     "src/catalytic_earth/atlas_assembly_context.py": "5d671a761f3ad493661f3c25b50dce693ef2169a48942af9664a65e0b0ae0835",
@@ -47,12 +47,17 @@
     "data/atlas/deposit_context/ra95_4a2r/projection.json": "ea3117cea3d83e156534abcc1efd62f10ed056a1965ba7e99a0974ac915b3461",
     "data/atlas/study_context/ra95_2013/chemical_state.json": "a9b7df48d5684fc014ced487477364eb8d9b2072817e3be4c64837a364df0670",
     "data/atlas/study_context/ra95_2013/chemical_state_acquisition.json": "7efd0b0efdb32572d369194fc4e9eedd84b0a184aa8c9f10b7af50766b4c1da9",
-    "tests/test_truth_guard.py": "9cab652e125d7f03a5d22f761d163dbc6d655e11b950058b9a3e810c38b2933b",
+    "tests/test_truth_guard.py": "d83eaf4eb86cc2d543cf990c52274fb16571f16b787defeff032795938d2e4f8",
     "docs/ATLAS_RA95_4A2R_STATE.md": "8089d97dd393b0f3c2576197481c9551f3bdf2d1ff20a64dd15323ad7a6011ef",
     "data/atlas/study_context/ra95_2013/chemical_state_review.json": "12864f833532eff632016804fbf322e1828c33c3cabf840b2cd08b8f0ea99ebf",
     "data/atlas/deposit_context/ra95_4a2r/review.json": "dc017d8ed45a52dade5c04a77c42d734fa34926b67cefa043a35f0d9bb605a20",
     "data/atlas/study_context/diels_alder_2010/reactive_core.json": "cbd144d7fa62f09848869da5dee39a0f3c9b76f3f0b34856be8b5a5eac14d1c6",
-    "src/catalytic_earth/atlas_transformations.py": "24c3a95a3ed82b6add1b8257bdbfb5b6307d0f740f169a2633f2c70a3b1cab08"
+    "src/catalytic_earth/atlas_transformations.py": "24c3a95a3ed82b6add1b8257bdbfb5b6307d0f740f169a2633f2c70a3b1cab08",
+    "data/atlas/study_context/ksi_2014/field_function.json": "ad8634b626d232daa24632c11d7606c2e1e7f174a3e2c3e23b54a6092b411095",
+    "data/atlas/study_context/ksi_2014/acquisition_receipts.json": "9a0722832af986f2d1b5fae8af33b69dcfb22571076d83f02d737b1b3a545865",
+    "data/atlas/study_context/ra95_2013/dera_acquisition_appendix.json": "403ba72586901956fadd2d5af67bd4a35552aeb24158226697b051a4577cc645",
+    "docs/ATLAS_KSI_FIELD_FUNCTION.md": "c8906e68fed853ee241a78184b149cda1eab53d8490d3ba629514a475dfe06de",
+    "data/atlas/study_context/ksi_2014/source_review.json": "b3ff545ff03a316ee27efce9a5e5e3ddd97f138d1ae46dcf9c51d029189d1532"
   },
   "inherited_source_bindings": {
     "ra95f": {
@@ -675,5 +680,17 @@
     "new_source_response_body_bytes": 0,
     "independent_human_validation": false,
     "experimental_validation": false
+  },
+  "ksi_field_function_followup": {
+    "scope": "Add12 source-compiled KSI parameter projections and one all-six-construct context using unchanged consumer; existing193 observations and117 comparisons unchanged.",
+    "review": {
+      "path": "data/atlas/study_context/ksi_2014/source_review.json",
+      "sha256": "b3ff545ff03a316ee27efce9a5e5e3ddd97f138d1ae46dcf9c51d029189d1532"
+    },
+    "question": "Does the source field-rate model apply toD40N?",
+    "decision": "Source excludesD40N; preserve sulfate probe, compiled-rate uncertainty, D38N citation boundary and unresolved fraction disagreement.",
+    "review_process": "Three read-only Sol/ultra roles plus parent source review; correlated computational checks.",
+    "source_requests": 12,
+    "source_bytes": 5179007
   }
 }
