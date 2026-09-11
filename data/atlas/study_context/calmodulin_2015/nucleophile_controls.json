@@ -1,0 +1,436 @@
+{
+  "schema_version": "catalytic-earth.source-qualification.v1",
+  "assessment_id": "calmodulin_2015_nucleophile_controls",
+  "authorized_operation": "source_annotation",
+  "sources": [
+    {
+      "source_id": "raymond2015-primary",
+      "source_url": "https://europepmc.org/api/getPdf?pmcid=PMC4380986",
+      "doi": "10.1002/pro.2622",
+      "pmid": "25516403",
+      "pmcid": "PMC4380986",
+      "title": "Design of an allosterically regulated retroaldolase",
+      "publication_year": 2015,
+      "version": "Protein Science 24:561-570, publisher-layout primary article hosted by Europe PMC; supporting information not acquired",
+      "sha256": "85d1260fc986d22f46c422f31495d0b031dafc830525034d24574b38b1b47c5a",
+      "bytes": 713767,
+      "git_common_dir_relative_path": "catalytic-earth-runs/af9afdd4-primary/raymond2015.pdf",
+      "redistributed": false
+    }
+  ],
+  "question": "Does residual methodol activity uniquely establish a lysine-covalent mechanism?",
+  "selection": "Only five selected TableI contexts are projected: CaM/cCaM controls, CaMWN, Ac-CaMWN and CaM-L105K. The F92K row and seven-mutant screen are outside this question; no design success rate is inferred.",
+  "counted_objects": {
+    "projected_kinetic_parameter_records": 5,
+    "source_defined_construct_contexts": 5,
+    "new_project_experiments": 0,
+    "new_canonical_reactions": 0,
+    "protected_protein_admissions": 0
+  },
+  "constructs": [
+    {
+      "construct_id": "CaM",
+      "background_id": "CaM",
+      "domain_scope": "full-length",
+      "substitutions": [],
+      "perturbations": [],
+      "preparation_parent": null,
+      "comparison_reference_scope": "Source-defined reference for the complete listed intervention; not necessarily the immediate preparation parent.",
+      "source_aliases": [],
+      "sequence": null,
+      "sequence_sha256": null,
+      "identity_scope": "Source-named constructs only. Main p564 derives CaMWN from C-terminal cCaM; Figure5 uses cCaMWN/Ac-cCaMWN aliases. Full gene sequences are in unacquired SI TableS1; exact domain boundaries, full sequences, species and physical assay-specimen identity are not established here.",
+      "numbering": "Raymond2015 calmodulin residue labels; no authenticated sequence/deposit mapping",
+      "source_locator": "PMC4380986:PDF:p4(p564):Results; p6(p566):TableI; p8(p568):Cloning and mutagenesis / Protein expression and purification",
+      "sequence_status": "source_named_construct; SI sequence and physical specimen not verified"
+    },
+    {
+      "construct_id": "cCaM",
+      "background_id": "cCaM",
+      "domain_scope": "C-terminal domain",
+      "substitutions": [],
+      "perturbations": [],
+      "preparation_parent": null,
+      "comparison_reference_scope": "Source-defined reference for the complete listed intervention; not necessarily the immediate preparation parent.",
+      "source_aliases": [],
+      "sequence": null,
+      "sequence_sha256": null,
+      "identity_scope": "Source-named constructs only. Main p564 derives CaMWN from C-terminal cCaM; Figure5 uses cCaMWN/Ac-cCaMWN aliases. Full gene sequences are in unacquired SI TableS1; exact domain boundaries, full sequences, species and physical assay-specimen identity are not established here.",
+      "numbering": "Raymond2015 calmodulin residue labels; no authenticated sequence/deposit mapping",
+      "source_locator": "PMC4380986:PDF:p4(p564):Results; p6(p566):TableI; p8(p568):Cloning and mutagenesis / Protein expression and purification",
+      "sequence_status": "source_named_construct; SI sequence and physical specimen not verified"
+    },
+    {
+      "construct_id": "CaMWN",
+      "background_id": "cCaM",
+      "domain_scope": "C-terminal domain",
+      "substitutions": [
+        "K77A",
+        "K94R",
+        "H107I",
+        "K115N",
+        "K148L"
+      ],
+      "perturbations": [
+        "K77A",
+        "K94R",
+        "H107I",
+        "K115N",
+        "K148L"
+      ],
+      "preparation_parent": "cCaM",
+      "comparison_reference_scope": "Source-defined reference for the complete listed intervention; not necessarily the immediate preparation parent.",
+      "source_aliases": [
+        "cCaMWN"
+      ],
+      "sequence": null,
+      "sequence_sha256": null,
+      "identity_scope": "Source-named constructs only. Main p564 derives CaMWN from C-terminal cCaM; Figure5 uses cCaMWN/Ac-cCaMWN aliases. Full gene sequences are in unacquired SI TableS1; exact domain boundaries, full sequences, species and physical assay-specimen identity are not established here.",
+      "numbering": "Raymond2015 calmodulin residue labels; no authenticated sequence/deposit mapping",
+      "source_locator": "PMC4380986:PDF:p4(p564):Results; p6(p566):TableI; p8(p568):Cloning and mutagenesis / Protein expression and purification",
+      "sequence_status": "source_named_construct; SI sequence and physical specimen not verified"
+    },
+    {
+      "construct_id": "Ac-CaMWN",
+      "background_id": "cCaM",
+      "domain_scope": "C-terminal domain",
+      "substitutions": [
+        "K77A",
+        "K94R",
+        "H107I",
+        "K115N",
+        "K148L"
+      ],
+      "perturbations": [
+        "K77A",
+        "K94R",
+        "H107I",
+        "K115N",
+        "K148L",
+        "N-terminal acetylation"
+      ],
+      "preparation_parent": "CaMWN",
+      "comparison_reference_scope": "Source-defined reference for the complete listed intervention; not necessarily the immediate preparation parent.",
+      "source_aliases": [
+        "Ac-cCaMWN"
+      ],
+      "sequence": null,
+      "sequence_sha256": null,
+      "identity_scope": "Source-named constructs only. Main p564 derives CaMWN from C-terminal cCaM; Figure5 uses cCaMWN/Ac-cCaMWN aliases. Full gene sequences are in unacquired SI TableS1; exact domain boundaries, full sequences, species and physical assay-specimen identity are not established here.",
+      "numbering": "Raymond2015 calmodulin residue labels; no authenticated sequence/deposit mapping",
+      "source_locator": "PMC4380986:PDF:p4(p564):Results; p6(p566):TableI; p8(p568):Cloning and mutagenesis / Protein expression and purification",
+      "sequence_status": "source_named_construct; SI sequence and physical specimen not verified"
+    },
+    {
+      "construct_id": "CaM-L105K",
+      "background_id": "CaM",
+      "domain_scope": "full-length",
+      "substitutions": [
+        "L105K"
+      ],
+      "perturbations": [
+        "L105K"
+      ],
+      "preparation_parent": "CaM",
+      "comparison_reference_scope": "Source-defined reference for the complete listed intervention; not necessarily the immediate preparation parent.",
+      "source_aliases": [
+        "CaM L105K",
+        "AlleyCatR"
+      ],
+      "sequence": null,
+      "sequence_sha256": null,
+      "identity_scope": "Source-named constructs only. Main p564 derives CaMWN from C-terminal cCaM; Figure5 uses cCaMWN/Ac-cCaMWN aliases. Full gene sequences are in unacquired SI TableS1; exact domain boundaries, full sequences, species and physical assay-specimen identity are not established here.",
+      "numbering": "Raymond2015 calmodulin residue labels; no authenticated sequence/deposit mapping",
+      "source_locator": "PMC4380986:PDF:p4(p564):Results; p6(p566):TableI; p8(p568):Cloning and mutagenesis / Protein expression and purification",
+      "sequence_status": "source_named_construct; SI sequence and physical specimen not verified"
+    }
+  ],
+  "assays": [
+    {
+      "assay_id": "table1-methodol-initial-rate",
+      "reaction_id": "methodol-retroaldol",
+      "endpoint": "Source-reported second-order initial-rate coefficient; saturation not observed, separate kcat and KM not established",
+      "parameter": "k_cat/K_M",
+      "readout": "Product absorbance at350nm; initial-rate linear fit v0=(kcat/KM)[E]0[S]0",
+      "pH": 7.5,
+      "pH_source": "TableI title and Methods, not Figure5 caption",
+      "buffer": "25mM HEPES",
+      "CaCl2_mM": 10,
+      "NaCl_mM": 100,
+      "acetonitrile_percent": 3.5,
+      "protein_uM": 40,
+      "substrate_range_uM": [
+        50,
+        1500
+      ],
+      "temperature_C": null,
+      "temperature_status": "not stated in acquired kinetic protocol",
+      "replicates": "Methods states each absorbance measurement was done in triplicate; independent protein-preparation count not specified",
+      "uncertainty": "TableI prints plus/minus errors but does not define SD/SE/CI; triplicate measurements do not resolve the statistic",
+      "qualification_scope": "Within-TableI source-defined endpoint comparisons only. The conflicting Figure5 conditions remain unresolved and its plotted points are not refitted or pooled.",
+      "source_locator": "PMC4380986:PDF:p6(p566):TableI; p3(p563):no saturation; p8-9(p568-569):Kinetic assays"
+    }
+  ],
+  "reaction": {
+    "reaction_id": "methodol-retroaldol",
+    "direction": "retroaldol cleavage",
+    "participants": [
+      {
+        "participant_id": "methodol",
+        "name": "4-hydroxy-4-(6-methoxy-2-naphthyl)-2-butanone",
+        "side": "reactant",
+        "role": "turnover substrate"
+      },
+      {
+        "participant_id": "aldehyde",
+        "name": "6-methoxy-2-naphthaldehyde",
+        "side": "product",
+        "role": "optical reporter product"
+      },
+      {
+        "participant_id": "acetone",
+        "name": "acetone",
+        "side": "product",
+        "role": "source-depicted coproduct"
+      }
+    ],
+    "stereochemistry": "Experimental methodol preparation not assigned R/S rates or enantiopurity in acquired main; p568 R/S structures belong to docking only.",
+    "source_locator": "PMC4380986:PDF:p2(p562):Figure1; p8(p568):Computational studies",
+    "scope": "Source-depicted reaction identity, not a new canonical balanced atom-mapped reaction or full mechanistic trajectory."
+  },
+  "rows": [
+    {
+      "row_id": "CaM",
+      "construct_id": "CaM",
+      "assay_id": "table1-methodol-initial-rate",
+      "source_locator": "PMC4380986:PDF:p6(p566):TableI:CaM",
+      "kcat_over_KM": {
+        "parameter": "k_cat/K_M",
+        "status": "numeric",
+        "value": 0.006,
+        "unit": "M^-1 s^-1",
+        "uncertainty": {
+          "value": 0.001,
+          "kind": "source_reported_plus_minus_statistic_unspecified",
+          "unreported_is_zero": false
+        }
+      }
+    },
+    {
+      "row_id": "cCaM",
+      "construct_id": "cCaM",
+      "assay_id": "table1-methodol-initial-rate",
+      "source_locator": "PMC4380986:PDF:p6(p566):TableI:cCaM",
+      "kcat_over_KM": {
+        "parameter": "k_cat/K_M",
+        "status": "numeric",
+        "value": 0.007,
+        "unit": "M^-1 s^-1",
+        "uncertainty": {
+          "value": 0.002,
+          "kind": "source_reported_plus_minus_statistic_unspecified",
+          "unreported_is_zero": false
+        }
+      }
+    },
+    {
+      "row_id": "CaMWN",
+      "construct_id": "CaMWN",
+      "assay_id": "table1-methodol-initial-rate",
+      "source_locator": "PMC4380986:PDF:p6(p566):TableI:CaMWN",
+      "kcat_over_KM": {
+        "parameter": "k_cat/K_M",
+        "status": "numeric",
+        "value": 0.005,
+        "unit": "M^-1 s^-1",
+        "uncertainty": {
+          "value": 0.001,
+          "kind": "source_reported_plus_minus_statistic_unspecified",
+          "unreported_is_zero": false
+        }
+      }
+    },
+    {
+      "row_id": "Ac-CaMWN",
+      "construct_id": "Ac-CaMWN",
+      "assay_id": "table1-methodol-initial-rate",
+      "source_locator": "PMC4380986:PDF:p6(p566):TableI:Ac-CaMWN",
+      "kcat_over_KM": {
+        "parameter": "k_cat/K_M",
+        "status": "numeric",
+        "value": 0.004,
+        "unit": "M^-1 s^-1",
+        "uncertainty": {
+          "value": 0.002,
+          "kind": "source_reported_plus_minus_statistic_unspecified",
+          "unreported_is_zero": false
+        }
+      }
+    },
+    {
+      "row_id": "CaM-L105K",
+      "construct_id": "CaM-L105K",
+      "assay_id": "table1-methodol-initial-rate",
+      "source_locator": "PMC4380986:PDF:p6(p566):TableI:CaM-L105K",
+      "kcat_over_KM": {
+        "parameter": "k_cat/K_M",
+        "status": "numeric",
+        "value": 0.038,
+        "unit": "M^-1 s^-1",
+        "uncertainty": {
+          "value": 0.002,
+          "kind": "source_reported_plus_minus_statistic_unspecified",
+          "unreported_is_zero": false
+        }
+      }
+    }
+  ],
+  "nucleophile_controls": {
+    "control_id": "calmodulin_2015:nucleophile-control-chain",
+    "question": "Does residual methodol activity uniquely establish a lysine-covalent mechanism?",
+    "observation_ids": [
+      "calmodulin2015-table1:CaM:kcat_over_KM",
+      "calmodulin2015-table1:cCaM:kcat_over_KM",
+      "calmodulin2015-table1:CaMWN:kcat_over_KM",
+      "calmodulin2015-table1:Ac-CaMWN:kcat_over_KM",
+      "calmodulin2015-table1:CaM-L105K:kcat_over_KM"
+    ],
+    "construct_lineage": [
+      {
+        "reference": "cCaM",
+        "variant": "CaMWN",
+        "intervention": [
+          "K77A",
+          "K94R",
+          "H107I",
+          "K115N",
+          "K148L"
+        ],
+        "source_scope": "Authors report replacing the four lysines and only histidine in the C-terminal domain."
+      },
+      {
+        "reference": "CaMWN",
+        "variant": "Ac-CaMWN",
+        "intervention": [
+          "N-terminal acetylation"
+        ],
+        "source_scope": "Sulfo-NHS-acetate treatment and source-reported MALDI-TOF confirmation; raw spectrum/stoichiometry not inspected."
+      }
+    ],
+    "supported_result": "Source-reported above-background methodol activity persists after the listed C-terminal Lys/His substitutions and after additional N-terminal acetylation. L105K has a larger TableI endpoint than its full-length CaM reference. These outcomes alone do not identify an exact chemical pathway.",
+    "analyst_inference": "Residual methodol cleavage in this control series is not unique evidence for a lysine-covalent route. The controls challenge those named amine explanations, but do not establish absence of all possible nucleophiles or prove hydrophobic association as the sole cause.",
+    "author_interpretation": "Authors attribute the residual scaffold activity to hydrophobic association, and the introduced-Lys enhancement to its designed nucleophilicity/pocket context. This remains source interpretation, not an isolated causal measurement.",
+    "preparation_evidence": {
+      "tag_processing": "Main Methods describes N-terminal His6 tag, TEV cleavage and removal of tag/protease by Ni-NTA chromatography.",
+      "acetylation": "20-fold molar excess sulfo-NHS-acetate;100mM sodium phosphate pH7.4/100mM NaCl;2h at room temperature; reagent removal; acetylation confirmed by MALDI-TOF according to source.",
+      "limits": "No acquired SI sequences or raw MALDI spectrum; no project-authenticated completeness, sample purity or chemical occupancy."
+    },
+    "product_confirmation": {
+      "status": "source_reported_HPLC_confirmation",
+      "scope": "Results says product formation and kinetic parameters were confirmed by HPLC; Methods says integrated substrate/product absorbance was corrected for different extinction coefficients; representative SI FigureS4 was not acquired.",
+      "not_established": "No independently reprocessed chromatograms or construct-specific product mass/spectral audit."
+    },
+    "source_locator": "PMC4380986:PDF:p4(p564):Results; p6(p566):TableI; p8-9(p568-569):Methods"
+  },
+  "diketone_context": {
+    "context_id": "calmodulin_2015:diketone-spectral-control",
+    "construct_ids": [
+      "CaM",
+      "CaM-L105K"
+    ],
+    "ligand": "1-(6-methoxy-2-naphthalenyl)-1,3-butanedione",
+    "ligand_role": "Non-turnover diketone analogue, not methodol or its observed catalytic intermediate",
+    "conditions": {
+      "HEPES_mM": 20,
+      "pH": 7,
+      "NaCl_mM": 100,
+      "CaCl2_mM": 10,
+      "protein_uM": 25,
+      "ligand_uM": 25,
+      "equilibration_h": 24
+    },
+    "observation": "Figure8 shows a distinct L105K absorbance band around360nm compared with buffer and CaM; source says CaM did not react with diketone. No numeric spectral fit or detection threshold is supplied.",
+    "source_assignment_terms": [
+      "enamine",
+      "imine",
+      "iminium"
+    ],
+    "assignment_scope": "Source-proposed covalent-analogue class; exact state is unresolved because source terms differ and a spectrum alone does not map an attachment.",
+    "direct_covalent_attachment_observed": false,
+    "bond_order": null,
+    "bound_protonation": null,
+    "replicates": null,
+    "detection_limit": null,
+    "transfer_limits": [
+      "Not a methodol microscopic-step rate or direct turnover intermediate.",
+      "Not evidence for the same response in CaMWN or Ac-CaMWN.",
+      "No exact source-numbered attachment atom or structural geometry."
+    ],
+    "source_locator": "PMC4380986:PDF:p2(p562):Figure1 caption; p4(p564):Results; p7(p567):Figure8 plot/caption"
+  },
+  "calcium_context": {
+    "context_id": "calmodulin_2015:calcium-dependence",
+    "construct_id": "CaM-L105K",
+    "source_panel": "Figure7A",
+    "conditions": {
+      "methodol_uM": 700,
+      "protein_uM": 80,
+      "HEPES_mM": 20,
+      "pH": 7.5,
+      "NaCl_mM": 100,
+      "readout": "absorbance350nm in200uL plate wells",
+      "calcium_arm_CaCl2_mM": 10,
+      "no_added_calcium_arm_EDTA_uM": 50
+    },
+    "observation": "PanelA shows methodol signal accumulation with added calcium and little signal without added calcium under the EDTA-treated condition. The source reports no above-background activity without calcium; this is not a measured zero rate.",
+    "source_interpretation": "Allosteric/conformational dependence of the calmodulin scaffold.",
+    "direct_catalytic_metal_role_established": false,
+    "metal_occupancy_measured": false,
+    "calcium_free_rate": null,
+    "detection_limit": null,
+    "source_locator": "PMC4380986:PDF:p4(p564):Results; p7(p567):Figure7A; p9(p569):Kinetic assays",
+    "limits": "The intervention changes added calcium and EDTA, and does not isolate direct metal participation in bond chemistry. No fit/rate ratio is reconstructed from the plotted traces."
+  },
+  "ra61_relation": {
+    "reference": "Raymond2015 reference24 / discussion p566 cites Lassila2010 RA61",
+    "prior_provider": "data/atlas/study_context/ra61_2010/component_evidence.json",
+    "question": "Are the RA61 component estimates and calmodulin controls interchangeable evidence?",
+    "answer": "No. RA61 changes substrate or water-motif residues; calmodulin changes scaffold nucleophiles/terminal amine and calcium conditions. They offer distinct tests of design-component explanations.",
+    "prevented_transfer": "The reported RA61 roughly500-fold component estimate and calmodulin roughly2000-fold association interpretation are not matched scalar components, transferable rates or a common microscopic mechanism. No cross-study ratio is requested.",
+    "source_locator": "Raymond2015:p566 Discussion/reference24; retained Lassila2010:Table4/5 and Methods"
+  },
+  "source_conflicts": [
+    {
+      "context": "kinetic conditions",
+      "source_a": "TableI title p566: pH7.5; Methods p569:25mM HEPES,pH7.5,50uM-1.5mM methodol",
+      "source_b": "Figure5 caption p566:20mM HEPES,pH7,0.1-1.5mM methodol",
+      "resolution": "Unresolved. Use TableI/Methods scope for table endpoints; no exact TableI-Figure5 raw-curve equivalence or source repair."
+    },
+    {
+      "context": "calcium construct labels",
+      "source_a": "Results p564 describes F92K and L105K calcium response",
+      "source_b": "Figure7 caption p567 identifies full-length CaM L105K(A) and C-terminal L105K(B)",
+      "resolution": "Only panelA full-length L105K is used for the qualitative linked control; panelB is not relabeled F92K or attached to unmutated cCaM."
+    },
+    {
+      "context": "diketone chemical species",
+      "source_a": "Figure1 caption:enamine",
+      "source_b": "Results p564:imine then iminium",
+      "resolution": "Preserve all three source terms. Spectral response is compatible with the source-proposed covalent-analogue model; exact tautomer/protonation/bond order/occupancy remains unassigned."
+    },
+    {
+      "context": "Figure8 CaMWN trace",
+      "source_a": "Plot legend includes blue CaMWN",
+      "source_b": "Caption explicitly describes buffer,CaM and CaM L105K only",
+      "resolution": "Do not use the blue trace to extend the source-assigned CaM/L105K pair or infer its exact construct preparation."
+    }
+  ],
+  "limitations": [
+    "Only five selected TableI contexts are projected: CaM/cCaM controls, CaMWN, Ac-CaMWN and CaM-L105K. The F92K row and seven-mutant screen are outside this question; no design success rate is inferred.",
+    "No separately measured kcat, KM, substrate affinity, enantiomer preference, full sequence or physical preparation equivalence.",
+    "Printed errors have unknown statistic; no propagated uncertainty, statistical equivalence, microscopic coupling or isolated energetic contribution.",
+    "Source pH/buffer/range and analogue-state nomenclature conflicts remain explicit; unacquired SI cannot authenticate sequences, HPLC traces or acetylation completeness.",
+    "Positive activity does not identify a lysine mechanism; negative analogue/calcium responses are scoped observations, not exact zeros or universal inactivity.",
+    "No canonical reaction admission, frozen-kernel/protected-registry change, evidence-tier promotion, project experiment or demonstrated design performance."
+  ]
+}

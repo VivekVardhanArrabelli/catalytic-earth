@@ -3,10 +3,10 @@
   "scope": {
     "question": "Which source-defined catalytic-group perturbations retain a measured endpoint, and which apparent comparisons cannot be transferred?",
     "evidence": "Projection of accepted source annotations; not new measurements, an independent evaluation, protein admission or evidence-tier promotion.",
-    "selection": "All rows of the accepted RA95 2013 kinetic and stereoselectivity tables and RA95 2017 kinetic panel; all six RA61 Table4 construct rows; all five KE59 Table2 pH-profile rows and its unassessed E230-control question. The beta-barrel extension includes three selected kinetic columns across two rows and all eight qualitative S4 arms, with three within-table ratios and one unassessed 16.1/8AH9 control-transfer request. Table 2 acceleration columns remain outside the selected packet; printed S/R factors remain source context. One source-reported RA95.5-8F methodol synthesis outcome and its two precursor comparator contexts extend product evidence with separate conversion, isolation and source-assigned composition records. A Siegel2010 Diels-Alder extension adds three parent kinetic parameters and two author-reported activity-reduction factors with unqualified assay/metric; product bounds remain separate source contexts. Human TKT 2019 adds all seven X5P/R5P kcat and all seven F6P k_forward entries plus all five existing NMR arms; other kinetic columns remain original source context, not extra common parameter records. POX 2019 adds all six variants for seven selected columns: pyruvate/DCPIP kcat and KM; MAP k_on, k_off and K_D_app; and anaerobic pyruvate/FAD k_app_max and K_0.5. The other three columns remain original source context, not missing data. Two complete 2013 RA95.5 and RA95.5-5 K83M/K210M four-cell panels also request multiplicative contrasts for kcat, printed kcat/KM and conflicted KM; the incomplete/unqualified RA95.0 panel supplies no square. KSI2014 preserves six probe-frequency and six compiled-turnover entries with one unassessed field/function context. Separate KimChoi1995 primary kinetics supplies all three Table1 constructs for kcat and KM, with four within-study ratios; other Table1 columns stay explicit source context. Kraut2010 adds all five rounded main-text kcat reduction factors for the pKSI Tyr16 mutant panel on5(10)-EST, with one assessed donor-control relation and unrequested arithmetic.",
+    "selection": "All rows of the accepted RA95 2013 kinetic and stereoselectivity tables and RA95 2017 kinetic panel; all six RA61 Table4 construct rows; all five KE59 Table2 pH-profile rows and its unassessed E230-control question. The beta-barrel extension includes three selected kinetic columns across two rows and all eight qualitative S4 arms, with three within-table ratios and one unassessed 16.1/8AH9 control-transfer request. Table 2 acceleration columns remain outside the selected packet; printed S/R factors remain source context. One source-reported RA95.5-8F methodol synthesis outcome and its two precursor comparator contexts extend product evidence with separate conversion, isolation and source-assigned composition records. A Siegel2010 Diels-Alder extension adds three parent kinetic parameters and two author-reported activity-reduction factors with unqualified assay/metric; product bounds remain separate source contexts. Human TKT 2019 adds all seven X5P/R5P kcat and all seven F6P k_forward entries plus all five existing NMR arms; other kinetic columns remain original source context, not extra common parameter records. POX 2019 adds all six variants for seven selected columns: pyruvate/DCPIP kcat and KM; MAP k_on, k_off and K_D_app; and anaerobic pyruvate/FAD k_app_max and K_0.5. The other three columns remain original source context, not missing data. Two complete 2013 RA95.5 and RA95.5-5 K83M/K210M four-cell panels also request multiplicative contrasts for kcat, printed kcat/KM and conflicted KM; the incomplete/unqualified RA95.0 panel supplies no square. KSI2014 preserves six probe-frequency and six compiled-turnover entries with one unassessed field/function context. Separate KimChoi1995 primary kinetics supplies all three Table1 constructs for kcat and KM, with four within-study ratios; other Table1 columns stay explicit source context. Kraut2010 adds all five rounded main-text kcat reduction factors for the pKSI Tyr16 mutant panel on5(10)-EST, with one assessed donor-control relation and unrequested arithmetic. Raymond2015 adds five selected TableI methodol initial-rate contexts for the full-length CaM/L105K pair and C-terminal cCaM/CaMWN/Ac-CaMWN controls, two genetic-background ratios and one source-assessed mechanistic control context. F92K/screen rows remain outside this question.",
     "arithmetic": "Source-rounded central values, same-source assay and background only; reported efficiencies are never replaced by kcat/KM division.",
     "identity": "Exact sequence/provider availability is separate from study-declared construct association and physical assay-specimen identity.",
-    "limitations": "No pooled rates, generic inactivity labels, causal residue assignments, full apparatus claims, microscopic coupling energy or design-success estimates. Forward product composition retains source-author configuration and unresolved retention mapping; strict ee bounds remain structured source context, not central-value comparisons. Diels-Alder activity-reduction summaries do not identify mutant kcat or product outcomes; strict product bounds and mismatched assays remain in context. TKT reporter-unavailable parameters, NMR qualitative presence / scoped nondetection and positive turnover remain different kinds; no selective partner-only intervention, crystal-to-assay identity or productive F6P full-cycle inference. POX analogue nonbinding differs from TKT reporter absence. MAP apparent equilibrium includes a covalent conjugate; positive pyruvate fitted rates do not establish oxygen turnover, an elementary-step rate or exact construct/preparation identity. Beta-barrel S4 arms are qualitative and belong to 16.2; main noninhibition prose conflicts with the plot and does not establish ligand-independent 16.1/8AH9. Exact deposited identity does not establish assay identity. KSI donor-control discrimination is limited to the named5(10)-EST panel. Double-mutant equilenin/phenolate structure and NMR are separate analogue contexts; cavity hydration/desolvation is source interpretation, not observed single-mutant turnover or a universal hydrogen-bond energy."
+    "limitations": "No pooled rates, generic inactivity labels, causal residue assignments, full apparatus claims, microscopic coupling energy or design-success estimates. Forward product composition retains source-author configuration and unresolved retention mapping; strict ee bounds remain structured source context, not central-value comparisons. Diels-Alder activity-reduction summaries do not identify mutant kcat or product outcomes; strict product bounds and mismatched assays remain in context. TKT reporter-unavailable parameters, NMR qualitative presence / scoped nondetection and positive turnover remain different kinds; no selective partner-only intervention, crystal-to-assay identity or productive F6P full-cycle inference. POX analogue nonbinding differs from TKT reporter absence. MAP apparent equilibrium includes a covalent conjugate; positive pyruvate fitted rates do not establish oxygen turnover, an elementary-step rate or exact construct/preparation identity. Beta-barrel S4 arms are qualitative and belong to 16.2; main noninhibition prose conflicts with the plot and does not establish ligand-independent 16.1/8AH9. Exact deposited identity does not establish assay identity. KSI donor-control discrimination is limited to the named5(10)-EST panel. Double-mutant equilenin/phenolate structure and NMR are separate analogue contexts; cavity hydration/desolvation is source interpretation, not observed single-mutant turnover or a universal hydrogen-bond energy. Calmodulin residual methodol activity does not identify a lysine-covalent pathway; source-derived hydrophobic causality, diketone adduct identity and calcium allostery stay qualified. Full-length/domain, experimental/docking stereochemistry and TableI/Figure5 protocol distinctions are preserved."
   },
   "sources": {
     "ra95f": {
@@ -120,6 +120,10 @@
     "ra61model": {
       "path": "data/atlas/study_context/ra61_2010/model_context.json",
       "sha256": "f03f56df41b77dea8400b9244688d60aed10f0e1cdaef9d81585b4e3b42a6b1f"
+    },
+    "cam2015": {
+      "path": "data/atlas/study_context/calmodulin_2015/nucleophile_controls.json",
+      "sha256": "5589b64ce36569195b2efc4b21372ea8a43f311ebd2d4ea4a42af03689d41f61"
     }
   },
   "constructs": {
@@ -1652,6 +1656,124 @@
         "source": "ksi2010",
         "pointer": "/constructs/7/background_id"
       }
+    },
+    "calmodulin_2015:CaM": {
+      "source_construct_id": "CaM",
+      "provider": {
+        "source": "cam2015",
+        "pointer": "/constructs/0"
+      },
+      "sequence_provider": {
+        "source": "cam2015",
+        "pointer": "/constructs/0"
+      },
+      "background_id": "calmodulin_2015:CaM",
+      "perturbation": [],
+      "perturbation_scope": "Source-defined complete intervention relative to the declared full-length or C-terminal reference. N-terminal acetylation remains chemical modification, not amino-acid substitution.",
+      "identity_scope": "Source-named constructs only. Main p564 derives CaMWN from C-terminal cCaM; Figure5 uses cCaMWN/Ac-cCaMWN aliases. Full gene sequences are in unacquired SI TableS1; exact domain boundaries, full sequences, species and physical assay-specimen identity are not established here.",
+      "perturbation_provider": null,
+      "background_provider": null
+    },
+    "calmodulin_2015:cCaM": {
+      "source_construct_id": "cCaM",
+      "provider": {
+        "source": "cam2015",
+        "pointer": "/constructs/1"
+      },
+      "sequence_provider": {
+        "source": "cam2015",
+        "pointer": "/constructs/1"
+      },
+      "background_id": "calmodulin_2015:cCaM",
+      "perturbation": [],
+      "perturbation_scope": "Source-defined complete intervention relative to the declared full-length or C-terminal reference. N-terminal acetylation remains chemical modification, not amino-acid substitution.",
+      "identity_scope": "Source-named constructs only. Main p564 derives CaMWN from C-terminal cCaM; Figure5 uses cCaMWN/Ac-cCaMWN aliases. Full gene sequences are in unacquired SI TableS1; exact domain boundaries, full sequences, species and physical assay-specimen identity are not established here.",
+      "perturbation_provider": null,
+      "background_provider": null
+    },
+    "calmodulin_2015:CaMWN": {
+      "source_construct_id": "CaMWN",
+      "provider": {
+        "source": "cam2015",
+        "pointer": "/constructs/2"
+      },
+      "sequence_provider": {
+        "source": "cam2015",
+        "pointer": "/constructs/2"
+      },
+      "background_id": "calmodulin_2015:cCaM",
+      "perturbation": [
+        "K77A",
+        "K94R",
+        "H107I",
+        "K115N",
+        "K148L"
+      ],
+      "perturbation_scope": "Source-defined complete intervention relative to the declared full-length or C-terminal reference. N-terminal acetylation remains chemical modification, not amino-acid substitution.",
+      "identity_scope": "Source-named constructs only. Main p564 derives CaMWN from C-terminal cCaM; Figure5 uses cCaMWN/Ac-cCaMWN aliases. Full gene sequences are in unacquired SI TableS1; exact domain boundaries, full sequences, species and physical assay-specimen identity are not established here.",
+      "perturbation_provider": {
+        "source": "cam2015",
+        "pointer": "/constructs/2/perturbations"
+      },
+      "background_provider": {
+        "source": "cam2015",
+        "pointer": "/constructs/2/background_id"
+      }
+    },
+    "calmodulin_2015:Ac-CaMWN": {
+      "source_construct_id": "Ac-CaMWN",
+      "provider": {
+        "source": "cam2015",
+        "pointer": "/constructs/3"
+      },
+      "sequence_provider": {
+        "source": "cam2015",
+        "pointer": "/constructs/3"
+      },
+      "background_id": "calmodulin_2015:cCaM",
+      "perturbation": [
+        "K77A",
+        "K94R",
+        "H107I",
+        "K115N",
+        "K148L",
+        "N-terminal acetylation"
+      ],
+      "perturbation_scope": "Source-defined complete intervention relative to the declared full-length or C-terminal reference. N-terminal acetylation remains chemical modification, not amino-acid substitution.",
+      "identity_scope": "Source-named constructs only. Main p564 derives CaMWN from C-terminal cCaM; Figure5 uses cCaMWN/Ac-cCaMWN aliases. Full gene sequences are in unacquired SI TableS1; exact domain boundaries, full sequences, species and physical assay-specimen identity are not established here.",
+      "perturbation_provider": {
+        "source": "cam2015",
+        "pointer": "/constructs/3/perturbations"
+      },
+      "background_provider": {
+        "source": "cam2015",
+        "pointer": "/constructs/3/background_id"
+      }
+    },
+    "calmodulin_2015:CaM-L105K": {
+      "source_construct_id": "CaM-L105K",
+      "provider": {
+        "source": "cam2015",
+        "pointer": "/constructs/4"
+      },
+      "sequence_provider": {
+        "source": "cam2015",
+        "pointer": "/constructs/4"
+      },
+      "background_id": "calmodulin_2015:CaM",
+      "perturbation": [
+        "L105K"
+      ],
+      "perturbation_scope": "Source-defined complete intervention relative to the declared full-length or C-terminal reference. N-terminal acetylation remains chemical modification, not amino-acid substitution.",
+      "identity_scope": "Source-named constructs only. Main p564 derives CaMWN from C-terminal cCaM; Figure5 uses cCaMWN/Ac-cCaMWN aliases. Full gene sequences are in unacquired SI TableS1; exact domain boundaries, full sequences, species and physical assay-specimen identity are not established here.",
+      "perturbation_provider": {
+        "source": "cam2015",
+        "pointer": "/constructs/4/perturbations"
+      },
+      "background_provider": {
+        "source": "cam2015",
+        "pointer": "/constructs/4/background_id"
+      }
     }
   },
   "assays": {
@@ -2068,6 +2190,18 @@
       "reaction_direction": "steroid double-bond isomerization",
       "uncertainty_context": "Fig2 says means and SD from at least three independent measurements at different enzyme concentrations. Numeric errors for the rounded prose factors are not provided here; no propagated error, exact replicate count or independent preparation count is inferred.",
       "qualification_scope": "Qualified for the source-reported within-study kcat reduction pattern. Exact kcat/KM values, numerical errors and full kinetic protocol remain unacquired; factor rows do not authorize new matched parameter arithmetic."
+    },
+    "calmodulin_2015:table1-methodol-initial-rate": {
+      "provider": {
+        "source": "cam2015",
+        "pointer": "/assays/0"
+      },
+      "source_assay_id": "table1-methodol-initial-rate",
+      "qualified": true,
+      "endpoint_kind": "source_reported_second_order_initial_rate",
+      "reaction_direction": "retroaldol cleavage",
+      "uncertainty_context": "TableI prints plus/minus errors but does not define SD/SE/CI; triplicate measurements do not resolve the statistic",
+      "qualification_scope": "Within-TableI source-defined endpoint comparisons only. The conflicting Figure5 conditions remain unresolved and its plotted points are not refitted or pooled."
     }
   },
   "substrates": {
@@ -2321,6 +2455,18 @@
         "5-10-EST"
       ],
       "stereochemistry": "Source-named steroid; no project atom map or stereochemical trajectory."
+    },
+    "calmodulin_2015:methodol": {
+      "name": "4-hydroxy-4-(6-methoxy-2-naphthyl)-2-butanone",
+      "chemical_role": "turnover substrate",
+      "source": {
+        "source": "cam2015",
+        "pointer": "/reaction"
+      },
+      "stereochemistry": "Experimental methodol preparation not assigned R/S rates or enantiopurity in acquired main; p568 R/S structures belong to docking only.",
+      "participant_ids": [
+        "methodol"
+      ]
     }
   },
   "panels": [
@@ -4322,6 +4468,56 @@
           "reason": "rounded_author_reported_reduction_without_exact_rate_error_or_full_assay_for_new_arithmetic"
         }
       ]
+    },
+    {
+      "id": "calmodulin2015-table1",
+      "study_id": "calmodulin_2015",
+      "source": "cam2015",
+      "rows_pointer": "/rows",
+      "fields": {
+        "row_id": {
+          "pointer": "/row_id"
+        },
+        "construct_id": {
+          "pointer": "/construct_id"
+        },
+        "assay_id": {
+          "pointer": "/assay_id"
+        },
+        "substrate_id": {
+          "literal": "calmodulin_2015:methodol"
+        },
+        "source_locator": {
+          "pointer": "/source_locator"
+        }
+      },
+      "parameters": [
+        {
+          "id": "kcat_over_KM",
+          "pointer": "/kcat_over_KM",
+          "kind": {
+            "pointer": "/status"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/uncertainty/value"
+            },
+            "kind": {
+              "pointer": "/uncertainty/kind"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          }
+        }
+      ],
+      "reaction_id": "calmodulin_2015:methodol-retroaldol"
     }
   ],
   "comparisons": [
@@ -7986,6 +8182,116 @@
       "scope": "Retrieve the supported donor-control discrimination and separately scoped analogue evidence. Operation unassessed denotes no recomputed arithmetic, not an unassessed source conclusion.",
       "source_discriminant_assessed": true,
       "arithmetic_requested": false
+    },
+    {
+      "id": "calmodulin_2015:CaMWN:over-cCaM",
+      "study_id": "calmodulin_2015",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "calmodulin2015-table1:CaMWN:kcat_over_KM",
+        "denominator": "calmodulin2015-table1:cCaM:kcat_over_KM"
+      },
+      "evidence": [
+        {
+          "source": "cam2015",
+          "pointer": "/nucleophile_controls"
+        },
+        {
+          "source": "cam2015",
+          "pointer": "/assays/0"
+        },
+        {
+          "source": "cam2015",
+          "pointer": "/source_conflicts"
+        },
+        {
+          "source": "cam2015",
+          "pointer": "/limitations"
+        }
+      ],
+      "scope": "Within-TableI descriptive central-value ratio for the complete listed intervention. Full-length CaM and C-terminal cCaM are separate references. No propagated errors, significance, causal component or cross-study ranking."
+    },
+    {
+      "id": "calmodulin_2015:CaM-L105K:over-CaM",
+      "study_id": "calmodulin_2015",
+      "operation": "ratio",
+      "roles": {
+        "numerator": "calmodulin2015-table1:CaM-L105K:kcat_over_KM",
+        "denominator": "calmodulin2015-table1:CaM:kcat_over_KM"
+      },
+      "evidence": [
+        {
+          "source": "cam2015",
+          "pointer": "/nucleophile_controls"
+        },
+        {
+          "source": "cam2015",
+          "pointer": "/assays/0"
+        },
+        {
+          "source": "cam2015",
+          "pointer": "/source_conflicts"
+        },
+        {
+          "source": "cam2015",
+          "pointer": "/limitations"
+        }
+      ],
+      "scope": "Within-TableI descriptive central-value ratio for the complete listed intervention. Full-length CaM and C-terminal cCaM are separate references. No propagated errors, significance, causal component or cross-study ranking."
+    },
+    {
+      "id": "calmodulin_2015:nucleophile-control-context",
+      "study_id": "calmodulin_2015",
+      "operation": "unassessed",
+      "roles": {},
+      "context_observations": [
+        "calmodulin2015-table1:CaM:kcat_over_KM",
+        "calmodulin2015-table1:cCaM:kcat_over_KM",
+        "calmodulin2015-table1:CaMWN:kcat_over_KM",
+        "calmodulin2015-table1:Ac-CaMWN:kcat_over_KM",
+        "calmodulin2015-table1:CaM-L105K:kcat_over_KM"
+      ],
+      "source_blocks": [
+        "no_scalar_mechanistic_effect_requested",
+        "analogue_and_calcium_controls_are_distinct_assays"
+      ],
+      "evidence": [
+        {
+          "source": "cam2015",
+          "pointer": "/nucleophile_controls"
+        },
+        {
+          "source": "cam2015",
+          "pointer": "/assays/0"
+        },
+        {
+          "source": "cam2015",
+          "pointer": "/source_conflicts"
+        },
+        {
+          "source": "cam2015",
+          "pointer": "/limitations"
+        },
+        {
+          "source": "cam2015",
+          "pointer": "/diketone_context"
+        },
+        {
+          "source": "cam2015",
+          "pointer": "/calcium_context"
+        },
+        {
+          "source": "cam2015",
+          "pointer": "/ra61_relation"
+        },
+        {
+          "source": "ra61",
+          "pointer": "/component_evidence"
+        }
+      ],
+      "scope": "Retrieve the source-supported control discrimination; unassessed denotes no scalar mechanistic arithmetic, not absence of source review.",
+      "source_discriminant_assessed": true,
+      "arithmetic_requested": false
     }
   ],
   "evidence_context": {
@@ -8650,6 +8956,40 @@
         "source": "ksi",
         "pointer": "/assays/1/underlying_sources/1"
       }
+    ],
+    "calmodulin_nucleophile_controls": [
+      {
+        "source": "cam2015",
+        "pointer": "/nucleophile_controls"
+      },
+      {
+        "source": "cam2015",
+        "pointer": "/assays/0"
+      },
+      {
+        "source": "cam2015",
+        "pointer": "/source_conflicts"
+      },
+      {
+        "source": "cam2015",
+        "pointer": "/limitations"
+      },
+      {
+        "source": "cam2015",
+        "pointer": "/diketone_context"
+      },
+      {
+        "source": "cam2015",
+        "pointer": "/calcium_context"
+      },
+      {
+        "source": "cam2015",
+        "pointer": "/ra61_relation"
+      },
+      {
+        "source": "ra61",
+        "pointer": "/component_evidence"
+      }
     ]
   },
   "source_witnesses": [
@@ -9054,6 +9394,21 @@
         }
       ],
       "retention": "Exact article-linked primary figure retained locally; not redistributed."
+    },
+    {
+      "sha256": "85d1260fc986d22f46c422f31495d0b031dafc830525034d24574b38b1b47c5a",
+      "bytes": 713767,
+      "git_common_dir_relative_path": "catalytic-earth-runs/af9afdd4-primary/raymond2015.pdf",
+      "redistributed": false,
+      "source_url": "https://europepmc.org/api/getPdf?pmcid=PMC4380986",
+      "id": "raymond2015-primary",
+      "source_bindings": [
+        {
+          "source": "cam2015",
+          "pointer": "/sources/0"
+        }
+      ],
+      "retention": "Exact primary main article retained locally; not redistributed. Supporting information unacquired."
     }
   ],
   "parameter_contracts": {
@@ -9366,6 +9721,14 @@
         "pointer": "/reaction"
       },
       "reactant_substrate_id": "ksi_2010:5-10-EST"
+    },
+    "calmodulin_2015:methodol-retroaldol": {
+      "source_reaction_id": "methodol-retroaldol",
+      "provider": {
+        "source": "cam2015",
+        "pointer": "/reaction"
+      },
+      "reactant_substrate_id": "calmodulin_2015:methodol"
     }
   },
   "state_links": [

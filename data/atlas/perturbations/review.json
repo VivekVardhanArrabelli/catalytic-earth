@@ -4,7 +4,7 @@
   "reviewed_at_utc": "2026-09-11T07:28:11.412642+00:00",
   "scope": "Cumulative source-reviewed projection. This increment adds a RA61 parent source-model relation, an initial second-order role with a measured path boundary, explicit reaction lineage and resolved contextual evidence. All prior observations, comparisons, state links and TKT/POX model outputs remain unchanged. No new kinetic observation, covalent occupancy, microscopic rate or atomic mechanism is established.",
   "reviewed_bindings": {
-    "data/atlas/perturbations/projection.json": "4a0848957298eb38c07e4b4210f4182268ddf77027eb4c1472a99782d5c2eeea",
+    "data/atlas/perturbations/projection.json": "ef57420b1c17689a409454e705205af8fbaeb116e01002c32645a90d4baec2ef",
     "src/catalytic_earth/atlas_perturbations.py": "e1cd7238f3c5c8cbd708986a69e602124951f72c46c789ddcd74bb6b4b83722a",
     "scripts/query_atlas_perturbations.py": "85fb364ead64f944d8fe9e22985b1264521e37061c8ea7918d945d0fe0243da4",
     "docs/ATLAS_PERTURBATION_RELATION.md": "9eea0cef6ff9ef3fbfe4c6cdd8156e00ded88638beec3068bb08f10eb64f584f",
@@ -12,7 +12,7 @@
     "docs/ATLAS_FORWARD_SYNTHESIS.md": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84",
     "data/atlas/study_context/diels_alder_2010/source_review.json": "bd97ed99812a3188ef47c090f61c87b0891bbc470222c49ee7698455680bf865",
     "docs/ATLAS_DIELS_ALDER_CONTROLS.md": "749e81dbcebcceb9022a5b4a5043bb16276c712c43b0c856feb394561830ac19",
-    "tests/core/test_atlas_perturbations.py": "da5ac9f888b6ccdc9cdfcdc11b0b45b06bb3d652d3255b3fe3a35f12fb9f221d",
+    "tests/core/test_atlas_perturbations.py": "e00863fa5cd74dff62be571bbb54f4a702365bad80cd0b4e5b6a40354d3e51bc",
     "data/atlas/study_context/6ha3/perturbation_context.json": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0",
     "data/atlas/study_context/6ha3/functional_review.json": "9af6d94d77800810d210e032e90e6af6a99ffd22a5548d9d39b5a7f502199200",
     "data/atlas/assembly_context/6ha3/review.json": "434188c22e847de2add0c76cc06076de9347d39ecd259acc051631792fcc7eaa",
@@ -31,10 +31,10 @@
     "data/atlas/study_context/ra95_2017/chemical_state.json": "0304a28cc9676ae9d920b5c4f6c47f102d10320e125cc40cbfddd971ccff695d",
     "data/atlas/study_context/ra95_2017/chemical_state_acquisition.json": "4b0427a24aab3b1269f25cd80b3b9c90f61c4a99404499d77cf0c16a8b5f2ecb",
     "docs/ATLAS_RA95_CHEMICAL_STATE.md": "a85ee7c6accdafb0f2fb63a1a658413e07788cee4a5f9f7879dce726c6707c01",
-    "CLAIMS.md": "f969807c7eded617003c079abfec109cd1ab00d2328807a3cafd1b25ca57b6de",
-    "data/governance/claim_ledger.json": "f6e9ee20a1b6de4a13204037c67d77080e46bd69d597123666fc6f2f18a1078a",
-    "docs/CURRENT_DECISIONS.md": "4caeaac303f6dd324e160e4cfa42533b6fb5e2c347d1273049bfdf058b919240",
-    "docs/CURRENT_STATE.md": "1b2876e79bc19cdd91a5a1c0c3df59ac55186c5cf0878b136b9b277771290347",
+    "CLAIMS.md": "321d8d9b33985d454313ae6efb680b38b3ec0fa8aa6654f8ecc89339433784d1",
+    "data/governance/claim_ledger.json": "f434c94f01a17bad5f0857bd2c4e09b8b5bf3f1e26459c11b0177a03ad2df3c9",
+    "docs/CURRENT_DECISIONS.md": "df36b8cfbd4026dd3c35e432787a2bb0d6047ccc6d05f57db86282aa62d28b23",
+    "docs/CURRENT_STATE.md": "c75ebe76cda611726bce4eadd9c98e6dbe8067bc8b4f2237d1794a743b42e5a2",
     "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
     "src/catalytic_earth/atlas_deposit_context.py": "adfae408de29e6b5f61fab970d7631f42846a9cdaedea0340d65e6ac95ad2a87",
     "src/catalytic_earth/atlas_assembly_context.py": "5d671a761f3ad493661f3c25b50dce693ef2169a48942af9664a65e0b0ae0835",
@@ -47,7 +47,7 @@
     "data/atlas/deposit_context/ra95_4a2r/projection.json": "ea3117cea3d83e156534abcc1efd62f10ed056a1965ba7e99a0974ac915b3461",
     "data/atlas/study_context/ra95_2013/chemical_state.json": "a9b7df48d5684fc014ced487477364eb8d9b2072817e3be4c64837a364df0670",
     "data/atlas/study_context/ra95_2013/chemical_state_acquisition.json": "7efd0b0efdb32572d369194fc4e9eedd84b0a184aa8c9f10b7af50766b4c1da9",
-    "tests/test_truth_guard.py": "32666058fc104e977199593d13d0041eaa648133e1c9f6b585a68f73562fab1d",
+    "tests/test_truth_guard.py": "331043476681796e57b80b7965c5f60bf2d76e02c1d4ab798fd911625796534e",
     "docs/ATLAS_RA95_4A2R_STATE.md": "8089d97dd393b0f3c2576197481c9551f3bdf2d1ff20a64dd15323ad7a6011ef",
     "data/atlas/study_context/ra95_2013/chemical_state_review.json": "12864f833532eff632016804fbf322e1828c33c3cabf840b2cd08b8f0ea99ebf",
     "data/atlas/deposit_context/ra95_4a2r/review.json": "dc017d8ed45a52dade5c04a77c42d734fa34926b67cefa043a35f0d9bb605a20",
@@ -73,7 +73,11 @@
     "data/atlas/study_context/pox2019/model_review.json": "73b4a6c70af0ba6cfb45601412a682a2b9f30ad646cc8943869b6f481f5a548b",
     "data/atlas/study_context/ra61_2010/model_context.json": "f03f56df41b77dea8400b9244688d60aed10f0e1cdaef9d81585b4e3b42a6b1f",
     "data/atlas/study_context/ra61_2010/component_evidence.json": "6b44023c7a4c002f1325f39550744632e245659900f819f373e6a7435482b2bc",
-    "data/atlas/study_context/ra61_2010/model_review.json": "f3f4fe16007a9296ffb920e2d5d915d0f763d7ed6e1558ecbfb2afaa3d8a284f"
+    "data/atlas/study_context/ra61_2010/model_review.json": "f3f4fe16007a9296ffb920e2d5d915d0f763d7ed6e1558ecbfb2afaa3d8a284f",
+    "data/atlas/study_context/calmodulin_2015/nucleophile_controls.json": "5589b64ce36569195b2efc4b21372ea8a43f311ebd2d4ea4a42af03689d41f61",
+    "data/atlas/study_context/ra61_2010/stereoselectivity_acquisition_appendix.json": "2e16aa528f5e5c3a2d4798ba821e79029af86d57fff3e19f424624882c8e5880",
+    "docs/ATLAS_CALMODULIN_CONTROLS.md": "9b863460d8ab5e4b532bbf271693e8b3cfe3d2aab19d77c959c8036383cedfda",
+    "data/atlas/study_context/calmodulin_2015/source_review.json": "77e5e0c50d6e8e93d61337110832344f9d4bc4cf6c1e7550efb7aaebe242f1ee"
   },
   "inherited_source_bindings": {
     "ra95f": {
@@ -814,5 +818,21 @@
       "cumulative_response_body_bytes": 3236259
     },
     "invariance": "All216observations,123comparisons,2state links,68constructs,25assays,18substrates,4reactions,all prior evidence contexts and2prior model output objects unchanged."
+  },
+  "calmodulin_controls_followup": {
+    "source_review": {
+      "path": "data/atlas/study_context/calmodulin_2015/source_review.json",
+      "sha256": "77e5e0c50d6e8e93d61337110832344f9d4bc4cf6c1e7550efb7aaebe242f1ee"
+    },
+    "base_commit": "34835be996b1d83e12b3dad2391530bf8297157d",
+    "scope": "Five source parameter records, two genetic-background ratios and one source-assessed context; chemical acetylation remains an observed control, not mutation arithmetic. Existing216observations/123comparisons/2state links/3model links unchanged.",
+    "source_access": {
+      "batch_id": "designed-retroaldolase-components-lassila2010",
+      "new_requests": 7,
+      "new_response_body_bytes": 1259662,
+      "cumulative_request_count": 52,
+      "cumulative_response_body_bytes": 4495921
+    },
+    "coordination_record": ".git/catalytic-earth-runs/af9afdd4.board.md"
   }
 }

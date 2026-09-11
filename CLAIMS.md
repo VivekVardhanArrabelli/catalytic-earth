@@ -610,6 +610,23 @@ geometry, causal water occupancy and design performance are not established.
 Five source-reported factors reuse the existing consumer; prior results and
 protected registries remain unchanged, with no new project experiment.
 
+## CE-041 — calmodulin nucleophile controls qualify mechanism inference
+
+**Status:** Supported
+
+The [calmodulin control relation](docs/ATLAS_CALMODULIN_CONTROLS.md) retains
+Raymond2015 Table I methodol kcat/KM values for full-length CaM/L105K and
+the C-terminal cCaM/CaMWN/Ac-CaMWN lineage. Source-reported above-background
+activity persists after four Lys and one His substitutions and after additional
+N-terminal acetylation. This makes residual activity non-unique evidence for
+a lysine-covalent route; it does not establish hydrophobic association as the
+sole cause or rule out every nucleophile. Separate diketone spectral and
+calcium controls remain at their own construct, ligand and assay scopes.
+Mixed imine/iminium/enamine terms and the Table I/Figure 5 protocol conflict
+are retained. Five parameter records and two descriptive within-reference
+ratios use the existing consumer, with no new project experiment, complete
+chemical state, exact specimen identity, evidence-tier promotion or design claim.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,
