@@ -76,7 +76,7 @@
   `.git/catalytic-earth-runs/2026-09-11T0705-4be184df-6e04-49c9-88e1-0cc2bba464a0.json`
   and task result. If unfinished, resume this branch/PR first.
 - **One next action:** seek a primary, separately supplied R/S-methodol
-  kinetic comparison for the exact RA61 named construct. This could determine
+  kinetic comparison for the same source-named RA61 construct. This could determine
   preference direction and a source ratio without relying on the racemate
   progress/product-rebinding model. First check retained Lassila2010 SI pp7–8
   FigureS8 and source bibliography to define the gap: its two simulated models
