@@ -33,8 +33,8 @@
     "docs/ATLAS_RA95_CHEMICAL_STATE.md": "a85ee7c6accdafb0f2fb63a1a658413e07788cee4a5f9f7879dce726c6707c01",
     "CLAIMS.md": "cd019bd891fe37b99c797cff9d872358b4b565a7d7495e115e10291aee5a9cca",
     "data/governance/claim_ledger.json": "f59e3f6aa67c57b73e9c32a6f9627160d8e06cb41b79d71efd1ec77afe1da2f6",
-    "docs/CURRENT_DECISIONS.md": "d266ea64b69ba61e2c7bcc6bdfdfe8921f716bd296db3c8788eb24c764165907",
-    "docs/CURRENT_STATE.md": "f4a4398a0cd2215e0d40c719d9950f3c37fba617bcfbeb4c344fd3ac58f9b9b1",
+    "docs/CURRENT_DECISIONS.md": "99a433857a0e4d19129437154ee5c7e77deecd307e3019b25a60f2b5e5a79466",
+    "docs/CURRENT_STATE.md": "f7a45d8ee2feef9f8fea4ea1cd85c30da4bc3a62af2917851e32bbec06e8104e",
     "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
     "src/catalytic_earth/atlas_deposit_context.py": "adfae408de29e6b5f61fab970d7631f42846a9cdaedea0340d65e6ac95ad2a87",
     "src/catalytic_earth/atlas_assembly_context.py": "5d671a761f3ad493661f3c25b50dce693ef2169a48942af9664a65e0b0ae0835",
@@ -966,6 +966,27 @@
       "docs/CURRENT_DECISIONS.md": {
         "before": "91c95ad82eba63a7293e113144538d6b5308c6d03213b2a66461fb358c6078a5",
         "after": "d266ea64b69ba61e2c7bcc6bdfdfe8921f716bd296db3c8788eb24c764165907"
+      }
+    },
+    "review_record": "data/atlas/mechanism_evidence/source_fragment_review.json",
+    "new_source_requests": 0,
+    "new_source_response_body_bytes": 0,
+    "independent_human_validation": false,
+    "experimental_validation": false
+  },
+  "m0187_reference_annotation_documentation_followup": {
+    "reviewed_at_utc": "2026-09-11T15:15:25.171059+00:00",
+    "base_commit": "9082d6228cb2ef6952196916bdbc20fc27b74008",
+    "status": "documentation_reviewed_computational",
+    "scope": "Renew only two current-document pins for the separate reference-site database annotation context. Perturbation source data, projection, values, comparisons, runtime and all prior review metadata remain unchanged. Exact final review is in the separate source-fragment review.",
+    "renewed_bindings": {
+      "docs/CURRENT_STATE.md": {
+        "before": "f4a4398a0cd2215e0d40c719d9950f3c37fba617bcfbeb4c344fd3ac58f9b9b1",
+        "after": "f7a45d8ee2feef9f8fea4ea1cd85c30da4bc3a62af2917851e32bbec06e8104e"
+      },
+      "docs/CURRENT_DECISIONS.md": {
+        "before": "d266ea64b69ba61e2c7bcc6bdfdfe8921f716bd296db3c8788eb24c764165907",
+        "after": "99a433857a0e4d19129437154ee5c7e77deecd307e3019b25a60f2b5e5a79466"
       }
     },
     "review_record": "data/atlas/mechanism_evidence/source_fragment_review.json",

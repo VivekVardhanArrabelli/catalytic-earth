@@ -25,7 +25,11 @@
       "proposal_id": "atlas10.mandelate-racemase-pputida.enolate.mcsa-M0187.mechanism-1",
       "source_step_id": 1,
       "source_atom_id": "a58",
-      "source_atom_ref": "m1.a58"
+      "source_atom_ref": "m1.a58",
+      "reference_annotation": {
+        "source_id": "UniProtKB:P11444",
+        "feature_index": 8
+      }
     },
     {
       "relation_id": "M0187:mechanism-1:step-1:a63:fragment-site",
@@ -34,7 +38,11 @@
       "proposal_id": "atlas10.mandelate-racemase-pputida.enolate.mcsa-M0187.mechanism-1",
       "source_step_id": 1,
       "source_atom_id": "a63",
-      "source_atom_ref": "m1.a63"
+      "source_atom_ref": "m1.a63",
+      "reference_annotation": {
+        "source_id": "UniProtKB:P11444",
+        "feature_index": 9
+      }
     },
     {
       "relation_id": "M0187:mechanism-1:step-2:a19:fragment-site",
@@ -46,5 +54,14 @@
       "source_atom_ref": "m1.a19"
     }
   ],
-  "evidence_case_sha256": "eb739eb2985d6b7064e66c35b43039d6424e90ed31804d3f29050447bef169aa"
+  "evidence_case_sha256": "eb739eb2985d6b7064e66c35b43039d6424e90ed31804d3f29050447bef169aa",
+  "reference_annotation_sources": [
+    {
+      "source_id": "UniProtKB:P11444",
+      "uniprot_id": "P11444",
+      "path": "data/atlas/atlas10/sources/uniprot/P11444.json",
+      "sha256": "cb5efb114709e8f79f58376643fde10d8e2981296091d09936c41589ce7ae6ef",
+      "attribution": "UniProt Consortium, retained UniProtKB P11444 entry version 141 / sequence version 1, CC BY 4.0. This binding supplies database annotations and citation metadata, not primary-result details; retained PMID1909893 abstract evidence remains separate, and PMID7893689 results were not inspected."
+    }
+  ]
 }

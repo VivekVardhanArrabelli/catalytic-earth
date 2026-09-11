@@ -127,6 +127,50 @@ The [specification](../data/atlas/mechanism_evidence/source_fragment_spec.json)
 and [review](../data/atlas/mechanism_evidence/source_fragment_review.json)
 use retained sources only; acquisition was zero requests and zero bytes.
 
+### Entry-level mutation annotations retain their narrower evidence basis
+
+The same optional query now returns `reference_annotation_context` for the
+His297 and Glu317 fragments. It resolves the entry-wide reference site using
+the existing residue mapper, independently of the selected step's catalyst
+list, and joins an exact UniProt point-mutagenesis feature. The retained
+P11444 snapshot is bound to the original Atlas-10 protein evidence, accession,
+natural-sequence position and wild-type residue. Its entry version is 141,
+sequence version 1. Feature indices below are zero-based source locators.
+
+| Reference site and feature | Retained UniProt statement | What the integrated relation adds |
+| --- | --- | --- |
+| P11444:E317, feature 9, E317Q; ECO:0000269 / PMID7893689 | “Reduces activity 10000-fold.” | The Glu317A fragment can carry a source-scoped variant-effect annotation even though step 1 does not declare E317 as a catalyst. |
+| P11444:H297, feature 8, H297N; ECO:0000269 / PMID1909893 | “Loss of activity.” | This coarse annotation sits beside the existing endpoint-specific evidence, including retained S-mandelate exchange. It does not mean every catalytic endpoint is abolished. |
+
+The Glu317 relation keeps author residue 317, UniProt E317 and 1MNS label
+residue 315 distinct. `Glu317A` means the residue on author chain A, not an
+E317A substitution. It remains unresolved in `source_record_residue_mapping`,
+which answers the narrower selected-step question. Its existing primary-
+observation match in `functional_evidence` remains empty. Entry-level source roles are not assigned
+to atom a63 or to step 1 by this annotation, and the source's o39 arrow is not
+experimentally validated. Absence from that step's list does not establish a
+biologically unimportant or noncatalytic residue.
+
+The original feature, alternatives, evidence code, citation metadata and
+source version travel with the context. These are **two database annotations**,
+not additional experimental observations. The cited E317Q primary results
+were not inspected. Its statement supplies no identified endpoint, kinetic
+parameter, comparator/denominator, reaction direction, assay conditions,
+exact assayed construct or uncertainty. The consumer preserves the wording
+without extracting a numeric ratio, assuming a wild-type denominator,
+calculating an energy, or assigning a microscopic cause. These interpreted
+quantities remain null. A citation title or UniProt crystallography reference
+position does not supply a mutant geometry or assay result.
+
+This reuses one source-feature rule for His and Glu, without enzyme-ID code or
+retranscribed measurements. The useful constraint is that a step declaration
+cannot exclude entry-level variant evidence, while a generic activity summary
+cannot replace endpoint-specific observations. This is within-entry reuse;
+broad coverage, measured effort savings and design performance are untested.
+Observation filters still affect only the existing observation plane; both annotation
+contexts remain visible with their own count and evidence basis. No new
+acquisition, frozen-record change, evidence-tier promotion or claim is added.
+
 ## Provenance and unresolved links
 
 ### New source followup: the K166R deposit

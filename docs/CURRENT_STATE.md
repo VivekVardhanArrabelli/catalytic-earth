@@ -1,5 +1,11 @@
 # Current State
 
+## 2026-09-11: a non-step-declared reference site retains mutation evidence
+
+The optional [fragment query](ATLAS_MECHANISM_EVIDENCE.md#entry-level-mutation-annotations-retain-their-narrower-evidence-basis) now links the Glu317A source fragment to entry-wide P11444:E317 and its UniProt E317Q activity-reduction annotation. E317 remains unresolved in the selected-step catalyst relation, with no measured observation attached. The same reference-feature rule returns H297N's coarse activity-loss annotation beside its existing endpoint-specific S-exchange evidence.
+
+Both are database annotations with original features, citations, versions and source bindings. No scalar, denominator, reaction direction, assay, exact construct, atom role or energy is inferred. The E317Q primary results remain uninspected. Existing observations, step declarations, frozen sources and claims are unchanged; no new acquisition or evidence-tier promotion. This is useful within-entry reuse, with broad coverage and design performance still unestablished.
+
 ## 2026-09-11: M0187 source-fragment membership connects to focal H297N evidence
 
 The optional [source-fragment query](ATLAS_MECHANISM_EVIDENCE.md#a-source-fragment-connects-his297-to-the-existing-functional-discriminant) links step-1 o40/a58 through the uniquely His297A-labeled heavy covalent fragment to P11444:H297 and existing focal H297N observations. The same rule resolves step-2 a19/Lys166 at source-step scope; step-1 a63/Glu317 has no matching selected-step catalyst declaration. Contextual K166R rows do not acquire a new focal adjudication.

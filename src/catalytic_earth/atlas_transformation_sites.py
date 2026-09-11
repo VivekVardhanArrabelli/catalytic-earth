@@ -394,9 +394,10 @@ def _resolve_site(
 
 def _resolve_labeled_site(
     record: dict[str, Any], step: dict[str, Any], label: dict[str, Any], mcsa_id: str,
-    *, allowed_label_status: str, match_basis: str,
+    *, allowed_label_status: str, match_basis: str, site_scope: str = "selected_step",
 ) -> tuple[dict[str, Any], dict[str, Any]]:
-    """Match a separately established source label to the selected step's site."""
+    """Match a source label at an explicit step or whole-record residue scope."""
+    _require(site_scope in {"selected_step", "record"}, "unsupported source site scope")
     unresolved_site = {
         "status": "not_resolved", "site_id": None, "match_basis": None,
         "site_record": None, "source_assertion_row_selection": "not_asserted",
@@ -455,7 +456,8 @@ def _resolve_labeled_site(
 
     residue = label["residue_label"]
     candidates: list[tuple[dict[str, Any], list[dict[str, Any]]]] = []
-    for site_id in catalyst_ids:
+    candidate_ids = catalyst_ids if site_scope == "selected_step" else list(by_id)
+    for site_id in candidate_ids:
         site = by_id[site_id]
         matches = [
             row for row in site.get("pdb_mappings", [])
@@ -468,10 +470,9 @@ def _resolve_labeled_site(
         if matches:
             candidates.append((site, matches))
     if len(candidates) != 1:
-        reason = (
-            "no_step_catalyst_site_matches_explicit_residue_label"
-            if not candidates else "multiple_step_catalyst_sites_match_explicit_residue_label"
-        )
+        scope_name = "step_catalyst" if site_scope == "selected_step" else "record"
+        reason = (f"no_{scope_name}_site_matches_explicit_residue_label" if not candidates
+                  else f"multiple_{scope_name}_sites_match_explicit_residue_label")
         unresolved_site["reason"] = reason
         unresolved_context["reason"] = reason
         return unresolved_site, unresolved_context
@@ -517,7 +518,8 @@ def _resolve_labeled_site(
         structures.append(matches[0])
     return (
         {
-            "status": "unique_step_catalyst_site_match",
+            "status": ("unique_step_catalyst_site_match" if site_scope == "selected_step"
+                       else "unique_record_site_match"),
             "site_id": site["site_id"],
             "match_basis": match_basis,
             "site_record": copy.deepcopy(site),

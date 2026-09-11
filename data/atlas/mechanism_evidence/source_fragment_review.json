@@ -1,45 +1,104 @@
 {
   "schema_version": "catalytic-earth.source-fragment-review.v1",
   "status": "source_reviewed_computational",
-  "spec_sha256": "daee9c51facf109639ede3ad0809a60b96d174dea3e015c920bc302612766335",
-  "reviewed_at_utc": "2026-09-11T14:37:19.906250+00:00",
+  "spec_sha256": "dabcafae261eff3fc5f108d8098b5ed655761b82e2952149e97025bd78eebdec",
+  "reviewed_at_utc": "2026-09-11T15:23:02.711396+00:00",
   "review_process": [
     {
-      "task": "source_site",
+      "task": "source_e317",
       "model": "gpt-5.6-sol",
       "reasoning_effort": "ultra",
-      "status": "accepted_source_representation_and_adversarial_diff"
+      "status": "accepted_exact_source_scope_representation_and_adversarial_diff"
     },
     {
-      "task": "representation_site",
+      "task": "representation_e317",
       "model": "gpt-5.6-sol",
       "reasoning_effort": "ultra",
-      "status": "accepted_source_representation_and_adversarial_diff"
+      "status": "accepted_exact_source_scope_representation_and_adversarial_diff"
     },
     {
-      "task": "adversarial_site",
+      "task": "adversarial_e317",
       "model": "gpt-5.6-sol",
       "reasoning_effort": "ultra",
-      "status": "accepted_source_representation_and_adversarial_diff"
+      "status": "accepted_exact_source_scope_representation_and_adversarial_diff"
     }
   ],
   "independent_human_validation": false,
   "experimental_validation": false,
-  "scope": "Unique source heavy-covalent fragment alias plus exact selected-step reference-site mapping. H297N observations remain focal reference-site context; Lys166 demonstrates same-rule source reuse without transferring contextual K166R observations or the H297N adjudication. Legacy direct-endpoint-label query and original evidence remain unchanged. No PDB atom, exact assay sequence, proton identity, stereo, coordination interpretation, atom-specific role or validated arrow is asserted. Exact case-content binding and filter reconstruction prevent modified cached-query observations from retaining the original evidence hash; direct applicability prevents contextual variant promotion even in a separately reviewed case.",
+  "scope": "Preserve the prior selected-step fragment/evidence relation. Add separately typed whole-record reference-site UniProt point-mutagenesis annotation context for reviewed data selections. Exact source snapshot, protein evidence, accession, residue, position and sequence are bound; all source alternatives and citation metadata are retained. Opaque activity statements do not supply endpoint, denominator, numeric parameter, assay, exact construct, atom role, energy, mutant geometry or validated arrow. E317Q is not promoted to a selected-step catalyst or measured observation. H297N database wording does not replace retained endpoint-specific primary evidence. No primary E317Q results inspected, no acquisition, no new observation or evidence-tier promotion.",
   "implementation_bindings": {
-    "src/catalytic_earth/atlas_fragment_sites.py": "98716e369a3c99cc409ba2f6c4e7259c12816acdd4484a224a4dfe7381196920",
-    "src/catalytic_earth/atlas_transformation_sites.py": "5926f903ea69abf1f0249dae845eef378c59caa6d0fcea34e5a30f5c31c55302",
+    "src/catalytic_earth/atlas_fragment_sites.py": "36eb5314c2f7346ea76883d02542779dbb6a0656048d69acf1db55c2f1e4052c",
+    "src/catalytic_earth/atlas_transformation_sites.py": "a24def0994cda248f266d5cd6f91d9d2eda930d2f136e44eebd0f16421da3fe1",
     "src/catalytic_earth/core_cli.py": "ccfac9a99e9808d55d15cc79f346ac763e42887ff98fb70a36e3282574a37f2f",
     "scripts/build_atlas_mechanism_evidence.py": "32037e250d0301f47c40bf7ee0c31e388ff222c14a379cb351b57b1447ae392e",
-    "scripts/verify_atlas10_release.py": "e6fa28809ae9b7ed8a127482e3a7f308de062a13f480eadbfaa1753aef83e705",
-    "tests/core/test_atlas_fragment_sites.py": "d3659b17f233037baf358a34dc95e6132c8b0101373f7fde3ad30a0746aa26de",
-    "docs/ATLAS_MECHANISM_EVIDENCE.md": "70716ee304cff1c29520e0be48c44fdfacb285a31ce41c7e5a61663f211a511b",
+    "scripts/verify_atlas10_release.py": "f882c8932b4bd0f3405e313a7b30a8f858148f728eb877e4773f2f1545aafc35",
+    "tests/core/test_atlas_fragment_sites.py": "9f8bff210e254c0001d6b8661f6a4b6a4fbb1e4c56a85ff7ee1f84f6bcfe667f",
+    "docs/ATLAS_MECHANISM_EVIDENCE.md": "093e20976889b795414e00d32d7392585c4f45eaa2cf367bbe22c3bc9c9b3dad",
     "docs/ATLAS_TRANSFORMATIONS.md": "d3e651f3c4d9cf9e5734319f003606ef740092ea6b8a4fac0915a9b1feb83e43",
-    "docs/CURRENT_STATE.md": "f4a4398a0cd2215e0d40c719d9950f3c37fba617bcfbeb4c344fd3ac58f9b9b1",
-    "docs/CURRENT_DECISIONS.md": "d266ea64b69ba61e2c7bcc6bdfdfe8921f716bd296db3c8788eb24c764165907",
+    "docs/CURRENT_STATE.md": "f7a45d8ee2feef9f8fea4ea1cd85c30da4bc3a62af2917851e32bbec06e8104e",
+    "docs/CURRENT_DECISIONS.md": "99a433857a0e4d19129437154ee5c7e77deecd307e3019b25a60f2b5e5a79466",
     "src/catalytic_earth/atlas_context_candidates.py": "1e29dade1364eac7eda39584dbe8a8172cb286deaaf00439607d8dd069110808",
     "src/catalytic_earth/atlas_partial_panels.py": "aa5d8374a63152f36b369c8c58113a2c75510be114be8ee66f2b70df2dd54c1d",
     "src/catalytic_earth/atlas10_source_adapters.py": "dc8da8da65f5113526c4618b955c5bb2da7c21ff0725e28c97372efdda693731",
-    "src/catalytic_earth/atlas_mechanism_evidence.py": "f039fa4433ea806b732fff0da44ca4818feff4291392313604da828a7b34890f"
-  }
+    "src/catalytic_earth/atlas_mechanism_evidence.py": "f039fa4433ea806b732fff0da44ca4818feff4291392313604da828a7b34890f",
+    "src/catalytic_earth/atlas_reference_annotations.py": "0c6131ffbab788364f81c8612eed0796d3b8cd82da796ce58db753c77c5b70e2",
+    "tests/core/test_atlas_reference_annotations.py": "2db3f2389b15ca2e2cc296200affa9347459f243664a3fbb5a79cdb8f460d9af"
+  },
+  "prior_review": {
+    "base_commit": "9082d6228cb2ef6952196916bdbc20fc27b74008",
+    "review_sha256": "19ffec64a79829821edc40a69f28b39215ce5ae77e74cf60517bc46fdb42e7ff",
+    "review": {
+      "schema_version": "catalytic-earth.source-fragment-review.v1",
+      "status": "source_reviewed_computational",
+      "spec_sha256": "daee9c51facf109639ede3ad0809a60b96d174dea3e015c920bc302612766335",
+      "reviewed_at_utc": "2026-09-11T14:37:19.906250+00:00",
+      "review_process": [
+        {
+          "task": "source_site",
+          "model": "gpt-5.6-sol",
+          "reasoning_effort": "ultra",
+          "status": "accepted_source_representation_and_adversarial_diff"
+        },
+        {
+          "task": "representation_site",
+          "model": "gpt-5.6-sol",
+          "reasoning_effort": "ultra",
+          "status": "accepted_source_representation_and_adversarial_diff"
+        },
+        {
+          "task": "adversarial_site",
+          "model": "gpt-5.6-sol",
+          "reasoning_effort": "ultra",
+          "status": "accepted_source_representation_and_adversarial_diff"
+        }
+      ],
+      "independent_human_validation": false,
+      "experimental_validation": false,
+      "scope": "Unique source heavy-covalent fragment alias plus exact selected-step reference-site mapping. H297N observations remain focal reference-site context; Lys166 demonstrates same-rule source reuse without transferring contextual K166R observations or the H297N adjudication. Legacy direct-endpoint-label query and original evidence remain unchanged. No PDB atom, exact assay sequence, proton identity, stereo, coordination interpretation, atom-specific role or validated arrow is asserted. Exact case-content binding and filter reconstruction prevent modified cached-query observations from retaining the original evidence hash; direct applicability prevents contextual variant promotion even in a separately reviewed case.",
+      "implementation_bindings": {
+        "src/catalytic_earth/atlas_fragment_sites.py": "98716e369a3c99cc409ba2f6c4e7259c12816acdd4484a224a4dfe7381196920",
+        "src/catalytic_earth/atlas_transformation_sites.py": "5926f903ea69abf1f0249dae845eef378c59caa6d0fcea34e5a30f5c31c55302",
+        "src/catalytic_earth/core_cli.py": "ccfac9a99e9808d55d15cc79f346ac763e42887ff98fb70a36e3282574a37f2f",
+        "scripts/build_atlas_mechanism_evidence.py": "32037e250d0301f47c40bf7ee0c31e388ff222c14a379cb351b57b1447ae392e",
+        "scripts/verify_atlas10_release.py": "e6fa28809ae9b7ed8a127482e3a7f308de062a13f480eadbfaa1753aef83e705",
+        "tests/core/test_atlas_fragment_sites.py": "d3659b17f233037baf358a34dc95e6132c8b0101373f7fde3ad30a0746aa26de",
+        "docs/ATLAS_MECHANISM_EVIDENCE.md": "70716ee304cff1c29520e0be48c44fdfacb285a31ce41c7e5a61663f211a511b",
+        "docs/ATLAS_TRANSFORMATIONS.md": "d3e651f3c4d9cf9e5734319f003606ef740092ea6b8a4fac0915a9b1feb83e43",
+        "docs/CURRENT_STATE.md": "f4a4398a0cd2215e0d40c719d9950f3c37fba617bcfbeb4c344fd3ac58f9b9b1",
+        "docs/CURRENT_DECISIONS.md": "d266ea64b69ba61e2c7bcc6bdfdfe8921f716bd296db3c8788eb24c764165907",
+        "src/catalytic_earth/atlas_context_candidates.py": "1e29dade1364eac7eda39584dbe8a8172cb286deaaf00439607d8dd069110808",
+        "src/catalytic_earth/atlas_partial_panels.py": "aa5d8374a63152f36b369c8c58113a2c75510be114be8ee66f2b70df2dd54c1d",
+        "src/catalytic_earth/atlas10_source_adapters.py": "dc8da8da65f5113526c4618b955c5bb2da7c21ff0725e28c97372efdda693731",
+        "src/catalytic_earth/atlas_mechanism_evidence.py": "f039fa4433ea806b732fff0da44ca4818feff4291392313604da828a7b34890f"
+      }
+    }
+  },
+  "resolved_objections": [
+    "Keep whole-record reference annotations separate from selected-step catalyst/observation joins.",
+    "Retain activity wording without endpoint, denominator, quantity, atom-role or energy inference.",
+    "Do not describe the separately retained H297 primary abstract as uninspected.",
+    "Require every bound reference snapshot to be selected and hash-checked; reject malformed selection keys.",
+    "Count unique source features rather than repeated attachments.",
+    "Require nonempty evidence code, citation namespace and identifier before source-reference matching."
+  ]
 }

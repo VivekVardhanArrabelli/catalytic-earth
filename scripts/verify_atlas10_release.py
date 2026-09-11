@@ -318,6 +318,17 @@ def verify_wheel(
                     or {row["observation_id"] for row in fragment_rows[(1, "a58")]["functional_evidence"]["matched_observations"]}
                     != {"H297N-racemization", "H297N-S-exchange", "H297N-R-exchange", "H297N-structure"}):
                 raise ValueError("installed fragment relation lost its source, step, or focal-evidence scope")
+            glu_annotation = fragment_rows[(1, "a63")]["reference_annotation_context"]
+            his_annotation = fragment_rows[(1, "a58")]["reference_annotation_context"]
+            if (fragment_query["reference_annotation_count"] != 2
+                    or glu_annotation["reference_site_mapping"]["site_id"] != "P11444:E317"
+                    or glu_annotation["selected_step_declares_site"] is not False
+                    or glu_annotation["annotation"]["feature"]["description"] != "Reduces activity 10000-fold."
+                    or glu_annotation["annotation"]["interpreted_quantity"]["value"] is not None
+                    or glu_annotation["annotation"]["interpreted_quantity"]["denominator"] is not None
+                    or his_annotation["annotation"]["feature"]["description"] != "Loss of activity."
+                    or his_annotation["selected_step_declares_site"] is not True):
+                raise ValueError("installed reference annotation lost database or non-step scope")
 
             sites = queries["transformation_sites"]
             if (sites["schema_version"] != "catalytic-earth.transformation-site-query.v1"
