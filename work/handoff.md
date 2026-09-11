@@ -1,96 +1,90 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research baton — 2026-09-11 MAL preparative synthesis
+## Current research baton — 2026-09-11 TK endpoint context
 
-- **Identity/base:** actual UTC start 2026-09-11T16:07:12Z; owner
-  `01a09138-d283-7f32-b916-1b9737c08fc9:f4e2a0dc-f53a-4fb5-a895-6f6ab34df25d`;
-  default common-directory lock acquired 16:07:39Z. Clean, synced main base
-  `d12a074548e70aa6bf645b37eecd13c203a48d9e`; PR102 merged and prior owner
-  released, no unfinished PR/recovery. Branch
-  `codex/mal-synthesis-outcome-20260911`; checkpoint 2026-09-11T16:30:12.653329+00:00
-  (23.01 minutes). Exact final SHA/CI/release belong in the local receipt.
-- **Direction/question:** the direction review's His297 relation and inherited
-  E317Q annotation are complete. This run pursued the newer Raj2012 primary
-  variant–reactant–product lead, beyond another mutation annotation. The
-  stopping condition is met by one supported preparative outcome; exact
-  enzymatic selectivity remains unassessed. No closed inquiry was reopened.
-- **Result:** source-named C. tetanomorphum MAL L384A adds ammonia to
-  2-(benzyloxy)-fumaric acid 1j, giving source-named 3-benzyloxyaspartic acid
-  4j: 65% proton-NMR conversion at seven days and source-labeled 50% Yield
-  after the stated purification. The shared query projects two parameters from
-  one preparative context with reaction participants, assays and product
-  evidence. `isolated_yield` is classified from the workup, not the literal
-  source label. No new comparison, protein admission, compiled mechanism,
-  project experiment, independent review or evidence-tier promotion.
-- **Limits:** exact assayed sequence and preparation identity are unresolved;
-  Q05514 is associated through UniProt's Raj2012 citation, not named in the SI.
-  The p25 opposing arrows are a drawing, not measured equilibrium or reverse
-  kinetics. Product configuration, numerical ee/de and enzymatic HPLC peak
-  assignment remain null; the threo-DL retention pair and qualitative abstract
-  do not supply them. Keep conversion, purification yield and selectivity
-  separate. No free-ammonia concentration, kinetic/productivity calculation,
-  M0468 catalytic role or reacting geometry is inferred. Q73A/L384A's near-
-  inactivity is an author statement with data not shown and no specified
-  assay/substrate/scalar: no zero, epistasis magnitude or geometry cause.
-- **Evidence:** `data/atlas/study_context/mal_2012/source_qualification.json`,
-  `source_review.json`, `acquisition_receipts.json`; `docs/ATLAS_MAL_SYNTHESIS.md`;
-  common `data/atlas/perturbations/projection.json` and its scoped review;
-  CE-043. Primary SI SHA256
-  `2c53d07fb365c678c49677a9a251528ffc216fc3f962521893c2960428b8cd38`,
-  56 pages, 2,028,680 bytes: precursor p22, preparation pp25–26, product
-  pp29–30, qualitative double-mutant statement p40. Exact publisher hyperlink
-  and DOI/authors bind the PDF; main article body remains uninspected. Bodies
-  and rendered pages stay in the local Git-common source cache.
-- **Acquisition:** new distinct bibliography batch
-  `engineered-methylaspartate-raj2012`: six requests / 2,374,099 response-body
-  bytes, complete cumulative accounting under 100 / 31,457,280. No earlier
-  primary acquisition was found; Q05514 metadata was already retained. No
-  renamed/reset batch. Inherited totals unchanged: RA61
-  `designed-retroaldolase-components-lassila2010` 58 / 4,697,605;
-  KSI 26 / 5,739,717; RA95 33 / 17,556,517; Diels 20 / 519,698;
-  KE59 9 / 261,580; KE70 16 / 1,102,794; beta 5 / 8,449,621;
-  default M-CSA 49 / 1,109,896. TKT/POX 7 / 3,004,884, PLP 73 / 5,068,731
-  and panel 28 / 1,474,405 remain lower bounds with incomplete headroom.
-  M0187 followup 12 / 440,960 stays at its inherited sublimit. Closed DERA,
-  M0186-H, M0213-stereo and prior RA61 inquiries remain closed without new evidence.
-- **Review/reconsideration:** source_raj2012, representation_raj2012 and
-  adversarial_raj2012 are Sol/ultra computational reviewers, not independent
-  human or laboratory validation. Board: `.git/catalytic-earth-runs/f4e2a0dc.board.md`.
-  Source objections made the yield classification and accession binding explicit;
-  parent corrected p22; high-resolution inspection resolved an arrow disagreement.
-  Parent owns Git/lock; representation worker owned only projection.json.
-  Existing reaction/parameter/construct/assay primitives cover the new chemistry
-  without runtime changes or enzyme-ID branches. Prior curation serves another
-  synthesis relation; no measured effort saving is established. Integrated value
-  is a usable product outcome with conditions and refusal of exact selectivity or
-  combined-mutant extrapolation. Repeated source annotations alone still do not
-  establish a complete mechanism dataset or design capability.
-- **Verification/publication:** public source query and all 28 retained witness
-  files (28,509,659 bytes) verify. All 221 earlier observations, 126 comparisons,
-  prior state/model/control relations and 42 earlier claim entries are unchanged.
-  Eight guarded source/kernel/runtime/policy/errata/exposure files are unchanged.
-  Repository contracts, all 651 core tests, current Atlas-3/10 offline wheel
-  checks and canonical core wheel/archive checks pass. The truth test count
-  changes only 42 to 43; its existing review pin is renewed. M0187 package
-  changes are only current-document review metadata, with source/chemistry
-  fields invariant. Exact reviewed head, push/merge and guarded release are in
-  `.git/catalytic-earth-runs/f4e2a0dc-receipt.json` and the task result. This branch
-  is the continuation until publication is complete; resume it first if unfinished.
-  No unrelated edits. Preserve the historical handoff suffix and stage this
-  block before rebuilding the report archive. This run changes no schedule.
-- **One next action:** inspect the primary article linked by the retained
-  publisher page, “Two-substrate enzyme engineering using small libraries that
-  combine the substrate preferences from two different variant lineages,”
-  DOI `10.1038/s41598-024-51831-z`. This is a discovery lead, not yet evidence
-  that it concerns the same MAL system. First establish enzyme/parental-lineage
-  identity and reconcile any existing named-batch accounting. If applicable,
-  test whether a measured combined-variant substrate/product outcome resolves
-  the consequential combinability gap exposed by Raj2012's data-not-shown
-  double-mutant statement. Expected gain: a supported two-substrate design
-  constraint rather than another single-site annotation. Stop at a mismatched
-  system, one supported scoped outcome, or the first missing material/assay/
-  assignment premise; use a bounded access stop, without repeating closed routes.
+- **Identity/base:** actual UTC start 2026-09-11T17:05:39Z; owner
+  `01a0916e-623a-7c03-82c3-8421f511a1c2:74ac02ee-1c45-4fc2-b7d8-619307440ea7`;
+  default Git-common lock acquired 17:06:00Z. Clean main base
+  `dbe8a57c065eadfa23382a84de6101c83329be26`; prior PR103 merged and owner
+  released; no open PR or recovery. Branch `codex/tk-endpoint-contrast-20260911`.
+  Checkpoint 2026-09-11T17:28:13.388916+00:00 (22.57 minutes).
+- **Direction/question:** the direction review's M0187 priority and newer MAL
+  preparative outcome are complete. The inherited DOI51831 lead is E. coli
+  transketolase, not MAL, so it cannot resolve Q73A/L384A combinability. The
+  acquired primary supports a distinct consequential question: does the TK-1
+  to TK-2 R520Q relation preserve different measured endpoints? Stop condition
+  met by one source-scoped relation; no closed inquiry or access route reopened.
+- **Finding/capability:** TK-1 is the engineered 6M+S385Y reference; TK-2 adds
+  R520Q. At 50 mM 3-FBA plus 50 mM pyruvate, Table3 specific activities are
+  20.3 (SEM5) and 8.3 (SEM0.3) µmol mg⁻¹ min⁻¹, central TK-2/TK-1 ratio
+  0.408867. Both have source-reported 61%24h conversion. Four parameter
+  records, one shared descriptive ratio and its context preserve these
+  endpoints without a single activity-benefit label. CE-044 is source annotation;
+  no new protein admission, compiled mechanism, project experiment or design claim.
+- **Limits/source objection:** conversion is product/(substrate+product) HPLC
+  peak-area fraction at25°C; kinetics are at21°C. Fitted kcat and KM have
+  separate large SEM; both central KM values exceed the150mM tested upper bound.
+  Methods/Results differ at the lower range bound (25/0mM). Specific-activity
+  independence from the same fit is unestablished; diagnostic evaluation of
+  printed Vm/KM at50mM closely matches that column without proving its origin.
+  No significance, equivalence, raw-data refit or causal R520Q inference.
+  Broad no-adverse-activity prose does not replace endpoint-specific values.
+  Prior6M kinetics varied pyruvate rather than3-FBA at a different enzyme
+  concentration; no matched630-fold gain or factorial epistasis. Exact assayed
+  sequence/plasmid and product stereochemistry remain unresolved; spectra are
+  author-reported and uninspected. No docking/geometry, MAL or human-TKT transfer.
+- **Evidence:** `data/atlas/study_context/tk_2024/source_qualification.json`,
+  `source_review.json`, `acquisition_receipts.json`;
+  `docs/ATLAS_TK_ENDPOINT_CONTEXT.md`; common perturbation projection/review.
+  Exact publisher article/Methods and linked Tables2/3 retained in Git-common
+  cache; primary bodies not redistributed. Article SHA256
+  `0b0a4fdb19d1d271780fc5e2adaa3a44674c7e399abd4dc369b194add5750fc4`;
+  table hashes and all acquisition records are in the packet.
+- **Acquisition:** new distinct bibliography batch `two-substrate-lineages-2024-51831`
+  totals12requests/741,711response-body bytes, complete cumulative accounting
+  including redirects under100/31,457,280. No earlier transport found; the
+  Raj2012 page supplied only a discovery hyperlink. Prior totals unchanged:
+  MAL `engineered-methylaspartate-raj2012`6/2,374,099; RA61
+  `designed-retroaldolase-components-lassila2010`58/4,697,605; KSI26/5,739,717;
+  RA9533/17,556,517; Diels20/519,698; KE599/261,580; KE7016/1,102,794;
+  beta5/8,449,621; defaultM-CSA49/1,109,896. TKT/POX7/3,004,884,
+  PLP73/5,068,731 and panel28/1,474,405 remain lower bounds with incomplete
+  headroom; M0187followup12/440,960 remains at inherited sublimit. No batch reset.
+- **Review/reconsideration:** source_lineages2024, representation_lineages2024
+  and adversarial_lineages2024 are Sol/ultra correlated computational reviewers.
+  Board `.git/catalytic-earth-runs/74ac02ee.board.md`. Parent owns lock/Git;
+  only representation edited projection.json and completed its edits. Source
+  objections above were retained or narrowed; no human validation is claimed.
+  Shared construct/reaction/endpoint primitives suffice; generic specific_activity
+  declaration is data and runtime is unchanged. The same comparison selector
+  recovers human-TKT E160A's distinct X5P/R5P turnover, F6P forward and NMR
+  contexts without new code or numerical pooling. This demonstrates bounded
+  reuse, not measured curation savings. Integrated value is prevention of
+  endpoint collapse and mismatched kinetic transfer. Complete chemical-state
+  chains and a demonstrated design consumer remain missing.
+- **Verification/publication:** public query and all31primary witnesses verify
+  (29,250,920bytes). All223 prior observations,126 comparisons,43 claims and
+  prior state/model/control relations are invariant; eight guarded files are
+  unchanged. Repository contracts, all651 core tests, current Atlas3/10
+  offline wheel checks and canonical core wheel/archive checks pass. Required
+  M0187 package changes contain only current-document review metadata; chemistry
+  and observations are unchanged. Claim-count test changes only43to44.
+  Exact reviewed head, PR/push/merge/CI and release state go in the local receipt
+  `20260911T170539Z-74ac02ee-1c45-4fc2-b7d8-619307440ea7.json` under
+  Git-common `catalytic-earth-runs/` and the task result. This branch is the
+  continuation until publication completes; resume it first if unfinished.
+  No unrelated changes. Historical suffix preserved. No schedule change.
+- **One next action:** inspect the primary Yu et al.2020, *Engineering
+  transketolase to accept both unnatural donor and acceptor substrates and
+  produce α-hydroxyketones*, FEBS J287,1758–1776, DOI `10.1111/febs.15108`,
+  cited as reference4 in the retained2024article (including DOI metadata). Reconcile named-batch accounting before acquisition.
+  Ask whether its donor-half evidence distinguishes pyruvate/cofactor-adduct
+  formation from acceptor coupling, or supplies only overall product kinetics.
+  Expected gain: connect a changed donor chemical group to a constrained
+  mechanism/endpoint boundary, beyond another activity row. Stop at one
+  source-supported relation or absence of a distinguishing endpoint; no
+  cross-study rate pooling, invented intermediate or repeated access campaign.
 
 Preserve historical content below this marked block. Git identifies the
 containing commit; no self-hash follow-up commit is needed.

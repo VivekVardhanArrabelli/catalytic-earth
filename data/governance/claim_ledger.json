@@ -588,5 +588,18 @@
       "data/atlas/study_context/mal_2012/source_review.json",
       "docs/ATLAS_MAL_SYNTHESIS.md"
     ]
+  },
+  {
+    "claim_id": "CE-044",
+    "claim_kind": "source_annotation",
+    "status": "Supported",
+    "claim": "Mukhopadhyay2024 reports E. coli TK-1/TK-2 specific activities of 20.3 (SEM 5) and 8.3 (SEM 0.3) umol mg^-1 min^-1 at 50 mM 3-FBA/50 mM pyruvate, while both report 61% 24 h conversion. TK-2 adds R520Q to the source-named 6M+S385Y TK-1 background.",
+    "current_wording": "Four source parameter records and one descriptive central-value ratio 0.408867 keep the fixed-concentration rate, 25 C HPLC peak-area conversion and uncertain 21 C fitted kinetics distinct. Specific-activity independence from the fit is not established. Both central KM estimates exceed the 150 mM tested upper bound. No significance, equivalence, causal mechanism, complete mutation square, matched 6M ratio, MAL/human-TKT transfer, exact assayed sequence, absolute product configuration, project experiment, independent validation or design-performance claim.",
+    "rationale": "Exact publisher Tables2/3 and methods qualify a reusable endpoint-specific mutation relation. The broad activity prose does not override the fixed-concentration table column. Prior6M kinetics varied the opposite substrate in another study; that comparison is not promoted.",
+    "evidence": [
+      "data/atlas/study_context/tk_2024/source_qualification.json",
+      "data/atlas/study_context/tk_2024/source_review.json",
+      "docs/ATLAS_TK_ENDPOINT_CONTEXT.md"
+    ]
   }
 ]

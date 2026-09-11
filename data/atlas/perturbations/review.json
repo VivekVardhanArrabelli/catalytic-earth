@@ -4,7 +4,7 @@
   "reviewed_at_utc": "2026-09-11T09:30:44.367226+00:00",
   "scope": "Cumulative source-reviewed projection; this increment adds a separate source-system control operation for the Schmidt2013 bulk-normalized BuAm CTAC contrast and reuses existing calmodulin chemical-treatment rows. Prior source observations, genetic comparisons, state/model links and protected evidence are unchanged.",
   "reviewed_bindings": {
-    "data/atlas/perturbations/projection.json": "7c5d2c42e99c616ecea6814de5ad734fbff2d2353066b745842d53d6193166c3",
+    "data/atlas/perturbations/projection.json": "1d813cbcc63a1f5d605dd47d8e04168a2bab256f326ae4376509616618d44189",
     "src/catalytic_earth/atlas_perturbations.py": "068059aa7383744938851fdc26d3fd661daa1e3304d0d8be8baa58cabf5843ef",
     "scripts/query_atlas_perturbations.py": "7fb2bd66ae9e6ff5247738187adb328779d597dc0634b9d7b3c316b4765e2469",
     "docs/ATLAS_PERTURBATION_RELATION.md": "d9c598b26a3fc7a08852ff672adb4e21fca2b7deac6b86ef5d6aca526ccf98aa",
@@ -31,10 +31,10 @@
     "data/atlas/study_context/ra95_2017/chemical_state.json": "0304a28cc9676ae9d920b5c4f6c47f102d10320e125cc40cbfddd971ccff695d",
     "data/atlas/study_context/ra95_2017/chemical_state_acquisition.json": "4b0427a24aab3b1269f25cd80b3b9c90f61c4a99404499d77cf0c16a8b5f2ecb",
     "docs/ATLAS_RA95_CHEMICAL_STATE.md": "a85ee7c6accdafb0f2fb63a1a658413e07788cee4a5f9f7879dce726c6707c01",
-    "CLAIMS.md": "26d61f0f1d5308b60a12a5c43df6f5315e4273bad8c2f4fde2ac3a180534df60",
-    "data/governance/claim_ledger.json": "23a9e268b014bab90fea039e4264c7e82d3b19d79ae4654274193789fbb6a5fe",
-    "docs/CURRENT_DECISIONS.md": "e96fdf5702e3d022bbfddc4d0b4b502602aceb06dafa48f1c7582c402b07f3c2",
-    "docs/CURRENT_STATE.md": "a1a22bf9977099b6e8d660123f61585f421e6dfa471584684f417e2c2c4b96c5",
+    "CLAIMS.md": "692f5e14431b6b363ca0370d5f12338a2616bb8aadd19db5df82e917791c6999",
+    "data/governance/claim_ledger.json": "78296a7f95489a3c6a1cc20a05028671a9fc02936b8b1cda51f094b648fe11e5",
+    "docs/CURRENT_DECISIONS.md": "84ff39b8628c4e281bed11bc059163d61d8a2ef2be4fdd5891165485512b136a",
+    "docs/CURRENT_STATE.md": "307f1448607cb32e92aa1acc1618d7f6bb1d93d695ca4b79be021fe7d188a1f2",
     "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
     "src/catalytic_earth/atlas_deposit_context.py": "adfae408de29e6b5f61fab970d7631f42846a9cdaedea0340d65e6ac95ad2a87",
     "src/catalytic_earth/atlas_assembly_context.py": "5d671a761f3ad493661f3c25b50dce693ef2169a48942af9664a65e0b0ae0835",
@@ -47,7 +47,7 @@
     "data/atlas/deposit_context/ra95_4a2r/projection.json": "ea3117cea3d83e156534abcc1efd62f10ed056a1965ba7e99a0974ac915b3461",
     "data/atlas/study_context/ra95_2013/chemical_state.json": "a9b7df48d5684fc014ced487477364eb8d9b2072817e3be4c64837a364df0670",
     "data/atlas/study_context/ra95_2013/chemical_state_acquisition.json": "7efd0b0efdb32572d369194fc4e9eedd84b0a184aa8c9f10b7af50766b4c1da9",
-    "tests/test_truth_guard.py": "5158b8468cd3663d2fae6dd2dcca3448a19c027c1f98982bbe3af544cc9fa6a9",
+    "tests/test_truth_guard.py": "889a1910c5f68ba4be0a4a85ac49a69e0909f0ab68eaa740642ec97622759f41",
     "docs/ATLAS_RA95_4A2R_STATE.md": "8089d97dd393b0f3c2576197481c9551f3bdf2d1ff20a64dd15323ad7a6011ef",
     "data/atlas/study_context/ra95_2013/chemical_state_review.json": "12864f833532eff632016804fbf322e1828c33c3cabf840b2cd08b8f0ea99ebf",
     "data/atlas/deposit_context/ra95_4a2r/review.json": "dc017d8ed45a52dade5c04a77c42d734fa34926b67cefa043a35f0d9bb605a20",
@@ -86,7 +86,11 @@
     "data/atlas/study_context/mal_2012/source_qualification.json": "5cbfda038e21f4b833fd78d2b0df236a5a92e3d6467b593af4c1b474a05ecee0",
     "data/atlas/study_context/mal_2012/source_review.json": "6f25aabf0e5990ca79be4ad2cd4a08f9eed4072646b39437c927644727f1b24a",
     "data/atlas/study_context/mal_2012/acquisition_receipts.json": "e137a384a0a32c73345177bdf25872ef95c151b20ec02be8bbbfc068ddd61676",
-    "docs/ATLAS_MAL_SYNTHESIS.md": "e7a53c04aaa85f87b8aceb98b7aee5b3ef893098711f15c61896600bf58068ec"
+    "docs/ATLAS_MAL_SYNTHESIS.md": "e7a53c04aaa85f87b8aceb98b7aee5b3ef893098711f15c61896600bf58068ec",
+    "data/atlas/study_context/tk_2024/source_qualification.json": "d32ce847e7124728011eea2adf3b96f90ed8ed938b494add164988d5013b9dd2",
+    "data/atlas/study_context/tk_2024/source_review.json": "88e219d35a8710471b715c89e12a9fcc8c935908773c38ffebf810e784575225",
+    "data/atlas/study_context/tk_2024/acquisition_receipts.json": "30c07b9a7435c95000200835bcd3e468ca2afef8605cd748934fffdcd28e5244",
+    "docs/ATLAS_TK_ENDPOINT_CONTEXT.md": "b6d07184a0a10cb98be350ff6ad4bfc8307fa0a31ccc0fd269b2869eaa8aa899"
   },
   "inherited_source_bindings": {
     "ra95f": {
@@ -1051,5 +1055,58 @@
     "independent_human_validation": false,
     "experimental_validation": false,
     "verification_dependency_followup": "Required truth-governance test count changes only42to43 for new CE-043. Its existing review pin is renewed after exact one-line diff inspection. Packaged M0187 fragments change only current-document review metadata; all source relations are invariant."
+  },
+  "tk_endpoint_followup": {
+    "reviewed_at_utc": "2026-09-11T17:21:11.397144+00:00",
+    "base_commit": "dbe8a57c065eadfa23382a84de6101c83329be26",
+    "prior_review_sha256": "a317797934ec68436055b798ea09636aec4e57621c83e8ae501ed34e5080d08c",
+    "status": "source_reviewed_computational",
+    "scope": "Four TK2024 source parameter records and one fixed-concentration TK-2/TK-1 R520Q ratio, with full distinct endpoint/construct/fit/comparator context. Add generic specific_activity declaration in data; no shared runtime change, prior source-value change, causal role, independent fit evidence or validation claim.",
+    "renewed_bindings": {
+      "data/atlas/perturbations/projection.json": {
+        "before": "7c5d2c42e99c616ecea6814de5ad734fbff2d2353066b745842d53d6193166c3",
+        "after": "1d813cbcc63a1f5d605dd47d8e04168a2bab256f326ae4376509616618d44189"
+      },
+      "CLAIMS.md": {
+        "before": "26d61f0f1d5308b60a12a5c43df6f5315e4273bad8c2f4fde2ac3a180534df60",
+        "after": "692f5e14431b6b363ca0370d5f12338a2616bb8aadd19db5df82e917791c6999"
+      },
+      "data/governance/claim_ledger.json": {
+        "before": "23a9e268b014bab90fea039e4264c7e82d3b19d79ae4654274193789fbb6a5fe",
+        "after": "78296a7f95489a3c6a1cc20a05028671a9fc02936b8b1cda51f094b648fe11e5"
+      },
+      "docs/CURRENT_STATE.md": {
+        "before": "a1a22bf9977099b6e8d660123f61585f421e6dfa471584684f417e2c2c4b96c5",
+        "after": "307f1448607cb32e92aa1acc1618d7f6bb1d93d695ca4b79be021fe7d188a1f2"
+      },
+      "docs/CURRENT_DECISIONS.md": {
+        "before": "e96fdf5702e3d022bbfddc4d0b4b502602aceb06dafa48f1c7582c402b07f3c2",
+        "after": "84ff39b8628c4e281bed11bc059163d61d8a2ef2be4fdd5891165485512b136a"
+      },
+      "tests/test_truth_guard.py": {
+        "before": "5158b8468cd3663d2fae6dd2dcca3448a19c027c1f98982bbe3af544cc9fa6a9",
+        "after": "889a1910c5f68ba4be0a4a85ac49a69e0909f0ab68eaa740642ec97622759f41"
+      }
+    },
+    "added_bindings": {
+      "data/atlas/study_context/tk_2024/source_qualification.json": "d32ce847e7124728011eea2adf3b96f90ed8ed938b494add164988d5013b9dd2",
+      "data/atlas/study_context/tk_2024/source_review.json": "88e219d35a8710471b715c89e12a9fcc8c935908773c38ffebf810e784575225",
+      "data/atlas/study_context/tk_2024/acquisition_receipts.json": "30c07b9a7435c95000200835bcd3e468ca2afef8605cd748934fffdcd28e5244",
+      "docs/ATLAS_TK_ENDPOINT_CONTEXT.md": "b6d07184a0a10cb98be350ff6ad4bfc8307fa0a31ccc0fd269b2869eaa8aa899"
+    },
+    "review_record": "data/atlas/study_context/tk_2024/source_review.json",
+    "reviewer_tasks": [
+      "source_lineages2024",
+      "representation_lineages2024",
+      "adversarial_lineages2024"
+    ],
+    "coordination_record": ".git/catalytic-earth-runs/74ac02ee.board.md",
+    "source_review_resolution": "MAL mismatch, temperature/range/SEM identity, engineered comparison reference, fit-dependence uncertainty, product evidence and opposite varied-substrate6M context are all explicit.",
+    "new_source_requests": 12,
+    "new_source_response_body_bytes": 741711,
+    "cumulative_batch_id": "two-substrate-lineages-2024-51831",
+    "independent_human_validation": false,
+    "experimental_validation": false,
+    "verification_dependency_followup": "Required truth test expected claim count changes only43to44. Existing source-fragment current-document pins are renewed with no change to M0187 chemical/functional content."
   }
 }

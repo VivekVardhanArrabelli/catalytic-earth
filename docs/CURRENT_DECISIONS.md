@@ -1,5 +1,21 @@
 # Current Decisions
 
+## 2026-09-11: preserve the measured endpoint in a TK mutation contrast
+
+Accept the [TK-1/TK-2 relation](ATLAS_TK_ENDPOINT_CONTEXT.md) at named
+source-construct and assay scope. Use the engineered TK-1 reference with
+incremental R520Q and retain the full mutation sets separately. Project only
+the two specific activities and two conversion values; fitted kcat and KM remain
+contextual evidence. The broad activity prose cannot overwrite a specific
+measured endpoint. No enzyme-specific runtime change is needed.
+
+Close the inherited MAL applicability question at the different enzyme
+system. Do not turn this positive TK relation into a MAL rescue, human-TKT
+transfer, complete epistasis square, or matched cross-study 6M kinetic gain.
+Preserve peak-area normalization, assay temperatures, fit uncertainty and
+missing product stereochemistry. One scoped relation completes this inquiry;
+follow the marked handoff for the next consequential question.
+
 ## 2026-09-11: accept a preparative MAL outcome with unresolved selectivity
 
 Accept the [Raj2012 L384A 1j-to-4j relation](ATLAS_MAL_SYNTHESIS.md) as a
