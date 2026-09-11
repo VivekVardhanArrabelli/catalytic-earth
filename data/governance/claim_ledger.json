@@ -575,5 +575,18 @@
       "data/atlas/study_context/calmodulin_2015/treatment_contrast.json",
       "docs/ATLAS_MICELLAR_CONTROLS.md"
     ]
+  },
+  {
+    "claim_id": "CE-043",
+    "claim_kind": "source_annotation",
+    "status": "Supported",
+    "claim": "Raj2012 reports L384A-catalyzed ammonia addition to 2-(benzyloxy)-fumaric acid (1j) producing 3-benzyloxyaspartic acid (4j), with 65% conversion by proton NMR after seven days and 50% yield after the stated purification.",
+    "current_wording": "Two preparative endpoint records with source-named construct, inputs, conditions and product evidence. Numerical enzymatic ee/de and absolute configuration remain unassessed; threo-DL HPLC retention times alone do not establish them. The Q73A/L384A inactivity statement has data not shown and no specified assay, so no kinetic ratio, epistasis or geometry cause is inferred. No project experiment, protein admission, validated mechanism or design performance. The isolated_yield classification is inferred from the preparative purification workflow; the source label is Yield.",
+    "rationale": "Exact primary supplement scheme, preparative protocol and product entry join the source variant to a synthetic product while retaining assay, material and assignment limits. The existing consumer reuses reaction/parameter primitives without enzyme-specific logic.",
+    "evidence": [
+      "data/atlas/study_context/mal_2012/source_qualification.json",
+      "data/atlas/study_context/mal_2012/source_review.json",
+      "docs/ATLAS_MAL_SYNTHESIS.md"
+    ]
   }
 ]

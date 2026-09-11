@@ -1,0 +1,345 @@
+{
+  "schema_version": "catalytic-earth.source-qualification.v1",
+  "assessment_id": "raj2012-mal-l384a-1j-4j-outcome",
+  "operation": "source_annotation",
+  "question": "Can a named MAL variant be joined to a preparative substrate/product outcome without transferring database scope or uninspected stereochemical assignments?",
+  "conclusion": "L384A supports source-reported 1j ammonia-addition product 4j with 65% conversion and 50% yield after stated purification, following seven days of reaction. The isolated_yield classification comes from the preparative workflow. Numerical selectivity and absolute configuration remain unassessed in this selected primary scope.",
+  "counted_objects": {
+    "curated_primary_synthesis_contexts": 1,
+    "projected_parameter_records": 2,
+    "new_project_experiments": 0,
+    "protein_admissions": 0,
+    "new_compiled_mechanisms": 0,
+    "independent_reviews": 0,
+    "evidence_tier_promotions": 0
+  },
+  "sources": [
+    {
+      "source_id": "Raj2012:SI",
+      "doi": "10.1038/nchem.1338",
+      "pmid": "22614383",
+      "article_title": "Engineering methylaspartate ammonia lyase for the asymmetric synthesis of unnatural amino acids",
+      "authors": "Raj H, Szymanski W, de Villiers J, Rozeboom HJ, Veetil VP, Reis CR, de Villiers M, Dekker FJ, de Wildeman S, Quax WJ, Thunnissen AM, Feringa BL, Janssen DB, Poelarends GJ",
+      "journal": "Nature Chemistry 4, 478-484 (2012)",
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fnchem.1338/MediaObjects/41557_2012_BFnchem1338_MOESM144_ESM.pdf",
+      "sha256": "2c53d07fb365c678c49677a9a251528ffc216fc3f962521893c2960428b8cd38",
+      "response_body_bytes": 2028680,
+      "local_cache_path": "git-common-dir:catalytic-earth-source-cache/2c53d07fb365c678c49677a9a251528ffc216fc3f962521893c2960428b8cd38.pdf",
+      "pdf_pages": 56,
+      "inspected_scope": "PDF/printed pp3-7 construct and assay separation; p22 substrate 1j; pp25-26 general preparative protocol and scheme; pp29-30 product 4j; p40 double-mutant statement. Tables S1/S2 were screened but are not transcribed in this packet.",
+      "identity_binding": "Exact DOI on supplement pages, title and authors agree with the publisher preview and retained bibliographic record; exact publisher hyperlink identifies this PDF.",
+      "publisher_link_binding": {
+        "url": "https://www.nature.com/articles/nchem.1338",
+        "sha256": "46532322561d1de91035b08b06ed829c068881e87df445294a12dc94feb8ac04",
+        "response_body_bytes": 338920,
+        "local_cache_path": "git-common-dir:catalytic-earth-source-cache/46532322561d1de91035b08b06ed829c068881e87df445294a12dc94feb8ac04.html",
+        "scope": "Abstract, references and exact supplement hyperlink; main article results not inspected."
+      },
+      "rights": "Copyright 2012 Macmillan Publishers Limited. All rights reserved. Bodies and rendered pages remain local reference-cache material; only project-authored factual annotations are redistributed."
+    }
+  ],
+  "acquisition_binding": {
+    "path": "data/atlas/study_context/mal_2012/acquisition_receipts.json",
+    "sha256": "e137a384a0a32c73345177bdf25872ef95c151b20ec02be8bbbfc068ddd61676",
+    "cumulative_batch_id": "engineered-methylaspartate-raj2012",
+    "cumulative_requests": 6,
+    "cumulative_response_body_bytes": 2374099
+  },
+  "selection": "One preparative L384A product 4j. Other products and kinetic tables are not curated; no WT or double-mutant comparison is computed.",
+  "constructs": [
+    {
+      "construct_id": "MAL",
+      "source_name": "wild-type MAL",
+      "comparison_background": "MAL",
+      "perturbation": [],
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source-named C. tetanomorphum MAL; exact expression construct and assay-specimen sequence not established here",
+      "source": "Raj2012:SI:pp3,6-7",
+      "expression_context": "pBAD(MAL-His) wild-type gene template; NdeI/HindIII insertion in frame with pBAD N/Myc-His A polyhistidine region. Do not substitute a tag-free reference sequence."
+    },
+    {
+      "construct_id": "L384A",
+      "source_name": "MAL L384A",
+      "comparison_background": "MAL",
+      "perturbation": [
+        "L384A"
+      ],
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source-named single substitution; no exact assayed sequence derived",
+      "source": "Raj2012:SI:pp3-4,6-7,25",
+      "source_reported_verification": "Positive screening hits had their entire MAL gene sequenced; crystal maps confirmed the single replacement. This does not authenticate the exact preparative assay specimen.",
+      "reference_accession_context": {
+        "uniprot": "Q05514",
+        "retained_source_path": "data/atlas/atlas10/sources/uniprot/Q05514.json",
+        "sha256": "178ee97c99c10d3bdd41a274745e89f5ebe745b766ee5a085886b0cd756c59dd",
+        "scope": "Database association via UniProt Q05514 and its Raj2012-cited mutagenesis annotation. The inspected SI does not name Q05514. Reference numbering context only, not an assayed sequence or selected M0468 catalytic role."
+      }
+    }
+  ],
+  "reaction": {
+    "reaction_id": "1j-ammonia-to-4j",
+    "direction": "ammonia addition (synthesis)",
+    "source": "Raj2012:SI:p22,pp25-26:scheme1-to4:j,pp29-30:4j",
+    "scheme_arrow": "opposing_arrows_as_drawn",
+    "observed_direction": "net amino acid product formation from substituted fumarate and ammonia",
+    "scope": "Source-named reactant/product connectivity and preparative outcome; no normalized protonation state, canonical atom map, elementary mechanism or exact-reaction-instance admission.",
+    "participants": [
+      {
+        "participant_id": "1j",
+        "side": "reactant",
+        "name": "2-(benzyloxy)-fumaric acid",
+        "role": "unsaturated-acid electrophile",
+        "source_id": "1j",
+        "configuration": "source-named fumarate; no project-derived E/Z graph",
+        "preparation_source": "Raj2012:SI:p22:1j",
+        "isomeric_smiles": null
+      },
+      {
+        "participant_id": "ammonia",
+        "side": "reactant",
+        "name": "ammonia",
+        "role": "nitrogen nucleophile",
+        "source_id": "NH3 in p25 scheme",
+        "material_form": "ammonium chloride in preparative solution at pH 9; free ammonia concentration and speciation not calculated"
+      },
+      {
+        "participant_id": "4j",
+        "side": "product",
+        "name": "3-benzyloxyaspartic acid",
+        "role": "amino acid addition product",
+        "source_product_id": "4j",
+        "configuration": null,
+        "absolute_configuration": null,
+        "isomeric_smiles": null,
+        "scope": "Configuration-neutral source-named product. The structural drawing in the inspected product entry has no stereobonds."
+      }
+    ],
+    "scheme_depiction_scope": "SI p25 shows a long rightward arrow above a shorter leftward arrow. This records the drawing only; the curated assay observes product formation and establishes no equilibrium constant or reverse rate."
+  },
+  "assays": [
+    {
+      "assay_id": "1j-4j-NMR-7d",
+      "reaction_direction": "ammonia addition (synthesis)",
+      "endpoint": "conversion by 1H NMR after 7 d",
+      "conditions": {
+        "unsaturated_acid": {
+          "source_id": "1j",
+          "amount": 3.1,
+          "unit": "mmol"
+        },
+        "ammonium_chloride": {
+          "mass": 1.7,
+          "mass_unit": "g",
+          "amount": 31,
+          "amount_unit": "mmol"
+        },
+        "magnesium_chloride": {
+          "concentration": 20,
+          "unit": "mM"
+        },
+        "solvent": "water",
+        "preparation_volume": {
+          "value": 25,
+          "unit": "mL",
+          "scope": "source solution volume; titrant volume not specified"
+        },
+        "pH": 9.0,
+        "pH_adjustment": "1 N aqueous NaOH",
+        "temperature": {
+          "value": 22,
+          "unit": "degC"
+        },
+        "enzyme_additions": [
+          {
+            "mass": 5,
+            "mass_unit": "mg",
+            "time": 0,
+            "time_unit": "d"
+          },
+          {
+            "mass": 5,
+            "mass_unit": "mg",
+            "time": 2,
+            "time_unit": "d"
+          }
+        ],
+        "enzyme_material": "freshly purified L384A",
+        "enzyme_molar_concentration": null,
+        "monitoring_times": {
+          "values": [
+            1,
+            3,
+            7
+          ],
+          "unit": "d"
+        },
+        "termination_time": {
+          "value": 7,
+          "unit": "d"
+        },
+        "source": "Raj2012:SI:pp25-26; shared preparation for 4a-4n"
+      },
+      "replicates": null,
+      "uncertainty": "not reported for the selected preparative endpoint",
+      "source": "Raj2012:SI:pp25-26,29:4j",
+      "reaction_id": "1j-ammonia-to-4j"
+    },
+    {
+      "assay_id": "1j-4j-isolation-7d",
+      "reaction_direction": "ammonia addition (synthesis)",
+      "endpoint": "source-reported yield after stated purification",
+      "conditions": {
+        "unsaturated_acid": {
+          "source_id": "1j",
+          "amount": 3.1,
+          "unit": "mmol"
+        },
+        "ammonium_chloride": {
+          "mass": 1.7,
+          "mass_unit": "g",
+          "amount": 31,
+          "amount_unit": "mmol"
+        },
+        "magnesium_chloride": {
+          "concentration": 20,
+          "unit": "mM"
+        },
+        "solvent": "water",
+        "preparation_volume": {
+          "value": 25,
+          "unit": "mL",
+          "scope": "source solution volume; titrant volume not specified"
+        },
+        "pH": 9.0,
+        "pH_adjustment": "1 N aqueous NaOH",
+        "temperature": {
+          "value": 22,
+          "unit": "degC"
+        },
+        "enzyme_additions": [
+          {
+            "mass": 5,
+            "mass_unit": "mg",
+            "time": 0,
+            "time_unit": "d"
+          },
+          {
+            "mass": 5,
+            "mass_unit": "mg",
+            "time": 2,
+            "time_unit": "d"
+          }
+        ],
+        "enzyme_material": "freshly purified L384A",
+        "enzyme_molar_concentration": null,
+        "monitoring_times": {
+          "values": [
+            1,
+            3,
+            7
+          ],
+          "unit": "d"
+        },
+        "termination_time": {
+          "value": 7,
+          "unit": "d"
+        },
+        "source": "Raj2012:SI:pp25-26; shared preparation for 4a-4n"
+      },
+      "workup": "After 7 d, lyophilize; dissolve crude product in 20 mL 1 N aqueous HCl; cation-exchange chromatography on 15 g Dowex 50W X8, 100-200 mesh, using the source procedure referenced at pp15-16.",
+      "replicates": null,
+      "uncertainty": "not reported for the selected isolated yield",
+      "source": "Raj2012:SI:pp25-26,29:4j",
+      "reaction_id": "1j-ammonia-to-4j",
+      "endpoint_interpretation": "Classified as isolated_yield from the explicit purification workflow; the product entry literally labels the parameter Yield."
+    }
+  ],
+  "conversion_observations": [
+    {
+      "row_id": "4j-conversion",
+      "construct_id": "L384A",
+      "assay_id": "1j-4j-NMR-7d",
+      "outcome_context_id": "Raj2012:L384A:1j-to-4j:preparative",
+      "source_locator": "Raj2012:SI:p29:3-benzyloxyaspartic-acid4j; protocolpp25-26",
+      "conversion": {
+        "result_kind": "measured",
+        "value": 65,
+        "unit": "percent",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported"
+      }
+    }
+  ],
+  "isolation_observations": [
+    {
+      "row_id": "4j-isolated_yield",
+      "construct_id": "L384A",
+      "assay_id": "1j-4j-isolation-7d",
+      "outcome_context_id": "Raj2012:L384A:1j-to-4j:preparative",
+      "source_locator": "Raj2012:SI:p29:3-benzyloxyaspartic-acid4j; protocolpp25-26",
+      "isolated_yield": {
+        "result_kind": "measured",
+        "value": 50,
+        "unit": "percent",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported",
+        "source_parameter_label": "Yield",
+        "endpoint_interpretation": "The isolated_yield classification is inferred from the stated preparative purification workflow, not the literal source label."
+      }
+    }
+  ],
+  "product_evidence": {
+    "source_product_id": "4j",
+    "source": "Raj2012:SI:pp29-30",
+    "reported_identity_methods": [
+      "1H NMR",
+      "13C NMR",
+      "HRMS (ESI+)"
+    ],
+    "hrms_reported_ion": {
+      "formula": "C11H14NO5",
+      "calculated_m_over_z": 240.0872,
+      "found_m_over_z": 240.0868,
+      "scope": "Source ion formula, not a neutral-product molecular formula or solution charge."
+    },
+    "hplc_context": {
+      "source_label": "threo-DL-4j",
+      "column": "Nucleosil chiral-1",
+      "mobile_phase": "2 mM aqueous CuSO4:methanol 90:10",
+      "flow_mL_per_min": 1.0,
+      "reported_retention_times_min": [
+        5.0,
+        6.9
+      ],
+      "absolute_configuration_by_retention": null,
+      "scope": "Source-labeled threo-DL retention pair; the inspected entry does not map an enzymatic product peak or absolute configuration to either time."
+    },
+    "enzymatic_product_ee": null,
+    "enzymatic_product_de": null,
+    "absolute_configuration": null,
+    "selectivity_scope": "Publisher abstract calls the example highly enantio- and diastereoselective threo product. Keep that qualitative author claim separate from the quantified yield/conversion; no numeric ee/de or absolute configuration is imported from other products.",
+    "reported_isolated_mass": null,
+    "reported_isolated_amount": null
+  },
+  "noncomposability_context": {
+    "source": "Raj2012:SI:p40:Additional mutagenesis experiments",
+    "construct": "Q73A/L384A",
+    "evidence_kind": "author_statement_data_not_shown",
+    "reported_outcome": "almost completely inactive",
+    "assay": null,
+    "substrates": null,
+    "value": null,
+    "unit": null,
+    "uncertainty": null,
+    "limit": "No underlying measurements or specific endpoint are given. This statement challenges straightforward combination of single-mutant substrate scopes; it does not quantify epistasis, establish zero activity or prove changed geometry."
+  },
+  "limits": [
+    "Named C. tetanomorphum source construct, not an authenticated assayed sequence or protein preparation identity.",
+    "Conversion, isolated yield and stereoselectivity are separate endpoints. No kinetic rate, productivity, total turnover or mutant/WT gain is computed.",
+    "No selected M0468 catalytic-fragment role or deposited atom/geometry is attached to L384A. Source crystal modifications and docking are not reacting-state evidence.",
+    "No literal free-ammonia concentration, neutral structure at assay pH, canonical atom map or exact-reaction-instance admission.",
+    "Reported synthesis and source qualitative failure are published evidence, not project-run experiments or independent validation."
+  ]
+}

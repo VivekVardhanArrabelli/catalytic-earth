@@ -35,8 +35,8 @@
     "tests/core/test_atlas_fragment_sites.py": "9f8bff210e254c0001d6b8661f6a4b6a4fbb1e4c56a85ff7ee1f84f6bcfe667f",
     "docs/ATLAS_MECHANISM_EVIDENCE.md": "093e20976889b795414e00d32d7392585c4f45eaa2cf367bbe22c3bc9c9b3dad",
     "docs/ATLAS_TRANSFORMATIONS.md": "d3e651f3c4d9cf9e5734319f003606ef740092ea6b8a4fac0915a9b1feb83e43",
-    "docs/CURRENT_STATE.md": "f7a45d8ee2feef9f8fea4ea1cd85c30da4bc3a62af2917851e32bbec06e8104e",
-    "docs/CURRENT_DECISIONS.md": "99a433857a0e4d19129437154ee5c7e77deecd307e3019b25a60f2b5e5a79466",
+    "docs/CURRENT_STATE.md": "a1a22bf9977099b6e8d660123f61585f421e6dfa471584684f417e2c2c4b96c5",
+    "docs/CURRENT_DECISIONS.md": "e96fdf5702e3d022bbfddc4d0b4b502602aceb06dafa48f1c7582c402b07f3c2",
     "src/catalytic_earth/atlas_context_candidates.py": "1e29dade1364eac7eda39584dbe8a8172cb286deaaf00439607d8dd069110808",
     "src/catalytic_earth/atlas_partial_panels.py": "aa5d8374a63152f36b369c8c58113a2c75510be114be8ee66f2b70df2dd54c1d",
     "src/catalytic_earth/atlas10_source_adapters.py": "dc8da8da65f5113526c4618b955c5bb2da7c21ff0725e28c97372efdda693731",
@@ -100,5 +100,24 @@
     "Require every bound reference snapshot to be selected and hash-checked; reject malformed selection keys.",
     "Count unique source features rather than repeated attachments.",
     "Require nonempty evidence code, citation namespace and identifier before source-reference matching."
-  ]
+  ],
+  "mal_outcome_documentation_followup": {
+    "reviewed_at_utc": "2026-09-11T16:31:50.168607+00:00",
+    "base_commit": "d12a074548e70aa6bf645b37eecd13c203a48d9e",
+    "prior_review_sha256": "fe17155fb5a61dfd5d4b26baf1175dd8b7c652387233f8cb0fc3a79dca1c732f",
+    "scope": "Renew only the two current-document bindings after the independently source-challenged Raj2012 preparative outcome addition. No source-fragment specification, M0187 source, transformation, atom/site relation, annotation or observation is changed. All earlier review metadata remains historical.",
+    "renewed_bindings": {
+      "docs/CURRENT_STATE.md": {
+        "before": "f7a45d8ee2feef9f8fea4ea1cd85c30da4bc3a62af2917851e32bbec06e8104e",
+        "after": "a1a22bf9977099b6e8d660123f61585f421e6dfa471584684f417e2c2c4b96c5"
+      },
+      "docs/CURRENT_DECISIONS.md": {
+        "before": "99a433857a0e4d19129437154ee5c7e77deecd307e3019b25a60f2b5e5a79466",
+        "after": "e96fdf5702e3d022bbfddc4d0b4b502602aceb06dafa48f1c7582c402b07f3c2"
+      }
+    },
+    "review_record": "data/atlas/study_context/mal_2012/source_review.json",
+    "independent_human_validation": false,
+    "experimental_validation": false
+  }
 }

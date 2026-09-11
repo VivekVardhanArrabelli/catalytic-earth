@@ -1,5 +1,23 @@
 # Current Decisions
 
+## 2026-09-11: accept a preparative MAL outcome with unresolved selectivity
+
+Accept the [Raj2012 L384A 1j-to-4j relation](ATLAS_MAL_SYNTHESIS.md) as a
+source annotation: retain conversion and yield after purification separately, with the
+exact source-named reactants, product and seven-day preparation. Use existing
+reaction/outcome primitives and keep case facts in data. Do not infer an
+assayed sequence from UniProt, a catalytic role from M0468, or a free-ammonia
+concentration from the supplied ammonium chloride.
+
+Stop numerical selectivity at the missing enzymatic peak/configuration
+assignment. The threo-DL retention pair and qualitative abstract do not supply
+an exact ee/de or absolute configuration. Retain the Q73A/L384A data-not-shown
+statement without an invented assay or epistasis calculation. One supported
+primary product outcome completes the inherited inquiry; further acquisition
+must answer a new consequential premise, not repeat an annotation or access
+exercise. Preserve prior sources, frozen kernels, protected registries and
+exposure history. The marked handoff names the next bounded action.
+
 ## 2026-09-11: keep entry-level mutation annotations separate from step evidence
 
 Accept the [E317Q/H297N reference-feature context](ATLAS_MECHANISM_EVIDENCE.md#entry-level-mutation-annotations-retain-their-narrower-evidence-basis) as database annotation, using explicit entry-wide site matching and the exact retained UniProt feature. Preserve the selected-step catalyst matcher and the existing observation plane. A source residue omitted from a step's catalyst declaration can still carry a variant-effect database annotation; generic activity-loss wording cannot replace endpoint-specific evidence.
