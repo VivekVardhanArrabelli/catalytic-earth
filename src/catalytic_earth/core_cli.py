@@ -453,6 +453,10 @@ def build_parser() -> argparse.ArgumentParser:
         "--include-source-context", action="store_true",
         help="include separately counted deposited context; variant filters it, endpoint filters observations only",
     )
+    mechanism_evidence.add_argument(
+        "--include-source-fragments", action="store_true",
+        help="include separately reviewed source-fragment site relations; observation filters do not remove source context",
+    )
     mechanism_evidence.add_argument("--output", type=Path, help="optional new JSON file; existing files are never overwritten")
     comparisons = subparsers.add_parser(
         "atlas-panel-comparisons", help="query partial source-panel changes and unresolved coverage offline"
@@ -729,6 +733,14 @@ def main(argv: Sequence[str] | None = None) -> int:
                 source_contexts=(json.loads(_resource_bytes("mechanism_evidence_data/source_contexts.json"))
                                  if args.include_source_context else None),
             )
+            if args.include_source_fragments:
+                from .atlas_fragment_sites import query_fragment_sites
+
+                result["source_fragment_query"] = query_fragment_sites(
+                    json.loads(_resource_bytes("mechanism_evidence_data/source_fragments.json")),
+                    atlas10_bundle=atlas10, evidence_query=result,
+                    transformation_values={"M0187": verified_transformations("M0187")},
+                )
         except ValueError as exc:
             parser.error(str(exc))
         rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"

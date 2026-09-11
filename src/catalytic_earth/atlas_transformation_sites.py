@@ -385,6 +385,18 @@ def _site_identity(site: dict[str, Any]) -> tuple[str, str, int]:
 def _resolve_site(
     record: dict[str, Any], step: dict[str, Any], label: dict[str, Any], mcsa_id: str,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
+    return _resolve_labeled_site(
+        record, step, label, mcsa_id,
+        allowed_label_status="explicit_bound_flow_mrv_extra_label",
+        match_basis="explicit_mrv_extra_residue_label_plus_step_catalyst_site_plus_direct_pdb_author_residue",
+    )
+
+
+def _resolve_labeled_site(
+    record: dict[str, Any], step: dict[str, Any], label: dict[str, Any], mcsa_id: str,
+    *, allowed_label_status: str, match_basis: str,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Match a separately established source label to the selected step's site."""
     unresolved_site = {
         "status": "not_resolved", "site_id": None, "match_basis": None,
         "site_record": None, "source_assertion_row_selection": "not_asserted",
@@ -395,7 +407,7 @@ def _resolve_site(
         "sequence_position": None, "numbering_system": None,
         "pdb_residue_mappings": [], "structures": [], "reason": label["reason"],
     }
-    if label["status"] != "explicit_bound_flow_mrv_extra_label":
+    if label["status"] != allowed_label_status:
         return unresolved_site, unresolved_context
 
     catalyst_ids = step.get("catalyst_site_ids")
@@ -507,10 +519,7 @@ def _resolve_site(
         {
             "status": "unique_step_catalyst_site_match",
             "site_id": site["site_id"],
-            "match_basis": (
-                "explicit_mrv_extra_residue_label_plus_step_catalyst_site_"
-                "plus_direct_pdb_author_residue"
-            ),
+            "match_basis": match_basis,
             "site_record": copy.deepcopy(site),
             "source_assertion_row_selection": "not_asserted",
             "reason": None,

@@ -1,0 +1,45 @@
+{
+  "schema_version": "catalytic-earth.source-fragment-review.v1",
+  "status": "source_reviewed_computational",
+  "spec_sha256": "daee9c51facf109639ede3ad0809a60b96d174dea3e015c920bc302612766335",
+  "reviewed_at_utc": "2026-09-11T14:37:19.906250+00:00",
+  "review_process": [
+    {
+      "task": "source_site",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_source_representation_and_adversarial_diff"
+    },
+    {
+      "task": "representation_site",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_source_representation_and_adversarial_diff"
+    },
+    {
+      "task": "adversarial_site",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_source_representation_and_adversarial_diff"
+    }
+  ],
+  "independent_human_validation": false,
+  "experimental_validation": false,
+  "scope": "Unique source heavy-covalent fragment alias plus exact selected-step reference-site mapping. H297N observations remain focal reference-site context; Lys166 demonstrates same-rule source reuse without transferring contextual K166R observations or the H297N adjudication. Legacy direct-endpoint-label query and original evidence remain unchanged. No PDB atom, exact assay sequence, proton identity, stereo, coordination interpretation, atom-specific role or validated arrow is asserted. Exact case-content binding and filter reconstruction prevent modified cached-query observations from retaining the original evidence hash; direct applicability prevents contextual variant promotion even in a separately reviewed case.",
+  "implementation_bindings": {
+    "src/catalytic_earth/atlas_fragment_sites.py": "98716e369a3c99cc409ba2f6c4e7259c12816acdd4484a224a4dfe7381196920",
+    "src/catalytic_earth/atlas_transformation_sites.py": "5926f903ea69abf1f0249dae845eef378c59caa6d0fcea34e5a30f5c31c55302",
+    "src/catalytic_earth/core_cli.py": "ccfac9a99e9808d55d15cc79f346ac763e42887ff98fb70a36e3282574a37f2f",
+    "scripts/build_atlas_mechanism_evidence.py": "32037e250d0301f47c40bf7ee0c31e388ff222c14a379cb351b57b1447ae392e",
+    "scripts/verify_atlas10_release.py": "e6fa28809ae9b7ed8a127482e3a7f308de062a13f480eadbfaa1753aef83e705",
+    "tests/core/test_atlas_fragment_sites.py": "d3659b17f233037baf358a34dc95e6132c8b0101373f7fde3ad30a0746aa26de",
+    "docs/ATLAS_MECHANISM_EVIDENCE.md": "70716ee304cff1c29520e0be48c44fdfacb285a31ce41c7e5a61663f211a511b",
+    "docs/ATLAS_TRANSFORMATIONS.md": "d3e651f3c4d9cf9e5734319f003606ef740092ea6b8a4fac0915a9b1feb83e43",
+    "docs/CURRENT_STATE.md": "f4a4398a0cd2215e0d40c719d9950f3c37fba617bcfbeb4c344fd3ac58f9b9b1",
+    "docs/CURRENT_DECISIONS.md": "d266ea64b69ba61e2c7bcc6bdfdfe8921f716bd296db3c8788eb24c764165907",
+    "src/catalytic_earth/atlas_context_candidates.py": "1e29dade1364eac7eda39584dbe8a8172cb286deaaf00439607d8dd069110808",
+    "src/catalytic_earth/atlas_partial_panels.py": "aa5d8374a63152f36b369c8c58113a2c75510be114be8ee66f2b70df2dd54c1d",
+    "src/catalytic_earth/atlas10_source_adapters.py": "dc8da8da65f5113526c4618b955c5bb2da7c21ff0725e28c97372efdda693731",
+    "src/catalytic_earth/atlas_mechanism_evidence.py": "f039fa4433ea806b732fff0da44ca4818feff4291392313604da828a7b34890f"
+  }
+}

@@ -65,6 +65,68 @@ records results separately from source interpretation and project diagnosis.
 fold reductions, not absolute rates or new measurements. Only the H297N
 S-exchange comparison explicitly identifies WT in the inspected abstract.
 
+## A source fragment connects His297 to the existing functional discriminant
+
+```sh
+catalytic-earth atlas-mechanism-evidence --variant H297N --include-source-fragments
+catalytic-earth atlas-mechanism-evidence --variant H297N --endpoint isotope_exchange --include-source-fragments
+```
+
+The optional `source_fragment_query` connects the retained M0187 proposal-1
+step-1 arrow `o40`, atom `m1.a58`, through its seven-heavy-node covalent
+fragment to the sole alias `His297A` on `a52`. The same selected source step
+declares P11444:H297. Its existing numbering map retains author chain A
+His297, UniProt H297 and 1MNS label residue 295 as distinct identifiers.
+This resolves a source-fragment relation; it assigns no deposited atom name.
+
+| Selected source endpoint | Fragment alias | Selected-step reference relation | Focal H297N evidence returned |
+| --- | --- | --- | --- |
+| Step 1, m1.a58, o40 | His297A on a52 | P11444:H297 | Existing focal H297N observations, subject to observation filters |
+| Step 1, m1.a63, o39 | Glu317A on a59 | Unresolved: this step declares H297, not E317 | None |
+| Step 2, m1.a19, o39 | Lys166A on a24 | P11444:K166 | None: existing K166R rows are contextual in the H297N case |
+
+The H297 relation includes the exact reviewed transformation binding and its
+changed-atom/edit/arrow witnesses. The Lys166 row demonstrates the same
+fragment rule on another catalytic residue and step, but is explicitly
+source-step context, not another reviewed transition. The Glu317 refusal says
+nothing about whether glutamate participates chemically; it exposes the
+narrower selected-step declaration. No source residue role is assigned to source atom a58.
+
+The shared consumer follows heavy-atom covalent bonds, requires one residue
+alias and no competing identity labels, and retains excluded H bonds and
+opaque coordinate/stereo annotations. Hydrogen, aliased placeholder endpoints,
+ambiguous labels, mixed ligand/residue components and unmatched step sites
+cannot supply this relation. Raw schemes, qualified molecule/atom references,
+source hashes, exact Atlas-10 context and the separate computational review
+travel with the package. This source relation was computationally reviewed; topology alone does
+not recognize a residue or establish a physical atom's identity.
+
+The functional join requires the same source record/proposal, reference site,
+UniProt context and focal variant of the already validated evidence case.
+It copies existing observations with their conditions, source references and
+limitations; it does not transcribe measurements or import another variant's
+adjudication. Both filters apply only to the copied observations: all three
+source relations remain visible and have a separate count. Empty evidence
+means no matching retained focal observation, not absent activity.
+
+H297N retains S-mandelate exchange at 3.3-fold below WT at pD 7.5 in D2O.
+R-exchange and the separately reported racemase endpoint were not detected;
+unknown detection floors remain null. This supports an endpoint-specific
+functional discriminant alongside a source-proposed atom relation, without
+experimentally validating `o40`, an intermediate, a proton trajectory or the
+complete molecular cause. P11444 remains reference context; exact assayed
+sequences and mutant geometry are not established by retained evidence. Exchange is not racemization.
+
+The original direct-endpoint-label query and its frozen functional evidence
+remain unchanged: they still report no explicit residue label on `a58`.
+The supplemental fragment relation has a different evidence basis and status.
+One consumer now recovers this additional relation without reinterpreting each
+source panel. This is within-entry reuse, not demonstrated broad coverage,
+measured curation-time savings, an experiment or validated enzyme design.
+The [specification](../data/atlas/mechanism_evidence/source_fragment_spec.json)
+and [review](../data/atlas/mechanism_evidence/source_fragment_review.json)
+use retained sources only; acquisition was zero requests and zero bytes.
+
 ## Provenance and unresolved links
 
 ### New source followup: the K166R deposit
@@ -270,7 +332,9 @@ were not inspected.
 Neither inspected abstract supplies a mutant PDB accession. Existing Atlas
 structure 1MNS is an inhibitor-bound, chemically modified Lys166 context;
 it is not either mutant structure or a turnover observation. All seven changed
-M0187 source atoms retain their unresolved site correspondence. This functional
+M0187 source atoms retain their unresolved direct-endpoint-label correspondence.
+The separately reviewed fragment relation above does not rewrite that original
+query or evidence record. This functional
 evidence adds no residue label, physical atom map or observed intermediate.
 
 The [source attribution](../data/atlas/mechanism_evidence/m0187/SOURCE_ATTRIBUTION.md)

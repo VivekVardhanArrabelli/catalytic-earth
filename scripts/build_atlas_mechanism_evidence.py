@@ -11,7 +11,8 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-from catalytic_earth.atlas_mechanism_evidence import validate_mechanism_evidence
+from catalytic_earth.atlas_mechanism_evidence import validate_mechanism_evidence, query_mechanism_evidence
+from catalytic_earth.atlas_fragment_sites import build_fragment_sites
 from catalytic_earth.atlas_evidence_source_context import PRIMARY_OBSERVATION_FIELDS, build_source_contexts
 
 SOURCE = Path("data/atlas/mechanism_evidence/m0187")
@@ -152,6 +153,18 @@ def main() -> int:
         lambda path: (ROOT / path).read_bytes(),
     )
     outputs["source_contexts.json"] = canonical_bytes(contexts)
+    fragments = build_fragment_sites(
+        load("data/atlas/mechanism_evidence/source_fragment_spec.json"),
+        load("data/atlas/mechanism_evidence/source_fragment_review.json"),
+        lambda path: _source_bytes(ROOT / path),
+        atlas10_bundle=load("src/catalytic_earth/atlas_data/atlas10_kernel.json"),
+        transformation_values={"M0187": load("data/atlas/transformations/m0187/transformations.json")},
+        evidence_query=query_mechanism_evidence(
+            value, atlas10_bundle=load("src/catalytic_earth/atlas_data/atlas10_kernel.json"),
+            transformation_values={"M0187": load("data/atlas/transformations/m0187/transformations.json")},
+        ),
+    )
+    outputs["source_fragments.json"] = canonical_bytes(fragments)
     summary["source_context_count"] = len(contexts["contexts"])
     for binding in value["source_bindings"]:
         name = Path(binding["path"]).name

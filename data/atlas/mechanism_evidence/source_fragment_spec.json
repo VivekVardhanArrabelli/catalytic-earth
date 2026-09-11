@@ -1,0 +1,50 @@
+{
+  "schema_version": "catalytic-earth.source-fragment-sites.v1",
+  "atlas10_bundle_sha256": "27c2f16477911db206f1ff67cfc4c54aa150877e59dc31a7c1ff32dcca4a049e",
+  "evidence_payload_sha256": "dd62c8fbbde725e8567a6a2462cb456c26b5c77c4b239ed18ad3e05f468e3241",
+  "evidence_case_id": "atlas10.mandelate-racemase-pputida.enolate",
+  "transformation_binding": {
+    "mcsa_id": "M0187",
+    "transformation_id": "transformation:M0187:mechanism-1:step-1-to-step-2",
+    "transformation_payload_sha256": "65057e00ab8191505294987e7be7338b09a991eb9715b1116d09713c9a0d56ab",
+    "transformation_set_id": "atlas10-m0187-depicted-intermediate-v1"
+  },
+  "source_bindings": [
+    {
+      "source_id": "M0187",
+      "path": "data/atlas/atlas10/sources/mcsa/M0187.json",
+      "sha256": "45663712262387e7eec092c49b16994d03f9b6d186008b737b94c613a87458e3",
+      "attribution": "Mechanism and Catalytic Site Atlas, EMBL-EBI; retained M0187 source snapshot and MRV panels, CC BY 4.0; source locators are not physical atom identities."
+    }
+  ],
+  "requests": [
+    {
+      "relation_id": "M0187:mechanism-1:step-1:a58:fragment-site",
+      "source_id": "M0187",
+      "record_id": "mechanism:mandelate-racemase-pputida-enolate-v1",
+      "proposal_id": "atlas10.mandelate-racemase-pputida.enolate.mcsa-M0187.mechanism-1",
+      "source_step_id": 1,
+      "source_atom_id": "a58",
+      "source_atom_ref": "m1.a58"
+    },
+    {
+      "relation_id": "M0187:mechanism-1:step-1:a63:fragment-site",
+      "source_id": "M0187",
+      "record_id": "mechanism:mandelate-racemase-pputida-enolate-v1",
+      "proposal_id": "atlas10.mandelate-racemase-pputida.enolate.mcsa-M0187.mechanism-1",
+      "source_step_id": 1,
+      "source_atom_id": "a63",
+      "source_atom_ref": "m1.a63"
+    },
+    {
+      "relation_id": "M0187:mechanism-1:step-2:a19:fragment-site",
+      "source_id": "M0187",
+      "record_id": "mechanism:mandelate-racemase-pputida-enolate-v1",
+      "proposal_id": "atlas10.mandelate-racemase-pputida.enolate.mcsa-M0187.mechanism-1",
+      "source_step_id": 2,
+      "source_atom_id": "a19",
+      "source_atom_ref": "m1.a19"
+    }
+  ],
+  "evidence_case_sha256": "eb739eb2985d6b7064e66c35b43039d6424e90ed31804d3f29050447bef169aa"
+}

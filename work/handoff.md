@@ -1,84 +1,100 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research baton — 2026-09-11 direction and assessment status
+## Current research baton — 2026-09-11 M0187 fragment to reference-site evidence
 
-- **Identity/base:** oversight began 2026-09-11T13:04:59Z; owner
-  `01a07311-aac6-7010-9516-e0b53605d473:125fed67-fd09-41bc-abe4-0ea6e9e2e786`;
-  acquired 13:06:38Z after the PR99 writer completed and released its lock.
-  Clean local/published main base `36018246c49dafe3256800041f5395b899f416d5`;
-  no open PR or recovery. Branch `codex/assessed-context-status-20260911`.
-  Checkpoint 2026-09-11T13:15:38.339055+00:00; final elapsed/publication/release in local receipt.
-- **Question/result:** distinguish an assessed source discriminant from
-  unrequested scalar arithmetic. KSI2010 donor and calmodulin nucleophile
-  contexts already declare that distinction, but the shared consumer labelled
-  them unassessed. The generic response now returns `arithmetic_not_requested`
-  and scoped assessment prose. Both retain false eligibility and null value,
-  unit and uncertainty; genuine unassessed controls retain previous behavior.
-  Explicit consistent Boolean declarations are required; no case-ID branch.
-  No measurement, numerical comparison, source conclusion or evidence-tier
-  change. This is a necessary consumer correction, not new chemistry.
-- **Direction:** `docs/SCIENTIFIC_DIRECTION.md` is the compact review/board.
-  Published PRs91–99 remain aligned with the full catalytic atlas and ultimate
-  de novo design purpose. The earlier pass used immutable edef3d5c while the
-  PR99 writer was active. The bounded DERA acquisition is closed with the
-  residue–state–function inquiry unassessed. M0186 explicit-H continuity also
-  reached its stop: heavy-atom changes are accounted for, but H-neighbor
-  elements differ and step3 retains substrate–PLP adduct topology. Do not
-  manufacture physical H identity or declare the source chemistry false.
-  The next M0187 inquiry below remains stronger than repeated access/refusals.
-- **Evidence/scope:** unchanged `data/atlas/perturbations/projection.json` and
-  KSI2010 `donor_solvation.json`, calmodulin2015 control provider, KE59 provider.
-  Their exact paths/hashes remain in the projection and review manifests.
-  The source sample reused retained Fried2014 TableS2, Kim1995 Table1 and
-  Schmidt2013 text; it was not a full primary/raw-fit audit. PR99's source
-  continuity annotation remains unchanged. The current perturbation review
-  renews only changed runtime/test/document bindings with a scoped follow-up;
-  original provider reviews remain historical.
-- **Acquisition:** added 0 requests / 0 response-body bytes. Cumulative budgets
-  unchanged: RA61 `designed-retroaldolase-components-lassila2010`58/4,697,605;
-  KSI26/5,739,717; RA9533/17,556,517; Diels20/519,698; KE599/261,580;
-  KE7016/1,102,794; beta5/8,449,621; defaultM-CSA49/1,109,896.
-  TKT/POX7/3,004,884, PLP73/5,068,731 and panel28/1,474,405 are lower
-  bounds with incomplete headroom; M0187followup12/440,960 is a subledger.
-  No limit resets, renamed batches or unchanged failed routes. Closed RA61
-  R/S/S8 and M0213 parity questions stay closed.
-- **Review/reconsideration:** `direction_review_12h`, `evidence_review_12h`
-  and `reuse_review_12h` are read-only correlated computational reviewers;
-  root owns edits/Git/lock. Both source and reuse reviews accept the actual
-  status patch; all126 direct comparison outputs preserve numerical/scientific
-  fields, with only two reason/prose pairs changed. Shared model/control
-  consumers demonstrate reuse without re-transcription or enzyme-ID branches.
-  Interpretation remains manual; no measured curation-time saving or design
-  performance is established. Next work should add a consequential relation,
-  not another refusal inventory. No independent human/laboratory validation.
-- **Verification/publication:** focused regression covers the demonstrated
-  status error, genuine unassessed behavior and malformed declarations.
-  Whole-query invariance, existing core/contracts and offline package checks
-  precede reviewed-head CI and merge. Exact results/SHAs belong in
-  `.git/catalytic-earth-runs/direction-125fed67-fd09-41bc-abe4-0ea6e9e2e786.json`.
-  Stage this handoff before rebuilding the report archive. No unrelated work.
-  If publication is unfinished, resume this branch/PR first.
-- **Scheduling:** actual hourly `catalytic-earth-work-loop` is PAUSED on
-  GPT-6 Astra/max; preserve the pause pending the user's response. Oversight
-  remains active at07:55/19:55 America/Chicago. Retire the one-off status-fix
-  prefix from the hourly prompt after this correction merges, without changing
-  the standing brief, pause, cadence or model. Older active-state receipts do
-  not override current app configuration.
-- **One next action:** test a source-fragment His297 anchor for M0187 step1
-  arrow endpoint a58, then retain any existing H297N functional relation only
-  at its supported reference-site context. Witnesses are retained M0187
-  `data/atlas/atlas10/sources/mcsa/M0187.json` (a52 aliasHis297A in the a58
-  connected fragment), `data/atlas/transformations/m0187/transformations.json`
-  and `data/atlas/mechanism_evidence/m0187/evidence.json`. Expected gain:
-  source atom-to-named-site resolution alongside enantiomer-specific function,
-  rather than another panel refusal. Stop at the first ambiguous fragment,
-  role/numbering join or unsupported transfer. Existing lack of exact assayed
-  sequence remains a stated limit, not an invented new gate for a source-site
-  relation. No PDB atom identity, mutant geometry, zero-from-nondetection,
-  exchange-to-racemization or experimentally validated source step may follow.
-  Use zero acquisition; evaluate any required representation change before
-  implementation. Do not rerun the closed M0186 H or M0213 W/H inquiries.
+- **Identity/base:** started 2026-09-11T14:06:42Z; owner
+  `01a090ca-7e9f-7e40-b7da-90d4a1171e05:2f1f2396-eec5-49d3-9b1b-1e1c66953b0f`;
+  acquired14:06:58Z. Clean main/origin base
+  `a3920043905325f1952f79eca3d3b0ff2e3cd18f`; PR100 had merged and its
+  owner released. No prior open PR or recovery. Branch
+  `codex/m0187-fragment-site-20260911`; checkpoint 2026-09-11T14:32:00.690119+00:00
+  (25.31 minutes). Final elapsed/publication/release are in the local receipt.
+- **Question/result:** can source step1 o40/a58 connect through the unique
+  His297A-labeled fragment to P11444:H297 and the retained H297N functional
+  discriminant? Yes, at source-fragment and reference-site scope. The optional
+  `atlas-mechanism-evidence --include-source-fragments` now composes the
+  reviewed changed-before-atom/edit/arrow witness, alias-bearing heavy covalent
+  fragment, exact selected-step site and existing focal H297N evidence.
+  Step2 a19/Lys166 uses the same fragment/site rule but is source-step context,
+  not another reviewed transition. Step1 a63/Glu317 lacks a matching selected-
+  step declaration and remains unresolved by this relation. Three requests,
+  two source-site relations, one refusal; no added protein, reaction,
+  mechanism, observation, claim, independent review or experiment.
+- **Functional/chemical limits:** H297N retains S-mandelate exchange at a
+  source-reported3.3-fold below WT (pD7.5/D2O). R-exchange nondetection and
+  separate undirected racemization nondetection retain null values and unknown
+  detection floors. No exchange=racemization, zero-from-nondetection, exact
+  assayed sequence, deposited atom name, mutant geometry, atom-specific role,
+  proton lineage, stereo/coordination interpretation or validated source arrow.
+  Contextual K166R observations are not transferred into a focal Lys166 case.
+  Default direct-label and evidence queries retain their earlier unresolved
+  endpoint-label status; the supplement has its own fragment evidence basis.
+- **Evidence:** `data/atlas/mechanism_evidence/source_fragment_spec.json`,
+  `source_fragment_review.json`, packaged `source_fragments.json`, and the
+  new section in `docs/ATLAS_MECHANISM_EVIDENCE.md`. Raw M0187 snapshot
+  `data/atlas/atlas10/sources/mcsa/M0187.json` SHA256
+  `45663712262387e7eec092c49b16994d03f9b6d186008b737b94c613a87458e3`;
+  step1 scheme64308a1d95a102c692bc597794237b268800eebab3973a121f99d5ad10ff2188,
+  step2 scheme476cc9e8455890fce1bbe40c4c307c93dae3c3cc0a4e568bbd255db57195662b.
+  Original transformation/evidence/primary projection hashes are unchanged;
+  M-CSA CC BY4.0 attribution accompanies the packaged source. The complete
+  existing H297N case, observation filters and direct-evidence applicability
+  are checked before copying observations; a cached-query mutation cannot
+  borrow the original payload hash.
+- **Acquisition:** 0 requests /0 response-body bytes. Cumulative inherited
+  totals unchanged: RA61 `designed-retroaldolase-components-lassila2010`
+  58/4,697,605; KSI26/5,739,717; RA9533/17,556,517;
+  Diels20/519,698; KE599/261,580; KE7016/1,102,794;
+  beta5/8,449,621; defaultM-CSA49/1,109,896. TKT/POX7/3,004,884,
+  PLP73/5,068,731 and panel28/1,474,405 remain lower bounds with incomplete
+  headroom; M0187followup12/440,960 is a subledger at its inherited sublimit.
+  No batch rename, accounting-gap acquisition or reopened failed route.
+- **Review/reconsideration:** source_site, representation_site and
+  adversarial_site are Sol/ultra correlated computational reviewers. Parent
+  owns Git/lock; adversarial_site owned only the focused test file and stopped
+  editing before publication. Compact board `.git/catalytic-earth-runs/2f1f2396.board.md`.
+  Source objections required atom-role wording, a separate direct-label path,
+  focal/direct evidence selection and exact upstream bindings. Parent and
+  representation reviewer independently demonstrated a cached-query integrity
+  gap; the fix binds case content and reconstructs filtered observation rows.
+  Reused panel parsers and site matching avoid another MRV implementation or
+  enzyme-ID branch; case facts remain data. A His/Lys within-entry reuse test
+  is supported, not broad chemical coverage or measured curation-time savings.
+  Added value is an actual source-atom-to-residue-to-functional-discriminant
+  relation with prevented contextual transfer, not just a label inventory.
+  No design consumer/performance is established. Further fragment inventories
+  are not the next priority.
+- **Verification/publication:** focused adversarial, original default-query
+  invariance, core/unit, repository contracts and offline wheel/archive checks
+  precede reviewed-head CI and merge. Four baseline public queries and eight
+  source/frozen/claim/exposure file hashes remain unchanged. The perturbation
+  review renews only two current-document pins; prior review/source content
+  is preserved. Exact final counts/SHAs/PR/CI/release are recorded in
+  `.git/catalytic-earth-runs/2f1f2396-receipt.json` and the task result.
+  Current branch is prepared for publication; if PR/CI/merge is unfinished,
+  resume this branch first. No unrelated changes. Stage this handoff before
+  rebuilding its archive index; no self-hash follow-up commit.
+- **Scheduling:** this run does not alter the schedule or its preserved pause.
+  Actual app configuration controls future scheduling, not older receipts.
+- **One next action:** assess whether retained E317Q evidence adds a useful
+  ancillary-residue functional constraint beyond the existing M-CSA roles,
+  separately from a step-declared catalyst relation. Witnesses: the distinct
+  a63/Glu317A source fragment, M0187 residue/reference mapping, and
+  `data/atlas/atlas10/sources/uniprot/P11444.json` feature9 (E317Q;
+  source description reduces activity10000-fold, ECO:0000269/PMID7893689).
+  The M-CSA bibliography names the Glu317 electrophilic-catalysis paper.
+  Expected gain: determine whether a non-step-listed contributor can carry a
+  reusable source-scoped functional constraint without falsely becoming His297
+  or the step's named base. Zero acquisition. Retained UniProt is database-
+  annotation evidence, not newly inspected primary results. Stop at one
+  useful scoped relation or the first missing endpoint/denominator premise;
+  preserve unknown direction, conditions, construct and uncertainty. Do not
+  infer directional kcat, atom-specific proton donation, o39 validation or an
+  electrophilic-energy magnitude. If the retained statement adds no usable
+  information, change the scientific question rather than create a refusal
+  report or bypass the exhausted acquisition sublimit. Closed M0186 H,
+  M0213 stereo and DERA access inquiries stay closed.
 
 Preserve historical content below this marked block. Git identifies the
 containing commit; no self-hash follow-up commit is needed.
