@@ -105,6 +105,7 @@ def verify_wheel(
                 "    'transformation_site_oxygen': command('atlas-transformation-sites', '--mcsa-id', 'M0173', '--source-atom', 'a44'),\n"
                 "    'transformation_site_missing_edge': command('atlas-transformation-sites', '--site-id', 'P11444:H297'),\n"
                 "    'mechanism_evidence': command('atlas-mechanism-evidence'),\n"
+                "    'source_fragments': command('atlas-mechanism-evidence', '--include-source-fragments'),\n"
                 "    'mechanism_exchange': command('atlas-mechanism-evidence', '--variant', 'H297N', '--endpoint', 'isotope_exchange'),\n"
                 "    'mechanism_K166R': command('atlas-mechanism-evidence', '--variant', 'K166R', '--endpoint', 'turnover'),\n"
                 "    'mechanism_K166R_context': command('atlas-mechanism-evidence', '--variant', 'K166R', '--endpoint', 'structure', '--include-source-context'),\n"
@@ -303,6 +304,21 @@ def verify_wheel(
                 for field in ("transformations", "review", "source_bindings", "transformation_payload_sha256"):
                     if catalog_by_id[mcsa_id][field] != single[field]:
                         raise ValueError("installed transformation catalog changed individual-set provenance")
+            fragment_evidence = queries["source_fragments"]
+            fragment_query = fragment_evidence.pop("source_fragment_query")
+            if fragment_evidence != queries["mechanism_evidence"]:
+                raise ValueError("installed fragment context changed the original evidence query")
+            fragment_rows = {(row["source_step_id"], row["source_atom_id"]): row
+                             for row in fragment_query["relations"]}
+            if ((fragment_query["relation_count"], fragment_query["resolved_relation_count"]) != (3, 2)
+                    or fragment_rows[(1, "a58")]["source_record_residue_mapping"]["site_id"] != "P11444:H297"
+                    or fragment_rows[(2, "a19")]["source_record_residue_mapping"]["site_id"] != "P11444:K166"
+                    or fragment_rows[(1, "a63")]["source_record_residue_mapping"]["site_id"] is not None
+                    or fragment_rows[(2, "a19")]["functional_evidence"]["matched_observations"] != []
+                    or {row["observation_id"] for row in fragment_rows[(1, "a58")]["functional_evidence"]["matched_observations"]}
+                    != {"H297N-racemization", "H297N-S-exchange", "H297N-R-exchange", "H297N-structure"}):
+                raise ValueError("installed fragment relation lost its source, step, or focal-evidence scope")
+
             sites = queries["transformation_sites"]
             if (sites["schema_version"] != "catalytic-earth.transformation-site-query.v1"
                     or sites["source_transformation_query"] != catalog

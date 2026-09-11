@@ -1,5 +1,11 @@
 # Current Decisions
 
+## 2026-09-11: accept a separate fragment relation without rewriting direct-label evidence
+
+Accept the [M0187 fragment relation](ATLAS_MECHANISM_EVIDENCE.md#a-source-fragment-connects-his297-to-the-existing-functional-discriminant) at source depiction and selected-step reference-site scope. Use the existing panel parsers and site matcher through a separately reviewed optional consumer. Require a unique heavy-covalent alias-bearing fragment, qualified source arrow, exact step-site and original transformation bindings; refuse hydrogen, placeholder, identity-label and numbering ambiguities.
+
+Functional association requires the existing focal case/site/variant, preserving its observation and construct limits. Keep Lys166 as reusable source-step context and Glu317 as an unmatched selected-step declaration. No enzyme-ID runtime branch, chemistry completion or evidence-tier promotion is justified. This bounded inquiry is complete; the marked handoff selects the next consequential scientific relation rather than repeating a fragment inventory.
+
 ## 2026-09-11: separate source assessment from unrequested arithmetic
 
 Correct the shared KSI2010/calmodulin response status using their existing

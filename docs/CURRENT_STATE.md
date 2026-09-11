@@ -1,5 +1,11 @@
 # Current State
 
+## 2026-09-11: M0187 source-fragment membership connects to focal H297N evidence
+
+The optional [source-fragment query](ATLAS_MECHANISM_EVIDENCE.md#a-source-fragment-connects-his297-to-the-existing-functional-discriminant) links step-1 o40/a58 through the uniquely His297A-labeled heavy covalent fragment to P11444:H297 and existing focal H297N observations. The same rule resolves step-2 a19/Lys166 at source-step scope; step-1 a63/Glu317 has no matching selected-step catalyst declaration. Contextual K166R rows do not acquire a new focal adjudication.
+
+The exact reviewed transformation/edit witness accompanies the His relation. Default direct-label and functional queries, source measurements, frozen/protected records and claims remain unchanged. Reference-site context does not identify an assayed construct, deposited atom, mutant geometry or experimentally validated arrow. Retained S exchange, R-exchange nondetection and racemization nondetection remain distinct. Zero acquisition; within-entry reuse does not establish broad coverage or design performance.
+
 ## 2026-09-11: preserve assessed source evidence without scalar arithmetic
 
 The [perturbation response](ATLAS_PERTURBATION_RELATION.md) now distinguishes

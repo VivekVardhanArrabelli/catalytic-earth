@@ -123,7 +123,10 @@ the transferred hydrogen a50 to a residue by following its bonds. M0187's
 edited nodes in the depicted histidine and glutamate fragments likewise lack
 residue labels on their bound flow endpoints. Their nearby source aliases and known catalytic roles do
 not supply an explicit atom-to-site edge for this query. A source-group or
-topology interpretation would need separate evidence and review.
+topology interpretation needs separate evidence and review. The optional
+[source-fragment relation](ATLAS_MECHANISM_EVIDENCE.md#a-source-fragment-connects-his297-to-the-existing-functional-discriminant)
+now supplies that reviewed basis for M0187 a58/His297 while leaving this direct
+endpoint-label query unchanged. Its step-1 Glu317 relation remains unresolved.
 
 Filters select an exact M-CSA ID, a local source atom (with `--mcsa-id`), or an
 exact atlas site ID. The command searches the two separately reviewed sets by
