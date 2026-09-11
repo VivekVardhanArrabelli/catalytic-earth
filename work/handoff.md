@@ -1,90 +1,94 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research baton — 2026-09-11 calmodulin nucleophile controls
+## Current research baton — 2026-09-11 micellar system controls
 
-- **Identity/base:** actual start 2026-09-11T08:05:57Z; owner
-  `01a08f80-34a5-7ec3-836f-94b969b46b43:af9afdd4-9fa0-4102-872f-29be4d9d4640`;
-  lock acquired 08:06:27Z. Clean main base
-  `34835be996b1d83e12b3dad2391530bf8297157d` (PR96); prior run complete,
-  no open PR or recovery. Branch `codex/calmodulin-nucleophile-controls-20260911`.
-  Checkpoint 2026-09-11T08:29:22.514588+00:00 / minute 23.4;
-  final time/publication/release belongs in the receipt and task result.
-- **Question/direction:** RA95 state priority and bounded DERA inquiry stay
-  closed. The RA61 separate R/S scout stopped at a primary construct mismatch:
-  acquired Raymond2015 measures CaM variants; R/S-methodol on p568 is docking.
-  Wang2012 PDF/XML routes and an author search did not supply its primary body.
-  No third candidate or renewed Jiang2008/Xue/DERA route; no literature-wide
-  absence claim. Pivot to a different question supported by the acquired main:
-  do nucleophile-removal controls distinguish measured methodol cleavage from
-  evidence of a lysine-covalent route? One supported relation is complete.
-- **Scientific result:** C-terminal cCaM/CaMWN/Ac-CaMWN report TableI kcat/KM
-  0.007/0.005/0.004 M^-1 s^-1, retaining printed errors with unspecified statistic.
-  CaMWN has the source's four Lys/one His substitutions; Ac adds source-reported
-  N-terminal acetylation. Residual activity is non-unique evidence for a lysine
-  route, not proof of hydrophobic association alone or absence of all nucleophiles.
-  Full-length CaM/L105K report 0.006/0.038; L105K also has a distinct
-  non-turnover diketone spectral response. Calcium dependence is a separate
-  allosteric/assay context, not direct metal-bond chemistry or a zero-rate claim.
-- **Output/limits:** `data/atlas/study_context/calmodulin_2015/nucleophile_controls.json`,
-  `source_review.json`, `docs/ATLAS_CALMODULIN_CONTROLS.md` and CE-041.
-  `python scripts/query_atlas_perturbations.py --study calmodulin_2015` returns
-  five selected parameter records, two genetic-background ratios (0.7143 and
-  6.3333) and one mechanism context without requested scalar arithmetic.
-  Ac-CaMWN is a positive numeric endpoint with chemical-treatment lineage, not
-  a mutation-ratio input. No new runtime, sequence, exact covalent graph, kcat,
-  KM, geometry or enantiomer result. Preserve TableI/Methods pH7.5 versus
-  Figure5 pH7/buffer/range conflict; imine/iminium/enamine naming conflict;
-  Figure7 construct and Figure8 caption limits. SI sequences/raw HPLC/MALDI
-  remain unacquired. Published source experiments are not project experiments.
-- **Evidence/acquisition:** Raymond2015 DOI10.1002/pro.2622 / PMC4380986,
-  main pp2-4,6-9; SHA25685d1260fc986d22f46c422f31495d0b031dafc830525034d24574b38b1b47c5a,
-  713,767bytes, retained under Git-common `catalytic-earth-runs/af9afdd4-primary/`.
-  All25 primary witnesses /25,965,845bytes verify. Same fully accounted RA61
-  batch now52requests /4,495,921bytes (added7 /1,259,662), including
-  `data/atlas/study_context/ra61_2010/stereoselectivity_acquisition_appendix.json`.
-  Original12-request receipt and Jiang appendix remain historical and unchanged.
+- **Identity/base:** actual start2026-09-11T09:07:23Z; owner
+  `01a08fb8-8399-7123-955f-32e2d631ac49:4db1d0f0-8d7e-4df1-b17c-49493a3ca556`;
+  acquired09:07:47Z. Clean main base
+  `ad0b7b0d07006e4390700244756fa1af20c1be98`(PR97); prior run complete,
+  no open PR/recovery. Branch `codex/micellar-condition-controls-20260911`.
+  Checkpoint 2026-09-11T09:34:03.311763+00:00 / minute26.7; exact final
+  publication/release belongs in the local receipt and task result.
+- **Question/direction:** the RA95/DERA and RA61 R/S priorities remain closed.
+  Reconciled the older direction review with the later handoff: Schmidt2013
+  could test whether hydrophobic-environment and amine contributions separate.
+  One supported BuAm environment relation and the first missing factorial
+  premise complete the bounded question. No repeated access or pKa-factor review.
+- **Scientific result:** Schmidt Table2 BuAm k2 is2.1e-6 without detergent and
+  2.5e-4M^-1s^-1 with1mMCTAC; source-rounded ratio120, central quotient119.0476.
+  This is nominal bulk-amine/substrate normalization in buffered5%DMSO,
+  not intrinsic micellar-site chemistry or isolated hydrophobic energy. The
+  source could not measure OcAm/DoAm without micelles because of solubility;
+  710/9500 use no-detergent BuAm, not their own matched amine. No complete
+  environment-by-amine square, synergy or component multiplication is identified.
+  T1 fixed-condition factor33 is a distinct endpoint; imported RA61 conditions
+  differ in temperature/salt. Preserve source interpretation versus observation.
+- **Output/limits:** CE-042, `docs/ATLAS_MICELLAR_CONTROLS.md`,
+  `data/atlas/study_context/schmidt_2013/micellar_controls.json` and source review.
+  Query `python scripts/query_atlas_perturbations.py --study schmidt_2013`
+  returns the source-system relation with original arms. The new generic
+  `system_ratio` path also resolves the unchanged CaMWN/Ac-CaMWN rows as0.8
+  via `--control-relation calmodulin_2015:Ac-CaMWN:over-CaMWN-preparation`.
+  That is chemical-preparation reuse, not a new measurement, genetic ratio,
+  equivalence, verified occupancy or isolated terminal-amine effect. Numeric
+  Table3 ionization controls remain outside this selected projection. No exact
+  reacted state, productive geometry, project experiment or design claim.
+- **Evidence/acquisition:** primary PMC3919508 author manuscript / NIHMS538046,
+  DOI10.1039/c3ob41898g, T1/T2/P10-P22/P29/P32. Retained HTML176,214bytes,
+  SHA256d1f8294f88395b35948e17a36a8fc41f33f3e0e3fdfae410c0ce73b04e8a6c3e,
+  Git-common `catalytic-earth-runs/4db1d0f0-primary/schmidt-pmc.html`.
+  PDF500/XML404/publisher403 and SI HTML are access receipts, not primary
+  PDFs; raw fits/replicates/errors remain unavailable. Six-request cap spent:
+  same RA61 batch58requests/4,697,605bytes, added6/201,684; appendix
+  `data/atlas/study_context/ra61_2010/micellar_acquisition_appendix.json`.
+  All26primary witnesses/26,142,059bytes verify; no source bodies redistributed.
   Other totals unchanged: KSI26/5,739,717; RA9533/17,556,517;
   Diels20/519,698; KE599/261,580; KE7016/1,102,794; beta5/8,449,621;
   defaultM-CSA49/1,109,896. TKT/POX7/3,004,884, PLP73/5,068,731 and
-  panel28/1,474,405 are lower bounds with unknown complete headroom;
-  M0187followup12/440,960 is a subledger. No source-body redistribution.
-- **Review/reconsideration:** source_ra61, representation_ra61 and
-  adversarial_ra61 are read-only Sol/ultra roles sharing
-  `.git/catalytic-earth-runs/af9afdd4.board.md`; parent alone edits/Git/lock.
-  Source objections narrowed HPLC wording to extinction-coefficient correction,
-  and removed the proposed Ac/cCaM genetic ratio. Source-level chemical treatment
-  is preserved without enzyme-ID code; chemical-intervention arithmetic is not
-  generalized from this one case. One consumer resolves both control lineages,
-  their distinct assays and original RA61 component evidence. No measured curation
-  saving or incumbent superiority. The useful relation prevents transferring
-  the roughly500/2000-fold component interpretations across unmatched studies;
-  generic representation alone does not establish design utility. Correlated
-  reviews/checks are not independent human or laboratory validation.
-- **Verification/publication:** focused70tests+93subtests,14truth tests,
- 623core tests and repository contracts pass. Publication checks continue at
-  this checkpoint.
-  All216prior observations,123comparisons,2state links,3model links,
-  68constructs,25assays,18substrates,4reactions,17context groups and40claims
-  are exact unchanged. Frozen/protected/exposure bytes and runtime unchanged.
-  No unrelated dirty work. Stage this handoff before rebuilding its archive.
-  Publish only after source/diff review and required CI at the reviewed head;
-  if unfinished, resume this branch/PR first. Exact commit/push/merge/CI/release
-  goes in `.git/catalytic-earth-runs/2026-09-11T0805-af9afdd4-9fa0-4102-872f-29be4d9d4640.json`
-  and the task result, without a self-hash follow-up commit.
-- **One next action:** inspect the primary Schmidt etal2013 *Organic &
-  Biomolecular Chemistry*11:8419-8425, “The effect of the hydrophobic environment
-  on the retro-aldol reaction: comparison to a computationally-designed enzyme”
-  (Raymond reference10). Ask whether a matched control series can separate
-  hydrophobic environment from amine contribution for the same substrate,
-  assay and normalization. A 2x2 would be particularly informative, but is an
-  acquisition hypothesis, not established source content or a mandatory artifact.
-  Expected gain: test whether component effects remain separable or change
-  jointly; do not call a central-value double ratio causality or significance.
-  Continue SAME RA61 batch52/4,495,921, at most6requests for this one primary
-  body/SI. Stop at one qualified control relation or the first missing/mismatched
-  premise; close failed routes and move on if inaccessible. No new runtime
-  before source evidence warrants it; no renewed RA61 R/S or S8 exercise.
+  panel28/1,474,405 remain lower bounds with unknown complete headroom;
+  M0187followup12/440,960 is a subledger. Do not reopen closed failed routes
+  or an accounting-gap investigation merely to enable another acquisition.
+- **Review/reconsideration:** read-only source_schmidt, chemistry_schmidt,
+  adversarial_schmidt on Sol/ultra; parent alone edits/Git/lock. Shared board
+  `.git/catalytic-earth-runs/4db1d0f0.board.md`. Source objections retain
+  denominator, endpoint, phase-normalization and cross-study limits. Review
+  exposed a repeated representation gap: nonprotein catalysts and terminal
+  treatments were outside genetic arithmetic. Shared system controls address
+  it without case-ID code, derive condition fields from original system data
+  and bind source protocol/substrate/normalization evidence. Semantic mappings
+  remain source-reviewed judgments, not runtime-authenticated chemistry.
+  Two contexts now reuse one consumer; no measured curation savings or incumbent
+  superiority. Useful contribution is the specific denominator/transfer boundary,
+  not complete mechanistic or design capability. Reviews are correlated computation.
+- **Verification/publication:** focused75, truth14 and core628 tests pass.
+  All221prior observations,126comparisons,73constructs,26assays,19substrates,
+  5reactions,2state links,3model links,18evidence groups,29source bindings and
+  41claims remain exact unchanged. Protected/frozen/exposure files unchanged.
+  Repository contracts pass after path-manifest renewal; only the path inventory
+  changed. Reviewed-head CI and final publication continue. Stage this handoff before
+  rebuilding the report archive. No unrelated dirty work. If publication is
+  unfinished, resume this branch/PR first. Exact SHA/push/merge/CI/release goes in
+  `.git/catalytic-earth-runs/2026-09-11T0907-4db1d0f0-8d7e-4df1-b17c-49493a3ca556.json`;
+  Git identifies this handoff's containing commit without a self-hash follow-up.
+- **One next action:** test one retained M0186 proposal1 step2-arrow to
+  step3-start covalent-graph replay. Expected gain is a source-scoped
+  post-transaldimination state relation, not another local W/H readout.
+  `data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0186.json`
+  `/step_schemes/1` and `/step_schemes/2` have scheme hashes
+  `0b0a10e4fec45ca09006b8fc61afeb7e7c842afd4afea27cf6960caf500cc897` and
+  `7edb1e4fd049124b20e156f8b19ec648b63d66e5a36f84d7a999cce7733090fc`.
+  Start with these retained witnesses and arrows o27/o28 from the PLP boundary.
+  Reuse existing W/H-format attribution and RDKit2025.03.3 diagnostic under
+  `data/atlas/source_drafts/batches/plp-pyruvoyl/review/reaction_sources/m0213/`
+  only if needed; M0213 itself already has a step2-R/step3-S depiction conflict.
+  Stop after one qualified full selected replay or first non-bijective atom map,
+  unaccounted bond/charge/H/stereo change, source-format ambiguity or arrow/edit
+  mismatch. Matching wedge tokens alone are insufficient. No implicit-H
+  completion, absolute R/S claim, observed trajectory, cross-enzyme equivalence
+  or relaxed prior guard. No acquisition from the incompletely accounted PLP
+  batch. Require this chemical-state payoff before adding runtime/claim changes.
+
 
 Preserve historical content below this marked block. Git identifies the
 containing commit; no self-hash follow-up commit is needed.

@@ -124,6 +124,14 @@
     "cam2015": {
       "path": "data/atlas/study_context/calmodulin_2015/nucleophile_controls.json",
       "sha256": "5589b64ce36569195b2efc4b21372ea8a43f311ebd2d4ea4a42af03689d41f61"
+    },
+    "schmidt2013": {
+      "path": "data/atlas/study_context/schmidt_2013/micellar_controls.json",
+      "sha256": "66965a28c3d1556209d429180b529440f0d2151e5a31b165165df981341dcc76"
+    },
+    "cam_treatment": {
+      "path": "data/atlas/study_context/calmodulin_2015/treatment_contrast.json",
+      "sha256": "6684b9280afa803047e086275a3c48835515b607d9da9fc7d19109e7f858d15f"
     }
   },
   "constructs": {
@@ -8990,6 +8998,24 @@
         "source": "ra61",
         "pointer": "/component_evidence"
       }
+    ],
+    "micellar_controls": [
+      {
+        "source": "schmidt2013",
+        "pointer": "/control_boundary"
+      },
+      {
+        "source": "schmidt2013",
+        "pointer": "/source_conflicts"
+      },
+      {
+        "source": "schmidt2013",
+        "pointer": "/limitations"
+      },
+      {
+        "source": "ra61",
+        "pointer": "/component_evidence"
+      }
     ]
   },
   "source_witnesses": [
@@ -9409,6 +9435,17 @@
         }
       ],
       "retention": "Exact primary main article retained locally; not redistributed. Supporting information unacquired."
+    },
+    {
+      "sha256": "d1f8294f88395b35948e17a36a8fc41f33f3e0e3fdfae410c0ce73b04e8a6c3e",
+      "bytes": 176214,
+      "git_common_dir_relative_path": "catalytic-earth-runs/4db1d0f0-primary/schmidt-pmc.html",
+      "source_bindings": [
+        {
+          "source": "schmidt2013",
+          "pointer": "/sources/0"
+        }
+      ]
     }
   ],
   "parameter_contracts": {
@@ -9833,6 +9870,24 @@
       "observation_ids": [
         "ra61-water:Table4:RA61:kcat_over_KM_obs"
       ]
+    }
+  ],
+  "control_relations": [
+    {
+      "id": "schmidt_2013:BuAm:CTAC-over-no-detergent",
+      "study_id": "schmidt_2013",
+      "provider": {
+        "source": "schmidt2013",
+        "pointer": "/control_relations/0"
+      }
+    },
+    {
+      "id": "calmodulin_2015:Ac-CaMWN:over-CaMWN-preparation",
+      "study_id": "calmodulin_2015",
+      "provider": {
+        "source": "cam_treatment",
+        "pointer": ""
+      }
     }
   ]
 }

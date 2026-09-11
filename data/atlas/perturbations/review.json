@@ -1,18 +1,18 @@
 {
   "schema_version": "catalytic-earth.perturbation-source-review.v1",
   "status": "source_reviewed_computational",
-  "reviewed_at_utc": "2026-09-11T07:28:11.412642+00:00",
-  "scope": "Cumulative source-reviewed projection. This increment adds a RA61 parent source-model relation, an initial second-order role with a measured path boundary, explicit reaction lineage and resolved contextual evidence. All prior observations, comparisons, state links and TKT/POX model outputs remain unchanged. No new kinetic observation, covalent occupancy, microscopic rate or atomic mechanism is established.",
+  "reviewed_at_utc": "2026-09-11T09:30:44.367226+00:00",
+  "scope": "Cumulative source-reviewed projection; this increment adds a separate source-system control operation for the Schmidt2013 bulk-normalized BuAm CTAC contrast and reuses existing calmodulin chemical-treatment rows. Prior source observations, genetic comparisons, state/model links and protected evidence are unchanged.",
   "reviewed_bindings": {
-    "data/atlas/perturbations/projection.json": "ef57420b1c17689a409454e705205af8fbaeb116e01002c32645a90d4baec2ef",
-    "src/catalytic_earth/atlas_perturbations.py": "e1cd7238f3c5c8cbd708986a69e602124951f72c46c789ddcd74bb6b4b83722a",
-    "scripts/query_atlas_perturbations.py": "85fb364ead64f944d8fe9e22985b1264521e37061c8ea7918d945d0fe0243da4",
+    "data/atlas/perturbations/projection.json": "df65d63a26a5d66a641c419ba359ea519b13d5b59fa61650ae75e31c71188c5a",
+    "src/catalytic_earth/atlas_perturbations.py": "02ad4069f1b9dc7fa4648a5344b214b67120c8dba6653df51e035ec0609273e9",
+    "scripts/query_atlas_perturbations.py": "7fb2bd66ae9e6ff5247738187adb328779d597dc0634b9d7b3c316b4765e2469",
     "docs/ATLAS_PERTURBATION_RELATION.md": "9eea0cef6ff9ef3fbfe4c6cdd8156e00ded88638beec3068bb08f10eb64f584f",
     "data/atlas/study_context/ra95_2017/forward_synthesis_review.json": "a8025989cb89415ac59267dc0af2da415019af3786ec2db3debd18630de8be9d",
     "docs/ATLAS_FORWARD_SYNTHESIS.md": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84",
     "data/atlas/study_context/diels_alder_2010/source_review.json": "bd97ed99812a3188ef47c090f61c87b0891bbc470222c49ee7698455680bf865",
     "docs/ATLAS_DIELS_ALDER_CONTROLS.md": "749e81dbcebcceb9022a5b4a5043bb16276c712c43b0c856feb394561830ac19",
-    "tests/core/test_atlas_perturbations.py": "e00863fa5cd74dff62be571bbb54f4a702365bad80cd0b4e5b6a40354d3e51bc",
+    "tests/core/test_atlas_perturbations.py": "007bff7e7febf35d786994ddda292a5dbd8ec72a765d64a11e05f7cdcfa2c35f",
     "data/atlas/study_context/6ha3/perturbation_context.json": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0",
     "data/atlas/study_context/6ha3/functional_review.json": "9af6d94d77800810d210e032e90e6af6a99ffd22a5548d9d39b5a7f502199200",
     "data/atlas/assembly_context/6ha3/review.json": "434188c22e847de2add0c76cc06076de9347d39ecd259acc051631792fcc7eaa",
@@ -31,10 +31,10 @@
     "data/atlas/study_context/ra95_2017/chemical_state.json": "0304a28cc9676ae9d920b5c4f6c47f102d10320e125cc40cbfddd971ccff695d",
     "data/atlas/study_context/ra95_2017/chemical_state_acquisition.json": "4b0427a24aab3b1269f25cd80b3b9c90f61c4a99404499d77cf0c16a8b5f2ecb",
     "docs/ATLAS_RA95_CHEMICAL_STATE.md": "a85ee7c6accdafb0f2fb63a1a658413e07788cee4a5f9f7879dce726c6707c01",
-    "CLAIMS.md": "321d8d9b33985d454313ae6efb680b38b3ec0fa8aa6654f8ecc89339433784d1",
-    "data/governance/claim_ledger.json": "f434c94f01a17bad5f0857bd2c4e09b8b5bf3f1e26459c11b0177a03ad2df3c9",
-    "docs/CURRENT_DECISIONS.md": "df36b8cfbd4026dd3c35e432787a2bb0d6047ccc6d05f57db86282aa62d28b23",
-    "docs/CURRENT_STATE.md": "c75ebe76cda611726bce4eadd9c98e6dbe8067bc8b4f2237d1794a743b42e5a2",
+    "CLAIMS.md": "cd019bd891fe37b99c797cff9d872358b4b565a7d7495e115e10291aee5a9cca",
+    "data/governance/claim_ledger.json": "f59e3f6aa67c57b73e9c32a6f9627160d8e06cb41b79d71efd1ec77afe1da2f6",
+    "docs/CURRENT_DECISIONS.md": "f549474169b632d1f8fadf7a44dd5d177c1187a93c89585f94df0147d7025d71",
+    "docs/CURRENT_STATE.md": "706f03c7bcd8d3d9d945c7e27e8f249b8ea59d8504904c2df040c03a7fd44646",
     "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
     "src/catalytic_earth/atlas_deposit_context.py": "adfae408de29e6b5f61fab970d7631f42846a9cdaedea0340d65e6ac95ad2a87",
     "src/catalytic_earth/atlas_assembly_context.py": "5d671a761f3ad493661f3c25b50dce693ef2169a48942af9664a65e0b0ae0835",
@@ -47,7 +47,7 @@
     "data/atlas/deposit_context/ra95_4a2r/projection.json": "ea3117cea3d83e156534abcc1efd62f10ed056a1965ba7e99a0974ac915b3461",
     "data/atlas/study_context/ra95_2013/chemical_state.json": "a9b7df48d5684fc014ced487477364eb8d9b2072817e3be4c64837a364df0670",
     "data/atlas/study_context/ra95_2013/chemical_state_acquisition.json": "7efd0b0efdb32572d369194fc4e9eedd84b0a184aa8c9f10b7af50766b4c1da9",
-    "tests/test_truth_guard.py": "331043476681796e57b80b7965c5f60bf2d76e02c1d4ab798fd911625796534e",
+    "tests/test_truth_guard.py": "e1d04b6a2663419b237b20a32bc6a5494a6979af5bfa92b19a3885cba26f9461",
     "docs/ATLAS_RA95_4A2R_STATE.md": "8089d97dd393b0f3c2576197481c9551f3bdf2d1ff20a64dd15323ad7a6011ef",
     "data/atlas/study_context/ra95_2013/chemical_state_review.json": "12864f833532eff632016804fbf322e1828c33c3cabf840b2cd08b8f0ea99ebf",
     "data/atlas/deposit_context/ra95_4a2r/review.json": "dc017d8ed45a52dade5c04a77c42d734fa34926b67cefa043a35f0d9bb605a20",
@@ -77,7 +77,12 @@
     "data/atlas/study_context/calmodulin_2015/nucleophile_controls.json": "5589b64ce36569195b2efc4b21372ea8a43f311ebd2d4ea4a42af03689d41f61",
     "data/atlas/study_context/ra61_2010/stereoselectivity_acquisition_appendix.json": "2e16aa528f5e5c3a2d4798ba821e79029af86d57fff3e19f424624882c8e5880",
     "docs/ATLAS_CALMODULIN_CONTROLS.md": "9b863460d8ab5e4b532bbf271693e8b3cfe3d2aab19d77c959c8036383cedfda",
-    "data/atlas/study_context/calmodulin_2015/source_review.json": "77e5e0c50d6e8e93d61337110832344f9d4bc4cf6c1e7550efb7aaebe242f1ee"
+    "data/atlas/study_context/calmodulin_2015/source_review.json": "77e5e0c50d6e8e93d61337110832344f9d4bc4cf6c1e7550efb7aaebe242f1ee",
+    "data/atlas/study_context/schmidt_2013/micellar_controls.json": "66965a28c3d1556209d429180b529440f0d2151e5a31b165165df981341dcc76",
+    "data/atlas/study_context/ra61_2010/micellar_acquisition_appendix.json": "823b2b1fe7930ffb6d393e1813b0af706d64cb7d897d7fd273f62ec3243bc22a",
+    "data/atlas/study_context/calmodulin_2015/treatment_contrast.json": "6684b9280afa803047e086275a3c48835515b607d9da9fc7d19109e7f858d15f",
+    "docs/ATLAS_MICELLAR_CONTROLS.md": "fb9b201eb51e3752cd9f267040d809aaba962ea1d6b2695963a1d9cfadf6aafc",
+    "data/atlas/study_context/schmidt_2013/source_review.json": "272c1eff36a5da194922eaaa5fc24f7c53a4e334bc0f3dd80a91cc918d6934af"
   },
   "inherited_source_bindings": {
     "ra95f": {
@@ -132,24 +137,24 @@
   "review_process": [
     {
       "role": "source",
-      "task": "source_discriminant",
+      "task": "source_schmidt",
       "model": "gpt-5.6-sol",
       "reasoning_effort": "ultra",
-      "status": "source_content_accepted_after_narrowing; final_publication_review_separate"
+      "status": "source_content_adjudicated; final_exact_head_review_in_Git_local_receipt"
     },
     {
       "role": "representation",
-      "task": "representation_discriminant",
+      "task": "chemistry_schmidt",
       "model": "gpt-5.6-sol",
       "reasoning_effort": "ultra",
-      "status": "source_content_accepted_after_narrowing; final_publication_review_separate"
+      "status": "source_content_adjudicated; final_exact_head_review_in_Git_local_receipt"
     },
     {
       "role": "adversarial",
-      "task": "adversarial_discriminant",
+      "task": "adversarial_schmidt",
       "model": "gpt-5.6-sol",
       "reasoning_effort": "ultra",
-      "status": "source_content_accepted_after_narrowing; final_publication_review_separate"
+      "status": "source_content_adjudicated; final_exact_head_review_in_Git_local_receipt"
     }
   ],
   "resolved_objections": [
@@ -834,5 +839,50 @@
       "cumulative_response_body_bytes": 4495921
     },
     "coordination_record": ".git/catalytic-earth-runs/af9afdd4.board.md"
+  },
+  "system_control_followup": {
+    "source_review": {
+      "path": "data/atlas/study_context/schmidt_2013/source_review.json",
+      "sha256": "272c1eff36a5da194922eaaa5fc24f7c53a4e334bc0f3dd80a91cc918d6934af"
+    },
+    "base_commit": "ad0b7b0d07006e4390700244756fa1af20c1be98",
+    "scope": "Two source-system ratios: new BuAm nominal bulk-normalized CTAC contrast and reuse of existing CaMWN/Ac-CaMWN preparation records. No genetic-comparison change, source-row duplication, factorial inference or intrinsic/causal component transfer.",
+    "source_access": {
+      "batch_id": "designed-retroaldolase-components-lassila2010",
+      "new_requests": 6,
+      "new_response_body_bytes": 201684,
+      "cumulative_request_count": 58,
+      "cumulative_response_body_bytes": 4697605
+    },
+    "coordination_record": ".git/catalytic-earth-runs/4db1d0f0.board.md",
+    "reviewed_at_utc": "2026-09-11T09:30:44.367226+00:00",
+    "independent_validation": false,
+    "previous_top_level_review_metadata": {
+      "reviewed_at_utc": "2026-09-11T07:28:11.412642+00:00",
+      "scope": "Cumulative source-reviewed projection. This increment adds a RA61 parent source-model relation, an initial second-order role with a measured path boundary, explicit reaction lineage and resolved contextual evidence. All prior observations, comparisons, state links and TKT/POX model outputs remain unchanged. No new kinetic observation, covalent occupancy, microscopic rate or atomic mechanism is established.",
+      "review_process": [
+        {
+          "role": "source",
+          "task": "source_discriminant",
+          "model": "gpt-5.6-sol",
+          "reasoning_effort": "ultra",
+          "status": "source_content_accepted_after_narrowing; final_publication_review_separate"
+        },
+        {
+          "role": "representation",
+          "task": "representation_discriminant",
+          "model": "gpt-5.6-sol",
+          "reasoning_effort": "ultra",
+          "status": "source_content_accepted_after_narrowing; final_publication_review_separate"
+        },
+        {
+          "role": "adversarial",
+          "task": "adversarial_discriminant",
+          "model": "gpt-5.6-sol",
+          "reasoning_effort": "ultra",
+          "status": "source_content_accepted_after_narrowing; final_publication_review_separate"
+        }
+      ]
+    }
   }
 }

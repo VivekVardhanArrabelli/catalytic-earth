@@ -627,6 +627,24 @@ are retained. Five parameter records and two descriptive within-reference
 ratios use the existing consumer, with no new project experiment, complete
 chemical state, exact specimen identity, evidence-tier promotion or design claim.
 
+## CE-042 — micellar controls require an explicit amine denominator
+
+**Status:** Supported
+
+The [Schmidt2013 relation](docs/ATLAS_MICELLAR_CONTROLS.md) retains Table2
+butylamine k2 values2.1e-6 without detergent and2.5e-4M^-1s^-1 with1mMCTAC,
+under the source's common methodol protocol and nominal bulk-amine normalization.
+Their central quotient is119.05; the source reports120. This is an apparent
+system coefficient contrast, not an isolated hydrophobic contribution or an
+intrinsic micellar-site rate. No-detergent long-chain-amine controls were not
+measured because of poor solubility; the reported9500 factor uses no-detergent
+butylamine rather than dodecylamine. Missing cells block component decomposition.
+The distinct Table1 fixed-condition factor33 and imported RA61 comparison keep
+their endpoint/assay limits. A shared two-system consumer also resolves existing
+CaMWN/Ac-CaMWN rows as a0.8 preparation contrast, without changing genetic
+comparisons or adding measurements. No statistical equivalence, chemical-state
+assignment, project experiment, independent validation or design claim follows.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,

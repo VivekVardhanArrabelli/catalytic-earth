@@ -1,0 +1,346 @@
+{
+  "schema_version": "catalytic-earth.source-qualification.v1",
+  "assessment_id": "schmidt_2013_micellar_controls",
+  "authorized_operation": "source_annotation",
+  "sources": [
+    {
+      "source_id": "schmidt2013-primary",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3919508/",
+      "doi": "10.1039/c3ob41898g",
+      "pmid": "24189834",
+      "pmcid": "PMC3919508",
+      "manuscript_id": "NIHMS538046",
+      "title": "The effect of the hydrophobic environment on the retro-aldol reaction: Comparison to a computationally-designed enzyme",
+      "version": "PMC HTML author manuscript; final citation Organic & Biomolecular Chemistry11:8419-8425(2013). Not a publisher-final PDF; SI/raw fits unacquired.",
+      "sha256": "d1f8294f88395b35948e17a36a8fc41f33f3e0e3fdfae410c0ce73b04e8a6c3e",
+      "bytes": 176214,
+      "git_common_dir_relative_path": "catalytic-earth-runs/4db1d0f0-primary/schmidt-pmc.html",
+      "redistributed": false
+    }
+  ],
+  "question": "Do observed cells separate an environment effect from amine identity and their interaction?",
+  "counted_objects": {
+    "new_small_molecule_control_arm_parameter_records": 2,
+    "new_protein_observations": 0,
+    "new_project_experiments": 0,
+    "new_canonical_reactions": 0
+  },
+  "systems": [
+    {
+      "system_id": "BuAm-no-detergent",
+      "kind": "chemical_mixture",
+      "components": [
+        {
+          "name": "butylamine",
+          "role": "small-molecule catalytic amine",
+          "nominal_concentration_range_mM": [
+            0.2,
+            4.0
+          ]
+        },
+        {
+          "name": "CTAC",
+          "role": "cationic surfactant environmental intervention",
+          "nominal_concentration_mM": 0
+        }
+      ],
+      "source_defined_state": "Buffered5%DMSO, no detergent",
+      "effective_micellar_amine_concentration_measured": false,
+      "source_locator": "PMC3919508:T2;P11-P12;P32"
+    },
+    {
+      "system_id": "BuAm-CTAC",
+      "kind": "chemical_mixture",
+      "components": [
+        {
+          "name": "butylamine",
+          "role": "small-molecule catalytic amine",
+          "nominal_concentration_range_mM": [
+            0.2,
+            4.0
+          ]
+        },
+        {
+          "name": "CTAC",
+          "role": "cationic surfactant environmental intervention",
+          "nominal_concentration_mM": 1
+        }
+      ],
+      "source_defined_state": "Buffered5%DMSO, with1mMCTAC",
+      "effective_micellar_amine_concentration_measured": false,
+      "source_locator": "PMC3919508:T2;P11-P12;P32"
+    }
+  ],
+  "assays": [
+    {
+      "assay_id": "table2-methodol-k2",
+      "reaction_direction": "retroaldol cleavage",
+      "substrate": "methodol,4-hydroxy-4-(6-methoxy-2-naphthyl)-2-butanone",
+      "substrate_stereochemistry": "Source synthesis does not assign an enantiopure state or separate R/S kinetics.",
+      "endpoint": "Apparent second-order coefficient of fluorescent aldehyde appearance, normalized to nominal total bulk amine and substrate concentrations.",
+      "temperature_C": 22,
+      "pH": 7.5,
+      "sodium_phosphate_mM": 50,
+      "DMSO_percent": 5,
+      "stirring_rpm": 600,
+      "NaCl_mM": null,
+      "NaCl_status": "not stated; not inferred zero",
+      "substrate_range_uM": [
+        30,
+        350
+      ],
+      "BuAm_range_mM": [
+        0.2,
+        4.0
+      ],
+      "detergent": "arm-specific; CTAC1mM or no detergent",
+      "readout": {
+        "product": "6-methoxy-2-naphthaldehyde",
+        "excitation_nm": 330,
+        "emission_nm": 452,
+        "calibration": "Product standard fluorescence curve for each detergent condition"
+      },
+      "uncertainty": "Table2 supplies no per-row error or replicate count; raw/SI fits not acquired.",
+      "source_locator": "PMC3919508:T2;P11-P12;P29;P32"
+    }
+  ],
+  "rows": [
+    {
+      "row_id": "BuAm-no-detergent",
+      "system_id": "BuAm-no-detergent",
+      "assay_id": "table2-methodol-k2",
+      "source_locator": "PMC3919508:T2:BuAm",
+      "k2": {
+        "parameter": "k2",
+        "status": "numeric",
+        "value": 2.1e-06,
+        "unit": "M^-1 s^-1",
+        "uncertainty": {
+          "value": null,
+          "kind": "not_reported",
+          "unreported_is_zero": false
+        }
+      }
+    },
+    {
+      "row_id": "BuAm-CTAC",
+      "system_id": "BuAm-CTAC",
+      "assay_id": "table2-methodol-k2",
+      "source_locator": "PMC3919508:T2:CTAC/BuAm",
+      "k2": {
+        "parameter": "k2",
+        "status": "numeric",
+        "value": 0.00025,
+        "unit": "M^-1 s^-1",
+        "uncertainty": {
+          "value": null,
+          "kind": "not_reported",
+          "unreported_is_zero": false
+        }
+      }
+    }
+  ],
+  "control_boundary": {
+    "context_id": "schmidt_2013:component-separation-boundary",
+    "question": "Do observed cells separate an environment effect from amine identity and their interaction?",
+    "measured_environment_comparison": "Same BuAm and methodol, no-detergent buffered5%DMSO versus1mMCTAC; Table2 reports a relative k2 of120.",
+    "unmeasured_controls": [
+      {
+        "amine": "octylamine",
+        "CTAC_mM": 0,
+        "k2": null,
+        "status": "not_measured_due_low_water_solubility"
+      },
+      {
+        "amine": "dodecylamine",
+        "CTAC_mM": 0,
+        "k2": null,
+        "status": "not_measured_due_low_water_solubility"
+      }
+    ],
+    "missing_is_zero": false,
+    "source_table2_context": {
+      "CTAC_DoAm_k2_M_inverse_s_inverse": 0.02,
+      "source_reported_factor": 9500,
+      "denominator_row_id": "BuAm-no-detergent",
+      "denominator_same_amine": false,
+      "source_reported_DoAm_over_BuAm_within_CTAC": 80,
+      "scope": "Context only; the9500factor changes both amine and environment. WithinCTAC80 changes amine identity, titration range, partition/localization and kinetic ionization context; no component factorization.",
+      "CTAC_OcAm_k2_M_inverse_s_inverse": 0.0015,
+      "source_reported_OcAm_factor": 710
+    },
+    "factorial_contrast": null,
+    "factorial_stop": "No matched no-CTAC long-chain-amine measurements; no complete environment-by-amine-identity square. A no-amine rate/intercept is not an amine-normalized k2=0 cell.",
+    "normalization_boundary": "Source k2 uses total bulk amine, not its effective micellar concentration. Apparent system coefficients do not identify intrinsic micellar-site chemistry.",
+    "physical_alternatives": [
+      "CTAC charge/interface effects",
+      "amine/substrate partition and local concentration",
+      "micellar organization",
+      "amine kinetic ionization context"
+    ],
+    "source_locator": "PMC3919508:T2;P10-P12;P15-P22;P32"
+  },
+  "source_conflicts": [
+    {
+      "context": "endpoint distinction",
+      "source": "T1 no-detergent/CTAC fixed-condition product rates3.0e-6/9.8e-5uM/s, source ratio33; T2 k2 ratio120.",
+      "scope": "Different source endpoints; do not merge as one universal detergent factor or silently reconcile their difference."
+    },
+    {
+      "context": "imported RA61 comparison",
+      "source": "T2 marks0.49M^-1s^-1 as from ref8; P12 says same conditions.",
+      "scope": "Schmidt methods22C, salt unstated; retained Lassila2010 RA61 is25C/300mMNaCl. Source comparison does not establish identical assays, an independent RA61 measurement or a matched design ranking."
+    },
+    {
+      "context": "source identity typo",
+      "source": "P4 says RA-16 once amid RA-61 discussion.",
+      "scope": "Retain as source inconsistency; do not use that sentence as construct-identity evidence."
+    },
+    {
+      "context": "BSA and HMP are outside the selected contrast",
+      "source": "P14 imports the no-CTAC HMP baseline; HMP uses NMR. P24 acetylated BSA abolition is data-not-shown and retains a contaminant alternative.",
+      "scope": "No substrate/readout substitution or per-protein/per-amine normalization join; no acetylated-BSA/CaM mechanistic transfer."
+    }
+  ],
+  "limitations": [
+    "A descriptive nominal bulk-normalized system effect, not an isolated hydrophobic energy or microscopic rate.",
+    "No control establishes every physical preparation property as equal; CTAC addition can change several microscopic properties.",
+    "No complete environment-by-amine square, interaction/synergy statistic, pKa-factor decomposition or causal component multiplication.",
+    "No independent replicate/uncertainty inference from source-rounded Table2; primary SI and raw fits were not obtained.",
+    "No exact chemical-state/geometry assignment, source-protein admission, project experiment or design-performance claim."
+  ],
+  "control_relations": [
+    {
+      "schema_version": "catalytic-earth.system-control-relation.v1",
+      "id": "schmidt_2013:BuAm:CTAC-over-no-detergent",
+      "study_id": "schmidt_2013",
+      "operation": "system_ratio",
+      "source_qualified": true,
+      "source_blocks": [],
+      "changed_axes": [
+        "CTAC_mM"
+      ],
+      "held_constant_axes": [
+        "catalytic_amine"
+      ],
+      "condition_scope": "Source-declared nominal inputs only; changing CTAC can alter multiple unmeasured physical/chemical properties.",
+      "source_reported_ratio": 120,
+      "source_reported_ratio_locator": "PMC3919508:T2:CTAC/BuAm relative k2",
+      "arms": {
+        "denominator": {
+          "source_row_id": "BuAm-no-detergent",
+          "observation_provider": {
+            "source": "schmidt2013",
+            "pointer": "/rows/0"
+          },
+          "system_provider": {
+            "source": "schmidt2013",
+            "pointer": "/systems/0"
+          },
+          "system_identity_field": "system_id",
+          "assay_provider": {
+            "source": "schmidt2013",
+            "pointer": "/assays/0"
+          },
+          "assay_qualified": true,
+          "parameter_pointer": "/k2",
+          "parameter": "k2",
+          "condition_fields": {
+            "catalytic_amine": {
+              "pointer": "/system/components/0/name"
+            },
+            "CTAC_mM": {
+              "pointer": "/system/components/1/nominal_concentration_mM"
+            }
+          },
+          "invariant_evidence": {
+            "substrate": {
+              "source": "schmidt2013",
+              "pointer": "/assays/0/substrate"
+            },
+            "normalization": {
+              "source": "schmidt2013",
+              "pointer": "/assays/0/endpoint"
+            }
+          },
+          "reviewed_invariants": {
+            "study_id": "schmidt_2013",
+            "substrate_id": "schmidt_2013:methodol-state-unspecified",
+            "reaction_direction": "retroaldol cleavage",
+            "endpoint": "apparent_aldehyde_appearance_second_order_coefficient",
+            "normalization": {
+              "basis": "nominal_total_bulk_amine_and_substrate",
+              "amine": "butylamine"
+            }
+          }
+        },
+        "numerator": {
+          "source_row_id": "BuAm-CTAC",
+          "observation_provider": {
+            "source": "schmidt2013",
+            "pointer": "/rows/1"
+          },
+          "system_provider": {
+            "source": "schmidt2013",
+            "pointer": "/systems/1"
+          },
+          "system_identity_field": "system_id",
+          "assay_provider": {
+            "source": "schmidt2013",
+            "pointer": "/assays/0"
+          },
+          "assay_qualified": true,
+          "parameter_pointer": "/k2",
+          "parameter": "k2",
+          "condition_fields": {
+            "catalytic_amine": {
+              "pointer": "/system/components/0/name"
+            },
+            "CTAC_mM": {
+              "pointer": "/system/components/1/nominal_concentration_mM"
+            }
+          },
+          "invariant_evidence": {
+            "substrate": {
+              "source": "schmidt2013",
+              "pointer": "/assays/0/substrate"
+            },
+            "normalization": {
+              "source": "schmidt2013",
+              "pointer": "/assays/0/endpoint"
+            }
+          },
+          "reviewed_invariants": {
+            "study_id": "schmidt_2013",
+            "substrate_id": "schmidt_2013:methodol-state-unspecified",
+            "reaction_direction": "retroaldol cleavage",
+            "endpoint": "apparent_aldehyde_appearance_second_order_coefficient",
+            "normalization": {
+              "basis": "nominal_total_bulk_amine_and_substrate",
+              "amine": "butylamine"
+            }
+          }
+        }
+      },
+      "evidence": [
+        {
+          "source": "schmidt2013",
+          "pointer": "/control_boundary"
+        },
+        {
+          "source": "schmidt2013",
+          "pointer": "/assays/0"
+        },
+        {
+          "source": "schmidt2013",
+          "pointer": "/source_conflicts"
+        },
+        {
+          "source": "schmidt2013",
+          "pointer": "/limitations"
+        }
+      ],
+      "interpretation_limit": "Source-rounded descriptive bulk-amine-normalized apparent coefficient ratio. No significance, independent physical-condition equality, isolated hydrophobic energy, causal amine contribution, intrinsic micellar-site rate or design ranking."
+    }
+  ]
+}

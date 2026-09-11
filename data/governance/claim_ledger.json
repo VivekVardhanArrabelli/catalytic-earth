@@ -561,5 +561,19 @@
       "data/atlas/study_context/calmodulin_2015/source_review.json",
       "docs/ATLAS_CALMODULIN_CONTROLS.md"
     ]
+  },
+  {
+    "claim_id": "CE-042",
+    "claim_kind": "source_annotation",
+    "status": "Supported",
+    "claim": "Schmidt2013 supplies a nominal bulk-normalized BuAm CTAC/no-detergent coefficient contrast, but missing long-chain controls prevent component separation.",
+    "current_wording": "Table2 central values give119.05(source120);9500 uses no-detergent BuAm, not DoAm. Retain the distinct Table1 endpoint and imported RA61 assay limits. The generic system ratio also reuses existing calmodulin treatment rows as0.8, with no equivalence or causal component claim.",
+    "rationale": "Source-bound denominators and normalization prevent transfer of an apparent system coefficient into an intrinsic micellar or isolated hydrophobic contribution. Original source rows support reuse across chemical mixtures and protein preparations without genetic semantics.",
+    "evidence": [
+      "data/atlas/study_context/schmidt_2013/micellar_controls.json",
+      "data/atlas/study_context/schmidt_2013/source_review.json",
+      "data/atlas/study_context/calmodulin_2015/treatment_contrast.json",
+      "docs/ATLAS_MICELLAR_CONTROLS.md"
+    ]
   }
 ]

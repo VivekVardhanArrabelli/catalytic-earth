@@ -266,6 +266,134 @@ def compare(rows: dict[str, dict[str, Any]], request: dict[str, Any]) -> dict[st
     return result
 
 
+def control_relation(context, resolve):
+    """Compare two source-bound systems without assigning genetic or causal roles.
+
+    The source review supplies the condition vectors and normalization meaning.
+    Equality here checks those declarations, not every physical property of the
+    preparations or their effective reactive-phase concentrations.
+    """
+    if (context.get("schema_version") != "catalytic-earth.system-control-relation.v1"
+            or context.get("operation") != "system_ratio"
+            or set(context.get("arms", {})) != {"numerator", "denominator"}):
+        raise ValueError("unsupported system control relation")
+    if type(context["source_qualified"]) is not bool:
+        raise ValueError("system control qualification must be boolean")
+    reported = context["source_reported_ratio"]
+    if ((reported is None) != (context["source_reported_ratio_locator"] is None)
+            or (reported is not None and
+                (not _number(reported) or reported < 0 or not context["source_reported_ratio_locator"]))):
+        raise ValueError("source-reported ratio requires a finite value and locator")
+    reasons = list(context["source_blocks"])
+    if not context["source_qualified"]:
+        reasons.append("source_comparison_unqualified")
+    evidence = [resolve(ref) for ref in context["evidence"]]
+    if not evidence or not context["interpretation_limit"]:
+        raise ValueError("system control requires source evidence and interpretation limit")
+    arms = {}
+    for role, arm in context["arms"].items():
+        if (type(arm["assay_qualified"]) is not bool
+                or len({arm[key]["source"] for key in
+                        ("observation_provider", "system_provider", "assay_provider")}) != 1):
+            raise ValueError("system control arm must use one source and explicit assay qualification")
+        row = resolve(arm["observation_provider"])
+        system = resolve(arm["system_provider"])
+        assay = resolve(arm["assay_provider"])
+        identity_field = arm["system_identity_field"]
+        if (identity_field not in {"system_id", "construct_id"}
+                or row["row_id"] != arm["source_row_id"]
+                or row[identity_field] != system[identity_field]
+                or row["assay_id"] != assay["assay_id"]):
+            raise ValueError("system control row, system or assay identity differs")
+        parameter = pointer(row, arm["parameter_pointer"])
+        if parameter["parameter"] != arm["parameter"]:
+            raise ValueError("system control parameter identity differs")
+        kind, value, unit = (parameter[key] for key in ("status", "value", "unit"))
+        if kind not in KINDS:
+            raise ValueError("unknown system control result kind")
+        if kind != "numeric":
+            if value is not None:
+                raise ValueError("nonnumeric system control cannot carry a numeric value")
+            reasons.append(f"{kind}:{role}")
+        elif not _number(value) or value < 0 or not unit:
+            reasons.append(f"invalid_numeric_parameter:{role}")
+        error = parameter["uncertainty"]
+        if (error["unreported_is_zero"] is not False
+                or (error["value"] is not None and
+                    (not _number(error["value"]) or error["value"] < 0
+                     or error["kind"] in {None, "not_reported"}))):
+            raise ValueError("invalid system control uncertainty")
+        required = {"study_id", "substrate_id", "reaction_direction", "endpoint", "normalization"}
+        invariant = arm["reviewed_invariants"]
+        if set(invariant) != required or any(not invariant[key] for key in required):
+            raise ValueError("system control requires explicit comparison invariants")
+        if invariant["study_id"] != context["study_id"]:
+            reasons.append(f"mismatched_study_id:{role}")
+        if not arm["assay_qualified"]:
+            reasons.append(f"unresolved_assay:{role}")
+        if set(arm["invariant_evidence"]) != {"substrate", "normalization"}:
+            raise ValueError("system control requires substrate and normalization evidence")
+        if any(ref["source"] != arm["observation_provider"]["source"]
+               for ref in arm["invariant_evidence"].values()):
+            raise ValueError("system control invariant evidence must use the arm source")
+        invariant_evidence = {key: resolve(ref) for key, ref in arm["invariant_evidence"].items()}
+        if any(not value for value in invariant_evidence.values()):
+            raise ValueError("empty system control invariant evidence")
+        selected = {"system": system, "assay": assay, "observation": row, "parameter": parameter}
+        # Concrete condition values come from the original source objects. Their
+        # chemical interpretation still requires the enclosing source review.
+        conditions = {}
+        for key, selector in arm["condition_fields"].items():
+            if set(selector) != {"pointer"} or not selector["pointer"].startswith("/system/"):
+                raise ValueError("system condition requires a source system pointer")
+            conditions[key] = _pick(selected, selector)
+        arms[role] = {**deepcopy(arm), "source_observation": row,
+                      "source_system": system, "source_assay": assay,
+                      "source_parameter": parameter, "condition_vector": conditions,
+                      "resolved_invariant_evidence": invariant_evidence}
+    numerator, denominator = arms["numerator"], arms["denominator"]
+    for field in ("condition_fields", "parameter_pointer", "system_identity_field"):
+        if numerator[field] != denominator[field]:
+            reasons.append(f"mismatched_{field}")
+    for field in numerator["reviewed_invariants"]:
+        if numerator["reviewed_invariants"][field] != denominator["reviewed_invariants"][field]:
+            reasons.append(f"mismatched_{field}")
+    for field in ("parameter", "unit"):
+        if numerator["source_parameter"][field] != denominator["source_parameter"][field]:
+            reasons.append(f"mismatched_{field}")
+    # A common nominal protocol is a source-scoped association, not specimen identity.
+    if numerator["assay_provider"] != denominator["assay_provider"]:
+        reasons.append("mismatched_assay_provider")
+    if numerator["observation_provider"]["source"] != denominator["observation_provider"]["source"]:
+        reasons.append("cross_source_observations")
+    for field in ("substrate", "normalization"):
+        if (numerator["invariant_evidence"][field] != denominator["invariant_evidence"][field]
+                or numerator["resolved_invariant_evidence"][field] != denominator["resolved_invariant_evidence"][field]):
+            reasons.append(f"mismatched_{field}_evidence")
+    states = [arm["condition_vector"] for arm in (numerator, denominator)]
+    changed, held = context["changed_axes"], context["held_constant_axes"]
+    if (not changed or len(set(changed)) != len(changed) or len(set(held)) != len(held)
+            or set(changed) & set(held) or set(states[0]) != set(states[1])
+            or set(changed) | set(held) != set(states[0])):
+        raise ValueError("system control axes must partition the declared condition vector")
+    actual = {key for key in states[0] if states[0][key] != states[1][key]}
+    if actual != set(changed):
+        reasons.append("declared_condition_changes_differ")
+    value = None
+    if not reasons:
+        if denominator["source_parameter"]["value"] <= 0:
+            reasons.append("nonpositive_denominator")
+        else:
+            value = numerator["source_parameter"]["value"] / denominator["source_parameter"]["value"]
+            if not math.isfinite(value):
+                reasons.append("nonfinite_ratio")
+                value = None
+    return {**deepcopy(context), "arms": arms, "source_evidence": evidence,
+            "eligible": not reasons, "reasons": sorted(set(reasons)), "value": value,
+            "unit": "dimensionless", "uncertainty": None,
+            "causal_component_established": False, "physical_condition_equality_established": False}
+
+
 def _model_link(context, link, constructs, rows, assays, source_bindings, resolve):
     """Bind source-model transitions to evidence without inventing atomic steps.
 
@@ -842,6 +970,13 @@ def _project_candidate(repo_root: Path, spec: dict[str, Any] | None = None) -> d
                 raise ValueError("comparison substrate pair differs from source")
         comparisons.append(compare(rows, resolved_request))
     _unique(comparisons, "id")
+    control_relations = []
+    for link in spec.get("control_relations", []):
+        context = resolve(link["provider"])
+        if context["id"] != link["id"] or context["study_id"] != link["study_id"]:
+            raise ValueError("system control provider identity differs")
+        control_relations.append(control_relation(context, resolve))
+    _unique(control_relations, "id")
     for witness in spec.get("source_witnesses", []):
         if not witness["source_bindings"]:
             raise ValueError("source witness requires a binding")
@@ -869,6 +1004,7 @@ def _project_candidate(repo_root: Path, spec: dict[str, Any] | None = None) -> d
         "observations": observations, "comparisons": comparisons,
         "state_links": state_links,
         "model_links": model_links,
+        "control_relations": control_relations,
         "evidence_context": {key: [resolve(ref) for ref in refs]
                              for key, refs in spec["evidence_context"].items()},
         "source_witnesses": deepcopy(spec.get("source_witnesses", [])),

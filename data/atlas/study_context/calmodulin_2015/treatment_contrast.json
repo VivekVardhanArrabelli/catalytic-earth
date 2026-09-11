@@ -1,0 +1,144 @@
+{
+  "schema_version": "catalytic-earth.system-control-relation.v1",
+  "id": "calmodulin_2015:Ac-CaMWN:over-CaMWN-preparation",
+  "study_id": "calmodulin_2015",
+  "operation": "system_ratio",
+  "source_qualified": true,
+  "source_blocks": [],
+  "changed_axes": [
+    "source_perturbations"
+  ],
+  "held_constant_axes": [
+    "domain",
+    "source_reference_background",
+    "substitutions"
+  ],
+  "condition_scope": "Same source-named CaMWN lineage; chemical preparation/treatment contrast, not a claim of a sole physical change, complete occupancy or genetic background.",
+  "source_reported_ratio": null,
+  "source_reported_ratio_locator": null,
+  "arms": {
+    "denominator": {
+      "source_row_id": "CaMWN",
+      "observation_provider": {
+        "source": "cam2015",
+        "pointer": "/rows/2"
+      },
+      "system_provider": {
+        "source": "cam2015",
+        "pointer": "/constructs/2"
+      },
+      "system_identity_field": "construct_id",
+      "assay_provider": {
+        "source": "cam2015",
+        "pointer": "/assays/0"
+      },
+      "assay_qualified": true,
+      "parameter_pointer": "/kcat_over_KM",
+      "parameter": "k_cat/K_M",
+      "condition_fields": {
+        "domain": {
+          "pointer": "/system/domain_scope"
+        },
+        "source_reference_background": {
+          "pointer": "/system/background_id"
+        },
+        "substitutions": {
+          "pointer": "/system/substitutions"
+        },
+        "source_perturbations": {
+          "pointer": "/system/perturbations"
+        }
+      },
+      "invariant_evidence": {
+        "substrate": {
+          "source": "cam2015",
+          "pointer": "/reaction"
+        },
+        "normalization": {
+          "source": "cam2015",
+          "pointer": "/assays/0/readout"
+        }
+      },
+      "reviewed_invariants": {
+        "study_id": "calmodulin_2015",
+        "substrate_id": "calmodulin_2015:methodol",
+        "reaction_direction": "retroaldol cleavage",
+        "endpoint": "source_second_order_initial_rate_coefficient",
+        "normalization": {
+          "basis": "nominal_total_protein_and_substrate",
+          "protein_molar_basis": "source_CaMWN_lineage",
+          "active_fraction_or_occupancy_verified": false
+        }
+      }
+    },
+    "numerator": {
+      "source_row_id": "Ac-CaMWN",
+      "observation_provider": {
+        "source": "cam2015",
+        "pointer": "/rows/3"
+      },
+      "system_provider": {
+        "source": "cam2015",
+        "pointer": "/constructs/3"
+      },
+      "system_identity_field": "construct_id",
+      "assay_provider": {
+        "source": "cam2015",
+        "pointer": "/assays/0"
+      },
+      "assay_qualified": true,
+      "parameter_pointer": "/kcat_over_KM",
+      "parameter": "k_cat/K_M",
+      "condition_fields": {
+        "domain": {
+          "pointer": "/system/domain_scope"
+        },
+        "source_reference_background": {
+          "pointer": "/system/background_id"
+        },
+        "substitutions": {
+          "pointer": "/system/substitutions"
+        },
+        "source_perturbations": {
+          "pointer": "/system/perturbations"
+        }
+      },
+      "invariant_evidence": {
+        "substrate": {
+          "source": "cam2015",
+          "pointer": "/reaction"
+        },
+        "normalization": {
+          "source": "cam2015",
+          "pointer": "/assays/0/readout"
+        }
+      },
+      "reviewed_invariants": {
+        "study_id": "calmodulin_2015",
+        "substrate_id": "calmodulin_2015:methodol",
+        "reaction_direction": "retroaldol cleavage",
+        "endpoint": "source_second_order_initial_rate_coefficient",
+        "normalization": {
+          "basis": "nominal_total_protein_and_substrate",
+          "protein_molar_basis": "source_CaMWN_lineage",
+          "active_fraction_or_occupancy_verified": false
+        }
+      }
+    }
+  },
+  "evidence": [
+    {
+      "source": "cam2015",
+      "pointer": "/nucleophile_controls"
+    },
+    {
+      "source": "cam2015",
+      "pointer": "/source_conflicts"
+    },
+    {
+      "source": "cam2015",
+      "pointer": "/limitations"
+    }
+  ],
+  "interpretation_limit": "Central-value TableI preparation contrast only. No propagated error, statistical equivalence/significance, isolated terminal-amine contribution, verified modification occupancy or genetic-mutation interpretation. This reuses existing measured rows and adds no observation."
+}
