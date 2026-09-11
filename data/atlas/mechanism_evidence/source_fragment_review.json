@@ -35,8 +35,8 @@
     "tests/core/test_atlas_fragment_sites.py": "9f8bff210e254c0001d6b8661f6a4b6a4fbb1e4c56a85ff7ee1f84f6bcfe667f",
     "docs/ATLAS_MECHANISM_EVIDENCE.md": "093e20976889b795414e00d32d7392585c4f45eaa2cf367bbe22c3bc9c9b3dad",
     "docs/ATLAS_TRANSFORMATIONS.md": "d3e651f3c4d9cf9e5734319f003606ef740092ea6b8a4fac0915a9b1feb83e43",
-    "docs/CURRENT_STATE.md": "307f1448607cb32e92aa1acc1618d7f6bb1d93d695ca4b79be021fe7d188a1f2",
-    "docs/CURRENT_DECISIONS.md": "84ff39b8628c4e281bed11bc059163d61d8a2ef2be4fdd5891165485512b136a",
+    "docs/CURRENT_STATE.md": "b1648982cdb666e6c99005a7af831a7527ee0b4fbd1dc7b0c096cdb5631685e4",
+    "docs/CURRENT_DECISIONS.md": "f7a52fc9be8eda22df34ef426d92e7426cc719add2c1cc294a9f9a3e18f6dd90",
     "src/catalytic_earth/atlas_context_candidates.py": "1e29dade1364eac7eda39584dbe8a8172cb286deaaf00439607d8dd069110808",
     "src/catalytic_earth/atlas_partial_panels.py": "aa5d8374a63152f36b369c8c58113a2c75510be114be8ee66f2b70df2dd54c1d",
     "src/catalytic_earth/atlas10_source_adapters.py": "dc8da8da65f5113526c4618b955c5bb2da7c21ff0725e28c97372efdda693731",
@@ -136,6 +136,25 @@
       }
     },
     "review_record": "data/atlas/study_context/tk_2024/source_review.json",
+    "independent_human_validation": false,
+    "experimental_validation": false
+  },
+  "tk_product_profile_documentation_followup": {
+    "reviewed_at_utc": "2026-09-11T18:25:45.730741+00:00",
+    "base_commit": "582b21cbd8d4704b5668a849afd398725fb53288",
+    "prior_review_sha256": "2964d115fe3bb34b75b3c276e79afee09c65789de22605a095304ca316f17cae",
+    "scope": "Renew only two current-document bindings for the separate Yu2020 product-profile annotation. No M0187 source, transformation, fragment, reference-site or functional observation changes. Prior review metadata remains historical.",
+    "renewed_bindings": {
+      "docs/CURRENT_STATE.md": {
+        "before": "307f1448607cb32e92aa1acc1618d7f6bb1d93d695ca4b79be021fe7d188a1f2",
+        "after": "b1648982cdb666e6c99005a7af831a7527ee0b4fbd1dc7b0c096cdb5631685e4"
+      },
+      "docs/CURRENT_DECISIONS.md": {
+        "before": "84ff39b8628c4e281bed11bc059163d61d8a2ef2be4fdd5891165485512b136a",
+        "after": "f7a52fc9be8eda22df34ef426d92e7426cc719add2c1cc294a9f9a3e18f6dd90"
+      }
+    },
+    "review_record": "data/atlas/study_context/tk_2020/source_review.json",
     "independent_human_validation": false,
     "experimental_validation": false
   }

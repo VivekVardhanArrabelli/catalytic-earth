@@ -1,0 +1,91 @@
+{
+  "batch_id": "two-substrate-lineages-2024-51831",
+  "max_requests": 100,
+  "max_response_body_bytes": 31457280,
+  "accounting": "All requests issued by this single parent transport including discovery, redirects and errors. Accept-Encoding identity; bytes are downloaded response-body bytes, excluding HTTP headers and TLS overhead.",
+  "inherited_receipt": {
+    "path": "data/atlas/study_context/tk_2024/acquisition_receipts.json",
+    "sha256": "30c07b9a7435c95000200835bcd3e468ca2afef8605cd748934fffdcd28e5244",
+    "requests": 12,
+    "response_body_bytes": 741711
+  },
+  "accounting_adjudication": "Yu2020 is cited Ref4/prior6M qualification in the same E.coliTK lineage; cumulative2024batch retained. Initial provisional label engineered-transketolase-yu2020 corrected after source-review precedent objection; all5transports are preserved and prior12prepended. No cap exceeded; no quota reset. HumanTKT2019/POX remains separate incomplete lower bound.",
+  "cumulative_request_count": 17,
+  "cumulative_response_body_bytes": 22374147,
+  "complete_cumulative_accounting": true,
+  "schema_version": "catalytic-earth.primary-source-transport-appendix.v1",
+  "new_requests": [
+    {
+      "request_id": 13,
+      "url": "https://doi.org/10.1111/febs.15108",
+      "started_at_utc": "2026-09-11T18:10:41.691294+00:00",
+      "response_body_bytes": 203,
+      "state": "captured",
+      "status": 302,
+      "content_type": "text/html;charset=utf-8",
+      "content_encoding": null,
+      "location": "https://febs.onlinelibrary.wiley.com/doi/10.1111/febs.15108",
+      "sha256": "c0aa3e75aca3da8ece1887bb59dae4483d5c8e9b855331344471c8fbf8b50b0b",
+      "finished_at_utc": "2026-09-11T18:10:41.960724+00:00",
+      "local_path": ".git/catalytic-earth-runs/ab51780c-sources/article.html.redirect-0"
+    },
+    {
+      "request_id": 14,
+      "url": "https://febs.onlinelibrary.wiley.com/doi/10.1111/febs.15108",
+      "started_at_utc": "2026-09-11T18:10:41.962037+00:00",
+      "response_body_bytes": 5698,
+      "state": "captured",
+      "status": 403,
+      "content_type": "text/html; charset=UTF-8",
+      "content_encoding": null,
+      "location": null,
+      "sha256": "bdd7c962b1a99ba90716bdd8b8fdfb8072c4a147d47d7c071cd3ace57f673617",
+      "finished_at_utc": "2026-09-11T18:10:42.128076+00:00",
+      "local_path": ".git/catalytic-earth-runs/ab51780c-sources/article.html"
+    },
+    {
+      "request_id": 15,
+      "url": "https://api.openalex.org/works/https://doi.org/10.1111/febs.15108",
+      "started_at_utc": "2026-09-11T18:10:53.086788+00:00",
+      "response_body_bytes": 32833,
+      "state": "captured",
+      "status": 200,
+      "content_type": "application/json",
+      "content_encoding": null,
+      "location": null,
+      "sha256": "b8d323e96272bf692290f747c13001f4fb84f7fc145576305b0abe006e715156",
+      "finished_at_utc": "2026-09-11T18:10:53.620542+00:00",
+      "local_path": ".git/catalytic-earth-runs/ab51780c-sources/discovery-openalex.json"
+    },
+    {
+      "request_id": 16,
+      "url": "https://discovery.ucl.ac.uk/id/eprint/10084395/",
+      "started_at_utc": "2026-09-11T18:11:00.982635+00:00",
+      "response_body_bytes": 48826,
+      "state": "captured",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_encoding": null,
+      "location": null,
+      "sha256": "c5216f1fa7e864e911beabc8c64d02a9176b18252584f025c06ba786410b9c91",
+      "finished_at_utc": "2026-09-11T18:11:02.514373+00:00",
+      "local_path": ".git/catalytic-earth-runs/ab51780c-sources/ucl-record.html"
+    },
+    {
+      "request_id": 17,
+      "url": "https://discovery.ucl.ac.uk/id/eprint/10084395/1/Yu%20FEBSJ%202019%20Accepted%20online%20version.pdf",
+      "started_at_utc": "2026-09-11T18:11:33.314637+00:00",
+      "response_body_bytes": 21544876,
+      "state": "captured",
+      "status": 200,
+      "content_type": "application/pdf",
+      "content_encoding": null,
+      "location": null,
+      "sha256": "c33dcf62e1e65f665361da8daf391c462a887d998d96086f21d7f769c8e4a5a4",
+      "finished_at_utc": "2026-09-11T18:12:14.179750+00:00",
+      "local_path": ".git/catalytic-earth-runs/ab51780c-sources/yu2020-accepted.pdf"
+    }
+  ],
+  "source_bodies_redistributed": false,
+  "acquisition_stopped": "One accepted manuscript and its institutional identity record qualify the selected product profile. Publisher403 not retried; no supplementary file, cited precursor or docking coordinates acquired."
+}
