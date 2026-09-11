@@ -1,5 +1,23 @@
 # Current Decisions
 
+## 2026-09-11: close the M0186 replay at hydrogen continuity
+
+Retain the [source continuity audit](ATLAS_PLP_STEP_BOUNDARY.md#within-m0186-the-next-state-stops-at-explicit-hydrogen-continuity)
+as a supplementary source annotation. Heavy-atom compatibility under the
+reviewed locator map does not resolve the explicit-H neighbor mismatch. Stop
+the full replay without completing implicit H, interpreting a reused a40 ID
+as physical identity, relaxing stereo/locator guards, or declaring source
+chemistry incorrect. The step-3 substrate–PLP adduct also prevents reading
+step 2's “free PLP” as an unbound-cofactor state.
+
+The failed full-state premise does not justify a new runtime or claim. Keep
+case facts in data, use existing graph operations only for the bounded
+diagnostic, and preserve original sources and the earlier cross-entry review.
+Reconsideration is active: another panel-refusal series would not supply a
+mechanistic chain or demonstrate design utility. The next question must add
+chemical-state or functional information, rather than repeat this H or W/H
+audit; the marked current handoff names that bounded action.
+
 ## 2026-09-11: compare source systems without assigning genetic or causal roles
 
 Close the Schmidt2013 inquiry at one supported BuAm CTAC/no-detergent apparent

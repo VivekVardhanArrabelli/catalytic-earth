@@ -1,5 +1,21 @@
 # Current State
 
+## 2026-09-11: M0186 panel continuity stops at explicit hydrogen
+
+The retained [M0186 step-2 to step-3 audit](ATLAS_PLP_STEP_BOUNDARY.md#within-m0186-the-next-state-stops-at-explicit-hydrogen-continuity)
+accounts for lysine detachment and substrate–PLP double-bond formation at the
+heavy-atom level. It cannot establish a full explicit chemical-state replay:
+after the two arrows, H neighbors are oxygen/nitrogen, while the next drawing
+has oxygen/carbon. This invariant excludes every element-preserving bijection,
+independently of panel-local H IDs. The source may selectively depict H for
+each step; no unarrowed physical proton transfer or completed implicit-H state
+is inferred. Ordered raw W is retained without a stereo assignment.
+
+This closes the bounded within-entry question beyond the earlier cross-entry
+stereo refusal. It supplies a source-specific continuity limit, not a new runtime
+relation, claim, mechanism or observation. Existing extraction guards, source
+records and all current claims remain unchanged. No acquisition was needed.
+
 ## 2026-09-11: a micellar coefficient needs its amine denominator
 
 The [Schmidt2013 control](ATLAS_MICELLAR_CONTROLS.md) supplies a119.05
