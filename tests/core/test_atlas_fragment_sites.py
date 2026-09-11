@@ -335,6 +335,9 @@ class FragmentSiteBindingTests(unittest.TestCase):
             "spec": json.loads(FRAGMENT_SPEC.read_text(encoding="utf-8")),
             "review": json.loads(FRAGMENT_REVIEW.read_text(encoding="utf-8")),
             "source_snapshots_utf8": {"M0187": SOURCE.read_text(encoding="utf-8")},
+            "reference_snapshots_utf8": {
+                "UniProtKB:P11444": (ROOT / "data/atlas/atlas10/sources/uniprot/P11444.json").read_text(encoding="utf-8"),
+            },
         }
         self.repin_review(self.bundle)
         self.atlas10 = json.loads(ATLAS10.read_text(encoding="utf-8"))

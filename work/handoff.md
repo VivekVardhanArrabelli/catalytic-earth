@@ -1,100 +1,99 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research baton — 2026-09-11 M0187 fragment to reference-site evidence
+## Current research baton — 2026-09-11 reference-site mutation annotations
 
-- **Identity/base:** started 2026-09-11T14:06:42Z; owner
-  `01a090ca-7e9f-7e40-b7da-90d4a1171e05:2f1f2396-eec5-49d3-9b1b-1e1c66953b0f`;
-  acquired14:06:58Z. Clean main/origin base
-  `a3920043905325f1952f79eca3d3b0ff2e3cd18f`; PR100 had merged and its
-  owner released. No prior open PR or recovery. Branch
-  `codex/m0187-fragment-site-20260911`; checkpoint 2026-09-11T14:32:00.690119+00:00
-  (25.31 minutes). Final elapsed/publication/release are in the local receipt.
-- **Question/result:** can source step1 o40/a58 connect through the unique
-  His297A-labeled fragment to P11444:H297 and the retained H297N functional
-  discriminant? Yes, at source-fragment and reference-site scope. The optional
-  `atlas-mechanism-evidence --include-source-fragments` now composes the
-  reviewed changed-before-atom/edit/arrow witness, alias-bearing heavy covalent
-  fragment, exact selected-step site and existing focal H297N evidence.
-  Step2 a19/Lys166 uses the same fragment/site rule but is source-step context,
-  not another reviewed transition. Step1 a63/Glu317 lacks a matching selected-
-  step declaration and remains unresolved by this relation. Three requests,
-  two source-site relations, one refusal; no added protein, reaction,
-  mechanism, observation, claim, independent review or experiment.
-- **Functional/chemical limits:** H297N retains S-mandelate exchange at a
-  source-reported3.3-fold below WT (pD7.5/D2O). R-exchange nondetection and
-  separate undirected racemization nondetection retain null values and unknown
-  detection floors. No exchange=racemization, zero-from-nondetection, exact
-  assayed sequence, deposited atom name, mutant geometry, atom-specific role,
-  proton lineage, stereo/coordination interpretation or validated source arrow.
-  Contextual K166R observations are not transferred into a focal Lys166 case.
-  Default direct-label and evidence queries retain their earlier unresolved
-  endpoint-label status; the supplement has its own fragment evidence basis.
+- **Identity/base:** start2026-09-11T15:05:41Z; owner
+  `01a09100-8325-7a22-a912-406f65c6e08e:cbeb82f3-6211-4418-b193-5fe25f5112ae`;
+  lock acquired15:06:02Z. Clean synced main base
+  `9082d6228cb2ef6952196916bdbc20fc27b74008`; prior PR101 merged,
+  previous owner released, no open PR or recovery. Branch
+  `codex/m0187-reference-annotations-20260911`; checkpoint2026-09-11T15:24:51.698005+00:00
+  (19.18minutes). Exact final SHA/CI/release are in the local receipt.
+- **Direction/question:** the current direction priority's His297 fragment
+  relation was completed by PR101. The inherited E317Q inquiry asks whether
+  an entry-level residue can carry a useful variant-effect annotation outside
+  the selected step's catalyst declaration. It can, at database-annotation
+  scope. Do not repeat fragment inventories or promote annotation volume as
+  atlas coverage. This bounded question is complete.
+- **Result:** `atlas-mechanism-evidence --include-source-fragments` now adds
+  a separate `reference_annotation_context`: step1 m1.a63 -> uniquely
+  Glu317A-labeled fragment -> entry-wide P11444:E317 -> original UniProt
+  E317Q feature9, with its activity-reduction wording and PMID7893689.
+  E317 stays unresolved in the selected-step relation and has no primary-
+  observation match. `Glu317A` is author chainA, not an E317A mutant.
+  The same source-feature rule links H297N feature8. Its broad loss-of-activity
+  annotation remains beside retained S-exchange, R-exchange nondetection and
+  separate racemization evidence. No blanket loss of all catalytic endpoints.
+- **Limits/counts:** two distinct database annotations, not new observations,
+  proteins, reactions, mechanisms, claims or experiments. E317Q's10000-fold
+  wording stays opaque; endpoint, parameter, scalar, unit, comparator/
+  denominator, reaction direction, assay and uncertainty are null. No WT
+  assumption, exact assayed construct, electrophilic-energy magnitude, mutant
+  geometry, atom-specific role or validated o39. E317Q primary results remain
+  uninspected; H297N's separately retained primary abstract remains distinct.
+  Author317/UniProt317/1MNS label315 numbering is preserved.
 - **Evidence:** `data/atlas/mechanism_evidence/source_fragment_spec.json`,
-  `source_fragment_review.json`, packaged `source_fragments.json`, and the
-  new section in `docs/ATLAS_MECHANISM_EVIDENCE.md`. Raw M0187 snapshot
-  `data/atlas/atlas10/sources/mcsa/M0187.json` SHA256
-  `45663712262387e7eec092c49b16994d03f9b6d186008b737b94c613a87458e3`;
-  step1 scheme64308a1d95a102c692bc597794237b268800eebab3973a121f99d5ad10ff2188,
-  step2 scheme476cc9e8455890fce1bbe40c4c307c93dae3c3cc0a4e568bbd255db57195662b.
-  Original transformation/evidence/primary projection hashes are unchanged;
-  M-CSA CC BY4.0 attribution accompanies the packaged source. The complete
-  existing H297N case, observation filters and direct-evidence applicability
-  are checked before copying observations; a cached-query mutation cannot
-  borrow the original payload hash.
-- **Acquisition:** 0 requests /0 response-body bytes. Cumulative inherited
-  totals unchanged: RA61 `designed-retroaldolase-components-lassila2010`
-  58/4,697,605; KSI26/5,739,717; RA9533/17,556,517;
-  Diels20/519,698; KE599/261,580; KE7016/1,102,794;
-  beta5/8,449,621; defaultM-CSA49/1,109,896. TKT/POX7/3,004,884,
-  PLP73/5,068,731 and panel28/1,474,405 remain lower bounds with incomplete
-  headroom; M0187followup12/440,960 is a subledger at its inherited sublimit.
-  No batch rename, accounting-gap acquisition or reopened failed route.
-- **Review/reconsideration:** source_site, representation_site and
-  adversarial_site are Sol/ultra correlated computational reviewers. Parent
-  owns Git/lock; adversarial_site owned only the focused test file and stopped
-  editing before publication. Compact board `.git/catalytic-earth-runs/2f1f2396.board.md`.
-  Source objections required atom-role wording, a separate direct-label path,
-  focal/direct evidence selection and exact upstream bindings. Parent and
-  representation reviewer independently demonstrated a cached-query integrity
-  gap; the fix binds case content and reconstructs filtered observation rows.
-  Reused panel parsers and site matching avoid another MRV implementation or
-  enzyme-ID branch; case facts remain data. A His/Lys within-entry reuse test
-  is supported, not broad chemical coverage or measured curation-time savings.
-  Added value is an actual source-atom-to-residue-to-functional-discriminant
-  relation with prevented contextual transfer, not just a label inventory.
-  No design consumer/performance is established. Further fragment inventories
-  are not the next priority.
-- **Verification/publication:** focused adversarial, original default-query
-  invariance, core/unit, repository contracts and offline wheel/archive checks
-  precede reviewed-head CI and merge. Four baseline public queries and eight
-  source/frozen/claim/exposure file hashes remain unchanged. The perturbation
-  review renews only two current-document pins; prior review/source content
-  is preserved. Exact final counts/SHAs/PR/CI/release are recorded in
-  `.git/catalytic-earth-runs/2f1f2396-receipt.json` and the task result.
-  Current branch is prepared for publication; if PR/CI/merge is unfinished,
-  resume this branch first. No unrelated changes. Stage this handoff before
-  rebuilding its archive index; no self-hash follow-up commit.
-- **Scheduling:** this run does not alter the schedule or its preserved pause.
-  Actual app configuration controls future scheduling, not older receipts.
-- **One next action:** assess whether retained E317Q evidence adds a useful
-  ancillary-residue functional constraint beyond the existing M-CSA roles,
-  separately from a step-declared catalyst relation. Witnesses: the distinct
-  a63/Glu317A source fragment, M0187 residue/reference mapping, and
-  `data/atlas/atlas10/sources/uniprot/P11444.json` feature9 (E317Q;
-  source description reduces activity10000-fold, ECO:0000269/PMID7893689).
-  The M-CSA bibliography names the Glu317 electrophilic-catalysis paper.
-  Expected gain: determine whether a non-step-listed contributor can carry a
-  reusable source-scoped functional constraint without falsely becoming His297
-  or the step's named base. Zero acquisition. Retained UniProt is database-
-  annotation evidence, not newly inspected primary results. Stop at one
-  useful scoped relation or the first missing endpoint/denominator premise;
-  preserve unknown direction, conditions, construct and uncertainty. Do not
-  infer directional kcat, atom-specific proton donation, o39 validation or an
-  electrophilic-energy magnitude. If the retained statement adds no usable
-  information, change the scientific question rather than create a refusal
-  report or bypass the exhausted acquisition sublimit. Closed M0186 H,
-  M0213 stereo and DERA access inquiries stay closed.
+  `source_fragment_review.json`, packaged `source_fragments.json`, and
+  `docs/ATLAS_MECHANISM_EVIDENCE.md` describe the new source binding and scope.
+  P11444 snapshot `data/atlas/atlas10/sources/uniprot/P11444.json` SHA256
+  `cb5efb114709e8f79f58376643fde10d8e2981296091d09936c41589ce7ae6ef`,
+  entryVersion141/sequenceVersion1, exact point features8/9; source evidence
+  ECO:0000269/PMID1909893 and7893689 respectively. Original M0187 source,
+  frozen kernel, transformation, primary observations, claims and exposure
+  bytes are unchanged. UniProt and M-CSA CC BY4.0 attribution is retained.
+- **Acquisition:**0requests/0bytes. Cumulative totals unchanged: RA61
+  `designed-retroaldolase-components-lassila2010`58/4,697,605;
+  KSI26/5,739,717; RA9533/17,556,517; Diels20/519,698;
+  KE599/261,580; KE7016/1,102,794; beta5/8,449,621;
+  defaultM-CSA49/1,109,896. TKT/POX7/3,004,884, PLP73/5,068,731,
+  panel28/1,474,405 remain lower bounds with incomplete headroom;
+  M0187followup12/440,960 remains at its inherited sublimit. No renamed
+  batch, accounting-gap acquisition or reopened closed route.
+- **Review/reconsideration:** source_e317, representation_e317 and
+  adversarial_e317 are Sol/ultra correlated computational reviewers, not
+  independent human review. Parent owns Git/lock; adversarial worker's sole
+  test file was returned before finalization. Board:
+  `.git/catalytic-earth-runs/cbeb82f3.board.md`. Source objections removed
+  ancillary wording and separated primary inspection scope. Representation
+  review found an unused-snapshot binding gap; every bound source must now
+  be selected/hash-checked, with exact selectors and distinct feature counts.
+  Citation identifiers must be nonempty. Existing parsers/site matching and
+  unchanged observations are reused; case selections live in data. No enzyme-
+  ID branch. Within-entry reuse is established, not broad chemical coverage
+  or measured effort reduction. Integrated value is preserving variant evidence
+  despite step-list omission and preventing coarse activity-summary transfer.
+  Further annotation-only increments have diminishing value; next pursue an
+  actual substrate/product constraint relevant to synthesis.
+- **Verification/publication:** focused29 tests pass; core651 passes, with
+  the final citation-identifier delta covered by the focused suite. Three
+  default queries are exact; prior optional fields are invariant after removing
+  explicit additions/review metadata. Nine source/frozen/governance hashes
+  are unchanged. Relevant repository, offline wheel/archive and exact-head CI
+  checks precede publication/merge. This branch is the prepared continuation
+  until publication completes; next run must resume it first if needed.
+  Exact final SHAs, required checks, push/merge and guarded release belong in
+  `.git/catalytic-earth-runs/cbeb82f3-receipt.json` and the task result.
+  No unrelated edits; preserve historical handoff suffix and stage this block
+  before rebuilding the archive index. Actual automation configuration was
+  verified ACTIVE at2026-09-11T15:31:24Z; this run leaves it unchanged.
+  That live state supersedes older pause notes for scheduling only.
+- **One next action:** inspect the primary Raj2012 engineered methylaspartate
+  ammonia-lyase evidence (PMID22614383, DOI10.1038/nchem.1338) for one exact
+  variant–reactant–product/selectivity relation in reverse amination. Retained
+  `data/atlas/atlas10/sources/uniprot/Q05514.json` feature10 Q73A names a
+  shift from ammonia toward methylamine; feature20 L384A names broad
+  electrophile scope. These are leads, not measured product data. M0468's
+  seven reference sites omit both residues, so no step/fragment role transfers.
+  Expected gain: a source-qualified synthetic specificity constraint beyond
+  another activity-loss annotation. First reconcile existing named-batch
+  accounting and permitted public-source headroom; no reset or renaming.
+  Stop at one supported substrate/product outcome or a missing material
+  identity/assay/assignment premise, with a bounded source-access stop if
+  primary results cannot be inspected. Preserve qualitative vs quantitative
+  selectivity and background differences. No new annotation-only report if
+  the primary route adds no usable relation. Closed M0186H, M0213stereo,
+  DERA access and E317Q endpoint inquiries remain closed without new evidence.
 
 Preserve historical content below this marked block. Git identifies the
 containing commit; no self-hash follow-up commit is needed.

@@ -15,6 +15,7 @@ from typing import Any, Callable
 from .atlas10_source_adapters import parse_mcsa_scheme_flows
 from .atlas_context_candidates import _ContextReview, _parse_panel
 from .atlas_partial_panels import _raw_panel
+from .atlas_reference_annotations import reference_mutagenesis_context
 from .atlas_transformation_sites import (
     _RESIDUE_LABEL_RE, _THREE_TO_ONE, _canonical_sha256, _mcsa_evidence,
     _records, _require, _resolve_labeled_site, query_transformation_sites,
@@ -220,6 +221,24 @@ def query_fragment_sites(bundle: dict, *, atlas10_bundle: dict, evidence_query: 
         and match["transformation"]["record_binding"]["mcsa_id"] == binding["mcsa_id"]
     ], "source fragment reviewed transformation binding differs")
     bindings = {row["source_id"]: row for row in bundle["spec"]["source_bindings"]}
+    reference_sources = bundle["spec"].get("reference_annotation_sources", [])
+    _require(isinstance(reference_sources, list)
+             and all(isinstance(row, dict)
+                     and set(row) == {"source_id", "uniprot_id", "path", "sha256", "attribution"}
+                     and all(isinstance(value, str) and bool(value) for value in row.values())
+                     for row in reference_sources), "reference annotation source binding is invalid")
+    selections = [row["reference_annotation"] for row in bundle["spec"]["requests"]
+                  if "reference_annotation" in row]
+    _require(all(isinstance(row, dict) and set(row) == {"source_id", "feature_index"}
+                 and isinstance(row["source_id"], str) and bool(row["source_id"])
+                 and type(row["feature_index"]) is int and row["feature_index"] >= 0
+                 for row in selections), "reference annotation selector is invalid")
+    reference_bindings = {row["source_id"]: row for row in reference_sources}
+    _require(len(reference_bindings) == len(bundle["spec"].get("reference_annotation_sources", []))
+             and set(reference_bindings) == set(bundle.get("reference_snapshots_utf8", {})),
+             "reference annotation source bindings repeat or differ from packaged snapshots")
+    _require({row["source_id"] for row in selections} == set(reference_bindings),
+             "reference annotation source is unselected or unbound")
     relations, seen = [], set()
     for request in bundle["spec"]["requests"]:
         relation_id = request["relation_id"]
@@ -294,12 +313,27 @@ def query_fragment_sites(bundle: dict, *, atlas10_bundle: dict, evidence_query: 
             "case_ids": cases, "matched_observations": observations,
             "source_arrow_experimentally_validated": False,
         }
+        if "reference_annotation" in request:
+            selection = request["reference_annotation"]
+            _require(selection["source_id"] in reference_bindings,
+                     "reference annotation source is unbound")
+            relation["reference_annotation_context"] = reference_mutagenesis_context(
+                record=record, step=step, label=relation["source_residue_label"],
+                mcsa_id=source["record_id"], binding=reference_bindings[selection["source_id"]],
+                snapshot_utf8=bundle["reference_snapshots_utf8"][selection["source_id"]],
+                feature_index=selection["feature_index"],
+            )
         relations.append(relation)
     return {
         "schema_version": SCHEMA_VERSION, "relation_count": len(relations),
         "resolved_relation_count": sum(row["source_record_residue_mapping"]["site_id"] is not None for row in relations),
         "relations": relations, "review": copy.deepcopy(bundle["review"]),
         "source_bindings": copy.deepcopy(bundle["spec"]["source_bindings"]),
+        "reference_annotation_count": len({
+            (row["reference_annotation_context"]["source_binding"]["source_id"],
+             row["reference_annotation_context"]["annotation"]["feature_index"])
+            for row in relations
+            if row.get("reference_annotation_context", {}).get("annotation") is not None}),
         "query_semantics": {
             "counted_object": "source_fragment_reference_site_relation",
             "observation_filters_apply_to": "copied_observations_not_source_relations",
@@ -313,6 +347,10 @@ def query_fragment_sites(bundle: dict, *, atlas10_bundle: dict, evidence_query: 
             "exchange_is_racemization": False,
             "source_arrow_experimentally_validated": False,
             "empty_observation_match": "no_matching_retained_observation_not_absence_of_activity",
+            "reference_annotation_scope": "whole_record_site_not_selected_step_catalyst_or_measured_observation",
+            "observation_filters_apply_to_reference_annotations": False,
+            "database_activity_text_is_numeric_kinetic_parameter": False,
+            "reference_annotation_count_unit": "distinct_source_snapshot_features_not_attachments_or_observations",
         },
     }
 
@@ -325,6 +363,9 @@ def build_fragment_sites(spec: dict, review: dict, load_bytes: Callable[[str], b
         _require(_bytes_sha(load_bytes(path)) == digest, f"source fragment review binding differs: {path}")
     bundle = {"spec": spec, "review": review, "source_snapshots_utf8": {
         row["source_id"]: load_bytes(row["path"]).decode("utf-8") for row in spec["source_bindings"]
+    }, "reference_snapshots_utf8": {
+        row["source_id"]: load_bytes(row["path"]).decode("utf-8")
+        for row in spec.get("reference_annotation_sources", [])
     }}
     query_fragment_sites(bundle, atlas10_bundle=atlas10_bundle, evidence_query=evidence_query,
                          transformation_values=transformation_values)

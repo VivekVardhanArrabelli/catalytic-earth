@@ -1,5 +1,11 @@
 # Current Decisions
 
+## 2026-09-11: keep entry-level mutation annotations separate from step evidence
+
+Accept the [E317Q/H297N reference-feature context](ATLAS_MECHANISM_EVIDENCE.md#entry-level-mutation-annotations-retain-their-narrower-evidence-basis) as database annotation, using explicit entry-wide site matching and the exact retained UniProt feature. Preserve the selected-step catalyst matcher and the existing observation plane. A source residue omitted from a step's catalyst declaration can still carry a variant-effect database annotation; generic activity-loss wording cannot replace endpoint-specific evidence.
+
+Stop interpretation of E317Q at its opaque activity-reduction statement: the retained annotation lacks the endpoint and denominator needed for a kinetic quantity. Do not infer wild-type comparison, microscopic cause, electrophilic energy, assayed construct, mutant geometry or arrow validation. Reuse the existing mapper and optional query with case selections in data. No new provider, enzyme-specific runtime branch, scientific headline or evidence-tier promotion is warranted. This bounded inquiry is complete; use the marked handoff to select the next consequential relation.
+
 ## 2026-09-11: accept a separate fragment relation without rewriting direct-label evidence
 
 Accept the [M0187 fragment relation](ATLAS_MECHANISM_EVIDENCE.md#a-source-fragment-connects-his297-to-the-existing-functional-discriminant) at source depiction and selected-step reference-site scope. Use the existing panel parsers and site matcher through a separately reviewed optional consumer. Require a unique heavy-covalent alias-bearing fragment, qualified source arrow, exact step-site and original transformation bindings; refuse hydrogen, placeholder, identity-label and numbering ambiguities.
