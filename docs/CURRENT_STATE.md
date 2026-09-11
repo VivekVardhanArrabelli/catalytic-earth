@@ -1,5 +1,20 @@
 # Current State
 
+## 2026-09-11: MAL L384A has a source-qualified preparative product outcome
+
+The [Raj2012 relation](ATLAS_MAL_SYNTHESIS.md) connects named L384A to ammonia
+addition to benzyloxyfumarate 1j and product 4j: 65% conversion and 50% yield
+after the stated purification, following seven days of reaction. Two endpoint records reuse the common reaction/outcome
+consumer. Product identity evidence and preparative conditions travel with the
+result; exact assayed sequence, numerical enzymatic ee/de and absolute
+configuration remain unestablished in the inspected primary scope.
+
+The source's double-mutant inactivity statement is retained as data not shown,
+without a specific assay or numerical effect. No single-mutant scope combination,
+M0468 catalytic role or reacting geometry is inferred. Acquisition is complete
+at six requests / 2,374,099 bytes in the distinct Raj2012 batch. No new project
+experiment, protected registry admission or design-performance claim follows.
+
 ## 2026-09-11: a non-step-declared reference site retains mutation evidence
 
 The optional [fragment query](ATLAS_MECHANISM_EVIDENCE.md#entry-level-mutation-annotations-retain-their-narrower-evidence-basis) now links the Glu317A source fragment to entry-wide P11444:E317 and its UniProt E317Q activity-reduction annotation. E317 remains unresolved in the selected-step catalyst relation, with no measured observation attached. The same reference-feature rule returns H297N's coarse activity-loss annotation beside its existing endpoint-specific S-exchange evidence.

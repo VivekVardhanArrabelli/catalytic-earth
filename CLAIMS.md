@@ -645,6 +645,23 @@ CaMWN/Ac-CaMWN rows as a0.8 preparation contrast, without changing genetic
 comparisons or adding measurements. No statistical equivalence, chemical-state
 assignment, project experiment, independent validation or design claim follows.
 
+## CE-043 — a preparative MAL product outcome does not supply an exact selectivity
+
+**Status:** Supported
+
+The [Raj2012 L384A source relation](docs/ATLAS_MAL_SYNTHESIS.md) retains
+65% conversion by proton NMR after seven days and 50% yield after the stated
+purification for ammonia addition to 2-(benzyloxy)-fumaric acid (1j), producing
+3-benzyloxyaspartic acid (4j). The source uses 3.1 mmol acid, 31 mmol NH4Cl,
+20 mM MgCl2 and a 25 mL water preparation at pH 9 and 22 °C, with 5 mg enzyme
+initially and another 5 mg after two days. Conversion, isolation and
+selectivity remain distinct endpoints. The source-labeled threo-DL HPLC
+retention pair does not identify enzymatic ee/de or absolute configuration.
+The qualitative Q73A/L384A inactivity statement has no shown data or specified
+assay; it does not quantify epistasis or prove a geometry change. Two source
+parameter records reuse the existing consumer without a new kinetic comparison,
+project experiment, protein admission, mechanism validation or design claim.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,

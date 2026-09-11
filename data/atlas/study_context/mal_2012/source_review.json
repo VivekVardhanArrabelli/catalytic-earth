@@ -1,0 +1,80 @@
+{
+  "schema_version": "catalytic-earth.source-qualification-review.v1",
+  "assessment_id": "raj2012-mal-l384a-1j-4j-outcome",
+  "decision": "source_annotation_accepted_at_named_preparative_outcome_scope",
+  "authorized_operation": "source_annotation",
+  "reviewed_at_utc": "2026-09-11T16:23:35.624483+00:00",
+  "policy_binding": {
+    "path": "data/governance/computational_review_policy.json",
+    "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "reviewed_bindings": {
+    "data/atlas/study_context/mal_2012/source_qualification.json": "5cbfda038e21f4b833fd78d2b0df236a5a92e3d6467b593af4c1b474a05ecee0",
+    "data/atlas/study_context/mal_2012/acquisition_receipts.json": "e137a384a0a32c73345177bdf25872ef95c151b20ec02be8bbbfc068ddd61676",
+    "docs/ATLAS_MAL_SYNTHESIS.md": "e7a53c04aaa85f87b8aceb98b7aee5b3ef893098711f15c61896600bf58068ec"
+  },
+  "review_process": {
+    "parent": "GPT-6 Astra coordinating source integration and visual checks",
+    "agents": [
+      {
+        "role": "primary_source",
+        "task": "source_raj2012",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra"
+      },
+      {
+        "role": "chemical_representation",
+        "task": "representation_raj2012",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra"
+      },
+      {
+        "role": "adversarial_source_and_accounting",
+        "task": "adversarial_raj2012",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra"
+      }
+    ],
+    "independence": "Shared parent context and source facts; correlated computational reviews, not independent human, chemical or laboratory validation. Source objections override agreement."
+  },
+  "adjudications": [
+    {
+      "objection": "The printed product parameter is Yield, not the literal phrase isolated yield.",
+      "resolution": "Keep the source label Yield and state explicitly that isolated_yield is classified from the preparative purification workflow. No reinterpretation of the reported 50 scalar."
+    },
+    {
+      "objection": "The supplement does not name UniProt Q05514.",
+      "resolution": "Reference accession association is explicitly through UniProt and its Raj2012 citation; no exact assayed sequence or tag-free construct substitution."
+    },
+    {
+      "objection": "A low-resolution review read p25 as a single forward arrow.",
+      "resolution": "High-resolution direct visual inspection reveals opposing arrows. Reviewer retracted the single-arrow reading. Store opposing_arrows_as_drawn and explicitly withhold equilibrium/reverse-rate inference."
+    },
+    {
+      "objection": "A threo-DL retention pair does not establish the enzymatic configuration or exact selectivity.",
+      "resolution": "Keep enzymatic ee/de and absolute configuration null, preserve only the qualitative publisher abstract at its own scope. No other product selectivity transfers."
+    },
+    {
+      "objection": "Q73A/L384A inactivity has data not shown and no specified assay.",
+      "resolution": "Keep author-statement context with null scalar, assay, substrates and uncertainty; no measured zero, combinatorial mechanism, epistasis value or geometry cause."
+    },
+    {
+      "objection": "Precursor1j locator was initially p23.",
+      "resolution": "Parent text/visual check locates1j on PDF/printed p22; all packet locators corrected."
+    }
+  ],
+  "blocked_operations": [
+    "Exact enzymatic ee/de or absolute-configuration assignment from inspected4j entry",
+    "Wild-type or double-mutant numerical comparison for4j",
+    "Microscopic mechanism, exact reacting geometry or M0468 catalytic-role transfer",
+    "Exact assayed sequence or preparation authentication",
+    "Protected registry expansion or exact-reaction-instance admission",
+    "Independent validation or design-performance claim"
+  ],
+  "new_source_requests": 6,
+  "new_source_response_body_bytes": 2374099,
+  "independent_human_review": false,
+  "new_project_experiments": 0,
+  "coordination_record": ".git/catalytic-earth-runs/f4e2a0dc.board.md",
+  "remaining_limits": "Main article body uninspected; source named constructs only; no exact enzymatic selectivity or assay for the double-mutant statement. These do not block the source-reported conversion and yield annotation."
+}
