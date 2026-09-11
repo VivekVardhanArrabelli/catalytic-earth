@@ -325,6 +325,14 @@ The FAD rate includes multiple microscopic steps, and DCPIP replaces oxygen.
 These data establish neither generic inactivity, oxygen-turnover kinetics,
 an elementary-step rate, geometric causation nor new experimental validation.
 
+The [wild-type POX source-model relation](docs/ATLAS_STUDY_CONTEXT.md#pox-binding-and-a-multistep-reporter-require-different-model-relations)
+binds MAP association/dissociation to their reversible apparent model and
+pyruvate k_app_max to a FAD reporter phase spanning two source-model
+transitions. K_D_app and K_0.5 retain different fit-level roles. Individual
+pyruvate arrow rates remain unassigned, and no matching deposit is established.
+This reuses five existing parameters without transferring the wild-type MAP
+conjugate to E59Q or establishing atom-resolved chemistry or microscopic rates.
+
 ## CE-026 — designed-enzyme perturbations depend on background and endpoint
 
 **Status:** Supported

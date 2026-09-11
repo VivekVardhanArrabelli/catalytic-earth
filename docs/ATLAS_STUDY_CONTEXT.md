@@ -213,6 +213,75 @@ to retain the WT control and the different F6P contexts beside its turnover
 ratio. Other table columns remain in the source annotation; the existing
 installed three-observation study-context command is unchanged.
 
+## POX binding and a multistep reporter require different model relations
+
+The retained Supplementary Methods distinguish a reversible MAP model from
+a pyruvate pathway whose last two transitions produce one observed FAD phase:
+
+```text
+MAP:       E + MAP <-> covalent MAP-ThDP conjugate
+           forward k_on; reverse k_off
+
+Pyruvate:  Eox + S <-> Michaelis complex <-> covalent intermediate -> Ered + P
+                                         |------ one observed phase ------|
+```
+
+These are source-labelled kinetic states, without atom-resolved chemistry.
+The MAP and pyruvate branches have separate ligand identities. In particular,
+the two uncombined states do not denote the same enzyme-plus-ligand inventory.
+The source's reversible Michaelis-to-conjugate arrow remains reversible even
+though the later pyruvate processing step is drawn irreversible.
+
+```bash
+python scripts/query_atlas_perturbations.py --model-link pox_2019:wild_type:MAP_pyruvate_models
+```
+
+This returns five **existing wild-type observations**, no arithmetic comparison,
+and the [source-model relation](../data/atlas/study_context/pox2019/model_context.json).
+MAP `k_on` is second order (mM^-1 s^-1); `k_off` is first order (s^-1).
+The MAP readout is absorbance at 310 nm. They belong to the apparent
+two-state model including the covalent conjugate,
+not a separately resolved noncovalent docking step. The source-derived
+`K_D_app = k_off/k_on` stays a fit-level apparent equilibrium parameter.
+
+Pyruvate `k_app_max` belongs to the saturated, multistep FAD reporter phase
+measured at 457 nm under anaerobic conditions,
+which covers conjugate formation and subsequent processing. It is not assigned
+to either individual arrow; all individual pyruvate rate slots remain
+unassigned, with no zero-rate inference. `K_0.5` stays the cooperative response
+midpoint with the authors' preceding-binding-equilibrium interpretation.
+The source equation retains the Hill exponent n; its numeric coefficient
+remains in the original provider, without a sixth observation. Equations 9–12 and the two schemes on Supplementary Methods
+printed pages 8–9 (PDF pages 9–10) supply these model distinctions.
+
+The shared consumer checks ligand branches, assay and construct identity,
+kinetic units, connected phase coverage, and exact parameter references.
+Fit parameters cannot become individual transition rates. Every bound
+directional rate must have exactly one corresponding endpoint relation.
+This latter guard also prevents an unwitnessed rate from being attached to
+the existing TKT cleavage transition; its accepted output remains unchanged.
+Source review supplies the chemical meaning; these checks do not authenticate
+a model merely because its fields agree. A coherent rewrite of states,
+directions and parameter roles still needs renewed primary-source review;
+the public query rejects changed context bytes without that reviewed binding.
+
+The arrangement is explicitly absent. Data Availability identifies 6HAF as
+E59Q with phosphate, which matches neither the wild-type construct nor MAP.
+The retained Figure 7a legend names wild-type 4FEG with a carbanion-enamine
+intermediate, but no retained coordinate/arrangement packet or assay-preparation
+identity supports its inclusion in this relation.
+No structural template, full atomic sequence, microscopic rate, oxygen turnover
+or physical-preparation equivalence follows. The original assay conditions,
+uncertainties and method limitations remain attached. E59Q's separate
+nonbinding and pyruvate responses below are unchanged; this wild-type model
+does not assign a MAP conjugate to E59Q. All four primary witnesses were
+already retained and remain host-local; new acquisition is zero.
+
+This demonstrates reuse across two enzyme contexts in one publication and
+adds a checked relation between a measured phase and multiple source-model
+transitions. Cross-publication coverage, measured curation savings and design
+performance remain unestablished.
+
 ## POX analogue binding does not supply a generic activity label
 
 The same study's [POX comparison](../data/atlas/study_context/pox2019/functional_comparison.json)

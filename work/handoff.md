@@ -1,83 +1,89 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research baton — 2026-09-11 TKT F6P transition identity
+## Current research baton — 2026-09-11 POX model and reporter scope
 
-- **Identity/base:** actual start 2026-09-11T05:05:23Z; owner
-  `01a08eda-f15c-79a1-b016-6fb90f72112e:1aca981e-ca42-4533-be1e-1c70567bfe1a`;
-  lock acquired 05:05:47Z. Clean synchronized main base
-  `591b5f3242e53b551399f645fc2253e6915f3a89` (PR93); no open PR or recovery.
-  Branch `codex/tkt-f6p-transition-endpoints-20260911`. Checkpoint
-  2026-09-11T05:29:20.467389+00:00 / minute 24.0; final elapsed/publication in receipt.
-- **Question/direction:** the RA95 priority and DERA/Xue failed routes remain
-  closed. Test retained human-TKT2019 E160Q/6HA3 for an F6P state-to-step-to-
-  endpoint relation, addressing the direction review's incomplete mechanism
-  chain. Stop at a supported partial relation or first missing atomic premise.
-- **Scientific result:** source equation8 assigns F6P conjugate formation and
-  reversal to k_forward and k_reverse. E160Q k_forward5.91±0.43 and
-  k_reverse0.47±0.23s^-1 at4C belong to Michaelis↔conjugate. Equation3
-  separately describes conjugate↔DHEThDP+E4P with equilibrium labelK3;
-  no cleavage rate is assigned by that binding fit. NMR at20C/30s supports
-  qualitative F6P-ThDP accumulation, not zero cleavage or a cleavage fraction.
-- **Chemical scope:** Extended Data Fig1c names formed ThDPC2–F6PC2x and
-  scissile C2x–C3x. Project aliases map these to T6FC2–CF2 and CF2–CF3;
-  both dictionary bonds and both coordinate pairs remain in6HA3. The partial
-  bond/state relation is supported; a complete elementary sequence stops at
-  absent authenticated before graphs and proton/electron/tautomer premises.
-  AP-band depletion is an ensemble reporter, not isolated bond-making kinetics.
-  No carbonyl-order reconstruction, cross-assayK2, microscopic cleavage rate,
-  physical-preparation/conformer identity, geometry cause, M0219 direction or
-  productiveF6P turnover is inferred. Original source packets remain unchanged.
-- **Reusable output:** `data/atlas/study_context/6ha3/f6p_transition_context.json`
-  and `f6p_transition_review.json`; current study/perturbation guides andCE-024.
-  `python scripts/query_atlas_perturbations.py --model-link tkt_2019:E160Q:F6P_transitions`
-  returns2 existing observations,0 arithmetic comparisons and1 source-model link.
-  Generic links check exact direction/parameter/assay/original-observation and
-  bond-alias references. Cleavage parameters are explicit unassigned slots, not
-  zero. Existing exact-sequence state_links retain their stronger identity rule.
-  All216 prior observations,123 comparisons and2 state links are exact unchanged
-  objects; onlyCE-024 is extended and39 other claims are unchanged.
-- **Source use:** no acquisition; four previously retained publisher witnesses
-  are bound in the new context. Retained SI printedpp5–7 (PDFpp6–8), equations3/8
-  and Extended Data legends/table supply the premises; PDFpp6/8 visually checked.
-  All24 shared witnesses/25,252,078bytes verify. TKT same batch
-  `human-tkt-e160q-6ha3-geometry-function` remains a lower bound of7requests/
-  3,004,884bytes; complete accounting/headroom unknown. Other batches unchanged:
-  KSI26/5,739,717;RA9533/17,556,517;Diels20/519,698;RA6145/3,236,259;
-  KE599/261,580;KE7016/1,102,794;beta5/8,449,621;defaultM-CSA49/1,109,896.
-  PLP73/5,068,731 andpanel28/1,474,405 remain lower bounds;
-  M0187followup12/440,960 is a subledger. Publisher bodies remain host-local;
-  already redistributed6HA3 coordinates stay unchanged.
-- **Review/reconsideration:** read-only Sol/ultra source_tkt, representation_tkt
-  and adversarial_tkt share `.git/catalytic-earth-runs/1aca981e.board.md`;
-  parent owns all edits/Git/lock. Source objections narrowed bond and distribution
-  wording. Representation attacks found and repaired original-observation,
-  assay and bond-role joins; regression cases preserve those failures. These
-  reviews are correlated computation, not independent human validation.
-  No enzyme branch or fabricated graph. The source-model link addresses a real
-  missing relation mode, but second-case reuse and curation-time savings remain
-  unproved. Added value is transition discrimination, not another rate table or
-  a complete mechanistic atlas. No incumbent superiority is claimed.
-- **Verification/publication:** focused 85 tests + 44 subtests, final core 614
+- **Identity/base:** actual start 2026-09-11T06:06:22Z; owner
+  `01a08f12-cae4-7501-89d4-ceb3355ad447:9b2f1067-8d8e-485e-8543-c7a2ae70f035`;
+  lock acquired 06:06:49Z. Clean main base
+  `87d5e26441ec9de36ccdef652543cb01dfeb7af0` (PR94); no open PR or recovery.
+  Branch `codex/pox-model-endpoints-20260911`. Checkpoint
+  2026-09-11T06:35:54.967935+00:00 / minute 29.5; final elapsed/publication in receipt.
+- **Question/direction:** the completed RA95 priority and stopped DERA/Xue
+  routes stay closed. Test retained POX MAP binding versus pyruvate processing
+  as the second source-model consumer use. Expected gain: distinguish ligand,
+  kinetic order and a measured phase from an individual chemical transition.
+  The bounded relation is complete; no new source acquisition was needed.
+- **Scientific result:** SI printed pp8–9 (PDF pp9–10), equations9–12 and
+  schemes assign MAP k_on/k_off to its reversible apparent two-state model,
+  including a covalent conjugate. k_on is second order and k_off first order.
+  The pyruvate FAD phase spans reversible Michaelis-to-conjugate formation
+  and subsequent processing. k_app_max belongs to that saturated multistep
+  phase; every individual pyruvate rate slot remains unassigned, not zero.
+  K_D_app and K_0.5 retain different ligand/fit roles. The source equation
+  retains n; its numeric Hill coefficient remains in the original provider.
+- **Output/limits:** `data/atlas/study_context/pox2019/model_context.json`
+  and `model_review.json`, current study/perturbation guides and CE-025.
+  `python scripts/query_atlas_perturbations.py --model-link pox_2019:wild_type:MAP_pyruvate_models`
+  returns five existing WT observations, no arithmetic comparison and one
+  model link. MAP A310 and anaerobic FAD A457 are distinct reporters.
+  The missing arrangement is explicit: 6HAF is E59Q with phosphate; retained
+  4FEG legend names WT carbanion-enamine but no coordinate/arrangement packet
+  or assay-preparation match supports inclusion. No atom-resolved mechanism,
+  microscopic rate, oxygen turnover, productive geometry or exact preparation
+  identity follows. WT MAP state does not transfer to E59Q; its original
+  nonbinding and positive pyruvate observations are unchanged.
+- **Source use:** all four publisher witnesses reused; SI pages visually
+  checked. All 24 retained primary witnesses / 25,252,078 bytes verify.
+  Same TKT/POX batch `human-tkt-e160q-6ha3-geometry-function` remains a
+  lower bound of 7 requests / 3,004,884 bytes, with complete accounting and
+  headroom unknown. Other totals unchanged: KSI 26 / 5,739,717;
+  RA95 33 / 17,556,517; Diels 20 / 519,698; RA61 45 / 3,236,259;
+  KE59 9 / 261,580; KE70 16 / 1,102,794; beta 5 / 8,449,621;
+  default M-CSA 49 / 1,109,896. PLP 73 / 5,068,731 and panel
+  28 / 1,474,405 remain lower bounds; M0187 followup 12 / 440,960
+  is a subledger. No publisher bodies redistributed or source batches renamed.
+- **Review/reconsideration:** read-only Sol/ultra source_pox,
+  representation_pox and adversarial_pox share
+  `.git/catalytic-earth-runs/9b2f1067.board.md`; parent owns edits/Git/lock.
+  The new case exposed genuine missing fit and optional-arrangement concepts,
+  addressed generically with ligand/source facts in data. No enzyme-ID branch.
+  Exact pointers reuse five observations without table transcription. Review
+  found and fixed unreferenced edge rates, removable kinetic roles/units and
+  an unbound enzyme name. A contextual Hill-coefficient transfer was removed
+  instead of adding a new adapter for an unnecessary scalar. Coherent complete
+  semantic rewrites still require source review, not just self-consistency.
+  Reuse is demonstrated across two enzyme contexts in one publication;
+  cross-publication scope, curation-time savings, incumbent superiority and
+  a complete mechanism/design chain remain unproved. These reviews are
+  correlated computation, not independent human or experimental validation.
+- **Verification/publication:** 65 focused tests plus 75 subtests, 618 core
   tests, original study validation, repository contracts and fresh-directory
-  Atlas-3/10 wheel/source-draft/candidate checks pass. Exact prior-object/claim
-  invariance and all24 retained witnesses verify. The architecture inventory
-  changed only17700versus17698 paths; staged-handoff report index is renewed.
-  Source/representation/adversarial reviews found no remaining material defect;
-  source meaning remains computationally reviewed, not independently validated.
+  Atlas-3/10 wheel/source-draft/candidate checks pass. All 216 observations,
+  123 comparisons, 2 state links and prior TKT model output are exact unchanged
+  objects; only CE-025 extends and 39 other claims are unchanged. Original
+  providers, protected registries, frozen kernels and exposure history remain
+  unchanged. Architecture inventory changes only 17,700 to 17,702 paths;
+  staged-handoff report index will be rebuilt before commit. No unrelated work.
   Containing increment is unpublished at this checkpoint; parent will publish
-  and merge only after source/diff review and passing requiredCI at the reviewed
-  head. Exact finalSHA, push/PR/merge/CI and guarded release are recorded in
-  `.git/catalytic-earth-runs/hourly-20260911T050523Z-1aca981e.json` and task
-  result. Resume this branch/PR first if unfinished. No unrelated dirty work.
-- **One next action:** test this model/endpoint relation on retained POX MAP
-  binding versus pyruvate processing. Expected gain: actual reuse across distinct
-  ligand/endpoints without another bespoke kinetic table. Begin offline and
-  preserve second-order MAP binding versus multistep FAD processing. A matching
-  MAP deposit is not established; never substitute6HAF phosphate forMAP. Stop
-  after one supported relation or a concrete shared-concept gap (including an
-  absent/optional arrangement), with no new acquisition or enzyme-specific code.
-  Do not reopen the missing TKT atomic sequence without new evidence.
+  and merge only after exact source/diff review and passing required CI at the
+  reviewed head. Final SHA/PR/push/merge/CI and guarded release belong in
+  `.git/catalytic-earth-runs/2026-09-11T0606-9b2f1067-8d8e-485e-8543-c7a2ae70f035.json`
+  and task result. Resume this branch/PR first if unfinished.
+- **One next action:** test retained Lassila2010 RA61 main/SI for a common
+  source-model relation separating the catalytic path through aldehyde formation
+  from off-pathway product sequestration by a lysine iminium/Schiff-base state.
+  Start with `data/atlas/study_context/ra61_2010/component_evidence.json` and
+  its bound main pp1–2 / SI pp2–4 and Figure S3. Expected gain: a non-ThDP
+  designed-enzyme constraint showing why a covalent state or burst-like loss of
+  free-product fluorescence need not report late catalytic steps. Keep initial
+  (kcat/KM)obs, product binding and fluorescence assumptions distinct; no new
+  table, curve refit, microscopic rate or substrate-KM inference. Use source
+  “active-site lysine” unless its product-adduct link to Lys176 is authenticated.
+  Stop after one supported shared relation or the first consequential source/
+  representation gap; do not build enzyme-specific code to force it. Begin
+  offline, with zero new acquisition; the same fully accounted RA61 batch is
+  45 requests / 3,236,259 bytes. Preserve unknown sequence/preparation scope.
 
 Preserve historical content below this marked block. Git identifies the
 containing commit; no self-hash follow-up commit is needed.

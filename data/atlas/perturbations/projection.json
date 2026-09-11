@@ -112,6 +112,10 @@
     "tktt": {
       "path": "data/atlas/study_context/6ha3/f6p_transition_context.json",
       "sha256": "adcd65ad712906ec44161429739887b8eb314b4ea4cdc660279ab2ba8bdaaa18"
+    },
+    "poxmodel": {
+      "path": "data/atlas/study_context/pox2019/model_context.json",
+      "sha256": "2e9be65db3bc470f35a11ac63cdac15ff954357780d4b3c1eb9ada694eb53fde"
     }
   },
   "constructs": {
@@ -9433,6 +9437,22 @@
       "observation_ids": [
         "tkt-stopped_flow:E160Q:k_forward",
         "tkt-nmr:E160Q:covalent_intermediate_accumulation"
+      ]
+    },
+    {
+      "id": "pox_2019:wild_type:MAP_pyruvate_models",
+      "study_id": "pox_2019",
+      "construct_id": "pox_2019:wild_type",
+      "context_provider": {
+        "source": "poxmodel",
+        "pointer": ""
+      },
+      "observation_ids": [
+        "pox-analogue_binding:wild_type:k_on",
+        "pox-analogue_binding:wild_type:k_off",
+        "pox-analogue_binding:wild_type:K_D_app",
+        "pox-single_turnover:wild_type:k_app_max",
+        "pox-single_turnover:wild_type:K_0.5"
       ]
     }
   ]

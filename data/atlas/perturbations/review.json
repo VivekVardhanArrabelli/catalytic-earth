@@ -1,22 +1,22 @@
 {
   "schema_version": "catalytic-earth.perturbation-source-review.v1",
   "status": "source_reviewed_computational",
-  "reviewed_at_utc": "2026-09-11T05:26:28.807648+00:00",
-  "scope": "Cumulative source-reviewed projection. This increment adds a generic source-model association for E160Q F6P formation/reversal versus donor cleavage; all prior observation/comparison/state-link objects remain unchanged. No complete atom-resolved elementary step is established.",
+  "reviewed_at_utc": "2026-09-11T06:24:06.581159+00:00",
+  "scope": "Cumulative source-reviewed projection. This increment adds a POX wild-type source-model relation, generic ligand/fit semantics and explicit missing arrangement; all prior observation/comparison/state-link/TKT-model objects remain unchanged. No atomic mechanism or individual pyruvate transition rate is established.",
   "reviewed_bindings": {
-    "data/atlas/perturbations/projection.json": "2b50bab69b2046ff34f99308d35f8d198ca1d653535db3ce1cebc589e2a65802",
-    "src/catalytic_earth/atlas_perturbations.py": "a1ebe2fb06ab6a975bd82e38f8aa093cb3d30e57932c24c48cd2b36b8a5e981d",
+    "data/atlas/perturbations/projection.json": "da2be39dbaea07edd0640bdbaf8c859b8442c2395568fead2a6fdcbe87ce998d",
+    "src/catalytic_earth/atlas_perturbations.py": "c133daa2b62d9656abe2d2d32ff0ea731f3c97a4819f9c44ac5f57ee3d26aff4",
     "scripts/query_atlas_perturbations.py": "85fb364ead64f944d8fe9e22985b1264521e37061c8ea7918d945d0fe0243da4",
-    "docs/ATLAS_PERTURBATION_RELATION.md": "c67980c8025daeb3420c843f8ced6ef5445ea3c7fa402d9b3bf7ffd8c2d86d21",
+    "docs/ATLAS_PERTURBATION_RELATION.md": "35ddeded0c09727e5775aa6d2fe23a06c884891d569ebe0c949bfcd2bcff2eae",
     "data/atlas/study_context/ra95_2017/forward_synthesis_review.json": "a8025989cb89415ac59267dc0af2da415019af3786ec2db3debd18630de8be9d",
     "docs/ATLAS_FORWARD_SYNTHESIS.md": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84",
     "data/atlas/study_context/diels_alder_2010/source_review.json": "bd97ed99812a3188ef47c090f61c87b0891bbc470222c49ee7698455680bf865",
     "docs/ATLAS_DIELS_ALDER_CONTROLS.md": "749e81dbcebcceb9022a5b4a5043bb16276c712c43b0c856feb394561830ac19",
-    "tests/core/test_atlas_perturbations.py": "a7a98d49e9201691b9f96b8589552c93c6e1fb948aa3b73d7ddb6c44509bbdd8",
+    "tests/core/test_atlas_perturbations.py": "9bd2041f7fce5f6e5a1dd267d700de6f6582ddac207d74c673b244a4f73e7ff3",
     "data/atlas/study_context/6ha3/perturbation_context.json": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0",
     "data/atlas/study_context/6ha3/functional_review.json": "9af6d94d77800810d210e032e90e6af6a99ffd22a5548d9d39b5a7f502199200",
     "data/atlas/assembly_context/6ha3/review.json": "434188c22e847de2add0c76cc06076de9347d39ecd259acc051631792fcc7eaa",
-    "docs/ATLAS_STUDY_CONTEXT.md": "0a699d7ee5c6271c7b057fac19b63940b0fca9e2c04f52812620e2b4822f6eab",
+    "docs/ATLAS_STUDY_CONTEXT.md": "df4a7b6ab899c63b03610442728884164aff8f268fc9dd8904a4a90450d99d3e",
     "data/atlas/study_context/pox2019/perturbation_context.json": "e29120547dbd982b1fb5b3f2ff1b1228e0fc96a16f540f20c1eaf39d35b93257",
     "data/atlas/study_context/pox2019/functional_review.json": "63ecd4add9ea393ede14f3f0fb9b8f6592171ae97bd35f3124e87c3cb08bcac9",
     "data/atlas/study_context/beta_barrel_2022/perturbation_context.json": "1fc756ce8005249c6f586685c0bced3de938fe14926f1a5fee96abffe427bc1a",
@@ -31,10 +31,10 @@
     "data/atlas/study_context/ra95_2017/chemical_state.json": "0304a28cc9676ae9d920b5c4f6c47f102d10320e125cc40cbfddd971ccff695d",
     "data/atlas/study_context/ra95_2017/chemical_state_acquisition.json": "4b0427a24aab3b1269f25cd80b3b9c90f61c4a99404499d77cf0c16a8b5f2ecb",
     "docs/ATLAS_RA95_CHEMICAL_STATE.md": "a85ee7c6accdafb0f2fb63a1a658413e07788cee4a5f9f7879dce726c6707c01",
-    "CLAIMS.md": "95575b9cdef84d7fded6705bab2a68898b6423270d4934ade81d472a048a5d5d",
-    "data/governance/claim_ledger.json": "c1b744a900be257b106b6ad00d9d81839928e97b8de4801e48a38becdfa7db53",
-    "docs/CURRENT_DECISIONS.md": "6d5d17e3405ddf05afc28cf4d746eaa804e11d56fe11eff031e35533760f22a6",
-    "docs/CURRENT_STATE.md": "aa9a65f2ee2d737ccda51c1c43170084e51be32da1d699cb48450a29b902d595",
+    "CLAIMS.md": "0cd61365766cb3d32b0762d4c5f8a1980f4658456fabafa1c4180753a95b626b",
+    "data/governance/claim_ledger.json": "e8871e58ec17022205109484753ceadc84392e76b8315666fada209e791bd98d",
+    "docs/CURRENT_DECISIONS.md": "4476fa13f14ceed6a84ab641bf4723441b7aeb8c2e1e316534dc02f7e45371e5",
+    "docs/CURRENT_STATE.md": "3736ee56b1e858b1bca12fb9fcbf1597d5d45c835656cc746c93562bd80f1d68",
     "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
     "src/catalytic_earth/atlas_deposit_context.py": "adfae408de29e6b5f61fab970d7631f42846a9cdaedea0340d65e6ac95ad2a87",
     "src/catalytic_earth/atlas_assembly_context.py": "5d671a761f3ad493661f3c25b50dce693ef2169a48942af9664a65e0b0ae0835",
@@ -67,7 +67,10 @@
     "data/atlas/study_context/6ha3/f6p_transition_context.json": "adcd65ad712906ec44161429739887b8eb314b4ea4cdc660279ab2ba8bdaaa18",
     "data/atlas/study_context/6ha3/evidence_projection.json": "70bf1eaa59747239990161631432a44440629704aa50051bddd551309fb1213e",
     "data/atlas/study_context/6ha3/functional_comparison.json": "a8205b4964ac094b41172cdfa9309c70cd004bfa458ee9ea62bbf64785bf6366",
-    "data/atlas/study_context/6ha3/f6p_transition_review.json": "de02ffde0278fc8f4badc0cffd6e7bdc9b85fdd0293bd994d3c72518ccbda49f"
+    "data/atlas/study_context/6ha3/f6p_transition_review.json": "de02ffde0278fc8f4badc0cffd6e7bdc9b85fdd0293bd994d3c72518ccbda49f",
+    "data/atlas/study_context/pox2019/model_context.json": "2e9be65db3bc470f35a11ac63cdac15ff954357780d4b3c1eb9ada694eb53fde",
+    "data/atlas/study_context/pox2019/functional_comparison.json": "570ffb83d9272d41ed72ff389c2f56fbc1415c7d6d9fbdd6c622476957c2a4b5",
+    "data/atlas/study_context/pox2019/model_review.json": "73b4a6c70af0ba6cfb45601412a682a2b9f30ad646cc8943869b6f481f5a548b"
   },
   "inherited_source_bindings": {
     "ra95f": {
@@ -778,5 +781,19 @@
       "sha256": "eda3695c508766c3aa7c181c40b43c316d4f4f1e959d2a998ebe65b31423b53b"
     },
     "scope": "Five rounded reported kcat-reduction factors plus assessed donor-control context; no arithmetic or analogue-state transfer."
+  },
+  "pox_model_followup": {
+    "reviewed_at_utc": "2026-09-11T06:24:06.581159+00:00",
+    "prior_review_sha256": "37ae44c4112880f0472a421bc110eca9e70ba4b8ec791982a08e0201f1054743",
+    "source_review": {
+      "path": "data/atlas/study_context/pox2019/model_review.json",
+      "sha256": "73b4a6c70af0ba6cfb45601412a682a2b9f30ad646cc8943869b6f481f5a548b"
+    },
+    "result": "Five existing WT observations bind distinct ligand and source-model/fit contexts. The source equation retains n; no contextual scalar or observation is added. Individual pyruvate rates unassigned; no matched arrangement.",
+    "invariance": "216 observations,123 comparisons,2 exact-sequence state links and previous TKT model link are exact unchanged objects. All original providers and primary witnesses unchanged.",
+    "new_source_requests": 0,
+    "new_response_body_bytes": 0,
+    "coordination_record": ".git/catalytic-earth-runs/9b2f1067.board.md",
+    "independent_validation": false
   }
 }
