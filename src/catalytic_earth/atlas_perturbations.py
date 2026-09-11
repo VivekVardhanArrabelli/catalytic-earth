@@ -277,15 +277,137 @@ def compare(rows: dict[str, dict[str, Any]], request: dict[str, Any]) -> dict[st
     return result
 
 
-def control_relation(context, resolve):
-    """Compare two source-bound systems without assigning genetic or causal roles.
+def _system_arm(role, arm, resolve, reasons, bind_source_qualification=False):
+    """Resolve one source system measurement without assigning a comparison role."""
+    if (type(arm["assay_qualified"]) is not bool
+            or len({arm[key]["source"] for key in
+                    ("observation_provider", "system_provider", "assay_provider")}) != 1):
+        raise ValueError("system control arm must use one source and explicit assay qualification")
+    row = resolve(arm["observation_provider"])
+    system = resolve(arm["system_provider"])
+    assay = resolve(arm["assay_provider"])
+    source_qualification = assay.get("qualified_for_cross_system_arithmetic")
+    if (bind_source_qualification and "qualified_for_cross_system_arithmetic" in assay
+            and (type(source_qualification) is not bool
+                 or source_qualification != arm["assay_qualified"])):
+        raise ValueError("system control assay qualification differs")
+    identity_field = arm["system_identity_field"]
+    if (identity_field not in {"system_id", "construct_id"}
+            or row["row_id"] != arm["source_row_id"]
+            or row[identity_field] != system[identity_field]
+            or row["assay_id"] != assay["assay_id"]):
+        raise ValueError("system control row, system or assay identity differs")
+    parameter = pointer(row, arm["parameter_pointer"])
+    if parameter["parameter"] != arm["parameter"]:
+        raise ValueError("system control parameter identity differs")
+    kind, value, unit = (parameter[key] for key in ("status", "value", "unit"))
+    if kind not in KINDS:
+        raise ValueError("unknown system control result kind")
+    if kind != "numeric":
+        if value is not None:
+            raise ValueError("nonnumeric system control cannot carry a numeric value")
+        reasons.append(f"{kind}:{role}")
+    elif not _number(value) or value < 0 or not unit:
+        reasons.append(f"invalid_numeric_parameter:{role}")
+    error = parameter["uncertainty"]
+    if (error["unreported_is_zero"] is not False
+            or (error["value"] is not None and
+                (not _number(error["value"]) or error["value"] < 0
+                 or error["kind"] in {None, "not_reported"}))):
+        raise ValueError("invalid system control uncertainty")
+    if not arm["assay_qualified"]:
+        reasons.append(f"unresolved_assay:{role}")
+    return {
+        **deepcopy(arm),
+        "source_observation": row,
+        "source_system": system,
+        "source_assay": assay,
+        "source_parameter": parameter,
+    }
 
-    The source review supplies the condition vectors and normalization meaning.
-    Equality here checks those declarations, not every physical property of the
-    preparations or their effective reactive-phase concentrations.
+
+def _system_assessment(context, resolve):
+    """Retain assessed chemical-system observations when no arithmetic is requested."""
+    required = {"schema_version", "id", "study_id", "operation",
+                "source_discriminant_assessed", "arithmetic_requested",
+                "assessment_provider", "source_blocks", "evidence",
+                "interpretation_limit", "arms"}
+    if (set(context) != required
+            or not isinstance(context["study_id"], str) or not context["study_id"].strip()
+            or context["source_discriminant_assessed"] is not True
+            or context["arithmetic_requested"] is not False
+            or not isinstance(context["source_blocks"], list)
+            or not all(isinstance(reason, str) and reason for reason in context["source_blocks"])
+            or not isinstance(context["arms"], dict) or not context["arms"]
+            or not all(isinstance(role, str) and role for role in context["arms"])):
+        raise ValueError("malformed system assessment declaration")
+    arm_fields = {"observation_provider", "system_provider", "assay_provider",
+                  "system_identity_field", "source_row_id", "parameter_pointer",
+                  "parameter", "assay_qualified"}
+    if any(set(arm) != arm_fields for arm in context["arms"].values()):
+        raise ValueError("malformed system assessment arm")
+    sources = {arm[provider]["source"] for arm in context["arms"].values()
+               for provider in ("observation_provider", "system_provider", "assay_provider")}
+    if len(sources) != 1:
+        raise ValueError("system assessment arms must use one source")
+    source = resolve({"source": next(iter(sources)), "pointer": ""})
+    if not isinstance(source, dict) or source.get("study_id") != context["study_id"]:
+        raise ValueError("system assessment source study identity differs")
+    source_id = next(iter(sources))
+    assessment_provider = context["assessment_provider"]
+    if (not isinstance(assessment_provider, dict)
+            or set(assessment_provider) != {"source", "pointer"}
+            or assessment_provider["source"] != source_id):
+        raise ValueError("system assessment provider must use the arm source")
+    source_assessment = resolve(assessment_provider)
+    if (not isinstance(source_assessment, dict)
+            or not isinstance(source_assessment.get("supported"), str)
+            or not source_assessment["supported"].strip()):
+        raise ValueError("system assessment requires a bound source assessment")
+    evidence_refs = context["evidence"]
+    if (not isinstance(evidence_refs, list) or not evidence_refs
+            or any(not isinstance(ref, dict) or set(ref) != {"source", "pointer"}
+                   or ref["source"] != source_id for ref in evidence_refs)):
+        raise ValueError("system assessment evidence must use the arm source")
+    evidence = [resolve(ref) for ref in evidence_refs]
+    if any(not item for item in evidence) or not context["interpretation_limit"]:
+        raise ValueError("system assessment requires source evidence and interpretation limit")
+    selectors = [(arm["observation_provider"]["source"],
+                  arm["observation_provider"]["pointer"], arm["parameter_pointer"])
+                 for arm in context["arms"].values()]
+    if len(selectors) != len(set(selectors)):
+        raise ValueError("system assessment requires distinct source measurements")
+    reasons = list(context["source_blocks"]) + ["arithmetic_not_requested"]
+    arms = {}
+    for role, arm in context["arms"].items():
+        arms[role] = _system_arm(role, arm, resolve, reasons, bind_source_qualification=True)
+    return {
+        **deepcopy(context),
+        "source_assessment": deepcopy(source_assessment),
+        "arms": arms,
+        "source_evidence": evidence,
+        "eligible": False,
+        "reasons": sorted(set(reasons)),
+        "value": None,
+        "unit": None,
+        "uncertainty": None,
+        "causal_component_established": False,
+        "physical_condition_equality_established": False,
+    }
+
+
+def control_relation(context, resolve):
+    """Resolve source-bound systems without assigning genetic or causal roles.
+
+    A ratio checks reviewed condition vectors and normalization declarations,
+    not every physical property of the preparations. An assessment retains its
+    heterogeneous source measurements while deliberately doing no arithmetic.
     """
-    if (context.get("schema_version") != "catalytic-earth.system-control-relation.v1"
-            or context.get("operation") != "system_ratio"
+    if context.get("schema_version") != "catalytic-earth.system-control-relation.v1":
+        raise ValueError("unsupported system control relation")
+    if context.get("operation") == "system_assessment":
+        return _system_assessment(context, resolve)
+    if (context.get("operation") != "system_ratio"
             or set(context.get("arms", {})) != {"numerator", "denominator"}):
         raise ValueError("unsupported system control relation")
     if type(context["source_qualified"]) is not bool:
@@ -303,45 +425,17 @@ def control_relation(context, resolve):
         raise ValueError("system control requires source evidence and interpretation limit")
     arms = {}
     for role, arm in context["arms"].items():
-        if (type(arm["assay_qualified"]) is not bool
-                or len({arm[key]["source"] for key in
-                        ("observation_provider", "system_provider", "assay_provider")}) != 1):
-            raise ValueError("system control arm must use one source and explicit assay qualification")
-        row = resolve(arm["observation_provider"])
-        system = resolve(arm["system_provider"])
-        assay = resolve(arm["assay_provider"])
-        identity_field = arm["system_identity_field"]
-        if (identity_field not in {"system_id", "construct_id"}
-                or row["row_id"] != arm["source_row_id"]
-                or row[identity_field] != system[identity_field]
-                or row["assay_id"] != assay["assay_id"]):
-            raise ValueError("system control row, system or assay identity differs")
-        parameter = pointer(row, arm["parameter_pointer"])
-        if parameter["parameter"] != arm["parameter"]:
-            raise ValueError("system control parameter identity differs")
-        kind, value, unit = (parameter[key] for key in ("status", "value", "unit"))
-        if kind not in KINDS:
-            raise ValueError("unknown system control result kind")
-        if kind != "numeric":
-            if value is not None:
-                raise ValueError("nonnumeric system control cannot carry a numeric value")
-            reasons.append(f"{kind}:{role}")
-        elif not _number(value) or value < 0 or not unit:
-            reasons.append(f"invalid_numeric_parameter:{role}")
-        error = parameter["uncertainty"]
-        if (error["unreported_is_zero"] is not False
-                or (error["value"] is not None and
-                    (not _number(error["value"]) or error["value"] < 0
-                     or error["kind"] in {None, "not_reported"}))):
-            raise ValueError("invalid system control uncertainty")
+        resolved = _system_arm(role, arm, resolve, reasons)
+        row = resolved["source_observation"]
+        system = resolved["source_system"]
+        assay = resolved["source_assay"]
+        parameter = resolved["source_parameter"]
         required = {"study_id", "substrate_id", "reaction_direction", "endpoint", "normalization"}
         invariant = arm["reviewed_invariants"]
         if set(invariant) != required or any(not invariant[key] for key in required):
             raise ValueError("system control requires explicit comparison invariants")
         if invariant["study_id"] != context["study_id"]:
             reasons.append(f"mismatched_study_id:{role}")
-        if not arm["assay_qualified"]:
-            reasons.append(f"unresolved_assay:{role}")
         if set(arm["invariant_evidence"]) != {"substrate", "normalization"}:
             raise ValueError("system control requires substrate and normalization evidence")
         if any(ref["source"] != arm["observation_provider"]["source"]
@@ -358,9 +452,7 @@ def control_relation(context, resolve):
             if set(selector) != {"pointer"} or not selector["pointer"].startswith("/system/"):
                 raise ValueError("system condition requires a source system pointer")
             conditions[key] = _pick(selected, selector)
-        arms[role] = {**deepcopy(arm), "source_observation": row,
-                      "source_system": system, "source_assay": assay,
-                      "source_parameter": parameter, "condition_vector": conditions,
+        arms[role] = {**resolved, "condition_vector": conditions,
                       "resolved_invariant_evidence": invariant_evidence}
     numerator, denominator = arms["numerator"], arms["denominator"]
     for field in ("condition_fields", "parameter_pointer", "system_identity_field"):

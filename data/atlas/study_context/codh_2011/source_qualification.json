@@ -1,0 +1,214 @@
+{
+  "schema_version": "catalytic-earth.primary-source-qualification.v1",
+  "study_id": "codh_2011",
+  "question": "What metal-substitution and functional association does the inspected primary abstract establish for Ag-substituted CODH?",
+  "source": {
+    "doi": "10.1021/ja205073j",
+    "pubmed_id": "21774528",
+    "title": "Substitution of silver for copper in the binuclear Mo/Cu center of carbon monoxide dehydrogenase from Oligotropha carboxidovorans.",
+    "authors": "Wilcoxen J, Snider S, Hille R.",
+    "inspection": "Exact primary abstract in EuropePMC core response; main text and supporting information unacquired.",
+    "source_locator": "/resultList/result/0/abstractText",
+    "witness": {
+      "sha256": "62e515cfe61a424cc23620a6f83300cf08c51339637e6b4af3167cd2aaf0e16a",
+      "bytes": 5148,
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/62e515cfe61a424cc23620a6f83300cf08c51339637e6b4af3167cd2aaf0e16a.json",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:21774528&format=json&resultType=core",
+      "redistributed": false
+    }
+  },
+  "source_entry_reference": {
+    "path": "data/atlas/source_drafts/sources/M0107.json",
+    "sha256": "7bb977a0de24d3c9b07b01452c510e53981cfd299f24367f525bf77064297d85",
+    "pointer": "/entry/reaction/mechanisms/0/references/7",
+    "scope": "Exact DOI bibliography association only, not transfer of source protein IDs, native Cu oxidation state, geometry or either mechanism proposal to the assayed Ag preparation."
+  },
+  "systems": [
+    {
+      "system_id": "Ag-substituted",
+      "source_label": "silver-substituted enzyme",
+      "organism": "Oligotropha carboxidovorans",
+      "intervention_kind": "chemical_metal_substitution",
+      "source_reported_intervention": "Ag substituted for Cu in the binuclear Mo/Cu center",
+      "genetic_perturbation": null,
+      "full_sequence": null,
+      "physical_preparation_id": null,
+      "metal_stoichiometry": null,
+      "residual_copper": null,
+      "source_locator": "Abstract, Ag-substitution and EPR sentences"
+    },
+    {
+      "system_id": "sourceWT",
+      "source_label": "wild-type enzyme",
+      "organism": "Oligotropha carboxidovorans",
+      "intervention_kind": "source_reference_preparation",
+      "source_reported_intervention": null,
+      "genetic_perturbation": null,
+      "full_sequence": null,
+      "physical_preparation_id": null,
+      "metal_stoichiometry": null,
+      "source_locator": "Abstract, CO-reduction rate comparator clause",
+      "identity_scope": "Source comparator only; no same-study preparation or assay-condition equality is inferred."
+    }
+  ],
+  "assays": [
+    {
+      "assay_id": "Ag-CO-reduction",
+      "endpoint": "observed limiting rate constant for enzyme reduction by CO",
+      "source_label": "reduced by CO with an observed limiting rate constant",
+      "pH": null,
+      "temperature_celsius": null,
+      "readout": null,
+      "normalization": null,
+      "source_locator": "Abstract, CO-reduction rate sentence",
+      "qualified_for_cross_system_arithmetic": false
+    },
+    {
+      "assay_id": "WT-CO-reduction-comparator",
+      "endpoint": "observed limiting rate constant for enzyme reduction by CO",
+      "pH": null,
+      "temperature_celsius": null,
+      "readout": null,
+      "normalization": null,
+      "source_locator": "Abstract, wild-type comparator clause",
+      "qualified_for_cross_system_arithmetic": false,
+      "scope": "The abstract compares this value; its underlying experiment and matching conditions are not inspected."
+    },
+    {
+      "assay_id": "Ag-steady-state",
+      "endpoint": "source-reported steady-state kinetics",
+      "pH": 7.2,
+      "temperature_celsius": null,
+      "buffer": null,
+      "electron_acceptor": null,
+      "normalization": null,
+      "varied_analyte": null,
+      "varied_analyte_context": "CO is the study reaction context; the abstract does not explicitly restate the KM analyte.",
+      "source_locator": "Abstract, final steady-state kinetics sentence",
+      "qualified_for_cross_system_arithmetic": false
+    }
+  ],
+  "rows": [
+    {
+      "row_id": "Ag-reduction",
+      "system_id": "Ag-substituted",
+      "assay_id": "Ag-CO-reduction",
+      "source_locator": "Abstract, CO-reduction rate sentence",
+      "measurement": {
+        "parameter": "k_obs_lim",
+        "status": "numeric",
+        "value": 8.1,
+        "unit": "s^-1",
+        "meaning": "observed limiting rate constant for enzyme reduction by CO",
+        "value_origin": "primary_abstract_reported",
+        "uncertainty": {
+          "value": null,
+          "kind": "not_reported_in_inspected_abstract",
+          "unreported_is_zero": false
+        },
+        "scope": "Source-reported parameter, not a fully qualified experimental-observation admission."
+      }
+    },
+    {
+      "row_id": "WT-reduction",
+      "system_id": "sourceWT",
+      "assay_id": "WT-CO-reduction-comparator",
+      "source_locator": "Abstract, wild-type comparator clause",
+      "measurement": {
+        "parameter": "k_obs_lim",
+        "status": "numeric",
+        "value": 51,
+        "unit": "s^-1",
+        "meaning": "source wild-type limiting CO-reduction comparator",
+        "value_origin": "primary_abstract_reported",
+        "uncertainty": {
+          "value": null,
+          "kind": "not_reported_in_inspected_abstract",
+          "unreported_is_zero": false
+        },
+        "scope": "Source-reported parameter, not a fully qualified experimental-observation admission."
+      }
+    },
+    {
+      "row_id": "Ag-kcat",
+      "system_id": "Ag-substituted",
+      "assay_id": "Ag-steady-state",
+      "source_locator": "Abstract, final steady-state kinetics sentence",
+      "measurement": {
+        "parameter": "kcat",
+        "status": "numeric",
+        "value": 8.2,
+        "unit": "s^-1",
+        "meaning": "source-reported steady-state turnover number",
+        "value_origin": "primary_abstract_reported",
+        "uncertainty": {
+          "value": null,
+          "kind": "not_reported_in_inspected_abstract",
+          "unreported_is_zero": false
+        },
+        "scope": "Source-reported parameter, not a fully qualified experimental-observation admission."
+      }
+    },
+    {
+      "row_id": "Ag-KM",
+      "system_id": "Ag-substituted",
+      "assay_id": "Ag-steady-state",
+      "source_locator": "Abstract, final steady-state kinetics sentence",
+      "measurement": {
+        "parameter": "KM",
+        "status": "numeric",
+        "value": 2.95,
+        "unit": "uM",
+        "meaning": "source-reported steady-state Michaelis parameter; varied analyte not explicitly restated",
+        "value_origin": "primary_abstract_reported",
+        "uncertainty": {
+          "value": null,
+          "kind": "not_reported_in_inspected_abstract",
+          "unreported_is_zero": false
+        },
+        "scope": "Source-reported parameter, not a fully qualified experimental-observation admission."
+      }
+    }
+  ],
+  "spectroscopy": {
+    "source_locator": "Abstract, hyperfine-coupling sentence",
+    "technique": "EPR",
+    "source_nucleus": "Ag",
+    "source_nuclear_spin": "I = 1/2",
+    "sample_context": "Ag-substituted enzyme after reduction with CO",
+    "source_assignment": "Ag-coupled EPR signal attributed to the binuclear active site",
+    "inference_scope": "Source-reported incorporation/state association; no occupancy, residual-Cu exclusion, isotope composition, oxidation-state assignment or common kinetic-population identity."
+  },
+  "source_assessment": {
+    "supported": "The primary abstract reports functional Ag-substituted CODH and an Ag-coupled EPR signal after CO reduction. One query preserves the metal intervention, spectral association and distinct kinetic endpoints.",
+    "inspection_level": "primary_abstract_only",
+    "exclusive_Ag_turnover_established": false,
+    "rate_limiting_step_established": false,
+    "comparison_arithmetic_qualified": false,
+    "M0107_proposal_adjudicated": false,
+    "independent_human_review": false,
+    "experimental_validation_by_project": false
+  },
+  "limitations": [
+    "Only the primary abstract was inspected. Main article, Methods, figures and supporting information were not acquired.",
+    "Ag-substituted and wild-type are source-named preparations. No complete assay sequence, accession-to-specimen match, shared batch or matched conditions are established.",
+    "Ag/Cu/Mo stoichiometry, residual Cu, metal-removal and reconstitution methods, apo controls, Ag occupancy and active metal fraction are unassessed.",
+    "The Ag-coupled EPR population and bulk kinetic population are not established as identical. Retained activity is author-attributed to the Ag-substituted enzyme, not proven exclusively to Ag sites by this inspection.",
+    "The observed limiting CO-reduction constants are distinct from steady-state kcat and KM. No ratio, 8.1-versus-8.2 rate-limitation inference, intrinsic metal comparison or statistical claim is made.",
+    "The wild-type 51 s^-1 is an abstract comparator; its primary experimental provenance, conditions and normalization have not been checked.",
+    "pH 7.2 applies only to the steady-state kcat/KM sentence. CO-reduction pH and temperature, all assay buffers, electron acceptor, concentration ranges, protein/active-site normalization and replicate/error data are not reported in the inspected abstract.",
+    "The KM analyte is contextually associated with CO but not explicitly restated in the abstract sentence; no fully qualified CO binding or saturation constant follows.",
+    "Ag incorporation does not assign Ag oxidation state, coordinate geometry or electron-transfer pathway. No direct CO2-quantitation, physiological quinone/O2 turnover, growth or project experiment is established.",
+    "The M0107 citation connects the study to aerobic CODH context only. Neither Cu-specific source proposal is validated, replaced or assigned to the Ag preparation; no protected protein/mechanism admission or evidence-tier promotion."
+  ],
+  "counted_objects": {
+    "source_parameter_records": 4,
+    "source_reported_spectral_contexts": 1,
+    "common_genetic_observations_added": 0,
+    "project_experiments": 0,
+    "admitted_protein_records": 0,
+    "admitted_mechanisms": 0,
+    "evidence_tier_promotion": false
+  },
+  "stopping_condition": "The source-reported association is retained at abstract scope. Full-text metal/loading and matched assay controls remain unassessed; no further access campaign or quantitative comparison is justified in this run."
+}

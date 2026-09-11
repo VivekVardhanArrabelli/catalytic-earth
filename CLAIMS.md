@@ -725,6 +725,25 @@ integrals or errors. The query carries approximate values as qualitative source
 tokens with null scalar and unit. The mixed AL row is not a pyruvate-only assay;
 aggregate parameters and errors do not transfer to either product channel.
 
+## CE-047 — Ag-substituted CODH retains source-reported function at abstract scope
+
+**Status:** Supported
+
+The [2011 primary-abstract relation](docs/ATLAS_CODH_METAL_SUBSTITUTION.md)
+retains an Ag-coupled EPR signal after CO reduction alongside source-reported
+Ag-preparation limiting reduction rate 8.1 s^-1, a wild-type reduction comparator
+of 51 s^-1, and Ag steady-state kcat 8.2 s^-1 / KM 2.95 µM at pH 7.2.
+A shared chemical-system assessment preserves all four parameter identities and
+performs no arithmetic. pH 7.2 applies only to the steady-state pair; the KM
+analyte is not explicitly restated in the inspected abstract.
+
+The full Methods and controls were not acquired. Metal loading, residual Cu,
+active-site normalization, acceptor, errors and preparation matching remain
+unassessed. The source-reported Ag-site signal and bulk activity do not establish
+exclusive Ag turnover or a rate-limiting step. No Cu-specific M0107 proposal,
+physiological turnover, project experiment, independent validation, protein
+admission or design-performance claim follows.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,

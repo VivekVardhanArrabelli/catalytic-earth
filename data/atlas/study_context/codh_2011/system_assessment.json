@@ -1,0 +1,117 @@
+{
+  "schema_version": "catalytic-earth.system-control-relation.v1",
+  "id": "codh_2011:Ag-substitution:source-assessment",
+  "study_id": "codh_2011",
+  "operation": "system_assessment",
+  "source_discriminant_assessed": true,
+  "arithmetic_requested": false,
+  "assessment_provider": {
+    "source": "codh2011",
+    "pointer": "/source_assessment"
+  },
+  "source_blocks": [
+    "abstract_only_metal_loading_and_assay_controls_unassessed",
+    "cross_endpoint_and_intrinsic_metal_arithmetic_not_qualified"
+  ],
+  "arms": {
+    "Ag_reduction": {
+      "observation_provider": {
+        "source": "codh2011",
+        "pointer": "/rows/0"
+      },
+      "system_provider": {
+        "source": "codh2011",
+        "pointer": "/systems/0"
+      },
+      "assay_provider": {
+        "source": "codh2011",
+        "pointer": "/assays/0"
+      },
+      "system_identity_field": "system_id",
+      "source_row_id": "Ag-reduction",
+      "parameter_pointer": "/measurement",
+      "parameter": "k_obs_lim",
+      "assay_qualified": false
+    },
+    "WT_reduction": {
+      "observation_provider": {
+        "source": "codh2011",
+        "pointer": "/rows/1"
+      },
+      "system_provider": {
+        "source": "codh2011",
+        "pointer": "/systems/1"
+      },
+      "assay_provider": {
+        "source": "codh2011",
+        "pointer": "/assays/1"
+      },
+      "system_identity_field": "system_id",
+      "source_row_id": "WT-reduction",
+      "parameter_pointer": "/measurement",
+      "parameter": "k_obs_lim",
+      "assay_qualified": false
+    },
+    "Ag_kcat": {
+      "observation_provider": {
+        "source": "codh2011",
+        "pointer": "/rows/2"
+      },
+      "system_provider": {
+        "source": "codh2011",
+        "pointer": "/systems/0"
+      },
+      "assay_provider": {
+        "source": "codh2011",
+        "pointer": "/assays/2"
+      },
+      "system_identity_field": "system_id",
+      "source_row_id": "Ag-kcat",
+      "parameter_pointer": "/measurement",
+      "parameter": "kcat",
+      "assay_qualified": false
+    },
+    "Ag_KM": {
+      "observation_provider": {
+        "source": "codh2011",
+        "pointer": "/rows/3"
+      },
+      "system_provider": {
+        "source": "codh2011",
+        "pointer": "/systems/0"
+      },
+      "assay_provider": {
+        "source": "codh2011",
+        "pointer": "/assays/2"
+      },
+      "system_identity_field": "system_id",
+      "source_row_id": "Ag-KM",
+      "parameter_pointer": "/measurement",
+      "parameter": "KM",
+      "assay_qualified": false
+    }
+  },
+  "evidence": [
+    {
+      "source": "codh2011",
+      "pointer": "/source"
+    },
+    {
+      "source": "codh2011",
+      "pointer": "/source_entry_reference"
+    },
+    {
+      "source": "codh2011",
+      "pointer": "/spectroscopy"
+    },
+    {
+      "source": "codh2011",
+      "pointer": "/limitations"
+    },
+    {
+      "source": "codh2011",
+      "pointer": "/counted_objects"
+    }
+  ],
+  "interpretation_limit": "Source-reported Ag-preparation function with Ag-site spectral association, at primary-abstract scope. No matched scalar comparison, exclusive Ag turnover, rate-limiting-step assignment, native Cu mechanism transfer or independent experimental validation."
+}

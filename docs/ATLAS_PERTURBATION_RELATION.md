@@ -618,3 +618,18 @@ remains 45 requests / 3,236,259 response-body bytes. The
 [source review](../data/atlas/study_context/ra61_2010/model_review.json) records
 objections and scope. No atomic mechanism, productive geometry, new experiment,
 evidence-tier promotion or enzyme-design result is established.
+
+## Chemical-system assessment without arithmetic
+
+The [CODH metal-substitution relation](ATLAS_CODH_METAL_SUBSTITUTION.md) uses
+`system_assessment` beside `system_ratio`. It binds four source parameter records
+in one primary-abstract assessment without adding genetic observations or
+forcing a cross-endpoint ratio. Use
+`--control-relation codh_2011:Ag-substitution:source-assessment` or
+`--study codh_2011`. The source assessment and evidence remain explicit, while
+`eligible`, scalar value and unit describe unrequested arithmetic. The assessment
+finding comes from a same-source `assessment_provider` pointer with nonempty
+`supported` text. The study identity, evidence references, unique measurement
+selectors and explicit source assay-qualification flag must stay consistent.
+These declarations are reviewed source annotations; parser acceptance does not
+establish scientific or independent validation.

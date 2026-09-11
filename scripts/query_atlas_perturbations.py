@@ -20,7 +20,7 @@ def main() -> int:
     parser.add_argument("--comparison", help="Exact comparison ID; retains all its control observations")
     parser.add_argument("--state-link", help="Exact construct-to-state link; retains its functional observations")
     parser.add_argument("--model-link", help="Exact source-model transition link; retains its existing endpoint observations")
-    parser.add_argument("--control-relation", help="Exact two-system source contrast; retains original arm rows, systems and normalization")
+    parser.add_argument("--control-relation", help="Exact source-bound system ratio or no-arithmetic assessment; retains original arm rows, systems, assays and measurements")
     parser.add_argument("--with-comparisons", action="store_true", help="With --state-link, include ratio and multiplicative comparisons using its observations as controls, including abstentions; states remain parent-only")
     parser.add_argument("--output", type=Path, help="Write JSON here instead of stdout")
     parser.add_argument("--verify-witnesses", action="store_true", help="Also hash-check retained primary files in the Git common directory; never fetch")

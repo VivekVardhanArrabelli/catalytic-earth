@@ -630,5 +630,19 @@
       "data/atlas/study_context/ahas_2005/branch_evidence.json",
       "data/atlas/study_context/ahas_2005/branch_review.json"
     ]
+  },
+  {
+    "claim_id": "CE-047",
+    "claim_kind": "source_annotation",
+    "status": "Supported",
+    "claim": "The 2011 primary abstract reports functional Ag-substituted CODH with an Ag-coupled binuclear-site EPR signal after CO reduction.",
+    "current_wording": "Retain separate source Ag/source-WT limiting CO-reduction rates of 8.1/51 s^-1 and Ag steady-state kcat 8.2 s^-1 / KM 2.95 uM at pH 7.2. Abstract-only scope, unknown uncertainty, unacquired full Methods, and unassessed metal loading, residual Cu controls and assay normalization remain explicit. No ratio, exclusive Ag turnover, rate-limiting-step inference, M0107 proposal transfer or evidence-tier promotion.",
+    "rationale": "A generic non-arithmetic chemical-system assessment binds intervention, spectral context and distinct reported endpoints without making a genetic mutant or matched scalar comparison.",
+    "evidence": [
+      "data/atlas/study_context/codh_2011/source_qualification.json",
+      "data/atlas/study_context/codh_2011/system_assessment.json",
+      "data/atlas/study_context/codh_2011/source_review.json",
+      "docs/ATLAS_CODH_METAL_SUBSTITUTION.md"
+    ]
   }
 ]

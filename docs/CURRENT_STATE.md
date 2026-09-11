@@ -1,5 +1,21 @@
 # Current State
 
+## 2026-09-11: Ag-substituted CODH carries a partial metal-substitution/function association
+
+The [primary-abstract relation](ATLAS_CODH_METAL_SUBSTITUTION.md) retains
+Ag-site EPR evidence alongside four distinct source parameters: Ag/sourceWT
+limiting CO-reduction rates 8.1/51 s^-1, and Ag steady-state kcat 8.2 s^-1 /
+KM 2.95 µM at pH 7.2. The generic chemical-system assessment returns the
+source preparations, separate endpoints and limitations without arithmetic.
+Metal loading/residual Cu, full assay methods, normalization and uncertainty
+remain unassessed; no Ag-exclusive turnover or M0107 proposal is established.
+
+The Ibdah1996 named selectivity/activity inquiry closed at a primary-text gap:
+six new requests bring its inherited batch to 39 / 23,268,387 bytes. A distinct
+CODH study batch used four requests / 30,214 bytes; only the primary abstract
+was acquired. No allowance reset, project experiment, protected admission or
+design-performance claim. The marked handoff names the next chemical question.
+
 ## 2026-09-11: mixed AHAS products retain source estimates without a branch fit
 
 The [Trp464Leu mixed-acceptor relation](ATLAS_AHAS_NET_RATES.md#mixed-acceptors-total-aha-and-approximate-branch-estimates)

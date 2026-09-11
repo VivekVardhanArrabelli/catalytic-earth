@@ -1,0 +1,130 @@
+{
+  "schema_version": "catalytic-earth.primary-source-review.v1",
+  "status": "source_reviewed_computational",
+  "reviewed_at_utc": "2026-09-11T23:22:19.019080+00:00",
+  "base_commit": "1b246c7303ca9ce4ea518b6704341a68d7b272ca",
+  "scope": "Primary-abstract source-reported Ag-substituted CODH function, Ag-site EPR association and four distinct kinetic parameters. Generic no-arithmetic chemical-system assessment; no matched ratios, exclusive Ag turnover, limiting-step inference, full assay qualification or M0107 proposal validation.",
+  "reviewed_bindings": {
+    "data/atlas/study_context/codh_2011/source_qualification.json": "8fe9423653a088baf643a8f44356dbc693addc2bec25fb7ef6eab605ec409057",
+    "data/atlas/study_context/codh_2011/system_assessment.json": "ae52c065611a7266530e9c6303b3730a06d3d22305b0bb81ca4d663117591079",
+    "data/atlas/study_context/codh_2011/acquisition_receipts.json": "b6dad317cb152b7d694182ffc48b9171fbde7a432317062488d536dac0ab68a6",
+    "data/atlas/study_context/ahas_2005/ibdah_acquisition_appendix.json": "f20c6e5efd64191cc0471740a5f179e128909f25e05a14277ce8a7f36572a9df",
+    "data/atlas/perturbations/projection.json": "ad5f7fc84d4e696afc75f68eba2245fa6cb84bf95e066a9059694018aacfef3b",
+    "src/catalytic_earth/atlas_perturbations.py": "70bb5c5e92cb10b795cd7e0dc3422b42d5217b04274d9e949ad5af93a9b05a5d",
+    "scripts/query_atlas_perturbations.py": "7eab6075c751ad2dbecf6757d1dc3fef5e452fbaff03d3d78f0c1b9fa3d8e412",
+    "tests/core/test_atlas_perturbations.py": "ded8b542a86d613b06e1da15713375e93ebf19697dd55c756b6b835c1fbe0ee7",
+    "docs/ATLAS_CODH_METAL_SUBSTITUTION.md": "5a211e8943156cc5e0d000a15bda404a044000eca7956c42cb85069e4c3d5947",
+    "docs/ATLAS_PERTURBATION_RELATION.md": "572d4de5fd19122c48d6fd261f8bec8b457c4d9c88f5c1d3f636add5e531b41b",
+    "CLAIMS.md": "dbb65c6c2a7747d0c61b5dd81a05173dd96a61a0075a3adef9f141619dcab08b",
+    "data/governance/claim_ledger.json": "5c1b0987928734624fd12e9c81856a262476ce95a09271da0f5e5a58e871ed7e",
+    "docs/CURRENT_STATE.md": "c0a0677d03b43128f01cf5bc703182c88b61ab3823c0dc0cc83f90d65b4ee448",
+    "docs/CURRENT_DECISIONS.md": "1fc9afd62f5221e53e5516fcdb329f84aaabc7c4d2bc74cf35f674c610a6bec0",
+    "tests/test_truth_guard.py": "16393a54cf7b0e919c832f2cf8d48e455140eea01356dba7749b59243f265a08"
+  },
+  "review_process": [
+    {
+      "task": "source_recovery",
+      "role": "primary_source",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "Accepted exact retained primary, source packet, relation binding, documentation, claim and cumulative acquisition receipts; runtime behavior outside this role."
+    },
+    {
+      "task": "representation_recovery",
+      "role": "representation",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "Accepted corrected implementation and direct adversarial/reuse probes; full module checks passed."
+    },
+    {
+      "task": "adversarial_recovery",
+      "role": "adversarial",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "Accepted corrected assessment bindings, narrowed scientific scope and truthful recovery review account after explicit challenge."
+    }
+  ],
+  "coordination_board": ".git/catalytic-earth-runs/412188dd.board.md",
+  "independent_human_validation": false,
+  "experimental_validation": false,
+  "resolved_objections": [
+    {
+      "issue": "A metal intervention must not become a genetic mutant or an unsupported matched ratio.",
+      "resolution": "Use a generic system_assessment with arbitrary named source-bound measurement arms, explicit assessed evidence and unrequested arithmetic. Legacy quantitative system rules remain unchanged."
+    },
+    {
+      "issue": "Reduction and turnover endpoints or pH scopes could be collapsed.",
+      "resolution": "Keep Ag/sourceWT k_obs_lim and Ag kcat/KM separately bound. Three assay wrappers are unqualified; pH7.2 only steady state. No ratio or rate-limiting-step inference."
+    },
+    {
+      "issue": "Spectral Ag incorporation could imply complete occupancy or exclusive Ag catalysis.",
+      "resolution": "Retain EPR as author-attributed binuclear-site association; residualCu, metal loading, apo controls and identical spectral/kinetic populations are unassessed."
+    },
+    {
+      "issue": "Native mechanism, accession and physiological context could transfer to Ag.",
+      "resolution": "M0107 is only an exact DOI bibliography link. No assay specimen, Ag oxidation state, Cu mechanism proposal, electron acceptor, growth or physiological turnover is asserted."
+    },
+    {
+      "issue": "An access gap could become an absence claim or reset a cumulative budget.",
+      "resolution": "Ibdah main text remains unassessed; exact inherited39request/23,268,387byte appendix is separate from the new4request/30,214byte CODH study. Failed bodies and discovery metadata are not fulltext evidence."
+    },
+    {
+      "issue": "An unbound assessment could accept missing study identity, foreign evidence or independently invented positive claims.",
+      "resolution": "Require nonempty matching study identity and same-source assessment_provider/evidence references. Resolve the supported finding from the original source packet rather than duplicating it in the relation. The finding must be a nonempty string; source metadata alone is not an assessment. Semantic applicability still requires source review."
+    },
+    {
+      "issue": "Duplicate measurement arms or contradictory qualification flags could misdescribe the retained evidence.",
+      "resolution": "Require distinct source-row/parameter selectors and agreement with an explicit source assay qualification flag. Apply the new flag check only to assessments; existing quantitative relations retain their behavior."
+    },
+    {
+      "issue": "Prior review wording falsely represented an interrupted adversarial worker as giving final acceptance.",
+      "resolution": "Record actual failed/completed prior outcomes and current per-role recovery review; final publication is recorded only when verified."
+    },
+    {
+      "issue": "A historical local acquisition transport footer disagrees with its complete request array.",
+      "resolution": "Preserve historical transport bytes. The exact hashed tracked Ibdah appendix and six retained response bodies establish cumulative39requests/23,268,387bytes; its old local footer is not current accounting."
+    }
+  ],
+  "remaining_limits": [
+    "Fulltext and supporting information remain unacquired; source-reported parameters are not fully qualified experimental-observation admissions.",
+    "Source declarations require scientific review; matching identifiers and hashes do not authenticate mechanism or causal attribution.",
+    "Computational reviewers are correlated with the parent, not independent human or laboratory evidence."
+  ],
+  "acquisition": {
+    "codh-2011-silver-substitution": {
+      "new_requests": 4,
+      "new_response_body_bytes": 30214,
+      "cumulative_requests": 4,
+      "cumulative_response_body_bytes": 30214
+    },
+    "two-substrate-lineages-2024-51831": {
+      "new_requests": 6,
+      "new_response_body_bytes": 270619,
+      "cumulative_requests": 39,
+      "cumulative_response_body_bytes": 23268387
+    },
+    "source_bodies_redistributed": false
+  },
+  "reconsideration": {
+    "bespoke_chemistry_code": "The material intervention exposes missing no-arithmetic system assessment, not a need for enzyme-ID logic. Shared arm resolution is reused; all metal and source facts stay in data.",
+    "reusable_curation": "Same-source assessment_provider removes a duplicate mutable finding. Shared assessment resolves existing micellar and acetylation arms in source-view fixtures with explicit assessment/study metadata; published packets and ratios stay unchanged. Manual source interpretation persists; no timed saving measured.",
+    "integrated_value": "One query associates a chemical metal intervention with spectral and distinct kinetic evidence while preventing endpoint/occupancy transfer. It remains partial source evidence and does not establish broad coverage, incumbent superiority or design performance."
+  },
+  "recovered_interruption": {
+    "prior_owner_task": "01a0924b-7fac-7ad2-b928-7f8702372724",
+    "prior_parent_outcome": "failed before final checks, commit or publication",
+    "prior_worker_outcomes": {
+      "source_selectivity": "Completed source review before interruption; final recovered source packet rechecked by source_recovery.",
+      "representation_selectivity": "Completed original implementation/tests before interruption; new recovery corrections reviewed separately.",
+      "adversarial_selectivity": "Failed after raising source-binding objections; no final acceptance established."
+    },
+    "correction": "The unpublished prior review incorrectly assigned a uniform final acceptance to all three workers. Replace that account with observed per-role outcomes and the current recovery reviews.",
+    "recovery_receipt": ".git/catalytic-earth-runs/20260911T230714Z-412188dd-6825-4811-a5b3-a4a741ab90e6.json",
+    "publication_state": "Exact final head, push, CI, merge and release outcomes are recorded in the recovery receipt after those operations; no completed publication is asserted here."
+  },
+  "recovery_run_acquisition": {
+    "requests": 0,
+    "response_body_bytes": 0,
+    "inherited_totals_verified_against_retained_bodies": true
+  }
+}
