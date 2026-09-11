@@ -19,13 +19,14 @@ def main() -> int:
     parser.add_argument("--study", help="Source study ID; retains evidence and comparison exclusions")
     parser.add_argument("--comparison", help="Exact comparison ID; retains all its control observations")
     parser.add_argument("--state-link", help="Exact construct-to-state link; retains its functional observations")
+    parser.add_argument("--model-link", help="Exact source-model transition link; retains its existing endpoint observations")
     parser.add_argument("--with-comparisons", action="store_true", help="With --state-link, include ratio and multiplicative comparisons using its observations as controls, including abstentions; states remain parent-only")
     parser.add_argument("--output", type=Path, help="Write JSON here instead of stdout")
     parser.add_argument("--verify-witnesses", action="store_true", help="Also hash-check retained primary files in the Git common directory; never fetch")
     parser.add_argument("--check", action="store_true", help="Resolve the relation and report compact integrity/coverage counts")
     args = parser.parse_args()
-    if args.state_link and args.comparison:
-        parser.error("--state-link and --comparison select different relations")
+    if sum(bool(value) for value in (args.state_link, args.comparison, args.model_link)) > 1:
+        parser.error("--state-link, --model-link and --comparison select different relations")
     if args.with_comparisons and not args.state_link:
         parser.error("--with-comparisons requires --state-link")
     result = project(ROOT)
@@ -38,6 +39,7 @@ def main() -> int:
         result["observations"] = [row for row in result["observations"] if row["study_id"] == args.study]
         result["comparisons"] = [row for row in result["comparisons"] if row["study_id"] == args.study]
         result["state_links"] = [row for row in result["state_links"] if row["study_id"] == args.study]
+        result["model_links"] = [row for row in result["model_links"] if row["study_id"] == args.study]
     if args.comparison:
         result["comparisons"] = [row for row in result["comparisons"] if row["id"] == args.comparison]
         if not result["comparisons"]:
@@ -59,8 +61,17 @@ def main() -> int:
         ids.update(ref for row in result["comparisons"] for ref in row["roles"].values())
         ids.update(ref for row in result["comparisons"] for ref in row.get("context_observations", []))
         result["observations"] = [row for row in result["observations"] if row["id"] in ids]
+    if args.model_link:
+        result["model_links"] = [row for row in result["model_links"] if row["id"] == args.model_link]
+        if not result["model_links"]:
+            parser.error("unknown model link within selected scope")
+        ids = {ref for link in result["model_links"] for ref in link["observation_ids"]}
+        result["observations"] = [row for row in result["observations"] if row["id"] in ids]
+        result["comparisons"] = []
     selected_ids = {row["id"] for row in result["observations"]}
     result["state_links"] = [link for link in result["state_links"]
+                             if set(link["observation_ids"]) <= selected_ids]
+    result["model_links"] = [link for link in result["model_links"]
                              if set(link["observation_ids"]) <= selected_ids]
     comparison_ids = {item["id"] for item in result["comparisons"]}
     for row in result["observations"]:
@@ -70,6 +81,7 @@ def main() -> int:
         print(json.dumps({"status": "source_projection_verified", "parameter_records": len(result["observations"]),
                           "comparison_requests": len(result["comparisons"]),
                           "state_links": len(result["state_links"]),
+                          "model_links": len(result["model_links"]),
                           "eligible_descriptive_comparisons": sum(item["eligible"] for item in result["comparisons"]),
                           "primary_witness_cache": result["source_witness_cache_status"]}))
         return 0

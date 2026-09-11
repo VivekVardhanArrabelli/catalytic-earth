@@ -1,5 +1,24 @@
 # Current Decisions
 
+## 2026-09-11: accept a partial source-model relation without completing missing chemistry
+
+Close the bounded E160Q F6P question with the
+[source-model transition relation](ATLAS_STUDY_CONTEXT.md#f6p-adduct-reversal-and-donor-cleavage-are-different-transitions).
+The source names the formed C2-C2x bond, while its binding fit assigns
+formation and reversal parameters. It separately describes C2x-C3x cleavage
+to DHEThDP plus E4P. Preserve the absence of a cleavage rate; do not identify
+k_reverse or a deposited distance with that rate.
+
+Representation review found that exact-sequence state links cannot represent
+this source-reported-variant, multi-assay association. Add a separate generic
+model link with source-pinned state, direction and parameter references.
+Do not weaken exact-sequence links or invent a before graph to force replay.
+The elementary mechanism request stops at its missing microstate/electron-
+proton premise. Next, test this same relation contract on the already retained
+POX MAP-binding versus pyruvate-processing contexts. Expected gain is reuse
+across different cofactor/ligand endpoints; stop after one source-supported
+relation or a concrete generic gap, without new acquisition or case-specific code.
+
 ## 2026-09-11: accept the Tyr16 donor-control discriminant at its experimental scope
 
 Close the inherited reference-18 question with the

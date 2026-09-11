@@ -1,0 +1,415 @@
+{
+  "context_id": "tkt_2019:E160Q:F6P:formation-elimination-versus-cleavage",
+  "operation": "source_annotation",
+  "study": {
+    "doi": "10.1038/s41586-019-1581-9",
+    "reported_enzyme": "human transketolase",
+    "reported_variant": "E160Q"
+  },
+  "question": "Which transition does the E160Q F6P stopped-flow fit describe, and which bond remains present in its deposited conjugate?",
+  "source_bindings": {
+    "study_context": {
+      "path": "data/atlas/study_context/6ha3/evidence_projection.json",
+      "sha256": "70bf1eaa59747239990161631432a44440629704aa50051bddd551309fb1213e"
+    },
+    "functional_comparison": {
+      "path": "data/atlas/study_context/6ha3/functional_comparison.json",
+      "sha256": "a8205b4964ac094b41172cdfa9309c70cd004bfa458ee9ea62bbf64785bf6366"
+    }
+  },
+  "sources": [
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:EDTable2-JPEG",
+      "sha256": "51ca21f005b8b5d9dd152e097940656a76821e3e379b7697da219d5522652b8c",
+      "bytes": 146137,
+      "source_url": "https://media.springernature.com/lw749/springer-static/esm/art%3A10.1038%2Fs41586-019-1581-9/MediaObjects/41586_2019_1581_Tab2_ESM.jpg",
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/51ca21f005b8b5d9dd152e097940656a76821e3e379b7697da219d5522652b8c.jpg",
+      "redistributed": false
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:EDTable2-HTML",
+      "sha256": "58012ff70ac04784193dd2c76863c008fd6b10018c3ff4b629d6634b1ba7866e",
+      "bytes": 178782,
+      "source_url": "https://www.nature.com/articles/s41586-019-1581-9/tables/2",
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/58012ff70ac04784193dd2c76863c008fd6b10018c3ff4b629d6634b1ba7866e.html",
+      "redistributed": false
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:SI-PDF",
+      "sha256": "9e4db71f5e59ee1184991376419894ac4c311b403f74028f9c543337e4d1733c",
+      "bytes": 436294,
+      "source_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-019-1581-9/MediaObjects/41586_2019_1581_MOESM1_ESM.pdf",
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/9e4db71f5e59ee1184991376419894ac4c311b403f74028f9c543337e4d1733c.pdf",
+      "redistributed": false
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:landing-HTML",
+      "sha256": "e9d239f6e97bf1a563641d2b1e0a335411b6a07125ad7f250cee2e3fc0c17a59",
+      "bytes": 445216,
+      "source_url": "https://www.nature.com/articles/s41586-019-1581-9",
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/e9d239f6e97bf1a563641d2b1e0a335411b6a07125ad7f250cee2e3fc0c17a59.html",
+      "redistributed": false
+    }
+  ],
+  "source_model": {
+    "model_id": "human-TKT2019:F6P-donor-half-reaction",
+    "source_locators": [
+      "Supplementary Methods printed p5 equation3 (PDF p6)",
+      "Supplementary Methods printed pp6-7 equations6-8 and scheme (PDF pp7-8)",
+      "Extended Data Figure1c-d and Figure2e-f legends"
+    ],
+    "states": [
+      {
+        "state_id": "free",
+        "kind": "uncombined_enzyme_cofactor_and_F6P",
+        "source_labels": [
+          {
+            "source_locator": "Supplementary Methods equation 3",
+            "label": "E-ThDP + F6P"
+          },
+          {
+            "source_locator": "Supplementary Methods equation 8 scheme",
+            "label": "E + S"
+          }
+        ]
+      },
+      {
+        "state_id": "michaelis",
+        "kind": "noncovalent_Michaelis_complex",
+        "source_labels": [
+          {
+            "source_locator": "Supplementary Methods equation 3",
+            "label": "E-ThDP : F6P"
+          },
+          {
+            "source_locator": "Supplementary Methods equation 8 scheme",
+            "label": "E*S"
+          }
+        ]
+      },
+      {
+        "state_id": "conjugate",
+        "kind": "covalent_F6P_ThDP_conjugate",
+        "observation_bindings": [
+          {
+            "provider": "functional_comparison",
+            "pointer": "/reused_accumulation_context/variant_results/1"
+          }
+        ],
+        "arrangement_bindings": [
+          {
+            "provider": "study_context",
+            "pointer": "/arrangement"
+          }
+        ],
+        "source_labels": [
+          {
+            "source_locator": "Supplementary Methods equation 3",
+            "label": "E-F6P-ThDP"
+          },
+          {
+            "source_locator": "Supplementary Methods equation 8 scheme",
+            "label": "E-S"
+          }
+        ]
+      },
+      {
+        "state_id": "cleaved",
+        "kind": "DHEThDP_carbanion_enamine_and_E4P",
+        "limit": "Source scheme state; no E160Q-specific cleavage rate, population or product yield is assigned from this label.",
+        "source_labels": [
+          {
+            "source_locator": "Supplementary Methods equation 3",
+            "label": "E-DHEThDP + E4P"
+          }
+        ]
+      }
+    ],
+    "transitions": [
+      {
+        "transition_id": "noncovalent_binding",
+        "from_state": "free",
+        "to_state": "michaelis",
+        "reversible_in_source": true,
+        "source_labels": [
+          {
+            "source_locator": "Supplementary Methods equation 3",
+            "label": "K1"
+          },
+          {
+            "source_locator": "Supplementary Methods equation 8 scheme",
+            "label": "K"
+          }
+        ],
+        "parameter_slots": {
+          "forward": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "No parameter is assigned to this transition by the selected source-model relation; this does not imply a zero rate or absence elsewhere in the source."
+          },
+          "reverse": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "No parameter is assigned to this transition by the selected source-model relation; this does not imply a zero rate or absence elsewhere in the source."
+          }
+        },
+        "bond_annotations": []
+      },
+      {
+        "transition_id": "adduct_formation",
+        "from_state": "michaelis",
+        "to_state": "conjugate",
+        "reversible_in_source": true,
+        "bond_action_scope": "The source names the formed bond and assigns the forward/reverse transition to conjugate formation/elimination. The deposited bond identity supplies a partial bond annotation; stopped-flow does not independently isolate microscopic C-C making/breaking. No complete before/after graph or electron/proton sequence follows.",
+        "source_labels": [
+          {
+            "source_locator": "Supplementary Methods equation 3",
+            "label": "K2"
+          }
+        ],
+        "parameter_slots": {
+          "forward": {
+            "status": "bound_source_parameter",
+            "binding": {
+              "provider": "functional_comparison",
+              "pointer": "/variants/2/stopped_flow/k_forward"
+            },
+            "is_zero": false
+          },
+          "reverse": {
+            "status": "bound_source_parameter",
+            "binding": {
+              "provider": "functional_comparison",
+              "pointer": "/variants/2/stopped_flow/k_reverse"
+            },
+            "is_zero": false
+          }
+        },
+        "bond_annotations": [
+          {
+            "role": "formed_bond",
+            "source_atom_labels": [
+              "ThDP:C2",
+              "F6P:C2x"
+            ]
+          }
+        ]
+      },
+      {
+        "transition_id": "donor_cleavage",
+        "from_state": "conjugate",
+        "to_state": "cleaved",
+        "reversible_in_source": true,
+        "bond_action_scope": "Equation3 names cleavage products and Extended Data Figure1c names the scissile bond. This is a source-assigned cleavage location, not a measured E160Q cleavage event or complete atom map.",
+        "source_labels": [
+          {
+            "source_locator": "Supplementary Methods equation 3",
+            "label": "K3"
+          }
+        ],
+        "parameter_slots": {
+          "forward": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "No parameter is assigned to this transition by the selected source-model relation; this does not imply a zero rate or absence elsewhere in the source."
+          },
+          "reverse": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "No parameter is assigned to this transition by the selected source-model relation; this does not imply a zero rate or absence elsewhere in the source."
+          }
+        },
+        "bond_annotations": [
+          {
+            "role": "scissile_bond",
+            "source_atom_labels": [
+              "F6P:C2x",
+              "F6P:C3x"
+            ]
+          }
+        ]
+      }
+    ],
+    "elementary_step_sequence_established": false,
+    "complete_reacted_graph_established": false,
+    "equilibrium_constant_transfer_between_assays_established": false,
+    "graph_replay_verified": false,
+    "before_state_atom_map": null
+  },
+  "deposit_association": {
+    "provider": "study_context",
+    "arrangement_pointer": "/arrangement",
+    "arrangement_id": "6HA3:T6F:B:A701:model1",
+    "source_assignment": "Data Availability identifies 6HA3 as E160Q in covalent complex with F6P; Extended Data Figure 1c identifies the trapped conjugate, the formed C2-C2x bond and the still-present scissile C2x-C3x bond.",
+    "source_model_state_id": "conjugate",
+    "atom_correspondence": [
+      {
+        "source_atom_label": "ThDP:C2",
+        "deposit_atom_id": "C2",
+        "chemical_role": "cofactor carbon at the formed bond"
+      },
+      {
+        "source_atom_label": "F6P:C2x",
+        "deposit_atom_id": "CF2",
+        "chemical_role": "substrate carbon at attachment and scissile bond"
+      },
+      {
+        "source_atom_label": "F6P:C3x",
+        "deposit_atom_id": "CF3",
+        "chemical_role": "adjacent substrate carbon across the scissile bond"
+      }
+    ],
+    "atom_correspondence_scope": "Project interpretation of source nomenclature and retained T6F dictionary/coordinate names; not an upstream physical atom map or a map of complete source states.",
+    "identity_scope": "same DOI and reported E160Q variant; source-assigned F6P-ThDP species",
+    "exact_preparation_identity_established": false,
+    "solution_conformer_identity_established": false,
+    "geometry_to_rate_causation_established": false,
+    "bond_annotations": [
+      {
+        "atom_ids": [
+          "C2",
+          "CF2"
+        ],
+        "dictionary_bond_pointer": "/arrangement/component_dictionary_bonds/0",
+        "coordinate_metric_pointer": "/arrangement/deposited_geometry/0",
+        "role": "formed_bond"
+      },
+      {
+        "atom_ids": [
+          "CF2",
+          "CF3"
+        ],
+        "dictionary_bond_pointer": "/arrangement/component_dictionary_bonds/1",
+        "coordinate_metric_pointer": "/arrangement/deposited_geometry/1",
+        "status": "present_in_deposited_conjugate",
+        "role": "scissile_bond"
+      }
+    ],
+    "existing_relation_pointers": [
+      "/relations/0",
+      "/relations/1"
+    ]
+  },
+  "endpoint_relations": [
+    {
+      "relation_id": "E160Q:formation_parameter",
+      "transition_id": "adduct_formation",
+      "transition_direction": "forward",
+      "observation_id": "tkt-stopped_flow:E160Q:k_forward",
+      "original_observation_id": "e160q-f6p-stopped-flow",
+      "provider": "functional_comparison",
+      "parameter_pointer": "/variants/2/stopped_flow/k_forward",
+      "assay_pointer": "/assays/1",
+      "evidence_kind": "source_model_fitted_parameter",
+      "not_a_parameter_for": "donor_cleavage",
+      "projected_parameter": {
+        "provider": "functional_comparison",
+        "pointer": "/variants/2/stopped_flow/k_forward"
+      },
+      "kind": "transition_parameter",
+      "original_observation_binding": {
+        "provider": "study_context",
+        "pointer": "/observations/0"
+      }
+    },
+    {
+      "relation_id": "E160Q:elimination_parameter",
+      "transition_id": "adduct_formation",
+      "transition_direction": "reverse",
+      "observation_id": null,
+      "original_observation_id": "e160q-f6p-stopped-flow",
+      "provider": "functional_comparison",
+      "parameter_pointer": "/variants/2/stopped_flow/k_reverse",
+      "assay_pointer": "/assays/1",
+      "evidence_kind": "source_model_fitted_parameter_reused_as_context",
+      "not_a_parameter_for": "donor_cleavage",
+      "limit": "The existing provider value is returned as bound source evidence; no new scalar observation or arithmetic is created.",
+      "kind": "transition_parameter",
+      "original_observation_binding": {
+        "provider": "study_context",
+        "pointer": "/observations/0"
+      }
+    },
+    {
+      "relation_id": "E160Q:accumulation_endpoint",
+      "state_id": "conjugate",
+      "observation_id": "tkt-nmr:E160Q:covalent_intermediate_accumulation",
+      "original_observation_id": "e160q-f6p-nmr",
+      "provider": "study_context",
+      "observation_pointer": "/observations/1",
+      "evidence_kind": "qualitative_acid_quench_NMR",
+      "quantitative_cleavage_inference_permitted": false,
+      "projected_parameter": {
+        "provider": "functional_comparison",
+        "pointer": "/reused_accumulation_context/variant_results/1"
+      },
+      "kind": "state_observation",
+      "original_observation_binding": {
+        "provider": "study_context",
+        "pointer": "/observations/1"
+      }
+    }
+  ],
+  "discriminant": {
+    "assessed": true,
+    "finding": "The source-model reverse formation parameter returns the conjugate to the noncovalent F6P complex; donor C2x-C3x cleavage gives DHEThDP plus E4P. These are different exits from the conjugate.",
+    "consequential_exclusion": "Do not use E160Q k_reverse, F6P-ThDP accumulation, or the deposited scissile-bond length as an E160Q donor-cleavage rate.",
+    "positive_content": "Retrieve source-model state labels, exact existing E160Q parameters, accumulation observation and two distinct deposit bonds together.",
+    "first_missing_premise": "The retained kinetic scheme does not supply authenticated atom-resolved before states with the protonation, tautomerism and electron/proton changes needed for an elementary formation or cleavage step.",
+    "complete_elementary_step_status": "unestablished",
+    "supported_scope": "partial_source_model_bond_relation"
+  },
+  "limitations": [
+    "This source-model transition relation is not a complete elementary mechanism, atom-mapped reaction, observed trajectory or design template.",
+    "The Nature landing body is a subscription preview with accessible Data Availability and Extended Data legends. Full main text and Extended Data Figure1 image are not retained inputs to this increment.",
+    "Stopped-flow detects AP-band depletion; NMR supports the species assignment. A fitted formation parameter is not an independently isolated microscopic C-C bond-making rate.",
+    "The 4 C stopped-flow and 20 C, 30-second acid-quench NMR contexts are separate. Source equilibrium K2 is not calculated by combining their values or identified with k_forward/k_reverse.",
+    "Qualitative F6P-ThDP accumulation does not prove zero cleavage or a measured DHEThDP fraction. Acid-isolated DHEThDP is a conjugate acid in the source legend, not an unchanged solution carbanion-enamine.",
+    "Dictionary bonds and X-ray coordinates are distinct evidence. Original selected occupancies, 100 K measurement, crystal growth 277/279 K conflict and Ca/Mg alternate context remain; no occupancy-derived reactive fraction or chemical bond inferred from distance.",
+    "Exact assay construct sequences and physical preparations remain unresolved. The relation is source-reported-variant scoped.",
+    "No M0219 X5P/E4P map, X5P/R5P turnover substitution, productive F6P full cycle, cleavage rate, carbonyl bond-order change, proton accounting or evidence-tier promotion follows."
+  ],
+  "acquisition": {
+    "batch_id": "human-tkt-e160q-6ha3-geometry-function",
+    "new_requests": 0,
+    "new_response_body_bytes": 0,
+    "inherited_metered_lower_bound_requests": 7,
+    "inherited_metered_lower_bound_response_body_bytes": 3004884,
+    "complete_cumulative_accounting": false,
+    "remaining_headroom": null,
+    "new_publisher_source_bodies_redistributed": false,
+    "redistribution_scope": "The four reused publisher bodies are not redistributed. The previously tracked RCSB 6HA3 coordinate file remains redistributed and unchanged."
+  },
+  "reconsideration": {
+    "bespoke_chemistry_code": "A generic source-model link checks transition and endpoint references. No enzyme-specific runtime code; missing microstates are not supplied by a graph adapter.",
+    "reuse": "Exact parameters, observations, assay context and arrangement return through one selectable model link. No numbers are transcribed into this relation. Source interpretation and alias mapping remain manual; real cross-case reuse awaits a second application.",
+    "integrated_value": "Separate reversal and donor-cleavage exits from the same conjugate. No measured time saving, incumbent superiority or complete reusable mechanism atlas is claimed."
+  },
+  "schema_version": "catalytic-earth.source-model-context.v1",
+  "identity_bindings": [
+    {
+      "provider": "functional_comparison",
+      "pointer": "/variants/2/reported_variant",
+      "identity_kind": "construct"
+    },
+    {
+      "provider": "study_context",
+      "pointer": "/arrangement/protein/deposited_mutation",
+      "identity_kind": "construct"
+    },
+    {
+      "provider": "functional_comparison",
+      "pointer": "/study/doi",
+      "identity_kind": "study"
+    },
+    {
+      "provider": "study_context",
+      "pointer": "/study/doi",
+      "identity_kind": "study"
+    }
+  ]
+}

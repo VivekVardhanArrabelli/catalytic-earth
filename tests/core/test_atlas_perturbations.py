@@ -12,7 +12,7 @@ from tempfile import TemporaryDirectory
 import unittest
 
 from catalytic_earth.atlas_perturbations import (
-    SPEC_PATH, REVIEW_PATH, _connectivity_relation, _project_candidate, compare, pointer, project, verify_witnesses,
+    SPEC_PATH, REVIEW_PATH, _connectivity_relation, _model_link, _project_candidate, compare, pointer, project, verify_witnesses,
 )
 
 
@@ -20,6 +20,75 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 class PerturbationRelationTests(unittest.TestCase):
+    def model_relation(self, context=None, link=None):
+        sources = {key: json.loads((ROOT / binding["path"]).read_text())
+                   for key, binding in self.spec["sources"].items()}
+        link = deepcopy(self.spec["model_links"][0]) if link is None else link
+        if context is None:
+            context = deepcopy(sources[link["context_provider"]["source"]])
+        return _model_link(context, link, self.view["constructs"], self.rows, self.view["assays"],
+                           self.spec["sources"], lambda ref: pointer(sources[ref["source"]], ref["pointer"]))
+
+    def test_model_link_separates_reverse_adduct_formation_from_donor_cleavage(self):
+        result = self.model_relation()
+        transitions = {item["transition_id"]: item for item in result["transitions"]}
+        formation = transitions["adduct_formation"]
+        self.assertEqual(formation["direction_endpoints"]["reverse"], ["conjugate", "michaelis"])
+        self.assertEqual(formation["resolved_parameters"]["reverse"]["value"], 0.47)
+        self.assertEqual(transitions["donor_cleavage"]["resolved_parameters"], {"forward": None, "reverse": None})
+        self.assertFalse(transitions["donor_cleavage"]["missing_parameter_is_zero"])
+        self.assertFalse(result["source_context"]["source_model"]["graph_replay_verified"])
+        self.assertEqual(result["arrangement"]["component_dictionary_bonds"][1]["atom_ids"], ["CF2", "CF3"])
+
+    def test_model_link_rejects_direction_state_atom_and_endpoint_transfers(self):
+        original = self.model_relation()["source_context"]
+        cases = [
+            ("reverse-as-cleavage", lambda c: c["endpoint_relations"][1].update(transition_id="donor_cleavage")),
+            ("reverse-as-forward", lambda c: c["endpoint_relations"][1].update(transition_direction="forward")),
+            ("accumulation-as-cleavage", lambda c: c["endpoint_relations"][2].update(state_id="cleaved")),
+            ("missing-is-zero", lambda c: c["source_model"]["transitions"][2]["parameter_slots"]["forward"].update(is_zero=True)),
+            ("invented-cleavage-scalar", lambda c: c["source_model"]["transitions"][2]["parameter_slots"]["forward"].update(value=0.47)),
+            ("swapped-bond", lambda c: c["deposit_association"]["bond_annotations"][0].update(dictionary_bond_pointer="/arrangement/component_dictionary_bonds/1")),
+            ("elementary-promotion", lambda c: c["source_model"].update(elementary_step_sequence_established=True)),
+            ("dangling-state", lambda c: c["source_model"]["transitions"][1].update(to_state="missing")),
+            ("duplicate-transition", lambda c: c["source_model"]["transitions"].append(deepcopy(c["source_model"]["transitions"][0]))),
+            ("turnover-source-observation", lambda c: c["endpoint_relations"][2].update(observation_pointer="/observations/2")),
+            ("turnover-source-relation", lambda c: c["deposit_association"].update(existing_relation_pointers=["/relations/0", "/relations/2"])),
+            ("turnover-assay", lambda c: c["endpoint_relations"][0].update(assay_pointer="/assays/0")),
+            ("reverse-turnover-assay", lambda c: c["endpoint_relations"][1].update(assay_pointer="/assays/0")),
+            ("wrong-arrangement", lambda c: c["deposit_association"].update(arrangement_id="other")),
+            ("wrong-original-observation", lambda c: c["endpoint_relations"][0].update(original_observation_id="other")),
+            ("wrong-bond-role", lambda c: c["source_model"]["transitions"][1]["bond_annotations"][0].update(role="scissile_bond")),
+            ("wrong-atom-alias", lambda c: c["deposit_association"]["atom_correspondence"][1].update(source_atom_label="other")),
+        ]
+        for name, mutate in cases:
+            with self.subTest(name=name):
+                context = deepcopy(original)
+                mutate(context)
+                with self.assertRaises(ValueError):
+                    self.model_relation(context)
+        for replacement in ("tkt-steady_state:E160Q:kcat", "tkt-stopped_flow:E160A:k_forward"):
+            with self.subTest(replacement=replacement):
+                context = deepcopy(original)
+                context["endpoint_relations"][0]["observation_id"] = replacement
+                link = deepcopy(self.spec["model_links"][0])
+                link["observation_ids"][0] = replacement
+                with self.assertRaises(ValueError):
+                    self.model_relation(context, link)
+
+    def test_model_link_query_reuses_only_existing_f6p_endpoints(self):
+        view = json.loads(subprocess.check_output([
+            sys.executable, str(ROOT / "scripts/query_atlas_perturbations.py"),
+            "--model-link", "tkt_2019:E160Q:F6P_transitions"], text=True))
+        self.assertEqual({row["id"] for row in view["observations"]}, {
+            "tkt-stopped_flow:E160Q:k_forward", "tkt-nmr:E160Q:covalent_intermediate_accumulation"})
+        self.assertEqual(view["comparisons"], [])
+        self.assertEqual(view["state_links"], [])
+        self.assertEqual(len(view["model_links"]), 1)
+        self.assertFalse(any(row["parameter"] == "k_reverse" for row in view["observations"]))
+        nmr = next(row for row in view["observations"] if row["result_kind"] == "qualitative")
+        self.assertIsNone(nmr["value"])
+
     def core_relation(self, annotation=None):
         binding = self.spec["sources"]["da2010"]
         source = json.loads((ROOT / binding["path"]).read_text(encoding="utf-8"))

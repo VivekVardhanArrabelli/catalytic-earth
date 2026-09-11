@@ -266,6 +266,168 @@ def compare(rows: dict[str, dict[str, Any]], request: dict[str, Any]) -> dict[st
     return result
 
 
+def _model_link(context, link, constructs, rows, assays, source_bindings, resolve):
+    """Bind source-model transitions to evidence without inventing atomic steps.
+
+    The source review supplies transition meaning. These checks enforce its
+    exact directional parameter references, state observations and identity
+    scope; they cannot authenticate chemistry from labels or fitted numbers.
+    """
+    if context.get("schema_version") != "catalytic-earth.source-model-context.v1":
+        raise ValueError("unsupported source-model context")
+    construct = constructs[link["construct_id"]]
+
+    def ref(local):
+        binding = context["source_bindings"][local["provider"]]
+        matches = [key for key, value in source_bindings.items() if value == binding]
+        if len(matches) != 1:
+            raise ValueError("model provider must match one bound source")
+        return {"source": matches[0], "pointer": local["pointer"]}
+
+    def get(local):
+        return resolve(ref(local))
+
+    expected = {"construct": construct["source_construct_id"], "study": context["study"]["doi"]}
+    if context["study"]["reported_variant"] != expected["construct"]:
+        raise ValueError("model construct identity differs")
+    identities = context["identity_bindings"]
+    if {(item["provider"], item["identity_kind"]) for item in identities} != {
+            (provider, kind) for provider in context["source_bindings"] for kind in expected}:
+        raise ValueError("model requires source study and construct identities")
+    if any(get(item) != expected[item["identity_kind"]] for item in identities):
+        raise ValueError("model source identity differs")
+    model = context["source_model"]
+    if (any(model[key] is not False for key in
+            ("elementary_step_sequence_established", "complete_reacted_graph_established",
+             "equilibrium_constant_transfer_between_assays_established", "graph_replay_verified"))
+            or model["before_state_atom_map"] is not None):
+        raise ValueError("source-model links cannot establish elementary chemistry or replay")
+    states = _unique(model["states"], "state_id")
+    transitions = _unique(model["transitions"], "transition_id")
+    resolved_transitions = []
+    for transition in transitions.values():
+        if (transition["from_state"] not in states or transition["to_state"] not in states
+                or transition["from_state"] == transition["to_state"]):
+            raise ValueError("model transition requires distinct declared states")
+        slots = transition["parameter_slots"]
+        if set(slots) != {"forward", "reverse"}:
+            raise ValueError("model requires explicit forward and reverse parameter slots")
+        parameters = {}
+        for direction, slot in slots.items():
+            if slot["is_zero"] is not False:
+                raise ValueError("an unassigned model parameter is not zero")
+            if slot["status"] == "unassigned_in_selected_source_model":
+                if set(slot) != {"status", "binding", "is_zero", "reason"} or slot["binding"] is not None or not slot["reason"]:
+                    raise ValueError("unassigned model parameter requires an explicit abstention")
+                parameters[direction] = None
+            elif slot["status"] == "bound_source_parameter":
+                if set(slot) != {"status", "binding", "is_zero"} or not slot["binding"]:
+                    raise ValueError("model parameter requires an exact source binding")
+                if direction == "reverse" and transition["reversible_in_source"] is not True:
+                    raise ValueError("reverse parameter requires a reversible source transition")
+                parameters[direction] = get(slot["binding"])
+            else:
+                raise ValueError("unknown model parameter status")
+        resolved_transitions.append({**deepcopy(transition), "resolved_parameters": parameters,
+            "direction_endpoints": {"forward": [transition["from_state"], transition["to_state"]],
+                                    "reverse": [transition["to_state"], transition["from_state"]]
+                                    if transition["reversible_in_source"] else None},
+            "missing_parameter_is_zero": False})
+    ids = link["observation_ids"]
+    if not ids or len(ids) != len(set(ids)):
+        raise ValueError("model link requires unique existing observations")
+    if any(row_id not in rows or rows[row_id]["construct_id"] != link["construct_id"]
+           or rows[row_id]["study_id"] != link["study_id"] for row_id in ids):
+        raise ValueError("model observation study or construct differs")
+    endpoints = _unique(context["endpoint_relations"], "relation_id")
+    if {item["observation_id"] for item in endpoints.values()
+            if item["observation_id"] is not None} != set(ids):
+        raise ValueError("model observation coverage differs")
+    resolved_endpoints = []
+    original_assays = {}
+    for endpoint in endpoints.values():
+        original = get(endpoint["original_observation_binding"])
+        if original["observation_id"] != endpoint["original_observation_id"]:
+            raise ValueError("model original observation identity differs")
+        if ("transition_id" in endpoint) == ("state_id" in endpoint):
+            raise ValueError("model endpoint must identify one transition or state")
+        if "transition_id" in endpoint:
+            if endpoint["kind"] != "transition_parameter":
+                raise ValueError("state observations are not transition parameters")
+            transition = transitions[endpoint["transition_id"]]
+            direction = endpoint["transition_direction"]
+            if direction not in {"forward", "reverse"}:
+                raise ValueError("model parameter direction is invalid")
+            parameter = {"provider": endpoint["provider"], "pointer": endpoint["parameter_pointer"]}
+            slot = transition["parameter_slots"][direction]
+            if slot["status"] != "bound_source_parameter" or slot["binding"] != parameter:
+                raise ValueError("parameter is not bound to this transition and direction")
+            assay_ref = ref({"provider": endpoint["provider"], "pointer": endpoint["assay_pointer"]})
+            original_id = endpoint["original_observation_id"]
+            if original_id in original_assays and original_assays[original_id] != assay_ref:
+                raise ValueError("one original observation cannot acquire different assays")
+            original_assays[original_id] = assay_ref
+            resolved = {"parameter": get(parameter), "assay": resolve(assay_ref)}
+        else:
+            if endpoint["kind"] != "state_observation":
+                raise ValueError("transition parameters are not state observations")
+            state = states[endpoint["state_id"]]
+            if endpoint["projected_parameter"] not in state.get("observation_bindings", []):
+                raise ValueError("observation is not bound to this source-model state")
+            resolved = {"source_observation": get(
+                {"provider": endpoint["provider"], "pointer": endpoint["observation_pointer"]})}
+            if resolved["source_observation"] != original:
+                raise ValueError("model state observation differs from original observation")
+        row_id = endpoint["observation_id"]
+        if row_id is not None:
+            parameter_ref = ref(endpoint["projected_parameter"])
+            if parameter_ref != rows[row_id]["parameter_provider"]:
+                raise ValueError("model endpoint differs from the exact existing observation")
+            if "transition_id" in endpoint and parameter_ref != ref(parameter):
+                raise ValueError("model parameter differs from its projected observation")
+            if "transition_id" in endpoint and assay_ref != assays[rows[row_id]["assay_id"]]["provider"]:
+                raise ValueError("model assay differs from the existing parameter observation")
+        resolved_endpoints.append({**deepcopy(endpoint), **resolved})
+    association = context["deposit_association"]
+    arrangement_ref = {"provider": association["provider"], "pointer": association["arrangement_pointer"]}
+    if arrangement_ref not in states[association["source_model_state_id"]].get("arrangement_bindings", []):
+        raise ValueError("arrangement is not bound to this source-model state")
+    if any(association[key] is not False for key in
+           ("exact_preparation_identity_established", "solution_conformer_identity_established",
+            "geometry_to_rate_causation_established")):
+        raise ValueError("source-model association cannot promote physical identity or cause")
+    arrangement = get(arrangement_ref)
+    atom_map = _unique(association["atom_correspondence"], "source_atom_label")
+    _unique(association["atom_correspondence"], "deposit_atom_id")
+    bond_annotations = _unique(association["bond_annotations"], "role")
+    for transition in transitions.values():
+        for bond in transition["bond_annotations"]:
+            labels = bond["source_atom_labels"]
+            if (any(label not in atom_map for label in labels)
+                    or bond["role"] not in bond_annotations
+                    or [atom_map[label]["deposit_atom_id"] for label in labels]
+                    != bond_annotations[bond["role"]]["atom_ids"]):
+                raise ValueError("model transition bond differs from source/deposit correspondence")
+    for bond in association["bond_annotations"]:
+        dictionary = get({"provider": association["provider"], "pointer": bond["dictionary_bond_pointer"]})
+        metric = get({"provider": association["provider"], "pointer": bond["coordinate_metric_pointer"]})
+        if dictionary["atom_ids"] != bond["atom_ids"] or metric["atom_ids"] != bond["atom_ids"]:
+            raise ValueError("model bond locator differs from the bound arrangement")
+    relations = [get({"provider": association["provider"], "pointer": p})
+                 for p in association["existing_relation_pointers"]]
+    _unique(relations, "observation_id")
+    if ({item["observation_id"] for item in relations}
+            != {item["original_observation_id"] for item in endpoints.values()}
+            or any(item["arrangement_id"] != association["arrangement_id"] for item in relations)):
+        raise ValueError("model differs from original arrangement/observation relations")
+    return {**deepcopy(link), "source_context": deepcopy(context),
+            "transitions": resolved_transitions, "endpoints": resolved_endpoints,
+            "arrangement": arrangement,
+            "existing_state_observation_relations": relations,
+            "identity_scope": "source-reported construct association; exact sequence/preparation not established",
+            "verification_scope": "Source-pinned identity, transition direction and evidence references; no chemical graph or causal validation."}
+
+
 def _project_candidate(repo_root: Path, spec: dict[str, Any] | None = None) -> dict[str, Any]:
     """Internal development projection; its arithmetic has no reviewed authority."""
     repo_root = repo_root.resolve()
@@ -504,6 +666,10 @@ def _project_candidate(repo_root: Path, spec: dict[str, Any] | None = None) -> d
                             "physical_preparation_identity_established": False,
                             "chemical_state_identity_from_sequence": False})
     _unique(state_links, "id")
+    model_links = [_model_link(resolve(link["context_provider"]), link, constructs, rows, assays,
+                               spec["sources"], resolve)
+                   for link in spec.get("model_links", [])]
+    _unique(model_links, "id")
     comparisons = []
     for request in spec["comparisons"]:
         if not request["evidence"]:
@@ -546,6 +712,7 @@ def _project_candidate(repo_root: Path, spec: dict[str, Any] | None = None) -> d
         "reactions": reactions,
         "observations": observations, "comparisons": comparisons,
         "state_links": state_links,
+        "model_links": model_links,
         "evidence_context": {key: [resolve(ref) for ref in refs]
                              for key, refs in spec["evidence_context"].items()},
         "source_witnesses": deepcopy(spec.get("source_witnesses", [])),

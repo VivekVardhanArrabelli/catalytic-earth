@@ -1,5 +1,13 @@
 # Source-bound perturbation relation
 
+The [F6P source-model link](ATLAS_STUDY_CONTEXT.md#f6p-adduct-reversal-and-donor-cleavage-are-different-transitions)
+now distinguishes reversible adduct formation from donor cleavage. Use
+`--model-link tkt_2019:E160Q:F6P_transitions` to retrieve the existing E160Q
+formation and NMR observations with the source-model transition parameters
+and 6HA3 bond locators. This source-reported-variant association adds no
+measurement or arithmetic comparison and does not establish an elementary
+mechanism or the exact sequence required by `--state-link`.
+
 One offline consumer now recovers the accepted RA95 2013/2017 and RA61
 perturbation comparisons, their exclusions, KE59's unassessed matched-control
 question, the human-transketolase endpoint contrast, POX analogue nonbinding beside pyruvate responses, and the beta-barrel benzoate-control conflict. It answers which source-defined perturbations retain a measured

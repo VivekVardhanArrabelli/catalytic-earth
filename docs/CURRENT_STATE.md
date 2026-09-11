@@ -1,5 +1,22 @@
 # Current State
 
+## 2026-09-11: F6P transition identity separates reversal from cleavage
+
+The shared source-model link connects the source-described E160Q F6P
+formation/reversal transition to existing stopped-flow and NMR evidence and
+the deposited 6HA3 conjugate. The fitted reverse parameter returns toward
+noncovalent F6P; donor cleavage to DHEThDP plus E4P is a distinct edge with
+no assigned kinetic parameter. Formed and scissile bonds remain separately
+identified in the retained deposit. CE-024 carries this partial source relation.
+
+A generic model link validates directional parameter references, existing
+observation identity and bond locators. It adds no observation or arithmetic
+comparison, and leaves the exact-sequence state-link rule unchanged. Atomic
+before states, protonation/electron flow, isolated bond-making kinetics and
+geometry-rate causation remain unestablished. All scientific sources were
+already retained; new requests/bytes are zero and TKT complete cumulative
+accounting remains unknown. Real reuse across a second case is the next test.
+
 ## 2026-09-11: donor controls constrain interpretation of KSI mutation energies
 
 The [Kraut2010 relation](ATLAS_KSI_FIELD_FUNCTION.md#donor-controls-distinguish-mutation-effects-from-a-single-hydrogen-bond-energy)

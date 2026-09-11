@@ -104,6 +104,14 @@
     "ksi2010": {
       "path": "data/atlas/study_context/ksi_2010/donor_solvation.json",
       "sha256": "91987df11328679b5b01e54ef40c2bda9772386377c27b1457b63f8ef7d6c2e4"
+    },
+    "tktstudy": {
+      "path": "data/atlas/study_context/6ha3/evidence_projection.json",
+      "sha256": "70bf1eaa59747239990161631432a44440629704aa50051bddd551309fb1213e"
+    },
+    "tktt": {
+      "path": "data/atlas/study_context/6ha3/f6p_transition_context.json",
+      "sha256": "adcd65ad712906ec44161429739887b8eb314b4ea4cdc660279ab2ba8bdaaa18"
     }
   },
   "constructs": {
@@ -8807,6 +8815,10 @@
         {
           "source": "poxf",
           "pointer": "/sources/0"
+        },
+        {
+          "source": "tktt",
+          "pointer": "/sources/0"
         }
       ],
       "redistributed": false,
@@ -8825,6 +8837,10 @@
         },
         {
           "source": "poxf",
+          "pointer": "/sources/1"
+        },
+        {
+          "source": "tktt",
           "pointer": "/sources/1"
         }
       ],
@@ -8845,6 +8861,10 @@
         {
           "source": "poxf",
           "pointer": "/sources/2"
+        },
+        {
+          "source": "tktt",
+          "pointer": "/sources/2"
         }
       ],
       "redistributed": false,
@@ -8863,6 +8883,10 @@
         },
         {
           "source": "poxf",
+          "pointer": "/sources/3"
+        },
+        {
+          "source": "tktt",
           "pointer": "/sources/3"
         }
       ],
@@ -9394,6 +9418,21 @@
           },
           "polymer_selection_id": "polymer-sequence"
         }
+      ]
+    }
+  ],
+  "model_links": [
+    {
+      "id": "tkt_2019:E160Q:F6P_transitions",
+      "study_id": "tkt_2019",
+      "construct_id": "tkt_2019:E160Q",
+      "context_provider": {
+        "source": "tktt",
+        "pointer": ""
+      },
+      "observation_ids": [
+        "tkt-stopped_flow:E160Q:k_forward",
+        "tkt-nmr:E160Q:covalent_intermediate_accumulation"
       ]
     }
   ]
