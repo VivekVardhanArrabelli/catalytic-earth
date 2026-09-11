@@ -1,0 +1,79 @@
+{
+  "schema_version": "catalytic-earth.source-qualification-review.v1",
+  "assessment_id": "POX2019:wild_type:MAP-pyruvate-model-endpoints",
+  "decision": "accept_source_annotation",
+  "authorized_operation": "source_annotation",
+  "policy_binding": {
+    "path": "data/governance/computational_review_policy.json",
+    "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "reviewed_at_utc": "2026-09-11T06:24:06.581159+00:00",
+  "reviewed_bindings": {
+    "data/atlas/study_context/pox2019/model_context.json": "2e9be65db3bc470f35a11ac63cdac15ff954357780d4b3c1eb9ada694eb53fde",
+    "data/atlas/study_context/pox2019/functional_comparison.json": "570ffb83d9272d41ed72ff389c2f56fbc1415c7d6d9fbdd6c622476957c2a4b5",
+    "data/atlas/perturbations/projection.json": "da2be39dbaea07edd0640bdbaf8c859b8442c2395568fead2a6fdcbe87ce998d",
+    "src/catalytic_earth/atlas_perturbations.py": "c133daa2b62d9656abe2d2d32ff0ea731f3c97a4819f9c44ac5f57ee3d26aff4",
+    "scripts/query_atlas_perturbations.py": "85fb364ead64f944d8fe9e22985b1264521e37061c8ea7918d945d0fe0243da4",
+    "tests/core/test_atlas_perturbations.py": "9bd2041f7fce5f6e5a1dd267d700de6f6582ddac207d74c673b244a4f73e7ff3",
+    "docs/ATLAS_STUDY_CONTEXT.md": "df4a7b6ab899c63b03610442728884164aff8f268fc9dd8904a4a90450d99d3e",
+    "docs/ATLAS_PERTURBATION_RELATION.md": "35ddeded0c09727e5775aa6d2fe23a06c884891d569ebe0c949bfcd2bcff2eae",
+    "CLAIMS.md": "0cd61365766cb3d32b0762d4c5f8a1980f4658456fabafa1c4180753a95b626b",
+    "data/governance/claim_ledger.json": "e8871e58ec17022205109484753ceadc84392e76b8315666fada209e791bd98d",
+    "docs/CURRENT_STATE.md": "3736ee56b1e858b1bca12fb9fcbf1597d5d45c835656cc746c93562bd80f1d68",
+    "docs/CURRENT_DECISIONS.md": "4476fa13f14ceed6a84ab641bf4723441b7aeb8c2e1e316534dc02f7e45371e5"
+  },
+  "review_process": "Parent source/diff review and separately prompted read-only gpt-5.6-sol/ultra source_pox, representation_pox and adversarial_pox. Findings below adjudicated; final immutable-head review recorded in Git-local receipt. Correlated computation, not independent human or laboratory validation.",
+  "source_inspection": "Four retained publisher witnesses hash checked. SI printed pp8-9 (PDF pp9-10) equations9-12 and schemes visually inspected; Results p4 used only with assay qualification; ED Table2b WT row/footnotes i-k; ED Figure8 and Figure7a legends; Data Availability. No new scientific-source acquisition.",
+  "adjudications": [
+    {
+      "objection": "A multistep FAD-reduction reporter cannot supply one elementary arrow rate.",
+      "decision": "Preserve source Michaelis-to-covalent reversibility and subsequent processing; attach k_app_max to the two-transition observed phase. Leave every individual pyruvate rate slot unassigned; bind K_0.5 at fit scope while n remains in the source equation.",
+      "evidence": "SI printed p9 scheme, prose and equations11-12; ED Table2b footnote j."
+    },
+    {
+      "objection": "MAP association and pyruvate processing share a study but differ in ligand, reporter and kinetic order.",
+      "decision": "Separate source-bound ligand branches; MAP k_on second order and k_off first order. K_D_app stays the source-derived apparent equilibrium including the covalent conjugate.",
+      "evidence": "SI printed p8 scheme/equations9-10; ED Table2b footnote i; Figure8a-f legends."
+    },
+    {
+      "objection": "The original model consumer requires a deposit even when the source-model relation is supported without one.",
+      "decision": "Add an explicit absent arrangement with a nonempty reason and no atom/arrangement bindings. Retain all existing TKT source/deposit checks when present. 6HAF is E59Q+phosphate; 4FEG is a source-named WT carbanion-enamine locator without a retained arrangement or assay-preparation identity.",
+      "evidence": "Data Availability; ED Figure7a legend; current retained packet inventory."
+    },
+    {
+      "objection": "Inventing original observation IDs would disguise reused table parameters as new evidence.",
+      "decision": "Allow projected-only endpoints only with existing observation, exact parameter, assay, study and construct references. All five original parameters stay unchanged; the numeric Hill coefficient remains in the original provider, outside this five-parameter relation.",
+      "evidence": "Unchanged POX functional provider and current projection."
+    },
+    {
+      "objection": "Mutation review accepted an unreferenced extra transition rate, relabelled kinetic order or elementary role, and a different enzyme under the same DOI.",
+      "decision": "Require exact one-to-one bound-direction endpoint coverage, complete typed kinetic roles/units, generic fit-role dimensional contracts, source enzyme binding and ligand/assay agreement. Reject those observed failure modes with focused mutation cases. The same coverage guard protects the existing TKT cleavage boundary.",
+      "evidence": "Adversarial in-memory mutations before the fix; final rejection tests and immutable review in receipt."
+    },
+    {
+      "objection": "A wild-type model could be promoted into E59Q MAP-state evidence.",
+      "decision": "Scope this link to WT; retain all five other variants and E59Q unavailability/positive-pyruvate observations without change. No new variant state or measurement follows.",
+      "evidence": "ED Table2b WT/E59Q rows and original POX packet."
+    },
+    {
+      "objection": "An unprojected contextual Hill coefficient could be switched to another variant without an endpoint-level construct check.",
+      "decision": "Remove the unnecessary contextual scalar binding and require every fit parameter to have exactly one existing projected endpoint. Keep the source equation n and original provider unchanged; no new construct/group adapter is built for an unneeded scalar.",
+      "evidence": "Representation reviewer changed the WT contextual pointer to H89N and the candidate accepted it; a regression now rejects that injection."
+    },
+    {
+      "objection": "A coherent rewrite of source states, directional slots, units, roles and endpoint declarations can remain internally consistent.",
+      "decision": "Treat this as replacement of source semantics requiring primary-source review, not a validation of chemical truth. The public consumer pins the complete reviewed context and rejects unreviewed byte changes. No enzyme-ID/state-ID code or duplicate source-truth assertion is added.",
+      "evidence": "Representation compound direction swap; current source directions independently checked against SI schemes. Existing public reviewed-binding tamper tests establish the mechanical boundary."
+    }
+  ],
+  "blocked_operations": [
+    "individual_pyruvate_transition_rate_from_FAD_phase",
+    "MAP_parameter_or_state_transfer_to_pyruvate_or_E59Q",
+    "thermodynamic_affinity_from_cooperative_K_0.5",
+    "atom_resolved_mechanism_or_graph_replay",
+    "unsupported_6HAF_or_4FEG_arrangement",
+    "physical_preparation_identity_or_geometry_cause",
+    "protected_registry_or_evidence_tier_promotion"
+  ],
+  "coordination_record": ".git/catalytic-earth-runs/9b2f1067.board.md"
+}

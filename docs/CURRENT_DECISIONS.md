@@ -1,5 +1,21 @@
 # Current Decisions
 
+## 2026-09-11: bind a measured phase to multiple source-model transitions
+
+Accept the [POX reuse test](ATLAS_STUDY_CONTEXT.md#pox-binding-and-a-multistep-reporter-require-different-model-relations)
+at source-model scope. The retained scheme resolves MAP association and
+dissociation, but brackets two pyruvate transitions into one FAD reporter phase.
+Represent that fit separately from individual transition rates. Keep ligand
+branches disjoint, equilibrium/response parameters at fit scope, and the
+unmatched structural association explicitly absent.
+
+The existing consumer required both a deposit and individual directional
+parameters. Shared optional-arrangement and fit relations address those
+concrete gaps; case facts remain in data. No elementary mechanism, new kinetic
+observation or MAP state for E59Q is created. Existing TKT output and POX
+variant evidence stay unchanged. The bounded second-context reuse question
+is complete; the current handoff selects the next scientific bottleneck.
+
 ## 2026-09-11: accept a partial source-model relation without completing missing chemistry
 
 Close the bounded E160Q F6P question with the

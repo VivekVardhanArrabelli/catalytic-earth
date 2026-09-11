@@ -1,5 +1,14 @@
 # Source-bound perturbation relation
 
+The [POX model relation](ATLAS_STUDY_CONTEXT.md#pox-binding-and-a-multistep-reporter-require-different-model-relations)
+uses `--model-link pox_2019:wild_type:MAP_pyruvate_models` to return five existing
+observations with two ligand-specific fit contexts. MAP association/dissociation
+remain directional parameters; the pyruvate FAD rate spans two source-model
+transitions. Apparent equilibrium and cooperative response parameters stay at
+fit scope; the Hill exponent remains in the source equation. No matching
+arrangement is invented. This reuses the consumer across a second enzyme
+context while preserving all prior observations, comparisons and state links.
+
 The [F6P source-model link](ATLAS_STUDY_CONTEXT.md#f6p-adduct-reversal-and-donor-cleavage-are-different-transitions)
 now distinguishes reversible adduct formation from donor cleavage. Use
 `--model-link tkt_2019:E160Q:F6P_transitions` to retrieve the existing E160Q

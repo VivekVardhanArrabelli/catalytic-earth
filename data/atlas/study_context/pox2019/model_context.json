@@ -1,0 +1,480 @@
+{
+  "schema_version": "catalytic-earth.source-model-context.v1",
+  "context_id": "pox_2019:wild_type:MAP-versus-pyruvate-models",
+  "operation": "source_annotation",
+  "study": {
+    "doi": "10.1038/s41586-019-1581-9",
+    "reported_enzyme": "reported L. plantarum pyruvate oxidase wild type and variants",
+    "reported_variant": "wild_type"
+  },
+  "question": "Can analogue association and the multistep FAD reporter response share one source-model consumer without assigning their parameters to the wrong ligand or microscopic transition?",
+  "selection": "The existing wild-type row instantiates both source models. Other five variants, including E59Q analogue nonbinding, retain their original observations and comparisons; the wild-type covalent state is not transferred to them.",
+  "source_bindings": {
+    "functional_comparison": {
+      "path": "data/atlas/study_context/pox2019/functional_comparison.json",
+      "sha256": "570ffb83d9272d41ed72ff389c2f56fbc1415c7d6d9fbdd6c622476957c2a4b5"
+    }
+  },
+  "sources": [
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:EDTable2-JPEG",
+      "sha256": "51ca21f005b8b5d9dd152e097940656a76821e3e379b7697da219d5522652b8c",
+      "bytes": 146137,
+      "source_url": "https://media.springernature.com/lw749/springer-static/esm/art%3A10.1038%2Fs41586-019-1581-9/MediaObjects/41586_2019_1581_Tab2_ESM.jpg",
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/51ca21f005b8b5d9dd152e097940656a76821e3e379b7697da219d5522652b8c.jpg",
+      "redistributed": false
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:EDTable2-HTML",
+      "sha256": "58012ff70ac04784193dd2c76863c008fd6b10018c3ff4b629d6634b1ba7866e",
+      "bytes": 178782,
+      "source_url": "https://www.nature.com/articles/s41586-019-1581-9/tables/2",
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/58012ff70ac04784193dd2c76863c008fd6b10018c3ff4b629d6634b1ba7866e.html",
+      "redistributed": false
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:SI-PDF",
+      "sha256": "9e4db71f5e59ee1184991376419894ac4c311b403f74028f9c543337e4d1733c",
+      "bytes": 436294,
+      "source_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-019-1581-9/MediaObjects/41586_2019_1581_MOESM1_ESM.pdf",
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/9e4db71f5e59ee1184991376419894ac4c311b403f74028f9c543337e4d1733c.pdf",
+      "redistributed": false
+    },
+    {
+      "artifact_id": "Nature:s41586-019-1581-9:landing-HTML",
+      "sha256": "e9d239f6e97bf1a563641d2b1e0a335411b6a07125ad7f250cee2e3fc0c17a59",
+      "bytes": 445216,
+      "source_url": "https://www.nature.com/articles/s41586-019-1581-9",
+      "git_common_dir_relative_path": "catalytic-earth-source-cache/e9d239f6e97bf1a563641d2b1e0a335411b6a07125ad7f250cee2e3fc0c17a59.html",
+      "redistributed": false
+    }
+  ],
+  "identity_bindings": [
+    {
+      "provider": "functional_comparison",
+      "pointer": "/variants/0/reported_variant",
+      "identity_kind": "construct"
+    },
+    {
+      "provider": "functional_comparison",
+      "pointer": "/study/doi",
+      "identity_kind": "study"
+    }
+  ],
+  "ligand_bindings": {
+    "pox:MAP": {
+      "binding": {
+        "provider": "functional_comparison",
+        "pointer": "/assays/1/conditions/substrate_analogue"
+      },
+      "source_name": "methyl acetylphosphonate (MAP)"
+    },
+    "pox:pyruvate": {
+      "binding": {
+        "provider": "functional_comparison",
+        "pointer": "/assays/2/conditions/substrate_varied"
+      },
+      "source_name": "pyruvate"
+    }
+  },
+  "source_model": {
+    "model_id": "POX2019:distinct-analogue-and-substrate-response-models",
+    "source_locators": [
+      "Supplementary Methods printed p8 (PDF p9), scheme and equations9-10",
+      "Supplementary Methods printed p9 (PDF p10), scheme and equations11-12",
+      "Extended Data Figure8a-f legends; Extended Data Table2b footnotes i-k"
+    ],
+    "states": [
+      {
+        "state_id": "map_uncombined",
+        "kind": "uncombined_enzyme_cofactor_and_analogue",
+        "ligand_id": "pox:MAP",
+        "source_labels": [
+          {
+            "source_locator": "Supplementary Methods printed p8 (PDF p9), scheme and equations9-10",
+            "label": "E + S"
+          }
+        ]
+      },
+      {
+        "state_id": "map_conjugate",
+        "kind": "source_assigned_covalent_MAP_ThDP_conjugate",
+        "ligand_id": "pox:MAP",
+        "source_labels": [
+          {
+            "source_locator": "Supplementary Methods printed p8 (PDF p9), scheme and equations9-10",
+            "label": "E-S"
+          }
+        ]
+      },
+      {
+        "state_id": "pyruvate_uncombined",
+        "kind": "uncombined_oxidized_enzyme_and_substrate",
+        "ligand_id": "pox:pyruvate",
+        "source_labels": [
+          {
+            "source_locator": "Supplementary Methods printed p9 (PDF p10), scheme and equations11-12",
+            "label": "Eox + S"
+          }
+        ]
+      },
+      {
+        "state_id": "pyruvate_michaelis",
+        "kind": "source_Michaelis_complex",
+        "ligand_id": "pox:pyruvate",
+        "source_labels": [
+          {
+            "source_locator": "Supplementary Methods printed p9 (PDF p10), scheme and equations11-12",
+            "label": "Eox*S"
+          }
+        ]
+      },
+      {
+        "state_id": "pyruvate_conjugate",
+        "kind": "source_covalent_intermediate_without_atomic_assignment",
+        "ligand_id": "pox:pyruvate",
+        "source_labels": [
+          {
+            "source_locator": "Supplementary Methods printed p9 (PDF p10), scheme and equations11-12",
+            "label": "Eox-S"
+          }
+        ]
+      },
+      {
+        "state_id": "pyruvate_processed",
+        "kind": "reduced_FAD_enzyme_and_source_product_label",
+        "ligand_id": "pox:pyruvate",
+        "source_labels": [
+          {
+            "source_locator": "Supplementary Methods printed p9 (PDF p10), scheme and equations11-12",
+            "label": "Ered + P"
+          }
+        ]
+      }
+    ],
+    "transitions": [
+      {
+        "transition_id": "map_binding",
+        "from_state": "map_uncombined",
+        "to_state": "map_conjugate",
+        "reversible_in_source": true,
+        "ligand_id": "pox:MAP",
+        "assay_binding": {
+          "provider": "functional_comparison",
+          "pointer": "/assays/1"
+        },
+        "source_locators": [
+          "Supplementary Methods printed p8 (PDF p9), scheme and equations9-10"
+        ],
+        "parameter_slots": {
+          "forward": {
+            "status": "bound_source_parameter",
+            "binding": {
+              "provider": "functional_comparison",
+              "pointer": "/variants/0/analogue_binding/k_on"
+            },
+            "is_zero": false
+          },
+          "reverse": {
+            "status": "bound_source_parameter",
+            "binding": {
+              "provider": "functional_comparison",
+              "pointer": "/variants/0/analogue_binding/k_off"
+            },
+            "is_zero": false
+          }
+        },
+        "bond_annotations": [],
+        "parameter_units": {
+          "forward": "mM^-1 s^-1",
+          "reverse": "s^-1"
+        },
+        "parameter_roles": {
+          "forward": "second_order_association",
+          "reverse": "first_order_dissociation"
+        },
+        "scope": "The apparent two-state binding model includes a covalent conjugate; no separate noncovalent docking or elementary bond-making step is resolved."
+      },
+      {
+        "transition_id": "pyruvate_binding",
+        "from_state": "pyruvate_uncombined",
+        "to_state": "pyruvate_michaelis",
+        "reversible_in_source": true,
+        "ligand_id": "pox:pyruvate",
+        "assay_binding": {
+          "provider": "functional_comparison",
+          "pointer": "/assays/2"
+        },
+        "source_locators": [
+          "Supplementary Methods printed p9 (PDF p10), scheme and equations11-12"
+        ],
+        "parameter_slots": {
+          "forward": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "The selected source scheme does not assign an individual kinetic parameter to this direction. This is not a zero rate."
+          },
+          "reverse": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "The selected source scheme does not assign an individual kinetic parameter to this direction. This is not a zero rate."
+          }
+        },
+        "bond_annotations": []
+      },
+      {
+        "transition_id": "pyruvate_conjugate_formation",
+        "from_state": "pyruvate_michaelis",
+        "to_state": "pyruvate_conjugate",
+        "reversible_in_source": true,
+        "ligand_id": "pox:pyruvate",
+        "assay_binding": {
+          "provider": "functional_comparison",
+          "pointer": "/assays/2"
+        },
+        "source_locators": [
+          "Supplementary Methods printed p9 (PDF p10), scheme and equations11-12"
+        ],
+        "parameter_slots": {
+          "forward": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "The selected source scheme does not assign an individual kinetic parameter to this direction. This is not a zero rate."
+          },
+          "reverse": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "The selected source scheme does not assign an individual kinetic parameter to this direction. This is not a zero rate."
+          }
+        },
+        "bond_annotations": []
+      },
+      {
+        "transition_id": "pyruvate_processing",
+        "from_state": "pyruvate_conjugate",
+        "to_state": "pyruvate_processed",
+        "reversible_in_source": false,
+        "ligand_id": "pox:pyruvate",
+        "assay_binding": {
+          "provider": "functional_comparison",
+          "pointer": "/assays/2"
+        },
+        "source_locators": [
+          "Supplementary Methods printed p9 (PDF p10), scheme and equations11-12"
+        ],
+        "parameter_slots": {
+          "forward": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "The selected source scheme does not assign an individual kinetic parameter to this direction. This is not a zero rate."
+          },
+          "reverse": {
+            "status": "unassigned_in_selected_source_model",
+            "binding": null,
+            "is_zero": false,
+            "reason": "The source scheme does not draw a reverse processing arrow or assign a reverse parameter. Absence of that assignment is not a measured zero rate."
+          }
+        },
+        "bond_annotations": []
+      }
+    ],
+    "fit_models": [
+      {
+        "fit_id": "map_two_state",
+        "kind": "two_state_equilibrium",
+        "ligand_id": "pox:MAP",
+        "assay_binding": {
+          "provider": "functional_comparison",
+          "pointer": "/assays/1"
+        },
+        "transition_ids": [
+          "map_binding"
+        ],
+        "phase_transition_ids": [],
+        "source_locators": [
+          "Supplementary Methods printed p8 (PDF p9), scheme and equations9-10",
+          "Extended Data Table2b footnote i"
+        ],
+        "equation": "k_app = k_off + k_on * [MAP]",
+        "parameter_bindings": {
+          "K_D_app": {
+            "binding": {
+              "provider": "functional_comparison",
+              "pointer": "/variants/0/analogue_binding/K_D_app"
+            },
+            "role": "apparent_equilibrium_constant",
+            "unit": "uM"
+          }
+        },
+        "scope": "The reported K_D_app derives from k_off/k_on and is not an independent measurement or pyruvate affinity."
+      },
+      {
+        "fit_id": "pyruvate_FAD_response",
+        "kind": "multistep_reporter_response",
+        "ligand_id": "pox:pyruvate",
+        "assay_binding": {
+          "provider": "functional_comparison",
+          "pointer": "/assays/2"
+        },
+        "transition_ids": [
+          "pyruvate_binding",
+          "pyruvate_conjugate_formation",
+          "pyruvate_processing"
+        ],
+        "phase_transition_ids": [
+          "pyruvate_conjugate_formation",
+          "pyruvate_processing"
+        ],
+        "source_locators": [
+          "Supplementary Methods printed p9 (PDF p10), scheme and equations11-12",
+          "Extended Data Table2b footnote j"
+        ],
+        "equation": "k_app([pyruvate]) = k_app_max * [pyruvate]^n / (K_0.5^n + [pyruvate]^n)",
+        "parameter_bindings": {
+          "k_app_max": {
+            "binding": {
+              "provider": "functional_comparison",
+              "pointer": "/variants/0/single_turnover/k_app_max"
+            },
+            "role": "saturated_multistep_rate",
+            "unit": "s^-1"
+          },
+          "K_0.5": {
+            "binding": {
+              "provider": "functional_comparison",
+              "pointer": "/variants/0/single_turnover/K_0.5"
+            },
+            "role": "cooperative_response_midpoint",
+            "unit": "mM"
+          }
+        },
+        "scope": "The scheme brackets conjugate formation and subsequent processing as one observed phase. k_app_max belongs to that saturated multistep phase, not either individual arrow. The source interprets K_0.5 within a cooperative preceding-binding model; no model-independent affinity is assigned. The equation retains the source Hill exponent n; its numeric coefficient remains in the unchanged original provider and is not projected through this model link."
+      }
+    ],
+    "elementary_step_sequence_established": false,
+    "complete_reacted_graph_established": false,
+    "equilibrium_constant_transfer_between_assays_established": false,
+    "graph_replay_verified": false,
+    "before_state_atom_map": null
+  },
+  "deposit_association": null,
+  "deposit_absence_reason": "No matching MAP-bound arrangement or assay-construct-to-deposit relation is established by the selected retained evidence. Data Availability names 6HAF as L. plantarum E59Q in complex with phosphate: both construct and ligand differ from these wild-type MAP/pyruvate contexts. No geometry, atom map or physical preparation identity is substituted. The retained Figure7a legend names 4FEG as wild-type POX with a carbanion-enamine Breslow intermediate, but no retained 4FEG coordinates/arrangement or assay-preparation identity supports a model association here.",
+  "endpoint_relations": [
+    {
+      "relation_id": "POX:wild_type:k_on",
+      "kind": "transition_parameter",
+      "observation_id": "pox-analogue_binding:wild_type:k_on",
+      "provider": "functional_comparison",
+      "parameter_pointer": "/variants/0/analogue_binding/k_on",
+      "assay_pointer": "/assays/1",
+      "projected_parameter": {
+        "provider": "functional_comparison",
+        "pointer": "/variants/0/analogue_binding/k_on"
+      },
+      "evidence_kind": "existing_source_reported_model_parameter",
+      "transition_id": "map_binding",
+      "transition_direction": "forward"
+    },
+    {
+      "relation_id": "POX:wild_type:k_off",
+      "kind": "transition_parameter",
+      "observation_id": "pox-analogue_binding:wild_type:k_off",
+      "provider": "functional_comparison",
+      "parameter_pointer": "/variants/0/analogue_binding/k_off",
+      "assay_pointer": "/assays/1",
+      "projected_parameter": {
+        "provider": "functional_comparison",
+        "pointer": "/variants/0/analogue_binding/k_off"
+      },
+      "evidence_kind": "existing_source_reported_model_parameter",
+      "transition_id": "map_binding",
+      "transition_direction": "reverse"
+    },
+    {
+      "relation_id": "POX:wild_type:K_D_app",
+      "kind": "fit_parameter",
+      "observation_id": "pox-analogue_binding:wild_type:K_D_app",
+      "provider": "functional_comparison",
+      "parameter_pointer": "/variants/0/analogue_binding/K_D_app",
+      "assay_pointer": "/assays/1",
+      "projected_parameter": {
+        "provider": "functional_comparison",
+        "pointer": "/variants/0/analogue_binding/K_D_app"
+      },
+      "evidence_kind": "existing_source_reported_model_parameter",
+      "fit_id": "map_two_state",
+      "parameter_key": "K_D_app"
+    },
+    {
+      "relation_id": "POX:wild_type:k_app_max",
+      "kind": "fit_parameter",
+      "observation_id": "pox-single_turnover:wild_type:k_app_max",
+      "provider": "functional_comparison",
+      "parameter_pointer": "/variants/0/single_turnover/k_app_max",
+      "assay_pointer": "/assays/2",
+      "projected_parameter": {
+        "provider": "functional_comparison",
+        "pointer": "/variants/0/single_turnover/k_app_max"
+      },
+      "evidence_kind": "existing_source_reported_model_parameter",
+      "fit_id": "pyruvate_FAD_response",
+      "parameter_key": "k_app_max"
+    },
+    {
+      "relation_id": "POX:wild_type:K_0.5",
+      "kind": "fit_parameter",
+      "observation_id": "pox-single_turnover:wild_type:K_0.5",
+      "provider": "functional_comparison",
+      "parameter_pointer": "/variants/0/single_turnover/K_0.5",
+      "assay_pointer": "/assays/2",
+      "projected_parameter": {
+        "provider": "functional_comparison",
+        "pointer": "/variants/0/single_turnover/K_0.5"
+      },
+      "evidence_kind": "existing_source_reported_model_parameter",
+      "fit_id": "pyruvate_FAD_response",
+      "parameter_key": "K_0.5"
+    }
+  ],
+  "discriminant": {
+    "assessed": true,
+    "finding": "MAP kon/koff describe reversible apparent binding including its covalent conjugate. Pyruvate k_app_max describes the saturated FAD-reduction phase across conjugate formation and subsequent processing; neither individual pyruvate phase arrow has an assigned rate here.",
+    "consequential_exclusion": "Do not assign MAP parameters to pyruvate, compare kon directly with first-order rates, or use k_app_max as an individual conjugate-formation or decarboxylation rate. K_D_app and K_0.5 retain different ligand/model roles.",
+    "positive_content": "One consumer recovers source-labelled state paths, fit coverage and five exact existing endpoints with their original assays.",
+    "first_missing_premise": "No atom-resolved microstates or matching MAP structural arrangement is established; source Eox-S and P labels do not supply a complete reacted-state mechanism.",
+    "supported_scope": "source_model_and_fit_endpoint_relation"
+  },
+  "limitations": [
+    "A source kinetic scheme is not an atom-mapped elementary mechanism, trajectory, productive design template or laboratory result of this project.",
+    "The FAD-reduction endpoint supplies no individual microscopic rate or oxygen-turnover kinetic constant. DCPIP steady-state observations remain separate and unchanged.",
+    "MAP is not further processed in the reported assay; its stable C-P bond explanation stays source-attributed. No zero downstream rate is created.",
+    "Wild-type scheme association does not establish a MAP conjugate for E59Q. Its source-reported nonbinding and unavailable values remain unchanged.",
+    "The original assays retain 25 C, pH 6.0 for MAP and unspecified pH for single turnover, optical path-length typo, table triplicate SD and separate Figure8 repeat statement.",
+    "Exact sequences, assay specimens, atomic protonation/tautomerism and physical preparation identity remain unresolved. Full main text and Extended Data Figure8 images were not newly acquired; retained SI, table and accessible legends supply this annotation."
+  ],
+  "acquisition": {
+    "batch_id": "human-tkt-e160q-6ha3-geometry-function",
+    "new_requests": 0,
+    "new_response_body_bytes": 0,
+    "inherited_metered_lower_bound_requests": 7,
+    "inherited_metered_lower_bound_response_body_bytes": 3004884,
+    "complete_cumulative_accounting": false,
+    "remaining_headroom": null,
+    "new_publisher_source_bodies_redistributed": false,
+    "redistribution_scope": "The four reused publisher bodies are not redistributed. The previously tracked RCSB 6HA3 coordinate file remains redistributed and unchanged."
+  },
+  "reconsideration": {
+    "bespoke_chemistry_code": "Shared optional-arrangement and source-fit relations extend model_links; ligand, source states and parameter roles live in data. No enzyme-ID branch.",
+    "reuse": "Second enzyme context uses existing provider values and consumer; no new numeric transcriptions, duplicate primary witnesses or observed time-saving claim. Model meaning and source selection still require curation.",
+    "integrated_value": "Fit coverage prevents a multistep apparent reporter parameter from becoming an individual transition rate. The ligand branches prevent MAP-to-pyruvate transfer. A competent reader can derive these distinctions from the source; no incumbent superiority or complete atlas is claimed."
+  },
+  "enzyme_identity_binding": {
+    "provider": "functional_comparison",
+    "pointer": "/study/enzyme_context"
+  }
+}

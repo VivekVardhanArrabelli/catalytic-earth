@@ -1,5 +1,22 @@
 # Current State
 
+## 2026-09-11: POX reuse separates directional rates from an observed phase
+
+The shared [POX source-model query](ATLAS_STUDY_CONTEXT.md#pox-binding-and-a-multistep-reporter-require-different-model-relations)
+connects five existing wild-type parameters to distinct MAP and pyruvate models.
+MAP k_on/k_off belong to a reversible apparent binding transition; pyruvate
+k_app_max belongs to a FAD reporter phase spanning conjugate formation and
+subsequent processing. Individual pyruvate transition rates remain unassigned.
+K_D_app and K_0.5 retain their source-fit roles; the source equation retains n.
+
+No matching arrangement is established: 6HAF is E59Q with phosphate, not
+wild type with MAP. The consumer now supports absent arrangements and
+multistep fits with ligand, assay, parameter and phase checks. All original
+observations, comparisons, exact-sequence state links and the TKT model-link
+output remain unchanged. CE-025 adds this qualified wild-type relation;
+its separate E59Q evidence is unchanged. No new source acquisition, elementary
+mechanism, physical experiment, evidence-tier promotion or design result.
+
 ## 2026-09-11: F6P transition identity separates reversal from cleavage
 
 The shared source-model link connects the source-described E160Q F6P

@@ -20,6 +20,113 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 class PerturbationRelationTests(unittest.TestCase):
+    def pox_model_relation(self, context=None, link=None):
+        if link is None:
+            link = deepcopy(next(item for item in self.spec["model_links"]
+                                 if item["id"] == "pox_2019:wild_type:MAP_pyruvate_models"))
+        return self.model_relation(context, link)
+
+    def test_pox_model_keeps_multistep_reporter_fit_off_individual_arrows(self):
+        result = self.pox_model_relation()
+        transitions = {item["transition_id"]: item for item in result["transitions"]}
+        binding = transitions["map_binding"]
+        self.assertEqual(binding["resolved_parameters"]["forward"]["unit"], "mM^-1 s^-1")
+        self.assertEqual(binding["resolved_parameters"]["reverse"]["unit"], "s^-1")
+        for key in ("pyruvate_binding", "pyruvate_conjugate_formation", "pyruvate_processing"):
+            self.assertEqual(transitions[key]["resolved_parameters"], {"forward": None, "reverse": None})
+        fit = next(item for item in result["fit_models"] if item["fit_id"] == "pyruvate_FAD_response")
+        self.assertEqual(fit["phase_transition_ids"], ["pyruvate_conjugate_formation", "pyruvate_processing"])
+        self.assertEqual(fit["resolved_parameters"]["k_app_max"]["value"], 136)
+        self.assertEqual(fit["resolved_parameters"]["K_0.5"]["value"], 3.4)
+        self.assertEqual(fit["assay"]["conditions"]["wavelength_nm"], 457)
+        self.assertIsNone(fit["assay"]["conditions"]["pH"])
+        self.assertIsNone(result["arrangement"])
+        self.assertEqual(result["existing_state_observation_relations"], [])
+
+    def test_pox_model_rejects_ligand_fit_and_missing_structure_transfers(self):
+        original = self.pox_model_relation()["source_context"]
+        cases = [
+            ("MAP-to-pyruvate-state", lambda c: c["source_model"]["transitions"][0].update(to_state="pyruvate_conjugate")),
+            ("wrong-ligand", lambda c: c["source_model"]["fit_models"][1].update(ligand_id="pox:MAP")),
+            ("missing-ligand-binding", lambda c: c.pop("ligand_bindings")),
+            ("wrong-source-ligand", lambda c: c["ligand_bindings"]["pox:MAP"].update(source_name="pyruvate")),
+            ("wrong-assay", lambda c: c["endpoint_relations"][3].update(assay_pointer="/assays/1")),
+            ("one-arrow-phase", lambda c: c["source_model"]["fit_models"][1].update(phase_transition_ids=["pyruvate_processing"])),
+            ("reversed-phase", lambda c: c["source_model"]["fit_models"][1]["phase_transition_ids"].reverse()),
+            ("unknown-phase", lambda c: c["source_model"]["fit_models"][1]["phase_transition_ids"].append("missing")),
+            ("mixed-assay-fit", lambda c: c["source_model"]["fit_models"][1]["transition_ids"].append("map_binding")),
+            ("wrong-fit-kind", lambda c: c["source_model"]["fit_models"][1].update(kind="two_state_equilibrium")),
+            ("wrong-directional-unit", lambda c: c["source_model"]["transitions"][0]["parameter_units"].update(forward="s^-1")),
+            ("wrong-directional-role", lambda c: c["source_model"]["transitions"][0]["parameter_roles"].update(forward="first_order_dissociation")),
+            ("missing-directional-roles", lambda c: c["source_model"]["transitions"][0].pop("parameter_roles")),
+            ("missing-directional-units", lambda c: c["source_model"]["transitions"][0].pop("parameter_units")),
+            ("wrong-fit-unit", lambda c: c["source_model"]["fit_models"][1]["parameter_bindings"]["K_0.5"].update(unit="uM")),
+            ("fit-as-elementary-rate", lambda c: c["source_model"]["fit_models"][1]["parameter_bindings"]["k_app_max"].update(role="elementary_decarboxylation_rate")),
+            ("different-enzyme-same-DOI", lambda c: c["study"].update(reported_enzyme="human transketolase")),
+            ("misnamed-fit-parameter", lambda c: c["endpoint_relations"][3].update(parameter_key="K_0.5")),
+            ("missing-absence-reason", lambda c: c.pop("deposit_absence_reason")),
+            ("invalid-absence-reason", lambda c: c.update(deposit_absence_reason=True)),
+            ("invented-arrangement", lambda c: c["source_model"]["states"][1].update(arrangement_bindings=[{"provider": "6HAF", "pointer": "/arrangement"}])),
+            ("invented-deposit", lambda c: c.update(deposit_association={"arrangement_id": "6HAF"})),
+            ("invented-atomic-bond", lambda c: c["source_model"]["transitions"][0]["bond_annotations"].append({"role": "formed_bond"})),
+            ("elementary-promotion", lambda c: c["source_model"].update(elementary_step_sequence_established=True)),
+            ("unassigned-as-zero", lambda c: c["source_model"]["transitions"][2]["parameter_slots"]["forward"].update(is_zero=True)),
+            ("invented-original-ID", lambda c: c["endpoint_relations"][0].update(original_observation_id="invented")),
+        ]
+        for name, mutate in cases:
+            with self.subTest(name=name):
+                context = deepcopy(original)
+                mutate(context)
+                with self.assertRaises(ValueError):
+                    self.pox_model_relation(context)
+        context = deepcopy(original)
+        context["source_model"]["transitions"][2]["parameter_slots"]["forward"] = {
+            "status": "bound_source_parameter", "binding": context["source_model"]["fit_models"][1]["parameter_bindings"]["k_app_max"]["binding"], "is_zero": False}
+        context["source_model"]["transitions"][2].update(parameter_units={"forward": "s^-1"},
+                                                       parameter_roles={"forward": "first_order_dissociation"})
+        with self.assertRaisesRegex(ValueError, "individual transition rate"):
+            self.pox_model_relation(context)
+        context = deepcopy(original)
+        context["source_model"]["transitions"][2]["parameter_slots"]["forward"] = {
+            "status": "bound_source_parameter", "binding": {"provider": "functional_comparison", "pointer": "/variants/0/steady_state/k_cat"}, "is_zero": False}
+        context["source_model"]["transitions"][2].update(parameter_units={"forward": "s^-1"},
+                                                       parameter_roles={"forward": "first_order_dissociation"})
+        with self.assertRaisesRegex(ValueError, "exactly one endpoint relation"):
+            self.pox_model_relation(context)
+        context = deepcopy(original)
+        context["source_model"]["fit_models"][1]["parameter_bindings"]["n_H"] = {
+            "binding": {"provider": "functional_comparison", "pointer": "/variants/2/single_turnover/hill_coefficient"},
+            "role": "hill_coefficient", "unit": "dimensionless"}
+        with self.assertRaisesRegex(ValueError, "existing projected endpoint"):
+            self.pox_model_relation(context)
+
+    def test_pox_model_rejects_same_unit_parameter_and_construct_substitution(self):
+        original = self.pox_model_relation()["source_context"]
+        for index, replacement in ((3, "pox-analogue_binding:wild_type:k_off"),
+                                   (4, "pox-analogue_binding:wild_type:K_D_app"),
+                                   (0, "pox-analogue_binding:E59Q:k_on"),
+                                   (3, "pox-single_turnover:H89N:k_app_max")):
+            with self.subTest(replacement=replacement):
+                context = deepcopy(original)
+                link = deepcopy(next(item for item in self.spec["model_links"] if item["study_id"] == "pox_2019"))
+                link["observation_ids"][index] = replacement
+                context["endpoint_relations"][index]["observation_id"] = replacement
+                with self.assertRaises(ValueError):
+                    self.pox_model_relation(context, link)
+
+    def test_pox_model_query_returns_existing_fit_evidence_without_new_measurements(self):
+        view = json.loads(subprocess.check_output([
+            sys.executable, str(ROOT / "scripts/query_atlas_perturbations.py"),
+            "--model-link", "pox_2019:wild_type:MAP_pyruvate_models"], text=True))
+        self.assertEqual({row["parameter"] for row in view["observations"]},
+                         {"k_on", "k_off", "K_D_app", "k_app_max", "K_0.5"})
+        self.assertEqual(len(view["observations"]), 5)
+        self.assertEqual(len(view["model_links"]), 1)
+        self.assertEqual(view["comparisons"], [])
+        self.assertEqual(view["state_links"], [])
+        self.assertTrue(all(row == {**self.rows[row["id"]], "comparison_memberships": []}
+                            for row in view["observations"]))
+
     def model_relation(self, context=None, link=None):
         sources = {key: json.loads((ROOT / binding["path"]).read_text())
                    for key, binding in self.spec["sources"].items()}
@@ -48,6 +155,7 @@ class PerturbationRelationTests(unittest.TestCase):
             ("accumulation-as-cleavage", lambda c: c["endpoint_relations"][2].update(state_id="cleaved")),
             ("missing-is-zero", lambda c: c["source_model"]["transitions"][2]["parameter_slots"]["forward"].update(is_zero=True)),
             ("invented-cleavage-scalar", lambda c: c["source_model"]["transitions"][2]["parameter_slots"]["forward"].update(value=0.47)),
+            ("unwitnessed-cleavage-parameter", lambda c: c["source_model"]["transitions"][2]["parameter_slots"].update(forward={"status": "bound_source_parameter", "binding": {"provider": "functional_comparison", "pointer": "/variants/2/steady_state/k_cat"}, "is_zero": False})),
             ("swapped-bond", lambda c: c["deposit_association"]["bond_annotations"][0].update(dictionary_bond_pointer="/arrangement/component_dictionary_bonds/1")),
             ("elementary-promotion", lambda c: c["source_model"].update(elementary_step_sequence_established=True)),
             ("dangling-state", lambda c: c["source_model"]["transitions"][1].update(to_state="missing")),
