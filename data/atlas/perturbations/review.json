@@ -5,14 +5,14 @@
   "scope": "Cumulative source-reviewed projection; this increment adds a separate source-system control operation for the Schmidt2013 bulk-normalized BuAm CTAC contrast and reuses existing calmodulin chemical-treatment rows. Prior source observations, genetic comparisons, state/model links and protected evidence are unchanged.",
   "reviewed_bindings": {
     "data/atlas/perturbations/projection.json": "df65d63a26a5d66a641c419ba359ea519b13d5b59fa61650ae75e31c71188c5a",
-    "src/catalytic_earth/atlas_perturbations.py": "02ad4069f1b9dc7fa4648a5344b214b67120c8dba6653df51e035ec0609273e9",
+    "src/catalytic_earth/atlas_perturbations.py": "068059aa7383744938851fdc26d3fd661daa1e3304d0d8be8baa58cabf5843ef",
     "scripts/query_atlas_perturbations.py": "7fb2bd66ae9e6ff5247738187adb328779d597dc0634b9d7b3c316b4765e2469",
-    "docs/ATLAS_PERTURBATION_RELATION.md": "9eea0cef6ff9ef3fbfe4c6cdd8156e00ded88638beec3068bb08f10eb64f584f",
+    "docs/ATLAS_PERTURBATION_RELATION.md": "d9c598b26a3fc7a08852ff672adb4e21fca2b7deac6b86ef5d6aca526ccf98aa",
     "data/atlas/study_context/ra95_2017/forward_synthesis_review.json": "a8025989cb89415ac59267dc0af2da415019af3786ec2db3debd18630de8be9d",
     "docs/ATLAS_FORWARD_SYNTHESIS.md": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84",
     "data/atlas/study_context/diels_alder_2010/source_review.json": "bd97ed99812a3188ef47c090f61c87b0891bbc470222c49ee7698455680bf865",
     "docs/ATLAS_DIELS_ALDER_CONTROLS.md": "749e81dbcebcceb9022a5b4a5043bb16276c712c43b0c856feb394561830ac19",
-    "tests/core/test_atlas_perturbations.py": "007bff7e7febf35d786994ddda292a5dbd8ec72a765d64a11e05f7cdcfa2c35f",
+    "tests/core/test_atlas_perturbations.py": "e9b63f73ba29d2030fc710e62c67843a4929c3c51e8a1a394db4da8a220b8af7",
     "data/atlas/study_context/6ha3/perturbation_context.json": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0",
     "data/atlas/study_context/6ha3/functional_review.json": "9af6d94d77800810d210e032e90e6af6a99ffd22a5548d9d39b5a7f502199200",
     "data/atlas/assembly_context/6ha3/review.json": "434188c22e847de2add0c76cc06076de9347d39ecd259acc051631792fcc7eaa",
@@ -33,8 +33,8 @@
     "docs/ATLAS_RA95_CHEMICAL_STATE.md": "a85ee7c6accdafb0f2fb63a1a658413e07788cee4a5f9f7879dce726c6707c01",
     "CLAIMS.md": "cd019bd891fe37b99c797cff9d872358b4b565a7d7495e115e10291aee5a9cca",
     "data/governance/claim_ledger.json": "f59e3f6aa67c57b73e9c32a6f9627160d8e06cb41b79d71efd1ec77afe1da2f6",
-    "docs/CURRENT_DECISIONS.md": "dc863ed8d29f7424f16f869488160a138b55f96ebcc068a984d02b39ec731dfe",
-    "docs/CURRENT_STATE.md": "cb1070a46e0ec54a77c567482531ef3c94232c9bf0406dc54c1c38da617a9c5d",
+    "docs/CURRENT_DECISIONS.md": "91c95ad82eba63a7293e113144538d6b5308c6d03213b2a66461fb358c6078a5",
+    "docs/CURRENT_STATE.md": "3ea70519671cb739543eae5a0c988e0019ae0b3973055b40c09c2dc6f478391f",
     "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
     "src/catalytic_earth/atlas_deposit_context.py": "adfae408de29e6b5f61fab970d7631f42846a9cdaedea0340d65e6ac95ad2a87",
     "src/catalytic_earth/atlas_assembly_context.py": "5d671a761f3ad493661f3c25b50dce693ef2169a48942af9664a65e0b0ae0835",
@@ -907,6 +907,47 @@
       "representation_m0186",
       "adversarial_m0186"
     ],
+    "new_source_requests": 0,
+    "new_source_response_body_bytes": 0,
+    "independent_human_validation": false,
+    "experimental_validation": false
+  },
+  "assessment_status_followup": {
+    "reviewed_at_utc": "2026-09-11T13:17:22.812533+00:00",
+    "base_commit": "36018246c49dafe3256800041f5395b899f416d5",
+    "prior_review_sha256": "4b3aeed5f9d42857735809d4f610b5ce46bf8d5414f22184b5955fb1991f9028",
+    "status": "response_semantics_reviewed_computational",
+    "scope": "Distinguish explicitly assessed KSI2010/calmodulin source contexts from unrequested scalar arithmetic using shared response rules. No source payload, measured value, numerical comparison, scientific conclusion, claim or evidence-tier change. Renew only the five reviewed runtime/test/document bindings below.",
+    "renewed_bindings": {
+      "src/catalytic_earth/atlas_perturbations.py": {
+        "before": "02ad4069f1b9dc7fa4648a5344b214b67120c8dba6653df51e035ec0609273e9",
+        "after": "068059aa7383744938851fdc26d3fd661daa1e3304d0d8be8baa58cabf5843ef"
+      },
+      "tests/core/test_atlas_perturbations.py": {
+        "before": "007bff7e7febf35d786994ddda292a5dbd8ec72a765d64a11e05f7cdcfa2c35f",
+        "after": "e9b63f73ba29d2030fc710e62c67843a4929c3c51e8a1a394db4da8a220b8af7"
+      },
+      "docs/ATLAS_PERTURBATION_RELATION.md": {
+        "before": "9eea0cef6ff9ef3fbfe4c6cdd8156e00ded88638beec3068bb08f10eb64f584f",
+        "after": "d9c598b26a3fc7a08852ff672adb4e21fca2b7deac6b86ef5d6aca526ccf98aa"
+      },
+      "docs/CURRENT_DECISIONS.md": {
+        "before": "dc863ed8d29f7424f16f869488160a138b55f96ebcc068a984d02b39ec731dfe",
+        "after": "91c95ad82eba63a7293e113144538d6b5308c6d03213b2a66461fb358c6078a5"
+      },
+      "docs/CURRENT_STATE.md": {
+        "before": "cb1070a46e0ec54a77c567482531ef3c94232c9bf0406dc54c1c38da617a9c5d",
+        "after": "3ea70519671cb739543eae5a0c988e0019ae0b3973055b40c09c2dc6f478391f"
+      }
+    },
+    "direct_comparison_check": "All 126 requests checked against the unchanged 221-observation baseline: only the two assessed contexts change reasons and interpretation_limit. All other fields and genuine unassessed responses remain exact. Full public-query and required checks are recorded in the local run receipt.",
+    "reviewer_tasks": [
+      "/root/evidence_review_12h",
+      "/root/reuse_review_12h",
+      "/root/direction_review_12h"
+    ],
+    "historical_reviews": "Original source qualification, provider manifests and all prior follow-ups retain their exact historical content.",
+    "coordination_record": "docs/SCIENTIFIC_DIRECTION.md",
     "new_source_requests": 0,
     "new_source_response_body_bytes": 0,
     "independent_human_validation": false,

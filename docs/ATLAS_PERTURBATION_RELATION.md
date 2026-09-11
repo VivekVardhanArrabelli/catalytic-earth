@@ -55,6 +55,18 @@ comparison requests over the returned reviewed rows. This helper calculates
 candidate arithmetic; it does not independently authenticate a supplied request.
 Neither function discovers matched controls by similarity.
 
+Source assessment and scalar arithmetic are separate. The reviewed KSI2010
+donor-control and calmodulin nucleophile-control contexts explicitly declare
+`source_discriminant_assessed: true` and `arithmetic_requested: false`.
+Their retained `operation: unassessed` requests perform no arithmetic; the
+returned reason is `arithmetic_not_requested`, with source-scoped assessment
+prose. They remain ineligible for a scalar value, with null value, unit and
+uncertainty. Attached evidence and source-specific limits determine what was
+assessed. KE59's missing matched E230 comparison retains
+`matched_perturbation_control_unassessed`; available context alone never
+establishes assessment. When supplied, these context flags must form an explicit
+Boolean pair consistent with unrequested arithmetic.
+
 ## What the same consumer recovers
 
 | Source-defined comparison | Returned result | Limit that remains attached |

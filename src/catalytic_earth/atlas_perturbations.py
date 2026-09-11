@@ -189,10 +189,17 @@ def compare(rows: dict[str, dict[str, Any]], request: dict[str, Any]) -> dict[st
     }
     if operation not in roles_required or set(request["roles"]) != roles_required[operation]:
         raise ValueError("unknown comparison operation or incomplete roles")
+    assessment_fields = ("source_discriminant_assessed", "arithmetic_requested")
+    if any(field in request for field in assessment_fields):
+        if (any(type(request.get(field)) is not bool for field in assessment_fields)
+                or operation != "unassessed" or request["arithmetic_requested"]):
+            raise ValueError("context assessment requires two booleans and unrequested arithmetic")
+    source_assessed = request.get("source_discriminant_assessed") is True
     selected = {role: rows[row_id] for role, row_id in request["roles"].items()}
     reasons = list(request.get("source_blocks", []))
     if operation == "unassessed":
-        reasons.append("matched_perturbation_control_unassessed")
+        reasons.append("arithmetic_not_requested" if source_assessed
+                       else "matched_perturbation_control_unassessed")
     values = list(selected.values())
     if any(row["study_id"] != request["study_id"] for row in values):
         reasons.append("request_study_differs_from_observations")
@@ -240,7 +247,11 @@ def compare(rows: dict[str, dict[str, Any]], request: dict[str, Any]) -> dict[st
     }
     if operation == "unassessed":
         result["unit"] = None
-        result["interpretation_limit"] = "No matched perturbation comparison was evaluated; an unassessed control is neither a measured effect nor nondetection."
+        result["interpretation_limit"] = (
+            "Source-scoped control discrimination was assessed; no scalar comparison was requested or computed. Interpretation remains limited by the attached source evidence."
+            if source_assessed else
+            "No matched perturbation comparison was evaluated; an unassessed control is neither a measured effect nor nondetection."
+        )
     if reasons:
         return result
     if operation in {"ratio", "preference"}:

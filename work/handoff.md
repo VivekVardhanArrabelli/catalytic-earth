@@ -1,73 +1,70 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research baton — 2026-09-11 M0186 hydrogen continuity
+## Current research baton — 2026-09-11 direction and assessment status
 
-- **Identity/base:** actual start2026-09-11T10:05:54Z; owner
-  `01a08fee-1359-7be3-a86a-60561f362215:2ddc282f-de4f-45a2-9086-18a38de31274`;
-  acquired10:06:22Z. Clean main base
-  `edef3d5c9b105b9fc7128487a25d9584b0a736ac`(PR98); prior run fully merged,
-  no open PR/recovery. Branch `codex/m0186-hydrogen-continuity-20260911`.
-  Checkpoint 2026-09-11T10:20:05.000256+00:00 / minute14.2. Final commit,
-  push/merge/CI/release belongs in the local receipt and task result.
-- **Question/direction:** the later handoff closed RA95/DERA and RA61 priorities
-  after the older direction review. One retained M0186 proposal1 step2 to
-  step3-start inquiry tested a missing chemical-state connection; another
-  functional ratio was the weaker immediate alternative. Stop at the first
-  unaccounted bond/charge/H/stereo or map premise, without acquisition.
-- **Scientific result:** o27/o28 account for heavy-atom changes: Lys a23-PLP
-  a13 detachment/a23 neutralization and substrate a21-a13 single-to-double/
-  a21+1. Raw lone-pair changes agree. Step3 retains substrate-PLP adduct
-  topology, not free unbound PLP. The full explicit-H replay fails: H neighbors
-  remain N,O after the arrows but are C,O at next start. This graph invariant
-  excludes every element-preserving bijection; neither H permutation repairs
-  it. Reused a40 is a panel-local locator, not a physical proton ID. Selective
-  H depiction is possible but not proved; no implicit-H completion or source
-  chemistry falsification. Raw ordered a17-a21 W is retained without R/S or
-  stereochemical-continuity claims.
-- **Output/scope:** `data/atlas/source_step_correspondence/m0186_continuity.json`
-  plus bound supplemental review and `docs/ATLAS_PLP_STEP_BOUNDARY.md` section.
-  Selected actor30atoms (28heavy+2H) before/after; all full source panels remain
-  retained. New capability: source-specific explicit-state continuity boundary,
-  not a new runtime relation, claim, mechanism or observation. All prior
-  source/compiled records, CE001-CE042, runtime and older cross-entry audit
-  remain unchanged. Existing graph operations are diagnostic only; strict
-  source-step/context-candidate guards still refuse admission.
-- **Evidence/acquisition:** M0186 snapshot
-  `data/atlas/source_drafts/batches/plp-pyruvoyl/sources/M0186.json`, SHA256
-  `687986c4aaa94ce6bba72c5403bf28a4f04b32891c3493ccb75436defb2a7f38`;
-  `/step_schemes/1` hash
-  `0b0a10e4fec45ca09006b8fc61afeb7e7c842afd4afea27cf6960caf500cc897`;
-  `/step_schemes/2` hash
-  `7edb1e4fd049124b20e156f8b19ec648b63d66e5a36f84d7a999cce7733090fc`.
-  Added0requests/0response bytes. Cumulative budgets unchanged: RA61 batch
-  `designed-retroaldolase-components-lassila2010`58/4,697,605;KSI26/5,739,717;
-  RA9533/17,556,517;Diels20/519,698;KE599/261,580;KE7016/1,102,794;
-  beta5/8,449,621;defaultM-CSA49/1,109,896. TKT/POX7/3,004,884,
-  PLP73/5,068,731 and panel28/1,474,405 are lower bounds with incomplete
-  headroom; M0187followup12/440,960 is a subledger. No new acquisition is
-  authorized by relabeling batches or closing this question. Closed failed
-  routes, RA61 R/S/S8 and M0213 parity questions stay closed.
-- **Review/reconsideration:** source_m0186, representation_m0186 and
-  adversarial_m0186 on Sol/ultra, read-only; parent owns edits/Git/lock.
-  Board `.git/catalytic-earth-runs/2ddc282f.board.md`. Source objections control.
-  New chemistry did not require runtime code; case facts are data. Existing
-  graph operations and rejection guards were reused, but no curation saving
-  is measured. Integrated value is a precise obstruction to a manufactured
-  state chain, not design capability or incumbent superiority. This is the
-  first adjudication of the within-entry H invariant, distinct from the prior
-  cross-entry W/H boundary; repeated panel refusals would not be progress.
-  Reviews remain correlated computation, not human or laboratory validation.
-- **Verification/publication:** focused13, truth14 and core629 pass; repository
-  contracts pass. Final diff review and reviewed-head CI publication continue. Pinned M0186 source_annotation permission passes.
-  Source/compiled/frozen/protected/exposure/runtime/claim bytes unchanged.
-  Renewed only2 current-document bindings in the existing perturbation review;
-  all prior scientific review content remains exact. Architecture change is
-  path inventory only.
-  Stage this handoff before rebuilding report archive. No unrelated dirty work.
-  If publication is unfinished, resume this branch/PR first. Exact resulting
-  SHA and remote/release outcomes go in
-  `.git/catalytic-earth-runs/2026-09-11T1005-2ddc282f-de4f-45a2-9086-18a38de31274.json`.
+- **Identity/base:** oversight began 2026-09-11T13:04:59Z; owner
+  `01a07311-aac6-7010-9516-e0b53605d473:125fed67-fd09-41bc-abe4-0ea6e9e2e786`;
+  acquired 13:06:38Z after the PR99 writer completed and released its lock.
+  Clean local/published main base `36018246c49dafe3256800041f5395b899f416d5`;
+  no open PR or recovery. Branch `codex/assessed-context-status-20260911`.
+  Checkpoint 2026-09-11T13:15:38.339055+00:00; final elapsed/publication/release in local receipt.
+- **Question/result:** distinguish an assessed source discriminant from
+  unrequested scalar arithmetic. KSI2010 donor and calmodulin nucleophile
+  contexts already declare that distinction, but the shared consumer labelled
+  them unassessed. The generic response now returns `arithmetic_not_requested`
+  and scoped assessment prose. Both retain false eligibility and null value,
+  unit and uncertainty; genuine unassessed controls retain previous behavior.
+  Explicit consistent Boolean declarations are required; no case-ID branch.
+  No measurement, numerical comparison, source conclusion or evidence-tier
+  change. This is a necessary consumer correction, not new chemistry.
+- **Direction:** `docs/SCIENTIFIC_DIRECTION.md` is the compact review/board.
+  Published PRs91–99 remain aligned with the full catalytic atlas and ultimate
+  de novo design purpose. The earlier pass used immutable edef3d5c while the
+  PR99 writer was active. The bounded DERA acquisition is closed with the
+  residue–state–function inquiry unassessed. M0186 explicit-H continuity also
+  reached its stop: heavy-atom changes are accounted for, but H-neighbor
+  elements differ and step3 retains substrate–PLP adduct topology. Do not
+  manufacture physical H identity or declare the source chemistry false.
+  The next M0187 inquiry below remains stronger than repeated access/refusals.
+- **Evidence/scope:** unchanged `data/atlas/perturbations/projection.json` and
+  KSI2010 `donor_solvation.json`, calmodulin2015 control provider, KE59 provider.
+  Their exact paths/hashes remain in the projection and review manifests.
+  The source sample reused retained Fried2014 TableS2, Kim1995 Table1 and
+  Schmidt2013 text; it was not a full primary/raw-fit audit. PR99's source
+  continuity annotation remains unchanged. The current perturbation review
+  renews only changed runtime/test/document bindings with a scoped follow-up;
+  original provider reviews remain historical.
+- **Acquisition:** added 0 requests / 0 response-body bytes. Cumulative budgets
+  unchanged: RA61 `designed-retroaldolase-components-lassila2010`58/4,697,605;
+  KSI26/5,739,717; RA9533/17,556,517; Diels20/519,698; KE599/261,580;
+  KE7016/1,102,794; beta5/8,449,621; defaultM-CSA49/1,109,896.
+  TKT/POX7/3,004,884, PLP73/5,068,731 and panel28/1,474,405 are lower
+  bounds with incomplete headroom; M0187followup12/440,960 is a subledger.
+  No limit resets, renamed batches or unchanged failed routes. Closed RA61
+  R/S/S8 and M0213 parity questions stay closed.
+- **Review/reconsideration:** `direction_review_12h`, `evidence_review_12h`
+  and `reuse_review_12h` are read-only correlated computational reviewers;
+  root owns edits/Git/lock. Both source and reuse reviews accept the actual
+  status patch; all126 direct comparison outputs preserve numerical/scientific
+  fields, with only two reason/prose pairs changed. Shared model/control
+  consumers demonstrate reuse without re-transcription or enzyme-ID branches.
+  Interpretation remains manual; no measured curation-time saving or design
+  performance is established. Next work should add a consequential relation,
+  not another refusal inventory. No independent human/laboratory validation.
+- **Verification/publication:** focused regression covers the demonstrated
+  status error, genuine unassessed behavior and malformed declarations.
+  Whole-query invariance, existing core/contracts and offline package checks
+  precede reviewed-head CI and merge. Exact results/SHAs belong in
+  `.git/catalytic-earth-runs/direction-125fed67-fd09-41bc-abe4-0ea6e9e2e786.json`.
+  Stage this handoff before rebuilding the report archive. No unrelated work.
+  If publication is unfinished, resume this branch/PR first.
+- **Scheduling:** actual hourly `catalytic-earth-work-loop` is PAUSED on
+  GPT-6 Astra/max; preserve the pause pending the user's response. Oversight
+  remains active at07:55/19:55 America/Chicago. Retire the one-off status-fix
+  prefix from the hourly prompt after this correction merges, without changing
+  the standing brief, pause, cadence or model. Older active-state receipts do
+  not override current app configuration.
 - **One next action:** test a source-fragment His297 anchor for M0187 step1
   arrow endpoint a58, then retain any existing H297N functional relation only
   at its supported reference-site context. Witnesses are retained M0187
