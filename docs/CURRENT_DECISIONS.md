@@ -1,5 +1,23 @@
 # Current Decisions
 
+## 2026-09-11: stop AHAS branch fitting at the missing source derivation
+
+Accept the [Trp464Leu total-versus-product context](ATLAS_AHAS_NET_RATES.md#mixed-acceptors-total-aha-and-approximate-branch-estimates)
+as source annotation under CE-046. Preserve the five aggregate parameters and
+four approximate branch tokens using existing shared consumers. Approximate
+tokens have null numeric value and unit; their printed units remain in the
+token. The source-assessed relation requests no arithmetic and creates no fit.
+
+The primary source does not display the branch derivation or its denominators,
+raw integrals, branch kcat or errors. Do not modify the serial contract,
+reconstruct populations, force rounded constants into a common-pool hazard
+model, import the separate R competition series as exact NMR flux fractions,
+or transfer total-product/other-construct parameters. The conditional closure
+check limits that extra model assumption; it does not diagnose source error.
+Stop this inquiry at its supported outcome. Further work must answer a new
+consequential scientific question, not extend the same table or repeat its
+missing-derivation review. Frozen records and evidence tiers remain intact.
+
 ## 2026-09-11: represent source population-derived net rates at inference scope
 
 Accept the [Tittmann2005 Met250Ala relation](ATLAS_AHAS_NET_RATES.md) as one

@@ -620,13 +620,15 @@
     "claim_kind": "source_annotation",
     "status": "Supported",
     "claim": "Tittmann2005 Table2 Met250Ala/Pyr+Pyr reports kcat3±0.1s^-1 and four source-inferred forward-net constants28±7,35±7,11.1±1.3,5.6±0.3s^-1 for donor adduct, decarboxylation, carboligation and product liberation.",
-    "current_wording": "One turnover input and four dependent net-stage records are bound to the authors steady-state NMR-population/transit-time model. Individual directional rates remain unassigned. Preserve saturation correction, missing raw fractions, commitment/reversal, distinct methods and unresolved uncertainty statistic. No native bindingKD, occupancy reconstruction, WT ratio, elementary forward rate, exact specimen/geometry, project experiment or design-performance claim.",
+    "current_wording": "One turnover input and four dependent net-stage records are bound to the authors steady-state NMR-population/transit-time model. Individual directional rates remain unassigned. Preserve saturation correction, missing raw fractions, commitment/reversal, distinct methods and unresolved uncertainty statistic. No native bindingKD, occupancy reconstruction, WT ratio, elementary forward rate, exact specimen/geometry, project experiment or design-performance claim. The same paper reports Trp464Leu total AHA=AL+AHB kcat13±0.1s^-1 in50mM pyruvate/50mM2-ketobutyrate and approximate AHB k-prime-4/5≈360/≈210 versus AL≈120/≈140s^-1. Branch entries retain source ordering as qualitative tokens with null scalar/unit; branch derivation, numerical NMR integrals, branch kcat and errors are not supplied. No aggregate-to-product transfer or branched kinetic fit is established.",
     "rationale": "Source-defined stages retain chemical distinctions without promoting population-derived net rates into independent elementary measurements. A shared inference contract prevents that consequential transfer and keeps earlier consumers unchanged.",
     "evidence": [
       "data/atlas/study_context/ahas_2005/source_qualification.json",
       "data/atlas/study_context/ahas_2005/model_context.json",
       "data/atlas/study_context/ahas_2005/source_review.json",
-      "docs/ATLAS_AHAS_NET_RATES.md"
+      "docs/ATLAS_AHAS_NET_RATES.md",
+      "data/atlas/study_context/ahas_2005/branch_evidence.json",
+      "data/atlas/study_context/ahas_2005/branch_review.json"
     ]
   }
 ]

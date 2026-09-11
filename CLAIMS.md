@@ -715,6 +715,16 @@ One generic inference contract serves this source-named construct without a
 native binding constant, WT ratio, occupancy reconstruction, deposited geometry,
 project experiment, independent validation or design-performance claim.
 
+The same paper's Trp464Leu mixed-acceptor rows distinguish total AHA = AL + AHB
+from approximate product-specific net-stage estimates. At 50 mM each pyruvate
+and 2-ketobutyrate, aggregate kcat is 13 ± 0.1 s^-1; the source estimates
+AHB k′4/k′5 as ≈360/≈210 and AL as ≈120/≈140 s^-1. They retain an attributed
+AHB-above-AL ordering, not an exact ratio or microscopic branch model. The
+primary paper does not give the branch derivation, branch kcat, numerical
+integrals or errors. The query carries approximate values as qualitative source
+tokens with null scalar and unit. The mixed AL row is not a pyruvate-only assay;
+aggregate parameters and errors do not transfer to either product channel.
+
 ## Change rule
 
 Do not edit a status silently. Update the JSON ledger, this readable ledger,
