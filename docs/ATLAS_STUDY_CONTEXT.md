@@ -30,6 +30,62 @@ mmCIF with the shared strict parser, recomputes selected atom facts and geometry
 checks component-dictionary bonds separately from deposited connections, and
 requires the review pins to remain current.
 
+## F6P adduct reversal and donor cleavage are different transitions
+
+The retained Supplementary Methods distinguish two exits from F6P–ThDP.
+Equation 8 assigns `k_reverse` to return toward the noncovalent F6P complex.
+Equation 3 separately describes donor cleavage to DHEThDP plus E4P, labelled
+by equilibrium constant K3. K3 is not a kinetic rate, and the stopped-flow
+fit supplies no parameter for that cleavage edge.
+
+| Source-model transition | E160Q evidence carried by the relation |
+| --- | --- |
+| Noncovalent F6P complex → F6P–ThDP | Fitted `k_forward` 5.91 ± 0.43 s⁻¹ at 4 °C |
+| F6P–ThDP → noncovalent F6P complex | Fitted `k_reverse` 0.47 ± 0.23 s⁻¹ at 4 °C |
+| F6P–ThDP → DHEThDP + E4P | Source scheme and scissile-bond assignment; no assigned cleavage rate |
+| F6P–ThDP accumulation | Qualitative acid-quench NMR after 30 s at 20 °C; no cleavage fraction |
+
+Extended Data Figure 1c names the formed ThDP C2–F6P C2x bond and the
+distinct scissile C2x–C3x bond. The project associates these labels with
+deposited T6F C2–CF2 and CF2–CF3. Both are single bonds in the retained
+dictionary and remain present in the 6HA3 conjugate. Existing distances
+1.544496 and 1.604779 Å are model geometry, not rates. This nomenclature
+correspondence is a project interpretation, not an observed free-substrate map.
+
+```sh
+python scripts/query_atlas_perturbations.py --model-link tkt_2019:E160Q:F6P_transitions
+```
+
+The shared query returns the
+[source-model relation](../data/atlas/study_context/6ha3/f6p_transition_context.json),
+its exact existing formation/NMR observations, contextual reverse parameter,
+assays and arrangement. It checks transition direction, parameter bindings,
+state-observation identity and deposit bond locators. Attaching the reverse
+parameter to the cleavage transition fails; an unassigned parameter remains
+null with an explicit reason, never zero. No measurement or arithmetic
+comparison is added. Source review supplies scientific meaning; these checks
+cannot independently detect a coherently falsified source interpretation.
+
+The supported result is a partial source-described bond/transition relation.
+An atom-resolved elementary step remains unestablished: the retained scheme
+does not supply the before-state graph, protonation/tautomer states or
+electron/proton sequence. The 325-nm reporter observes AP-band depletion,
+with NMR supporting the conjugate assignment; it does not isolate C–C
+bond-making. Accumulation does not establish zero cleavage, and acid-isolated
+DHEThDP would be a conjugate acid. No K2 calculation combines the separate
+assays. Same reported E160Q identity does not establish identical preparations,
+crystal/solution conformers, geometry–rate causation or productive F6P turnover.
+The M0219 direction and exact-sequence state-link contract remain separate.
+[Methods and equation 3/8 schemes](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-019-1581-9/MediaObjects/41586_2019_1581_MOESM1_ESM.pdf),
+[Extended Data legends](https://www.nature.com/articles/s41586-019-1581-9),
+[Table 2a and footnote c](https://www.nature.com/articles/s41586-019-1581-9/tables/2).
+
+This closes the bounded question at a useful partial relation. Original source
+packets and observations stay unchanged. The link resolves multiple source-bound
+endpoints without requiring an exact assay sequence; reuse across a second case
+still needs demonstration. No source requests, measured curation-time saving
+or incumbent advantage is claimed.
+
 ## Partner-subunit context
 
 An additive [assembly packet](../data/atlas/assembly_context/6ha3/spec.json)

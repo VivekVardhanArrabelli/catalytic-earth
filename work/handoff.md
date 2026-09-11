@@ -1,88 +1,83 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research baton — 2026-09-11 KSI donor-control discrimination
+## Current research baton — 2026-09-11 TKT F6P transition identity
 
-- **Identity/base:** actual start 2026-09-11T04:07:22Z; owner
-  `01a08ea5-d6a2-7961-a8ee-f6cfc585e967:fad1ae04-3912-4ddc-b800-e883684b98a8`;
-  lock acquired 04:07:41Z. Clean synchronized main base
-  `5e29ae5d3875a7e38cc8aeba34db00cb2f69c966` (PR92); prior run merged,
-  workers stopped and lock released; no recovery/open PR. Branch
-  `codex/ksi-donor-solvation-discriminant-20260911`. Checkpoint 2026-09-11T04:27:57.424985+00:00 / minute 20.6;
-  final elapsed time and publication are in the local receipt.
-- **Direction/question:** RA95 construct-state priority and bounded DERA/Xue
-  routes stay closed. Fried2014 reference18 supplies a useful discriminant:
-  does a residue-16 hydroxyl account for moderate residual KSI turnover?
-  Expected gain was an experimental control relation beyond another rate table.
-  The supported donor-control pattern meets that stopping condition.
-- **Grounded finding:** Kraut2010 reports rounded single-mutant pKSI kcat losses
-  on 5(10)-EST of about 20,000-fold for Y16F, 300 for Y16S and 200 for
-  Y16T/Y16A/Y16G. Hydroxyl-bearing Ser/Thr and hydroxyl-absent Ala/Gly share
-  the moderate pattern. Sidechain hydroxyl presence alone is insufficient;
-  similar endpoints do not establish statistical equivalence or a common
-  microscopic mechanism. These are reported factors, not absolute rates.
-- **Physical evidence and limits:** 3IPT is Y16S/D40N with equilenin at 100 K;
-  its source-reported 6.4-A Ser16-O/analogue-O separation excludes a direct
-  contact in that model. Diffuse cavity density is assigned to disordered water,
-  without discrete refined water sites. Signed phenolate-probe 19F peaks of
-  -136.4/-134.7 ppm belong to Y16S/D40N and Y16F/D40N. Water-solvation versus
-  hydrophobic desolvation is the authors' model, not observed water during
-  single-mutant turnover. Phe productive geometry is a superposition, not a
-  directly measured matched complex. No universal hydrogen-bond energy follows.
-- **Evidence/capability:** `data/atlas/study_context/ksi_2010/donor_solvation.json`,
-  `acquisition_receipts.json`, `source_review.json`; current KSI guide and
-  shared perturbation projection/review. Existing Diels-Alder reported-factor
-  contract yields five records and one context request, with source discrimination
-  assessed and arithmetic unrequested. Exact reference18 is bound to the old
-  provider; 5(10)-EST does not qualify Fried2014's 5-AND rate rows. Product naming
-  is explicitly a project reading of Figure1A; sequencing scope covers only the
-  source's Tyr16-mutant plasmid statement. SI numerical errors/full methods
-  remain unacquired. No new project experiment, protected admission or design claim.
-- **Acquisition:** SAME `ketosteroid-isomerase-electric-field-fried2014` batch
-  now **26 requests / 5,739,717 response-body bytes**, adding 8 / 297,983.
-  Primary HTML and linked Figures1/3 are retained at
-  `.git/catalytic-earth-runs/fad1ae04-primary/`, with exact hashes in the packet.
-  Figures1/3 were visually inspected. SI challenge/403/520 routes are stopped;
-  none supplied scientific evidence. No other batch used: RA95 33/17,556,517;
-  Diels20/519,698; RA61 45/3,236,259; KE59 9/261,580; KE70 16/1,102,794;
-  beta5/8,449,621; defaultM-CSA49/1,109,896. PLP73/5,068,731 and
-  panel28/1,474,405 remain lower bounds; M0187followup12/440,960 is a subledger.
-  Inherited broader accounting gaps are not reopened. Source bodies are not redistributed.
-- **Reuse/reconsideration:** no runtime/schema or enzyme-specific code. The
-  shared reduction-factor/context paths recover the donor test and exact citation
-  relation while preserving signed measurements in structured source evidence.
-  Manual source/figure interpretation remains; no measured curation-time saving
-  or incumbent superiority is claimed. The useful addition is the donor-control
-  discriminator. Other-substrate/background transfers are unqualified, not
-  experimentally disproved. Move to the missing state-to-step connection now;
-  another KSI bibliography/table migration has lower expected gain.
-- **Coordination/verification:** parent alone owns all edits/Git/lock. Read-only
-  Sol/ultra roles `source_discriminant`, `representation_discriminant` and
-  `adversarial_discriminant` share `.git/catalytic-earth-runs/fad1ae04.board.md`.
-  Reviews are correlated computation, not independent human validation. The
-  initial focused run passed 72 tests; all24 primary witnesses/25,252,078bytes
-  verified. Exact invariance check found all211 prior observation objects,
-  122 comparisons and2 state links unchanged. Review narrowed sequencing,
-  product nomenclature and demonstrated-versus-unqualified transfer. Final
-  source/diff review, generated-manifest renewal and repository/CI checks
-  are required before merge; initial contracts stopped at the expected new-path
-  architecture inventory renewal.
-- **Publication/recovery:** owned changes are uncommitted at this checkpoint;
-  parent will stage only owned files, rebuild the report index after staging
-  this block, and publish/merge only at the source-reviewed passing head.
-  Exact final SHA, PR, push/merge/CI and same-owner guarded release are recorded
-  in `.git/catalytic-earth-runs/hourly-20260911T040722Z-fad1ae04.json` and task
+- **Identity/base:** actual start 2026-09-11T05:05:23Z; owner
+  `01a08eda-f15c-79a1-b016-6fb90f72112e:1aca981e-ca42-4533-be1e-1c70567bfe1a`;
+  lock acquired 05:05:47Z. Clean synchronized main base
+  `591b5f3242e53b551399f645fc2253e6915f3a89` (PR93); no open PR or recovery.
+  Branch `codex/tkt-f6p-transition-endpoints-20260911`. Checkpoint
+  2026-09-11T05:29:20.467389+00:00 / minute 24.0; final elapsed/publication in receipt.
+- **Question/direction:** the RA95 priority and DERA/Xue failed routes remain
+  closed. Test retained human-TKT2019 E160Q/6HA3 for an F6P state-to-step-to-
+  endpoint relation, addressing the direction review's incomplete mechanism
+  chain. Stop at a supported partial relation or first missing atomic premise.
+- **Scientific result:** source equation8 assigns F6P conjugate formation and
+  reversal to k_forward and k_reverse. E160Q k_forward5.91±0.43 and
+  k_reverse0.47±0.23s^-1 at4C belong to Michaelis↔conjugate. Equation3
+  separately describes conjugate↔DHEThDP+E4P with equilibrium labelK3;
+  no cleavage rate is assigned by that binding fit. NMR at20C/30s supports
+  qualitative F6P-ThDP accumulation, not zero cleavage or a cleavage fraction.
+- **Chemical scope:** Extended Data Fig1c names formed ThDPC2–F6PC2x and
+  scissile C2x–C3x. Project aliases map these to T6FC2–CF2 and CF2–CF3;
+  both dictionary bonds and both coordinate pairs remain in6HA3. The partial
+  bond/state relation is supported; a complete elementary sequence stops at
+  absent authenticated before graphs and proton/electron/tautomer premises.
+  AP-band depletion is an ensemble reporter, not isolated bond-making kinetics.
+  No carbonyl-order reconstruction, cross-assayK2, microscopic cleavage rate,
+  physical-preparation/conformer identity, geometry cause, M0219 direction or
+  productiveF6P turnover is inferred. Original source packets remain unchanged.
+- **Reusable output:** `data/atlas/study_context/6ha3/f6p_transition_context.json`
+  and `f6p_transition_review.json`; current study/perturbation guides andCE-024.
+  `python scripts/query_atlas_perturbations.py --model-link tkt_2019:E160Q:F6P_transitions`
+  returns2 existing observations,0 arithmetic comparisons and1 source-model link.
+  Generic links check exact direction/parameter/assay/original-observation and
+  bond-alias references. Cleavage parameters are explicit unassigned slots, not
+  zero. Existing exact-sequence state_links retain their stronger identity rule.
+  All216 prior observations,123 comparisons and2 state links are exact unchanged
+  objects; onlyCE-024 is extended and39 other claims are unchanged.
+- **Source use:** no acquisition; four previously retained publisher witnesses
+  are bound in the new context. Retained SI printedpp5–7 (PDFpp6–8), equations3/8
+  and Extended Data legends/table supply the premises; PDFpp6/8 visually checked.
+  All24 shared witnesses/25,252,078bytes verify. TKT same batch
+  `human-tkt-e160q-6ha3-geometry-function` remains a lower bound of7requests/
+  3,004,884bytes; complete accounting/headroom unknown. Other batches unchanged:
+  KSI26/5,739,717;RA9533/17,556,517;Diels20/519,698;RA6145/3,236,259;
+  KE599/261,580;KE7016/1,102,794;beta5/8,449,621;defaultM-CSA49/1,109,896.
+  PLP73/5,068,731 andpanel28/1,474,405 remain lower bounds;
+  M0187followup12/440,960 is a subledger. Publisher bodies remain host-local;
+  already redistributed6HA3 coordinates stay unchanged.
+- **Review/reconsideration:** read-only Sol/ultra source_tkt, representation_tkt
+  and adversarial_tkt share `.git/catalytic-earth-runs/1aca981e.board.md`;
+  parent owns all edits/Git/lock. Source objections narrowed bond and distribution
+  wording. Representation attacks found and repaired original-observation,
+  assay and bond-role joins; regression cases preserve those failures. These
+  reviews are correlated computation, not independent human validation.
+  No enzyme branch or fabricated graph. The source-model link addresses a real
+  missing relation mode, but second-case reuse and curation-time savings remain
+  unproved. Added value is transition discrimination, not another rate table or
+  a complete mechanistic atlas. No incumbent superiority is claimed.
+- **Verification/publication:** focused 85 tests + 44 subtests, final core 614
+  tests, original study validation, repository contracts and fresh-directory
+  Atlas-3/10 wheel/source-draft/candidate checks pass. Exact prior-object/claim
+  invariance and all24 retained witnesses verify. The architecture inventory
+  changed only17700versus17698 paths; staged-handoff report index is renewed.
+  Source/representation/adversarial reviews found no remaining material defect;
+  source meaning remains computationally reviewed, not independently validated.
+  Containing increment is unpublished at this checkpoint; parent will publish
+  and merge only after source/diff review and passing requiredCI at the reviewed
+  head. Exact finalSHA, push/PR/merge/CI and guarded release are recorded in
+  `.git/catalytic-earth-runs/hourly-20260911T050523Z-1aca981e.json` and task
   result. Resume this branch/PR first if unfinished. No unrelated dirty work.
-- **One next scientific action:** inspect the already retained human-TKT2019
-  E160Q/6HA3 source for an explicit F6P-to-ThDP elementary bond-change step
-  connecting the deposited adduct with same-source E160Q F6P stopped-flow/NMR
-  endpoints. Expected gain: a same-variant state-to-step-to-outcome relation,
-  addressing the current direction's incomplete mechanism chain. Start with
-  retained source and shared consumers; no new acquisition is needed to inspect
-  the premise. Do not import M0219's X5P/E4P direction or infer productive F6P
-  turnover. Stop at one supported partial step relation or the first missing
-  or unmatched F6P atom/state/endpoint premise; do not build an adapter for
-  missing evidence or repeat a settled substrate mismatch.
+- **One next action:** test this model/endpoint relation on retained POX MAP
+  binding versus pyruvate processing. Expected gain: actual reuse across distinct
+  ligand/endpoints without another bespoke kinetic table. Begin offline and
+  preserve second-order MAP binding versus multistep FAD processing. A matching
+  MAP deposit is not established; never substitute6HAF phosphate forMAP. Stop
+  after one supported relation or a concrete shared-concept gap (including an
+  absent/optional arrangement), with no new acquisition or enzyme-specific code.
+  Do not reopen the missing TKT atomic sequence without new evidence.
 
 Preserve historical content below this marked block. Git identifies the
 containing commit; no self-hash follow-up commit is needed.

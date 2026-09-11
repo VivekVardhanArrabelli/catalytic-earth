@@ -1,0 +1,75 @@
+{
+  "schema_version": "catalytic-earth.source-qualification-review.v1",
+  "assessment_id": "human-TKT2019:E160Q:F6P-transition-endpoints",
+  "decision": "accept_source_annotation",
+  "authorized_operation": "source_annotation",
+  "policy_binding": {
+    "path": "data/governance/computational_review_policy.json",
+    "sha256": "3b704312898a44aa88ed6b96d2b13775b779881df93fc769e549dae01d6f81ba"
+  },
+  "reviewed_at_utc": "2026-09-11T05:26:28.807648+00:00",
+  "reviewed_bindings": {
+    "data/atlas/study_context/6ha3/f6p_transition_context.json": "adcd65ad712906ec44161429739887b8eb314b4ea4cdc660279ab2ba8bdaaa18",
+    "data/atlas/study_context/6ha3/evidence_projection.json": "70bf1eaa59747239990161631432a44440629704aa50051bddd551309fb1213e",
+    "data/atlas/study_context/6ha3/functional_comparison.json": "a8205b4964ac094b41172cdfa9309c70cd004bfa458ee9ea62bbf64785bf6366",
+    "data/atlas/perturbations/projection.json": "2b50bab69b2046ff34f99308d35f8d198ca1d653535db3ce1cebc589e2a65802",
+    "src/catalytic_earth/atlas_perturbations.py": "a1ebe2fb06ab6a975bd82e38f8aa093cb3d30e57932c24c48cd2b36b8a5e981d",
+    "scripts/query_atlas_perturbations.py": "85fb364ead64f944d8fe9e22985b1264521e37061c8ea7918d945d0fe0243da4",
+    "tests/core/test_atlas_perturbations.py": "a7a98d49e9201691b9f96b8589552c93c6e1fb948aa3b73d7ddb6c44509bbdd8",
+    "docs/ATLAS_STUDY_CONTEXT.md": "0a699d7ee5c6271c7b057fac19b63940b0fca9e2c04f52812620e2b4822f6eab",
+    "docs/ATLAS_PERTURBATION_RELATION.md": "c67980c8025daeb3420c843f8ced6ef5445ea3c7fa402d9b3bf7ffd8c2d86d21",
+    "CLAIMS.md": "95575b9cdef84d7fded6705bab2a68898b6423270d4934ade81d472a048a5d5d",
+    "data/governance/claim_ledger.json": "c1b744a900be257b106b6ad00d9d81839928e97b8de4801e48a38becdfa7db53",
+    "docs/CURRENT_STATE.md": "aa9a65f2ee2d737ccda51c1c43170084e51be32da1d699cb48450a29b902d595",
+    "docs/CURRENT_DECISIONS.md": "6d5d17e3405ddf05afc28cf4d746eaa804e11d56fe11eff031e35533760f22a6"
+  },
+  "review_process": "Parent source/diff review plus separately prompted read-only gpt-5.6-sol/ultra source_tkt, representation_tkt and adversarial_tkt. Initial source and representation objections adjudicated; final immutable-head review recorded in Git-local receipt. Correlated computation, not independent human or experimental validation.",
+  "source_inspection": "Retained SI printed pp5-7, equations3/6-8 and scheme; Extended Data Figure1c-d/2e-f legends, Data Availability; Table2a E160Q row/footnotec; retained T6F dictionary and coordinates. PDF pp6/8 visually checked. Publisher bodies remain host-local.",
+  "adjudications": [
+    {
+      "objection": "A fitted transition and present bond could be promoted to an elementary bond-making rate.",
+      "decision": "Accept source-described formation/reversal and a partial bond annotation only. No authenticated atomic before state, complete map, carbonyl/proton/electron changes or isolated microscopic chemical rate.",
+      "evidence": "SI equations3/6-8 and ED Figure1c-d/2e-f; original study limits."
+    },
+    {
+      "objection": "Reverse binding may be confused with donor scissile-bond cleavage.",
+      "decision": "Bind k_reverse to conjugate-to-Michaelis reversal; donor cleavage to DHEThDP+E4P has explicit unassigned parameter slots. Generic endpoint-direction checks reject that reassignment.",
+      "evidence": "SI equation3 K3 versus equation8 reversible binding scheme."
+    },
+    {
+      "objection": "Opaque context retrieval would repeat existing study annotations without enforcing reusable relations.",
+      "decision": "Introduce separate generic source-model links, with exact source/provider references, directional parameter slots and existing observation identity. Keep exact-sequence state_links unchanged. No enzyme-specific runtime logic. Real second-case reuse remains to be demonstrated.",
+      "evidence": "Current consumer state_links needs exact sequence and one source row; TKT sequence remains null and NMR/stopped-flow use separate providers."
+    },
+    {
+      "objection": "Source atom labels and coordinate evidence could imply an observed before-state map or full reacted chemistry.",
+      "decision": "Mark C2x/CF2 and C3x/CF3 as project nomenclature interpretations. Check both deposit dictionary/metric atom pairs and retain original conditions/occupancies; no graph replay or physical state equivalence.",
+      "evidence": "ED Figure1c caption, T6F dictionary and unchanged arrangement projection."
+    },
+    {
+      "objection": "Qualitative accumulation could become zero cleavage or be combined with fitted rates as microscopic K2.",
+      "decision": "Keep NMR as state evidence at20C/30s; stopped-flow is at4C. No cleavage fraction, zero rate, cross-assay K2 or productive F6P turnover.",
+      "evidence": "SI pp5-7; ED Figure1d; original observation conditions."
+    },
+    {
+      "objection": "Redistribution wording could incorrectly cover the already tracked coordinate body.",
+      "decision": "The four reused publisher bodies remain undistributed; existing RCSB6HA3 coordinate remains redistributed and unchanged.",
+      "evidence": "Existing source inventory and current acquisition scope."
+    },
+    {
+      "objection": "A correctly bound compiled endpoint could still carry a different original observation, assay or bond role.",
+      "decision": "Require original observation ID/object and exact original state-relation set/arrangement ID; compiled assay-provider equality plus paired reverse-assay equality; source/deposit atom aliases and transition bond roles must match. Preserve these reviewer-discovered failures in mutation tests.",
+      "evidence": "Read-only representation review of current candidate; X5P source-observation, relation, assay and bond-role substitutions."
+    }
+  ],
+  "blocked_operations": [
+    "atom_resolved_elementary_mechanism_or_graph_replay",
+    "isolated_microscopic_bond_making_rate",
+    "reverse_binding_as_donor_cleavage_rate",
+    "zero_cleavage_from_NMR_accumulation",
+    "assay_or_physical_state_equivalence",
+    "M0219_or_productive_F6P_turnover_transfer",
+    "protected_registry_or_evidence_tier_promotion"
+  ],
+  "coordination_record": ".git/catalytic-earth-runs/1aca981e.board.md"
+}

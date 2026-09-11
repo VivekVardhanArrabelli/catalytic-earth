@@ -300,6 +300,16 @@ unavailable. The printed T382E efficiency punctuation remains unresolved.
 This curates published measurements without establishing productive F6P
 turnover, a causal geometric effect, new experiments or a higher evidence tier.
 
+The [E160Q F6P source-model relation](docs/ATLAS_STUDY_CONTEXT.md#f6p-adduct-reversal-and-donor-cleavage-are-different-transitions)
+separates fitted formation/reversal parameters from donor cleavage to
+DHEThDP plus E4P. `k_reverse` 0.47 ± 0.23 s⁻¹ returns the conjugate toward
+the noncovalent F6P complex; it is not a rate for scissile C2x–C3x cleavage.
+Both the formed C2–C2x and scissile bond remain present in the deposited
+6HA3 conjugate under project-interpreted atom aliases. The shared link binds
+existing endpoints and source-model directions without an atom-resolved
+before state, elementary electron/proton sequence, measured cleavage rate or
+geometry–rate causal claim.
+
 ## CE-025 — analogue nonbinding and authentic-substrate responses are distinct
 
 **Status:** Supported

@@ -302,12 +302,14 @@
     "claim_kind": "scientific_result",
     "status": "Supported",
     "claim": "The retained human-transketolase study reports E160A F6P-adduct k_forward 8.33 +/- 1.21 s^-1 versus wild type 9.06 +/- 0.72 s^-1 at 4 C, and E160A X5P/R5P k_cat 0.21 +/- 0.02 s^-1 versus wild type 2.79 +/- 0.06 s^-1 at 20 C. These are distinct functional endpoints.",
-    "current_wording": "Describe seven source-bound variant comparison rows from one published study. Preserve T382E/Q K_0.5 versus K_M, endpoint-specific Hill coefficients, instrument lower bounds, reporter missingness and the unresolved printed T382E efficiency token. Do not infer productive F6P turnover, a generic structure-to-activity label, causal geometry, new experiments or a higher evidence tier.",
-    "rationale": "The retained table image, endpoint-defining footnotes and Supplementary Methods permit quantitative within-assay contrasts while preventing silent transfer across substrates, temperatures, fitted parameter types and unavailable measurements.",
+    "current_wording": "Describe seven source-bound variant comparison rows from one published study. Preserve T382E/Q K_0.5 versus K_M, endpoint-specific Hill coefficients, instrument lower bounds, reporter missingness and the unresolved printed T382E efficiency token. Do not infer productive F6P turnover, a generic structure-to-activity label, causal geometry, new experiments or a higher evidence tier. The E160Q F6P source-model relation distinguishes adduct formation/reversal from donor cleavage to DHEThDP plus E4P. k_reverse 0.47 +/- 0.23 s^-1 belongs to conjugate-to-Michaelis reversal, not C2x-C3x cleavage. Both formed and scissile bonds remain present in the deposited conjugate under project-interpreted atom aliases. The shared link checks existing endpoint/directional parameter bindings without establishing atom-resolved before states, an elementary electron/proton sequence, cleavage kinetics or geometry-rate causation.",
+    "rationale": "The retained table image, endpoint-defining footnotes and Supplementary Methods permit quantitative within-assay contrasts while preventing silent transfer across substrates, temperatures, fitted parameter types and unavailable measurements. Supplementary equations 3 and 8 identify different transitions; Extended Data Figure 1c names distinct formed and scissile bonds, preventing reverse-binding kinetics from being assigned to donor cleavage.",
     "evidence": [
       "data/atlas/study_context/6ha3/functional_comparison.json",
       "data/atlas/study_context/6ha3/functional_review.json",
-      "docs/ATLAS_STUDY_CONTEXT.md"
+      "docs/ATLAS_STUDY_CONTEXT.md",
+      "data/atlas/study_context/6ha3/f6p_transition_context.json",
+      "data/atlas/study_context/6ha3/f6p_transition_review.json"
     ]
   },
   {
