@@ -1,5 +1,33 @@
 # Current Decisions
 
+## 2026-09-11: close the qualified-state priority and seek a mechanistic evidence relation
+
+The [evening direction review](SCIENTIFIC_DIRECTION.md) finds the RA95
+construct-to-state stopping condition complete in PRs #80–#81. Exact parent
+associations and deposited attachment are supported at their stated scope;
+complete reacted chemistry and productive solution configurations remain open.
+Do not reopen that bounded task merely because those limits remain.
+
+Retain one inquiry into the cited Heine2001 DERA paper: does it join a
+source-defined catalytic-Lys-to-Arg construct, a named alternate covalent
+nucleophile and measured retained function in that construct? This could
+qualify a natural precedent without assigning that mechanism to RA95. Allow
+verifiable primary-author or institutional-repository versions as well as the
+publisher, within the same cumulative RA95 acquisition budget and one-paper
+scope. Citation metadata cannot establish the requested premises.
+
+An inaccessible paper adds no mechanistic evidence. Record access compactly,
+stop unchanged failed routes and select a different justified question. A
+source-established missing premise can close the proposed inference, without
+another adapter or a new prerequisite for coverage. First-time exclusions can
+prevent consequential transfer errors; repeated refusals or access receipts
+must not become the program's substitute for mechanistic information.
+
+The sampled primary values and attachment boundaries remain sound. Correct the
+4A2R guide's stale command readout to include PR #89's paired comparisons; this
+changes documentation only. No new scientific claim, test, source acquisition
+or evidence tier follows from the direction review.
+
 ## 2026-09-11: retain conditional lysine effects through the existing four-cell relation
 
 Use the [K83M/K210M reanalysis](ATLAS_PERTURBATION_RELATION.md#reported-lysine-endpoints-depart-from-a-multiplicative-reference)

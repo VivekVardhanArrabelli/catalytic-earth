@@ -33,7 +33,7 @@
     "docs/ATLAS_RA95_CHEMICAL_STATE.md": "a85ee7c6accdafb0f2fb63a1a658413e07788cee4a5f9f7879dce726c6707c01",
     "CLAIMS.md": "ea8386f8e94cd3ca06a7d484865daf4dbeada59a07ce31cf1ca3bc661428b5d0",
     "data/governance/claim_ledger.json": "d99cab88411b33facb20378e048331fc36958655ab828190caf476e338b7d1de",
-    "docs/CURRENT_DECISIONS.md": "88b4ad6306d2f243caf2391bab683203805d670f944faa03304ecc2ad2781bf5",
+    "docs/CURRENT_DECISIONS.md": "aad77670735475b8583e8dd1f0505cf40e794f8cc81415e46373b611019d33fc",
     "docs/CURRENT_STATE.md": "c5c19f98fa4811240438348b2f43699a22b24c9714c0d4e43e0760763f326930",
     "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
     "src/catalytic_earth/atlas_deposit_context.py": "adfae408de29e6b5f61fab970d7631f42846a9cdaedea0340d65e6ac95ad2a87",
@@ -48,7 +48,7 @@
     "data/atlas/study_context/ra95_2013/chemical_state.json": "a9b7df48d5684fc014ced487477364eb8d9b2072817e3be4c64837a364df0670",
     "data/atlas/study_context/ra95_2013/chemical_state_acquisition.json": "7efd0b0efdb32572d369194fc4e9eedd84b0a184aa8c9f10b7af50766b4c1da9",
     "tests/test_truth_guard.py": "9cab652e125d7f03a5d22f761d163dbc6d655e11b950058b9a3e810c38b2933b",
-    "docs/ATLAS_RA95_4A2R_STATE.md": "3e232b1bf17f5c316d126c2476c1b87dbf120a8584bcd1db00aa51db9df5a1f9",
+    "docs/ATLAS_RA95_4A2R_STATE.md": "8089d97dd393b0f3c2576197481c9551f3bdf2d1ff20a64dd15323ad7a6011ef",
     "data/atlas/study_context/ra95_2013/chemical_state_review.json": "12864f833532eff632016804fbf322e1828c33c3cabf840b2cd08b8f0ea99ebf",
     "data/atlas/deposit_context/ra95_4a2r/review.json": "dc017d8ed45a52dade5c04a77c42d734fa34926b67cefa043a35f0d9bb605a20",
     "data/atlas/study_context/diels_alder_2010/reactive_core.json": "cbd144d7fa62f09848869da5dee39a0f3c9b76f3f0b34856be8b5a5eac14d1c6",
@@ -646,5 +646,34 @@
       "test_sha256": "c76b6b2d922f43647948d3084d95c856b160e4c16decaa4e94c2c41e3a866bc2",
       "review_status": "source_representation_adversarial_exact_test_hash_accepted"
     }
+  },
+  "direction_documentation_followup": {
+    "reviewed_at_utc": "2026-09-11T01:10:00.158140+00:00",
+    "base_commit": "d6917e2ba3f81556cac2453c39022e2fb9b5086c",
+    "prior_review_sha256": "af5975c304a07ea2399c0b36bb4df65100a9aa937a60d9c5be8c0ff6802a6620",
+    "status": "documentation_reviewed_computational",
+    "scope": "Correct the 4A2R public command description after PR89 added paired comparisons; prepend a direction decision closing the completed state priority and bounding the next DERA evidence inquiry. No scientific payload, source witness, runtime, test, claim or evidence-tier change.",
+    "renewed_bindings": {
+      "docs/ATLAS_RA95_4A2R_STATE.md": {
+        "before": "3e232b1bf17f5c316d126c2476c1b87dbf120a8584bcd1db00aa51db9df5a1f9",
+        "after": "8089d97dd393b0f3c2576197481c9551f3bdf2d1ff20a64dd15323ad7a6011ef"
+      },
+      "docs/CURRENT_DECISIONS.md": {
+        "before": "88b4ad6306d2f243caf2391bab683203805d670f944faa03304ecc2ad2781bf5",
+        "after": "aad77670735475b8583e8dd1f0505cf40e794f8cc81415e46373b611019d33fc"
+      }
+    },
+    "source_and_output_check": "Independent retained SI Table2/Figure5, raw4A2R and arithmetic sample supports the unchanged science. The immutable public query returns12 observations/12 comparisons,8 eligible/4KM refusals; parent state remains limited to3 parent observations.",
+    "reviewer_tasks": [
+      "/root/evidence_review_12h",
+      "/root/direction_review_12h",
+      "/root/reuse_review_12h"
+    ],
+    "historical_reviews": "Original source qualification and correspondence manifests retain their original hashes and scope; only the two current documentation bindings above are renewed.",
+    "coordination_record": "docs/SCIENTIFIC_DIRECTION.md",
+    "new_source_requests": 0,
+    "new_source_response_body_bytes": 0,
+    "independent_human_validation": false,
+    "experimental_validation": false
   }
 }
