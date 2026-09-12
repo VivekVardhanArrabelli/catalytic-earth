@@ -1,0 +1,87 @@
+{
+  "schema_version": "catalytic-earth.primary-source-factual-projection.v1",
+  "projection_id": "primary:Spatzal2011:FeMo-interstitial-element",
+  "authorship": "Project-authored factual projection with a separately declared, manually curated source-depiction target. That target is not experimental atom mapping. This file is not the article body, independent review or a project experiment.",
+  "source_identity": {
+    "title": "Evidence for Interstitial Carbon in Nitrogenase FeMo Cofactor",
+    "authors": "Spatzal et al.",
+    "year": 2011,
+    "journal": "Science",
+    "volume": "334",
+    "issue": "6058",
+    "page": "940",
+    "doi": "10.1126/science.1214025",
+    "pmid": "22096190",
+    "pmcid": "PMC3268367",
+    "canonical_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3268367/",
+    "reported_deposit": "3U7Q",
+    "inspection_scope": "PMC author-manuscript main text, Figure1 caption and citation; linked supplementary PDF and coordinates not acquired"
+  },
+  "source_capture": {
+    "local_path": ".git/catalytic-earth-runs/8a57ab0d-nitrogenase-sources/spatzal2011-pmc.xml",
+    "raw_response_repository_path": null,
+    "raw_response_sha256": "c4a0a0ff647d4aff12fd0f5c05ddf8b74245466e399ea942c70d6aec1fc0b78c",
+    "raw_response_bytes": 15826,
+    "retrieved_at_utc": "2026-09-12T10:10:53.173585+00:00",
+    "request_id": 7,
+    "receipt_ledger_repository_path": "data/atlas/source_qualifications/m0212/acquisition_receipts.json",
+    "receipt_ledger_sha256": "9d7d8e8b3bd68a4894d7c24bf209f642c59e1ab36971744fdd07ba1c757c50d3",
+    "retention_scope": "local_analysis_only; non-open-access manuscript is not redistributed"
+  },
+  "reported_system": {
+    "organism": "Azotobacter vinelandii",
+    "protein": "MoFe protein",
+    "chemical_entity": "interstitial atom of FeMo cofactor",
+    "supported_element": "C",
+    "state_scope": "studied structural and spectroscopic preparations; no redox or catalytic E-state assigned",
+    "assembly_or_deposit_equivalence_to_mcsa": "not_established"
+  },
+  "findings": [
+    {
+      "finding_id": "interstitial-carbon-assignment",
+      "source_locator": "/pmc-articleset/article/body/p[@id=\"P1\"]",
+      "statement": "At 1.0 angstrom resolution the two cofactor-center atoms match the carbon electron-density distributions. The authors revise their earlier nitrogen preference and describe interference from neighboring iron in the older analysis.",
+      "evidence_method": "X-ray diffraction; reported structural analysis, not project refitting"
+    },
+    {
+      "finding_id": "isotope-spectroscopic-corroboration",
+      "source_locator": "/pmc-articleset/article/body/p[@id=\"P2\"]",
+      "statement": "U-13C-labeled A. vinelandii MoFe protein adds an ESEEM pattern consistent with carbon near or within FeMo; the authors interpret this with the crystal structure.",
+      "evidence_method": "Isotope-label ESEEM; not independently atom-localizing or a second experimental study"
+    },
+    {
+      "finding_id": "reported-cofactor-composition",
+      "source_locator": "/pmc-articleset/article/floats-group/fig[@id=\"F1\"]/caption",
+      "statement": "Figure1 describes FeMo as [Mo:7Fe:9S:C]:homocitrate.",
+      "evidence_method": "Primary figure caption; no formal charge or oxidation state projected"
+    }
+  ],
+  "limits": [
+    "Elemental identity qualifies the historical central-N depiction; it does not establish a corrected elementary step.",
+    "The source-only m1.a83 identity is a binding to the depicted atom, not an atom map to the primary structure or spectroscopic sample.",
+    "No charge, oxidation/protonation state, carbide designation, resting state, E-state persistence, reactive Fe identity, corrected electron flow or full cluster trajectory is established.",
+    "3U7Q composition evidence is not a validation of the distinct 1N2C nucleotide/association context.",
+    "Methods in the linked supplementary material, isotope incorporation verification, coordinates, and independent replication are unassessed."
+  ],
+  "source_depiction_target": {
+    "record_binding": {
+      "record_id": "atlas50-draft:m0212:source-scoped-mechanism-draft",
+      "mcsa_id": "M0212",
+      "source_snapshot_sha256": "23fd20835b7ce46c634381cb8f94ba390444c87a847b05109731a206a333907f"
+    },
+    "step_binding": {
+      "proposal_id": "atlas-draft.m0212.mechanism-1",
+      "source_mechanism_id": 1,
+      "step_id": "atlas-draft.m0212.mechanism-1.step-12",
+      "source_step_id": 12,
+      "source_scheme_sha256": "ac12d5d97d03a6cb1b6de9d1389da9c94f764b38c47500dcaaaf3af04c9b737c"
+    },
+    "source_chemistry_binding": {
+      "source_step_summary": "In a nucleophilic substitution reaction the cental nitrogen atom of the cofactor reforms one of its bonds to the one of the iron centres.",
+      "flow_id": "o52",
+      "flow_endpoint": "source_point",
+      "source_atom_ref": "m1.a83",
+      "source_element": "N"
+    }
+  }
+}

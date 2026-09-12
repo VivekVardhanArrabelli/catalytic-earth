@@ -76,6 +76,10 @@ cluster pathway, and conflicting HisF Asp11/Asp130 roles remain visible in the
 query. Source transcription does not settle those questions or infer geometry,
 atom mappings, balanced bond edits, or experimental validation.
 
+The [nitrogenase elemental-identity qualification](#nitrogenase-central-atom-identity)
+now accompanies the historical central-N depiction by default; preserving a
+source arrow does not make its elemental assignment usable as current chemistry.
+
 Step `is_inferred` is true when the text contains an explicit `inferred` tag,
 `we infer`, or `we assume`; otherwise it is null (unspecified). The retained
 text determines whether the inference qualifies a role within the step or
@@ -518,3 +522,63 @@ when its result will change what we build, admit, or spend effort on. The
 current query layer makes the existing standardized participants usable across
 records. Reassess the next coverage or mechanism-query improvement against the
 remaining bottleneck, with source applicability handled at its affected scope.
+
+## Nitrogenase central-atom identity
+
+M0212 Step 12 depicts its cofactor's central atom as nitrogen. The
+[Spatzal2011 primary paper](https://pmc.ncbi.nlm.nih.gov/articles/PMC3268367/)
+reports an interstitial carbon species in *A. vinelandii* FeMo cofactor:
+1.0 Å crystallography supplies the elemental assignment and isotope-labeled
+MoFe-protein ESEEM corroborates it. ESEEM alone does not uniquely locate the
+atom. This supports [CE-049](../CLAIMS.md#ce-049--nitrogenase-central-atom-identity)
+and [ER-014](../ERRATA.md#er-014--nitrogenase-central-n-source-depiction).
+
+The default query carries one reviewed qualification in compact and expanded
+output:
+
+```bash
+catalytic-earth atlas-drafts --mcsa-id M0212
+catalytic-earth atlas-drafts --mcsa-id M0212 --steps
+```
+
+The exact target is source proposal 1, Step 12, scheme SHA256
+`ac12d5d97d03a6cb1b6de9d1389da9c94f764b38c47500dcaaaf3af04c9b737c`,
+flow `o52`, endpoint `source_point`, atom `m1.a83`, historical element `N`.
+Its `current_constraint_usable: false` marks that actor elementally incompatible
+as depicted. Expanded Step 12 also carries `source_chemical_identity_qualifications`.
+The source summary, raw MRV, compiled arrows and separate substrate-derived
+nitrogen `m1.a34` in `o51` remain unchanged. Panel-local atom identifiers are
+not a cross-panel atom map.
+
+This rejects one elemental interpretation; it does not supply a replacement
+Fe–C bond edit or prove that central-atom coordination cannot change. No
+carbide charge, oxidation/protonation, resting state, catalytic E state,
+reactive Fe identity, nitrogen-binding mode or complete trajectory is inferred.
+The paper's 3U7Q composition evidence is not a mapping to the distinct 1N2C
+nucleotide/association complex or to an experimental Step-12 intermediate.
+
+The [project-authored primary projection](../data/atlas/source_qualifications/m0212/primary_projection.json)
+binds the inspected manuscript paragraphs P1/P2 and Figure 1 caption to a
+retained local raw witness. The
+[annotation](../data/atlas/atlas50/development_gate/primary_evidence_annotations.json)
+binds that projection and the original M-CSA snapshot. Main text was inspected;
+linked supplementary methods and coordinates were not acquired. The non-open-
+access article body stays local and is not included in the package.
+The source-depiction selector is separately declared in the bound projection;
+changing an annotation to target substrate nitrogen fails against that input.
+This protects the reviewed manual selection without making it an experimental
+atom map or a semantic validation of rewritten source/review inputs.
+[Acquisition receipts](../data/atlas/source_qualifications/m0212/acquisition_receipts.json)
+retain seven calls: five direct requests totaling 28,644 response-body bytes
+and two discovery-tool results totaling 25,216 visible bytes. Tool-internal raw
+network bytes are unavailable, so no complete raw-total or remaining-budget
+claim is made. Acquisition stopped at the supported identity result.
+
+The shared primary-evidence consumer checks exact source bindings and exposes
+this contradiction without enzyme-ID code. Selection and chemical applicability
+still require manual source review; a hash is not a scientific adjudication.
+The added value over reading the paper is its explicit connection to the
+currently emitted, incompatible actor. Broader correction coverage, reduced
+curation time and design performance are not established. Source-model
+candidate catalogs are unchanged; this increment qualifies the source-draft
+query rather than deriving a corrected chemical trajectory in those catalogs.

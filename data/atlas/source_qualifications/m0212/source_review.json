@@ -1,0 +1,135 @@
+{
+  "schema_version": "catalytic-earth.source-scoped-review.v1",
+  "review_id": "m0212-interstitial-element-20260912",
+  "reviewed_on": "2026-09-12",
+  "scope": "One primary-backed elemental-identity qualification of the exact M0212 Step12/o52/source_point/m1.a83 depiction; no replacement mechanism.",
+  "source_review_status": "accepted_at_primary_main_text_scope",
+  "computational_review_status": "accepted_source_representation_and_adversarial",
+  "reviewers": [
+    {
+      "role": "source",
+      "agent": "source_review",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "finding": "Primary identity/locators, main-text scope, exact source-capture hash/size/receipt and limits accepted. Supplementary methods are not needed for reported elemental identity."
+    },
+    {
+      "role": "representation",
+      "agent": "representation_review",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "finding": "Reusable qualification accepted. Exact source selectors are separately pinned in the reviewed primary projection; portable and repository validators reject element and selector drift. Actual compact and expanded packaged CLI preserve original flows. Final focused suite 33/33 passed."
+    },
+    {
+      "role": "adversarial",
+      "agent": "adversarial_review",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "finding": "Accepted without blocker. Independently reproduced rejection of annotation-only substrate-N remapping, annotation-plus-excerpt remapping against unchanged projection, and C-to-O repinning. Actual compact and expanded CLI qualify only Step12/o52/m1.a83, leaving o51/m1.a34 unchanged. Scientific scope remains elemental identity only."
+    }
+  ],
+  "review_independence": {
+    "informed_not_blind": true,
+    "same_model_agents": true,
+    "statistically_independent": false,
+    "correlated_error_risk": true,
+    "human_reviewers": 0,
+    "experimental_validation_by_project": false
+  },
+  "adjudications": [
+    {
+      "objection": "Carbon identity could be read as a corrected Fe-C bond change or proof that such a change cannot occur.",
+      "decision": "Reject both transfers. Qualify elemental identity only; retain original source flow and current_constraint_usable=false."
+    },
+    {
+      "objection": "ESEEM could be treated as uniquely localizing the interstitial atom or as independent replication.",
+      "decision": "Diffraction supplies the structural identity; isotope ESEEM corroborates with that structure in one study."
+    },
+    {
+      "objection": "Source atom IDs and primary/source deposit identities could be merged.",
+      "decision": "Bind only the Step12 source depiction. No cross-panel m1.a83 mapping, no experimental atom mapping, no 3U7Q-to-1N2C state/assembly transfer."
+    },
+    {
+      "objection": "A standalone carbon annotation would add little beyond incumbent reading.",
+      "decision": "Require default exact-flow qualification with machine-readable unusability; docs-only or optional-only output is insufficient."
+    },
+    {
+      "objection": "A bound but unrelated primary projection could satisfy the declared element.",
+      "decision": "Require source-projection/element/identity consistency in repository validation before accepting the runtime."
+    },
+    {
+      "objection": "A coherent annotation repin could remap the interstitial-carbon qualification from o52/m1.a83 to substrate-nitrogen o51/m1.a34.",
+      "decision": "Bind the manually curated source-depiction selector separately in the hash-bound projection and require exact equality with annotation/excerpt selectors. This prevents an annotation-only remap against unchanged reviewed inputs. Selection remains manual; rewriting every input and review pin does not become scientific validation."
+    }
+  ],
+  "reconsideration": {
+    "bespoke_code": "One shared missing concept, elemental identity counterevidence against a source actor, rather than an enzyme-ID branch. Case facts remain in the source projection and annotation.",
+    "reusable_curation": "Existing primary sidecar, source binding, catalog and package paths reused. Source selection, topology-based actor recognition and scientific applicability remain manual; no curation time saving measured.",
+    "integrated_value": "The same default query exposes the historical actor together with its consequential primary contradiction. No autonomous mechanism-to-function or design-ready chain claimed."
+  },
+  "scientific_limits": [
+    {
+      "limit_id": "corrected_atom_mapping",
+      "status": "abstained",
+      "statement": "No experimental mapping from source m1.a83 to a 3U7Q atom, spectroscopic nucleus or another source panel. Scheme-local atom IDs may change."
+    },
+    {
+      "limit_id": "corrected_bond_edits",
+      "status": "abstained",
+      "statement": "Carbon identity does not establish or rule out a central-atom/Fe bond change; no replacement electron flow, coordination edit or exact reactive Fe is inferred."
+    },
+    {
+      "limit_id": "corrected_source_step_trajectory",
+      "status": "abstained",
+      "statement": "No corrected Step12 pathway, catalytic-state persistence, N2-binding mode or full FeMo/P-cluster mechanism is established."
+    },
+    {
+      "limit_id": "formal_charge_or_oxidation_state",
+      "status": "abstained",
+      "statement": "Carbon species does not assign carbide charge, oxidation/protonation, resting state or a catalytic E state."
+    },
+    {
+      "limit_id": "whole_proposal_applicability",
+      "status": "abstained",
+      "statement": "The studied A.vinelandii composition is not the 1N2C nucleotide/assembly state, an exact assayed construct, a validated proposal or a design constraint beyond rejection of this elemental depiction."
+    }
+  ],
+  "source_projection_sha256": "ce94260053c7ec22748a88d7937b280674794d44f3e8f1861a5a6b5a1ea82234",
+  "annotation_payload_sha256": "6c4f586431a361a98d78174aef9f066e18eb2ede2fc58468044e6254197071b7",
+  "evidence_paths": [
+    "data/atlas/source_qualifications/m0212/primary_projection.json",
+    "data/atlas/source_qualifications/m0212/acquisition_receipts.json",
+    "data/atlas/atlas50/development_gate/primary_evidence_annotations.json",
+    "docs/ATLAS_SOURCE_DRAFTS.md"
+  ],
+  "record_preservation": "All raw M-CSA bytes, source-draft records, source arrows, frozen/protected registries and exposure history remain unchanged.",
+  "verification": {
+    "core_unit": {
+      "tests": 684,
+      "status": "passed"
+    },
+    "repository_contracts": {
+      "status": "passed",
+      "claims": 49,
+      "exposure_rows": 1000,
+      "golden_result": "matched"
+    },
+    "installed_wheel": {
+      "status": "passed",
+      "empty_directory": true,
+      "network_blocked": true,
+      "actual_compact_and_expanded_qualification": true,
+      "frozen_atlas10_runtime_sha256": "57fb5e4708d6963b994a9ffd125549b822effe060da3e735c1afd987f1c84bdb"
+    },
+    "preservation": {
+      "source_records": 11,
+      "perturbation_observations": 254,
+      "comparisons": 133,
+      "state_links": 2,
+      "model_links": 4,
+      "control_relations": 3,
+      "prior_claims": 48
+    },
+    "scope": "Computational integrity and reviewed source applicability; no independent human or experimental validation."
+  }
+}

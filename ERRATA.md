@@ -167,6 +167,21 @@ audit. `CLAIMS.md` is the canonical current claim ledger.
   correction beside its evidence and limitations. No gate, exact product,
   chain length, mechanism or processivity claim changes.
 
+## ER-014 — nitrogenase central-N source depiction
+
+- **Affected surface:** M0212 source-draft Step 12, flow o52, source atom
+  m1.a83; current qualification CE-049.
+- **Previous risk:** the preserved source sentence and arrow actor designate
+  the cofactor's central atom as N without the primary elemental correction.
+- **Correction:** Spatzal2011 identifies interstitial carbon in studied
+  *A. vinelandii* FeMo cofactor. The exact central-N actor is elementally
+  incompatible as depicted and unusable as a current chemical constraint.
+- **Evidence:** [primary qualification and source bindings](docs/ATLAS_SOURCE_DRAFTS.md#nitrogenase-central-atom-identity).
+- **Record rule:** preserve the source snapshot, compiled steps and arrows.
+  Default compact and expanded source-draft queries carry the qualification.
+  Do not replace every N, change substrate-derived m1.a34, infer an experimental
+  atom map, substitute a corrected Fe–C step, or validate the full proposal.
+
 ## Propagation rule
 
 Current entry documents must link to this file and `CLAIMS.md`. Historical

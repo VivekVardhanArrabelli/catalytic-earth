@@ -664,5 +664,19 @@
       "data/atlas/study_context/mandelate_1995_e317q/chemical_endpoints.json",
       "data/atlas/study_context/mandelate_1995_e317q/chemical_endpoints_review.json"
     ]
+  },
+  {
+    "claim_id": "CE-049",
+    "claim_kind": "source_annotation",
+    "status": "Supported",
+    "claim": "Spatzal2011 identifies an interstitial carbon species in studied A. vinelandii FeMo cofactor, contradicting the central-N actor depicted in M0212 Step12 o52 source atom m1.a83.",
+    "current_wording": "Default compact and expanded source-draft queries mark the exact historical actor unusable as a current chemical constraint. Original source chemistry and separate substrate-derived nitrogen remain unchanged. Crystallography supplies the assignment and isotope ESEEM corroborates within the same study. No corrected bond edit, experimental atom mapping, formal charge, redox or catalytic state, 1N2C assembly transfer, full mechanism, independent project review, project experiment or design performance is established.",
+    "rationale": "A primary chemical-identity qualification prevents transfer of a consequential obsolete source depiction through the existing consumer. Source selection and interpretation remain manual; shared code and pinned data do not establish general chemical understanding or a measured curation saving.",
+    "evidence": [
+      "data/atlas/source_qualifications/m0212/primary_projection.json",
+      "data/atlas/source_qualifications/m0212/source_review.json",
+      "data/atlas/atlas50/development_gate/primary_evidence_annotations.json",
+      "docs/ATLAS_SOURCE_DRAFTS.md"
+    ]
   }
 ]

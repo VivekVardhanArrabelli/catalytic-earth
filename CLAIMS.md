@@ -808,3 +808,19 @@ Comparable does not establish equality; irreversible inactivation does not
 establish catalysis, covalency, a modification site or a microscopic cause.
 The distinct endpoints retain unassessed methods, conditions, uncertainty and
 physical preparation, with no cross-endpoint arithmetic or structural transfer.
+
+## CE-049 — nitrogenase central-atom identity
+
+**Status:** Supported
+
+The [source qualification](docs/ATLAS_SOURCE_DRAFTS.md#nitrogenase-central-atom-identity)
+connects Spatzal2011's interstitial-carbon assignment for studied
+*A. vinelandii* FeMo cofactor to the incompatible central-N actor in M0212
+Step 12, flow o52, source atom m1.a83. The ordinary source-draft query marks
+that depiction unusable as a current chemical constraint while preserving
+all original source steps and substrate-derived nitrogen.
+
+Crystallography supplies the elemental assignment; isotope ESEEM corroborates
+it in the same study. No corrected bond edit, experimental atom map, charge,
+redox or catalytic state, 1N2C assembly transfer, full mechanism, independent
+project review, project experiment or design performance is established.
