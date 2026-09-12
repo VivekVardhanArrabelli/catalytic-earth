@@ -127,4 +127,19 @@ def query_source_draft_batches(
             "curated_reaction_assigns_depicted_species": False,
             "curated_reaction_establishes_atom_mapping": False,
         })
+    if any(
+        annotation["annotation_kind"] == "source_chemical_identity_qualification"
+        for sidecar in evidence.values()
+        if sidecar is not None
+        for annotation in sidecar["annotations"]
+    ):
+        output["schema_version"] = "catalytic-earth.source-draft-catalog-query.v5"
+        output["source_chemical_identity_qualification_count"] = sum(
+            item["result"].get("source_chemical_identity_qualification_count", 0)
+            for item in results
+        )
+        output["query_semantics"].update({
+            "source_chemical_identity_qualification_rewrites_source": False,
+            "source_chemical_identity_qualification_supplies_corrected_trajectory": False,
+        })
     return output

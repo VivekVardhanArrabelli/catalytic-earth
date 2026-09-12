@@ -31,8 +31,8 @@
     "data/atlas/study_context/ra95_2017/chemical_state.json": "90d9c76913dc67714e04b34bd8a126f4d35e5e01ba3bd80929ba623ef974d93c",
     "data/atlas/study_context/ra95_2017/chemical_state_acquisition.json": "4b0427a24aab3b1269f25cd80b3b9c90f61c4a99404499d77cf0c16a8b5f2ecb",
     "docs/ATLAS_RA95_CHEMICAL_STATE.md": "64192bc0aea597916cd80e6d5b216152115554774c83f3faeacc7c41064a7e0c",
-    "CLAIMS.md": "f846ffa8cad147a3367f59f8959781e702f6091cf8d7e0df003bd6d5ccb2dd67",
-    "data/governance/claim_ledger.json": "e442f320bd9c3cce6761ba98938282ef06efd2045afbffe1ceecbda4767cada4",
+    "CLAIMS.md": "ad14ea4eb358210972e6aaf3faf9a1a3029d1bb14995e9473c31c3dc36dc82cd",
+    "data/governance/claim_ledger.json": "1c15d24098a639bbe9c0b884b0dbb3b1bde4e03455be6bb6a4165e4e0c55ee72",
     "docs/CURRENT_DECISIONS.md": "32d668821151c2fa99df457c7022f4431ae3d68a1b6ac8c7cf71a316d5133593",
     "docs/CURRENT_STATE.md": "c390d3c36e9f41efe2e0b57dde683142e87dd1d33a2fd738cdc59a4f79805a0b",
     "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
@@ -47,7 +47,7 @@
     "data/atlas/deposit_context/ra95_4a2r/projection.json": "ea3117cea3d83e156534abcc1efd62f10ed056a1965ba7e99a0974ac915b3461",
     "data/atlas/study_context/ra95_2013/chemical_state.json": "a9b7df48d5684fc014ced487477364eb8d9b2072817e3be4c64837a364df0670",
     "data/atlas/study_context/ra95_2013/chemical_state_acquisition.json": "7efd0b0efdb32572d369194fc4e9eedd84b0a184aa8c9f10b7af50766b4c1da9",
-    "tests/test_truth_guard.py": "7fa371b5ce3dc3f8e1c779c3033abcf899c8d1af22a9d61b4c478ff240480abb",
+    "tests/test_truth_guard.py": "6200126ca1a9fffacc9c83678b101424f088ded0420892173a1dc1a52b52a7b9",
     "docs/ATLAS_RA95_4A2R_STATE.md": "8089d97dd393b0f3c2576197481c9551f3bdf2d1ff20a64dd15323ad7a6011ef",
     "data/atlas/study_context/ra95_2013/chemical_state_review.json": "12864f833532eff632016804fbf322e1828c33c3cabf840b2cd08b8f0ea99ebf",
     "data/atlas/deposit_context/ra95_4a2r/review.json": "dc017d8ed45a52dade5c04a77c42d734fa34926b67cefa043a35f0d9bb605a20",
@@ -1644,5 +1644,29 @@
     "new_scientific_requests": 0,
     "new_response_body_bytes": 0,
     "new_acquired_witnesses": 0
+  },
+  "nitrogenase_claim_binding_followup": {
+    "reviewed_at_utc": "2026-09-12T10:33:23.651802+00:00",
+    "base_commit": "e553bac85588b0247a5d44ead75f42e893ef0860",
+    "prior_review_sha256": "89e8b3dd2de3f772cea73d87f911eb803e480f6b7b4ec2860df61b26b00ad202",
+    "scope": "Governance binding renewal after append-only CE-049, a separately scoped source-draft elemental-identity qualification. All 48 prior claims and all perturbation observations/providers/comparisons are unchanged. No nitrogenase observation is added to the perturbation projection.",
+    "renewed_bindings": {
+      "CLAIMS.md": {
+        "before": "f846ffa8cad147a3367f59f8959781e702f6091cf8d7e0df003bd6d5ccb2dd67",
+        "after": "ad14ea4eb358210972e6aaf3faf9a1a3029d1bb14995e9473c31c3dc36dc82cd"
+      },
+      "data/governance/claim_ledger.json": {
+        "before": "e442f320bd9c3cce6761ba98938282ef06efd2045afbffe1ceecbda4767cada4",
+        "after": "1c15d24098a639bbe9c0b884b0dbb3b1bde4e03455be6bb6a4165e4e0c55ee72"
+      },
+      "tests/test_truth_guard.py": {
+        "before": "7fa371b5ce3dc3f8e1c779c3033abcf899c8d1af22a9d61b4c478ff240480abb",
+        "after": "6200126ca1a9fffacc9c83678b101424f088ded0420892173a1dc1a52b52a7b9"
+      }
+    },
+    "review_basis": "Parent source/diff review proved CLAIMS.md prior prefix and first 48 ledger objects unchanged; source/adversarial review accepted new claim at its narrow scope. The sole truth-guard test change updates the explicit claim count 48 to 49; no evidence or exposure expectation changes.",
+    "verification_scope": "Exact equality against the preserved PR115 full scientific view: all 254 observations, 133 comparisons, 2 state links, 4 model links and 3 control relations unchanged. The filtered public query is a different selection and is not the full-view baseline.",
+    "independent_human_validation": false,
+    "experimental_validation": false
   }
 }

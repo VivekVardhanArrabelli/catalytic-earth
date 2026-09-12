@@ -21,6 +21,9 @@ from catalytic_earth.core_cli import main, verified_primary_evidence, verified_s
 
 
 ROOT = Path(__file__).resolve().parents[2]
+DEFAULT_PRIMARY_EVIDENCE_PATH = (
+    ROOT / "data/atlas/atlas50/development_gate/primary_evidence_annotations.json"
+)
 RAW_2QUT = (
     "data/atlas/source_drafts/batches/aldolase-transketolase/"
     "review/primary_sources/2QUT.cif"
@@ -181,6 +184,10 @@ def _repin(sidecar: dict) -> None:
     sidecar["review"]["annotation_payload_sha256"] = (
         canonical_annotation_payload_sha256(sidecar)
     )
+
+
+def _source_chemical_identity_sidecar() -> dict:
+    return json.loads(DEFAULT_PRIMARY_EVIDENCE_PATH.read_text(encoding="utf-8"))
 
 
 def _valid_v2_sidecar(bundle: dict) -> dict:
@@ -486,8 +493,24 @@ class PrimaryEvidenceTests(unittest.TestCase):
         ), self.assertRaisesRegex(ValueError, "primary evidence package differs"):
             verified_primary_evidence("aldolase-transketolase", bundle=self.bundle)
 
-    def test_default_package_has_no_primary_evidence_sidecar(self):
-        self.assertIsNone(verified_primary_evidence("default"))
+    def test_default_package_has_reviewed_primary_evidence_sidecar(self):
+        bundle = verified_source_drafts("default")
+        sidecar = verified_primary_evidence("default", bundle=bundle)
+
+        self.assertIsNotNone(sidecar)
+        assert sidecar is not None
+        self.assertEqual(
+            sidecar["review"]["annotation_payload_sha256"],
+            "6c4f586431a361a98d78174aef9f066e18eb2ede2fc58468044e6254197071b7",
+        )
+
+    def test_loader_retains_no_sidecar_fallback(self):
+        expected = json.loads(core_cli._resource_bytes("draft_data/source_drafts_expected.json"))
+        expected.pop("primary_evidence_sha256", None)
+        expected_raw = json.dumps(expected).encode("utf-8")
+
+        with patch("catalytic_earth.core_cli._resource_bytes", return_value=expected_raw):
+            self.assertIsNone(verified_primary_evidence("default"))
 
     def test_sidecar_cannot_be_applied_to_another_bundle(self):
         sidecar = _valid_sidecar(self.bundle)
@@ -569,6 +592,304 @@ class PrimaryEvidenceTests(unittest.TestCase):
         self.assertIsNone(
             annotation["claim"]["observed_state"]["normalized_chebi_id"]
         )
+
+
+class SourceChemicalIdentityQualificationTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.bundle = verified_source_drafts("default")
+        cls.sidecar = _source_chemical_identity_sidecar()
+
+    def test_validates_exact_source_step_atom_and_primary_projection(self):
+        summary = validate_primary_evidence(
+            self.sidecar,
+            bundle=self.bundle,
+            repo_root=ROOT,
+        )
+
+        self.assertEqual(summary["schema_version"], "catalytic-earth.atlas-primary-evidence.v4")
+        self.assertEqual(summary["annotation_count"], 1)
+        annotation = self.sidecar["annotations"][0]
+        self.assertEqual(annotation["step_binding"]["source_step_id"], 12)
+        self.assertEqual(
+            annotation["source_chemistry_binding"],
+            {
+                "source_step_summary": (
+                    "In a nucleophilic substitution reaction the cental nitrogen "
+                    "atom of the cofactor reforms one of its bonds to the one of "
+                    "the iron centres."
+                ),
+                "flow_id": "o52",
+                "flow_endpoint": "source_point",
+                "source_atom_ref": "m1.a83",
+                "source_element": "N",
+            },
+        )
+        self.assertFalse(annotation["claim"]["current_constraint_usable"])
+
+    def test_query_attaches_qualification_to_exact_expanded_step(self):
+        bundle_before = copy.deepcopy(self.bundle)
+        sidecar_before = copy.deepcopy(self.sidecar)
+
+        compact = query_source_drafts(
+            self.bundle,
+            mcsa_id="M0212",
+            primary_evidence=self.sidecar,
+        )
+        expanded = query_source_drafts(
+            self.bundle,
+            mcsa_id="M0212",
+            include_steps=True,
+            primary_evidence=self.sidecar,
+        )
+
+        for result in (compact, expanded):
+            self.assertEqual(
+                result["schema_version"], "catalytic-earth.source-draft-query.v7"
+            )
+            self.assertEqual(result["source_chemical_identity_qualification_count"], 1)
+            self.assertFalse(
+                result["records"][0]["primary_evidence_annotations"][0]["claim"]
+                ["current_constraint_usable"]
+            )
+            self.assertEqual(
+                {binding["artifact_kind"] for binding in result["primary_evidence"]["source_bindings"]},
+                {"primary_source_projection", "source_record_snapshot"},
+            )
+        self.assertNotIn("mechanism_steps", compact["records"][0]["mechanism_proposals"][0])
+        steps = expanded["records"][0]["mechanism_proposals"][0]["mechanism_steps"]
+        qualified_steps = [
+            step for step in steps if "source_chemical_identity_qualifications" in step
+        ]
+        self.assertEqual([step["source_step_id"] for step in qualified_steps], [12])
+        qualification = qualified_steps[0]["source_chemical_identity_qualifications"]
+        self.assertEqual(qualification, self.sidecar["annotations"])
+        flow = next(flow for flow in qualified_steps[0]["electron_flows"] if flow["flow_id"] == "o52")
+        self.assertEqual(flow["source_point"]["atoms"][0]["source_atom_ref"], "m1.a83")
+        self.assertEqual(flow["source_point"]["atoms"][0]["element"], "N")
+        unaffected_flow = next(
+            flow
+            for flow in qualified_steps[0]["electron_flows"]
+            if flow["flow_id"] == "o51"
+        )
+        self.assertEqual(
+            unaffected_flow["source_point"]["atoms"][0],
+            {
+                "source_atom_ref": "m1.a34",
+                "element": "N",
+                "formal_charge": 1,
+                "semantic_labels": ["chebi:17997"],
+            },
+        )
+        self.assertEqual(self.bundle, bundle_before)
+        self.assertEqual(self.sidecar, sidecar_before)
+
+    def test_default_cli_compact_and_steps_expose_the_bound_qualification(self):
+        outputs = []
+        for extra_args in ([], ["--steps"]):
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                code = main(["atlas-drafts", "--mcsa-id", "M0212", *extra_args])
+            self.assertEqual(code, 0)
+            outputs.append(json.loads(output.getvalue()))
+
+        for result in outputs:
+            self.assertEqual(result["source_chemical_identity_qualification_count"], 1)
+            annotation = result["records"][0]["primary_evidence_annotations"][0]
+            self.assertFalse(annotation["claim"]["current_constraint_usable"])
+        steps = outputs[1]["records"][0]["mechanism_proposals"][0]["mechanism_steps"]
+        step = next(step for step in steps if step["source_step_id"] == 12)
+        self.assertFalse(
+            step["source_chemical_identity_qualifications"][0]["claim"]
+            ["current_constraint_usable"]
+        )
+
+    def test_rejects_stale_step_scheme_summary_atom_element_and_evidence_digest(self):
+        mutations = (
+            (
+                "step",
+                lambda row: row["step_binding"].__setitem__("source_step_id", 11),
+                "step binding is absent or mixed",
+            ),
+            (
+                "scheme",
+                lambda row: row["step_binding"].__setitem__(
+                    "source_scheme_sha256", "0" * 64
+                ),
+                "source scheme binding is stale",
+            ),
+            (
+                "summary",
+                lambda row: row["source_chemistry_binding"].__setitem__(
+                    "source_step_summary", "changed"
+                ),
+                "source step summary is stale",
+            ),
+            (
+                "atom",
+                lambda row: row["source_chemistry_binding"].__setitem__(
+                    "source_atom_ref", "m1.a34"
+                ),
+                "source atom binding is absent or mixed",
+            ),
+            (
+                "element",
+                lambda row: row["source_chemistry_binding"].__setitem__(
+                    "source_element", "C"
+                ),
+                "source element differs",
+            ),
+            (
+                "primary evidence digest",
+                lambda row: row["evidence"][0].__setitem__("source_sha256", "0" * 64),
+                "binding ID/hash pair differs",
+            ),
+        )
+        for label, mutate, message in mutations:
+            with self.subTest(label=label):
+                sidecar = copy.deepcopy(self.sidecar)
+                mutate(sidecar["annotations"][0])
+                _repin(sidecar)
+                with self.assertRaisesRegex(ValueError, message):
+                    validate_primary_evidence(sidecar, bundle=self.bundle)
+
+    def test_rejects_coherent_wrong_flow_atom_without_reviewed_selector_change(self):
+        sidecar = copy.deepcopy(self.sidecar)
+        chemistry = sidecar["annotations"][0]["source_chemistry_binding"]
+        chemistry["flow_id"] = "o51"
+        chemistry["source_atom_ref"] = "m1.a34"
+        _repin(sidecar)
+
+        with self.assertRaisesRegex(
+            ValueError,
+            "source_depiction_target differs from the annotation selectors",
+        ):
+            validate_primary_evidence(sidecar, bundle=self.bundle)
+
+    def test_rejects_coherent_wrong_flow_atom_and_excerpt_against_projection(self):
+        sidecar = copy.deepcopy(self.sidecar)
+        annotation = sidecar["annotations"][0]
+        for chemistry in (
+            annotation["source_chemistry_binding"],
+            annotation["projection_excerpt"]["source_depiction_target"][
+                "source_chemistry_binding"
+            ],
+        ):
+            chemistry["flow_id"] = "o51"
+            chemistry["source_atom_ref"] = "m1.a34"
+        _repin(sidecar)
+
+        with self.assertRaisesRegex(
+            ValueError,
+            "source depiction target differs from the reviewed excerpt",
+        ):
+            validate_primary_evidence(
+                sidecar,
+                bundle=self.bundle,
+                repo_root=ROOT,
+            )
+
+    def test_rejects_reenabled_constraint_or_invented_correction(self):
+        sidecar = copy.deepcopy(self.sidecar)
+        sidecar["annotations"][0]["claim"]["current_constraint_usable"] = True
+        _repin(sidecar)
+        with self.assertRaisesRegex(ValueError, "cannot expose the contradicted"):
+            validate_primary_evidence(sidecar, bundle=self.bundle)
+
+        sidecar = copy.deepcopy(self.sidecar)
+        sidecar["annotations"][0]["claim"]["primary_supported_element"] = "N"
+        _repin(sidecar)
+        with self.assertRaisesRegex(ValueError, "does not contradict"):
+            validate_primary_evidence(sidecar, bundle=self.bundle)
+
+        sidecar = copy.deepcopy(self.sidecar)
+        sidecar["annotations"][0]["claim"]["corrected_source_atom_ref"] = "m1.a83"
+        _repin(sidecar)
+        with self.assertRaisesRegex(ValueError, "fields differ"):
+            validate_primary_evidence(sidecar, bundle=self.bundle)
+
+        sidecar = copy.deepcopy(self.sidecar)
+        sidecar["annotations"][0]["limits"] = [
+            limit
+            for limit in sidecar["annotations"][0]["limits"]
+            if limit["limit_id"] != "corrected_atom_mapping"
+        ]
+        _repin(sidecar)
+        with self.assertRaisesRegex(ValueError, "omit a required"):
+            validate_primary_evidence(sidecar, bundle=self.bundle)
+
+    def test_rejects_projection_claim_drift_against_bound_repository_projection(self):
+        mutations = (
+            (
+                "supported element",
+                lambda annotation: (
+                    annotation["claim"].__setitem__("primary_supported_element", "O"),
+                    annotation["projection_excerpt"]["reported_system"].__setitem__(
+                        "supported_element", "O"
+                    ),
+                ),
+                "reported system differs from the reviewed excerpt",
+            ),
+            (
+                "projection ID",
+                lambda annotation: annotation["projection_binding"].__setitem__(
+                    "projection_id", "primary:Spatzal2011:changed"
+                ),
+                "projection ID differs",
+            ),
+            (
+                "finding locator",
+                lambda annotation: annotation["projection_excerpt"][
+                    "finding_locators"
+                ][0].__setitem__("source_locator", "/changed"),
+                "finding locators differ from the reviewed excerpt",
+            ),
+        )
+        for label, mutate, message in mutations:
+            with self.subTest(label=label):
+                sidecar = copy.deepcopy(self.sidecar)
+                mutate(sidecar["annotations"][0])
+                _repin(sidecar)
+                with self.assertRaisesRegex(ValueError, message):
+                    validate_primary_evidence(
+                        sidecar,
+                        bundle=self.bundle,
+                        repo_root=ROOT,
+                    )
+
+    def test_rejects_projection_source_id_or_uri_drift_portably(self):
+        mutations = (
+            ("source ID", "source_id", "PMID:99999999"),
+            ("source URI", "uri", "https://example.invalid/article"),
+        )
+        for label, field, value in mutations:
+            with self.subTest(label=label):
+                sidecar = copy.deepcopy(self.sidecar)
+                sidecar["annotations"][0]["evidence"][0][field] = value
+                _repin(sidecar)
+                with self.assertRaisesRegex(
+                    ValueError,
+                    "direct evidence source identity differs from the projection excerpt",
+                ):
+                    validate_primary_evidence(sidecar, bundle=self.bundle)
+
+    def test_rejects_recomputed_projection_digest_against_repository_bytes(self):
+        sidecar = copy.deepcopy(self.sidecar)
+        projection_binding = next(
+            binding
+            for binding in sidecar["source_bindings"]
+            if binding["artifact_kind"] == "primary_source_projection"
+        )
+        projection_binding["sha256"] = "0" * 64
+        sidecar["annotations"][0]["evidence"][0]["source_sha256"] = "0" * 64
+        _repin(sidecar)
+
+        with self.assertRaisesRegex(ValueError, "source hash differs"):
+            validate_primary_evidence(
+                sidecar,
+                bundle=self.bundle,
+                repo_root=ROOT,
+            )
 
 
 if __name__ == "__main__":

@@ -56,11 +56,24 @@ def query_source_drafts(
     """Intersect record filters and exact source witnesses, retaining evidence."""
     primary_summary = None
     annotations_by_record: dict[str, list[dict[str, Any]]] = {}
+    chemistry_qualifications_by_step: dict[
+        tuple[str, str, str], list[dict[str, Any]]
+    ] = {}
     if primary_evidence is not None:
         primary_summary = validate_primary_evidence(primary_evidence, bundle=bundle)
         for annotation in primary_evidence["annotations"]:
             record_id = annotation["record_binding"]["record_id"]
             annotations_by_record.setdefault(record_id, []).append(annotation)
+            if annotation["annotation_kind"] == "source_chemical_identity_qualification":
+                step_binding = annotation["step_binding"]
+                step_key = (
+                    record_id,
+                    step_binding["proposal_id"],
+                    step_binding["step_id"],
+                )
+                chemistry_qualifications_by_step.setdefault(step_key, []).append(
+                    annotation
+                )
     reaction_summary = None
     reactions_by_record: dict[str, list[dict[str, Any]]] = {}
     if reaction_correspondence is not None:
@@ -206,6 +219,19 @@ def query_source_drafts(
             result["step_evidence_source_context"] = {
                 "proposals": witnessed_proposals, "steps": witnessed_steps,
             }
+        if include_steps and chemistry_qualifications_by_step:
+            for proposal in result["mechanism_proposals"]:
+                for step in proposal["mechanism_steps"]:
+                    step_key = (
+                        record["record_id"],
+                        proposal["proposal_id"],
+                        step["step_id"],
+                    )
+                    qualifications = chemistry_qualifications_by_step.get(step_key, [])
+                    if qualifications:
+                        step["source_chemical_identity_qualifications"] = copy.deepcopy(
+                            qualifications
+                        )
         if not include_steps:
             for proposal in result["mechanism_proposals"]:
                 steps = proposal.pop("mechanism_steps")
@@ -330,5 +356,24 @@ def query_source_drafts(
             "curated_reaction_validates_source_steps": False,
             "curated_reaction_assigns_depicted_species": False,
             "curated_reaction_establishes_atom_mapping": False,
+        })
+    if chemistry_qualifications_by_step:
+        output["schema_version"] = "catalytic-earth.source-draft-query.v7"
+        output["source_chemical_identity_qualification_count"] = sum(
+            1
+            for record in results
+            for annotation in record.get("primary_evidence_annotations", [])
+            if annotation["annotation_kind"]
+            == "source_chemical_identity_qualification"
+        )
+        output["primary_evidence"]["source_bindings"] = copy.deepcopy(
+            primary_evidence["source_bindings"]
+        )
+        output["query_semantics"].update({
+            "source_chemical_identity_qualification_scope": (
+                "exact_source_record_proposal_step_scheme_flow_endpoint_atom"
+            ),
+            "source_chemical_identity_qualification_rewrites_source": False,
+            "source_chemical_identity_qualification_supplies_corrected_trajectory": False,
         })
     return output

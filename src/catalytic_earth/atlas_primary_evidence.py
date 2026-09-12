@@ -1,4 +1,4 @@
-"""Validated record-level primary-evidence annotations for Atlas drafts.
+"""Validated primary-evidence annotations for Atlas drafts.
 
 Annotations are an additive query sidecar.  They cannot change a source draft's
 evidence tier, permissions, mechanism scope, proposals, or source steps.
@@ -20,7 +20,8 @@ from .canonical_hash import canonical_file_sha256
 
 PRIMARY_EVIDENCE_SCHEMA_V1 = "catalytic-earth.atlas-primary-evidence.v1"
 PRIMARY_EVIDENCE_SCHEMA_V2 = "catalytic-earth.atlas-primary-evidence.v2"
-PRIMARY_EVIDENCE_SCHEMA_VERSION = "catalytic-earth.atlas-primary-evidence.v3"
+PRIMARY_EVIDENCE_SCHEMA_V3 = "catalytic-earth.atlas-primary-evidence.v3"
+PRIMARY_EVIDENCE_SCHEMA_VERSION = "catalytic-earth.atlas-primary-evidence.v4"
 PRIMARY_EVIDENCE_REVIEW_UPDATE_RULE = (
     "Do not automatically refresh this pin after annotation changes. "
     "Repeat source-to-claim primary-evidence review first."
@@ -44,6 +45,8 @@ _PDB_RE = re.compile(r"^[0-9][A-Z0-9]{3}$")
 _UNIPROT_RE = re.compile(r"^[A-Z0-9]{6,10}$")
 _BATCH_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 _DATE_RE = re.compile(r"^[0-9]{4}-[0-9]{2}-[0-9]{2}$")
+_SOURCE_ATOM_RE = re.compile(r"^m[1-9][0-9]*\.a[1-9][0-9]*$")
+_ELEMENT_RE = re.compile(r"^[A-Z][a-z]?$")
 
 _TOP_LEVEL_FIELDS = {
     "schema_version",
@@ -84,6 +87,12 @@ _OBSERVED_STATE_CONTEXT_ANNOTATION_FIELDS = _ANNOTATION_FIELDS | {
     "projection_binding",
     "projection_excerpt",
 }
+_SOURCE_CHEMICAL_IDENTITY_ANNOTATION_FIELDS = _ANNOTATION_FIELDS | {
+    "step_binding",
+    "source_chemistry_binding",
+    "projection_binding",
+    "projection_excerpt",
+}
 _SCOPE_EFFECT_FIELDS = {
     "record_evidence_tier_changed",
     "allowed_operations_changed",
@@ -111,15 +120,26 @@ _PROJECTION_SCHEMA_VERSION = (
 _OBSERVED_STATE_PROJECTION_SCHEMA_VERSION = (
     "catalytic-earth.primary-observed-state-projection.v1"
 )
+_SOURCE_FACTUAL_PROJECTION_SCHEMA_VERSION = (
+    "catalytic-earth.primary-source-factual-projection.v1"
+)
 _OBSERVED_STATE_REQUIRED_LIMITS = {
     "chemical_identity_beyond_source": "abstained",
     "exact_reaction_instance": "abstained",
     "mechanism_applicability": "abstained",
     "state_trajectory": "abstained",
 }
+_SOURCE_CHEMICAL_IDENTITY_REQUIRED_LIMITS = {
+    "corrected_atom_mapping": "abstained",
+    "corrected_bond_edits": "abstained",
+    "corrected_source_step_trajectory": "abstained",
+    "formal_charge_or_oxidation_state": "abstained",
+    "whole_proposal_applicability": "abstained",
+}
 
 _TYPED_BINDING_SCHEMA_VERSIONS = {
     PRIMARY_EVIDENCE_SCHEMA_V2,
+    PRIMARY_EVIDENCE_SCHEMA_V3,
     PRIMARY_EVIDENCE_SCHEMA_VERSION,
 }
 
@@ -174,6 +194,23 @@ def _sha256(value: Any, context: str) -> str:
         f"{context} must be a lowercase SHA-256",
     )
     return value
+
+
+def _repository_relative_path(value: Any, context: str) -> PurePosixPath:
+    relative_text = _string(value, context)
+    windows_path = PureWindowsPath(relative_text)
+    relative = PurePosixPath(relative_text)
+    _require(
+        "\\" not in relative_text
+        and not relative.is_absolute()
+        and not windows_path.is_absolute()
+        and not windows_path.drive
+        and relative_text == relative.as_posix()
+        and "." not in relative.parts
+        and ".." not in relative.parts,
+        f"{context} must be repository-relative",
+    )
+    return relative
 
 
 def canonical_annotation_payload_sha256(value: dict[str, Any]) -> str:
@@ -233,7 +270,10 @@ def _validate_source_bindings(
                 "source_inventory",
                 "attribution",
             }
-            if schema_version == PRIMARY_EVIDENCE_SCHEMA_VERSION:
+            if schema_version in {
+                PRIMARY_EVIDENCE_SCHEMA_V3,
+                PRIMARY_EVIDENCE_SCHEMA_VERSION,
+            }:
                 allowed_artifact_kinds |= {
                     "curated_reference",
                     "primary_source_projection",
@@ -327,6 +367,60 @@ def _bound_record(
         f"{context} source snapshot binding is stale",
     )
     return record_id, record
+
+
+def _bound_source_step(
+    binding_value: Any,
+    *,
+    record: dict[str, Any],
+    context: str,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    binding = _exact(
+        binding_value,
+        {
+            "proposal_id",
+            "source_mechanism_id",
+            "step_id",
+            "source_step_id",
+            "source_scheme_sha256",
+        },
+        context,
+    )
+    proposal_id = _string(binding["proposal_id"], f"{context}.proposal_id")
+    source_mechanism_id = binding["source_mechanism_id"]
+    _require(
+        type(source_mechanism_id) is int and source_mechanism_id > 0,
+        f"{context}.source_mechanism_id must be a positive integer",
+    )
+    proposals = [
+        proposal
+        for proposal in record["mechanism_proposals"]
+        if proposal["proposal_id"] == proposal_id
+        and proposal["source_mechanism_id"] == source_mechanism_id
+    ]
+    _require(len(proposals) == 1, f"{context} proposal binding is absent or mixed")
+    proposal = proposals[0]
+    step_id = _string(binding["step_id"], f"{context}.step_id")
+    source_step_id = binding["source_step_id"]
+    _require(
+        type(source_step_id) is int and source_step_id > 0,
+        f"{context}.source_step_id must be a positive integer",
+    )
+    steps = [
+        step
+        for step in proposal["mechanism_steps"]
+        if step["step_id"] == step_id and step["source_step_id"] == source_step_id
+    ]
+    _require(len(steps) == 1, f"{context} step binding is absent or mixed")
+    step = steps[0]
+    scheme_sha256 = _sha256(
+        binding["source_scheme_sha256"], f"{context}.source_scheme_sha256"
+    )
+    _require(
+        step["source_scheme_sha256"] == scheme_sha256,
+        f"{context} source scheme binding is stale",
+    )
+    return proposal, step
 
 
 def _validate_limits_and_scope(
@@ -1961,6 +2055,556 @@ def _validate_observed_context_evidence(
     return evidence_by_id, ids_by_role, bindings_by_role
 
 
+def _validate_source_factual_projection(
+    projection_binding_value: Any,
+    projection_excerpt_value: Any,
+    *,
+    source_depiction_target: dict[str, Any],
+    primary_element: str,
+    evidence_by_id: dict[str, dict[str, Any]],
+    ids_by_role: dict[str, set[str]],
+    source_bindings: _SourceBindings,
+    repo_root: str | Path | None,
+    context: str,
+) -> None:
+    binding_context = f"{context}.projection_binding"
+    projection_binding = _exact(
+        projection_binding_value,
+        {"binding_id", "projection_id", "finding_ids"},
+        binding_context,
+    )
+    binding_id = _string(
+        projection_binding["binding_id"], f"{binding_context}.binding_id"
+    )
+    binding = source_bindings.by_id.get(binding_id)
+    _require(binding is not None, f"{binding_context} cites an unknown binding ID")
+    _require(
+        binding["artifact_kind"] == "primary_source_projection",
+        f"{binding_context} must bind a primary-source factual projection",
+    )
+    projection_id = _string(
+        projection_binding["projection_id"], f"{binding_context}.projection_id"
+    )
+    finding_ids = _strings(
+        projection_binding["finding_ids"],
+        f"{binding_context}.finding_ids",
+        minimum=1,
+    )
+    _require(
+        finding_ids == sorted(finding_ids),
+        f"{binding_context}.finding_ids must be deterministically ordered",
+    )
+
+    excerpt_context = f"{context}.projection_excerpt"
+    excerpt = _exact(
+        projection_excerpt_value,
+        {
+            "source_identity",
+            "reported_system",
+            "finding_locators",
+            "source_depiction_target",
+        },
+        excerpt_context,
+    )
+    excerpt_target = _exact(
+        excerpt["source_depiction_target"],
+        {"record_binding", "step_binding", "source_chemistry_binding"},
+        f"{excerpt_context}.source_depiction_target",
+    )
+    _require(
+        excerpt_target == source_depiction_target,
+        f"{excerpt_context}.source_depiction_target differs from the annotation selectors",
+    )
+    source_identity = _exact(
+        excerpt["source_identity"],
+        {"doi", "pmid", "canonical_url"},
+        f"{excerpt_context}.source_identity",
+    )
+    doi = _string(source_identity["doi"], f"{excerpt_context}.source_identity.doi")
+    _require(doi.startswith("10."), f"{excerpt_context}.source_identity.doi is invalid")
+    pmid = _string(source_identity["pmid"], f"{excerpt_context}.source_identity.pmid")
+    _require(pmid.isdigit(), f"{excerpt_context}.source_identity.pmid is invalid")
+    canonical_url = _string(
+        source_identity["canonical_url"],
+        f"{excerpt_context}.source_identity.canonical_url",
+    )
+    _require(
+        canonical_url.startswith("https://"),
+        f"{excerpt_context}.source_identity.canonical_url must use HTTPS",
+    )
+
+    reported_system = _exact(
+        excerpt["reported_system"],
+        {
+            "organism",
+            "protein",
+            "chemical_entity",
+            "supported_element",
+            "state_scope",
+            "assembly_or_deposit_equivalence_to_mcsa",
+        },
+        f"{excerpt_context}.reported_system",
+    )
+    for field in ("organism", "protein", "chemical_entity", "state_scope"):
+        _string(reported_system[field], f"{excerpt_context}.reported_system.{field}")
+    supported_element = _string(
+        reported_system["supported_element"],
+        f"{excerpt_context}.reported_system.supported_element",
+    )
+    _require(
+        _ELEMENT_RE.fullmatch(supported_element) is not None,
+        f"{excerpt_context}.reported_system.supported_element is invalid",
+    )
+    _require(
+        supported_element == primary_element,
+        f"{excerpt_context}.reported_system supported element differs from the claim",
+    )
+    _require(
+        reported_system["assembly_or_deposit_equivalence_to_mcsa"]
+        == "not_established",
+        f"{excerpt_context}.reported_system cannot assert source-system equivalence",
+    )
+
+    raw_locators = excerpt["finding_locators"]
+    _require(
+        isinstance(raw_locators, list) and raw_locators,
+        f"{excerpt_context}.finding_locators must be nonempty",
+    )
+    finding_locators: dict[str, str] = {}
+    locator_order: list[str] = []
+    for index, raw_locator in enumerate(raw_locators):
+        locator_context = f"{excerpt_context}.finding_locators[{index}]"
+        locator = _exact(
+            raw_locator,
+            {"finding_id", "source_locator"},
+            locator_context,
+        )
+        finding_id = _string(locator["finding_id"], f"{locator_context}.finding_id")
+        _require(
+            finding_id not in finding_locators,
+            f"{excerpt_context}.finding_locators contains duplicate finding IDs",
+        )
+        finding_locators[finding_id] = _string(
+            locator["source_locator"], f"{locator_context}.source_locator"
+        )
+        locator_order.append(finding_id)
+    _require(
+        locator_order == sorted(locator_order),
+        f"{excerpt_context}.finding_locators must be deterministically ordered",
+    )
+    _require(
+        set(finding_locators) == set(finding_ids),
+        f"{excerpt_context}.finding_locators differ from the projection binding",
+    )
+
+    _require(
+        len(ids_by_role["direct_support"]) == 1,
+        f"{context} requires one direct primary-source projection witness",
+    )
+    direct_evidence = evidence_by_id[next(iter(ids_by_role["direct_support"]))]
+    _require(
+        direct_evidence["source_kind"] == "primary_research_article"
+        and direct_evidence["source_binding_id"] == binding_id
+        and direct_evidence["source_sha256"] == binding["sha256"],
+        f"{context} direct evidence differs from the primary-source projection binding",
+    )
+    _require(
+        direct_evidence["source_id"] == f"PMID:{pmid}"
+        and direct_evidence["uri"] == canonical_url,
+        f"{context} direct evidence source identity differs from the projection excerpt",
+    )
+
+    projection_path = source_bindings.resolved_paths.get(binding_id)
+    if projection_path is None:
+        return
+    try:
+        projection = json.loads(projection_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise ValueError(f"{binding_context} is not valid JSON") from exc
+    projection = _exact(
+        projection,
+        {
+            "schema_version",
+            "projection_id",
+            "authorship",
+            "source_identity",
+            "source_capture",
+            "reported_system",
+            "findings",
+            "limits",
+            "source_depiction_target",
+        },
+        f"{binding_context}.projection",
+    )
+    _require(
+        projection["schema_version"] == _SOURCE_FACTUAL_PROJECTION_SCHEMA_VERSION,
+        f"{binding_context} projection schema is unsupported",
+    )
+    _require(
+        projection["projection_id"] == projection_id,
+        f"{binding_context} projection ID differs",
+    )
+    _string(projection["authorship"], f"{binding_context}.projection.authorship")
+    projection_target = _exact(
+        projection["source_depiction_target"],
+        {"record_binding", "step_binding", "source_chemistry_binding"},
+        f"{binding_context}.projection.source_depiction_target",
+    )
+    _require(
+        projection_target == excerpt_target,
+        f"{binding_context} source depiction target differs from the reviewed excerpt",
+    )
+
+    full_identity = _exact(
+        projection["source_identity"],
+        {
+            "title",
+            "authors",
+            "year",
+            "journal",
+            "volume",
+            "issue",
+            "page",
+            "doi",
+            "pmid",
+            "pmcid",
+            "canonical_url",
+            "reported_deposit",
+            "inspection_scope",
+        },
+        f"{binding_context}.projection.source_identity",
+    )
+    for field in (
+        "title",
+        "authors",
+        "journal",
+        "volume",
+        "issue",
+        "page",
+        "pmcid",
+        "reported_deposit",
+        "inspection_scope",
+    ):
+        _string(full_identity[field], f"{binding_context}.projection.source_identity.{field}")
+    _require(
+        type(full_identity["year"]) is int and full_identity["year"] > 0,
+        f"{binding_context}.projection.source_identity.year is invalid",
+    )
+    _require(
+        {field: full_identity[field] for field in source_identity} == source_identity,
+        f"{binding_context} source identity differs from the reviewed excerpt",
+    )
+
+    full_system = _exact(
+        projection["reported_system"],
+        set(reported_system),
+        f"{binding_context}.projection.reported_system",
+    )
+    _require(
+        full_system == reported_system,
+        f"{binding_context} reported system differs from the reviewed excerpt",
+    )
+
+    raw_findings = projection["findings"]
+    _require(
+        isinstance(raw_findings, list) and raw_findings,
+        f"{binding_context}.projection.findings must be nonempty",
+    )
+    projection_findings: dict[str, dict[str, Any]] = {}
+    projection_finding_order: list[str] = []
+    for index, raw_finding in enumerate(raw_findings):
+        finding_context = f"{binding_context}.projection.findings[{index}]"
+        finding = _exact(
+            raw_finding,
+            {"finding_id", "source_locator", "statement", "evidence_method"},
+            finding_context,
+        )
+        finding_id = _string(finding["finding_id"], f"{finding_context}.finding_id")
+        _require(
+            finding_id not in projection_findings,
+            f"{binding_context}.projection.findings contains duplicate IDs",
+        )
+        for field in ("source_locator", "statement", "evidence_method"):
+            _string(finding[field], f"{finding_context}.{field}")
+        projection_findings[finding_id] = finding
+        projection_finding_order.append(finding_id)
+    _require(
+        projection_finding_order == sorted(projection_finding_order),
+        f"{binding_context}.projection.findings must be deterministically ordered",
+    )
+    _require(
+        set(finding_ids) <= set(projection_findings),
+        f"{binding_context} cites an unknown projection finding",
+    )
+    _require(
+        all(
+            projection_findings[finding_id]["source_locator"]
+            == finding_locators[finding_id]
+            for finding_id in finding_ids
+        ),
+        f"{binding_context} finding locators differ from the reviewed excerpt",
+    )
+    _strings(
+        projection["limits"],
+        f"{binding_context}.projection.limits",
+        minimum=1,
+    )
+
+    capture_context = f"{binding_context}.projection.source_capture"
+    source_capture = _exact(
+        projection["source_capture"],
+        {
+            "local_path",
+            "raw_response_repository_path",
+            "raw_response_sha256",
+            "raw_response_bytes",
+            "retrieved_at_utc",
+            "request_id",
+            "receipt_ledger_repository_path",
+            "receipt_ledger_sha256",
+            "retention_scope",
+        },
+        capture_context,
+    )
+    raw_relative = _repository_relative_path(
+        source_capture["local_path"], f"{capture_context}.local_path"
+    )
+    _require(
+        source_capture["raw_response_repository_path"] is None,
+        f"{capture_context}.raw_response_repository_path must disclose no redistributed source",
+    )
+    raw_sha256 = _sha256(
+        source_capture["raw_response_sha256"],
+        f"{capture_context}.raw_response_sha256",
+    )
+    raw_bytes = source_capture["raw_response_bytes"]
+    _require(
+        type(raw_bytes) is int and raw_bytes > 0,
+        f"{capture_context}.raw_response_bytes must be positive",
+    )
+    _string(source_capture["retrieved_at_utc"], f"{capture_context}.retrieved_at_utc")
+    _require(
+        type(source_capture["request_id"]) is int and source_capture["request_id"] > 0,
+        f"{capture_context}.request_id must be positive",
+    )
+    receipt_relative = _repository_relative_path(
+        source_capture["receipt_ledger_repository_path"],
+        f"{capture_context}.receipt_ledger_repository_path",
+    )
+    receipt_sha256 = _sha256(
+        source_capture["receipt_ledger_sha256"],
+        f"{capture_context}.receipt_ledger_sha256",
+    )
+    _string(source_capture["retention_scope"], f"{capture_context}.retention_scope")
+
+    root = Path(repo_root).resolve() if repo_root is not None else None
+    if root is None:
+        return
+    receipt_path = (root / Path(receipt_relative)).resolve()
+    _require(
+        root in receipt_path.parents and receipt_path.is_file(),
+        f"{capture_context} receipt ledger is missing",
+    )
+    _require(
+        canonical_file_sha256(receipt_path) == receipt_sha256,
+        f"{capture_context} receipt ledger hash differs",
+    )
+    raw_path = (root / Path(raw_relative)).resolve()
+    _require(root in raw_path.parents, f"{capture_context}.local_path leaves the repository")
+    if raw_path.is_file():
+        _require(
+            raw_path.stat().st_size == raw_bytes
+            and canonical_file_sha256(raw_path) == raw_sha256,
+            f"{capture_context} retained raw source bytes differ",
+        )
+
+
+def _validate_source_chemical_identity_annotation(
+    raw_annotation: Any,
+    *,
+    record_by_id: dict[str, dict[str, Any]],
+    source_bindings: _SourceBindings,
+    repo_root: str | Path | None,
+    context: str,
+) -> tuple[str, str]:
+    annotation = _exact(
+        raw_annotation,
+        _SOURCE_CHEMICAL_IDENTITY_ANNOTATION_FIELDS,
+        context,
+    )
+    annotation_id = _string(annotation["annotation_id"], f"{context}.annotation_id")
+    _require(
+        annotation["annotation_kind"] == "source_chemical_identity_qualification",
+        f"{context}.annotation_kind is unsupported",
+    )
+    _require(
+        annotation["target_scope"] == "source_step_atom_only",
+        f"{context}.target_scope is invalid",
+    )
+    record_id, record = _bound_record(
+        annotation["record_binding"],
+        record_by_id=record_by_id,
+        context=f"{context}.record_binding",
+    )
+    _, step = _bound_source_step(
+        annotation["step_binding"],
+        record=record,
+        context=f"{context}.step_binding",
+    )
+
+    chemistry = _exact(
+        annotation["source_chemistry_binding"],
+        {
+            "source_step_summary",
+            "flow_id",
+            "flow_endpoint",
+            "source_atom_ref",
+            "source_element",
+        },
+        f"{context}.source_chemistry_binding",
+    )
+    source_summary = _string(
+        chemistry["source_step_summary"],
+        f"{context}.source_chemistry_binding.source_step_summary",
+    )
+    _require(
+        source_summary == step["summary"],
+        f"{context}.source_chemistry_binding source step summary is stale",
+    )
+    flow_id = _string(
+        chemistry["flow_id"], f"{context}.source_chemistry_binding.flow_id"
+    )
+    flows = [flow for flow in step["electron_flows"] if flow["flow_id"] == flow_id]
+    _require(
+        len(flows) == 1,
+        f"{context}.source_chemistry_binding flow binding is absent or mixed",
+    )
+    flow_endpoint = chemistry["flow_endpoint"]
+    _require(
+        flow_endpoint in {"source_point", "target_point"},
+        f"{context}.source_chemistry_binding.flow_endpoint is invalid",
+    )
+    source_atom_ref = _string(
+        chemistry["source_atom_ref"],
+        f"{context}.source_chemistry_binding.source_atom_ref",
+    )
+    _require(
+        _SOURCE_ATOM_RE.fullmatch(source_atom_ref) is not None,
+        f"{context}.source_chemistry_binding.source_atom_ref is invalid",
+    )
+    source_element = _string(
+        chemistry["source_element"],
+        f"{context}.source_chemistry_binding.source_element",
+    )
+    _require(
+        _ELEMENT_RE.fullmatch(source_element) is not None,
+        f"{context}.source_chemistry_binding.source_element is invalid",
+    )
+    source_atoms = [
+        atom
+        for atom in flows[0][flow_endpoint]["atoms"]
+        if atom["source_atom_ref"] == source_atom_ref
+    ]
+    _require(
+        len(source_atoms) == 1,
+        f"{context}.source_chemistry_binding source atom binding is absent or mixed",
+    )
+    _require(
+        source_atoms[0]["element"] == source_element,
+        f"{context}.source_chemistry_binding source element differs",
+    )
+
+    claim = _exact(
+        annotation["claim"],
+        {
+            "statement",
+            "qualification_kind",
+            "qualified_entity",
+            "primary_supported_element",
+            "current_constraint_usable",
+            "direct_evidence_ids",
+            "curated_identity_evidence_ids",
+            "source_record_evidence_ids",
+            "corroborating_evidence_ids",
+        },
+        f"{context}.claim",
+    )
+    _string(claim["statement"], f"{context}.claim.statement")
+    _require(
+        claim["qualification_kind"]
+        == "primary_evidence_contradicts_source_elemental_identity",
+        f"{context}.claim.qualification_kind is invalid",
+    )
+    _string(claim["qualified_entity"], f"{context}.claim.qualified_entity")
+    primary_element = _string(
+        claim["primary_supported_element"],
+        f"{context}.claim.primary_supported_element",
+    )
+    _require(
+        _ELEMENT_RE.fullmatch(primary_element) is not None,
+        f"{context}.claim.primary_supported_element is invalid",
+    )
+    _require(
+        primary_element != source_element,
+        f"{context}.claim does not contradict the source element",
+    )
+    _require(
+        claim["current_constraint_usable"] is False,
+        f"{context}.claim cannot expose the contradicted source atom as a current constraint",
+    )
+    evidence_by_id, ids_by_role, _ = _validate_observed_context_evidence(
+        annotation["evidence"],
+        claim=claim,
+        record=record,
+        source_bindings=source_bindings,
+        context=context,
+    )
+    _validate_source_factual_projection(
+        annotation["projection_binding"],
+        annotation["projection_excerpt"],
+        source_depiction_target={
+            "record_binding": annotation["record_binding"],
+            "step_binding": annotation["step_binding"],
+            "source_chemistry_binding": annotation["source_chemistry_binding"],
+        },
+        primary_element=primary_element,
+        evidence_by_id=evidence_by_id,
+        ids_by_role=ids_by_role,
+        source_bindings=source_bindings,
+        repo_root=repo_root,
+        context=context,
+    )
+    _require(
+        len(ids_by_role["source_record_only"]) == 1,
+        f"{context} requires one exact source-record witness",
+    )
+    source_record_evidence = evidence_by_id[
+        next(iter(ids_by_role["source_record_only"]))
+    ]
+    _require(
+        source_record_evidence["source_kind"] == "official_source_record"
+        and source_record_evidence["source_id"] == f"M-CSA:{record['mcsa_id']}"
+        and source_record_evidence["uri"] == record["source"]["uri"],
+        f"{context} source-record identity differs",
+    )
+    source_record_binding = source_bindings.by_id[
+        source_record_evidence["source_binding_id"]
+    ]
+    _require(
+        source_record_binding["artifact_kind"] == "source_record_snapshot"
+        and source_record_binding["sha256"]
+        == annotation["record_binding"]["source_snapshot_sha256"],
+        f"{context} source-record byte binding differs",
+    )
+
+    _validate_limits_and_scope(
+        annotation,
+        context,
+        required_limits=_SOURCE_CHEMICAL_IDENTITY_REQUIRED_LIMITS,
+    )
+    return annotation_id, record_id
+
+
 def _validate_observed_state_projection(
     projection_binding: dict[str, Any],
     projection_excerpt: dict[str, Any],
@@ -2932,6 +3576,7 @@ def validate_primary_evidence(
         in {
             PRIMARY_EVIDENCE_SCHEMA_V1,
             PRIMARY_EVIDENCE_SCHEMA_V2,
+            PRIMARY_EVIDENCE_SCHEMA_V3,
             PRIMARY_EVIDENCE_SCHEMA_VERSION,
         },
         "unsupported primary-evidence schema",
@@ -2972,7 +3617,12 @@ def validate_primary_evidence(
                 context=annotation_context,
             )
         elif (
-            schema_version in {PRIMARY_EVIDENCE_SCHEMA_V2, PRIMARY_EVIDENCE_SCHEMA_VERSION}
+            schema_version
+            in {
+                PRIMARY_EVIDENCE_SCHEMA_V2,
+                PRIMARY_EVIDENCE_SCHEMA_V3,
+                PRIMARY_EVIDENCE_SCHEMA_VERSION,
+            }
             and annotation_object.get("annotation_kind")
             == "source_proposal_protein_context"
         ):
@@ -2983,7 +3633,8 @@ def validate_primary_evidence(
                 context=annotation_context,
             )
         elif (
-            schema_version == PRIMARY_EVIDENCE_SCHEMA_VERSION
+            schema_version
+            in {PRIMARY_EVIDENCE_SCHEMA_V3, PRIMARY_EVIDENCE_SCHEMA_VERSION}
             and annotation_object.get("annotation_kind")
             == "primary_observed_state_context"
         ):
@@ -2991,6 +3642,18 @@ def validate_primary_evidence(
                 raw_annotation,
                 record_by_id=record_by_id,
                 source_bindings=source_bindings,
+                context=annotation_context,
+            )
+        elif (
+            schema_version == PRIMARY_EVIDENCE_SCHEMA_VERSION
+            and annotation_object.get("annotation_kind")
+            == "source_chemical_identity_qualification"
+        ):
+            annotation_id, record_id = _validate_source_chemical_identity_annotation(
+                raw_annotation,
+                record_by_id=record_by_id,
+                source_bindings=source_bindings,
+                repo_root=repo_root,
                 context=annotation_context,
             )
         else:
