@@ -19,6 +19,46 @@ from catalytic_earth.atlas_perturbations import (
 ROOT = Path(__file__).resolve().parents[2]
 
 
+class KsiIsotopeDiscriminantTests(unittest.TestCase):
+    def test_aggregate_enolization_isotope_evidence_cannot_become_d40n_turnover(self):
+        view = _project_candidate(ROOT)
+        rows = {row["id"]: row for row in view["observations"]}
+        context = next(item for item in view["comparisons"] if item["id"] ==
+                       "ksi_1991:D38N:enolization-isotope-context")
+        isotope, = [rows[key] for key in context["context_observations"]]
+        self.assertEqual(isotope["construct_id"], "ksi_1991:D38N")
+        self.assertEqual(isotope["result_kind"], "qualitative")
+        self.assertEqual(isotope["qualitative_result"]["measurement_stage"], "enolization")
+        self.assertEqual(isotope["qualitative_result"]["isotope_label_classes"], [
+            {"deuterium_replaces": ["4alpha-proton"]},
+            {"deuterium_replaces": ["4beta-proton"]},
+            {"deuterium_replaces": ["4alpha-proton", "4beta-proton"]},
+        ])
+        for field in ("value", "unit", "reaction_context"):
+            self.assertIsNone(isotope[field])
+        self.assertFalse(isotope["assay_qualified"])
+        self.assertFalse(isotope["sequence_identity_available"])
+        self.assertIn("arithmetic_not_requested", context["reasons"])
+        self.assertEqual(view["constructs"][isotope["construct_id"]]["source_record"]
+                         ["source_organism"], "Pseudomonas testosteroni")
+        direct_boundary = context["source_evidence"][4]
+        self.assertFalse(direct_boundary["D38N_to_D40N_transfer_established"])
+        later = context["source_evidence"][-2]["underlying_mechanistic_reference"]
+        self.assertEqual(later["inspection"],
+                         "exact_indexed_primary_abstract_reviewed_full_body_unacquired")
+        d40n = next(row for row in rows.values()
+                    if row["study_id"] == "ksi_1995" and row["perturbation"] == ["D40N"]
+                    and row["parameter"] == "kcat")
+        attempted = compare(rows, {
+            "id": "invalid-isotope-to-turnover", "operation": "ratio", "study_id": "ksi_1991",
+            "roles": {"numerator": isotope["id"], "denominator": d40n["id"]},
+        })
+        self.assertFalse(attempted["eligible"])
+        self.assertIsNone(attempted["value"])
+        for reason in ("mismatched_study_id", "mismatched_parameter", "mismatched_endpoint_kind"):
+            self.assertIn(reason, attempted["reasons"])
+
+
 class MandelateChemicalEndpointTests(unittest.TestCase):
     def test_distinct_chemical_responses_cannot_become_a_rate_ratio(self):
         view = _project_candidate(ROOT)

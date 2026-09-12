@@ -1,82 +1,84 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research baton — RA95 parent-coordinate audit, 2026-09-12
+## Current research baton — KSI D38N isotope discriminant, 2026-09-12
 
-- **Identity/base:** start 2026-09-12T05:06:13Z; owner
-  `01a09402-101c-7840-ac6f-d4e5ba691770:a0b08661-f52b-4614-ae84-643544fe8780`;
-  acquired normally at05:06:32Z. Clean main base
-  `3ae296d114b8c6e57d05cced38914c543e304889` (PR113), fetched/ff-only; no open
-  PR or recovery. Inherited main CI34673774341 passed. Branch
-  `codex/ra95-parent-tyrosine-context-20260912`; about19 minutes at checkpoint.
-  Final elapsed, publication and release are recorded in the Git-local receipt.
-- **Direction reconciliation:** the September12 review's E317Q endpoint priority
-  and separate reference-to-primary integration gap are complete in PR112/113.
-  The inherited Tyr-pair question was assessed for information gain, not treated
-  as a required distance-expansion queue. It is now closed.
-- **Question/result:** retained parent Tyr51OH–Tyr180OH geometry does **not** add
-  causal support to the existing four-cell cleavage/thermal interpretation.
-  The supported narrower result is a negative coordinate audit:5AOU has one
- 3.827099angstrom pair;5AN7 Tyr51A/B give2.729859/4.372475angstrom. These retained
-  states/alternatives do not establish one invariant pair separation. This
-  neither refutes the source's broader network/preorganization interpretation
-  nor independently corroborates a mechanism. CE-034 is extended at this scope.
-- **Evidence/limits:** exact model1, assembly1/operator1 atom sites437/1507
-  (apo) and944/945/3296 (complex); Tyr180 author2180/1180 remains distinct.
-  Tyr51 occupancies1.00 (apo),0.75/0.25 (complex), and Tyr1801.00 are retained.
-  No averaging, inferred joint population, hydrogen bond, ligand-induced motion,
-  mutant geometry, coupling energy or design distance. MHO237,100K diffraction,
-  pH/media conflicts, incomplete LLK adduct graph and physical-preparation
-  uncertainty remain. Original raw atom rows and ligand pairs are unchanged.
-- **Reusable result:** both existing deposit specs declare the same new pair;
-  the existing `chemical_state.json` records the narrowed cross-state assessment.
-  Query `python scripts/query_atlas_perturbations.py --state-link ra95_2017:RA95.5-8F-states --with-comparisons`
-  co-retrieves both parent contexts,21 existing kinetic records/21 comparisons,
-  the unchanged tyrosine square, and thermal evidence76/71/74/67C. Only the
-  three parent observations are state-linked. No new runtime, schema or
-  functional observation; exact case facts stay in data.
-- **Reconsideration:** no bespoke chemistry code was needed. Source selection
-  and interpretation remain manual, with no measured curation-time saving or
-  generalization. The incumbent source already depicts the local network;
-  therefore adversarial review rejected the initial stronger geometry/function
-  framing. Retain only the negative audit and stop nearby-distance work.
-  Publication was narrowed to the RA95 source/claim/guide/handoff: redundant
-  current-document additions and their unrelated fragment-package hash cascade
-  were removed. Original fragment package/current direction documents remain
-  byte-identical; this does not resolve broader review-maintenance costs.
-- **Acquisition:** zero requests, response-body bytes or new witnesses. The
-  retained SI witness SHA256
-  `2d1ce2aa6d4851996be75e63990ac3498a62ab611630b1529f1cf37c6976160d`
-  verifies at10373958bytes;5AOU/5AN7 CIF bindings are unchanged. Named RA95 batch
-  `designed-retroaldolase-ra95-giger2013` remains33/17556517 under100/31457280
-  (latest `ra95_2013/dera_acquisition_appendix.json`),67/13900763 remaining;
-  the DERA access stop stays closed. TK remains39/23268387; CODH4/30214;
-  M0187 known subledger12/440960 still omits legacy discovery, so its total
-  and headroom are unknown. No renamed or reset batch.
+- **Identity/base:** start 2026-09-12T06:06:13Z; owner
+  `01a09438-ff5f-7c43-9187-e1a78cb86aea:fa79f139-ff9c-4ca2-8722-26b59431e556`;
+  acquired normally at 06:06:38Z. Clean main base
+  `0b6a46e791b84849b84b1b67dca34637fec9278f` (PR114), fetched/ff-only;
+  no pending PR or recovery; inherited main CI34676212298 passed. Branch
+  `codex/ksi-d38n-isotope-discriminant-20260912`. About 20 minutes at checkpoint;
+  final elapsed/publication/release belong in the Git-local receipt.
+- **Direction reconciliation:** E317Q endpoint and reference-primary priorities
+  are complete in PR112/113; PR114 closed adjacent RA95 geometry. The initial
+  source screen found no clear new relation. Direct inspection of an existing
+  Xue1991 indexed abstract supported a distinct question, without reopening
+  the closed D40N hydroxide/reketonization or full-text access inquiry.
+- **Question/result:** source-named *Pseudomonas testosteroni* D38N has reported
+  primary isotope effects on enolization with C4 alpha, C4 beta, or both
+  hydrogens replaced by deuterium. One aggregate qualitative assertion retains
+  all three label classes. The source describes lost proton-removal
+  stereospecificity; its nonconcertedness interpretation uses broader substrate,
+  solvent and substrate-plus-solvent isotope evidence. No KIE magnitude,
+  normal/inverse direction, matched WT isotope row, rate or branching fraction.
+- **Reusable outcome:** the existing consumer returns the new source assertion
+  and later-source boundary with
+  `python scripts/query_atlas_perturbations.py --comparison ksi_1991:D38N:enolization-isotope-context`.
+  The earlier KSI discriminator now says exact primary abstract reviewed/full
+  body unacquired. Direct D38N isotope evidence remains separate from Fried2014's
+  solution-hydroxide/strongly rate-limiting reketonization attribution and the
+  unresolved D38N-to-*P. putida* D40N transfer. CE-038 is extended at this scope.
+  Separate spectroscopic dienol/dienolate context is not a KIE observation,
+  covalent state, measured population or microscopic rate. No activity-factor
+  expansion, reference-site join, experiment or design claim.
+- **Evidence/acquisition:**
+  `data/atlas/study_context/ksi_1991/isotope_discriminant.json` and its source
+  review; `ksi_2014/field_function.json`; `docs/ATLAS_KSI_FIELD_FUNCTION.md`.
+  Retained Europe PMC JSON SHA256
+  `fa4ea2a163d4acbe746d1b6e75a0c694589a8f738922051f30abe9c09e03e4c8`,
+  5,856 bytes, pointer `/resultList/result/0/abstractText`, explicitly truncated
+  at 250 words. Zero new requests, response bytes or acquired witnesses.
+  Same KSI batch `ketosteroid-isomerase-electric-field-fried2014` remains
+  26 requests / 5,739,717 bytes (latest `ksi_2010/acquisition_receipts.json`),
+  leaving 74 / 25,717,563. Historical request16 in `ksi_1995` binds this witness;
+  its older total is not current headroom. Other source budgets and closed
+  access stops remain unchanged; no renamed or reset batch.
+- **Reconsideration:** no runtime/CLI or enzyme-ID code; one generic qualitative
+  isotope-effect data declaration reuses ordinary panels and no-arithmetic
+  context. Exact source selection, interpretation and applicability remain
+  manual; no curation-time saving is measured. An isolated abstract row would
+  repackage an incumbent reading, so adversarial review required the explicit
+  correction of the existing source boundary. This is source-scoped mechanistic
+  resolution, not an autonomous or design-ready atlas. The proposed M0219-to-
+  human-TKT site join was rejected because retained proposal/site identities
+  do not establish E160/E366 correspondence.
 - **Review/verification:** source, representation and adversarial Sol/ultra
-  lanes reviewed the narrowed data and source scope. This is correlated
-  computational review, not independent human or laboratory evidence.146
-  relevant tests passed; all253 functional observations/132 comparisons and
-  other state/model/control relations are invariant.38 existing source witnesses
-  verified at51226967bytes. Deposit reconstruction and public state query pass.
-  Exact final diff, repository contracts and required PR checks must pass before
-  merge; final results and stopped-worker state are recorded in the receipt.
-- **Publication/recovery:** owned coherent changes on the branch above; no
-  unrelated dirty work. This is the pre-publication checkpoint; Git identifies
-  its containing commit. Resume this branch/PR first if publication is unfinished.
-  Receipt `.git/catalytic-earth-runs/20260912T050613Z-a0b08661-f52b-4614-ae84-643544fe8780.json`;
-  board `.git/catalytic-earth-runs/a0b08661.board.md`; invariance/query records
-  share that prefix. No additional scientific inquiry was selected this run.
-- **One next action:** make one bounded priority-selection decision from the
-  post-PR110 evidence window and current direction, moving beyond adjacent RA95
-  geometry. Require a non-RA95 question whose retained evidence can change a
-  scientific interpretation or demonstrate a useful cross-case relation through
-  an existing consumer. Expected gain: avoid spending another run on same-study
-  annotations without added inference. Stop at one evidence-supported question
-  with named sources and its own stopping condition, or record that none clears
-  this bar; do not force a second example, repeat closed access routes or launch
-  acquisition merely to supply a demonstration. The standing two-no-progress
-  reconsideration/pause rule still applies.
+  lanes review the exact candidate; this is correlated computational review.
+  All 253 prior observations and all prior arithmetic remain unchanged. Of
+  132 old comparisons, only KSI2014/KSI2010 source-evidence discriminator
+  metadata changes; 130 complete objects are identical. All two state links,
+  four model links and three control relations are identical. The new aggregate
+  assertion/context adds one each. All 39 local witnesses verify at 51,232,823
+  bytes; a focused regression rejects KIE-to-D40N-turnover arithmetic.
+  Final source/diff acceptance and repository/CI checks are required before merge.
+- **Publication/recovery:** this is the pre-publication checkpoint; Git identifies
+  its containing commit. No unrelated work. Resume this branch/PR first if
+  publication is unfinished. Receipt
+  `.git/catalytic-earth-runs/20260912T060613Z-fa79f139-ff9c-4ca2-8722-26b59431e556.json`;
+  board `.git/catalytic-earth-runs/fa79f139.board.md`; invariance, query and
+  reviewed manifests share the `fa79f139` prefix. Final commit, checks, stopped
+  workers and guarded lock release are recorded in the receipt/task result.
+- **One next action:** select a new mechanistic bottleneck outside adjacent KSI
+  and RA95 annotations from the current direction and evidence. Require a
+  named-source question that adds reaction, chemical-state or experimental
+  discrimination through an existing consumer, or resolves a concrete current
+  transfer defect. Expected gain: expand useful mechanistic information beyond
+  repeated same-paper context. Stop at one supported question with its own
+  bounded deliverable, or record that none clears the bar; do not split this
+  Xue abstract into more rows, force another isotope example, repeat closed
+  access routes or acquire merely for a demonstration. The two-consecutive-
+  no-progress reconsideration/pause rule remains active.
 
 <!-- current-research-handoff:end -->
 

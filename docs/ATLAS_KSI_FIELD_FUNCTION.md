@@ -55,8 +55,8 @@ The primary-source followup below now resolves reference 16's own assay,
 while preserving the compilation's unresolved individual row provenance.
 
 SI pages 23–24 state that D40N uses solution hydroxide as base and becomes
-limited by reketonization, citing an earlier mechanistic study that this run
-has not acquired. That reference's title names **D38N**, whereas the
+limited by reketonization, citing Xue1991. The exact indexed primary abstract
+is now reviewed below; the full article remains unacquired. That reference names **D38N**, whereas the
 spectroscopy row is D40N; exact homolog and numbering transfer is unverified.
 This is **author interpretation**, not a new mechanistic
 experiment or a project-confirmed microscopic assignment. The difference between the printed WT and D40N
@@ -66,6 +66,57 @@ The useful constraint is that the source's inhibitor-carbonyl field model
 does not support a rate prediction for D40N, which it excludes for an
 author-interpreted mechanism change. This single case does not characterize
 unmeasured base substitutions.
+
+## D38N isotope evidence has a narrower primary-source scope
+
+The retained [Xue et al. 1991 abstract](https://pubmed.ncbi.nlm.nih.gov/2036366/)
+reports primary isotope effects on enolization by source-named *Pseudomonas
+testosteroni* D38N when deuterium replaces the C4 alpha hydrogen, the C4 beta
+hydrogen, or both. The [source annotation](../data/atlas/study_context/ksi_1991/isotope_discriminant.json)
+projects this as one aggregate qualitative assertion covering three isotope-label
+classes. The source gives no magnitudes, normal/inverse direction, uncertainties
+or protocols in this abstract. These are neither three quantified assays nor
+a mixture-level observation.
+
+```sh
+python scripts/query_atlas_perturbations.py --comparison ksi_1991:D38N:enolization-isotope-context
+```
+
+The same consumer now separates direct abstract evidence from the later
+interpretation behind the D40N field-rate exclusion. The authors describe loss
+of WT stereospecific C4 beta proton removal. Their further conclusion that
+carbonyl-oxygen protonation and C4 proton removal are not concerted uses the
+broader substrate and solvent isotope experiments, not the projected C4-label
+assertion alone. The abstract's WT stereospecific-transfer and concerted-step
+description remains source context; no matched WT isotope-control row or
+quantitative alpha/beta preference is reconstructed.
+
+The separate spectroscopic account describes enzyme-bound dienol and dienolate
+followed by slower product formation. It is retained as distinct source context,
+without concentrations, populations, covalent attachment or rate constants.
+The abstract does not establish solution hydroxide as base or strongly
+rate-limiting reketonization. Those remain later-source attributions whose
+primary-body basis is uninspected. Source-declared homolog correspondence also
+does not transfer these D38N results to *P. putida* D40N.
+
+This extends CE-038 at primary-abstract scope and corrects the earlier broad
+unreviewed-reference wording. One shared qualitative parameter declaration and
+the existing no-arithmetic relation suffice; no enzyme-specific runtime or
+kinetic fit is added. Source interpretation is still manual, with no measured
+curation-time saving or design-performance result. The abstract itself is readily
+readable by an incumbent user; the added value is the explicit separation of its
+direct evidence from the downstream interpretation and blocked homolog transfer.
+
+The exact retained Europe PMC JSON is 5,856 bytes, SHA256
+`fa4ea2a163d4acbe746d1b6e75a0c694589a8f738922051f30abe9c09e03e4c8`,
+with the abstract at `/resultList/result/0/abstractText`. It explicitly ends at
+250 words. Original request 16 remains in the
+[1995-study acquisition appendix](../data/atlas/study_context/ksi_1995/acquisition_receipts.json);
+the [latest ledger](../data/atlas/study_context/ksi_2010/acquisition_receipts.json)
+keeps the same KSI batch at 26 requests / 5,739,717 response-body bytes.
+This increment acquires nothing and does not reopen the failed full-text routes.
+The [computational review](../data/atlas/study_context/ksi_1991/source_review.json)
+does not establish independent human review or a project experiment.
 
 ## Measurements, models and disputed attribution
 

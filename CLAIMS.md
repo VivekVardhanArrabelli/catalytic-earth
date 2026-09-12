@@ -582,6 +582,17 @@ Signed fields remain author-derived context; the disputed electrostatic
 fraction is not adopted. No universal activity predictor, productive geometry,
 new experiment, independent validation or design-performance claim follows.
 
+The exact Xue1991 primary abstract is now reviewed separately; its full body
+remains unacquired. For source-named *Pseudomonas testosteroni* D38N, it reports
+primary isotope effects on enolization with C4 alpha, C4 beta or both hydrogens
+replaced by deuterium. One aggregate qualitative assertion preserves those
+three label classes without isotope-effect magnitudes or matched WT controls.
+Loss of proton-removal stereospecificity and nonconcertedness remain source
+interpretations; the latter uses broader substrate/solvent isotope evidence.
+Separate spectroscopic dienol/dienolate context supplies no populations or
+microscopic rate. The abstract does not establish solution hydroxide or strongly
+rate-limiting reketonization, and no D38N-to-D40N mechanism transfer follows.
+
 ## CE-039 — primary kinetic controls do not qualify a later compilation wholesale
 
 **Status:** Supported

@@ -1,0 +1,143 @@
+{
+  "schema_version": "catalytic-earth.primary-source-review.v1",
+  "status": "source_reviewed_computational",
+  "base_commit": "0b6a46e791b84849b84b1b67dca34637fec9278f",
+  "scope": "One aggregate qualitative D38N enolization isotope-effect assertion, plus a source-bound distinction between direct Xue1991 abstract evidence and later D40N mechanism attribution. No full-body, scalar KIE or homolog-transfer claim.",
+  "candidate_at_utc": "2026-09-12T06:24:30.884934+00:00",
+  "reviewed_bindings": {
+    "data/atlas/study_context/ksi_1991/isotope_discriminant.json": "c1fe7894289c56c7a49ed6523923be858d72d9bd45e6d47dce81e533af899bc3",
+    "data/atlas/study_context/ksi_2014/field_function.json": "81480e2281e3d86b391412a4c2091da0b1e8e4fc87640c90bd3696729781addd",
+    "data/atlas/perturbations/projection.json": "3ed5251597680a51737726ba291fc9a9c49c47efde308e373145a92ba6a6d28d",
+    "docs/ATLAS_KSI_FIELD_FUNCTION.md": "326c4c05f03db718d6472797b23907b95d27afbbaffb543237e0e32c761508ce",
+    "CLAIMS.md": "f846ffa8cad147a3367f59f8959781e702f6091cf8d7e0df003bd6d5ccb2dd67",
+    "data/governance/claim_ledger.json": "e442f320bd9c3cce6761ba98938282ef06efd2045afbffe1ceecbda4767cada4",
+    "tests/core/test_atlas_perturbations.py": "61893ba1f71bf8e5f77dbb4d8d60843611552a82dfc9bfc6189b669c0cdce87c"
+  },
+  "review_process": [
+    {
+      "task": "/root/source_question",
+      "role": "primary_source",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_scientific_candidate_after_source_and_representation_tightening"
+    },
+    {
+      "task": "/root/representation_question",
+      "role": "representation",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_scientific_candidate_after_source_and_representation_tightening"
+    },
+    {
+      "task": "/root/adversarial_question",
+      "role": "adversarial",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_exact_scientific_candidate_after_source_and_representation_tightening"
+    }
+  ],
+  "independent_human_validation": false,
+  "experimental_validation": false,
+  "coordination_board": ".git/catalytic-earth-runs/fa79f139.board.md",
+  "verification": {
+    "observations": {
+      "prior": 253,
+      "new": 254,
+      "removed": [],
+      "changed": [],
+      "added": [
+        "ksi1991-enolization-isotope:D38N:C4-deuteration-series:primary_kinetic_isotope_effect"
+      ]
+    },
+    "comparisons": {
+      "prior": 132,
+      "new": 133,
+      "removed": [],
+      "changed": [
+        "ksi_2014:field_function_context",
+        "ksi_2010:donor_solvation_context"
+      ],
+      "added": [
+        "ksi_1991:D38N:enolization-isotope-context"
+      ],
+      "changed_paths": {
+        "ksi_2014:field_function_context": [
+          "/source_evidence/0/source_discriminator/interpretation_origin",
+          "/source_evidence/0/source_discriminator/underlying_mechanistic_reference/abstract_assessment_path",
+          "/source_evidence/0/source_discriminator/underlying_mechanistic_reference/scope",
+          "/source_evidence/0/source_discriminator/underlying_mechanistic_reference/inspection"
+        ],
+        "ksi_2010:donor_solvation_context": [
+          "/source_evidence/7/source_discriminator/interpretation_origin",
+          "/source_evidence/7/source_discriminator/underlying_mechanistic_reference/abstract_assessment_path",
+          "/source_evidence/7/source_discriminator/underlying_mechanistic_reference/scope",
+          "/source_evidence/7/source_discriminator/underlying_mechanistic_reference/inspection"
+        ]
+      }
+    },
+    "state_links": {
+      "prior": 2,
+      "new": 2,
+      "removed": [],
+      "changed": [],
+      "added": []
+    },
+    "model_links": {
+      "prior": 4,
+      "new": 4,
+      "removed": [],
+      "changed": [],
+      "added": []
+    },
+    "control_relations": {
+      "prior": 3,
+      "new": 3,
+      "removed": [],
+      "changed": [],
+      "added": []
+    },
+    "witnesses": {
+      "verified_files": 39,
+      "verified_bytes": 51232823
+    },
+    "focused_transfer_test": "passed"
+  },
+  "remaining_limits": [
+    "Only the exact indexed primary abstract, explicitly truncated at 250 words, is reviewed. The primary article body and full Methods remain unacquired.",
+    "One aggregate qualitative assertion covers three source-described isotope-label classes. No separate numerical isotope-effect records, rate ratios, magnitudes, direction of the isotope effect, errors, replicates, isotope purity or assay conditions are supplied.",
+    "The endpoint is mutant enolization, not kcat, overall product formation or an elementary rate constant. No quantitative alpha/beta preference, equivalent abstraction rates or branching fractions follow.",
+    "WT stereospecific-transfer and concerted-enolization prose is source mechanistic context, not a newly reconstructed matched WT isotope assay. The nonconcertedness interpretation uses the source-described substrate and solvent isotope experiments together, not the C4 isotope assertion alone.",
+    "Source-named Pseudomonas testosteroni D38N is not Pseudomonas putida D40N. Exact sequence, physical specimen, reference-site mapping and microscopic mechanism transfer are unestablished.",
+    "The spectroscopic dienol/dienolate account remains a separate source assertion without assigned concentrations, populations, pKa, covalent attachment or deposited structure. Neither solution hydroxide as base nor strongly rate-limiting reketonization is established by this abstract.",
+    "No new experiment, independently reviewed mechanism, protected protein admission, canonical reaction, design rule or design-performance claim."
+  ],
+  "acquisition": {
+    "new_scientific_requests": 0,
+    "new_response_body_bytes": 0,
+    "new_acquired_witnesses": 0,
+    "existing_witness_newly_projected": 1,
+    "cumulative_named_KSI_batch_requests": 26,
+    "cumulative_named_KSI_batch_response_body_bytes": 5739717,
+    "latest_ledger": "data/atlas/study_context/ksi_2010/acquisition_receipts.json"
+  },
+  "prior_review": {
+    "path": "data/atlas/study_context/ksi_2014/source_review.json",
+    "sha256": "b3ff545ff03a316ee27efce9a5e5e3ddd97f138d1ae46dcf9c51d029189d1532",
+    "scope": "Historical source review remains byte-identical. This record reviews only the explicit current discriminator update and the new abstract annotation; previous numeric/structural claims remain unchanged."
+  },
+  "reconsideration": {
+    "bespoke_code": "No runtime or CLI change; one generic qualitative primary-isotope-effect parameter declaration reuses existing panels and no-arithmetic relation.",
+    "curation_reuse": "Existing exact primary JSON, acquisition ledger, KSI discriminator and homolog context reused through the same consumer; source applicability remains manual and no time saving was measured.",
+    "integrated_value": "The query distinguishes source-specific isotope/enolization evidence from a stronger downstream mechanism attribution and preserves the D38N/D40N boundary; no automated scientific interpretation or design capability is claimed."
+  },
+  "reviewed_at_utc": "2026-09-12T06:27:07.677796+00:00",
+  "resolved_objections": [
+    "The initial KSI D40N hydroxide/reketonization question is closed at the missing primary body. Inspecting the retained abstract supported a distinct D38N isotope-specific enolization question.",
+    "An isolated abstract record would only repackage the source. The existing KSI discriminator is also corrected to distinguish reviewed primary abstract from unacquired body and later-source interpretation.",
+    "Use one aggregate qualitative assertion with three isotope-label classes; exclude the approximate activity-loss factor.",
+    "Source step-coupling interpretation uses deuterated substrate, solvent and substrate-plus-solvent experiments; the C4 KIE assertion alone is not promoted to the full interpretation.",
+    "Narrow the source interpretation to concerted enolization, without a blanket all-step mechanism-equivalence label."
+  ],
+  "remaining_material_objections": [],
+  "parent_adjudication": "Accepted source, representation and adversarial reviews of the exact scientific candidate. All requested source-scope and step-coupling tightenings applied. Final public query, complete publication manifest, repository checks and CI remain required before merging."
+}

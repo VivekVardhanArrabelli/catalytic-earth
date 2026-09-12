@@ -13,7 +13,7 @@
     "docs/ATLAS_MECHANISM_EVIDENCE.md": "a0c98d934c97300a245bc8841ce8e11505f82826a8cc7c0201aa1c3af5571304",
     "docs/CURRENT_STATE.md": "c390d3c36e9f41efe2e0b57dde683142e87dd1d33a2fd738cdc59a4f79805a0b",
     "docs/CURRENT_DECISIONS.md": "32d668821151c2fa99df457c7022f4431ae3d68a1b6ac8c7cf71a316d5133593",
-    "data/atlas/perturbations/projection.json": "520c66b42e8880405c42f2e88ea4fd4f1b981768fa1e0c3cef62e45a625b005b",
+    "data/atlas/perturbations/projection.json": "3ed5251597680a51737726ba291fc9a9c49c47efde308e373145a92ba6a6d28d",
     "src/catalytic_earth/atlas_perturbations.py": "70bb5c5e92cb10b795cd7e0dc3422b42d5217b04274d9e949ad5af93a9b05a5d"
   },
   "review_process": [
@@ -75,6 +75,21 @@
       "data/atlas/perturbations/projection.json": {
         "before": "1c58f84dc34d78926e01794dfd3e5a32e741f0a9a5ddda4b9e864442aa158a63",
         "after": "520c66b42e8880405c42f2e88ea4fd4f1b981768fa1e0c3cef62e45a625b005b"
+      }
+    },
+    "independent_human_validation": false,
+    "new_scientific_requests": 0,
+    "new_response_body_bytes": 0
+  },
+  "ksi_isotope_followup": {
+    "reviewed_at_utc": "2026-09-12T06:27:07.677796+00:00",
+    "base_commit": "0b6a46e791b84849b84b1b67dca34637fec9278f",
+    "prior_review_sha256": "a7c66169e87fc225cb97b5858c1c5886a31b132fb8c276b3fe54391916b670fd",
+    "scope": "Renew only the perturbation-spec pin after the source-reviewed KSI isotope addition and discriminator correction. Reference join declarations, public code, fragment package and all four E317Q outcomes remain unchanged.",
+    "renewed_bindings": {
+      "data/atlas/perturbations/projection.json": {
+        "before": "520c66b42e8880405c42f2e88ea4fd4f1b981768fa1e0c3cef62e45a625b005b",
+        "after": "3ed5251597680a51737726ba291fc9a9c49c47efde308e373145a92ba6a6d28d"
       }
     },
     "independent_human_validation": false,
