@@ -4,15 +4,15 @@
   "reviewed_at_utc": "2026-09-11T09:30:44.367226+00:00",
   "scope": "Cumulative source-reviewed projection; this increment adds a separate source-system control operation for the Schmidt2013 bulk-normalized BuAm CTAC contrast and reuses existing calmodulin chemical-treatment rows. Prior source observations, genetic comparisons, state/model links and protected evidence are unchanged.",
   "reviewed_bindings": {
-    "data/atlas/perturbations/projection.json": "50c9b8be6fdf807244413a72dcc3d2bcd6fe371612686ee3d7276737b1eb74d9",
+    "data/atlas/perturbations/projection.json": "1c58f84dc34d78926e01794dfd3e5a32e741f0a9a5ddda4b9e864442aa158a63",
     "src/catalytic_earth/atlas_perturbations.py": "70bb5c5e92cb10b795cd7e0dc3422b42d5217b04274d9e949ad5af93a9b05a5d",
     "scripts/query_atlas_perturbations.py": "7eab6075c751ad2dbecf6757d1dc3fef5e452fbaff03d3d78f0c1b9fa3d8e412",
-    "docs/ATLAS_PERTURBATION_RELATION.md": "2b0f65afa915b9db71e65970359b8fc802276941acab865ff1f48e11947eb8ae",
+    "docs/ATLAS_PERTURBATION_RELATION.md": "ebcccaddccc7d4d6c4118a1d3a313ee38800e57da400984125e0c6ad25ea7879",
     "data/atlas/study_context/ra95_2017/forward_synthesis_review.json": "a8025989cb89415ac59267dc0af2da415019af3786ec2db3debd18630de8be9d",
     "docs/ATLAS_FORWARD_SYNTHESIS.md": "2ee0c4bd99c5c8a9bf571c7d2c772ae4b8be6ef938b08c235ac8e343410e5b84",
     "data/atlas/study_context/diels_alder_2010/source_review.json": "bd97ed99812a3188ef47c090f61c87b0891bbc470222c49ee7698455680bf865",
     "docs/ATLAS_DIELS_ALDER_CONTROLS.md": "749e81dbcebcceb9022a5b4a5043bb16276c712c43b0c856feb394561830ac19",
-    "tests/core/test_atlas_perturbations.py": "44923137d8e8347d57ba6f03100470b5cad43f2102849602cb86aef5ebbe8709",
+    "tests/core/test_atlas_perturbations.py": "dc38889444baf772c24ec6407f1ec27c25f5ad2450defcd5fde41780739671b5",
     "data/atlas/study_context/6ha3/perturbation_context.json": "3c3ae9d8ea44406e8edc5921db795ffaaaef073ddd11b5bc6b7cc3f3b1853de0",
     "data/atlas/study_context/6ha3/functional_review.json": "9af6d94d77800810d210e032e90e6af6a99ffd22a5548d9d39b5a7f502199200",
     "data/atlas/assembly_context/6ha3/review.json": "434188c22e847de2add0c76cc06076de9347d39ecd259acc051631792fcc7eaa",
@@ -31,10 +31,10 @@
     "data/atlas/study_context/ra95_2017/chemical_state.json": "0304a28cc9676ae9d920b5c4f6c47f102d10320e125cc40cbfddd971ccff695d",
     "data/atlas/study_context/ra95_2017/chemical_state_acquisition.json": "4b0427a24aab3b1269f25cd80b3b9c90f61c4a99404499d77cf0c16a8b5f2ecb",
     "docs/ATLAS_RA95_CHEMICAL_STATE.md": "a85ee7c6accdafb0f2fb63a1a658413e07788cee4a5f9f7879dce726c6707c01",
-    "CLAIMS.md": "6a2bcd9a56a788f00113373513f2efc0f0e911fc077a6c237ba65a71fa615fac",
-    "data/governance/claim_ledger.json": "cfb262452d1cb3aecaab69e48e51c7dc11b5bb185b6bb0a3fb691f3778fa6ba9",
-    "docs/CURRENT_DECISIONS.md": "db03430bae5b3c81763db4ed55f02c7c9eb9ee8049093fe348d45992177b270e",
-    "docs/CURRENT_STATE.md": "fd3b231c982aadf844e332821a63bac5183a149d24610d82b55cf26d6b8c74e8",
+    "CLAIMS.md": "eb0820e2ee842c845e7d2295e6dd8c7caf85aab14a2c811e22b091bc46c5b38c",
+    "data/governance/claim_ledger.json": "97e3bed21ebfef4ba990f272f2e1312cb0728667685b715f1d04819dd39475f5",
+    "docs/CURRENT_DECISIONS.md": "2278588d48b8281ac332e13ac7fe4d68d84aa83652f344c1714277b32b909abd",
+    "docs/CURRENT_STATE.md": "38c877f2c9823b3dedd2d7406bd70aac406b208c0f89c9dc243bd6aed1d7e62c",
     "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
     "src/catalytic_earth/atlas_deposit_context.py": "adfae408de29e6b5f61fab970d7631f42846a9cdaedea0340d65e6ac95ad2a87",
     "src/catalytic_earth/atlas_assembly_context.py": "5d671a761f3ad493661f3c25b50dce693ef2169a48942af9664a65e0b0ae0835",
@@ -110,10 +110,12 @@
     "data/atlas/study_context/codh_2011/source_review.json": "5c4670969fc469d44ed155326b4d5c3b041c32cb58a86c94acfd810ca1ad5450",
     "data/atlas/study_context/tk_2024/background_evidence.json": "e0572ad1ad993eb62b91be4798fc0745dd0fad0031de4e1c80b62910c6613212",
     "data/atlas/study_context/tk_2024/background_review.json": "f31283fa9851af801fbc767018bbf02a475d3a5f8ef06a394c6f640760927281",
-    "docs/ATLAS_MECHANISM_EVIDENCE.md": "0d18f7e718023edca32f9735d9cbfa329ea63cf027f6aa88e0f7acf0f0481258",
+    "docs/ATLAS_MECHANISM_EVIDENCE.md": "1ada6eb1f07176381ce82126cc96c10d81a1b966fb8fbdce53afa6fd3c9be740",
     "data/atlas/study_context/mandelate_1995_e317q/source_qualification.json": "163bc099792d37d87602bcee414f4468f54431b07232db5ac07e1f5b95982274",
     "data/atlas/study_context/mandelate_1995_e317q/source_recovery.json": "2aad35f280c37e0ed9b6636205eedaba761add1235b3ef6005a3cd1b5e0b4f1b",
-    "data/atlas/study_context/mandelate_1995_e317q/source_review.json": "f225570d536d06c681d0617651c2ec7d10e46f9f8fee862a5591d669e705f0f6"
+    "data/atlas/study_context/mandelate_1995_e317q/source_review.json": "f225570d536d06c681d0617651c2ec7d10e46f9f8fee862a5591d669e705f0f6",
+    "data/atlas/study_context/mandelate_1995_e317q/chemical_endpoints.json": "1423ba19eba607c4956d5cd049882d7e5cecd56dd084594d102eafcf2ef13a98",
+    "data/atlas/study_context/mandelate_1995_e317q/chemical_endpoints_review.json": "e9d73a78e13b97d226cab05719d653e8d16acc6cb3a4f73f1d35588849586180"
   },
   "inherited_source_bindings": {
     "ra95f": {
@@ -1440,6 +1442,32 @@
     "new_source_requests": 0,
     "new_source_response_body_bytes": 0,
     "recovered_local_witness_bytes": 4770,
+    "legacy_m0187_headroom_established": false,
+    "independent_human_validation": false,
+    "experimental_validation": false
+  },
+  "e317q_chemical_endpoints_followup": {
+    "reviewed_at_utc": "2026-09-12T02:23:50.874547+00:00",
+    "base_commit": "81b9516b60ea9a4eeb3e3ccdd86567ea6f2f185b",
+    "prior_review_sha256": "f5e9bbef09936f1ac8f8d3e260022c6882b9896691bf12e52c1d2ce3f12187d1",
+    "review_record": "data/atlas/study_context/mandelate_1995_e317q/chemical_endpoints_review.json",
+    "review_record_sha256": "e9d73a78e13b97d226cab05719d653e8d16acc6cb3a4f73f1d35588849586180",
+    "scope": "One aggregate either-enantiomer p-(bromomethyl)mandelate bromide-elimination nondetection assertion and one racemic alpha-phenylglycidate irreversible-inactivation assertion, co-retrieved with the two unchanged substrate-specific kcat factors. Explicit WT comparisons remain qualitative; no shared assay, equality, covalency, microscopic cause or physical-construct claim.",
+    "source_binding": {
+      "path": "data/atlas/study_context/mandelate_1995_e317q/chemical_endpoints.json",
+      "sha256": "1423ba19eba607c4956d5cd049882d7e5cecd56dd084594d102eafcf2ef13a98"
+    },
+    "reviewers": [
+      "/root/source",
+      "/root/representation",
+      "/root/adversarial"
+    ],
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "ultra",
+    "status": "accepted_final_source_and_diff",
+    "invariance": "All251 previous observations/131 comparisons and prior constructs/assays/substrates/reactions/links unchanged; original factor provider/recovery/reference/runtime unchanged.",
+    "new_source_requests": 0,
+    "new_source_response_body_bytes": 0,
     "legacy_m0187_headroom_established": false,
     "independent_human_validation": false,
     "experimental_validation": false

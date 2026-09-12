@@ -1,0 +1,91 @@
+{
+  "schema_version": "catalytic-earth.primary-source-review.v1",
+  "status": "source_reviewed_computational",
+  "reviewed_at_utc": "2026-09-12T02:23:50.874547+00:00",
+  "base_commit": "81b9516b60ea9a4eeb3e3ccdd86567ea6f2f185b",
+  "scope": "One aggregate either-enantiomer p-(bromomethyl)mandelate bromide-elimination nondetection assertion and one racemic alpha-phenylglycidate irreversible-inactivation assertion, co-retrieved with the two unchanged substrate-specific kcat factors. Explicit WT comparisons remain qualitative; no shared assay, equality, covalency, microscopic cause or physical-construct claim.",
+  "reviewed_bindings": {
+    "data/atlas/study_context/mandelate_1995_e317q/chemical_endpoints.json": "1423ba19eba607c4956d5cd049882d7e5cecd56dd084594d102eafcf2ef13a98",
+    "data/atlas/perturbations/projection.json": "1c58f84dc34d78926e01794dfd3e5a32e741f0a9a5ddda4b9e864442aa158a63",
+    "docs/ATLAS_MECHANISM_EVIDENCE.md": "1ada6eb1f07176381ce82126cc96c10d81a1b966fb8fbdce53afa6fd3c9be740",
+    "docs/ATLAS_PERTURBATION_RELATION.md": "ebcccaddccc7d4d6c4118a1d3a313ee38800e57da400984125e0c6ad25ea7879",
+    "CLAIMS.md": "eb0820e2ee842c845e7d2295e6dd8c7caf85aab14a2c811e22b091bc46c5b38c",
+    "data/governance/claim_ledger.json": "97e3bed21ebfef4ba990f272f2e1312cb0728667685b715f1d04819dd39475f5",
+    "docs/CURRENT_STATE.md": "38c877f2c9823b3dedd2d7406bd70aac406b208c0f89c9dc243bd6aed1d7e62c",
+    "docs/CURRENT_DECISIONS.md": "2278588d48b8281ac332e13ac7fe4d68d84aa83652f344c1714277b32b909abd",
+    "tests/core/test_atlas_perturbations.py": "dc38889444baf772c24ec6407f1ec27c25f5ad2450defcd5fde41780739671b5",
+    "data/atlas/study_context/mandelate_1995_e317q/source_qualification.json": "163bc099792d37d87602bcee414f4468f54431b07232db5ac07e1f5b95982274",
+    "data/atlas/study_context/mandelate_1995_e317q/source_recovery.json": "2aad35f280c37e0ed9b6636205eedaba761add1235b3ef6005a3cd1b5e0b4f1b",
+    "data/atlas/atlas10/sources/uniprot/P11444.json": "cb5efb114709e8f79f58376643fde10d8e2981296091d09936c41589ce7ae6ef",
+    "src/catalytic_earth/atlas_perturbations.py": "70bb5c5e92cb10b795cd7e0dc3422b42d5217b04274d9e949ad5af93a9b05a5d",
+    "scripts/query_atlas_perturbations.py": "7eab6075c751ad2dbecf6757d1dc3fef5e452fbaff03d3d78f0c1b9fa3d8e412"
+  },
+  "inherited_factor_review": {
+    "path": "data/atlas/study_context/mandelate_1995_e317q/source_review.json",
+    "sha256": "f225570d536d06c681d0617651c2ec7d10e46f9f8fee862a5591d669e705f0f6",
+    "scope": "Historical exact factor-source review remains byte-identical; its older projection/document bindings identify that reviewed version, not the expanded current projection."
+  },
+  "review_process": [
+    {
+      "task": "/root/source",
+      "role": "primary_source",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "Accepted final exact source witness, source/recovery/reference bindings and all nine candidate hashes after correcting the elimination WT comparator wording."
+    },
+    {
+      "task": "/root/representation",
+      "role": "representation",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "Accepted final nine candidate hashes and current candidate snapshot; all251 prior observations/131 comparisons and all prior entities/links invariant. Ordinary panels and generic data contracts suffice."
+    },
+    {
+      "task": "/root/adversarial",
+      "role": "adversarial",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "Accepted final nine hashes, exact source/diff and forbidden-ratio regression after source comparator and endpoint-specific uncertainty corrections."
+    }
+  ],
+  "coordination_board": ".git/catalytic-earth-runs/ed627c6a.board.md",
+  "independent_human_validation": false,
+  "experimental_validation": false,
+  "resolved_objections": [
+    "Use one aggregate either-enantiomer assertion and one racemate-level assertion; do not manufacture independent R/S assays or WT measurement rows.",
+    "The exact bromide source token retains its negation; source aggregation does not imply a numeric quantity or threshold.",
+    "Bind irreversible_source_reported in the generic inactivation parameter contract; no k_inact or covalent mechanism is inferred.",
+    "The source explicitly contrasts E317Q with WT for elimination and separately describes WT-comparable inactivation. A project co-retrieval relation is not a new source-defined matched comparison.",
+    "Keep endpoint-specific missing detection floor versus inactivation-rate/metric/comparability detail separate.",
+    "All four retrieved rows share one source-named variant identity, not one established physical preparation or matched assay."
+  ],
+  "remaining_limits": [
+    "Archived tool-extracted complete PubMed abstract only; no full methods, raw HTTP body or fresh acquisition.",
+    "No numeric detection limit, assay methods/conditions, concentrations, time window, controls protocol, uncertainty, replicate count, purity or matched physical preparation.",
+    "Either-enantiomer elimination is one aggregate source assertion, not independent R/S records. Racemic inactivation remains mixture-level; individual enantiomer contributions are unassigned.",
+    "The inactivation rate parameter, absolute rates, irreversibility verification method and numerical definition of comparable are unavailable. Comparable does not establish equality or statistical equivalence.",
+    "Nondetection is not zero rate. No scalar cross-endpoint or WT ratio, full product/chemical state, covalent inactivation mechanism, exact assayed sequence, geometry, selected-step role, residue energy or design-performance inference.",
+    "P11444:E317 and its exact feature/citation remain reference context only. Computational source review is not independent human review or a project experiment."
+  ],
+  "acquisition": {
+    "new_requests": 0,
+    "new_response_body_bytes": 0,
+    "new_primary_witnesses": 0,
+    "legacy_m0187_headroom_established": false
+  },
+  "verification": {
+    "old_observations_unchanged": 251,
+    "old_comparisons_unchanged": 131,
+    "new_source_assertions": 2,
+    "current_observations": 253,
+    "current_comparisons": 132,
+    "source_witness_sha256": "dab9e66ab30cbcc85974f68888746c5159569a3a499b2c2548633e9af548cdfc",
+    "source_witness_bytes": 4770,
+    "regression": "Same-source context preserves chemical and stereochemical scopes and rejects a cross-endpoint numeric ratio."
+  },
+  "reconsideration": {
+    "representation": "No runtime/CLI change. Two generic outcome declarations reuse ordinary nondetection/qualitative panels and assessed no-arithmetic context.",
+    "effort": "Existing factor/construct/reference providers and one local source witness reused. Manual source interpretation remains; no measured time saving.",
+    "integrated_value": "One query co-retrieves four distinct source assertions and their limits. The adjacent abstract sentences are easy for an incumbent reader; the next useful step is generic exact reference-site/variant/citation composition, not further abstract annotation."
+  }
+}

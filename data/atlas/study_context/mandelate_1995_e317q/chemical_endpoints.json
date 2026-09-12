@@ -1,0 +1,197 @@
+{
+  "schema_version": "catalytic-earth.source-qualification.v1",
+  "assessment_id": "mitra1995-e317q-distinct-chemical-endpoints",
+  "study_id": "mandelate_1995_e317q",
+  "operation": "source_annotation",
+  "question": "What distinct chemical responses accompany E317Q bromide-elimination nondetection and irreversible alpha-phenylglycidate inactivation?",
+  "source_binding": {
+    "path": "data/atlas/study_context/mandelate_1995_e317q/source_qualification.json",
+    "sha256": "163bc099792d37d87602bcee414f4468f54431b07232db5ac07e1f5b95982274"
+  },
+  "source_pointer": "/source",
+  "recovery_binding": {
+    "path": "data/atlas/study_context/mandelate_1995_e317q/source_recovery.json",
+    "sha256": "2aad35f280c37e0ed9b6636205eedaba761add1235b3ef6005a3cd1b5e0b4f1b"
+  },
+  "construct_context": {
+    "source_binding": {
+      "path": "data/atlas/study_context/mandelate_1995_e317q/source_qualification.json",
+      "sha256": "163bc099792d37d87602bcee414f4468f54431b07232db5ac07e1f5b95982274"
+    },
+    "pointer": "/constructs/1",
+    "scope": "Source-named E317Q only; no exact sequence, organism from the abstract or physical preparation identity."
+  },
+  "chemical_contexts": [
+    {
+      "chemical_id": "mandelate_1995_e317q:p-bromomethyl-mandelate-either-enantiomer",
+      "name": "p-(bromomethyl)mandelate",
+      "role": "substrate_of_reported_bromide_elimination",
+      "stereochemical_scope": "either_enantiomer",
+      "source_stereochemical_token": "either enantiomer",
+      "enumerated_absolute_configurations": null,
+      "enantiomer_specific_assay_details": null,
+      "purity": null,
+      "chemical_state": null,
+      "scope": "One source assertion covers each of the two enantiomers. The abstract supplies no R/S labels, individual assay records, purity or full chemical state; this is not a racemate-level observation."
+    },
+    {
+      "chemical_id": "mandelate_1995_e317q:racemic-alpha-phenylglycidate",
+      "name": "alpha-phenylglycidate",
+      "role": "inactivating_reagent",
+      "stereochemical_scope": "racemic",
+      "source_stereochemical_token": "racemic",
+      "enumerated_absolute_configurations": null,
+      "component_contributions": null,
+      "purity": null,
+      "chemical_state": null,
+      "scope": "One source-named racemic intervention. No component-specific response, configuration assignment, product or covalent adduct is established."
+    }
+  ],
+  "assays": [
+    {
+      "assay_id": "abstract-bromide-elimination",
+      "endpoint": "Bromide-ion elimination detection from either enantiomer of p-(bromomethyl)mandelate",
+      "method": null,
+      "conditions": null,
+      "physical_preparation": null,
+      "time_window": null,
+      "qualified_for_new_arithmetic": false,
+      "source_endpoint_assessed": true,
+      "source_assay_protocol_assessed": false,
+      "qualification_scope": "Endpoint-wrapper identity only, not a reconstructed assay or common protocol. No exact assay details are available in the retained abstract."
+    },
+    {
+      "assay_id": "abstract-irreversible-inactivation",
+      "endpoint": "Irreversible inactivation by racemic alpha-phenylglycidate, with author-reported qualitative rate comparison to WT",
+      "method": null,
+      "conditions": null,
+      "physical_preparation": null,
+      "time_window": null,
+      "qualified_for_new_arithmetic": false,
+      "source_endpoint_assessed": true,
+      "source_assay_protocol_assessed": false,
+      "qualification_scope": "Endpoint-wrapper identity only, not a reconstructed assay or common protocol. No exact assay details are available in the retained abstract."
+    }
+  ],
+  "elimination_observations": [
+    {
+      "row_id": "E317Q:either-enantiomer-bromide-elimination",
+      "construct_id": "E317Q",
+      "assay_id": "abstract-bromide-elimination",
+      "substrate_id": "mandelate_1995_e317q:p-bromomethyl-mandelate-either-enantiomer",
+      "source_locator": "PMID7893689 archived abstract: bromide-elimination sentence",
+      "assertion_scope": "one_source_assertion_covering_either_enantiomer",
+      "reaction_detection": {
+        "parameter": "reaction_detection",
+        "result_kind": "nondetection",
+        "value": null,
+        "unit": null,
+        "source_token": "does not catalyze detectable elimination of bromide ion",
+        "scope": "E317Q bromide-ion elimination from either enantiomer of p-(bromomethyl)mandelate was not detected; exact assay and threshold are unreported.",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported"
+      },
+      "nondetection": {
+        "source_token": "does not catalyze detectable elimination of bromide ion",
+        "scope": "E317Q bromide-ion elimination from either enantiomer of p-(bromomethyl)mandelate; one aggregate source assertion, not a zero rate or separately characterized stereoisomer assay.",
+        "numeric_detection_limit": null,
+        "is_zero_rate": false
+      },
+      "comparator_context_pointer": "/comparator_context/bromide_elimination"
+    }
+  ],
+  "inactivation_observations": [
+    {
+      "row_id": "E317Q:racemic-alpha-phenylglycidate-inactivation",
+      "construct_id": "E317Q",
+      "assay_id": "abstract-irreversible-inactivation",
+      "substrate_id": "mandelate_1995_e317q:racemic-alpha-phenylglycidate",
+      "source_locator": "PMID7893689 archived abstract: alpha-phenylglycidate inactivation sentence",
+      "assertion_scope": "one_racemate_level_source_assertion",
+      "enzyme_inactivation": {
+        "parameter": "enzyme_inactivation",
+        "result_kind": "qualitative",
+        "value": null,
+        "unit": null,
+        "source_token": "irreversibly inactivated",
+        "scope": "E317Q is irreversibly inactivated by source-named racemic alpha-phenylglycidate. The authors describe the rate as comparable to WT; no numeric rate, named inactivation constant or component-level response is available.",
+        "inactivation_kind": "irreversible_source_reported",
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported"
+      },
+      "comparator_context_pointer": "/comparator_context/inactivation"
+    }
+  ],
+  "comparator_context": {
+    "source_named_reference": "WT",
+    "bromide_elimination": {
+      "reference_status": "explicit_sentence_level_qualitative_contrast",
+      "source_assessment": "The source explicitly contrasts E317Q nondetection with wild-type mandelate racemase.",
+      "separate_WT_observation_available": false,
+      "WT_numeric_value": null,
+      "matched_assay_established": false
+    },
+    "inactivation": {
+      "reference_status": "explicit_sentence_level_qualitative_rate_comparison",
+      "source_assessment": "The source describes E317Q inactivation as occurring at a rate comparable to that measured for wild-type mandelate racemase.",
+      "source_relation": "comparable",
+      "source_token": "at a rate comparable to that measured for wild-type MR",
+      "rate_parameter": null,
+      "mutant_rate": null,
+      "WT_rate": null,
+      "computed_ratio": null,
+      "comparability_tolerance": null,
+      "statistical_equivalence_established": false,
+      "matched_assay_established": false,
+      "separate_WT_observation_available": false
+    },
+    "scope": "These are author-reported qualitative comparisons in the two endpoint sentences, distinct from the contextual WT denominator of the kcat factors. They do not supply matched control rows, equal rates, numeric ratios or common conditions across endpoints."
+  },
+  "cross_endpoint_relation": {
+    "source_discriminant_assessed": true,
+    "arithmetic_requested": false,
+    "supported": "For source-named E317Q, bromide-elimination nondetection for either p-(bromomethyl)mandelate enantiomer coexists with irreversible inactivation by racemic alpha-phenylglycidate. The latter rate is qualitatively comparable to WT according to the authors. These are distinct chemical interventions and endpoints.",
+    "co_retrieved_factor_scope": "The two pre-existing R- and S-mandelate kcat reduction factors are retained as separate same-study context, without reinterpreting their denominator or joining their assays to either chemical endpoint.",
+    "computed_scalar": null,
+    "same_assay_established": false,
+    "same_preparation_established": false,
+    "mechanistic_limit": "Inactivation susceptibility does not establish retained catalytic activity toward the inactivator, a covalent adduct, modification site, active-site access, productive geometry, common elementary step or microscopic cause."
+  },
+  "excluded_context": {
+    "structural_inhibitor": "The separate (S)-atrolactate-bound structural context is not p-(bromomethyl)mandelate or racemic alpha-phenylglycidate and does not identify an assayed or productive state.",
+    "other_source_endpoints": "Isotope-effect values and the plural kcat/KM statement are not newly projected. H297N belongs to a separate study.",
+    "source_typography": "The preserved terminal E317O token remains an apparent source/index typo, not another construct or endpoint datum."
+  },
+  "limits": [
+    "Archived tool-extracted complete PubMed abstract only; no full methods, raw HTTP body or fresh acquisition.",
+    "No numeric detection limit, assay methods/conditions, concentrations, time window, controls protocol, uncertainty, replicate count, purity or matched physical preparation.",
+    "Either-enantiomer elimination is one aggregate source assertion, not independent R/S records. Racemic inactivation remains mixture-level; individual enantiomer contributions are unassigned.",
+    "The inactivation rate parameter, absolute rates, irreversibility verification method and numerical definition of comparable are unavailable. Comparable does not establish equality or statistical equivalence.",
+    "Nondetection is not zero rate. No scalar cross-endpoint or WT ratio, full product/chemical state, covalent inactivation mechanism, exact assayed sequence, geometry, selected-step role, residue energy or design-performance inference.",
+    "P11444:E317 and its exact feature/citation remain reference context only. Computational source review is not independent human review or a project experiment."
+  ],
+  "acquisition": {
+    "new_requests": 0,
+    "new_response_body_bytes": 0,
+    "new_witnesses": 0,
+    "legacy_m0187_headroom_established": false,
+    "scope": "Reuse the existing archived primary witness and recovery record. The cumulative legacy discovery total remains unresolved; no batch rename or new allowance."
+  },
+  "counted_objects": {
+    "new_source_assertion_records": 2,
+    "nondetection_assertions": 1,
+    "qualitative_inactivation_assertions": 1,
+    "existing_factor_records_retrieved": 2,
+    "independent_enantiomer_assay_records_created": 0,
+    "project_experiments": 0,
+    "protein_admissions": 0,
+    "new_net_reactions": 0
+  },
+  "source_witness": {
+    "sha256": "dab9e66ab30cbcc85974f68888746c5159569a3a499b2c2548633e9af548cdfc",
+    "bytes": 4770,
+    "git_common_dir_relative_path": "catalytic-earth-source-cache/dab9e66ab30cbcc85974f68888746c5159569a3a499b2c2548633e9af548cdfc.json",
+    "representation": "archived_web_tool_extracted_primary_abstract",
+    "abstract_utf8_sha256": "b01c8aa8107f348773e43cbc141294fbab6391984ed29b72a5a0da03e25659a4"
+  }
+}

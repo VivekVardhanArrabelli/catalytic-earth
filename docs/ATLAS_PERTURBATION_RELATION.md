@@ -648,3 +648,21 @@ explicit while the assay remains unqualified for new arithmetic. WT reference
 status is contextual; no absolute rate, net direction, matched preparation,
 selected-step role or database-summary value is promoted. Archived source text
 is locally hash-bound with zero new acquisition and unknown legacy headroom.
+
+### Distinct E317Q chemical endpoints share the same context consumer
+
+```sh
+python scripts/query_atlas_perturbations.py --comparison mandelate_1995_e317q:E317Q:chemical-endpoint-context
+```
+
+This [source-qualified context](ATLAS_MECHANISM_EVIDENCE.md#e317q-has-distinct-chemical-responses-across-endpoints)
+returns the two existing mandelate kcat factors, one aggregate either-enantiomer
+p-(bromomethyl)mandelate bromide-elimination nondetection assertion and one
+racemic alpha-phenylglycidate irreversible-inactivation assertion. Two data-only
+parameter contracts, `reaction_detection` and `enzyme_inactivation`, reuse
+ordinary nondetection/qualitative projection. Their units lists are empty;
+neither is a numeric rate parameter. Reagent role and stereochemical scope stay
+in data, with separate endpoint wrappers and explicit source WT comparisons.
+The existing assessed context requests no arithmetic. No enzyme-specific
+runtime, generic activity pooling, invented stereoisomer/WT rows, equality,
+covalent mechanism or assay-state transfer is introduced.

@@ -1,75 +1,78 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research baton — 2026-09-12 scientific direction review
+## Current research baton — E317Q chemical endpoints, 2026-09-12
 
-- **Identity/base:** oversight start 2026-09-12T00:56:57Z; owner
-  `01a07311-aac6-7010-9516-e0b53605d473:faa0be19-dd84-45eb-ae75-296bf2308ef7`;
-  lock acquired normally at 01:01:07Z after the prior writer completed/released.
-  Clean local/live-main base `be5205025d0b40cac675f29df4d9e864532df0f9` (PR110),
-  no open PR or recovery. Branch `codex/direction-review-20260912`.
-  Exact elapsed time, final commit/CI/merge/release belong in the local receipt.
-- **Review/direction:** published PRs101–110 are reviewed in the compact board
-  `docs/SCIENTIFIC_DIRECTION.md`. The previous M0187 His297 question is complete:
-  source-fragment membership, reference-site mapping and focal H297N evidence
-  are queryable at their stated scope. Useful MAL/TK product/function and AHAS
-  source-model relations support the full catalytic atlas and de novo purpose.
-  Retain the E317Q chemical-endpoint inquiry below; no replacement benchmark,
-  permanent quota or repeated access/refusal series is warranted.
-- **Generalization limit:** shared fragment traversal and provider reuse are
-  demonstrated, but the public fragment attachment remains M0187-specific.
-  E317's newer primary factors require a separate perturbation query; a generic
-  atom-to-primary-outcome answer is not assembled. Scientific applicability
-  remains manually reviewed, even when declarations are JSON. Empty focal
-  matches do not imply missing activity or absence of other retained evidence.
-  No measured curation saving, complete chemical chain or design validation.
-- **Inherited scientific result:** the recovered Mitra1995 abstract reports
-  E317Q kcat reductions 4500-fold for R-mandelate and 29000-fold for S-mandelate.
-  Exact P11444 feature 9 / PMID7893689/DOI references remain bound. WT is a whole-
-  abstract contextual comparator, not an explicit factor-sentence denominator.
-  Keep unknown absolute values, matched assay/preparation, exact assayed
-  sequence, net direction and uncertainty. Do not split the plural kcat/KM
-  factor by enantiomer or derive substrate preference from the two factors.
-  H297N adjudication and selected-step E317 mapping remain unchanged.
-- **Evidence/review:** source, reuse and direction agents accepted the bounded
-  sample at be520502. E317Q archived primary witness SHA256
-  `dab9e66ab30cbcc85974f68888746c5159569a3a499b2c2548633e9af548cdfc`
-  and CODH primary-response SHA256
-  `62e515cfe61a424cc23620a6f83300cf08c51339637e6b4af3167cd2aaf0e16a`
-  match their retained source records. E317's archived call/result and exact
-  abstract hashes were verified; the witness is tool-extracted primary text,
-  not raw HTTP. CODH limiting reduction 8.1/51 s^-1 stays separate from Ag
-  steady-state kcat 8.2 s^-1 and KM 2.95 µM at pH 7.2; residual Cu/loading remain unknown.
-  These are two primary-abstract samples plus isolated public-query checks,
-  not a full primary/raw-fit audit, independent human review or project experiment.
-- **Acquisition:** zero new requests/response-body bytes. TK bibliography batch
-  `two-substrate-lineages-2024-51831` remains 39/23,268,387, with 61/8,188,893 left
-  under 100/31,457,280 as controlled by the hashed Ibdah appendix. CODH remains
-  4/30,214. M0187's 12/440,960 subledger omits legacy discovery, so total usage
-  and remaining headroom remain unknown. All other cumulative batches remain
-  unchanged; no renamed batch or restored allowance. Settled TK/AHAS/CODH and
-  M0186/M0213 inquiries stay closed absent a new consequential premise. DERA
-  acquisition is closed; its residue-state-function question remains unassessed.
-- **Change/verification/publication:** only the direction review, this current
-  handoff block and staged report-archive index change. No scientific payload,
-  source/review binding, runtime, test, claim, frozen kernel or exposure change.
-  Proportionate repository contracts and exact diff/source review precede PR CI.
-  Stage this handoff before rebuilding the archive; preserve all historical text.
-  Resume this branch/PR first if publication is unfinished. Resulting SHA and
-  release receipt: `.git/catalytic-earth-runs/direction-faa0be19-dd84-45eb-ae75-296bf2308ef7.json`.
-- **Scheduling:** actual hourly research is ACTIVE at :05 on GPT-6 Astra/max;
-  oversight is ACTIVE at 07:55/19:55 America/Chicago. The previous paused snapshot
-  is superseded by current app state. No schedule/prompt/model change is made
-  by this review; other historical research schedules remain paused.
-- **One next scientific action:** use the same already-retained
-  primary abstract to assess E317Q bromide-elimination nondetection alongside
-  irreversible alpha-phenylglycidate inactivation. Expected gain: preserve these distinct chemical responses and their
-  conditions beyond the existing substrate-specific kcat factors. Keep the two p-(bromomethyl)mandelate enantiomers distinct
-  from racemic alpha-phenylglycidate and inhibitor-bound structural evidence;
-  source WT contrast does not supply a numeric detection limit or inactivation
-  constant. Stop after one supported qualitative cross-endpoint relation or the
-  first identity/assay ambiguity. No new acquisition, zero-rate inference,
-  comparable-rate ratio, productive-state or microscopic-cause claim.
+- **Identity/base:** start 2026-09-12T02:06:41Z; owner
+  `01a0935d-b741-7060-a625-9bcefdcaa5ee:ed627c6a-b567-4a79-ac50-5797a6932bd6`;
+  lock acquired normally at 02:06:58Z. Clean main base
+  `81b9516b60ea9a4eeb3e3ccdd86567ea6f2f185b` (PR111); fetched/ff-only, no open
+  PR or recovery, main CI34664389976 passed. Branch
+  `codex/mr-e317q-chemical-endpoints-20260912`; 14.3 minutes at baton checkpoint.
+  Final elapsed/publication/release are recorded in the Git-local receipt.
+- **Question/result:** the direction review's bounded E317Q chemical-endpoint
+  question reaches its supported stopping condition. The archived Mitra1995
+  abstract reports bromide-elimination nondetection for either enantiomer of
+  p-(bromomethyl)mandelate, explicitly contrasted with WT, alongside irreversible
+  inactivation by racemic alpha-phenylglycidate at a qualitatively WT-comparable
+  rate. One aggregate either-enantiomer assertion and one racemate-level
+  assertion join the two unchanged substrate-specific kcat factors in one
+  source-assessed context. This is a source annotation under CE-048.
+- **Scientific limits:** no manufactured R/S assay or WT observation rows.
+  Detection floor, numeric inactivation rate/parameter, irreversibility method,
+  assay conditions, uncertainty and exact preparation/sequence remain unknown.
+  Comparable is not equality; inactivation susceptibility does not establish
+  turnover, covalency, a modification site, active-site access or microscopic
+  cause. The separate (S)-atrolactate structural context is not a matched or
+  productive assay state. No common-assay or cross-endpoint arithmetic.
+- **Evidence:** new `data/atlas/study_context/mandelate_1995_e317q/chemical_endpoints.json`
+  and its computational review; original factor qualification/recovery and
+  P11444 feature9/reference5 remain unchanged. Existing archived witness
+  SHA256 `dab9e66ab30cbcc85974f68888746c5159569a3a499b2c2548633e9af548cdfc`
+  (4770 bytes), abstract SHA256
+  `b01c8aa8107f348773e43cbc141294fbab6391984ed29b72a5a0da03e25659a4`;
+  tool-extracted primary abstract, not raw HTTP/full methods. Query:
+  `python scripts/query_atlas_perturbations.py --comparison mandelate_1995_e317q:E317Q:chemical-endpoint-context`.
+- **Acquisition:** zero new scientific requests/response-body bytes or witnesses.
+  M0187 known subledger12/440960 still omits legacy discovery; no defensible
+  cumulative upper bound or remaining headroom. TK bibliography batch
+  `two-substrate-lineages-2024-51831` remains39/23268387, with61/8188893 left
+  under100/31457280 as controlled by the Ibdah appendix; CODH remains4/30214.
+  No renamed batch/renewed allowance. Settled access inquiries stay closed.
+- **Reuse/reconsideration:** ordinary shared nondetection/qualitative projection
+  and assessed no-arithmetic context suffice; two chemical-outcome parameter
+  declarations live in data. No enzyme-specific runtime. Existing factor/construct/
+  reference providers and local source witness are reused; source applicability
+  remains manual, with no measured curation saving. Co-retrieval preserves a
+  specific chemical-response distinction, but an incumbent reader can see these
+  adjacent abstract sentences readily. The consequential remaining value is
+  exact reference-site-to-primary-outcome composition; do not add more isolated
+  annotations from this abstract. No generic mechanism/design claim follows.
+- **Review/verification:** board `.git/catalytic-earth-runs/ed627c6a.board.md`;
+  Sol/ultra source, representation and adversarial checks are correlated
+  computational review. Source objections determine scope. All251 previous
+  observations/131 comparisons remain unchanged; current totals253/132 are
+  data-view counts, not experiments. One regression rejects an illegal
+  cross-endpoint ratio. Final source/diff reviews accepted; repository contracts,
+  661 core tests and fresh-directory Atlas3/Atlas10 wheel verification passed,
+  including network-blocked M0173/M0219 queries. All38 local witnesses verify.
+  Required exact-head PR CI still precedes merge. Frozen
+  kernels, protected registries and exposure history remain unchanged.
+- **Publication/recovery:** owned candidate on the branch above; no unrelated
+  changes. This baton is the pre-publication checkpoint; Git identifies its
+  containing commit. Resume this branch/PR first if publication is unfinished.
+  Exact push/CI/merge and lock release are in
+  `.git/catalytic-earth-runs/20260912T020641Z-ed627c6a-b567-4a79-ac50-5797a6932bd6.json`.
+- **One next action:** implement one data-declared reference-site/variant/citation
+  join from P11444:E317/feature9 to the already reviewed E317Q primary outcomes,
+  using a shared consumer with no M0187/E317Q branch. Expected gain: retrieve
+  fragment/reference annotation and primary factors/chemical endpoints together
+  without copying observations or source-by-source manual joins. Require exact
+  accession, residue/position, substitution, PMID/DOI, study and construct
+  perturbation agreement. Stop after one integrated answer or the first
+  identity mismatch; never infer a selected-step role, deposited atom or physical
+  assay construct. No new acquisition. The current direction question is complete;
+  this next action addresses its documented integration gap.
 
 <!-- current-research-handoff:end -->
 

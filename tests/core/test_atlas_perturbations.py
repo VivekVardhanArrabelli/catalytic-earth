@@ -19,6 +19,53 @@ from catalytic_earth.atlas_perturbations import (
 ROOT = Path(__file__).resolve().parents[2]
 
 
+class MandelateChemicalEndpointTests(unittest.TestCase):
+    def test_distinct_chemical_responses_cannot_become_a_rate_ratio(self):
+        view = _project_candidate(ROOT)
+        rows = {row["id"]: row for row in view["observations"]}
+        context = next(item for item in view["comparisons"] if item["id"] ==
+                       "mandelate_1995_e317q:E317Q:chemical-endpoint-context")
+        selected = [rows[key] for key in context["context_observations"]]
+        self.assertEqual(len(selected), 4)
+        self.assertEqual({row["construct_id"] for row in selected},
+                         {"mandelate_1995_e317q:E317Q"})
+        self.assertEqual(sorted(row["value"] for row in selected
+                                if row["result_kind"] == "numeric"), [4500, 29000])
+        elimination, = [row for row in selected if row["result_kind"] == "nondetection"]
+        inactivation, = [row for row in selected if row["result_kind"] == "qualitative"]
+        self.assertEqual(elimination["substrate"]["stereochemical_scope"], "either_enantiomer")
+        self.assertIsNone(elimination["substrate"]["enumerated_absolute_configurations"])
+        self.assertIsNone(elimination["nondetection"]["numeric_detection_limit"])
+        self.assertFalse(elimination["nondetection"]["is_zero_rate"])
+        self.assertEqual(inactivation["substrate"]["stereochemical_scope"], "racemic")
+        self.assertEqual(inactivation["qualitative_result"]["inactivation_kind"],
+                         "irreversible_source_reported")
+        self.assertNotEqual(elimination["assay_id"], inactivation["assay_id"])
+        for row in (elimination, inactivation):
+            self.assertIsNone(row["value"])
+            self.assertIsNone(row["unit"])
+            self.assertIsNone(row["reaction_context"])
+            self.assertFalse(row["assay_qualified"])
+        comparison = context["source_evidence"][3]["inactivation"]
+        self.assertEqual(comparison["source_relation"], "comparable")
+        for key in ("rate_parameter", "mutant_rate", "WT_rate", "computed_ratio",
+                    "comparability_tolerance"):
+            self.assertIsNone(comparison[key])
+        self.assertFalse(comparison["statistical_equivalence_established"])
+        self.assertFalse(comparison["separate_WT_observation_available"])
+        self.assertIn("arithmetic_not_requested", context["reasons"])
+        self.assertIsNone(context["value"])
+        attempted = compare(rows, {
+            "id": "unsupported-cross-endpoint-ratio", "operation": "ratio",
+            "study_id": "mandelate_1995_e317q",
+            "roles": {"numerator": inactivation["id"], "denominator": elimination["id"]},
+        })
+        self.assertFalse(attempted["eligible"])
+        self.assertIsNone(attempted["value"])
+        self.assertIn("mismatched_endpoint_kind", attempted["reasons"])
+        self.assertIn("mismatched_substrate_id", attempted["reasons"])
+
+
 class TkBackgroundProjectionTests(unittest.TestCase):
     def test_3hba_background_context_preserves_source_cells_without_arithmetic(self):
         spec = json.loads((ROOT / SPEC_PATH).read_text(encoding="utf-8"))

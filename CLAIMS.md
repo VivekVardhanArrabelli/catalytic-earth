@@ -777,3 +777,14 @@ remain unassigned. The plural kcat/KM reduction is not split by enantiomer,
 and the coarse database 10000-fold summary is not a primary parameter row.
 No residue energy, selected-step role, independent validation, project
 experiment or design-performance claim follows.
+
+The [same-source chemical-endpoint relation](docs/ATLAS_MECHANISM_EVIDENCE.md#e317q-has-distinct-chemical-responses-across-endpoints)
+also retains one E317Q bromide-elimination nondetection assertion covering
+either p-(bromomethyl)mandelate enantiomer, explicitly contrasted with WT, and
+one irreversible-inactivation assertion for racemic alpha-phenylglycidate,
+whose rate the authors describe as comparable to WT. No R/S assay rows,
+WT measurements, detection limit or numeric inactivation rate are invented.
+Comparable does not establish equality; irreversible inactivation does not
+establish catalysis, covalency, a modification site or a microscopic cause.
+The distinct endpoints retain unassessed methods, conditions, uncertainty and
+physical preparation, with no cross-endpoint arithmetic or structural transfer.
