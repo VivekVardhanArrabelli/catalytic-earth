@@ -81,15 +81,15 @@
     },
     "ra95state": {
       "path": "data/atlas/study_context/ra95_2017/chemical_state.json",
-      "sha256": "0304a28cc9676ae9d920b5c4f6c47f102d10320e125cc40cbfddd971ccff695d"
+      "sha256": "90d9c76913dc67714e04b34bd8a126f4d35e5e01ba3bd80929ba623ef974d93c"
     },
     "ra95apo": {
       "path": "data/atlas/deposit_context/ra95_5aou/projection.json",
-      "sha256": "4fdd16492422e4ddfb48ffa28a7f2772d8ae470516bdeaf282b24ccd8faeec9e"
+      "sha256": "fd36245323fb858c8702fd3cd1a30dd6232e23f9a6c5e77f1d01c159eaba8545"
     },
     "ra95inhib": {
       "path": "data/atlas/deposit_context/ra95_5an7/projection.json",
-      "sha256": "af6042a9b4c59755d9af6ba260013bbf6182a7c3e50b3c6cae7a415c5f96839c"
+      "sha256": "2c0646339f76c458c0afb38ad4d9b3a7b35d075c37257ade9cb49f5b42afb10c"
     },
     "ra95_4a2r": {
       "path": "data/atlas/deposit_context/ra95_4a2r/projection.json",

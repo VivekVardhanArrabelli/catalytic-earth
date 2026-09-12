@@ -13,7 +13,7 @@
     "docs/ATLAS_MECHANISM_EVIDENCE.md": "a0c98d934c97300a245bc8841ce8e11505f82826a8cc7c0201aa1c3af5571304",
     "docs/CURRENT_STATE.md": "c390d3c36e9f41efe2e0b57dde683142e87dd1d33a2fd738cdc59a4f79805a0b",
     "docs/CURRENT_DECISIONS.md": "32d668821151c2fa99df457c7022f4431ae3d68a1b6ac8c7cf71a316d5133593",
-    "data/atlas/perturbations/projection.json": "1c58f84dc34d78926e01794dfd3e5a32e741f0a9a5ddda4b9e864442aa158a63",
+    "data/atlas/perturbations/projection.json": "520c66b42e8880405c42f2e88ea4fd4f1b981768fa1e0c3cef62e45a625b005b",
     "src/catalytic_earth/atlas_perturbations.py": "70bb5c5e92cb10b795cd7e0dc3422b42d5217b04274d9e949ad5af93a9b05a5d"
   },
   "review_process": [
@@ -65,5 +65,20 @@
     "default_projection_comparisons_unchanged": 132,
     "fragment_package_changed_only_in_review_metadata": true,
     "atlas3_atlas10_fresh_directory_wheel_checks": "passed; source draft and candidate queries ran with network connections blocked"
+  },
+  "ra95_tyrosine_followup": {
+    "reviewed_at_utc": "2026-09-12T05:20:24.336516+00:00",
+    "base_commit": "3ae296d114b8c6e57d05cced38914c543e304889",
+    "prior_review_sha256": "150800cb48b43df149e1b0a5622c52dc5b9cc93c93bc32745a4f0b1baaf157e4",
+    "scope": "Renew only the perturbation-spec pin after a data-only RA95 parent coordinate audit. Reference join declarations/code, current direction documents, fragment package and all four E317Q outcomes remain unchanged.",
+    "renewed_bindings": {
+      "data/atlas/perturbations/projection.json": {
+        "before": "1c58f84dc34d78926e01794dfd3e5a32e741f0a9a5ddda4b9e864442aa158a63",
+        "after": "520c66b42e8880405c42f2e88ea4fd4f1b981768fa1e0c3cef62e45a625b005b"
+      }
+    },
+    "independent_human_validation": false,
+    "new_scientific_requests": 0,
+    "new_response_body_bytes": 0
   }
 }

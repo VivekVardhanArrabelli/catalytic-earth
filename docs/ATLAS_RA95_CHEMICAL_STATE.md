@@ -73,7 +73,7 @@ are dictionary-only, while H112/H1B/H1C are coordinate-only. The dictionary
 C12=C13/H13 description cannot silently become a complete adduct graph. No
 atom-name repair, bond-order repair or protonation assignment is made.
 
-Only two source-relevant atom pairs are projected using the existing assembly
+The original two ligand-relevant atom pairs use the existing assembly
 consumer. Lys83NZ to LLKC13 is1.274005/1.291032Å for alternativesA/B;
 Tyr51OH to the deposited carbonyl oxygen LLKO1 is2.435342/1.776955Å.
 These are separate coordinate pairs with unresolved coexistence, not jointly
@@ -83,8 +83,59 @@ distances creates a bond, assigns hydrogen positions, establishes a hydrogen
 bond or selects a tautomer. LLK0.75, Lys83A/B0.57/0.43 and Tyr51A/B0.75/0.25
 remain distinct occupancies with unresolved joint states. No occupancy averaging,
 active-fraction estimate or kinetic population is inferred. The source also
-describes secondary Ser81/water and Met182 packing contacts; the two selected
+describes secondary Ser81/water and Met182 packing contacts; the selected
 pairs do not claim a complete contact inventory.
+
+## The parent tyrosine pair has no single deposited separation
+
+The two hydroxyl groups removed in the existing Y51F/Y180F functional square
+now have an explicit coordinate relation in both parent deposits. This extends
+the construct/state scope of CE-034; it adds no mutant structure or functional
+observation.
+
+```sh
+python scripts/query_atlas_perturbations.py --state-link ra95_2017:RA95.5-8F-states --with-comparisons
+```
+
+| Parent deposit / Tyr51 alternative | Tyr51 OH to Tyr180 OH (Å) | Individual OH occupancies, Tyr51 / Tyr180 |
+| --- | --- | --- |
+| 5AOU, neither atom has an alternate label | 3.827 | 1.00 / 1.00 |
+| 5AN7, Tyr51 A | 2.730 | 0.75 / 1.00 |
+| 5AN7, Tyr51 B | 4.372 | 0.25 / 1.00 |
+
+These distances are calculated from the retained model-1 coordinates through
+assembly-1 identity operator1. The query preserves exact atom-site IDs
+437/1507 in5AOU and944/945 versus3296 in5AN7, all Tyr51 alternatives and
+the different Tyr180 author numbers2180/1180. It carries the
+`tyr51-oh-to-tyr180-oh` pair in each deposit projection, beside the source
+conditions, ligand-state conflicts and canonical parent association.
+
+The inhibited deposit has one shorter and one longer Tyr51 alternative
+relative to the apo separation. The local coordinate comparison therefore
+does not supply one invariant Tyr-pair distance to transfer into a design.
+This narrow negative audit does not refute the authors' broader network or
+preorganization interpretation, which is not a claim of identical pair distances.
+It does not identify a hydrogen bond or ligand-induced motion: crystal media
+differ, complex pH is unresolved, and cross-residue alternate coexistence and
+solution populations remain unestablished. No occupancy-weighted distance is
+formed, and the shorter alternative is not selected as a productive state.
+
+The same existing query also returns the four-cell kinetic comparison and
+its retained thermal evidence. Its kcat observed/multiplicative-reference
+ratio remains0.021, while reported melting temperatures remain76,71,74 and67°C
+for parent, Y51F, Y180F and double mutant respectively. These functional and
+thermal results do not assign the coordinate alternatives to mutants, isolate
+a Tyr–Tyr interaction or establish a microscopic coupling energy. Only the
+three parent kinetic observations are state-linked.
+Co-retrieval of these same-study results is not independent corroboration of
+a mechanism. The coordinate audit adds no causal constraint to the square.
+
+The two new pair declarations reuse the existing deposit projector and
+state/comparison query without a runtime or observation change. Source
+selection and interpretation remain manual; this is a computable parent
+coordinate audit, not evidence of generalization or measured curation-time
+savings. The bounded comparison is complete. Additional nearby distances
+would need a distinct scientific question.
 
 ## Evidence and reuse
 
@@ -95,6 +146,11 @@ Its acquisition appendix continues `designed-retroaldolase-ra95-giger2013`:
 `data/atlas/deposit_context/ra95_5aou` and `ra95_5an7`. The publisher supplement
 is reused from the existing Git-common source cache and is not redistributed.
 The old source packets and their evidence limits remain unchanged.
+
+The tyrosine-pair extension required zero requests or new source bytes. The
+later DERA access appendix is the latest ledger for the same named batch:
+33 requests /17,556,517 response-body bytes cumulatively. The older26-request
+figure above records the original chemical-state increment, not current use.
 
 The generic deposit/assembly projector is reused. Three standard mmCIF
 categories expose canonical polymer sequence, chemical modification and

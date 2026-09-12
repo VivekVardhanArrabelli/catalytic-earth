@@ -240,7 +240,7 @@
     "reuse": "One generic exact-canonical-sequence state link joins existing observations and generic deposit projections; source chemistry stays in data. Three generic CIF category selections added.",
     "incumbent_boundary": "A competent reader can assemble these sources manually; no measured time saving or incumbent superiority. The added result is an executable association with prevented unsupported transfer."
   },
-  "source_scope_note": "Only Y51 carbonyl and K83 attachment coordinate pairs are projected. FigureS9 also names Ser81/ordered waters and Met182 sulfur-pi packing; no claim of complete contact inventory or elementary causal roles.",
+  "source_scope_note": "Original ligand pairs follow SI Figures S8/S9. The added parent Tyr51OH-to-Tyr180OH pair asks whether the two substituted groups in the existing Table S1 tyrosine square share one deposited separation across the apo and inhibitor-derived contexts. Figure S9 also names Ser81/ordered waters and Met182 sulfur-pi packing; neither pair selection is a complete contact inventory or an assignment of elementary causal roles.",
   "functional_context": {
     "provider": {
       "path": "data/atlas/study_context/ra95_2017/source_qualification.json",
@@ -253,5 +253,36 @@
       "kcat_over_KM"
     ],
     "scope": "Parent steady-state cleavage parameter row only; same construct identity does not transfer synthesis or thermal endpoints into this declared relation."
+  },
+  "parent_tyrosine_pair_assessment": {
+    "question": "Do the retained parent deposits establish one invariant Tyr51OH-to-Tyr180OH separation that could strengthen interpretation of the existing Y51F/Y180F functional square?",
+    "evidence_kind": "computed_parent_coordinate_audit; no_added_causal_support_for_functional_square",
+    "coordinate_evidence": [
+      {
+        "state_id": "ra95-8f:5AOU:apo",
+        "deposit_packet_id": "ra95.5aou.chemical-state.2026-09-10",
+        "distance_pair_id": "tyr51-oh-to-tyr180-oh"
+      },
+      {
+        "state_id": "ra95-8f:5AN7:inhibitor-derived",
+        "deposit_packet_id": "ra95.5an7.chemical-state.2026-09-10",
+        "distance_pair_id": "tyr51-oh-to-tyr180-oh"
+      }
+    ],
+    "functional_comparison_ids": [
+      "ra95_2017:Y51F-Y180F:kcat",
+      "ra95_2017:Y51F-Y180F:KM",
+      "ra95_2017:Y51F-Y180F:kcat_over_KM"
+    ],
+    "functional_scope": "The existing --state-link ra95_2017:RA95.5-8F-states --with-comparisons query retains all four source cells and Table S1 thermal context. Only parent observations are state-linked; mutant rows receive no deposited geometry.",
+    "interpretation": "The inhibitor-derived deposit includes one shorter Tyr51 alternative and one longer alternative relative to the apo OH separation. These retained coordinates do not establish a single invariant Tyr-pair distance. This narrow negative audit neither strengthens a causal interpretation of the functional square nor refutes the source authors' broader network/preorganization interpretation.",
+    "limits": [
+      "Different crystal media and unresolved complex pH prevent a ligand-induced-motion attribution.",
+      "Distances and individual occupancies do not establish a hydrogen bond, proton location, correlated alternate state or solution population.",
+      "The thermal panel and composite kinetic parameters do not isolate a Tyr-Tyr interaction, microscopic coupling energy or mutant geometry.",
+      "No productive-state geometry, transferable design distance or experimentally validated design rule is established.",
+      "Co-retrieval of same-study structure, kinetics and thermal evidence is not independent corroboration of a mechanism."
+    ],
+    "reuse": "Both coordinate pairs use the unchanged deposit/assembly projector; the unchanged state-link and comparison filter co-retrieve the parent audit and existing kinetic/thermal evidence. This prevents treating one selected alternate as an invariant edge, but adds no causal constraint to the functional square. Scientific applicability and interpretation remain manually reviewed declarations; no generalization or measured curation-time saving."
   }
 }

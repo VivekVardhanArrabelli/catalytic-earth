@@ -219,12 +219,61 @@
           "components",
           "title"
         ]
+      },
+      {
+        "assertion_id": "parent-tyrosine-pair",
+        "statement": "Parent Tyr51OH-to-Tyr180OH separation retains all deposited alternatives and individual atom occupancies. The coordinate audit can be co-retrieved with the existing source-qualified functional panel, without adding causal support to it. No hydrogen bond, invariant network edge, solution population or mutant geometry is assigned.",
+        "status": "computed_coordinate_description",
+        "supporting_selection_ids": [
+          "tyr51-oh-to-tyr180-oh",
+          "tyr51-atoms",
+          "tyr180-atoms"
+        ]
       }
     ],
     "not_established": [
       "No exact physical assay/crystal preparation identity, active fraction, complete mechanism, mutant geometry or productive solution arrangement.",
       "Canonical sequence equality does not erase MHO237 oxidation or unmodeled residues; occupancy is not a kinetic population.",
       "Selected functional-group atoms follow SI FiguresS8/S9; no exhaustive apparatus inventory or generic distance catalogue."
+    ]
+  },
+  "assembly_spec": {
+    "assembly_id": "1",
+    "distance_pairs": [
+      {
+        "left_selection_id": "tyr51-oh",
+        "pair_id": "tyr51-oh-to-tyr180-oh",
+        "right_selection_id": "tyr180-oh"
+      }
+    ],
+    "pdb_id": "5AOU",
+    "selections": [
+      {
+        "atom_names": [
+          "OH"
+        ],
+        "auth_seq_id": "1051",
+        "label_asym_id": "A",
+        "label_comp_id": "TYR",
+        "model_id": "1",
+        "operator_ids": [
+          "1"
+        ],
+        "selection_id": "tyr51-oh"
+      },
+      {
+        "atom_names": [
+          "OH"
+        ],
+        "auth_seq_id": "2180",
+        "label_asym_id": "A",
+        "label_comp_id": "TYR",
+        "model_id": "1",
+        "operator_ids": [
+          "1"
+        ],
+        "selection_id": "tyr180-oh"
+      }
     ]
   }
 }

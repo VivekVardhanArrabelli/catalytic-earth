@@ -2,10 +2,10 @@
   "schema_version": "catalytic-earth.deposit-context-review.v1",
   "packet_id": "ra95.5an7.chemical-state.2026-09-10",
   "decision": "accept_source_scoped_deposit_context",
-  "reviewed_at_utc": "2026-09-10T14:37:30.808871+00:00",
+  "reviewed_at_utc": "2026-09-12T05:20:24.336516+00:00",
   "reviewed_sha256": {
-    "spec.json": "4c84b3e93e7af09d2194390c08d59ac2d01707e103b151754cf8e2a55a9c2144",
-    "projection.json": "af6042a9b4c59755d9af6ba260013bbf6182a7c3e50b3c6cae7a415c5f96839c",
+    "spec.json": "e4cfdc5ca5186a9a7ed3ef1294143f82aaafd5efd0dc1713c8f702dd63ef3a7d",
+    "projection.json": "2c0646339f76c458c0afb38ad4d9b3a7b35d075c37257ade9cb49f5b42afb10c",
     "source": "2ec74e2ac07a32c763a9f7ba75b2a0f33d92e5249ed0b2bcc89aa38a17dc9d5f"
   },
   "authority": "owner-authorized-computational-development.2026-09-05.v1",
@@ -46,5 +46,38 @@
     "Complete typed inhibitor3-derived protein adduct graph and protonation unresolved",
     "5AN7 pH7.5/4.5 and source/unmodeled62-63 conflicts unresolved",
     "No physical preparation, joint alternate population, mutant geometry or mechanistic cause"
-  ]
+  ],
+  "parent_tyrosine_pair_followup": {
+    "base_commit": "3ae296d114b8c6e57d05cced38914c543e304889",
+    "prior_review_sha256": "7dbfe13783c9607150da46c3f9fdc26e8ce39665d7f50148ab5a50d481a0e3dd",
+    "reviewed_at_utc": "2026-09-12T05:20:24.336516+00:00",
+    "scope": "One negative parent-coordinate audit: retain all Tyr51OH-Tyr180OH distances across5AOU/5AN7 with exact identities and individual occupancies; no invariant separation, causal strengthening of the functional square, source-network refutation, mutant geometry or design rule.",
+    "review_process": [
+      {
+        "role": "source",
+        "task": "source_check",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra",
+        "status": "accepted_narrowed_source_and_candidate_scope"
+      },
+      {
+        "role": "representation",
+        "task": "representation_check",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra",
+        "status": "accepted_narrowed_source_and_candidate_scope"
+      },
+      {
+        "role": "adversarial",
+        "task": "adversarial_check",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra",
+        "status": "accepted_narrowed_source_and_candidate_scope"
+      }
+    ],
+    "source_rows_and_prior_pairs_unchanged": true,
+    "new_scientific_requests": 0,
+    "new_response_body_bytes": 0,
+    "coordination_record": ".git/catalytic-earth-runs/a0b08661.board.md"
+  }
 }

@@ -118,6 +118,46 @@
         ],
         "pair_id": "tyr51-oh-to-ligand-o1",
         "right_selection_id": "ligand-o1"
+      },
+      {
+        "left_selection_id": "tyr51-oh",
+        "measurement_semantics": "all model-matched, alternate-compatible selected atom combinations; cross-residue or copy joint state unresolved",
+        "measurements": [
+          {
+            "alternate_coexistence": "cross_residue_or_copy_alternate_coexistence_unresolved",
+            "distance_angstrom": 2.729859,
+            "left_atom_instance_id": "5AN7:assembly-1:operators-1:model-1:atom-site-944",
+            "left_atom_site_id": "944",
+            "left_label_alt_id": "A",
+            "left_label_atom_id": "OH",
+            "left_occupancy": 0.75,
+            "measurement_id": "tyr51-oh-to-tyr180-oh:1",
+            "model_id": "1",
+            "right_atom_instance_id": "5AN7:assembly-1:operators-1:model-1:atom-site-3296",
+            "right_atom_site_id": "3296",
+            "right_label_alt_id": null,
+            "right_label_atom_id": "OH",
+            "right_occupancy": 1.0
+          },
+          {
+            "alternate_coexistence": "cross_residue_or_copy_alternate_coexistence_unresolved",
+            "distance_angstrom": 4.372475,
+            "left_atom_instance_id": "5AN7:assembly-1:operators-1:model-1:atom-site-945",
+            "left_atom_site_id": "945",
+            "left_label_alt_id": "B",
+            "left_label_atom_id": "OH",
+            "left_occupancy": 0.25,
+            "measurement_id": "tyr51-oh-to-tyr180-oh:2",
+            "model_id": "1",
+            "right_atom_instance_id": "5AN7:assembly-1:operators-1:model-1:atom-site-3296",
+            "right_atom_site_id": "3296",
+            "right_label_alt_id": null,
+            "right_label_atom_id": "OH",
+            "right_occupancy": 1.0
+          }
+        ],
+        "pair_id": "tyr51-oh-to-tyr180-oh",
+        "right_selection_id": "tyr180-oh"
       }
     ],
     "generation_rules": [
@@ -495,6 +535,69 @@
         },
         "scope": "operator-qualified generated coordinate copy; no new deposited atom",
         "selection_id": "ligand-o1"
+      },
+      {
+        "atoms": [
+          {
+            "assembly_id": "1",
+            "atom_instance_id": "5AN7:assembly-1:operators-1:model-1:atom-site-3296",
+            "atom_site_id": "3296",
+            "author_atom_id": "OH",
+            "author_chain_id": "A",
+            "author_component_id": "TYR",
+            "author_residue_number": "1180",
+            "b_iso_or_equiv": 13.57,
+            "deposited_xyz": [
+              -16.64,
+              22.096,
+              -12.675
+            ],
+            "element": "O",
+            "formal_charge": null,
+            "insertion_code": null,
+            "label_alt_id": null,
+            "label_asym_id": "A",
+            "label_atom_id": "OH",
+            "label_component_id": "TYR",
+            "label_entity_id": "1",
+            "label_seq_id": "180",
+            "model_id": "1",
+            "occupancy": 1.0,
+            "operator_ids": [
+              "1"
+            ],
+            "record_type": "ATOM",
+            "selection_id": "tyr180-oh",
+            "transformed_xyz": [
+              -16.64,
+              22.096,
+              -12.675
+            ]
+          }
+        ],
+        "operation_application_order": [
+          "1"
+        ],
+        "operator_ids": [
+          "1"
+        ],
+        "operator_qualified_residue_id": "5AN7:assembly-1:operators-1:model-1:label-A:TYR-180:author-A:TYR-1180:ins-None",
+        "requested_atom_names": [
+          "OH"
+        ],
+        "residue_identity": {
+          "author_chain_id": "A",
+          "author_component_id": "TYR",
+          "author_residue_number": "1180",
+          "insertion_code": null,
+          "label_asym_id": "A",
+          "label_component_id": "TYR",
+          "label_entity_id": "1",
+          "label_seq_id": "180",
+          "model_id": "1"
+        },
+        "scope": "operator-qualified generated coordinate copy; no new deposited atom",
+        "selection_id": "tyr180-oh"
       }
     ]
   },
@@ -572,6 +675,16 @@
         "supporting_selection_ids": [
           "lys83-nz-to-ligand-c13",
           "tyr51-oh-to-ligand-o1"
+        ]
+      },
+      {
+        "assertion_id": "parent-tyrosine-pair",
+        "statement": "Parent Tyr51OH-to-Tyr180OH separation retains all deposited alternatives and individual atom occupancies. The coordinate audit can be co-retrieved with the existing source-qualified functional panel, without adding causal support to it. No hydrogen bond, invariant network edge, solution population or mutant geometry is assigned.",
+        "status": "computed_coordinate_description",
+        "supporting_selection_ids": [
+          "tyr51-oh-to-tyr180-oh",
+          "tyr51-atoms",
+          "tyr180-atoms"
         ]
       }
     ],
@@ -9711,5 +9824,5 @@
     "path": "data/atlas/deposit_context/ra95_5an7/5AN7.cif",
     "sha256": "2ec74e2ac07a32c763a9f7ba75b2a0f33d92e5249ed0b2bcc89aa38a17dc9d5f"
   },
-  "spec_payload_sha256": "4d07b2bda05bce9cffc3a09a8afc5a77599bce21cd9c98f8d9525f7347c52e0a"
+  "spec_payload_sha256": "f4723ceed7f6f795103565418f29a0903abcd4d25318b2d4b63421c7635b5b8e"
 }

@@ -508,6 +508,15 @@ these source/model boundaries and alternative occupancies. No physical
 assay/crystal identity, productive solution geometry, mutant structure,
 microscopic role, new experiment or evidence-tier promotion follows.
 
+The [parent tyrosine coordinate audit](docs/ATLAS_RA95_CHEMICAL_STATE.md#the-parent-tyrosine-pair-has-no-single-deposited-separation)
+retains Tyr51OH–Tyr180OH separations of3.827Å in5AOU and2.730/4.372Å for
+Tyr51A/B in5AN7, with original atom identities and individual occupancies.
+These states/alternatives do not establish one invariant pair separation.
+This neither refutes the source's broader network/preorganization interpretation
+nor adds causal support to the co-retrieved tyrosine functional square.
+No hydrogen bond, ligand-induced motion, mutant geometry, coupling energy
+or transferable design distance is established.
+
 ## CE-035 — deposited attachment and matched sensitivity remain distinct
 
 **Status:** Supported

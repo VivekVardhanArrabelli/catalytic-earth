@@ -66,5 +66,66 @@
   ],
   "independent_human_validation": false,
   "experimental_validation": false,
-  "coordination_record": "work/coordination_ra95_chemical_state_20260910.md"
+  "coordination_record": "work/coordination_ra95_chemical_state_20260910.md",
+  "parent_tyrosine_pair_followup": {
+    "base_commit": "3ae296d114b8c6e57d05cced38914c543e304889",
+    "prior_review_sha256": "3c57d4b7e584f486d515684aa1fcdb842566d8306f30fedd0172a31e0df1dac9",
+    "reviewed_at_utc": "2026-09-12T05:20:24.336516+00:00",
+    "decision": "accept_source_annotation",
+    "scope": "One negative parent-coordinate audit: retain all Tyr51OH-Tyr180OH distances across5AOU/5AN7 with exact identities and individual occupancies; no invariant separation, causal strengthening of the functional square, source-network refutation, mutant geometry or design rule.",
+    "review_process": [
+      {
+        "role": "source",
+        "task": "source_check",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra",
+        "status": "accepted_narrowed_source_and_candidate_scope"
+      },
+      {
+        "role": "representation",
+        "task": "representation_check",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra",
+        "status": "accepted_narrowed_source_and_candidate_scope"
+      },
+      {
+        "role": "adversarial",
+        "task": "adversarial_check",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "ultra",
+        "status": "accepted_narrowed_source_and_candidate_scope"
+      }
+    ],
+    "reviewed_bindings": {
+      "CLAIMS.md": "935c521d14a40d162030a74481628add072bfc96a6b57e2153780724202c4685",
+      "data/governance/claim_ledger.json": "ae60bef4a2b2c55499340d27c172301c7040dbf1aabef37e30a08e5af937a8c2",
+      "data/atlas/study_context/ra95_2017/chemical_state.json": "90d9c76913dc67714e04b34bd8a126f4d35e5e01ba3bd80929ba623ef974d93c",
+      "docs/ATLAS_RA95_CHEMICAL_STATE.md": "64192bc0aea597916cd80e6d5b216152115554774c83f3faeacc7c41064a7e0c",
+      "tests/core/test_atlas_perturbations.py": "e23e675bd9f59d614ad803f6bddc77392922213bdf7513fcb610a99b2a633c86",
+      "data/atlas/deposit_context/ra95_5aou/spec.json": "c7602a6e62ae93435170a1dfdd8900884bb9d0411d6575ac3d515023aa4a4463",
+      "data/atlas/deposit_context/ra95_5aou/projection.json": "fd36245323fb858c8702fd3cd1a30dd6232e23f9a6c5e77f1d01c159eaba8545",
+      "data/atlas/deposit_context/ra95_5aou/review.json": "48ad9f1451c0795ab730866950edb3f6ff58759c44db22ed19a242fcfb0073fb",
+      "data/atlas/deposit_context/ra95_5an7/spec.json": "e4cfdc5ca5186a9a7ed3ef1294143f82aaafd5efd0dc1713c8f702dd63ef3a7d",
+      "data/atlas/deposit_context/ra95_5an7/projection.json": "2c0646339f76c458c0afb38ad4d9b3a7b35d075c37257ade9cb49f5b42afb10c",
+      "data/atlas/deposit_context/ra95_5an7/review.json": "784c4cc6c2e5929fa083cc2decf5369b8a4a5465c694c00a09d7cea55320b4c0",
+      "data/atlas/perturbations/projection.json": "520c66b42e8880405c42f2e88ea4fd4f1b981768fa1e0c3cef62e45a625b005b"
+    },
+    "source_objections_adjudicated": [
+      "Reject the initial geometry-to-function constraint framing; retain only the negative coordinate audit.",
+      "Preserve both5AN7 Tyr51 alternatives, separate occupancies, model/operator identity, and different Tyr180 author numbers.",
+      "Do not refute broad source network/preorganization prose using pair distances; no hydrogen-angle calculation or extra contact inventory."
+    ],
+    "invariance": "Original CIFs, source qualification, all prior functional observations/comparisons, and original ligand pairs remain unchanged.",
+    "independent_human_validation": false,
+    "experimental_validation": false,
+    "acquisition": {
+      "batch_id": "designed-retroaldolase-ra95-giger2013",
+      "new_requests": 0,
+      "new_response_body_bytes": 0,
+      "cumulative_requests": 33,
+      "cumulative_response_body_bytes": 17556517,
+      "latest_ledger": "data/atlas/study_context/ra95_2013/dera_acquisition_appendix.json"
+    },
+    "coordination_record": ".git/catalytic-earth-runs/a0b08661.board.md"
+  }
 }
