@@ -12,7 +12,8 @@
     "tk_2020_limitations": "The two product-specific assay wrappers bind one experimental protocol/profile and are not independent experiments. Accumulated products do not isolate donor-half chemistry, and apparent pyruvate KM or docking cannot supply a donor-only rate, affinity, intermediate occupancy or causal acceptor-coupling assignment. Final ThDP and MgCl2 concentrations in the selected purified reaction are unestablished; the reported 2.4 mM ThDP and 9 mM MgCl2 apply only to the separately described lysate preparation. Erythrulose nondetection is not a zero rate and cannot support a ratio or infinite selectivity.",
     "limitations": "No pooled rates, generic inactivity labels, causal residue assignments, full apparatus claims, microscopic coupling energy or design-success estimates. Forward product composition retains source-author configuration and unresolved retention mapping; strict ee bounds remain structured source context, not central-value comparisons. Diels-Alder activity-reduction summaries do not identify mutant kcat or product outcomes; strict product bounds and mismatched assays remain in context. TKT reporter-unavailable parameters, NMR qualitative presence / scoped nondetection and positive turnover remain different kinds; no selective partner-only intervention, crystal-to-assay identity or productive F6P full-cycle inference. POX analogue nonbinding differs from TKT reporter absence. MAP apparent equilibrium includes a covalent conjugate; positive pyruvate fitted rates do not establish oxygen turnover, an elementary-step rate or exact construct/preparation identity. Beta-barrel S4 arms are qualitative and belong to 16.2; main noninhibition prose conflicts with the plot and does not establish ligand-independent 16.1/8AH9. Exact deposited identity does not establish assay identity. KSI donor-control discrimination is limited to the named5(10)-EST panel. Double-mutant equilenin/phenolate structure and NMR are separate analogue contexts; cavity hydration/desolvation is source interpretation, not observed single-mutant turnover or a universal hydrogen-bond energy. Calmodulin residual methodol activity does not identify a lysine-covalent pathway; source-derived hydrophobic causality, diketone adduct identity and calcium allostery stay qualified. Full-length/domain, experimental/docking stereochemistry and TableI/Figure5 protocol distinctions are preserved. E. coli TK 2024 fixed-pair activity, 24-hour conversion and fitted kinetics remain separate; the selected ratio does not establish significance, equivalence, an isolated R520Q cause beyond the TK-1 background, donor/acceptor preference combinability or transfer to 6M, MAL or human TKT. The separate 3-HBA background context does not establish 44%-over-42% superiority, exact zero or biochemical inactivity from printed 0%, molecular product identity, selectivity, generic epistasis, an isolated R520Q cause or an energetic mechanism. Its integer display, missing uncertainty and unknown detection/rounding limits remain explicit.",
     "mandelate_1995_e317q_extension": "Two author-reported E317Q kcat reduction-factor observations retain R-mandelate 4500-fold and S-mandelate 29000-fold with WT as whole-abstract contextual reference. A shared no-arithmetic context joins the exact UniProt reference feature/citation, preserving unspecified net direction, assay/construct identity and the unresolved plural kcat/KM statement. Archived primary text is reused without a new network request or established legacy headroom.",
-    "mandelate_1995_e317q_chemical_endpoints_extension": "One aggregate either-enantiomer p-(bromomethyl)mandelate bromide-elimination nondetection and one racemic alpha-phenylglycidate irreversible-inactivation assertion join the two unchanged kcat factors in a shared no-arithmetic context. Explicit source WT contrast/comparability is qualitative; no detection floor, numeric inactivation parameter, equality, matched assay, covalent mechanism or productive structural state is inferred."
+    "mandelate_1995_e317q_chemical_endpoints_extension": "One aggregate either-enantiomer p-(bromomethyl)mandelate bromide-elimination nondetection and one racemic alpha-phenylglycidate irreversible-inactivation assertion join the two unchanged kcat factors in a shared no-arithmetic context. Explicit source WT contrast/comparability is qualitative; no detection floor, numeric inactivation parameter, equality, matched assay, covalent mechanism or productive structural state is inferred.",
+    "ksi_1991_isotope_extension": "One aggregate abstract-level D38N primary enolization isotope-effect assertion spans C4alpha, C4beta and doubly deuterated substrates. A no-arithmetic relation separates direct primary-abstract support from Fried2014-only hydroxide/reketonization attribution and blocks D38N-to-D40N transfer. No KIE magnitudes, matched WT assay, isotope branching or new activity factor."
   },
   "sources": {
     "ra95f": {
@@ -105,7 +106,7 @@
     },
     "ksi": {
       "path": "data/atlas/study_context/ksi_2014/field_function.json",
-      "sha256": "1e783d88486e8a68dde5099a92eadf3651a003b7e9ebe3f1dbc6de9e3e9cfb0c"
+      "sha256": "81480e2281e3d86b391412a4c2091da0b1e8e4fc87640c90bd3696729781addd"
     },
     "ksi1995": {
       "path": "data/atlas/study_context/ksi_1995/primary_kinetics.json",
@@ -202,6 +203,10 @@
     "mr1995e317q_endpoints": {
       "path": "data/atlas/study_context/mandelate_1995_e317q/chemical_endpoints.json",
       "sha256": "1423ba19eba607c4956d5cd049882d7e5cecd56dd084594d102eafcf2ef13a98"
+    },
+    "ksi1991": {
+      "path": "data/atlas/study_context/ksi_1991/isotope_discriminant.json",
+      "sha256": "c1fe7894289c56c7a49ed6523923be858d72d9bd45e6d47dce81e533af899bc3"
     }
   },
   "constructs": {
@@ -2156,6 +2161,44 @@
         "source": "mr1995e317q",
         "pointer": "/constructs/1/comparison_background"
       }
+    },
+    "ksi_1991:WT": {
+      "source_construct_id": "WT",
+      "provider": {
+        "source": "ksi1991",
+        "pointer": "/constructs/0"
+      },
+      "sequence_provider": {
+        "source": "ksi1991",
+        "pointer": "/constructs/0"
+      },
+      "background_id": "ksi_1991:WT",
+      "perturbation": [],
+      "identity_scope": "Source-named Pseudomonas testosteroni construct only; no exact assayed sequence, physical preparation or P. putida D40N identity."
+    },
+    "ksi_1991:D38N": {
+      "source_construct_id": "D38N",
+      "provider": {
+        "source": "ksi1991",
+        "pointer": "/constructs/1"
+      },
+      "sequence_provider": {
+        "source": "ksi1991",
+        "pointer": "/constructs/1"
+      },
+      "background_id": "ksi_1991:WT",
+      "perturbation": [
+        "D38N"
+      ],
+      "identity_scope": "Source-named Pseudomonas testosteroni construct only; no exact assayed sequence, physical preparation or P. putida D40N identity.",
+      "perturbation_provider": {
+        "source": "ksi1991",
+        "pointer": "/constructs/1/perturbation"
+      },
+      "background_provider": {
+        "source": "ksi1991",
+        "pointer": "/constructs/1/comparison_background"
+      }
     }
   },
   "assays": {
@@ -2763,6 +2806,18 @@
       "uncertainty_context": "No uncertainty, replicate count, numeric inactivation rate/parameter or definition of comparable is available from the abstract.",
       "qualification_scope": "Endpoint-wrapper identity only, not a reconstructed assay or common protocol. No exact assay details are available in the retained abstract.",
       "source_endpoint_assessed": true
+    },
+    "ksi_1991:abstract-enolization-isotope-effects": {
+      "source_assay_id": "abstract-enolization-isotope-effects",
+      "provider": {
+        "source": "ksi1991",
+        "pointer": "/assays/0"
+      },
+      "qualified": false,
+      "endpoint_kind": "primary_substrate_kinetic_isotope_effect_on_enolization",
+      "reaction_direction": null,
+      "uncertainty_context": "Indexed abstract gives no isotope-effect magnitude, direction, uncertainty, conditions or matched control protocol.",
+      "qualification_scope": "Source endpoint assessed; unqualified for arithmetic or common isotope-assay reconstruction."
     }
   },
   "substrates": {
@@ -3323,6 +3378,37 @@
       "source": {
         "source": "mr1995e317q_endpoints",
         "pointer": "/chemical_contexts/1"
+      }
+    },
+    "ksi_1991:C4-deuterated-androstenedione-series": {
+      "chemical_id": "ksi_1991:C4-deuterated-androstenedione-series",
+      "parent_substrate_name": "androst-5-ene-3,17-dione",
+      "isotope_label_classes": [
+        {
+          "deuterium_replaces": [
+            "4alpha-proton"
+          ]
+        },
+        {
+          "deuterium_replaces": [
+            "4beta-proton"
+          ]
+        },
+        {
+          "deuterium_replaces": [
+            "4alpha-proton",
+            "4beta-proton"
+          ]
+        }
+      ],
+      "assertion_scope": "one_aggregate_source_assertion_covering_each_label_class",
+      "isotope_enrichment": null,
+      "complete_atom_map": null,
+      "absolute_configuration_assignment": null,
+      "scope": "Source steroid-face alpha/beta labels are retained as isotope-placement descriptions. The three label classes are not a mixture, three independent replicates, new R/S assignments or three quantified isotope assays.",
+      "source": {
+        "source": "ksi1991",
+        "pointer": "/chemical_context"
       }
     }
   },
@@ -6310,6 +6396,69 @@
             },
             "inactivation_kind": {
               "pointer": "/inactivation_kind"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ksi1991-enolization-isotope",
+      "study_id": "ksi_1991",
+      "source": "ksi1991",
+      "rows_pointer": "/observations",
+      "fields": {
+        "row_id": {
+          "pointer": "/row_id"
+        },
+        "construct_id": {
+          "pointer": "/construct_id"
+        },
+        "assay_id": {
+          "pointer": "/assay_id"
+        },
+        "substrate_id": {
+          "pointer": "/substrate_id"
+        },
+        "source_locator": {
+          "pointer": "/source_locator"
+        }
+      },
+      "parameters": [
+        {
+          "id": "primary_kinetic_isotope_effect",
+          "pointer": "/primary_kinetic_isotope_effect",
+          "kind": {
+            "pointer": "/result_kind"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/uncertainty"
+            },
+            "kind": {
+              "pointer": "/uncertainty_kind"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          },
+          "qualitative_result": {
+            "source_token": {
+              "pointer": "/source_token"
+            },
+            "scope": {
+              "pointer": "/scope"
+            },
+            "measurement_stage": {
+              "pointer": "/measurement_stage"
+            },
+            "isotope_label_classes": {
+              "pointer": "/isotope_label_classes"
             }
           }
         }
@@ -10421,6 +10570,71 @@
         }
       ],
       "scope": "One same-study context retrieves two existing substrate-specific kcat factors and two distinct qualitative chemical-endpoint assertions. Either-enantiomer bromide nondetection and racemate-level irreversible inactivation preserve explicit author WT comparisons, without scalar comparison, matched assays, stereoisomer arm fabrication or microscopic inference."
+    },
+    {
+      "id": "ksi_1991:D38N:enolization-isotope-context",
+      "study_id": "ksi_1991",
+      "operation": "unassessed",
+      "roles": {},
+      "context_observations": [
+        "ksi1991-enolization-isotope:D38N:C4-deuteration-series:primary_kinetic_isotope_effect"
+      ],
+      "source_discriminant_assessed": true,
+      "arithmetic_requested": false,
+      "source_blocks": [
+        "abstract_truncated_full_methods_unacquired",
+        "aggregate_label_classes_not_three_quantified_assays",
+        "enolization_is_not_turnover_or_a_microscopic_rate",
+        "WT_context_not_matched_isotope_control",
+        "D38N_to_D40N_mechanistic_transfer_unestablished"
+      ],
+      "evidence": [
+        {
+          "source": "ksi1991",
+          "pointer": "/source_interpretation"
+        },
+        {
+          "source": "ksi1991",
+          "pointer": "/chemical_context"
+        },
+        {
+          "source": "ksi1991",
+          "pointer": "/assays"
+        },
+        {
+          "source": "ksi1991",
+          "pointer": "/separate_spectroscopic_context"
+        },
+        {
+          "source": "ksi1991",
+          "pointer": "/later_source_boundary"
+        },
+        {
+          "source": "ksi1991",
+          "pointer": "/limits"
+        },
+        {
+          "source": "ksi1991",
+          "pointer": "/source"
+        },
+        {
+          "source": "ksi1991",
+          "pointer": "/acquisition"
+        },
+        {
+          "source": "ksi1991",
+          "pointer": "/counted_objects"
+        },
+        {
+          "source": "ksi",
+          "pointer": "/field_function_relation/source_discriminator"
+        },
+        {
+          "source": "ksi1995",
+          "pointer": "/homolog_correspondence"
+        }
+      ],
+      "scope": "One source-specific qualitative enolization isotope discriminant; direct Xue1991 abstract evidence stays distinct from its later D40N mechanistic attribution, with no scalar comparison or matched-assay/construct transfer."
     }
   ],
   "evidence_context": {
@@ -11359,6 +11573,40 @@
         "source": "mr1995e317q_endpoints",
         "pointer": "/counted_objects"
       }
+    ],
+    "ksi_1991_isotope": [
+      {
+        "source": "ksi1991",
+        "pointer": "/question"
+      },
+      {
+        "source": "ksi1991",
+        "pointer": "/source"
+      },
+      {
+        "source": "ksi1991",
+        "pointer": "/source_interpretation"
+      },
+      {
+        "source": "ksi1991",
+        "pointer": "/separate_spectroscopic_context"
+      },
+      {
+        "source": "ksi1991",
+        "pointer": "/later_source_boundary"
+      },
+      {
+        "source": "ksi1991",
+        "pointer": "/limits"
+      },
+      {
+        "source": "ksi1991",
+        "pointer": "/acquisition"
+      },
+      {
+        "source": "ksi1991",
+        "pointer": "/counted_objects"
+      }
     ]
   },
   "source_witnesses": [
@@ -11985,6 +12233,21 @@
         }
       ],
       "retention": "Exact recovered archived web-tool-extracted PubMed abstract with original event provenance retained only in Git-common cache; not a raw HTTP response or a new source acquisition."
+    },
+    {
+      "id": "ksi1991-indexed-abstract",
+      "sha256": "fa4ea2a163d4acbe746d1b6e75a0c694589a8f738922051f30abe9c09e03e4c8",
+      "bytes": 5856,
+      "git_common_dir_relative_path": "catalytic-earth-runs/a21b043b-primary/xue1991-metadata.json",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1021%2Fbi00234a022&format=json&resultType=core",
+      "source_bindings": [
+        {
+          "source": "ksi1991",
+          "pointer": "/source"
+        }
+      ],
+      "redistributed": false,
+      "retention": "Previously acquired exact JSON response; newly inspected/projected truncated primary abstract, zero new requests or response bytes."
     }
   ],
   "parameter_contracts": {
@@ -12327,6 +12590,18 @@
         ]
       },
       "scope": "Source-reported qualitative enzyme inactivation at a specified reagent/intervention scope; not k_inact, inhibition affinity, turnover or a covalent mechanism."
+    },
+    "primary_kinetic_isotope_effect": {
+      "source_fields": [
+        "primary_kinetic_isotope_effect"
+      ],
+      "units": [],
+      "source_markers": {
+        "parameter": [
+          "primary_kinetic_isotope_effect"
+        ]
+      },
+      "scope": "Qualitative source-reported primary kinetic isotope effect at an explicitly identified reaction-stage and isotope-placement scope. No magnitude, normal/inverse direction or rate ratio is inferred."
     }
   },
   "reactions": {

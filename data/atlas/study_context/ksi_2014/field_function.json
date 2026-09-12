@@ -415,13 +415,14 @@
       "construct_id": "D40N",
       "source_locator": "SI23-24 / PDF30-31; main Asp40Asn paragraph",
       "source_interpretation": "Asp40Asn changes the base to solution hydroxide and makes reketonization strongly rate-limiting; the authors exclude it from their same-mechanism field-rate model.",
-      "interpretation_origin": "Fried2014 cites reference67; this run has not independently reviewed that underlying mechanistic study.",
+      "interpretation_origin": "Fried2014 cites reference67. The exact Xue1991 indexed primary abstract is now separately reviewed; its full body remains unacquired, and the hydroxide/reketonization premises are not established by that abstract.",
       "underlying_mechanistic_reference": {
         "reference": 67,
-        "inspection": "not_acquired",
+        "inspection": "exact_indexed_primary_abstract_reviewed_full_body_unacquired",
         "doi": "10.1021/bi00234a022",
         "source_title_mutant": "D38N",
-        "scope": "SI reference67 title uses D38N, whereas this spectroscopy construct is D40N. Exact homolog/numbering and construct transfer is unverified; source citation is not a direct D40N observation."
+        "scope": "The primary abstract explicitly names Pseudomonas testosteroni D38N, whereas the spectroscopy construct is D40N. Its isotope-specific enolization account is separately queryable; homolog correspondence does not establish assayed-construct identity or microscopic transfer.",
+        "abstract_assessment_path": "data/atlas/study_context/ksi_1991/isotope_discriminant.json"
       },
       "measured_probe_change_scope": "Natural-abundance carbonyl frequency differs by6.1cm^-1 from the printed WT and D40N means; main text rounds to6. No equivalence or unchanged-field claim. Central-value subtraction only; no propagated uncertainty or significance.",
       "turnover_scope": "TableS2 compiles positive kcat0.018s^-1 forD40N versus24300s^-1 forWT; original assay matching remains unresolved.",

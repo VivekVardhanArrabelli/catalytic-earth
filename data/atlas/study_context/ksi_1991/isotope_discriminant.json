@@ -1,0 +1,198 @@
+{
+  "schema_version": "catalytic-earth.source-qualification.v1",
+  "assessment_id": "xue1991-d38n-enolization-isotope-discriminant",
+  "study_id": "ksi_1991",
+  "operation": "source_annotation",
+  "question": "What does the retained Xue1991 abstract support about D38N C4 isotope-sensitive enolization and loss of stereospecific proton removal?",
+  "source": {
+    "source_id": "Xue1991:abstract",
+    "title": "Catalytic mechanism of an active-site mutant (D38N) of delta 5-3-ketosteroid isomerase. Direct spectroscopic evidence for dienol intermediates.",
+    "authors": "Xue LA, Kuliopulos A, Mildvan AS, Talalay P.",
+    "journal": "Biochemistry 30(20):4991-4997 (1991)",
+    "pmid": "2036366",
+    "doi": "10.1021/bi00234a022",
+    "source_url": "https://pubmed.ncbi.nlm.nih.gov/2036366/",
+    "witness_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1021%2Fbi00234a022&format=json&resultType=core",
+    "sha256": "fa4ea2a163d4acbe746d1b6e75a0c694589a8f738922051f30abe9c09e03e4c8",
+    "response_body_bytes": 5856,
+    "git_common_dir_relative_path": "catalytic-earth-runs/a21b043b-primary/xue1991-metadata.json",
+    "abstract_pointer": "/resultList/result/0/abstractText",
+    "identity_pointer": "/resultList/result/0",
+    "abstract_scope": "indexed_primary_abstract_truncated_at_250_words",
+    "primary_body_inspected": false,
+    "acquisition_receipt_path": "data/atlas/study_context/ksi_1995/acquisition_receipts.json",
+    "request_id": 16,
+    "witness_representation": "exact_retained_Europe_PMC_JSON_response",
+    "source_body_redistributed": false
+  },
+  "constructs": [
+    {
+      "construct_id": "WT",
+      "source_organism": "Pseudomonas testosteroni",
+      "perturbation": [],
+      "comparison_background": "WT",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source_named_only_exact_assay_sequence_unavailable"
+    },
+    {
+      "construct_id": "D38N",
+      "source_organism": "Pseudomonas testosteroni",
+      "perturbation": [
+        "D38N"
+      ],
+      "comparison_background": "WT",
+      "sequence": null,
+      "sequence_sha256": null,
+      "sequence_status": "source_named_only_exact_assay_sequence_unavailable"
+    }
+  ],
+  "chemical_context": {
+    "chemical_id": "ksi_1991:C4-deuterated-androstenedione-series",
+    "parent_substrate_name": "androst-5-ene-3,17-dione",
+    "isotope_label_classes": [
+      {
+        "deuterium_replaces": [
+          "4alpha-proton"
+        ]
+      },
+      {
+        "deuterium_replaces": [
+          "4beta-proton"
+        ]
+      },
+      {
+        "deuterium_replaces": [
+          "4alpha-proton",
+          "4beta-proton"
+        ]
+      }
+    ],
+    "assertion_scope": "one_aggregate_source_assertion_covering_each_label_class",
+    "isotope_enrichment": null,
+    "complete_atom_map": null,
+    "absolute_configuration_assignment": null,
+    "scope": "Source steroid-face alpha/beta labels are retained as isotope-placement descriptions. The three label classes are not a mixture, three independent replicates, new R/S assignments or three quantified isotope assays."
+  },
+  "assays": [
+    {
+      "assay_id": "abstract-enolization-isotope-effects",
+      "endpoint": "Primary substrate kinetic isotope effects on D38N enolization across the source C4-deuteration series",
+      "method": null,
+      "conditions": null,
+      "physical_preparation": null,
+      "source_endpoint_assessed": true,
+      "source_assay_protocol_assessed": false,
+      "qualified_for_new_arithmetic": false,
+      "scope": "A source endpoint wrapper, not a reconstructed common protocol for the three isotope-label classes."
+    }
+  ],
+  "observations": [
+    {
+      "row_id": "D38N:C4-deuteration-series",
+      "construct_id": "D38N",
+      "assay_id": "abstract-enolization-isotope-effects",
+      "substrate_id": "ksi_1991:C4-deuterated-androstenedione-series",
+      "source_locator": "PMID2036366 indexed abstract, sentence describing primary isotope effects with C4alpha, C4beta or both hydrogens replaced by deuterium",
+      "assertion_scope": "one_aggregate_source_assertion",
+      "primary_kinetic_isotope_effect": {
+        "parameter": "primary_kinetic_isotope_effect",
+        "result_kind": "qualitative",
+        "value": null,
+        "unit": null,
+        "source_token": "primary kinetic isotope effects",
+        "scope": "The authors report primary isotope effects on D38N enolization for each of the three source-described C4-deuterium label classes; no magnitudes, numeric comparisons or normal/inverse direction are given.",
+        "measurement_stage": "enolization",
+        "isotope_label_classes": [
+          {
+            "deuterium_replaces": [
+              "4alpha-proton"
+            ]
+          },
+          {
+            "deuterium_replaces": [
+              "4beta-proton"
+            ]
+          },
+          {
+            "deuterium_replaces": [
+              "4alpha-proton",
+              "4beta-proton"
+            ]
+          }
+        ],
+        "uncertainty": null,
+        "uncertainty_kind": "not_reported"
+      }
+    }
+  ],
+  "source_interpretation": {
+    "source_discriminant_assessed": true,
+    "arithmetic_requested": false,
+    "stereospecificity": "The authors describe D38N enolization as losing the WT selectivity for removal of the C4 beta hydrogen.",
+    "step_coupling": "The authors interpret isotope effects from deuterated substrate, solvent, and substrate-plus-solvent experiments as separating carbonyl-oxygen protonation from C4 proton removal in D38N.",
+    "coupling_evidence_scope": "A source mechanistic interpretation of the broader isotope experiments, not a conclusion independently derived from the single projected C4-label assertion.",
+    "WT_context": "The abstract describes WT transfer from the C4 beta position to C6 beta and concerted enolization. No separate WT isotope-effect values or matched control rows are projected.",
+    "quantitative_stereoselectivity": null,
+    "source_scope_only": true,
+    "same_concerted_enolization_as_WT": false
+  },
+  "separate_spectroscopic_context": {
+    "evidence_kind": "distinct_source_reported_spectroscopic_assertion",
+    "reported_species": [
+      "enzyme-bound dienol",
+      "enzyme-bound dienolate"
+    ],
+    "reported_progression": "The abstract describes formation of both intermediates followed by substantially slower conversion to the unsaturated product.",
+    "source_named_product": "androst-4-ene-3,17-dione",
+    "method_details": null,
+    "concentrations": null,
+    "populations": null,
+    "rate_constants": null,
+    "covalency_established": false,
+    "rate_limiting_reketonization_established": false,
+    "included_in_projected_KIE_observation": false
+  },
+  "later_source_boundary": {
+    "later_source": "Fried2014 SI reference67",
+    "same_cited_doi": "10.1021/bi00234a022",
+    "direct_primary_abstract_support": "D38N isotope-sensitive enolization and source-interpreted loss of stereospecificity/nonconcerted proton transfers.",
+    "later_interpretation_not_verified_here": "Solution hydroxide as base and strongly rate-limiting reketonization remain Fried2014 attribution, not established by the inspected Xue abstract.",
+    "homolog_correspondence_scope": "KimChoi1995 relates P. putida Asp40/Tyr16 to C. testosteroni Asp38/Tyr14. Homolog residue correspondence does not identify the assayed constructs or transfer the D38N microscopic result to D40N.",
+    "D38N_to_D40N_transfer_established": false,
+    "exact_reference_site_id": null,
+    "change_from_previous_boundary": "The exact primary abstract is now reviewed; the full primary body remains unacquired. This does not reopen the failed body-acquisition routes or change the source field-rate exclusion."
+  },
+  "limits": [
+    "Only the exact indexed primary abstract, explicitly truncated at 250 words, is reviewed. The primary article body and full Methods remain unacquired.",
+    "One aggregate qualitative assertion covers three source-described isotope-label classes. No separate numerical isotope-effect records, rate ratios, magnitudes, direction of the isotope effect, errors, replicates, isotope purity or assay conditions are supplied.",
+    "The endpoint is mutant enolization, not kcat, overall product formation or an elementary rate constant. No quantitative alpha/beta preference, equivalent abstraction rates or branching fractions follow.",
+    "WT stereospecific-transfer and concerted-enolization prose is source mechanistic context, not a newly reconstructed matched WT isotope assay. The nonconcertedness interpretation uses the source-described substrate and solvent isotope experiments together, not the C4 isotope assertion alone.",
+    "Source-named Pseudomonas testosteroni D38N is not Pseudomonas putida D40N. Exact sequence, physical specimen, reference-site mapping and microscopic mechanism transfer are unestablished.",
+    "The spectroscopic dienol/dienolate account remains a separate source assertion without assigned concentrations, populations, pKa, covalent attachment or deposited structure. Neither solution hydroxide as base nor strongly rate-limiting reketonization is established by this abstract.",
+    "No new experiment, independently reviewed mechanism, protected protein admission, canonical reaction, design rule or design-performance claim."
+  ],
+  "acquisition": {
+    "new_requests": 0,
+    "new_response_body_bytes": 0,
+    "new_acquired_witnesses": 0,
+    "existing_witness_newly_projected": 1,
+    "batch_id": "ketosteroid-isomerase-electric-field-fried2014",
+    "latest_ledger": "data/atlas/study_context/ksi_2010/acquisition_receipts.json",
+    "cumulative_request_count": 26,
+    "cumulative_response_body_bytes": 5739717,
+    "remaining_requests": 74,
+    "remaining_response_body_bytes": 25717563,
+    "no_batch_reset_or_rename": true
+  },
+  "counted_objects": {
+    "new_aggregate_source_assertion_records": 1,
+    "isotope_label_classes_in_assertion": 3,
+    "quantified_isotope_effects": 0,
+    "matched_WT_isotope_control_rows": 0,
+    "project_experiments": 0,
+    "protein_admissions": 0,
+    "new_canonical_net_reactions": 0
+  },
+  "excluded_scope": "Do not newly project the approximate million-fold activity-loss statement or create a microscopic reaction model, kinetic fit or source-body reconstruction."
+}
