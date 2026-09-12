@@ -1,5 +1,11 @@
 # Current Decisions
 
+## 2026-09-12: compose reference identity with primary outcomes
+
+Accept the [data-declared E317Q join](ATLAS_MECHANISM_EVIDENCE.md#one-reference-site-query-retrieves-the-primary-outcomes) at reference-site and source-named variant/study scope. The existing repository perturbation query gains an optional reference-site selection; the wheel's original query remains unchanged. Reconstruct both reviewed evidence planes, require explicit identity and exact outcome membership, and reject grouped substitutions, disconnected primary wrappers, study/construct mismatches and arithmetic contexts. No new observation or scientific claim is introduced.
+
+The bounded integration question is complete once the single source-supported answer verifies. Do not add more adjacent abstract annotations or equate reference correspondence with a catalytic atom, exact assayed sequence, matched preparation or mechanism validation. Reuse is now demonstrated as one executable composition, with manual applicability decisions and no measured time saving. The marked handoff selects the next consequential question after source and diff review.
+
 ## 2026-09-12: preserve E317Q chemical interventions without rate equivalence
 
 Accept the [chemical-endpoint relation](ATLAS_MECHANISM_EVIDENCE.md#e317q-has-distinct-chemical-responses-across-endpoints) as an extension of CE-048. Use one source-aggregate either-enantiomer nondetection assertion and one racemate-level irreversible-inactivation assertion, with explicit qualitative WT comparisons. Co-retrieve the two existing factors without changing them or joining their assays. Shared reaction-detection and enzyme-inactivation parameter declarations reuse existing result kinds and no-arithmetic context; case chemistry stays in data.

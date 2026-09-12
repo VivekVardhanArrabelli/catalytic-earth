@@ -1,0 +1,69 @@
+{
+  "schema_version": "catalytic-earth.reference-outcome-review.v1",
+  "status": "source_reviewed_computational",
+  "base_commit": "bae49c34bd41dadd0c62bf13d59ad38c4e9d3df3",
+  "scope": "One reviewed reference-site, single-substitution, exact cited study association to four unchanged existing outcomes; no selected-step role, deposited atom, physical assay sequence/preparation, matched assay or new arithmetic.",
+  "independent_human_validation": false,
+  "experimental_validation": false,
+  "reviewed_bindings": {
+    "data/atlas/reference_outcomes/spec.json": "eff87dafe146318f3ec20b0bb7fcc8f23021ce5538aac1be4ed24c6f1695f23b",
+    "src/catalytic_earth/atlas_reference_outcomes.py": "99c98f6b83dc12fe92287c4a9f6db287ece96f72886a0a9dc5a553126c59b8bb",
+    "scripts/query_atlas_perturbations.py": "0cd9ef82f86e79b38578d68a6880902fd9106991476d19d93f12c93cae560f23",
+    "tests/core/test_atlas_reference_outcomes.py": "ab041eac98f34ef02d07826e3d3c55aaf7e4c35061b1732b3cd36c3c08fe177e",
+    "docs/ATLAS_MECHANISM_EVIDENCE.md": "a0c98d934c97300a245bc8841ce8e11505f82826a8cc7c0201aa1c3af5571304",
+    "docs/CURRENT_STATE.md": "c390d3c36e9f41efe2e0b57dde683142e87dd1d33a2fd738cdc59a4f79805a0b",
+    "docs/CURRENT_DECISIONS.md": "32d668821151c2fa99df457c7022f4431ae3d68a1b6ac8c7cf71a316d5133593",
+    "data/atlas/perturbations/projection.json": "1c58f84dc34d78926e01794dfd3e5a32e741f0a9a5ddda4b9e864442aa158a63",
+    "src/catalytic_earth/atlas_perturbations.py": "70bb5c5e92cb10b795cd7e0dc3422b42d5217b04274d9e949ad5af93a9b05a5d"
+  },
+  "review_process": [
+    {
+      "task": "source_check",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_after_final_source_code_and_public_query_review"
+    },
+    {
+      "task": "representation_check",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_after_final_source_code_and_public_query_review"
+    },
+    {
+      "task": "adversarial_check",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_after_final_source_code_and_public_query_review"
+    }
+  ],
+  "resolved_objections": [
+    "Bind the primary citation object and secondary wrapper through the same source pointer and source hash.",
+    "Require a single exact alternative residue and source-named construct perturbation.",
+    "Declare exact identity and outcome membership; use one existing no-arithmetic chemical context.",
+    "Public wrapper obtains the reviewed perturbation view itself; no caller-authored result graph.",
+    "Retain empty original focal evidence and unresolved selected-step mapping beside the reference-record join.",
+    "Return unchanged outcome/context projections; no repeated canonical observations.",
+    "Unknown site filters mean no declared reviewed join, not absent function.",
+    "Source-named construct ID is explicitly declared separately from the derived substitution."
+  ],
+  "acquisition": {
+    "new_scientific_requests": 0,
+    "new_response_body_bytes": 0,
+    "new_source_witnesses": 0,
+    "existing_batch_allowance_reset": false
+  },
+  "reuse_limits": "One integrated curated relation. Source applicability remains manual; no measured curation-time saving or cross-enzyme generalization.",
+  "coordination_record": ".git/catalytic-earth-runs/26407592.board.md",
+  "reviewed_at_utc": "2026-09-12T04:33:50.880268+00:00",
+  "verification": {
+    "focused_new_tests": 11,
+    "combined_relevant_tests": 118,
+    "core_tests": 672,
+    "primary_witness_files": 1,
+    "primary_witness_bytes": 4770,
+    "default_projection_observations_unchanged": 253,
+    "default_projection_comparisons_unchanged": 132,
+    "fragment_package_changed_only_in_review_metadata": true,
+    "atlas3_atlas10_fresh_directory_wheel_checks": "passed; source draft and candidate queries ran with network connections blocked"
+  }
+}

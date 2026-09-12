@@ -1,5 +1,11 @@
 # Current State
 
+## 2026-09-12: reference-site query composes existing E317Q outcomes
+
+The [integrated repository query](ATLAS_MECHANISM_EVIDENCE.md#one-reference-site-query-retrieves-the-primary-outcomes) now joins the reviewed source fragment and P11444:E317 reference feature 9 (E317Q) and citation to all four existing CE-048 primary outcomes. Exact reference identity, study, source-named construct perturbation and source-wrapper correspondence are checked by one shared consumer; selectors and source pointers live in data. The original fragment's selected-step E317 mapping and focal-observation match stay unresolved/empty, while the separate reference-record join succeeds.
+
+This closes the direction review's documented integration gap for one curated relation. No canonical observations, comparisons, source chemistry, frozen records, protected registries or exposure state change. No new acquisition or arithmetic, matched assay, physical construct/atom identity, independent review or design validation follows. Scientific interpretation and selection remain manual; broader reuse and measured curation savings remain unestablished. The older entries below record the sequence of earlier capabilities and limits.
+
 ## 2026-09-12: E317Q chemical responses remain endpoint-specific
 
 The [same-source endpoint context](ATLAS_MECHANISM_EVIDENCE.md#e317q-has-distinct-chemical-responses-across-endpoints) now retrieves two unchanged mandelate kcat factors beside one either-enantiomer p-(bromomethyl)mandelate bromide-elimination nondetection assertion and one racemic alpha-phenylglycidate irreversible-inactivation assertion. The source explicitly contrasts elimination with WT and qualitatively describes the inactivation rate as comparable to WT. Separate reagent identities, stereochemical scopes and endpoint wrappers survive the shared query; no runtime change was needed.
