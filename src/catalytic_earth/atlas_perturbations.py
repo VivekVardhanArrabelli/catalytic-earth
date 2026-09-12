@@ -788,6 +788,30 @@ def _model_link(context, link, constructs, rows, assays, source_bindings, resolv
                 {"provider": endpoint["provider"], "pointer": endpoint["observation_pointer"]})}
             if resolved["source_observation"] != original:
                 raise ValueError("model state observation differs from original observation")
+            state_assay_contract = ("assay_binding" in state or "assay_pointer" in endpoint)
+            if state_assay_contract:
+                if "assay_binding" not in state or "assay_pointer" not in endpoint:
+                    raise ValueError("model state observation and state require matching assay bindings")
+                assay_ref = ref({"provider": endpoint["provider"],
+                                 "pointer": endpoint["assay_pointer"]})
+                if ref(state["assay_binding"]) != assay_ref:
+                    raise ValueError("model state observation assay differs from its state")
+                incident = [transition for transition in transitions.values()
+                            if endpoint["state_id"] in
+                            {transition["from_state"], transition["to_state"]}]
+                if (not incident or any("assay_binding" not in transition
+                                        or ref(transition["assay_binding"]) != assay_ref
+                                        for transition in incident)):
+                    raise ValueError("model state observation assay differs from an incident transition")
+                source_assay = resolve(assay_ref)
+                if (not isinstance(source_assay, dict)
+                        or not isinstance(source_assay.get("assay_id"), str)
+                        or not source_assay["assay_id"].strip()):
+                    raise ValueError("model state observation requires a source assay identity")
+                if (isinstance(original, dict) and "assay_id" in original
+                        and original["assay_id"] != source_assay["assay_id"]):
+                    raise ValueError("model state observation source assay identity differs")
+                resolved["assay"] = source_assay
         row_id = endpoint["observation_id"]
         if row_id is not None:
             parameter_ref = ref(endpoint["projected_parameter"])
@@ -797,10 +821,18 @@ def _model_link(context, link, constructs, rows, assays, source_bindings, resolv
                 raise ValueError("model parameter differs from its projected observation")
             if endpoint["kind"] in {"transition_parameter", "fit_parameter"} and assay_ref != assays[rows[row_id]["assay_id"]]["provider"]:
                 raise ValueError("model assay differs from the existing parameter observation")
+            if endpoint["kind"] == "state_observation" and state_assay_contract:
+                projected_assay = assays[rows[row_id]["assay_id"]]
+                if assay_ref != projected_assay["provider"]:
+                    raise ValueError("model state observation assay differs from the projected observation")
+                if source_assay["assay_id"] != projected_assay["source_assay_id"]:
+                    raise ValueError("model state observation assay identity differs from its projection")
             target = (transitions[endpoint["transition_id"]] if "transition_id" in endpoint
                       else fits[endpoint["fit_id"]] if "fit_id" in endpoint else states[endpoint["state_id"]])
             if ligands and target[branch_key] != rows[row_id]["substrate_id"]:
                 raise ValueError("model ligand differs from the existing observation")
+        elif endpoint["kind"] == "state_observation" and state_assay_contract:
+            raise ValueError("model state observation assay requires an existing projected observation")
         resolved_endpoints.append({**deepcopy(endpoint), **resolved})
     bound_slots = {(key, direction, slot["binding"]["provider"], slot["binding"]["pointer"])
                    for key, transition in transitions.items()

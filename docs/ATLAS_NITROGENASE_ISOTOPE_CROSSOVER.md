@@ -54,7 +54,8 @@ bounds, photolysis rates and thermodynamic estimates are outside this relation.
 This adds primary WT state/isotope information absent from M0212's coarse
 source pathway. It does not establish a source-step, accession, assayed-sequence
 or 1N2C correspondence, and it changes no M0212 chemistry. Figure 8B photolysis
-and Figure 9 cryoannealing have different interventions and are not imported.
+and Figure 9 cryoannealing have different interventions and are not imported
+into the isotope relation.
 
 The existing `system_assessment` operation resolves source rows, assay and
 assessed evidence. A shared paired-context check now requires the row's test
@@ -74,3 +75,51 @@ remain unchanged. Article bodies stay in the Git-common source cache; the
 repository contains factual paraphrases and provenance. This repository query
 is not added to the installed wheel or promoted to independent review,
 experimental admission or design validation.
+
+## Cryoannealing links source-assigned states without assigning elementary rates
+
+The same manuscript reports following EPR signals from four assigned states
+during relaxation of a frozen WT sample. P34–P35 interpret loss of E4(2N2H)
+as kinetically coupled to formation of E4(4H), the Janus state, in the
+oxidative-addition direction of the proposed reversible activation equilibrium.
+The source also describes onward relaxation through E2 to E0. Formation in
+that model does not establish a net rise in the Janus signal.
+
+```sh
+python scripts/query_atlas_perturbations.py --model-link nitrogenase_2016:WT:cryoannealing_state_coupling --verify-witnesses
+```
+
+This existing model query returns two qualitative state-specific views of one
+reported cryoannealing experiment, one source-assigned coupling, and the
+previously reviewed WT hydride-state assignment. Both directional rate slots
+remain unassigned. The [primary projection](../data/atlas/study_context/nitrogenase_2016/cryoannealing_evidence.json)
+and [model relation](../data/atlas/study_context/nitrogenase_2016/model_context.json)
+keep the measured signal, assigned chemical state and mechanistic
+interpretation separate.
+
+| Evidence layer | Supported scope |
+| --- | --- |
+| Primary experimental report | EPR time courses for the assigned E4(2N2H) and E4(4H) states were monitored during cryoannealing. No raw series or net Janus rise is projected. |
+| Source interpretation | Nitrogenous-state loss and Janus formation are kinetically coupled; this is the authors' interpretation, not a directly measured bond event. |
+| Conditions | Figure 9 describes WT low N2 pressure, approximately 0.05 atm, turnover in H2O followed by frozen-solid annealing at −50 °C. These are distinct from the stirred 0.1 atm isotope experiments. |
+| Quantitation | The source scales E4 intensities to concentrations using its three-step model. This does not provide independent populations with which to validate that model. |
+
+The retained Figure 9 caption reports stretched/distributed decay fitting;
+its time constants are not elementary rate constants. The actual Figure 9
+and Chart 3 images, raw points and original fitting procedures have not been
+inspected here. No curve shape, time-constant-to-arrow mapping, fit, rate ratio
+or population balance is reconstructed. The selected edge is not a closed
+two-state system: onward relaxation and EPR-silent populations remain outside
+its two projected endpoints. The 12 K setting applies to the referenced Janus
+EPR readout, not annealing or turnover, and the other states use separately
+cited readout protocols.
+
+The shared consumer binds each declared state observation to its source assay
+and incident transition. This prevents transferring a time course to another
+experimental phase while retaining the existing observation/model machinery.
+Case-specific chemistry remains in data. Source interpretation and applicability
+still require manual review; no curation-time saving or autonomous inference
+is measured. This is a modest extension of CE-050, not a complete nitrogenase
+mechanism, direct H2 uptake/N2 release measurement, exact cluster geometry,
+independent review or design result. It consumes no new source requests;
+the existing study batch remains at three requests and 136,555 bytes.

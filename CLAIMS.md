@@ -825,7 +825,7 @@ it in the same study. No corrected bond edit, experimental atom map, charge,
 redox or catalytic state, 1N2C assembly transfer, full mechanism, independent
 project review, project experiment or design performance is established.
 
-## CE-050 — nitrogenase bridge isotope and solvent remain distinguishable
+## CE-050 — nitrogenase bridge isotopes and cryoannealing state coupling
 
 **Status:** Supported
 
@@ -844,3 +844,16 @@ feature breadth. No numerical exchange rate, isotope fraction, exact Fe/S
 geometry, N2-free control, direct N2 release, M0212/1N2C step correspondence,
 full mechanism, project experiment, independent review or design validation
 is established.
+
+The same primary paper's P34–P35 and Figure9 caption support a separate
+[cryoannealing relation](docs/ATLAS_NITROGENASE_ISOTOPE_CROSSOVER.md#cryoannealing-links-source-assigned-states-without-assigning-elementary-rates):
+EPR time courses for assigned E4(2N2H) and E4(4H) states were monitored during
+−50 °C frozen-solid relaxation of WT low-N2/H2O turnover samples. The query
+binds those two qualitative endpoints to the authors' interpretation of
+kinetically coupled nitrogenous-state loss and Janus-state formation. It does
+not establish a net Janus signal rise, raw concentration series, closed
+two-state system, direct gas uptake/release or elementary event. Source E4
+concentrations depend on scaling with the sequential model; distributed decay
+parameters do not become directional rates. Both rate slots remain unassigned.
+Figure images, raw data and per-arrow fit mapping remain uninspected, and
+isotope-turnover conditions are not transferred to the cryoannealing assay.

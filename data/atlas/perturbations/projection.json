@@ -216,6 +216,14 @@
     "nitrogenase2016assessment": {
       "path": "data/atlas/study_context/nitrogenase_2016/system_assessment.json",
       "sha256": "80c69b4dcd2a2c0c4e64dedb7d061bac852931530399296f2bdcbeabfeebbfbf"
+    },
+    "nitrogenase2016cryo": {
+      "path": "data/atlas/study_context/nitrogenase_2016/cryoannealing_evidence.json",
+      "sha256": "794b3672e1cbc18a4e1bdf53e4c826bdb71d49ab7d671d4a1d080be9f3fad512"
+    },
+    "nitrogenase2016model": {
+      "path": "data/atlas/study_context/nitrogenase_2016/model_context.json",
+      "sha256": "349a15522a022ec5a60166622d2205f7bf94a53054dd0905561bcf35eea61b7a"
     }
   },
   "constructs": {
@@ -2208,6 +2216,20 @@
         "source": "ksi1991",
         "pointer": "/constructs/1/comparison_background"
       }
+    },
+    "nitrogenase_2016:WT": {
+      "source_construct_id": "WT MoFe protein",
+      "provider": {
+        "source": "nitrogenase2016cryo",
+        "pointer": "/constructs/0"
+      },
+      "sequence_provider": {
+        "source": "nitrogenase2016cryo",
+        "pointer": "/constructs/0"
+      },
+      "background_id": "nitrogenase_2016:WT",
+      "perturbation": [],
+      "identity_scope": "Source-named WT A. vinelandii MoFe protein. No exact assayed sequence or shared specimen with the separate isotope experiment is established."
     }
   },
   "assays": {
@@ -2827,6 +2849,19 @@
       "reaction_direction": null,
       "uncertainty_context": "Indexed abstract gives no isotope-effect magnitude, direction, uncertainty, conditions or matched control protocol.",
       "qualification_scope": "Source endpoint assessed; unqualified for arithmetic or common isotope-assay reconstruction."
+    },
+    "nitrogenase_2016:WT-lowN2-H2O-cryoannealing": {
+      "source_assay_id": "WT-lowN2-H2O-cryoannealing",
+      "provider": {
+        "source": "nitrogenase2016cryo",
+        "pointer": "/assays/0"
+      },
+      "qualified": false,
+      "source_endpoint_assessed": true,
+      "endpoint_kind": "state_resolved_EPR_time_course_during_cryoannealing",
+      "reaction_direction": null,
+      "uncertainty_context": "No raw amplitude series, state-specific error bars or biological replicate counts are projected. The E4 concentration scaling depends on the source sequential fit.",
+      "qualification_scope": "Qualitative shared cryoannealing context, not qualified for new arithmetic, a microscopic rate, absolute population or uniform EPR readout protocol."
     }
   },
   "substrates": {
@@ -3419,6 +3454,16 @@
         "source": "ksi1991",
         "pointer": "/chemical_context"
       }
+    },
+    "nitrogenase_2016:WT-lowN2-H2O-frozen-mixture": {
+      "name": "WT low-N2 turnover mixture in H2O after freezing",
+      "role": "source_experimental_mixture_context",
+      "source": {
+        "source": "nitrogenase2016cryo",
+        "pointer": "/assays/0"
+      },
+      "exact_reactant_molecule": null,
+      "scope": "Experimental mixture identity only; no fixed ligand, complete chemical inventory, gas concentration or balanced reaction is inferred."
     }
   },
   "panels": [
@@ -6468,6 +6513,63 @@
             },
             "isotope_label_classes": {
               "pointer": "/isotope_label_classes"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "nitrogenase2016-cryoannealing",
+      "study_id": "nitrogenase_2016",
+      "source": "nitrogenase2016cryo",
+      "rows_pointer": "/observations",
+      "fields": {
+        "row_id": {
+          "pointer": "/row_id"
+        },
+        "construct_id": {
+          "pointer": "/construct_id"
+        },
+        "assay_id": {
+          "pointer": "/assay_id"
+        },
+        "substrate_id": {
+          "pointer": "/substrate_id"
+        },
+        "source_locator": {
+          "pointer": "/source_locator"
+        }
+      },
+      "parameters": [
+        {
+          "id": "state_time_course",
+          "pointer": "/state_time_course",
+          "kind": {
+            "pointer": "/result_kind"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/uncertainty"
+            },
+            "kind": {
+              "pointer": "/uncertainty_kind"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            }
+          },
+          "qualitative_result": {
+            "source_token": {
+              "pointer": "/source_token"
+            },
+            "scope": {
+              "pointer": "/scope"
             }
           }
         }
@@ -12295,6 +12397,10 @@
         {
           "source": "nitrogenase2016",
           "pointer": "/source/witness"
+        },
+        {
+          "source": "nitrogenase2016cryo",
+          "pointer": "/source/witness"
         }
       ],
       "retention": "Raw main-manuscript XML retained only under Git common directory, never bundled; project packet contains reviewed factual paraphrases and exact locators."
@@ -12652,6 +12758,18 @@
         ]
       },
       "scope": "Qualitative source-reported primary kinetic isotope effect at an explicitly identified reaction-stage and isotope-placement scope. No magnitude, normal/inverse direction or rate ratio is inferred."
+    },
+    "state_time_course": {
+      "source_fields": [
+        "state_time_course"
+      ],
+      "units": [],
+      "source_markers": {
+        "parameter": [
+          "state_time_course"
+        ]
+      },
+      "scope": "Source-reported monitoring of a spectroscopically assigned state over an experimental time course. Qualitative records do not assert a net direction, concentration, rate or kinetic law."
     }
   },
   "reactions": {
@@ -12875,6 +12993,19 @@
         "ahas2005-net:Met250Ala:Pyr+Pyr:stage3:forward_net_rate",
         "ahas2005-net:Met250Ala:Pyr+Pyr:stage4:forward_net_rate",
         "ahas2005-net:Met250Ala:Pyr+Pyr:stage5:forward_net_rate"
+      ]
+    },
+    {
+      "id": "nitrogenase_2016:WT:cryoannealing_state_coupling",
+      "study_id": "nitrogenase_2016",
+      "construct_id": "nitrogenase_2016:WT",
+      "context_provider": {
+        "source": "nitrogenase2016model",
+        "pointer": ""
+      },
+      "observation_ids": [
+        "nitrogenase2016-cryoannealing:E4_2N2H:state_time_course",
+        "nitrogenase2016-cryoannealing:E4_4H:state_time_course"
       ]
     }
   ],

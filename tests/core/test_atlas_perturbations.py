@@ -104,6 +104,72 @@ class NitrogenaseIsotopeCrossoverTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, "paired system"):
                     control_relation(context, resolve)
 
+    def cryoannealing_model_fixture(self):
+        spec = json.loads((ROOT / SPEC_PATH).read_text(encoding="utf-8"))
+        view = _project_candidate(ROOT, spec)
+        sources = {key: json.loads((ROOT / binding["path"]).read_text(encoding="utf-8"))
+                   for key, binding in spec["sources"].items()}
+        link = deepcopy(next(item for item in spec["model_links"] if item["id"] ==
+                             "nitrogenase_2016:WT:cryoannealing_state_coupling"))
+        context = deepcopy(sources[link["context_provider"]["source"]])
+        rows = {row["id"]: row for row in view["observations"]}
+
+        def relation(changed_context=context, changed_sources=sources, changed_assays=None):
+            return _model_link(
+                changed_context, link, view["constructs"], rows,
+                view["assays"] if changed_assays is None else changed_assays,
+                spec["sources"],
+                lambda ref: pointer(changed_sources[ref["source"]], ref["pointer"]),
+            )
+
+        return relation, context, sources, view
+
+    def test_cryoannealing_state_observations_share_the_transition_assay(self):
+        relation, _, _, view = self.cryoannealing_model_fixture()
+        result = relation()
+        self.assertEqual(result["fit_models"], [])
+        self.assertEqual(len(result["endpoints"]), 2)
+        self.assertEqual({endpoint["assay"]["assay_id"] for endpoint in result["endpoints"]},
+                         {"WT-lowN2-H2O-cryoannealing"})
+        transition, = result["transitions"]
+        self.assertEqual(transition["resolved_parameters"], {"forward": None, "reverse": None})
+        self.assertFalse(transition["missing_parameter_is_zero"])
+        self.assertFalse(transition["net_Janus_trace_increase_established"])
+
+        legacy = next(item for item in view["model_links"]
+                      if item["id"] == "tkt_2019:E160Q:F6P_transitions")
+        legacy_state_endpoint = next(item for item in legacy["endpoints"]
+                                     if item["kind"] == "state_observation")
+        self.assertNotIn("assay", legacy_state_endpoint)
+
+    def test_cryoannealing_state_assay_contract_rejects_repinning(self):
+        relation, context, sources, view = self.cryoannealing_model_fixture()
+
+        changed = deepcopy(context)
+        changed["source_model"]["states"][0]["assay_binding"] = {
+            "provider": "prior_state_qualification", "pointer": "/assays/0"}
+        with self.assertRaisesRegex(ValueError, "assay differs from its state"):
+            relation(changed)
+
+        changed_sources = deepcopy(sources)
+        cryo = changed_sources["nitrogenase2016cryo"]
+        cryo["observations"][0]["assay_id"] = "WT-Figure8A-EPR"
+        with self.assertRaisesRegex(ValueError, "source assay identity differs"):
+            relation(deepcopy(context), changed_sources)
+
+        changed_sources = deepcopy(sources)
+        cryo = changed_sources["nitrogenase2016cryo"]
+        cryo["assays"].append(deepcopy(changed_sources["nitrogenase2016"]["assays"][0]))
+        for state in changed["source_model"]["states"]:
+            state["assay_binding"] = {"provider": "cryoannealing", "pointer": "/assays/1"}
+        changed["source_model"]["transitions"][0]["assay_binding"] = {
+            "provider": "cryoannealing", "pointer": "/assays/1"}
+        for endpoint, observation in zip(changed["endpoint_relations"], cryo["observations"]):
+            endpoint["assay_pointer"] = "/assays/1"
+            observation["assay_id"] = "WT-Figure8A-EPR"
+        with self.assertRaisesRegex(ValueError, "projected observation"):
+            relation(changed, changed_sources, deepcopy(view["assays"]))
+
 
 class KsiIsotopeDiscriminantTests(unittest.TestCase):
     def test_aggregate_enolization_isotope_evidence_cannot_become_d40n_turnover(self):
@@ -954,6 +1020,176 @@ class PerturbationRelationTests(unittest.TestCase):
             context = deepcopy(sources[link["context_provider"]["source"]])
         return _model_link(context, link, self.view["constructs"], self.rows, self.view["assays"],
                            self.spec["sources"], lambda ref: pointer(sources[ref["source"]], ref["pointer"]))
+
+    def state_assay_fixture(self):
+        binding = {"path": "fixture.json", "sha256": "0" * 64}
+        source = {
+            "study": {"doi": "10.example/state-assay"},
+            "construct": "WT",
+            "assays": [
+                {"assay_id": "cryoannealing"},
+                {"assay_id": "isotope-crossover"},
+            ],
+            "observations": [
+                {"observation_id": "trace-from", "assay_id": "cryoannealing"},
+                {"observation_id": "trace-to", "assay_id": "cryoannealing"},
+            ],
+            "rows": [
+                {"measurement": {"parameter": "EPR_time_course", "status": "qualitative"}},
+                {"measurement": {"parameter": "EPR_time_course", "status": "qualitative"}},
+            ],
+        }
+        local_assay = {"provider": "evidence", "pointer": "/assays/0"}
+        context = {
+            "schema_version": "catalytic-earth.source-model-context.v1",
+            "study": {
+                "doi": "10.example/state-assay",
+                "reported_enzyme": "source enzyme",
+                "reported_variant": "WT",
+            },
+            "source_bindings": {"evidence": binding},
+            "identity_bindings": [
+                {"provider": "evidence", "pointer": "/construct",
+                 "identity_kind": "construct"},
+                {"provider": "evidence", "pointer": "/study/doi",
+                 "identity_kind": "study"},
+            ],
+            "source_model": {
+                "states": [
+                    {"state_id": "from", "assay_binding": deepcopy(local_assay),
+                     "observation_bindings": [
+                         {"provider": "evidence", "pointer": "/rows/0/measurement"}]},
+                    {"state_id": "to", "assay_binding": deepcopy(local_assay),
+                     "observation_bindings": [
+                         {"provider": "evidence", "pointer": "/rows/1/measurement"}]},
+                ],
+                "transitions": [{
+                    "transition_id": "conditioned-change",
+                    "from_state": "from",
+                    "to_state": "to",
+                    "reversible_in_source": True,
+                    "assay_binding": deepcopy(local_assay),
+                    "parameter_slots": {
+                        "forward": {"status": "unassigned_in_selected_source_model",
+                                    "binding": None, "is_zero": False,
+                                    "reason": "No directional microscopic rate is assigned."},
+                        "reverse": {"status": "unassigned_in_selected_source_model",
+                                    "binding": None, "is_zero": False,
+                                    "reason": "No directional microscopic rate is assigned."},
+                    },
+                    "bond_annotations": [],
+                }],
+                "elementary_step_sequence_established": False,
+                "complete_reacted_graph_established": False,
+                "equilibrium_constant_transfer_between_assays_established": False,
+                "graph_replay_verified": False,
+                "before_state_atom_map": None,
+            },
+            "endpoint_relations": [
+                {"relation_id": "from-trace", "kind": "state_observation",
+                 "state_id": "from", "observation_id": "row:from",
+                 "original_observation_id": "trace-from", "provider": "evidence",
+                 "observation_pointer": "/observations/0", "assay_pointer": "/assays/0",
+                 "projected_parameter": {"provider": "evidence",
+                                         "pointer": "/rows/0/measurement"},
+                 "original_observation_binding": {"provider": "evidence",
+                                                  "pointer": "/observations/0"}},
+                {"relation_id": "to-trace", "kind": "state_observation",
+                 "state_id": "to", "observation_id": "row:to",
+                 "original_observation_id": "trace-to", "provider": "evidence",
+                 "observation_pointer": "/observations/1", "assay_pointer": "/assays/0",
+                 "projected_parameter": {"provider": "evidence",
+                                         "pointer": "/rows/1/measurement"},
+                 "original_observation_binding": {"provider": "evidence",
+                                                  "pointer": "/observations/1"}},
+            ],
+            "deposit_association": None,
+            "deposit_absence_reason": "No deposited arrangement belongs to this source relation.",
+        }
+        link = {"id": "state-assay", "study_id": "study", "construct_id": "study:WT",
+                "observation_ids": ["row:from", "row:to"]}
+        constructs = {"study:WT": {"source_construct_id": "WT"}}
+        rows = {
+            "row:from": {"study_id": "study", "construct_id": "study:WT",
+                         "assay_id": "study:cryoannealing",
+                         "parameter_provider": {"source": "fixture",
+                                                "pointer": "/rows/0/measurement"}},
+            "row:to": {"study_id": "study", "construct_id": "study:WT",
+                       "assay_id": "study:cryoannealing",
+                       "parameter_provider": {"source": "fixture",
+                                              "pointer": "/rows/1/measurement"}},
+        }
+        assays = {
+            "study:cryoannealing": {
+                "provider": {"source": "fixture", "pointer": "/assays/0"},
+                "source_assay_id": "cryoannealing",
+            }
+        }
+        resolve = lambda ref: pointer(source, ref["pointer"])
+        return context, link, constructs, rows, assays, {"fixture": binding}, resolve, source
+
+    def test_model_state_observation_assay_contract_rejects_cross_assay_repinning(self):
+        fixture = self.state_assay_fixture()
+        result = _model_link(*fixture[:-1])
+        self.assertEqual([endpoint["assay"]["assay_id"] for endpoint in result["endpoints"]],
+                         ["cryoannealing", "cryoannealing"])
+
+        context, link, constructs, rows, assays, bindings, _, source = fixture
+
+        def run(changed_context, changed_rows=None, changed_assays=None, changed_source=None):
+            document = source if changed_source is None else changed_source
+            return _model_link(
+                changed_context, link, constructs,
+                rows if changed_rows is None else changed_rows,
+                assays if changed_assays is None else changed_assays,
+                bindings, lambda ref: pointer(document, ref["pointer"]),
+            )
+
+        cases = []
+        changed = deepcopy(context)
+        del changed["source_model"]["states"][0]["assay_binding"]
+        cases.append(("missing-state-assay", changed, None, None, None,
+                      "state require matching assay bindings"))
+        changed = deepcopy(context)
+        del changed["endpoint_relations"][0]["assay_pointer"]
+        cases.append(("missing-endpoint-assay", changed, None, None, None,
+                      "state require matching assay bindings"))
+        changed = deepcopy(context)
+        changed["endpoint_relations"][0]["assay_pointer"] = "/assays/1"
+        cases.append(("endpoint-state-mismatch", changed, None, None, None,
+                      "assay differs from its state"))
+        changed = deepcopy(context)
+        del changed["source_model"]["transitions"][0]["assay_binding"]
+        cases.append(("missing-transition-assay", changed, None, None, None,
+                      "incident transition"))
+        changed = deepcopy(context)
+        changed["source_model"]["transitions"][0]["assay_binding"]["pointer"] = "/assays/1"
+        cases.append(("transition-assay-mismatch", changed, None, None, None,
+                      "incident transition"))
+        changed_assays = deepcopy(assays)
+        changed_assays["study:cryoannealing"]["provider"]["pointer"] = "/assays/1"
+        cases.append(("projected-assay-provider-mismatch", deepcopy(context), None,
+                      changed_assays, None, "projected observation"))
+        changed = deepcopy(context)
+        for state in changed["source_model"]["states"]:
+            state["assay_binding"]["pointer"] = "/assays/1"
+        changed["source_model"]["transitions"][0]["assay_binding"]["pointer"] = "/assays/1"
+        for endpoint in changed["endpoint_relations"]:
+            endpoint["assay_pointer"] = "/assays/1"
+        changed_assays = deepcopy(assays)
+        changed_assays["study:cryoannealing"]["provider"]["pointer"] = "/assays/1"
+        changed_source = deepcopy(source)
+        for observation in changed_source["observations"]:
+            observation["assay_id"] = "isotope-crossover"
+        cases.append(("swapped-wrapper-label", changed, None, changed_assays, changed_source,
+                      "identity differs from its projection"))
+        changed_source = deepcopy(source)
+        changed_source["observations"][0]["assay_id"] = "isotope-crossover"
+        cases.append(("source-observation-assay-mismatch", deepcopy(context), None, None,
+                      changed_source, "source assay identity differs"))
+        for name, changed, changed_rows, changed_assays, changed_source, message in cases:
+            with self.subTest(name=name), self.assertRaisesRegex(ValueError, message):
+                run(changed, changed_rows, changed_assays, changed_source)
 
     def test_model_link_separates_reverse_adduct_formation_from_donor_cleavage(self):
         result = self.model_relation()

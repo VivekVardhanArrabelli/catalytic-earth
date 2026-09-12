@@ -13,8 +13,8 @@
     "docs/ATLAS_MECHANISM_EVIDENCE.md": "a0c98d934c97300a245bc8841ce8e11505f82826a8cc7c0201aa1c3af5571304",
     "docs/CURRENT_STATE.md": "c390d3c36e9f41efe2e0b57dde683142e87dd1d33a2fd738cdc59a4f79805a0b",
     "docs/CURRENT_DECISIONS.md": "32d668821151c2fa99df457c7022f4431ae3d68a1b6ac8c7cf71a316d5133593",
-    "data/atlas/perturbations/projection.json": "80a89e1ad2bf0a128ed4fe52e5e8313ff8ec534a987a16b7e4e303de03dfec64",
-    "src/catalytic_earth/atlas_perturbations.py": "f7842ef9dd016f483d51162752809380ede302de82c632e3b3e9688acb0ca8b8"
+    "data/atlas/perturbations/projection.json": "e5aa807c7bf5d29ca9a0313b58400a8f1dcd9ce56709c7fa3c3d334a017f505b",
+    "src/catalytic_earth/atlas_perturbations.py": "39450cf264e55009e4e4ed43f88d87f291f99a601647302a5fda5f8d9a005aea"
   },
   "review_process": [
     {
@@ -118,6 +118,24 @@
       "matched_observations": 4,
       "composition_sha256": "c9bf1594f5cc20effb08efeece31e2ec60d6f61026336aa52ffaff828267072a"
     },
+    "independent_human_validation": false,
+    "experimental_validation": false
+  },
+  "nitrogenase_2016_cryoannealing_followup": {
+    "reviewed_at_utc": "2026-09-12T12:28:00.868637+00:00",
+    "base_commit": "77926721b5df4ee5e28b03b7333405ccf9c60afa",
+    "scope": "Unrelated nitrogenase addition and shared optional state-assay guard. E317Q reference selection, source IDs and four primary outcomes remain unchanged; only global dependency pins renew.",
+    "renewed_bindings": {
+      "data/atlas/perturbations/projection.json": {
+        "before": "80a89e1ad2bf0a128ed4fe52e5e8313ff8ec534a987a16b7e4e303de03dfec64",
+        "after": "e5aa807c7bf5d29ca9a0313b58400a8f1dcd9ce56709c7fa3c3d334a017f505b"
+      },
+      "src/catalytic_earth/atlas_perturbations.py": {
+        "before": "f7842ef9dd016f483d51162752809380ede302de82c632e3b3e9688acb0ca8b8",
+        "after": "39450cf264e55009e4e4ed43f88d87f291f99a601647302a5fda5f8d9a005aea"
+      }
+    },
+    "verification": ".git/catalytic-earth-runs/adc1e156-invariance.json",
     "independent_human_validation": false,
     "experimental_validation": false
   }
