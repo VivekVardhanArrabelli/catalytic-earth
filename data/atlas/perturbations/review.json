@@ -32,7 +32,7 @@
     "data/atlas/study_context/ra95_2017/chemical_state_acquisition.json": "4b0427a24aab3b1269f25cd80b3b9c90f61c4a99404499d77cf0c16a8b5f2ecb",
     "docs/ATLAS_RA95_CHEMICAL_STATE.md": "64192bc0aea597916cd80e6d5b216152115554774c83f3faeacc7c41064a7e0c",
     "CLAIMS.md": "935c521d14a40d162030a74481628add072bfc96a6b57e2153780724202c4685",
-    "data/governance/claim_ledger.json": "ae60bef4a2b2c55499340d27c172301c7040dbf1aabef37e30a08e5af937a8c2",
+    "data/governance/claim_ledger.json": "3d76bdd5fe9068f695995b45eec62664fb9d2028e4f5fe1dc51c43db7f3bc71a",
     "docs/CURRENT_DECISIONS.md": "32d668821151c2fa99df457c7022f4431ae3d68a1b6ac8c7cf71a316d5133593",
     "docs/CURRENT_STATE.md": "c390d3c36e9f41efe2e0b57dde683142e87dd1d33a2fd738cdc59a4f79805a0b",
     "src/catalytic_earth/atlas_primary_source_check.py": "1ca13cf590087890d0f3f01be9f74d9471735c8857a48e9ec5a3999b8ecf260f",
@@ -41,7 +41,7 @@
     "scripts/build_atlas_deposit_context.py": "a59398d75639c44bde60f5ba26dc07f0b2f26c8ab533e7bccd369c120754bc29",
     "data/atlas/deposit_context/ra95_5aou/review.json": "48ad9f1451c0795ab730866950edb3f6ff58759c44db22ed19a242fcfb0073fb",
     "data/atlas/deposit_context/ra95_5an7/review.json": "784c4cc6c2e5929fa083cc2decf5369b8a4a5465c694c00a09d7cea55320b4c0",
-    "data/atlas/study_context/ra95_2017/chemical_state_review.json": "4481cd3e3560d1bf9ba89214cf0afe8bb164401834f1ced26b3c90ae11bfb118",
+    "data/atlas/study_context/ra95_2017/chemical_state_review.json": "d51704e3c5c837cdfceb2233d1905e4d50b99bbfd3edaec94a0ca8a31aca747e",
     "data/atlas/deposit_context/ra95_4a2r/4A2R.cif": "c97bdf2cd975779e50e9e57cbe66da80aa37c2e1ac43077ab6e1076ec3b0d19f",
     "data/atlas/deposit_context/ra95_4a2r/spec.json": "15c52054869935ff6c0c5034044d287ade531e6bd353e47b74c62c02d21f87f8",
     "data/atlas/deposit_context/ra95_4a2r/projection.json": "ea3117cea3d83e156534abcc1efd62f10ed056a1965ba7e99a0974ac915b3461",
@@ -1554,7 +1554,7 @@
       },
       "data/governance/claim_ledger.json": {
         "before": "97e3bed21ebfef4ba990f272f2e1312cb0728667685b715f1d04819dd39475f5",
-        "after": "ae60bef4a2b2c55499340d27c172301c7040dbf1aabef37e30a08e5af937a8c2"
+        "after": "3d76bdd5fe9068f695995b45eec62664fb9d2028e4f5fe1dc51c43db7f3bc71a"
       },
       "data/atlas/deposit_context/ra95_5aou/review.json": {
         "before": "73b138bf2293cbf4c676cf895b5d9148fc5353e43b1f7a859206a571680880f2",
@@ -1566,7 +1566,7 @@
       },
       "data/atlas/study_context/ra95_2017/chemical_state_review.json": {
         "before": "3c57d4b7e584f486d515684aa1fcdb842566d8306f30fedd0172a31e0df1dac9",
-        "after": "4481cd3e3560d1bf9ba89214cf0afe8bb164401834f1ced26b3c90ae11bfb118"
+        "after": "d51704e3c5c837cdfceb2233d1905e4d50b99bbfd3edaec94a0ca8a31aca747e"
       }
     },
     "source_review": "data/atlas/study_context/ra95_2017/chemical_state_review.json",
