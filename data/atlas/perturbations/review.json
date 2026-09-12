@@ -4,7 +4,7 @@
   "reviewed_at_utc": "2026-09-11T09:30:44.367226+00:00",
   "scope": "Cumulative source-reviewed projection; this increment adds a separate source-system control operation for the Schmidt2013 bulk-normalized BuAm CTAC contrast and reuses existing calmodulin chemical-treatment rows. Prior source observations, genetic comparisons, state/model links and protected evidence are unchanged.",
   "reviewed_bindings": {
-    "data/atlas/perturbations/projection.json": "bfa442efec94fc6d83d04f9ec25209282c40915f74f4c93b588d88ac18adfba5",
+    "data/atlas/perturbations/projection.json": "3f879ff9a1274da1bf7a232839a5d41f0f5ce4f18e30e3a1a514a8d8be9e2498",
     "src/catalytic_earth/atlas_perturbations.py": "70bb5c5e92cb10b795cd7e0dc3422b42d5217b04274d9e949ad5af93a9b05a5d",
     "scripts/query_atlas_perturbations.py": "7eab6075c751ad2dbecf6757d1dc3fef5e452fbaff03d3d78f0c1b9fa3d8e412",
     "docs/ATLAS_PERTURBATION_RELATION.md": "572d4de5fd19122c48d6fd261f8bec8b457c4d9c88f5c1d3f636add5e531b41b",
@@ -109,7 +109,7 @@
     "docs/ATLAS_CODH_METAL_SUBSTITUTION.md": "5a211e8943156cc5e0d000a15bda404a044000eca7956c42cb85069e4c3d5947",
     "data/atlas/study_context/codh_2011/source_review.json": "5c4670969fc469d44ed155326b4d5c3b041c32cb58a86c94acfd810ca1ad5450",
     "data/atlas/study_context/tk_2024/background_evidence.json": "e0572ad1ad993eb62b91be4798fc0745dd0fad0031de4e1c80b62910c6613212",
-    "data/atlas/study_context/tk_2024/background_review.json": "caef103c9f2552345b2443542f56419e269a30edc5617e428c256da686ecf728"
+    "data/atlas/study_context/tk_2024/background_review.json": "f31283fa9851af801fbc767018bbf02a475d3a5f8ef06a394c6f640760927281"
   },
   "inherited_source_bindings": {
     "ra95f": {
@@ -1387,5 +1387,20 @@
     "coordination_record": ".git/catalytic-earth-runs/412188dd.board.md",
     "independent_human_validation": false,
     "experimental_validation": false
+  },
+  "tk_background_scope_followup": {
+    "reviewed_at_utc": "2026-09-12T00:15:52.960841+00:00",
+    "base_commit": "e0f32c34684523ed1c9eeb54ef98cb8b42ae734a",
+    "prior_review_sha256": "8e006574d66b367c2f3effb972f7006ba8b84a07207c9a9de1611e2b7e47bf68",
+    "review_record": "data/atlas/study_context/tk_2024/background_review.json",
+    "review_record_sha256": "f31283fa9851af801fbc767018bbf02a475d3a5f8ef06a394c6f640760927281",
+    "scope": "Correct the three top-level TK scope descriptions after an adversarial contradiction finding. No measurement, comparison, source fact, runtime or scientific conclusion changes.",
+    "reviewer": "adversarial_pr109",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "ultra",
+    "status": "accepted",
+    "invariance_record": ".git/catalytic-earth-runs/75ca801b-scope-invariance.json",
+    "new_source_requests": 0,
+    "new_source_bytes": 0
   }
 }

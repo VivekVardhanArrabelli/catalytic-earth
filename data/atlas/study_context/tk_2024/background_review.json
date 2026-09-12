@@ -6,7 +6,7 @@
   "scope": "Source-reported 24 h 3-HBA HPLC endpoint pattern across two R520Q construct pairs on S385F versus noncanonical S385pCNF backgrounds. Four observations, no arithmetic, reaction object or runtime change. No significance, biochemical inactivity, generic epistasis, selectivity, isolated R520Q cause or design claim.",
   "reviewed_bindings": {
     "data/atlas/study_context/tk_2024/background_evidence.json": "e0572ad1ad993eb62b91be4798fc0745dd0fad0031de4e1c80b62910c6613212",
-    "data/atlas/perturbations/projection.json": "bfa442efec94fc6d83d04f9ec25209282c40915f74f4c93b588d88ac18adfba5",
+    "data/atlas/perturbations/projection.json": "3f879ff9a1274da1bf7a232839a5d41f0f5ce4f18e30e3a1a514a8d8be9e2498",
     "tests/core/test_atlas_perturbations.py": "44923137d8e8347d57ba6f03100470b5cad43f2102849602cb86aef5ebbe8709",
     "docs/ATLAS_TK_ENDPOINT_CONTEXT.md": "52676724f0c56937a1d506d328a81e6c0b7002480e26bb7ef9ed22a0c9056c6f",
     "CLAIMS.md": "0023c9b9c2a4c543d76d077d17d40d47f00d222270e540b5544aad457043f0a5",
@@ -72,5 +72,20 @@
     "representation": "Existing shared source observation and no-arithmetic comparison consumer; no case-specific runtime change.",
     "effort": "Two retained primary witnesses reused; zero acquisition. Manual source interpretation persists; no measured time saving.",
     "integrated_value": "Named background-specific endpoint pattern supports retaining TK-4C over its R520Q-containing counterpart for this displayed3-HBA screen; no comparative design validation."
+  },
+  "scope_correction_followup": {
+    "reviewed_at_utc": "2026-09-12T00:15:52.960841+00:00",
+    "base_commit": "e0f32c34684523ed1c9eeb54ef98cb8b42ae734a",
+    "prior_review_sha256": "caef103c9f2552345b2443542f56419e269a30edc5617e428c256da686ecf728",
+    "reviewer": "adversarial_pr109",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "ultra",
+    "status": "accepted_exact_projection_3f879ff9a1274da1bf7a232839a5d41f0f5ce4f18e30e3a1a514a8d8be9e2498",
+    "objection": "Global query scope incorrectly excluded the newly included 3-HBA observations.",
+    "resolution": "Correct only selection, tk_2024_extension and limitations to include the four observations, background context and source boundaries.",
+    "invariance": "All249 observations and130 comparisons plus all other candidate query fields unchanged; only three scope fields differ.",
+    "coordination_board": ".git/catalytic-earth-runs/75ca801b.board.md",
+    "independent_human_validation": false,
+    "experimental_validation": false
   }
 }
