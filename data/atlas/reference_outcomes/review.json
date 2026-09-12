@@ -7,14 +7,18 @@
   "experimental_validation": false,
   "reviewed_bindings": {
     "data/atlas/reference_outcomes/spec.json": "eff87dafe146318f3ec20b0bb7fcc8f23021ce5538aac1be4ed24c6f1695f23b",
-    "src/catalytic_earth/atlas_reference_outcomes.py": "99c98f6b83dc12fe92287c4a9f6db287ece96f72886a0a9dc5a553126c59b8bb",
+    "src/catalytic_earth/atlas_reference_outcomes.py": "3474c764787fae988d3d8334089ef4950cf1584cc40fc87965f62e9e2d0176f9",
     "scripts/query_atlas_perturbations.py": "0cd9ef82f86e79b38578d68a6880902fd9106991476d19d93f12c93cae560f23",
-    "tests/core/test_atlas_reference_outcomes.py": "ab041eac98f34ef02d07826e3d3c55aaf7e4c35061b1732b3cd36c3c08fe177e",
+    "tests/core/test_atlas_reference_outcomes.py": "5853cc806c5d883fe0f32371ff7b1be6aff6a44f9071eae38b6ef5861383dd8f",
     "docs/ATLAS_MECHANISM_EVIDENCE.md": "a0c98d934c97300a245bc8841ce8e11505f82826a8cc7c0201aa1c3af5571304",
     "docs/CURRENT_STATE.md": "c390d3c36e9f41efe2e0b57dde683142e87dd1d33a2fd738cdc59a4f79805a0b",
     "docs/CURRENT_DECISIONS.md": "32d668821151c2fa99df457c7022f4431ae3d68a1b6ac8c7cf71a316d5133593",
-    "data/atlas/perturbations/projection.json": "e5aa807c7bf5d29ca9a0313b58400a8f1dcd9ce56709c7fa3c3d334a017f505b",
-    "src/catalytic_earth/atlas_perturbations.py": "39450cf264e55009e4e4ed43f88d87f291f99a601647302a5fda5f8d9a005aea"
+    "data/atlas/study_context/mandelate_1995_e317q/source_qualification.json": "163bc099792d37d87602bcee414f4468f54431b07232db5ac07e1f5b95982274",
+    "data/atlas/study_context/mandelate_1995_e317q/chemical_endpoints.json": "1423ba19eba607c4956d5cd049882d7e5cecd56dd084594d102eafcf2ef13a98",
+    "data/atlas/study_context/mandelate_1995_e317q/source_recovery.json": "2aad35f280c37e0ed9b6636205eedaba761add1235b3ef6005a3cd1b5e0b4f1b",
+    "data/atlas/atlas10/sources/uniprot/P11444.json": "cb5efb114709e8f79f58376643fde10d8e2981296091d09936c41589ce7ae6ef",
+    "data/atlas/study_context/mandelate_1995_e317q/source_review.json": "f225570d536d06c681d0617651c2ec7d10e46f9f8fee862a5591d669e705f0f6",
+    "data/atlas/study_context/mandelate_1995_e317q/chemical_endpoints_review.json": "e9d73a78e13b97d226cab05719d653e8d16acc6cb3a4f73f1d35588849586180"
   },
   "review_process": [
     {
@@ -138,5 +142,19 @@
     "verification": ".git/catalytic-earth-runs/adc1e156-invariance.json",
     "independent_human_validation": false,
     "experimental_validation": false
+  },
+  "accepted_scientific_payload_sha256": "ac8d2d64ab5011d847afb3626a1d76762ef68fb0a0054b5d9c4ed272f0fb0c7b",
+  "dependency_scope_followup": {
+    "reviewed_at_utc": "2026-09-12T13:43:40.961782+00:00",
+    "base_commit": "c260dec8fea131c4379deee8cc20874eabae123a",
+    "prior_review_sha256": "f32961462df8e1a8c7c4463e843d3d9d2d3411a1365d8883f75981c137883601",
+    "scope": "Bind the complete unfiltered composition, selected variant and background constructs, derived assays/substrates, source-owned evidence contexts and providers, raw source bindings and selected outcome witness declarations in this existing review. Preserve own consumer/declaration/fragment and direct selected raw evidence and scientific review checks; global project() still validates the whole atlas before local acceptance. No source, outcome, interpretation or exported query schema change.",
+    "removed_redundant_local_bindings": {
+      "data/atlas/perturbations/projection.json": "e5aa807c7bf5d29ca9a0313b58400a8f1dcd9ce56709c7fa3c3d334a017f505b",
+      "src/catalytic_earth/atlas_perturbations.py": "39450cf264e55009e4e4ed43f88d87f291f99a601647302a5fda5f8d9a005aea"
+    },
+    "acceptance": "Manually accepted after exact equality of the current and retained pre-cryoannealing scientific payloads. No builder or query writes this digest. Selected changes require a new explicit local review.",
+    "counterexample": "The retained pre-cryoannealing projection (digest verified against its prior receipt) and current globally validated projection yield an identical complete selected payload: observations254-to256 and models4-to5. Regression tests replay removal/reinstatement of the already-reviewed cryoannealing addition through real project() with controlled global review metadata; selected assay-context changes pass that global validation but fail local acceptance.",
+    "limits": "This repairs only the two broad local projection/runtime dependencies. Existing code/spec/fragment/document pins remain; no general automatic re-review, new chemistry, scientific gain, measured time saving or independent review."
   }
 }

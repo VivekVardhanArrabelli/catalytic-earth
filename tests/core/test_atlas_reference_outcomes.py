@@ -1,5 +1,7 @@
 """False joins and evidence promotion across reference and primary evidence planes."""
 from copy import deepcopy
+from contextlib import contextmanager
+import hashlib
 import json
 from pathlib import Path
 import subprocess
@@ -7,15 +9,33 @@ import sys
 import unittest
 from unittest.mock import patch
 
-from catalytic_earth.atlas_perturbations import _project_candidate
+from catalytic_earth.atlas_perturbations import _project_candidate, project
 from catalytic_earth.atlas_reference_outcomes import (
-    SPEC_PATH, _bound, _compose, _fragment_query, _join, _raw, query_reference_outcomes,
+    SPEC_PATH, REVIEW_PATH, _acceptance_payload, _bound, _compose, _fragment_query,
+    _join, _raw, query_reference_outcomes,
 )
 
 ROOT = Path(__file__).resolve().parents[2]
 
 
 class ReferenceOutcomeTests(unittest.TestCase):
+    @contextmanager
+    def reviewed_projection(self, projection):
+        """Controlled globally accepted input; all actual project() checks still run."""
+        projection_path = ROOT / "data/atlas/perturbations/projection.json"
+        review_path = ROOT / "data/atlas/perturbations/review.json"
+        raw = (json.dumps(projection, indent=2) + "\n").encode()
+        review = json.loads(review_path.read_text())
+        review["reviewed_bindings"]["data/atlas/perturbations/projection.json"] = hashlib.sha256(raw).hexdigest()
+        replacements = {projection_path: raw, review_path: json.dumps(review).encode()}
+        original_bytes, original_text = Path.read_bytes, Path.read_text
+        def read_bytes(path):
+            return replacements[path] if path in replacements else original_bytes(path)
+        def read_text(path, *args, **kwargs):
+            return replacements[path].decode() if path in replacements else original_text(path, *args, **kwargs)
+        with patch.object(Path, "read_bytes", read_bytes), patch.object(Path, "read_text", read_text):
+            yield
+
     @classmethod
     def setUpClass(cls):
         cls.spec = json.loads((ROOT / SPEC_PATH).read_text(encoding="utf-8"))
@@ -192,6 +212,131 @@ class ReferenceOutcomeTests(unittest.TestCase):
                              cwd=ROOT, capture_output=True, text=True)
         self.assertNotEqual(bad.returncode, 0)
         self.assertIn("do not combine selection filters", bad.stderr)
+
+    def test_unrelated_cryoannealing_addition_preserves_local_acceptance(self):
+        before = json.loads((ROOT / "data/atlas/perturbations/projection.json").read_text())
+        before["panels"] = [row for row in before["panels"] if row["id"] != "nitrogenase2016-cryoannealing"]
+        before["model_links"] = [row for row in before["model_links"]
+                                 if row["id"] != "nitrogenase_2016:WT:cryoannealing_state_coupling"]
+        with self.reviewed_projection(before):
+            view = project(ROOT)
+            self.assertEqual(len(view["observations"]), len(self.view["observations"]) - 2)
+            old = query_reference_outcomes(ROOT, site_id="P11444:E317")
+        current = query_reference_outcomes(ROOT, site_id="P11444:E317")
+        self.assertEqual(old["matches"], current["matches"])
+        self.assertEqual(old["review"], current["review"])
+
+    def test_selected_output_assay_interpretation_and_witness_changes_require_review(self):
+        outcome_id = self.link["observation_ids"][0]
+        assay_id = next(row["assay_id"] for row in self.view["observations"] if row["id"] == outcome_id)
+        for change in ("value", "endpoint", "assay", "background", "interpretation", "witness"):
+            for site in (None, "P11444:E317", "P11444:H297"):
+                with self.subTest(change=change, filter=site):
+                    view = deepcopy(self.view)
+                    row = next(row for row in view["observations"] if row["id"] == outcome_id)
+                    if change == "value":
+                        row["value"] += 1
+                    elif change == "endpoint":
+                        row["endpoint_kind"] = "changed_endpoint"
+                    elif change == "assay":
+                        view["assays"][assay_id]["qualification_scope"] = "changed interpretation"
+                    elif change == "background":
+                        view["constructs"][row["background_id"]]["identity_scope"] = "changed background"
+                    elif change == "interpretation":
+                        view["evidence_context"][self.link["primary_source"]].append("changed interpretation")
+                    else:
+                        witness = next(item for item in view["source_witnesses"]
+                                       if any(ref["source"] == self.link["primary_source"]
+                                              for ref in item["source_bindings"]))
+                        witness["source_url"] = "https://example.invalid/changed-witness"
+                    with patch("catalytic_earth.atlas_reference_outcomes.project", return_value=view):
+                        with self.assertRaisesRegex(ValueError, "scientific composition differs"):
+                            query_reference_outcomes(ROOT, site_id=site)
+
+    def test_globally_reviewed_selected_assay_change_still_requires_local_review(self):
+        projection = json.loads((ROOT / "data/atlas/perturbations/projection.json").read_text())
+        assay_id = next(row["assay_id"] for row in self.view["observations"]
+                        if row["id"] == self.link["observation_ids"][0])
+        projection["assays"][assay_id]["qualification_scope"] = "changed interpretation"
+        with self.reviewed_projection(projection):
+            changed = project(ROOT)
+            self.assertEqual(_compose(ROOT, self.spec, changed), _compose(ROOT, self.spec, self.view))
+            for site in ("P11444:E317", "P11444:H297"):
+                with self.assertRaisesRegex(ValueError, "scientific composition differs"):
+                    query_reference_outcomes(ROOT, site_id=site)
+
+    def test_unrelated_context_sharing_reference_source_does_not_expand_acceptance(self):
+        projection = json.loads((ROOT / "data/atlas/perturbations/projection.json").read_text())
+        projection["evidence_context"]["unrelated-reference-context"] = [
+            {"source": "mr_reference", "pointer": "/features/8"}]
+        expected = query_reference_outcomes(ROOT, site_id="P11444:E317")
+        with self.reviewed_projection(projection):
+            self.assertIn("unrelated-reference-context", project(ROOT)["evidence_context"])
+            actual = query_reference_outcomes(ROOT, site_id="P11444:E317")
+        self.assertEqual(actual["matches"], expected["matches"])
+        self.assertEqual(actual["review"], expected["review"])
+
+    def test_output_fault_cannot_hide_behind_empty_filter(self):
+        def changed_output(*args, **kwargs):
+            result = _compose(*args, **kwargs)
+            result["matches"][0]["identity_scope"] = "unreviewed output interpretation"
+            return result
+        with patch("catalytic_earth.atlas_reference_outcomes._compose", side_effect=changed_output):
+            for site in ("P11444:E317", "P11444:H297"):
+                with self.assertRaisesRegex(ValueError, "scientific composition differs"):
+                    query_reference_outcomes(ROOT, site_id=site)
+
+    def test_unrelated_witness_sharing_reference_source_does_not_expand_acceptance(self):
+        projection = json.loads((ROOT / "data/atlas/perturbations/projection.json").read_text())
+        expected = _acceptance_payload(_compose(ROOT, self.spec, self.view), self.view, projection)
+        view = deepcopy(self.view)
+        witness = deepcopy(view["source_witnesses"][0])
+        witness["source_bindings"] = [{"source": "mr_reference", "pointer": "/features/8"}]
+        view["source_witnesses"].append(witness)
+        actual = _acceptance_payload(_compose(ROOT, self.spec, view), view, projection)
+        self.assertEqual(actual, expected)
+
+    def test_selected_scientific_review_records_remain_directly_bound(self):
+        for name in ("source_review.json", "chemical_endpoints_review.json"):
+            selected = "data/atlas/study_context/mandelate_1995_e317q/" + name
+            def changed_review(root, relative):
+                raw = _raw(root, relative)
+                return raw + b"\n" if relative == selected else raw
+            with self.subTest(path=selected):
+                with patch("catalytic_earth.atlas_reference_outcomes._raw", side_effect=changed_review):
+                    with self.assertRaisesRegex(ValueError, "review binding differs"):
+                        query_reference_outcomes(ROOT, site_id="P11444:H297")
+
+    def test_selected_raw_evidence_and_missing_binding_fail_even_for_empty_filter(self):
+        projection = json.loads((ROOT / "data/atlas/perturbations/projection.json").read_text())
+        payload = _acceptance_payload(_compose(ROOT, self.spec, self.view), self.view, projection)
+        paths = {binding["path"] for binding in payload["source_bindings"].values()}
+        self.assertEqual(len(paths), 4)  # primary, endpoint, recovery and reference snapshot
+        for selected in paths:
+            def changed_source(root, relative):
+                raw = _raw(root, relative)
+                return raw + b"\n" if relative == selected else raw
+            with self.subTest(path=selected):
+                with patch("catalytic_earth.atlas_reference_outcomes._raw", side_effect=changed_source):
+                    with self.assertRaisesRegex(ValueError, "review binding differs"):
+                        query_reference_outcomes(ROOT, site_id="P11444:H297")
+                def omitted_binding(root, relative):
+                    raw = _raw(root, relative)
+                    if relative == REVIEW_PATH:
+                        review = json.loads(raw)
+                        del review["reviewed_bindings"][selected]
+                        return json.dumps(review).encode()
+                    return raw
+                with patch("catalytic_earth.atlas_reference_outcomes._raw", side_effect=omitted_binding):
+                    with self.assertRaisesRegex(ValueError, "review omits selected source"):
+                        query_reference_outcomes(ROOT, site_id="P11444:H297")
+
+    def test_local_acceptance_never_bypasses_global_review(self):
+        with patch("catalytic_earth.atlas_reference_outcomes.project",
+                   side_effect=ValueError("global source review is stale")) as global_project:
+            with self.assertRaisesRegex(ValueError, "global source review is stale"):
+                query_reference_outcomes(ROOT, site_id="P11444:H297")
+        global_project.assert_called_once_with(ROOT)
 
 
 if __name__ == "__main__":

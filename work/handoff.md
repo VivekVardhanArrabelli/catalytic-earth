@@ -1,59 +1,55 @@
 # Handoff
 
 <!-- current-research-handoff:start -->
-## Current research handoff — owner-authorized priority correction, 2026-09-12
+## Current research handoff — reference-review dependency closed, 2026-09-12
 
-- **Scientific checkpoint:** PR #118 merged as `a431bcfbf2564c06d174b7cdd0b419ff6f242795`
-  from reviewed head `8c4cfba6776f1c4ee717a827387495d6c1ff0458`; all four PR CI
-  jobs passed. The prior owner verified clean/synced main, finished its workers
-  and released the cooperative lock. Its [source-qualified cryoannealing result](../docs/ATLAS_NITROGENASE_ISOTOPE_CROSSOVER.md)
-  is preserved without re-adjudication by this oversight change. The
-  [prior scientific handoff](https://github.com/VivekVardhanArrabelli/catalytic-earth/blob/a431bcfbf2564c06d174b7cdd0b419ff6f242795/work/handoff.md)
-  retains its evidence, source-model limits and exact verification.
-- **Owner correction:** the user authorized changing the research loop after
-  the September 10–12 impact audit. Accurate marginal annotations had been
-  accepted without demonstrating why they deserved the next run. The current
-  [direction](../docs/SCIENTIFIC_DIRECTION.md) supersedes the completed E317Q
-  priority and ends the nitrogenase adjacent-paper queue. Existing scientific
-  work is retained; publication counts and integrity machinery do not establish
-  additional scientific value.
-- **Standing selection rule:** compare the inherited candidate against the
-  strongest feasible alternative, including stopping, before acquisition or
-  implementation. Existing adversarial review challenges task selection;
-  source/representation review assesses validity. Resolve grounded consequential
-  objections with evidence or retarget. Two consecutive marginal scientific
-  runs require materially different work; a new topic/record/claim or necessary
-  recovery does not reset the pattern. Pause if no useful feasible action remains.
-  Apply this in the existing brief/board/result, without new policy machinery.
-- **Selected next question:** for P11444, what does H297N evidence establish
-  about overall racemization versus exchange chemistry, what separate outcomes
-  are supported for E317Q, and which cross-variant decision remains unavailable
-  because assays, denominators and conditions do not match? Use existing
-  queries and retained evidence first. The expected gain is a consequential
-  integrated answer beyond separate claim summaries; another figure annotation
-  does not address that gap.
-- **First action and stop:** run the existing H297N evidence/fragment and E317
-  reference-outcome queries, inspect what they already answer, and identify the
-  precise unresolved comparison. Preserve within-variant endpoint scope; no
-  severity ranking, matched-assay assumption or microscopic cause is licensed.
-  If already answered, close without another artifact. If this is only a recap,
-  stop the candidate and choose the strongest feasible atlas dependency under
-  the same comparison. New acquisition, schema or runtime needs a consequential
-  scientific gap that wins that comparison; do not force novelty or add a
-  presentation/scoring framework. Follow the full stopping condition in the
-  current direction.
-- **Scope and coordination:** both live automation prompts were updated and
-  read back exactly. Existing model, cadence, destination and notification
-  settings are preserved. This correction changes only existing guidance and
-  its required archive index. No science data, source body, claim, test, runtime,
-  schema, protected registry, exposure or review-submission change is authorized
-  by the correction itself. Zero source requests; all prior cumulative budgets
-  and access stops continue. Related-model reviews do not establish independence.
-- **Publication/recovery:** the containing Git commit identifies this guidance.
-  Resume its corrective PR if unfinished before scientific work. The oversight
-  parent alone owns Git and lock; exact base, owner, review, validation,
-  publication and guarded release are recorded in
-  `.git/catalytic-earth-runs/priority-correction-2eea6d65-6f47-4794-b9ce-165f90a757dd.json`.
+- **Run and ownership:** started `2026-09-12T13:06:59Z` from clean/synced main
+  `c260dec8fea131c4379deee8cc20874eabae123a`; branch
+  `codex/reference-review-reuse-20260912`. Parent owns Git and the common lock;
+  three Sol/ultra lanes reviewed selection, selected source scope and dependency.
+  Actual finish time, elapsed minutes, exact reviewed/published SHAs, CI and guarded
+  release are in `.git/catalytic-earth-runs/20260912T130659Z-50081b66-b9b9-4044-8059-c81627f752f8.json`.
+- **Scientific closure:** existing H297N/E317Q queries already supply the answer
+  and unmatched-assay limits in [the evidence guide](../docs/ATLAS_MECHANISM_EVIDENCE.md).
+  No recap was added and no severity ranking or microscopic cause is supported.
+  PR #118 / `a431bcfb` cryoannealing evidence remains source-qualified; acceptance
+  of its source boundaries does not endorse adjacent-annotation priority.
+- **Dependency result:** the E317Q consumer retains real global `project()`
+  validation, own code/spec/fragment and selected raw evidence/review pins. It
+  binds the complete unfiltered selected scientific payload before filtering.
+  The identical local review can therefore survive unrelated globally reviewed
+  growth; selected identity, outcome, assay, interpretation, context or witness
+  changes fail. No automatic acceptance renewal or exported query schema change.
+  This repairs two broad local dependency pins, not all possible maintenance.
+- **Evidence and verification:** the retained pre-cryoannealing projection
+  (prior receipt digest checked) and current global view give the same complete
+  payload `ac8d2d64ab5011d847afb3626a1d76762ef68fb0a0054b5d9c4ed272f0fb0c7b`:
+  one relation/four outcomes, two constructs, three assays, four substrates,
+  two contexts, four raw sources and one witness. Global observations254-to256
+  and models4-to5 changed. Tests use real global validation for the reviewed
+  cryoannealing replay and selected assay counterexample; additional mutations
+  cover empty-filter, evidence, review-record and output failures. Current logs
+  and exact check outcomes belong to the same Git-local receipt/board; no runtime
+  acceptance claim should be inferred from merely creating this handoff.
+- **Priority and stop:** the demonstrated repeated E317Q review churn justified
+  this finite dependency repair over the already-answered mandelate recap,
+  another nitrogenase annotation, or repeat M0064/M0970 gate checks. No stronger
+  feasible scientific decision was established. Maintenance is not science or
+  measured savings and does not reset the two marginal scientific runs. Pause
+  the hourly writer after safe publication and retire its temporary prefix.
+- **One next action:** name a consequential chemical decision/cross-case inference,
+  the missing discriminating evidence and permitted accessible source, and the
+  existing consumer it would change; compare against stopping before restarting.
+  Expected gain is a changed scientific decision or demonstrated reuse. Stop if
+  already answered, nondiscriminating or inaccessible under existing permissions.
+- **Scope/budgets:** zero new scientific requests, response bytes or witnesses;
+  every prior cumulative batch allowance and access stop carries unchanged.
+  Claims, protected registries, kernels and exposure history are untouched.
+  Related-model review is computational, not independent human or physical evidence.
+- **Publication/recovery:** the containing commit/PR and exact run receipt are
+  authoritative. Resume this branch/PR first if validation or publication is
+  unfinished; do not start another scientific task while recovery is pending.
+  Historical handoffs below remain untouched and are not an execution queue.
 
 <!-- current-research-handoff:end -->
 

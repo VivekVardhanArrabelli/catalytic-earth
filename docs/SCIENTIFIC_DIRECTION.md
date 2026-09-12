@@ -55,38 +55,51 @@ computational reviews, with related-model error risks. This is not independent
 human review, a new primary-source audit of every result, a measured utility
 study or experimental validation. No new scientific claim is made.
 
-## Next substantive inquiry: a decision from existing mandelate evidence
+## Closed mandelate inquiry and finite reference-review repair
 
-**Question:** for P11444, what does retained H297N evidence establish about
-overall racemization versus exchange chemistry, what separate outcomes are
-supported for E317Q, and which cross-variant decision remains unavailable
-because their assays, denominators and conditions do not match?
+The existing H297N and E317Q queries already answer the proposed inquiry.
+H297N retains endpoint-specific exchange evidence alongside racemization
+nondetection; exchange does not establish racemization. E317Q retains its four
+separate abstract-supported outcomes. Their unmatched endpoints, denominators,
+conditions and detection bounds do not support a cross-variant severity ranking
+or microscopic cause. The [existing evidence guide](ATLAS_MECHANISM_EVIDENCE.md)
+contains these boundaries; no additional recap artifact or new source is needed.
 
-**Why this next:** the existing site, fragment, mutation and outcome queries
-provide the ingredients. Using them together tests whether the atlas supplies
-a scientifically useful decision boundary beyond separate claim summaries.
-Another nitrogenase figure offers a narrower annotation without addressing this
-integration/use question. Do not treat this choice as a permanent showcase or
-as evidence that mandelate is representative of all chemistry.
+The owner-authorized follow-up selected one observed dependency: unrelated
+RA95, KSI and nitrogenase additions had forced four local E317Q review renewals.
+The [reference consumer](../src/catalytic_earth/atlas_reference_outcomes.py) now
+validates the complete global projection first, then checks an explicitly
+accepted, unfiltered scientific payload before applying the site filter. The
+payload includes selected outcomes/comparisons, variant and background identity,
+assays, substrates, source-owned contexts, evidence bindings and witnesses. Own
+code/spec/fragment checks and direct primary, endpoint, recovery, reference and
+selected scientific review bindings remain. Queries never renew acceptance.
+Only the two redundant local global-projection/runtime pins were removed.
 
-Run the existing H297N evidence query and the E317 reference-outcome query first.
-Preserve within-variant, endpoint-specific conclusions; do not rank mutant
-severity, infer matched conditions, equate exchange with racemization or assign
-a microscopic cause. Identify the exact missing comparison or source information
-that prevents the stronger decision. Use retained sources and current consumers
-before proposing any implementation. Reopening sources, manual joins and missing
-coverage are findings to report honestly, not gaps to conceal by rewriting data.
+The retained pre-cryoannealing projection and current validated projection have
+the same selected payload, despite global observations increasing from 254 to
+256 and model links from four to five. A controlled regression replays that
+already-reviewed addition through the real global validator with the same local
+review; selected assay-context changes still invalidate local acceptance even
+when global review is valid. Empty filters cannot hide a selected change. This
+is a finite maintenance result, with no new chemistry, measured time saving,
+independent human review or demonstrated cross-enzyme utility.
 
-**Deliverable and stop:** give one compact answer with query/source pointers,
-supported decisions and the unresolved comparison in the task result. Persist
-an addition only if it closes a demonstrated consequential gap or unblocks a
-named atlas dependency. If the existing query already supplies it, close the
-inquiry without another artifact. If this
-merely repeats the H297N adjudication or E317Q abstract, stop that candidate and
-choose the stronger feasible atlas dependency; do not expand tables to force
-novelty. New acquisition, schema or runtime requires a demonstrated consequential
-gap and the task-selection comparison in [the standing brief](HOURLY_RESEARCH.md).
-No new scoring framework, presentation layer or benchmark is a prerequisite.
+The adversarial selection review rejected the already-answered mandelate recap,
+another adjacent nitrogenase annotation, and repeat M0064/M0970 promotion checks:
+those source gates already exclude exact transitions, and no new consequential
+consumer decision was demonstrated. No stronger feasible scientific action was
+established from the retained evidence in this run. The two-marginal-scientific-run
+pattern therefore persists. Pause the hourly writer after this repair is safely
+published; do not turn dependency maintenance into the research queue.
+
+**Restart condition and next action:** identify one named chemical decision or
+cross-case inference, its missing discriminating evidence, an allowed accessible
+source, and the existing consumer that would change. Compare it against stopping
+before resuming acquisition or implementation. Expected gain must be a changed
+scientific decision or demonstrated reuse; stop if the answer already exists,
+the evidence cannot discriminate, or access is outside the retained permissions.
+This requires a consequential candidate, not another documentation prerequisite.
 
 ## Recurring oversight must change decisions
 
@@ -104,8 +117,9 @@ ownership. Do not merely append approval language. Retire completed priorities
 explicitly; preserve prior reviews through immutable Git links.
 
 The live hourly prompt and oversight prompt were updated for this correction.
-The live hourly schedule remains active; this supersedes the historical
-paused-state snapshot in [CURRENT_STATE.md](CURRENT_STATE.md).
+The hourly writer is to be paused on completion of the finite repair above.
+The exact applied schedule state and publication are recorded in the task result
+and Git-local run receipt; the oversight schedule remains unchanged.
 Preserve their existing models, cadence, destinations and notification preferences.
 Use the shared ownership protocol for changes. Keep unchanged checks in the
 local receipt; notify only meaningful findings, changed direction, completed
