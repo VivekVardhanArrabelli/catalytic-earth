@@ -1,0 +1,91 @@
+{
+  "schema_version": "catalytic-earth.primary-source-review.v1",
+  "status": "source_reviewed_computational",
+  "reviewed_at_utc": "2026-09-11T23:49:04.411061+00:00",
+  "base_commit": "1a5d4d1685d7f69b767fa0e5f0570acbcdf281a8",
+  "scope": "Source-reported 24 h 3-HBA HPLC endpoint pattern across two R520Q construct pairs on S385F versus noncanonical S385pCNF backgrounds. Four observations, no arithmetic, reaction object or runtime change. No significance, biochemical inactivity, generic epistasis, selectivity, isolated R520Q cause or design claim.",
+  "reviewed_bindings": {
+    "data/atlas/study_context/tk_2024/background_evidence.json": "e0572ad1ad993eb62b91be4798fc0745dd0fad0031de4e1c80b62910c6613212",
+    "data/atlas/perturbations/projection.json": "3f879ff9a1274da1bf7a232839a5d41f0f5ce4f18e30e3a1a514a8d8be9e2498",
+    "tests/core/test_atlas_perturbations.py": "44923137d8e8347d57ba6f03100470b5cad43f2102849602cb86aef5ebbe8709",
+    "docs/ATLAS_TK_ENDPOINT_CONTEXT.md": "52676724f0c56937a1d506d328a81e6c0b7002480e26bb7ef9ed22a0c9056c6f",
+    "CLAIMS.md": "0023c9b9c2a4c543d76d077d17d40d47f00d222270e540b5544aad457043f0a5",
+    "data/governance/claim_ledger.json": "650a853c9038b619f34ee2e9aaa42c156453fea453709694ad96be4f21e502bc",
+    "docs/CURRENT_STATE.md": "8eb7358dd0fdb6c4199b8f0b6b3437f706338d486ef518d68f46abaf1362b47d",
+    "docs/CURRENT_DECISIONS.md": "4305b8fa05a097fcb22d82946eeedbe401ba6908b578a19ce2f950e402e20c82",
+    "src/catalytic_earth/atlas_perturbations.py": "70bb5c5e92cb10b795cd7e0dc3422b42d5217b04274d9e949ad5af93a9b05a5d",
+    "scripts/query_atlas_perturbations.py": "7eab6075c751ad2dbecf6757d1dc3fef5e452fbaff03d3d78f0c1b9fa3d8e412",
+    "data/atlas/study_context/tk_2024/source_qualification.json": "d32ce847e7124728011eea2adf3b96f90ed8ed938b494add164988d5013b9dd2",
+    "data/atlas/study_context/tk_2024/acquisition_receipts.json": "30c07b9a7435c95000200835bcd3e468ca2afef8605cd748934fffdcd28e5244",
+    "data/atlas/study_context/ahas_2005/ibdah_acquisition_appendix.json": "f20c6e5efd64191cc0471740a5f179e128909f25e05a14277ce8a7f36572a9df"
+  },
+  "review_process": [
+    {
+      "task": "source_recovery",
+      "role": "primary_source",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "Accepted exact retained article/Table2 cells, common assay, pCNF identity, TK5C alias, zero/product limits and integrated claim/documentation wording. Runtime and final test behavior outside this source role."
+    },
+    {
+      "task": "representation_recovery",
+      "role": "representation",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "Accepted data-only shared-consumer representation, exact prior-query invariance and focused boundary test; full perturbation module86 tests passed. Runtime and CLI unchanged."
+    },
+    {
+      "task": "adversarial_recovery",
+      "role": "adversarial",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "Accepted integrated source/diff and direct boundary probes at exact source/projection/test/document hashes. Wrong construct background or missing R520Q fail closed; reviewed hashes and exact-content test safeguard source-specific substrate and context selection."
+    }
+  ],
+  "coordination_board": ".git/catalytic-earth-runs/412188dd.board.md",
+  "independent_human_validation": false,
+  "experimental_validation": false,
+  "resolved_objections": [
+    "Preserve p-Cyano-L-phenylalanine rather than normalizing pCNF to F.",
+    "Use pair-local named construct backgrounds and a distinct 3-HBA assay; exact sequence and specimen remain unestablished.",
+    "Printed integer zero is numeric source display, not nondetection or biochemical inactivity; no uncertainty or significance supplied.",
+    "The inspected LC-MS/NMR product confirmation concerns 3-FBA only; no 3-HBA molecular product or reaction object is transferred.",
+    "Current cumulative acquisition accounting is39 requests/23,268,387 bytes; the original12-request receipt stays historical."
+  ],
+  "remaining_limits": [
+    "Replicate count, uncertainty, raw peak areas, response-factor calibration and detection limit are unreported for these Table2 cells.",
+    "Printed integer 0%; rounding rule and detection limit are unreported. It does not establish an exact zero or biochemical inactivity.",
+    "No exact assayed sequence, physical specimen, molecular product identity, isolated yield or time course is established for these 3-HBA rows.",
+    "The four-cell pattern does not establish statistical interaction, a general R520Q rule, energetic mechanism or design validation.",
+    "These are single-substrate endpoint screens, not substrate competition or selectivity measurements. No significance, rate, yield, stability, or isolated R520Q cause is established.",
+    "The generic consumer does not independently establish semantic completeness or the intended substrate for a newly curated source. Reviewed content hashes and the exact source-boundary test safeguard these data-specific selections."
+  ],
+  "acquisition": {
+    "new_requests": 0,
+    "new_response_body_bytes": 0,
+    "cumulative_batch_id": "two-substrate-lineages-2024-51831",
+    "cumulative_requests": 39,
+    "cumulative_response_body_bytes": 23268387,
+    "primary_bodies_redistributed": false
+  },
+  "reconsideration": {
+    "representation": "Existing shared source observation and no-arithmetic comparison consumer; no case-specific runtime change.",
+    "effort": "Two retained primary witnesses reused; zero acquisition. Manual source interpretation persists; no measured time saving.",
+    "integrated_value": "Named background-specific endpoint pattern supports retaining TK-4C over its R520Q-containing counterpart for this displayed3-HBA screen; no comparative design validation."
+  },
+  "scope_correction_followup": {
+    "reviewed_at_utc": "2026-09-12T00:15:52.960841+00:00",
+    "base_commit": "e0f32c34684523ed1c9eeb54ef98cb8b42ae734a",
+    "prior_review_sha256": "caef103c9f2552345b2443542f56419e269a30edc5617e428c256da686ecf728",
+    "reviewer": "adversarial_pr109",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "ultra",
+    "status": "accepted_exact_projection_3f879ff9a1274da1bf7a232839a5d41f0f5ce4f18e30e3a1a514a8d8be9e2498",
+    "objection": "Global query scope incorrectly excluded the newly included 3-HBA observations.",
+    "resolution": "Correct only selection, tk_2024_extension and limitations to include the four observations, background context and source boundaries.",
+    "invariance": "All249 observations and130 comparisons plus all other candidate query fields unchanged; only three scope fields differ.",
+    "coordination_board": ".git/catalytic-earth-runs/75ca801b.board.md",
+    "independent_human_validation": false,
+    "experimental_validation": false
+  }
+}

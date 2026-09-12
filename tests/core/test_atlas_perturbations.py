@@ -19,6 +19,57 @@ from catalytic_earth.atlas_perturbations import (
 ROOT = Path(__file__).resolve().parents[2]
 
 
+class TkBackgroundProjectionTests(unittest.TestCase):
+    def test_3hba_background_context_preserves_source_cells_without_arithmetic(self):
+        spec = json.loads((ROOT / SPEC_PATH).read_text(encoding="utf-8"))
+        view = _project_candidate(ROOT, spec)
+        rows = {row["source_row_id"]: row for row in view["observations"]
+                if row["id"].startswith("tk2024-3hba-background:")}
+        expected = {
+            "TK-3:3-HBA": (42, "tk_2024:TK-3", "tk_2024:TK-3", []),
+            "TK-6:3-HBA": (44, "tk_2024:TK-6", "tk_2024:TK-3", ["R520Q"]),
+            "TK-4C:3-HBA": (40, "tk_2024:TK-4C", "tk_2024:TK-4C", []),
+            "TK5C:3-HBA": (0, "tk_2024:TK5C", "tk_2024:TK-4C", ["R520Q"]),
+        }
+        self.assertEqual(
+            {key: (row["value"], row["construct_id"], row["background_id"],
+                   row["perturbation"]) for key, row in rows.items()},
+            expected,
+        )
+        for row in rows.values():
+            self.assertEqual((row["unit"], row["uncertainty"]["kind"]),
+                             ("percent", "not_reported"))
+            self.assertIsNone(row["uncertainty"]["value"])
+            self.assertFalse(row["uncertainty"]["unreported_is_zero"])
+            self.assertIsNone(row["reaction_id"])
+            self.assertIsNone(row["reaction_context"])
+
+        for construct_id in ("tk_2024:TK-4C", "tk_2024:TK5C"):
+            construct = view["constructs"][construct_id]
+            self.assertIn("S385pCNF",
+                          construct["source_record"]["substitutions_relative_to_source_WT"])
+            self.assertNotIn("S385F",
+                             construct["source_record"]["substitutions_relative_to_source_WT"])
+            self.assertFalse(construct["sequence_identity_available"])
+        zero = rows["TK5C:3-HBA"]["source_parameter"]
+        self.assertEqual((zero["source_token"], zero["display_precision"]),
+                         ("0", "integer_percent"))
+        self.assertIn("does not establish an exact zero", zero["scope"])
+
+        relation = next(item for item in view["comparisons"]
+                        if item["id"] == "tk_2024:R520Q:3HBA-background-context")
+        self.assertEqual(relation["roles"], {})
+        self.assertEqual(set(relation["context_observations"]),
+                         {row["id"] for row in rows.values()})
+        self.assertTrue(relation["source_discriminant_assessed"])
+        self.assertFalse(relation["arithmetic_requested"])
+        self.assertFalse(relation["eligible"])
+        for field in ("value", "unit", "uncertainty"):
+            self.assertIsNone(relation[field])
+        self.assertIn("arithmetic_not_requested", relation["reasons"])
+        self.assertIsNone(relation["source_evidence"][0]["computed_scalar"])
+
+
 class PerturbationRelationTests(unittest.TestCase):
     def system_relation(self, context=None, documents=None):
         if context is None:

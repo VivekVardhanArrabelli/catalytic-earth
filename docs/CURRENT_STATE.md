@@ -1,5 +1,21 @@
 # Current State
 
+## 2026-09-11: TK R520Q has a background-dependent 3-HBA endpoint pattern
+
+The [retained four-cell screen](ATLAS_TK_ENDPOINT_CONTEXT.md#r520q-across-s385f-and-s385pcnf-backgrounds-with-3-hba)
+reports 42/44% 24-hour HPLC conversion for TK-3/TK-6 in the S385F background
+and 40/printed 0% for TK-4C/TK5C in the S385pCNF background. The unchanged
+consumer returns four observations with separate construct pairs, noncanonical
+residue identity and a common 3-HBA assay. No molecular product or reaction
+object is transferred from the earlier 3-FBA evidence.
+
+No errors, rounding rules or detection limits are supplied for these cells.
+Printed zero does not establish inactivity; 44 versus 42 does not establish
+superiority. No kinetic, energetic, generic epistasis or design claim follows.
+This CE-044 source annotation adds no acquisition; the cumulative named batch
+remains at 39 requests / 23,268,387 bytes. Existing source packets and previous
+query relations, including CODH, remain unchanged.
+
 ## 2026-09-11: Ag-substituted CODH carries a partial metal-substitution/function association
 
 The [primary-abstract relation](ATLAS_CODH_METAL_SUBSTITUTION.md) retains

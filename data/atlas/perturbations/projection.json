@@ -3,14 +3,14 @@
   "scope": {
     "question": "Which source-defined catalytic-group perturbations retain a measured endpoint, and which apparent comparisons cannot be transferred?",
     "evidence": "Projection of accepted source annotations; not new measurements, an independent evaluation, protein admission or evidence-tier promotion.",
-    "selection": "All rows of the accepted RA95 2013 kinetic and stereoselectivity tables and RA95 2017 kinetic panel; all six RA61 Table4 construct rows; all five KE59 Table2 pH-profile rows and its unassessed E230-control question. The beta-barrel extension includes three selected kinetic columns across two rows and all eight qualitative S4 arms, with three within-table ratios and one unassessed 16.1/8AH9 control-transfer request. Table 2 acceleration columns remain outside the selected packet; printed S/R factors remain source context. One source-reported RA95.5-8F methodol synthesis outcome and its two precursor comparator contexts extend product evidence with separate conversion, isolation and source-assigned composition records. A Siegel2010 Diels-Alder extension adds three parent kinetic parameters and two author-reported activity-reduction factors with unqualified assay/metric; product bounds remain separate source contexts. Human TKT 2019 adds all seven X5P/R5P kcat and all seven F6P k_forward entries plus all five existing NMR arms; other kinetic columns remain original source context, not extra common parameter records. POX 2019 adds all six variants for seven selected columns: pyruvate/DCPIP kcat and KM; MAP k_on, k_off and K_D_app; and anaerobic pyruvate/FAD k_app_max and K_0.5. The other three columns remain original source context, not missing data. Two complete 2013 RA95.5 and RA95.5-5 K83M/K210M four-cell panels also request multiplicative contrasts for kcat, printed kcat/KM and conflicted KM; the incomplete/unqualified RA95.0 panel supplies no square. KSI2014 preserves six probe-frequency and six compiled-turnover entries with one unassessed field/function context. Separate KimChoi1995 primary kinetics supplies all three Table1 constructs for kcat and KM, with four within-study ratios; other Table1 columns stay explicit source context. Kraut2010 adds all five rounded main-text kcat reduction factors for the pKSI Tyr16 mutant panel on5(10)-EST, with one assessed donor-control relation and unrequested arithmetic. Raymond2015 adds five selected TableI methodol initial-rate contexts for the full-length CaM/L105K pair and C-terminal cCaM/CaMWN/Ac-CaMWN controls, two genetic-background ratios and one source-assessed mechanistic control context. The E. coli TK 2024 extension adds two fixed-pair specific-activity rows, two separately assayed 24-hour conversion rows and one TK-2/TK-1 specific-activity ratio; fitted kinetics, other variants and other substrate pairs remain source context. F92K/screen rows remain outside this question.",
+    "selection": "All rows of the accepted RA95 2013 kinetic and stereoselectivity tables and RA95 2017 kinetic panel; all six RA61 Table4 construct rows; all five KE59 Table2 pH-profile rows and its unassessed E230-control question. The beta-barrel extension includes three selected kinetic columns across two rows and all eight qualitative S4 arms, with three within-table ratios and one unassessed 16.1/8AH9 control-transfer request. Table 2 acceleration columns remain outside the selected packet; printed S/R factors remain source context. One source-reported RA95.5-8F methodol synthesis outcome and its two precursor comparator contexts extend product evidence with separate conversion, isolation and source-assigned composition records. A Siegel2010 Diels-Alder extension adds three parent kinetic parameters and two author-reported activity-reduction factors with unqualified assay/metric; product bounds remain separate source contexts. Human TKT 2019 adds all seven X5P/R5P kcat and all seven F6P k_forward entries plus all five existing NMR arms; other kinetic columns remain original source context, not extra common parameter records. POX 2019 adds all six variants for seven selected columns: pyruvate/DCPIP kcat and KM; MAP k_on, k_off and K_D_app; and anaerobic pyruvate/FAD k_app_max and K_0.5. The other three columns remain original source context, not missing data. Two complete 2013 RA95.5 and RA95.5-5 K83M/K210M four-cell panels also request multiplicative contrasts for kcat, printed kcat/KM and conflicted KM; the incomplete/unqualified RA95.0 panel supplies no square. KSI2014 preserves six probe-frequency and six compiled-turnover entries with one unassessed field/function context. Separate KimChoi1995 primary kinetics supplies all three Table1 constructs for kcat and KM, with four within-study ratios; other Table1 columns stay explicit source context. Kraut2010 adds all five rounded main-text kcat reduction factors for the pKSI Tyr16 mutant panel on5(10)-EST, with one assessed donor-control relation and unrequested arithmetic. Raymond2015 adds five selected TableI methodol initial-rate contexts for the full-length CaM/L105K pair and C-terminal cCaM/CaMWN/Ac-CaMWN controls, two genetic-background ratios and one source-assessed mechanistic control context. The E. coli TK 2024 extension adds two fixed-pair specific-activity rows, two separately assayed 24-hour conversion rows and one TK-2/TK-1 specific-activity ratio for 3-FBA with pyruvate. A separate 3-HBA/pyruvate screen adds four 24-hour conversion observations for TK-3/TK-6 and TK-4C/TK5C plus one source-assessed background context without scalar arithmetic. Fitted kinetics and unselected variant/substrate rows remain source context. F92K/screen rows remain outside this question.",
     "arithmetic": "Source-rounded central values, same-source assay and background only; reported efficiencies are never replaced by kcat/KM division.",
     "identity": "Exact sequence/provider availability is separate from study-declared construct association and physical assay-specimen identity.",
     "mal_2012_extension": "One Raj2012 L384A preparative outcome adds separate source-reported 65% conversion and 50% yield-after-purification records for ammonia addition to 2-(benzyloxy)-fumaric acid 1j yielding source-named 3-benzyloxyaspartic acid 4j. The latter is classified as isolated yield from the stated workup; the source literally labels it Yield. The exact assay sequence, numeric stereoselectivity, absolute product configuration, free-ammonia speciation and mutant-versus-WT effect remain unresolved; the Q73A/L384A qualitative failure context is retained without a computed comparison.",
-    "tk_2024_extension": "One source-conditioned E. coli TK comparison treats TK-1 as the engineered comparison reference and R520Q as the complete incremental TK-2 perturbation. The selected 50 mM 3-FBA plus 50 mM pyruvate specific activities remain separate from 25 degree C 24-hour conversion, fitted kcat and KM, earlier 6M data and other acceptor/donor combinations.",
+    "tk_2024_extension": "One source-conditioned E. coli TK comparison treats TK-1 as the engineered comparison reference and R520Q as the complete incremental TK-2 perturbation. The selected 50 mM 3-FBA plus 50 mM pyruvate specific activities remain separate from 25 degree C 24-hour conversion, fitted kcat and KM, earlier 6M data and other acceptor/donor combinations. A distinct 3-HBA/pyruvate assay retains the Table2 TK-3/TK-6 S385F pair (42/44%) and TK-4C/TK5C S385pCNF pair (40/printed 0%) as four conversion observations and one source-assessed no-arithmetic background relation. The noncanonical p-Cyano-L-phenylalanine identity remains explicit; these rows do not inherit a molecular product or reaction object from 3-FBA.",
     "tk_2020_extension": "One source-conditioned E. coli TK comparison adds the same-profile 24-hour accumulated DHB and erythrulose concentrations for purified source-named WT and H473N. Only the H473N/WT DHB central-value ratio is requested; the paired erythrulose observations remain context, including one source nondetection with no numeric threshold.",
     "tk_2020_limitations": "The two product-specific assay wrappers bind one experimental protocol/profile and are not independent experiments. Accumulated products do not isolate donor-half chemistry, and apparent pyruvate KM or docking cannot supply a donor-only rate, affinity, intermediate occupancy or causal acceptor-coupling assignment. Final ThDP and MgCl2 concentrations in the selected purified reaction are unestablished; the reported 2.4 mM ThDP and 9 mM MgCl2 apply only to the separately described lysate preparation. Erythrulose nondetection is not a zero rate and cannot support a ratio or infinite selectivity.",
-    "limitations": "No pooled rates, generic inactivity labels, causal residue assignments, full apparatus claims, microscopic coupling energy or design-success estimates. Forward product composition retains source-author configuration and unresolved retention mapping; strict ee bounds remain structured source context, not central-value comparisons. Diels-Alder activity-reduction summaries do not identify mutant kcat or product outcomes; strict product bounds and mismatched assays remain in context. TKT reporter-unavailable parameters, NMR qualitative presence / scoped nondetection and positive turnover remain different kinds; no selective partner-only intervention, crystal-to-assay identity or productive F6P full-cycle inference. POX analogue nonbinding differs from TKT reporter absence. MAP apparent equilibrium includes a covalent conjugate; positive pyruvate fitted rates do not establish oxygen turnover, an elementary-step rate or exact construct/preparation identity. Beta-barrel S4 arms are qualitative and belong to 16.2; main noninhibition prose conflicts with the plot and does not establish ligand-independent 16.1/8AH9. Exact deposited identity does not establish assay identity. KSI donor-control discrimination is limited to the named5(10)-EST panel. Double-mutant equilenin/phenolate structure and NMR are separate analogue contexts; cavity hydration/desolvation is source interpretation, not observed single-mutant turnover or a universal hydrogen-bond energy. Calmodulin residual methodol activity does not identify a lysine-covalent pathway; source-derived hydrophobic causality, diketone adduct identity and calcium allostery stay qualified. Full-length/domain, experimental/docking stereochemistry and TableI/Figure5 protocol distinctions are preserved. E. coli TK 2024 fixed-pair activity, 24-hour conversion and fitted kinetics remain separate; the selected ratio does not establish significance, equivalence, an isolated R520Q cause beyond the TK-1 background, donor/acceptor preference combinability or transfer to 6M, MAL or human TKT."
+    "limitations": "No pooled rates, generic inactivity labels, causal residue assignments, full apparatus claims, microscopic coupling energy or design-success estimates. Forward product composition retains source-author configuration and unresolved retention mapping; strict ee bounds remain structured source context, not central-value comparisons. Diels-Alder activity-reduction summaries do not identify mutant kcat or product outcomes; strict product bounds and mismatched assays remain in context. TKT reporter-unavailable parameters, NMR qualitative presence / scoped nondetection and positive turnover remain different kinds; no selective partner-only intervention, crystal-to-assay identity or productive F6P full-cycle inference. POX analogue nonbinding differs from TKT reporter absence. MAP apparent equilibrium includes a covalent conjugate; positive pyruvate fitted rates do not establish oxygen turnover, an elementary-step rate or exact construct/preparation identity. Beta-barrel S4 arms are qualitative and belong to 16.2; main noninhibition prose conflicts with the plot and does not establish ligand-independent 16.1/8AH9. Exact deposited identity does not establish assay identity. KSI donor-control discrimination is limited to the named5(10)-EST panel. Double-mutant equilenin/phenolate structure and NMR are separate analogue contexts; cavity hydration/desolvation is source interpretation, not observed single-mutant turnover or a universal hydrogen-bond energy. Calmodulin residual methodol activity does not identify a lysine-covalent pathway; source-derived hydrophobic causality, diketone adduct identity and calcium allostery stay qualified. Full-length/domain, experimental/docking stereochemistry and TableI/Figure5 protocol distinctions are preserved. E. coli TK 2024 fixed-pair activity, 24-hour conversion and fitted kinetics remain separate; the selected ratio does not establish significance, equivalence, an isolated R520Q cause beyond the TK-1 background, donor/acceptor preference combinability or transfer to 6M, MAL or human TKT. The separate 3-HBA background context does not establish 44%-over-42% superiority, exact zero or biochemical inactivity from printed 0%, molecular product identity, selectivity, generic epistasis, an isolated R520Q cause or an energetic mechanism. Its integer display, missing uncertainty and unknown detection/rounding limits remain explicit."
   },
   "sources": {
     "ra95f": {
@@ -144,6 +144,10 @@
     "tk2024": {
       "path": "data/atlas/study_context/tk_2024/source_qualification.json",
       "sha256": "d32ce847e7124728011eea2adf3b96f90ed8ed938b494add164988d5013b9dd2"
+    },
+    "tk2024bg": {
+      "path": "data/atlas/study_context/tk_2024/background_evidence.json",
+      "sha256": "e0572ad1ad993eb62b91be4798fc0745dd0fad0031de4e1c80b62910c6613212"
     },
     "tk2024r": {
       "path": "data/atlas/study_context/tk_2024/acquisition_receipts.json",
@@ -1913,6 +1917,86 @@
         "pointer": "/constructs/1/comparison_background"
       }
     },
+    "tk_2024:TK-3": {
+      "source_construct_id": "TK-3",
+      "provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/0"
+      },
+      "sequence_provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/0"
+      },
+      "background_id": "tk_2024:TK-3",
+      "perturbation": [],
+      "perturbation_scope": "Engineered S385F comparison reference; the complete source-listed 6M+S385F mutation set remains in the provider. TK-3 is not wild type.",
+      "identity_scope": "Within-study source-named E. coli transketolase construct and mutation set; no exact assayed sequence, reference-accession mapping or physical specimen identity."
+    },
+    "tk_2024:TK-6": {
+      "source_construct_id": "TK-6",
+      "provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/1"
+      },
+      "sequence_provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/1"
+      },
+      "background_id": "tk_2024:TK-3",
+      "perturbation": [
+        "R520Q"
+      ],
+      "perturbation_scope": "Complete set difference from the source-named TK-3 S385F background. The provider retains the full 6M+R520Q/S385F mutation set; no isolated residue cause follows.",
+      "identity_scope": "Within-study source-named E. coli transketolase construct and mutation set; no exact assayed sequence, reference-accession mapping or physical specimen identity.",
+      "perturbation_provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/1/perturbation"
+      },
+      "background_provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/1/comparison_background"
+      }
+    },
+    "tk_2024:TK-4C": {
+      "source_construct_id": "TK-4C",
+      "provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/2"
+      },
+      "sequence_provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/2"
+      },
+      "background_id": "tk_2024:TK-4C",
+      "perturbation": [],
+      "perturbation_scope": "Engineered S385pCNF comparison reference; the complete source-listed 6M+S385pCNF mutation set remains in the provider. TK-4C is not wild type.",
+      "identity_scope": "Within-study source-named E. coli transketolase construct retaining p-Cyano-L-phenylalanine at residue 385 as a source assertion; no exact assayed sequence, reference-accession mapping, physical specimen identity or incorporation homogeneity."
+    },
+    "tk_2024:TK5C": {
+      "source_construct_id": "TK5C",
+      "provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/3"
+      },
+      "sequence_provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/3"
+      },
+      "background_id": "tk_2024:TK-4C",
+      "perturbation": [
+        "R520Q"
+      ],
+      "perturbation_scope": "Complete set difference from the source-named TK-4C S385pCNF background. The provider retains the full 6M+R520Q/S385pCNF mutation set; no isolated residue cause follows.",
+      "identity_scope": "Within-study source-named E. coli transketolase construct retaining p-Cyano-L-phenylalanine at residue 385 as a source assertion; no exact assayed sequence, reference-accession mapping, physical specimen identity or incorporation homogeneity.",
+      "perturbation_provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/3/perturbation"
+      },
+      "background_provider": {
+        "source": "tk2024bg",
+        "pointer": "/constructs/3/comparison_background"
+      }
+    },
     "tk_2020:WT": {
       "source_construct_id": "WT",
       "provider": {
@@ -2495,6 +2579,18 @@
       "uncertainty_context": "No replicate count or uncertainty is reported for the selected integer-displayed 24-hour conversion values; missing uncertainty is not zero.",
       "qualification_scope": "Source-reported product/(substrate+product) peak-area fraction at 25 degrees C. It remains separate from the 21 degree C fixed-concentration activity and fitted kinetics; equal integer-displayed percentages do not establish equivalent time courses or rates."
     },
+    "tk_2024:conversion-3HBA-24h": {
+      "provider": {
+        "source": "tk2024bg",
+        "pointer": "/assays/0"
+      },
+      "source_assay_id": "conversion-3HBA-24h",
+      "qualified": true,
+      "endpoint_kind": "source_reported_24h_HPLC_peak_area_conversion",
+      "reaction_direction": "Source-described conversion of 3-hydroxybenzaldehyde with pyruvate; molecular product identity is not established in the inspected scope.",
+      "uncertainty_context": "The source reports integer-displayed values without replicate count, uncertainty, response-factor calibration, rounding rule or detection limit. Missing uncertainty is not zero, and printed 0% does not establish exact zero or biochemical inactivity.",
+      "qualification_scope": "Source-reported product/(substrate+product) peak-area fraction for 50 mM 3-hydroxybenzaldehyde plus 50 mM sodium pyruvate at 25 degrees C after 24 hours. No molecular product identity, rate, yield, time course or statistical comparison is transferred."
+    },
     "tk_2020:DHB-24h": {
       "provider": {
         "source": "tk2020",
@@ -2876,6 +2972,32 @@
       ],
       "stereochemistry": "Source-named reactants; no project-derived chemical graph, atom map, substrate-lot identity or product stereochemistry.",
       "scope": "The composite identifier binds both substrate roles and their selected fixed concentrations. It is not 3-FBA with hydroxypyruvate, another aromatic acceptor with pyruvate or a single-substrate preference state."
+    },
+    "tk_2024:3HBA+pyruvate": {
+      "name": "3-hydroxybenzaldehyde plus pyruvate",
+      "chemical_role": "source-named fixed two-substrate assay pair",
+      "roles": [
+        {
+          "name": "3-hydroxybenzaldehyde",
+          "role": "aromatic aldehyde acceptor",
+          "concentration_mM": 50
+        },
+        {
+          "name": "sodium pyruvate",
+          "role": "donor supplied in assay solution",
+          "concentration_mM": 50
+        }
+      ],
+      "source": {
+        "source": "tk2024bg",
+        "pointer": "/assays/0/conditions"
+      },
+      "participant_ids": [
+        "3HBA",
+        "pyruvate"
+      ],
+      "stereochemistry": "Source-named reactants; no project-derived chemical graph, atom map, substrate-lot identity or molecular product identity.",
+      "scope": "The composite identifier binds both substrate roles and their selected fixed concentrations. It is distinct from the 3-FBA assay and does not supply a reaction or product assignment."
     },
     "tk_2020:GA+pyruvate": {
       "name": "glycolaldehyde plus pyruvate",
@@ -5324,6 +5446,61 @@
         }
       ],
       "reaction_id": "tk_2024:3FBA-pyruvate-to-PAC-analogue"
+    },
+    {
+      "id": "tk2024-3hba-background",
+      "study_id": "tk_2024",
+      "source": "tk2024bg",
+      "rows_pointer": "/conversion_observations",
+      "fields": {
+        "row_id": {
+          "pointer": "/row_id"
+        },
+        "construct_id": {
+          "pointer": "/construct_id"
+        },
+        "assay_id": {
+          "pointer": "/assay_id"
+        },
+        "substrate_id": {
+          "literal": "tk_2024:3HBA+pyruvate"
+        },
+        "source_locator": {
+          "pointer": "/source_locator"
+        }
+      },
+      "parameters": [
+        {
+          "id": "conversion",
+          "pointer": "/conversion",
+          "kind": {
+            "pointer": "/result_kind"
+          },
+          "value": {
+            "pointer": "/value"
+          },
+          "unit": {
+            "pointer": "/unit"
+          },
+          "uncertainty": {
+            "value": {
+              "pointer": "/uncertainty"
+            },
+            "kind": {
+              "pointer": "/uncertainty_kind"
+            },
+            "unreported_is_zero": {
+              "literal": false
+            },
+            "unit": {
+              "pointer": "/unit"
+            }
+          },
+          "status_kinds": {
+            "reported_numeric": "numeric"
+          }
+        }
+      ]
     },
     {
       "id": "tk2020-dhb-product",
@@ -9629,6 +9806,53 @@
       "scope": "Descriptive TK-2/TK-1 central-value ratio for source-reported specific activity at 50 mM 3-FBA and 50 mM pyruvate. TK-1 is the complete engineered comparison background and R520Q is the TK-2 set difference. The reported activity column may depend on the same kinetic fit and is not independent fit evidence. The two 61% 24-hour conversions are separate context; no propagated uncertainty, significance, equivalence, isolated residue cause, donor/acceptor preference combinability, 6M comparison or transfer to MAL or human TKT follows."
     },
     {
+      "id": "tk_2024:R520Q:3HBA-background-context",
+      "study_id": "tk_2024",
+      "operation": "unassessed",
+      "roles": {},
+      "context_observations": [
+        "tk2024-3hba-background:TK-3:3-HBA:conversion",
+        "tk2024-3hba-background:TK-6:3-HBA:conversion",
+        "tk2024-3hba-background:TK-4C:3-HBA:conversion",
+        "tk2024-3hba-background:TK5C:3-HBA:conversion"
+      ],
+      "source_blocks": [
+        "no_scalar_background_interaction_requested",
+        "integer_display_and_unreported_detection_limit_do_not_establish_exact_zero",
+        "replicate_count_uncertainty_and_significance_unreported",
+        "molecular_product_identity_not_established"
+      ],
+      "evidence": [
+        {
+          "source": "tk2024bg",
+          "pointer": "/background_relation"
+        },
+        {
+          "source": "tk2024bg",
+          "pointer": "/constructs"
+        },
+        {
+          "source": "tk2024bg",
+          "pointer": "/noncanonical_residue_context"
+        },
+        {
+          "source": "tk2024bg",
+          "pointer": "/assays/0"
+        },
+        {
+          "source": "tk2024bg",
+          "pointer": "/conversion_observations"
+        },
+        {
+          "source": "tk2024bg",
+          "pointer": "/limits"
+        }
+      ],
+      "scope": "Retrieve the source-supported four-cell 24-hour 3-HBA endpoint pattern for R520Q within separate S385F and S385pCNF engineered backgrounds. No scalar ratio, exact zero, statistical interaction, generic epistasis, isolated R520Q cause, molecular product identity or mechanistic conclusion is requested or established.",
+      "source_discriminant_assessed": true,
+      "arithmetic_requested": false
+    },
+    {
       "id": "tk_2020:H473N:DHB_accumulation",
       "study_id": "tk_2020",
       "operation": "ratio",
@@ -11067,6 +11291,10 @@
         {
           "source": "tk2024",
           "pointer": "/sources/0"
+        },
+        {
+          "source": "tk2024bg",
+          "pointer": "/sources/0"
         }
       ],
       "redistributed": false,
@@ -11081,6 +11309,10 @@
       "source_bindings": [
         {
           "source": "tk2024",
+          "pointer": "/sources/1"
+        },
+        {
+          "source": "tk2024bg",
           "pointer": "/sources/1"
         }
       ],
