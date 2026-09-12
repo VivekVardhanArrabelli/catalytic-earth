@@ -19,6 +19,92 @@ from catalytic_earth.atlas_perturbations import (
 ROOT = Path(__file__).resolve().parents[2]
 
 
+class NitrogenaseIsotopeCrossoverTests(unittest.TestCase):
+    def test_gas_and_solvent_isotopes_remain_distinct_in_paired_observations(self):
+        view = _project_candidate(ROOT)
+        relation = next(item for item in view["control_relations"] if item["id"] ==
+                        "nitrogenase_2016:WT:gas-solvent-isotope-crossover")
+        expected = {
+            "H2O_gas_isotope_contrast": ("H2O", "D2", "H2", "narrower"),
+            "D2O_gas_isotope_contrast": ("D2O", "H2", "D2", "broader"),
+        }
+        conditions = set()
+        for role, (solvent, test_gas, reference_gas, direction) in expected.items():
+            arm = relation["arms"][role]
+            system = arm["source_system"]
+            observation = arm["source_observation"]
+            measurement = arm["source_parameter"]
+            for side, gas in (("test", test_gas), ("reference", reference_gas)):
+                condition = system[f"{side}_condition"]
+                conditions.add(condition["condition_id"])
+                self.assertEqual(condition["condition_id"], observation[f"{side}_condition_id"])
+                self.assertEqual(condition["solvent"]["source_label"], solvent)
+                self.assertEqual([(item["source_label"], item["partial_pressure"])
+                                  for item in condition["gas_components"]],
+                                 [("N2", 0.1), (gas, 0.9)])
+            self.assertEqual(measurement["qualitative_result"]["test_relative_to_reference"],
+                             direction)
+            self.assertEqual(measurement["status"], "qualitative")
+            self.assertIsNone(measurement["value"])
+            self.assertIsNone(measurement["unit"])
+            self.assertEqual(arm["source_assay"]["EPR_measurement"]["temperature_K"], 12)
+            self.assertIsNone(arm["source_assay"]["preparation"]["turnover_temperature_celsius"])
+        self.assertEqual(len(conditions), 4)
+        self.assertEqual(len(relation["arms"]), 2)
+        self.assertFalse(relation["eligible"])
+        self.assertIsNone(relation["value"])
+        self.assertIn("arithmetic_not_requested", relation["reasons"])
+        self.assertIsNone(relation["source_assessment"]["solvent_exchange_rate"])
+        self.assertFalse(relation["source_assessment"]["N2_release_directly_measured_by_this_relation"])
+        question = relation["source_evidence"][1]
+        self.assertFalse(question["source_proposal_or_step_join_established"])
+        self.assertFalse(question["pdb_or_assayed_sequence_join_established"])
+
+    def test_wrong_solvent_system_cannot_replace_a_paired_source_context(self):
+        directory = ROOT / "data/atlas/study_context/nitrogenase_2016"
+        source = json.loads((directory / "source_qualification.json").read_text())
+        context = json.loads((directory / "system_assessment.json").read_text())
+        context["arms"]["H2O_gas_isotope_contrast"]["system_provider"]["pointer"] = "/systems/1"
+
+        def resolve(ref):
+            self.assertEqual(ref["source"], "nitrogenase2016")
+            return pointer(source, ref["pointer"])
+
+        with self.assertRaisesRegex(ValueError, "row, system or assay identity differs"):
+            control_relation(context, resolve)
+
+    def test_paired_condition_membership_is_checked_by_the_shared_consumer(self):
+        directory = ROOT / "data/atlas/study_context/nitrogenase_2016"
+        source = json.loads((directory / "source_qualification.json").read_text())
+        context = json.loads((directory / "system_assessment.json").read_text())
+        for mutation in ("swap_conditions", "invent_nested_id", "invent_row_id",
+                         "duplicate_pair", "remove_reference", "remove_pair_kind"):
+            with self.subTest(mutation=mutation):
+                changed = deepcopy(source)
+                system, row = changed["systems"][0], changed["rows"][0]
+                if mutation == "swap_conditions":
+                    system["test_condition"], system["reference_condition"] = (
+                        system["reference_condition"], system["test_condition"])
+                elif mutation == "invent_nested_id":
+                    system["test_condition"]["condition_id"] = "unobserved-condition"
+                elif mutation == "invent_row_id":
+                    row["test_condition_id"] = "unobserved-condition"
+                elif mutation == "duplicate_pair":
+                    system["reference_condition"] = deepcopy(system["test_condition"])
+                    row["reference_condition_id"] = row["test_condition_id"]
+                elif mutation == "remove_reference":
+                    del system["reference_condition"]
+                else:
+                    del system["system_kind"]
+
+                def resolve(ref):
+                    self.assertEqual(ref["source"], "nitrogenase2016")
+                    return pointer(changed, ref["pointer"])
+
+                with self.assertRaisesRegex(ValueError, "paired system"):
+                    control_relation(context, resolve)
+
+
 class KsiIsotopeDiscriminantTests(unittest.TestCase):
     def test_aggregate_enolization_isotope_evidence_cannot_become_d40n_turnover(self):
         view = _project_candidate(ROOT)

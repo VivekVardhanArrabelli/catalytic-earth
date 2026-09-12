@@ -1,0 +1,80 @@
+{
+  "schema_version": "catalytic-earth.system-control-relation.v1",
+  "id": "nitrogenase_2016:WT:gas-solvent-isotope-crossover",
+  "study_id": "nitrogenase_2016",
+  "operation": "system_assessment",
+  "source_discriminant_assessed": true,
+  "arithmetic_requested": false,
+  "assessment_provider": {
+    "source": "nitrogenase2016",
+    "pointer": "/source_assessment"
+  },
+  "source_blocks": [
+    "qualitative_paired_widths_no_absolute_measurements",
+    "state_and_gas_origin_are_source_interpretations",
+    "no_source_step_or_deposited_atom_join"
+  ],
+  "arms": {
+    "H2O_gas_isotope_contrast": {
+      "observation_provider": {
+        "source": "nitrogenase2016",
+        "pointer": "/rows/0"
+      },
+      "system_provider": {
+        "source": "nitrogenase2016",
+        "pointer": "/systems/0"
+      },
+      "assay_provider": {
+        "source": "nitrogenase2016",
+        "pointer": "/assays/0"
+      },
+      "system_identity_field": "system_id",
+      "source_row_id": "H2O-gas-isotope-EPR-width-contrast",
+      "parameter_pointer": "/measurement",
+      "parameter": "EPR_g1_width_contrast",
+      "assay_qualified": false
+    },
+    "D2O_gas_isotope_contrast": {
+      "observation_provider": {
+        "source": "nitrogenase2016",
+        "pointer": "/rows/1"
+      },
+      "system_provider": {
+        "source": "nitrogenase2016",
+        "pointer": "/systems/1"
+      },
+      "assay_provider": {
+        "source": "nitrogenase2016",
+        "pointer": "/assays/0"
+      },
+      "system_identity_field": "system_id",
+      "source_row_id": "D2O-gas-isotope-EPR-width-contrast",
+      "parameter_pointer": "/measurement",
+      "parameter": "EPR_g1_width_contrast",
+      "assay_qualified": false
+    }
+  },
+  "evidence": [
+    {
+      "source": "nitrogenase2016",
+      "pointer": "/source"
+    },
+    {
+      "source": "nitrogenase2016",
+      "pointer": "/source_question_context"
+    },
+    {
+      "source": "nitrogenase2016",
+      "pointer": "/state_assignment"
+    },
+    {
+      "source": "nitrogenase2016",
+      "pointer": "/limitations"
+    },
+    {
+      "source": "nitrogenase2016",
+      "pointer": "/counted_objects"
+    }
+  ],
+  "interpretation_limit": "Gas-versus-solvent isotope discrimination in the source-assigned WT E4 state. Two paired qualitative EPR observations, no arithmetic, numerical nonexchange rate, elementary bond event, no-N2 control, M0212 step or productive geometry claim."
+}

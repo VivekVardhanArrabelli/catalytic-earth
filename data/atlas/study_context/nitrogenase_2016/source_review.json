@@ -1,0 +1,112 @@
+{
+  "schema_version": "catalytic-earth.primary-source-review.v1",
+  "status": "source_reviewed_computational",
+  "reviewed_at_utc": "2026-09-12T11:29:40.673334+00:00",
+  "base_commit": "ea5ba16032c183add9f6642602ab2340ffce8ebb",
+  "scope": "Two WT nitrogenase Figure8A paired qualitative EPR width assertions across four gas/solvent conditions, with primary-source E4 state assignment and gas-isotope persistence interpretation. A generic paired-condition identity check preserves exact nested test/reference membership; no new arithmetic, source-step or deposited-atom join.",
+  "reviewed_bindings": {
+    "data/atlas/study_context/nitrogenase_2016/source_qualification.json": "c3f7b7ef0ce2cf48a52a1a238455f48d7da7502a18cb15ed64fbde28cec2701b",
+    "data/atlas/study_context/nitrogenase_2016/system_assessment.json": "80c69b4dcd2a2c0c4e64dedb7d061bac852931530399296f2bdcbeabfeebbfbf",
+    "data/atlas/study_context/nitrogenase_2016/acquisition_receipts.json": "0ac4c78b94ad27befe8d85c6f0af6a848c07a9cca368da8729169730dc49c3d3",
+    "data/atlas/perturbations/projection.json": "80a89e1ad2bf0a128ed4fe52e5e8313ff8ec534a987a16b7e4e303de03dfec64",
+    "src/catalytic_earth/atlas_perturbations.py": "f7842ef9dd016f483d51162752809380ede302de82c632e3b3e9688acb0ca8b8",
+    "scripts/query_atlas_perturbations.py": "0cd9ef82f86e79b38578d68a6880902fd9106991476d19d93f12c93cae560f23",
+    "tests/core/test_atlas_perturbations.py": "c575d6b33d5f9b173b981a86ee620f2be8208fb355fefbbe911b70450d582780",
+    "tests/test_truth_guard.py": "01094bf540ad3cfc713e688f90592f6222ea55d7f45942b983fdd8dc33ee10e8",
+    "docs/ATLAS_NITROGENASE_ISOTOPE_CROSSOVER.md": "677e94ee0588af330f368098889ce608802653bd091bb76ff8b4c79d92b438d3",
+    "docs/ATLAS_PERTURBATION_RELATION.md": "49c76f33b4d9781b19557770235df7e165f6655aa31000d253b7fe93aff3045b",
+    "CLAIMS.md": "a4a5999e7a1b4f981dec04fcfb94731dfcf6cc71da93bfbe990df09070fa8ec9",
+    "data/governance/claim_ledger.json": "08277b4bfc7ac930934ba489cb26b1158971da09cff8f1b5e8c794c974de5356",
+    "data/governance/architecture_freeze.json": "e205a629a0216e4914aac095ea71247bd768f878371f4148cf40971d39ec807e"
+  },
+  "review_process": [
+    {
+      "task": "/root/source_scope",
+      "role": "primary_source",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_final_scientific_payload_and_scoped_runtime_after_adversarial_pair_identity_repair"
+    },
+    {
+      "task": "/root/representation_scope",
+      "role": "representation",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_final_scientific_payload_and_scoped_runtime_after_adversarial_pair_identity_repair"
+    },
+    {
+      "task": "/root/adversarial_candidate",
+      "role": "adversarial",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "ultra",
+      "status": "accepted_final_scientific_payload_and_scoped_runtime_after_adversarial_pair_identity_repair"
+    }
+  ],
+  "coordination_board": ".git/catalytic-earth-runs/5736ffc0.board.md",
+  "independent_human_validation": false,
+  "experimental_validation": false,
+  "resolved_objections": [
+    {
+      "issue": "Two relational width statements could become four invented absolute measurements.",
+      "resolution": "Each row is a paired qualitative assertion; nested test and reference systems preserve all four gas/solvent conditions. Scalars, units, isotope fractions and errors remain null."
+    },
+    {
+      "issue": "The 12K readout or instrument scans could become turnover conditions or biological replicates.",
+      "resolution": "Measurement and preparation scopes are separate, turnover temperature and biological replicate count are null, and scan count is explicitly an instrument setting."
+    },
+    {
+      "issue": "Gas-isotope signal evidence could imply observed oxidative addition, exact hydride geometry or N2 release.",
+      "resolution": "Keep measured widths separate from source state/model interpretation, preserve WT ENDOR limits and unknown diazene-level geometry, and assert no direct bond-event or N2-free control."
+    },
+    {
+      "issue": "Closed nitrogenase elemental-identity acquisition could be relabeled to gain headroom.",
+      "resolution": "Spatzal2011 scope and receipt are unchanged and remain closed. Exact primary-study searches found no prior E4 batch; this distinct2016 experimental study is fully metered from first request under standing named-object development authority."
+    },
+    {
+      "issue": "A useful study relation could improperly map onto M0212 proposed steps or1N2C.",
+      "resolution": "M0212 is research-question context only; source-step, atom, accession, exact assayed-sequence and deposit correspondence are explicitly unestablished."
+    },
+    {
+      "issue": "The existing consumer did not bind nested test/reference condition membership, and fixture-only assertions were insufficient reusable integrity.",
+      "resolution": "A generic optional paired-context rule requires explicit kind, two distinct nonempty nested condition IDs and exact corresponding row IDs. Mutation tests reject swapped/fabricated/missing/duplicate membership. Chemical meaning and isotope labels still require source review; coherent rewriting of both metadata planes is outside this identity check."
+    }
+  ],
+  "remaining_limits": [
+    "State assignment, isotope origin and applicability require manual primary-source interpretation. Correlated source/diff reviewers are not independent experts.",
+    "The source does not provide full preparation/turnover mixture, isotope purity, biological statistics or numeric widths in the inspected main scope.",
+    "No measured curation saving, full mechanism, new project experiment, protected registry admission or design validation."
+  ],
+  "acquisition": {
+    "batch_id": "nitrogenase-e4-janus-lukoyanov2016",
+    "new_requests": 3,
+    "new_response_body_bytes": 136555,
+    "cumulative_requests": 3,
+    "cumulative_response_body_bytes": 136555,
+    "raw_body_accounting_complete": true,
+    "source_bodies_redistributed": false,
+    "all_prior_batches_unchanged": true
+  },
+  "observed_reuse": {
+    "runtime_changed": true,
+    "source_system_assessment_used_for": [
+      "codh_2011:Ag-substitution:source-assessment",
+      "nitrogenase_2016:WT:gas-solvent-isotope-crossover"
+    ],
+    "manual_source_interpretation_required": true,
+    "curation_time_saving_measured": false,
+    "runtime_change_scope": "Generic optional paired-condition identity validation; legacy unpaired system relations unchanged."
+  },
+  "verification": {
+    "scientific_invariance": ".git/catalytic-earth-runs/5736ffc0-scientific-invariance.json",
+    "prior_observations_unchanged": 254,
+    "prior_comparisons_unchanged": 133,
+    "prior_state_links_unchanged": 2,
+    "prior_model_links_unchanged": 4,
+    "prior_control_relations_unchanged": 3,
+    "new_control_relations": 1,
+    "new_qualitative_pair_assertions": 2,
+    "new_condition_arms": 4,
+    "focused_regressions_passed": 3,
+    "paired_membership_mutations_rejected": 6
+  }
+}

@@ -13,7 +13,8 @@
     "limitations": "No pooled rates, generic inactivity labels, causal residue assignments, full apparatus claims, microscopic coupling energy or design-success estimates. Forward product composition retains source-author configuration and unresolved retention mapping; strict ee bounds remain structured source context, not central-value comparisons. Diels-Alder activity-reduction summaries do not identify mutant kcat or product outcomes; strict product bounds and mismatched assays remain in context. TKT reporter-unavailable parameters, NMR qualitative presence / scoped nondetection and positive turnover remain different kinds; no selective partner-only intervention, crystal-to-assay identity or productive F6P full-cycle inference. POX analogue nonbinding differs from TKT reporter absence. MAP apparent equilibrium includes a covalent conjugate; positive pyruvate fitted rates do not establish oxygen turnover, an elementary-step rate or exact construct/preparation identity. Beta-barrel S4 arms are qualitative and belong to 16.2; main noninhibition prose conflicts with the plot and does not establish ligand-independent 16.1/8AH9. Exact deposited identity does not establish assay identity. KSI donor-control discrimination is limited to the named5(10)-EST panel. Double-mutant equilenin/phenolate structure and NMR are separate analogue contexts; cavity hydration/desolvation is source interpretation, not observed single-mutant turnover or a universal hydrogen-bond energy. Calmodulin residual methodol activity does not identify a lysine-covalent pathway; source-derived hydrophobic causality, diketone adduct identity and calcium allostery stay qualified. Full-length/domain, experimental/docking stereochemistry and TableI/Figure5 protocol distinctions are preserved. E. coli TK 2024 fixed-pair activity, 24-hour conversion and fitted kinetics remain separate; the selected ratio does not establish significance, equivalence, an isolated R520Q cause beyond the TK-1 background, donor/acceptor preference combinability or transfer to 6M, MAL or human TKT. The separate 3-HBA background context does not establish 44%-over-42% superiority, exact zero or biochemical inactivity from printed 0%, molecular product identity, selectivity, generic epistasis, an isolated R520Q cause or an energetic mechanism. Its integer display, missing uncertainty and unknown detection/rounding limits remain explicit.",
     "mandelate_1995_e317q_extension": "Two author-reported E317Q kcat reduction-factor observations retain R-mandelate 4500-fold and S-mandelate 29000-fold with WT as whole-abstract contextual reference. A shared no-arithmetic context joins the exact UniProt reference feature/citation, preserving unspecified net direction, assay/construct identity and the unresolved plural kcat/KM statement. Archived primary text is reused without a new network request or established legacy headroom.",
     "mandelate_1995_e317q_chemical_endpoints_extension": "One aggregate either-enantiomer p-(bromomethyl)mandelate bromide-elimination nondetection and one racemic alpha-phenylglycidate irreversible-inactivation assertion join the two unchanged kcat factors in a shared no-arithmetic context. Explicit source WT contrast/comparability is qualitative; no detection floor, numeric inactivation parameter, equality, matched assay, covalent mechanism or productive structural state is inferred.",
-    "ksi_1991_isotope_extension": "One aggregate abstract-level D38N primary enolization isotope-effect assertion spans C4alpha, C4beta and doubly deuterated substrates. A no-arithmetic relation separates direct primary-abstract support from Fried2014-only hydroxide/reketonization attribution and blocks D38N-to-D40N transfer. No KIE magnitudes, matched WT assay, isotope branching or new activity factor."
+    "ksi_1991_isotope_extension": "One aggregate abstract-level D38N primary enolization isotope-effect assertion spans C4alpha, C4beta and doubly deuterated substrates. A no-arithmetic relation separates direct primary-abstract support from Fried2014-only hydroxide/reketonization attribution and blocks D38N-to-D40N transfer. No KIE magnitudes, matched WT assay, isotope branching or new activity factor.",
+    "nitrogenase_2016_extension": "Two paired qualitative Figure8A EPR-width assertions retain four WT gas/solvent isotope conditions through the existing source-system assessment consumer. The positive source-assigned bridge-isotope persistence remains distinct from observed widths, numerical exchange rates, N2-free controls and source-step/deposited-atom identity."
   },
   "sources": {
     "ra95f": {
@@ -207,6 +208,14 @@
     "ksi1991": {
       "path": "data/atlas/study_context/ksi_1991/isotope_discriminant.json",
       "sha256": "c1fe7894289c56c7a49ed6523923be858d72d9bd45e6d47dce81e533af899bc3"
+    },
+    "nitrogenase2016": {
+      "path": "data/atlas/study_context/nitrogenase_2016/source_qualification.json",
+      "sha256": "c3f7b7ef0ce2cf48a52a1a238455f48d7da7502a18cb15ed64fbde28cec2701b"
+    },
+    "nitrogenase2016assessment": {
+      "path": "data/atlas/study_context/nitrogenase_2016/system_assessment.json",
+      "sha256": "80c69b4dcd2a2c0c4e64dedb7d061bac852931530399296f2bdcbeabfeebbfbf"
     }
   },
   "constructs": {
@@ -11607,6 +11616,32 @@
         "source": "ksi1991",
         "pointer": "/counted_objects"
       }
+    ],
+    "nitrogenase_2016": [
+      {
+        "source": "nitrogenase2016",
+        "pointer": "/source"
+      },
+      {
+        "source": "nitrogenase2016",
+        "pointer": "/source_question_context"
+      },
+      {
+        "source": "nitrogenase2016",
+        "pointer": "/source_assessment"
+      },
+      {
+        "source": "nitrogenase2016",
+        "pointer": "/state_assignment"
+      },
+      {
+        "source": "nitrogenase2016",
+        "pointer": "/limitations"
+      },
+      {
+        "source": "nitrogenase2016",
+        "pointer": "/counted_objects"
+      }
     ]
   },
   "source_witnesses": [
@@ -12248,6 +12283,21 @@
       ],
       "redistributed": false,
       "retention": "Previously acquired exact JSON response; newly inspected/projected truncated primary abstract, zero new requests or response bytes."
+    },
+    {
+      "sha256": "367a4c53f862bdd6a06e9290a1f8b9e3a17ef85a35e62363b4136a7f2e6964e4",
+      "bytes": 105337,
+      "git_common_dir_relative_path": "catalytic-earth-runs/5736ffc0-e4-sources/lukoyanov2016-pmc.xml",
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=5024552",
+      "redistributed": false,
+      "id": "nitrogenase2016-primary-main",
+      "source_bindings": [
+        {
+          "source": "nitrogenase2016",
+          "pointer": "/source/witness"
+        }
+      ],
+      "retention": "Raw main-manuscript XML retained only under Git common directory, never bundled; project packet contains reviewed factual paraphrases and exact locators."
     }
   ],
   "parameter_contracts": {
@@ -12850,6 +12900,14 @@
       "study_id": "codh_2011",
       "provider": {
         "source": "codh2011assessment",
+        "pointer": ""
+      }
+    },
+    {
+      "id": "nitrogenase_2016:WT:gas-solvent-isotope-crossover",
+      "study_id": "nitrogenase_2016",
+      "provider": {
+        "source": "nitrogenase2016assessment",
         "pointer": ""
       }
     }

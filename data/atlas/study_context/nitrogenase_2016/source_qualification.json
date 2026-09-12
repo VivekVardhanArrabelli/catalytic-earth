@@ -1,0 +1,408 @@
+{
+  "schema_version": "catalytic-earth.primary-source-qualification.v1",
+  "study_id": "nitrogenase_2016",
+  "question": "Does gas-derived bridge isotope persist in the source-assigned WT E4 state when gas and solvent hydrogen isotopes differ during N2 turnover?",
+  "source": {
+    "doi": "10.1021/jacs.6b06362",
+    "pubmed_id": "27529724",
+    "pmcid": "PMC5024552",
+    "title": "Reductive Elimination of H2 Activates Nitrogenase to Reduce the N≡N Triple Bond: Characterization of the E4(4H) Janus Intermediate in Wild-Type Enzyme",
+    "authors": "Lukoyanov D, Khadka N, Yang ZY, Dean DR, Seefeldt LC, Hoffman BM",
+    "journal": "Journal of the American Chemical Society",
+    "year": 2016,
+    "volume": "138",
+    "pages": "10674-10683",
+    "inspection": "Retained primary main-manuscript XML, Methods, P17-P20 state-assignment basis, P26-P31 isotope experiment and Figure8 caption. No new inspection of cited primary studies, raw spectra or supporting files.",
+    "witness": {
+      "sha256": "367a4c53f862bdd6a06e9290a1f8b9e3a17ef85a35e62363b4136a7f2e6964e4",
+      "bytes": 105337,
+      "git_common_dir_relative_path": "catalytic-earth-runs/5736ffc0-e4-sources/lukoyanov2016-pmc.xml",
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=5024552",
+      "redistributed": false
+    },
+    "source_locators": {
+      "P11": {
+        "xml_xpath": ".//*[@id=\"P11\"]",
+        "itertext_utf8_sha256": "a79ede0e94db268e572543cc6a57289838bf93da769086ccc70de9afc54c8983"
+      },
+      "P12": {
+        "xml_xpath": ".//*[@id=\"P12\"]",
+        "itertext_utf8_sha256": "21ab76202b04e86a26b7860c9e28c50e1ed89a3ce55e5a950235149c6220e729"
+      },
+      "P13": {
+        "xml_xpath": ".//*[@id=\"P13\"]",
+        "itertext_utf8_sha256": "30358394ccf90833c05443e52b877e02514b76bce93f57a62424cddbede6ea12"
+      },
+      "P17": {
+        "xml_xpath": ".//*[@id=\"P17\"]",
+        "itertext_utf8_sha256": "ca054f2462dd4d9b041f230229b796a89daf8760671f00254908e08baabd760b"
+      },
+      "P18": {
+        "xml_xpath": ".//*[@id=\"P18\"]",
+        "itertext_utf8_sha256": "91f501b94e86754433dd15271ca1f8b0c4e61a0582261384f1ff9198119cf750"
+      },
+      "P19": {
+        "xml_xpath": ".//*[@id=\"P19\"]",
+        "itertext_utf8_sha256": "d7e08f5be6a81a067d25ad36202ba2d15cff9ee45a368bcbcbdd90dd79618d38"
+      },
+      "P20": {
+        "xml_xpath": ".//*[@id=\"P20\"]",
+        "itertext_utf8_sha256": "c428e1b224324c644449b5798da526face52a36e5409ddb1d5451cb7199c484e"
+      },
+      "P26": {
+        "xml_xpath": ".//*[@id=\"P26\"]",
+        "itertext_utf8_sha256": "fa8aaab9040496b8a9534608ab38ab448dafa5dc5353b3b5fa1109223dd1c900"
+      },
+      "P27": {
+        "xml_xpath": ".//*[@id=\"P27\"]",
+        "itertext_utf8_sha256": "ecb6f5b4239bdad1ca971bfe70905bc18c9aa4c61fba4157130fb48962e0d9f6"
+      },
+      "P28": {
+        "xml_xpath": ".//*[@id=\"P28\"]",
+        "itertext_utf8_sha256": "f24b61735828c91c5283bbdc9eb840a2300d26860ba3a30808beffe8c61f24e0"
+      },
+      "P31": {
+        "xml_xpath": ".//*[@id=\"P31\"]",
+        "itertext_utf8_sha256": "68837244699daa48848365b8a0cadc0cd95cf583a71ae5ac35700980c55dd448"
+      },
+      "F3": {
+        "xml_xpath": ".//*[@id=\"F3\"]",
+        "itertext_utf8_sha256": "1f17223d3bb4f72a186f937ae968340bda7ceea39af58d766e632f79a0d1e608"
+      },
+      "F8": {
+        "xml_xpath": ".//*[@id=\"F8\"]",
+        "itertext_utf8_sha256": "930557f2db03bdcd1cdf3737a5a20077c040695f6e48f95460eff265347bf215"
+      },
+      "F5": {
+        "xml_xpath": ".//*[@id=\"F5\"]",
+        "itertext_utf8_sha256": "3c8b143d2908373ee8d99083211cf25f9776f55ba313d69eaee0a79e919249f8"
+      }
+    }
+  },
+  "source_question_context": {
+    "mcsa_id": "M0212",
+    "source_path": "data/atlas/source_drafts/sources/M0212.json",
+    "source_sha256": "23fd20835b7ce46c634381cb8f94ba390444c87a847b05109731a206a333907f",
+    "reference_scope": "Research-question association by nitrogenase chemistry only. This 2016 experimental paper is not in the retained M0212 bibliography.",
+    "source_proposal_or_step_join_established": false,
+    "pdb_or_assayed_sequence_join_established": false,
+    "source_draft_modified": false
+  },
+  "systems": [
+    {
+      "system_id": "WT:H2O:gas-isotope-contrast",
+      "system_kind": "source_defined_paired_condition_context",
+      "organism": "Azotobacter vinelandii",
+      "source_named_construct": "WT MoFe protein",
+      "intervention_kind": "gas_diatomic_isotope_substitution_at_fixed_solvent",
+      "genetic_perturbation": null,
+      "full_sequence": null,
+      "strain": null,
+      "physical_preparation_id": null,
+      "test_condition": {
+        "condition_id": "WT:H2O:N2+D2",
+        "source_named_protein": "wild-type Azotobacter vinelandii MoFe protein",
+        "solvent": {
+          "source_label": "H2O",
+          "hydrogen_isotope_mass_number": 1,
+          "isotopic_purity": null
+        },
+        "gas_components": [
+          {
+            "source_label": "N2",
+            "partial_pressure": 0.1,
+            "unit": "atm",
+            "nitrogen_isotope_mass_number": null
+          },
+          {
+            "source_label": "D2",
+            "partial_pressure": 0.9,
+            "unit": "atm",
+            "hydrogen_isotope_mass_number": 2,
+            "isotopic_purity": null
+          }
+        ],
+        "stirring": true,
+        "source_locators": [
+          "F8"
+        ]
+      },
+      "reference_condition": {
+        "condition_id": "WT:H2O:N2+H2",
+        "source_named_protein": "wild-type Azotobacter vinelandii MoFe protein",
+        "solvent": {
+          "source_label": "H2O",
+          "hydrogen_isotope_mass_number": 1,
+          "isotopic_purity": null
+        },
+        "gas_components": [
+          {
+            "source_label": "N2",
+            "partial_pressure": 0.1,
+            "unit": "atm",
+            "nitrogen_isotope_mass_number": null
+          },
+          {
+            "source_label": "H2",
+            "partial_pressure": 0.9,
+            "unit": "atm",
+            "hydrogen_isotope_mass_number": 1,
+            "isotopic_purity": null
+          }
+        ],
+        "stirring": true,
+        "source_locators": [
+          "F8"
+        ]
+      },
+      "source_locators": [
+        "P11",
+        "P12",
+        "P28",
+        "F8"
+      ],
+      "scope": "One paired experiment context with two separately declared condition arms; not one physical specimen or an absolute linewidth measurement."
+    },
+    {
+      "system_id": "WT:D2O:gas-isotope-contrast",
+      "system_kind": "source_defined_paired_condition_context",
+      "organism": "Azotobacter vinelandii",
+      "source_named_construct": "WT MoFe protein",
+      "intervention_kind": "gas_diatomic_isotope_substitution_at_fixed_solvent",
+      "genetic_perturbation": null,
+      "full_sequence": null,
+      "strain": null,
+      "physical_preparation_id": null,
+      "test_condition": {
+        "condition_id": "WT:D2O:N2+H2",
+        "source_named_protein": "wild-type Azotobacter vinelandii MoFe protein",
+        "solvent": {
+          "source_label": "D2O",
+          "hydrogen_isotope_mass_number": 2,
+          "isotopic_purity": null
+        },
+        "gas_components": [
+          {
+            "source_label": "N2",
+            "partial_pressure": 0.1,
+            "unit": "atm",
+            "nitrogen_isotope_mass_number": null
+          },
+          {
+            "source_label": "H2",
+            "partial_pressure": 0.9,
+            "unit": "atm",
+            "hydrogen_isotope_mass_number": 1,
+            "isotopic_purity": null
+          }
+        ],
+        "stirring": true,
+        "source_locators": [
+          "F8"
+        ]
+      },
+      "reference_condition": {
+        "condition_id": "WT:D2O:N2+D2",
+        "source_named_protein": "wild-type Azotobacter vinelandii MoFe protein",
+        "solvent": {
+          "source_label": "D2O",
+          "hydrogen_isotope_mass_number": 2,
+          "isotopic_purity": null
+        },
+        "gas_components": [
+          {
+            "source_label": "N2",
+            "partial_pressure": 0.1,
+            "unit": "atm",
+            "nitrogen_isotope_mass_number": null
+          },
+          {
+            "source_label": "D2",
+            "partial_pressure": 0.9,
+            "unit": "atm",
+            "hydrogen_isotope_mass_number": 2,
+            "isotopic_purity": null
+          }
+        ],
+        "stirring": true,
+        "source_locators": [
+          "F8"
+        ]
+      },
+      "source_locators": [
+        "P11",
+        "P12",
+        "P28",
+        "F8"
+      ],
+      "scope": "One paired experiment context with two separately declared condition arms; not one physical specimen or an absolute linewidth measurement."
+    }
+  ],
+  "assays": [
+    {
+      "assay_id": "WT-Figure8A-EPR",
+      "endpoint": "qualitative isotope-dependent breadth of a freeze-trapped EPR feature",
+      "readout": "X-band continuous-wave EPR, g1 = 2.15 feature",
+      "source_locators": [
+        "P11",
+        "P12",
+        "P13",
+        "P28",
+        "F8"
+      ],
+      "preparation": {
+        "anaerobic_handling": true,
+        "MoFe_protein_uM": 50,
+        "Fe_protein_uM": 75,
+        "turnover_time_seconds": {
+          "minimum": 20,
+          "maximum": 25
+        },
+        "trapping": "liquid nitrogen after turnover",
+        "turnover_temperature_celsius": null,
+        "pH": null,
+        "complete_buffer_composition": null,
+        "ATP_concentration": null,
+        "electron_donor_concentration": null,
+        "scope": "The current main text gives these X-band sample conditions; preparation references do not supply independently inspected complete methods."
+      },
+      "EPR_measurement": {
+        "temperature_K": 12,
+        "microwave_frequency_GHz": 9.36,
+        "frequency_qualifier": "approximately",
+        "microwave_power_mW": 10,
+        "modulation_amplitude_G": 4.5,
+        "time_constant_ms": 160,
+        "field_sweep_G_per_s": 5,
+        "scan_count_range": [
+          4,
+          8
+        ],
+        "scan_count_is_biological_replicate_count": false
+      },
+      "biological_replicate_count": null,
+      "numerical_linewidths": null,
+      "qualified_for_cross_system_arithmetic": false,
+      "scope": "Figure8A EPR only. The 12K readout temperature is not the turnover temperature. Figure8B post-trap laser photolysis and Figure9 cryoannealing are different interventions/endpoints."
+    }
+  ],
+  "rows": [
+    {
+      "row_id": "H2O-gas-isotope-EPR-width-contrast",
+      "system_id": "WT:H2O:gas-isotope-contrast",
+      "assay_id": "WT-Figure8A-EPR",
+      "test_condition_id": "WT:H2O:N2+D2",
+      "reference_condition_id": "WT:H2O:N2+H2",
+      "source_locators": [
+        "P28",
+        "F8"
+      ],
+      "measurement": {
+        "parameter": "EPR_g1_width_contrast",
+        "status": "qualitative",
+        "value": null,
+        "unit": null,
+        "qualitative_result": {
+          "test_relative_to_reference": "narrower",
+          "observable": "breadth of the g1 = 2.15 EPR feature"
+        },
+        "value_origin": "primary_main_text_reported_pairwise_observation",
+        "uncertainty": {
+          "value": null,
+          "kind": "not_reported_for_qualitative_width_contrast",
+          "unreported_is_zero": false
+        },
+        "scope": "One source-reported relative-width assertion across two condition arms; no absolute widths, numerical difference, significance, exchange rate or isotope population."
+      }
+    },
+    {
+      "row_id": "D2O-gas-isotope-EPR-width-contrast",
+      "system_id": "WT:D2O:gas-isotope-contrast",
+      "assay_id": "WT-Figure8A-EPR",
+      "test_condition_id": "WT:D2O:N2+H2",
+      "reference_condition_id": "WT:D2O:N2+D2",
+      "source_locators": [
+        "P28",
+        "F8"
+      ],
+      "measurement": {
+        "parameter": "EPR_g1_width_contrast",
+        "status": "qualitative",
+        "value": null,
+        "unit": null,
+        "qualitative_result": {
+          "test_relative_to_reference": "broader",
+          "observable": "breadth of the g1 = 2.15 EPR feature"
+        },
+        "value_origin": "primary_main_text_reported_pairwise_observation",
+        "uncertainty": {
+          "value": null,
+          "kind": "not_reported_for_qualitative_width_contrast",
+          "unreported_is_zero": false
+        },
+        "scope": "One source-reported relative-width assertion across two condition arms; no absolute widths, numerical difference, significance, exchange rate or isotope population."
+      }
+    }
+  ],
+  "state_assignment": {
+    "source_locators": [
+      "P17",
+      "P18",
+      "P19",
+      "P20",
+      "F5"
+    ],
+    "observed_signal": {
+      "g1": 2.15,
+      "method": "EPR"
+    },
+    "source_assigned_state": "E4(4H) Janus intermediate of WT MoFe protein",
+    "source_assigned_bridging_hydride_count": 2,
+    "identity_basis": "WT H/D-sensitive EPR hyperfine features and WT deuterium ENDOR, compared with earlier variant hydride characterization. The source reports that satisfactory strongly-coupled proton ENDOR could not be obtained for WT in H2O; the WT deuterium signal was measured in D2O.",
+    "prior_variant_reference": "alpha-70 Val-to-Ile, and alpha-70 Val-to-Ile / alpha-195 His-to-Gln where explicitly named by the source",
+    "full_WT_hydride_tensor_independently_measured_here": false,
+    "exact_Fe_pairs": null,
+    "exact_protonated_S_atoms": null,
+    "deposited_atom_mapping": null
+  },
+  "source_assessment": {
+    "supported": "The two opposite-solvent EPR contrasts support the authors' inference that gas-derived bridge hydrogen isotopes persist in the source-assigned WT E4 state during N2 turnover, rather than completely equilibrating with the opposite solvent isotope before trapping.",
+    "source_locators": [
+      "P26",
+      "P27",
+      "P28",
+      "P31",
+      "F3",
+      "F8"
+    ],
+    "observed": "H2O/N2+D2 is narrower than H2O/N2+H2; D2O/N2+H2 is broader than D2O/N2+D2 at the g1 feature.",
+    "author_mechanistic_interpretation": "Gas-diatomic oxidative addition within reversible reductive-elimination/oxidative-addition coupling produces bridging hydrides/deuterides that retain their isotope during turnover.",
+    "observed_vs_assigned_boundary": "The paired observations are EPR-feature widths. Gas origin, bridge identity, oxidative addition and solvent nonexchange are the authors' mechanistic interpretation using the state assignment and broader spectroscopy; no bond-making/breaking event is directly tracked by these two width contrasts.",
+    "N2_presence": "All four Figure8 conditions contain 0.1 atm N2; this experiment does not provide a no-N2 control or alone establish N2 dependence.",
+    "N2_product_state_limit": "Figure3 labels a diazene-reduction-level E4(2N2H) species with unknown structure and coordination. Figure8 does not identify its atomic structure or directly observe N2 release.",
+    "source_model_dependence": true,
+    "complete_solvent_equilibration_before_trapping_supported": false,
+    "exact_isotope_fraction": null,
+    "solvent_exchange_rate": null,
+    "H2_formation_rate": null,
+    "N2_release_directly_measured_by_this_relation": false
+  },
+  "limitations": [
+    "Two qualitative paired EPR-width assertions span four declared gas/solvent condition arms; they are not four absolute linewidth observations.",
+    "Exact assayed sequence, strain, physical preparation identity, complete turnover mixture, isotope purity and biological replicate statistics remain unspecified in the inspected scope.",
+    "No numerical linewidth, isotope fraction, exchange-rate upper bound, microscopic kinetic rate, photolysis rate or thermodynamic quantity is derived.",
+    "Nonexchange is source-supported at the tested turnover/trapping scope; no universal zero-exchange law or complete FeMo chemical graph follows.",
+    "No N2-free arm, direct N2 release, exact Fe/S sites, substrate binding geometry, source-step/1N2C correspondence or corrected M0212 trajectory is established.",
+    "Literature experiments and correlated computational source review are not project experiments, independent human review, Tier3/4 admission or design validation."
+  ],
+  "counted_objects": {
+    "new_proteins": 0,
+    "new_net_reactions": 0,
+    "new_mechanism_hypotheses": 0,
+    "new_mechanism_steps": 0,
+    "source_reported_qualitative_paired_assertions": 2,
+    "declared_condition_arms": 4,
+    "new_project_experiments": 0,
+    "independently_reviewed_mechanisms": 0
+  }
+}

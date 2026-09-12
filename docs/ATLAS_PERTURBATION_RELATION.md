@@ -666,3 +666,16 @@ in data, with separate endpoint wrappers and explicit source WT comparisons.
 The existing assessed context requests no arithmetic. No enzyme-specific
 runtime, generic activity pooling, invented stereoisomer/WT rows, equality,
 covalent mechanism or assay-state transfer is introduced.
+
+### Nitrogenase gas and solvent isotope discrimination
+
+```sh
+python scripts/query_atlas_perturbations.py --control-relation nitrogenase_2016:WT:gas-solvent-isotope-crossover
+```
+
+The [WT E4 isotope relation](ATLAS_NITROGENASE_ISOTOPE_CROSSOVER.md) reuses
+the existing source-system assessment for two qualitative EPR-width contrasts
+across four gas/solvent conditions. Observed narrowing/broadening remains
+separate from the authors' bridge-isotope-retention interpretation. No new
+arithmetic, exact hydride geometry, N2-free control, source-step mapping or
+nitrogenase-specific consumer is introduced.
