@@ -12,7 +12,7 @@ from pathlib import Path
 
 from .atlas_fragment_sites import build_fragment_sites, query_fragment_sites
 from .atlas_mechanism_evidence import query_mechanism_evidence
-from .atlas_perturbations import pointer, project
+from .atlas_perturbations import SPEC_PATH as PROJECTION_PATH, pointer, project
 from .atlas_transformation_sites import _THREE_TO_ONE
 
 SPEC_PATH = "data/atlas/reference_outcomes/spec.json"
@@ -230,8 +230,41 @@ def _compose(root: Path, spec: dict, view: dict, site_id: str | None = None) -> 
     }
 
 
+def _acceptance_payload(result: dict, view: dict, projection: dict) -> dict:
+    """Bind the unfiltered answer and its selected scientific context, not atlas totals."""
+    rows = [row for match in result["matches"] for row in match["matched_observations"]]
+    outcome_sources = {row["provider"]["source"] for row in rows}
+    source_ids = set(outcome_sources)
+    _require(source_ids <= set(projection["evidence_context"]),
+             "selected source has no declared scientific context")
+    contexts = {key: projection["evidence_context"][key] for key in sorted(source_ids)}
+    source_ids.update(ref["source"] for match in result["matches"]
+                      for comparison in match["comparisons"] for ref in comparison["evidence"])
+    source_ids.update(ref["source"] for refs in contexts.values() for ref in refs)
+    return {
+        "composition": result,
+        "constructs": {key: view["constructs"][key] for key in sorted(
+            {row[field] for row in rows for field in ("construct_id", "background_id")})},
+        "assays": {key: view["assays"][key] for key in sorted({row["assay_id"] for row in rows})},
+        "substrates": {key: view["substrates"][key]
+                       for key in sorted({row["substrate_id"] for row in rows})},
+        "evidence_context": {key: {"providers": refs, "values": view["evidence_context"][key]}
+                             for key, refs in contexts.items()},
+        "source_bindings": {key: view["sources"][key] for key in sorted(source_ids)},
+        "source_witnesses": [witness for witness in view["source_witnesses"]
+                             if any(ref["source"] in outcome_sources for ref in witness["source_bindings"])],
+    }
+
+
+def _acceptance_sha256(payload: dict) -> str:
+    raw = json.dumps(payload, sort_keys=True, separators=(",", ":"),
+                     ensure_ascii=False, allow_nan=False).encode("utf-8")
+    return hashlib.sha256(raw).hexdigest()
+
+
 def query_reference_outcomes(root: Path, *, site_id: str | None = None) -> dict:
     """Verify both existing evidence planes, then compose the reviewed declarations."""
+    view = project(root)
     review = json.loads(_raw(root, REVIEW_PATH))
     _require(review["status"] == "source_reviewed_computational"
              and review["independent_human_validation"] is False
@@ -242,11 +275,22 @@ def query_reference_outcomes(root: Path, *, site_id: str | None = None) -> dict:
     for path, digest in review["reviewed_bindings"].items():
         _require(hashlib.sha256(_raw(root, path)).hexdigest() == digest,
                  "review binding differs: " + path)
-    view = project(root)
     try:
-        result = _compose(root, json.loads(_raw(root, SPEC_PATH)), view, site_id)
+        result = _compose(root, json.loads(_raw(root, SPEC_PATH)), view)
+        payload = _acceptance_payload(result, view, json.loads(_raw(root, PROJECTION_PATH)))
+        for binding in payload["source_bindings"].values():
+            _require(review["reviewed_bindings"].get(binding["path"]) == binding["sha256"],
+                     "review omits selected source: " + binding["path"])
+        _require(_acceptance_sha256(payload) == review.get("accepted_scientific_payload_sha256"),
+                 "reviewed scientific composition differs; renewed local review required")
     except (KeyError, IndexError, TypeError) as error:
         raise ValueError("reference outcome join: malformed or unbound declaration") from error
+    # Even an empty selection must first validate every declared scientific relation.
+    if site_id is not None:
+        result["matches"] = [match for match in result["matches"]
+                             if match["reference_site_id"] == site_id]
+    result["filters"]["reference_site_id"] = site_id
+    result["relation_count"] = len(result["matches"])
     result["primary_projection_bindings"] = {
         path: hashlib.sha256(_raw(root, path)).hexdigest() for path in
         ("data/atlas/perturbations/projection.json", "data/atlas/perturbations/review.json")
